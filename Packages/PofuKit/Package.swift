@@ -19,6 +19,7 @@ let package = Package(
         .library(name: "PofuCore", targets: ["PofuCore"]),
         .library(name: "PofuScreenTime", targets: ["PofuScreenTime"]),
         .library(name: "PofuDesignSystem", targets: ["PofuDesignSystem"]),
+        .library(name: "PofuCompanion", targets: ["PofuCompanion"]),
     ],
     targets: [
         // Pure domain: economy, friction ladder, passes, metrics, vitality.
@@ -33,8 +34,13 @@ let package = Package(
         // Design tokens and small SwiftUI building blocks.
         .target(name: "PofuDesignSystem"),
 
+        // The living companion: motion simulation (pure, testable).
+        // See docs/design/companion-motion.md.
+        .target(name: "PofuCompanion", dependencies: ["PofuDesignSystem"]),
+
         .testTarget(name: "PofuCoreTests", dependencies: ["PofuCore"]),
         .testTarget(name: "PofuScreenTimeTests", dependencies: ["PofuScreenTime", "PofuCore"]),
+        .testTarget(name: "PofuCompanionTests", dependencies: ["PofuCompanion"]),
     ],
     swiftLanguageModes: [.v6]
 )
