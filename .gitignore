@@ -44,3 +44,6 @@ Config/Local.xcconfig
 __pycache__/
 *.pyc
 .venv/
+
+# Raw AI generations awaiting review (see docs/design/art-bible.md)
+design/art/inbox/
