@@ -35,26 +35,34 @@ private func authorizedService(categories: [ApplicationToken: CategoryToken] = [
 
 @Suite("Simulated Screen Time: authorization")
 struct AuthorizationTests {
-    @Test func requestingApprovesAndAnnouncesIt() async throws {
+    @Test func requestingApprovesAndAnnouncesIt() async {
         let service = SimulatedScreenTimeService(authorizationResponse: .approved, calendar: istanbul)
         #expect(await service.authorizationStatus() == .notDetermined)
-        let status = try await service.requestAuthorization()
+        let status = await service.requestAuthorization()
         #expect(status == .approved)
         #expect(await service.authorizationStatus() == .approved)
         #expect(await service.eventLog == [.authorizationChanged(.approved)])
     }
 
-    @Test func decliningIsAStatusNotAnError() async throws {
+    @Test func decliningIsAStatusNotAnError() async {
         let service = SimulatedScreenTimeService(authorizationResponse: .denied, calendar: istanbul)
-        let status = try await service.requestAuthorization()
+        let status = await service.requestAuthorization()
         #expect(status == .denied)
     }
 
-    @Test func theSystemAsksOnlyOnce() async throws {
+    @Test func theSystemAsksOnlyOnce() async {
         let service = SimulatedScreenTimeService(authorizationStatus: .denied, authorizationResponse: .approved, calendar: istanbul)
-        let status = try await service.requestAuthorization()
+        let status = await service.requestAuthorization()
         #expect(status == .denied)
         #expect(await service.eventLog.isEmpty)
+    }
+
+    @Test func worksThroughTheProtocol() async throws {
+        let service: any ScreenTimeService = SimulatedScreenTimeService(calendar: istanbul)
+        let status = try await service.requestAuthorization()
+        #expect(status == .approved)
+        try await service.applyShield("bedtime", to: feeds)
+        #expect(await service.activeShields() == ["bedtime": feeds])
     }
 
     @Test func operationsRequireAuthorization() async {
