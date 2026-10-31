@@ -291,7 +291,9 @@ Rules:
 - **Never all caps in Turkish.** Use sentence case everywhere. Where
   uppercasing is unavoidable, use locale-aware APIs
   (`uppercased(with: .current)`), or "istanbul" becomes "ISTANBUL" instead
-  of "İSTANBUL".
+  of "İSTANBUL". The reverse bites too: the first render of our own board
+  set `lang="tr"` on the page, and uppercase English labels came out as
+  "CHİPS". Tag every string with its real language.
 - **Display text is short.** At most two lines; at accessibility sizes it
   may wrap to three. Body text is never capped.
 - **Numbers use `numeral`** (monospaced digits), so counters do not jitter
