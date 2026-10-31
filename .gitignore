@@ -37,3 +37,8 @@ fastlane/test_output
 .env
 .env.*
 Secrets.xcconfig
+
+# Python (design prototypes)
+__pycache__/
+*.pyc
+.venv/
