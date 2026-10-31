@@ -31,8 +31,9 @@ public enum BreathingCurve {
     }
 }
 
+/// Linear interpolation that returns `a` and `b` exactly at the ends.
 func lerp(_ a: Double, _ b: Double, _ t: Double) -> Double {
-    a + (b - a) * t
+    a * (1 - t) + b * t
 }
 
 func clampUnit(_ value: Double) -> Double {

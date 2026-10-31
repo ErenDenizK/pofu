@@ -23,9 +23,10 @@ public enum SquashModel {
     }
 
     /// The slump of a low-vitality body: shorter and wider, never more than
-    /// 7% shorter. `vitality` is in `0...1`.
+    /// 7% shorter. It starts below vitality 0.7, so a content Pofu stands
+    /// fully upright. `vitality` is in `0...1`.
     public static func slump(vitality: Double) -> (x: Double, y: Double) {
-        let v = clampUnit(vitality)
-        return (x: lerp(1.035, 1, v), y: lerp(0.93, 1, v))
+        let amount = 1 - smoothstep(0, 0.7, clampUnit(vitality))
+        return (x: lerp(1, 1.035, amount), y: lerp(1, 0.93, amount))
     }
 }
