@@ -14,7 +14,7 @@ the currency is **seeds / çekirdek**, the intervention is **Hop!**.
 ## Voice rules (apply to every string below)
 
 1. **Pofu speaks, the UI labels.** Pofu's lines are first person, short,
-   warm ("I feel fluffier"). Buttons are plain verbs ("Never mind",
+   warm ("I feel fluffier"). Buttons are plain verbs ("Skip it",
    "Open for 5 min"). Never mix the two in one element.
 2. **No shame, ever.** Opening an app is never "giving in", "failing", or
    "breaking". Pofu is glad either way; it is just *more* glad when you skip.
@@ -65,10 +65,10 @@ flowchart TD
 |---|---|---|---|---|
 | 1 | Welcome | EN: **Hi, I'm Pofu.** <br/>TR: **Selam, ben Pofu.** | EN: I'm a hamster who gets fluffier every time you pick real life over the feed. <br/>TR: Akış yerine hayatı seçtiğin her an biraz daha kabaran bir hamsterım. | EN: **Hi, Pofu** · TR: **Selam, Pofu** |
 | 2 | The promise | EN: **Whenever you reach for a feed, I'll hop in.** <br/>TR: **Ne zaman bir akışa uzansan, araya ben gireceğim.** | EN: You always decide. I just make skipping the easy choice. <br/>TR: Karar hep senin. Ben sadece vazgeçmeyi kolaylaştırıyorum. | EN: **Sounds good** · TR: **Anlaştık** |
-| 3 | Pick apps | EN: **Which ones pull you in?** <br/>TR: **Seni en çok hangileri içine çekiyor?** | Grid: Instagram, TikTok, YouTube, X, Snapchat, Reddit, Facebook, Other. Footnote EN: You can change these any time. TR: Bunları sonra da değiştirebilirsin. | EN: **Continue** · TR: **Devam** (disabled until ≥ 1) |
+| 3 | Pick apps | EN: **Which ones pull you in?** <br/>TR: **Seni en çok hangileri içine çekiyor?** | Grid: Instagram, TikTok, YouTube, X, Snapchat, Reddit, Facebook, Other. Footnote EN: We'll set them up one at a time, starting with your first pick. You can change these any time. TR: İlk seçtiğinden başlayıp hepsini tek tek kuracağız. Sonra da değiştirebilirsin. | EN: **Continue** · TR: **Devam** (disabled until ≥ 1) |
 | 4 | Name | EN: **What should we call me?** <br/>TR: **Bana ne diyelim?** | Text field prefilled "Pofu". Suggestion chips EN: Pofu, Peanut, Mochi, Biscuit. TR: Pofu, Fıstık, Lokum, Pamuk. | EN: **That's me** · TR: **Bu benim** |
-| 5 | Practice Hop! | EN: **Let's practice. Pretend you're opening Instagram.** <br/>TR: **Bir prova yapalım. Instagram'ı açıyormuş gibi yap.** | A fake app icon. Tapping it plays a real Hop! (pause rung, 2 s breath). | The user must tap **Never mind**. Then: EN: **That's it. That's the whole trick.** TR: **İşte bu. Bütün numara bu.** |
-| 6 | Setup intro | EN: **Now let me stand at Instagram's door.** <br/>TR: **Şimdi Instagram'ın kapısında ben durayım.** | EN: iPhone only lets me appear if you invite me, in the Shortcuts app. It takes about a minute, once. I'll float in a little window and show you every tap. <br/>TR: iPhone, beni ancak sen Kestirmeler'den davet edersen gösteriyor. Bir kere, yaklaşık bir dakika sürüyor. Küçük bir pencerede yanında olup her dokunuşu göstereceğim. | EN: **Open Shortcuts** · TR: **Kestirmeler'i aç**. Secondary EN: **I'll do it later** · TR: **Sonra yaparım** |
+| 5 | Practice Hop! | EN: **Let's practice. Pretend you're opening Instagram.** <br/>TR: **Bir prova yapalım. Instagram'ı açıyormuş gibi yap.** | A fake app icon. Tapping it plays a real Hop! (pause rung, 2 s breath). | The user must tap **Skip it** / **Vazgeç**. Then: EN: **That's it. That's the whole trick.** TR: **İşte bu. Bütün numara bu.** |
+| 6 | Setup intro | EN: **Now let me stand at Instagram's door.** <br/>TR: **Şimdi Instagram'ın kapısında ben durayım.** | Eyebrow EN: ABOUT A MINUTE, ONCE · TR: BİR DAKİKA, BİR KERE. <br/>EN: iPhone only lets me appear if you invite me in the Shortcuts app. You do it once. I'll float in a little window and show you every tap. <br/>TR: iPhone, beni ancak sen Kestirmeler'den davet edersen gösteriyor. Bir kere yaparsın. Küçük bir pencerede yanında olup her dokunuşu göstereceğim. <br/>Below: the four-step summary and a preview of the floating guide. | EN: **Open Shortcuts** · TR: **Kestirmeler'i aç**. Secondary EN: **I'll do it later** · TR: **Sonra yaparım** |
 | 7 | Guided setup | Picture in Picture guide (see below) | | |
 | 8 | Verify | EN: **Last step: open Instagram once.** <br/>TR: **Son adım: Instagram'ı bir kere aç.** | EN: If I pop up, we're done. <br/>TR: Ben çıkarsam, tamamdır. | EN: **Open Instagram** · TR: **Instagram'ı aç** (opens `instagram://`). Secondary EN: **I'll test it later** · TR: **Sonra denerim** |
 | 9 | First real Hop! | EN: **Gotcha! It works.** <br/>TR: **Yakaladım! Çalışıyor.** | EN: From now on, I'll be here every time Instagram opens. <br/>TR: Artık Instagram her açıldığında buradayım. | If more apps: EN: **Next: YouTube (1 min)** · TR: **Sırada YouTube var (1 dk)**; secondary EN: **Later** · TR: **Sonra**. Else EN: **Done** · TR: **Tamam** |
@@ -133,7 +133,7 @@ The most important moment of the product. Design constraints:
 - **A skip must be complete within ~3 s of tapping the app icon,** including
   the automation latency (≈ 0.5–1 s). So the skip action is live from the
   very first frame, before any animation finishes.
-- **The way out is always in the same place.** "Never mind" is the large
+- **The way out is always in the same place.** "Skip it" (TR: "Vazgeç") is the large
   button at the bottom of every rung, in thumb reach. The thumb learns it;
   a reflex starts to land on *skip*.
 - **Doing nothing is skipping.** Leaving Hop! without choosing is recorded
@@ -152,7 +152,7 @@ stateDiagram-v2
     Check --> Intent: rung 2
     Check --> Pay: rung 3+
     Check --> Friend: pay due, balance < cheapest window
-    Pause --> Skipped: Never mind / swipe away
+    Pause --> Skipped: Skip it / swipe away
     Intent --> Skipped
     Pay --> Skipped
     Friend --> Skipped
@@ -171,21 +171,23 @@ stateDiagram-v2
 | t (s) | Event |
 |---|---|
 | 0.0 | User taps the Instagram icon. iOS opens Instagram; the automation runs. |
-| ~0.7 | Pofu comes to the foreground. First frame already shows **Hop!**, Pofu, and **Never mind**. Haptic: `.rigid`. Pofu pops in on a bouncy spring (0.35 s). |
-| ~1.5 | User taps **Never mind**. Haptic: `.success`. |
+| ~0.7 | Pofu comes to the foreground. First frame already shows **Hop!**, Pofu, and **Skip it**. Haptic: `.rigid`. Pofu pops in on a bouncy spring (0.35 s). |
+| ~1.5 | User taps **Skip it**. Haptic: `.success`. |
 | 1.5–2.7 | Celebration: Pofu hops (squash, stretch, land), cheeks blush, a new filled bead drops into the row, the count rolls up. |
 | 2.7 | Done. The screen settles with one gentle suggestion and the hint to swipe home. |
 
 ### Rung designs
 
-All rungs share one layout so the eye and thumb never re-learn it:
+All rungs share one layout so the eye and thumb never re-learn it. The app
+chip shows only the app's name on the first reach, and adds the count from
+the second ("2nd reach this hour" / "son bir saatte 2. kez"):
 
 ```
  app chip:  [icon] Instagram · 2nd reach this hour
  headline:  Hop!  <rung-specific question>
  stage:     Pofu (+ rung-specific element: breath ring / reason chips / price cards)
  secondary: [ Open for 5 min ]   (gated: fills like a progress bar while locked)
- primary:   [      Never mind      ]
+ primary:   [       Skip it        ]
  footnote:  Swiping away counts as skipping.
 ```
 
@@ -193,14 +195,14 @@ All rungs share one layout so the eye and thumb never re-learn it:
 |---|---|---|---|---|
 | **Pause** | **Hop! One breath first.** / **Hop! Önce bir nefes.** | Pofu inflates as you breathe in (2.5 s) and deflates as you breathe out (2.5 s). Caption: "Breathe in…" / "Nefes al…" then "…and out." / "…ve ver." | **Open for 5 min** / **5 dakikalığına aç**, enabled when the breath ends; the button fills like a progress bar meanwhile. | Pause length is a setting (3, 5, 8 s). |
 | **Intent** | **Hop! What's this one for?** / **Hop! Bu seferki ne için?** | Six reason chips (below). After a choice, Pofu answers in one line. | **Open for 5 min**, enabled once a reason is chosen. | The reason is logged and reflected back in the recap. |
-| **Pay** | **Hop! This one costs seeds.** / **Hop! Bu sefer çekirdek lazım.** | Pofu holds its cheeks. Four window cards: 5, 10, 15, 30 min with current prices. Balance and "after" shown. Explainer: "3rd open in 3 hours, so prices are up a bit." / "3 saatte 3. açılış, fiyatlar biraz arttı." | **Spend 13 seeds** / **13 çekirdek harca** | Default selection: 10 min. Prices follow the economy exactly. |
+| **Pay** | **Hop! This one costs seeds.** / **Hop! Bu sefer çekirdek lazım.** | Pofu holds its cheeks. Four window cards: 5, 10, 15, 30 min with current prices. Balance and "after" shown. Explainer, only when escalation applies: "You bought a pass 2 hours ago, so prices are up a bit." / "2 saat önce izin aldın, fiyatlar biraz arttı." (Escalation counts *paid* passes, not reaches.) | **Spend 13 seeds** / **13 çekirdek harca** | Default selection: 10 min. Prices follow the economy exactly. |
 | **Ask a friend** | **Hop! My cheeks are empty.** / **Hop! Yanaklarım bomboş.** | Friend avatar. EN: "Ask Deniz for 10 minutes?" TR: "Deniz'e soralım mı, 10 dakika?" Alternative: EN: "Or earn 5 seeds with a 10-minute focus." TR: "Ya da 10 dakikalık odakla 5 çekirdek kazan." | **Ask Deniz** / **Deniz'e sor** | See flow 6. If no friend is paired, see edge cases. |
 
 **Intent reasons** (and Pofu's one-line answer):
 
 | EN chip | TR chip | Pofu EN | Pofu TR |
 |---|---|---|---|
-| Reply to someone | Birine cevap vereceğim | Go reply. I'll keep it short for you. | Git cevapla. Kısa tutarız. |
+| Reply to someone | Mesaja cevap | Go reply. I'll keep it short for you. | Git cevapla. Kısa tutarız. |
 | Look something up | Bir şeye bakacağım | Find it and come back to me. | Bul ve bana dön. |
 | Post something | Paylaşım yapacağım | Post it, don't scroll it. | Paylaş, kaydırma. |
 | Just bored | Sıkıldım | Bored is allowed. Be bored with me for a minute? | Sıkılmak serbest. Bir dakika benimle sıkılır mısın? |
@@ -215,7 +217,7 @@ All rungs share one layout so the eye and thumb never re-learn it:
 | Count | New bead drops into the row with a spring; the count rolls (7 → 8). |
 | Headline | EN: **Skipped. That's 8 today.** TR: **Vazgeçtin. Bugün 8 oldu.** |
 | Pofu line (rotating, never the same twice in a row) | EN: "Look at you. I feel fluffier already." / "Ooh. That was a good one." / "The wheel can spin without us." TR: "Bak sen şuna. Şimdiden kabardım." / "Oh, bu iyiydi." / "Çark bizsiz de döner." |
-| Suggestion (one chip, optional) | EN: **Breathe for a minute** · **Start a focus** · **Put the phone down** TR: **Bir dakika nefes** · **Odaklanmaya başla** · **Telefonu bırak** |
+| Suggestions (two chips, optional) | EN: **Breathe for a minute** · **Start a focus** TR: **Bir dakika nefes al** · **Odaklanmaya başla** |
 | Exit | Home indicator hint: EN: "Swipe up when you're ready." TR: "Hazır olunca yukarı kaydır." |
 
 Resisting does **not** earn seeds. Paying for skips would turn the gate into
@@ -253,7 +255,7 @@ moment that does the work.
 | No seeds and no friend paired | Friend rung shows EN: **Hop! My cheeks are empty.** with: **Earn 5 seeds (10-min focus)**, **Pair a friend**, and **Emergency: 3 minutes** (proposal, see below). The ladder reset time is shown: EN: "Free again in 42 min." TR: "42 dakika sonra yine ücretsiz." |
 | Bedtime window | Bedtime Hop! (flow 5). |
 | Target app's URL scheme fails (app deleted) | EN: "I couldn't open Instagram. Is it still installed?" TR: "Instagram'ı açamadım. Hâlâ yüklü mü?" Pass is refunded. |
-| VoiceOver | Focus lands on **Never mind** first. Breath has a text countdown. |
+| VoiceOver | Focus lands on **Skip it** first. Breath has a text countdown. |
 | Reduce Motion | No hop; a crossfade to the skipped state and a bead fade-in. |
 
 **Proposal: one emergency pass a day.** The soft gate can always be
@@ -385,7 +387,7 @@ flowchart LR
 | Section | Content | EN | TR |
 |---|---|---|---|
 | Header | Date, Pofu in today's mood | **Pofu's day** · Saturday | **Pofu'nun günü** · Cumartesi |
-| Hero | Beads + raw count + goal | **You reached 14 times and skipped 9.** Goal: half. Done. | **14 kez açmak istedin, 9'unda vazgeçtin.** Hedef: yarısı. Tamam. |
+| Hero | Beads + raw count + goal | **You reached 14 times and skipped 9.** Goal: half. Done. | **14 kez açmak istedin, 9 kez vazgeçtin.** Hedef: yarısı. Tamam. |
 | When | Reaches by hour, a single-series bar chart, hardest hour labeled | Hardest hour: 22:00 | En zor saat: 22.00 |
 | Why | Top reasons from the intent rung | "Just bored" ×4, "Pure habit" ×3 | "Sıkıldım" ×4, "Alışkanlık işte" ×3 |
 | Seeds | Earned, spent, in cheeks | +36 earned · −20 spent | +36 kazandın · −20 harcadın |
@@ -393,7 +395,7 @@ flowchart LR
 | Action | Starts bedtime | **Tuck Pofu in** | **Pofu'yu yatır** |
 
 Tone: on a day below goal, the hero reads EN: "You reached 14 times and
-skipped 4. Tomorrow's a new wheel." TR: "14 kez açmak istedin, 4'ünde
+skipped 4. Tomorrow's a new wheel." TR: "14 kez açmak istedin, 4 kez
 vazgeçtin. Yarın yeni bir gün." No red, no down arrows.
 
 ### Bedtime
@@ -463,7 +465,7 @@ sequenceDiagram
 |---|---|---|
 | Request (Eren) | **Ask Deniz for 10 minutes?** Toggle: "Share today's skips (9 of 14)". | **Deniz'e soralım mı, 10 dakika?** Seçenek: "Bugünkü vazgeçişlerimi paylaş (14'te 9)". |
 | Prefilled message | Pofu's out of seeds. Can I have 10 minutes of Instagram? | Pofu'nun çekirdeği bitti. 10 dakika Instagram'a izin verir misin? |
-| Waiting | **Waiting for Deniz…** This request is valid for 15 minutes. **Enter code** · **Never mind** | **Deniz bekleniyor…** Bu istek 15 dakika geçerli. **Kodu gir** · **Boş ver** |
+| Waiting | **Waiting for Deniz…** This request is valid for 15 minutes. **Enter code** · **Skip it** | **Deniz bekleniyor…** Bu istek 15 dakika geçerli. **Kodu gir** · **Vazgeç** |
 | Approve (Deniz) | **Eren wants 10 minutes of Instagram.** Today: skipped 9 of 14. Second ask today. **Give 10 min** · **Give 5 min** · **Not now** | **Eren 10 dakika Instagram istiyor.** Bugün: 14'te 9 vazgeçiş. Bugünkü ikinci isteği. **10 dk ver** · **5 dk ver** · **Şimdi olmaz** |
 | Decline presets | "Not now. You've got this." · "Go for a walk first?" · "Call me instead." | "Şimdi olmaz. Sen yaparsın." · "Önce bir yürü?" · "Onun yerine beni ara." |
 | Granted (Eren) | **Deniz said yes.** 10 minutes, starting now. | **Deniz izin verdi.** 10 dakika, şimdi başlıyor. |
@@ -503,7 +505,7 @@ stateDiagram-v2
     NotSetUp --> Verified: first CheckInIntent from this app
     Verified --> Quiet: no check-ins for 2 days while baseline ≥ 3/day
     Quiet --> Verified: check-in arrives
-    Quiet --> Away: user says 'I've been off Instagram'
+    Quiet --> Away: user says 'I've been off it'
     Quiet --> Removed: user says 'I turned it off on purpose'
     Away --> Verified: check-in arrives
     Removed --> Verified: user reconnects
@@ -524,8 +526,8 @@ which turns "probably" into "certainly" (ADR-0008).
 |---|---|
 | **I haven't heard from Instagram since Tuesday. Did we lose touch?** | **Salı'dan beri Instagram'dan ses yok. Bağlantımız mı koptu?** |
 | **Let's reconnect** (1 min, opens the guide for that app) | **Yeniden bağlayalım** |
-| **I've been off Instagram** → celebration: "Wait, really? That's huge." | **Instagram'a hiç girmedim** → "Gerçekten mi? Bu çok büyük." |
-| **I turned it off on purpose** → "Okay. I'm here if you want me back." | **Bilerek kapattım** → "Tamam. İstersen buradayım." |
+| **I've been off it** → celebration: "Wait, really? That's huge." | **Hiç girmedim** → "Gerçekten mi? Bu çok büyük." |
+| **I turned it off** → "Okay. I'm here if you want me back." | **Bilerek kapattım** → "Tamam. İstersen buradayım." |
 
 Asked at most twice (day 2 and day 5 of silence), then only shown in
 Settings. Pofu never sends a push notification about a disconnected app:

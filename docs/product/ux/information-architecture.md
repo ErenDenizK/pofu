@@ -84,7 +84,7 @@ neighbors' village), move to option B with three tabs. Never five.
 │      wheel (still)        seed bowl       │  the wheel stands idle when you do well
 │                                           │
 │ ┌ Today ─────────────────────────────── ┐ │
-│ │ ●●●●●●●○○○○  7 of 11 skipped          │ │  impulse beads: the north star
+│ │ 7 of 11 skipped   ●●○●●○●○○●●         │ │  impulse beads: the north star
 │ │ Goal: half. You're at 64%.            │ │  tap → Today / recap sheet
 │ └───────────────────────────────────────┘ │
 │                                           │
@@ -92,10 +92,17 @@ neighbors' village), move to option B with three tabs. Never five.
 └──────────────────────────────────────────┘
 ```
 
+Three Home concepts (the room, a ledger of reaches, a wheel of beads) are
+compared side by side in the
+[prototype README](../../../design/prototypes/ux/README.md#home-three-concepts);
+the room is recommended and drawn above.
+
 Rules for Home:
 
 - **One primary action.** "Fill my cheeks" (start earning). Spending has a
   secondary button, because spending mostly happens inside Hop!.
+- **Turkish:** the card reads "11'de 7 vazgeçiş" (suffix from the harmony
+  helper).
 - **The north star is the only number with a hero position.** Impulses
   resisted today, as *beads*: one bead per reach, filled violet when you
   skipped it, an empty ring when you opened the app. It is honest, glanceable,
@@ -180,7 +187,7 @@ stay as they are):
 |---|---|---|---|---|
 | Currency | `Energy` | **seeds** | **çekirdek** | Hamsters stuff seeds in their cheeks; sunflower seeds (*çekirdek çitlemek*) are a beloved Turkish ritual. At the base price, **1 seed buys 1 minute**, which makes prices self-explanatory. |
 | Intervention | soft gate, `CheckInIntent` | **Hop!** | **Hop!** | "Hop!" means *whoa, hold on* in Turkish and is the hamster's hop off the wheel in English. |
-| Resisting | `resisted` | **skip** ("Never mind") | **vazgeçmek** ("Boş ver") | Plain, lightweight words. "Resist" sounds like a battle; skipping is easy. |
+| Resisting | `resisted` | **skip** (button: "Skip it") | **vazgeçmek** (button: "Vazgeç") | Plain, lightweight words. "Resist" sounds like a battle; skipping is easy. "Never mind" was rejected in prototype review: it can be read as "never mind *you*, let me in". *Vazgeç* is also iOS's own Turkish "Cancel", so it reads as "cancel the open". |
 | Opening anyway | `proceeded` | **open** | **açmak** | Neutral, never "give in". |
 | A reach | attempt | **reach** | **açma isteği** | "Reach" is the gesture we design for. |
 | Unlock window | `Pass` | **pass** | **izin** | *İzin* (permission, leave) is the natural Turkish word. |
