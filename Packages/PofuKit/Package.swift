@@ -17,13 +17,20 @@ let package = Package(
     ],
     products: [
         .library(name: "PofuCore", targets: ["PofuCore"]),
+        .library(name: "PofuScreenTime", targets: ["PofuScreenTime"]),
     ],
     targets: [
         // Pure domain: economy, friction ladder, passes, metrics, vitality.
         // Foundation only, zero dependencies. Extensions may link it.
         .target(name: "PofuCore"),
 
+        // The Screen Time boundary: protocol plus simulated implementation.
+        // FamilyControls, ManagedSettings, and DeviceActivity are imported
+        // only by the future live implementation.
+        .target(name: "PofuScreenTime", dependencies: ["PofuCore"]),
+
         .testTarget(name: "PofuCoreTests", dependencies: ["PofuCore"]),
+        .testTarget(name: "PofuScreenTimeTests", dependencies: ["PofuScreenTime", "PofuCore"]),
     ],
     swiftLanguageModes: [.v6]
 )
