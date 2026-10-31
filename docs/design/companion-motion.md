@@ -108,8 +108,13 @@ Limits, stated plainly:
   (`xcodebuild -downloadComponent MetalToolchain`). `PofuCompanion`
   therefore declares the shader as an explicit resource, checks for the
   compiled library at runtime (`CompanionShaders.isAvailable`), and falls
-  back to a pure-SwiftUI cheek (a magnified, radially masked copy). The
-  shader is not exercised by unit tests; it needs on-device review.
+  back to a pure-SwiftUI cheek (a magnified, radially masked copy).
+  **Verified on CI:** `swift test` logs `Copying CompanionShaders.metal`,
+  while the Xcode app build runs `CompileMetalFile` and `MetalLink` into
+  `PofuKit_PofuCompanion.bundle/default.metallib`, using the Metal
+  toolchain component that the macOS 26 runner image already has. The
+  founder's Xcode may prompt once to download that component. The shader
+  is not exercised by unit tests; its look needs on-device review.
 - Widgets and Live Activities render static snapshots; no shaders, no
   timelines. They use stills (section 6).
 
