@@ -102,7 +102,9 @@ struct CompanionMotionTests {
     @Test func sameSeedSamePerformance() {
         var a = CompanionMotion(seed: 42)
         var b = CompanionMotion(seed: 42)
-        #expect(run(&a, seconds: 5) == run(&b, seconds: 5))
+        let first = run(&a, seconds: 5)
+        let second = run(&b, seconds: 5)
+        #expect(first == second)
     }
 
     @Test func posesStayFiniteUnderAbuse() {
