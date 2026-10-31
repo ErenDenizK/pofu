@@ -25,8 +25,8 @@ Goal: an app on the founder's iPhone where the companion is alive and
 delightful, running on the simulated Screen Time service (ADR-0003).
 
 - Companion rig v1: idle, thriving, tired, wilting, sleeping, celebrating
-- Home scene with world state driven by `RotCore`
-- Economy engine in `RotCore` with simulation tests (earn rates, prices,
+- Home scene with world state driven by `PofuCore`
+- Economy engine in `PofuCore` with simulation tests (earn rates, prices,
   inflation control, daily caps)
 - Activities: focus timer, breathing, honor-based activities
 - Streaks and first milestones
@@ -50,7 +50,7 @@ A checklist, not a phase. These steps have long lead times.
 
 ## Phase 2: The shield (paid membership)
 
-Goal: the founder uses the app for real, every day.
+Goal: enforcement. Schedules and budgets become real blocks.
 
 - `LiveScreenTimeService`: authorization, app selection, schedules, presets
 - Hard gate: shield configuration and action extensions, with Pofu's
