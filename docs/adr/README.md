@@ -14,4 +14,6 @@ Format: a lightweight variant of [MADR](https://adr.github.io/madr/). Use
 | [0003](0003-modular-architecture-and-screen-time-boundary.md) | Modular architecture and a Screen Time boundary | Accepted |
 | [0004](0004-trust-first-activity-verification.md) | Trust-first activity verification | Accepted |
 | [0005](0005-serverless-friend-approval.md) | Serverless friend approval | Accepted |
-| [0006](0006-code-native-companion-rendering.md) | Code-native companion rendering | Proposed |
+| [0006](0006-code-native-companion-rendering.md) | Code-native companion rendering | Accepted |
+| [0007](0007-product-name-pofu.md) | Product and character name: Pofu | Accepted |
+| [0008](0008-hybrid-intervention-delivery.md) | Hybrid intervention delivery | Accepted |
