@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pofu motion proof</title>
+<style>
+  :root { --bg: #fdede5; --ink: #3a2a24; --muted: #8a6f63; --accent: #e08a5a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Rounded", system-ui, sans-serif;
+         color: var(--ink); background: var(--bg); display: flex; justify-content: center; }
+  main { display: grid; grid-template-columns: auto 300px; gap: 28px; padding: 28px; align-items: start; }
+  canvas { width: 420px; height: 420px; border-radius: 28px; touch-action: none; cursor: pointer;
+           box-shadow: 0 10px 40px rgba(160, 90, 60, 0.12); display: block; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  p.lede { margin: 0 0 18px; color: var(--muted); font-size: 13px; }
+  label { display: block; margin: 14px 0 4px; font-weight: 600; font-size: 13px; }
+  label span { float: right; font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  button { font: inherit; font-size: 13px; padding: 8px 14px; border-radius: 999px; border: 0;
+           background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,0.08); cursor: pointer; }
+  button.primary { background: var(--accent); color: #fff; }
+  .check { display: flex; align-items: center; gap: 8px; font-weight: 400; margin: 8px 0 0; }
+  .hint { color: var(--muted); font-size: 12px; margin-top: 18px; }
+  body.capture main { padding: 0; display: block; }
+  body.capture aside { display: none; }
+  body.capture canvas { border-radius: 0; box-shadow: none; }
+  #error { color: #b3261e; font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <canvas id="stage" width="840" height="840" aria-label="Pofu, tap to squish"></canvas>
+  <aside>
+    <h1>Pofu motion proof</h1>
+    <p class="lede">One AI illustration, no extra frames. Every motion below is procedural transforms plus a
+      single deformation shader. Tap Pofu; drag the pointer around.</p>
+    <label for="energy">Energy (cheek pouches) <span id="energyOut"></span></label>
+    <input id="energy" type="range" min="0" max="1" step="0.01" value="0.25">
+    <label for="vitality">Vitality <span id="vitalityOut"></span></label>
+    <input id="vitality" type="range" min="0" max="1" step="0.01" value="0.8">
+    <div class="row">
+      <button class="primary" id="hop">Celebrate</button>
+      <button id="blink">Blink</button>
+      <button id="feed">+ Energy</button>
+    </div>
+    <label class="check"><input id="follow" type="checkbox" checked> Look at pointer</label>
+    <label class="check"><input id="reduce" type="checkbox"> Reduce Motion</label>
+    <label class="check"><input id="fields" type="checkbox"> Show deformation fields</label>
+    <p class="hint">Spec: docs/design/companion-motion.md. Query: <code>?capture=1</code> for
+      deterministic frame capture.</p>
+    <p id="error"></p>
+  </aside>
+</main>
+<script src="pofu-hamster-data.js"></script>
+<script>
+"use strict";
+
+// ---------------------------------------------------------------------------
+// Rig: landmarks of the cut-out, in image pixels (pofu-hamster.png, 522x496).
+// For production art these come from the asset contract's landmark JSON.
+// ---------------------------------------------------------------------------
+const RIG = {
+  size: [522, 496],
+  ground: [266, 481],         // bottom center where the feet meet the floor
+  height: 467,                // ground to tuft tip
+  sphere: [266, 270, 250],    // body sphere for the fake 3D turn (cx, cy, r)
+  eyeL: [188, 218, 42, 41],   // center and radii, slightly larger than the iris
+  eyeR: [359, 217, 42, 41],
+  cheekL: [128, 292, 118],    // pouch bulge center and radius (outboard of the blush)
+  cheekR: [404, 290, 118],
+  blushL: [153, 266, 40, 26],
+  blushR: [388, 263, 40, 26],
+  tuft: [272, 52, 62],        // tuft center and radius
+  tuftPivot: [266, 102],
+  earL: [122, 84, 58], earLPivot: [158, 128],
+  earR: [410, 84, 58], earRPivot: [374, 128],
+};
+
+// ---------------------------------------------------------------------------
+// Springs: same parameterization as SwiftUI (response, damping fraction), so
+// the numbers port one-to-one to PofuCompanion.
+// ---------------------------------------------------------------------------
+class Spring {
+  constructor(value = 0, response = 0.5, damping = 0.7) {
+    this.x = value; this.v = 0; this.target = value;
+    this.set(response, damping);
+  }
+  set(response, damping) {
+    this.k = Math.pow(2 * Math.PI / response, 2);
+    this.c = 4 * Math.PI * damping / response;
+  }
+  step(dt) {
+    const a = this.k * (this.target - this.x) - this.c * this.v;
+    this.v += a * dt; this.x += this.v * dt;
+  }
+}
+
+// Seeded random so captures are reproducible.
+let seed = 7;
+const rand = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
+const lerp = (a, b, t) => a + (b - a) * t;
+const clamp01 = (x) => Math.min(1, Math.max(0, x));
+const smooth = (e0, e1, x) => { const t = clamp01((x - e0) / (e1 - e0)); return t * t * (3 - 2 * t); };
+
+// ---------------------------------------------------------------------------
+// Motion model. Pure function of input events and time; produces the shader
+// parameters each frame.
+// ---------------------------------------------------------------------------
+const motion = {
+  t: 0,
+  breathPhase: 0,
+  squash: new Spring(0, 0.42, 0.28),     // + stretch, - squash; jiggly
+  vitality: new Spring(0.8, 1.4, 1.0),   // slow, never jumps
+  cheek: new Spring(0.25, 0.55, 0.38),   // pouches inflate with a wobble
+  tuft: new Spring(0, 0.7, 0.22),        // follow-through, lags the body
+  earL: new Spring(0, 0.35, 0.3),
+  earR: new Spring(0, 0.35, 0.3),
+  lean: new Spring(0, 0.9, 0.5),
+  poke: new Spring(0, 0.3, 0.3),
+  pokeAt: [266, 300],
+  happy: new Spring(0, 0.22, 0.9),
+  turnX: new Spring(0, 0.6, 0.85), turnY: new Spring(0, 0.6, 0.85),
+  gazeX: new Spring(0, 0.18, 0.9), gazeY: new Spring(0, 0.18, 0.9),
+  blush: new Spring(0, 0.4, 1),
+  reactUntil: -1, hopY: 0, hopV: 0, airborne: false, hopsLeft: 0, hopTimer: -1, celebrateUntil: -1,
+  blinkStart: -10, nextBlink: 1.6, doubleBlink: false,
+  nextEarFlick: 4, nextGlance: 2.5,
+  pointer: null, follow: true, reduce: false,
+  energyTarget: 0.25, vitalityTarget: 0.8,
+};
+
+function blinkAmount(t) {
+  // Fast close (70 ms), short hold (40 ms), slower open (130 ms).
+  const d = t - motion.blinkStart;
+  if (d < 0) return 0;
+  if (d < 0.07) return smooth(0, 0.07, d);
+  if (d < 0.11) return 1;
+  if (d < 0.24) return 1 - smooth(0.11, 0.24, d);
+  return 0;
+}
+
+function triggerBlink() { motion.blinkStart = motion.t; }
+
+function tap(x, y) {
+  // x, y in image pixels.
+  motion.squash.v -= 2.4;              // squish down, spring back with jiggle
+  motion.poke.x = 1; motion.poke.v = 0; motion.pokeAt = [x, y];
+  motion.tuft.v += 4.0;
+  motion.happy.target = 0.75;
+  motion.blush.target = 1;
+  motion.reactUntil = motion.t + 0.65;
+}
+
+function celebrate() {
+  if (motion.reduce) {           // Reduce Motion: expression only, no hop
+    motion.happy.target = 1; motion.blush.target = 1; motion.celebrateUntil = motion.t + 1.4;
+    return;
+  }
+  motion.hopsLeft = 2;
+  motion.hopTimer = 0;            // anticipation starts now
+  motion.happy.target = 1;
+  motion.blush.target = 1;
+  motion.celebrateUntil = motion.t + 2.0;
+}
+
+function feed() {
+  motion.energyTarget = Math.min(1, motion.energyTarget + 0.25);
+  syncSliders();
+  motion.squash.v -= 1.2;          // a little gulp
+  motion.happy.target = 0.5; motion.blush.target = 0.6;
+  motion.reactUntil = motion.t + 0.5;
+}
+
+const H = RIG.height;
+const GRAVITY = 3.2 * H;            // in image px per s^2; snappy, toy-like
+
+function stepMotion(dt) {
+  const m = motion;
+  m.t += dt;
+  m.vitality.target = m.vitalityTarget;
+  m.cheek.target = m.energyTarget;
+  const v = clamp01(m.vitality.x);
+  const calm = m.reduce ? 0 : 1;
+
+  // Breathing: slower and deeper sighs when low.
+  const period = lerp(4.6, 3.3, v);
+  m.breathPhase += dt * 2 * Math.PI / period;
+
+  // Hop sequence: anticipation squash, launch with stretch, ballistic flight,
+  // landing squash handed to the spring.
+  if (m.hopTimer >= 0) {
+    m.hopTimer += dt;
+    if (!m.airborne) {
+      m.squash.target = -0.13;
+      if (m.hopTimer > 0.14) {
+        m.squash.target = 0;
+        m.airborne = true;
+        const height = m.hopsLeft === 2 ? 0.2 * H : 0.11 * H;
+        m.hopV = Math.sqrt(2 * GRAVITY * height);
+        m.squash.v += 4.5;
+        m.tuft.v -= 3;
+      }
+    }
+  }
+  if (m.airborne) {
+    m.hopV -= GRAVITY * dt;
+    m.hopY += m.hopV * dt;
+    if (m.hopY <= 0) {
+      m.hopY = 0; m.airborne = false;
+      m.squash.x = Math.min(m.squash.x, -0.03); m.squash.v = -2.3;
+      m.tuft.v += 5; m.earL.v += 3; m.earR.v -= 3;
+      m.hopsLeft -= 1;
+      m.hopTimer = m.hopsLeft > 0 ? 0.06 : -1;   // short gap, then the second hop
+    }
+  }
+  if (m.t > m.celebrateUntil && m.celebrateUntil > 0) {
+    m.happy.target = 0; m.blush.target = 0; m.celebrateUntil = -1;
+  }
+  if (m.reactUntil > 0 && m.t > m.reactUntil && m.celebrateUntil < 0) {
+    m.happy.target = 0; m.blush.target = 0; m.reactUntil = -1;
+  }
+
+  // Blinks every 2.5–6 s, sometimes a double blink; less often when sleepy.
+  if (m.t >= m.nextBlink) {
+    triggerBlink();
+    const double = rand() < 0.2;
+    m.nextBlink = m.t + (double ? 0.32 : lerp(2.5, 6, rand()) * lerp(1.4, 1, v));
+  }
+
+  // Ear flicks now and then (less often when low).
+  if (m.t >= m.nextEarFlick && !m.reduce) {
+    if (rand() < 0.5) m.earL.v += 6; else m.earR.v -= 6;
+    m.nextEarFlick = m.t + lerp(5, 11, rand()) * lerp(1.8, 1, v);
+  }
+
+  // Gaze and head turn: follow the pointer, otherwise occasional glances.
+  let gx = 0, gy = 0;
+  if (m.follow && m.pointer) {
+    gx = Math.max(-1, Math.min(1, (m.pointer[0] - RIG.sphere[0]) / 300));
+    gy = Math.max(-1, Math.min(1, (m.pointer[1] - RIG.eyeL[1]) / 300));
+  } else if (m.t >= m.nextGlance) {
+    m.glance = rand() < 0.4 ? [0, 0] : [lerp(-0.8, 0.8, rand()), lerp(-0.3, 0.4, rand())];
+    m.nextGlance = m.t + lerp(1.5, 4, rand());
+  }
+  if (!(m.follow && m.pointer) && m.glance) { gx = m.glance[0]; gy = m.glance[1]; }
+  m.gazeX.target = gx; m.gazeY.target = gy;
+  m.turnX.target = gx * calm; m.turnY.target = gy * 0.6 * calm;
+
+  // Idle sway: two incommensurate sines read as organic, not mechanical.
+  const sway = calm * (Math.sin(m.t * 0.83) * 0.6 + Math.sin(m.t * 0.31 + 1.7) * 0.4);
+  m.lean.target = sway * lerp(0.5, 1, v) + gx * 0.6 * calm;
+
+  // Follow-through: the tuft is driven by the body's motion and droops when low.
+  m.tuft.target = -m.lean.v * 0.25 - (1 - v) * 0.55;
+  m.earL.target = -(1 - v) * 0.28;
+  m.earR.target = (1 - v) * 0.28;
+
+  for (const s of [m.squash, m.vitality, m.cheek, m.tuft, m.earL, m.earR, m.lean, m.poke,
+                   m.happy, m.turnX, m.turnY, m.gazeX, m.gazeY, m.blush]) {
+    // Sub-step for stability with stiff springs.
+    for (let i = 0; i < 4; i++) s.step(dt / 4);
+  }
+  m.poke.target = 0;
+}
+
+function shaderParams() {
+  const m = motion;
+  const v = clamp01(m.vitality.x);
+  const calm = m.reduce ? 0.25 : 1;
+  const b = 0.5 - 0.5 * Math.cos(m.breathPhase);                 // 0..1
+  const breathe = calm * lerp(0.024, 0.016, v) * (b - 0.5) * 2;   // deeper when low
+  const s = Math.max(-0.24, Math.min(0.2, m.squash.x)) + (m.airborne ? Math.max(-0.05, Math.min(0.12, m.hopV / (H * 9))) : 0);
+  const slump = 1 - smooth(0, 0.7, v);                             // upright when content
+  const sy = (1 + breathe) * (1 + s) * lerp(1, 0.93, slump);
+  const sx = (1 - breathe * 0.55) * Math.pow(1 + s, -0.75) * lerp(1, 1.035, slump);
+  const blink = blinkAmount(m.t);
+  const happy = clamp01(m.happy.x);
+  const sleepy = (1 - smooth(0.25, 0.75, v)) * 0.42;
+  return {
+    hop: m.hopY,
+    squash: [sx, sy],
+    sag: (1 - v) * 0.09,
+    lean: m.lean.x * 7 * calm,
+    poke: [m.pokeAt[0], m.pokeAt[1], m.poke.x * 0.22, 95],
+    cheek: m.cheek.x * 0.58,
+    tuft: m.tuft.x * calm,
+    ears: [m.earL.x * calm, m.earR.x * calm],
+    turn: [m.turnX.x * 7, m.turnY.x * 5],
+    gaze: [m.gazeX.x, m.gazeY.x],
+    lids: [Math.max(blink, sleepy, happy * 0.1), happy],
+    sad: 1 - smooth(0.2, 0.6, v),
+    vitality: v,
+    blush: clamp01(m.blush.x) * 0.6 + clamp01(m.cheek.x) * 0.35,
+    ripple: lerp(0.35, 1, v) * calm,
+    time: m.t,
+    shadow: 1 / (1 + m.hopY / (0.25 * H)),
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Renderer: one full-screen pass. The fragment shader maps every screen pixel
+// back to a source pixel through the inverse of each deformation, then grades
+// color for vitality. Everything here maps to a SwiftUI layerEffect.
+// ---------------------------------------------------------------------------
+const VERT = `#version 300 es
+in vec2 aPos; out vec2 vPx; uniform vec2 uRes;
+void main() { vPx = (aPos * 0.5 + 0.5) * uRes; vPx.y = uRes.y - vPx.y; gl_Position = vec4(aPos, 0.0, 1.0); }`;
+
+const FRAG = `#version 300 es
+precision highp float;
+in vec2 vPx; out vec4 outColor;
+uniform sampler2D uTex, uLidPlate;
+uniform vec2 uTexSize, uRes, uOrigin;
+uniform float uScale, uTime;
+uniform vec2 uGround; uniform float uHeight;
+uniform float uHop, uLean, uSag;
+uniform vec2 uSquash;
+uniform vec4 uPoke;
+uniform float uCheek; uniform vec3 uCheekL, uCheekR;
+uniform vec4 uBlushL, uBlushR; uniform float uBlush;
+uniform float uTuft; uniform vec3 uTuftC; uniform vec2 uTuftPivot;
+uniform vec2 uEars; uniform vec3 uEarL, uEarR; uniform vec2 uEarLPivot, uEarRPivot;
+uniform vec2 uTurn; uniform vec3 uSphere;
+uniform vec4 uEyeL, uEyeR; uniform vec2 uLids, uGaze; uniform float uSad;
+uniform float uVitality, uRipple, uShadow, uFields;
+uniform vec3 uBg;
+
+float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+float noise(vec2 p) {
+  vec2 i = floor(p), f = fract(p); vec2 u = f * f * (3.0 - 2.0 * f);
+  return mix(mix(hash(i), hash(i + vec2(1, 0)), u.x), mix(hash(i + vec2(0, 1)), hash(i + vec2(1, 1)), u.x), u.y);
+}
+float falloff(float r, float R) { float t = clamp(1.0 - (r * r) / (R * R), 0.0, 1.0); return t * t; }
+vec2 rot(vec2 v, float a) { float c = cos(a), s = sin(a); return vec2(c * v.x - s * v.y, s * v.x + c * v.y); }
+
+// Inverse bulge: sample closer to the center, so content inside grows.
+vec2 bulge(vec2 p, vec2 c, float R, float k) { vec2 d = p - c; return c + d * (1.0 - k * falloff(length(d), R)); }
+
+// Rotate a soft region about a pivot (tuft, ears). Weight fades with distance
+// from the region center, so the root stays attached to the body.
+vec2 swing(vec2 p, vec3 region, vec2 pivot, float angle) {
+  float w = falloff(length(p - region.xy), region.z * 1.35);
+  return pivot + rot(p - pivot, -angle * w);
+}
+
+// Eyes. Inside the eye ellipse, the visible band between the upper and lower
+// lid shows the whole eye squashed (cartoon squash, keeps the outline and
+// highlight); outside the band, the lid plate shows through. Upper lid: blinks, sleepy and sad lids.
+// Lower lid rising to the top rim: happy ^ eyes. outer: -1 left eye, +1 right.
+vec2 eye(vec2 p, vec4 e, vec2 lids, vec2 gaze, float sad, float outer, inout float lash, inout float shade, inout float lidMix) {
+  vec2 q = (p - e.xy) / e.zw;
+  float r = length(q);
+  if (r >= 1.0) return p;                      // the ellipse includes the eye's outline
+  float x = clamp(q.x, -0.999, 0.999);
+  float s = sqrt(1.0 - x * x);                 // half height of the eye column
+  float arc = 1.0 - x * x;
+  float up = lids.x, low = lids.y;
+  float closeLine = 0.28 + 0.22 * arc;         // where the lids meet: a soft smile
+  float xo = x * outer;                        // + toward the outer corner
+  float eu = mix(-s, closeLine, up) + sad * up * 0.55 * (xo + 0.15);
+  float el = mix(s, closeLine, up * up * up);
+  el = mix(el, -s + 0.42, low);                 // happy: lower lid up to a thin arch
+  float region = 1.0 - smoothstep(0.9, 1.0, r);
+  float onEye = 1.0 - smoothstep(0.9, 1.04, abs(q.x));
+  float closing = smoothstep(0.1, 0.4, up) * (1.0 - low);
+  float line = exp(-pow((q.y - eu) / 0.08, 2.0)) * closing;
+  lash = max(lash, line * onEye * region);
+  float yo;
+  if (el - eu < 0.03 || q.y < eu || q.y > el) {
+    bool upper = (el - eu < 0.03) ? q.y < 0.5 * (eu + el) : q.y < eu;
+    // Lid: reveal the lid plate (the same art with fur painted over the
+    // eyes) in place, so lids always match the surrounding fur exactly.
+    float d = upper ? (eu - q.y) : (q.y - el);
+    if (upper) shade = max(shade, region * exp(-d * 7.0) * 0.05);
+    lidMix = max(lidMix, region);
+    return p;
+  } else {
+    float mid = 0.5 * (eu + el), half_ = 0.5 * (el - eu);
+    yo = (q.y - mid) * (s / half_);
+  }
+  vec2 src = vec2(q.x, yo);
+  float inside = 1.0 - smoothstep(0.8, 1.0, r);
+  src -= gaze * vec2(0.14, 0.1) * inside * (1.0 - r * r);
+  return mix(p, e.xy + src * e.zw, region);
+}
+
+void main() {
+  vec2 p = (vPx - uOrigin) / uScale;          // screen -> image px (undeformed)
+  float edgeShadowY = uGround.y;
+
+  // --- Body deformations, inverted in reverse order. ---
+  p.y += uHop;                                // hop translates up
+  vec2 b = p - uGround; float y = -b.y;       // body space, y up, ground at 0
+  float hn = max(y, 0.0) / uHeight;
+  b.x -= uLean * pow(hn, 1.4) * uHeight / 100.0;   // soft-body bend: base fixed, top leans
+  y /= uSquash.y;                              // ground-anchored squash and stretch
+  y = y / max(0.2, 1.0 - uSag * clamp(y / uHeight, 0.0, 1.5)); // slump: the top sags most
+  float spread = 1.0 + (uSquash.x - 1.0) * (1.3 - 0.6 * clamp(y / uHeight, 0.0, 1.0));
+  b.x /= spread;                               // squash spreads the belly more than the head
+  p = uGround + vec2(b.x, -y);
+
+  // --- Local deformations in image space. ---
+  vec2 sp = p - uSphere.xy;                   // fake 3D turn: front of the sphere moves most
+  float z = sqrt(max(0.0, 1.0 - dot(sp, sp) / (uSphere.z * uSphere.z)));
+  p -= uTurn * z;
+  if (uPoke.z > 0.0) { vec2 d = p - uPoke.xy; p = uPoke.xy + d * (1.0 + uPoke.z * falloff(length(d), uPoke.w)); }
+  p = bulge(p, uCheekL.xy, uCheekL.z, uCheek);
+  p = bulge(p, uCheekR.xy, uCheekR.z, uCheek);
+  p = swing(p, uTuftC, uTuftPivot, uTuft);
+  p = swing(p, uEarL, uEarLPivot, uEars.x);
+  p = swing(p, uEarR, uEarRPivot, uEars.y);
+  float lash = 0.0, lidShade = 0.0, lidMix = 0.0;
+  p = eye(p, uEyeL, uLids, uGaze, uSad, -1.0, lash, lidShade, lidMix);
+  p = eye(p, uEyeR, uLids, uGaze, uSad, 1.0, lash, lidShade, lidMix);
+
+  // Fur ripple: a slow noise wind that only moves the fuzzy silhouette.
+  vec2 uv = p / uTexSize;
+  float core = textureLod(uTex, uv, 4.0).a;
+  float edge = 1.0 - smoothstep(0.55, 0.97, core);
+  vec2 n = vec2(noise(p * 0.045 + vec2(uTime * 0.7, 0.0)), noise(p * 0.045 + vec2(0.0, uTime * 0.6) + 17.0)) - 0.5;
+  p += n * 7.0 * edge * uRipple;
+  uv = p / uTexSize;
+
+  vec4 c = vec4(0.0);
+  if (uv.x > 0.0 && uv.y > 0.0 && uv.x < 1.0 && uv.y < 1.0) {
+    c = texture(uTex, uv);
+    vec4 cb = textureLod(uTex, uv, 1.8);
+    if (lidMix > 0.0) {                                    // lids: the plate shows through
+      c = mix(c, texture(uLidPlate, uv), lidMix);
+      cb = mix(cb, textureLod(uLidPlate, uv, 1.8), lidMix);
+    }
+    // Fluff: crisp fur strands when thriving, softened (matted) when low.
+    float crisp = mix(-0.75, 0.55, uVitality);
+    c.rgb = max(c.rgb + (c.rgb - cb.rgb) * crisp, 0.0);
+    // Matted silhouette: lose the faint wisps as vitality drops.
+    float m = mix(0.42, 0.0, uVitality);
+    float a2 = smoothstep(m, m + 0.4, c.a);
+    c = c.a > 0.0 ? c * (a2 / c.a) : c;
+  }
+  vec3 rgb = c.a > 0.0 ? c.rgb / c.a : vec3(0.0);
+
+  // Blush follows the deformed cheeks (masks live in source space).
+  vec2 dl = (p - uBlushL.xy) / uBlushL.zw, dr = (p - uBlushR.xy) / uBlushR.zw;
+  float blushMask = exp(-dot(dl, dl) * 1.6) + exp(-dot(dr, dr) * 1.6);
+  rgb = mix(rgb, vec3(1.0, 0.62, 0.66), clamp(blushMask * uBlush * 0.42, 0.0, 1.0));
+  rgb *= 1.0 - lidShade;
+  rgb = mix(rgb, vec3(0.24, 0.15, 0.13), clamp(lash, 0.0, 1.0) * 0.9);
+
+  // Vitality grade: desaturate toward a cool ash, lose a little light.
+  float l = dot(rgb, vec3(0.299, 0.587, 0.114));
+  float sat = mix(0.22, 1.08, uVitality);
+  rgb = mix(vec3(l), rgb, sat);
+  rgb *= mix(vec3(0.93, 0.93, 0.95), vec3(1.0), uVitality);
+  rgb = mix(rgb, rgb * vec3(1.03, 1.0, 0.97), smoothstep(0.7, 1.0, uVitality));
+
+  // Scene: warm paper backdrop and a contact shadow that shrinks in the air.
+  vec2 g = (vPx - (uOrigin + uGround * uScale)) / uScale;
+  vec3 bg = uBg * (1.0 - 0.05 * smoothstep(200.0, 700.0, length(vPx - uRes * vec2(0.5, 0.45)) / (uScale)));
+  float sw = 205.0 * uSquash.x * mix(0.55, 1.0, uShadow);
+  vec2 se = vec2(g.x / sw, (g.y - 4.0) / (24.0 * mix(0.6, 1.0, uShadow)));
+  float sh = exp(-dot(se, se) * 2.2) * 0.22 * mix(0.35, 1.0, uShadow);
+  bg *= 1.0 - sh * vec3(0.9, 1.05, 1.1);
+
+  vec3 col = mix(bg, rgb, c.a);
+  if (uFields > 0.5) {
+    float f = falloff(length(p - uCheekL.xy), uCheekL.z) + falloff(length(p - uCheekR.xy), uCheekR.z);
+    col = mix(col, vec3(1.0, 0.4, 0.3), 0.35 * f);
+    float t = falloff(length(p - uTuftC.xy), uTuftC.z * 1.35) + falloff(length(p - uEarL.xy), uEarL.z * 1.35) + falloff(length(p - uEarR.xy), uEarR.z * 1.35);
+    col = mix(col, vec3(0.3, 0.5, 1.0), 0.35 * t);
+    vec2 el = (p - uEyeL.xy) / uEyeL.zw, er = (p - uEyeR.xy) / uEyeR.zw;
+    float e = (1.0 - smoothstep(1.0, 1.3, length(el))) + (1.0 - smoothstep(1.0, 1.3, length(er)));
+    col = mix(col, vec3(0.2, 0.8, 0.4), 0.35 * e);
+    col = mix(col, vec3(1.0, 0.9, 0.2), 0.45 * edge * c.a);
+  }
+  outColor = vec4(col, 1.0);
+}`;
+
+const canvas = document.getElementById('stage');
+const params = new URLSearchParams(location.search);
+const CAPTURE = params.has('capture');
+if (CAPTURE) document.body.classList.add('capture');
+const gl = canvas.getContext('webgl2', { antialias: false, premultipliedAlpha: false, preserveDrawingBuffer: true });
+let prog, uni = {}, ready = false;
+const BG = [0xfd / 255, 0xed / 255, 0xe5 / 255];
+
+function compile(type, src) {
+  const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+  if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+  return s;
+}
+
+function makeTexture(img, unit) {
+  const tex = gl.createTexture();
+  gl.activeTexture(gl.TEXTURE0 + unit);
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);   // correct filtering at fur edges
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+  gl.generateMipmap(gl.TEXTURE_2D);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+}
+
+function init(img, plate) {
+  prog = gl.createProgram();
+  gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT));
+  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG));
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(prog, 'aPos');
+  gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  makeTexture(img, 0);
+  makeTexture(plate, 1);
+  const n = gl.getProgramParameter(prog, gl.ACTIVE_UNIFORMS);
+  for (let i = 0; i < n; i++) { const u = gl.getActiveUniform(prog, i); uni[u.name] = gl.getUniformLocation(prog, u.name); }
+  gl.uniform1i(uni.uTex, 0);
+  gl.uniform1i(uni.uLidPlate, 1);
+  ready = true;
+}
+
+// Layout: Pofu is 72% of the stage wide, standing on a floor at 84%.
+function layout() {
+  const W = canvas.width, Hc = canvas.height;
+  const scale = (W * 0.72) / RIG.size[0];
+  const origin = [W / 2 - RIG.ground[0] * scale, Hc * 0.86 - RIG.ground[1] * scale];
+  return { scale, origin };
+}
+
+const fields = document.getElementById('fields');
+function render() {
+  if (!ready) return;
+  const P = shaderParams();
+  const { scale, origin } = layout();
+  const set2 = (n, a, b) => gl.uniform2f(uni[n], a, b);
+  const set3 = (n, a) => gl.uniform3f(uni[n], a[0], a[1], a[2]);
+  const set4 = (n, a) => gl.uniform4f(uni[n], a[0], a[1], a[2], a[3]);
+  gl.viewport(0, 0, canvas.width, canvas.height);
+  set2('uTexSize', RIG.size[0], RIG.size[1]);
+  set2('uRes', canvas.width, canvas.height);
+  set2('uOrigin', origin[0], origin[1]);
+  gl.uniform1f(uni.uScale, scale);
+  gl.uniform1f(uni.uTime, P.time);
+  set2('uGround', RIG.ground[0], RIG.ground[1]);
+  gl.uniform1f(uni.uHeight, RIG.height);
+  gl.uniform1f(uni.uHop, P.hop);
+  gl.uniform1f(uni.uLean, P.lean);
+  gl.uniform1f(uni.uSag, P.sag);
+  set2('uSquash', P.squash[0], P.squash[1]);
+  set4('uPoke', P.poke);
+  gl.uniform1f(uni.uCheek, P.cheek);
+  set3('uCheekL', RIG.cheekL); set3('uCheekR', RIG.cheekR);
+  set4('uBlushL', RIG.blushL); set4('uBlushR', RIG.blushR);
+  gl.uniform1f(uni.uBlush, P.blush);
+  gl.uniform1f(uni.uTuft, P.tuft);
+  set3('uTuftC', RIG.tuft); set2('uTuftPivot', RIG.tuftPivot[0], RIG.tuftPivot[1]);
+  set2('uEars', P.ears[0], P.ears[1]);
+  set3('uEarL', RIG.earL); set3('uEarR', RIG.earR);
+  set2('uEarLPivot', RIG.earLPivot[0], RIG.earLPivot[1]); set2('uEarRPivot', RIG.earRPivot[0], RIG.earRPivot[1]);
+  set2('uTurn', P.turn[0], P.turn[1]);
+  set3('uSphere', RIG.sphere);
+  set4('uEyeL', RIG.eyeL); set4('uEyeR', RIG.eyeR);
+  set2('uLids', P.lids[0], P.lids[1]);
+  gl.uniform1f(uni.uSad, P.sad);
+  set2('uGaze', P.gaze[0], P.gaze[1]);
+  gl.uniform1f(uni.uVitality, P.vitality);
+  gl.uniform1f(uni.uRipple, P.ripple);
+  gl.uniform1f(uni.uShadow, P.shadow);
+  gl.uniform1f(uni.uFields, fields.checked ? 1 : 0);
+  gl.uniform3f(uni.uBg, BG[0], BG[1], BG[2]);
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+}
+
+// ---------------------------------------------------------------------------
+// UI wiring.
+// ---------------------------------------------------------------------------
+const energy = document.getElementById('energy');
+const vitality = document.getElementById('vitality');
+function syncSliders() {
+  energy.value = motion.energyTarget; vitality.value = motion.vitalityTarget;
+  document.getElementById('energyOut').textContent = (+energy.value).toFixed(2);
+  document.getElementById('vitalityOut').textContent = (+vitality.value).toFixed(2);
+}
+energy.oninput = () => { motion.energyTarget = +energy.value; syncSliders(); };
+vitality.oninput = () => { motion.vitalityTarget = +vitality.value; syncSliders(); };
+document.getElementById('hop').onclick = celebrate;
+document.getElementById('blink').onclick = triggerBlink;
+document.getElementById('feed').onclick = feed;
+document.getElementById('follow').onchange = (e) => { motion.follow = e.target.checked; };
+document.getElementById('reduce').onchange = (e) => { motion.reduce = e.target.checked; };
+
+function toImage(ev) {
+  const r = canvas.getBoundingClientRect();
+  const { scale, origin } = layout();
+  const sx = (ev.clientX - r.left) * canvas.width / r.width, sy = (ev.clientY - r.top) * canvas.height / r.height;
+  return [(sx - origin[0]) / scale, (sy - origin[1]) / scale + motion.hopY];
+}
+canvas.addEventListener('pointerdown', (ev) => { const [x, y] = toImage(ev); tap(x, y); });
+window.addEventListener('pointermove', (ev) => { motion.pointer = toImage(ev); });
+canvas.addEventListener('pointerleave', () => { motion.pointer = null; });
+syncSliders();
+
+// Deterministic API for captures: advance time in fixed steps.
+window.pofu = {
+  motion, tap, celebrate, triggerBlink, feed, render,
+  advance(seconds, fps = 60) { const n = Math.round(seconds * fps); for (let i = 0; i < n; i++) stepMotion(1 / fps); render(); },
+  set(o) { Object.assign(motion, o); syncSliders(); },
+  get ready() { return ready; },
+};
+
+const load = (src) => new Promise((ok, fail) => { const i = new Image(); i.onload = () => ok(i); i.onerror = fail; i.src = src; });
+Promise.all([load(window.POFU_IMAGE || 'pofu-hamster.png'), load(window.POFU_LID_PLATE || 'pofu-hamster-lids.png')])
+  .then(([img, plate]) => {
+    try { init(img, plate); } catch (e) { document.getElementById('error').textContent = String(e); return; }
+    if (CAPTURE) { render(); return; }
+    let last = performance.now();
+    const loop = (now) => {
+      const dt = Math.min(0.05, (now - last) / 1000); last = now;
+      stepMotion(dt); render(); requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  })
+  .catch(() => { document.getElementById('error').textContent = 'Could not load the art. Run tools/embed_images.py.'; });
+if (!gl) document.getElementById('error').textContent = 'WebGL 2 is required.';
+</script>
+</body>
+</html>
