@@ -18,6 +18,7 @@ let package = Package(
     products: [
         .library(name: "PofuCore", targets: ["PofuCore"]),
         .library(name: "PofuScreenTime", targets: ["PofuScreenTime"]),
+        .library(name: "PofuDesignSystem", targets: ["PofuDesignSystem"]),
     ],
     targets: [
         // Pure domain: economy, friction ladder, passes, metrics, vitality.
@@ -28,6 +29,9 @@ let package = Package(
         // FamilyControls, ManagedSettings, and DeviceActivity are imported
         // only by the future live implementation.
         .target(name: "PofuScreenTime", dependencies: ["PofuCore"]),
+
+        // Design tokens and small SwiftUI building blocks.
+        .target(name: "PofuDesignSystem"),
 
         .testTarget(name: "PofuCoreTests", dependencies: ["PofuCore"]),
         .testTarget(name: "PofuScreenTimeTests", dependencies: ["PofuScreenTime", "PofuCore"]),
