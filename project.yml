@@ -1,0 +1,81 @@
+# XcodeGen spec for Pofu. The .xcodeproj is generated from this file and is
+# not committed; run `xcodegen generate` after cloning or pulling.
+# See docs/adr/0009-xcodegen-and-package-layout.md and docs/development.md.
+name: Pofu
+
+options:
+  deploymentTarget:
+    iOS: "26.0"
+  developmentLanguage: en
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    ENABLE_USER_SCRIPT_SANDBOXING: true
+    LOCALIZATION_PREFERS_STRING_CATALOGS: true
+    SWIFT_EMIT_LOC_STRINGS: true
+    DEAD_CODE_STRIPPING: true
+
+packages:
+  PofuKit:
+    path: Packages/PofuKit
+
+targets:
+  Pofu:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+    # The bundle identifier and signing team live in the xcconfig, so that a
+    # git-ignored Config/Local.xcconfig can override them per machine and
+    # survive regeneration. DEVELOPMENT_TEAM is empty there; CI builds
+    # unsigned.
+    configFiles:
+      Debug: Config/Pofu.xcconfig
+      Release: Config/Pofu.xcconfig
+    dependencies:
+      - package: PofuKit
+        product: PofuCore
+      - package: PofuKit
+        product: PofuScreenTime
+      - package: PofuKit
+        product: PofuDesignSystem
+    settings:
+      base:
+        PRODUCT_NAME: Pofu
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_KEY_CFBundleDisplayName: Pofu
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.healthcare-fitness
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: true
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: true
+        INFOPLIST_KEY_UILaunchScreen_Generation: true
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_PREVIEWS: true
+
+schemes:
+  Pofu:
+    build:
+      targets:
+        Pofu: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - package: PofuKit/PofuCoreTests
+        - package: PofuKit/PofuScreenTimeTests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release

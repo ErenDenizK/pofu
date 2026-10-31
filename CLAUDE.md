@@ -39,8 +39,14 @@ the project's persistent memory; keep it accurate and concise.
 ## Current state
 
 - Product name: **Pofu** (ADR-0007). The repository is still named `rot`.
-- Phase 0 (Foundation). No app code yet. Next: interactive rig prototype of
-  Pofu, then the Xcode project, packages, and CI.
+- Phase 0 (Foundation). Engineering foundation in place: XcodeGen project
+  (`project.yml`, regenerate after pulling), the `Packages/PofuKit` package
+  (`PofuCore`, `PofuScreenTime`, `PofuDesignSystem`), and CI that must stay
+  green. See `docs/development.md` and the economy rules in
+  `docs/product/economy.md` (keep code and doc in sync). The app is a
+  placeholder; Pofu is not drawn until the character design settles.
+- Without a local Swift toolchain, the compile and test loop is: push,
+  then read the GitHub Actions results. CI treats Swift warnings as errors.
 - Founder's own target apps: Instagram, YouTube, TikTok. Goal: resist half
   of reflexive opens.
 - The paid Apple Developer membership is not active yet (expected mid-November

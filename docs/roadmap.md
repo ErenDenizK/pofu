@@ -17,7 +17,9 @@ Goal: every decision needed to start building is made and written down.
 - [x] Character bible v0.1 ([character.md](brand/character.md))
 - [ ] Interactive rig prototype of Pofu, iterated visually before the Swift port
 - [ ] Design language: color, typography, motion, haptics, and sound principles
-- [ ] Xcode project, local packages, CI on GitHub Actions (macOS runner)
+- [x] Xcode project, local packages, CI on GitHub Actions (macOS runner)
+  ([ADR-0009](adr/0009-xcodegen-and-package-layout.md),
+  [development guide](development.md))
 
 ## Phase 1: The companion lives (pre-membership, free account)
 

@@ -1,0 +1,14 @@
+// Identity and signing settings for the Pofu app target.
+//
+// These live here rather than in project.yml so that a developer's local
+// overrides survive `xcodegen generate`: settings in the target's build
+// settings would take precedence over this file and its include.
+
+PRODUCT_BUNDLE_IDENTIFIER = com.erendenizk.pofu
+
+// Empty on purpose: CI builds unsigned, and each developer sets their own
+// team in Config/Local.xcconfig (see Config/Local.xcconfig.example).
+DEVELOPMENT_TEAM =
+
+// Optional, git-ignored, per-machine overrides. Must stay last.
+#include? "Local.xcconfig"

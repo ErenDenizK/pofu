@@ -17,3 +17,4 @@ Format: a lightweight variant of [MADR](https://adr.github.io/madr/). Use
 | [0006](0006-code-native-companion-rendering.md) | Code-native companion rendering | Accepted |
 | [0007](0007-product-name-pofu.md) | Product and character name: Pofu | Accepted |
 | [0008](0008-hybrid-intervention-delivery.md) | Hybrid intervention delivery | Accepted |
+| [0009](0009-xcodegen-and-package-layout.md) | XcodeGen project and a single local package | Accepted |
