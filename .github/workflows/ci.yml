@@ -38,7 +38,7 @@ jobs:
           swift --version
 
       - name: Test PofuKit
-        run: swift test --package-path Packages/PofuKit
+        run: swift test --package-path Packages/PofuKit -Xswiftc -warnings-as-errors
 
       - name: Install XcodeGen
         run: brew install xcodegen
@@ -53,4 +53,5 @@ jobs:
             -project Pofu.xcodeproj \
             -scheme Pofu \
             -destination 'generic/platform=iOS Simulator' \
-            CODE_SIGNING_ALLOWED=NO
+            CODE_SIGNING_ALLOWED=NO \
+            SWIFT_TREAT_WARNINGS_AS_ERRORS=YES
