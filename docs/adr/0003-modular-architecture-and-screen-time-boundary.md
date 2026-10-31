@@ -2,6 +2,7 @@
 
 - **Status:** Accepted
 - **Date:** 2026-10-31
+- **Amended by:** [0007](0007-product-name-pofu.md) (module prefix `Rot` becomes `Pofu`)
 
 ## Context
 

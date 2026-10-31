@@ -1,6 +1,6 @@
 # 0006. Code-native companion rendering
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-10-31
 
 ## Context
@@ -27,7 +27,7 @@ AI image tools (for example Nano Banana, Higgsfield, ChatGPT image generation).
    color vitality, fluff). States are parameter sets; transitions are springs
    between them.
 
-## Decision (proposed)
+## Decision
 
 - The **companion** is a code-native vector rig (option 3). AI tools may be
   used for concept exploration and the character sheet, but the shipped

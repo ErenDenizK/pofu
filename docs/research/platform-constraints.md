@@ -109,6 +109,27 @@ Apps signed with a free account expire after seven days and are limited in
 number. This is acceptable for the pre-membership window but not for friends'
 testing, which waits for TestFlight.
 
+### 9. Blocking is per app, not per feature
+
+Screen Time treats an app (or a web domain) as a single unit. There is no way
+to block YouTube Shorts while allowing the rest of YouTube, or Instagram
+Reels while allowing direct messages. Web filtering also works on domains,
+not paths, so `youtube.com/shorts` cannot be singled out.
+
+**Impact:** "block only the feed" is not a feature we can promise. The
+friction ladder is the answer: the user can still open Instagram to reply to
+a message, but has to state that intent first. Pofu can later reflect back
+whether "replying to a message" really took 40 minutes.
+
+### 10. Shortcuts automations can trigger our app on every open
+
+A Shortcuts personal automation ("When Instagram is opened") can run an App
+Intent from our app. This needs no special entitlement and works with a free
+account. It is how one sec delivers its animated intervention, while relying
+on the Screen Time API for hard blocks. It cannot be created
+programmatically; the user sets it up once per app with guidance. This is
+the basis of [ADR-0008](../adr/0008-hybrid-intervention-delivery.md).
+
 ## Verification capabilities (for ADR-0004)
 
 | Signal | Source | Friction for the user | Availability |
@@ -122,6 +143,10 @@ testing, which waits for TestFlight.
 
 ## Sources
 
+- [one sec on the App Store (Shortcuts automation)](https://apps.apple.com/de/app/one-sec-screen-time-focus/id1532875441?l=en-GB)
+- [Request: open the parent app from ShieldActionDelegate (Apple Developer Forums)](https://developer.apple.com/forums/thread/820790)
+- [Screen Time cannot block YouTube Shorts separately (Roots help center)](https://intercom.help/roots/en/articles/12226995-how-do-i-block-youtube-shorts-without-blocking-all-of-youtube)
+- [Web domain filtering limits (Apple Developer Forums)](https://developer.apple.com/forums/thread/804684)
 - [Family Controls on Personal Teams (Apple Developer Forums)](https://developer.apple.com/forums/thread/852204)
 - [Testing Family Controls without a paid account (Apple Developer Forums)](https://developer.apple.com/forums/thread/803362)
 - [Distribution entitlement wait times (Apple Developer Forums)](https://developer.apple.com/forums/thread/818553)
