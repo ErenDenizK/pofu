@@ -45,6 +45,8 @@ targets:
         product: PofuScreenTime
       - package: PofuKit
         product: PofuDesignSystem
+      - package: PofuKit
+        product: PofuCompanion
     settings:
       base:
         PRODUCT_NAME: Pofu
@@ -73,6 +75,7 @@ schemes:
       targets:
         - package: PofuKit/PofuCoreTests
         - package: PofuKit/PofuScreenTimeTests
+        - package: PofuKit/PofuCompanionTests
     profile:
       config: Release
     analyze:

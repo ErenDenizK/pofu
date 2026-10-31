@@ -1,19 +1,24 @@
+import PofuCompanion
 import PofuCore
 import PofuDesignSystem
 import PofuScreenTime
 import SwiftUI
 
 /// Placeholder home screen. It shows the economy running for real on the
-/// simulated Screen Time service; Pofu itself is not drawn yet, because the
-/// character design is still being explored.
+/// simulated Screen Time service, with the motion-system prototype of Pofu
+/// (placeholder art) whose cheeks fill with the energy balance.
 struct RootView: View {
     let model: AppModel
     @Environment(\.scenePhase) private var scenePhase
+    @State private var celebrations = 0
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: PofuSpacing.l) {
                 header
+                CompanionView(vitality: 0.8, energy: cheekFill, celebrations: celebrations)
+                    .frame(maxWidth: 260)
+                    .frame(maxWidth: .infinity)
                 balanceCard
                 unlockCard
                 screenTimeCard
@@ -72,11 +77,18 @@ struct RootView: View {
                 withAnimation(PofuMotion.squish) {
                     model.logDemoWalk()
                 }
+                celebrations += 1
             }
             .buttonStyle(.borderedProminent)
             .padding(.top, PofuSpacing.xs)
         }
         .pofuCard()
+    }
+
+    /// Cheek-pouch fill: the balance against two days of allowance.
+    private var cheekFill: Double {
+        let capacity = max(1, model.dailyAllowance.units * 2)
+        return min(1, Double(max(0, model.balance.units)) / Double(capacity))
     }
 
     private var unlockCard: some View {
