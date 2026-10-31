@@ -1,0 +1,11 @@
+// Copy to Config/Local.xcconfig (git-ignored) and fill in, then run
+// `xcodegen generate`. See docs/development.md, "On your iPhone".
+
+// Your team ID: Xcode, Settings, Accounts, select the team; or the
+// 10-character ID shown under Signing & Capabilities.
+DEVELOPMENT_TEAM = ABCDE12345
+
+// With a free Personal Team, use a development identifier so the final
+// one stays free for the paid team (ADR-0007). Remove this line once the
+// paid membership is active.
+PRODUCT_BUNDLE_IDENTIFIER = com.erendenizk.pofu.dev

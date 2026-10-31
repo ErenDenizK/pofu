@@ -4,7 +4,6 @@
 name: Pofu
 
 options:
-  bundleIdPrefix: com.erendenizk
   deploymentTarget:
     iOS: "26.0"
   developmentLanguage: en
@@ -15,9 +14,6 @@ settings:
   base:
     SWIFT_VERSION: "6.0"
     SWIFT_STRICT_CONCURRENCY: complete
-    # Set your own team locally in Xcode (Signing & Capabilities); CI builds
-    # with code signing disabled.
-    DEVELOPMENT_TEAM: ""
     MARKETING_VERSION: "0.1.0"
     CURRENT_PROJECT_VERSION: "1"
     ENABLE_USER_SCRIPT_SANDBOXING: true
@@ -35,6 +31,13 @@ targets:
     platform: iOS
     sources:
       - path: App
+    # The bundle identifier and signing team live in the xcconfig, so that a
+    # git-ignored Config/Local.xcconfig can override them per machine and
+    # survive regeneration. DEVELOPMENT_TEAM is empty there; CI builds
+    # unsigned.
+    configFiles:
+      Debug: Config/Pofu.xcconfig
+      Release: Config/Pofu.xcconfig
     dependencies:
       - package: PofuKit
         product: PofuCore
@@ -45,7 +48,6 @@ targets:
     settings:
       base:
         PRODUCT_NAME: Pofu
-        PRODUCT_BUNDLE_IDENTIFIER: com.erendenizk.pofu
         TARGETED_DEVICE_FAMILY: "1"
         CODE_SIGN_STYLE: Automatic
         GENERATE_INFOPLIST_FILE: true
