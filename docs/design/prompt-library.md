@@ -53,7 +53,8 @@ chat with the same prompt.
 ### Priority tiers
 
 - **P0, this morning.** Unblocks the first build: master, expressions,
-  blink, icon directions, day and night scenes, the seed and the wheel.
+  blink, icon directions, Pofu's room, day and night meadows, the seed and
+  the wheel.
 - **P1, first build.** Needed before the friends beta: remaining sheets,
   sunset, badges, onboarding, empty states, wordmark direction.
 - **P2, later.** Nice to have or post-launch.
@@ -66,6 +67,7 @@ chat with the same prompt.
 | 3i | Lid plate for the motion system | P0 | Plain | R1 | 1024², transparent | `char__pofu-content--lids.png` |
 | 4 | Blink sheet 3 × 3 | P0 | Plain | R1, 3h | 1024², transparent | `sheet__pofu-blink.png` |
 | 5a–5c | App icon, three directions | P0 | Logo | R1 | 1024², opaque | `icon__app-icon--<dir>.png` |
+| 6r | Pofu's room plate (Home) | P0 | İllüstrasyon | P-char, R1 (style only) | 1024 × 1536, opaque | `scene__room.png` |
 | 6 | Day meadow plate | P0 | İllüstrasyon | P-day, R1 (style only) | 1024 × 1536, opaque | `scene__meadow-day.png` |
 | 7 | Night plate (edit of 6) | P0 | Plain | Plate 6, P-night | 1024 × 1536 | `scene__meadow-night.png` |
 | 8 | Wilting day plate (edit of 6) | P0 | Plain | Plate 6 | 1024 × 1536 | `scene__meadow-day-wilting.png` |
@@ -87,7 +89,7 @@ chat with the same prompt.
 | 24 | Merch mockups | P2 | Promosyon ürünleri | R1, icon | any | reference only |
 
 **Must-have for the first build:** 1, 3a–3i, 4, one approved icon from 5,
-6, 7, 8, 9, 10, 16 (first resist and 7-day streak), 17. Everything else
+6r, 6, 7, 8, 9, 10, 16 (first resist and 7-day streak), 17. Everything else
 can follow.
 
 ---
@@ -396,6 +398,53 @@ separate layers for Apple's Icon Composer: (1) the background only, opaque,
 chosen, is redrawn by hand in vector before launch (it is also the
 trademark candidate; see the art bible's legal notes).
 
+### 6r. Pofu's room plate (Home)
+
+Home is Pofu's room, the single root of the app
+([information architecture](../product/ux/information-architecture.md)).
+The meadow plates below show through its window and fill Hop! and focus.
+
+- **Chat:** Pofu · Scenes. **Template:** İllüstrasyon.
+- **Attach:** `palette-card-character.png` and R1 (for style only).
+- **Ask for:** opaque PNG, 1024 × 1536 (portrait).
+
+```text
+A portrait background plate for the home screen of a mobile app, 1024 x
+1536, painted in the same art style as the attached character (use the
+character for style only: do NOT include it or any character in this
+image). Use the warm colors of the attached palette card.
+
+Scene: the cozy inside of a hamster's burrow, a small round room seen
+straight on. Composition rules, follow them exactly:
+- One large round window with a simple wooden frame and a cross-shaped
+  mullion, centered horizontally at about 28% of the image height, about
+  half the image width wide. Paint the window glass as a flat, plain pale
+  sky with nothing in it (it will be replaced in the app).
+- Soft warm cream plaster walls above, gently curved like the inside of a
+  burrow; a warm honey wooden floor from about 58% of the height down.
+- In the center of the floor, at about 62% of the height, an empty round
+  blush-pink rug: a stage where a character will be placed later.
+- The top 12% of the image is calm wall with no details; the bottom 30% is
+  calm, plain floor with no details (interface elements sit there).
+- Nothing else in the room: no furniture, no wheel, no bowl, no plants,
+  no lamp (these are added separately).
+- Soft daylight from the window, light from the upper left.
+
+STYLE: soft painterly 2D digital illustration with the polish of a premium
+storybook. Gentle airbrushed shading, no outlines, no hard edges, pastel
+warm colors, calm, uncluttered, plenty of quiet space. No text, no letters,
+no numbers, no logos, no watermark, no border, no frame.
+
+AVOID: any characters or animals, furniture, clutter, strong contrast,
+dark corners, busy textures, text, signatures, film grain, vignette.
+
+Output: one image, opaque, PNG, 1024 x 1536, portrait.
+```
+
+After approval, record the window's circle (center and radius, in unit
+coordinates of the normalized plate) next to the master, so the app can
+clip the meadow to it.
+
 ### 6. Day meadow scene plate
 
 - **Chat:** Pofu · Scenes. **Template:** İllüstrasyon.
@@ -417,8 +466,8 @@ follow them exactly:
 - In the center, between 68% and 85% of the height, there is a small flat
   clearing of short grass, completely empty: it is a stage where a
   character will be placed later.
-- On the left hillside, a tiny round wooden door set into the hill: a
-  hamster's burrow home.
+- On the left hillside, a tiny round wooden door set into the hill: the
+  entrance to Pofu's burrow (his room is inside).
 - A few small wildflowers in blush pink, honey yellow and soft lilac
   scattered at the sides, a few tall grass blades in the foreground
   corners, soft rolling hills behind.

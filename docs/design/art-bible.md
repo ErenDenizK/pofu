@@ -145,6 +145,7 @@ Measured on R0; R1 inherits it.
 | **Badge** | 1024 × 1024 | A circular medallion filling 92 % of the canvas: a cream rim, an inner disc in a pastel color, one centered object or Pofu pose inside. Identical rim for every badge | Transparent outside the circle |
 | **Empty state / onboarding** | 1024 × 1024 | One idea, one star; Pofu small-to-medium with at most one prop; 10 % margin | Transparent |
 | **Scene plate** | 1024 × 1536 portrait | Horizon at about 60 % height; **top 22 % calm sky, bottom 18 % calm grass** (glass chrome sits there); an empty **stage** of flat grass at center, 68–85 % height, where the app places Pofu; sun or moon upper left; no characters | Opaque, full bleed |
+| **Room plate** (Home) | 1024 × 1536 portrait | Inside the burrow, straight-on view. A round window centered at about 28 % height, about 50 % of the width wide; walls above, floor from about 58 % height; an empty round rug centered at about 62 % height where the app places Pofu; **top 12 % and bottom 30 % calm** (glass buttons, the Today card, and the actions sit there); no wheel, no bowl, no plant (they are sprites); the window glass painted as a flat pale sky, because the app replaces it with the meadow | Opaque, full bleed |
 | **App icon** | 1024 × 1024 | Focal shape inside the central 80 % circle; no detail in the corners (the system masks them); readable at 60 px | Opaque |
 
 ## 8. Background rules
@@ -155,8 +156,9 @@ Measured on R0; R1 inherits it.
   `#00FF00`**, never on cream, peach, or white. The pipeline keys green
   cleanly; it cannot reliably key a cream hamster off a cream background
   (it fails such files on purpose).
-- Scenes are opaque plates and never contain Pofu: the app composes him in,
-  so one hamster asset serves every scene, time, and vitality.
+- Scenes (the room and the meadow) are opaque plates and never contain
+  Pofu: the app composes him in, so one hamster asset serves every scene,
+  time, and vitality.
 
 ## 9. Do and don't gallery
 

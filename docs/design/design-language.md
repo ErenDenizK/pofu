@@ -308,9 +308,13 @@ stays.
 - Screen margins: 20 pt (iOS standard readable margin), 16 pt inside cards.
 - Vertical rhythm between sections: 32 pt; between related items: 12 pt.
 - Touch targets: at least 44 × 44 pt, including Pofu himself.
-- Home layout is **scene first**: the scene fills the screen edge to edge,
-  Pofu stands on the lower third, and chrome floats in the scene's calm
-  zones (see the composition rules in the [art bible](art-bible.md)).
+- Home is **Pofu's room**, the single root of the app with sheets and no
+  tab bar ([information architecture](../product/ux/information-architecture.md)).
+  The room fills the screen edge to edge; Pofu stands on the rug in the
+  middle; the meadow shows through a round window above him. Chrome floats
+  in the room's calm zones (see the [art bible](art-bible.md)): glass
+  buttons for the seed pouch, friends, and settings at the top; the Today
+  card, one primary ("Fill my cheeks"), and one secondary at the bottom.
 
 ## 6. Shape and radius
 
@@ -351,9 +355,10 @@ Three levels, warm shadows, never black:
 Liquid Glass (iOS 26) is the frame through which the painted world is
 seen. Rules:
 
-- **Glass is for chrome that floats over the world:** the tab bar,
-  toolbars, the floating action cluster on Home, sheets presented over the
-  scene. That is where glass is beautiful: the meadow glows through it.
+- **Glass is for chrome that floats over the world:** Home's top-bar
+  buttons and bottom action pair, toolbars, and sheets presented over the
+  room (at the medium detent Pofu stays visible behind them). That is where
+  glass is beautiful: the room glows through it.
 - **Content is never glass.** Cards, badges, and Pofu's speech bubble are
   solid surfaces (`surface.card`). Glass on glass, or glass carrying text
   paragraphs, is forbidden.
@@ -397,7 +402,7 @@ and stretch, follow-through, idle life) apply to the whole interface.
 1. **Springs, not curves.** Every UI motion is a spring; durations below
    are perceptual targets, not linear timings.
 2. **The world is soft, the frame is crisp.** Pofu and the scene bounce;
-   chrome uses `snappy` (no overshoot). A wobbling tab bar would feel broken.
+   chrome uses `snappy` (no overshoot). A wobbling toolbar would feel broken.
 3. **Hide swaps inside motion.** Painted expressions are separate frames
    ([section 13](#13-the-companion-how-art-and-motion-split-the-work)). Swap frames at
    the deepest point of a squash or a blink, where the eye accepts a
@@ -492,19 +497,28 @@ during the bedtime window other than the check-in itself.
 
 ## 12. Scenes: day, night, and vitality
 
-The Home scene shows two things without a single number: **what time it
-is** and **how your week has been**. Time drives the light; vitality drives
-the life in it.
+Home shows two things without a single number: **what time it is** and
+**how your week has been**. Time drives the light; vitality drives the
+life in it.
+
+Two kinds of scene carry this:
+
+- **Pofu's room** (Home): the inside of the burrow. One painted room plate;
+  the time of day comes in through the round window (a meadow plate
+  clipped to the window shape) and through the room's light (a sunbeam by
+  day, a warm lamp at night, both drawn in code).
+- **The meadow** (full screen): Hop!, focus sessions, and onboarding step
+  outside. The same meadow plates, uncropped.
 
 ### Time of day (local clock)
 
-| Band | Hours | Sky (code gradient) | Plate | Life |
-|---|---|---|---|---|
-| Dawn | 05:30–08:00 | Peach to pale blue | Day plate, cool pink grade | Mist, first birds |
-| Day | 08:00–17:30 | Pale blue to cream haze | `meadow-day` | Butterflies, drifting petals |
-| Golden hour | 17:30–20:30 | Violet to coral to gold | `meadow-sunset` | Long shadows, warm rim light on Pofu |
-| Night | 20:30–05:30 | Deep plum to indigo | `meadow-night` | Moon, fireflies; Pofu's burrow window glows |
-| Bedtime overlay | Bedtime window (default 23:00–06:00, matching night pricing) | Night, dimmed 15 % | Night plate | Pofu sleeps; UI dims; check-in copy turns to whispers |
+| Band | Hours | Sky (code gradient) | Meadow plate | Room light | Life |
+|---|---|---|---|---|---|
+| Dawn | 05:30–08:00 | Peach to pale blue | Day plate, cool pink grade | Soft pink wash | Mist, first birds |
+| Day | 08:00–17:30 | Pale blue to cream haze | `meadow-day` | Sunbeam across the rug | Butterflies, drifting petals |
+| Golden hour | 17:30–20:30 | Violet to coral to gold | `meadow-sunset` | Long warm beam, warm rim light on Pofu | Long shadows |
+| Night | 20:30–05:30 | Deep plum to indigo | `meadow-night` | Lamp glow, room dimmed | Moon and fireflies in the window |
+| Bedtime overlay | Bedtime window (default 23:00–06:00, matching night pricing) | Night | Night plate | Room dimmed a further 15 % | Pofu sleeps; Hop! turns to whispers |
 
 Bands use fixed clock times in v1 (no location permission needed, in line
 with "private by construction"). Seasonal sunrise tables are a later
@@ -512,36 +526,44 @@ refinement.
 
 ### Vitality (from `PofuCore` mood bands)
 
-| Mood band | Vitality | Scene treatment | Pofu |
-|---|---|---|---|
-| Thriving | ≥ 0.75 | Lush plate, full color, flowers open, most particles | Fluffiest, tuft upright, sparkle |
-| Content | ≥ 0.50 | Lush plate, saturation 95 % | Relaxed, soft smile |
-| Tired | ≥ 0.25 | Lush and wilting plates blended 50/50, saturation 80 %, light haze, flowers half closed; the wheel appears in the background | Half-lidded, fur slightly flat |
-| Wilting | < 0.25 | Wilting plate, saturation 65 % (never below 55 %), soft overcast veil; flowers closed | Matted, deflated, sad but cute |
+| Mood band | Vitality | Meadow (window and full screen) | Room | Pofu |
+|---|---|---|---|---|
+| Thriving | ≥ 0.75 | Lush plate, full color, flowers open, most particles | Bright; the wheel stands still | Fluffiest, tuft upright, sparkle |
+| Content | ≥ 0.50 | Lush plate, saturation 95 % | Normal | Relaxed, soft smile |
+| Tired | ≥ 0.25 | Lush and wilting plates blended 50/50, saturation 80 %, light haze | Slightly dimmer, cooler light | Half-lidded, fur slightly flat |
+| Wilting | < 0.25 | Wilting plate, saturation 65 % (never below 55 %), soft overcast veil | Overcast light through the window | Matted, deflated, sad but cute |
 
 Rules:
 
 - **Wilting is overcast, never stormy.** No rain, no dead plants, no
   darkness as punishment. Night is beautiful, not bad.
-- **The wheel is a moment, not a sentence.** Pofu runs on the wheel only
-  right after a pass expires (the doomscroll just happened), and steps off
-  it, with a hop, the moment the user resists. The wheel never becomes a
-  permanent guilt picture, and it is never a cage.
-- **Derive, don't paint.** Launch needs four plates (day, sunset, night,
-  day-wilting). Every other combination is a code grade: saturation, a
-  color veil from the time band, particle density, and the lush/wilting
-  cross-fade.
+- **The wheel is a moment, not a sentence.** The wheel stands idle in the
+  corner of the room when you do well. Pofu runs on it only right after a
+  pass expires (the doomscroll just happened), and hops off it the moment
+  the user resists. It never becomes a permanent guilt picture, and it is
+  never a cage.
+- **Derive, don't paint.** Launch needs one room plate and four meadow
+  plates (day, sunset, night, day-wilting). Every other combination is a
+  code grade: saturation, a color veil from the time band, the room light,
+  particle density, and the lush/wilting cross-fade.
+- **The room is the decor surface.** Later room treats (the monetization
+  lever in the information architecture) are sprites placed on the room
+  plate, never repaints of it.
 
-### Layer stack (back to front)
+### Layer stack, Home (back to front)
 
-1. Sky: code gradient, interpolated with the clock.
-2. Scene plate (lush and wilting cross-faded by vitality); split into far
-   and near layers later for parallax.
-3. Props: the wheel, the burrow, seasonal objects (sprites).
-4. Particles (code): petals, pollen, fireflies; density by vitality.
-5. Contact shadow (code).
-6. Pofu (sprite frames, animated in code).
-7. Chrome: Liquid Glass, in the plate's calm zones.
+1. Window: sky gradient (code) and the meadow plate, clipped to the window
+   shape recorded with the room plate.
+2. Room plate (walls, floor, rug, window frame); opaque.
+3. Props: the wheel (it spins), the seed bowl, later decor (sprites).
+4. Light (code): sunbeam or lamp glow; the vitality grade.
+5. Particles (code): dust motes by day, fireflies in the window at night.
+6. Contact shadow (code).
+7. Pofu (base image, lid plate, and expression variants, animated in code).
+8. Chrome: Liquid Glass, in the room's calm zones.
+
+Full-screen meadow scenes use the same stack without the room: sky, meadow
+plate, props, particles, shadow, Pofu, chrome.
 
 Widgets use the sky gradient plus a Pofu sprite (no plates, for size and
 memory). The Lock Screen uses `pofu.glyph`.
