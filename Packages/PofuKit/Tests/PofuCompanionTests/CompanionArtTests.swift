@@ -26,3 +26,34 @@ struct CompanionArtTests {
     }
 }
 #endif
+
+#if canImport(SwiftUI)
+@Suite("Companion stage layout")
+struct CompanionStageLayoutTests {
+    let rig = CompanionRig.hamster
+
+    @Test func feetAreTheScaleAnchor() {
+        let layout = CompanionStageLayout(width: 360, rig: rig)
+        let paddedHeight = layout.artHeight + 2 * layout.padding
+        let paddedWidth = layout.artWidth + 2 * layout.padding
+        #expect(abs(layout.groundAnchorY * paddedHeight - layout.groundYInPaddedFigure) < 1e-9)
+        #expect(abs(layout.groundAnchorX * paddedWidth - (layout.padding + rig.ground.x * layout.artWidth)) < 1e-9)
+    }
+
+    @Test func stageLeavesHeadroomForTheHop() {
+        let layout = CompanionStageLayout(width: 360, rig: rig)
+        let stageHeight = 360 / CompanionStageLayout.aspectRatio(for: rig)
+        // The highest hop (a fifth of the art height) must stay on stage.
+        #expect(layout.artOriginY >= 0.2 * layout.artHeight)
+        #expect(layout.groundY < stageHeight)
+        #expect(abs(layout.figureCenter.x - 180) < 1e-9)
+    }
+
+    @Test(arguments: [0.0, -10, .nan, .infinity])
+    func degenerateWidthsDoNotProduceNaN(width: Double) {
+        let layout = CompanionStageLayout(width: width, rig: rig)
+        #expect(layout.groundAnchorX.isFinite && layout.groundAnchorY.isFinite)
+        #expect(layout.artWidth.isFinite)
+    }
+}
+#endif

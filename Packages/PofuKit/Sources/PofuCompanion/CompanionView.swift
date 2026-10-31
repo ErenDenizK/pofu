@@ -114,6 +114,46 @@ struct CompanionStage: View {
     let art: CompanionArt
     let pose: CompanionPose
 
+    static func aspectRatio(for rig: CompanionRig) -> Double {
+        CompanionStageLayout.aspectRatio(for: rig)
+    }
+
+    var body: some View {
+        GeometryReader { proxy in
+            let layout = CompanionStageLayout(width: Double(proxy.size.width), rig: art.rig)
+            let artSize = CGSize(width: layout.artWidth, height: layout.artHeight)
+
+            ZStack(alignment: .topLeading) {
+                ContactShadow(pose: pose, artWidth: layout.artWidth)
+                    .position(x: layout.groundX, y: layout.groundY + layout.artHeight * 0.006)
+
+                CompanionFigure(art: art, pose: pose, size: artSize)
+                    .padding(layout.padding)
+                    .distortionEffect(
+                        CompanionShaders.deform(pose: pose, rig: art.rig, artRect: layout.artRectInPaddedFigure),
+                        maxSampleOffset: CGSize(width: layout.padding, height: layout.padding),
+                        isEnabled: CompanionShaders.isAvailable
+                    )
+                    .saturation(pose.saturation)
+                    .brightness(pose.brightness)
+                    .scaleEffect(x: pose.scaleX, y: pose.scaleY, anchor: layout.groundAnchor)
+                    .transformEffect(Self.lean(pose.lean, groundY: layout.groundYInPaddedFigure))
+                    .offset(y: -pose.hop * layout.artHeight)
+                    .position(layout.figureCenter)
+            }
+        }
+    }
+
+    /// A shear that keeps the ground line fixed and moves the top by
+    /// `lean` times the height: a soft body bending, not a rigid tilt.
+    static func lean(_ lean: Double, groundY: Double) -> CGAffineTransform {
+        CGAffineTransform(a: 1, b: 0, c: -lean, d: 1, tx: lean * groundY, ty: 0)
+    }
+}
+
+/// Stage geometry in points, all in `Double` so it is easy to test and
+/// free of CGFloat conversions in view code.
+struct CompanionStageLayout: Hashable, Sendable {
     /// Headroom above the art (for hops) and floor room below (for the
     /// shadow), as fractions of the art height; side margins as a fraction
     /// of its width.
@@ -125,52 +165,48 @@ struct CompanionStage: View {
         rig.aspectRatio * (1 + 2 * sideMargin) / (1 + headroom + floorRoom)
     }
 
-    var body: some View {
-        GeometryReader { proxy in
-            let rig = art.rig
-            let artWidth = proxy.size.width / (1 + 2 * Self.sideMargin)
-            let artHeight = artWidth / rig.aspectRatio
-            let artOrigin = CGPoint(x: artWidth * Self.sideMargin, y: artHeight * Self.headroom)
-            let groundY = artOrigin.y + rig.ground.y * artHeight
-            let groundX = artOrigin.x + rig.ground.x * artWidth
-            let pad = artWidth * 0.1
+    let artWidth: Double
+    let artHeight: Double
+    let artOriginX: Double
+    let artOriginY: Double
+    let groundX: Double
+    let groundY: Double
+    /// Transparent margin around the figure, so the distortion shader can
+    /// push the silhouette outward without clipping.
+    let padding: Double
+    let groundAnchorX: Double
+    let groundAnchorY: Double
 
-            ZStack(alignment: .topLeading) {
-                ContactShadow(pose: pose, artWidth: artWidth)
-                    .position(x: groundX, y: groundY + artHeight * 0.006)
-
-                CompanionFigure(art: art, pose: pose, size: CGSize(width: artWidth, height: artHeight))
-                    .padding(pad)
-                    .distortionEffect(
-                        CompanionShaders.deform(
-                            pose: pose,
-                            rig: rig,
-                            artRect: CGRect(x: pad, y: pad, width: artWidth, height: artHeight)
-                        ),
-                        maxSampleOffset: CGSize(width: pad, height: pad),
-                        isEnabled: CompanionShaders.isAvailable
-                    )
-                    .saturation(pose.saturation)
-                    .brightness(pose.brightness)
-                    .scaleEffect(
-                        x: pose.scaleX,
-                        y: pose.scaleY,
-                        anchor: UnitPoint(
-                            x: (pad + rig.ground.x * artWidth) / (artWidth + 2 * pad),
-                            y: (pad + rig.ground.y * artHeight) / (artHeight + 2 * pad)
-                        )
-                    )
-                    .transformEffect(Self.lean(pose.lean, groundY: pad + rig.ground.y * artHeight))
-                    .offset(y: -pose.hop * artHeight)
-                    .position(x: artOrigin.x + artWidth / 2, y: artOrigin.y + artHeight / 2)
-            }
-        }
+    init(width: Double, rig: CompanionRig) {
+        let safeWidth = width.isFinite ? max(width, 0) : 0
+        artWidth = safeWidth / (1 + 2 * Self.sideMargin)
+        artHeight = artWidth / rig.aspectRatio
+        artOriginX = artWidth * Self.sideMargin
+        artOriginY = artHeight * Self.headroom
+        groundX = artOriginX + rig.ground.x * artWidth
+        groundY = artOriginY + rig.ground.y * artHeight
+        padding = artWidth * 0.1
+        let paddedWidth = artWidth + 2 * padding
+        let paddedHeight = artHeight + 2 * padding
+        groundAnchorX = paddedWidth > 0 ? (padding + rig.ground.x * artWidth) / paddedWidth : 0.5
+        groundAnchorY = paddedHeight > 0 ? (padding + rig.ground.y * artHeight) / paddedHeight : 1
     }
 
-    /// A shear that keeps the ground line fixed and moves the top by
-    /// `lean` times the height: a soft body bending, not a rigid tilt.
-    static func lean(_ lean: Double, groundY: Double) -> CGAffineTransform {
-        CGAffineTransform(a: 1, b: 0, c: -lean, d: 1, tx: lean * groundY, ty: 0)
+    /// The scale anchor: the feet, in the padded figure's unit space.
+    var groundAnchor: UnitPoint {
+        UnitPoint(x: groundAnchorX, y: groundAnchorY)
+    }
+
+    var groundYInPaddedFigure: Double {
+        padding + (groundY - artOriginY)
+    }
+
+    var artRectInPaddedFigure: CGRect {
+        CGRect(x: padding, y: padding, width: artWidth, height: artHeight)
+    }
+
+    var figureCenter: CGPoint {
+        CGPoint(x: artOriginX + artWidth / 2, y: artOriginY + artHeight / 2)
     }
 }
 
@@ -226,7 +262,9 @@ private struct CompanionFigure: View {
                         y: rig.lidPlateOrigin.y * size.height
                     )
                     .frame(width: size.width, height: size.height, alignment: .topLeading)
-                    .mask(LidShape(rig: rig, pose: pose))
+                    .mask {
+                        LidShape(rig: rig, pose: pose)
+                    }
             }
 
             LashShape(rig: rig, pose: pose)
@@ -256,7 +294,7 @@ private struct FallbackCheek: View {
             .resizable()
             .frame(width: size.width, height: size.height)
             .scaleEffect(1 + CompanionShaders.inflation(cheekPuff: pose.cheekPuff) * 0.4, anchor: anchor)
-            .mask(
+            .mask {
                 RadialGradient(
                     stops: [
                         .init(color: .white, location: 0),
@@ -267,7 +305,7 @@ private struct FallbackCheek: View {
                     startRadius: 0,
                     endRadius: radius
                 )
-            )
+            }
     }
 }
 
