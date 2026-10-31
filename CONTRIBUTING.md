@@ -60,9 +60,11 @@ Rules:
   large PR.
 - Fill in the pull request template completely.
 - A PR must pass CI before merge.
-- Merge strategy: **squash and merge** for feature branches, so `main` carries
-  one Conventional Commit per PR. Documentation-only PRs that tell a story
-  through several commits may use a regular merge commit.
+- Merge strategy: **create a merge commit** when every commit on the branch
+  is a clean, self-contained Conventional Commit. This preserves the
+  narrative history and per-commit authorship. **Squash and merge** only
+  when the branch contains work-in-progress or fixup noise that should not
+  reach `main`.
 - Delete the branch after merge.
 
 ## Versioning and releases
