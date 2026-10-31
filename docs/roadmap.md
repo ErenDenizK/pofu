@@ -15,8 +15,12 @@ Goal: every decision needed to start building is made and written down.
 - [x] Contribution guidelines and repository templates
 - [x] Name and character direction chosen: **Pofu** ([ADR-0007](adr/0007-product-name-pofu.md))
 - [x] Character bible v0.1 ([character.md](brand/character.md))
-- [ ] Interactive rig prototype of Pofu, iterated visually before the Swift port
+- [x] Character direction explored (vector rig, 3D spike, AI illustration) and decided:
+  illustrated hamster ([ADR-0010](adr/0010-illustrated-hamster-art-direction.md))
+- [ ] Companion motion system validated on device
+- [ ] Art bible, prompt library, and asset pipeline; first production assets generated
 - [ ] Design language: color, typography, motion, haptics, and sound principles
+- [ ] Information architecture, user flows, and a clickable prototype
 - [x] Xcode project, local packages, CI on GitHub Actions (macOS runner)
   ([ADR-0009](adr/0009-xcodegen-and-package-layout.md),
   [development guide](development.md))
@@ -26,7 +30,8 @@ Goal: every decision needed to start building is made and written down.
 Goal: an app on the founder's iPhone where the companion is alive and
 delightful, running on the simulated Screen Time service (ADR-0003).
 
-- Companion rig v1: idle, thriving, tired, wilting, sleeping, celebrating
+- Companion v1 (illustrated hamster): idle, thriving, tired, wilting, sleeping,
+  celebrating, cheeks filling with energy
 - Home scene with world state driven by `PofuCore`
 - Economy engine in `PofuCore` with simulation tests (earn rates, prices,
   inflation control, daily caps)

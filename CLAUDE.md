@@ -44,14 +44,21 @@ the project's persistent memory; keep it accurate and concise.
   (`PofuCore`, `PofuScreenTime`, `PofuDesignSystem`), and CI that must stay
   green. See `docs/development.md` and the economy rules in
   `docs/product/economy.md` (keep code and doc in sync). The app is a
-  placeholder; Pofu is not drawn until the character design settles.
+  placeholder.
+- Character: Pofu is an **illustrated fluffy hamster** (ADR-0010). The
+  founder generates art with GPT Image (ChatGPT Pro) under the art bible;
+  the agent owns prompts, the pipeline, motion, and integration. The 3D
+  Blender spike is parked as a reference.
 - Without a local Swift toolchain, the compile and test loop is: push,
   then read the GitHub Actions results. CI treats Swift warnings as errors.
 - Founder's own target apps: Instagram, YouTube, TikTok. Goal: resist half
   of reflexive opens.
-- The paid Apple Developer membership is not active yet (expected mid-November
-  2026). Family Controls cannot run on device until then; build against
+- The paid Apple Developer membership is not active yet; the founder is on a
+  free account for about two weeks (from 2026-10-31). Family Controls cannot run on device until then; build against
   the simulated Screen Time service (ADR-0003).
-- The agent environment is Linux without Xcode: pure-Swift packages can be
-  built here once a Swift toolchain is installed; app builds run on GitHub
-  Actions macOS runners and on the founder's Mac.
+- The agent environment is Linux without Xcode and cannot download a Swift
+  toolchain (swift.org is blocked). PyPI and Ubuntu apt are reachable
+  (`bpy` from PyPI works for Blender). Chromium and Playwright are
+  preinstalled for rendering and inspecting prototypes.
+- The founder has authorized the agent to merge PRs. Use merge commits for
+  clean histories, and merge only with green CI.
