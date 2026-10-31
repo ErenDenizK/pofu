@@ -1,6 +1,7 @@
 # Pofu: Character Bible
 
-_Status: v0.1, the reference for the code-native rig (ADR-0006). Last
+_Status: v0.1, **under revision**: species and rendering style are being
+re-explored in [character-exploration.md](character-exploration.md). Last
 updated: 2026-10-31._
 
 ## Who Pofu is
