@@ -90,6 +90,35 @@ Mechanics:
 - **Optional tip jar** for users who want to support development without
   subscribing.
 
+## Founder input (2026-10-31)
+
+Initial ideas from the founder, to be finalized in the launch-phase ADR:
+
+| Offer | Türkiye | Notes |
+|---|---|---|
+| Plus, annual only | ~350 TL / year | "The price of a coffee." No monthly plan: nobody should pay 50 TL a month. |
+| Plus, lifetime | ~1,000 TL | |
+| Tip jar | Small amounts | Support without subscribing, with a thank-you bonus. |
+| Global | Higher, set per region | Apple allows independent prices per storefront. |
+
+Evaluation:
+
+- **Annual-only is sound at this price.** Around 29 TL a month equivalent sits
+  below the impulse threshold. A monthly plan would mostly add churn.
+- **Lifetime at roughly 2.9 times the annual price** is within the usual
+  range (2.5–4×). It suits Türkiye, where subscription fatigue is high and
+  inflation makes one-time purchases attractive. Revisit the TL price at
+  least yearly because of inflation.
+- **The tip jar must use In-App Purchase.** App Store guidelines require
+  digital tips inside the app to go through IAP; an external "Buy Me a
+  Coffee" link is not allowed for in-app content. A culturally native twist:
+  _"Pofu'ya bir simit ısmarla"_ ("buy Pofu a simit"), where each tip gives
+  Pofu a small cosmetic thank-you (a simit, a tea glass) that the user
+  keeps. In English: "buy Pofu a snack".
+- Set TL prices manually instead of relying on Apple's automatic
+  currency-based equalization, which tracks exchange rates rather than local
+  purchasing power.
+
 ## Business and legal notes (verify with an accountant before revenue)
 
 - An individual Apple Developer Program enrollment publishes the founder's

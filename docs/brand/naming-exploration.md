@@ -1,6 +1,6 @@
 # Naming Exploration
 
-_Status: exploration. No decision yet. Last updated: 2026-10-31._
+_Status: **decided: Pofu** ([ADR-0007](../adr/0007-product-name-pofu.md)). Last updated: 2026-10-31._
 
 ## Why the name matters more than usual here
 
