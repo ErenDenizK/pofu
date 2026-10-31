@@ -10,7 +10,7 @@ struct AllowanceTests {
         var wallet = Wallet()
         let granted = economy.openDay(&wallet, at: instant(2026, 11, 2, 8))
         #expect(granted == 15)
-        #expect(wallet.balance == 15)
+        #expect(wallet.balance == Energy(15))
         #expect(wallet.lastAllowanceDay == LocalDay(year: 2026, month: 11, day: 2))
     }
 
@@ -21,7 +21,7 @@ struct AllowanceTests {
         #expect(granted == .zero)
         granted = economy.openDay(&wallet, at: instant(2026, 11, 2, 23, 59, 59))
         #expect(granted == .zero)
-        #expect(wallet.balance == 15)
+        #expect(wallet.balance == Energy(15))
     }
 
     @Test func midnightStartsANewAllowance() {
@@ -29,14 +29,14 @@ struct AllowanceTests {
         economy.openDay(&wallet, at: instant(2026, 11, 2, 23, 59, 59))
         let granted = economy.openDay(&wallet, at: instant(2026, 11, 3, 0, 0, 0))
         #expect(granted == 15)
-        #expect(wallet.balance == 30)
+        #expect(wallet.balance == Energy(30))
     }
 
     @Test func balanceCarriesOverAndMissedDaysAreNotBackFilled() {
         var wallet = Wallet(balance: 4)
         economy.openDay(&wallet, at: instant(2026, 11, 2))
         economy.openDay(&wallet, at: instant(2026, 11, 6))
-        #expect(wallet.balance == 4 + 15 + 15)
+        #expect(wallet.balance == Energy(4 + 15 + 15))
     }
 
     @Test func clockMovingBackwardsNeverGrantsTwice() {
@@ -46,7 +46,7 @@ struct AllowanceTests {
         #expect(granted == .zero)
         granted = economy.openDay(&wallet, at: instant(2026, 11, 3, 18))
         #expect(granted == .zero)
-        #expect(wallet.balance == 15)
+        #expect(wallet.balance == Energy(15))
     }
 
     @Test func allowanceFollowsTheLocalDayNotUTC() {
@@ -99,7 +99,7 @@ struct EarningTests {
         var wallet = Wallet()
         let result = economy.earn(session(60, .honor, endingAt: evening), into: &wallet)
         #expect(result == EarningResult(earned: 30))
-        #expect(wallet.balance == 15 + 30)
+        #expect(wallet.balance == Energy(15 + 30))
         #expect(wallet.activityEnergy(on: economy.day(of: evening)) == 30)
     }
 
@@ -118,7 +118,7 @@ struct EarningTests {
         // Anything further is fully forfeited.
         let third = economy.earn(session(10, .honor, endingAt: evening.adding(minutes: 90)), into: &wallet)
         #expect(third == EarningResult(earned: .zero, forfeitedToCap: 5))
-        #expect(wallet.balance == 15 + 120)
+        #expect(wallet.balance == Energy(15 + 120))
     }
 
     @Test func verifiedEarningsAreNeitherCappedNorCountedTowardTheHonorCap() {
@@ -126,7 +126,8 @@ struct EarningTests {
         let day = economy.day(of: evening)
         economy.earn(session(240, .honor, endingAt: evening), into: &wallet)
         #expect(wallet.honorEnergy(on: day) == 120)
-        let verified = economy.earn(session(400, .structural, kind: .focus, endingAt: evening.adding(minutes: 410)), into: &wallet)
+        // Same local day: 400 minutes ending a minute after the honor session.
+        let verified = economy.earn(session(400, .structural, kind: .focus, endingAt: evening.adding(minutes: 1)), into: &wallet)
         #expect(verified == EarningResult(earned: 300))
         #expect(wallet.honorEnergy(on: day) == 120)
         #expect(wallet.activityEnergy(on: day) == 420)
@@ -192,7 +193,7 @@ struct StepTests {
         var wallet = Wallet()
         let granted = economy.creditSteps(dailyTotal: 1_499, on: morning, into: &wallet)
         #expect(granted == 2)
-        #expect(wallet.balance == 15 + 2)
+        #expect(wallet.balance == Energy(15 + 2))
     }
 
     @Test func cumulativeTotalsAreCreditedIncrementally() {
@@ -205,7 +206,7 @@ struct StepTests {
         #expect(granted == .zero)
         granted = economy.creditSteps(dailyTotal: 5_100, on: morning.adding(hours: 3), into: &wallet)
         #expect(granted == 6)
-        #expect(wallet.balance == 15 + 10)
+        #expect(wallet.balance == Energy(15 + 10))
     }
 
     @Test func shrinkingTotalsNeverClawBack() {
@@ -215,7 +216,7 @@ struct StepTests {
         #expect(granted == .zero)
         granted = economy.creditSteps(dailyTotal: 5_600, on: morning.adding(hours: 2), into: &wallet)
         #expect(granted == 1)
-        #expect(wallet.balance == 15 + 11)
+        #expect(wallet.balance == Energy(15 + 11))
     }
 
     @Test func eachDayStartsFromZero() {
