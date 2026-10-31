@@ -34,9 +34,16 @@ let package = Package(
         // Design tokens and small SwiftUI building blocks.
         .target(name: "PofuDesignSystem"),
 
-        // The living companion: motion simulation (pure, testable).
+        // The living companion: motion simulation (pure, testable), the
+        // SwiftUI view, and its Metal deformation shader. Xcode compiles
+        // the .metal resource into default.metallib; command-line builds
+        // copy it, and the view falls back to a SwiftUI approximation.
         // See docs/design/companion-motion.md.
-        .target(name: "PofuCompanion", dependencies: ["PofuDesignSystem"]),
+        .target(
+            name: "PofuCompanion",
+            dependencies: ["PofuDesignSystem"],
+            resources: [.process("Resources")]
+        ),
 
         .testTarget(name: "PofuCoreTests", dependencies: ["PofuCore"]),
         .testTarget(name: "PofuScreenTimeTests", dependencies: ["PofuScreenTime", "PofuCore"]),
