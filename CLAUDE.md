@@ -33,12 +33,16 @@ the project's persistent memory; keep it accurate and concise.
 - Vision and principles: `docs/product/vision.md`
 - Roadmap and open questions: `docs/roadmap.md`
 - Research: `docs/research/`
-- Brand and naming: `docs/brand/`
+- Brand, character bible, naming: `docs/brand/`
 - Decisions: `docs/adr/`
 
 ## Current state
 
-- Phase 0 (Foundation). No app code yet.
+- Product name: **Pofu** (ADR-0007). The repository is still named `rot`.
+- Phase 0 (Foundation). No app code yet. Next: interactive rig prototype of
+  Pofu, then the Xcode project, packages, and CI.
+- Founder's own target apps: Instagram, YouTube, TikTok. Goal: resist half
+  of reflexive opens.
 - The paid Apple Developer membership is not active yet (expected mid-November
   2026). Family Controls cannot run on device until then; build against
   the simulated Screen Time service (ADR-0003).

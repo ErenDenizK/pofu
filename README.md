@@ -1,8 +1,8 @@
-# Rot
+# Pofu
 
-> Working codename. A character-driven iPhone app that helps you reclaim your
-> attention: your companion thrives when you live and wilts when you
-> doomscroll.
+> A character-driven iPhone app that stands between you and the reflexive
+> scroll. Pofu, a small fluffball, gets fluffier when you live and wilts
+> when you doomscroll.
 
 **Status:** Phase 0, Foundation. Product research and architecture decisions
 are in place; app development has not started yet.
@@ -26,7 +26,8 @@ The core experience is free, forever.
 | [Competitive analysis](docs/research/competitive-analysis.md) | Unrot, Brainrot, and the adjacent market |
 | [Platform constraints](docs/research/platform-constraints.md) | What Apple's Screen Time APIs allow, and the workarounds |
 | [Monetization research](docs/research/monetization.md) | Paywall data and the recommended model |
-| [Naming exploration](docs/brand/naming-exploration.md) | Name and character directions |
+| [Character bible](docs/brand/character.md) | Who Pofu is: anatomy, states, motion, voice |
+| [Naming exploration](docs/brand/naming-exploration.md) | How the name Pofu was chosen |
 | [Architecture decisions](docs/adr/README.md) | ADR index |
 | [Contributing](CONTRIBUTING.md) | Branching, commits, PRs, releases |
 
