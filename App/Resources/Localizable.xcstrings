@@ -1,0 +1,174 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%lld minutes for %lld energy" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld dakika, %2$lld enerji"
+          }
+        }
+      }
+    },
+    "Connect" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağlan"
+          }
+        }
+      }
+    },
+    "energy" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "enerji"
+          }
+        }
+      }
+    },
+    "Engineering preview" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geliştirici ön izlemesi"
+          }
+        }
+      }
+    },
+    "Every day starts with %lld energy on the house." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Her gün %lld enerji bizden."
+          }
+        }
+      }
+    },
+    "Log a 20-minute walk" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "20 dakikalık yürüyüş ekle"
+          }
+        }
+      }
+    },
+    "Next unlock" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sıradaki açılış"
+          }
+        }
+      }
+    },
+    "Night pricing is on until morning." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sabaha kadar gece tarifesi geçerli."
+          }
+        }
+      }
+    },
+    "Pofu's home is still being built. The numbers above already run on the real economy engine." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pofu'nun evi hâlâ yapılıyor. Yukarıdaki sayılar şimdiden gerçek ekonomi motoruyla çalışıyor."
+          }
+        }
+      }
+    },
+    "Screen Time" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ekran Süresi"
+          }
+        }
+      }
+    },
+    "Simulated, access declined" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simülasyon, izin verilmedi"
+          }
+        }
+      }
+    },
+    "Simulated, connected" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simülasyon, bağlı"
+          }
+        }
+      }
+    },
+    "Simulated, not connected yet" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simülasyon, henüz bağlı değil"
+          }
+        }
+      }
+    },
+    "Today's balance" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugünkü bakiye"
+          }
+        }
+      }
+    },
+    "You resisted %lld times today." : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "You resisted once today."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "You resisted %lld times today."
+                }
+              }
+            }
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugün %lld kez direndin."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
