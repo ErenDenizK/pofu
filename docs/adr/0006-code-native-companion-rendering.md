@@ -1,6 +1,6 @@
 # 0006. Code-native companion rendering
 
-- **Status:** Accepted
+- **Status:** Superseded by [0010](0010-illustrated-hamster-art-direction.md)
 - **Date:** 2026-10-31
 
 ## Context
