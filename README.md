@@ -4,8 +4,10 @@
 > scroll. Pofu, a small fluffball, gets fluffier when you live and wilts
 > when you doomscroll.
 
-**Status:** Phase 0, Foundation. Product research and architecture decisions
-are in place; app development has not started yet.
+**Status:** Phase 0, Foundation. Product research, architecture decisions,
+and the engineering foundation (Xcode project, the `PofuKit` package with
+the economy core, CI) are in place. The app is a placeholder; the
+companion is not built yet.
 
 ## The idea in one loop
 
@@ -22,6 +24,7 @@ The core experience is free, forever.
 | Document | Purpose |
 |---|---|
 | [Product vision](docs/product/vision.md) | Problem, audience, core loop, principles, non-goals |
+| [Energy economy](docs/product/economy.md) | Earning, pricing, friction ladder, and vitality rules (v0) |
 | [Roadmap](docs/roadmap.md) | Phases, the day-one membership checklist, open questions |
 | [Competitive analysis](docs/research/competitive-analysis.md) | Unrot, Brainrot, and the adjacent market |
 | [Platform constraints](docs/research/platform-constraints.md) | What Apple's Screen Time APIs allow, and the workarounds |
@@ -29,6 +32,7 @@ The core experience is free, forever.
 | [Character bible](docs/brand/character.md) | Who Pofu is: anatomy, states, motion, voice |
 | [Naming exploration](docs/brand/naming-exploration.md) | How the name Pofu was chosen |
 | [Architecture decisions](docs/adr/README.md) | ADR index |
+| [Development guide](docs/development.md) | Mac setup, running on device, tests, CI |
 | [Contributing](CONTRIBUTING.md) | Branching, commits, PRs, releases |
 
 ## Tech stack
