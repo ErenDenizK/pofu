@@ -14,6 +14,7 @@ Packages/PofuKit/           Local Swift package with every module below the app
   Sources/PofuCore/         Pure domain: economy, friction ladder, passes, vitality
   Sources/PofuScreenTime/   Screen Time boundary and its simulator
   Sources/PofuDesignSystem/ Design tokens: colors, spacing, type, motion
+  Sources/PofuCompanion/    The living companion: motion model, CompanionView, Metal shader
   Tests/                    Swift Testing suites
 .github/workflows/ci.yml    CI: package tests and an app build on every PR
 docs/                       Product, research, brand, ADRs, and this guide
