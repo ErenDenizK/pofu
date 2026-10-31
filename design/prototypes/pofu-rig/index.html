@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pofu Rig Prototype</title>
+<style>
+  :root {
+    --bg: #f6f3ff;
+    --panel: #ffffff;
+    --ink: #1e1a2e;
+    --muted: #6b6680;
+    --accent: #8f74f0;
+    --line: #e6e0f7;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 14px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+  }
+  .app { display: grid; grid-template-columns: 1fr 320px; min-height: 100vh; }
+  .stage { display: grid; place-items: center; padding: 24px; }
+  .stage svg { width: min(560px, 90vw); height: auto; border-radius: 36px; box-shadow: 0 30px 80px rgba(80, 60, 160, .18); }
+  aside { background: var(--panel); border-left: 1px solid var(--line); padding: 20px; overflow-y: auto; max-height: 100vh; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 20px 0 8px; }
+  p.hint { color: var(--muted); margin: 0; }
+  .presets { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  button {
+    font: inherit; border: 1px solid var(--line); background: #faf8ff; color: var(--ink);
+    padding: 8px 10px; border-radius: 12px; cursor: pointer; text-align: left;
+  }
+  button.active { background: var(--accent); color: white; border-color: var(--accent); }
+  label.slider { display: grid; grid-template-columns: 92px 1fr 40px; align-items: center; gap: 8px; margin: 4px 0; font-size: 12px; }
+  label.slider input { width: 100%; accent-color: var(--accent); }
+  label.slider output { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .sheet { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 24px; }
+  .sheet figure { margin: 0; text-align: center; }
+  .sheet svg { width: 100%; height: auto; border-radius: 28px; }
+  .sheet figcaption { margin-top: 6px; font-weight: 600; }
+  .sheet figcaption span { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+"use strict";
+
+/*
+ * Pofu rig prototype.
+ *
+ * A parametric, code-native rendering of the Pofu character (ADR-0006,
+ * docs/brand/character.md). Every visual trait is driven by a numeric
+ * parameter in `Pose`; states are presets; transitions are springs.
+ * This file is the visual reference for the SwiftUI port: geometry and
+ * parameter semantics must be mirrored there.
+ *
+ * Query parameters:
+ *   ?sheet=1             render all states side by side (static)
+ *   ?state=<name>        start in a given state
+ *   ?static=1            disable idle animation (for screenshots)
+ *   ?bg=0                hide the scene background
+ */
+
+// ---------------------------------------------------------------------------
+// Parameter model
+// ---------------------------------------------------------------------------
+
+/** Default pose. Ranges are documented in docs/brand/character.md. */
+const BASE_POSE = {
+  vitality: 0.85,   // 0…1 master wellbeing
+  fluff: 0.8,       // 0…1 outline bump amplitude and regularity
+  squash: 0,        // -1…1 squash (−) / stretch (+), bottom anchored
+  lean: 0,          // -1…1 tilt
+  lift: 0,          // px, vertical hop offset
+  eyeOpen: 0.95,    // 0…1
+  eyeSmile: 0,      // 0…1 happy arcs
+  gazeX: 0,         // -1…1
+  gazeY: 0,         // -1…1
+  sparkle: 0.7,     // 0…1 eye highlight size
+  mouthCurve: 0.5,  // -1…1 frown → smile
+  mouthOpen: 0,     // 0…1
+  blush: 0.5,       // 0…1
+  tuftPerk: 0.6,    // -1…1 droopy → upright
+};
+
+/** Ranges for the editor sliders. */
+const RANGES = {
+  vitality: [0, 1], fluff: [0, 1], squash: [-1, 1], lean: [-1, 1], lift: [0, 120],
+  eyeOpen: [0, 1], eyeSmile: [0, 1], gazeX: [-1, 1], gazeY: [-1, 1], sparkle: [0, 1],
+  mouthCurve: [-1, 1], mouthOpen: [0, 1], blush: [0, 1], tuftPerk: [-1, 1],
+};
+
+/** Core states from the character bible. `behavior` drives procedural motion. */
+const STATES = {
+  thriving:    { label: "Thriving",    note: "High vitality, good streak", behavior: "bouncy",
+                 pose: { vitality: 1, fluff: 1, eyeOpen: 1, sparkle: 1, mouthCurve: 0.85, mouthOpen: 0.3, blush: 0.85, tuftPerk: 1 } },
+  content:     { label: "Content",     note: "Default", behavior: "idle",
+                 pose: { vitality: 0.85, fluff: 0.8, eyeOpen: 0.95, sparkle: 0.7, mouthCurve: 0.5, blush: 0.5, tuftPerk: 0.6 } },
+  curious:     { label: "Curious",     note: "“Hop! Where to?”", behavior: "idle",
+                 pose: { vitality: 0.85, fluff: 0.8, squash: 0.18, lean: 0.22, eyeOpen: 1, sparkle: 0.95, gazeX: 0.55, gazeY: -0.25,
+                         mouthCurve: 0, mouthOpen: 0.42, blush: 0.35, tuftPerk: 0.15 } },
+  tired:       { label: "Tired",       note: "Moderate scrolling", behavior: "slow",
+                 pose: { vitality: 0.5, fluff: 0.45, squash: -0.15, eyeOpen: 0.42, gazeY: 0.35, sparkle: 0.3, mouthCurve: -0.1, blush: 0.15, tuftPerk: -0.35 } },
+  wilting:     { label: "Wilting",     note: "Heavy scrolling", behavior: "slow",
+                 pose: { vitality: 0.05, fluff: 0.08, squash: -0.38, eyeOpen: 0.5, gazeY: 0.7, sparkle: 0.12, mouthCurve: -0.6, blush: 0, tuftPerk: -1 } },
+  sleeping:    { label: "Sleeping",    note: "Bedtime schedule", behavior: "sleep",
+                 pose: { vitality: 0.8, fluff: 0.85, squash: -0.14, eyeOpen: 0, mouthCurve: 0.25, blush: 0.45, tuftPerk: -0.25 } },
+  celebrating: { label: "Celebrating", note: "Impulse resisted", behavior: "hop",
+                 pose: { vitality: 1, fluff: 1, eyeOpen: 1, eyeSmile: 1, sparkle: 1, mouthCurve: 1, mouthOpen: 0.75, blush: 1, tuftPerk: 1 } },
+  focused:     { label: "Focused",     note: "Focus session", behavior: "calm",
+                 pose: { vitality: 0.9, fluff: 0.8, eyeOpen: 0, mouthCurve: 0.3, blush: 0.3, tuftPerk: 0.45 } },
+};
+
+const poseFor = (name) => ({ ...BASE_POSE, ...STATES[name].pose });
+
+// ---------------------------------------------------------------------------
+// Color
+// ---------------------------------------------------------------------------
+
+const PALETTE = {
+  thriving: { light: "#EEE7FF", base: "#B9A2FF", shade: "#8467EC", outline: "#7257D6" },
+  wilted:   { light: "#D9D6DE", base: "#A8A3B3", shade: "#7E7889", outline: "#6E6879" },
+  cheek: "#FF8FB8",
+  eye: "#1E1A2E",
+  tongue: "#FF7A9C",
+};
+
+const hexToRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+const rgbToHex = (c) => "#" + c.map((v) => Math.round(v).toString(16).padStart(2, "0")).join("");
+const mix = (a, b, t) => rgbToHex(hexToRgb(a).map((v, i) => v + (hexToRgb(b)[i] - v) * t));
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+
+/** Vitality drains color non-linearly: Pofu stays colorful until things get bad. */
+function bodyColors(vitality) {
+  const t = 1 - Math.pow(clamp(vitality, 0, 1), 0.6);
+  const out = {};
+  for (const k of ["light", "base", "shade", "outline"]) out[k] = mix(PALETTE.thriving[k], PALETTE.wilted[k], t);
+  return out;
+}
+
+// ---------------------------------------------------------------------------
+// Geometry
+// ---------------------------------------------------------------------------
+
+const VIEW = { w: 400, h: 420 };
+const CX = 200;
+const GROUND = 336;
+const R = 112;              // body radius
+const BODY_DEPTH = R * 1.06; // distance from ground to body center at rest
+
+/** Deterministic pseudo-noise for matted fluff, stable across frames. */
+const noise = (i) => {
+  const x = Math.sin(i * 127.1 + 311.7) * 43758.5453;
+  return x - Math.floor(x);
+};
+
+/**
+ * Body-space → screen-space transform. Body space has its origin at the
+ * body center, y down. Squash is anchored at the ground so the feet stay
+ * planted; lean shears the body around its base.
+ */
+function makeTransform(p) {
+  const sy = (1 + 0.17 * p.squash) * (0.93 + 0.07 * p.vitality);
+  const sx = 1 / Math.pow(sy, 0.75);
+  const ground = GROUND - p.lift;
+  return (x, y) => {
+    const ys = ground + (y - BODY_DEPTH) * sy;
+    const xs = CX + x * sx + p.lean * (ground - ys) * 0.2;
+    return [xs, ys];
+  };
+}
+
+/** Base silhouette radius at angle θ (y down): slightly bottom-heavy. */
+const baseRadius = (theta) => R * (1 + 0.065 * Math.sin(theta));
+
+/**
+ * The fluffy outline: a ring of bulbous cubic-bezier lobes around the base
+ * shape. Lobes vary in width and height (deterministic noise) so the
+ * silhouette reads as fluff, not as a machined scallop. Low fluff flattens
+ * the lobes and makes them clumpy (matted).
+ */
+function bodyPath(p, T) {
+  const N = 14;
+  const fluff = clamp(p.fluff, 0, 1);
+  const mess = 1 - fluff;
+  const amp = R * (0.035 + 0.075 * fluff);
+  // Uneven lobe widths: accumulate noisy weights, normalize to a full turn.
+  const weights = Array.from({ length: N }, (_, i) => 0.75 + 0.5 * noise(i + 7));
+  const total = weights.reduce((a, b) => a + b, 0);
+  const pts = [];
+  let acc = -Math.PI / 2 - (weights[0] / total) * Math.PI; // center a lobe on the top
+  for (let i = 0; i < N; i++) {
+    const r = baseRadius(acc) * (1 - 0.035 * mess * noise(i + 50));
+    pts.push({ theta: acc, r });
+    acc += (weights[i] / total) * 2 * Math.PI;
+  }
+  const point = (theta, r) => T(Math.cos(theta) * r, Math.sin(theta) * r);
+  let d = "";
+  for (let i = 0; i < N; i++) {
+    const a = pts[i];
+    const b = pts[(i + 1) % N];
+    const thetaB = i === N - 1 ? b.theta + 2 * Math.PI : b.theta;
+    const span = thetaB - a.theta;
+    // Wider lobes puff out further; matted lobes are uneven.
+    const mid = a.theta + span / 2;
+    const bottomCalm = 1 - 0.6 * Math.max(0, Math.sin(mid));
+    const lobe = amp * bottomCalm * (0.7 + 0.6 * (span / ((2 * Math.PI) / N))) * (1 + (noise(i + 99) - 0.5) * 1.1 * mess);
+    const pinch = lerp(0.1, 0.3, mess);
+    const t1 = a.theta + span * pinch;
+    const t2 = thetaB - span * pinch;
+    const c1 = point(t1, lerp(a.r, b.r, pinch) + lobe * 1.55);
+    const c2 = point(t2, lerp(a.r, b.r, 1 - pinch) + lobe * 1.55);
+    const end = point(thetaB, b.r);
+    if (i === 0) {
+      const start = point(a.theta, a.r);
+      d += `M${start[0].toFixed(2)},${start[1].toFixed(2)}`;
+    }
+    d += `C${c1[0].toFixed(2)},${c1[1].toFixed(2)} ${c2[0].toFixed(2)},${c2[1].toFixed(2)} ${end[0].toFixed(2)},${end[1].toFixed(2)}`;
+  }
+  return d + "Z";
+}
+
+/**
+ * The tuft (perçem): a tapered, curling lock built from a centerline.
+ * Perk controls the base angle and curl; low vitality adds gravity.
+ */
+function tuftPath(p, T, time) {
+  const root = T(0, -R * 1.02);
+  const n = 18;
+  const perk01 = (p.tuftPerk + 1) / 2;
+  const length = 84 * (0.75 + 0.25 * p.vitality);
+  const sway = Math.sin(time * 1.7) * 3 + p.lean * 14;
+  let angle = (-90 + (1 - perk01) * 72 + sway) * Math.PI / 180;
+  const curl = (95 + 170 * perk01) * Math.PI / 180;
+  const gravity = (1 - p.vitality) * 1.1 + (1 - perk01) * 0.6;
+  const center = [[root[0], root[1] + 14]];
+  for (let i = 1; i <= n; i++) {
+    const t = i / n;
+    const step = length / n;
+    // Curl accelerates toward the tip; gravity pulls the lock down.
+    angle += (curl / n) * (0.35 + 1.3 * t * t) * (1 - gravity * 0.55);
+    angle = lerp(angle, Math.PI / 2, gravity * 0.06 * t);
+    const prev = center[i - 1];
+    center.push([prev[0] + Math.cos(angle) * step, prev[1] + Math.sin(angle) * step]);
+  }
+  const width = (t) => 30 * Math.pow(1 - t, 0.85) + 3;
+  const left = [];
+  const right = [];
+  for (let i = 0; i <= n; i++) {
+    const t = i / n;
+    const [x, y] = center[i];
+    const next = center[Math.min(i + 1, n)];
+    const prev = center[Math.max(i - 1, 0)];
+    const dx = next[0] - prev[0];
+    const dy = next[1] - prev[1];
+    const len = Math.hypot(dx, dy) || 1;
+    const nx = -dy / len;
+    const ny = dx / len;
+    const w = width(t) / 2;
+    left.push([x + nx * w, y + ny * w]);
+    right.push([x - nx * w, y - ny * w]);
+  }
+  const pts = left.concat(right.reverse());
+  let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i = 1; i < pts.length - 1; i++) {
+    const mx = (pts[i][0] + pts[i + 1][0]) / 2;
+    const my = (pts[i][1] + pts[i + 1][1]) / 2;
+    d += ` Q${pts[i][0]},${pts[i][1]} ${mx},${my}`;
+  }
+  return d + "Z";
+}
+
+// ---------------------------------------------------------------------------
+// Rendering
+// ---------------------------------------------------------------------------
+
+let uid = 0;
+
+/** Renders one frame of Pofu (and optionally its scene) as an SVG string. */
+function renderPofu(p, opts = {}) {
+  const id = `p${uid++}`;
+  const time = opts.time || 0;
+  const blink = opts.blink ?? 1;
+  const T = makeTransform(p);
+  const col = bodyColors(p.vitality);
+  const parts = [];
+
+  // --- Scene -------------------------------------------------------------
+  if (opts.background !== false) {
+    const v = p.vitality;
+    const night = opts.night;
+    const skyTop = night ? "#2B2560" : mix("#BFC6D6", "#9FD8FF", v);
+    const skyBottom = night ? "#5A4B9B" : mix("#E3E1E8", "#E9F7FF", v);
+    const hill = night ? "#3D5E58" : mix("#A9AE9C", "#8EDB7A", v);
+    const hillFar = night ? "#33504C" : mix("#BFC2B4", "#B5EBA0", v);
+    parts.push(`
+      <defs>
+        <linearGradient id="${id}sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="${skyTop}"/><stop offset="1" stop-color="${skyBottom}"/>
+        </linearGradient>
+      </defs>
+      <rect width="${VIEW.w}" height="${VIEW.h}" fill="url(#${id}sky)"/>
+      <path d="M0,300 C90,262 170,286 230,270 C300,252 350,268 400,258 L400,420 L0,420Z" fill="${hillFar}"/>
+      <path d="M0,330 C80,312 150,322 210,318 C290,312 340,326 400,316 L400,420 L0,420Z" fill="${hill}"/>`);
+    if (night) {
+      parts.push(`<circle cx="320" cy="70" r="18" fill="#FFF3C4"/><circle cx="312" cy="64" r="18" fill="${skyTop}"/>`);
+    }
+  }
+
+  // --- Defs: gradients and filters ---------------------------------------
+  const top = T(-35, -95);
+  parts.push(`
+    <defs>
+      <radialGradient id="${id}body" gradientUnits="userSpaceOnUse" cx="${top[0]}" cy="${top[1]}" r="${R * 2.25}">
+        <stop offset="0" stop-color="${col.light}"/>
+        <stop offset="0.38" stop-color="${col.base}"/>
+        <stop offset="1" stop-color="${col.shade}"/>
+      </radialGradient>
+      <filter id="${id}soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter>
+      <filter id="${id}shadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
+    </defs>`);
+
+  // --- Ground shadow -----------------------------------------------------
+  const shadowScale = 1 - clamp(p.lift / 220, 0, 0.6);
+  parts.push(`<ellipse cx="${CX}" cy="${GROUND + 6}" rx="${92 * shadowScale}" ry="${11 * shadowScale}"
+    fill="#2A1F5C" opacity="${0.16 * shadowScale}" filter="url(#${id}shadow)"/>`);
+
+  // --- Feet (behind the body) ------------------------------------------------
+  for (const side of [-1, 1]) {
+    const [fx, fy] = T(side * 54, BODY_DEPTH + 2);
+    const dangle = p.lift > 4 ? 6 : 0;
+    parts.push(`<ellipse cx="${fx + side * 3}" cy="${fy + dangle}" rx="26" ry="16" fill="${mix(col.base, col.shade, 0.75)}"
+      stroke="${col.outline}" stroke-width="2.5"/>`);
+  }
+
+  // --- Body --------------------------------------------------------------
+  const body = bodyPath(p, T);
+  parts.push(`<path d="${body}" fill="url(#${id}body)" stroke="${col.outline}" stroke-width="2.6" stroke-linejoin="round"/>`);
+  // Rim light and core shadow: the body path re-stroked, offset, and clipped
+  // to the body, which gives a plush, volumetric edge without extra shapes.
+  parts.push(`<clipPath id="${id}clip"><path d="${body}"/></clipPath>`);
+  parts.push(`<g clip-path="url(#${id}clip)">
+    <path d="${body}" transform="translate(7 10)" fill="none" stroke="${col.light}" stroke-width="16" opacity="${0.35 + 0.35 * p.fluff}" filter="url(#${id}soft)"/>
+    <path d="${body}" transform="translate(-6 -12)" fill="none" stroke="${col.shade}" stroke-width="18" opacity="0.35" filter="url(#${id}soft)"/>
+  </g>`);
+
+  // --- Tuft (in front; a borderless root blob hides the seam) -------------
+  {
+    const root = T(0, -R * 1.0);
+    parts.push(`<path d="${tuftPath(p, T, time)}" fill="url(#${id}body)" stroke="${col.outline}" stroke-width="2.6" stroke-linejoin="round"/>`);
+    parts.push(`<ellipse cx="${root[0]}" cy="${root[1] + 13}" rx="19" ry="15" fill="url(#${id}body)"/>`);
+  }
+
+  // --- Cheeks ------------------------------------------------------------
+  for (const side of [-1, 1]) {
+    const [x, y] = T(side * 76, 44);
+    parts.push(`<ellipse cx="${x}" cy="${y}" rx="17" ry="9.5" fill="${PALETTE.cheek}" opacity="${0.75 * p.blush}"
+      filter="url(#${id}soft)"/>`);
+  }
+
+  // --- Eyes --------------------------------------------------------------
+  const open = clamp(p.eyeOpen, 0, 1) * blink;
+  const smile = clamp(p.eyeSmile, 0, 1);
+  for (const side of [-1, 1]) {
+    const [ex0, ey0] = T(side * 46, 14);
+    const ex = ex0 + p.gazeX * 5;
+    const ey = ey0 + p.gazeY * 4;
+    const rx = 17.5;
+    const ry = 22 * open * (1 - 0.7 * smile);
+    if (smile > 0.02) {
+      parts.push(`<path d="M${ex - 14},${ey + 5} Q${ex},${ey - 14} ${ex + 14},${ey + 5}" fill="none"
+        stroke="${PALETTE.eye}" stroke-width="5.5" stroke-linecap="round" opacity="${smile}"/>`);
+    }
+    if (ry > 2.4 && smile < 0.98) {
+      const alpha = 1 - smile;
+      parts.push(`<ellipse cx="${ex}" cy="${ey}" rx="${rx}" ry="${ry}" fill="${PALETTE.eye}" opacity="${alpha}"/>`);
+      // Highlights move less than the eye for a glossy parallax.
+      const s = 0.45 + 0.75 * p.sparkle;
+      const hx = ex - p.gazeX * 2;
+      const hy = ey - p.gazeY * 1.5;
+      if (ry > 7) {
+        parts.push(`<circle cx="${hx - 5}" cy="${hy - ry * 0.38}" r="${5.6 * s}" fill="#fff" opacity="${alpha}"/>`);
+        parts.push(`<circle cx="${hx + 5.5}" cy="${hy + ry * 0.3}" r="${2.6 * s}" fill="#fff" opacity="${0.9 * alpha}"/>`);
+      }
+      // Heavy upper lid for tired eyes: droops toward the outer corner.
+      if (p.eyeOpen < 0.6 && p.eyeOpen > 0.05) {
+        const lid = ey - ry * (0.15 + (0.6 - p.eyeOpen) * 1.2);
+        const outer = side * (rx + 2);
+        const inner = -side * (rx + 2);
+        const lidOuter = lid + 5;
+        const lidInner = lid - 2;
+        parts.push(`<path d="M${ex + inner},${ey - ry - 4} L${ex + outer},${ey - ry - 4} L${ex + outer},${lidOuter}
+          Q${ex},${lid + 2} ${ex + inner},${lidInner} Z" fill="url(#${id}body)" opacity="${alpha}"/>`);
+        parts.push(`<path d="M${ex + inner * 0.95},${lidInner} Q${ex},${lid + 2} ${ex + outer * 0.95},${lidOuter}" fill="none"
+          stroke="${PALETTE.eye}" stroke-width="3.2" stroke-linecap="round" opacity="${alpha}"/>`);
+      }
+    } else if (smile < 0.5) {
+      // Closed eyes: a soft, content downward curve.
+      parts.push(`<path d="M${ex - 13},${ey} Q${ex},${ey + 8} ${ex + 13},${ey}" fill="none" stroke="${PALETTE.eye}"
+        stroke-width="4.5" stroke-linecap="round"/>`);
+    }
+  }
+
+  // --- Mouth -------------------------------------------------------------
+  {
+    const [mx, my] = T(0, 46);
+    const w = 22 - 6 * p.mouthOpen * (1 - Math.abs(p.mouthCurve));
+    const c = p.mouthCurve * 11;
+    const o = p.mouthOpen * 20;
+    if (p.mouthOpen > 0.04) {
+      const upper = `M${mx - w / 2},${my} Q${mx},${my + c * 0.5} ${mx + w / 2},${my}`;
+      const lower = `Q${mx},${my + c + o} ${mx - w / 2},${my}`;
+      parts.push(`<clipPath id="${id}mouth"><path d="${upper} ${lower} Z"/></clipPath>`);
+      parts.push(`<path d="${upper} ${lower} Z" fill="${PALETTE.eye}" stroke="${PALETTE.eye}" stroke-width="3" stroke-linejoin="round"/>`);
+      parts.push(`<ellipse cx="${mx}" cy="${my + c * 0.6 + o * 0.85}" rx="${w * 0.36}" ry="${o * 0.45}" fill="${PALETTE.tongue}"
+        clip-path="url(#${id}mouth)"/>`);
+    } else {
+      parts.push(`<path d="M${mx - w / 2},${my} Q${mx},${my + c} ${mx + w / 2},${my}" fill="none" stroke="${PALETTE.eye}"
+        stroke-width="4" stroke-linecap="round"/>`);
+    }
+  }
+
+  // --- Accents -----------------------------------------------------------
+  if (opts.state === "sleeping") {
+    const phase = (time * 0.35) % 1;
+    for (let i = 0; i < 2; i++) {
+      const t = (phase + i * 0.5) % 1;
+      const [zx, zy] = T(70 + t * 30, -120 - t * 60);
+      parts.push(`<text x="${zx}" y="${zy}" font-size="${18 + t * 10}" font-weight="800" fill="#ffffff"
+        opacity="${Math.sin(t * Math.PI) * 0.9}" font-family="system-ui">z</text>`);
+    }
+  }
+  if (p.sparkle > 0.85 && p.vitality > 0.8) {
+    const stars = [[-120, -80, 0], [118, -110, 1.7], [130, -10, 3.1]];
+    for (const [sx, sy, ph] of stars) {
+      const [x, y] = T(sx, sy);
+      const s = 6 + 4 * Math.sin(time * 3 + ph);
+      parts.push(`<path d="M${x},${y - s} Q${x},${y} ${x + s},${y} Q${x},${y} ${x},${y + s} Q${x},${y} ${x - s},${y} Q${x},${y} ${x},${y - s}Z"
+        fill="#FFE27A" opacity="${0.6 + 0.4 * Math.sin(time * 3 + ph)}"/>`);
+    }
+  }
+  if (opts.state === "curious") {
+    parts.push(`
+      <g transform="translate(46 40)">
+        <path d="M0,0 h110 a18,18 0 0 1 18,18 v26 a18,18 0 0 1 -18,18 h-78 l-16,14 l2,-14 h-18 a18,18 0 0 1 -18,-18 v-26 a18,18 0 0 1 18,-18z"
+          transform="translate(-18 0) translate(110 0) scale(-1 1)" fill="#fff" opacity=".96"/>
+        <text x="36" y="40" text-anchor="middle" font-size="22" font-weight="800" fill="${PALETTE.eye}" font-family="system-ui">Hop!</text>
+      </g>`);
+  }
+
+  return `<svg viewBox="0 0 ${VIEW.w} ${VIEW.h}" xmlns="http://www.w3.org/2000/svg">${parts.join("")}</svg>`;
+}
+
+// ---------------------------------------------------------------------------
+// Animation: springs toward target, plus procedural idle behavior
+// ---------------------------------------------------------------------------
+
+class Spring {
+  constructor(value) { this.value = value; this.velocity = 0; }
+  step(target, dt, stiffness = 190, dampingRatio = 0.72) {
+    const damping = 2 * Math.sqrt(stiffness) * dampingRatio;
+    const force = stiffness * (target - this.value) - damping * this.velocity;
+    this.velocity += force * dt;
+    this.value += this.velocity * dt;
+  }
+}
+
+function behaviorOffsets(behavior, t) {
+  const o = {};
+  const breathe = (period, depth) => { o.squash = Math.sin((t / period) * 2 * Math.PI) * depth; };
+  switch (behavior) {
+    case "bouncy": breathe(2.2, 0.06); o.lift = Math.max(0, Math.sin(t * 2.6)) * 6; break;
+    case "slow": breathe(4.6, 0.035); break;
+    case "sleep": breathe(5.2, 0.05); break;
+    case "calm": breathe(6.0, 0.04); break;
+    case "hop": {
+      const cycle = (t % 1.1) / 1.1;
+      const air = cycle < 0.62 ? Math.sin((cycle / 0.62) * Math.PI) : 0;
+      o.lift = air * 70;
+      // Anticipation squash before takeoff, stretch in the air, squash on landing.
+      o.squash = cycle < 0.62 ? 0.35 * air - 0.05 : -0.45 * Math.sin(((cycle - 0.62) / 0.38) * Math.PI);
+      break;
+    }
+    default: breathe(3.4, 0.045);
+  }
+  return o;
+}
+
+function blinkAt(t, behavior) {
+  if (behavior === "sleep" || behavior === "calm") return 1;
+  const period = 4.3;
+  const local = t % period;
+  return local < 0.14 ? Math.abs(Math.cos((local / 0.14) * Math.PI)) : 1;
+}
+
+// ---------------------------------------------------------------------------
+// App shell
+// ---------------------------------------------------------------------------
+
+const params = new URLSearchParams(location.search);
+const root = document.getElementById("root");
+
+function renderSheet() {
+  const order = ["thriving", "content", "curious", "tired", "wilting", "sleeping", "celebrating", "focused"];
+  const sample = { celebrating: { lift: 46, squash: 0.22 } };
+  root.innerHTML = `<div class="sheet">${order.map((name) => {
+    const pose = { ...poseFor(name), ...(sample[name] || {}) };
+    const svg = renderPofu(pose, { state: name, time: 0.6, night: name === "sleeping", background: params.get("bg") !== "0" });
+    return `<figure>${svg}<figcaption>${STATES[name].label}<span>${STATES[name].note}</span></figcaption></figure>`;
+  }).join("")}</div>`;
+}
+
+function renderEditor() {
+  let state = params.get("state") in STATES ? params.get("state") : "content";
+  let target = poseFor(state);
+  const springs = Object.fromEntries(Object.keys(BASE_POSE).map((k) => [k, new Spring(target[k])]));
+  const animate = params.get("static") !== "1";
+
+  root.innerHTML = `
+    <div class="app">
+      <div class="stage" id="stage"></div>
+      <aside>
+        <h1>Pofu rig</h1>
+        <p class="hint">Prototype for ADR-0006. Tap Pofu to squish.</p>
+        <h2>States</h2>
+        <div class="presets">${Object.entries(STATES).map(([k, s]) =>
+          `<button data-state="${k}">${s.label}</button>`).join("")}</div>
+        <h2>Parameters</h2>
+        <div id="sliders">${Object.keys(RANGES).map((k) => `
+          <label class="slider"><span>${k}</span>
+            <input type="range" data-key="${k}" min="${RANGES[k][0]}" max="${RANGES[k][1]}" step="0.01">
+            <output></output></label>`).join("")}</div>
+      </aside>
+    </div>`;
+
+  const stage = document.getElementById("stage");
+  const syncControls = () => {
+    document.querySelectorAll("button[data-state]").forEach((b) => b.classList.toggle("active", b.dataset.state === state));
+    document.querySelectorAll("input[data-key]").forEach((input) => {
+      input.value = target[input.dataset.key];
+      input.nextElementSibling.textContent = Number(target[input.dataset.key]).toFixed(2);
+    });
+  };
+  document.querySelectorAll("button[data-state]").forEach((b) => b.addEventListener("click", () => {
+    state = b.dataset.state; target = poseFor(state); syncControls();
+  }));
+  document.querySelectorAll("input[data-key]").forEach((input) => input.addEventListener("input", () => {
+    target[input.dataset.key] = parseFloat(input.value);
+    input.nextElementSibling.textContent = Number(input.value).toFixed(2);
+  }));
+  let squish = 0;
+  stage.addEventListener("pointerdown", () => { squish = 1; });
+  syncControls();
+
+  let last = performance.now();
+  const start = last;
+  const frame = (now) => {
+    const dt = Math.min(0.033, (now - last) / 1000);
+    last = now;
+    const t = animate ? (now - start) / 1000 : 0.6;
+    const behavior = STATES[state].behavior;
+    const offsets = animate ? behaviorOffsets(behavior, t) : {};
+    squish = Math.max(0, squish - dt * 3);
+    const pose = {};
+    for (const k of Object.keys(springs)) {
+      let goal = target[k] + (offsets[k] || 0);
+      if (k === "squash") goal -= squish * 0.55;
+      if (k === "eyeSmile") goal = Math.max(goal, squish);
+      springs[k].step(goal, dt);
+      pose[k] = springs[k].value;
+    }
+    stage.innerHTML = renderPofu(pose, {
+      time: t, state, blink: animate ? blinkAt(t, behavior) : 1,
+      night: state === "sleeping", background: params.get("bg") !== "0",
+    });
+    if (animate) requestAnimationFrame(frame);
+  };
+  if (animate) requestAnimationFrame(frame);
+  else {
+    for (const k of Object.keys(springs)) springs[k].value = target[k];
+    frame(performance.now());
+  }
+}
+
+if (params.get("sheet") === "1") renderSheet(); else renderEditor();
+</script>
+</body>
+</html>
