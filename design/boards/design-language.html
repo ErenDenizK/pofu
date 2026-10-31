@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pofu · Design Language v1 board</title>
+<!--
+  Visual board for docs/design/design-language.md.
+  Render: node design/boards/render.js  (writes design-language.png)
+  Fonts: Baloo 2 and Nunito, SIL OFL 1.1 (see fonts/OFL-*.txt).
+  Nunito stands in for SF Pro Rounded, which cannot be bundled; on a Mac,
+  Safari picks the real SF Pro Rounded through `ui-rounded`.
+  The hamster is the founder's concept (docs/brand/assets/concepts/), keyed by the
+  asset pipeline, with its painted ground shadow erased (as the art bible
+  requires); the meadow is a code-drawn stand-in for scene plate 6.
+-->
+<style>
+@font-face { font-family: "Baloo 2"; src: url(fonts/baloo-2-latin-wght-normal.woff2) format("woff2"); font-weight: 400 800; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Baloo 2"; src: url(fonts/baloo-2-latin-ext-wght-normal.woff2) format("woff2"); font-weight: 400 800; unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Nunito"; src: url(fonts/nunito-latin-wght-normal.woff2) format("woff2"); font-weight: 200 1000; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Nunito"; src: url(fonts/nunito-latin-ext-wght-normal.woff2) format("woff2"); font-weight: 200 1000; unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+:root {
+  --cream-50: #FFFBF5; --cream-100: #FFF6EC; --cream-200: #FBEBDD; --cream-300: #F3DCC8;
+  --peach-300: #F4C7A4; --peach-400: #ECA96E; --peach-600: #D69069; --peach-800: #8A4F2B;
+  --blush-200: #FDD9CF; --blush-400: #FDC1B0; --blush-500: #F6A290;
+  --ink-900: #2A1F2D; --ink-700: #4A3B4A; --ink-600: #66555F; --ink-400: #8E7D88;
+  --violet-100: #EEE8FF; --violet-300: #B9A2FF; --violet-500: #8F74F0; --violet-600: #6C4FD8; --violet-700: #553BB8;
+  --meadow-300: #8FD4A4; --meadow-400: #8CC084; --meadow-700: #2F7349;
+  --honey-300: #F7C873; --honey-400: #F5B83D; --honey-800: #8A5A00;
+  --rose-700: #B23A5A;
+  --night-950: #15111C; --night-900: #1E1828; --night-800: #2A2236; --mist-300: #B8A8B1; --mist-500: #85768A;
+  --display: "Baloo 2", ui-rounded, sans-serif;
+  --ui: ui-rounded, "SF Pro Rounded", "Nunito", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { width: 1680px; background: var(--cream-100); color: var(--ink-900); font-family: var(--ui); -webkit-font-smoothing: antialiased; }
+.board { padding: 64px 72px 72px; display: grid; gap: 56px; }
+
+/* Header */
+header { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 32px; }
+.eyebrow { font: 700 14px/1 var(--ui); letter-spacing: .08em; color: var(--violet-600); text-transform: uppercase; margin-bottom: 14px; }
+h1 { font: 800 76px/0.95 var(--display); letter-spacing: -0.01em; }
+h1 em { font-style: normal; color: var(--peach-800); }
+h1 strong { font-weight: inherit; color: var(--violet-600); }
+.lede { font: 500 22px/1.35 var(--ui); color: var(--ink-600); margin-top: 16px; max-width: 900px; }
+.lede b { color: var(--ink-900); }
+.meta { font: 500 13px/1.6 var(--mono); color: var(--ink-600); text-align: right; }
+h2 { font: 700 32px/1 var(--display); margin-bottom: 6px; }
+.sub { font: 500 15px/1.4 var(--ui); color: var(--ink-600); margin-bottom: 22px; }
+.section-head { display: flex; justify-content: space-between; align-items: baseline; }
+.tag { font: 600 12px/1 var(--mono); color: var(--ink-600); background: var(--cream-200); padding: 6px 10px; border-radius: 99px; }
+
+/* Hero row */
+.hero { display: grid; grid-template-columns: 380px 380px 1fr; gap: 40px; align-items: start; }
+.phone { width: 380px; height: 790px; border-radius: 58px; background: #0E0B12; padding: 12px; box-shadow: 0 30px 60px -20px rgba(42,31,45,.35), 0 2px 0 rgba(255,255,255,.4) inset; }
+.screen { position: relative; width: 100%; height: 100%; border-radius: 47px; overflow: hidden; }
+.island { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 112px; height: 32px; border-radius: 20px; background: #000; z-index: 20; }
+.sb { display: inline-flex; gap: 6px; align-items: center; } .sb svg { fill: currentColor; }
+.status { position: absolute; top: 18px; left: 34px; right: 30px; display: flex; justify-content: space-between; font: 700 15px/1 var(--ui); z-index: 19; }
+.caption { font: 600 13px/1.4 var(--ui); color: var(--ink-600); margin-top: 14px; text-align: center; }
+.caption b { color: var(--ink-900); }
+
+/* Scene (code stand-in for plate 6) */
+.scene { position: absolute; inset: 0; }
+.sky { position: absolute; inset: 0; background: linear-gradient(180deg, #BFE1F0 0%, #D9EDF0 34%, #FCEBDD 58%); }
+.sun { position: absolute; left: -60px; top: -40px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(255,247,226,.95) 0%, rgba(255,240,214,.45) 40%, rgba(255,240,214,0) 70%); }
+.cloud { position: absolute; height: 26px; border-radius: 26px; background: rgba(255,255,255,.85); filter: blur(.5px); }
+.cloud::before, .cloud::after { content: ""; position: absolute; background: inherit; border-radius: 50%; }
+.cloud::before { width: 34px; height: 34px; left: 12px; top: -16px; }
+.cloud::after { width: 26px; height: 26px; left: 38px; top: -10px; }
+.hills { position: absolute; left: 0; bottom: 0; width: 100%; height: 62%; --hf: #CFE6B0; --hm: #B2D696; --hn: #97C789; --hc: #B9DB9C; --door: #D69069; --door-rim: #B87650; }
+.night-hills { --hf: #3A3070; --hm: #2F4A45; --hn: #263D3A; --hc: #2F4A45; --door: #F5B83D; --door-rim: #8A5A00; }
+.sunset-hills { --hf: #D7B98C; --hm: #C9C27E; --hn: #A9AE74; --hc: #C9C27E; }
+.wilt-hills { --hf: #D5D8C9; --hm: #C3C9B3; --hn: #B2BBA2; --hc: #C3C9B3; }
+.flower { position: absolute; width: 9px; height: 9px; border-radius: 50%; box-shadow: 0 0 0 3px rgba(255,255,255,.35); }
+.pofu { position: absolute; left: 50%; transform: translateX(-50%); }
+.pofu img { display: block; width: 100%; }
+.contact { position: absolute; left: 50%; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(42,31,45,.24), rgba(42,31,45,0)); }
+
+/* Glass chrome */
+.glass { background: rgba(255,251,245,.42); -webkit-backdrop-filter: blur(18px) saturate(1.6); backdrop-filter: blur(18px) saturate(1.6); border: 1px solid rgba(255,255,255,.65); box-shadow: 0 8px 24px -10px rgba(42,31,45,.25), inset 0 1px 0 rgba(255,255,255,.7); }
+.glass-dark { background: rgba(30,24,40,.45); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(255,255,255,.12); box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
+.topbar { position: absolute; top: 62px; left: 18px; right: 18px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+.energy { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px 0 8px; border-radius: 99px; background: var(--honey-400); color: var(--ink-900); font: 900 18px/1 var(--ui); font-variant-numeric: tabular-nums; box-shadow: 0 6px 16px -8px rgba(138,90,0,.6); }
+.energy svg { width: 22px; height: 22px; }
+.round-btn { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; }
+.round-btn svg { width: 20px; height: 20px; }
+.home-title { position: absolute; top: 116px; left: 24px; z-index: 10; }
+.home-title .t { font: 700 40px/1 var(--display); }
+.home-title .s { font: 600 15px/1.3 var(--ui); color: var(--ink-700); margin-top: 6px; }
+.bubble { position: absolute; z-index: 11; background: var(--cream-50); border-radius: 22px; padding: 12px 16px; font: 600 15px/1.3 var(--ui); color: var(--ink-900); box-shadow: 0 10px 24px -10px rgba(42,31,45,.35); }
+.bubble::after { content: ""; position: absolute; bottom: -7px; left: var(--tail, 50%); width: 16px; height: 16px; background: var(--cream-50); transform: translateX(-50%) rotate(45deg); border-radius: 3px; }
+.cta { position: absolute; left: 24px; right: 24px; bottom: 104px; height: 54px; border-radius: 99px; z-index: 12; display: flex; align-items: center; justify-content: center; gap: 8px; font: 700 17px/1 var(--ui); color: #fff; background: linear-gradient(180deg, rgba(140,112,236,.96), rgba(108,79,216,.96)); box-shadow: 0 12px 28px -12px rgba(85,59,184,.8), inset 0 1px 0 rgba(255,255,255,.45); }
+.cta svg { width: 18px; height: 18px; }
+.tabbar { position: absolute; left: 18px; right: 18px; bottom: 26px; height: 64px; border-radius: 99px; z-index: 12; display: flex; justify-content: space-around; align-items: center; padding: 0 8px; }
+.tab { display: grid; justify-items: center; gap: 3px; font: 700 11px/1 var(--ui); color: var(--ink-700); padding: 7px 16px; border-radius: 99px; }
+.tab svg { width: 22px; height: 22px; }
+.tab.on { color: var(--violet-600); background: rgba(255,255,255,.55); }
+.home-ind { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 130px; height: 5px; border-radius: 3px; background: rgba(42,31,45,.8); z-index: 20; }
+
+/* Dark phone */
+.dark { background: var(--night-950); color: var(--cream-100); }
+.night-sky { position: absolute; left: 0; right: 0; top: 0; height: 380px; background: linear-gradient(180deg, #15111C 0%, #2E2650 60%, #3A3070 100%); overflow: hidden; }
+.moon { position: absolute; left: 34px; top: 92px; width: 46px; height: 46px; border-radius: 50%; box-shadow: 10px -6px 0 0 #FFF1D6; transform: rotate(-20deg); }
+.star { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #FFF1D6; opacity: .8; }
+.firefly { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #F7E08A; box-shadow: 0 0 10px 4px rgba(247,224,138,.55); }
+.dark .cards { position: absolute; top: 352px; left: 0; right: 0; bottom: 0; padding: 22px 18px 0; display: grid; gap: 12px; align-content: start; background: var(--night-950); border-radius: 30px 30px 0 0; }
+.dcard { background: var(--night-900); border-radius: 24px; padding: 16px 18px; }
+.dcard .k { font: 600 13px/1.3 var(--ui); color: var(--mist-300); }
+.dcard .v { font: 900 30px/1.1 var(--ui); font-variant-numeric: tabular-nums; margin-top: 4px; }
+.dcard .v small { font: 700 15px var(--ui); color: var(--mist-300); }
+.dcard .ok { color: var(--meadow-300); font: 700 14px/1.3 var(--ui); margin-top: 4px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.dark-cta { height: 50px; border-radius: 99px; background: var(--violet-300); color: var(--night-950); display: flex; align-items: center; justify-content: center; font: 800 16px/1 var(--ui); }
+
+/* Scene strip */
+.strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.tile { position: relative; height: 300px; border-radius: 28px; overflow: hidden; }
+.tile .label { position: absolute; left: 10px; top: 10px; z-index: 5; font: 700 13px/1.25 var(--ui); padding: 8px 12px; border-radius: 14px; }
+.tile .label span { display: block; font: 500 11px/1.3 var(--mono); opacity: .8; margin-top: 2px; }
+.rules { display: grid; gap: 14px; align-content: start; }
+.rule { background: var(--cream-50); border-radius: 24px; padding: 18px 20px; box-shadow: 0 2px 8px rgba(42,31,45,.06), 0 0 0 1px rgba(42,31,45,.05); }
+.rule h3 { font: 700 22px/1.1 var(--display); margin-bottom: 8px; }
+.rule p, .rule li { font: 500 14.5px/1.45 var(--ui); color: var(--ink-700); }
+.rule ul { list-style: none; display: grid; gap: 6px; }
+.rule li { display: grid; grid-template-columns: 22px 1fr; }
+.yes { color: var(--meadow-700); font-weight: 900; }
+.no { color: var(--rose-700); font-weight: 900; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+/* Palette */
+.palette { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+.sw { border-radius: 22px; overflow: hidden; background: var(--cream-50); box-shadow: 0 0 0 1px rgba(42,31,45,.07); }
+.sw .chip { height: 96px; padding: 12px 14px; display: flex; flex-direction: column; justify-content: space-between; }
+.sw .chip b { font: 800 26px/1 var(--display); }
+.sw .chip i { font: 600 11px/1 var(--mono); font-style: normal; opacity: .85; }
+.sw .info { padding: 10px 14px 12px; font: 600 12px/1.45 var(--mono); color: var(--ink-600); }
+.sw .info strong { display: block; font: 700 14px/1.3 var(--ui); color: var(--ink-900); }
+.ratio { display: inline-block; font: 800 11px/1 var(--mono); padding: 4px 6px; border-radius: 6px; margin-top: 4px; background: var(--cream-200); color: var(--ink-900); }
+.ratio.dec { color: var(--ink-600); }
+.palette-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.contrast { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.cbox { border-radius: 22px; padding: 18px 20px; display: grid; gap: 10px; }
+.cbox .line { display: flex; justify-content: space-between; align-items: baseline; font: 600 16px/1.3 var(--ui); }
+.cbox .line span:last-child { font: 700 12px/1 var(--mono); }
+
+/* Type */
+.type { display: grid; grid-template-columns: 1.25fr 1fr; gap: 40px; }
+.spec { display: grid; gap: 4px; }
+.spec .row { display: grid; grid-template-columns: 230px 1fr; align-items: baseline; gap: 16px; padding: 8px 0; border-bottom: 1px solid rgba(42,31,45,.08); }
+.spec .row .m { font: 600 11.5px/1.4 var(--mono); color: var(--ink-600); }
+.spec .row .m b { display: block; color: var(--ink-900); font-size: 12.5px; }
+
+/* Components */
+.comps { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+.panel { background: var(--cream-200); border-radius: 32px; padding: 26px; display: grid; gap: 18px; align-content: start; }
+.panel .pl { font: 700 12px/1 var(--mono); color: var(--ink-600); text-transform: uppercase; letter-spacing: .06em; }
+.btn { height: 52px; border-radius: 99px; display: flex; align-items: center; justify-content: center; gap: 8px; font: 700 17px/1 var(--ui); }
+.btn.primary { background: var(--violet-600); color: #fff; box-shadow: 0 10px 20px -12px rgba(85,59,184,.9); }
+.btn.secondary { background: var(--violet-100); color: var(--violet-600); }
+.btn.pressed { background: var(--violet-700); color: #fff; transform: scale(.97); }
+.btn svg { width: 18px; height: 18px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.c { height: 34px; padding: 0 14px; border-radius: 99px; display: inline-flex; align-items: center; gap: 6px; font: 600 15px/1 var(--ui); background: var(--cream-50); box-shadow: 0 0 0 1px rgba(42,31,45,.1); }
+.c.on { background: var(--violet-100); color: var(--violet-600); box-shadow: none; }
+.c svg { width: 14px; height: 14px; }
+.card { background: var(--cream-50); border-radius: 24px; padding: 18px 20px; box-shadow: 0 2px 8px rgba(42,31,45,.06), 0 0 0 1px rgba(42,31,45,.05); }
+.card .ct { font: 700 20px/1.1 var(--ui); }
+.card .cs { font: 500 15px/1.35 var(--ui); color: var(--ink-600); margin-top: 4px; }
+.streak { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 14px; }
+.big { font: 900 34px/1 var(--ui); font-variant-numeric: tabular-nums; }
+.bar { height: 10px; border-radius: 99px; background: var(--cream-200); margin-top: 12px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 71%; border-radius: 99px; background: linear-gradient(90deg, var(--meadow-400), var(--meadow-700)); }
+.badges { display: flex; gap: 18px; align-items: flex-start; }
+.badge { width: 104px; text-align: center; font: 600 13px/1.25 var(--ui); color: var(--ink-900); }
+.medal { width: 104px; height: 104px; border-radius: 50%; padding: 8px; background: radial-gradient(circle at 35% 30%, #FFFDF8, #F3DCC8); box-shadow: 0 6px 14px -6px rgba(138,79,43,.45), inset 0 -3px 6px rgba(214,144,105,.25); margin-bottom: 8px; position: relative; }
+.medal .disc { width: 100%; height: 100%; border-radius: 50%; overflow: hidden; display: grid; place-items: end center; }
+.medal img { width: 82%; margin-bottom: 6%; }
+.medal.locked { filter: grayscale(1); opacity: .45; }
+.medal .lock { position: absolute; right: -2px; bottom: 2px; width: 30px; height: 30px; border-radius: 50%; background: var(--ink-700); display: grid; place-items: center; opacity: 1; filter: none; }
+.badge .bs { color: var(--ink-600); font-weight: 500; font-size: 12px; }
+.stage { width: 96px; height: 96px; border-radius: 50%; background: var(--blush-200); display: grid; place-items: end center; overflow: hidden; }
+.stage img { width: 84%; margin-bottom: 8%; }
+.listrow { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; }
+.tok { width: 100%; border-collapse: collapse; font: 500 14px/1.3 var(--ui); color: var(--ink-700); }
+.tok td { padding: 7px 0; border-bottom: 1px solid rgba(42,31,45,.08); }
+.tok td:first-child { font-weight: 700; color: var(--ink-900); }
+.tok td:last-child { text-align: right; color: var(--ink-600); }
+.note { font: 500 13px/1.45 var(--ui); color: var(--ink-600); }
+footer { display: flex; justify-content: space-between; font: 500 12.5px/1.5 var(--mono); color: var(--ink-600); border-top: 1px solid rgba(42,31,45,.1); padding-top: 18px; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="seed" viewBox="0 0 24 24"><g transform="rotate(18 12 12)"><path d="M12 1.8c3.4 2.9 5.4 7 5.1 11-.3 3.9-2.4 7.2-5.1 8.6-2.7-1.4-4.8-4.7-5.1-8.6-.3-4 1.7-8.1 5.1-11z" fill="#3B2A22"/><path d="M9.3 6.2c-.9 2.2-1.2 4.6-.9 7 .2 1.9.9 3.7 1.9 5" fill="none" stroke="#F3DCC8" stroke-width="1.5" stroke-linecap="round"/><path d="M14.7 6.2c.9 2.2 1.2 4.6.9 7-.2 1.9-.9 3.7-1.9 5" fill="none" stroke="#F3DCC8" stroke-width="1.5" stroke-linecap="round"/></g></symbol>
+    <symbol id="gear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zM12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
+    <symbol id="house" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3.2 2.8 10.4c-.6.5-.2 1.4.5 1.4H5v7.4c0 .9.7 1.6 1.6 1.6h3.6v-5.2h3.6v5.2h3.6c.9 0 1.6-.7 1.6-1.6v-7.4h1.7c.7 0 1.1-.9.5-1.4z"/></symbol>
+    <symbol id="leaf" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" d="M5 19c0-8 5-13 15-14-1 10-6 15-14 15M5 19l7-7"/></symbol>
+    <symbol id="people" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.4"/><path d="M2.8 19.5c.8-3.4 3.3-5.4 6.2-5.4s5.4 2 6.2 5.4"/><circle cx="17" cy="9" r="2.6"/><path d="M16.8 14.1c2.4.1 4 1.8 4.6 4.6"/></g></symbol>
+    <symbol id="timer" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 9.5v4l2.5 2M9.5 2.8h5"/></g></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="lock" viewBox="0 0 24 24"><g fill="#FFF6EC"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5h-2.2V8a1.8 1.8 0 0 0-3.6 0v2.5z"/></g></symbol>
+    <linearGradient id="hillFar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFE6B0"/><stop offset="1" stop-color="#A8D08D"/></linearGradient>
+    <linearGradient id="hillMid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B9DB9C"/><stop offset="1" stop-color="#8CC084"/></linearGradient>
+    <linearGradient id="hillNear" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A8D08D"/><stop offset=".7" stop-color="#8CC084"/><stop offset="1" stop-color="#7DB377"/></linearGradient>
+    <symbol id="meadow" viewBox="0 0 400 480" preserveAspectRatio="none">
+      <path d="M0 120 C 60 70, 150 60, 230 95 S 360 80, 400 60 V480 H0z" fill="var(--hf)"/>
+      <path d="M0 170 C 90 120, 170 140, 250 150 S 360 120, 400 135 V480 H0z" fill="var(--hm)"/>
+      <ellipse cx="58" cy="172" rx="19" ry="21" fill="var(--door-rim)"/>
+      <ellipse cx="58" cy="174" rx="14" ry="16" fill="var(--door)"/>
+      <path d="M0 230 C 80 205, 150 215, 200 214 S 330 205, 400 222 V480 H0z" fill="var(--hn)"/>
+      <path d="M0 330 C 120 316, 280 316, 400 330 V480 H0z" fill="var(--hn)" opacity=".9"/>
+      <ellipse cx="200" cy="296" rx="132" ry="22" fill="var(--hc)" opacity=".7"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="board">
+  <header>
+    <div>
+      <div class="eyebrow">Pofu · Design language v1 · proposed</div>
+      <h1>A <em>plush world</em> in a <strong>native frame</strong>.</h1>
+      <p class="lede"><b>Warm is the world; violet is the action.</b> Painted art for Pofu, scenes, and badges. SF Symbols, system controls, and Liquid Glass for everything you tap.</p>
+    </div>
+    <div class="meta">docs/design/design-language.md<br>docs/design/art-bible.md<br>design/tokens/pofu-tokens.json<br>2026-10-31</div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="phone"><div class="screen" lang="tr">
+        <div class="island"></div>
+        <div class="status"><span>9:41</span><span class="sb"><svg viewBox="0 0 18 12" width="18" height="12"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg viewBox="0 0 27 13" width="27" height="13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="currentColor" opacity=".45"/><rect x="2.5" y="2.5" width="17" height="8" rx="2"/><rect x="25" y="4.5" width="1.6" height="4" rx=".8" opacity=".45"/></svg></span></div>
+        <div class="scene">
+          <div class="sky"></div><div class="sun"></div>
+          <div class="cloud" style="width:64px; left:248px; top:178px"></div>
+          <svg class="hills" style="height:66%"><use href="#meadow" width="100%" height="100%"/></svg>
+          <div class="flower" style="left:40px; bottom:250px; background:#FDC1B0"></div>
+          <div class="flower" style="left:300px; bottom:276px; background:#F7C873"></div>
+          <div class="flower" style="left:326px; bottom:236px; background:#B9A2FF"></div>
+          <div class="flower" style="left:22px; bottom:206px; background:#F7C873"></div>
+          <div class="contact" style="width:210px; height:28px; bottom:178px"></div>
+          <div class="pofu" style="width:226px; bottom:190px"><img src="assets/pofu-hamster-concept-cutout.png" alt=""></div>
+        </div>
+        <div class="topbar">
+          <div class="energy"><svg><use href="#seed"/></svg>42</div>
+          <div class="round-btn glass"><svg style="color:var(--ink-700)"><use href="#gear"/></svg></div>
+        </div>
+        <div class="home-title"><div class="t">Günaydın</div><div class="s">Bugün 7 dürtüye direndin.</div></div>
+        <div class="bubble" lang="tr" style="left:176px; top:262px; max-width:168px; --tail: 26%">Bak sen şuna. Şimdiden kabardım.</div>
+        <div class="cta"><svg><use href="#timer"/></svg>Odaklan · 25 dk</div>
+        <div class="tabbar glass">
+          <div class="tab on"><svg><use href="#house"/></svg>Ev</div>
+          <div class="tab"><svg><use href="#leaf"/></svg>Etkinlik</div>
+          <div class="tab"><svg><use href="#people"/></svg>Arkadaşlar</div>
+        </div>
+        <div class="home-ind"></div>
+      </div></div>
+      <p class="caption"><b>Home, day, thriving.</b> One star. Glass in the calm bands.</p>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen dark" lang="tr">
+        <div class="island"></div>
+        <div class="status" style="color:var(--cream-100)"><span>23:12</span><span class="sb"><svg viewBox="0 0 18 12" width="18" height="12"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg viewBox="0 0 27 13" width="27" height="13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="currentColor" opacity=".45"/><rect x="2.5" y="2.5" width="17" height="8" rx="2"/><rect x="25" y="4.5" width="1.6" height="4" rx=".8" opacity=".45"/></svg></span></div>
+        <div class="night-sky">
+          <div class="moon"></div>
+          <div class="star" style="left:120px; top:80px"></div><div class="star" style="left:250px; top:110px"></div><div class="star" style="left:300px; top:70px"></div><div class="star" style="left:190px; top:150px; opacity:.5"></div>
+          <svg class="hills night-hills" style="height:60%"><use href="#meadow" width="100%" height="100%"/></svg>
+          <div class="firefly" style="left:60px; top:250px"></div><div class="firefly" style="left:300px; top:300px; opacity:.7"></div>
+          <div class="contact" style="width:150px; height:22px; top:280px; background: radial-gradient(closest-side, rgba(0,0,0,.4), rgba(0,0,0,0))"></div>
+          <div class="pofu" style="width:150px; top:150px; filter: brightness(.8) saturate(.8) hue-rotate(-6deg)"><img src="assets/pofu-hamster-concept-cutout.png" alt=""></div>
+        </div>
+        <div class="topbar" style="top:58px; justify-content:flex-end">
+          <div class="energy" style="background:var(--honey-400)"><svg><use href="#seed"/></svg>42</div>
+        </div>
+        <div class="cards">
+          <div style="font: 700 30px/1 var(--display); margin: 2px 4px 2px">Yatma vakti</div>
+          <div class="dcard"><div class="k">Bugün direndiğin dürtü</div><div class="v">7 <small>/ 9</small></div><div class="ok">Dün 4 / 10'du. Harika gidiyor.</div></div>
+          <div class="row2">
+            <div class="dcard"><div class="k">Seri</div><div class="v">12 <small>gün</small></div></div>
+            <div class="dcard"><div class="k">Gece fiyatı</div><div class="v" style="color:var(--honey-300)">×2</div></div>
+          </div>
+          <div class="dark-cta">İyi geceler, Pofu</div>
+        </div>
+        <div class="home-ind" style="background:rgba(255,246,236,.8)"></div>
+      </div></div>
+      <p class="caption"><b>Dark mode is a night meadow.</b> Same art, graded in code.</p>
+    </div>
+
+    <div class="rules">
+      <div class="section-head"><h2>Where illustration lives</h2><span class="tag">rule set</span></div>
+      <div class="split">
+        <div class="rule"><h3>World: painted</h3><ul>
+          <li><span class="yes">✓</span>Pofu (44 pt and up)</li>
+          <li><span class="yes">✓</span>Scenes and props</li>
+          <li><span class="yes">✓</span>Badges, one medallion family</li>
+          <li><span class="yes">✓</span>Empty states, onboarding</li>
+          <li><span class="yes">✓</span>App icon, App Store art</li>
+        </ul></div>
+        <div class="rule"><h3>Frame: native</h3><ul>
+          <li><span class="no">✕</span>Buttons, toggles, menus</li>
+          <li><span class="no">✕</span>Tab bar, navigation, sheets</li>
+          <li><span class="no">✕</span>Any text inside an image</li>
+          <li><span class="no">✕</span>Chrome icons (SF Symbols)</li>
+          <li><span class="no">✕</span>Pofu below 44 pt (vector glyph)</li>
+        </ul></div>
+      </div>
+      <div class="rule"><h3>The image-dump test</h3><p>World, not chrome? No other star on the screen? Variants derivable in code? No text? Listed in the prompt library? Five yeses, or it is not generated.</p></div>
+      <div class="rule"><h3>Derive, don't paint</h3><p>Four scene plates at launch. Time of day, vitality, night, locked badges, and dark mode are code grades on the same approved art. All four tiles below use one identical hamster image.</p></div>
+      <div class="strip" style="grid-template-columns: repeat(4, 1fr); gap: 12px">
+        <div class="tile" style="height:230px">
+          <div class="sky"></div><div class="sun" style="width:180px;height:180px"></div>
+          <svg class="hills" style="height:60%"><use href="#meadow" width="100%" height="100%"/></svg>
+          <div class="contact" style="width:104px; height:16px; bottom:46px"></div>
+          <div class="pofu" style="width:112px; bottom:52px"><img src="assets/pofu-hamster-concept-cutout.png" alt=""></div>
+          <div class="label glass" >Day<span>thriving ≥ 0.75</span></div>
+        </div>
+        <div class="tile" style="height:230px">
+          <div class="sky" style="background: linear-gradient(180deg, #8F74F0 0%, #C79BD8 30%, #F2A38A 52%, #FFD3A1 64%)"></div>
+          <svg class="hills sunset-hills" style="height:60%"><use href="#meadow" width="100%" height="100%"/></svg>
+          <div class="contact" style="width:104px; height:16px; bottom:46px"></div>
+          <div class="pofu" style="width:112px; bottom:52px; filter: sepia(.12) saturate(1.05)"><img src="assets/pofu-hamster-concept-cutout.png" alt=""></div>
+          <div class="label glass" >Golden hour<span>content ≥ 0.50</span></div>
+        </div>
+        <div class="tile" style="height:230px">
+          <div class="sky" style="background: linear-gradient(180deg, #D8D3DE 0%, #E6E1E4 40%, #EFE6DF 60%)"></div>
+          <svg class="hills wilt-hills" style="height:60%"><use href="#meadow" width="100%" height="100%"/></svg>
+          <div class="contact" style="width:104px; height:14px; bottom:46px"></div>
+          <div class="pofu" style="width:112px; bottom:52px; filter: saturate(.55) brightness(.97); transform: translateX(-50%) scaleY(.92); transform-origin: bottom"><img src="assets/pofu-hamster-concept-cutout.png" alt=""></div>
+          <div class="label glass" >Day, wilting<span>&lt; 0.25 · graded</span></div>
+        </div>
+        <div class="tile" style="height:230px">
+          <div class="sky" style="background: linear-gradient(180deg, #15111C 0%, #2E2650 55%, #3A3070 70%)"></div>
+          <div class="moon" style="left:auto; right:26px; top:22px; width:30px; height:30px; box-shadow: 7px -4px 0 0 #FFF1D6"></div>
+          <svg class="hills night-hills" style="height:60%"><use href="#meadow" width="100%" height="100%"/></svg>
+          <div class="firefly" style="left:30px; bottom:80px"></div>
+          <div class="contact" style="width:104px; height:16px; bottom:46px; background: radial-gradient(closest-side, rgba(0,0,0,.4), rgba(0,0,0,0))"></div>
+          <div class="pofu" style="width:112px; bottom:52px; filter: brightness(.72) saturate(.85) hue-rotate(-8deg)"><img src="assets/pofu-hamster-concept-cutout.png" alt=""></div>
+          <div class="label glass-dark" style="color:var(--cream-100)">Night<span>bedtime · graded</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PALETTE -->
+  <section>
+    <div class="section-head"><h2>Color</h2><span class="tag">WCAG 2.x, computed by tools/design/contrast_report.py</span></div>
+    <p class="sub">Sampled from the hamster concept, plus the violet accent. Ratios are against <code>background.canvas</code> (light, cream-100) unless noted.</p>
+    <div class="palette">
+      <div class="sw"><div class="chip" style="background:var(--cream-100); box-shadow: inset 0 -1px 0 rgba(42,31,45,.08)"><b>Aa</b><i>canvas</i></div><div class="info"><strong>Cream 100</strong>#FFF6EC<br><span class="ratio">ink 14.75 AAA</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--peach-400); color:var(--ink-900)"><b>Aa</b><i>fur</i></div><div class="info"><strong>Peach 400</strong>#ECA96E<br><span class="ratio dec">1.88 decorative</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--blush-400); color:var(--ink-900)"><b>Aa</b><i>cheeks</i></div><div class="info"><strong>Blush 400</strong>#FDC1B0<br><span class="ratio dec">1.46 decorative</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--ink-900); color:var(--cream-100)"><b>Aa</b><i>text.primary</i></div><div class="info"><strong>Plum ink 900</strong>#2A1F2D<br><span class="ratio">14.75 AAA</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--violet-600); color:#fff"><b>Aa</b><i>accent</i></div><div class="info"><strong>Violet 600</strong>#6C4FD8<br><span class="ratio">5.24 AA · white on it 5.60</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--violet-300); color:var(--night-950)"><b>Aa</b><i>accent · dark</i></div><div class="info"><strong>Violet 300</strong>#B9A2FF<br><span class="ratio">8.57 AAA on night-950</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--ink-600); color:var(--cream-100)"><b>Aa</b><i>text.secondary</i></div><div class="info"><strong>Ink 600</strong>#66555F<br><span class="ratio">6.48 AA</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--meadow-700); color:#fff"><b>Aa</b><i>success</i></div><div class="info"><strong>Meadow 700</strong>#2F7349<br><span class="ratio">5.35 AA</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--honey-400); color:var(--ink-900)"><b>Aa</b><i>energy.fill</i></div><div class="info"><strong>Honey 400</strong>#F5B83D<br><span class="ratio">ink on it 8.86 AAA</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--honey-800); color:#fff"><b>Aa</b><i>warning</i></div><div class="info"><strong>Honey 800</strong>#8A5A00<br><span class="ratio">5.54 AA</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--rose-700); color:#fff"><b>Aa</b><i>critical</i></div><div class="info"><strong>Rose 700</strong>#B23A5A<br><span class="ratio">5.39 AA</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--night-950); color:var(--cream-100)"><b>Aa</b><i>canvas · dark</i></div><div class="info"><strong>Night 950</strong>#15111C<br><span class="ratio">cream on it 17.40 AAA</span></div></div>
+    </div>
+    <div class="contrast" style="margin-top:14px">
+      <div class="cbox" style="background:var(--cream-50); box-shadow: 0 0 0 1px rgba(42,31,45,.06)">
+        <div class="line"><span>Primary text on card</span><span>15.29 AAA</span></div>
+        <div class="line" style="color:var(--ink-600)"><span>Secondary text on card</span><span>6.72 AA</span></div>
+        <div class="line" style="color:var(--violet-600)"><span>Accent link on card</span><span>5.44 AA</span></div>
+        <div class="line" style="color:var(--meadow-700)"><span>Success: 7 dürtüye direndin</span><span>5.55 AA</span></div>
+        <div class="line" style="color:var(--ink-400)"><span>Tertiary placeholder only</span><span>3.74 non-essential</span></div>
+      </div>
+      <div class="cbox" style="background:var(--night-900); color:var(--cream-100)">
+        <div class="line"><span>Primary text on card</span><span>16.15 AAA</span></div>
+        <div class="line" style="color:var(--mist-300)"><span>Secondary text on card</span><span>7.62 AAA</span></div>
+        <div class="line" style="color:var(--violet-300)"><span>Accent link on card</span><span>7.95 AAA</span></div>
+        <div class="line" style="color:var(--meadow-300)"><span>Success: 7 dürtüye direndin</span><span>9.96 AAA</span></div>
+        <div class="line" style="color:var(--mist-500)"><span>Tertiary placeholder only</span><span>4.07 non-essential</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPE -->
+  <section class="type">
+    <div>
+      <div class="section-head"><h2>Type</h2><span class="tag">Dynamic Type mapped</span></div>
+      <p class="sub">Baloo 2 (SIL OFL) for display moments, SF Pro Rounded for everything you read. Turkish verified in the font files.</p>
+      <div class="spec" lang="tr">
+        <div class="row"><div class="m"><b>display</b>Baloo 2 800 · 46/48 · .largeTitle</div><div style="font: 800 46px/48px var(--display)">Hop! Nereye?</div></div>
+        <div class="row"><div class="m"><b>largeTitle</b>Baloo 2 700 · 40/44 · .largeTitle</div><div style="font: 700 40px/44px var(--display)">Günaydın, İlayda</div></div>
+        <div class="row"><div class="m"><b>title</b>Baloo 2 700 · 33/38 · .title</div><div style="font: 700 33px/38px var(--display)">Şimdiden kabardım</div></div>
+        <div class="row"><div class="m"><b>title2</b>Baloo 2 700 · 26/30 · .title2</div><div style="font: 700 26px/30px var(--display)">Çekirdeklerin hazır</div></div>
+        <div class="row"><div class="m"><b>title3</b>SF Rounded 600 · 20/25</div><div style="font: 600 20px/25px var(--ui)">Bugünkü odak seansın</div></div>
+        <div class="row"><div class="m"><b>headline</b>SF Rounded 600 · 17/22</div><div style="font: 600 17px/22px var(--ui)">Ne için açıyoruz bunu?</div></div>
+        <div class="row"><div class="m"><b>body</b>SF Rounded 400 · 17/22</div><div style="font: 400 17px/22px var(--ui)">Akış yarın da orada olacak. Söz. Biraz yürüyelim mi?</div></div>
+        <div class="row"><div class="m"><b>footnote</b>SF Rounded 400 · 13/18</div><div style="font: 400 13px/18px var(--ui); color:var(--ink-600)">Gece 23:00 ile 06:00 arası fiyatlar iki katı.</div></div>
+        <div class="row" style="border:0"><div class="m"><b>numeral</b>SF Rounded 900 · tabular</div><div style="font: 900 34px/41px var(--ui); font-variant-numeric: tabular-nums">1 234 · 00:25:00</div></div>
+      </div>
+      <p class="sub" style="margin-top:12px; font-size:12.5px">Board stand-in: Nunito renders SF Pro Rounded rows (Apple's font cannot be bundled); Safari on a Mac shows real SF via <code>ui-rounded</code>.</p>
+      <div class="panel" style="margin-top:22px; grid-template-columns: 1fr 1fr; gap: 22px">
+        <div>
+          <div class="pl" style="margin-bottom:10px">Turkish glyphs, checked in the font files</div>
+          <div lang="tr" style="font: 800 34px/1.1 var(--display)">Ğğ Şş İı Çç Öö Üü</div>
+          <div style="font: 500 13px/1.45 var(--ui); color:var(--ink-600); margin-top:8px"><b style="color:var(--meadow-700)">Baloo 2, Nunito: pass.</b> <b style="color:var(--rose-700)">Fredoka: fails</b> (no ğ ş İ), so it is out despite its charm.</div>
+        </div>
+        <div>
+          <div class="pl" style="margin-bottom:10px">The casing trap, caught on this board</div>
+          <div style="display:flex; gap:10px; align-items:baseline; font: 800 22px/1.2 var(--mono)"><span lang="tr" style="text-transform:uppercase; color:var(--rose-700); text-decoration: line-through; text-decoration-thickness: 2px">chips</span><span style="text-transform:uppercase; color:var(--meadow-700)">chips</span></div>
+          <div style="font: 500 13px/1.45 var(--ui); color:var(--ink-600); margin-top:8px">Version 1 of this board set <code>lang="tr"</code> on the page, and uppercase English labels became "CHİPS". Rule: no all caps in Turkish UI; locale-aware casing everywhere else.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPONENTS (first column of two) -->
+    <div>
+      <div class="section-head"><h2>Components on cream</h2><span class="tag">tokens only</span></div>
+      <p class="sub">Capsules, continuous corners, warm shadows. One primary per screen.</p>
+      <div class="panel">
+        <div class="pl">Buttons</div>
+        <div class="btn primary"><svg><use href="#timer"/></svg>Odaklanmaya başla</div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px">
+          <div class="btn secondary">Şimdi değil</div>
+          <div class="btn pressed">Pressed</div>
+        </div>
+        <div class="pl">Chips</div>
+        <div class="chips">
+          <span class="c on"><svg><use href="#check"/></svg>Ders</span>
+          <span class="c">Yürüyüş</span><span class="c">Spor</span><span class="c on"><svg><use href="#check"/></svg>Kitap</span><span class="c">Ev işi</span>
+        </div>
+        <div class="pl">Card + energy</div>
+        <div class="card">
+          <div class="streak">
+            <div><div class="ct">12 günlük seri</div><div class="cs">7 günlük rozetin açıldı. Ayçiçeğin büyüyor.</div></div>
+            <div class="energy" style="height:40px; font-size:20px"><svg><use href="#seed"/></svg>42</div>
+          </div>
+          <div class="bar"><i></i></div>
+        </div>
+        <div class="pl">Badges: one medallion family, locked state computed</div>
+        <div class="badges">
+          <div class="badge"><div class="medal"><div class="disc" style="background:#D5EBC4"><img src="assets/pofu-hamster-concept-cutout.png" alt=""></div></div>İlk direniş<div class="bs">Açıldı</div></div>
+          <div class="badge"><div class="medal"><div class="disc" style="background:#FBE3B4; place-items:center">
+            <svg viewBox="0 0 60 60" width="62" height="62"><g transform="translate(30 30)"><g fill="#F5B83D">
+              <ellipse rx="6" ry="13" transform="rotate(0) translate(0 -14)"/><ellipse rx="6" ry="13" transform="rotate(51.4) translate(0 -14)"/><ellipse rx="6" ry="13" transform="rotate(102.8) translate(0 -14)"/><ellipse rx="6" ry="13" transform="rotate(154.3) translate(0 -14)"/><ellipse rx="6" ry="13" transform="rotate(205.7) translate(0 -14)"/><ellipse rx="6" ry="13" transform="rotate(257.1) translate(0 -14)"/><ellipse rx="6" ry="13" transform="rotate(308.6) translate(0 -14)"/></g>
+              <circle r="10" fill="#8A4F2B"/><circle r="6" fill="#B87650"/></g></svg></div></div>7 gün<div class="bs">Açıldı</div></div>
+          <div class="badge"><div class="medal"><div class="disc locked-disc" style="background:#E7E0EA"><img src="assets/pofu-hamster-concept-cutout.png" alt="" style="filter: grayscale(1); opacity:.4"></div><div class="lock"><svg width="16" height="16"><use href="#lock"/></svg></div></div>30 gün<div class="bs">18 gün kaldı</div></div>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px">
+        <div class="panel" lang="tr">
+          <div class="pl" lang="en">Pofu needs a stage</div>
+          <div class="listrow" style="grid-template-columns: auto 1fr"><div class="stage" style="width:80px;height:80px"><img src="assets/pofu-hamster-concept-cutout.png" alt=""></div>
+            <div><div style="font: 700 17px/1.2 var(--ui)">Pofu bugün mutlu</div><div lang="en" style="font: 500 13px/1.35 var(--ui); color:var(--ink-600); margin-top:4px">Blush disc + contact shadow. Fur and canvas are nearly the same cream.</div></div></div>
+        </div>
+        <div class="panel">
+          <div class="pl">Speech bubble · elevation 2</div>
+          <div class="bubble" lang="tr" style="position:relative; font-size:15px; --tail: 22%">Tamamdır! On dakika. Ben buradayım.</div>
+          <div style="font: 500 13px/1.35 var(--ui); color:var(--ink-600); margin-top:4px">Solid, never glass. Two lines max.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="comps">
+    <div class="panel">
+      <div class="pl">Motion · springs, never curves</div>
+      <table class="tok"><tr><td>snappy</td><td>0.25 s · bounce 0</td><td>chrome</td></tr><tr><td>squish</td><td>0.28 · 0.45</td><td>taps, landings</td></tr><tr><td>settle</td><td>0.50 · 0.20</td><td>state changes</td></tr><tr><td>gentle</td><td>0.90 · 0.10</td><td>mood, scene grade</td></tr><tr><td>hop</td><td>0.42 · 0.35</td><td>Pofu's hop path</td></tr><tr><td>pop</td><td>0.55 · 0.50</td><td>badge reveal</td></tr></table>
+      <p class="note">Frame swaps hide inside squashes and blinks. Reduce Motion: 200 ms cross-fades, no breathing, blinks stay.</p>
+    </div>
+    <div class="panel">
+      <div class="pl">Haptics · confirm, never decorate</div>
+      <table class="tok"><tr><td>Tap Pofu</td><td>soft impact 0.5</td></tr><tr><td>"Hop!" appears</td><td>light impact 0.6</td></tr><tr><td>Resisted</td><td>.success</td></tr><tr><td>Gave in</td><td>.selection (neutral)</td></tr><tr><td>Energy spent</td><td>.decrease</td></tr><tr><td>Not enough energy</td><td>.warning, never .error</td></tr></table>
+      <p class="note">Three signature patterns: melt, pouch pop, celebration. None during bedtime.</p>
+    </div>
+    <div class="panel">
+      <div class="pl">Sound · plush foley</div>
+      <table class="tok"><tr><td>Tap</td><td>felt "pff", 4 takes</td></tr><tr><td>Resisted</td><td>3 rising kalimba notes</td></tr><tr><td>Cheeks full</td><td>pouch "pomf"</td></tr><tr><td>Streak</td><td>the 4-note Pofu motif</td></tr><tr><td>Failure</td><td>silence</td></tr></table>
+      <p class="note">D major pentatonic, under 400 ms, ambient session: obeys the silent switch, mixes with music.</p>
+    </div>
+  </section>
+
+  <footer><span>Pofu design language v1 · board rendered with Playwright from design/boards/design-language.html</span><span>Hamster: founder's GPT Image concept (R0), keyed by tools/assets · Meadow: code stand-in for plate 6</span></footer>
+</div>
+</body>
+</html>
