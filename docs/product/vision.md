@@ -50,6 +50,13 @@ experience**. Both languages are authored natively, never machine-translated.
 
 ## Core loop
 
+> **Note (2026-11-01).** The loop below is economy v0. Since
+> [ADR-0015](../adr/0015-care-over-currency.md), seeds are world material
+> and never buy screen time, and since
+> [ADR-0017](../adr/0017-pofu-never-dies.md) Pofu never wilts. The
+> moment we design for and the north star are unchanged. The loop is
+> rewritten after the founder's first gate week, from real data.
+
 ```
         ┌──────────── Protect ────────────┐
         │  Schedules and shields stop the │
