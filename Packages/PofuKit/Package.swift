@@ -27,10 +27,12 @@ let package = Package(
         // Foundation only, zero dependencies. Extensions may link it.
         .target(name: "PofuCore"),
 
-        // The Screen Time boundary: protocol plus simulated implementation.
-        // FamilyControls, ManagedSettings, and DeviceActivity are imported
-        // only by the future live implementation.
-        .target(name: "PofuScreenTime", dependencies: ["PofuCore"]),
+        // The Screen Time boundary: the protocol, the simulated
+        // implementation, and the live one (iOS only), which is the only
+        // code in the package that imports FamilyControls, ManagedSettings,
+        // and DeviceActivity. The Screen Time extensions link it to put
+        // shields back; it has no UI.
+        .target(name: "PofuScreenTime", dependencies: ["PofuCore", "PofuPersistence"]),
 
         // File storage: an atomically written JSON snapshot and an
         // append-only event log, in the App Group container when the build
@@ -52,7 +54,7 @@ let package = Package(
         ),
 
         .testTarget(name: "PofuCoreTests", dependencies: ["PofuCore"]),
-        .testTarget(name: "PofuScreenTimeTests", dependencies: ["PofuScreenTime", "PofuCore"]),
+        .testTarget(name: "PofuScreenTimeTests", dependencies: ["PofuScreenTime", "PofuCore", "PofuPersistence"]),
         .testTarget(name: "PofuPersistenceTests", dependencies: ["PofuPersistence", "PofuCore"]),
         .testTarget(name: "PofuDesignSystemTests", dependencies: ["PofuDesignSystem"]),
         .testTarget(name: "PofuCompanionTests", dependencies: ["PofuCompanion"]),
