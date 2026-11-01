@@ -53,6 +53,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   for three days.
 - Diagnostics: `os.Logger` channels under `com.erendenizk.pofu` (`intent`,
   `hop`, `economy`, `persistence`, `routing`), with user data private.
+- Game design v2: Pofu's archipelago ([game-design.md](docs/product/game-design.md)).
+  Seeds become world material that never buys screen time (ADR-0015), a
+  breathing break with Pofu is the hard limit past 60 guarded minutes a
+  day, quick checks halve the calm multiplier, five islands each with its
+  own small loop (ADR-0016), and Pofu never dies (ADR-0017). Re-tuned
+  archipelago simulation (`tools/sim/island_economy.py`).
+- Island game prototype v3: mobile-first full-screen layout with safe
+  areas and a touch-scrollable demo drawer, the archipelago map, İskele,
+  the breathing break, quick checks, and an automated phone and desktop
+  check (`design/prototypes/island-game/tools/check-mobile.js`).
 
 ### Fixed
 

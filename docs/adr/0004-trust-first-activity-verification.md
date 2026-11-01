@@ -2,7 +2,8 @@
 
 - **Status:** Accepted
 - **Date:** 2026-10-31
-- **Amended by:** [0014](0014-quiet-time-earning.md) (absence is a structural verification source: quiet time earns)
+- **Amended by:** [0015](0015-care-over-currency.md) (verification makes calm grow 1.5× faster instead of earning 1.5× currency)
+- **Also amended by:** [0014](0014-quiet-time-earning.md) (absence is a structural verification source: quiet time earns)
 
 ## Context
 

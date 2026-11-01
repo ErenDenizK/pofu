@@ -1,5 +1,15 @@
 # The Energy Economy (v0)
 
+> **Status update, 2026-11-01: largely superseded by [ADR-0015](../adr/0015-care-over-currency.md), "Care over
+> currency: seeds as world material".** Seeds no longer buy screen time.
+> They are world material: gathered while the phone is down (quiet time,
+> the stations' idle production) and a little per skip, and spent only on
+> station levels and islands ([game-design.md](game-design.md)). Opening a guarded app costs calm and
+> Pofu's wellbeing; past a daily threshold (60 guarded minutes) every open
+> waits for a breathing break of 10 to 30 seconds. This page is kept as the
+> record of economy v0, which `PofuCore` still implements; sections that
+> no longer apply carry a "Superseded" note and are otherwise unchanged.
+
 _Status: v0, implemented in `PofuCore`. Every number on this page is a
 default in `EconomyConfiguration` and can be tuned without code changes._
 
@@ -9,6 +19,8 @@ in cost something real but never shameful, and make it impossible to buy
 an evening of scrolling with a morning of fake activity.
 
 ## Design goals
+
+> **Superseded by [ADR-0015](../adr/0015-care-over-currency.md)** (accepted 2026-11-01; `PofuCore` still implements v0 until the change lands). Goals 1 and 2 (living pays for scrolling) no longer hold: nothing pays for scrolling. Never stuck still holds through free rungs, a friend, and the emergency pass. Goals 3–5 carry over to seeds as world material.
 
 1. **Never stuck.** A user with zero energy can still get through the
    day: a daily allowance, free friction rungs, a friend, and one free
@@ -28,6 +40,8 @@ an evening of scrolling with a morning of fake activity.
 
 ## Currency
 
+> **Superseded by [ADR-0015](../adr/0015-care-over-currency.md)** (accepted 2026-11-01; `PofuCore` still implements v0 until the change lands). `Energy` stays the domain type and the user still sees **seeds / çekirdek**, but seeds are world material: they never convert into minutes.
+
 `Energy` is a whole number. The domain name is final; the user sees
 **seeds** (Turkish: **çekirdek**), stored in Pofu's cheeks. At the base
 price one seed buys one minute. Fractions never exist: **earning rounds down, prices round up**,
@@ -36,6 +50,8 @@ decimals (`1.25`), and rounding tolerates floating-point noise of up to
 10⁻⁹, so `10 × 1.1` costs 11, not 12.
 
 ## Daily allowance
+
+> **Superseded by [ADR-0015](../adr/0015-care-over-currency.md)** (accepted 2026-11-01; `PofuCore` still implements v0 until the change lands). There is no allowance: nobody needs seeds to open an app.
 
 | Rule | Default |
 |---|---|
@@ -48,6 +64,8 @@ decimals (`1.25`), and rounding tolerates floating-point noise of up to
 - A clock that moves backwards never grants twice.
 
 ## Earning
+
+> **Superseded by [ADR-0015](../adr/0015-care-over-currency.md)** (accepted 2026-11-01; `PofuCore` still implements v0 until the change lands). Activity no longer earns seeds. A verified focus session makes the calm multiplier grow 1.5× faster; honor timers stay for reflection. Seeds come from quiet time, the stations, and skips (+3, at most 5 a day).
 
 | Rule | Default |
 |---|---|
@@ -90,6 +108,8 @@ of honor activity earn 120; a fifth hour earns nothing and reports 30
 forfeited. 8,000 steps earn 16.
 
 ## Quiet time
+
+> **Amended by [ADR-0015](../adr/0015-care-over-currency.md).** The accrual rules below are unchanged and become **Pofu's quiet gathering**; the seeds they produce buy station levels, not unlock windows. The stations' idle production follows the same quiet stretch (they work only while no pass is running).
 
 Staying away from the guarded apps earns seeds by itself (ADR-0014). The
 user may have gone to the gym without telling Pofu; the absence is the
@@ -184,6 +204,8 @@ Worked examples:
 
 ## Spending
 
+> **Superseded by [ADR-0015](../adr/0015-care-over-currency.md)** (accepted 2026-11-01; `PofuCore` still implements v0 until the change lands). Seeds no longer buy unlock windows; prices, escalation and night pricing leave the gate. Their intent moves into Pofu's wellbeing drain (×1.25 per recent open, ×2 at night) and the breathing break.
+
 Energy buys **unlock windows** of 5, 10, 15, or 30 minutes.
 
 | Rule | Default |
@@ -217,6 +239,8 @@ A purchase fails without charging if the duration is not on offer or the
 balance cannot cover the price. The balance therefore never goes negative.
 
 ## The friction ladder
+
+> **Amended by [ADR-0015](../adr/0015-care-over-currency.md).** The ladder becomes pause → intent → **care** → askFriend. The care rung shows the cost in calm and wellbeing and offers a quick check (≤ 3 min, halves the calm bonus) or a full open (resets it); past 60 guarded minutes a day, either one first waits for a breathing break. Skips still never earn currency, but now earn a few seeds of world material (+3, at most 5 a day).
 
 Every open of a protected app goes through the soft gate (ADR-0008).
 
@@ -287,6 +311,8 @@ is alive.
 
 ### Ending a pass early
 
+> **Superseded by [ADR-0015](../adr/0015-care-over-currency.md)** (accepted 2026-11-01; `PofuCore` still implements v0 until the change lands). Refunds go away with prices. Ending a pass early still restores protection at once and resumes quiet time.
+
 The user can end a pass from Pofu at any time. Protection comes back at
 once, and the unused whole minutes are refunded **at the per-minute price
 actually paid**:
@@ -321,6 +347,8 @@ to the day the attempt started), `ImpulseMetrics` counts `attempts`,
 attempts: no impulses is not the same as zero percent resisted.
 
 ## Companion vitality
+
+> **Superseded by [ADR-0015](../adr/0015-care-over-currency.md)** (accepted 2026-11-01; `PofuCore` still implements v0 until the change lands). Vitality becomes Pofu's **wellbeing**, a continuous 5–100 meter with a floor and "sleeps it off" ([ADR-0017](../adr/0017-pofu-never-dies.md), [game-design.md](game-design.md)). Blind time still freezes it.
 
 Vitality, in 0…1, drives Pofu's look (`docs/brand/character.md`). Each day
 gets a score from three components, each in 0…1:
@@ -376,6 +404,8 @@ Mood bands: `thriving` ≥ 0.75, `content` ≥ 0.5, `tired` ≥ 0.25,
 
 ## Invariants (enforced by tests)
 
+> **Amended by [ADR-0015](../adr/0015-care-over-currency.md).** Balance, refund and honor-cap invariants retire with prices. New: no gate outcome changes seeds except a capped skip gift; a breath is never longer than 30 s; calm stays in 1.0…2.0 and never resets without an open.
+
 - The balance is never negative.
 - Energy is conserved: balance = allowances + earnings − spending +
   refunds + collected quiet seeds.
@@ -398,6 +428,8 @@ collections under three bedtime settings, and checks quiet seeds and
 bonuses against an independent minute-by-minute reference model.
 
 ## Open questions for tuning
+
+> **Superseded by [ADR-0015](../adr/0015-care-over-currency.md)** (accepted 2026-11-01; `PofuCore` still implements v0 until the change lands). Hoarding, refunds and friend-escalation questions disappear with prices. The observation and DeviceActivity questions remain and are tracked in [game-design.md](game-design.md), section 6.
 
 - **Hoarding.** There is no balance cap, and quiet time adds up to about
   58 effortless seeds a day. A user can bank a quiet week and

@@ -52,6 +52,10 @@ the project's persistent memory; keep it accurate and concise.
 - Design references: `docs/design/` (design language, art bible, prompt
   library, motion spec), `docs/product/ux/` (IA, flows), and the clickable
   prototype in `design/prototypes/ux/`. Decisions: ADR-0010 to ADR-0012.
+- Game direction: Pofu's archipelago (`docs/product/game-design.md`,
+  prototype in `design/prototypes/island-game/`). Seeds are world material
+  and never buy screen time; a breathing break is the hard limit (ADR-0015,
+  not yet in `PofuCore`); ADR-0016 archipelago; ADR-0017 Pofu never dies.
 - Character: Pofu is an **illustrated fluffy hamster** (ADR-0010). The
   founder generates art with GPT Image (ChatGPT Pro) under the art bible;
   the agent owns prompts, the pipeline, motion, and integration. The 3D

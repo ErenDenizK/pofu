@@ -2,6 +2,7 @@
 
 - **Status:** Accepted
 - **Date:** 2026-11-01
+- **Amended by:** [0015](0015-care-over-currency.md) (quiet seeds are world material and buy station levels, not unlock windows)
 - **Amends:** [0004](0004-trust-first-activity-verification.md) (adds absence as a structural verification source)
 
 ## Context
