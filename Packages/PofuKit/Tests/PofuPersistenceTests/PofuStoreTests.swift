@@ -155,13 +155,15 @@ struct EventLogTests {
     @Test func aTornFinalLineIsSkipped() throws {
         let directory = try TemporaryDirectory()
         let log = EventLog(directory: directory.url)
-        try log.append(event(0))
-        try log.append(event(1))
+        let events = [event(0), event(1)]
+        for item in events {
+            try log.append(item)
+        }
         let handle = try FileHandle(forWritingTo: log.fileURL)
         try handle.seekToEnd()
         try handle.write(contentsOf: Data(#"{"at":12,"ev"#.utf8))
         try handle.close()
-        #expect(try log.readAll() == [event(0), event(1)])
+        #expect(try log.readAll() == events)
     }
 
     @Test func rotatesAndBoundsItsSize() throws {

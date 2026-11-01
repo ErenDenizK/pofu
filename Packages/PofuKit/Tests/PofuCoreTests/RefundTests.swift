@@ -8,6 +8,12 @@ struct RefundTests {
     var gatekeeper: Gatekeeper { Gatekeeper(economy: economy) }
     let noon = instant(2026, 11, 2, 12)
 
+    /// A state with enough seeds for any test purchase; the day's
+    /// allowance of 15 arrives on top with the first operation.
+    func funded() -> PofuState {
+        PofuState(wallet: Wallet(balance: 100))
+    }
+
     /// Buys a pass directly and records it in the ledger.
     func buy(_ minutes: Int, at date: Date, in state: inout PofuState) throws -> Pass {
         let pass = try economy.purchaseUnlock(minutes: minutes, for: testTarget, at: date, from: &state.wallet)
@@ -28,7 +34,7 @@ struct RefundTests {
     }
 
     @Test func usesTheEscalatedPriceActuallyPaid() throws {
-        var state = PofuState()
+        var state = funded()
         _ = try buy(5, at: noon, in: &state)
         let second = try buy(10, at: noon.adding(minutes: 1), in: &state)
         #expect(second.source == .purchased(price: 13))
@@ -40,7 +46,7 @@ struct RefundTests {
     }
 
     @Test func usesTheNightPriceActuallyPaid() throws {
-        var state = PofuState()
+        var state = funded()
         let late = instant(2026, 11, 2, 23, 30)
         let pass = try buy(10, at: late, in: &state)
         #expect(pass.source == .purchased(price: 20))
@@ -81,7 +87,7 @@ struct RefundTests {
 
     @Test(arguments: [5, 10, 15, 30])
     func neverRefundsMoreThanWasPaidAndShrinksOverTime(minutes: Int) throws {
-        var state = PofuState()
+        var state = funded()
         _ = try buy(5, at: noon, in: &state)
         let pass = try buy(minutes, at: noon.adding(minutes: 1), in: &state)
         guard case .purchased(let price) = pass.source else {
@@ -99,7 +105,7 @@ struct RefundTests {
     }
 
     @Test func exactMinuteBoundariesCountAsWholeMinutes() throws {
-        var state = PofuState()
+        var state = funded()
         let pass = try buy(30, at: noon, in: &state)
         for used in 0...30 {
             let refund = economy.refund(for: pass, endingAt: noon.adding(minutes: Double(used)))
@@ -108,7 +114,7 @@ struct RefundTests {
     }
 
     @Test func voidingAnUnusablePurchaseRefundsInFullAndUndoesEscalation() throws {
-        var state = PofuState()
+        var state = funded()
         _ = try buy(5, at: noon, in: &state)
         let second = try buy(10, at: noon.adding(minutes: 1), in: &state)
         let balanceBefore = state.wallet.balance
