@@ -111,7 +111,7 @@ struct OnboardingView: View {
             Spacer()
             CompanionView(vitality: 0.8, energy: 0.3)
                 .frame(maxWidth: 220)
-            Text("What should we call me?")
+            Text("What would you like to call me?")
                 .font(PofuFont.largeTitle)
                 .foregroundStyle(PofuColor.textPrimary)
                 .multilineTextAlignment(.center)

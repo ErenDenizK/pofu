@@ -338,7 +338,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Üretmek"
+            "value" : "Üretim"
           }
         }
       }
@@ -916,7 +916,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bugün henüz açma isteği yok."
+            "value" : "Henüz açma isteği yok."
           }
         }
       }
@@ -1607,7 +1607,7 @@
         }
       }
     },
-    "What should we call me?" : {
+    "What would you like to call me?" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
