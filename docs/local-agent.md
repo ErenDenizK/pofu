@@ -101,6 +101,25 @@ loops.
 If Codex cannot generate images with a ChatGPT login, say so plainly and
 stop. Do not fall back to browser automation of chatgpt.com.
 
+### T5. Spike: iOS 27 automation import (after T3)
+
+one sec reports that from iOS 27 an app can install a Shortcuts personal
+automation for the user ("Add to Shortcuts", then confirm in an import
+sheet). Find out how this works on the founder's iPhone and in Apple's
+iOS 27 documentation, then answer these questions:
+
+- Which API or URL does the app use to trigger the import?
+- Can one import cover several apps?
+- Can the automation run Pofu's `CheckInIntent` with the app parameter
+  preset?
+- What does the user see, and how many taps does it take?
+- How does it fail, and what is the fallback?
+
+If one sec is installed or can be installed, record its flow as reference;
+ask the founder first. Write the report in PR `local/ios27-automation-import`.
+It decides how "Live Pofu" is onboarded
+([ADR-0013](adr/0013-zero-setup-default-gate.md)).
+
 ## Etiquette
 
 - Ask the founder before anything destructive or anything that installs
