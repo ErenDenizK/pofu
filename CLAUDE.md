@@ -52,6 +52,11 @@ the project's persistent memory; keep it accurate and concise.
 - Design references: `docs/design/` (design language, art bible, prompt
   library, motion spec), `docs/product/ux/` (IA, flows), and the clickable
   prototype in `design/prototypes/ux/`. Decisions: ADR-0010 to ADR-0012.
+- Visual system v1 (ADR-0018, founder-approved): balanced diorama, Glass++
+  (native glass frame; painted domain icons at 28 pt or larger with vector
+  twins below; seed jar and calm lantern as indicators), one continuous
+  camera, cloud pass only for island arrivals. Work order and checks:
+  `docs/design/iteration-plan.md` (I1 to I12). Prototypes stay rough until I6.
 - Game direction: Pofu's archipelago (`docs/product/game-design.md`,
   prototype in `design/prototypes/island-game/`). Seeds are world material
   and never buy screen time; a breathing break is the hard limit (ADR-0015,
