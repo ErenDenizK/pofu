@@ -45,3 +45,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   log.
 - Pofu's room v1, minimal onboarding, and a full English and Turkish string
   catalog.
+- Quiet-time earning (ADR-0014): staying away from guarded apps fills
+  Pofu's cheeks by itself, one seed per 10 quiet waking minutes up to 48 a
+  day, plus a +10 bonus for a quiet night. Seeds are collected on Home with
+  a hop and a haptic; Home shows how long it has been quiet, and holds the
+  seeds and asks to check the setup when the automation has been silent
+  for three days.

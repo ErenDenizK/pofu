@@ -25,6 +25,8 @@ final class AppModel {
     /// The instant the model last refreshed, so derived values are stable
     /// within one render.
     private(set) var now: Date
+    /// Counts quiet-seed collections, so Pofu celebrates each one.
+    private(set) var quietCollections = 0
     /// The Hop! on screen, if any. Drives the full-screen cover.
     var hop: HopSession?
     /// The sheet open over Home, if any.
@@ -72,6 +74,11 @@ final class AppModel {
         if snapshot.state.vitality.settledThrough == nil {
             state.vitality = VitalityLedger(initialVitality: configuration.vitality.initialVitality)
         }
+        // Users from before quiet time start observed from their last
+        // check-in, not from scratch.
+        if let lastCheckIn = snapshot.profile.lastCheckIn.values.max() {
+            gatekeeper.quietTime.bootstrap(&state.quietTime, lastSignal: lastCheckIn, checkIns: state.checkIns)
+        }
         settleDay()
     }
 
@@ -108,12 +115,24 @@ final class AppModel {
 
     var isBedtime: Bool { economy.isBedtime(now) }
 
-    /// Cheek fill in `0...1` from the balance, following the pouch levels of
-    /// the user flows: empty below 10, snack to 40, full to 90, stuffed.
+    /// Cheek fill in `0...1` from the balance and the quiet seeds waiting
+    /// to be collected.
     var cheekFill: Double {
-        Self.cheekFill(for: balance)
+        Self.cheekFill(for: balance, pending: state.quietTime.pending)
     }
 
+    /// Seeds waiting in the cheeks puff them visibly beyond the balance's
+    /// pouch level, so there is something to collect; collecting swallows
+    /// the puff into the pouch.
+    static func cheekFill(for balance: Energy, pending: Energy) -> Double {
+        let base = cheekFill(for: balance)
+        guard pending > .zero else { return base }
+        let puff = 0.12 + 0.18 * min(1, Double(pending.units) / 48)
+        return min(1, max(cheekFill(for: balance + pending), base + puff))
+    }
+
+    /// Cheek fill in `0...1` from the balance, following the pouch levels of
+    /// the user flows: empty below 10, snack to 40, full to 90, stuffed.
     static func cheekFill(for balance: Energy) -> Double {
         let points: [(Double, Double)] = [(0, 0.04), (10, 0.25), (40, 0.55), (90, 0.88), (150, 1)]
         let value = Double(max(0, balance.units))
@@ -133,6 +152,30 @@ final class AppModel {
 
     var needsOnboarding: Bool { !profile.hasCompletedOnboarding }
 
+    // MARK: Quiet time (ADR-0014)
+
+    /// Everything quiet time has put in Pofu's cheeks.
+    var pendingQuiet: (quietSeeds: Energy, sleepBonus: Energy) {
+        (state.quietTime.pendingQuietSeeds, state.quietTime.pendingSleepBonus)
+    }
+
+    /// Seeds are waiting and Pofu is observing, so they can be collected.
+    var canCollectQuietSeeds: Bool {
+        state.quietTime.pending > .zero && gatekeeper.quietTime.isObserving(state.quietTime, at: now)
+    }
+
+    /// The automation has been silent past the observation window: quiet
+    /// time is paused and any seeds are held until it fires again.
+    var isAwaitingSignOfLife: Bool {
+        gatekeeper.quietTime.isAwaitingSignOfLife(state.quietTime, at: now)
+    }
+
+    /// How long the current quiet stretch has lasted at `date`, or `nil`
+    /// while a pass runs or Pofu is not observing.
+    func quietStretch(at date: Date) -> TimeInterval? {
+        gatekeeper.quietTime.quietStretch(state.quietTime, at: date)
+    }
+
     /// Chosen apps whose automation has never fired.
     var unverifiedApps: [ProtectedApp] {
         profile.protectedApps.filter { !profile.isVerified($0) }
@@ -148,9 +191,20 @@ final class AppModel {
         save()
     }
 
+    /// Keeps quiet time and the day current while Home is on screen, and
+    /// saves only when something the user can see changed.
+    func tick() {
+        let before = (state.quietTime.pending, state.wallet.balance)
+        settleDay()
+        if before != (state.quietTime.pending, state.wallet.balance) {
+            save()
+        }
+    }
+
     private func settleDay() {
         now = clock.now
         economy.openDay(&state.wallet, at: now)
+        gatekeeper.advanceQuietTime(to: now, state: &state)
         state.passes.removeExpired(at: now)
         let calendar = economy.calendar
         let snapshotState = state
@@ -167,6 +221,9 @@ final class AppModel {
     func planCheckIn(for app: ProtectedApp, isForeground: Bool, canContinueInForeground: Bool) -> CheckInPlan {
         now = clock.now
         profile.recordCheckIn(from: app, at: now)
+        // The automation fired: a sign of life for quiet time, whatever
+        // happens next.
+        gatekeeper.noteAutomationRan(at: now, state: &state)
         log(.checkInRequested(app: app, foreground: isForeground))
 
         let presenting = hop.flatMap { $0.isDeciding ? $0.app : nil }
@@ -369,6 +426,20 @@ final class AppModel {
         earningResult = result
         save()
         return result
+    }
+
+    /// Moves the quiet seeds in Pofu's cheeks to the balance.
+    ///
+    /// - Returns: What was collected, or `nil` when there was nothing to
+    ///   collect or the seeds are held.
+    @discardableResult
+    func collectQuietSeeds() -> QuietCollection? {
+        now = clock.now
+        guard let collection = gatekeeper.collectQuietSeeds(at: now, state: &state) else { return nil }
+        quietCollections += 1
+        log(.quietSeedsCollected(quietSeeds: collection.quietSeeds, sleepBonus: collection.sleepBonus))
+        save()
+        return collection
     }
 
     func dismissEarningResult() {

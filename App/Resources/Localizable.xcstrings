@@ -1734,6 +1734,140 @@
           }
         }
       }
+    },
+    "Collect %lld seeds" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Collect %lld seed"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Collect %lld seeds"
+                }
+              }
+            }
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld çekirdeği topla"
+          }
+        }
+      }
+    },
+    "Collects the seeds in my cheeks" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yanaklarımdaki çekirdekleri toplar"
+          }
+        }
+      }
+    },
+    "I haven't heard from your apps in a while. Check on my setup?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir süredir uygulamalarından ses gelmiyor. Kurulumuma bir bakalım mı?"
+          }
+        }
+      }
+    },
+    "I'm holding %lld seeds for you." : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "I'm holding %lld seed for you."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "I'm holding %lld seeds for you."
+                }
+              }
+            }
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senin için %lld çekirdek saklıyorum."
+          }
+        }
+      }
+    },
+    "I saved %lld seeds in my cheeks." : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "I saved %lld seed in my cheeks."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "I saved %lld seeds in my cheeks."
+                }
+              }
+            }
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yanaklarıma %lld çekirdek sakladım."
+          }
+        }
+      }
+    },
+    "Not a single open all night." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bütün gece tek bir uygulama bile açmadın."
+          }
+        }
+      }
+    },
+    "Quiet for %@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessizlik: %@"
+          }
+        }
+      }
+    },
+    "You stayed away for %@." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ uzak durdun."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

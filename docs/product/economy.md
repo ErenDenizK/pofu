@@ -20,7 +20,7 @@ an evening of scrolling with a morning of fake activity.
    progressively more.
 3. **Trust first, reward proof** (ADR-0004). Self-reported activity
    always earns; verified activity earns 1.5×. Only self-reports are
-   capped.
+   capped. Staying away earns by itself (quiet time, ADR-0014).
 4. **Bounded cheating.** The worst a cheater can do is bounded per day
    and gets more expensive to spend.
 5. **Deterministic and testable.** Integer energy, explicit rounding, no
@@ -88,6 +88,99 @@ Worked examples: a 25-minute honor study session earns ⌊12.5⌋ = 12. The
 same session as a structural focus session earns ⌊18.75⌋ = 18. Four hours
 of honor activity earn 120; a fifth hour earns nothing and reports 30
 forfeited. 8,000 steps earn 16.
+
+## Quiet time
+
+Staying away from the guarded apps earns seeds by itself (ADR-0014). The
+user may have gone to the gym without telling Pofu; the absence is the
+proof. `QuietTimeAccrual` implements this section; every number is in
+`QuietTimeRules`.
+
+| Rule | Default |
+|---|---|
+| Rate | 1 seed per whole 10 continuous quiet minutes (`blockMinutes`, `seedsPerBlock`) |
+| Daily cap | 48 quiet seeds per local day (`dailyCap`), separate from the honor cap |
+| Excluded | the bedtime window, 23:00–06:00 (the same window as night pricing) |
+| Slept-on-it bonus | +10 for a whole bedtime window without an open (`sleepBonus`), not counted toward the cap |
+| Observation window | 72 hours after each sign of life from the automation (`observationWindow`) |
+
+**The quiet stretch.** Quiet is time with no pass running.
+
+- A pass starting (any opened outcome: a free rung, a purchase, a friend's
+  approval, the emergency pass) **breaks** the stretch. The stretch up to
+  that moment is credited; the partial block in progress is lost.
+- Quiet **resumes when the pass ends**: at its expiry, or at once when the
+  user ends it early (unless another pass is still running, then at the end
+  of that one). A voided pass (the app never opened) gives quiet back from
+  the moment of the grant.
+- A **resisted attempt does not break quiet**: resisting is the point.
+- Pass-throughs during a pass change nothing; the pass already broke it.
+
+**What counts.** A minute counts when it is quiet, outside bedtime, and
+observed. Counting minutes form segments; each segment earns
+⌊length ÷ 10 min⌋ blocks, aligned to its own start. So bedtime, a pass, or a
+lapse in observation each start the block count afresh.
+
+- **Midnight** does not split a segment: continuity is about the person, not
+  the calendar. Each block is credited to the local day it **started** on,
+  and that day's cap applies. With the default bedtime, blocks never cross
+  midnight.
+- **The cap.** Blocks past 48 on a day earn nothing; the accrual reports
+  them as `forfeitedToCap`.
+
+**Slept on it.** When a whole bedtime window passes with no pass running at
+any point in it and Pofu observing all of it, +10 goes into the cheeks the
+first time quiet time is computed after the window ends (the first
+foreground, or an earlier check-in). A pass that started before bedtime and
+runs into it forfeits that night's bonus. Each night is rewarded once,
+attributed to the local day the window ends on. A bedtime window that
+crosses midnight is one night; a switched-off window has no nights.
+
+**Observation and held seeds.** Pofu cannot yet see usage without the
+automation (DeviceActivity needs the paid membership), and a deleted
+automation looks exactly like perfect discipline. So:
+
+- Every **sign of life** (a check-in, a pass-through, or any automation run)
+  keeps Pofu observing for the next 72 hours. Nothing counts before the
+  first one.
+- After 72 hours of silence, **accrual stops**. Seeds already in the cheeks
+  are **held, not lost**: they cannot be collected, and Home asks the user
+  to check the setup (the setup guide's test).
+- The next sign of life **releases** the held seeds and starts a new
+  observation. The silent time in between never counts.
+- The worst case for someone who deletes the automation and scrolls is
+  three days of quiet seeds, about 174, and only after re-enabling it. They
+  already bypass Pofu entirely, so this buys them nothing new.
+
+**Collecting.** Accrual is computed on launch, on foreground, every 30
+seconds while Home is open, and at every check-in. It is prefix-consistent:
+computing it in many small steps credits exactly what one computation over
+the same span does. Seeds wait in Pofu's cheeks until the user collects
+them on Home; collecting adds them to the balance. Quiet seeds are
+structural (ADR-0004), so the honor cap does not apply, but they do not
+feed vitality's activity score: quiet time is already rewarded through the
+usage and resistance components, and counting it twice would let a blind
+day look healthy.
+
+Worked examples:
+
+- A check-in at 12:00 that the user resists, nothing else until 14:00:
+  120 quiet minutes, **12 seeds**. "You stayed away for 2 hours. I saved 12
+  seeds in my cheeks."
+- Quiet from 12:00, an open at 12:25 with a 5-minute free pass, quiet again
+  until 13:00: two blocks before the open and three after it, **5 seeds**.
+- A paid 15-minute pass at 12:00 ended early at 12:03: quiet resumes at
+  12:03, and 12:33 completes **3 seeds**.
+- Last check-in at 21:00, quiet until 08:00 the next morning: 21:00–23:00
+  and 06:00–08:00 are **24 seeds**, plus **10** for the night.
+- An open at 02:00 in the middle of the night: no bonus that night; the
+  stretch resumes at 02:05 but only counts again from 06:00.
+- With bedtime switched off, a whole quiet day is 144 blocks: **48 seeds**,
+  96 forfeited to the cap. A stretch from 23:55 to 00:25 credits one seed to
+  the first day and two to the next.
+- Last check-in Monday at noon, Pofu opened Friday: Monday noon to Thursday
+  noon counted (capped per day) and the seeds are held; the next check-in
+  releases them, and Thursday noon until then never counts.
 
 ## Spending
 
@@ -285,11 +378,13 @@ Mood bands: `thriving` ≥ 0.75, `content` ≥ 0.5, `tired` ≥ 0.25,
 
 - The balance is never negative.
 - Energy is conserved: balance = allowances + earnings − spending +
-  refunds.
+  refunds + collected quiet seeds.
 - Resisting never changes the balance.
 - A refund never exceeds the price paid.
 - An unobserved day never changes vitality.
 - Honor earnings never exceed the daily cap.
+- Quiet seeds never exceed their daily cap, and held seeds cannot be
+  collected.
 - Vitality and every component score stay in 0…1.
 - Each day's attempts equal resisted plus opened.
 - The ladder never skips a rung.
@@ -297,11 +392,15 @@ Mood bands: `thriving` ≥ 0.75, `content` ≥ 0.5, `tired` ≥ 0.25,
 `SimulationTests` runs multi-week synthetic users (a resister, a scroller,
 an honor-time farmer) through the whole domain and checks these after
 every event, and checks that resisting keeps Pofu clearly healthier than
-scrolling.
+scrolling. `QuietTimeSimulationTests` runs sixteen days of opens, resists,
+passes, early endings, a silence longer than the observation window, and
+collections under three bedtime settings, and checks quiet seeds and
+bonuses against an independent minute-by-minute reference model.
 
 ## Open questions for tuning
 
-- **Hoarding.** There is no balance cap. A user can bank a quiet week and
+- **Hoarding.** There is no balance cap, and quiet time adds up to about
+  58 effortless seeds a day. A user can bank a quiet week and
   spend it in one evening, though escalation and night pricing blunt it.
   Consider a soft cap or decay if simulations or real use show binges.
 - **Per-level multipliers.** Active verification (camera reps) may deserve
@@ -313,6 +412,10 @@ scrolling.
 - **Distracting minutes** are approximated today from granted pass length;
   real usage will come from the Screen Time report extension. Ending a
   pass early does not shorten the estimate yet.
-- **Observation.** "A day with no check-ins is blind" is a stopgap. Once
+- **Quiet-time tuning.** 1 seed per 10 minutes and a cap of 48 (8 quiet
+  waking hours) are first guesses. Watch whether quiet seeds crowd out
+  honor and verified earning, and whether 72 hours is the right window.
+- **Observation.** "A day with no check-ins is blind" is a stopgap, and so
+  is the 72-hour window for quiet time. Once
   DeviceActivity threshold events are available, a day is observed when
   usage is measured, whether or not the automation fired.

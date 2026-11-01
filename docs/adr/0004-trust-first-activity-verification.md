@@ -2,6 +2,7 @@
 
 - **Status:** Accepted
 - **Date:** 2026-10-31
+- **Amended by:** [0014](0014-quiet-time-earning.md) (absence is a structural verification source: quiet time earns)
 
 ## Context
 

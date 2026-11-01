@@ -27,6 +27,9 @@ public enum PofuEvent: Hashable, Sendable, Codable {
     case handoffFailed(app: ProtectedApp)
     /// An activity was credited.
     case activityCredited(ActivitySession, earned: Energy, forfeited: Energy)
+    /// The user collected the seeds quiet time put in Pofu's cheeks
+    /// (ADR-0014).
+    case quietSeedsCollected(quietSeeds: Energy, sleepBonus: Energy)
 }
 
 /// One entry of the event log.
