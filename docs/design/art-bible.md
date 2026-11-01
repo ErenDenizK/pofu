@@ -17,7 +17,7 @@ Every prompt starts from references, never from words alone.
 | ID | File | What it is | Status |
 |---|---|---|---|
 | **R0** | [`docs/brand/assets/concepts/hamster-gpt-image.png`](../brand/assets/concepts/hamster-gpt-image.png) | The founder's approved concept crop (532 × 739, opaque) | Approved 2026-10-31 (ADR-0010) |
-| **R1** | `design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png` | The base: R0 redrawn on a 1024 × 1536 transparent canvas, front view, per the [companion motion asset contract](companion-motion.md) | **To make first** ([prompt 1](prompt-library.md#1-the-base-r1)) |
+| **R1** | [`design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png`](../../design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png) | The base: R0 redrawn on a 1024 × 1536 transparent canvas, front view, per the [companion motion asset contract](companion-motion.md) | **Approved 2026-11-01** ([prompt 1](prompt-library.md#1-the-base-r1)) |
 | **R1 edits** | `pofu-hamster-<variant>.png` next to R1 | Face-only edits (eyes closed, eyes happy, mouth open, mouth "o", cheeks full, matted), pixel-aligned with R1 | Prompts 3a–3f |
 | **R2** | `design/art/masters/pofu-turnaround-v1/` | Front, three-quarter, back | Prompt 2 |
 | **P-char** | [`design/reference/palette-card-character.png`](../../design/reference/palette-card-character.png) | Locked character palette as unlabeled swatches | Ready |

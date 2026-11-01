@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pofu Home · Baseline: the room plate</title>
+<link rel="stylesheet" href="home.css">
+</head>
+<body>
+<div id="device"><div id="screen"></div></div>
+<aside id="panel"></aside>
+<script src="home.js"></script>
+<script>
+// Baseline for comparison: the production room plate (founder-generated) composed as specified
+// in design-language.md section 12, with the same chrome as the three directions.
+mount({
+  id: 'room', kicker: 'Baseline (rejected)', title: 'Pofu’s room, as specified',
+  standin: 'Production room plate + Pofu R1 (real art)',
+  presets: [
+    { id: 'day', label: 'Day', note: 'The real plate, composed per the current design language. Pretty, and static: nothing in it changes because of you.',
+      state: { grade: 'day', vit: 'thriving', seeds: 42, beads: 'SSOSSOSOOSS', quiet: 'Quiet for 1 h 52 m', bubble: 'Seven skips today. I’m getting so fluffy.' } },
+  ],
+  layout: () => ({ pofuX: 201, pofuY: 578, pofuW: 196, bubbleTop: 352 }),
+  world: () => `<div class="layer" style="background:url(assets/room-plate-a.webp) center 0/auto 874px no-repeat"></div>`,
+  notes: `<h2>Why it was rejected</h2><p>A flat wall with a window. The light could change, but nothing accumulates and nothing reacts to what you did today. It is a stage, not a world.</p>`,
+});
+</script>
+</body>
+</html>

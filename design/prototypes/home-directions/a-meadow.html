@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pofu Home · A. Living meadow</title>
+<link rel="stylesheet" href="home.css">
+<style>
+  .cloud { animation: driftCloud var(--d, 80s) linear infinite; animation-delay: var(--dl, 0s); }
+  @keyframes driftCloud { from { transform: translateX(-140px); } to { transform: translateX(520px); } }
+  .bfly { animation: float1 var(--d, 9s) ease-in-out infinite; animation-delay: var(--dl, 0s); }
+  .bfly .w { transform-box: fill-box; transform-origin: 100% 60%; animation: wing .42s ease-in-out infinite; }
+  @keyframes wing { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(.45); } }
+  .bfly .w2 { transform-origin: 0% 60%; }
+  .ffly { animation: float2 var(--d, 7s) ease-in-out infinite, glowPulse 2.4s ease-in-out infinite; animation-delay: var(--dl, 0s); }
+  .vit-wilting .blade { animation: none; transform: rotate(9deg); transform-box: fill-box; transform-origin: 50% 100%; }
+  .vit-wilting .world > svg { filter: saturate(.8); }
+</style>
+</head>
+<body>
+<div id="device"><div id="screen"></div></div>
+<aside id="panel"></aside>
+<script src="home.js"></script>
+<script>
+const PAL = {
+  day:    { sky: ['#AFD8EE', '#CFE8F1', '#F3EEE2', '#FCEBDD'], far: '#B9D9C4', mid: '#A3D19A', knoll: ['#A7D88F', '#79B771'], fg: '#6FAE6E', haze: 'rgba(255,248,236,.85)', rim: '#E9F7C9' },
+  golden: { sky: ['#8F74F0', '#C79BD8', '#F2A38A', '#FFD3A1'], far: '#C7A9A8', mid: '#B9B57F', knoll: ['#C9C27E', '#8F9A63'], fg: '#7C8656', haze: 'rgba(255,214,170,.75)', rim: '#FFE1A8' },
+  night:  { sky: ['#15111C', '#221B38', '#2F2858', '#3A3070'], far: '#2E3B52', mid: '#2C4A47', knoll: ['#33564D', '#1F302F'], fg: '#1B2A2A', haze: 'rgba(90,80,150,.35)', rim: '#4E6F7A' },
+  wilt:   { sky: ['#CFCAD6', '#DCD7DF', '#E8E3E3', '#EFE8E2'], far: '#C3CBC3', mid: '#B2C3A6', knoll: ['#B5C79F', '#8FA683'], fg: '#87A07E', haze: 'rgba(240,236,240,.9)', rim: '#E4ECD8' },
+};
+
+function cloud(x, y, s, o, d, dl, col) {
+  return `<g class="cloud" style="--d:${d}s;--dl:${dl}s"><g transform="translate(${x} ${y}) scale(${s})" opacity="${o}" filter="url(#soft)">
+    <ellipse cx="0" cy="10" rx="58" ry="16" fill="${col}"/><circle cx="-22" cy="0" r="20" fill="${col}"/><circle cx="8" cy="-8" r="26" fill="${col}"/><circle cx="34" cy="4" r="17" fill="${col}"/></g></g>`;
+}
+function flower(x, y, c, s = 1, closed = false) {
+  if (closed) return `<g transform="translate(${x} ${y}) scale(${s})"><path d="M0 0v-12" stroke="#6E9A62" stroke-width="1.6"/><ellipse cx="0" cy="-14" rx="2.6" ry="4" fill="${c}" opacity=".8" transform="rotate(25 0 -12)"/></g>`;
+  return `<g transform="translate(${x} ${y}) scale(${s})"><path d="M0 0v-12" stroke="#5E9A5C" stroke-width="1.6"/>${[0, 72, 144, 216, 288].map((a) => `<ellipse cx="0" cy="-19" rx="3.2" ry="5" fill="${c}" transform="rotate(${a} 0 -14)"/>`).join('')}<circle cx="0" cy="-14" r="2.6" fill="#F5B83D"/></g>`;
+}
+function blades(x, y, n, col, h, flip = 1) {
+  let out = '';
+  for (let i = 0; i < n; i++) {
+    const bx = x + i * 7 * flip, bh = h * (0.7 + ((i * 37) % 10) / 22), lean = (i % 2 ? 8 : -6) * flip;
+    out += `<path class="blade sway" style="animation-delay:${-i * 0.6}s;animation-duration:${4 + (i % 3)}s" d="M${bx - 3} ${y} Q${bx + lean * 0.4} ${y - bh * 0.6} ${bx + lean} ${y - bh} Q${bx + lean * 0.3 + 2} ${y - bh * 0.5} ${bx + 3} ${y} Z" fill="${col}"/>`;
+  }
+  return out;
+}
+function butterfly(x, y, c, d, dl, s = 1) {
+  return `<g class="bfly" style="--d:${d}s;--dl:${dl}s"><g transform="translate(${x} ${y}) scale(${s})">
+    <path class="w" d="M0 0 C-9 -12 -16 -4 -10 2 C-14 7 -6 10 0 2 Z" fill="${c}"/><path class="w w2" d="M0 0 C9 -12 16 -4 10 2 C14 7 6 10 0 2 Z" fill="${c}"/><rect x="-.8" y="-4" width="1.6" height="9" rx=".8" fill="#6B4A3A"/></g></g>`;
+}
+
+function world(s) {
+  const P = PAL[s.pal];
+  const night = s.pal === 'night', golden = s.pal === 'golden', wilt = s.pal === 'wilt';
+  const skips = [...s.beads].filter((b) => b === 'S').length;
+  const flowersOpen = !wilt;
+  const flCols = ['#FDC1B0', '#F7C873', '#C9B5F2', '#FFFFFF'];
+  let svg = `<svg viewBox="0 0 402 874" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${P.sky[0]}"/><stop offset=".35" stop-color="${P.sky[1]}"/><stop offset=".55" stop-color="${P.sky[2]}"/><stop offset=".68" stop-color="${P.sky[3]}"/></linearGradient>
+    <linearGradient id="knoll" x1="0" y1="0" x2=".35" y2="1"><stop offset="0" stop-color="${P.knoll[0]}"/><stop offset="1" stop-color="${P.knoll[1]}"/></linearGradient>
+    <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${P.fg}"/><stop offset="1" stop-color="${P.knoll[1]}"/></linearGradient>
+    <radialGradient id="sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="${night ? '#FFF1D6' : golden ? '#FFE7B8' : '#FFFBEA'}" stop-opacity="1"/><stop offset=".18" stop-color="${night ? '#FFF1D6' : '#FFF6DA'}" stop-opacity=".9"/><stop offset=".5" stop-color="${night ? '#8C7FD0' : '#FFF3D0'}" stop-opacity="${night ? .18 : .35}"/><stop offset="1" stop-opacity="0" stop-color="#fff"/></radialGradient>
+    <radialGradient id="light" cx=".15" cy=".1" r=".9"><stop offset="0" stop-color="${golden ? '#FFD9A0' : '#FFF8E6'}" stop-opacity="${night ? 0 : wilt ? .15 : .55}"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.2"/></filter>
+    <filter id="far" x="-10%" y="-30%" width="120%" height="160%"><feGaussianBlur stdDeviation="1.6"/></filter>
+    <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="3"/></filter>
+  </defs>
+  <rect width="402" height="874" fill="url(#sky)"/>`;
+  // sun or moon, upper left
+  if (night) {
+    svg += `<circle cx="84" cy="196" r="90" fill="url(#sun)"/><path d="M96 172a26 26 0 1 0 0 46a21 21 0 1 1 0-46z" fill="#FFF1D6"/>`;
+    svg += `<ellipse cx="260" cy="250" rx="260" ry="70" fill="#6B5BC0" opacity=".13" filter="url(#glow)" transform="rotate(-18 260 250)"/>`;
+    const stars = [[40, 250], [150, 222], [312, 196], [262, 270], [350, 300], [196, 300], [110, 330], [372, 236], [222, 210], [300, 352], [24, 360], [170, 384], [130, 150], [240, 160], [330, 140], [60, 320], [280, 220], [380, 380], [12, 200], [205, 255]];
+    svg += stars.map(([x, y], i) => `<circle class="twinkle" style="animation-delay:${-i * 0.7}s" cx="${x}" cy="${y}" r="${i % 3 ? 1.3 : 2}" fill="#FFF6DC"/>`).join('');
+  } else if (golden) {
+    svg += `<circle cx="78" cy="430" r="150" fill="url(#sun)"/><circle cx="78" cy="430" r="24" fill="#FFE7B8" opacity=".95"/>`;
+  } else if (!wilt) {
+    svg += `<circle cx="-10" cy="70" r="260" fill="url(#sun)"/>`;
+  }
+  // clouds
+  const ccol = night ? '#4A4078' : wilt ? '#F4F1F4' : golden ? '#FFD9C4' : '#FFFFFF';
+  svg += cloud(80, 236, 1, night ? .5 : .95, 90, -20, ccol) + cloud(260, 300, .7, night ? .4 : .85, 120, -70, ccol) + cloud(330, 210, .55, .7, 140, -30, ccol);
+  if (wilt) svg += cloud(140, 330, 1.6, .9, 160, -50, "#ECE7EC") + cloud(320, 380, 1.3, .85, 150, -110, "#E6E1E8");
+  // far hills with tiny trees, haze, a mid ridge, a winding path
+  const tree = (x, y, k) => `<g transform="translate(${x} ${y}) scale(${k})"><rect x="-1.2" y="-6" width="2.4" height="7" fill="${night ? '#22303A' : '#8C9C8A'}"/><circle cx="0" cy="-11" r="7" fill="${P.far}" style="filter:brightness(.9)"/></g>`;
+  svg += `<path filter="url(#far)" d="M-20 452 C 40 426, 110 414, 170 432 S 300 410, 350 420 S 420 436, 430 440 V 600 H -20 Z" fill="${P.far}"/>
+    ${[[250, 424, 1], [266, 427, .8], [96, 428, .9], [330, 418, .7]].map(([x, y, k]) => tree(x, y, k)).join('')}
+    <rect y="410" width="402" height="70" fill="${P.haze}" opacity=".5" filter="url(#far)"/>
+    <path d="M-20 498 C 50 470, 130 462, 200 480 S 330 474, 420 458 V 640 H -20 Z" fill="${P.mid}"/>
+    <path d="M-20 498 C 50 470, 130 462, 200 480 S 330 474, 420 458 V 470 C 330 486, 260 488, 200 490 S 60 488, -20 510 Z" fill="${P.rim}" opacity=".25"/>`;
+  // burrow door on the left hillside (from the meadow plate spec)
+  svg += `<g transform="translate(62 506)">${night ? '<circle r="26" fill="#F5B83D" opacity=".45" filter="url(#glow)"/>' : ''}<path d="M-13 9 V-1 A13 13 0 0 1 13 -1 V9 Z" fill="${night ? '#2A1C16' : '#9C6A44'}"/><path d="M-10 9 V-1 A10 10 0 0 1 10 -1 V9 Z" fill="${night ? '#F7C873' : '#D9A06A'}"/><path d="M0 -4v12" stroke="${night ? '#C98A2C' : '#B07A4E'}" stroke-width="1.2"/>${night ? '' : '<circle cx="4" cy="3" r="1.3" fill="#7A4A2A"/>'}</g>`;
+  // knoll (Pofu's stage) and foreground
+  svg += `<path d="M-30 640 C 30 580, 110 552, 201 552 S 370 580, 432 640 V 874 H -30 Z" fill="url(#knoll)"/>
+    <ellipse cx="150" cy="572" rx="150" ry="22" fill="${P.rim}" opacity="${night ? .12 : .35}" filter="url(#soft)"/>
+    <path d="M-30 760 C 80 734, 200 740, 432 728 V 874 H -30 Z" fill="url(#fg)" opacity=".9"/>
+    <rect width="402" height="874" fill="url(#light)"/>`;
+  // drifting petals / seeds in the air (day only)
+  if (!night && !wilt) svg += [[30, 300], [120, 360], [250, 250], [360, 330], [200, 420]].map(([x, y], i) => `<g style="animation:float2 ${9 + i}s ease-in-out infinite;animation-delay:${-i * 2}s"><ellipse cx="${x}" cy="${y}" rx="2.6" ry="1.5" fill="${['#FDC1B0', '#FFFFFF', '#F7C873', '#FDC1B0', '#FFFFFF'][i]}" opacity=".9" transform="rotate(${i * 40} ${x} ${y})"/></g>`).join('');
+  // flowers on the hills (sides only; the stage stays clear)
+  const fl = [[22, 540, 0], [44, 552, 1], [92, 540, 2], [318, 536, 1], [346, 528, 0], [380, 546, 3], [104, 590, 3], [304, 592, 0], [28, 612, 2], [374, 616, 1], [60, 652, 0], [342, 660, 2], [140, 610, 1], [268, 612, 2]];
+  svg += fl.map(([x, y, c], i) => `<g class="sway-soft" style="animation-delay:${-i * 0.5}s">${flower(x, y, night ? ['#8E7FB8', '#B3A06A', '#8D7FB8', '#B9B2CC'][c] : flCols[c], 0.9 + (i % 3) * 0.12, !flowersOpen || night)}</g>`).join('');
+  // foreground grass in the corners
+  svg += blades(-4, 874, 9, P.fg, 90, 1) + blades(406, 874, 9, P.fg, 84, -1) + blades(8, 874, 6, P.knoll[1], 46, 1) + blades(394, 874, 6, P.knoll[1], 50, -1);
+  // life: one butterfly per skip today (day), one firefly per skip (night)
+  if (!night && !wilt) {
+    const pos = [[64, 400], [334, 420], [300, 500], [96, 486], [356, 290], [40, 290], [250, 236]];
+    const bc = ['#FDC1B0', '#F7C873', '#C9B5F2', '#FFFFFF', '#FDC1B0', '#F7C873', '#C9B5F2'];
+    svg += pos.slice(0, Math.min(skips, 7)).map(([x, y], i) => butterfly(x, y, bc[i], 8 + i, -i * 1.3, golden ? 1.2 : 1.35)).join('');
+  }
+  if (night) {
+    const pos = [[60, 600], [340, 580], [118, 662], [290, 650], [372, 500], [30, 488], [214, 470]];
+    svg += pos.slice(0, Math.min(skips, 7)).map(([x, y], i) => `<g class="ffly" style="--d:${6 + i}s;--dl:${-i}s"><circle cx="${x}" cy="${y}" r="7" fill="#F7E08A" opacity=".5" filter="url(#glow)"/><circle cx="${x}" cy="${y}" r="2" fill="#FFF3B8"/></g>`).join('');
+  }
+  if (wilt) svg += `<rect width="402" height="874" fill="#E9E3EE" opacity=".18"/>`;
+  return svg + '</svg>';
+}
+
+mount({
+  id: 'a', kicker: 'Direction A', title: 'Living meadow',
+  standin: 'Stand-in scene (code). Pofu: production art R1',
+  presets: [
+    { id: 'day', label: 'Day · thriving', note: 'Seven skips today, so seven butterflies. Clear sky, flowers open, the sun upper left as in every plate.',
+      state: { pal: 'day', grade: 'day', vit: 'thriving', seeds: 42, beads: 'SSOSSOSOOSS', quiet: 'Quiet for 1 h 52 m', collect: 11, bubble: 'Seven skips today. I’m getting so fluffy.' } },
+    { id: 'golden', label: 'Golden hour', note: 'The sky shifts from violet to gold; the same plate is graded, and the butterflies are still there.',
+      state: { pal: 'golden', grade: 'golden', vit: 'content', seeds: 42, beads: 'SSOSSOSOO', quiet: 'Quiet for 40 m', bubble: 'The sun is going down. Good day, mostly.' } },
+    { id: 'night', label: 'Night', note: 'Fireflies replace butterflies: still one per skip. The burrow door glows on the hill.',
+      state: { pal: 'night', grade: 'night', vit: 'thriving', dark: true, seeds: 54, beads: 'SSOSSOSOOSSS', quiet: 'Quiet for 2 h 10 m', collect: 13, bubble: 'Twelve reaches, eight skips. Sleepy and proud.' } },
+    { id: 'wilting', label: 'Wilting', note: 'After a long binge: overcast, never stormy. Flowers close, grass droops, no butterflies. Pofu is graded, not repainted.',
+      state: { pal: 'wilt', grade: 'wilting', vit: 'wilting', seeds: 6, beads: 'OOSOOOOSO', bubble: 'Long scroll, huh. Want to sit outside with me?' } },
+  ],
+  layout: (s) => ({ pofuX: 201, pofuY: 628, pofuW: 222, bubbleTop: 316, collectX: 268, collectY: 520 }),
+  world,
+  notes: `<h2>Idea</h2><p>Pofu lives outdoors. The whole screen is a painted meadow whose light follows your clock and whose life follows your week. Chrome floats as Liquid Glass in the calm sky and grass bands.</p>
+  <h2>What responds to you</h2><ul><li>Time of day: sky, sun or moon, grade.</li><li>Vitality: saturation, overcast veil, flowers open or closed, grass posture.</li><li>Today: one butterfly (night: firefly) per skip.</li><li>Quiet time: cheeks bulge; a Collect chip.</li></ul>
+  <h2>Weakness</h2><p>Nothing accumulates. Tomorrow morning the meadow looks exactly like today. Beautiful on day 1, wallpaper by day 10.</p>`,
+});
+</script>
+</body>
+</html>
