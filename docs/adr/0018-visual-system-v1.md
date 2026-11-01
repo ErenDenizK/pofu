@@ -106,3 +106,19 @@ For the UI language (the only option set the founder extended):
   share one visual voice, which is the product's main differentiator against
   utility-looking screen-time apps.
 - The order of work is in the [iteration plan](../design/iteration-plan.md).
+
+## Amendment (2026-11-01): timing, after the decision audit
+
+The [decision audit](../product/decision-audit.md) showed that the gate,
+the core of the product, has not yet caught one real reach on the
+founder's phone. The direction above stands; its **production waits**:
+
+- **Now:** native glass and SF Symbols only. Proportion and the continuous
+  camera apply when the home-island slice is built.
+- **After the friends beta starts:** the painted domain icon family and
+  vector twins, the seed jar and the calm lantern, painted widgets, and the
+  layered app icon. When the jar is built, Home must also expose the seed
+  count natively (accessibility value and the collect moment), since the
+  seed pill is off Home (game design §5).
+- This ADR also amends [ADR-0016](0016-pre-planned-idle-archipelago.md):
+  Home is the balanced diorama, not Pofu up close.

@@ -48,7 +48,9 @@ rendering every option in every technique.
 4. **Species as data:** the pipeline treats species as a parameter. Launch
    ships the hamster only. Bunny, kitten, and chinchilla are candidates for
    collectible "Pofu friends" after launch (unlocked through Plus or
-   milestones; to be decided with monetization).
+   milestones; to be decided with monetization). _Amended 2026-11-01:_
+   [ADR-0016](0016-pre-planned-idle-archipelago.md) made the bunny, kitten,
+   and chinchilla free island residents; only the hamster is "Pofu".
 5. **3D is parked, not discarded.** The Blender spike is kept as a reference
    for marketing renders and as a possible "3D for control, illustration for
    style" pipeline, where 3D renders give pose control and image models apply
