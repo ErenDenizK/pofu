@@ -2,7 +2,7 @@
 
 - **Status:** Accepted
 - **Date:** 2026-10-31
-- **Amended by:** [0007](0007-product-name-pofu.md) (module prefix `Rot` becomes `Pofu`)
+- **Amended by:** [0007](0007-product-name-pofu.md) (module prefix `Rot` becomes `Pofu`); see also the 2026-11-01 note at the end
 
 ## Context
 
@@ -45,3 +45,18 @@ membership is active.
 - `RotCore` gets fast unit tests on Linux and macOS; CI covers it on every PR.
 - The boundary adds a thin layer of indirection, which is a fair price for
   testability and extension safety.
+
+## Note (2026-11-01): the live implementation
+
+Built for membership day 1 (`feat/screen-time-gate`). Two refinements,
+neither a change of direction:
+
+- Extensions link `PofuScreenTime` as well as `PofuCore` and
+  `PofuPersistence`, because the monitor rebuilds shields with the same
+  code the app uses (`LiveShieldEnforcer`). It has no UI. The shield
+  configuration extension also links `PofuDesignSystem` for its colors.
+  None links `PofuCompanion`.
+- The simulated service is not selected at run time. The live service
+  exists only in the `PofuLive` build (compilation condition
+  `POFU_SCREEN_TIME_LIVE`), because a free team cannot sign the
+  entitlement at all; the default build runs the soft gate alone.

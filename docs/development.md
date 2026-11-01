@@ -8,14 +8,20 @@ How to build, run, and test Pofu. For how work enters the codebase
 ```
 project.yml                 XcodeGen spec; generates Pofu.xcodeproj (not committed)
 Config/                     App identity and signing xcconfig, local overrides, extra Info.plist keys
-App/                        iOS app target: SwiftUI screens and the app model
+  Entitlements/             Family Controls and App Group entitlements (PofuLive only)
+App/                        iOS app target (Pofu and PofuLive): SwiftUI screens and the app model
   Intents/                  CheckInIntent (the soft gate) and the App Shortcuts provider
   Hop/                      The Hop! intervention: rungs, celebration, hand-off
+  ScreenTime/               The live Screen Time gate: permission, picker, inbox, settings
   Home/, Earn/, Setup/, ... Pofu's room, the focus timer, the setup guide, settings, onboarding
   Resources/                Asset catalog, String Catalogs (en, tr) for the app and App Shortcuts
+Extensions/                 Screen Time extensions, embedded only in PofuLive
+  ShieldConfiguration/      The shield's look and Pofu's line
+  ShieldAction/             The shield's buttons: a resist, or "Talk to Pofu"
+  DeviceActivityMonitor/    Usage thresholds, and the shield's return when a pass ends
 Packages/PofuKit/           Local Swift package with every module below the app
   Sources/PofuCore/         Pure domain: economy, friction ladder, passes, vitality, routing
-  Sources/PofuScreenTime/   Screen Time boundary and its simulator
+  Sources/PofuScreenTime/   Screen Time boundary, its simulator, and LiveScreenTimeService (iOS)
   Sources/PofuPersistence/  JSON snapshot and append-only event log (App Group or Application Support)
   Sources/PofuDesignSystem/ Design tokens (from design/tokens) and core components
   Sources/PofuCompanion/    The living companion: motion model, CompanionView, Metal shader
@@ -116,7 +122,70 @@ Limits of the free account:
 
 Once the paid membership is active, put the paid team ID in
 `Config/Local.xcconfig` and delete the `PRODUCT_BUNDLE_IDENTIFIER` line so
-the final identifier applies.
+the final identifier applies, then switch to the Screen Time build:
+[Membership day 1](#membership-day-1-the-screen-time-build).
+
+## Membership day 1: the Screen Time build
+
+The project has two app targets and two schemes, built from the same
+`App/` sources:
+
+| Scheme | Signs with | Entitlements | Extensions | Screen Time |
+|---|---|---|---|---|
+| **Pofu** (default) | A free Personal Team or the paid team | None | None | Off: the Shortcuts soft gate only |
+| **PofuLive** | The paid team only | Family Controls, App Group `group.com.erendenizk.pofu` | Shield configuration, shield action, device activity monitor | On: permission plus picker, the shield, measured usage ([ADR-0013](adr/0013-zero-setup-default-gate.md)) |
+
+`PofuLive` also sets the compilation condition `POFU_SCREEN_TIME_LIVE`, which
+is the only switch in the code (`ScreenTimeGate.isLiveBuild`). Without it,
+the app never touches FamilyControls, ManagedSettings, or DeviceActivity at
+run time, so the free build behaves exactly as before. A free Personal Team
+cannot sign the Family Controls entitlement, which is why the entitlements
+and extensions live only in `PofuLive` and never in the default scheme.
+
+Development builds can use Family Controls as soon as the paid team exists;
+only TestFlight and the App Store wait for Apple's **Family Controls
+(Distribution)** approval. To switch on day 1:
+
+1. `Config/Local.xcconfig`: set `DEVELOPMENT_TEAM` to the paid team ID and
+   delete the `PRODUCT_BUNDLE_IDENTIFIER` line. (`PofuLive` ignores that
+   line anyway: it always uses `POFU_BUNDLE_ID_BASE`, `com.erendenizk.pofu`,
+   and derives the extensions' identifiers from it.)
+2. `xcodegen generate` and open the project.
+3. Choose the **PofuLive** scheme and the iPhone, then Run. Xcode's
+   automatic signing registers the four identifiers, the App Group, and
+   Family Controls (Development).
+
+| Target | Bundle identifier |
+|---|---|
+| `PofuLive` | `com.erendenizk.pofu` |
+| `PofuShieldConfiguration` | `com.erendenizk.pofu.ShieldConfiguration` |
+| `PofuShieldAction` | `com.erendenizk.pofu.ShieldAction` |
+| `PofuActivityMonitor` | `com.erendenizk.pofu.DeviceActivityMonitor` |
+
+The full script, with the distribution request and a device checklist, is
+[docs/local/membership-day-1.md](local/membership-day-1.md).
+
+How the live gate works:
+
+- **Onboarding** asks for Screen Time access (`AuthorizationCenter`,
+  `.individual`) and shows the system app picker; the Shortcuts setup is a
+  fallback and, in Settings, "Live Pofu (optional)".
+- **The shield** (`ManagedSettingsStore` named `pofu.gate`) covers the
+  picked apps. "Skip it" counts a resist; "Talk to Pofu" posts a local
+  notification, because the shield cannot open Pofu. Tapping it (or opening
+  Pofu within 10 minutes) starts Hop! for that app.
+- **A pass from that Hop!** lifts the shield from that app until the pass
+  ends. A one-off DeviceActivity monitor puts it back (on the interval's
+  warning for passes under DeviceActivity's 15-minute minimum), and the app
+  re-checks on every foreground.
+- **Usage** is measured by DeviceActivity events at 15, 30, 45, and 60
+  guarded minutes a day; 60 is the breath limit of
+  [ADR-0015](adr/0015-care-over-currency.md).
+- **Extensions and the app talk only through the App Group:** each
+  extension writes small, versioned records (`ScreenTimeRecord`), one file
+  each, to `Pofu/ScreenTimeInbox/`; the app ingests them into its state and
+  event log on every foreground. The app writes the shield state
+  (`Pofu/screen-time-gate.json`) for the monitor to rebuild shields.
 
 ## Use Pofu daily (free account)
 
@@ -184,7 +253,7 @@ A calendar reminder every 6 days is the simplest way not to miss it.
 
 - **It is a soft gate.** Deleting or disabling the automation, or opening
   the app from the app switcher, gets past Pofu. The shield (hard gate)
-  needs the paid membership.
+  needs the paid membership and the `PofuLive` scheme.
 - **Foreground behavior is unproven on a device.** `CheckInIntent` asks
   the system to continue in the foreground (`IntentModes` with
   `.foreground(.dynamic)`), and the reopen during a pass is meant to stay
@@ -244,6 +313,9 @@ runner with Xcode 26 or newer:
 2. `brew install xcodegen` and `xcodegen generate`
 3. `xcodebuild build` of the Pofu scheme for the iOS Simulator, with code
    signing disabled
+4. The same for the PofuLive scheme, which also builds the three Screen
+   Time extensions. It proves they compile; signing them needs the paid
+   team, and running them needs a device.
 
 A newer push to the same branch cancels the run in progress. A pull request
 must be green before it merges.
@@ -255,8 +327,12 @@ must be green before it merges.
   `WallClock` for "now". Only `SystemWallClock` calls `Date()`.
 - **Every economy constant lives in `EconomyConfiguration`.** The rules
   are documented in [economy.md](product/economy.md); change both together.
-- **No Screen Time framework imports** outside the future
-  `LiveScreenTimeService` (FamilyControls needs the paid membership).
+- **No Screen Time framework imports** outside `LiveScreenTimeService.swift`
+  in `PofuScreenTime`, the `App/ScreenTime/` views (the picker), and the
+  extensions. Run-time use is gated by `ScreenTimeGate.isLiveBuild`.
+- **Extensions stay small.** They link `PofuCore`, `PofuPersistence`, and
+  `PofuScreenTime` (plus `PofuDesignSystem` for the shield's colors), never
+  `PofuCompanion`, and never read the app's snapshot.
 - **The soft gate's decisions are pure.** `CheckInIntent` only asks
   `CheckInRouter` (PofuCore) what to do and then does it; test routing
   changes there, not through the intent.

@@ -475,3 +475,17 @@ bonuses against an independent minute-by-minute reference model.
   is the 72-hour window for quiet time. Once
   DeviceActivity threshold events are available, a day is observed when
   usage is measured, whether or not the automation fired.
+
+## Measured guarded minutes (Screen Time build)
+
+With the live Screen Time gate (the `PofuLive` build,
+[development.md](../development.md#membership-day-1-the-screen-time-build)),
+guarded minutes are measured, not estimated. `GuardedUsageLadder` schedules
+DeviceActivity events at **15, 30, 45, and 60** guarded minutes a day; the
+app keeps the highest step reached today (`ScreenTimeLedger`), so it knows
+"at least 30 minutes" rather than a pass-based guess. The last step is the
+breath limit of [ADR-0015](../adr/0015-care-over-currency.md)
+(`isBreathLimitReached` at 60), ready for when the breath lands in
+`PofuCore`. A skip on the shield is recorded as a resisted check-in with
+`channel: .shield`, so it counts in the day's metrics and vitality like a
+skip in Hop!; it climbs no ladder and earns no seeds.

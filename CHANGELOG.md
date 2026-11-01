@@ -99,6 +99,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Art bible v1.1: amendment A1 (prop style block v2, one diorama camera,
   the style lock, the `world-props` palette, level-chain alignment, the
   generating-account rule).
+- Screen Time gate for membership day 1 (ADR-0013): a separate `PofuLive`
+  scheme with the Family Controls and App Group entitlements, so the
+  default `Pofu` scheme still signs with a free account.
+  `LiveScreenTimeService` (individual authorization, the app picker, a
+  named shield, DeviceActivity thresholds at 15, 30, 45 and 60 guarded
+  minutes); shield configuration, shield action and device activity
+  monitor extensions talking to the app through versioned records in an
+  App Group inbox; shield skips counted as resisted reaches; "Talk to
+  Pofu" answered by a notification that opens Hop! for that app, whose
+  pass lifts the shield until it ends; permission-plus-picker onboarding
+  with Shortcuts as "Live Pofu (optional)"; a CI build of the live scheme;
+  and a device script ([membership-day-1.md](docs/local/membership-day-1.md)).
 
 ### Fixed
 
