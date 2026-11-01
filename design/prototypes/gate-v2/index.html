@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pofu Kapı v2</title>
+<meta name="description" content="Pofu: Ekran Süresi ile ilk gün. Kurulum, kalkan, Hop!, nefes, geçiş ve Bugün; tıklanabilir prototip.">
+<style>
+@font-face { font-family: "Baloo 2"; src: url("fonts/baloo-2-latin-wght-normal.woff2") format("woff2"); font-weight: 400 800; font-display: swap; }
+@font-face { font-family: "Nunito"; src: url("fonts/nunito-latin-ext-wght-normal.woff2") format("woff2"); font-weight: 200 1000; font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Nunito"; src: url("fonts/nunito-latin-wght-normal.woff2") format("woff2"); font-weight: 200 1000; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* Tokens: Pofu's design language (cream canvas, plum ink, violet action, night-plum dark).
+   The app's text is SF Pro Rounded on the iPhone (ui-rounded); Nunito stands in elsewhere.
+   Baloo 2 has no ğ, ş or İ, so it is used only for the word "Hop!". */
+:root {
+  --bg: #FFF6EC; --surface: #FFFBF5; --raised: #FFFFFF; --sunken: #FBEBDD;
+  --ink: #2A1F2D; --ink-2: #66555F; --ink-3: #8E7D88; --line: rgba(42, 31, 45, .10);
+  --accent: #6C4FD8; --on-accent: #FFFFFF; --tint: #EEE8FF; --on-tint: #553BB8;
+  --success: #2F7349; --warning: #8A5A00; --honey: #F5B83D; --lav: #F1ECFF; --lav-2: #E3DAFF;
+  --glass: rgba(255, 251, 245, .72); --glass-line: rgba(255, 255, 255, .6);
+  --sys: -apple-system, "SF Pro Text", system-ui, "Nunito", sans-serif;
+  --body: ui-rounded, "SF Pro Rounded", "Nunito", system-ui, sans-serif;
+  --display: "Baloo 2", ui-rounded, "Nunito", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #15111C; --surface: #1E1828; --raised: #2A2236; --sunken: #15111C;
+  --ink: #FFF6EC; --ink-2: #B8A8B1; --ink-3: #85768A; --line: rgba(255, 246, 236, .12);
+  --accent: #B9A2FF; --on-accent: #15111C; --tint: #2E2547; --on-tint: #CFC0FF;
+  --success: #8FD4A4; --warning: #F7C873; --lav: #1E1828; --lav-2: #2A2236;
+  --glass: rgba(42, 34, 54, .72); --glass-line: rgba(255, 255, 255, .12); color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #15111C; --surface: #1E1828; --raised: #2A2236; --sunken: #15111C;
+  --ink: #FFF6EC; --ink-2: #B8A8B1; --ink-3: #85768A; --line: rgba(255, 246, 236, .12);
+  --accent: #B9A2FF; --on-accent: #15111C; --tint: #2E2547; --on-tint: #CFC0FF;
+  --success: #8FD4A4; --warning: #F7C873; --lav: #1E1828; --lav-2: #2A2236;
+  --glass: rgba(42, 34, 54, .72); --glass-line: rgba(255, 255, 255, .12); color-scheme: dark; }
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; }
+body { background: #0f0c13; font: 500 16px/1.4 var(--body); color: var(--ink); overflow: hidden; -webkit-text-size-adjust: 100%; }
+button { font: inherit; color: inherit; border: 0; background: none; padding: 0; cursor: pointer; touch-action: manipulation; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 10px; }
+img { display: block; user-select: none; -webkit-user-drag: none; }
+
+/* The phone fills a phone; on a desktop it becomes a 390 x 844 frame. */
+#phone { position: relative; width: 100vw; height: 100vh; height: 100dvh; overflow: hidden; background: var(--bg); margin: 0 auto; }
+@media (min-width: 520px) and (min-height: 900px) {
+  body { display: grid; place-items: center; }
+  #phone { width: 390px; height: 844px; border-radius: 48px; box-shadow: 0 0 0 10px #241d2b, 0 30px 80px rgba(0,0,0,.5); }
+}
+.layer { position: absolute; inset: 0; }
+#screen { z-index: 1; }
+#overlay { z-index: 20; pointer-events: none; }
+#overlay > * { pointer-events: auto; }
+#status { z-index: 40; pointer-events: none; height: 54px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px 0 36px; font: 600 16px var(--sys); color: var(--sb, var(--ink)); bottom: auto; }
+#status .icons { display: flex; gap: 6px; align-items: center; font-size: 12px; }
+#status .bat { width: 25px; height: 12px; border: 1.5px solid currentColor; border-radius: 4px; position: relative; opacity: .9; }
+#status .bat::after { content: ""; position: absolute; inset: 1.5px 6px 1.5px 1.5px; background: currentColor; border-radius: 1.5px; }
+/* Dynamic Island: also hosts the Live Activity (compact). */
+#island { position: absolute; z-index: 45; top: 11px; left: 50%; transform: translateX(-50%); height: 37px; min-width: 124px; border-radius: 20px; background: #000; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 12px; color: #fff; font: 700 15px var(--sys); transition: min-width .35s cubic-bezier(.3,1.3,.5,1); }
+#island.live { min-width: 200px; }
+#island .lp { width: 24px; height: 24px; border-radius: 50%; background: #F4C7A4 url("assets/pofu.webp") center/120% no-repeat; display: none; }
+#island .lt { display: none; font-variant-numeric: tabular-nums; color: #CFC0FF; }
+#island.live .lp, #island.live .lt { display: block; }
+#homebar { position: absolute; z-index: 46; bottom: 0; left: 50%; transform: translateX(-50%); width: 180px; height: 44px; display: grid; place-items: center; }
+#homebar::before { content: ""; width: 134px; height: 5px; border-radius: 3px; background: var(--hb, rgba(42,31,45,.55)); }
+#homebar[hidden] { display: none; }
+
+.scr { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 62px 20px 34px; animation: in .28s ease both; }
+@keyframes in { from { opacity: 0; transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) { .scr, .sheet, .banner, .alert { animation-duration: .01s !important; } }
+.grow { flex: 1; }
+.center { text-align: center; }
+h1, h2 { margin: 0; text-wrap: balance; }
+.t-display { font: 900 34px/1.08 var(--body); letter-spacing: -.01em; }
+.t-title { font: 800 26px/1.15 var(--body); }
+.t-title2 { font: 800 22px/1.2 var(--body); }
+.t-body { font: 500 17px/1.4 var(--body); color: var(--ink-2); }
+.t-foot { font: 600 13px/1.35 var(--body); color: var(--ink-2); }
+.hop-word { font: 800 44px/1 var(--display); color: var(--accent); }
+.btn { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 52px; border-radius: 26px; background: var(--accent); color: var(--on-accent); font: 800 17px var(--body); padding: 0 20px; transition: transform .16s; }
+.btn:active { transform: scale(.97); }
+.btn.quiet { background: var(--tint); color: var(--on-tint); }
+.btn.plain { background: none; color: var(--accent); min-height: 44px; }
+.btn[disabled] { opacity: .45; }
+.stack { display: grid; gap: 10px; }
+.pofu { margin: 0 auto; filter: drop-shadow(0 14px 18px rgba(138, 79, 43, .18)); transform-origin: 50% 100%; animation: breathe 3.6s ease-in-out infinite; }
+@keyframes breathe { 50% { transform: scale(1.012, 1.025); } }
+.disc { width: 112px; height: 112px; border-radius: 50%; background: #FDD9CF; margin: 0 auto; display: grid; place-items: center; overflow: hidden; }
+.disc img { width: 96px; }
+.rows { display: grid; gap: 14px; margin: 22px 0; }
+.row { display: grid; grid-template-columns: 36px 1fr; gap: 12px; align-items: start; font: 600 16px/1.35 var(--body); }
+.sym { width: 32px; height: 32px; border-radius: 10px; background: var(--tint); color: var(--on-tint); display: grid; place-items: center; font-size: 17px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 16px; }
+.mock-tag { pointer-events: none; position: absolute; z-index: 5; top: 58px; right: 12px; font: 800 11px var(--sys); letter-spacing: .02em; color: #fff; background: rgba(108, 79, 216, .9); border-radius: 8px; padding: 3px 7px; }
+.toast { position: absolute; z-index: 60; left: 16px; right: 16px; bottom: 44px; background: rgba(30, 24, 40, .94); color: #FFF6EC; border-radius: 16px; padding: 12px 14px; font: 600 14px/1.35 var(--body); animation: in .25s ease both; }
+
+/* World scenes */
+.world { position: absolute; inset: 0; background: linear-gradient(#BFE3F2, #EAF4E9 55%, #FFF1DC); overflow: hidden; }
+.night .world, .world.night { background: linear-gradient(#1E1828, #2A2236 60%, #3A3048); }
+.world .isle { position: absolute; left: 50%; top: 36%; width: 116%; transform: translate(-50%, -50%); }
+.world .mist { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 55%, rgba(255,255,255,.0), rgba(255,255,255,.85) 70%); transition: opacity 2s ease; }
+.world.blur .isle { filter: blur(10px) saturate(.9); }
+.world.dim::after { content: ""; position: absolute; inset: 0; background: rgba(255, 246, 236, .45); }
+.night .world.dim::after, [data-theme="dark"] .world.dim::after { background: rgba(21, 17, 28, .45); }
+
+/* System UI mocks: recognizably iOS, marked "taslak" */
+.alert-dim { position: absolute; inset: 0; background: rgba(0,0,0,.32); display: grid; place-items: center; z-index: 30; }
+.alert { width: 272px; border-radius: 16px; background: rgba(242, 242, 247, .97); color: #000; font-family: var(--sys); text-align: center; overflow: hidden; animation: pop .25s cubic-bezier(.3,1.4,.5,1) both; }
+@keyframes pop { from { transform: scale(1.12); opacity: 0; } }
+.alert .ab { padding: 18px 16px 16px; }
+.alert h3 { margin: 0 0 4px; font: 600 17px/1.3 var(--sys); }
+.alert p { margin: 0; font: 400 13px/1.35 var(--sys); }
+.alert .acts { display: flex; border-top: .5px solid rgba(60,60,67,.3); }
+.alert .acts button { flex: 1; min-height: 44px; font: 400 17px var(--sys); color: #007AFF; }
+.alert .acts button + button { border-left: .5px solid rgba(60,60,67,.3); }
+.alert .acts button.b { font-weight: 600; }
+.faceid { width: 150px; height: 150px; border-radius: 30px; background: rgba(30,30,30,.86); display: grid; place-items: center; color: #fff; font: 600 15px var(--sys); gap: 4px; animation: pop .25s both; }
+.faceid i { font-style: normal; font-size: 54px; color: #34C759; }
+
+/* Springboard */
+.sb { position: absolute; inset: 0; background: linear-gradient(160deg, #5B4B8A, #C9879E 55%, #F4C7A4); padding: 66px 22px 0; }
+.sb .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px 12px; }
+.app { display: grid; justify-items: center; gap: 5px; color: #fff; font: 500 12px var(--sys); text-shadow: 0 1px 2px rgba(0,0,0,.25); min-height: 44px; }
+.app .ic { width: 62px; height: 62px; border-radius: 15px; display: grid; place-items: center; font: 800 26px var(--sys); color: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.18); overflow: hidden; }
+.ic.ig { background: radial-gradient(circle at 30% 110%, #FDCB52, #E1306C 50%, #833AB4); }
+.ic.yt { background: #fff; color: #FF0033; }
+.ic.tt { background: #111; color: #fff; }
+.ic.wa { background: #25D366; }
+.ic.po { background: #FDD9CF; }
+.ic.po img { width: 74px; margin-top: 8px; }
+.ic.se { background: #8E8E93; }
+.ic.cl { background: #fff; color: #111; font-size: 20px; }
+.ic.ph { background: #fff; color: #FF9500; }
+.sb .dock { position: absolute; left: 12px; right: 12px; bottom: 22px; height: 92px; border-radius: 32px; background: rgba(255,255,255,.28); backdrop-filter: blur(18px); display: flex; justify-content: space-around; align-items: center; }
+.sb .dock .app span { display: none; }
+.hint-ring { animation: ring 1.6s ease-in-out infinite; border-radius: 18px; }
+@keyframes ring { 50% { box-shadow: 0 0 0 6px rgba(255,255,255,.75); } }
+.widget-s { grid-column: span 2; grid-row: span 2; border-radius: 22px; background: linear-gradient(#FFF6EC, #FBEBDD); color: var(--ink); padding: 12px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; text-shadow: none; min-height: 150px; }
+.widget-s img { position: absolute; right: -6px; bottom: -6px; width: 84px; }
+.widget-s b { font: 900 30px/1 var(--body); font-variant-numeric: tabular-nums; }
+.calm-ring { width: 34px; height: 34px; border-radius: 50%; background: conic-gradient(#6C4FD8 calc(var(--p) * 1%), rgba(108,79,216,.15) 0); display: grid; place-items: center; }
+.calm-ring::after { content: ""; width: 26px; height: 26px; border-radius: 50%; background: #FFF6EC; position: absolute; }
+.calm-ring span { position: relative; z-index: 1; font: 900 10px var(--body); }
+
+/* The shield (Apple's template, filled by Pofu) */
+.shield { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; padding: 0 28px 54px; font-family: var(--sys); text-align: center; background: var(--sh-bg); color: var(--sh-t); }
+.shield .top { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding-top: 40px; }
+.shield .ic60 { width: 76px; height: 76px; }
+.shield h2 { font: 700 26px/1.2 var(--sys); color: var(--sh-t); margin-top: 10px; }
+.shield p { margin: 0; font: 400 17px/1.35 var(--sys); color: var(--sh-s); white-space: pre-line; }
+.shield .p1 { width: 100%; min-height: 50px; border-radius: 14px; background: var(--sh-p); color: var(--sh-pl); font: 600 17px var(--sys); }
+.shield .p2 { min-height: 48px; margin-top: 8px; padding: 0 20px; color: var(--sh-2); font: 600 17px var(--sys); }
+.menu-dim { position: absolute; inset: 0; background: rgba(0,0,0,.12); z-index: 30; }
+.menu { position: absolute; z-index: 31; left: 0; right: 0; margin: 0 auto; bottom: 128px; width: 260px; border-radius: 14px; background: rgba(250,250,250,.96); color: #000; font: 400 17px var(--sys); overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,.25); animation: pop .22s both; }
+.menu button { display: block; width: 100%; min-height: 46px; text-align: left; padding: 0 16px; border-bottom: .5px solid rgba(60,60,67,.25); }
+.menu button.cancel { font-weight: 600; color: #007AFF; text-align: center; border: 0; border-top: 6px solid rgba(60,60,67,.12); }
+
+/* Notification banner */
+.banner { position: absolute; z-index: 50; top: 54px; left: 8px; right: 8px; border-radius: 22px; background: rgba(245, 242, 248, .92); backdrop-filter: blur(20px); color: #000; display: grid; grid-template-columns: 38px 1fr auto; gap: 10px; align-items: center; padding: 12px 14px; font-family: var(--sys); box-shadow: 0 8px 30px rgba(0,0,0,.25); animation: drop .45s cubic-bezier(.3,1.25,.5,1) both; min-height: 72px; text-align: left; }
+@keyframes drop { from { transform: translateY(-120%); } }
+.banner .bi { width: 38px; height: 38px; border-radius: 9px; background: #FDD9CF url("assets/pofu.webp") center 30%/150% no-repeat; }
+.banner b { font: 600 15px var(--sys); display: block; }
+.banner span { font: 400 15px/1.3 var(--sys); }
+.banner small { align-self: start; color: #6e6e73; font: 400 13px var(--sys); }
+
+/* Hop! */
+.chip { display: inline-flex; align-items: center; gap: 8px; align-self: center; padding: 6px 14px 6px 6px; border-radius: 22px; background: var(--glass); border: 1px solid var(--glass-line); backdrop-filter: blur(14px); font: 700 15px var(--body); color: var(--ink-2); }
+.chip .ci { width: 28px; height: 28px; border-radius: 8px; }
+.bubble { align-self: center; background: var(--raised); border-radius: 20px; padding: 10px 16px; font: 700 17px/1.3 var(--body); box-shadow: 0 6px 18px rgba(42,31,45,.10); position: relative; max-width: 300px; text-align: center; }
+.bubble::after { content: ""; position: absolute; left: 50%; bottom: -7px; width: 14px; height: 14px; background: var(--raised); transform: translateX(-50%) rotate(45deg); border-radius: 3px; }
+.calm { align-self: center; display: inline-flex; gap: 6px; align-items: center; font: 800 14px var(--body); padding: 6px 12px; border-radius: 16px; background: var(--glass); border: 1px solid var(--glass-line); color: var(--ink); }
+.care { background: var(--glass); border: 1px solid var(--glass-line); backdrop-filter: blur(16px); border-radius: 22px; overflow: hidden; }
+.care button { display: grid; grid-template-columns: 1fr auto; width: 100%; text-align: left; padding: 12px 16px; min-height: 60px; align-items: center; gap: 2px 10px; }
+.care button + button { border-top: 1px solid var(--line); }
+.care b { font: 800 17px var(--body); color: var(--accent); }
+.care span { grid-column: 1; font: 600 14px/1.3 var(--body); color: var(--ink-2); }
+.care i { grid-row: 1 / span 2; grid-column: 2; font-style: normal; color: var(--ink-3); font-size: 20px; }
+.reasons { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+button.bubble { min-height: 44px; }
+.reasons button { min-height: 44px; padding: 0 14px; border-radius: 18px; background: var(--glass); border: 1px solid var(--line); font: 700 14px var(--body); }
+.reasons button[aria-pressed="true"] { background: var(--tint); color: var(--on-tint); }
+.beads { display: flex; flex-wrap: wrap; gap: 6px; }
+.bead { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--accent); }
+.bead.on { background: var(--accent); }
+.bead.drop { animation: beadDrop .55s cubic-bezier(.3,1.5,.5,1) both; }
+@keyframes beadDrop { from { transform: translateY(-30px) scale(.4); opacity: 0; } }
+.seed { position: absolute; width: 16px; height: 22px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: linear-gradient(90deg, #3a2a1f 0 30%, #f3e6cf 30% 45%, #3a2a1f 45%); animation: seedHop .9s cubic-bezier(.3,.9,.5,1) both; }
+@keyframes seedHop { 0% { transform: translate(0,0) scale(.6); opacity: 0; } 40% { transform: translate(40px,-80px) scale(1); opacity: 1; } 100% { transform: translate(110px,40px) scale(.7); opacity: 0; } }
+.hopproud { animation: hopup .6s cubic-bezier(.3,1.4,.5,1) both !important; }
+@keyframes hopup { 30% { transform: translateY(-28px) scale(.96, 1.04); } 60% { transform: translateY(0) scale(1.06, .94); } }
+.ring { width: 56px; height: 56px; border-radius: 50%; background: conic-gradient(var(--accent) calc(var(--p) * 1%), rgba(108,79,216,.15) 0); display: grid; place-items: center; }
+.ring::after { content: ""; width: 44px; height: 44px; border-radius: 50%; background: var(--surface); }
+
+/* Breathing room */
+.room { position: absolute; inset: 0; background: radial-gradient(circle at 50% 42%, var(--lav-2), var(--lav) 70%); }
+.orb { width: 230px; height: 230px; border-radius: 50%; margin: 0 auto; background: radial-gradient(circle at 50% 40%, rgba(255,255,255,.9), rgba(185,162,255,.35) 60%, rgba(185,162,255,.12)); display: grid; place-items: center; transform: scale(.82); }
+.orb img { width: 150px; }
+
+/* Pofu Home and sheets */
+.topband { position: relative; z-index: 3; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.pill { display: inline-flex; gap: 6px; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 22px; background: var(--glass); border: 1px solid var(--glass-line); backdrop-filter: blur(14px); font: 800 14px var(--body); }
+.round { width: 44px; height: 44px; border-radius: 50%; background: var(--glass); border: 1px solid var(--glass-line); display: grid; place-items: center; font-size: 19px; }
+.nbanner { position: relative; z-index: 3; display: grid; grid-template-columns: 24px 1fr auto; gap: 10px; align-items: center; background: var(--raised); border-radius: 16px; padding: 10px 12px; font: 700 15px/1.3 var(--body); box-shadow: 0 2px 10px rgba(42,31,45,.1); }
+.nbanner .w { color: var(--warning); font-size: 18px; }
+.nbanner button { min-height: 44px; padding: 0 12px; color: var(--accent); font: 800 15px var(--body); }
+.today { position: relative; z-index: 3; text-align: left; width: 100%; background: var(--glass); border: 1px solid var(--glass-line); backdrop-filter: blur(16px); border-radius: 24px; padding: 14px 16px; display: grid; gap: 8px; min-height: 44px; }
+.today .l1 { display: flex; justify-content: space-between; font: 800 16px var(--body); }
+.today .l2 { font: 600 14px var(--body); color: var(--ink-2); }
+.sheet-dim { position: absolute; inset: 0; background: rgba(21, 17, 28, .18); z-index: 30; }
+.sheet { position: absolute; z-index: 31; left: 0; right: 0; bottom: 0; max-height: 86%; overflow: auto; background: var(--surface); border-radius: 32px 32px 0 0; padding: 10px 20px 40px; box-shadow: 0 -10px 40px rgba(0,0,0,.18); animation: up .38s cubic-bezier(.3,1.1,.5,1) both; }
+@keyframes up { from { transform: translateY(100%); } }
+.grab { width: 36px; height: 5px; border-radius: 3px; background: var(--ink-3); opacity: .5; margin: 0 auto 12px; }
+.sheet h2 { font: 800 24px var(--body); }
+.list { background: var(--raised); border-radius: 18px; overflow: hidden; margin-top: 12px; }
+.li { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; padding: 12px 16px; align-items: center; min-height: 52px; font: 600 16px/1.3 var(--body); }
+.li + .li { border-top: 1px solid var(--line); }
+.li small { grid-column: 1 / -1; font: 600 13px var(--body); color: var(--ink-2); }
+.ok { color: var(--success); font-weight: 800; }
+.bad { color: var(--warning); font-weight: 800; }
+.seg { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 6px; grid-column: 1 / -1; }
+.seg i { height: 8px; border-radius: 4px; background: rgba(108,79,216,.15); }
+.seg i.on { background: var(--accent); }
+.closex { position: absolute; top: 14px; right: 14px; }
+
+/* Picker mock (Apple) */
+.picker { position: absolute; inset: 0; z-index: 30; background: rgba(0,0,0,.3); }
+.picker .pk { position: absolute; inset: 52px 0 0; background: #F2F2F7; color: #000; border-radius: 12px 12px 0 0; font-family: var(--sys); animation: up .35s both; display: flex; flex-direction: column; }
+.pk header { display: flex; justify-content: space-between; align-items: center; padding: 10px 10px 4px; }
+.pk header button { min-height: 44px; padding: 0 8px; color: #007AFF; font: 400 17px var(--sys); }
+.pk header button.b { font-weight: 600; }
+.pk h3 { margin: 0; font: 600 17px var(--sys); }
+.pk .search { margin: 6px 16px 10px; background: rgba(118,118,128,.12); border-radius: 10px; padding: 8px 10px; color: #8E8E93; font-size: 17px; }
+.pk .grp { margin: 0 16px; background: #fff; border-radius: 12px; overflow: auto; flex: 0 1 auto; }
+.pk .it { display: grid; grid-template-columns: 1fr 44px; align-items: center; gap: 8px; padding: 0 12px; min-height: 48px; border-bottom: .5px solid rgba(60,60,67,.2); width: 100%; text-align: left; font: 400 17px var(--sys); }
+.pk .itb { display: grid; grid-template-columns: 30px 32px 1fr; align-items: center; gap: 8px; min-height: 48px; text-align: left; font: 400 17px var(--sys); }
+.pk .it.sub { padding-left: 50px; grid-template-columns: 30px 32px 1fr; gap: 8px; }
+.pk .chev { min-width: 44px; min-height: 44px; display: grid; place-items: center; }
+.pk .chk { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid #C7C7CC; display: grid; place-items: center; font-size: 13px; color: #fff; }
+.pk .chk.on { background: #007AFF; border-color: #007AFF; }
+.pk .mini { width: 28px; height: 28px; border-radius: 7px; font-size: 13px; display: grid; place-items: center; line-height: 1; box-shadow: none; }
+.pk .chev { color: #C7C7CC; font-size: 15px; transition: transform .2s; }
+.pk .chev.open { transform: rotate(90deg); }
+.pk .foot { padding: 10px 20px; color: #6e6e73; font-size: 13px; }
+
+/* Instagram stand-in */
+.feed { position: absolute; inset: 0; background: #fff; color: #111; padding: 60px 0 0; font-family: var(--sys); overflow: hidden; }
+.feed .fh { display: flex; justify-content: space-between; padding: 8px 14px; font: 700 22px var(--sys); }
+.feed .post { margin: 8px 0 18px; }
+.feed .ph { height: 340px; background: linear-gradient(135deg, #e9e3f5, #f6e0d6); }
+.feed .meta { padding: 8px 14px; color: #666; font-size: 14px; }
+
+/* Lock screen */
+.lock { position: absolute; inset: 0; background: linear-gradient(180deg, #2A2236, #5B4B8A 60%, #C9879E); color: #fff; font-family: var(--sys); padding: 70px 16px 0; text-align: center; }
+.lock .date { font: 600 19px var(--sys); opacity: .9; }
+.lock .clock { font: 700 92px/1 var(--sys); letter-spacing: -2px; margin: 2px 0 10px; }
+.lock .wrow { display: flex; justify-content: center; gap: 10px; margin-bottom: 14px; }
+.lw { background: rgba(255,255,255,.18); border-radius: 18px; padding: 8px 12px; text-align: left; font: 600 13px/1.3 var(--sys); min-height: 64px; display: flex; flex-direction: column; justify-content: center; }
+.lw.circ { width: 64px; height: 64px; border-radius: 50%; padding: 0; align-items: center; }
+.la { margin: 0 0 10px; background: rgba(28, 22, 36, .78); border-radius: 24px; padding: 14px 16px; text-align: left; display: grid; grid-template-columns: 48px 1fr auto; gap: 4px 12px; align-items: center; }
+.la .lp { grid-row: span 2; width: 48px; height: 48px; border-radius: 50%; background: #FDD9CF url("assets/pofu.webp") center 30%/140% no-repeat; }
+.la .tm { font: 700 34px var(--sys); font-variant-numeric: tabular-nums; color: #CFC0FF; grid-row: span 2; }
+.la .bar { grid-column: 1 / -1; height: 6px; border-radius: 3px; background: rgba(255,255,255,.15); overflow: hidden; }
+.la .bar i { display: block; height: 100%; background: #B9A2FF; }
+.la .ft { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; font-size: 13px; opacity: .85; }
+.la .ft button { min-height: 44px; padding: 0 14px; border-radius: 22px; background: rgba(255,255,255,.16); color: #fff; font: 600 14px var(--sys); }
+
+/* Prototype controls (not product UI) */
+#tab { position: absolute; z-index: 70; right: 0; top: 0; width: 64px; height: 44px; border-radius: 0 0 0 14px; background: rgba(42,31,45,.78); color: #fff; font: 800 11px var(--sys); display: grid; place-items: center; }
+#panel { position: absolute; z-index: 71; inset: 0; background: rgba(15,12,19,.5); display: none; }
+#panel.open { display: block; }
+#panel .pp { position: absolute; right: 0; top: 0; bottom: 0; width: min(340px, 88%); background: #1E1828; color: #FFF6EC; padding: 56px 16px 24px; overflow: auto; font: 600 14px/1.35 var(--sys); }
+#panel h3 { margin: 16px 0 6px; font: 800 13px var(--sys); color: #B8A8B1; }
+#panel .opts { display: flex; flex-wrap: wrap; gap: 6px; }
+#panel .opts button { min-height: 44px; padding: 0 12px; border-radius: 12px; background: #2A2236; color: #FFF6EC; font: 700 14px var(--sys); }
+#panel .opts button[aria-pressed="true"] { background: #B9A2FF; color: #15111C; }
+#panel .log { margin-top: 10px; font: 500 12px/1.45 ui-monospace, monospace; color: #B8A8B1; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<div id="phone" aria-label="Pofu kapı v2 prototipi">
+  <div id="screen" class="layer"></div>
+  <div id="overlay" class="layer"></div>
+  <div id="status" class="layer"><span id="clock">9:41</span><span class="icons">●●●● <span class="bat"></span></span></div>
+  <div id="island" aria-hidden="true"><span class="lp"></span><span class="lt" id="islandTime"></span></div>
+  <button id="homebar" aria-label="Ana ekrana dön (yukarı kaydır)"></button>
+  <button id="tab" aria-label="Senaryo panelini aç">Senaryo</button>
+  <div id="panel" role="dialog" aria-label="Senaryo"><div class="pp" id="pp"></div></div>
+</div>
+<script>
+'use strict';
+// ------------------------------------------------------------------ state
+const $ = (s, r = document) => r.querySelector(s);
+const scr = $('#screen'), ov = $('#overlay'), phone = $('#phone');
+const APPS = {
+  instagram: { name: 'Instagram', acc: `Instagram'ı`, cls: 'ig', g: '◎' },
+  youtube: { name: 'YouTube', acc: `YouTube'u`, cls: 'yt', g: '▶' },
+  tiktok: { name: 'TikTok', acc: `TikTok'u`, cls: 'tt', g: '♪' },
+};
+const fresh = () => ({
+  view: 'ob1', onboarded: false, demo: false,
+  time: 'day', theme: null, notif: null, submenu: true, revoked: false, empty: false, tired: false,
+  overLimit: false, overLimitOpens: 0, picked: [], category: false,
+  reaches: 0, resisted: 0, hourReach: 0, jealousToday: 0, lastJealous: false, lastTitle: '',
+  calm: 1.6, measured: 30, pofuMin: 3, minutesToday: 0, skipGifts: 0,
+  pass: null, justEnded: null, request: null, lastQuick: -1e9, clockMin: 0,
+  day: 0, widget: false, log: [], denies: 0,
+});
+let S = fresh();
+let timers = [];
+const later = (fn, ms) => { const t = setTimeout(fn, ms); timers.push(t); return t; };
+const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
+const log = (m) => { S.log.unshift(m); S.log = S.log.slice(0, 40); };
+const halve = (c) => Math.floor((1 + (c - 1) / 2) * 10 + 1e-9) / 10;
+const fmt = (n) => String(n.toFixed(1)).replace('.', ',');
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+// Follows the system appearance unless the scenario panel overrides it; bedtime is always dark.
+const isDark = () => S.theme === 'dark' || S.time === 'night' || (!S.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+function setTheme() {
+  if (S.theme || S.time === 'night') document.documentElement.dataset.theme = isDark() ? 'dark' : 'light';
+  else delete document.documentElement.dataset.theme;
+}
+function chrome({ sb = 'var(--ink)', hb = 'rgba(42,31,45,.55)', home = true } = {}) {
+  phone.style.setProperty('--sb', sb); phone.style.setProperty('--hb', hb);
+  $('#homebar').hidden = !home;
+}
+function islandLive() {
+  const live = S.pass && S.pass.la;
+  $('#island').classList.toggle('live', !!live);
+  if (live) $('#islandTime').textContent = mmss(remaining());
+}
+const remaining = () => S.pass ? Math.max(0, Math.round((S.pass.end - Date.now()) / 1000)) : 0;
+const mmss = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+setInterval(() => { if (S.pass) { islandLive(); const t = $('#laTime'); if (t) t.textContent = mmss(remaining()); const b = $('#laBar'); if (b) b.style.width = (100 * remaining() / (S.pass.mins * 60)) + '%'; if (remaining() === 0) expire(); } }, 500);
+
+function toast(msg, ms = 2600) { const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = msg; phone.appendChild(t); setTimeout(() => t.remove(), ms); }
+
+// ------------------------------------------------------------------ router
+function go(view, arg) {
+  clearTimers(); ov.innerHTML = ''; S.view = view; S.arg = arg; setTheme();
+  (V[view] || V.springboard)(arg); islandLive(); renderPanel();
+}
+function overlay(html) { ov.innerHTML = html; return ov; }
+function closeOverlay() { ov.innerHTML = ''; }
+
+// ------------------------------------------------------------------ shield copy engine (mirrors gate-v2.md §5.6)
+function shieldModel(appKey) {
+  const a = APPS[appKey], A = a.name, c = fmt(S.calm);
+  const prior = S.reaches - 1; // this reach is already counted
+  const tally = prior >= 1 ? `\nBugün ${S.resisted} / ${prior} boş verdin.` : '';
+  const pick = (arr) => { let i = (S.day + S.reaches) % arr.length; if (arr.length > 1 && arr[i][0] === S.lastTitle) i = (i + 1) % arr.length; return arr[i]; };
+  const quickOk = (S.clockMin - S.lastQuick) >= 20 && !S.overLimit;
+  const menu = S.submenu && quickOk ? ['3 dakika bakacağım', `Pofu'yla aç`] : null;
+  const base = { icon: 'pofu', primary: 'Boş ver', secondary: menu ? 'Açmam lazım' : `Pofu'yla aç`, menu, ctx: 'default', palette: 'day' };
+  if (S.request && S.request.app === appKey) {
+    return S.notif
+      ? { ...base, ctx: 'waiting', icon: 'pofu-excited', title: 'Bildirime dokun ↑', sub: 'Yukarıda seni bekliyorum.', secondary: null, menu: null }
+      : { ...base, ctx: 'waiting-off', icon: 'pofu-excited', title: `Pofu'yu kendin aç`, sub: 'Bildirimler kapalı. 10 dakika içinde açarsan seni beklerim.', secondary: null, menu: null };
+  }
+  if (S.justEnded && S.justEnded.app === appKey) {
+    return { ...base, ctx: 'expiry', icon: 'pofu-relieved', title: 'Süre doldu.', sub: `${S.justEnded.mins} dakika bitti. Huzur ×${c} seni bekliyor.`, primary: 'Bitti, kapat', secondary: 'Biraz daha', menu: S.submenu && quickOk ? menu : null };
+  }
+  if (S.overLimit) {
+    const secs = S.overLimitOpens >= 3 ? 10 : 5;
+    return { ...base, ctx: 'breath', palette: 'breath', icon: 'pofu-breathe', title: S.time === 'night' ? 'Şşş. Önce bir nefes.' : 'Bugünkü saatimiz doldu.', sub: `Açmadan önce benimle bir nefes: ${secs} saniye.` + tally, secondary: `Pofu'yla nefes al`, menu: null, primary: S.time === 'night' ? 'İyi geceler' : 'Boş ver' };
+  }
+  if (S.time === 'night') {
+    const [t] = pick([['Şşş, geç oldu.'], ['Gece yarısı akışı mı?']]);
+    return { ...base, ctx: 'bedtime', palette: 'night', icon: 'pofu-breathe', title: t, sub: `${A} da uyuyor. (Uyumuyor. Ama uyumalı.)` + tally, primary: 'İyi geceler' };
+  }
+  if (S.tired) return { ...base, ctx: 'tired', icon: 'pofu-unwell', title: 'Biraz yorgunum.', sub: 'Birlikte biraz ara verelim mi?' + tally };
+  if (S.hourReach >= 3) {
+    if (S.jealousToday < 3 && !S.lastJealous) {
+      const [t] = pick([[`Yine mi ${A}?`], [`Hı. ${A}. Anladım.`]]);
+      return { ...base, ctx: 'jealous', icon: 'pofu-jealous', title: t, sub: `Bu saat ${S.hourReach}. kez. Onda olup bende olmayan ne?` + tally };
+    }
+    return { ...base, ctx: 'kind', title: 'Buradayım.', sub: `Bu saat ${S.hourReach}. kez. Huzur yine büyür, acele yok.` + tally };
+  }
+  if (S.hourReach === 2) {
+    const [t] = pick([['Az önce de geldik.'], ['Bir daha mı?']]);
+    return { ...base, ctx: 'second', title: t, sub: `Huzur ×${c} · büyüyor. Boş verirsen büyümeye devam eder.` + tally };
+  }
+  const proud = S.resisted >= 3 && S.resisted * 2 >= prior;
+  const icon = proud ? 'pofu-proud' : 'pofu';
+  if (S.time === 'morning') { const [t] = pick([['Günaydın. Önce ben.'], ['Güne akışla mı başlıyoruz?']]); return { ...base, icon, ctx: 'morning', title: t, sub: `Güne akışla başlamayalım. Huzur ×${c}.` + tally }; }
+  if (S.time === 'evening') { const [t] = pick([['Akşam akışı mı?'], ['Günün en zor saati.']]); return { ...base, icon, ctx: 'evening', title: t, sub: (S.calm >= 1.8 ? `Bu saatler en zoru. Huzur ×${c}, neredeyse dolu.` : `Bu saatler en zoru. Huzur ×${c} · büyüyor.`) + tally }; }
+  const [t] = pick([['Hop! Bir saniye.'], [`${A} bekleyebilir.`]]);
+  return { ...base, icon, ctx: 'day', title: t, sub: `Ben buradayım. Huzur ×${c} · büyüyor.` + tally };
+}
+const PALETTES = {
+  day: { light: ['#FFF6EC', '#2A1F2D', '#66555F', '#6C4FD8', '#FFFFFF', '#6C4FD8'], dark: ['#15111C', '#FFF6EC', '#B8A8B1', '#B9A2FF', '#15111C', '#B9A2FF'] },
+  night: { light: ['#15111C', 'rgba(255,246,236,.92)', '#B8A8B1', '#8F74F0', '#15111C', '#B8A8B1'] },
+  breath: { light: ['#F1ECFF', '#2A1F2D', '#66555F', '#6C4FD8', '#FFFFFF', '#6C4FD8'], dark: ['#1E1828', '#FFF6EC', '#B8A8B1', '#B9A2FF', '#15111C', '#B9A2FF'] },
+};
+
+// ------------------------------------------------------------------ views
+const V = {};
+const pofuImg = (name, w, extra = '') => `<img class="pofu ${extra}" src="assets/${name}.webp" width="${w}" alt="Pofu" style="width:${w}px">`;
+
+// O1 welcome (world)
+V.ob1 = () => {
+  chrome();
+  scr.innerHTML = `<div class="world" id="w"><img class="isle" src="assets/isle-home.webp" alt=""><div class="mist"></div></div>
+  <div class="scr" style="z-index:2">
+    <div class="grow"></div>
+    ${pofuImg('pofu-hero', 150)}
+    <div class="center stack" style="margin:18px 0 26px">
+      <h1 class="t-display">Merhaba, ben Pofu.</h1>
+      <p class="t-body" style="color:var(--ink)">Instagram'a uzandığın o yarım saniyede kapıda ben olacağım.</p>
+    </div>
+    <button class="btn" data-act="ob2">Başlayalım</button>
+  </div>`;
+};
+// O2 why Screen Time (native)
+V.ob2 = () => {
+  chrome();
+  scr.innerHTML = `<div class="scr" style="background:var(--bg)">
+    <div class="disc"><img src="assets/pofu.webp" alt="" ></div>
+    <h1 class="t-title center" style="margin-top:16px">Kapıda durabilmem için</h1>
+    <div class="rows">
+      <div class="row"><span class="sym" aria-hidden="true">✋</span><span>Seçtiğin uygulamaları açınca önce ben görünürüm.</span></div>
+      <div class="row"><span class="sym" aria-hidden="true">◌</span><span>İçeride ne yaptığını göremem. Hiçbir şey bu iPhone'dan çıkmaz.</span></div>
+      <div class="row"><span class="sym" aria-hidden="true">⇄</span><span>İstediğin an kapatırsın.</span></div>
+    </div>
+    <div class="grow"></div>
+    <p class="t-foot center" style="margin-bottom:12px">Sıradaki ekran Apple'ın: <b>Devam</b>'a dokun, sonra Face ID.</p>
+    <button class="btn" data-act="askST">Ekran Süresi'ne izin ver</button>
+  </div>`;
+};
+function alertHTML(title, body, a1, a2, act1, act2, bold = 2) {
+  return `<div class="alert-dim"><div class="alert" role="alertdialog" aria-label="${esc(title)}"><div class="ab"><h3>${title}</h3><p>${body}</p></div>
+    <div class="acts"><button data-act="${act1}" class="${bold === 1 ? 'b' : ''}">${a1}</button><button data-act="${act2}" class="${bold === 2 ? 'b' : ''}">${a2}</button></div></div>
+    <span class="mock-tag">Apple · taslak</span></div>`;
+}
+const ACT = {};
+ACT.ob2 = () => go('ob2');
+ACT.askST = () => overlay(alertHTML('“Pofu” Ekran Süresi’ne Erişmek İstiyor', '“Pofu”ya Ekran Süresi erişimi vermek; etkinlik verilerini görmesine, içeriği kısıtlamasına ve uygulama ile web sitesi kullanımını sınırlamasına izin verebilir.', 'Devam', 'İzin Verme', 'stYes', 'stNo', 1));
+ACT.stYes = () => { overlay(`<div class="alert-dim"><div class="faceid" role="status" aria-label="Face ID"><div class="center"><i>☺</i><div>Face ID</div></div></div><span class="mock-tag">Apple · taslak</span></div>`); later(() => { S.revoked = false; log('Ekran Süresi izni: verildi'); go('ob4'); }, 900); };
+ACT.stNo = () => { S.denies++; log('Ekran Süresi izni: reddedildi'); go('ob3b'); };
+V.ob3b = () => {
+  chrome();
+  const settings = S.denies >= 2;
+  scr.innerHTML = `<div class="scr">
+    <div class="disc"><img src="assets/pofu-relieved.webp" alt=""></div>
+    <h1 class="t-title center" style="margin-top:16px">Tamam, zorlamam.</h1>
+    <p class="t-body center" style="margin-top:8px">Ekran Süresi izni olmadan kapıda duramam. Fikrin değişirse buradayım.</p>
+    ${settings ? `<div class="list"><div class="li">1. Ayarlar → Ekran Süresi</div><div class="li">2. Ekran Süresi Erişimi olan uygulamalar</div><div class="li">3. Pofu'yu aç</div></div><p class="t-foot" style="margin-top:8px">Etiketler cihazda doğrulanacak.</p>` : ''}
+    <div class="grow"></div>
+    <div class="stack">
+      <button class="btn" data-act="${settings ? 'openSettings' : 'askST'}">${settings ? `Ayarlar'ı aç` : 'Tekrar dene'}</button>
+      ${settings ? `<button class="btn quiet" data-act="askST">Tekrar dene</button>` : ''}
+      <button class="btn plain" data-act="later">Şimdilik geç</button>
+      <button class="btn plain t-foot" style="min-height:44px;font-size:13px" data-act="toast:Kestirmeler rehberi (Canlı Pofu) açılır; burada gösterilmiyor.">Kestirmeler ile kur (gelişmiş)</button>
+    </div></div>`;
+};
+ACT.openSettings = () => { toast('iOS Ayarlar açılır (prototipte geri dönüldü).'); };
+ACT.later = () => { S.revoked = true; S.onboarded = true; log('Kurulum ertelendi'); go('home'); };
+// O4 picker primer
+V.ob4 = () => {
+  chrome();
+  scr.innerHTML = `<div class="scr">
+    <h1 class="t-title">Seni en çok hangileri çekiyor?</h1>
+    <div class="card" style="margin-top:16px;font-family:var(--sys);padding:8px 12px" aria-hidden="true">
+      <div style="display:flex;gap:10px;align-items:center;min-height:40px"><span style="flex:1">Sosyal</span><span style="color:var(--accent);font-weight:800;border:2px solid var(--accent);border-radius:10px;padding:0 8px">›</span></div>
+      <div style="display:flex;gap:10px;align-items:center;min-height:40px;padding-left:22px;border-top:1px solid var(--line)"><span style="width:20px;height:20px;border-radius:50%;background:#007AFF;color:#fff;font-size:12px;display:grid;place-items:center">✓</span>Instagram</div>
+    </div>
+    <div class="rows">
+      <div class="row"><span class="sym" aria-hidden="true">›</span><span>Kategorinin yanındaki oka dokun, uygulamayı tek tek işaretle.</span></div>
+      <div class="row"><span class="sym" aria-hidden="true">!</span><span>Tüm “Sosyal”i seçersen WhatsApp'ta da kapıda olurum.</span></div>
+    </div>
+    <p class="t-body">Önerim: Instagram, YouTube, TikTok.</p>
+    <div class="grow"></div>
+    <button class="btn" data-act="picker">Uygulamaları seç</button>
+  </div>`;
+};
+const CATS = [
+  { k: 'social', n: 'Sosyal', apps: [['instagram', 'Instagram', 'ig', '◎'], ['tiktok', 'TikTok', 'tt', '♪'], ['whatsapp', 'WhatsApp', 'wa', '✆'], ['x', 'X', 'tt', '𝕏']] },
+  { k: 'ent', n: 'Eğlence', apps: [['youtube', 'YouTube', 'yt', '▶'], ['netflix', 'Netflix', 'tt', 'N']] },
+  { k: 'games', n: 'Oyunlar', apps: [] }, { k: 'prod', n: 'Verimlilik ve Finans', apps: [] }, { k: 'edu', n: 'Eğitim', apps: [] },
+];
+let pk = { open: {}, sel: new Set(), cat: new Set() };
+ACT.picker = () => { pk = { open: {}, sel: new Set(S.picked), cat: new Set() }; renderPicker(); };
+function renderPicker() {
+  const rows = CATS.map((c) => {
+    const on = pk.cat.has(c.k);
+    let h = `<div class="it"><button class="itb" data-act="pkcat:${c.k}" aria-pressed="${on}"><span class="chk ${on ? 'on' : ''}">${on ? '✓' : ''}</span><span class="mini ic ${c.k === 'social' ? 'wa' : 'se'}" style="width:28px;height:28px;font-size:14px">${c.n[0]}</span><span>${c.n}</span></button><button class="chev ${pk.open[c.k] ? 'open' : ''}" data-act="pkopen:${c.k}" aria-label="${c.n}: uygulamaları göster" aria-expanded="${!!pk.open[c.k]}">›</button></div>`;
+    if (pk.open[c.k]) h += c.apps.map(([k, n, cls, g]) => { const s = pk.sel.has(k) || on; return `<button class="it sub" data-act="pkapp:${k}" aria-pressed="${s}"><span class="chk ${s ? 'on' : ''}">${s ? '✓' : ''}</span><span class="mini ic ${cls}" style="width:28px;height:28px;font-size:14px">${g}</span><span>${n}</span></button>`; }).join('');
+    return h;
+  }).join('');
+  const count = pk.sel.size + pk.cat.size;
+  overlay(`<div class="picker"><div class="pk" role="dialog" aria-label="Uygulama seçici">
+    <header><button data-act="pkcancel">Vazgeç</button><h3>Uygulama seç</h3><button class="b" data-act="pkdone">Bitti</button></header>
+    <div class="search">⌕ Ara</div>
+    <div class="grp">${rows}</div>
+    <div class="foot">${count} seçildi · Web Siteleri</div>
+  </div><span class="mock-tag" style="top:auto;bottom:44px">Apple · taslak</span></div>`);
+}
+ACT['pkopen'] = (k, ev) => { ev && ev.stopPropagation(); pk.open[k] = !pk.open[k]; renderPicker(); };
+ACT['pkcat'] = (k) => { pk.cat.has(k) ? pk.cat.delete(k) : pk.cat.add(k); renderPicker(); };
+ACT['pkapp'] = (k) => { pk.sel.has(k) ? pk.sel.delete(k) : pk.sel.add(k); renderPicker(); };
+ACT.pkcancel = () => closeOverlay();
+ACT.pkdone = () => {
+  const guarded = [...pk.sel].filter((k) => APPS[k]);
+  if (pk.cat.has('social')) guarded.push('instagram', 'tiktok');
+  if (pk.cat.has('ent')) guarded.push('youtube');
+  S.picked = [...new Set([...pk.sel, ...guarded])]; S.category = pk.cat.size > 0; S.empty = S.picked.length === 0 && !S.category;
+  log(`Seçim: ${S.picked.join(', ') || 'boş'}${S.category ? ' + kategori' : ''}`);
+  closeOverlay();
+  if (S.empty) return go('ob5b');
+  if (S.category) return go('ob5c');
+  go(S.onboarded ? 'home' : 'ob6');
+};
+V.ob5b = () => { chrome(); scr.innerHTML = `<div class="scr"><div class="disc"><img src="assets/pofu-worried.webp" alt=""></div><h1 class="t-title center" style="margin-top:16px">Kapıda kimse yok.</h1><p class="t-body center" style="margin-top:8px">En az bir uygulama seç, gerisini sonra eklersin.</p><div class="grow"></div><div class="stack"><button class="btn" data-act="picker">Tekrar seç</button><button class="btn plain" data-act="laterEmpty">Sonra seçerim</button></div></div>`; };
+ACT.laterEmpty = () => { S.onboarded = true; go('home'); };
+V.ob5c = () => { chrome(); scr.innerHTML = `<div class="scr"><div class="disc"><img src="assets/pofu.webp" alt=""></div><h1 class="t-title center" style="margin-top:16px">Bütün bir kategori seçtin.</h1><p class="t-body center" style="margin-top:8px">İçindeki her uygulamada, mesajlaşma dahil, kapıda olurum.</p><div class="grow"></div><div class="stack"><button class="btn" data-act="ob6">Böyle kalsın</button><button class="btn plain" data-act="picker">Düzelt</button></div></div>`; };
+ACT.ob6 = () => go(S.onboarded ? 'home' : 'ob6');
+// O6 notifications primer
+V.ob6 = () => {
+  chrome();
+  scr.innerHTML = `<div class="scr">
+    <div class="disc"><img src="assets/pofu-excited.webp" alt=""></div>
+    <h1 class="t-title center" style="margin-top:16px">Gerçekten açman gerektiğinde</h1>
+    <p class="t-body center" style="margin-top:10px">Kapıda <b style="color:var(--ink)">Açmam lazım</b> dersen sana bir bildirimle cevap veririm. Sadece bunun için yazarım; seni geri çekmek için asla.</p>
+    <div class="grow"></div>
+    <div class="stack"><button class="btn" data-act="askNotif">Bildirimlere izin ver</button><button class="btn plain" data-act="notifNo">Bildirimsiz devam et</button></div>
+  </div>`;
+};
+ACT.askNotif = () => overlay(alertHTML('“Pofu” Size Bildirim Göndermek İstiyor', 'Bildirimler; uyarı, ses ve simge işaretlerini içerebilir. Bunlar Ayarlar’dan yapılandırılabilir.', 'İzin Verme', 'İzin Ver', 'notifNo', 'notifYes', 2));
+ACT.notifYes = () => { S.notif = true; log('Bildirim izni: verildi'); go('ob7'); };
+ACT.notifNo = () => { S.notif = false; log('Bildirim izni: yok'); go('ob7'); };
+// O7 try it
+V.ob7 = () => {
+  chrome();
+  S.demo = true;
+  const names = (S.picked.filter((k) => APPS[k]).map((k) => APPS[k].name).join(' · ')) || 'Instagram';
+  scr.innerHTML = `<div class="world"><img class="isle" src="assets/isle-home.webp" alt=""><div class="mist"></div></div>
+  <div class="scr" style="z-index:2">
+    <div class="card" style="align-self:center;padding:8px 14px;border-radius:18px;font-weight:800;background:var(--glass)">${esc(names)} · kapıdayım</div>
+    <div class="grow"></div>
+    ${pofuImg('pofu-excited', 150)}
+    <div class="center stack" style="margin:16px 0 18px">
+      <h1 class="t-display">Hadi dene.</h1>
+      <p class="t-body" style="color:var(--ink)">Şimdi Instagram'ı aç. Kapıda beni göreceksin. <b>Boş ver</b>'e dokun, sonra bana dön.</p>
+      <p class="t-foot">Prototipte: alttaki çizgiye dokun, ana ekrandan Instagram'ı aç.</p>
+    </div>
+    <button class="btn plain" data-act="skipDemo">Sonra denerim</button>
+  </div>`;
+};
+ACT.skipDemo = () => { S.demo = false; S.onboarded = true; go('home'); };
+// O8 got it
+V.ob8 = () => {
+  chrome();
+  scr.innerHTML = `<div class="world" id="w"><img class="isle" src="assets/isle-home.webp" alt=""><div class="mist" id="mist"></div></div>
+  <div class="scr" style="z-index:2">
+    <div class="grow"></div>
+    ${pofuImg('pofu-proud', 150, 'hopproud')}
+    <div class="beads" style="justify-content:center;margin-top:22px" aria-label="1 boş verdin"><span class="bead on drop"></span></div>
+    <div class="center stack" style="margin:14px 0 22px">
+      <h1 class="t-display">Yakaladım!</h1>
+      <p class="t-body" style="color:var(--ink)">Kapıdayım. İlk vazgeçişin bu. Gerisi kendiliğinden işler.</p>
+    </div>
+    <button class="btn" data-act="toHome">Tamam</button>
+  </div>`;
+  later(() => { const m = $('#mist'); if (m) m.style.opacity = 0; }, 200);
+};
+ACT.toHome = () => { S.onboarded = true; S.demo = false; go('home'); };
+
+// iPhone Home Screen (mock)
+V.springboard = () => {
+  chrome({ sb: '#fff', hb: 'rgba(255,255,255,.8)' });
+  const g = (k) => S.picked.includes(k);
+  const widget = (S.widget || S.day >= 2) && S.onboarded ? `<button class="widget-s" data-act="openToday" aria-label="Pofu widget: bugün ${S.resisted} / ${S.reaches} boş verdin, huzur ${fmt(S.calm)}">
+      <div style="display:flex;justify-content:space-between;align-items:start;width:100%"><span class="calm-ring" style="--p:${(S.calm - 1) * 100};position:relative"><span>×${fmt(S.calm)}</span></span></div>
+      <div><b>${S.resisted}/${S.reaches}</b><div style="font:700 12px var(--body);color:var(--ink-2)">boş verdin</div></div>
+      <img src="assets/pofu${S.resisted >= 3 ? '-proud' : ''}.webp" alt=""></button>` : '';
+  const app = (k, n, cls, g2, act) => `<button class="app ${S.demo && k === 'instagram' ? '' : ''}" data-act="${act}" aria-label="${n}"><span class="ic ${cls} ${S.demo && k === 'instagram' ? 'hint-ring' : ''}">${g2}</span><span>${n}</span></button>`;
+  scr.innerHTML = `<div class="sb"><span class="mock-tag" style="top:58px">iPhone · taslak</span><div class="grid">
+    ${widget}
+    ${app('instagram', 'Instagram', 'ig', '◎', 'open:instagram')}
+    ${app('youtube', 'YouTube', 'yt', '▶', 'open:youtube')}
+    ${app('tiktok', 'TikTok', 'tt', '♪', 'open:tiktok')}
+    ${app('whatsapp', 'WhatsApp', 'wa', '✆', 'toast:WhatsApp korunmuyor.')}
+    <button class="app" data-act="openPofu" aria-label="Pofu"><span class="ic po"><img src="assets/pofu.webp" alt=""></span><span>Pofu</span></button>
+    ${app('clock', 'Saat', 'cl', '◷', 'toast:Saat')}
+    ${app('photos', 'Fotoğraflar', 'ph', '✿', 'toast:Fotoğraflar')}
+    <button class="app" data-act="lock" aria-label="Kilit ekranı"><span class="ic se">⏻</span><span>Kilit ekranı</span></button>
+  </div>
+  <div class="dock"><span class="app"><span class="ic se">☏</span></span><span class="app"><span class="ic wa">✉</span></span><span class="app"><span class="ic cl" style="color:#007AFF">◎</span></span><span class="app"><span class="ic ph">♫</span></span></div></div>`;
+  if (S.request && S.notif) bannerHTML(S.request.app, true);
+};
+ACT.openPofu = () => {
+  if (S.demo && S.reaches > 0) return go('ob8');
+  if (!S.onboarded) return go(S.view === 'springboard' && S.prevOb ? S.prevOb : 'ob1');
+  if (S.request && Date.now() - S.request.at < 600000) { const a = S.request.app; return startHop(a, 'hand'); }
+  go('home');
+};
+ACT.open = (k) => {
+  const guarded = (S.picked.includes(k) || (S.category && k !== 'x')) && !S.revoked && !S.empty;
+  if (!guarded || (S.pass && S.pass.app === k)) return go('feed', k);
+  // a fresh reach
+  S.reaches++; S.hourReach++; S.justEndedSeen = false;
+  log(`Uzanma #${S.reaches}: ${APPS[k].name} (kalkan)`);
+  go('shield', k);
+};
+
+// The shield
+V.shield = (k) => {
+  const m = shieldModel(k);
+  S.shield = { app: k, m };
+  if (m.ctx === 'jealous') { S.jealousToday++; S.lastJealous = true; } else if (!m.ctx.startsWith('waiting')) S.lastJealous = false;
+  S.lastTitle = m.title;
+  const dark = isDark();
+  const pal = (PALETTES[m.palette][dark && PALETTES[m.palette].dark ? 'dark' : 'light']);
+  const fg = pal[1].startsWith('#FFF') || pal[1].startsWith('rgba(255') ? '#fff' : '#2A1F2D';
+  chrome({ sb: fg, hb: fg === '#fff' ? 'rgba(255,255,255,.6)' : 'rgba(42,31,45,.55)' });
+  scr.innerHTML = `<div class="shield" style="--sh-bg:${pal[0]};--sh-t:${pal[1]};--sh-s:${pal[2]};--sh-p:${pal[3]};--sh-pl:${pal[4]};--sh-2:${pal[5]}" data-ctx="${m.ctx}">
+    <span class="mock-tag">Apple kalkanı · taslak</span>
+    <div class="top">
+      <img class="ic60" src="assets/${m.icon}.webp" alt="" ${m.icon === 'pofu-unwell' ? 'style="filter:saturate(.7)"' : ''}>
+      <h2 id="shTitle">${esc(m.title)}</h2>
+      <p id="shSub">${esc(m.sub)}</p>
+    </div>
+    <button class="p1" data-act="shPrimary">${esc(m.primary)}</button>
+    ${m.secondary ? `<button class="p2" data-act="shSecondary" ${m.menu ? 'aria-haspopup="menu"' : ''}>${esc(m.secondary)}</button>` : '<div style="height:56px"></div>'}
+  </div>`;
+  if (m.ctx === 'waiting' && S.notif) later(() => bannerHTML(k), 650);
+};
+ACT.shPrimary = () => {
+  const { app, m } = S.shield;
+  if (m.ctx === 'expiry') { log('Süre doldu → Bitti, kapat (boş verme sayılmaz)'); S.justEnded = null; }
+  else {
+    if (m.ctx.startsWith('waiting')) { log('Bekleme: boş verdi (bildirim silindi)'); S.request = null; }
+    else log('Kalkan: Boş ver');
+    S.resisted++;
+  }
+  S.justEnded = null;
+  closeOverlay(); go('springboard');
+};
+ACT.shSecondary = () => {
+  const { app, m } = S.shield;
+  if (m.ctx === 'expiry') { S.justEnded = null; S.reaches++; S.hourReach++; log('Süre doldu → Biraz daha (yeni uzanma)'); }
+  if (m.menu) {
+    overlay(`<div class="menu-dim" data-act="menuCancel"></div><div class="menu" role="menu" aria-label="Açmam lazım">
+      <button role="menuitem" data-act="quick">${esc(m.menu[0])}</button>
+      <button role="menuitem" data-act="request">${esc(m.menu[1])}</button>
+      <button class="cancel" data-act="menuCancel">Vazgeç</button></div>`);
+    return;
+  }
+  ACT.request();
+};
+ACT.menuCancel = () => closeOverlay();
+ACT.quick = () => {
+  const { app } = S.shield; closeOverlay();
+  S.pass = { app, mins: 3, end: Date.now() + 180000, la: false, kind: 'quick' };
+  S.calm = halve(S.calm);
+  S.lastQuick = S.clockMin; S.minutesToday += 3;
+  log(`Hızlı bakış (kalkandan): ${APPS[app].name} 3 dk · huzur ×${fmt(S.calm)}`);
+  go('feed', app);
+};
+ACT.request = () => {
+  const { app } = S.shield; closeOverlay();
+  S.request = { app, at: Date.now(), breath: S.overLimit };
+  log(`Açma isteği: ${APPS[app].name}${S.notif ? ' (bildirim gönderildi)' : ' (bildirim kapalı)'}`);
+  go('shield', app); // .defer → redraw in the waiting state
+};
+function bannerHTML(app, quietly) {
+  if (!S.request || !S.notif) return;
+  const a = APPS[app];
+  const b = document.createElement('button');
+  b.className = 'banner'; b.dataset.act = 'bannerTap';
+  b.setAttribute('aria-label', 'Bildirim: Pofu');
+  b.innerHTML = `<span class="bi"></span><span><b>${esc(a.acc)} mı açalım?</b><span>${S.request.breath ? 'Dokun, önce bir nefes alalım.' : 'Dokun, kararı birlikte verelim.'}</span></span><small>şimdi</small><span class="mock-tag" style="top:-8px;right:10px">iOS bildirimi · taslak</span>`;
+  ov.appendChild(b);
+}
+ACT.bannerTap = () => { const a = S.request.app; S.t0 = performance.now(); startHop(a, 'notification'); };
+function startHop(app, via) {
+  const breath = S.request && S.request.breath;
+  S.request = null;
+  log(`Hop! açıldı (${via === 'notification' ? 'bildirimden' : 'elle, 10 dk içinde'})`);
+  if (breath || S.overLimit) return go('breath', app);
+  go('hop', app);
+}
+
+// Hop! v2: care rung
+V.hop = (k) => {
+  const a = APPS[k];
+  const night = S.time === 'night';
+  chrome();
+  const quickOk = (S.clockMin - S.lastQuick) >= 20;
+  const line = S.reason ? { msg: 'Mesaj mı? Tamam, kıskanmam.', look: 'Bakıp çıkalım o zaman.', bored: 'Sıkıldıysan bende bir dakika var.' }[S.reason] : (S.hourReach >= 2 ? 'Az önce de geldik.' : `${a.name} bekleyebilir.`);
+  scr.innerHTML = `<div class="world blur dim ${night ? 'night' : ''}"><img class="isle" src="assets/isle-home.webp" alt=""></div>
+  <div class="scr" style="z-index:2;padding-bottom:30px;gap:10px">
+    <span class="chip"><span class="ci ic ${a.cls}" style="width:28px;height:28px;font-size:14px;border-radius:8px">${a.g}</span>${a.name}${S.hourReach >= 2 ? ` · bu saat ${S.hourReach}. kez` : ''}</span>
+    <div class="grow"></div>
+    <div class="bubble" id="bub">${esc(line)}</div>
+    ${pofuImg(S.hourReach >= 3 && S.jealousToday <= 3 ? 'pofu-jealous' : 'pofu', 154)}
+    <span class="calm" aria-label="Huzur ${fmt(S.calm)}, büyüyor">Huzur ×${fmt(S.calm)} · büyüyor</span>
+    <details style="align-self:center;text-align:center"><summary class="t-foot" style="min-height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer">Neden?</summary>
+      <div class="reasons">${[['msg', 'Mesaja cevap'], ['look', 'Bir şeye bakacağım'], ['bored', 'Sıkıldım']].map(([r, t]) => `<button data-act="reason:${r}" aria-pressed="${S.reason === r}">${t}</button>`).join('')}</div></details>
+    <div class="care">
+      ${quickOk ? `<button data-act="pass:3"><b>3 dakika bak</b><span>Huzur ×${fmt(S.calm)} → ×${fmt(halve(S.calm))} · Pofu kıskanmaz</span><i>›</i></button>` : ''}
+      <button data-act="pass:15"><b>15 dakika aç</b><span>Huzur ×1,0'a döner · Pofu biraz üzülür</span><i>›</i></button>
+    </div>
+    <button class="btn" id="skipBtn" data-act="hopSkip" aria-label="Boş ver. ${a.name}${S.hourReach >= 2 ? `, bu saat ${S.hourReach}. kez` : ''}">${night ? 'İyi geceler' : 'Boş ver'}</button>
+    <p class="t-foot center" style="margin:0">Kaydırıp çıkmak da boş vermek sayılır.</p>
+  </div>`;
+  if (S.t0) { S.hopLatency = Math.round(performance.now() - S.t0); }
+  setTimeout(() => { const b = $('#skipBtn'); b && b.focus({ preventScroll: true }); }, 50);
+};
+ACT.reason = (r) => { S.reason = S.reason === r ? null : r; log(`Neden: ${r}`); const k = S.arg; go('hop', k); $('details').open = true; };
+ACT.hopSkip = () => { S.resisted++; S.reason = null; log('Hop!: Boş ver'); go('skipped', S.arg); };
+ACT.pass = (mins) => { mins = +mins; const k = S.arg; S.reason = null; go('handoff', { k, mins }); };
+
+V.skipped = (k) => {
+  chrome();
+  const night = S.time === 'night';
+  const gift = S.skipGifts < 5; if (gift) S.skipGifts++;
+  const minuteOk = !night && (S.minutesToday0 || 0) < 3;
+  const beads = Array.from({ length: S.reaches }, (_, i) => `<span class="bead ${i < S.resisted ? 'on' : ''} ${i === S.resisted - 1 ? 'drop' : ''}"></span>`).join('');
+  scr.innerHTML = `<div class="world ${night ? 'night' : ''}"><img class="isle" src="assets/isle-home.webp" alt=""></div>
+  <div class="scr" style="z-index:2">
+    <div class="grow"></div>
+    <div class="bubble">${night ? 'İyi geceler. Sabah görüşürüz.' : 'Vazgeçtin! Başardık. Yani, çoğunu sen.'}</div>
+    <div style="position:relative">${pofuImg('pofu-proud', 154, 'hopproud')}${gift ? '<span class="seed" style="left:46%;top:40%"></span>' : ''}</div>
+    <div class="card" style="background:var(--glass);margin-top:10px"><div class="beads" aria-hidden="true">${beads}</div><div class="t-foot" style="margin-top:6px;color:var(--ink)">Bugün ${S.resisted} / ${S.reaches}</div></div>
+    <div class="grow"></div>
+    ${minuteOk ? `<button class="btn quiet" data-act="minute">Bunun yerine: Pofu'yla bir dakika</button>` : ''}
+    <p class="t-foot center" style="margin-top:12px">⌃ Hazır olunca yukarı kaydır.</p>
+  </div>`;
+  later(() => { const p = $('.pofu'); if (p) { p.classList.remove('hopproud'); p.src = 'assets/pofu.webp'; p.style.transform = 'scaleX(-1)'; p.style.transition = 'transform .9s'; } }, 4000);
+};
+ACT.minute = () => { S.minutesToday0 = (S.minutesToday0 || 0) + 1; go('minute'); };
+V.minute = () => {
+  chrome();
+  scr.innerHTML = `<div class="world"><img class="isle" src="assets/isle-home.webp" alt=""></div>
+  <div class="scr" style="z-index:2">
+    <div style="display:flex;justify-content:flex-end"><div class="ring" id="ring" style="--p:0" role="progressbar" aria-label="Bir dakika" aria-valuemin="0" aria-valuemax="60" aria-valuenow="0"></div></div>
+    <div class="grow"></div>
+    <div class="bubble" id="mline">Tüylerimi tarar mısın? Parmağını üstümde gezdir.</div>
+    <button id="brush" data-act="brush" aria-label="Pofu'yu tara" style="align-self:center">${pofuImg('pofu', 170)}</button>
+    <div class="grow"></div>
+    <p class="t-foot center">Bir dakika · Pofu bitirir</p>
+  </div>`;
+  let t = 0; const iv = setInterval(() => { t += 1; const r = $('#ring'); if (!r) return clearInterval(iv); r.style.setProperty('--p', t / 60 * 100); r.setAttribute('aria-valuenow', t); if (t >= 60) { clearInterval(iv); endMinute(); } }, 1000);
+  timers.push(iv);
+};
+let brushes = 0;
+ACT.brush = () => { brushes++; const p = $('#brush .pofu'); if (p) { p.style.transform = `scale(${1 + Math.min(brushes, 4) * .03})`; } if (brushes === 3) { $('#mline').textContent = 'Oh, kabardım. Teşekkürler.'; later(endMinute, 1600); } };
+function endMinute() { brushes = 0; const l = $('#mline'); if (!l) return; l.textContent = 'Bu kadar. Telefonu bırakalım mı?'; const p = $('#brush .pofu'); if (p) { p.style.transition = 'transform .9s'; p.style.transform = 'scaleX(-1)'; } log('Bir dakika bitti'); }
+
+V.handoff = ({ k, mins }) => {
+  chrome();
+  const a = APPS[k];
+  const line = mins === 3 ? 'Tamam, 3 dakika. Huzuru ben sıcak tutarım.' : '15 dakika. Kapıda beklerim.';
+  scr.innerHTML = `<div class="world dim"><img class="isle" src="assets/isle-home.webp" alt="" style="filter:grayscale(.3)"></div>
+  <div class="scr" style="z-index:2"><div class="grow"></div><div class="bubble">${line}</div>${pofuImg('pofu', 154)}<p class="t-foot center" style="margin-top:12px">${a.name} açılıyor…</p><div class="grow"></div></div>`;
+  S.pass = { app: k, mins, end: Date.now() + mins * 60000, la: true, kind: mins === 3 ? 'quick' : 'open' };
+  if (S.overLimit) S.overLimitOpens++;
+  S.calm = mins === 3 ? halve(S.calm) : 1.0;
+  if (mins === 3) S.lastQuick = S.clockMin;
+  S.minutesToday += mins;
+  log(`Geçiş (Hop!): ${a.name} ${mins} dk · Canlı Etkinlik başladı`);
+  later(() => go('feed', k), 1300);
+};
+V.feed = (k) => {
+  chrome({ sb: '#111', hb: 'rgba(0,0,0,.5)' });
+  const a = APPS[k];
+  scr.innerHTML = `<div class="feed"><span class="mock-tag">${a.name} · taslak</span><div class="fh"><span>${a.name}</span><span>♡ ✉</span></div>
+    ${[1, 2].map(() => `<div class="post"><div class="meta">● hesap</div><div class="ph"></div><div class="meta">♡ ✎ ➚ · akış devam ediyor…</div></div>`).join('')}</div>
+    ${S.pass && S.pass.app === k ? `<button class="btn quiet" style="position:absolute;z-index:3;left:16px;right:16px;width:auto;bottom:48px" data-act="expire">Prototip: süreyi bitir</button>` : ''}`;
+};
+function expire() {
+  if (!S.pass) return;
+  const { app, mins, la } = S.pass;
+  S.pass = null; S.justEnded = { app, mins, la };
+  islandLive();
+  log(`Süre doldu: ${APPS[app].name} · kalkan geri geldi`);
+  if (S.view === 'feed' && S.arg === app) go('shield', app);
+}
+ACT.expire = () => expire();
+
+// Breathing room
+V.breath = (k) => {
+  chrome();
+  const first = !S.breathExplained;
+  const secs = S.overLimitOpens >= 3 ? 10 : 5;
+  scr.innerHTML = `<div class="room"></div>
+  <div class="scr" style="z-index:2;text-align:center">
+    <div class="grow"></div>
+    <h1 class="t-title" id="bTitle">Bugünkü saatimizi doldurduk.</h1>
+    <p class="t-body" id="bLine" style="margin-top:8px;color:var(--ink)">Önce benimle bir nefes alır mısın?</p>
+    <div class="orb" id="orb" style="margin-top:24px"><img id="borb" src="assets/pofu.webp" alt="Pofu, bekliyor"></div>
+    <div class="grow"></div>
+    ${first ? `<p class="t-foot" style="margin-bottom:12px">Günde 60 dakikayı geçince her açılış bir nefesle başlar. Ayarlar'dan değişir.</p>` : ''}
+    <div class="stack" id="bActs">
+      <button class="btn" data-act="breathe:${secs}">Pofu'yla nefes al</button>
+      <button class="btn plain" data-act="breathNo">Şimdi değil</button>
+    </div>
+  </div>`;
+  S.breathExplained = true;
+};
+ACT.breathe = (secs) => {
+  secs = +secs; const inS = secs === 10 ? 4 : 2, outS = secs === 10 ? 6 : 3;
+  const orb = $('#orb'), img = $('#borb'), line = $('#bLine'), title = $('#bTitle');
+  const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  img.src = 'assets/pofu-breathe.webp'; img.alt = 'Pofu, nefes alıyor';
+  title.textContent = ''; line.textContent = 'Nefes al…';
+  $('#bActs').innerHTML = `<button class="btn plain" data-act="breathNo">Şimdi değil</button>`;
+  orb.style.transition = `transform ${inS}s cubic-bezier(.37,0,.63,1), opacity ${inS}s`;
+  requestAnimationFrame(() => { orb.style.transform = rm ? 'scale(.82)' : 'scale(1.08)'; });
+  later(() => { line.textContent = '…ve ver.'; orb.style.transition = `transform ${outS}s cubic-bezier(.37,0,.63,1)`; orb.style.transform = 'scale(.82)'; }, inS * 1000);
+  later(() => {
+    img.src = 'assets/pofu-relieved.webp'; title.textContent = 'Çok güzel.'; line.textContent = '';
+    $('#bActs').innerHTML = `<button class="btn" data-act="breathSkip">İyiyim, boş ver</button><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn quiet" data-act="pass:3">3 dk bak</button><button class="btn quiet" data-act="pass:15">15 dk aç</button></div>`;
+    log(`Nefes: ${secs} sn tamam`);
+  }, secs * 1000);
+};
+ACT.breathNo = () => { S.resisted++; log('Nefes: Şimdi değil (boş verme)'); go('skipped', S.arg); };
+ACT.breathSkip = () => { S.resisted++; log('Nefes: İyiyim, boş ver'); go('skipped', S.arg); };
+
+// Pofu Home (settled)
+const DAY_BUBBLE = { 0: 'Genelde kaçta yatarsın?', 1: 'Sen yokken huzur ×1,6\'ya çıktı.', 2: 'Beni ana ekrana koy, açmadan bakarsın.', 3: null, 4: null, 5: 'Bak hele: nilüferler açtı.', 6: null, 7: 'Haftamız hazır.', 8: 'Kapıda canlı zıplamamı ister misin?' };
+V.home = () => {
+  chrome();
+  const broken = S.revoked ? ['Kapıda değilim · Ekran Süresi izni kapalı', 'Düzelt'] : (S.empty ? ['Kapıda kimse yok', 'Uygulama seç'] : null);
+  const bubble = broken ? null : DAY_BUBBLE[S.day];
+  const segs = [15, 30, 45, 60].map((m) => `<i class="${S.measured >= m ? 'on' : ''}"></i>`).join('');
+  scr.innerHTML = `<div class="world ${broken ? '' : ''}"><img class="isle" src="assets/isle-home.webp" alt="">${broken ? '<div class="mist"></div>' : ''}</div>
+  <div class="scr" style="z-index:2;gap:10px">
+    ${broken ? `<div class="nbanner" role="alert"><span class="w" aria-hidden="true">⚠</span><span>${broken[0]}</span><button data-act="repair">${broken[1]}</button></div>` :
+      `<div class="topband"><span class="pill">♥ Keyfi yerinde</span><button class="round" data-act="settings" aria-label="Ayarlar">⚙</button></div>`}
+    <div class="grow"></div>
+    ${bubble ? `<button class="bubble" data-act="${S.day === 7 ? 'recap' : S.day === 2 ? 'addWidget' : 'bubbleOk'}">${esc(bubble)}</button>` : ''}
+    ${pofuImg(broken ? 'pofu-worried' : 'pofu', 154)}
+    <div class="grow"></div>
+    <button class="today" data-act="openToday" aria-label="Bugün: ${S.resisted} / ${S.reaches} boş verdin. Korunan süre en az ${S.measured} dakika.">
+      <div class="l1"><span>Bugün ${S.resisted} / ${S.reaches} boş verdin</span><span style="color:var(--ink-3)">›</span></div>
+      <div class="beads" aria-hidden="true">${Array.from({ length: Math.max(S.reaches, 1) }, (_, i) => `<span class="bead ${i < S.resisted ? 'on' : ''}"></span>`).join('')}</div>
+      <div class="l2">Korunan süre: en az ${S.measured} / 60 dk</div><div class="seg" aria-hidden="true">${segs}</div>
+    </button>
+    <p class="t-foot center" style="margin:0">Ada sensiz de çalışıyor.</p>
+  </div>`;
+};
+ACT.bubbleOk = () => toast('Pofu cevabını aldı.');
+ACT.addWidget = () => { S.widget = true; toast('Widget ana ekrana eklendi (prototip).'); };
+ACT.settings = () => openSheet(`<h2>Korunan uygulamalar</h2>
+  <div class="list"><div class="li">Ekran Süresi izni <span class="${S.revoked ? 'bad' : 'ok'}">${S.revoked ? 'Kapalı' : 'Açık'}</span></div>
+  <div class="li">Seçili uygulamalar <span class="ok">${S.picked.length || 0}</span></div>
+  <div class="li">Bildirimler <span class="${S.notif ? 'ok' : 'bad'}">${S.notif ? 'Açık' : 'Kapalı'}</span>${S.notif ? '' : `<small>Açmam lazım → bildirim gelmez. Hızlı bakış yine çalışır.</small>`}</div>
+  <div class="li">Günlük saat <span>60 dk</span></div></div>
+  <div class="list"><button class="li" style="width:100%;text-align:left" data-act="picker">Uygulamaları değiştir <span>›</span></button></div>
+  <p class="t-foot" style="margin-top:12px">Geliştirici özeti için sürüm numarasına uzun bas.</p>`);
+function openSheet(html) {
+  overlay(`<div class="sheet-dim" data-act="closeSheet"></div><div class="sheet" role="dialog"><div class="grab"></div><button class="round closex" data-act="closeSheet" aria-label="Kapat">✕</button>${html}</div>`);
+}
+ACT.closeSheet = () => closeOverlay();
+ACT.openToday = () => {
+  if (S.view !== 'home') go('home');
+  const segs = [15, 30, 45, 60].map((m) => `<i class="${S.measured >= m ? 'on' : ''}"></i>`).join('');
+  openSheet(`<div style="display:flex;gap:10px;align-items:center"><img src="assets/pofu${S.resisted >= 3 ? '-proud' : ''}.webp" alt="" style="width:40px"><div><h2>Bugün</h2><div class="t-foot">Keyfi yerinde</div></div></div>
+  <div class="list">
+    <div class="li"><span>${S.resisted} / ${S.reaches} boş verdin</span><span class="${S.resisted * 2 >= S.reaches && S.reaches ? 'ok' : ''}">${S.resisted * 2 >= S.reaches && S.reaches ? 'hedef: yarısı ✓' : 'hedef: yarısı'}</span>
+      <div class="beads" style="grid-column:1/-1">${Array.from({ length: S.reaches }, (_, i) => `<span class="bead ${i < S.resisted ? 'on' : ''}"></span>`).join('')}</div></div>
+    <div class="li"><span>Korunan süre</span><span>en az ${S.measured} / 60 dk</span><div class="seg">${segs}</div><small>Ekran Süresi 15 dakikalık adımlarla ölçer.</small></div>
+    <div class="li"><span>Huzur</span><span>×${fmt(S.calm)} · büyüyor</span></div>
+    <div class="li"><span>Pofu'da bugün</span><span>${S.pofuMin} dk</span></div>
+    ${S.day >= 3 ? `<div class="li"><span>En zor saat</span><span>22–23</span></div>` : ''}
+  </div><p class="t-foot center" style="margin-top:12px">Bu sayılar iPhone'dan çıkmaz.</p>`);
+};
+ACT.recap = () => openSheet(`<h2>Haftamız</h2><p class="t-body" style="margin-top:6px">Bu hafta 41 / 63 boş verdin. Hedef yarısıydı.</p>
+  <div class="list"><div class="li"><span>Korunan süre (gün başına)</span><span>en az 45 dk</span></div><div class="li"><span>Hızlı bakış / tam açma</span><span>9 / 13</span></div><div class="li"><span>Pofu'da</span><span>günde 4 dk</span></div><div class="li"><span>Pofu'yla bir dakika</span><span>6 kez</span></div></div>
+  <p class="t-foot" style="margin-top:12px">Seri yok, kıyas yok. Sadece toplamlar.</p>`);
+ACT.repair = () => openSheet(`<h2>Kapıya dönmem için</h2>
+  <div class="list"><div class="li">Ekran Süresi izni <span class="${S.revoked ? 'bad' : 'ok'}">${S.revoked ? '✗ Kapalı' : '✓ Açık'}</span></div>
+  <div class="li">Seçili uygulamalar <span class="${S.empty || !S.picked.length ? 'bad' : 'ok'}">${S.picked.length ? '✓ ' + S.picked.length : '✗ Yok'}</span></div>
+  <div class="li">Bildirimler <span class="${S.notif ? 'ok' : 'bad'}">${S.notif ? '✓ Açık' : '✗ Kapalı'}</span></div></div>
+  <div class="stack" style="margin-top:16px">${S.revoked ? `<button class="btn" data-act="regrant">İzni yeniden ver</button>` : `<button class="btn" data-act="picker">Uygulama seç</button>`}</div>`);
+ACT.regrant = () => { closeOverlay(); overlay(alertHTML('“Pofu” Ekran Süresi’ne Erişmek İstiyor', '“Pofu”ya Ekran Süresi erişimi vermek; etkinlik verilerini görmesine, içeriği kısıtlamasına ve uygulama ile web sitesi kullanımını sınırlamasına izin verebilir.', 'Devam', 'İzin Verme', 'regrantYes', 'closeSheet', 1)); };
+ACT.regrantYes = () => { S.revoked = false; log('İzin yeniden verildi'); go('home'); if (!S.picked.length) { S.empty = true; ACT.picker(); } };
+
+// Lock Screen
+V.lock = () => {
+  chrome({ sb: '#fff', hb: 'rgba(255,255,255,.8)' });
+  const la = S.pass && S.pass.la, stale = !S.pass && S.justEnded && S.justEnded.la;
+  scr.innerHTML = `<div class="lock"><span class="mock-tag">Kilit ekranı · taslak</span>
+    <div class="date">Pazar 1 Kasım</div><div class="clock">9:41</div>
+    <div class="wrow">
+      <div class="lw circ" aria-label="Huzur ${fmt(S.calm)}"><span class="calm-ring" style="--p:${(S.calm - 1) * 100};position:relative;filter:grayscale(1) brightness(2)"><span style="color:#2A1F2D">×${fmt(S.calm)}</span></span></div>
+      <div class="lw" style="width:170px"><b>Pofu · ${S.resisted} / ${S.reaches} boş verdin</b><span>en az ${S.measured} / 60 dk</span></div>
+    </div>
+    <div style="flex:1"></div>
+    ${la ? `<div class="la" role="group" aria-label="Canlı Etkinlik"><span class="lp"></span><b>${APPS[S.pass.app].name} · ${S.pass.kind === 'quick' ? 'hızlı bakış' : 'açık'}</b><span class="tm" id="laTime">${mmss(remaining())}</span><span style="font-size:13px;opacity:.85">Bitince Pofu kapıya döner.</span><div class="bar"><i id="laBar" style="width:${100 * remaining() / (S.pass.mins * 60)}%"></i></div><div class="ft"><span>Pofu</span><button data-act="endNow">Şimdi bitir</button></div></div>` : ''}
+    ${stale ? `<div class="la"><span class="lp"></span><b>Süre doldu · Pofu kapıda</b><span class="tm">0:00</span><span></span><div class="bar"><i style="width:0"></i></div></div>` : ''}
+    ${!la && !stale ? `<p style="opacity:.8;font-size:14px">Geçiş yokken Canlı Etkinlik de yok.</p>` : ''}
+    <button class="btn" style="background:rgba(255,255,255,.18);color:#fff;margin-top:20px" data-act="unlock">Kilidi aç</button>
+  </div>`;
+};
+ACT.lock = () => go('lock');
+ACT.unlock = () => go('springboard');
+ACT.endNow = () => { if (!S.pass) return; log('Canlı Etkinlik: Şimdi bitir → kalkan geri'); S.pass = null; S.justEnded = null; go('lock'); };
+
+// The home indicator: swipe up
+$('#homebar').addEventListener('click', () => {
+  if (S.view === 'shield') {
+    const m = S.shield.m;
+    if (m.ctx.startsWith('waiting')) { log('Bekleme ekranından çıktı (10 dk içinde gelmezse boş vermiş sayılır)'); }
+    else if (m.ctx === 'expiry') { log('Süre doldu ekranından çıktı'); S.justEnded = null; }
+    else { S.resisted++; log('Kalkandan dokunmadan çıktı → sessiz boş verme'); }
+  } else if (S.view === 'hop') { S.resisted++; log('Hop!: kaydırıp çıktı → boş verme'); }
+  if (!S.onboarded && S.view.startsWith('ob')) S.prevOb = S.view;
+  go('springboard');
+});
+
+// ------------------------------------------------------------------ scenario panel (prototype only)
+$('#tab').addEventListener('click', () => { $('#panel').classList.add('open'); renderPanel(); });
+$('#panel').addEventListener('click', (e) => { if (e.target.id === 'panel') $('#panel').classList.remove('open'); });
+function renderPanel() {
+  const pp = $('#pp'); if (!pp) return;
+  const opt = (label, act, on) => `<button data-act="${act}" aria-pressed="${!!on}">${label}</button>`;
+  pp.innerHTML = `<b style="font-size:16px">Senaryo (prototip kontrolleri)</b>
+  <h3>Git</h3><div class="opts">${opt('Kurulum baştan', 'reset')}${opt('Ana ekran (iPhone)', 'goSB')}${opt('Pofu', 'goHome')}${opt('Kilit ekranı', 'goLock')}${opt('Kurulumu atla', 'skipOb')}</div>
+  <h3>Saat</h3><div class="opts">${['morning:Sabah', 'day:Öğle', 'evening:Akşam', 'night:Gece (yatma)'].map((x) => { const [k, l] = x.split(':'); return opt(l, 'time:' + k, S.time === k); }).join('')}</div>
+  <h3>Durum</h3><div class="opts">
+    ${opt('Günlük saat doldu (60 dk)', 'tog:overLimit', S.overLimit)}${opt('Bildirim izni', 'tog:notif', S.notif)}${opt('iOS 26.4 alt menü', 'tog:submenu', S.submenu)}
+    ${opt('Pofu yorgun', 'tog:tired', S.tired)}${opt('İzin geri alındı', 'tog:revoked', S.revoked)}${opt('Koyu görünüm', 'theme', isDark())}${opt('20 dk ileri', 'advance')}${opt('Yeni saat (sayaç sıfırla)', 'newHour')}</div>
+  <h3>Gün ${S.day}</h3><div class="opts">${[0, 1, 2, 3, 5, 7, 8].map((d) => opt(String(d), 'day:' + d, S.day === d)).join('')}</div>
+  <h3>Sayılar</h3><div style="font-size:13px">Uzanma ${S.reaches} · boş verme ${S.resisted} · huzur ×${fmt(S.calm)} · ölçülen en az ${S.measured} dk${S.hopLatency ? ` · bildirim→Hop! ${S.hopLatency} ms` : ''}</div>
+  <div class="log">${S.log.map(esc).join('\n')}</div>`;
+}
+ACT.reset = () => { S = fresh(); $('#panel').classList.remove('open'); go('ob1'); };
+ACT.goSB = () => { $('#panel').classList.remove('open'); go('springboard'); };
+ACT.goHome = () => { $('#panel').classList.remove('open'); if (!S.onboarded) ACT.skipOb(); else go('home'); };
+ACT.goLock = () => { $('#panel').classList.remove('open'); go('lock'); };
+ACT.skipOb = () => { S.onboarded = true; S.picked = ['instagram', 'youtube', 'tiktok']; S.notif = S.notif === null ? true : S.notif; S.revoked = false; S.empty = false; S.demo = false; $('#panel').classList.remove('open'); go('springboard'); };
+ACT.time = (k) => { S.time = k; S.hourReach = 0; setTheme(); go(S.view, S.arg); };
+ACT.tog = (k) => { S[k] = !S[k]; if (k === 'notif') log('Bildirim izni: ' + (S.notif ? 'açık' : 'kapalı')); go(S.view, S.arg); };
+ACT.theme = () => { S.theme = isDark() ? 'light' : 'dark'; go(S.view, S.arg); };
+ACT.advance = () => { S.clockMin += 20; renderPanel(); toast('20 dakika geçti.'); };
+ACT.newHour = () => { S.hourReach = 0; S.lastJealous = false; renderPanel(); toast('Yeni bir saat: saatlik sayaç sıfırlandı.'); };
+ACT.day = (d) => { S.day = +d; go(S.view, S.arg); };
+ACT.toast = (m) => toast(m);
+
+// ------------------------------------------------------------------ one delegated handler
+phone.addEventListener('click', (e) => {
+  const el = e.target.closest('[data-act]'); if (!el || !phone.contains(el)) return;
+  if (el.closest('#panel') || el.dataset.act) {
+    const [name, ...rest] = el.dataset.act.split(':'); const arg = rest.join(':');
+    const fn = ACT[name]; if (!fn) return;
+    // the chevron inside a picker row toggles open instead of selecting
+    fn(arg, e);
+    if (el.closest('#panel')) renderPanel();
+  }
+});
+// a reach becomes the demo's success
+window.__pofu = { state: () => JSON.parse(JSON.stringify({ ...S, log: undefined })), shieldModel, go: (v, a) => go(v, a), set: (o) => { Object.assign(S, o); }, ACT };
+go('ob1');
+</script>
+</body>
+</html>
