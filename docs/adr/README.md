@@ -21,3 +21,4 @@ Format: a lightweight variant of [MADR](https://adr.github.io/madr/). Use
 | [0010](0010-illustrated-hamster-art-direction.md) | Illustrated hamster art direction | Accepted |
 | [0011](0011-companion-motion-system.md) | Companion motion system | Accepted |
 | [0012](0012-ux-v1-decisions.md) | UX v1 decisions | Accepted |
+| [0013](0013-zero-setup-default-gate.md) | Zero-setup default gate, live Pofu as an enhancement | Accepted |

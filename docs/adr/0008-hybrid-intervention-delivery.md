@@ -2,6 +2,7 @@
 
 - **Status:** Accepted
 - **Date:** 2026-10-31
+- **Amended by:** [0013](0013-zero-setup-default-gate.md) (Screen Time is the zero-setup default; Shortcuts is an opt-in enhancement)
 
 ## Context
 

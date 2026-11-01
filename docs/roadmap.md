@@ -48,6 +48,7 @@ delightful, running on the simulated Screen Time service (ADR-0003).
 - [ ] Production art from the prompt library, processed by the asset pipeline
 - [ ] Daily recap and bedtime mode
 - [ ] Streaks and first milestones
+- [ ] Spike: iOS 27 one-tap automation import ([ADR-0013](adr/0013-zero-setup-default-gate.md))
 - [ ] Practice Hop! in onboarding and the picture-in-picture setup guide
 
 ## Day 1 of the paid membership
@@ -63,7 +64,9 @@ A checklist, not a phase. These steps have long lead times.
 
 ## Phase 2: The shield (paid membership)
 
-Goal: enforcement. Schedules and budgets become real blocks.
+Goal: zero-setup onboarding (permission plus app picker,
+[ADR-0013](adr/0013-zero-setup-default-gate.md)) and enforcement. Schedules and
+budgets become real blocks.
 
 - `LiveScreenTimeService`: authorization, app selection, schedules, presets
 - Hard gate: shield configuration and action extensions, with Pofu's
