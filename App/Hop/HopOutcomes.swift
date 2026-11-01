@@ -129,6 +129,9 @@ struct HopHandoff: View {
         .sensoryFeedback(.selection, trigger: opened)
         .task {
             opened += 1
+            // The first pass asks for notifications; hand off only once the
+            // user has answered.
+            await model.passReminderReady()
             guard session.app.canBeOpenedByPofu else { return }
             // A beat to read the line, then back to the app (user flows).
             try? await Task.sleep(for: .milliseconds(600))

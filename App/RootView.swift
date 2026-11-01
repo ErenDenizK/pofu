@@ -36,10 +36,11 @@ struct RootView: View {
             case .active:
                 model.refresh()
             case .background:
+                model.leftForeground()
                 // Swiping home from Hop! counts as skipping (ADR-0008).
                 model.leaveHop()
             default:
-                break
+                model.leftForeground()
             }
         }
     }

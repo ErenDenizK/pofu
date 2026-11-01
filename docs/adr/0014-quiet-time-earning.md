@@ -82,6 +82,30 @@ itself.
   without effort. Escalation and night pricing still apply; watch real use
   for evening binges before adding decay or a balance cap.
 - Users who used Pofu before this change start observed from their last
-  check-in, quiet from the end of their last pass.
+  check-in, quiet from the end of their last pass (paused instead when that
+  pass outlasted the check-in; see the note below).
 - `PofuState` gains a `quietTime` ledger, decoded tolerantly so older
   snapshots load.
+
+## Note (2026-11-01): the time after a pass expires is unobserved
+
+The rule "quiet resumes when the pass ends, early or on time" assumed that
+an expired pass means the user left the app. Before Screen Time it does
+not: a pass is only a record in Pofu's store, nothing closes the guarded
+app at expiry, and the "App is opened" automation does not fire while the
+user stays in it. A 5-minute pass followed by an hour of scrolling earned
+quiet seeds for that hour (decision audit C1).
+
+Corrected rule: a pass pauses quiet time until the **next sign of life
+after it**: a check-in or another automation run, Pofu coming to the
+foreground, or a tap on the new pass-expiry reminder. The time in between
+never counts. Ending a pass early in Pofu still resumes quiet at once, and
+a voided pass still gives quiet back from its grant. Returning to Pofu
+restarts the stretch but is not a sign of life from the automation, so it
+does not extend the 72-hour observation or release held seeds. Users whose
+last pass outlasted their last sign of life start with quiet paused.
+
+This errs toward under-counting: someone who closes the app on time and
+never opens Pofu loses that quiet time until the next check-in. With
+DeviceActivity (paid membership), measured usage should replace this
+proxy. [economy.md](../product/economy.md#quiet-time) has the rules.

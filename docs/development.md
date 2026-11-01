@@ -142,15 +142,16 @@ for daily use on the iPhone.
 iOS does not let apps create automations, so this is done by hand, once
 per app. Pofu's setup guide shows the same steps for the app you pick.
 
-1. Open **Shortcuts** and tap **Automation** at the bottom.
+1. Open **Shortcuts** and tap **Automation** at the bottom. Do not use
+   search: it finds actions, not the **App** trigger.
 2. Tap **+** (or **New Automation**).
 3. Scroll down and tap **App**.
 4. Tap **Choose**, pick **Instagram**, then **Done**. Keep **Is Opened**
    selected.
 5. Choose **Run Immediately** and turn **Notify When Run** off. Tap
    **Next**.
-6. Tap **New Blank Automation**, then **Add Action**. Search **Pofu** and
-   tap **Hop in**.
+6. Tap **New Blank Automation**, then **Add Action**. Search **Hop**
+   (only here, inside the action list) and tap **Hop in**.
 7. Tap **App** in the action and pick the same app (Instagram). Tap
    **Done**.
 
@@ -162,8 +163,12 @@ Then, in Pofu, tap **Test it: open Instagram** in the setup guide. Hop!
 should appear within about a second; the guide then shows "It works".
 
 The labels above are the English iOS 26 ones. With the phone in Turkish,
-Shortcuts is **Kestirmeler**; the guide's Turkish wording follows the
-user flows and has not been checked against a Turkish device yet.
+Shortcuts is **Kestirmeler**. The guide's Turkish labels live in
+`App/Resources/ShortcutsLabels.xcstrings`; the ones no source confirmed
+are marked `VERIFY ON DEVICE` there and in `SetupGuideView`. Device
+screenshots named `SetupStep-<step>` in the asset catalog replace the
+guide's drawn schematics. No documented URL opens Shortcuts on the
+Automation tab, so the guide opens `shortcuts://`.
 
 ### 3. Every 7 days: re-sign
 
@@ -187,8 +192,11 @@ A calendar reminder every 6 days is the simplest way not to miss it.
   launch-blocking finding to report.
 - **Vitality freezes on days without any check-in**, because Pofu cannot
   tell a quiet day from a deleted automation without DeviceActivity.
-- **No notifications yet.** Pofu does not tap your shoulder when a pass
-  ends; it simply guards the app again.
+- **One notification: the pass-expiry reminder.** Pofu asks for
+  notification permission at the first pass and reminds you when a pass
+  ends. Nothing closes the app at expiry; if you stay in it, the time
+  until you tap the reminder, open Pofu, or open a guarded app again is
+  unobserved and earns no quiet seeds.
 - **Asking a friend is a placeholder.** The emergency pass (3 minutes,
   once a day) is the way through when no seeds are left.
 - **URL schemes** used to hand back to an app are listed in

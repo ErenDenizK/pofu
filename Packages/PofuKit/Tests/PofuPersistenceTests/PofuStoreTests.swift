@@ -36,6 +36,8 @@ func sampleSnapshot() throws -> PofuSnapshot {
         try gatekeeper.resolve(attempt, with: .pay(minutes: 15), at: noon.addingTimeInterval(4.25), state: &state, reason: .lookUp)
     }
     _ = gatekeeper.beginCheckIn(for: "instagram", at: noon.addingTimeInterval(61.5), state: &state)
+    // Back in Pofu after the pass: quiet time starts counting again.
+    gatekeeper.noteUserReturned(at: noon.addingTimeInterval(1_200), state: &state)
     let walk = ActivitySession(kind: .walk, verification: .honor, startedAt: noon.addingTimeInterval(3_600), endedAt: noon.addingTimeInterval(5_400))
     economy.earn(walk, into: &state.wallet)
     // Three quiet hours later, seeds are waiting in Pofu's cheeks.

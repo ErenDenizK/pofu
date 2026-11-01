@@ -1001,16 +1001,6 @@
         }
       }
     },
-    "Open Shortcuts and tap **Automation** at the bottom." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**Kestirmeler**'i aç ve alttaki **Otomasyon**'a dokun."
-          }
-        }
-      }
-    },
     "Or earn seeds with a focus" : {
       "localizations" : {
         "tr" : {
@@ -1065,16 +1055,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "İzinler"
-          }
-        }
-      }
-    },
-    "Pick **Run Immediately** and turn **Notify When Run** off. Tap **Next**." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**Hemen Çalıştır**'ı seç, **Çalıştığında Bildir**'i kapat. **Sonraki**'ne dokun."
           }
         }
       }
@@ -1175,16 +1155,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Şu an açık"
-          }
-        }
-      }
-    },
-    "Scroll down and tap **App**." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aşağı kaydır ve **Uygulama**'ya dokun."
           }
         }
       }
@@ -1335,46 +1305,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kaydırıp çıkmak da vazgeçmek sayılır."
-          }
-        }
-      }
-    },
-    "Tap **+** (or **New Automation**)." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**+**'ya (ya da **Yeni Otomasyon**'a) dokun."
-          }
-        }
-      }
-    },
-    "Tap **App** in the action and pick **%@**. Tap **Done**, then come back to me." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eylemdeki **Uygulama** alanında **%@** seçili olsun. **Bitti**'ye dokun, sonra bana dön."
-          }
-        }
-      }
-    },
-    "Tap **Choose**, pick **%@**, then **Done**. Keep **Is Opened** selected." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**Seç**'e dokun, **%@** uygulamasını işaretle, sonra **Bitti**'ye dokun. **Açıldığında** seçili kalsın."
-          }
-        }
-      }
-    },
-    "Tap **New Blank Automation**, then **Add Action**. Search **Pofu** and tap **Hop in**." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**Yeni Boş Otomasyon**'a, sonra **Eylem Ekle**'ye dokun. **Pofu** diye ara ve **Hop in**'e dokun."
           }
         }
       }
@@ -1887,6 +1817,127 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "dk"
+          }
+        }
+      }
+    },
+    "Time's up. Back to me?" : {
+      "comment" : "The pass-expiry notification, in Pofu's voice.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Süre doldu. Bana döner misin?"
+          }
+        }
+      }
+    },
+    "We're making a rule: when %@ opens, %@ hops in." : {
+      "comment" : "The setup guide's headline, in the user's own words: the app, then the companion's name.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir kural yapıyoruz: %1$@ açılınca %2$@ araya girer."
+          }
+        }
+      }
+    },
+    "Open Shortcuts. Don't search: tap **Automation** at the bottom." : {
+      "comment" : "Setup step 1. Bold words quote the Shortcuts app (iOS 26).",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Kestirmeler**'i aç. Arama yapma: alttaki **Otomasyon**'a dokun."
+          }
+        }
+      }
+    },
+    "Tap **New Automation**, or **+** at the top right." : {
+      "comment" : "Setup step 2. VERIFY ON DEVICE: Yeni Otomasyon.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Yeni Otomasyon**'a ya da sağ üstteki **+**'ya dokun."
+          }
+        }
+      }
+    },
+    "Scroll down the list and tap **App**." : {
+      "comment" : "Setup step 3: the App trigger.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listede aşağı kaydır ve **Uygulama**'ya dokun."
+          }
+        }
+      }
+    },
+    "Tap **Choose**, pick **%@**, then tap **Done**." : {
+      "comment" : "Setup step 4: the app. VERIFY ON DEVICE: Seç.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Seç**'e dokun, **%@** uygulamasını seç, sonra **Bitti**'ye dokun."
+          }
+        }
+      }
+    },
+    "Keep **Is Opened** ticked. Choose **Run Immediately**, turn **Notify When Run** off, then tap **Next**." : {
+      "comment" : "Setup step 5. VERIFY ON DEVICE: Açık, Çalıştığında Bildir, Sonraki.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Açık** işaretli kalsın. **Hemen Çalıştır**'ı seç, **Çalıştığında Bildir**'i kapat, sonra **Sonraki**'ne dokun."
+          }
+        }
+      }
+    },
+    "Tap **New Blank Automation**, then **Add Action**. Search here, and only here: type **Hop** and tap **Hop in**." : {
+      "comment" : "Setup step 6. VERIFY ON DEVICE: Yeni Boş Otomasyon, Eylem Ekle.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Yeni Boş Otomasyon**'a, sonra **Eylem Ekle**'ye dokun. Aramayı yalnızca burada kullan: **Hop** yaz ve **Hop in**'e dokun."
+          }
+        }
+      }
+    },
+    "In the action, tap **App** and pick **%@** again. Tap **Done**, then come back to me." : {
+      "comment" : "Setup step 7: the Hop in action's App parameter.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eylemde **Uygulama**'ya dokun ve yine **%@** seç. **Bitti**'ye dokun, sonra bana dön."
+          }
+        }
+      }
+    },
+    "Search in Shortcuts finds actions, not rules. The rule starts in Automation." : {
+      "comment" : "Setup step 1's warning.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kestirmeler'deki arama eylemleri bulur, kuralları değil. Kural Otomasyon'da başlar."
+          }
+        }
+      }
+    },
+    "Run After Confirmation asks you every time, and I'd arrive too late." : {
+      "comment" : "Setup step 5's warning. VERIFY ON DEVICE: Onaydan Sonra Çalıştır.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onaydan Sonra Çalıştır her seferinde sana sorar, ben de geç kalırım."
           }
         }
       }

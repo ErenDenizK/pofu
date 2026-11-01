@@ -106,8 +106,8 @@ public struct PassEnding: Hashable, Sendable {
 /// a slot machine (open, skip, collect); skips feed vitality instead.
 ///
 /// The gate also keeps quiet time (ADR-0014) in step: every check-in is a
-/// sign of life, every opened outcome breaks the quiet stretch, and ending
-/// a pass resumes it.
+/// sign of life, every opened outcome breaks the quiet stretch, and the
+/// next sign of life after the pass (or ending it early) resumes it.
 public struct Gatekeeper: Sendable {
     public let economy: Economy
     public let quietTime: QuietTimeAccrual
@@ -284,6 +284,14 @@ public struct Gatekeeper: Sendable {
     /// life keeps Pofu observing and releases held seeds.
     public func noteAutomationRan(at date: Date, state: inout PofuState) {
         quietTime.recordSignal(at: date, in: &state.quietTime, passes: state.passes)
+    }
+
+    /// The user is back in Pofu at `date`: it came to the foreground, or
+    /// they tapped the pass-expiry notification. Starts the quiet stretch
+    /// an expired pass paused; it is not a sign of life from the
+    /// automation, so observation and held seeds do not change.
+    public func noteUserReturned(at date: Date, state: inout PofuState) {
+        quietTime.userReturned(at: date, in: &state.quietTime, passes: state.passes)
     }
 
     /// Credits quiet time up to `date` into Pofu's cheeks.
