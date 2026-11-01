@@ -1,6 +1,6 @@
 # Roadmap
 
-_Living document. Last updated: 2026-10-31._
+_Living document. Last updated: 2026-11-01._
 
 Phases are sequenced by risk: the earliest phases remove the largest
 unknowns. Each phase ends with something the founder can hold in their hand.
@@ -34,18 +34,32 @@ Goal: every decision needed to start building is made and written down.
 Goal: an app on the founder's iPhone where the companion is alive and
 delightful, running on the simulated Screen Time service (ADR-0003).
 
+**Order since the [decision audit](product/decision-audit.md):** the gate
+first, then the world. Work is sequenced in the
+[iteration plan](design/iteration-plan.md): stage G (the automation firing,
+honest measurement, setup guide v2, a 7-day dogfood, the Screen Time
+shield on membership day 1), then stage W (the home island).
+
 - [x] **Soft gate v1** ([ADR-0008](adr/0008-hybrid-intervention-delivery.md),
   [ADR-0012](adr/0012-ux-v1-decisions.md)): `CheckInIntent` with dynamic
   foregrounding, the Hop! ladder, passes with refunds and the emergency pass,
   hand-off to the target app, and a guided Shortcuts setup
 - [x] Persistence (`PofuPersistence`): snapshot store and event log
 - [x] Pofu's room v1: animated companion, seeds, today's beads, honor focus
-  timer
+  timer (superseded by the island direction, ADR-0016)
 - [x] Minimal onboarding: welcome, apps, name, setup
+- [ ] **The automation firing on the founder's iPhone** (G1): the first
+  attempt failed at finding the App trigger; redo it live with the local
+  agent and record every screen
+- [ ] **Honest measurement and setup guide v2** (G2)
+- [ ] **A 7-day gate dogfood** (G3), with a daily readout from the event log
 - [ ] **On-device validation by the founder** (foregrounding from the
   automation, silent pass-through, cold launch, URL schemes, Turkish
   Shortcuts labels)
-- [ ] Production art from the prompt library, processed by the asset pipeline
+- [ ] Game model in `PofuCore` and the home-island slice (stage W, after two
+  weeks of daily use)
+- [ ] Production art on the founder's own account, processed by the asset
+  pipeline (stage W)
 - [ ] Daily recap and bedtime mode
 - [ ] Streaks and first milestones
 - [ ] Spike: iOS 27 one-tap automation import ([ADR-0013](adr/0013-zero-setup-default-gate.md))
@@ -73,9 +87,13 @@ budgets become real blocks.
   current mood pre-rendered into the shield
 - Monitor extension: threshold ladder feeding companion health
 - Report extension: screen time, pickups, top apps
-- Spend flow: unlock windows bought with energy
+- The breathing break as the hard limit (ADR-0015); no unlock windows are
+  bought with seeds
 
-## Phase 3: Earn for real
+## Phase 3: Earn for real (rescoped)
+
+_Since ADR-0015 seeds come from quiet time, not activity. Keep verified
+focus only as a calm boost, and only if the founder uses focus sessions._
 
 - HealthKit passive earning (steps, workouts, mindful minutes)
 - Verified focus sessions
