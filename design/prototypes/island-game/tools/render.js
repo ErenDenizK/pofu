@@ -46,7 +46,7 @@ async function overview(browser, out, list) {
   const page = await browser.newPage({ viewport: { width: 2400, height: 1600 }, deviceScaleFactor: 1 });
   const cells = list.map(([name, caption]) => `<figure><img src="${name}.png"><figcaption><b>${name.slice(0, 2)}</b> ${caption}</figcaption></figure>`).join('');
   const tmp = path.join(out, '_overview.html');
-  fs.writeFileSync(tmp, `<html><head><style>
+  fs.writeFileSync(tmp, `<!DOCTYPE html><html><head><meta charset="utf-8"><style>
     @font-face { font-family: Nunito; src: url("file://${ROOT}/../../boards/fonts/nunito-latin-wght-normal.woff2"); font-weight: 200 1000; }
     @font-face { font-family: "Baloo 2"; src: url("file://${ROOT}/../../boards/fonts/baloo-2-latin-wght-normal.woff2"); font-weight: 400 800; }
     body { margin: 0; background: #EFE6E1; font-family: Nunito, sans-serif; color: #2A1F2D; }
