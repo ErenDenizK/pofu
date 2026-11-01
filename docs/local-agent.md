@@ -77,30 +77,36 @@ founder in Turkish.
 3. Write the report in PR `local/device-validation`. This is the most
    important evidence in the project right now.
 
-### T4. Image generation with Codex (only after the founder says the ChatGPT login is ready)
+### T4. Image generation (not started; blocked on the account decision and the dogfood)
 
-The ChatGPT account belongs to the founder's uncle. Be economical and
-respectful: generate in small batches with pauses, and never run bulk
-loops.
+Production art is generated **only on the founder's own OpenAI account**:
+his own ChatGPT plan through the Codex CLI, or his own API key through the
+pipeline's `openai-api` backend. Using anyone else's account is against
+OpenAI's terms and would muddy the provenance of shipped art. Art waits
+until the founder has chosen the account **and** finished his 7-day gate
+dogfood; both batches are `status: blocked` until the lead opens them.
 
-1. Install the OpenAI Codex CLI if it is missing. **Do not set
-   `OPENAI_API_KEY`**, because that switches billing to the API. The founder
-   signs in with the ChatGPT account in the browser.
-2. Spike: check whether Codex can generate an image with the ChatGPT login.
-   Generate **prompt 1 (the base, R1)** from
-   [prompt-library.md](design/prompt-library.md), with the concept image
-   `docs/brand/assets/concepts/hamster-gpt-image.png` attached as the
-   reference. Make 3 or 4 variants at most.
-3. Save the outputs to `design/art/inbox/` with the file names the prompt
-   library specifies. Run
-   `python3 -I tools/assets/process_assets.py process --inbox design/art/inbox --out build/PofuArt.xcassets`
-   and include its report.
-4. Open PR `local/codex-imagegen-spike` with the images and a report that
-   covers whether it works, the speed, any limits you hit, and the quality
-   against the art bible. The lead decides how to scale up.
+The operator is **OpenAI Codex on the Mac**, briefed by
+[`AGENTS.md`](../AGENTS.md) (who, rules, decisions, stop conditions), in
+a separate clone such as `~/projects/pofu-art`. A local Claude session
+may operate it instead with the same rules. Everything else is in
+[art-pipeline.md](design/art-pipeline.md):
 
-If Codex cannot generate images with a ChatGPT login, say so plainly and
-stop. Do not fall back to browser automation of chatgpt.com.
+1. When the lead opens a batch, do the
+   [first-run checklist](design/art-pipeline.md#first-run-checklist) with
+   the founder: account fields in `tools/imagegen/config.yaml`, venv and
+   tests, and either the Codex checks (signed in with ChatGPT as the
+   founder, `OPENAI_API_KEY` unset, one test image outside the repo,
+   transparency and the image folder confirmed) or the API checks (key in
+   the Keychain, model and prices verified).
+2. Round by round: `plan`, `run`, `post`, the founder picks on the contact
+   sheet, `promote`, PR `art/<batch>` into `main`. Never merge.
+3. Small batches only (the pipeline enforces 1 image at a time, 90 s
+   apart, 3 takes per job, 12 images per run). Stop and report on any
+   limit, sign-in, refusal or timeout message.
+
+Never set `OPENAI_API_KEY` for the Codex path, never automate chatgpt.com
+in a browser, never commit anything from `~/.codex` or a key.
 
 ### T5. Spike: iOS 27 automation import (after T3)
 

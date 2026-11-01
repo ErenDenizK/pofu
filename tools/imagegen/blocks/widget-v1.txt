@@ -1,0 +1,6 @@
+WIDGET BACKGROUND: an opaque, calm illustration for an iOS home screen
+widget, from the same world, style and light as the attached island. The
+left 55% is calm, low-detail sky and soft haze, because the app draws
+text and numbers there; the island sits small on the right, fully
+inside the frame with a little margin. No glass, no frames, no text, no
+characters (the app composes Pofu in).

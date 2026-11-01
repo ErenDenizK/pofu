@@ -1,0 +1,6 @@
+KEEP: everything not named above stays exactly the same as in the
+attached image: every existing part, its shape, color, position and size,
+the canvas, the camera, the light and the painting style. Do not zoom out
+or reframe: if a new part does not fit, make the new part smaller, never
+the existing ones. Outside the new parts, the result must line up with
+the attached image pixel for pixel.

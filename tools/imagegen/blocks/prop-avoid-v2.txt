@@ -1,0 +1,6 @@
+AVOID: glossy or metallic shine, specular glints, reflections, hammered
+or dimpled metal, wood grain, fine surface texture, photorealism, a 3D
+render look, plastic or vinyl, high contrast, black or near-black
+shadows, saturated or neon colors, outlines, cel shading, text, letters,
+numbers, logos, watermarks, characters or animals, a floor, a background,
+a ground shadow.

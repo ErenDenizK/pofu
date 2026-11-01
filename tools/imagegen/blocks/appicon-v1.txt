@@ -1,0 +1,6 @@
+APP ICON: a square, fully opaque app icon. The focal shape sits inside
+the central 80% circle; the corners are calm background only, because
+the system masks them. It must read at 60 pixels: one clear shape, big
+and simple, high value contrast between the focal shape and the
+background. No text, no letters, no logo type, no border, no frame, no
+glass, no glossy highlight, no drop shadow.

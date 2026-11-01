@@ -1,6 +1,6 @@
 # Pofu Art Bible: Governing AI-Generated Imagery
 
-_Status: v1.0. Last updated: 2026-10-31._
+_Status: v1.1. Last updated: 2026-11-01 (amendment A1, section 15)._
 _Read with the [design language](design-language.md) (where art is
 allowed) and the [prompt library](prompt-library.md) (what to make)._
 
@@ -267,7 +267,8 @@ on the iPhone at real size.
 - Approved masters go to `design/art/masters/<asset-name>/` with the
   approved PNG and a `provenance.md` containing: the exact prompt, the date,
   the tool and model as shown in ChatGPT, the attached references (by ID),
-  the number of generations considered, and every human edit made
+  the number of generations considered, the **generating account owner**
+  (amendment A1), and every human edit made
   afterwards (crop, paint-over, color correction).
 - Exported catalogs are build output (`build/`); copying one into
   `App/Resources` is a reviewed pull request.
@@ -297,4 +298,43 @@ on the iPhone at real size.
     and keep the result in the provenance file.
 - Revisit with a lawyer before spending on trademark filings or merch.
 
-_Version history: v1.0 (2026-10-31) first version; anchors v1._
+## 15. Amendment A1 (2026-11-01): props, plates and UI art
+
+_Added by the [art-direction study](art-direction-study.md); sections 1
+to 14 are unchanged except the provenance line in section 13. Pipeline:
+[art-pipeline.md](art-pipeline.md)._
+
+1. **Prop style block v2** replaces the v1 prop block (game design
+   section 15) for every new station, prop, plate and UI object: matte
+   materials, chunky shapes with few parts, high key, at most one soft
+   highlight per object, darkest shadow a warm mid-brown. Text in
+   [`tools/imagegen/blocks/prop-style-v2.txt`](../../tools/imagegen/blocks/prop-style-v2.txt).
+   The character anchors (section 2) are unchanged.
+2. **One camera for the diorama:** about 20 degrees above the horizon,
+   ground ellipses 0.3 tall : wide (view block v2); the approved island
+   is attached as the camera reference for stations.
+3. **Style lock:** every station, prop, plate and UI image passes the
+   `soft-lock` preset ([`style_lock.json`](../../tools/imagegen/style_lock.json))
+   before it becomes a master; characters are not locked. Masters keep
+   the raw take next to the locked one.
+4. **Props palette:** `world-props` in
+   [`tools/imagegen/palettes.json`](../../tools/imagegen/palettes.json)
+   (card: `design/reference/palette-card-world-props.png`) joins the
+   locked palettes for drift checks.
+5. **Level chains:** every level edit is aligned back to its parent
+   level before approval (edits may zoom out); level 1 leaves the upper
+   half of the height bar empty for later levels; edits use the
+   edit-keep block (no reframing).
+6. **Glass++ (ADR-0018):** no image ever paints glass, frosted panels,
+   buttons or interface chrome; domain icons follow the icon style block
+   (simplified, legible at 24 pt, no outline).
+7. **Generating account:** production art is generated only on the
+   founder's own OpenAI account; every master records its owner.
+8. **New defects:** _reframed edit_ (the edit rescaled or moved the
+   object: aligned automatically, regenerate if beyond 25 %); _heavy
+   lock_ (the lock moved colors by mean Delta E above 10: the take
+   drifted at the source, prefer another take).
+
+_Version history: v1.0 (2026-10-31) first version; anchors v1. v1.1
+(2026-11-01) amendment A1 (section 15) and the account line in section
+13; anchors unchanged._

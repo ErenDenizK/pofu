@@ -81,6 +81,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Decision audit ([decision-audit.md](docs/product/decision-audit.md)):
   an independent red-team review of every decision, research claim, and
   plan.
+- Art test 01: the founder's first island and çay ocağı takes, kept as
+  references.
+- Art direction study ([art-direction-study.md](docs/design/art-direction-study.md))
+  with a phone-friendly comparison page (`design/prototypes/art-study/`):
+  measured why the props read as "AI", three treatments, and the
+  recommended soft lock (props and plates pulled toward R1; Pofu
+  untouched).
+- Image pipeline (`tools/imagegen/`, [art-pipeline.md](docs/design/art-pipeline.md)):
+  manifests composed from verbatim prompt blocks, `codex`, `openai-api`
+  and `manual` backends, the style lock, QA (station anchor, edit
+  alignment, palette drift, detail at display size, icon legibility on
+  glass), contact sheets, a review file and promotion with provenance.
+  Batch 01 (vertical slice) and batch 02 (Glass++ UI art) are defined and
+  blocked until the founder's account decision and the 7-day dogfood.
+  `AGENTS.md` briefs OpenAI Codex as the local operator.
+- Art bible v1.1: amendment A1 (prop style block v2, one diorama camera,
+  the style lock, the `world-props` palette, level-chain alignment, the
+  generating-account rule).
 
 ### Fixed
 
