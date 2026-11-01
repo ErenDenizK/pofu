@@ -85,12 +85,16 @@ struct HomeView: View {
             Button {
                 model.homeSheet = .settings
             } label: {
+                // Exactly the seed pill's height and capsule shape: glass
+                // drawn in the frame, not around it as `.glass` would.
                 Image(systemName: "gearshape")
                     .font(PofuFont.title3)
+                    .foregroundStyle(PofuColor.textPrimary)
                     .frame(width: PofuSize.minimumTouch, height: PofuSize.minimumTouch)
+                    .glassEffect(.regular.interactive(), in: Capsule(style: .continuous))
+                    .contentShape(Capsule(style: .continuous))
             }
-            .buttonStyle(.glass)
-            .tint(PofuColor.textPrimary)
+            .buttonStyle(.plain)
             .accessibilityLabel(Text("Settings"))
         }
         .padding(.top, PofuSpacing.s)
