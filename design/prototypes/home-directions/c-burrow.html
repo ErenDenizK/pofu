@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pofu Home · C. Cozy burrow, upgraded</title>
+<link rel="stylesheet" href="home.css">
+<style>
+  .lampglow { animation: glowPulse 5s ease-in-out infinite; }
+  .bulb { animation: twinkle 2.8s ease-in-out infinite; }
+  .wheel { transform-box: fill-box; transform-origin: center; }
+  .dust { animation: float2 var(--d, 9s) ease-in-out infinite; animation-delay: var(--dl, 0s); }
+  .vit-wilting .world > svg { filter: saturate(.72); }
+  .cloud { animation: driftCloud var(--d, 80s) linear infinite; animation-delay: var(--dl, 0s); }
+  @keyframes driftCloud { from { transform: translateX(-140px); } to { transform: translateX(520px); } }
+</style>
+</head>
+<body>
+<div id="device"><div id="screen"></div></div>
+<aside id="panel"></aside>
+<script src="home.js"></script>
+<script>
+const PAL = {
+  day:   { sky: ['#A9D6EE', '#D6ECF2', '#FBEBDD'], grass: ['#A7D88F', '#6FAE6E'], soil: ['#D9A77A', '#B9805A', '#8E5A3E', '#6E4330'], wall: ['#FFF3E4', '#F6DFC6'], floor: ['#F0C58E', '#D9A066'], light: .5, lamp: 0 },
+  night: { sky: ['#15111C', '#2A2350', '#3A3070'], grass: ['#33564D', '#1F302F'], soil: ['#6A4A48', '#56393F', '#432C36', '#33222C'], wall: ['#F2D3B0', '#C9A27F'], floor: ['#C9925E', '#9C6A44'], light: 0, lamp: 1 },
+  wilt:  { sky: ['#CBC7D3', '#DCD7DE', '#ECE7E4'], grass: ['#B5C79F', '#8FA683'], soil: ['#CDB096', '#AE8D73', '#8C6E5A', '#6E5646'], wall: ['#F3ECE6', '#E1D3C8'], floor: ['#DDBF9E', '#C2A07F'], light: .15, lamp: .25 },
+};
+
+function world(s) {
+  const P = PAL[s.pal];
+  const night = s.pal === 'night', wilt = s.pal === 'wilt';
+  // main chamber geometry
+  const ch = { x: 20, y: 318, w: 362, h: 470, r: 150 };
+  const floorY = 612;
+  let svg = `<svg viewBox="0 0 402 874" preserveAspectRatio="none"><defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${P.sky[0]}"/><stop offset=".6" stop-color="${P.sky[1]}"/><stop offset="1" stop-color="${P.sky[2]}"/></linearGradient>
+    <linearGradient id="soil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${P.soil[0]}"/><stop offset=".3" stop-color="${P.soil[1]}"/><stop offset=".7" stop-color="${P.soil[2]}"/><stop offset="1" stop-color="${P.soil[3]}"/></linearGradient>
+    <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${P.grass[0]}"/><stop offset="1" stop-color="${P.grass[1]}"/></linearGradient>
+    <radialGradient id="wall" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="${P.wall[0]}"/><stop offset="1" stop-color="${P.wall[1]}"/></radialGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${P.floor[0]}"/><stop offset="1" stop-color="${P.floor[1]}"/></linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${night ? '#C9C2FF' : '#FFF6D6'}" stop-opacity="${night ? .35 : .75}"/><stop offset="1" stop-color="${night ? '#C9C2FF' : '#FFF6D6'}" stop-opacity="0"/></linearGradient>
+    <radialGradient id="nightVeil" cx=".2" cy=".42" r=".95"><stop offset="0" stop-color="#2A1F2D" stop-opacity="0"/><stop offset=".45" stop-color="#2A1F2D" stop-opacity=".12"/><stop offset="1" stop-color="#1E1828" stop-opacity=".55"/></radialGradient>
+    <radialGradient id="lamp" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFD98A" stop-opacity=".85"/><stop offset=".4" stop-color="#F5B83D" stop-opacity=".35"/><stop offset="1" stop-color="#F5B83D" stop-opacity="0"/></radialGradient>
+    <radialGradient id="sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="${night ? '#FFF1D6' : '#FFFCEB'}"/><stop offset=".25" stop-color="${night ? '#FFF1D6' : '#FFF6DA'}" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <clipPath id="room"><rect x="${ch.x}" y="${ch.y}" width="${ch.w}" height="${ch.h}" rx="${ch.r}" ry="120"/></clipPath>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.4"/></filter>
+    <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="4"/></filter>
+    <filter id="big" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+  <rect width="402" height="874" fill="url(#soil)"/>
+  <rect width="402" height="206" fill="url(#sky)"/>`;
+  // sky life
+  if (night) svg += `<circle cx="70" cy="150" r="60" fill="url(#sun)" opacity=".5"/><path d="M78 132a17 17 0 1 0 0 30a14 14 0 1 1 0-30z" fill="#FFF1D6"/>` + [[150, 160], [300, 150], [350, 180], [250, 170], [30, 120], [210, 150], [380, 130]].map(([x, y], i) => `<circle class="twinkle" style="animation-delay:${-i * .7}s" cx="${x}" cy="${y}" r="1.4" fill="#FFF6DC"/>`).join('');
+  else if (!wilt) svg += `<circle cx="-10" cy="60" r="200" fill="url(#sun)" opacity=".7"/>`;
+  svg += `<g class="cloud" style="--d:90s;--dl:-40s"><g transform="translate(120 150)" opacity="${night ? .3 : .85}" filter="url(#soft)"><ellipse cx="0" cy="6" rx="34" ry="9" fill="${night ? '#4A4078' : wilt ? '#EEEAF0' : '#fff'}"/><circle cx="-8" cy="0" r="12" fill="${night ? '#4A4078' : wilt ? '#EEEAF0' : '#fff'}"/><circle cx="10" cy="-2" r="14" fill="${night ? '#4A4078' : wilt ? '#EEEAF0' : '#fff'}"/></g></g>`;
+  // ground surface: grass with a mound and the round door above the shaft, a tree whose roots reach down
+  svg += `<path d="M0 196 Q 100 188 160 192 Q 201 168 242 192 Q 320 188 402 196 V 222 H 0 Z" fill="url(#grass)"/>
+    <path d="M0 214 Q 200 206 402 214 V 226 H 0 Z" fill="${P.soil[0]}" opacity=".6"/>
+    <g transform="translate(362 198) scale(.72)"><path d="M-4 0 q -1 -30 2 -46 h 5 q 3 20 2 46z" fill="#A8744E"/><circle cx="-14" cy="-58" r="20" fill="${night ? '#2F4A40' : wilt ? '#9DB08C' : '#86C178'}"/><circle cx="12" cy="-64" r="22" fill="${night ? '#35553F' : wilt ? '#A9BB97' : '#94CC80'}"/><circle cx="0" cy="-80" r="18" fill="${night ? '#3B5C45' : wilt ? '#B2C3A0' : '#A6D88E'}"/>
+      <path d="M0 4 q -10 40 -40 60 M2 4 q 14 30 10 70" stroke="#8E5A3E" stroke-width="3" fill="none" opacity=".55"/></g>
+    ${[[36, 190, '#FDC1B0'], [60, 192, '#F7C873'], [282, 190, '#C9B5F2'], [104, 190, '#FFFFFF']].map(([x, y, c]) => `<g transform="translate(${x} ${y})"><path d="M0 0v-9" stroke="#5E9A5C" stroke-width="1.5"/><circle cy="-11" r="3.4" fill="${night ? '#8E7FB8' : c}"/></g>`).join('')}
+    <g transform="translate(201 182)"><path d="M-15 10 V-2 A15 15 0 0 1 15 -2 V10 Z" fill="#8E5A3E"/><path d="M-12 10 V-2 A12 12 0 0 1 12 -2 V10 Z" fill="${night ? '#F7C873' : '#D69D63'}"/><circle cx="5" cy="3" r="1.3" fill="#6E4128"/>${night ? '<circle r="20" fill="#F5B83D" opacity=".35" filter="url(#glow)"/>' : ''}</g>`;
+  // soil detail: pebbles and roots
+  svg += [[40, 300, 6], [370, 330, 5], [22, 520, 4], [386, 560, 6], [30, 760, 5], [372, 800, 4], [130, 820, 5], [270, 836, 6]].map(([x, y, r]) => `<ellipse cx="${x}" cy="${y}" rx="${r * 1.5}" ry="${r}" fill="${P.soil[0]}" opacity=".45"/>`).join('');
+  // the shaft from the door down to the chamber (skylight + ladder)
+  svg += `<rect x="190" y="200" width="22" height="130" rx="8" fill="${P.wall[1]}"/><g stroke="#B07A4E" stroke-width="2">${[214, 236, 258, 280, 302].map((y) => `<path d="M193 ${y}h16"/>`).join('')}</g><path d="M193 202V328M209 202V328" stroke="#9C6A44" stroke-width="2"/>`;
+  // side nooks: bedroom (left), pantry (right)
+  svg += `<rect x="20" y="232" width="136" height="70" rx="34" fill="url(#wall)"/>
+    <g transform="translate(88 290)"><rect x="-46" y="-16" width="92" height="16" rx="8" fill="#E8B48A"/><rect x="-44" y="-22" width="58" height="12" rx="6" fill="${night ? '#C9B5F2' : '#FDC1B0'}"/><ellipse cx="-32" cy="-24" rx="13" ry="7" fill="#FFFBF5"/><rect x="38" y="-34" width="6" height="34" rx="3" fill="#C98A5A"/></g>
+    ${night ? '<circle cx="130" cy="262" r="16" fill="url(#lamp)"/><circle cx="130" cy="262" r="3" fill="#FFE7A8"/>' : ''}
+    <rect x="246" y="232" width="136" height="70" rx="34" fill="url(#wall)"/>
+    <g transform="translate(314 292)">${Array.from({ length: Math.min(28, Math.round(s.seeds / 2)) }, (_, i) => { const row = Math.floor(Math.sqrt(i * 2)); const x = (i * 9.7) % 54 - 27 + row * 2; const y = -row * 5 - ((i * 7) % 4); return `<ellipse cx="${x}" cy="${y}" rx="3.4" ry="2" fill="${i % 3 ? '#C98A3A' : '#E8B05A'}" transform="rotate(${(i * 37) % 60 - 30} ${x} ${y})"/>`; }).join('')}
+      <rect x="34" y="-34" width="18" height="30" rx="6" fill="#CFE6F0" opacity=".85"/><rect x="34" y="-34" width="18" height="7" rx="3" fill="#C98A5A"/><rect x="-56" y="-26" width="14" height="22" rx="5" fill="#F7C873" opacity=".85"/></g>`;
+  // main chamber: walls, floor, props
+  svg += `<g clip-path="url(#room)">
+    <rect x="${ch.x}" y="${ch.y}" width="${ch.w}" height="${ch.h}" fill="url(#wall)"/>
+    <path d="M${ch.x} ${floorY} Q 201 ${floorY - 18} ${ch.x + ch.w} ${floorY} V ${ch.y + ch.h} H ${ch.x} Z" fill="url(#floor)"/>
+    ${[0, 1, 2, 3, 4].map((i) => `<path d="M${ch.x} ${floorY + 26 + i * 34} Q 201 ${floorY + 10 + i * 34} ${ch.x + ch.w} ${floorY + 26 + i * 34}" stroke="#C98A5A" stroke-width="1" opacity=".25" fill="none"/>`).join('')}
+    <polygon points="190,318 212,318 262,640 140,640" fill="url(#beam)" opacity="${P.light ? 1 : night ? .6 : 0}"/>
+    <!-- string lights along the ceiling (a Plus decoration) -->
+    <path d="M40 420 Q 120 360 201 352 Q 282 360 362 420" stroke="#8E5A3E" stroke-width="1.2" fill="none" opacity=".6"/>
+    ${[[62, 400], [92, 380], [124, 366], [160, 356], [242, 356], [278, 366], [310, 380], [340, 400]].map(([x, y], i) => `<g class="${P.lamp > .5 ? 'bulb' : ''}" style="animation-delay:${-i * .4}s"><circle cx="${x}" cy="${y + 6}" r="${P.lamp > .5 ? 11 : 0}" fill="#FFD98A" opacity=".75" filter="url(#glow)"/><circle cx="${x}" cy="${y + 6}" r="3.4" fill="${['#FDC1B0', '#F7C873', '#C9B5F2', '#FFFFFF'][i % 4]}" opacity="${P.lamp > .5 ? 1 : .85}"/></g>`).join('')}
+    <!-- a framed photo of the friend (friends fit as a wall object) -->
+    <g transform="translate(300 474)"><rect x="-20" y="-24" width="40" height="46" rx="6" fill="#C98A5A"/><rect x="-15" y="-19" width="30" height="36" rx="3" fill="${night ? '#5A4E7A' : '#EEE8FF'}"/><text x="0" y="5" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="15" fill="#6C4FD8">D</text></g>
+    <!-- bookshelf -->
+    <g transform="translate(328 612)"><rect x="-26" y="-92" width="52" height="92" rx="6" fill="#C98A5A"/><rect x="-22" y="-86" width="44" height="38" rx="3" fill="#9C6A44"/><rect x="-22" y="-44" width="44" height="38" rx="3" fill="#9C6A44"/>
+      ${[['#FDC1B0', -20, 8], ['#B9A2FF', -11, 6], ['#F7C873', -4, 8], ['#8FD4A4', 5, 6], ['#FFFBF5', 12, 7]].map(([c, x, w], i) => `<rect x="${x}" y="${-84 + (i % 2) * 3}" width="${w}" height="${34 - (i % 2) * 3}" rx="1.5" fill="${c}"/>`).join('')}
+      ${[['#F6A290', -20, 7], ['#C9B5F2', -12, 9], ['#FFFBF5', -2, 6]].map(([c, x, w], i) => `<rect x="${x}" y="${-42 + (i % 2) * 4}" width="${w}" height="${34 - (i % 2) * 4}" rx="1.5" fill="${c}"/>`).join('')}<circle cx="12" cy="-18" r="7" fill="${wilt ? '#A9BB97' : '#86C178'}"/><rect x="7" y="-14" width="10" height="8" rx="2" fill="#E8B48A"/></g>
+    <!-- floor lamp -->
+    <g transform="translate(66 612)"><rect x="-2" y="-120" width="4" height="120" fill="#8E5A3E"/><ellipse cx="0" cy="0" rx="14" ry="4" fill="#8E5A3E"/><path d="M-22 -118 L -14 -146 H 14 L 22 -118 Z" fill="${P.lamp > .5 ? '#FFE7B8' : '#F3DCC8'}"/>${P.lamp ? `<circle class="lampglow" cx="0" cy="-110" r="120" fill="url(#lamp)" opacity="${P.lamp}"/>` : ''}</g>
+    <!-- the wheel stands idle when you do well -->
+    <g transform="translate(108 586)" opacity=".95"><circle class="wheel" r="26" fill="none" stroke="#D9A066" stroke-width="5"/><circle r="20" fill="none" stroke="#F3DCC8" stroke-width="2" stroke-dasharray="3 4"/><path d="M0 0 L 0 28 M-12 28 H 12" stroke="#B9824F" stroke-width="4" stroke-linecap="round"/><circle r="4" fill="#B9824F"/></g>
+    <!-- tea glass on a little table -->
+    <g transform="translate(290 640)"><ellipse cx="0" cy="-30" rx="22" ry="5" fill="#C98A5A"/><rect x="-3" y="-30" width="6" height="30" fill="#A8744E"/><path d="M-6 -46 q 6 3 12 0 l -2 14 h -8 z" fill="#C7562E" opacity=".85"/><ellipse cx="0" cy="-33" rx="7" ry="2" fill="#E9D6C3"/>${night ? '' : '<path d="M-2 -52 q 3 -5 0 -10 M3 -52 q 3 -5 0 -10" stroke="#fff" stroke-width="1.2" opacity=".7" fill="none"/>'}</g>
+    <!-- rug -->
+    <ellipse cx="201" cy="662" rx="112" ry="22" fill="${wilt ? '#E6C9C1' : '#FDC1B0'}"/><ellipse cx="201" cy="662" rx="96" ry="16" fill="none" stroke="#FFFBF5" stroke-width="2" opacity=".6" stroke-dasharray="4 5"/>
+    ${night ? `<rect x="${ch.x}" y="${ch.y}" width="${ch.w}" height="${ch.h}" fill="url(#nightVeil)"/><circle cx="66" cy="502" r="190" fill="url(#lamp)" opacity=".55"/>` : ''}
+    ${wilt ? `<rect x="${ch.x}" y="${ch.y}" width="${ch.w}" height="${ch.h}" fill="#C9C4D6" opacity=".2"/>` : ''}
+  </g>
+  <rect x="${ch.x}" y="${ch.y}" width="${ch.w}" height="${ch.h}" rx="${ch.r}" ry="120" fill="none" stroke="${P.soil[3]}" stroke-opacity=".35" stroke-width="5"/>`;
+  // dust motes in the beam by day
+  if (!night && !wilt) svg += [[200, 420], [214, 470], [186, 520], [226, 560], [196, 600]].map(([x, y], i) => `<circle class="dust" style="--d:${8 + i}s;--dl:${-i * 2}s" cx="${x}" cy="${y}" r="1.4" fill="#fff" opacity=".9"/>`).join('');
+  return svg + '</svg>';
+}
+
+mount({
+  id: 'c', kicker: 'Direction C', title: 'Cozy burrow, upgraded',
+  standin: 'Stand-in cutaway and props (code). Pofu: production art R1',
+  presets: [
+    { id: 'day', label: 'Day · thriving', note: 'A dollhouse cross-section: the live sky and meadow on top, the shaft lets a sunbeam onto the rug, the pantry’s seed pile is the balance, the bedroom waits on the left.',
+      state: { pal: 'day', grade: 'day', vit: 'thriving', seeds: 42, beads: 'SSOSSOSOOSS', quiet: 'Quiet for 1 h 52 m', collect: 11 } },
+    { id: 'night', label: 'Night', note: 'The lamp and the string lights take over. Moonlight comes down the shaft; the door on the surface glows.',
+      state: { pal: 'night', grade: 'night', vit: 'thriving', dark: true, seeds: 54, beads: 'SSOSSOSOOSSS', quiet: 'Quiet for 2 h 10 m', bubble: 'Lamp on, tea’s warm. Good evening.' } },
+    { id: 'wilting', label: 'Wilting', note: 'Overcast above, the lamp barely on, the room cooler. The furniture stays: you never lose what you earned.',
+      state: { pal: 'wilt', grade: 'wilting', vit: 'wilting', seeds: 6, beads: 'OOSOOOOSO', bubble: 'Cloudy up there. Stay in with me?' } },
+  ],
+  layout: (s) => ({ pofuX: 201, pofuY: 668, pofuW: 168, bubbleTop: 420 }),
+  world,
+  notes: `<h2>Idea</h2><p>Keep the room, but cut the hill open like a dollhouse: the outside world on top, Pofu’s burrow underneath, with side rooms that dig open as you progress and furniture you unlock and arrange.</p>
+  <h2>What responds to you</h2><ul><li>Time of day: the sky strip, the sunbeam or moonbeam down the shaft, lamp light at night.</li><li>Balance: the seed pile in the pantry.</li><li>Progress: new rooms dug at milestones; furniture unlocks.</li><li>Vitality: light and warmth of the room.</li></ul>
+  <h2>Weakness</h2><p>The richest scene and the most clutter. Skips today have no home in the picture, and decorating invites the dwelling we want to avoid.</p>`,
+});
+</script>
+</body>
+</html>

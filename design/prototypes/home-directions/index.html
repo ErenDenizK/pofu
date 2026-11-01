@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pofu Home · three directions</title>
+<link rel="stylesheet" href="home.css">
+<style>
+  body { display: block; padding: 40px 48px 60px; background: #F4ECE6; }
+  h1 { font-family: var(--display); font-size: 44px; line-height: 1.05; font-weight: 800; color: var(--ink-900); }
+  .sub { font-size: 18px; color: var(--ink-600); margin-top: 6px; max-width: 1100px; line-height: 1.45; }
+  .row { display: flex; gap: 28px; margin-top: 30px; align-items: flex-start; }
+  .col { display: flex; flex-direction: column; gap: 12px; }
+  .col h2 { font-family: var(--display); font-size: 26px; font-weight: 800; color: var(--ink-900); line-height: 1.1; display: flex; align-items: center; gap: 10px; }
+  .col h2 small { font-family: var(--ui); font-size: 14px; font-weight: 800; color: var(--violet-600); }
+  .col .line { font-size: 15px; color: var(--ink-600); max-width: 560px; line-height: 1.4; }
+  .phones { display: flex; gap: 14px; }
+  .phones figure { display: flex; flex-direction: column; gap: 6px; }
+  .phones figcaption { font-size: 14px; font-weight: 800; color: var(--ink-700); text-align: center; }
+  .rec { background: var(--violet-600); color: #fff !important; padding: 4px 10px; border-radius: 12px; font-size: 13px !important; }
+  .rejected { color: var(--ink-400) !important; }
+  iframe { border: 0; width: 440px; height: 920px; }
+  table { border-collapse: separate; border-spacing: 0; margin-top: 34px; background: #fff; border-radius: 22px; overflow: hidden; box-shadow: 0 0 0 1px rgba(42,31,45,.06); font-size: 15px; }
+  th, td { padding: 11px 16px; text-align: left; border-bottom: 1px solid #F1E7E0; vertical-align: top; }
+  th { font-size: 13px; color: var(--ink-600); font-weight: 800; background: #FBF6F2; }
+  td.k { font-weight: 800; color: var(--ink-900); white-space: nowrap; }
+  td.best { background: #F3EFFF; }
+  .dots { display: inline-flex; gap: 4px; vertical-align: middle; margin-right: 8px; }
+  .dots i { width: 10px; height: 10px; border-radius: 5px; background: #E7DCD5; display: block; }
+  .dots i.on { background: var(--violet-600); }
+  .note { font-size: 13px; color: var(--ink-600); }
+  #sheet { width: 2240px; padding: 44px 52px 40px; background: #F4ECE6; }
+  .sheet-only { display: none; }
+  .is-sheet .sheet-only { display: block; }
+  .is-sheet .live-only { display: none; }
+  .bottomrow { display: flex; gap: 28px; align-items: flex-start; }
+  .is-sheet .verdict { margin-top: 34px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+  .verdict div { flex: 1; background: #fff; border-radius: 22px; padding: 18px 20px; font-size: 15px; line-height: 1.45; color: var(--ink-700); box-shadow: 0 0 0 1px rgba(42,31,45,.06); }
+  .verdict b { color: var(--ink-900); }
+  .verdict .pick { box-shadow: 0 0 0 2px var(--violet-500); }
+</style>
+</head>
+<body>
+<div id="sheet">
+  <h1>Pofu Home: three directions</h1>
+  <p class="sub">The room was rejected because nothing in it changes because of you. Each direction below makes the world answer to your clock, your vitality, your quiet time and today’s skips. Pofu is the production master R1 in every frame; scenes and props are code stand-ins until the art is generated.</p>
+  <div class="row" id="phones"></div>
+  <div class="bottomrow"><table id="scores"></table>
+  <div class="verdict sheet-only" id="verdict"></div></div>
+</div>
+<script>
+const SHEET = new URLSearchParams(location.search).get('sheet') === '1';
+const SHEET_B = [['early', 'Day 2'], ['day', 'Day 23'], ['night', 'Night · quiet']];
+if (SHEET) document.body.classList.add('is-sheet');
+const DIRS = [
+  { id: 'today-room', name: 'Today', tag: 'rejected', line: 'Production room plate. Pretty, static: a stage, not a world.', shots: [['day', 'Day']] },
+  { id: 'a-meadow', name: 'A. Living meadow', line: 'Full-bleed painted world. Light follows the clock; butterflies and fireflies count today’s skips.', shots: [['day', 'Day · thriving'], ['wilting', 'Wilting']] },
+  { id: 'b-island', name: 'B. The island that grows', tag: 'recommended', line: 'Every skipped reach plants a sprout. Quiet hours bloom, binges droop, streaks widen the island.', shots: SHEET_B },
+  { id: 'c-burrow', name: 'C. Cozy burrow', line: 'Dollhouse cutaway: rooms dig open, furniture unlocks, the lamp warms the night.', shots: [['day', 'Day'], ['night', 'Night']] },
+];
+const W = SHEET ? 238 : 0;
+document.getElementById('phones').innerHTML = DIRS.map((d) => `<div class="col">
+  <h2>${d.name}${d.tag ? ` <small class="${d.tag === 'recommended' ? 'rec' : 'rejected'}">${d.tag}</small>` : ''}</h2>
+  <div class="line">${d.line}</div>
+  <div class="phones">${SHEET
+    ? d.shots.map(([p, label]) => `<figure><img src="screenshots/${d.id}-${p}.png" width="${W}" alt="${d.name}, ${label}"><figcaption>${label}</figcaption></figure>`).join('')
+    : `<iframe src="${d.id}.html?bare=1" title="${d.name}"></iframe>`}</div>
+  <a class="live-only" href="${d.id}.html" style="font-weight:800;color:var(--violet-600)">Open with states and notes</a>
+</div>`).join('');
+// 1–5, higher is better (for cost and risk: higher means cheaper and safer)
+const ROWS = [
+  ['Delight on day 1', [2, 4, 5, 4]],
+  ['Retention mechanics (does it accumulate?)', [1, 2, 5, 4]],
+  ['Clarity (north star readable at a glance)', [5, 4, 4, 3]],
+  ['Production cost (5 = cheapest)', [5, 4, 3, 1]],
+  ['Risk (5 = safest)', [4, 4, 3, 2]],
+  ['Distinctiveness vs. Brainrot, Unrot, Finch, Forest', [2, 2, 4, 2]],
+];
+const dots = (n) => `<span class="dots">${[1, 2, 3, 4, 5].map((i) => `<i class="${i <= n ? 'on' : ''}"></i>`).join('')}</span>`;
+document.getElementById('scores').innerHTML = `<tr><th></th>${DIRS.map((d) => `<th>${d.name}</th>`).join('')}</tr>` +
+  ROWS.map(([k, v]) => { const m = Math.max(...v.slice(1)); return `<tr><td class="k">${k}</td>${v.map((n, i) => `<td class="${i && n === m ? 'best' : ''}">${dots(n)}${n}</td>`).join('')}</tr>`; }).join('') +
+  `<tr><td class="k">Total</td>${DIRS.map((_, i) => `<td><b>${ROWS.reduce((a, r) => a + r[1][i], 0)}</b> / 30</td>`).join('')}</tr>`;
+document.getElementById('verdict').innerHTML = `
+  <div><b>A is wallpaper by day 10.</b> Beautiful light, but nothing accumulates: tomorrow morning the meadow looks exactly like today. Keep its sky, light grading and ambient life as the base layer of B.</div>
+  <div class="pick"><b>B: recommended.</b> The only direction where your behavior builds something you can see and want to protect. One sprout per skip, bloom for quiet, droop for binges, never death. Plants are never sold; Plus sells decorations and themes.</div>
+  <div><b>C is the richest and the most expensive.</b> Furniture needs dozens of perspective-matched props, invites dwelling, and is the closest to Finch. Keep one idea: Pofu’s burrow door on the island’s underside, glowing at night.</div>`;
+</script>
+</body>
+</html>
