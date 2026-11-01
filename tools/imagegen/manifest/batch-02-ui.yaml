@@ -23,11 +23,11 @@
 
 batch: batch-02-ui
 title: Glass++ UI art (domain icons, seed jar, calm lantern, a widget, an app icon draft)
-# Not started: same blockers as batch 01, and it runs after batch 01.
+# Not started. Glass++ production waits for the friends beta (ADR-0018
+# amendment) and runs after batch 01.
 status: blocked
 blocked_on:
-  - "account decision: the founder's own ChatGPT plan (codex) or his own API key (openai-api)"
-  - "the founder's 7-day gate dogfood"
+  - "the friends beta (ADR-0018 amendment, iteration plan W6)"
   - "batch-01-slice: island-main-s and cay-1 approved"
 
 refs:

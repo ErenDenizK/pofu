@@ -16,13 +16,12 @@
 
 batch: batch-01-slice
 title: Vertical slice (island, çay ocağı L1-L5, sunflower garden L1-L2, simit cart, Mochi)
-# Not started. Production art waits for the founder's account decision
-# (his own ChatGPT plan via Codex, or his own API key) and for the 7-day
-# gate dogfood. The lead flips this to `open` in a reviewed PR.
-status: blocked
-blocked_on:
-  - "account decision: the founder's own ChatGPT plan (codex) or his own API key (openai-api)"
-  - "the founder's 7-day gate dogfood"
+# Open for the W1 art test only (iteration plan, 2026-11-01): the founder
+# chose his own ChatGPT plan (#36). Generate D1-D8 and nothing else:
+#   run --manifest <this file> --backend codex --only island-main-s island-main-l terrace cay-1 cay-2 garden-1 simit-1 mochi
+# Rounds still gate the order (round 1: island-main-s, mochi). cay-3..5 and
+# garden-2 wait until the lead has reviewed the eight on the phone.
+status: open
 
 defaults:
   variants: 2

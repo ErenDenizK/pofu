@@ -9,7 +9,8 @@ they ever disagree, `CLAUDE.md` wins and you say so in your PR.
 
 - **Product:** Pofu, an iOS app with an illustrated fluffy hamster
   companion that helps people resist reflexive opens of Instagram,
-  YouTube and TikTok. The repository is still named `rot`.
+  YouTube and TikTok. The repository is `ErenDenizK/pofu` (renamed from
+  `rot`; the old URLs redirect).
 - **Founder:** Eren Deniz Kuyucaklıoğlu (GitHub `ErenDenizK`). He sets
   the vision, approves art, and tests on his Mac and iPhone. He speaks
   Turkish, often by dictation.
@@ -46,7 +47,9 @@ they ever disagree, `CLAUDE.md` wins and you say so in your PR.
   `design(art): add batch-01 round 1 masters (island, Mochi)`.
 - **Branches and PRs:** branch `art/<batch>` (for example
   `art/batch-01-slice`), one PR per round, into `main`. **Never push to
-  `main`. Never merge.** The lead reviews and merges.
+  `main`. Never merge.** The lead (the cloud Claude session, authorized
+  in `CLAUDE.md`) reviews and merges; that is not a conflict with this
+  rule.
 - **Secrets:** never commit or print an API key, `~/.codex/auth.json`,
   anything from `~/.codex`, `.env` files, or tokens.
 
@@ -78,11 +81,18 @@ account, and every master must name its generating account owner.
 
 ## Current status (2026-11-01)
 
-**Production art has not started.** Both batches are
-`status: blocked` in their manifests, on (1) the founder's account
-decision and (2) his 7-day gate dogfood. `run` refuses to generate for a
-blocked batch; `plan`, `prompt` and `run --dry-run` work. Wait until the
-lead merges a PR that sets a batch to `status: open`.
+**Batch 01 is open for the W1 art test, D1–D8 only.** The founder chose
+his own ChatGPT plan (`account.kind: chatgpt-plan`). Generate only these
+eight jobs, round by round, always with
+`--only island-main-s island-main-l terrace cay-1 cay-2 garden-1 simit-1 mochi`.
+Stop after the eight and wait for the lead's review; `cay-3` to `cay-5`
+and `garden-2` are not part of the test. Batch 02 stays `status: blocked`
+until the friends beta.
+
+**Generation runs only in the Codex CLI on the founder's Mac**, signed in
+with his ChatGPT plan. A Codex cloud task cannot use his local sign-in,
+Keychain, or files: in the cloud, edit manifests or docs only, and say so
+in the PR.
 
 When a batch opens, do the [first-run checklist](docs/design/art-pipeline.md#first-run-checklist)
 once, with the founder.
