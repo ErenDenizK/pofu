@@ -56,3 +56,37 @@ public struct ImpulseMetrics: Hashable, Sendable, Codable {
         return metrics
     }
 }
+
+/// One reach of the day, drawn as a bead on Home: filled when skipped, an
+/// empty ring when the app was opened. Shape, not only color, tells them
+/// apart.
+public enum ImpulseBead: Hashable, Sendable {
+    case skipped
+    case opened
+}
+
+extension ImpulseMetrics {
+    /// The beads of local day `day`, in the order the reaches happened.
+    public static func beads(
+        on day: LocalDay,
+        from records: [CheckInRecord],
+        calendar: Calendar
+    ) -> [ImpulseBead] {
+        records
+            .filter { LocalDay(containing: $0.attemptedAt, in: calendar) == day }
+            .sorted { $0.attemptedAt < $1.attemptedAt }
+            .map { $0.outcome.isResisted ? ImpulseBead.skipped : ImpulseBead.opened }
+    }
+
+    /// The position of a reach at `date` among the reaches of the hour
+    /// ending at `date`, counting itself. Hop!'s app chip says "3rd reach
+    /// this hour".
+    public static func reachOrdinal(
+        at date: Date,
+        from records: [CheckInRecord],
+        window: TimeInterval = 60 * 60
+    ) -> Int {
+        let start = date.addingTimeInterval(-window)
+        return records.filter { $0.attemptedAt > start && $0.attemptedAt <= date }.count + 1
+    }
+}
