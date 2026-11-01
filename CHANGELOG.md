@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- The pass-expiry reminder, Pofu's only notification: "Time's up. Back to
+  me?" when a pass ends. Permission is asked at the first pass; tapping
+  it counts as a sign of life.
+
 - Product foundation: vision, competitive research, platform constraints,
   monetization research, naming exploration, roadmap.
 - Architecture Decision Records 0001–0012.
@@ -76,6 +80,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   path from prototype to launch in twelve checkable micro-iterations.
 
 ### Fixed
+
+- The gate's measurement hole (decision audit C1): quiet time no longer
+  accrues after a pass expires. Before Screen Time nothing closes the app
+  at expiry, so the time until the next sign of life (a check-in, Pofu in
+  the foreground, or a tap on the expiry reminder) is unobserved. Seeds
+  already in the cheeks are still held, never lost. Economy, ADR-0014
+  (dated note), and game design §6 are corrected to match.
+- Setup guide v2: the automation is framed as a rule ("when Instagram
+  opens, Pofu hops in"), step 1 says not to search and to tap Automation,
+  search happens only inside Add Action ("Hop"), every step shows a
+  schematic of its screen with a slot for a device screenshot, and "Test
+  it" is the only primary action. Turkish Shortcuts labels that no source
+  confirmed are marked for checking on a device.
 
 Polish from the first simulator run
 ([report](docs/local/reports/2026-11-01-simulator-run.md)):

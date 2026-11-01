@@ -129,12 +129,27 @@ proof. `QuietTimeAccrual` implements this section; every number is in
 - A pass starting (any opened outcome: a free rung, a purchase, a friend's
   approval, the emergency pass) **breaks** the stretch. The stretch up to
   that moment is credited; the partial block in progress is lost.
-- Quiet **resumes when the pass ends**: at its expiry, or at once when the
-  user ends it early (unless another pass is still running, then at the end
-  of that one). A voided pass (the app never opened) gives quiet back from
-  the moment of the grant.
+- Quiet **resumes at the next sign of life after the pass**, not at its
+  expiry (decision audit C1, 2026-11-01). Before Screen Time, nothing
+  closes the guarded app when a pass expires, and the "App is opened"
+  automation does not fire while the user stays in it. The time from the
+  expiry to the next sign of life is **unobserved** and never counts. A
+  sign of life is a check-in or another automation run, Pofu coming to the
+  foreground (or staying on screen past the expiry), or a tap on the
+  pass-expiry reminder; the new stretch starts at that moment.
+- Ending a pass early in Pofu resumes quiet **at once**, unless another
+  pass is still running; then quiet waits for a sign of life after that
+  one. A voided pass (the app never opened) gives quiet back from the
+  moment of the grant.
 - A **resisted attempt does not break quiet**: resisting is the point.
-- Pass-throughs during a pass change nothing; the pass already broke it.
+- Pass-throughs, like every sign of life while a pass runs, keep Pofu
+  observing but resume nothing; the pass already broke the stretch.
+
+**The pass-expiry reminder.** At grant time Pofu schedules one local
+notification for the pass's expiry ("Time's up. Back to me?"). Tapping it
+opens Pofu, which is a sign of life. Ending a pass early withdraws it.
+Permission is asked at the first pass; if it is denied, the rules above
+still hold, there is just no nudge.
 
 **What counts.** A minute counts when it is quiet, outside bedtime, and
 observed. Counting minutes form segments; each segment earns
@@ -160,9 +175,12 @@ crosses midnight is one night; a switched-off window has no nights.
 automation (DeviceActivity needs the paid membership), and a deleted
 automation looks exactly like perfect discipline. So:
 
-- Every **sign of life** (a check-in, a pass-through, or any automation run)
-  keeps Pofu observing for the next 72 hours. Nothing counts before the
-  first one.
+- Every **sign of life from the automation** (a check-in, a pass-through,
+  or any automation run) keeps Pofu observing for the next 72 hours.
+  Nothing counts before the first one. Opening Pofu or tapping the expiry
+  reminder restarts a quiet stretch after a pass but does **not** extend
+  observation or release held seeds: it says nothing about whether the
+  automation still guards the apps.
 - After 72 hours of silence, **accrual stops**. Seeds already in the cheeks
   are **held, not lost**: they cannot be collected, and Home asks the user
   to check the setup (the setup guide's test).
@@ -187,14 +205,20 @@ Worked examples:
 - A check-in at 12:00 that the user resists, nothing else until 14:00:
   120 quiet minutes, **12 seeds**. "You stayed away for 2 hours. I saved 12
   seeds in my cheeks."
-- Quiet from 12:00, an open at 12:25 with a 5-minute free pass, quiet again
-  until 13:00: two blocks before the open and three after it, **5 seeds**.
+- Quiet from 12:00, an open at 12:25 with a 5-minute free pass that
+  expires at 12:30, nothing heard until a skip at 12:40, quiet again until
+  13:10: two blocks before the open and three from 12:40, **5 seeds**.
+  12:30–12:40 is unobserved: the user may still have been in the app.
+- A 5-minute free pass at 12:00 and no sign of life until 13:00: **0
+  seeds** for that hour, however quiet it really was. Opening Pofu at 13:00
+  starts the count again.
 - A paid 15-minute pass at 12:00 ended early at 12:03: quiet resumes at
   12:03, and 12:33 completes **3 seeds**.
 - Last check-in at 21:00, quiet until 08:00 the next morning: 21:00–23:00
   and 06:00–08:00 are **24 seeds**, plus **10** for the night.
-- An open at 02:00 in the middle of the night: no bonus that night; the
-  stretch resumes at 02:05 but only counts again from 06:00.
+- An open at 02:00 in the middle of the night: no bonus that night, and
+  nothing counts until the next sign of life after the pass, at 06:00 at
+  the earliest.
 - With bedtime switched off, a whole quiet day is 144 blocks: **48 seeds**,
   96 forfeited to the cap. A stretch from 23:55 to 00:25 credits one seed to
   the first day and two to the next.
