@@ -87,10 +87,16 @@ scene held in a crisp, unmistakably Apple frame.
   Liquid Glass. This is also where AI-generated UI looks cheapest.
 - **Text of any kind.** No words, numbers, or letters inside generated
   images. All text is live, localized, and accessible.
-- **Icons in chrome.** Chrome icons are SF Symbols. The two brand glyphs
-  that SF Symbols lacks (the sunflower seed for energy, the Pofu silhouette
-  for tiny sizes) are drawn as **custom SF Symbols** in vector, so they
-  scale, tint, and match text weight.
+- **Icons for system actions** (close, back, settings, share, more, add).
+  These are SF Symbols. _Amended by [ADR-0018](../adr/0018-visual-system-v1.md)
+  (Glass++):_ **domain concepts** (seeds, calm, wellbeing, islands,
+  stations, residents, friends, the breathing break, moods) get a painted
+  icon at 28 pt or larger, inside a native control or row and always with
+  a live label or an accessibility label. Below 28 pt they use a **vector
+  twin**: a custom SF Symbol traced by hand from the approved painted icon,
+  so it scales, tints, and matches text weight.
+- **Painted glass, button frames, bars, or sheets.** Glass is always native;
+  painted art is the content of the frame, never the frame.
 - **Pofu below 44 pt** (widgets' smallest sizes, Lock Screen, Live Activity
   compact, notifications): use the vector Pofu glyph. Painted fur turns to
   mush at 20 px.
@@ -99,7 +105,7 @@ scene held in a crisp, unmistakably Apple frame.
 
 ### The image-dump test
 
-Before any new illustrated asset is generated, it must pass all five:
+Before any new illustrated asset is generated, it must pass all six:
 
 1. Is it **world**, not chrome? (If you can tap it to navigate or change a
    setting, it is chrome.)
@@ -110,6 +116,10 @@ Before any new illustrated asset is generated, it must pass all five:
 5. Is there a **place reserved** for it in the asset list of the
    [prompt library](prompt-library.md)? If not, add it there first, with a
    reason.
+6. If it **shows state**, where is its native twin? A world object (at most
+   two per scene, such as the seed jar and the calm lantern) may repeat
+   state that also has a native readout. It is never the only path to
+   that information and never a control ([ADR-0018](../adr/0018-visual-system-v1.md)).
 
 ## 3. Color
 
@@ -376,7 +386,7 @@ seen. Rules:
 
 ## 9. Iconography
 
-- **SF Symbols for all chrome and UI icons.** Weight matches the adjacent
+- **SF Symbols for system actions** (Glass++ painted domain icons and their vector twins: §2, [ADR-0018](../adr/0018-visual-system-v1.md)). Weight matches the adjacent
   text weight (Regular next to body, Semibold next to headlines); scale
   `.medium` by default.
 - **Rendering mode:** `hierarchical` by default (one hue, depth through

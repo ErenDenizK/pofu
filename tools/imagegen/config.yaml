@@ -1,0 +1,78 @@
+# Image pipeline configuration (tools/imagegen/README.md).
+# Paths are relative to the repository root.
+
+# Whose OpenAI account generates the art. Production art is generated only
+# on the founder's OWN account (OpenAI's terms forbid making an account
+# available to anyone else, and provenance must name a real owner). The run
+# command refuses to generate until both fields are filled in, and every
+# take and master records them. `kind` must match the backend:
+#   chatgpt-plan -> --backend codex (or manual)    api -> --backend openai-api
+account:
+  owner: "Eren Deniz Kuyucaklıoğlu (founder)"        # e.g. "Eren Deniz Kuyucaklıoğlu (founder)"
+  kind: "chatgpt-plan"         # chatgpt-plan | api
+
+paths:
+  inbox: design/art/inbox            # git-ignored raw takes, one folder per batch
+  build: build/imagegen              # git-ignored processed takes and QA reports
+  contact_sheets: build/review       # git-ignored full-size contact sheets
+  review: design/art/review          # committed: <batch>.yaml decisions and a small contact sheet copy
+
+# Small batches, one generation at a time, pauses: these limits keep runs
+# reviewable and well inside plan limits. A run stops on the first
+# rate-limit or usage message and never retries in a loop.
+rate:
+  pause_seconds: 90          # wait between two generations
+  max_takes_per_job: 3       # hard cap per job and run, below the manifest's variants if lower
+  max_images_per_run: 12     # session budget; a run never generates more
+  timeout_seconds: 600       # one generation
+
+backends:
+  codex:
+    binary: codex
+    # "transparent": ask for a transparent PNG (art bible section 8).
+    # "chroma": ask for a flat chroma-key background and key it in post.
+    # The first-run checklist decides which one the founder's Codex supports.
+    background: transparent
+    # Features turned off for an image run (a generation needs none of them).
+    # `-c features.NAME=false` is ignored by Codex versions that do not know NAME.
+    disable_features: [shell_tool, apply_patch_freeform, computer_use, browser_use, apps, plugins, multi_agent, web_search_request]
+    extra_args: []
+  openai-api:
+    # The founder's own API key, from the macOS Keychain (service below) or
+    # POFU_OPENAI_API_KEY exported in his local shell only. Never in a file.
+    keychain_service: pofu-openai-api
+    key_env: POFU_OPENAI_API_KEY
+    # Verify the model name and its transparent-background support in the
+    # first-run checklist; change it here only.
+    model: gpt-image-1
+    quality: high
+    # USD per image, for the estimate printed before every API run (it
+    # needs --yes). Edit when OpenAI's pricing page changes; the estimate
+    # adds per_reference_usd for every attached image (input tokens).
+    prices_checked: "2026-11-01 (unverified; from gpt-image-1 list prices)"
+    prices_usd:
+      low: {1024x1024: 0.011, 1536x1024: 0.016}
+      medium: {1024x1024: 0.042, 1536x1024: 0.063}
+      high: {1024x1024: 0.167, 1536x1024: 0.25}
+    per_reference_usd: 0.01
+
+# Reference aliases usable in manifests (attach: ref: R1).
+refs:
+  R1: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+  station-guide: design/art/templates/station-guide.png
+  island-take1: design/art/tests/2026-11-01/world__island-main-s_take1.png
+  bunny-concept: design/prototypes/home-directions/assets/neighbor-bunny.webp
+
+# Which locked palettes the drift check uses per kind. Names come from
+# design/tokens/pofu-tokens.json artPalettes or tools/imagegen/palettes.json.
+palettes:
+  char: [character, character-wilting]
+  station: [world-props, world-day, character]
+  prop: [world-props, world-day, character]
+  world: [world-props, world-day]
+  plate: [world-day, world-sunset, world-night, character]
+  sheet: [character, character-wilting]
+  icon: [world-props, world-day, character]
+  ui: [world-props, world-day, character]
+  widget: [world-day, world-props, character]
+  appicon: [character, world-day, world-props]

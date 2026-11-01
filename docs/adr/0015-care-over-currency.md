@@ -62,7 +62,10 @@ Option 3.
   open (15 minutes: calm resets to ×1.0). "Skip it" stays primary
   (ADR-0012 decision 4). The fourth rapid reach still requires a friend
   (`highestAttemptRung = askFriend`); the free daily emergency pass is
-  unchanged.
+  unchanged. _Amended 2026-11-01:_ until friend approval
+  ([ADR-0005](0005-serverless-friend-approval.md)) ships, the fourth rapid
+  reach falls back to the breathing break, never to a lockout (decision
+  audit, C5).
 - **The breathing break.** Once a day's guarded time reaches the
   threshold (default 60 minutes; pre-membership estimated from granted
   pass minutes, later measured by DeviceActivity), every open first waits

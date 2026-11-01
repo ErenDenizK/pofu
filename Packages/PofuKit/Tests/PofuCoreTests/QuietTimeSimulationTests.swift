@@ -4,7 +4,9 @@ import PofuCore
 
 /// Runs weeks of synthetic opens, resists, passes, early endings, silent
 /// stretches, and app visits through the gate, and checks quiet-time
-/// earning against an independent minute-by-minute reference model.
+/// earning against an independent minute-by-minute reference model,
+/// including the unobserved time between a pass's expiry and the next sign
+/// of life.
 @Suite("Quiet time simulation")
 struct QuietTimeSimulationTests {
     let calendar = Calendar.istanbul
@@ -45,6 +47,9 @@ struct QuietTimeSimulationTests {
 
         var state = PofuState()
         var signals: [Int] = []
+        /// Every sign of life, including Pofu coming forward and ending a
+        /// pass early, which resume quiet but do not keep Pofu observing.
+        var returns: [Int] = []
         var passMinutes: [UUID: (start: Int, end: Int)] = [:]
         var allowances = Energy.zero
         var spent = Energy.zero
@@ -58,6 +63,7 @@ struct QuietTimeSimulationTests {
             switch event {
             case .open(let minute, let target):
                 signals.append(minute)
+                returns.append(minute)
                 guard case .intervene(let attempt) = gatekeeper.beginCheckIn(for: target, at: at, state: &state) else {
                     continue
                 }
@@ -71,18 +77,21 @@ struct QuietTimeSimulationTests {
 
             case .automationOnly(let minute):
                 signals.append(minute)
+                returns.append(minute)
                 gatekeeper.noteAutomationRan(at: at, state: &state)
 
             case .endEarly(let minute):
                 guard let pass = state.passes.passes.first(where: { $0.isValid(at: at) }) else { continue }
                 let ending = try #require(gatekeeper.endPass(id: pass.id, at: at, state: &state))
+                returns.append(minute)
                 refunds += ending.refund
                 if let interval = passMinutes[pass.id] {
                     passMinutes[pass.id] = (interval.start, min(interval.end, minute))
                 }
 
-            case .foreground:
-                gatekeeper.advanceQuietTime(to: at, state: &state)
+            case .foreground(let minute):
+                returns.append(minute)
+                gatekeeper.noteUserReturned(at: at, state: &state)
                 let holding = gatekeeper.quietTime.isHolding(state.quietTime, at: at)
                 sawSilence = sawSilence || gatekeeper.quietTime.isAwaitingSignOfLife(state.quietTime, at: at)
                 if Bool.random(using: &rng) {
@@ -111,6 +120,7 @@ struct QuietTimeSimulationTests {
         gatekeeper.advanceQuietTime(to: end, state: &state)
         let expected = reference(
             signals: signals,
+            returns: returns,
             passes: Array(passMinutes.values),
             bedtime: bedtime,
             rules: rules
@@ -180,9 +190,12 @@ struct QuietTimeSimulationTests {
 
     /// Quiet seeds and sleep bonuses, recomputed one minute at a time from
     /// the raw history: a minute counts when Pofu observed it (a sign of
-    /// life in the 72 hours before), no pass ran, and it is not bedtime.
+    /// life in the 72 hours before), no pass ran, Pofu has heard from the
+    /// user since the last pass started (at a minute no pass ran), and it
+    /// is not bedtime.
     func reference(
         signals: [Int],
+        returns: [Int],
         passes: [(start: Int, end: Int)],
         bedtime: DailyWindow,
         rules: QuietTimeRules
@@ -209,12 +222,27 @@ struct QuietTimeSimulationTests {
             }
         }
         let night = (0..<total).map { bedtime.contains(date($0), in: calendar) }
+        // After a pass starts, quiet waits for a sign of life at a minute
+        // no pass runs: the time after an expiry is unobserved.
+        let starts = Set(passes.map(\.start))
+        let returnMinutes = Set(returns)
+        var waiting = [Bool](repeating: false, count: total)
+        var isWaiting = false
+        for minute in 0..<total {
+            if starts.contains(minute) {
+                isWaiting = true
+            }
+            if returnMinutes.contains(minute) && !passRunning[minute] {
+                isWaiting = false
+            }
+            waiting[minute] = isWaiting
+        }
 
         var quietSeeds = Energy.zero
         var perDay: [LocalDay: Energy] = [:]
         var run = 0
         for minute in 0..<total {
-            guard observed[minute], !passRunning[minute], !night[minute] else {
+            guard observed[minute], !passRunning[minute], !waiting[minute], !night[minute] else {
                 run = 0
                 continue
             }
@@ -241,7 +269,7 @@ struct QuietTimeSimulationTests {
             }
             // Only whole nights that ended inside the simulation.
             guard start > 0, minute < total else { continue }
-            if (start..<minute).allSatisfy({ observed[$0] && !passRunning[$0] }) {
+            if (start..<minute).allSatisfy({ observed[$0] && !passRunning[$0] && !waiting[$0] }) {
                 sleepBonus += rules.sleepBonus
             }
         }

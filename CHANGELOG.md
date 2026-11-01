@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- The pass-expiry reminder, Pofu's only notification: "Time's up. Back to
+  me?" when a pass ends. Permission is asked at the first pass; tapping
+  it counts as a sign of life.
+
 - Product foundation: vision, competitive research, platform constraints,
   monetization research, naming exploration, roadmap.
 - Architecture Decision Records 0001–0012.
@@ -68,8 +72,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   UI language over the world, and choreography, with a measured spec, a
   timing spec, and a combined recommendation; a mobile-first animated
   review page in Turkish (`design/prototypes/review-01/`).
+- ADR-0018, visual system v1: the balanced diorama, Glass++ (native glass
+  with painted domain icons, vector twins, the seed jar and the calm
+  lantern, painted widgets, a layered app icon), and the continuous camera;
+  matching design language amendments.
+- Iteration plan ([iteration-plan.md](docs/design/iteration-plan.md)): the
+  path from prototype to launch in twelve checkable micro-iterations.
+- Decision audit ([decision-audit.md](docs/product/decision-audit.md)):
+  an independent red-team review of every decision, research claim, and
+  plan.
+- Art test 01: the founder's first island and çay ocağı takes, kept as
+  references.
+- Art direction study ([art-direction-study.md](docs/design/art-direction-study.md))
+  with a phone-friendly comparison page (`design/prototypes/art-study/`):
+  measured why the props read as "AI", three treatments, and the
+  recommended soft lock (props and plates pulled toward R1; Pofu
+  untouched).
+- Image pipeline (`tools/imagegen/`, [art-pipeline.md](docs/design/art-pipeline.md)):
+  manifests composed from verbatim prompt blocks, `codex`, `openai-api`
+  and `manual` backends, the style lock, QA (station anchor, edit
+  alignment, palette drift, detail at display size, icon legibility on
+  glass), contact sheets, a review file and promotion with provenance.
+  Batch 01 (vertical slice) and batch 02 (Glass++ UI art) are defined and
+  blocked until the founder's account decision and the 7-day dogfood.
+  `AGENTS.md` briefs OpenAI Codex as the local operator.
+- Art bible v1.1: amendment A1 (prop style block v2, one diorama camera,
+  the style lock, the `world-props` palette, level-chain alignment, the
+  generating-account rule).
 
 ### Fixed
+
+- The gate's measurement hole (decision audit C1): quiet time no longer
+  accrues after a pass expires. Before Screen Time nothing closes the app
+  at expiry, so the time until the next sign of life (a check-in, Pofu in
+  the foreground, or a tap on the expiry reminder) is unobserved. Seeds
+  already in the cheeks are still held, never lost. Economy, ADR-0014
+  (dated note), and game design §6 are corrected to match.
+- Setup guide v2: the automation is framed as a rule ("when Instagram
+  opens, Pofu hops in"), step 1 says not to search and to tap Automation,
+  search happens only inside Add Action ("Hop"), every step shows a
+  schematic of its screen with a slot for a device screenshot, and "Test
+  it" is the only primary action. Turkish Shortcuts labels that no source
+  confirmed are marked for checking on a device.
 
 Polish from the first simulator run
 ([report](docs/local/reports/2026-11-01-simulator-run.md)):
@@ -93,6 +137,13 @@ Polish from the first simulator run
   is now "Üretim".
 
 ### Changed
+
+- The iteration plan now puts the gate first (stage G: the automation
+  live, honest measurement, setup guide v2, a 7-day dogfood, the Screen
+  Time shield) before the world (stage W). ADR-0018's Glass++ production
+  waits for the friends beta. Room-era UX documents and the vision's core
+  loop are marked superseded; ADR-0010, 0015, and 0018 are amended; the
+  roadmap reflects the new order.
 
 - Breathing break v2 (founder decision): the user starts the breath with
   one tap ("Breathe with Pofu"); 5 seconds, 10 from the 4th over-limit

@@ -1,0 +1,5 @@
+UI OBJECT: a painted object that the app places under or inside native
+iOS glass controls. Never paint glass, frosted panels, buttons, frames,
+progress bars or any interface chrome: the app draws all glass and all
+controls natively. The object is centered with a generous transparent
+margin of about 10% on every side.

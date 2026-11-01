@@ -297,8 +297,8 @@ can measure, and the copy never claims more.
 |---|---|---|---|
 | Opens (reaches) | **Exact.** Every open runs `CheckInIntent`. | Exact with Live Pofu; the shield counts shielded opens. | — |
 | Resisted reaches | **Exact.** | Exact (`ShieldAction`, Hop!). | — |
-| Time in the app | **Estimated: the pass length we grant.** Ending a pass early from Pofu shortens it; leaving the app without telling Pofu does not. | **Measured** at thresholds: `DeviceActivityMonitor` fires when usage crosses set minutes (for example 15, 30, 45, 60). Totals are only visible inside the report extension. | Exact per-session minutes outside thresholds. |
-| Daily threshold for the breathing break | Sum of granted pass minutes ≥ 60. Over-counts someone who leaves early; under-counts nothing, because every reopen after a pass expires is a new check-in. | A DeviceActivity event at 60 minutes. | — |
+| Time in the app | **Estimated, and only up to the pass's end.** Ending a pass early from Pofu shortens it; leaving the app without telling Pofu does not. Staying past expiry is invisible: nothing closes the app, and the "App is opened" automation does not fire while the user stays in it. The time from expiry to the next sign of life (a check-in, Pofu in the foreground, a tap on the expiry reminder) is **unobserved**: it earns no quiet time, calm, or production. | **Measured** at thresholds: `DeviceActivityMonitor` fires when usage crosses set minutes (for example 15, 30, 45, 60). Totals are only visible inside the report extension. | Exact per-session minutes outside thresholds. |
+| Daily threshold for the breathing break | Sum of granted pass minutes ≥ 60. Over-counts someone who leaves early, and **under-counts someone who keeps scrolling after a pass expires**: a reopen after expiry is a new check-in, but staying in the app is not. A 5-minute pass followed by an hour of scrolling counts as 5 minutes (decision audit C1). The expiry reminder narrows the gap; only DeviceActivity closes it. | A DeviceActivity event at 60 minutes. | — |
 | Quick check | A pass of ≤ 3 minutes (the user picks it). | The same, plus usage events can confirm it stayed short. | Whether the intent was "reply" or "scroll". |
 | Intent ("reply", "look something up") | Recorded as stated, never verified. It changes copy (no jealousy) and nothing else. | Same. | Verification. |
 | Blind time (automation deleted) | 72-hour observation window (ADR-0014); calm and gathering stop, seeds are held. | Usage is measured whether or not the automation fires. | — |
@@ -308,9 +308,11 @@ we control, not by intent, which we cannot see. That is why it halves
 instead of exempting, why chaining is capped, and why Pofu's jealousy
 depends on the pass length and the stated intent (a short pass or a
 stated "reply" never draws a jealous line). Pre-membership, the breathing
-threshold is a little strict (it counts granted, not used, minutes);
-that errs toward care, and Settings shows the count so it is never a
-surprise.
+threshold counts granted, not used, minutes: strict for someone who
+leaves early, lenient for someone who stays past expiry. Settings shows
+the count so it is never a surprise. Because the time after an expiry is
+unobserved, nothing that rewards absence (quiet time, calm, station
+production) may accrue across it; it resumes at the next sign of life.
 
 ## 7. The archipelago
 
@@ -588,7 +590,7 @@ anchors, overlays residents and Pofu, and runs ambient motion through
 
 | Topic | Spec |
 |---|---|
-| View | One fixed front three-quarter view, camera about 25° above the horizon; ground ellipses have a 0.3 height-to-width ratio. Light from the upper left (art bible §4). |
+| View | One fixed front three-quarter view, camera about 20° above the horizon (a 0.3 ellipse ratio is about 17.5°); ground ellipses have a 0.3 height-to-width ratio. Light from the upper left (art bible §4). |
 | Island plates | Composited parts on transparency: main island small (stage 1–2) and large (3+), back terrace (4+), east and west islets (5, 6), rope bridges. Lawns empty. |
 | Station vignettes | 1024 × 1024 transparent. Footprint ellipse 720 × 216 px centered at (512, 800) = the **anchor**; maximum height to y = 150. Guide: [`design/art/templates/station-guide.png`](../../design/art/templates/station-guide.png). Placed at 130 × 130 pt at diorama zoom 1. |
 | Levels | 5 per station, each an **edit** of the previous level ("add a striped awning; change nothing else"). Style variants are edits of the level they belong to. |
@@ -612,7 +614,8 @@ anchors, overlays residents and Pofu, and runs ambient motion through
    gray box rendered with the same camera (`bpy` from PyPI) as "paint over
    this shape".
 6. **Pipeline checks:** a `station__` kind in `process_assets.py` verifies
-   canvas size, that the lowest opaque row sits within ±12 px of y = 800,
+   canvas size, that the lowest opaque row sits on the footprint ellipse's
+   front half (y 800–908; chain roots register to a ground line at y = 900),
    and that no magenta guide pixels survive.
 
 ### The first 8 prompts (vertical slice: stages 1–3, the çay ocağı)
@@ -624,7 +627,7 @@ are pasted verbatim.
 View block:
 
 ```text
-VIEW: a fixed front three-quarter view, the camera about 25 degrees above
+VIEW: a fixed front three-quarter view, the camera about 20 degrees above
 the horizon, exactly like the attached guide: the object stands on the
 magenta ground ellipse, centered on the magenta cross, no taller than the
 magenta height bar. Then remove the guide completely: no ellipse, no

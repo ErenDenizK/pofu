@@ -1,0 +1,281 @@
+# Batch 01: the vertical slice (game design section 15, D1-D8, plus the
+# rest of the çay ocağı and sunflower garden ladders).
+#
+# Corrected after art test 01 and the art-direction study
+# (docs/design/art-direction-study.md): prop style block v2 (matte, simple,
+# high key), view block v2 (the island's low camera), the island as an edit
+# of the founder's preferred take 1 (flatter, wider, softer green).
+#
+# Rounds (a job runs only when every job it depends on is approved):
+#   round 1: island-main-s, mochi
+#   round 2: island-main-l, cay-1
+#   round 3: terrace, cay-2, garden-1, simit-1
+#   round 4: cay-3, garden-2      round 5: cay-4      round 6: cay-5
+# D1-D8 (the founder's "first 8") are island-main-s, island-main-l,
+# terrace, cay-1, cay-2, garden-1, simit-1 and mochi.
+
+batch: batch-01-slice
+title: Vertical slice (island, çay ocağı L1-L5, sunflower garden L1-L2, simit cart, Mochi)
+# Open for the W1 art test only (iteration plan, 2026-11-01): the founder
+# chose his own ChatGPT plan (#36). Generate D1-D8 and nothing else:
+#   run --manifest <this file> --backend codex --only island-main-s island-main-l terrace cay-1 cay-2 garden-1 simit-1 mochi
+# Rounds still gate the order (round 1: island-main-s, mochi). cay-3..5 and
+# garden-2 wait until the lead has reviewed the eight on the phone.
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  # ----------------------------------------------------------------- D1
+  - id: island-main-s
+    kind: world
+    name: island-main-s
+    size: 1536x1024
+    key: blue
+    variants: 3
+    chat: "Pofu · Island"
+    attach:
+      - ref: island-take1
+        role: "The image to edit: my favorite take of the floating island. Keep its soft, light painting, its warm light, its round door and its pebbles."
+      - ref: R1
+        role: "Style reference only (no characters): the hamster's soft painting, light and pastel colors."
+      - ref: palette:world-day
+        role: "The palette card: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          Edit the attached floating island into a flatter, wider diorama for
+          a cozy mobile game. Change only its proportions and its lawn:
+          - The lawn is a wide, flat, empty oval filling about 85% of the
+            image width, seen from a low camera about 20 degrees above the
+            horizon, so the oval is about 0.3 times as tall as it is wide.
+          - The lawn is a soft, muted sage-to-spring green, milky and
+            pastel, painted as a smooth velvety surface: only a hint of
+            short grass along the darker front lip, no individual blades
+            across the lawn.
+          - The earth body underneath is about half as deep as now, no
+            deeper than 30% of the island's width: a soft, rounded
+            underside, not a cone. Light honey and caramel earth with two or
+            three gentle strata.
+          - Keep the tiny round wooden door with its round window and ledge
+            on the lower left, a few cream pebbles and three or four thin
+            dangling roots.
+      - block: prop-style-v2
+      - text: "AVOID: characters, plants or objects on the lawn, water, sky, clouds, background, ground shadow, saturated or yellow-green grass, a deep cone-shaped underside, text."
+    acceptance:
+      depth_ratio: {warn: 0.32, fail: 0.42}
+
+  # ----------------------------------------------------------------- D2
+  - id: island-main-l
+    kind: world
+    name: island-main-l
+    size: 1536x1024
+    key: blue
+    edit_of: island-main-s
+    chat: "Pofu · Island"
+    prompt:
+      - text: |
+          Make the island about 40% wider and a little deeper, so the lawn
+          becomes a longer oval at the same bottom-center position. The
+          lawn stays completely empty. Keep the same style, colors, light,
+          door, strata, pebbles and roots.
+      - block: edit-keep-v1
+      - text: "AVOID: characters, objects on the lawn, text."
+
+  # ----------------------------------------------------------------- D3
+  - id: terrace
+    kind: world
+    name: terrace
+    size: 1536x1024
+    key: blue
+    chat: "Pofu · Island"
+    attach:
+      - ref: approved:island-main-l
+        role: "The large island: match its style, colors, light and camera exactly. Do not redraw it."
+    prompt:
+      - text: |
+          For the attached island, draw only a raised grassy terrace that will
+          sit on the back half of its lawn: a soft oval lawn about 75% of the
+          island's width, lifted on a low earthen step with the same strata
+          and colors, and a short flight of four cream stone steps on its
+          front left. The terrace lawn is empty. Nothing else: not the island
+          itself, no characters, no objects.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  # ----------------------------------------------------------------- D4
+  - id: cay-1
+    kind: station
+    name: cay-1
+    variants: 3
+    chat: "Pofu · Çay ocağı"
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:island-main-s
+        role: "The island this stall stands on: match its camera angle, light, softness and colors."
+      - ref: R1
+        role: "Style reference only (no characters): the hamster's soft painting."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A tiny Turkish tea stall (çay ocağı) for the island diorama. A
+          small, rounded, chunky wooden counter in soft honey wood; on it a
+          Turkish double teapot (çaydanlık: a small pot stacked on a larger
+          one) in soft, muted rose-copper on a little round burner, and two
+          tulip-shaped tea glasses of warm amber tea on tiny cream saucers.
+          Friendly, toy-like proportions with few parts. The counter fills
+          the lower half of the height bar only: leave the upper half empty,
+          because later levels add an awning and a roof there. No awning, no
+          roof yet.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  # ----------------------------------------------------------------- D5
+  - id: cay-2
+    kind: station
+    name: cay-2
+    edit_of: cay-1
+    chat: "Pofu · Çay ocağı"
+    prompt:
+      - text: |
+          Add two thin wooden poles at the back corners of the counter and a
+          scalloped striped awning between them, soft rose-pink and cream
+          stripes, matte cloth. The awning's top stays below the top of the
+          canvas with a clear margin.
+      - block: edit-keep-v1
+
+  - id: cay-3
+    kind: station
+    name: cay-3
+    edit_of: cay-2
+    chat: "Pofu · Çay ocağı"
+    prompt:
+      - text: |
+          Add two small round wooden stools and one tiny round table with a
+          rose-and-cream striped tablecloth in front of the counter's left
+          end, all inside the stall's footprint and smaller than the
+          counter.
+      - block: edit-keep-v1
+
+  - id: cay-4
+    kind: station
+    name: cay-4
+    edit_of: cay-3
+    chat: "Pofu · Çay ocağı"
+    prompt:
+      - text: |
+          Add one string of small, round, warm cream light bulbs, unlit,
+          hanging in a gentle curve along the front edge of the awning
+          between the two poles. The bulbs are simple soft dots, not
+          glowing (the app adds the glow at night).
+      - block: edit-keep-v1
+
+  - id: cay-5
+    kind: station
+    name: cay-5
+    edit_of: cay-4
+    chat: "Pofu · Çay ocağı"
+    prompt:
+      - text: |
+          Replace only the striped awning with a small sloped roof of soft
+          terracotta tiles on the same two poles, keep the string of bulbs
+          under its front edge, add a small clay pot with a red geranium at
+          the counter's right end and a small plain triangular rose-and-cream
+          pennant on top of the right pole (no symbols, no letters).
+      - block: edit-keep-v1
+
+  # ----------------------------------------------------------------- D6
+  - id: garden-1
+    kind: station
+    name: garden-1
+    variants: 3
+    key: blue
+    chat: "Pofu · Sunflower garden"
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:cay-1
+        role: "P-station, the approved tea stall: match its style, camera, light and colors exactly (do not draw the stall)."
+      - ref: approved:island-main-s
+        role: "The island this garden stands on: same camera and softness."
+    prompt:
+      - text: |
+          A small oval garden bed of soft brown soil with three plump,
+          cheerful sunflowers of slightly different heights, for the same
+          island diorama. Big, round, simple honey-yellow petals around warm
+          brown centers, two soft leaves on each stem, thick stems. Room on
+          the bed for more flowers later.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: garden-2
+    kind: station
+    name: garden-2
+    edit_of: garden-1
+    key: blue
+    chat: "Pofu · Sunflower garden"
+    prompt:
+      - text: |
+          Add a low, rounded cream picket fence along the front edge of the
+          bed and two more sunflowers between the existing ones, a little
+          shorter than them.
+      - block: edit-keep-v1
+
+  # ----------------------------------------------------------------- D7
+  - id: simit-1
+    kind: station
+    name: simit-1
+    chat: "Pofu · Simit cart"
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:cay-1
+        role: "P-station, the approved tea stall: match its style, camera, light and colors exactly (do not draw the stall)."
+    prompt:
+      - text: |
+          A tiny street-food cart for simit (round Turkish sesame bread
+          rings), for the same island diorama. A rounded, soft coral cart on
+          two chunky wooden wheels with an open tray on top holding a neat
+          pile of golden-brown simit rings; sesame is suggested by a soft
+          speckle, not drawn seed by seed. Friendly, toy-like proportions.
+          No umbrella yet; leave the upper half of the height bar empty.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  # ----------------------------------------------------------------- D8
+  - id: mochi
+    kind: char
+    name: mochi-base
+    size: 1024x1536
+    variants: 3
+    chat: "Pofu · Residents"
+    attach:
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him)."
+      - ref: bunny-concept
+        role: "Mochi's concept: use it for her design only, not its rendering."
+      - ref: palette:character
+        role: "The character palette card."
+    prompt:
+      - text: |
+          Draw Mochi, a neighbor of the attached hamster character, in exactly
+          the same art style, lighting and level of fluff as the hamster.
+          Same canvas rules as the hamster: full body, sitting upright, front
+          view, centered, feet on an invisible line at 88% of the height,
+          about 62% of the canvas width.
+          CHARACTER: Mochi, a baby lop-eared bunny whose body is a soft round
+          ball, creamy white with very faint warm-blush shading, two long
+          floppy ears hanging beside the face with blush-pink insides, a
+          single soft cream curl of fur on top of the head, big round glossy
+          dark espresso eyes with one large round catchlight and one tiny
+          sparkle each, soft blush ovals on the cheeks, a tiny pink nose, a
+          small smiling "w" mouth, two tiny front paws together at the
+          chest, two small feet peeking out; three small toe creases on each
+          paw and foot. No clothes, no accessories.
+      - block: style-anchor-v1
+      - block: negative-v1

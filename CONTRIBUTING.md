@@ -31,6 +31,10 @@ Trunk-based development with short-lived branches.
   | `ci/`       | Continuous integration                    |
   | `design/`   | Design system, assets, visual work        |
 
+  Two operator branches are also allowed: `local/<topic>` for the local Mac
+  agent's reports ([local agent brief](docs/local-agent.md)) and
+  `art/<batch>` for image pipeline rounds ([`AGENTS.md`](AGENTS.md)).
+
 ## Commit messages
 
 We follow [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/).

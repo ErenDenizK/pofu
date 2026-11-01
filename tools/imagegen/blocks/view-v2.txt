@@ -1,0 +1,9 @@
+VIEW: the same fixed front three-quarter view as the attached island: a
+low camera about 20 degrees above the horizon, so you see the front of
+the object fully and only a narrow sliver of its top (a round tabletop
+reads as a flat oval about a third as tall as it is wide). Follow the
+attached guide exactly: the object stands on the magenta ground ellipse,
+centered on the magenta cross, its front edge on the front of the
+ellipse, no taller than the magenta height bar. Then remove the guide
+completely: no ellipse, no cross, no bar, no magenta, no grid may remain
+in the output.

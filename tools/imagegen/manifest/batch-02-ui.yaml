@@ -1,0 +1,246 @@
+# Batch 02: illustrated UI art for "Glass++" (ADR-0018, recorded by the
+# lead). Runs only after batch 01's island and çay ocağı L1 are approved:
+# the icons and objects take their style from them.
+#
+# Rules baked into the blocks (do not work around them in a prompt):
+# - No painted glass, ever: glass is native; painted art sits under or
+#   inside it (ui-object-v1, icon-style-v1).
+# - System actions (close, settings, share, back) stay SF Symbols; only
+#   domain concepts get painted icons.
+# - Icons use the prop style block plus icon-style-v1 (simplified detail,
+#   one light direction from the upper left, no outlines; the
+#   art-direction study rejected outlines, treatment C).
+# - The calm lantern is two layers, off and on, so code drives the glow.
+#
+# Rounds:
+#   round 1: icon-seed, jar-0, lantern-off, appicon-draft
+#   round 2: the other five icons (they copy icon-seed's look), jar-1,
+#            lantern-on, widget-medium
+#
+# About 12 images when each job keeps one take; variants are 2 so a
+# round costs about twice its job count. The mailbox and the signpost are
+# reserved names (ui__mailbox, ui__signpost) for a later batch.
+
+batch: batch-02-ui
+title: Glass++ UI art (domain icons, seed jar, calm lantern, a widget, an app icon draft)
+# Not started. Glass++ production waits for the friends beta (ADR-0018
+# amendment) and runs after batch 01.
+status: blocked
+blocked_on:
+  - "the friends beta (ADR-0018 amendment, iteration plan W6)"
+  - "batch-01-slice: island-main-s and cay-1 approved"
+
+refs:
+  island-s: design/art/masters/island-main-s/island-main-s.png
+  cay-1: design/art/stations/cay-1/cay-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  # ------------------------------------------------------- domain icons
+  - id: icon-seed
+    kind: icon
+    name: seed
+    chat: "Pofu · Icons"
+    attach:
+      - ref: R1
+        role: "Style reference only: the hamster's soft painting and pastel colors."
+      - ref: cay-1
+        role: "Style reference for objects: how a prop is painted in this world (matte, simple, high key)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for seeds, the game's one currency: a single plump
+          sunflower seed seen at a slight angle, a soft warm-brown shell with
+          two broad cream stripes, its tip pointing up and to the right.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-calm
+    kind: icon
+    name: calm
+    chat: "Pofu · Icons"
+    attach: &icon_refs
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for calm (huzur): a small, round, soft cloud resting on a
+          slim crescent moon, both chunky and simple, the moon in honey
+          cream with a warm-brown shadow side, the cloud in milky cream.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-island
+    kind: icon
+    name: island
+    chat: "Pofu · Icons"
+    attach: *icon_refs
+    prompt:
+      - text: |
+          The icon for an island: a tiny floating island, a flat soft sage
+          lawn on a short, rounded honey-earth underside, nothing on the
+          lawn, no roots or with at most two chunky ones.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-cay
+    kind: icon
+    name: station-cay
+    chat: "Pofu · Icons"
+    attach: *icon_refs
+    prompt:
+      - text: |
+          The icon for the çay ocağı station: one chunky tulip-shaped tea
+          glass of warm amber tea on a small cream saucer, the glass painted
+          as a soft tinted shape, not transparent glass.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-friend
+    kind: icon
+    name: friend
+    chat: "Pofu · Icons"
+    attach: *icon_refs
+    prompt:
+      - text: |
+          The icon for a friend: two small, round, soft sprouts in a tiny
+          clay pot, leaning toward each other, each with two chunky leaves.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-mood-content
+    kind: icon
+    name: mood-content
+    chat: "Pofu · Icons"
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: R1
+        role: "Pofu: the face to simplify. Same colors, same eyes, same tuft."
+    prompt:
+      - text: |
+          A mood glyph, content: Pofu's face only, simplified into a round
+          icon: the golden-peach head with the cream blaze, the single cream
+          curl on top, two small round ears, two big round espresso eyes with
+          one round catchlight each, two blush ovals and a tiny "w" smile.
+          No whiskers, no fur strands along the outline (a smooth soft edge),
+          no body.
+      - block: icon-style-v1
+
+  # ---------------------------------------------------------- seed jar
+  - id: jar-0
+    kind: ui
+    name: jar-0
+    chat: "Pofu · UI objects"
+    attach:
+      - ref: cay-1
+        role: "Style reference for objects: how a prop is painted in this world."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The seed jar, empty: a small, round, chunky honey-pot-shaped jar
+          with a wide mouth and a soft cream cloth lid tied with a thin rose
+          ribbon, front view at a slight angle from above. The jar body is
+          painted as soft matte milky glaze in cream and pale honey (not
+          glass, not transparent), so its fill can be shown by later edits
+          as a rising level of sunflower seeds behind a soft window in the
+          glaze: a large, rounded, slightly darker oval panel on the jar's
+          front, empty for now.
+      - block: ui-object-v1
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: jar-1
+    kind: ui
+    name: jar-1
+    edit_of: jar-0
+    chat: "Pofu · UI objects"
+    prompt:
+      - text: |
+          Fill the jar's front window panel with sunflower seeds up to about
+          one quarter of its height: a soft pile of chunky warm-brown and
+          cream-striped seeds with a gently rounded top, painted simply (big
+          shapes, not seed by seed). This is fill state 1 of 4; later edits
+          fill to one half, three quarters and full.
+      - block: edit-keep-v1
+
+  # -------------------------------------------------------- calm lantern
+  - id: lantern-off
+    kind: ui
+    name: lantern-off
+    chat: "Pofu · UI objects"
+    attach:
+      - ref: cay-1
+        role: "Style reference for objects: how a prop is painted in this world."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The calm lantern, unlit: a small, round paper lantern in warm cream
+          paper with three soft horizontal ribs, a chunky honey-wood top and
+          bottom cap and a short, thick loop handle on top. Unlit: the paper
+          is a soft matte cream, no glow, no light inside.
+      - block: ui-object-v1
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: lantern-on
+    kind: ui
+    name: lantern-on
+    edit_of: lantern-off
+    chat: "Pofu · UI objects"
+    prompt:
+      - text: |
+          Light the lantern from inside: the paper glows a warm honey-gold,
+          brightest at its center, the ribs and caps unchanged. Light only
+          inside the lantern's own outline: no halo, no glow, no rays and no
+          light spill outside the lantern (the app draws the glow around it).
+      - block: edit-keep-v1
+
+  # ------------------------------------------------------------ widget
+  - id: widget-medium
+    kind: widget
+    name: home-medium
+    size: 1536x1024
+    canvas: 1536x720
+    chat: "Pofu · Widgets"
+    attach:
+      - ref: island-s
+        role: "The approved island: draw this same island, small, with the same style, colors and light."
+      - ref: palette:world-day
+        role: "The day palette card."
+    prompt:
+      - text: |
+          A wide, calm day scene: a soft sky gradient from pale sky blue at
+          the top to warm cream haze at the bottom, two or three soft round
+          clouds, and the attached island floating small on the right third,
+          its empty lawn visible. Keep everything important inside the
+          middle 70% of the height: the image will be cropped to a wide
+          2.1 : 1 strip.
+      - block: widget-v1
+      - block: prop-style-v2
+
+  # ---------------------------------------------------------- app icon
+  - id: appicon-draft
+    kind: appicon
+    name: pofu-draft
+    transparent: false
+    chat: "Pofu · App icon"
+    attach:
+      - ref: R1
+        role: "Pofu: draw him exactly like this (same face, tuft, colors and fur), larger."
+      - ref: palette:character
+        role: "The character palette card."
+    prompt:
+      - text: |
+          Pofu's head and shoulders, big and centered, looking at the viewer
+          with his content face, filling about 70% of the icon, on a soft
+          sky-blue to cream gradient background with nothing else in it.
+      - block: appicon-v1
+      - block: style-anchor-v1

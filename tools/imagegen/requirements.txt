@@ -1,0 +1,6 @@
+Pillow>=10.1
+numpy>=1.26
+PyYAML>=6.0
+pytest>=8.0
+# Only for the openai-api backend:
+# openai>=1.60

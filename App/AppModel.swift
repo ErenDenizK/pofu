@@ -34,6 +34,12 @@ final class AppModel {
     var homeSheet: HomeSheet?
     /// Set when the last save failed, so a broken disk is never silent.
     private(set) var persistenceProblem = false
+    /// Whether Pofu is on screen. Being here is a sign the user left the
+    /// guarded app, so quiet time paused by an ended pass starts again.
+    private var isOnScreen = false
+    /// Scheduling the newest pass's expiry reminder, which may wait on the
+    /// notification permission prompt. The hand-off waits for it.
+    private var reminderTask: Task<Void, Never>?
 
     let economy: Economy
     let gatekeeper: Gatekeeper
@@ -193,19 +199,30 @@ final class AppModel {
     // MARK: - Lifecycle
 
     /// Brings the model up to date: today's allowance, expired passes, and
-    /// settled vitality. Called on launch and whenever the app becomes
-    /// active.
+    /// settled vitality. Called whenever the app becomes active: Pofu on
+    /// screen is a sign of life for quiet time (decision audit C1).
     func refresh() {
+        isOnScreen = true
         settleDay()
+        gatekeeper.noteUserReturned(at: now, state: &state)
         save()
     }
 
+    /// The scene left the foreground.
+    func leftForeground() {
+        isOnScreen = false
+    }
+
     /// Keeps quiet time and the day current while Home is on screen, and
-    /// saves only when something the user can see changed.
+    /// saves only when something the user can see changed. A pass that
+    /// expires while Pofu is on screen hands over to quiet time at once.
     func tick() {
-        let before = (state.quietTime.pending, state.wallet.balance)
+        let before = (state.quietTime.pending, state.wallet.balance, state.quietTime.quietSince)
         settleDay()
-        if before != (state.quietTime.pending, state.wallet.balance) {
+        if isOnScreen {
+            gatekeeper.noteUserReturned(at: now, state: &state)
+        }
+        if before != (state.quietTime.pending, state.wallet.balance, state.quietTime.quietSince) {
             save()
         }
     }
@@ -362,6 +379,7 @@ final class AppModel {
     func handoffFailed(for pass: Pass, app: ProtectedApp) {
         now = clock.now
         let ending = gatekeeper.voidPass(id: pass.id, state: &state)
+        cancelReminder(for: pass)
         Log.hop.error("Hand-off to \(app.rawValue, privacy: .private) failed; pass voided")
         log(.handoffFailed(app: app))
         if let ending {
@@ -389,6 +407,10 @@ final class AppModel {
             Log.hop.info("Hop! resolved: \(choice.logName, privacy: .public)")
             var updated = session
             if let pass = record.outcome.pass {
+                let grantedAt = now
+                reminderTask = Task {
+                    await PassExpiryReminder.schedule(for: pass, now: grantedAt)
+                }
                 updated.phase = .handoff(pass)
             } else {
                 updated.phase = .skipped(skipsToday: impulsesToday.resisted)
@@ -409,10 +431,36 @@ final class AppModel {
     func endPass(_ pass: Pass) -> Energy {
         now = clock.now
         guard let ending = gatekeeper.endPass(id: pass.id, at: now, state: &state) else { return .zero }
+        cancelReminder(for: pass)
         Log.economy.info("Pass ended early; refund \(ending.refund.units, privacy: .private)")
         log(.passEnded(passID: pass.id, refund: ending.refund))
         save()
         return ending.refund
+    }
+
+    /// Waits until the newest pass's expiry reminder is scheduled, or
+    /// the user has declined notifications.
+    func passReminderReady() async {
+        await reminderTask?.value
+    }
+
+    /// The user tapped the pass-expiry reminder: a sign of life for quiet
+    /// time (decision audit C1).
+    func passReminderTapped() {
+        now = clock.now
+        Log.economy.info("Pass reminder tapped")
+        gatekeeper.noteUserReturned(at: now, state: &state)
+        save()
+    }
+
+    /// Withdraws `pass`'s expiry reminder, after any scheduling still in
+    /// flight, so a pass that ended early never pings.
+    private func cancelReminder(for pass: Pass) {
+        let scheduling = reminderTask
+        Task {
+            await scheduling?.value
+            PassExpiryReminder.cancel(passID: pass.id)
+        }
     }
 
     // MARK: - Earning
