@@ -97,7 +97,7 @@ struct HomeView: View {
 
     /// What tapping the speech bubble does.
     private enum BubbleAction {
-        case none
+        case nothing
         case setup
         case collect
     }
@@ -106,7 +106,7 @@ struct HomeView: View {
         if needsSetup || model.isAwaitingSignOfLife {
             return .setup
         }
-        return model.canCollectQuietSeeds ? .collect : .none
+        return model.canCollectQuietSeeds ? .collect : .nothing
     }
 
     private var pofu: some View {
@@ -115,7 +115,7 @@ struct HomeView: View {
                 switch bubbleAction {
                 case .setup: model.homeSheet = .setup
                 case .collect: collect()
-                case .none: break
+                case .nothing: break
                 }
             } label: {
                 SpeechBubble {
@@ -123,8 +123,8 @@ struct HomeView: View {
                 }
             }
             .buttonStyle(.plain)
-            .disabled(bubbleAction == .none)
-            .accessibilityAddTraits(bubbleAction == .none ? [] : .isButton)
+            .disabled(bubbleAction == .nothing)
+            .accessibilityAddTraits(bubbleAction == .nothing ? [] : .isButton)
 
             ZStack(alignment: .bottom) {
                 Circle()
