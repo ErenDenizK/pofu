@@ -90,7 +90,7 @@ struct EarnSheet: View {
                 .padding(.horizontal, PofuSpacing.screen)
                 .padding(.bottom, PofuSpacing.s)
             }
-            .background(PofuColor.raised)
+            .background(PofuColor.sunken)
             .navigationTitle(Text("Fill my cheeks"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
