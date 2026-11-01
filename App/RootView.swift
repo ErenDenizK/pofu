@@ -1,3 +1,4 @@
+import os
 import PofuCore
 import SwiftUI
 
@@ -30,6 +31,7 @@ struct RootView: View {
             present(model.hop?.id)
         }
         .onChange(of: scenePhase) { _, phase in
+            Log.routing.debug("Scene phase: \(String(describing: phase), privacy: .public)")
             switch phase {
             case .active:
                 model.refresh()
@@ -44,21 +46,29 @@ struct RootView: View {
 
     private func present(_ id: HopSession.ID?) {
         guard let id else {
+            if presentedHop != nil {
+                Log.routing.info("Hop! cover dismissed")
+            }
             presentedHop = nil
             return
         }
         guard presentedHop?.id != id else { return }
         guard model.homeSheet != nil else {
+            Log.routing.info("Presenting the Hop! cover")
             presentedHop = HopCover(id: id)
             return
         }
+        Log.routing.info("Closing the \(model.homeSheet?.rawValue ?? "", privacy: .public) sheet before the Hop! cover")
         // Hop! takes the whole screen: the sheet over Home steps aside
         // first, and the cover follows once its dismissal has finished.
         model.homeSheet = nil
         Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(450))
             if model.hop?.id == id {
+                Log.routing.info("Presenting the Hop! cover after the sheet")
                 presentedHop = HopCover(id: id)
+            } else {
+                Log.routing.debug("Hop! ended before its cover could appear")
             }
         }
     }

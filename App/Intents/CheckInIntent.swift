@@ -1,4 +1,5 @@
 import AppIntents
+import os
 import PofuCore
 
 /// The soft gate's entry point (ADR-0008). A Shortcuts personal automation
@@ -33,11 +34,13 @@ struct CheckInIntent: AppIntent {
         let model = AppModel.shared
         let target = app.protectedApp
         let mode = systemContext.currentMode
+        Log.intent.info("Hop in ran for \(target.rawValue, privacy: .private) in mode \(String(describing: mode), privacy: .public)")
         let plan = model.planCheckIn(
             for: target,
             isForeground: mode == .foreground,
             canContinueInForeground: mode.canContinueInForeground
         )
+        Log.intent.info("Plan: \(plan.logName, privacy: .public)")
 
         switch plan {
         case .completeSilently, .ignore, .cannotStartHop:
@@ -53,6 +56,7 @@ struct CheckInIntent: AppIntent {
                 // user's consent, and a prompt would cost the 3-second skip.
                 try await continueInForeground(nil, alwaysConfirm: false)
             } catch {
+                Log.intent.error("Could not continue in the foreground: \(error.localizedDescription, privacy: .public)")
                 model.hopCouldNotStart(for: target)
                 return .result()
             }
