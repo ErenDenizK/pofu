@@ -24,8 +24,7 @@ Goal: every decision needed to start building is made and written down.
 - [ ] Design language: color, typography, motion, haptics, and sound principles
 - [x] Information architecture, user flows, and a clickable prototype
   ([IA](product/ux/information-architecture.md), [flows](product/ux/user-flows.md))
-- [ ] Founder decisions on the open UX questions (navigation, paywall timing,
-  economy additions, naming of seeds and neighbors)
+- [x] Open UX questions decided ([ADR-0012](adr/0012-ux-v1-decisions.md))
 - [x] Xcode project, local packages, CI on GitHub Actions (macOS runner)
   ([ADR-0009](adr/0009-xcodegen-and-package-layout.md),
   [development guide](development.md))

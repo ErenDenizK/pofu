@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Product foundation: vision, competitive research, platform constraints,
   monetization research, naming exploration, roadmap.
-- Architecture Decision Records 0001–0011.
+- Architecture Decision Records 0001–0012.
 - Pofu character bible v0.1.
 - Contribution guidelines, pull request and issue templates.
 - Engineering foundation: an XcodeGen-generated iOS 26 app project
@@ -34,3 +34,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   plus a WebGL motion proof and sprite-sheet tooling (ADR-0011).
 - UX: information architecture, eight user flows with English and Turkish
   copy, and a clickable high-fidelity prototype of the core loop.
+- Design language, art bible, a prioritized GPT Image prompt library, color
+  tokens with a contrast report, and an asset pipeline for processing
+  generated art and slicing sprite sheets.
