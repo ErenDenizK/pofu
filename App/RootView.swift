@@ -29,7 +29,7 @@ struct RootView: View {
             }
             .padding(PofuSpacing.l)
         }
-        .background(PofuColor.canvasGradient.ignoresSafeArea())
+        .background(PofuColor.dayWash.ignoresSafeArea())
         .task {
             await model.refresh()
         }
@@ -43,7 +43,7 @@ struct RootView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: PofuSpacing.xs) {
             Text(verbatim: "Pofu")
-                .font(PofuFont.display)
+                .font(PofuFont.largeTitle)
             Text("Engineering preview")
                 .font(PofuFont.caption)
                 .foregroundStyle(.secondary)

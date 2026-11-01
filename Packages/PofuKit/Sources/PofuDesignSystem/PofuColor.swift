@@ -1,83 +1,77 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-/// An sRGB color value. Tokens are stored as plain numbers so they can be
-/// mixed (for example by vitality) and compared in tests.
-public struct PofuRGB: Hashable, Sendable {
-    public let red: Double
-    public let green: Double
-    public let blue: Double
+#if canImport(UIKit)
+import UIKit
+#endif
 
-    public init(red: Double, green: Double, blue: Double) {
-        self.red = red
-        self.green = green
-        self.blue = blue
-    }
-
-    /// Creates a color from a 24-bit hex value such as `0xB9A2FF`.
-    public init(hex: UInt32) {
-        self.init(
-            red: Double((hex >> 16) & 0xFF) / 255,
-            green: Double((hex >> 8) & 0xFF) / 255,
-            blue: Double(hex & 0xFF) / 255
-        )
-    }
-
-    /// Linear interpolation toward `other`; `amount` is clamped to `0...1`.
-    public func mixed(with other: PofuRGB, amount: Double) -> PofuRGB {
-        let t = amount.isNaN ? 0 : min(max(amount, 0), 1)
-        return PofuRGB(
-            red: red + (other.red - red) * t,
-            green: green + (other.green - green) * t,
-            blue: blue + (other.blue - blue) * t
-        )
-    }
-
+extension PofuRGB {
     public var color: Color {
         Color(.sRGB, red: red, green: green, blue: blue, opacity: 1)
     }
 }
 
-/// Brand palette from the character bible (docs/brand/character.md).
-public enum PofuPalette {
-    /// `pofu.body.thriving`: Pofu at full vitality.
-    public static let lilac = PofuRGB(hex: 0xB9A2FF)
-    /// `pofu.body.shade`: lower body shading.
-    public static let violet = PofuRGB(hex: 0x8F74F0)
-    /// `pofu.body.light`: top highlight.
-    public static let lavenderMist = PofuRGB(hex: 0xE4DAFF)
-    /// `pofu.body.wilted`: Pofu at zero vitality.
-    public static let ashLilac = PofuRGB(hex: 0xA8A3B3)
-    /// `pofu.cheek`: blush.
-    public static let rose = PofuRGB(hex: 0xFF9EC1)
-    /// `pofu.eye`: eyes, and the darkest ink of the brand.
-    public static let ink = PofuRGB(hex: 0x1E1A2E)
-    /// UI accent for text and controls on light backgrounds. Not a body
-    /// color: lilac on white is 2.2:1, below WCAG AA, while this deep
-    /// violet is 5.6:1. Dark mode uses lilac (7.8:1 on dark surfaces).
-    public static let violetDeep = PofuRGB(hex: 0x6C4FD8)
+extension Color {
+    /// A color that follows the system appearance.
+    public static func pofuAdaptive(light: PofuRGB, dark: PofuRGB) -> Color {
+        #if canImport(UIKit)
+        return Color(uiColor: UIColor { traits in
+            let rgb = traits.userInterfaceStyle == .dark ? dark : light
+            return UIColor(red: rgb.red, green: rgb.green, blue: rgb.blue, alpha: 1)
+        })
+        #else
+        // macOS is only a test host for the package; it gets light mode.
+        return light.color
+        #endif
+    }
 
-    /// Pofu's body color for a vitality in `0...1`: ash lilac when wilted,
-    /// lilac when thriving.
-    public static func body(vitality: Double) -> PofuRGB {
-        ashLilac.mixed(with: lilac, amount: vitality)
+    /// The semantic token in the current appearance.
+    public init(token: PofuSemanticColor) {
+        self = Color.pofuAdaptive(light: token.light.rgb, dark: token.dark.rgb)
     }
 }
 
-/// Semantic colors for UI. Prefer these over raw palette values.
+/// Semantic colors for UI (docs/design/design-language.md, section 3).
+/// Warm is the world; violet is the action.
 public enum PofuColor {
-    /// The app accent, from the `AccentColor` asset (deep violet in light
-    /// mode, lilac in dark mode).
-    public static var accent: Color { .accentColor }
-    public static var lilac: Color { PofuPalette.lilac.color }
-    public static var lavenderMist: Color { PofuPalette.lavenderMist.color }
-    public static var ink: Color { PofuPalette.ink.color }
-    public static var rose: Color { PofuPalette.rose.color }
+    public static var canvas: Color { Color(token: .backgroundCanvas) }
+    public static var sunken: Color { Color(token: .backgroundSunken) }
+    public static var card: Color { Color(token: .surfaceCard) }
+    public static var raised: Color { Color(token: .surfaceRaised) }
+    public static var textPrimary: Color { Color(token: .textPrimary) }
+    public static var textSecondary: Color { Color(token: .textSecondary) }
+    public static var textTertiary: Color { Color(token: .textTertiary) }
+    public static var onAccent: Color { Color(token: .textOnAccent) }
+    public static var accent: Color { Color(token: .accent) }
+    public static var accentPressed: Color { Color(token: .accentPressed) }
+    public static var accentTint: Color { Color(token: .accentTint) }
+    public static var success: Color { Color(token: .success) }
+    public static var warning: Color { Color(token: .warning) }
+    public static var energyFill: Color { Color(token: .energyFill) }
+    public static var energyOnFill: Color { Color(token: .energyOnFill) }
+    public static var blush: Color { Color(token: .decorBlush) }
+    /// The stage disc behind Pofu on plain surfaces (blush-200).
+    public static var stage: Color { PofuPrimitive.blush200.rgb.color }
+    /// Warm shadow ink: never black.
+    public static var shadow: Color { PofuPrimitive.ink900.rgb.color }
 
-    /// Soft brand wash for backgrounds behind cards.
-    public static var canvasGradient: LinearGradient {
+    /// The warm wash behind Pofu's room and Hop! by day: cream at the top,
+    /// a peach blush toward the floor.
+    public static var dayWash: LinearGradient {
         LinearGradient(
-            colors: [PofuPalette.lavenderMist.color.opacity(0.55), Color.clear],
+            colors: [
+                Color.pofuAdaptive(light: PofuPrimitive.cream100.rgb, dark: PofuPrimitive.night950.rgb),
+                Color.pofuAdaptive(light: PofuPrimitive.blush200.rgb.mixed(with: PofuPrimitive.cream100.rgb, amount: 0.35), dark: PofuPrimitive.night900.rgb),
+            ],
+            startPoint: .top,
+            endPoint: .bottom
+        )
+    }
+
+    /// The bedtime wash: deep plum to indigo, in both appearances.
+    public static var nightWash: LinearGradient {
+        LinearGradient(
+            colors: [PofuPrimitive.night900.rgb.color, PofuRGB(hex: 0x2E2650).color],
             startPoint: .top,
             endPoint: .bottom
         )

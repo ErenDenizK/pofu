@@ -54,6 +54,7 @@ let package = Package(
         .testTarget(name: "PofuCoreTests", dependencies: ["PofuCore"]),
         .testTarget(name: "PofuScreenTimeTests", dependencies: ["PofuScreenTime", "PofuCore"]),
         .testTarget(name: "PofuPersistenceTests", dependencies: ["PofuPersistence", "PofuCore"]),
+        .testTarget(name: "PofuDesignSystemTests", dependencies: ["PofuDesignSystem"]),
         .testTarget(name: "PofuCompanionTests", dependencies: ["PofuCompanion"]),
     ],
     swiftLanguageModes: [.v6]
