@@ -75,6 +75,7 @@ schemes:
       targets:
         - package: PofuKit/PofuCoreTests
         - package: PofuKit/PofuScreenTimeTests
+        - package: PofuKit/PofuPersistenceTests
         - package: PofuKit/PofuCompanionTests
     profile:
       config: Release
