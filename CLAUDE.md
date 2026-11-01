@@ -43,21 +43,37 @@ the project's persistent memory; keep it accurate and concise.
 - Product name: **Pofu** (ADR-0007). The repository is `ErenDenizK/pofu`
   (renamed from `rot`; GitHub redirects the old URLs).
 - Phase 1 in progress. The soft gate v1 is merged (#14): `CheckInIntent`,
-  the Hop! flow, Pofu's room, persistence, and minimal onboarding. It is
-  **not yet validated on a device**; the founder's first on-device test is
-  the top priority. XcodeGen project (`project.yml`, regenerate after
+  the Hop! flow, Pofu's room, persistence, and minimal onboarding. **The
+  gate comes first** (decision audit, `docs/product/decision-audit.md`):
+  the automation has never fired on the founder's phone (he searched
+  Shortcuts for the app instead of opening the Automation tab). Stage G of
+  the iteration plan comes first: honest measurement, setup guide v2, and
+  the Screen Time shield built **before** the membership, so the founder's
+  7-day dogfood starts on membership day 1 (the manual automation is an
+  optional early try). World and `PofuWorld` work waits; the game model in
+  `PofuCore` and an 8-image art test may run meanwhile. XcodeGen project (`project.yml`, regenerate after
   pulling); `Packages/PofuKit` has `PofuCore`, `PofuScreenTime`,
   `PofuPersistence`, `PofuDesignSystem`, and `PofuCompanion`. CI must stay
   green. Keep `docs/product/economy.md` in sync with `PofuCore`.
 - Design references: `docs/design/` (design language, art bible, prompt
   library, motion spec), `docs/product/ux/` (IA, flows), and the clickable
   prototype in `design/prototypes/ux/`. Decisions: ADR-0010 to ADR-0012.
+- Visual system v1 (ADR-0018, founder-approved): balanced diorama, Glass++
+  (native glass frame; painted domain icons at 28 pt or larger with vector
+  twins below; seed jar and calm lantern as indicators), one continuous
+  camera, cloud pass only for island arrivals. Glass++ production waits
+  for the friends beta (ADR-0018 amendment). Work order and checks:
+  `docs/design/iteration-plan.md` (stage G, then stage W). Prototypes stay
+  rough until W4. Write ADRs only for decisions that cost weeks to undo;
+  tunable numbers live in config and the game design.
 - Game direction: Pofu's archipelago (`docs/product/game-design.md`,
   prototype in `design/prototypes/island-game/`). Seeds are world material
   and never buy screen time; a breathing break is the hard limit (ADR-0015,
   not yet in `PofuCore`); ADR-0016 archipelago; ADR-0017 Pofu never dies.
 - Character: Pofu is an **illustrated fluffy hamster** (ADR-0010). The
-  founder generates art with GPT Image (ChatGPT Pro) under the art bible;
+  founder generates art with GPT Image under the art bible, **only on the
+  founder's own OpenAI account** (sharing the uncle's account conflicts
+  with OpenAI's terms and clouds ownership);
   the agent owns prompts, the pipeline, motion, and integration. The 3D
   Blender spike is parked as a reference.
 - Without a local Swift toolchain, the compile and test loop is: push,

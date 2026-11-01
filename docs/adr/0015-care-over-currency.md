@@ -62,7 +62,10 @@ Option 3.
   open (15 minutes: calm resets to ×1.0). "Skip it" stays primary
   (ADR-0012 decision 4). The fourth rapid reach still requires a friend
   (`highestAttemptRung = askFriend`); the free daily emergency pass is
-  unchanged.
+  unchanged. _Amended 2026-11-01:_ until friend approval
+  ([ADR-0005](0005-serverless-friend-approval.md)) ships, the fourth rapid
+  reach falls back to the breathing break, never to a lockout (decision
+  audit, C5).
 - **The breathing break.** Once a day's guarded time reaches the
   threshold (default 60 minutes; pre-membership estimated from granted
   pass minutes, later measured by DeviceActivity), every open first waits
@@ -107,3 +110,20 @@ What each amended ADR keeps and loses:
   first real test.
 - Pre-membership, the daily threshold counts granted minutes and so errs
   toward care; with DeviceActivity it becomes measured.
+
+## Amendment (2026-11-01): breathing break v2
+
+Founder decision, the same day: the break is **user-initiated and
+short**. Past the threshold, the break screen shows Pofu and a single
+button, "Breathe with Pofu" (TR "Pofu'yla nefes al"); the breath starts
+only when the user taps it, so the pause is owned, not imposed. It lasts
+**5 seconds** (one breath, in 2 s, out 3 s) for the 1st to 3rd over-limit
+open of the day and **10 seconds** (one deep breath, in 4 s, out 6 s)
+from the 4th on, **never more than 10 seconds**. After it: "I'm good,
+skip it" (primary, a skip) or "Open". "Not now" stays available before and
+during the breath and counts as a skip; there is still no way to open
+without breathing. This replaces the 10 / 20 / 30 s ladder above. The
+simulation keeps its 20 % assumption for over-limit opens that end
+without opening; the heavy scroller's week-1 breathing time falls from
+about 7.7 minutes to about 2.7 minutes a day
+([game-design.md](../product/game-design.md), section 5).

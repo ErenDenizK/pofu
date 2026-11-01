@@ -326,13 +326,17 @@ button:focus-visible { outline: 3px solid var(--violet-500); outline-offset: 2px
 .orb .halo { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, rgba(185,162,255,.0) 40%, rgba(185,162,255,.38) 62%, rgba(185,162,255,0) 72%); transform: scale(calc(.72 + .28 * var(--k))); }
 .orb .disc { position: absolute; inset: 16%; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #FFFFFF, #F3EEFF 60%, #E4DAFF); box-shadow: 0 20px 50px rgba(108,79,216,.18), inset 0 -8px 24px rgba(143,116,240,.12); transform: scale(calc(.82 + .18 * var(--k))); }
 .orb canvas { position: relative; width: 66%; height: 66%; }
-.breath .cue { font-size: 22px; font-weight: 850; color: var(--ink-900); margin-top: 8px; min-height: 30px; }
-.breath .dots { display: flex; gap: 8px; margin-top: 10px; }
-.breath .dots i { width: 10px; height: 10px; border-radius: 5px; background: rgba(108,79,216,.18); transition: background .4s, transform .4s var(--pop); }
-.breath .dots i.on { background: rgba(108,79,216,.45); transform: scale(1.2); }
-.breath .dots i.f { background: var(--violet-600); }
+.breath .cue { font-size: 22px; font-weight: 850; color: var(--ink-900); margin-top: 8px; min-height: 30px; max-width: 32ch; }
+.breath:not(.running) .cue { font-size: 17px; font-weight: 750; color: var(--ink-700); }
 .breath .spacer { flex: 1; min-height: 12px; }
-.breath .after { width: 100%; display: flex; flex-direction: column; gap: 10px; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .5s var(--snappy), transform .5s var(--snappy); flex: none; }
+/* v2: the breath waits for the user's tap; the sub line and the start button leave when it begins */
+.breath .sub { transition: opacity .4s var(--snappy); }
+.breath.running .sub { opacity: 0; }
+.breath .start { width: 100%; flex: none; transition: opacity .35s var(--snappy), transform .35s var(--snappy); }
+.breath.running .start { display: none; }
+.breath .start .skip { width: 100%; min-height: 56px; border-radius: 28px; font-size: 18px; font-weight: 850; }
+.breath .after { width: 100%; display: none; flex-direction: column; gap: 10px; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .5s var(--snappy), transform .5s var(--snappy); flex: none; }
+.breath.running .after { display: flex; }
 .breath.done .after { opacity: 1; transform: none; pointer-events: auto; }
 .breath .after .skip { width: 100%; min-height: 56px; border-radius: 28px; font-size: 18px; font-weight: 850; }
 .breath .after .spend { width: 100%; min-height: 50px; border-radius: 25px; background: rgba(255,255,255,.75); font-size: 16.5px; font-weight: 800; box-shadow: 0 0 0 1px rgba(42,31,45,.05); }

@@ -18,9 +18,11 @@ Models docs/product/game-design.md (v2) and ADR-0015 to ADR-0017:
   3 minutes or less) only halves the bonus, unless it follows another quick
   check within 20 minutes.
 - **The breathing break:** once a day's guarded-app time reaches the
-  threshold (60 min), every further open waits for a breathing break with
-  Pofu (1, 2, then at most 3 breaths of 10 s). Some people change their mind
-  during the breath; that share is an assumption (BREATH_RESIST) and is
+  threshold (60 min), every further open waits for a short breathing break
+  with Pofu that the user starts with one tap (v2, founder decision of
+  2026-11-01): 5 s for the 1st to 3rd over-limit open of the day, 10 s from
+  the 4th on, never more. Some people decline ("Not now") or change their
+  mind after the breath; that share is an assumption (BREATH_RESIST) and is
   varied in the sensitivity run.
 - **The archipelago:** a home island with five stations revealed in stages,
   then four more islands, each with its own small loop and three stations,
@@ -98,8 +100,10 @@ QUICK_CHAIN_MIN = 20         # a quick check within 20 min of the last one's end
 
 # --- The breathing break ---------------------------------------------------------
 BREATH_THRESHOLD = 60        # guarded-app minutes a day before every open needs a breath
-BREATH_SECONDS = (10, 10, 20, 20, 30)   # by over-limit open of the day; 30 s from the 5th on
-BREATH_RESIST = 0.2          # ASSUMPTION: share who choose not to open after the breath
+BREATH_SECONDS = (5, 5, 5, 10)   # by over-limit open of the day; 10 s from the 4th on, never more
+BREATH_CAP = 10              # seconds; no breath is ever longer
+assert max(BREATH_SECONDS) <= BREATH_CAP
+BREATH_RESIST = 0.2          # ASSUMPTION: share who don't open ("Not now" before, or "I'm good" after the breath)
 
 # --- The archipelago -----------------------------------------------------------
 # Home island stages: stage n needs HOME_STAGES[n] tended days.
@@ -522,11 +526,11 @@ def tables(results, runs):
         L.append(f"| {a.label} | {g(rows, 'first_upgrade'):.0f} | {_day(rows, 'home_done')} | {g(rows, 'home30') * 100:.0f} % "
                  f"| day {_day(rows, 'harbor')} | day {_day(rows, 'stars')} | {g(rows, 'islands60'):.0f} / {g(rows, 'islands90'):.0f} "
                  f"| {g(rows, 'pct90') * 100:.0f} % | {g(rows, 'weeks_without'):.0f} |")
-    L += ["", "| Archetype | Calm avg wk 1 → wk 13 | Resets / halvings per day | Breathing breaks/day wk 1 → wk 13 | Wellbeing wk 1 → wk 13 (lowest) | Unwell days | Feed min/day wk 1 → wk 13 | Seeds/day wk 1 | Wk 1 share from Pofu's quiet gathering / skips |",
+    L += ["", "| Archetype | Calm avg wk 1 → wk 13 | Resets / halvings per day | Breathing breaks/day wk 1 → wk 13 (seconds/day, wk 1) | Wellbeing wk 1 → wk 13 (lowest) | Unwell days | Feed min/day wk 1 → wk 13 | Seeds/day wk 1 | Wk 1 share from Pofu's quiet gathering / skips |",
           "|" + "---|" * 9]
     for key, (a, rows) in results.items():
         L.append(f"| {a.label} | {g(rows, 'calm_wk1'):.2f}× → {g(rows, 'calm_last'):.2f}× | {g(rows, 'resets'):.1f} / {g(rows, 'halvings'):.1f} "
-                 f"| {g(rows, 'breaths_wk1'):.1f} → {g(rows, 'breaths_last'):.1f} | {g(rows, 'health_wk1'):.0f} → {g(rows, 'health_last'):.0f} ({g(rows, 'health_min'):.0f}) "
+                 f"| {g(rows, 'breaths_wk1'):.1f} → {g(rows, 'breaths_last'):.1f} ({g(rows, 'breath_sec_wk1'):.0f} s) | {g(rows, 'health_wk1'):.0f} → {g(rows, 'health_last'):.0f} ({g(rows, 'health_min'):.0f}) "
                  f"| {g(rows, 'unwell_days'):.0f} | {g(rows, 'feed_wk1'):.0f} → {g(rows, 'feed_last'):.0f} | {g(rows, 'seeds_day_wk1'):.0f} "
                  f"| {g(rows, 'share_quiet') * 100:.0f} % / {g(rows, 'share_skips') * 100:.0f} % |")
     L.append("")
@@ -662,11 +666,11 @@ def charts(results, trace, sens, outdir):
             ax.text(i, v, fmt.format(v), ha="center", va="bottom", fontsize=8, color=INK)
         ax.set_xticks(range(len(vals)))
         ax.set_xticklabels(labels, fontsize=8.5)
-        ax.set_xlabel("Heavy scroller: share who don't open after the breath", fontsize=8.5)
+        ax.set_xlabel("Share who don't open (heavy scroller)", fontsize=8.5)
         ax.set_title(title, loc="left", fontsize=10, color=INK)
         ax.set_yticks([])
         ax.spines["left"].set_visible(False)
-    f.suptitle("The breathing break: how much depends on the pause working", x=0.02, ha="left", fontsize=11, color=INK)
+    f.suptitle("The breathing break (5–10 s, started by the user): how much depends on the pause working", x=0.02, ha="left", fontsize=11, color=INK)
     f.subplots_adjust(left=0.03, right=0.98, bottom=0.2, top=0.8, wspace=0.12)
     f.savefig(os.path.join(outdir, "island-sensitivity.png"), facecolor=SURFACE)
     plt.close(f)

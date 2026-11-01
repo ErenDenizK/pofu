@@ -63,6 +63,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   areas and a touch-scrollable demo drawer, the archipelago map, İskele,
   the breathing break, quick checks, and an automated phone and desktop
   check (`design/prototypes/island-game/tools/check-mobile.js`).
+- Design review 01 ([review-01.md](docs/design/review-01.md)): three
+  radically different alternatives each for proportion and framing, the
+  UI language over the world, and choreography, with a measured spec, a
+  timing spec, and a combined recommendation; a mobile-first animated
+  review page in Turkish (`design/prototypes/review-01/`).
+- ADR-0018, visual system v1: the balanced diorama, Glass++ (native glass
+  with painted domain icons, vector twins, the seed jar and the calm
+  lantern, painted widgets, a layered app icon), and the continuous camera;
+  matching design language amendments.
+- Iteration plan ([iteration-plan.md](docs/design/iteration-plan.md)): the
+  path from prototype to launch in twelve checkable micro-iterations.
+- Decision audit ([decision-audit.md](docs/product/decision-audit.md)):
+  an independent red-team review of every decision, research claim, and
+  plan.
 - Art test 01: the founder's first island and çay ocağı takes, kept as
   references.
 - Art direction study ([art-direction-study.md](docs/design/art-direction-study.md))
@@ -107,6 +121,17 @@ Polish from the first simulator run
 
 ### Changed
 
+- The iteration plan now puts the gate first (stage G: the automation
+  live, honest measurement, setup guide v2, a 7-day dogfood, the Screen
+  Time shield) before the world (stage W). ADR-0018's Glass++ production
+  waits for the friends beta. Room-era UX documents and the vision's core
+  loop are marked superseded; ADR-0010, 0015, and 0018 are amended; the
+  roadmap reflects the new order.
+
+- Breathing break v2 (founder decision): the user starts the breath with
+  one tap ("Breathe with Pofu"); 5 seconds, 10 from the 4th over-limit
+  open of the day, never more (ADR-0015 amendment, game design, the
+  simulation, and the island prototype).
 - The repository is `ErenDenizK/pofu`; docs link there. The development
   guide covers the Metal Toolchain download and the simulator-only App
   Shortcut limitation.

@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Biten Ziyaret</title>
+<style>
+@font-face { font-family: "Baloo 2"; src: url("fonts/baloo-2-latin-wght-normal.woff2") format("woff2"); font-weight: 400 800; font-display: swap; }
+@font-face { font-family: "Nunito"; src: url("fonts/nunito-latin-ext-wght-normal.woff2") format("woff2"); font-weight: 200 1000; font-display: swap; unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Nunito"; src: url("fonts/nunito-latin-wght-normal.woff2") format("woff2"); font-weight: 200 1000; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* Layout: one reading column; each story is a swipeable row of phones (a film strip),
+   with the rule "feel = world, configure = list, broken = native" visible in the frames.
+   Tokens follow Pofu's design language: plum ink, violet for action, warm world colors
+   only inside the phones; the page itself is a quiet lilac-grey so the phones carry the color. */
+:root {
+  --bg: #F4F2F7; --surface: #FFFFFF; --sunken: #EAE6F1; --ink: #2A1F2D; --muted: #6E6476;
+  --line: #DCD6E4; --accent: #6C4FD8; --accent-ink: #FFFFFF; --world: #5FB57A; --warn: #C2410C;
+  --list: #F2F1F6; --row: #FFFFFF; --rowline: #E4E1EA;
+  --display: "Nunito", ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+  --body: "Nunito", ui-rounded, system-ui, -apple-system, sans-serif;
+  --hop: "Baloo 2", "Nunito", ui-rounded, system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #17131F; --surface: #221C2C; --sunken: #2B2437; --ink: #F3EEF7; --muted: #B3A9BE;
+  --line: #3A3147; --accent: #9C86FF; --accent-ink: #17131F; --world: #7FD39A; --warn: #FB923C; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #17131F; --surface: #221C2C; --sunken: #2B2437; --ink: #F3EEF7; --muted: #B3A9BE;
+  --line: #3A3147; --accent: #9C86FF; --accent-ink: #17131F; --world: #7FD39A; --warn: #FB923C; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.55 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: max(20px, env(safe-area-inset-top, 0px)) max(40px, env(safe-area-inset-bottom, 0px)); }
+main { max-width: 760px; margin: 0 auto; display: grid; gap: 44px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(30px, 7vw, 44px); font-weight: 900; line-height: 1.08; }
+h2 { font-size: 23px; font-weight: 850; line-height: 1.2; }
+h3 { font-size: 16px; font-weight: 800; }
+p { margin: 0; max-width: 64ch; }
+.eyebrow { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+section { display: grid; gap: 14px; min-width: 0; }
+.lede { font-size: 18px; color: var(--ink); }
+.muted { color: var(--muted); }
+.rule { display: flex; flex-wrap: wrap; gap: 8px; }
+.rule span { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 12px; font-weight: 750; font-size: 14px; }
+.rule b { color: var(--accent); }
+
+/* intents */
+.intents { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+.intent { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px; display: grid; gap: 6px; min-width: 0; }
+.intent h3 { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.intent h3 small { font-weight: 800; font-size: 12px; color: var(--accent); white-space: nowrap; }
+.intent dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font-size: 14px; }
+.intent dt { color: var(--muted); font-weight: 700; }
+.intent dd { margin: 0; }
+
+/* film strip */
+.strip { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 2px 14px; margin: 0 -2px;
+  -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+.frame { scroll-snap-align: start; flex: 0 0 240px; display: grid; gap: 10px; align-content: start; }
+.frame figcaption { font-size: 14px; line-height: 1.45; }
+.frame figcaption b { display: block; font-family: var(--display); font-size: 15px; font-weight: 850; margin-bottom: 2px; }
+.frame figcaption .tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
+.tag.w { background: color-mix(in srgb, var(--world) 22%, transparent); color: var(--ink); }
+.tag.n { background: var(--sunken); color: var(--ink); }
+.tag.g { background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--ink); }
+figure { margin: 0; }
+.hint { font-size: 13px; color: var(--muted); }
+
+/* ---------------------------------------------------------------- the phone (402 × 874 pt at 0.597) */
+.phone { position: relative; width: 240px; height: 522px; border-radius: 34px; overflow: hidden; isolation: isolate;
+  box-shadow: 0 0 0 6px #1d1822, 0 14px 34px rgba(40, 20, 60, .22); color: #2A1F2D; font-family: var(--body); background: #BFE1F0; }
+.phone .sb { position: absolute; inset: 0 0 auto; height: 30px; display: flex; justify-content: space-between; align-items: center;
+  padding: 6px 22px 0; font-size: 11px; font-weight: 800; z-index: 9; }
+.phone .sb::after { content: ""; position: absolute; left: 50%; top: 7px; width: 64px; height: 18px; margin-left: -32px; border-radius: 12px; background: #0d0b10; }
+.phone.dark .sb, .phone.dark { color: #F6F0FA; }
+.world { position: absolute; inset: 0; z-index: 0; background: linear-gradient(#BFE1F0 0%, #DCEFF4 48%, #F6E9DC 100%); }
+.world img { position: absolute; display: block; max-width: none; }
+.world .isle { width: 410px; left: -85px; top: 214px; }
+.world .garden { width: 112px; left: -14px; top: 236px; }
+.world .cay { width: 112px; left: 160px; top: 232px; }
+.world .pofu { width: 96px; left: 72px; top: 284px; }
+.world .bunny { width: 40px; left: 196px; top: 296px; }
+.world .cloud1 { width: 80px; left: 140px; top: 96px; opacity: .9; }
+.world .cloud2 { width: 92px; left: -24px; top: 150px; opacity: .8; }
+.world.blur .isle, .world.blur .garden, .world.blur .cay, .world.blur .bunny { filter: blur(3px); }
+.world.dim::after { content: ""; position: absolute; inset: 0; background: rgba(255, 248, 252, .38); }
+.world.mist .isle, .world.mist .garden, .world.mist .cay, .world.mist .bunny { filter: saturate(.25) blur(1.5px); opacity: .75; }
+.world.mist::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(rgba(255,255,255,.1), rgba(244,240,248,.7) 70%); }
+.world.mist .garden, .world.mist .cay, .world.mist .bunny { display: none; } /* day 0 before the first Hop!: stage 1, nothing built yet */
+.world.mist .pofu { z-index: 2; }
+.world.night { background: linear-gradient(#1C1838, #2B2550 55%, #3A2E55); }
+.world.night .isle, .world.night .garden, .world.night .cay, .world.night .bunny, .world.night .pofu { filter: brightness(.45) saturate(.7) hue-rotate(-12deg); }
+.world.night .pofu { filter: brightness(.7) saturate(.6); }
+.world.night .cloud1, .world.night .cloud2 { opacity: .18; }
+.world .star { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff; }
+.world.turned .pofu { transform: scaleX(-1) rotate(-4deg); left: 54px; }
+
+/* chrome inside phones */
+.ch { position: absolute; z-index: 5; }
+.glass { background: rgba(255, 255, 255, .62); -webkit-backdrop-filter: blur(10px) saturate(1.4); backdrop-filter: blur(10px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, .7); box-shadow: 0 2px 8px rgba(42, 31, 45, .10); }
+.topbar { top: 40px; left: 12px; right: 12px; display: flex; justify-content: space-between; align-items: center; }
+.pill { border-radius: 999px; padding: 4px 9px; font-size: 10px; font-weight: 800; display: flex; align-items: center; gap: 5px; }
+.pill i { display: inline-block; width: 26px; height: 5px; border-radius: 3px; background: #F2D3DA; position: relative; overflow: hidden; }
+.pill i::after { content: ""; position: absolute; inset: 0 30% 0 0; background: #F48C9A; border-radius: 3px; }
+.circ { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; }
+.calm { top: 74px; left: 50%; transform: translateX(-50%); border-radius: 999px; padding: 4px 10px; font-size: 10px; font-weight: 800; white-space: nowrap; display: flex; gap: 5px; align-items: center; }
+.calm::before { content: ""; width: 11px; height: 11px; border-radius: 50%; border: 2.5px solid #5FB57A; border-right-color: rgba(95,181,122,.25); }
+.calm small { font-weight: 700; opacity: .7; }
+.bubble { left: 22px; right: 22px; top: 186px; background: #FFFBF5; border-radius: 14px; padding: 9px 11px; font-size: 10.5px; line-height: 1.35;
+  font-weight: 700; box-shadow: 0 4px 14px rgba(42,31,45,.14); text-align: center; display: grid; gap: 6px; justify-items: center; }
+.bubble::after { content: ""; position: absolute; left: 50%; bottom: -6px; width: 12px; height: 12px; background: #FFFBF5; transform: translateX(-50%) rotate(45deg); }
+.chipbtn { background: #EFEAFD; color: #4B35B0; border-radius: 999px; padding: 3px 10px; font-size: 10px; font-weight: 850; }
+.bottom { left: 12px; right: 12px; bottom: 16px; display: grid; gap: 7px; }
+.today { border-radius: 14px; padding: 7px 10px; display: flex; justify-content: space-between; gap: 8px; align-items: center; font-size: 10px; }
+.today b { font-size: 11.5px; display: block; }
+.beads { display: flex; gap: 2.5px; margin-top: 3px; }
+.beads i { width: 6px; height: 6px; border-radius: 50%; background: #6C4FD8; }
+.beads i.o { background: transparent; box-shadow: inset 0 0 0 1.5px #A99BD9; }
+.today .min { text-align: right; font-weight: 700; }
+.btn { border-radius: 999px; padding: 9px 12px; text-align: center; font-weight: 850; font-size: 11.5px; }
+.btn.pri { background: #6C4FD8; color: #fff; box-shadow: 0 4px 12px rgba(108,79,216,.35); }
+.btn.sec { background: rgba(255,255,255,.7); color: #4B35B0; }
+.quiet { text-align: center; font-size: 10.5px; font-weight: 750; color: #3B4A3E; padding: 8px; border-radius: 999px; }
+.dark .quiet { color: #E9E3F5; }
+
+/* hop */
+.hopchip { top: 40px; left: 50%; transform: translateX(-50%); border-radius: 999px; padding: 4px 10px; font-size: 9.5px; font-weight: 800; white-space: nowrap; display: flex; align-items: center; gap: 5px; }
+.ig { width: 12px; height: 12px; border-radius: 4px; background: linear-gradient(45deg, #F9A23C, #E1306C 55%, #7B3FE4); }
+.hoptitle { top: 70px; width: 100%; text-align: center; font-family: var(--hop); font-weight: 800; font-size: 40px; color: #6C4FD8; line-height: 1; }
+.face { z-index: 4; position: absolute; width: 132px; left: 54px; top: 128px; }
+.say { top: 262px; left: 26px; right: 26px; text-align: center; font-size: 11px; font-weight: 800; line-height: 1.35; }
+.stake { top: 306px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; white-space: nowrap; }
+.stake span { border-radius: 999px; padding: 3px 8px; font-size: 9.5px; font-weight: 800; }
+.choices { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.choice { border-radius: 12px; padding: 7px 8px; font-size: 9.5px; line-height: 1.3; background: rgba(255,255,255,.85); }
+.choice b { display: block; font-size: 10.5px; }
+.cardline { text-align: center; font-size: 9px; color: #5c5162; font-weight: 700; }
+.ring { top: 40px; right: 14px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: 9px; font-weight: 900;
+  background: conic-gradient(#6C4FD8 var(--p, 30%), rgba(108,79,216,.18) 0); }
+.ring::before { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: rgba(255,255,255,.9); }
+.ring span { position: relative; }
+.beat { top: 46px; left: 14px; border-radius: 999px; padding: 4px 9px; font-size: 9.5px; font-weight: 800; }
+
+/* lock screen */
+.lock { background: linear-gradient(160deg, #5C4C9A, #C58DA6 60%, #F2C7A5); }
+.lock .clock { position: absolute; top: 70px; width: 100%; text-align: center; color: #fff; font-weight: 300; font-size: 58px; letter-spacing: -1px; line-height: 1; }
+.lock .date { position: absolute; top: 52px; width: 100%; text-align: center; color: rgba(255,255,255,.9); font-size: 12px; font-weight: 700; }
+.lw { position: absolute; top: 140px; left: 34px; right: 34px; display: flex; justify-content: center; gap: 10px; }
+.lw div { border-radius: 14px; background: rgba(255,255,255,.22); color: #fff; padding: 7px 10px; font-size: 10px; font-weight: 800; text-align: center; min-width: 70px; }
+.lw div b { display: block; font-size: 15px; }
+.widget { position: absolute; left: 18px; right: 18px; top: 330px; height: 130px; border-radius: 22px; overflow: hidden; background: linear-gradient(#CFE8F2, #F3E5D4); }
+.widget img { position: absolute; max-width: none; }
+.widget .txt { position: absolute; right: 12px; top: 14px; text-align: right; font-size: 10px; font-weight: 800; color: #2A1F2D; display: grid; gap: 4px; }
+.widget .txt b { font-size: 14px; }
+
+/* native screens */
+.native { background: #F2F1F6; }
+.nav { position: absolute; top: 34px; left: 0; right: 0; padding: 6px 14px; font-size: 10px; color: #6C4FD8; font-weight: 700; display: flex; justify-content: space-between; }
+.ntitle { position: absolute; top: 56px; left: 14px; right: 14px; font-size: 19px; font-weight: 900; line-height: 1.15; }
+.nbody { position: absolute; top: 106px; left: 12px; right: 12px; display: grid; gap: 9px; font-size: 10.5px; }
+.group { background: #fff; border-radius: 12px; overflow: hidden; }
+.nrow { padding: 8px 11px; display: grid; gap: 2px; border-top: 1px solid #E4E1EA; }
+.nrow:first-child { border-top: 0; }
+.nrow .r1 { display: flex; justify-content: space-between; gap: 6px; font-weight: 800; }
+.st { font-size: 9.5px; font-weight: 800; }
+.st.ok { color: #2F7A47; } .st.bad { color: #B45309; } .st.no { color: #6E6476; }
+.acts { display: flex; gap: 6px; margin-top: 3px; }
+.acts span { font-size: 9.5px; font-weight: 850; color: #6C4FD8; background: #EFEAFD; border-radius: 999px; padding: 2px 8px; }
+.ghead { font-size: 9px; font-weight: 800; color: #6E6476; letter-spacing: .05em; text-transform: uppercase; padding: 0 4px; }
+.rulecard { background: #fff; border-radius: 14px; padding: 10px 12px; display: grid; gap: 6px; border: 1.5px solid #D9D0FA; }
+.rulecard div { display: grid; grid-template-columns: 54px 1fr auto; gap: 6px; align-items: center; font-weight: 800; font-size: 11px; }
+.rulecard em { font-style: normal; font-size: 9px; font-weight: 900; color: #6C4FD8; letter-spacing: .05em; }
+.rulecard .ck { width: 14px; height: 14px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px #C9BEF5; }
+.callout { background: #FFF4E5; border-radius: 12px; padding: 9px 11px; font-weight: 700; line-height: 1.4; color: #5A3A12; }
+.callout b { color: #2A1F2D; }
+.tabbar { display: grid; grid-template-columns: repeat(3, 1fr); background: #fff; border-radius: 12px; padding: 7px 4px; text-align: center; font-size: 9px; font-weight: 800; color: #8B8392; }
+.tabbar span { padding: 4px 2px; border-radius: 8px; }
+.tabbar .on { color: #2A1F2D; box-shadow: 0 0 0 2px #E1306C; background: #FFF0F4; }
+.banner { top: 40px; left: 10px; right: 10px; background: #fff; border-radius: 12px; padding: 8px 10px; font-size: 10px; font-weight: 800; display: flex; gap: 8px;
+  align-items: center; justify-content: space-between; box-shadow: 0 4px 14px rgba(42,31,45,.15); }
+.banner span:first-child::before { content: "!"; display: inline-grid; place-items: center; width: 14px; height: 14px; border-radius: 50%; background: #F59E0B; color: #fff; font-size: 9px; margin-right: 6px; }
+.banner .fix { color: #fff; background: #6C4FD8; border-radius: 999px; padding: 3px 9px; white-space: nowrap; }
+.sheet { left: 0; right: 0; bottom: 0; top: 196px; background: #F7F6FA; border-radius: 22px 22px 0 0; padding: 8px 12px 12px; display: grid; gap: 8px; align-content: start; font-size: 10.5px;
+  box-shadow: 0 -6px 20px rgba(42,31,45,.16); }
+.sheet .grab { width: 34px; height: 4px; border-radius: 2px; background: #CFCAD8; justify-self: center; }
+.sheet h4 { margin: 0; font-size: 15px; font-weight: 900; }
+
+/* loop */
+.loop { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; counter-reset: s; }
+.loop li { counter-increment: s; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px; display: grid; gap: 4px; font-size: 14px; }
+.loop li::before { content: counter(s); font-weight: 900; color: var(--accent); font-size: 13px; }
+.loop li b { font-family: var(--display); font-size: 15px; }
+.loop li.end { border-color: var(--world); background: color-mix(in srgb, var(--world) 10%, var(--surface)); }
+
+/* models and guardrails */
+.models { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+.model { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px; display: grid; gap: 6px; align-content: start; font-size: 14px; }
+.model.rec { border: 2px solid var(--accent); }
+.model .badge { justify-self: start; font-size: 11px; font-weight: 900; color: var(--accent-ink); background: var(--accent); padding: 2px 9px; border-radius: 999px; }
+.guards { display: grid; gap: 10px; counter-reset: g; }
+.guard { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px; }
+.guard .n { font-family: var(--display); font-weight: 900; font-size: 26px; color: var(--accent); line-height: 1; grid-row: span 2; font-variant-numeric: tabular-nums; }
+.guard p { font-size: 14px; }
+.foot { font-size: 13px; color: var(--muted); }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .strip { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<main>
+  <header style="display:grid;gap:12px">
+    <span class="eyebrow">Uygulama ile oyun · yapı önerisi</span>
+    <h1>Biten ziyaret</h1>
+    <p class="lede">Pofu, bahçe bakan bir bekçi. Asıl iş Instagram'ın kapısındaki yarım saniye; ada ise orada harcamadığın zamanın görünen hali. Pofu'yu her açışının bir amacı var ve her amacın kendi girişi, süresi ve çıkışı var. Ziyaret en fazla üç adım sürer, sonra Pofu bahçesine döner.</p>
+    <div class="rule" aria-label="Görsel kural">
+      <span>Hissettiğin şey <b>dünya</b></span>
+      <span>Ayarladığın şey <b>liste</b></span>
+      <span>Bozuk olan şey <b>yerli ve önde</b></span>
+    </div>
+  </header>
+
+  <section aria-labelledby="h-intents">
+    <span class="eyebrow">1 · Açılış amaçları</span>
+    <h2 id="h-intents">Pofu'yu neden açarsın?</h2>
+    <p class="muted">Pofu aklını okuyamaz ama nasıl açıldığını bilir. Her yol bir amaca, her amaç kendi ekranına gider.</p>
+    <div class="intents">
+      <div class="intent"><h3>Kapı <small>Hop!</small></h3><dl><dt>Giriş</dt><dd>Kestirmeler kuralı</dd><dt>Süre</dt><dd>≤ 3 sn</dd><dt>Çıkış</dt><dd>Vazgeç, bir dakika ya da aç</dd></dl></div>
+      <div class="intent"><h3>Bir dakika <small>yerine koyma</small></h3><dl><dt>Giriş</dt><dd>Vazgeçtikten sonra, günde en çok 3</dd><dt>Süre</dt><dd>≤ 60 sn, görünür halka</dd><dt>Çıkış</dt><dd>Pofu bitirir: "Bu kadar."</dd></dl></div>
+      <div class="intent"><h3>Bakış <small>açmadan</small></h3><dl><dt>Giriş</dt><dd>Widget, kilit ekranı</dd><dt>Süre</dt><dd>0 sn; uygulamada 2–5 sn</dd><dt>Çıkış</dt><dd>Devam edecek bir şey yok</dd></dl></div>
+      <div class="intent"><h3>Ziyaret <small>oyun</small></h3><dl><dt>Giriş</dt><dd>Uygulama simgesi, sıra doluysa</dd><dt>Süre</dt><dd>30–60 sn</dd><dt>Çıkış</dt><dd>Pofu bahçesine döner</dd></dl></div>
+      <div class="intent"><h3>Yerleşik <small>refleks</small></h3><dl><dt>Giriş</dt><dd>Simge, sıra boşsa</dd><dt>Süre</dt><dd>2–5 sn</dd><dt>Çıkış</dt><dd>"Ada sensiz de çalışıyor."</dd></dl></div>
+      <div class="intent"><h3>Kurulum, onarım <small>yerli</small></h3><dl><dt>Giriş</dt><dd>Ana ekrandaki uyarı, Ayarlar</dd><dt>Süre</dt><dd>Uygulama başına ≤ 90 sn</dd><dt>Çıkış</dt><dd>"Yakaladım!"</dd></dl></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-s1">
+    <span class="eyebrow">2 · Kapıdan dakikaya</span>
+    <h2 id="h-s1">Refleks aynı kalır, rutin değişir</h2>
+    <p class="muted">İşaret aynı (uzanma isteği), ödül gerçek (bir şey değişti, Pofu sevindi, bitti), rutin akış yerine bir dakika. Dakika hiçbir şey kazandırmaz; çekirdekler sadece uzaktayken birikir.</p>
+    <div class="strip" role="list" aria-label="Kapıdan dakikaya, dört kare">
+      <figure class="frame" role="listitem">
+        <div class="phone" data-world="day blur dim">
+          <div class="sb"><span>14:20</span><span>●●●</span></div>
+          <div class="ch hopchip glass"><span class="ig"></span>Instagram · bu saatte 3. uzanış</div>
+          <div class="ch hoptitle">Hop!</div>
+          <img class="face" src="assets/pofu-jealous.webp" alt="Kıskanç Pofu">
+          <div class="ch say">"Yine mi Instagram? Onda olup bende olmayan ne?"</div>
+          <div class="ch stake"><span class="glass">Huzur ×1,6 · büyüyor</span><span class="glass">18 / 60 dk</span></div>
+          <div class="ch bottom">
+            <div class="choices"><div class="choice"><b>Hızlı bakış · 3 dk</b>Huzur ×1,6 → ×1,3</div><div class="choice"><b>Aç · 15 dk</b>Huzur ×1,0'a döner</div></div>
+            <div class="btn pri">Vazgeç</div>
+          </div>
+        </div>
+        <figcaption><span class="tag w">Dünya arkada</span><b>Hop!</b>Ada arkada çalışıyor: kaybedeceğin şey anlatılmadan görünür. Ada butonu, çekirdek sayısı, Bugün kartı yok.</figcaption>
+      </figure>
+      <figure class="frame" role="listitem">
+        <div class="phone" data-world="day blur dim">
+          <div class="sb"><span>14:20</span><span>●●●</span></div>
+          <img class="face" src="assets/pofu-proud.webp" alt="Gururlu Pofu">
+          <div class="ch say" style="top:268px;font-size:13px">Vazgeçtin. Bugün 8 oldu.</div>
+          <div class="ch bottom">
+            <div class="btn sec">Bunun yerine: Pofu'yla bir dakika</div>
+            <div class="cardline">Bugün 3 dakikanın 1'i · gece yok</div>
+            <div class="quiet glass">Hazır olunca yukarı kaydır</div>
+          </div>
+        </div>
+        <figcaption><span class="tag w">Dünya arkada</span><b>Vazgeçtin</b>En iyi sonuç hâlâ telefonu bırakmak. Ama istek bir yere gitmek isterse, tek ve biten bir seçenek var. Hiçbir şey seçilmezse Pofu bahçesine döner.</figcaption>
+      </figure>
+      <figure class="frame" role="listitem">
+        <div class="phone" data-world="day">
+          <div class="sb"><span>14:20</span><span>●●●</span></div>
+          <div class="ch beat glass">Pofu'yla bir dakika · 1/2</div>
+          <div class="ch ring" style="--p:35%"><span>1 dk</span></div>
+          <div class="ch bubble">Sen yokken komşular 186 çekirdek topladı.<span class="chipbtn">Topla</span></div>
+          <div class="ch bottom"><div class="cardline" style="color:#3B4A3E">Sonra: çay ocağı 3. seviye hazır</div></div>
+        </div>
+        <figcaption><span class="tag w">Dünya</span><b>Bir dakika</b>Ziyaret sırasının aynısı: ne değişti, topla, bir karar. Sıra boşsa Pofu'nun tüyünü tara (günde bir kez). Halka sonun nerede olduğunu baştan gösterir.</figcaption>
+      </figure>
+      <figure class="frame" role="listitem">
+        <div class="phone" data-world="day turned">
+          <div class="sb"><span>14:21</span><span>●●●</span></div>
+          <div class="ch ring" style="--p:100%"><span>✓</span></div>
+          <div class="ch bubble" style="top:196px">Bu kadar. Telefonu bırakalım mı?</div>
+          <div class="ch bottom"><div class="quiet glass">Ada sensiz de çalışıyor.</div></div>
+        </div>
+        <figcaption><span class="tag w">Dünya</span><b>Bu kadar</b>Pofu bitirir, her seferinde. Başka buton yok, "bir dakika daha" yok. Bir dördüncü dakika ya da daha uzun kalmak aynı adayı gösterir.</figcaption>
+      </figure>
+    </div>
+    <p class="hint">Kaydırarak dört kareyi gör.</p>
+  </section>
+
+  <section aria-labelledby="h-loop">
+    <span class="eyebrow">3 · Oyun döngüsü</span>
+    <h2 id="h-loop">Bir ziyaretin şekli</h2>
+    <ol class="loop">
+      <li><b>Gel</b>Pofu başını kaldırır.</li>
+      <li><b>Değişimi gör</b>Ada büyümüş, çünkü telefon elinde değil, cebindeydi.</li>
+      <li><b>Topla</b>Çekirdekler kavanoza. Tavan yok, acele yok.</li>
+      <li><b>Seç ve inşa et</b>Çekirdek yetiyorsa bir seviye. Genelde 0 ya da 1.</li>
+      <li><b>Pofu sevinir</b>Bu an için yazılmış tek bir cümle.</li>
+      <li class="end"><b>Son</b>Pofu bahçesine döner. Akışın hiç vermediği şey: bitmiş olmak.</li>
+    </ol>
+    <p class="muted">Gün: sabah ziyareti (gecenin büyümesi) → gün boyu telefon cepte, uzanışlarda Hop! ve en çok üç dakika → akşam Pofu'yu yatır → gece adada görecek yeni bir şey yok → sabah.</p>
+  </section>
+
+  <section aria-labelledby="h-s2">
+    <span class="eyebrow">4 · Bakış ve ziyaret</span>
+    <h2 id="h-s2">Bakmak için açman gerekmez</h2>
+    <div class="strip" role="list" aria-label="Bakış ve ziyaret, dört kare">
+      <figure class="frame" role="listitem">
+        <div class="phone lock dark">
+          <div class="sb"><span></span><span>●●●</span></div>
+          <div class="date">Cumartesi 1 Kasım</div>
+          <div class="clock">14:20</div>
+          <div class="lw"><div><b>×1,6</b>huzur</div><div><b>8 / 11</b>vazgeçiş</div></div>
+          <div class="widget">
+            <img src="assets/isle-home.webp" alt="" style="width:260px;left:-40px;top:30px">
+            <img src="assets/pofu.webp" alt="Pofu" style="width:62px;left:34px;top:44px">
+            <div class="txt"><span>Pofu keyifli</span><b>38 / 60 dk</b><span>Huzur ×1,6</span></div>
+          </div>
+        </div>
+        <figcaption><span class="tag g">Boyalı plaka, canlı yazı</span><b>Bakış</b>Widget cevap verir, hiçbir şey istemez: "186 çekirdek bekliyor" yok, "inşa et" yok, "yeni ada" yok. Dokununca Bugün sayfası açılır, ziyaret değil.</figcaption>
+      </figure>
+      <figure class="frame" role="listitem">
+        <div class="phone" data-world="day">
+          <div class="sb"><span>07:42</span><span>●●●</span></div>
+          <div class="ch topbar"><span class="pill glass">♥ <i></i> Keyifli</span><span class="circ glass">⚙</span></div>
+          <div class="ch calm glass">Huzur ×1,8 <small>büyüyor</small></div>
+          <div class="ch bubble">Gece huzur ×1,8'e çıktı. Komşular 412 çekirdek topladı.<span class="chipbtn">Topla</span></div>
+          <div class="ch bottom">
+            <div class="today glass"><div><b>Henüz uzanış yok</b>bugün</div><div class="min">0 / 60 dk<br>korunan</div></div>
+            <div class="btn pri">Topla</div>
+          </div>
+        </div>
+        <figcaption><span class="tag w">Dünya</span><b>Sabah ziyareti</b>Günün asıl oyun anı. Bildirim duyurmaz. En fazla üç adım: gecenin farkı, bir haber, bir inşa.</figcaption>
+      </figure>
+      <figure class="frame" role="listitem">
+        <div class="phone" data-world="day turned">
+          <div class="sb"><span>07:43</span><span>●●●</span></div>
+          <div class="ch topbar"><span class="pill glass">♥ <i></i> Keyifli</span><span class="circ glass">⚙</span></div>
+          <div class="ch calm glass">Huzur ×1,8 <small>büyüyor</small></div>
+          <div class="ch bottom">
+            <div class="today glass"><div><b>Henüz uzanış yok</b>bugün</div><div class="min">0 / 60 dk<br>korunan</div></div>
+            <div class="quiet glass">Ada sensiz de çalışıyor.</div>
+          </div>
+        </div>
+        <figcaption><span class="tag w">Dünya</span><b>Yerleşik</b>Pofu bahçesine döner; ana buton kaybolur. Dünya açık kalır, ama hiçbir şey seni çağırmaz. On dakika sonra açarsan bu ekranı görürsün.</figcaption>
+      </figure>
+      <figure class="frame" role="listitem">
+        <div class="phone" data-world="day">
+          <div class="sb"><span>18:05</span><span>●●●</span></div>
+          <div class="ch topbar"><span class="pill glass">♥ <i></i> Keyifli</span><span class="circ glass">⚙</span></div>
+          <div class="ch sheet">
+            <div class="grab"></div>
+            <h4>Bugün</h4>
+            <div class="group"><div class="nrow"><div class="r1"><span>11 uzanış, 8 vazgeçiş</span><span class="st ok">yarıdan fazla</span></div><div class="beads"><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i></div></div>
+              <div class="nrow"><div class="r1"><span>Korunan uygulamalarda</span><span>38 / 60 dk</span></div></div>
+              <div class="nrow"><div class="r1"><span>Pofu'da</span><span>3 dk</span></div></div>
+              <div class="nrow"><div class="r1"><span>En zor saat</span><span>22.00</span></div></div></div>
+            <div class="group"><div class="nrow"><div class="r1"><span>Hafta</span><span style="color:#6C4FD8">›</span></div></div></div>
+          </div>
+        </div>
+        <figcaption><span class="tag g">Dünya üstünde cam sayfa</span><b>Bugün</b>Yerli içerik, dünyanın üstünde. Pofu kendi ekran süresini de söyler: uygulama kendini de ölçer.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-s3">
+    <span class="eyebrow">5 · Kurulum, onarım, gece</span>
+    <h2 id="h-s3">"Instagram açılınca, Pofu gelsin"</h2>
+    <p class="muted">Kafandaki model doğruydu: bir otomasyon tam olarak "eğer şu olursa, şunu yap" demek. Kestirmeler'de arama sadece "o zaman" kısmını bulur; "eğer" kısmı Otomasyon sekmesinde. Rehber artık senin dilinle başlar.</p>
+    <div class="strip" role="list" aria-label="Kurulum, onarım ve gece, dört kare">
+      <figure class="frame" role="listitem">
+        <div class="phone native">
+          <div class="sb"><span>20:10</span><span>●●●</span></div>
+          <div class="nav"><span>‹ Geri</span><span>1 / 2</span></div>
+          <div class="ntitle">Instagram için bir kural</div>
+          <div class="nbody">
+            <div class="rulecard">
+              <div><em>EĞER</em><span>Instagram açılırsa</span><span class="ck"></span></div>
+              <div><em>O ZAMAN</em><span>Pofu gelsin (Hop in)</span><span class="ck"></span></div>
+            </div>
+            <div class="callout"><b>Arama yapma.</b> Kuralın "eğer" kısmı Kestirmeler'in alttaki <b>Otomasyon</b> sekmesinde. Arama sadece "o zaman" kısmını bulur.</div>
+            <div class="tabbar"><span>Kestirmeler</span><span class="on">Otomasyon</span><span>Galeri</span></div>
+            <div class="btn pri" style="margin-top:4px">Kestirmeler'i aç</div>
+          </div>
+        </div>
+        <figcaption><span class="tag n">Yerli</span><b>Kural kartı</b>Önce kural, sonra dokunuşlar. Her adım hangi yarıyı kurduğunu söyler ve kart onu işaretler. Gerçek ekran görüntüleri, boyalı değil.</figcaption>
+      </figure>
+      <figure class="frame" role="listitem">
+        <div class="phone native">
+          <div class="sb"><span>20:12</span><span>●●●</span></div>
+          <div class="nav"><span>‹ Ayarlar</span><span></span></div>
+          <div class="ntitle">Korunan uygulamalar</div>
+          <div class="nbody">
+            <div class="ghead">Kurallar</div>
+            <div class="group">
+              <div class="nrow"><div class="r1"><span>Instagram açılınca → Pofu</span></div><span class="st ok">Çalışıyor · bugün 9 kez</span></div>
+              <div class="nrow"><div class="r1"><span>YouTube açılınca → Pofu</span></div><span class="st bad">Salıdan beri sessiz</span><div class="acts"><span>Test et</span><span>Onar</span><span>Bilerek kapattım</span></div></div>
+              <div class="nrow"><div class="r1"><span>TikTok</span></div><span class="st no">Kural yok</span><div class="acts"><span>Kur · 1 dk</span></div></div>
+            </div>
+            <div class="group"><div class="nrow"><div class="r1"><span>Uygulama ekle</span><span style="color:#6C4FD8">+</span></div></div></div>
+          </div>
+        </div>
+        <figcaption><span class="tag n">Yerli</span><b>Onarım</b>Her satır bir kural, düz bir durumla. Hata ekranında süs yok: sevimlilik sorunu saklıyor gibi okunur.</figcaption>
+      </figure>
+      <figure class="frame" role="listitem">
+        <div class="phone" data-world="day mist">
+          <div class="sb"><span>09:00</span><span>●●●</span></div>
+          <div class="ch banner"><span>Instagram kuralı henüz yok</span><span class="fix">Kur · 1 dk</span></div>
+          <div class="ch bubble" style="top:200px">Kapıda durabildiğim an ada uyanır.</div>
+          <div class="ch bottom"><div class="quiet glass" style="color:#4a4552">Ada uyuyor</div></div>
+        </div>
+        <figcaption><span class="tag n">Yerli uyarı, dünyanın önünde</span><b>Ada ilk Hop! ile uyanır</b>Kural çalışana kadar ada sisli ve büyümüyor; zaten gözlem penceresi (ADR-0014) bunu gerektiriyor. İlk gerçek Hop!'ta sis kalkar, ilk ayçiçeği açar.</figcaption>
+      </figure>
+      <figure class="frame" role="listitem">
+        <div class="phone dark" data-world="night">
+          <div class="sb"><span>00:40</span><span>●●●</span></div>
+          <div class="ch topbar"><span class="pill glass" style="background:rgba(255,255,255,.14);color:#F6F0FA;border-color:rgba(255,255,255,.2)">☾ Uykuda</span><span class="circ glass" style="background:rgba(255,255,255,.14);color:#F6F0FA;border-color:rgba(255,255,255,.2)">⚙</span></div>
+          <div class="ch bubble" style="top:200px;background:#2E2747;color:#F1EBFA">Şşş. Ada uyuyor. Sabah görüşürüz.</div>
+          <div class="ch bottom"><div class="quiet" style="background:rgba(255,255,255,.1)">Yeni bir şey yok, söz.</div></div>
+        </div>
+        <figcaption><span class="tag w">Dünya</span><b>Gece çıkmaz sokak</b>Gece fark yok, toplama yok, inşa yok, dakika yok. Gecenin büyümesi sabah 06.00'dan sonra görünür. Bugün ve Ayarlar her zaman açık.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-models">
+    <span class="eyebrow">6 · Üç model</span>
+    <h2 id="h-models">Neden C</h2>
+    <div class="models">
+      <div class="model"><h3>A · Dünya uygulamanın kendisi</h3><p>Her açılış adaya iner; ayarlar bile dünyanın üstünde cam sayfa. En özgün görünüm, ama her yolculuk oyundan geçiyor ve Pofu yeni uzanış hedefi olabilir.</p></div>
+      <div class="model"><h3>B · İki oda</h3><p>Kök ekran yerli bir "Bugün"; ada bir kapının ardında. Yardımcı işler hızlı ve güvenilir, ama ruh bir dokunuş uzakta ve ada unutulan bir özelliğe dönüşebilir.</p></div>
+      <div class="model rec"><span class="badge">Öneri</span><h3>C · Kendini bitiren oyun</h3><p>Açılış bir yer değil, bir ziyaret: en fazla üç adım, sonra Pofu bahçesine döner. A'nın tek dünyası içinde, B'nin yerli ayar kuralıyla, bir de vazgeçişten sonra biten bir dakikayla.</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-guards">
+    <span class="eyebrow">7 · En önemli üç koruma</span>
+    <h2 id="h-guards">Ölçülebilir hedefler</h2>
+    <div class="guards">
+      <div class="guard"><span class="n">60 sn</span><h3>Ziyaret ve dakika biter</h3><p>Medyan ziyaret ≤ 60 sn, p90 ≤ 150 sn. Dakika en çok 60 sn, günde en çok 3, gece hiç. Dakikaların en az %80'inden sonra 10 dakika içinde akış açılmaz.</p></div>
+      <div class="guard"><span class="n">0</span><h3>Pofu seni geri çağırmaz</h3><p>Çekirdek, inşa, ada, ruh hali ya da "özledim" için bildirim yok, simge rozeti yok. Widget cevap verir, hiçbir şey istemez. Akşam özeti varsayılan olarak kapalı.</p></div>
+      <div class="guard"><span class="n">5 dk</span><h3>Bakmak hiçbir şey kazandırmaz</h3><p>Pofu'da günde ≤ 5 dk; uygulama bunu Bugün sayfasında kendisi gösterir. Pofu'da 2 dakikadan sonra ada bekler: huzur büyümez, istasyonlar durur.</p></div>
+    </div>
+    <p class="foot">Tasarım ve gerekçe: <code>docs/product/app-game-boundary.md</code>. Görseller: inceleme 01'in yer tutucuları; Pofu R1. Hareket ve geçişler ayrı bir çalışmanın konusu.</p>
+  </section>
+</main>
+
+<script>
+// Builds the shared world layer (sky, island, stations, Pofu) into every phone that asks for one.
+// Variants come from data-world: day, blur, dim, mist, night, turned.
+(function () {
+  const phones = document.querySelectorAll('.phone[data-world]');
+  phones.forEach((phone) => {
+    const kinds = phone.dataset.world.split(/\s+/);
+    const w = document.createElement('div');
+    w.className = 'world ' + kinds.join(' ');
+    w.setAttribute('aria-hidden', 'true');
+    const hasFace = !!phone.querySelector('.face');
+    const parts = [
+      ['cloud1', 'cloud-a'], ['cloud2', 'cloud-b'], ['isle', 'isle-home'],
+      ['garden', 'st-garden-4'], ['cay', 'st-cay-3'], ['bunny', 'neighbor-bunny'],
+    ];
+    if (!hasFace) parts.push(['pofu', kinds.includes('night') ? 'pofu-breathe' : (kinds.includes('turned') ? 'pofu-relieved' : 'pofu')]);
+    if (kinds.includes('night')) {
+      for (let i = 0; i < 28; i++) {
+        const s = document.createElement('span');
+        s.className = 'star';
+        s.style.left = ((i * 53) % 236) + 'px';
+        s.style.top = (36 + (i * 37) % 170) + 'px';
+        s.style.opacity = 0.35 + (i % 4) * 0.15;
+        w.appendChild(s);
+      }
+    }
+    parts.forEach(([cls, src]) => {
+      const img = document.createElement('img');
+      img.className = cls; img.src = 'assets/' + src + '.webp'; img.alt = ''; img.decoding = 'async';
+      w.appendChild(img);
+    });
+    phone.prepend(w);
+  });
+})();
+</script>
+</body>
+</html>

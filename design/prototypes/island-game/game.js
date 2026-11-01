@@ -4,7 +4,8 @@
 // while you are away and buy station levels, never screen time (ADR-0015).
 // Opening a guarded app costs calm (huzur) and Pofu's wellbeing (keyif); a
 // quick check only halves the calm; past the daily threshold every open
-// waits for a breathing break with Pofu. Pofu never dies (ADR-0017).
+// offers a short breathing break with Pofu that the user starts with a tap
+// (v2: 5 s, at most 10 s). Pofu never dies (ADR-0017).
 // Dependency-free, mobile-first, works inside a sandboxed iframe (no dialogs,
 // no query strings, relative assets only). Everything except Pofu (R1) and
 // Mochi (concept) is a code stand-in. Spec: docs/product/game-design.md.
@@ -25,9 +26,11 @@ const CALM_MAX = 2.0;
 const SKIP_SEEDS = 3, SKIP_SEEDS_CAP = 5;      // a resisted reach adds a little, capped
 const QUIET_SEEDS_HOUR = 6;                   // Pofu gathers 1 seed per 10 quiet minutes (ADR-0014)
 const BREATH_LIMIT = 60;                      // guarded minutes a day before every open needs a breath
-const BREATH_IN = 4000, BREATH_OUT = 6000;    // one breath = 10 s
+const BREATH_CAP = 10;                        // seconds: no breath is ever longer (breathing break v2)
 const QUICK_MIN = 3, OPEN_MIN = 15;
-const breathsFor = (n) => (n < 2 ? 1 : n < 4 ? 2 : 3);   // by over-limit open of the day; never more than 3
+// One breath, started by the user: 5 s for the 1st to 3rd over-limit open of the day, 10 s from the 4th on.
+// The exhale is always the longer part (in : out = 2 : 3).
+const breathSecsFor = (n) => Math.min(BREATH_CAP, n < 3 ? 5 : 10);
 
 const ISLES = [
   { id: 'home', name: 'Ayçiçeği', en: 'Sunflower Island', pos: [0, 0],
@@ -795,20 +798,23 @@ function wantOpen(quick) {
   if (!over()) return openApp(quick);
   openBreath(quick);
 }
+// Breathing break v2: the user starts the breath (ownership), 5 s by default, never more than 10 s.
 function openBreath(quick) {
-  const n = breathsFor(S.overOpens); S.overOpens++;
-  S.breath = { t0: now(), n, quick, done: false };
+  const secs = breathSecsFor(S.overOpens); S.overOpens++;
+  S.breath = { t0: null, secs, quick, done: false };
   S.hopKind = null;
   document.getElementById('sheet-root').innerHTML = `<div class="breath" role="dialog" aria-label="Breathing break">
     <div class="app"><span class="ig">${ICON.ig}</span>Instagram · past today’s 60 minutes</div>
-    <h2>${['One breath', 'Two breaths', 'Three breaths'][n - 1]} with Pofu</h2>
-    <p class="sub">Then it opens. Nothing to win, nothing to lose.</p>
+    <h2>${secs > 5 ? 'One deep breath' : 'One breath'} with Pofu</h2>
+    <p class="sub" id="breathSub">${secs > 5 ? 'Ten seconds' : 'Five seconds'}, when you’re ready.</p>
     <div class="orb"><div class="halo"></div><div class="disc"></div><canvas id="breathPofu" width="400" height="400"></canvas></div>
-    <div class="cue" id="cue" aria-live="polite">Breathe in…</div>
-    <div class="dots">${Array.from({ length: n }, (_, i) => `<i id="bd${i}"></i>`).join('')}</div>
+    <div class="cue" id="cue" aria-live="polite">“We’ve had our hour today. Breathe with me first?”</div>
     <div class="spacer"></div>
+    <div class="start" id="breathStart">
+      <button class="glass prominent skip press" data-ui="breathStart">Breathe with Pofu</button>
+    </div>
     <div class="after" id="breathAfter">
-      <button class="glass prominent skip press" data-ui="breathSkip">I’m good. Skip it</button>
+      <button class="glass prominent skip press" data-ui="breathSkip">I’m good, skip it</button>
       <button class="spend press" data-ui="breathOpen">Open Instagram · ${quick ? QUICK_MIN : OPEN_MIN} min</button>
     </div>
     <button class="link press" id="breathNotNow" data-ui="breathSkip">Not now</button>
@@ -816,21 +822,30 @@ function openBreath(quick) {
   S.sheet = 'breath';
   document.body.classList.add('cover-open');
 }
+function startBreath() {
+  const B = S.breath; if (!B || B.t0 !== null) return;
+  B.t0 = now();
+  const el = document.querySelector('.breath'); if (el) el.classList.add('running');
+}
 function breathTick(t) {
   const B = S.breath; const el = document.getElementById('breathPofu'); if (!B || !el) return;
-  const cyc = BREATH_IN + BREATH_OUT, total = B.n * cyc, e = Math.min(total, t - B.t0);
-  const p = e >= total ? cyc : e % cyc;
-  const k = p < BREATH_IN ? 0.5 - 0.5 * Math.cos(Math.PI * p / BREATH_IN) : 0.5 + 0.5 * Math.cos(Math.PI * (p - BREATH_IN) / BREATH_OUT);
+  const orb = el.parentElement;
+  const c2 = el.getContext('2d'); c2.setTransform(1, 0, 0, 1, 0, 0); c2.clearRect(0, 0, el.width, el.height); c2.setTransform(2, 0, 0, 2, 0, 0);
+  if (B.t0 === null) {   // waiting for the user's tap: Pofu idles, eyes open, the orb barely moves
+    breathPhase = Math.sin(t / 3600 * Math.PI * 2);
+    orb.style.setProperty('--k', (0.18 + 0.06 * breathPhase).toFixed(3));
+    drawPofuAt(c2, 100, 172, 132, t, null);
+    return;
+  }
+  const total = B.secs * 1000, IN = total * 0.4, e = Math.min(total, t - B.t0);
+  const k = e < IN ? 0.5 - 0.5 * Math.cos(Math.PI * e / IN) : 0.5 + 0.5 * Math.cos(Math.PI * (e - IN) / (total - IN));
   breathPhase = k * 2 - 1;
   const done = e >= total;
-  const orb = el.parentElement;
   orb.style.setProperty('--k', done ? 0.35 : k.toFixed(3));
   const cue = document.getElementById('cue');
-  const word = done ? 'Nicely done.' : p < BREATH_IN ? 'Breathe in…' : '…and out';
+  const word = done ? 'Nicely done.' : e < IN ? 'Breathe in…' : '…and out';
   if (cue.textContent !== word) cue.textContent = word;
-  for (let i = 0; i < B.n; i++) { const d = document.getElementById('bd' + i); if (d) d.className = i < Math.floor(e / cyc) || done ? 'f' : i === Math.floor(e / cyc) ? 'on' : ''; }
   if (done && !B.done) { B.done = true; document.querySelector('.breath').classList.add('done'); }
-  const c2 = el.getContext('2d'); c2.setTransform(1, 0, 0, 1, 0, 0); c2.clearRect(0, 0, el.width, el.height); c2.setTransform(2, 0, 0, 2, 0, 0);
   drawPofuAt(c2, 100, 172, 132, t, done ? 'relieved' : 'breathe');
 }
 
@@ -980,7 +995,7 @@ function fastForward(day) {
 function readout() {
   const el = document.getElementById('readout'); if (!el) return;
   el.innerHTML = [['Day', `${S.day} · home stage ${S.stage + 1}/5 · tended ${S.tended}`], ['Islands', `${isleCount()} of ${ISLES.length} · calm nights ${S.calmNights}`], ['Pofu', `${Math.round(S.health)} · ${mood()}`], ['Calm', `×${S.calm.toFixed(1)}${S.quickChain ? ' · a quick check just now' : ''}`],
-    ['Guarded', `${fmt(S.used)} / ${BREATH_LIMIT} min${over() ? ` · next break: ${breathsFor(S.overOpens) * 10} s` : ''}`], ['Seeds', `${fmt(S.seeds)} (+${fmt(S.pending)} waiting)`], ['Production', `${fmt(prodRate())}/h × calm, while away`],
+    ['Guarded', `${fmt(S.used)} / ${BREATH_LIMIT} min${over() ? ` · next break: ${breathSecsFor(S.overOpens)} s, on tap` : ''}`], ['Seeds', `${fmt(S.seeds)} (+${fmt(S.pending)} waiting)`], ['Production', `${fmt(prodRate())}/h × calm, while away`],
     ['Built', STATIONS.filter((s) => lv(s.id)).map((s) => `${s.id} ${lv(s.id)}`).join(', ')]].map(([k, v]) => `<span>${k}</span><b>${v}</b>`).join('');
 }
 
@@ -997,7 +1012,7 @@ document.addEventListener('click', (e) => {
   if (el.dataset.visit) return visit(el.dataset.visit);
   if (el.dataset.act) { drawer(false); return ACT[el.dataset.act](); }
   ({ collect, toVillage: () => toVillage(), toHome: () => toHome(), toMap: () => toMap(), closeSheet, upgrade, skip: () => resist(), open: () => wantOpen(false), quick: () => wantOpen(true),
-    breathSkip: () => resist(true), breathOpen: () => openApp(S.breath ? S.breath.quick : false), quiet: quietHour, demo: () => drawer(true), demoClose: () => drawer(false) })[el.dataset.ui]?.();
+    breathSkip: () => resist(true), breathStart: startBreath, breathOpen: () => openApp(S.breath ? S.breath.quick : false), quiet: quietHour, demo: () => drawer(true), demoClose: () => drawer(false) })[el.dataset.ui]?.();
 });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { if (document.body.classList.contains('drawer-open')) drawer(false); else if (S.sheet && S.sheet !== 'hop' && S.sheet !== 'breath') closeSheet(); } });
 // Canvas taps: a click (not pointerdown), so a touch that starts a scroll elsewhere never triggers it.
@@ -1023,9 +1038,9 @@ const ACT = {
 };
 
 // Public API for tools/render.js and tools/check-mobile.js
-window.G = { S: () => S, resist, quietHour, binge, useLimit, setNight, nextDay, openHop, openApp, wantOpen, openBreath, openStation, openIsle, upgrade, collect, toVillage, toHome, toMap, visit, fastForward, emote, drawer, render: renderChrome,
+window.G = { S: () => S, resist, quietHour, binge, useLimit, setNight, nextDay, openHop, openApp, wantOpen, openBreath, startBreath, openStation, openIsle, upgrade, collect, toVillage, toHome, toMap, visit, fastForward, emote, drawer, render: renderChrome,
   set: (o) => { Object.assign(S, o); renderChrome(); }, say: (t, a) => { say(t, a); renderChrome(); },
-  breathAt: (ms) => { if (S.breath) S.breath.t0 = now() - ms; },
+  breathAt: (ms) => { if (S.breath) { startBreath(); S.breath.t0 = now() - ms; } },
   lerpCam: (q, a = homeCam(), b = isleCam()) => { camTo = null; for (const k of ['x', 'y', 's', 'ay']) cam[k] = a[k] + (b[k] - a[k]) * q; } };
 
 fresh();
