@@ -107,15 +107,20 @@ public struct FrictionRules: Hashable, Sendable, Codable {
     /// Length, in minutes, of the pass granted when the user proceeds on a
     /// free rung (`pause` or `intent`).
     public var freePassMinutes: Int
+    /// Length, in minutes, of the free emergency pass offered once per
+    /// local day on the `pay` and `askFriend` rungs. Zero switches it off.
+    public var emergencyPassMinutes: Int
 
     public init(
         cooldown: TimeInterval = 60 * 60,
         highestAttemptRung: FrictionRung = .pay,
-        freePassMinutes: Int = 5
+        freePassMinutes: Int = 5,
+        emergencyPassMinutes: Int = 3
     ) {
         self.cooldown = cooldown
         self.highestAttemptRung = highestAttemptRung
         self.freePassMinutes = freePassMinutes
+        self.emergencyPassMinutes = emergencyPassMinutes
     }
 }
 

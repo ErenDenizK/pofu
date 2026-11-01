@@ -20,6 +20,8 @@ public struct Wallet: Hashable, Sendable, Codable {
     public internal(set) var activityEnergyByDay: [LocalDay: Energy]
     /// Instants of recent paid unlocks, for price escalation.
     public internal(set) var unlockPurchases: [Date]
+    /// The local day the last emergency pass was used, if any.
+    public internal(set) var lastEmergencyPassDay: LocalDay?
 
     /// Creates a wallet. A negative opening balance is clamped to zero.
     public init(balance: Energy = .zero) {
@@ -29,6 +31,7 @@ public struct Wallet: Hashable, Sendable, Codable {
         self.stepEnergyByDay = [:]
         self.activityEnergyByDay = [:]
         self.unlockPurchases = []
+        self.lastEmergencyPassDay = nil
     }
 
     /// Activity energy credited on `day`.

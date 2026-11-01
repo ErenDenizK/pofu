@@ -11,7 +11,9 @@ an evening of scrolling with a morning of fake activity.
 ## Design goals
 
 1. **Never stuck.** A user with zero energy can still get through the
-   day: a daily allowance, free friction rungs, and a friend.
+   day: a daily allowance, free friction rungs, a friend, and one free
+   emergency pass a day. Nobody should have to delete Pofu's automation
+   to get into an app they truly need.
 2. **Living pays for scrolling, not the other way round.** An honest hour
    of activity buys half an hour of feed at the base price, a verified
    hour buys 45 minutes, and repeated or late-night unlocks cost
@@ -26,8 +28,9 @@ an evening of scrolling with a morning of fake activity.
 
 ## Currency
 
-`Energy` is a whole number. The domain name is final; the user-facing name
-is not. Fractions never exist: **earning rounds down, prices round up**,
+`Energy` is a whole number. The domain name is final; the user sees
+**seeds** (Turkish: **çekirdek**), stored in Pofu's cheeks. At the base
+price one seed buys one minute. Fractions never exist: **earning rounds down, prices round up**,
 each exactly once per operation. To keep tuning readable, multipliers are
 decimals (`1.25`), and rounding tolerates floating-point noise of up to
 10⁻⁹, so `10 × 1.1` costs 11, not 12.
@@ -132,8 +135,8 @@ pause → intent → pay → askFriend
 |---|---|
 | `pause` | breathe, then continue for free (5-minute pass) or pay |
 | `intent` | say why, then continue for free (5-minute pass) or pay |
-| `pay` | buy an unlock window |
-| `askFriend` | ask a friend to approve a window (ADR-0005) |
+| `pay` | buy an unlock window, or use the daily emergency pass |
+| `askFriend` | ask a friend to approve a window (ADR-0005), or use the daily emergency pass |
 
 - An attempt less than 60 minutes after the previous attempt climbs one
   rung; a gap of 60 minutes or more resets to `pause`. The cooldown counts
@@ -143,7 +146,12 @@ pause → intent → pay → askFriend
   the balance cannot cover the cheapest window. Setting
   `highestAttemptRung = askFriend` makes the fourth rapid attempt require a
   friend even when the user can pay.
-- Resisting is always available.
+- Resisting is always available, and **resisting never earns energy**.
+  Paying for skips would turn the gate into a slot machine (open, skip,
+  collect). Skips feed Pofu's vitality through the resistance component and
+  fill a bead on Home, which the user sees as fluff, not a number.
+  `Gatekeeper.resolve(_:with: .resist, …)` never touches the wallet, and
+  `SkipsNeverEarnTests` holds it to that on every rung.
 - Opening an app while a valid pass covers it is not an attempt: the gate
   lets it through silently and the ladder does not move.
 - The ladder is shared across all protected apps: the reflex is the same
@@ -153,14 +161,63 @@ pause → intent → pay → askFriend
 
 Outcomes are `resisted`, `proceeded(pass)`, or `friendApproved(pass)`. An
 intervention the user leaves without choosing is recorded as `resisted`:
-the app did not open.
+the app did not open. On the `intent` rung, the reason the user gives
+(`IntentReason`: reply, look something up, post, bored, habit, need a
+break) is recorded with the outcome, whatever it is.
+
+### The emergency pass
+
+| Rule | Default |
+|---|---|
+| Length | 3 minutes (`emergencyPassMinutes`; 0 switches it off) |
+| Frequency | once per local day |
+| Rungs | `pay` and `askFriend` only |
+| Price | free; it does not count toward escalation |
+
+The soft gate can always be bypassed by deleting the automation, and many
+people who do that never come back. A free, logged, short pass once a day
+keeps an honest way through when someone has no seeds and no friend at
+hand. It is short enough that it is not a scrolling session, and it is
+recorded as `proceeded` with a pass whose source is `emergency`, so it
+counts as an open in the impulse metrics. Availability resets at local
+midnight; a clock that moves backwards never grants a second one.
 
 ## Passes
 
 A pass grants one target group (for example "Instagram") access from
 `grantedAt` (inclusive) to `expiresAt` (exclusive). Sources: a free rung,
-a purchase, or a friend's approval. `PassLedger` answers "is there a valid
-pass for X at time T", preferring the longest-lasting one.
+a purchase, a friend's approval, or the emergency pass. `PassLedger`
+answers "is there a valid pass for X at time T", preferring the
+longest-lasting one. Opening an app under a valid pass is recorded as a
+**pass-through** (not an attempt), which also proves that app's automation
+is alive.
+
+### Ending a pass early
+
+The user can end a pass from Pofu at any time. Protection comes back at
+once, and the unused whole minutes are refunded **at the per-minute price
+actually paid**:
+
+```
+refund = ⌊ unusedWholeMinutes × price ÷ minutes ⌋
+```
+
+- Only purchased passes refund. Free, friend-approved, and emergency
+  passes simply end.
+- The price paid already includes escalation and night pricing, so the
+  refund never exceeds what was paid and shrinks as the pass is used.
+- The purchase still counts toward escalation: stopping early is rewarded,
+  but it does not reset prices.
+- Refunds are not activity: they do not feed vitality or the honor cap.
+
+Worked examples: a 10-minute pass bought for 10 and ended after 3.5
+minutes refunds ⌊6 × 10 ÷ 10⌋ = 6. The same window bought second in the
+escalation window (13) and ended after one second refunds ⌊9 × 13 ÷ 10⌋ =
+11. A night pass (20 for 10 minutes) ended halfway refunds 10.
+
+If Pofu cannot open the app after granting a pass (the app was deleted),
+the pass is **voided**: the full price comes back and the purchase stops
+escalating prices; a voided emergency pass becomes available again.
 
 ## Impulse metrics
 
@@ -198,13 +255,40 @@ V(0) = 0.6
 - Activity energy includes honor, verified, and step energy, but not the
   allowance.
 
+### Blind days freeze vitality
+
+Pofu must never look healthier because it cannot see. Without check-ins,
+resistance has no attempts (it scores 1) and usage is estimated from
+passes (none), so a user who deleted the automation would watch Pofu
+thrive. Every day therefore carries an `isObserving` flag; when it is
+false, vitality **carries forward unchanged**:
+
+```
+V(d) = V(d−1)                     when day d is not observed
+```
+
+Until DeviceActivity can show usage without check-ins (paid membership),
+a day counts as observed when the automation reported anything that day: a
+check-in or a pass-through. A day without a single reach cannot be told
+apart from a deleted automation, so it freezes instead of rewarding
+blindness.
+
+`VitalityLedger` settles each finished day once, in order, the first time
+the app runs after it ends (at most 400 days are walked; older absences are
+unobserved anyway), and keeps 35 days of history. Today is never settled:
+the live value is today's running input applied to the settled value.
+
 Mood bands: `thriving` ≥ 0.75, `content` ≥ 0.5, `tired` ≥ 0.25,
 `wilting` below.
 
 ## Invariants (enforced by tests)
 
 - The balance is never negative.
-- Energy is conserved: balance = allowances + earnings − spending.
+- Energy is conserved: balance = allowances + earnings − spending +
+  refunds.
+- Resisting never changes the balance.
+- A refund never exceeds the price paid.
+- An unobserved day never changes vitality.
 - Honor earnings never exceed the daily cap.
 - Vitality and every component score stay in 0…1.
 - Each day's attempts equal resisted plus opened.
@@ -227,4 +311,8 @@ scrolling.
 - **Friend approvals and escalation.** Friend-approved windows are free and
   do not escalate prices; if friends approve too readily, they could.
 - **Distracting minutes** are approximated today from granted pass length;
-  real usage will come from the Screen Time report extension.
+  real usage will come from the Screen Time report extension. Ending a
+  pass early does not shorten the estimate yet.
+- **Observation.** "A day with no check-ins is blind" is a stopgap. Once
+  DeviceActivity threshold events are available, a day is observed when
+  usage is measured, whether or not the automation fired.
