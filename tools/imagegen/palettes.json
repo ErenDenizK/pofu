@@ -1,0 +1,21 @@
+{
+  "$note": "Extra locked palettes for world props and stations (docs/design/art-direction-study.md). Sampled with k-means from the style-locked art test 01 (cay ocagi L1 and L2, island take 1) and rounded by hand. They extend design/tokens/pofu-tokens.json artPalettes for drift checks only; the app never reads them. Darkest allowed accent is wood-deep; nothing darker than ink-brown.",
+  "world-props": {
+    "cream": "#FBF1E6",
+    "earth-cream": "#F3E2CC",
+    "earth-light": "#F4D2A6",
+    "earth-honey": "#F0BF86",
+    "earth-caramel": "#DFA372",
+    "wood-light": "#EDB47E",
+    "wood": "#D9925E",
+    "wood-shade": "#B9784C",
+    "wood-deep": "#9A6443",
+    "ink-brown": "#6E4632",
+    "copper-light": "#EFB28E",
+    "copper": "#D4875F",
+    "tea-amber": "#E09A55",
+    "awning-rose": "#EE9A90",
+    "petal-honey": "#F6C95C",
+    "stone-soft": "#D8CFC6"
+  }
+}

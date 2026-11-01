@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pofu · Sanat yönü çalışması</title>
+<style>
+@font-face { font-family: "Nunito"; font-weight: 200 1000; font-display: swap;
+  src: url("assets/fonts/nunito-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Nunito"; font-weight: 200 1000; font-display: swap;
+  src: url("assets/fonts/nunito-latin-ext-wght-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+:root {
+  --cream: #FFF8F2; --peach: #FDEDE5; --ink: #2A2130; --ink-2: #4E424B; --ink-3: #665962;
+  --violet: #6C4FD8; --violet-soft: #EEE9FF; --hair: rgba(42,33,48,.10);
+  --font: "Nunito", ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { font-family: var(--font); color: var(--ink); background: var(--cream); line-height: 1.5;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+main { max-width: 760px; margin: 0 auto; padding: 20px 16px 64px; }
+header h1 { font-size: 28px; line-height: 1.15; font-weight: 850; letter-spacing: -.01em; }
+header p { color: var(--ink-2); margin-top: 8px; font-size: 16px; }
+.chips { position: sticky; top: 0; z-index: 2; display: flex; gap: 8px; overflow-x: auto; padding: 12px 0;
+  margin: 12px -16px 0; padding-left: 16px; padding-right: 16px; background: rgba(255,248,242,.92);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; text-decoration: none; color: var(--ink); background: #fff; border: 1px solid var(--hair);
+  border-radius: 999px; padding: 8px 14px; font-weight: 750; font-size: 14px; white-space: nowrap; }
+.card { background: #fff; border-radius: 24px; padding: 16px; margin-top: 16px; border: 1px solid var(--hair); }
+.card.rec { border: 2px solid var(--violet); }
+.card h2 { font-size: 20px; font-weight: 850; margin-bottom: 10px; }
+.card p { color: var(--ink-2); margin-top: 12px; font-size: 16px; }
+.badge { font-size: 12px; vertical-align: middle; background: var(--violet); color: #fff; border-radius: 999px; padding: 3px 9px; margin-left: 6px; }
+img { display: block; max-width: 100%; height: auto; }
+.scene { width: 100%; border-radius: 16px; }
+.thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+@media (max-width: 480px) { .thumbs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+figure { margin: 0; }
+figure img { border-radius: 12px; width: 100%; }
+figcaption { font-size: 12px; color: var(--ink-3); margin-top: 4px; text-align: center; }
+.zoom2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.zoom3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 8px; }
+h3 { font-size: 17px; font-weight: 800; margin-top: 16px; }
+table { border-collapse: collapse; font-size: 13px; width: 100%; margin-top: 6px; font-variant-numeric: tabular-nums; table-layout: fixed; }
+th, td { padding: 6px 4px; border-bottom: 1px solid var(--hair); text-align: right; }
+th:first-child { text-align: left; width: 30%; }
+thead th { color: var(--ink-3); font-weight: 750; font-size: 11px; line-height: 1.2; vertical-align: bottom; hyphens: auto; }
+.summary { background: var(--violet-soft); border: 0; }
+.summary ol { margin: 6px 0 0 20px; color: var(--ink); }
+.summary li { margin-top: 6px; }
+.summary a { color: var(--violet); font-weight: 800; }
+tr.ref th, tr.ref td { background: var(--peach); font-weight: 800; }
+tr.hl th, tr.hl td { background: var(--violet-soft); font-weight: 800; }
+ul { margin: 10px 0 0 20px; color: var(--ink-2); }
+li { margin-top: 6px; }
+.note { font-size: 13px; color: var(--ink-3); margin-top: 10px; }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Pofu’nun dünyası “AI” gibi durmasın</h1>
+  <p>Aynı sahne, orijinal ve dört farklı işlem: senin seçtiğin yumuşak ada (take 1), çay ocağı L1 ve L2, ve Pofu. Hepsi aynı kaynak görsellerden; sadece “stil kilidi” adımı değişiyor. Yeni görsel üretilmedi.</p>
+</header>
+<section class="card summary">
+  <h2>Kısa cevap</h2>
+  <ol>
+    <li><b>Yumuşak kilit</b> (<a href="#s-d">Öneri</a>): Pofu’ya dokunma; ada ve ocakları onun açıklığına, doygunluğuna ve ışığına çek, ince dokuyu yarıya indir.</li>
+    <li><b>Asıl düzeltme kaynakta:</b> yeni prompt blokları mat, sade ve alçak kameralı çizim istiyor. Kilit sadece son rötuş.</li>
+    <li><b>Daha düz stile filtreyle geçilmez</b> (B ve C): “filtre” gibi görünüyor ve Pofu’nun büyüsünü öldürüyor.</li>
+  </ol>
+</section>
+<nav class="chips"><a class="chip" href="#s-orig">Orijinal</a><a class="chip" href="#s-a">A · Uyumla</a><a class="chip" href="#s-b">B · Guaj sadeleştirme</a><a class="chip" href="#s-c">C · Masal kitabı düz</a><a class="chip" href="#s-d">Yumuşak kilit</a><a class="chip" href="#s-zoom">Yakın plan</a><a class="chip" href="#s-numbers">Ölçümler</a><a class="chip" href="#s-target">Hedef ada</a></nav>
+
+<section class="card" id="s-orig">
+  <h2>Orijinal</h2>
+  <img class="scene" src="assets/scene-orig.webp" width="1080" height="1250" alt="Orijinal: ada, çay ocağı L1 ve L2, Pofu" loading="lazy">
+  <p>Ada ve Pofu yumuşak; ocak ise koyu, çok doygun ve parlak bakır: “mobil oyun render’ı”. Göz önce ocağa gidiyor, Pofu’ya değil.</p>
+  <div class="thumbs"><figure><img src="assets/island-orig.webp" width="380" height="380" alt="Ada (take 1)" loading="lazy"><figcaption>Ada (take 1)</figcaption></figure><figure><img src="assets/cay1-orig.webp" width="380" height="380" alt="Çay ocağı L1" loading="lazy"><figcaption>Çay ocağı L1</figcaption></figure><figure><img src="assets/cay2-orig.webp" width="380" height="380" alt="Çay ocağı L2" loading="lazy"><figcaption>Çay ocağı L2</figcaption></figure><figure><img src="assets/pofu-orig.webp" width="380" height="380" alt="Pofu (R1)" loading="lazy"><figcaption>Pofu (R1)</figcaption></figure></div>
+</section>
+<section class="card" id="s-a">
+  <h2>A · Uyumla</h2>
+  <img class="scene" src="assets/scene-a.webp" width="1080" height="1250" alt="A · Uyumla: ada, çay ocağı L1 ve L2, Pofu" loading="lazy">
+  <p>Renk ve ışık birleşti, ama doku aynı kaldı: dövme bakır, ahşap damarı ve parlamalar hâlâ “AI” diye bağırıyor. Pofu değişmiyor (iyi).</p>
+  <div class="thumbs"><figure><img src="assets/island-a.webp" width="380" height="380" alt="Ada (take 1)" loading="lazy"><figcaption>Ada (take 1)</figcaption></figure><figure><img src="assets/cay1-a.webp" width="380" height="380" alt="Çay ocağı L1" loading="lazy"><figcaption>Çay ocağı L1</figcaption></figure><figure><img src="assets/cay2-a.webp" width="380" height="380" alt="Çay ocağı L2" loading="lazy"><figcaption>Çay ocağı L2</figcaption></figure><figure><img src="assets/pofu-a.webp" width="380" height="380" alt="Pofu (R1)" loading="lazy"><figcaption>Pofu (R1)</figcaption></figure></div>
+</section>
+<section class="card" id="s-b">
+  <h2>B · Guaj sadeleştirme</h2>
+  <img class="scene" src="assets/scene-b.webp" width="1080" height="1250" alt="B · Guaj sadeleştirme: ada, çay ocağı L1 ve L2, Pofu" loading="lazy">
+  <p>Detay gitti ama yerine “filtre” izi geldi: lekeli bantlar, çamurlu geçişler. Pofu’nun tüyü keçe gibi oldu; büyüsü kayboldu.</p>
+  <div class="thumbs"><figure><img src="assets/island-b.webp" width="380" height="380" alt="Ada (take 1)" loading="lazy"><figcaption>Ada (take 1)</figcaption></figure><figure><img src="assets/cay1-b.webp" width="380" height="380" alt="Çay ocağı L1" loading="lazy"><figcaption>Çay ocağı L1</figcaption></figure><figure><img src="assets/cay2-b.webp" width="380" height="380" alt="Çay ocağı L2" loading="lazy"><figcaption>Çay ocağı L2</figcaption></figure><figure><img src="assets/pofu-b.webp" width="380" height="380" alt="Pofu (R1)" loading="lazy"><figcaption>Pofu (R1)</figcaption></figure></div>
+</section>
+<section class="card" id="s-c">
+  <h2>C · Masal kitabı düz</h2>
+  <img class="scene" src="assets/scene-c.webp" width="1080" height="1250" alt="C · Masal kitabı düz: ada, çay ocağı L1 ve L2, Pofu" loading="lazy">
+  <p>En tutarlı dünya, ama başka bir oyun: Pofu’nun göz parıltısı ve tüyü gidiyor, ocak oyuncak çıkartmaya dönüyor. Bu stil filtreyle değil, baştan çizimle olur.</p>
+  <div class="thumbs"><figure><img src="assets/island-c.webp" width="380" height="380" alt="Ada (take 1)" loading="lazy"><figcaption>Ada (take 1)</figcaption></figure><figure><img src="assets/cay1-c.webp" width="380" height="380" alt="Çay ocağı L1" loading="lazy"><figcaption>Çay ocağı L1</figcaption></figure><figure><img src="assets/cay2-c.webp" width="380" height="380" alt="Çay ocağı L2" loading="lazy"><figcaption>Çay ocağı L2</figcaption></figure><figure><img src="assets/pofu-c.webp" width="380" height="380" alt="Pofu (R1)" loading="lazy"><figcaption>Pofu (R1)</figcaption></figure></div>
+</section>
+<section class="card rec" id="s-d">
+  <h2>Yumuşak kilit <span class="badge">öneri</span></h2>
+  <img class="scene" src="assets/scene-d.webp" width="1080" height="1250" alt="Yumuşak kilit: ada, çay ocağı L1 ve L2, Pofu" loading="lazy">
+  <p>Pofu aynen kalıyor; ocak ve ada onun ışığına, değerlerine ve doygunluğuna çekiliyor. Mikro doku yarıya iniyor, şekil ve malzeme okunuyor. Dünya tek elden çıkmış gibi.</p>
+  <div class="thumbs"><figure><img src="assets/island-d.webp" width="380" height="380" alt="Ada (take 1)" loading="lazy"><figcaption>Ada (take 1)</figcaption></figure><figure><img src="assets/cay1-d.webp" width="380" height="380" alt="Çay ocağı L1" loading="lazy"><figcaption>Çay ocağı L1</figcaption></figure><figure><img src="assets/cay2-d.webp" width="380" height="380" alt="Çay ocağı L2" loading="lazy"><figcaption>Çay ocağı L2</figcaption></figure><figure><img src="assets/pofu-d.webp" width="380" height="380" alt="Pofu (R1)" loading="lazy"><figcaption>Pofu (R1)</figcaption></figure></div>
+</section>
+<section class="card" id="s-zoom">
+  <h2>Yakın plan: “AI izi” nerede?</h2>
+  <p>Dövme bakır, her kıvrımda parlayan noktalar, her yüzeyde aynı yoğunlukta doku: insan ressam bunları bu boyutta çizmez, model hep çizer. 130 pt’lik bir ocakta bu doku telefonda kıpır kıpır gürültüye dönüşür.</p>
+  <h3>Bakır demlik</h3>
+  <div class="zoom2"><figure><img src="assets/zoom-copper-orig.webp" alt="Bakır demlik yakın: Orijinal" loading="lazy"><figcaption>Orijinal</figcaption></figure><figure><img src="assets/zoom-copper-d.webp" alt="Bakır demlik yakın: Yumuşak kilit" loading="lazy"><figcaption>Öneri</figcaption></figure></div><div class="zoom3"><figure><img src="assets/zoom-copper-a.webp" alt="Bakır demlik yakın: A · Uyumla" loading="lazy"><figcaption>A · Uyumla</figcaption></figure><figure><img src="assets/zoom-copper-b.webp" alt="Bakır demlik yakın: B · Guaj sadeleştirme" loading="lazy"><figcaption>B · Guaj</figcaption></figure><figure><img src="assets/zoom-copper-c.webp" alt="Bakır demlik yakın: C · Masal kitabı düz" loading="lazy"><figcaption>C · Düz</figcaption></figure></div>
+  <h3>Çim kenarı</h3>
+  <div class="zoom2"><figure><img src="assets/zoom-lawn-orig.webp" alt="Çim kenarı yakın: Orijinal" loading="lazy"><figcaption>Orijinal</figcaption></figure><figure><img src="assets/zoom-lawn-d.webp" alt="Çim kenarı yakın: Yumuşak kilit" loading="lazy"><figcaption>Öneri</figcaption></figure></div><div class="zoom3"><figure><img src="assets/zoom-lawn-a.webp" alt="Çim kenarı yakın: A · Uyumla" loading="lazy"><figcaption>A · Uyumla</figcaption></figure><figure><img src="assets/zoom-lawn-b.webp" alt="Çim kenarı yakın: B · Guaj sadeleştirme" loading="lazy"><figcaption>B · Guaj</figcaption></figure><figure><img src="assets/zoom-lawn-c.webp" alt="Çim kenarı yakın: C · Masal kitabı düz" loading="lazy"><figcaption>C · Düz</figcaption></figure></div>
+</section>
+<section class="card" id="s-numbers">
+  <h2>Ölçümler: hedef Pofu</h2>
+  <p>Açıklık 0 (siyah) ile 100 (beyaz) arası. Doy. = doygunluk (renk yoğunluğu); kilitli paletimizin en doygun rengi 49. “Detay”, nesne telefondaki boyutuna küçültülünce kalan ince doku.</p>
+  <h3>Çay ocağı L1</h3><table><thead><tr><th></th><th>Koyu uç</th><th>Orta ton</th><th>Doy.</th><th>Doy. üst</th><th>Detay</th></tr></thead><tbody><tr class="ref"><th>Pofu (hedef)</th><td>59</td><td>89</td><td>12</td><td>51</td><td>5.2</td></tr><tr><th>Orijinal</th><td>27</td><td>56</td><td>61</td><td>82</td><td>7.3</td></tr><tr><th>A · Uyumla</th><td>39</td><td>62</td><td>49</td><td>53</td><td>5.9</td></tr><tr><th>B · Guaj</th><td>47</td><td>68</td><td>42</td><td>45</td><td>3.5</td></tr><tr><th>C · Düz</th><td>51</td><td>64</td><td>42</td><td>46</td><td>2.4</td></tr><tr class=hl><th>Öneri</th><td>42</td><td>63</td><td>42</td><td>46</td><td>4.6</td></tr></tbody></table><h3>Ada (take 1)</h3><table><thead><tr><th></th><th>Koyu uç</th><th>Orta ton</th><th>Doy.</th><th>Doy. üst</th><th>Detay</th></tr></thead><tbody><tr class="ref"><th>Pofu (hedef)</th><td>59</td><td>89</td><td>12</td><td>51</td><td>5.2</td></tr><tr><th>Orijinal</th><td>52</td><td>80</td><td>46</td><td>52</td><td>5.6</td></tr><tr><th>A · Uyumla</th><td>59</td><td>82</td><td>38</td><td>46</td><td>4.5</td></tr><tr><th>B · Guaj</th><td>61</td><td>84</td><td>33</td><td>39</td><td>2.0</td></tr><tr><th>C · Düz</th><td>65</td><td>83</td><td>35</td><td>40</td><td>1.7</td></tr><tr class=hl><th>Öneri</th><td>60</td><td>82</td><td>30</td><td>37</td><td>3.0</td></tr></tbody></table>
+  <p class="note">Ocak orijinalde Pofu’dan çok daha koyu (koyu uç 27’ye karşı 59) ve neredeyse iki kat doygun. Öneri onu palet aralığına çekiyor ve ince dokuyu Pofu’nun seviyesine indiriyor; şekil ve malzeme ayrımı kalıyor.</p>
+</section>
+<section class="card" id="s-target">
+  <h2>Hedef ada oranı (önizleme)</h2>
+  <img class="scene" src="assets/scene-target.webp" width="1080" height="1250" alt="Daha geniş çimli, daha sığ toprak gövdeli ada önizlemesi" loading="lazy">
+  <p>Bu bir çizim değil, sadece oran taslağı: çim daha geniş, toprak gövde yarı yarıya sığ. Gerçek düzeltme yeni prompt ile gelecek (ada ve ocaklar için kamera da aynı açıya iniyor).</p>
+</section>
+<section class="card">
+  <h2>Sırada ne var</h2>
+  <ul>
+    <li><b>Yeni promptlar hazır:</b> ada (daha geniş, daha sığ, adaçayı yeşili), çay ocağı L1–L5, ayçiçeği bahçesi L1–L2, simit arabası, Mochi ve 12 arayüz görseli. Hepsi bu sayfadaki yumuşak kilide göre yazıldı.</li>
+    <li><b>Üretim henüz başlamadı:</b> önce senin hesap kararın (kendi ChatGPT planın Codex ile ya da kendi API anahtarın) ve 7 günlük deneme bitecek. Üretim yalnızca senin kendi hesabında yapılır; her görselin kaydında hesap sahibi yazar.</li>
+    <li><b>Sen seçersin:</b> her parti için tek bir “temas sayfası” (contact sheet); beğendiğin denemenin numarasını söylemen yeterli.</li>
+    <li><b>Tek ince ayar kuralı:</b> kilidin hiçbir ayarı, önce/sonra karşılaştırması olmadan değişmez.</li>
+  </ul>
+</section>
+</main>
+</body>
+</html>

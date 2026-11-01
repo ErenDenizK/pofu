@@ -1,0 +1,82 @@
+{
+  "$note": "Style-lock presets (docs/design/art-direction-study.md). Distances in px are for a 1024 px canvas and scale with the image. L and C are CIELAB lightness and chroma. Change a value only with a before/after contact sheet in the PR.",
+  "version": 1,
+  "presets": {
+    "_by_kind": {
+      "station": "soft-lock",
+      "prop": "soft-lock",
+      "world": "soft-lock",
+      "plate": "soft-lock",
+      "char": "char-guard",
+      "sheet": "char-guard",
+      "icon": "soft-lock",
+      "ui": "soft-lock",
+      "widget": "soft-lock",
+      "appicon": "char-guard"
+    },
+    "soft-lock": {
+      "$note": "The recommendation: A's grade and clamps plus a light share of B's simplification. No grain, no posterization, no outline.",
+      "alpha_snap": 0.97,
+      "detail": {"radius": 4, "eps": 0.004, "keep": 0.5},
+      "values": {"floor": 12, "gamma": 0.95, "contrast": 0.9, "pivot": 70, "highlight_knee": 93, "highlight_ceiling": 98},
+      "chroma": {
+        "scale": 0.7, "knee": 40, "ceiling": 60,
+        "hue_bands": [
+          {"name": "greens", "hue": 135, "width": 40, "knee": 24, "ceiling": 36},
+          {"name": "reds", "hue": 38, "width": 22, "knee": 34, "ceiling": 50, "hue_shift": 10}
+        ]
+      },
+      "light": {"amount": 4, "warmth": 1.0},
+      "edge": {"feather_px": 0.8}
+    },
+    "harmonize": {
+      "$note": "Study treatment A: grade and clamp toward R1, a shared fine grain, a soft edge. Shapes and texture untouched.",
+      "alpha_snap": 0.97,
+      "values": {"floor": 10, "gamma": 0.95, "contrast": 0.92, "pivot": 70, "highlight_knee": 95, "highlight_ceiling": 99},
+      "chroma": {
+        "scale": 0.95, "knee": 36, "ceiling": 62,
+        "hue_bands": [
+          {"name": "greens", "hue": 135, "width": 40, "knee": 28, "ceiling": 40}
+        ]
+      },
+      "light": {"amount": 5, "warmth": 1.5},
+      "grain": {"amount": 0.012, "cell": 1.5},
+      "edge": {"feather_px": 0.8}
+    },
+    "gouache": {
+      "$note": "Study treatment B: edge-preserving simplification, Kuwahara patches, six soft value steps, a brush-scale grain.",
+      "alpha_snap": 0.97,
+      "detail": {"radius": 8, "eps": 0.01, "keep": 0.15, "kuwahara": 5},
+      "values": {"floor": 18, "gamma": 0.92, "contrast": 0.88, "pivot": 70, "highlight_knee": 94, "highlight_ceiling": 98},
+      "posterize": {"steps": 6, "lo": 34, "hi": 97, "softness": 0.35},
+      "chroma": {
+        "scale": 0.9, "knee": 30, "ceiling": 52,
+        "hue_bands": [
+          {"name": "greens", "hue": 135, "width": 40, "knee": 22, "ceiling": 34}
+        ]
+      },
+      "light": {"amount": 3, "warmth": 1.0},
+      "grain": {"amount": 0.014, "cell": 3.0},
+      "edge": {"feather_px": 1.2}
+    },
+    "storybook": {
+      "$note": "Study treatment C: flat color blocks (k-means in CIELAB) with one shadow tone and a soft colored outline.",
+      "alpha_snap": 0.97,
+      "detail": {"radius": 10, "eps": 0.02, "keep": 0.0, "kuwahara": 8},
+      "values": {"floor": 20, "gamma": 0.92, "contrast": 0.88, "pivot": 70},
+      "chroma": {
+        "scale": 0.92, "knee": 32, "ceiling": 54,
+        "hue_bands": [
+          {"name": "greens", "hue": 135, "width": 40, "knee": 24, "ceiling": 36}
+        ]
+      },
+      "flat": {"colors": 9, "smooth": 1.5},
+      "edge": {"outline_px": 5.0, "outline_value": 0.5, "outline_opacity": 1.0}
+    },
+    "char-guard": {
+      "$note": "Characters keep their fur detail: only the alpha snap and a high chroma guard, so a drifting take cannot slip past QA by being locked.",
+      "alpha_snap": 0.97,
+      "chroma": {"scale": 1.0, "knee": 52, "ceiling": 64}
+    }
+  }
+}
