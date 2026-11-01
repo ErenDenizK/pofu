@@ -21,8 +21,6 @@ struct HomeView: View {
                 pofu
                 Spacer(minLength: 0)
                 TodayCard(model: model)
-                    .onTapGesture { model.homeSheet = .passes }
-                    .accessibilityAddTraits(.isButton)
                 bottomActions
             }
             .padding(.horizontal, PofuSpacing.screen)
@@ -166,16 +164,9 @@ private struct TodayCard: View {
     var body: some View {
         let metrics = model.impulsesToday
         VStack(alignment: .leading, spacing: PofuSpacing.s) {
-            HStack {
-                Text("Today")
-                    .font(PofuFont.subheadline)
-                    .foregroundStyle(PofuColor.textSecondary)
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .font(PofuFont.footnote)
-                    .foregroundStyle(PofuColor.textTertiary)
-                    .accessibilityHidden(true)
-            }
+            Text("Today")
+                .font(PofuFont.subheadline)
+                .foregroundStyle(PofuColor.textSecondary)
             if metrics.attempts == 0 {
                 Text("No reaches yet today.")
                     .font(PofuFont.title3)
