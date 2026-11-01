@@ -17,10 +17,15 @@ Goal: every decision needed to start building is made and written down.
 - [x] Character bible v0.1 ([character.md](brand/character.md))
 - [x] Character direction explored (vector rig, 3D spike, AI illustration) and decided:
   illustrated hamster ([ADR-0010](adr/0010-illustrated-hamster-art-direction.md))
-- [ ] Companion motion system validated on device
+- [x] Companion motion system designed and built: web proof plus `PofuCompanion`
+  ([ADR-0011](adr/0011-companion-motion-system.md))
+- [ ] Companion motion validated on the founder's iPhone
 - [ ] Art bible, prompt library, and asset pipeline; first production assets generated
 - [ ] Design language: color, typography, motion, haptics, and sound principles
-- [ ] Information architecture, user flows, and a clickable prototype
+- [x] Information architecture, user flows, and a clickable prototype
+  ([IA](product/ux/information-architecture.md), [flows](product/ux/user-flows.md))
+- [ ] Founder decisions on the open UX questions (navigation, paywall timing,
+  economy additions, naming of seeds and neighbors)
 - [x] Xcode project, local packages, CI on GitHub Actions (macOS runner)
   ([ADR-0009](adr/0009-xcodegen-and-package-layout.md),
   [development guide](development.md))

@@ -3,6 +3,7 @@
 - **Status:** Accepted (motion system pending validation)
 - **Date:** 2026-10-31
 - **Supersedes:** [0006](0006-code-native-companion-rendering.md)
+- **Amended by:** [0011](0011-companion-motion-system.md) (motion: no AI video)
 
 ## Context
 
