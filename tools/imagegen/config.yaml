@@ -8,8 +8,8 @@
 # take and master records them. `kind` must match the backend:
 #   chatgpt-plan -> --backend codex (or manual)    api -> --backend openai-api
 account:
-  owner: ""        # e.g. "Eren Deniz Kuyucaklıoğlu (founder)"
-  kind: ""         # chatgpt-plan | api
+  owner: "Eren Deniz Kuyucaklıoğlu (founder)"        # e.g. "Eren Deniz Kuyucaklıoğlu (founder)"
+  kind: "chatgpt-plan"         # chatgpt-plan | api
 
 paths:
   inbox: design/art/inbox            # git-ignored raw takes, one folder per batch
