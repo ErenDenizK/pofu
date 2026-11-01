@@ -23,9 +23,10 @@ Subcommands (run `python3 -I tools/assets/process_assets.py <cmd> -h`):
     selftest       run the self-test (tools/assets/test_process_assets.py)
 
 Inbox naming convention: ``<kind>__<name>[--<variant>].png`` where kind is
-one of char, sprite, badge, scene, icon; name is kebab-case. Example:
+one of char, sprite, badge, scene, icon, appicon; name is kebab-case. Example:
 ``char__pofu-content.png``, ``badge__first-resist.png``,
-``icon__app-icon--dark.png``.
+``appicon__app-icon--dark.png``. ``icon`` is a painted domain icon
+(ADR-0018); ``appicon`` is the app icon.
 
 Dependencies: Python 3.10+, Pillow, numpy (tools/assets/requirements.txt).
 No model downloads, no network access.
@@ -96,6 +97,16 @@ DEFAULT_SPECS: dict[str, dict] = {
         "folder": "Scenes",
     },
     "icon": {
+        "description": "Painted domain icon (ADR-0018 Glass++), shown at 28-60 pt.",
+        "requires_alpha": True,
+        "min_source_px": 1024,
+        "point_size": [60, 60],
+        "fit": "contain",
+        "pad_frac": 0.04,
+        "palettes": ["character", "world-day", "ui"],
+        "folder": "Icons",
+    },
+    "appicon": {
         "description": "App icon layer, 1024 x 1024, opaque (dark variant may be transparent).",
         "requires_alpha": False,
         "min_source_px": 1024,
@@ -531,7 +542,7 @@ def validate_and_prepare(item: Item, spec: dict, tokens: dict, key_mode: str) ->
                     item.issue("warn", f"no alpha in source; keyed out {key_info['keyedColor']} (check edges)")
             except ValueError as error:
                 item.issue("error", f"no alpha and could not key: {error}")
-    if item.kind == "icon" and item.variant in (None, "light") and has_alpha:
+    if item.kind == "appicon" and item.variant in (None, "light") and has_alpha:
         if float(rgba[..., 3].min()) < 0.999:
             item.issue("error", "app icons must be fully opaque (no transparency)")
 
@@ -683,7 +694,7 @@ def run_process(args: argparse.Namespace) -> int:
     icons: dict[str, dict[str, Image.Image]] = {}
     for item in ok_items:
         spec = specs[item.kind]
-        name = item.name + (f"-{item.variant}" if item.variant and item.kind != "icon" else "")
+        name = item.name + (f"-{item.variant}" if item.variant and item.kind != "appicon" else "")
         if spec["fit"] == "contain":
             exported.append(str(write_imageset(ensure_group(catalog, spec["folder"]), name, render_contain(item, spec)).relative_to(catalog)))
         elif spec["fit"] == "width":
