@@ -48,11 +48,12 @@ shield on membership day 1), then stage W (the home island).
 - [x] Pofu's room v1: animated companion, seeds, today's beads, honor focus
   timer (superseded by the island direction, ADR-0016)
 - [x] Minimal onboarding: welcome, apps, name, setup
-- [ ] **The automation firing on the founder's iPhone** (G1): the first
-  attempt failed at finding the App trigger; redo it live with the local
-  agent and record every screen
 - [ ] **Honest measurement and setup guide v2** (G2)
-- [ ] **A 7-day gate dogfood** (G3), with a daily readout from the event log
+- [ ] **The Screen Time gate built before the membership** (G3), so day 1
+  is a test day
+- [ ] Optional: the manual automation firing on the founder's iPhone (G1);
+  the first attempt failed at finding the App trigger
+- [ ] **A 7-day gate dogfood on the shield** from membership day 1 (G5)
 - [ ] **On-device validation by the founder** (foregrounding from the
   automation, silent pass-through, cold launch, URL schemes, Turkish
   Shortcuts labels)

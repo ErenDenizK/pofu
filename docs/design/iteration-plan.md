@@ -39,25 +39,34 @@ an app, and which never becomes a new thing to scroll.
 
 ## Stage G: the gate
 
+The paid membership (about two weeks away) turns on the Screen Time shield
+for development builds on the founder's own iPhone on day 1; TestFlight
+waits for Apple's separate distribution approval. So the cloud builds the
+shield path **now**, and the founder's real test week starts on membership
+day 1 instead of fighting the manual Shortcuts setup (founder's call,
+2026-11-01).
+
 | # | Question | Artifact | Check | Who |
 |---|---|---|---|---|
-| G1 | Does the automation fire on the founder's phone? | One "Instagram is opened → Hop in" automation, created with the local agent guiding live; screen recording; every screen captured in Turkish; the T3 report | Hop! fires from a real reach on Instagram, YouTube, and TikTok | Founder + Mac |
-| G2 | Is the measurement honest and the setup guide followable? | Time after a pass expires counts as unobserved; pass-expiry notification; setup guide v2 in "when Instagram opens, Pofu hops in" language, rebuilt from G1's screenshots | Tests pass; a friend sets it up from the guide alone | Cloud |
-| G3 | Does the gate change behavior? | A 7-day dogfood on the current gate, with no feature changes during the week, plus a daily readout from the event log | Resisted share of reaches, time to Hop!, and silent days, against the goal of half | Founder |
-| G4 | Can we use Screen Time? | Membership day 1: enroll, request Family Controls distribution, enable capabilities ([roadmap](../roadmap.md)) | Request submitted; date recorded | Founder |
-| G5 | Does the zero-setup gate work? | Authorization, app picker, a shield with Pofu's line, resist counting, DeviceActivity thresholds | The founder's second week runs on the shield; minutes are measured, not estimated | Cloud + Founder |
-| G6 | What does the data ask for? | The smallest ADR-0015 slice the week shows is needed (likely the breath and the removal of prices) | Week 2's resisted share against week 1 | Cloud |
+| G1 | Does the manual automation fire? (**optional**) | One "Instagram is opened → Hop in" automation, created with the local agent guiding live; a screen recording | Hop! fires from a real reach. Worth one 30-minute try for early data on Hop!; not a blocker | Founder + Mac |
+| G2 | Is the measurement honest and the setup guide followable? | Post-expiry time counts as unobserved; pass-expiry notification; setup guide v2 in "when Instagram opens, Pofu hops in" language. Still needed for Live Pofu (ADR-0013) | Tests pass; later, a friend sets it up from the guide alone | Cloud (now) |
+| G3 | Is the zero-setup gate ready for day 1? | `LiveScreenTimeService`, shield, shield action, and monitor extensions behind a separate signing configuration; a day-1 test script | CI green; the free build still signs with a Personal Team | Cloud (now) |
+| G4 | Can we use Screen Time? | Membership day 1: enroll, request Family Controls distribution for every bundle ID, switch to the live configuration, build to the iPhone | The shield appears on Instagram; distribution request date recorded | Founder + Mac |
+| G5 | Does the gate change behavior? | A 7-day dogfood on the shield (plus Live Pofu if G1 worked), with no feature changes during the week, and a daily readout | Resisted share of reaches, measured minutes, against the goal of half | Founder |
+| G6 | What does the data ask for? | The smallest ADR-0015 slice the week shows is needed | Week 2's resisted share against week 1 | Cloud |
 
-Design and game work does not stop during stage G, but it stays on paper
-and in prototypes: no production art, no `PofuWorld` code.
+While the founder waits, the cloud also writes the game model in
+`PofuCore` (W3) against measured minutes, and the 8-image art test (W1)
+may run as soon as the account is decided, because art has the longest
+lead time. Nothing else from stage W starts before G5.
 
 ## Stage W: the world (after two weeks of daily use)
 
 | # | Question | Artifact | Check | Depends on |
 |---|---|---|---|---|
-| W1 | Can we make on-style art on the founder's own account? | Batch 01: the first 8 images ([game design §15](../product/game-design.md)) | Pipeline QA passes; the founder judges the phone composite "not AI-looking" | Account decision |
+| W1 | Can we make on-style art on the founder's own account? | Batch 01: the first 8 images ([game design §15](../product/game-design.md)), a test, not production | Pipeline QA passes; the founder judges the phone composite "not AI-looking" | Account decision (may run during stage G) |
 | W2 | Can SwiftUI carry the world? | `PofuWorld`: `IslandScene` with layered plates, slot anchors, the three camera framings | CI green; simulator screenshots match the prototype framings | G6 |
-| W3 | Is the game model right in code? | `PofuCore`: `CareLedger`, `CalmAccrual`, `StationLedger`, the breath, with tests mirroring an honest `tools/sim` | Tests pass; game design in sync | G6 |
+| W3 | Is the game model right in code? | `PofuCore`: `CareLedger`, `CalmAccrual`, `StationLedger`, the breath, with tests mirroring an honest `tools/sim` | Tests pass; game design in sync | G2 (may run during stage G) |
 | W4 | Does Home feel alive, and stay short? | Home with batch 01 art, native glass, Hop! landing per opening intent | 60 fps idle; VoiceOver reads every state; **Pofu opens a day outside Hop! stay below reaches, and the median visit stays under 90 s** | W1–W3 |
 | W5 | Do the key moments feel good in the hand? | Camera springs, seed collection, level-up, haptics (the interaction spec, in progress; [review 01 §3](review-01.md#3-choreography)) | The founder repeats one without being asked; the visit-length guardrail still holds | W4 |
 | W6 | Does the product look like one thing? | Glass++ production: icon family with vector twins, jar and lantern, widgets, the layered app icon ([ADR-0018](../adr/0018-visual-system-v1.md)) | Icons named correctly at 30 pt by someone who has not seen them | Friends beta |

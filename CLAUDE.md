@@ -47,9 +47,11 @@ the project's persistent memory; keep it accurate and concise.
   gate comes first** (decision audit, `docs/product/decision-audit.md`):
   the automation has never fired on the founder's phone (he searched
   Shortcuts for the app instead of opening the Automation tab). Stage G of
-  the iteration plan (automation live, honest measurement, setup guide v2,
-  7-day dogfood, Screen Time shield on membership day 1) precedes all world,
-  art, and `PofuWorld` work. XcodeGen project (`project.yml`, regenerate after
+  the iteration plan comes first: honest measurement, setup guide v2, and
+  the Screen Time shield built **before** the membership, so the founder's
+  7-day dogfood starts on membership day 1 (the manual automation is an
+  optional early try). World and `PofuWorld` work waits; the game model in
+  `PofuCore` and an 8-image art test may run meanwhile. XcodeGen project (`project.yml`, regenerate after
   pulling); `Packages/PofuKit` has `PofuCore`, `PofuScreenTime`,
   `PofuPersistence`, `PofuDesignSystem`, and `PofuCompanion`. CI must stay
   green. Keep `docs/product/economy.md` in sync with `PofuCore`.
