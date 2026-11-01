@@ -1868,6 +1868,17 @@
           }
         }
       }
+    },
+    "Next: %@" : {
+      "comment" : "The setup guide's primary button once an app's automation works: set up the next app.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sıradaki: %@"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

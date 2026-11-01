@@ -150,17 +150,13 @@ struct OnboardingView: View {
 
     private var setup: some View {
         NavigationStack {
-            SetupGuideView(model: model)
-                .pofuFooter {
-                    VStack(spacing: PofuSpacing.xs) {
-                        Button("Done") { model.completeOnboarding() }
-                            .buttonStyle(PofuPrimaryButtonStyle())
-                        Button("I'll do it later") { model.completeOnboarding() }
-                            .font(PofuFont.headline)
-                            .foregroundStyle(PofuColor.accent)
-                            .frame(minHeight: PofuSize.minimumTouch)
-                    }
-                }
+            SetupGuideView(
+                model: model,
+                onboarding: .init(
+                    finish: { model.completeOnboarding() },
+                    later: { model.completeOnboarding() }
+                )
+            )
         }
     }
 }
