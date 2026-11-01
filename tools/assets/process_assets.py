@@ -56,12 +56,12 @@ DEFAULT_TOKENS = REPO_ROOT / "design" / "tokens" / "pofu-tokens.json"
 
 DEFAULT_SPECS: dict[str, dict] = {
     "char": {
-        "description": "Pofu character frame (one pose or expression).",
+        "description": "Pofu character frame: the base or an edit of it (docs/design/companion-motion.md, section 5).",
         "requires_alpha": True,
         "min_source_px": 1024,
-        "point_size": [320, 320],
+        "point_size": [320, 480],
         "fit": "group-baseline",
-        "baseline_frac": 0.92,
+        "baseline_frac": 0.88,
         "pad_frac": 0.04,
         "palettes": ["character", "character-wilting"],
         "folder": "Character",
@@ -556,11 +556,27 @@ def crop(rgba: np.ndarray, g: Geometry) -> Image.Image:
 
 
 def render_group_baseline(items: list[Item], spec: dict) -> dict[str, dict[int, Image.Image]]:
-    """One scale for the whole group, feet on one ground line, feet centered."""
+    """One scale for the whole group, feet on one ground line, feet centered.
+
+    If every frame arrived on the same canvas size, they are edits of one
+    base (the asset contract), so all of them get the *identical*
+    transform: region-composited variants then stay aligned pixel for
+    pixel. Otherwise each frame is registered by its own feet.
+    """
     pw, ph = spec["point_size"]
     pad = spec["pad_frac"]
     ground = spec["baseline_frac"]
     geos = {it.name + (it.variant or ""): measure(it.rgba) for it in items}
+    locked = len(items) > 1 and len({it.rgba.shape[:2] for it in items}) == 1
+    if locked:
+        ref = next((it for it in items if it.name.endswith("base") and not it.variant), items[0])
+        g_ref = geos[ref.name + (ref.variant or "")]
+        union = Geometry(
+            left=min(g.left for g in geos.values()), top=min(g.top for g in geos.values()),
+            right=max(g.right for g in geos.values()), bottom=max(g.bottom for g in geos.values()),
+            baseline=g_ref.baseline, base_x=g_ref.base_x,
+        )
+        geos = {key: union for key in geos}
 
     # Unit canvas: width 1 by ph/pw. Find the largest scale (canvas units per
     # source pixel) at which every frame fits on both sides of its feet.
@@ -595,7 +611,8 @@ def render_group_baseline(items: list[Item], spec: dict) -> dict[str, dict[int, 
             y = round(ground * ch - (g.baseline - g.top) * s)
             canvas.alpha_composite(scaled, (x, y))
             rendered[scale] = canvas
-        it.info["registration"] = {**g.as_dict(), "groundLineFrac": ground, "scalePxPerSourcePx@3x": round(unit_scale * pw * 3, 4)}
+        it.info["registration"] = {**g.as_dict(), "mode": "locked-to-base" if locked else "per-frame-feet",
+                                   "groundLineFrac": ground, "scalePxPerSourcePx@3x": round(unit_scale * pw * 3, 4)}
         if unit_scale * pw * 3 > 1.0:
             it.issue("warn", f"@3x upscales the source by {unit_scale * pw * 3:.2f}x")
         out[key] = rendered

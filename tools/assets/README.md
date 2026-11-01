@@ -30,7 +30,7 @@ in an inbox folder (`design/art/inbox/` is git-ignored for exactly this):
 
 | Kind | What | Alpha | Minimum source | Output |
 |---|---|---|---|---|
-| `char` | Pofu poses and expressions | required | 1024 px | 320 × 320 pt; one shared scale, feet on one ground line (92 % down), feet centered |
+| `char` | The companion base and its edits | required | 1024 px | 320 × 480 pt; one shared scale, feet on one ground line (88 % down), feet centered. Frames on the same source canvas (edits of one base) get the identical transform, so they stay pixel-aligned |
 | `sprite` | Props and stickers (seed, wheel, tea glass) | required | 512 px | 96 × 96 pt, trimmed, 6 % padding |
 | `badge` | Achievement medallions | required | 1024 px | 120 × 120 pt, trimmed, 3 % padding |
 | `scene` | Background plates | none | 1024 px | 440 pt wide, aspect kept; warns above 1× upscale at @3x, fails above 1.5× |
@@ -88,16 +88,19 @@ every check, the keying details, and the registration geometry. The exit
 code is 1 if any file failed; failed files are not exported unless you pass
 `--allow-failures`.
 
-### Companion art (base image and lid plate)
+### Companion art (base and face edits)
 
-The companion motion system animates one base image plus a lid plate (the
-eyes painted out with fur) and a set of rig landmarks. Process the two as
-one character group, for example `char__pofu-content.png` and
-`char__pofu-content--lids.png`: they share a silhouette, so they get the
-identical scale and placement and stay pixel-aligned. Measure the rig
-landmarks on the normalized output, not on the raw generation. The
-companion package loads plain PNGs from its resources, so copy the `@3x`
-file out of the image set rather than the catalog.
+The companion follows the asset contract in
+[`docs/design/companion-motion.md`](../../docs/design/companion-motion.md):
+one base on a 1024 × 1536 canvas and face-only edits of it, composited by
+region at runtime. Name them `char__pofu-hamster-base.png`,
+`char__pofu-hamster-eyes-closed.png`, and so on. Because they share a
+source canvas, `process` locks all of them to the base's registration
+(`"mode": "locked-to-base"` in the report), so a mouth edit lines up with
+the base pixel for pixel. The lid plate is computed from the base by the
+agent, and landmarks are measured on the normalized output. The companion
+package loads plain PNGs from its resources, so copy the `@3x` file out of
+the image set rather than the catalog.
 
 ## Slice a sprite sheet
 
@@ -136,6 +139,15 @@ for about 85 pt at @3x. Use sheets for small or medium animations
 (celebration bursts, stickers, widgets) and as key-pose plans; hero-size
 frames come from single 1024 px edits.
 
+### Relation to the prototype slicer
+
+`design/prototypes/companion-motion/tools/slice_sprite_sheet.py` was the
+motion spike's slicer: it scales each frame to match a reference base by
+body width and reports silhouette IoU. This command is the production
+path (feet registration with one shared scale, gutter snapping, keying
+leak checks, palette drift, retina export). Porting the prototype's
+`--reference` scale matching and IoU check is a planned follow-up.
+
 ## Palette card
 
 ```sh
@@ -165,6 +177,7 @@ Uses the approved concept crop in `docs/brand/assets/concepts/` and fixtures bui
 it: keying keeps the cream face, a leak through a gap in the rim fails, a
 channel-swapped hamster fails the drift check, two character frames at
 different sizes and positions come out with one ground line and one scale,
+edits of one base canvas stay pixel-aligned,
 badges are centered and padded, icons with transparency fail, scene
 upscaling is reported, a jittered 3×3 sheet slices into perfectly
 registered frames, and `cell` registration preserves a hop. About 20 s.

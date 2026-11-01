@@ -130,21 +130,41 @@ class ProcessTests(unittest.TestCase):
             self.assertEqual(files["3x"], f"{name}@3x.png")
             img3 = Image.open(imageset / files["3x"])
             img2 = Image.open(imageset / files["2x"])
-            self.assertEqual(img3.size, (960, 960))
-            self.assertEqual(img2.size, (640, 640))
+            self.assertEqual(img3.size, (960, 1440))
+            self.assertEqual(img2.size, (640, 960))
             frames[name] = pa.measure(np.asarray(img3, dtype=np.float64) / 255)
 
         a, b = frames["pofu-content"], frames["pofu-small"]
         self.assertLessEqual(abs(a.baseline - b.baseline), 2, "feet must share one ground line")
         self.assertLessEqual(abs(a.base_x - b.base_x), 2, "feet must share one centre")
         self.assertAlmostEqual(b.width / a.width, 0.7, delta=0.03, msg="scale is shared, not re-fitted")
-        self.assertAlmostEqual(a.baseline / 960, 0.92, delta=0.01)
+        self.assertAlmostEqual(a.baseline / 1440, 0.88, delta=0.01)
 
         group = json.loads((self.catalog / "Character" / "Contents.json").read_text())
         self.assertTrue(group["properties"]["provides-namespace"])
         report = json.loads((self.catalog.parent / "PofuArt-report.json").read_text())
         statuses = {i["name"]: i["status"] for i in report["items"]}
         self.assertEqual(statuses["pofu-content"], "warn")  # keyed, so a warning
+
+    def test_edits_of_one_base_stay_pixel_aligned(self):
+        # Two edits on the same canvas: the variant changes the mouth and
+        # adds a tuft of fur below one foot, which moves its own feet line.
+        base = Image.new("RGBA", (700, 900), (0, 0, 0, 0))
+        base.alpha_composite(trimmed(keyed_hamster()), (80, 200))
+        variant = base.copy()
+        draw = ImageDraw.Draw(variant)
+        draw.ellipse((330, 420, 360, 445), fill=(253, 155, 134, 255))
+        draw.ellipse((130, 690, 200, 712), fill=(250, 225, 206, 255))
+        base.save(self.inbox / "char__pofu-hamster-base.png")
+        variant.save(self.inbox / "char__pofu-hamster-mouth-o.png")
+        self.assertEqual(self.run_process(), 0)
+        folder = self.catalog / "Character"
+        a = np.asarray(Image.open(folder / "pofu-hamster-base.imageset" / "pofu-hamster-base@3x.png"), dtype=np.int16)
+        b = np.asarray(Image.open(folder / "pofu-hamster-mouth-o.imageset" / "pofu-hamster-mouth-o@3x.png"), dtype=np.int16)
+        differs = (np.abs(a - b).max(axis=-1) > 2)
+        self.assertLess(differs.mean(), 0.01, "only the edited regions may differ")
+        report = json.loads((self.catalog.parent / "PofuArt-report.json").read_text())
+        self.assertEqual({i["registration"]["mode"] for i in report["items"]}, {"locked-to-base"})
 
     def test_badge_is_trimmed_and_padded(self):
         canvas = Image.new("RGBA", (1200, 1200), (0, 0, 0, 0))
