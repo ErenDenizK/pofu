@@ -35,6 +35,8 @@ the project's persistent memory; keep it accurate and concise.
 - Research: `docs/research/`
 - Brand, character bible, naming: `docs/brand/`
 - Decisions: `docs/adr/`
+- Local Mac agent brief (Xcode, simulator, device, image generation):
+  `docs/local-agent.md`
 
 ## Current state
 
@@ -64,5 +66,10 @@ the project's persistent memory; keep it accurate and concise.
   toolchain (swift.org is blocked). PyPI and Ubuntu apt are reachable
   (`bpy` from PyPI works for Blender). Chromium and Playwright are
   preinstalled for rendering and inspecting prototypes.
+- Cloud and local roles: this cloud session leads; a local Claude Code
+  session on the founder's Mac (`/Users/edk/projects/pofu`) executes
+  `docs/local-agent.md` and reports through `local/*` PRs. Remote Control
+  from cloud to the Mac folder was attempted on 2026-11-01 and was not
+  available.
 - The founder has authorized the agent to merge PRs. Use merge commits for
   clean histories, and merge only with green CI.
