@@ -1890,6 +1890,17 @@
           }
         }
       }
+    },
+    "Time's up. Back to me?" : {
+      "comment" : "The pass-expiry notification, in Pofu's voice.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Süre doldu. Bana döner misin?"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
