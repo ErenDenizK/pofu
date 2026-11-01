@@ -10,6 +10,9 @@ struct HomeView: View {
     @Bindable var model: AppModel
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// The companion's laid-out width, for tucking the bubble into its
+    /// headroom.
+    @State private var companionWidth: CGFloat = 300
 
     var body: some View {
         ZStack {
@@ -127,6 +130,11 @@ struct HomeView: View {
             .buttonStyle(.plain)
             .disabled(bubbleAction == .nothing)
             .accessibilityAddTraits(bubbleAction == .nothing ? [] : .isButton)
+            // The companion keeps empty room above the art for hops. Tuck
+            // the bubble into most of it, so the tail ends just above
+            // Pofu's head instead of pointing at air.
+            .padding(.bottom, -CompanionView.restingHeadroom(forWidth: companionWidth) * 0.9)
+            .zIndex(1)
 
             ZStack(alignment: .bottom) {
                 CompanionView(
@@ -140,6 +148,11 @@ struct HomeView: View {
                     }
                 )
                 .frame(maxWidth: 300)
+                .onGeometryChange(for: CGFloat.self) { proxy in
+                    proxy.size.width
+                } action: { width in
+                    companionWidth = width
+                }
                 .background {
                     // A glow, not a disc: no edge, so it never reads as a
                     // plate on the night room. It overflows the figure and
