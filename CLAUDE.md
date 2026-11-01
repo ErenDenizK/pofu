@@ -39,12 +39,16 @@ the project's persistent memory; keep it accurate and concise.
 ## Current state
 
 - Product name: **Pofu** (ADR-0007). The repository is still named `rot`.
-- Phase 0 (Foundation). Engineering foundation in place: XcodeGen project
-  (`project.yml`, regenerate after pulling), the `Packages/PofuKit` package
-  (`PofuCore`, `PofuScreenTime`, `PofuDesignSystem`), and CI that must stay
-  green. See `docs/development.md` and the economy rules in
-  `docs/product/economy.md` (keep code and doc in sync). The app is a
-  placeholder.
+- Phase 1 in progress. The soft gate v1 is merged (#14): `CheckInIntent`,
+  the Hop! flow, Pofu's room, persistence, and minimal onboarding. It is
+  **not yet validated on a device**; the founder's first on-device test is
+  the top priority. XcodeGen project (`project.yml`, regenerate after
+  pulling); `Packages/PofuKit` has `PofuCore`, `PofuScreenTime`,
+  `PofuPersistence`, `PofuDesignSystem`, and `PofuCompanion`. CI must stay
+  green. Keep `docs/product/economy.md` in sync with `PofuCore`.
+- Design references: `docs/design/` (design language, art bible, prompt
+  library, motion spec), `docs/product/ux/` (IA, flows), and the clickable
+  prototype in `design/prototypes/ux/`. Decisions: ADR-0010 to ADR-0012.
 - Character: Pofu is an **illustrated fluffy hamster** (ADR-0010). The
   founder generates art with GPT Image (ChatGPT Pro) under the art bible;
   the agent owns prompts, the pipeline, motion, and integration. The 3D
