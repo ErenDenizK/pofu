@@ -8,7 +8,7 @@ private let instagram = ShieldedApp(kind: .application, token: "instagram")
 private let social = ShieldedApp(kind: .category, token: "social")
 
 @Suite("Live shield state: lifts that ended")
-struct LiveShieldStateTests {
+struct LiveShieldEndedLiftTests {
     @Test func prunedLiftsAreRememberedForAnHour() {
         let lift = ShieldLift(passID: UUID(), app: instagram, from: start, until: start.addingTimeInterval(180), origin: .shieldQuickCheck)
         var state = LiveShieldState(lifts: [lift])
