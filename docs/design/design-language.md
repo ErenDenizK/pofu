@@ -571,31 +571,28 @@ memory). The Lock Screen uses `pofu.glyph`.
 ## 13. The companion: how art and motion split the work
 
 [ADR-0010](../adr/0010-illustrated-hamster-art-direction.md) makes the
-illustrated hamster the source of truth with a hybrid motion system; the
-companion motion spike (`PofuCompanion`, in review as PR #9) implements it.
-This section is the art-side contract that keeps the two consistent:
+illustrated hamster the source of truth, and the
+[companion motion system](companion-motion.md) (`PofuCompanion`)
+implements its hybrid motion. That document owns the asset contract; this
+section states how it fits the rest of the design language:
 
 - **One base image does most of the work.** Breathing, squash and stretch,
   hops (real gravity), lean, the tuft's follow-through, cheek pouches
-  (a shader bulge driven by stored energy), blush, blinks, and the vitality
+  (a shader bulge driven by stored seeds), blush, lids, and the vitality
   grade are procedural on a single painted base. Its physics constants live
   in `CompanionMotion`; the UI springs in [section 10](#10-motion) are for
   everything else.
-- **The base ships with a lid plate and landmarks.** The lid plate is the
-  same image with the eyes painted out in fur, so the rig can reveal it for
-  blinks and happy eyes. Landmarks (ground, eyes, cheeks, blush, tuft, body)
-  are measured on the normalized output of the asset pipeline. Base and lid
-  plate are processed as one group, so they stay pixel-aligned.
-- **Painted expression variants** cover what procedural motion cannot fake:
-  the curious "Hop!" mouth, sleeping, focused, and the matted fur of
-  wilting. They are edits of the same master and are swapped inside a
-  squash or a blink (motion principle 3).
-- **Sprite sheets** are for short loops at small sizes and as key-pose
-  references, not for the hero companion.
+- **Face edits, not poses.** The painted variants (eyes closed, eyes happy,
+  mouth open, mouth "o", cheeks full, matted) are edits of the base that
+  change one region and stay pixel-aligned, so the app composites them by
+  region and swaps them inside a squash or a blink (motion principle 3).
+  The asset pipeline locks edits of one canvas to the base's registration.
+- **Sprite sheets** carry the discrete flourishes procedural motion cannot
+  fake (the 3 × 2 celebration), and small sizes such as widgets.
 - **No video.** ADR-0010 reserved AI video for a few hero moments; Sora is
   discontinued and there is no budget for another tool, so hero moments
   are sprite sheets plus procedural motion. ADR-0010 should be amended to
-  say so.
+  say so (the companion motion document recommends the same).
 
 ## 14. Core components
 

@@ -17,8 +17,8 @@ Every prompt starts from references, never from words alone.
 | ID | File | What it is | Status |
 |---|---|---|---|
 | **R0** | [`docs/brand/assets/concepts/hamster-gpt-image.png`](../brand/assets/concepts/hamster-gpt-image.png) | The founder's approved concept crop (532 × 739, opaque) | Approved 2026-10-31 (ADR-0010) |
-| **R1** | `design/art/masters/pofu-master-v1/pofu-master-v1.png` | The master: R0 redrawn at 1024 × 1024, transparent, front view | **To make first** ([prompt 1](prompt-library.md#1-the-master-r1)) |
-| **R1-lids** | `design/art/masters/pofu-master-v1/pofu-master-v1-lids.png` | R1 with the eyes painted out in fur: the lid plate the motion system reveals for blinks and happy eyes | Prompt 3i |
+| **R1** | `design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png` | The base: R0 redrawn on a 1024 × 1536 transparent canvas, front view, per the [companion motion asset contract](companion-motion.md) | **To make first** ([prompt 1](prompt-library.md#1-the-base-r1)) |
+| **R1 edits** | `pofu-hamster-<variant>.png` next to R1 | Face-only edits (eyes closed, eyes happy, mouth open, mouth "o", cheeks full, matted), pixel-aligned with R1 | Prompts 3a–3f |
 | **R2** | `design/art/masters/pofu-turnaround-v1/` | Front, three-quarter, back | Prompt 2 |
 | **P-char** | [`design/reference/palette-card-character.png`](../../design/reference/palette-card-character.png) | Locked character palette as unlabeled swatches | Ready |
 | **P-day / P-sunset / P-night** | `design/reference/palette-card-world-*.png` | Locked scene palettes | Ready |
@@ -138,9 +138,9 @@ Measured on R0; R1 inherits it.
 
 | Asset | Canvas | Composition | Background |
 |---|---|---|---|
-| **Character frame** | 1024 × 1024 | Full body, centered, feet on an imaginary ground line at about 90 % height, body about 80 % of canvas width, nothing cropped | **Transparent**; no ground, no shadow |
+| **Character frame** | 1024 × 1536 portrait | Per the [companion motion asset contract](companion-motion.md): full body, sitting upright, centered, about 70 % of canvas width, feet on an invisible line at 88 % height, empty space above the tuft; edits keep the canvas pixel-aligned | **Transparent**; no ground, no shadow |
 | **Turnaround** | 1536 × 1024 | Three poses in a row, same size, feet on one line, generous gaps | Transparent |
-| **Sprite sheet** | 1024 × 1024 (3 × 3 or 4 × 4) or 1536 × 1024 (4 × 3) | One frame per cell, identical scale, feet on the same line in every cell, clear empty gutters, no overlap across cells | Transparent |
+| **Sprite sheet** | 1536 × 1024 (3 × 2, preferred for anything shown large) or 1024 × 1024 (3 × 3, 4 × 4) | One frame per cell, identical scale, feet on the same line in every cell, clear empty gutters, no overlap across cells | Transparent |
 | **Sticker / prop** | 1024 × 1024 | Object centered, 8 % margin, three-quarter view, same light | Transparent |
 | **Badge** | 1024 × 1024 | A circular medallion filling 92 % of the canvas: a cream rim, an inner disc in a pastel color, one centered object or Pofu pose inside. Identical rim for every badge | Transparent outside the circle |
 | **Empty state / onboarding** | 1024 × 1024 | One idea, one star; Pofu small-to-medium with at most one prop; 10 % margin | Transparent |
@@ -212,7 +212,8 @@ What actually keeps generations consistent, in order of power:
 
 | Asset | Request | Minimum accepted | Output points |
 |---|---|---|---|
-| Character, sticker, badge, empty state, onboarding | 1024 × 1024, transparent | 1024 px (sticker 512) | 320 pt (character), 96 pt (sticker), 120 pt (badge) |
+| Character (base and edits) | 1024 × 1536, transparent | 1024 px | 320 × 480 pt |
+| Sticker, badge, empty state, onboarding | 1024 × 1024, transparent | 1024 px (sticker 512) | 96 pt (sticker), 120 pt (badge) |
 | Turnaround | 1536 × 1024, transparent | 1024 px short side | Reference only |
 | Sprite sheet | 1024 × 1024 (3 × 3 or 4 × 4) or 1536 × 1024, transparent | Cells of at least 256 px | Small and medium animations (up to about 85 pt with 256 px cells) |
 | Scene plate | 1024 × 1536, opaque | 1024 px wide | 440 pt wide; @3x is a 1.29× upscale, within tolerance; above 1.5× upscale the master first |

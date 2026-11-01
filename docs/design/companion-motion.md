@@ -324,6 +324,10 @@ Later, as needed: `sheet-yawn-3x2`, `sheet-gulp-3x2`, `eyes-sad`
 
 ### Prompts
 
+_The run-ready versions of these prompts, with the art bible's style
+anchor, file names for the asset pipeline, and the rest of the app's
+assets, are in [prompt-library.md](prompt-library.md) (P0, prompts 1–3g)._
+
 **1. Base** (regenerate the chosen concept on transparency, same design):
 
 ```
