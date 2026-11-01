@@ -18,7 +18,7 @@ enum PassExpiryReminder {
 
     /// Receives taps and foreground deliveries. The notification center
     /// holds its delegate weakly, so it lives here.
-    private static let delegate = PassExpiryNotificationDelegate()
+    private static let delegate = PofuNotificationDelegate()
 
     /// Becomes the notification center's delegate. Call once at launch,
     /// before the app finishes launching, so a tap that launches Pofu is
@@ -92,11 +92,11 @@ enum PassExpiryReminder {
     }
 }
 
-/// Relays notification events to the app model on the main actor. It has
-/// no state, so the system may call it from any queue.
-final class PassExpiryNotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Sendable {
-    /// The user tapped the reminder: Pofu opens, and the tap is a sign of
-    /// life.
+/// Relays notification events to the app model on the main actor: the pass
+/// reminder (free build) and the shield's "Open with Pofu" answer (live
+/// build, gate v2 section 5.7). It has no state, so the system may call it
+/// from any queue.
+final class PofuNotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Sendable {
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
@@ -104,15 +104,21 @@ final class PassExpiryNotificationDelegate: NSObject, UNUserNotificationCenterDe
     ) {
         let identifier = response.notification.request.identifier
         if PassExpiryReminder.isPassReminder(identifier) {
+            // Pofu opens, and the tap is a sign of life.
             Task { @MainActor in
                 AppModel.shared.passReminderTapped()
+            }
+        } else if identifier == GateNotificationCopy.identifier {
+            // The user asked the shield to open with Pofu: Hop! for that
+            // app, from a cold launch too.
+            Task { @MainActor in
+                AppModel.shared.gateNotificationTapped()
             }
         }
         completionHandler()
     }
 
-    /// The pass expired while Pofu is on screen: the user is already here,
-    /// so no banner.
+    /// Pofu is on screen already: the user is here, so no banner.
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,

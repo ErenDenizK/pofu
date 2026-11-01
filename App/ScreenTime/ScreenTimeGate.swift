@@ -5,6 +5,7 @@ import os
 import PofuCore
 import PofuPersistence
 import PofuScreenTime
+import UserNotifications
 
 /// The app's side of the Screen Time gate (ADR-0013): authorization, the
 /// picked apps, the shield, the usage thresholds, and the records the
@@ -19,8 +20,6 @@ import PofuScreenTime
 final class ScreenTimeGate {
     /// The one shield Pofu applies over the picked apps.
     static let gateShield: ShieldID = "pofu.gate"
-    /// How long a "Talk to Pofu" stays an invitation to Hop!.
-    static let openRequestMaximumAge: TimeInterval = 10 * 60
 
     /// Whether this build was made with the Family Controls entitlement.
     static var isLiveBuild: Bool {
@@ -34,7 +33,10 @@ final class ScreenTimeGate {
     private let live: LiveScreenTimeService?
     private let inbox: ScreenTimeInbox?
     private let directory: ShieldDirectory?
-    private let ladder = GuardedUsageLadder.standard
+    private let contextStore: ShieldContextStore?
+    /// The gate's rules with the user's daily hour; the model keeps them
+    /// current. Changing the daily hour reschedules the ladder.
+    private(set) var rules = ScreenTimeGateRules.standard
 
     private(set) var authorization: ScreenTimeAuthorizationStatus = .notDetermined
     private(set) var selection: DistractionSelection = .empty
@@ -46,10 +48,12 @@ final class ScreenTimeGate {
             live = LiveScreenTimeService(location: location)
             inbox = ScreenTimeInbox(location: location)
             directory = ShieldDirectory(location: location)
+            contextStore = ShieldContextStore(location: location)
         } else {
             live = nil
             inbox = nil
             directory = nil
+            contextStore = nil
         }
         refreshStatus()
     }
@@ -71,6 +75,17 @@ final class ScreenTimeGate {
         guard let live else { return }
         authorization = live.authorizationStatus()
         selection = live.distractingSelection()
+    }
+
+    /// Takes the rules with the user's daily hour; reschedules the usage
+    /// ladder when the hour changed.
+    func update(rules newRules: ScreenTimeGateRules) {
+        guard newRules != rules else { return }
+        let ladderChanged = newRules.ladder != rules.ladder
+        rules = newRules
+        if ladderChanged, isOn {
+            activate()
+        }
     }
 
     // MARK: Setup
@@ -107,9 +122,9 @@ final class ScreenTimeGate {
     /// empty selection, removes both.
     private func activate() {
         guard let live, authorization == .approved else { return }
-        for (name, _) in ladder.thresholds {
-            live.cancelThreshold(ThresholdID(rawValue: name))
-        }
+        let ladder = rules.ladder
+        // Every Pofu threshold, also those of another daily hour.
+        live.cancelThresholds(withPrefix: GuardedUsageLadder.namePrefix)
         guard !selection.isEmpty else {
             live.removeShield(Self.gateShield)
             Log.screenTime.info("Selection is empty: shield and thresholds removed")
@@ -127,7 +142,7 @@ final class ScreenTimeGate {
                 Log.screenTime.error("Scheduling \(name, privacy: .public) failed: \(String(describing: error), privacy: .public)")
             }
         }
-        Log.screenTime.info("Shield on \(self.selectionCount, privacy: .private) items; \(self.ladder.thresholds.count, privacy: .public) thresholds")
+        Log.screenTime.info("Shield on \(self.selectionCount, privacy: .private) items; \(ladder.thresholds.count, privacy: .public) thresholds")
     }
 
     // MARK: Passes
@@ -173,18 +188,37 @@ final class ScreenTimeGate {
     /// `record` with its app resolved through the shield directory.
     func resolved(_ record: ScreenTimeRecord) -> ScreenTimeRecord {
         guard let directory else { return record }
-        switch record.kind {
-        case .shieldResisted(let app):
-            return ScreenTimeRecord(id: record.id, at: record.at, kind: .shieldResisted(app: directory.resolve(app)), version: record.version)
-        case .openRequested(let app):
-            return ScreenTimeRecord(id: record.id, at: record.at, kind: .openRequested(app: directory.resolve(app)), version: record.version)
-        case .usageThresholdReached, .shieldRestored:
-            return record
-        }
+        return record.mappingApp { directory.resolve($0) }
     }
 
     /// Deletes files the app has taken in.
     func acknowledge(_ contents: ScreenTimeInbox.Contents) {
         inbox?.remove(contents.consumable)
+    }
+
+    // MARK: Shield context (gate v2)
+
+    /// Tells the shield extensions about the day.
+    func writeShieldState(_ state: ShieldAppState) {
+        guard let contextStore else { return }
+        do {
+            try contextStore.appState.write(state)
+        } catch {
+            Log.screenTime.error("Writing the shield context failed: \(error.localizedDescription, privacy: .public)")
+        }
+    }
+
+    /// The "Open with Pofu" the shield is waiting on, if any.
+    func openRequestNote() -> ShieldOpenRequestNote? {
+        contextStore?.openRequest.read()
+    }
+
+    /// Hop! answered the request (or it is over): the shield stops
+    /// waiting, and the notification goes.
+    func clearOpenRequest() {
+        contextStore?.openRequest.remove()
+        let center = UNUserNotificationCenter.current()
+        center.removeDeliveredNotifications(withIdentifiers: [GateNotificationCopy.identifier])
+        center.removePendingNotificationRequests(withIdentifiers: [GateNotificationCopy.identifier])
     }
 }
