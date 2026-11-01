@@ -14,14 +14,21 @@ extension PofuRGB {
 extension Color {
     /// A color that follows the system appearance.
     public static func pofuAdaptive(light: PofuRGB, dark: PofuRGB) -> Color {
+        pofuAdaptive(light: light, lightOpacity: 1, dark: dark, darkOpacity: 1)
+    }
+
+    /// A translucent color that follows the system appearance, for ink that
+    /// must read differently on cream and on night surfaces.
+    public static func pofuAdaptive(light: PofuRGB, lightOpacity: Double, dark: PofuRGB, darkOpacity: Double) -> Color {
         #if canImport(UIKit)
         return Color(uiColor: UIColor { traits in
-            let rgb = traits.userInterfaceStyle == .dark ? dark : light
-            return UIColor(red: rgb.red, green: rgb.green, blue: rgb.blue, alpha: 1)
+            let isDark = traits.userInterfaceStyle == .dark
+            let rgb = isDark ? dark : light
+            return UIColor(red: rgb.red, green: rgb.green, blue: rgb.blue, alpha: isDark ? darkOpacity : lightOpacity)
         })
         #else
         // macOS is only a test host for the package; it gets light mode.
-        return light.color
+        return light.color.opacity(lightOpacity)
         #endif
     }
 
@@ -52,6 +59,11 @@ public enum PofuColor {
     public static var blush: Color { Color(token: .decorBlush) }
     /// The stage disc behind Pofu on plain surfaces (blush-200).
     public static var stage: Color { PofuPrimitive.blush200.rgb.color }
+    /// The 1 pt hairline on cards, chips, and bar edges: warm ink on cream,
+    /// cream on night, so the edge stays visible in both appearances.
+    public static var hairline: Color {
+        Color.pofuAdaptive(light: PofuPrimitive.ink900.rgb, lightOpacity: 0.08, dark: PofuPrimitive.cream100.rgb, darkOpacity: 0.12)
+    }
     /// Warm shadow ink: never black.
     public static var shadow: Color { PofuPrimitive.ink900.rgb.color }
 

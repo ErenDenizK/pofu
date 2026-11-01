@@ -151,7 +151,7 @@ struct OnboardingView: View {
     private var setup: some View {
         NavigationStack {
             SetupGuideView(model: model)
-                .safeAreaInset(edge: .bottom) {
+                .pofuFooter {
                     VStack(spacing: PofuSpacing.xs) {
                         Button("Done") { model.completeOnboarding() }
                             .buttonStyle(PofuPrimaryButtonStyle())
@@ -160,9 +160,6 @@ struct OnboardingView: View {
                             .foregroundStyle(PofuColor.accent)
                             .frame(minHeight: PofuSize.minimumTouch)
                     }
-                    .padding(.horizontal, PofuSpacing.screen)
-                    .padding(.top, PofuSpacing.s)
-                    .background(PofuColor.canvas.opacity(0.95))
                 }
         }
     }
