@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pofu · Island game prototype</title>
+<link rel="stylesheet" href="island.css">
+</head>
+<body>
+<div id="device">
+  <div id="screen">
+    <canvas id="world" width="804" height="1748" aria-label="Pofu's island"></canvas>
+    <div id="fx"></div>
+    <div id="chrome"></div>
+    <div id="sheet-root"></div>
+    <div class="standin">Stand-ins: island, stations, residents, faces (code) · Pofu: R1 · Mochi: concept</div>
+  </div>
+</div>
+
+<aside id="panel">
+  <div class="kicker">Prototype · not production</div>
+  <h1>Pofu's island</h1>
+  <p>Home is Pofu up close. Tap the island (or the island button) to pull back to the diorama, where residents run stations while you are away. Tap a station to upgrade it. The controls below simulate what happens off-screen.</p>
+
+  <h2>Simulate the day</h2>
+  <div class="ctl">
+    <button data-act="resist">Resist an impulse <small>calm keeps growing</small></button>
+    <button data-act="quiet">Quiet hour <small>calm +0.3×, Pofu heals</small></button>
+    <button data-act="reach">Reach for Instagram <small>Hop!: what you'd lose</small></button>
+    <button data-act="binge">Binge evening <small>Pofu gets unwell</small></button>
+    <button data-act="night">Bedtime <small>toggle night</small></button>
+    <button data-act="nextDay" class="em">Next day <small>overnight production, growth</small></button>
+  </div>
+
+  <h2>Jump</h2>
+  <div class="ctl">
+    <button data-act="ff5">To day 5 <small>stage 3: new slots</small></button>
+    <button data-act="ff11">To day 11 <small>stage 4: the terrace</small></button>
+    <button data-act="ff36">To day 36 <small>stage 6: both islets</small></button>
+    <button data-act="reset">Start over</button>
+  </div>
+
+  <h2>State</h2>
+  <div id="readout"></div>
+
+  <h2>What this proves</h2>
+  <ul>
+    <li><b>Care over currency.</b> Opening an app costs Pofu's wellbeing and your built-up calm, never coins.</li>
+    <li><b>Played while away.</b> Residents produce goodies at the calm multiplier; you collect on open.</li>
+    <li><b>Pre-planned growth.</b> Fixed slots, five designed levels each; you choose the order (and a style at some levels).</li>
+    <li><b>Short, finished sessions.</b> Collect, maybe upgrade, then “All caught up”.</li>
+    <li><b>Nothing dies.</b> Unwell Pofu curls up; a quiet hour brings him back.</li>
+  </ul>
+  <p class="foot">Design: <code>docs/product/game-design.md</code>. Economy: <code>tools/sim/island_economy.py</code>.</p>
+</aside>
+
+<script src="game.js"></script>
+</body>
+</html>
