@@ -590,7 +590,7 @@ anchors, overlays residents and Pofu, and runs ambient motion through
 
 | Topic | Spec |
 |---|---|
-| View | One fixed front three-quarter view, camera about 25° above the horizon; ground ellipses have a 0.3 height-to-width ratio. Light from the upper left (art bible §4). |
+| View | One fixed front three-quarter view, camera about 20° above the horizon (a 0.3 ellipse ratio is about 17.5°); ground ellipses have a 0.3 height-to-width ratio. Light from the upper left (art bible §4). |
 | Island plates | Composited parts on transparency: main island small (stage 1–2) and large (3+), back terrace (4+), east and west islets (5, 6), rope bridges. Lawns empty. |
 | Station vignettes | 1024 × 1024 transparent. Footprint ellipse 720 × 216 px centered at (512, 800) = the **anchor**; maximum height to y = 150. Guide: [`design/art/templates/station-guide.png`](../../design/art/templates/station-guide.png). Placed at 130 × 130 pt at diorama zoom 1. |
 | Levels | 5 per station, each an **edit** of the previous level ("add a striped awning; change nothing else"). Style variants are edits of the level they belong to. |
@@ -614,7 +614,8 @@ anchors, overlays residents and Pofu, and runs ambient motion through
    gray box rendered with the same camera (`bpy` from PyPI) as "paint over
    this shape".
 6. **Pipeline checks:** a `station__` kind in `process_assets.py` verifies
-   canvas size, that the lowest opaque row sits within ±12 px of y = 800,
+   canvas size, that the lowest opaque row sits on the footprint ellipse's
+   front half (y 800–908; chain roots register to a ground line at y = 900),
    and that no magenta guide pixels survive.
 
 ### The first 8 prompts (vertical slice: stages 1–3, the çay ocağı)
@@ -626,7 +627,7 @@ are pasted verbatim.
 View block:
 
 ```text
-VIEW: a fixed front three-quarter view, the camera about 25 degrees above
+VIEW: a fixed front three-quarter view, the camera about 20 degrees above
 the horizon, exactly like the attached guide: the object stands on the
 magenta ground ellipse, centered on the magenta cross, no taller than the
 magenta height bar. Then remove the guide completely: no ellipse, no
