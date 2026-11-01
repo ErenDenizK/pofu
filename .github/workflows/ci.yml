@@ -13,8 +13,72 @@ permissions:
   contents: read
 
 jobs:
+  # macOS minutes bill at 10x. Decide first, on a cheap Linux runner, whether
+  # anything that affects the Swift build changed; docs, design and Python
+  # tooling never need the macOS job.
+  changes:
+    name: Detect what changed
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      swift: ${{ steps.diff.outputs.swift }}
+      tools: ${{ steps.diff.outputs.tools }}
+    steps:
+      - name: Check out
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Classify the changed files
+        id: diff
+        env:
+          BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+          HEAD: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          if [ -z "${BASE:-}" ] || ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then
+            echo "No usable base; running everything."
+            echo "swift=true" >> "$GITHUB_OUTPUT"
+            echo "tools=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          files="$(git diff --name-only "$BASE...$HEAD")"
+          printf '%s\n' "$files"
+          # Anything outside these paths can affect the app build.
+          swift_files="$(printf '%s\n' "$files" | grep -Ev '^(docs/|design/|tools/|[^/]+\.md$|\.gitignore$|LICENSE)' | grep -v '^$' || true)"
+          tools_files="$(printf '%s\n' "$files" | grep -E '^tools/' || true)"
+          echo "swift=$([ -n "$swift_files" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          echo "tools=$([ -n "$tools_files" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+  python-tools:
+    name: Test the Python tools
+    needs: changes
+    if: needs.changes.outputs.tools == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install -r tools/assets/requirements.txt -r tools/imagegen/requirements.txt
+
+      - name: Test the asset tools
+        run: python3 -I -m unittest discover -s tools/assets -p "test_*.py"
+
+      - name: Test the image pipeline
+        run: python3 -I -m pytest -q tools/imagegen/tests
+
   build-and-test:
     name: Test PofuKit and build the app
+    needs: changes
+    if: needs.changes.outputs.swift == 'true'
     runs-on: macos-26
     timeout-minutes: 30
     steps:
