@@ -1,6 +1,10 @@
 # The App and the Game: Where the Line Is
 
-_Status: proposal, for the lead to integrate. Last updated: 2026-11-01._
+_Status: **accepted as the direction** (lead, 2026-11-01). No ADR-0019 for
+now: the rules are tunable, so they live here and in the game design. §13's
+edits land with the IA and user-flow rewrite after the founder's gate week
+([iteration plan](../design/iteration-plan.md), stage G). Last updated:
+2026-11-01._
 _Builds on the [vision](vision.md), [game design v2](game-design.md),
 ADR-0012 to ADR-0017, ADR-0018 and the iteration plan (open branch
 `docs/visual-system-v1`), [design review 01](../design/review-01.md), the
