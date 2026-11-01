@@ -20,6 +20,10 @@ public struct CompanionView: View {
     /// Increment to celebrate (hop) once.
     public var celebrations: Int
     public var art: CompanionArt?
+    /// Called after Pofu's own squish when the user taps it (or activates
+    /// it with an assistive technology), for screens where a tap means
+    /// something, such as collecting seeds.
+    public var onTap: (@MainActor () -> Void)?
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var driver = CompanionDriver()
@@ -29,12 +33,14 @@ public struct CompanionView: View {
         vitality: Double,
         energy: Double = 0.25,
         celebrations: Int = 0,
-        art: CompanionArt? = .placeholder
+        art: CompanionArt? = .placeholder,
+        onTap: (@MainActor () -> Void)? = nil
     ) {
         self.vitality = vitality
         self.energy = energy
         self.celebrations = celebrations
         self.art = art
+        self.onTap = onTap
     }
 
     public var body: some View {
@@ -60,6 +66,7 @@ public struct CompanionView: View {
         .onTapGesture {
             driver.tap()
             taps += 1
+            onTap?()
         }
         .sensoryFeedback(.impact(flexibility: .soft, intensity: 0.7), trigger: taps)
         .onChange(of: celebrations) {
@@ -71,6 +78,7 @@ public struct CompanionView: View {
         .accessibilityAction {
             driver.tap()
             taps += 1
+            onTap?()
         }
     }
 }
