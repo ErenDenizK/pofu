@@ -4,7 +4,14 @@
 // overrides survive `xcodegen generate`: settings in the target's build
 // settings would take precedence over this file and its include.
 
-PRODUCT_BUNDLE_IDENTIFIER = com.erendenizk.pofu
+// The final identifier. The PofuLive app and its Screen Time extensions
+// always derive theirs from it (com.erendenizk.pofu.ShieldAction, ...),
+// because extension identifiers must start with the app's.
+POFU_BUNDLE_ID_BASE = com.erendenizk.pofu
+
+// The default Pofu scheme. Config/Local.xcconfig may override it, for
+// example with the free team's development identifier.
+PRODUCT_BUNDLE_IDENTIFIER = $(POFU_BUNDLE_ID_BASE)
 
 // Empty on purpose: CI builds unsigned, and each developer sets their own
 // team in Config/Local.xcconfig (see Config/Local.xcconfig.example).

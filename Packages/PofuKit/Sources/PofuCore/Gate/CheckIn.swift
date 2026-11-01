@@ -86,6 +86,14 @@ public enum CheckInOutcome: Hashable, Sendable, Codable {
     }
 }
 
+/// Where a reach was met: in Hop! (the soft gate) or on the Screen Time
+/// shield. Both feed the north-star metric; copy and the recap tell them
+/// apart (ADR-0013).
+public enum CheckInChannel: String, Hashable, Sendable, Codable {
+    case softGate
+    case shield
+}
+
 /// A completed check-in: the attempt and how it ended.
 public struct CheckInRecord: Hashable, Sendable, Codable, Identifiable {
     /// The id of the attempt.
@@ -97,6 +105,9 @@ public struct CheckInRecord: Hashable, Sendable, Codable, Identifiable {
     public let outcome: CheckInOutcome
     /// The reason the user gave on the `intent` rung, if any.
     public let reason: IntentReason?
+    /// Where the reach was met; `nil` in records from before the shield,
+    /// which were all Hop!.
+    public let channel: CheckInChannel?
 
     public init(
         id: UUID,
@@ -105,7 +116,8 @@ public struct CheckInRecord: Hashable, Sendable, Codable, Identifiable {
         resolvedAt: Date,
         rung: FrictionRung,
         outcome: CheckInOutcome,
-        reason: IntentReason? = nil
+        reason: IntentReason? = nil,
+        channel: CheckInChannel? = nil
     ) {
         self.id = id
         self.target = target
@@ -114,6 +126,12 @@ public struct CheckInRecord: Hashable, Sendable, Codable, Identifiable {
         self.rung = rung
         self.outcome = outcome
         self.reason = reason
+        self.channel = channel
+    }
+
+    /// Where the reach was met, reading old records as Hop!.
+    public var resolvedChannel: CheckInChannel {
+        channel ?? .softGate
     }
 }
 

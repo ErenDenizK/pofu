@@ -27,6 +27,9 @@ struct HopSession: Identifiable, Equatable {
     /// that (the system briefly backgrounding during the transition) must
     /// not count as a skip.
     var hasBeenActive = false
+    /// The app behind the Screen Time shield, when Hop! answers "Talk to
+    /// Pofu" there. A pass lifts the shield from it.
+    var shieldedApp: ShieldedApp?
 
     var id: UUID { attempt.id }
     var rung: FrictionRung { attempt.rung }

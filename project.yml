@@ -68,11 +68,166 @@ targets:
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         ENABLE_PREVIEWS: true
 
+  # The same app with the Screen Time gate: the Family Controls and App
+  # Group entitlements, POFU_SCREEN_TIME_LIVE, and the three extensions.
+  # Needs the paid membership; see docs/development.md, "Membership day 1".
+  # Keep its settings in step with the Pofu target above.
+  PofuLive:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+    configFiles:
+      Debug: Config/Pofu.xcconfig
+      Release: Config/Pofu.xcconfig
+    dependencies:
+      - package: PofuKit
+        product: PofuCore
+      - package: PofuKit
+        product: PofuScreenTime
+      - package: PofuKit
+        product: PofuPersistence
+      - package: PofuKit
+        product: PofuDesignSystem
+      - package: PofuKit
+        product: PofuCompanion
+      - target: PofuShieldConfiguration
+      - target: PofuShieldAction
+      - target: PofuActivityMonitor
+    settings:
+      base:
+        PRODUCT_NAME: PofuLive
+        # Always the final identifier, whatever Local.xcconfig says for
+        # the free build: the extensions' identifiers derive from it.
+        PRODUCT_BUNDLE_IDENTIFIER: $(POFU_BUNDLE_ID_BASE)
+        CODE_SIGN_ENTITLEMENTS: Config/Entitlements/PofuLive.entitlements
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: $(inherited) POFU_SCREEN_TIME_LIVE
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_FILE: Config/Info.plist
+        INFOPLIST_KEY_CFBundleDisplayName: Pofu
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.healthcare-fitness
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: true
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: true
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_PREVIEWS: true
+
+  # The Screen Time extensions, embedded only in PofuLive. Their bundle
+  # identifiers derive from POFU_BUNDLE_ID_BASE, so they always start with
+  # the app's.
+  PofuShieldConfiguration:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Extensions/ShieldConfiguration
+      # Pofu's face on the shield, shared with PofuCompanion (not a copy).
+      - path: Packages/PofuKit/Sources/PofuCompanion/Resources/pofu-hamster.png
+        buildPhase: resources
+    configFiles:
+      Debug: Config/Pofu.xcconfig
+      Release: Config/Pofu.xcconfig
+    dependencies:
+      - package: PofuKit
+        product: PofuCore
+      - package: PofuKit
+        product: PofuPersistence
+      - package: PofuKit
+        product: PofuScreenTime
+      - package: PofuKit
+        product: PofuDesignSystem
+    settings:
+      base:
+        PRODUCT_NAME: PofuShieldConfiguration
+        PRODUCT_BUNDLE_IDENTIFIER: $(POFU_BUNDLE_ID_BASE).ShieldConfiguration
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_ENTITLEMENTS: Config/Entitlements/ScreenTimeExtension.entitlements
+        GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_FILE: Extensions/ShieldConfiguration/Info.plist
+        INFOPLIST_KEY_CFBundleDisplayName: Pofu Shield
+
+  PofuShieldAction:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Extensions/ShieldAction
+    configFiles:
+      Debug: Config/Pofu.xcconfig
+      Release: Config/Pofu.xcconfig
+    dependencies:
+      - package: PofuKit
+        product: PofuCore
+      - package: PofuKit
+        product: PofuPersistence
+      - package: PofuKit
+        product: PofuScreenTime
+    settings:
+      base:
+        PRODUCT_NAME: PofuShieldAction
+        PRODUCT_BUNDLE_IDENTIFIER: $(POFU_BUNDLE_ID_BASE).ShieldAction
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_ENTITLEMENTS: Config/Entitlements/ScreenTimeExtension.entitlements
+        GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_FILE: Extensions/ShieldAction/Info.plist
+        INFOPLIST_KEY_CFBundleDisplayName: Pofu Shield Action
+
+  PofuActivityMonitor:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Extensions/DeviceActivityMonitor
+    configFiles:
+      Debug: Config/Pofu.xcconfig
+      Release: Config/Pofu.xcconfig
+    dependencies:
+      - package: PofuKit
+        product: PofuCore
+      - package: PofuKit
+        product: PofuPersistence
+      - package: PofuKit
+        product: PofuScreenTime
+    settings:
+      base:
+        PRODUCT_NAME: PofuActivityMonitor
+        PRODUCT_BUNDLE_IDENTIFIER: $(POFU_BUNDLE_ID_BASE).DeviceActivityMonitor
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_ENTITLEMENTS: Config/Entitlements/ScreenTimeExtension.entitlements
+        GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_FILE: Extensions/DeviceActivityMonitor/Info.plist
+        INFOPLIST_KEY_CFBundleDisplayName: Pofu Activity Monitor
+
 schemes:
   Pofu:
     build:
       targets:
         Pofu: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - package: PofuKit/PofuCoreTests
+        - package: PofuKit/PofuScreenTimeTests
+        - package: PofuKit/PofuPersistenceTests
+        - package: PofuKit/PofuDesignSystemTests
+        - package: PofuKit/PofuCompanionTests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
+  # The Screen Time build. Signs only with the paid team.
+  PofuLive:
+    build:
+      targets:
+        PofuLive: all
     run:
       config: Debug
     test:

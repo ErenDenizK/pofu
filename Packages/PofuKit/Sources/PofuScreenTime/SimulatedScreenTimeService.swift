@@ -15,6 +15,7 @@ public actor SimulatedScreenTimeService: ScreenTimeService {
     private let applicationCategories: [ApplicationToken: CategoryToken]
     private let calendar: Calendar
     private var shields: [ShieldID: DistractionSelection] = [:]
+    private var lifts: [ShieldLift] = []
     private var schedules: [ThresholdID: ThresholdSchedule] = [:]
     private var usage: [ThresholdID: TimeInterval] = [:]
     private var reached: Set<ThresholdID> = []
@@ -83,6 +84,21 @@ public actor SimulatedScreenTimeService: ScreenTimeService {
         shields
     }
 
+    public func liftShields(from app: ShieldedApp, passID: UUID, at date: Date, until: Date) throws {
+        try requireAuthorization()
+        guard until > date else { throw ScreenTimeError.invalidLift }
+        lifts.removeAll { $0.passID == passID }
+        lifts.append(ShieldLift(passID: passID, app: app, from: date, until: until))
+    }
+
+    public func restoreShields(passID: UUID) {
+        lifts.removeAll { $0.passID == passID }
+    }
+
+    public func shieldLifts() -> [ShieldLift] {
+        lifts
+    }
+
     public func scheduleThreshold(_ schedule: ThresholdSchedule) throws {
         try requireAuthorization()
         guard !schedule.selection.isEmpty else { throw ScreenTimeError.emptySelection }
@@ -123,6 +139,7 @@ public actor SimulatedScreenTimeService: ScreenTimeService {
         status = newStatus
         if newStatus != .approved {
             shields.removeAll()
+            lifts.removeAll()
             schedules.removeAll()
             usage.removeAll()
             reached.removeAll()
@@ -156,9 +173,22 @@ public actor SimulatedScreenTimeService: ScreenTimeService {
     /// emits `shieldShown` and returns the shield's name; otherwise the app
     /// opens and this returns `nil`. With several shields, the first by
     /// name wins, so results are deterministic.
+    ///
+    /// - Parameter date: When the tap happens. With a date, a pass that
+    ///   lifted the shield from the app (or its category) lets it open, as
+    ///   the live shield does; without one, lifts are ignored.
     @discardableResult
-    public func simulateOpen(of application: ApplicationToken) -> ShieldID? {
+    public func simulateOpen(of application: ApplicationToken, at date: Date? = nil) -> ShieldID? {
         let category = applicationCategories[application]
+        if let date {
+            let exempt = lifts.exemptTokens(at: date)
+            if exempt[.application]?.contains(application.rawValue) == true {
+                return nil
+            }
+            if let category, exempt[.category]?.contains(category.rawValue) == true {
+                return nil
+            }
+        }
         let blocking = shields
             .filter { $0.value.covers(application, category: category) }
             .map(\.key)

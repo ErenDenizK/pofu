@@ -158,4 +158,6 @@ public enum ScreenTimeError: Error, Hashable, Sendable {
     case invalidThreshold
     /// The system could not complete the request.
     case unavailable
+    /// A shield can only be lifted for a pass that has not ended.
+    case invalidLift
 }

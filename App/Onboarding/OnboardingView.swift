@@ -3,13 +3,18 @@ import PofuCore
 import PofuDesignSystem
 import SwiftUI
 
-/// The first run, kept minimal for this slice: meet Pofu, pick the apps,
-/// name Pofu, then set up the first automation (user flows, section 1).
+/// The first run, kept minimal: meet Pofu, put Pofu at the door, name it.
+///
+/// With the live Screen Time gate (the `PofuLive` build), the door is one
+/// permission and the app picker (ADR-0013); the Shortcuts setup stays
+/// available as a fallback and later as "Live Pofu". Without it, the user
+/// picks apps and sets up the first automation (user flows, section 1).
 struct OnboardingView: View {
     let model: AppModel
 
     private enum Step: Int, CaseIterable {
         case welcome
+        case screenTime
         case apps
         case name
         case setup
@@ -19,6 +24,13 @@ struct OnboardingView: View {
     @State private var step: Step = .welcome
     @State private var chosen: [ProtectedApp] = []
     @State private var name = UserProfile.defaultName
+    /// The user chose the Shortcuts soft gate over Screen Time.
+    @State private var choseShortcuts = false
+
+    /// Whether onboarding ends in the Shortcuts setup guide.
+    private var usesShortcuts: Bool {
+        !model.screenTime.isAvailable || choseShortcuts
+    }
 
     var body: some View {
         ZStack {
@@ -48,6 +60,7 @@ struct OnboardingView: View {
     private func view(for item: Step) -> some View {
         switch item {
         case .welcome: welcome
+        case .screenTime: screenTime
         case .apps: apps
         case .name: naming
         case .setup: setup
@@ -68,10 +81,21 @@ struct OnboardingView: View {
                 .foregroundStyle(PofuColor.textSecondary)
                 .multilineTextAlignment(.center)
             Spacer()
-            Button("Hi, Pofu") { step = .apps }
+            Button("Hi, Pofu") { step = model.screenTime.isAvailable ? .screenTime : .apps }
                 .buttonStyle(PofuPrimaryButtonStyle())
         }
         .padding(PofuSpacing.screen)
+    }
+
+    private var screenTime: some View {
+        ScreenTimeSetupView(
+            model: model,
+            onFinish: { step = .name },
+            onUseShortcuts: {
+                choseShortcuts = true
+                step = .apps
+            }
+        )
     }
 
     private var apps: some View {
@@ -166,7 +190,11 @@ struct OnboardingView: View {
             Spacer()
             Button("That's me") {
                 model.setCompanionName(name)
-                step = .setup
+                if usesShortcuts {
+                    step = .setup
+                } else {
+                    model.completeOnboarding()
+                }
             }
             .buttonStyle(PofuPrimaryButtonStyle())
         }

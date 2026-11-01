@@ -3,6 +3,7 @@ import Observation
 import os
 import PofuCore
 import PofuPersistence
+import PofuScreenTime
 
 /// The app's state holder. It owns the domain state, persists every change,
 /// and runs the soft gate for `CheckInIntent`. Views read from it and call
@@ -45,8 +46,13 @@ final class AppModel {
     let gatekeeper: Gatekeeper
     let router = CheckInRouter()
     let vitalityModel: VitalityModel
+    /// The Screen Time gate; available only in the `PofuLive` build.
+    let screenTime: ScreenTimeGate
+    /// What the app learned from the Screen Time extensions.
+    private(set) var screenTimeLedger: ScreenTimeLedger
     private let clock: any WallClock
     private let store: PofuStore?
+    private let ledgerFile: JSONFile<ScreenTimeLedger>?
 
     init(
         store: PofuStore?,
@@ -61,6 +67,12 @@ final class AppModel {
         self.gatekeeper = Gatekeeper(economy: economy)
         self.vitalityModel = VitalityModel(rules: configuration.vitality)
         self.now = clock.now
+        // The extensions can only see the App Group, so the gate's shared
+        // files live there whenever the build is entitled to it.
+        self.screenTime = ScreenTimeGate(location: StorageLocation.appGroup() ?? store?.location)
+        let ledgerFile = store.map { JSONFile<ScreenTimeLedger>(url: $0.location.directory.appendingPathComponent("screen-time-ledger.json")) }
+        self.ledgerFile = ledgerFile
+        self.screenTimeLedger = ledgerFile?.read() ?? ScreenTimeLedger()
 
         var snapshot = PofuSnapshot()
         if let store {
@@ -205,6 +217,7 @@ final class AppModel {
         isOnScreen = true
         settleDay()
         gatekeeper.noteUserReturned(at: now, state: &state)
+        syncScreenTime()
         save()
     }
 
@@ -277,7 +290,11 @@ final class AppModel {
     }
 
     /// Starts Hop! for `app`, now that Pofu is in the foreground.
-    func startHop(for app: ProtectedApp) {
+    ///
+    /// - Parameter shieldedApp: The app behind the Screen Time shield when
+    ///   the user tapped "Talk to Pofu" there. A pass then lifts the shield
+    ///   from it, and its own target keeps unknown apps' passes apart.
+    func startHop(for app: ProtectedApp, shieldedApp: ShieldedApp? = nil) {
         now = clock.now
         if let current = hop {
             if current.app == app && current.isDeciding {
@@ -290,14 +307,26 @@ final class AppModel {
             }
         }
         let ordinal = ImpulseMetrics.reachOrdinal(at: now, from: state.checkIns)
-        switch gatekeeper.beginCheckIn(for: app.target, at: now, state: &state) {
+        let target = shieldedApp?.target ?? app.target
+        switch gatekeeper.beginCheckIn(for: target, at: now, state: &state) {
         case .covered(let pass):
             Log.hop.info("A pass covers \(app.rawValue, privacy: .private): no Hop!")
             log(.passThrough(app: app, passID: pass.id))
+            if let shieldedApp {
+                // The shield showed despite a running pass: lift it for
+                // the rest of that pass.
+                screenTime.lift(shieldedApp, for: pass, at: now)
+            }
             hop = nil
         case .intervene(let attempt):
             Log.hop.info("Hop! for \(app.rawValue, privacy: .private) on rung \(String(describing: attempt.rung), privacy: .public)")
-            hop = HopSession(app: app, attempt: attempt, isNight: economy.isBedtime(now), reachOrdinal: ordinal)
+            hop = HopSession(
+                app: app,
+                attempt: attempt,
+                isNight: economy.isBedtime(now),
+                reachOrdinal: ordinal,
+                shieldedApp: shieldedApp
+            )
             log(.hopShown(attemptID: attempt.id, app: app, rung: attempt.rung))
         }
         save()
@@ -380,6 +409,7 @@ final class AppModel {
         now = clock.now
         let ending = gatekeeper.voidPass(id: pass.id, state: &state)
         cancelReminder(for: pass)
+        screenTime.restore(passID: pass.id)
         Log.hop.error("Hand-off to \(app.rawValue, privacy: .private) failed; pass voided")
         log(.handoffFailed(app: app))
         if let ending {
@@ -407,6 +437,11 @@ final class AppModel {
             Log.hop.info("Hop! resolved: \(choice.logName, privacy: .public)")
             var updated = session
             if let pass = record.outcome.pass {
+                if let shieldedApp = session.shieldedApp {
+                    // Before the hand-off opens the app.
+                    screenTime.lift(shieldedApp, for: pass, at: now)
+                    log(.shieldLifted(passID: pass.id, target: shieldedApp.target))
+                }
                 let grantedAt = now
                 reminderTask = Task {
                     await PassExpiryReminder.schedule(for: pass, now: grantedAt)
@@ -424,6 +459,63 @@ final class AppModel {
         }
     }
 
+    // MARK: - The Screen Time gate (ADR-0013)
+
+    /// Guarded minutes DeviceActivity measured today, in 15-minute steps;
+    /// `nil` when the live gate is not on.
+    var measuredGuardedMinutesToday: Int? {
+        guard screenTime.isOn else { return nil }
+        return screenTimeLedger.measuredMinutes(on: today)
+    }
+
+    /// Takes in what the Screen Time extensions recorded (skips at the
+    /// shield, "Talk to Pofu", measured usage, restored shields) and puts
+    /// any shield back whose pass has ended.
+    private func syncScreenTime() {
+        guard screenTime.isAvailable else { return }
+        screenTime.reconcile(at: now)
+        guard let contents = screenTime.readInbox(), !contents.consumable.isEmpty else { return }
+        let records = contents.records.map { screenTime.resolved($0) }
+        let events = ScreenTimeIngestion(calendar: economy.calendar)
+            .ingest(records, into: &screenTimeLedger, checkIns: &state.checkIns)
+        for event in events {
+            do {
+                try store?.events.append(event)
+            } catch {
+                Log.persistence.error("Appending to the event log failed: \(error.localizedDescription, privacy: .public)")
+            }
+        }
+        Log.screenTime.info("Ingested \(records.count, privacy: .public) Screen Time records")
+        // The snapshot and the ledger are saved before the files go, so a
+        // crash in between ingests nothing twice (the ledger remembers ids).
+        save()
+        saveScreenTimeLedger()
+        screenTime.acknowledge(contents)
+    }
+
+    /// Starts Hop! for a fresh "Talk to Pofu" from the shield. Called when
+    /// Pofu comes to the foreground, which is what tapping the shield's
+    /// notification does.
+    func answerShieldRequest() {
+        guard screenTime.isAvailable, screenTimeLedger.openRequest != nil else { return }
+        let request = screenTimeLedger.takeOpenRequest(at: clock.now, maximumAge: ScreenTimeGate.openRequestMaximumAge)
+        saveScreenTimeLedger()
+        guard let request, !needsOnboarding else { return }
+        if let current = hop, !current.isDeciding {
+            hop = nil
+        }
+        Log.screenTime.info("Answering Talk to Pofu from the shield")
+        startHop(for: request.app.protectedApp, shieldedApp: request.app)
+    }
+
+    private func saveScreenTimeLedger() {
+        do {
+            try ledgerFile?.write(screenTimeLedger)
+        } catch {
+            Log.persistence.error("Saving the Screen Time ledger failed: \(error.localizedDescription, privacy: .public)")
+        }
+    }
+
     // MARK: - Passes
 
     /// Ends a pass early from Pofu and refunds its unused whole minutes.
@@ -432,6 +524,7 @@ final class AppModel {
         now = clock.now
         guard let ending = gatekeeper.endPass(id: pass.id, at: now, state: &state) else { return .zero }
         cancelReminder(for: pass)
+        screenTime.restore(passID: pass.id)
         Log.economy.info("Pass ended early; refund \(ending.refund.units, privacy: .private)")
         log(.passEnded(passID: pass.id, refund: ending.refund))
         save()

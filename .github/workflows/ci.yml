@@ -80,7 +80,7 @@ jobs:
     needs: changes
     if: needs.changes.outputs.swift == 'true'
     runs-on: macos-26
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Check out
         uses: actions/checkout@v5
@@ -116,6 +116,19 @@ jobs:
           xcodebuild build \
             -project Pofu.xcodeproj \
             -scheme Pofu \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO \
+            SWIFT_TREAT_WARNINGS_AS_ERRORS=YES
+
+      # The Screen Time build: the app with the Family Controls entitlement
+      # and its shield and monitor extensions. Unsigned here, so it proves
+      # everything compiles; only a paid team can sign and run it.
+      - name: Build the live Screen Time app for the iOS Simulator
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project Pofu.xcodeproj \
+            -scheme PofuLive \
             -destination 'generic/platform=iOS Simulator' \
             CODE_SIGNING_ALLOWED=NO \
             SWIFT_TREAT_WARNINGS_AS_ERRORS=YES

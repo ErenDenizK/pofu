@@ -21,6 +21,9 @@ enum Log {
     static let persistence = Logger(subsystem: subsystem, category: "persistence")
     /// Presentation: which screen or cover is up, and scene phases.
     static let routing = Logger(subsystem: subsystem, category: "routing")
+    /// The Screen Time gate: authorization, the shield, thresholds, and the
+    /// extensions' inbox.
+    static let screenTime = Logger(subsystem: subsystem, category: "screentime")
 }
 
 extension CheckInPlan {

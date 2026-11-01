@@ -40,6 +40,17 @@ public struct StorageLocation: Hashable, Sendable {
         return applicationSupport(fileManager: fileManager)
     }
 
+    /// The App Group container, or `nil` when this build is not entitled to
+    /// it. Extensions use only this: their own Application Support folder
+    /// is invisible to the app.
+    public static func appGroup(
+        identifier: String = StorageLocation.appGroupIdentifier,
+        fileManager: FileManager = .default
+    ) -> StorageLocation? {
+        appGroupDirectory(identifier: identifier, fileManager: fileManager)
+            .map { StorageLocation(directory: $0, kind: .appGroup) }
+    }
+
     /// The app's own Application Support folder.
     public static func applicationSupport(fileManager: FileManager = .default) -> StorageLocation {
         let base =

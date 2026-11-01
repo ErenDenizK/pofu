@@ -1,15 +1,18 @@
 import Foundation
+import PofuCore
 
 /// The boundary between Pofu and Apple's Screen Time frameworks (ADR-0003).
 ///
 /// Two implementations exist, or will:
 /// - `SimulatedScreenTimeService`: deterministic and scriptable, for
 ///   development on a free provisioning profile, previews, and tests.
-/// - `LiveScreenTimeService` (Phase 2, needs the paid membership):
-///   FamilyControls for authorization and selection, ManagedSettings for
-///   shields, DeviceActivity for schedules and thresholds.
+/// - `LiveScreenTimeService` (needs the paid membership and the `PofuLive`
+///   scheme): FamilyControls for authorization and selection,
+///   ManagedSettings for shields, DeviceActivity for schedules and
+///   thresholds.
 ///
-/// Nothing outside the live implementation may import those frameworks.
+/// Nothing outside the live implementation and the Screen Time extensions
+/// may import those frameworks.
 public protocol ScreenTimeService: Sendable {
     // MARK: Authorization
 
@@ -44,6 +47,23 @@ public protocol ScreenTimeService: Sendable {
 
     /// Every shield currently applied, by name.
     func activeShields() async -> [ShieldID: DistractionSelection]
+
+    // MARK: Passes
+
+    /// Lifts every shield from `app` from `date` until `until`, for the
+    /// pass `passID`. The shields come back by themselves when the pass
+    /// ends, even if Pofu is not running.
+    ///
+    /// - Throws: `ScreenTimeError.notAuthorized`, or `.invalidLift` when
+    ///   `until` is not after `date`.
+    func liftShields(from app: ShieldedApp, passID: UUID, at date: Date, until: Date) async throws
+
+    /// Puts the shields back on the app of pass `passID` now, for a pass
+    /// that ended early. Does nothing for an unknown pass.
+    func restoreShields(passID: UUID) async
+
+    /// Every lift that has not been restored, in the order they were made.
+    func shieldLifts() async -> [ShieldLift]
 
     // MARK: Thresholds
 

@@ -25,6 +25,10 @@ struct SettingsView: View {
                 }
                 .listRowBackground(PofuColor.card)
 
+                if model.screenTime.isAvailable {
+                    ScreenTimeSettingsSection(model: model)
+                }
+
                 Section {
                     ForEach(ProtectedApp.allCases) { app in
                         GuardedAppRow(model: model, app: app)
@@ -35,10 +39,21 @@ struct SettingsView: View {
                         Label("Set up automations", systemImage: "bolt.badge.automatic")
                     }
                 } header: {
-                    Text("Guarded apps")
-                        .pofuSectionHeader()
+                    // With the shield, the Shortcuts gate is the optional,
+                    // animated layer on top (ADR-0013).
+                    if model.screenTime.isAvailable {
+                        Text("Live Pofu (optional)")
+                            .pofuSectionHeader()
+                    } else {
+                        Text("Guarded apps")
+                            .pofuSectionHeader()
+                    }
                 } footer: {
-                    Text("Turning an app off here doesn't remove its automation. Delete it in Shortcuts if you want me gone from that door.")
+                    if model.screenTime.isAvailable {
+                        Text("With a Shortcuts automation, I hop in with the full animation before the app opens. The shield stays as the safety net.")
+                    } else {
+                        Text("Turning an app off here doesn't remove its automation. Delete it in Shortcuts if you want me gone from that door.")
+                    }
                 }
                 .listRowBackground(PofuColor.card)
 

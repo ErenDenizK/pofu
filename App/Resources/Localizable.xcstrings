@@ -1941,6 +1941,246 @@
           }
         }
       }
+    },
+    "Let me stand at the door" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapıda ben durayım"
+          }
+        }
+      }
+    },
+    "Screen Time is off for Pofu" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pofu için Ekran Süresi kapalı"
+          }
+        }
+      }
+    },
+    "Pick the apps that pull you in" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seni içine çeken uygulamaları seç"
+          }
+        }
+      }
+    },
+    "I'm at the door" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapıdayım"
+          }
+        }
+      }
+    },
+    "When you reach for a feed, I'll be there first. iOS asks once if Pofu may use Screen Time; nothing leaves this iPhone." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir akışa uzandığında önce ben karşılarım. iOS, Pofu'nun Ekran Süresi'ni kullanmasına bir kez izin ister; hiçbir şey bu iPhone'dan çıkmaz."
+          }
+        }
+      }
+    },
+    "You can turn it on in Settings, Screen Time, or let me jump in through Shortcuts instead." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlar'da Ekran Süresi'nden açabilirsin ya da araya Kestirmeler üzerinden girmeme izin verebilirsin."
+          }
+        }
+      }
+    },
+    "I'll stand in front of them. You can change this any time in Settings." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onların önünde ben duracağım. Bunu istediğin zaman Ayarlar'dan değiştirebilirsin."
+          }
+        }
+      }
+    },
+    "Open one of them to see me. Tap Talk to Pofu there and I'll answer with a notification." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beni görmek için birini aç. Orada Pofu'yla konuş'a dokunursan bildirimle cevap veririm."
+          }
+        }
+      }
+    },
+    "I couldn't ask iOS right now. Try again?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şu an iOS'a soramadım. Tekrar deneyelim mi?"
+          }
+        }
+      }
+    },
+    "Allow Screen Time" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ekran Süresi'ne izin ver"
+          }
+        }
+      }
+    },
+    "Try again" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekrar dene"
+          }
+        }
+      }
+    },
+    "Choose apps" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulamaları seç"
+          }
+        }
+      }
+    },
+    "Change apps" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulamaları değiştir"
+          }
+        }
+      }
+    },
+    "Use Shortcuts instead" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bunun yerine Kestirmeler'i kullan"
+          }
+        }
+      }
+    },
+    "On" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Açık"
+          }
+        }
+      }
+    },
+    "Off" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapalı"
+          }
+        }
+      }
+    },
+    "Shield" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalkan"
+          }
+        }
+      }
+    },
+    "Guarded time today" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugün korunan süre"
+          }
+        }
+      }
+    },
+    "Screen Time" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ekran Süresi"
+          }
+        }
+      }
+    },
+    "Measured by Screen Time, in 15-minute steps." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ekran Süresi 15 dakikalık adımlarla ölçer."
+          }
+        }
+      }
+    },
+    "under 15 min" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "15 dk'dan az"
+          }
+        }
+      }
+    },
+    "at least %lld min" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "en az %lld dk"
+          }
+        }
+      }
+    },
+    "Live Pofu (optional)" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canlı Pofu (isteğe bağlı)"
+          }
+        }
+      }
+    },
+    "With a Shortcuts automation, I hop in with the full animation before the app opens. The shield stays as the safety net." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir Kestirmeler otomasyonuyla uygulama açılmadan önce tüm animasyonumla araya girerim. Kalkan yine güvenlik ağı olarak kalır."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
