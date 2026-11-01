@@ -9,6 +9,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Gate v2 ([spec](docs/product/ux/gate-v2.md)): the shield speaks. A copy
+  engine in `PofuCore` (`ShieldCopy`) picks Pofu's line by reach count,
+  time of day, bedtime, pass expiry, and the daily hour, with today's
+  tally ("Bugün 5 / 7 boş verdin.") and Pofu's mood as the icon, in
+  Turkish and English, within the shield's length limits. The secondary
+  button is the honest **Açmam lazım**, with the iOS 26.4 submenu: a
+  3-minute quick check that lifts the shield on the spot, or **Pofu'yla
+  aç**, which posts a time-sensitive notification and redraws the shield
+  into a waiting state. Past the daily hour the only way through is
+  **Pofu'yla nefes al**, and Hop! opens in a new breathing room.
+- Every reach at the shield counts once: leaving the shield without a tap
+  and open requests never followed are resisted reaches; the shield that
+  returns when a pass ends is not a reach, and its **Bitti, kapat** is not
+  a skip. Each kind is logged and shown in a developer readout.
+- The daily hour is a setting (15–180 minutes) that drives the
+  DeviceActivity ladder; the gate's timings live in `ScreenTimeGateRules`.
+- Onboarding with Screen Time explains the permission, primes the picker
+  and notifications, handles denial, an empty pick, and a whole category,
+  and ends on the real shield ("Hadi dene." → "Yakaladım!"). No naming
+  step in the live build.
+- Settings shows when notifications are off or Focus may hide Pofu's
+  notification. Day-1 cases 20–28.
+
+### Changed
+
+- Without notifications, "Pofu'yla aç" is never a dead end: the shield
+  says "Pofu'yu kendin aç", and opening Pofu within 10 minutes starts
+  Hop!. The notification tap is routed by the notification delegate; the
+  scene-phase path stays as that fallback.
+- The live build sends no pass-expiry push while the shield is on: the
+  shield's return is the cue.
+
 - The pass-expiry reminder, Pofu's only notification: "Time's up. Back to
   me?" when a pass ends. Permission is asked at the first pass; tapping
   it counts as a sign of life.
