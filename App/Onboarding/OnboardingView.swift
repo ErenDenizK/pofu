@@ -23,21 +23,36 @@ struct OnboardingView: View {
     var body: some View {
         ZStack {
             PofuColor.dayWash.ignoresSafeArea()
-            Group {
-                switch step {
-                case .welcome: welcome
-                case .apps: apps
-                case .name: naming
-                case .setup: setup
+            // During the cross-fade the incoming step is stacked above the
+            // outgoing one (steps only move forward), and the outgoing one
+            // stops taking touches, so a quick tap always lands on the new
+            // step and is never swallowed by the old one.
+            ForEach(Step.allCases, id: \.self) { item in
+                if item == step {
+                    view(for: item)
+                        .zIndex(Double(item.rawValue))
+                        .transition(AnyTransition.asymmetric(
+                            insertion: AnyTransition.opacity,
+                            removal: AnyTransition.opacity.combined(with: AnyTransition.disablesHitTesting)
+                        ))
                 }
             }
-            .transition(.opacity)
         }
-        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: step)
+        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: step)
         .sensoryFeedback(.selection, trigger: step)
     }
 
     // MARK: Steps
+
+    @ViewBuilder
+    private func view(for item: Step) -> some View {
+        switch item {
+        case .welcome: welcome
+        case .apps: apps
+        case .name: naming
+        case .setup: setup
+        }
+    }
 
     private var welcome: some View {
         VStack(spacing: PofuSpacing.l) {
@@ -76,13 +91,27 @@ struct OnboardingView: View {
                                 chosen.append(app)
                             }
                         } label: {
+                            // The icon stays; selection adds a checkmark
+                            // badge on it, so the label never moves. Long
+                            // names wrap rather than shrink.
                             HStack(spacing: PofuSpacing.s) {
-                                Image(systemName: isChosen ? "checkmark.circle.fill" : app.symbolName)
+                                Image(systemName: app.symbolName)
+                                    .frame(width: 24)
+                                    .overlay(alignment: .topTrailing) {
+                                        if isChosen {
+                                            Image(systemName: "checkmark.circle.fill")
+                                                .font(.system(size: 12, weight: .bold))
+                                                .foregroundStyle(PofuColor.onAccent, PofuColor.accent)
+                                                .offset(x: 6, y: -6)
+                                                .transition(.scale.combined(with: .opacity))
+                                        }
+                                    }
                                 Text(verbatim: app.displayName)
-                                    .lineLimit(1)
-                                    .minimumScaleFactor(0.8)
+                                    .lineLimit(2)
+                                    .fixedSize(horizontal: false, vertical: true)
                                 Spacer(minLength: 0)
                             }
+                            .animation(PofuMotion.respecting(reduceMotion, PofuMotion.pop), value: isChosen)
                             .padding(.vertical, PofuSpacing.s)
                         }
                         .buttonStyle(PofuChoiceStyle(isSelected: isChosen, cornerRadius: PofuRadius.large))
@@ -111,14 +140,14 @@ struct OnboardingView: View {
             Spacer()
             CompanionView(vitality: 0.8, energy: 0.3)
                 .frame(maxWidth: 220)
-            Text("What should we call me?")
+            Text("What would you like to call me?")
                 .font(PofuFont.largeTitle)
                 .foregroundStyle(PofuColor.textPrimary)
                 .multilineTextAlignment(.center)
             TextField(text: $name, prompt: Text(verbatim: UserProfile.defaultName)) {
                 Text("Name")
             }
-            .font(PofuFont.title2)
+            .pofuDisplayFont(size: 30)
             .multilineTextAlignment(.center)
             .textInputAutocapitalization(.words)
             .submitLabel(.done)
@@ -150,20 +179,29 @@ struct OnboardingView: View {
 
     private var setup: some View {
         NavigationStack {
-            SetupGuideView(model: model)
-                .safeAreaInset(edge: .bottom) {
-                    VStack(spacing: PofuSpacing.xs) {
-                        Button("Done") { model.completeOnboarding() }
-                            .buttonStyle(PofuPrimaryButtonStyle())
-                        Button("I'll do it later") { model.completeOnboarding() }
-                            .font(PofuFont.headline)
-                            .foregroundStyle(PofuColor.accent)
-                            .frame(minHeight: PofuSize.minimumTouch)
-                    }
-                    .padding(.horizontal, PofuSpacing.screen)
-                    .padding(.top, PofuSpacing.s)
-                    .background(PofuColor.canvas.opacity(0.95))
-                }
+            SetupGuideView(
+                model: model,
+                onboarding: .init(
+                    finish: { model.completeOnboarding() },
+                    later: { model.completeOnboarding() }
+                )
+            )
         }
+    }
+}
+
+/// Turns hit testing off for the life of a transition: a view on its way
+/// out never takes a tap meant for the one coming in.
+private struct HitTesting: ViewModifier {
+    let isEnabled: Bool
+
+    func body(content: Content) -> some View {
+        content.allowsHitTesting(isEnabled)
+    }
+}
+
+extension AnyTransition {
+    fileprivate static var disablesHitTesting: AnyTransition {
+        .modifier(active: HitTesting(isEnabled: false), identity: HitTesting(isEnabled: true))
     }
 }

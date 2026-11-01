@@ -51,3 +51,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   a hop and a haptic; Home shows how long it has been quiet, and holds the
   seeds and asks to check the setup when the automation has been silent
   for three days.
+- Diagnostics: `os.Logger` channels under `com.erendenizk.pofu` (`intent`,
+  `hop`, `economy`, `persistence`, `routing`), with user data private.
+
+### Fixed
+
+Polish from the first simulator run
+([report](docs/local/reports/2026-11-01-simulator-run.md)):
+
+- The setup guide's footer is opaque with a hairline edge, and the guide
+  shows one primary action at a time, always the next real step; "Done"
+  appears only once the automations work.
+- The halo behind Pofu is a soft radial glow, also in dark mode.
+- Unselected tiles and chips keep a visible edge in dark mode.
+- Fill my cheeks: Start no longer covers the duration chips, which now
+  show their unit.
+- No white flash on launch: the launch screen uses the day wash color.
+- Home: the bubble's tail points at Pofu; the seed pill and the settings
+  button share a height and shape.
+- Onboarding: selected apps keep their icon, long names wrap instead of
+  shrinking, the naming title reads naturally, the name field uses the
+  display font, and quick taps during a step's cross-fade are not lost.
+- Sheets share one surface, close button, and section header style;
+  Settings rows are plum-tinted in dark mode.
+- Turkish copy: the Today card no longer repeats "Bugün", and "Üretmek"
+  is now "Üretim".
+
+### Changed
+
+- The repository is `ErenDenizK/pofu`; docs link there. The development
+  guide covers the Metal Toolchain download and the simulator-only App
+  Shortcut limitation.

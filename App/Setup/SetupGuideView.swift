@@ -8,11 +8,28 @@ import SwiftUI
 ///
 /// The labels quote the Shortcuts app in English (iOS 26); the Turkish
 /// labels follow the user flows and still need checking on a device.
+///
+/// One primary action at a time, always the next real step: open
+/// Shortcuts, then test, then the next app, and "Done" only once every
+/// chosen app's automation has fired.
 struct SetupGuideView: View {
     let model: AppModel
+    /// Set during onboarding: finishing the guide, or putting it off,
+    /// completes onboarding. Elsewhere the guide dismisses itself.
+    var onboarding: OnboardingExit?
 
+    /// How the guide ends during onboarding.
+    struct OnboardingExit {
+        let finish: @MainActor () -> Void
+        let later: @MainActor () -> Void
+    }
+
+    @Environment(\.dismiss) private var dismiss
     @State private var selected: ProtectedApp?
     @State private var testFailed = false
+    /// Whether the user went to Shortcuts for this app, so testing is the
+    /// next real step.
+    @State private var visitedShortcuts = false
 
     private var apps: [ProtectedApp] {
         let chosen = model.profile.protectedApps
@@ -21,6 +38,28 @@ struct SetupGuideView: View {
 
     private var app: ProtectedApp {
         selected ?? model.unverifiedApps.first ?? apps.first ?? .instagram
+    }
+
+    /// The one next step, which is the screen's only primary action. The
+    /// guide never claims success before the automation has fired.
+    private enum NextStep: Equatable {
+        case openShortcuts
+        case test
+        case setUp(ProtectedApp)
+        case finish
+    }
+
+    private var nextStep: NextStep {
+        if model.profile.isVerified(app) {
+            if let next = apps.first(where: { !model.profile.isVerified($0) }) {
+                return .setUp(next)
+            }
+            return .finish
+        }
+        if visitedShortcuts && app.canBeOpenedByPofu {
+            return .test
+        }
+        return .openShortcuts
     }
 
     var body: some View {
@@ -44,26 +83,9 @@ struct SetupGuideView: View {
                 }
                 .pofuCard()
 
-                status
-
-                VStack(spacing: PofuSpacing.s) {
-                    Button {
-                        Task { await AppOpener.openShortcuts() }
-                    } label: {
-                        Text("Open Shortcuts")
-                    }
-                    .buttonStyle(PofuPrimaryButtonStyle())
-
-                    if app.canBeOpenedByPofu {
-                        Button {
-                            Task {
-                                testFailed = !(await AppOpener.open(app))
-                            }
-                        } label: {
-                            Text("Test it: open \(app.objectName)")
-                        }
-                        .buttonStyle(PofuQuietButtonStyle())
-                    }
+                VStack(alignment: .leading, spacing: PofuSpacing.m) {
+                    status
+                    alternateAction
                     if testFailed {
                         Text("I couldn't open \(app.objectName). Is it still installed?")
                             .font(PofuFont.footnote)
@@ -83,8 +105,102 @@ struct SetupGuideView: View {
             .padding(PofuSpacing.screen)
         }
         .background(PofuColor.canvas)
+        .pofuFooter {
+            VStack(spacing: PofuSpacing.xs) {
+                primaryAction
+                if let onboarding {
+                    Button("I'll do it later") { onboarding.later() }
+                        .font(PofuFont.headline)
+                        .foregroundStyle(PofuColor.accent)
+                        .frame(minHeight: PofuSize.minimumTouch)
+                }
+            }
+        }
+        .animation(PofuMotion.snappy, value: nextStep)
         .navigationTitle(Text("Set up Hop!"))
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    // MARK: Actions
+
+    @ViewBuilder private var primaryAction: some View {
+        switch nextStep {
+        case .openShortcuts:
+            Button {
+                openShortcuts()
+            } label: {
+                Text("Open Shortcuts")
+            }
+            .buttonStyle(PofuPrimaryButtonStyle())
+        case .test:
+            Button {
+                test()
+            } label: {
+                Text("Test it: open \(app.objectName)")
+            }
+            .buttonStyle(PofuPrimaryButtonStyle())
+        case .setUp(let next):
+            Button {
+                select(next)
+            } label: {
+                Text("Next: \(next.displayName)")
+            }
+            .buttonStyle(PofuPrimaryButtonStyle())
+        case .finish:
+            Button {
+                if let onboarding {
+                    onboarding.finish()
+                } else {
+                    dismiss()
+                }
+            } label: {
+                Text("Done")
+            }
+            .buttonStyle(PofuPrimaryButtonStyle())
+        }
+    }
+
+    /// The other half of "open Shortcuts, then test", one step below the
+    /// primary, while the automation is not working yet.
+    @ViewBuilder private var alternateAction: some View {
+        switch nextStep {
+        case .openShortcuts where app.canBeOpenedByPofu:
+            Button {
+                test()
+            } label: {
+                Text("Test it: open \(app.objectName)")
+            }
+            .buttonStyle(PofuQuietButtonStyle())
+        case .test:
+            Button {
+                openShortcuts()
+            } label: {
+                Text("Open Shortcuts")
+            }
+            .buttonStyle(PofuQuietButtonStyle())
+        default:
+            EmptyView()
+        }
+    }
+
+    private func openShortcuts() {
+        Task {
+            if await AppOpener.openShortcuts() {
+                visitedShortcuts = true
+            }
+        }
+    }
+
+    private func test() {
+        Task {
+            testFailed = !(await AppOpener.open(app))
+        }
+    }
+
+    private func select(_ item: ProtectedApp) {
+        selected = item
+        testFailed = false
+        visitedShortcuts = false
     }
 
     private var appPicker: some View {
@@ -92,8 +208,7 @@ struct SetupGuideView: View {
             HStack(spacing: PofuSpacing.s) {
                 ForEach(apps) { item in
                     Button {
-                        selected = item
-                        testFailed = false
+                        select(item)
                     } label: {
                         HStack(spacing: PofuSpacing.xs) {
                             if model.profile.isVerified(item) {

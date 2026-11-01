@@ -43,6 +43,14 @@ public struct CompanionView: View {
         self.onTap = onTap
     }
 
+    /// The empty room above the art at rest, in points, for a companion
+    /// laid out `width` wide. Hops use it; layouts can tuck a speech
+    /// bubble's tail into it so the tail meets Pofu's head.
+    public nonisolated static func restingHeadroom(forWidth width: CGFloat, art: CompanionArt? = .placeholder) -> CGFloat {
+        guard let art else { return 0 }
+        return CGFloat(CompanionStageLayout(width: Double(width), rig: art.rig).artOriginY)
+    }
+
     public var body: some View {
         Group {
             if let art {

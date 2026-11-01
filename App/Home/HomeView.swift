@@ -10,6 +10,9 @@ struct HomeView: View {
     @Bindable var model: AppModel
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// The companion's laid-out width, for tucking the bubble into its
+    /// headroom.
+    @State private var companionWidth: CGFloat = 300
 
     var body: some View {
         ZStack {
@@ -45,8 +48,10 @@ struct HomeView: View {
         .sheet(item: $model.homeSheet) { sheet in
             switch sheet {
             case .earn:
+                // Tall enough for the activities, the lengths, and Start
+                // together, with Pofu's room still showing above.
                 EarnSheet(model: model)
-                    .presentationDetents([.medium, .large])
+                    .presentationDetents([.fraction(0.68), .large])
             case .passes:
                 PassesSheet(model: model)
                     .presentationDetents([.medium, .large])
@@ -55,11 +60,7 @@ struct HomeView: View {
             case .setup:
                 NavigationStack {
                     SetupGuideView(model: model)
-                        .toolbar {
-                            ToolbarItem(placement: .confirmationAction) {
-                                Button("Done") { model.homeSheet = nil }
-                            }
-                        }
+                        .pofuSheetChrome()
                 }
             }
         }
@@ -80,12 +81,16 @@ struct HomeView: View {
             Button {
                 model.homeSheet = .settings
             } label: {
+                // Exactly the seed pill's height and capsule shape: glass
+                // drawn in the frame, not around it as `.glass` would.
                 Image(systemName: "gearshape")
                     .font(PofuFont.title3)
+                    .foregroundStyle(PofuColor.textPrimary)
                     .frame(width: PofuSize.minimumTouch, height: PofuSize.minimumTouch)
+                    .glassEffect(.regular.interactive(), in: Capsule(style: .continuous))
+                    .contentShape(Capsule(style: .continuous))
             }
-            .buttonStyle(.glass)
-            .tint(PofuColor.textPrimary)
+            .buttonStyle(.plain)
             .accessibilityLabel(Text("Settings"))
         }
         .padding(.top, PofuSpacing.s)
@@ -125,13 +130,13 @@ struct HomeView: View {
             .buttonStyle(.plain)
             .disabled(bubbleAction == .nothing)
             .accessibilityAddTraits(bubbleAction == .nothing ? [] : .isButton)
+            // The companion keeps empty room above the art for hops. Tuck
+            // the bubble into most of it, so the tail ends just above
+            // Pofu's head instead of pointing at air.
+            .padding(.bottom, -CompanionView.restingHeadroom(forWidth: companionWidth) * 0.9)
+            .zIndex(1)
 
             ZStack(alignment: .bottom) {
-                Circle()
-                    .fill(PofuColor.stage.opacity(0.55))
-                    .frame(width: 280, height: 280)
-                    .offset(y: 40)
-                    .accessibilityHidden(true)
                 CompanionView(
                     vitality: model.vitality,
                     energy: model.cheekFill,
@@ -143,6 +148,22 @@ struct HomeView: View {
                     }
                 )
                 .frame(maxWidth: 300)
+                .onGeometryChange(for: CGFloat.self) { proxy in
+                    proxy.size.width
+                } action: { width in
+                    companionWidth = width
+                }
+                .background {
+                    // A glow, not a disc: no edge, so it never reads as a
+                    // plate on the night room. It overflows the figure and
+                    // centers on the body, below the hop headroom.
+                    Circle()
+                        .fill(PofuColor.haloGlow(radius: 170))
+                        .frame(width: 340, height: 340)
+                        .offset(y: 54)
+                        .allowsHitTesting(false)
+                        .accessibilityHidden(true)
+                }
                 .accessibilityLabel(Text(companionLabel))
                 .accessibilityHint(model.canCollectQuietSeeds ? Text("Collects the seeds in my cheeks") : Text(verbatim: ""))
 

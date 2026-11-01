@@ -49,6 +49,15 @@ struct CompanionStageLayoutTests {
         #expect(abs(layout.figureCenter.x - 180) < 1e-9)
     }
 
+    @Test func restingHeadroomIsTheRoomAboveTheArt() throws {
+        let art = try #require(CompanionArt.placeholder)
+        let layout = CompanionStageLayout(width: 300, rig: art.rig)
+        let headroom = Double(CompanionView.restingHeadroom(forWidth: 300, art: art))
+        #expect(headroom > 0)
+        #expect(abs(headroom - layout.artOriginY) < 1e-9)
+        #expect(CompanionView.restingHeadroom(forWidth: 300, art: nil) == 0)
+    }
+
     @Test(arguments: [0.0, -10, .nan, .infinity])
     func degenerateWidthsDoNotProduceNaN(width: Double) {
         let layout = CompanionStageLayout(width: width, rig: rig)

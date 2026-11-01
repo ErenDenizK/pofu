@@ -67,7 +67,7 @@ public struct PofuQuietButtonStyle: ButtonStyle {
             }
             .overlay(
                 Capsule(style: .continuous)
-                    .strokeBorder(PofuColor.shadow.opacity(0.06), lineWidth: 1)
+                    .strokeBorder(PofuColor.hairline, lineWidth: 1)
             )
             .scaleEffect(configuration.isPressed && !reduceMotion ? 0.97 : 1)
             .animation(PofuMotion.respecting(reduceMotion, PofuMotion.squish), value: configuration.isPressed)
@@ -120,7 +120,7 @@ public struct PofuChoiceStyle: ButtonStyle {
             .background(shape.fill(isSelected ? PofuColor.accentTint : PofuColor.raised))
             .overlay(
                 shape.strokeBorder(
-                    isSelected ? PofuColor.accent : PofuColor.shadow.opacity(0.08),
+                    isSelected ? PofuColor.accent : PofuColor.hairline,
                     lineWidth: isSelected ? 2 : 1
                 )
             )

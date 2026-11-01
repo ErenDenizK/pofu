@@ -8,6 +8,16 @@
   these, to hand the user back to the app after Hop!.
 -->
 <dict>
+	<!--
+	  The launch screen is the first frame of the day wash: cream-100 by
+	  day, night-950 in dark mode (the LaunchBackground color set), so a
+	  cold launch never flashes white.
+	-->
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>LaunchBackground</string>
+	</dict>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>instagram</string>

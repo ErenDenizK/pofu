@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import os
 import PofuCore
 import PofuPersistence
 
@@ -59,13 +60,15 @@ final class AppModel {
         if let store {
             switch store.load() {
             case .empty:
-                break
+                Log.persistence.info("No snapshot yet: first launch (\(store.location.kind.rawValue, privacy: .public))")
             case .loaded(let loaded):
                 snapshot = loaded
-            case .recovered:
+                Log.persistence.info("Loaded the snapshot (\(store.location.kind.rawValue, privacy: .public))")
+            case .recovered(let error, let quarantinedAt):
                 // The unreadable file was moved aside; start fresh rather
                 // than refuse to run the gate.
-                break
+                let movedTo = quarantinedAt?.path ?? "nowhere"
+                Log.persistence.fault("Snapshot unreadable, starting fresh: \(String(describing: error), privacy: .public); moved to \(movedTo, privacy: .private)")
             }
         }
         self.state = snapshot.state
@@ -88,7 +91,13 @@ final class AppModel {
     static func makeStore() -> PofuStore {
         let location = StorageLocation.resolve()
         if location.kind == .appGroup {
-            _ = try? location.migrateIfNeeded(from: .applicationSupport())
+            do {
+                if try location.migrateIfNeeded(from: .applicationSupport()) {
+                    Log.persistence.notice("Moved the files into the App Group container")
+                }
+            } catch {
+                Log.persistence.error("Migration to the App Group failed: \(error.localizedDescription, privacy: .public)")
+            }
         }
         return PofuStore(location: location)
     }
@@ -229,6 +238,7 @@ final class AppModel {
         let presenting = hop.flatMap { $0.isDeciding ? $0.app : nil }
         let route = router.route(for: app, at: now, passes: state.passes, presenting: presenting)
         let plan = router.plan(for: route, isForeground: isForeground, canContinueInForeground: canContinueInForeground)
+        Log.intent.debug("Routed \(app.rawValue, privacy: .private): \(plan.logName, privacy: .public), Hop! on screen: \(presenting != nil, privacy: .public)")
         switch plan {
         case .completeSilently(let pass):
             // Records the pass-through; the ladder does not move.
@@ -245,6 +255,7 @@ final class AppModel {
 
     /// The system refused to bring Pofu forward after all.
     func hopCouldNotStart(for app: ProtectedApp) {
+        Log.hop.error("Hop! could not start for \(app.rawValue, privacy: .private)")
         log(.hopUnavailable(app: app))
     }
 
@@ -253,6 +264,7 @@ final class AppModel {
         now = clock.now
         if let current = hop {
             if current.app == app && current.isDeciding {
+                Log.hop.debug("Hop! already on screen for this app")
                 return
             }
             // Another app's Hop! was left open: leaving it was a skip.
@@ -263,9 +275,11 @@ final class AppModel {
         let ordinal = ImpulseMetrics.reachOrdinal(at: now, from: state.checkIns)
         switch gatekeeper.beginCheckIn(for: app.target, at: now, state: &state) {
         case .covered(let pass):
+            Log.hop.info("A pass covers \(app.rawValue, privacy: .private): no Hop!")
             log(.passThrough(app: app, passID: pass.id))
             hop = nil
         case .intervene(let attempt):
+            Log.hop.info("Hop! for \(app.rawValue, privacy: .private) on rung \(String(describing: attempt.rung), privacy: .public)")
             hop = HopSession(app: app, attempt: attempt, isNight: economy.isBedtime(now), reachOrdinal: ordinal)
             log(.hopShown(attemptID: attempt.id, app: app, rung: attempt.rung))
         }
@@ -304,7 +318,11 @@ final class AppModel {
     func leaveHop() {
         guard let current = hop else { return }
         if current.isDeciding {
-            guard current.hasBeenActive else { return }
+            guard current.hasBeenActive else {
+                Log.hop.debug("Left Hop! before it was active: not a skip")
+                return
+            }
+            Log.hop.info("Left Hop! without choosing: counts as a skip")
             resolveHop(current, with: .resist)
         }
         hop = nil
@@ -344,6 +362,7 @@ final class AppModel {
     func handoffFailed(for pass: Pass, app: ProtectedApp) {
         now = clock.now
         let ending = gatekeeper.voidPass(id: pass.id, state: &state)
+        Log.hop.error("Hand-off to \(app.rawValue, privacy: .private) failed; pass voided")
         log(.handoffFailed(app: app))
         if let ending {
             log(.passVoided(passID: ending.pass.id, refund: ending.refund))
@@ -367,6 +386,7 @@ final class AppModel {
                 reason: session.reason
             )
             log(.checkInResolved(record))
+            Log.hop.info("Hop! resolved: \(choice.logName, privacy: .public)")
             var updated = session
             if let pass = record.outcome.pass {
                 updated.phase = .handoff(pass)
@@ -377,6 +397,7 @@ final class AppModel {
             save()
             return true
         } catch {
+            Log.hop.error("Hop! choice \(choice.logName, privacy: .public) refused: \(String(describing: error), privacy: .public)")
             return false
         }
     }
@@ -388,6 +409,7 @@ final class AppModel {
     func endPass(_ pass: Pass) -> Energy {
         now = clock.now
         guard let ending = gatekeeper.endPass(id: pass.id, at: now, state: &state) else { return .zero }
+        Log.economy.info("Pass ended early; refund \(ending.refund.units, privacy: .private)")
         log(.passEnded(passID: pass.id, refund: ending.refund))
         save()
         return ending.refund
@@ -411,6 +433,7 @@ final class AppModel {
     func startSession(kind: ActivityKind, minutes: Int) {
         now = clock.now
         activeSession = ActiveSession(kind: kind, startedAt: now, plannedMinutes: minutes)
+        Log.economy.info("Honor session started: \(minutes, privacy: .public) min")
         save()
     }
 
@@ -421,6 +444,7 @@ final class AppModel {
         now = clock.now
         let session = running.completed(at: now)
         let result = economy.earn(session, into: &state.wallet)
+        Log.economy.info("Honor session credited: \(result.earned.units, privacy: .private) seeds, \(result.forfeitedToCap.units, privacy: .private) over the cap")
         log(.activityCredited(session, earned: result.earned, forfeited: result.forfeitedToCap))
         activeSession = nil
         earningResult = result
@@ -437,6 +461,7 @@ final class AppModel {
         now = clock.now
         guard let collection = gatekeeper.collectQuietSeeds(at: now, state: &state) else { return nil }
         quietCollections += 1
+        Log.economy.info("Quiet seeds collected: \((collection.quietSeeds + collection.sleepBonus).units, privacy: .private)")
         log(.quietSeedsCollected(quietSeeds: collection.quietSeeds, sleepBonus: collection.sleepBonus))
         save()
         return collection
@@ -485,6 +510,7 @@ final class AppModel {
 
     func completeOnboarding() {
         profile.hasCompletedOnboarding = true
+        Log.routing.info("Onboarding completed with \(self.profile.protectedApps.count, privacy: .public) apps")
         save()
     }
 
@@ -496,12 +522,17 @@ final class AppModel {
             try store.save(PofuSnapshot(state: state, profile: profile, activeSession: activeSession))
             persistenceProblem = false
         } catch {
+            Log.persistence.error("Saving the snapshot failed: \(error.localizedDescription, privacy: .public)")
             persistenceProblem = true
         }
     }
 
     private func log(_ event: PofuEvent) {
-        try? store?.log(event, at: clock.now)
+        do {
+            try store?.log(event, at: clock.now)
+        } catch {
+            Log.persistence.error("Appending to the event log failed: \(error.localizedDescription, privacy: .public)")
+        }
     }
 }
 

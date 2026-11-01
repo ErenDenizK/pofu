@@ -29,13 +29,14 @@ founder in Turkish.
 ### T1. Environment
 
 1. If the folder is empty, clone the repository into it:
-   `git clone https://github.com/ErenDenizK/rot.git .`
+   `git clone https://github.com/ErenDenizK/pofu.git .`
    Then set the commit identity from `CLAUDE.md`.
 2. Check the tools and fix what is missing, asking the founder before any
    `sudo` or installer:
    - `xcodebuild -version` (Xcode 26 or newer, selected with `xcode-select`);
    - Homebrew;
-   - `xcodegen` (`brew install xcodegen`).
+   - `xcodegen` (`brew install xcodegen`);
+   - the Metal Toolchain (`xcodebuild -downloadComponent MetalToolchain`).
 3. Create `Config/Local.xcconfig` from the example. Use bundle ID
    `com.erendenizk.pofu.dev`. For `DEVELOPMENT_TEAM`, the founder must be
    signed in with their Apple ID in Xcode (Settings, Accounts). Read the

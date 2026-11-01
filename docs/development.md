@@ -38,14 +38,21 @@ Why it is shaped this way: [ADR-0003](adr/0003-modular-architecture-and-screen-t
    sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
    xcodebuild -version   # should print Xcode 26.x
    ```
-3. **Install XcodeGen** with [Homebrew](https://brew.sh):
+3. **Download the Metal Toolchain.** Xcode 26 ships it as a separate
+   component, and `PofuCompanion`'s shader cannot compile without it (the
+   build fails with "cannot execute tool 'metal' due to missing Metal
+   Toolchain"). It is about 700 MB, once per Xcode install:
+   ```sh
+   xcodebuild -downloadComponent MetalToolchain
+   ```
+4. **Install XcodeGen** with [Homebrew](https://brew.sh):
    ```sh
    brew install xcodegen
    ```
-4. **Clone and generate the project:**
+5. **Clone and generate the project:**
    ```sh
-   git clone https://github.com/ErenDenizK/rot.git
-   cd rot
+   git clone https://github.com/ErenDenizK/pofu.git
+   cd pofu
    xcodegen generate
    open Pofu.xcodeproj
    ```
@@ -60,6 +67,16 @@ always rebuilt from the spec.
 
 Choose the **Pofu** scheme and any iPhone simulator, then Run (⌘R). No
 signing setup is needed.
+
+**Known limitation: App Shortcuts do not run in the simulator.** Running
+Pofu's App Shortcut, or adding the **Hop in** action to a shortcut, fails
+with "Couldn't find AppShortcutsProvider" (`linkd` rejects the simulator
+build with `requiresValidBundle`). The same build works on a device, so
+this is a simulator problem, not a product bug. Test the check-in and the
+Hop! flow on the iPhone; everything else (onboarding, Home, the sheets)
+works in the simulator. Pofu logs under the `com.erendenizk.pofu`
+subsystem (categories `intent`, `hop`, `economy`, `persistence`,
+`routing`); filter Console by it when diagnosing a device run.
 
 ### On your iPhone with a free Apple account
 

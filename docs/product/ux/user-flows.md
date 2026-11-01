@@ -66,7 +66,7 @@ flowchart TD
 | 1 | Welcome | EN: **Hi, I'm Pofu.** <br/>TR: **Selam, ben Pofu.** | EN: I'm a hamster who gets fluffier every time you pick real life over the feed. <br/>TR: Akış yerine hayatı seçtiğin her an biraz daha kabaran bir hamsterım. | EN: **Hi, Pofu** · TR: **Selam, Pofu** |
 | 2 | The promise | EN: **Whenever you reach for a feed, I'll hop in.** <br/>TR: **Ne zaman bir akışa uzansan, araya ben gireceğim.** | EN: You always decide. I just make skipping the easy choice. <br/>TR: Karar hep senin. Ben sadece vazgeçmeyi kolaylaştırıyorum. | EN: **Sounds good** · TR: **Anlaştık** |
 | 3 | Pick apps | EN: **Which ones pull you in?** <br/>TR: **Seni en çok hangileri içine çekiyor?** | Grid: Instagram, TikTok, YouTube, X, Snapchat, Reddit, Facebook, Other. Footnote EN: We'll set them up one at a time, starting with your first pick. You can change these any time. TR: İlk seçtiğinden başlayıp hepsini tek tek kuracağız. Sonra da değiştirebilirsin. | EN: **Continue** · TR: **Devam** (disabled until ≥ 1) |
-| 4 | Name | EN: **What should we call me?** <br/>TR: **Bana ne diyelim?** | Text field prefilled "Pofu". Suggestion chips EN: Pofu, Peanut, Mochi, Biscuit. TR: Pofu, Fıstık, Lokum, Pamuk. | EN: **That's me** · TR: **Bu benim** |
+| 4 | Name | EN: **What would you like to call me?** <br/>TR: **Bana ne diyelim?** | Text field prefilled "Pofu". Suggestion chips EN: Pofu, Peanut, Mochi, Biscuit. TR: Pofu, Fıstık, Lokum, Pamuk. | EN: **That's me** · TR: **Bu benim** |
 | 5 | Practice Hop! | EN: **Let's practice. Pretend you're opening Instagram.** <br/>TR: **Bir prova yapalım. Instagram'ı açıyormuş gibi yap.** | A fake app icon. Tapping it plays a real Hop! (pause rung, 2 s breath). | The user must tap **Skip it** / **Vazgeç**. Then: EN: **That's it. That's the whole trick.** TR: **İşte bu. Bütün numara bu.** |
 | 6 | Setup intro | EN: **Now let me stand at Instagram's door.** <br/>TR: **Şimdi Instagram'ın kapısında ben durayım.** | Eyebrow EN: ABOUT A MINUTE, ONCE · TR: BİR DAKİKA, BİR KERE. <br/>EN: iPhone only lets me appear if you invite me in the Shortcuts app. You do it once. I'll float in a little window and show you every tap. <br/>TR: iPhone, beni ancak sen Kestirmeler'den davet edersen gösteriyor. Bir kere yaparsın. Küçük bir pencerede yanında olup her dokunuşu göstereceğim. <br/>Below: the four-step summary and a preview of the floating guide. | EN: **Open Shortcuts** · TR: **Kestirmeler'i aç**. Secondary EN: **I'll do it later** · TR: **Sonra yaparım** |
 | 7 | Guided setup | Picture in Picture guide (see below) | | |
@@ -286,7 +286,7 @@ flowchart LR
 
 - Title EN: **Fill my cheeks** TR: **Yanaklarımı doldur**
 - Activities (chips with icons): Focus / Odak, Study / Ders, Walk / Yürüyüş,
-  Workout / Spor, Chores / Ev işi, Creative / Üretmek, + Custom / + Özel.
+  Workout / Spor, Chores / Ev işi, Creative / Üretim, + Custom / + Özel.
 - Duration chips: 15, 25, 45, 60, custom. Live preview under them:
   EN: "25 minutes ≈ 12 seeds" TR: "25 dakika ≈ 12 çekirdek".
 - Primary EN: **Start** TR: **Başla**.

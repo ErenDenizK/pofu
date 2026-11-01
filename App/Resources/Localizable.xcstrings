@@ -228,7 +228,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Başka bir uygulama"
+            "value" : "Başka uygulama"
           }
         }
       }
@@ -338,7 +338,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Üretmek"
+            "value" : "Üretim"
           }
         }
       }
@@ -916,7 +916,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bugün henüz açma isteği yok."
+            "value" : "Henüz açma isteği yok."
           }
         }
       }
@@ -1607,7 +1607,7 @@
         }
       }
     },
-    "What should we call me?" : {
+    "What would you like to call me?" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
@@ -1865,6 +1865,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ uzak durdun."
+          }
+        }
+      }
+    },
+    "Next: %@" : {
+      "comment" : "The setup guide's primary button once an app's automation works: set up the next app.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sıradaki: %@"
+          }
+        }
+      }
+    },
+    "min" : {
+      "comment" : "Under a duration chip: minutes, abbreviated.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dk"
           }
         }
       }

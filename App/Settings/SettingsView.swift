@@ -7,7 +7,6 @@ import SwiftUI
 struct SettingsView: View {
     let model: AppModel
 
-    @Environment(\.dismiss) private var dismiss
     @State private var name = ""
 
     var body: some View {
@@ -22,7 +21,9 @@ struct SettingsView: View {
                     .onSubmit { model.setCompanionName(name) }
                 } header: {
                     Text("Pofu")
+                        .pofuSectionHeader()
                 }
+                .listRowBackground(PofuColor.card)
 
                 Section {
                     ForEach(ProtectedApp.allCases) { app in
@@ -35,9 +36,11 @@ struct SettingsView: View {
                     }
                 } header: {
                     Text("Guarded apps")
+                        .pofuSectionHeader()
                 } footer: {
                     Text("Turning an app off here doesn't remove its automation. Delete it in Shortcuts if you want me gone from that door.")
                 }
+                .listRowBackground(PofuColor.card)
 
                 Section {
                     Label("Everything stays on this iPhone.", systemImage: "lock.shield")
@@ -47,20 +50,12 @@ struct SettingsView: View {
                     }
                 } header: {
                     Text("Privacy")
+                        .pofuSectionHeader()
                 }
+                .listRowBackground(PofuColor.card)
             }
-            .scrollContentBackground(.hidden)
-            .background(PofuColor.sunken)
             .navigationTitle(Text("Settings"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") {
-                        model.setCompanionName(name)
-                        dismiss()
-                    }
-                }
-            }
+            .pofuSheetChrome { model.setCompanionName(name) }
             .onAppear { name = model.profile.companionName }
             .onDisappear { model.setCompanionName(name) }
         }

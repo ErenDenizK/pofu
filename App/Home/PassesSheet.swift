@@ -7,7 +7,6 @@ import SwiftUI
 struct PassesSheet: View {
     let model: AppModel
 
-    @Environment(\.dismiss) private var dismiss
     @State private var lastRefund: Energy?
     @State private var ended = 0
 
@@ -51,34 +50,31 @@ struct PassesSheet: View {
                     }
                 } header: {
                     Text("Running now")
+                        .pofuSectionHeader()
                 } footer: {
                     Text("Ending a pass early gives back every unused whole minute at the price you paid.")
                 }
                 .listRowBackground(PofuColor.card)
 
                 Section {
-                    Text("Each window costs 1 seed a minute. Every pass bought in the last 3 hours makes the next one a quarter pricier. From 23:00 to 06:00, prices double.")
-                    if model.economy.isEmergencyPassAvailable(in: model.state.wallet, at: model.now) {
-                        Text("Today's emergency pass is still yours: \(model.economy.configuration.friction.emergencyPassMinutes) min, free.")
-                    } else {
-                        Text("Today's emergency pass is used. It's back tomorrow.")
+                    Group {
+                        Text("Each window costs 1 seed a minute. Every pass bought in the last 3 hours makes the next one a quarter pricier. From 23:00 to 06:00, prices double.")
+                        if model.economy.isEmergencyPassAvailable(in: model.state.wallet, at: model.now) {
+                            Text("Today's emergency pass is still yours: \(model.economy.configuration.friction.emergencyPassMinutes) min, free.")
+                        } else {
+                            Text("Today's emergency pass is used. It's back tomorrow.")
+                        }
                     }
+                    .font(PofuFont.callout)
+                    .foregroundStyle(PofuColor.textSecondary)
                 } header: {
                     Text("How passes work")
+                        .pofuSectionHeader()
                 }
-                .font(PofuFont.callout)
-                .foregroundStyle(PofuColor.textSecondary)
                 .listRowBackground(PofuColor.card)
             }
-            .scrollContentBackground(.hidden)
-            .background(PofuColor.sunken)
             .navigationTitle(Text("Passes"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") { dismiss() }
-                }
-            }
+            .pofuSheetChrome()
             .sensoryFeedback(.success, trigger: ended)
         }
     }

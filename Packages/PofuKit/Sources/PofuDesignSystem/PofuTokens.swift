@@ -121,6 +121,47 @@ public struct PofuCardStyle: ViewModifier {
     }
 }
 
+/// A bottom action bar: an opaque surface with a hairline top edge, so
+/// content scrolling under it never shows through or collides with the
+/// actions. The surface extends under the home indicator.
+public struct PofuFooterBar<Bar: View>: ViewModifier {
+    let surface: Color
+    let bar: Bar
+
+    @Environment(\.displayScale) private var displayScale
+
+    public init(surface: Color, bar: Bar) {
+        self.surface = surface
+        self.bar = bar
+    }
+
+    public func body(content: Content) -> some View {
+        content.safeAreaInset(edge: .bottom, spacing: 0) {
+            bar
+                .padding(.horizontal, PofuSpacing.screen)
+                .padding(.top, PofuSpacing.m)
+                .padding(.bottom, PofuSpacing.s)
+                .frame(maxWidth: .infinity)
+                .background {
+                    surface
+                        .ignoresSafeArea(edges: .bottom)
+                        .overlay(alignment: .top) {
+                            Rectangle()
+                                .fill(PofuColor.hairline)
+                                .frame(height: 1 / max(displayScale, 1))
+                        }
+                }
+        }
+    }
+}
+
+extension View {
+    /// Pins `bar` to the bottom on an opaque `surface` with a hairline edge.
+    public func pofuFooter<Bar: View>(surface: Color = PofuColor.canvas, @ViewBuilder _ bar: () -> Bar) -> some View {
+        modifier(PofuFooterBar(surface: surface, bar: bar()))
+    }
+}
+
 extension View {
     /// Wraps the view in Pofu's standard card.
     public func pofuCard() -> some View {
