@@ -89,10 +89,34 @@ Stop after the eight and wait for the lead's review; `cay-3` to `cay-5`
 and `garden-2` are not part of the test. Batch 02 stays `status: blocked`
 until the friends beta.
 
-**Generation runs only in the Codex CLI on the founder's Mac**, signed in
-with his ChatGPT plan. A Codex cloud task cannot use his local sign-in,
-Keychain, or files: in the cloud, edit manifests or docs only, and say so
-in the PR.
+**Codex cloud is the default operator** (the founder works from his
+phone; the Mac is optional). Codex runs under his own ChatGPT plan either
+way. In a cloud task, one round per task:
+
+1. Install the tools: `pip install -r tools/imagegen/requirements.txt`. If
+   that fails, stop and ask the founder to add it to the Codex
+   environment's setup script (setup runs with internet access).
+2. For each job of the round, print the exact prompt and attachments with
+   `python3 -I tools/imagegen/run.py prompt --manifest <manifest> --job <id>`,
+   and generate the takes (the job's `variants`) with **your built-in image
+   generation tool**, attaching the listed reference images. If you have no
+   image tool in this environment, stop and say so in a PR comment.
+3. Save each take as a PNG and add it with
+   `run.py ingest --manifest <manifest> --job <id> --source codex-cloud <files>`
+   (the account comes from `config.yaml`).
+4. Run `run.py post --manifest <manifest> --only <round's jobs>` for the
+   style lock, QA and the contact sheet.
+5. The container is not kept, and raw takes are git-ignored. So also
+   commit every take of the round as **lossless WebP** in
+   `design/art/takes/<batch>/` (the pipeline's file names, `.webp`), next to
+   the review file and the small contact sheet. Open the `art/<batch>` PR
+   and stop.
+6. The founder answers in Turkish with the take he wants per job. In the
+   next task, restore the picked takes from `design/art/takes/<batch>/`
+   into the inbox (as PNG), run `promote`, and push to the same PR.
+
+On the Mac, the `codex` backend (`run.py run --backend codex`) does steps
+2 to 4 by itself.
 
 When a batch opens, do the [first-run checklist](docs/design/art-pipeline.md#first-run-checklist)
 once, with the founder.

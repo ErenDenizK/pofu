@@ -49,7 +49,7 @@ before this rule; they are references, never masters.
 | Who | Does | Where |
 |---|---|---|
 | **Lead** (Claude, cloud) | Writes and corrects manifests and prompt blocks, tunes thresholds, reviews art PRs, merges | `tools/imagegen/`, docs |
-| **Local operator** (OpenAI Codex CLI on the founder's Mac, in its own clone; or the local Claude session) | Runs `plan`, `run`, `post`, shows the contact sheet to the founder, records his picks, runs `promote`, opens the `art/<batch>` PR | The Mac, with the founder's account |
+| **Operator** (OpenAI Codex: a cloud task by default, following `AGENTS.md`; or the Codex CLI on the founder's Mac, in its own clone) | Runs `plan`, `run`, `post`, shows the contact sheet to the founder, records his picks, runs `promote`, opens the `art/<batch>` PR | The Mac, with the founder's account |
 | **Founder** | Chooses the account, signs in, picks one take per job (or none) in Turkish, approves the PR | Contact sheet, PR |
 
 Codex reads [`AGENTS.md`](../../AGENTS.md) at the repository root: it has
