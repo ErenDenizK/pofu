@@ -33,6 +33,15 @@ struct HomeView: View {
             }
         }
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: model.activeSession != nil || model.earningResult != nil)
+        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: model.canCollectQuietSeeds)
+        .sensoryFeedback(.success, trigger: model.quietCollections)
+        .task {
+            // Quiet time accrues while Pofu's room is on screen, too.
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(30))
+                model.tick()
+            }
+        }
         .sheet(item: $model.homeSheet) { sheet in
             switch sheet {
             case .earn:
@@ -86,27 +95,36 @@ struct HomeView: View {
         model.profile.protectedApps.isEmpty || model.profile.lastCheckIn.isEmpty
     }
 
+    /// What tapping the speech bubble does.
+    private enum BubbleAction {
+        case none
+        case setup
+        case collect
+    }
+
+    private var bubbleAction: BubbleAction {
+        if needsSetup || model.isAwaitingSignOfLife {
+            return .setup
+        }
+        return model.canCollectQuietSeeds ? .collect : .none
+    }
+
     private var pofu: some View {
         VStack(spacing: PofuSpacing.s) {
             Button {
-                if needsSetup {
-                    model.homeSheet = .setup
+                switch bubbleAction {
+                case .setup: model.homeSheet = .setup
+                case .collect: collect()
+                case .none: break
                 }
             } label: {
                 SpeechBubble {
-                    Text(
-                        PofuLines.home(
-                            skips: model.impulsesToday.resisted,
-                            attempts: model.impulsesToday.attempts,
-                            isBedtime: model.isBedtime,
-                            needsSetup: needsSetup
-                        )
-                    )
+                    bubbleText
                 }
             }
             .buttonStyle(.plain)
-            .disabled(!needsSetup)
-            .accessibilityAddTraits(needsSetup ? .isButton : [])
+            .disabled(bubbleAction == .none)
+            .accessibilityAddTraits(bubbleAction == .none ? [] : .isButton)
 
             ZStack(alignment: .bottom) {
                 Circle()
@@ -114,10 +132,69 @@ struct HomeView: View {
                     .frame(width: 280, height: 280)
                     .offset(y: 40)
                     .accessibilityHidden(true)
-                CompanionView(vitality: model.vitality, energy: model.cheekFill)
-                    .frame(maxWidth: 300)
-                    .accessibilityLabel(Text(companionLabel))
+                CompanionView(
+                    vitality: model.vitality,
+                    energy: model.cheekFill,
+                    celebrations: model.quietCollections,
+                    onTap: {
+                        if model.canCollectQuietSeeds {
+                            collect()
+                        }
+                    }
+                )
+                .frame(maxWidth: 300)
+                .accessibilityLabel(Text(companionLabel))
+                .accessibilityHint(model.canCollectQuietSeeds ? Text("Collects the seeds in my cheeks") : Text(verbatim: ""))
+
+                if model.canCollectQuietSeeds {
+                    CollectButton(seeds: model.state.quietTime.pending.units, action: collect)
+                        .offset(y: PofuSpacing.l)
+                        .transition(reduceMotion ? AnyTransition.opacity : AnyTransition.scale(scale: 0.6).combined(with: .opacity))
+                }
             }
+        }
+    }
+
+    /// Pofu's line: setup first, then held seeds, then the seeds quiet time
+    /// saved, then the day so far.
+    @ViewBuilder
+    private var bubbleText: some View {
+        if needsSetup {
+            Text(PofuLines.home(skips: 0, attempts: 0, isBedtime: false, needsSetup: true))
+        } else if model.isAwaitingSignOfLife {
+            VStack(spacing: PofuSpacing.xs) {
+                if model.state.quietTime.pending > .zero {
+                    Text("I'm holding \(model.state.quietTime.pending.units) seeds for you.")
+                }
+                Text("I haven't heard from your apps in a while. Check on my setup?")
+            }
+        } else if model.canCollectQuietSeeds {
+            let pending = model.pendingQuiet
+            VStack(spacing: PofuSpacing.xs) {
+                if pending.quietSeeds > .zero {
+                    Text("You stayed away for \(QuietFormat.awayTime(seeds: pending.quietSeeds, rules: model.economy.configuration.quietTime)).")
+                } else {
+                    Text("Not a single open all night.")
+                }
+                Text("I saved \((pending.quietSeeds + pending.sleepBonus).units) seeds in my cheeks.")
+            }
+        } else {
+            Text(
+                PofuLines.home(
+                    skips: model.impulsesToday.resisted,
+                    attempts: model.impulsesToday.attempts,
+                    isBedtime: model.isBedtime,
+                    needsSetup: false
+                )
+            )
+        }
+    }
+
+    /// Collects the quiet seeds: Pofu swallows the puff and hops, and the
+    /// pill counts up.
+    private func collect() {
+        withAnimation(PofuMotion.respecting(reduceMotion, PofuMotion.settle)) {
+            _ = model.collectQuietSeeds()
         }
     }
 
@@ -164,9 +241,13 @@ private struct TodayCard: View {
     var body: some View {
         let metrics = model.impulsesToday
         VStack(alignment: .leading, spacing: PofuSpacing.s) {
-            Text("Today")
-                .font(PofuFont.subheadline)
-                .foregroundStyle(PofuColor.textSecondary)
+            HStack(alignment: .firstTextBaseline) {
+                Text("Today")
+                    .font(PofuFont.subheadline)
+                    .foregroundStyle(PofuColor.textSecondary)
+                Spacer(minLength: PofuSpacing.s)
+                QuietStreak(model: model)
+            }
             if metrics.attempts == 0 {
                 Text("No reaches yet today.")
                     .font(PofuFont.title3)
@@ -195,5 +276,66 @@ private struct TodayCard: View {
         }
         .pofuCard()
         .accessibilityElement(children: .combine)
+    }
+}
+
+/// "Quiet for 1 hr, 40 min": time since the last open, ticking every
+/// minute. Hidden while a pass runs or when Pofu cannot vouch for the quiet.
+private struct QuietStreak: View {
+    let model: AppModel
+
+    var body: some View {
+        TimelineView(.everyMinute) { context in
+            if let stretch = model.quietStretch(at: context.date), stretch >= 60 {
+                Label {
+                    Text("Quiet for \(QuietFormat.stretch(stretch))")
+                } icon: {
+                    Image(systemName: "leaf")
+                }
+                .font(PofuFont.footnote.monospacedDigit())
+                .foregroundStyle(PofuColor.success)
+                .lineLimit(1)
+            }
+        }
+    }
+}
+
+/// The "Collect" affordance under Pofu when quiet time filled its cheeks.
+private struct CollectButton: View {
+    let seeds: Int
+    let action: @MainActor () -> Void
+
+    @ScaledMetric(relativeTo: .headline) private var glyphSize: CGFloat = 16
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: PofuSpacing.s) {
+                SeedIcon(size: glyphSize)
+                Text("Collect \(seeds) seeds")
+                    .font(PofuFont.headline)
+            }
+            .padding(.horizontal, PofuSpacing.m)
+            .frame(minHeight: PofuSize.minimumTouch)
+        }
+        .buttonStyle(.glass)
+        .tint(PofuColor.energyOnFill)
+    }
+}
+
+/// Durations for quiet time, in the app's language.
+enum QuietFormat {
+    /// The quiet time behind `seeds` quiet-block seeds: "2 hours".
+    static func awayTime(seeds: Energy, rules: QuietTimeRules) -> String {
+        let blocks = max(0, seeds.units / max(1, rules.seedsPerBlock.units))
+        let seconds = blocks * max(0, rules.blockMinutes) * 60
+        return Duration.seconds(seconds)
+            .formatted(.units(allowed: [.days, .hours, .minutes], width: .wide, maximumUnitCount: 2).locale(AppLanguage.locale))
+    }
+
+    /// The current stretch, compact and in whole minutes: "1 hr, 40 min".
+    static func stretch(_ interval: TimeInterval) -> String {
+        let minutes = Int(max(0, interval) / 60)
+        return Duration.seconds(minutes * 60)
+            .formatted(.units(allowed: [.days, .hours, .minutes], width: .abbreviated, maximumUnitCount: 2).locale(AppLanguage.locale))
     }
 }
