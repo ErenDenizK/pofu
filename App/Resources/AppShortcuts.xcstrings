@@ -1,0 +1,26 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Ask ${applicationName} to hop in for ${app}" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${applicationName}, ${app} için araya girsin"
+          }
+        }
+      }
+    },
+    "Hop in with ${applicationName}" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${applicationName} ile Hop in"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -1,147 +1,97 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%lld minutes for %lld energy" : {
+    "%@ pass running" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$lld dakika, %2$lld enerji"
+            "value" : "%@ izni açık"
           }
         }
       }
     },
-    "Connect" : {
+    "%@ · %@ reach this hour" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bağlan"
+            "value" : "%1$@ · son bir saatte %2$@ kez"
           }
         }
       }
     },
-    "energy" : {
+    "%@ · %lld min" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "enerji"
+            "value" : "%1$@ · %2$lld dk"
           }
         }
       }
     },
-    "Engineering preview" : {
+    "%@ · %lld min pass" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geliştirici ön izlemesi"
+            "value" : "%1$@ · %2$lld dk izin"
           }
         }
       }
     },
-    "Every day starts with %lld energy on the house." : {
+    "%lld in my cheeks · %lld after" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Her gün %lld enerji bizden."
+            "value" : "Yanaklarımda %1$lld · sonra %2$lld"
           }
         }
       }
     },
-    "Log a 20-minute walk" : {
+    "%lld min" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "20 dakikalık yürüyüş ekle"
+            "value" : "%lld dk"
           }
         }
       }
     },
-    "Next unlock" : {
+    "%lld minutes" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sıradaki açılış"
+            "value" : "%lld dakika"
           }
         }
       }
     },
-    "Night pricing is on until morning." : {
+    "%lld minutes ≈ %lld seeds" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sabaha kadar gece tarifesi geçerli."
+            "value" : "%1$lld dakika ≈ %2$lld çekirdek"
           }
         }
       }
     },
-    "Pofu's home is still being built. The numbers above already run on the real economy engine." : {
+    "%lld of %lld skipped" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pofu'nun evi hâlâ yapılıyor. Yukarıdaki sayılar şimdiden gerçek ekonomi motoruyla çalışıyor."
+            "value" : "%2$lld açma isteği, %1$lld vazgeçiş"
           }
         }
       }
     },
-    "Screen Time" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ekran Süresi"
-          }
-        }
-      }
-    },
-    "Simulated, access declined" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Simülasyon, izin verilmedi"
-          }
-        }
-      }
-    },
-    "Simulated, connected" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Simülasyon, bağlı"
-          }
-        }
-      }
-    },
-    "Simulated, not connected yet" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Simülasyon, henüz bağlı değil"
-          }
-        }
-      }
-    },
-    "Today's balance" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bugünkü bakiye"
-          }
-        }
-      }
-    },
-    "You resisted %lld times today." : {
+    "%lld seeds didn't fit under today's honor cap." : {
       "localizations" : {
         "en" : {
           "variations" : {
@@ -149,13 +99,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "You resisted once today."
+                  "value" : "%lld seed didn't fit under today's honor cap."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "You resisted %lld times today."
+                  "value" : "%lld seeds didn't fit under today's honor cap."
                 }
               }
             }
@@ -164,7 +114,1623 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bugün %lld kez direndin."
+            "value" : "%lld çekirdek bugünkü güven sınırına sığmadı."
+          }
+        }
+      }
+    },
+    "%lld seeds in my cheeks" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld seed in my cheeks"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld seeds in my cheeks"
+                }
+              }
+            }
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yanaklarımda %lld çekirdek"
+          }
+        }
+      }
+    },
+    "%lld skips today. I'm getting so fluffy." : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld skip today. I'm getting fluffier."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld skips today. I'm getting so fluffy."
+                }
+              }
+            }
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugün %lld kez vazgeçtin. Kabardıkça kabarıyorum."
+          }
+        }
+      }
+    },
+    "+%lld" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%lld"
+          }
+        }
+      }
+    },
+    "+%lld seeds so far" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "+%lld seed so far"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "+%lld seeds so far"
+                }
+              }
+            }
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şimdiye kadar +%lld çekirdek"
+          }
+        }
+      }
+    },
+    "About a minute per app, once." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Her uygulama için bir dakika, bir kere."
+          }
+        }
+      }
+    },
+    "Another app" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Başka bir uygulama"
+          }
+        }
+      }
+    },
+    "App" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulama"
+          }
+        }
+      }
+    },
+    "Asking a friend is coming soon." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arkadaşa sormak çok yakında."
+          }
+        }
+      }
+    },
+    "Back to my room" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odama dön"
+          }
+        }
+      }
+    },
+    "Bored is allowed. Be bored with me for a minute?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sıkılmak serbest. Bir dakika benimle sıkılır mısın?"
+          }
+        }
+      }
+    },
+    "Breathe in…" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nefes al…"
+          }
+        }
+      }
+    },
+    "Check that the automation is on, that it says Run Immediately (not Run After Confirmation), and that the Hop in action has the same app as the trigger." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otomasyonun açık olduğuna, Hemen Çalıştır'ın seçili olduğuna (Onaydan Sonra Çalıştır değil) ve Hop in eyleminde tetikleyicideki uygulamanın seçili olduğuna bak."
+          }
+        }
+      }
+    },
+    "Chores" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ev işi"
+          }
+        }
+      }
+    },
+    "Close" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapat"
+          }
+        }
+      }
+    },
+    "content" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "keyifli"
+          }
+        }
+      }
+    },
+    "Continue" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Devam"
+          }
+        }
+      }
+    },
+    "Creative" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Üretmek"
+          }
+        }
+      }
+    },
+    "Custom" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Özel"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamam"
+          }
+        }
+      }
+    },
+    "Each window costs 1 seed a minute. Every pass bought in the last 3 hours makes the next one a quarter pricier. From 23:00 to 06:00, prices double." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Her dakika 1 çekirdek. Son 3 saatte aldığın her izin, sonrakini dörtte bir pahalılaştırır. 23.00 ile 06.00 arasında fiyatlar iki katı."
+          }
+        }
+      }
+    },
+    "Emergency: open for %lld min, free" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acil durum: %lld dakikalığına aç, ücretsiz"
+          }
+        }
+      }
+    },
+    "End and keep my seeds" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitir, çekirdeklerim kalsın"
+          }
+        }
+      }
+    },
+    "End early" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erken bitir"
+          }
+        }
+      }
+    },
+    "End now" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şimdi bitir"
+          }
+        }
+      }
+    },
+    "End now · +%lld" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şimdi bitir · +%lld"
+          }
+        }
+      }
+    },
+    "End now? You keep %lld seeds." : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "End now? You keep %lld seed."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "End now? You keep %lld seeds."
+                }
+              }
+            }
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şimdi bitirelim mi? %lld çekirdek senin."
+          }
+        }
+      }
+    },
+    "Ending a pass early gives back every unused whole minute at the price you paid." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzni erken bitirirsen kullanmadığın her tam dakika, ödediğin fiyattan geri gelir."
+          }
+        }
+      }
+    },
+    "Enjoy. See you in %lld min." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keyfini çıkar. %lld dakika sonra görüşürüz."
+          }
+        }
+      }
+    },
+    "Every reach is a fresh chance. The next one's ours." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Her açma isteği yeni bir şans. Sıradaki bizim."
+          }
+        }
+      }
+    },
+    "Everything stays on this iPhone." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Her şey bu iPhone'da kalır."
+          }
+        }
+      }
+    },
+    "Facebook" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Facebook"
+          }
+        }
+      }
+    },
+    "Fair. Want a better break? A minute outside?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haklısın. Daha iyi bir mola? Bir dakika dışarı?"
+          }
+        }
+      }
+    },
+    "Fill my cheeks" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yanaklarımı doldur"
+          }
+        }
+      }
+    },
+    "Find it and come back to me." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bul ve bana dön."
+          }
+        }
+      }
+    },
+    "Focus" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odak"
+          }
+        }
+      }
+    },
+    "Focusing with you" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seninle odaklanıyorum"
+          }
+        }
+      }
+    },
+    "Free again in %lld min." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld dakika sonra yine ücretsiz."
+          }
+        }
+      }
+    },
+    "Go ahead and open it. Your pass is running." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hadi, aç bakalım. İznin başladı."
+          }
+        }
+      }
+    },
+    "Go reply. I'll keep it short for you." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Git cevapla. Kısa tutarız."
+          }
+        }
+      }
+    },
+    "Goal: half. You're at %@." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hedef: yarısı. Şu an %@."
+          }
+        }
+      }
+    },
+    "Goodnight, %@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İyi geceler, %@"
+          }
+        }
+      }
+    },
+    "Goodnight. See you in the morning." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İyi geceler. Sabah görüşürüz."
+          }
+        }
+      }
+    },
+    "Guarded apps" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koruduğum uygulamalar"
+          }
+        }
+      }
+    },
+    "Hi, I'm Pofu." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selam, ben Pofu."
+          }
+        }
+      }
+    },
+    "Hi, Pofu" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selam, Pofu"
+          }
+        }
+      }
+    },
+    "Honor system: I trust you. Lock your phone and come back when the timer is done." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Güven sistemi: Sana güveniyorum. Telefonu kilitle, süre bitince gel."
+          }
+        }
+      }
+    },
+    "Hop in" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hop in"
+          }
+        }
+      }
+    },
+    "Hop in for ${app}" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${app} için Hop in"
+          }
+        }
+      }
+    },
+    "How long?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne kadar?"
+          }
+        }
+      }
+    },
+    "How passes work" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzinler nasıl işler"
+          }
+        }
+      }
+    },
+    "I couldn't open %@. Is it still installed?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ açamadım. Hâlâ yüklü mü?"
+          }
+        }
+      }
+    },
+    "I couldn't save my last change. Free up some space?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Son değişikliği kaydedemedim. Biraz yer açar mısın?"
+          }
+        }
+      }
+    },
+    "I'll do it later" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonra yaparım"
+          }
+        }
+      }
+    },
+    "I'm a hamster who gets fluffier every time you pick real life over the feed." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akış yerine hayatı seçtiğin her an biraz daha kabaran bir hamsterım."
+          }
+        }
+      }
+    },
+    "I'm not at any door yet. One minute to set me up?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Henüz hiçbir kapıda değilim. Beni bir dakikada kuralım mı?"
+          }
+        }
+      }
+    },
+    "If I don't show up" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ben çıkmazsam"
+          }
+        }
+      }
+    },
+    "in my cheeks" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "yanaklarımda"
+          }
+        }
+      }
+    },
+    "Instagram" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instagram"
+          }
+        }
+      }
+    },
+    "iPhone only lets me appear if you invite me in the Shortcuts app. Make one automation for each app you want me at." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone, beni ancak sen Kestirmeler'den davet edersen gösteriyor. Kapısında durmamı istediğin her uygulama için bir otomasyon yap."
+          }
+        }
+      }
+    },
+    "It works. I last hopped in at %@." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çalışıyor. En son %@ saatinde araya girdim."
+          }
+        }
+      }
+    },
+    "Just bored" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sıkıldım"
+          }
+        }
+      }
+    },
+    "Keep going" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Devam et"
+          }
+        }
+      }
+    },
+    "Lock your phone. I'll be here when you're back." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telefonu kilitle. Döndüğünde buradayım."
+          }
+        }
+      }
+    },
+    "Look at you. I feel fluffier already." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bak sen şuna. Şimdiden kabardım."
+          }
+        }
+      }
+    },
+    "Look something up" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir şeye bakacağım"
+          }
+        }
+      }
+    },
+    "My cheeks are empty." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yanaklarım bomboş."
+          }
+        }
+      }
+    },
+    "My cheeks can't fit more honor seeds today." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugün güven çekirdeğine yanaklarımda yer kalmadı."
+          }
+        }
+      }
+    },
+    "Name" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İsim"
+          }
+        }
+      }
+    },
+    "need %lld more" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld eksik"
+          }
+        }
+      }
+    },
+    "Need a break" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mola lazım"
+          }
+        }
+      }
+    },
+    "Night prices until 06:00" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "06.00'ya kadar gece fiyatı"
+          }
+        }
+      }
+    },
+    "No passes running. Every app is guarded." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Açık izin yok. Bütün uygulamalar korumada."
+          }
+        }
+      }
+    },
+    "No reaches yet today." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugün henüz açma isteği yok."
+          }
+        }
+      }
+    },
+    "Nom. My cheeks are full of good minutes." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hamm. Yanaklarım güzel dakikalarla doldu."
+          }
+        }
+      }
+    },
+    "Not set up yet" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Henüz kurulmadı"
+          }
+        }
+      }
+    },
+    "Not working yet. After you set it up, test it once." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Henüz çalışmıyor. Kurduktan sonra bir kere dene."
+          }
+        }
+      }
+    },
+    "Once a day, for when you really need the app." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Günde bir kere, uygulamaya gerçekten ihtiyacın olduğunda."
+          }
+        }
+      }
+    },
+    "One breath first." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Önce bir nefes."
+          }
+        }
+      }
+    },
+    "Ooh. That was a good one." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oh, bu iyiydi."
+          }
+        }
+      }
+    },
+    "Open for %lld min" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld dakikalığına aç"
+          }
+        }
+      }
+    },
+    "Open Shortcuts" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kestirmeler'i aç"
+          }
+        }
+      }
+    },
+    "Open Shortcuts and tap **Automation** at the bottom." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Kestirmeler**'i aç ve alttaki **Otomasyon**'a dokun."
+          }
+        }
+      }
+    },
+    "Or earn seeds with a focus" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ya da odaklanıp çekirdek kazan"
+          }
+        }
+      }
+    },
+    "Pass ended. %lld seeds came back." : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Pass ended. %lld seed came back."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Pass ended. %lld seeds came back."
+                }
+              }
+            }
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzin bitti. %lld çekirdek geri geldi."
+          }
+        }
+      }
+    },
+    "Pass ended. The app is guarded again." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzin bitti. Uygulama yine korumada."
+          }
+        }
+      }
+    },
+    "Passes" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzinler"
+          }
+        }
+      }
+    },
+    "Pick **Run Immediately** and turn **Notify When Run** off. Tap **Next**." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Hemen Çalıştır**'ı seç, **Çalıştığında Bildir**'i kapat. **Sonraki**'ne dokun."
+          }
+        }
+      }
+    },
+    "Pofu" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pofu"
+          }
+        }
+      }
+    },
+    "Pofu hops in before the app opens. Add it to an automation that runs when the app is opened, and pick that same app here." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pofu, uygulama açılmadan araya girer. Uygulama açıldığında çalışan bir otomasyona ekle ve burada aynı uygulamayı seç."
+          }
+        }
+      }
+    },
+    "Post it, don't scroll it." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylaş, kaydırma."
+          }
+        }
+      }
+    },
+    "Post something" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylaşım yapacağım"
+          }
+        }
+      }
+    },
+    "Privacy" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gizlilik"
+          }
+        }
+      }
+    },
+    "Pure habit" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alışkanlık işte"
+          }
+        }
+      }
+    },
+    "Quiet so far. I like it here." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şimdilik sessiz. Burası hoşuma gidiyor."
+          }
+        }
+      }
+    },
+    "Reddit" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reddit"
+          }
+        }
+      }
+    },
+    "Reply to someone" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mesaja cevap"
+          }
+        }
+      }
+    },
+    "Running now" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şu an açık"
+          }
+        }
+      }
+    },
+    "Scroll down and tap **App**." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aşağı kaydır ve **Uygulama**'ya dokun."
+          }
+        }
+      }
+    },
+    "Set up automations" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otomasyonları kur"
+          }
+        }
+      }
+    },
+    "Set up Hop!" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hop! kurulumu"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlar"
+          }
+        }
+      }
+    },
+    "Shh, it's late." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şşş, geç oldu."
+          }
+        }
+      }
+    },
+    "Shh. I'm sleeping. You could too." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şşş. Uyuyorum. Sen de uyuyabilirsin."
+          }
+        }
+      }
+    },
+    "Skip it" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vazgeç"
+          }
+        }
+      }
+    },
+    "Skipped." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vazgeçtin."
+          }
+        }
+      }
+    },
+    "Snapchat" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snapchat"
+          }
+        }
+      }
+    },
+    "Soon a friend you trust can say yes to a few minutes for you." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yakında güvendiğin bir arkadaşın sana birkaç dakikalık izin verebilecek."
+          }
+        }
+      }
+    },
+    "Spend %lld seeds for %lld min" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld çekirdeğe %2$lld dk al"
+          }
+        }
+      }
+    },
+    "Start" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Başla"
+          }
+        }
+      }
+    },
+    "Start a focus" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odaklanmaya başla"
+          }
+        }
+      }
+    },
+    "Study" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ders"
+          }
+        }
+      }
+    },
+    "Swipe up when you're ready." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hazır olunca yukarı kaydır."
+          }
+        }
+      }
+    },
+    "Swiping away counts as skipping." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaydırıp çıkmak da vazgeçmek sayılır."
+          }
+        }
+      }
+    },
+    "Tap **+** (or **New Automation**)." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**+**'ya (ya da **Yeni Otomasyon**'a) dokun."
+          }
+        }
+      }
+    },
+    "Tap **App** in the action and pick **%@**. Tap **Done**, then come back to me." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eylemdeki **Uygulama** alanında **%@** seçili olsun. **Bitti**'ye dokun, sonra bana dön."
+          }
+        }
+      }
+    },
+    "Tap **Choose**, pick **%@**, then **Done**. Keep **Is Opened** selected." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Seç**'e dokun, **%@** uygulamasını işaretle, sonra **Bitti**'ye dokun. **Açıldığında** seçili kalsın."
+          }
+        }
+      }
+    },
+    "Tap **New Blank Automation**, then **Add Action**. Search **Pofu** and tap **Hop in**." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Yeni Boş Otomasyon**'a, sonra **Eylem Ekle**'ye dokun. **Pofu** diye ara ve **Hop in**'e dokun."
+          }
+        }
+      }
+    },
+    "Test it: open %@" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dene: %@ aç"
+          }
+        }
+      }
+    },
+    "Thanks for being honest. That's the hard part." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dürüstlüğün için sağ ol. Zor kısım buydu."
+          }
+        }
+      }
+    },
+    "That's %lld today." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugün %lld oldu."
+          }
+        }
+      }
+    },
+    "That's me" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu benim"
+          }
+        }
+      }
+    },
+    "The app this automation guards." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu otomasyonun koruduğu uygulama."
+          }
+        }
+      }
+    },
+    "The feed will still be there tomorrow. I promise." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akış yarın da orada olacak. Söz."
+          }
+        }
+      }
+    },
+    "The wheel can spin without us." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çark bizsiz de döner."
+          }
+        }
+      }
+    },
+    "This one costs seeds." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu sefer çekirdek lazım."
+          }
+        }
+      }
+    },
+    "thriving" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "çok mutlu"
+          }
+        }
+      }
+    },
+    "TikTok" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TikTok"
+          }
+        }
+      }
+    },
+    "Time left" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalan süre"
+          }
+        }
+      }
+    },
+    "tired" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "yorgun"
+          }
+        }
+      }
+    },
+    "Today" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugün"
+          }
+        }
+      }
+    },
+    "Today's emergency pass is still yours: %lld min, free." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugünkü acil iznin duruyor: %lld dakika, ücretsiz."
+          }
+        }
+      }
+    },
+    "Today's emergency pass is used. It's back tomorrow." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugünkü acil iznini kullandın. Yarın yine burada."
+          }
+        }
+      }
+    },
+    "Too short to count, but I saw that." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saymaya yetmedi ama gördüm."
+          }
+        }
+      }
+    },
+    "Turning an app off here doesn't remove its automation. Delete it in Shortcuts if you want me gone from that door." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir uygulamayı burada kapatmak otomasyonunu silmez. O kapıdan gitmemi istersen otomasyonu Kestirmeler'den sil."
+          }
+        }
+      }
+    },
+    "Walk" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yürüyüş"
+          }
+        }
+      }
+    },
+    "We'll set them up one at a time, starting with your first pick. You can change these any time." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İlk seçtiğinden başlayıp hepsini tek tek kuracağız. Sonra da değiştirebilirsin."
+          }
+        }
+      }
+    },
+    "We're focusing. %lld minutes left." : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "We're focusing. %lld minute left."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "We're focusing. %lld minutes left."
+                }
+              }
+            }
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odaktayız. %lld dakika kaldı."
+          }
+        }
+      }
+    },
+    "What are we doing?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne yapıyoruz?"
+          }
+        }
+      }
+    },
+    "What should we call me?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bana ne diyelim?"
+          }
+        }
+      }
+    },
+    "What's this one for?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu seferki ne için?"
+          }
+        }
+      }
+    },
+    "Which ones pull you in?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seni en çok hangileri içine çekiyor?"
+          }
+        }
+      }
+    },
+    "wilting" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "solgun"
+          }
+        }
+      }
+    },
+    "Working" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çalışıyor"
+          }
+        }
+      }
+    },
+    "Workout" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spor"
+          }
+        }
+      }
+    },
+    "X" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "X"
+          }
+        }
+      }
+    },
+    "You bought a pass in the last 3 hours, so prices are up a bit." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Son 3 saatte izin aldın, fiyatlar biraz arttı."
+          }
+        }
+      }
+    },
+    "Your %lld seeds are back in my cheeks." : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Your %lld seed is back in my cheeks."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Your %lld seeds are back in my cheeks."
+                }
+              }
+            }
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld çekirdeğin yanaklarıma geri döndü."
+          }
+        }
+      }
+    },
+    "YouTube" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "YouTube"
+          }
+        }
+      }
+    },
+    "…and out." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "…ve ver."
           }
         }
       }
