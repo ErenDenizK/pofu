@@ -40,7 +40,8 @@ the project's persistent memory; keep it accurate and concise.
 
 ## Current state
 
-- Product name: **Pofu** (ADR-0007). The repository is still named `rot`.
+- Product name: **Pofu** (ADR-0007). The repository is `ErenDenizK/pofu`
+  (renamed from `rot`; GitHub redirects the old URLs).
 - Phase 1 in progress. The soft gate v1 is merged (#14): `CheckInIntent`,
   the Hop! flow, Pofu's room, persistence, and minimal onboarding. It is
   **not yet validated on a device**; the founder's first on-device test is
