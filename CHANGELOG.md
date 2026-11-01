@@ -63,6 +63,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   areas and a touch-scrollable demo drawer, the archipelago map, İskele,
   the breathing break, quick checks, and an automated phone and desktop
   check (`design/prototypes/island-game/tools/check-mobile.js`).
+- Design review 01 ([review-01.md](docs/design/review-01.md)): three
+  radically different alternatives each for proportion and framing, the
+  UI language over the world, and choreography, with a measured spec, a
+  timing spec, and a combined recommendation; a mobile-first animated
+  review page in Turkish (`design/prototypes/review-01/`).
 
 ### Fixed
 
@@ -89,6 +94,10 @@ Polish from the first simulator run
 
 ### Changed
 
+- Breathing break v2 (founder decision): the user starts the breath with
+  one tap ("Breathe with Pofu"); 5 seconds, 10 from the 4th over-limit
+  open of the day, never more (ADR-0015 amendment, game design, the
+  simulation, and the island prototype).
 - The repository is `ErenDenizK/pofu`; docs link there. The development
   guide covers the Metal Toolchain download and the simulator-only App
   Shortcut limitation.
