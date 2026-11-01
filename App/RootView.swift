@@ -35,6 +35,9 @@ struct RootView: View {
             switch phase {
             case .active:
                 model.refresh()
+                // Tapping the shield's "Talk to Pofu" notification lands
+                // here: Hop! picks up the app the user reached for.
+                model.answerShieldRequest()
             case .background:
                 model.leftForeground()
                 // Swiping home from Hop! counts as skipping (ADR-0008).
