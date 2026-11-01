@@ -30,6 +30,16 @@ public enum PofuEvent: Hashable, Sendable, Codable {
     /// The user collected the seeds quiet time put in Pofu's cheeks
     /// (ADR-0014).
     case quietSeedsCollected(quietSeeds: Energy, sleepBonus: Energy)
+    /// The user tapped "Skip it" on the Screen Time shield.
+    case shieldResisted(target: TargetGroupID)
+    /// The user tapped "Talk to Pofu" on the Screen Time shield.
+    case shieldOpenRequested(target: TargetGroupID)
+    /// A pass lifted the shield from `target` until the pass ends.
+    case shieldLifted(passID: UUID, target: TargetGroupID)
+    /// The shield came back after the pass `passID`.
+    case shieldRestored(passID: UUID)
+    /// DeviceActivity measured at least `minutes` of guarded use today.
+    case guardedUsageMeasured(minutes: Int)
 }
 
 /// One entry of the event log.
