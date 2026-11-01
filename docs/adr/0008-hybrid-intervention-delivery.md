@@ -2,7 +2,8 @@
 
 - **Status:** Accepted
 - **Date:** 2026-10-31
-- **Amended by:** [0013](0013-zero-setup-default-gate.md) (Screen Time is the zero-setup default; Shortcuts is an opt-in enhancement)
+- **Amended by:** [0015](0015-care-over-currency.md) (the cost rung becomes care and, past the daily threshold, a breathing break)
+- **Also amended by:** [0013](0013-zero-setup-default-gate.md) (Screen Time is the zero-setup default; Shortcuts is an opt-in enhancement)
 
 ## Context
 

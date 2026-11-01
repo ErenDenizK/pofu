@@ -2,6 +2,7 @@
 
 - **Status:** Accepted
 - **Date:** 2026-11-01
+- **Amended by:** [0015](0015-care-over-currency.md) (decision 3: seeds no longer buy passes, skips earn a few capped seeds, refunds go away; decisions 1 and 5 are amended by [0016](0016-pre-planned-idle-archipelago.md))
 
 ## Context
 
