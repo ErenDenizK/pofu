@@ -68,6 +68,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   UI language over the world, and choreography, with a measured spec, a
   timing spec, and a combined recommendation; a mobile-first animated
   review page in Turkish (`design/prototypes/review-01/`).
+- ADR-0018, visual system v1: the balanced diorama, Glass++ (native glass
+  with painted domain icons, vector twins, the seed jar and the calm
+  lantern, painted widgets, a layered app icon), and the continuous camera;
+  matching design language amendments.
+- Iteration plan ([iteration-plan.md](docs/design/iteration-plan.md)): the
+  path from prototype to launch in twelve checkable micro-iterations.
 
 ### Fixed
 
