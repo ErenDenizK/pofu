@@ -1,3 +1,4 @@
+import PofuCompanion
 import PofuCore
 import PofuDesignSystem
 import SwiftUI

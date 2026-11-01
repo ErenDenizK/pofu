@@ -81,7 +81,7 @@ final class AppModel {
     static func makeStore() -> PofuStore {
         let location = StorageLocation.resolve()
         if location.kind == .appGroup {
-            try? location.migrateIfNeeded(from: .applicationSupport())
+            _ = try? location.migrateIfNeeded(from: .applicationSupport())
         }
         return PofuStore(location: location)
     }
