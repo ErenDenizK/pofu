@@ -138,16 +138,16 @@ public final class LiveScreenTimeService: ScreenTimeService {
         var state = loadState()
         state.pruneLifts(at: date)
         state.lifts.removeAll { $0.passID == passID }
-        state.lifts.append(ShieldLift(passID: passID, app: app, from: date, until: until))
+        state.lifts.append(ShieldLift(passID: passID, app: app, from: date, until: until, origin: .hop))
         try save(state)
         LiveShieldEnforcer.apply(state, at: date)
-        scheduleRestore(passID: passID, liftingAt: date, until: until)
+        LiveShieldEnforcer.scheduleRestore(passID: passID, liftingAt: date, until: until, calendar: calendar)
     }
 
     public func restoreShields(passID: UUID) {
         var state = loadState()
         guard state.lifts.contains(where: { $0.passID == passID }) else { return }
-        state.lifts.removeAll { $0.passID == passID }
+        state.endLift(passID, at: Date())
         try? save(state)
         LiveShieldEnforcer.apply(state, at: Date())
         DeviceActivityCenter().stopMonitoring([LiveShieldEnforcer.activityName(forPass: passID)])
@@ -223,6 +223,19 @@ public final class LiveScreenTimeService: ScreenTimeService {
         loadState().thresholds.sorted { $0.id.rawValue < $1.id.rawValue }
     }
 
+    /// Stops every usage threshold whose name starts with `prefix`, also
+    /// ones a ladder for another daily hour scheduled.
+    public func cancelThresholds(withPrefix prefix: String) {
+        let center = DeviceActivityCenter()
+        let names = center.activities.filter { $0.rawValue.hasPrefix(prefix) }
+        if !names.isEmpty {
+            center.stopMonitoring(names)
+        }
+        var state = loadState()
+        state.thresholds.removeAll { $0.id.rawValue.hasPrefix(prefix) }
+        try? save(state)
+    }
+
     // MARK: - Events
 
     /// Authorization changes the app sees. Shield and monitor events reach
@@ -258,23 +271,6 @@ public final class LiveScreenTimeService: ScreenTimeService {
         }
     }
 
-    private func scheduleRestore(passID: UUID, liftingAt date: Date, until: Date) {
-        guard let plan = ShieldRestoreSchedule(liftingAt: date, until: until) else { return }
-        let components = plan.intervalComponents(in: calendar)
-        let schedule = DeviceActivitySchedule(
-            intervalStart: components.start,
-            intervalEnd: components.end,
-            repeats: false,
-            warningTime: plan.warningComponents
-        )
-        do {
-            try DeviceActivityCenter().startMonitoring(LiveShieldEnforcer.activityName(forPass: passID), during: schedule)
-        } catch {
-            // The app restores on its next foreground instead.
-            Self.log.error("Could not schedule the shield's return: \(error.localizedDescription, privacy: .public)")
-        }
-    }
-
     private static func dailySchedule(for window: DailyWindow?) -> DeviceActivitySchedule {
         guard let window, !window.isEmpty else {
             return DeviceActivitySchedule(
@@ -303,6 +299,8 @@ public final class LiveScreenTimeService: ScreenTimeService {
 /// Applies `LiveShieldState` to ManagedSettings. Shared by the app and the
 /// monitor extension, which calls `restoreAfterPass` when a pass ends.
 public enum LiveShieldEnforcer {
+    private static let log = Logger(subsystem: "com.erendenizk.pofu", category: "screentime")
+
     /// The DeviceActivity name of the monitor that ends pass `passID`.
     public static func activityName(forPass passID: UUID) -> DeviceActivityName {
         DeviceActivityName(rawValue: ScreenTimeNames.passActivity(passID))
@@ -337,6 +335,49 @@ public enum LiveShieldEnforcer {
         let state = LiveShieldState.file(in: location).read() ?? LiveShieldState()
         apply(state, at: date, excluding: passID)
         DeviceActivityCenter().stopMonitoring([activityName(forPass: passID)])
+    }
+
+    /// Schedules the DeviceActivity monitor that puts the shield back when
+    /// pass `passID` ends.
+    public static func scheduleRestore(passID: UUID, liftingAt date: Date, until: Date, calendar: Calendar) {
+        guard let plan = ShieldRestoreSchedule(liftingAt: date, until: until) else { return }
+        let components = plan.intervalComponents(in: calendar)
+        let schedule = DeviceActivitySchedule(
+            intervalStart: components.start,
+            intervalEnd: components.end,
+            repeats: false,
+            warningTime: plan.warningComponents
+        )
+        do {
+            try DeviceActivityCenter().startMonitoring(activityName(forPass: passID), during: schedule)
+        } catch {
+            // The app restores on its next foreground instead.
+            log.error("Could not schedule the shield's return: \(error.localizedDescription, privacy: .public)")
+        }
+    }
+
+    /// Lifts the shield from `app` for a quick check started on the shield
+    /// itself, from the action extension: the App Group state gains the
+    /// lift, the stores drop the app at once, and a monitor puts the
+    /// shield back at `until` (gate v2, section 5.5).
+    ///
+    /// - Throws: When the state cannot be written; nothing is lifted then.
+    public static func liftForQuickCheck(
+        _ app: ShieldedApp,
+        passID: UUID,
+        at date: Date,
+        until: Date,
+        location: StorageLocation,
+        calendar: Calendar
+    ) throws {
+        let file = LiveShieldState.file(in: location)
+        var state = file.read() ?? LiveShieldState()
+        state.pruneLifts(at: date)
+        state.lifts.removeAll { $0.passID == passID }
+        state.lifts.append(ShieldLift(passID: passID, app: app, from: date, until: until, origin: .shieldQuickCheck))
+        try file.write(state)
+        apply(state, at: date)
+        scheduleRestore(passID: passID, liftingAt: date, until: until, calendar: calendar)
     }
 
     /// Re-applies every shield from the App Group state, for example at
