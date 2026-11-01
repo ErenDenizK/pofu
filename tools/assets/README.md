@@ -34,11 +34,12 @@ in an inbox folder (`design/art/inbox/` is git-ignored for exactly this):
 | `sprite` | Props and stickers (seed, wheel, tea glass) | required | 512 px | 96 × 96 pt, trimmed, 6 % padding |
 | `badge` | Achievement medallions | required | 1024 px | 120 × 120 pt, trimmed, 3 % padding |
 | `scene` | Background plates | none | 1024 px | 440 pt wide, aspect kept; warns above 1× upscale at @3x, fails above 1.5× |
-| `icon` | App icon | must be opaque | 1024 px | `AppIcon.appiconset` (1024 × 1024); `--dark` and `--tinted` variants |
+| `icon` | Painted domain icon (ADR-0018) | required | 1024 px | 60 × 60 pt, trimmed, 4 % padding; legibility is checked by `tools/imagegen` QA |
+| `appicon` | App icon | must be opaque | 1024 px | `AppIcon.appiconset` (1024 × 1024); `--dark` and `--tinted` variants |
 
 Examples: `char__pofu-content.png`, `char__pofu-curious.png`,
 `badge__first-resist.png`, `scene__meadow-day.png`,
-`icon__app-icon--dark.png`. Files that do not match are skipped and listed.
+`appicon__app-icon--dark.png`. Files that do not match are skipped and listed.
 
 Override any value per kind with `--config overrides.json`, for example
 `{"char": {"point_size": [280, 280]}}`.

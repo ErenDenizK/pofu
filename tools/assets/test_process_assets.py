@@ -180,14 +180,14 @@ class ProcessTests(unittest.TestCase):
     def test_app_icon_must_be_opaque(self):
         opaque = Image.new("RGB", (1024, 1024), "#FEEEE6")
         opaque.paste(trimmed(keyed_hamster()).convert("RGB"), (250, 140))
-        opaque.save(self.inbox / "icon__app-icon.png")
+        opaque.save(self.inbox / "appicon__app-icon.png")
         self.assertEqual(self.run_process(), 0)
         contents = json.loads((self.catalog / "AppIcon.appiconset" / "Contents.json").read_text())
         self.assertEqual(contents["images"][0]["size"], "1024x1024")
         self.assertEqual(Image.open(self.catalog / "AppIcon.appiconset" / "AppIcon.png").mode, "RGB")
 
         see_through = Image.new("RGBA", (1024, 1024), (0, 0, 0, 0))
-        see_through.save(self.inbox / "icon__app-icon.png")
+        see_through.save(self.inbox / "appicon__app-icon.png")
         self.assertEqual(self.run_process(), 1)
 
     def test_scene_upscale_is_reported(self):

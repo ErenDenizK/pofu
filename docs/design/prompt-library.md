@@ -67,7 +67,7 @@ chat with the same prompt.
 | 2 | Turnaround: front, ¾, back | P1 | Plain | R1 | 1536 × 1024, transparent | `ref__pofu-turnaround.png` |
 | 3a–3f | Face edits of the base (6) | P0 | Plain | R1 | 1024 × 1536, transparent | `char__pofu-hamster-<variant>.png` |
 | 3g | Celebration sheet 3 × 2 | P0 | Plain | R1 | 1536 × 1024, transparent | `sheet__pofu-hamster-celebrate-3x2.png` |
-| 5a–5c | App icon, three directions | P0 | Logo | R1 | 1024², opaque | `icon__app-icon--<dir>.png` |
+| 5a–5c | App icon, three directions | P0 | Logo | R1 | 1024², opaque | `appicon__app-icon--<dir>.png` |
 | 6r | Pofu's room plate (Home) | P0 | İllüstrasyon | P-char, R1 (style only) | 1024 × 1536, opaque | `scene__room.png` |
 | 6 | Day meadow plate | P0 | İllüstrasyon | P-day, R1 (style only) | 1024 × 1536, opaque | `scene__meadow-day.png` |
 | 7 | Night plate (edit of 6) | P0 | Plain | Plate 6, P-night | 1024 × 1536 | `scene__meadow-night.png` |
@@ -337,9 +337,9 @@ Output: one image, opaque background (no transparency), PNG, 1024 x 1024.
 
 | Dir | Idea | Change line | Save as |
 |---|---|---|---|
-| 5a | **Close-up**: emotional, warm | `Direction A, "close-up": a tight close-up of Pofu's face filling most of the icon, from the cream curl at the top to the blush cheeks at the bottom, slightly cropped at the sides by the fluffy cheeks; big glossy eyes looking at the viewer with a soft smile. Background: a soft warm blush-peach gradient (#FDC1B0 to #FEEEE6).` | `icon__app-icon--a.png` |
-| 5b | **Violet field**: owns the accent, stands out on a home screen | `Direction B, "violet field": Pofu's whole round body, front view, happy, centered and filling about 62% of the icon width, glowing softly against a deep violet background with a gentle radial gradient from lilac (#B9A2FF) in the center to deep violet (#6C4FD8) at the edges. A soft warm rim light separates the cream fur from the violet.` | `icon__app-icon--b.png` |
-| 5c | **The mark**: graphic, scalable, ownable | `Direction C, "the mark": a flat, graphic, almost logo-like Pofu: the round fluffy silhouette simplified into a smooth circle with two small round ears and the single cream curl on top, cream (#FEF2E3) on a golden-peach (#ECA96E) background, with only two big glossy dark eyes, two blush dots and a tiny smile. Minimal painterly texture, no fur strands, bold and iconic.` | `icon__app-icon--c.png` |
+| 5a | **Close-up**: emotional, warm | `Direction A, "close-up": a tight close-up of Pofu's face filling most of the icon, from the cream curl at the top to the blush cheeks at the bottom, slightly cropped at the sides by the fluffy cheeks; big glossy eyes looking at the viewer with a soft smile. Background: a soft warm blush-peach gradient (#FDC1B0 to #FEEEE6).` | `appicon__app-icon--a.png` |
+| 5b | **Violet field**: owns the accent, stands out on a home screen | `Direction B, "violet field": Pofu's whole round body, front view, happy, centered and filling about 62% of the icon width, glowing softly against a deep violet background with a gentle radial gradient from lilac (#B9A2FF) in the center to deep violet (#6C4FD8) at the edges. A soft warm rim light separates the cream fur from the violet.` | `appicon__app-icon--b.png` |
+| 5c | **The mark**: graphic, scalable, ownable | `Direction C, "the mark": a flat, graphic, almost logo-like Pofu: the round fluffy silhouette simplified into a smooth circle with two small round ears and the single cream curl on top, cream (#FEF2E3) on a golden-peach (#ECA96E) background, with only two big glossy dark eyes, two blush dots and a tiny smile. Minimal painterly texture, no fur strands, bold and iconic.` | `appicon__app-icon--c.png` |
 
 For the winner, follow up in the same chat: _"Now give me this icon as two
 separate layers for Apple's Icon Composer: (1) the background only, opaque,
