@@ -8,9 +8,11 @@ import Foundation
 /// which enforces the rules; the setters are therefore internal to
 /// PofuCore.
 public struct QuietTimeLedger: Hashable, Sendable {
-    /// When the current quiet stretch began: the end of the last pass, or
-    /// the first sign of life from the automation. Later than now while a
-    /// pass runs. `nil` before Pofu has heard from the automation at all.
+    /// When the current quiet stretch began: the first sign of life after
+    /// the last pass, the moment a pass was ended early in Pofu, or the
+    /// first sign of life from the automation. `nil` while a pass runs,
+    /// after a pass expired until the next sign of life (that time is
+    /// unobserved), and before Pofu has heard from the automation at all.
     public internal(set) var quietSince: Date?
     /// The instant accrual has been computed through.
     public internal(set) var accruedThrough: Date?
@@ -130,9 +132,16 @@ public struct QuietCollection: Hashable, Sendable {
 /// the proof. A **quiet stretch** is time without a pass running. Only its
 /// waking, observed part counts, in whole blocks of continuous time:
 ///
-/// - A pass starting (any opened outcome) breaks the stretch; it resumes
-///   when the pass ends, early or on time. A resisted attempt does not
-///   break it, and pass-throughs during a pass change nothing.
+/// - A pass starting (any opened outcome) breaks the stretch. Ending a
+///   pass early in Pofu resumes it at once. A pass that simply expires
+///   does not: before Screen Time, nothing closes the guarded app at
+///   expiry, and the automation does not fire while the user stays in it.
+///   The time between expiry and the next sign of life (a check-in or
+///   another automation run, Pofu coming to the foreground, or a tap on
+///   the expiry notification) is unobserved and never counts; the next
+///   stretch starts at that sign of life. A resisted attempt does not
+///   break the stretch. Pass-throughs, like every sign of life while a
+///   pass runs, keep Pofu observing but resume nothing.
 /// - The bedtime window does not count. A whole bedtime window without an
 ///   open earns the slept-on-it bonus instead.
 /// - Time counts only while Pofu is observing: within the observation
@@ -203,7 +212,8 @@ public struct QuietTimeAccrual: Sendable {
     }
 
     /// How long the current quiet stretch has lasted at `date`, or `nil`
-    /// while a pass runs or Pofu is not observing.
+    /// while a pass runs, after a pass until the next sign of life, or
+    /// while Pofu is not observing.
     public func quietStretch(_ ledger: QuietTimeLedger, at date: Date) -> TimeInterval? {
         guard let since = ledger.quietSince, since <= date, isObserving(ledger, at: date) else { return nil }
         return date.timeIntervalSince(since)
@@ -214,17 +224,17 @@ public struct QuietTimeAccrual: Sendable {
     /// The automation showed a sign of life at `date` (a check-in or a
     /// pass-through).
     ///
-    /// The first sign of life starts the first quiet stretch, at the end of
-    /// any pass already running. A sign of life after the observation
-    /// window lapsed starts a new observation; the silent time in between
-    /// never counts.
+    /// The first sign of life starts the first quiet stretch, unless a
+    /// pass is running. Any sign of life with no pass running starts a
+    /// stretch paused by an earlier pass. A sign of life after the
+    /// observation window lapsed starts a new observation; the silent time
+    /// in between never counts.
     public func recordSignal(at date: Date, in ledger: inout QuietTimeLedger, passes: PassLedger) {
         guard let last = ledger.lastSignalAt else {
-            let running = Self.latestEnd(of: passes, at: date) ?? date
-            ledger.quietSince = max(ledger.quietSince ?? date, date, running)
             ledger.observedSince = date
             ledger.lastSignalAt = date
             ledger.accruedThrough = max(ledger.accruedThrough ?? date, date)
+            resumeQuiet(at: date, in: &ledger, passes: passes)
             return
         }
         advance(&ledger, to: date)
@@ -234,32 +244,51 @@ public struct QuietTimeAccrual: Sendable {
             ledger.observedSince = date
         }
         ledger.lastSignalAt = max(last, date)
+        resumeQuiet(at: date, in: &ledger, passes: passes)
+    }
+
+    /// The user is back in Pofu at `date`: it came to the foreground, or
+    /// they tapped the pass-expiry notification. With no pass running, this
+    /// starts a quiet stretch paused by an earlier pass.
+    ///
+    /// It is not a sign of life from the automation: it neither extends
+    /// observation nor releases held seeds, because opening Pofu says
+    /// nothing about whether the automation still guards the apps.
+    public func userReturned(at date: Date, in ledger: inout QuietTimeLedger, passes: PassLedger) {
+        guard ledger.lastSignalAt != nil else { return }
+        advance(&ledger, to: date)
+        resumeQuiet(at: date, in: &ledger, passes: passes)
     }
 
     /// `pass` started: the guarded app opened. Credits the stretch up to
-    /// that moment, then quiet resumes when the pass ends.
+    /// that moment, then pauses quiet until the next sign of life after the
+    /// pass, or until the pass is ended early.
     public func passStarted(_ pass: Pass, in ledger: inout QuietTimeLedger) {
         advance(&ledger, to: pass.grantedAt)
-        ledger.quietSince = max(ledger.quietSince ?? pass.expiresAt, pass.expiresAt)
+        ledger.quietSince = nil
     }
 
-    /// A pass ended before its expiry at `date` (ended early or voided).
-    /// Quiet resumes at once, unless another pass in `passes` is still
-    /// running.
+    /// A pass ended before its expiry at `date`, in Pofu (ended early, or
+    /// voided from its grant). The user is demonstrably not in the guarded
+    /// app, so quiet resumes at once, unless another pass in `passes` is
+    /// still running.
     public func passEnded(at date: Date, in ledger: inout QuietTimeLedger, remaining passes: PassLedger) {
         advance(&ledger, to: date)
-        guard let since = ledger.quietSince, since > date else { return }
-        ledger.quietSince = max(date, Self.latestEnd(of: passes, at: date) ?? date)
+        guard ledger.lastSignalAt != nil, ledger.quietSince == nil, Self.latestEnd(of: passes, at: date) == nil else {
+            return
+        }
+        ledger.quietSince = date
     }
 
     /// Starts the ledger of a user who used Pofu before quiet time
-    /// existed, from their history: observed since the last sign of life,
-    /// quiet since the later of that and the end of their last pass. Does
-    /// nothing once the ledger has heard a sign of life.
+    /// existed, from their history: observed and quiet since the last sign
+    /// of life, unless their last pass outlasted it; quiet then waits for
+    /// the next sign of life. Does nothing once the ledger has heard a sign
+    /// of life.
     public func bootstrap(_ ledger: inout QuietTimeLedger, lastSignal: Date, checkIns: [CheckInRecord]) {
         guard ledger.lastSignalAt == nil else { return }
         let lastPassEnd = checkIns.compactMap(\.outcome.pass?.expiresAt).max() ?? lastSignal
-        ledger.quietSince = max(lastSignal, lastPassEnd)
+        ledger.quietSince = lastPassEnd > lastSignal ? nil : lastSignal
         ledger.observedSince = lastSignal
         ledger.lastSignalAt = lastSignal
         ledger.accruedThrough = lastSignal
@@ -426,6 +455,14 @@ public struct QuietTimeAccrual: Sendable {
     private static func wholeBlocks(_ duration: TimeInterval, of block: TimeInterval) -> Int {
         guard block > 0, duration > 0 else { return 0 }
         return max(0, Rounding.down(duration / block))
+    }
+
+    /// Starts a quiet stretch at `date` (or where accrual already is, if
+    /// the clock moved backwards) when none is running and no pass in
+    /// `passes` is.
+    private func resumeQuiet(at date: Date, in ledger: inout QuietTimeLedger, passes: PassLedger) {
+        guard ledger.quietSince == nil, Self.latestEnd(of: passes, at: date) == nil else { return }
+        ledger.quietSince = max(date, ledger.accruedThrough ?? date)
     }
 
     private static func latestEnd(of passes: PassLedger, at date: Date) -> Date? {

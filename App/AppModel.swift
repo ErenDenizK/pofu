@@ -34,6 +34,9 @@ final class AppModel {
     var homeSheet: HomeSheet?
     /// Set when the last save failed, so a broken disk is never silent.
     private(set) var persistenceProblem = false
+    /// Whether Pofu is on screen. Being here is a sign the user left the
+    /// guarded app, so quiet time paused by an ended pass starts again.
+    private var isOnScreen = false
 
     let economy: Economy
     let gatekeeper: Gatekeeper
@@ -193,19 +196,30 @@ final class AppModel {
     // MARK: - Lifecycle
 
     /// Brings the model up to date: today's allowance, expired passes, and
-    /// settled vitality. Called on launch and whenever the app becomes
-    /// active.
+    /// settled vitality. Called whenever the app becomes active: Pofu on
+    /// screen is a sign of life for quiet time (decision audit C1).
     func refresh() {
+        isOnScreen = true
         settleDay()
+        gatekeeper.noteUserReturned(at: now, state: &state)
         save()
     }
 
+    /// The scene left the foreground.
+    func leftForeground() {
+        isOnScreen = false
+    }
+
     /// Keeps quiet time and the day current while Home is on screen, and
-    /// saves only when something the user can see changed.
+    /// saves only when something the user can see changed. A pass that
+    /// expires while Pofu is on screen hands over to quiet time at once.
     func tick() {
-        let before = (state.quietTime.pending, state.wallet.balance)
+        let before = (state.quietTime.pending, state.wallet.balance, state.quietTime.quietSince)
         settleDay()
-        if before != (state.quietTime.pending, state.wallet.balance) {
+        if isOnScreen {
+            gatekeeper.noteUserReturned(at: now, state: &state)
+        }
+        if before != (state.quietTime.pending, state.wallet.balance, state.quietTime.quietSince) {
             save()
         }
     }

@@ -101,21 +101,123 @@ struct QuietTimeTests {
         #expect(state.quietTime.quietSince == noon)
     }
 
-    @Test func anOpenBreaksQuietAndItResumesWhenThePassEnds() throws {
+    @Test func anOpenBreaksQuietAndTheNextSignOfLifeAfterThePassResumesIt() throws {
         var state = PofuState()
         let first = try attempt(at: noon, in: &state)
         try gatekeeper.resolve(first, with: .resist, at: noon, state: &state)
-        // Opens at 12:25 with a free 5-minute pass: two blocks before it.
+        // Opens at 12:25 with a free 5-minute pass: two blocks before it,
+        // the partial block cut by the pass is gone.
         let second = try attempt(at: noon.adding(minutes: 25), in: &state)
         try gatekeeper.resolve(second, with: .proceed, at: noon.adding(minutes: 25), state: &state)
         #expect(state.quietTime.pendingQuietSeeds == 2)
-        #expect(state.quietTime.quietSince == noon.adding(minutes: 30))
+        #expect(state.quietTime.quietSince == nil)
         #expect(gatekeeper.quietTime.quietStretch(state.quietTime, at: noon.adding(minutes: 28)) == nil)
-        // Quiet resumes at 12:30; 13:00 completes three more blocks, the
-        // partial block cut by the pass is gone.
-        gatekeeper.advanceQuietTime(to: noon.adding(hours: 1), state: &state)
+        // The pass expires at 12:30, but nothing proves the app was left.
+        gatekeeper.advanceQuietTime(to: noon.adding(minutes: 40), state: &state)
+        #expect(state.quietTime.pendingQuietSeeds == 2)
+        #expect(gatekeeper.quietTime.quietStretch(state.quietTime, at: noon.adding(minutes: 40)) == nil)
+        // A skip at 12:40 is the next sign of life: quiet counts from there.
+        let third = try attempt(at: noon.adding(minutes: 40), in: &state)
+        try gatekeeper.resolve(third, with: .resist, at: noon.adding(minutes: 40), state: &state)
+        #expect(state.quietTime.quietSince == noon.adding(minutes: 40))
+        gatekeeper.advanceQuietTime(to: noon.adding(minutes: 70), state: &state)
         #expect(state.quietTime.pendingQuietSeeds == 5)
-        #expect(gatekeeper.quietTime.quietStretch(state.quietTime, at: noon.adding(hours: 1)) == TimeInterval(1_800))
+        #expect(gatekeeper.quietTime.quietStretch(state.quietTime, at: noon.adding(minutes: 70)) == TimeInterval(1_800))
+    }
+
+    // MARK: - After a pass expires (decision audit C1)
+
+    /// Before Screen Time, nothing closes the app when a pass expires, and
+    /// the automation does not fire while the user stays in it. An hour of
+    /// silence after a 5-minute pass may be an hour of scrolling.
+    @Test func silenceAfterAnExpiredPassEarnsNoQuietSeeds() throws {
+        var state = PofuState()
+        let reach = try attempt(at: noon, in: &state)
+        let record = try gatekeeper.resolve(reach, with: .proceed, at: noon, state: &state)
+        let pass = try #require(record.outcome.pass)
+        #expect(pass.expiresAt == noon.adding(minutes: 5))
+
+        let accrued = gatekeeper.advanceQuietTime(to: noon.adding(minutes: 60), state: &state)
+        #expect(accrued.quietSeeds == .zero)
+        #expect(state.quietTime.pendingQuietSeeds == .zero)
+        #expect(state.quietTime.quietSeeds(on: accrual.day(of: noon)) == .zero)
+        #expect(gatekeeper.quietTime.quietStretch(state.quietTime, at: noon.adding(minutes: 60)) == nil)
+        // The hour is unobserved, but the setup is fine: Pofu still watches.
+        #expect(gatekeeper.quietTime.isObserving(state.quietTime, at: noon.adding(minutes: 60)))
+        #expect(!gatekeeper.quietTime.isAwaitingSignOfLife(state.quietTime, at: noon.adding(minutes: 60)))
+    }
+
+    enum Signal: CaseIterable {
+        case checkIn, automationRun, pofuForeground, notificationTap
+    }
+
+    @Test(arguments: Signal.allCases)
+    func accrualRestartsAtTheNextSignOfLife(signal: Signal) throws {
+        var state = PofuState()
+        let reach = try attempt(at: noon, in: &state)
+        try gatekeeper.resolve(reach, with: .proceed, at: noon, state: &state)
+        let back = noon.adding(minutes: 60)
+        switch signal {
+        case .checkIn:
+            let next = try attempt(at: back, in: &state)
+            try gatekeeper.resolve(next, with: .resist, at: back, state: &state)
+        case .automationRun:
+            gatekeeper.noteAutomationRan(at: back, state: &state)
+        case .pofuForeground, .notificationTap:
+            gatekeeper.noteUserReturned(at: back, state: &state)
+        }
+        #expect(state.quietTime.quietSince == back)
+        #expect(state.quietTime.pendingQuietSeeds == .zero)
+        gatekeeper.advanceQuietTime(to: back.adding(minutes: 35), state: &state)
+        #expect(state.quietTime.pendingQuietSeeds == 3)
+        #expect(gatekeeper.quietTime.quietStretch(state.quietTime, at: back.adding(minutes: 35)) == TimeInterval(2_100))
+    }
+
+    @Test func signsOfLifeWhileAPassRunsDoNotResumeQuiet() throws {
+        var state = PofuState()
+        let reach = try attempt(at: noon, in: &state)
+        try gatekeeper.resolve(reach, with: .pay(minutes: 15), at: noon, state: &state)
+        // A pass-through, Pofu in the foreground, an automation run.
+        _ = gatekeeper.beginCheckIn(for: testTarget, at: noon.adding(minutes: 3), state: &state)
+        gatekeeper.noteUserReturned(at: noon.adding(minutes: 5), state: &state)
+        gatekeeper.noteAutomationRan(at: noon.adding(minutes: 14), state: &state)
+        #expect(state.passThroughs.count == 1)
+        #expect(state.quietTime.quietSince == nil)
+        gatekeeper.advanceQuietTime(to: noon.adding(hours: 1), state: &state)
+        #expect(state.quietTime.pendingQuietSeeds == .zero)
+    }
+
+    @Test func returningToPofuIsNotASignOfLifeFromTheAutomation() {
+        let allDay = withoutBedtime(QuietTimeRules(dailyCap: 1_000))
+        var ledger = signaled(at: noon, using: allDay)
+        allDay.advance(&ledger, to: noon.adding(hours: 1))
+        // Opening Pofu after the window lapsed neither resumes observation
+        // nor releases the held seeds.
+        let later = noon.adding(hours: 100)
+        allDay.userReturned(at: later, in: &ledger, passes: PassLedger())
+        #expect(ledger.lastSignalAt == noon)
+        #expect(ledger.observedSince == noon)
+        #expect(allDay.isHolding(ledger, at: later))
+        #expect(allDay.isAwaitingSignOfLife(ledger, at: later))
+        // Before the automation has ever run, it does nothing at all.
+        var fresh = QuietTimeLedger()
+        allDay.userReturned(at: noon, in: &fresh, passes: PassLedger())
+        #expect(fresh == QuietTimeLedger())
+    }
+
+    @Test func seedsInTheCheeksAreHeldThroughTheUnobservedTime() throws {
+        var state = PofuState()
+        let first = try attempt(at: noon, in: &state)
+        try gatekeeper.resolve(first, with: .resist, at: noon, state: &state)
+        let second = try attempt(at: noon.adding(minutes: 30), in: &state)
+        try gatekeeper.resolve(second, with: .proceed, at: noon.adding(minutes: 30), state: &state)
+        #expect(state.quietTime.pendingQuietSeeds == 3)
+        gatekeeper.advanceQuietTime(to: noon.adding(hours: 3), state: &state)
+        // Nothing new, nothing lost.
+        #expect(state.quietTime.pendingQuietSeeds == 3)
+        gatekeeper.noteUserReturned(at: noon.adding(hours: 3), state: &state)
+        let collected = try #require(gatekeeper.collectQuietSeeds(at: noon.adding(hours: 3), state: &state))
+        #expect(collected.quietSeeds == 3)
     }
 
     @Test func passThroughsDuringAPassChangeNothing() throws {
@@ -128,9 +230,9 @@ struct QuietTimeTests {
         #expect(withVisits.passThroughs.count == 2)
         gatekeeper.advanceQuietTime(to: noon.adding(hours: 1), state: &state)
         gatekeeper.advanceQuietTime(to: noon.adding(hours: 1), state: &withVisits)
-        #expect(withVisits.quietTime.quietSince == noon.adding(minutes: 15))
+        #expect(withVisits.quietTime.quietSince == nil)
         #expect(withVisits.quietTime.pendingQuietSeeds == state.quietTime.pendingQuietSeeds)
-        #expect(state.quietTime.pendingQuietSeeds == 4)
+        #expect(state.quietTime.pendingQuietSeeds == .zero)
     }
 
     @Test func endingAPassEarlyResumesQuietAtOnce() throws {
@@ -144,7 +246,7 @@ struct QuietTimeTests {
         #expect(state.quietTime.pendingQuietSeeds == 3)
     }
 
-    @Test func endingOnePassWhileAnotherRunsWaitsForTheOther() throws {
+    @Test func endingOnePassWhileAnotherRunsWaitsForASignOfLifeAfterIt() throws {
         var state = PofuState()
         let first = try attempt(at: noon, in: &state)
         let record = try gatekeeper.resolve(first, with: .pay(minutes: 5), at: noon, state: &state)
@@ -156,7 +258,10 @@ struct QuietTimeTests {
         }
         try gatekeeper.resolve(other, with: .pay(minutes: 5), at: noon.adding(minutes: 1), state: &state)
         gatekeeper.endPass(id: short.id, at: noon.adding(minutes: 2), state: &state)
-        #expect(state.quietTime.quietSince == noon.adding(minutes: 6))
+        #expect(state.quietTime.quietSince == nil)
+        // The other pass expires at 12:06; the user is back at 12:20.
+        gatekeeper.noteUserReturned(at: noon.adding(minutes: 20), state: &state)
+        #expect(state.quietTime.quietSince == noon.adding(minutes: 20))
     }
 
     @Test func aVoidedPassGivesQuietBackFromItsGrant() throws {
@@ -164,18 +269,21 @@ struct QuietTimeTests {
         let first = try attempt(at: noon, in: &state)
         let record = try gatekeeper.resolve(first, with: .pay(minutes: 10), at: noon.adding(minutes: 12), state: &state)
         let pass = try #require(record.outcome.pass)
-        #expect(state.quietTime.quietSince == noon.adding(minutes: 22))
+        #expect(state.quietTime.quietSince == nil)
         gatekeeper.voidPass(id: pass.id, state: &state)
         #expect(state.quietTime.quietSince == noon.adding(minutes: 12))
     }
 
-    @Test func theFirstSignOfLifeDuringAPassStartsQuietWhenThePassEnds() {
+    @Test func theFirstSignOfLifeDuringAPassWaitsForTheNextOne() {
         var passes = PassLedger()
         passes.grant(Pass(target: testTarget, grantedAt: noon, minutes: 15, source: .friendApproved))
         var ledger = QuietTimeLedger()
         accrual.recordSignal(at: noon.adding(minutes: 1), in: &ledger, passes: passes)
-        #expect(ledger.quietSince == noon.adding(minutes: 15))
-        #expect(accrual.advance(&ledger, to: noon.adding(minutes: 35)).quietSeeds == 2)
+        #expect(ledger.quietSince == nil)
+        #expect(accrual.advance(&ledger, to: noon.adding(minutes: 35)).quietSeeds == .zero)
+        accrual.recordSignal(at: noon.adding(minutes: 35), in: &ledger, passes: passes)
+        #expect(ledger.quietSince == noon.adding(minutes: 35))
+        #expect(accrual.advance(&ledger, to: noon.adding(minutes: 55)).quietSeeds == 2)
     }
 
     // MARK: - Bedtime
@@ -213,7 +321,8 @@ struct QuietTimeTests {
         try gatekeeper.resolve(night, with: .proceed, at: instant(2026, 11, 3, 2), state: &state)
         let result = gatekeeper.advanceQuietTime(to: instant(2026, 11, 3, 7), state: &state)
         #expect(result.sleepBonus == .zero)
-        #expect(result.quietSeeds == 6)
+        // Nothing has been heard since the pass: the morning is unobserved.
+        #expect(result.quietSeeds == .zero)
         #expect(state.quietTime.pendingSleepBonus == .zero)
     }
 
@@ -233,7 +342,8 @@ struct QuietTimeTests {
         try gatekeeper.resolve(late, with: .proceed, at: instant(2026, 11, 2, 22, 58), state: &state)
         gatekeeper.advanceQuietTime(to: instant(2026, 11, 3, 7), state: &state)
         #expect(state.quietTime.pendingSleepBonus == .zero)
-        // The next night is quiet again.
+        // After a sign of life in the morning, the next night is quiet again.
+        gatekeeper.noteUserReturned(at: instant(2026, 11, 3, 8), state: &state)
         gatekeeper.advanceQuietTime(to: instant(2026, 11, 4, 7), state: &state)
         #expect(state.quietTime.pendingSleepBonus == 10)
     }
@@ -399,9 +509,16 @@ struct QuietTimeTests {
         try gatekeeper.resolve(first, with: .proceed, at: noon, state: &history)
         var ledger = QuietTimeLedger()
         accrual.bootstrap(&ledger, lastSignal: noon.adding(minutes: 2), checkIns: history.checkIns)
-        #expect(ledger.quietSince == noon.adding(minutes: 5))
+        // The last pass outlasted the last sign of life: quiet waits.
+        #expect(ledger.quietSince == nil)
         #expect(ledger.observedSince == noon.adding(minutes: 2))
-        #expect(accrual.advance(&ledger, to: noon.adding(minutes: 35)).quietSeeds == 3)
+        #expect(accrual.advance(&ledger, to: noon.adding(minutes: 35)).quietSeeds == .zero)
+        accrual.recordSignal(at: noon.adding(minutes: 35), in: &ledger, passes: PassLedger())
+        #expect(accrual.advance(&ledger, to: noon.adding(minutes: 65)).quietSeeds == 3)
+        // With no pass after the last sign of life, quiet starts there.
+        var quiet = QuietTimeLedger()
+        accrual.bootstrap(&quiet, lastSignal: noon.adding(minutes: 10), checkIns: history.checkIns)
+        #expect(quiet.quietSince == noon.adding(minutes: 10))
         // Once the ledger has heard from the automation, bootstrap is a no-op.
         let before = ledger
         accrual.bootstrap(&ledger, lastSignal: noon.adding(hours: 5), checkIns: [])
