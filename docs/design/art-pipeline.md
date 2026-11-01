@@ -14,8 +14,8 @@ what was done to it afterwards.
 
 | Batch | Manifest | Contents | Status |
 |---|---|---|---|
-| `batch-01-slice` | [`batch-01-slice.yaml`](../../tools/imagegen/manifest/batch-01-slice.yaml) | Game design §15 D1–D8 (island small and large, terrace, çay ocağı L1–L2, sunflower garden L1, simit cart L1, Mochi) plus çay ocağı L3–L5 and garden L2 | **Not started.** Blocked on the account decision and the founder's 7-day gate dogfood |
-| `batch-02-ui` | [`batch-02-ui.yaml`](../../tools/imagegen/manifest/batch-02-ui.yaml) | Glass++ (ADR-0018): 6 domain icons, seed jar ×2 states, calm lantern off/on, a medium widget, an app icon draft (12 jobs) | **Not started.** Same blockers; runs after batch 01's island and çay ocağı L1 are approved |
+| `batch-01-slice` | [`batch-01-slice.yaml`](../../tools/imagegen/manifest/batch-01-slice.yaml) | Game design §15 D1–D8 (island small and large, terrace, çay ocağı L1–L2, sunflower garden L1, simit cart L1, Mochi) plus çay ocağı L3–L5 and garden L2 | **Open for the W1 test, D1–D8 only** (`--only island-main-s island-main-l terrace cay-1 cay-2 garden-1 simit-1 mochi`); the founder's own ChatGPT plan. The other four jobs wait for the lead's review |
+| `batch-02-ui` | [`batch-02-ui.yaml`](../../tools/imagegen/manifest/batch-02-ui.yaml) | Glass++ (ADR-0018): 6 domain icons, seed jar ×2 states, calm lantern off/on, a medium widget, an app icon draft (12 jobs) | **Not started.** Waits for the friends beta (ADR-0018 amendment); runs after batch 01's island and çay ocağı L1 are approved |
 
 A blocked manifest cannot generate: `run` refuses until the lead flips
 `status: blocked` to `open` in a reviewed PR. `plan`, `prompt` and
@@ -49,7 +49,7 @@ before this rule; they are references, never masters.
 | Who | Does | Where |
 |---|---|---|
 | **Lead** (Claude, cloud) | Writes and corrects manifests and prompt blocks, tunes thresholds, reviews art PRs, merges | `tools/imagegen/`, docs |
-| **Local operator** (OpenAI Codex CLI on the founder's Mac, in its own clone; or the local Claude session) | Runs `plan`, `run`, `post`, shows the contact sheet to the founder, records his picks, runs `promote`, opens the `art/<batch>` PR | The Mac, with the founder's account |
+| **Operator** (OpenAI Codex: a cloud task by default, following `AGENTS.md`; or the Codex CLI on the founder's Mac, in its own clone) | Runs `plan`, `run`, `post`, shows the contact sheet to the founder, records his picks, runs `promote`, opens the `art/<batch>` PR | The Mac, with the founder's account |
 | **Founder** | Chooses the account, signs in, picks one take per job (or none) in Turkish, approves the PR | Contact sheet, PR |
 
 Codex reads [`AGENTS.md`](../../AGENTS.md) at the repository root: it has

@@ -9,7 +9,8 @@ they ever disagree, `CLAUDE.md` wins and you say so in your PR.
 
 - **Product:** Pofu, an iOS app with an illustrated fluffy hamster
   companion that helps people resist reflexive opens of Instagram,
-  YouTube and TikTok. The repository is still named `rot`.
+  YouTube and TikTok. The repository is `ErenDenizK/pofu` (renamed from
+  `rot`; the old URLs redirect).
 - **Founder:** Eren Deniz Kuyucaklıoğlu (GitHub `ErenDenizK`). He sets
   the vision, approves art, and tests on his Mac and iPhone. He speaks
   Turkish, often by dictation.
@@ -46,7 +47,9 @@ they ever disagree, `CLAUDE.md` wins and you say so in your PR.
   `design(art): add batch-01 round 1 masters (island, Mochi)`.
 - **Branches and PRs:** branch `art/<batch>` (for example
   `art/batch-01-slice`), one PR per round, into `main`. **Never push to
-  `main`. Never merge.** The lead reviews and merges.
+  `main`. Never merge.** The lead (the cloud Claude session, authorized
+  in `CLAUDE.md`) reviews and merges; that is not a conflict with this
+  rule.
 - **Secrets:** never commit or print an API key, `~/.codex/auth.json`,
   anything from `~/.codex`, `.env` files, or tokens.
 
@@ -78,11 +81,42 @@ account, and every master must name its generating account owner.
 
 ## Current status (2026-11-01)
 
-**Production art has not started.** Both batches are
-`status: blocked` in their manifests, on (1) the founder's account
-decision and (2) his 7-day gate dogfood. `run` refuses to generate for a
-blocked batch; `plan`, `prompt` and `run --dry-run` work. Wait until the
-lead merges a PR that sets a batch to `status: open`.
+**Batch 01 is open for the W1 art test, D1–D8 only.** The founder chose
+his own ChatGPT plan (`account.kind: chatgpt-plan`). Generate only these
+eight jobs, round by round, always with
+`--only island-main-s island-main-l terrace cay-1 cay-2 garden-1 simit-1 mochi`.
+Stop after the eight and wait for the lead's review; `cay-3` to `cay-5`
+and `garden-2` are not part of the test. Batch 02 stays `status: blocked`
+until the friends beta.
+
+**Codex cloud is the default operator** (the founder works from his
+phone; the Mac is optional). Codex runs under his own ChatGPT plan either
+way. In a cloud task, one round per task:
+
+1. Install the tools: `pip install -r tools/imagegen/requirements.txt`. If
+   that fails, stop and ask the founder to add it to the Codex
+   environment's setup script (setup runs with internet access).
+2. For each job of the round, print the exact prompt and attachments with
+   `python3 -I tools/imagegen/run.py prompt --manifest <manifest> --job <id>`,
+   and generate the takes (the job's `variants`) with **your built-in image
+   generation tool**, attaching the listed reference images. If you have no
+   image tool in this environment, stop and say so in a PR comment.
+3. Save each take as a PNG and add it with
+   `run.py ingest --manifest <manifest> --job <id> --source codex-cloud <files>`
+   (the account comes from `config.yaml`).
+4. Run `run.py post --manifest <manifest> --only <round's jobs>` for the
+   style lock, QA and the contact sheet.
+5. The container is not kept, and raw takes are git-ignored. So also
+   commit every take of the round as **lossless WebP** in
+   `design/art/takes/<batch>/` (the pipeline's file names, `.webp`), next to
+   the review file and the small contact sheet. Open the `art/<batch>` PR
+   and stop.
+6. The founder answers in Turkish with the take he wants per job. In the
+   next task, restore the picked takes from `design/art/takes/<batch>/`
+   into the inbox (as PNG), run `promote`, and push to the same PR.
+
+On the Mac, the `codex` backend (`run.py run --backend codex`) does steps
+2 to 4 by itself.
 
 When a batch opens, do the [first-run checklist](docs/design/art-pipeline.md#first-run-checklist)
 once, with the founder.

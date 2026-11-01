@@ -77,14 +77,15 @@ founder in Turkish.
 3. Write the report in PR `local/device-validation`. This is the most
    important evidence in the project right now.
 
-### T4. Image generation (not started; blocked on the account decision and the dogfood)
+### T4. Image generation (batch 01 open for the W1 test, D1–D8 only)
 
 Production art is generated **only on the founder's own OpenAI account**:
 his own ChatGPT plan through the Codex CLI, or his own API key through the
 pipeline's `openai-api` backend. Using anyone else's account is against
-OpenAI's terms and would muddy the provenance of shipped art. Art waits
-until the founder has chosen the account **and** finished his 7-day gate
-dogfood; both batches are `status: blocked` until the lead opens them.
+OpenAI's terms and would muddy the provenance of shipped art. The founder
+chose his own ChatGPT plan (2026-11-01). Batch 01 is open for the eight-image
+W1 test (D1–D8, run with `--only`); batch 02 stays blocked until the friends
+beta.
 
 The operator is **OpenAI Codex on the Mac**, briefed by
 [`AGENTS.md`](../AGENTS.md) (who, rules, decisions, stop conditions), in
