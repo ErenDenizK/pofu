@@ -1,11 +1,27 @@
 import FamilyControls
+import PofuCore
 import PofuDesignSystem
 import SwiftUI
+import UIKit
+import UserNotifications
 
 /// Settings for the Screen Time gate: whether it is on, the picked apps,
-/// and today's measured guarded time. Shown only in the live build.
+/// today's measured guarded time, the daily hour, whether Pofu can answer
+/// "Açmam lazım" with a notification, and the founder's readout. Shown
+/// only in the live build.
 struct ScreenTimeSettingsSection: View {
     let model: AppModel
+
+    @Environment(\.openURL) private var openURL
+    @State private var notifications: NotificationHealth = .unknown
+
+    /// Whether "Open with Pofu" can reach the user (gate v2, section 9).
+    enum NotificationHealth: Sendable {
+        case unknown
+        case allowed
+        case focusMayHide
+        case off
+    }
 
     private var gate: ScreenTimeGate { model.screenTime }
 
@@ -30,6 +46,26 @@ struct ScreenTimeSettingsSection: View {
                 } label: {
                     Label("Guarded time today", systemImage: "hourglass")
                 }
+                Stepper(
+                    value: Binding(
+                        get: { model.gateRules.dailyHourMinutes },
+                        set: { model.setDailyHour(minutes: $0) }
+                    ),
+                    in: ScreenTimeGateRules.dailyHourRange,
+                    step: 15
+                ) {
+                    LabeledContent {
+                        Text("\(model.gateRules.dailyHourMinutes) min")
+                    } label: {
+                        Label("Daily hour", systemImage: "wind")
+                    }
+                }
+                notificationRow
+                NavigationLink {
+                    DeveloperReadout(model: model)
+                } label: {
+                    Label("Readout", systemImage: "list.number")
+                }
             } else {
                 AllowScreenTimeRow(model: model)
             }
@@ -37,9 +73,54 @@ struct ScreenTimeSettingsSection: View {
             Text("Screen Time")
                 .pofuSectionHeader()
         } footer: {
-            Text("Measured by Screen Time, in 15-minute steps.")
+            Text("Measured by Screen Time, in 15-minute steps. Past the daily hour, every open starts with a breath.")
         }
         .listRowBackground(PofuColor.card)
+        .task { await checkNotifications() }
+    }
+
+    @ViewBuilder private var notificationRow: some View {
+        switch notifications {
+        case .unknown, .allowed:
+            EmptyView()
+        case .off:
+            VStack(alignment: .leading, spacing: PofuSpacing.xs) {
+                Label("Notifications are off", systemImage: "bell.slash")
+                Text("After \"I need it\" I can't reach you; open me yourself within 10 minutes. The quick check still works.")
+                    .font(PofuFont.footnote)
+                    .foregroundStyle(PofuColor.textSecondary)
+                Button("Open Settings") { openSettings() }
+            }
+        case .focusMayHide:
+            VStack(alignment: .leading, spacing: PofuSpacing.xs) {
+                Label("With Focus on, my notification may not arrive.", systemImage: "moon")
+                Button("Open Settings") { openSettings() }
+            }
+        }
+    }
+
+    private func openSettings() {
+        if let url = URL(string: UIApplication.openNotificationSettingsURLString) {
+            openURL(url)
+        }
+    }
+
+    private func checkNotifications() async {
+        notifications = await Self.notificationHealth()
+    }
+
+    private nonisolated static func notificationHealth() async -> NotificationHealth {
+        let settings = await UNUserNotificationCenter.current().notificationSettings()
+        switch settings.authorizationStatus {
+        case .authorized, .provisional, .ephemeral:
+            return settings.timeSensitiveSetting == .disabled ? .focusMayHide : .allowed
+        case .denied:
+            return .off
+        case .notDetermined:
+            return .unknown
+        @unknown default:
+            return .unknown
+        }
     }
 
     private var usageText: LocalizedStringKey {
