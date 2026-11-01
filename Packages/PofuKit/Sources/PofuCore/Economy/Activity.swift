@@ -86,3 +86,44 @@ public struct EarningResult: Hashable, Sendable {
         earned + forfeitedToCap
     }
 }
+
+/// An honor-system session in progress: the user started a timer and Pofu
+/// trusts them (ADR-0004). Persisted, so a session survives the app being
+/// closed and is credited from its start time.
+public struct ActiveSession: Hashable, Sendable, Codable {
+    public var kind: ActivityKind
+    public var startedAt: Date
+    public var plannedMinutes: Int
+
+    public init(kind: ActivityKind, startedAt: Date, plannedMinutes: Int) {
+        self.kind = kind
+        self.startedAt = startedAt
+        self.plannedMinutes = max(0, plannedMinutes)
+    }
+
+    /// When the timer runs out.
+    public var plannedEnd: Date {
+        startedAt.addingTimeInterval(TimeInterval(plannedMinutes) * 60)
+    }
+
+    /// Seconds left at `date`, never negative.
+    public func remaining(at date: Date) -> TimeInterval {
+        max(0, plannedEnd.timeIntervalSince(date))
+    }
+
+    /// Whether the timer has run out at `date`.
+    public func isComplete(at date: Date) -> Bool {
+        date >= plannedEnd
+    }
+
+    /// The session as credited when it ends at `date`: never past the
+    /// planned end, so an app opened hours later does not earn more.
+    public func completed(at date: Date) -> ActivitySession {
+        ActivitySession(
+            kind: kind,
+            verification: .honor,
+            startedAt: startedAt,
+            endedAt: min(max(date, startedAt), plannedEnd)
+        )
+    }
+}

@@ -11,21 +11,25 @@ public struct PofuSnapshot: Hashable, Sendable {
     public var schemaVersion: Int
     public var state: PofuState
     public var profile: UserProfile
+    /// The honor session running when the app was last saved, if any.
+    public var activeSession: ActiveSession?
 
     public init(
         state: PofuState = PofuState(),
         profile: UserProfile = UserProfile(),
+        activeSession: ActiveSession? = nil,
         schemaVersion: Int = PofuSnapshot.currentSchemaVersion
     ) {
         self.schemaVersion = schemaVersion
         self.state = state
         self.profile = profile
+        self.activeSession = activeSession
     }
 }
 
 extension PofuSnapshot: Codable {
     private enum CodingKeys: String, CodingKey {
-        case schemaVersion, state, profile
+        case schemaVersion, state, profile, activeSession
     }
 
     public init(from decoder: any Decoder) throws {
@@ -33,6 +37,7 @@ extension PofuSnapshot: Codable {
         self.init(
             state: try container.decodeIfPresent(PofuState.self, forKey: .state) ?? PofuState(),
             profile: try container.decodeIfPresent(UserProfile.self, forKey: .profile) ?? UserProfile(),
+            activeSession: try container.decodeIfPresent(ActiveSession.self, forKey: .activeSession),
             schemaVersion: try container.decodeIfPresent(Int.self, forKey: .schemaVersion) ?? 1
         )
     }
@@ -42,5 +47,6 @@ extension PofuSnapshot: Codable {
         try container.encode(schemaVersion, forKey: .schemaVersion)
         try container.encode(state, forKey: .state)
         try container.encode(profile, forKey: .profile)
+        try container.encodeIfPresent(activeSession, forKey: .activeSession)
     }
 }

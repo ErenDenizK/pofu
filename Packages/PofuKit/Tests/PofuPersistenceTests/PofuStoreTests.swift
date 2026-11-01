@@ -45,7 +45,8 @@ func sampleSnapshot() throws -> PofuSnapshot {
         hasCompletedOnboarding: true,
         lastCheckIn: [.instagram: noon]
     )
-    return PofuSnapshot(state: state, profile: profile)
+    let session = ActiveSession(kind: .focus, startedAt: noon.addingTimeInterval(7_200), plannedMinutes: 25)
+    return PofuSnapshot(state: state, profile: profile, activeSession: session)
 }
 
 @Suite("Snapshot store")
@@ -76,6 +77,7 @@ struct PofuStoreTests {
         #expect(loaded.state.checkIns.first?.reason == .lookUp)
         #expect(loaded.state.passThroughs.count == 1)
         #expect(loaded.profile.companionName == "Fıstık")
+        #expect(loaded.activeSession?.plannedMinutes == 25)
     }
 
     @Test func savingReplacesTheWholeFileAndLeavesNoTemporaryFiles() throws {
