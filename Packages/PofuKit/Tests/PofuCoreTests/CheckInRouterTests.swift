@@ -103,6 +103,18 @@ struct ProtectedAppTests {
         #expect(ProtectedApp.instagram.launchURLs.first?.absoluteString == "instagram://")
         #expect(ProtectedApp.tiktok.urlSchemes.first == "snssdk1233")
     }
+
+    @Test func theAppDeclaresExactlyTheQueriedSchemes() throws {
+        // Tests/PofuCoreTests/<file> → repository root → Config/Info.plist.
+        var root = URL(fileURLWithPath: #filePath)
+        for _ in 0..<5 {
+            root = root.deletingLastPathComponent()
+        }
+        let data = try Data(contentsOf: root.appendingPathComponent("Config/Info.plist"))
+        let plist = try #require(try PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any])
+        let declared = try #require(plist["LSApplicationQueriesSchemes"] as? [String])
+        #expect(declared == ProtectedApp.allQueriedSchemes)
+    }
 }
 
 @Suite("User profile")

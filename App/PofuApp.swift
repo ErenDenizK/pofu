@@ -2,7 +2,9 @@ import SwiftUI
 
 @main
 struct PofuApp: App {
-    @State private var model = AppModel()
+    /// The same instance `CheckInIntent` uses, so a Hop! started by the
+    /// automation appears in this scene.
+    private let model = AppModel.shared
 
     var body: some Scene {
         WindowGroup {
