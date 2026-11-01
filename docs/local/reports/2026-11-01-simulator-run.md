@@ -15,15 +15,18 @@ named `<lang>-<appearance>-<nn>-<screen>.png` and downscaled to 1000 px tall.
   Settings, in English and Turkish, light and dark.
 - **The core loop cannot be exercised in the simulator. Running Pofu's App
   Shortcut, or even adding the Hop in action to a shortcut, fails with
-  "Couldn't find AppShortcutsProvider."** This is the most important
-  finding. It may be simulator-only, but it has to be ruled out on the
-  device in T3 before anything else.
+  "Couldn't find AppShortcutsProvider."** Update after T3 started: on the
+  founder's iPhone (iOS 26.6.2) the same App Shortcut **works** and opens
+  Hop!, so this is a simulator-only problem, not a product bug.
 - The rest is polish. The two worst visual problems are the companion halo
   in dark mode and content bleeding through the setup guide's footer.
 
 ## Findings, worst first
 
-### 1. App Shortcut and the Hop in action fail (blocker until disproved)
+### 1. App Shortcut and the Hop in action fail in the simulator only
+
+**Update:** on the device the App Shortcut runs and Hop! opens (T3). The
+analysis below stays as a record of the simulator behavior.
 
 Steps: finish onboarding, open Shortcuts, tap any tile in the Pofu
 section (Hop in, Instagram, YouTube, TikTok). Result: an alert, "Unable to
@@ -167,7 +170,7 @@ ones touch the product.
 | What happened | Source | Product impact |
 |---|---|---|
 | The first build failed: "cannot execute tool 'metal' due to missing Metal Toolchain". Fixed with `xcodebuild -downloadComponent MetalToolchain` (688 MB). | Mac setup | Every new developer machine hits this. Add it to `docs/development.md`. |
-| Pofu's App Shortcuts fail; Apple's run fine. | **App** (likely) | Blocks the core loop in the simulator; see finding 1. |
+| Pofu's App Shortcuts fail in the simulator; Apple's run fine. | Simulator (confirmed on device) | None on device; the Hop! flow just cannot be tested in the simulator. |
 | A white frame before the welcome screen. | **App** | Visible to every user on cold launch; see finding 7. |
 | Taps sent during an onboarding step's cross-fade were dropped twice, so the selections did not register. | App or harness, unclear | Possibly real: a quick user could lose taps. Worth checking hit-testing during `.transition(.opacity)`. |
 | The simulator panel's screenshots lagged one action behind. | Tooling | None. Waiting about 1 s after each tap fixed it. |
