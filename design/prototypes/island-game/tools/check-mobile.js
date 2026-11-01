@@ -125,11 +125,14 @@ async function phone(browser, device, label) {
   await page.waitForTimeout(400);
   ok(await page.evaluate(() => G.S().sheet === 'breath'), `${label}: past 60 min, “Open” starts the breathing break`);
   await noHScroll(page, `${label} breathing break`);
+  ok(await page.evaluate(() => G.S().breath && G.S().breath.t0 === null), `${label}: the breath waits for the user's tap`);
+  await page.locator('.breath [data-ui="breathStart"]').first().tap();
+  ok(await page.evaluate(() => G.S().breath && G.S().breath.t0 !== null && G.S().breath.secs <= 10), `${label}: “Breathe with Pofu” starts a breath of at most 10 s`);
   await page.evaluate(() => G.breathAt(10200));
   await page.waitForTimeout(700);
   await page.locator('.breath [data-ui="breathSkip"]').first().tap();
   await page.waitForTimeout(400);
-  ok(await page.evaluate(() => G.S().beads.slice(-1)[0] === 'S' && !G.S().sheet), `${label}: “I’m good. Skip it” after the breath counts as a skip`);
+  ok(await page.evaluate(() => G.S().beads.slice(-1)[0] === 'S' && !G.S().sheet), `${label}: “I’m good, skip it” after the breath counts as a skip`);
 
   ok(errors.length === 0, `${label}: no page errors or dialogs${errors.length ? ' — ' + errors.join('; ') : ''}`);
   await ctx.close();

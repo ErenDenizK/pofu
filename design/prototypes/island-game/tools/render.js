@@ -21,8 +21,8 @@ const SHOTS = [
   ['06-quick-check', 'Quick check: calm halves, no jealousy', async (p) => p.evaluate(() => { G.fastForward(11); G.collect(); G.openApp(true); }), 500],
   ['07-pout-reset', 'A full open: calm back to ×1.0, Pofu pouts', async (p) => p.evaluate(() => { G.fastForward(11); G.collect(); G.openApp(false); }), 1300],
   ['08-hop-over', 'Past 60 minutes: every open waits for a breath', async (p) => p.evaluate(() => { G.fastForward(11); G.collect(); G.useLimit(); G.openHop(); })],
-  ['09-breath', 'The breathing break: one breath with Pofu', async (p) => { await p.evaluate(() => { G.fastForward(11); G.collect(); G.useLimit(); G.wantOpen(false); G.breathAt(2600); }); }, 250],
-  ['10-breath-done', 'After the breath: skip is first, opening stays one tap', async (p) => { await p.evaluate(() => { G.fastForward(11); G.collect(); G.useLimit(); G.wantOpen(false); G.breathAt(10400); }); }, 900],
+  ['09-breath', 'The breathing break waits for your tap: “Breathe with Pofu”', async (p) => { await p.evaluate(() => { G.fastForward(11); G.collect(); G.useLimit(); G.wantOpen(false); }); }, 250],
+  ['10-breath-done', 'After a 5 s breath: skip is first, opening stays one tap', async (p) => { await p.evaluate(() => { G.fastForward(11); G.collect(); G.useLimit(); G.wantOpen(false); G.breathAt(5400); }); }, 900],
   ['11-unwell', 'After a binge: Pofu is unwell, never gone', async (p) => p.evaluate(() => { G.fastForward(11); G.collect(); G.binge(); }), 3000],
   ['12-expansion', 'Next morning: the island grew, the lily pond plot', async (p) => p.evaluate(() => { G.fastForward(5); G.set({ day: 4, tended: 3, stage: 1 }); G.collect(); G.toVillage(true); G.nextDay(); }), 1700],
   ['13-iskele-arrives', 'Day 9: a new island drifted close in the night', async (p) => p.evaluate(() => { G.fastForward(8); G.collect(); G.nextDay(); })],
@@ -32,7 +32,7 @@ const SHOTS = [
   ['17-night', 'Bedtime: the island sleeps, Pofu too', async (p) => p.evaluate(() => { G.fastForward(11); G.collect(); G.setNight(true); })],
   ['m1-phone-home', 'Phone, full-screen: safe areas, no frame', async () => {}, 1400, 'phone'],
   ['m2-phone-map', 'Phone: the archipelago map', async (p) => p.evaluate(() => { G.fastForward(11); G.collect(); G.toMap(true); }), 1600, 'phone'],
-  ['m3-phone-breath', 'Phone: the breathing break', async (p) => p.evaluate(() => { G.fastForward(11); G.collect(); G.useLimit(); G.wantOpen(false); G.breathAt(1800); }), 250, 'phone'],
+  ['m3-phone-breath', 'Phone: the breathing break, mid-breath', async (p) => p.evaluate(() => { G.fastForward(11); G.collect(); G.useLimit(); G.wantOpen(false); G.breathAt(1800); }), 250, 'phone'],
   ['m4-phone-demo', 'Phone: the demo drawer scrolls with touch', async (p) => p.evaluate(() => { G.drawer(true); }), 900, 'phone'],
 ];
 
@@ -74,7 +74,7 @@ async function overview(browser, out, list) {
     figure.phone figcaption { margin-top: 14px; }
     figcaption b { color: #6C4FD8; margin-right: 4px; }
   </style></head><body><div id="sheet"><h1>Pofu's archipelago · playable prototype</h1>
-  <p>Seeds are world material, never screen time. A quick check halves calm; past 60 minutes, every open waits for a breath with Pofu. New islands drift close over time. Stand-in art except Pofu (R1) and Mochi (concept).</p>
+  <p>Seeds are world material, never screen time. A quick check halves calm; past 60 minutes, every open waits for a 5 s breath you start with Pofu. New islands drift close over time. Stand-in art except Pofu (R1) and Mochi (concept).</p>
   <div class="grid">${cells}</div></div></body></html>`);
   await page.goto(`file://${tmp}`);
   await page.evaluate(() => document.fonts.ready);

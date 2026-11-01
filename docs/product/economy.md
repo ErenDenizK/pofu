@@ -6,7 +6,7 @@
 > the stations' idle production) and a little per skip, and spent only on
 > station levels and islands ([game-design.md](game-design.md)). Opening a guarded app costs calm and
 > Pofu's wellbeing; past a daily threshold (60 guarded minutes) every open
-> waits for a breathing break of 10 to 30 seconds. This page is kept as the
+> offers a short breathing break (5 s, at most 10 s, started by the user). This page is kept as the
 > record of economy v0, which `PofuCore` still implements; sections that
 > no longer apply carry a "Superseded" note and are otherwise unchanged.
 
@@ -404,7 +404,7 @@ Mood bands: `thriving` ≥ 0.75, `content` ≥ 0.5, `tired` ≥ 0.25,
 
 ## Invariants (enforced by tests)
 
-> **Amended by [ADR-0015](../adr/0015-care-over-currency.md).** Balance, refund and honor-cap invariants retire with prices. New: no gate outcome changes seeds except a capped skip gift; a breath is never longer than 30 s; calm stays in 1.0…2.0 and never resets without an open.
+> **Amended by [ADR-0015](../adr/0015-care-over-currency.md).** Balance, refund and honor-cap invariants retire with prices. New: no gate outcome changes seeds except a capped skip gift; a breath is never longer than 10 s and starts only on the user's tap; calm stays in 1.0…2.0 and never resets without an open.
 
 - The balance is never negative.
 - Energy is conserved: balance = allowances + earnings − spending +

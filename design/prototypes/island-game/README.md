@@ -32,7 +32,8 @@ Inside the game: tap the island (or the island button) to zoom out, the
 map button for the archipelago, a station to build, an island on the map
 to read about it, Pofu to boop him. The controls simulate a resisted
 reach, a quiet hour, a reach for Instagram (Hop! with quick check, open,
-or skip), using up the daily hour (the next open waits for a breath), a
+or skip), using up the daily hour (the next open offers a 5-second breath
+that starts on your tap, 10 seconds from the 4th open), a
 binge, bedtime, and the next morning, and jump to days 5, 8 (then "Next
 day": İskele arrives), 11 and 20.
 

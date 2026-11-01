@@ -22,8 +22,8 @@ your guarded apps, the calmer the island gets: a **calm multiplier**
 Instagram for a quick check and the calm halves; open it properly and it
 resets, and Pofu feels it: his **wellbeing** (*keyif*) drops, he pouts,
 and on a bad day he curls up, unwell (never gone). Past your daily hour,
-every open first waits for a **breathing break** with Pofu: one breath,
-then two, never more than three. Come back after a quiet afternoon, spend
+every open first offers a **breathing break** with Pofu: one short
+breath you start yourself, 5 seconds, never more than 10. Come back after a quiet afternoon, spend
 your seeds on the next designed level of a station, and close the app.
 Over the weeks, new islands drift close, each with its own small ritual:
 a harbor whose morning ferry brings postcards, a night island where calm
@@ -36,7 +36,8 @@ doomscrolling and built this.*
 | Founder decision (2026-11-01) | What it means in the game |
 |---|---|
 | **Seeds stay, but only as world material.** The user must feel "I did something." | Seeds come from time away (Pofu's own gathering, plus the stations working while no guarded app is open) and a little from each resisted reach. You spend them by hand on pre-planned levels. Seeds **never** buy screen time ([ADR-0015](../adr/0015-care-over-currency.md)). v1's "goodies / erzak" are renamed seeds / çekirdek. |
-| **The breathing break is the hard limit.** | After the daily threshold (default 60 guarded minutes), every open waits for 10 s of breathing with Pofu, growing to 20 s and 30 s with repeated opens, never more. It replaces both the price and v1's open question about a "backstop". |
+| **The breathing break is the hard limit.** | After the daily threshold (default 60 guarded minutes), every open waits for a short breath with Pofu. It replaces both the price and v1's open question about a "backstop". |
+| **Breathing break v2: user-initiated and short** (later the same day) | The break screen shows Pofu and one button, "Breathe with Pofu"; the breath starts only when the user taps it (ownership: the user chose it). **5 s** by default, **10 s at most**, from the 4th over-limit open of the day. After the breath: "I'm good, skip it" (primary) or "Open". |
 | **Measure usage honestly.** | Short opens (a pass of 3 minutes or less) are **quick checks**: they halve the calm bonus instead of resetting it, and Pofu is not jealous. What we can and cannot see is written down per phase (section 6). |
 | **An archipelago, not one island.** | Five islands, each with its own small loop and resident, arriving with time and progress (and, later, with seasons). |
 | **"Sleeps it off" stays.** | Unchanged from v1 (section 5). |
@@ -77,7 +78,7 @@ visits, no game notifications, Plus sells variety and never progress.
                    Pofu proud                         │
  quick check ───► calm bonus halves, no jealousy      │
  open an app ───► calm resets, wellbeing ↓            │
- past 60 min ───► every open waits for a breath       │
+ past 60 min ───► every open offers a 5–10 s breath   │
  calm night ────► wellbeing +10, calm +0.2, +10 seeds ┘
  tended days ───► the home island grows; new islands drift close
 ```
@@ -128,7 +129,7 @@ on a timer; production needs no tending.
 | A11 | **Skips are barely farmable.** A skip gives +1 wellbeing (6 a day) and +3 seeds (5 a day, 15 seeds). In week 1 that is 1–2 % of a player's seeds: a thank-you, never a reason to trigger the gate. | `CareLedger` tests; simulation share. |
 | A12 | **Kind emotions.** Pofu teases the app, never the user (section 12). | Copy review in EN and TR. |
 | A13 | **Seeds never touch the gate.** No rung, pass, breath, or emergency path reads or writes seeds. | `SeedsNeverBuyTimeTests` on every rung. |
-| A14 | **The breathing break is bounded.** 10 s, 20 s, at most 30 s; always skippable into "not now" (which is a skip), never a dead end; the emergency pass is unchanged. | UI test; ladder tests. |
+| A14 | **The breathing break is bounded and owned.** It starts only on the user's tap; 5 s, at most 10 s; "Not now" (a skip) is always there, never a dead end; the emergency pass is unchanged. | UI test; ladder tests; `BreathRules` cap test. |
 
 ## 5. Mechanics and numbers
 
@@ -206,25 +207,31 @@ five quick checks in a row are a 15-minute session at half the price.
 |---|---|
 | Threshold | 60 guarded minutes a day (settable 15–180 in Settings; the founder's own: 60) |
 | What counts | pre-membership: the pass lengths granted (section 6); with Screen Time: measured usage from a DeviceActivity threshold event |
-| Rule | once over the threshold, **every** open waits for a breathing break with Pofu before the app opens, including quick checks |
-| Length | 1 breath (10 s) for the 1st and 2nd over-limit open of the day, 2 breaths (20 s) for the 3rd and 4th, **3 breaths (30 s) from the 5th on, never more** |
-| Rhythm | inhale 4 s, exhale 6 s (a calming, slightly long exhale) |
-| During | "Not now" is always there and counts as a skip; there is no "skip the breath and open" |
-| After | "I'm good. Skip it" (primary, counts as a skip) or "Open Instagram · 15 min" (one tap) |
+| Rule | once over the threshold, **every** open goes through a breathing break with Pofu before the app opens, including quick checks |
+| Start | **the user starts it.** The break screen shows Pofu, one line, and one button, "Breathe with Pofu" (TR "Pofu'yla nefes al"); nothing moves until it is tapped. Ownership is the point: the pause is chosen, not imposed. |
+| Length | **5 s** (one breath: in 2 s, out 3 s) for the 1st to 3rd over-limit open of the day; **10 s** (one deep breath: in 4 s, out 6 s) from the 4th on. **Never more than 10 s.** |
+| Rhythm | always one breath with a long exhale (in : out = 2 : 3); escalation makes the breath deeper, not longer in count |
+| Before and during | "Not now" is always there and counts as a skip; there is no "skip the breath and open" |
+| After | "I'm good, skip it" (primary, counts as a skip) or "Open" (secondary, one tap; the pass length chosen in Hop!) |
 | Resets | at local midnight |
-| Never | costs or earns seeds; locks the user out; lasts longer than 30 s; applies to the emergency pass |
+| Never | costs or earns seeds; locks the user out; starts without a tap; lasts longer than 10 s; applies to the emergency pass |
 
 **The moment.** Not a punishment screen: a soft lavender room, Pofu
-inside a breathing orb with his eyes closed, his belly rising and falling
-with the orb, one word at a time ("Breathe in…", "…and out"), dots for
-the breaths, no numbers, no countdown. When it ends: "Nicely done." The
-copy never says "limit", "blocked", or "penalty"; it says "We've had our
-hour today. Breathe with me first?"
+inside a calm orb, eyes open and waiting, and one button: "Breathe with
+Pofu". Tap it and Pofu closes his eyes, his belly rises and falls with the
+orb, one word at a time ("Breathe in…", "…and out"), no numbers, no
+countdown. When it ends: "Nicely done." and the two choices. The copy never
+says "limit", "blocked", or "penalty"; it says "We've had our hour today.
+Breathe with me first?"
 
 **Why it works as a limit without a price.** The breath does what the
 old escalating price did (friction that grows with repetition), but it
 spends attention instead of currency, and the attention it asks for is
-the thing we want to give back. Friction apps such as one sec are built
+the thing we want to give back. **Why short and user-started (v2).** A
+30-second wait trains people to resent the screen and to look away while
+it runs; a 5-second breath they chose is short enough to do properly every
+time, and the tap itself is the moment of reflection (the same bet as the
+Hop! skip button: a choice beats a wall). Friction apps such as one sec are built
 on the bet that a short, mandatory pause before a reflexive open prevents
 a real share of opens. We have no verified number of our own, so the
 simulation assumes 20 % of over-limit opens end after the breath and
@@ -402,7 +409,7 @@ unwell, sleepy, proud, worried, relieved, breathing** with code stand-in faces.
 | **Jealous (TikTok)** | same, TikTok | "Oh. TikTok. I see how it is." | "Hı. TikTok. Anladım ben seni." | side-eye | turns a quarter away |
 | **Pout** | opened anyway: calm resets | "Hmph. Calm's back to ×1.0. Fine. It'll grow again." | "Hıh. Huzur yine ×1.0. Peki. Yine büyür." | pout mouth + cheeks full + half-lid | squash, a puff of air |
 | **Easy-going** | a quick check (≤ 3 min): never jealous | "Quick one? Go ahead. I'll keep the calm warm." | "Hızlıca mı? Tamam. Huzuru ben sıcak tutarım." | neutral, soft eyes | a small nod |
-| **Breathing** | the breathing break | "We've had our hour today. Breathe with me first?" · "Breathe in… and out." · "Nicely done." | "Bugünkü saatimizi doldurduk. Önce benimle bir nefes alır mısın?" · "Nefes al… ve ver." · "Çok güzel." | eyes closed | belly rises and falls with the orb |
+| **Breathing** | the breathing break | "We've had our hour today. Breathe with me first?" · button "Breathe with Pofu" · "Breathe in… and out." · "Nicely done." | "Bugünkü saatimizi doldurduk. Önce benimle bir nefes alır mısın?" · button "Pofu'yla nefes al" · "Nefes al… ve ver." · "Çok güzel." | eyes open while waiting, closed while breathing | belly rises and falls with the orb |
 | **Delighted** | a new island drifted close | "And look: a new island drifted close in the night!" | "Bak hele: gece yeni bir ada yanaştı!" | eyes happy + mouth open | bounce, looks toward the map |
 | **Smug** | calm reaches ×2.0 | "Calm ×2.0. Maxed out. I'm basically a zen master now." | "Huzur ×2.0. Tavan yaptı. Resmen zen ustasıyım." | half-lid + smirk | chin up, sparkles |
 | **Proud** | a skip | "Skipped! We did that. Mostly you." | "Vazgeçtin! Başardık. Yani, çoğunu sen." | eyes happy | a hop |
@@ -455,7 +462,7 @@ code (ADR-0011).
 | Seeds | `Energy` in a `Wallet`: allowance, earning, prices, refunds | `Energy` stays as the internal type of seeds. The allowance, prices, escalation and refunds leave the gate ([ADR-0015](../adr/0015-care-over-currency.md)). Seeds are credited by `QuietTimeAccrual` (unchanged), a new `StationLedger`, and capped skip gifts; they are debited only by station builds. |
 | Opening cost | `Wallet` prices, escalation, night ×2 | `CareLedger`: wellbeing drain per minute and per open, with the escalation and night multipliers re-homed; calm reset or halving. No prices. |
 | Calm | — (quiet time produced seeds) | `CalmAccrual`: the quiet-stretch logic, producing a multiplier step every 20 min; quick-check halving and the 20-minute chain. Prefix-consistent. |
-| The breathing break | — | `BreathRules` (threshold, breaths by over-limit open, cap) and a `GuardedTime` estimate: granted pass minutes now, DeviceActivity thresholds later. |
+| The breathing break | — | `BreathRules` (threshold, seconds by over-limit open: 5, 5, 5, then 10; cap 10 s; started by the user) and a `GuardedTime` estimate: granted pass minutes now, DeviceActivity thresholds later. |
 | Wellbeing | `VitalityLedger` (daily EMA, bands, blind days freeze) | `Wellbeing`: a continuous meter fed by the same events, with "sleeps it off"; blind time freezes it. |
 | Production | — | `StationLedger`: levels and seeds as a pure function of (levels, quiet intervals, calm history, wellbeing history). |
 | Islands | — | `IslandCatalog` and `Archipelago`: arrival rules over tended days, calm nights and levels; monotonic. |
@@ -465,7 +472,7 @@ code (ADR-0011).
 Invariants to test: seeds never change on any gate outcome except a
 capped skip gift; wellbeing in 5…100; calm in 1.0…2.0; calm never resets
 without an open; a quick check never lowers calm by more than half the
-bonus; a breath is never longer than 30 s; levels, stages and arrivals
+bonus; a breath is never longer than 10 s and never starts without a tap; levels, stages and arrivals
 never decrease; production is the same computed in many small steps or
 one.
 
@@ -476,8 +483,8 @@ runs five archetypes for 90 days, minute by minute: reaches as a Poisson
 process, binge continuation, night sessions, the ladder (free pause and
 intent passes, the care rung, a friend or the emergency pass on the
 fourth rapid reach), quick checks (a share of opens per archetype), the
-breathing break past 60 guarded minutes (20 % of over-limit opens end
-after the breath), wellbeing, calm, seeds from all three sources,
+breathing break past 60 guarded minutes (5 s, 10 s from the 4th over-limit
+open; 20 % of over-limit opens end without opening), wellbeing, calm, seeds from all three sources,
 island arrivals, and builds at three daily visits (cheapest next level
 anywhere first, at most two per visit).
 
@@ -489,13 +496,13 @@ anywhere first, at most two per visit).
 | Relapse and recover | 1 | 63 | 33 % | day 9 | day 22 | 5 / 5 | 53 % | 0 |
 | Never opens (upper bound) | 1 | 42 | 63 % | day 9 | day 22 | 5 / 5 | 74 % | 0 |
 
-| Archetype | Calm avg wk 1 → wk 13 | Resets / halvings per day | Breathing breaks/day wk 1 → wk 13 | Wellbeing wk 1 → wk 13 (lowest) | Unwell days | Feed min/day wk 1 → wk 13 | Seeds/day wk 1 | Wk 1 share: Pofu's gathering / skips |
+| Archetype | Calm avg wk 1 → wk 13 | Resets / halvings per day | Breathing breaks/day wk 1 → wk 13 (seconds/day, wk 1) | Wellbeing wk 1 → wk 13 (lowest) | Unwell days | Feed min/day wk 1 → wk 13 | Seeds/day wk 1 | Wk 1 share: Pofu's gathering / skips |
 |---|---|---|---|---|---|---|---|---|
-| Heavy scroller, improving | 1.17× → 1.51× | 5.8 / 2.5 | 17.4 → 0.1 | 32 → 98 (5) | 6 | 183 → 40 | 609 | 9 % / 2 % |
-| Moderate | 1.36× → 1.45× | 5.0 / 3.6 | 2.6 → 0.7 | 92 → 96 (25) | 0 | 68 → 51 | 1,194 | 5 % / 1 % |
-| Already disciplined | 1.88× → 1.87× | 0.7 / 1.5 | 0.0 → 0.0 | 100 → 100 (70) | 0 | 5 → 5 | 1,778 | 3 % / 1 % |
-| Relapse and recover | 1.39× → 1.61× | 4.5 / 2.6 | 1.4 → 0.0 | 96 → 99 (5) | 4 | 63 → 27 | 1,248 | 5 % / 1 % |
-| Never opens (upper bound) | 1.99× → 2.00× | 0.0 / 0.0 | 0.0 → 0.0 | 100 → 100 (70) | 0 | 0 → 0 | 1,887 | 3 % / 1 % |
+| Heavy scroller, improving | 1.17× → 1.51× | 5.8 / 2.5 | 17.4 → 0.1 (159 s) | 32 → 98 (5) | 6 | 183 → 40 | 609 | 9 % / 2 % |
+| Moderate | 1.36× → 1.45× | 5.0 / 3.6 | 2.6 → 0.7 (19 s) | 92 → 96 (25) | 0 | 68 → 51 | 1,194 | 5 % / 1 % |
+| Already disciplined | 1.88× → 1.87× | 0.7 / 1.5 | 0.0 → 0.0 (0 s) | 100 → 100 (70) | 0 | 5 → 5 | 1,778 | 3 % / 1 % |
+| Relapse and recover | 1.39× → 1.61× | 4.5 / 2.6 | 1.4 → 0.0 (10 s) | 96 → 99 (5) | 4 | 63 → 27 | 1,248 | 5 % / 1 % |
+| Never opens (upper bound) | 1.99× → 2.00× | 0.0 / 0.0 | 0.0 → 0.0 (0 s) | 100 → 100 (70) | 0 | 0 → 0 | 1,887 | 3 % / 1 % |
 
 _Medians of 30 runs, 90 days._
 
@@ -540,12 +547,15 @@ _Medians of 30 runs, 90 days._
    island comes. We considered gating islands on calm and rejected it: a
    heavy scroller locked out of the new island is a churn risk.
 3. **The breathing break is busy for heavy scrollers.** In week 1 the
-   heavy scroller meets 17 breaks a day (about 5 minutes of breathing),
-   falling to almost none by week 13 as feed time drops. That is the
-   intended pressure, and also the main thing to test on the founder's
-   phone (section 16).
-4. **How much the breath helps is an assumption.** If nobody changes
-   their mind after a breath, the heavy scroller's month-1 feed time is
+   heavy scroller meets 17 breaks a day, falling to almost none by week 13
+   as feed time drops. With v2's 5–10 s breaths that is about 2.7 minutes
+   of breathing a day (159 s), against about 7.7 minutes (461 s) with v1's 10–30 s
+   ladder. That is the intended pressure, and also the main thing to test
+   on the founder's phone (section 16).
+4. **How much the breath helps is an assumption.** The simulation does
+   not model how break length changes behavior (it has no evidence to), so
+   v2's shorter breath leaves the pacing tables unchanged and only the
+   breathing seconds fall. If nobody declines or changes their mind, the heavy scroller's month-1 feed time is
    158 minutes a day; at 20 % it is 138; at 50 %, 108.
 5. **Loss aversion is the upside.** With a modest response to the calm at
    stake (+0.25 resist probability per ×1.0), week-13 feed time falls from
@@ -779,8 +789,9 @@ image. Change only…"); they belong in the prompt library once approved.
 1. **The daily hour.** 60 guarded minutes before the breathing break, for
    everyone by default? (Recommended: yes, settable in Settings; shown on
    Home as "n / 60 min".)
-2. **The breath ladder.** 10 s, then 20 s from the 3rd over-limit open,
-   then 30 s from the 5th. Too gentle or too firm for your own Instagram?
+2. **The breath ladder (v2, decided).** 5 s, started by your tap; 10 s
+   from the 4th over-limit open. Open on your phone: does 5 s feel like a
+   real pause, or too easy to tap through?
 3. **Quick checks.** 3 minutes, halving, and the 20-minute chain rule.
    Does halving feel fair when you really did just reply to a message?
 4. **Island names.** Ayçiçeği, İskele, Yıldız, Kaplıca, Kitap; residents
@@ -798,11 +809,13 @@ image. Change only…"); they belong in the prompt library once approved.
   season-long horizon, with a template for more. Each island's ritual is
   small on purpose; the risk is that "small" reads as "thin". The
   postcard set and the constellation are the two to prototype next.
-- **The breathing break could still feel like a punishment.** The
-  simulation's heavy scroller meets 17 a day in week 1. The design does
-  everything it can (no numbers, no countdown, Pofu breathing with you,
-  "Not now" always there, a hard 30-second cap), but only the founder's
-  own week will tell whether it feels like care or like a wall.
+- **The breathing break could still feel like a punishment, or now like
+  nothing.** The simulation's heavy scroller meets 17 a day in week 1.
+  v2 makes it short (5–10 s) and user-started, which removes most of the
+  "wall" feeling; the new risk is the opposite: a 5-second tap-through
+  that becomes muscle memory. The metric to watch is the share of
+  over-limit opens that end in "I'm good, skip it" by week 2 against
+  week 1; if it falls toward zero, the 10-second step should come earlier.
 - **Pre-membership measurement is approximate.** The daily hour counts
   granted pass minutes, not used minutes; someone who leaves Instagram
   after one minute of a 15-minute pass reaches the breathing break early.
