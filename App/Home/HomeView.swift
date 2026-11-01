@@ -127,11 +127,6 @@ struct HomeView: View {
             .accessibilityAddTraits(bubbleAction == .nothing ? [] : .isButton)
 
             ZStack(alignment: .bottom) {
-                Circle()
-                    .fill(PofuColor.stage.opacity(0.55))
-                    .frame(width: 280, height: 280)
-                    .offset(y: 40)
-                    .accessibilityHidden(true)
                 CompanionView(
                     vitality: model.vitality,
                     energy: model.cheekFill,
@@ -143,6 +138,17 @@ struct HomeView: View {
                     }
                 )
                 .frame(maxWidth: 300)
+                .background {
+                    // A glow, not a disc: no edge, so it never reads as a
+                    // plate on the night room. It overflows the figure and
+                    // centers on the body, below the hop headroom.
+                    Circle()
+                        .fill(PofuColor.haloGlow(radius: 170))
+                        .frame(width: 340, height: 340)
+                        .offset(y: 54)
+                        .allowsHitTesting(false)
+                        .accessibilityHidden(true)
+                }
                 .accessibilityLabel(Text(companionLabel))
                 .accessibilityHint(model.canCollectQuietSeeds ? Text("Collects the seeds in my cheeks") : Text(verbatim: ""))
 

@@ -59,6 +59,27 @@ public enum PofuColor {
     public static var blush: Color { Color(token: .decorBlush) }
     /// The stage disc behind Pofu on plain surfaces (blush-200).
     public static var stage: Color { PofuPrimitive.blush200.rgb.color }
+    /// The core of the glow behind Pofu in a scene: a warm blush that lifts
+    /// the cream belly off cream by day, and a faint ember by night, so it
+    /// never reads as a plate on the dark room.
+    public static var halo: Color {
+        Color.pofuAdaptive(light: PofuPrimitive.blush200.rgb, lightOpacity: 0.85, dark: PofuPrimitive.blush500.rgb, darkOpacity: 0.2)
+    }
+
+    /// A soft radial glow of `halo` that falls off to nothing at `radius`.
+    public static func haloGlow(radius: CGFloat) -> RadialGradient {
+        RadialGradient(
+            stops: [
+                .init(color: halo, location: 0),
+                .init(color: halo.opacity(0.7), location: 0.45),
+                .init(color: halo.opacity(0.25), location: 0.75),
+                .init(color: halo.opacity(0), location: 1),
+            ],
+            center: .center,
+            startRadius: 0,
+            endRadius: radius
+        )
+    }
     /// The 1 pt hairline on cards, chips, and bar edges: warm ink on cream,
     /// cream on night, so the edge stays visible in both appearances.
     public static var hairline: Color {
