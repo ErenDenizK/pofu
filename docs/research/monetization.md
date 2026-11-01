@@ -1,7 +1,8 @@
 # Monetization Research
 
-_Last updated: 2026-10-31. Status: research complete; decision deferred to the
-launch phase, constrained by the principles below._
+_Last updated: 2026-11-01. Status: research complete; decision deferred to the
+launch phase, constrained by the principles below. Paywall timing decided
+in [ADR-0012](../adr/0012-ux-v1-decisions.md): no paywall in onboarding._
 
 ## Founder constraints
 

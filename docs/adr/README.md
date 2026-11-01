@@ -20,3 +20,4 @@ Format: a lightweight variant of [MADR](https://adr.github.io/madr/). Use
 | [0009](0009-xcodegen-and-package-layout.md) | XcodeGen project and a single local package | Accepted |
 | [0010](0010-illustrated-hamster-art-direction.md) | Illustrated hamster art direction | Accepted |
 | [0011](0011-companion-motion-system.md) | Companion motion system | Accepted |
+| [0012](0012-ux-v1-decisions.md) | UX v1 decisions | Accepted |
