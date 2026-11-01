@@ -77,7 +77,11 @@ the project's persistent memory; keep it accurate and concise.
   the agent owns prompts, the pipeline, motion, and integration. The 3D
   Blender spike is parked as a reference.
 - Without a local Swift toolchain, the compile and test loop is: push,
-  then read the GitHub Actions results. CI treats Swift warnings as errors.
+  then read the GitHub Actions results. **Actions minutes are scarce:** the repo
+  is private, macOS bills at 10× (about 30 minutes a run), and the plan has
+  3,000 a month. Review code by hand before pushing, push Swift branches as
+  few times as possible, and tell subagents the same. CI skips the macOS
+  job when only `docs/`, `design/`, `tools/` or Markdown change. CI treats Swift warnings as errors.
 - Founder's own target apps: Instagram, YouTube, TikTok. Goal: resist half
   of reflexive opens.
 - The paid Apple Developer membership is not active yet; the founder is on a
