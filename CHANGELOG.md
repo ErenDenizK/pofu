@@ -74,6 +74,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   matching design language amendments.
 - Iteration plan ([iteration-plan.md](docs/design/iteration-plan.md)): the
   path from prototype to launch in twelve checkable micro-iterations.
+- Decision audit ([decision-audit.md](docs/product/decision-audit.md)):
+  an independent red-team review of every decision, research claim, and
+  plan.
 
 ### Fixed
 
@@ -99,6 +102,13 @@ Polish from the first simulator run
   is now "Üretim".
 
 ### Changed
+
+- The iteration plan now puts the gate first (stage G: the automation
+  live, honest measurement, setup guide v2, a 7-day dogfood, the Screen
+  Time shield) before the world (stage W). ADR-0018's Glass++ production
+  waits for the friends beta. Room-era UX documents and the vision's core
+  loop are marked superseded; ADR-0010, 0015, and 0018 are amended; the
+  roadmap reflects the new order.
 
 - Breathing break v2 (founder decision): the user starts the breath with
   one tap ("Breathe with Pofu"); 5 seconds, 10 from the 4th over-limit

@@ -43,9 +43,13 @@ the project's persistent memory; keep it accurate and concise.
 - Product name: **Pofu** (ADR-0007). The repository is `ErenDenizK/pofu`
   (renamed from `rot`; GitHub redirects the old URLs).
 - Phase 1 in progress. The soft gate v1 is merged (#14): `CheckInIntent`,
-  the Hop! flow, Pofu's room, persistence, and minimal onboarding. It is
-  **not yet validated on a device**; the founder's first on-device test is
-  the top priority. XcodeGen project (`project.yml`, regenerate after
+  the Hop! flow, Pofu's room, persistence, and minimal onboarding. **The
+  gate comes first** (decision audit, `docs/product/decision-audit.md`):
+  the automation has never fired on the founder's phone (he searched
+  Shortcuts for the app instead of opening the Automation tab). Stage G of
+  the iteration plan (automation live, honest measurement, setup guide v2,
+  7-day dogfood, Screen Time shield on membership day 1) precedes all world,
+  art, and `PofuWorld` work. XcodeGen project (`project.yml`, regenerate after
   pulling); `Packages/PofuKit` has `PofuCore`, `PofuScreenTime`,
   `PofuPersistence`, `PofuDesignSystem`, and `PofuCompanion`. CI must stay
   green. Keep `docs/product/economy.md` in sync with `PofuCore`.
@@ -55,14 +59,19 @@ the project's persistent memory; keep it accurate and concise.
 - Visual system v1 (ADR-0018, founder-approved): balanced diorama, Glass++
   (native glass frame; painted domain icons at 28 pt or larger with vector
   twins below; seed jar and calm lantern as indicators), one continuous
-  camera, cloud pass only for island arrivals. Work order and checks:
-  `docs/design/iteration-plan.md` (I1 to I12). Prototypes stay rough until I6.
+  camera, cloud pass only for island arrivals. Glass++ production waits
+  for the friends beta (ADR-0018 amendment). Work order and checks:
+  `docs/design/iteration-plan.md` (stage G, then stage W). Prototypes stay
+  rough until W4. Write ADRs only for decisions that cost weeks to undo;
+  tunable numbers live in config and the game design.
 - Game direction: Pofu's archipelago (`docs/product/game-design.md`,
   prototype in `design/prototypes/island-game/`). Seeds are world material
   and never buy screen time; a breathing break is the hard limit (ADR-0015,
   not yet in `PofuCore`); ADR-0016 archipelago; ADR-0017 Pofu never dies.
 - Character: Pofu is an **illustrated fluffy hamster** (ADR-0010). The
-  founder generates art with GPT Image (ChatGPT Pro) under the art bible;
+  founder generates art with GPT Image under the art bible, **only on the
+  founder's own OpenAI account** (sharing the uncle's account conflicts
+  with OpenAI's terms and clouds ownership);
   the agent owns prompts, the pipeline, motion, and integration. The 3D
   Blender spike is parked as a reference.
 - Without a local Swift toolchain, the compile and test loop is: push,
