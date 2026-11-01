@@ -1,6 +1,15 @@
 # Information Architecture
 
 _Status: proposal v1, for founder review. Last updated: 2026-10-31._
+
+> **Superseded in part (2026-11-01).** This document describes the room-era
+> Home, seed prices, and the passes store. Those were replaced by
+> [ADR-0015](../../adr/0015-care-over-currency.md) (seeds never buy screen
+> time), [ADR-0016](../../adr/0016-pre-planned-idle-archipelago.md) (the
+> island), and [ADR-0018](../../adr/0018-visual-system-v1.md). The gate
+> setup, Hop!, and settings sections still describe the shipping app. A
+> rewrite follows the founder's first gate week; see the
+> [decision audit](../decision-audit.md), C2.
 _Companion docs: [user flows](user-flows.md), [clickable prototype](../../../design/prototypes/ux/README.md)._
 
 This document defines how Pofu is organized: where things live, how people
