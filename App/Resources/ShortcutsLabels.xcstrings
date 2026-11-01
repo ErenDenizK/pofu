@@ -1,0 +1,215 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Search" : {
+      "comment" : "The search field or tab in Shortcuts. VERIFY ON DEVICE: Turkish label not confirmed against Apple's Turkish Shortcuts guide or a Turkish iPhone.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ara"
+          }
+        }
+      }
+    },
+    "Shortcuts" : {
+      "comment" : "The Shortcuts tab.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kestirmeler"
+          }
+        }
+      }
+    },
+    "Automation" : {
+      "comment" : "The Automation tab.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otomasyon"
+          }
+        }
+      }
+    },
+    "Gallery" : {
+      "comment" : "The Gallery tab. VERIFY ON DEVICE: Turkish label not confirmed against Apple's Turkish Shortcuts guide or a Turkish iPhone.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Galeri"
+          }
+        }
+      }
+    },
+    "New Automation" : {
+      "comment" : "The button on an empty Automation tab. VERIFY ON DEVICE: Turkish label not confirmed against Apple's Turkish Shortcuts guide or a Turkish iPhone.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yeni Otomasyon"
+          }
+        }
+      }
+    },
+    "Time of Day" : {
+      "comment" : "A trigger in the New Automation list. VERIFY ON DEVICE: Turkish label not confirmed against Apple's Turkish Shortcuts guide or a Turkish iPhone.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Günün Saati"
+          }
+        }
+      }
+    },
+    "Alarm" : {
+      "comment" : "A trigger in the New Automation list.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alarm"
+          }
+        }
+      }
+    },
+    "Email" : {
+      "comment" : "A trigger in the New Automation list. VERIFY ON DEVICE: Turkish label not confirmed against Apple's Turkish Shortcuts guide or a Turkish iPhone.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E-posta"
+          }
+        }
+      }
+    },
+    "App" : {
+      "comment" : "The App trigger, and the Hop in action's App parameter.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulama"
+          }
+        }
+      }
+    },
+    "Choose" : {
+      "comment" : "The App trigger's app picker. VERIFY ON DEVICE: Turkish label not confirmed against Apple's Turkish Shortcuts guide or a Turkish iPhone.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seç"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "comment" : "The Shortcuts app's Done button (not Pofu's).",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitti"
+          }
+        }
+      }
+    },
+    "Is Opened" : {
+      "comment" : "The App trigger's 'Is Opened' option. VERIFY ON DEVICE: Turkish label not confirmed against Apple's Turkish Shortcuts guide or a Turkish iPhone.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Açık"
+          }
+        }
+      }
+    },
+    "Is Closed" : {
+      "comment" : "The App trigger's 'Is Closed' option. VERIFY ON DEVICE: Turkish label not confirmed against Apple's Turkish Shortcuts guide or a Turkish iPhone.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapalı"
+          }
+        }
+      }
+    },
+    "Run After Confirmation" : {
+      "comment" : "An automation run option. VERIFY ON DEVICE: Turkish label not confirmed against Apple's Turkish Shortcuts guide or a Turkish iPhone.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onaydan Sonra Çalıştır"
+          }
+        }
+      }
+    },
+    "Run Immediately" : {
+      "comment" : "An automation run option.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hemen Çalıştır"
+          }
+        }
+      }
+    },
+    "Notify When Run" : {
+      "comment" : "The automation's notification toggle. VERIFY ON DEVICE: Turkish label not confirmed against Apple's Turkish Shortcuts guide or a Turkish iPhone.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çalıştığında Bildir"
+          }
+        }
+      }
+    },
+    "New Blank Automation" : {
+      "comment" : "Starts an automation without a suggestion. VERIFY ON DEVICE: Turkish label not confirmed against Apple's Turkish Shortcuts guide or a Turkish iPhone.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yeni Boş Otomasyon"
+          }
+        }
+      }
+    },
+    "Add Action" : {
+      "comment" : "Opens the action list, where search is the right move. VERIFY ON DEVICE: Turkish label not confirmed against Apple's Turkish Shortcuts guide or a Turkish iPhone.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eylem Ekle"
+          }
+        }
+      }
+    },
+    "Hop in" : {
+      "comment" : "Pofu's own action, as Shortcuts lists it.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hop in"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
