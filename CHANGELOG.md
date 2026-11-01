@@ -37,3 +37,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Design language, art bible, a prioritized GPT Image prompt library, color
   tokens with a contrast report, and an asset pipeline for processing
   generated art and slicing sprite sheets.
+- Soft gate v1: `CheckInIntent` (one Shortcuts automation per app, dynamic
+  foregrounding, silent pass-through), the Hop! ladder with passes,
+  refunds, and a daily emergency pass, hand-off to the target app, and a
+  guided Shortcuts setup.
+- `PofuPersistence`: an atomic JSON snapshot store and an append-only event
+  log.
+- Pofu's room v1, minimal onboarding, and a full English and Turkish string
+  catalog.

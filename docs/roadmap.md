@@ -34,19 +34,21 @@ Goal: every decision needed to start building is made and written down.
 Goal: an app on the founder's iPhone where the companion is alive and
 delightful, running on the simulated Screen Time service (ADR-0003).
 
-- Companion v1 (illustrated hamster): idle, thriving, tired, wilting, sleeping,
-  celebrating, cheeks filling with energy
-- Home scene with world state driven by `PofuCore`
-- Economy engine in `PofuCore` with simulation tests (earn rates, prices,
-  inflation control, daily caps)
-- Activities: focus timer, breathing, honor-based activities
-- Streaks and first milestones
-- **Soft gate** ([ADR-0008](adr/0008-hybrid-intervention-delivery.md)):
-  `CheckInIntent`, the animated friction ladder, passes, and the guided
-  Shortcuts automation setup. This makes Pofu usable every day on
-  Instagram, YouTube, and TikTok before the paid membership.
-- Impulses-resisted counter and daily summary
-- Onboarding (without the real Screen Time permission step)
+- [x] **Soft gate v1** ([ADR-0008](adr/0008-hybrid-intervention-delivery.md),
+  [ADR-0012](adr/0012-ux-v1-decisions.md)): `CheckInIntent` with dynamic
+  foregrounding, the Hop! ladder, passes with refunds and the emergency pass,
+  hand-off to the target app, and a guided Shortcuts setup
+- [x] Persistence (`PofuPersistence`): snapshot store and event log
+- [x] Pofu's room v1: animated companion, seeds, today's beads, honor focus
+  timer
+- [x] Minimal onboarding: welcome, apps, name, setup
+- [ ] **On-device validation by the founder** (foregrounding from the
+  automation, silent pass-through, cold launch, URL schemes, Turkish
+  Shortcuts labels)
+- [ ] Production art from the prompt library, processed by the asset pipeline
+- [ ] Daily recap and bedtime mode
+- [ ] Streaks and first milestones
+- [ ] Practice Hop! in onboarding and the picture-in-picture setup guide
 
 ## Day 1 of the paid membership
 
