@@ -115,7 +115,7 @@ struct QuietTimeTests {
         // partial block cut by the pass is gone.
         gatekeeper.advanceQuietTime(to: noon.adding(hours: 1), state: &state)
         #expect(state.quietTime.pendingQuietSeeds == 5)
-        #expect(gatekeeper.quietTime.quietStretch(state.quietTime, at: noon.adding(hours: 1)) == 30 * 60)
+        #expect(gatekeeper.quietTime.quietStretch(state.quietTime, at: noon.adding(hours: 1)) == TimeInterval(1_800))
     }
 
     @Test func passThroughsDuringAPassChangeNothing() throws {
@@ -278,7 +278,7 @@ struct QuietTimeTests {
         var ledger = signaled(at: instant(2026, 11, 2, 0), using: allDay)
         let result = allDay.advance(&ledger, to: instant(2026, 11, 3, 0))
         #expect(result.quietSeeds == 48)
-        #expect(result.forfeitedToCap == 144 - 48)
+        #expect(result.forfeitedToCap == Energy(96))
         // A new day, a new cap.
         #expect(allDay.advance(&ledger, to: instant(2026, 11, 3, 2)).quietSeeds == 12)
         #expect(ledger.pendingQuietSeeds == 60)
@@ -321,7 +321,7 @@ struct QuietTimeTests {
         #expect(!allDay.isHolding(ledger, at: back))
         #expect(!allDay.isAwaitingSignOfLife(ledger, at: back))
         // Quiet carries on (nothing opened), but counts again only from now.
-        #expect(allDay.quietStretch(ledger, at: back) == 100 * 3_600)
+        #expect(allDay.quietStretch(ledger, at: back) == TimeInterval(360_000))
         #expect(allDay.advance(&ledger, to: back.adding(minutes: 20)).quietSeeds == 2)
 
         var wallet = Wallet()

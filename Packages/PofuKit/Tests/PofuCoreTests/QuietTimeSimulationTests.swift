@@ -50,7 +50,7 @@ struct QuietTimeSimulationTests {
         var spent = Energy.zero
         var refunds = Energy.zero
         var collected = QuietCollection(quietSeeds: .zero, sleepBonus: .zero)
-        var sawHeldSeeds = false
+        var sawSilence = false
 
         for event in events(using: &rng) {
             let at = date(event.minute)
@@ -84,7 +84,7 @@ struct QuietTimeSimulationTests {
             case .foreground:
                 gatekeeper.advanceQuietTime(to: at, state: &state)
                 let holding = gatekeeper.quietTime.isHolding(state.quietTime, at: at)
-                sawHeldSeeds = sawHeldSeeds || holding
+                sawSilence = sawSilence || gatekeeper.quietTime.isAwaitingSignOfLife(state.quietTime, at: at)
                 if Bool.random(using: &rng) {
                     let result = gatekeeper.collectQuietSeeds(at: at, state: &state)
                     if holding {
@@ -118,7 +118,8 @@ struct QuietTimeSimulationTests {
         #expect(collected.quietSeeds + state.quietTime.pendingQuietSeeds == expected.quietSeeds)
         #expect(collected.sleepBonus + state.quietTime.pendingSleepBonus == expected.sleepBonus)
         #expect(expected.quietSeeds > .zero)
-        #expect(sawHeldSeeds)
+        // The silent days outlast the observation window.
+        #expect(sawSilence)
     }
 
     // MARK: - Synthetic days
