@@ -38,6 +38,8 @@ func sampleSnapshot() throws -> PofuSnapshot {
     _ = gatekeeper.beginCheckIn(for: "instagram", at: noon.addingTimeInterval(61.5), state: &state)
     let walk = ActivitySession(kind: .walk, verification: .honor, startedAt: noon.addingTimeInterval(3_600), endedAt: noon.addingTimeInterval(5_400))
     economy.earn(walk, into: &state.wallet)
+    // Three quiet hours later, seeds are waiting in Pofu's cheeks.
+    gatekeeper.advanceQuietTime(to: noon.addingTimeInterval(3 * 3_600), state: &state)
     state.vitality.settle(through: economy.day(of: noon), model: VitalityModel()) { _ in VitalityInput() }
     let profile = UserProfile(
         companionName: "Fıstık",
@@ -78,6 +80,9 @@ struct PofuStoreTests {
         #expect(loaded.state.passThroughs.count == 1)
         #expect(loaded.profile.companionName == "Fıstık")
         #expect(loaded.activeSession?.plannedMinutes == 25)
+        #expect(loaded.state.quietTime == snapshot.state.quietTime)
+        #expect(loaded.state.quietTime.lastSignalAt != nil)
+        #expect(loaded.state.quietTime.pendingQuietSeeds > .zero)
     }
 
     @Test func savingReplacesTheWholeFileAndLeavesNoTemporaryFiles() throws {
@@ -116,6 +121,36 @@ struct PofuStoreTests {
             Issue.record("Expected a fresh start after quarantine")
             return
         }
+    }
+
+    @Test func snapshotsWrittenBeforeQuietTimeLoadWithAFreshLedger() throws {
+        let directory = try TemporaryDirectory()
+        let store = PofuStore(location: StorageLocation(directory: directory.url))
+        let legacy = #"""
+            {
+              "schemaVersion" : 1,
+              "profile" : { "companionName" : "Pamuk", "hasCompletedOnboarding" : true },
+              "state" : {
+                "wallet" : {
+                  "balance" : 42,
+                  "honorEarnedByDay" : [],
+                  "stepEnergyByDay" : [],
+                  "activityEnergyByDay" : [],
+                  "unlockPurchases" : []
+                },
+                "checkIns" : [],
+                "passThroughs" : []
+              }
+            }
+            """#
+        try Data(legacy.utf8).write(to: store.snapshotURL)
+        guard case .loaded(let loaded) = store.load() else {
+            Issue.record("Expected a snapshot")
+            return
+        }
+        #expect(loaded.state.wallet.balance == 42)
+        #expect(loaded.state.quietTime == QuietTimeLedger())
+        #expect(loaded.profile.hasCompletedOnboarding)
     }
 
     @Test func olderSnapshotsWithMissingFieldsStillLoad() throws {
@@ -198,6 +233,7 @@ struct EventLogTests {
             .passVoided(passID: UUID(), refund: 13),
             .handoffFailed(app: .snapchat),
             .activityCredited(session, earned: 12, forfeited: 0),
+            .quietSeedsCollected(quietSeeds: 12, sleepBonus: 10),
         ]
         let events = kinds.enumerated().map { LoggedEvent(at: start.addingTimeInterval(Double($0.offset)), event: $0.element) }
         for item in events {
