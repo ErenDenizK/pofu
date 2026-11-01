@@ -44,6 +44,8 @@ targets:
       - package: PofuKit
         product: PofuScreenTime
       - package: PofuKit
+        product: PofuPersistence
+      - package: PofuKit
         product: PofuDesignSystem
       - package: PofuKit
         product: PofuCompanion
@@ -53,6 +55,9 @@ targets:
         TARGETED_DEVICE_FAMILY: "1"
         CODE_SIGN_STYLE: Automatic
         GENERATE_INFOPLIST_FILE: true
+        # Merged with the generated Info.plist: LSApplicationQueriesSchemes
+        # for the hand-off back to the guarded app after Hop!.
+        INFOPLIST_FILE: Config/Info.plist
         INFOPLIST_KEY_CFBundleDisplayName: Pofu
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.healthcare-fitness
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: true
@@ -75,6 +80,8 @@ schemes:
       targets:
         - package: PofuKit/PofuCoreTests
         - package: PofuKit/PofuScreenTimeTests
+        - package: PofuKit/PofuPersistenceTests
+        - package: PofuKit/PofuDesignSystemTests
         - package: PofuKit/PofuCompanionTests
     profile:
       config: Release

@@ -49,6 +49,20 @@ public enum CheckInChoice: Hashable, Sendable {
     case pay(minutes: Int)
     /// A friend approved an unlock window. Only on `askFriend`.
     case friendApproved(minutes: Int)
+    /// Use today's free emergency pass. Only on `pay` and `askFriend`, and
+    /// once per local day.
+    case emergency
+}
+
+/// Why the user says they are opening an app, asked on the `intent` rung.
+/// Logged with the check-in and reflected back in the recap.
+public enum IntentReason: String, Hashable, Sendable, Codable, CaseIterable {
+    case reply
+    case lookUp
+    case post
+    case bored
+    case habit
+    case needBreak
 }
 
 /// How an attempt ended. The north-star metric counts `resisted`.
@@ -81,6 +95,8 @@ public struct CheckInRecord: Hashable, Sendable, Codable, Identifiable {
     public let resolvedAt: Date
     public let rung: FrictionRung
     public let outcome: CheckInOutcome
+    /// The reason the user gave on the `intent` rung, if any.
+    public let reason: IntentReason?
 
     public init(
         id: UUID,
@@ -88,7 +104,8 @@ public struct CheckInRecord: Hashable, Sendable, Codable, Identifiable {
         attemptedAt: Date,
         resolvedAt: Date,
         rung: FrictionRung,
-        outcome: CheckInOutcome
+        outcome: CheckInOutcome,
+        reason: IntentReason? = nil
     ) {
         self.id = id
         self.target = target
@@ -96,6 +113,21 @@ public struct CheckInRecord: Hashable, Sendable, Codable, Identifiable {
         self.resolvedAt = resolvedAt
         self.rung = rung
         self.outcome = outcome
+        self.reason = reason
+    }
+}
+
+/// An open that a valid pass covered: Pofu let it through silently. Not an
+/// attempt, but proof that the automation for `target` is alive.
+public struct PassThrough: Hashable, Sendable, Codable {
+    public let target: TargetGroupID
+    public let at: Date
+    public let passID: UUID
+
+    public init(target: TargetGroupID, at: Date, passID: UUID) {
+        self.target = target
+        self.at = at
+        self.passID = passID
     }
 }
 
@@ -105,4 +137,7 @@ public enum CheckInError: Error, Hashable, Sendable {
     case choiceNotAvailable(CheckInChoice, rung: FrictionRung)
     /// Paying failed.
     case spend(SpendError)
+    /// Today's emergency pass is already used; the next one is available
+    /// on `nextAvailable`.
+    case emergencyPassUsed(nextAvailable: LocalDay)
 }

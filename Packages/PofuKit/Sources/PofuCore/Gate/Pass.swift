@@ -29,6 +29,9 @@ public enum PassSource: Hashable, Sendable, Codable {
     case purchased(price: Energy)
     /// Approved by a friend (ADR-0005).
     case friendApproved
+    /// The free daily emergency pass, so nobody has to delete the
+    /// automation to get into an app they truly need.
+    case emergency
 }
 
 /// Time-boxed permission to use a target group (ADR-0008).
@@ -82,6 +85,11 @@ public struct Pass: Hashable, Sendable, Codable, Identifiable {
     public func remaining(at date: Date) -> TimeInterval {
         isValid(at: date) ? expiresAt.timeIntervalSince(date) : 0
     }
+
+    /// The pass's full length in whole minutes, as granted.
+    public var durationMinutes: Int {
+        max(0, Int((expiresAt.timeIntervalSince(grantedAt) / 60).rounded()))
+    }
 }
 
 /// The passes a user holds, answering "is there a valid pass for this
@@ -112,6 +120,20 @@ public struct PassLedger: Hashable, Sendable, Codable {
     /// future are kept.
     public mutating func removeExpired(at date: Date) {
         passes.removeAll { $0.expiresAt <= date }
+    }
+
+    /// The pass with `id`, if the ledger still holds it.
+    public func pass(id: UUID) -> Pass? {
+        passes.first { $0.id == id }
+    }
+
+    /// Removes the pass with `id` and returns it, if it was held.
+    @discardableResult
+    public mutating func revoke(id: UUID) -> Pass? {
+        guard let index = passes.firstIndex(where: { $0.id == id }) else {
+            return nil
+        }
+        return passes.remove(at: index)
     }
 
     /// Ends every pass for `target` immediately, for example when the user

@@ -8,15 +8,22 @@ public struct VitalityInput: Hashable, Sendable, Codable {
     public var impulses: ImpulseMetrics
     /// Energy earned through activities (honor, verified, and steps).
     public var activityEnergy: Energy
+    /// Whether Pofu could see the day. When the automation is silent (it
+    /// was deleted, or the phone stayed in a drawer), no attempts look like
+    /// perfect resistance; such a day is unknown, and vitality carries
+    /// forward unchanged instead of rising because Pofu is blind.
+    public var isObserving: Bool
 
     public init(
         distractingMinutes: Double = 0,
         impulses: ImpulseMetrics = ImpulseMetrics(),
-        activityEnergy: Energy = .zero
+        activityEnergy: Energy = .zero,
+        isObserving: Bool = true
     ) {
         self.distractingMinutes = distractingMinutes
         self.impulses = impulses
         self.activityEnergy = activityEnergy
+        self.isObserving = isObserving
     }
 }
 
@@ -92,10 +99,12 @@ public struct VitalityModel: Sendable {
     /// Vitality after a day with `input`, starting from `previous`.
     ///
     /// For a live view during the day, pass the running input of today and
-    /// yesterday's settled vitality as `previous`.
+    /// yesterday's settled vitality as `previous`. A day Pofu could not
+    /// observe freezes vitality: it returns `previous` unchanged.
     public func vitality(after input: VitalityInput, from previous: Double) -> Double {
-        let alpha = Rounding.unitInterval(rules.smoothing)
         let start = Rounding.unitInterval(previous)
+        guard input.isObserving else { return start }
+        let alpha = Rounding.unitInterval(rules.smoothing)
         return Rounding.unitInterval(start + alpha * (dailyScore(input) - start))
     }
 

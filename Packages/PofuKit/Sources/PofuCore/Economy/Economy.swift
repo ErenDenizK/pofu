@@ -229,6 +229,97 @@ public struct Economy: Sendable {
         )
     }
 
+    // MARK: - Emergency pass
+
+    /// Whether the free emergency pass can be used at `date`: once per
+    /// local day, and never twice when the clock moves backwards.
+    public func isEmergencyPassAvailable(in wallet: Wallet, at date: Date) -> Bool {
+        guard configuration.friction.emergencyPassMinutes > 0 else { return false }
+        guard let last = wallet.lastEmergencyPassDay else { return true }
+        return day(of: date) > last
+    }
+
+    /// The first local day on which the emergency pass is available again.
+    public func nextEmergencyPassDay(for wallet: Wallet, at date: Date) -> LocalDay {
+        let today = day(of: date)
+        guard let last = wallet.lastEmergencyPassDay, !isEmergencyPassAvailable(in: wallet, at: date) else {
+            return today
+        }
+        return max(today, last).adding(days: 1)
+    }
+
+    /// Grants the free emergency pass for `target` at `date`, or returns
+    /// `nil` when today's pass is already used. It costs nothing and does
+    /// not count toward price escalation.
+    public func grantEmergencyPass(
+        for target: TargetGroupID,
+        at date: Date,
+        from wallet: inout Wallet,
+        passID: UUID = UUID()
+    ) -> Pass? {
+        openDay(&wallet, at: date)
+        guard isEmergencyPassAvailable(in: wallet, at: date) else { return nil }
+        wallet.lastEmergencyPassDay = day(of: date)
+        return Pass(
+            id: passID,
+            target: target,
+            grantedAt: date,
+            minutes: configuration.friction.emergencyPassMinutes,
+            source: .emergency
+        )
+    }
+
+    // MARK: - Refunds
+
+    /// What ending `pass` at `date` gives back: every unused whole minute at
+    /// the per-minute price actually paid, rounded down.
+    ///
+    /// `refund = ⌊unusedWholeMinutes × price ÷ minutes⌋`. Only purchased
+    /// passes refund; free, friend-approved, and emergency passes return
+    /// nothing. A pass that is not valid at `date` refunds nothing.
+    public func refund(for pass: Pass, endingAt date: Date) -> Energy {
+        guard case .purchased(let price) = pass.source, pass.isValid(at: date) else {
+            return .zero
+        }
+        let minutes = pass.durationMinutes
+        guard minutes > 0, price > .zero else { return .zero }
+        // A millisecond of tolerance keeps exact minute boundaries whole
+        // despite floating-point dates.
+        let unused = min(minutes, Rounding.saturatingInt(((pass.remaining(at: date) + 0.001) / 60).rounded(.down)))
+        return Energy(min(price.units, max(0, unused) * price.units / minutes))
+    }
+
+    /// Returns `energy` to the balance. Refunds are not activity: they
+    /// neither feed vitality nor count toward the honor cap.
+    func creditRefund(_ energy: Energy, to wallet: inout Wallet) {
+        guard energy > .zero else { return }
+        wallet.balance += energy
+    }
+
+    /// Undoes a purchase that never got used (the app could not be opened):
+    /// the full price comes back and the purchase stops escalating prices.
+    /// An emergency pass becomes available again.
+    ///
+    /// - Returns: The energy refunded.
+    func void(_ pass: Pass, in wallet: inout Wallet) -> Energy {
+        switch pass.source {
+        case .purchased(let price):
+            if let index = wallet.unlockPurchases.lastIndex(of: pass.grantedAt) {
+                wallet.unlockPurchases.remove(at: index)
+            }
+            let refund = max(price, .zero)
+            creditRefund(refund, to: &wallet)
+            return refund
+        case .emergency:
+            if wallet.lastEmergencyPassDay == day(of: pass.grantedAt) {
+                wallet.lastEmergencyPassDay = nil
+            }
+            return .zero
+        case .free, .friendApproved:
+            return .zero
+        }
+    }
+
     // MARK: - Private
 
     private func credit(_ energy: Energy, on day: LocalDay, to wallet: inout Wallet) {

@@ -18,6 +18,7 @@ let package = Package(
     products: [
         .library(name: "PofuCore", targets: ["PofuCore"]),
         .library(name: "PofuScreenTime", targets: ["PofuScreenTime"]),
+        .library(name: "PofuPersistence", targets: ["PofuPersistence"]),
         .library(name: "PofuDesignSystem", targets: ["PofuDesignSystem"]),
         .library(name: "PofuCompanion", targets: ["PofuCompanion"]),
     ],
@@ -30,6 +31,11 @@ let package = Package(
         // FamilyControls, ManagedSettings, and DeviceActivity are imported
         // only by the future live implementation.
         .target(name: "PofuScreenTime", dependencies: ["PofuCore"]),
+
+        // File storage: an atomically written JSON snapshot and an
+        // append-only event log, in the App Group container when the build
+        // is entitled to one. Foundation only, so extensions may link it.
+        .target(name: "PofuPersistence", dependencies: ["PofuCore"]),
 
         // Design tokens and small SwiftUI building blocks.
         .target(name: "PofuDesignSystem"),
@@ -47,6 +53,8 @@ let package = Package(
 
         .testTarget(name: "PofuCoreTests", dependencies: ["PofuCore"]),
         .testTarget(name: "PofuScreenTimeTests", dependencies: ["PofuScreenTime", "PofuCore"]),
+        .testTarget(name: "PofuPersistenceTests", dependencies: ["PofuPersistence", "PofuCore"]),
+        .testTarget(name: "PofuDesignSystemTests", dependencies: ["PofuDesignSystem"]),
         .testTarget(name: "PofuCompanionTests", dependencies: ["PofuCompanion"]),
     ],
     swiftLanguageModes: [.v6]
