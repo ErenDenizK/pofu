@@ -57,7 +57,7 @@ public enum PofuFont {
 /// Dynamic Type relative to `.largeTitle`, capped at twice its base size so
 /// a one-word headline never pushes the skip action off screen.
 public struct PofuDisplayFont: ViewModifier {
-    @ScaledMetric(relativeTo: .largeTitle) private var size: CGFloat
+    @ScaledMetric private var size: CGFloat
     private let base: CGFloat
 
     public init(size: CGFloat = 56) {
