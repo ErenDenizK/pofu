@@ -41,8 +41,10 @@ For the UI language (the only option set the founder extended):
 
 ## Decision
 
-1. **Proportion: balanced diorama (review B).** At Home, Pofu is about 20 %
-   of the screen width and the visible world about 70 % of the height,
+1. **Proportion: balanced diorama (review B).** At Home, Pofu is about 38 %
+   of the screen width (154 pt, review 01's measured spec; corrected
+   2026-11-01 from a mistyped 20 %) and the visible world about 70 % of
+   the height,
    between a 118 pt top chrome band and the bottom action band. The island
    view uses depth of field on the plates behind the focused station.
 2. **UI language: Glass++ (option 4).** Its rules:
