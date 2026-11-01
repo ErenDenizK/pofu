@@ -31,7 +31,7 @@ elsewhere; every rule below works whatever sits in the chrome.
 | Haptics | Haptics confirm a recognized gesture, never a touch-down, a passive event, or a dismissal. Rationed within a poke run. | [6](#6-feedback-layers) |
 | Timing | Eleven new spring tokens on top of the six in the design language; every animation retargetable; nothing blocks input for more than 150 ms. | [7](#7-timing-springs-and-interruptibility) |
 
-**One discrepancy to resolve first.** ADR-0018 says Pofu is "about 20 % of
+**One discrepancy, now resolved** (the lead corrected ADR-0018 to 38 % on 2026-11-01). ADR-0018 said Pofu is "about 20 % of
 the screen width" at Home. Review 01's measured spec for the chosen
 option B, which the founder saw and approved, says **154 pt, 38 %**
 (camera scale 2.40). At 20 % (scale 1.26) Home and the Island framing are
