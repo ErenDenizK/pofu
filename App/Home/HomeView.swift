@@ -60,11 +60,7 @@ struct HomeView: View {
             case .setup:
                 NavigationStack {
                     SetupGuideView(model: model)
-                        .toolbar {
-                            ToolbarItem(placement: .confirmationAction) {
-                                Button("Done") { model.homeSheet = nil }
-                            }
-                        }
+                        .pofuSheetChrome()
                 }
             }
         }

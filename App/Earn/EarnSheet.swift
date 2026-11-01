@@ -22,8 +22,7 @@ struct EarnSheet: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: PofuSpacing.l) {
                     Text("What are we doing?")
-                        .font(PofuFont.callout)
-                        .foregroundStyle(PofuColor.textSecondary)
+                        .pofuSectionHeader()
                     LazyVGrid(columns: columns, spacing: PofuSpacing.s) {
                         ForEach(kinds, id: \.self) { item in
                             Button {
@@ -44,8 +43,7 @@ struct EarnSheet: View {
                     }
 
                     Text("How long?")
-                        .font(PofuFont.callout)
-                        .foregroundStyle(PofuColor.textSecondary)
+                        .pofuSectionHeader()
                     HStack(spacing: PofuSpacing.s) {
                         ForEach(durations, id: \.self) { value in
                             Button {
@@ -99,19 +97,8 @@ struct EarnSheet: View {
                     .buttonStyle(PofuPrimaryButtonStyle())
                 }
             }
-            .background(PofuColor.sunken)
             .navigationTitle(Text("Fill my cheeks"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                    }
-                    .accessibilityLabel(Text("Close"))
-                }
-            }
+            .pofuSheetChrome()
             .sensoryFeedback(.selection, trigger: kind)
             .sensoryFeedback(.selection, trigger: minutes)
             .sensoryFeedback(.start, trigger: started)
