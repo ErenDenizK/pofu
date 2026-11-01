@@ -23,21 +23,36 @@ struct OnboardingView: View {
     var body: some View {
         ZStack {
             PofuColor.dayWash.ignoresSafeArea()
-            Group {
-                switch step {
-                case .welcome: welcome
-                case .apps: apps
-                case .name: naming
-                case .setup: setup
+            // During the cross-fade the incoming step is stacked above the
+            // outgoing one (steps only move forward), and the outgoing one
+            // stops taking touches, so a quick tap always lands on the new
+            // step and is never swallowed by the old one.
+            ForEach(Step.allCases, id: \.self) { item in
+                if item == step {
+                    view(for: item)
+                        .zIndex(Double(item.rawValue))
+                        .transition(AnyTransition.asymmetric(
+                            insertion: AnyTransition.opacity,
+                            removal: AnyTransition.opacity.combined(with: AnyTransition.disablesHitTesting)
+                        ))
                 }
             }
-            .transition(.opacity)
         }
-        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: step)
+        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: step)
         .sensoryFeedback(.selection, trigger: step)
     }
 
     // MARK: Steps
+
+    @ViewBuilder
+    private func view(for item: Step) -> some View {
+        switch item {
+        case .welcome: welcome
+        case .apps: apps
+        case .name: naming
+        case .setup: setup
+        }
+    }
 
     private var welcome: some View {
         VStack(spacing: PofuSpacing.l) {
@@ -172,5 +187,21 @@ struct OnboardingView: View {
                 )
             )
         }
+    }
+}
+
+/// Turns hit testing off for the life of a transition: a view on its way
+/// out never takes a tap meant for the one coming in.
+private struct HitTesting: ViewModifier {
+    let isEnabled: Bool
+
+    func body(content: Content) -> some View {
+        content.allowsHitTesting(isEnabled)
+    }
+}
+
+extension AnyTransition {
+    fileprivate static var disablesHitTesting: AnyTransition {
+        .modifier(active: HitTesting(isEnabled: false), identity: HitTesting(isEnabled: true))
     }
 }
