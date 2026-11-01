@@ -32,8 +32,20 @@ public enum PofuEvent: Hashable, Sendable, Codable {
     case quietSeedsCollected(quietSeeds: Energy, sleepBonus: Energy)
     /// The user tapped "Skip it" on the Screen Time shield.
     case shieldResisted(target: TargetGroupID)
-    /// The user tapped "Talk to Pofu" on the Screen Time shield.
+    /// The user tapped "Open with Pofu" on the Screen Time shield.
     case shieldOpenRequested(target: TargetGroupID)
+    /// The shield was drawn over `target` in `scene` (gate v2).
+    case shieldShown(target: TargetGroupID, scene: ShieldScene)
+    /// A reach at the shield was resolved as resisted without a tap on
+    /// "Skip it": `resolution` says how.
+    case shieldReachResolved(target: TargetGroupID, resolution: ShieldResolution)
+    /// "Just 3 minutes" on the shield lifted it until `until`.
+    case quickCheckStarted(passID: UUID, target: TargetGroupID, until: Date)
+    /// "Done, close it" on the shield that returned at a pass's end.
+    case passEndedClosed(target: TargetGroupID)
+    /// The user tapped "Skip it" on the shield waiting for the
+    /// notification tap.
+    case shieldOpenRequestCancelled(target: TargetGroupID)
     /// A pass lifted the shield from `target` until the pass ends.
     case shieldLifted(passID: UUID, target: TargetGroupID)
     /// The shield came back after the pass `passID`.
