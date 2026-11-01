@@ -76,13 +76,27 @@ struct OnboardingView: View {
                                 chosen.append(app)
                             }
                         } label: {
+                            // The icon stays; selection adds a checkmark
+                            // badge on it, so the label never moves. Long
+                            // names wrap rather than shrink.
                             HStack(spacing: PofuSpacing.s) {
-                                Image(systemName: isChosen ? "checkmark.circle.fill" : app.symbolName)
+                                Image(systemName: app.symbolName)
+                                    .frame(width: 24)
+                                    .overlay(alignment: .topTrailing) {
+                                        if isChosen {
+                                            Image(systemName: "checkmark.circle.fill")
+                                                .font(.system(size: 12, weight: .bold))
+                                                .foregroundStyle(PofuColor.onAccent, PofuColor.accent)
+                                                .offset(x: 6, y: -6)
+                                                .transition(.scale.combined(with: .opacity))
+                                        }
+                                    }
                                 Text(verbatim: app.displayName)
-                                    .lineLimit(1)
-                                    .minimumScaleFactor(0.8)
+                                    .lineLimit(2)
+                                    .fixedSize(horizontal: false, vertical: true)
                                 Spacer(minLength: 0)
                             }
+                            .animation(PofuMotion.respecting(reduceMotion, PofuMotion.pop), value: isChosen)
                             .padding(.vertical, PofuSpacing.s)
                         }
                         .buttonStyle(PofuChoiceStyle(isSelected: isChosen, cornerRadius: PofuRadius.large))
@@ -118,7 +132,7 @@ struct OnboardingView: View {
             TextField(text: $name, prompt: Text(verbatim: UserProfile.defaultName)) {
                 Text("Name")
             }
-            .font(PofuFont.title2)
+            .pofuDisplayFont(size: 30)
             .multilineTextAlignment(.center)
             .textInputAutocapitalization(.words)
             .submitLabel(.done)
