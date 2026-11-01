@@ -13,23 +13,55 @@ public struct EconomyConfiguration: Hashable, Sendable, Codable {
     public var spending: SpendingRules
     public var friction: FrictionRules
     public var vitality: VitalityRules
+    /// How staying away from guarded apps earns seeds (ADR-0014).
+    public var quietTime: QuietTimeRules
 
     public init(
         dailyAllowance: Energy = 15,
         earning: EarningRules = EarningRules(),
         spending: SpendingRules = SpendingRules(),
         friction: FrictionRules = FrictionRules(),
-        vitality: VitalityRules = VitalityRules()
+        vitality: VitalityRules = VitalityRules(),
+        quietTime: QuietTimeRules = QuietTimeRules()
     ) {
         self.dailyAllowance = dailyAllowance
         self.earning = earning
         self.spending = spending
         self.friction = friction
         self.vitality = vitality
+        self.quietTime = quietTime
     }
 
     /// The v0 rules.
     public static let standard = EconomyConfiguration()
+
+    private enum CodingKeys: String, CodingKey {
+        case dailyAllowance, earning, spending, friction, vitality, quietTime
+    }
+
+    /// Sections added after v0 are optional on decode, so a configuration
+    /// file written before them still loads with their defaults.
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.init(
+            dailyAllowance: try container.decode(Energy.self, forKey: .dailyAllowance),
+            earning: try container.decode(EarningRules.self, forKey: .earning),
+            spending: try container.decode(SpendingRules.self, forKey: .spending),
+            friction: try container.decode(FrictionRules.self, forKey: .friction),
+            vitality: try container.decode(VitalityRules.self, forKey: .vitality),
+            quietTime: try container.decodeIfPresent(QuietTimeRules.self, forKey: .quietTime) ?? QuietTimeRules()
+        )
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(dailyAllowance, forKey: .dailyAllowance)
+        try container.encode(earning, forKey: .earning)
+        try container.encode(spending, forKey: .spending)
+        try container.encode(friction, forKey: .friction)
+        try container.encode(vitality, forKey: .vitality)
+        try container.encode(quietTime, forKey: .quietTime)
+    }
 }
 
 /// How activities turn into energy.
@@ -171,5 +203,40 @@ public struct VitalityRules: Hashable, Sendable, Codable {
         self.thrivingThreshold = thrivingThreshold
         self.contentThreshold = contentThreshold
         self.tiredThreshold = tiredThreshold
+    }
+}
+
+/// How time away from the guarded apps earns seeds (ADR-0014). The
+/// bedtime window is the one in `SpendingRules`, so night means the same
+/// thing everywhere.
+public struct QuietTimeRules: Hashable, Sendable, Codable {
+    /// Length, in minutes, of one block of continuous quiet waking time.
+    /// Only whole blocks earn. Zero or less switches quiet earning off.
+    public var blockMinutes: Int
+    /// Seeds per whole block.
+    public var seedsPerBlock: Energy
+    /// The most quiet-block seeds one local day can earn. Separate from the
+    /// honor cap; the slept-on-it bonus does not count toward it.
+    public var dailyCap: Energy
+    /// The one-time bonus for a whole bedtime window without an open.
+    public var sleepBonus: Energy
+    /// How long, in seconds, one sign of life from the automation (a
+    /// check-in or a pass-through) keeps Pofu observing. Quiet time past
+    /// it does not count, and seeds already in the cheeks are held until
+    /// the next sign of life.
+    public var observationWindow: TimeInterval
+
+    public init(
+        blockMinutes: Int = 10,
+        seedsPerBlock: Energy = 1,
+        dailyCap: Energy = 48,
+        sleepBonus: Energy = 10,
+        observationWindow: TimeInterval = 72 * 60 * 60
+    ) {
+        self.blockMinutes = blockMinutes
+        self.seedsPerBlock = seedsPerBlock
+        self.dailyCap = dailyCap
+        self.sleepBonus = sleepBonus
+        self.observationWindow = observationWindow
     }
 }

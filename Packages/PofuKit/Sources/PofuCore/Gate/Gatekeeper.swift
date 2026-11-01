@@ -10,6 +10,9 @@ public struct PofuState: Hashable, Sendable {
     public var passThroughs: [PassThrough]
     /// The companion's settled vitality and its daily history.
     public var vitality: VitalityLedger
+    /// Quiet-time earning: the current quiet stretch and the seeds waiting
+    /// in Pofu's cheeks (ADR-0014).
+    public var quietTime: QuietTimeLedger
 
     public init(
         wallet: Wallet = Wallet(),
@@ -17,7 +20,8 @@ public struct PofuState: Hashable, Sendable {
         passes: PassLedger = PassLedger(),
         checkIns: [CheckInRecord] = [],
         passThroughs: [PassThrough] = [],
-        vitality: VitalityLedger = VitalityLedger()
+        vitality: VitalityLedger = VitalityLedger(),
+        quietTime: QuietTimeLedger = QuietTimeLedger()
     ) {
         self.wallet = wallet
         self.ladder = ladder
@@ -25,6 +29,7 @@ public struct PofuState: Hashable, Sendable {
         self.checkIns = checkIns
         self.passThroughs = passThroughs
         self.vitality = vitality
+        self.quietTime = quietTime
     }
 
     /// Days of check-in and pass-through history kept, which covers the
@@ -42,7 +47,7 @@ public struct PofuState: Hashable, Sendable {
 
 extension PofuState: Codable {
     private enum CodingKeys: String, CodingKey {
-        case wallet, ladder, passes, checkIns, passThroughs, vitality
+        case wallet, ladder, passes, checkIns, passThroughs, vitality, quietTime
     }
 
     /// Every field is optional on decode, so state written by an older
@@ -55,7 +60,8 @@ extension PofuState: Codable {
             passes: try container.decodeIfPresent(PassLedger.self, forKey: .passes) ?? PassLedger(),
             checkIns: try container.decodeIfPresent([CheckInRecord].self, forKey: .checkIns) ?? [],
             passThroughs: try container.decodeIfPresent([PassThrough].self, forKey: .passThroughs) ?? [],
-            vitality: try container.decodeIfPresent(VitalityLedger.self, forKey: .vitality) ?? VitalityLedger()
+            vitality: try container.decodeIfPresent(VitalityLedger.self, forKey: .vitality) ?? VitalityLedger(),
+            quietTime: try container.decodeIfPresent(QuietTimeLedger.self, forKey: .quietTime) ?? QuietTimeLedger()
         )
     }
 
@@ -67,6 +73,7 @@ extension PofuState: Codable {
         try container.encode(checkIns, forKey: .checkIns)
         try container.encode(passThroughs, forKey: .passThroughs)
         try container.encode(vitality, forKey: .vitality)
+        try container.encode(quietTime, forKey: .quietTime)
     }
 }
 
@@ -97,11 +104,17 @@ public struct PassEnding: Hashable, Sendable {
 ///
 /// Resisting never earns energy. Paying for skips would turn the gate into
 /// a slot machine (open, skip, collect); skips feed vitality instead.
+///
+/// The gate also keeps quiet time (ADR-0014) in step: every check-in is a
+/// sign of life, every opened outcome breaks the quiet stretch, and ending
+/// a pass resumes it.
 public struct Gatekeeper: Sendable {
     public let economy: Economy
+    public let quietTime: QuietTimeAccrual
 
     public init(economy: Economy) {
         self.economy = economy
+        self.quietTime = QuietTimeAccrual(economy: economy)
     }
 
     public func beginCheckIn(
@@ -113,6 +126,7 @@ public struct Gatekeeper: Sendable {
         economy.openDay(&state.wallet, at: date)
         state.passes.removeExpired(at: date)
         state.pruneHistory(newestDay: economy.day(of: date), calendar: economy.calendar)
+        quietTime.recordSignal(at: date, in: &state.quietTime, passes: state.passes)
         if let pass = state.passes.validPass(for: target, at: date) {
             state.passThroughs.append(PassThrough(target: target, at: date, passID: pass.id))
             return .covered(pass)
@@ -220,6 +234,7 @@ public struct Gatekeeper: Sendable {
 
         if let pass = outcome.pass {
             state.passes.grant(pass)
+            quietTime.passStarted(pass, in: &state.quietTime)
         }
         let record = CheckInRecord(
             id: attempt.id,
@@ -246,6 +261,7 @@ public struct Gatekeeper: Sendable {
         guard let pass = state.passes.revoke(id: id) else { return nil }
         let refund = economy.refund(for: pass, endingAt: date)
         economy.creditRefund(refund, to: &state.wallet)
+        quietTime.passEnded(at: date, in: &state.quietTime, remaining: state.passes)
         return PassEnding(pass: pass, refund: refund)
     }
 
@@ -256,6 +272,33 @@ public struct Gatekeeper: Sendable {
     public func voidPass(id: UUID, state: inout PofuState) -> PassEnding? {
         guard let pass = state.passes.revoke(id: id) else { return nil }
         let refund = economy.void(pass, in: &state.wallet)
+        // The app never opened: quiet resumes from the moment of the grant.
+        quietTime.passEnded(at: pass.grantedAt, in: &state.quietTime, remaining: state.passes)
         return PassEnding(pass: pass, refund: refund)
+    }
+
+    // MARK: - Quiet time
+
+    /// The automation ran at `date`, whatever the gate then did (for
+    /// example, when the system did not let Pofu come forward). A sign of
+    /// life keeps Pofu observing and releases held seeds.
+    public func noteAutomationRan(at date: Date, state: inout PofuState) {
+        quietTime.recordSignal(at: date, in: &state.quietTime, passes: state.passes)
+    }
+
+    /// Credits quiet time up to `date` into Pofu's cheeks.
+    @discardableResult
+    public func advanceQuietTime(to date: Date, state: inout PofuState) -> QuietAccrual {
+        quietTime.advance(&state.quietTime, to: date)
+    }
+
+    /// Moves the seeds waiting in Pofu's cheeks to the balance.
+    ///
+    /// - Returns: What was collected, or `nil` when there is nothing to
+    ///   collect or the seeds are held because Pofu is not observing.
+    @discardableResult
+    public func collectQuietSeeds(at date: Date, state: inout PofuState) -> QuietCollection? {
+        economy.openDay(&state.wallet, at: date)
+        return quietTime.collect(&state.quietTime, into: &state.wallet, at: date)
     }
 }
