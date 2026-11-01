@@ -1879,6 +1879,17 @@
           }
         }
       }
+    },
+    "min" : {
+      "comment" : "Under a duration chip: minutes, abbreviated.",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dk"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

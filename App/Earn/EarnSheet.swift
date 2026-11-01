@@ -51,8 +51,14 @@ struct EarnSheet: View {
                             Button {
                                 minutes = value
                             } label: {
-                                Text(value, format: .number)
-                                    .font(PofuFont.title3.monospacedDigit())
+                                // The unit sits under the numeral, so four
+                                // chips fit at every size without shrinking.
+                                VStack(spacing: 0) {
+                                    Text(value, format: .number)
+                                        .font(PofuFont.title3.monospacedDigit())
+                                    Text("min", comment: "Under a duration chip: minutes, abbreviated.")
+                                        .font(PofuFont.caption)
+                                }
                             }
                             .buttonStyle(PofuChoiceStyle(isSelected: minutes == value, cornerRadius: PofuRadius.large))
                             .accessibilityLabel(Text("\(value) minutes"))
@@ -60,6 +66,19 @@ struct EarnSheet: View {
                         }
                     }
 
+                    Text("Honor system: I trust you. Lock your phone and come back when the timer is done.")
+                        .font(PofuFont.footnote)
+                        .foregroundStyle(PofuColor.textSecondary)
+                        .frame(maxWidth: .infinity)
+                        .multilineTextAlignment(.center)
+                }
+                .padding(PofuSpacing.screen)
+            }
+            .scrollBounceBehavior(.basedOnSize)
+            // Start sits on an opaque bar: the chips scroll under its edge
+            // and never under the button itself, at any detent.
+            .pofuFooter(surface: PofuColor.sunken) {
+                VStack(spacing: PofuSpacing.s) {
                     HStack(spacing: PofuSpacing.s) {
                         SeedIcon(size: 18)
                         Text("\(minutes) minutes ≈ \(model.preview(minutes: minutes).units) seeds")
@@ -70,25 +89,15 @@ struct EarnSheet: View {
                     .frame(maxWidth: .infinity)
                     .accessibilityElement(children: .combine)
 
-                    Text("Honor system: I trust you. Lock your phone and come back when the timer is done.")
-                        .font(PofuFont.footnote)
-                        .foregroundStyle(PofuColor.textSecondary)
-                        .frame(maxWidth: .infinity)
-                        .multilineTextAlignment(.center)
+                    Button {
+                        started += 1
+                        model.startSession(kind: kind, minutes: minutes)
+                        dismiss()
+                    } label: {
+                        Text("Start")
+                    }
+                    .buttonStyle(PofuPrimaryButtonStyle())
                 }
-                .padding(PofuSpacing.screen)
-            }
-            .safeAreaInset(edge: .bottom) {
-                Button {
-                    started += 1
-                    model.startSession(kind: kind, minutes: minutes)
-                    dismiss()
-                } label: {
-                    Text("Start")
-                }
-                .buttonStyle(PofuPrimaryButtonStyle())
-                .padding(.horizontal, PofuSpacing.screen)
-                .padding(.bottom, PofuSpacing.s)
             }
             .background(PofuColor.sunken)
             .navigationTitle(Text("Fill my cheeks"))

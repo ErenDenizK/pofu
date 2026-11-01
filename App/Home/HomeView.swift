@@ -45,8 +45,10 @@ struct HomeView: View {
         .sheet(item: $model.homeSheet) { sheet in
             switch sheet {
             case .earn:
+                // Tall enough for the activities, the lengths, and Start
+                // together, with Pofu's room still showing above.
                 EarnSheet(model: model)
-                    .presentationDetents([.medium, .large])
+                    .presentationDetents([.fraction(0.68), .large])
             case .passes:
                 PassesSheet(model: model)
                     .presentationDetents([.medium, .large])
