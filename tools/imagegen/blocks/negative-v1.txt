@@ -1,0 +1,5 @@
+AVOID: outlines, cel shading, 3D plastic or vinyl render, anime sparkle
+eyes with many highlights, extra limbs, extra toes or fingers, claws,
+teeth, eyebrows, a long tail, lilac or gray fur, a ground shadow, a floor,
+a cast shadow, a white sticker border, text, watermarks, signatures,
+motion blur, film grain, paper texture, vignette.

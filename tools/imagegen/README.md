@@ -1,0 +1,70 @@
+# Image pipeline (`tools/imagegen`)
+
+Manifest-driven, operator-agnostic generation of Pofu's art: compose the
+prompt from shared blocks, generate a few takes on the founder's own
+OpenAI account, style-lock and QA every take, review on a contact sheet,
+promote the approved take with full provenance.
+
+- Workflow, roles, account rule, first-run checklist:
+  [`docs/design/art-pipeline.md`](../../docs/design/art-pipeline.md)
+- Why the look and the thresholds:
+  [`docs/design/art-direction-study.md`](../../docs/design/art-direction-study.md)
+- Brief for the operator (OpenAI Codex): [`AGENTS.md`](../../AGENTS.md)
+
+## Files
+
+| File | What |
+|---|---|
+| `run.py` | The CLI: `plan`, `prompt`, `run`, `ingest`, `post`, `promote`, `palette-card` |
+| `pipeline.py` | Manifest model and validation, prompt composition, paths, fingerprints |
+| `backends.py` | `codex` (with the one marked adapter block), `openai-api` (key guard, cost estimate), `manual` |
+| `qa.py` | Normalization (keying, canvas fit, station registration, edit alignment) and every QA check |
+| `style_lock.py`, `style_lock.json` | The style lock and its presets (`soft-lock` is the recommendation) |
+| `review.py` | Contact sheets, the review file, provenance |
+| `palettes.json` | The `world-props` palette (extends `design/tokens/pofu-tokens.json` for drift checks) |
+| `config.yaml` | Account, paths, rate limits, backends, reference aliases, palettes per kind |
+| `blocks/*.txt` | Prompt blocks pasted verbatim (anchors copied from the art bible; a test keeps them identical) |
+| `manifest/*.yaml` | One file per batch |
+| `tests/` | Unit and end-to-end tests (a stub Codex stands in for the real one) |
+
+## Setup and tests
+
+```sh
+python3 -m venv .venv
+.venv/bin/pip install -r tools/imagegen/requirements.txt
+.venv/bin/python -I -m pytest tools/imagegen/tests        # or: -m unittest discover -s tools/imagegen/tests
+```
+
+About a minute; no network.
+
+## Manifest format
+
+```yaml
+batch: batch-01-slice           # kebab-case; names the inbox, review file and branch art/<batch>
+title: ...
+status: blocked                 # open | blocked; run refuses to generate unless open
+blocked_on: ["..."]             # required when blocked
+refs: {alias: path}             # extra reference aliases (config.yaml has the shared ones)
+defaults: {variants: 2}
+jobs:
+  - id: cay-2                   # kebab-case, unique
+    kind: station               # char | station | world | prop | plate | sheet | icon | ui | widget | appicon
+    name: cay-2                 # output stem: station__cay-2--t<n>.png (default: id)
+    size: 1024x1024             # requested size (default per kind)
+    canvas: 1024x1024           # normalized canvas (default per kind; widget 1536x720)
+    transparent: true           # default: false for plate, widget, appicon
+    key: green                  # chroma-key fallback color: green, or blue for green assets
+    variants: 2                 # takes to keep per round, 1-4 (config caps at 3 per run)
+    edit_of: cay-1              # an edit of that job's approved master (attached first; needs the edit-keep-v1 block)
+    chat: "Pofu · Çay ocağı"    # ChatGPT chat name for the manual backend
+    attach:                     # alias, repo path, palette:<name>, or approved:<job-id>; role is required
+      - {ref: station-guide, role: "The composition guide ..."}
+    prompt:                     # text parts and verbatim blocks, in order; the output line is added
+      - text: Add two thin wooden poles ...
+      - block: edit-keep-v1
+    acceptance:                 # optional threshold overrides, e.g. depth_ratio: {warn: 0.3, fail: 0.4}
+```
+
+A job runs only when every job it depends on (`edit_of`,
+`approved:<id>` attachments) is approved and every other reference
+exists.
