@@ -1,0 +1,5 @@
+batch: batch-03-home-island
+job: simit-5
+reason: 'Dependency chain blocked: simit-2 failed QA after four takes. No approved
+  parent available.'
+status: skipped
