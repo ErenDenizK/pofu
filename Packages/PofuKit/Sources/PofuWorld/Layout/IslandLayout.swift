@@ -53,7 +53,8 @@ public enum IslandLayout {
         .workshop: WorldPoint(x: 78, y: -26),
         .garden: WorldPoint(x: -118, y: 2),
         .cay: WorldPoint(x: 104, y: 6),
-        .pond: WorldPoint(x: -84, y: 28),
+        // On the lawn, clear of the front lip (y 28 sat on the lip).
+        .pond: WorldPoint(x: -72, y: 20),
     ]
 
     /// A station's tap target over its footprint (§2.7): x ± 46, y − 84
