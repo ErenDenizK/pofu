@@ -40,7 +40,7 @@ struct RootView: View {
                 // within the request's lifetime (notifications off).
                 model.answerShieldRequest()
             case .background:
-                model.leftForeground()
+                model.enteredBackground()
                 // Swiping home from Hop! counts as skipping (ADR-0008).
                 model.leaveHop()
             default:

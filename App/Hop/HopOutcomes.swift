@@ -25,6 +25,12 @@ struct HopSkipped: View {
                     .font(PofuFont.title2)
                     .foregroundStyle(PofuColor.textPrimary)
                     .contentTransition(.numericText(value: Double(skipsToday)))
+                if let calm = session.calm, !session.isNight {
+                    // Gate v2 E9: a skip never costs calm; it keeps growing.
+                    Text("Calm ×\(calm.formatted(.number.precision(.fractionLength(1)))) · growing")
+                        .font(PofuFont.footnote)
+                        .foregroundStyle(PofuColor.textSecondary)
+                }
             }
             .accessibilityElement(children: .combine)
             .accessibilityAddTraits(.isHeader)

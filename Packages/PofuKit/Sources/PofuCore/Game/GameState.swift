@@ -52,7 +52,7 @@ public struct GameDay: Hashable, Sendable, Codable {
 ///
 /// The state advances on a grid of whole minutes (`clock`); see
 /// `WorldClock` for why.
-public struct GameState: Hashable, Sendable, Codable {
+public struct GameState: Hashable, Sendable {
     /// The minute the model has advanced to; `nil` before the first
     /// advance.
     public internal(set) var clock: Date?
@@ -102,6 +102,66 @@ public struct GameState: Hashable, Sendable, Codable {
     /// Whether a guarded app is open at the clock.
     public var isInGuardedApp: Bool {
         !guarded.isEmpty
+    }
+}
+
+/// Why a saved game state could not be read.
+public enum GameStateError: Error, Hashable, Sendable {
+    /// Written by a newer build; leave it for an updated app.
+    case unsupportedVersion(Int)
+}
+
+extension GameState: Codable {
+    /// The format this build writes and the newest it reads.
+    public static let currentVersion = 1
+
+    private enum CodingKeys: String, CodingKey {
+        case version, clock, lastSignalAt, awaitingReturn, guarded, foregroundSince, recentOpens, today
+        case calmNightCandidate, tendedDays, calmNights, quietRunMinutes, care, calm, stations
+    }
+
+    /// A state from a newer build fails with `unsupportedVersion`; any
+    /// field missing from an older one takes its fresh value.
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let version = try container.decodeIfPresent(Int.self, forKey: .version) ?? 1
+        guard version <= Self.currentVersion else {
+            throw GameStateError.unsupportedVersion(version)
+        }
+        self.init()
+        clock = try container.decodeIfPresent(Date.self, forKey: .clock)
+        lastSignalAt = try container.decodeIfPresent(Date.self, forKey: .lastSignalAt)
+        awaitingReturn = try container.decodeIfPresent(Bool.self, forKey: .awaitingReturn) ?? false
+        guarded = try container.decodeIfPresent([GuardedSpan].self, forKey: .guarded) ?? []
+        foregroundSince = try container.decodeIfPresent(Date.self, forKey: .foregroundSince)
+        recentOpens = try container.decodeIfPresent([Date].self, forKey: .recentOpens) ?? []
+        today = try container.decodeIfPresent(GameDay.self, forKey: .today)
+        calmNightCandidate = try container.decodeIfPresent(Bool.self, forKey: .calmNightCandidate)
+        tendedDays = max(0, try container.decodeIfPresent(Int.self, forKey: .tendedDays) ?? 0)
+        calmNights = max(0, try container.decodeIfPresent(Int.self, forKey: .calmNights) ?? 0)
+        quietRunMinutes = max(0, try container.decodeIfPresent(Int.self, forKey: .quietRunMinutes) ?? 0)
+        care = try container.decodeIfPresent(CareLedger.self, forKey: .care) ?? care
+        calm = try container.decodeIfPresent(CalmAccrual.self, forKey: .calm) ?? calm
+        stations = try container.decodeIfPresent(StationLedger.self, forKey: .stations) ?? stations
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Self.currentVersion, forKey: .version)
+        try container.encodeIfPresent(clock, forKey: .clock)
+        try container.encodeIfPresent(lastSignalAt, forKey: .lastSignalAt)
+        try container.encode(awaitingReturn, forKey: .awaitingReturn)
+        try container.encode(guarded, forKey: .guarded)
+        try container.encodeIfPresent(foregroundSince, forKey: .foregroundSince)
+        try container.encode(recentOpens, forKey: .recentOpens)
+        try container.encodeIfPresent(today, forKey: .today)
+        try container.encodeIfPresent(calmNightCandidate, forKey: .calmNightCandidate)
+        try container.encode(tendedDays, forKey: .tendedDays)
+        try container.encode(calmNights, forKey: .calmNights)
+        try container.encode(quietRunMinutes, forKey: .quietRunMinutes)
+        try container.encode(care, forKey: .care)
+        try container.encode(calm, forKey: .calm)
+        try container.encode(stations, forKey: .stations)
     }
 }
 

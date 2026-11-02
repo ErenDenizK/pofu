@@ -283,6 +283,16 @@
         }
       }
     },
+    "Calm ×%@ · growing" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Huzur ×%@ · büyüyor"
+          }
+        }
+      }
+    },
     "Check that the automation is on, that it says Run Immediately (not Run After Confirmation), and that the Hop in action has the same app as the trigger." : {
       "localizations" : {
         "tr" : {
