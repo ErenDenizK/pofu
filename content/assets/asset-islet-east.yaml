@@ -11,7 +11,8 @@ summary: >-
   the islet's width, with three cream pebbles and two short dangling roots. No door. Seen
   from the same low camera (the lawn oval about 0.3 times as tall as …
 art:
-  images: []
+  images:
+  - design/art/masters/islet-east/islet-east.png
   jobs:
   - batch-03-home-island:islet-east
 sources:

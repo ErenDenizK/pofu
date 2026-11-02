@@ -10,7 +10,8 @@ summary: >-
   underside, almost a silhouette in the same pale, hazy sky-blue and cream. Centered, filling
   about 55% of the image width, with a clear transparent margin.
 art:
-  images: []
+  images:
+  - design/art/masters/far-isle-2/far-isle-2.png
   jobs:
   - batch-04-sky:far-isle-2
 sources:

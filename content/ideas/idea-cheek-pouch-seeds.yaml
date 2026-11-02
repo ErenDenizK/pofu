@@ -1,0 +1,26 @@
+id: idea-cheek-pouch-seeds
+type: idea
+title_tr: Yanak keseleri çekirdekle dolar
+title_en: Cheek pouches fill with seeds
+status: planned
+horizon: next
+source: founder
+summary: >-
+  Real hamsters carry sunflower seeds in their cheeks. Pofu's cheek pouches visibly puff
+  as uncollected seeds accumulate (R1, then a little full, then stuffed), and collecting
+  empties them with a little hop: a glanceable "something to collect" without a badge.
+notes:
+- Founder, 2026-11-02, while reviewing the reaction set.
+- Art is two rig parts, pofu-cheeks-puff-1 and pofu-cheeks-puff-2 (batch 06); the blend
+  is code.
+links:
+  related:
+  - char-pofu
+  - idea-pofu-layered-rig
+  uses_asset:
+  - asset-pofu-cheeks-puff-1
+  - asset-pofu-cheeks-puff-2
+sources:
+- doc: docs/design/art-production-plan.md
+  anchor: '#pofus-reactions-are-a-rig'
+kind: feature

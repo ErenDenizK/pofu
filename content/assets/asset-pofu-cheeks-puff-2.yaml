@@ -1,0 +1,23 @@
+id: asset-pofu-cheeks-puff-2
+type: asset
+title_tr: pofu-cheeks-puff-2
+title_en: pofu-cheeks-puff-2 (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached hamster. Change only his cheeks: puff both cheek pouches out as far as
+  they go, stuffed with sunflower seeds, bulging outward and slightly down, so the face is
+  much rounder and wider at cheek height, comic and proud. Keep the same blush, eyes, mouth
+  and expression. No visible food. Nothing else changes.
+links:
+  variant_of:
+  - asset-pofu-base-v1
+art:
+  images: []
+  jobs:
+  - batch-06-pofu-rig-pilot:pofu-cheeks-puff-2
+sources:
+- doc: tools/imagegen/manifest/batch-06-pofu-rig-pilot.yaml
+kind: char
+batch: batch-06-pofu-rig-pilot
+size: 1024x1536

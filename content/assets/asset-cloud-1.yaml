@@ -11,7 +11,8 @@ summary: >-
   cream bounce light, broad and smooth value changes. The edges are soft but clean (a soft
   cutout, not a fading haze). Centered, filling about 85% of…
 art:
-  images: []
+  images:
+  - design/art/masters/cloud-1/cloud-1.png
   jobs:
   - batch-04-sky:cloud-1
 sources:

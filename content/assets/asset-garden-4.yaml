@@ -13,7 +13,8 @@ links:
   variant_of:
   - asset-garden-3
 art:
-  images: []
+  images:
+  - design/art/stations/garden-4/garden-4.png
   jobs:
   - batch-03-home-island:garden-4
 sources:
