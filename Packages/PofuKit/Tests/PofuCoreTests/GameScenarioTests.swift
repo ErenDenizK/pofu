@@ -264,6 +264,8 @@ struct GameScenarioTests {
                 }
                 record(world.advance(to: now, applying: events), day: day)
                 busyUntil = minute + trueMinutes
+                // The open's own minute is the first in the feed.
+                feedToday += 1
                 if Double.random(in: 0..<1, using: &rng) < archetype.carryOn(day) {
                     pendingReach = busyUntil + Int.random(in: 0...3, using: &rng)
                 }

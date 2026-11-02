@@ -145,7 +145,7 @@ struct StationLedgerTests {
         for _ in 2...5 {
             try ledger.build(.garden, tendedDays: 0, catalog: catalog)
         }
-        #expect(ledger.jar == 1_000 - 30 - 66 - 145 - 319)
+        #expect(ledger.jar == Energy(1_000 - 30 - 66 - 145 - 319))
         #expect(throws: BuildError.maxLevel(.garden)) { try ledger.build(.garden, tendedDays: 0, catalog: catalog) }
     }
 
