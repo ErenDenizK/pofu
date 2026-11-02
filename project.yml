@@ -256,6 +256,7 @@ schemes:
         - package: PofuKit/PofuDesignSystemTests
         - package: PofuKit/PofuCompanionTests
         - package: PofuKit/PofuWorldTests
+        - package: PofuKit/PofuTuningTests
     profile:
       config: Release
     analyze:
@@ -279,6 +280,7 @@ schemes:
         - package: PofuKit/PofuDesignSystemTests
         - package: PofuKit/PofuCompanionTests
         - package: PofuKit/PofuWorldTests
+        - package: PofuKit/PofuTuningTests
     profile:
       config: Release
     analyze:
