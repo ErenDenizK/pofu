@@ -26,7 +26,11 @@ final class GardenScreenshotTests: XCTestCase {
         // Mid-round: seven plots planted, the next one held over the spot
         // the autoplayer likes, with its ghost and (if it blooms) the glow.
         try await shoot("20-garden-midround-light", in: scene, folder: folder, written: &written, model: GardenGameModel(seed: 2026)) { model in
-            model.autoplay(moves: 7)
+            // Plant until a plot in the tray could bloom, so the glow shows.
+            model.autoplay(moves: 6)
+            for _ in 0..<8 where !model.canBloom {
+                model.autoplay(moves: 1)
+            }
             try await Task.sleep(for: .milliseconds(400))
             model.holdSuggestedMove()
             try await Task.sleep(for: .milliseconds(450))

@@ -356,11 +356,17 @@ final class GardenTextures {
     /// A sunflower seed: a dark teardrop with cream stripes.
     func seed() -> SKTexture {
         cached("seed") {
-            SKTexture(image: Self.render(CGSize(width: 10, height: 16), scale: scale) { context, rect in
+            SKTexture(image: Self.render(CGSize(width: 13, height: 19), scale: scale) { context, outer in
+                // A cream halo first, so a dark seed reads over dark soil.
+                let rect = outer.insetBy(dx: 1.5, dy: 1.5)
                 let path = UIBezierPath()
                 path.move(to: CGPoint(x: rect.midX, y: rect.minY + 0.5))
                 path.addCurve(to: CGPoint(x: rect.midX, y: rect.maxY - 0.5), controlPoint1: CGPoint(x: rect.maxX + 1.5, y: rect.minY + 5), controlPoint2: CGPoint(x: rect.maxX, y: rect.maxY - 1))
                 path.addCurve(to: CGPoint(x: rect.midX, y: rect.minY + 0.5), controlPoint1: CGPoint(x: rect.minX, y: rect.maxY - 1), controlPoint2: CGPoint(x: rect.minX - 1.5, y: rect.minY + 5))
+                context.addPath(path.cgPath)
+                context.setStrokeColor(GardenPalette.seedStripe.withAlphaComponent(0.9).cgColor)
+                context.setLineWidth(2.4)
+                context.strokePath()
                 context.addPath(path.cgPath)
                 context.setFillColor(GardenPalette.seedDark.cgColor)
                 context.fillPath()

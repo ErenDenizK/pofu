@@ -89,6 +89,7 @@ public final class GardenGameModel {
             gardenSet.record(result)
             seeds = result.seeds
             phase = gardenSet.isComplete ? .setEnd : .roundEnd(result)
+            scene.setCardShown(true)
             cards += 1
         }
     }
@@ -141,6 +142,11 @@ public final class GardenGameModel {
     public var sceneSpeed: CGFloat {
         get { scene.speed }
         set { scene.speed = newValue }
+    }
+
+    /// Whether some plot in the tray would bloom a line now.
+    public var canBloom: Bool {
+        GardenAutoplayer.bloomingMove(in: scene.round) != nil
     }
 
     /// Plays `moves` placements at once with the greedy autoplayer.

@@ -592,7 +592,7 @@ final class GardenScene: SKScene {
     private func launchSeed(from cell: GardenCell, rank: Int) {
         let start = layout.center(of: cell)
         let mouth = CGPoint(x: layout.pofu.x, y: layout.pofu.y + layout.pofuHeight * 0.4)
-        let seed = SKSpriteNode(texture: textures.seed(), size: CGSize(width: 9, height: 14))
+        let seed = SKSpriteNode(texture: textures.seed(), size: CGSize(width: 13, height: 19))
         seed.position = start
         seed.zPosition = 30
         effectsLayer.addChild(seed)
@@ -737,6 +737,14 @@ final class GardenScene: SKScene {
         }
     }
 
+    /// While a card is up, Pofu is on the card: his figure in the garden
+    /// steps aside so he is never seen twice.
+    func setCardShown(_ shown: Bool) {
+        guard let pofu = residents?.pofu.root else { return }
+        pofu.removeAction(forKey: "card")
+        pofu.run(.fadeAlpha(to: shown ? 0 : 1, duration: reduceMotion ? 0 : 0.2), withKey: "card")
+    }
+
     // MARK: Screenshots and previews
 
     /// Plays `move` as if dragged and dropped there (animated), or applies
@@ -799,9 +807,13 @@ final class GardenScene: SKScene {
         guard let node = trayPieces[slot] else { return }
         let center = layout.center(of: node.shape, at: origin)
         lift(node, slot: slot, to: CGPoint(x: center.x + layout.cell * 0.18, y: center.y + layout.cell * 0.22))
+        // Where a thumb would leave it: up and a little to the side of the
+        // ghost, which stays where it snapped.
+        let shown = CGPoint(x: center.x + layout.cell * 0.35, y: center.y + layout.cell * 0.9)
+        drag?.target = shown
         node.removeAllActions()
         node.setScale(1)
-        node.position = drag?.target ?? center
+        node.position = shown
     }
 }
 
@@ -861,14 +873,18 @@ final class Residents {
     final class Figure {
         /// Position and hops.
         let root = SKNode()
-        /// Leaning (Pofu toward the plot in the air).
+        /// Leaning (Pofu toward the plot in the air), pivoting at the feet.
         let lean = SKNode()
+        /// Rolling (Fındık), pivoting at the middle of the body.
+        let spin = SKNode()
         /// Squash, and Pofu's cheek fill.
         let body = SKNode()
         let sprite: SKSpriteNode
         let shadow: SKSpriteNode
         var blushes: [SKSpriteNode] = []
         private var fill: CGFloat = 1
+        /// The body's resting height inside `spin` (its feet at the root).
+        private let rest: CGFloat
 
         init(texture: SKTexture, shadowTexture: SKTexture, feet: CGPoint, height: CGFloat) {
             let aspect = texture.size().height > 0 ? texture.size().width / texture.size().height : 1
@@ -877,10 +893,14 @@ final class Residents {
             shadow = SKSpriteNode(texture: shadowTexture, size: CGSize(width: height * aspect * 0.9, height: height * 0.18))
             shadow.position = CGPoint(x: 0, y: 4)
             shadow.zPosition = -1
+            rest = -height / 2
             root.position = feet
             root.addChild(shadow)
             root.addChild(lean)
-            lean.addChild(body)
+            lean.addChild(spin)
+            spin.position = CGPoint(x: 0, y: height / 2)
+            body.position = CGPoint(x: 0, y: rest)
+            spin.addChild(body)
             body.addChild(sprite)
         }
 
@@ -909,11 +929,11 @@ final class Residents {
                 .wait(forDuration: delay),
                 SKAction.group([SKAction.scaleX(to: fill * 1.08, duration: 0.06), SKAction.scaleY(to: 0.9, duration: 0.06)]),
                 .group([
-                    SKAction.moveTo(y: height, duration: 0.16).eased(GameEasing.outCubic),
+                    SKAction.moveTo(y: rest + height, duration: 0.16).eased(GameEasing.outCubic),
                     SKAction.scaleX(to: fill * 0.94, duration: 0.1),
                     SKAction.scaleY(to: 1.08, duration: 0.1),
                 ]),
-                SKAction.moveTo(y: 0, duration: 0.15).eased(GameEasing.inQuad),
+                SKAction.moveTo(y: rest, duration: 0.15).eased(GameEasing.inQuad),
                 SKAction.group([SKAction.scaleX(to: fill * 1.1, duration: 0.05), SKAction.scaleY(to: 0.88, duration: 0.05)]),
                 SKAction.group([SKAction.scaleX(to: fill, duration: 0.18), SKAction.scaleY(to: 1, duration: 0.18)]).eased { GameEasing.outBack($0, overshoot: 2) },
             ]), withKey: "hop")
@@ -922,8 +942,8 @@ final class Residents {
         /// Fındık's move: a hedgehog's roll, once round.
         func roll(delay: TimeInterval, reduceMotion: Bool) {
             guard !reduceMotion else { return hop(height: 0, delay: delay, reduceMotion: true) }
-            lean.removeAction(forKey: "roll")
-            lean.run(.sequence([
+            spin.removeAction(forKey: "roll")
+            spin.run(.sequence([
                 .wait(forDuration: delay),
                 SKAction.rotate(byAngle: -2 * .pi, duration: 0.52).eased(GameEasing.inOutSine),
             ]), withKey: "roll")
