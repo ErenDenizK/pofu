@@ -58,7 +58,10 @@ the project's persistent memory; keep it accurate and concise.
   app target with the entitlements. World and `PofuWorld` work waits; the game model in
   `PofuCore` and an 8-image art test may run meanwhile. XcodeGen project (`project.yml`, regenerate after
   pulling); `Packages/PofuKit` has `PofuCore`, `PofuScreenTime`,
-  `PofuPersistence`, `PofuDesignSystem`, and `PofuCompanion`. CI must stay
+  `PofuPersistence`, `PofuDesignSystem`, `PofuCompanion`, and `PofuWorld`
+  (the island scene; its art is baked by
+  `design/prototypes/interactions/tools/preblur.py app`, and CI uploads
+  simulator screenshots as `world-screenshots`). CI must stay
   green. Keep `docs/product/economy.md` in sync with `PofuCore`.
 - Design references: `docs/design/` (design language, art bible, prompt
   library, motion spec), `docs/product/ux/` (IA, flows), and the clickable
