@@ -87,6 +87,9 @@ jobs:
       - name: Check the colour script
         run: python3 -I tools/assets/colour_script.py check
 
+      - name: Test the review sheets
+        run: python3 -I -m pytest -q tools/review/tests
+
       - name: Test Pofu's rig compositor
         run: python3 -I -m pytest -q tools/rig/tests
 
