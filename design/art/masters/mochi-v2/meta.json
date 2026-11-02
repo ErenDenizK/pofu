@@ -1,0 +1,89 @@
+{
+  "job": "mochi-v2",
+  "batch": "batch-03-home-island",
+  "asset": "char__mochi-v2",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T14:36:22+00:00",
+  "image": "design/art/masters/mochi-v2/mochi-v2.png",
+  "raw": "design/art/masters/mochi-v2/raw.png",
+  "fingerprint": "60aeea5a68828d55",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached bunny, Mochi. Change only these two things:\n1. Remove the single cream curl of fur on top of her head\n   completely. The top of her head becomes a smooth, softly\n   rounded dome of the same cream fur: no curl, no swirl, no\n   tuft, no quiff of any kind. (That curl belongs to Pofu, the\n   hamster, alone.)\n2. Make her two floppy ears longer and softer: they hang from the\n   top of her head down beside her face to about the level of her\n   front paws, about one and a half times as long as now, with\n   the same blush-pink insides and soft, fluffy edges.\nHer eyes, face, cheeks, body, paws, feet, colors and size stay\nexactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: any curl, swirl or tuft of fur on top of the head, upright ears, a ground shadow, text.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/mochi-base/mochi-base.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T14:35:26+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 1
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 31 (R1 51)",
+        "value": 30.7
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 68 (R1 59)",
+        "value": 68.3
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 3.8 (R1 5.3)",
+        "value": 3.75
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.9, p95 1.7, off-palette 0.9% (top: #441100 (0.1%), #CC5544 (0.1%))",
+        "value": 0.8743
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 87.8% of the height (contract 88%)",
+        "value": 0.8776
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "83% of the parent level unchanged",
+        "value": 0.8302
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}
