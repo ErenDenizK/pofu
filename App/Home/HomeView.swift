@@ -1,33 +1,53 @@
 import PofuCompanion
 import PofuCore
 import PofuDesignSystem
+import PofuWorld
 import SwiftUI
 
 /// Pofu's room: the single home of the app (information architecture,
 /// option C). Pofu with its mood and cheeks, the seed pouch, today's beads,
 /// one primary action, and everything else as sheets.
+///
+/// With `FeatureFlags.islandHome`, the room is Pofu's island
+/// (`IslandScene`, iteration W2): the same chrome over one world in three
+/// framings. The Today card and the actions show at the Home framing.
 struct HomeView: View {
     @Bindable var model: AppModel
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.scenePhase) private var scenePhase
     /// The companion's laid-out width, for tucking the bubble into its
     /// headroom.
     @State private var companionWidth: CGFloat = 300
 
     var body: some View {
         ZStack {
-            PofuColor.dayWash.ignoresSafeArea()
+            if FeatureFlags.islandHome {
+                island
+            } else {
+                PofuColor.dayWash.ignoresSafeArea()
+            }
 
             VStack(spacing: PofuSpacing.l) {
                 topBar
+                    .opacity(model.island.focus == nil ? 1 : 0)
+                    .allowsHitTesting(model.island.focus == nil)
                 Spacer(minLength: 0)
-                pofu
-                Spacer(minLength: 0)
-                TodayCard(model: model)
-                bottomActions
+                if !FeatureFlags.islandHome {
+                    pofu
+                    Spacer(minLength: 0)
+                }
+                Group {
+                    TodayCard(model: model)
+                    bottomActions
+                }
+                .opacity(showsHomeChrome ? 1 : 0)
+                .allowsHitTesting(showsHomeChrome)
             }
             .padding(.horizontal, PofuSpacing.screen)
             .padding(.bottom, PofuSpacing.s)
+            .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: showsHomeChrome)
+            .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: model.island.focus == nil)
 
             if model.activeSession != nil || model.earningResult != nil {
                 FocusSessionView(model: model)
@@ -38,6 +58,12 @@ struct HomeView: View {
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: model.activeSession != nil || model.earningResult != nil)
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: model.canCollectQuietSeeds)
         .sensoryFeedback(.success, trigger: model.quietCollections)
+        .onChange(of: scenePhase) { _, phase in
+            // A new visit: residents may say their lines again.
+            if phase == .active {
+                model.island.beginVisit()
+            }
+        }
         .task {
             // Quiet time accrues while Pofu's room is on screen, too.
             while !Task.isCancelled {
@@ -68,6 +94,26 @@ struct HomeView: View {
 
     // MARK: Parts
 
+    /// The island in the Home framing's chrome: Pofu, his bubble and the
+    /// world live in the scene.
+    private var island: some View {
+        IslandScene(
+            world: model.world,
+            model: model.island,
+            onPofuTap: {
+                if model.canCollectQuietSeeds {
+                    collect()
+                }
+            },
+            bubble: { bubble }
+        )
+    }
+
+    /// The Today card and the actions belong to the Home framing.
+    private var showsHomeChrome: Bool {
+        !FeatureFlags.islandHome || (model.island.framing == .home && model.island.focus == nil)
+    }
+
     private var topBar: some View {
         HStack {
             Button {
@@ -78,6 +124,10 @@ struct HomeView: View {
             .buttonStyle(.plain)
             .accessibilityLabel(Text("\(model.balance.units) seeds in my cheeks"))
             Spacer()
+            if FeatureFlags.islandHome {
+                FramingPicker(model: model.island)
+                Spacer()
+            }
             Button {
                 model.homeSheet = .settings
             } label: {
@@ -114,22 +164,27 @@ struct HomeView: View {
         return model.canCollectQuietSeeds ? .collect : .nothing
     }
 
+    /// Pofu's speech bubble: setup, collect, or the day's line.
+    private var bubble: some View {
+        Button {
+            switch bubbleAction {
+            case .setup: model.homeSheet = .setup
+            case .collect: collect()
+            case .nothing: break
+            }
+        } label: {
+            SpeechBubble {
+                bubbleText
+            }
+        }
+        .buttonStyle(.plain)
+        .disabled(bubbleAction == .nothing)
+        .accessibilityAddTraits(bubbleAction == .nothing ? [] : .isButton)
+    }
+
     private var pofu: some View {
         VStack(spacing: PofuSpacing.s) {
-            Button {
-                switch bubbleAction {
-                case .setup: model.homeSheet = .setup
-                case .collect: collect()
-                case .nothing: break
-                }
-            } label: {
-                SpeechBubble {
-                    bubbleText
-                }
-            }
-            .buttonStyle(.plain)
-            .disabled(bubbleAction == .nothing)
-            .accessibilityAddTraits(bubbleAction == .nothing ? [] : .isButton)
+            bubble
             // The companion keeps empty room above the art for hops. Tuck
             // the bubble into most of it, so the tail ends just above
             // Pofu's head instead of pointing at air.

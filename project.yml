@@ -49,6 +49,8 @@ targets:
         product: PofuDesignSystem
       - package: PofuKit
         product: PofuCompanion
+      - package: PofuKit
+        product: PofuWorld
     settings:
       base:
         PRODUCT_NAME: Pofu
@@ -91,6 +93,8 @@ targets:
         product: PofuDesignSystem
       - package: PofuKit
         product: PofuCompanion
+      - package: PofuKit
+        product: PofuWorld
       - target: PofuShieldConfiguration
       - target: PofuShieldAction
       - target: PofuActivityMonitor
@@ -216,6 +220,7 @@ schemes:
         - package: PofuKit/PofuPersistenceTests
         - package: PofuKit/PofuDesignSystemTests
         - package: PofuKit/PofuCompanionTests
+        - package: PofuKit/PofuWorldTests
     profile:
       config: Release
     analyze:
@@ -238,6 +243,7 @@ schemes:
         - package: PofuKit/PofuPersistenceTests
         - package: PofuKit/PofuDesignSystemTests
         - package: PofuKit/PofuCompanionTests
+        - package: PofuKit/PofuWorldTests
     profile:
       config: Release
     analyze:

@@ -58,7 +58,7 @@ struct RootView: View {
             return
         }
         guard presentedHop?.id != id else { return }
-        guard model.homeSheet != nil else {
+        guard model.homeSheet != nil || model.island.hasSheet else {
             Log.routing.info("Presenting the Hop! cover")
             presentedHop = HopCover(id: id)
             return
@@ -67,6 +67,7 @@ struct RootView: View {
         // Hop! takes the whole screen: the sheet over Home steps aside
         // first, and the cover follows once its dismissal has finished.
         model.homeSheet = nil
+        model.island.dismissFocus()
         Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(450))
             if model.hop?.id == id {
