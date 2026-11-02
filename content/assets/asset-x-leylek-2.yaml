@@ -1,0 +1,21 @@
+id: asset-x-leylek-2
+type: asset
+title_tr: x-leylek-2
+title_en: x-leylek-2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Two storks on the huge nest facing each other
+  with their long beaks lifted, clattering them (soft motion arcs), a tiny stork chick between
+  them looking up, the chimney warm with evening light. Seen from the same low front three-quarter
+  camera as the attached island, the island floating over a sea of clouds. Peaceful and wondrous,
+  never dramatic.
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-leylek-2
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1536x1024

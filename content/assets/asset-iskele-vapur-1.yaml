@@ -1,0 +1,20 @@
+id: asset-iskele-vapur-1
+type: asset
+title_tr: iskele-vapur-1
+title_en: iskele-vapur-1 (station)
+status: in-production
+horizon: now
+summary: >-
+  A small Istanbul-style passenger ferry (vapur), toy-like and chunky, for the island diorama:
+  a plump rounded hull in soft sea blue with a cream stripe, a low white-cream cabin with
+  three round windows, one tall rounded funnel in soft coral with a cream band, and a small
+  flag. Seen from the same low front three-quarter camera, floating upright; its waterline
+  is a flat, clean edge with no water drawn, no wake, no smoke…
+art:
+  images: []
+  jobs:
+  - batch-14-iskele:iskele-vapur-1
+sources:
+- doc: tools/imagegen/manifest/batch-14-iskele.yaml
+kind: station
+batch: batch-14-iskele

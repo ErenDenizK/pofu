@@ -1,0 +1,21 @@
+id: asset-game-plot-tile-mint
+type: asset
+title_tr: game-plot-tile-mint
+title_en: game-plot-tile-mint (ui)
+status: in-production
+horizon: now
+summary: >-
+  Change only the glaze color of the tile and its sprout to a cool mint, a little bluer than
+  before, in the same finish and the same lightness. The shape, highlight, lip and sprout
+  stay.
+links:
+  variant_of:
+  - asset-game-plot-tile-sage
+art:
+  images: []
+  jobs:
+  - batch-12-minigame-art:game-plot-tile-mint
+sources:
+- doc: tools/imagegen/manifest/batch-12-minigame-art.yaml
+kind: ui
+batch: batch-12-minigame-art

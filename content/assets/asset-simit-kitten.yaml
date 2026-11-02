@@ -1,0 +1,21 @@
+id: asset-simit-kitten
+type: asset
+title_tr: simit-kitten
+title_en: simit-kitten (char)
+status: in-production
+horizon: now
+summary: >-
+  Draw Simit, a neighbor of the attached hamster, in exactly the same art style, lighting
+  and level of fluff as the hamster and the attached bunny. Same canvas rules as the hamster:
+  full body, sitting upright, front view, centered, feet on an invisible line at 88% of the
+  height, about 62% of the canvas width. CHARACTER: Simit, a baby tabby kitten whose body
+  is a soft round ball of plush fur in warm honey-gold with soft…
+art:
+  images: []
+  jobs:
+  - batch-14-iskele:simit-kitten
+sources:
+- doc: tools/imagegen/manifest/batch-14-iskele.yaml
+kind: char
+batch: batch-14-iskele
+size: 1024x1536

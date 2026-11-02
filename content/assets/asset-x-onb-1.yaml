@@ -1,0 +1,19 @@
+id: asset-x-onb-1
+type: asset
+title_tr: x-onb-1
+title_en: x-onb-1 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A portrait storybook illustration for an onboarding screen: Pofu the hamster sitting small
+  and shy on the lawn of the floating home island at soft morning, looking up at the viewer
+  with big eyes, one tiny paw raised in a wave. A calm clear zone in the upper third.
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-onb-1
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1024x1536

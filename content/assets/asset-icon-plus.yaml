@@ -1,0 +1,18 @@
+id: asset-icon-plus
+type: asset
+title_tr: icon-plus
+title_en: plus (icon)
+status: in-production
+horizon: now
+summary: >-
+  The icon for Plus: one sun-gold sunflower head seen straight on, a round warm-brown center
+  and eight plump rounded petals in a richer gold than a normal sunflower, with a small cream
+  highlight on each petal.
+art:
+  images: []
+  jobs:
+  - batch-13-ui-rest:icon-plus
+sources:
+- doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
+kind: icon
+batch: batch-13-ui-rest

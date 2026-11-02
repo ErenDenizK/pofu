@@ -71,6 +71,15 @@ until none is left.
 | 8 | `batch-10-island-concepts` | EXPLORATION | Their signature moments (Damla at the falls, Pekmez and the seed falling up, Tuli painting the aurora), attaching the picked pilot takes | review of #6 | 3 | BLOCKED, manifest after #6 |
 | 9 | `batch-11-ui` | production | The rest of ui-system-v2 section 6 (night variants, secondary and pressed faces, game layer, domain icons, surfaces) | review of #4 | about 32 | BLOCKED, no manifest yet |
 | 10 | `batch-08-decor` | production | The rest of a decor kit | the decor mechanic decided (archipelago system, PR #64) and review of #5 | — | BLOCKED, no manifest yet |
+| 11 | `batch-12-minigame-art` | production · pilot inside | The garden minigame's painted art (minigames.md): sage plot tile, soil cell, seed (pilot), five glazes, three blooms, bed rim, combo stamp, tray | main | 14 | **READY** |
+| 12 | `batch-13-ui-rest` | production · pilot inside | The rest of the hybrid UI: crafted secondary face and pressed, sheet and menu paper (and a painted night sheet), the icon family at 28-60 pt (calm lit lantern first, then island, çay, friend, mood, skip, round, breath, rumour, decor, plus). Founder review pending | #87 merged | 16 | **READY** |
+| 13 | `batch-14-iskele` | production · pilot inside | İskele, the second free island: plate, vapur 1-2, horn post, crates, lamp, Simit the kitten (+ work and horn poses), the goat. The simit stall chain is reused from home | main | 10 | **READY** |
+| 14 | `batch-15-explore` | EXPLORATION · pilot inside | Two concepts for each of seven wonder islands, six resident model sheets, the archipelago sky map with fog, three app icons and two icon layers, three key art compositions, a winter Ayçiçeği edit, three onboarding illustrations | main | 33 | **READY** |
+
+**Order of work:** first publish what is already selected (rule 6), then rows
+1 to 7, then rows 11 to 14 in that order. Each of rows 11 to 14 is one
+manifest whose first 2 to 4 jobs are its pilot (the header names them); if a
+pilot job still fails after its retry, only the rest of that batch is skipped.
 
 Row 9 is the scale-up of row 4; row 8 of row 7; row 10 of row 5. Rows 1 to
 3 were the scale-ups of the passed pilots (batch-05, 06 and 07).

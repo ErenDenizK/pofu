@@ -1,0 +1,21 @@
+id: asset-x-koke-2
+type: asset
+title_tr: x-koke-2
+title_en: x-koke-2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Koke at blue night, the same island: the gravel
+  is raked in new gentle wave patterns by tiny paw prints that lead to a small dormouse (Sumi,
+  tiny, curled asleep under a maple), lit by a single paper lantern on a low stone. The clacker
+  is still. Calm, quiet and cozy. Seen from the same low front three-quarter camera as the
+  attached island, the island floating over a sea of cl…
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-koke-2
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1536x1024

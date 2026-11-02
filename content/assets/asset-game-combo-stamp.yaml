@@ -1,0 +1,19 @@
+id: asset-game-combo-stamp
+type: asset
+title_tr: game-combo-stamp
+title_en: game-combo-stamp (ui)
+status: in-production
+horizon: now
+summary: >-
+  A round cream paper stamp with a softly scalloped edge, filling most of the canvas: a ring
+  of small plump sunflower-yellow petals around the rim, and a large plain cream disc in the
+  middle that is completely empty and flat (for text added later). Soft honey ink for the
+  ring. No letters, no numbers, no symbols.
+art:
+  images: []
+  jobs:
+  - batch-12-minigame-art:game-combo-stamp
+sources:
+- doc: tools/imagegen/manifest/batch-12-minigame-art.yaml
+kind: ui
+batch: batch-12-minigame-art

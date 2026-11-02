@@ -242,9 +242,15 @@ AGENTS.md parallel auto mode, batch-11-ui-pilot, track all
 AGENTS.md parallel auto mode, batch-08-decor-pilot, track all
 AGENTS.md parallel auto mode, batch-09-explore-pilot, track all
 AGENTS.md parallel auto mode, batch-10-island-concepts-pilot, track all
+AGENTS.md parallel auto mode, batch-12-minigame-art, track all
+AGENTS.md parallel auto mode, batch-13-ui-rest, track all
+AGENTS.md parallel auto mode, batch-14-iskele, track all
+AGENTS.md parallel auto mode, batch-15-explore, track all
 ```
 
-Batches 09 and 10 are EXPLORATION: never run `promote` on them.
+Batches 09, 10 and 15 are EXPLORATION: never run `promote` on them. Batches
+12 to 15 carry their pilot as their first jobs: a failed pilot skips only the
+rest of that batch.
 
 - **batch-05-fixes-pilot:** `simit-2` and `workshop-2` are SALVAGED from
   batch 03's takes on `main` (their `notes` list the files). Batch 03's
