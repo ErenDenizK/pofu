@@ -9,6 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- App and game boundary ([app-game-boundary.md](docs/product/app-game-boundary.md)):
+  opening intents, the finished visit, "Pofu'yla bir dakika" as a bounded
+  substitute, and anti-compulsion guardrails with measurable targets.
+- Interaction spec ([interaction-spec.md](docs/design/interaction-spec.md))
+  v1 and v2: the detented camera, station and resident focus, glass morph
+  menus, reactions, and depth as a lens (blur by distance from the focus
+  plane) with parallax, haze, contact shadows, foreground bokeh, tilt-shift
+  and a depth-map plate, plus internal touch prototypes.
+- Gate v2 UX spec ([gate-v2.md](docs/product/ux/gate-v2.md)) and an
+  internal day-1 prototype (`design/prototypes/gate-v2/`).
+- CI classifies changed files on Linux first: the macOS build runs only
+  when something outside `docs/`, `design/`, `tools/` and Markdown changed,
+  and the Python tools get their own job.
+- Batch 01 of the image pipeline is open for the eight-image W1 test on the
+  founder's own ChatGPT plan, operated by Codex in the cloud.
 - Gate v2 ([spec](docs/product/ux/gate-v2.md)): the shield speaks. A copy
   engine in `PofuCore` (`ShieldCopy`) picks Pofu's line by reach count,
   time of day, bedtime, pass expiry, and the daily hour, with today's
