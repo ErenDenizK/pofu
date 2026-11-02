@@ -9,6 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Look round 2 (`docs/design/look-dev.md`, "Round 2"): **containment**
+  (the pipeline measures the plate's walkable polygon and every sprite's
+  ground footprint; `IslandFootprint` validates and clamps every slot,
+  resident and Pofu, and a test fails on any overhang), **asset harmony**
+  (`tools/assets/harmony.py` measures every master against the approved
+  island, Pofu for characters and each station level against its chain's
+  L1, scores it, and writes corrections that `preblur.py app` bakes; QA
+  scores each take at promote time and CI fails a stale manifest; the
+  çaydanlık's copper is warmed and the faded station chains restored),
+  **true darks** for night and unwell (`WorldGrade` input levels, measured
+  with `tools/assets/frame_metrics.py` against
+  `design/art/harmony/grade-targets.json`), **depth in motion**
+  (velocity-driven parallax and depth of field that settle to zero), and
+  a `depth_floor` QA check so a plate that is too squashed fails (set on
+  batch 05's `island-main-l-v3`). The terrarium rim is removed.
+
 - Pofu's voice (`docs/brand/pofu-voice.md`): research on what makes a
   mascot's humour land or grate, the rules for personality B (jealous as
   play, never guilt; comedy rationed per day and decaying with the reach
