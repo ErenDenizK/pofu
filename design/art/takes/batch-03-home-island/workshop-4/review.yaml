@@ -1,0 +1,8 @@
+batch: batch-03-home-island
+jobs:
+  workshop-4:
+    pick: none
+    status: skipped
+    note: 'Required workshop-2 master not approved: all four takes failed edit_stability
+      after the allowed retry round. This dependent chain cannot continue.'
+    takes: {}

@@ -14,7 +14,11 @@ art:
   images: []
   jobs:
   - batch-03-home-island:simit-4
+  - batch-05-fixes:simit-4
+notes:
+- Batch 03 skipped it; batch 05 redoes it (docs/design/art-production-plan.md).
 sources:
 - doc: tools/imagegen/manifest/batch-03-home-island.yaml
+- doc: tools/imagegen/manifest/batch-05-fixes.yaml
 kind: station
 batch: batch-03-home-island

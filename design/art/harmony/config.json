@@ -1,0 +1,135 @@
+{
+  "$note": "Asset harmony (tools/assets/harmony.py, look round 2). Every world master is measured against the reference set on the same scale (world units), and the measurable differences become per-asset corrections that preblur.py app bakes into the app's sprites. Change a target or a tolerance only with the harmony contact sheet in the PR. L and C are CIELAB lightness and chroma; tint is the mean a*, b* of the near-neutral pixels (the light's white balance).",
+  "version": 1,
+  "reference": {
+    "$note": "What each kind is matched against: the approved island take (ADR-0018's style target) for the world, Pofu for characters (a white bunny's chroma or a character's eyes say nothing about the lawn).",
+    "world": [
+      "island-main"
+    ],
+    "char": [
+      "pofu"
+    ]
+  },
+  "guard": {
+    "$note": "Measured and scored, never corrected (fnmatch patterns). Pofu is the hero and keeps his own art (char-guard). Sky elements and the far isles are tinted and hazed by the living sky on purpose, so they are not matched to the lawn.",
+    "assets": [
+      "pofu",
+      "pofu-*",
+      "cloud-*",
+      "sun-glow",
+      "far-isle-*"
+    ]
+  },
+  "display_ppu": 4.0,
+  "ppu_by_kind": {
+    "$note": "Pixels per world unit for masters the app does not ship yet (the shipped ones take preblur's). A station canvas is 120 units wide (station guide); characters match Mochi (871 px for 30 units); world plates match the home plate.",
+    "station": 8.533,
+    "prop": 8.533,
+    "char": 29.0,
+    "world": 4.103
+  },
+  "metrics": {
+    "L_p2": {
+      "tolerance": 12.0,
+      "weight": 1.0,
+      "label": "black point (L p2)"
+    },
+    "L_p98": {
+      "tolerance": 4.0,
+      "weight": 1.0,
+      "label": "white point (L p98)"
+    },
+    "C_p95": {
+      "tolerance": 8.0,
+      "weight": 1.0,
+      "label": "chroma ceiling (C p95)"
+    },
+    "tint_a": {
+      "tolerance": 3.0,
+      "weight": 1.0,
+      "label": "white balance a* (neutrals)"
+    },
+    "tint_b": {
+      "tolerance": 4.0,
+      "weight": 1.0,
+      "label": "white balance b* (neutrals)"
+    },
+    "edge": {
+      "tolerance": 0.35,
+      "weight": 0.5,
+      "label": "edge softness (world units)"
+    },
+    "detail": {
+      "tolerance": 1.6,
+      "weight": 0.5,
+      "label": "detail density at display size"
+    }
+  },
+  "correction": {
+    "$note": "How far a correction moves toward the reference (1 = all the way) and its caps. The chroma cap reaches 1.45 because soft-lock masters were baked at chroma x0.7, so a correction can bring them back to lock-light.",
+    "strength": 1.0,
+    "max_black_shift": 16.0,
+    "max_white_shift": 6.0,
+    "chroma_scale": [
+      0.75,
+      1.45
+    ],
+    "max_tint_shift": 6.0
+  },
+  "materials": {
+    "$note": "Material targets from the props palette (tools/imagegen/palettes.json), measured on the pixels whose hue falls in the band. Copper: the founder found the çaydanlık cold (2026-11-02); the measured copper sits at hue 54, on the palette's pink-leaning copper (#D4875F, hue 53), against honey wood at hue 63. The target is the midpoint of copper and tea-amber (#E09A55, hue 66) so the kettle reads as warm metal, not rose.",
+    "copper": {
+      "$note": "Hue alone cannot separate copper (H 52-58) from honey wood (H 56-72), so the material is also bounded by a region of the canvas (x0, y0, x1, y1 as fractions, feathered): the çaydanlık on cay-1.",
+      "hue": 54.0,
+      "width": 10.0,
+      "min_chroma": 18.0,
+      "target_hue": 61.0,
+      "target_chroma": 44.0,
+      "regions": {
+        "cay-1": [
+          0.22,
+          0.29,
+          0.55,
+          0.55
+        ]
+      }
+    }
+  },
+  "kinds": {
+    "$note": "The kind of each shipped source (preblur's APP_SOURCES) that is not a station.",
+    "island-main": "world",
+    "mochi": "char",
+    "findik-standin": "char",
+    "pofu": "char",
+    "isle-harbor-standin": "world",
+    "isle-stars-standin": "world",
+    "isle-hamam-standin": "world",
+    "isle-library-standin": "world"
+  },
+  "correct_by_kind": {
+    "$note": "Which metrics may be corrected per kind (all when a kind is absent). A character's identity is its own colour: a white bunny is not under-saturated, so characters only get white balance; their other outliers are reported for the next generation.",
+    "char": [
+      "tint_a",
+      "tint_b"
+    ]
+  },
+  "chains": {
+    "$note": "Station level chains (cay-1 ... cay-5). Each level was redrawn from its locked parent and locked again, losing about 30 % chroma per level (art queue finding, PR #67: çay ocağı median chroma 31 -> 11 from L1 to L5, windmill 28 -> 7). A level's black point, white point and median chroma are matched to its chain's L1 as corrected, with a chroma scale up to x3. New losses are stopped at promote time by the pipeline's edit_chroma QA check (an edit below 0.70 of its parent's chroma fails); harmony only restores the chains already generated.",
+    "pattern": "^(?P<chain>[a-z]+)-(?P<level>[0-9]+)$",
+    "metrics": {
+      "L_p2": {
+        "tolerance": 6.0
+      },
+      "L_p98": {
+        "tolerance": 3.0
+      },
+      "C_p50": {
+        "tolerance": 3.0
+      }
+    },
+    "chroma_scale": [
+      0.75,
+      3.0
+    ]
+  }
+}

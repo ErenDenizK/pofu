@@ -9,7 +9,8 @@ summary: >-
   than the other, side by side, with a gently flattened underside. Centered, filling about
   70% of the canvas width, with a clear transparent margin.
 art:
-  images: []
+  images:
+  - design/art/masters/cloud-3/cloud-3.png
   jobs:
   - batch-04-sky:cloud-3
 sources:

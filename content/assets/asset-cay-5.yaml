@@ -13,7 +13,8 @@ links:
   variant_of:
   - asset-cay-4
 art:
-  images: []
+  images:
+  - design/art/stations/cay-5/cay-5.png
   jobs:
   - batch-01-slice:cay-5
 sources:

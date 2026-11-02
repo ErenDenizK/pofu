@@ -1,0 +1,22 @@
+id: asset-pofu-mouth-o
+type: asset
+title_tr: pofu-mouth-o
+title_en: pofu-mouth-o (char)
+status: planned
+horizon: later
+summary: >-
+  Edit the attached hamster. Change only his mouth: make it a small round "o" of surprise
+  and curiosity under the nose, about a third the width of the current smile. Nothing else
+  changes.
+links:
+  variant_of:
+  - asset-pofu-base-v1
+art:
+  images: []
+  jobs:
+  - batch-06-pofu-rig:pofu-mouth-o
+sources:
+- doc: tools/imagegen/manifest/batch-06-pofu-rig.yaml
+kind: char
+batch: batch-06-pofu-rig
+size: 1024x1536

@@ -1,0 +1,97 @@
+{
+  "job": "cloud-1",
+  "batch": "batch-04-sky",
+  "asset": "world__cloud-1",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T14:17:54+00:00",
+  "image": "design/art/masters/cloud-1/cloud-1.png",
+  "raw": "design/art/masters/cloud-1/raw.png",
+  "fingerprint": "f6d950180bce26ed",
+  "prompt": "REFERENCES (attached, in this order):\n1. The island this sky belongs to: match its soft painting, its warm light from the upper left and its milky pastel values (do not draw it).\n2. Style reference only (no characters): the hamster's soft airbrushed painting.\n3. The palette card: use only these colors (and mixes of them).\n\nOne large, soft cumulus cloud for a cozy pastel sky, on its own:\na wide, rounded cloud built from five or six big, plump billows,\nwith a gently flattened underside. Warm cream-white tops lit from\nthe upper left, undersides shaded in soft, pale sky blue with a\nhint of warm cream bounce light, broad and smooth value changes.\nThe edges are soft but clean (a soft cutout, not a fading haze).\nCentered, filling about 85% of the image width, with a clear\ntransparent margin.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: a sky, a background color or gradient, the sun, rays, birds, rain, gray or dark storm clouds, wispy noise, hard white outlines, a ground shadow, text.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-s/island-main-s.png",
+      "role": "The island this sky belongs to: match its soft painting, its warm light from the upper left and its milky pastel values (do not draw it)."
+    },
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "Style reference only (no characters): the hamster's soft airbrushed painting."
+    },
+    {
+      "path": "design/reference/palette-card-world-day.png",
+      "role": "The palette card: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T14:17:08+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "soft-lock",
+    "version": 1
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 11 (R1 51)",
+        "value": 10.6
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 82 (R1 59)",
+        "value": 82.5
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.6 (R1 5.3)",
+        "value": 0.61
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 3.3",
+        "value": 3.2709
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.6, p95 4.7, off-palette 0.0%",
+        "value": 1.6203
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}

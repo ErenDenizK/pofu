@@ -1,0 +1,94 @@
+{
+  "job": "sun-glow",
+  "batch": "batch-04-sky",
+  "asset": "prop__sun-glow",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T14:51:43+00:00",
+  "image": "design/art/masters/sun-glow/sun-glow.png",
+  "raw": "design/art/masters/sun-glow/raw.png",
+  "fingerprint": "71b69bbf834ccfa1",
+  "prompt": "REFERENCES (attached, in this order):\n1. The island this sky belongs to: the same warm light and milky pastel values (do not draw it).\n2. The palette card: use only these colors (and mixes of them).\n\nA soft sun glow for a calm pastel morning sky, on its own: a\nround, warm glow of pale honey and cream light, brightest and\nalmost cream-white in a small soft core at the center, fading\nsmoothly and evenly to fully transparent at its edge. No visible\ndisc edge, no face, no rays, no lens flare, no rings, no sparkle.\nCentered, the glow fading out before it reaches the canvas edges.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: a sky or background color, clouds, a hard sun disc, rays, flares, rings, saturated yellow or orange, text.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-s/island-main-s.png",
+      "role": "The island this sky belongs to: the same warm light and milky pastel values (do not draw it)."
+    },
+    {
+      "path": "design/reference/palette-card-world-day.png",
+      "role": "The palette card: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T14:49:42+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "soft-lock",
+    "version": 1
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 16 (R1 51)",
+        "value": 15.8
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 89 (R1 59)",
+        "value": 88.9
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.4 (R1 5.3)",
+        "value": 0.37
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 5.2",
+        "value": 5.236
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.8, p95 1.8, off-palette 0.0%",
+        "value": 0.8369
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}

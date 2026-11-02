@@ -16,6 +16,7 @@ art:
   images: []
   jobs:
   - batch-02-ui:icon-seed
+  - batch-11-ui-pilot:icon-seed
 sources:
 - doc: tools/imagegen/manifest/batch-02-ui.yaml
 kind: icon

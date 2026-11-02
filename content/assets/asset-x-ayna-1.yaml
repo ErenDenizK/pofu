@@ -1,0 +1,23 @@
+id: asset-x-ayna-1
+type: asset
+title_tr: x-ayna-1
+title_en: x-ayna-1 (plate)
+status: in-production
+horizon: maybe
+summary: >-
+  A concept painting for a cozy mobile game: Ayna, the island under the clouds. In the upper
+  half, the attached home island floats in a soft day sky above a calm sea of clouds. In the
+  lower half, hanging upside down beneath the cloud sea like a reflection, is the same island:
+  its lawn facing down, its round door upside down, bathed in soft moonlight in moon blue,
+  silver and lavender even though it is day above, with on…
+art:
+  images: []
+  jobs:
+  - batch-10-island-concepts-pilot:x-ayna-1
+notes:
+- Exploration (docs/design/art-production-plan.md); never promoted, never shipped.
+sources:
+- doc: tools/imagegen/manifest/batch-10-island-concepts-pilot.yaml
+kind: plate
+batch: batch-10-island-concepts-pilot
+size: 1536x1024

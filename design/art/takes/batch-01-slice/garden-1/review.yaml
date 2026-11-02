@@ -1,0 +1,142 @@
+batch: batch-01-slice
+job: garden-1
+pick: 2
+note: auto-picked by QA; founder review pending
+takes:
+  t1:
+    qa: warn
+    summary: lock_load warn; station_anchor warn
+  t2:
+    qa: warn
+    summary: lock_load warn; station_anchor warn
+approved:
+  take: 2
+  at: '2026-11-02T14:36:50+00:00'
+qa:
+  t1:
+    job: garden-1
+    take: 1
+    status: warn
+    preset: soft-lock
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 55 (R1 59)
+      value: 54.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.53
+    - check: lock_load
+      status: warn
+      message: the lock moved colors by mean dE 12.7 (prefer a take that needs less)
+      value: 12.6593
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 4.4, off-palette 0.6% (top: #888866 (0.5%), #998866
+        (0.1%))'
+      value: 1.6912
+    - check: station_anchor
+      status: warn
+      message: width 821 px wider than the footprint (720)
+      value: 900.0
+    info:
+      registration:
+        dx: 0
+        dy: 9
+      metrics_raw:
+        L_p5: 44.8
+        L_p50: 72.5
+        L_p95: 88.4
+        C_p50: 33.7
+        C_p95: 60.6
+        C_p99: 62.0
+        detail: 2.61
+      metrics_locked:
+        L_p5: 54.8
+        L_p50: 75.6
+        L_p95: 88.6
+        C_p50: 23.9
+        C_p95: 42.5
+        C_p99: 43.2
+        detail: 1.53
+    fingerprint: e63f1d3ceadd2835
+  t2:
+    job: garden-1
+    take: 2
+    status: warn
+    preset: soft-lock
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 57 (R1 59)
+      value: 57.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.57
+    - check: lock_load
+      status: warn
+      message: the lock moved colors by mean dE 12.5 (prefer a take that needs less)
+      value: 12.5144
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 5.0, off-palette 0.2% (top: #888866 (0.1%), #998866
+        (0.1%))'
+      value: 1.6859
+    - check: station_anchor
+      status: warn
+      message: width 863 px wider than the footprint (720)
+      value: 900.0
+    info:
+      registration:
+        dx: -11
+        dy: 15
+      metrics_raw:
+        L_p5: 48.2
+        L_p50: 71.1
+        L_p95: 89.2
+        C_p50: 35.6
+        C_p95: 60.6
+        C_p99: 62.9
+        detail: 2.92
+      metrics_locked:
+        L_p5: 57.1
+        L_p50: 74.3
+        L_p95: 89.3
+        C_p50: 25.3
+        C_p95: 42.5
+        C_p99: 43.6
+        detail: 1.57
+    fingerprint: e63f1d3ceadd2835
+upload_note: raw.png not uploaded (over 600 KB); the q90 takes are the record

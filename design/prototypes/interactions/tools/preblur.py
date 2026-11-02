@@ -17,7 +17,9 @@ grow the blurred image's box by the same amount.
 
 `app` mode builds the app's world art for `PofuWorld` with the same blur: it trims each master,
 caps its resolution, bakes the soft and deep variants, cuts the home plate into depth bands, and
-writes an Xcode asset catalog plus a generated Swift table of every image's box in world units.
+writes an Xcode asset catalog plus a generated Swift table of every image's box in world units,
+each standing sprite's ground footprint and the plate's walkable polygon (needs scipy). Each master's
+harmony correction (design/art/harmony/manifest.json, tools/assets/harmony.py) is baked in first.
 
   python3 -I design/prototypes/interactions/tools/preblur.py app   (from anywhere)
 """
@@ -185,7 +187,7 @@ APP_SOURCES = {
     # grades them at runtime); "softlock" also bakes the soft-lock masters as <name>--softlock, to
     # compare, until the founder has chosen (WorldLook.ArtSet).
     "island-main": {"src": "design/art/masters/island-main-s/island-main-s--lock-light.png", "ppu": 1436 / 350, "anchor": (768, 441),
-                    "softlock": "design/art/masters/island-main-s/island-main-s.png"},
+                    "softlock": "design/art/masters/island-main-s/island-main-s.png", "walkable": {"inset": 6.0}},
     "cay-1": {"src": "design/art/stations/cay-1/cay-1--lock-light.png", "ppu": 1024 / 120, "anchor": (512, 800),
               "softlock": "design/art/stations/cay-1/cay-1.png"},
     "mochi": {"src": "design/art/masters/mochi-base/mochi-base.png", "ppu": 871 / 30, "anchor": (511, 1349)},
@@ -206,6 +208,15 @@ APP_SOURCES = {
 # The home plate's depth bands in world y (larger is nearer): back lawn, middle lawn, front lawn
 # and lip, earth body. Each band's depth lives in PofuWorld's IslandLayout.
 APP_PLATE = "island-main"
+# Containment (look round 2): every object stands inside the plate's walkable footprint. The
+# walkable polygon is the plate's lawn (its largest green region) eroded by "inset" world units,
+# so nothing stands on the grass lip or hangs over the rim; a plate may instead author its polygon
+# as "walkable": {"polygon": [[x, y], ...]} in world units. A sprite's footprint is the convex hull
+# of its opaque pixels within the bottom FOOT_DEPTH x (base width) of the image: the ground ellipse
+# of an object seen from about 20 degrees, matching the station guide (rx 360, ry 108 px).
+WALK_ROWS = 20
+FOOT_DEPTH = 0.30
+FOOT_MAX_POINTS = 16
 APP_BANDS = [(-1e9, -14.0), (-14.0, 14.0), (14.0, 44.0), (44.0, 1e9)]
 APP_FEATHER = 8.0
 
@@ -217,6 +228,89 @@ def _trim(img, margin=2):
     x0, y0 = max(0, box[0] - margin), max(0, box[1] - margin)
     x1, y1 = min(img.width, box[2] + margin), min(img.height, box[3] + margin)
     return img.crop((x0, y0, x1, y1)), (x0, y0)
+
+
+def _lawn_mask(img):
+    """The plate's lawn: its largest green, opaque region, holes filled."""
+    from scipy import ndimage
+
+    a = np.asarray(img, dtype=np.float32) / 255.0
+    r, g, b, al = a[..., 0], a[..., 1], a[..., 2], a[..., 3]
+    green = (g > r * 1.02) & (g > b * 1.05) & (al > 0.5)
+    labels, n = ndimage.label(green)
+    if n == 0:
+        raise ValueError("the plate has no lawn")
+    sizes = ndimage.sum(green, labels, range(1, n + 1))
+    return ndimage.binary_fill_holes(labels == (1 + int(np.argmax(sizes))))
+
+
+def _walkable(img, ppu, anchor, spec):
+    """The walkable polygon in world units, relative to the plate's anchor: right edge back to
+    front, then left edge front to back."""
+    if "polygon" in spec:
+        return [[round(float(x), 2), round(float(y), 2)] for x, y in spec["polygon"]]
+    from scipy import ndimage
+
+    k = max(1, int(round(spec["inset"] * ppu)))
+    yy, xx = np.mgrid[-k:k + 1, -k:k + 1]
+    lawn = ndimage.binary_erosion(_lawn_mask(img), structure=(xx ** 2 + yy ** 2) <= k * k)
+    rows = np.where(lawn.any(axis=1))[0]
+    left, right = [], []
+    for y in np.linspace(rows[0], rows[-1], WALK_ROWS).round().astype(int):
+        xs = np.where(lawn[y])[0]
+        yw = round(float((y + 0.5 - anchor[1]) / ppu), 2)
+        left.append([round(float((xs[0] - anchor[0]) / ppu), 2), yw])
+        right.append([round(float((xs[-1] + 1 - anchor[0]) / ppu), 2), yw])
+    return right + left[::-1]
+
+
+def _hull(points):
+    pts = sorted(set(points))
+    if len(pts) < 3:
+        return pts
+
+    def cross(o, a, b):
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+
+    lower, upper = [], []
+    for p in pts:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
+            lower.pop()
+        lower.append(p)
+    for p in reversed(pts):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
+            upper.pop()
+        upper.append(p)
+    return lower[:-1] + upper[:-1]
+
+
+def _footprint(img, ppu, anchor):
+    """A sprite's ground footprint in world units relative to its anchor: the convex hull of its
+    opaque pixels in the bottom FOOT_DEPTH x base width, at most FOOT_MAX_POINTS points (the
+    vertex that adds the least area goes first, so the hull only loses slivers)."""
+    solid = np.asarray(img.getchannel("A")) > 127
+    rows = np.where(solid.any(axis=1))[0]
+    if not len(rows):
+        return []
+    top, bottom = int(rows[0]), int(rows[-1]) + 1
+    low = solid[max(top, int(bottom - 0.15 * (bottom - top))):bottom]
+    cols = np.where(low.any(axis=0))[0]
+    depth = FOOT_DEPTH * (cols[-1] - cols[0] + 1)
+    points = []
+    for y in range(max(top, int(bottom - depth)), bottom):
+        xs = np.where(solid[y])[0]
+        if len(xs):
+            points += [(int(xs[0]), y), (int(xs[0]), y + 1), (int(xs[-1]) + 1, y), (int(xs[-1]) + 1, y + 1)]
+    hull = _hull(points)
+
+    def area(a, b, c):
+        return abs((b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]))
+
+    while len(hull) > FOOT_MAX_POINTS:
+        n = len(hull)
+        i = min(range(n), key=lambda i: area(hull[i - 1], hull[i], hull[(i + 1) % n]))
+        hull.pop(i)
+    return [[round((x - anchor[0]) / ppu, 2), round((y - anchor[1]) / ppu, 2)] for x, y in hull]
 
 
 def _write_imageset(name, img):
@@ -252,8 +346,23 @@ def _band_cut(img, box, k):
     return crop, [box[0], round(box[1] + r0 * per_row, 3), box[2], round(box[1] + r1 * per_row, 3)]
 
 
+def _harmony():
+    """tools/assets/harmony.py and its committed manifest (look round 2: asset harmony)."""
+    sys.path.insert(0, os.path.join(REPO, "tools", "assets"))
+    import harmony
+
+    with open(harmony.MANIFEST) as f:
+        return harmony, json.load(f), harmony.load_config()
+
+
 def app_main():
     import shutil
+
+    harmony, manifest, harmony_cfg = _harmony()
+
+    def corrected(name):
+        entry = manifest["assets"].get(name)
+        return entry is not None and not harmony.is_identity(entry["correction"])
 
     if os.path.isdir(APP_CATALOG):
         shutil.rmtree(APP_CATALOG)
@@ -262,17 +371,24 @@ def app_main():
         json.dump({"info": {"author": "xcode", "version": 1}}, f, indent=2)
         f.write("\n")
     table = {}
+    walkable = {}
     jobs = []
     for name, spec in APP_SOURCES.items():
         jobs.append((name, "", spec))
         if spec.get("softlock"):
             jobs.append((name, "--softlock", {**spec, "src": spec["softlock"]}))
+        # Every sprite carries its harmony correction; the uncorrected colour is kept as
+        # <name>--unharmonized to compare (WorldLook.ArtSet.unharmonized) until the founder signs off.
+        if corrected(name):
+            jobs.append((name, "--unharmonized", spec))
     for name, alt, spec in jobs:
         path = os.path.join(REPO, spec["src"])
         if not os.path.exists(path):
             print("missing", path, file=sys.stderr)
             return 1
         src = Image.open(path).convert("RGBA")
+        if not alt and corrected(name):
+            src = harmony.correct_image(name, src, manifest, harmony_cfg)
         if "anchor_box" in spec:
             bx = spec["anchor_box"]
             ppu = src.width / spec["units"]
@@ -286,6 +402,8 @@ def app_main():
             img = img.resize((max(1, round(img.width * f)), max(1, round(img.height * f))), Image.LANCZOS)
             anchor, ppu = (anchor[0] * f, anchor[1] * f), APP_MAX_PPU
         variants = {"sharp": (img, _box((0, 0), img.size, ppu, anchor))}
+        if "walkable" in spec and not alt:
+            walkable[name] = _walkable(img, ppu, anchor, spec["walkable"])
         for suffix, (sigma_u, down) in APP_LEVELS.items():
             blurred, pad = blur_variant(img, sigma_u * ppu, down)
             # The blurred image covers the source padded by `pad` source pixels on every side.
@@ -306,19 +424,28 @@ def app_main():
                 continue
             _write_imageset(f"world-{name}{alt}" + ("" if suffix == "sharp" else "__" + suffix), vimg)
             entry[suffix] = vbox
+        entry["footprint"] = _footprint(img, ppu, anchor)
         table[name + alt] = entry
         print(f"{name}{alt}: {img.width}x{img.height}, {ppu:.2f} px/unit, box {entry.get('sharp', entry['soft'])}")
-    _write_swift(table)
+    _write_swift(table, walkable)
     return 0
 
 
-def _write_swift(table):
+def _write_swift(table, walkable):
     def box(b):
         return f"WorldBox(minX: {b[0]}, minY: {b[1]}, maxX: {b[2]}, maxY: {b[3]})" if b else "nil"
 
+    def points(ps, indent):
+        if not ps:
+            return "[]"
+        pad = " " * indent
+        body = "".join(f"\n{pad}    WorldPoint(x: {x}, y: {y})," for x, y in ps)
+        return f"[{body}\n{pad}]"
+
     lines = [
         "// Generated by design/prototypes/interactions/tools/preblur.py (app mode). Do not edit.",
-        "// Boxes are in world units, relative to each image's anchor (the feet or the footprint centre).",
+        "// Boxes, footprints and walkable polygons are in world units, relative to each image's anchor",
+        "// (the feet or the footprint centre).",
         "",
         "extension WorldArt {",
         "    static let generated: [String: WorldSprite] = [",
@@ -328,8 +455,14 @@ def _write_swift(table):
         lines.append(f'        "{name}": WorldSprite(')
         lines.append(f'            sharp: {box(e.get("sharp"))},')
         lines.append(f'            soft: {box(e["soft"])},')
-        lines.append(f'            deep: {box(e["deep"])}')
+        lines.append(f'            deep: {box(e["deep"])},')
+        lines.append(f'            footprint: {points(e.get("footprint", []), 12)}')
         lines.append("        ),")
+    lines += ["    ]", ""]
+    lines.append("    /// Each plate's walkable polygon, in world units relative to the plate's anchor.")
+    lines.append("    static let generatedWalkable: [String: [WorldPoint]] = [")
+    for name in sorted(walkable):
+        lines.append(f'        "{name}": {points(walkable[name], 8)},')
     lines += ["    ]", "}", ""]
     with open(APP_SWIFT, "w") as f:
         f.write("\n".join(lines))

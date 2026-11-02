@@ -293,7 +293,55 @@ h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
 .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
 .lightbox .close { position: absolute; top: calc(10px + env(safe-area-inset-top)); right: 10px; width: 44px; height: 44px; border-radius: 22px; border: 0; background: rgba(255, 255, 255, .16); color: #fff; font-size: 24px; font-weight: 800; }
 
-@media (prefers-reduced-motion: reduce) { .sheet, .scrim, .toast { transition: none; } }
+/* dictation: a mic button under every field; a panel that shows one state at a time */
+.micbtn {
+  min-height: 44px; padding: 0 14px 0 11px; border-radius: 22px; border: 1.5px solid var(--line2); background: var(--raised);
+  color: var(--accent); font-weight: 800; font-size: 15px; display: inline-flex; align-items: center; gap: 6px; flex: none;
+}
+.micbtn svg { width: 20px; height: 20px; flex: none; }
+.micbtn[aria-pressed="true"] { background: var(--crit); border-color: var(--crit); color: var(--bg); }
+.micbtn:disabled { opacity: .45; cursor: default; }
+.foot-left { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.dict { margin-top: 8px; padding: 12px 14px; border-radius: 16px; background: var(--sunken); display: grid; gap: 10px; }
+.dict-head { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.dict-title { font-weight: 800; font-size: 15.5px; flex: 1; min-width: 0; }
+.dict-time { font-weight: 900; font-size: 20px; font-variant-numeric: tabular-nums; }
+.dict-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--crit); flex: none; animation: dictpulse 1.2s ease-in-out infinite; }
+@keyframes dictpulse { 50% { opacity: .25; } }
+.meter { display: flex; align-items: center; gap: 3px; height: 30px; }
+.meter i { flex: 1; min-height: 3px; height: 3px; border-radius: 2px; background: var(--accent); opacity: .8; }
+.bar { height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 4px; transition: width .2s; }
+.bar.indet > i { width: 30%; animation: dictslide 1.1s ease-in-out infinite; }
+@keyframes dictslide { from { transform: translateX(-100%); } to { transform: translateX(340%); } }
+.dict-msg { font-size: 15px; color: var(--fg2); font-weight: 600; }
+.dict-msg b { color: var(--fg); font-weight: 800; }
+.dict-sub { font-size: 13.5px; color: var(--fg3); font-weight: 700; font-variant-numeric: tabular-nums; }
+.dict-partial { font-size: 15px; color: var(--fg2); max-height: 7.6em; overflow-y: auto; white-space: pre-wrap; overflow-wrap: anywhere; border-left: 3px solid var(--line2); padding-left: 10px; }
+.dict-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.dict-actions .btn { flex: 1 1 140px; }
+.btn.stop { background: var(--crit); color: var(--bg); }
+.btn.small { min-height: 40px; font-size: 15px; padding: 0 14px; }
+textarea.dictating { border-color: var(--crit) !important; box-shadow: 0 0 0 3px var(--crit-tint) !important; }
+.note audio, .idea audio { display: block; width: 100%; height: 36px; margin-top: 6px; }
+
+/* dictation settings sheet */
+.dsec { display: grid; gap: 8px; margin: 14px 0 0; }
+.dsec h3 { margin: 0; font-size: 13px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--fg3); }
+.dsec .chips { margin: 0; }
+.mrow { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: var(--sunken); }
+.mrow .grow { flex: 1; min-width: 0; }
+.mrow .t { font-weight: 800; }
+.mrow .l { font-size: 13.5px; color: var(--fg2); font-weight: 600; }
+.files { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; font-size: 14.5px; }
+.files li { display: flex; align-items: center; gap: 8px; }
+.files li a, a.dnote { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; font-weight: 700; }
+.files .ok { color: var(--ok); font-weight: 800; }
+.files .miss { color: var(--fg3); font-weight: 800; }
+.dnote { font-size: 14px; color: var(--fg2); font-weight: 600; }
+.confirm { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+@media (prefers-reduced-motion: reduce) { .sheet, .scrim, .toast { transition: none; } .dict-dot, .bar.indet > i { animation: none; } }
 </style>
 
 <div class="wrap" lang="tr">
@@ -360,11 +408,24 @@ h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
   </div>
   <p class="sub">Aklına geleni yaz. Ekip okur, Şu an'ın altında görünür.</p>
   <textarea id="idea-text" rows="4" placeholder="Fikrin…" aria-label="Fikrin"></textarea>
-  <div class="hint" style="margin-top:6px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Klavyedeki mikrofonla dikte edebilirsin</div>
+  <div class="composer-foot" id="idea-foot"></div>
+  <div id="idea-dict"></div>
   <div class="chips" role="group" aria-label="Etiketler" id="idea-tags"></div>
   <div class="err" id="idea-err" hidden></div>
   <div class="actions"><button class="btn" id="idea-send" type="button" disabled>Gönder</button></div>
 </div>
+
+<div class="sheet" lang="tr" id="dsheet" role="dialog" aria-modal="true" aria-labelledby="dsheet-title" hidden>
+  <div class="grab" aria-hidden="true"></div>
+  <div class="sh-head">
+    <h2 id="dsheet-title">Dikte</h2>
+    <button class="textbtn" id="dsheet-close" type="button">Kapat</button>
+  </div>
+  <p class="sub">Sesin bu cihazda yazıya dökülür; kayıt hiçbir sunucuya gitmez.</p>
+  <div id="dsheet-body"></div>
+</div>
+<input type="file" id="dict-file" accept="audio/*,video/mp4,video/webm,video/quicktime,.m4a,.mp3,.wav,.aac,.ogg,.opus,.webm,.caf" hidden>
+<input type="file" id="model-files" accept=".onnx,.json" multiple hidden>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -382,7 +443,11 @@ h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
   //   status/now       {updatedAt, doing:[{title,line,link?,imageUrl?}], doneToday:[...], next:[...]}
   //   roadmap/main     {items:[{title, status: done|doing|next, when, line}]}
   //   reviews/{id}     {title, context, imageUrl, createdAt, verdict?: liked|redo, verdictAt?}
-  //   ideas/{auto}     {text, tags:[...], createdAt, authorId}
+  //   ideas/{auto}     {text, tags:[...], createdAt, authorId, audio?}
+  //   dictation/{turbo|small}  speech model manifest written by the installer in the Dikte sheet:
+  //                    {preset, modelId, version, dtype:{encoder_model, decoder_model_merged}, installedAt,
+  //                     totalBytes, files:[{name, size, enc: raw|b64, chunks:[{id, size, sha256}]}]}
+  // notes and ideas may carry audio: [{id, type, seconds}], the original dictation recording as an asset.
   // Timestamps are ISO 8601 strings (numbers in ms are accepted too). imageUrl may be any https URL,
   // a "/_blob/<id>" asset path, or an asset id given as imageId.
 
@@ -507,6 +572,7 @@ h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
     b.hidden = !msg; b.textContent = msg; b.classList.toggle('info', info);
     document.querySelectorAll('[data-write]').forEach((x) => { x.disabled = !state.canWrite || x.dataset.busy === '1' || (x.dataset.needsText === '1' && !x.dataset.hasText); });
     $('#fab').hidden = !state.canWrite;
+    for (const f of dict.fields) f.sync();
   }
 
   // ------------------------------------------------------------------ writes
@@ -561,9 +627,10 @@ h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
     }
   }
 
-  async function addNote(targetType, targetId, text) {
+  async function addNote(targetType, targetId, text, audio) {
     const body = { targetType, targetId, text, createdAt: nowIso() };
     if (state.userId) body.authorId = state.userId;
+    if (audio && audio.length) body.audio = audio.slice();
     await withRetry(() => state.db.collection('notes').add(body));
   }
 
@@ -582,6 +649,752 @@ h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
     }
   }
 
+  // ------------------------------------------------------------------ dictation
+  // Whisper runs in this browser (dictation/worker.js). Model files live in the artifact's own asset
+  // store, installed once from the Dikte sheet, because the sandbox lets the page fetch nothing but
+  // its own origin. Live recording needs the microphone, which the artifact frame may refuse; then
+  // the founder records with any recorder app and picks the file here, and the same pipeline runs.
+  const DICT = {
+    presets: {
+      turbo: {
+        label: 'Turbo', repo: 'onnx-community/whisper-large-v3-turbo',
+        files: ['onnx/encoder_model_q4.onnx', 'onnx/decoder_model_merged_q4.onnx'],
+        about: 'En iyi Türkçe. Mac\'te ve WebGPU olan cihazlarda hızlı.',
+      },
+      small: {
+        label: 'Small', repo: 'Xenova/whisper-small',
+        files: ['onnx/encoder_model_quantized.onnx', 'onnx/decoder_model_merged_quantized.onnx'],
+        about: 'Hafif ve telefonda hızlı, ama Türkçede daha çok hata yapar.',
+      },
+    },
+    json: ['config.json', 'generation_config.json', 'preprocessor_config.json', 'tokenizer.json', 'tokenizer_config.json'],
+    chunk: 15000000,              // raw bytes per stored chunk; base64 makes it 20,000,000, under the 20 MiB asset cap
+    maxSeg: 29.5, minSeg: 15,     // seconds per Whisper window; cuts land on the quietest 100 ms in between
+    audioTypes: { 'audio/mp4': 'video/mp4', 'audio/x-m4a': 'video/mp4', 'audio/m4a': 'video/mp4', 'audio/aac': null, 'video/mp4': 'video/mp4', 'audio/webm': 'video/webm', 'video/webm': 'video/webm' },
+    // Whisper's known Turkish fillers on silence (subtitle credits and outros from its training data).
+    junk: [/altyaz[ıi]\s*m\.?\s*k\.?/giu, /izledi[gğ]iniz i[cç]in te[sş]ekk[uü]r(ler|ederim)[.!]?/giu, /abone olmay[ıi] unutmay[ıi]n[.!]?/giu, /altyaz[ıi]lar?\s*:?\s*[\p{L}.\s]{0,30}$/giu],
+  };
+  const DTYPE_BY_SUFFIX = { '': 'fp32', _fp16: 'fp16', _q4: 'q4', _q4f16: 'q4f16', _quantized: 'q8', _int8: 'int8', _uint8: 'uint8', _bnb4: 'bnb4' };
+  const dict = {
+    manifests: {}, assets: null, worker: null, seq: 0, pending: new Map(),
+    loadedKey: null, loading: null, progressSubs: new Set(), gpu: undefined,
+    lang: store.get('dict-lang') || 'turkish', pref: store.get('dict-model') || 'auto',
+    micDenied: false, active: null, fields: new Set(),
+  };
+  const isPhone = () => /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent));
+  const fmtMB = (b) => (b < 1e5 ? Math.max(1, Math.round(b / 1e3)) + ' KB' : (b / 1e6 >= 100 ? Math.round(b / 1e6) : (b / 1e6).toFixed(1)) + ' MB');
+  const fmtTime = (s) => { s = Math.max(0, Math.floor(s)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+
+  // ---- pure helpers (also used by design/hub/tools/check.js)
+  function rmsOf(x, a, b) { let s = 0; for (let i = a; i < b; i++) s += x[i] * x[i]; return Math.sqrt(s / Math.max(1, b - a)); }
+  // Cuts mono audio into Whisper-sized windows at the quietest point between minSeg and maxSeg.
+  // With final=false the tail shorter than maxSeg stays unconsumed (live recording keeps buffering).
+  function splitSegments(x, sr, final, maxS = DICT.maxSeg, minS = DICT.minSeg) {
+    const out = []; let start = 0;
+    const maxN = Math.round(maxS * sr), minN = Math.round(minS * sr), frame = Math.max(1, Math.round(sr * 0.1)), hop = Math.max(1, frame >> 1);
+    while (x.length - start > maxN) {
+      // Energy of every 100 ms frame in the allowed range; cut in the middle of the longest run of
+      // near-quietest frames, so a pause is split in half and no word loses its tail.
+      const pos = [], en = [];
+      for (let f = start + minN; f + frame <= start + maxN; f += hop) { pos.push(f + (frame >> 1)); en.push(rmsOf(x, f, f + frame)); }
+      let best = start + maxN;
+      if (pos.length) {
+        const lim = Math.min(...en) * 1.5 + 1e-4;
+        let runA = -1, bestLen = 0;
+        for (let i = 0; i <= en.length; i++) {
+          if (i < en.length && en[i] <= lim) { if (runA < 0) runA = i; continue; }
+          if (runA >= 0) { if (i - runA > bestLen) { bestLen = i - runA; best = pos[(runA + i - 1) >> 1]; } runA = -1; }
+        }
+      }
+      out.push([start, best]); start = best;
+    }
+    if (final && x.length - start > 0) { out.push([start, x.length]); start = x.length; }
+    return { segments: out, consumed: start };
+  }
+  // Too quiet or too short to hold speech: Whisper would only invent text for it.
+  function isSilent(x, a, b, sr) {
+    if (b - a < sr * 0.4) return true;
+    let peak = 0; for (let i = a; i < b; i++) { const v = Math.abs(x[i]); if (v > peak) peak = v; }
+    return peak < 0.015 || rmsOf(x, a, b) < 0.002;
+  }
+  function cleanText(t) {
+    t = String(t || '');
+    for (const re of DICT.junk) t = t.replace(re, ' ');
+    // A phrase of 1 to 8 words said three or more times in a row is a decoding loop: keep one.
+    t = t.replace(/(^|\s)((?:\S+\s+){0,7}?\S+)(?:\s+\2){2,}(?=\s|$)/giu, '$1$2');
+    // A letter held four or more times, or a 'word' over 40 letters, is a loop that survived.
+    t = t.replace(/(\p{L})\1{3,}/gu, '$1').replace(/\S{41,}/gu, ' ');
+    return t.replace(/\s+/g, ' ').trim();
+  }
+  function joinText(before, piece) {
+    if (!piece) return '';
+    if (!before || /\s$/.test(before)) return piece;
+    return /^[.,;:!?)\]]/.test(piece) ? piece : ' ' + piece;
+  }
+
+  // ---- worker
+  function workerCall(msg, transfer) {
+    if (!dict.worker) {
+      try { dict.worker = new Worker('dictation/worker.js', { type: 'module' }); } catch (e) { return Promise.reject(Object.assign(new Error('worker'), { code: 'worker_failed' })); }
+      dict.worker.addEventListener('message', (e) => {
+        const d = e.data || {}; const p = dict.pending.get(d.id); if (!p) return;
+        if (d.type === 'progress') { for (const fn of dict.progressSubs) fn(d); return; }
+        dict.pending.delete(d.id);
+        if (d.type === 'error') p.reject(Object.assign(new Error(d.message), { code: d.code })); else p.resolve(d);
+      });
+      dict.worker.addEventListener('error', () => {
+        for (const p of dict.pending.values()) p.reject(Object.assign(new Error('worker crashed'), { code: 'worker_failed' }));
+        dict.pending.clear(); dict.worker = null; dict.loadedKey = null; dict.loading = null;
+      });
+    }
+    const id = ++dict.seq;
+    return new Promise((resolve, reject) => { dict.pending.set(id, { resolve, reject }); dict.worker.postMessage({ id, ...msg }, transfer || []); });
+  }
+  async function hasWebGPU() {
+    if (dict.gpu !== undefined) return dict.gpu;
+    try { dict.gpu = !!(navigator.gpu && await navigator.gpu.requestAdapter()); } catch { dict.gpu = false; }
+    return dict.gpu;
+  }
+  function pickPreset() {
+    const m = dict.manifests;
+    if (dict.pref !== 'auto' && m[dict.pref]) return dict.pref;
+    return isPhone() ? (m.small ? 'small' : m.turbo ? 'turbo' : null) : (m.turbo ? 'turbo' : m.small ? 'small' : null);
+  }
+  async function pickDevice(man) {
+    // ONNX Runtime's WebGPU backend has no int8 matmul, so 8-bit models run on WASM everywhere.
+    const int8 = Object.values(man.dtype || {}).some((d) => d === 'q8' || d === 'int8' || d === 'uint8');
+    return !int8 && await hasWebGPU() ? 'webgpu' : 'wasm';
+  }
+  async function ensureModel() {
+    const preset = pickPreset();
+    if (!preset) throw Object.assign(new Error('no model'), { code: 'no_model' });
+    const man = dict.manifests[preset];
+    const device = await pickDevice(man);
+    const key = preset + '|' + man.version + '|' + device;
+    if (dict.loadedKey === key) return { preset, device };
+    if (dict.loading && dict.loading.key === key) return dict.loading.p;
+    const p = workerCall({ type: 'load', manifest: man, device }).then((r) => {
+      dict.loadedKey = key; dict.loading = null; dict.device = r.device; return { preset, device: r.device };
+    }, (e) => { dict.loading = null; throw e; });
+    dict.loading = { key, p };
+    return p;
+  }
+
+  // ---- audio
+  async function toMono16k(input, sr) {
+    if (!(input instanceof AudioBuffer) && sr === 16000) return input;
+    const len = Math.max(1, Math.ceil(input.length * 16000 / sr));
+    const off = new OfflineAudioContext(1, len, 16000);
+    let buf = input;
+    if (!(input instanceof AudioBuffer)) { buf = off.createBuffer(1, input.length, sr); buf.copyToChannel(input, 0); }
+    const src = off.createBufferSource(); src.buffer = buf; src.connect(off.destination); src.start();
+    const out = await off.startRendering();
+    return out.getChannelData(0);
+  }
+  function concatF32(parts, total) { const out = new Float32Array(total); let at = 0; for (const p of parts) { out.set(p, at); at += p.length; } return out; }
+  function recorderType() {
+    if (typeof MediaRecorder === 'undefined') return null;
+    for (const t of ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm']) { try { if (MediaRecorder.isTypeSupported(t)) return t; } catch { /* ignore */ } }
+    return '';
+  }
+  // The asset store takes mp4 and webm containers (as video/*); audio-only files in them play fine.
+  function assetTypeFor(mime) { const base = String(mime || '').split(';')[0].trim().toLowerCase(); return DICT.audioTypes[base] || null; }
+  function micPolicyBlocked() {
+    try { const p = document.permissionsPolicy || document.featurePolicy; if (p && typeof p.allowsFeature === 'function') return !p.allowsFeature('microphone'); } catch { /* unknown */ }
+    return false;
+  }
+
+  // What this device and frame allow, written to dictation/diag-<phone|desktop> so the lead can see
+  // why dictation does or does not work without asking. Runs on a deliberate action only.
+  async function diagnose(extra) {
+    const r = Object.assign(dict.diag || {}, { at: nowIso(), ua: navigator.userAgent.slice(0, 200), phone: isPhone() }, extra || {});
+    if (!r.probed) {
+      r.probed = true;
+      try { new WebAssembly.Module(new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0])); r.pageWasm = true; } catch (e) { r.pageWasm = String((e && e.message) || e).slice(0, 160); }
+      r.webgpu = await hasWebGPU();
+      r.micPolicy = micPolicyBlocked() ? 'blocked' : navigator.mediaDevices && navigator.mediaDevices.getUserMedia ? 'not blocked by policy' : 'no getUserMedia';
+      r.recorder = recorderType();
+      r.crossOriginIsolated = !!window.crossOriginIsolated;
+      try { r.worker = await Promise.race([workerCall({ type: 'probe' }), new Promise((_, j) => setTimeout(() => j(Object.assign(new Error('timeout'), { code: 'timeout' })), 8000))]); delete r.worker.id; delete r.worker.type; } catch (e) { r.worker = { failed: String((e && (e.code || e.message)) || e) }; }
+      try { const est = navigator.storage && navigator.storage.estimate ? await navigator.storage.estimate() : null; if (est) r.storageQuotaMB = Math.round(est.quota / 1e6); } catch { /* ignore */ }
+    }
+    dict.diag = r;
+    if (state.canWrite && state.db) state.db.doc('dictation/diag-' + (isPhone() ? 'phone' : 'desktop')).set(JSON.parse(JSON.stringify(r))).catch(() => {});
+    renderDictSheet();
+    return r;
+  }
+
+  // ---- a dictation field: one per textarea
+  const fileInput = $('#dict-file');
+  function dictField(ta, footLeft, panelHost, opts = {}) {
+    const f = { ta, audio: [], ui: { kind: 'idle' }, refs: null, onChange: opts.onChange || (() => {}), onState: opts.onState || (() => {}) };
+    const mic = el('button', 'micbtn'); mic.type = 'button'; mic.setAttribute('aria-pressed', 'false');
+    mic.append(svg(ICON.mic), el('span', '', 'Dikte'));
+    mic.setAttribute('aria-label', 'Sesle yaz');
+    const panel = el('div', 'dict'); panel.hidden = true; panel.setAttribute('role', 'status'); panel.setAttribute('aria-live', 'polite');
+    footLeft.prepend(mic); panelHost.append(panel);
+    f.mic = mic; f.panel = panel;
+    // Remember the caret, so text lands where the founder was typing.
+    const keepCaret = () => { f.caret = ta.selectionStart; };
+    ta.addEventListener('keyup', keepCaret); ta.addEventListener('click', keepCaret); ta.addEventListener('select', keepCaret); ta.addEventListener('blur', keepCaret);
+    mic.addEventListener('click', () => onMic(f));
+    dict.fields.add(f);
+    f.sync = () => { mic.disabled = !state.canWrite || (dict.active && dict.active.f !== f); };
+    f.sync();
+    return f;
+  }
+  function setUi(f, ui) { f.ui = ui; renderDict(f); }
+  function renderDict(f) {
+    const ui = f.ui, p = f.panel;
+    const recording = ui.kind === 'rec';
+    f.mic.setAttribute('aria-pressed', String(recording));
+    f.mic.lastChild.textContent = recording ? 'Bitir' : 'Dikte';
+    f.ta.classList.toggle('dictating', !!(dict.active && dict.active.f === f));
+    for (const g of dict.fields) { g.sync(); g.onState(); }
+    if (ui.kind === 'idle') { p.hidden = true; p.replaceChildren(); f.refs = null; return; }
+    p.hidden = false;
+    if (ui.kind === 'rec' && f.refs && f.refs.kind === 'rec') return; // live parts update in place
+    const head = el('div', 'dict-head');
+    const actions = el('div', 'dict-actions');
+    const msg = (html) => { const d = el('div', 'dict-msg'); d.append(...html); return d; };
+    const b = (txt, cls, fn) => { const x = el('button', 'btn ' + (cls || ''), txt); x.type = 'button'; x.addEventListener('click', fn); actions.append(x); return x; };
+    const fileBtn = (label) => b(label || 'Ses dosyası seç', 'ghost small', () => pickFile(f));
+    const settingsBtn = () => b('Ayarlar', 'ghost small', () => openDictSheet());
+    const close = () => b('Kapat', 'ghost small', () => setUi(f, { kind: 'idle' }));
+    const nodes = [head];
+    f.refs = { kind: ui.kind };
+    if (ui.kind === 'rec') {
+      const dot = el('span', 'dict-dot'); const t = el('span', 'dict-time', '0:00');
+      head.append(dot, el('span', 'dict-title', 'Dinliyorum'), t);
+      const meter = el('div', 'meter'); const bars = []; for (let i = 0; i < 28; i++) { const i_ = el('i'); bars.push(i_); meter.append(i_); }
+      const sub = el('div', 'dict-sub', '');
+      const partial = el('div', 'dict-partial'); partial.hidden = true;
+      b('Bitir', 'stop', () => stopSession(false)); b('Vazgeç', 'ghost small', () => stopSession(true));
+      nodes.push(meter, sub, partial, actions);
+      Object.assign(f.refs, { t, bars, sub, partial });
+    } else if (ui.kind === 'work') {
+      head.append(el('span', 'dict-title', ui.title || 'Yazıya döküyorum'));
+      if (ui.sub) head.append(el('span', 'dict-sub', ui.sub));
+      const bar = el('div', 'bar' + (ui.frac == null ? ' indet' : '')); const fill = el('i'); bar.append(fill);
+      if (ui.frac != null) fill.style.width = Math.round(ui.frac * 100) + '%';
+      nodes.push(bar);
+      if (ui.note) nodes.push(msg([document.createTextNode(ui.note)]));
+      if (ui.partial) { const pt = el('div', 'dict-partial', ui.partial); nodes.push(pt); }
+      b('Vazgeç', 'ghost small', () => stopSession(true)); nodes.push(actions);
+    } else if (ui.kind === 'done') {
+      head.append(el('span', 'dict-title', ui.title || 'Yazıya döküldü'));
+      nodes.push(msg([document.createTextNode(ui.text || 'Metni düzenleyip kaydedebilirsin.')]));
+      close(); nodes.push(actions);
+    } else if (ui.kind === 'nomodel') {
+      head.append(el('span', 'dict-title', 'Konuşma modeli kurulu değil'));
+      nodes.push(msg([document.createTextNode(dict.assets
+        ? 'Bir kereye mahsus kurulum: Mac\'te Ayarlar\'ı aç, model dosyalarını indirip seç. Sonra her cihaz buradan alır.'
+        : 'Model, sayfayı düzenleyebilen biri tarafından bir kez kurulmalı. Sayfayı sahibi olarak aç.')]));
+      if (dict.assets) b('Modeli kur', 'small', () => openDictSheet('install'));
+      close(); nodes.push(actions);
+    } else if (ui.kind === 'blocked') {
+      head.append(el('span', 'dict-title', ui.title || 'Bu sayfada mikrofon açılamıyor'));
+      nodes.push(msg([document.createTextNode(ui.text || 'Claude, sayfanın mikrofonu kullanmasına izin vermiyor. Ses Kayıtları ile kaydet, buradan dosyayı seç; yazıya dökmeyi bu sayfa yapar.')]));
+      nodes.push(el('div', 'dict-sub', isPhone() ? 'iPhone: Ses Kayıtları\'nda kaydı aç, Paylaş → Dosyalar\'a Kaydet, sonra burada seç.' : 'Mac: Ses Kayıtları ya da QuickTime ile kaydet, dosyayı burada seç.'));
+      fileBtn(); close(); nodes.push(actions);
+    } else if (ui.kind === 'error') {
+      head.append(el('span', 'dict-title', ui.title || 'Dikte durdu'));
+      nodes.push(msg([document.createTextNode(ui.text || '')]));
+      if (ui.retry) b('Tekrar dene', 'small', ui.retry);
+      if (ui.settings) settingsBtn();
+      close(); nodes.push(actions);
+    }
+    p.replaceChildren(...nodes);
+  }
+
+  function errorText(e) {
+    const c = e && e.code;
+    if (c === 'no_model') return { kind: 'nomodel' };
+    if (c === 'missing_chunk' || c === 'corrupt') return { kind: 'error', title: 'Model dosyaları bozuk ya da eksik', text: 'Ayarlar\'dan modeli kaldırıp yeniden kur.', settings: true };
+    if (c === 'worker_failed') return { kind: 'error', title: 'Dikte motoru açılamadı', text: 'Bu tarayıcı modülü yükleyemedi. Sayfayı yenileyip tekrar dene; olmazsa Mac\'te Chrome ya da Safari ile aç.' };
+    if (c === 'decode') return { kind: 'error', title: 'Dosya okunamadı', text: 'Bu ses biçimi bu tarayıcıda çözülemiyor. m4a, mp3, wav ya da webm dene.' };
+    const m = String((e && e.message) || e || '');
+    if (/WebAssembly|wasm-unsafe-eval|unsafe-eval|CompileError/i.test(m)) return { kind: 'error', title: 'Bu sayfada WebAssembly kapalı', text: 'Claude\'un sayfa çerçevesi modeli çalıştırmaya izin vermiyor. Bunu ekibe ilettim; şimdilik dikte bu sayfada çalışamaz.' };
+    if (/memory|allocation|out of range|OOM/i.test(m)) return { kind: 'error', title: 'Cihazın belleği yetmedi', text: 'Bu cihazda daha hafif modeli (Small) dene: Ayarlar → Model.', settings: true };
+    return { kind: 'error', title: 'Dikte durdu', text: 'Bir şey ters gitti (' + m.slice(0, 140) + '). Tekrar dene.' };
+  }
+
+  function onMic(f) {
+    if (dict.active && dict.active.f === f && dict.active.mode === 'mic' && f.ui.kind === 'rec') { stopSession(false); return; }
+    if (dict.active) return;
+    if (!pickPreset()) { setUi(f, { kind: 'nomodel' }); return; }
+    if (dict.micDenied || micPolicyBlocked() || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (!dict.diag || !dict.diag.mic) diagnose({ mic: micPolicyBlocked() ? 'policy' : 'no api' });
+      setUi(f, { kind: 'blocked' }); return;
+    }
+    startMic(f);
+  }
+  function pickFile(f) {
+    if (dict.active) return;
+    if (!pickPreset()) { setUi(f, { kind: 'nomodel' }); return; }
+    fileInput.value = '';
+    fileInput.onchange = () => { const file = fileInput.files && fileInput.files[0]; if (file) startFile(f, file); };
+    fileInput.click();
+  }
+
+  // ---- a session: one recording or file, transcribed window by window and written into the field
+  function newSession(f, mode) {
+    const ta = f.ta;
+    const caret = typeof f.caret === 'number' && f.caret <= ta.value.length ? f.caret : ta.value.length;
+    const s = {
+      f, mode, cancelled: false, anchor: caret, insertedLen: 0, wasReadOnly: ta.readOnly,
+      queue: Promise.resolve(), segTotal: 0, segDone: 0, partial: '', t0: performance.now(), seconds: 0,
+    };
+    ta.readOnly = true; // the founder edits once the text is in; nothing shifts under the cursor meanwhile
+    dict.active = s;
+    return s;
+  }
+  function insertPiece(s, raw) {
+    const text = cleanText(raw); if (!text || s.cancelled) return;
+    const ta = s.f.ta; const at = s.anchor + s.insertedLen;
+    const piece = joinText(ta.value.slice(0, at), text);
+    ta.value = ta.value.slice(0, at) + piece + ta.value.slice(at);
+    s.insertedLen += piece.length; s.partial += piece;
+    ta.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+  function endSession(s) {
+    if (s.ended) return;
+    s.ended = true;
+    const ta = s.f.ta; ta.readOnly = s.wasReadOnly;
+    if (dict.active === s) dict.active = null;
+    if (s.cancelled && s.insertedLen) {
+      ta.value = ta.value.slice(0, s.anchor) + ta.value.slice(s.anchor + s.insertedLen);
+      ta.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+    const end = s.anchor + (s.cancelled ? 0 : s.insertedLen);
+    s.f.caret = end;
+    if (!s.cancelled) { try { ta.focus({ preventScroll: true }); ta.setSelectionRange(end, end); } catch { /* ignore */ } }
+  }
+  // Queue one window of 16 kHz audio for the worker; windows are transcribed in order.
+  function enqueue(s, pcm16k) {
+    s.segTotal++;
+    s.queue = s.queue.then(async () => {
+      if (s.cancelled) return;
+      await ensureModel();
+      if (s.cancelled) return;
+      const audio = new Float32Array(pcm16k); // own buffer, safe to transfer
+      const r = await workerCall({ type: 'transcribe', audio, language: dict.lang }, [audio.buffer]);
+      s.segDone++;
+      insertPiece(s, r.text);
+      updateLive(s);
+    });
+    s.queue.catch(() => {});
+    updateLive(s);
+  }
+  function updateLive(s) {
+    const f = s.f;
+    if (f.ui.kind === 'rec' && f.refs && f.refs.kind === 'rec') {
+      const waiting = s.segTotal - s.segDone;
+      f.refs.sub.textContent = s.segDone ? s.segDone + ' parça yazıldı' + (waiting ? ', ' + waiting + ' sırada' : '') : (waiting ? 'İlk parça yazıya dökülüyor…' : 'Konuştukça her yarım dakikada bir yazıya döker.');
+      f.refs.partial.hidden = !s.partial; f.refs.partial.textContent = s.partial.trim();
+      f.refs.partial.scrollTop = f.refs.partial.scrollHeight;
+    } else if (f.ui.kind === 'work' && s.segTotal) {
+      setUi(f, { kind: 'work', title: s.finishing ? 'Son parçalar yazılıyor' : 'Yazıya döküyorum', sub: s.segDone + ' / ' + s.segTotal, frac: s.segDone / s.segTotal, partial: s.partial.trim(), note: s.note });
+    }
+  }
+  // Model download and start-up progress, shown in whichever panel is busy.
+  dict.progressSubs.add((d) => {
+    const s = dict.active; if (!s) return;
+    let note;
+    if (d.phase === 'download') note = d.cached ? 'Model bu cihazda hazır, açılıyor…' : 'Konuşma modeli bu cihaza iniyor (bir kez): ' + fmtMB(d.loaded) + ' / ' + fmtMB(d.total);
+    else if (d.phase === 'init') note = 'Model başlatılıyor (' + (d.device === 'webgpu' ? 'WebGPU' : 'işlemci') + ')…';
+    else if (d.phase === 'warmup') note = 'Neredeyse hazır…';
+    s.note = note;
+    if (s.f.ui.kind === 'rec' && s.f.refs && s.f.refs.sub && !s.segDone) s.f.refs.sub.textContent = note;
+    else if (s.f.ui.kind === 'work') setUi(s.f, { kind: 'work', title: 'Model hazırlanıyor', frac: d.phase === 'download' && d.total ? d.loaded / d.total : null, note, partial: s.partial.trim() });
+  });
+
+  async function startMic(f) {
+    const s = newSession(f, 'mic');
+    setUi(f, { kind: 'work', title: 'Mikrofon açılıyor' });
+    let stream;
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true } });
+    } catch (e) {
+      s.cancelled = true; endSession(s);
+      const name = e && e.name;
+      diagnose({ mic: name || 'error' });
+      if (name === 'NotAllowedError' || name === 'SecurityError') { dict.micDenied = true; setUi(f, { kind: 'blocked' }); }
+      else if (name === 'NotFoundError') setUi(f, { kind: 'blocked', title: 'Mikrofon bulunamadı', text: 'Bu cihazda kullanılabilir mikrofon yok. Kaydı başka yerde yapıp dosyayı seçebilirsin.' });
+      else setUi(f, { kind: 'blocked', title: 'Mikrofon açılamadı', text: 'Başka bir uygulama mikrofonu kullanıyor olabilir. Ya da kaydı başka yerde yapıp dosyayı seç.' });
+      return;
+    }
+    if (s.cancelled) { stream.getTracks().forEach((t) => t.stop()); return; }
+    if (!dict.diag || dict.diag.mic !== 'ok') diagnose({ mic: 'ok' });
+    ensureModel().catch(() => {}); // download in parallel with talking
+    const AC = window.AudioContext || window.webkitAudioContext;
+    const ctx = new AC(); try { await ctx.resume(); } catch { /* resumes on its own */ }
+    const src = ctx.createMediaStreamSource(stream);
+    const analyser = ctx.createAnalyser(); analyser.fftSize = 1024;
+    const proc = ctx.createScriptProcessor(4096, 1, 1);
+    const sink = ctx.createGain(); sink.gain.value = 0;
+    src.connect(analyser); src.connect(proc); proc.connect(sink); sink.connect(ctx.destination);
+    // Hold the graph on the session: Chrome garbage-collects an unreferenced ScriptProcessorNode and
+    // its onaudioprocess silently stops (seen here after about a second while the model loaded).
+    s.graph = { ctx, src, analyser, proc, sink, stream };
+    s.sr = ctx.sampleRate; s.parts = []; s.partsLen = 0; s.total = 0;
+    proc.onaudioprocess = (ev) => {
+      if (s.stopped) return;
+      const ch = new Float32Array(ev.inputBuffer.getChannelData(0));
+      s.parts.push(ch); s.partsLen += ch.length; s.total += ch.length;
+      if (s.partsLen > (DICT.maxSeg + 1) * s.sr) flushLive(s, false);
+    };
+    // Keep the original recording, so it can be transcribed again later with a better model.
+    const type = recorderType();
+    if (type !== null) {
+      try {
+        s.rec = new MediaRecorder(stream, type ? { mimeType: type, audioBitsPerSecond: 64000 } : undefined);
+        s.recChunks = []; s.rec.ondataavailable = (e) => { if (e.data && e.data.size) s.recChunks.push(e.data); };
+        s.rec.start(1000);
+      } catch { s.rec = null; }
+    }
+    s.cleanup = () => {
+      s.stopped = true;
+      try { proc.disconnect(); src.disconnect(); analyser.disconnect(); } catch { /* ignore */ }
+      stream.getTracks().forEach((t) => t.stop());
+      ctx.close().catch(() => {});
+      cancelAnimationFrame(s.raf);
+    };
+    setUi(f, { kind: 'rec' });
+    updateLive(s);
+    const data = new Float32Array(analyser.fftSize); const hist = new Array(28).fill(0);
+    let lastPush = 0;
+    const tick = (now) => {
+      if (s.stopped || !f.refs || f.refs.kind !== 'rec') return;
+      analyser.getFloatTimeDomainData(data);
+      const level = Math.min(1, rmsOf(data, 0, data.length) * 9);
+      if (now - lastPush > 70) { hist.push(level); hist.shift(); lastPush = now; f.refs.bars.forEach((b, i) => { b.style.height = Math.max(3, Math.round(hist[i] * 30)) + 'px'; }); }
+      f.refs.t.textContent = fmtTime(s.total / s.sr);
+      s.raf = requestAnimationFrame(tick);
+    };
+    s.raf = requestAnimationFrame(tick);
+  }
+  function flushLive(s, final) {
+    const buf = concatF32(s.parts, s.partsLen);
+    const { segments, consumed } = splitSegments(buf, s.sr, final);
+    for (const [a, b] of segments) {
+      if (isSilent(buf, a, b, s.sr)) continue;
+      const slice = buf.slice(a, b);
+      s.queue = s.queue.then(() => toMono16k(slice, s.sr)).then((pcm) => { enqueue(s, pcm); });
+      s.queue.catch(() => {});
+    }
+    const rest = buf.subarray(consumed);
+    s.parts = rest.length ? [new Float32Array(rest)] : []; s.partsLen = rest.length;
+  }
+  async function stopSession(cancel) {
+    const s = dict.active; if (!s) return;
+    const f = s.f;
+    if (cancel) {
+      s.cancelled = true;
+      if (s.cleanup) s.cleanup();
+      if (s.rec && s.rec.state !== 'inactive') { try { s.rec.stop(); } catch { /* ignore */ } }
+      endSession(s); setUi(f, { kind: 'idle' }); toast('Dikte iptal edildi');
+      return;
+    }
+    if (s.mode !== 'mic' || s.stopped) return;
+    s.seconds = s.total / s.sr;
+    const recDone = s.rec ? new Promise((r) => { s.rec.onstop = r; try { s.rec.stop(); } catch { r(); } }) : Promise.resolve();
+    s.cleanup();
+    s.finishing = true;
+    flushLive(s, true);
+    setUi(f, { kind: 'work', title: 'Son parçalar yazılıyor', frac: s.segTotal ? s.segDone / s.segTotal : null, partial: s.partial.trim() });
+    await recDone;
+    const blob = s.rec && s.recChunks && s.recChunks.length ? new Blob(s.recChunks, { type: s.rec.mimeType || 'audio/webm' }) : null;
+    await finish(s, blob);
+  }
+  async function startFile(f, file) {
+    const s = newSession(f, 'file');
+    setUi(f, { kind: 'work', title: 'Dosya okunuyor', sub: file.name.length > 28 ? file.name.slice(0, 26) + '…' : file.name });
+    ensureModel().catch(() => {});
+    let pcm;
+    try {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      const ctx = new AC();
+      let decoded;
+      try { decoded = await ctx.decodeAudioData(await file.arrayBuffer()); } catch { throw Object.assign(new Error('decode'), { code: 'decode' }); } finally { ctx.close().catch(() => {}); }
+      s.seconds = decoded.duration;
+      pcm = await toMono16k(decoded, decoded.sampleRate);
+    } catch (e) { s.cancelled = true; endSession(s); setUi(f, errorText(e)); return; }
+    if (s.cancelled) return;
+    const { segments } = splitSegments(pcm, 16000, true);
+    s.finishing = true;
+    for (const [a, b] of segments) if (!isSilent(pcm, a, b, 16000)) enqueue(s, pcm.slice(a, b));
+    if (!s.segTotal) { s.cancelled = true; endSession(s); setUi(f, { kind: 'error', title: 'Kayıtta konuşma yok', text: 'Dosyada duyulur bir ses bulamadım.' }); return; }
+    setUi(f, { kind: 'work', title: 'Yazıya döküyorum', sub: '0 / ' + s.segTotal, frac: 0, note: s.note });
+    await finish(s, file);
+  }
+  async function finish(s, blob) {
+    const f = s.f;
+    // Windows can queue more windows while they run, so wait until the queue stops growing.
+    try { let q; do { q = s.queue; await q; } while (q !== s.queue); } catch (e) {
+      const keep = s.insertedLen > 0;
+      s.cancelled = !keep; endSession(s);
+      const ui = errorText(e);
+      if (keep && ui.kind === 'error') ui.text = (ui.text ? ui.text + ' ' : '') + 'Yazılan kısım alanda duruyor.';
+      setUi(f, ui); return;
+    }
+    if (s.cancelled) return;
+    endSession(s);
+    const mins = fmtTime(s.seconds);
+    const said = s.insertedLen ? mins + ' konuşma yazıya döküldü. Düzenleyip kaydedebilirsin.' : 'Kayıtta anlaşılır bir konuşma bulamadım.';
+    setUi(f, { kind: 'done', title: s.insertedLen ? 'Hazır' : 'Metin çıkmadı', text: said });
+    if (blob && s.insertedLen) keepAudio(f, blob, s.seconds);
+  }
+  async function keepAudio(f, blob, seconds) {
+    const type = assetTypeFor(blob.type);
+    if (!dict.assets || !type || blob.size > 20 * 1024 * 1024 || !blob.size) return;
+    try {
+      const r = await dict.assets.upload(blob, { type });
+      f.audio.push({ id: r.id, type, seconds: Math.round(seconds) });
+      f.onChange();
+      if (f.ui.kind === 'done') setUi(f, { kind: 'done', title: f.ui.title, text: f.ui.text + ' Ses kaydı da nota eklenecek.' });
+    } catch { /* keeping the audio is optional */ }
+  }
+  window.__pofuDictation = { splitSegments, isSilent, cleanText, joinText, assetTypeFor, dict };
+
+  // ---- Dikte sheet: language, model, install and removal
+  const dsheet = $('#dsheet'), dbody = $('#dsheet-body'), modelInput = $('#model-files');
+  const inst = { preset: 'turbo', files: null, busy: false, progress: null, error: '', confirmRemove: null, usage: null };
+  let dsheetFrom = null;
+  function openDictSheet(focus) {
+    dsheetFrom = document.activeElement;
+    if (focus === 'install') inst.preset = isPhone() ? 'small' : 'turbo';
+    scrim.hidden = false; dsheet.hidden = false;
+    requestAnimationFrame(() => { scrim.classList.add('on'); dsheet.classList.add('on'); });
+    renderDictSheet(); hasWebGPU().then(renderDictSheet); diagnose();
+    if (dict.assets) dict.assets.list().then((r) => { inst.usage = r.usage; renderDictSheet(); }, () => {});
+    setTimeout(() => $('#dsheet-close').focus(), 60);
+  }
+  function closeDictSheet() {
+    if (inst.busy) return;
+    if (sheet.hidden) scrim.classList.remove('on');
+    dsheet.classList.remove('on');
+    setTimeout(() => { if (sheet.hidden) scrim.hidden = true; dsheet.hidden = true; }, 260);
+    if (dsheetFrom && dsheetFrom.focus) dsheetFrom.focus({ preventScroll: true });
+  }
+  $('#dsheet-close').addEventListener('click', closeDictSheet);
+  function chipRow(label, items, cur, onPick) {
+    const sec = el('div', 'dsec'); sec.append(el('h3', '', label));
+    const row = el('div', 'chips'); row.setAttribute('role', 'group'); row.setAttribute('aria-label', label);
+    for (const [key, text, disabled] of items) {
+      const c = el('button', 'chip', text); c.type = 'button'; c.setAttribute('aria-pressed', String(key === cur)); c.disabled = !!disabled;
+      c.addEventListener('click', () => onPick(key)); row.append(c);
+    }
+    sec.append(row); return sec;
+  }
+  function renderDictSheet() {
+    if (dsheet.hidden) return;
+    const out = [];
+    out.push(chipRow('Dil', [['turkish', 'Türkçe'], ['auto', 'Otomatik']], dict.lang, (k) => { dict.lang = k; store.set('dict-lang', k === 'turkish' ? '' : k); renderDictSheet(); }));
+    const m = dict.manifests;
+    out.push(chipRow('Model', [['auto', 'Otomatik'], ['turbo', 'Turbo', !m.turbo], ['small', 'Small', !m.small]], dict.pref, (k) => { dict.pref = k; store.set('dict-model', k === 'auto' ? '' : k); renderDictSheet(); }));
+    const now = pickPreset();
+    const dev = el('div', 'dnote'); dev.style.marginTop = '8px';
+    dev.textContent = 'Bu cihaz: ' + (dict.gpu === undefined ? 'kontrol ediliyor…' : dict.gpu ? 'WebGPU var' : 'WebGPU yok, işlemciyle çalışır') + (now ? ' · kullanılacak model: ' + DICT.presets[now].label : '') + (dict.micDenied ? ' · mikrofon kapalı, dosyadan dikte' : '');
+    out.push(dev);
+    const dg = dict.diag;
+    if (dg && dg.probed) {
+      const yes = (v) => (v === true ? 'var' : 'yok');
+      const w = dg.worker || {};
+      const line = el('div', 'dict-sub');
+      line.textContent = 'Kontrol: WebAssembly ' + yes(w.wasm === true && dg.pageWasm === true) + ' · arka plan işçisi ' + (w.failed ? 'yok' : 'var') + ' · önbellek ' + yes(w.cache === true)
+        + ' · mikrofon ' + (dg.mic === 'ok' ? 'var' : dg.mic ? 'yok (' + dg.mic + ')' : 'denenmedi');
+      out.push(line);
+    }
+
+    const list = el('div', 'dsec'); list.append(el('h3', '', 'Kurulu modeller'));
+    for (const key of Object.keys(DICT.presets)) {
+      const man = m[key]; const pr = DICT.presets[key];
+      const row = el('div', 'mrow');
+      const g = el('div', 'grow'); g.append(el('div', 't', pr.label), el('div', 'l', man ? fmtMB(man.totalBytes) + ' · ' + pr.about : 'Kurulu değil · ' + pr.about));
+      row.append(g);
+      if (man && dict.assets) {
+        if (inst.confirmRemove === key) {
+          const c = el('div', 'confirm');
+          const yes = el('button', 'btn small stop', 'Evet, kaldır'); yes.type = 'button'; yes.addEventListener('click', () => removeModel(key));
+          const no = el('button', 'textbtn', 'Vazgeç'); no.type = 'button'; no.addEventListener('click', () => { inst.confirmRemove = null; renderDictSheet(); });
+          c.append(yes, no); row.append(c);
+        } else {
+          const rm = el('button', 'textbtn', 'Kaldır'); rm.type = 'button'; rm.disabled = inst.busy;
+          rm.addEventListener('click', () => { inst.confirmRemove = key; renderDictSheet(); }); row.append(rm);
+        }
+      }
+      list.append(row);
+    }
+    out.push(list);
+
+    const ins = el('div', 'dsec'); ins.append(el('h3', '', 'Model kur'));
+    if (!dict.assets) {
+      ins.append(el('div', 'dnote', 'Kurulum, sayfayı düzenleyebilen biri tarafından bir kez yapılır (Mac\'te önerilir). Bu görünümde dosya yükleme izni yok.'));
+    } else {
+      ins.append(chipRow('Hangisi', [['turbo', 'Turbo'], ['small', 'Small']], inst.preset, (k) => { inst.preset = k; inst.files = null; inst.error = ''; renderDictSheet(); }).lastChild);
+      const pr = DICT.presets[inst.preset];
+      const already = dict.manifests[inst.preset] && !inst.files && !inst.busy;
+      if (already) ins.append(el('div', 'dnote', pr.label + ' kurulu. Yeni dosyalarla değiştirmek istersen dosyaları seç; eskisi yenisi yüklenince silinir.'));
+      else ins.append(el('div', 'dnote', '1. Aşağıdaki yedi dosyayı indir (Hugging Face\'te açılır, ' + pr.repo + '). 2. "Dosyaları seç" ile hepsini seç. 3. Yükle. Bir kez yapılır; iPhone dahil her cihaz modeli buradan alır.'));
+      const ul = el('ul', 'files');
+      const need = DICT.json.concat(pr.files);
+      for (const name of need) {
+        const li = el('li');
+        const have = inst.files && inst.files.byName.get(name);
+        li.append(el('span', have ? 'ok' : 'miss', have ? '✓' : '·'));
+        const a = el('a', '', name); a.href = 'https://huggingface.co/' + pr.repo + '/resolve/main/' + name + '?download=true'; a.target = '_blank'; a.rel = 'noopener';
+        li.append(a);
+        if (have) li.append(el('span', 'dict-sub', fmtMB(have.size)));
+        ul.append(li);
+      }
+      const more = el('a', '', 'Tüm dosyalar (başka bir varyant seçmek istersen) →'); more.href = 'https://huggingface.co/' + pr.repo + '/tree/main/onnx'; more.target = '_blank'; more.rel = 'noopener'; more.className = 'dnote';
+      if (!already) ins.append(ul, more);
+      const acts = el('div', 'dict-actions');
+      const pick = el('button', 'btn ghost small', 'Dosyaları seç'); pick.type = 'button'; pick.disabled = inst.busy;
+      pick.addEventListener('click', () => { modelInput.value = ''; modelInput.click(); });
+      const go = el('button', 'btn small', inst.busy ? 'Yükleniyor…' : 'Yükle'); go.type = 'button';
+      const ready = inst.files && inst.files.ok;
+      go.disabled = inst.busy || !ready;
+      go.addEventListener('click', installModel);
+      acts.append(pick, go); ins.append(acts);
+      if (inst.files) {
+        const need64 = Math.ceil(inst.files.total * 4 / 3);
+        const free = inst.usage ? inst.usage.maxBytes - inst.usage.bytes : null;
+        ins.append(el('div', 'dnote', inst.files.ok
+          ? 'Toplam ' + fmtMB(inst.files.total) + ' model; depoda ' + fmtMB(need64) + ' yer kaplar' + (free != null ? ' (boş: ' + fmtMB(free) + ')' : '') + '.'
+          : 'Eksik: ' + inst.files.missing.join(', ')));
+      }
+      if (inst.progress) {
+        const bar = el('div', 'bar'); const fill = el('i'); fill.style.width = Math.round(inst.progress.frac * 100) + '%'; bar.append(fill);
+        ins.append(bar, el('div', 'dict-sub', inst.progress.text));
+      }
+      if (inst.error) ins.append(el('div', 'err', inst.error));
+    }
+    out.push(ins);
+    dbody.replaceChildren(...out);
+  }
+  modelInput.addEventListener('change', () => {
+    const pr = DICT.presets[inst.preset];
+    const byName = new Map();
+    for (const file of Array.from(modelInput.files || [])) {
+      const n = file.name;
+      if (DICT.json.includes(n)) byName.set(n, file);
+      else if (/^(encoder_model|decoder_model_merged)(_[a-z0-9]+)?\.onnx$/.test(n)) byName.set('onnx/' + n, file);
+    }
+    // Any single-file variant is accepted; the preset's names are only the recommendation.
+    const enc = [...byName.keys()].find((k) => k.startsWith('onnx/encoder_model'));
+    const dec = [...byName.keys()].find((k) => k.startsWith('onnx/decoder_model_merged'));
+    const missing = DICT.json.filter((n) => !byName.has(n));
+    if (!enc) missing.push(pr.files[0]); if (!dec) missing.push(pr.files[1]);
+    // Show matches against the recommended names too.
+    if (enc && !byName.has(pr.files[0])) byName.set(pr.files[0], byName.get(enc));
+    if (dec && !byName.has(pr.files[1])) byName.set(pr.files[1], byName.get(dec));
+    const total = DICT.json.concat([enc, dec]).filter(Boolean).reduce((s, k) => s + (byName.get(k) ? byName.get(k).size : 0), 0);
+    inst.files = { byName, enc, dec, missing, ok: !missing.length, total };
+    inst.error = '';
+    if (enc && byName.get(enc).size < 1e6) inst.error = 'Kodlayıcı dosyası çok küçük: dış veri (.onnx_data) isteyen bir varyant olabilir. q4 ya da quantized olanı seç.';
+    renderDictSheet();
+  });
+  function toB64(bytes) {
+    if (typeof bytes.toBase64 === 'function') return bytes.toBase64();
+    let s = ''; const step = 0x8000;
+    for (let i = 0; i < bytes.length; i += step) s += String.fromCharCode.apply(null, bytes.subarray(i, i + step));
+    return btoa(s);
+  }
+  async function sha256Hex(bytes) {
+    const d = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
+    return Array.from(d, (b) => b.toString(16).padStart(2, '0')).join('');
+  }
+  async function uploadWithRetry(blob, type) {
+    for (let attempt = 0; ; attempt++) {
+      try { return await dict.assets.upload(blob, { type }); } catch (e) {
+        const c = e && e.code;
+        if (attempt < 3 && (c === 'rate_limited' || c === 'store_unavailable' || c === 'upstream_error')) { await new Promise((r) => setTimeout(r, 1500 * (attempt + 1))); continue; }
+        throw e;
+      }
+    }
+  }
+  async function installModel() {
+    const fsel = inst.files; if (!fsel || !fsel.ok || inst.busy || !dict.assets || !state.db) return;
+    const preset = inst.preset;
+    const names = DICT.json.concat([fsel.enc, fsel.dec]);
+    const dtype = {};
+    for (const [part, name] of [['encoder_model', fsel.enc], ['decoder_model_merged', fsel.dec]]) {
+      const suffix = name.slice(('onnx/' + part).length, -'.onnx'.length);
+      dtype[part] = DTYPE_BY_SUFFIX[suffix] || 'fp32';
+    }
+    try {
+      const u = (await dict.assets.list()).usage; inst.usage = u;
+      const need = Math.ceil(fsel.total * 4 / 3) * 1.02;
+      if (u.maxBytes - u.bytes < need) { inst.error = 'Depoda yer yok: ' + fmtMB(need) + ' gerekli, ' + fmtMB(u.maxBytes - u.bytes) + ' boş. Önce diğer modeli kaldır ya da Small\'u kur.'; renderDictSheet(); return; }
+    } catch { /* listing is housekeeping; the upload itself will tell */ }
+    inst.busy = true; inst.error = ''; inst.confirmRemove = null;
+    const uploaded = []; let done = 0;
+    const progress = (text) => { inst.progress = { frac: fsel.total ? done / fsel.total : 0, text }; renderDictSheet(); };
+    try {
+      const files = [];
+      for (const name of names) {
+        const file = fsel.byName.get(name);
+        const enc = name.endsWith('.onnx') ? 'b64' : 'raw';
+        const chunks = [];
+        for (let at = 0; at < file.size; at += DICT.chunk) {
+          progress(name.replace('onnx/', '') + ' · ' + fmtMB(done) + ' / ' + fmtMB(fsel.total));
+          const bytes = new Uint8Array(await file.slice(at, at + DICT.chunk).arrayBuffer());
+          const sha = await sha256Hex(bytes);
+          const blob = enc === 'b64' ? new Blob([toB64(bytes)], { type: 'text/plain' }) : new Blob([bytes], { type: 'text/plain' });
+          const r = await uploadWithRetry(blob, 'text/plain');
+          uploaded.push(r.id); chunks.push({ id: r.id, size: bytes.length, sha256: sha });
+          done += bytes.length;
+        }
+        files.push({ name, size: file.size, enc, chunks });
+      }
+      progress('Kaydediliyor…');
+      const prev = dict.manifests[preset];
+      const manifest = {
+        preset, modelId: 'pofu/whisper-' + preset, version: (prev && prev.version || 0) + 1, repo: DICT.presets[preset].repo,
+        dtype, files, totalBytes: fsel.total, installedAt: nowIso(),
+      };
+      await withRetry(() => state.db.doc('dictation/' + preset).set(manifest));
+      inst.busy = false; inst.files = null; inst.progress = null;
+      if (prev) await deleteChunks(prev);
+      toast(DICT.presets[preset].label + ' kuruldu');
+    } catch (e) {
+      inst.busy = false; inst.progress = null;
+      const c = e && e.code;
+      inst.error = c === 'quota_or_state' ? 'Depo doldu. Diğer modeli kaldırıp tekrar dene.' : c === 'unsupported_type' || c === 'too_large' ? 'Depo bu parçayı kabul etmedi (' + c + ').' : 'Yükleme yarıda kaldı (' + String((e && (e.code || e.message)) || e).slice(0, 80) + '). Tekrar dene.';
+      // Remove what this attempt stored, so a failed install leaves nothing behind.
+      for (const id of uploaded) { try { await dict.assets.delete(id); } catch { /* best effort */ } }
+    }
+    renderDictSheet();
+  }
+  async function deleteChunks(man) {
+    for (const f of man.files || []) for (const c of f.chunks || []) { try { await dict.assets.delete(c.id); } catch { /* best effort */ } }
+  }
+  async function removeModel(preset) {
+    const man = dict.manifests[preset]; if (!man || inst.busy) return;
+    inst.busy = true; inst.confirmRemove = null; inst.progress = { frac: 0, text: 'Kaldırılıyor…' }; renderDictSheet();
+    try {
+      await withRetry(() => state.db.doc('dictation/' + preset).delete());
+      await deleteChunks(man);
+      if (dict.worker) workerCall({ type: 'evict', manifest: man }).catch(() => {});
+      dict.loadedKey = null;
+      toast(DICT.presets[preset].label + ' kaldırıldı');
+    } catch (e) { inst.error = writeFailed(e); }
+    inst.busy = false; inst.progress = null; renderDictSheet();
+  }
+  function validManifest(d) {
+    return d && typeof d.modelId === 'string' && /^pofu\/whisper-[a-z0-9-]+$/.test(d.modelId) && Array.isArray(d.files) && d.dtype && typeof d.dtype === 'object'
+      && d.files.every((f) => f && typeof f.name === 'string' && Array.isArray(f.chunks) && f.chunks.every((c) => c && /^[0-9a-f]{32}$/.test(c.id)));
+  }
+  function onManifests(list) {
+    const m = {};
+    for (const d of list) if ((d.id === 'turbo' || d.id === 'small') && validManifest(d)) m[d.id] = d;
+    dict.manifests = m;
+    renderDictSheet();
+    for (const f of dict.fields) if (f.ui.kind === 'nomodel' && pickPreset()) setUi(f, { kind: 'idle' });
+  }
+
   // ------------------------------------------------------------------ composer (persistent per target)
   const composers = new Map();
   function composer(targetType, targetId, placeholder) {
@@ -591,10 +1404,17 @@ h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
     const ta = el('textarea'); ta.rows = 3; ta.placeholder = placeholder; ta.setAttribute('aria-label', placeholder);
     ta.value = store.get('draft:' + key) || '';
     const foot = el('div', 'composer-foot');
-    const hint = el('div', 'hint'); hint.append(svg(ICON.mic), document.createTextNode('Klavyedeki mikrofonla dikte edebilirsin'));
+    const left = el('div', 'foot-left');
+    const dictHost = el('div');
     const btn = el('button', 'btn', 'Ekle'); btn.type = 'button'; btn.dataset.write = '1'; btn.dataset.needsText = '1';
     const err = el('div', 'err'); err.hidden = true;
-    const sync = () => { if (ta.value.trim()) btn.dataset.hasText = '1'; else delete btn.dataset.hasText; btn.disabled = !state.canWrite || btn.dataset.busy === '1' || !ta.value.trim(); ta.disabled = !state.canWrite; };
+    const sync = () => {
+      if (ta.value.trim()) btn.dataset.hasText = '1'; else delete btn.dataset.hasText;
+      const dictating = dict.active && dict.active.f.ta === ta;
+      btn.disabled = !state.canWrite || btn.dataset.busy === '1' || !ta.value.trim() || dictating; ta.disabled = !state.canWrite;
+      if (c && c.df) c.df.sync();
+    };
+    let c = null;
     let draftTimer = 0;
     ta.addEventListener('input', () => { sync(); clearTimeout(draftTimer); draftTimer = setTimeout(() => store.set('draft:' + key, ta.value), 300); });
     const submit = async () => {
@@ -602,18 +1422,30 @@ h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
       if (!text || !state.canWrite || btn.dataset.busy === '1') return;
       btn.dataset.busy = '1'; btn.textContent = 'Ekleniyor…'; sync(); err.hidden = true;
       try {
-        await addNote(targetType, targetId, text);
-        ta.value = ''; store.set('draft:' + key, ''); toast('Not eklendi');
+        await addNote(targetType, targetId, text, df.audio);
+        ta.value = ''; store.set('draft:' + key, ''); df.audio = []; df.caret = 0; toast('Not eklendi');
+        if (df.ui.kind === 'done') setUi(df, { kind: 'idle' });
       } catch (e) { err.textContent = writeFailed(e); err.hidden = false; }
       delete btn.dataset.busy; btn.textContent = 'Ekle'; sync();
     };
     btn.addEventListener('click', submit);
     ta.addEventListener('keydown', (e) => { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); submit(); } });
-    foot.append(hint, btn); wrap.append(ta, foot, err);
-    const c = { root: wrap, ta, sync }; composers.set(key, c); sync();
+    foot.append(left, btn); wrap.append(ta, foot, dictHost, err);
+    const df = dictField(ta, left, dictHost, { onState: () => sync() });
+    c = { root: wrap, ta, sync, df }; composers.set(key, c); sync();
     return c;
   }
 
+  // The original dictation recording, when one was kept (asset ids only; served from /_blob/).
+  function appendAudio(container, audio) {
+    if (!Array.isArray(audio)) return;
+    for (const a of audio.slice(0, 4)) {
+      if (!a || typeof a.id !== 'string' || !/^[0-9a-f]{32}$/.test(a.id)) continue;
+      const au = el('audio'); au.controls = true; au.preload = 'none'; au.src = '/_blob/' + a.id;
+      au.setAttribute('aria-label', 'Ses kaydı' + (a.seconds ? ', ' + fmtTime(a.seconds) : ''));
+      container.append(au);
+    }
+  }
   function threadFor(targetType, targetId) {
     return (state.notes || []).filter((n) => n.targetType === targetType && n.targetId === targetId);
   }
@@ -623,6 +1455,7 @@ h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
       const d = el('div', 'note' + (n.fromLead ? ' lead' : ''));
       const who = el('span', 'who', (n.fromLead ? 'Claude' : 'Sen') + (n.createdAt ? ' · ' + ago(n.createdAt) : ''));
       d.append(who, document.createTextNode(str(n.text)));
+      appendAudio(d, n.audio);
       container.append(d);
     }
     container.hidden = !list.length;
@@ -781,6 +1614,7 @@ h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
       d.append(el('div', 't', str(i.text)));
       const tags = Array.isArray(i.tags) ? i.tags.filter((t) => typeof t === 'string') : [];
       if (tags.length) { const tg = el('div', 'tags'); for (const t of tags) tg.append(el('span', 'tag', t)); d.append(tg); }
+      appendAudio(d, i.audio);
       if (i.createdAt) d.append(el('div', 'when', ago(i.createdAt)));
       const replies = threadFor('idea', i.id);
       if (replies.length) { const n = el('div', 'notes'); n.style.margin = '8px 0 0'; renderNotes(n, replies); d.append(n); }
@@ -904,7 +1738,8 @@ h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
     $('#idea-tags').append(b);
   }
   ideaText.value = store.get('draft:idea') || '';
-  const syncIdea = () => { ideaSend.disabled = !state.canWrite || !ideaText.value.trim() || ideaSend.dataset.busy === '1'; };
+  const ideaDict = dictField(ideaText, $('#idea-foot'), $('#idea-dict'), { onState: () => syncIdea() });
+  const syncIdea = () => { ideaSend.disabled = !state.canWrite || !ideaText.value.trim() || ideaSend.dataset.busy === '1' || !!(dict.active && dict.active.f === ideaDict); ideaDict.sync(); };
   ideaText.addEventListener('input', () => { syncIdea(); store.set('draft:idea', ideaText.value); });
   let lastFocus = null;
   function openSheet() {
@@ -914,14 +1749,15 @@ h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
     syncIdea(); setTimeout(() => ideaText.focus(), 60);
   }
   function closeSheet() {
+    if (dict.active && dict.active.f === ideaDict) stopSession(true);
     scrim.classList.remove('on'); sheet.classList.remove('on');
-    setTimeout(() => { scrim.hidden = true; sheet.hidden = true; }, 260);
+    setTimeout(() => { if (dsheet.hidden) scrim.hidden = true; sheet.hidden = true; }, 260);
     if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   }
   $('#fab').addEventListener('click', openSheet);
   $('#sheet-close').addEventListener('click', closeSheet);
-  scrim.addEventListener('click', closeSheet);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sheet.hidden) closeSheet(); });
+  scrim.addEventListener('click', () => { if (!dsheet.hidden) closeDictSheet(); else closeSheet(); });
+  document.addEventListener('keydown', (e) => { if (e.key !== 'Escape') return; if (!dsheet.hidden) closeDictSheet(); else if (!sheet.hidden) closeSheet(); });
   ideaSend.addEventListener('click', async () => {
     const text = ideaText.value.trim();
     if (!text || !state.canWrite) return;
@@ -929,8 +1765,9 @@ h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
     try {
       const body = { text, tags: TAGS.filter((t) => picked.has(t)), createdAt: nowIso() };
       if (state.userId) body.authorId = state.userId;
+      if (ideaDict.audio.length) body.audio = ideaDict.audio.slice();
       await withRetry(() => state.db.collection('ideas').add(body));
-      ideaText.value = ''; store.set('draft:idea', ''); picked.clear();
+      ideaText.value = ''; store.set('draft:idea', ''); picked.clear(); ideaDict.audio = []; ideaDict.caret = 0; setUi(ideaDict, { kind: 'idle' });
       document.querySelectorAll('#idea-tags .chip').forEach((c) => c.setAttribute('aria-pressed', 'false'));
       closeSheet(); toast('Fikrin kaydedildi');
     } catch (e) { ideaErr.textContent = writeFailed(e); ideaErr.hidden = false; }
@@ -965,6 +1802,9 @@ h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
     } else state.canWrite = true;
     state.mode = state.canWrite ? 'live' : 'readonly';
     renderBanner();
+    for (const f of dict.fields) f.sync();
+    // Assets are granted to people who can edit; they store dictation audio and install models.
+    window.claude.use('assets').then((a) => { dict.assets = a || null; renderDictSheet(); }, () => {});
 
     // Loading watchdog: every listener must confirm once (fromCache false) or error within 10 s.
     const pending = new Set();
@@ -1005,6 +1845,8 @@ h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
       pending.add(name);
       ref.onSnapshot((snap) => { try { fn(snap); } finally { settle(name, snap.metadata); } }, onErr(name));
     }
+    // Speech model manifests; outside the loading watchdog, since the hub works without them.
+    db.collection('dictation').onSnapshot((snap) => onManifests(docs(snap)), () => onManifests([]));
     // Relative times drift; refresh the cheap labels each minute without touching inputs.
     setInterval(() => { renderNow(); renderIdeas(); }, 60000);
   }

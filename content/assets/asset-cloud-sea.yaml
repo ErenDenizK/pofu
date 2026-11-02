@@ -11,7 +11,8 @@ summary: >-
   above it is fully transparent. The left and right edges must tile seamlessly when two copies
   are placed side by side: the band has the same height…
 art:
-  images: []
+  images:
+  - design/art/masters/cloud-sea/cloud-sea.png
   jobs:
   - batch-04-sky:cloud-sea
 sources:

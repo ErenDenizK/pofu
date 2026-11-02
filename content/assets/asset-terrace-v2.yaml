@@ -11,7 +11,8 @@ summary: >-
   same strata and colors, and a short flight of four cream stone steps on its front left.
   The terrace lawn is empty. Nothing else: not the island itself,…
 art:
-  images: []
+  images:
+  - design/art/masters/terrace-v2/terrace-v2.png
   jobs:
   - batch-03-home-island:terrace-v2
 sources:

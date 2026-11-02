@@ -1,0 +1,22 @@
+id: asset-windmill-5-lit
+type: asset
+title_tr: windmill-5-lit
+title_en: windmill-5-lit (station)
+status: in-production
+horizon: now
+summary: >-
+  Light the two small round windows on the tower from inside: each window glass becomes a
+  soft warm honey-amber, a little brighter toward its center, with the window frame and the
+  flower boxes unchanged. Only the two window glasses change: no glow, light or color change
+  on the tower, the flowers, the cap or the sails (the app adds the glow around them).
+links:
+  variant_of:
+  - asset-windmill-5
+art:
+  images: []
+  jobs:
+  - batch-07-light:windmill-5-lit
+sources:
+- doc: tools/imagegen/manifest/batch-07-light.yaml
+kind: station
+batch: batch-07-light

@@ -1,0 +1,101 @@
+{
+  "job": "mochi",
+  "pick": 1,
+  "note": "auto-picked by QA; founder review pending",
+  "takes": [
+    {
+      "take": 1,
+      "status": "pass",
+      "lock_load": 0,
+      "checks": [
+        {
+          "check": "transparency",
+          "status": "pass",
+          "message": "source has an alpha channel"
+        },
+        {
+          "check": "canvas",
+          "status": "pass",
+          "message": "1024x1536"
+        },
+        {
+          "check": "chroma_ceiling",
+          "status": "pass",
+          "message": "chroma p95 29 (R1 51)",
+          "value": 29.1
+        },
+        {
+          "check": "value_floor",
+          "status": "pass",
+          "message": "lightness p5 70 (R1 59)",
+          "value": 69.6
+        },
+        {
+          "check": "detail_budget",
+          "status": "pass",
+          "message": "detail at display size 3.7 (R1 5.3)",
+          "value": 3.74
+        },
+        {
+          "check": "palette_drift",
+          "status": "pass",
+          "message": "mean dE 0.9, p95 1.7, off-palette 0.9% (top: #441100 (0.1%), #551100 (0.1%))",
+          "value": 0.9181
+        },
+        {
+          "check": "ground_line",
+          "status": "pass",
+          "message": "feet at 87.6% of the height (contract 88%)",
+          "value": 0.8763
+        }
+      ]
+    },
+    {
+      "take": 2,
+      "status": "pass",
+      "lock_load": 0,
+      "checks": [
+        {
+          "check": "transparency",
+          "status": "pass",
+          "message": "source has an alpha channel"
+        },
+        {
+          "check": "canvas",
+          "status": "pass",
+          "message": "1024x1536"
+        },
+        {
+          "check": "chroma_ceiling",
+          "status": "pass",
+          "message": "chroma p95 29 (R1 51)",
+          "value": 29.0
+        },
+        {
+          "check": "value_floor",
+          "status": "pass",
+          "message": "lightness p5 70 (R1 59)",
+          "value": 70.0
+        },
+        {
+          "check": "detail_budget",
+          "status": "pass",
+          "message": "detail at display size 3.4 (R1 5.3)",
+          "value": 3.39
+        },
+        {
+          "check": "palette_drift",
+          "status": "pass",
+          "message": "mean dE 0.8, p95 1.6, off-palette 0.9% (top: #662211 (0.1%), #441100 (0.1%))",
+          "value": 0.85
+        },
+        {
+          "check": "ground_line",
+          "status": "pass",
+          "message": "feet at 89.5% of the height (contract 88%)",
+          "value": 0.8945
+        }
+      ]
+    }
+  ]
+}

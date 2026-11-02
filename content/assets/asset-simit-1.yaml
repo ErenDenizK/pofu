@@ -11,7 +11,8 @@ summary: >-
   not drawn seed by seed. Friendly, toy-like proportions. No umbrella yet; leave the upper
   half of the height bar empty.
 art:
-  images: []
+  images:
+  - design/art/stations/simit-1/simit-1.png
   jobs:
   - batch-01-slice:simit-1
 sources:

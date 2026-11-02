@@ -1,0 +1,93 @@
+{
+  "job": "mochi-work",
+  "batch": "batch-03-home-island",
+  "asset": "char__mochi-work",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T14:52:22+00:00",
+  "image": "design/art/masters/mochi-work/mochi-work.png",
+  "raw": "design/art/masters/mochi-work/raw.png",
+  "fingerprint": "ad3e0a5b0241e148",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n2. The tea stall she runs: paint the tea glass and saucer exactly like the ones on its counter (do not draw the stall).\n\nEdit the attached bunny, Mochi, into her working pose at the tea\nstall. Change only her two front paws: they now hold a small\ntulip-shaped tea glass of warm amber tea on a tiny cream saucer in\nfront of her chest, as if offering it. The glass is a soft tinted\nshape, matte, with no shine. Her ears, head, face, body and feet\nstay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a curl on the head, a teapot, a tray, steam, a ground shadow, text.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/mochi-v2/mochi-v2.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    },
+    {
+      "path": "design/art/stations/cay-1/cay-1.png",
+      "role": "The tea stall she runs: paint the tea glass and saucer exactly like the ones on its counter (do not draw the stall)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T14:51:10+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 1
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 36 (R1 51)",
+        "value": 35.7
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 63 (R1 59)",
+        "value": 62.7
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 4.0 (R1 5.3)",
+        "value": 3.99
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.1, p95 2.8, off-palette 2.1% (top: #DD7744 (0.3%), #441100 (0.2%))",
+        "value": 1.0841
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 87.8% of the height (contract 88%)",
+        "value": 0.8783
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "96% of the parent level unchanged",
+        "value": 0.9634
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}

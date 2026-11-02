@@ -39,15 +39,31 @@ public struct GradeRGB: Hashable, Sendable {
 ///
 /// The order matches the Metal shader (`pofuWorldGrade`) exactly:
 ///
-///     x₁ = gain · (x + lift · (1 − x))        lift, gamma, gain per channel
+///     x₀ = (x − black) / (white − black)      input levels
+///     x₁ = gain · (x₀ + lift · (1 − x₀))      lift, gamma, gain per channel
 ///     x₂ = max(x₁, 0)^(1 / gamma)
 ///     x₃ = (x₂ − pivot) · contrast + pivot
 ///     x₄ = luma + (x₃ − luma) · saturation    Rec. 709 luma of x₃
 ///     out = x₄ · vignette(position)
 ///
 /// It applies to the world layer only (sky, plates, stations, Pofu),
-/// never to the UI.
+/// never to the UI. The sky takes the grade without its input levels
+/// (`sky`): its palette is designed dark at night, and the levels that give
+/// the high-key art its true darks would crush it to black.
+///
+/// **Why input levels (look round 2).** The art is high-key: its darkest
+/// pixels sit near L* 50 (the island's p2 is 53). Round 1's night and
+/// unwell grades scaled that down and lifted the blacks, so the whole
+/// world sat in a narrow band of mid-greys: measured over the Home band,
+/// night had p2 22, a range of 0.68 × day and local contrast 0.66 × day, which
+/// reads as washed out. A black point moves the art's own darkest values
+/// to true darks first, so the night is deep and keeps its contrast
+/// (`design/art/harmony/grade-targets.json`, `tools/assets/frame_metrics.py`).
 public struct WorldGrade: Hashable, Sendable {
+    /// Input levels: this value and below become black, `white` and above
+    /// white (0 and 1 change nothing).
+    public var black: Double
+    public var white: Double
     public var lift: GradeRGB
     public var gamma: GradeRGB
     public var gain: GradeRGB
@@ -58,6 +74,8 @@ public struct WorldGrade: Hashable, Sendable {
     public var vignette: Double
 
     public init(
+        black: Double = 0,
+        white: Double = 1,
         lift: GradeRGB = .zero,
         gamma: GradeRGB = .one,
         gain: GradeRGB = .one,
@@ -66,6 +84,8 @@ public struct WorldGrade: Hashable, Sendable {
         saturation: Double = 1,
         vignette: Double = 0
     ) {
+        self.black = black
+        self.white = white
         self.lift = lift
         self.gamma = gamma
         self.gain = gain
@@ -100,26 +120,31 @@ public struct WorldGrade: Hashable, Sendable {
         vignette: 0.26
     )
 
-    /// Night: moonlit blue, lower saturation; the emissive points carry
-    /// the warmth.
+    /// Night: deep moonlit blue-violet with true darks (the black point
+    /// takes the art's L* 50 shadows down to about L* 5), no lifted blacks,
+    /// and more contrast than day around a low pivot; saturation drops so
+    /// the warm practicals (the ember, the door's window), drawn after the
+    /// grade, carry the warmth and pop.
     public static let night = WorldGrade(
-        lift: GradeRGB(0, 0.02, 0.06),
-        gamma: GradeRGB(0.92, 0.95, 1),
-        gain: GradeRGB(0.46, 0.53, 0.76),
-        contrast: 1.04,
-        pivot: 0.4,
-        saturation: 0.72,
+        black: 0.32,
+        gamma: GradeRGB(0.80, 0.85, 0.97),
+        gain: GradeRGB(0.44, 0.50, 0.90),
+        contrast: 1.18,
+        pivot: 0.2,
+        saturation: 0.62,
         vignette: 0.40
     )
 
-    /// Pofu unwell: a mild desaturation and a softer contrast, never grey
-    /// or gloomy (ADR-0017: Pofu never dies). Layered over the hour's grade.
+    /// Pofu unwell: cooler and about half as saturated, with deeper
+    /// shadows instead of lifted ones, so contrast holds and Pofu stays
+    /// readable; never grey fog (ADR-0017: Pofu never dies). Layered over
+    /// the hour's grade.
     public static let unwell = WorldGrade(
-        lift: GradeRGB(0.02, 0.02, 0.025),
-        gain: GradeRGB(0.97, 0.97, 0.98),
-        contrast: 0.94,
-        saturation: 0.72,
-        vignette: 0.22
+        black: 0.14,
+        gamma: GradeRGB(0.95, 0.96, 0.98),
+        gain: GradeRGB(0.94, 0.97, 1.025),
+        saturation: 0.55,
+        vignette: 0.24
     )
 
     /// High calm: a gentle warm glow. Layered over the hour's grade.
@@ -141,6 +166,8 @@ public struct WorldGrade: Hashable, Sendable {
         if t == 0 { return a }
         if t == 1 { return b }
         return WorldGrade(
+            black: a.black + (b.black - a.black) * t,
+            white: a.white + (b.white - a.white) * t,
             lift: .mix(a.lift, b.lift, t),
             gamma: .mix(a.gamma, b.gamma, t),
             gain: .mix(a.gain, b.gain, t),
@@ -152,11 +179,13 @@ public struct WorldGrade: Hashable, Sendable {
     }
 
     /// This grade with `overlay` layered on at `amount`: multiplicative
-    /// parameters multiply, lift adds, vignette takes the stronger. An
-    /// overlay over `neutral` at 1 is the overlay itself.
+    /// parameters multiply, lift adds, the levels and the vignette take the
+    /// stronger. An overlay over `neutral` at 1 is the overlay itself.
     public func layered(with overlay: WorldGrade, amount: Double) -> WorldGrade {
         let o = WorldGrade.mix(.neutral, overlay, amount)
         return WorldGrade(
+            black: max(black, o.black),
+            white: min(white, o.white),
             lift: lift + o.lift,
             gamma: gamma * o.gamma,
             gain: gain * o.gain,
@@ -167,12 +196,22 @@ public struct WorldGrade: Hashable, Sendable {
         )
     }
 
+    /// The grade for the sky: the same without its input levels.
+    public var sky: WorldGrade {
+        var copy = self
+        copy.black = 0
+        copy.white = 1
+        return copy
+    }
+
     // MARK: - Reference implementation
 
     /// The grade of one gamma-encoded color, 0…1, before the vignette: the
     /// CPU twin of the shader, for tests and tools.
     public func apply(_ c: GradeRGB) -> GradeRGB {
+        let span = max(white - black, 1e-3)
         func channel(_ x: Double, _ lift: Double, _ gamma: Double, _ gain: Double) -> Double {
+            let x = (x - black) / span
             let x1 = gain * (x + lift * (1 - x))
             let x2 = pow(max(x1, 0), 1 / max(gamma, 0.01))
             return (x2 - pivot) * contrast + pivot

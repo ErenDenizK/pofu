@@ -1,0 +1,170 @@
+batch: batch-03-home-island
+jobs:
+  pond-3:
+    pick: 1
+    note: auto-picked by QA; founder review pending
+    takes:
+      t1:
+        qa: warn
+        summary: station_anchor warn
+      t2:
+        qa: warn
+        summary: station_anchor warn
+    approved:
+      take: 1
+      at: '2026-11-02T14:47:42+00:00'
+    qa_reports:
+    - job: pond-3
+      take: 2
+      status: warn
+      preset: soft-lock
+      checks:
+      - check: transparency
+        status: pass
+        message: source has an alpha channel
+      - check: canvas
+        status: pass
+        message: 1254x1254 scaled x0.817 into 1024x1024
+        value: 0.8166
+      - check: edit_alignment
+        status: pass
+        message: the edit rescaled the object x1.023 and moved it; aligned back to
+          the parent
+        value: 0.9778
+      - check: chroma_ceiling
+        status: pass
+        message: chroma p95 16 (R1 51)
+        value: 15.9
+      - check: value_floor
+        status: pass
+        message: lightness p5 72 (R1 59)
+        value: 72.1
+      - check: detail_budget
+        status: pass
+        message: detail at display size 1.3 (R1 5.3)
+        value: 1.26
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 3.9
+        value: 3.8649
+      - check: no_guide_magenta
+        status: pass
+        message: 0 guide-magenta pixels (per 1024^2)
+        value: 0.0
+      - check: palette_drift
+        status: pass
+        message: 'mean dE 1.6, p95 3.8, off-palette 0.1% (top: #888877 (0.0%), #888866
+          (0.0%))'
+        value: 1.6006
+      - check: station_anchor
+        status: warn
+        message: width 940 px wider than the footprint (720)
+        value: 904.0
+      - check: edit_stability
+        status: pass
+        message: 93% of the parent level unchanged
+        value: 0.9278
+      info:
+        registration:
+          dx: -9
+          dy: 57
+        alignment:
+          scale: 0.9778
+          cx: 496.0
+          cy: 963.0
+          dx: 12
+          dy: -59
+        metrics_raw:
+          L_p5: 67.3
+          L_p50: 82.4
+          L_p95: 89.2
+          C_p50: 10.7
+          C_p95: 22.8
+          C_p99: 29.6
+          detail: 2.13
+        metrics_locked:
+          L_p5: 72.1
+          L_p50: 83.8
+          L_p95: 89.0
+          C_p50: 7.8
+          C_p95: 15.9
+          C_p99: 21.1
+          detail: 1.26
+      fingerprint: fb20fd4b210bf43b
+    - job: pond-3
+      take: 1
+      status: warn
+      preset: soft-lock
+      checks:
+      - check: transparency
+        status: pass
+        message: source has an alpha channel
+      - check: canvas
+        status: pass
+        message: 1254x1254 scaled x0.817 into 1024x1024
+        value: 0.8166
+      - check: edit_alignment
+        status: pass
+        message: the edit rescaled the object x1.018 and moved it; aligned back to
+          the parent
+        value: 0.9821
+      - check: chroma_ceiling
+        status: pass
+        message: chroma p95 16 (R1 51)
+        value: 16.0
+      - check: value_floor
+        status: pass
+        message: lightness p5 73 (R1 59)
+        value: 73.4
+      - check: detail_budget
+        status: pass
+        message: detail at display size 1.2 (R1 5.3)
+        value: 1.2
+      - check: lock_load
+        status: pass
+        message: the lock moved colors by mean dE 3.8
+        value: 3.8089
+      - check: no_guide_magenta
+        status: pass
+        message: 0 guide-magenta pixels (per 1024^2)
+        value: 0.0
+      - check: palette_drift
+        status: pass
+        message: 'mean dE 1.5, p95 3.8, off-palette 0.0% (top: #888866 (0.0%))'
+        value: 1.5041
+      - check: station_anchor
+        status: warn
+        message: width 943 px wider than the footprint (720)
+        value: 904.0
+      - check: edit_stability
+        status: pass
+        message: 94% of the parent level unchanged
+        value: 0.9391
+      info:
+        registration:
+          dx: -9
+          dy: 57
+        alignment:
+          scale: 0.9821
+          cx: 497.0
+          cy: 962.0
+          dx: 12
+          dy: -58
+        metrics_raw:
+          L_p5: 69.1
+          L_p50: 83.2
+          L_p95: 89.2
+          C_p50: 10.8
+          C_p95: 23.1
+          C_p99: 27.0
+          detail: 2.06
+        metrics_locked:
+          L_p5: 73.4
+          L_p50: 84.2
+          L_p95: 89.3
+          C_p50: 8.0
+          C_p95: 16.0
+          C_p99: 18.8
+          detail: 1.2
+      fingerprint: fb20fd4b210bf43b
+    upload_note: raw.png uploaded under600KB

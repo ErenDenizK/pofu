@@ -1,0 +1,117 @@
+{
+  "job": "windmill-2",
+  "batch": "batch-03-home-island",
+  "asset": "station__windmill-2",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T14:52:34+00:00",
+  "image": "design/art/stations/windmill-2/windmill-2.png",
+  "raw": "design/art/stations/windmill-2/raw.png",
+  "fingerprint": "2c11203610dc1a9b",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nAdd soft cream sail cloths stretched over each of the four sail\nframes, matte cloth with one gentle fold, the slats showing only\nat the edges.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/windmill-1/windmill-1.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T14:50:02+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "soft-lock",
+    "version": 1
+  },
+  "registration": {
+    "dx": -15,
+    "dy": -25
+  },
+  "alignment": {
+    "scale": 0.9981,
+    "cx": 499.5,
+    "cy": 877.0,
+    "dx": 14,
+    "dy": 23
+  },
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "edit_alignment",
+        "status": "pass",
+        "message": "the edit rescaled the object x1.002 and moved it; aligned back to the parent",
+        "value": 0.9981
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 25 (R1 51)",
+        "value": 25.0
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 64 (R1 59)",
+        "value": 63.6
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.8 (R1 5.3)",
+        "value": 1.8
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 6.6",
+        "value": 6.6168
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.8, p95 1.7, off-palette 0.0%",
+        "value": 0.8025
+      },
+      {
+        "check": "station_anchor",
+        "status": "warn",
+        "message": "top y 57 above the height bar (150)",
+        "value": 900.0
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "80% of the parent level unchanged",
+        "value": 0.7974
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}

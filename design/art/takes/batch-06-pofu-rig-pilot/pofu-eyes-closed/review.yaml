@@ -1,0 +1,136 @@
+batch: batch-06-pofu-rig-pilot
+contact_sheet: design/art/takes/batch-06-pofu-rig-pilot/pofu-eyes-closed/contact.jpg
+jobs:
+  pofu-eyes-closed:
+    pick: 1
+    note: auto-picked by QA; founder review pending. Pofu is never locked; lowest
+      take number breaks the zero-lock-load tie. Automated warnings retained.
+    takes:
+      t1:
+        qa: pass
+        summary: all pass
+      t2:
+        qa: warn
+        summary: palette_drift warn
+    approved:
+      take: 1
+      at: '2026-11-02T18:09:21+00:00'
+qa_reports:
+  char__pofu-eyes-closed--t2:
+    job: pofu-eyes-closed
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 70 (R1 59)
+      value: 70.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.7 (R1 5.3)
+      value: 4.74
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.0, p95 8.2, off-palette 3.1% (top: #EE9955 (0.5%), #EE7766
+        (0.4%))'
+      value: 1.9854
+    - check: ground_line
+      status: pass
+      message: feet at 89.5% of the height (contract 88%)
+      value: 0.8952
+    - check: edit_stability
+      status: pass
+      message: 95% of the parent level unchanged
+      value: 0.9535
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.91 of the parent level (drift compounds along a chain)
+      value: 0.9135
+    info:
+      metrics_raw:
+        L_p5: 70.4
+        L_p50: 89.2
+        L_p95: 96.7
+        C_p50: 11.0
+        C_p95: 50.4
+        C_p99: 59.5
+        detail: 4.76
+      metrics_locked:
+        L_p5: 70.4
+        L_p50: 89.2
+        L_p95: 96.7
+        C_p50: 11.0
+        C_p95: 50.4
+        C_p99: 56.6
+        detail: 4.74
+    fingerprint: 737029fac0b6b2f5
+  char__pofu-eyes-closed--t1:
+    job: pofu-eyes-closed
+    take: 1
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 49.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 70 (R1 59)
+      value: 69.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.8 (R1 5.3)
+      value: 4.78
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 7.3, off-palette 2.5% (top: #EE9955 (0.3%), #EE7766
+        (0.3%))'
+      value: 1.9153
+    - check: ground_line
+      status: pass
+      message: feet at 89.5% of the height (contract 88%)
+      value: 0.8945
+    - check: edit_stability
+      status: pass
+      message: 95% of the parent level unchanged
+      value: 0.9524
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.92 of the parent level (drift compounds along a chain)
+      value: 0.9211
+    info:
+      metrics_raw:
+        L_p5: 69.9
+        L_p50: 88.6
+        L_p95: 96.4
+        C_p50: 11.1
+        C_p95: 49.8
+        C_p99: 59.0
+        detail: 4.79
+      metrics_locked:
+        L_p5: 69.9
+        L_p50: 88.6
+        L_p95: 96.4
+        C_p50: 11.1
+        C_p95: 49.8
+        C_p99: 56.4
+        detail: 4.78
+    fingerprint: 737029fac0b6b2f5

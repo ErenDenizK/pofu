@@ -1,0 +1,22 @@
+id: asset-mochi-eyes-closed
+type: asset
+title_tr: mochi-eyes-closed
+title_en: mochi-eyes-closed (char)
+status: planned
+horizon: later
+summary: >-
+  Edit the attached bunny, Mochi. Change only the eyes: make both eyes gently closed, as if
+  peacefully asleep: a thin, soft, slightly downward-curved dark line where the lower edge
+  of each eye was, with fur above it. Nothing else changes.
+links:
+  variant_of:
+  - asset-mochi-v2
+art:
+  images: []
+  jobs:
+  - batch-06-pofu-rig:mochi-eyes-closed
+sources:
+- doc: tools/imagegen/manifest/batch-06-pofu-rig.yaml
+kind: char
+batch: batch-06-pofu-rig
+size: 1024x1536

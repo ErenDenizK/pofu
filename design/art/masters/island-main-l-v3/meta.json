@@ -1,0 +1,114 @@
+{
+  "job": "island-main-l-v3",
+  "batch": "batch-05-fixes-pilot",
+  "asset": "world__island-main-l-v3",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T18:01:48+00:00",
+  "image": "design/art/masters/island-main-l-v3/island-main-l-v3.png",
+  "raw": "design/art/masters/island-main-l-v3/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "560282a02ea4f2e0",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nMake only the earth body under the lawn deeper, so the island\nhas visible thickness: about one and a half times as deep as now,\na full, rounded mass of the same light honey and caramel soil with\nits gentle strata, and one more soft band of pale stone near the\nbottom, so it reads as solid ground with a rocky underside, never\nas a thin slab and never as a cone. Its underside stays soft and\nrounded. Keep the round door, its window, the pebbles and the\nroots where they are on the body; the roots hang from the new,\nlower underside. The lawn, its outline, its front lip, its\nposition on the canvas and its size stay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: moving or resizing the lawn, a cone-shaped or pointed underside, dark or grey rock, a cliff face, hard edges, water, sky, background, text.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-l-v2/island-main-l-v2.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T18:00:28+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 25 (R1 51)",
+        "value": 25.4
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 71 (R1 59)",
+        "value": 70.6
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.3 (R1 5.3)",
+        "value": 1.27
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.5",
+        "value": 0.4545
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.4, p95 4.4, off-palette 0.0%",
+        "value": 1.4295
+      },
+      {
+        "check": "depth_ratio",
+        "status": "pass",
+        "message": "earth depth / width 0.25 (target <= 0.30)",
+        "value": 0.2505
+      },
+      {
+        "check": "lawn_chroma",
+        "status": "pass",
+        "message": "lawn chroma p95 18 (palette meadow 38)",
+        "value": 18.3092
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "99% of the parent level unchanged",
+        "value": 0.9902
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.97 of the parent level (drift compounds along a chain)",
+        "value": 0.9682
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both takes pass automated QA; t2 has lowest lock load 0.4545 (t1 0.4667). Manual lower bound passes: depth ratio 0.2505 >=0.21, target 0.22-0.26. Lawn remains in the same framing; edit stability 99.02%. Source composited over blue confirms clean transparency: a glow visible in the tool preview comes from RGB under alpha-zero pixels and is not visible in a correct alpha composite."
+}

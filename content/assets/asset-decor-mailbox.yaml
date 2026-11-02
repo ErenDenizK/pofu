@@ -1,0 +1,19 @@
+id: asset-decor-mailbox
+type: asset
+title_tr: decor-mailbox
+title_en: decor-mailbox (prop)
+status: in-production
+horizon: now
+summary: >-
+  A little mailbox for the same island diorama: a round-topped box of soft sage-painted wood
+  with a small cream door, on a short, chunky honey-wood post, and a small rose flag on its
+  side, lowered. Friendly, toy-like proportions with few parts. It stands on the guide's ground
+  ellipse, centered on the cross, no taller than the height bar.
+art:
+  images: []
+  jobs:
+  - batch-08-decor-pilot:decor-mailbox
+sources:
+- doc: tools/imagegen/manifest/batch-08-decor-pilot.yaml
+kind: prop
+batch: batch-08-decor-pilot

@@ -1,0 +1,117 @@
+{
+  "job": "garden-4",
+  "batch": "batch-03-home-island",
+  "asset": "station__garden-4",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T15:02:20+00:00",
+  "image": "design/art/stations/garden-4/garden-4.png",
+  "raw": "design/art/stations/garden-4/raw.png",
+  "fingerprint": "88924ce5ffcb5149",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nAdd a low, rounded arch of soft honey wood over the back of the\nbed, wound with small sunflowers and leaves, and a short string of\nsmall triangular bunting in soft rose, honey and cream (plain, no\nsymbols, no letters) along the arch. The arch's top stays below\nthe top of the canvas with a clear margin.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/garden-3/garden-3.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T15:01:47+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "soft-lock",
+    "version": 1
+  },
+  "registration": {
+    "dx": -11,
+    "dy": 15
+  },
+  "alignment": {
+    "scale": 0.9965,
+    "cx": 495.0,
+    "cy": 922.0,
+    "dx": 11,
+    "dy": -18
+  },
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "edit_alignment",
+        "status": "pass",
+        "message": "the edit rescaled the object x1.004 and moved it; aligned back to the parent",
+        "value": 0.9965
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 20 (R1 51)",
+        "value": 20.3
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 68 (R1 59)",
+        "value": 67.9
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.7 (R1 5.3)",
+        "value": 1.74
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 5.2",
+        "value": 5.2186
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.5, p95 4.5, off-palette 0.0%",
+        "value": 1.4828
+      },
+      {
+        "check": "station_anchor",
+        "status": "warn",
+        "message": "width 861 px wider than the footprint (720)",
+        "value": 904.0
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "99% of the parent level unchanged",
+        "value": 0.9885
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}

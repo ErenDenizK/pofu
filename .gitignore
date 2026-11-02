@@ -50,3 +50,4 @@ design/art/inbox/
 
 # Pofu Atlas thumbnails (build output of tools/content/build_atlas.py)
 design/atlas/thumbs/
+design/hub/dictation/vendor/

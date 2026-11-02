@@ -1,0 +1,127 @@
+batch: batch-04-sky
+contact_sheet: design/art/takes/batch-04-sky/cloud-3/contact.jpg
+jobs:
+  cloud-3:
+    pick: 2
+    note: auto-picked by QA; founder review pending
+    takes:
+      t1:
+        qa: pass
+        summary: all pass
+      t2:
+        qa: pass
+        summary: all pass
+    approved:
+      take: 2
+      at: '2026-11-02T14:50:07+00:00'
+    qa_reports:
+      prop__cloud-3--t2:
+        job: cloud-3
+        take: 2
+        status: pass
+        preset: soft-lock
+        checks:
+        - check: transparency
+          status: pass
+          message: source has an alpha channel
+        - check: canvas
+          status: pass
+          message: 1254x1254 scaled x0.817 into 1024x1024
+          value: 0.8166
+        - check: chroma_ceiling
+          status: pass
+          message: chroma p95 9 (R1 51)
+          value: 9.2
+        - check: value_floor
+          status: pass
+          message: lightness p5 84 (R1 59)
+          value: 83.7
+        - check: detail_budget
+          status: pass
+          message: detail at display size 0.4 (R1 5.3)
+          value: 0.42
+        - check: lock_load
+          status: pass
+          message: the lock moved colors by mean dE 2.5
+          value: 2.5348
+        - check: no_guide_magenta
+          status: pass
+          message: 0 guide-magenta pixels (per 1024^2)
+          value: 0.0
+        - check: palette_drift
+          status: pass
+          message: mean dE 1.1, p95 3.2, off-palette 0.0%
+          value: 1.1103
+        info:
+          metrics_raw:
+            L_p5: 83.5
+            L_p50: 91.5
+            L_p95: 94.9
+            C_p50: 9.0
+            C_p95: 12.7
+            C_p99: 14.8
+            detail: 0.66
+          metrics_locked:
+            L_p5: 83.7
+            L_p50: 90.4
+            L_p95: 94.1
+            C_p50: 6.7
+            C_p95: 9.2
+            C_p99: 10.4
+            detail: 0.42
+        fingerprint: e8518090ed3a7cff
+      prop__cloud-3--t1:
+        job: cloud-3
+        take: 1
+        status: pass
+        preset: soft-lock
+        checks:
+        - check: transparency
+          status: pass
+          message: source has an alpha channel
+        - check: canvas
+          status: pass
+          message: 1254x1254 scaled x0.817 into 1024x1024
+          value: 0.8166
+        - check: chroma_ceiling
+          status: pass
+          message: chroma p95 9 (R1 51)
+          value: 8.8
+        - check: value_floor
+          status: pass
+          message: lightness p5 84 (R1 59)
+          value: 84.4
+        - check: detail_budget
+          status: pass
+          message: detail at display size 0.4 (R1 5.3)
+          value: 0.4
+        - check: lock_load
+          status: pass
+          message: the lock moved colors by mean dE 2.6
+          value: 2.5514
+        - check: no_guide_magenta
+          status: pass
+          message: 0 guide-magenta pixels (per 1024^2)
+          value: 0.0
+        - check: palette_drift
+          status: pass
+          message: mean dE 1.0, p95 2.5, off-palette 0.0%
+          value: 1.0277
+        info:
+          metrics_raw:
+            L_p5: 84.1
+            L_p50: 93.5
+            L_p95: 97.0
+            C_p50: 7.8
+            C_p95: 12.3
+            C_p99: 14.7
+            detail: 0.69
+          metrics_locked:
+            L_p5: 84.4
+            L_p50: 91.9
+            L_p95: 95.3
+            C_p50: 5.9
+            C_p95: 8.8
+            C_p99: 10.5
+            detail: 0.4
+        fingerprint: e8518090ed3a7cff

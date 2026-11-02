@@ -1,0 +1,22 @@
+id: asset-pofu-mouth-open
+type: asset
+title_tr: pofu-mouth-open
+title_en: pofu-mouth-open (char)
+status: planned
+horizon: later
+summary: >-
+  Edit the attached hamster. Change only his mouth: open it into a small, happy laugh, a soft
+  rounded opening under the nose with a hint of pink tongue, the same width as the current
+  smile. The muzzle fur moves only around the mouth. Nothing else changes.
+links:
+  variant_of:
+  - asset-pofu-base-v1
+art:
+  images: []
+  jobs:
+  - batch-06-pofu-rig:pofu-mouth-open
+sources:
+- doc: tools/imagegen/manifest/batch-06-pofu-rig.yaml
+kind: char
+batch: batch-06-pofu-rig
+size: 1024x1536
