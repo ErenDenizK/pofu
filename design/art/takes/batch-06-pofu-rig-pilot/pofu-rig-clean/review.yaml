@@ -2,12 +2,11 @@ batch: batch-06-pofu-rig-pilot
 contact_sheet: design/art/takes/batch-06-pofu-rig-pilot/pofu-rig-clean/contact.jpg
 jobs:
   pofu-rig-clean:
-    pick: none
-    note: 'Stopped: both generated takes fail visual transparency QA. A broad orange
-      halo/background extends outside the R1 silhouette, contrary to the transparent
-      clean-plate requirement. Automated alpha-channel QA reports pass but does not
-      detect the unwanted halo. No retry or promotion. Queue stopped on the same transparency
-      defect in batch 05; next batch-06 job is pofu-eyes-happy.'
+    pick: 1
+    note: 'auto-picked by QA; founder review pending. Both takes pass QA. Alpha compositing
+      on blue confirms transparent margins: the raw-image preview displayed RGB under
+      alpha zero as a halo; it is not visible in actual composition. The temporary
+      visual rejection was withdrawn after this check.'
     takes:
       t1:
         qa: pass
@@ -15,6 +14,9 @@ jobs:
       t2:
         qa: pass
         summary: all pass
+    approved:
+      take: 1
+      at: '2026-11-02T18:02:55+00:00'
 qa_reports:
   char__pofu-rig-clean--t1:
     job: pofu-rig-clean
