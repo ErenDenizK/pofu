@@ -2611,6 +2611,336 @@
           }
         }
       }
+    },
+    "Reset the rehearsal?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prova sıfırlansın mı?"
+          }
+        }
+      }
+    },
+    "Reset" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sıfırla"
+          }
+        }
+      }
+    },
+    "Setup, seeds and the island start over. Live data is not touched." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kurulum, çekirdekler ve ada baştan başlar. Gerçek verilere dokunulmaz."
+          }
+        }
+      }
+    },
+    "Rehearsal" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prova"
+          }
+        }
+      }
+    },
+    "Shows the rehearsal controls" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prova kontrollerini gösterir"
+          }
+        }
+      }
+    },
+    "+15 min of use" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+15 dk kullanım"
+          }
+        }
+      }
+    },
+    "1 hour ahead" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 saat ileri"
+          }
+        }
+      }
+    },
+    "Collapse" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Küçült"
+          }
+        }
+      }
+    },
+    "Morning" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sabah"
+          }
+        }
+      }
+    },
+    "Night" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gece"
+          }
+        }
+      }
+    },
+    "Reach for Instagram" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instagram'a uzan"
+          }
+        }
+      }
+    },
+    "Reach for YouTube" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "YouTube'a uzan"
+          }
+        }
+      }
+    },
+    "Reach for TikTok" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TikTok'a uzan"
+          }
+        }
+      }
+    },
+    "Rehearsal: on a device, this screen is Apple's" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prova: gerçek cihazda Apple'ın ekranı"
+          }
+        }
+      }
+    },
+    "Swipe home without tapping" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokunmadan ana ekrana kaydır"
+          }
+        }
+      }
+    },
+    "Rehearsal: a stand-in for the app" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prova: uygulamanın yerine geçen ekran"
+          }
+        }
+      }
+    },
+    "Back to the Home Screen" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ana ekrana dön"
+          }
+        }
+      }
+    },
+    "%lld min left" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld dk kaldı"
+          }
+        }
+      }
+    },
+    "“Pofu” Would Like to Access Screen Time" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Pofu” Ekran Süresi'ne Erişmek İstiyor"
+          }
+        }
+      }
+    },
+    "Providing “Pofu” access to Screen Time may allow it to see your activity data, restrict content, and limit the usage of apps and websites." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Pofu” uygulamasına Ekran Süresi erişimi vermek; etkinlik verilerinizi görmesine, içeriği kısıtlamasına, uygulamaların ve web sitelerinin kullanımını sınırlamasına izin verebilir."
+          }
+        }
+      }
+    },
+    "Don’t Allow" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzin Verme"
+          }
+        }
+      }
+    },
+    "All Apps & Categories" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tüm Uygulamalar ve Kategoriler"
+          }
+        }
+      }
+    },
+    "Choose Activities" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etkinlikleri Seç"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vazgeç"
+          }
+        }
+      }
+    },
+    "Show apps" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulamaları göster"
+          }
+        }
+      }
+    },
+    "Social" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sosyal"
+          }
+        }
+      }
+    },
+    "Entertainment" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eğlence"
+          }
+        }
+      }
+    },
+    "Rehearsal: this button stands in for opening the app" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prova: bu düğme uygulamayı açmanın yerine geçer"
+          }
+        }
+      }
+    },
+    "Rehearsal mode" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prova modu"
+          }
+        }
+      }
+    },
+    "Close Pofu in the app switcher and open it again to switch." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geçmek için Pofu'yu uygulama değiştiricide kapatıp yeniden aç."
+          }
+        }
+      }
+    },
+    "Developer" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geliştirici"
+          }
+        }
+      }
+    },
+    "Rehearsal mode simulates Screen Time inside Pofu: the permission, the app picker, the shield and usage. Its data is kept apart from live data and tagged as simulated." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prova modu Ekran Süresi'ni Pofu'nun içinde taklit eder: izin, uygulama seçici, kalkan ve kullanım. Verileri gerçek verilerden ayrı tutulur ve simüle olarak işaretlenir."
+          }
+        }
+      }
+    },
+    "Screen Time (rehearsal)" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ekran Süresi (prova)"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

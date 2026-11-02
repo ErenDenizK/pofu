@@ -136,10 +136,11 @@ struct FocusSessionView: View {
 
     private func running(_ session: ActiveSession) -> some View {
         TimelineView(.periodic(from: .now, by: 1)) { context in
-            let remaining = session.remaining(at: context.date)
+            let date = model.modelTime(at: context.date)
+            let remaining = session.remaining(at: date)
             let total = Double(max(1, session.plannedMinutes * 60))
             let progress = 1 - remaining / total
-            let soFar = model.economy.grossEnergy(for: session.completed(at: context.date)).units
+            let soFar = model.economy.grossEnergy(for: session.completed(at: date)).units
             VStack(spacing: PofuSpacing.l) {
                 VStack(spacing: PofuSpacing.xs) {
                     Text("\(Text(session.kind.label)) · \(session.plannedMinutes) min")

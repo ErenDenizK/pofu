@@ -31,6 +31,9 @@ targets:
     platform: iOS
     sources:
       - path: App
+      # The shield's colors, icon and notification, shared with the
+      # Screen Time extensions for Rehearsal mode's replica.
+      - path: Extensions/Shared
     # The bundle identifier and signing team live in the xcconfig, so that a
     # git-ignored Config/Local.xcconfig can override them per machine and
     # survive regeneration. DEVELOPMENT_TEAM is empty there; CI builds
@@ -79,6 +82,7 @@ targets:
     platform: iOS
     sources:
       - path: App
+      - path: Extensions/Shared
     configFiles:
       Debug: Config/Pofu.xcconfig
       Release: Config/Pofu.xcconfig
@@ -156,6 +160,7 @@ targets:
     platform: iOS
     sources:
       - path: Extensions/ShieldConfiguration
+      - path: Extensions/Shared/ShieldStyle.swift
       # Pofu's face on the shield, shared with PofuCompanion (not a copy).
       - path: Packages/PofuKit/Sources/PofuCompanion/Resources/pofu-hamster.png
         buildPhase: resources
@@ -187,6 +192,7 @@ targets:
     platform: iOS
     sources:
       - path: Extensions/ShieldAction
+      - path: Extensions/Shared/GateNotificationContent.swift
     configFiles:
       Debug: Config/Pofu.xcconfig
       Release: Config/Pofu.xcconfig

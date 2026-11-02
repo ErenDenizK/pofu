@@ -7,14 +7,34 @@ import PofuPersistence
 import PofuScreenTime
 import UserNotifications
 
+/// What the gate needs from Screen Time: the live system
+/// (`LiveScreenTimeService`) or Rehearsal mode's simulation
+/// (`RehearsalScreenTime`).
+@MainActor
+protocol GateSystem: AnyObject {
+    func authorizationStatus() -> ScreenTimeAuthorizationStatus
+    func distractingSelection() -> DistractionSelection
+    func applyShield(_ id: ShieldID, to selection: DistractionSelection) throws
+    func removeShield(_ id: ShieldID)
+    func liftShields(from app: ShieldedApp, passID: UUID, at date: Date, until: Date) throws
+    func restoreShields(passID: UUID)
+    func reconcile(at date: Date)
+    func scheduleThreshold(_ schedule: ThresholdSchedule) throws
+    func cancelThresholds(withPrefix prefix: String)
+}
+
+extension LiveScreenTimeService: GateSystem {}
+
 /// The app's side of the Screen Time gate (ADR-0013): authorization, the
 /// picked apps, the shield, the usage thresholds, and the records the
 /// extensions leave in the App Group.
 ///
 /// It is live only in the `PofuLive` build, which carries the Family
-/// Controls entitlement (`POFU_SCREEN_TIME_LIVE`). In the default build,
-/// signed by a free Personal Team, `isAvailable` is false and nothing here
-/// touches Screen Time, so the soft gate runs alone as before.
+/// Controls entitlement (`POFU_SCREEN_TIME_LIVE`). In Rehearsal mode (the
+/// free build's default) the same gate runs on `RehearsalScreenTime`, which
+/// simulates the system and the extensions in the app's own folder. Without
+/// either, `isAvailable` is false and nothing here touches Screen Time, so
+/// the soft gate runs alone as before.
 @MainActor
 @Observable
 final class ScreenTimeGate {
@@ -31,6 +51,9 @@ final class ScreenTimeGate {
     }
 
     private let live: LiveScreenTimeService?
+    /// Rehearsal mode's simulated Screen Time, when it runs.
+    let rehearsal: RehearsalScreenTime?
+    private let system: (any GateSystem)?
     private let inbox: ScreenTimeInbox?
     private let directory: ShieldDirectory?
     private let contextStore: ShieldContextStore?
@@ -45,21 +68,39 @@ final class ScreenTimeGate {
     ///   uses the App Group so the extensions see them.
     init(location: StorageLocation?) {
         if Self.isLiveBuild, let location {
-            live = LiveScreenTimeService(location: location)
+            let live = LiveScreenTimeService(location: location)
+            self.live = live
+            system = live
             inbox = ScreenTimeInbox(location: location)
             directory = ShieldDirectory(location: location)
             contextStore = ShieldContextStore(location: location)
         } else {
             live = nil
+            system = nil
             inbox = nil
             directory = nil
             contextStore = nil
         }
+        rehearsal = nil
         refreshStatus()
     }
 
-    /// The live gate exists in this build.
-    var isAvailable: Bool { live != nil }
+    /// The gate on Rehearsal mode's simulated Screen Time.
+    init(rehearsal: RehearsalScreenTime) {
+        live = nil
+        self.rehearsal = rehearsal
+        system = rehearsal
+        inbox = ScreenTimeInbox(location: rehearsal.location)
+        directory = ShieldDirectory(location: rehearsal.location)
+        contextStore = ShieldContextStore(location: rehearsal.location)
+        refreshStatus()
+    }
+
+    /// The gate exists in this build: live, or rehearsed.
+    var isAvailable: Bool { system != nil }
+
+    /// The gate runs on Rehearsal mode's simulation.
+    var isRehearsal: Bool { rehearsal != nil }
 
     /// The shield stands in front of something.
     var isOn: Bool {
@@ -72,9 +113,9 @@ final class ScreenTimeGate {
     }
 
     func refreshStatus() {
-        guard let live else { return }
-        authorization = live.authorizationStatus()
-        selection = live.distractingSelection()
+        guard let system else { return }
+        authorization = system.authorizationStatus()
+        selection = system.distractingSelection()
     }
 
     /// Takes the rules with the user's daily hour; reschedules the usage
@@ -118,26 +159,44 @@ final class ScreenTimeGate {
         activate()
     }
 
+    /// Rehearsal mode: the answer to the mocked Screen Time alert.
+    func answerRehearsalAuthorization(approved: Bool) {
+        guard let rehearsal else { return }
+        rehearsal.setAuthorization(approved ? .approved : .denied)
+        refreshStatus()
+        if approved, !selection.isEmpty {
+            activate()
+        }
+    }
+
+    /// Rehearsal mode: what the mocked picker returned.
+    func applyRehearsalSelection(_ picked: DistractionSelection) throws {
+        guard let rehearsal else { return }
+        try rehearsal.updateSelection(picked)
+        refreshStatus()
+        activate()
+    }
+
     /// Shields the selection and schedules the usage thresholds; with an
     /// empty selection, removes both.
     private func activate() {
-        guard let live, authorization == .approved else { return }
+        guard let system, authorization == .approved else { return }
         let ladder = rules.ladder
         // Every Pofu threshold, also those of another daily hour.
-        live.cancelThresholds(withPrefix: GuardedUsageLadder.namePrefix)
+        system.cancelThresholds(withPrefix: GuardedUsageLadder.namePrefix)
         guard !selection.isEmpty else {
-            live.removeShield(Self.gateShield)
+            system.removeShield(Self.gateShield)
             Log.screenTime.info("Selection is empty: shield and thresholds removed")
             return
         }
         do {
-            try live.applyShield(Self.gateShield, to: selection)
+            try system.applyShield(Self.gateShield, to: selection)
         } catch {
             Log.screenTime.error("Applying the shield failed: \(String(describing: error), privacy: .public)")
         }
         for (name, seconds) in ladder.thresholds {
             do {
-                try live.scheduleThreshold(ThresholdSchedule(id: ThresholdID(rawValue: name), selection: selection, threshold: seconds))
+                try system.scheduleThreshold(ThresholdSchedule(id: ThresholdID(rawValue: name), selection: selection, threshold: seconds))
             } catch {
                 Log.screenTime.error("Scheduling \(name, privacy: .public) failed: \(String(describing: error), privacy: .public)")
             }
@@ -150,9 +209,9 @@ final class ScreenTimeGate {
     /// Lifts the shield from `app` for `pass`, before Hop! hands the user
     /// back to it.
     func lift(_ app: ShieldedApp, for pass: Pass, at date: Date) {
-        guard let live else { return }
+        guard let system else { return }
         do {
-            try live.liftShields(from: app, passID: pass.id, at: date, until: pass.expiresAt)
+            try system.liftShields(from: app, passID: pass.id, at: date, until: pass.expiresAt)
             Log.screenTime.info("Shield lifted for \(pass.durationMinutes, privacy: .public) min")
         } catch {
             Log.screenTime.error("Lifting the shield failed: \(String(describing: error), privacy: .public)")
@@ -161,15 +220,15 @@ final class ScreenTimeGate {
 
     /// Puts the shield back when `passID` ended early or was voided.
     func restore(passID: UUID) {
-        live?.restoreShields(passID: passID)
+        system?.restoreShields(passID: passID)
     }
 
     /// Brings the shields in line with the time, in case a monitor
     /// callback was late or missed.
     func reconcile(at date: Date) {
-        guard let live else { return }
+        guard let system else { return }
         refreshStatus()
-        live.reconcile(at: date)
+        system.reconcile(at: date)
     }
 
     // MARK: Inbox

@@ -69,8 +69,18 @@ struct OnboardingView: View {
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: step)
         .sensoryFeedback(.selection, trigger: step)
         .sensoryFeedback(.success, trigger: caughtCount)
+        .onChange(of: model.rehearsal?.isAway ?? false) { _, isAway in
+            // Rehearsal mode: the shield replica stands in for leaving
+            // Pofu to open the app, and closing it for coming back.
+            guard step == .tryIt, model.rehearsal != nil else { return }
+            if isAway {
+                leftForDemo = true
+            } else {
+                checkDemo()
+            }
+        }
         .onChange(of: scenePhase) { _, phase in
-            guard step == .tryIt else { return }
+            guard step == .tryIt, model.rehearsal == nil else { return }
             switch phase {
             case .background:
                 leftForDemo = true
@@ -144,12 +154,22 @@ struct OnboardingView: View {
                     step = .notifications
                 }
             },
-            onUseShortcuts: {
-                choseShortcuts = true
-                step = .apps
-            },
+            // Rehearsal mode keeps the Shortcuts setup to Settings.
+            onUseShortcuts: shortcutsFallback,
             onLater: { model.completeOnboarding() }
         )
+    }
+
+    /// The Shortcuts fallback on a denial; none in Rehearsal mode, which
+    /// keeps the Shortcuts setup to Settings.
+    private var shortcutsFallback: (() -> Void)? {
+        if model.screenTime.isRehearsal {
+            return nil
+        }
+        return {
+            choseShortcuts = true
+            step = .apps
+        }
     }
 
     // MARK: Live gate: O6–O8
@@ -186,7 +206,7 @@ struct OnboardingView: View {
     }
 
     private func startDemo() {
-        demoStartedAt = Date()
+        demoStartedAt = model.currentTime()
         leftForDemo = false
         missedShield = false
         step = .tryIt
@@ -212,6 +232,9 @@ struct OnboardingView: View {
                     .font(PofuFont.body)
                     .foregroundStyle(PofuColor.textSecondary)
                     .multilineTextAlignment(.center)
+                if model.rehearsal != nil {
+                    rehearsalReach
+                }
             }
             Spacer()
             if missedShield {
@@ -232,6 +255,26 @@ struct OnboardingView: View {
             }
         }
         .padding(PofuSpacing.screen)
+    }
+
+    /// Rehearsal mode's stand-in for opening Instagram from the Home
+    /// Screen.
+    private var rehearsalReach: some View {
+        VStack(spacing: PofuSpacing.s) {
+            Button {
+                model.rehearsalReach(for: .instagram)
+            } label: {
+                Label {
+                    Text("Reach for Instagram")
+                } icon: {
+                    Image(systemName: ProtectedApp.instagram.symbolName)
+                }
+                .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(PofuSecondaryButtonStyle())
+            RehearsalBadge(text: Text("Rehearsal: this button stands in for opening the app"))
+        }
+        .padding(.top, PofuSpacing.s)
     }
 
     /// O8: "Yakaladım!"
