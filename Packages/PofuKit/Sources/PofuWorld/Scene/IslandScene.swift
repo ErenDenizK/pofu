@@ -284,9 +284,14 @@ private struct SceneFrame<Bubble: View>: View {
 
         ZStack(alignment: .topLeading) {
             ZStack(alignment: .topLeading) {
-                ZStack(alignment: .topLeading) {
-                    LivingSky(palette: palette, offset: offset)
+                // The sky takes the grade without its input levels, which
+                // would crush its designed night colours to black.
+                LivingSky(palette: palette, offset: offset)
+                    .environment(\.worldAmbientPaused, ambientPaused)
+                    .modifier(GradeEffect(grade: grade.sky, isEnabled: look.grade))
+                    .animation(still ? nil : .easeInOut(duration: 2.5), value: grade)
 
+                ZStack(alignment: .topLeading) {
                     WorldCanvas(
                         world: world,
                         lens: lens,

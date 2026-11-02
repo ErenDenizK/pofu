@@ -39,14 +39,49 @@ struct WorldGradeTests {
         #expect(night.g < 0.5)
     }
 
-    @Test func unwellDesaturatesMildly() {
+    private func luma(_ c: GradeRGB) -> Double {
+        0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b
+    }
+
+    @Test func unwellDesaturatesButKeepsItsContrast() {
         let c = GradeRGB(0.85, 0.55, 0.35)
         let base = WorldGrade.day
-        let out = base.layered(with: .unwell, amount: 1).apply(c)
-        let ref = base.apply(c)
+        let unwell = base.layered(with: .unwell, amount: 1)
         let spread = { (c: GradeRGB) in max(c.r, c.g, c.b) - min(c.r, c.g, c.b) }
-        #expect(spread(out) < spread(ref) * 0.85)
-        #expect(spread(out) > spread(ref) * 0.5)
+        #expect(spread(unwell.apply(c)) < spread(base.apply(c)) * 0.75)
+        #expect(spread(unwell.apply(c)) > spread(base.apply(c)) * 0.3)
+        // Never grey fog: the art's darkest and lightest stay at least as
+        // far apart as by day, and the shadows are not lifted.
+        let dark = GradeRGB(0.47, 0.42, 0.36), light = GradeRGB(0.93, 0.91, 0.86)
+        #expect(luma(unwell.apply(light)) - luma(unwell.apply(dark)) >= luma(base.apply(light)) - luma(base.apply(dark)))
+        #expect(luma(unwell.apply(dark)) <= luma(base.apply(dark)))
+        // And cooler.
+        #expect(unwell.apply(GradeRGB(all: 0.7)).b > unwell.apply(GradeRGB(all: 0.7)).r)
+    }
+
+    @Test func nightHasTrueDarksAndNoLiftedBlacks() {
+        // The art's darkest values sit near L* 50 (sRGB ~0.47).
+        let shadow = GradeRGB(0.47, 0.42, 0.36)
+        #expect(luma(WorldGrade.night.apply(shadow)) < 0.08)
+        #expect(luma(WorldGrade.night.apply(GradeRGB(all: 0))) == 0)
+        // Highlights still read: a cream highlight stays well above the shadow.
+        let cream = GradeRGB(0.97, 0.94, 0.88)
+        #expect(luma(WorldGrade.night.apply(cream)) - luma(WorldGrade.night.apply(shadow)) > 0.3)
+    }
+
+    @Test func theSkyTakesTheGradeWithoutItsLevels() {
+        let sky = WorldGrade.night.sky
+        #expect(sky.black == 0 && sky.white == 1)
+        #expect(sky.gain == WorldGrade.night.gain)
+        // A dark night-sky blue is not crushed to black.
+        #expect(luma(sky.apply(GradeRGB(0.16, 0.18, 0.36))) > 0.03)
+    }
+
+    @Test func levelsLayerByTheStronger() {
+        let g = WorldGrade.night.layered(with: .unwell, amount: 1)
+        #expect(g.black == WorldGrade.night.black)
+        #expect(WorldGrade.day.layered(with: .unwell, amount: 1).black == WorldGrade.unwell.black)
+        #expect(abs(WorldGrade.mix(.day, .night, 0.5).black - WorldGrade.night.black / 2) < 1e-12)
     }
 
     @Test func mixHitsBothEnds() {

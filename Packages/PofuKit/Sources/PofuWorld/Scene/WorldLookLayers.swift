@@ -26,6 +26,7 @@ enum WorldShaders {
 
     static func grade(_ g: WorldGrade, size: CGSize) -> Shader {
         Shader(function: ShaderFunction(library: library, name: "pofuWorldGrade"), arguments: [
+            .float2(g.black, g.white),
             .float3(g.lift.r, g.lift.g, g.lift.b),
             .float3(g.gamma.r, g.gamma.g, g.gamma.b),
             .float3(g.gain.r, g.gain.g, g.gain.b),
@@ -49,13 +50,16 @@ struct GradeVector: VectorArithmetic {
         values = [
             g.lift.r, g.lift.g, g.lift.b, g.gamma.r, g.gamma.g, g.gamma.b,
             g.gain.r, g.gain.g, g.gain.b, g.contrast, g.pivot, g.saturation, g.vignette,
+            g.black, g.white,
         ]
     }
 
     var grade: WorldGrade {
-        guard values.count == 13 else { return .neutral }
+        guard values.count == 15 else { return .neutral }
         let v = values
         return WorldGrade(
+            black: v[13],
+            white: v[14],
             lift: GradeRGB(v[0], v[1], v[2]),
             gamma: GradeRGB(v[3], v[4], v[5]),
             gain: GradeRGB(v[6], v[7], v[8]),

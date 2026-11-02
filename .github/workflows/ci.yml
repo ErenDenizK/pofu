@@ -263,6 +263,9 @@ jobs:
           cp shots/*.txt out/ 2>/dev/null || true
           # The asset-harmony contact sheet: every master before and after its correction.
           python3 -I repo/tools/assets/harmony.py measure --dry-run --sheet out/harmony.jpg > out/harmony.txt
+          # Measured numbers for every grade frame (tools/assets/frame_metrics.py).
+          python3 -I repo/tools/assets/frame_metrics.py shots > out/grade-metrics.txt || true
+          cat out/grade-metrics.txt
           ls -la out
 
       - name: Force-push the screenshots branch

@@ -14,8 +14,9 @@ using namespace metal;
 namespace pofuworld {
 
 // The grade itself; WorldGrade.apply is its CPU twin.
-inline half3 grade(half3 x, float3 lift, float3 gamma, float3 gain, float contrast, float pivot, float saturation) {
+inline half3 grade(half3 x, float2 levels, float3 lift, float3 gamma, float3 gain, float contrast, float pivot, float saturation) {
     float3 c = float3(x);
+    c = (c - levels.x) / max(levels.y - levels.x, 1e-3);
     c = gain * (c + lift * (1.0 - c));
     c = pow(max(c, 0.0), 1.0 / max(gamma, float3(0.01)));
     c = (c - pivot) * contrast + pivot;
@@ -28,12 +29,14 @@ inline half3 grade(half3 x, float3 lift, float3 gamma, float3 gain, float contra
 
 // The runtime color grade and the vignette, on the world layer only.
 //
+// levels:            (black, white) input levels
 // lift, gamma, gain: per channel
 // shape:             (contrast, pivot, saturation, vignette)
 // size:              the layer's size in points
 [[ stitchable ]] half4 pofuWorldGrade(
     float2 position,
     half4 color,
+    float2 levels,
     float3 lift,
     float3 gamma,
     float3 gain,
@@ -44,7 +47,7 @@ inline half3 grade(half3 x, float3 lift, float3 gamma, float3 gain, float contra
         return color;
     }
     half3 rgb = color.rgb / color.a;
-    rgb = pofuworld::grade(rgb, lift, gamma, gain, shape.x, shape.y, shape.z);
+    rgb = pofuworld::grade(rgb, levels, lift, gamma, gain, shape.x, shape.y, shape.z);
 
     // An elliptical vignette, gentle in the middle third, a little warm.
     float2 uv = (position / max(size, float2(1.0)) - 0.5) * 2.0;
