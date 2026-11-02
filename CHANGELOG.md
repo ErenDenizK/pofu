@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Ayçiçeği's garden minigame, a vertical slice (`PofuGames`,
+  `docs/product/minigames.md`): a block puzzle where full rows bloom into
+  sunflowers and pour seeds into Pofu's cheeks; rounds are a bag of 18
+  plots with a kind end and a 2–5 seed yield, five to a set. SpriteKit
+  scene with tuned feel and Reduce Motion, crafted HUD and cards, a
+  Rehearsal entry ("Bahçede oyna"), and simulator screenshots.
+
 - Pofu's voice (`docs/brand/pofu-voice.md`): research on what makes a
   mascot's humour land or grate, the rules for personality B (jealous as
   play, never guilt; comedy rationed per day and decaying with the reach
