@@ -182,5 +182,25 @@ class ProcessTakeTests(unittest.TestCase):
         self.assertEqual(res.checks[0].status, "fail")
 
 
+
+class HarmonyCheckTests(unittest.TestCase):
+    """The promote-time harmony score (tools/assets/harmony.py)."""
+
+    def test_the_approved_cay_scores_well_and_a_flat_stall_scores_low(self):
+        cay = sl.load_rgba(HERE.parents[2] / "design" / "art" / "stations" / "cay-1" / "cay-1--lock-light.png")
+        lim = qa.limits_for("station")
+        good = qa.check_harmony(cay, "station", lim)
+        self.assertIsNotNone(good)
+        self.assertGreater(good.value, 70)
+        flat = qa.check_harmony(stall(), "station", lim)
+        self.assertLess(flat.value, good.value)
+        self.assertNotEqual(flat.status, "fail")  # advisory: harmony corrects what it can
+
+    def test_every_world_kind_gets_a_harmony_line(self):
+        res = qa.process_take(stall(), "station", (1024, 1024), sl.load_presets()["lock-light"],
+                              ["world-props", "world-day", "character"], register_root=True)
+        self.assertIn("harmony", {c.name for c in res.checks})
+
+
 if __name__ == "__main__":
     unittest.main()
