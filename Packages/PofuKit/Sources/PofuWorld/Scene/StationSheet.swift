@@ -3,20 +3,24 @@ import PofuCore
 import PofuDesignSystem
 import SwiftUI
 
-/// A station's sheet (interaction spec §2.3), a stub for W2: the name and
-/// keeper, five level dots, the rate, and the build button. Building
-/// itself and its celebration arrive with W4.
+/// A station's sheet (interaction spec §2.3): the name and keeper, five
+/// level dots, the rate, and the build button. While its build moment
+/// runs, the sheet sits at its compact detent and says so (§2.6: the one
+/// refused input explains itself).
 struct StationSheet: View {
     let station: StationID
     let status: StationStatus?
     let jar: Energy
+    var isBuilding = false
     let onBuild: (@MainActor (StationID) -> Void)?
     let onClose: @MainActor () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: PofuSpacing.l) {
             header
-            if let status {
+            if isBuilding {
+                building
+            } else if let status {
                 levelDots(status)
                 details(status)
                 Spacer(minLength: 0)
@@ -29,9 +33,24 @@ struct StationSheet: View {
             }
         }
         .padding(.horizontal, PofuSpacing.screen)
-        .padding(.top, PofuSpacing.xl)
+        .padding(.top, isBuilding ? PofuSpacing.l : PofuSpacing.xl)
         .padding(.bottom, PofuSpacing.l)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .animation(.spring(duration: 0.25, bounce: 0), value: isBuilding)
+    }
+
+    /// The compact sheet during a build: the button's place says what is
+    /// happening.
+    private var building: some View {
+        HStack(spacing: PofuSpacing.s) {
+            ProgressView()
+                .controlSize(.small)
+            Text("Building…", bundle: .module)
+                .font(PofuFont.headline)
+                .foregroundStyle(PofuColor.textSecondary)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityElement(children: .combine)
     }
 
     private var header: some View {
@@ -97,7 +116,14 @@ struct StationSheet: View {
                 if missing > 0 {
                     Text("\(missing) more seeds", bundle: .module)
                 } else {
-                    Text("Build · \(cost.units)", bundle: .module)
+                    HStack(spacing: PofuSpacing.s) {
+                        Text("Build · \(cost.units)", bundle: .module)
+                        SeedGlyph()
+                            .fill(PofuColor.onAccent)
+                            .frame(width: 9, height: 14)
+                            .rotationEffect(.degrees(18))
+                            .accessibilityHidden(true)
+                    }
                 }
             }
             .buttonStyle(PofuPrimaryButtonStyle())

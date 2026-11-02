@@ -36,6 +36,10 @@ public struct CompanionMotion: Sendable {
     /// Accessibility: no hops, sway, or ripple; expressions still change.
     public var reduceMotion = false
 
+    /// Idle blinks. Screenshots turn them off, so a still frame never
+    /// catches Pofu with his eyes shut; expressions still close the lids.
+    public var blinks = true
+
     public private(set) var time: Double = 0
 
     private var breathPhase: Double = 0
@@ -174,7 +178,7 @@ public struct CompanionMotion: Sendable {
         let flight = airborne ? min(max(hopVelocity / 9, -0.05), 0.12) : 0
         let squashed = SquashModel.scales(squash: squash.value + flight)
         let slump = SquashModel.slump(vitality: v)
-        let blinkClosure = BlinkCurve.closure(elapsed: time - blinkStart)
+        let blinkClosure = blinks ? BlinkCurve.closure(elapsed: time - blinkStart) : 0
         let sleepy = (1 - smoothstep(0.25, 0.75, v)) * 0.42
         let happiness = clampUnit(happy.value)
 

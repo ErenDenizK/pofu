@@ -13,15 +13,19 @@ import SwiftUI
 /// islands sit on one world canvas moved by one scale-and-offset
 /// transform. Pofu is drawn in screen space at the same projection, so
 /// his live companion view and its shader render at their final size
-/// instead of being magnified ×2.4.
+/// instead of being magnified ×2.4. Behind the world, a living sky follows
+/// the snapshot's clock; in front of it, a cloud sea keeps the bottom band
+/// calm.
 ///
 /// Gestures: a pinch scrubs the rail between the framings and settles on
 /// the nearest with a spring; a double tap steps in; a one-finger drag
 /// peeks. A tap on a station focuses it and raises its sheet; a tap on a
-/// resident shows their card.
+/// resident shows their card. With a `WorldHomeModel`, the station sheet
+/// builds and the build moment plays in the world.
 public struct IslandScene<Bubble: View>: View {
     let world: WorldSnapshot
     let model: IslandSceneModel
+    let home: WorldHomeModel?
     let onPofuTap: (@MainActor () -> Void)?
     let onBuild: (@MainActor (StationID) -> Void)?
     let bubble: Bubble
@@ -32,6 +36,7 @@ public struct IslandScene<Bubble: View>: View {
     /// - Parameters:
     ///   - world: The world to draw.
     ///   - model: The scene's camera, focus and sheet state.
+    ///   - home: The visit and its moments; the build moment plays from it.
     ///   - onPofuTap: Called after Pofu's own squish when he is tapped.
     ///   - onBuild: Builds a station's next level; `nil` shows the sheet's
     ///     button as unavailable.
@@ -39,12 +44,14 @@ public struct IslandScene<Bubble: View>: View {
     public init(
         world: WorldSnapshot,
         model: IslandSceneModel,
+        home: WorldHomeModel? = nil,
         onPofuTap: (@MainActor () -> Void)? = nil,
         onBuild: (@MainActor (StationID) -> Void)? = nil,
         @ViewBuilder bubble: () -> Bubble
     ) {
         self.world = world
         self.model = model
+        self.home = home
         self.onPofuTap = onPofuTap
         self.onBuild = onBuild
         self.bubble = bubble()
@@ -54,7 +61,7 @@ public struct IslandScene<Bubble: View>: View {
         @Bindable var model = model
         GeometryReader { proxy in
             let size = proxy.size
-            TimelineView(.animation(minimumInterval: nil, paused: !model.needsFrames)) { context in
+            TimelineView(.animation(minimumInterval: nil, paused: !model.needsFrames && home?.build == nil)) { context in
                 let _ = model.revision
                 let rig = model.frame(
                     at: context.date,
@@ -62,14 +69,38 @@ public struct IslandScene<Bubble: View>: View {
                     height: Double(size.height),
                     safeTop: safeTop
                 )
-                SceneFrame(
-                    world: world,
-                    rig: rig,
-                    model: model,
-                    size: size,
-                    onPofuTap: onPofuTap,
-                    bubble: bubble
-                )
+                let build: BuildFrame? = home?.build.flatMap { active in
+                    home?.buildTime(at: context.date).map { (moment: active.moment, time: $0) }
+                }
+                ZStack(alignment: .topLeading) {
+                    SceneFrame(
+                        world: world,
+                        rig: rig,
+                        model: model,
+                        size: size,
+                        build: build,
+                        celebrations: home?.celebrations ?? 0,
+                        onPofuTap: onPofuTap,
+                        bubble: bubble
+                    )
+                    if let fade = model.crossfade(at: context.date) {
+                        // Reduce Motion: the old framing fades out over the
+                        // new one instead of the camera travelling.
+                        SceneFrame(
+                            world: world,
+                            rig: fade.rig,
+                            model: model,
+                            size: size,
+                            build: build,
+                            celebrations: home?.celebrations ?? 0,
+                            onPofuTap: nil,
+                            bubble: bubble
+                        )
+                        .opacity(fade.opacity)
+                        .allowsHitTesting(false)
+                        .accessibilityHidden(true)
+                    }
+                }
             }
             .contentShape(Rectangle())
             .gesture(
@@ -114,6 +145,7 @@ public struct IslandScene<Bubble: View>: View {
         }
         .onChange(of: reduceMotion, initial: true) { _, reduce in
             model.reduceMotion = reduce
+            home?.reduceMotion = reduce
         }
         .sensoryFeedback(.selection, trigger: model.projectedFraming)
         .accessibilityElement(children: .contain)
@@ -129,15 +161,50 @@ public struct IslandScene<Bubble: View>: View {
                 station: item.station,
                 status: world.stations.first { $0.id == item.station },
                 jar: world.jar,
+                isBuilding: home?.buildingStation == item.station,
                 onBuild: onBuild,
                 onClose: { model.dismissFocus() }
             )
             .id(item.station)
             .transition(.opacity)
-            .presentationDetents([.fraction(0.42), .large])
+            .presentationDetents(detents, selection: detentSelection)
             .presentationBackgroundInteraction(.enabled(upThrough: .fraction(0.42)))
             .presentationContentInteraction(.resizes)
         }
+    }
+
+    // MARK: Sheet detents
+
+    private static var compactDetent: PresentationDetent {
+        .height(CGFloat(IslandLayout.compactSheetHeight))
+    }
+
+    /// Compact exists only while a build has the sheet down (§2.3).
+    private var detents: Set<PresentationDetent> {
+        model.sheetDetent == .compact || model.buildFraming != nil
+            ? [Self.compactDetent, .fraction(0.42), .large]
+            : [.fraction(0.42), .large]
+    }
+
+    private var detentSelection: Binding<PresentationDetent> {
+        Binding(
+            get: {
+                switch model.sheetDetent {
+                case .compact: Self.compactDetent
+                case .medium: .fraction(0.42)
+                case .large: .large
+                }
+            },
+            set: { detent in
+                if detent == .large {
+                    model.sheetDetent = .large
+                } else if detent == Self.compactDetent {
+                    model.sheetDetent = .compact
+                } else {
+                    model.sheetDetent = .medium
+                }
+            }
+        )
     }
 }
 
@@ -145,22 +212,28 @@ extension IslandScene where Bubble == EmptyView {
     public init(
         world: WorldSnapshot,
         model: IslandSceneModel,
+        home: WorldHomeModel? = nil,
         onPofuTap: (@MainActor () -> Void)? = nil,
         onBuild: (@MainActor (StationID) -> Void)? = nil
     ) {
-        self.init(world: world, model: model, onPofuTap: onPofuTap, onBuild: onBuild) { EmptyView() }
+        self.init(world: world, model: model, home: home, onPofuTap: onPofuTap, onBuild: onBuild) { EmptyView() }
     }
 }
 
+/// A build moment at one instant.
+typealias BuildFrame = (moment: BuildMoment, time: Double)
+
 // MARK: - One frame
 
-/// Everything at one camera and lens: the sky, the world canvas, Pofu, and
-/// the screen-space overlays.
+/// Everything at one camera and lens: the sky, the world canvas, Pofu, the
+/// cloud sea, and the screen-space overlays.
 private struct SceneFrame<Bubble: View>: View {
     let world: WorldSnapshot
     let rig: CameraRig
     let model: IslandSceneModel
     let size: CGSize
+    let build: BuildFrame?
+    let celebrations: Int
     let onPofuTap: (@MainActor () -> Void)?
     let bubble: Bubble
 
@@ -173,15 +246,19 @@ private struct SceneFrame<Bubble: View>: View {
         let peek = rig.peekTilt
         let device = model.deviceTilt
         let tilt = (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
-        let isDusk = colorScheme == .dark || world.isBedtime
         let offset = CGSize(width: rig.offsetX.value, height: rig.offsetY.value)
         let interactive = rig.pinchStart == nil && (model.focus != nil || (z > 0.5 && z < 1.5))
-        // Dusk and night grade the painted world in code (game design
+        let palette = SkyModel.palette(
+            minuteOfDay: world.clock.map { SkyModel.minuteOfDay($0, calendar: .current) } ?? 12 * 60,
+            isDark: colorScheme == .dark,
+            isBedtime: world.isBedtime
+        )
+        // The time of day grades the painted world in code (game design
         // §15: no night versions are generated).
-        let grade = isDusk ? Color(red: 0.80, green: 0.80, blue: 0.92) : Color.white
+        let grade = palette.grade.color
 
         ZStack(alignment: .topLeading) {
-            SkyBackdrop(isDusk: isDusk, isNight: world.isBedtime, tilt: tilt)
+            LivingSky(palette: palette, offset: offset)
 
             WorldCanvas(
                 world: world,
@@ -190,6 +267,7 @@ private struct SceneFrame<Bubble: View>: View {
                 scale: pose.scale,
                 tilt: tilt,
                 isInteractive: interactive,
+                build: build,
                 model: model
             )
             .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
@@ -206,12 +284,15 @@ private struct SceneFrame<Bubble: View>: View {
                 size: size,
                 offset: offset,
                 grade: grade,
+                celebrations: celebrations,
                 model: model,
                 onPofuTap: onPofuTap,
                 bubble: bubble
             )
 
-            ScreenOverlays(world: world, pose: pose, z: z, size: size, offset: offset, model: model)
+            CloudSea(palette: palette, offset: offset, rise: CloudSea.rise(z: z))
+
+            ScreenOverlays(world: world, pose: pose, z: z, size: size, offset: offset, build: build, model: model)
         }
         .frame(width: size.width, height: size.height)
         .clipped()
@@ -242,6 +323,7 @@ private struct WorldCanvas: View {
     let scale: Double
     let tilt: (x: Double, y: Double)
     let isInteractive: Bool
+    let build: BuildFrame?
     let model: IslandSceneModel
 
     var body: some View {
@@ -298,7 +380,8 @@ private struct WorldCanvas: View {
         let level = lens.blurLevel(depth: object.depth)
         switch object.kind {
         case .station(let status):
-            StationView(status: status, point: point, level: level)
+            let moment: BuildFrame? = build.flatMap { $0.moment.station == status.id ? $0 : nil }
+            StationView(status: status, point: point, level: level, z: z, build: moment)
                 .overlay {
                     hitArea(
                         box: IslandLayout.stationHitBox,
@@ -310,7 +393,8 @@ private struct WorldCanvas: View {
                     )
                 }
         case .resident(let resident):
-            ResidentView(resident: resident, point: point, level: level)
+            let lift = build.map { $0.moment.station == resident.station ? $0.moment.residentLift(at: $0.time) : 0 } ?? 0
+            ResidentView(resident: resident, point: point, level: level, lift: lift)
                 .overlay {
                     hitArea(
                         box: IslandLayout.residentHitBox,
@@ -359,7 +443,9 @@ private struct WorldCanvas: View {
                     let arrived = world.islands.contains(isle.id)
                     // Soft once you are on an island, sharp on the map
                     // (§5.1); 35 % at the Island framing.
-                    let fade = 1 - min(max(z, 0), 1) * 0.65
+                    // A focus pushes in on one station: the neighbours,
+                    // blurred and huge at that scale, step aside.
+                    let fade = (1 - min(max(z, 0), 1) * 0.65) * (model.focus == nil ? 1 : 0)
                     DepthImage(
                         name: isle.art,
                         sprite: sprite,
@@ -387,19 +473,31 @@ private struct WorldCanvas: View {
 }
 
 /// A station: its contact shadow and vignette at its level, an empty build
-/// spot, or a labelled placeholder where there is no art yet.
+/// spot, or a labelled placeholder where there is no art yet. During its
+/// build moment it squashes and pops around its footprint, swaps its art
+/// inside the squash, and throws puffs and sparkles.
 private struct StationView: View {
     let status: StationStatus
     let point: CGPoint
     let level: Double
+    let z: Double
+    let build: BuildFrame?
 
     var body: some View {
+        let shown = build.map { $0.moment.shownLevel(at: $0.time) } ?? status.level
+        let squash = build.map { $0.moment.stationScale(at: $0.time) } ?? (x: 1, y: 1)
+        let anchor = UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight)
         ZStack(alignment: .topLeading) {
-            if status.level > 0 {
+            if shown > 0 {
                 ContactShadow(width: 92, height: 20)
                     .position(x: point.x, y: point.y + 2)
-                if let art = IslandLayout.stationArt(status.id, level: status.level), let sprite = WorldArt.sprite(art.name) {
+                if let art = IslandLayout.stationArt(status.id, level: shown), let sprite = WorldArt.sprite(art.name) {
                     DepthImage(name: art.name, sprite: sprite, level: level, anchor: point)
+                    if shown >= 2, !IslandLayout.hasLevelArt(status.id, level: shown), z < 1.6, let top = sprite.sharp {
+                        LevelBadge(level: shown)
+                            .opacity(min(max((1.6 - z) / 0.3, 0), 1))
+                            .position(x: point.x + CGFloat(top.maxX) - 8, y: point.y + CGFloat(top.minY) + 10)
+                    }
                 } else {
                     PlaceholderVignette(title: WorldStrings.stationName(status.id))
                         .position(x: point.x, y: point.y - 30)
@@ -408,6 +506,12 @@ private struct StationView: View {
                 BuildSpot()
                     .opacity(1 - min(level, 1.5) * 0.4)
                     .position(x: point.x, y: point.y)
+            }
+        }
+        .scaleEffect(x: CGFloat(squash.x), y: CGFloat(squash.y), anchor: anchor)
+        .overlay {
+            if let build {
+                BuildParticles(moment: build.moment, time: build.time, point: point)
             }
         }
     }
@@ -454,13 +558,15 @@ private struct ResidentView: View {
     let resident: IslandLayout.Resident
     let point: CGPoint
     let level: Double
+    /// World units off the ground (a hop).
+    var lift: Double = 0
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            ContactShadow(width: 24, height: 6)
+            ContactShadow(width: 24, height: 6, strength: 1 - min(lift / 20, 0.5))
                 .position(x: point.x, y: point.y)
             if let sprite = WorldArt.sprite(resident.art) {
-                DepthImage(name: resident.art, sprite: sprite, level: level, anchor: point)
+                DepthImage(name: resident.art, sprite: sprite, level: level, anchor: CGPoint(x: point.x, y: point.y - CGFloat(lift)))
             }
         }
     }
@@ -480,9 +586,12 @@ private struct PofuLayer<Bubble: View>: View {
     let size: CGSize
     let offset: CGSize
     let grade: Color
+    let celebrations: Int
     let model: IslandSceneModel
     let onPofuTap: (@MainActor () -> Void)?
     let bubble: Bubble
+
+    @Environment(\.worldStillFrame) private var still
 
     /// Pofu's art is 64 units wide (154 pt at Home, ADR-0018).
     static var artWidth: Double {
@@ -548,6 +657,7 @@ private struct PofuLayer<Bubble: View>: View {
         return CompanionView(
             vitality: min(max(world.wellbeing / 100, 0), 1),
             energy: min(Double(world.pending.total.units) / 60, 1),
+            celebrations: celebrations,
             art: art,
             onTap: {
                 if model.focus != nil || model.sheet != nil {
@@ -557,6 +667,8 @@ private struct PofuLayer<Bubble: View>: View {
                 }
             }
         )
+        // A still frame never catches him mid-blink.
+        .environment(\.companionBlinks, !still)
         .frame(width: viewWidth, height: viewHeight)
         .position(x: feet.x - groundX + viewWidth / 2, y: feet.y - groundY + viewHeight / 2)
     }
@@ -579,13 +691,15 @@ private struct PofuPin: View {
 
 // MARK: - Screen-space overlays
 
-/// Map labels and the resident card: text stays crisp at every scale.
+/// Map labels, the build's level tag and the resident card: text stays
+/// crisp at every scale.
 private struct ScreenOverlays: View {
     let world: WorldSnapshot
     let pose: CameraPose
     let z: Double
     let size: CGSize
     let offset: CGSize
+    let build: BuildFrame?
     let model: IslandSceneModel
 
     var body: some View {
@@ -599,6 +713,12 @@ private struct ScreenOverlays: View {
                         .opacity(labels)
                 }
             }
+            if let build, let tag = build.moment.tag(at: build.time), let top = tagPoint(build.moment.station) {
+                BuildTag(level: build.moment.toLevel)
+                    .scaleEffect(CGFloat(tag.scale), anchor: .bottom)
+                    .opacity(tag.opacity)
+                    .position(x: top.x, y: top.y - 22)
+            }
             if case .resident(let id) = model.focus, let resident = IslandLayout.resident(id) {
                 residentCard(resident)
             }
@@ -609,6 +729,13 @@ private struct ScreenOverlays: View {
     private func screenPoint(_ point: WorldPoint) -> CGPoint {
         let p = pose.project(point, width: Double(size.width))
         return CGPoint(x: p.x + Double(offset.width), y: p.y + Double(offset.height))
+    }
+
+    /// Just above a station's vignette, kept on screen.
+    private func tagPoint(_ station: StationID) -> CGPoint? {
+        guard let box = IslandFraming.stationBox(station) else { return nil }
+        let p = screenPoint(WorldPoint(x: box.midX, y: box.minY))
+        return CGPoint(x: min(max(p.x, 70), size.width - 70), y: max(p.y, 120))
     }
 
     private func mapLabel(_ island: IslandID, at point: WorldPoint, arrived: Bool) -> some View {
@@ -647,36 +774,6 @@ private struct ScreenOverlays: View {
         .frame(width: size.width, height: max(size.height - feet.y - 10, 0), alignment: .top)
         .offset(x: x - size.width / 2, y: feet.y + 10)
         .transition(.scale(scale: 0.9, anchor: .top).combined(with: .opacity))
-    }
-}
-
-// MARK: - The sky
-
-/// The sky behind the islands, with a parallax glow (§12.3 a: the sky moves
-/// least).
-private struct SkyBackdrop: View {
-    let isDusk: Bool
-    let isNight: Bool
-    let tilt: (x: Double, y: Double)
-
-    var body: some View {
-        let colors: [Color] = isNight
-            ? [Color(red: 0.11, green: 0.14, blue: 0.27), Color(red: 0.24, green: 0.24, blue: 0.38)]
-            : isDusk
-            ? [Color(red: 0.16, green: 0.20, blue: 0.33), Color(red: 0.38, green: 0.36, blue: 0.48)]
-            : [Color(red: 0.78, green: 0.88, blue: 0.95), Color(red: 0.97, green: 0.94, blue: 0.87)]
-        ZStack {
-            LinearGradient(colors: colors, startPoint: .top, endPoint: .bottom)
-            RadialGradient(
-                colors: [Color.white.opacity(isDusk ? 0.10 : 0.55), Color.white.opacity(0)],
-                center: UnitPoint(x: 0.25 - tilt.x * 0.03, y: 0.18 - tilt.y * 0.02),
-                startRadius: 0,
-                endRadius: 320
-            )
-        }
-        .ignoresSafeArea()
-        .allowsHitTesting(false)
-        .accessibilityHidden(true)
     }
 }
 #endif

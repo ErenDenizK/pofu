@@ -9,6 +9,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `PofuWorld` round 2: Home per the app–game boundary (`WorldHome`, behind
+  `FeatureFlags.worldHome`, off until the gate's dogfood week ends). Five
+  chrome items in native glass: the wellbeing pill in the art's warm
+  palette, the calm chip (its dot breathes while calm grows), the gear,
+  the Today card (beads, guarded minutes in honest 15-minute steps) and one
+  contextual primary that gives way to "Ada sensiz de çalışıyor." once the
+  visit settles. The visit queue (§6.2: repair banner, care, collect, news,
+  one affordable build, the weekly recap; at most three beats; nights and
+  reopens within 15 minutes land settled) is a pure, tested type. The
+  collect moment flies up to 24 seeds from the stations into a seed pill
+  whose counter rolls and pops, with tap, tick and success haptics; the
+  build moment pushes the camera in under a compact sheet, squashes the
+  station, swaps its art inside the squash with puffs and sparkles, pops
+  "Seviye n!", hops Pofu and the resident, and settles back. Both commit
+  through `WorldClock.collect` and `WorldClock.build` first. Reduce Motion
+  cross-fades camera moves (200 ms) and drops particles, squash and hops.
+  A living sky follows the snapshot's clock (dawn, day, golden hour,
+  night; dark mode is a night sky) with drifting cloud layers, a sun or
+  moon glow and a cloud sea that keeps the bottom band calm. Stations
+  whose art is a shared stand-in wear a small level badge.
+
 - Rehearsal mode (Prova modu): the Screen Time product on the free build,
   with the system parts simulated in the app. It is the default in the
   `Pofu` scheme and a developer toggle, off by default, in `PofuLive`.
@@ -113,6 +134,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   notification. Day-1 cases 20–28.
 
 ### Changed
+
+- The Island framing is fitted, not fixed: the station row fills the width
+  (×1.25 at 402 pt, was ×1.06) and the island is centred between the
+  chrome bands; the neighbouring islands sit in an X close enough to peek
+  in at the corners, and the Map frames all five larger (×0.56). A
+  station focus nudges the camera so Pofu and the residents are whole or
+  out of frame, never cut by the edge. Screenshots render still frames
+  (no blinks, no cloud drift) and cover thirteen states.
 
 - One quiet hour lifts Pofu out of the two lowest bands, from the floor
   too (ADR-0017): there, calm waking time heals 1/60 of the band's width a

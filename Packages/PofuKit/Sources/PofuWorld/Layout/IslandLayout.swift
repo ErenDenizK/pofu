@@ -82,6 +82,14 @@ public enum IslandLayout {
         residents.first { $0.id == id }
     }
 
+    /// Whether the art for a station's level is its own (not a shared
+    /// stand-in): where it is not, the station wears a small level badge
+    /// from level 2.
+    public static func hasLevelArt(_ station: StationID, level: Int) -> Bool {
+        guard let art = stationArt(station, level: level) else { return false }
+        return !art.isStandIn && level == 1
+    }
+
     /// The baked sprite for a station at a level; `nil` when there is no
     /// art at all (a labelled placeholder is drawn).
     public static func stationArt(_ station: StationID, level: Int) -> (name: String, isStandIn: Bool)? {
@@ -120,11 +128,15 @@ public enum IslandLayout {
         public var art: String
     }
 
+    /// An X around the home island, close enough that at the Island
+    /// framing each neighbour's rim peeks into a corner (game design §3: the
+    /// archipelago is felt, never cluttering) and the Map shows all five
+    /// large.
     public static let isles: [Isle] = [
-        Isle(id: .yildiz, center: WorldPoint(x: -150, y: -540), art: "isle-stars-standin"),
-        Isle(id: .kaplica, center: WorldPoint(x: 215, y: -345), art: "isle-hamam-standin"),
-        Isle(id: .iskele, center: WorldPoint(x: 220, y: 300), art: "isle-harbor-standin"),
-        Isle(id: .kitap, center: WorldPoint(x: -225, y: 330), art: "isle-library-standin"),
+        Isle(id: .yildiz, center: WorldPoint(x: -185, y: -265), art: "isle-stars-standin"),
+        Isle(id: .kaplica, center: WorldPoint(x: 200, y: -250), art: "isle-hamam-standin"),
+        Isle(id: .iskele, center: WorldPoint(x: 195, y: 265), art: "isle-harbor-standin"),
+        Isle(id: .kitap, center: WorldPoint(x: -205, y: 270), art: "isle-library-standin"),
     ]
 
     /// The world canvas the scene lays objects out on: x −400…400,
@@ -135,21 +147,52 @@ public enum IslandLayout {
 
     /// The camera framing that focuses a station with a sheet at
     /// `sheetFraction` of the height (§1.2): the station centred between
-    /// the top band and the sheet's edge.
+    /// the top band and the sheet's edge, at most `maxScale` (× W/402),
+    /// then nudged sideways so Pofu and the residents are either whole or
+    /// out of frame, never cut by an edge.
     public static func stationFocusPose(
         _ station: StationID,
         width: Double,
         height: Double,
         safeTop: Double,
-        sheetFraction: Double = 0.42
+        sheetFraction: Double = 0.42,
+        maxScale: Double = 1.70
     ) -> CameraPose? {
         guard let anchor = stationAnchors[station] else { return nil }
         let k = width / CameraRail.referenceWidth
         let top = safeTop + 100
         let bottom = height * (1 - sheetFraction)
-        let scale = min(1.70 * k, max(bottom - top, 1) * 0.62 / 112)
-        return CameraPose(scale: scale, look: WorldPoint(x: anchor.x, y: anchor.y - 46), anchorY: (top + bottom) / 2 + 8)
+        let scale = min(maxScale * k, max(bottom - top, 1) * 0.62 / 112)
+        // Centre the vignette's art, not a fixed height above its footprint:
+        // a flat pond would otherwise sit behind the sheet.
+        let focus = IslandFraming.stationBox(station)
+        let lookY = focus?.midY ?? anchor.y - 46
+        let pose = CameraPose(scale: scale, look: WorldPoint(x: anchor.x, y: lookY), anchorY: (top + bottom) / 2 + 8)
+        guard let focus else { return pose }
+        return IslandFraming.keepingCharactersWhole(
+            pose,
+            focus: focus,
+            subjects: IslandFraming.characterBoxes,
+            width: width,
+            maxDrift: width * 0.22
+        )
     }
+
+    /// The build moment's push-in (interaction spec §2.4): the sheet drops
+    /// to its 132 pt compact detent and the camera comes in to ×1.95.
+    public static func buildFocusPose(_ station: StationID, width: Double, height: Double, safeTop: Double) -> CameraPose? {
+        stationFocusPose(
+            station,
+            width: width,
+            height: height,
+            safeTop: safeTop,
+            sheetFraction: compactSheetHeight / max(height, 1),
+            maxScale: 1.95
+        )
+    }
+
+    /// The station sheet's compact detent, used only while building.
+    public static let compactSheetHeight = 132.0
 
     /// The resident focus (§12.2): ×1.3 scale, 35 % of the way toward the
     /// resident from where the camera is.
