@@ -54,6 +54,32 @@ class StationTests(unittest.TestCase):
         self.assertAlmostEqual(1 / t["scale"], 0.85, delta=0.03)
         self.assertGreater(qa.edit_kept_fraction(aligned, parent), 0.9)
 
+    def test_edit_of_a_registered_master_is_not_registered_again(self):
+        # Batch 03: simit-1 was drawn 110 px off the anchor and registered.
+        # Its edit is drawn on the registered master, so it is already on
+        # the anchor; re-applying the root's registration moved it off.
+        root_raw = stall(dx=-110)
+        reg = qa.station_registration(root_raw)
+        parent = qa.shift(root_raw, reg["dx"], reg["dy"])
+        child = stall(awning=True)  # the edit keeps the parent's place
+        preset = sl.load_presets()["lock-light"]
+        good = qa.process_take(child, "station", (1024, 1024), preset, ["world-props"],
+                               registration=dict(qa.EDIT_REGISTRATION), parent_locked=sl.apply_lock(parent, preset))
+        kept = {c.name: c for c in good.checks}["edit_stability"]
+        self.assertEqual(kept.status, "pass", kept.message)
+        shifted = qa.shift(child, reg["dx"], reg["dy"])
+        self.assertLess(qa.edit_kept_fraction(shifted, parent), kept.value)  # what the double shift did
+
+    def test_edit_chroma_drift_is_caught(self):
+        parent = stall()
+        grey = parent.copy()
+        lab = sl.srgb_to_lab(grey[..., :3])
+        lab[..., 1:] *= 0.6  # the level lost 40 % of its chroma (batch 03's windmill-2)
+        grey[..., :3] = np.clip(sl.lab_to_srgb(lab), 0, 1)
+        self.assertAlmostEqual(qa.edit_chroma_ratio(parent, parent), 1.0, places=3)
+        checks = {c.name: c for c in qa.run_checks("station", grey, grey, ["world-props"], parent_locked=parent)}
+        self.assertEqual(checks["edit_chroma"].status, "fail")
+
     def test_magenta_guide_remnants(self):
         im = Image.fromarray(np.round(stall() * 255).astype(np.uint8), "RGBA")
         ImageDraw.Draw(im).ellipse((152, 692, 872, 908), outline=(236, 0, 140, 255), width=6)
