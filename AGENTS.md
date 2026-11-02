@@ -155,8 +155,8 @@ job of the track in order. The manifest is
    how closely the take matches the approved island, or Pofu for
    characters, measured by `tools/assets/harmony.py`; below 70 it warns).
    If no take passes, generate at most
-   one more round of the job's variants. If that also fails, stop and report
-   the failing checks; do not loop. Set that take as the pick for this job
+   one more round of the job's variants. If that also fails, skip the job and its
+   dependents and go on (see Stop conditions); do not loop. Set that take as the pick for this job
    only, and run `promote --only <id>`. In the provenance note, write
    "auto-picked by QA; founder review pending". Read the job's `notes` in
    the manifest: some name a review check or a case where you must stop.
@@ -342,18 +342,36 @@ File names are made by the pipeline: raw takes are
 `<kind>__<name>--t<n>.png`; do not rename them. Kinds: `char`, `station`,
 `world`, `prop`, `plate`, `sheet`, `icon`, `ui`, `widget`, `appicon`.
 
-## Stop conditions (stop, report, do not retry)
+## Stop conditions
+
+**A failed job does not stop the line** (lead, 2026-11-02: one failed decor
+bench froze 14 finished rig picks and every later batch). Two levels:
+
+**Skip and continue.** A job that fails (QA failure on the same check twice,
+a timeout, a Codex answer without an image, a manual check such as the decor
+guide fit) gets its one allowed retry round (a fresh pair of takes). If that
+also fails, record the job as `skipped` with its reason in its `review.yaml`
+and its Atlas node (`status: cut`, never delete), skip every job that depends
+on it (`edit_of`, `approved:`), say so in the PR, and **go on with the next
+job and the next batch**. Never loop, never waive a check to force a pass.
+Finished picks are always published; a skipped job never holds them back.
+
+**Global stop** (stop, report, do not retry) only for:
 
 - The batch is `blocked`, or `account.owner` / `account.kind` is empty.
-- Any usage-limit, rate-limit, quota, sign-in or key message.
-- Codex answers without an image, or refuses.
-- A generation times out.
-- Two takes in a row of one job fail QA on the same check: the prompt
-  needs fixing; tell the lead in the PR, do not "roll again".
-- The key guard fires, or the API estimate is above what the founder
-  agreed.
+- Any account, sign-in, key, quota, usage-limit or rate-limit message.
+- Codex refuses, or answers without an image three times in a row.
+- Identity or upload corruption (a pushed file fails `check_upload.py`
+  after one re-push, or the commit identity is wrong).
+- Three consecutive job failures (each after its retry), in any batches.
+- The key guard fires, or the API estimate is above what the founder agreed.
 - Anything needs `sudo`, a system install, or a change outside
   `tools/imagegen/`, `design/art/` and the PR: ask the founder first.
+
+**Before every batch:** run `git fetch origin main` and re-read
+[the queue](docs/design/art-production-plan.md#the-queue); new `READY` rows
+may have appeared. **When the queue is empty,** re-check it every 20 minutes
+for 2 hours before ending the session.
 
 ## Changing things
 
