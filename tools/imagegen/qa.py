@@ -194,13 +194,34 @@ def station_registration(rgba: np.ndarray) -> dict:
 # Checks
 # ---------------------------------------------------------------------------
 
-def check_station_anchor(rgba: np.ndarray, is_edit: bool = False) -> Check:
+def check_station_anchor(rgba: np.ndarray, is_edit: bool = False,
+                         parent: np.ndarray | None = None) -> Check:
     """Footprint centered on the cross, standing on the ellipse, under the bar.
 
     Edits inherit the chain root's registration, so their footprint center
-    is not re-checked (new poles or stools legitimately move it).
+    is not re-checked (new poles or stools legitimately move it). With the
+    parent given, an edit is anchored against the PARENT's bounds instead of
+    the contract: a tall parent (cay-5 tops out at y 49) or a lit variant of
+    it must not fail for geometry the parent already has.
     """
     g = pa.measure(rgba)
+    if parent is not None:
+        gp = pa.measure(parent)
+        # The ground line must stay on the parent's. Height and width may
+        # exceed the contract only as far as the parent already did.
+        top_bar = min(gp.top, STATION["top"])
+        width_bar = max(gp.width, 2 * STATION["rx"])
+        problems, status = [], "pass"
+        if abs(g.baseline - gp.baseline) > 12:
+            problems.append(f"ground line y {g.baseline} (parent {gp.baseline})")
+            status = worst([status, "fail" if abs(g.baseline - gp.baseline) > 40 else "warn"])
+        if g.top < top_bar - 30:
+            problems.append(f"top y {g.top} above the parent's bar ({top_bar})")
+            status = worst([status, "fail" if g.top < top_bar - 100 else "warn"])
+        if g.width > width_bar + 80:
+            problems.append(f"width {g.width} px wider than the parent's {width_bar}")
+            status = worst([status, "warn"])
+        return Check("station_anchor", status, "; ".join(problems) or "on the parent's anchor", g.baseline)
     problems, status = [], "pass"
     dx = g.base_x - STATION["cx"]
     if abs(dx) > 40 and not is_edit:
@@ -521,7 +542,7 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
         checks.append(check_magenta(locked, lim))
     checks.append(check_palette(locked, palettes))
     if kind == "station":
-        checks.append(check_station_anchor(locked, is_edit=parent_locked is not None))
+        checks.append(check_station_anchor(locked, is_edit=parent_locked is not None, parent=parent_locked))
     if kind == "world":
         ratio = island_depth_ratio(locked)
         if ratio is not None:

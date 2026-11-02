@@ -40,6 +40,15 @@ class StationTests(unittest.TestCase):
         self.assertEqual(qa.check_station_anchor(stall(dx=150)).status, "fail")
         self.assertEqual(qa.check_station_anchor(stall(dy=-130)).status, "warn")
 
+    def test_edit_is_anchored_against_its_parent_not_the_contract(self):
+        # cay-5 stands above the height bar and wider than the footprint
+        # (batch 07: cay-5-lit failed station_anchor for the parent's geometry).
+        tall = stall(scale=1.5, awning=True)
+        self.assertNotEqual(qa.check_station_anchor(tall).status, "pass")
+        self.assertEqual(qa.check_station_anchor(tall, is_edit=True, parent=tall).status, "pass")
+        # an edit that really moves off its parent still fails
+        self.assertEqual(qa.check_station_anchor(stall(dy=-80), is_edit=True, parent=stall()).status, "fail")
+
     def test_registration_moves_the_footprint_onto_the_anchor(self):
         off = stall(dx=60, dy=-40)
         reg = qa.station_registration(off)
