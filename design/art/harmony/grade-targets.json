@@ -1,5 +1,5 @@
 {
-  "$note": "Targets for the rendered world frames per grade (tools/assets/frame_metrics.py), over the world band (from frame-regions.json, which the screenshot test writes: the island at the Island framing, the lawn around Pofu at Home; round 2's frames without it use 50-80 % and 43-60 % of the height). L* and C* are CIELAB; 'local' is the RMS of L* minus its blur, the texture contrast that reads as crisp. Bounds are absolute; vs_day are ratios to the day frame of the same framing; delta_day are differences (hue in degrees). Round 1 measured night at p2 22, range 0.68 x day and local 0.66 x day over the Home band, and unwell at local 0.88-0.91 x day with lifted shadows: washed out. Round 2 measured the unwell sky at 0.95 x day's lightness with day's warmth (pale), Pofu's night hue at about 300 (lavender) against 69 by day, and 0.44-0.63 of the Island frame's rows empty with dead runs up to 0.32 of the height. Change a bound only with the measured frames in the PR.",
+  "$note": "Targets for the rendered world frames per grade (tools/assets/frame_metrics.py), over the world band (from frame-regions.json, which the screenshot test writes: the island at the Island framing, the lawn around Pofu at Home; round 2's frames without it use 50-80 % and 43-60 % of the height). L* and C* are CIELAB; 'local' is the RMS of L* minus its blur, the texture contrast that reads as crisp. Bounds are absolute; vs_day are ratios to the day frame of the same framing; delta_day are differences (hue in degrees). Round 1 measured night at p2 22, range 0.68 x day and local 0.66 x day over the Home band, and unwell at local 0.88-0.91 x day with lifted shadows: washed out. Round 2 measured the unwell sky at 0.95 x day's lightness with day's warmth (pale), Pofu's night hue at about 300 (lavender) against 69 by day, and 0.44-0.63 of the Island frame's rows empty with dead runs up to 0.32 of the height. Round 3: unwell Pofu's chroma bound is 0.25-0.8 x day because the companion's own vitality art desaturates his fur when he is unwell (by design, ADR-0017); readability is held by his lightness (at least 0.9 x day). The world band now covers the whole island box, deeper with v3's paler body, so unwell's mean bound is 0.80. Change a bound only with the measured frames in the PR.",
   "framing": {
     "$note": "Look round 3: the share of rows below the top chrome that are near-uniform (empty), and the longest dead run as a share of the height. Round 2: Island 0.44-0.63 empty, runs 0.15-0.32; Home 0.19-0.39, runs 0.05-0.21.",
     "island": {"empty": [null, 0.40], "run": [null, 0.12]},
@@ -23,7 +23,7 @@
     },
     "unwell": {
       "match": ["grade-unwell-", "-unwell-"],
-      "vs_day": {"mean": [0.85, 1.0], "chroma": [0.35, 0.8], "local": [0.95, null], "range": [0.95, null], "p2": [null, 1.0], "sky_L": [0.80, 0.94], "pofu_C": [0.5, 0.95]},
+      "vs_day": {"mean": [0.80, 1.0], "chroma": [0.35, 0.8], "local": [0.95, null], "range": [0.95, null], "p2": [null, 1.0], "sky_L": [0.80, 0.94], "pofu_C": [0.25, 0.8], "pofu_L": [0.9, null]},
       "delta_day": {"sky_b": [null, -2.0], "pofu_h": [null, 20]}
     }
   }

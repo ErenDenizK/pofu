@@ -48,7 +48,7 @@ extension IslandLayout {
     public static let emitters: [WorldEmitter] = [
         // The ember under the çaydanlık: (387, 603) px on cay-1, anchor
         // (512, 800), 8.53 px per unit: (−14.6, −23.1) from the stall.
-        WorldEmitter(kind: .ember, point: onStation(.cay, x: -14.6, y: -23.1), radius: 10, color: GradeRGB(1, 0.62, 0.26), reach: 70, station: .cay),
+        WorldEmitter(kind: .ember, point: onStation(.cay, x: -14.6, y: -23.1), radius: 6, color: GradeRGB(1, 0.62, 0.26), reach: 70, station: .cay),
         // The round window in the door, measured on the plate master.
         WorldEmitter(kind: .window, point: WorldArt.generatedPlate.window, radius: 7, color: GradeRGB(1, 0.78, 0.44), reach: 30),
     ]

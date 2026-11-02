@@ -239,6 +239,14 @@ struct CloudSea: View {
                         )
                         .frame(width: size.width + 120, height: CGFloat(rise) + 90)
                         .offset(x: -60, y: CGFloat(-Self.height * 0.35) + offset.height * 0.35)
+                        // Painted rows down the risen sea (look round 3):
+                        // smaller and slower toward the back, so the band
+                        // under the island reads as a sea of clouds in
+                        // depth, not a flat bank.
+                        paintedRow(width: Double(size.width), time: time, scale: 0.62, speed: 0.6, phase: 0.3)
+                            .offset(x: offset.width * 1.05, y: CGFloat(-rise * 0.62) + offset.height * 0.32)
+                        paintedRow(width: Double(size.width), time: time, scale: 0.8, speed: 0.9, phase: 0.65)
+                            .offset(x: offset.width * 1.2, y: CGFloat(-rise * 0.25) + offset.height * 0.38)
                     }
                     strip(copies: copies)
                         .offset(x: CGFloat(-drift) + offset.width * 1.25, y: offset.height * 0.4)
@@ -269,12 +277,12 @@ struct CloudSea: View {
     /// The painted cloud-sea row: the master tinted by the hour's sea light,
     /// drifting a little faster than the procedural bank behind it.
     @ViewBuilder
-    private func paintedRow(width: Double, time: Double) -> some View {
+    private func paintedRow(width: Double, time: Double, scale: Double = 1, speed: Double = 1.3, phase: Double = 0) -> some View {
         if let box = WorldArt.sprite("cloud-sea")?.sharp {
-            let w = Self.paintedWidth
+            let w = Self.paintedWidth * scale
             let h = w * box.height / box.width
             let period = 2 * w
-            let drift = (time * Self.speed * 1.3).truncatingRemainder(dividingBy: period)
+            let drift = (time * Self.speed * speed + phase * period).truncatingRemainder(dividingBy: period)
             let copies = Int(((width + 120) / period).rounded(.up)) + 1
             HStack(spacing: 0) {
                 ForEach(0..<copies, id: \.self) { _ in
