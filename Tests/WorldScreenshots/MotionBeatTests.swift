@@ -104,7 +104,7 @@ final class MotionBeatTests: XCTestCase {
                 let island = stage.island
                 // A finger dragging `distance` points over `seconds`, then
                 // lifting at `velocity` points a second.
-                func drag(_ distance: Double, over seconds: Double, release velocity: Double) async throws {
+                @MainActor func drag(_ distance: Double, over seconds: Double, release velocity: Double) async throws {
                     let steps = 24
                     for i in 1...steps {
                         let t = Double(i) / Double(steps)

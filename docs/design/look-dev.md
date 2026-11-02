@@ -227,6 +227,31 @@ masters, the characters, pond-2..5 and windmill-1, -2, -5 measured the
 same or worse re-locked and stay on their masters. `relock.py` now applies
 a level edit's alignment (it silently failed every chain level before).
 
+## Round 4 (2026-11-02): the island pan, live Ayar, the lit flame
+
+- **The Island framing pans.** Round 3 fitted the whole plate to the
+  width, so Pofu was 46 pt and every station tiny. The world now stays at
+  ×1.25 (Pofu 80 pt) and the Island framing is a horizontal pan across the
+  island (`CameraRig.panDrag` / `endPan`): it follows the finger, a release
+  coasts about a third of a second of its velocity and settles on the
+  nearest snap point (each station, Pofu), and the ends rubber-band
+  (60 pt). It opens centred on Pofu and every flight back re-centres. The
+  whole island at 88 % of the width is the establishing shot on arrival
+  (`IslandSceneModel.establish`, 0.9 s, skipped under Reduce Motion) and
+  what a pinch out passes through. The cloud sea rises to the island's
+  roots at any pose (`CloudSea.rise(z:pose:height:)`).
+- **Ayar acts live.** Camera springs, parallax and tilt-shift reach the
+  scene through `WorldLook.tuning` (`WorldTuning`, `CameraSprings`); Pofu's
+  breath and blinks reach the companion through `companionLife`
+  (`CompanionLife`). Defaults change nothing.
+- **cay-1-lit** (batch 07) is the night overlay: its painted flame, cut
+  from the burner's opening and drawn after the grade, fading in with the
+  ember from dusk (`IslandLayout.litOverlay`). Nothing was regenerated.
+- **Plate v2 vs v3** for the founder: `look-plates.jpg` (v2 baked as
+  `WorldLook.ArtSet.plateV2`).
+- Motion beat `06-island-pan`: arrival, drag, flick, rubber band, back to
+  Pofu.
+
 ## Flags
 
 `WorldLook` (environment value `worldLook`): `art` (lock-light,
