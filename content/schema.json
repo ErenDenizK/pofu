@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ErenDenizK/pofu/content/schema.json",
+  "title": "Pofu Atlas content node",
+  "description": "One YAML file per node under content/<type folder>/<id>.yaml. Checked by tools/content/validate.py, rendered by tools/content/build_atlas.py. See content/README.md.",
+  "type": "object",
+  "required": ["id", "type", "title_tr", "title_en", "status", "horizon", "summary"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]*$",
+      "description": "Unique, stable, lowercase. Prefixed by type: island-, station-, char-, sys-, moment-, theme-, idea-, asset-."
+    },
+    "type": {"enum": ["island", "station", "character", "system", "moment", "theme", "idea", "asset"]},
+    "title_tr": {"type": "string", "minLength": 1, "description": "Shown on the board's cards."},
+    "title_en": {"type": "string", "minLength": 1},
+    "status": {"enum": ["idea", "planned", "in-production", "in-app", "cut"]},
+    "horizon": {"enum": ["now", "next", "later", "maybe"]},
+    "summary": {"type": "string", "minLength": 1},
+    "notes": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "links": {
+      "type": "object",
+      "description": "Typed edges to other node ids. Inverse edges (used by, part of this) are computed, never written.",
+      "propertyNames": {
+        "enum": ["unlocks", "requires", "part_of", "variant_of", "uses_asset", "inspired_by",
+                 "feeds", "drains", "leads_to", "supersedes", "related"]
+      },
+      "additionalProperties": {"type": "array", "items": {"$ref": "#/$defs/id"}, "uniqueItems": true}
+    },
+    "art": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "images": {"type": "array", "items": {"$ref": "#/$defs/image"}},
+        "jobs": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^[a-z0-9-]+:[a-z0-9_-]+$"},
+          "description": "Manifest job ids as <batch>:<job id> (tools/imagegen/manifest/<batch>.yaml)."
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["doc"],
+        "additionalProperties": false,
+        "properties": {
+          "doc": {"type": "string", "description": "Repo path of the defining document."},
+          "anchor": {"type": "string", "pattern": "^#", "description": "GitHub heading anchor in that document."}
+        }
+      }
+    },
+    "source": {"enum": ["lead-brainstorm", "founder", "codex"], "description": "Who proposed a node that no document defines yet."},
+    "kind": {"type": "string", "description": "Sub-kind: an asset's job kind, a character's resident or emotion, an idea's feature or milestone, a theme's season or plus."},
+    "group": {"type": "string", "description": "Systems: the group in the systems map (gate, care, economy, world, app, glance, character, visual, meta)."},
+    "board": {
+      "type": "object",
+      "description": "Systems: a position hint in the systems map grid.",
+      "required": ["col", "row"],
+      "properties": {"col": {"type": "integer", "minimum": 0}, "row": {"type": "integer", "minimum": 0}}
+    },
+    "act": {"enum": ["first-run", "gate", "visit", "day", "night", "arc", "repair"], "description": "Moments: the storyboard row."},
+    "sequence": {"type": "integer", "description": "Moments: left-to-right order inside the act."},
+    "unlock": {
+      "type": "object",
+      "required": ["day"],
+      "properties": {
+        "day": {"type": "integer", "minimum": 0, "description": "Simulated median day (game design §14) for the progression timeline."},
+        "rule_en": {"type": "string"}
+      }
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["stage", "tended_days"],
+        "properties": {
+          "stage": {"type": "integer"},
+          "tended_days": {"type": "integer"},
+          "adds_en": {"type": "string"}
+        }
+      }
+    },
+    "levels": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["level", "title_tr", "title_en", "cost", "rate"],
+        "additionalProperties": false,
+        "properties": {
+          "level": {"type": "integer", "minimum": 1, "maximum": 5},
+          "title_tr": {"type": "string"},
+          "title_en": {"type": "string"},
+          "cost": {"type": "integer", "minimum": 0, "description": "Seeds to reach this level."},
+          "rate": {"type": "number", "minimum": 0, "description": "Seeds an hour at this level, before calm."},
+          "asset": {"$ref": "#/$defs/id", "description": "The asset node whose art shows this level."}
+        }
+      }
+    },
+    "residents": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+    "resident": {"$ref": "#/$defs/id"},
+    "home": {"$ref": "#/$defs/id"},
+    "station": {"$ref": "#/$defs/id"},
+    "theme_en": {"type": "string"},
+    "ritual_en": {"type": "string"},
+    "opens_en": {"type": "string"},
+    "species_en": {"type": "string"},
+    "line_tr": {"type": "string"},
+    "batch": {"type": "string"},
+    "size": {"type": "string"}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*$"},
+    "image": {
+      "oneOf": [
+        {"type": "string", "description": "A repo path to an image on this branch."},
+        {
+          "type": "object",
+          "required": ["path", "branch"],
+          "additionalProperties": false,
+          "properties": {
+            "path": {"type": "string"},
+            "branch": {"type": "string", "description": "An art branch the image is on until its PR merges."}
+          }
+        }
+      ]
+    }
+  }
+}
