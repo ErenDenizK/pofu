@@ -485,7 +485,9 @@ private struct PofuLayer<Bubble: View>: View {
     let bubble: Bubble
 
     /// Pofu's art is 64 units wide (154 pt at Home, ADR-0018).
-    static let artWidth = 64.0
+    static var artWidth: Double {
+        64
+    }
 
     var body: some View {
         let depth = IslandLayout.depth(ofY: IslandLayout.pofu.y)
