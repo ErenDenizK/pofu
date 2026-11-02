@@ -1,0 +1,167 @@
+batch: batch-05-fixes
+contact_sheet: design/art/takes/batch-05-fixes/simit-4/contact.jpg
+jobs:
+  simit-4:
+    pick: 1
+    note: auto-picked by QA; founder review pending
+    takes:
+      t1:
+        qa: pass
+        summary: all pass
+      t2:
+        qa: pass
+        summary: all pass
+    approved:
+      take: 1
+      at: '2026-11-02T19:04:20+00:00'
+qa_reports:
+  station__simit-4--t1:
+    job: simit-4
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 51 (R1 59)
+      value: 51.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.03
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7364
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 5.5, off-palette 0.4% (top: #995522 (0.1%), #884411
+        (0.1%))'
+      value: 1.3736
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 904.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 81 against the world reference (outliers: L_p98, edge)'
+      value: 81.3
+    - check: edit_stability
+      status: pass
+      message: 100% of the parent level unchanged
+      value: 0.9976
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.02 of the parent level (drift compounds along a chain)
+      value: 1.0224
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 50.7
+        L_p50: 74.6
+        L_p95: 87.3
+        C_p50: 33.5
+        C_p95: 48.1
+        C_p99: 52.6
+        detail: 2.66
+      metrics_locked:
+        L_p5: 51.1
+        L_p50: 74.5
+        L_p95: 87.1
+        C_p50: 33.5
+        C_p95: 47.5
+        C_p99: 51.7
+        detail: 2.03
+    fingerprint: 69f23a2e5fb67535
+  station__simit-4--t2:
+    job: simit-4
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 50 (R1 59)
+      value: 50.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.99
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7378
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 6.5, off-palette 0.4% (top: #995522 (0.1%), #AA5522
+        (0.1%))'
+      value: 1.4837
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 905.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 78 against the world reference (outliers: L_p98, edge)'
+      value: 77.8
+    - check: edit_stability
+      status: pass
+      message: 99% of the parent level unchanged
+      value: 0.9923
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.03 of the parent level (drift compounds along a chain)
+      value: 1.0295
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 50.1
+        L_p50: 73.6
+        L_p95: 86.4
+        C_p50: 33.7
+        C_p95: 48.3
+        C_p99: 51.5
+        detail: 2.61
+      metrics_locked:
+        L_p5: 50.5
+        L_p50: 73.6
+        L_p95: 86.2
+        C_p50: 33.8
+        C_p95: 47.8
+        C_p99: 50.7
+        detail: 1.99
+    fingerprint: 69f23a2e5fb67535

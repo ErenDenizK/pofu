@@ -1,0 +1,118 @@
+{
+  "job": "simit-4",
+  "batch": "batch-05-fixes",
+  "asset": "station__simit-4",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T19:04:20+00:00",
+  "image": "design/art/stations/simit-4/simit-4.png",
+  "raw": "design/art/stations/simit-4/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "69f23a2e5fb67535",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nAdd a small, low, rounded wooden bench for regulars beside the\ncart's right wheel, inside the footprint and lower than the\ncart's tray.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/simit-3/simit-3.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T19:01:52+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 0,
+    "dy": 0
+  },
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 48 (R1 51)",
+        "value": 47.5
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 51 (R1 59)",
+        "value": 51.1
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 2.0 (R1 5.3)",
+        "value": 2.03
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.7",
+        "value": 0.7364
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.4, p95 5.5, off-palette 0.4% (top: #995522 (0.1%), #884411 (0.1%))",
+        "value": 1.3736
+      },
+      {
+        "check": "station_anchor",
+        "status": "pass",
+        "message": "on the parent's anchor",
+        "value": 904.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 81 against the world reference (outliers: L_p98, edge)",
+        "value": 81.3
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "100% of the parent level unchanged",
+        "value": 0.9976
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.02 of the parent level (drift compounds along a chain)",
+        "value": 1.0224
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}
