@@ -40,6 +40,9 @@ public struct CompanionMotion: Sendable {
     /// catches Pofu with his eyes shut; expressions still close the lids.
     public var blinks = true
 
+    /// How he breathes and blinks (the Ayar panel tunes it live).
+    public var life = CompanionLife.standard
+
     public private(set) var time: Double = 0
 
     private var breathPhase: Double = 0
@@ -107,7 +110,7 @@ public struct CompanionMotion: Sendable {
         time += dt
         let v = clampUnit(vitalitySpring.value)
 
-        breathPhase += dt * 2 * Double.pi / BreathingCurve.period(vitality: v)
+        breathPhase += dt * 2 * Double.pi / BreathingCurve.period(vitality: v, life: life)
         stepHop(dt)
 
         if let until = expressionUntil, time > until {
@@ -120,7 +123,7 @@ public struct CompanionMotion: Sendable {
         if time >= nextBlink {
             blinkStart = time
             let double = random.next() < 0.2
-            let gap = double ? 0.32 : random.next(in: 2.5...6) * lerp(1.4, 1, v)
+            let gap = double ? 0.32 : random.next(in: life.blinkRange) * lerp(1.4, 1, v)
             nextBlink = time + gap
         }
 
@@ -174,7 +177,7 @@ public struct CompanionMotion: Sendable {
     public var pose: CompanionPose {
         let v = clampUnit(vitalitySpring.value)
         let calm = reduceMotion ? 0.25 : 1.0
-        let breath = BreathingCurve.scales(phase: breathPhase, vitality: v)
+        let breath = BreathingCurve.scales(phase: breathPhase, vitality: v, life: life)
         let flight = airborne ? min(max(hopVelocity / 9, -0.05), 0.12) : 0
         let squashed = SquashModel.scales(squash: squash.value + flight)
         let slump = SquashModel.slump(vitality: v)

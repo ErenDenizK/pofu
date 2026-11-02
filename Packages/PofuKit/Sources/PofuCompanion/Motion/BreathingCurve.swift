@@ -7,14 +7,14 @@ import Foundation
 /// area-preserving scale: the body grows taller and slightly narrower on
 /// the in-breath, and the feet never leave the floor.
 public enum BreathingCurve {
-    /// Seconds per breath: 4.6 at vitality 0, 3.3 at vitality 1.
-    public static func period(vitality: Double) -> Double {
-        lerp(4.6, 3.3, clampUnit(vitality))
+    /// Seconds per breath: 4.6 at vitality 0, 3.3 at vitality 1 (`life`).
+    public static func period(vitality: Double, life: CompanionLife = .standard) -> Double {
+        max(lerp(life.breathPeriodLow, life.breathPeriodHigh, clampUnit(vitality)), 0.5)
     }
 
     /// Peak vertical scale change of a breath: 2.4% at vitality 0, 1.6% at 1.
-    public static func amplitude(vitality: Double) -> Double {
-        lerp(0.024, 0.016, clampUnit(vitality))
+    public static func amplitude(vitality: Double, life: CompanionLife = .standard) -> Double {
+        lerp(life.breathAmplitudeLow, life.breathAmplitudeHigh, clampUnit(vitality))
     }
 
     /// The breath signal in `-1...1` for a phase in radians: a raised
@@ -25,8 +25,8 @@ public enum BreathingCurve {
     }
 
     /// Ground-anchored scales for one moment of breathing.
-    public static func scales(phase: Double, vitality: Double) -> (x: Double, y: Double) {
-        let breath = amplitude(vitality: vitality) * signal(phase: phase)
+    public static func scales(phase: Double, vitality: Double, life: CompanionLife = .standard) -> (x: Double, y: Double) {
+        let breath = amplitude(vitality: vitality, life: life) * signal(phase: phase)
         return (x: 1 - breath * 0.55, y: 1 + breath)
     }
 }
