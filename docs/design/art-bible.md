@@ -328,8 +328,8 @@ to 14 are unchanged except the provenance line in section 13. Pipeline:
 6. **Glass++ (ADR-0018):** no image ever paints glass, frosted panels,
    buttons or interface chrome; domain icons follow the icon style block
    (simplified, legible at 24 pt, no outline).
-7. **Generating account:** production art is generated only on the
-   founder's own OpenAI account; every master records its owner.
+7. **Generating account:** every master records its generating account
+   truthfully. _Founder's decision (2026-11-02): art is generated on his uncle's ChatGPT plan with permission, and provenance says so truthfully. Before launch: a written assignment or shipped masters regenerated on his own plan (roadmap Phase 6)._
 8. **New defects:** _reframed edit_ (the edit rescaled or moved the
    object: aligned automatically, regenerate if beyond 25 %); _heavy
    lock_ (the lock moved colors by mean Delta E above 10: the take

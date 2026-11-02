@@ -55,10 +55,10 @@ they ever disagree, `CLAUDE.md` wins and you say so in your PR.
 
 ## The account rule (read twice)
 
-Production art is generated **only on the founder's own OpenAI
-account**: his own ChatGPT plan through Codex, or his own API key through
-the `openai-api` backend. OpenAI's terms forbid using someone else's
-account, and every master must name its generating account owner.
+_Founder's decision (2026-11-02): art is generated on his uncle's ChatGPT plan with permission, and provenance says so truthfully. Before launch: a written assignment or shipped masters regenerated on his own plan (roadmap Phase 6)._
+
+Every master must name its generating account truthfully: use exactly
+what `account.owner` in `tools/imagegen/config.yaml` says.
 
 - `tools/imagegen/config.yaml` → `account.owner` and `account.kind` must
   be filled in before anything is generated. If they are empty, or you

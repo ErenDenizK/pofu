@@ -80,9 +80,11 @@ the project's persistent memory; keep it accurate and concise.
   and never buy screen time; a breathing break is the hard limit (ADR-0015,
   not yet in `PofuCore`); ADR-0016 archipelago; ADR-0017 Pofu never dies.
 - Character: Pofu is an **illustrated fluffy hamster** (ADR-0010). The
-  founder generates art with GPT Image under the art bible, **only on the
-  founder's own OpenAI account** (sharing the uncle's account conflicts
-  with OpenAI's terms and clouds ownership);
+  founder generates art with GPT Image under the art bible, through Codex
+  in the cloud. By the founder's decision (2026-11-02) it runs on his
+  uncle's ChatGPT plan with permission, recorded truthfully in provenance;
+  before launch, get a written assignment or regenerate shipped masters on
+  his own plan (roadmap Phase 6). Do not re-raise this before then;
   the agent owns prompts, the pipeline, motion, and integration. The 3D
   Blender spike is parked as a reference.
 - Without a local Swift toolchain, the compile and test loop is: push,
