@@ -165,11 +165,11 @@ public struct WorldLight: Hashable, Sendable {
 public enum LookTuning {
     /// How much stronger the depth lens is than the plain rail lens: the
     /// HD-2D tilt-shift. 1 is the rail's own lens; the map stays sharp.
-    public static func tiltShift(z: Double) -> Double {
+    public static func tiltShift(z: Double, island: Double = 1.7, home: Double = 1.3) -> Double {
         let z = min(max(z.isFinite ? z : 2, 0), 2)
-        // Map 1.0 → Island 1.7 → Home 1.3.
-        if z <= 1 { return 1 + 0.7 * z }
-        return 1.7 - 0.4 * (z - 1)
+        // Map 1.0 → Island 1.7 → Home 1.3 (the Ayar panel tunes the two).
+        if z <= 1 { return 1 + (island - 1) * z }
+        return island + (home - island) * (z - 1)
     }
 
     /// How long the effects stay live after the scene appears (a visit),

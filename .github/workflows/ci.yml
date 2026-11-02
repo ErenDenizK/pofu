@@ -303,7 +303,7 @@ jobs:
           for png in pngs:
               im = Image.open(png).convert("RGB")
               # The look grids and the camera strip hold many phones; keep them readable.
-              h = {"look-compare": 1800, "look-grades": 2000, "look-script": 1800, "look-motion": 1100, "look-pan": 1100, "look-teapot": 900}.get(png.stem, 1000)
+              h = {"look-compare": 1800, "look-grades": 2000, "look-script": 1800, "look-motion": 1100, "look-pan": 1100, "look-teapot": 900, "look-plates": 1800}.get(png.stem, 1000)
               w = round(im.width * h / im.height)
               im.resize((w, h), Image.LANCZOS).save(out / (png.stem + ".jpg"), "JPEG", quality=85, optimize=True)
               if png.stem.startswith("look-"):

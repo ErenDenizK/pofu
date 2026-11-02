@@ -278,6 +278,13 @@ APP_SOURCES = {
     "cloud-sea": _sky("cloud-sea", 520),
 }
 APP_SOURCES["cay-1"]["softlock"] = "design/art/stations/cay-1/cay-1.png"
+# Night overlays of practical lights (look round 4): the batch-07 "lit" edit of a station, reduced to
+# what the light changed (its flame), drawn after the grade at night so it is never crushed by it.
+# Not a harmony source: it is light, not paint.
+APP_SOURCES["cay-1-glow"] = {**_station("cay-1-lit"), "emissive_of": (345, 570, 430, 635), "single": True, "harmony": False}
+# The plates to compare (look round 4: the founder chooses between v2 and v3), baked as
+# island-main-band<k>--v2 with v2's own harmony correction.
+PLATE_COMPARE = {"--v2": "island-main-l-v2"}
 # Look round 2's warm copper (the çaydanlık's hue moved from 54 to 59), kept only to compare in the
 # teapot sheet: the colour script (look round 3) keeps the rose copper as an accent instead.
 ROUND2_COPPER = {"cay-1": {"rose-copper": {"hue_shift": 6.97, "chroma_scale": 1.09}}}
@@ -478,6 +485,10 @@ def app_main():
             jobs.append((name, "--unharmonized", spec))
         if name in ROUND2_COPPER:
             jobs.append((name, "--round2", spec))
+        if name == APP_PLATE:
+            for alt, key in PLATE_COMPARE.items():
+                if key != APP_PLATE_MASTER:
+                    jobs.append((name, alt, _plate(key)))
     for name, alt, spec in jobs:
         path = os.path.join(REPO, spec["src"])
         if not os.path.exists(path):
@@ -488,6 +499,10 @@ def app_main():
             src = harmony.correct_image(name, src, manifest, harmony_cfg)
         if alt == "--round2":
             src = _round2_copper(harmony, harmony_cfg, name, src)
+        if alt in PLATE_COMPARE:
+            src = harmony.correct_image(PLATE_COMPARE[alt], src, manifest, harmony_cfg)
+        if spec.get("emissive_of"):
+            src = _emissive(src, spec["emissive_of"])
         if "anchor_box" in spec:
             bx = spec["anchor_box"]
             ppu = src.width / spec["units"]
@@ -502,6 +517,13 @@ def app_main():
             img = img.resize((max(1, round(img.width * f)), max(1, round(img.height * f))), Image.LANCZOS)
             anchor, ppu = (anchor[0] * f, anchor[1] * f), cap
         variants = {"sharp": (img, _box((0, 0), img.size, ppu, anchor))}
+        if spec.get("single"):
+            # One image in world units, never blurred: a light overlay.
+            _write_imageset(f"world-{name}{alt}", img)
+            box = variants["sharp"][1]
+            table[name + alt] = {"sharp": box, "soft": box, "deep": box}
+            print(f"{name}{alt}: single, {img.width}x{img.height}, box {box}")
+            continue
         if spec.get("sky"):
             # Screen-space sky art: one image, its box in points around its centre.
             _write_imageset(f"world-{name}{alt}", img)
@@ -542,6 +564,27 @@ def app_main():
         print(f"{name}{alt}: {img.width}x{img.height}, {ppu:.2f} px/unit, box {entry.get('sharp', entry['soft'])}")
     _write_swift(table, walkable, plate)
     return 0
+
+
+def _emissive(lit, region):
+    """The light a "lit" edit adds, for a night overlay: the edit's warm, bright pixels inside
+    `region` (x0, y0, x1, y1 in source pixels: the burner's opening, where the edit painted the
+    flame), feathered. Measured against the base the edit is too re-rendered to diff (its whole
+    image moved by up to 0.13 in luma), so the region is authored and the flame keyed by colour."""
+    from PIL import ImageFilter
+
+    a = np.asarray(lit, dtype=np.float32) / 255.0
+    h, w = a.shape[:2]
+    x0, y0, x1, y1 = region
+    box = np.zeros((h, w), dtype=np.float32)
+    box[y0:y1, x0:x1] = 1
+    box = np.asarray(Image.fromarray(np.uint8(box * 255), "L").filter(ImageFilter.GaussianBlur(6)), dtype=np.float32) / 255.0
+    warm = np.clip((a[..., 0] - a[..., 2] - 0.12) * 4, 0, 1)
+    bright = np.clip((a[..., :3] @ np.array([0.2126, 0.7152, 0.0722], dtype=np.float32) - 0.5) * 4, 0, 1)
+    alpha = box * warm * bright * a[..., 3]
+    out = Image.fromarray(np.uint8(np.clip(a * 255, 0, 255)), "RGBA")
+    out.putalpha(Image.fromarray(np.uint8(alpha * 255), "L").filter(ImageFilter.GaussianBlur(1.5)))
+    return out
 
 
 def _round2_copper(harmony, cfg, name, img):

@@ -103,16 +103,26 @@ public struct CameraRail: Hashable, Sendable {
     public static let referenceWidth = 402.0
     public static let referenceHeight = 874.0
 
-    /// Map, Island, Home, fitted by `IslandFraming` (look round 3): the Map
-    /// frames the five islands of the X between the bands; the Island stop
-    /// fills 88 % of the width with the plate, nothing cropped, centred
-    /// between the chrome; Home is design review 01's option B, Pofu
-    /// 154 pt, 38 % of the width (ADR-0018).
+    /// Map, Island, Home, fitted by `IslandFraming`: the Map frames the
+    /// five islands of the X between the bands; the Island stop is a pan
+    /// across the island at ×1.25, centred on Pofu (look round 4); Home is
+    /// design review 01's option B, Pofu 154 pt, 38 % of the width
+    /// (ADR-0018).
     public static let referenceStops: [Stop] = [
         IslandFraming.mapStop(width: referenceWidth, height: referenceHeight),
         IslandFraming.islandStop(width: referenceWidth, height: referenceHeight),
         IslandFraming.homeStop(width: referenceWidth),
     ]
+
+    /// The whole island (the establishing shot) at this viewport.
+    public var wholeIslandPose: CameraPose {
+        let stop = IslandFraming.wholeStop(width: Self.referenceWidth, height: Self.referenceHeight)
+        return CameraPose(
+            scale: stop.scale * width / Self.referenceWidth,
+            look: stop.look,
+            anchorY: stop.anchorY * height / Self.referenceHeight
+        )
+    }
 
     /// Past Home the camera bands up to ×1.25; past the Map down to ×0.8.
     public static let bandIn = log(1.25)

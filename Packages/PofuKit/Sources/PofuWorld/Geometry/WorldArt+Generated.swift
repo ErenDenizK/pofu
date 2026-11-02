@@ -73,6 +73,12 @@ extension WorldArt {
                 WorldPoint(x: -44.58, y: 1.19),
             ]
         ),
+        "cay-1-glow": WorldSprite(
+            sharp: WorldBox(minX: -21.211, minY: -28.359, maxX: -8.044, maxY: -18.193),
+            soft: WorldBox(minX: -21.211, minY: -28.359, maxX: -8.044, maxY: -18.193),
+            deep: WorldBox(minX: -21.211, minY: -28.359, maxX: -8.044, maxY: -18.193),
+            footprint: []
+        ),
         "cay-2": WorldSprite(
             sharp: WorldBox(minX: -47.695, minY: -80.742, maxX: 45.971, maxY: 12.591),
             soft: WorldBox(minX: -52.029, minY: -85.076, maxX: 50.305, maxY: 16.924),
@@ -374,6 +380,12 @@ extension WorldArt {
             deep: WorldBox(minX: -256.173, minY: -55.957, maxX: 256.496, maxY: -5.498),
             footprint: []
         ),
+        "island-main-band0--v2": WorldSprite(
+            sharp: WorldBox(minX: -243.558, minY: -47.224, maxX: 244.205, maxY: -5.822),
+            soft: WorldBox(minX: -247.763, minY: -49.811, maxX: 248.41, maxY: -5.822),
+            deep: WorldBox(minX: -255.849, minY: -55.962, maxX: 256.496, maxY: -5.578),
+            footprint: []
+        ),
         "island-main-band1": WorldSprite(
             sharp: WorldBox(minX: -243.881, minY: -21.671, maxX: 244.205, maxY: 21.995),
             soft: WorldBox(minX: -248.086, minY: -21.348, maxX: 248.41, maxY: 21.995),
@@ -384,6 +396,12 @@ extension WorldArt {
             sharp: WorldBox(minX: -243.881, minY: -21.671, maxX: 244.205, maxY: 21.995),
             soft: WorldBox(minX: -248.086, minY: -21.348, maxX: 248.41, maxY: 21.995),
             deep: WorldBox(minX: -256.173, minY: -21.994, maxX: 256.496, maxY: 21.671),
+            footprint: []
+        ),
+        "island-main-band1--v2": WorldSprite(
+            sharp: WorldBox(minX: -243.558, minY: -21.671, maxX: 244.205, maxY: 21.995),
+            soft: WorldBox(minX: -247.763, minY: -21.348, maxX: 248.41, maxY: 21.995),
+            deep: WorldBox(minX: -255.849, minY: -21.081, maxX: 256.496, maxY: 21.552),
             footprint: []
         ),
         "island-main-band2": WorldSprite(
@@ -398,6 +416,12 @@ extension WorldArt {
             deep: WorldBox(minX: -256.173, minY: 6.146, maxX: 256.496, maxY: 51.752),
             footprint: []
         ),
+        "island-main-band2--v2": WorldSprite(
+            sharp: WorldBox(minX: -243.558, minY: 6.469, maxX: 244.205, maxY: 51.752),
+            soft: WorldBox(minX: -247.763, minY: 6.469, maxX: 248.41, maxY: 51.752),
+            deep: WorldBox(minX: -255.849, minY: 6.049, maxX: 256.496, maxY: 51.588),
+            footprint: []
+        ),
         "island-main-band3": WorldSprite(
             sharp: WorldBox(minX: -243.881, minY: 36.227, maxX: 244.205, maxY: 187.278),
             soft: WorldBox(minX: -248.086, minY: 36.226, maxX: 248.41, maxY: 188.895),
@@ -408,6 +432,12 @@ extension WorldArt {
             sharp: WorldBox(minX: -243.881, minY: 36.227, maxX: 244.205, maxY: 187.278),
             soft: WorldBox(minX: -248.086, minY: 36.226, maxX: 248.41, maxY: 188.895),
             deep: WorldBox(minX: -256.173, minY: 36.227, maxX: 256.496, maxY: 194.394),
+            footprint: []
+        ),
+        "island-main-band3--v2": WorldSprite(
+            sharp: WorldBox(minX: -243.558, minY: 36.227, maxX: 244.205, maxY: 147.817),
+            soft: WorldBox(minX: -247.763, minY: 36.227, maxX: 248.41, maxY: 149.434),
+            deep: WorldBox(minX: -255.849, minY: 36.086, maxX: 256.496, maxY: 154.294),
             footprint: []
         ),
         "isle-hamam-standin": WorldSprite(

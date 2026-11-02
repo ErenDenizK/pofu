@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Look round 4 (`docs/design/look-dev.md`, "Round 4"): the Island framing
+  is a horizontal pan at full size (Pofu 80 pt) with momentum, snap points
+  per station and rubber-banded ends, opening on Pofu after a brief
+  establishing shot of the whole island; the Ayar panel's camera, depth and
+  Pofu values act live; cay-1-lit's flame is the çay ocağı's night overlay;
+  plate v2 and v3 side by side for the founder; motion beat
+  `06-island-pan`.
+
 - Ayçiçeği's garden minigame, a vertical slice (`PofuGames`,
   `docs/product/minigames.md`): a block puzzle where full rows bloom into
   sunflowers and pour seeds into Pofu's cheeks; rounds are a bag of 18

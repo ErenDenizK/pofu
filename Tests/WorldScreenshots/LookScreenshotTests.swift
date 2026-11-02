@@ -14,12 +14,13 @@ import XCTest
 ///   the island and the characters are in each frame);
 /// - `look-script`: the colour script's five hour cells at Home and at the
 ///   Island (the art director's strip);
-/// - `look-teapot`: the çaydanlık's original rose copper, round 2's warm
-///   shift and the colour script's rose lit by the ember, by day and night;
+/// - `look-teapot`: the çaydanlık at level 1 unlit, lit by the ember, and
+///   with cay-1-lit's painted flame (look round 4), by day and night;
+/// - `look-plates`: the shipped v3 plate and batch 03's v2, to choose;
 /// - `look-motion`: six frames of a Home → Island flight with depth in
 ///   motion, over the same frames without it;
-/// - `look-pan`: a pan from the garden's focus to the çay ocağı's with depth
-///   in motion (parallax across the island), over the same frames without;
+/// - `look-pan`: the Island pan (look round 4), a flick from Pofu toward
+///   the çay ocağı coasting onto its snap point, depth in motion on and off;
 /// - `look-celebration-card` and `frame-times.txt`.
 ///
 /// The framing before/after sheet is drawn by CI from round 2's published
@@ -94,6 +95,7 @@ final class LookScreenshotTests: XCTestCase {
         try await renderTeapot(in: scene, folder: folder)
         try await renderMotion(in: scene, folder: folder)
         try await renderPan(in: scene, folder: folder)
+        try await renderPlates(in: scene, folder: folder)
 
         // The painted celebration card over the world (system UI is glass,
         // celebration is painted).
@@ -130,27 +132,34 @@ final class LookScreenshotTests: XCTestCase {
         ]
     }
 
-    // MARK: - The teapot: rose, round 2's warm, the colour script
+    // MARK: - The teapot: paint, the ember's light, the lit flame
 
     @MainActor
     private func renderTeapot(in scene: UIWindowScene, folder: URL) async throws {
-        let variants: [(String, WorldLook.ArtSet, Bool)] = [
-            ("original rose copper", .lockLight, false),
-            ("round 2: warm shift", .round2Copper, false),
-            ("colour script: rose, lit by the ember", .lockLight, true),
+        // The çay ocağı at level 1, the level batch 07 painted a lit flame for.
+        let world = IslandSamples.world(
+            clock: Date(timeIntervalSinceReferenceDate: 815_000_000),
+            tendedDays: 120,
+            levels: [.garden: 3, .cay: 1, .pond: 2, .workshop: 1, .windmill: 2],
+            jar: Energy(60),
+            islands: [.aycicegi, .iskele]
+        )
+        let variants: [(String, Bool, Bool)] = [
+            ("rose copper, unlit", false, false),
+            ("lit by the ember (round 3)", true, false),
+            ("+ cay-1-lit's flame (round 4)", true, true),
         ]
         var rows: [[UIImage]] = []
         var titles: [[String]] = []
         for (hour, label) in [(12.0, "day"), (22.0, "night")] {
             var row: [UIImage] = []
             var rowTitles: [String] = []
-            for (title, art, lit) in variants {
+            for (title, lit, flame) in variants {
                 let model = IslandSceneModel(framing: .island)
                 model.holdStationPan(from: .cay, to: .cay, at: 0)
-                // "Unlit" shows the paint under the hour's grade only; "lit"
-                // adds the colour script's practical light (HD-2D layers).
-                let look = WorldLook(art: art, hd2d: lit, depthMotion: false, hourOverride: hour)
-                let image = try await render(AnyView(LookScene(world: world(wellbeing: 78), model: model, picker: false).environment(\.worldLook, look)), in: scene, settle: 1400)
+                var look = WorldLook(hd2d: lit, depthMotion: false, hourOverride: hour)
+                look.litOverlays = flame
+                let image = try await render(AnyView(LookScene(world: world, model: model, picker: false).environment(\.worldLook, look)), in: scene, settle: 1400)
                 // The held focus pose, as the scene drew it.
                 let cay = try XCTUnwrap(IslandFraming.stationBox(.cay))
                 let a = model.screenPoint(of: WorldPoint(x: cay.minX - 4, y: cay.minY - 4))
@@ -162,6 +171,35 @@ final class LookScreenshotTests: XCTestCase {
             titles.append(rowTitles)
         }
         try write(grid(rows, titles: titles, cell: CGSize(width: 372, height: 330)), name: "look-teapot", to: folder)
+    }
+
+    // MARK: - The plates: v3 (shipped) and v2
+
+    /// The founder chooses the plate: the establishing shot, the Island
+    /// pan and Home by day, and the Island at night, for v3 and v2.
+    @MainActor
+    private func renderPlates(in scene: UIWindowScene, folder: URL) async throws {
+        let shots: [(String, WorldFraming?, Double)] = [
+            ("establishing", nil, 12), ("Island", .island, 12), ("Home", .home, 12), ("Island · night", .island, 22),
+        ]
+        var rows: [[UIImage]] = []
+        var titles: [[String]] = []
+        for (label, art) in [("v3 (batch 05, shipped)", WorldLook.ArtSet.lockLight), ("v2 (batch 03)", .plateV2)] {
+            var row: [UIImage] = []
+            var rowTitles: [String] = []
+            for (title, framing, hour) in shots {
+                let model = IslandSceneModel(framing: framing ?? .island)
+                if framing == nil {
+                    model.holdEstablishingShot()
+                }
+                let look = WorldLook(art: art, hourOverride: hour)
+                row.append(try await render(AnyView(LookScene(world: world(wellbeing: 78), model: model).environment(\.worldLook, look)), in: scene, settle: 1400))
+                rowTitles.append("\(label) · \(title)")
+            }
+            rows.append(row)
+            titles.append(rowTitles)
+        }
+        try write(grid(rows, titles: titles), name: "look-plates", to: folder)
     }
 
     private func crop(_ image: UIImage, to rect: CGRect) -> UIImage {
@@ -206,12 +244,12 @@ final class LookScreenshotTests: XCTestCase {
         try write(grid(rows, titles: titles, cell: CGSize(width: 201, height: 437)), name: "look-motion", to: folder)
     }
 
-    /// A pan across the island, from the garden's focus (left tip) to the
-    /// çay ocağı's (right tip): the near and far layers slide past each
-    /// other while the camera moves and settle into the authored frame.
+    /// The Island pan (look round 4): a flick toward the çay ocağı from
+    /// Pofu's centred view, coasting, then settling on the snap point, with
+    /// depth in motion and without.
     @MainActor
     private func renderPan(in scene: UIWindowScene, folder: URL) async throws {
-        let times = [0.0, 0.15, 0.3, 0.45, 0.7, 2.0]
+        let times = [0.0, 0.08, 0.16, 0.26, 0.4, 2.0]
         var rows: [[UIImage]] = []
         var titles: [[String]] = []
         for depth in [true, false] {
@@ -219,11 +257,14 @@ final class LookScreenshotTests: XCTestCase {
             var rowTitles: [String] = []
             for t in times {
                 let model = IslandSceneModel(framing: .island)
-                model.holdStationPan(from: .garden, to: .cay, at: t)
+                model.holdPan(start: 0, velocity: -1100, at: t)
                 let look = WorldLook(depthMotion: depth, hourOverride: 12)
                 let image = try await render(AnyView(LookScene(world: world(wellbeing: 78), model: model, picker: false).environment(\.worldLook, look)), in: scene, settle: 1200)
                 row.append(image)
                 rowTitles.append(String(format: "%@ t %.2f s", depth ? "depth on" : "depth off", t))
+                if depth, t == 2.0 {
+                    try write(image, name: "island-pan-settled", to: folder)
+                }
             }
             rows.append(row)
             titles.append(rowTitles)

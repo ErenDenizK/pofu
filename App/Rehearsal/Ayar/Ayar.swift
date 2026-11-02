@@ -1,5 +1,6 @@
 #if DEBUG
 import Observation
+import PofuCompanion
 import PofuTuning
 import PofuWorld
 import SwiftUI
@@ -61,21 +62,59 @@ enum AyarPhase: String, CaseIterable, Identifiable {
 // MARK: - The look
 
 /// Lays the Ayar look over the world in Rehearsal mode: the pinned time
-/// of day, the HD-2D switches, and the grade trims blended by the light's
-/// time-of-day weights. With the defaults it changes nothing.
+/// of day, the HD-2D switches, the grade trims blended by the light's
+/// time-of-day weights, and (look round 4) the camera springs, the depth
+/// strengths and Pofu's breath and blinks, all live. With the defaults it
+/// changes nothing.
 struct AyarLook: ViewModifier {
     let model: AppModel
 
     @Environment(\.colorScheme) private var colorScheme
 
     func body(content: Content) -> some View {
-        content.environment(\.worldLook, model.rehearsal == nil ? .standard : look)
+        let rehearsing = model.rehearsal != nil
+        content
+            .environment(\.worldLook, rehearsing ? look : .standard)
+            .environment(\.companionLife, rehearsing ? Self.life(Ayar.store.values.companion) : .standard)
+    }
+
+    /// The world's tunable feel from the Ayar values.
+    static func tuning(_ values: TuningValues) -> WorldTuning {
+        func spring(_ s: TuningValues.Spring) -> SpringSpec {
+            SpringSpec(duration: s.duration, bounce: s.bounce)
+        }
+        let camera = values.camera
+        return WorldTuning(
+            springs: CameraSprings(
+                travel: spring(camera.travel),
+                far: spring(camera.far),
+                release: spring(camera.release),
+                focus: spring(camera.focus),
+                buildPush: spring(camera.buildPush)
+            ),
+            parallax: values.depth.parallax,
+            tiltShiftIsland: values.depth.tiltShiftIsland,
+            tiltShiftHome: values.depth.tiltShiftHome
+        )
+    }
+
+    /// Pofu's breath and blinks from the Ayar values.
+    static func life(_ c: TuningValues.Companion) -> CompanionLife {
+        CompanionLife(
+            breathPeriodLow: c.breathPeriodLow,
+            breathPeriodHigh: c.breathPeriodHigh,
+            breathAmplitudeLow: c.breathAmplitudeLow,
+            breathAmplitudeHigh: c.breathAmplitudeHigh,
+            blinkIntervalMin: c.blinkIntervalMin,
+            blinkIntervalMax: c.blinkIntervalMax
+        )
     }
 
     private var look: WorldLook {
         let session = Ayar.session
         let trims = Ayar.store.values.grade
         var look = WorldLook(hd2d: session.hd2d, depthMotion: session.depthMotion, hourOverride: session.pinnedPhase?.hour)
+        look.tuning = Self.tuning(Ayar.store.values)
         let untouched = trims.day == .identity && trims.golden == .identity && trims.night == .identity
         guard !untouched else { return look }
         let light = WorldLight.resolve(

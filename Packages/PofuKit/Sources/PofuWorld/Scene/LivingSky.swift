@@ -200,6 +200,15 @@ struct CloudSea: View {
     static let period = 640.0
     static let speed = 3.0
 
+    /// The rise for a camera pose (look round 4): up to the island's roots,
+    /// so the band under the island is always the sea, never dead sky;
+    /// capped by the rail's rise (none at Home, a little on the Map).
+    static func rise(z: Double, pose: CameraPose, height: Double) -> Double {
+        let roots = pose.anchorY + (IslandFraming.islandBox.maxY - 30 - pose.lookY) * pose.scale
+        let reach = height - Self.height - roots
+        return min(max(reach, 0), rise(z: z))
+    }
+
     /// The rise along the camera rail: none at Home (the Today card sits
     /// there), most at the Island, a little on the Map.
     static func rise(z: Double) -> Double {
