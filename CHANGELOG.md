@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- The archipelago system proposal (`docs/product/archipelago-system.md`):
+  two free yield islands, then a run of hand-made wonder islands, each
+  with a signature motion in code, a resident, a toy, a five-stage secret
+  and its own game built on a shared grammar; rounds earned by resisting
+  reaches, per-island materials instead of growing numbers, decor spots,
+  rumours that tease the next island, a revised session guardrail for
+  5–10 minute play, the Plus line, a first-60-days timeline and twelve
+  island concepts from several cultures. Content nodes for the new
+  islands, residents and systems (all `horizon: maybe`).
 - Look-dev for the world (`docs/design/look-dev.md`): a reversible color
   pipeline, "painted HD-2D lite" and the terrarium. The art is baked with
   the new `lock-light` style-lock preset (the default for new jobs;
