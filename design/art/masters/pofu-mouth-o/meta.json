@@ -1,0 +1,114 @@
+{
+  "job": "pofu-mouth-o",
+  "batch": "batch-06-pofu-rig",
+  "asset": "char__pofu-mouth-o",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T19:21:09+00:00",
+  "image": "design/art/masters/pofu-mouth-o/pofu-mouth-o.webp",
+  "raw": "design/art/masters/pofu-mouth-o/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "9f9c4f3f5faa7e10",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached hamster. Change only his mouth: make it a small\nround \"o\" of surprise and curiosity under the nose, about a third\nthe width of the current smile. Nothing else changes.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: teeth, a wide-open shout, a ground shadow, text.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T19:16:52+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": {
+    "scale": 0.9973,
+    "cx": 516.5,
+    "cy": 1375.0,
+    "dx": 0,
+    "dy": -1
+  },
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "edit_alignment",
+        "status": "pass",
+        "message": "the edit rescaled the object x1.003 and moved it; aligned back to the parent",
+        "value": 0.9973
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 52 (R1 51)",
+        "value": 51.9
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 58 (R1 59)",
+        "value": 58.2
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 5.1 (R1 5.3)",
+        "value": 5.12
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.4, p95 10.6, off-palette 4.0% (top: #EE9955 (0.7%), #EE7766 (0.4%))",
+        "value": 2.3729
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.5% of the height (contract 88%)",
+        "value": 0.8945
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 83 against the char reference (outliers: C_p95, detail, tint_b)",
+        "value": 83.0
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "100% of the parent level unchanged",
+        "value": 0.9963
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.03 of the parent level (drift compounds along a chain)",
+        "value": 1.0332
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Pofu is never locked; equal zero lock loads are resolved by higher harmony score. Alpha composites verify clean transparency."
+}
