@@ -79,47 +79,65 @@ account, and every master must name its generating account owner.
   `~/projects/pofu-art`), not in the folder the local Claude session
   uses (`/Users/edk/projects/pofu`).
 
-## Current status (2026-11-01)
+## Current status (2026-11-02): parallel auto mode
 
-**Batch 01 is open for the W1 art test, D1–D8 only.** The founder chose
-his own ChatGPT plan (`account.kind: chatgpt-plan`). Generate only these
-eight jobs, round by round, always with
-`--only island-main-s island-main-l terrace cay-1 cay-2 garden-1 simit-1 mochi`.
-Stop after the eight and wait for the lead's review; `cay-3` to `cay-5`
-and `garden-2` are not part of the test. Batch 02 stays `status: blocked`
-until the friends beta.
+**Batch 01 is fully open.** The founder wants art to flow fast and
+automatically: many Codex cloud tasks in parallel, **one job per task**,
+with the take picked automatically by QA. The founder reviews afterwards
+and can veto any pick. Batch 02 stays `status: blocked` until the friends
+beta.
 
-**Codex cloud is the default operator** (the founder works from his
-phone; the Mac is optional). Codex runs under his own ChatGPT plan either
-way. In a cloud task, one round per task:
+**Waves.** A job can start only when every job it depends on has an
+approved master on `main` (or on a merged `art/` branch). Run each wave
+as parallel tasks; start the next wave after the lead merges the previous
+one.
+
+| Wave | Jobs (one Codex task each) |
+|---|---|
+| 1 | `island-main-s`, `mochi` |
+| 2 | `island-main-l`, `cay-1` |
+| 3 | `terrace`, `cay-2`, `garden-1`, `simit-1` |
+| 4 | `cay-3`, `garden-2` |
+| 5 | `cay-4` |
+| 6 | `cay-5` |
+
+**One task = one job.** The founder starts a task with: "AGENTS.md
+parallel auto mode, batch-01-slice, job `<id>`". Then:
 
 1. Install the tools: `pip install -r tools/imagegen/requirements.txt`. If
    that fails, stop and ask the founder to add it to the Codex
    environment's setup script (setup runs with internet access).
-2. For each job of the round, print the exact prompt and attachments with
-   `python3 -I tools/imagegen/run.py prompt --manifest <manifest> --job <id>`,
-   and generate the takes (the job's `variants`) with **your built-in image
-   generation tool**, attaching the listed reference images. If you have no
-   image tool in this environment, stop and say so in a PR comment.
-3. Save each take as a PNG and add it with
-   `run.py ingest --manifest <manifest> --job <id> --source codex-cloud <files>`
-   (the account comes from `config.yaml`).
-4. Run `run.py post --manifest <manifest> --only <round's jobs>` for the
-   style lock, QA and the contact sheet.
-5. The container is not kept, and raw takes are git-ignored. So also
-   commit every take of the round as **lossless WebP** in
-   `design/art/takes/<batch>/` (the pipeline's file names, `.webp`), next to
-   the review file and the small contact sheet. Open the `art/<batch>` PR
-   and stop.
-6. The founder answers in Turkish with the take he wants per job. In the
-   next task, restore the picked takes from `design/art/takes/<batch>/`
-   into the inbox (as PNG), run `promote`, and push to the same PR.
+2. If the job depends on others, restore their approved masters from
+   `main`. They are already in the repo; do nothing if they are present.
+3. Print the exact prompt and attachments with
+   `python3 -I tools/imagegen/run.py prompt --manifest tools/imagegen/manifest/batch-01-slice.yaml --job <id>`,
+   and generate the job's `variants` with **your built-in image generation
+   tool**, attaching the listed references. If you have no image tool here,
+   stop and say so.
+4. Ingest the takes with
+   `run.py ingest --manifest <manifest> --job <id> --source codex-cloud <files>`,
+   then run `run.py post --manifest <manifest> --only <id>`.
+5. **Auto-pick:** choose the take that passes QA with the lowest style-lock
+   load (the post report lists both). If no take passes, generate at most
+   one more round of the job's variants. If that also fails, stop and report
+   the failing checks; do not loop. Set that take as the pick for this job
+   only, and run `promote --only <id>`. In the provenance note, write
+   "auto-picked by QA; founder review pending".
+6. **Commit only this job's files**, so parallel tasks never conflict:
+   - the master or station output that `promote` wrote;
+   - every take as lossless WebP in `design/art/takes/batch-01-slice/<id>/`;
+   - the job's contact sheet as `design/art/takes/batch-01-slice/<id>/contact.jpg`;
+   - the job's QA summary as `.../<id>/review.yaml`.
+
+   Do **not** edit the shared `design/art/review/batch-01-slice.yaml`; the
+   lead merges the fragments. Push branch `art/batch-01-slice/<id>`, open a
+   PR named `art(batch-01): <id>`, and stop.
+
+The founder vetoes in Turkish ("cay-1: take 2", or "redo"). The lead or
+a new task applies the veto.
 
 On the Mac, the `codex` backend (`run.py run --backend codex`) does steps
-2 to 4 by itself.
-
-When a batch opens, do the [first-run checklist](docs/design/art-pipeline.md#first-run-checklist)
-once, with the founder.
+3 and 4 by itself.
 
 ## Decisions you must respect
 
