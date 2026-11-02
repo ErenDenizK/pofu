@@ -221,7 +221,7 @@ public struct GardenRoundResult: Sendable, Equatable, Hashable {
 /// - at most 5.
 ///
 /// Calibrated by simulation (docs/product/minigames.md §6): a greedy
-/// expert averages about 4.2 seeds, random play about 2.4; the archipelago
+/// expert averages about 4.1 seeds, random play about 2.5; the archipelago
 /// economy expects about 4 a round. Tunable here only.
 public enum SeedYield {
     public static let base = 2

@@ -36,20 +36,23 @@ public struct GardenLayout: Equatable, Sendable {
         self.size = size
         let hudBottom = size.height - safeTop - Self.hudHeight
         let bottom = safeBottom + 12
-        tray = CGRect(x: 16, y: bottom, width: max(0, size.width - 32), height: Self.trayHeight)
+        let tray = CGRect(x: 16, y: bottom, width: max(0, size.width - 32), height: Self.trayHeight)
+        self.tray = tray
         let availableTop = hudBottom - 8
         let availableBottom = tray.maxY + 18
         let available = max(0, availableTop - availableBottom)
 
         let byWidth = (size.width - 2 * Self.sideGutter - 2 * Self.bedPadding) / 8
         let byHeight = (available - Self.charactersHeight - 2 * Self.bedPadding) / 8
-        cell = max(16, min(Self.maximumCell, floor(min(byWidth, byHeight))))
+        let cell = max(16, min(Self.maximumCell, floor(min(byWidth, byHeight))))
+        self.cell = cell
         let gridSide = cell * 8
         let bedSide = gridSide + 2 * Self.bedPadding
 
         let group = Self.charactersHeight + bedSide
         let top = availableTop - max(0, (available - group) / 2)
-        bed = CGRect(x: (size.width - bedSide) / 2, y: top - Self.charactersHeight - bedSide, width: bedSide, height: bedSide)
+        let bed = CGRect(x: (size.width - bedSide) / 2, y: top - Self.charactersHeight - bedSide, width: bedSide, height: bedSide)
+        self.bed = bed
         grid = bed.insetBy(dx: Self.bedPadding, dy: Self.bedPadding)
 
         slots = (0..<3).map { index in

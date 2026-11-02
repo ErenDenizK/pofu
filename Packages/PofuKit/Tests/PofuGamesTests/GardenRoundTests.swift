@@ -225,7 +225,7 @@ struct GardenRoundTests {
             seeds.append(round.result.seeds)
         }
         let mean = Double(seeds.reduce(0, +)) / Double(seeds.count)
-        // A greedy expert lands near 4 (simulated 4.2); never pinned at 5.
+        // A greedy expert lands near 4 (simulated 4.1); never pinned at 5.
         #expect(mean > 3.3 && mean < 4.8, "mean \(mean)")
     }
 
