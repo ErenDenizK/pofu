@@ -9,6 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Pofu's voice (`docs/brand/pofu-voice.md`): research on what makes a
+  mascot's humour land or grate, the rules for personality B (jealous as
+  play, never guilt; comedy rationed per day and decaying with the reach
+  count; cooldowns; an expiring remote line pack; a never-say list), and a
+  tagged Turkish line bank of 157 lines with English glosses.
+
+- Sound identity (`docs/design/sound-identity.md`): when sound plays and
+  when it never does, Pofu's micro-sounds and how each is made, island
+  music in one key (a mode per island, calm opening the voicing), and the
+  iOS path (stems plus a runtime composer on `AVAudioEngine`). The proof
+  renderer `tools/sound/render.py` synthesizes 9 sounds and 4 seamless
+  island loops into `design/sound/proof/` and measures them (true peak,
+  BS.1770 loudness, spectra, seams). Content nodes `sys-voice` and
+  `sys-sound`.
+
 - Look-dev for the world (`docs/design/look-dev.md`): a reversible color
   pipeline, "painted HD-2D lite" and the terrarium. The art is baked with
   the new `lock-light` style-lock preset (the default for new jobs;
