@@ -21,6 +21,10 @@ struct RootView: View {
                 HomeView(model: model)
             }
         }
+        #if DEBUG
+        // Rehearsal mode's Ayar panel tunes the world's look live.
+        .modifier(AyarLook(model: model))
+        #endif
         .overlay {
             // Rehearsal mode: the shield replica, the simulated app, and
             // the Prova panel, under any sheet and Hop!'s cover.

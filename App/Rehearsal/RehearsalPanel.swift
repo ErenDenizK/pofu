@@ -91,6 +91,12 @@ struct RehearsalPanel: View {
             }
             nightOrMorning
             Divider()
+            #if DEBUG
+            // Ayar: the live tuning panel (debug builds only).
+            control(Text(verbatim: "Ayar"), symbol: "slider.horizontal.3") {
+                Ayar.session.isOpen = true
+            }
+            #endif
             control(Text("Reset"), symbol: "arrow.counterclockwise", role: .destructive) {
                 confirmsReset = true
             }

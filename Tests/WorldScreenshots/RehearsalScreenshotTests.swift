@@ -50,6 +50,17 @@ final class RehearsalScreenshotTests: XCTestCase {
                     }
                 )
             ),
+            (
+                "08-ayar-panel-light",
+                AnyView(
+                    ZStack {
+                        IslandScene(world: IslandSamples.dayThree(), model: IslandSceneModel(framing: .home)) {
+                            EmptyView()
+                        }
+                        AyarPanel(model: model, store: Ayar.store, session: Ayar.session)
+                    }
+                )
+            ),
         ]
 
         for (name, view) in shots {
