@@ -242,6 +242,26 @@ public struct StationStatus: Hashable, Sendable, Identifiable {
     public var canAfford: Bool
     /// Seeds an hour at its level, before calm.
     public var seedsPerHour: Double
+
+    public init(
+        id: StationID,
+        island: IslandID,
+        level: Int,
+        maxLevel: Int,
+        isOpen: Bool,
+        nextCost: Energy?,
+        canAfford: Bool,
+        seedsPerHour: Double
+    ) {
+        self.id = id
+        self.island = island
+        self.level = level
+        self.maxLevel = maxLevel
+        self.isOpen = isOpen
+        self.nextCost = nextCost
+        self.canAfford = canAfford
+        self.seedsPerHour = seedsPerHour
+    }
 }
 
 /// The world as `PofuWorld` reads it: a value computed from the state,
@@ -275,4 +295,52 @@ public struct WorldSnapshot: Hashable, Sendable {
     public var overLimitOpensToday: Int
     /// The breath the next open would need.
     public var nextBreath: BreathRequirement?
+
+    /// Every field, for previews, screenshots and tests; the app reads
+    /// snapshots from `WorldClock.snapshot(of:)`.
+    public init(
+        clock: Date?,
+        activity: WorldActivity,
+        isBedtime: Bool,
+        wellbeing: Double,
+        band: WellbeingBand,
+        calm: Double,
+        calmProgress: Double,
+        calmIsFull: Bool,
+        pending: SeedPouch,
+        jar: Energy,
+        isHolding: Bool,
+        tendedDays: Int,
+        calmNights: Int,
+        homeStage: Int,
+        islands: [IslandID],
+        stations: [StationStatus],
+        seedsPerHour: Double,
+        guardedMinutesToday: Int,
+        dailyHourMinutes: Int,
+        overLimitOpensToday: Int,
+        nextBreath: BreathRequirement?
+    ) {
+        self.clock = clock
+        self.activity = activity
+        self.isBedtime = isBedtime
+        self.wellbeing = wellbeing
+        self.band = band
+        self.calm = calm
+        self.calmProgress = calmProgress
+        self.calmIsFull = calmIsFull
+        self.pending = pending
+        self.jar = jar
+        self.isHolding = isHolding
+        self.tendedDays = tendedDays
+        self.calmNights = calmNights
+        self.homeStage = homeStage
+        self.islands = islands
+        self.stations = stations
+        self.seedsPerHour = seedsPerHour
+        self.guardedMinutesToday = guardedMinutesToday
+        self.dailyHourMinutes = dailyHourMinutes
+        self.overLimitOpensToday = overLimitOpensToday
+        self.nextBreath = nextBreath
+    }
 }
