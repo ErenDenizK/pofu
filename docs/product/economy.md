@@ -7,8 +7,11 @@
 > station levels and islands ([game-design.md](game-design.md)). Opening a guarded app costs calm and
 > Pofu's wellbeing; past a daily threshold (60 guarded minutes) every open
 > offers a short breathing break (5 s, at most 10 s, started by the user). This page is kept as the
-> record of economy v0, which `PofuCore` still implements; sections that
+> record of economy v0, which the app still runs; sections that
 > no longer apply carry a "Superseded" note and are otherwise unchanged.
+> **The v2 game model is implemented in `PofuCore/Game`** (W3, 2026-11-02)
+> but not yet wired into the app: see [the last section](#the-game-model-v2-pofucoregame)
+> and [game design §13](game-design.md#13-mapping-to-pofucore).
 
 _Status: v0, implemented in `PofuCore`. Every number on this page is a
 default in `EconomyConfiguration` and can be tuned without code changes._
@@ -528,3 +531,27 @@ no ladder and earns no seeds.
 
 The developer readout shows each kind separately, with "resisted by tap"
 (skips and cancellations only) next to the full count.
+
+## The game model v2 (`PofuCore/Game`)
+
+Implemented and tested; the app does not run it yet. Every number is a
+default in `GameRules` (`CareRules`, `CalmRules`, `SeedRules`,
+`BreathRules`, ADR-0014's `QuietTimeRules`, `ArchipelagoCatalog`); the
+full rules are [game design §5](game-design.md#5-mechanics-and-numbers).
+
+| Part | Type | What it holds |
+|---|---|---|
+| Wellbeing | `CareLedger` | 5–100 (start 70); −0.35 a minute in a guarded app (×2 at night, ×1.25 per earlier open in 3 h), −1.5 per open; +5 a calm waking hour, +1 a skip (6 a day), +10 a calm night; below 60, 30 % of the way back each night |
+| Calm | `CalmAccrual` | ×1.0–×2.0 in integer tenths; +0.1 per 20 observed calm waking minutes; a quick check (≤ 3 min) halves the bonus, a second within 20 min of the last one's end resets it; any other open resets; +0.2 a calm night |
+| Seeds | `StationLedger` | A pouch by source, collected into a jar, spent only on builds. Stations: designed ladders × calm × care (×0.6 below 25), only while away and observed, fractions carried. Pofu's gathering: 1 per 10 quiet waking minutes, 48 a day, +10 a calm night. Skips: +3, 5 a day |
+| The breath | `BreathRules` | Past the daily hour: 5 s for the 1st–3rd over-limit open, 10 s from the 4th, never more than 10 s; the fourth rapid reach falls back to the 10 s breath; never for the emergency pass; "Not now" is a skip |
+| The facade | `WorldClock`, `GameState` | A deterministic minute grid fed by `GameEvent`s (from the gate's event log); `advance`, `collect`, `build`, `breath`, `snapshot` |
+
+**What counts as away.** A minute is away only when no pass runs, Pofu is
+observing, and the user is not looking at Pofu past A20's 2-minute grace.
+Under the soft gate, the time from a pass's expiry to the next sign of
+life (a check-in, a skip, Pofu in the foreground, the expiry notification)
+is **unobserved** and earns nothing; with Screen Time the shield ends each
+pass, so the time after it is observed. Pre-membership, today's guarded
+time for the breath is the granted pass minutes; with DeviceActivity, the
+measured step when higher.

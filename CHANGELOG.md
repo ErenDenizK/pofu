@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- The game model in `PofuCore/Game` (iteration W3, not yet wired into the
+  app): `CareLedger` (Pofu's wellbeing, 5–100, never below 5, "sleeps it
+  off"), `CalmAccrual` (×1.0–×2.0, quick checks halve, the 20-minute
+  chain, resets), `StationLedger` and `ArchipelagoCatalog` (the 17
+  designed station ladders, idle production × calm only while away and
+  observed, seeds as world material, capped skip gifts, collection,
+  builds, island arrivals), `BreathRules` (5 s, 10 s from the 4th
+  over-limit open, capped at 10 s), and one deterministic facade,
+  `WorldClock` with `GameState`, fed by the gate's event log. Measurement
+  is honest: after a pass expires under the soft gate the time is
+  unobserved until the next sign of life, and past 2 minutes in Pofu's
+  foreground the world waits (A20). Swift Testing suites mirror the
+  economy simulation's archetypes and check the guardrails as properties.
+
 - App and game boundary ([app-game-boundary.md](docs/product/app-game-boundary.md)):
   opening intents, the finished visit, "Pofu'yla bir dakika" as a bounded
   substitute, and anti-compulsion guardrails with measurable targets.

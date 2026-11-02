@@ -457,26 +457,54 @@ code (ADR-0011).
    native speaker and tested with native speakers; humor that does not
    land in both languages is cut.
 
-## 13. Mapping to PofuCore (proposed, not yet implemented)
+## 13. Mapping to PofuCore
 
-| Concept | Today in PofuCore | Proposed |
+_Game model implemented in `PofuCore/Game` (iteration W3, 2026-11-02);
+not yet wired into the app, which still runs the v0 gate and economy.
+`PofuWorld` will only read it._
+
+| Concept | Today in PofuCore | Status |
 |---|---|---|
-| Seeds | `Energy` in a `Wallet`: allowance, earning, prices, refunds | `Energy` stays as the internal type of seeds. The allowance, prices, escalation and refunds leave the gate ([ADR-0015](../adr/0015-care-over-currency.md)). Seeds are credited by `QuietTimeAccrual` (unchanged), a new `StationLedger`, and capped skip gifts; they are debited only by station builds. |
-| Opening cost | `Wallet` prices, escalation, night ×2 | `CareLedger`: wellbeing drain per minute and per open, with the escalation and night multipliers re-homed; calm reset or halving. No prices. |
-| Calm | — (quiet time produced seeds) | `CalmAccrual`: the quiet-stretch logic, producing a multiplier step every 20 min; quick-check halving and the 20-minute chain. Prefix-consistent. |
-| The breathing break | — | `BreathRules` (threshold, seconds by over-limit open: 5, 5, 5, then 10; cap 10 s; started by the user) and a `GuardedTime` estimate: granted pass minutes now, DeviceActivity thresholds later. |
-| Wellbeing | `VitalityLedger` (daily EMA, bands, blind days freeze) | `Wellbeing`: a continuous meter fed by the same events, with "sleeps it off"; blind time freezes it. |
-| Production | — | `StationLedger`: levels and seeds as a pure function of (levels, quiet intervals, calm history, wellbeing history). |
-| Islands | — | `IslandCatalog` and `Archipelago`: arrival rules over tended days, calm nights and levels; monotonic. |
-| The ladder | pause → intent → pay → askFriend | pause → intent → **care** (shows the loss; quick check or open; past the threshold, a breath first) → askFriend on the fourth rapid reach; emergency pass unchanged and never breathed. |
-| Skips | never earn | +3 seeds, at most 5 a day; +1 wellbeing, at most 6. |
+| Seeds | `StationLedger`: a pouch by source (stations, gathering, calm nights, skips), collected into a jar; debited only by `build`. `Energy` stays the type. | **Implemented** in the game model. The gate still prices with `Wallet` (v0) until the app switches. |
+| Opening cost | `CareLedger`: drain per minute (×2 at night, ×1.25 per earlier open in 3 h) and per open; `CalmAccrual`: reset or halving. No prices. | **Implemented.** |
+| Calm | `CalmAccrual`: integer tenths, +0.1 per 20 observed calm waking minutes, quick-check halving, the 20-minute chain, +0.2 a calm night. | **Implemented.** Verified focus (1.5× faster) is not yet. |
+| The breathing break | `BreathRules` (5, 5, 5, then 10 s; capped at 10 s in code; started on a tap; the fourth rapid reach falls back to the long breath; never for the emergency pass) and `GameDay.guardedMinutes`: granted pass minutes, or DeviceActivity's measurement when higher. | **Implemented** as rules; the shield and Hop! still read `ScreenTimeGateRules`. |
+| Wellbeing | `CareLedger`: 5–100, bands, "sleeps it off", skip healing (6 a day). Unobserved time neither drains nor heals. | **Implemented.** `VitalityLedger` still drives the app. |
+| Production | `StationLedger.produceMinute`: rates in hundredths of a seed an hour × calm × care, fractions carried, so many small steps equal one. | **Implemented.** |
+| Islands | `ArchipelagoCatalog.standard` (five islands, 17 ladders, 1,944,103 seeds) and `StationLedger.settleArrivals`: tended days, calm nights, levels; Kitap needs a release. Monotonic. | **Implemented.** Rituals are not. |
+| A20 | `WorldClock` takes Pofu's foreground sessions: past 2 minutes the world is paused (nothing grows, nothing drains, calm holds). | **Implemented.** |
+| Honest measurement (§6) | `GuardedMeasurement.softGate`: after an expiry, time is unobserved until the next sign of life; the 72-hour window. `.screenTime`: the shield ends each pass. | **Implemented.** |
+| The facade | `WorldClock.advance(_:to:applying:)` over `GameEvent`s (adapters from the gate's `LoggedEvent` and `CheckInRecord`), `collect`, `build`, `breath`, `snapshot`. A deterministic minute grid; an event takes effect at the start of its minute. | **Implemented.** |
+| The ladder | pause → intent → **care** → askFriend on the fourth rapid reach, which falls back to the breath until friends ship; emergency pass unchanged and never breathed. | Not yet: the gate is unchanged. |
+| Skips | +3 seeds, at most 5 a day; +1 wellbeing, at most 6. | **Implemented.** |
 
-Invariants to test: seeds never change on any gate outcome except a
+Invariants, each tested (`CareLedgerTests`, `CalmAccrualTests`,
+`StationLedgerTests`, `WorldClockTests`, `GameGuardrailTests`,
+`GameScenarioTests`): seeds never change on any gate outcome except a
 capped skip gift; wellbeing in 5…100; calm in 1.0…2.0; calm never resets
 without an open; a quick check never lowers calm by more than half the
-bonus; a breath is never longer than 10 s and never starts without a tap; levels, stages and arrivals
-never decrease; production is the same computed in many small steps or
-one.
+bonus (rounded down to a tenth); a breath is never longer than 10 s and
+never starts without a tap; levels, stages and arrivals never decrease;
+production is the same computed in many small steps or one; staring at
+Pofu past 2 minutes earns nothing; unobserved time earns nothing.
+
+Rules the spec left open, as implemented:
+
+- **A tended day** is a local day on which Pofu observed at least one
+  minute; it counts at local midnight. A harbor station opens a number of
+  tended days (not calendar days) after its island arrived.
+- **The emergency pass** (3 minutes) always resets calm, though it is as
+  short as a quick check, and is never an over-limit open.
+- **The fourth rapid reach's breath** is the long one (10 s); it counts
+  as an over-limit open only past the daily hour.
+- **Unobserved time breaks** the runs toward calm and gathering (the next
+  stretch starts at the sign of life); **A20 pauses** them (the run
+  holds). Neither drains nor heals Pofu. "Sleeps it off" applies every
+  night, observed or not: it only ever lifts him toward 60.
+- **From the floor**, one quiet hour lifts Pofu from 5 to 10, still curled
+  up (the band ends at 12); ADR-0017's "one quiet hour lifts him a band"
+  holds from about 7 up. Kept as tuned; a candidate for the founder's
+  dogfood.
 
 ## 14. Economy simulation
 
