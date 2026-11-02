@@ -1,0 +1,1013 @@
+<title>Pofu Hub</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="The founder's hub for Pofu: questions from the lead, what is happening now, the roadmap, and work to review.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+<style>
+/* Pofu Hub: one vertical column of cards. All content comes from the artifact db (see the data
+   section in the script). Tokens follow design/tokens/pofu-tokens.json and design/atlas. */
+:root {
+  --bg: #FFF6EC;            /* cream-100, background.canvas */
+  --sunken: #FBEBDD;        /* cream-200 */
+  --card: #FFFBF5;          /* cream-50 */
+  --raised: #FFFFFF;
+  --seg-on: #FFFFFF;
+  --fg: #2A1F2D;            /* ink-900 */
+  --fg2: #66555F;           /* ink-600 */
+  --fg3: #8E7D88;           /* ink-400 */
+  --line: rgba(42, 31, 45, .12);
+  --line2: rgba(42, 31, 45, .22);
+  --accent: #6C4FD8;        /* violet-600 */
+  --accent-tint: #EEE8FF;   /* violet-100 */
+  --on-accent: #FFFFFF;
+  --ok: #2F7349;  --ok-tint: #DDF1E3;
+  --warn: #8A5A00; --warn-tint: #FCEBC8;
+  --crit: #B23A5A; --crit-tint: #FBDDE5;
+  --muted-tint: #EFE6EC;
+  --glass: rgba(255, 246, 236, .86);
+  --scrim: rgba(42, 31, 45, .36);
+  --shadow: 0 1px 2px rgba(42, 31, 45, .06), 0 4px 14px rgba(42, 31, 45, .05);
+  --shadow-up: 0 2px 4px rgba(42, 31, 45, .10), 0 10px 28px rgba(42, 31, 45, .16);
+  --font: "Nunito", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15111C; --sunken: #1E1828; --card: #1E1828; --raised: #2A2236; --seg-on: #3D3352;
+    --fg: #FFF6EC; --fg2: #B8A8B1; --fg3: #85768A;
+    --line: rgba(255, 246, 236, .12); --line2: rgba(255, 246, 236, .22);
+    --accent: #B9A2FF; --accent-tint: #2E2547; --on-accent: #15111C;
+    --ok: #8FD4A4; --ok-tint: #1D3326; --warn: #F7C873; --warn-tint: #3A2E14;
+    --crit: #FF9EB5; --crit-tint: #3E1D28; --muted-tint: #2A2236;
+    --glass: rgba(21, 17, 28, .86); --scrim: rgba(0, 0, 0, .55);
+    --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 6px 18px rgba(0, 0, 0, .25);
+    --shadow-up: 0 2px 4px rgba(0, 0, 0, .45), 0 12px 30px rgba(0, 0, 0, .45);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15111C; --sunken: #1E1828; --card: #1E1828; --raised: #2A2236; --seg-on: #3D3352;
+  --fg: #FFF6EC; --fg2: #B8A8B1; --fg3: #85768A;
+  --line: rgba(255, 246, 236, .12); --line2: rgba(255, 246, 236, .22);
+  --accent: #B9A2FF; --accent-tint: #2E2547; --on-accent: #15111C;
+  --ok: #8FD4A4; --ok-tint: #1D3326; --warn: #F7C873; --warn-tint: #3A2E14;
+  --crit: #FF9EB5; --crit-tint: #3E1D28; --muted-tint: #2A2236;
+  --glass: rgba(21, 17, 28, .86); --scrim: rgba(0, 0, 0, .55);
+  --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 6px 18px rgba(0, 0, 0, .25);
+  --shadow-up: 0 2px 4px rgba(0, 0, 0, .45), 0 12px 30px rgba(0, 0, 0, .45);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 16px/1.45 var(--font); -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+button, textarea, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2.5px solid var(--accent); outline-offset: 2px; }
+[hidden] { display: none !important; }
+a { color: var(--accent); }
+
+.wrap {
+  max-width: 720px; margin: 0 auto;
+  padding: 0 max(16px, env(safe-area-inset-right)) calc(120px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+}
+
+/* ---------------------------------------------------------------- header */
+header.top {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: calc(14px + env(safe-area-inset-top)) 0 10px;
+}
+.brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.seed { width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; flex: none; }
+.seed svg { width: 18px; height: 18px; }
+.brand h1 { margin: 0; font-size: 22px; font-weight: 900; letter-spacing: -.01em; white-space: nowrap; }
+.atlas-link {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 2px;
+  font-weight: 800; font-size: 14px; text-decoration: none; white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- segmented control */
+.segbar {
+  position: sticky; top: 0; z-index: 20;
+  margin: 0 calc(-1 * max(16px, env(safe-area-inset-left))); padding: calc(6px + env(safe-area-inset-top)) max(16px, env(safe-area-inset-left)) 10px;
+  background: var(--glass); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4);
+}
+@media (min-width: 752px) { .segbar { margin: 0; padding-left: 0; padding-right: 0; } }
+.seg {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; padding: 3px;
+  background: var(--sunken); border-radius: 14px; border: 1px solid var(--line);
+}
+.seg button {
+  position: relative; min-height: 40px; border: 0; border-radius: 11px; background: transparent;
+  font-size: 14.5px; font-weight: 800; color: var(--fg2); padding: 0 4px; white-space: nowrap;
+}
+.seg button[aria-selected="true"] { background: var(--seg-on); color: var(--fg); box-shadow: 0 1px 3px rgba(42, 31, 45, .14); }
+.seg .dot { position: absolute; top: 7px; right: 7px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.segbar::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--line); opacity: 0; transition: opacity .2s; }
+.segbar.scrolled::after { opacity: 1; }
+
+/* ---------------------------------------------------------------- banners */
+.banner {
+  margin: 12px 0 10px; padding: 12px 14px; border-radius: 14px; font-size: 15px; font-weight: 600;
+  background: var(--warn-tint); color: var(--fg); display: flex; gap: 10px; align-items: flex-start;
+}
+.banner.info { background: var(--accent-tint); }
+.banner b { font-weight: 800; }
+
+/* ---------------------------------------------------------------- sections */
+section.panel { padding-top: 0; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 6px 2px 10px; }
+.sec-head h2 { margin: 0; font-size: 26px; font-weight: 900; letter-spacing: -.01em; }
+.sec-head .meta { color: var(--fg3); font-size: 13.5px; font-weight: 700; text-align: right; }
+h3.group { margin: 22px 4px 8px; font-size: 13px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--fg3); display: flex; align-items: center; gap: 8px; }
+h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
+.empty { padding: 18px 16px; border-radius: 16px; border: 1.5px dashed var(--line2); color: var(--fg2); font-weight: 600; text-align: center; }
+.loading { padding: 28px 0; text-align: center; color: var(--fg3); font-weight: 700; }
+
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 12px; }
+.chip {
+  min-height: 44px; padding: 0 16px; border-radius: 22px; border: 1.5px solid var(--line2); background: transparent;
+  font-weight: 800; font-size: 15px; color: var(--fg2); display: inline-flex; align-items: center; gap: 6px;
+}
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.chip .n { font-weight: 700; opacity: .8; }
+
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow);
+  padding: 16px; margin: 0 0 14px;
+}
+.card-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; font-size: 13px; color: var(--fg3); font-weight: 700; }
+.card-top .grow { flex: 1; }
+.card h4 { margin: 0 0 6px; font-size: 19px; line-height: 1.3; font-weight: 900; letter-spacing: -.005em; }
+.card .ctx { margin: 0 0 12px; color: var(--fg2); white-space: pre-line; }
+.pill { display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 10px; border-radius: 12px; font-size: 12.5px; font-weight: 800; }
+.pill.open { background: var(--accent-tint); color: var(--accent); }
+.pill.answered { background: var(--ok-tint); color: var(--ok); }
+.pill.closed { background: var(--muted-tint); color: var(--fg2); }
+.pill.liked { background: var(--ok-tint); color: var(--ok); }
+.pill.redo { background: var(--warn-tint); color: var(--warn); }
+.pill.pending { background: var(--accent-tint); color: var(--accent); }
+
+.shot { display: block; width: 100%; margin: 4px 0 12px; padding: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--sunken); }
+.shot img { display: block; width: 100%; height: auto; max-height: 460px; object-fit: contain; }
+.shot.broken { padding: 18px; color: var(--fg3); font-weight: 700; font-size: 14px; }
+
+/* options */
+.options { display: grid; gap: 10px; margin: 0 0 12px; }
+.opt {
+  display: grid; grid-template-columns: 26px 1fr; gap: 4px 10px; text-align: left; width: 100%;
+  min-height: 44px; padding: 12px 14px; border-radius: 16px; border: 1.5px solid var(--line2); background: var(--raised);
+}
+.opt[aria-checked="true"] { border-color: var(--accent); background: var(--accent-tint); box-shadow: 0 0 0 1px var(--accent) inset; }
+.opt:disabled { cursor: default; opacity: .78; }
+.opt .radio { width: 22px; height: 22px; margin-top: 1px; border-radius: 50%; border: 2px solid var(--line2); display: grid; place-items: center; }
+.opt[aria-checked="true"] .radio { border-color: var(--accent); background: var(--accent); color: var(--on-accent); }
+.opt .radio svg { width: 13px; height: 13px; opacity: 0; }
+.opt[aria-checked="true"] .radio svg { opacity: 1; }
+.opt .lbl { font-weight: 800; font-size: 16.5px; line-height: 1.3; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.opt .rec { font-size: 12px; font-weight: 800; color: var(--accent); background: var(--accent-tint); border: 1px solid var(--accent); border-radius: 10px; padding: 0 7px; line-height: 18px; }
+.opt[aria-checked="true"] .rec { background: var(--raised); }
+.opt .facts { grid-column: 2; display: grid; gap: 3px; font-size: 14.5px; color: var(--fg2); }
+.opt .facts > span { display: grid; grid-template-columns: 50px 1fr; gap: 6px; }
+.opt .facts b { font-weight: 800; font-size: 12.5px; letter-spacing: .02em; padding-top: 1px; }
+.opt .facts .pro b { color: var(--ok); }
+.opt .facts .con b { color: var(--crit); }
+.opt .facts .cost b { color: var(--warn); }
+.recbox { padding: 12px 14px; border-radius: 14px; background: var(--sunken); font-size: 15px; color: var(--fg2); margin: 0 0 6px; }
+.recbox b { color: var(--fg); font-weight: 800; }
+
+/* thread */
+.thread { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.thread-title { font-size: 13px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--fg3); margin: 0 0 8px; }
+.notes { display: grid; gap: 8px; margin: 0 0 10px; }
+.note { padding: 10px 12px; border-radius: 14px; background: var(--sunken); white-space: pre-wrap; overflow-wrap: anywhere; }
+.note.lead { background: var(--accent-tint); border-left: 3px solid var(--accent); }
+.note .who { display: block; font-size: 12.5px; font-weight: 800; color: var(--fg3); margin-bottom: 2px; }
+.note.lead .who { color: var(--accent); }
+.composer textarea, .sheet textarea {
+  display: block; width: 100%; min-height: 96px; resize: vertical; padding: 12px 14px; border-radius: 14px;
+  border: 1.5px solid var(--line2); background: var(--raised); font-size: 17px; line-height: 1.4;
+}
+.composer textarea:focus, .sheet textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-tint); }
+.composer textarea:disabled { opacity: .6; }
+.composer-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 6px; }
+.hint { font-size: 13px; color: var(--fg3); font-weight: 600; display: flex; align-items: center; gap: 5px; }
+.hint svg { width: 14px; height: 14px; flex: none; }
+.btn {
+  min-height: 44px; padding: 0 18px; border-radius: 22px; border: 0; background: var(--accent); color: var(--on-accent);
+  font-weight: 800; font-size: 16px; white-space: nowrap; flex: none;
+}
+.btn:disabled { opacity: .45; cursor: default; }
+.btn.ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--line2); }
+.err { color: var(--crit); font-size: 14px; font-weight: 700; margin-top: 6px; }
+
+/* now lists */
+.list { background: var(--card); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; }
+.item { padding: 13px 16px; border-top: 1px solid var(--line); }
+.item:first-child { border-top: 0; }
+.item .t { font-weight: 800; font-size: 16.5px; line-height: 1.3; }
+.item .l { color: var(--fg2); font-size: 15px; margin-top: 2px; }
+.item a.more { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; padding-right: 8px; font-weight: 800; font-size: 15px; text-decoration: none; margin-bottom: -10px; }
+.item .shot { margin: 10px 0 2px; }
+.list .empty { border: 0; border-radius: 0; }
+.idea .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.tag { font-size: 12.5px; font-weight: 800; padding: 0 9px; line-height: 22px; border-radius: 11px; background: var(--muted-tint); color: var(--fg2); }
+.idea .when { color: var(--fg3); font-size: 13px; font-weight: 700; margin-top: 4px; }
+
+/* roadmap */
+.timeline { list-style: none; margin: 4px 0 0; padding: 0; }
+.ms { position: relative; display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding-bottom: 18px; }
+.ms::before { content: ""; position: absolute; left: 13px; top: 26px; bottom: -2px; width: 2px; background: var(--line2); border-radius: 1px; }
+.ms:last-child::before { display: none; }
+.ms.done::before { background: var(--ok); opacity: .6; }
+.ms .mark { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; border: 2px solid var(--line2); background: var(--bg); color: var(--fg3); z-index: 1; }
+.ms .mark svg { width: 15px; height: 15px; }
+.ms.done .mark { background: var(--ok); border-color: var(--ok); color: var(--bg); }
+.ms.doing .mark { border-color: var(--accent); background: var(--accent-tint); }
+.ms.doing .mark::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.ms .body { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 11px 14px; box-shadow: var(--shadow); }
+.ms.doing .body { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset, var(--shadow); }
+.ms.done .body { background: transparent; box-shadow: none; }
+.ms .row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.ms .t { font-weight: 800; font-size: 16.5px; line-height: 1.3; }
+.ms .when { font-size: 13.5px; font-weight: 800; color: var(--fg3); white-space: nowrap; }
+.ms .l { color: var(--fg2); font-size: 15px; margin-top: 2px; }
+.ms .st { font-size: 12.5px; font-weight: 800; margin-top: 4px; color: var(--fg3); }
+.ms.done .st { color: var(--ok); }
+.ms.doing .st { color: var(--accent); }
+.deep { display: flex; align-items: center; justify-content: center; min-height: 52px; margin: 8px 0 0; border-radius: 16px; border: 1.5px solid var(--line2); font-weight: 800; text-decoration: none; }
+
+/* reviews */
+.verdicts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 4px; }
+.vbtn {
+  min-height: 48px; border-radius: 14px; border: 1.5px solid var(--line2); background: var(--raised);
+  font-weight: 800; font-size: 15.5px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 6px;
+}
+.vbtn svg { width: 18px; height: 18px; flex: none; }
+.vbtn[aria-pressed="true"].like { background: var(--ok); border-color: var(--ok); color: var(--bg); }
+.vbtn[aria-pressed="true"].redo { background: var(--warn); border-color: var(--warn); color: var(--bg); }
+.vbtn[aria-pressed="true"].note { background: var(--accent-tint); border-color: var(--accent); color: var(--accent); }
+.vbtn:disabled { opacity: .5; cursor: default; }
+
+/* fab + sheet */
+.fab {
+  position: fixed; z-index: 30; right: max(16px, env(safe-area-inset-right)); bottom: calc(18px + env(safe-area-inset-bottom));
+  height: 56px; padding: 0 22px 0 18px; border-radius: 28px; border: 0; background: var(--accent); color: var(--on-accent);
+  font-weight: 900; font-size: 17px; display: inline-flex; align-items: center; gap: 8px; box-shadow: var(--shadow-up);
+}
+.fab svg { width: 22px; height: 22px; }
+@media (min-width: 752px) { .fab { right: calc(50% - 360px); } }
+.scrim { position: fixed; inset: 0; z-index: 40; background: var(--scrim); opacity: 0; transition: opacity .2s; }
+.scrim.on { opacity: 1; }
+.sheet {
+  position: fixed; z-index: 41; left: 0; right: 0; bottom: 0; margin: 0 auto; max-width: 720px;
+  background: var(--raised); border-radius: 24px 24px 0 0; box-shadow: var(--shadow-up);
+  padding: 8px max(16px, env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  transform: translateY(105%); transition: transform .28s cubic-bezier(.2, .8, .2, 1);
+  max-height: 92vh; overflow-y: auto;
+}
+.sheet.on { transform: none; }
+.sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--line2); margin: 0 auto 8px; }
+.sheet .sh-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.sheet h2 { margin: 0; font-size: 22px; font-weight: 900; }
+.sheet .sub { margin: 2px 0 12px; color: var(--fg2); font-size: 15px; }
+.sheet .chips { margin: 12px 0 14px; }
+.sheet .chip { min-height: 44px; padding: 0 14px; }
+.sheet .actions { display: flex; gap: 10px; }
+.sheet .actions .btn { flex: 1; }
+.textbtn { border: 0; background: transparent; color: var(--accent); font-weight: 800; min-height: 44px; min-width: 44px; padding: 0 6px; font-size: 16px; }
+
+.toast {
+  position: fixed; z-index: 50; left: 50%; top: calc(72px + env(safe-area-inset-top)); transform: translate(-50%, -12px);
+  background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 20px; font-weight: 800; font-size: 15px;
+  opacity: 0; transition: opacity .2s, transform .2s; pointer-events: none; white-space: nowrap;
+}
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+.lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(0, 0, 0, .9); display: grid; place-items: center; padding: 16px; }
+.lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
+.lightbox .close { position: absolute; top: calc(10px + env(safe-area-inset-top)); right: 10px; width: 44px; height: 44px; border-radius: 22px; border: 0; background: rgba(255, 255, 255, .16); color: #fff; font-size: 24px; font-weight: 800; }
+
+@media (prefers-reduced-motion: reduce) { .sheet, .scrim, .toast { transition: none; } }
+</style>
+
+<div class="wrap" lang="tr">
+  <header class="top">
+    <div class="brand">
+      <span class="seed" aria-hidden="true"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2c3.6 2.4 5.6 5.4 5.6 8.6A5.6 5.6 0 0 1 4.4 10.6C4.4 7.4 6.4 4.4 10 2z"/></svg></span>
+      <h1>Pofu Hub</h1>
+    </div>
+    <a class="atlas-link" href="https://claude.ai/artifact/8FrYGRfEJYgmZwENn66mBK" target="_blank" rel="noopener">Derin harita (Atlas) →</a>
+  </header>
+
+  <nav class="segbar" id="segbar">
+    <div class="seg" role="tablist" aria-label="Bölümler">
+      <button role="tab" id="tab-questions" data-tab="questions" aria-controls="panel-questions">Sorular<span class="dot" hidden></span></button>
+      <button role="tab" id="tab-now" data-tab="now" aria-controls="panel-now">Şu an</button>
+      <button role="tab" id="tab-roadmap" data-tab="roadmap" aria-controls="panel-roadmap">Yol haritası</button>
+      <button role="tab" id="tab-reviews" data-tab="reviews" aria-controls="panel-reviews">Onay<span class="dot" hidden></span></button>
+    </div>
+  </nav>
+
+  <div id="banner" class="banner" role="status" hidden></div>
+
+  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
+    <div class="sec-head"><h2>Sorular</h2><span class="meta" id="q-meta"></span></div>
+    <div class="chips" role="group" aria-label="Filtre">
+      <button class="chip" data-filter="open" aria-pressed="true">Açık <span class="n" id="n-open"></span></button>
+      <button class="chip" data-filter="answered" aria-pressed="false">Cevaplandı <span class="n" id="n-answered"></span></button>
+      <button class="chip" data-filter="all" aria-pressed="false">Hepsi <span class="n" id="n-all"></span></button>
+    </div>
+    <div id="q-list"><div class="loading">Yükleniyor…</div></div>
+  </section>
+
+  <section class="panel" id="panel-now" role="tabpanel" aria-labelledby="tab-now" hidden>
+    <div class="sec-head"><h2>Şu an</h2><span class="meta" id="now-meta"></span></div>
+    <h3 class="group">Yapılıyor</h3><div class="list" id="now-doing"><div class="loading">Yükleniyor…</div></div>
+    <h3 class="group">Bugün biten</h3><div class="list" id="now-done"><div class="loading">Yükleniyor…</div></div>
+    <h3 class="group">Sırada</h3><div class="list" id="now-next"><div class="loading">Yükleniyor…</div></div>
+    <h3 class="group">Fikirler <span class="count" id="ideas-count"></span></h3><div class="list" id="ideas"><div class="loading">Yükleniyor…</div></div>
+  </section>
+
+  <section class="panel" id="panel-roadmap" role="tabpanel" aria-labelledby="tab-roadmap" hidden>
+    <div class="sec-head"><h2>Yol haritası</h2><span class="meta" id="rm-meta"></span></div>
+    <ol class="timeline" id="timeline"><li class="loading">Yükleniyor…</li></ol>
+    <a class="deep" href="https://claude.ai/artifact/8FrYGRfEJYgmZwENn66mBK" target="_blank" rel="noopener">Derin harita (Atlas) →</a>
+  </section>
+
+  <section class="panel" id="panel-reviews" role="tabpanel" aria-labelledby="tab-reviews" hidden>
+    <div class="sec-head"><h2>Onay</h2><span class="meta" id="rv-meta"></span></div>
+    <div id="rv-list"><div class="loading">Yükleniyor…</div></div>
+  </section>
+</div>
+
+<button class="fab" id="fab" type="button" aria-haspopup="dialog">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg>
+  Fikir
+</button>
+
+<div class="scrim" id="scrim" hidden></div>
+<div class="sheet" lang="tr" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden>
+  <div class="grab" aria-hidden="true"></div>
+  <div class="sh-head">
+    <h2 id="sheet-title">Fikir kutusu</h2>
+    <button class="textbtn" id="sheet-close" type="button">Vazgeç</button>
+  </div>
+  <p class="sub">Aklına geleni yaz. Ekip okur, Şu an'ın altında görünür.</p>
+  <textarea id="idea-text" rows="4" placeholder="Fikrin…" aria-label="Fikrin"></textarea>
+  <div class="hint" style="margin-top:6px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Klavyedeki mikrofonla dikte edebilirsin</div>
+  <div class="chips" role="group" aria-label="Etiketler" id="idea-tags"></div>
+  <div class="err" id="idea-err" hidden></div>
+  <div class="actions"><button class="btn" id="idea-send" type="button" disabled>Gönder</button></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  'use strict';
+  document.documentElement.lang = 'tr'; // Turkish casing (i/İ) for uppercase labels
+
+  // ------------------------------------------------------------------ data contract
+  // Collections in the artifact db (all written by the owner; see the PR for the rules):
+  //   questions/{id}   {title, context, imageUrl?, options:[{key,label,pros,cons,cost}],
+  //                     recommendation:{key,reason}, status: open|answered|closed, priority (1 = first), createdAt}
+  //   answers/{qid}    {choice, updatedAt, authorId}                       founder, set
+  //   notes/{auto}     {targetType: question|review|idea, targetId, text, createdAt, authorId, fromLead?}
+  //   status/now       {updatedAt, doing:[{title,line,link?,imageUrl?}], doneToday:[...], next:[...]}
+  //   roadmap/main     {items:[{title, status: done|doing|next, when, line}]}
+  //   reviews/{id}     {title, context, imageUrl, createdAt, verdict?: liked|redo, verdictAt?}
+  //   ideas/{auto}     {text, tags:[...], createdAt, authorId}
+  // Timestamps are ISO 8601 strings (numbers in ms are accepted too). imageUrl may be any https URL,
+  // a "/_blob/<id>" asset path, or an asset id given as imageId.
+
+  const ATLAS = 'https://claude.ai/artifact/8FrYGRfEJYgmZwENn66mBK';
+  const TAGS = ['Ada', 'Oyun', 'Tasarım', 'Ekonomi', 'Diğer'];
+  const $ = (s, r = document) => r.querySelector(s);
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  const svg = (markup) => { const t = document.createElement('template'); t.innerHTML = markup.trim(); return t.content.firstChild; };
+  const ICON = {
+    check: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg>',
+    heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>',
+    redo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.4-5.7M20 4v5h-5"/></svg>',
+    note: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>',
+    mic: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>',
+  };
+
+  // ------------------------------------------------------------------ per-viewer conveniences
+  const store = {
+    get(k) { try { return localStorage.getItem('pofu-hub:' + k); } catch { return null; } },
+    set(k, v) { try { if (v == null || v === '') localStorage.removeItem('pofu-hub:' + k); else localStorage.setItem('pofu-hub:' + k, v); } catch { /* storage unavailable */ } },
+  };
+
+  // ------------------------------------------------------------------ helpers
+  const toMs = (v) => {
+    if (v == null) return 0;
+    if (typeof v === 'number') return v;
+    const n = Date.parse(v); return Number.isNaN(n) ? 0 : n;
+  };
+  const nowIso = () => new Date().toISOString();
+  const dateFmt = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'short' });
+  const timeFmt = new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit' });
+  function ago(v) {
+    const t = toMs(v); if (!t) return '';
+    const d = Date.now() - t;
+    if (d < 60e3) return 'az önce';
+    if (d < 3600e3) return Math.floor(d / 60e3) + ' dk önce';
+    const then = new Date(t), today = new Date();
+    const sameDay = then.toDateString() === today.toDateString();
+    if (sameDay) return 'bugün ' + timeFmt.format(then);
+    const y = new Date(today); y.setDate(y.getDate() - 1);
+    if (then.toDateString() === y.toDateString()) return 'dün ' + timeFmt.format(then);
+    return dateFmt.format(then);
+  }
+  const str = (v) => (v == null ? '' : typeof v === 'string' ? v : Array.isArray(v) ? v.filter(Boolean).join(' · ') : String(v));
+  function safeUrl(u) {
+    if (typeof u !== 'string' || !u) return '';
+    if (u.startsWith('/_blob/')) return u;
+    try { const p = new URL(u, location.href); return p.protocol === 'https:' || p.protocol === 'http:' ? p.href : ''; } catch { return ''; }
+  }
+  const imageOf = (o) => safeUrl(o && o.imageUrl) || (o && typeof o.imageId === 'string' && /^[0-9a-f]{32}$/.test(o.imageId) ? '/_blob/' + o.imageId : '');
+
+  function shot(url, alt) {
+    const b = el('button', 'shot'); b.type = 'button'; b.setAttribute('aria-label', 'Görseli büyüt');
+    const img = el('img'); img.src = url; img.alt = alt || ''; img.loading = 'lazy'; img.decoding = 'async';
+    img.addEventListener('error', () => { b.textContent = 'Görsel yüklenemedi.'; b.classList.add('broken'); b.disabled = true; });
+    b.append(img);
+    b.addEventListener('click', () => openLightbox(url, alt));
+    return b;
+  }
+  function openLightbox(url, alt) {
+    const lb = el('div', 'lightbox'); lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true');
+    const img = el('img'); img.src = url; img.alt = alt || '';
+    const x = el('button', 'close', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Kapat');
+    const close = () => { lb.remove(); document.removeEventListener('keydown', onKey); };
+    const onKey = (e) => { if (e.key === 'Escape') close(); };
+    lb.addEventListener('click', close); document.addEventListener('keydown', onKey);
+    lb.append(img, x); document.body.append(lb); x.focus();
+  }
+  let toastTimer = 0;
+  function toast(msg) {
+    const t = $('#toast'); t.textContent = msg; t.classList.add('on');
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('on'), 1800);
+  }
+  function emptyLine(text) { return el('div', 'empty', text); }
+
+  // ------------------------------------------------------------------ state
+  const state = {
+    db: null, userId: null, canWrite: false, mode: 'loading', // loading | live | offline | readonly
+    questions: null, answers: null, notes: null, status: undefined, roadmap: undefined, reviews: null, ideas: null,
+    filter: store.get('filter') || 'open',
+    tab: null,
+    stale: false,
+    keepReview: new Set(), // judged during this visit: stays under Bekleyen until reload
+    keepVisible: new Set(), // answered during this visit: stay put under the Açık filter
+  };
+
+  // ------------------------------------------------------------------ tabs
+  const TABS = ['questions', 'now', 'roadmap', 'reviews'];
+  function setTab(tab, focus) {
+    if (!TABS.includes(tab)) tab = 'questions';
+    state.tab = tab;
+    for (const b of document.querySelectorAll('.seg button')) {
+      const on = b.dataset.tab === tab;
+      b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1;
+      if (on && focus) b.focus();
+    }
+    for (const t of TABS) $('#panel-' + t).hidden = t !== tab;
+    store.set('tab', tab);
+    if (location.hash !== '#' + tab) history.replaceState(null, '', '#' + tab);
+    const top = $('.wrap').getBoundingClientRect().top + window.scrollY + $('header.top').offsetHeight;
+    if (window.scrollY > top) window.scrollTo(0, top);
+  }
+  document.querySelectorAll('.seg button').forEach((b) => {
+    b.addEventListener('click', () => setTab(b.dataset.tab));
+    b.addEventListener('keydown', (e) => {
+      const i = TABS.indexOf(b.dataset.tab);
+      if (e.key === 'ArrowRight') { e.preventDefault(); setTab(TABS[(i + 1) % 4], true); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); setTab(TABS[(i + 3) % 4], true); }
+    });
+  });
+  const segbar = $('#segbar');
+  const onScroll = () => segbar.classList.toggle('scrolled', segbar.getBoundingClientRect().top <= 0 && window.scrollY > 40);
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // ------------------------------------------------------------------ banner
+  function renderBanner() {
+    const b = $('#banner');
+    let msg = '', info = false;
+    if (state.mode === 'offline') msg = 'Bu sayfa Claude içinde açılınca canlı çalışır. Şu an salt okunur ve veri yok.';
+    else if (state.mode === 'readonly') { msg = 'Salt okunur görünüm. Seçim, not ve fikir eklemek için sayfanın sahibi olarak açman gerekiyor.'; info = true; }
+    else if (state.stale) msg = 'Verilere şu an ulaşılamıyor. Gösterilenler eski olabilir; bağlantı gelince kendiliğinden yenilenir.';
+    b.hidden = !msg; b.textContent = msg; b.classList.toggle('info', info);
+    document.querySelectorAll('[data-write]').forEach((x) => { x.disabled = !state.canWrite || x.dataset.busy === '1' || (x.dataset.needsText === '1' && !x.dataset.hasText); });
+    $('#fab').hidden = !state.canWrite;
+  }
+
+  // ------------------------------------------------------------------ writes
+  // One write at a time per document; a later request for the same document replaces a queued one.
+  const writeQueues = new Map();
+  function queueWrite(key, fn) {
+    let q = writeQueues.get(key);
+    if (!q) { q = { running: false, next: null }; writeQueues.set(key, q); }
+    return new Promise((resolve, reject) => {
+      if (q.next) q.next.resolve(false);
+      q.next = { fn, resolve, reject };
+      const pump = async () => {
+        if (q.running || !q.next) return;
+        const job = q.next; q.next = null; q.running = true;
+        try { await job.fn(); job.resolve(true); } catch (e) { job.reject(e); }
+        q.running = false; pump();
+      };
+      pump();
+    });
+  }
+  async function withRetry(fn) {
+    try { return await fn(); } catch (e) {
+      if (e && e.code === 'unavailable') { await new Promise((r) => setTimeout(r, 400 + Math.random() * 600)); return fn(); }
+      throw e;
+    }
+  }
+  function writeFailed(e) {
+    const code = e && e.code;
+    if (code === 'invalid_argument' || code === 'not_granted' || code === 'revoked' || code === 'capability_disabled' || code === 'capability_removed') {
+      state.canWrite = false; state.mode = 'readonly'; renderBanner();
+      return 'Bu görünümde yazma izni yok.';
+    }
+    if (code === 'quota_exceeded') return 'Depolama dolu. Ekibe haber ver, eski kayıtları temizlesin.';
+    if (code === 'resource_exhausted') return 'Biraz yavaş. Birkaç saniye sonra tekrar dene.';
+    return 'Kaydedilemedi. Bağlantını kontrol edip tekrar dene.';
+  }
+
+  async function choose(qid, key) {
+    if (!state.canWrite || !state.db) return;
+    const prev = state.answers && state.answers.get(qid);
+    if (prev && prev.choice === key) return;
+    state.keepVisible.add(qid);
+    // Optimistic: the snapshot listener confirms it.
+    state.answers = new Map(state.answers || []); state.answers.set(qid, { choice: key, updatedAt: nowIso(), authorId: state.userId });
+    renderQuestions();
+    try {
+      await queueWrite('answers/' + qid, () => withRetry(() => state.db.doc('answers/' + qid).set({ choice: key, updatedAt: nowIso(), authorId: state.userId })));
+      toast('Seçimin kaydedildi');
+    } catch (e) {
+      if (prev) state.answers.set(qid, prev); else state.answers.delete(qid);
+      renderQuestions(); toast(writeFailed(e));
+    }
+  }
+
+  async function addNote(targetType, targetId, text) {
+    const body = { targetType, targetId, text, createdAt: nowIso() };
+    if (state.userId) body.authorId = state.userId;
+    await withRetry(() => state.db.collection('notes').add(body));
+  }
+
+  async function setVerdict(rid, verdict) {
+    const r = state.reviews && state.reviews.find((x) => x.id === rid);
+    if (!r || !state.canWrite) return;
+    if (r.verdict === verdict) return;
+    state.keepReview.add(rid);
+    const prev = { verdict: r.verdict, verdictAt: r.verdictAt };
+    r.verdict = verdict; r.verdictAt = nowIso(); renderReviews();
+    try {
+      await queueWrite('reviews/' + rid, () => withRetry(() => state.db.doc('reviews/' + rid).update({ verdict, verdictAt: nowIso() })));
+      toast(verdict === 'liked' ? 'Beğendin, kaydedildi' : 'Yeniden yapılacak, kaydedildi');
+    } catch (e) {
+      Object.assign(r, prev); renderReviews(); toast(writeFailed(e));
+    }
+  }
+
+  // ------------------------------------------------------------------ composer (persistent per target)
+  const composers = new Map();
+  function composer(targetType, targetId, placeholder) {
+    const key = targetType + ':' + targetId;
+    if (composers.has(key)) return composers.get(key);
+    const wrap = el('div', 'composer');
+    const ta = el('textarea'); ta.rows = 3; ta.placeholder = placeholder; ta.setAttribute('aria-label', placeholder);
+    ta.value = store.get('draft:' + key) || '';
+    const foot = el('div', 'composer-foot');
+    const hint = el('div', 'hint'); hint.append(svg(ICON.mic), document.createTextNode('Klavyedeki mikrofonla dikte edebilirsin'));
+    const btn = el('button', 'btn', 'Ekle'); btn.type = 'button'; btn.dataset.write = '1'; btn.dataset.needsText = '1';
+    const err = el('div', 'err'); err.hidden = true;
+    const sync = () => { if (ta.value.trim()) btn.dataset.hasText = '1'; else delete btn.dataset.hasText; btn.disabled = !state.canWrite || btn.dataset.busy === '1' || !ta.value.trim(); ta.disabled = !state.canWrite; };
+    let draftTimer = 0;
+    ta.addEventListener('input', () => { sync(); clearTimeout(draftTimer); draftTimer = setTimeout(() => store.set('draft:' + key, ta.value), 300); });
+    const submit = async () => {
+      const text = ta.value.trim();
+      if (!text || !state.canWrite || btn.dataset.busy === '1') return;
+      btn.dataset.busy = '1'; btn.textContent = 'Ekleniyor…'; sync(); err.hidden = true;
+      try {
+        await addNote(targetType, targetId, text);
+        ta.value = ''; store.set('draft:' + key, ''); toast('Not eklendi');
+      } catch (e) { err.textContent = writeFailed(e); err.hidden = false; }
+      delete btn.dataset.busy; btn.textContent = 'Ekle'; sync();
+    };
+    btn.addEventListener('click', submit);
+    ta.addEventListener('keydown', (e) => { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); submit(); } });
+    foot.append(hint, btn); wrap.append(ta, foot, err);
+    const c = { root: wrap, ta, sync }; composers.set(key, c); sync();
+    return c;
+  }
+
+  function threadFor(targetType, targetId) {
+    return (state.notes || []).filter((n) => n.targetType === targetType && n.targetId === targetId);
+  }
+  function renderNotes(container, list) {
+    container.replaceChildren();
+    for (const n of list) {
+      const d = el('div', 'note' + (n.fromLead ? ' lead' : ''));
+      const who = el('span', 'who', (n.fromLead ? 'Claude' : 'Sen') + (n.createdAt ? ' · ' + ago(n.createdAt) : ''));
+      d.append(who, document.createTextNode(str(n.text)));
+      container.append(d);
+    }
+    container.hidden = !list.length;
+  }
+
+  // Keep stable card nodes per id so typing and focus survive live updates.
+  function reconcile(container, items, make) {
+    const want = items.map(make);
+    const cur = Array.from(container.children);
+    const same = cur.length === want.length && cur.every((c, i) => c === want[i]);
+    if (!same) {
+      const active = document.activeElement;
+      const keep = active && want.some((w) => w.contains(active)) ? active : null;
+      container.replaceChildren(...want);
+      if (keep && document.activeElement !== keep) keep.focus({ preventScroll: true });
+    }
+  }
+
+  // ------------------------------------------------------------------ questions
+  const STATUS_LABEL = { open: 'Açık', answered: 'Cevaplandı', closed: 'Kapandı' };
+  function normStatus(s) {
+    s = String(s || '').toLowerCase();
+    if (s === 'closed' || s === 'kapandı' || s === 'kapandi') return 'closed';
+    if (s === 'answered' || s === 'cevaplandı' || s === 'cevaplandi') return 'answered';
+    return 'open';
+  }
+  function effStatus(q) {
+    const s = normStatus(q.status);
+    if (s === 'open' && state.answers && state.answers.get(q.id) && state.answers.get(q.id).choice) return 'answered';
+    return s;
+  }
+  const qCards = new Map();
+  function questionCard(q) {
+    let c = qCards.get(q.id);
+    if (!c) {
+      const root = el('article', 'card'); root.dataset.qid = q.id;
+      const body = el('div');
+      const thread = el('div', 'thread');
+      const tt = el('div', 'thread-title', 'Notlar');
+      const notes = el('div', 'notes');
+      const comp = composer('question', q.id, 'Notun ya da sorun…');
+      thread.append(tt, notes, comp.root);
+      root.append(body, thread);
+      c = { root, body, notes, comp }; qCards.set(q.id, c);
+    }
+    fillQuestion(c, q);
+    return c.root;
+  }
+  function fillQuestion(c, q) {
+    const st = effStatus(q);
+    const ans = state.answers && state.answers.get(q.id);
+    const choice = ans && ans.choice;
+    const rec = q.recommendation && typeof q.recommendation === 'object' ? q.recommendation : {};
+    const b = c.body; b.replaceChildren();
+
+    const top = el('div', 'card-top');
+    top.append(el('span', 'pill ' + st, STATUS_LABEL[st]));
+    top.append(el('span', 'grow'));
+    if (q.createdAt) top.append(el('span', '', ago(q.createdAt)));
+    b.append(top);
+    b.append(el('h4', '', str(q.title) || 'Başlıksız soru'));
+    if (q.context) b.append(el('p', 'ctx', str(q.context)));
+    const img = imageOf(q); if (img) b.append(shot(img, str(q.title)));
+
+    const opts = Array.isArray(q.options) ? q.options.filter((o) => o && o.key != null) : [];
+    if (opts.length) {
+      const g = el('div', 'options'); g.setAttribute('role', 'radiogroup'); g.setAttribute('aria-label', 'Seçenekler');
+      for (const o of opts) {
+        const key = String(o.key);
+        const btn = el('button', 'opt'); btn.type = 'button'; btn.setAttribute('role', 'radio');
+        btn.setAttribute('aria-checked', String(choice === key));
+        btn.disabled = !state.canWrite || st === 'closed';
+        const radio = el('span', 'radio'); radio.append(svg(ICON.check));
+        const lbl = el('span', 'lbl', str(o.label) || key);
+        if (rec.key != null && String(rec.key) === key) lbl.append(el('span', 'rec', 'Önerim'));
+        btn.append(radio, lbl);
+        const facts = el('span', 'facts');
+        const fact = (cls, name, v) => { if (!str(v)) return; const d = el('span', cls); d.append(el('b', '', name), el('span', '', str(v))); facts.append(d); };
+        fact('pro', 'Artı', o.pros); fact('con', 'Eksi', o.cons); fact('cost', 'Bedel', o.cost);
+        if (facts.childNodes.length) btn.append(facts);
+        btn.addEventListener('click', () => choose(q.id, key));
+        g.append(btn);
+      }
+      b.append(g);
+    }
+    if (rec.key != null || rec.reason) {
+      const recOpt = opts.find((o) => String(o.key) === String(rec.key));
+      const box = el('div', 'recbox');
+      box.append(el('b', '', 'Önerim: ' + (recOpt ? str(recOpt.label) : str(rec.key)) + (rec.reason ? '. ' : '')));
+      if (rec.reason) box.append(document.createTextNode(str(rec.reason)));
+      b.append(box);
+    }
+    renderNotes(c.notes, threadFor('question', q.id));
+    c.comp.sync();
+  }
+  function renderQuestions() {
+    const list = $('#q-list');
+    if (state.questions == null) return;
+    const qs = state.questions.map((q) => ({ q, s: effStatus(q) }));
+    const counts = { open: 0, answered: 0, all: qs.length };
+    for (const x of qs) if (x.s === 'open') counts.open++; else if (x.s === 'answered') counts.answered++;
+    $('#n-open').textContent = counts.open || ''; $('#n-answered').textContent = counts.answered || ''; $('#n-all').textContent = counts.all || '';
+    $('#tab-questions .dot').hidden = !counts.open;
+    $('#q-meta').textContent = counts.open ? counts.open + ' açık soru' : '';
+    document.querySelectorAll('.chip[data-filter]').forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.filter === state.filter)));
+    const sortS = (x) => (state.filter === 'open' && state.keepVisible.has(x.q.id) && x.s === 'answered' ? 'open' : x.s);
+    let shown = qs.filter((x) => state.filter === 'all' || sortS(x) === state.filter);
+    const pr = (q) => (typeof q.priority === 'number' ? q.priority : Number(q.priority) || 999);
+    const rank = { open: 0, answered: 1, closed: 2 };
+    shown.sort((a, b) => (state.filter === 'answered'
+      ? toMs(b.q.createdAt) - toMs(a.q.createdAt)
+      : (rank[sortS(a)] - rank[sortS(b)]) || (pr(a.q) - pr(b.q)) || (toMs(b.q.createdAt) - toMs(a.q.createdAt))));
+    if (!shown.length) {
+      const msg = !qs.length ? 'Henüz soru yok. Ekip bir karar beklediğinde burada görünür.'
+        : state.filter === 'open' ? 'Açık soru yok. Rahat ol, Pofu da rahat.'
+        : state.filter === 'answered' ? 'Henüz cevapladığın bir soru yok.' : 'Henüz soru yok.';
+      list.replaceChildren(emptyLine(msg)); return;
+    }
+    reconcile(list, shown.map((x) => x.q), questionCard);
+  }
+  document.querySelectorAll('.chip[data-filter]').forEach((c) => c.addEventListener('click', () => {
+    state.filter = c.dataset.filter; state.keepVisible.clear(); store.set('filter', state.filter); renderQuestions();
+  }));
+
+  // ------------------------------------------------------------------ now
+  function renderItems(container, items, emptyText) {
+    container.replaceChildren();
+    if (!Array.isArray(items) || !items.length) { container.append(emptyLine(emptyText)); return; }
+    for (const it of items) {
+      if (!it) continue;
+      const d = el('div', 'item');
+      d.append(el('div', 't', str(it.title) || '—'));
+      if (it.line) d.append(el('div', 'l', str(it.line)));
+      const img = imageOf(it); if (img) d.append(shot(img, str(it.title)));
+      const link = safeUrl(it.link);
+      if (link) { const a = el('a', 'more', 'Bağlantıyı aç →'); a.href = link; a.target = '_blank'; a.rel = 'noopener'; d.append(a); }
+      container.append(d);
+    }
+  }
+  function renderNow() {
+    if (state.status === undefined) return;
+    const s = state.status || {};
+    $('#now-meta').textContent = s.updatedAt ? 'son güncelleme ' + ago(s.updatedAt) : (state.status ? '' : 'henüz güncelleme yok');
+    renderItems($('#now-doing'), s.doing, 'Şu an yapılan bir iş yok.');
+    renderItems($('#now-done'), s.doneToday, 'Bugün henüz bir şey bitmedi.');
+    renderItems($('#now-next'), s.next, 'Sırada bir şey yok.');
+  }
+  function renderIdeas() {
+    if (state.ideas == null) return;
+    const c = $('#ideas'); c.replaceChildren();
+    const ideas = state.ideas.slice().sort((a, b) => toMs(b.createdAt) - toMs(a.createdAt));
+    $('#ideas-count').textContent = ideas.length ? '· ' + ideas.length : '';
+    if (!ideas.length) { c.append(emptyLine('Aklına bir şey gelirse Fikir\'e dokun.')); return; }
+    for (const i of ideas) {
+      const d = el('div', 'item idea');
+      d.append(el('div', 't', str(i.text)));
+      const tags = Array.isArray(i.tags) ? i.tags.filter((t) => typeof t === 'string') : [];
+      if (tags.length) { const tg = el('div', 'tags'); for (const t of tags) tg.append(el('span', 'tag', t)); d.append(tg); }
+      if (i.createdAt) d.append(el('div', 'when', ago(i.createdAt)));
+      const replies = threadFor('idea', i.id);
+      if (replies.length) { const n = el('div', 'notes'); n.style.margin = '8px 0 0'; renderNotes(n, replies); d.append(n); }
+      c.append(d);
+    }
+  }
+
+  // ------------------------------------------------------------------ roadmap
+  const RM = {
+    done: { label: 'Bitti', icon: ICON.check }, doing: { label: 'Sürüyor' }, next: { label: 'Sırada' },
+  };
+  function normRm(s) {
+    s = String(s || '').toLowerCase();
+    if (s === 'done' || s === 'bitti') return 'done';
+    if (s === 'doing' || s === 'sürüyor' || s === 'suruyor' || s === 'in-progress') return 'doing';
+    return 'next';
+  }
+  function renderRoadmap() {
+    if (state.roadmap === undefined) return;
+    const ol = $('#timeline'); ol.replaceChildren();
+    const items = state.roadmap && Array.isArray(state.roadmap.items) ? state.roadmap.items.filter(Boolean) : [];
+    const done = items.filter((i) => normRm(i.status) === 'done').length;
+    $('#rm-meta').textContent = items.length ? done + ' / ' + items.length + ' bitti' : '';
+    if (!items.length) { const li = el('li'); li.append(emptyLine('Yol haritası henüz yazılmadı.')); ol.append(li); return; }
+    for (const it of items) {
+      const s = normRm(it.status);
+      const li = el('li', 'ms ' + s);
+      const mark = el('span', 'mark'); mark.setAttribute('aria-hidden', 'true');
+      if (RM[s].icon) mark.append(svg(RM[s].icon));
+      const body = el('div', 'body');
+      const row = el('div', 'row');
+      row.append(el('div', 't', str(it.title) || '—'));
+      if (it.when) row.append(el('div', 'when', str(it.when)));
+      body.append(row);
+      if (it.line) body.append(el('div', 'l', str(it.line)));
+      body.append(el('div', 'st', RM[s].label));
+      li.append(mark, body); ol.append(li);
+    }
+  }
+
+  // ------------------------------------------------------------------ reviews
+  const rvCards = new Map();
+  function reviewCard(r) {
+    let c = rvCards.get(r.id);
+    if (!c) {
+      const root = el('article', 'card'); root.dataset.rid = r.id;
+      const body = el('div');
+      const verdicts = el('div', 'verdicts');
+      const mk = (cls, icon, label) => { const b = el('button', 'vbtn ' + cls); b.type = 'button'; b.dataset.write = '1'; b.append(svg(icon), document.createTextNode(label)); verdicts.append(b); return b; };
+      const like = mk('like', ICON.heart, 'Beğendim');
+      const redo = mk('redo', ICON.redo, 'Yeniden');
+      const note = mk('note', ICON.note, 'Not');
+      const thread = el('div', 'thread');
+      const notes = el('div', 'notes');
+      const comp = composer('review', r.id, 'Bu iş hakkında notun…');
+      thread.append(el('div', 'thread-title', 'Notlar'), notes, comp.root);
+      root.append(body, verdicts, thread);
+      c = { root, body, like, redo, note, thread, notes, comp, open: false };
+      like.addEventListener('click', () => setVerdict(r.id, 'liked'));
+      redo.addEventListener('click', () => setVerdict(r.id, 'redo'));
+      note.addEventListener('click', () => {
+        c.open = true; c.thread.hidden = false; c.note.setAttribute('aria-pressed', 'true');
+        c.comp.ta.focus(); c.comp.ta.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      });
+      rvCards.set(r.id, c);
+    }
+    fillReview(c, r);
+    return c.root;
+  }
+  function fillReview(c, r) {
+    const b = c.body; b.replaceChildren();
+    const v = r.verdict === 'liked' || r.verdict === 'redo' ? r.verdict : null;
+    const top = el('div', 'card-top');
+    top.append(el('span', 'pill ' + (v || 'pending'), v === 'liked' ? 'Beğendin' : v === 'redo' ? 'Yeniden' : 'Bekliyor'));
+    top.append(el('span', 'grow'));
+    if (r.createdAt) top.append(el('span', '', ago(r.createdAt)));
+    b.append(top);
+    b.append(el('h4', '', str(r.title) || 'Başlıksız'));
+    const img = imageOf(r); if (img) b.append(shot(img, str(r.title)));
+    if (r.context) b.append(el('p', 'ctx', str(r.context)));
+    c.like.setAttribute('aria-pressed', String(v === 'liked'));
+    c.redo.setAttribute('aria-pressed', String(v === 'redo'));
+    const notes = threadFor('review', r.id);
+    renderNotes(c.notes, notes);
+    const showThread = c.open || notes.length > 0 || !!c.comp.ta.value;
+    c.thread.hidden = !showThread;
+    c.note.setAttribute('aria-pressed', String(showThread));
+    [c.like, c.redo, c.note].forEach((x) => { x.disabled = !state.canWrite; });
+    c.comp.sync();
+  }
+  function renderReviews() {
+    const list = $('#rv-list');
+    if (state.reviews == null) return;
+    const rs = state.reviews.slice();
+    const pending = rs.filter((r) => !r.verdict || state.keepReview.has(r.id)).sort((a, b) => toMs(b.createdAt) - toMs(a.createdAt));
+    const done = rs.filter((r) => r.verdict && !state.keepReview.has(r.id)).sort((a, b) => toMs(b.verdictAt || b.createdAt) - toMs(a.verdictAt || a.createdAt));
+    const waiting = rs.filter((r) => !r.verdict).length;
+    $('#tab-reviews .dot').hidden = !waiting;
+    $('#rv-meta').textContent = waiting ? waiting + ' bekliyor' : 'hepsine baktın';
+    if (!rs.length) { list.replaceChildren(emptyLine('Onay bekleyen bir şey yok. Yeni bir görsel hazır olunca burada.')); return; }
+    const groups = [];
+    const gPending = list.querySelector(':scope > .g-pending') || Object.assign(el('div', 'g-pending'));
+    const gDone = list.querySelector(':scope > .g-done') || Object.assign(el('div', 'g-done'));
+    for (const [g, title, items, emptyText] of [[gPending, 'Bekleyen', pending, 'Bekleyen iş yok. Hepsine baktın.'], [gDone, 'Değerlendirilen', done, null]]) {
+      let h = g.querySelector(':scope > h3'); if (!h) { h = el('h3', 'group'); g.prepend(h); }
+      h.textContent = title + (items.length ? ' · ' + items.length : '');
+      let box = g.querySelector(':scope > .cards'); if (!box) { box = el('div', 'cards'); g.append(box); }
+      if (!items.length) { if (emptyText) box.replaceChildren(emptyLine(emptyText)); g.hidden = !emptyText; }
+      else { g.hidden = false; reconcile(box, items, reviewCard); }
+      groups.push(g);
+    }
+    if (list.firstElementChild !== gPending || list.children.length !== 2) list.replaceChildren(...groups);
+  }
+
+  // ------------------------------------------------------------------ idea sheet
+  const sheet = $('#sheet'), scrim = $('#scrim'), ideaText = $('#idea-text'), ideaSend = $('#idea-send'), ideaErr = $('#idea-err');
+  const picked = new Set();
+  for (const t of TAGS) {
+    const b = el('button', 'chip', t); b.type = 'button'; b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', () => { if (picked.has(t)) picked.delete(t); else picked.add(t); b.setAttribute('aria-pressed', String(picked.has(t))); });
+    $('#idea-tags').append(b);
+  }
+  ideaText.value = store.get('draft:idea') || '';
+  const syncIdea = () => { ideaSend.disabled = !state.canWrite || !ideaText.value.trim() || ideaSend.dataset.busy === '1'; };
+  ideaText.addEventListener('input', () => { syncIdea(); store.set('draft:idea', ideaText.value); });
+  let lastFocus = null;
+  function openSheet() {
+    lastFocus = document.activeElement;
+    scrim.hidden = false; sheet.hidden = false; ideaErr.hidden = true;
+    requestAnimationFrame(() => { scrim.classList.add('on'); sheet.classList.add('on'); });
+    syncIdea(); setTimeout(() => ideaText.focus(), 60);
+  }
+  function closeSheet() {
+    scrim.classList.remove('on'); sheet.classList.remove('on');
+    setTimeout(() => { scrim.hidden = true; sheet.hidden = true; }, 260);
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+  }
+  $('#fab').addEventListener('click', openSheet);
+  $('#sheet-close').addEventListener('click', closeSheet);
+  scrim.addEventListener('click', closeSheet);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sheet.hidden) closeSheet(); });
+  ideaSend.addEventListener('click', async () => {
+    const text = ideaText.value.trim();
+    if (!text || !state.canWrite) return;
+    ideaSend.dataset.busy = '1'; ideaSend.textContent = 'Gönderiliyor…'; syncIdea();
+    try {
+      const body = { text, tags: TAGS.filter((t) => picked.has(t)), createdAt: nowIso() };
+      if (state.userId) body.authorId = state.userId;
+      await withRetry(() => state.db.collection('ideas').add(body));
+      ideaText.value = ''; store.set('draft:idea', ''); picked.clear();
+      document.querySelectorAll('#idea-tags .chip').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+      closeSheet(); toast('Fikrin kaydedildi');
+    } catch (e) { ideaErr.textContent = writeFailed(e); ideaErr.hidden = false; }
+    delete ideaSend.dataset.busy; ideaSend.textContent = 'Gönder'; syncIdea();
+  });
+
+  // ------------------------------------------------------------------ render all
+  function renderAll() { renderBanner(); renderQuestions(); renderNow(); renderIdeas(); renderRoadmap(); renderReviews(); }
+
+  function showOfflineEmpty() {
+    state.questions = state.questions || []; state.answers = state.answers || new Map(); state.notes = state.notes || [];
+    if (state.status === undefined) state.status = null;
+    if (state.roadmap === undefined) state.roadmap = null;
+    state.reviews = state.reviews || []; state.ideas = state.ideas || [];
+    renderAll();
+  }
+
+  // ------------------------------------------------------------------ boot
+  setTab((location.hash || '').slice(1) || store.get('tab') || 'questions');
+
+  async function boot() {
+    if (!window.claude || typeof window.claude.use !== 'function') { state.mode = 'offline'; showOfflineEmpty(); return; }
+    let db = null, user = null;
+    try { [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]); } catch { db = null; }
+    if (!db) { state.mode = 'offline'; showOfflineEmpty(); return; }
+    state.db = db;
+    if (user) {
+      try { state.userId = await user.id(); } catch { state.userId = null; }
+      let can = null;
+      try { can = await user.can('data.write'); } catch { can = null; }
+      state.canWrite = can !== false; // null: keep the inputs and let a refused write decide
+    } else state.canWrite = true;
+    state.mode = state.canWrite ? 'live' : 'readonly';
+    renderBanner();
+
+    // Loading watchdog: every listener must confirm once (fromCache false) or error within 10 s.
+    const pending = new Set();
+    const watchdog = setTimeout(() => { if (pending.size) { state.stale = true; showOfflineEmptyKeep(); renderBanner(); } }, 10000);
+    function showOfflineEmptyKeep() {
+      // Show empty states for anything that never arrived, keep what did.
+      if (state.questions == null) state.questions = [];
+      if (state.answers == null) state.answers = new Map();
+      if (state.notes == null) state.notes = [];
+      if (state.status === undefined) state.status = null;
+      if (state.roadmap === undefined) state.roadmap = null;
+      if (state.reviews == null) state.reviews = [];
+      if (state.ideas == null) state.ideas = [];
+      renderAll();
+    }
+    const settle = (name, meta) => {
+      if (meta && meta.fromCache) return;
+      if (pending.delete(name) && !pending.size) { clearTimeout(watchdog); if (state.stale) { state.stale = false; renderBanner(); } }
+    };
+    const onErr = (name) => (e) => {
+      pending.delete(name);
+      if (!pending.size) clearTimeout(watchdog);
+      if (e && (e.code === 'revoked' || e.code === 'not_granted')) { state.canWrite = false; state.mode = 'readonly'; }
+      else state.stale = true;
+      showOfflineEmptyKeep();
+    };
+    const docs = (snap) => snap.docs.filter((d) => d.exists).map((d) => Object.assign({ id: d.id }, d.data()));
+    const subs = [
+      ['questions', db.collection('questions'), (s) => { state.questions = docs(s); renderQuestions(); }],
+      ['answers', db.collection('answers'), (s) => { const m = new Map(); for (const d of docs(s)) m.set(d.id, d); state.answers = m; renderQuestions(); }],
+      ['notes', db.collection('notes'), (s) => { state.notes = docs(s).sort((a, b) => toMs(a.createdAt) - toMs(b.createdAt)); renderQuestions(); renderReviews(); renderIdeas(); }],
+      ['status', db.doc('status/now'), (d) => { state.status = d.exists ? d.data() : null; renderNow(); }],
+      ['roadmap', db.doc('roadmap/main'), (d) => { state.roadmap = d.exists ? d.data() : null; renderRoadmap(); }],
+      ['reviews', db.collection('reviews'), (s) => { state.reviews = docs(s); renderReviews(); }],
+      ['ideas', db.collection('ideas'), (s) => { state.ideas = docs(s); renderIdeas(); }],
+    ];
+    for (const [name, ref, fn] of subs) {
+      pending.add(name);
+      ref.onSnapshot((snap) => { try { fn(snap); } finally { settle(name, snap.metadata); } }, onErr(name));
+    }
+    // Relative times drift; refresh the cheap labels each minute without touching inputs.
+    setInterval(() => { renderNow(); renderIdeas(); }, 60000);
+  }
+  boot();
+})();
+</script>

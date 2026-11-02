@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Pofu Hub (`design/hub/index.html`): the founder's phone-first surface,
+  replacing the canvas atlas as his daily view (the atlas stays as a linked
+  deep map). One column of cards with a sticky segmented control: Sorular
+  (the lead's questions with options, pros, cons, cost, a recommendation,
+  the founder's pick and a notes thread with dictation), Şu an (doing, done
+  today, next, and the founder's ideas), Yol haritası (a status timeline)
+  and Onay (review items with Beğendim, Yeniden and Not), plus a floating
+  Fikir sheet. All content lives in the artifact `db`, so the lead updates
+  it without republishing. `design/hub/tools/check.js` drives it with a mock
+  `window.claude` at phone and desktop sizes in light and dark.
 - `PofuWorld` round 2: Home per the app–game boundary (`WorldHome`, behind
   `FeatureFlags.worldHome`, off until the gate's dogfood week ends). Five
   chrome items in native glass: the wellbeing pill in the art's warm
