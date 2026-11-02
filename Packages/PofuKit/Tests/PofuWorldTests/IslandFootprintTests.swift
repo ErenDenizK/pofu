@@ -85,8 +85,8 @@ struct IslandFootprintTests {
     @Test func emittersFollowTheirStation() throws {
         let ember = try #require(IslandLayout.emitters.first { $0.station == .cay })
         let cay = try #require(IslandLayout.stationAnchors[.cay])
-        #expect(abs(ember.point.x - (cay.x - 14.6)) < 1e-9)
-        #expect(abs(ember.point.y - (cay.y - 23.1)) < 1e-9)
+        #expect(abs(ember.point.x - (cay.x - 15.2)) < 1e-9)
+        #expect(abs(ember.point.y - (cay.y - 27.2)) < 1e-9)
     }
 
     @Test func polygonContainment() {

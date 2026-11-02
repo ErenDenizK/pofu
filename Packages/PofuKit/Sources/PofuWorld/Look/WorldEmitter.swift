@@ -46,9 +46,11 @@ public struct WorldEmitter: Hashable, Sendable {
 extension IslandLayout {
     /// The home island's emissive points.
     public static let emitters: [WorldEmitter] = [
-        // The ember under the çaydanlık: (387, 603) px on cay-1, anchor
-        // (512, 800), 8.53 px per unit: (−14.6, −23.1) from the stall.
-        WorldEmitter(kind: .ember, point: onStation(.cay, x: -14.6, y: -23.1), radius: 6, color: GradeRGB(1, 0.62, 0.26), reach: 70, station: .cay),
+        // The flame under the çaydanlık, measured as the brightest warm spot
+        // of the burner on every level (cay-1 to cay-5: x 379-385, y 567-571
+        // px, anchor (512, 800), 8.53 px per unit): (−15.2, −27.2) from the
+        // stall, right under the kettle's belly, which it lights.
+        WorldEmitter(kind: .ember, point: onStation(.cay, x: -15.2, y: -27.2), radius: 6, color: GradeRGB(1, 0.62, 0.26), reach: 70, station: .cay),
         // The round window in the door, measured on the plate master.
         WorldEmitter(kind: .window, point: WorldArt.generatedPlate.window, radius: 7, color: GradeRGB(1, 0.78, 0.44), reach: 30),
     ]
