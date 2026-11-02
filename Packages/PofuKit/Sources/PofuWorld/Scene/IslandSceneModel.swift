@@ -107,7 +107,10 @@ public final class IslandSceneModel {
         guard !reduceMotion, seconds > 0 else { return }
         visitTask?.cancel()
         isVisiting = true
+        // A visit animates the look; it does not let go of a held frame.
+        let held = engine.isHeld
         kick()
+        engine.isHeld = held
         visitTask = Task { @MainActor [weak self] in
             try? await Task.sleep(for: .seconds(seconds))
             guard !Task.isCancelled else { return }
@@ -164,6 +167,26 @@ public final class IslandSceneModel {
         framing = target
         projectedFraming = target
         kick()
+    }
+
+    /// Holds the camera `seconds` into a flight from one framing to
+    /// another, still, as a frame of the move (screenshots of depth in
+    /// motion, tests). Any interaction lets go of the hold.
+    public func holdFlight(from start: WorldFraming, to target: WorldFraming, at seconds: Double) {
+        closeSurfaces()
+        engine.rig.jump(to: start)
+        engine.rig.fly(to: target)
+        let step = 1.0 / 120
+        var t = 0.0
+        while t + 1e-9 < seconds {
+            engine.rig.advance(min(step, seconds - t))
+            t += step
+        }
+        framing = target
+        projectedFraming = target
+        engine.isHeld = true
+        engine.lastDate = nil
+        revision &+= 1
     }
 
     /// One framing in (Map → Island → Home); at Home, the Island (§1.4).
@@ -383,6 +406,9 @@ public final class IslandSceneModel {
     func frame(at date: Date, width: Double, height: Double, safeTop: Double) -> CameraRig {
         engine.rig.resize(width: width, height: height)
         engine.safeTop = safeTop
+        if engine.isHeld {
+            return engine.rig
+        }
         if let last = engine.lastDate {
             engine.rig.advance(date.timeIntervalSince(last))
         }
@@ -423,6 +449,7 @@ public final class IslandSceneModel {
     }
 
     private func kick() {
+        engine.isHeld = false
         if !isAnimating {
             engine.lastDate = nil
             isAnimating = true
@@ -446,6 +473,8 @@ final class SceneEngine {
     var crossfade: Crossfade?
     let tilt = DeviceTilt()
     var lastDate: Date?
+    /// A held frame of a move (`holdFlight`): the springs do not advance.
+    var isHeld = false
     var settleScheduled = false
     var safeTop = 59.0
     var pinchWorldPoint: WorldPoint?

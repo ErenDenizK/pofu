@@ -1,0 +1,22 @@
+{
+  "$note": "Targets for the rendered world frames per grade (tools/assets/frame_metrics.py), over the world band (Home: 50-80 % of the height, under the speech bubble; Island: 43-60 %). L* and C* are CIELAB; 'local' is the RMS of L* minus its blur, the texture contrast that reads as crisp. Bounds are absolute; vs_day are ratios to the day frame of the same framing. Round 1 measured night at p2 22, range 0.68 x day and local 0.66 x day over the Home band, and unwell at local 0.88-0.91 x day with lifted shadows: washed out. Change a bound only with the measured frames in the PR.",
+  "grades": {
+    "day": {
+      "match": ["grade-day-", "lightlock-day"],
+      "bounds": {"p2": [null, 60], "local": [4.0, null]}
+    },
+    "golden": {
+      "match": ["grade-golden-", "hd2d-golden"],
+      "vs_day": {"local": [0.75, null], "p2": [null, 1.1]}
+    },
+    "night": {
+      "match": ["grade-night-", "hd2d-night"],
+      "bounds": {"p2": [null, 10], "mean": [15, 40]},
+      "vs_day": {"local": [0.75, null], "range": [0.85, null]}
+    },
+    "unwell": {
+      "match": ["grade-unwell-", "-unwell-"],
+      "vs_day": {"mean": [0.85, 1.0], "chroma": [0.35, 0.8], "local": [0.95, null], "range": [0.95, null], "p2": [null, 1.0]}
+    }
+  }
+}

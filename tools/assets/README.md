@@ -182,3 +182,37 @@ edits of one base canvas stay pixel-aligned,
 badges are centered and padded, icons with transparency fail, scene
 upscaling is reported, a jittered 3×3 sheet slices into perfectly
 registered frames, and `cell` registration preserves a hop. About 20 s.
+
+## Asset harmony (`harmony.py`)
+
+The founder's ask (2026-11-02): every asset tuned, matched to the others
+and measured. `harmony.py` measures every world master on one footing, in
+CIELAB over its opaque pixels and at the same world scale, against a
+reference: the approved island take for the world, Pofu for characters.
+
+| Metric | What it reads | Correctable |
+|---|---|---|
+| `L_p2`, `L_p98` | black and white point | yes: a linear remap of L |
+| `C_p95` | chroma ceiling | yes: a chroma scale (not for characters) |
+| `tint_a`, `tint_b` | white balance: mean a*, b* of the near-neutrals | yes: a shift weighted to the neutrals |
+| `edge` | alpha ramp width, world units | no: next generation |
+| `detail` | mean Laplacian at 4 px per unit | no: next generation |
+| materials | hue and chroma of a named material (copper) | yes: a hue turn and chroma scale in its band and region |
+
+A metric more than its tolerance from the reference is an outlier; the
+score is 100 when everything matches. Corrections apply only past
+tolerance, so a master that already matches stays exactly as painted, and
+guarded assets (Pofu, the sky) are measured but never corrected.
+
+```sh
+python3 -I tools/assets/harmony.py measure --sheet harmony.jpg  # manifest + contact sheet
+python3 -I tools/assets/harmony.py check                        # CI: fails when stale
+python3 -I tools/assets/harmony.py score take.png --ppu 8.533 --kind station
+```
+
+The targets and tolerances are in `design/art/harmony/config.json`; the
+measurements and corrections in `design/art/harmony/manifest.json`, which
+`preblur.py app` bakes into the app's sprites (keeping the uncorrected bake
+as `<name>--unharmonized` to compare). `tools/imagegen` QA reports each
+take's score as the `harmony` line at promote time. CI runs `check`, and
+the screenshot branch carries the contact sheet as `harmony.jpg`.

@@ -152,7 +152,11 @@ job of the track in order. The manifest is
    `run.py ingest --manifest <manifest> --job <id> --source codex-cloud <files>`,
    then run `run.py post --manifest <manifest> --only <id>`.
 5. **Auto-pick:** choose the take that passes QA with the lowest style-lock
-   load (the post report lists both). If no take passes, generate at most
+   load (the post report lists both); between takes that are otherwise
+   equal, prefer the higher **harmony** score (the QA line `harmony`:
+   how closely the take matches the approved island, or Pofu for
+   characters, measured by `tools/assets/harmony.py`; below 70 it warns).
+   If no take passes, generate at most
    one more round of the job's variants. If that also fails, stop and report
    the failing checks; do not loop. Set that take as the pick for this job
    only, and run `promote --only <id>`. In the provenance note, write
