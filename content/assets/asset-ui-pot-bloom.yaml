@@ -1,0 +1,21 @@
+id: asset-ui-pot-bloom
+type: asset
+title_tr: ui-pot-bloom
+title_en: pot-bloom (ui)
+status: in-production
+horizon: now
+summary: >-
+  Add one small sunflower growing from the soil on a short green stem with two rounded leaves:
+  a round golden-yellow bloom with a warm-brown center facing the viewer, simple soft shapes.
+  The pot and soil stay as they are.
+links:
+  variant_of:
+  - asset-ui-pot-empty
+art:
+  images: []
+  jobs:
+  - batch-11-ui-pilot:ui-pot-bloom
+sources:
+- doc: tools/imagegen/manifest/batch-11-ui-pilot.yaml
+kind: ui
+batch: batch-11-ui-pilot

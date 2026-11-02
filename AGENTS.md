@@ -90,7 +90,9 @@ QA; he reviews afterwards and can veto any pick. Batch 02 stays
 **The standing rule:** when you open a batch's PR, immediately start the
 next `READY` batch in the queue, in order, on a new branch. Never wait for
 a review or a merge. Never start a `BLOCKED` batch (`status: blocked` in
-its manifest). If no row is `READY`, say so in your last PR and stop.
+its manifest). When a batch is finished (its PR is open), continue to the
+next `READY` batch automatically, again and again, until none is left; do
+not stop to ask. If no row is `READY`, say so in your last PR and stop.
 
 **Pilots first:** every new batch has a small pilot manifest
 (`batch-NN-<name>-pilot`, 2 to 5 jobs) that the lead reviews before the
@@ -217,18 +219,30 @@ So, for every task and every push:
   no `raw.webp`. Fix and re-push before you start the next job. (Batch
   01 masters already on `main` decode and may stay as they are.)
 
+## Harmony manifest: commit it with every promoted master
+
+CI runs `python3 -I tools/assets/harmony.py check`, and a new master changes
+the harmony manifest, so an art PR without the refreshed manifest fails CI
+(batches 05 to 07 did). The push checklist for every promoted master:
+
+1. `python3 -I tools/assets/harmony.py measure`
+2. Commit the changed manifest in the same PR as the master (and its
+   `raw.webp`, content node and provenance).
+3. `python3 -I tools/assets/harmony.py check` must pass before you push.
+
 ## Next batches: the queue
 
 The ordered list of batches, their state (`READY`, `BLOCKED`, `NEXT PR`)
 and why each exists is in
 [`docs/design/art-production-plan.md`](docs/design/art-production-plan.md#the-queue).
 The lead keeps it current; read it at the start of every task. Right now
-six pilots are `READY` and may run at once:
+these batches are `READY` and may run at once (the table has the order):
 
 ```text
-AGENTS.md parallel auto mode, batch-05-fixes-pilot, track all
-AGENTS.md parallel auto mode, batch-06-pofu-rig-pilot, track all
-AGENTS.md parallel auto mode, batch-07-light-pilot, track all
+AGENTS.md parallel auto mode, batch-05-fixes, track all
+AGENTS.md parallel auto mode, batch-06-pofu-rig, track all
+AGENTS.md parallel auto mode, batch-07-light, track all
+AGENTS.md parallel auto mode, batch-11-ui-pilot, track all
 AGENTS.md parallel auto mode, batch-08-decor-pilot, track all
 AGENTS.md parallel auto mode, batch-09-explore-pilot, track all
 AGENTS.md parallel auto mode, batch-10-island-concepts-pilot, track all

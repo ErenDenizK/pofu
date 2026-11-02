@@ -1,0 +1,20 @@
+id: asset-ui-jar-empty
+type: asset
+title_tr: ui-jar-empty
+title_en: jar-empty (ui)
+status: in-production
+horizon: now
+summary: >-
+  The seed jar, empty: a small, round, chunky honey-pot-shaped jar with a wide mouth and a
+  soft cream cloth lid tied with a thin rose ribbon, front view at a slight angle from above.
+  The jar body is painted as soft matte milky glaze in cream and pale honey (not glass, not
+  transparent), with a large, rounded, slightly darker oval window panel on its front, empty
+  for now.
+art:
+  images: []
+  jobs:
+  - batch-11-ui-pilot:ui-jar-empty
+sources:
+- doc: tools/imagegen/manifest/batch-11-ui-pilot.yaml
+kind: ui
+batch: batch-11-ui-pilot

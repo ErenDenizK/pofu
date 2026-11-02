@@ -42,24 +42,25 @@ Codex reads it at the start of every task.
 ## The queue
 
 Order is priority. Codex takes the first `READY` row nobody is working on
-(an open PR or a pushed `art/<batch>/...` branch means someone is).
+(an open PR or a pushed `art/<batch>/...` branch means someone is), and
+**when its PR is open it continues to the next `READY` row automatically**,
+until none is left.
 
 | # | Batch | Kind | Purpose | Needs | Jobs | State |
 |---|---|---|---|---|---|---|
-| 1 | `batch-05-fixes-pilot` | production · pilot | Salvage simit-2 and workshop-2 (no generation), garden-5 inside the arch, a deeper large island (`island-main-l-v3`) | main | 4 | **READY** |
-| 2 | `batch-06-pofu-rig-pilot` | production · pilot | Pofu's layered rig: clean plate, happy eyes, closed eyes, pout, full cheek pouches | R1 (main) | 5 | **READY** |
-| 3 | `batch-07-light-pilot` | production · pilot | The çay ocağı's lit burner at L1 and L5, as overlay sources | main | 2 | **READY** |
-| 4 | `batch-05-fixes` | production | simit-3..5, workshop-3..5 | review of #1 | 6 | BLOCKED |
-| 5 | `batch-06-pofu-rig` | production | The rest of the rig (14 Pofu parts) and Mochi's and Fındık's blink and happy eyes | composite review of #2 | 18 | BLOCKED |
-| 6 | `batch-07-light` | production | Lit edits for the other light-carrying stations (windmill windows, workshop, pond lanterns) and the çay chain re-take only if the grade fails | review of #3 | about 4 | BLOCKED, manifest after #3 |
-| 7 | `batch-08-decor-pilot` | production · pilot | Four decor pieces, one per Ayçiçeği decor spot (bench, lantern string, toy sailboat, mailbox) | main | 4 | **READY** |
-| 8 | `batch-09-explore-pilot` | EXPLORATION · pilot | Painted seed icon at 28–60 pt, App Store key art A, a Home ideation board | main | 3 | **READY** |
-| 9 | `batch-10-island-concepts-pilot` | EXPLORATION · pilot | Establishing shots of Çağlayan, Ayna, Revontuli | main | 3 | **READY** |
-| 10 | `batch-10-island-concepts` | EXPLORATION | Their signature moments (Damla at the falls, Pekmez and the seed falling up, Tuli painting the aurora), attaching the picked pilot takes | review of #9 | 3 | BLOCKED, manifest after #9 |
-| 11 | `batch-08-decor` | production | The rest of a decor kit | the decor mechanic decided (archipelago system, PR #64) and review of #7 | — | BLOCKED, no manifest yet |
+| 1 | `batch-05-fixes` | production | simit-3..5, workshop-3..5 (pilot passed, #71) | main | 6 | **READY** |
+| 2 | `batch-06-pofu-rig` | production | The rest of the rig (eyes, mouths, cheeks puff-1 and puff-3, paws, `pofu-ears-droop`, matted fur) and Mochi's and Fındık's blink and happy eyes (pilot passed as composites) | pilot on main | 19 | **READY** |
+| 3 | `batch-07-light` | production | Night light, painted only for light-carrying stations: workshop doorway (L1), windmill windows (L5), pond lanterns (L5). cay-1-lit accepted; cay-5-lit dropped | main | 3 | **READY** |
+| 4 | `batch-11-ui-pilot` | production · PILOT | The hybrid UI's look-dev (ui-system-v2 section 6, 12 of the 14 pilot items; the two cheek stages are `pofu-cheeks-puff-2` and `-3` in row 2): seed icon, jar, lantern on a post, three pots, crafted primary face, disc, paper tag and panel | main | 12 | **READY** |
+| 5 | `batch-08-decor-pilot` | production · pilot | Four decor pieces, one per Ayçiçeği decor spot (bench, lantern string, toy sailboat, mailbox) | main | 4 | **READY** |
+| 6 | `batch-09-explore-pilot` | EXPLORATION · pilot | Painted seed icon at 28–60 pt, App Store key art A, a Home ideation board | main | 3 | **READY** |
+| 7 | `batch-10-island-concepts-pilot` | EXPLORATION · pilot | Establishing shots of Çağlayan, Ayna, Revontuli | main | 3 | **READY** |
+| 8 | `batch-10-island-concepts` | EXPLORATION | Their signature moments (Damla at the falls, Pekmez and the seed falling up, Tuli painting the aurora), attaching the picked pilot takes | review of #6 | 3 | BLOCKED, manifest after #6 |
+| 9 | `batch-11-ui` | production | The rest of ui-system-v2 section 6 (night variants, secondary and pressed faces, game layer, domain icons, surfaces) | review of #4 | about 32 | BLOCKED, no manifest yet |
+| 10 | `batch-08-decor` | production | The rest of a decor kit | the decor mechanic decided (archipelago system, PR #64) and review of #5 | — | BLOCKED, no manifest yet |
 
-Rows 4 to 6 are the scale-up of rows 1 to 3; row 10 of row 9; row 11 of
-row 7.
+Row 9 is the scale-up of row 4; row 8 of row 7; row 10 of row 5. Rows 1 to
+3 were the scale-ups of the passed pilots (batch-05, 06 and 07).
 Batch 02 (Glass++ production) stays blocked until the friends beta
 (ADR-0018 amendment).
 
@@ -216,14 +217,21 @@ Paste this into a new Codex task:
 ```text
 Read AGENTS.md and docs/design/art-production-plan.md.
 Run the queue: take the first READY batch nobody is on, in parallel auto mode, track all.
-Start with batch-05-fixes-pilot: simit-2 and workshop-2 are SALVAGED from
-batch 03's takes on main (ingest them, post, pick; do not generate unless none passes).
-When you open a batch's PR, start the next READY batch at once on a new branch.
+Start with batch-05-fixes, then batch-06-pofu-rig, batch-07-light and batch-11-ui-pilot.
+For every promoted master run `python3 -I tools/assets/harmony.py measure` and commit
+the manifest in the same PR, or CI fails.
+When you open a batch's PR, start the next READY batch at once on a new branch, until none is left.
 Never start a BLOCKED batch, never promote an EXPLORATION batch, never merge.
 Stop and report on any stop condition in AGENTS.md.
 ```
 
 ## Log
 
+- 2026-11-02 (round 2): batch-05-fixes-pilot merged (#71); batch-06 pilot
+  passed as composites (neutral against R1 dE 3.0); batch-07 pilot: cay-1-lit
+  accepted, cay-5-lit failed `station_anchor` for its parent's own geometry
+  (fixed: edits are anchored against their parent), night light is mostly
+  code. batch-05-fixes, batch-06-pofu-rig, batch-07-light and the new
+  batch-11-ui-pilot opened.
 - 2026-11-02: queue created; batches 01, 03 and 04 merged; batch 03's
   skipped jobs moved to batch 05.
