@@ -1,0 +1,92 @@
+# Founder input log
+
+Direction the founder gives in chat or in Pofu Hub, recorded so that none of
+it is lost between sessions. The founder often says his examples are views,
+not orders: each entry records **what he meant**, the **status**, and
+**where it is handled**. Newest first. Translated from Turkish.
+
+## 2026-11-02 (evening): after the look-dev round and the Hub answers
+
+### Art and look
+- **Objects never stick out past the island**, even in prototypes.
+  Handled: look round 2 (containment test), `feat/look-round-2`.
+- Liked the new overall colour. **Night and unwell grades still look washed
+  out**; day, golden hour are fine. **Terrarium rim does not look good**
+  (removed). **The çay ocağı/teapot still reads cold.** Handled: look round 2.
+- **Assets must be tuned, matched and measured against each other**, by a
+  technical system. Handled: harmony system (`tools/assets/harmony.py`,
+  look round 2) and harmony scores at promote time in the art pipeline.
+- **Octopath (HD-2D) means depth in motion**, not only colour: parallax and
+  blur that strengthen 3D perception while moving through the 2.5D world.
+  Handled: look round 2 (parallax + depth of field during camera moves).
+- **Island base is too squashed** ("short is fine, just too squashed").
+  Handled: art production queue (taller plate with visible thickness).
+- Some visuals are fixed in code (grading), **some deserve real day and
+  night versions**. Handled: art production queue (light/emissive layers).
+- **More reactions** for Pofu. Handled: art production queue (reaction set).
+- Image generation should also be used for: a **painted seed icon** instead
+  of a vector, **poster/key art**, **UI ideation**, **icon selection**
+  (system actions stay SF Symbols). Handled: art production queue,
+  exploration batch (ADR-0018's production timing still applies to shipping
+  the icon family).
+
+### Production line
+- **Codex is a factory and must never idle**: always a next batch ready;
+  plan first where needed. Handled: `docs/design/art-production-plan.md`
+  (living queue with a standing rule for Codex).
+
+### Game direction (views, to discuss)
+- **Turn Pofu more into a game.** Not only "collect and build": each island
+  should be **playable** (its own small loop, a mini-game, a toy, maybe
+  learning something). Research this continually.
+- **5–10 minute play sessions are acceptable** in his view ("at worst you
+  play a game instead of doomscrolling"). Conflicts with the current
+  guardrail (median visit under 90 s); the archipelago doc proposes a
+  revised guardrail. Open.
+- **A game loop with placeholders** should be planned now, before final art.
+  Open: planned after the archipelago doc and the UI critique.
+- **Free decor spots** besides fixed stations (the çay ocağı is certain; its
+  style is ours): the player places decor. His examples (chair, light) are
+  not decisions; be creative.
+- **Economy pacing:** he mused about Roblox-style proportional scaling
+  (costs and income grow together) and doubted it fits a game fed by capped
+  daily behaviour. Open: evaluated in the archipelago doc. Scale A (small
+  numbers) stays decided.
+- **Islands:** a long run of **hand-made wonder islands** (he said about
+  50), each with its own secret and small story, arriving as seasonal
+  updates or expansions. **No procedural or kit-built infinite islets**:
+  "what makes a game beautiful is that everything has craft in it". Each
+  new island must make the user want to play it, not feel like an extra.
+- Idea card: **animated signature features** such as a waterfall pouring
+  off an island; islands that are fun, never boring, each sparking
+  curiosity.
+
+### Money
+- Approves the four ethics conditions of a content lock (gate never weaker,
+  Pofu never suffers at the lock, the lock at a chapter end, honesty).
+- **Where to cut** (after the home island, after İskele, elsewhere) should
+  be decided **by data**: the point where users are happiest and want more.
+- Not sure users must **know the exact cut point in advance**; the paywall
+  itself says membership opens the game. Open.
+- **Prices approved: 349,99 TL a year, 999,99 TL lifetime.** Expansion
+  pricing, if any, is a separate question.
+
+### Market
+- **Türkiye first, not Türkiye only.** Compete abroad with fitting prices
+  (Europe, the Nordics have strong income). The concept must let other
+  cultures find something of their own in it.
+- Question: cute idle/AFK games do well in Asian markets and often come from
+  there; why, and does that apply to a product like Pofu? Open: research.
+
+### Hub decisions (answered 2026-11-02)
+- Economy scale **A** (small numbers); asked whether progression can still
+  feel strong. Personality **B** (+ meme and humour research, never bland).
+  Sound **B** (+ procedural music from chords and progressions; discuss the
+  line). Friends **B, then C**. "A minute with Pofu" **A**. Look **A**
+  (time-of-day grades). Monetization **D**, refined above. Archipelago:
+  wants a main loop plus a system that could go on forever.
+- Rehearsal mode: the right-hand dev panel is fine; **the left screen's UI
+  is not**. "In the game part the UI is the game itself." Handled: UI
+  critique 01.
+- Wants **dictation inside Pofu Hub** (Whisper, multiplatform), because he
+  cannot use his device's dictation. Handled: `feat/hub-dictation`.
