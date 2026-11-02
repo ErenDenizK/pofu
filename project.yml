@@ -106,6 +106,7 @@ targets:
         product: PofuWorld
       - package: PofuKit
         product: PofuGames
+      - package: PofuKit
         product: PofuTuning
       - target: PofuShieldConfiguration
       - target: PofuShieldAction
