@@ -198,9 +198,11 @@ All commands from the repository root, with the venv:
 2. `plan`: lists jobs and which are ready (parents approved, references
    present). Only ready jobs are generated.
 3. `run --dry-run`, then `run` (Codex) or `run --backend openai-api`
-   (prints the estimate; `--yes` after the founder agrees). The pipeline
-   paces itself (one image at a time, 90 s apart, at most 3 takes per job
-   and 12 images per run). Do not change those limits.
+   (prints the estimate; `--yes` after the founder agrees). Pacing (founder,
+   2026-11-02): no pause, at most 2 takes per job and 40 images per run,
+   and **concurrent generation is allowed**: independent jobs may run at the
+   same time in separate agents or sub-agents. Stop on the first usage,
+   rate-limit, sign-in or refusal message; never retry in a loop.
 4. `post`: style lock and QA for every take; writes the contact sheet
    (`build/review/<batch>.png`), a small copy
    (`design/art/review/<batch>-contact.jpg`) and the review file

@@ -67,8 +67,8 @@ plan ──> run ──> post ──> founder picks ──> promote ──> PR a
    ready (every parent approved, every reference present).
 2. `run --manifest <m> --dry-run`, then `run --manifest <m>` (codex) or
    `run --manifest <m> --backend openai-api` (prints the cost estimate;
-   add `--yes`). One generation at a time, 90 s apart, at most 3 takes per
-   job and 12 images per run. Stops on the first limit, sign-in, refusal
+   add `--yes`). No pause, at most 2 takes per job and 40 images per run;
+   independent jobs may run concurrently (founder, 2026-11-02). Stops on the first limit, sign-in, refusal
    or timeout message. Resumable: existing takes with the same prompt and
    references are kept; changed inputs make old takes stale.
 3. `post --manifest <m>`: for every take, keying if opaque, canvas fit,
@@ -175,8 +175,8 @@ is a few minutes; stop and report at the first surprise.
 
 ## Etiquette and stop conditions
 
-- Small batches: one round at a time, at most 12 images per run, 90 s
-  between generations. Never loop `run` in a script.
+- Speed (founder, 2026-11-02): independent jobs may run concurrently,
+  with no pause; at most 40 images per run. Never loop `run` in a script.
 - Stop and report (do not retry) on: any usage, rate-limit or quota
   message; a sign-in or key problem; a refusal or "no image" answer; a
   timeout; two consecutive takes of one job that fail QA on the same
