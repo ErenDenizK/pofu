@@ -1,0 +1,96 @@
+{
+  "job": "pofu-rig-clean",
+  "batch": "batch-06-pofu-rig-pilot",
+  "asset": "char__pofu-rig-clean",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T18:02:55+00:00",
+  "image": "design/art/masters/pofu-rig-clean/pofu-rig-clean.webp",
+  "raw": "design/art/masters/pofu-rig-clean/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "6c68c2e862f13579",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached hamster. Remove only his two ears and his two\nfront paws:\n1. Where each ear was, the top of the head continues as a smooth,\n   rounded dome of the same golden-peach fur with the same soft\n   fur strands along the outline. Keep the cream curl on top of\n   the head exactly as it is.\n2. Where the two front paws were held together at the chest, the\n   chest continues as smooth, fluffy cream fur, the same as\n   around it.\nThe eyes, face, blush, curl, body outline, feet, colors, size and\nposition stay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: new ears, holes, bald patches, seams, arms, paws, a changed outline, a ground shadow, text.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T18:00:31+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 48 (R1 51)",
+        "value": 47.5
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 66 (R1 59)",
+        "value": 65.7
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 4.5 (R1 5.3)",
+        "value": 4.53
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 2.0, p95 6.7, off-palette 1.8% (top: #EE9955 (0.4%), #DD8844 (0.1%))",
+        "value": 1.9825
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.5% of the height (contract 88%)",
+        "value": 0.8952
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "92% of the parent level unchanged",
+        "value": 0.9165
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.88 of the parent level (drift compounds along a chain)",
+        "value": 0.8804
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both takes pass QA. Alpha compositing on blue confirms transparent margins: the raw-image preview displayed RGB under alpha zero as a halo; it is not visible in actual composition. The temporary visual rejection was withdrawn after this check."
+}
