@@ -25,6 +25,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   readout filters by source. The founder's install guide in Turkish is
   `docs/local/ucretsiz-kurulum.md`.
 
+- Pofu Atlas, the content system: `content/` holds one YAML node per
+  island, station (with its five levels), character and emotion, system,
+  storyboard moment, theme, idea and image asset (270 nodes seeded from the
+  game design, the app and game boundary, gate v2, the interaction spec,
+  ADR-0015 to ADR-0018, the roadmap, the decision audit, the iteration plan
+  and all four art manifests, plus ten lead-brainstorm ideas).
+  `tools/content/validate.py` (run in CI's Python job; `content/` never
+  triggers macOS) checks ids, links, art paths, manifest jobs and source
+  anchors; `sync_assets.py` keeps asset nodes in step with promoted art;
+  `build_atlas.py` renders `design/atlas/index.html`, a phone-first
+  pannable board with a detail drawer and founder notes through the
+  artifact runtime.
+
 - Art batches 03 and 04 for Codex (open): `batch-03-home-island`
   completes Ayçiçeği for stages 1–5 (lily pond, workshop and windmill
   L1–L5, garden L3–L5, simit cart L2–L5, `mochi-v2` without Pofu's curl,

@@ -35,6 +35,8 @@ the project's persistent memory; keep it accurate and concise.
 - Research: `docs/research/`
 - Brand, character bible, naming: `docs/brand/`
 - Decisions: `docs/adr/`
+- Content graph and Pofu Atlas board (every decision, idea and generated
+  asset gets a node): `content/`, see `content/README.md`
 - Local Mac agent brief (Xcode, simulator, device, image generation):
   `docs/local-agent.md`
 
