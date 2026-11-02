@@ -1,5 +1,12 @@
 # Pofu's Voice: Rules, Research and the Line Bank
 
+> **Status (founder, 2026-11-02): the line bank is parked.** He judged the
+> meme-style jokes as AI slop. Keep the rules and the research; the lines
+> need real human writers or a better system before any ship. What he does
+> like is Pofu's natural, situational self-observation, such as "Yanaklarım
+> kocaman oldu" ("My cheeks got huge") when seeds pile up: humour that
+> comes from Pofu's body and state, not from internet formats.
+
 _Status: v1 proposal, 2026-11-02. Founder decision: **personality B**,
 sweet and lightly sulky or jealous ("Yine mi Instagram? Onda olup bende
 olmayan ne?"). Builds on the [character bible](character.md) (voice and
