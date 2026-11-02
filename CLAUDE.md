@@ -131,3 +131,29 @@ the project's persistent memory; keep it accurate and concise.
   never the founder's review surface; feel is tuned natively on his iPhone.
 - The founder has authorized the agent to merge PRs. Use merge commits for
   clean histories, and merge only with green CI.
+
+## Agent operations (efficiency, 2026-11-02)
+
+The founder asked for the same output with far less waste. Rules for the
+lead session and its sub-agents:
+
+- **Owners, not crowds.** At most four background agents at once, one per
+  stream: world/look, game/minigames, art queue, docs/research. Continue a
+  live owner with SendMessage instead of spawning a fresh agent that must
+  re-read the repo.
+- **Model routing.** Opus for design judgement, architecture and hard Swift.
+  Sonnet for queue upkeep, manifests, rebases, merges, CI fixes and doc
+  edits. Haiku for lookups. Set `model` on every Agent call.
+- **Tight briefs, short reports.** A brief states the goal, the decisions
+  already made, the files, and what done means. Reports are at most 200
+  words plus paths; details live in the PR.
+- **Pilot, then scale.** Every art batch and every new system starts with a
+  2–4 item pilot; scale only after review. Never regenerate what the
+  harmony system or a grade can fix.
+- **Research once.** Findings go to `docs/research/` and are linked, not
+  redone. Check there before starting research.
+- **CI budget.** Batch pushes; an agent gets at most three red CI rounds
+  before it reports back instead of looping.
+- **The lead looks at contact sheets and montages,** not every file, and
+  sends the founder only finished visuals.
+- **Clean up.** Remove merged agents' worktrees; keep the disk lean.
