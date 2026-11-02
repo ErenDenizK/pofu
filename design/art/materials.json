@@ -1,0 +1,76 @@
+{
+  "$note": "Pofu's material library (look round 3; colour script v1, docs/design/colour-script.md; docs/research/pro-game-craft.md section 4.4). Each recurring material's local colour: its colour under neutral light, as CIELAB hue (degrees) and chroma ranges. Light is added at runtime by the colour script (design/art/colour-script.json), so assets arrive unlit and these ranges describe paint, not light. harmony.py measures every material that has a 'detect' block on the assets in its 'regions', and corrects only when the generator drifted OUT of the range, back to its nearest edge: it never moves a material toward another one. 'accent' materials may leave a cell's gamut, within 'max_area' of the frame. Change a range only with the teapot or harmony sheet in the PR.",
+  "version": 1,
+  "materials": {
+    "rose-copper": {
+      "$note": "The çaydanlık, the lantern cap, the tray. Pink-leaning, never brass: the founder found the original rose copper prettier than round 2's warm shift (2026-11-02). The kettle reads warm at night because the ember lights it (the colour script's practical pool), not because it was repainted. #D4875F with copper-light #EFB28E highlights.",
+      "hex": "#D4875F",
+      "hue": [50.0, 57.0],
+      "chroma": [38.0, 50.0],
+      "response": "metal",
+      "accent": {"max_area": 0.03},
+      "detect": {
+        "$note": "Hue alone cannot separate copper (H 50-58) from honey wood (H 56-72), so the material is measured inside a region of each canvas (x0, y0, x1, y1 as fractions, feathered).",
+        "hue": 54.0,
+        "width": 10.0,
+        "min_chroma": 18.0,
+        "regions": {
+          "cay-1": [0.22, 0.29, 0.55, 0.55]
+        }
+      }
+    },
+    "honey-wood": {
+      "$note": "Stalls, the workshop, the windmill's cap: yellower and duller than the copper, so the two separate by hue and by response.",
+      "hex": "#D9925E",
+      "hue": [58.0, 70.0],
+      "chroma": [24.0, 44.0],
+      "response": "satin",
+      "accent": null
+    },
+    "milky-glaze": {
+      "hex": "#F3E3CF",
+      "hue": [55.0, 85.0],
+      "chroma": [4.0, 18.0],
+      "response": "glaze",
+      "accent": null
+    },
+    "sage-lawn": {
+      "$note": "Large area: inside the cell's gamut always; takes the fill strongly in shadow.",
+      "hex": "#B9CF9A",
+      "hue": [105.0, 130.0],
+      "chroma": [18.0, 34.0],
+      "response": "matte",
+      "accent": null
+    },
+    "awning-rose": {
+      "hex": "#EE9A90",
+      "hue": [30.0, 42.0],
+      "chroma": [28.0, 44.0],
+      "response": "matte",
+      "accent": {"max_area": 0.02}
+    },
+    "petal-honey": {
+      "hex": "#F6C95C",
+      "hue": [78.0, 90.0],
+      "chroma": [45.0, 70.0],
+      "response": "matte",
+      "accent": {"max_area": 0.03}
+    },
+    "pofu-fur": {
+      "$note": "Hero by value, not chroma. Char-guarded: measured, never corrected, never desaturated by the grade (the colour script's character light).",
+      "hex": "#F4D9BC",
+      "hue": [55.0, 75.0],
+      "chroma": [10.0, 32.0],
+      "response": "fur",
+      "accent": "hero"
+    },
+    "practical-light": {
+      "$note": "The ember, the lantern, the door's round window: emissive, never graded, lights its neighbours.",
+      "hex": "#FFB45A",
+      "hue": [60.0, 80.0],
+      "chroma": [50.0, 80.0],
+      "response": "emissive",
+      "accent": {"max_area": 0.04}
+    }
+  }
+}
