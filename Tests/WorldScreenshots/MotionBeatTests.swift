@@ -99,6 +99,38 @@ final class MotionBeatTests: XCTestCase {
                 }
                 return (AnyView(stage.view), script)
             },
+            Beat(name: "06-island-pan", title: "Arrive at the island, pan, flick, snap") {
+                let stage = BeatWorld(framing: .island, settled: true)
+                let island = stage.island
+                // A finger dragging `distance` points over `seconds`, then
+                // lifting at `velocity` points a second.
+                func drag(_ distance: Double, over seconds: Double, release velocity: Double) async throws {
+                    let steps = 24
+                    for i in 1...steps {
+                        let t = Double(i) / Double(steps)
+                        island.scriptedDrag(dx: distance * (1 - (1 - t) * (1 - t)))
+                        try await Task.sleep(for: .seconds(seconds / Double(steps)))
+                    }
+                    island.scriptedRelease(velocityX: velocity)
+                }
+                let script: Script = {
+                    // The establishing shot plays on arrival, then settles on Pofu.
+                    try await Task.sleep(for: .milliseconds(2200))
+                    // A slow drag left (toward the çay ocağı), released gently: it snaps.
+                    try await drag(-140, over: 0.7, release: -120)
+                    try await Task.sleep(for: .milliseconds(1400))
+                    // A flick right: momentum carries it to the far end, banded.
+                    try await drag(160, over: 0.25, release: 1400)
+                    try await Task.sleep(for: .milliseconds(1600))
+                    // Past the end: the rubber band, then back.
+                    try await drag(220, over: 0.5, release: 0)
+                    try await Task.sleep(for: .milliseconds(1400))
+                    // Back to Pofu.
+                    island.pan(to: nil)
+                    try await Task.sleep(for: .milliseconds(1400))
+                }
+                return (AnyView(stage.view), script)
+            },
             Beat(name: "05-shield-hop", title: "The shield, then Hop!") {
                 let stage = ShieldHopStage(model: AppModel.shared)
                 let script: Script = {
