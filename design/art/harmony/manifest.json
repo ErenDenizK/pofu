@@ -1938,6 +1938,288 @@
    "source": "Packages/PofuKit/Sources/PofuCompanion/Resources/pofu-hamster.png",
    "source_sha": "3190c9c2ff7fcbc8"
   },
+  "pofu-cheeks-puff-2": {
+   "after": {
+    "C_mean": 18.986,
+    "C_p50": 11.643,
+    "C_p95": 51.621,
+    "L_mean": 84.437,
+    "L_p2": 19.981,
+    "L_p98": 96.721,
+    "detail": 7.264,
+    "edge": 0.145,
+    "tint_a": 4.515,
+    "tint_b": 6.548,
+    "warmth_b": 15.39
+   },
+   "before": {
+    "C_mean": 18.986,
+    "C_p50": 11.643,
+    "C_p95": 51.621,
+    "L_mean": 84.437,
+    "L_p2": 19.981,
+    "L_p98": 96.721,
+    "detail": 7.264,
+    "edge": 0.145,
+    "tint_a": 4.515,
+    "tint_b": 6.548,
+    "warmth_b": 15.39
+   },
+   "chain": null,
+   "correction": {
+    "black": 0.0,
+    "ceiling": 0.0,
+    "chroma": 1.0,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": true,
+   "kind": "char",
+   "matched_to": "char",
+   "outliers_after": [
+    "C_p95",
+    "detail"
+   ],
+   "outliers_before": [
+    "C_p95",
+    "detail"
+   ],
+   "ppu": 29.0,
+   "reference": false,
+   "score_after": 85.7,
+   "score_before": 85.7,
+   "shipped": false,
+   "source": "design/art/masters/pofu-cheeks-puff-2/pofu-cheeks-puff-2.webp",
+   "source_sha": "3a86454fa709ccb1"
+  },
+  "pofu-eyes-closed": {
+   "after": {
+    "C_mean": 19.38,
+    "C_p50": 11.367,
+    "C_p95": 49.754,
+    "L_mean": 86.504,
+    "L_p2": 59.326,
+    "L_p98": 96.992,
+    "detail": 7.494,
+    "edge": 0.157,
+    "tint_a": 3.706,
+    "tint_b": 6.158,
+    "warmth_b": 16.347
+   },
+   "before": {
+    "C_mean": 19.38,
+    "C_p50": 11.367,
+    "C_p95": 49.754,
+    "L_mean": 86.504,
+    "L_p2": 59.326,
+    "L_p98": 96.992,
+    "detail": 7.494,
+    "edge": 0.157,
+    "tint_a": 3.706,
+    "tint_b": 6.158,
+    "warmth_b": 16.347
+   },
+   "chain": null,
+   "correction": {
+    "black": 0.0,
+    "ceiling": 0.0,
+    "chroma": 1.0,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": true,
+   "kind": "char",
+   "matched_to": "char",
+   "outliers_after": [
+    "L_p2",
+    "detail",
+    "tint_b"
+   ],
+   "outliers_before": [
+    "L_p2",
+    "detail",
+    "tint_b"
+   ],
+   "ppu": 29.0,
+   "reference": false,
+   "score_after": 71.2,
+   "score_before": 71.2,
+   "shipped": false,
+   "source": "design/art/masters/pofu-eyes-closed/pofu-eyes-closed.webp",
+   "source_sha": "fd927f4d59b3ea14"
+  },
+  "pofu-eyes-happy": {
+   "after": {
+    "C_mean": 19.738,
+    "C_p50": 11.691,
+    "C_p95": 50.189,
+    "L_mean": 86.286,
+    "L_p2": 54.639,
+    "L_p98": 97.016,
+    "detail": 7.846,
+    "edge": 0.157,
+    "tint_a": 3.776,
+    "tint_b": 6.434,
+    "warmth_b": 16.653
+   },
+   "before": {
+    "C_mean": 19.738,
+    "C_p50": 11.691,
+    "C_p95": 50.189,
+    "L_mean": 86.286,
+    "L_p2": 54.639,
+    "L_p98": 97.016,
+    "detail": 7.846,
+    "edge": 0.157,
+    "tint_a": 3.776,
+    "tint_b": 6.434,
+    "warmth_b": 16.653
+   },
+   "chain": null,
+   "correction": {
+    "black": 0.0,
+    "ceiling": 0.0,
+    "chroma": 1.0,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": true,
+   "kind": "char",
+   "matched_to": "char",
+   "outliers_after": [
+    "L_p2",
+    "detail"
+   ],
+   "outliers_before": [
+    "L_p2",
+    "detail"
+   ],
+   "ppu": 29.0,
+   "reference": false,
+   "score_after": 71.1,
+   "score_before": 71.1,
+   "shipped": false,
+   "source": "design/art/masters/pofu-eyes-happy/pofu-eyes-happy.webp",
+   "source_sha": "de29808cf49e9b06"
+  },
+  "pofu-mouth-pout": {
+   "after": {
+    "C_mean": 19.042,
+    "C_p50": 11.73,
+    "C_p95": 48.99,
+    "L_mean": 85.169,
+    "L_p2": 17.648,
+    "L_p98": 97.582,
+    "detail": 8.147,
+    "edge": 0.15,
+    "tint_a": 3.355,
+    "tint_b": 5.775,
+    "warmth_b": 16.085
+   },
+   "before": {
+    "C_mean": 19.042,
+    "C_p50": 11.73,
+    "C_p95": 48.99,
+    "L_mean": 85.169,
+    "L_p2": 17.648,
+    "L_p98": 97.582,
+    "detail": 8.147,
+    "edge": 0.15,
+    "tint_a": 3.355,
+    "tint_b": 5.775,
+    "warmth_b": 16.085
+   },
+   "chain": null,
+   "correction": {
+    "black": 0.0,
+    "ceiling": 0.0,
+    "chroma": 1.0,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": true,
+   "kind": "char",
+   "matched_to": "char",
+   "outliers_after": [
+    "detail",
+    "tint_b"
+   ],
+   "outliers_before": [
+    "detail",
+    "tint_b"
+   ],
+   "ppu": 29.0,
+   "reference": false,
+   "score_after": 85.8,
+   "score_before": 85.8,
+   "shipped": false,
+   "source": "design/art/masters/pofu-mouth-pout/pofu-mouth-pout.webp",
+   "source_sha": "9557bba046668bfa"
+  },
+  "pofu-rig-clean": {
+   "after": {
+    "C_mean": 18.618,
+    "C_p50": 10.324,
+    "C_p95": 47.493,
+    "L_mean": 85.722,
+    "L_p2": 16.583,
+    "L_p98": 97.287,
+    "detail": 7.295,
+    "edge": 0.182,
+    "tint_a": 3.468,
+    "tint_b": 5.63,
+    "warmth_b": 16.152
+   },
+   "before": {
+    "C_mean": 18.618,
+    "C_p50": 10.324,
+    "C_p95": 47.493,
+    "L_mean": 85.722,
+    "L_p2": 16.583,
+    "L_p98": 97.287,
+    "detail": 7.295,
+    "edge": 0.182,
+    "tint_a": 3.468,
+    "tint_b": 5.63,
+    "warmth_b": 16.152
+   },
+   "chain": null,
+   "correction": {
+    "black": 0.0,
+    "ceiling": 0.0,
+    "chroma": 1.0,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": true,
+   "kind": "char",
+   "matched_to": "char",
+   "outliers_after": [
+    "detail",
+    "tint_b"
+   ],
+   "outliers_before": [
+    "detail",
+    "tint_b"
+   ],
+   "ppu": 29.0,
+   "reference": false,
+   "score_after": 88.7,
+   "score_before": 88.7,
+   "shipped": false,
+   "source": "design/art/masters/pofu-rig-clean/pofu-rig-clean.webp",
+   "source_sha": "f47e82c0fd17b2d1"
+  },
   "pond-1": {
    "after": {
     "C_mean": 17.742,
