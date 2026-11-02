@@ -2720,6 +2720,60 @@
    "source": "design/art/masters/pofu-mouth-worried/pofu-mouth-worried.webp",
    "source_sha": "8f0f1c1b57d2a8ae"
   },
+  "pofu-paws-seed": {
+   "after": {
+    "C_mean": 21.268,
+    "C_p50": 16.127,
+    "C_p95": 50.601,
+    "L_mean": 82.732,
+    "L_p2": 17.261,
+    "L_p98": 97.339,
+    "detail": 9.661,
+    "edge": 0.137,
+    "tint_a": 3.82,
+    "tint_b": 6.461,
+    "warmth_b": 17.835
+   },
+   "before": {
+    "C_mean": 21.268,
+    "C_p50": 16.127,
+    "C_p95": 50.601,
+    "L_mean": 82.732,
+    "L_p2": 17.261,
+    "L_p98": 97.339,
+    "detail": 9.661,
+    "edge": 0.137,
+    "tint_a": 3.82,
+    "tint_b": 6.461,
+    "warmth_b": 17.835
+   },
+   "chain": null,
+   "correction": {
+    "black": 0.0,
+    "ceiling": 0.0,
+    "chroma": 1.0,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": true,
+   "kind": "char",
+   "matched_to": "char",
+   "outliers_after": [
+    "detail"
+   ],
+   "outliers_before": [
+    "detail"
+   ],
+   "ppu": 29.0,
+   "reference": false,
+   "score_after": 83.3,
+   "score_before": 83.3,
+   "shipped": false,
+   "source": "design/art/masters/pofu-paws-seed/pofu-paws-seed.webp",
+   "source_sha": "f082462a8192b875"
+  },
   "pofu-rig-clean": {
    "after": {
     "C_mean": 18.618,
