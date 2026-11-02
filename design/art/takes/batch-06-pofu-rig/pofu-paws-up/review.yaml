@@ -3,10 +3,10 @@ contact_sheet: design/art/takes/batch-06-pofu-rig/pofu-paws-up/contact.jpg
 jobs:
   pofu-paws-up:
     pick: 1
-    note: 'auto-picked by QA; founder review pending Global queue stop: batch-07-light
-      workshop-1-lit retry takes 3 and 4 both failed chroma_ceiling. No new image
-      calls after stop; this generated pair is retained for later review and is NOT
-      published as a master on this branch.'
+    note: auto-picked by QA; founder review pending Publication resumed under the
+      repeated user request from original cached PNGs/local raw; no new generation.
+      Current harmony audit at f35258d leaves the selected take unchanged; QA implementation,
+      presets and rig manifest are byte-unchanged.
     takes:
       t1:
         qa: warn
@@ -14,77 +14,11 @@ jobs:
       t2:
         qa: warn
         summary: palette_drift warn
-    local_candidate_preparation:
+    approved:
       take: 1
       at: '2026-11-02T19:15:04+00:00'
-    publication: selected candidate, not published as a master on this branch due
-      global stop
 qa_reports:
-  '2':
-    job: pofu-paws-up
-    take: 2
-    status: warn
-    preset: char-guard
-    checks:
-    - check: transparency
-      status: pass
-      message: source has an alpha channel
-    - check: canvas
-      status: pass
-      message: 1024x1536
-    - check: chroma_ceiling
-      status: pass
-      message: chroma p95 53 (R1 51)
-      value: 53.3
-    - check: value_floor
-      status: pass
-      message: lightness p5 59 (R1 59)
-      value: 59.0
-    - check: detail_budget
-      status: pass
-      message: detail at display size 5.0 (R1 5.3)
-      value: 4.96
-    - check: palette_drift
-      status: warn
-      message: 'mean dE 2.6, p95 10.9, off-palette 4.2% (top: #EE9955 (0.8%), #DD8844
-        (0.4%))'
-      value: 2.5837
-    - check: ground_line
-      status: pass
-      message: feet at 89.5% of the height (contract 88%)
-      value: 0.8952
-    - check: harmony
-      status: pass
-      message: 'harmony score 83 against the char reference (outliers: C_p95, detail,
-        tint_b)'
-      value: 83.0
-    - check: edit_stability
-      status: pass
-      message: 93% of the parent level unchanged
-      value: 0.9345
-    - check: edit_chroma
-      status: pass
-      message: chroma x0.95 of the parent level (drift compounds along a chain)
-      value: 0.9484
-    info:
-      metrics_raw:
-        L_p5: 59.0
-        L_p50: 89.2
-        L_p95: 96.4
-        C_p50: 11.7
-        C_p95: 53.4
-        C_p99: 62.5
-        detail: 4.99
-      metrics_locked:
-        L_p5: 59.0
-        L_p50: 89.2
-        L_p95: 96.4
-        C_p50: 11.7
-        C_p95: 53.3
-        C_p99: 57.6
-        detail: 4.96
-    fingerprint: abc795c020c10e54
-  '1':
+  t1:
     job: pofu-paws-up
     take: 1
     status: warn
@@ -117,11 +51,6 @@ qa_reports:
       status: pass
       message: feet at 89.5% of the height (contract 88%)
       value: 0.8952
-    - check: harmony
-      status: pass
-      message: 'harmony score 85 against the char reference (outliers: C_p95, detail,
-        tint_b)'
-      value: 84.6
     - check: edit_stability
       status: pass
       message: 93% of the parent level unchanged
@@ -130,6 +59,11 @@ qa_reports:
       status: pass
       message: chroma x0.92 of the parent level (drift compounds along a chain)
       value: 0.9165
+    - check: harmony
+      status: pass
+      message: 'harmony score 85 against the char reference (outliers: C_p95, detail,
+        tint_b)'
+      value: 84.6
     info:
       metrics_raw:
         L_p5: 58.6
@@ -148,3 +82,94 @@ qa_reports:
         C_p99: 56.9
         detail: 4.89
     fingerprint: abc795c020c10e54
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/qa/char__pofu-paws-up--t1.json
+      locked_pixels: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/locked/char__pofu-paws-up--t1.png
+      old_harmony: 84.6
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
+  t2:
+    job: pofu-paws-up
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 53 (R1 51)
+      value: 53.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 59 (R1 59)
+      value: 59.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.0 (R1 5.3)
+      value: 4.96
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 10.9, off-palette 4.2% (top: #EE9955 (0.8%), #DD8844
+        (0.4%))'
+      value: 2.5837
+    - check: ground_line
+      status: pass
+      message: feet at 89.5% of the height (contract 88%)
+      value: 0.8952
+    - check: edit_stability
+      status: pass
+      message: 93% of the parent level unchanged
+      value: 0.9345
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.95 of the parent level (drift compounds along a chain)
+      value: 0.9484
+    - check: harmony
+      status: pass
+      message: 'harmony score 83 against the char reference (outliers: C_p95, detail,
+        tint_b)'
+      value: 82.8
+    info:
+      metrics_raw:
+        L_p5: 59.0
+        L_p50: 89.2
+        L_p95: 96.4
+        C_p50: 11.7
+        C_p95: 53.4
+        C_p99: 62.5
+        detail: 4.99
+      metrics_locked:
+        L_p5: 59.0
+        L_p50: 89.2
+        L_p95: 96.4
+        C_p50: 11.7
+        C_p95: 53.3
+        C_p99: 57.6
+        detail: 4.96
+    fingerprint: abc795c020c10e54
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/qa/char__pofu-paws-up--t2.json
+      locked_pixels: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/locked/char__pofu-paws-up--t2.png
+      old_harmony: 83.0
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
+current_policy_audit:
+  base: f35258d
+  old_pick: 1
+  pick: 1
+  take_scores:
+  - n: 1
+    status: warn
+    harmony: 84.6
+  - n: 2
+    status: warn
+    harmony: 82.8
