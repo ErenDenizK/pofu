@@ -1,0 +1,20 @@
+id: asset-decor-lanterns
+type: asset
+title_tr: decor-lanterns
+title_en: decor-lanterns (prop)
+status: in-production
+horizon: now
+summary: >-
+  A short string of three small round paper lanterns hanging in a gentle curve, for the same
+  island diorama: a soft cream cord between two tiny hooks at the ends of the guide's hang
+  line, and three plump paper lanterns of honey cream, soft rose and pale sage, each with
+  a small wooden cap and a short tassel. Unlit: simple soft shapes, not glowing. Chunky, toy-like
+  proportions; the cord is thick and soft, never a thin li…
+art:
+  images: []
+  jobs:
+  - batch-08-decor-pilot:decor-lanterns
+sources:
+- doc: tools/imagegen/manifest/batch-08-decor-pilot.yaml
+kind: prop
+batch: batch-08-decor-pilot

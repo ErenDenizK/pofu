@@ -1,0 +1,20 @@
+id: asset-x-icon-seed
+type: asset
+title_tr: x-icon-seed
+title_en: x-seed (icon)
+status: in-production
+horizon: maybe
+summary: >-
+  The icon for seeds, the island's building material: a single plump sunflower seed seen at
+  a slight angle, a soft warm-brown shell with two broad cream stripes, its tip pointing up
+  and to the right, a little round and friendly, like a seed a hamster would be proud of.
+art:
+  images: []
+  jobs:
+  - batch-09-explore-pilot:x-icon-seed
+notes:
+- Exploration (docs/design/art-production-plan.md); never promoted, never shipped.
+sources:
+- doc: tools/imagegen/manifest/batch-09-explore-pilot.yaml
+kind: icon
+batch: batch-09-explore-pilot

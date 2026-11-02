@@ -1,0 +1,137 @@
+# Batch 08, pilot: four decor pieces for Ayçiçeği's decor spots
+# (docs/design/art-production-plan.md; decor spots are defined in
+# docs/product/archipelago-system.md section 5, PR #64, not yet accepted).
+#
+# Founder (2026-11-02): the mechanic is not decided, so 16 pieces is too
+# many. Four pieces the decor-spot prototype will certainly use, one per
+# Ayçiçeği spot (the çay ocağı's awning, the lawn, the pond edge, the
+# door), one family look. The rest of a kit waits for the mechanic.
+#
+# Size rule: every piece is drawn on the decor guide
+# (design/art/templates/decor-guide.png, tools/art/island_guides.py): the
+# station guide's scale, a footprint half a station's width, a height bar
+# at about half a station's height, and a magenta hang line for hanging
+# pieces. Any piece fits any spot of its family on any island.
+#
+# Every piece has a tiny behaviour in code (archipelago system section 5);
+# the art is one still image per piece, matte, high key, in the props'
+# style. Lit versions at night are code glow, except a lantern's flame
+# shape, which batch 07's method adds later if the pilot needs it.
+#
+# Tracks: `decor` (decor-bench first: it sets the family look; the other
+# three attach it and may then run at once).
+
+batch: batch-08-decor-pilot
+title: Decor spots, pilot (a bench, a lantern string, a toy sailboat, a mailbox)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: cay-1, kind: station, name: cay-1, external: batch-01-slice}
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+
+  - id: decor-bench
+    kind: prop
+    name: decor-bench
+    chat: "Pofu · Decor"
+    notes: "Seat spot, on the lawn facing the view. Sets the decor family's look. A visiting resident sits here and reads (code)."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:cay-1
+        role: "The approved tea stall: match its style, camera, light, colors and scale exactly (do not draw the stall)."
+      - ref: approved:island-main-s
+        role: "The island the piece stands on: same camera and softness."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small, cozy garden bench for two little animals, for the island
+          diorama: a short, chunky bench of soft honey wood with rounded
+          ends and a low curved backrest, and one plump cushion on the seat
+          with simple soft stripes of rose and cream (plain stripes, no
+          pattern, no motif). Friendly, toy-like proportions with few parts.
+          It stands on the guide's ground ellipse, centered on the cross,
+          and is no taller than the height bar.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: decor-lanterns
+    kind: prop
+    name: decor-lanterns
+    chat: "Pofu · Decor"
+    notes: >-
+      Hanging spot (the çay ocağı's awning, a branch). Unlit: the app adds
+      the glow on calm nights. If the lit flame needs a painted shape, it
+      is batch 07's method (an edit, then an overlay), not a second piece.
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: hang the piece from the dashed magenta hang line, then remove the guide."
+      - ref: approved:decor-bench
+        role: "The first piece of this decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A short string of three small round paper lanterns hanging in a
+          gentle curve, for the same island diorama: a soft cream cord
+          between two tiny hooks at the ends of the guide's hang line, and
+          three plump paper lanterns of honey cream, soft rose and pale
+          sage, each with a small wooden cap and a short tassel. Unlit:
+          simple soft shapes, not glowing. Chunky, toy-like proportions; the
+          cord is thick and soft, never a thin line.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: decor-sailboat
+    kind: prop
+    name: decor-sailboat
+    chat: "Pofu · Decor"
+    notes: "Water spot (the lily pond's edge). Drifts on its own in code. The water is the pond's; draw none."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: the boat's waterline sits on the ground ellipse, centered on the cross; follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of this decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small toy sailboat for the same island diorama, as if folded
+          and painted by hand: a round-bottomed hull of soft honey wood with
+          a cream stripe, a short mast and one plump triangular cream sail
+          with a single soft rose stripe, a tiny plain pennant on top (no
+          symbols, no letters). Seen from the same low front three-quarter
+          camera, floating upright; its waterline is a flat, clean edge
+          with no water drawn.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: decor-mailbox
+    kind: prop
+    name: decor-mailbox
+    chat: "Pofu · Decor"
+    notes: "Wall spot (beside the round door). Residents' notes arrive here (code: the flag goes up)."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of this decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench)."
+      - ref: approved:island-main-s
+        role: "The island the piece stands on: same camera and softness."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A little mailbox for the same island diorama: a round-topped box
+          of soft sage-painted wood with a small cream door, on a short,
+          chunky honey-wood post, and a small rose flag on its side, lowered.
+          Friendly, toy-like proportions with few parts. It stands on the
+          guide's ground ellipse, centered on the cross, no taller than the
+          height bar.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2

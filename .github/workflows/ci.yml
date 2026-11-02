@@ -82,6 +82,9 @@ jobs:
       - name: Check the asset harmony manifest
         run: python3 -I tools/assets/harmony.py check
 
+      - name: Test Pofu's rig compositor
+        run: python3 -I -m pytest -q tools/rig/tests
+
       - name: Validate the content graph (Pofu Atlas)
         run: |
           python3 -I tools/content/validate.py
