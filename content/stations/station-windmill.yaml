@@ -4,14 +4,13 @@ title_tr: Yel değirmeni
 title_en: Windmill
 status: in-production
 horizon: later
-summary: >-
-  A stout windmill that grinds sunflower seeds, run by Pofu and Fındık. Its stage-5 gate and
-  32,796-seed top level hold the line that nobody finishes the home island before about day
-  40.
+summary: A stout windmill that grinds sunflower seeds, run by Pofu and Fındık. Its
+  stage-5 gate and 32,796-seed top level hold the line that nobody finishes the home
+  island before about day 40.
 notes:
-- >-
-  Opens: Stage 5 (24 tended days; terrace, left). Level costs 1→5: 1,400 · 3,080 · 6,776 ·
-  14,907 · 32,796 (total 58,959). Rate L1→L5: 12 → 38.4 seeds/hour before calm.
+- 'Opens: Stage 5 (24 tended days; terrace, left). Level costs 1→5: 1,400 · 3,080
+  · 6,776 · 14,907 · 32,796 (total 58,959). Rate L1→L5: 12 → 38.4 seeds/hour before
+  calm.'
 - 'Most expensive home station: 1,400 → 32,796 seeds a level.'
 links:
   part_of:
@@ -20,6 +19,8 @@ links:
   - char-pofu
   - sys-station-production
   - sys-build
+  uses_asset:
+  - asset-windmill-5-lit
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'
@@ -59,5 +60,5 @@ levels:
   asset: asset-windmill-5
 unlock:
   day: 24
-  rule_en: >-
-    Stage 5 (24 tended days; terrace, left) (days ≈ tended days for a daily user)
+  rule_en: Stage 5 (24 tended days; terrace, left) (days ≈ tended days for a daily
+    user)
