@@ -1,0 +1,167 @@
+batch: batch-05-fixes
+contact_sheet: design/art/takes/batch-05-fixes/workshop-3/contact.jpg
+jobs:
+  workshop-3:
+    pick: 2
+    note: auto-picked by QA; founder review pending. Advisory harmony warning retained;
+      no failing checks.
+    takes:
+      t1:
+        qa: warn
+        summary: harmony warn
+      t2:
+        qa: warn
+        summary: harmony warn
+    approved:
+      take: 2
+      at: '2026-11-02T18:59:30+00:00'
+qa_reports:
+  station__workshop-3--t2:
+    job: workshop-3
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 31.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 56 (R1 59)
+      value: 55.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.79
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5562
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 2.0, off-palette 0.0%
+      value: 0.9535
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 906.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 66 against the world reference (outliers: C_p95, L_p98,
+        edge)'
+      value: 66.3
+    - check: edit_stability
+      status: pass
+      message: 100% of the parent level unchanged
+      value: 0.9998
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.97 of the parent level (drift compounds along a chain)
+      value: 0.9689
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 55.4
+        L_p50: 76.9
+        L_p95: 87.9
+        C_p50: 26.3
+        C_p95: 32.0
+        C_p99: 51.6
+        detail: 2.3
+      metrics_locked:
+        L_p5: 55.7
+        L_p50: 76.9
+        L_p95: 87.8
+        C_p50: 26.2
+        C_p95: 31.7
+        C_p99: 49.4
+        detail: 1.79
+    fingerprint: d760acac38fc6ff9
+  station__workshop-3--t1:
+    job: workshop-3
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 31.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 54 (R1 59)
+      value: 54.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.85
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5789
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 1.9, off-palette 0.0%
+      value: 0.9032
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 905.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 67 against the world reference (outliers: C_p95, edge)'
+      value: 67.1
+    - check: edit_stability
+      status: pass
+      message: 100% of the parent level unchanged
+      value: 0.9992
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.97 of the parent level (drift compounds along a chain)
+      value: 0.974
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 54.3
+        L_p50: 77.2
+        L_p95: 88.1
+        C_p50: 26.4
+        C_p95: 31.9
+        C_p99: 52.5
+        detail: 2.38
+      metrics_locked:
+        L_p5: 54.5
+        L_p50: 77.1
+        L_p95: 88.0
+        C_p50: 26.4
+        C_p95: 31.7
+        C_p99: 49.9
+        detail: 1.85
+    fingerprint: d760acac38fc6ff9
