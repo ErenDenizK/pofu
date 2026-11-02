@@ -67,6 +67,9 @@ Loaded every turn: keep it short. History lives in `docs/` (`docs/README.md`).
   target and the Shortcuts path get no new features. Details:
   `docs/roadmap.md#status-2026-11-02`.
 - Targets: Instagram, YouTube, TikTok; goal: resist half of reflexive opens.
+- Lasting principles: seeds never buy screen time and Pofu never dies
+  (ADR-0015, ADR-0017); the visual system is ADR-0018 (balanced diorama,
+  native glass plus painted elements). Build setup: `docs/development.md`.
 
 ## Agent operations (efficiency, 2026-11-02)
 
