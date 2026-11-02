@@ -3,10 +3,10 @@ contact_sheet: design/art/takes/batch-06-pofu-rig/pofu-cheeks-puff-1/contact.jpg
 jobs:
   pofu-cheeks-puff-1:
     pick: 2
-    note: 'auto-picked by QA; founder review pending Global queue stop: batch-07-light
-      workshop-1-lit retry takes 3 and 4 both failed chroma_ceiling. No new image
-      calls after stop; this generated pair is retained for later review and is NOT
-      published as a master on this branch.'
+    note: auto-picked by QA; founder review pending Publication resumed under the
+      repeated user request from original cached PNGs/local raw; no new generation.
+      Current harmony audit at f35258d leaves the selected take unchanged; QA implementation,
+      presets and rig manifest are byte-unchanged.
     takes:
       t1:
         qa: warn
@@ -14,76 +14,11 @@ jobs:
       t2:
         qa: warn
         summary: palette_drift warn
-    local_candidate_preparation:
+    approved:
       take: 2
       at: '2026-11-02T19:06:06+00:00'
-    publication: selected candidate, not published as a master on this branch due
-      global stop
 qa_reports:
-  '2':
-    job: pofu-cheeks-puff-1
-    take: 2
-    status: warn
-    preset: char-guard
-    checks:
-    - check: transparency
-      status: pass
-      message: source has an alpha channel
-    - check: canvas
-      status: pass
-      message: 1024x1536
-    - check: chroma_ceiling
-      status: pass
-      message: chroma p95 52 (R1 51)
-      value: 52.3
-    - check: value_floor
-      status: pass
-      message: lightness p5 58 (R1 59)
-      value: 57.8
-    - check: detail_budget
-      status: pass
-      message: detail at display size 5.0 (R1 5.3)
-      value: 5.01
-    - check: palette_drift
-      status: warn
-      message: 'mean dE 2.4, p95 10.7, off-palette 4.1% (top: #EE9955 (0.8%), #EE7766
-        (0.4%))'
-      value: 2.393
-    - check: ground_line
-      status: pass
-      message: feet at 89.5% of the height (contract 88%)
-      value: 0.8952
-    - check: harmony
-      status: pass
-      message: 'harmony score 84 against the char reference (outliers: C_p95, detail)'
-      value: 83.6
-    - check: edit_stability
-      status: pass
-      message: 96% of the parent level unchanged
-      value: 0.9638
-    - check: edit_chroma
-      status: pass
-      message: chroma x1.04 of the parent level (drift compounds along a chain)
-      value: 1.0387
-    info:
-      metrics_raw:
-        L_p5: 57.8
-        L_p50: 87.6
-        L_p95: 96.5
-        C_p50: 12.7
-        C_p95: 52.3
-        C_p99: 62.1
-        detail: 5.04
-      metrics_locked:
-        L_p5: 57.8
-        L_p50: 87.6
-        L_p95: 96.5
-        C_p50: 12.7
-        C_p95: 52.3
-        C_p99: 57.5
-        detail: 5.01
-    fingerprint: eb18aadf4639c304
-  '1':
+  t1:
     job: pofu-cheeks-puff-1
     take: 1
     status: warn
@@ -116,10 +51,6 @@ qa_reports:
       status: pass
       message: feet at 89.5% of the height (contract 88%)
       value: 0.8952
-    - check: harmony
-      status: pass
-      message: 'harmony score 83 against the char reference (outliers: C_p95, detail)'
-      value: 83.1
     - check: edit_stability
       status: pass
       message: 99% of the parent level unchanged
@@ -128,6 +59,10 @@ qa_reports:
       status: pass
       message: chroma x1.07 of the parent level (drift compounds along a chain)
       value: 1.0728
+    - check: harmony
+      status: pass
+      message: 'harmony score 83 against the char reference (outliers: C_p95, detail)'
+      value: 83.0
     info:
       metrics_raw:
         L_p5: 57.8
@@ -146,3 +81,93 @@ qa_reports:
         C_p99: 57.9
         detail: 5.1
     fingerprint: eb18aadf4639c304
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/qa/char__pofu-cheeks-puff-1--t1.json
+      locked_pixels: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/locked/char__pofu-cheeks-puff-1--t1.png
+      old_harmony: 83.1
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
+  t2:
+    job: pofu-cheeks-puff-1
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 52.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 58 (R1 59)
+      value: 57.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.0 (R1 5.3)
+      value: 5.01
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.4, p95 10.7, off-palette 4.1% (top: #EE9955 (0.8%), #EE7766
+        (0.4%))'
+      value: 2.393
+    - check: ground_line
+      status: pass
+      message: feet at 89.5% of the height (contract 88%)
+      value: 0.8952
+    - check: edit_stability
+      status: pass
+      message: 96% of the parent level unchanged
+      value: 0.9638
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.04 of the parent level (drift compounds along a chain)
+      value: 1.0387
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the char reference (outliers: C_p95, detail)'
+      value: 83.6
+    info:
+      metrics_raw:
+        L_p5: 57.8
+        L_p50: 87.6
+        L_p95: 96.5
+        C_p50: 12.7
+        C_p95: 52.3
+        C_p99: 62.1
+        detail: 5.04
+      metrics_locked:
+        L_p5: 57.8
+        L_p50: 87.6
+        L_p95: 96.5
+        C_p50: 12.7
+        C_p95: 52.3
+        C_p99: 57.5
+        detail: 5.01
+    fingerprint: eb18aadf4639c304
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/qa/char__pofu-cheeks-puff-1--t2.json
+      locked_pixels: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/locked/char__pofu-cheeks-puff-1--t2.png
+      old_harmony: 83.6
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
+current_policy_audit:
+  base: f35258d
+  old_pick: 2
+  pick: 2
+  take_scores:
+  - n: 1
+    status: warn
+    harmony: 83.0
+  - n: 2
+    status: warn
+    harmony: 83.6
