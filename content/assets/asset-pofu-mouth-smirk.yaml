@@ -2,17 +2,17 @@ id: asset-pofu-mouth-smirk
 type: asset
 title_tr: pofu-mouth-smirk
 title_en: pofu-mouth-smirk (char)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  Edit the attached hamster. Change only his mouth: a small, pleased, lopsided smile, one
-  corner lifted a little higher than the other, cheeky and proud, mouth closed. Nothing else
-  changes.
+summary: 'Edit the attached hamster. Change only his mouth: a small, pleased, lopsided
+  smile, one corner lifted a little higher than the other, cheeky and proud, mouth
+  closed. Nothing else changes.'
 links:
   variant_of:
   - asset-pofu-base-v1
 art:
-  images: []
+  images:
+  - design/art/masters/pofu-mouth-smirk/pofu-mouth-smirk.webp
   jobs:
   - batch-06-pofu-rig:pofu-mouth-smirk
 sources:

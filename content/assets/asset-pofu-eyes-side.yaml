@@ -2,17 +2,18 @@ id: asset-pofu-eyes-side
 type: asset
 title_tr: pofu-eyes-side
 title_en: pofu-eyes-side (char)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  Edit the attached hamster. Change only his eyes: both eyes look sideways toward his left
-  (the right side of the image), the dark irises and catchlights moved to that corner of each
-  eye, the eye shapes unchanged, a playful, knowing side-glance. Nothing else changes.
+summary: 'Edit the attached hamster. Change only his eyes: both eyes look sideways
+  toward his left (the right side of the image), the dark irises and catchlights moved
+  to that corner of each eye, the eye shapes unchanged, a playful, knowing side-glance.
+  Nothing else changes.'
 links:
   variant_of:
   - asset-pofu-base-v1
 art:
-  images: []
+  images:
+  - design/art/masters/pofu-eyes-side/pofu-eyes-side.webp
   jobs:
   - batch-06-pofu-rig:pofu-eyes-side
 sources:

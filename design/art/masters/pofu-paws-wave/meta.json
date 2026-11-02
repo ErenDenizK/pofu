@@ -1,0 +1,102 @@
+{
+  "job": "pofu-paws-wave",
+  "batch": "batch-06-pofu-rig",
+  "asset": "char__pofu-paws-wave",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T19:10:14+00:00",
+  "image": "design/art/masters/pofu-paws-wave/pofu-paws-wave.webp",
+  "raw": "design/art/masters/pofu-paws-wave/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "72ae6f0ae3d5ea71",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached hamster. Change only his front paws: his right paw\n(on the left side of the image) is raised beside his face, open and\nwaving, palm toward the viewer with its three toe creases; his left\npaw stays at the chest as in the original. The chest fur shows where\nthe raised paw was. Nothing else changes.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: both paws raised, an arm longer than a short furry nub, a changed head, a ground shadow, text.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T19:09:33+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 50 (R1 51)",
+        "value": 50.2
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 59 (R1 59)",
+        "value": 58.7
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 5.2 (R1 5.3)",
+        "value": 5.16
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.1, p95 8.3, off-palette 3.0% (top: #EE7766 (0.3%), #EE9955 (0.3%))",
+        "value": 2.1454
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.5% of the height (contract 88%)",
+        "value": 0.8945
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "98% of the parent level unchanged",
+        "value": 0.9782
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.05 of the parent level (drift compounds along a chain)",
+        "value": 1.0489
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 85 against the char reference (outliers: detail)",
+        "value": 84.9
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending Publication resumed under the repeated user request from original cached PNGs/local raw; no new generation. Current harmony audit at f35258d leaves the selected take unchanged; QA implementation, presets and rig manifest are byte-unchanged."
+}

@@ -1,0 +1,173 @@
+batch: batch-06-pofu-rig
+contact_sheet: design/art/takes/batch-06-pofu-rig/mochi-eyes-happy/contact.jpg
+jobs:
+  mochi-eyes-happy:
+    pick: 2
+    note: auto-picked by QA; founder review pending Publication resumed under the
+      repeated user request from original cached PNGs/local raw; no new generation.
+      Current harmony audit at f35258d leaves the selected take unchanged; QA implementation,
+      presets and rig manifest are byte-unchanged.
+    takes:
+      t1:
+        qa: warn
+        summary: harmony warn
+      t2:
+        qa: pass
+        summary: all pass
+    approved:
+      take: 2
+      at: '2026-11-02T19:06:06+00:00'
+qa_reports:
+  t1:
+    job: mochi-eyes-happy
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 30 (R1 51)
+      value: 30.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 74.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.4 (R1 5.3)
+      value: 3.39
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.7, p95 1.4, off-palette 0.4% (top: #552211 (0.1%), #DD6655
+        (0.0%))'
+      value: 0.6891
+    - check: ground_line
+      status: pass
+      message: feet at 87.8% of the height (contract 88%)
+      value: 0.8783
+    - check: edit_stability
+      status: pass
+      message: 96% of the parent level unchanged
+      value: 0.9565
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.96 of the parent level (drift compounds along a chain)
+      value: 0.9594
+    - check: harmony
+      status: warn
+      message: 'harmony score 69 against the char reference (outliers: C_p95, L_p2)'
+      value: 68.6
+    info:
+      metrics_raw:
+        L_p5: 74.6
+        L_p50: 92.7
+        L_p95: 97.4
+        C_p50: 8.7
+        C_p95: 30.1
+        C_p99: 41.1
+        detail: 3.38
+      metrics_locked:
+        L_p5: 74.6
+        L_p50: 92.7
+        L_p95: 97.4
+        C_p50: 8.7
+        C_p95: 30.1
+        C_p99: 41.1
+        detail: 3.39
+    fingerprint: d9ceb158a79db31f
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-residents/build/imagegen/batch-06-pofu-rig/qa/char__mochi-eyes-happy--t1.json
+      locked_pixels: /workspace/run06-residents/build/imagegen/batch-06-pofu-rig/locked/char__mochi-eyes-happy--t1.png
+      old_harmony: 68.6
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
+  t2:
+    job: mochi-eyes-happy
+    take: 2
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 31 (R1 51)
+      value: 31.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 74 (R1 59)
+      value: 74.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.5 (R1 5.3)
+      value: 3.5
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.7, p95 1.4, off-palette 0.7% (top: #552211 (0.2%), #442200
+        (0.1%))'
+      value: 0.6769
+    - check: ground_line
+      status: pass
+      message: feet at 87.8% of the height (contract 88%)
+      value: 0.8776
+    - check: edit_stability
+      status: pass
+      message: 96% of the parent level unchanged
+      value: 0.9584
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.96 of the parent level (drift compounds along a chain)
+      value: 0.9646
+    - check: harmony
+      status: pass
+      message: 'harmony score 70 against the char reference (outliers: C_p95, L_p2)'
+      value: 70.1
+    info:
+      metrics_raw:
+        L_p5: 74.1
+        L_p50: 92.7
+        L_p95: 97.0
+        C_p50: 8.8
+        C_p95: 31.0
+        C_p99: 40.9
+        detail: 3.49
+      metrics_locked:
+        L_p5: 74.1
+        L_p50: 92.7
+        L_p95: 97.0
+        C_p50: 8.8
+        C_p95: 31.0
+        C_p99: 40.9
+        detail: 3.5
+    fingerprint: d9ceb158a79db31f
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-residents/build/imagegen/batch-06-pofu-rig/qa/char__mochi-eyes-happy--t2.json
+      locked_pixels: /workspace/run06-residents/build/imagegen/batch-06-pofu-rig/locked/char__mochi-eyes-happy--t2.png
+      old_harmony: 70.1
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
+current_policy_audit:
+  base: f35258d
+  old_pick: 2
+  pick: 2
+  take_scores:
+  - n: 1
+    status: warn
+    harmony: 68.6
+  - n: 2
+    status: pass
+    harmony: 70.1

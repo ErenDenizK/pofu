@@ -2,18 +2,18 @@ id: asset-pofu-paws-wave
 type: asset
 title_tr: pofu-paws-wave
 title_en: pofu-paws-wave (char)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  Edit the attached hamster. Change only his front paws: his right paw (on the left side of
-  the image) is raised beside his face, open and waving, palm toward the viewer with its three
-  toe creases; his left paw stays at the chest as in the original. The chest fur shows where
-  the raised paw was. Nothing else changes.
+summary: 'Edit the attached hamster. Change only his front paws: his right paw (on
+  the left side of the image) is raised beside his face, open and waving, palm toward
+  the viewer with its three toe creases; his left paw stays at the chest as in the
+  original. The chest fur shows where the raised paw was. Nothing else changes.'
 links:
   variant_of:
   - asset-pofu-base-v1
 art:
-  images: []
+  images:
+  - design/art/masters/pofu-paws-wave/pofu-paws-wave.webp
   jobs:
   - batch-06-pofu-rig:pofu-paws-wave
 sources:
