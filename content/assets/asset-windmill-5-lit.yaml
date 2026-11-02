@@ -13,7 +13,8 @@ links:
   variant_of:
   - asset-windmill-5
 art:
-  images: []
+  images:
+  - design/art/stations/windmill-5-lit/windmill-5-lit.png
   jobs:
   - batch-07-light:windmill-5-lit
 sources:
