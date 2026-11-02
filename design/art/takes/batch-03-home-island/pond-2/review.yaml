@@ -166,4 +166,5 @@ jobs:
           C_p99: 18.7
           detail: 1.38
       fingerprint: 8ba4a7ad469e4b56
-    upload_note: raw.png uploaded under600KB
+    upload_note: raw.png omitted; the q90 takes are the record. Master stored as pixel-identical
+      lossless WebP to minimize upload size.
