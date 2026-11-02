@@ -44,12 +44,14 @@ public enum DepthMotion {
 
     /// How far ahead of the camera, in seconds, a layer one depth unit off
     /// the focus plane leads or lags, per unit of depth.
-    public static let panLead = 0.11 * 0.003
+    public static let panLead = 0.11 * 0.005
     /// The same for a zoom, as a fraction of the point's distance from the
     /// look point.
-    public static let zoomLead = 0.11 * 0.0028
-    /// The largest offset, in world units, so the plate's bands never part.
-    public static let maxShift = 5.0
+    public static let zoomLead = 0.11 * 0.0045
+    /// The largest offset, in world units: enough to read on a phone (round
+    /// 2's first take, 5, was invisible in the strip), small enough that the
+    /// plate's bands, which overlap by 8 units, never part.
+    public static let maxShift = 8.0
     /// How much stronger the depth of field is at full speed.
     public static let lensBoost = 0.9
 
