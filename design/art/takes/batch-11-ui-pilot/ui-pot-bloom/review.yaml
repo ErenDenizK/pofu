@@ -1,0 +1,161 @@
+batch: batch-11-ui-pilot
+contact_sheet: design/art/takes/batch-11-ui-pilot/ui-pot-bloom/contact.jpg
+jobs:
+  ui-pot-bloom:
+    pick: 1
+    note: auto-picked by QA; founder review pending. Both takes pass the strict manual
+      edit_stability >0.9 gate (0.9416 and 0.9420). White, blue, cream and dark alpha
+      composites are clean. Single sunflower, brown centre and two rounded leaves
+      remain legible at the native 36x56pt ship preview; pot, rim and soil remain
+      aligned. Take1 is selected for lower non-failing lock load 1.0983 versus 1.1843;
+      non-failing chroma/palette warnings are retained.
+    takes:
+      t1:
+        qa: warn
+        summary: chroma_ceiling warn; palette_drift warn
+      t2:
+        qa: pass
+        summary: all pass
+    approved:
+      take: 1
+      at: '2026-11-02T23:57:50+00:00'
+    publication: promoted
+qa_reports:
+  1:
+    job: ui-pot-bloom
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 52 (R1 51)
+      value: 52.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 41 (R1 59)
+      value: 41.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.03
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0983
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 1.6, p95 7.7, off-palette 3.0% (top: #889933 (0.4%), #99AA44
+        (0.4%))'
+      value: 1.5618
+    - check: edit_stability
+      status: pass
+      message: 94% of the parent level unchanged
+      value: 0.9416
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.07 of the parent level (drift compounds along a chain)
+      value: 1.0737
+    info:
+      metrics_raw:
+        L_p5: 41.2
+        L_p50: 68.4
+        L_p95: 85.5
+        C_p50: 33.3
+        C_p95: 53.8
+        C_p99: 79.2
+        detail: 1.35
+      metrics_locked:
+        L_p5: 41.3
+        L_p50: 68.2
+        L_p95: 85.4
+        C_p50: 33.3
+        C_p95: 52.4
+        C_p99: 66.1
+        detail: 1.03
+    fingerprint: 25b31c0a30b8afb5
+  2:
+    job: ui-pot-bloom
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.001 and moved it; aligned back to the
+        parent
+      value: 0.9988
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 41 (R1 59)
+      value: 41.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.16
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.1843
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 6.7, off-palette 2.4% (top: #889944 (0.5%), #AA5522
+        (0.4%))'
+      value: 1.3875
+    - check: edit_stability
+      status: pass
+      message: 94% of the parent level unchanged
+      value: 0.942
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.05 of the parent level (drift compounds along a chain)
+      value: 1.048
+    info:
+      alignment:
+        scale: 0.9988
+        cx: 499.5
+        cy: 846.0
+        dx: 0
+        dy: -1
+      metrics_raw:
+        L_p5: 41.0
+        L_p50: 68.9
+        L_p95: 86.0
+        C_p50: 32.5
+        C_p95: 47.0
+        C_p99: 72.8
+        detail: 1.43
+      metrics_locked:
+        L_p5: 41.3
+        L_p50: 68.9
+        L_p95: 86.2
+        C_p50: 32.4
+        C_p95: 44.0
+        C_p99: 64.7
+        detail: 1.16
+    fingerprint: 25b31c0a30b8afb5
+manual_review:
+  exclude: []
+  note: Both takes pass the strict manual edit_stability >0.9 gate (0.9416 and 0.9420).
+    White, blue, cream and dark alpha composites are clean. Single sunflower, brown
+    centre and two rounded leaves remain legible at the native 36x56pt ship preview;
+    pot, rim and soil remain aligned. Take1 is selected for lower non-failing lock
+    load 1.0983 versus 1.1843; non-failing chroma/palette warnings are retained.
