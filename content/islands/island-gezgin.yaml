@@ -1,0 +1,35 @@
+id: island-gezgin
+type: island
+title_tr: Gezgin
+title_en: The island on a whale
+status: idea
+horizon: maybe
+summary: >-
+  A wanderer: a grassy island with one cottage on the back of Nazlı, a sleeping cloud-whale. The 100-tended-day milestone; afterwards she circles the archipelago on a fixed nightly tour, never highlighted, never needed to find. Game (Echo): answer her song to steer her to the next mooring. Lore: she carries lost islands home.
+notes:
+- >-
+  Checking risk: moves only at night; cut if reflex opens rise after she arrives.
+- >-
+  Art: about 11 images plus 2 whale pose edits.
+links:
+  requires:
+  - island-aycicegi
+  - sys-island-arrivals
+  related:
+  - sys-island-games
+  - sys-island-toys
+  - sys-island-materials
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+- doc: docs/product/archipelago-system.md
+  anchor: '#3-the-island-schema'
+source: lead-brainstorm
+theme_en: 'An island on the back of a sleeping cloud-whale'
+ritual_en: 'Whale song (Echo)'
+residents:
+- char-nazli
+- char-yosun
+unlock:
+  day: 100
+  rule_en: '100 tended days'

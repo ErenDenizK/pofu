@@ -11,6 +11,8 @@ summary: >-
   firefly meadow, hammock. Resident: Nane, a sleepy owl.
 notes:
 - >-
+  Proposed (archipelago-system.md): becomes a wonder island; its three station ladders are retired, the stargazing ritual stays; island game: constellations with three cultures' names (Connect); season 2, Plus.
+- >-
   Arrives at 21 tended days and 10 calm nights (any, not in a row). Simulation: day 22.
 - >-
   The one exception to A21's dead-end nights: the 20-second stargazing ritual, always ending
@@ -23,6 +25,8 @@ links:
   related:
   - sys-rituals
 sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
 - doc: docs/product/game-design.md
   anchor: '#7-the-archipelago'
 - doc: docs/product/app-game-boundary.md

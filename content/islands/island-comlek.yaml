@@ -1,0 +1,35 @@
+id: island-comlek
+type: island
+title_tr: Çömlek
+title_en: The potter's island
+status: idea
+horizon: maybe
+summary: >-
+  A red-clay island whose wheel turns only while the phone is down and stops during a pass. After twelve quiet hours a pot is fired. Game (Shape): drag to pull a pot to a shape from many cultures (an Avanos jug, a Japanese tea bowl, a Greek amphora). Toy: a thumbprint in wet clay stays forever. Material: clay.
+notes:
+- >-
+  Developed from idea-island-comlek. Resident: Kil, a mole who only works when it is quiet.
+links:
+  requires:
+  - island-aycicegi
+  - sys-island-arrivals
+  related:
+  - sys-island-games
+  - sys-island-toys
+  - sys-island-materials
+  - sys-calm
+  supersedes:
+  - idea-island-comlek
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+- doc: docs/product/archipelago-system.md
+  anchor: '#3-the-island-schema'
+source: lead-brainstorm
+theme_en: 'A red-clay potter''s island that only works in quiet'
+ritual_en: 'The wheel (Shape); echo: the wheel mirrors calm'
+residents:
+- char-kil
+unlock:
+  day: 200
+  rule_en: 'Season 3 release'

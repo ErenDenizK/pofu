@@ -1,0 +1,35 @@
+id: island-leylek
+type: island
+title_tr: Leylek
+title_en: The stork island
+status: idea
+horizon: maybe
+summary: >-
+  A reedy island with a chimney and a huge stork nest on the Europe-Africa flyway. Storks circle on thermals in spring and autumn; Lale leaves one line about each city on the route. Game (Guide): tap to find rising warm air and lift a young stork city by city. Returns every year; nothing is missed. Material: feathers.
+notes:
+- >-
+  Developed from idea-island-leylek.
+links:
+  requires:
+  - island-aycicegi
+  - sys-island-arrivals
+  related:
+  - sys-island-games
+  - sys-island-toys
+  - sys-island-materials
+  - island-iskele
+  supersedes:
+  - idea-island-leylek
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+- doc: docs/product/archipelago-system.md
+  anchor: '#3-the-island-schema'
+source: lead-brainstorm
+theme_en: 'A stork-nest island on the migration route'
+ritual_en: 'Thermals (Guide)'
+residents:
+- char-lale
+unlock:
+  day: 190
+  rule_en: 'Season 3 release'

@@ -1,0 +1,23 @@
+id: sys-decor-spots
+type: system
+title_tr: Köşeler
+title_en: Decor spots
+status: idea
+horizon: maybe
+summary: >-
+  Three to six sockets per island (ground, hanging, water, sky, wall, seat) where the player chooses what goes: a hammock where a resident naps at noon, a wind chime that plays the motif at golden hour, a kite whose tail grows on calm days, a mailbox for residents' notes. Any item fits its family on any island; living decor with a tiny behaviour; never produces anything.
+notes:
+- >-
+  Sockets, not free placement: amends ADR-0016's never the placement while keeping art composed and the camera fixed.
+links:
+  related:
+  - sys-build
+  - sys-island-materials
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+source: lead-brainstorm
+group: world
+board:
+  col: 10
+  row: 3

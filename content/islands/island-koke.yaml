@@ -1,0 +1,35 @@
+id: island-koke
+type: island
+title_tr: Koke
+title_en: The moss garden (Japan)
+status: idea
+horizon: maybe
+summary: >-
+  A small island of moss, maples and a dry stone garden with a bamboo water clacker. Lore hook: why does the gravel move by itself at night? Game (Trace): rake calm wave patterns around stones. Learning: the 72 Japanese micro-seasons; the garden's sign names the real one of the week, and the moss greens on real rainy days. Material: moss.
+notes:
+- >-
+  Resident: Sumi, a Japanese dormouse who sleeps through winter and apologises for it.
+- >-
+  Native Japanese writer required; proposed for the Japan market test (open question 9).
+links:
+  requires:
+  - island-aycicegi
+  - sys-island-arrivals
+  related:
+  - sys-island-games
+  - sys-island-toys
+  - sys-island-materials
+  - idea-route-regional-islands
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+- doc: docs/product/archipelago-system.md
+  anchor: '#3-the-island-schema'
+source: lead-brainstorm
+theme_en: 'A Japanese moss and stone garden that matches the real season'
+ritual_en: 'Raking the garden (Trace)'
+residents:
+- char-sumi
+unlock:
+  day: 60
+  rule_en: 'Season 1 release and 40 tended days'

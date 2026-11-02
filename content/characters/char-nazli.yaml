@@ -1,0 +1,18 @@
+id: char-nazli
+type: character
+title_tr: Nazlı
+title_en: Nazlı, the cloud-whale
+status: idea
+horizon: maybe
+summary: >-
+  The enormous, sleepy cloud-whale who carries Gezgin and, by its lore, carries lost islands home.
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+source: lead-brainstorm
+kind: resident
+unlock:
+  day: 100
+  rule_en: Arrives with its island
+species_en: 'Cloud-whale'
+home: island-gezgin
