@@ -161,7 +161,7 @@ struct AyarPanel: View {
 
     private var camera: some View {
         VStack(alignment: .leading, spacing: PofuSpacing.l) {
-            note("Önizle ile yayı hisset. Sahne kamerası bu değerleri, görünüm turu 3 birleşince okuyacak.")
+            note("Önizle ile yayı hisset. Sahne kamerası bu değerleri canlı okur.")
             ForEach(["travel", "far", "release", "focus", "buildPush"], id: \.self) { name in
                 VStack(alignment: .leading, spacing: PofuSpacing.xs) {
                     Text(verbatim: AyarLabels.spring(name))
@@ -185,7 +185,7 @@ struct AyarPanel: View {
             Toggle(isOn: Binding(get: { session.depthMotion }, set: { session.depthMotion = $0 })) {
                 Text(verbatim: "Hareketle derinlik")
             }
-            note("Anahtarlar canlı. Kaydırıcılar, görünüm turu 3 birleşince sahneye bağlanacak.")
+            note("Anahtarlar ve kaydırıcılar canlı.")
             TuningRow(store: store, key: "depth.parallax")
             TuningRow(store: store, key: "depth.tiltShiftIsland")
             TuningRow(store: store, key: "depth.tiltShiftHome")
@@ -195,7 +195,7 @@ struct AyarPanel: View {
     private var pofu: some View {
         VStack(alignment: .leading, spacing: PofuSpacing.m) {
             BreathPreview(store: store)
-            note("Önizleme nefesi beş kat büyütür. Pofu bu değerleri, görünüm turu 3 birleşince okuyacak.")
+            note("Önizleme nefesi beş kat büyütür. Pofu bu değerleri canlı okur.")
             ForEach(["breathPeriodLow", "breathPeriodHigh", "breathAmplitudeLow", "breathAmplitudeHigh", "blinkIntervalMin", "blinkIntervalMax"], id: \.self) { name in
                 TuningRow(store: store, key: "companion.\(name)")
             }
