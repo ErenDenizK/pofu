@@ -15,14 +15,16 @@ color so nothing dark bleeds into the edges.
 
 Presets live in ``style_lock.json`` next to this file:
 
-    soft-lock   the recommendation (hybrid of A and a light B)
+    lock-light  the default: bakes only the floor, detail, hue fixes and edges;
+                saturation and contrast are graded at runtime (WorldGrade)
+    soft-lock   the default until 2026-11-02 (hybrid of A and a light B)
     harmonize   study treatment A: grade and clamp only
     gouache     study treatment B: strong simplification and value steps
     storybook   study treatment C: flat color blocks and a soft outline
 
 Usage:
 
-    python3 -I tools/imagegen/style_lock.py apply --preset soft-lock IN.png OUT.png
+    python3 -I tools/imagegen/style_lock.py apply --preset lock-light IN.png OUT.png
     python3 -I tools/imagegen/style_lock.py measure IN.png [IN2.png ...]
 
 Dependencies: numpy and Pillow only.
@@ -224,8 +226,20 @@ def clamp_chroma(L: np.ndarray, C: np.ndarray, H: np.ndarray, p: dict) -> tuple[
     return out, H
 
 
+def soft_floor(x: np.ndarray, floor: float, knee: float) -> np.ndarray:
+    """Identity above the knee, then a smooth toe that never drops below the floor."""
+    return -soft_ceiling(-x, -knee, -floor)
+
+
 def lift_values(L: np.ndarray, p: dict) -> np.ndarray:
-    """Raise the floor and compress contrast toward a high, soft key."""
+    """Raise the floor and compress contrast toward a high, soft key.
+
+    With `floor_knee` the floor is a toe instead of a linear lift: values
+    above the knee keep their contrast exactly (lock-light).
+    """
+    if "floor_knee" in p:
+        out = soft_floor(L, p.get("floor", 0.0), p["floor_knee"])
+        return soft_ceiling(out, p.get("highlight_knee", 100.0), p.get("highlight_ceiling", 100.0))
     floor, gamma = p.get("floor", 0.0), p.get("gamma", 1.0)
     t = np.clip(L / 100, 0, 1) ** gamma
     out = floor + (100 - floor) * t
@@ -429,7 +443,7 @@ def save_rgba(rgba: np.ndarray, path: Path) -> None:
 
 def preset_for(kind: str, presets: dict, override: str | None = None) -> tuple[str, dict]:
     """The preset name and parameters to use for an asset kind."""
-    name = override or presets.get("_by_kind", {}).get(kind) or "soft-lock"
+    name = override or presets.get("_by_kind", {}).get(kind) or "lock-light"
     return name, presets[name]
 
 
@@ -437,7 +451,7 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     a = sub.add_parser("apply", help="apply a preset to one image")
-    a.add_argument("--preset", default="soft-lock")
+    a.add_argument("--preset", default="lock-light")
     a.add_argument("--presets", default=str(PRESETS_PATH))
     a.add_argument("src")
     a.add_argument("dst")

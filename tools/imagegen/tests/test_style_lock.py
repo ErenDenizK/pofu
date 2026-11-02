@@ -40,6 +40,13 @@ class ColorTests(unittest.TestCase):
         self.assertLess(y.max(), 50)
         self.assertTrue(np.allclose(y[x <= 30], x[x <= 30]))
 
+    def test_soft_floor_is_a_toe(self):
+        x = np.linspace(0, 100, 401)
+        y = sl.soft_floor(x, 14, 30)
+        self.assertTrue(np.all(np.diff(y) > 0))
+        self.assertGreater(y.min(), 14)
+        self.assertTrue(np.allclose(y[x >= 30], x[x >= 30]))
+
 
 class PresetTests(unittest.TestCase):
     def setUp(self):
@@ -60,6 +67,41 @@ class PresetTests(unittest.TestCase):
         # transparency is preserved and nothing grows outside the silhouette
         self.assertEqual(float(out[5, 5, 3]), 0.0)
         self.assertTrue(np.all(out[..., 3] <= src[..., 3] + 1e-9))
+
+    def test_lock_light_is_the_default_for_world_art(self):
+        for kind in ("station", "prop", "world", "plate", "icon"):
+            self.assertEqual(sl.preset_for(kind, self.presets)[0], "lock-light", kind)
+        self.assertEqual(sl.preset_for("char", self.presets)[0], "char-guard")
+        self.assertIn("soft-lock", self.presets)  # kept for comparison
+
+    def test_lock_light_keeps_saturation_and_contrast_near_neutral(self):
+        # A mid-key, moderately saturated prop: the runtime grade shapes
+        # it, so the lock must leave its color and contrast nearly alone.
+        im = Image.new("RGBA", (512, 512), (0, 0, 0, 0))
+        d = ImageDraw.Draw(im)
+        d.rounded_rectangle((100, 200, 412, 460), radius=30, fill=(196, 120, 72, 255))
+        d.ellipse((190, 80, 320, 210), fill=(110, 150, 190, 255))
+        d.rectangle((140, 300, 380, 360), fill=(92, 70, 52, 255))
+        src = np.asarray(im, dtype=np.float64) / 255.0
+        light = sl.apply_lock(src, self.presets["lock-light"])
+        soft = sl.apply_lock(src, self.presets["soft-lock"])
+        before, after, old = sl.measure(src), sl.measure(light), sl.measure(soft)
+        self.assertAlmostEqual(after["C_p95"], before["C_p95"], delta=2.5)
+        self.assertAlmostEqual(after["L_p50"], before["L_p50"], delta=2.5)
+        self.assertGreater(after["L_p95"] - after["L_p5"], (before["L_p95"] - before["L_p5"]) - 3)
+        # soft-lock bakes a real desaturation and contrast cut; lock-light does not
+        self.assertLess(old["C_p95"], after["C_p95"] - 6)
+        self.assertLess(old["L_p95"] - old["L_p5"], after["L_p95"] - after["L_p5"] - 3)
+
+    def test_lock_light_still_lifts_near_black_and_tames_neon_green(self):
+        im = Image.new("RGBA", (256, 256), (0, 0, 0, 0))
+        d = ImageDraw.Draw(im)
+        d.rectangle((20, 20, 236, 120), fill=(8, 6, 4, 255))
+        d.rectangle((20, 130, 236, 236), fill=(90, 230, 40, 255))
+        out = sl.apply_lock(np.asarray(im, dtype=np.float64) / 255.0, self.presets["lock-light"])
+        L, C, _ = sl.lch(sl.srgb_to_lab(out[..., :3]))
+        self.assertGreater(float(L[60, 128]), 14)
+        self.assertLess(float(C[180, 128]), 50)
 
     def test_lock_is_deterministic(self):
         src = saturated_prop()

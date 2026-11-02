@@ -314,9 +314,13 @@ to 14 are unchanged except the provenance line in section 13. Pipeline:
    ground ellipses 0.3 tall : wide (view block v2); the approved island
    is attached as the camera reference for stations.
 3. **Style lock:** every station, prop, plate and UI image passes the
-   `soft-lock` preset ([`style_lock.json`](../../tools/imagegen/style_lock.json))
-   before it becomes a master; characters are not locked. Masters keep
-   the raw take next to the locked one.
+   `lock-light` preset ([`style_lock.json`](../../tools/imagegen/style_lock.json))
+   before it becomes a master; characters are not locked. Since
+   2026-11-02 the lock bakes only the value floor, the detail budget, the
+   hue fixes and the edges; saturation, contrast and the value range are a
+   runtime grade in the app ([look-dev](look-dev.md)), so the look can
+   change without regenerating. Masters always keep the raw take
+   (`raw.webp`) next to the locked one.
 4. **Props palette:** `world-props` in
    [`tools/imagegen/palettes.json`](../../tools/imagegen/palettes.json)
    (card: `design/reference/palette-card-world-props.png`) joins the

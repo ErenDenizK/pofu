@@ -181,9 +181,13 @@ def _isle(name, box):
 
 APP_SOURCES = {
     # Batch 01 masters (design/art). The home plate's lawn spans x 50-1486 px for 350 units, centred
-    # at (768, 441); it is cut into depth bands below.
-    "island-main": {"src": "design/art/masters/island-main-s/island-main-s.png", "ppu": 1436 / 350, "anchor": (768, 441)},
-    "cay-1": {"src": "design/art/stations/cay-1/cay-1.png", "ppu": 1024 / 120, "anchor": (512, 800)},
+    # at (768, 441); it is cut into depth bands below. The app draws the lock-light bakes (WorldGrade
+    # grades them at runtime); "softlock" also bakes the soft-lock masters as <name>--softlock, to
+    # compare, until the founder has chosen (WorldLook.ArtSet).
+    "island-main": {"src": "design/art/masters/island-main-s/island-main-s--lock-light.png", "ppu": 1436 / 350, "anchor": (768, 441),
+                    "softlock": "design/art/masters/island-main-s/island-main-s.png"},
+    "cay-1": {"src": "design/art/stations/cay-1/cay-1--lock-light.png", "ppu": 1024 / 120, "anchor": (512, 800),
+              "softlock": "design/art/stations/cay-1/cay-1.png"},
     "mochi": {"src": "design/art/masters/mochi-base/mochi-base.png", "ppu": 871 / 30, "anchor": (511, 1349)},
     # Pofu's own art: only the blurred variants (the live CompanionView is the sharp one). 64 units
     # wide with the feet at the rig's ground point, so the variants register with the live view.
@@ -258,7 +262,12 @@ def app_main():
         json.dump({"info": {"author": "xcode", "version": 1}}, f, indent=2)
         f.write("\n")
     table = {}
+    jobs = []
     for name, spec in APP_SOURCES.items():
+        jobs.append((name, "", spec))
+        if spec.get("softlock"):
+            jobs.append((name, "--softlock", {**spec, "src": spec["softlock"]}))
+    for name, alt, spec in jobs:
         path = os.path.join(REPO, spec["src"])
         if not os.path.exists(path):
             print("missing", path, file=sys.stderr)
@@ -286,19 +295,19 @@ def app_main():
                 entry = {}
                 for suffix, (vimg, vbox) in variants.items():
                     crop, cbox = _band_cut(vimg, vbox, k)
-                    _write_imageset(f"world-{name}-band{k}" + ("" if suffix == "sharp" else "__" + suffix), crop)
+                    _write_imageset(f"world-{name}-band{k}{alt}" + ("" if suffix == "sharp" else "__" + suffix), crop)
                     entry[suffix] = cbox
-                table[f"{name}-band{k}"] = entry
-            print(f"{name}: {len(APP_BANDS)} bands, {ppu:.2f} px/unit")
+                table[f"{name}-band{k}{alt}"] = entry
+            print(f"{name}{alt}: {len(APP_BANDS)} bands, {ppu:.2f} px/unit")
             continue
         entry = {}
         for suffix, (vimg, vbox) in variants.items():
             if suffix == "sharp" and spec.get("no_sharp"):
                 continue
-            _write_imageset(f"world-{name}" + ("" if suffix == "sharp" else "__" + suffix), vimg)
+            _write_imageset(f"world-{name}{alt}" + ("" if suffix == "sharp" else "__" + suffix), vimg)
             entry[suffix] = vbox
-        table[name] = entry
-        print(f"{name}: {img.width}x{img.height}, {ppu:.2f} px/unit, box {entry.get('sharp', entry['soft'])}")
+        table[name + alt] = entry
+        print(f"{name}{alt}: {img.width}x{img.height}, {ppu:.2f} px/unit, box {entry.get('sharp', entry['soft'])}")
     _write_swift(table)
     return 0
 

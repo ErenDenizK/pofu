@@ -6,6 +6,9 @@ extension EnvironmentValues {
     /// Still-frame rendering, for screenshots: the sky's clouds stop at
     /// their time-zero places, so every run draws the same frame.
     @Entry public var worldStillFrame: Bool = false
+    /// The world is settled under the look (look-dev B): the drift holds
+    /// where it is, so the settled frame is cached and costs nothing.
+    @Entry var worldAmbientPaused: Bool = false
 }
 
 /// The sky behind the islands (design language §12; boundary doc §6.3's
@@ -23,6 +26,7 @@ struct LivingSky: View {
     let offset: CGSize
 
     @Environment(\.worldStillFrame) private var still
+    @Environment(\.worldAmbientPaused) private var ambientPaused
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
@@ -57,7 +61,7 @@ struct LivingSky: View {
     }
 
     private var isPaused: Bool {
-        still || reduceMotion || ProcessInfo.processInfo.isLowPowerModeEnabled
+        still || ambientPaused || reduceMotion || ProcessInfo.processInfo.isLowPowerModeEnabled
     }
 
     private func cloudLayer(_ clouds: [SkyCloud], time: Double, size: CGSize, parallax: Double) -> some View {
@@ -164,6 +168,7 @@ struct CloudSea: View {
     var rise: Double = 0
 
     @Environment(\.worldStillFrame) private var still
+    @Environment(\.worldAmbientPaused) private var ambientPaused
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     static let height = 190.0
@@ -183,7 +188,7 @@ struct CloudSea: View {
     var body: some View {
         GeometryReader { proxy in
             let size = proxy.size
-            TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: still || reduceMotion || ProcessInfo.processInfo.isLowPowerModeEnabled)) { context in
+            TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: still || ambientPaused || reduceMotion || ProcessInfo.processInfo.isLowPowerModeEnabled)) { context in
                 let time = still ? 0 : context.date.timeIntervalSinceReferenceDate
                 let drift = (time * Self.speed).truncatingRemainder(dividingBy: Self.period)
                 let backDrift = (time * Self.speed * 0.6 + Self.period / 2).truncatingRemainder(dividingBy: Self.period)

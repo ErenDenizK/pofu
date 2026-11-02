@@ -9,6 +9,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Look-dev for the world (`docs/design/look-dev.md`): a reversible color
+  pipeline, "painted HD-2D lite" and the terrarium. The art is baked with
+  the new `lock-light` style-lock preset (the default for new jobs;
+  `soft-lock` stays available), and saturation, contrast and the value
+  range move into `WorldGrade`, a Metal color grade with a vignette on
+  the world layer only, with presets for day, golden hour, night, Pofu
+  unwell and high calm, driven by the snapshot's clock and wellbeing and
+  eased over 2.5 s. `WorldLight` adds bloom on emissive points, golden-hour
+  light shafts, pollen by day and fireflies at night, and a stronger
+  tilt-shift per framing; the layers run only while the camera moves or
+  during a 6 s visit. At the Island and Map framings the world sits in a
+  terrarium: a Metal glass rim with thin Liquid Glass strips as its lip. Celebration
+  moments get a painted `CelebrationCard` (system UI is glass,
+  celebration is painted). All of it is behind `WorldLook` flags, on in
+  the world scene only; a `FrameMeter` debug overlay measures frame
+  intervals and CPU. `lock-light` versions of `island-main-s` and
+  `cay-1` are re-locked from their raws with the new
+  `tools/imagegen/relock.py`; the app also carries the soft-lock bake to
+  compare until the founder chooses. The look sits on round 2's living
+  sky: `WorldLight` follows the sky's keyframes, the cloud drift holds
+  still once the world settles, and the build's level tag is painted.
+
 - Pofu Hub (`design/hub/index.html`): the founder's phone-first surface,
   replacing the canvas atlas as his daily view (the atlas stays as a linked
   deep map). One column of cards with a sticky segmented control: Sorular
@@ -157,6 +179,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   notification. Day-1 cases 20–28.
 
 ### Changed
+
+- The image pipeline never drops a raw: `promote` keeps the unlocked
+  take as `raw.webp` (lossless under 600 KB, otherwise WebP q95), and
+  `check_upload.py` fails a master folder without one (AGENTS.md,
+  Uploads).
 
 - The Island framing is fitted, not fixed: the station row fills the width
   (×1.25 at 402 pt, was ×1.06) and the island is centred between the

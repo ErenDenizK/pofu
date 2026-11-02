@@ -31,6 +31,7 @@ public struct IslandScene<Bubble: View>: View {
     let bubble: Bubble
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.worldLook) private var look
     @State private var safeTop: Double = 59
 
     /// - Parameters:
@@ -78,6 +79,7 @@ public struct IslandScene<Bubble: View>: View {
                         rig: rig,
                         model: model,
                         size: size,
+                        time: context.date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 3600),
                         build: build,
                         celebrations: home?.celebrations ?? 0,
                         onPofuTap: onPofuTap,
@@ -91,6 +93,7 @@ public struct IslandScene<Bubble: View>: View {
                             rig: fade.rig,
                             model: model,
                             size: size,
+                            time: context.date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 3600),
                             build: build,
                             celebrations: home?.celebrations ?? 0,
                             onPofuTap: nil,
@@ -146,6 +149,11 @@ public struct IslandScene<Bubble: View>: View {
         .onChange(of: reduceMotion, initial: true) { _, reduce in
             model.reduceMotion = reduce
             home?.reduceMotion = reduce
+        }
+        .onAppear {
+            if look.hd2d {
+                model.beginLookVisit()
+            }
         }
         .sensoryFeedback(.selection, trigger: model.projectedFraming)
         .accessibilityElement(children: .contain)
@@ -225,55 +233,104 @@ typealias BuildFrame = (moment: BuildMoment, time: Double)
 
 // MARK: - One frame
 
-/// Everything at one camera and lens: the sky, the world canvas, Pofu, the
-/// cloud sea, and the screen-space overlays.
+/// Everything at one camera and lens: the sky, the world canvas, Pofu and
+/// the cloud sea under the runtime grade, the HD-2D lite layers, the
+/// terrarium's rim, and the screen-space overlays, which are never graded.
 private struct SceneFrame<Bubble: View>: View {
     let world: WorldSnapshot
     let rig: CameraRig
     let model: IslandSceneModel
     let size: CGSize
+    /// Seconds, for the ambient layers; frozen while the scene is settled.
+    let time: Double
     let build: BuildFrame?
     let celebrations: Int
     let onPofuTap: (@MainActor () -> Void)?
     let bubble: Bubble
 
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.worldLook) private var look
+    @Environment(\.worldStillFrame) private var still
 
     var body: some View {
         let pose = rig.pose
-        let lens = rig.lens
         let z = rig.railPosition
+        // HD-2D's tilt-shift: the depth lens, stronger per framing.
+        let lens = look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z)) : rig.lens
         let peek = rig.peekTilt
         let device = model.deviceTilt
         let tilt = (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
         let offset = CGSize(width: rig.offsetX.value, height: rig.offsetY.value)
         let interactive = rig.pinchStart == nil && (model.focus != nil || (z > 0.5 && z < 1.5))
-        let palette = SkyModel.palette(
-            minuteOfDay: world.clock.map { SkyModel.minuteOfDay($0, calendar: .current) } ?? 12 * 60,
-            isDark: colorScheme == .dark,
-            isBedtime: world.isBedtime
-        )
-        // The time of day grades the painted world in code (game design
-        // §15: no night versions are generated).
-        let grade = palette.grade.color
+        let minute = look.hourOverride.map { $0 * 60 }
+            ?? world.clock.map { SkyModel.minuteOfDay($0, calendar: .current) } ?? 12 * 60
+        let isDark = colorScheme == .dark && look.hourOverride == nil
+        let palette = SkyModel.palette(minuteOfDay: minute, isDark: isDark, isBedtime: world.isBedtime)
+        // The living sky places the sun; the light follows it.
+        let light = WorldLight.at(
+            hour: minute / 60,
+            wellbeing: world.wellbeing,
+            calm: world.calm,
+            isBedtime: world.isBedtime,
+            darkAppearance: isDark
+        ).withSun(x: palette.sun.x, y: palette.sun.y)
+        // Without the runtime grade, the time of day tints the painted
+        // world as before (game design §15: no night versions are
+        // generated); with it, WorldGrade does the whole job.
+        let tint = look.grade ? Color.white : palette.grade.color
+        let grade = look.grade ? light.grade : WorldGrade.neutral
+        // Settled: the ambient layers hold still, so the frame is cached.
+        let ambientPaused = look.hd2d && !model.needsFrames && build == nil
 
         ZStack(alignment: .topLeading) {
-            LivingSky(palette: palette, offset: offset)
+            ZStack(alignment: .topLeading) {
+                ZStack(alignment: .topLeading) {
+                    LivingSky(palette: palette, offset: offset)
 
-            WorldCanvas(
-                world: world,
-                lens: lens,
-                z: z,
-                scale: pose.scale,
-                tilt: tilt,
-                isInteractive: interactive,
-                build: build,
-                model: model
-            )
-            .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
-            .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
-            .colorMultiply(grade)
+                    WorldCanvas(
+                        world: world,
+                        lens: lens,
+                        z: z,
+                        scale: pose.scale,
+                        tilt: tilt,
+                        isInteractive: interactive,
+                        build: build,
+                        model: model
+                    )
+                    .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
+                    .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
+                    .colorMultiply(tint)
+                    .frame(width: size.width, height: size.height, alignment: .topLeading)
+
+                    PofuLayer(
+                        world: world,
+                        pose: pose,
+                        lens: lens,
+                        z: z,
+                        tilt: tilt,
+                        size: size,
+                        offset: offset,
+                        grade: tint,
+                        celebrations: celebrations,
+                        model: model,
+                        onPofuTap: onPofuTap,
+                        part: .body,
+                        bubble: bubble
+                    )
+
+                    CloudSea(palette: palette, offset: offset, rise: CloudSea.rise(z: z))
+                }
+                .environment(\.worldAmbientPaused, ambientPaused)
+                // The grade and the vignette: the world layer only.
+                .modifier(GradeEffect(grade: grade, isEnabled: look.grade))
+                .animation(still ? nil : .easeInOut(duration: 2.5), value: grade)
+
+                if look.hd2d {
+                    HD2DLayer(world: world, light: light, pose: pose, offset: offset, size: size, time: still ? 0 : time)
+                }
+            }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
+            .modifier(TerrariumRim(strength: LookTuning.terrariumRim(z: z), isEnabled: look.terrarium))
 
             PofuLayer(
                 world: world,
@@ -283,16 +340,21 @@ private struct SceneFrame<Bubble: View>: View {
                 tilt: tilt,
                 size: size,
                 offset: offset,
-                grade: grade,
+                grade: tint,
                 celebrations: celebrations,
                 model: model,
                 onPofuTap: onPofuTap,
+                part: .overlay,
                 bubble: bubble
             )
 
-            CloudSea(palette: palette, offset: offset, rise: CloudSea.rise(z: z))
-
             ScreenOverlays(world: world, pose: pose, z: z, size: size, offset: offset, build: build, model: model)
+
+            if look.frameMeter {
+                FrameMeterOverlay()
+                    .padding(.top, 62)
+                    .padding(.leading, 12)
+            }
         }
         .frame(width: size.width, height: size.height)
         .clipped()
@@ -589,7 +651,15 @@ private struct PofuLayer<Bubble: View>: View {
     let celebrations: Int
     let model: IslandSceneModel
     let onPofuTap: (@MainActor () -> Void)?
+    /// Pofu himself (in the graded world), or his map pin and speech
+    /// bubble (UI, never graded).
+    let part: Part
     let bubble: Bubble
+
+    enum Part {
+        case body
+        case overlay
+    }
 
     @Environment(\.worldStillFrame) private var still
 
@@ -615,7 +685,7 @@ private struct PofuLayer<Bubble: View>: View {
         let bubbleOpacity = model.focus == nil ? min(max((z - 1.6) / 0.3, 0), 1) : 0
 
         ZStack(alignment: .topLeading) {
-            if painted > 0.01 {
+            if part == .body, painted > 0.01 {
                 if let sprite = WorldArt.sprite("pofu") {
                     DepthImage(name: "pofu", sprite: sprite, level: level, anchor: feet, scale: CGFloat(s), opacity: painted, skipsSharp: true)
                         .colorMultiply(grade)
@@ -626,12 +696,12 @@ private struct PofuLayer<Bubble: View>: View {
                         .opacity(weights.sharp * painted)
                 }
             }
-            if painted < 0.99 {
+            if part == .overlay, painted < 0.99 {
                 PofuPin()
                     .opacity(1 - painted)
                     .position(x: feet.x, y: feet.y - 15)
             }
-            if bubbleOpacity > 0.01 {
+            if part == .overlay, bubbleOpacity > 0.01 {
                 let head = feet.y - CGFloat(62 * s)
                 bubble
                     .frame(maxWidth: min(size.width - 40, 320))

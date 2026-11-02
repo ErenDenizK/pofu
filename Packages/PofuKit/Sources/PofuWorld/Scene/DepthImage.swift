@@ -19,13 +19,18 @@ struct DepthImage: View {
     /// Leave out the sharp layer (something else draws it).
     var skipsSharp = false
 
+    @Environment(\.worldLook.art) private var art
+
     var body: some View {
         let weights = DepthWeights(level: level)
+        // The look's art set: the soft-lock bake where one exists.
+        let key = WorldArt.key(name, art: art)
+        let sprite = WorldArt.sprite(key) ?? self.sprite
         ZStack {
-            layer(.deep, weight: weights.deep)
-            layer(.soft, weight: weights.soft)
+            layer(.deep, weight: weights.deep, key: key, sprite: sprite)
+            layer(.soft, weight: weights.soft, key: key, sprite: sprite)
             if !skipsSharp {
-                layer(.sharp, weight: weights.sharp)
+                layer(.sharp, weight: weights.sharp, key: key, sprite: sprite)
             }
         }
         .allowsHitTesting(false)
@@ -33,9 +38,9 @@ struct DepthImage: View {
     }
 
     @ViewBuilder
-    private func layer(_ variant: DepthVariant, weight: Double) -> some View {
+    private func layer(_ variant: DepthVariant, weight: Double, key: String, sprite: WorldSprite) -> some View {
         if weight * opacity > DepthWeights.visibleThreshold, let box = sprite.box(for: variant) {
-            Image(WorldArt.assetName(name, variant: variant), bundle: .module)
+            Image(WorldArt.assetName(key, variant: variant), bundle: .module)
                 .resizable()
                 .frame(width: CGFloat(box.width) * scale, height: CGFloat(box.height) * scale)
                 .opacity(weight * opacity)

@@ -227,9 +227,12 @@ jobs:
           thumbs = []
           for png in pngs:
               im = Image.open(png).convert("RGB")
-              h = 1000
+              # The look-dev grid holds twelve phones; keep it readable.
+              h = 1800 if png.stem == "look-compare" else 1000
               w = round(im.width * h / im.height)
               im.resize((w, h), Image.LANCZOS).save(out / (png.stem + ".jpg"), "JPEG", quality=85, optimize=True)
+              if png.stem.startswith("look-"):
+                  continue
               thumbs.append((png.stem, im.resize((round(im.width * 600 / im.height), 600), Image.LANCZOS)))
           # One row per appearance (light, then dark), one column per state.
           rows = [[t for t in thumbs if t[0].endswith(s)] for s in ("-light", "-dark")]
@@ -245,7 +248,7 @@ jobs:
                   sheet.paste(im, (x, y + label))
           sheet.save(out / "contact.jpg", "JPEG", quality=85, optimize=True)
           PY
-          cp shots/README.txt out/ 2>/dev/null || true
+          cp shots/*.txt out/ 2>/dev/null || true
           ls -la out
 
       - name: Force-push the screenshots branch

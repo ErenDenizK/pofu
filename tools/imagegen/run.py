@@ -32,6 +32,7 @@ from PIL import Image, ImageDraw
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import backends as be  # noqa: E402
+import check_upload as cu  # noqa: E402
 import pipeline as pl  # noqa: E402
 import qa  # noqa: E402
 import review as rv  # noqa: E402
@@ -432,12 +433,14 @@ def cmd_promote(args, config, m: pl.Manifest) -> int:
             print(f"{job_id}: already has an approved master (later levels depend on it); use --force to replace it")
             continue
         dest.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(raw_path, dest / "raw.png")
+        # The unlocked source is always kept (AGENTS.md, Uploads): the look
+        # can be re-locked from it, never from the locked master.
+        raw_kept, raw_encoding = cu.save_raw(raw_path, dest)
         shutil.copyfile(locked_path, pl.approved_image(job))
         side = pl.read_sidecar(raw_path)
         meta = {"job": job.id, "batch": m.batch, "asset": job.asset, "take": pick,
                 "takes_considered": len(existing_takes(job, inbox)), "approved_at": now(),
-                "image": rel(pl.approved_image(job)), "raw": rel(dest / "raw.png"),
+                "image": rel(pl.approved_image(job)), "raw": rel(raw_kept), "raw_encoding": raw_encoding,
                 "fingerprint": side.get("fingerprint"), "prompt": side.get("prompt", ""),
                 "attachments": side.get("attachments", []),
                 "generation": {k: side.get(k) for k in ("backend", "model", "quality", "thread_id", "generated_at", "seconds", "background")},

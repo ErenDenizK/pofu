@@ -1,21 +1,35 @@
 {
-  "$note": "Style-lock presets (docs/design/art-direction-study.md). Distances in px are for a 1024 px canvas and scale with the image. L and C are CIELAB lightness and chroma. Change a value only with a before/after contact sheet in the PR.",
-  "version": 1,
+  "$note": "Style-lock presets (docs/design/art-direction-study.md). Distances in px are for a 1024 px canvas and scale with the image. L and C are CIELAB lightness and chroma. Change a value only with a before/after contact sheet in the PR. lock-light is the default: saturation, contrast and the value range are graded at runtime by PofuWorld's WorldGrade, so the files keep them near neutral and the look stays reversible.",
+  "version": 2,
   "presets": {
     "_by_kind": {
-      "station": "soft-lock",
-      "prop": "soft-lock",
-      "world": "soft-lock",
-      "plate": "soft-lock",
+      "station": "lock-light",
+      "prop": "lock-light",
+      "world": "lock-light",
+      "plate": "lock-light",
       "char": "char-guard",
       "sheet": "char-guard",
-      "icon": "soft-lock",
-      "ui": "soft-lock",
-      "widget": "soft-lock",
+      "icon": "lock-light",
+      "ui": "lock-light",
+      "widget": "lock-light",
       "appicon": "char-guard"
     },
+    "lock-light": {
+      "$note": "The default since 2026-11-02 (look-dev): bake only what must be baked. A soft toe keeps the darkest shadow off near-black without compressing mids or highs; the detail budget, the green and red hue fixes, the alpha snap and the edge feather stay. Saturation and contrast stay near neutral; WorldGrade shapes them at runtime.",
+      "alpha_snap": 0.97,
+      "detail": {"radius": 4, "eps": 0.004, "keep": 0.5},
+      "values": {"floor": 14, "floor_knee": 30, "highlight_knee": 96, "highlight_ceiling": 99},
+      "chroma": {
+        "scale": 1.0, "knee": 56, "ceiling": 74,
+        "hue_bands": [
+          {"name": "greens", "hue": 135, "width": 40, "knee": 34, "ceiling": 48},
+          {"name": "reds", "hue": 38, "width": 22, "knee": 44, "ceiling": 60, "hue_shift": 10}
+        ]
+      },
+      "edge": {"feather_px": 0.8}
+    },
     "soft-lock": {
-      "$note": "The recommendation: A's grade and clamps plus a light share of B's simplification. No grain, no posterization, no outline.",
+      "$note": "The default until 2026-11-02, kept for comparison and to re-lock old masters: A's grade and clamps plus a light share of B's simplification. No grain, no posterization, no outline.",
       "alpha_snap": 0.97,
       "detail": {"radius": 4, "eps": 0.004, "keep": 0.5},
       "values": {"floor": 12, "gamma": 0.95, "contrast": 0.9, "pivot": 70, "highlight_knee": 93, "highlight_ceiling": 98},
