@@ -143,11 +143,15 @@ struct HD2DLayer: View {
     var tilt: (x: Double, y: Double) = (0, 0)
     /// The art set, so a mask is the sprite that was drawn.
     var art: WorldLook.ArtSet = .lockLight
+    /// The painted night overlays of practical lights.
+    var litOverlays = true
 
     var body: some View {
         Canvas(rendersAsynchronously: false) { context, size in
             var glow = context
             glow.blendMode = .plusLighter
+            var paint = context
+            drawLitOverlays(in: &paint)
             drawShafts(in: &glow, size: size)
             drawSunBloom(in: &glow, size: size)
             drawPools(in: &glow)
@@ -279,6 +283,24 @@ struct HD2DLayer: View {
                 m.draw(mask.0, in: mask.1)
             }
             layer.fill(Path(mask.1), with: shading)
+        }
+    }
+
+    /// The lit edits' flames (cay-1-lit), painted over the graded station
+    /// at night in their own colour.
+    private func drawLitOverlays(in context: inout GraphicsContext) {
+        guard litOverlays else { return }
+        let k = IslandLayout.litOverlayStrength(in: light)
+        guard k > 0.01 else { return }
+        for status in world.stations where status.island == .aycicegi && status.level > 0 {
+            guard let overlay = IslandLayout.litOverlay(status.id, level: status.level),
+                  let slot = IslandLayout.stationAnchors[status.id],
+                  let art = IslandLayout.stationArt(status.id, level: status.level)?.name else { continue }
+            let anchor = IslandFootprint.clamped(slot, footprint: IslandFootprint.footprint(of: art))
+            guard let image = sprite(overlay, at: anchor, depth: IslandLayout.depth(ofY: anchor.y)) else { continue }
+            var layer = context
+            layer.opacity = k
+            layer.draw(image.0, in: image.1)
         }
     }
 

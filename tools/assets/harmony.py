@@ -105,6 +105,8 @@ def world_sources(cfg: dict | None = None) -> dict[str, dict]:
     spec.loader.exec_module(mod)
     out = {}
     for name, s in mod.APP_SOURCES.items():
+        if s.get("harmony") is False:
+            continue
         path = REPO / s["src"]
         if "ppu" in s:
             ppu = float(s["ppu"])

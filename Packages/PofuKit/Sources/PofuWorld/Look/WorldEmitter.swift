@@ -55,6 +55,21 @@ extension IslandLayout {
         WorldEmitter(kind: .window, point: WorldArt.generatedPlate.window, radius: 7, color: GradeRGB(1, 0.78, 0.44), reach: 30),
     ]
 
+    /// The painted night overlay of a station level's practical light, if
+    /// the art queue made one (batch 07's lit edits): drawn after the grade,
+    /// faded in with the ember, so the flame keeps its own colour at night.
+    public static func litOverlay(_ station: StationID, level: Int) -> String? {
+        let name = "\(station.rawValue)-\(level)-glow"
+        return WorldArt.sprite(name) == nil ? nil : name
+    }
+
+    /// How much of a lit overlay shows under `light`: none by day, all of it
+    /// from dusk.
+    public static func litOverlayStrength(in light: WorldLight) -> Double {
+        let t = min(max((light.practicals.ember - 0.4) / 0.5, 0), 1)
+        return t * t * (3 - 2 * t)
+    }
+
     /// A point on a station's art, so its emitter moves with the slot.
     static func onStation(_ station: StationID, x: Double, y: Double) -> WorldPoint {
         let anchor = stationAnchors[station] ?? .zero
