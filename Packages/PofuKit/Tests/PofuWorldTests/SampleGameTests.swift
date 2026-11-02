@@ -44,12 +44,14 @@ struct SampleGameTests {
         #expect(receipt?.level == level)
     }
 
-    @Test func collectAndBuildGoThroughTheClock() throws {
+    @Test func collectAndBuildGoThroughTheClock() {
         var game = IslandSamples.playedWeek(calendar: calendar)
         let before = game.snapshot
-        let pouch = try #require(game.collect())
-        #expect(game.snapshot.jar == before.jar + pouch.total)
+        let collected = game.collect()
+        #expect(collected != nil)
+        #expect(game.snapshot.jar == before.jar + (collected?.total ?? .zero))
         #expect(game.snapshot.pending.isEmpty)
-        #expect(game.collect() == nil)
+        let again = game.collect()
+        #expect(again == nil)
     }
 }

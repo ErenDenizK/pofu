@@ -70,8 +70,8 @@ struct IslandFramingTests {
     }
 
     @Test(arguments: [(402.0, 874.0, 0.42), (402.0, 874.0, 132.0 / 874), (375.0, 812.0, 0.42), (440.0, 956.0, 0.42)])
-    func noFocusCutsACharacter(case: (Double, Double, Double)) {
-        let (width, height, sheet) = `case`
+    func noFocusCutsACharacter(config: (Double, Double, Double)) {
+        let (width, height, sheet) = config
         for station in IslandLayout.stationAnchors.keys.sorted() {
             guard
                 let pose = IslandLayout.stationFocusPose(station, width: width, height: height, safeTop: 62, sheetFraction: sheet, maxScale: sheet < 0.3 ? 1.95 : 1.70),
