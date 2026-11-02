@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Pro game craft research (`docs/research/pro-game-craft.md`): how cozy
+  and mobile studios work (engines, colour scripts and lighting keys,
+  skeletal rigs, juice systems, UI kits, tuning tools, playtests), an
+  honest gap analysis for Pofu, a ranked upgrade plan for our constraints
+  (CI motion videos, colour script with harmony v2, an on-device tuning
+  panel, a juice library with sound, a JSON skeletal rig), and Pofu's
+  colour and light approach (rose copper as a protected accent). Content
+  node `idea-pro-craft-upgrades`.
+
 - UI system v2 (`docs/design/ui-system-v2.md`): a hybrid of native Liquid
   Glass and painted craft. Every component is Native, Crafted or Drawn,
   with a decision table; one `PofuSkin` switch (glass / crafted) on four
