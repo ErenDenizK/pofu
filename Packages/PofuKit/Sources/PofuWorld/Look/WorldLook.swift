@@ -20,6 +20,9 @@ public struct WorldLook: Hashable, Sendable {
         /// 54 to 59), kept to compare with the colour script's rose copper
         /// lit by the ember (look round 3).
         case round2Copper
+        /// The large plate's batch-03 version (v2), to compare with the
+        /// shipped v3 (look round 4: the founder chooses).
+        case plateV2
 
         /// The suffix of this set's sprites, `nil` for the default.
         var suffix: String? {
@@ -28,6 +31,7 @@ public struct WorldLook: Hashable, Sendable {
             case .softLock: "--softlock"
             case .unharmonized: "--unharmonized"
             case .round2Copper: "--round2"
+            case .plateV2: "--v2"
             }
         }
     }
@@ -48,6 +52,11 @@ public struct WorldLook: Hashable, Sendable {
     public var gradeOverride: WorldGrade?
     /// The frame-time counter in a corner (debug).
     public var frameMeter: Bool
+    /// The feel numbers the Ayar panel tunes live (look round 4).
+    public var tuning: WorldTuning = .standard
+    /// The painted night overlays of practical lights (cay-1-lit's flame);
+    /// off only to compare.
+    public var litOverlays = true
 
     public init(
         art: ArtSet = .lockLight,

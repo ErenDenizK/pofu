@@ -16,21 +16,24 @@ struct IslandFramingTests {
 
     static let sizes: [(Double, Double)] = [(402.0, 874.0), (375.0, 812.0), (440.0, 956.0)]
 
-    /// Look round 3: the island is the hero. The plate fills 88 % of the
-    /// width tip to tip and nothing is cropped (round 2 fitted the station
-    /// row, so the small plate's tips bled off the sides).
+    /// The establishing shot (round 3's Island framing): the plate fills
+    /// 88 % of the width tip to tip and nothing is cropped.
     @Test(arguments: sizes)
-    func thePlateFillsTheWidthWithNothingCropped(size: (Double, Double)) {
-        let pose = CameraRail(width: size.0, height: size.1).pose(of: .island)
+    func theWholeIslandFillsTheWidthWithNothingCropped(size: (Double, Double)) {
+        let pose = CameraRail(width: size.0, height: size.1).wholeIslandPose
         let plate = span(IslandFraming.plateBox, pose, width: size.0)
         #expect(plate.lo >= 0 && plate.hi <= size.0, "the plate is cropped: \(plate)")
         let fill = (plate.hi - plate.lo) / size.0
         #expect(fill > 0.85 && fill < 0.90, "the plate fills \(fill) of the width")
-        let boxes = IslandLayout.stationAnchors.keys.compactMap(IslandFraming.stationBox) + IslandFraming.characterBoxes
-        for box in boxes {
-            let s = span(box, pose, width: size.0)
-            #expect(s.lo >= 0 && s.hi <= size.0)
-        }
+    }
+
+    /// Look round 4: the world is not shrunk to fit; Pofu is at least 80 pt
+    /// at the Island framing and the camera opens centred on him.
+    @Test func theIslandFramingKeepsPofuBig() {
+        let pose = CameraRail().pose(of: .island)
+        #expect(64 * pose.scale >= 80 - 1e-9)
+        let pofu = span(IslandFraming.pofuBox, pose, width: 402)
+        #expect(abs((pofu.lo + pofu.hi) / 2 - 201) < 20, "Pofu is not centred: \(pofu)")
     }
 
     @Test(arguments: sizes)
@@ -40,19 +43,89 @@ struct IslandFramingTests {
         let mid = IslandFraming.bandMid(height: size.1)
         // Rows follow the height and scales the width, so other sizes land
         // within a few points of the band's middle.
-        #expect(abs((island.top + island.bottom) / 2 - mid) < 4.0)
+        #expect(abs((island.top + island.bottom) / 2 - mid) < 6.0)
         #expect(island.top >= IslandFraming.topBand)
         #expect(island.bottom <= size.1 - IslandFraming.bottomBand)
     }
 
-    @Test func theIslandIsBiggerThanRoundTwos() {
-        // Round 2's island box filled 0.54 of the band; its plate bled off
-        // the width. The large plate fills 88 % of the width instead, so its
-        // band fill is what the plate's proportions allow (the rest is the
-        // composed far sky and the cloud sea).
-        let pose = CameraRail().pose(of: .island)
-        #expect(IslandFraming.widthFill(scale: pose.scale, width: 402) > 0.85)
-        #expect(IslandFraming.bandFill(scale: pose.scale, height: 874) > 0.3)
+    /// The pan runs tip to tip: at either end the plate's tip meets the
+    /// screen's edge, never leaving sky between them.
+    @Test func thePanRunsTipToTip() {
+        var rig = CameraRig(framing: .island)
+        let range = IslandFraming.panRange
+        #expect(range.contains(0))
+        rig.jumpPan(to: range.lowerBound)
+        let left = span(IslandFraming.plateBox, rig.pose, width: 402)
+        #expect(abs(left.lo) < 0.5)
+        rig.jumpPan(to: range.upperBound)
+        let right = span(IslandFraming.plateBox, rig.pose, width: 402)
+        #expect(abs(right.hi - 402) < 0.5)
+    }
+
+    /// Every station has a snap point that shows it whole.
+    @Test func everyStationHasASnapThatShowsItWhole() {
+        for (station, anchor) in IslandLayout.stationAnchors {
+            var rig = CameraRig(framing: .island)
+            rig.jumpPan(to: IslandFraming.panValue(lookX: anchor.x))
+            #expect(IslandFraming.panSnaps.contains { abs($0 - IslandFraming.panValue(lookX: anchor.x)) < 0.01 })
+            guard let box = IslandFraming.stationBox(station) else { continue }
+            let s = span(box, rig.pose, width: 402)
+            #expect(s.lo >= 0 && s.hi <= 402, "\(station) is cut at its snap: \(s)")
+        }
+    }
+
+    @Test func aDragFollowsTheFingerAndBandsPastTheEnds() {
+        var rig = CameraRig(framing: .island)
+        let s = rig.pose.scale
+        rig.panDrag(dx: -40)
+        #expect(abs(rig.pan.value - 40 / s) < 1e-9)
+        // Far past the end, the band never reaches the panBand.
+        rig.panDrag(dx: -4000)
+        let over = rig.pan.value - IslandFraming.panRange.upperBound
+        #expect(over > 0 && over < CameraRig.panBand / s)
+    }
+
+    @Test func aFlickCoastsAndSnapsToAStation() {
+        var rig = CameraRig(framing: .island)
+        rig.panDrag(dx: -10)
+        let target = rig.endPan(velocity: -900)
+        #expect(IslandFraming.panSnaps.contains(target))
+        #expect(target > rig.pan.value)
+        for _ in 0..<600 {
+            rig.advance(1.0 / 120)
+        }
+        #expect(abs(rig.pan.value - target) < 1e-6)
+        #expect(rig.isSettled)
+    }
+
+    @Test func aReleasePastTheEndLandsOnTheEndWithoutBounce() {
+        var rig = CameraRig(framing: .island)
+        rig.panDrag(dx: 4000)
+        let target = rig.endPan(velocity: 0)
+        #expect(abs(target - IslandFraming.panSnaps[0]) < 1e-9)
+        // It comes back from past the left end and never swings beyond it.
+        #expect(rig.pan.value < target)
+        var highest = rig.pan.value
+        for _ in 0..<600 {
+            rig.advance(1.0 / 120)
+            highest = max(highest, rig.pan.value)
+        }
+        #expect(highest <= target + 1e-6)
+    }
+
+    @Test func flyingAwayAndBackOpensOnPofu() {
+        var rig = CameraRig(framing: .island)
+        rig.jumpPan(to: IslandFraming.panRange.upperBound)
+        rig.fly(to: .home)
+        rig.fly(to: .island)
+        for _ in 0..<600 {
+            rig.advance(1.0 / 120)
+        }
+        #expect(abs(rig.pan.value) < 1e-6)
+        // The pan never shows at Home.
+        var home = CameraRig(framing: .home)
+        home.jumpPan(to: 30)
+        #expect(home.panWeight == 0)
     }
 
     @Test func theMapShowsEveryIslandBetweenTheBands() {

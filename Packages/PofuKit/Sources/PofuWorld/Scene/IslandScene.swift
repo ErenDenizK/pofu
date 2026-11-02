@@ -32,6 +32,7 @@ public struct IslandScene<Bubble: View>: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.worldLook) private var look
+    @Environment(\.worldStillFrame) private var still
     @State private var safeTop: Double = 59
 
     /// - Parameters:
@@ -132,7 +133,7 @@ public struct IslandScene<Bubble: View>: View {
                     .onChanged { value in
                         model.peekChanged(dx: Double(value.translation.width), dy: Double(value.translation.height))
                     }
-                    .onEnded { _ in model.peekEnded() }
+                    .onEnded { value in model.peekEnded(velocityX: Double(value.velocity.width)) }
             )
         }
         .ignoresSafeArea()
@@ -154,6 +155,14 @@ public struct IslandScene<Bubble: View>: View {
             if look.hd2d {
                 model.beginLookVisit()
             }
+            // Arriving at the Island: the establishing shot of the whole
+            // island, then the pan view centred on Pofu.
+            if !still {
+                model.establish()
+            }
+        }
+        .onChange(of: look.tuning.springs, initial: true) { _, springs in
+            model.cameraSprings = springs
         }
         .sensoryFeedback(.selection, trigger: model.projectedFraming)
         .accessibilityElement(children: .contain)
@@ -267,10 +276,10 @@ private struct SceneFrame<Bubble: View>: View {
         let z = rig.railPosition
         // Depth in motion (HD-2D): while the camera moves, layers parallax
         // by depth and the depth of field strengthens; both settle to zero.
-        let motion = look.hd2d && look.depthMotion && !model.reduceMotion ? rig.motion : CameraMotion.still
+        let motion = look.hd2d && look.depthMotion && !model.reduceMotion ? rig.motion.parallax(look.tuning.parallax) : CameraMotion.still
         let lookPoint = WorldPoint(x: pose.lookX, y: pose.lookY)
         // HD-2D's tilt-shift: the depth lens, stronger per framing.
-        let lens = DepthMotion.lens(look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z)) : rig.lens, motion: motion)
+        let lens = DepthMotion.lens(look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z, island: look.tuning.tiltShiftIsland, home: look.tuning.tiltShiftHome)) : rig.lens, motion: motion)
         let peek = rig.peekTilt
         let device = model.deviceTilt
         let tilt = (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
@@ -372,7 +381,7 @@ private struct SceneFrame<Bubble: View>: View {
                     bubble: bubble
                 )
 
-                CloudSea(colours: sea, offset: offset, rise: CloudSea.rise(z: z))
+                CloudSea(colours: sea, offset: offset, rise: CloudSea.rise(z: z, pose: pose, height: Double(size.height)))
                     .environment(\.worldAmbientPaused, ambientPaused)
                     .animation(animation, value: sea)
 
@@ -392,7 +401,8 @@ private struct SceneFrame<Bubble: View>: View {
                         motion: motion,
                         focus: lens.focus,
                         tilt: tilt,
-                        art: look.art
+                        art: look.art,
+                        litOverlays: look.litOverlays
                     )
                 }
             }

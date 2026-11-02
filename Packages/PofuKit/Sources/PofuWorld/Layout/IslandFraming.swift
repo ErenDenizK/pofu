@@ -5,16 +5,15 @@ import PofuCore
 /// (ADR-0018; interaction spec §1.2). Pure, so the numbers are tested
 /// instead of eyeballed.
 ///
-/// **The Island framing (look round 3).** The island is the hero: the
-/// plate, tip to tip, fills `islandFill` (88 %) of the width with nothing
-/// cropped, and the island's whole content box (the tallest station down
-/// to the roots) is centred between the top chrome and the bottom band.
-/// Round 2 fitted the station row instead, so the small plate's tips bled
-/// off and the island filled barely half the band; with the large plate
-/// every station sits inside the lawn, so the plate is what to fit. A
-/// phone is twice as tall as the plate's silhouette is wide, so the band
-/// above and below the island is composed, not left empty: far isles in
-/// the haze above, the cloud sea rising to the roots below (`FarSky`).
+/// **The Island framing (look round 4).** The world is not shrunk to fit:
+/// Pofu is 80 pt (×1.25) and a horizontal drag pans across the island,
+/// tip to tip, with momentum, rubber-banded ends and snap points at each
+/// station and at Pofu; it opens centred on Pofu. Round 3 fitted the whole
+/// plate to 88 % of the width, which made every station tiny; that view is
+/// now the establishing shot on arrival (`wholeStop`) and what a pinch out
+/// passes through. Vertically the island's box (the tallest station down
+/// to the roots) is centred between the top chrome and the bottom band;
+/// far isles fill the sky above it and the cloud sea rises to its roots.
 ///
 /// **Home** keeps ADR-0018's balanced diorama: Pofu 154 pt wide (×2.4),
 /// his feet at 600 pt, nudged sideways so Mochi and Fındık are whole or
@@ -120,10 +119,10 @@ public enum IslandFraming {
         max(height - topBand - bottomBand, 1)
     }
 
-    /// The Island framing for a viewport: the plate fills `islandFill` of
-    /// the width (or the island fills the band, whichever is smaller), and
-    /// the island's box is centred in the band.
-    public static func islandStop(width: Double, height: Double) -> CameraRail.Stop {
+    /// The whole island (round 3's Island framing, now the establishing
+    /// shot): the plate fills `islandFill` of the width (or the island fills
+    /// the band, whichever is smaller), the island's box centred in the band.
+    public static func wholeStop(width: Double, height: Double) -> CameraRail.Stop {
         let plate = plateBox
         let island = islandBox
         let scale = min(width * islandFill / max(plate.width, 1), bandHeight(height: height) / max(island.height, 1))
@@ -132,6 +131,57 @@ public enum IslandFraming {
             look: WorldPoint(x: plate.midX, y: island.midY),
             anchorY: bandMid(height: height)
         )
+    }
+
+    /// The Island framing (look round 4): the world at `islandScale`, so
+    /// Pofu is at least 80 pt, the island's box centred between the bands
+    /// and the camera centred on Pofu. A horizontal drag pans across it
+    /// (`CameraRig.panDrag`) between `panRange`'s ends, settling on
+    /// `panSnaps`. Round 3 shrank the world to fit the whole plate; that
+    /// view is now the establishing shot (`wholeStop`).
+    public static func islandStop(width: Double, height: Double) -> CameraRail.Stop {
+        let island = islandBox
+        let scale = min(islandScale * width / CameraRail.referenceWidth, bandHeight(height: height) / max(island.height, 1))
+        return CameraRail.Stop(
+            scale: scale,
+            look: WorldPoint(x: islandLookX, y: island.midY),
+            anchorY: bandMid(height: height)
+        )
+    }
+
+    /// Points per world unit at the Island framing, at the reference width:
+    /// Pofu's 64 units at 80 pt.
+    public static let islandScale = 1.25
+
+    /// The Island stop's look x range at the reference width: the plate's
+    /// tips reach the screen's edges at either end, never past them.
+    public static var lookRange: ClosedRange<Double> {
+        let half = CameraRail.referenceWidth / 2 / islandScale
+        let lo = plateBox.minX + half, hi = plateBox.maxX - half
+        return lo <= hi ? lo...hi : plateBox.midX...plateBox.midX
+    }
+
+    /// The Island stop's look x: Pofu, kept inside `lookRange`.
+    public static var islandLookX: Double {
+        min(max(IslandLayout.pofu.x, lookRange.lowerBound), lookRange.upperBound)
+    }
+
+    /// The pan (world units off the Island stop's look x) for a look x.
+    public static func panValue(lookX: Double) -> Double {
+        min(max(lookX, lookRange.lowerBound), lookRange.upperBound) - islandLookX
+    }
+
+    /// The pan's range: tip to tip.
+    public static var panRange: ClosedRange<Double> {
+        (lookRange.lowerBound - islandLookX)...(lookRange.upperBound - islandLookX)
+    }
+
+    /// Where a released pan settles: centred on each station (or as close
+    /// as the ends allow) and on Pofu.
+    public static var panSnaps: [Double] {
+        let xs = IslandLayout.stationAnchors.values.map(\.x) + [IslandLayout.pofu.x]
+        let snaps = Set(xs.map { (panValue(lookX: $0) * 100).rounded() / 100 })
+        return snaps.sorted()
     }
 
     /// How much of the band's height the island box fills at `scale`.
