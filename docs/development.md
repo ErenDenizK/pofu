@@ -88,7 +88,10 @@ subsystem (categories `intent`, `hop`, `economy`, `persistence`,
 
 Until the paid Apple Developer membership is active, the app runs on device
 with a free Personal Team. Screen Time features are simulated in this mode
-([ADR-0003](adr/0003-modular-architecture-and-screen-time-boundary.md)).
+([ADR-0003](adr/0003-modular-architecture-and-screen-time-boundary.md)):
+see [Rehearsal mode](#rehearsal-mode-the-free-build). The founder's
+step-by-step guide, in Turkish, is
+[docs/local/ucretsiz-kurulum.md](local/ucretsiz-kurulum.md).
 
 1. Xcode, Settings, Accounts: add your Apple ID. Select it and note the
    **Personal Team** ID (10 characters).
@@ -132,13 +135,13 @@ The project has two app targets and two schemes, built from the same
 
 | Scheme | Signs with | Entitlements | Extensions | Screen Time |
 |---|---|---|---|---|
-| **Pofu** (default) | A free Personal Team or the paid team | None | None | Off: the Shortcuts soft gate only |
+| **Pofu** (default) | A free Personal Team or the paid team | None | None | Simulated: [Rehearsal mode](#rehearsal-mode-the-free-build) |
 | **PofuLive** | The paid team only | Family Controls, App Group `group.com.erendenizk.pofu` | Shield configuration, shield action, device activity monitor | On: permission plus picker, the shield, measured usage ([ADR-0013](adr/0013-zero-setup-default-gate.md)) |
 
 `PofuLive` also sets the compilation condition `POFU_SCREEN_TIME_LIVE`, which
 is the only switch in the code (`ScreenTimeGate.isLiveBuild`). Without it,
 the app never touches FamilyControls, ManagedSettings, or DeviceActivity at
-run time, so the free build behaves exactly as before. A free Personal Team
+run time; the free build runs the gate in Rehearsal mode instead. A free Personal Team
 cannot sign the Family Controls entitlement, which is why the entitlements
 and extensions live only in `PofuLive` and never in the default scheme.
 
@@ -187,7 +190,38 @@ How the live gate works:
   event log on every foreground. The app writes the shield state
   (`Pofu/screen-time-gate.json`) for the monitor to rebuild shields.
 
+## Rehearsal mode: the free build
+
+Rehearsal mode (Prova modu) is the Screen Time product with the system
+parts simulated inside the app, so the whole day-1 loop runs on a free
+Personal Team. It is the default in the **Pofu** scheme and a developer
+toggle (Settings, Developer), off by default, in **PofuLive**. The toggle
+applies from the next launch.
+
+- **Onboarding** is gate v2's (O1 to O8), with labelled stand-ins for
+  Apple's Screen Time alert and app picker; notifications are real. The
+  Shortcuts setup is reachable only from Settings.
+- **The Prova panel** (glass, draggable, collapsible) reaches for
+  Instagram, YouTube or TikTok. A reach shows a replica of the shield
+  drawn by `ShieldExtensionCore`, the code the shield extensions run, in
+  the extension's colors and icon (`Extensions/Shared`). Its buttons write
+  the same inbox records, so ingestion, the event log and the game take
+  them in exactly as live. "Pofu'yla aç" posts the real local
+  notification, which opens Hop!; a pass hands off to a stand-in of the
+  app, and the shield returns when the pass ends.
+- **Time controls:** "+15 dk kullanım" crosses the usage thresholds
+  through `SimulatedScreenTimeService`; "1 saat ileri" and "Gece/Sabah"
+  move a saved clock offset as time away from Pofu (inside an app, only up
+  to the moment the shield returns); "Sıfırla" starts over.
+- **Honesty:** Rehearsal mode keeps its own store
+  (`Application Support/Pofu-Rehearsal`), never the App Group, and tags
+  every event it logs `simulated`. The developer readout filters the log
+  by source and labels simulated numbers.
+
 ## Use Pofu daily (free account)
+
+These Shortcuts steps apply with Rehearsal mode turned off (Settings,
+Developer).
 
 The soft gate works without the paid membership: a Shortcuts automation
 runs Pofu's **Hop in** action whenever a guarded app opens

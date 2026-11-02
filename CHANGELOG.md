@@ -9,6 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Rehearsal mode (Prova modu): the Screen Time product on the free build,
+  with the system parts simulated in the app. It is the default in the
+  `Pofu` scheme and a developer toggle, off by default, in `PofuLive`.
+  Onboarding is gate v2's O1 to O8 with labelled stand-ins for Apple's
+  Screen Time alert and app picker. A glass, draggable Prova panel reaches
+  for Instagram, YouTube or TikTok: a replica of the shield, drawn by the
+  new `ShieldExtensionCore` that the shield extensions now share, answers
+  "Boş ver", the 3-minute quick check, "Pofu'yla aç" (a real local
+  notification that opens Hop!), the breath past the daily hour, and the
+  shield's return when a pass ends, through the real inbox, ingestion,
+  event log and game. Time controls: "+15 dk kullanım", "1 saat ileri",
+  "Gece/Sabah", "Sıfırla". Rehearsal mode keeps its own store and tags
+  every event `simulated` (`EventSource` on `LoggedEvent`); the developer
+  readout filters by source. The founder's install guide in Turkish is
+  `docs/local/ucretsiz-kurulum.md`.
+
 - Art batches 03 and 04 for Codex (open): `batch-03-home-island`
   completes Ayçiçeği for stages 1–5 (lily pond, workshop and windmill
   L1–L5, garden L3–L5, simit cart L2–L5, `mochi-v2` without Pofu's curl,
