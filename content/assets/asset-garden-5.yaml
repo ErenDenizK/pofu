@@ -4,21 +4,21 @@ title_tr: garden-5
 title_en: garden-5 (station)
 status: in-production
 horizon: now
-summary: >-
-  Add one giant sunflower rising from the center back of the bed, behind the arch and taller
-  than it: a thick soft stem with three broad leaves and one big round head of honey-yellow
-  petals around a warm brown center, facing up and to the left toward the light. The head
-  stays inside the canvas with a clear margin at the top.
+summary: Make the central sunflower giant inside the existing arch opening; the arch,
+  bunting, fence, other flowers and bed width stay unchanged.
 links:
   variant_of:
   - asset-garden-4
 art:
-  images: []
+  images:
+  - design/art/stations/garden-5/garden-5.webp
   jobs:
   - batch-03-home-island:garden-5
   - batch-05-fixes-pilot:garden-5
 notes:
 - Batch 03 skipped it; batch 05 redoes it (docs/design/art-production-plan.md).
+- 'Batch 05 pilot take 1 promoted: no top warning, width864px (parent861px), lock
+  load0.7074. Take2 failed edit_chroma. Raw retained.'
 sources:
 - doc: tools/imagegen/manifest/batch-03-home-island.yaml
 - doc: tools/imagegen/manifest/batch-05-fixes-pilot.yaml
