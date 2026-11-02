@@ -3714,6 +3714,65 @@
    "source": "design/art/stations/workshop-4/workshop-4.png",
    "source_sha": "9044ac9e4e998e5e"
   },
+  "workshop-5": {
+   "after": {
+    "C_mean": 37.356,
+    "C_p50": 39.254,
+    "C_p95": 52.172,
+    "L_mean": 74.115,
+    "L_p2": 54.481,
+    "L_p98": 87.593,
+    "detail": 1.858,
+    "edge": 0.426,
+    "tint_a": 5.927,
+    "tint_b": 12.31,
+    "warmth_b": 34.578
+   },
+   "before": {
+    "C_mean": 26.237,
+    "C_p50": 26.049,
+    "C_p95": 47.486,
+    "L_mean": 74.118,
+    "L_p2": 54.481,
+    "L_p98": 87.612,
+    "detail": 1.824,
+    "edge": 0.426,
+    "tint_a": 4.313,
+    "tint_b": 9.408,
+    "warmth_b": 24.326
+   },
+   "chain": {
+    "C_p50": 39.248,
+    "L_p2": 53.663,
+    "L_p98": 90.444
+   },
+   "correction": {
+    "black": 0.0,
+    "ceiling": 44.9,
+    "chroma": 1.507,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": false,
+   "kind": "station",
+   "matched_to": "world",
+   "outliers_after": [
+    "edge"
+   ],
+   "outliers_before": [
+    "chain_C_p50",
+    "edge"
+   ],
+   "ppu": 8.533,
+   "reference": false,
+   "score_after": 85.3,
+   "score_before": 60.6,
+   "shipped": false,
+   "source": "design/art/stations/workshop-5/workshop-5.png",
+   "source_sha": "7c6835dc23044924"
+  },
   "workshop-standin": {
    "after": {
     "C_mean": 36.425,
