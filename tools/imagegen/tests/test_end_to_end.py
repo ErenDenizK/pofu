@@ -149,6 +149,17 @@ class EndToEnd(unittest.TestCase):
         checks = {c["check"]: c for c in report["checks"]}
         self.assertEqual(checks["edit_stability"]["status"], "pass")
 
+        # parallel mode: promote --only touches only the named job
+        data = rv.load_review(review_path)
+        data["jobs"]["cay-2"]["pick"] = 1
+        rv.save_review(review_path, data, "e2e.yaml")
+        code, out = self.cli("promote", *m, "--only", "cay-1")
+        self.assertEqual(code, 0, out)
+        self.assertFalse((pl.ART_ROOT / "stations" / "cay-2" / "cay-2.png").exists())
+        code, out = self.cli("promote", *m, "--only", "cay-2")
+        self.assertEqual(code, 0, out)
+        self.assertTrue((pl.ART_ROOT / "stations" / "cay-2" / "cay-2.png").exists())
+
     def test_limit_stops_the_run(self):
         os.environ["STUB_IMAGE"] = str(save(stall(), self.tmp / "l1.png"))
         os.environ["STUB_MODE"] = "limit"

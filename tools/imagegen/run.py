@@ -390,8 +390,11 @@ def cmd_promote(args, config, m: pl.Manifest) -> int:
     presets = json.loads(sl.PRESETS_PATH.read_text(encoding="utf-8"))
     inbox, out_dir = pl.inbox_dir(config, m.batch), pl.build_dir(config, m.batch)
     changed = False
+    only = set(getattr(args, "only", None) or [])
     for job_id, pick in rv.decisions(review).items():
         if not isinstance(pick, int):
+            continue
+        if only and job_id not in only:  # parallel tasks promote only their own job
             continue
         job = m.job(job_id)
         entry = review["jobs"][job_id]
@@ -492,6 +495,7 @@ def build_parser() -> argparse.ArgumentParser:
     sp = add("post", "style-lock and QA every take, build the contact sheet and the review file")
     sp.add_argument("--only", nargs="+")
     sp = add("promote", "copy approved takes to design/art/{masters,stations,ui}")
+    sp.add_argument("--only", nargs="+", help="job ids (parallel mode: promote only this task's job)")
     sp.add_argument("--force", action="store_true")
     sp = add("palette-card", "render a palette card from tokens or palettes.json", manifest=False)
     sp.add_argument("--palette", required=True)
