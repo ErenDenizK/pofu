@@ -193,15 +193,22 @@ struct CloudSea: View {
                         // A back row of lobes at the risen top, and the
                         // bank filling down to the front row.
                         strip(copies: copies)
-                            .opacity(0.9)
                             .offset(x: CGFloat(-backDrift) + offset.width * 1.1, y: CGFloat(-rise) + offset.height * 0.3)
+                        // The bank between the rows: it fades in under the
+                        // back row's lobes, so no edge shows, and stays
+                        // light until the front row.
                         LinearGradient(
-                            colors: [palette.cloudLight.color.opacity(0.9), palette.cloudShade.color.opacity(0.95)],
+                            stops: [
+                                .init(color: palette.cloudLight.color.opacity(0), location: 0),
+                                .init(color: palette.cloudLight.color.opacity(0.97), location: 0.3),
+                                .init(color: palette.cloudLight.color.opacity(0.97), location: 0.75),
+                                .init(color: palette.cloudShade.color.opacity(0.6), location: 1),
+                            ],
                             startPoint: .top,
                             endPoint: .bottom
                         )
-                        .frame(width: size.width + 120, height: CGFloat(rise) + 20)
-                        .offset(x: -60, y: CGFloat(-Self.height * 0.25) + offset.height * 0.35)
+                        .frame(width: size.width + 120, height: CGFloat(rise) + 90)
+                        .offset(x: -60, y: CGFloat(-Self.height * 0.35) + offset.height * 0.35)
                     }
                     strip(copies: copies)
                         .offset(x: CGFloat(-drift) + offset.width * 1.25, y: offset.height * 0.4)
