@@ -131,6 +131,10 @@ struct HD2DLayer: View {
     let size: CGSize
     /// Seconds; frozen while the scene is settled.
     let time: Double
+    /// The camera's motion and the lens focus, so the glows ride with
+    /// their objects during depth in motion.
+    var motion: CameraMotion = .still
+    var focus: Double = 0
 
     var body: some View {
         Canvas(rendersAsynchronously: false) { context, size in
@@ -213,7 +217,14 @@ struct HD2DLayer: View {
                (world.stations.first(where: { $0.id == station })?.level ?? 0) == 0 { continue }
             let k = emitter.strength(in: light)
             guard k > 0.02 else { continue }
-            let p = screen(emitter.point)
+            let m = DepthMotion.shift(
+                point: emitter.point,
+                depth: IslandLayout.depth(ofY: emitter.point.y),
+                focus: focus,
+                look: WorldPoint(x: pose.lookX, y: pose.lookY),
+                motion: motion
+            )
+            let p = screen(WorldPoint(x: emitter.point.x + m.x, y: emitter.point.y + m.y))
             // A wide halo and a tight core: bloom, not a lamp shade.
             for (radius, opacity) in [(emitter.radius * 3.2, 0.30), (emitter.radius, 0.75)] {
                 let r = max(radius * s, 2)
