@@ -26,6 +26,7 @@ public struct CompanionView: View {
     public var onTap: (@MainActor () -> Void)?
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.companionBlinks) private var blinks
     @State private var driver = CompanionDriver()
     @State private var taps = 0
 
@@ -61,7 +62,8 @@ public struct CompanionView: View {
                             at: context.date,
                             vitality: vitality,
                             energy: energy,
-                            reduceMotion: reduceMotion
+                            reduceMotion: reduceMotion,
+                            blinks: blinks
                         )
                     )
                 }
@@ -91,6 +93,12 @@ public struct CompanionView: View {
     }
 }
 
+extension EnvironmentValues {
+    /// Whether Pofu blinks on his own. Screenshot rendering turns it off
+    /// so a frame never catches him mid-blink.
+    @Entry public var companionBlinks: Bool = true
+}
+
 /// Owns the motion simulation across view updates and advances it with
 /// the display clock. Deliberately not observable: the timeline redraws
 /// every frame anyway, and mutating it while rendering must not schedule
@@ -100,7 +108,7 @@ final class CompanionDriver {
     private var motion = CompanionMotion()
     private var lastDate: Date?
 
-    func pose(at date: Date, vitality: Double, energy: Double, reduceMotion: Bool) -> CompanionPose {
+    func pose(at date: Date, vitality: Double, energy: Double, reduceMotion: Bool, blinks: Bool = true) -> CompanionPose {
         if lastDate == nil {
             // Start settled at the given state, without a gulp or a slow
             // fade-in on first appearance.
@@ -109,6 +117,7 @@ final class CompanionDriver {
         let elapsed = lastDate.map { date.timeIntervalSince($0) } ?? 0
         lastDate = date
         motion.reduceMotion = reduceMotion
+        motion.blinks = blinks
         motion.vitality = vitality
         motion.energy = energy
         motion.step(elapsed)
