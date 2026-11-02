@@ -805,7 +805,13 @@ final class GardenScene: SKScene {
     func setCardShown(_ shown: Bool) {
         guard let pofu = residents?.pofu.root else { return }
         pofu.removeAction(forKey: "card")
-        pofu.run(.fadeAlpha(to: shown ? 0 : 1, duration: reduceMotion ? 0 : 0.2), withKey: "card")
+        // Gone the instant the card (with its own Pofu) arrives, so he is
+        // never seen twice; back with a short fade.
+        if shown {
+            pofu.alpha = 0
+        } else {
+            pofu.run(.fadeAlpha(to: 1, duration: reduceMotion ? 0 : 0.2), withKey: "card")
+        }
     }
 
     // MARK: Screenshots and previews
