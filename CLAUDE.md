@@ -96,5 +96,10 @@ the project's persistent memory; keep it accurate and concise.
   `docs/local-agent.md` and reports through `local/*` PRs. Remote Control
   from cloud to the Mac folder was attempted on 2026-11-01 and was not
   available.
+- **How the founder reviews work (2026-11-02):** everything ships native, so
+  do not send him web prototypes or artifacts to try. Test in the agent
+  environment (Playwright, renders) and send him screenshots or short videos
+  with SendUserFile. Web prototypes remain an internal tool for deciding,
+  never the founder's review surface; feel is tuned natively on his iPhone.
 - The founder has authorized the agent to merge PRs. Use merge commits for
   clean histories, and merge only with green CI.
