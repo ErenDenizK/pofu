@@ -127,9 +127,11 @@ class EndToEnd(unittest.TestCase):
         code, out = self.cli("promote", *m)
         self.assertEqual(code, 0, out)
         master = pl.ART_ROOT / "stations" / "cay-1"
-        self.assertTrue((master / "cay-1.png").exists() and (master / "raw.png").exists())
+        self.assertTrue((master / "cay-1.png").exists() and (master / "raw.webp").exists())
+        self.assertFalse((master / "raw.png").exists())
         meta = json.loads((master / "meta.json").read_text())
         self.assertEqual(meta["take"], 2)
+        self.assertEqual(meta["raw_encoding"], "webp lossless")  # a small test take fits
         self.assertEqual(meta["account"]["owner"], "Test Owner (founder)")
         self.assertIn("Generating account:** Test Owner (founder)", (master / "provenance.md").read_text())
         self.assertTrue(meta["registration"])  # the chain root was put on the anchor

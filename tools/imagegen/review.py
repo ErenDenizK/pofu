@@ -181,7 +181,7 @@ def provenance_md(job: pl.Job, meta: dict) -> str:
   generated {meta['generation'].get('generated_at') or 'unknown'}.
 - **Post-processing (human-authored, documented per art bible section 13):**
   canvas fit, {('registration ' + json.dumps(meta['registration']) + ', ') if meta.get('registration') else ''}{('alignment to the parent level ' + json.dumps(meta['alignment']) + ', ') if meta.get('alignment') else ''}style lock preset `{meta['style_lock']['preset']}` (style_lock.json v{meta['style_lock']['version']}).
-- **Files:** `raw.png` is the take as generated; `{Path(meta['image']).name}` is the locked master the app and later edits use.
+- **Files:** `{Path(meta.get('raw') or 'raw.webp').name}` is the take as generated ({meta.get('raw_encoding') or 'as generated'}), kept so the look can be re-locked; `{Path(meta['image']).name}` is the locked master the app and later edits use.
 - **Review note:** {meta.get('note') or '(none)'}
 
 ## References

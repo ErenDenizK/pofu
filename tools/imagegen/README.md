@@ -19,7 +19,8 @@ promote the approved take with full provenance.
 | `pipeline.py` | Manifest model and validation, prompt composition, paths, fingerprints |
 | `backends.py` | `codex` (with the one marked adapter block), `openai-api` (key guard, cost estimate), `manual` |
 | `qa.py` | Normalization (keying, canvas fit, station registration, edit alignment) and every QA check |
-| `style_lock.py`, `style_lock.json` | The style lock and its presets (`soft-lock` is the recommendation) |
+| `style_lock.py`, `style_lock.json` | The style lock and its presets (`lock-light` is the default; `soft-lock` was until 2026-11-02) |
+| `relock.py` | Re-locks an approved master from its kept raw with another preset (no regeneration) |
 | `review.py` | Contact sheets, the review file, provenance |
 | `palettes.json` | The `world-props` palette (extends `design/tokens/pofu-tokens.json` for drift checks) |
 | `config.yaml` | Account, paths, rate limits, backends, reference aliases, palettes per kind |

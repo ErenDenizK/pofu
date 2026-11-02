@@ -187,9 +187,12 @@ So, for every task and every push:
 - **Takes are lossy WebP at quality 90:**
   `python3 -I -c "from PIL import Image; Image.open('<take>.png').save('<take>.webp', 'WEBP', quality=90, method=6)"`.
   A 1536 × 1024 take is about 70 to 90 KB.
-- **`raw.png` is uploaded only if it is under 600 KB.** Otherwise leave it
-  out of the commit and write "raw.png not uploaded (over 600 KB); the q90
-  takes are the record" in the job's `review.yaml`.
+- **The raw is never dropped.** `promote` keeps the unlocked take as
+  `raw.webp` in the master folder: lossless WebP when that is under
+  600 KB, otherwise lossy WebP q95 (q92 or q90 only if q95 does not fit).
+  Always commit it. The style lock is a choice that can be redone only
+  from the raw (`tools/imagegen/relock.py`); a master folder without a
+  raw fails `check_upload.py`.
 - **The master stays lossless.** If `<name>.png` is under 600 KB, upload
   it. If not, upload a lossless WebP twin `<name>.webp` in the same folder
   instead of the PNG
@@ -206,7 +209,8 @@ So, for every task and every push:
   ```
 
   It fails a file that is 600 KB or more, differs from your local copy, or
-  does not decode. Fix and re-push before you start the next job. (Batch
+  does not decode, and a master folder (one with a `meta.json`) that keeps
+  no `raw.webp`. Fix and re-push before you start the next job. (Batch
   01 masters already on `main` decode and may stay as they are.)
 
 ## Next batches (2026-11-02): finish 01, then 03 and 04
@@ -226,8 +230,9 @@ and is auto-picked by QA (steps above); the founder reviews afterwards.
   larger; Mochi has no curl on her head, it is Pofu's alone).
 - **Repair the truncated uploads** on that branch: every `*.webp` take and
   every `raw.png` there is cut off. Re-upload the takes as lossy WebP q90
-  from the original files, re-upload a `raw.png` only if it is under
-  600 KB and delete the others, then run `check_upload.py` on each job's
+  from the original files, keep every raw as `raw.webp` (lossless under
+  600 KB, otherwise q95; see Uploads) and delete the broken `raw.png`
+  files, then run `check_upload.py` on each job's
   folders. If the originals are gone (a new container), delete the broken
   files and say so in the PR.
 
@@ -326,7 +331,9 @@ From the founder (2026-11-01) and the lead:
 - **Art direction:** [art-direction study](docs/design/art-direction-study.md).
   Matte, chunky, high-key props; one light from the upper left; the
   island's low camera (about 20°, ground ellipses 0.3 tall : wide); no
-  grain, no outlines; the `soft-lock` style lock; Pofu is never locked.
+  grain, no outlines; the `lock-light` style lock (since 2026-11-02: saturation
+  and contrast are graded at runtime by the app, so the files stay near
+  neutral; `soft-lock` remains for comparison); Pofu is never locked.
 - **Proportion B:** a balanced diorama, Pofu about 20 % of the screen
   width, the world about 70 % of the height.
 - **Glass++ (ADR-0018):** native iOS glass plus illustrated UI art.
