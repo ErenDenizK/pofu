@@ -1,0 +1,20 @@
+id: asset-cloud-4
+type: asset
+title_tr: cloud-4
+title_en: cloud-4 (world)
+status: in-production
+horizon: now
+summary: >-
+  One long, low, flat cloud for the same sky, on its own: a slim, horizontal band of soft
+  billows, about five times as wide as it is tall, slightly thicker in the middle and thinning
+  to soft, rounded ends. Centered, filling about 85% of the image width, with a clear transparent
+  margin.
+art:
+  images: []
+  jobs:
+  - batch-04-sky:cloud-4
+sources:
+- doc: tools/imagegen/manifest/batch-04-sky.yaml
+kind: world
+batch: batch-04-sky
+size: 1536x1024

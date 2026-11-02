@@ -1,0 +1,22 @@
+id: asset-icon-seed
+type: asset
+title_tr: icon-seed
+title_en: seed (icon)
+status: planned
+horizon: later
+summary: >-
+  The icon for seeds, the game's one currency: a single plump sunflower seed seen at a slight
+  angle, a soft warm-brown shell with two broad cream stripes, its tip pointing up and to
+  the right.
+notes:
+- >-
+  Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
+  and cay-1 approved
+art:
+  images: []
+  jobs:
+  - batch-02-ui:icon-seed
+sources:
+- doc: tools/imagegen/manifest/batch-02-ui.yaml
+kind: icon
+batch: batch-02-ui

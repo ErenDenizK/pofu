@@ -1,0 +1,17 @@
+id: moment-access-revoked
+type: moment
+title_tr: Kapıda değilim
+title_en: Not at the door
+status: in-app
+horizon: now
+summary: >-
+  Screen Time access revoked: a native banner "Kapıda değilim · Ekran Süresi izni kapalı"
+  with Düzelt; a status sheet with "İzni yeniden ver".
+links:
+  part_of:
+  - sys-setup-repair
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#9-setup-health-and-repair'
+act: repair
+sequence: 20

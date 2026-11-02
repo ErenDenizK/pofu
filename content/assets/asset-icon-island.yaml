@@ -1,0 +1,21 @@
+id: asset-icon-island
+type: asset
+title_tr: icon-island
+title_en: island (icon)
+status: planned
+horizon: later
+summary: >-
+  The icon for an island: a tiny floating island, a flat soft sage lawn on a short, rounded
+  honey-earth underside, nothing on the lawn, no roots or with at most two chunky ones.
+notes:
+- >-
+  Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
+  and cay-1 approved
+art:
+  images: []
+  jobs:
+  - batch-02-ui:icon-island
+sources:
+- doc: tools/imagegen/manifest/batch-02-ui.yaml
+kind: icon
+batch: batch-02-ui

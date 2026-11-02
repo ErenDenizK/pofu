@@ -297,6 +297,23 @@ A track whose "Needs" is not pushed yet waits: fetch again every few
 minutes, and if it has not appeared after 30 minutes, stop and say so in
 the PR.
 
+## Pofu Atlas: one asset node per promoted master
+
+Content planning lives in `content/` and renders into Pofu Atlas
+([`content/README.md`](content/README.md)). For **each master you
+promote**, add an `asset` node or update its `art:`:
+
+1. After `run.py promote`, run `python3 -I tools/content/sync_assets.py`.
+   It writes a stub `content/assets/asset-<job id>.yaml` for a new job and
+   adds the promoted image to `art.images` of an existing node.
+2. If the station, character or theme that uses the image does not link to
+   it yet, add `uses_asset: [asset-<job id>]` there (station levels already
+   name their asset).
+3. A take you reject but keep stays as a node with `status: cut` and a note
+   saying why; never delete a node.
+4. Run `python3 -I tools/content/validate.py` and commit the content change
+   in the same PR as the art.
+
 ## Decisions you must respect
 
 From the founder (2026-11-01) and the lead:

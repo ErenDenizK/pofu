@@ -1,0 +1,17 @@
+id: moment-yawn
+type: moment
+title_tr: Ada beklemede
+title_en: The island waits while we watch
+status: planned
+horizon: next
+summary: >-
+  Past 2 minutes in Pofu, he yawns once a day: "Biz bakarken ada beklemede. Telefonu bırakınca
+  devam eder."
+links:
+  part_of:
+  - sys-world-clock
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#77-growth-while-away-not-while-staring'
+act: day
+sequence: 50

@@ -1,0 +1,11 @@
+id: theme-spring
+type: theme
+title_tr: 'Bahar: çiçekler'
+title_en: Spring blossoms
+status: planned
+horizon: later
+summary: 'Free: blossoms on the islands in spring.'
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#9-seasons-and-events'
+kind: season

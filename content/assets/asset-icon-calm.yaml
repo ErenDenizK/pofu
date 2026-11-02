@@ -1,0 +1,22 @@
+id: asset-icon-calm
+type: asset
+title_tr: icon-calm
+title_en: calm (icon)
+status: planned
+horizon: later
+summary: >-
+  The icon for calm (huzur): a small, round, soft cloud resting on a slim crescent moon, both
+  chunky and simple, the moon in honey cream with a warm-brown shadow side, the cloud in milky
+  cream.
+notes:
+- >-
+  Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
+  and cay-1 approved
+art:
+  images: []
+  jobs:
+  - batch-02-ui:icon-calm
+sources:
+- doc: tools/imagegen/manifest/batch-02-ui.yaml
+kind: icon
+batch: batch-02-ui

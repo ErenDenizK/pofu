@@ -1,0 +1,25 @@
+id: char-bulut
+type: character
+title_tr: Bulut
+title_en: Bulut, the chinchilla
+status: planned
+horizon: later
+summary: A cloud-soft chinchilla who reads aloud to Pofu in Kitap's book house.
+notes:
+- >-
+  The early UX prototype had a chinchilla neighbor concept (neighbor-chinchilla).
+links:
+  inspired_by:
+  - asset-concept-chinchilla
+  related:
+  - station-book-house
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#8-residents-neighbors'
+kind: resident
+unlock:
+  day: 50
+  rule_en: Arrives with its station or island
+species_en: Chinchilla, cloud cream
+home: island-kitap
+station: station-book-house

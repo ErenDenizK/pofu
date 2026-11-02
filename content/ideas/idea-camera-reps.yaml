@@ -1,0 +1,11 @@
+id: idea-camera-reps
+type: idea
+title_tr: Kamera ile şınav sayma
+title_en: Camera rep counting
+status: cut
+horizon: maybe
+summary: On-device Vision rep counting as a bonus mode; retired with Phase 3.
+sources:
+- doc: docs/roadmap.md
+  anchor: '#phase-3-earn-for-real-rescoped'
+kind: feature

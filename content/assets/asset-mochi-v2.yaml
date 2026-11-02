@@ -1,0 +1,24 @@
+id: asset-mochi-v2
+type: asset
+title_tr: mochi-v2
+title_en: mochi-v2 (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached bunny, Mochi. Change only these two things: 1. Remove the single cream
+  curl of fur on top of her head completely. The top of her head becomes a smooth, softly
+  rounded dome of the same cream fur: no curl, no swirl, no tuft, no quiff of any kind. (That
+  curl belongs to Pofu, the hamster, alone.) 2. Make her two floppy ears longer and softer:
+  they hang from the top of her head down beside her face to ab…
+links:
+  variant_of:
+  - asset-mochi
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:mochi-v2
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: char
+batch: batch-03-home-island
+size: 1024x1536

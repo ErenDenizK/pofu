@@ -1,0 +1,17 @@
+id: moment-glance
+type: moment
+title_tr: Açmadan bak
+title_en: A glance without opening
+status: planned
+horizon: next
+summary: >-
+  The widget answers: mood, calm, "8 / 11", "38 / 60 dk", the island as it is. Never seeds
+  waiting.
+links:
+  part_of:
+  - sys-widgets
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#should-a-glance-need-the-app'
+act: day
+sequence: 10

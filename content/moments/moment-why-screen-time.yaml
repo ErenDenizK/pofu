@@ -1,0 +1,16 @@
+id: moment-why-screen-time
+type: moment
+title_tr: Neden Ekran Süresi
+title_en: Why Screen Time
+status: in-app
+horizon: now
+summary: >-
+  O2: three native rows on why Pofu needs Screen Time; nothing leaves the iPhone.
+links:
+  requires:
+  - sys-screen-time
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#o2-why-pofu-needs-screen-time-native'
+act: first-run
+sequence: 20

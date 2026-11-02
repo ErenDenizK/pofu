@@ -1,0 +1,34 @@
+id: sys-seeds
+type: system
+title_tr: Çekirdek
+title_en: Seeds
+status: in-production
+horizon: now
+summary: >-
+  World material, never a currency for screen time (ADR-0015). Sunflower seeds in Pofu's cheeks
+  and a jar by his door; a seed pill on the island and map views only, never on Home. Spent
+  by hand on the next designed level of a station.
+notes:
+- >-
+  Sources, week 1 (sim): stations ~90 %, Pofu's gathering 3–9 %, skips 1–2 %.
+- >-
+  Seeds/day in week 1: heavy 721, moderate 1,194, disciplined 1,778, never-opens 1,887.
+- 'A13: seeds never touch the gate; SeedsNeverBuyTimeTests on every rung.'
+- 'Whole archipelago: 1,944,103 seeds, a season-long horizon.'
+- >-
+  Risk: a visible number invites optimizing; that is why the seed pill is off Home.
+links:
+  feeds:
+  - sys-build
+  uses_asset:
+  - asset-icon-seed
+  - asset-jar-0
+  - asset-jar-1
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#seeds-tr-çekirdek'
+- doc: docs/adr/0015-care-over-currency.md
+group: economy
+board:
+  col: 6
+  row: 0

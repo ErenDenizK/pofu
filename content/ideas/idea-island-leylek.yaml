@@ -1,0 +1,23 @@
+id: idea-island-leylek
+type: idea
+title_tr: Leylek Adası
+title_en: Stork island (a migration island)
+status: idea
+horizon: maybe
+summary: >-
+  A seasonal island that returns every spring and autumn with the storks that cross the Bosphorus.
+  Ritual: during migration months a stork rests on the island after each calm night and leaves
+  one feather; feathers line Pofu's nest, in a fixed order. It arrives for everyone, stays
+  all year as a quiet nesting island, and the storks come back every season (A7: nothing is
+  missed).
+notes:
+- >-
+  Resident idea: Lale, an old stork who has seen every city and tells one line about it.
+- >-
+  Ties the archipelago to a real Turkish sky; postcards and feathers could share one wall.
+links:
+  related:
+  - sys-island-arrivals
+  - sys-rituals
+source: lead-brainstorm
+kind: island

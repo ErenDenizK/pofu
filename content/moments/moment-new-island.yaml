@@ -1,0 +1,21 @@
+id: moment-new-island
+type: moment
+title_tr: Gece yeni bir ada yanaştı
+title_en: A new island drifted close
+status: planned
+horizon: later
+summary: >-
+  An island drifts close overnight; the cloud pass carries the camera; the bubble: "Bak hele:
+  gece yeni bir ada yanaştı!" with "See the new island". The ferry route draws itself.
+links:
+  part_of:
+  - sys-island-arrivals
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+- doc: docs/adr/0018-visual-system-v1.md
+  anchor: '#decision'
+act: arc
+sequence: 70
+unlock:
+  day: 9

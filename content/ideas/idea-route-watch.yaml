@@ -1,0 +1,19 @@
+id: idea-route-watch
+type: idea
+title_tr: Bilekte nefes
+title_en: The breath on Apple Watch
+status: idea
+horizon: maybe
+summary: >-
+  The breathing break and the skip on Apple Watch: when a shield appears, the watch offers
+  "Pofu'yla nefes al" with a haptic breath. The watch never shows the island or seeds; it
+  only helps say no.
+notes:
+- >-
+  Needs research on whether a shield event can reach the watch; otherwise a manual quiet-time
+  start.
+links:
+  related:
+  - sys-guardrails
+source: lead-brainstorm
+kind: route

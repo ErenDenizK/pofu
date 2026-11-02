@@ -1,0 +1,26 @@
+id: asset-island-main-s
+type: asset
+title_tr: island-main-s
+title_en: island-main-s (world)
+status: in-app
+horizon: now
+summary: >-
+  Edit the attached floating island into a flatter, wider diorama for a cozy mobile game.
+  Change only its proportions and its lawn: - The lawn is a wide, flat, empty oval filling
+  about 85% of the image width, seen from a low camera about 20 degrees above the horizon,
+  so the oval is about 0.3 times as tall as it is wide. - The lawn is a soft, muted sage-to-spring
+  green, milky and pastel, painted as a smooth velvety surf…
+art:
+  images:
+  - design/art/masters/island-main-s/island-main-s.png
+  jobs:
+  - batch-01-slice:island-main-s
+sources:
+- doc: tools/imagegen/manifest/batch-01-slice.yaml
+kind: world
+batch: batch-01-slice
+size: 1536x1024
+links:
+  inspired_by:
+  - asset-test01-island-main-s-t1
+  - asset-test01-island-main-s-t2

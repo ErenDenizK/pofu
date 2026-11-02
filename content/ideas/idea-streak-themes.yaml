@@ -1,0 +1,15 @@
+id: idea-streak-themes
+type: idea
+title_tr: Seriyle açılan temalar
+title_en: Themes unlocked by streaks
+status: cut
+horizon: maybe
+summary: >-
+  Roadmap Phase 4 lists themes unlocked by streaks; it contradicts A4 and A19 (no consecutive-day
+  counts). Rewrite as cumulative milestones or drop.
+sources:
+- doc: docs/roadmap.md
+  anchor: '#phase-4-the-ecosystem'
+- doc: docs/product/app-game-boundary.md
+  anchor: '#76-streak-ethics'
+kind: feature

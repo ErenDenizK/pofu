@@ -1,0 +1,17 @@
+id: sys-depth-lens
+type: system
+title_tr: Derinlik merceği
+title_en: The depth lens
+status: in-app
+horizon: now
+summary: >-
+  Every object has a depth; blur grows with the distance from the focus plane, by cross-fading
+  pre-blurred variants. Shallow at Home on Pofu, a rack focus to whatever you touch. Contact
+  shadows, baked haze, parallax.
+sources:
+- doc: docs/design/interaction-spec.md
+  anchor: '#121-the-lens'
+group: visual
+board:
+  col: 8
+  row: 4

@@ -1,0 +1,20 @@
+id: asset-sun-glow
+type: asset
+title_tr: sun-glow
+title_en: sun-glow (prop)
+status: in-production
+horizon: now
+summary: >-
+  A soft sun glow for a calm pastel morning sky, on its own: a round, warm glow of pale honey
+  and cream light, brightest and almost cream-white in a small soft core at the center, fading
+  smoothly and evenly to fully transparent at its edge. No visible disc edge, no face, no
+  rays, no lens flare, no rings, no sparkle. Centered, the glow fading out before it reaches
+  the canvas edges.
+art:
+  images: []
+  jobs:
+  - batch-04-sky:sun-glow
+sources:
+- doc: tools/imagegen/manifest/batch-04-sky.yaml
+kind: prop
+batch: batch-04-sky

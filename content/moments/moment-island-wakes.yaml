@@ -1,0 +1,22 @@
+id: moment-island-wakes
+type: moment
+title_tr: Yakaladım! Ada uyanıyor
+title_en: Caught it! The island wakes
+status: in-app
+horizon: now
+summary: >-
+  O8: the first "Boş ver" wakes the island: the mist lifts, the first sunflower opens, Pofu
+  starts gathering. The first seed is planted by the first working gate. About 55 s from welcome
+  to a verified gate.
+links:
+  unlocks:
+  - island-aycicegi
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#o8-yakaladım-world'
+- doc: docs/product/app-game-boundary.md
+  anchor: '#93-first-run-the-island-wakes-with-the-first-hop'
+act: first-run
+sequence: 60
+unlock:
+  day: 0

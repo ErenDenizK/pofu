@@ -1,0 +1,20 @@
+id: asset-pond-2
+type: asset
+title_tr: pond-2
+title_en: pond-2 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add five round lily pads of soft sage green floating flat on the water, of different sizes,
+  each with one small notch.
+links:
+  variant_of:
+  - asset-pond-1
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:pond-2
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

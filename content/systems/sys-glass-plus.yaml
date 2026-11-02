@@ -1,0 +1,29 @@
+id: sys-glass-plus
+type: system
+title_tr: Glass++
+title_en: Glass++ visual system
+status: planned
+horizon: later
+summary: >-
+  Native glass for every control; painted art only as content: a painted domain icon family
+  (28 pt or larger, vector twins below), the seed jar and the calm lantern as world indicators,
+  painted widgets, a layered painted app icon.
+notes:
+- >-
+  Production waits for the friends beta (ADR-0018 amendment); now native glass and SF Symbols
+  only.
+- Painted icons must pass a legibility check at 24, 30 and 60 pt.
+links:
+  uses_asset:
+  - asset-icon-island
+  - asset-icon-cay
+  - asset-appicon-draft
+sources:
+- doc: docs/adr/0018-visual-system-v1.md
+  anchor: '#decision'
+- doc: docs/adr/0018-visual-system-v1.md
+  anchor: '#amendment-2026-11-01-timing-after-the-decision-audit'
+group: visual
+board:
+  col: 9
+  row: 4

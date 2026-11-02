@@ -1,0 +1,17 @@
+id: moment-collect
+type: moment
+title_tr: Topla
+title_en: Collect
+status: planned
+horizon: next
+summary: >-
+  A tactile, deterministic little payout: seeds arc into the jar. No cap, no expiry, never
+  a reason to collect now.
+links:
+  feeds:
+  - sys-seeds
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#32-the-visit-loop-the-same-shape-for-a-visit-and-for-the-minute'
+act: visit
+sequence: 30

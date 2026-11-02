@@ -1,0 +1,27 @@
+id: char-simit
+type: character
+title_tr: Simit
+title_en: Simit, the kitten
+status: planned
+horizon: later
+summary: >-
+  A honey tabby kitten who runs the simit cart and keeps the lighthouse at dusk. Loud, cheerful,
+  sells out by noon.
+notes:
+- The early UX prototype had a kitten neighbor concept (neighbor-kitten).
+links:
+  inspired_by:
+  - asset-concept-kitten
+  related:
+  - station-simit
+  - station-lighthouse
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#8-residents-neighbors'
+kind: resident
+unlock:
+  day: 9
+  rule_en: Arrives with its station or island
+species_en: Kitten, honey tabby
+home: island-iskele
+station: station-simit

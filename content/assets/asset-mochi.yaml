@@ -1,0 +1,29 @@
+id: asset-mochi
+type: asset
+title_tr: mochi
+title_en: mochi-base (char)
+status: in-app
+horizon: now
+summary: >-
+  Draw Mochi, a neighbor of the attached hamster character, in exactly the same art style,
+  lighting and level of fluff as the hamster. Same canvas rules as the hamster: full body,
+  sitting upright, front view, centered, feet on an invisible line at 88% of the height, about
+  62% of the canvas width. CHARACTER: Mochi, a baby lop-eared bunny whose body is a soft round
+  ball, creamy white with very faint warm-blush shading, t…
+notes:
+- >-
+  Has Pofu's curl on her head; batch 03's mochi-v2 removes it and replaces this master in
+  the app.
+art:
+  images:
+  - design/art/masters/mochi-base/mochi-base.png
+  jobs:
+  - batch-01-slice:mochi
+sources:
+- doc: tools/imagegen/manifest/batch-01-slice.yaml
+kind: char
+batch: batch-01-slice
+size: 1024x1536
+links:
+  inspired_by:
+  - asset-concept-bunny

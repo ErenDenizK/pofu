@@ -1,0 +1,20 @@
+id: asset-windmill-1
+type: asset
+title_tr: windmill-1
+title_en: windmill-1 (station)
+status: in-production
+horizon: now
+summary: >-
+  A small, stout windmill for the island diorama: a round, gently tapering tower of soft cream
+  and pale honey stones painted as broad, smooth shapes (no mortar lines), a small round wooden
+  door at its base, a rounded cap of caramel wood on top, and four bare sail frames on the
+  front of the cap arranged as an X, each sail a simple ladder of a few broad wooden slats,
+  no cloth yet. Friendly, toy-like proportions with few …
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:windmill-1
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

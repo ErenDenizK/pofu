@@ -1,0 +1,31 @@
+id: sys-soft-gate
+type: system
+title_tr: Kısayollar kapısı
+title_en: Shortcuts soft gate
+status: in-app
+horizon: now
+summary: >-
+  The pre-membership gate: a Shortcuts automation runs CheckInIntent when a guarded app opens
+  and Pofu comes forward with Hop!. Merged as soft gate v1 (#14).
+notes:
+- >-
+  The automation never fired on the founder's phone: he searched Shortcuts for the app instead
+  of opening the Automation tab (decision audit).
+- >-
+  Build for the membership (founder, 2026-11-02): the free Pofu target and the Shortcuts path
+  get no new features.
+- >-
+  Kept for Live Pofu (ADR-0013); setup guide v2 speaks the user's rule: "if Instagram opens,
+  Pofu hops in".
+links:
+  leads_to:
+  - sys-hop
+sources:
+- doc: docs/product/decision-audit.md
+  anchor: '#first-hand-evidence-how-the-setup-failed-founder-2026-11-01'
+- doc: docs/product/app-game-boundary.md
+  anchor: '#10-setup-and-repair-a-rule-in-the-users-words'
+group: gate
+board:
+  col: 0
+  row: 2

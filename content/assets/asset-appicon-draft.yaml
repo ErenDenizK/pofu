@@ -1,0 +1,22 @@
+id: asset-appicon-draft
+type: asset
+title_tr: appicon-draft
+title_en: pofu-draft (appicon)
+status: planned
+horizon: later
+summary: >-
+  Pofu's head and shoulders, big and centered, looking at the viewer with his content face,
+  filling about 70% of the icon, on a soft sky-blue to cream gradient background with nothing
+  else in it.
+notes:
+- >-
+  Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
+  and cay-1 approved
+art:
+  images: []
+  jobs:
+  - batch-02-ui:appicon-draft
+sources:
+- doc: tools/imagegen/manifest/batch-02-ui.yaml
+kind: appicon
+batch: batch-02-ui

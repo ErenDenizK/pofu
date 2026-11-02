@@ -14,8 +14,8 @@ permissions:
 
 jobs:
   # macOS minutes bill at 10x. Decide first, on a cheap Linux runner, whether
-  # anything that affects the Swift build changed; docs, design and Python
-  # tooling never need the macOS job.
+  # anything that affects the Swift build changed; docs, design, content and
+  # Python tooling never need the macOS job.
   changes:
     name: Detect what changed
     runs-on: ubuntu-latest
@@ -45,8 +45,8 @@ jobs:
           files="$(git diff --name-only "$BASE...$HEAD")"
           printf '%s\n' "$files"
           # Anything outside these paths can affect the app build.
-          swift_files="$(printf '%s\n' "$files" | grep -Ev '^(docs/|design/|tools/|[^/]+\.md$|\.gitignore$|LICENSE)' | grep -v '^$' || true)"
-          tools_files="$(printf '%s\n' "$files" | grep -E '^tools/' || true)"
+          swift_files="$(printf '%s\n' "$files" | grep -Ev '^(docs/|design/|tools/|content/|[^/]+\.md$|\.gitignore$|LICENSE)' | grep -v '^$' || true)"
+          tools_files="$(printf '%s\n' "$files" | grep -E '^(tools|content)/' || true)"
           echo "swift=$([ -n "$swift_files" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
           echo "tools=$([ -n "$tools_files" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
 
@@ -67,13 +67,18 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r tools/assets/requirements.txt -r tools/imagegen/requirements.txt
+          pip install -r tools/assets/requirements.txt -r tools/imagegen/requirements.txt -r tools/content/requirements.txt
 
       - name: Test the asset tools
         run: python3 -I -m unittest discover -s tools/assets -p "test_*.py"
 
       - name: Test the image pipeline
         run: python3 -I -m pytest -q tools/imagegen/tests
+
+      - name: Validate the content graph (Pofu Atlas)
+        run: |
+          python3 -I tools/content/validate.py
+          python3 -I -m pytest -q tools/content/tests
 
   build-and-test:
     name: Test PofuKit and build the app

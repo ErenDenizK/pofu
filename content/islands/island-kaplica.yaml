@@ -1,0 +1,33 @@
+id: island-kaplica
+type: island
+title_tr: Kaplıca
+title_en: The hot spring
+status: planned
+horizon: later
+summary: >-
+  A hot-spring hamam. The warm spring: each quiet hour pours a ladle of warm water; when the
+  spring is full (12 ladles) everyone soaks together for an evening and Pofu comes out glowing
+  (wellbeing heals 25 % faster that night). Breathing breaks never fill it, so the limit is
+  never farmable. Stations: hot spring, hamam, şerbet stand. Resident: Pamuk, an unbothered
+  capybara.
+notes:
+- Arrives at 35 tended days and the ferry pier at level 3.
+- Breathing breaks do not fill the spring (anti-farming).
+links:
+  requires:
+  - island-iskele
+  - station-pier
+  - sys-island-arrivals
+  related:
+  - sys-rituals
+  - sys-wellbeing
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+theme_en: A hot-spring hamam
+ritual_en: 'The warm spring: a ladle per quiet hour; 12 make a shared soak'
+residents:
+- char-pamuk
+unlock:
+  day: 36
+  rule_en: 35 tended days and the ferry pier at level 3

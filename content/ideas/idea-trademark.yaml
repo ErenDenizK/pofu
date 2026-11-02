@@ -1,0 +1,13 @@
+id: idea-trademark
+type: idea
+title_tr: Pofu marka araştırması
+title_en: Trademark search for "Pofu"
+status: idea
+horizon: now
+summary: >-
+  Run the trademark search in TÜRKPATENT and EUIPO before the bundle IDs are used for a distribution
+  request.
+sources:
+- doc: docs/product/decision-audit.md
+  anchor: '#7-top-10-actions-in-order'
+kind: launch

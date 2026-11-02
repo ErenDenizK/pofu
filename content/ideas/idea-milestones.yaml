@@ -1,0 +1,18 @@
+id: idea-milestones
+type: idea
+title_tr: Birikimli kilometre taşları
+title_en: Cumulative milestones
+status: idea
+horizon: later
+summary: >-
+  Replace "streaks and first milestones" with milestones that only count up: 100 skips, 30
+  calm nights, the first island arrival.
+links:
+  related:
+  - sys-guardrails
+sources:
+- doc: docs/roadmap.md
+  anchor: '#phase-1-the-companion-lives-pre-membership-free-account'
+- doc: docs/product/app-game-boundary.md
+  anchor: '#76-streak-ethics'
+kind: feature

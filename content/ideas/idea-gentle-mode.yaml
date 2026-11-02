@@ -1,0 +1,15 @@
+id: idea-gentle-mode
+type: idea
+title_tr: Nazik kişilik
+title_en: Gentle personality mode
+status: idea
+horizon: later
+summary: >-
+  Settings → Pofu's personality: Playful (default) or Gentle (no sass, same warmth).
+links:
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#guardrails'
+kind: feature

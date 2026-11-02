@@ -1,0 +1,16 @@
+id: moment-story-page
+type: moment
+title_tr: Bulut'un bir sayfası
+title_en: A page of Bulut's story
+status: planned
+horizon: later
+summary: >-
+  One illustrated page per tended day, read in half a minute; finished books go on the shelf.
+links:
+  part_of:
+  - island-kitap
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+act: arc
+sequence: 110

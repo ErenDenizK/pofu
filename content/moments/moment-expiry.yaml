@@ -1,0 +1,14 @@
+id: moment-expiry
+type: moment
+title_tr: Süre doldu
+title_en: Time's up
+status: in-app
+horizon: now
+summary: >-
+  Within about a minute of the end, the shield returns over the open app with "Süre doldu."
+  and "Bitti, kapat". Calm, honest, and not a skip.
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#72-the-expiry-moment'
+act: gate
+sequence: 70

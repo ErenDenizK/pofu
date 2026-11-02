@@ -1,0 +1,22 @@
+id: sys-face-kit
+type: system
+title_tr: Yüz kiti
+title_en: The face kit
+status: planned
+horizon: next
+summary: >-
+  11 pixel-aligned edits of R1 (eyes closed, eyes happy, mouth open, mouth "o", cheeks full,
+  matted, half-lid, side-eye, pout mouth, worried mouth, smirk) composited by region with
+  soft masks, so 11 images cover all 20 emotions.
+notes:
+- The decision audit ships 5 of the 11 first.
+links:
+  uses_asset:
+  - asset-pofu-base-v1
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#the-face-kit-11-edits-of-r1'
+group: character
+board:
+  col: 4
+  row: 3

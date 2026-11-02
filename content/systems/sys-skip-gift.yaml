@@ -1,0 +1,25 @@
+id: sys-skip-gift
+type: system
+title_tr: Vazgeçme hediyesi
+title_en: Skip gift
+status: in-production
+horizon: now
+summary: >-
+  A resisted reach gives +3 seeds (at most 5 a day) and +1 wellbeing (at most 6 a day): a
+  thank-you, never a reason to trigger the gate (A11).
+notes:
+- 1–2 % of a player's week-1 seeds.
+- 'Open question: louder (+5) or quieter?'
+links:
+  feeds:
+  - sys-seeds
+  - sys-wellbeing
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#4-anti-addiction-rules-acceptance-criteria'
+- doc: docs/product/game-design.md
+  anchor: '#16-open-questions-for-the-founder'
+group: care
+board:
+  col: 3
+  row: 1

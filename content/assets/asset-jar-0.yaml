@@ -1,0 +1,24 @@
+id: asset-jar-0
+type: asset
+title_tr: jar-0
+title_en: jar-0 (ui)
+status: planned
+horizon: later
+summary: >-
+  The seed jar, empty: a small, round, chunky honey-pot-shaped jar with a wide mouth and a
+  soft cream cloth lid tied with a thin rose ribbon, front view at a slight angle from above.
+  The jar body is painted as soft matte milky glaze in cream and pale honey (not glass, not
+  transparent), so its fill can be shown by later edits as a rising level of sunflower seeds
+  behind a soft window in the glaze: a large, rounded, sligh…
+notes:
+- >-
+  Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
+  and cay-1 approved
+art:
+  images: []
+  jobs:
+  - batch-02-ui:jar-0
+sources:
+- doc: tools/imagegen/manifest/batch-02-ui.yaml
+kind: ui
+batch: batch-02-ui

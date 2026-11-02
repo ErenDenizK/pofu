@@ -1,0 +1,24 @@
+id: asset-widget-medium
+type: asset
+title_tr: widget-medium
+title_en: home-medium (widget)
+status: planned
+horizon: later
+summary: >-
+  A wide, calm day scene: a soft sky gradient from pale sky blue at the top to warm cream
+  haze at the bottom, two or three soft round clouds, and the attached island floating small
+  on the right third, its empty lawn visible. Keep everything important inside the middle
+  70% of the height: the image will be cropped to a wide 2.1 : 1 strip.
+notes:
+- >-
+  Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
+  and cay-1 approved
+art:
+  images: []
+  jobs:
+  - batch-02-ui:widget-medium
+sources:
+- doc: tools/imagegen/manifest/batch-02-ui.yaml
+kind: widget
+batch: batch-02-ui
+size: 1536x1024

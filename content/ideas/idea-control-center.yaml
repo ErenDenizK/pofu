@@ -1,0 +1,12 @@
+id: idea-control-center
+type: idea
+title_tr: Denetim Merkezi ve App Intents
+title_en: Control Center control and App Intents
+status: idea
+horizon: later
+summary: >-
+  A Control Center control for quiet time and App Intents / Shortcuts actions.
+sources:
+- doc: docs/roadmap.md
+  anchor: '#phase-4-the-ecosystem'
+kind: feature

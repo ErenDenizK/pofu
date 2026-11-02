@@ -1,0 +1,28 @@
+id: sys-opening-intents
+type: system
+title_tr: Açılış niyetleri
+title_en: Opening intents
+status: planned
+horizon: next
+summary: >-
+  Every open of Pofu has an intent (gate, the minute, glance, visit, settled reopen, setup
+  or repair), each with its own landing, length and exit. A glance or a repair is never forced
+  through a visit.
+notes:
+- >-
+  Landing rules: the gate opens Hop!, a widget tap the Today sheet, the icon builds the visit
+  queue; night opens night Home.
+links:
+  leads_to:
+  - sys-visit-queue
+  - sys-today
+  - sys-setup-repair
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#2-opening-intents'
+- doc: docs/product/app-game-boundary.md
+  anchor: '#61-landing-rules'
+group: app
+board:
+  col: 3
+  row: 2

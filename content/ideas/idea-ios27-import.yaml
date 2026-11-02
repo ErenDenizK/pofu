@@ -1,0 +1,14 @@
+id: idea-ios27-import
+type: idea
+title_tr: iOS 27 tek dokunuşla otomasyon
+title_en: iOS 27 one-tap automation import
+status: idea
+horizon: next
+summary: >-
+  Spike the iOS 27 one-tap automation import (ADR-0013): the real fix for the Shortcuts setup
+  failure.
+sources:
+- doc: docs/adr/0013-zero-setup-default-gate.md
+- doc: docs/roadmap.md
+  anchor: '#phase-1-the-companion-lives-pre-membership-free-account'
+kind: feature

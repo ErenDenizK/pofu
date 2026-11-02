@@ -1,0 +1,21 @@
+id: asset-cloud-1
+type: asset
+title_tr: cloud-1
+title_en: cloud-1 (world)
+status: in-production
+horizon: now
+summary: >-
+  One large, soft cumulus cloud for a cozy pastel sky, on its own: a wide, rounded cloud built
+  from five or six big, plump billows, with a gently flattened underside. Warm cream-white
+  tops lit from the upper left, undersides shaded in soft, pale sky blue with a hint of warm
+  cream bounce light, broad and smooth value changes. The edges are soft but clean (a soft
+  cutout, not a fading haze). Centered, filling about 85% of…
+art:
+  images: []
+  jobs:
+  - batch-04-sky:cloud-1
+sources:
+- doc: tools/imagegen/manifest/batch-04-sky.yaml
+kind: world
+batch: batch-04-sky
+size: 1536x1024

@@ -1,0 +1,15 @@
+id: idea-route-standby
+type: idea
+title_tr: Komodinde Pofu (StandBy)
+title_en: Pofu at the bedside (StandBy)
+status: idea
+horizon: maybe
+summary: >-
+  A StandBy widget that shows the sleeping island at the bedside while the phone charges:
+  a glance that answers and never asks, and a gentle cue that the phone is down for the night.
+  Supports A21 and the calm-night loop.
+links:
+  related:
+  - sys-guardrails
+source: lead-brainstorm
+kind: route

@@ -1,0 +1,28 @@
+id: char-pofu-cheeky
+type: character
+title_tr: 'Pofu: Muzip'
+title_en: 'Pofu: Cheeky'
+status: planned
+horizon: later
+summary: >-
+  Trigger: A reach after 23:00. Line: "It's past eleven. Instagram is asleep too. (It isn't.
+  But it should be.)"
+notes:
+- >-
+  TR line (native, not translated): "Saat on biri geçti. Instagram da uyuyor. (Uyumuyor. Ama
+  uyumalı.)"
+- 'Face recipe: side-eye + half-lid.'
+- 'Body motion (code, ADR-0011): a yawn.'
+- 'Postponed by the decision audit: 15 of the 20 emotions wait.'
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: Saat on biri geçti. Instagram da uyuyor. (Uyumuyor. Ama uyumalı.)

@@ -1,0 +1,13 @@
+id: idea-g5
+type: idea
+title_tr: G5 Kapı davranışı değiştiriyor mu?
+title_en: 'G5: Does the gate change behavior?'
+status: planned
+horizon: now
+summary: >-
+  A 7-day dogfood on the shield with no feature changes and a daily readout. Check: resisted
+  share of reaches against the goal of half.
+sources:
+- doc: docs/design/iteration-plan.md
+  anchor: '#stage-g-the-gate'
+kind: milestone

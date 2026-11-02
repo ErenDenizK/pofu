@@ -1,0 +1,16 @@
+id: idea-open-daily-hour
+type: idea
+title_tr: 'Açık soru: günlük saat'
+title_en: 'Open question: the daily hour'
+status: idea
+horizon: now
+summary: >-
+  60 guarded minutes before the breathing break, for everyone by default? Recommended: yes,
+  settable, shown as "n / 60 min".
+links:
+  related:
+  - sys-daily-hour
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#16-open-questions-for-the-founder'
+kind: question

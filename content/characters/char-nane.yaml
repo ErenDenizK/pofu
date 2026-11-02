@@ -1,0 +1,21 @@
+id: char-nane
+type: character
+title_tr: Nane
+title_en: Nane, the owl
+status: planned
+horizon: later
+summary: >-
+  A tiny, sleepy owl, awake when everyone sleeps; keeps the star book on Yıldız.
+links:
+  related:
+  - station-observatory
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#8-residents-neighbors'
+kind: resident
+unlock:
+  day: 22
+  rule_en: Arrives with its station or island
+species_en: Owl, tiny and sleepy
+home: island-yildiz
+station: station-observatory

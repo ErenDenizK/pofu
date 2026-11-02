@@ -1,0 +1,11 @@
+id: idea-quiet-live-activity
+type: idea
+title_tr: Sessiz zaman için Canlı Etkinlik
+title_en: Live Activity for quiet time
+status: idea
+horizon: later
+summary: A Live Activity only while quiet time runs; year-one horizon.
+sources:
+- doc: docs/design/iteration-plan.md
+  anchor: '#what-it-can-become'
+kind: feature

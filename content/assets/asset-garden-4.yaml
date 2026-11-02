@@ -1,0 +1,22 @@
+id: asset-garden-4
+type: asset
+title_tr: garden-4
+title_en: garden-4 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add a low, rounded arch of soft honey wood over the back of the bed, wound with small sunflowers
+  and leaves, and a short string of small triangular bunting in soft rose, honey and cream
+  (plain, no symbols, no letters) along the arch. The arch's top stays below the top of the
+  canvas with a clear margin.
+links:
+  variant_of:
+  - asset-garden-3
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:garden-4
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

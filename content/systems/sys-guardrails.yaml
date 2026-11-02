@@ -1,0 +1,49 @@
+id: sys-guardrails
+type: system
+title_tr: Bağımlılık karşıtı kurallar
+title_en: Anti-compulsion guardrails (A1–A22)
+status: in-production
+horizon: now
+summary: >-
+  The acceptance criteria that keep the game from becoming a new feed: finite visits, no timers
+  or caps, no game notifications, no streak loss, sleeping islands, no paid acceleration,
+  no FOMO, no comparison, looking earns nothing, session budget, capped skips, kind emotions,
+  seeds never touch the gate, a bounded breath, visits end, notifications serve the user,
+  deterministic rewards, glances never ask, no consecutive-day counts, Pofu is not away, dead-end
+  nights, Hop! opens the world only through the minute.
+notes:
+- A1 Finite visits.
+- A2 No storage cap, no timers.
+- A3 No game notifications.
+- 'A4 No streak loss: cumulative counts only.'
+- A5 The islands sleep 23:00–06:00.
+- A6 No paid acceleration, gacha or loot boxes.
+- 'A7 No FOMO: seasonal content stays.'
+- A8 No comparison or leaderboards.
+- >-
+  A9 Opening Pofu does nothing for production; bored on the 4th open in an hour.
+- 'A10 Session budget: median visit ≤ 90 s, p90 ≤ 3 min.'
+- A11 Skips are barely farmable.
+- A12 Tease the app, never the user.
+- A13 Seeds never touch the gate.
+- A14 The breath is bounded and owned.
+- A15 Visits and minutes end.
+- A16 Notifications serve the user's own action or a real person.
+- A17 Every reward is deterministic.
+- A18 Glance surfaces answer, never ask.
+- A19 No consecutive-day counts anywhere.
+- A20 Pofu is not "away".
+- A21 Nights are a dead end.
+- A22 Hop! shows the world and opens it only through the minute.
+- >-
+  Metrics computed on device, never uploaded: time in Pofu ≤ 5 min/day, visits 1–3/day, check-back
+  rate ≤ 10 %, displacement ≤ 10 %.
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#4-anti-addiction-rules-acceptance-criteria'
+- doc: docs/product/app-game-boundary.md
+  anchor: '#7-anti-compulsion-guardrails'
+group: meta
+board:
+  col: 8
+  row: 3

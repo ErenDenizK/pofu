@@ -1,0 +1,36 @@
+id: island-yildiz
+type: island
+title_tr: Yıldız
+title_en: The star island
+status: planned
+horizon: later
+summary: >-
+  A high night observatory. Stargazing: each calm night adds a star; at bedtime a 20-second
+  moment where Pofu points at tonight's star and says good night. Seven stars make a constellation
+  you name. A phone-down ritual that only ever ends with "good night". Stations: observatory,
+  firefly meadow, hammock. Resident: Nane, a sleepy owl.
+notes:
+- >-
+  Arrives at 21 tended days and 10 calm nights (any, not in a row). Simulation: day 22.
+- >-
+  The one exception to A21's dead-end nights: the 20-second stargazing ritual, always ending
+  in "İyi geceler".
+links:
+  requires:
+  - island-aycicegi
+  - sys-island-arrivals
+  - sys-bedtime
+  related:
+  - sys-rituals
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+- doc: docs/product/app-game-boundary.md
+  anchor: '#95-bedtime-and-morning'
+theme_en: A high night observatory
+ritual_en: 'Stargazing: a star per calm night; seven make a constellation'
+residents:
+- char-nane
+unlock:
+  day: 22
+  rule_en: 21 tended days and 10 calm nights

@@ -1,0 +1,58 @@
+id: station-hammock
+type: station
+title_tr: Hamak
+title_en: Hammock
+status: planned
+horizon: later
+summary: A hammock under the stars for the good-night moment.
+notes:
+- >-
+  Opens: Yıldız + 7 days. Level costs 1→5: 3,000 · 6,600 · 14,520 · 31,944 · 70,277 (total
+  126,341). Rate L1→L5: 13 → 41.6 seeds/hour before calm.
+- >-
+  Level art and names are not designed yet; the ladder follows the same pattern (costs ×2.2,
+  rates +55 % of base per level) and lives in the simulation.
+links:
+  part_of:
+  - island-yildiz
+  related:
+  - char-nane
+  - sys-station-production
+  - sys-build
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#idle-production-and-stations'
+- doc: tools/sim/island_economy.py
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+resident: char-nane
+opens_en: Yıldız + 7 days
+levels:
+- level: 1
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 3000
+  rate: 13.0
+- level: 2
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 6600
+  rate: 20.2
+- level: 3
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 14520
+  rate: 27.3
+- level: 4
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 31944
+  rate: 34.5
+- level: 5
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 70277
+  rate: 41.6
+unlock:
+  day: 29
+  rule_en: Yıldız + 7 days (days ≈ tended days for a daily user)

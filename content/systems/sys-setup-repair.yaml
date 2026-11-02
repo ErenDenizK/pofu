@@ -1,0 +1,22 @@
+id: sys-setup-repair
+type: system
+title_tr: Kurulum ve onarım
+title_en: Setup and repair
+status: in-app
+horizon: now
+summary: >-
+  Setup health is computed on every foreground and shown natively first: Screen Time access
+  revoked, nothing picked, notifications off, Focus filtering, a silent shield. A native banner
+  on Home's top band, never a push.
+notes:
+- >-
+  In the world, Pofu sits at his door looking out: an indicator, never the path.
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#9-setup-health-and-repair'
+- doc: docs/product/app-game-boundary.md
+  anchor: '#10-setup-and-repair-a-rule-in-the-users-words'
+group: app
+board:
+  col: 6
+  row: 3

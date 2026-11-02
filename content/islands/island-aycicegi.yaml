@@ -1,0 +1,69 @@
+id: island-aycicegi
+type: island
+title_tr: Ayçiçeği
+title_en: Sunflower (home island)
+status: in-app
+horizon: now
+summary: >-
+  Pofu's sunflower home island and the calm island: seeds × calm, five stages of growth by
+  tended days. Five stations (sunflower garden, çay ocağı, lily pond, workshop, windmill)
+  and the residents Pofu, Mochi, Fındık and the frogs. Home shows it in PofuWorld's IslandScene
+  behind FeatureFlags.islandHome, with batch 01's plate and stand-ins for the stations not
+  yet painted.
+notes:
+- >-
+  Stages by tended days: 1 at 0, 2 at 1, 3 at 4, 4 at 10, 5 at 24 (HOME_STAGES).
+- 'Home island total: 88,999 seeds across 5 stations × 5 levels.'
+- >-
+  Simulation: nobody finishes the home island before about day 40 (never-opens upper bound
+  day 42, disciplined day 46, heavy scroller day 64).
+- >-
+  Stage 3 widens the island (island-main-l), stage 4 adds the back terrace, stage 5 the east
+  islet and its rope bridge (batch 03).
+- >-
+  Locked slots one stage ahead show as dotted plots with a blank sign; anticipated, never
+  counted down.
+- 'The islands sleep 23:00–06:00: you can look, not build (A5).'
+links:
+  uses_asset:
+  - asset-island-main-s
+  - asset-island-main-l
+  - asset-island-main-l-v2
+  - asset-terrace-v2
+  - asset-islet-east
+  - asset-bridge-east
+  related:
+  - sys-calm
+  - sys-station-production
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+- doc: docs/product/game-design.md
+  anchor: '#idle-production-and-stations'
+- doc: docs/adr/0016-pre-planned-idle-archipelago.md
+theme_en: Pofu's sunflower island
+ritual_en: 'The calm island: seeds × calm, five stages of growth'
+residents:
+- char-pofu
+- char-mochi
+- char-findik
+- char-frogs
+unlock:
+  day: 0
+  rule_en: 'Day 1: the island wakes with the first real gate catch.'
+stages:
+- stage: 1
+  tended_days: 0
+  adds_en: Small island, the sunflower garden (built), Pofu's door
+- stage: 2
+  tended_days: 1
+  adds_en: Çay ocağı plot; Mochi arrives
+- stage: 3
+  tended_days: 4
+  adds_en: The island widens; lily pond
+- stage: 4
+  tended_days: 10
+  adds_en: Back terrace; workshop; Fındık arrives
+- stage: 5
+  tended_days: 24
+  adds_en: 'Terrace left: windmill; east islet and rope bridge'

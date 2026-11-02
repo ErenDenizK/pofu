@@ -1,0 +1,15 @@
+id: idea-leagues
+type: idea
+title_tr: Ortak seriler ve haftalık ligler
+title_en: Shared streaks and weekly leagues
+status: cut
+horizon: maybe
+summary: >-
+  Roadmap Phase 5 lists shared streaks and weekly leagues; they contradict A8 (no comparison)
+  and A19.
+sources:
+- doc: docs/roadmap.md
+  anchor: '#phase-5-together'
+- doc: docs/product/app-game-boundary.md
+  anchor: '#76-streak-ethics'
+kind: feature

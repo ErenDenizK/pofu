@@ -1,0 +1,21 @@
+id: asset-terrace-v2
+type: asset
+title_tr: terrace-v2
+title_en: terrace-v2 (world)
+status: in-production
+horizon: now
+summary: >-
+  For the attached island, draw only a raised grassy terrace that will sit on the back half
+  of its lawn: a soft oval lawn about 75% of the island's width, at the same scale as the
+  attached island and placed where it would sit on it, lifted on a low earthen step with the
+  same strata and colors, and a short flight of four cream stone steps on its front left.
+  The terrace lawn is empty. Nothing else: not the island itself,…
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:terrace-v2
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: world
+batch: batch-03-home-island
+size: 1536x1024

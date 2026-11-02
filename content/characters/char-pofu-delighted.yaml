@@ -1,0 +1,26 @@
+id: char-pofu-delighted
+type: character
+title_tr: 'Pofu: Sevinçli'
+title_en: 'Pofu: Delighted'
+status: planned
+horizon: later
+summary: >-
+  Trigger: A new island drifted close. Line: "And look: a new island drifted close in the
+  night!"
+notes:
+- 'TR line (native, not translated): "Bak hele: gece yeni bir ada yanaştı!"'
+- 'Face recipe: eyes happy + mouth open.'
+- 'Body motion (code, ADR-0011): bounce, looks toward the map.'
+- 'Postponed by the decision audit: 15 of the 20 emotions wait.'
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: 'Bak hele: gece yeni bir ada yanaştı!'

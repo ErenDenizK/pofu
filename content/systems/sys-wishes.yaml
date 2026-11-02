@@ -1,0 +1,19 @@
+id: sys-wishes
+type: system
+title_tr: Dilekler
+title_en: Residents' wishes
+status: planned
+horizon: later
+summary: >-
+  At most one wish a day, from one resident, measured by behavior Pofu already sees (a quiet
+  afternoon hour, no opens 21:00–23:00, one more skip than yesterday). "Not today" is free;
+  a fulfilled wish brings a free cosmetic, never seeds.
+notes:
+- Wishes rotate in a fixed order (A17).
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#8-residents-neighbors'
+group: world
+board:
+  col: 9
+  row: 1

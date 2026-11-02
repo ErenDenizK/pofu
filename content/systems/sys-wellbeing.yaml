@@ -1,0 +1,33 @@
+id: sys-wellbeing
+type: system
+title_tr: Keyif
+title_en: Pofu's wellbeing
+status: in-production
+horizon: now
+summary: >-
+  0–100 with a floor of 5. Drains while a guarded app is open (0.35/min, ×2 at bedtime, ×1.25
+  per earlier open in 3 h) and 1.5 per open; heals 5/hour while calm; a calm night +10. Bands:
+  cozy ≥ 75, content ≥ 50, tired ≥ 25, unwell ≥ 12, curled up < 12. Shown as a soft bar and
+  a mood word, never a number.
+notes:
+- >-
+  Sleeps it off: each night, wellbeing below 60 moves 30 % of the way back to 60.
+- >-
+  One quiet hour lifts Pofu out of the two lowest bands (each calm minute heals 1/60 of the
+  band's width).
+- 'Below 25 the residents stop to look after Pofu: production × 0.6.'
+- 'Heavy scroller''s Pofu: unwell 3 of 90 days with the band healing.'
+- CareLedger implemented; VitalityLedger still drives the app.
+links:
+  drains:
+  - sys-station-production
+  leads_to:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#pofus-wellbeing-tr-pofunun-keyfi'
+- doc: docs/adr/0017-pofu-never-dies.md
+group: care
+board:
+  col: 4
+  row: 1

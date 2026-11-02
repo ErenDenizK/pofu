@@ -1,0 +1,12 @@
+id: idea-baloo-font
+type: idea
+title_tr: Baloo 2 yazı tipi
+title_en: Baloo 2 with rewritten metrics
+status: cut
+horizon: maybe
+summary: >-
+  Postponed: SF Pro Rounded Heavy is the stated fallback and costs nothing.
+sources:
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: design

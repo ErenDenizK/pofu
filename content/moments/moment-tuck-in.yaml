@@ -1,0 +1,16 @@
+id: moment-tuck-in
+type: moment
+title_tr: Pofu'yu yatır
+title_en: Tuck Pofu in
+status: planned
+horizon: next
+summary: >-
+  The last visit of the evening can carry "Pofu'yu yatır" as its news beat. No push.
+links:
+  part_of:
+  - sys-bedtime
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#95-bedtime-and-morning'
+act: night
+sequence: 10

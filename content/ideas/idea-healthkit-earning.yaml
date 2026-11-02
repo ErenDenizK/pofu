@@ -1,0 +1,15 @@
+id: idea-healthkit-earning
+type: idea
+title_tr: HealthKit ile kazanma
+title_en: HealthKit passive earning
+status: cut
+horizon: maybe
+summary: >-
+  Roadmap Phase 3 "Earn for real": steps and workouts have no reward left after ADR-0015 (seeds
+  come from time away).
+sources:
+- doc: docs/roadmap.md
+  anchor: '#phase-3-earn-for-real-rescoped'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: feature

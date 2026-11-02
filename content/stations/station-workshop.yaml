@@ -1,0 +1,63 @@
+id: station-workshop
+type: station
+title_tr: Atölye
+title_en: Workshop
+status: in-production
+horizon: later
+summary: >-
+  Fındık's workshop on the back terrace. Fındık tinkers and makes the style variants.
+notes:
+- >-
+  Opens: Stage 4 (10 tended days; the back terrace). Level costs 1→5: 500 · 1,100 · 2,420
+  · 5,324 · 11,713 (total 21,057). Rate L1→L5: 9 → 28.8 seeds/hour before calm.
+- >-
+  Postponed in-app by the decision audit (levels 4–5, the windmill and workshop wait), but
+  batch 03 paints it now because art has the longest lead time.
+links:
+  part_of:
+  - island-aycicegi
+  related:
+  - char-findik
+  - sys-station-production
+  - sys-build
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#idle-production-and-stations'
+- doc: tools/sim/island_economy.py
+resident: char-findik
+opens_en: Stage 4 (10 tended days; the back terrace)
+levels:
+- level: 1
+  title_tr: Kulübe ve tezgâh
+  title_en: Shed and workbench
+  cost: 500
+  rate: 9.0
+  asset: asset-workshop-1
+- level: 2
+  title_tr: Alet duvarı
+  title_en: Wall of tools
+  cost: 1100
+  rate: 14.0
+  asset: asset-workshop-2
+- level: 3
+  title_tr: Dönen rüzgâr gülü
+  title_en: Spinning wind vane
+  cost: 2420
+  rate: 18.9
+  asset: asset-workshop-3
+- level: 4
+  title_tr: Baca
+  title_en: Chimney
+  cost: 5324
+  rate: 23.9
+  asset: asset-workshop-4
+- level: 5
+  title_tr: Büyük çark tabela
+  title_en: Big gear sign
+  cost: 11713
+  rate: 28.8
+  asset: asset-workshop-5
+unlock:
+  day: 10
+  rule_en: >-
+    Stage 4 (10 tended days; the back terrace) (days ≈ tended days for a daily user)

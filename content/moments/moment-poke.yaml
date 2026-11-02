@@ -1,0 +1,19 @@
+id: moment-poke
+type: moment
+title_tr: Dıt
+title_en: Poking and petting Pofu
+status: planned
+horizon: next
+summary: >-
+  Poke: squash, hop, "Dıt. Orası benim burnum." once per visit, then calmer. Long press and
+  stroke: Pofu melts, leans, and after 8 strokes dozes.
+links:
+  part_of:
+  - sys-reactions
+sources:
+- doc: docs/design/interaction-spec.md
+  anchor: '#42-poking-pofu'
+- doc: docs/design/interaction-spec.md
+  anchor: '#43-petting'
+act: visit
+sequence: 90

@@ -1,0 +1,12 @@
+id: idea-open-names
+type: idea
+title_tr: 'Açık soru: ada ve komşu adları'
+title_en: 'Open question: island and resident names'
+status: idea
+horizon: now
+summary: >-
+  Keep Ayçiçeği, İskele, Yıldız, Kaplıca, Kitap and Simit, Nane, Pamuk, Bulut?
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#16-open-questions-for-the-founder'
+kind: question

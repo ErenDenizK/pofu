@@ -1,0 +1,27 @@
+id: char-pofu-worried
+type: character
+title_tr: 'Pofu: Endişeli'
+title_en: 'Pofu: Worried'
+status: planned
+horizon: later
+summary: >-
+  Trigger: First open after a session over 60 min. Line: "That was a long one. You okay? I'm
+  a bit wobbly."
+notes:
+- >-
+  TR line (native, not translated): "Bu uzun sürdü. İyi misin? Ben biraz sallantıdayım."
+- 'Face recipe: worried mouth.'
+- 'Body motion (code, ADR-0011): tremble, a sweat drop.'
+- 'Postponed by the decision audit: 15 of the 20 emotions wait.'
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: Bu uzun sürdü. İyi misin? Ben biraz sallantıdayım.

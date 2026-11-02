@@ -1,0 +1,13 @@
+id: theme-night-grade
+type: theme
+title_tr: Gece tonu
+title_en: Night grade
+status: planned
+horizon: next
+summary: >-
+  Night, wellbeing and seasons are code grades (a night multiply, ash desaturation for unwell);
+  no night or sick versions are generated.
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#asset-spec-fixed-diorama'
+kind: grade

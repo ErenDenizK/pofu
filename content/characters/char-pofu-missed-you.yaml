@@ -1,0 +1,26 @@
+id: char-pofu-missed-you
+type: character
+title_tr: 'Pofu: Özledim'
+title_en: 'Pofu: Missed you'
+status: planned
+horizon: later
+summary: >-
+  Trigger: Back after 3+ days. Line: "You're back! The residents kept everything going."
+notes:
+- >-
+  TR line (native, not translated): "Geldin! Komşular her şeyi idare etti."
+- 'Face recipe: eyes happy + mouth open.'
+- 'Body motion (code, ADR-0011): bounce.'
+- 'Postponed by the decision audit: 15 of the 20 emotions wait.'
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: Geldin! Komşular her şeyi idare etti.

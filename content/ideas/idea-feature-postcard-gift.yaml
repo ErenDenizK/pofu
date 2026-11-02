@@ -1,0 +1,17 @@
+id: idea-feature-postcard-gift
+type: idea
+title_tr: Kartpostal hediye et
+title_en: Gift a postcard to a friend
+status: idea
+horizon: maybe
+summary: >-
+  Phase 5: send one of your ferry postcards to a friend through the serverless pairing; it
+  appears on their wall with your Pofu's paw print. Cooperative, finite (one a week), never
+  a comparison.
+notes:
+- Requires İskele and friend pairing.
+links:
+  related:
+  - sys-weekly-recap
+source: lead-brainstorm
+kind: feature

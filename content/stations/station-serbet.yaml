@@ -1,0 +1,58 @@
+id: station-serbet
+type: station
+title_tr: Şerbetçi
+title_en: Şerbet stand
+status: planned
+horizon: later
+summary: A şerbet stand for after the soak.
+notes:
+- >-
+  Opens: Kaplıca + 7 days. Level costs 1→5: 5,200 · 11,440 · 25,168 · 55,370 · 121,813 (total
+  218,991). Rate L1→L5: 15 → 48 seeds/hour before calm.
+- >-
+  Level art and names are not designed yet; the ladder follows the same pattern (costs ×2.2,
+  rates +55 % of base per level) and lives in the simulation.
+links:
+  part_of:
+  - island-kaplica
+  related:
+  - char-pamuk
+  - sys-station-production
+  - sys-build
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#idle-production-and-stations'
+- doc: tools/sim/island_economy.py
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+resident: char-pamuk
+opens_en: Kaplıca + 7 days
+levels:
+- level: 1
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 5200
+  rate: 15.0
+- level: 2
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 11440
+  rate: 23.2
+- level: 3
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 25168
+  rate: 31.5
+- level: 4
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 55370
+  rate: 39.8
+- level: 5
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 121813
+  rate: 48.0
+unlock:
+  day: 43
+  rule_en: Kaplıca + 7 days (days ≈ tended days for a daily user)

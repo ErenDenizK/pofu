@@ -1,0 +1,44 @@
+id: sys-shield
+type: system
+title_tr: Konuşan kalkan
+title_en: The speaking shield
+status: in-app
+horizon: now
+summary: >-
+  With Screen Time, the gate is Apple's shield, not the app. Resisting is one tap ("Boş ver")
+  with no app launch and no notification. The shield speaks: Pofu's current mood as the icon,
+  a copy ladder by reach count, time of day, pass expiry, bedtime and the daily hour, and
+  today's tally ("Bugün 5 / 7 boş verdin").
+notes:
+- >-
+  Every reach is counted, including a shield left without a tap (gate v2 decision 4).
+- >-
+  Honest secondary button "Açmam lazım": "3 dakika bakacağım" lifts the shield on the spot;
+  "Pofu'yla aç" goes to Hop! through a notification. Past the daily hour the only way through
+  is "Pofu'yla nefes al".
+- >-
+  Apple constraints: the shield cannot open Pofu; its layout and font are fixed (title, subtitle,
+  two buttons); a Live Activity cannot start from an extension.
+- >-
+  Built in PofuLive with three extensions (#34, gate v2 #41). Runs on device from membership
+  day 1 (after 2026-11-24).
+- >-
+  Title ≤ 26 chars TR; subtitle line 1 context ≤ 60 chars; line 2 the tally ≤ 32 chars.
+links:
+  leads_to:
+  - sys-hop
+  - sys-quick-check
+  - sys-breathing-break
+  feeds:
+  - sys-skip-gift
+  requires:
+  - sys-screen-time
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#0-the-answer-in-one-page'
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#5-the-shield'
+group: gate
+board:
+  col: 0
+  row: 0

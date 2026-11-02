@@ -1,0 +1,26 @@
+id: char-pofu-surprised
+type: character
+title_tr: 'Pofu: Şaşkın'
+title_en: 'Pofu: Surprised'
+status: planned
+horizon: later
+summary: >-
+  Trigger: The island grew overnight. Line: "Wait. Was that there yesterday?"
+notes:
+- >-
+  TR line (native, not translated): "Dur bir dakika. Bu dün burada var mıydı?"
+- 'Face recipe: mouth "o".'
+- 'Body motion (code, ADR-0011): small jump.'
+- 'Postponed by the decision audit: 15 of the 20 emotions wait.'
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: Dur bir dakika. Bu dün burada var mıydı?

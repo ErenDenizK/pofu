@@ -1,0 +1,16 @@
+id: sys-weekly-recap
+type: system
+title_tr: Haftalık özet
+title_en: Weekly recap
+status: planned
+horizon: next
+summary: >-
+  The first visit after Sunday 18:00: skips against the goal of half, guarded minutes, Pofu's
+  own minutes, minutes taken; a quiet Plus row at the end.
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#94-the-first-seven-days'
+group: app
+board:
+  col: 7
+  row: 2

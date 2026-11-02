@@ -1,0 +1,19 @@
+id: idea-feature-island-journal
+type: idea
+title_tr: Ada günlüğü
+title_en: The island journal
+status: idea
+horizon: maybe
+summary: >-
+  A deterministic keepsake: each build, stage and island arrival writes one dated page with
+  a snapshot of the island at that moment. Read in the weekly recap or from the map. The product's
+  thesis as an artifact: "I quit doomscrolling and built this." No sharing pressure, no counts
+  of days in a row.
+notes:
+- >-
+  Snapshot rendering is code over existing art; no new generation per page.
+links:
+  related:
+  - sys-weekly-recap
+source: lead-brainstorm
+kind: feature

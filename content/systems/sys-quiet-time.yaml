@@ -1,0 +1,25 @@
+id: sys-quiet-time
+type: system
+title_tr: Sessiz zaman
+title_en: Quiet time (Pofu's gathering)
+status: in-production
+horizon: now
+summary: >-
+  Pofu gathers seeds while the phone is down: 1 seed per 10 continuous quiet waking minutes,
+  at most 48 a day, +10 for a calm night (ADR-0014). 3–9 % of week-1 seeds.
+notes:
+- >-
+  Accrues by itself since ADR-0014; the old "Quiet time with Pofu" hero button is gone from
+  Home.
+links:
+  feeds:
+  - sys-calm
+  - sys-seeds
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#seeds-tr-çekirdek'
+- doc: docs/adr/0014-quiet-time-earning.md
+group: economy
+board:
+  col: 3
+  row: 0

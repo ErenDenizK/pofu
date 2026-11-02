@@ -1,0 +1,18 @@
+id: asset-cloud-2
+type: asset
+title_tr: cloud-2
+title_en: cloud-2 (prop)
+status: in-production
+horizon: now
+summary: >-
+  One medium, soft cumulus cloud for the same sky, on its own: a rounded cloud of three or
+  four plump billows, taller than it is wide at the middle, with a gently flattened underside.
+  Centered, filling about 80% of the canvas width, with a clear transparent margin.
+art:
+  images: []
+  jobs:
+  - batch-04-sky:cloud-2
+sources:
+- doc: tools/imagegen/manifest/batch-04-sky.yaml
+kind: prop
+batch: batch-04-sky
