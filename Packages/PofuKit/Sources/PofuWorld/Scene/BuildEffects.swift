@@ -21,10 +21,10 @@ struct BuildParticles: View {
                             colors: [Color.white.opacity(0.95), Color(red: 0.98, green: 0.94, blue: 0.86).opacity(0.7), Color.white.opacity(0)],
                             center: .center,
                             startRadius: 0,
-                            endRadius: 9
+                            endRadius: 15
                         )
                     )
-                    .frame(width: 18, height: 18)
+                    .frame(width: 30, height: 30)
                     .scaleEffect(CGFloat(puff.scale))
                     .opacity(puff.opacity)
                     .position(x: point.x + CGFloat(puff.x), y: point.y + CGFloat(puff.y))
@@ -39,8 +39,8 @@ struct BuildParticles: View {
                             endPoint: .bottom
                         )
                     )
-                    .frame(width: 9, height: 9)
-                    .shadow(color: PofuPrimitive.honey400.rgb.color.opacity(0.6), radius: 2)
+                    .frame(width: 14, height: 14)
+                    .shadow(color: PofuPrimitive.honey400.rgb.color.opacity(0.7), radius: 2.5)
                     .scaleEffect(CGFloat(sparkle.scale))
                     .rotationEffect(.degrees(sparkle.rotation))
                     .opacity(sparkle.opacity)

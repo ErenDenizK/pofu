@@ -163,8 +163,12 @@ public enum IslandLayout {
         let top = safeTop + 100
         let bottom = height * (1 - sheetFraction)
         let scale = min(maxScale * k, max(bottom - top, 1) * 0.62 / 112)
-        let pose = CameraPose(scale: scale, look: WorldPoint(x: anchor.x, y: anchor.y - 46), anchorY: (top + bottom) / 2 + 8)
-        guard let focus = IslandFraming.stationBox(station) else { return pose }
+        // Centre the vignette's art, not a fixed height above its footprint:
+        // a flat pond would otherwise sit behind the sheet.
+        let focus = IslandFraming.stationBox(station)
+        let lookY = focus?.midY ?? anchor.y - 46
+        let pose = CameraPose(scale: scale, look: WorldPoint(x: anchor.x, y: lookY), anchorY: (top + bottom) / 2 + 8)
+        guard let focus else { return pose }
         return IslandFraming.keepingCharactersWhole(
             pose,
             focus: focus,

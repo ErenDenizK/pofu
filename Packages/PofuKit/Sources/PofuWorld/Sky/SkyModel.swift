@@ -223,17 +223,20 @@ public enum CloudShape {
     public static func lobes(seed: Int) -> [Lobe] {
         var g = Generator(state: UInt64(truncatingIfNeeded: seed &* 7919 &+ 17))
         var lobes: [Lobe] = []
-        let base = 4 + Int(g.next() * 2.99)
+        // A low, wide base of overlapping lobes (tapering to the ends) and
+        // one or two big crowns, so the silhouette reads as one soft body.
+        let base = 5 + Int(g.next() * 2.99)
         for i in 0..<base {
             let t = (Double(i) + 0.5) / Double(base)
-            let r = 0.10 + 0.05 * g.next()
-            lobes.append(Lobe(x: 0.08 + t * 0.84, y: 0.5 - r, r: r))
+            let taper = 1 - 0.45 * abs(t - 0.5) * 2
+            let r = (0.09 + 0.035 * g.next()) * (0.75 + 0.5 * taper)
+            lobes.append(Lobe(x: 0.14 + t * 0.72, y: 0.5 - r, r: r))
         }
         let crown = 1 + Int(g.next() * 1.99)
         for i in 0..<crown {
-            let x = crown == 1 ? 0.42 + 0.16 * g.next() : (i == 0 ? 0.33 : 0.62) + 0.06 * g.next()
-            let r = 0.17 + 0.06 * g.next() - (crown == 2 && i == 1 ? 0.04 : 0)
-            lobes.append(Lobe(x: x, y: 0.5 - r * 1.25, r: r))
+            let x = crown == 1 ? 0.44 + 0.12 * g.next() : (i == 0 ? 0.36 : 0.6) + 0.05 * g.next()
+            let r = 0.19 + 0.05 * g.next() - (crown == 2 && i == 1 ? 0.05 : 0)
+            lobes.append(Lobe(x: x, y: 0.5 - r * 1.05, r: r))
         }
         return lobes
     }

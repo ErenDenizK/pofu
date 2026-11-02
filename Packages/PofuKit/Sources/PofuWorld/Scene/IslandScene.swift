@@ -290,7 +290,7 @@ private struct SceneFrame<Bubble: View>: View {
                 bubble: bubble
             )
 
-            CloudSea(palette: palette, offset: offset)
+            CloudSea(palette: palette, offset: offset, rise: CloudSea.rise(z: z))
 
             ScreenOverlays(world: world, pose: pose, z: z, size: size, offset: offset, build: build, model: model)
         }
@@ -443,7 +443,9 @@ private struct WorldCanvas: View {
                     let arrived = world.islands.contains(isle.id)
                     // Soft once you are on an island, sharp on the map
                     // (§5.1); 35 % at the Island framing.
-                    let fade = 1 - min(max(z, 0), 1) * 0.65
+                    // A focus pushes in on one station: the neighbours,
+                    // blurred and huge at that scale, step aside.
+                    let fade = (1 - min(max(z, 0), 1) * 0.65) * (model.focus == nil ? 1 : 0)
                     DepthImage(
                         name: isle.art,
                         sprite: sprite,

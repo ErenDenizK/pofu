@@ -158,6 +158,10 @@ struct CloudPuff: View, Equatable {
 struct CloudSea: View {
     let palette: SkyPalette
     let offset: CGSize
+    /// How far the sea rises above its Home height, in points: at the
+    /// Island framing it climbs to meet the island's roots, so the band
+    /// under the island is cloud, not empty sky.
+    var rise: Double = 0
 
     @Environment(\.worldStillFrame) private var still
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -166,20 +170,42 @@ struct CloudSea: View {
     static let period = 640.0
     static let speed = 3.0
 
+    /// The rise along the camera rail: none at Home (the Today card sits
+    /// there), most at the Island, a little on the Map.
+    static func rise(z: Double) -> Double {
+        let island = 200.0
+        let map = 60.0
+        if z >= 2 { return 0 }
+        if z >= 1 { return island * (2 - z) }
+        return map + (island - map) * max(z, 0)
+    }
+
     var body: some View {
         GeometryReader { proxy in
             let size = proxy.size
             TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: still || reduceMotion || ProcessInfo.processInfo.isLowPowerModeEnabled)) { context in
                 let time = still ? 0 : context.date.timeIntervalSinceReferenceDate
                 let drift = (time * Self.speed).truncatingRemainder(dividingBy: Self.period)
-                HStack(spacing: 0) {
-                    ForEach(0..<Self.copies(for: Double(size.width)), id: \.self) { _ in
-                        SeaStrip(light: palette.cloudLight, shade: palette.cloudShade)
-                            .equatable()
+                let backDrift = (time * Self.speed * 0.6 + Self.period / 2).truncatingRemainder(dividingBy: Self.period)
+                let copies = Self.copies(for: Double(size.width))
+                ZStack(alignment: .bottomLeading) {
+                    if rise > 1 {
+                        // A back row of lobes at the risen top, and the
+                        // bank filling down to the front row.
+                        strip(copies: copies)
+                            .opacity(0.9)
+                            .offset(x: CGFloat(-backDrift) + offset.width * 1.1, y: CGFloat(-rise) + offset.height * 0.3)
+                        LinearGradient(
+                            colors: [palette.cloudLight.color.opacity(0.9), palette.cloudShade.color.opacity(0.95)],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                        .frame(width: size.width + 120, height: CGFloat(rise) + 20)
+                        .offset(x: -60, y: CGFloat(-Self.height * 0.25) + offset.height * 0.35)
                     }
+                    strip(copies: copies)
+                        .offset(x: CGFloat(-drift) + offset.width * 1.25, y: offset.height * 0.4)
                 }
-                .offset(x: CGFloat(-drift) + offset.width * 1.25, y: offset.height * 0.4)
-                .frame(width: size.width, height: CGFloat(Self.height), alignment: .bottomLeading)
                 .frame(width: size.width, height: size.height, alignment: .bottomLeading)
             }
         }
@@ -187,6 +213,16 @@ struct CloudSea: View {
         .opacity(palette.cloudOpacity)
         .allowsHitTesting(false)
         .accessibilityHidden(true)
+    }
+
+    private func strip(copies: Int) -> some View {
+        HStack(spacing: 0) {
+            ForEach(0..<copies, id: \.self) { _ in
+                SeaStrip(light: palette.cloudLight, shade: palette.cloudShade)
+                    .equatable()
+            }
+        }
+        .frame(height: CGFloat(Self.height))
     }
 
     /// Enough strip copies to cover the width plus one period of drift and
