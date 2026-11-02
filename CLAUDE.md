@@ -51,7 +51,11 @@ the project's persistent memory; keep it accurate and concise.
   v2 (#32), the Screen Time gate as a separate `PofuLive` target with
   three extensions (#34), and gate v2 (#41: the speaking shield, honest
   reach counting, "Açmam lazım", onboarding with a live demo). Next: the
-  founder's 7-day dogfood from membership day 1 (`docs/local/membership-day-1.md`). World and `PofuWorld` work waits; the game model in
+  founder's 7-day dogfood from membership day 1 (`docs/local/membership-day-1.md`). **Build for the
+  membership (founder, 2026-11-02):** new work targets the Screen Time
+  product; the free `Pofu` target and the Shortcuts path get no new
+  features. After membership day 1, collapse `Pofu` and `PofuLive` into one
+  app target with the entitlements. World and `PofuWorld` work waits; the game model in
   `PofuCore` and an 8-image art test may run meanwhile. XcodeGen project (`project.yml`, regenerate after
   pulling); `Packages/PofuKit` has `PofuCore`, `PofuScreenTime`,
   `PofuPersistence`, `PofuDesignSystem`, and `PofuCompanion`. CI must stay
