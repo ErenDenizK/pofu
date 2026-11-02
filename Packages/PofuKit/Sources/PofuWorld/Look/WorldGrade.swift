@@ -100,52 +100,28 @@ public struct WorldGrade: Hashable, Sendable {
     /// The identity: the art exactly as baked.
     public static let neutral = WorldGrade()
 
+    // The hour grades and the unwell overlay come from the colour script
+    // (`design/art/colour-script.json`, look round 3); tune them there.
+
     /// Midday: a little more saturation and contrast than the files, so the
     /// world sits between today's pale look and "AI vivid".
-    public static let day = WorldGrade(
-        lift: GradeRGB(0, 0, 0.012),
-        gain: GradeRGB(1, 1, 0.985),
-        contrast: 1.10,
-        saturation: 1.14,
-        vignette: 0.16
-    )
+    public static let day = ColourScript.cell(.day).grade
 
     /// Golden hour: warm highlights, slightly cool-lifted shadows.
-    public static let goldenHour = WorldGrade(
-        lift: GradeRGB(0.03, 0.008, -0.015),
-        gamma: GradeRGB(1.02, 1, 0.97),
-        gain: GradeRGB(1.07, 0.97, 0.85),
-        contrast: 1.08,
-        saturation: 1.16,
-        vignette: 0.26
-    )
+    public static let goldenHour = ColourScript.cell(.golden).grade
 
     /// Night: deep moonlit blue-violet with true darks (the black point
     /// takes the art's L* 50 shadows down to about L* 5), no lifted blacks,
     /// and more contrast than day around a low pivot; saturation drops so
     /// the warm practicals (the ember, the door's window), drawn after the
-    /// grade, carry the warmth and pop.
-    public static let night = WorldGrade(
-        black: 0.32,
-        gamma: GradeRGB(0.80, 0.85, 0.97),
-        gain: GradeRGB(0.44, 0.50, 0.90),
-        contrast: 1.18,
-        pivot: 0.2,
-        saturation: 0.62,
-        vignette: 0.40
-    )
+    /// grade, carry the warmth and pop. Pofu and the residents take the
+    /// cell's character light instead (`ColourCell.character`).
+    public static let night = ColourScript.cell(.night).grade
 
     /// Pofu unwell: cooler and about half as saturated, with deeper
-    /// shadows instead of lifted ones, so contrast holds and Pofu stays
-    /// readable; never grey fog (ADR-0017: Pofu never dies). Layered over
-    /// the hour's grade.
-    public static let unwell = WorldGrade(
-        black: 0.14,
-        gamma: GradeRGB(0.95, 0.96, 0.98),
-        gain: GradeRGB(0.94, 0.97, 1.025),
-        saturation: 0.55,
-        vignette: 0.24
-    )
+    /// shadows instead of lifted ones, so contrast holds; never grey fog
+    /// (ADR-0017: Pofu never dies). Layered over the hour's grade.
+    public static let unwell = ColourScript.unwell.grade
 
     /// High calm: a gentle warm glow. Layered over the hour's grade.
     public static let calmGlow = WorldGrade(

@@ -11,7 +11,8 @@ opaque pixels, at the same world scale:
                    colour of the light the painter imagined
   edge             edge softness: the alpha ramp's width, in world units
   detail           detail density: mean |Laplacian| of lightness at display size (4 px per unit)
-  materials        per-material hue and chroma where the config names one (copper on the çaydanlık)
+  materials        per-material hue and chroma where the material library (design/art/materials.json)
+                   detects one (the rose copper on the çaydanlık)
 
 Station level chains (cay-1 ... cay-5) are also matched along the chain: every level was redrawn
 from its locked parent and locked again, so each level lost about 30 % chroma (the çay ocağı's
@@ -19,6 +20,12 @@ median chroma fell 31 -> 11 from L1 to L5). A level's black point, white point a
 (C_p50) are matched to its chain's L1 as corrected, and the chroma correction may go as far as the
 chain needs. The pipeline's edit_chroma QA check stops new losses at promote time; harmony restores
 the chains already generated.
+
+Harmony corrects technical defects only (look round 3, the colour script): value range, white
+balance drift, chroma lost along a chain. A material's colour is the art director's, kept in the
+material library as a hue and chroma range; harmony pulls a material back only when the generator
+drifted out of its range, to the range's nearest edge, never toward another material or a target
+(round 2 moved the rose copper toward amber; the founder preferred the rose, so it is an accent now).
 
 The reference is the approved island take (ADR-0018's style target). A metric is an outlier when it
 is more than its tolerance away from the reference; the harmony score is 100 when everything
@@ -55,20 +62,39 @@ sys.path.insert(0, str(REPO / "tools" / "imagegen"))
 import style_lock as sl  # noqa: E402
 
 CONFIG = REPO / "design" / "art" / "harmony" / "config.json"
+MATERIALS = REPO / "design" / "art" / "materials.json"
 MANIFEST = REPO / "design" / "art" / "harmony" / "manifest.json"
 PREBLUR = REPO / "design" / "prototypes" / "interactions" / "tools" / "preblur.py"
 
 METRICS = ("L_p2", "L_p98", "C_p95", "tint_a", "tint_b", "edge", "detail")
-MATERIAL_TOLERANCE = {"hue": 4.0, "chroma": 5.0}
+# How far outside its range a material may sit before it counts as an outlier (and is pulled back).
+MATERIAL_TOLERANCE = {"hue": 2.0, "chroma": 4.0}
 
 
 # ---------------------------------------------------------------------------
 # Sources and config
 # ---------------------------------------------------------------------------
 
-def load_config(path: Path = CONFIG) -> dict:
+def load_config(path: Path = CONFIG, materials: Path = MATERIALS) -> dict:
+    """The harmony config with the material library's detectable materials under "materials"
+    (so the manifest's config hash covers the library too)."""
     with open(path) as f:
-        return json.load(f)
+        cfg = json.load(f)
+    if materials.exists():
+        lib = json.loads(materials.read_text())
+        cfg["materials"] = {
+            name: {**{k: v for k, v in m["detect"].items() if not k.startswith("$")}, "range": {"hue": m["hue"], "chroma": m["chroma"]}}
+            for name, m in lib["materials"].items() if m.get("detect")
+        }
+    return cfg
+
+
+def _outside(value: float, lo: float, hi: float, circular: bool = False) -> float:
+    """How far `value` sits outside [lo, hi] (signed: negative below), 0 inside."""
+    if circular:
+        mid = (lo + hi) / 2
+        value = mid + ((value - mid + 180) % 360 - 180)
+    return value - lo if value < lo else value - hi if value > hi else 0.0
 
 
 def world_sources(cfg: dict | None = None) -> dict[str, dict]:
@@ -79,6 +105,8 @@ def world_sources(cfg: dict | None = None) -> dict[str, dict]:
     spec.loader.exec_module(mod)
     out = {}
     for name, s in mod.APP_SOURCES.items():
+        if s.get("harmony") is False:
+            continue
         path = REPO / s["src"]
         if "ppu" in s:
             ppu = float(s["ppu"])
@@ -288,10 +316,9 @@ def deviations(stats: dict, ref: dict, cfg: dict, kind: str = "world", chain: di
             if metric in stats and metric in chain:
                 out[f"chain_{metric}"] = (stats[metric] - chain[metric]) / spec["tolerance"]
     for mname, m in stats.get("materials", {}).items():
-        mat = cfg["materials"][mname]
-        dh = (m["hue"] - mat["target_hue"] + 180) % 360 - 180
-        out[f"{mname}_hue"] = dh / MATERIAL_TOLERANCE["hue"]
-        out[f"{mname}_chroma"] = (m["chroma"] - mat["target_chroma"]) / MATERIAL_TOLERANCE["chroma"]
+        rng = cfg["materials"][mname]["range"]
+        out[f"{mname}_hue"] = _outside(m["hue"], *rng["hue"], circular=True) / MATERIAL_TOLERANCE["hue"]
+        out[f"{mname}_chroma"] = _outside(m["chroma"], *rng["chroma"]) / MATERIAL_TOLERANCE["chroma"]
     return out
 
 
@@ -367,10 +394,12 @@ def plan(stats: dict, ref: dict, cfg: dict, guarded: bool, kind: str = "world", 
             shift = (ref[f"tint_{axis}"] - stats[f"tint_{axis}"]) * k
             corr[f"tint_{axis}"] = round(float(np.clip(shift, -c["max_tint_shift"], c["max_tint_shift"])), 2)
     for mname, m in stats.get("materials", {}).items():
-        mat = cfg["materials"][mname]
-        dh = (mat["target_hue"] - m["hue"] + 180) % 360 - 180
-        dc = mat["target_chroma"] / max(m["chroma"], 1e-3)
-        if abs(dh) > MATERIAL_TOLERANCE["hue"] or abs(m["chroma"] - mat["target_chroma"]) > MATERIAL_TOLERANCE["chroma"]:
+        # Only a drift out of the material's own range is pulled back, to the range's nearest edge.
+        rng = cfg["materials"][mname]["range"]
+        dh = -_outside(m["hue"], *rng["hue"], circular=True)
+        oc = _outside(m["chroma"], *rng["chroma"])
+        if abs(dh) > MATERIAL_TOLERANCE["hue"] or abs(oc) > MATERIAL_TOLERANCE["chroma"]:
+            dc = (m["chroma"] - oc) / max(m["chroma"], 1e-3)
             corr["materials"][mname] = {
                 "hue_shift": round(float(np.clip(dh * k, -15, 15)), 2),
                 "chroma_scale": round(float(np.clip(1 + (dc - 1) * k, 0.8, 1.3)), 3),
@@ -621,10 +650,10 @@ def sheet(manifest: dict, images: dict, cfg: dict, path: Path, zooms: dict | Non
         mats = manifest["assets"][name]
         for i, (m, v) in enumerate(mats["before"].get("materials", {}).items()):
             va = mats["after"].get("materials", {}).get(m, v)
-            tgt = cfg["materials"][m]
+            rng = cfg["materials"][m]["range"]
             d.text((pad + 2 * (tw + pad), y + 34 + 20 * i),
-                   f"{m}: hue {v['hue']:.1f} -> {va['hue']:.1f} (target {tgt['target_hue']:.0f}), "
-                   f"chroma {v['chroma']:.1f} -> {va['chroma']:.1f} (target {tgt['target_chroma']:.0f})",
+                   f"{m}: hue {v['hue']:.1f} -> {va['hue']:.1f} (range {rng['hue'][0]:.0f}-{rng['hue'][1]:.0f}), "
+                   f"chroma {v['chroma']:.1f} -> {va['chroma']:.1f} (range {rng['chroma'][0]:.0f}-{rng['chroma'][1]:.0f})",
                    fill=(60, 60, 60), font=small)
         y += th + pad
     path = Path(path)

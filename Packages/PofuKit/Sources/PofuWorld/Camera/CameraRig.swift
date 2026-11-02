@@ -29,6 +29,17 @@ public struct CameraRig: Hashable, Sendable {
     /// Reduce Motion: automatic travel lands in 200 ms, no overshoot.
     public var reduceMotion = false
 
+    /// The camera's springs; the Ayar panel tunes them live.
+    public var springs = CameraSprings.standard
+
+    /// The island pan (look round 4): world units added to the Island
+    /// stop's look x, faded out toward the Map and toward Home, so the
+    /// Island framing is a horizontal pan across the island at a scale
+    /// where Pofu is at least 80 pt.
+    public private(set) var pan: WorldSpring
+    /// The pan when the finger went down.
+    public private(set) var panStart: Double?
+
     /// The pinch in progress: its starting `ln s`.
     public private(set) var pinchStart: Double?
 
@@ -48,13 +59,15 @@ public struct CameraRig: Hashable, Sendable {
         lensGain = WorldSpring(lens.gain)
         offsetX = WorldSpring(0)
         offsetY = WorldSpring(0)
+        pan = WorldSpring(0)
     }
 
     // MARK: - Reading
 
     /// The camera now.
     public var pose: CameraPose {
-        let onRail = rail.pose(z: z.value)
+        var onRail = rail.pose(z: z.value)
+        onRail.lookX += pan.value * panWeight
         let amount = min(max(focusAmount.value, 0), 1.2)
         guard amount > 0 else { return onRail }
         return CameraPose.mix(onRail, focusPose, amount)
@@ -89,11 +102,11 @@ public struct CameraRig: Hashable, Sendable {
 
     /// Whether every spring is at rest and no pinch is down.
     public var isSettled: Bool {
-        pinchStart == nil && springs.allSatisfy { $0.isSettled(tolerance: 5e-4) }
+        pinchStart == nil && panStart == nil && allSprings.allSatisfy { $0.isSettled(tolerance: 5e-4) }
     }
 
-    private var springs: [WorldSpring] {
-        [z, focusAmount, focusLogScale, focusLookX, focusLookY, focusAnchorY, lensAmount, lensFocus, lensSlab, lensGain, offsetX, offsetY]
+    private var allSprings: [WorldSpring] {
+        [z, focusAmount, focusLogScale, focusLookX, focusLookY, focusAnchorY, lensAmount, lensFocus, lensSlab, lensGain, offsetX, offsetY, pan]
     }
 
     // MARK: - Time
@@ -112,6 +125,7 @@ public struct CameraRig: Hashable, Sendable {
         lensGain.step(dt)
         offsetX.step(dt)
         offsetY.step(dt)
+        pan.step(dt)
         if isSettled {
             snapToTargets()
         }
@@ -131,6 +145,7 @@ public struct CameraRig: Hashable, Sendable {
         lensGain.jump(to: lensGain.target)
         offsetX.jump(to: offsetX.target)
         offsetY.jump(to: offsetY.target)
+        pan.jump(to: pan.target)
     }
 
     /// A new viewport: the rail rescales; a focus keeps its targets until
@@ -146,8 +161,10 @@ public struct CameraRig: Hashable, Sendable {
     /// Map use the farther spring.
     public mutating func fly(to framing: WorldFraming) {
         let far = framing == .map || self.framing == .map
-        let spring = reduceMotion ? WorldSprings.reduced : (far ? WorldSprings.cameraFar : WorldSprings.camera)
+        let spring = reduceMotion ? WorldSprings.reduced : (far ? springs.far.token : springs.travel.token)
         z.retarget(framing.z, duration: spring.duration, bounce: spring.bounce)
+        // Every arrival opens centred on Pofu.
+        pan.retarget(0, duration: spring.duration, bounce: 0)
         releaseFocus()
     }
 
@@ -155,8 +172,8 @@ public struct CameraRig: Hashable, Sendable {
 
     /// Moves the camera to `pose` off the rail and racks the lens to
     /// `lens`. A retarget keeps the current motion.
-    public mutating func focus(pose target: CameraPose, lens: Lens, camera spring: (duration: Double, bounce: Double) = WorldSprings.focus) {
-        let camera = reduceMotion ? WorldSprings.reduced : spring
+    public mutating func focus(pose target: CameraPose, lens: Lens, camera spring: (duration: Double, bounce: Double)? = nil) {
+        let camera = reduceMotion ? WorldSprings.reduced : (spring ?? springs.focus.token)
         let rack = reduceMotion ? WorldSprings.reduced : WorldSprings.rack
         if focusAmount.value < 1e-3 && focusAmount.target == 0 {
             // From the rail: start the focus pose where the camera is, so
@@ -232,7 +249,7 @@ public struct CameraRig: Hashable, Sendable {
         if reduceMotion {
             spring = WorldSprings.reduced
         } else {
-            spring = landing.fromBand ? WorldSprings.cameraFromBand : WorldSprings.cameraRelease
+            spring = landing.fromBand ? WorldSprings.cameraFromBand : springs.release.token
         }
         z.retarget(landing.framing.z, duration: spring.duration, bounce: spring.bounce)
         z.velocity = landing.velocityZ
@@ -275,6 +292,78 @@ public struct CameraRig: Hashable, Sendable {
         (offsetX.value / Self.peekLimit, offsetY.value / Self.peekLimit)
     }
 
+    // MARK: - Island pan
+
+    /// How much of the pan shows at the rail position: all of it at the
+    /// Island framing, none by the Map's half-way point or at Home.
+    public var panWeight: Double {
+        let z = z.value
+        if z <= 0.5 || z >= 2 { return 0 }
+        if z < 1 {
+            let t = (z - 0.5) / 0.5
+            return t * t * (3 - 2 * t)
+        }
+        return 2 - z
+    }
+
+    /// The pan's band past either end, in points.
+    public static let panBand = 60.0
+
+    /// A horizontal drag at the Island framing: the island follows the
+    /// finger (`dx` points since the drag began) and rubber-bands past its
+    /// ends.
+    public mutating func panDrag(dx: Double) {
+        if panStart == nil {
+            panStart = pan.value
+        }
+        let s = max(rail.pose(of: .island).scale, 1e-3)
+        let raw = (panStart ?? 0) - dx / s
+        let range = IslandFraming.panRange
+        let band = Self.panBand / s
+        let banded: Double
+        if raw > range.upperBound {
+            banded = range.upperBound + CameraRail.rubberBand(raw - range.upperBound, limit: band)
+        } else if raw < range.lowerBound {
+            banded = range.lowerBound - CameraRail.rubberBand(range.lowerBound - raw, limit: band)
+        } else {
+            banded = raw
+        }
+        pan.jump(to: banded)
+    }
+
+    /// The finger lifted at `velocity` points per second: the pan coasts
+    /// with momentum and settles on the snap point nearest where it would
+    /// have stopped (a station or Pofu). Returns the snap.
+    @discardableResult
+    public mutating func endPan(velocity: Double) -> Double {
+        panStart = nil
+        let s = max(rail.pose(of: .island).scale, 1e-3)
+        let range = IslandFraming.panRange
+        let v = -velocity / s
+        let inside = range.contains(pan.value)
+        // UIScrollView's normal deceleration coasts about a third of a
+        // second's worth of the release velocity.
+        let projected = min(max(pan.value + (inside ? v * 0.33 : 0), range.lowerBound), range.upperBound)
+        let target = IslandFraming.panSnaps.min { abs($0 - projected) < abs($1 - projected) } ?? projected
+        let spring = reduceMotion ? WorldSprings.reduced : springs.release.token
+        pan.retarget(target, duration: spring.duration, bounce: inside ? spring.bounce : 0)
+        pan.velocity = inside ? v : 0
+        return target
+    }
+
+    /// Glides the pan to `target` on the release spring.
+    public mutating func panTo(_ target: Double) {
+        panStart = nil
+        let spring = reduceMotion ? WorldSprings.reduced : springs.release.token
+        pan.retarget(target, duration: spring.duration, bounce: 0)
+    }
+
+    /// Puts the pan at `value`, at rest (screenshots, tests).
+    public mutating func jumpPan(to value: Double) {
+        panStart = nil
+        pan.jump(to: value)
+    }
+
     // MARK: - Jumps (tests, screenshots, restoring)
 
     /// Puts the camera at a framing, at rest, with no focus.
@@ -284,6 +373,8 @@ public struct CameraRig: Hashable, Sendable {
         lensAmount.jump(to: 0)
         offsetX.jump(to: 0)
         offsetY.jump(to: 0)
+        pan.jump(to: 0)
         pinchStart = nil
+        panStart = nil
     }
 }

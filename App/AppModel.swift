@@ -346,6 +346,24 @@ final class AppModel {
         return pouch
     }
 
+    /// Island-game rounds playable now: earned, within today's cap, none
+    /// at night (`WorldClock.playableRounds`).
+    var playableRounds: Int {
+        gameClock.playableRounds(in: game, at: clock.now)
+    }
+
+    /// Spends a finished round and credits its seeds to the pouch
+    /// (`WorldClock.playRound`), for the next Collect.
+    func creditRound(seeds: Int) {
+        now = clock.now
+        do {
+            try gameClock.playRound(yield: seeds, in: &game, at: now)
+            save()
+        } catch {
+            Log.economy.info("Round not credited: \(String(describing: error), privacy: .public)")
+        }
+    }
+
     /// Builds a station's next level from the jar (`WorldClock.build`).
     @discardableResult
     func buildStation(_ station: StationID) -> BuildReceipt? {

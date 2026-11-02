@@ -24,6 +24,8 @@ let package = Package(
         .library(name: "PofuDesignSystem", targets: ["PofuDesignSystem"]),
         .library(name: "PofuCompanion", targets: ["PofuCompanion"]),
         .library(name: "PofuWorld", targets: ["PofuWorld"]),
+        .library(name: "PofuGames", targets: ["PofuGames"]),
+        .library(name: "PofuTuning", targets: ["PofuTuning"]),
     ],
     targets: [
         // Pure domain: economy, friction ladder, passes, metrics, vitality.
@@ -67,12 +69,33 @@ let package = Package(
             resources: [.process("Resources")]
         ),
 
+        // The island minigames. The rules (board, pieces, rounds, yields,
+        // the fair generator, feel math) are pure and tested on any
+        // platform; the SpriteKit scene and its SwiftUI shell are iOS only.
+        // Sprites are baked from the art masters by
+        // design/games/bake_garden_art.py. See docs/product/minigames.md.
+        .target(
+            name: "PofuGames",
+            dependencies: ["PofuDesignSystem", "PofuTuning"],
+            resources: [.process("Resources")]
+        ),
+
+        // Every number that decides feel, as data: the bundled
+        // `tuning.json` defaults and the live store the Ayar panel in
+        // Rehearsal mode edits and exports. Foundation only.
+        .target(
+            name: "PofuTuning",
+            resources: [.process("Resources")]
+        ),
+
         .testTarget(name: "PofuCoreTests", dependencies: ["PofuCore"]),
         .testTarget(name: "PofuScreenTimeTests", dependencies: ["PofuScreenTime", "PofuCore", "PofuPersistence"]),
         .testTarget(name: "PofuPersistenceTests", dependencies: ["PofuPersistence", "PofuCore"]),
         .testTarget(name: "PofuDesignSystemTests", dependencies: ["PofuDesignSystem"]),
         .testTarget(name: "PofuCompanionTests", dependencies: ["PofuCompanion"]),
         .testTarget(name: "PofuWorldTests", dependencies: ["PofuWorld", "PofuCore"]),
+        .testTarget(name: "PofuGamesTests", dependencies: ["PofuGames", "PofuTuning"]),
+        .testTarget(name: "PofuTuningTests", dependencies: ["PofuTuning"]),
     ],
     swiftLanguageModes: [.v6]
 )

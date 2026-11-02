@@ -14,6 +14,6 @@ art:
   - design/prototypes/home-directions/assets/neighbor-bunny.webp
   jobs: []
 sources:
-- doc: docs/brand/character-exploration.md
+- doc: docs/archive/character-exploration.md
 kind: concept
 batch: unbatched

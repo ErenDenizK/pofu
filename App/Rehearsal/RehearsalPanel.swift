@@ -91,6 +91,22 @@ struct RehearsalPanel: View {
             }
             nightOrMorning
             Divider()
+            // Rounds are earned (two a day, one per resisted reach) and
+            // credited to the pouch: the same ledger the product will use.
+            let rounds = model.playableRounds
+            control(Text("Play the garden (\(rounds))"), symbol: "square.grid.3x3.fill") {
+                rehearsal.gardenRounds = rounds
+                rehearsal.isPanelExpanded = false
+                rehearsal.isPlayingGarden = true
+            }
+            .disabled(rounds == 0)
+            Divider()
+            #if DEBUG
+            // Ayar: the live tuning panel (debug builds only).
+            control(Text(verbatim: "Ayar"), symbol: "slider.horizontal.3") {
+                Ayar.session.isOpen = true
+            }
+            #endif
             control(Text("Reset"), symbol: "arrow.counterclockwise", role: .destructive) {
                 confirmsReset = true
             }

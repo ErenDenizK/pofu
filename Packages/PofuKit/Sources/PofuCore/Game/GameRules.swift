@@ -115,6 +115,8 @@ public struct GameRules: Hashable, Sendable, Codable {
     /// Islands that arrive with an app update ("with a season") and have
     /// been released.
     public var releasedIslands: Set<IslandID>
+    /// How island-game rounds are earned and played.
+    public var rounds = RoundRules()
 
     public init(
         care: CareRules = CareRules(),

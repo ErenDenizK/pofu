@@ -11,7 +11,7 @@ Development builds can use Family Controls as soon as the paid team exists;
 only TestFlight and the App Store wait for Apple's distribution approval.
 So everything below works on day 1.
 
-Write the results to `docs/local/reports/<YYYY-MM-DD>-membership-day-1.md`
+Write the results to `docs/archive/local-reports/<YYYY-MM-DD>-membership-day-1.md`
 in a `local/membership-day-1` PR: every step's date and outcome, each
 case's result (pass, fail, or "different": what happened instead), iOS
 version, and screenshots of the shield in light and dark mode. Never commit

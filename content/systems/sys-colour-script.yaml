@@ -1,0 +1,25 @@
+id: sys-colour-script
+type: system
+title_tr: Renk senaryosu
+title_en: Colour script
+status: in-app
+horizon: now
+summary: >-
+  Pofu's light as data: five hour cells (dawn, day, golden, dusk, night) and the unwell state, each
+  with its sky, key, fill, rim, shadow hue, practical lights (the ember, the door's window), fog on
+  the far isles, cloud sea, the world's residual grade and the characters' light. Light carries the
+  time of day, the grade only finishes it, local colour is protected by the material library; Pofu
+  and the residents keep their warmth at night (the character light) and the ember warms the rose
+  copper kettle instead of repainting it.
+notes:
+- 'Data: design/art/colour-script.json and design/art/materials.json; tools/assets/colour_script.py generates ColourScript+Generated.swift and CI fails a stale one.'
+- 'Look round 3 (2026-11-02): v1 of the plan in docs/research/pro-game-craft.md section 4; the founder preferred the rose copper to round 2''s warm shift.'
+- 'Open: paintovers per cell, pseudo-normals for the key, a lantern practical once it is generated.'
+links:
+  related: [sys-asset-harmony, sys-depth-lens]
+sources:
+- doc: docs/design/colour-script.md
+group: visual
+board:
+  col: 10
+  row: 5

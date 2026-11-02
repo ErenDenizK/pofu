@@ -8,7 +8,7 @@ edits land with the IA and user-flow rewrite after the founder's gate week
 _Builds on the [vision](vision.md), [game design v2](game-design.md),
 ADR-0012 to ADR-0017, ADR-0018 and the iteration plan (open branch
 `docs/visual-system-v1`), [design review 01](../design/review-01.md), the
-local reports in [`docs/local/reports/`](../local/reports/), and the
+local reports in [`docs/archive/local-reports/`](../archive/local-reports/), and the
 founder's input of 2026-11-01 (opening intents, habit substitution, the
 diagnosed setup failure). Storyboard (Turkish copy, phone-first):
 [`design/prototypes/app-game-boundary/`](../../design/prototypes/app-game-boundary/index.html).
@@ -821,7 +821,7 @@ The lead integrates these; this PR does not edit them.
 - §8: name the Today, station, island and recap sheets as the glass sheets
   over the world.
 
-### Local agent brief (`docs/local-agent.md`)
+### Local agent brief (`docs/archive/local-agent.md`)
 
 - Add two checks: whether the Personal Team build may use an App Group
   (widgets before the membership), and whether running Hop in by hand from
