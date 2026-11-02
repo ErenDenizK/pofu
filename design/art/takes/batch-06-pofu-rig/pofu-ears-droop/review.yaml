@@ -3,10 +3,10 @@ contact_sheet: design/art/takes/batch-06-pofu-rig/pofu-ears-droop/contact.jpg
 jobs:
   pofu-ears-droop:
     pick: 2
-    note: 'auto-picked by QA; founder review pending Global queue stop: batch-07-light
-      workshop-1-lit retry takes 3 and 4 both failed chroma_ceiling. No new image
-      calls after stop; this generated pair is retained for later review and is NOT
-      published as a master on this branch.'
+    note: auto-picked by QA; founder review pending Publication resumed under the
+      repeated user request from original cached PNGs/local raw; no new generation.
+      Current harmony audit at f35258d leaves the selected take unchanged; QA implementation,
+      presets and rig manifest are byte-unchanged.
     takes:
       t1:
         qa: warn
@@ -14,77 +14,11 @@ jobs:
       t2:
         qa: warn
         summary: palette_drift warn
-    local_candidate_preparation:
+    approved:
       take: 2
       at: '2026-11-02T19:16:42+00:00'
-    publication: selected candidate, not published as a master on this branch due
-      global stop
 qa_reports:
-  '2':
-    job: pofu-ears-droop
-    take: 2
-    status: warn
-    preset: char-guard
-    checks:
-    - check: transparency
-      status: pass
-      message: source has an alpha channel
-    - check: canvas
-      status: pass
-      message: 1024x1536
-    - check: chroma_ceiling
-      status: pass
-      message: chroma p95 53 (R1 51)
-      value: 52.9
-    - check: value_floor
-      status: pass
-      message: lightness p5 54 (R1 59)
-      value: 53.5
-    - check: detail_budget
-      status: pass
-      message: detail at display size 4.8 (R1 5.3)
-      value: 4.85
-    - check: palette_drift
-      status: warn
-      message: 'mean dE 2.4, p95 11.3, off-palette 4.6% (top: #EE9955 (0.7%), #DD8844
-        (0.3%))'
-      value: 2.441
-    - check: ground_line
-      status: pass
-      message: feet at 89.5% of the height (contract 88%)
-      value: 0.8952
-    - check: harmony
-      status: pass
-      message: 'harmony score 82 against the char reference (outliers: C_p95, detail,
-        tint_b)'
-      value: 81.9
-    - check: edit_stability
-      status: pass
-      message: 92% of the parent level unchanged
-      value: 0.9174
-    - check: edit_chroma
-      status: pass
-      message: chroma x1.02 of the parent level (drift compounds along a chain)
-      value: 1.0216
-    info:
-      metrics_raw:
-        L_p5: 53.5
-        L_p50: 88.0
-        L_p95: 96.5
-        C_p50: 12.1
-        C_p95: 53.0
-        C_p99: 64.1
-        detail: 4.89
-      metrics_locked:
-        L_p5: 53.5
-        L_p50: 88.0
-        L_p95: 96.5
-        C_p50: 12.1
-        C_p95: 52.9
-        C_p99: 58.0
-        detail: 4.85
-    fingerprint: c0d1bd4a833244b2
-  '1':
+  t1:
     job: pofu-ears-droop
     take: 1
     status: warn
@@ -117,11 +51,6 @@ qa_reports:
       status: pass
       message: feet at 89.5% of the height (contract 88%)
       value: 0.8952
-    - check: harmony
-      status: pass
-      message: 'harmony score 82 against the char reference (outliers: C_p95, detail,
-        tint_b)'
-      value: 81.8
     - check: edit_stability
       status: pass
       message: 92% of the parent level unchanged
@@ -130,6 +59,11 @@ qa_reports:
       status: pass
       message: chroma x1.04 of the parent level (drift compounds along a chain)
       value: 1.0358
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the char reference (outliers: C_p95, detail,
+        tint_b)'
+      value: 81.7
     info:
       metrics_raw:
         L_p5: 54.2
@@ -148,3 +82,94 @@ qa_reports:
         C_p99: 58.2
         detail: 5.27
     fingerprint: c0d1bd4a833244b2
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/qa/char__pofu-ears-droop--t1.json
+      locked_pixels: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/locked/char__pofu-ears-droop--t1.png
+      old_harmony: 81.8
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
+  t2:
+    job: pofu-ears-droop
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 53 (R1 51)
+      value: 52.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 54 (R1 59)
+      value: 53.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.8 (R1 5.3)
+      value: 4.85
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.4, p95 11.3, off-palette 4.6% (top: #EE9955 (0.7%), #DD8844
+        (0.3%))'
+      value: 2.441
+    - check: ground_line
+      status: pass
+      message: feet at 89.5% of the height (contract 88%)
+      value: 0.8952
+    - check: edit_stability
+      status: pass
+      message: 92% of the parent level unchanged
+      value: 0.9174
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.02 of the parent level (drift compounds along a chain)
+      value: 1.0216
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the char reference (outliers: C_p95, detail,
+        tint_b)'
+      value: 81.8
+    info:
+      metrics_raw:
+        L_p5: 53.5
+        L_p50: 88.0
+        L_p95: 96.5
+        C_p50: 12.1
+        C_p95: 53.0
+        C_p99: 64.1
+        detail: 4.89
+      metrics_locked:
+        L_p5: 53.5
+        L_p50: 88.0
+        L_p95: 96.5
+        C_p50: 12.1
+        C_p95: 52.9
+        C_p99: 58.0
+        detail: 4.85
+    fingerprint: c0d1bd4a833244b2
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/qa/char__pofu-ears-droop--t2.json
+      locked_pixels: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/locked/char__pofu-ears-droop--t2.png
+      old_harmony: 81.9
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
+current_policy_audit:
+  base: f35258d
+  old_pick: 2
+  pick: 2
+  take_scores:
+  - n: 1
+    status: warn
+    harmony: 81.7
+  - n: 2
+    status: warn
+    harmony: 81.8
