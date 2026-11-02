@@ -32,8 +32,14 @@ public struct WorldLook: Hashable, Sendable {
     /// Painted HD-2D lite: bloom, light shafts, ambient particles and the
     /// stronger tilt-shift. The vignette belongs to the grade.
     public var hd2d: Bool
+    /// Depth in motion: parallax and depth of field that follow the
+    /// camera while it moves (`DepthMotion`); part of HD-2D.
+    public var depthMotion: Bool
     /// A fixed local hour (screenshots); `nil` follows the world's clock.
     public var hourOverride: Double?
+    /// A fixed grade instead of the light's (screenshots: before and
+    /// after a grade change); `nil` follows the hour and Pofu's state.
+    public var gradeOverride: WorldGrade?
     /// The frame-time counter in a corner (debug).
     public var frameMeter: Bool
 
@@ -41,13 +47,17 @@ public struct WorldLook: Hashable, Sendable {
         art: ArtSet = .lockLight,
         grade: Bool = true,
         hd2d: Bool = true,
+        depthMotion: Bool = true,
         hourOverride: Double? = nil,
+        gradeOverride: WorldGrade? = nil,
         frameMeter: Bool = false
     ) {
         self.art = art
         self.grade = grade
         self.hd2d = hd2d
+        self.depthMotion = depthMotion
         self.hourOverride = hourOverride
+        self.gradeOverride = gradeOverride
         self.frameMeter = frameMeter
     }
 
@@ -55,7 +65,7 @@ public struct WorldLook: Hashable, Sendable {
     public static let standard = WorldLook()
 
     /// The look before look-dev: the soft-lock art and nothing else.
-    public static let legacy = WorldLook(art: .softLock, grade: false, hd2d: false)
+    public static let legacy = WorldLook(art: .softLock, grade: false, hd2d: false, depthMotion: false)
 }
 
 extension WorldArt {

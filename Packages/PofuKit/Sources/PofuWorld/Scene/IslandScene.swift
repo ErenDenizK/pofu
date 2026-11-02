@@ -257,7 +257,7 @@ private struct SceneFrame<Bubble: View>: View {
         let z = rig.railPosition
         // Depth in motion (HD-2D): while the camera moves, layers parallax
         // by depth and the depth of field strengthens; both settle to zero.
-        let motion = look.hd2d && !model.reduceMotion ? rig.motion : CameraMotion.still
+        let motion = look.hd2d && look.depthMotion && !model.reduceMotion ? rig.motion : CameraMotion.still
         let lookPoint = WorldPoint(x: pose.lookX, y: pose.lookY)
         // HD-2D's tilt-shift: the depth lens, stronger per framing.
         let lens = DepthMotion.lens(look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z)) : rig.lens, motion: motion)
@@ -282,7 +282,7 @@ private struct SceneFrame<Bubble: View>: View {
         // world as before (game design §15: no night versions are
         // generated); with it, WorldGrade does the whole job.
         let tint = look.grade ? Color.white : palette.grade.color
-        let grade = look.grade ? light.grade : WorldGrade.neutral
+        let grade = look.grade ? look.gradeOverride ?? light.grade : WorldGrade.neutral
         // Settled: the ambient layers hold still, so the frame is cached.
         let ambientPaused = look.hd2d && !model.needsFrames && build == nil
 
