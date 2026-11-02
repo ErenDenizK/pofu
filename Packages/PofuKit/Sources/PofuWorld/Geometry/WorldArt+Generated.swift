@@ -50,6 +50,29 @@ extension WorldArt {
                 WorldPoint(x: -44.64, y: 0.86),
             ]
         ),
+        "cay-1--unharmonized": WorldSprite(
+            sharp: WorldBox(minX: -47.578, minY: -58.477, maxX: 45.755, maxY: 12.457),
+            soft: WorldBox(minX: -51.845, minY: -62.743, maxX: 50.022, maxY: 16.723),
+            deep: WorldBox(minX: -59.578, minY: -70.477, maxX: 57.755, maxY: 24.457),
+            footprint: [
+                WorldPoint(x: -44.24, y: -14.61),
+                WorldPoint(x: 42.56, y: -14.61),
+                WorldPoint(x: 43.22, y: -0.88),
+                WorldPoint(x: 43.22, y: 1.26),
+                WorldPoint(x: 42.69, y: 2.72),
+                WorldPoint(x: 39.09, y: 8.72),
+                WorldPoint(x: 38.02, y: 9.66),
+                WorldPoint(x: 36.16, y: 10.06),
+                WorldPoint(x: 10.69, y: 11.52),
+                WorldPoint(x: 4.02, y: 11.79),
+                WorldPoint(x: -5.04, y: 11.79),
+                WorldPoint(x: -13.44, y: 11.39),
+                WorldPoint(x: -37.84, y: 9.12),
+                WorldPoint(x: -40.38, y: 7.79),
+                WorldPoint(x: -44.11, y: 2.32),
+                WorldPoint(x: -44.64, y: 0.86),
+            ]
+        ),
         "findik-standin": WorldSprite(
             sharp: WorldBox(minX: -13.164, minY: -21.474, maxX: 11.91, maxY: 4.018),
             soft: WorldBox(minX: -17.552, minY: -25.862, maxX: 16.299, maxY: 8.406),
@@ -74,6 +97,28 @@ extension WorldArt {
             ]
         ),
         "garden-standin": WorldSprite(
+            sharp: WorldBox(minX: -45.0, minY: -40.4, maxX: 58.8, maxY: 15.2),
+            soft: WorldBox(minX: -49.2, minY: -44.6, maxX: 63.0, maxY: 19.4),
+            deep: WorldBox(minX: -57.0, minY: -52.4, maxX: 70.8, maxY: 27.2),
+            footprint: [
+                WorldPoint(x: -44.2, y: -0.8),
+                WorldPoint(x: -40.4, y: -12.6),
+                WorldPoint(x: -40.2, y: -12.8),
+                WorldPoint(x: 39.4, y: -12.8),
+                WorldPoint(x: 57.6, y: -6.0),
+                WorldPoint(x: 58.0, y: -5.6),
+                WorldPoint(x: 58.0, y: -4.8),
+                WorldPoint(x: 50.2, y: 5.6),
+                WorldPoint(x: 49.8, y: 6.0),
+                WorldPoint(x: 40.2, y: 14.0),
+                WorldPoint(x: 39.8, y: 14.2),
+                WorldPoint(x: -39.8, y: 14.2),
+                WorldPoint(x: -40.2, y: 14.0),
+                WorldPoint(x: -40.6, y: 13.2),
+                WorldPoint(x: -44.2, y: 0.8),
+            ]
+        ),
+        "garden-standin--unharmonized": WorldSprite(
             sharp: WorldBox(minX: -45.0, minY: -40.4, maxX: 58.8, maxY: 15.2),
             soft: WorldBox(minX: -49.2, minY: -44.6, maxX: 63.0, maxY: 19.4),
             deep: WorldBox(minX: -57.0, minY: -52.4, maxX: 70.8, maxY: 27.2),
@@ -157,6 +202,20 @@ extension WorldArt {
                 WorldPoint(x: -5.33, y: 105.46),
             ]
         ),
+        "isle-hamam-standin--unharmonized": WorldSprite(
+            sharp: WorldBox(minX: -109.333, minY: -80.318, maxX: 109.333, maxY: 113.016),
+            soft: WorldBox(minX: -113.778, minY: -84.762, maxX: 113.778, maxY: 117.46),
+            deep: WorldBox(minX: -121.333, minY: -92.318, maxX: 121.333, maxY: 125.016),
+            footprint: [
+                WorldPoint(x: -5.33, y: 103.24),
+                WorldPoint(x: 7.56, y: 103.24),
+                WorldPoint(x: 7.56, y: 110.79),
+                WorldPoint(x: 7.11, y: 111.24),
+                WorldPoint(x: 6.67, y: 111.24),
+                WorldPoint(x: 0.89, y: 108.57),
+                WorldPoint(x: -5.33, y: 105.46),
+            ]
+        ),
         "isle-harbor-standin": WorldSprite(
             sharp: WorldBox(minX: -115.333, minY: -106.473, maxX: 134.0, maxY: 117.971),
             soft: WorldBox(minX: -119.778, minY: -110.918, maxX: 138.444, maxY: 122.415),
@@ -189,7 +248,37 @@ extension WorldArt {
                 WorldPoint(x: -6.0, y: 93.84),
             ]
         ),
+        "isle-library-standin--unharmonized": WorldSprite(
+            sharp: WorldBox(minX: -103.333, minY: -84.384, maxX: 103.333, maxY: 108.06),
+            soft: WorldBox(minX: -107.778, minY: -88.829, maxX: 107.778, maxY: 112.505),
+            deep: WorldBox(minX: -115.333, minY: -96.384, maxX: 115.333, maxY: 120.06),
+            footprint: [
+                WorldPoint(x: -6.0, y: 92.95),
+                WorldPoint(x: 6.89, y: 92.95),
+                WorldPoint(x: 7.78, y: 97.39),
+                WorldPoint(x: 7.78, y: 104.5),
+                WorldPoint(x: 7.33, y: 106.28),
+                WorldPoint(x: 6.89, y: 106.28),
+                WorldPoint(x: -5.56, y: 100.5),
+                WorldPoint(x: -6.0, y: 93.84),
+            ]
+        ),
         "isle-stars-standin": WorldSprite(
+            sharp: WorldBox(minX: -103.333, minY: -82.607, maxX: 103.333, maxY: 108.06),
+            soft: WorldBox(minX: -107.778, minY: -87.051, maxX: 107.778, maxY: 112.505),
+            deep: WorldBox(minX: -115.333, minY: -94.607, maxX: 115.333, maxY: 120.06),
+            footprint: [
+                WorldPoint(x: -5.56, y: 94.28),
+                WorldPoint(x: 6.89, y: 94.28),
+                WorldPoint(x: 7.33, y: 95.17),
+                WorldPoint(x: 7.78, y: 97.39),
+                WorldPoint(x: 7.78, y: 104.5),
+                WorldPoint(x: 7.33, y: 106.28),
+                WorldPoint(x: 6.89, y: 106.28),
+                WorldPoint(x: -5.56, y: 100.5),
+            ]
+        ),
+        "isle-stars-standin--unharmonized": WorldSprite(
             sharp: WorldBox(minX: -103.333, minY: -82.607, maxX: 103.333, maxY: 108.06),
             soft: WorldBox(minX: -107.778, minY: -87.051, maxX: 107.778, maxY: 112.505),
             deep: WorldBox(minX: -115.333, minY: -94.607, maxX: 115.333, maxY: 120.06),
@@ -273,6 +362,29 @@ extension WorldArt {
                 WorldPoint(x: -38.6, y: -2.4),
             ]
         ),
+        "pond-standin--unharmonized": WorldSprite(
+            sharp: WorldBox(minX: -39.8, minY: -22.8, maxX: 39.8, maxY: 13.8),
+            soft: WorldBox(minX: -44.0, minY: -27.0, maxX: 44.0, maxY: 18.0),
+            deep: WorldBox(minX: -51.8, minY: -34.8, maxX: 51.8, maxY: 25.8),
+            footprint: [
+                WorldPoint(x: -38.6, y: -3.4),
+                WorldPoint(x: 37.4, y: -3.4),
+                WorldPoint(x: 37.2, y: -2.4),
+                WorldPoint(x: 35.2, y: 3.0),
+                WorldPoint(x: 34.6, y: 4.2),
+                WorldPoint(x: 33.2, y: 5.6),
+                WorldPoint(x: 24.4, y: 11.0),
+                WorldPoint(x: 22.4, y: 11.8),
+                WorldPoint(x: -6.0, y: 12.8),
+                WorldPoint(x: -9.0, y: 12.8),
+                WorldPoint(x: -22.4, y: 11.8),
+                WorldPoint(x: -23.2, y: 11.6),
+                WorldPoint(x: -25.0, y: 10.6),
+                WorldPoint(x: -32.4, y: 4.6),
+                WorldPoint(x: -37.6, y: -0.6),
+                WorldPoint(x: -38.6, y: -2.4),
+            ]
+        ),
         "windmill-standin": WorldSprite(
             sharp: WorldBox(minX: -39.8, minY: -98.2, maxX: 39.8, maxY: 11.6),
             soft: WorldBox(minX: -44.0, minY: -102.4, maxX: 44.0, maxY: 15.8),
@@ -290,7 +402,41 @@ extension WorldArt {
                 WorldPoint(x: -18.2, y: -0.2),
             ]
         ),
+        "windmill-standin--unharmonized": WorldSprite(
+            sharp: WorldBox(minX: -39.8, minY: -98.2, maxX: 39.8, maxY: 11.6),
+            soft: WorldBox(minX: -44.0, minY: -102.4, maxX: 44.0, maxY: 15.8),
+            deep: WorldBox(minX: -51.8, minY: -110.2, maxX: 51.8, maxY: 23.6),
+            footprint: [
+                WorldPoint(x: -18.2, y: -1.2),
+                WorldPoint(x: -17.8, y: -5.2),
+                WorldPoint(x: -17.2, y: -11.0),
+                WorldPoint(x: 17.2, y: -11.0),
+                WorldPoint(x: 17.8, y: -5.2),
+                WorldPoint(x: 18.2, y: -1.2),
+                WorldPoint(x: 18.2, y: -0.2),
+                WorldPoint(x: 18.0, y: 0.0),
+                WorldPoint(x: -18.0, y: 0.0),
+                WorldPoint(x: -18.2, y: -0.2),
+            ]
+        ),
         "workshop-standin": WorldSprite(
+            sharp: WorldBox(minX: -52.8, minY: -50.2, maxX: 39.8, maxY: 11.6),
+            soft: WorldBox(minX: -57.0, minY: -54.4, maxX: 44.0, maxY: 15.8),
+            deep: WorldBox(minX: -64.8, minY: -62.2, maxX: 51.8, maxY: 23.6),
+            footprint: [
+                WorldPoint(x: -52.0, y: -10.8),
+                WorldPoint(x: -51.8, y: -11.2),
+                WorldPoint(x: -51.4, y: -11.6),
+                WorldPoint(x: -27.4, y: -23.2),
+                WorldPoint(x: 27.4, y: -23.2),
+                WorldPoint(x: 27.4, y: -0.4),
+                WorldPoint(x: 27.2, y: 0.0),
+                WorldPoint(x: -49.2, y: 0.0),
+                WorldPoint(x: -49.4, y: -0.2),
+                WorldPoint(x: -52.0, y: -8.8),
+            ]
+        ),
+        "workshop-standin--unharmonized": WorldSprite(
             sharp: WorldBox(minX: -52.8, minY: -50.2, maxX: 39.8, maxY: 11.6),
             soft: WorldBox(minX: -57.0, minY: -54.4, maxX: 44.0, maxY: 15.8),
             deep: WorldBox(minX: -64.8, minY: -62.2, maxX: 51.8, maxY: 23.6),

@@ -18,7 +18,8 @@ grow the blurred image's box by the same amount.
 `app` mode builds the app's world art for `PofuWorld` with the same blur: it trims each master,
 caps its resolution, bakes the soft and deep variants, cuts the home plate into depth bands, and
 writes an Xcode asset catalog plus a generated Swift table of every image's box in world units,
-each standing sprite's ground footprint and the plate's walkable polygon (needs scipy).
+each standing sprite's ground footprint and the plate's walkable polygon (needs scipy). Each master's
+harmony correction (design/art/harmony/manifest.json, tools/assets/harmony.py) is baked in first.
 
   python3 -I design/prototypes/interactions/tools/preblur.py app   (from anywhere)
 """
@@ -345,8 +346,23 @@ def _band_cut(img, box, k):
     return crop, [box[0], round(box[1] + r0 * per_row, 3), box[2], round(box[1] + r1 * per_row, 3)]
 
 
+def _harmony():
+    """tools/assets/harmony.py and its committed manifest (look round 2: asset harmony)."""
+    sys.path.insert(0, os.path.join(REPO, "tools", "assets"))
+    import harmony
+
+    with open(harmony.MANIFEST) as f:
+        return harmony, json.load(f), harmony.load_config()
+
+
 def app_main():
     import shutil
+
+    harmony, manifest, harmony_cfg = _harmony()
+
+    def corrected(name):
+        entry = manifest["assets"].get(name)
+        return entry is not None and not harmony.is_identity(entry["correction"])
 
     if os.path.isdir(APP_CATALOG):
         shutil.rmtree(APP_CATALOG)
@@ -361,12 +377,18 @@ def app_main():
         jobs.append((name, "", spec))
         if spec.get("softlock"):
             jobs.append((name, "--softlock", {**spec, "src": spec["softlock"]}))
+        # Every sprite carries its harmony correction; the uncorrected colour is kept as
+        # <name>--unharmonized to compare (WorldLook.ArtSet.unharmonized) until the founder signs off.
+        if corrected(name):
+            jobs.append((name, "--unharmonized", spec))
     for name, alt, spec in jobs:
         path = os.path.join(REPO, spec["src"])
         if not os.path.exists(path):
             print("missing", path, file=sys.stderr)
             return 1
         src = Image.open(path).convert("RGBA")
+        if not alt and corrected(name):
+            src = harmony.correct_image(name, src, manifest, harmony_cfg)
         if "anchor_box" in spec:
             bx = spec["anchor_box"]
             ppu = src.width / spec["units"]

@@ -155,4 +155,11 @@ struct LookTuningTests {
         #expect(WorldArt.key("mochi", art: .softLock) == "mochi")
         #expect(WorldArt.key("cay-1", art: .lockLight) == "cay-1")
     }
+
+    @Test func theUnharmonizedSetKeepsTheUncorrectedBake() {
+        // The çaydanlık's copper was corrected, so its raw colour is kept.
+        #expect(WorldArt.key("cay-1", art: .unharmonized) == "cay-1--unharmonized")
+        // The reference plate needs no correction.
+        #expect(WorldArt.key("island-main-band2", art: .unharmonized) == "island-main-band2")
+    }
 }

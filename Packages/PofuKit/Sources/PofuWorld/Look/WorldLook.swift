@@ -12,6 +12,18 @@ public struct WorldLook: Hashable, Sendable {
         /// The `soft-lock` bake the app shipped until 2026-11-02, kept to
         /// compare; drop it once the founder has chosen.
         case softLock
+        /// The lock-light bake without its asset-harmony correction
+        /// (`tools/assets/harmony.py`, look round 2), to compare.
+        case unharmonized
+
+        /// The suffix of this set's sprites, `nil` for the default.
+        var suffix: String? {
+            switch self {
+            case .lockLight: nil
+            case .softLock: "--softlock"
+            case .unharmonized: "--unharmonized"
+            }
+        }
     }
 
     public var art: ArtSet
@@ -47,18 +59,11 @@ public struct WorldLook: Hashable, Sendable {
 }
 
 extension WorldArt {
-    /// The suffix of the soft-lock bake's sprites (`cay-1--softlock`).
-    static let softLockSuffix = "--softlock"
-
-    /// The sprite key to draw for `name` in `art`: the soft-lock bake when
-    /// the pipeline baked one, otherwise `name` itself.
+    /// The sprite key to draw for `name` in `art`: the set's own bake when
+    /// the pipeline baked one (`cay-1--softlock`), otherwise `name` itself.
     public static func key(_ name: String, art: WorldLook.ArtSet) -> String {
-        switch art {
-        case .lockLight:
-            return name
-        case .softLock:
-            let alt = name + softLockSuffix
-            return generated[alt] != nil ? alt : name
-        }
+        guard let suffix = art.suffix else { return name }
+        let alt = name + suffix
+        return generated[alt] != nil ? alt : name
     }
 }
