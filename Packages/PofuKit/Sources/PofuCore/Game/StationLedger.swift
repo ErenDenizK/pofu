@@ -171,7 +171,7 @@ public struct StationLedger: Hashable, Sendable, Codable {
     @discardableResult
     public mutating func giftSkip(on day: LocalDay, rules: SeedRules) -> Energy {
         let used = giftedSkips.flatMap { $0.day == day ? $0.count : nil } ?? 0
-        guard used < rules.giftedSkipsPerDay, rules.skipGift > .zero else { return .zero }
+        guard rules.skipGift > .zero, used < rules.giftedSkipsPerDay else { return .zero }
         giftedSkips = DayCount(day: day, count: used + 1)
         pending.skips += rules.skipGift
         return rules.skipGift
