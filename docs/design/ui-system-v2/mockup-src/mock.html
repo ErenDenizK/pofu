@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>UI system v2 mockups</title>
+<!--
+  Boards for docs/design/ui-system-v2.md. Render with render.js.
+  Real art: design/art/masters and design/art/stations (paths below).
+  Stand-ins (marked on the boards): the seed jar, the calm lantern, the
+  skip pots, the cheek puff (a CSS radial magnification that imitates the
+  planned pouch shader), the crafted skin's clay, paper and wood (CSS
+  gradients and SVG noise), the game pieces and the reward stamp.
+  Glass is approximated with backdrop-filter and is clearer and flatter
+  than Liquid Glass. Nunito stands in for SF Pro Rounded.
+-->
+<style>
+@font-face { font-family: Nunito; src: url(../../../../design/prototypes/review-01/fonts/nunito-latin-ext-wght-normal.woff2) format('woff2'); font-weight: 200 1000; unicode-range: U+0100-024F, U+1E00-1EFF; }
+@font-face { font-family: Nunito; src: url(../../../../design/prototypes/review-01/fonts/nunito-latin-wght-normal.woff2) format('woff2'); font-weight: 200 1000; }
+:root {
+  --ink: #2A1F2D; --ink6: #66555F; --ink4: #8E7D88; --violet: #6C4FD8; --violet7: #553BB8; --honey: #F5B83D;
+  --cream: #FFFBF5; --cream1: #FFF6EC; --meadow: #2F7349; --peach8: #8A4F2B; --night: #15111C; --mist: #B8A8B1;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #ECE7E1; font-family: Nunito, system-ui, sans-serif; color: var(--ink); }
+#board { width: 1700px; padding: 36px 40px 40px; background: #F4F0EA; }
+h1 { font: 800 34px/1.1 Nunito; margin: 0 0 6px; letter-spacing: -0.3px; }
+.sub { font: 500 17px/1.42 Nunito; color: var(--ink6); margin: 0 0 26px; max-width: 1560px; }
+.sub small { font-size: 13px; color: #9a8c94; }
+.row { display: flex; gap: 40px; align-items: flex-start; }
+.col { display: flex; flex-direction: column; gap: 10px; }
+.cap { font: 800 14px/1.3 Nunito; color: var(--ink6); letter-spacing: .5px; text-transform: uppercase; }
+.phone { position: relative; width: 402px; height: 874px; border-radius: 56px; overflow: hidden; background: #ddd;
+  box-shadow: 0 0 0 10px #1d1a20, 0 0 0 11px #3a363d, 0 30px 60px rgba(40,25,50,.25); isolation: isolate; }
+.status { position: absolute; top: 18px; left: 34px; right: 30px; display: flex; justify-content: space-between; font: 700 17px Nunito; z-index: 40; color: var(--ink); }
+.night .status { color: #fff; }
+.island-cut { position: absolute; top: 11px; left: 50%; width: 124px; height: 36px; margin-left: -62px; background: #000; border-radius: 20px; z-index: 41; }
+.homebar { position: absolute; bottom: 8px; left: 50%; width: 140px; height: 5px; margin-left: -70px; border-radius: 3px; background: rgba(0,0,0,.75); z-index: 41; }
+.night .homebar { background: rgba(255,255,255,.85); }
+.abs { position: absolute; }
+img.abs { display: block; }
+.num { font-variant-numeric: tabular-nums; }
+.notes { flex: 1; display: flex; flex-direction: column; gap: 12px; min-width: 300px; }
+.note { display: flex; gap: 12px; font: 500 15.5px/1.42 Nunito; color: var(--ink); }
+.note b { font-weight: 800; }
+.n { flex: none; width: 26px; height: 26px; border-radius: 13px; background: #2F9E5B; color: #fff; font: 800 14px/26px Nunito; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+.pin { position: absolute; z-index: 60; }
+.layer { display: inline-block; font: 800 11px/1 Nunito; padding: 4px 7px; border-radius: 6px; margin-right: 6px; vertical-align: 2px; letter-spacing: .3px; }
+.L-n { background: #DDE6FF; color: #2C3E8C; } .L-c { background: #FBE3C8; color: #7A4313; } .L-d { background: #DDF1E1; color: #1F5E33; } .L-w { background: #EEE; color: #555; }
+.verdict { margin-top: 6px; padding: 14px 16px; border-radius: 16px; background: #fff; font: 600 15px/1.45 Nunito; }
+.standin { position: absolute; z-index: 55; font: 800 9.5px Nunito; color: rgba(42,31,45,.55); letter-spacing: .3px; background: rgba(255,255,255,.55); padding: 1px 4px; border-radius: 4px; }
+.night .standin { color: rgba(255,255,255,.7); background: rgba(0,0,0,.3); }
+
+/* ---------- world ---------- */
+.sky { position: absolute; inset: 0; background: linear-gradient(180deg, #BFDDEB 0%, #D9EAEE 30%, #F3EBDD 52%, #F6E9D6 100%); }
+.night .sky { background: linear-gradient(180deg, #14122B 0%, #241F45 38%, #3A2F57 56%, #2A2340 100%); }
+.fog { position: absolute; left: 0; right: 0; bottom: 0; height: 230px; background: linear-gradient(to bottom, rgba(246,238,226,0), rgba(246,238,226,.8) 60%, rgba(246,238,226,.95)); z-index: 18; }
+.night .fog { background: linear-gradient(to bottom, rgba(24,20,40,0), rgba(24,20,40,.8) 60%, rgba(24,20,40,.95)); }
+.grade-night { filter: brightness(.52) saturate(.8) hue-rotate(-12deg) contrast(1.05); }
+.grade-night-soft { filter: brightness(.62) saturate(.85) hue-rotate(-10deg); }
+.star { position: absolute; width: 2px; height: 2px; border-radius: 1px; background: #fff; opacity: .8; }
+
+/* Pofu with the cheek pouch stand-in: a radial magnification masked to each cheek */
+.pofu { position: absolute; }
+.pofu img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pofu .ck { -webkit-mask-image: radial-gradient(ellipse var(--mw) var(--mh) at var(--mx) 64%, #000 50%, transparent 100%);
+  mask-image: radial-gradient(ellipse var(--mw) var(--mh) at var(--mx) 64%, #000 50%, transparent 100%); }
+
+/* ---------- glass skin (approximation) ---------- */
+.glass { background: rgba(255,251,245,.42); backdrop-filter: blur(16px) saturate(1.6); -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 0 0 .6px rgba(255,255,255,.6), 0 8px 22px rgba(60,40,70,.16); color: var(--ink); }
+.night .glass { background: rgba(36,30,52,.5); box-shadow: inset 0 1px 0 rgba(255,255,255,.22), inset 0 0 0 .6px rgba(255,255,255,.14), 0 8px 24px rgba(0,0,0,.35); color: #FFF6EC; }
+.gprom { background: rgba(108,79,216,.9); color: #fff; backdrop-filter: blur(10px); box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 8px 20px rgba(108,79,216,.35); }
+.night .gprom { background: rgba(143,116,240,.92); color: #15111C; }
+.plate-halo { position: absolute; border-radius: 40px; background: radial-gradient(closest-side, rgba(255,251,245,.55), rgba(255,251,245,0)); z-index: 19; }
+.night .plate-halo { background: radial-gradient(closest-side, rgba(16,12,28,.55), rgba(16,12,28,0)); }
+
+/* ---------- crafted skin (stand-ins for painted 9-slice faces) ---------- */
+.clay { background: radial-gradient(120% 90% at 35% 25%, #FFF8EC 0%, #F1DEC4 55%, #DDBF9C 100%);
+  box-shadow: inset 0 -5px 0 rgba(150,105,70,.35), inset 0 1.5px 0 rgba(255,255,255,.95), 0 3px 0 rgba(120,80,50,.22), 0 8px 16px rgba(90,60,40,.18); color: var(--ink); }
+.clay-violet { background: radial-gradient(130% 110% at 35% 20%, #9C84F6 0%, #7457DE 50%, #5A3EC2 100%); color: #fff;
+  box-shadow: inset 0 -5px 0 rgba(40,20,110,.4), inset 0 2px 0 rgba(255,255,255,.6), 0 4px 0 rgba(60,30,140,.45), 0 8px 18px rgba(80,50,160,.28); }
+.paper { background-color: #F4E6CE; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .42  0 0 0 0 .3  0 0 0 .07 0'/></filter><rect width='160' height='160' filter='url(%23f)'/></svg>");
+  box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 0 0 1.5px rgba(160,115,70,.35), 0 2px 0 rgba(150,105,65,.25), 0 8px 16px rgba(90,60,40,.2); color: var(--ink); }
+.night .paper { background-color: #3B3150; color: #FFF1DE; box-shadow: 0 0 0 1px rgba(255,220,170,.18), 0 6px 14px rgba(0,0,0,.35); }
+.wood { background: linear-gradient(180deg, #E9C79B 0%, #D9AE7B 48%, #C99766 100%); box-shadow: inset 0 2px 0 rgba(255,240,215,.7), inset 0 -3px 0 rgba(110,70,35,.35), 0 6px 14px rgba(80,50,30,.25); }
+.stitch { outline: 1.5px dashed rgba(150,105,65,.45); outline-offset: -6px; }
+.deckle { -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'><path d='M3 2 Q20 0 40 2 T80 1 T97 3 L99 20 L97 38 Q70 40 50 38 T3 39 L1 20 Z'/></svg>") center/100% 100%; }
+
+/* controls */
+.cap44 { height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; gap: 7px; font: 800 16px Nunito; padding: 0 16px; }
+.circle { width: 44px; height: 44px; border-radius: 22px; display: grid; place-items: center; }
+.tag { height: 26px; border-radius: 13px; padding: 0 9px; display: flex; align-items: center; gap: 4px; font: 900 15px Nunito; }
+.bubble { position: absolute; background: #FFFBF5; border-radius: 22px; padding: 11px 17px; font: 750 17px/1.28 Nunito; color: var(--ink); text-align: center; box-shadow: 0 6px 18px rgba(60,40,70,.16); z-index: 22; }
+.bubble:after { content: ""; position: absolute; left: 50%; bottom: -9px; margin-left: -10px; border: 10px solid transparent; border-bottom: 0; border-top-color: #FFFBF5; }
+.night .bubble { background: #2A2236; color: #FFF6EC; }
+.night .bubble:after { border-top-color: #2A2236; }
+
+/* sheet (native, approximated) */
+.sheet { position: absolute; left: 8px; right: 8px; bottom: 8px; border-radius: 38px; z-index: 30; padding: 10px 20px 20px; }
+.sheet.glassy { background: rgba(255,251,245,.78); backdrop-filter: blur(24px) saturate(1.5); box-shadow: inset 0 1px 0 rgba(255,255,255,.95), 0 -6px 30px rgba(60,40,70,.18); }
+.night .sheet.glassy { background: rgba(30,24,40,.82); color: #FFF6EC; box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 -6px 30px rgba(0,0,0,.4); }
+.grab { width: 36px; height: 5px; border-radius: 3px; background: rgba(42,31,45,.25); margin: 0 auto 10px; }
+.night .grab { background: rgba(255,255,255,.3); }
+.srow { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: .5px solid rgba(42,31,45,.12); }
+.night .srow { border-bottom-color: rgba(255,255,255,.12); }
+.srow:last-child { border-bottom: 0; }
+.srow .t { font: 750 16.5px/1.25 Nunito; }
+.srow .s { font: 500 13.5px/1.3 Nunito; color: var(--ink6); }
+.night .srow .s { color: var(--mist); }
+.srow .v { margin-left: auto; font: 900 20px Nunito; font-variant-numeric: tabular-nums; }
+.ic28 { width: 34px; height: 34px; flex: none; display: grid; place-items: center; }
+</style>
+</head>
+<body>
+<div id="board"></div>
+<script>
+const A = '../../../../design/art/';
+const ART = {
+  pofu: A + 'masters/pofu-hamster-base-v1/pofu-hamster-base.png',
+  mochi: A + 'masters/mochi-v2/mochi-v2.webp',
+  findik: A + 'masters/findik-base/findik-base.webp',
+  island: A + 'masters/island-main-l-v2/island-main-l-v2.webp',
+  cloud: A + 'masters/cloud-1/cloud-1.png',
+  cloud2: A + 'masters/cloud-2/cloud-2.png',
+  cloudsea: A + 'masters/cloud-sea/cloud-sea.png',
+  sun: A + 'masters/sun-glow/sun-glow.png',
+  far: A + 'masters/far-isle-1/far-isle-1.png',
+  cay: A + 'stations/cay-3/cay-3.png',
+  cay1: A + 'stations/cay-1/cay-1.png',
+  windmill: A + 'stations/windmill-2/windmill-2.png',
+  pond: A + 'stations/pond-3/pond-3.png',
+  simit: A + 'stations/simit-1/simit-1.png',
+};
+
+// ---------- small vector glyphs (vector twins and system symbols, stand-ins) ----------
+const SEED = (s = 16, c = '#B9782A') => `<svg width="${s * 0.72}" height="${s}" viewBox="0 0 14 20" style="transform:rotate(18deg);flex:none"><path d="M7 0C11 4 13 9 12 13C11 17 9 20 7 20C5 20 3 17 2 13C1 9 3 4 7 0Z" fill="${c}"/><path d="M5.2 4.5C4 8 4 12 5.5 16M8.8 4.5C10 8 10 12 8.5 16" stroke="#FFF3DC" stroke-opacity=".85" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>`;
+const GEAR = (c = '#2A1F2D') => `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.9"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v2.6M12 18.9v2.6M21.5 12h-2.6M5.1 12H2.5M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8M18.7 18.7l-1.8-1.8M7.1 7.1L5.3 5.3"/><circle cx="12" cy="12" r="6.6"/></svg>`;
+const MAP = (c = '#2A1F2D') => `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.9" stroke-linejoin="round"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>`;
+const XMARK = (c = '#2A1F2D') => `<svg width="18" height="18" viewBox="0 0 24 24" stroke="${c}" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>`;
+const PAUSE = (c = '#2A1F2D') => `<svg width="18" height="18" viewBox="0 0 24 24" fill="${c}"><rect x="6" y="5" width="4" height="14" rx="1.5"/><rect x="14" y="5" width="4" height="14" rx="1.5"/></svg>`;
+const CHEV = (c = '#8E7D88') => `<svg width="9" height="15" viewBox="0 0 9 15" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round"><path d="M1.5 1.5l6 6-6 6"/></svg>`;
+const BLOOM_TWIN = (open, s = 14, c = '#C98A1A') => open
+  ? `<svg width="${s}" height="${s}" viewBox="0 0 20 20">${[0, 60, 120, 180, 240, 300].map(a => `<ellipse cx="10" cy="4" rx="3" ry="4.2" fill="${c}" transform="rotate(${a} 10 10)"/>`).join('')}<circle cx="10" cy="10" r="3.6" fill="#6B4320"/></svg>`
+  : `<svg width="${s}" height="${s}" viewBox="0 0 20 20"><path d="M10 3c4 3 5 8 0 14-5-6-4-11 0-14z" fill="none" stroke="${c}" stroke-width="2"/></svg>`;
+const LANTERN_TWIN = (s = 18, c = '#C98A1A') => `<svg width="${s}" height="${s}" viewBox="0 0 20 20"><path d="M10 1.5v2" stroke="${c}" stroke-width="1.8" stroke-linecap="round"/><rect x="6.5" y="3.5" width="7" height="2" rx="1" fill="${c}"/><ellipse cx="10" cy="11" rx="6" ry="5.6" fill="${c}" opacity=".9"/><rect x="6.5" y="16" width="7" height="2" rx="1" fill="${c}"/></svg>`;
+
+// ---------- painted-object stand-ins (vector) ----------
+// Seed jar: milky glaze body with a window; fill drawn as a code mask (ADR-0018's jar, layered as specified in §6).
+function JAR(x, y, fill, w = 56, night = false) {
+  const id = 'j' + Math.round(x * 7 + y);
+  const seeds = Array.from({ length: 40 }, (_, i) => {
+    const cx = 9 + (i * 7.3) % 26, cy = 47 - (Math.floor(i / 4) * 3.6) + ((i * 13) % 3);
+    return `<ellipse cx="${cx}" cy="${cy}" rx="1.9" ry="3" fill="${i % 3 ? '#9A6527' : '#C38A3F'}" transform="rotate(${(i * 41) % 70 - 35} ${cx} ${cy})"/>`;
+  }).join('');
+  const top = 50 - 34 * fill;
+  return `<svg class="abs" style="left:${x}px;top:${y}px;z-index:14;${night ? 'filter:brightness(.62) saturate(.85)' : ''}" width="${w}" height="${w * 1.3}" viewBox="0 0 44 57">
+   <ellipse cx="22" cy="54" rx="17" ry="3" fill="rgba(60,40,30,.22)"/>
+   <path d="M11 9h22c0 2 1 3 3 5 4 3 6 8 6 16v12c0 7-5 11-12 11H14C7 53 2 49 2 42V30c0-8 2-13 6-16 2-2 3-3 3-5z" fill="#F7EBDA" stroke="#E3CDB1" stroke-width="1"/>
+   <clipPath id="${id}"><rect x="8" y="17" width="28" height="33" rx="9"/></clipPath>
+   <rect x="8" y="17" width="28" height="33" rx="9" fill="#E9D8C2"/>
+   <g clip-path="url(#${id})"><path d="M0 ${top + 2} Q11 ${top - 2} 22 ${top + 1} T44 ${top}" fill="none"/><rect x="0" y="${top}" width="44" height="60" fill="#B47A35"/>${seeds}</g>
+   <rect x="8" y="17" width="28" height="33" rx="9" fill="none" stroke="#D9C2A5" stroke-width="1"/>
+   <path d="M12 21v20" stroke="#fff" stroke-opacity=".6" stroke-width="2" stroke-linecap="round"/>
+   <path d="M9 4h26c2 0 3 1.5 3 3s-1 3-3 3H9c-2 0-3-1.5-3-3s1-3 3-3z" fill="#F3E3CF" stroke="#DCC4A6"/>
+   <path d="M7 8.5h30" stroke="#E7A3A0" stroke-width="2"/></svg>`;
+}
+// Calm lantern: paper lantern on a short honey-wood post; glow drawn in code.
+function LANTERN(x, y, glow, night = false) {
+  return `<div class="abs" style="left:${x - 70}px;top:${y - 62}px;width:170px;height:170px;border-radius:85px;z-index:13;background:radial-gradient(circle, rgba(255,198,96,${glow}) 0%, rgba(255,198,96,${glow * .32}) 34%, rgba(255,198,96,0) 68%)"></div>
+  <svg class="abs" style="left:${x}px;top:${y}px;z-index:14;${night ? 'filter:brightness(.8)' : ''}" width="30" height="96" viewBox="0 0 30 96">
+   <ellipse cx="15" cy="93" rx="9" ry="2.4" fill="rgba(60,40,30,.22)"/>
+   <rect x="13" y="30" width="4" height="62" rx="2" fill="#B98A5A"/>
+   <path d="M15 4v4" stroke="#8C6440" stroke-width="2"/>
+   <rect x="7" y="7" width="16" height="4" rx="2" fill="#C99A63"/>
+   <ellipse cx="15" cy="20" rx="12" ry="10.5" fill="${glow > .5 ? '#FFD488' : '#F6E4C6'}"/>
+   <ellipse cx="15" cy="20" rx="8" ry="7" fill="${glow > .5 ? '#FFE9B8' : '#FAEEDB'}" opacity=".9"/>
+   <path d="M4 17h22M3.5 21h23M4 25h22" stroke="#E2C59A" stroke-width=".9" opacity=".8"/>
+   <rect x="7" y="29" width="16" height="4" rx="2" fill="#C99A63"/></svg>`;
+}
+// Skip pots: one clay pot per reach today; a bloom per skip, a bud per open, closed at night.
+function POTS(cx, y, arr, night = false) {
+  const w = 36, gap = 6, total = arr.length * w + (arr.length - 1) * gap;
+  return arr.map((open, i) => {
+    const x = cx - total / 2 + i * (w + gap);
+    const head = night
+      ? `<path d="M18 6c4 2 5 7 0 11-5-4-4-9 0-11z" fill="#8FA35E"/><path d="M18 7.5c1.6 2 1.6 5 0 7.5" stroke="#E7B64A" stroke-width="1.6" fill="none"/>`
+      : open
+        ? `${[0, 40, 80, 120, 160, 200, 240, 280, 320].map(a => `<ellipse cx="18" cy="3.5" rx="3.4" ry="5.6" fill="#F6C24C" transform="rotate(${a} 18 11)"/>`).join('')}<circle cx="18" cy="11" r="4.8" fill="#7B4A22"/><circle cx="16.6" cy="9.8" r="1.2" fill="#9B6634"/>`
+        : `<path d="M18 4c5 3 6 9 0 14-6-5-5-11 0-14z" fill="#7FA857"/><path d="M18 6c2 3 2 7 0 10" stroke="#F0C04E" stroke-width="1.8" fill="none"/>`;
+    return `<svg class="abs" style="left:${x}px;top:${y}px;z-index:16" width="${w}" height="${w * 1.55}" viewBox="0 0 36 56">
+      <path d="M18 17v22" stroke="#5E8F43" stroke-width="2.6"/>
+      <path d="M18 30c-5-3-9-2-11 1 5 1 8 1 11-1z" fill="#6FA552"/><path d="M18 27c5-3 9-2 11 1-5 1-8 1-11-1z" fill="#6FA552"/>
+      ${head}
+      <path d="M8 38h20l-2.5 15a3 3 0 0 1-3 2.5h-9a3 3 0 0 1-3-2.5z" fill="#D88E66"/>
+      <rect x="6" y="35" width="24" height="5.5" rx="2.4" fill="#E9A47B"/>
+      <path d="M11 44h14" stroke="#C47852" stroke-width="1" opacity=".6"/></svg>`;
+  }).join('');
+}
+function SPARK(x, y, s = 14) { return `<svg class="abs" style="left:${x}px;top:${y}px;z-index:17" width="${s}" height="${s}" viewBox="0 0 16 16"><path d="M8 0l1.6 6.4L16 8l-6.4 1.6L8 16l-1.6-6.4L0 8l6.4-1.6z" fill="#FFF4C8"/></svg>`; }
+
+// Pofu at a given foot point and body width; k = cheek puff 0..1 (pouch-shader stand-in)
+function POFU(cx, feetY, bodyW, k = 0, extra = '') {
+  const W = bodyW / 753 * 1024, H = W * 1.5;
+  const left = cx - W * (138 + 376.5) / 1024, top = feetY - H * 1375 / 1536;
+  const s = 1 + 0.5 * k;
+  const ck = side => { const x = side < 0 ? '25%' : '75%'; const ox = side < 0 ? '39%' : '61%';
+    return `<img class="ck" src="${ART.pofu}" style="--mx:${x};--mw:${15 + 13 * k}%;--mh:${9 + 7 * k}%;transform-origin:${ox} 63%;transform:scale(${s},${1 + 0.22 * k})">`; };
+  return `<div class="pofu" style="left:${left}px;top:${top}px;width:${W}px;height:${H}px;z-index:15;${extra}"><img src="${ART.pofu}">${k > 0 ? ck(-1) + ck(1) : ''}</div>
+   <div class="abs" style="left:${cx - bodyW * .42}px;top:${feetY - 8}px;width:${bodyW * .84}px;height:16px;border-radius:50%;background:rgba(70,50,30,.2);filter:blur(4px);z-index:14"></div>`;
+}
+// A character from a 1024x1536 canvas with a known bbox, placed by feet
+function CHAR(src, bbox, cx, feetY, bodyW, z = 12, extra = '') {
+  const [x0, y0, x1, y1] = bbox, W = bodyW / (x1 - x0) * 1024, H = W * 1.5;
+  return `<img class="abs" src="${src}" style="left:${cx - W * ((x0 + x1) / 2) / 1024}px;top:${feetY - H * y1 / 1536}px;width:${W}px;z-index:${z};${extra}">`;
+}
+// A station from a 1024x1024 canvas placed by its bottom-centre
+function STATION(src, bbox, cx, bottom, w, z = 11, extra = '') {
+  const [x0, y0, x1, y1] = bbox, W = w / (x1 - x0) * 1024;
+  return `<img class="abs" src="${src}" style="left:${cx - W * ((x0 + x1) / 2) / 1024}px;top:${bottom - W * y1 / 1024}px;width:${W}px;z-index:${z};${extra}">`;
+}
+
+// ---------- Home scene ----------
+function homeWorld({ night = false } = {}) {
+  const g = night ? 'grade-night' : '';
+  const stars = night ? Array.from({ length: 40 }, (_, i) => `<div class="star" style="left:${(i * 97) % 400}px;top:${50 + (i * 53) % 380}px;opacity:${.3 + (i % 5) / 8}"></div>`).join('') : '';
+  return `<div class="sky"></div>${stars}
+   ${night ? `<div class="abs" style="left:262px;top:118px;width:46px;height:46px;border-radius:23px;background:#FFF3D6;box-shadow:0 0 40px 14px rgba(255,236,190,.25)"></div>`
+           : `<img class="abs" src="${ART.sun}" style="left:200px;top:40px;width:300px;opacity:.85">`}
+   <img class="abs ${g}" src="${ART.cloud}" style="left:-120px;top:120px;width:420px;opacity:${night ? .35 : .75}">
+   <img class="abs ${g}" src="${ART.cloud2}" style="left:250px;top:250px;width:220px;opacity:${night ? .3 : .7}">
+   <img class="abs ${g}" src="${ART.far}" style="left:-30px;top:280px;width:190px;opacity:${night ? .45 : .6};filter:${night ? 'brightness(.45) blur(1.5px)' : 'blur(1.5px) saturate(.8)'}">
+   <img class="abs ${g}" src="${ART.island}" style="left:-349px;top:250px;width:1100px;z-index:5">
+   ${STATION(ART.windmill, [160, 55, 828, 903], 34, 528, 120, 9, night ? 'filter:brightness(.5) saturate(.8) hue-rotate(-12deg) blur(.6px)' : 'filter:blur(.6px)')}
+   ${STATION(ART.cay, [107, 111, 904, 916], 372, 552, 170, 10, night ? 'filter:brightness(.55) saturate(.8) hue-rotate(-12deg)' : '')}
+   ${CHAR(ART.mochi, [61, 656, 974, 1352], 312, 556, 50, 11, night ? 'filter:brightness(.5) saturate(.8) hue-rotate(-12deg)' : '')}`;
+}
+const SKIPS = [true, true, false, true]; // 3 of 4 skipped today
+
+function homeChrome({ night = false, skin = 'glass', visit = true } = {}) {
+  const G = skin === 'glass';
+  const icon = (svg, x, y) => G
+    ? `<div class="abs circle glass" style="left:${x}px;top:${y}px;z-index:30">${svg}</div>`
+    : `<div class="abs circle clay" style="left:${x}px;top:${y}px;z-index:30">${svg}</div>`;
+  const ink = night && G ? '#FFF6EC' : '#2A1F2D';
+  // jar tag: the native twin of the jar on the object
+  const tag = G
+    ? `<div class="abs tag glass num" style="left:24px;top:620px;z-index:24">${SEED(13)}<span>34</span></div>`
+    : `<svg class="abs" style="left:46px;top:604px;z-index:23" width="20" height="22"><path d="M4 0 C6 8 10 12 12 20" stroke="#B9967A" stroke-width="1.2" fill="none"/></svg>
+       <div class="abs tag paper num" style="left:22px;top:620px;z-index:24;border-radius:6px 13px 13px 6px;transform:rotate(-4deg)"><span style="width:5px;height:5px;border-radius:3px;background:#C9A98A;margin-right:2px"></span>${SEED(13)}<span>34</span></div>`;
+  const topla = visit ? (G
+    ? `<div class="abs cap44 gprom" style="left:10px;top:486px;z-index:24;padding:0 14px">${SEED(15, night ? '#3A2A10' : '#FFE7B0')}<span>Topla</span><span class="num" style="opacity:.92">· 12</span></div>`
+    : `<div class="abs cap44 clay-violet" style="left:10px;top:486px;z-index:24;padding:0 14px">${SEED(15, '#FFE7B0')}<span>Topla</span><span class="num" style="opacity:.92">· 12</span></div>`) : '';
+  const glance = G
+    ? `<div class="abs cap44 glass" style="left:84px;top:792px;width:234px;z-index:30;font-size:15.5px;gap:8px"><span style="display:flex;gap:2px">${SKIPS.map(o => BLOOM_TWIN(o, 13, night ? '#F2C25A' : '#C98A1A')).join('')}</span><span class="num">Bugün 3/4 · 15 dk</span></div>`
+    : `<div class="abs cap44 paper stitch" style="left:84px;top:788px;width:234px;height:50px;z-index:30;font-size:15.5px;gap:8px;border-radius:12px;transform:rotate(-1deg)"><span style="display:flex;gap:2px">${SKIPS.map(o => BLOOM_TWIN(o, 13, night ? '#F2C25A' : '#C98A1A')).join('')}</span><span class="num">Bugün 3/4 · 15 dk</span></div>`;
+  return `${G ? `<div class="plate-halo" style="left:60px;top:772px;width:340px;height:84px"></div>` : ''}
+    ${icon(GEAR(ink), 340, 60)}
+    ${icon(MAP(ink), 334, 792)}
+    ${glance}
+    ${tag}${topla}`;
+}
+
+function homePhone({ night = false, skin = 'glass', visit = true, cheeks = 1, bubble = null, pins = [], standins = true }) {
+  return `<div class="phone ${night ? 'night' : ''}">
+    <div class="island-cut"></div><div class="status"><span>${night ? '23:10' : '9:41'}</span><span>●●● ▮</span></div>
+    ${homeWorld({ night })}
+    ${JAR(20, 548, night ? .62 : .48, 56, night)}
+    ${LANTERN(296, 494, night ? .95 : .32, night)}
+    ${POFU(201, 603, 154, cheeks, night ? 'filter:brightness(.66) saturate(.85) hue-rotate(-8deg)' : '')}
+    ${night ? '' : SPARK(132, 470) + SPARK(268, 520, 11)}
+    ${POTS(201, 662, SKIPS, night)}
+    <div class="fog"></div>
+    ${bubble ? `<div class="bubble" style="left:${bubble[1]}px;top:${bubble[2]}px;width:${bubble[3]}px">${bubble[0]}</div>` : ''}
+    ${homeChrome({ night, skin, visit })}
+    ${standins ? `<div class="standin" style="left:18px;top:686px">jar · pots · lantern: vector stand-ins</div><div class="standin" style="left:150px;top:440px;${cheeks > 0 && !bubble ? '' : 'display:none'}">cheek puff: shader stand-in</div>` : ''}
+    ${pins.map(([n, x, y]) => `<div class="pin n" style="left:${x}px;top:${y}px">${n}</div>`).join('')}
+    <div class="homebar"></div></div>`;
+}
+function notes(list, verdict) {
+  return `<div class="notes">${list.map(([n, t]) => `<div class="note"><div class="n">${n}</div><div>${t}</div></div>`).join('')}${verdict ? `<div class="verdict">${verdict}</div>` : ''}</div>`;
+}
+const LN = '<span class="layer L-n">NATIVE</span>', LC = '<span class="layer L-c">CRAFTED</span>', LD = '<span class="layer L-d">DRAWN</span>', LW = '<span class="layer L-w">WORLD</span>', LS = '<span class="layer L-n" style="background:linear-gradient(90deg,#DDE6FF 50%,#FBE3C8 50%)">SKIN</span>';
+
+// ---------- Boards ----------
+const boards = {};
+
+boards.home = () => `
+<h1>Home in the hybrid system · day visit and night</h1>
+<p class="sub">Glass skin. State lives in the world (Direction B of UI critique 01) and in Pofu's body: the uncollected seeds sit in his <b>cheek pouches</b> and puff them out; "Topla" empties them into the jar. Only actions and one glance are glass; system actions are SF Symbols. Seeds on the small scale (Scale A): 12 in the pouches, 34 in the jar. <small>Real art: island-main-l-v2, pofu-hamster-base, mochi-v2, cay-3, windmill-2, cloud-1/2, far-isle-1, sun-glow. Stand-ins: jar, lantern, skip pots (vector), cheek puff (CSS radial magnification imitating the pouch shader), glass (CSS blur).</small></p>
+<div class="row">
+ <div class="col"><div class="cap">Visit · morning · cheeks full (pouch 12)</div>${homePhone({ cheeks: 1, bubble: ['Yanaklarım kocaman oldu!', 96, 380, 210], pins: [[1, 96, 456], [2, 2, 470], [3, 4, 640], [4, 330, 470], [5, 300, 690], [6, 60, 838], [7, 372, 112]] })}</div>
+ <div class="col"><div class="cap">Settled · 23:10 · pouch empty, jar 34</div>${homePhone({ night: true, cheeks: 0, visit: false, pins: [[4, 330, 470], [5, 300, 690], [8, 340, 410]] })}</div>
+ ${notes([
+  [1, `${LW}${LD} <b>Pofu's cheeks are the pouch.</b> Uncollected seeds puff them in four steps (0 · 1–7 · 8–19 · 20+, Scale A). Painted states 3e "cheeks full" and a new "cheeks huge" edit, blended by the pouch shader. Once per visit at step 3 he says so; never a nag, never a notification.`],
+  [2, `${LS} <b>"Topla · 12"</b>: the one primary, pinned beside Pofu and the jar, carrying its payoff. Tapping Pofu or the jar does the same. Collect: Pofu pushes his cheeks, seeds arc into the jar, cheeks deflate, the tag counts up.`],
+  [3, `${LS} <b>The jar tag "34"</b> is the jar's native twin: live text, vector seed twin below 28 pt, Dynamic Type grows it into a capsule that never covers Pofu.`],
+  [4, `${LW}${LD} <b>Calm lantern</b>: glow 15 % → 100 % for ×1.0 → ×2.0. No multiplier on Home; the exact value is in Today and in VoiceOver.`],
+  [5, `${LW} <b>Skip pots</b> on the island's lip: a bloom per skip, a bud per open (shape, not only colour). Clay pots, not a flower bed, so they never read as the sunflower garden station.`],
+  [6, `${LS} <b>One glance</b> ("Bugün 3/4 · 15 dk") over a legibility halo (rule L3); swipe up for Today. The map is one tap, beside it.`],
+  [7, `${LN} Only the gear stays up top: a system action, SF Symbol, native glass in the glass skin.`],
+  [8, `<b>Night:</b> the lantern carries the scene; buds closed; nothing asks. Glass switches to its dark variant; the halo darkens instead of lightening.`],
+ ], `<b>Layers:</b> ${LN} system glass · ${LC} painted (game, rewards, crafted skin) · ${LD} code-drawn (twins, meters, motion) · ${LW} the scene · ${LS} follows the skin switch.`)}
+</div>`;
+
+boards.skins = () => `
+<h1>One switch, two skins · the same Home</h1>
+<p class="sub"><code>PofuSkin</code> changes only the material of the over-world chrome roles (action, icon button, world tag, glance). Layout, sizes, type, hit areas, states, haptics and VoiceOver are identical, so a screenshot pair is a fair A/B. Crafted is also the Reduce Transparency fallback, so it is built anyway. <small>Crafted faces are CSS stand-ins for painted 9-slice art (§6 C): glazed clay buttons, a paper tag on a string, a deckled paper glance.</small></p>
+<div class="row">
+ <div class="col"><div class="cap">Glass skin (iOS 26 Liquid Glass)</div>${homePhone({ cheeks: .7, bubble: ['Sen yokken çekirdek topladım.', 92, 380, 218], pins: [[1, 150, 470], [2, 4, 630], [3, 64, 838], [4, 372, 112]] })}</div>
+ <div class="col"><div class="cap">Crafted skin (clay · paper)</div>${homePhone({ skin: 'crafted', cheeks: .7, bubble: ['Sen yokken çekirdek topladım.', 92, 380, 218], pins: [[1, 150, 470], [2, 4, 630], [3, 64, 838], [4, 372, 112]] })}</div>
+ ${notes([
+  [1, `<b>Primary</b>: <code>.glassProminent</code> tinted violet vs. a violet-glazed clay capsule (9-slice, pressed face painted, disabled derived in code). Violet stays "you can tap this" in both.`],
+  [2, `<b>World tag</b>: a glass capsule vs. a paper tag tied to the jar with string. The crafted tag is more "of the world"; the glass tag is more legible on a busy lawn.`],
+  [3, `<b>Glance</b>: glass with a legibility halo vs. a deckled paper strip. Paper needs no halo (opaque) but covers more of the lip.`],
+  [4, `<b>Icon buttons</b>: SF Symbols in both. Glass circle vs. a clay disc. System meaning never changes with the skin.`],
+ ], `<b>What to decide:</b> not "glass or not", but which skin each of the four over-world roles wears. Prediction to falsify in the friends beta: crafted wins the tag and the primary (they belong to objects), glass wins the gear, the map and the glance (they belong to the device). Sheets, Settings, menus, alerts and the shield are native in both skins and are not part of the switch.`)}
+</div>`;
+
+// ---------- island game round (Ayçiçeği · Serve: Mochi's tea orders) ----------
+function gameWorld() {
+  return `<div class="sky" style="background:linear-gradient(180deg,#C6E1EC 0%,#E3EEEC 38%,#F4EAD9 70%,#F1E2CC 100%)"></div>
+   <img class="abs" src="${ART.cloud}" style="left:-80px;top:150px;width:380px;opacity:.6;filter:blur(2px)">
+   <img class="abs" src="${ART.island}" style="left:-640px;top:300px;width:1680px;z-index:5;filter:blur(.4px)">
+   ${STATION(ART.cay, [107, 111, 904, 916], 200, 560, 290, 9)}
+   ${CHAR(ART.mochi, [61, 656, 974, 1352], 96, 576, 74, 11)}
+   ${CHAR(ART.findik, [0, 0, 870, 1306], 330, 600, 64, 12, 'width:auto;height:96px;left:298px;top:506px')}
+   ${POFU(250, 640, 92, .45)}`;
+}
+function pieceBtn(x, y, inner, label, sel = false) {
+  return `<div class="abs clay" style="left:${x}px;top:${y}px;width:76px;height:76px;border-radius:24px;display:grid;place-items:center;z-index:32;${sel ? 'outline:3px solid #6C4FD8;outline-offset:2px' : ''}">${inner}</div>
+  <div class="abs" style="left:${x - 6}px;top:${y + 80}px;width:88px;text-align:center;font:750 12.5px Nunito;color:#5a4636;z-index:32">${label}</div>`;
+}
+const TEA = `<svg width="38" height="44" viewBox="0 0 38 44"><path d="M9 6h20l-2 8c-1 3-1 6 0 9l1 9c0 5-3 8-9 8s-9-3-9-8l1-9c1-3 1-6 0-9z" fill="#F2DCC4" opacity=".9"/><path d="M10.5 16h17l-.4 7.5 1 8c0 4-3 6.5-8.6 6.5S10.9 35.5 10.9 31.5l1-8z" fill="#C8642E"/><ellipse cx="19" cy="41" rx="15" ry="3" fill="#E7C9A8"/></svg>`;
+const SUGAR = `<svg width="38" height="38" viewBox="0 0 38 38"><path d="M7 13l12-6 12 6v13l-12 6-12-6z" fill="#FFFDF7" stroke="#B9A58C" stroke-width="1.4"/><path d="M7 13l12 6 12-6M19 19v13" stroke="#B9A58C" stroke-width="1.4" fill="none"/></svg>`;
+const SIMIT = `<svg width="44" height="40" viewBox="0 0 44 40"><ellipse cx="22" cy="20" rx="18" ry="15" fill="#C9813E"/><ellipse cx="22" cy="20" rx="8" ry="6" fill="#F3E5D2"/>${Array.from({ length: 14 }, (_, i) => `<ellipse cx="${22 + 13 * Math.cos(i / 14 * 6.28)}" cy="${20 + 10.5 * Math.sin(i / 14 * 6.28)}" rx="1.1" ry=".7" fill="#FFF4D8"/>`).join('')}</svg>`;
+function orderCard(x, y, items, done = 0) {
+  return `<div class="abs paper deckle" style="left:${x}px;top:${y}px;padding:8px 12px 10px;border-radius:8px;z-index:26;display:flex;gap:8px;align-items:center">${items.map((it, i) => `<div style="position:relative;width:40px;height:40px;display:grid;place-items:center;${i < done ? 'opacity:.35' : ''}">${it}${i < done ? `<svg style="position:absolute;right:-4px;bottom:-4px" width="18" height="18"><circle cx="9" cy="9" r="9" fill="#2F7349"/><path d="M5 9.5l2.6 2.6L13 6.5" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>` : ''}</div>`).join('')}</div>
+  <svg class="abs" style="left:${x + 30}px;top:${y + 56}px;z-index:26" width="16" height="10"><path d="M0 0h16L8 10z" fill="#FBF3E6"/></svg>`;
+}
+function gameHUD(round = 2) {
+  const pips = [1, 2, 3, 4, 5].map(i => `<span style="display:inline-block;width:14px;height:14px;border-radius:7px;${i < round ? 'background:#C8642E' : i === round ? 'background:#fff;box-shadow:inset 0 0 0 3px #C8642E' : 'box-shadow:inset 0 0 0 2px #CDB49A'}"></span>`).join('');
+  return `<div class="abs circle glass" style="left:20px;top:60px;z-index:34">${PAUSE()}</div>
+   <div class="abs paper" style="left:76px;top:58px;height:48px;padding:0 16px;border-radius:14px;display:flex;align-items:center;gap:12px;z-index:34">
+     <span style="font:850 15.5px Nunito">Tur ${round} / 5</span><span style="display:flex;gap:5px">${pips}</span></div>
+   <div class="abs paper num" style="right:20px;top:58px;height:48px;padding:0 14px;border-radius:14px;display:flex;align-items:center;gap:6px;z-index:34;font:900 17px Nunito">${SEED(16)}<span>+2</span></div>`;
+}
+function gameTray(sel) {
+  return `<div class="abs wood" style="left:14px;right:14px;top:708px;height:138px;border-radius:30px;z-index:31"></div>
+    <div class="abs" style="left:30px;right:30px;top:718px;height:2px;background:rgba(255,240,215,.45);z-index:31"></div>
+    ${pieceBtn(42, 724, TEA, 'Çay', sel === 0)}${pieceBtn(163, 724, SUGAR, 'Şeker', sel === 1)}${pieceBtn(284, 724, SIMIT, 'Simit', sel === 2)}`;
+}
+function gamePhone(mode, pins) {
+  const end = mode === 'end';
+  return `<div class="phone">
+    <div class="island-cut"></div><div class="status"><span>9:41</span><span>●●● ▮</span></div>
+    ${gameWorld()}
+    ${end ? '' : orderCard(214, 424, [TEA, SUGAR, SUGAR], 1)}
+    ${gameHUD(end ? 5 : 2)}
+    ${end ? `<div class="abs" style="inset:0;background:rgba(246,236,222,.55);backdrop-filter:blur(3px);z-index:35"></div>
+      <div class="abs paper" style="left:28px;right:28px;top:236px;height:380px;border-radius:30px;z-index:36;text-align:center;padding:30px 24px">
+        <svg width="132" height="132" viewBox="0 0 132 132" style="transform:rotate(-8deg)"><circle cx="66" cy="66" r="58" fill="none" stroke="#C8642E" stroke-width="6" stroke-dasharray="7 5" opacity=".85"/><circle cx="66" cy="66" r="46" fill="#C8642E" opacity=".12"/><g transform="translate(47 38) scale(1)">${TEA.replace('width="38" height="44"', 'width="38" height="44"')}</g><path d="M30 96 Q66 112 102 96" stroke="#C8642E" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+        <div style="font:900 30px/1.1 Nunito;margin-top:10px">Beş sipariş, beş gülümseme.</div>
+        <div style="font:600 16px/1.4 Nunito;color:#66555F;margin-top:8px">Mochi seni çok beğendi.</div>
+        <div class="num" style="display:inline-flex;gap:8px;align-items:center;margin-top:16px;font:900 22px Nunito">${SEED(20)} +3 <span style="font:700 14px Nunito;color:#66555F">yanaklarına</span></div>
+      </div>
+      <div class="abs cap44 clay-violet" style="left:28px;right:28px;top:640px;height:52px;border-radius:26px;z-index:37;font-size:17px">Bugünlük yeter</div>
+      <div class="abs cap44" style="left:28px;right:28px;top:702px;z-index:37;color:#553BB8;font-size:16px">Bir set daha · 3 tur hazır</div>
+      <div class="standin" style="left:150px;top:248px;z-index:60">stamp: stand-in</div>`
+      : gameTray(0)}
+    ${end ? '' : '<div class="standin" style="left:30px;top:690px">tray · pieces · order cards: stand-ins</div>'}
+    ${pins.map(([n, x, y]) => `<div class="pin n" style="left:${x}px;top:${y}px">${n}</div>`).join('')}
+    <div class="homebar"></div></div>`;
+}
+boards.game = () => `
+<h1>An island game round · Ayçiçeği, "Serve" (Mochi's tea orders)</h1>
+<p class="sub">Inside a round the UI <i>is</i> the game: its HUD, pieces and rewards are <b>always crafted</b>, in both skins, and belong to the island (each wonder island repaints the same 9-slice roles in its own materials). Only the platform's verbs stay native: pause/exit is a glass SF Symbol. No timer, no failure (archipelago §4.3); a round yields a few seeds into Pofu's pouch. <small>Real art: cay-3, mochi-v2, findik-base, pofu-hamster-base, island-main-l-v2, cloud-1. Stand-ins: paper, clay, wood, pieces, stamp.</small></p>
+<div class="row">
+ <div class="col"><div class="cap">Mid-round · tap pieces to fill orders</div>${gamePhone('play', [[1, 2, 52], [2, 196, 52], [3, 300, 52], [4, 372, 404], [5, 2, 700], [6, 196, 600]])}</div>
+ <div class="col"><div class="cap">Round 5 of 5 done · the set ends</div>${gamePhone('end', [[7, 30, 230], [8, 2, 640], [9, 2, 702]])}</div>
+ ${notes([
+  [1, `${LN} <b>Pause</b>: native glass, SF Symbol, in every island game. Opens a native menu (continue, how to play, leave). Leaving never loses the round's seeds.`],
+  [2, `${LC} <b>Round plate</b>: painted paper 9-slice, live text "Tur 2 / 5", pips drawn in code (filled, current, empty by shape).`],
+  [3, `${LC} <b>Round yield</b> so far: "+2" with the painted seed icon (≥ 28 pt) or its vector twin. Small numbers: a round yields 2–4 seeds.`],
+  [4, `${LC} <b>Order cards</b>: painted paper over the resident, pieces as painted icons, done items get a drawn check (shape, not only colour). VoiceOver reads "Fındık: çay, iki şeker; bir tamam".`],
+  [5, `${LC} <b>Piece tray</b>: painted wood 9-slice; pieces are clay faces with painted icons at 44 pt and live labels below. Selection: drawn violet ring (focus ring in Full Keyboard Access too).`],
+  [6, `${LW} Pofu helps (his cheeks fill as the round pays), Mochi pours. Residents react; the world stays sharp, nothing is blurred during play.`],
+  [7, `${LC} <b>Reward card</b>: painted paper plate, painted stamp, live text. The line is a feeling; the number is small and goes "yanaklarına" (to the pouch).`],
+  [8, `${LC} <b>The set's end</b>: after five rounds the primary is <i>stopping</i>, "Bugünlük yeter" (violet clay in the game layer). Between rounds of a set the primary is "Sonraki tur".`],
+  [9, `${LN} <b>"Bir set daha · 3 tur hazır"</b> is a plain text button: honest about the earned rounds, never the loud choice (archipelago §6 guardrail proposal). Rounds are never sold.`],
+ ])}
+</div>`;
+
+// ---------- Today panel ----------
+function todaySheet(night) {
+  const c = night ? '#F2C25A' : '#C98A1A';
+  const row = (ic, t, s, v) => `<div class="srow"><div class="ic28">${ic}</div><div><div class="t">${t}</div><div class="s">${s}</div></div>${v ? `<div class="v">${v}</div>` : ''}</div>`;
+  return `<div class="sheet glassy" style="height:486px">
+    <div class="grab"></div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin:4px 0 6px">
+      <div style="font:900 30px Nunito">Bugün</div><div style="font:700 15px Nunito;color:${night ? '#B9A2FF' : '#6C4FD8'}">Hafta ›</div></div>
+    <div style="display:flex;gap:8px;margin:6px 0 12px">${SKIPS.map(o => `<div style="width:44px;height:52px;border-radius:14px;display:grid;place-items:center;background:${night ? 'rgba(255,255,255,.07)' : 'rgba(201,138,26,.1)'}">${BLOOM_TWIN(o, 26, c)}</div>`).join('')}
+      <div style="margin-left:auto;text-align:right"><div class="num" style="font:900 34px/1 Nunito">3/4</div><div style="font:600 13px Nunito;color:${night ? '#B8A8B1' : '#66555F'}">boş verdin</div></div></div>
+    ${row(SEED(26), 'Kavanozda 34 çekirdek', 'Bugün +18 · yanaklarında 0', '')}
+    ${row(LANTERN_TWIN(28, c), 'Huzur ×1,4', 'Büyüyor · fener bunu gösterir', '')}
+    ${row(`<svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke="${c}" stroke-width="2.4"/><path d="M13 7v6l4 3" stroke="${c}" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>`, '15 dk akışta', 'Günlük saatin 60 dk', '')}
+    ${row(`<svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="10" fill="${c}" opacity=".2"/><circle cx="13" cy="13" r="10" fill="none" stroke="${c}" stroke-width="2.4" stroke-dasharray="4 3"/><path d="M9.5 13.5l2.5 2.5 5-5.5" stroke="${c}" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>`, '2 tur hazır', 'Mochi\'nin çay siparişleri', '')}
+  </div>`;
+}
+boards.today = () => `
+<h1>The Today panel · glance → sheet</h1>
+<p class="sub">Today is <b>native in both skins</b>: a system sheet (Liquid Glass at the medium detent, iOS 26) with live text, SF Pro Rounded numerals and painted domain icons at 28 pt or larger beside labels (vector twins drawn here as stand-ins). It is where the exact numbers live, so Home can stay a world. The glance morphs into the sheet. <small>Icons are vector stand-ins for the painted icon family (§6 F) and its twins.</small></p>
+<div class="row">
+ <div class="col"><div class="cap">Peek · the glance</div>${homePhone({ cheeks: 0, visit: false, pins: [[1, 60, 838]] })}</div>
+ <div class="col"><div class="cap">Today · medium detent · day</div><div class="phone">
+   <div class="island-cut"></div><div class="status"><span>9:41</span><span>●●● ▮</span></div>
+   <div style="position:absolute;inset:0;filter:blur(5px)">${homeWorld({})}${JAR(20, 548, .48)}${LANTERN(296, 494, .32)}${POFU(201, 603, 154, 0)}${POTS(201, 662, SKIPS)}</div>
+   ${todaySheet(false)}
+   <div class="pin n" style="left:8px;top:404px">2</div><div class="pin n" style="left:8px;top:500px">3</div><div class="pin n" style="left:8px;top:630px">4</div><div class="pin n" style="left:8px;top:700px">5</div>
+   <div class="homebar"></div></div></div>
+ <div class="col"><div class="cap">Today · night (dark)</div><div class="phone night">
+   <div class="island-cut"></div><div class="status"><span>23:10</span><span>●●● ▮</span></div>
+   <div style="position:absolute;inset:0;filter:blur(5px)">${homeWorld({ night: true })}${JAR(20, 548, .62, 56, true)}${LANTERN(296, 494, .95, true)}${POFU(201, 603, 154, 0, 'filter:brightness(.66) saturate(.85)')}${POTS(201, 662, SKIPS, true)}</div>
+   ${todaySheet(true)}
+   <div class="pin n" style="left:8px;top:404px">6</div>
+   <div class="homebar"></div></div></div>
+ ${notes([
+  [1, `The glance carries the day in one line; swipe up or tap it. It is the <b>morph source</b> of the sheet (matched geometry), so the eye follows one object.`],
+  [2, `${LD} <b>Skip pots, as twins</b>: the same states as the pots on the island, drawn in code at 26 pt (bloom = skipped, bud outline = opened). Big numeral "3/4" in the numeral style.`],
+  [3, `${LN}${LC} <b>Rows</b>: native list rows; a painted icon at ≥ 28 pt sits in the leading slot, always beside a live label. Exact values (×1,4, 34, +18) live here and nowhere on Home.`],
+  [4, `${LN} Time is a fact, not a judgement: "15 dk akışta · günlük saatin 60 dk". No red, no bars that look like a grade.`],
+  [5, `${LN} Earned rounds appear as a row that opens the island game; never a badge on Home, never a notification.`],
+  [6, `<b>Night</b>: the system's dark sheet; painted icons keep their colours (they were checked on dark glass, rule L6); twins switch to honey-300.`],
+ ], `At accessibility sizes the rows wrap and the sheet opens at the large detent; the painted icons stay 28–40 pt and never scale with text past 40 pt.`)}
+</div>`;
+
+const b = new URLSearchParams(location.search).get('b') || 'home';
+document.getElementById('board').innerHTML = boards[b]();
+</script>
+</body>
+</html>

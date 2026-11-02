@@ -9,6 +9,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Pro game craft research (`docs/research/pro-game-craft.md`): how cozy
+  and mobile studios work (engines, colour scripts and lighting keys,
+  skeletal rigs, juice systems, UI kits, tuning tools, playtests), an
+  honest gap analysis for Pofu, a ranked upgrade plan for our constraints
+  (CI motion videos, colour script with harmony v2, an on-device tuning
+  panel, a juice library with sound, a JSON skeletal rig), and Pofu's
+  colour and light approach (rose copper as a protected accent). Content
+  node `idea-pro-craft-upgrades`.
+
+- UI system v2 (`docs/design/ui-system-v2.md`): a hybrid of native Liquid
+  Glass and painted craft. Every component is Native, Crafted or Drawn,
+  with a decision table; one `PofuSkin` switch (glass / crafted) on four
+  over-world roles for an A/B on the founder's iPhone and in the friends
+  beta; glass legibility rules L1–L12 for the pastel world; a component
+  inventory for Home, the island, the map, an island game round, the
+  shield, Hop!, Today, build and decor sheets, the paywall, settings and
+  onboarding; Pofu's cheek pouches as the uncollected balance (founder
+  idea); a 46-item art list (14 pilot) for the Codex queue; proposed
+  ADR-0018 amendments; four mockup boards in `docs/design/ui-system-v2/`.
+
+- UI critique 01 (`docs/design/ui-critique-01.md`): a review of the game
+  screen and its neighbours, a reference study, three directions for Home
+  as annotated mockups (Living Diorama recommended) and a fix list in
+  two-day iterations.
+
 - Look round 2 (`docs/design/look-dev.md`, "Round 2"): **containment**
   (the pipeline measures the plate's walkable polygon and every sprite's
   ground footprint; `IslandFootprint` validates and clamps every slot,

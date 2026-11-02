@@ -6,9 +6,12 @@
 # "Pofu's reactions are a rig", has the reaction table: which parts and
 # which code motion make each of the twelve reactions).
 #
-# Opens when the lead has composited the pilot's neutral rig and its three
-# expressions and found no seams. If the pilot shows that a region needs a
-# different prompt, the lead edits these jobs first.
+# Opened by the lead on 2026-11-02: the pilot's composites (tools/rig sheet:
+# neutral against R1 dE 3.0, happy, sleepy, sulky, full cheeks) read well.
+# The sleepy composite lacked drooping ears, so pofu-ears-droop below is
+# required for it. pofu-cheeks-puff-3 is the "cheeks huge" stage that the
+# UI spec (ui-system-v2 section 6, `pofu-cheeks-huge`) uses; the pilot's
+# puff-2 is the "cheeks full" stage (`pofu-cheeks-full`).
 #
 # Tracks: `face` (eyes and mouths), `body` (cheek pouches, paws, ears,
 # matted fur), `residents` (Mochi's and Fındık's blink and happy eyes).
@@ -16,9 +19,7 @@
 
 batch: batch-06-pofu-rig
 title: Pofu's layered rig (eyes, mouths, cheek pouches, paws, ears, matted fur; Mochi and Fındık eyes)
-status: blocked
-blocked_on:
-  - "the lead's composite review of batch-06-pofu-rig-pilot (neutral rig, happy, sleepy, sulky)"
+status: open
 
 defaults:
   variants: 2
@@ -29,6 +30,7 @@ jobs:
     name: pofu-r1
     external: r1
     master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+  - {id: pofu-cheeks-puff-2, kind: char, name: pofu-cheeks-puff-2, external: batch-06-pofu-rig-pilot}
   - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island}
   - {id: findik, kind: char, name: findik-base, external: batch-03-home-island}
 
@@ -159,6 +161,31 @@ jobs:
           Nothing else changes.
       - block: edit-keep-v1
       - text: "AVOID: visible seeds, a changed mouth, a changed body outline below the cheeks, a ground shadow, text."
+
+  - id: pofu-cheeks-puff-3
+    kind: char
+    name: pofu-cheeks-puff-3
+    size: 1024x1536
+    edit_of: pofu-cheeks-puff-2
+    chat: "Pofu · Rig"
+    notes: >-
+      The "cheeks huge" stage (ui-system-v2 `pofu-cheeks-huge`): past the
+      full pouch, the cheeks bulge beyond the head outline and the eyes
+      squint in proud delight. Drawn on puff-2 so the pouch region stays
+      registered with the stage below it. Review check: edit_stability
+      against R1 is expected to drop in the cheek region only; the body,
+      curl and feet stay put.
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his cheeks and eyes: puff
+          the cheek pouches out much further, as if stuffed with far too
+          many sunflower seeds: the cheeks bulge clearly past the outline of
+          the head on both sides and slightly down, the face becomes wider
+          than the body at cheek height, the blush stretches with them, and
+          the eyes squint a little in proud delight. Still cute. No visible
+          food. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: visible seeds, an open mouth, a changed body below the cheeks, a ground shadow, text."
 
   - id: pofu-paws-seed
     kind: char

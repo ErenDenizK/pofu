@@ -1,0 +1,18 @@
+id: idea-pro-craft-upgrades
+type: idea
+title_tr: Profesyonel zanaat yükseltmeleri
+title_en: Pro craft upgrades
+status: planned
+horizon: now
+summary: >-
+  How cozy and mobile studios work, our honest gap, and the ranked plan: motion review videos in
+  CI, a colour script with harmony v2 (rose copper restored as a protected accent), an on-device
+  tuning panel, a juice library with sound, and a JSON skeletal rig for Pofu.
+notes:
+- 'This week: CI beat videos, colour script v1 + harmony v2, the Ayar tuning panel in Rehearsal.'
+- 'Light carries the time of day, the grade only finishes it, local colour is protected.'
+- 'Not now: Spine, Rive for Pofu, DragonBones, Live2D, Unity or Godot.'
+sources:
+- doc: docs/research/pro-game-craft.md
+  anchor: '#0-the-answer-in-one-paragraph'
+kind: feature
