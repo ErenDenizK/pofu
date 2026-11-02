@@ -1,0 +1,139 @@
+batch: batch-11-ui-pilot
+contact_sheet: design/art/takes/batch-11-ui-pilot/ui-panel-paper/contact.jpg
+jobs:
+  ui-panel-paper:
+    pick: 2
+    note: 'auto-picked by QA; founder review pending. Retained take2 reviewed at120pt
+      height: flat unmarked cream centre, stitches and rounded outer edge remain within20pt
+      caps; centre is suitable for tiling.'
+    takes:
+      t1:
+        qa: pass
+        summary: all pass
+      t2:
+        qa: pass
+        summary: all pass
+    approved:
+      take: 2
+      at: '2026-11-02T23:33:58+00:00'
+    publication: promoted
+qa_reports:
+  1:
+    job: ui-panel-paper
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 23.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 87 (R1 59)
+      value: 86.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.09
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2977
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.6, p95 1.1, off-palette 0.0%
+      value: 0.557
+    info:
+      metrics_raw:
+        L_p5: 86.4
+        L_p50: 91.7
+        L_p95: 92.3
+        C_p50: 12.4
+        C_p95: 24.2
+        C_p99: 34.2
+        detail: 1.24
+      metrics_locked:
+        L_p5: 86.7
+        L_p50: 91.8
+        L_p95: 92.2
+        C_p50: 12.4
+        C_p95: 23.6
+        C_p99: 32.6
+        detail: 1.09
+    fingerprint: 554bc01cbf23d482
+  2:
+    job: ui-panel-paper
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 22 (R1 51)
+      value: 21.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 88 (R1 59)
+      value: 87.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2717
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.5, p95 1.1, off-palette 0.0%
+      value: 0.4842
+    info:
+      metrics_raw:
+        L_p5: 87.0
+        L_p50: 93.7
+        L_p95: 94.0
+        C_p50: 10.6
+        C_p95: 22.3
+        C_p99: 33.9
+        detail: 1.26
+      metrics_locked:
+        L_p5: 87.9
+        L_p50: 93.7
+        L_p95: 93.9
+        C_p50: 10.6
+        C_p95: 21.5
+        C_p99: 32.5
+        detail: 1.14
+    fingerprint: 554bc01cbf23d482
+manual_review:
+  exclude: []
+  note: 'Retained take2 reviewed at120pt height: flat unmarked cream centre, stitches
+    and rounded outer edge remain within20pt caps; centre is suitable for tiling.'
+sources:
+- take: 1
+  original_png: design/art/inbox/batch-11-ui-pilot/ui__panel-paper--t1.png
+  source_file: /workspace/generated_images/exec-7345b208-71e5-4ddd-92c5-8021b50b5935.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 2
+  original_png: design/art/inbox/batch-11-ui-pilot/ui__panel-paper--t2.png
+  source_file: /workspace/generated_images/exec-68aed17d-3c6e-4a59-971b-b9b158543244.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
