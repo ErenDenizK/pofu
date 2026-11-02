@@ -101,7 +101,7 @@ final class GardenScreenshotTests: XCTestCase {
 
     /// Polls `condition` every 50 ms, up to `timeout` seconds.
     @MainActor
-    static func wait(until condition: () -> Bool, timeout: TimeInterval) async throws {
+    static func wait(until condition: @escaping @MainActor () -> Bool, timeout: TimeInterval) async throws {
         let deadline = Date().addingTimeInterval(timeout)
         while !condition(), Date() < deadline {
             try await Task.sleep(for: .milliseconds(50))
