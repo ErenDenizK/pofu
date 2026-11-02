@@ -2,14 +2,14 @@ id: asset-decor-bench
 type: asset
 title_tr: decor-bench
 title_en: decor-bench (prop)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A small, cozy garden bench for two little animals, for the island diorama: a short, chunky
-  bench of soft honey wood with rounded ends and a low curved backrest, and one plump cushion
-  on the seat with simple soft stripes of rose and cream (plain stripes, no pattern, no motif).
-  Friendly, toy-like proportions with few parts. It stands on the guide's ground ellipse,
-  centered on the cross, and is no taller than the height…
+summary: 'A small, cozy garden bench for two little animals, for the island diorama:
+  a short, chunky bench of soft honey wood with rounded ends and a low curved backrest,
+  and one plump cushion on the seat with simple soft stripes of rose and cream (plain
+  stripes, no pattern, no motif). Friendly, toy-like proportions with few parts. It
+  stands on the guide''s ground ellipse, centered on the cross, and is no taller than
+  the height…'
 art:
   images: []
   jobs:
@@ -18,3 +18,7 @@ sources:
 - doc: tools/imagegen/manifest/batch-08-decor-pilot.yaml
 kind: prop
 batch: batch-08-decor-pilot
+notes:
+- 'Stopped: both takes fail the supplied decor-guide fit. Automated prop QA passed
+  but does not validate this guide; no promotion or retry. Widths740/694px versus360px
+  guide, tops419/397 versus500. See take-folder guide-review.jpg.'
