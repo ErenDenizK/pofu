@@ -353,10 +353,21 @@ runner with Xcode 26 or newer:
 5. `xcodebuild test` of the PofuWorldScreenshots scheme in an iPhone 17
    class simulator, uploading the island's PNGs as the `world-screenshots`
    artifact.
+6. The motion review: `MotionBeatTests` in the same scheme plays scripted
+   beats live (Home idle, Home to Island and back, Collect, Build, the
+   shield then Hop!) while `.github/scripts/record-beats.sh` records the
+   simulator screen with `xcrun simctl io recordVideo`, one clip per
+   beat, uploaded as the `motion-beats` artifact. The test and the
+   recorder hand off through files in `MOTION_BEATS_DIR`; without it the
+   test skips. CI machines drop frames, so judge choreography and timing
+   from the clips, and smoothness only on a phone.
 
 **Screenshot branches.** After a green macOS job, `publish-screenshots`
 converts those PNGs to JPEGs about 1000 px tall, adds a `contact.jpg`
-grid, and force-pushes them as a single-commit orphan branch named
+grid, encodes the motion beats as phone-friendly MP4s in `beats/`
+(H.264, 720 px wide, at most 10 s and 8 MB each, with a poster JPEG;
+`.github/scripts/encode-beats.py`), writes a `README.md` index with a
+playable link per clip, and force-pushes everything as a single-commit orphan branch named
 `screenshots/<head branch, with / replaced by ->` (for example
 `screenshots/feat-pofu-world`). Anyone who can run git can review them
 with `git fetch origin screenshots/feat-pofu-world`, even where the

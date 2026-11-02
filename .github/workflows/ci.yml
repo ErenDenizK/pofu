@@ -168,6 +168,7 @@ jobs:
             xcrun simctl list devices available
             exit 1
           fi
+          echo "SIM_UDID=$udid" >> "$GITHUB_ENV"
           out="$RUNNER_TEMP/world-screenshots"
           mkdir -p "$out"
           set -o pipefail
@@ -193,6 +194,48 @@ jobs:
         with:
           name: world-screenshots
           path: ${{ runner.temp }}/world-screenshots
+          if-no-files-found: error
+
+      # Motion review (docs/research/pro-game-craft.md, upgrade 1): scripted
+      # beats played live in the same simulator while the host records the
+      # screen, one clip per beat. The test and the recorder hand off
+      # through files; see .github/scripts/record-beats.sh.
+      - name: Record the motion beats
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/motion-beats"
+          mkdir -p "$out"
+          .github/scripts/record-beats.sh "$SIM_UDID" "$out" > "$RUNNER_TEMP/recorder.log" 2>&1 &
+          recorder=$!
+          set +e
+          TEST_RUNNER_MOTION_BEATS_DIR="$out" xcodebuild test \
+            -project Pofu.xcodeproj \
+            -scheme PofuWorldScreenshots \
+            -destination "id=$SIM_UDID" \
+            -only-testing:PofuWorldScreenshots/MotionBeatTests \
+            -resultBundlePath "$RUNNER_TEMP/motion-beats.xcresult" \
+            CODE_SIGNING_ALLOWED=NO \
+            SWIFT_TREAT_WARNINGS_AS_ERRORS=YES 2>&1 | tail -n 80
+          status=${PIPESTATUS[0]}
+          touch "$out/all.done"
+          for _ in $(seq 1 120); do
+            kill -0 "$recorder" 2>/dev/null || break
+            sleep 0.5
+          done
+          kill "$recorder" 2>/dev/null || true
+          wait "$recorder" || true
+          cat "$RUNNER_TEMP/recorder.log"
+          ls -la "$out" "$out/raw"
+          exit "$status"
+
+      - name: Upload the motion beats
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: motion-beats
+          path: |
+            ${{ runner.temp }}/motion-beats/raw/*.mov
+            ${{ runner.temp }}/motion-beats/beats.tsv
           if-no-files-found: error
 
   # The artifact host is not reachable from every review environment, so
@@ -221,6 +264,12 @@ jobs:
         with:
           name: world-screenshots
           path: shots
+
+      - name: Download the motion beats
+        uses: actions/download-artifact@v4
+        with:
+          name: motion-beats
+          path: beats-raw
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -271,6 +320,21 @@ jobs:
           cat out/grade-metrics.txt
           ls -la out
 
+      - name: Check out the encoding script
+        uses: actions/checkout@v5
+        with:
+          path: src
+          sparse-checkout: .github/scripts
+
+      - name: Encode the motion beats and write the index
+        env:
+          SOURCE_BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          set -euo pipefail
+          command -v ffmpeg >/dev/null || { sudo apt-get update -q && sudo apt-get install -y -q ffmpeg; }
+          python3 -I src/.github/scripts/encode-beats.py beats-raw out "$GITHUB_REPOSITORY" "screenshots/${SOURCE_BRANCH//\//-}"
+          ls -la out/beats
+
       - name: Force-push the screenshots branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -285,6 +349,6 @@ jobs:
           git config user.name "Eren Deniz Kuyucaklıoğlu"
           git config user.email "109629701+ErenDenizK@users.noreply.github.com"
           git add -A
-          git commit -q -m "chore(screenshots): world screenshots for $SOURCE_BRANCH at ${SOURCE_SHA:0:7}"
+          git commit -q -m "chore(screenshots): world screenshots and motion beats for $SOURCE_BRANCH at ${SOURCE_SHA:0:7}"
           git push -q --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/$branch"
           echo "Published to $branch"
