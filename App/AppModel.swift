@@ -50,6 +50,11 @@ final class AppModel {
     /// (`FeatureFlags.islandHome`). Here rather than in the view, so Hop!
     /// can close a station sheet before its cover.
     let island = IslandSceneModel()
+    /// Home's visit and its collect and build moments
+    /// (`FeatureFlags.worldHome`).
+    let worldHome = WorldHomeModel()
+    /// When the last visit settled, for the 15-minute reopen rule (A15).
+    private var lastVisitSettled: Date?
     /// Set when the last save failed, so a broken disk is never silent.
     private(set) var persistenceProblem = false
     /// Whether Pofu is on screen. Being here is a sign the user left the
@@ -302,6 +307,57 @@ final class AppModel {
     var liveCalm: Double? {
         let snapshot = world
         return snapshot.activity == .notSetUp ? nil : snapshot.calm
+    }
+
+    /// Builds the visit queue for an app landing (app–game boundary §6.1):
+    /// a broken guard shows the repair banner, a reopen within 15 minutes
+    /// lands settled.
+    func beginWorldVisit() {
+        now = clock.now
+        if let settled = worldHome.settledAt {
+            lastVisitSettled = settled
+        }
+        let inputs = VisitInputs(
+            now: now,
+            world: world,
+            isGuardBroken: needsSetupOrRepair,
+            lastSettled: lastVisitSettled,
+            calendar: economy.calendar
+        )
+        worldHome.beginVisit(VisitQueue.plan(inputs))
+    }
+
+    /// No guarded app yet, or the guard has gone silent.
+    private var needsSetupOrRepair: Bool {
+        profile.protectedApps.isEmpty || isAwaitingSignOfLife
+    }
+
+    /// Collects every waiting seed into the jar (`WorldClock.collect`).
+    ///
+    /// - Returns: What was collected; `nil` when nothing waits, the seeds
+    ///   are held, or the islands sleep.
+    @discardableResult
+    func collectWorldSeeds() -> SeedPouch? {
+        now = clock.now
+        let pouch = gameClock.collect(&game, at: now)
+        if pouch != nil {
+            save()
+        }
+        return pouch
+    }
+
+    /// Builds a station's next level from the jar (`WorldClock.build`).
+    @discardableResult
+    func buildStation(_ station: StationID) -> BuildReceipt? {
+        now = clock.now
+        do {
+            let receipt = try gameClock.build(station, in: &game, at: now)
+            save()
+            return receipt
+        } catch {
+            Log.economy.info("Build refused: \(String(describing: error), privacy: .public)")
+            return nil
+        }
     }
 
     /// Advances the game to `date`, taking in `events`.

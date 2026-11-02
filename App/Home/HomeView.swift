@@ -22,32 +22,36 @@ struct HomeView: View {
 
     var body: some View {
         ZStack {
-            if FeatureFlags.islandHome {
+            if FeatureFlags.worldHome {
+                worldHome
+            } else if FeatureFlags.islandHome {
                 island
             } else {
                 PofuColor.dayWash.ignoresSafeArea()
             }
 
-            VStack(spacing: PofuSpacing.l) {
-                topBar
-                    .opacity(model.island.focus == nil ? 1 : 0)
-                    .allowsHitTesting(model.island.focus == nil)
-                Spacer(minLength: 0)
-                if !FeatureFlags.islandHome {
-                    pofu
+            if !FeatureFlags.worldHome {
+                VStack(spacing: PofuSpacing.l) {
+                    topBar
+                        .opacity(model.island.focus == nil ? 1 : 0)
+                        .allowsHitTesting(model.island.focus == nil)
                     Spacer(minLength: 0)
+                    if !FeatureFlags.islandHome {
+                        pofu
+                        Spacer(minLength: 0)
+                    }
+                    Group {
+                        TodayCard(model: model)
+                        bottomActions
+                    }
+                    .opacity(showsHomeChrome ? 1 : 0)
+                    .allowsHitTesting(showsHomeChrome)
                 }
-                Group {
-                    TodayCard(model: model)
-                    bottomActions
-                }
-                .opacity(showsHomeChrome ? 1 : 0)
-                .allowsHitTesting(showsHomeChrome)
+                .padding(.horizontal, PofuSpacing.screen)
+                .padding(.bottom, PofuSpacing.s)
+                .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: showsHomeChrome)
+                .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: model.island.focus == nil)
             }
-            .padding(.horizontal, PofuSpacing.screen)
-            .padding(.bottom, PofuSpacing.s)
-            .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: showsHomeChrome)
-            .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: model.island.focus == nil)
 
             if model.activeSession != nil || model.earningResult != nil {
                 FocusSessionView(model: model)
@@ -107,6 +111,33 @@ struct HomeView: View {
             },
             bubble: { bubble }
         )
+    }
+
+    /// Home per the app–game boundary (`FeatureFlags.worldHome`): the
+    /// island with its five chrome items and the visit, collecting and
+    /// building through the game model.
+    private var worldHome: some View {
+        WorldHome(
+            world: model.world,
+            today: TodaySummary(
+                beads: model.beadsToday.map { $0 == .skipped },
+                guardedMinutes: model.world.guardedMinutesToday,
+                dailyHourMinutes: model.world.dailyHourMinutes
+            ),
+            scene: model.island,
+            home: model.worldHome,
+            actions: WorldHome.Actions(
+                collect: { model.collectWorldSeeds() },
+                build: { model.buildStation($0) },
+                openSettings: { model.homeSheet = .settings },
+                repair: { model.homeSheet = .setup }
+            )
+        )
+        .onChange(of: scenePhase, initial: true) { _, phase in
+            if phase == .active {
+                model.beginWorldVisit()
+            }
+        }
     }
 
     /// The Today card and the actions belong to the Home framing.
