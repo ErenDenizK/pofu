@@ -1,0 +1,137 @@
+{
+  "job": "island-main-s",
+  "pick": 2,
+  "note": "auto-picked by QA; founder review pending",
+  "takes": [
+    {
+      "take": 1,
+      "status": "warn",
+      "lock_load": 12.2996,
+      "checks": [
+        {
+          "check": "transparency",
+          "status": "pass",
+          "message": "source has an alpha channel"
+        },
+        {
+          "check": "canvas",
+          "status": "pass",
+          "message": "1536x1024"
+        },
+        {
+          "check": "chroma_ceiling",
+          "status": "pass",
+          "message": "chroma p95 36 (R1 51)",
+          "value": 35.9
+        },
+        {
+          "check": "value_floor",
+          "status": "pass",
+          "message": "lightness p5 63 (R1 59)",
+          "value": 62.6
+        },
+        {
+          "check": "detail_budget",
+          "status": "pass",
+          "message": "detail at display size 2.4 (R1 5.3)",
+          "value": 2.39
+        },
+        {
+          "check": "lock_load",
+          "status": "warn",
+          "message": "the lock moved colors by mean dE 12.3 (prefer a take that needs less)",
+          "value": 12.2996
+        },
+        {
+          "check": "no_guide_magenta",
+          "status": "pass",
+          "message": "0 guide-magenta pixels (per 1024^2)",
+          "value": 0.0
+        },
+        {
+          "check": "palette_drift",
+          "status": "pass",
+          "message": "mean dE 2.1, p95 6.2, off-palette 0.8% (top: #888866 (0.4%), #998866 (0.2%))",
+          "value": 2.1391
+        },
+        {
+          "check": "depth_ratio",
+          "status": "pass",
+          "message": "earth depth / width 0.20 (target <= 0.30)",
+          "value": 0.1954
+        },
+        {
+          "check": "lawn_chroma",
+          "status": "pass",
+          "message": "lawn chroma p95 29 (palette meadow 38)",
+          "value": 29.4888
+        }
+      ]
+    },
+    {
+      "take": 2,
+      "status": "warn",
+      "lock_load": 11.2952,
+      "checks": [
+        {
+          "check": "transparency",
+          "status": "pass",
+          "message": "source has an alpha channel"
+        },
+        {
+          "check": "canvas",
+          "status": "pass",
+          "message": "1536x1024"
+        },
+        {
+          "check": "chroma_ceiling",
+          "status": "pass",
+          "message": "chroma p95 35 (R1 51)",
+          "value": 35.2
+        },
+        {
+          "check": "value_floor",
+          "status": "pass",
+          "message": "lightness p5 65 (R1 59)",
+          "value": 64.8
+        },
+        {
+          "check": "detail_budget",
+          "status": "pass",
+          "message": "detail at display size 2.3 (R1 5.3)",
+          "value": 2.3
+        },
+        {
+          "check": "lock_load",
+          "status": "warn",
+          "message": "the lock moved colors by mean dE 11.3 (prefer a take that needs less)",
+          "value": 11.2952
+        },
+        {
+          "check": "no_guide_magenta",
+          "status": "pass",
+          "message": "0 guide-magenta pixels (per 1024^2)",
+          "value": 0.0
+        },
+        {
+          "check": "palette_drift",
+          "status": "pass",
+          "message": "mean dE 1.7, p95 5.5, off-palette 0.2% (top: #888866 (0.1%), #998866 (0.1%))",
+          "value": 1.723
+        },
+        {
+          "check": "depth_ratio",
+          "status": "pass",
+          "message": "earth depth / width 0.20 (target <= 0.30)",
+          "value": 0.2045
+        },
+        {
+          "check": "lawn_chroma",
+          "status": "pass",
+          "message": "lawn chroma p95 26 (palette meadow 38)",
+          "value": 26.3566
+        }
+      ]
+    }
+  ]
+}
