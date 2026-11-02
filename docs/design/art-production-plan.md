@@ -116,8 +116,10 @@ reads as a slideshow. So Pofu is a **layered rig** in R1's exact framing
 
 - **How parts are made:** every image is an edit of R1 that changes one
   region and lines up with R1 everywhere else (`edit_stability` checks it).
-  The lead cuts each region out with soft masks drawn once on R1 (code,
-  `tools/rig`, next lead PR) and the app composites it over the clean plate.
+  The lead cuts each region out with soft masks drawn once on R1
+  ([`tools/rig`](../../tools/rig/README.md): `rig.py sheet` renders every
+  expression as the app will draw it, with seam scores) and the app
+  composites it over the clean plate.
   The model is never asked for an isolated part: an edit keeps R1's light,
   fur and registration; an isolated part does not.
 - **The clean plate** (`pofu-rig-clean`) has no ears and no front paws, so
