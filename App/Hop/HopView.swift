@@ -45,8 +45,13 @@ private struct HopContent: View {
             background.ignoresSafeArea()
             switch session.phase {
             case .deciding:
-                HopDecision(model: model, session: session)
-                    .transition(.opacity)
+                if session.isBreathing, let plan = session.breath {
+                    BreathRoom(model: model, session: session, plan: plan)
+                        .transition(.opacity)
+                } else {
+                    HopDecision(model: model, session: session)
+                        .transition(.opacity)
+                }
             case .skipped(let skipsToday):
                 HopSkipped(model: model, session: session, skipsToday: skipsToday)
                     .transition(.opacity)

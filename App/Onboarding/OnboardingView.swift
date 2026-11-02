@@ -2,13 +2,18 @@ import PofuCompanion
 import PofuCore
 import PofuDesignSystem
 import SwiftUI
+import UserNotifications
 
-/// The first run, kept minimal: meet Pofu, put Pofu at the door, name it.
+/// The first run, kept minimal: meet Pofu, put Pofu at the door.
 ///
-/// With the live Screen Time gate (the `PofuLive` build), the door is one
-/// permission and the app picker (ADR-0013); the Shortcuts setup stays
-/// available as a fallback and later as "Live Pofu". Without it, the user
-/// picks apps and sets up the first automation (user flows, section 1).
+/// With the live Screen Time gate (the `PofuLive` build, gate v2 section
+/// 3), the door is one permission and the app picker (ADR-0013), then a
+/// primed notification permission (the open path depends on it), and
+/// onboarding ends on the real shield: "Open Instagram now." The first
+/// "Skip it" there is "Yakaladım!". There is no naming step; renaming
+/// lives in Settings. The Shortcuts setup stays available as a fallback.
+/// Without the live gate, the user picks apps, names Pofu, and sets up the
+/// first automation (user flows, section 1).
 struct OnboardingView: View {
     let model: AppModel
 
@@ -18,6 +23,9 @@ struct OnboardingView: View {
         case apps
         case name
         case setup
+        case notifications
+        case tryIt
+        case caught
     }
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -26,6 +34,14 @@ struct OnboardingView: View {
     @State private var name = UserProfile.defaultName
     /// The user chose the Shortcuts soft gate over Screen Time.
     @State private var choseShortcuts = false
+    @Environment(\.scenePhase) private var scenePhase
+    /// When "Try it" began, to find the shield the user just met.
+    @State private var demoStartedAt: Date?
+    /// The user left Pofu during "Try it" (to open the app).
+    @State private var leftForDemo = false
+    /// Back from the app, but no shield was recorded.
+    @State private var missedShield = false
+    @State private var caughtCount = 0
 
     /// Whether onboarding ends in the Shortcuts setup guide.
     private var usesShortcuts: Bool {
@@ -52,6 +68,36 @@ struct OnboardingView: View {
         }
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: step)
         .sensoryFeedback(.selection, trigger: step)
+        .sensoryFeedback(.success, trigger: caughtCount)
+        .onChange(of: scenePhase) { _, phase in
+            guard step == .tryIt else { return }
+            switch phase {
+            case .background:
+                leftForDemo = true
+            case .active:
+                checkDemo()
+            default:
+                break
+            }
+        }
+    }
+
+    /// Back from the guarded app during "Try it": a shield recorded since
+    /// the step began (shown, skipped, or anything else) passes.
+    private func checkDemo() {
+        guard let started = demoStartedAt, leftForDemo else { return }
+        model.refresh()
+        if model.hasShieldReach(since: started) {
+            caught()
+        } else {
+            missedShield = true
+        }
+    }
+
+    private func caught() {
+        missedShield = false
+        caughtCount += 1
+        step = .caught
     }
 
     // MARK: Steps
@@ -64,6 +110,9 @@ struct OnboardingView: View {
         case .apps: apps
         case .name: naming
         case .setup: setup
+        case .notifications: notifications
+        case .tryIt: tryIt
+        case .caught: caughtStep
         }
     }
 
@@ -90,12 +139,120 @@ struct OnboardingView: View {
     private var screenTime: some View {
         ScreenTimeSetupView(
             model: model,
-            onFinish: { step = .name },
+            onFinish: {
+                if step == .screenTime {
+                    step = .notifications
+                }
+            },
             onUseShortcuts: {
                 choseShortcuts = true
                 step = .apps
-            }
+            },
+            onLater: { model.completeOnboarding() }
         )
+    }
+
+    // MARK: Live gate: O6–O8
+
+    /// O6: notifications, primed with the one reason Pofu writes.
+    private var notifications: some View {
+        VStack(spacing: PofuSpacing.l) {
+            Spacer()
+            Image(systemName: "bell.badge")
+                .font(.system(size: 44))
+                .foregroundStyle(PofuColor.accent)
+                .accessibilityHidden(true)
+            Text("When you really need it")
+                .font(PofuFont.title2)
+                .foregroundStyle(PofuColor.textPrimary)
+                .multilineTextAlignment(.center)
+                .accessibilityAddTraits(.isHeader)
+            Text("Say **I need it** at the door and I'll answer with a notification. That's the only time I write, never to pull you back.")
+                .font(PofuFont.body)
+                .foregroundStyle(PofuColor.textSecondary)
+                .multilineTextAlignment(.center)
+            Spacer()
+            Button("Allow notifications") {
+                Task {
+                    _ = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])
+                    startDemo()
+                }
+            }
+            .buttonStyle(PofuPrimaryButtonStyle())
+            Button("Continue without") { startDemo() }
+                .buttonStyle(PofuQuietButtonStyle())
+        }
+        .padding(PofuSpacing.screen)
+    }
+
+    private func startDemo() {
+        demoStartedAt = Date()
+        leftForDemo = false
+        missedShield = false
+        step = .tryIt
+    }
+
+    /// O7: onboarding ends on the real shield.
+    private var tryIt: some View {
+        VStack(spacing: PofuSpacing.l) {
+            Spacer()
+            CompanionView(vitality: 0.8, energy: 0.3)
+                .frame(maxWidth: 220)
+            if missedShield {
+                Text("I couldn't see the shield. Did you see me when the app opened?")
+                    .font(PofuFont.title3)
+                    .foregroundStyle(PofuColor.textPrimary)
+                    .multilineTextAlignment(.center)
+            } else {
+                Text("Try it.")
+                    .pofuDisplayFont(size: 36)
+                    .foregroundStyle(PofuColor.textPrimary)
+                    .accessibilityAddTraits(.isHeader)
+                Text("Open Instagram now. You'll see me at the door. Tap **Skip it**, then come back to me.")
+                    .font(PofuFont.body)
+                    .foregroundStyle(PofuColor.textSecondary)
+                    .multilineTextAlignment(.center)
+            }
+            Spacer()
+            if missedShield {
+                Button("I saw it") {
+                    Log.screenTime.notice("Demo: the user saw the shield, but no record arrived")
+                    caught()
+                }
+                .buttonStyle(PofuPrimaryButtonStyle())
+                Button("I didn't") {
+                    Log.screenTime.notice("Demo: the user did not see the shield")
+                    model.completeOnboarding()
+                    model.requestHomeSheet(.settings)
+                }
+                .buttonStyle(PofuQuietButtonStyle())
+            } else {
+                Button("I'll try later") { model.completeOnboarding() }
+                    .buttonStyle(PofuQuietButtonStyle())
+            }
+        }
+        .padding(PofuSpacing.screen)
+    }
+
+    /// O8: "Yakaladım!"
+    private var caughtStep: some View {
+        VStack(spacing: PofuSpacing.l) {
+            Spacer()
+            CompanionView(vitality: 0.9, energy: 0.4)
+                .frame(maxWidth: 260)
+            Text("Got you!")
+                .pofuDisplayFont(size: 40)
+                .foregroundStyle(PofuColor.textPrimary)
+                .accessibilityAddTraits(.isHeader)
+            Text("I'm at the door. That was your first skip. The rest runs by itself.")
+                .font(PofuFont.body)
+                .foregroundStyle(PofuColor.textSecondary)
+                .multilineTextAlignment(.center)
+            Spacer()
+            Button("OK") { model.completeOnboarding() }
+                .buttonStyle(PofuPrimaryButtonStyle())
+        }
+        .padding(PofuSpacing.screen)
     }
 
     private var apps: some View {

@@ -73,6 +73,7 @@ final class AppModel {
         let ledgerFile = store.map { JSONFile<ScreenTimeLedger>(url: $0.location.directory.appendingPathComponent("screen-time-ledger.json")) }
         self.ledgerFile = ledgerFile
         self.screenTimeLedger = ledgerFile?.read() ?? ScreenTimeLedger()
+        self.tryOpenParentalControlsApp = UserDefaults.standard.bool(forKey: Self.openParentalControlsKey)
 
         var snapshot = PofuSnapshot()
         if let store {
@@ -101,6 +102,7 @@ final class AppModel {
             gatekeeper.quietTime.bootstrap(&state.quietTime, lastSignal: lastCheckIn, checkIns: state.checkIns)
         }
         settleDay()
+        screenTime.update(rules: gateRules)
     }
 
     /// The store in the App Group container when entitled, else in
@@ -178,6 +180,25 @@ final class AppModel {
     }
 
     var needsOnboarding: Bool { !profile.hasCompletedOnboarding }
+
+    /// The Screen Time gate's rules with the user's daily hour.
+    var gateRules: ScreenTimeGateRules {
+        economy.configuration.gate.withDailyHour(profile.dailyHourMinutes)
+    }
+
+    /// Today's reaches at the shield and in Hop!, resolved or not, and how
+    /// many were resisted: the tally the shield and Home show.
+    var reachesToday: (reaches: Int, resisted: Int) {
+        let pending = screenTimeLedger.pendingReaches(on: today, calendar: economy.calendar).count
+        let metrics = impulsesToday
+        return (metrics.attempts + pending, metrics.resisted)
+    }
+
+    /// Whether today's measured guarded time reached the daily hour.
+    var isPastDailyHour: Bool {
+        guard let measured = measuredGuardedMinutesToday else { return false }
+        return measured >= gateRules.dailyHourMinutes
+    }
 
     // MARK: Quiet time (ADR-0014)
 
@@ -292,7 +313,7 @@ final class AppModel {
     /// Starts Hop! for `app`, now that Pofu is in the foreground.
     ///
     /// - Parameter shieldedApp: The app behind the Screen Time shield when
-    ///   the user tapped "Talk to Pofu" there. A pass then lifts the shield
+    ///   the user tapped "Open with Pofu" there. A pass then lifts the shield
     ///   from it, and its own target keeps unknown apps' passes apart.
     func startHop(for app: ProtectedApp, shieldedApp: ShieldedApp? = nil) {
         now = clock.now
@@ -327,9 +348,28 @@ final class AppModel {
                 reachOrdinal: ordinal,
                 shieldedApp: shieldedApp
             )
+            if isPastDailyHour {
+                // Past the daily hour every open starts with a breath
+                // (ADR-0015, gate v2 section 6.5).
+                let overLimitOpen = screenTimeLedger.noteOverLimitOpen(on: today)
+                saveScreenTimeLedger()
+                hop?.breath = BreathPlan(
+                    rules: gateRules,
+                    overLimitOpen: overLimitOpen,
+                    explains: !UserDefaults.standard.bool(forKey: BreathPlan.explainedKey)
+                )
+            }
             log(.hopShown(attemptID: attempt.id, app: app, rung: attempt.rung))
         }
         save()
+    }
+
+    /// The breath in the breathing room is done; the choices follow.
+    func finishBreath() {
+        guard var current = hop, current.isDeciding, current.breath != nil else { return }
+        current.breathDone = true
+        hop = current
+        UserDefaults.standard.set(true, forKey: BreathPlan.explainedKey)
     }
 
     // MARK: - Hop! choices
@@ -442,9 +482,13 @@ final class AppModel {
                     screenTime.lift(shieldedApp, for: pass, at: now)
                     log(.shieldLifted(passID: pass.id, target: shieldedApp.target))
                 }
-                let grantedAt = now
-                reminderTask = Task {
-                    await PassExpiryReminder.schedule(for: pass, now: grantedAt)
+                // With the shield on, its return is the expiry cue: no push
+                // on top of it (gate v2, section 7.2).
+                if !screenTime.isOn {
+                    let grantedAt = now
+                    reminderTask = Task {
+                        await PassExpiryReminder.schedule(for: pass, now: grantedAt)
+                    }
                 }
                 updated.phase = .handoff(pass)
             } else {
@@ -468,16 +512,33 @@ final class AppModel {
         return screenTimeLedger.measuredMinutes(on: today)
     }
 
-    /// Takes in what the Screen Time extensions recorded (skips at the
-    /// shield, "Talk to Pofu", measured usage, restored shields) and puts
-    /// any shield back whose pass has ended.
+    /// Takes in what the Screen Time extensions recorded (reaches at the
+    /// shield and what came of them, measured usage, restored shields),
+    /// resolves reaches time has decided (silent leaves, abandoned
+    /// requests), and puts any shield back whose pass has ended.
     private func syncScreenTime() {
         guard screenTime.isAvailable else { return }
+        screenTime.update(rules: gateRules)
         screenTime.reconcile(at: now)
-        guard let contents = screenTime.readInbox(), !contents.consumable.isEmpty else { return }
-        let records = contents.records.map { screenTime.resolved($0) }
-        let events = ScreenTimeIngestion(calendar: economy.calendar)
-            .ingest(records, into: &screenTimeLedger, checkIns: &state.checkIns)
+        let contents = screenTime.readInbox()
+        let records = (contents?.records ?? []).map { screenTime.resolved($0) }
+        let ledgerBefore = screenTimeLedger
+        // Local copies: `state` is observed, so two inout arguments into it
+        // would alias.
+        var checkIns = state.checkIns
+        var passes = state.passes
+        let events = ScreenTimeIngestion(calendar: economy.calendar, rules: gateRules)
+            .ingest(records, at: now, into: &screenTimeLedger, checkIns: &checkIns, passes: &passes)
+        if checkIns != state.checkIns {
+            state.checkIns = checkIns
+        }
+        if passes != state.passes {
+            state.passes = passes
+        }
+        if let note = screenTime.openRequestNote(), !note.isWaiting(at: now, lifetime: gateRules.openRequestLifetime) {
+            screenTime.clearOpenRequest()
+        }
+        guard screenTimeLedger != ledgerBefore || !(contents?.consumable.isEmpty ?? true) else { return }
         for event in events {
             do {
                 try store?.events.append(event)
@@ -490,22 +551,89 @@ final class AppModel {
         // crash in between ingests nothing twice (the ledger remembers ids).
         save()
         saveScreenTimeLedger()
-        screenTime.acknowledge(contents)
+        if let contents {
+            screenTime.acknowledge(contents)
+        }
     }
 
-    /// Starts Hop! for a fresh "Talk to Pofu" from the shield. Called when
-    /// Pofu comes to the foreground, which is what tapping the shield's
-    /// notification does.
+    /// Starts Hop! for a fresh "Open with Pofu" from the shield.
+    ///
+    /// The notification's tap routes here through the notification
+    /// delegate; coming to the foreground does too, as the fallback for a
+    /// user who opens Pofu by hand within the request's lifetime (with
+    /// notifications off, the shield asks for exactly that).
     func answerShieldRequest() {
-        guard screenTime.isAvailable, screenTimeLedger.openRequest != nil else { return }
-        let request = screenTimeLedger.takeOpenRequest(at: clock.now, maximumAge: ScreenTimeGate.openRequestMaximumAge)
+        guard screenTime.isAvailable, !needsOnboarding else { return }
+        // Take in the request if it is still in the inbox (a cold launch
+        // from the notification).
+        if screenTimeLedger.openRequest == nil {
+            now = clock.now
+            syncScreenTime()
+        }
+        guard screenTimeLedger.openRequest != nil else { return }
+        let request = screenTimeLedger.takeOpenRequest(at: clock.now, maximumAge: gateRules.openRequestLifetime)
         saveScreenTimeLedger()
-        guard let request, !needsOnboarding else { return }
+        guard let request else { return }
+        screenTime.clearOpenRequest()
         if let current = hop, !current.isDeciding {
             hop = nil
         }
-        Log.screenTime.info("Answering Talk to Pofu from the shield")
+        Log.screenTime.info("Answering Open with Pofu from the shield")
         startHop(for: request.app.protectedApp, shieldedApp: request.app)
+    }
+
+    /// Whether the shield met a reach since `date`: the onboarding demo's
+    /// check that the gate works (gate v2, O7).
+    func hasShieldReach(since date: Date) -> Bool {
+        if screenTimeLedger.pendingReaches.contains(where: { $0.shownAt >= date }) {
+            return true
+        }
+        return state.checkIns.contains { $0.resolvedChannel == .shield && $0.attemptedAt >= date }
+    }
+
+    /// The "Open with Pofu" notification was tapped.
+    func gateNotificationTapped() {
+        Log.screenTime.info("Gate notification tapped")
+        refresh()
+        answerShieldRequest()
+    }
+
+    /// Day-1 spike (gate v2, case 23): answer "Open with Pofu" with
+    /// `.openParentalControlsApp` on iOS 26.5 and later.
+    private(set) var tryOpenParentalControlsApp: Bool
+    private static let openParentalControlsKey = "developer.tryOpenParentalControlsApp"
+
+    func setTryOpenParentalControlsApp(_ isOn: Bool) {
+        tryOpenParentalControlsApp = isOn
+        UserDefaults.standard.set(isOn, forKey: Self.openParentalControlsKey)
+        save()
+    }
+
+    /// What the shield extensions read to speak about today (gate v2, E2).
+    private func writeShieldState() {
+        guard screenTime.isAvailable else { return }
+        let calendar = economy.calendar
+        let hourAgo = now.addingTimeInterval(-60 * 60)
+        let todaysCheckIns = state.checkIns.filter { LocalDay(containing: $0.attemptedAt, in: calendar) == today }
+        let pending = screenTimeLedger.pendingReaches(on: today, calendar: calendar)
+        let recent = (todaysCheckIns.map(\.attemptedAt) + pending.map(\.shownAt)).filter { $0 > hourAgo && $0 <= now }
+        let tally = reachesToday
+        screenTime.writeShieldState(
+            ShieldAppState(
+                writtenAt: now,
+                day: today,
+                reachesToday: tally.reaches,
+                resistedToday: tally.resisted,
+                recentReaches: recent,
+                wellbeing: vitality,
+                calm: nil,
+                measuredMinutes: screenTimeLedger.measuredMinutes(on: today),
+                dailyHourMinutes: gateRules.dailyHourMinutes,
+                overLimitOpensToday: screenTimeLedger.overLimitOpens(on: today),
+                bedtime: economy.configuration.spending.bedtime,
+                tryOpenParentalControlsApp: tryOpenParentalControlsApp
+            )
+        )
     }
 
     private func saveScreenTimeLedger() {
@@ -649,6 +777,13 @@ final class AppModel {
         save()
     }
 
+    /// Sets the daily hour; past it every open starts with a breath.
+    func setDailyHour(minutes: Int) {
+        profile.dailyHourMinutes = minutes
+        screenTime.update(rules: gateRules)
+        save()
+    }
+
     func completeOnboarding() {
         profile.hasCompletedOnboarding = true
         Log.routing.info("Onboarding completed with \(self.profile.protectedApps.count, privacy: .public) apps")
@@ -666,6 +801,7 @@ final class AppModel {
             Log.persistence.error("Saving the snapshot failed: \(error.localizedDescription, privacy: .public)")
             persistenceProblem = true
         }
+        writeShieldState()
     }
 
     private func log(_ event: PofuEvent) {

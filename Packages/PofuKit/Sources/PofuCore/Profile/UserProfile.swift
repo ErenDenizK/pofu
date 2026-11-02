@@ -17,17 +17,25 @@ public struct UserProfile: Hashable, Sendable {
     /// When each app's automation last reached Pofu. An app with an entry
     /// is verified: its automation fired at least once.
     public var lastCheckIn: [ProtectedApp: Date]
+    /// The user's daily hour of guarded apps, in minutes; past it every
+    /// open starts with a breath (ADR-0015). `nil` keeps the default of
+    /// `ScreenTimeGateRules`.
+    public var dailyHourMinutes: Int? {
+        didSet { dailyHourMinutes = dailyHourMinutes.map(ScreenTimeGateRules.clampedDailyHour) }
+    }
 
     public init(
         companionName: String = UserProfile.defaultName,
         protectedApps: [ProtectedApp] = [],
         hasCompletedOnboarding: Bool = false,
-        lastCheckIn: [ProtectedApp: Date] = [:]
+        lastCheckIn: [ProtectedApp: Date] = [:],
+        dailyHourMinutes: Int? = nil
     ) {
         self.companionName = Self.sanitizedName(companionName)
         self.protectedApps = protectedApps
         self.hasCompletedOnboarding = hasCompletedOnboarding
         self.lastCheckIn = lastCheckIn
+        self.dailyHourMinutes = dailyHourMinutes.map(ScreenTimeGateRules.clampedDailyHour)
     }
 
     /// Whether the automation for `app` has reached Pofu at least once.
@@ -57,7 +65,7 @@ public struct UserProfile: Hashable, Sendable {
 
 extension UserProfile: Codable {
     private enum CodingKeys: String, CodingKey {
-        case companionName, protectedApps, hasCompletedOnboarding, lastCheckIn
+        case companionName, protectedApps, hasCompletedOnboarding, lastCheckIn, dailyHourMinutes
     }
 
     private struct CheckInEntry: Codable {
@@ -79,7 +87,8 @@ extension UserProfile: Codable {
             companionName: try container.decodeIfPresent(String.self, forKey: .companionName) ?? Self.defaultName,
             protectedApps: rawApps.compactMap(ProtectedApp.init(rawValue:)),
             hasCompletedOnboarding: try container.decodeIfPresent(Bool.self, forKey: .hasCompletedOnboarding) ?? false,
-            lastCheckIn: lastCheckIn
+            lastCheckIn: lastCheckIn,
+            dailyHourMinutes: try container.decodeIfPresent(Int.self, forKey: .dailyHourMinutes)
         )
     }
 
@@ -92,5 +101,6 @@ extension UserProfile: Codable {
             .map { CheckInEntry(app: $0.key, at: $0.value) }
             .sorted { $0.app.rawValue < $1.app.rawValue }
         try container.encode(entries, forKey: .lastCheckIn)
+        try container.encodeIfPresent(dailyHourMinutes, forKey: .dailyHourMinutes)
     }
 }

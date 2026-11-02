@@ -15,6 +15,9 @@ public struct EconomyConfiguration: Hashable, Sendable, Codable {
     public var vitality: VitalityRules
     /// How staying away from guarded apps earns seeds (ADR-0014).
     public var quietTime: QuietTimeRules
+    /// The Screen Time gate: the daily hour, the quick check, and how
+    /// reaches at the shield are counted (gate v2).
+    public var gate: ScreenTimeGateRules
 
     public init(
         dailyAllowance: Energy = 15,
@@ -22,7 +25,8 @@ public struct EconomyConfiguration: Hashable, Sendable, Codable {
         spending: SpendingRules = SpendingRules(),
         friction: FrictionRules = FrictionRules(),
         vitality: VitalityRules = VitalityRules(),
-        quietTime: QuietTimeRules = QuietTimeRules()
+        quietTime: QuietTimeRules = QuietTimeRules(),
+        gate: ScreenTimeGateRules = ScreenTimeGateRules()
     ) {
         self.dailyAllowance = dailyAllowance
         self.earning = earning
@@ -30,13 +34,14 @@ public struct EconomyConfiguration: Hashable, Sendable, Codable {
         self.friction = friction
         self.vitality = vitality
         self.quietTime = quietTime
+        self.gate = gate
     }
 
     /// The v0 rules.
     public static let standard = EconomyConfiguration()
 
     private enum CodingKeys: String, CodingKey {
-        case dailyAllowance, earning, spending, friction, vitality, quietTime
+        case dailyAllowance, earning, spending, friction, vitality, quietTime, gate
     }
 
     /// Sections added after v0 are optional on decode, so a configuration
@@ -49,7 +54,8 @@ public struct EconomyConfiguration: Hashable, Sendable, Codable {
             spending: try container.decode(SpendingRules.self, forKey: .spending),
             friction: try container.decode(FrictionRules.self, forKey: .friction),
             vitality: try container.decode(VitalityRules.self, forKey: .vitality),
-            quietTime: try container.decodeIfPresent(QuietTimeRules.self, forKey: .quietTime) ?? QuietTimeRules()
+            quietTime: try container.decodeIfPresent(QuietTimeRules.self, forKey: .quietTime) ?? QuietTimeRules(),
+            gate: try container.decodeIfPresent(ScreenTimeGateRules.self, forKey: .gate) ?? ScreenTimeGateRules()
         )
     }
 
@@ -61,6 +67,7 @@ public struct EconomyConfiguration: Hashable, Sendable, Codable {
         try container.encode(friction, forKey: .friction)
         try container.encode(vitality, forKey: .vitality)
         try container.encode(quietTime, forKey: .quietTime)
+        try container.encode(gate, forKey: .gate)
     }
 }
 

@@ -16,7 +16,7 @@ public struct GuardedUsageLadder: Hashable, Sendable {
     public let breathLimitMinutes: Int
 
     /// 15, 30, 45, and 60 minutes; the breath limit is 60.
-    public static let standard = GuardedUsageLadder(stepsMinutes: [15, 30, 45, 60], breathLimitMinutes: 60)
+    public static let standard = ScreenTimeGateRules.standard.ladder
 
     /// The prefix of every threshold's event and activity name.
     public static let namePrefix = "pofu.usage."
@@ -28,6 +28,26 @@ public struct GuardedUsageLadder: Hashable, Sendable {
         precondition(steps.contains(breathLimitMinutes), "The breath limit must be a measured step")
         self.stepsMinutes = steps
         self.breathLimitMinutes = breathLimitMinutes
+    }
+
+    /// Every `stepMinutes` up to `dailyHourMinutes`, and the daily hour
+    /// itself, which is the breath limit: 15, 30, 45, 50 for a 50-minute
+    /// hour.
+    public init(dailyHourMinutes: Int, stepMinutes: Int = 15) {
+        let limit = max(1, dailyHourMinutes)
+        let step = max(1, stepMinutes)
+        let steps = Array(stride(from: step, to: limit, by: step)) + [limit]
+        self.init(stepsMinutes: steps, breathLimitMinutes: limit)
+    }
+
+    /// The minutes in any Pofu threshold name, whatever the ladder that
+    /// scheduled it: the monitor extension does not know the user's daily
+    /// hour. `nil` for other names.
+    public static func parseMinutes(fromThresholdName name: String) -> Int? {
+        guard name.hasPrefix(namePrefix), let minutes = Int(name.dropFirst(namePrefix.count)), minutes > 0 else {
+            return nil
+        }
+        return minutes
     }
 
     /// The name of the event (and its activity) that fires at `minutes`.

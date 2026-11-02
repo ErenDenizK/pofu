@@ -1942,82 +1942,12 @@
         }
       }
     },
-    "Let me stand at the door" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kapıda ben durayım"
-          }
-        }
-      }
-    },
-    "Screen Time is off for Pofu" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pofu için Ekran Süresi kapalı"
-          }
-        }
-      }
-    },
-    "Pick the apps that pull you in" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seni içine çeken uygulamaları seç"
-          }
-        }
-      }
-    },
     "I'm at the door" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kapıdayım"
-          }
-        }
-      }
-    },
-    "When you reach for a feed, I'll be there first. iOS asks once if Pofu may use Screen Time; nothing leaves this iPhone." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bir akışa uzandığında önce ben karşılarım. iOS, Pofu'nun Ekran Süresi'ni kullanmasına bir kez izin ister; hiçbir şey bu iPhone'dan çıkmaz."
-          }
-        }
-      }
-    },
-    "You can turn it on in Settings, Screen Time, or let me jump in through Shortcuts instead." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ayarlar'da Ekran Süresi'nden açabilirsin ya da araya Kestirmeler üzerinden girmeme izin verebilirsin."
-          }
-        }
-      }
-    },
-    "I'll stand in front of them. You can change this any time in Settings." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Onların önünde ben duracağım. Bunu istediğin zaman Ayarlar'dan değiştirebilirsin."
-          }
-        }
-      }
-    },
-    "Open one of them to see me. Tap Talk to Pofu there and I'll answer with a notification." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beni görmek için birini aç. Orada Pofu'yla konuş'a dokunursan bildirimle cevap veririm."
           }
         }
       }
@@ -2072,16 +2002,6 @@
         }
       }
     },
-    "Use Shortcuts instead" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bunun yerine Kestirmeler'i kullan"
-          }
-        }
-      }
-    },
     "On" : {
       "localizations" : {
         "tr" : {
@@ -2132,16 +2052,6 @@
         }
       }
     },
-    "Measured by Screen Time, in 15-minute steps." : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ekran Süresi 15 dakikalık adımlarla ölçer."
-          }
-        }
-      }
-    },
     "under 15 min" : {
       "localizations" : {
         "tr" : {
@@ -2178,6 +2088,516 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bir Kestirmeler otomasyonuyla uygulama açılmadan önce tüm animasyonumla araya girerim. Kalkan yine güvenlik ağı olarak kalır."
+          }
+        }
+      }
+    },
+    "Past %lld minutes a day, every open starts with a breath. Change it in Settings." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Günde %lld dakikayı geçince her açılış bir nefesle başlar. Ayarlar'dan değişir."
+          }
+        }
+      }
+    },
+    "Nicely done." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çok güzel."
+          }
+        }
+      }
+    },
+    "We've had our hour today." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugünkü saatimizi doldurduk."
+          }
+        }
+      }
+    },
+    "Breathe with me first?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Önce benimle bir nefes alır mısın?"
+          }
+        }
+      }
+    },
+    "Skip it, or go on?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boş mu verelim, devam mı?"
+          }
+        }
+      }
+    },
+    "Breathe with Pofu" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pofu'yla nefes al"
+          }
+        }
+      }
+    },
+    "Not now" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şimdi değil"
+          }
+        }
+      }
+    },
+    "I'm good, skip it" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İyiyim, boş ver"
+          }
+        }
+      }
+    },
+    "I'll still open it" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yine de açacağım"
+          }
+        }
+      }
+    },
+    "So I can stand at the door" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapıda durabilmem için"
+          }
+        }
+      }
+    },
+    "When you open an app you picked, I show up first." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçtiğin uygulamaları açınca önce ben görünürüm."
+          }
+        }
+      }
+    },
+    "I can't see what you do in there. Nothing leaves this iPhone." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İçeride ne yaptığını göremem. Hiçbir şey bu iPhone'dan çıkmaz."
+          }
+        }
+      }
+    },
+    "You can turn me off any time." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İstediğin an kapatırsın."
+          }
+        }
+      }
+    },
+    "The next screen is Apple's: tap **Continue**, then Face ID." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sıradaki ekran Apple'ın: **Devam**'a dokun, sonra Face ID."
+          }
+        }
+      }
+    },
+    "Okay, no pressure." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamam, zorlamam."
+          }
+        }
+      }
+    },
+    "Without Screen Time I can't stand at the door. If you change your mind, I'm here." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ekran Süresi izni olmadan kapıda duramam. Fikrin değişirse buradayım."
+          }
+        }
+      }
+    },
+    "Settings → Screen Time → Apps with Screen Time Access → Pofu" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlar → Ekran Süresi → Ekran Süresi Erişimi olan uygulamalar → Pofu"
+          }
+        }
+      }
+    },
+    "Nobody at the door yet." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapıda kimse yok."
+          }
+        }
+      }
+    },
+    "Pick at least one app; add the rest later." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En az bir uygulama seç, gerisini sonra eklersin."
+          }
+        }
+      }
+    },
+    "Which ones pull you in most?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seni en çok hangileri çekiyor?"
+          }
+        }
+      }
+    },
+    "Tap the arrow next to a category and tick the app itself." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorinin yanındaki oka dokun, uygulamayı tek tek işaretle."
+          }
+        }
+      }
+    },
+    "Pick all of Social and I'll stand at WhatsApp's door too." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tüm 'Sosyal'i seçersen WhatsApp'ta da kapıda olurum."
+          }
+        }
+      }
+    },
+    "My suggestion: Instagram, YouTube, TikTok." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Önerim: Instagram, YouTube, TikTok."
+          }
+        }
+      }
+    },
+    "You picked a whole category." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bütün bir kategori seçtin."
+          }
+        }
+      }
+    },
+    "I'll be at every app in it, messaging included." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İçindeki her uygulamada, mesajlaşma dahil, kapıda olurum."
+          }
+        }
+      }
+    },
+    "Open Settings" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlar'ı aç"
+          }
+        }
+      }
+    },
+    "Skip for now" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şimdilik geç"
+          }
+        }
+      }
+    },
+    "Pick again" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekrar seç"
+          }
+        }
+      }
+    },
+    "I'll pick later" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonra seçerim"
+          }
+        }
+      }
+    },
+    "Keep it" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Böyle kalsın"
+          }
+        }
+      }
+    },
+    "Fix it" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Düzelt"
+          }
+        }
+      }
+    },
+    "Set up with Shortcuts (advanced)" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kestirmeler ile kur (gelişmiş)"
+          }
+        }
+      }
+    },
+    "When you really need it" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gerçekten açman gerektiğinde"
+          }
+        }
+      }
+    },
+    "Say **I need it** at the door and I'll answer with a notification. That's the only time I write, never to pull you back." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapıda **Açmam lazım** dersen sana bir bildirimle cevap veririm. Sadece bunun için yazarım; seni geri çekmek için asla."
+          }
+        }
+      }
+    },
+    "Allow notifications" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bildirimlere izin ver"
+          }
+        }
+      }
+    },
+    "Continue without" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bildirimsiz devam et"
+          }
+        }
+      }
+    },
+    "Try it." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hadi dene."
+          }
+        }
+      }
+    },
+    "Open Instagram now. You'll see me at the door. Tap **Skip it**, then come back to me." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şimdi Instagram'ı aç. Kapıda beni göreceksin. **Boş ver**'e dokun, sonra bana dön."
+          }
+        }
+      }
+    },
+    "I couldn't see the shield. Did you see me when the app opened?" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalkanı göremedim. Uygulama açılınca beni gördün mü?"
+          }
+        }
+      }
+    },
+    "I saw it" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gördüm"
+          }
+        }
+      }
+    },
+    "I didn't" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Görmedim"
+          }
+        }
+      }
+    },
+    "I'll try later" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonra denerim"
+          }
+        }
+      }
+    },
+    "Got you!" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yakaladım!"
+          }
+        }
+      }
+    },
+    "I'm at the door. That was your first skip. The rest runs by itself." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapıdayım. İlk vazgeçişin bu. Gerisi kendiliğinden işler."
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamam"
+          }
+        }
+      }
+    },
+    "Daily hour" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Günlük saat"
+          }
+        }
+      }
+    },
+    "Readout" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Döküm"
+          }
+        }
+      }
+    },
+    "Notifications are off" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bildirimler kapalı"
+          }
+        }
+      }
+    },
+    "After \"I need it\" I can't reach you; open me yourself within 10 minutes. The quick check still works." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Açmam lazım\" dediğinde sana ulaşamam; 10 dakika içinde beni kendin aç. Hızlı bakış yine çalışır."
+          }
+        }
+      }
+    },
+    "With Focus on, my notification may not arrive." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odak modunda bildirimim gelmeyebilir."
+          }
+        }
+      }
+    },
+    "Measured by Screen Time, in 15-minute steps. Past the daily hour, every open starts with a breath." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ekran Süresi ölçer, 15 dakikalık adımlarla. Günlük saat dolunca her açılış bir nefesle başlar."
           }
         }
       }

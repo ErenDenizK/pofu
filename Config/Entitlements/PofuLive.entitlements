@@ -9,6 +9,9 @@
 <dict>
 	<key>com.apple.developer.family-controls</key>
 	<true/>
+	<!-- The "Open with Pofu" notification breaks through Focus (gate v2, 5.7). -->
+	<key>com.apple.developer.usernotifications.time-sensitive</key>
+	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
 		<string>group.com.erendenizk.pofu</string>

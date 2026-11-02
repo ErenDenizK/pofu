@@ -8,16 +8,33 @@ import Foundation
 /// leave it alone rather than misread it. `version` is decoded first, and a
 /// record from a newer version fails with `unsupportedVersion`.
 public struct ScreenTimeRecord: Hashable, Sendable, Identifiable {
-    /// The format this build writes and the newest it reads.
-    public static let currentVersion = 1
+    /// The format this build writes and the newest it reads. Version 2
+    /// added `shieldShown`, `quickCheckStarted`, `passEndedClosed`, and
+    /// `openRequestCancelled` (gate v2); version 1 records stay readable.
+    public static let currentVersion = 2
 
     public enum Kind: Hashable, Sendable, Codable {
+        /// The configuration extension drew the shield over `app` in
+        /// `scene`. A reach, unless the scene says otherwise; the app
+        /// resolves it with whatever the user did next (or did not do).
+        case shieldShown(app: ShieldedApp, scene: ShieldScene)
         /// The user tapped the shield's primary button ("Skip it"): an
         /// impulse resisted at the shield.
         case shieldResisted(app: ShieldedApp)
-        /// The user tapped "Talk to Pofu": they want to open the app, and
-        /// Hop! should run for it when they come to Pofu.
+        /// The user tapped "Open with Pofu" (or "Breathe with Pofu"): they
+        /// want to open the app, and Hop! should run for it when they come
+        /// to Pofu.
         case openRequested(app: ShieldedApp)
+        /// The user tapped "Skip it" while the shield waited for the
+        /// notification tap: the request is withdrawn and the reach
+        /// resisted.
+        case openRequestCancelled(app: ShieldedApp)
+        /// "Just 3 minutes" on the shield: the action extension lifted the
+        /// shield from `app` until `until`, for the pass `passID`.
+        case quickCheckStarted(app: ShieldedApp, passID: UUID, until: Date)
+        /// "Done, close it" on the shield that returned when a pass ended.
+        /// Closing an app whose time is up is not a resisted reach.
+        case passEndedClosed(app: ShieldedApp)
         /// DeviceActivity measured `minutes` of guarded use today.
         case usageThresholdReached(minutes: Int)
         /// The monitor put the shield back when the pass `passID` ended.
@@ -34,6 +51,56 @@ public struct ScreenTimeRecord: Hashable, Sendable, Identifiable {
         self.id = id
         self.at = at
         self.kind = kind
+    }
+}
+
+extension ScreenTimeRecord {
+    /// The app the record is about, if it is about one.
+    public var app: ShieldedApp? {
+        switch kind {
+        case .shieldShown(let app, _), .shieldResisted(let app), .openRequested(let app),
+            .openRequestCancelled(let app), .quickCheckStarted(let app, _, _), .passEndedClosed(let app):
+            app
+        case .usageThresholdReached, .shieldRestored:
+            nil
+        }
+    }
+
+    /// The same record with its app replaced by `transform(app)`, for
+    /// filling in names the shield directory learned.
+    public func mappingApp(_ transform: (ShieldedApp) -> ShieldedApp) -> ScreenTimeRecord {
+        let mapped: Kind
+        switch kind {
+        case .shieldShown(let app, let scene): mapped = .shieldShown(app: transform(app), scene: scene)
+        case .shieldResisted(let app): mapped = .shieldResisted(app: transform(app))
+        case .openRequested(let app): mapped = .openRequested(app: transform(app))
+        case .openRequestCancelled(let app): mapped = .openRequestCancelled(app: transform(app))
+        case .quickCheckStarted(let app, let passID, let until): mapped = .quickCheckStarted(app: transform(app), passID: passID, until: until)
+        case .passEndedClosed(let app): mapped = .passEndedClosed(app: transform(app))
+        case .usageThresholdReached, .shieldRestored: return self
+        }
+        return ScreenTimeRecord(id: id, at: at, kind: mapped, version: version)
+    }
+}
+
+/// Which shield the configuration extension drew (gate v2, section 5).
+public enum ShieldScene: String, Hashable, Sendable, Codable, CaseIterable {
+    /// A reach: the default shield, with its copy ladder.
+    case reach
+    /// A reach past the daily hour: the breathing state.
+    case breath
+    /// The shield waiting for the notification tap after "Open with Pofu".
+    /// A redraw of a reach already counted.
+    case waiting
+    /// The shield that came back when a pass ended. Not a reach.
+    case passEnded
+
+    /// Whether showing this shield is a new reach.
+    public var countsAsReach: Bool {
+        switch self {
+        case .reach, .breath: true
+        case .waiting, .passEnded: false
+        }
     }
 }
 

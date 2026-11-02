@@ -4,6 +4,8 @@ import Testing
 
 private let instagramApp = ShieldedApp(token: "token-instagram", bundleIdentifier: "com.burbn.instagram", displayName: "Instagram")
 private let unknownApp = ShieldedApp(token: "token-unknown")
+/// A moment long after every record: time has resolved every reach.
+private let farFuture = instant(2030, 1, 1)
 
 @Suite("Screen Time records")
 struct ScreenTimeRecordTests {
@@ -14,6 +16,10 @@ struct ScreenTimeRecordTests {
             ScreenTimeRecord(at: at, kind: .openRequested(app: unknownApp)),
             ScreenTimeRecord(at: at, kind: .usageThresholdReached(minutes: 45)),
             ScreenTimeRecord(at: at, kind: .shieldRestored(passID: UUID())),
+            ScreenTimeRecord(at: at, kind: .shieldShown(app: instagramApp, scene: .reach)),
+            ScreenTimeRecord(at: at, kind: .openRequestCancelled(app: instagramApp)),
+            ScreenTimeRecord(at: at, kind: .quickCheckStarted(app: unknownApp, passID: UUID(), until: at.adding(minutes: 3))),
+            ScreenTimeRecord(at: at, kind: .passEndedClosed(app: instagramApp)),
         ]
         let data = try JSONEncoder().encode(records)
         #expect(try JSONDecoder().decode([ScreenTimeRecord].self, from: data) == records)
@@ -34,9 +40,9 @@ struct ScreenTimeRecordTests {
 
     @Test func newerVersionsAreRefusedNotMisread() {
         let json = """
-            {"version":2,"id":"4B4C3B0E-7D3B-4C47-9B44-1B0C3E1F2A10","at":0,"kind":{"somethingNew":{}}}
+            {"version":3,"id":"4B4C3B0E-7D3B-4C47-9B44-1B0C3E1F2A10","at":0,"kind":{"somethingNew":{}}}
             """
-        #expect(throws: ScreenTimeRecordError.unsupportedVersion(2)) {
+        #expect(throws: ScreenTimeRecordError.unsupportedVersion(3)) {
             try JSONDecoder().decode(ScreenTimeRecord.self, from: Data(json.utf8))
         }
     }
@@ -232,8 +238,9 @@ struct ScreenTimeIngestionTests {
         let at = instant(2026, 11, 14, 9, 30)
         var ledger = ScreenTimeLedger()
         var checkIns: [CheckInRecord] = []
+        var passes = PassLedger()
         let record = ScreenTimeRecord(at: at, kind: .shieldResisted(app: instagramApp))
-        let events = ingestion.ingest([record], into: &ledger, checkIns: &checkIns)
+        let events = ingestion.ingest([record], at: farFuture, into: &ledger, checkIns: &checkIns, passes: &passes)
 
         #expect(checkIns.count == 1)
         #expect(checkIns.first?.outcome == .resisted)
@@ -249,18 +256,20 @@ struct ScreenTimeIngestionTests {
         let record = ScreenTimeRecord(at: instant(2026, 11, 14, 9, 30), kind: .shieldResisted(app: instagramApp))
         var ledger = ScreenTimeLedger()
         var checkIns: [CheckInRecord] = []
-        ingestion.ingest([record, record], into: &ledger, checkIns: &checkIns)
-        ingestion.ingest([record], into: &ledger, checkIns: &checkIns)
+        var passes = PassLedger()
+        ingestion.ingest([record, record], at: farFuture, into: &ledger, checkIns: &checkIns, passes: &passes)
+        ingestion.ingest([record], at: farFuture, into: &ledger, checkIns: &checkIns, passes: &passes)
         #expect(checkIns.count == 1)
     }
 
     @Test func rememberedIDsAreBounded() {
         var ledger = ScreenTimeLedger()
         var checkIns: [CheckInRecord] = []
+        var passes = PassLedger()
         let records = (0..<300).map { index in
             ScreenTimeRecord(at: instant(2026, 11, 14, 9).addingTimeInterval(Double(index)), kind: .usageThresholdReached(minutes: 15))
         }
-        ingestion.ingest(records, into: &ledger, checkIns: &checkIns)
+        ingestion.ingest(records, at: farFuture, into: &ledger, checkIns: &checkIns, passes: &passes)
         #expect(ledger.ingestedIDs.count == ScreenTimeLedger.rememberedRecordCount)
         #expect(ledger.ingestedIDs.last == records.last?.id)
     }
@@ -268,18 +277,21 @@ struct ScreenTimeIngestionTests {
     @Test func measuredMinutesKeepTheDaysHighestStep() {
         var ledger = ScreenTimeLedger()
         var checkIns: [CheckInRecord] = []
+        var passes = PassLedger()
         let day = LocalDay(year: 2026, month: 11, day: 14)
         ingestion.ingest(
             [
                 ScreenTimeRecord(at: instant(2026, 11, 14, 11), kind: .usageThresholdReached(minutes: 30)),
                 ScreenTimeRecord(at: instant(2026, 11, 14, 9), kind: .usageThresholdReached(minutes: 15)),
             ],
+            at: farFuture,
             into: &ledger,
-            checkIns: &checkIns
+            checkIns: &checkIns,
+            passes: &passes
         )
         #expect(ledger.measuredMinutes(on: day) == 30)
         // A record that arrives late for an earlier step does not lower it.
-        ingestion.ingest([ScreenTimeRecord(at: instant(2026, 11, 14, 12), kind: .usageThresholdReached(minutes: 15))], into: &ledger, checkIns: &checkIns)
+        ingestion.ingest([ScreenTimeRecord(at: instant(2026, 11, 14, 12), kind: .usageThresholdReached(minutes: 15))], at: farFuture, into: &ledger, checkIns: &checkIns, passes: &passes)
         #expect(ledger.measuredMinutes(on: day) == 30)
         #expect(checkIns.isEmpty)
     }
@@ -287,12 +299,13 @@ struct ScreenTimeIngestionTests {
     @Test func aNewDayStartsFromItsOwnMeasurement() {
         var ledger = ScreenTimeLedger()
         var checkIns: [CheckInRecord] = []
-        ingestion.ingest([ScreenTimeRecord(at: instant(2026, 11, 14, 23), kind: .usageThresholdReached(minutes: 60))], into: &ledger, checkIns: &checkIns)
-        ingestion.ingest([ScreenTimeRecord(at: instant(2026, 11, 15, 8), kind: .usageThresholdReached(minutes: 15))], into: &ledger, checkIns: &checkIns)
+        var passes = PassLedger()
+        ingestion.ingest([ScreenTimeRecord(at: instant(2026, 11, 14, 23), kind: .usageThresholdReached(minutes: 60))], at: farFuture, into: &ledger, checkIns: &checkIns, passes: &passes)
+        ingestion.ingest([ScreenTimeRecord(at: instant(2026, 11, 15, 8), kind: .usageThresholdReached(minutes: 15))], at: farFuture, into: &ledger, checkIns: &checkIns, passes: &passes)
         #expect(ledger.measuredMinutes(on: LocalDay(year: 2026, month: 11, day: 15)) == 15)
         #expect(ledger.measuredMinutes(on: LocalDay(year: 2026, month: 11, day: 14)) == 0)
         // Yesterday's late record does not overwrite today.
-        ingestion.ingest([ScreenTimeRecord(at: instant(2026, 11, 14, 23, 30), kind: .usageThresholdReached(minutes: 45))], into: &ledger, checkIns: &checkIns)
+        ingestion.ingest([ScreenTimeRecord(at: instant(2026, 11, 14, 23, 30), kind: .usageThresholdReached(minutes: 45))], at: farFuture, into: &ledger, checkIns: &checkIns, passes: &passes)
         #expect(ledger.measuredMinutes(on: LocalDay(year: 2026, month: 11, day: 15)) == 15)
         #expect(GuardedUsageLadder.standard.isBreathLimitReached(measuredMinutes: ledger.measuredMinutes(on: LocalDay(year: 2026, month: 11, day: 15))) == false)
     }
@@ -300,14 +313,17 @@ struct ScreenTimeIngestionTests {
     @Test func theNewestOpenRequestWaitsForPofu() throws {
         var ledger = ScreenTimeLedger()
         var checkIns: [CheckInRecord] = []
+        var passes = PassLedger()
         let first = instant(2026, 11, 14, 9, 30)
         ingestion.ingest(
             [
                 ScreenTimeRecord(at: first.adding(minutes: 1), kind: .openRequested(app: unknownApp)),
                 ScreenTimeRecord(at: first, kind: .openRequested(app: instagramApp)),
             ],
+            at: first.adding(minutes: 2),
             into: &ledger,
-            checkIns: &checkIns
+            checkIns: &checkIns,
+            passes: &passes
         )
         let taken = ledger.takeOpenRequest(at: first.adding(minutes: 3), maximumAge: 600)
         let request = try #require(taken)
@@ -316,36 +332,55 @@ struct ScreenTimeIngestionTests {
         #expect(checkIns.isEmpty)
     }
 
-    @Test func aStaleOpenRequestIsDropped() {
+    @Test func aStaleOpenRequestIsNotAnsweredButCountedAsAbandoned() {
         var ledger = ScreenTimeLedger()
         var checkIns: [CheckInRecord] = []
+        var passes = PassLedger()
         let at = instant(2026, 11, 14, 9, 30)
-        ingestion.ingest([ScreenTimeRecord(at: at, kind: .openRequested(app: instagramApp))], into: &ledger, checkIns: &checkIns)
+        ingestion.ingest([ScreenTimeRecord(at: at, kind: .openRequested(app: instagramApp))], at: at.adding(minutes: 1), into: &ledger, checkIns: &checkIns, passes: &passes)
         #expect(ledger.takeOpenRequest(at: at.adding(minutes: 11), maximumAge: 600) == nil)
+        ingestion.settle(at: at.adding(minutes: 11), ledger: &ledger, checkIns: &checkIns)
         #expect(ledger.openRequest == nil)
+        #expect(checkIns.map(\.shieldResolution) == [.abandonedRequest])
     }
 
     @Test func restoresAreLogged() {
         var ledger = ScreenTimeLedger()
         var checkIns: [CheckInRecord] = []
+        var passes = PassLedger()
         let passID = UUID()
-        let events = ingestion.ingest([ScreenTimeRecord(at: instant(2026, 11, 14, 9), kind: .shieldRestored(passID: passID))], into: &ledger, checkIns: &checkIns)
+        let events = ingestion.ingest([ScreenTimeRecord(at: instant(2026, 11, 14, 9), kind: .shieldRestored(passID: passID))], at: farFuture, into: &ledger, checkIns: &checkIns, passes: &passes)
         #expect(events.map(\.event) == [.shieldRestored(passID: passID)])
     }
 
     @Test func theLedgerRoundTrips() throws {
         var ledger = ScreenTimeLedger()
         var checkIns: [CheckInRecord] = []
+        var passes = PassLedger()
         ingestion.ingest(
             [
                 ScreenTimeRecord(at: instant(2026, 11, 14, 9), kind: .usageThresholdReached(minutes: 15)),
                 ScreenTimeRecord(at: instant(2026, 11, 14, 9, 5), kind: .openRequested(app: instagramApp)),
             ],
+            at: instant(2026, 11, 14, 9, 6),
             into: &ledger,
-            checkIns: &checkIns
+            checkIns: &checkIns,
+            passes: &passes
         )
+        ledger.noteOverLimitOpen(on: LocalDay(year: 2026, month: 11, day: 14))
+        #expect(!ledger.pendingReaches.isEmpty)
         let decoded = try JSONDecoder().decode(ScreenTimeLedger.self, from: JSONEncoder().encode(ledger))
         #expect(decoded == ledger)
+    }
+
+    @Test func aLedgerFromBeforeGateV2Loads() throws {
+        let json = """
+            {"ingestedIDs":[],"usage":{"day":{"year":2026,"month":11,"day":14},"measuredMinutes":30}}
+            """
+        let ledger = try JSONDecoder().decode(ScreenTimeLedger.self, from: Data(json.utf8))
+        #expect(ledger.pendingReaches.isEmpty)
+        #expect(ledger.openRequest == nil)
+        #expect(ledger.overLimitOpens(on: LocalDay(year: 2026, month: 11, day: 14)) == 0)
     }
 
     @Test func checkInsFromBeforeTheShieldReadAsHop() throws {

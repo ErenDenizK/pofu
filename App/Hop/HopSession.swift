@@ -27,11 +27,39 @@ struct HopSession: Identifiable, Equatable {
     /// that (the system briefly backgrounding during the transition) must
     /// not count as a skip.
     var hasBeenActive = false
-    /// The app behind the Screen Time shield, when Hop! answers "Talk to
+    /// The app behind the Screen Time shield, when Hop! answers "Open with
     /// Pofu" there. A pass lifts the shield from it.
     var shieldedApp: ShieldedApp?
+    /// Past the daily hour, Hop! opens in the breathing room first.
+    var breath: BreathPlan?
+    /// The breath was taken; the choices follow.
+    var breathDone = false
 
     var id: UUID { attempt.id }
     var rung: FrictionRung { attempt.rung }
     var isDeciding: Bool { phase == .deciding }
+    /// The breathing room is on screen.
+    var isBreathing: Bool { isDeciding && breath != nil && !breathDone }
+}
+
+/// The breath before an open past the daily hour (ADR-0015, gate v2
+/// section 6.5): in over 2 s and out over 3 s, then 4 s and 6 s from the
+/// fourth over-limit open of the day.
+struct BreathPlan: Equatable {
+    static let explainedKey = "breath.explained"
+
+    let inhale: Double
+    let exhale: Double
+    /// The daily hour, for the one-time explanation.
+    let dailyHourMinutes: Int
+    /// Explain once, in place, why the breath is here.
+    let explains: Bool
+
+    init(rules: ScreenTimeGateRules, overLimitOpen: Int, explains: Bool) {
+        let long = rules.breathSeconds(forOverLimitOpen: overLimitOpen) > rules.shortBreathSeconds
+        inhale = long ? 4 : 2
+        exhale = long ? 6 : 3
+        dailyHourMinutes = rules.dailyHourMinutes
+        self.explains = explains
+    }
 }

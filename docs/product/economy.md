@@ -481,11 +481,50 @@ bonuses against an independent minute-by-minute reference model.
 With the live Screen Time gate (the `PofuLive` build,
 [development.md](../development.md#membership-day-1-the-screen-time-build)),
 guarded minutes are measured, not estimated. `GuardedUsageLadder` schedules
-DeviceActivity events at **15, 30, 45, and 60** guarded minutes a day; the
-app keeps the highest step reached today (`ScreenTimeLedger`), so it knows
-"at least 30 minutes" rather than a pass-based guess. The last step is the
-breath limit of [ADR-0015](../adr/0015-care-over-currency.md)
-(`isBreathLimitReached` at 60), ready for when the breath lands in
-`PofuCore`. A skip on the shield is recorded as a resisted check-in with
-`channel: .shield`, so it counts in the day's metrics and vitality like a
-skip in Hop!; it climbs no ladder and earns no seeds.
+DeviceActivity events every **15** guarded minutes up to the **daily hour**
+(60 by default, so 15, 30, 45, and 60; a 50-minute hour adds 50 as its
+last step); the app keeps the highest step reached today
+(`ScreenTimeLedger`), so it knows "at least 30 minutes" rather than a
+pass-based guess. The last step is the breath limit of
+[ADR-0015](../adr/0015-care-over-currency.md): past it, every open starts
+with a breath (5 s, 10 s from the fourth over-limit open of the day). The
+daily hour is a setting (15–180 minutes, `UserProfile.dailyHourMinutes`),
+never a constant in code.
+
+## The Screen Time gate (gate v2)
+
+Every number is a default in `ScreenTimeGateRules`
+(`EconomyConfiguration.gate`); see
+[gate v2](ux/gate-v2.md), sections 5 and 12.
+
+| Rule | Default |
+|---|---|
+| Daily hour (breath limit) | 60 guarded minutes; the user picks 15–180 |
+| Measuring step | 15 minutes |
+| Quick check from the shield | 3 minutes, a pass with no app round trip |
+| Chain rule | No quick check within 20 minutes of the last one's end |
+| "Open with Pofu" lifetime | 10 minutes |
+| Silent leave | A shield with no tap and nothing else for 60 s |
+| Same reach | The same app's shield within 10 s; a Hop! within 5 s of a shield for the same app |
+| The returning shield speaks of the ended pass | 2 minutes |
+| Breath | 5 s; 10 s from the 4th over-limit open of the day |
+| Jealous lines on the shield | At most 3 a day, never two in a row |
+
+**Every reach is counted once.** Each reach at the shield becomes exactly
+one check-in with `channel: .shield` and a `ShieldResolution`, so it
+counts in the day's metrics and vitality like a reach in Hop!; it climbs
+no ladder and earns no seeds.
+
+| What happened | Counts as | `ShieldResolution` |
+|---|---|---|
+| "Boş ver" on the shield | Resisted | `skipped` |
+| Shield left without a tap | Resisted | `silentLeave` |
+| "Pofu'yla aç", then no Hop! within the lifetime | Resisted | `abandonedRequest` |
+| "Boş ver" while the shield waits for the notification tap | Resisted | `requestCancelled` |
+| "3 dakika bakacağım" | Opened (a 3-minute pass) | `quickCheck` |
+| "Pofu'yla aç", then Hop! | Counted by Hop! alone | none |
+| The shield that returns when a pass ends, and its "Bitti, kapat" | Not a reach | none |
+| The waiting shield after "Pofu'yla aç" | Not a new reach | none |
+
+The developer readout shows each kind separately, with "resisted by tap"
+(skips and cancellations only) next to the full count.

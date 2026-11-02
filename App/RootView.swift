@@ -35,8 +35,9 @@ struct RootView: View {
             switch phase {
             case .active:
                 model.refresh()
-                // Tapping the shield's "Talk to Pofu" notification lands
-                // here: Hop! picks up the app the user reached for.
+                // The notification delegate routes the shield's "Open with
+                // Pofu"; this is the fallback for opening Pofu by hand
+                // within the request's lifetime (notifications off).
                 model.answerShieldRequest()
             case .background:
                 model.leftForeground()

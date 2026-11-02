@@ -3,63 +3,82 @@ import PofuCompanion
 import PofuDesignSystem
 import PofuScreenTime
 import SwiftUI
-import UserNotifications
+import UIKit
 
-/// The zero-setup gate (ADR-0013): one system permission, then the app
-/// picker. Used in onboarding when the live gate is available, and from
-/// Settings to change the apps.
+/// The zero-setup gate (ADR-0013, gate v2 section 3, O2–O5): why Pofu
+/// needs Screen Time, Apple's permission, a primer for Apple's picker, and
+/// the picker. Used in onboarding when the live gate is available, and
+/// from Settings to change the apps.
+///
+/// Every failure has a way out: a denial offers a retry, then the iOS
+/// Settings path; an empty pick asks again; a whole category is named for
+/// what it means.
 struct ScreenTimeSetupView: View {
     let model: AppModel
     /// Continue once the shield stands in front of something.
     var onFinish: () -> Void
     /// Fall back to the Shortcuts soft gate; `nil` hides the option.
     var onUseShortcuts: (() -> Void)?
+    /// Leave setup for now; `nil` hides the option.
+    var onLater: (() -> Void)?
 
+    @Environment(\.openURL) private var openURL
     @State private var isPickerPresented = false
     @State private var picked = FamilyActivitySelection()
     @State private var couldNotAsk = false
     @State private var isAsking = false
+    /// Requests that came back denied, to switch to the Settings path when
+    /// iOS stops showing its alert.
+    @State private var denials = 0
+    /// The picker came back empty at least once.
+    @State private var pickedNothing = false
+    /// The user saw the category note and kept the pick.
+    @State private var keptCategory = false
 
     private var gate: ScreenTimeGate { model.screenTime }
 
     private enum Stage {
-        case permission
+        case why
         case denied
-        case pick
+        case primer
+        case category
         case ready
     }
 
     private var stage: Stage {
         switch gate.authorization {
-        case .notDetermined: .permission
-        case .denied: .denied
-        case .approved: gate.selection.isEmpty ? .pick : .ready
+        case .notDetermined: return .why
+        case .denied: return .denied
+        case .approved:
+            if gate.selection.isEmpty { return .primer }
+            if !gate.selection.categories.isEmpty && !keptCategory { return .category }
+            return .ready
         }
     }
 
     var body: some View {
-        VStack(spacing: PofuSpacing.l) {
-            Spacer()
-            CompanionView(vitality: 0.8, energy: 0.3)
-                .frame(maxWidth: 200)
-            Text(title)
-                .font(PofuFont.largeTitle)
-                .foregroundStyle(PofuColor.textPrimary)
-                .multilineTextAlignment(.center)
-            Text(message)
-                .font(PofuFont.body)
-                .foregroundStyle(PofuColor.textSecondary)
-                .multilineTextAlignment(.center)
-            if couldNotAsk {
-                Text("I couldn't ask iOS right now. Try again?")
-                    .font(PofuFont.footnote)
-                    .foregroundStyle(PofuColor.warning)
-                    .multilineTextAlignment(.center)
+        ScrollView {
+            VStack(spacing: PofuSpacing.l) {
+                CompanionView(vitality: 0.8, energy: 0.3)
+                    .frame(maxWidth: 120)
+                    .padding(.top, PofuSpacing.l)
+                    .accessibilityHidden(true)
+                content
+                if couldNotAsk {
+                    Text("I couldn't ask iOS right now. Try again?")
+                        .font(PofuFont.footnote)
+                        .foregroundStyle(PofuColor.warning)
+                        .multilineTextAlignment(.center)
+                }
             }
-            Spacer()
-            actions
+            .padding(.horizontal, PofuSpacing.screen)
         }
-        .padding(PofuSpacing.screen)
+        .scrollBounceBehavior(.basedOnSize)
+        .safeAreaInset(edge: .bottom) {
+            actions
+                .padding(.horizontal, PofuSpacing.screen)
+                .padding(.bottom, PofuSpacing.xs)
+        }
         .familyActivityPicker(isPresented: $isPickerPresented, selection: $picked)
         .onChange(of: isPickerPresented) { _, isPresented in
             guard !isPresented else { return }
@@ -69,54 +88,140 @@ struct ScreenTimeSetupView: View {
             gate.refreshStatus()
             picked = gate.pickedSelection()
         }
-    }
-
-    private var title: LocalizedStringKey {
-        switch stage {
-        case .permission: "Let me stand at the door"
-        case .denied: "Screen Time is off for Pofu"
-        case .pick: "Pick the apps that pull you in"
-        case .ready: "I'm at the door"
+        .onChange(of: stage) { _, newStage in
+            if newStage == .ready {
+                onFinish()
+            }
         }
     }
 
-    private var message: LocalizedStringKey {
+    // MARK: Content
+
+    @ViewBuilder private var content: some View {
         switch stage {
-        case .permission:
-            "When you reach for a feed, I'll be there first. iOS asks once if Pofu may use Screen Time; nothing leaves this iPhone."
+        case .why:
+            heading("So I can stand at the door")
+            VStack(alignment: .leading, spacing: PofuSpacing.m) {
+                reason("hand.raised", "When you open an app you picked, I show up first.")
+                reason("eye.slash", "I can't see what you do in there. Nothing leaves this iPhone.")
+                reason("switch.2", "You can turn me off any time.")
+            }
+            footnote("The next screen is Apple's: tap **Continue**, then Face ID.")
         case .denied:
-            "You can turn it on in Settings, Screen Time, or let me jump in through Shortcuts instead."
-        case .pick:
-            "I'll stand in front of them. You can change this any time in Settings."
+            heading("Okay, no pressure.")
+            message("Without Screen Time I can't stand at the door. If you change your mind, I'm here.")
+            if denials >= 2 {
+                message("Settings → Screen Time → Apps with Screen Time Access → Pofu")
+                    .fontWeight(.semibold)
+            }
+        case .primer:
+            if pickedNothing {
+                heading("Nobody at the door yet.")
+                message("Pick at least one app; add the rest later.")
+            } else {
+                heading("Which ones pull you in most?")
+                VStack(alignment: .leading, spacing: PofuSpacing.m) {
+                    reason("chevron.right.circle", "Tap the arrow next to a category and tick the app itself.")
+                    reason("bubble.left.and.bubble.right", "Pick all of Social and I'll stand at WhatsApp's door too.")
+                }
+                footnote("My suggestion: Instagram, YouTube, TikTok.")
+            }
+        case .category:
+            heading("You picked a whole category.")
+            message("I'll be at every app in it, messaging included.")
         case .ready:
-            "Open one of them to see me. Tap Talk to Pofu there and I'll answer with a notification."
+            heading("I'm at the door")
         }
     }
 
-    @ViewBuilder
-    private var actions: some View {
+    private func heading(_ key: LocalizedStringKey) -> some View {
+        Text(key)
+            .font(PofuFont.title2)
+            .foregroundStyle(PofuColor.textPrimary)
+            .multilineTextAlignment(.center)
+            .accessibilityAddTraits(.isHeader)
+    }
+
+    private func message(_ key: LocalizedStringKey) -> some View {
+        Text(key)
+            .font(PofuFont.body)
+            .foregroundStyle(PofuColor.textSecondary)
+            .multilineTextAlignment(.center)
+    }
+
+    private func footnote(_ key: LocalizedStringKey) -> some View {
+        Text(key)
+            .font(PofuFont.footnote)
+            .foregroundStyle(PofuColor.textSecondary)
+            .multilineTextAlignment(.center)
+    }
+
+    private func reason(_ symbol: String, _ key: LocalizedStringKey) -> some View {
+        HStack(alignment: .top, spacing: PofuSpacing.m) {
+            Image(systemName: symbol)
+                .font(.system(size: 22))
+                .foregroundStyle(PofuColor.accent)
+                .frame(width: 28)
+                .accessibilityHidden(true)
+            Text(key)
+                .font(PofuFont.body)
+                .foregroundStyle(PofuColor.textPrimary)
+                .fixedSize(horizontal: false, vertical: true)
+            Spacer(minLength: 0)
+        }
+    }
+
+    // MARK: Actions
+
+    @ViewBuilder private var actions: some View {
         VStack(spacing: PofuSpacing.s) {
             switch stage {
-            case .permission:
+            case .why:
                 Button("Allow Screen Time") { ask() }
                     .buttonStyle(PofuPrimaryButtonStyle())
                     .disabled(isAsking)
             case .denied:
-                Button("Try again") { ask() }
+                if denials >= 2 {
+                    Button("Open Settings") {
+                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                            openURL(url)
+                        }
+                    }
                     .buttonStyle(PofuPrimaryButtonStyle())
-                    .disabled(isAsking)
-            case .pick:
-                Button("Choose apps") { isPickerPresented = true }
+                    Button("Try again") { ask() }
+                        .buttonStyle(PofuQuietButtonStyle())
+                        .disabled(isAsking)
+                } else {
+                    Button("Try again") { ask() }
+                        .buttonStyle(PofuPrimaryButtonStyle())
+                        .disabled(isAsking)
+                }
+                if let onLater {
+                    Button("Skip for now") { onLater() }
+                        .buttonStyle(PofuQuietButtonStyle())
+                }
+            case .primer:
+                Button(pickedNothing ? LocalizedStringKey("Pick again") : LocalizedStringKey("Choose apps")) { isPickerPresented = true }
                     .buttonStyle(PofuPrimaryButtonStyle())
+                if pickedNothing, let onLater {
+                    Button("I'll pick later") { onLater() }
+                        .buttonStyle(PofuQuietButtonStyle())
+                }
+            case .category:
+                Button("Keep it") { keptCategory = true }
+                    .buttonStyle(PofuPrimaryButtonStyle())
+                Button("Fix it") { isPickerPresented = true }
+                    .buttonStyle(PofuQuietButtonStyle())
             case .ready:
-                Button("Done") { onFinish() }
+                Button("Continue") { onFinish() }
                     .buttonStyle(PofuPrimaryButtonStyle())
-                Button("Change apps") { isPickerPresented = true }
-                    .buttonStyle(PofuQuietButtonStyle())
             }
-            if let onUseShortcuts, stage != .ready {
-                Button("Use Shortcuts instead") { onUseShortcuts() }
-                    .buttonStyle(PofuQuietButtonStyle())
+            if let onUseShortcuts, stage == .denied {
+                Button("Set up with Shortcuts (advanced)") { onUseShortcuts() }
+                    .font(PofuFont.footnote)
+                    .buttonStyle(.plain)
+                    .foregroundStyle(PofuColor.textSecondary)
+                    .frame(minHeight: PofuSize.minimumTouch)
             }
         }
     }
@@ -126,7 +231,10 @@ struct ScreenTimeSetupView: View {
         couldNotAsk = false
         Task {
             do {
-                try await gate.requestAuthorization()
+                let status = try await gate.requestAuthorization()
+                if status == .denied {
+                    denials += 1
+                }
             } catch {
                 couldNotAsk = true
             }
@@ -141,10 +249,7 @@ struct ScreenTimeSetupView: View {
             Log.screenTime.error("Saving the picked apps failed: \(String(describing: error), privacy: .public)")
             return
         }
-        guard gate.isOn else { return }
-        // "Talk to Pofu" on the shield answers with a notification.
-        Task {
-            _ = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound])
-        }
+        pickedNothing = gate.selection.isEmpty
+        keptCategory = false
     }
 }

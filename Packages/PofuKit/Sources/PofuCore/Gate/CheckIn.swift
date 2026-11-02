@@ -94,6 +94,22 @@ public enum CheckInChannel: String, Hashable, Sendable, Codable {
     case shield
 }
 
+/// How a reach met on the Screen Time shield ended without Hop!. Each kind
+/// is logged on its own, so the readout can show the strict number (taps
+/// only) next to the full one (gate v2, section 12).
+public enum ShieldResolution: String, Hashable, Sendable, Codable, CaseIterable {
+    /// "Skip it" on the shield.
+    case skipped
+    /// The shield was left without any tap.
+    case silentLeave
+    /// "Open with Pofu", then nothing for the request's lifetime.
+    case abandonedRequest
+    /// "Skip it" on the shield waiting for the notification tap.
+    case requestCancelled
+    /// "Just 3 minutes" on the shield: the app was opened.
+    case quickCheck
+}
+
 /// A completed check-in: the attempt and how it ended.
 public struct CheckInRecord: Hashable, Sendable, Codable, Identifiable {
     /// The id of the attempt.
@@ -108,6 +124,9 @@ public struct CheckInRecord: Hashable, Sendable, Codable, Identifiable {
     /// Where the reach was met; `nil` in records from before the shield,
     /// which were all Hop!.
     public let channel: CheckInChannel?
+    /// How a reach at the shield ended, when it ended there; `nil` for
+    /// Hop! and for records from before gate v2.
+    public let shieldResolution: ShieldResolution?
 
     public init(
         id: UUID,
@@ -117,7 +136,8 @@ public struct CheckInRecord: Hashable, Sendable, Codable, Identifiable {
         rung: FrictionRung,
         outcome: CheckInOutcome,
         reason: IntentReason? = nil,
-        channel: CheckInChannel? = nil
+        channel: CheckInChannel? = nil,
+        shieldResolution: ShieldResolution? = nil
     ) {
         self.id = id
         self.target = target
@@ -127,6 +147,7 @@ public struct CheckInRecord: Hashable, Sendable, Codable, Identifiable {
         self.outcome = outcome
         self.reason = reason
         self.channel = channel
+        self.shieldResolution = shieldResolution
     }
 
     /// Where the reach was met, reading old records as Hop!.

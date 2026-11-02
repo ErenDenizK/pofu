@@ -3,16 +3,32 @@ import Foundation
 /// A pass that lifted the shield from one shielded app (or category) for
 /// the pass's duration. When it ends, the shield comes back.
 public struct ShieldLift: Hashable, Sendable, Codable, Identifiable {
+    /// Who lifted the shield.
+    public enum Origin: String, Hashable, Sendable, Codable {
+        /// A pass granted in Hop!.
+        case hop
+        /// "Just 3 minutes" on the shield itself (gate v2).
+        case shieldQuickCheck
+    }
+
     public let passID: UUID
     public let app: ShieldedApp
     public let from: Date
     public let until: Date
+    /// `nil` in lifts from before gate v2, which all came from Hop!.
+    public let origin: Origin?
 
-    public init(passID: UUID, app: ShieldedApp, from: Date, until: Date) {
+    public init(passID: UUID, app: ShieldedApp, from: Date, until: Date, origin: Origin? = nil) {
         self.passID = passID
         self.app = app
         self.from = from
         self.until = until
+        self.origin = origin
+    }
+
+    /// Length in whole minutes, rounded.
+    public var minutes: Int {
+        max(0, Int((until.timeIntervalSince(from) / 60).rounded()))
     }
 
     public var id: UUID { passID }
