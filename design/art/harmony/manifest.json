@@ -2432,6 +2432,62 @@
    "source": "design/art/masters/pofu-eyes-side/pofu-eyes-side.webp",
    "source_sha": "9e741aae93e9cd89"
   },
+  "pofu-fur-matted": {
+   "after": {
+    "C_mean": 15.52,
+    "C_p50": 12.609,
+    "C_p95": 30.272,
+    "L_mean": 80.118,
+    "L_p2": 19.04,
+    "L_p98": 94.301,
+    "detail": 7.122,
+    "edge": 0.111,
+    "tint_a": 4.875,
+    "tint_b": 7.407,
+    "warmth_b": 12.204
+   },
+   "before": {
+    "C_mean": 15.52,
+    "C_p50": 12.609,
+    "C_p95": 30.272,
+    "L_mean": 80.118,
+    "L_p2": 19.04,
+    "L_p98": 94.301,
+    "detail": 7.122,
+    "edge": 0.111,
+    "tint_a": 4.875,
+    "tint_b": 7.407,
+    "warmth_b": 12.204
+   },
+   "chain": null,
+   "correction": {
+    "black": 0.0,
+    "ceiling": 0.0,
+    "chroma": 1.0,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": true,
+   "kind": "char",
+   "matched_to": "char",
+   "outliers_after": [
+    "C_p95",
+    "detail"
+   ],
+   "outliers_before": [
+    "C_p95",
+    "detail"
+   ],
+   "ppu": 29.0,
+   "reference": false,
+   "score_after": 80.9,
+   "score_before": 80.9,
+   "shipped": false,
+   "source": "design/art/masters/pofu-fur-matted/pofu-fur-matted.webp",
+   "source_sha": "57757dbf7d77bd95"
+  },
   "pofu-mouth-chew": {
    "after": {
     "C_mean": 20.249,
