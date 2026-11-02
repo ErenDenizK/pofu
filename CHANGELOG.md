@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- UI critique 01 (`docs/design/ui-critique-01.md`): a review of the game
+  screen and its neighbours, a reference study, three directions for Home
+  as annotated mockups (Living Diorama recommended) and a fix list in
+  two-day iterations.
+
 - Look round 2 (`docs/design/look-dev.md`, "Round 2"): **containment**
   (the pipeline measures the plate's walkable polygon and every sprite's
   ground footprint; `IslandFootprint` validates and clamps every slot,
