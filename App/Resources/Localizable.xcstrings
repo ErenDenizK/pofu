@@ -2712,12 +2712,12 @@
         }
       }
     },
-    "Play the garden" : {
+    "Play the garden (%lld)" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bahçede oyna"
+            "value" : "Bahçede oyna (%lld)"
           }
         }
       }

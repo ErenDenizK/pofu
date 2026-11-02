@@ -1,5 +1,6 @@
 import PofuDesignSystem
 import PofuGames
+import PofuTuning
 import SwiftUI
 
 /// Everything Rehearsal mode puts over Pofu: the shield replica or the
@@ -24,13 +25,18 @@ struct RehearsalOverlay: View {
                 EmptyView()
             }
             if rehearsal.isPlayingGarden {
-                // Five earned rounds stand in for the ledger. The seeds are
-                // not credited yet: rounds and their yield join PofuCore
-                // with RoundLedger (docs/product/minigames.md §7).
-                GardenGameView(roundsAvailable: 5) { _ in
-                    rehearsal.isPlayingGarden = false
-                }
+                // The earned rounds make the set; each finished round's
+                // seeds go to the pouch through the round ledger.
+                GardenGameView(
+                    roundsAvailable: rehearsal.gardenRounds,
+                    tuning: gardenTuning,
+                    onRoundEnd: { model.creditRound(seeds: $0.seeds) },
+                    onFinish: { _ in rehearsal.isPlayingGarden = false }
+                )
                 .transition(.opacity)
+                #if DEBUG
+                gardenAyar
+                #endif
             } else if !model.needsOnboarding {
                 #if DEBUG
                 if Ayar.session.isOpen {
@@ -50,4 +56,45 @@ struct RehearsalOverlay: View {
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: Ayar.session.isOpen)
         #endif
     }
+
+    /// The garden's feel: the Ayar panel's live values in debug builds.
+    private var gardenTuning: TuningValues.Garden {
+        #if DEBUG
+        Ayar.store.values.garden
+        #else
+        TuningValues.defaults.garden
+        #endif
+    }
+
+    #if DEBUG
+    /// Ayar over the garden: a small pill that opens the panel on the
+    /// garden's values, which the game reads live.
+    @ViewBuilder private var gardenAyar: some View {
+        if Ayar.session.isOpen {
+            AyarPanel(model: model, store: Ayar.store, session: Ayar.session)
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+        } else {
+            Button {
+                Ayar.session.section = .garden
+                Ayar.session.isOpen = true
+            } label: {
+                Label {
+                    Text(verbatim: "Ayar")
+                } icon: {
+                    Image(systemName: "slider.horizontal.3")
+                }
+                .font(PofuFont.subheadline)
+                .foregroundStyle(PofuColor.textPrimary)
+                .padding(.horizontal, PofuSpacing.m)
+                .frame(minHeight: PofuSize.minimumTouch)
+                .contentShape(Capsule(style: .continuous))
+            }
+            .buttonStyle(.plain)
+            .glassEffect(.regular.interactive(), in: Capsule(style: .continuous))
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+            .padding(.top, 112)
+            .padding(.trailing, PofuSpacing.l)
+        }
+    }
+    #endif
 }

@@ -27,6 +27,8 @@ final class RehearsalStage {
     /// The Ayçiçeği garden game is open (the debug entry for the island
     /// minigame, until islands have a "Play" door and rounds a ledger).
     var isPlayingGarden = false
+    /// Earned rounds when the garden opened: the set's length.
+    var gardenRounds = 0
     /// Counts the clock's jumps, so the panel's clock readout follows.
     private(set) var jumps = 0
 
