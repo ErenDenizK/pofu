@@ -1,0 +1,23 @@
+id: asset-x-revontuli-1
+type: asset
+title_tr: x-revontuli-1
+title_en: x-revontuli-1 (plate)
+status: in-production
+horizon: maybe
+summary: >-
+  A concept painting for a cozy mobile game: Revontuli, a small snowy floating island at blue
+  dusk. Soft rounded snow on its lawn, a little frozen pond, a single plump spruce, and a
+  tiny wooden lakeside sauna of honey wood with a small chimney and one warm lit window. Above
+  it, a soft aurora of pale green and violet sweeps across the sky in a gentle curve like
+  the stroke of a fox's tail. A small white arctic fox, Tuli,…
+art:
+  images: []
+  jobs:
+  - batch-10-island-concepts-pilot:x-revontuli-1
+notes:
+- Exploration (docs/design/art-production-plan.md); never promoted, never shipped.
+sources:
+- doc: tools/imagegen/manifest/batch-10-island-concepts-pilot.yaml
+kind: plate
+batch: batch-10-island-concepts-pilot
+size: 1536x1024

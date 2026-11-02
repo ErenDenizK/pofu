@@ -1,0 +1,134 @@
+# Batch 09, pilot: look-dev explorations (EXPLORATION, never production).
+# docs/design/art-production-plan.md, "Explorations".
+#
+# ADR-0018's amendment holds: the painted icon family, the jar, the lantern
+# and painted widgets are produced after the friends beta (batch-02-ui
+# stays blocked). These are look-dev studies to decide earlier, cheaper:
+# - a painted seed icon, read at 28, 44 and 60 pt on light and dark glass
+#   (system actions stay SF Symbols; only domain concepts get paint);
+# - an App Store key art composition (poster), no text: type is native;
+# - a UI ideation board: a painted mood of the Home screen, for
+#   inspiration only, never shipped and never cut into assets.
+#   The UI direction is now a hybrid of native Liquid Glass and custom
+#   painted elements, specified separately (2026-11-02); this board only
+#   feeds that work as a mood, it is not the spec.
+#
+# EXPLORATION RULES (AGENTS.md): generate, ingest, post, auto-pick, but
+# do NOT run `promote`. Commit the takes (WebP q90), the contact sheet and
+# review.yaml under design/art/takes/batch-09-explore-pilot/<id>/. Nothing
+# from this batch enters the app. Job names carry an `x-` prefix so they
+# can never collide with a production master.
+#
+# Tracks: `explore` (three independent jobs; run them at once).
+
+batch: batch-09-explore-pilot
+title: Look-dev explorations, pilot (seed icon, key art A, Home ideation board A)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: cay-1, kind: station, name: cay-1, external: batch-01-slice}
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island}
+
+  - id: x-icon-seed
+    kind: icon
+    name: x-seed
+    chat: "Pofu · Explorations"
+    notes: >-
+      Exploration. Legibility notes for the review file (write them per
+      take): does the seed read as a seed at 28 pt (the contact sheet's
+      icon strip), at 44 pt and at 60 pt; does its dark accent hold on pale
+      frosted glass and its lit side on dark glass; which shape (the two
+      cream stripes, the tip) carries it at 28 pt. Batch 02's icon-seed
+      prompt is the production version; compare against it.
+    attach:
+      - ref: R1
+        role: "Style reference only: the hamster's soft painting and pastel colors."
+      - ref: approved:cay-1
+        role: "Style reference for objects: how a prop is painted in this world (matte, simple, high key)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for seeds, the island's building material: a single
+          plump sunflower seed seen at a slight angle, a soft warm-brown
+          shell with two broad cream stripes, its tip pointing up and to the
+          right, a little round and friendly, like a seed a hamster would be
+          proud of.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: x-keyart-a
+    kind: plate
+    name: x-keyart-a
+    size: 1024x1536
+    chat: "Pofu · Explorations"
+    notes: >-
+      Exploration: App Store key art, composition A, "the quiet island".
+      Text is native (never painted); the upper third stays calm for it.
+      Composition B (Pofu close, the phone face down) and C (the
+      archipelago at golden hour) follow if A teaches something.
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: draw him exactly like this, same design, colors, fur and face."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny neighbor: draw her exactly like this."
+      - ref: approved:island-main-s
+        role: "The floating island: same painting, camera and colors."
+      - ref: approved:cay-1
+        role: "The tea stall on the island: same style."
+      - ref: palette:world-day
+        role: "The palette card: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A calm, warm poster painting for a cozy mobile game: a small
+          floating island drifting in a soft morning sky over a sea of
+          clouds, its lawn with the little tea stall and a few sunflowers.
+          On the front of the lawn, the hamster sits content, eyes open,
+          and the bunny beside him offers a small glass of tea. The island
+          sits in the lower half; the upper third is open, calm, pale sky
+          (the app places the title there). Soft painterly 2D illustration,
+          the same storybook painting as the attached images, high key,
+          milky pastel colors, warm light from the upper left. Quiet and
+          inviting, never busy.
+      - block: negative-v1
+      - text: "AVOID: text, letters, a logo, a phone, screens, interface elements, a border, a frame, more characters."
+
+  - id: x-uiboard-a
+    kind: plate
+    name: x-uiboard-a
+    size: 1024x1536
+    chat: "Pofu · Explorations"
+    notes: >-
+      Exploration, inspiration only (never shipped, never cut into
+      assets): a painted mood board of the Home screen in the balanced
+      diorama (ADR-0018: Pofu about 20 % of the width, the world about 70 %
+      of the height). Native glass is drawn by the app, so the board marks
+      control areas only as plain, flat, pale rounded shapes.
+    attach:
+      - ref: approved:island-main-s
+        role: "The floating island: same painting, camera and colors."
+      - ref: approved:cay-1
+        role: "The tea stall: same style."
+      - ref: R1
+        role: "Pofu, the hamster: same design, colors, fur and face."
+      - ref: palette:world-day
+        role: "The palette card: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A portrait painted mood board of a cozy phone game's home screen,
+          for inspiration: the floating island fills the middle of the
+          picture, about 70% of its height, with the tea stall and a small
+          garden on its lawn; the hamster stands on the lawn's front edge,
+          about a fifth of the picture's width. A soft morning sky above,
+          a calm sea of clouds below. At the very bottom, three plain, flat,
+          pale cream rounded rectangles mark where the game's buttons will
+          go; at the top, one small flat pale pill marks a status area.
+          These shapes are empty: no icons, no text, no glass, no shine.
+          Soft painterly 2D illustration, the same storybook painting as
+          the attached images, high key, milky pastel colors.
+      - block: negative-v1
+      - text: "AVOID: text, letters, numbers, icons, glass, frosted panels, glossy buttons, a phone frame, a status bar, more characters."
