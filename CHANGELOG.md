@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Art batches 03 and 04 for Codex (open): `batch-03-home-island`
+  completes Ayçiçeği for stages 1–5 (lily pond, workshop and windmill
+  L1–L5, garden L3–L5, simit cart L2–L5, `mochi-v2` without Pofu's curl,
+  Fındık, working poses, the large island about 40 % larger, the terrace,
+  the east islet and bridge; 30 jobs) and `batch-04-sky` the living sky
+  (five clouds, a sun glow, three distant islands, a tiling sea of clouds;
+  10 jobs). Manifests can continue another batch's chains through
+  `external` jobs, and `check_upload.py` reads pushed art back to catch
+  the connector's silent 768 KB truncation; uploads stay under 600 KB.
+
 - `PofuWorld`, Pofu's island in SwiftUI (iteration W2): `IslandScene`
   reads only a `WorldSnapshot` and stacks the batch 01 island plate (cut
   into four depth bands), the station vignettes at fixed slots (Mochi's
