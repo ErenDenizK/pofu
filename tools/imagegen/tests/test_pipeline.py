@@ -83,6 +83,22 @@ class ParseTests(unittest.TestCase):
         self.assertTrue(m.job("i").transparent)
         self.assertEqual(pl.approved_dir(m.job("i")).name, "icon-i")
 
+    def test_external_parent_from_another_batch(self):
+        data = manifest()
+        data["jobs"][0] = {"id": "cay-1", "kind": "station", "external": "batch-01-slice"}
+        m = pl.parse_manifest(data, REFS)
+        self.assertEqual(m.job("cay-1").external, "batch-01-slice")
+        self.assertEqual(m.job("cay-1").prompt, [])
+        self.assertEqual(pl.approved_image(m.job("cay-1")), pl.ART_ROOT / "stations" / "cay-1" / "cay-1.png")
+        self.assertEqual(pl.dependencies(m.job("cay-2")), ["cay-1"])
+        for label, extra in {"edit": {"edit_of": "cay-2"}, "attach": {"attach": [{"ref": "R1", "role": "x"}]},
+                             "bad batch": {"external": "Batch 01"}}.items():
+            with self.subTest(label):
+                bad = manifest()
+                bad["jobs"][0] = {"id": "cay-1", "kind": "station", "external": "batch-01-slice", **extra}
+                with self.assertRaises(pl.ManifestError):
+                    pl.parse_manifest(bad, REFS)
+
 
 class PromptTests(unittest.TestCase):
     def test_blocks_are_verbatim_and_refs_listed_in_order(self):
