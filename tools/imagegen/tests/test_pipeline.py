@@ -190,6 +190,18 @@ class ShippedManifestTests(unittest.TestCase):
         self.assertIn("40% wider", pl.compose_prompt(m.job("island-main-l-v2")))
         self.assertIn("approved:island-main-l-v2", [a.ref for a in m.job("terrace-v2").attach])
 
+    def test_batch_04_sky_is_transparent_and_has_no_characters(self):
+        m = pl.load_manifest(pl.HERE / "manifest" / "batch-04-sky.yaml")
+        made = [j for j in m.jobs if not j.external]
+        self.assertEqual(len(made), 10)
+        self.assertEqual(sum(j.id.startswith("cloud-") and j.id != "cloud-sea" for j in made), 5)
+        for j in made:
+            with self.subTest(j.id):
+                self.assertTrue(j.transparent)
+                self.assertNotEqual(j.kind, "char")
+                self.assertRegex(pl.compose_prompt(j), r"No text")
+        self.assertIn("tile seamlessly", pl.compose_prompt(m.job("cloud-sea")))
+
 
 if __name__ == "__main__":
     unittest.main()
