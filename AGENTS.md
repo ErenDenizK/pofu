@@ -79,53 +79,53 @@ what `account.owner` in `tools/imagegen/config.yaml` says.
   `~/projects/pofu-art`), not in the folder the local Claude session
   uses (`/Users/edk/projects/pofu`).
 
-## Current status (2026-11-02): parallel auto mode
+## Current status (2026-11-02): the production queue
 
-**Batches 01, 03 and 04 are open** ([Next batches](#next-batches-2026-11-02-finish-01-then-03-and-04)). The founder wants art to flow fast and
-automatically: many Codex cloud tasks in parallel, **one object per task**,
-with the take picked automatically by QA. The founder reviews afterwards
-and can veto any pick. Batch 02 stays `status: blocked` until the friends
-beta.
+**Batches 01, 03 and 04 are merged.** The work now comes from one ordered
+queue: [`docs/design/art-production-plan.md`](docs/design/art-production-plan.md).
+The founder wants the line never to idle and art picked automatically by
+QA; he reviews afterwards and can veto any pick. Batch 02 stays
+`status: blocked` until the friends beta.
 
-**Tracks: one object per task, on its own branch.** A task runs one
-object's whole chain from start to end (each level an edit of the
-previous, auto-picked), so there are three short starts instead of six
-waves. Every job
-makes **2 takes** (a third is usually a weaker copy of the second).
+**The standing rule:** when you open a batch's PR, immediately start the
+next `READY` batch in the queue, in order, on a new branch. Never wait for
+a review or a merge. Never start a `BLOCKED` batch (`status: blocked` in
+its manifest). If no row is `READY`, say so in your last PR and stop.
 
-Batch 01's tracks (batches 03 and 04 are under
-[Next batches](#next-batches-2026-11-02-finish-01-then-03-and-04)):
+**Pilots first:** every new batch has a small pilot manifest
+(`batch-NN-<name>-pilot`, 2 to 5 jobs) that the lead reviews before the
+rest of the batch (`batch-NN-<name>`) opens. Run pilots exactly as
+written: they test the method before it scales.
 
-| Track | Jobs, in order | Starts |
-|---|---|---|
-| `island` | `island-main-s` → `island-main-l` → `terrace` | now |
-| `mochi` | `mochi` | now |
-| `cay` | `cay-1` → `cay-2` → `cay-3` → `cay-4` → `cay-5` | when the `island` task has pushed `island-main-s` (its style reference) |
-| `garden` | `garden-1` → `garden-2` | when the `cay` task has pushed `cay-1` |
-| `simit` | `simit-1` | when the `cay` task has pushed `cay-1` |
+**Explorations** (`EXPLORATION` in the queue and in the manifest header):
+generate, ingest, post and auto-pick as usual, but **never run
+`promote`**. Commit the takes (WebP q90), the contact sheet and
+`review.yaml` under `design/art/takes/<batch>/<id>/`, and nothing else.
 
-**Or one task for everything (preferred by the founder):** "AGENTS.md
-parallel auto mode, batch-01-slice, track `all`" runs every track in a
-single task, on branch `art/batch-01-slice/all`, with one PR.
+**Salvage before you generate:** a job whose `notes` say SALVAGE FIRST
+ingests the named takes already on `main`
+(`run.py ingest --source salvage-<batch> <files>`), posts and picks them;
+it generates only if none passes.
 
-- **Parallelise inside the task if you can.** If your environment lets you
-  spawn sub-agents or run several image generations concurrently, run
-  independent work at the same time: `island`, `mochi` and, once
-  `island-main-s` exists, `cay`; then `garden` and `simit` once `cay-1`
-  exists. Say in the PR which mechanism you used.
-- **If you cannot,** run the tracks one after another in the table's
-  order.
+**Tracks:** a task runs one object's whole chain (each level an edit of
+the previous, auto-picked); every job makes **2 takes** (a third is
+usually a weaker copy of the second). Each manifest's header names its
+tracks. "Track `all`" runs every track of the batch in one task, on
+`art/<batch>/all`, with one PR (preferred by the founder).
+
+- **Parallelise inside the task if you can** (sub-agents or concurrent
+  generations), and say in the PR which mechanism you used. Otherwise run
+  the tracks in the header's order.
 - **Either way,** a chain's levels stay sequential: each level is an edit of
-  the approved previous level. Wall time is at least the longest chain,
-  the five `cay` levels.
+  the approved previous level.
 
 The founder starts a task with: "AGENTS.md parallel auto mode,
 `<batch>`, track `<name>`" (for example "AGENTS.md parallel auto mode,
 batch-03-home-island, track pond"). Branch: `art/<batch>/<track>`. PR
 title: `art(batch-NN): <track>`. Within the task, run steps 2 to 6 for each
 job of the track in order. The manifest is
-`tools/imagegen/manifest/<batch>.yaml`. Open batches and their tracks are in
-[Next batches](#next-batches-2026-11-02-finish-01-then-03-and-04).
+`tools/imagegen/manifest/<batch>.yaml`. The order of batches is the
+[queue](docs/design/art-production-plan.md#the-queue).
 
 1. Install the tools: `pip install -r tools/imagegen/requirements.txt`. If
    that fails, stop and ask the founder to add it to the Codex
@@ -213,94 +213,32 @@ So, for every task and every push:
   no `raw.webp`. Fix and re-push before you start the next job. (Batch
   01 masters already on `main` decode and may stay as they are.)
 
-## Next batches (2026-11-02): finish 01, then 03 and 04
+## Next batches: the queue
 
-Three open manifests, so Codex never sits idle. Every job makes 2 takes
-and is auto-picked by QA (steps above); the founder reviews afterwards.
-
-### Batch 01: finish it (`art/batch-01-slice/all`)
-
-- Remaining jobs: `cay-2` → `cay-5`, `garden-1` → `garden-2`, `simit-1`.
-  Batch 03's `garden` and `simit` tracks wait for `garden-2` and
-  `simit-1`, so push them as soon as they are promoted.
-- **Do not promote `terrace`.** It was drawn against the old large island;
-  batch 03's `terrace-v2` replaces it. `island-main-l` and `mochi-base`
-  stay where they are; batch 03's `island-main-l-v2` and `mochi-v2`
-  replace them in the app (founder: the large island must be clearly
-  larger; Mochi has no curl on her head, it is Pofu's alone).
-- **Repair the truncated uploads** on that branch: every `*.webp` take and
-  every `raw.png` there is cut off. Re-upload the takes as lossy WebP q90
-  from the original files, keep every raw as `raw.webp` (lossless under
-  600 KB, otherwise q95; see Uploads) and delete the broken `raw.png`
-  files, then run `check_upload.py` on each job's
-  folders. If the originals are gone (a new container), delete the broken
-  files and say so in the PR.
-
-### Batch 03: Ayçiçeği, stages 1–5 (`batch-03-home-island`)
-
-One object per track. "Needs" is what must be on `main` or a pushed
-branch first.
-
-| Track | Jobs, in order | Needs | Starts |
-|---|---|---|---|
-| `mochi` | `mochi-v2` → `mochi-work` | `mochi-base` (main) | **now** |
-| `plates` | `island-main-l-v2` → `terrace-v2` → `islet-east` → `bridge-east` | `island-main-s` (main) | **now** |
-| `pond` | `pond-1` → `pond-2` → `pond-3` → `pond-4` → `pond-5` | `cay-1`, `island-main-s` (main) | **now** |
-| `workshop` | `workshop-1` → … → `workshop-5` | `cay-1`, `island-main-s` (main) | **now** |
-| `windmill` | `windmill-1` → … → `windmill-5` | `cay-1`, `island-main-s` (main) | **now** |
-| `findik` | `findik` → `findik-work` | `mochi-v2` (scale and finish) | when `mochi` has pushed `mochi-v2` |
-| `garden` | `garden-3` → `garden-4` → `garden-5` | batch 01's `garden-2` | when batch 01 has pushed `garden-2` |
-| `simit` | `simit-2` → `simit-3` → `simit-4` → `simit-5` | batch 01's `simit-1` | when batch 01 has pushed `simit-1` |
-
-30 jobs, 60 takes. The longest chains are the five-level stations.
-
-### Batch 04: the living sky (`batch-04-sky`)
-
-| Track | Jobs, in order | Needs | Starts |
-|---|---|---|---|
-| `clouds` | `cloud-1` → (`cloud-2`, `cloud-3`, `cloud-4`, `cloud-5`) → `cloud-sea` | `island-main-s` (main) | **now** |
-| `isles` | `far-isle-1` → (`far-isle-2`, `far-isle-3`) | `island-main-s` (main) | **now** |
-| `sun` | `sun-glow` | `island-main-s` (main) | **now** |
-
-10 jobs, 20 takes. Jobs in parentheses need only the first job of their
-track and may run at the same time; `cloud-sea` also needs `cloud-4`. If
-`sun-glow` comes back opaque, do not key it: stop that job and say so
-(its `notes`).
-
-**Can start immediately:** batch 03's `mochi`, `plates`, `pond`,
-`workshop` and `windmill`, and all of batch 04 (`clouds`, `isles`, `sun`),
-alongside batch 01's remaining jobs.
-
-### Task lines (paste one per Codex task)
+The ordered list of batches, their state (`READY`, `BLOCKED`, `NEXT PR`)
+and why each exists is in
+[`docs/design/art-production-plan.md`](docs/design/art-production-plan.md#the-queue).
+The lead keeps it current; read it at the start of every task. Right now
+three pilots are `READY` and may run at once:
 
 ```text
-AGENTS.md parallel auto mode, batch-01-slice, track all
-AGENTS.md parallel auto mode, batch-03-home-island, track all
-AGENTS.md parallel auto mode, batch-04-sky, track all
+AGENTS.md parallel auto mode, batch-05-fixes-pilot, track all
+AGENTS.md parallel auto mode, batch-06-pofu-rig-pilot, track all
+AGENTS.md parallel auto mode, batch-07-light-pilot, track all
 ```
 
-`track all` runs every track of the batch in one task, on
-`art/<batch>/all`, with one PR, in parallel inside the task where it can
-(as for batch 01) and otherwise in the table's order. To split a batch
-across tasks instead, one line per track:
+- **batch-05-fixes-pilot:** `simit-2` and `workshop-2` are SALVAGED from
+  batch 03's takes on `main` (their `notes` list the files). Batch 03's
+  failures there were a pipeline bug (edits were moved twice), now fixed.
+- **batch-06-pofu-rig-pilot:** edits of R1, which lives at
+  `design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png` (the
+  manifest's `pofu` job names it with `master:`). Pofu is never locked.
+- **batch-07-light-pilot:** lit edits of `cay-1` and `cay-5` that change
+  only the burner. Do not add glow; the app does.
 
-```text
-AGENTS.md parallel auto mode, batch-03-home-island, track mochi
-AGENTS.md parallel auto mode, batch-03-home-island, track plates
-AGENTS.md parallel auto mode, batch-03-home-island, track pond
-AGENTS.md parallel auto mode, batch-03-home-island, track workshop
-AGENTS.md parallel auto mode, batch-03-home-island, track windmill
-AGENTS.md parallel auto mode, batch-03-home-island, track findik
-AGENTS.md parallel auto mode, batch-03-home-island, track garden
-AGENTS.md parallel auto mode, batch-03-home-island, track simit
-AGENTS.md parallel auto mode, batch-04-sky, track clouds
-AGENTS.md parallel auto mode, batch-04-sky, track isles
-AGENTS.md parallel auto mode, batch-04-sky, track sun
-```
-
-A track whose "Needs" is not pushed yet waits: fetch again every few
-minutes, and if it has not appeared after 30 minutes, stop and say so in
-the PR.
+Masters on `main` stored only as `<name>.webp` (for example `mochi-v2`,
+`island-main-l-v2`, `workshop-1`) are decoded to `<name>.png` first, as in
+step 2.
 
 ## Pofu Atlas: one asset node per promoted master
 
@@ -344,11 +282,11 @@ From the founder (2026-11-01) and the lead:
   (off, on) so code drives the glow. The map shows a 30 pt vector Pofu
   pin (code, not art). The camera is continuous; the cloud pass happens
   only when a new island arrives (code).
-- **Batches:** `batch-01-slice` (game design §15 D1–D8, then çay ocağı
-  L3–L5 and garden L2) first; then `batch-03-home-island` (the rest of
-  the home island, stages 1–5) and `batch-04-sky` (the living sky) in
-  parallel; `batch-02-ui` (12 UI images) stays blocked until the friends
-  beta.
+- **Batches:** 01, 03 and 04 are merged; the order from here is the
+  [queue](docs/design/art-production-plan.md#the-queue). `batch-02-ui`
+  (12 UI images) stays blocked until the friends beta. The UI direction
+  is now a hybrid of native Liquid Glass and custom painted elements,
+  specified separately; UI boards stay explorations.
 
 ## The workflow, step by step
 
