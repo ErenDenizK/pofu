@@ -52,13 +52,14 @@ Order is priority. Codex takes the first `READY` row nobody is working on
 | 4 | `batch-05-fixes` | production | simit-3..5, workshop-3..5 | review of #1 | 6 | BLOCKED |
 | 5 | `batch-06-pofu-rig` | production | The rest of the rig (14 Pofu parts) and Mochi's and Fındık's blink and happy eyes | composite review of #2 | 18 | BLOCKED |
 | 6 | `batch-07-light` | production | Lit edits for the other light-carrying stations (windmill windows, workshop, pond lanterns) and the çay chain re-take only if the grade fails | review of #3 | about 4 | BLOCKED, manifest after #3 |
-| 7 | `batch-08-decor-pilot` | production · pilot | Four decor pieces, one per Ayçiçeği decor spot (bench, lantern string, toy sailboat, mailbox) | next PR | 4 | NEXT PR |
-| 8 | `batch-09-explore-pilot` | EXPLORATION · pilot | Painted seed icon at 28–60 pt, App Store key art A, a Home ideation board | next PR | 3 | NEXT PR |
-| 9 | `batch-10-island-concepts-pilot` | EXPLORATION · pilot | Establishing shots of Çağlayan, Ayna, Revontuli | next PR | 3 | NEXT PR |
-| 10 | `batch-10-island-concepts` | EXPLORATION | Their signature moments | review of #9 | 3 | NEXT PR |
+| 7 | `batch-08-decor-pilot` | production · pilot | Four decor pieces, one per Ayçiçeği decor spot (bench, lantern string, toy sailboat, mailbox) | main | 4 | **READY** |
+| 8 | `batch-09-explore-pilot` | EXPLORATION · pilot | Painted seed icon at 28–60 pt, App Store key art A, a Home ideation board | main | 3 | **READY** |
+| 9 | `batch-10-island-concepts-pilot` | EXPLORATION · pilot | Establishing shots of Çağlayan, Ayna, Revontuli | main | 3 | **READY** |
+| 10 | `batch-10-island-concepts` | EXPLORATION | Their signature moments (Damla at the falls, Pekmez and the seed falling up, Tuli painting the aurora), attaching the picked pilot takes | review of #9 | 3 | BLOCKED, manifest after #9 |
+| 11 | `batch-08-decor` | production | The rest of a decor kit | the decor mechanic decided (archipelago system, PR #64) and review of #7 | — | BLOCKED, no manifest yet |
 
-Rows 7 to 10 arrive in the lead's next PR (their manifests are drafted);
-they become `READY` on merge. Rows 4 to 6 are the scale-up of rows 1 to 3.
+Rows 4 to 6 are the scale-up of rows 1 to 3; row 10 of row 9; row 11 of
+row 7.
 Batch 02 (Glass++ production) stays blocked until the friends beta
 (ADR-0018 amendment).
 

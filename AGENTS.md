@@ -219,13 +219,18 @@ The ordered list of batches, their state (`READY`, `BLOCKED`, `NEXT PR`)
 and why each exists is in
 [`docs/design/art-production-plan.md`](docs/design/art-production-plan.md#the-queue).
 The lead keeps it current; read it at the start of every task. Right now
-three pilots are `READY` and may run at once:
+six pilots are `READY` and may run at once:
 
 ```text
 AGENTS.md parallel auto mode, batch-05-fixes-pilot, track all
 AGENTS.md parallel auto mode, batch-06-pofu-rig-pilot, track all
 AGENTS.md parallel auto mode, batch-07-light-pilot, track all
+AGENTS.md parallel auto mode, batch-08-decor-pilot, track all
+AGENTS.md parallel auto mode, batch-09-explore-pilot, track all
+AGENTS.md parallel auto mode, batch-10-island-concepts-pilot, track all
 ```
+
+Batches 09 and 10 are EXPLORATION: never run `promote` on them.
 
 - **batch-05-fixes-pilot:** `simit-2` and `workshop-2` are SALVAGED from
   batch 03's takes on `main` (their `notes` list the files). Batch 03's

@@ -1,0 +1,23 @@
+id: asset-x-caglayan-1
+type: asset
+title_tr: x-caglayan-1
+title_en: x-caglayan-1 (plate)
+status: in-production
+horizon: maybe
+summary: >-
+  A concept painting for a cozy mobile game: Çağlayan, a small floating island of mossy, rounded
+  limestone in travertine cream, with soft moss and two little turquoise pools stepping down
+  its lawn. From the front edge of the island a calm waterfall pours off into the sky and
+  falls far down, longer than the island is tall, into a soft sea of clouds, where it turns
+  into mist. Seen from the same low front three-quarter ca…
+art:
+  images: []
+  jobs:
+  - batch-10-island-concepts-pilot:x-caglayan-1
+notes:
+- Exploration (docs/design/art-production-plan.md); never promoted, never shipped.
+sources:
+- doc: tools/imagegen/manifest/batch-10-island-concepts-pilot.yaml
+kind: plate
+batch: batch-10-island-concepts-pilot
+size: 1536x1024
