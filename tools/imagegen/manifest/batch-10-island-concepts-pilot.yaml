@@ -1,0 +1,118 @@
+# Batch 10, pilot: concept paintings for three wonder islands
+# (EXPLORATION, never production). docs/design/art-production-plan.md.
+#
+# The islands are proposed in docs/product/archipelago-system.md section
+# 11 (PR #64): Çağlayan (a waterfall pouring off the edge into the clouds),
+# Ayna (Ayçiçeği's upside-down reflection under the clouds) and Revontuli
+# (the Finnish fox-fire island, the arctic fox Tuli). Unblocked by the
+# founder (2026-11-02) for two concept paintings each; this pilot paints
+# the establishing shot of each, the follow-up (batch-10-island-concepts)
+# the signature moment.
+#
+# Concepts decide shape, palette and the "whoa"; production plates are
+# painted later from landform blockouts in the fixed camera (archipelago
+# system section 3.3). Motion is code (the waterfall ribbon, Ayna's ripple,
+# the aurora shader), so a painting shows a frozen moment of it.
+#
+# EXPLORATION RULES (AGENTS.md): do NOT run `promote`; commit the takes
+# (WebP q90), the contact sheet and review.yaml only.
+#
+# Tracks: `concepts` (three independent jobs; run them at once).
+
+batch: batch-10-island-concepts-pilot
+title: Wonder island concepts, pilot (Çağlayan, Ayna, Revontuli establishing shots)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+
+  - id: x-caglayan-1
+    kind: plate
+    name: x-caglayan-1
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Island concepts"
+    notes: "Exploration. Çağlayan, establishing shot. Review: does the fall read as longer than the island is tall, and as calm, not dramatic?"
+    attach: &concept_refs
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Çağlayan, a small
+          floating island of mossy, rounded limestone in travertine cream,
+          with soft moss and two little turquoise pools stepping down its
+          lawn. From the front edge of the island a calm waterfall pours
+          off into the sky and falls far down, longer than the island is
+          tall, into a soft sea of clouds, where it turns into mist. Seen
+          from the same low front three-quarter camera as the attached
+          island, the island in the upper middle, the fall leading the eye
+          down. Morning light from the upper left, a pale sky. Peaceful and
+          wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: characters, buildings, a mill, rapids, rocks like a canyon, dark or saturated water, text, a border."
+
+  - id: x-ayna-1
+    kind: plate
+    name: x-ayna-1
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Island concepts"
+    notes: "Exploration. Ayna, establishing shot. Review: is the mirror island unmistakably the home island, upside down, and does it feel quiet rather than eerie?"
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island, Ayçiçeği: paint it twice, exactly like this: once the right way up above the clouds, and once upside down below them."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds between the two islands: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayna, the island under
+          the clouds. In the upper half, the attached home island floats in
+          a soft day sky above a calm sea of clouds. In the lower half,
+          hanging upside down beneath the cloud sea like a reflection, is
+          the same island: its lawn facing down, its round door upside down,
+          bathed in soft moonlight in moon blue, silver and lavender even
+          though it is day above, with one small warm lit window in its
+          round door. The cloud sea is the mirror line between them, its
+          underside softly lit. Same low front three-quarter camera. Quiet,
+          dreamy and gentle, never eerie.
+      - block: prop-style-v2
+      - text: "AVOID: characters, a dark or scary mood, water, a hard mirror line, stars like glitter, text, a border."
+    acceptance:
+      value_floor: {warn: 30.0, fail: 20.0}
+
+  - id: x-revontuli-1
+    kind: plate
+    name: x-revontuli-1
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Island concepts"
+    notes: "Exploration. Revontuli, establishing shot at dusk. Review: snow and aurora in the same soft, milky painting as the home island, not a photo-like night."
+    attach: *concept_refs
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Revontuli, a small
+          snowy floating island at blue dusk. Soft rounded snow on its lawn,
+          a little frozen pond, a single plump spruce, and a tiny wooden
+          lakeside sauna of honey wood with a small chimney and one warm lit
+          window. Above it, a soft aurora of pale green and violet sweeps
+          across the sky in a gentle curve like the stroke of a fox's tail.
+          A small white arctic fox, Tuli, sits in the snow by the pond,
+          looking up at the sky (tiny on the island, in the same soft
+          painting). Seen from the same low front three-quarter camera as
+          the attached island, over a sea of clouds tinted by dusk. Calm,
+          wondrous and cozy.
+      - block: prop-style-v2
+      - text: "AVOID: neon colors, a black sky, glittering stars, a photographic aurora, a big fox, text, a border."
+    acceptance:
+      chroma_p95: {warn: 58.0, fail: 66.0}
+      value_floor: {warn: 25.0, fail: 15.0}

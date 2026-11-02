@@ -1,0 +1,37 @@
+id: sys-voice
+type: system
+title_tr: Pofu'nun sesi (replikler)
+title_en: Pofu's voice and line bank
+status: planned
+horizon: next
+summary: >-
+  Personality B (founder, 2026-11-02): sweet and lightly jealous, teasing the app, never the
+  person. A tagged line bank of 157 Turkish lines across the shield, Hop!, the minute, the
+  island and arrivals; comedy rationed per day and decaying with the reach count; cooldowns
+  so big jokes never repeat within 14 days; dated memes in an expiring remote line pack.
+notes:
+- 'Five devices: the parenthetical self-correction, melodrama at the app, internet formats, hamster physics, Turkish daily ritual.'
+- 'Budgets per day: big jokes 2 on the shield, 1 in Hop!, 1 on the island; kanka/aga 1; the parenthetical tic 3.'
+- 'From the 6th reach of a day, no big jokes on the shield; first three days are a gentle introduction.'
+- 'Remote pack: static, anonymous, fetched by the app (never an extension), every line expires (default 90 days).'
+- 'Never-say list becomes a CI test over the bank: shame, guilt verbs, body, health claims, politics, religion, teams, exes, death, gate vocabulary.'
+- 'Open: a 10-person Turkish panel rates every big joke before the friends beta (voice doc Q1).'
+links:
+  related:
+  - sys-shield
+  - sys-hop
+  - sys-emotions
+  - sys-guardrails
+  - sys-the-minute
+  - sys-island-arrivals
+  - sys-sound
+sources:
+- doc: docs/brand/pofu-voice.md
+- doc: docs/product/game-design.md
+  anchor: '#12-pofus-emotional-range'
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#56-the-copy-system'
+group: character
+board:
+  col: 7
+  row: 1

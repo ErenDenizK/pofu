@@ -4,8 +4,16 @@ title_tr: Ada ses manzarası
 title_en: An ambient soundscape per island
 status: idea
 horizon: later
-summary: A soft ambient soundscape per island, off when the Sounds toggle is off.
+summary: >-
+  A soft ambient soundscape per island, off by default and offered once on the island (Mochi's
+  radio). Specified in the sound identity: each island's mode and progression, calm opening the
+  voicing, stems plus a runtime note composer.
+links:
+  part_of:
+  - sys-sound
 sources:
+- doc: docs/design/sound-identity.md
+  anchor: '#4-music-one-key-many-moods'
 - doc: docs/design/iteration-plan.md
   anchor: '#what-it-can-become'
 - doc: docs/design/interaction-spec.md

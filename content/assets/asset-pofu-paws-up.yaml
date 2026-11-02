@@ -1,0 +1,22 @@
+id: asset-pofu-paws-up
+type: asset
+title_tr: pofu-paws-up
+title_en: pofu-paws-up (char)
+status: planned
+horizon: later
+summary: >-
+  Edit the attached hamster. Change only his front paws: both paws are raised high above his
+  shoulders on either side of his head, open, in a happy little cheer. The chest is smooth
+  cream fur where the paws were. Nothing else changes.
+links:
+  variant_of:
+  - asset-pofu-base-v1
+art:
+  images: []
+  jobs:
+  - batch-06-pofu-rig:pofu-paws-up
+sources:
+- doc: tools/imagegen/manifest/batch-06-pofu-rig.yaml
+kind: char
+batch: batch-06-pofu-rig
+size: 1024x1536

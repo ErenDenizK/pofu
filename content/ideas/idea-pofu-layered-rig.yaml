@@ -1,0 +1,43 @@
+id: idea-pofu-layered-rig
+type: idea
+title_tr: Katmanlı Pofu
+title_en: Pofu as a layered rig
+status: in-production
+horizon: now
+source: founder
+summary: >-
+  Pofu's reactions are part swaps plus code motion, not full-frame painted poses: a clean
+  plate without ears and front paws, and region edits of R1 (eyes, mouths, cheek pouches,
+  paws, ears, matted fur) that the app composites with soft masks, so he breathes, blinks,
+  squashes and flicks his ears between expressions.
+notes:
+- Founder, 2026-11-02 - full-frame poses cannot be tweened and swapping them reads as a
+  slideshow.
+- Pilot batch-06-pofu-rig-pilot (clean plate, happy, sleepy, sulky, full pouches), then
+  batch-06-pofu-rig (the rest).
+links:
+  related:
+  - char-pofu
+  uses_asset:
+  - asset-pofu-rig-clean
+  - asset-pofu-eyes-happy
+  - asset-pofu-eyes-closed
+  - asset-pofu-mouth-pout
+  - asset-pofu-eyes-side
+  - asset-pofu-eyes-matte
+  - asset-pofu-mouth-open
+  - asset-pofu-mouth-o
+  - asset-pofu-mouth-smirk
+  - asset-pofu-mouth-worried
+  - asset-pofu-mouth-chew
+  - asset-pofu-paws-seed
+  - asset-pofu-paws-wave
+  - asset-pofu-paws-up
+  - asset-pofu-paws-belly
+  - asset-pofu-ears-droop
+  - asset-pofu-fur-matted
+sources:
+- doc: docs/design/art-production-plan.md
+  anchor: '#pofus-reactions-are-a-rig'
+- doc: docs/design/companion-motion.md
+kind: design

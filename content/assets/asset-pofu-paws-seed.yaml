@@ -1,0 +1,23 @@
+id: asset-pofu-paws-seed
+type: asset
+title_tr: pofu-paws-seed
+title_en: pofu-paws-seed (char)
+status: planned
+horizon: later
+summary: >-
+  Edit the attached hamster. Change only his two front paws: they now hold one plump sunflower
+  seed upright in front of his chest, a soft warm-brown shell with two broad cream stripes,
+  the paws wrapped around it. The chest fur shows around the paws as in the original. Nothing
+  else changes.
+links:
+  variant_of:
+  - asset-pofu-base-v1
+art:
+  images: []
+  jobs:
+  - batch-06-pofu-rig:pofu-paws-seed
+sources:
+- doc: tools/imagegen/manifest/batch-06-pofu-rig.yaml
+kind: char
+batch: batch-06-pofu-rig
+size: 1024x1536

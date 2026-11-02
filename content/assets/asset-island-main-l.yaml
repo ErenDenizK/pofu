@@ -17,8 +17,7 @@ links:
   - asset-island-main-s
 art:
   images:
-  - path: design/art/masters/island-main-l/island-main-l.png
-    branch: art/batch-01-slice/all
+  - design/art/masters/island-main-l/island-main-l.png
   jobs:
   - batch-01-slice:island-main-l
 sources:

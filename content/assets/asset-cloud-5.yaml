@@ -10,7 +10,8 @@ summary: >-
   one a little larger. Centered, together filling about 70% of the canvas width, with a clear
   transparent margin.
 art:
-  images: []
+  images:
+  - design/art/masters/cloud-5/cloud-5.png
   jobs:
   - batch-04-sky:cloud-5
 sources:

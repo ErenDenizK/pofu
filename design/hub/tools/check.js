@@ -11,6 +11,10 @@
 // must not wipe a draft), adding an idea from the Fikir sheet, review verdicts and a review note,
 // section switching and filters, the empty states, a read-only viewer, and a plain browser with no
 // `window.claude`. Also checks 44 pt hit targets, no sideways scroll, and no console errors.
+// Dictation: the segmenter and text clean-up, the model installer (mock asset store), the
+// "no model" and "microphone blocked" panels, transcribing a picked file, and live recording with
+// Chromium's fake microphone. The Whisper worker is replaced by a mock that answers per window;
+// design/hub/tools/dictation-e2e.js runs the real worker and a real model.
 // Exits non-zero on any failure. If Playwright is not found, set NODE_PATH to the folder that
 // holds it (for example NODE_PATH=/opt/node22/lib/node_modules).
 const { chromium } = require('playwright');
@@ -38,6 +42,7 @@ function serve() {
       res.end(SKELETON_HEAD + page + SKELETON_TAIL);
       return;
     }
+    if (u === '/dictation/worker.js') { res.writeHead(200, { 'content-type': 'text/javascript' }); res.end(MOCK_WORKER); return; }
     const sm = u.match(/^\/sample\/(s\d+)\.svg$/);
     if (sm && SAMPLES[sm[1]]) { res.writeHead(200, { 'content-type': 'image/svg+xml' }); res.end(SAMPLES[sm[1]]); return; }
     const m = u.match(/^\/_blob\/([0-9a-f]{32})$/);
@@ -45,6 +50,42 @@ function serve() {
     res.writeHead(404); res.end();
   });
   return new Promise((r) => srv.listen(0, '127.0.0.1', () => r(srv)));
+}
+
+// Stands in for dictation/worker.js: reports model progress, then answers each window with its
+// index and length, so the checks can see where the audio was cut.
+const MOCK_WORKER = `
+let n = 0;
+self.onmessage = async (e) => {
+  const { id, type } = e.data;
+  const post = (m) => self.postMessage({ id, ...m });
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  if (type === 'load') {
+    for (let i = 1; i <= 4; i++) { post({ type: 'progress', phase: 'download', loaded: i * 25e6, total: 100e6 }); await wait(40); }
+    post({ type: 'progress', phase: 'init', device: e.data.device }); await wait(40);
+    post({ type: 'done', device: e.data.device });
+  } else if (type === 'transcribe') {
+    await wait(120); n++;
+    post({ type: 'done', text: ' Parça ' + n + ' (' + (e.data.audio.length / 16000).toFixed(1) + ' sn, ' + e.data.language + ').', ms: 120 });
+  } else post({ type: 'done' });
+};`;
+
+// 70 s of 44.1 kHz stereo "speech" (amplitude-modulated tones) with two short pauses, at 20 to 21 s
+// and 45 to 46.5 s, as a WAV file.
+function sampleWav() {
+  const sr = 44100, secs = 70, n = sr * secs;
+  const buf = Buffer.alloc(44 + n * 4);
+  buf.write('RIFF', 0); buf.writeUInt32LE(36 + n * 4, 4); buf.write('WAVE', 8); buf.write('fmt ', 12);
+  buf.writeUInt32LE(16, 16); buf.writeUInt16LE(1, 20); buf.writeUInt16LE(2, 22); buf.writeUInt32LE(sr, 24);
+  buf.writeUInt32LE(sr * 4, 28); buf.writeUInt16LE(4, 32); buf.writeUInt16LE(16, 34); buf.write('data', 36); buf.writeUInt32LE(n * 4, 40);
+  for (let i = 0; i < n; i++) {
+    const t = i / sr;
+    const quiet = (t >= 20 && t < 21) || (t >= 45 && t < 46.5);
+    const v = quiet ? 0 : 0.3 * Math.sin(2 * Math.PI * 180 * t) * (0.55 + 0.45 * Math.sin(2 * Math.PI * 3 * t));
+    const x = Math.round(v * 32767);
+    buf.writeInt16LE(x, 44 + i * 4); buf.writeInt16LE(x, 46 + i * 4);
+  }
+  return buf;
 }
 
 function sampleSvg(color, label, w = 800, h = 500) {
@@ -196,19 +237,33 @@ function installMock(cfg) {
     name: async () => '', avatarUrl: async () => null, search: async () => [], email: async () => null,
   });
   window.__subs = [];
+  const blobs = new Map();
+  const assets = Object.freeze({
+    upload: async (blob, opts = {}) => {
+      const type = opts.type || blob.type;
+      const okTypes = ['text/plain', 'video/mp4', 'video/webm', 'image/png', 'image/jpeg'];
+      if (!okTypes.includes(type)) throw err('unsupported_type', 'type ' + type);
+      if (blob.size > 20 * 1024 * 1024) throw err('too_large', 'too large');
+      const id = Array.from(crypto.getRandomValues(new Uint8Array(16)), (b) => b.toString(16).padStart(2, '0')).join('');
+      blobs.set(id, { type, size: blob.size, text: type === 'text/plain' ? await blob.text() : null });
+      return { id, url: '/_blob/' + id, sizeBytes: blob.size, contentType: type };
+    },
+    list: async () => ({ assets: [...blobs].map(([id, b]) => ({ id, url: '/_blob/' + id, contentType: b.type, sizeBytes: b.size, createdAt: '' })), usage: { files: blobs.size, bytes: [...blobs.values()].reduce((s, b) => s + b.size, 0), maxFiles: 5000, maxBytes: 1073741824 } }),
+    delete: async (id) => ({ deleted: blobs.delete(id) }),
+  });
   window.__mock = {
-    docs, writes,
+    docs, writes, blobs,
     // A write from outside this page (the lead through the tool).
     external(p, data) { docs.set(p, data); notify(p); },
   };
-  window.claude = Object.freeze({ use: (name) => new Promise((r) => setTimeout(() => r(cfg.nullDb && name === 'db' ? null : name === 'db' ? db : name === 'user' ? user : null), 30)) });
+  window.claude = Object.freeze({ use: (name) => new Promise((r) => setTimeout(() => r(cfg.nullDb && name === 'db' ? null : name === 'db' ? db : name === 'user' ? user : name === 'assets' && cfg.assets ? assets : null), 30)) });
 }
 
-async function open(browser, base, { phone = true, scheme = 'light', cfg = {} } = {}) {
-  const ctx = await browser.newContext(phone
+async function open(browser, base, { phone = true, scheme = 'light', cfg = {}, mic = false } = {}) {
+  const ctx = await browser.newContext(Object.assign(mic ? { permissions: ['microphone'] } : {}, phone
     ? { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, hasTouch: true, isMobile: true, colorScheme: scheme,
       userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 26_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.1 Mobile/15E148 Safari/604.1' }
-    : { viewport: { width: 1280, height: 800 }, deviceScaleFactor: 1, colorScheme: scheme });
+    : { viewport: { width: 1280, height: 800 }, deviceScaleFactor: 1, colorScheme: scheme }));
   // Google Fonts is the only external request; answer it locally so runs are offline and stable.
   await ctx.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.fulfill({ status: 200, contentType: 'text/css', body: '' }));
   const page = await ctx.newPage();
@@ -270,7 +325,7 @@ async function main() {
       const { ctx, page, errors, tap } = await open(browser, base, { cfg: { seed: sampleSeed() } });
       ok(await page.title() === 'Pofu Hub', 'title is Pofu Hub');
       const subs = await page.evaluate(() => window.__subs.slice());
-      ok(subs.length === 7 && new Set(subs).size === 7, `subscribes once per query (${subs.length})`);
+      ok(subs.length === 8 && new Set(subs).size === 8, `subscribes once per query (${subs.length})`);
       ok(await page.locator('#banner').isHidden(), 'no banner when live');
       const cards = page.locator('#q-list article');
       ok(await cards.count() === 2, 'Açık shows the two open questions');
@@ -298,7 +353,7 @@ async function main() {
 
       // Add a note.
       const ta = q1.locator('textarea');
-      ok(await q1.locator('.hint').first().textContent() === 'Klavyedeki mikrofonla dikte edebilirsin', 'dictation hint');
+      ok((await q1.locator('.micbtn').first().textContent()) === 'Dikte', 'Dikte button under the note field');
       ok(await q1.locator('.composer .btn').isDisabled(), 'Ekle disabled while empty');
       await tap(ta, 'note textarea');
       await page.keyboard.type('Metinler kısa olsun, en fazla iki satır.');
@@ -392,6 +447,168 @@ async function main() {
       ok(await page.locator('#panel-reviews').isVisible(), 'remembers the section');
       ok(errors.length === 0, `phone light: no console errors ${errors.join(' | ')}`);
       await ctx.close();
+    }
+
+    // ---------------------------------------------------------------- dictation: helpers, installer, blocked mic, file
+    {
+      const { ctx, page, errors, tap } = await open(browser, base, { cfg: { seed: sampleSeed(), assets: true } });
+      const pure = await page.evaluate(() => {
+        const D = window.__pofuDictation; const sr = 1000; const x = new Float32Array(70 * sr);
+        for (let i = 0; i < x.length; i++) { const t = i / sr; x[i] = (t >= 20 && t < 21) || (t >= 45 && t < 46.5) ? 0 : 0.3 * Math.sin(i); }
+        const live = D.splitSegments(x.subarray(0, 40 * sr), sr, false);
+        const all = D.splitSegments(x, sr, true);
+        return {
+          live: live.segments.map(([a, b]) => [a / sr, b / sr]), consumed: live.consumed / sr,
+          all: all.segments.map(([a, b]) => [a / sr, b / sr]),
+          silent: D.isSilent(new Float32Array(16000), 0, 16000, 16000), loud: D.isSilent(x, 0, 16000, sr),
+          junk: D.cleanText(' Bugün ada sahnesine baktım. Altyazı M.K. '),
+          loop: D.cleanText('Liquid Glass olsun olsun olsun olsun ama sade kalsın.'),
+          loop2: D.cleanText('ve sonra ve sonra ve sonra ve sonra golden hour ışığı'),
+          keep: D.cleanText('çok çok güzel'),
+          join: [D.joinText('Merhaba', 'dünya'), D.joinText('Merhaba ', 'dünya'), D.joinText('Merhaba', ', dünya'), D.joinText('', 'İlk')],
+          types: ['audio/mp4', 'audio/webm;codecs=opus', 'audio/x-m4a', 'audio/mpeg', 'audio/wav', ''].map(D.assetTypeFor),
+        };
+      });
+      ok(pure.live.length === 1 && pure.live[0][1] >= 20.3 && pure.live[0][1] <= 20.7 && pure.consumed === pure.live[0][1], `live split cuts in the first pause and keeps the tail (${JSON.stringify(pure.live)})`);
+      ok(pure.all.length === 3 && pure.all[1][1] >= 45.5 && pure.all[1][1] <= 46 && pure.all[2][1] === 70, `file split: three windows cut in the pauses (${JSON.stringify(pure.all)})`);
+      ok(pure.all.every(([a, b]) => b - a <= 29.5), 'no window longer than 29.5 s');
+      ok(pure.silent === true && pure.loud === false, 'silence is skipped, speech is not');
+      ok(pure.junk === 'Bugün ada sahnesine baktım.', `Whisper's subtitle credit is removed (${pure.junk})`);
+      ok(pure.loop === 'Liquid Glass olsun ama sade kalsın.' && pure.loop2 === 've sonra golden hour ışığı' && pure.keep === 'çok çok güzel', `decoding loops collapse (${pure.loop} | ${pure.loop2} | ${pure.keep})`);
+      ok(JSON.stringify(pure.join) === JSON.stringify([' dünya', 'dünya', ', dünya', 'İlk']), 'pieces join with one space');
+      ok(JSON.stringify(pure.types) === JSON.stringify(['video/mp4', 'video/webm', 'video/mp4', null, null, null]), 'recordings map to the asset store types');
+
+      // No model yet: the panel offers the installer.
+      const q1 = page.locator('article[data-qid="q-shield-tone"]');
+      await tap(q1.locator('.micbtn'), 'Dikte (no model)');
+      ok((await q1.locator('.dict-title').textContent()) === 'Konuşma modeli kurulu değil', 'no model: panel says so');
+      await hitTargets(page, 'phone dictation panel');
+      await shot(page, 'phone-dictation-nomodel');
+      await tap(q1.locator('.dict .btn', { hasText: 'Modeli kur' }), 'Modeli kur');
+      await wait(350);
+      ok(await page.locator('#dsheet').isVisible(), 'Dikte sheet opens');
+      ok(await page.locator('#dsheet .chip[aria-pressed="true"]', { hasText: 'Small' }).count() === 1, 'phone suggests Small');
+      const crypto = require('crypto');
+      const enc = crypto.randomBytes(2_500_000), dec = crypto.randomBytes(16_000_000);
+      const json = (o) => Buffer.from(JSON.stringify(o));
+      await page.setInputFiles('#model-files', [
+        { name: 'config.json', mimeType: 'application/json', buffer: json({ model_type: 'whisper' }) },
+        { name: 'generation_config.json', mimeType: 'application/json', buffer: json({ lang_to_id: {} }) },
+        { name: 'preprocessor_config.json', mimeType: 'application/json', buffer: json({ feature_size: 80 }) },
+        { name: 'tokenizer.json', mimeType: 'application/json', buffer: json({ model: { type: 'BPE' }, note: 'çğış' }) },
+        { name: 'tokenizer_config.json', mimeType: 'application/json', buffer: json({}) },
+        { name: 'encoder_model_quantized.onnx', mimeType: 'application/octet-stream', buffer: enc },
+        { name: 'decoder_model_merged_quantized.onnx', mimeType: 'application/octet-stream', buffer: dec },
+      ]);
+      await wait(200);
+      ok(await page.locator('#dsheet .files .ok').count() === 7, 'all seven files recognised');
+      await hitTargets(page, 'phone Dikte sheet');
+      await noSideScroll(page, 'phone Dikte sheet');
+      await shot(page, 'phone-dictation-install');
+      await tap(page.locator('#dsheet .btn', { hasText: 'Yükle' }), 'Yükle');
+      let man = null;
+      for (let i = 0; i < 100 && !man; i++) { await wait(150); man = await page.evaluate(() => window.__mock.docs.get('dictation/small')); }
+      ok(!!man && man.modelId === 'pofu/whisper-small' && man.dtype.encoder_model === 'q8' && man.dtype.decoder_model_merged === 'q8' && man.files.length === 7, 'manifest stored in dictation/small');
+      const decFile = man && man.files.find((f) => f.name === 'onnx/decoder_model_merged_quantized.onnx');
+      ok(decFile && decFile.chunks.length === 2 && decFile.enc === 'b64', 'large file split into two base64 chunks');
+      const shaOf = (b) => crypto.createHash('sha256').update(b).digest('hex');
+      ok(decFile && decFile.chunks[0].sha256 === shaOf(dec.subarray(0, 15_000_000)) && decFile.chunks[1].sha256 === shaOf(dec.subarray(15_000_000)), 'chunk checksums match the source bytes');
+      const roundTrip = await page.evaluate(async (m) => {
+        const f = m.files.find((x) => x.name.includes('decoder'));
+        const bytes = f.chunks.map((c) => Uint8Array.from(atob(window.__mock.blobs.get(c.id).text), (ch) => ch.charCodeAt(0)));
+        const hex = async (b) => Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', b)), (x) => x.toString(16).padStart(2, '0')).join('');
+        return Promise.all(bytes.map(hex));
+      }, man);
+      ok(decFile && roundTrip.join() === decFile.chunks.map((c) => c.sha256).join(), 'stored base64 decodes back to the same bytes');
+      ok(await page.evaluate(() => window.__mock.blobs.get(window.__mock.docs.get('dictation/small').files[3].chunks[0].id).text.includes('çğış')), 'JSON files are stored as plain UTF-8');
+      await shot(page, 'phone-dictation-installed');
+      await tap(page.locator('#dsheet-close'), 'Kapat');
+      await wait(350);
+
+      // Microphone refused (as in the artifact frame): the panel offers a recorded file instead.
+      await tap(q1.locator('.micbtn'), 'Dikte (no mic)');
+      let title = '';
+      for (let i = 0; i < 30 && !/mikrofon/i.test(title); i++) { await wait(100); title = (await q1.locator('.dict-title').textContent().catch(() => '')) || ''; }
+      ok(/mikrofon/i.test(title), `blocked microphone explained (${title})`);
+      ok(await q1.locator('.dict .btn', { hasText: 'Ses dosyası seç' }).count() === 1, 'offers a recorded file');
+      await shot(page, 'phone-dictation-blocked');
+      const assetsBefore = await page.evaluate(() => window.__mock.blobs.size);
+      await tap(q1.locator('textarea'), 'note field'); await page.keyboard.type('Önce şunu yazdım.');
+      const [fc] = await Promise.all([page.waitForEvent('filechooser'), tap(q1.locator('.dict .btn', { hasText: 'Ses dosyası seç' }), 'Ses dosyası seç')]);
+      await fc.setFiles({ name: 'kayit.wav', mimeType: 'audio/wav', buffer: sampleWav() });
+      let sawWork = false;
+      for (let i = 0; i < 100; i++) {
+        await wait(100);
+        const t = await q1.locator('.dict-title').textContent().catch(() => '');
+        if (!sawWork && /Yazıya|hazırlanıyor/.test(t)) { sawWork = true; await shot(page, 'phone-dictation-working'); }
+        if (t === 'Hazır') break;
+      }
+      const val = await q1.locator('textarea').inputValue();
+      ok(await q1.locator('.dict-title').textContent() === 'Hazır', 'file transcribed');
+      const lens = [...val.matchAll(/\((\d+\.\d) sn, turkish\)/g)].map((m) => Number(m[1]));
+      ok(val.startsWith('Önce şunu yazdım. Parça 1') && lens.length === 3, `text lands after the typed words, three windows in order (${val})`);
+      ok(lens.length === 3 && lens[0] >= 20 && lens[0] <= 21 && Math.abs(lens.reduce((a, b) => a + b, 0) - 70) < 0.3, `windows cut in the pauses (${lens.join(', ')})`);
+      ok(!(await q1.locator('textarea').evaluate((e) => e.readOnly)), 'text stays editable');
+      ok(await page.evaluate(() => window.__mock.blobs.size) === assetsBefore, 'a WAV file is not kept (no matching asset type)');
+      await shot(page, 'phone-dictation-done');
+      await tap(q1.locator('.composer .btn', { hasText: 'Ekle' }), 'Ekle after dictation');
+      await wait(250);
+      const dnote = await page.evaluate(() => [...window.__mock.docs.values()].find((v) => v.text && v.text.includes('Parça 3')));
+      ok(dnote && !dnote.audio && dnote.text.startsWith('Önce şunu yazdım.'), 'dictated note saved');
+      ok(await q1.locator('.dict').isHidden(), 'panel closes after saving');
+
+      // The idea sheet has the same button.
+      await tab(tap, page, 'now');
+      await tap(page.locator('#fab'), 'Fikir'); await wait(350);
+      ok(await page.locator('#idea-foot .micbtn').isVisible(), 'Dikte button in the idea sheet');
+      ok(errors.length === 0, `dictation: no console errors ${errors.join(' | ')}`);
+      await ctx.close();
+    }
+
+    // ---------------------------------------------------------------- dictation: live microphone (Chromium's fake device)
+    {
+      const micBrowser = await chromium.launch({ args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream'] });
+      const seed = sampleSeed();
+      seed['dictation/small'] = { preset: 'small', modelId: 'pofu/whisper-small', version: 1, dtype: { encoder_model: 'q8', decoder_model_merged: 'q8' }, totalBytes: 250e6, installedAt: new Date().toISOString(), files: [{ name: 'config.json', size: 2, enc: 'raw', chunks: [{ id: '0123456789abcdef0123456789abcdef', size: 2, sha256: '' }] }] };
+      const { ctx, page, errors, tap } = await open(micBrowser, base, { mic: true, cfg: { seed, assets: true } });
+      const q1 = page.locator('article[data-qid="q-shield-tone"]');
+      await tap(q1.locator('.micbtn'), 'Dikte (live)');
+      let t = '';
+      for (let i = 0; i < 30 && t !== 'Dinliyorum'; i++) { await wait(100); t = await q1.locator('.dict-title').textContent().catch(() => ''); }
+      ok(t === 'Dinliyorum', 'recording starts');
+      ok(await q1.locator('.micbtn').getAttribute('aria-pressed') === 'true' && (await q1.locator('.micbtn').textContent()) === 'Bitir', 'mic button turns into Bitir');
+      ok(await q1.locator('textarea').evaluate((e) => e.readOnly && e.classList.contains('dictating')), 'field is locked and marked while listening');
+      await wait(2600);
+      const timer = await q1.locator('.dict-time').textContent();
+      ok(timer === '0:02' || timer === '0:03', `timer runs (${timer})`);
+      const heights = await q1.locator('.meter i').evaluateAll((bars) => bars.map((b) => b.getBoundingClientRect().height));
+      ok(new Set(heights.map(Math.round)).size > 1, 'level meter moves');
+      await hitTargets(page, 'phone recording');
+      await noSideScroll(page, 'phone recording');
+      await shot(page, 'phone-dictation-recording');
+      await tap(q1.locator('.dict .btn.stop'), 'Bitir');
+      for (let i = 0; i < 60; i++) { await wait(100); if ((await q1.locator('.dict-title').textContent().catch(() => '')) === 'Hazır') break; }
+      const val = await q1.locator('textarea').inputValue();
+      ok(/^Parça 1 \((2|3)\.\d sn, turkish\)\.$/.test(val), `live recording transcribed (${val})`);
+      let kept = 0;
+      for (let i = 0; i < 30 && !kept; i++) { await wait(100); kept = await page.evaluate(() => window.__mock.blobs.size); }
+      const keptType = await page.evaluate(() => [...window.__mock.blobs.values()].map((b) => b.type).join());
+      ok(kept === 1 && /^video\/(mp4|webm)$/.test(keptType), `recording kept as an asset (${keptType})`);
+      await tap(q1.locator('.composer .btn', { hasText: 'Ekle' }), 'Ekle (live)');
+      await wait(250);
+      const n = await page.evaluate(() => [...window.__mock.docs.values()].find((v) => v.text && v.text.startsWith('Parça 1')));
+      ok(n && Array.isArray(n.audio) && n.audio.length === 1 && /^[0-9a-f]{32}$/.test(n.audio[0].id) && n.audio[0].seconds >= 2, 'note carries the recording');
+      ok(await q1.locator('.note audio').count() === 1, 'note shows a player for the recording');
+      // Cancel leaves the field as it was.
+      await tap(q1.locator('textarea'), 'note field'); await page.keyboard.type('Taslak');
+      await tap(q1.locator('.micbtn'), 'Dikte (cancel)');
+      await wait(1200);
+      await tap(q1.locator('.dict .btn', { hasText: 'Vazgeç' }), 'Vazgeç');
+      await wait(200);
+      ok(await q1.locator('textarea').inputValue() === 'Taslak' && await q1.locator('.dict').isHidden(), 'Vazgeç leaves the field unchanged');
+      ok(errors.length === 0, `live dictation: no console errors ${errors.join(' | ')}`);
+      await ctx.close();
+      await micBrowser.close();
     }
 
     // ---------------------------------------------------------------- phone, dark
@@ -507,4 +724,5 @@ async function main() {
   process.exit(failures ? 1 : 0);
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+if (require.main === module) main().catch((e) => { console.error(e); process.exit(1); });
+module.exports = { installMock, sampleSeed };

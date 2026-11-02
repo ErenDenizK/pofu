@@ -1,0 +1,99 @@
+# Batch 05: the rest of the batch-03 fixes, after the pilot
+# (docs/design/art-production-plan.md).
+#
+# simit-3..5 and workshop-3..5, with batch 03's prompts unchanged: they
+# never ran, because their parents failed on a pipeline bug that the
+# pilot's salvage proves fixed. Opens when the lead has reviewed
+# batch-05-fixes-pilot (status flips to open in the PR that merges it).
+#
+# Tracks: `simit` (simit-3 -> simit-4 -> simit-5), `workshop`
+# (workshop-3 -> workshop-4 -> workshop-5). Both start at once.
+
+batch: batch-05-fixes
+title: Batch 03 fixes (simit L3-L5, workshop L3-L5)
+status: blocked
+blocked_on:
+  - "the lead's review of batch-05-fixes-pilot (simit-2 and workshop-2 promoted)"
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: simit-2, kind: station, name: simit-2, external: batch-05-fixes-pilot}
+  - {id: workshop-2, kind: station, name: workshop-2, external: batch-05-fixes-pilot}
+
+  # --------------------------------------------- simit cart L3-L5
+  - id: simit-3
+    kind: station
+    name: simit-3
+    edit_of: simit-2
+    chat: "Pofu · Simit cart"
+    prompt:
+      - text: |
+          Add a short upright wooden pole at the cart's front left corner
+          with eight golden-brown simit rings stacked on it, the same rings
+          as on the tray, the pole's top below the umbrella.
+      - block: edit-keep-v1
+
+  - id: simit-4
+    kind: station
+    name: simit-4
+    edit_of: simit-3
+    chat: "Pofu · Simit cart"
+    prompt:
+      - text: |
+          Add a small, low, rounded wooden bench for regulars beside the
+          cart's right wheel, inside the footprint and lower than the
+          cart's tray.
+      - block: edit-keep-v1
+
+  - id: simit-5
+    kind: station
+    name: simit-5
+    edit_of: simit-4
+    chat: "Pofu · Simit cart"
+    prompt:
+      - text: |
+          Turn the cart into a little kiosk: replace only the umbrella with
+          a small peaked roof of soft coral and cream boards on two thin
+          wooden posts, and add a small plain triangular coral-and-cream
+          pennant on top of the roof (no symbols, no letters). Keep the
+          cart, the rings, the pole and the bench.
+      - block: edit-keep-v1
+
+  # -------------------------------------- workshop L3-L5 (Fındık's)
+  - id: workshop-3
+    kind: station
+    name: workshop-3
+    edit_of: workshop-2
+    chat: "Pofu · Workshop"
+    prompt:
+      - text: |
+          Add a small wind vane on a short wooden pole on the roof's ridge:
+          four rounded cream and honey blades like a little pinwheel,
+          facing the viewer, matte.
+      - block: edit-keep-v1
+
+  - id: workshop-4
+    kind: station
+    name: workshop-4
+    edit_of: workshop-3
+    chat: "Pofu · Workshop"
+    prompt:
+      - text: |
+          Add a short, round chimney of soft cream stones on the left side
+          of the roof, with a small rose-copper cap. No smoke (the app adds
+          it).
+      - block: edit-keep-v1
+
+  - id: workshop-5
+    kind: station
+    name: workshop-5
+    edit_of: workshop-4
+    chat: "Pofu · Workshop"
+    prompt:
+      - text: |
+          Add a big, round, gear-shaped wooden sign above the doorway: soft
+          honey wood with a cream rim and eight rounded teeth, plain (no
+          letters, no symbols).
+      - block: edit-keep-v1

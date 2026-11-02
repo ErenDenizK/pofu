@@ -1,0 +1,36 @@
+{
+  "_doc": "Pofu's layered rig (docs/design/art-production-plan.md, 'Pofu's reactions are a rig'). Regions are drawn once on R1 (1024 x 1536): ellipses in R1 pixels. A region with an `envelope` mode takes its mask from where the part's edit differs from R1 inside the envelope (paws and cheek pouches change shape); a `region` mode uses the ellipses as they are. Layers composite in this order over the plate. Edit this file, not the code, to tune the rig. `restore` regions are the ones the clean plate lacks: R1's own ears and paws are composited back when no part replaces them.",
+  "canvas": [1024, 1536],
+  "r1": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+  "plate": "pofu-rig-clean",
+  "feather_px": 10,
+  "diff_threshold": 6.0,
+  "seam_warn": 6.0,
+  "regions": {
+    "fur": {"mode": "region", "full": true},
+    "paws": {"mode": "envelope", "ellipses": [[523, 1080, 380, 330]], "restore": true},
+    "cheeks": {"mode": "envelope", "ellipses": [[290, 1050, 190, 150], [755, 1050, 190, 150]]},
+    "ears": {"mode": "envelope", "restore": true, "ellipses": [[300, 790, 135, 125], [730, 790, 135, 125]], "pivots": [[345, 835], [688, 835]]},
+    "mouth": {"mode": "region", "ellipses": [[522, 1038, 72, 34]]},
+    "eyes": {"mode": "region", "ellipses": [[395, 965, 78, 80], [650, 965, 78, 80]]}
+  },
+  "layers": ["fur", "paws", "cheeks", "ears", "mouth", "eyes"],
+  "expressions": {
+    "neutral": {},
+    "happy": {"eyes": "pofu-eyes-happy"},
+    "sleepy": {"eyes": "pofu-eyes-closed", "ears": "pofu-ears-droop"},
+    "sulky": {"mouth": "pofu-mouth-pout"},
+    "full-pouches": {"cheeks": "pofu-cheeks-puff-2"},
+    "proud": {"eyes": "pofu-eyes-happy", "mouth": "pofu-mouth-smirk"},
+    "jealous": {"eyes": "pofu-eyes-side", "mouth": "pofu-mouth-pout"},
+    "surprised": {"mouth": "pofu-mouth-o"},
+    "eating": {"paws": "pofu-paws-seed", "mouth": "pofu-mouth-chew", "cheeks": "pofu-cheeks-puff-1"},
+    "waving": {"paws": "pofu-paws-wave"},
+    "breathing": {"eyes": "pofu-eyes-closed", "paws": "pofu-paws-belly"},
+    "unwell": {"fur": "pofu-fur-matted", "mouth": "pofu-mouth-worried", "ears": "pofu-ears-droop"},
+    "giggling": {"eyes": "pofu-eyes-happy", "mouth": "pofu-mouth-open"},
+    "curious": {"eyes": "pofu-eyes-side", "mouth": "pofu-mouth-o"},
+    "celebrating": {"eyes": "pofu-eyes-happy", "mouth": "pofu-mouth-open", "paws": "pofu-paws-up"}
+  },
+  "pilot": ["neutral", "happy", "sleepy", "sulky", "full-pouches"]
+}

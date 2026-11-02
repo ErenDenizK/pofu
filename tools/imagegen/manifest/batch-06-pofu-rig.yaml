@@ -1,0 +1,327 @@
+# Batch 06: Pofu's layered rig, the rest of the parts (after the pilot).
+#
+# Same method as batch-06-pofu-rig-pilot: every image is an edit of R1 that
+# changes one region; the lead cuts the region with soft masks and the app
+# composites it over the clean plate (docs/design/art-production-plan.md,
+# "Pofu's reactions are a rig", has the reaction table: which parts and
+# which code motion make each of the twelve reactions).
+#
+# Opens when the lead has composited the pilot's neutral rig and its three
+# expressions and found no seams. If the pilot shows that a region needs a
+# different prompt, the lead edits these jobs first.
+#
+# Tracks: `face` (eyes and mouths), `body` (cheek pouches, paws, ears,
+# matted fur), `residents` (Mochi's and Fındık's blink and happy eyes).
+# All start at once; every job needs only its character's master.
+
+batch: batch-06-pofu-rig
+title: Pofu's layered rig (eyes, mouths, cheek pouches, paws, ears, matted fur; Mochi and Fındık eyes)
+status: blocked
+blocked_on:
+  - "the lead's composite review of batch-06-pofu-rig-pilot (neutral rig, happy, sleepy, sulky)"
+
+defaults:
+  variants: 2
+
+jobs:
+  - id: pofu
+    kind: char
+    name: pofu-r1
+    external: r1
+    master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island}
+  - {id: findik, kind: char, name: findik-base, external: batch-03-home-island}
+
+  # ------------------------------------------------------- Pofu's parts
+
+  - id: pofu-eyes-side
+    kind: char
+    name: pofu-eyes-side
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Jealous and cheeky side-eye (with a lean away in code)."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his eyes: both eyes look
+          sideways toward his left (the right side of the image), the dark
+          irises and catchlights moved to that corner of each eye, the eye
+          shapes unchanged, a playful, knowing side-glance. Nothing else
+          changes.
+      - block: edit-keep-v1
+      - text: "AVOID: eyebrows, a frown, changed eye shapes, a ground shadow, text."
+
+  - id: pofu-eyes-matte
+    kind: char
+    name: pofu-eyes-matte
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Eyes without catchlights: code draws the catchlights and the tiny sparkle, so Pofu can look around and his eyes can twinkle."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his eyes: remove the white
+          catchlights and the tiny sparkles, so each eye is a plain soft dark
+          espresso-brown with its lighter warm-brown lower iris. Same eye
+          shapes, sizes and positions. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: white dots, reflections, glints, changed eye shapes, a ground shadow, text."
+
+  - id: pofu-mouth-open
+    kind: char
+    name: pofu-mouth-open
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Laughing and giggling, celebrating."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his mouth: open it into a
+          small, happy laugh, a soft rounded opening under the nose with a
+          hint of pink tongue, the same width as the current smile. The muzzle
+          fur moves only around the mouth. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: teeth, a wide-open shout, a ground shadow, text."
+
+  - id: pofu-mouth-o
+    kind: char
+    name: pofu-mouth-o
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Surprised and curious (the Hop! moment)."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his mouth: make it a small
+          round "o" of surprise and curiosity under the nose, about a third
+          the width of the current smile. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: teeth, a wide-open shout, a ground shadow, text."
+
+  - id: pofu-mouth-smirk
+    kind: char
+    name: pofu-mouth-smirk
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Proud and smug (calm at x2.0, a skip)."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his mouth: a small, pleased,
+          lopsided smile, one corner lifted a little higher than the other,
+          cheeky and proud, mouth closed. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: teeth, a sneer, a ground shadow, text."
+
+  - id: pofu-mouth-worried
+    kind: char
+    name: pofu-mouth-worried
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Worried and unwell, always soft (art bible section 9: no sickness, no tears)."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his mouth: a small, soft,
+          gently wavy mouth, slightly turned down at the corners, a little
+          unsure, still cute and calm. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: a frown, tears, an open mouth, teeth, a ground shadow, text."
+
+  - id: pofu-mouth-chew
+    kind: char
+    name: pofu-mouth-chew
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Eating seeds: the chew is a code motion between this and R1's smile."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his mouth: a tiny closed
+          mouth mid-munch, pushed slightly to one side, as if happily chewing
+          a sunflower seed. No food visible. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: visible food, teeth, crumbs, a ground shadow, text."
+
+  - id: pofu-cheeks-puff-1
+    kind: char
+    name: pofu-cheeks-puff-1
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Cheek pouches a little full: new idea (founder, 2026-11-02), the pouches fill as uncollected seeds accumulate."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his cheeks: fill both cheek
+          pouches a little, as if he is carrying a few sunflower seeds in
+          them, so the face is slightly rounder and wider at cheek height.
+          Keep the same blush, eyes, mouth and expression. No visible food.
+          Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: visible seeds, a changed mouth, a changed body outline below the cheeks, a ground shadow, text."
+
+  - id: pofu-paws-seed
+    kind: char
+    name: pofu-paws-seed
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Eating seeds and holding a seed out as a gift."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his two front paws: they now
+          hold one plump sunflower seed upright in front of his chest, a soft
+          warm-brown shell with two broad cream stripes, the paws wrapped
+          around it. The chest fur shows around the paws as in the original.
+          Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: more than one seed, a bowl, food in the mouth, a ground shadow, text."
+
+  - id: pofu-paws-wave
+    kind: char
+    name: pofu-paws-wave
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Waving hello (arrival, missed you)."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his front paws: his right paw
+          (on the left side of the image) is raised beside his face, open and
+          waving, palm toward the viewer with its three toe creases; his left
+          paw stays at the chest as in the original. The chest fur shows where
+          the raised paw was. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: both paws raised, an arm longer than a short furry nub, a changed head, a ground shadow, text."
+
+  - id: pofu-paws-up
+    kind: char
+    name: pofu-paws-up
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Celebrating (an upgrade, a new island)."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his front paws: both paws are
+          raised high above his shoulders on either side of his head, open, in
+          a happy little cheer. The chest is smooth cream fur where the paws
+          were. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: long arms, confetti, a changed head, a ground shadow, text."
+
+  - id: pofu-paws-belly
+    kind: char
+    name: pofu-paws-belly
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Breathing calmly with the orb: the belly rises and falls in code under the resting paws."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his front paws: both paws
+          rest gently on his round belly, lower than in the original, relaxed
+          and calm. The chest is smooth cream fur where the paws were. Nothing
+          else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: crossed arms, a changed head, a ground shadow, text."
+
+  - id: pofu-ears-droop
+    kind: char
+    name: pofu-ears-droop
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Sleepy and unwell ears; code also flicks the R1 ears, this is the tired pose."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his two ears: they fold
+          softly down and outward to the sides of the head, relaxed and a
+          little droopy, the same size, color and pink insides. Nothing else
+          changes.
+      - block: edit-keep-v1
+      - text: "AVOID: missing ears, ears pointing up, a changed curl, a ground shadow, text."
+
+  - id: pofu-fur-matted
+    kind: char
+    name: pofu-fur-matted
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Unwell (game design section 11, ADR-0017): blended by wellbeing under the unwell grade. Motion contract image 7."
+    prompt:
+      - text: |
+          Edit the attached hamster. Make the fur look tired: flatter and
+          smoother, lying close to the body in soft clumps, with fewer fluffy
+          wisps on the outline, and the colors gently washed toward warm ash
+          (warm grayish cream and muted beige-peach, never blue-gray, never
+          green). Same pose, same size, same face and expression. Still cute
+          and clean, never dirty, wet, sick or injured. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: dirt, wetness, bandages, a thermometer, tears, a changed face, a ground shadow, text."
+
+  # ------------------------------------- residents: blink and joy
+
+  - id: mochi-eyes-happy
+    kind: char
+    name: mochi-eyes-happy
+    size: 1024x1536
+    edit_of: mochi-v2
+    chat: "Pofu · Residents"
+    notes: "Mochi's happy face (serving tea, a fulfilled wish)."
+    prompt:
+      - text: |
+          Edit the attached bunny, Mochi. Change only the eyes: make both eyes
+          happy closed arcs, the classic smiling ^ shape: each eye a thick,
+          soft, dark upward-curved arc at the height of the top of the
+          original eye, with fur below it. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: eyelashes, tears, a changed mouth, a curl on the head, a ground shadow, text."
+
+  - id: mochi-eyes-closed
+    kind: char
+    name: mochi-eyes-closed
+    size: 1024x1536
+    edit_of: mochi-v2
+    chat: "Pofu · Residents"
+    notes: "Mochi's blink and nap."
+    prompt:
+      - text: |
+          Edit the attached bunny, Mochi. Change only the eyes: make both eyes
+          gently closed, as if peacefully asleep: a thin, soft, slightly
+          downward-curved dark line where the lower edge of each eye was, with
+          fur above it. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: eyelashes, tears, a changed mouth, a curl on the head, a ground shadow, text."
+
+  - id: findik-eyes-happy
+    kind: char
+    name: findik-eyes-happy
+    size: 1024x1536
+    edit_of: findik
+    chat: "Pofu · Residents"
+    notes: "Fındık's happy face (a finished part)."
+    prompt:
+      - text: |
+          Edit the attached hedgehog, Fındık. Change only the eyes: make both
+          eyes happy closed arcs, the classic smiling ^ shape: each eye a
+          thick, soft, dark upward-curved arc at the height of the top of the
+          original eye, with fur below it. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: eyelashes, tears, a changed mouth, a curl on the head, a ground shadow, text."
+
+  - id: findik-eyes-closed
+    kind: char
+    name: findik-eyes-closed
+    size: 1024x1536
+    edit_of: findik
+    chat: "Pofu · Residents"
+    notes: "Fındık's blink and nap."
+    prompt:
+      - text: |
+          Edit the attached hedgehog, Fındık. Change only the eyes: make both
+          eyes gently closed, as if peacefully asleep: a thin, soft, slightly
+          downward-curved dark line where the lower edge of each eye was, with
+          fur above it. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: eyelashes, tears, a changed mouth, a curl on the head, a ground shadow, text."

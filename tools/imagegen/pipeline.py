@@ -75,6 +75,9 @@ class Job:
     # generated here: it only lets this manifest's jobs edit or attach a
     # master another batch made (approved once that master is on disk).
     external: str | None = None
+    # An external master outside the pipeline's folder layout (R1, the
+    # approved Pofu, predates the pipeline): a repository path to its image.
+    master: str | None = None
 
     @property
     def asset(self) -> str:
@@ -157,6 +160,9 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
             if merged.get("edit_of") or merged.get("attach"):
                 raise ManifestError(f"{where}: an external job only points at another batch's master (no edit_of, no attach)")
             prompt = prompt or []
+        master = merged.get("master")
+        if master is not None and not external:
+            raise ManifestError(f"{where}: master names an external job's image; add external: <who made it>")
         if not isinstance(prompt, list) or (not prompt and not external):
             raise ManifestError(f"{where}: prompt must be a non-empty list of {{text: ...}} or {{block: ...}} parts")
         for part in prompt:
@@ -185,7 +191,8 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
         job = Job(id=jid, kind=kind, name=name, prompt=prompt, attach=attach, edit_of=merged.get("edit_of"),
                   size=size, transparent=transparent, key=key,
                   variants=variants, acceptance=merged.get("acceptance", {}) or {}, chat=merged.get("chat"),
-                  notes=merged.get("notes", "") or "", canvas=canvas, external=str(external) if external else None)
+                  notes=merged.get("notes", "") or "", canvas=canvas, external=str(external) if external else None,
+                  master=str(master) if master else None)
         jobs.append(job)
     if not jobs:
         raise ManifestError("manifest has no jobs")
@@ -317,6 +324,8 @@ def approved_dir(job: Job) -> Path:
 
 
 def approved_image(job: Job) -> Path:
+    if job.master:
+        return (REPO_ROOT / job.master).resolve()
     d = approved_dir(job)
     return d / f"{d.name}.png"
 
