@@ -4,19 +4,23 @@ title_tr: pond-5-lit
 title_en: pond-5-lit (station)
 status: in-production
 horizon: now
-summary: >-
-  Light the three floating paper lanterns from inside: each paper glows a warm honey-gold,
-  brightest at its center, with its ribs unchanged. Light only inside each lantern's own outline:
-  no halo, no glow, no reflection on the water and no light on the pads (the app draws the
-  glow and the reflection).
+summary: 'Light the three floating paper lanterns from inside: each paper glows a
+  warm honey-gold, brightest at its center, with its ribs unchanged. Light only inside
+  each lantern''s own outline: no halo, no glow, no reflection on the water and no
+  light on the pads (the app draws the glow and the reflection).'
 links:
   variant_of:
   - asset-pond-5
 art:
-  images: []
+  images:
+  - design/art/stations/pond-5-lit/pond-5-lit.png
   jobs:
   - batch-07-light:pond-5-lit
 sources:
 - doc: tools/imagegen/manifest/batch-07-light.yaml
 kind: station
 batch: batch-07-light
+notes:
+- 'Batch 07 take 2 selected (QA warnings only) but not promoted: the global stop on
+  workshop-1-lit occurred before pond promotion. Both takes and the contact sheet
+  are retained for resumption.'

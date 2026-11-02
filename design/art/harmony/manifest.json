@@ -70,8 +70,8 @@
     "edge": 0.427,
     "materials": {
      "rose-copper": {
-      "chroma": 40.3579091331905,
-      "hue": 54.03455182601406,
+      "chroma": 40.357909133190496,
+      "hue": 54.03455182601405,
       "pixels": 41174
      }
     },
@@ -88,8 +88,8 @@
     "edge": 0.427,
     "materials": {
      "rose-copper": {
-      "chroma": 40.3579091331905,
-      "hue": 54.03455182601406,
+      "chroma": 40.357909133190496,
+      "hue": 54.03455182601405,
       "pixels": 41174
      }
     },
@@ -2557,6 +2557,63 @@
    "source": "design/art/stations/pond-5/pond-5.png",
    "source_sha": "fc025e66edbaf2c1"
   },
+  "pond-5-lit": {
+   "after": {
+    "C_mean": 11.859,
+    "C_p50": 10.246,
+    "C_p95": 27.803,
+    "L_mean": 84.969,
+    "L_p2": 64.21,
+    "L_p98": 92.881,
+    "detail": 1.344,
+    "edge": 0.435,
+    "tint_a": 1.43,
+    "tint_b": 3.62,
+    "warmth_b": 8.332
+   },
+   "before": {
+    "C_mean": 8.219,
+    "C_p50": 7.066,
+    "C_p95": 19.174,
+    "L_mean": 81.842,
+    "L_p2": 64.21,
+    "L_p98": 88.683,
+    "detail": 1.168,
+    "edge": 0.435,
+    "tint_a": 1.121,
+    "tint_b": 3.787,
+    "warmth_b": 5.775
+   },
+   "chain": null,
+   "correction": {
+    "black": 0.0,
+    "ceiling": 0.0,
+    "chroma": 1.45,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 4.38
+   },
+   "guarded": false,
+   "kind": "station",
+   "matched_to": "world",
+   "outliers_after": [
+    "C_p95",
+    "edge"
+   ],
+   "outliers_before": [
+    "C_p95",
+    "L_p98",
+    "edge"
+   ],
+   "ppu": 8.533,
+   "reference": false,
+   "score_after": 65.2,
+   "score_before": 55.2,
+   "shipped": false,
+   "source": "design/art/stations/pond-5-lit/pond-5-lit.png",
+   "source_sha": "0c83e447abeaa523"
+  },
   "simit-1": {
    "after": {
     "C_mean": 34.526,
@@ -3251,6 +3308,64 @@
    "shipped": true,
    "source": "design/art/stations/windmill-5/windmill-5.png",
    "source_sha": "2b39b888f828ae71"
+  },
+  "windmill-5-lit": {
+   "after": {
+    "C_mean": 11.249,
+    "C_p50": 10.715,
+    "C_p95": 16.923,
+    "L_mean": 79.826,
+    "L_p2": 56.067,
+    "L_p98": 93.065,
+    "detail": 2.089,
+    "edge": 0.456,
+    "tint_a": 4.867,
+    "tint_b": 8.435,
+    "warmth_b": 9.915
+   },
+   "before": {
+    "C_mean": 7.763,
+    "C_p50": 7.389,
+    "C_p95": 11.695,
+    "L_mean": 81.877,
+    "L_p2": 72.066,
+    "L_p98": 87.344,
+    "detail": 1.029,
+    "edge": 0.456,
+    "tint_a": 3.451,
+    "tint_b": 6.274,
+    "warmth_b": 6.844
+   },
+   "chain": null,
+   "correction": {
+    "black": -16.0,
+    "ceiling": 0.0,
+    "chroma": 1.45,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 5.72
+   },
+   "guarded": false,
+   "kind": "station",
+   "matched_to": "world",
+   "outliers_after": [
+    "C_p95",
+    "edge"
+   ],
+   "outliers_before": [
+    "C_p95",
+    "L_p2",
+    "L_p98",
+    "edge"
+   ],
+   "ppu": 8.533,
+   "reference": false,
+   "score_after": 66.0,
+   "score_before": 44.0,
+   "shipped": false,
+   "source": "design/art/stations/windmill-5-lit/windmill-5-lit.png",
+   "source_sha": "c7db2ac7a5ea6c97"
   },
   "workshop-1": {
    "after": {
