@@ -1,0 +1,13 @@
+Frame times, iPhone simulator (26.2).
+The simulator renders on the Mac's GPU: compare the rows with each other, not with a phone.
+GPU time is not readable in-app for SwiftUI; GPU-bound work shows as long frame intervals.
+
+look off (soft-lock, no grade)
+  camera moving: 11 fps, frame p50 62.7 ms, p95 214.9 ms, max 375.7 ms, CPU 31% of a core (42 frames in 3.8 s)
+  settled:       30 fps, frame p50 16.7 ms, p95 78.5 ms, max 97.3 ms, CPU 42% of a core (60 frames in 2.0 s)
+look on, depth in motion off (grade + HD-2D lite), golden hour
+  camera moving: 8 fps, frame p50 84.7 ms, p95 282.3 ms, max 559.0 ms, CPU 29% of a core (33 frames in 4.1 s)
+  settled:       10 fps, frame p50 102.3 ms, p95 152.3 ms, max 190.2 ms, CPU 38% of a core (20 frames in 2.0 s)
+look on (grade + HD-2D lite + depth in motion), golden hour
+  camera moving: 9 fps, frame p50 88.6 ms, p95 221.1 ms, max 298.4 ms, CPU 29% of a core (35 frames in 3.9 s)
+  settled:       16 fps, frame p50 64.2 ms, p95 95.8 ms, max 113.8 ms, CPU 46% of a core (32 frames in 2.0 s)

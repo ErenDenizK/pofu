@@ -1,0 +1,68 @@
+reference (world): L_p2 53.5  L_p98 93.1  C_p95 49.0  edge 1.1  detail 1.1
+reference (char): L_p2 18.1  L_p98 96.9  C_p95 43.0  tint_a 2.9  tint_b 10.3  edge 0.4  detail 5.1
+
+asset                                    score  outliers before -> after; correction
+sun-glow (guarded)                  38.9-> 38.9  C_p95,L_p2,edge -> C_p95,L_p2,edge; none
+windmill-5 (not in app)             43.1-> 63.0  chain_C_p50,chain_L_p2,edge -> chain_C_p50,edge; black -15.3, chroma x3.00
+cay-4 (not in app)                  43.3-> 87.3  chain_C_p50,chain_L_p2,edge -> edge; black -16.0, chroma x3.00
+cay-3 (not in app)                  44.3-> 91.0  chain_C_p50,chain_L_p2,edge -> edge; black -16.0, chroma x2.48
+cay-2 (not in app)                  45.2-> 90.9  chain_C_p50,chain_L_p2,edge -> edge; black -15.9, chroma x1.94
+far-isle-3 (guarded)                46.0-> 46.0  C_p95,L_p2,edge -> C_p95,L_p2,edge; none
+windmill-4 (not in app)             46.1-> 64.7  chain_C_p50,chain_L_p2,edge -> chain_C_p50,edge; black -13.8, chroma x3.00
+cay-5 (not in app)                  46.8-> 64.7  chain_C_p50,chain_L_p2,edge -> chain_C_p50,edge; black -12.8, chroma x3.00
+far-isle-2 (guarded)                47.6-> 47.6  C_p95,L_p2,edge -> C_p95,L_p2,edge; none
+cloud-1 (guarded)                   51.1-> 51.1  C_p95,L_p2 -> C_p95,L_p2; none
+garden-4 (not in app)               51.2-> 87.0  chain_C_p50,chain_L_p2,edge -> edge; black -9.7, chroma x2.41
+cloud-sea (guarded)                 51.7-> 51.7  C_p95,L_p2 -> C_p95,L_p2; none
+windmill-3 (not in app)             53.5-> 69.6  chain_C_p50,chain_L_p2,edge -> chain_C_p50,edge; black -9.8, chroma x3.00
+pond-5 (not in app)                 56.1-> 92.1  chain_C_p50,chain_L_p2,edge -> edge; black -14.4, chroma x1.88
+far-isle-1 (guarded)                56.3-> 56.3  C_p95,L_p2 -> C_p95,L_p2; none
+garden-standin                      56.5-> 97.6  C_p95,L_p2,L_p98 -> -; black +16.0, white -4.5, chroma x0.75
+bridge-east (not in app)            56.7-> 79.0  C_p95,L_p2,edge -> C_p95,edge; black -16.0, chroma x1.45
+pond-3 (not in app)                 58.0-> 90.6  chain_C_p50,chain_L_p2,edge -> edge; black -16.0, chroma x1.53
+garden-3 (not in app)               58.8-> 90.4  chain_C_p50,chain_L_p2,edge -> edge; black -6.6, chroma x1.88
+pond-1 (not in app)                 59.0-> 74.0  C_p95,L_p2,edge -> C_p95,edge; black -14.3, chroma x1.45
+windmill-standin                    62.1-> 83.2  C_p95,L_p98,edge -> edge; white -6.0, chroma x1.22
+terrace-v2 (not in app)             62.2-> 75.2  C_p95,L_p2 -> C_p95; black -16.0, chroma x1.45
+islet-east (not in app)             62.6-> 77.8  C_p95,L_p2 -> C_p95; black -16.0, chroma x1.45
+windmill-2 (not in app)             63.6-> 88.1  chain_C_p50,edge -> edge; chroma x2.77
+garden-5 (not in app)               63.8-> 87.8  chain_C_p50,edge -> edge; chroma x1.77
+pond-2 (not in app)                 64.9-> 86.5  chain_L_p2,edge -> edge; black -16.0
+workshop-2 (not in app)             65.5-> 90.2  chain_C_p50,edge -> edge; chroma x1.45
+findik-standin                      66.0-> 66.0  C_p95,L_p98,edge -> C_p95,L_p98,edge; none
+island-main-l-v2 (not in app)       68.1-> 87.2  C_p95,L_p2 -> C_p95; black -14.7, chroma x1.45
+pond-4 (not in app)                 68.2-> 92.4  chain_C_p50,chain_L_p2,edge -> edge; black -10.0, chroma x1.53
+cay-1-lit (not in app)              68.4-> 91.0  C_p95,L_p98,edge -> edge; white +4.1, chroma x1.45
+workshop-standin                    68.5-> 85.9  C_p95,L_p2,edge -> edge; black +13.2, chroma x1.28
+island-main-l-v3 (not in app)       69.1-> 87.1  C_p95,L_p2 -> C_p95; black -13.2, chroma x1.45
+workshop-1 (not in app)             69.3-> 86.6  C_p95,edge -> edge; chroma x1.45
+garden-2 (not in app)               69.7-> 89.1  chain_C_p50,edge -> edge; chroma x1.37
+windmill-1 (not in app)             70.2-> 87.5  C_p95,edge -> edge; chroma x1.45
+simit-2 (not in app)                70.8-> 90.1  chain_C_p50,edge -> edge; chroma x1.22
+pofu-eyes-happy (guarded)           71.1-> 71.1  L_p2,detail -> L_p2,detail; none
+pofu-eyes-closed (guarded)          71.2-> 71.2  L_p2,detail,tint_b -> L_p2,detail,tint_b; none
+island-main-l (not in app)          71.6-> 85.8  C_p95 -> C_p95; chroma x1.45
+isle-library-standin                73.2-> 91.4  C_p95 -> -; chroma x0.75
+simit-1 (not in app)                74.0-> 82.2  C_p95,detail,edge -> detail,edge; chroma x1.24
+isle-hamam-standin                  77.7-> 84.7  C_p95,edge -> edge; chroma x1.21
+cay-1                               78.2-> 89.0  copper_hue,edge -> edge; copper hue +7.0 chroma x1.09
+pond-standin                        78.5-> 99.0  C_p95,L_p2 -> -; black -16.0, chroma x1.29
+isle-stars-standin                  85.2-> 91.5  C_p95,edge -> edge; chroma x1.20
+findik-work (not in app)            85.2-> 85.2  detail -> detail; none
+garden-1 (not in app)               85.7-> 85.7  edge -> edge; none
+pofu-cheeks-puff-2 (guarded)        85.7-> 85.7  C_p95,detail -> C_p95,detail; none
+pofu-mouth-pout (guarded)           85.8-> 85.8  detail,tint_b -> detail,tint_b; none
+mochi                               86.3-> 86.3  C_p95 -> C_p95; none
+mochi-v2 (not in app)               86.5-> 86.5  C_p95 -> C_p95; none
+findik-base (not in app)            87.8-> 87.8  detail -> detail; none
+mochi-work (not in app)             88.3-> 88.3  detail -> detail; none
+pofu-rig-clean (guarded)            88.7-> 88.7  detail,tint_b -> detail,tint_b; none
+isle-harbor-standin                 92.0-> 92.0  - -> -; none
+cloud-2 (guarded)                   92.3-> 92.3  edge -> edge; none
+cloud-3 (guarded)                   93.9-> 93.9  - -> -; none
+cloud-4 (guarded)                   94.7-> 94.7  - -> -; none
+cloud-5 (guarded)                   95.5-> 95.5  - -> -; none
+island-main (reference)            100.0->100.0  - -> -; none
+pofu (guarded)                     100.0->100.0  - -> -; none
+
+contact sheet: out/harmony.jpg

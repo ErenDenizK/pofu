@@ -1,0 +1,26 @@
+frame                                  grade      band    mean    p2   p98 range  local chroma
+grade-day-home                         day        home    79.5  51.0  97.6  46.5   5.03   33.1
+grade-day-island                       day        island  79.8  52.9  96.8  44.0   5.98   31.7
+grade-golden-home                      golden     home    78.3  52.9  93.1  40.2   4.06   41.6
+grade-golden-island                    golden     island  76.8  55.2  92.6  37.4   4.78   42.9
+grade-night-home                       night      home    30.2   4.6  50.0  45.4   4.60   12.0
+grade-night-island                     night      island  24.3   3.4  48.4  45.0   5.54   13.7
+grade-night-r1-home                    night      home    40.0  22.2  53.1  30.9   3.76    8.5
+grade-night-r1-island                  night      island  34.6   6.6  52.1  45.5   4.42    9.6
+grade-unwell-home                      unwell     home    70.7  37.4  90.8  53.5   5.65   17.9
+grade-unwell-island                    unwell     island  71.4  39.0  92.7  53.7   7.05   17.5
+grade-unwell-r1-home                   unwell     home    75.3  49.4  90.8  41.3   4.65   20.2
+grade-unwell-r1-island                 unwell     island  75.9  51.4  91.9  40.5   5.52   19.9
+
+ok   grade-day-home: within targets
+ok   grade-day-island: within targets
+ok   grade-golden-home: within targets
+ok   grade-golden-island: within targets
+ok   grade-night-home: within targets
+ok   grade-night-island: within targets
+MISS grade-night-r1-home: p2 22.2 outside [None, 10]; local 0.75x day outside [0.75, None]; range 0.66x day outside [0.85, None]
+MISS grade-night-r1-island: local 0.74x day outside [0.75, None]
+ok   grade-unwell-home: within targets
+ok   grade-unwell-island: within targets
+MISS grade-unwell-r1-home: local 0.92x day outside [0.95, None]; range 0.89x day outside [0.95, None]
+MISS grade-unwell-r1-island: local 0.92x day outside [0.95, None]; range 0.92x day outside [0.95, None]
