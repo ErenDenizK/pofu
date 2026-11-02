@@ -1,0 +1,14 @@
+id: idea-open-game-first
+type: idea
+title_tr: Daha çok oyun, adalarda mini oyunlar
+title_en: More game, playable islands
+status: idea
+horizon: next
+kind: question
+summary: >-
+  The founder wants Pofu to become more of a game: each island playable with its own small loop,
+  mini-game or toy, and 5–10 minute play sessions accepted. Conflicts with the median-visit guardrail;
+  a revised guardrail is proposed in the archipelago system doc.
+sources:
+- doc: docs/product/founder-input.md
+  anchor: '#game-direction-views-to-discuss'
