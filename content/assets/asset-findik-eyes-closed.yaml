@@ -2,17 +2,17 @@ id: asset-findik-eyes-closed
 type: asset
 title_tr: findik-eyes-closed
 title_en: findik-eyes-closed (char)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  Edit the attached hedgehog, Fındık. Change only the eyes: make both eyes gently closed,
-  as if peacefully asleep: a thin, soft, slightly downward-curved dark line where the lower
-  edge of each eye was, with fur above it. Nothing else changes.
+summary: 'Edit the attached hedgehog, Fındık. Change only the eyes: make both eyes
+  gently closed, as if peacefully asleep: a thin, soft, slightly downward-curved dark
+  line where the lower edge of each eye was, with fur above it. Nothing else changes.'
 links:
   variant_of:
   - asset-findik
 art:
-  images: []
+  images:
+  - design/art/masters/findik-eyes-closed/findik-eyes-closed.webp
   jobs:
   - batch-06-pofu-rig:findik-eyes-closed
 sources:

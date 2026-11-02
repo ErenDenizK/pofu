@@ -9,10 +9,10 @@ jobs:
       PNG for generation and QA, without rescaling. Selected master remains canonical
       1024x1536. Lead composite inverse crop is (left77,top115,right947,bottom1421);
       no direct pixel alignment to unpadded base is claimed. Ground-line warning from
-      padding, palette/value warnings retained. Global queue stop: batch-07-light
-      workshop-1-lit retry takes 3 and 4 both failed chroma_ceiling. No new image
-      calls after stop; this generated pair is retained for later review and is NOT
-      published as a master on this branch.'
+      padding, palette/value warnings retained. Publication resumed under the repeated
+      user request from original cached PNGs/local raw; no new generation. Current
+      harmony audit at f35258d leaves the selected take unchanged; QA implementation,
+      presets and rig manifest are byte-unchanged.'
     takes:
       t1:
         qa: warn
@@ -20,13 +20,11 @@ jobs:
       t2:
         qa: warn
         summary: value_floor warn; palette_drift warn; ground_line warn
-    local_candidate_preparation:
+    approved:
       take: 1
       at: '2026-11-02T19:11:56+00:00'
-    publication: selected candidate, not published as a master on this branch due
-      global stop
 qa_reports:
-  char__findik-eyes-closed--t1:
+  t1:
     job: findik-eyes-closed
     take: 1
     status: warn
@@ -59,10 +57,6 @@ qa_reports:
       status: warn
       message: feet at 83.7% of the height (contract 88%)
       value: 0.8366
-    - check: harmony
-      status: pass
-      message: 'harmony score 74 against the char reference (outliers: L_p2, detail)'
-      value: 73.6
     - check: edit_stability
       status: pass
       message: 96% of the parent level unchanged
@@ -71,6 +65,10 @@ qa_reports:
       status: pass
       message: chroma x0.99 of the parent level (drift compounds along a chain)
       value: 0.9939
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the char reference (outliers: L_p2, detail)'
+      value: 73.6
     info:
       metrics_raw:
         L_p5: 48.3
@@ -89,7 +87,15 @@ qa_reports:
         C_p99: 53.7
         detail: 5.89
     fingerprint: 6b7543f46469b023
-  char__findik-eyes-closed--t2:
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-residents/build/imagegen/batch-06-pofu-rig/qa/char__findik-eyes-closed--t1.json
+      locked_pixels: /workspace/run06-residents/build/imagegen/batch-06-pofu-rig/locked/char__findik-eyes-closed--t1.png
+      old_harmony: 73.6
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
+  t2:
     job: findik-eyes-closed
     take: 2
     status: warn
@@ -122,10 +128,6 @@ qa_reports:
       status: warn
       message: feet at 83.7% of the height (contract 88%)
       value: 0.8372
-    - check: harmony
-      status: pass
-      message: 'harmony score 73 against the char reference (outliers: L_p2, detail)'
-      value: 73.0
     - check: edit_stability
       status: pass
       message: 96% of the parent level unchanged
@@ -134,6 +136,10 @@ qa_reports:
       status: pass
       message: chroma x0.97 of the parent level (drift compounds along a chain)
       value: 0.9737
+    - check: harmony
+      status: pass
+      message: 'harmony score 73 against the char reference (outliers: L_p2, detail)'
+      value: 73.0
     info:
       metrics_raw:
         L_p5: 48.7
@@ -152,3 +158,22 @@ qa_reports:
         C_p99: 53.9
         detail: 5.91
     fingerprint: 6b7543f46469b023
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-residents/build/imagegen/batch-06-pofu-rig/qa/char__findik-eyes-closed--t2.json
+      locked_pixels: /workspace/run06-residents/build/imagegen/batch-06-pofu-rig/locked/char__findik-eyes-closed--t2.png
+      old_harmony: 73.0
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
+current_policy_audit:
+  base: f35258d
+  old_pick: 1
+  pick: 1
+  take_scores:
+  - n: 1
+    status: warn
+    harmony: 73.6
+  - n: 2
+    status: warn
+    harmony: 73.0

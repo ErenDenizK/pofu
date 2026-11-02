@@ -1,0 +1,102 @@
+{
+  "job": "findik-eyes-closed",
+  "batch": "batch-06-pofu-rig",
+  "asset": "char__findik-eyes-closed",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T19:11:56+00:00",
+  "image": "design/art/masters/findik-eyes-closed/findik-eyes-closed.webp",
+  "raw": "design/art/masters/findik-eyes-closed/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "6b7543f46469b023",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached hedgehog, Fındık. Change only the eyes: make both\neyes gently closed, as if peacefully asleep: a thin, soft, slightly\ndownward-curved dark line where the lower edge of each eye was, with\nfur above it. Nothing else changes.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: eyelashes, tears, a changed mouth, a curl on the head, a ground shadow, text.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/findik-base/findik-base.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T19:11:17+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 50 (R1 51)",
+        "value": 49.8
+      },
+      {
+        "check": "value_floor",
+        "status": "warn",
+        "message": "lightness p5 48 (R1 59)",
+        "value": 48.3
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 5.9 (R1 5.3)",
+        "value": 5.89
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.9, p95 13.3, off-palette 7.3% (top: #AA5533 (1.7%), #BB6633 (1.3%))",
+        "value": 2.9057
+      },
+      {
+        "check": "ground_line",
+        "status": "warn",
+        "message": "feet at 83.7% of the height (contract 88%)",
+        "value": 0.8366
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "96% of the parent level unchanged",
+        "value": 0.9625
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.99 of the parent level (drift compounds along a chain)",
+        "value": 0.9939
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 74 against the char reference (outliers: L_p2, detail)",
+        "value": 73.6
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Reference adaptation: original committed findik-base WebP (870x1306) is unchanged. Its exact decoded pixels were center-padded at offset (77,115) into an untracked 1024x1536 transparent PNG for generation and QA, without rescaling. Selected master remains canonical 1024x1536. Lead composite inverse crop is (left77,top115,right947,bottom1421); no direct pixel alignment to unpadded base is claimed. Ground-line warning from padding, palette/value warnings retained. Publication resumed under the repeated user request from original cached PNGs/local raw; no new generation. Current harmony audit at f35258d leaves the selected take unchanged; QA implementation, presets and rig manifest are byte-unchanged."
+}
