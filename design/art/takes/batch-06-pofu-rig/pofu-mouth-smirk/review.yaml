@@ -3,19 +3,22 @@ contact_sheet: design/art/takes/batch-06-pofu-rig/pofu-mouth-smirk/contact.jpg
 jobs:
   pofu-mouth-smirk:
     pick: 2
-    note: 'Global queue stop: batch-07-light workshop-1-lit retry takes 3 and 4 both
-      failed chroma_ceiling. No new image calls after stop; this generated pair is
-      retained for later review and is NOT published as a master on this branch. Global
-      queue stop: batch-07-light workshop-1-lit retry takes 3 and 4 both failed chroma_ceiling.
-      No new image calls after stop; this generated pair is retained for later review
-      and is NOT published as a master on this branch.'
+    note: auto-picked by QA; founder review pending. Pofu is never locked; equal zero
+      lock loads are resolved by higher harmony score. Alpha composites verify clean
+      transparency. Publication resumed under the repeated user request from original
+      cached PNGs/local raw; no new generation. Current harmony audit at f35258d leaves
+      the selected take unchanged; QA implementation, presets and rig manifest are
+      byte-unchanged.
     takes:
       t1:
         qa: warn
+        summary: palette_drift warn
       t2:
         qa: warn
-    publication: selected candidate, not published as a master on this branch due
-      global stop
+        summary: palette_drift warn
+    approved:
+      take: 2
+      at: '2026-11-02T22:59:17+00:00'
 qa_reports:
   t1:
     job: pofu-mouth-smirk
@@ -50,11 +53,6 @@ qa_reports:
       status: pass
       message: feet at 89.5% of the height (contract 88%)
       value: 0.8952
-    - check: harmony
-      status: pass
-      message: 'harmony score 81 against the char reference (outliers: C_p95, detail,
-        tint_b)'
-      value: 81.4
     - check: edit_stability
       status: pass
       message: 100% of the parent level unchanged
@@ -63,6 +61,11 @@ qa_reports:
       status: pass
       message: chroma x1.05 of the parent level (drift compounds along a chain)
       value: 1.05
+    - check: harmony
+      status: pass
+      message: 'harmony score 81 against the char reference (outliers: C_p95, detail,
+        tint_b)'
+      value: 81.3
     info:
       metrics_raw:
         L_p5: 57.3
@@ -81,6 +84,14 @@ qa_reports:
         C_p99: 57.9
         detail: 5.1
     fingerprint: 95edaa37ba837fd7
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-face-final/build/imagegen/batch-06-pofu-rig/qa/char__pofu-mouth-smirk--t1.json
+      locked_pixels: /workspace/run06-face-final/build/imagegen/batch-06-pofu-rig/locked/char__pofu-mouth-smirk--t1.png
+      old_harmony: 81.4
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
   t2:
     job: pofu-mouth-smirk
     take: 2
@@ -114,11 +125,6 @@ qa_reports:
       status: pass
       message: feet at 89.5% of the height (contract 88%)
       value: 0.8952
-    - check: harmony
-      status: pass
-      message: 'harmony score 82 against the char reference (outliers: C_p95, detail,
-        tint_b)'
-      value: 82.3
     - check: edit_stability
       status: pass
       message: 100% of the parent level unchanged
@@ -127,6 +133,11 @@ qa_reports:
       status: pass
       message: chroma x1.01 of the parent level (drift compounds along a chain)
       value: 1.0144
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the char reference (outliers: C_p95, detail,
+        tint_b)'
+      value: 82.3
     info:
       metrics_raw:
         L_p5: 57.5
@@ -145,3 +156,22 @@ qa_reports:
         C_p99: 57.6
         detail: 5.47
     fingerprint: 95edaa37ba837fd7
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-face-final/build/imagegen/batch-06-pofu-rig/qa/char__pofu-mouth-smirk--t2.json
+      locked_pixels: /workspace/run06-face-final/build/imagegen/batch-06-pofu-rig/locked/char__pofu-mouth-smirk--t2.png
+      old_harmony: 82.3
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
+current_policy_audit:
+  base: f35258d
+  old_pick: 2
+  pick: 2
+  take_scores:
+  - n: 1
+    status: warn
+    harmony: 81.3
+  - n: 2
+    status: warn
+    harmony: 82.3
