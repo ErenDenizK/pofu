@@ -124,9 +124,9 @@ jobs:
     notes: >-
       Founder (2026-11-02): the large island is too squashed; short is
       fine. island-main-l-v2's earth depth is 0.168 of its width,
-      island-main-s's 0.205. Target 0.22-0.26: review check, depth_ratio
-      in the QA report at or above 0.21 (QA only fails a deep plate, so the
-      lower bound is read by hand). The lawn stays identical, so
+      island-main-s's 0.205. Target 0.22-0.26: QA's depth_floor warns
+      below 0.22 and fails below 0.20 (look round 2 added the lower bound;
+      depth_ratio still caps a deep plate). The lawn stays identical, so
       terrace-v2, islet-east and bridge-east still fit. If the deeper body
       does not fit the canvas, stop and say so; do not let the lawn move.
     prompt:
@@ -145,4 +145,5 @@ jobs:
       - text: "AVOID: moving or resizing the lawn, a cone-shaped or pointed underside, dark or grey rock, a cliff face, hard edges, water, sky, background, text."
     acceptance:
       depth_ratio: {warn: 0.30, fail: 0.36}
+      depth_floor: {warn: 0.22, fail: 0.20}
       edit_kept: {warn: 0.60, fail: 0.45}
