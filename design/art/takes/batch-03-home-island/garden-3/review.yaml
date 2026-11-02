@@ -1,0 +1,170 @@
+batch: batch-03-home-island
+job: garden-3
+pick: 1
+note: auto-picked by QA; founder review pending
+takes:
+  t1:
+    qa: warn
+    summary: station_anchor warn
+  t2:
+    qa: warn
+    summary: station_anchor warn
+approved:
+  take: 1
+  at: '2026-11-02T14:57:03+00:00'
+qa:
+  t1:
+    job: garden-3
+    take: 1
+    status: warn
+    preset: soft-lock
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.001 and moved it; aligned back to the
+        parent
+      value: 0.9988
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 23.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 65.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 6.3
+      value: 6.3131
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 6.3, off-palette 0.0%
+      value: 1.462
+    - check: station_anchor
+      status: warn
+      message: width 862 px wider than the footprint (720)
+      value: 904.0
+    - check: edit_stability
+      status: pass
+      message: 83% of the parent level unchanged
+      value: 0.8299
+    info:
+      registration:
+        dx: -11
+        dy: 15
+      alignment:
+        scale: 0.9988
+        cx: 495.5
+        cy: 919.0
+        dx: 10
+        dy: -15
+      metrics_raw:
+        L_p5: 57.9
+        L_p50: 80.9
+        L_p95: 88.8
+        C_p50: 18.8
+        C_p95: 33.0
+        C_p99: 35.2
+        detail: 2.72
+      metrics_locked:
+        L_p5: 65.0
+        L_p50: 82.2
+        L_p95: 89.1
+        C_p50: 13.5
+        C_p95: 23.8
+        C_p99: 25.1
+        detail: 1.64
+    fingerprint: 20576abb494a529f
+  t2:
+    job: garden-3
+    take: 2
+    status: warn
+    preset: soft-lock
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.001 and moved it; aligned back to the
+        parent
+      value: 0.9988
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 25 (R1 51)
+      value: 24.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 63.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.8
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 6.6
+      value: 6.6225
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 6.5, off-palette 0.0%
+      value: 1.4465
+    - check: station_anchor
+      status: warn
+      message: width 862 px wider than the footprint (720)
+      value: 904.0
+    - check: edit_stability
+      status: pass
+      message: 90% of the parent level unchanged
+      value: 0.9005
+    info:
+      registration:
+        dx: -11
+        dy: 15
+      alignment:
+        scale: 0.9988
+        cx: 495.5
+        cy: 919.0
+        dx: 11
+        dy: -15
+      metrics_raw:
+        L_p5: 56.4
+        L_p50: 80.3
+        L_p95: 88.7
+        C_p50: 19.3
+        C_p95: 34.2
+        C_p99: 36.3
+        detail: 2.9
+      metrics_locked:
+        L_p5: 63.6
+        L_p50: 81.8
+        L_p95: 89.1
+        C_p50: 13.7
+        C_p95: 24.6
+        C_p99: 25.8
+        detail: 1.8
+    fingerprint: 20576abb494a529f
+upload_note: raw.png not uploaded (over 600 KB); the q90 takes are the record

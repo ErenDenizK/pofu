@@ -1,0 +1,147 @@
+batch: batch-03-home-island
+contact_sheet: design/art/takes/batch-03-home-island/windmill-1/contact.jpg
+jobs:
+  windmill-1:
+    pick: 1
+    note: auto-picked by QA; founder review pending
+    takes:
+      t1:
+        qa: warn
+        summary: lock_load warn; station_anchor warn
+      t2:
+        qa: warn
+        summary: lock_load warn; station_anchor warn
+    approved:
+      take: 1
+      at: '2026-11-02T14:35:53+00:00'
+    lock_load:
+      t1: 10.5772
+      t2: 10.7348
+    upload_note: raw.png not uploaded (over 600 KB); the q90 takes are the record
+    qa_reports:
+      t1:
+        job: windmill-1
+        take: 1
+        status: warn
+        preset: soft-lock
+        checks:
+        - check: transparency
+          status: pass
+          message: source has an alpha channel
+        - check: canvas
+          status: pass
+          message: 1254x1254 scaled x0.817 into 1024x1024
+          value: 0.8166
+        - check: chroma_ceiling
+          status: pass
+          message: chroma p95 31 (R1 51)
+          value: 31.2
+        - check: value_floor
+          status: pass
+          message: lightness p5 60 (R1 59)
+          value: 59.7
+        - check: detail_budget
+          status: pass
+          message: detail at display size 2.2 (R1 5.3)
+          value: 2.2
+        - check: lock_load
+          status: warn
+          message: the lock moved colors by mean dE 10.6 (prefer a take that needs
+            less)
+          value: 10.5772
+        - check: no_guide_magenta
+          status: pass
+          message: 0 guide-magenta pixels (per 1024^2)
+          value: 0.0
+        - check: palette_drift
+          status: pass
+          message: mean dE 0.8, p95 1.8, off-palette 0.0%
+          value: 0.8318
+        - check: station_anchor
+          status: warn
+          message: top y 59 above the height bar (150)
+          value: 900.0
+        info:
+          registration:
+            dx: -15
+            dy: -25
+          metrics_raw:
+            L_p5: 51.1
+            L_p50: 74.1
+            L_p95: 90.8
+            C_p50: 38.8
+            C_p95: 43.9
+            C_p99: 45.0
+            detail: 3.8
+          metrics_locked:
+            L_p5: 59.7
+            L_p50: 77.5
+            L_p95: 89.7
+            C_p50: 27.6
+            C_p95: 31.2
+            C_p99: 31.9
+            detail: 2.2
+        fingerprint: 53f0a54407351207
+      t2:
+        job: windmill-1
+        take: 2
+        status: warn
+        preset: soft-lock
+        checks:
+        - check: transparency
+          status: pass
+          message: source has an alpha channel
+        - check: canvas
+          status: pass
+          message: 1254x1254 scaled x0.817 into 1024x1024
+          value: 0.8166
+        - check: chroma_ceiling
+          status: pass
+          message: chroma p95 29 (R1 51)
+          value: 29.4
+        - check: value_floor
+          status: pass
+          message: lightness p5 60 (R1 59)
+          value: 60.5
+        - check: detail_budget
+          status: pass
+          message: detail at display size 1.9 (R1 5.3)
+          value: 1.95
+        - check: lock_load
+          status: warn
+          message: the lock moved colors by mean dE 10.7 (prefer a take that needs
+            less)
+          value: 10.7348
+        - check: no_guide_magenta
+          status: pass
+          message: 0 guide-magenta pixels (per 1024^2)
+          value: 0.0
+        - check: palette_drift
+          status: pass
+          message: mean dE 1.0, p95 2.1, off-palette 0.0%
+          value: 1.0286
+        - check: station_anchor
+          status: warn
+          message: top y 58 above the height bar (150)
+          value: 900.0
+        info:
+          registration:
+            dx: -3
+            dy: -15
+          metrics_raw:
+            L_p5: 51.6
+            L_p50: 72.2
+            L_p95: 90.7
+            C_p50: 37.7
+            C_p95: 41.4
+            C_p99: 42.4
+            detail: 3.45
+          metrics_locked:
+            L_p5: 60.5
+            L_p50: 75.9
+            L_p95: 89.6
+            C_p50: 27.0
+            C_p95: 29.4
+            C_p99: 29.9
+            detail: 1.95
+        fingerprint: 53f0a54407351207

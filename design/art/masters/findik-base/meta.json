@@ -1,0 +1,91 @@
+{
+  "job": "findik",
+  "batch": "batch-03-home-island",
+  "asset": "char__findik-base",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T14:52:22+00:00",
+  "image": "design/art/masters/findik-base/findik-base.png",
+  "raw": "design/art/masters/findik-base/raw.png",
+  "fingerprint": "7511002ce010ecc6",
+  "prompt": "REFERENCES (attached, in this order):\n1. The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him).\n2. Mochi, a neighbor: Fındık stands next to her, so match her size on the canvas, her eyes and her finish (do not draw her).\n3. The character palette card.\n\nDraw Fındık, a neighbor of the attached hamster, in exactly the\nsame art style, lighting and level of fluff as the hamster and the\nattached bunny. Same canvas rules as the hamster: full body,\nsitting upright, front view, centered, feet on an invisible line\nat 88% of the height, about 62% of the canvas width.\nCHARACTER: Fındık, a baby hedgehog whose body is a soft round\nball. The back, the top and the sides of the head are covered in a\nthick coat of soft, rounded quills in warm hazelnut brown with\ncream tips, painted as short, soft tufts like a plush toy, never\nsharp; the quills frame the face like a hood and stop at a\nsmooth, clean line around it. A creamy beige face, chest and\nbelly. A small, softly pointed snout with a tiny round cocoa-brown\nnose and a small smiling \"w\" mouth. Big round glossy dark\nespresso eyes with one large round catchlight and one tiny\nsparkle each, soft blush ovals on the cheeks, two small round ears\nwith pink insides peeking out of the quills, two tiny cream front\npaws together at the chest, two small feet peeking out; three\nsmall toe creases on each paw and foot. No curl or swirl of fur on\ntop of the head (that belongs to Pofu alone). No clothes, no\naccessories.\n\nSTYLE: soft painterly 2D digital illustration with the polish of a premium\nstorybook and a top-tier mobile app mascot. Gentle airbrushed shading, no\noutlines, no hard edges. Fine, soft fur strands along the silhouette and a\nvelvety fur texture inside it. Warm diffused key light from the upper left,\na faint warm rim light along the right edge, soft ambient shadow only where\nforms touch. Pastel warm palette of cream, golden peach and blush pink with\ndark espresso-brown eyes. Clean, calm, uncluttered. No text, no letters,\nno numbers, no logos, no watermark, no border, no frame, no sticker outline.\n\nAVOID: outlines, cel shading, 3D plastic or vinyl render, anime sparkle\neyes with many highlights, extra limbs, extra toes or fingers, claws,\nteeth, eyebrows, a long tail, lilac or gray fur, a ground shadow, a floor,\na cast shadow, a white sticker border, text, watermarks, signatures,\nmotion blur, film grain, paper texture, vignette.\n\nAVOID: sharp, spiky or wiry quills, a curl or swirl on top of the head, glasses, a hat, tools.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him)."
+    },
+    {
+      "path": "design/art/masters/mochi-v2/mochi-v2.png",
+      "role": "Mochi, a neighbor: Fındık stands next to her, so match her size on the canvas, her eyes and her finish (do not draw her)."
+    },
+    {
+      "path": "design/reference/palette-card-character.png",
+      "role": "The character palette card."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T14:51:33+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 1
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 49 (R1 51)",
+        "value": 48.8
+      },
+      {
+        "check": "value_floor",
+        "status": "warn",
+        "message": "lightness p5 44 (R1 59)",
+        "value": 43.7
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 6.7 (R1 5.3)",
+        "value": 6.65
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 3.0, p95 12.9, off-palette 6.7% (top: #AA5533 (1.3%), #995522 (0.9%))",
+        "value": 3.0236
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.6% of the height (contract 88%)",
+        "value": 0.8958
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}

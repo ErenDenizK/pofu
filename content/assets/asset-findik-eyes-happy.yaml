@@ -1,0 +1,22 @@
+id: asset-findik-eyes-happy
+type: asset
+title_tr: findik-eyes-happy
+title_en: findik-eyes-happy (char)
+status: planned
+horizon: later
+summary: >-
+  Edit the attached hedgehog, Fındık. Change only the eyes: make both eyes happy closed arcs,
+  the classic smiling ^ shape: each eye a thick, soft, dark upward-curved arc at the height
+  of the top of the original eye, with fur below it. Nothing else changes.
+links:
+  variant_of:
+  - asset-findik
+art:
+  images: []
+  jobs:
+  - batch-06-pofu-rig:findik-eyes-happy
+sources:
+- doc: tools/imagegen/manifest/batch-06-pofu-rig.yaml
+kind: char
+batch: batch-06-pofu-rig
+size: 1024x1536

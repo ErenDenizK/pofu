@@ -1,0 +1,23 @@
+id: asset-x-keyart-a
+type: asset
+title_tr: x-keyart-a
+title_en: x-keyart-a (plate)
+status: in-production
+horizon: maybe
+summary: >-
+  A calm, warm poster painting for a cozy mobile game: a small floating island drifting in
+  a soft morning sky over a sea of clouds, its lawn with the little tea stall and a few sunflowers.
+  On the front of the lawn, the hamster sits content, eyes open, and the bunny beside him
+  offers a small glass of tea. The island sits in the lower half; the upper third is open,
+  calm, pale sky (the app places the title there). Soft pa…
+art:
+  images: []
+  jobs:
+  - batch-09-explore-pilot:x-keyart-a
+notes:
+- Exploration (docs/design/art-production-plan.md); never promoted, never shipped.
+sources:
+- doc: tools/imagegen/manifest/batch-09-explore-pilot.yaml
+kind: plate
+batch: batch-09-explore-pilot
+size: 1024x1536

@@ -54,6 +54,32 @@ class StationTests(unittest.TestCase):
         self.assertAlmostEqual(1 / t["scale"], 0.85, delta=0.03)
         self.assertGreater(qa.edit_kept_fraction(aligned, parent), 0.9)
 
+    def test_edit_of_a_registered_master_is_not_registered_again(self):
+        # Batch 03: simit-1 was drawn 110 px off the anchor and registered.
+        # Its edit is drawn on the registered master, so it is already on
+        # the anchor; re-applying the root's registration moved it off.
+        root_raw = stall(dx=-110)
+        reg = qa.station_registration(root_raw)
+        parent = qa.shift(root_raw, reg["dx"], reg["dy"])
+        child = stall(awning=True)  # the edit keeps the parent's place
+        preset = sl.load_presets()["lock-light"]
+        good = qa.process_take(child, "station", (1024, 1024), preset, ["world-props"],
+                               registration=dict(qa.EDIT_REGISTRATION), parent_locked=sl.apply_lock(parent, preset))
+        kept = {c.name: c for c in good.checks}["edit_stability"]
+        self.assertEqual(kept.status, "pass", kept.message)
+        shifted = qa.shift(child, reg["dx"], reg["dy"])
+        self.assertLess(qa.edit_kept_fraction(shifted, parent), kept.value)  # what the double shift did
+
+    def test_edit_chroma_drift_is_caught(self):
+        parent = stall()
+        grey = parent.copy()
+        lab = sl.srgb_to_lab(grey[..., :3])
+        lab[..., 1:] *= 0.6  # the level lost 40 % of its chroma (batch 03's windmill-2)
+        grey[..., :3] = np.clip(sl.lab_to_srgb(lab), 0, 1)
+        self.assertAlmostEqual(qa.edit_chroma_ratio(parent, parent), 1.0, places=3)
+        checks = {c.name: c for c in qa.run_checks("station", grey, grey, ["world-props"], parent_locked=parent)}
+        self.assertEqual(checks["edit_chroma"].status, "fail")
+
     def test_magenta_guide_remnants(self):
         im = Image.fromarray(np.round(stall() * 255).astype(np.uint8), "RGBA")
         ImageDraw.Draw(im).ellipse((152, 692, 872, 908), outline=(236, 0, 140, 255), width=6)
@@ -111,6 +137,20 @@ class LookTests(unittest.TestCase):
         self.assertLess(qa.island_depth_ratio(island(200)), qa.island_depth_ratio(island(400)))
         self.assertGreater(qa.island_depth_ratio(island(400)), 0.32)
 
+    def test_a_plate_job_can_flag_a_squashed_island(self):
+        # Look round 2: the founder found the plate too squashed; a job's
+        # depth_floor makes a too-thin earth body a QA warning or failure.
+        im = canvas(1536, 1024)
+        d = ImageDraw.Draw(im)
+        d.ellipse((200, 520, 1336, 640), fill=(240, 191, 134, 255))  # a thin earth body
+        d.ellipse((200, 300, 1336, 560), fill=(140, 192, 132, 255))  # lawn
+        flat = np.asarray(im, dtype=np.float64) / 255.0
+        default = {c.name for c in qa.run_checks("world", flat, flat, ["world-day"])}
+        self.assertNotIn("depth_floor", default)
+        checks = qa.run_checks("world", flat, flat, ["world-day"], {"depth_floor": {"warn": 0.26, "fail": 0.2}})
+        floor = next(c for c in checks if c.name == "depth_floor")
+        self.assertEqual(floor.status, "fail")
+
 
 class IconTests(unittest.TestCase):
     def icon(self, stem: bool, dark_accent: bool) -> np.ndarray:
@@ -154,6 +194,26 @@ class ProcessTakeTests(unittest.TestCase):
     def test_opaque_kind_with_holes_fails(self):
         res = qa.process_take(stall(), "widget", (1536, 720), sl.load_presets()["soft-lock"], ["world-day"], transparent=False)
         self.assertEqual(res.checks[0].status, "fail")
+
+
+
+class HarmonyCheckTests(unittest.TestCase):
+    """The promote-time harmony score (tools/assets/harmony.py)."""
+
+    def test_the_approved_cay_scores_well_and_a_flat_stall_scores_low(self):
+        cay = sl.load_rgba(HERE.parents[2] / "design" / "art" / "stations" / "cay-1" / "cay-1--lock-light.png")
+        lim = qa.limits_for("station")
+        good = qa.check_harmony(cay, "station", lim)
+        self.assertIsNotNone(good)
+        self.assertGreater(good.value, 70)
+        flat = qa.check_harmony(stall(), "station", lim)
+        self.assertLess(flat.value, good.value)
+        self.assertNotEqual(flat.status, "fail")  # advisory: harmony corrects what it can
+
+    def test_every_world_kind_gets_a_harmony_line(self):
+        res = qa.process_take(stall(), "station", (1024, 1024), sl.load_presets()["lock-light"],
+                              ["world-props", "world-day", "character"], register_root=True)
+        self.assertIn("harmony", {c.name for c in res.checks})
 
 
 if __name__ == "__main__":

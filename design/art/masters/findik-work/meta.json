@@ -1,0 +1,89 @@
+{
+  "job": "findik-work",
+  "batch": "batch-03-home-island",
+  "asset": "char__findik-work",
+  "take": 3,
+  "takes_considered": 4,
+  "approved_at": "2026-11-02T15:03:51+00:00",
+  "image": "design/art/masters/findik-work/findik-work.png",
+  "raw": "design/art/masters/findik-work/raw.png",
+  "fingerprint": "3d824fc66ecc84dc",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached hedgehog, Fındık, into a working pose at the\nworkshop. Change only the two front paws: they now hold a small,\nchunky, round wooden gear in front of the chest, as if showing a\nfinished part: soft honey wood, six rounded teeth and a round\nhole in the middle, matte, no shine. Everything else stays\nexactly as it is.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: metal tools, sharp quills, a curl on the head, a ground shadow, text.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/findik-base/findik-base.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T15:02:53+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 1
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 50 (R1 51)",
+        "value": 50.1
+      },
+      {
+        "check": "value_floor",
+        "status": "warn",
+        "message": "lightness p5 44 (R1 59)",
+        "value": 44.2
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 6.8 (R1 5.3)",
+        "value": 6.77
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 3.4, p95 13.9, off-palette 8.7% (top: #AA5533 (1.9%), #BB6633 (1.1%))",
+        "value": 3.3779
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.7% of the height (contract 88%)",
+        "value": 0.8971
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "94% of the parent level unchanged",
+        "value": 0.9381
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}

@@ -1,0 +1,22 @@
+batch: batch-03-home-island
+contact_sheet: design/art/takes/batch-03-home-island/pond-1/contact.jpg
+jobs:
+  pond-1:
+    pick: 1
+    note: auto-picked by QA; founder review pending
+    takes:
+      t1:
+        qa: warn
+        summary: station_anchor warn
+      t2:
+        qa: warn
+        summary: station_anchor warn
+    approved:
+      take: 1
+      at: '2026-11-02T14:18:20+00:00'
+    upload_note: raw.png uploaded (520303 bytes, under 600 KB); takes archived as
+      lossy WebP quality 90
+    lock_load:
+      t1: 5.4913
+      t2: 6.0162
+    warning: 'station_anchor: width 959 px wider than the footprint (720)'

@@ -35,6 +35,14 @@ the project's persistent memory; keep it accurate and concise.
 - Research: `docs/research/`
 - Brand, character bible, naming: `docs/brand/`
 - Decisions: `docs/adr/`
+- Founder input log (every direction he gives, with status; read it at
+  session start and add to it whenever he gives input):
+  `docs/product/founder-input.md`
+- Pofu Hub (https://claude.ai/artifact/Qua2VFg3iSJ9V1HJgR8RS9, source
+  `design/hub/index.html`): where the founder answers questions, leaves
+  notes and ideas, and sees reviews, status and the roadmap. Read its db
+  (`answers`, `notes`, `ideas`) when he says he wrote there; post reviews
+  with an image asset and questions with options and a recommendation.
 - Content graph and Pofu Atlas board (every decision, idea and generated
   asset gets a node): `content/`, see `content/README.md`
 - Local Mac agent brief (Xcode, simulator, device, image generation):

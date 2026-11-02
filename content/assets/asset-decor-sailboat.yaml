@@ -1,0 +1,20 @@
+id: asset-decor-sailboat
+type: asset
+title_tr: decor-sailboat
+title_en: decor-sailboat (prop)
+status: in-production
+horizon: now
+summary: >-
+  A small toy sailboat for the same island diorama, as if folded and painted by hand: a round-bottomed
+  hull of soft honey wood with a cream stripe, a short mast and one plump triangular cream
+  sail with a single soft rose stripe, a tiny plain pennant on top (no symbols, no letters).
+  Seen from the same low front three-quarter camera, floating upright; its waterline is a
+  flat, clean edge with no water drawn.
+art:
+  images: []
+  jobs:
+  - batch-08-decor-pilot:decor-sailboat
+sources:
+- doc: tools/imagegen/manifest/batch-08-decor-pilot.yaml
+kind: prop
+batch: batch-08-decor-pilot

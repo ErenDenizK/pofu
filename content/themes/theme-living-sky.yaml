@@ -20,6 +20,5 @@ links:
   - asset-far-isle-2
   - asset-far-isle-3
 sources:
-- doc: AGENTS.md
-  anchor: '#batch-04-the-living-sky-batch-04-sky'
+- doc: tools/imagegen/manifest/batch-04-sky.yaml
 kind: world

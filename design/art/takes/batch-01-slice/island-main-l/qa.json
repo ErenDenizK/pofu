@@ -1,0 +1,161 @@
+{
+  "job": "island-main-l",
+  "pick": 1,
+  "note": "auto-picked by QA; founder review pending",
+  "takes": [
+    {
+      "take": 1,
+      "status": "pass",
+      "lock_load": 8.3292,
+      "checks": [
+        {
+          "check": "transparency",
+          "status": "pass",
+          "message": "source has an alpha channel"
+        },
+        {
+          "check": "canvas",
+          "status": "pass",
+          "message": "1536x1024"
+        },
+        {
+          "check": "edit_alignment",
+          "status": "pass",
+          "message": "the edit rescaled the object x1.003 and moved it; aligned back to the parent",
+          "value": 0.9971
+        },
+        {
+          "check": "chroma_ceiling",
+          "status": "pass",
+          "message": "chroma p95 28 (R1 51)",
+          "value": 27.8
+        },
+        {
+          "check": "value_floor",
+          "status": "pass",
+          "message": "lightness p5 68 (R1 59)",
+          "value": 68.5
+        },
+        {
+          "check": "detail_budget",
+          "status": "pass",
+          "message": "detail at display size 1.7 (R1 5.3)",
+          "value": 1.69
+        },
+        {
+          "check": "lock_load",
+          "status": "pass",
+          "message": "the lock moved colors by mean dE 8.3",
+          "value": 8.3292
+        },
+        {
+          "check": "no_guide_magenta",
+          "status": "pass",
+          "message": "0 guide-magenta pixels (per 1024^2)",
+          "value": 0.0
+        },
+        {
+          "check": "palette_drift",
+          "status": "pass",
+          "message": "mean dE 1.6, p95 4.9, off-palette 0.0%",
+          "value": 1.5983
+        },
+        {
+          "check": "depth_ratio",
+          "status": "pass",
+          "message": "earth depth / width 0.20 (target <= 0.30)",
+          "value": 0.2003
+        },
+        {
+          "check": "lawn_chroma",
+          "status": "pass",
+          "message": "lawn chroma p95 21 (palette meadow 38)",
+          "value": 20.8514
+        },
+        {
+          "check": "edit_stability",
+          "status": "pass",
+          "message": "97% of the parent level unchanged",
+          "value": 0.9662
+        }
+      ]
+    },
+    {
+      "take": 2,
+      "status": "pass",
+      "lock_load": 8.8971,
+      "checks": [
+        {
+          "check": "transparency",
+          "status": "pass",
+          "message": "source has an alpha channel"
+        },
+        {
+          "check": "canvas",
+          "status": "pass",
+          "message": "1536x1024"
+        },
+        {
+          "check": "edit_alignment",
+          "status": "pass",
+          "message": "the edit rescaled the object x1.005 and moved it; aligned back to the parent",
+          "value": 0.9947
+        },
+        {
+          "check": "chroma_ceiling",
+          "status": "pass",
+          "message": "chroma p95 29 (R1 51)",
+          "value": 29.2
+        },
+        {
+          "check": "value_floor",
+          "status": "pass",
+          "message": "lightness p5 68 (R1 59)",
+          "value": 67.6
+        },
+        {
+          "check": "detail_budget",
+          "status": "pass",
+          "message": "detail at display size 1.8 (R1 5.3)",
+          "value": 1.78
+        },
+        {
+          "check": "lock_load",
+          "status": "pass",
+          "message": "the lock moved colors by mean dE 8.9",
+          "value": 8.8971
+        },
+        {
+          "check": "no_guide_magenta",
+          "status": "pass",
+          "message": "0 guide-magenta pixels (per 1024^2)",
+          "value": 0.0
+        },
+        {
+          "check": "palette_drift",
+          "status": "pass",
+          "message": "mean dE 1.6, p95 5.0, off-palette 0.0%",
+          "value": 1.6087
+        },
+        {
+          "check": "depth_ratio",
+          "status": "pass",
+          "message": "earth depth / width 0.20 (target <= 0.30)",
+          "value": 0.1999
+        },
+        {
+          "check": "lawn_chroma",
+          "status": "pass",
+          "message": "lawn chroma p95 23 (palette meadow 38)",
+          "value": 23.1832
+        },
+        {
+          "check": "edit_stability",
+          "status": "pass",
+          "message": "99% of the parent level unchanged",
+          "value": 0.9883
+        }
+      ]
+    }
+  ]
+}

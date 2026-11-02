@@ -357,7 +357,12 @@ def cmd_post(args, config, m: pl.Manifest) -> int:
             if pl.approved_image(pj).exists():
                 parent_locked = sl.load_rgba(pl.approved_image(pj))
                 parent_img = Image.open(pl.approved_image(pj)).copy()
-                registration = load_meta(pj).get("registration")
+                # The edit is drawn on the approved master, which is already
+                # on the anchor: applying the chain root's registration again
+                # moved simit-2 and workshop-2 110 px off their parent and
+                # failed edit_stability (batch 03). align_to_parent handles
+                # any drift the edit itself introduces.
+                registration = dict(qa.EDIT_REGISTRATION)
         row = {"job": job.id, "kind": f"{job.kind} · {preset_name}", "parent": parent_img, "takes": [],
                "notes": [f"{len(takes)} take(s)", f"variants {job.variants}"]}
         results = []

@@ -1,0 +1,112 @@
+{
+  "job": "garden-5",
+  "batch": "batch-05-fixes-pilot",
+  "asset": "station__garden-5",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T17:59:38+00:00",
+  "image": "design/art/stations/garden-5/garden-5.png",
+  "raw": "design/art/stations/garden-5/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "1839c71f6da75a2d",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nMake the one sunflower in the middle of the bed, under the arch,\na giant: a thick soft stem and three broad leaves rising from\nthe center of the bed, and one big round head of honey-yellow\npetals around a warm brown center, about twice as wide as the\nother sunflower heads, facing up and to the left toward the\nlight. The whole giant sunflower stays INSIDE the arch's opening:\nits head sits just below the top of the arch, nothing of it\nreaches above or outside the arch, and the arch, the bunting, the\nfence and the other flowers stay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: anything above the arch, a sunflower taller than the arch, a wider bed, a zoomed-out view.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/garden-4/garden-4.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T17:58:41+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 0,
+    "dy": 0
+  },
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 42 (R1 51)",
+        "value": 42.3
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 62 (R1 59)",
+        "value": 61.6
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 2.1 (R1 5.3)",
+        "value": 2.06
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.7",
+        "value": 0.7074
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.9, p95 6.4, off-palette 0.5% (top: #888866 (0.4%), #888877 (0.1%))",
+        "value": 1.9144
+      },
+      {
+        "check": "station_anchor",
+        "status": "warn",
+        "message": "width 864 px wider than the footprint (720)",
+        "value": 905.0
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "82% of the parent level unchanged",
+        "value": 0.8198
+      },
+      {
+        "check": "edit_chroma",
+        "status": "warn",
+        "message": "chroma x1.34 of the parent level (drift compounds along a chain)",
+        "value": 1.3409
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. t1 is the only non-failing take (lock load 0.7074); t2 fails edit_chroma (1.4618). Manifest visual checks pass: no top-height warning, width 864 px versus parent 861 px (difference 3 px <=20). Retained width and chroma warnings."
+}

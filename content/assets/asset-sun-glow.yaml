@@ -11,7 +11,8 @@ summary: >-
   rays, no lens flare, no rings, no sparkle. Centered, the glow fading out before it reaches
   the canvas edges.
 art:
-  images: []
+  images:
+  - design/art/masters/sun-glow/sun-glow.png
   jobs:
   - batch-04-sky:sun-glow
 sources:

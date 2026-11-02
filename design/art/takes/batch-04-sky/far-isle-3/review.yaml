@@ -1,0 +1,134 @@
+batch: batch-04-sky
+contact_sheet: design/art/takes/batch-04-sky/far-isle-3/contact.jpg
+jobs:
+  far-isle-3:
+    pick: 2
+    note: auto-picked by QA; founder review pending
+    takes:
+      t1:
+        qa: pass
+        summary: all pass
+      t2:
+        qa: pass
+        summary: all pass
+    approved:
+      take: 2
+      at: '2026-11-02T15:01:11+00:00'
+    qa_reports:
+      world__far-isle-3--t1:
+        job: far-isle-3
+        take: 1
+        status: pass
+        preset: soft-lock
+        checks:
+        - check: transparency
+          status: pass
+          message: source has an alpha channel
+        - check: canvas
+          status: pass
+          message: 1536x1024
+        - check: chroma_ceiling
+          status: pass
+          message: chroma p95 12 (R1 51)
+          value: 12.3
+        - check: value_floor
+          status: pass
+          message: lightness p5 82 (R1 59)
+          value: 82.3
+        - check: detail_budget
+          status: pass
+          message: detail at display size 0.5 (R1 5.3)
+          value: 0.5
+        - check: lock_load
+          status: pass
+          message: the lock moved colors by mean dE 2.8
+          value: 2.796
+        - check: no_guide_magenta
+          status: pass
+          message: 0 guide-magenta pixels (per 1024^2)
+          value: 0.0
+        - check: palette_drift
+          status: pass
+          message: mean dE 1.3, p95 2.5, off-palette 0.0%
+          value: 1.3378
+        - check: lawn_chroma
+          status: pass
+          message: lawn chroma p95 12 (palette meadow 38)
+          value: 12.3539
+        info:
+          metrics_raw:
+            L_p5: 80.5
+            L_p50: 87.6
+            L_p95: 93.6
+            C_p50: 10.0
+            C_p95: 16.7
+            C_p99: 17.6
+            detail: 0.7
+          metrics_locked:
+            L_p5: 82.3
+            L_p50: 87.8
+            L_p95: 93.1
+            C_p50: 7.3
+            C_p95: 12.3
+            C_p99: 13.1
+            detail: 0.5
+        fingerprint: 1e420e695c88c1fb
+      world__far-isle-3--t2:
+        job: far-isle-3
+        take: 2
+        status: pass
+        preset: soft-lock
+        checks:
+        - check: transparency
+          status: pass
+          message: source has an alpha channel
+        - check: canvas
+          status: pass
+          message: 1536x1024
+        - check: chroma_ceiling
+          status: pass
+          message: chroma p95 12 (R1 51)
+          value: 11.8
+        - check: value_floor
+          status: pass
+          message: lightness p5 84 (R1 59)
+          value: 83.5
+        - check: detail_budget
+          status: pass
+          message: detail at display size 0.5 (R1 5.3)
+          value: 0.52
+        - check: lock_load
+          status: pass
+          message: the lock moved colors by mean dE 2.7
+          value: 2.7261
+        - check: no_guide_magenta
+          status: pass
+          message: 0 guide-magenta pixels (per 1024^2)
+          value: 0.0
+        - check: palette_drift
+          status: pass
+          message: mean dE 1.5, p95 2.9, off-palette 0.0%
+          value: 1.5006
+        - check: lawn_chroma
+          status: pass
+          message: lawn chroma p95 12 (palette meadow 38)
+          value: 11.654
+        info:
+          metrics_raw:
+            L_p5: 82.2
+            L_p50: 88.7
+            L_p95: 94.5
+            C_p50: 10.2
+            C_p95: 15.9
+            C_p99: 17.5
+            detail: 0.77
+          metrics_locked:
+            L_p5: 83.5
+            L_p50: 88.6
+            L_p95: 93.7
+            C_p50: 7.6
+            C_p95: 11.8
+            C_p99: 12.9
+            detail: 0.52
+        fingerprint: 1e420e695c88c1fb
+    upload_note: raw.png not uploaded (over 600 KB); the q90 takes are the record

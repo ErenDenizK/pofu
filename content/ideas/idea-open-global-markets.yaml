@@ -1,0 +1,14 @@
+id: idea-open-global-markets
+type: idea
+title_tr: Türkiye önce, ama yalnız Türkiye değil
+title_en: Türkiye first, not Türkiye only
+status: idea
+horizon: later
+kind: question
+summary: >-
+  Launch in Türkiye, then compete in Europe and the Nordics with fitting prices; the concept must let
+  each culture find something of its own. Open question: why cute idle games do well in Asia and
+  whether that applies to Pofu.
+sources:
+- doc: docs/product/founder-input.md
+  anchor: '#market'

@@ -10,7 +10,8 @@ summary: >-
   trees, soft rounded undersides, almost silhouettes in the same pale, hazy sky-blue and cream.
   Centered, together filling about 75% of the image width, with a clear transparent margin.
 art:
-  images: []
+  images:
+  - design/art/masters/far-isle-3/far-isle-3.png
   jobs:
   - batch-04-sky:far-isle-3
 sources:

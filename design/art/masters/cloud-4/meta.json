@@ -1,0 +1,97 @@
+{
+  "job": "cloud-4",
+  "batch": "batch-04-sky",
+  "asset": "world__cloud-4",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T14:50:56+00:00",
+  "image": "design/art/masters/cloud-4/cloud-4.png",
+  "raw": "design/art/masters/cloud-4/raw.png",
+  "fingerprint": "ed73916335c7ee4f",
+  "prompt": "REFERENCES (attached, in this order):\n1. The approved large cloud: the cloud family's look. Match its painting, light, colors, softness and edge exactly (do not copy its shape).\n2. Style reference only (no characters): the hamster's soft airbrushed painting.\n3. The palette card: use only these colors (and mixes of them).\n\nOne long, low, flat cloud for the same sky, on its own: a slim,\nhorizontal band of soft billows, about five times as wide as it\nis tall, slightly thicker in the middle and thinning to soft,\nrounded ends. Centered, filling about 85% of the image width, with\na clear transparent margin.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: a sky, a background color or gradient, the sun, birds, gray storm clouds, streaky or brushy noise, hard white outlines, a ground shadow, text.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/cloud-1/cloud-1.png",
+      "role": "The approved large cloud: the cloud family's look. Match its painting, light, colors, softness and edge exactly (do not copy its shape)."
+    },
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "Style reference only (no characters): the hamster's soft airbrushed painting."
+    },
+    {
+      "path": "design/reference/palette-card-world-day.png",
+      "role": "The palette card: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T14:49:40+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "soft-lock",
+    "version": 1
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 10 (R1 51)",
+        "value": 9.6
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 86 (R1 59)",
+        "value": 85.5
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.6 (R1 5.3)",
+        "value": 0.59
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 2.7",
+        "value": 2.696
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.0, p95 1.9, off-palette 0.0%",
+        "value": 0.9793
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}

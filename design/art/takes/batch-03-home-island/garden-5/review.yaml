@@ -1,0 +1,319 @@
+batch: batch-03-home-island
+job: garden-5
+status: skipped
+pick: null
+reason: All four takes failed station_anchor (top y 0 above height bar 150); one retry
+  round exhausted.
+qa:
+  t1:
+    job: garden-5
+    take: 1
+    status: fail
+    preset: soft-lock
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: warn
+      message: the edit rescaled the object x0.928 and moved it; aligned back to the
+        parent
+      value: 1.0777
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 27 (R1 51)
+      value: 27.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 68 (R1 59)
+      value: 67.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 5.0
+      value: 5.0283
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 5.9, off-palette 0.0%
+      value: 2.0453
+    - check: station_anchor
+      status: fail
+      message: top y 0 above the height bar (150); width 887 px wider than the footprint
+        (720)
+      value: 907.0
+    - check: edit_stability
+      status: pass
+      message: 88% of the parent level unchanged
+      value: 0.8812
+    info:
+      registration:
+        dx: -11
+        dy: 15
+      alignment:
+        scale: 1.0777
+        cx: 498.5
+        cy: 1013.0
+        dx: 11
+        dy: -105
+      metrics_raw:
+        L_p5: 60.7
+        L_p50: 79.0
+        L_p95: 87.5
+        C_p50: 14.1
+        C_p95: 38.6
+        C_p99: 51.5
+        detail: 2.96
+      metrics_locked:
+        L_p5: 67.5
+        L_p50: 80.9
+        L_p95: 87.8
+        C_p50: 10.3
+        C_p95: 27.3
+        C_p99: 36.5
+        detail: 1.76
+    fingerprint: 7b2df54e5a0728b4
+  t2:
+    job: garden-5
+    take: 2
+    status: fail
+    preset: soft-lock
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: warn
+      message: the edit rescaled the object x0.848 and moved it; aligned back to the
+        parent
+      value: 1.1798
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 33.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 68 (R1 59)
+      value: 67.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.63
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 5.1
+      value: 5.1193
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 6.8, off-palette 0.0%
+      value: 2.0234
+    - check: station_anchor
+      status: fail
+      message: top y 0 above the height bar (150); width 874 px wider than the footprint
+        (720)
+      value: 908.0
+    - check: edit_stability
+      status: pass
+      message: 86% of the parent level unchanged
+      value: 0.8613
+    info:
+      registration:
+        dx: -11
+        dy: 15
+      alignment:
+        scale: 1.1798
+        cx: 498.5
+        cy: 940.0
+        dx: 8
+        dy: -32
+      metrics_raw:
+        L_p5: 61.0
+        L_p50: 79.5
+        L_p95: 87.4
+        C_p50: 13.9
+        C_p95: 46.7
+        C_p99: 53.0
+        detail: 2.82
+      metrics_locked:
+        L_p5: 67.6
+        L_p50: 81.1
+        L_p95: 87.6
+        C_p50: 10.2
+        C_p95: 33.5
+        C_p99: 37.3
+        detail: 1.63
+    fingerprint: 7b2df54e5a0728b4
+  t3:
+    job: garden-5
+    take: 3
+    status: fail
+    preset: soft-lock
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: warn
+      message: the edit rescaled the object x0.868 and moved it; aligned back to the
+        parent
+      value: 1.1515
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 22 (R1 51)
+      value: 22.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 70 (R1 59)
+      value: 69.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 4.5
+      value: 4.5229
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.9, p95 5.8, off-palette 0.0%
+      value: 1.8549
+    - check: station_anchor
+      status: fail
+      message: top y 0 above the height bar (150); width 861 px wider than the footprint
+        (720)
+      value: 900.0
+    - check: edit_stability
+      status: pass
+      message: 89% of the parent level unchanged
+      value: 0.895
+    info:
+      registration:
+        dx: -11
+        dy: 15
+      alignment:
+        scale: 1.1515
+        cx: 499.0
+        cy: 968.0
+        dx: 10
+        dy: -68
+      metrics_raw:
+        L_p5: 63.9
+        L_p50: 80.1
+        L_p95: 87.3
+        C_p50: 13.2
+        C_p95: 31.6
+        C_p99: 54.8
+        detail: 2.88
+      metrics_locked:
+        L_p5: 69.5
+        L_p50: 81.5
+        L_p95: 87.6
+        C_p50: 9.7
+        C_p95: 22.4
+        C_p99: 38.8
+        detail: 1.64
+    fingerprint: 7b2df54e5a0728b4
+  t4:
+    job: garden-5
+    take: 4
+    status: fail
+    preset: soft-lock
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.986 and moved it; aligned back to the
+        parent
+      value: 1.0138
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 25 (R1 51)
+      value: 25.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 68 (R1 59)
+      value: 68.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.68
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 4.7
+      value: 4.7426
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 5.4, off-palette 0.0%
+      value: 1.7517
+    - check: station_anchor
+      status: fail
+      message: top y 0 above the height bar (150); width 874 px wider than the footprint
+        (720)
+      value: 904.0
+    - check: edit_stability
+      status: pass
+      message: 86% of the parent level unchanged
+      value: 0.8616
+    info:
+      registration:
+        dx: -11
+        dy: 15
+      alignment:
+        scale: 1.0138
+        cx: 496.0
+        cy: 1008.0
+        dx: 10
+        dy: -104
+      metrics_raw:
+        L_p5: 62.5
+        L_p50: 79.9
+        L_p95: 86.7
+        C_p50: 12.9
+        C_p95: 35.8
+        C_p99: 51.4
+        detail: 3.08
+      metrics_locked:
+        L_p5: 68.5
+        L_p50: 81.5
+        L_p95: 87.2
+        C_p50: 9.6
+        C_p95: 25.0
+        C_p99: 36.5
+        detail: 1.68
+    fingerprint: 7b2df54e5a0728b4

@@ -99,6 +99,17 @@ class ParseTests(unittest.TestCase):
                 with self.assertRaises(pl.ManifestError):
                     pl.parse_manifest(bad, REFS)
 
+    def test_external_master_at_its_own_path(self):
+        data = manifest()
+        r1 = "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png"
+        data["jobs"][0] = {"id": "cay-1", "kind": "station", "external": "r1", "master": r1}
+        m = pl.parse_manifest(data, REFS)
+        self.assertEqual(pl.approved_image(m.job("cay-1")), (pl.REPO_ROOT / r1).resolve())
+        bad = manifest()
+        bad["jobs"][0]["master"] = r1  # only an external job may name its image
+        with self.assertRaises(pl.ManifestError):
+            pl.parse_manifest(bad, REFS)
+
 
 class PromptTests(unittest.TestCase):
     def test_blocks_are_verbatim_and_refs_listed_in_order(self):

@@ -11,7 +11,8 @@ links:
   variant_of:
   - asset-windmill-3
 art:
-  images: []
+  images:
+  - design/art/stations/windmill-4/windmill-4.png
   jobs:
   - batch-03-home-island:windmill-4
 sources:

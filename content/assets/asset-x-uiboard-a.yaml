@@ -1,0 +1,23 @@
+id: asset-x-uiboard-a
+type: asset
+title_tr: x-uiboard-a
+title_en: x-uiboard-a (plate)
+status: in-production
+horizon: maybe
+summary: >-
+  A portrait painted mood board of a cozy phone game's home screen, for inspiration: the floating
+  island fills the middle of the picture, about 70% of its height, with the tea stall and
+  a small garden on its lawn; the hamster stands on the lawn's front edge, about a fifth of
+  the picture's width. A soft morning sky above, a calm sea of clouds below. At the very bottom,
+  three plain, flat, pale cream rounded rectangles ma…
+art:
+  images: []
+  jobs:
+  - batch-09-explore-pilot:x-uiboard-a
+notes:
+- Exploration (docs/design/art-production-plan.md); never promoted, never shipped.
+sources:
+- doc: tools/imagegen/manifest/batch-09-explore-pilot.yaml
+kind: plate
+batch: batch-09-explore-pilot
+size: 1024x1536

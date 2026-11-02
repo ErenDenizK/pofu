@@ -1,0 +1,109 @@
+{
+  "job": "island-main-l-v2",
+  "batch": "batch-03-home-island",
+  "asset": "world__island-main-l-v2",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T14:36:22+00:00",
+  "image": "design/art/masters/island-main-l-v2/island-main-l-v2.png",
+  "raw": "design/art/masters/island-main-l-v2/raw.png",
+  "fingerprint": "a911cdfdf8ff754c",
+  "prompt": "REFERENCES (attached, in this order):\n1. The small island, approved: the same island before it grows. Match its painting, colors, light, camera, lawn, front lip, strata, door, pebbles and roots exactly.\n2. Style reference only (no characters): the hamster's soft painting, light and pastel colors.\n3. The palette card: use only these colors (and mixes of them).\n\nDraw the large version of the attached floating island: the same\nisland after it has grown, for a cozy mobile game diorama.\n- The lawn is about 40% wider, side to side, and about 15% deeper,\n  front to back, than the attached island's: a longer, wider\n  oval, still completely empty, at the same low camera (the oval\n  about 0.3 times as tall as it is wide).\n- To fit the canvas, the camera is a little farther away: the\n  island fills about 94% of the image width, and the round door,\n  its window, the pebbles and the roots are drawn at about 70% of\n  their size in the attached image (the same real size on a\n  bigger island). The door stays on the lower left of the earth\n  body; add two or three more pebbles and one more root along the\n  longer earth body.\n- Relative to its own width, the earth body is a little shallower\n  than in the attached image (about 17% of the island's width),\n  because the island grew more in width than in depth: the same\n  soft, rounded underside, never a cone.\n- The same soft, muted sage lawn painted as a smooth velvety\n  surface, the same darker front lip with a hint of short grass,\n  the same light honey and caramel earth with gentle strata.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: characters, plants or objects on the lawn, water, sky, clouds, background, ground shadow, saturated or yellow-green grass, a deep cone-shaped underside, a door as large as in the attached image, text.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-s/island-main-s.png",
+      "role": "The small island, approved: the same island before it grows. Match its painting, colors, light, camera, lawn, front lip, strata, door, pebbles and roots exactly."
+    },
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "Style reference only (no characters): the hamster's soft painting, light and pastel colors."
+    },
+    {
+      "path": "design/reference/palette-card-world-day.png",
+      "role": "The palette card: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T14:35:47+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "soft-lock",
+    "version": 1
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 25 (R1 51)",
+        "value": 25.1
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 71 (R1 59)",
+        "value": 71.1
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.6 (R1 5.3)",
+        "value": 1.55
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 7.8",
+        "value": 7.7683
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.5, p95 4.4, off-palette 0.0%",
+        "value": 1.4721
+      },
+      {
+        "check": "depth_ratio",
+        "status": "pass",
+        "message": "earth depth / width 0.17 (target <= 0.30)",
+        "value": 0.1681
+      },
+      {
+        "check": "lawn_chroma",
+        "status": "pass",
+        "message": "lawn chroma p95 19 (palette meadow 38)",
+        "value": 18.7193
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}
