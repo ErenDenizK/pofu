@@ -68,6 +68,24 @@ final class GardenScreenshotTests: XCTestCase {
             try await Task.sleep(for: .milliseconds(1600))
         }
 
+        // The round's natural end: the last plot goes in, the bed blooms
+        // row by row (the harvest), then the card takes over. A six-plot
+        // bag keeps the run short; the end is the same as at eighteen.
+        let shortBag = GardenRound.Config(piecesPerRound: 6)
+        try await shoot("26-garden-harvest-light", in: scene, folder: folder, written: &written, model: GardenGameModel(seed: 9, config: shortBag)) { model in
+            model.autoplay(moves: 5)
+            try await Task.sleep(for: .milliseconds(300))
+            model.playSuggestedMove()
+            try await Self.wait(until: { model.isHarvesting }, timeout: 4)
+            try await Task.sleep(for: .milliseconds(450))
+        }
+        try await shoot("27-garden-handoff-light", in: scene, folder: folder, written: &written, model: GardenGameModel(seed: 9, config: shortBag)) { model in
+            model.autoplay(moves: 5)
+            try await Task.sleep(for: .milliseconds(300))
+            model.playSuggestedMove()
+            try await Self.wait(until: { model.phase != .playing }, timeout: 8)
+        }
+
         // A bloom in slow motion, eight frames, cropped to the garden.
         let sequence = try await frames(in: scene, model: GardenGameModel(seed: 7))
         let strip = Self.contactStrip(sequence, columns: 4)
@@ -78,7 +96,16 @@ final class GardenScreenshotTests: XCTestCase {
         let summary = written.joined(separator: "\n")
         try summary.write(to: folder.appendingPathComponent("README-garden.txt"), atomically: true, encoding: .utf8)
         print("Garden screenshots in \(folder.path):\n\(summary)")
-        XCTAssertEqual(written.count, 6)
+        XCTAssertEqual(written.count, 8)
+    }
+
+    /// Polls `condition` every 50 ms, up to `timeout` seconds.
+    @MainActor
+    static func wait(until condition: () -> Bool, timeout: TimeInterval) async throws {
+        let deadline = Date().addingTimeInterval(timeout)
+        while !condition(), Date() < deadline {
+            try await Task.sleep(for: .milliseconds(50))
+        }
     }
 
     /// A bed two plots from a double bloom, on a streak of two.
