@@ -166,7 +166,7 @@ down.
 | Start | 70 |
 | Drain while a guarded app is open | 0.35 per minute; ×2 inside bedtime; ×1.25 per earlier open in the last 3 h |
 | Drain per open | 1.5 (the reach itself) |
-| Heal while calm (waking) | 5 per hour |
+| Heal while calm (waking) | 5 per hour from "tired" up. In the two lowest bands ("curled up", "unwell"), **one quiet hour lifts Pofu out of the band** (ADR-0017's promise): each observed calm minute heals 1/60 of the band's width (7 curled up, 13 unwell), stopping at its edge |
 | Calm night (no opens 23:00–06:00) | +10 |
 | Skip | +1, at most 6 a day |
 | **Sleeps it off** | each night, wellbeing below 60 moves 30 % of the way back to 60 |
@@ -176,7 +176,7 @@ down.
 The meter shows a soft bar and a mood word, never a number. "Sleeps it
 off" stays (founder, 2026-11-01): a bad day must not stack into a bad
 week. Without it the heavy scroller's Pofu was unwell for 20 of 60 days;
-with it, 6 of 90.
+with it, 6 of 90; with the bottom bands healing by their width, 3 of 90.
 
 ### The calm multiplier (TR: *huzur*)
 
@@ -459,9 +459,12 @@ code (ADR-0011).
 
 ## 13. Mapping to PofuCore
 
-_Game model implemented in `PofuCore/Game` (iteration W3, 2026-11-02);
-not yet wired into the app, which still runs the v0 gate and economy.
-`PofuWorld` will only read it._
+_Game model implemented in `PofuCore/Game` (iteration W3, 2026-11-02).
+The app saves the game state with its snapshot and advances it from the
+gate's event log and Pofu's foreground time; the shield and Hop!'s skip
+screen show the live calm, and the developer readout shows the world.
+Seeds, wellbeing and the islands are not shown yet, and the gate still
+runs the v0 economy. `PofuWorld` will only read the model._
 
 | Concept | Today in PofuCore | Status |
 |---|---|---|
@@ -501,10 +504,13 @@ Rules the spec left open, as implemented:
   stretch starts at the sign of life); **A20 pauses** them (the run
   holds). Neither drains nor heals Pofu. "Sleeps it off" applies every
   night, observed or not: it only ever lifts him toward 60.
-- **From the floor**, one quiet hour lifts Pofu from 5 to 10, still curled
-  up (the band ends at 12); ADR-0017's "one quiet hour lifts him a band"
-  holds from about 7 up. Kept as tuned; a candidate for the founder's
-  dogfood.
+- **One quiet hour lifts Pofu out of the bottom** (ADR-0017). A flat 5
+  an hour leaves him curled up from the floor (5 → 10; the band ends at
+  12), so the two lowest bands heal by their width: 1/60 of it a minute,
+  stopping at the edge, so one quiet hour reaches the next edge from
+  anywhere in "curled up" or "unwell". From "tired" up healing stays a
+  flat 5 an hour, keeping the stakes. Tested in `CareLedgerTests` and
+  `WorldClockTests`; the simulation uses the same rule.
 
 ## 14. Economy simulation
 
@@ -520,18 +526,18 @@ anywhere first, at most two per visit).
 
 | Archetype | First build (day) | Home island done (day) | Home at day 30 | İskele arrives | Yıldız arrives | Islands at day 60 / 90 | Archipelago at day 90 | Weeks without a build (of 12) |
 |---|---|---|---|---|---|---|---|---|
-| Heavy scroller, improving | 1 | 65 | 33 % | day 9 | day 22 | 5 / 5 | 50 % | 0 |
+| Heavy scroller, improving | 1 | 64 | 33 % | day 9 | day 22 | 5 / 5 | 50 % | 0 |
 | Moderate | 1 | 62 | 33 % | day 9 | day 22 | 5 / 5 | 50 % | 0 |
 | Already disciplined | 1 | 46 | 63 % | day 9 | day 22 | 5 / 5 | 68 % | 0 |
-| Relapse and recover | 1 | 63 | 33 % | day 9 | day 22 | 5 / 5 | 53 % | 0 |
+| Relapse and recover | 1 | 62 | 33 % | day 9 | day 22 | 5 / 5 | 53 % | 0 |
 | Never opens (upper bound) | 1 | 42 | 63 % | day 9 | day 22 | 5 / 5 | 74 % | 0 |
 
 | Archetype | Calm avg wk 1 → wk 13 | Resets / halvings per day | Breathing breaks/day wk 1 → wk 13 (seconds/day, wk 1) | Wellbeing wk 1 → wk 13 (lowest) | Unwell days | Feed min/day wk 1 → wk 13 | Seeds/day wk 1 | Wk 1 share: Pofu's gathering / skips |
 |---|---|---|---|---|---|---|---|---|
-| Heavy scroller, improving | 1.17× → 1.51× | 5.8 / 2.5 | 17.4 → 0.1 (159 s) | 32 → 98 (5) | 6 | 183 → 40 | 609 | 9 % / 2 % |
+| Heavy scroller, improving | 1.17× → 1.51× | 5.8 / 2.5 | 17.4 → 0.1 (159 s) | 36 → 98 (5) | 3 | 183 → 40 | 721 | 8 % / 2 % |
 | Moderate | 1.36× → 1.45× | 5.0 / 3.6 | 2.6 → 0.7 (19 s) | 92 → 96 (25) | 0 | 68 → 51 | 1,194 | 5 % / 1 % |
 | Already disciplined | 1.88× → 1.87× | 0.7 / 1.5 | 0.0 → 0.0 (0 s) | 100 → 100 (70) | 0 | 5 → 5 | 1,778 | 3 % / 1 % |
-| Relapse and recover | 1.39× → 1.61× | 4.5 / 2.6 | 1.4 → 0.0 (10 s) | 96 → 99 (5) | 4 | 63 → 27 | 1,248 | 5 % / 1 % |
+| Relapse and recover | 1.39× → 1.61× | 4.5 / 2.6 | 1.4 → 0.0 (10 s) | 96 → 99 (5) | 3 | 63 → 27 | 1,248 | 5 % / 1 % |
 | Never opens (upper bound) | 1.99× → 2.00× | 0.0 / 0.0 | 0.0 → 0.0 (0 s) | 100 → 100 (70) | 0 | 0 → 0 | 1,887 | 3 % / 1 % |
 
 _Medians of 30 runs, 90 days._
@@ -557,12 +563,12 @@ _Medians of 30 runs, 90 days._
   top level hold the line.
 - **Heavy scrollers still progress.** İskele arrives on day 9 for every
   archetype, every archetype builds something every week for 12 weeks,
-  and the heavy scroller finishes the home island on day 65. Calm decides
+  and the heavy scroller finishes the home island on day 64. Calm decides
   *how fast*, never *whether*.
 - **Scrolling visibly slows the world and tires Pofu.** Week-1 seeds a
-  day: 609 for the heavy scroller against 1,778 for the disciplined
+  day: 721 for the heavy scroller against 1,778 for the disciplined
   player. Wellbeing is the louder signal: the heavy scroller's Pofu starts
-  tired (32) and recovers to cozy as feed time falls from 183 to 40
+  tired (36) and recovers to cozy as feed time falls from 183 to 40
   minutes a day.
 
 **Findings that changed the design:**

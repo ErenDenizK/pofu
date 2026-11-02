@@ -159,6 +159,20 @@ struct WorldClockTests {
 
     // MARK: - Opens and calm
 
+    /// ADR-0017 through the facade: an observed quiet waking hour lifts
+    /// Pofu out of the two lowest bands; above them it heals 5.
+    @Test(arguments: [(5.0, 12.0), (11.99, 12), (12, 25), (24.5, 25), (25, 30), (49.99, 54.99), (98, 100)])
+    func anObservedQuietHourHeals(wellbeing: Double, atLeast: Double) {
+        var world = World()
+        world.state.care = CareLedger(wellbeing: wellbeing, rules: world.rules.care)
+        world.advance(to: noon, .signOfLife(at: noon))
+        world.advance(to: noon.adding(hours: 1))
+        #expect(world.state.care.wellbeing >= atLeast - 1e-9)
+        if wellbeing >= 25 {
+            #expect(abs(world.state.care.wellbeing - atLeast) < 1e-9)
+        }
+    }
+
     @Test func aQuickCheckHalvesAndAChainedOneResets() {
         var world = World()
         let start = noon.adding(hours: -4)
@@ -381,6 +395,32 @@ struct WorldClockTests {
         // fourth not.
         world.advance(to: noon.adding(hours: 24 * 5))
         #expect(world.state.tendedDays == 4)
+    }
+
+    // MARK: - Starting for an existing user
+
+    @Test func aGameStartedForAnExistingUserCreditsNothingBeforeItAndKeepsTheWindow() {
+        var world = World()
+        let lastCheckIn = noon.adding(hours: -70)
+        world.start(at: noon, lastSignal: lastCheckIn)
+        #expect(world.state.clock == noon)
+        #expect(world.seeds == .zero)
+        // Observing for the two hours left of the last check-in's window.
+        let delta = world.advance(to: noon.adding(hours: 3))
+        #expect(delta.awayMinutes == 120)
+        #expect(delta.unobservedMinutes == 60)
+        // A second start changes nothing.
+        let before = world.state
+        world.start(at: noon.adding(hours: 5), lastSignal: noon.adding(hours: 4))
+        #expect(world.state == before)
+    }
+
+    @Test func aGameStartedForANewUserWaitsForTheFirstSignOfLife() {
+        var world = World()
+        world.start(at: noon, lastSignal: nil)
+        let delta = world.advance(to: noon.adding(hours: 1))
+        #expect(delta.unobservedMinutes == 60)
+        #expect(world.snapshot.activity == .notSetUp)
     }
 
     // MARK: - Prefix consistency

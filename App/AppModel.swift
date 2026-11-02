@@ -21,6 +21,10 @@ final class AppModel {
     private(set) var profile: UserProfile
     /// The running honor session, if any.
     private(set) var activeSession: ActiveSession?
+    /// The game model (game design v2), fed by the gate's event log and
+    /// Pofu's foreground time. Only calm is shown so far (the shield and
+    /// Hop!); the developer readout shows the rest through `world`.
+    private(set) var game: GameState
     /// The result of the session that just ended, until Pofu has shown the
     /// cheeks-fill moment.
     private(set) var earningResult: EarningResult?
@@ -93,6 +97,7 @@ final class AppModel {
         self.state = snapshot.state
         self.profile = snapshot.profile
         self.activeSession = snapshot.activeSession
+        self.game = snapshot.game ?? GameState()
         if snapshot.state.vitality.settledThrough == nil {
             state.vitality = VitalityLedger(initialVitality: configuration.vitality.initialVitality)
         }
@@ -101,7 +106,17 @@ final class AppModel {
         if let lastCheckIn = snapshot.profile.lastCheckIn.values.max() {
             gatekeeper.quietTime.bootstrap(&state.quietTime, lastSignal: lastCheckIn, checkIns: state.checkIns)
         }
+        if snapshot.game == nil {
+            // A store from before the game: the game starts now, observing
+            // for what is left of the last check-in's window.
+            gameClock.start(&game, at: now, lastSignal: snapshot.profile.lastCheckIn.values.max())
+        }
         settleDay()
+        if game.foregroundSince != nil {
+            // The last process ended with Pofu in the foreground: that
+            // session is over.
+            advanceGame(to: now, applying: [GameEvent(at: now, kind: .foregroundEnded)])
+        }
         screenTime.update(rules: gateRules)
     }
 
@@ -229,14 +244,48 @@ final class AppModel {
         profile.protectedApps.filter { !profile.isVerified($0) }
     }
 
+    // MARK: - The game (game design v2)
+
+    /// The game's clock with today's rules: the user's daily hour, and
+    /// what Pofu can measure (the shield's return ends a pass only when the
+    /// live gate is on).
+    var gameClock: WorldClock {
+        WorldClock(
+            rules: GameRules(gate: gateRules, measurement: screenTime.isOn ? .screenTime : .softGate),
+            calendar: economy.calendar
+        )
+    }
+
+    /// The world as it is at the last refresh: read-only.
+    var world: WorldSnapshot {
+        gameClock.snapshot(of: game)
+    }
+
+    /// The calm multiplier the shield and Hop! show; `nil` until Pofu has
+    /// seen a sign of life.
+    var liveCalm: Double? {
+        let snapshot = world
+        return snapshot.activity == .notSetUp ? nil : snapshot.calm
+    }
+
+    /// Advances the game to `date`, taking in `events`.
+    private func advanceGame(to date: Date, applying events: [GameEvent] = []) {
+        gameClock.advance(&game, to: date, applying: events)
+    }
+
     // MARK: - Lifecycle
 
     /// Brings the model up to date: today's allowance, expired passes, and
     /// settled vitality. Called whenever the app becomes active: Pofu on
     /// screen is a sign of life for quiet time (decision audit C1).
     func refresh() {
+        let cameForward = !isOnScreen
         isOnScreen = true
         settleDay()
+        if cameForward, game.foregroundSince == nil {
+            // A20: the first two minutes in Pofu count as away.
+            advanceGame(to: now, applying: [GameEvent(at: now, kind: .foregroundBegan)])
+        }
         gatekeeper.noteUserReturned(at: now, state: &state)
         syncScreenTime()
         save()
@@ -247,16 +296,26 @@ final class AppModel {
         isOnScreen = false
     }
 
+    /// The scene went to the background: Pofu's foreground session ends
+    /// (A20). A passing inactive phase does not end it, so pulling down
+    /// Control Center never restarts the grace.
+    func enteredBackground() {
+        leftForeground()
+        now = clock.now
+        advanceGame(to: now, applying: [GameEvent(at: now, kind: .foregroundEnded)])
+        save()
+    }
+
     /// Keeps quiet time and the day current while Home is on screen, and
     /// saves only when something the user can see changed. A pass that
     /// expires while Pofu is on screen hands over to quiet time at once.
     func tick() {
-        let before = (state.quietTime.pending, state.wallet.balance, state.quietTime.quietSince)
+        let before = (state.quietTime.pending, state.wallet.balance, state.quietTime.quietSince, game.calm.tenths, game.stations.pending)
         settleDay()
         if isOnScreen {
             gatekeeper.noteUserReturned(at: now, state: &state)
         }
-        if before != (state.quietTime.pending, state.wallet.balance, state.quietTime.quietSince) {
+        if before != (state.quietTime.pending, state.wallet.balance, state.quietTime.quietSince, game.calm.tenths, game.stations.pending) {
             save()
         }
     }
@@ -265,6 +324,7 @@ final class AppModel {
         now = clock.now
         economy.openDay(&state.wallet, at: now)
         gatekeeper.advanceQuietTime(to: now, state: &state)
+        advanceGame(to: now)
         state.passes.removeExpired(at: now)
         let calendar = economy.calendar
         let snapshotState = state
@@ -346,7 +406,8 @@ final class AppModel {
                 attempt: attempt,
                 isNight: economy.isBedtime(now),
                 reachOrdinal: ordinal,
-                shieldedApp: shieldedApp
+                shieldedApp: shieldedApp,
+                calm: liveCalm
             )
             if isPastDailyHour {
                 // Past the daily hour every open starts with a breath
@@ -546,6 +607,7 @@ final class AppModel {
                 Log.persistence.error("Appending to the event log failed: \(error.localizedDescription, privacy: .public)")
             }
         }
+        advanceGame(to: now, applying: events.flatMap { GameEvent.events(for: $0) })
         Log.screenTime.info("Ingested \(records.count, privacy: .public) Screen Time records")
         // The snapshot and the ledger are saved before the files go, so a
         // crash in between ingests nothing twice (the ledger remembers ids).
@@ -626,7 +688,7 @@ final class AppModel {
                 resistedToday: tally.resisted,
                 recentReaches: recent,
                 wellbeing: vitality,
-                calm: nil,
+                calm: liveCalm,
                 measuredMinutes: screenTimeLedger.measuredMinutes(on: today),
                 dailyHourMinutes: gateRules.dailyHourMinutes,
                 overLimitOpensToday: screenTimeLedger.overLimitOpens(on: today),
@@ -671,6 +733,7 @@ final class AppModel {
         now = clock.now
         Log.economy.info("Pass reminder tapped")
         gatekeeper.noteUserReturned(at: now, state: &state)
+        advanceGame(to: now, applying: [GameEvent(at: now, kind: .returned)])
         save()
     }
 
@@ -795,7 +858,7 @@ final class AppModel {
     private func save() {
         guard let store else { return }
         do {
-            try store.save(PofuSnapshot(state: state, profile: profile, activeSession: activeSession))
+            try store.save(PofuSnapshot(state: state, profile: profile, activeSession: activeSession, game: game))
             persistenceProblem = false
         } catch {
             Log.persistence.error("Saving the snapshot failed: \(error.localizedDescription, privacy: .public)")
@@ -804,12 +867,16 @@ final class AppModel {
         writeShieldState()
     }
 
+    /// Appends `event` to the log and feeds it to the game, which follows
+    /// the gate through its log (`GameEvent.events(for:)`).
     private func log(_ event: PofuEvent) {
+        let logged = LoggedEvent(at: clock.now, event: event)
         do {
-            try store?.log(event, at: clock.now)
+            try store?.events.append(logged)
         } catch {
             Log.persistence.error("Appending to the event log failed: \(error.localizedDescription, privacy: .public)")
         }
+        advanceGame(to: logged.at, applying: GameEvent.events(for: logged))
     }
 }
 

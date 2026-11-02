@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- The game state is saved with the snapshot (schema version 2, versioned
+  and tolerant: a store from before the game starts one, an unreadable game
+  never costs the gate its state) and follows the gate's event log on every
+  refresh, tick, log entry and Screen Time ingestion, plus Pofu's own
+  foreground time (A20). The shield and Hop!'s skip screen show the live
+  calm multiplier (gate v2 E9); the developer readout shows the world.
+
 - The game model in `PofuCore/Game` (iteration W3, not yet wired into the
   app): `CareLedger` (Pofu's wellbeing, 5–100, never below 5, "sleeps it
   off"), `CalmAccrual` (×1.0–×2.0, quick checks halve, the 20-minute
@@ -63,6 +70,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- One quiet hour lifts Pofu out of the two lowest bands, from the floor
+  too (ADR-0017): there, calm waking time heals 1/60 of the band's width a
+  minute; from "tired" up it stays 5 an hour. The economy simulation uses
+  the same rule.
 - Without notifications, "Pofu'yla aç" is never a dead end: the shield
   says "Pofu'yu kendin aç", and opening Pofu within 10 minutes starts
   Hop!. The notification tap is routed by the notification delegate; the

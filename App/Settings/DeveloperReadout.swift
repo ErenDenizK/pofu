@@ -45,6 +45,41 @@ struct DeveloperReadout: View {
             } footer: {
                 Text(verbatim: "The spike answers \"Pofu'yla aç\" with .openParentalControlsApp; the notification stays as the fallback. Day-1 case 23.")
             }
+            Section {
+                let world = model.world
+                LabeledContent {
+                    Text(verbatim: world.activity.rawValue)
+                } label: {
+                    Text(verbatim: "World")
+                }
+                LabeledContent {
+                    Text(verbatim: String(format: "×%.1f (%.0f %% to the next step)", world.calm, world.calmProgress * 100))
+                } label: {
+                    Text(verbatim: "Calm")
+                }
+                LabeledContent {
+                    Text(verbatim: String(format: "%.1f · %@", world.wellbeing, world.band.rawValue))
+                } label: {
+                    Text(verbatim: "Wellbeing")
+                }
+                LabeledContent {
+                    Text(verbatim: "\(world.pending.total.units) waiting · \(world.jar.units) in the jar\(world.isHolding ? " · held" : "")")
+                } label: {
+                    Text(verbatim: "Seeds")
+                }
+                LabeledContent {
+                    Text(verbatim: "\(world.tendedDays) tended · \(world.calmNights) calm nights · stage \(world.homeStage)")
+                } label: {
+                    Text(verbatim: "Days")
+                }
+                LabeledContent {
+                    Text(verbatim: "\(world.guardedMinutesToday) / \(world.dailyHourMinutes) · \(world.overLimitOpensToday) over the hour")
+                } label: {
+                    Text(verbatim: "Guarded minutes (game)")
+                }
+            } header: {
+                Text(verbatim: "Game model (not shown yet)")
+            }
             ForEach(days, id: \.day) { day in
                 Section {
                     row("Reaches", day.reaches)

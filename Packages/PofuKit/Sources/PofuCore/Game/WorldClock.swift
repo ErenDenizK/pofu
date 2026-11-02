@@ -61,6 +61,19 @@ public struct WorldClock: Sendable {
         return delta
     }
 
+    /// Starts a fresh state at `date` for a user who used Pofu before the
+    /// game existed: the clock starts now (nothing before it is ever
+    /// credited), and the last sign of life the gate saw keeps Pofu
+    /// observing for what is left of its window, never longer. Does nothing
+    /// once the state has a clock.
+    public func start(_ state: inout GameState, at date: Date, lastSignal: Date?) {
+        guard state.clock == nil else { return }
+        state.clock = Self.minuteFloor(date)
+        if let lastSignal, lastSignal <= date {
+            state.lastSignalAt = Self.minuteFloor(lastSignal)
+        }
+    }
+
     /// Moves every waiting seed into the jar, after advancing to `date`.
     ///
     /// - Returns: What was collected; `nil` when nothing waits, when the

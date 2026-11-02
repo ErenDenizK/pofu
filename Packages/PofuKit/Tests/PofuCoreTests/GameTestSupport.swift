@@ -29,6 +29,10 @@ struct World {
         clock.advance(&state, to: date, applying: events)
     }
 
+    mutating func start(at date: Date, lastSignal: Date?) {
+        clock.start(&state, at: date, lastSignal: lastSignal)
+    }
+
     mutating func collect(at date: Date) -> SeedPouch? {
         clock.collect(&state, at: date)
     }

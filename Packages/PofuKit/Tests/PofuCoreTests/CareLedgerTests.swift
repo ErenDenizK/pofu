@@ -49,26 +49,57 @@ struct CareLedgerTests {
         #expect(CareLedger(wellbeing: 400, rules: rules).wellbeing == 100)
     }
 
-    @Test func aQuietHourHealsFive() {
-        var care = CareLedger(wellbeing: 20, rules: rules)
+    @Test func aQuietHourHealsTheBottomBandsByTheirWidth() {
+        var curled = CareLedger(wellbeing: 5, rules: rules)
+        for _ in 0..<30 {
+            curled.healMinute(rules: rules)
+        }
+        #expect(abs(curled.wellbeing - 8.5) < 1e-6)
+    }
+
+    /// ADR-0017: one quiet hour lifts Pofu out of the bottom, from the
+    /// floor.
+    @Test func oneQuietHourLiftsACurledUpPofuABand() {
+        var care = CareLedger(wellbeing: 5, rules: rules)
+        #expect(care.band(rules: rules) == .curledUp)
         for _ in 0..<60 {
             care.healMinute(rules: rules)
         }
-        #expect(abs(care.wellbeing - 25) < 1e-9)
+        #expect(care.band(rules: rules) == .unwell)
     }
 
-    @Test func aQuietEveningAndACalmNightLiftACurledUpPofu() {
-        var care = CareLedger(wellbeing: 5, rules: rules)
-        #expect(care.band(rules: rules) == .curledUp)
-        // From the floor, a quiet hour and a half lifts him to unwell
-        // (5 + 7.5 ≥ 12)...
-        for _ in 0..<90 {
-            care.healMinute(rules: rules)
+    /// From anywhere in the two lowest bands, one quiet hour reaches the
+    /// next band edge.
+    @Test(arguments: [UInt64(1), 2, 3])
+    func inTheBottomBandsOneQuietHourReachesTheNextEdge(seed: UInt64) {
+        var rng = SplitMix64(seed: seed)
+        var starts: [Double] = [5, 5 + 1e-9, 11.99, 12 - 1e-9, 12, 12 + 1e-9, 24.99, 25 - 1e-9]
+        starts += (0..<200).map { _ in Double.random(in: 5..<25, using: &rng) }
+        for start in starts {
+            var care = CareLedger(wellbeing: start, rules: rules)
+            let edge = start < 12 ? 12.0 : 25.0
+            for _ in 0..<60 {
+                care.healMinute(rules: rules)
+            }
+            #expect(care.wellbeing >= edge, "from \(start): \(care.wellbeing)")
+            // Never a band further than the promise within the hour.
+            #expect(care.wellbeing < edge + 13, "from \(start): \(care.wellbeing)")
         }
-        #expect(care.band(rules: rules) == .unwell)
-        // ...and a calm night to tired.
-        care.nightEnded(calm: true, rules: rules)
-        #expect(care.band(rules: rules) == .tired)
+    }
+
+    /// From "tired" up, one quiet hour heals exactly 5, capped at 100.
+    @Test(arguments: [UInt64(1), 2, 3])
+    func aboveTheBottomOneQuietHourHealsFive(seed: UInt64) {
+        var rng = SplitMix64(seed: seed)
+        var starts: [Double] = [25, 49.99, 50, 74.99, 75, 94.5, 95, 97, 100]
+        starts += (0..<200).map { _ in Double.random(in: 25...100, using: &rng) }
+        for start in starts {
+            var care = CareLedger(wellbeing: start, rules: rules)
+            for _ in 0..<60 {
+                care.healMinute(rules: rules)
+            }
+            #expect(abs(care.wellbeing - min(100, start + 5)) < 1e-9, "from \(start): \(care.wellbeing)")
+        }
     }
 
     @Test func skipsHealOneForAtMostSixADay() {
