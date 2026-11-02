@@ -101,6 +101,13 @@ makes **2 takes** (a third is usually a weaker copy of the second).
 | `garden` | `garden-1` → `garden-2` | after `cay-1` is merged |
 | `simit` | `simit-1` | after `cay-1` is merged |
 
+**Or one task for everything:** "AGENTS.md parallel auto mode,
+batch-01-slice, track `all`" runs the tracks one after another in the
+order of the table (island, mochi, cay, garden, simit) in a single task,
+on branch `art/batch-01-slice/all`, with one PR at the end. It is slower
+than parallel tasks but needs no merges in between, because every
+reference is already on its own branch.
+
 The founder starts a task with: "AGENTS.md parallel auto mode,
 batch-01-slice, track `<name>`". Branch: `art/batch-01-slice/<track>`. PR
 title: `art(batch-01): <track>`. Within the task, run steps 2 to 6 for each
