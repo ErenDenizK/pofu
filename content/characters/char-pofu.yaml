@@ -4,30 +4,29 @@ title_tr: Pofu
 title_en: Pofu, the hamster
 status: in-app
 horizon: now
-summary: >-
-  An illustrated fluffy hamster (ADR-0010) and the companion at the door of Instagram, YouTube
-  and TikTok. Lives on Ayçiçeği, gathers seeds while you are away, has Duolingo-owl-level
-  personality aimed at the reach, never at the person. Never dies (ADR-0017).
+summary: An illustrated fluffy hamster (ADR-0010) and the companion at the door of
+  Instagram, YouTube and TikTok. Lives on Ayçiçeği, gathers seeds while you are away,
+  has Duolingo-owl-level personality aimed at the reach, never at the person. Never
+  dies (ADR-0017).
 notes:
-- >-
-  Wellbeing floor 5: the lowest state is "curled up" in deep sleep, always recoverable; one
-  quiet hour lifts him a band.
+- 'Wellbeing floor 5: the lowest state is "curled up" in deep sleep, always recoverable;
+  one quiet hour lifts him a band.'
 - The cream curl on top of the head is Pofu's alone (founder, 2026-11-02).
-- >-
-  R1 (pofu-hamster-base) is the motion asset contract: feet line, about 70 % width. The hero
-  rendering is for marketing and onboarding crops.
-- >-
-  Home: about 38 % of the screen width (154 pt) in the balanced diorama (ADR-0018). On the
-  map: a 30 pt vector pin.
-- >-
-  Generated on the uncle's ChatGPT plan with permission; before launch, a written assignment
-  or a regeneration on the founder's plan (roadmap Phase 6).
+- 'R1 (pofu-hamster-base) is the motion asset contract: feet line, about 70 % width.
+  The hero rendering is for marketing and onboarding crops.'
+- 'Home: about 38 % of the screen width (154 pt) in the balanced diorama (ADR-0018).
+  On the map: a 30 pt vector pin.'
+- Generated on the uncle's ChatGPT plan with permission; before launch, a written
+  assignment or a regeneration on the founder's plan (roadmap Phase 6).
 links:
   uses_asset:
   - asset-pofu-base-v1
   - asset-pofu-hero-v1
   - asset-appicon-draft
   - asset-icon-mood-content
+  - asset-pofu-rig-clean
+  - asset-pofu-eyes-happy
+  - asset-pofu-eyes-closed
   inspired_by:
   - asset-concept-pofu
   related:
