@@ -1,0 +1,148 @@
+batch: batch-06-pofu-rig
+contact_sheet: design/art/takes/batch-06-pofu-rig/mochi-eyes-closed/contact.jpg
+jobs:
+  mochi-eyes-closed:
+    pick: 1
+    note: 'auto-picked by QA; founder review pending Global queue stop: batch-07-light
+      workshop-1-lit retry takes 3 and 4 both failed chroma_ceiling. No new image
+      calls after stop; this generated pair is retained for later review and is NOT
+      published as a master on this branch.'
+    takes:
+      t1:
+        qa: pass
+        summary: all pass
+      t2:
+        qa: warn
+        summary: harmony warn
+    local_candidate_preparation:
+      take: 1
+      at: '2026-11-02T19:07:06+00:00'
+    publication: selected candidate, not published as a master on this branch due
+      global stop
+qa_reports:
+  char__mochi-eyes-closed--t2:
+    job: mochi-eyes-closed
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 29 (R1 51)
+      value: 29.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 75.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.6 (R1 5.3)
+      value: 3.59
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.7, p95 1.4, off-palette 0.6% (top: #441100 (0.1%), #551100
+        (0.1%))'
+      value: 0.6889
+    - check: ground_line
+      status: pass
+      message: feet at 87.8% of the height (contract 88%)
+      value: 0.8776
+    - check: harmony
+      status: warn
+      message: 'harmony score 68 against the char reference (outliers: C_p95, L_p2)'
+      value: 68.3
+    - check: edit_stability
+      status: pass
+      message: 96% of the parent level unchanged
+      value: 0.9591
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.94 of the parent level (drift compounds along a chain)
+      value: 0.9365
+    info:
+      metrics_raw:
+        L_p5: 75.5
+        L_p50: 92.6
+        L_p95: 97.5
+        C_p50: 8.7
+        C_p95: 29.4
+        C_p99: 40.4
+        detail: 3.58
+      metrics_locked:
+        L_p5: 75.5
+        L_p50: 92.6
+        L_p95: 97.5
+        C_p50: 8.7
+        C_p95: 29.4
+        C_p99: 40.4
+        detail: 3.59
+    fingerprint: 733c930804f463bd
+  char__mochi-eyes-closed--t1:
+    job: mochi-eyes-closed
+    take: 1
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 30 (R1 51)
+      value: 30.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 75.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.2 (R1 5.3)
+      value: 3.22
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.7, p95 1.4, off-palette 0.7% (top: #441100 (0.1%), #DD6655
+        (0.1%))'
+      value: 0.6694
+    - check: ground_line
+      status: pass
+      message: feet at 87.8% of the height (contract 88%)
+      value: 0.8776
+    - check: harmony
+      status: pass
+      message: 'harmony score 70 against the char reference (outliers: C_p95, L_p2)'
+      value: 70.0
+    - check: edit_stability
+      status: pass
+      message: 96% of the parent level unchanged
+      value: 0.9582
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.00 of the parent level (drift compounds along a chain)
+      value: 0.9973
+    info:
+      metrics_raw:
+        L_p5: 75.4
+        L_p50: 92.6
+        L_p95: 97.4
+        C_p50: 9.1
+        C_p95: 30.5
+        C_p99: 41.6
+        detail: 3.21
+      metrics_locked:
+        L_p5: 75.4
+        L_p50: 92.6
+        L_p95: 97.4
+        C_p50: 9.1
+        C_p95: 30.5
+        C_p99: 41.6
+        detail: 3.22
+    fingerprint: 733c930804f463bd
