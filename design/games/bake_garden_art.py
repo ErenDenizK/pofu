@@ -5,7 +5,7 @@ cut from the garden station's level 1, and Pofu, Mochi and Fındık at the
 sizes the game draws them (3x for an iPhone, with a little headroom for
 squash and stretch). Run from the repository root:
 
-    python3 -I tools/games/bake_garden_art.py
+    python3 -I design/games/bake_garden_art.py
 
 Outputs go to Packages/PofuKit/Sources/PofuGames/Resources/. The
 script is deterministic: same masters in, same pixels out.

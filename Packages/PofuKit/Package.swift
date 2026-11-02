@@ -72,7 +72,7 @@ let package = Package(
         // the fair generator, feel math) are pure and tested on any
         // platform; the SpriteKit scene and its SwiftUI shell are iOS only.
         // Sprites are baked from the art masters by
-        // tools/games/bake_garden_art.py. See docs/product/minigames.md.
+        // design/games/bake_garden_art.py. See docs/product/minigames.md.
         .target(
             name: "PofuGames",
             dependencies: ["PofuDesignSystem"],
