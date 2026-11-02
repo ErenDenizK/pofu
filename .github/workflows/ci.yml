@@ -82,6 +82,11 @@ jobs:
       - name: Check the asset harmony manifest
         run: python3 -I tools/assets/harmony.py check
 
+      # The colour script (design/art/colour-script.json) is valid and its
+      # generated Swift is current.
+      - name: Check the colour script
+        run: python3 -I tools/assets/colour_script.py check
+
       - name: Test Pofu's rig compositor
         run: python3 -I -m pytest -q tools/rig/tests
 
@@ -243,7 +248,7 @@ jobs:
           for png in pngs:
               im = Image.open(png).convert("RGB")
               # The look grids and the camera strip hold many phones; keep them readable.
-              h = {"look-compare": 1800, "look-grades": 2000, "look-motion": 1100}.get(png.stem, 1000)
+              h = {"look-compare": 1800, "look-grades": 2000, "look-script": 1800, "look-motion": 1100, "look-pan": 1100, "look-teapot": 900}.get(png.stem, 1000)
               w = round(im.width * h / im.height)
               im.resize((w, h), Image.LANCZOS).save(out / (png.stem + ".jpg"), "JPEG", quality=85, optimize=True)
               if png.stem.startswith("look-"):
@@ -263,12 +268,20 @@ jobs:
                   sheet.paste(im, (x, y + label))
           sheet.save(out / "contact.jpg", "JPEG", quality=85, optimize=True)
           PY
-          cp shots/*.txt out/ 2>/dev/null || true
+          cp shots/*.txt shots/*.json out/ 2>/dev/null || true
           # The asset-harmony contact sheet: every master before and after its correction.
           python3 -I repo/tools/assets/harmony.py measure --dry-run --sheet out/harmony.jpg > out/harmony.txt
           # Measured numbers for every grade frame (tools/assets/frame_metrics.py).
           python3 -I repo/tools/assets/frame_metrics.py shots > out/grade-metrics.txt || true
           cat out/grade-metrics.txt
+          # The colour script's swatches.
+          python3 -I repo/tools/assets/colour_script.py swatches out/colour-script.png
+          # Framing before and after: round 2's published frames beside these.
+          mkdir -p before
+          if git -C repo fetch -q --depth 1 origin screenshots/feat-look-round-2; then
+            git -C repo archive FETCH_HEAD | tar -x -C before
+            python3 -I repo/tools/assets/framing_sheet.py before shots out/look-framing.jpg
+          fi
           ls -la out
 
       - name: Force-push the screenshots branch
