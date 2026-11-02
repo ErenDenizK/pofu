@@ -9,7 +9,8 @@ summary: >-
   four plump billows, taller than it is wide at the middle, with a gently flattened underside.
   Centered, filling about 80% of the canvas width, with a clear transparent margin.
 art:
-  images: []
+  images:
+  - design/art/masters/cloud-2/cloud-2.png
   jobs:
   - batch-04-sky:cloud-2
 sources:

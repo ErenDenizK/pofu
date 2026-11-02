@@ -10,7 +10,8 @@ summary: >-
   warm brown centers, two soft leaves on each stem, thick stems. Room on the bed for more
   flowers later.
 art:
-  images: []
+  images:
+  - design/art/stations/garden-1/garden-1.png
   jobs:
   - batch-01-slice:garden-1
 sources:

@@ -46,7 +46,8 @@ jobs:
           printf '%s\n' "$files"
           # Anything outside these paths can affect the app build.
           swift_files="$(printf '%s\n' "$files" | grep -Ev '^(docs/|design/|tools/|content/|[^/]+\.md$|\.gitignore$|LICENSE)' | grep -v '^$' || true)"
-          tools_files="$(printf '%s\n' "$files" | grep -E '^(tools|content)/' || true)"
+          # Art masters and the bake script feed the asset-harmony check.
+          tools_files="$(printf '%s\n' "$files" | grep -E '^(tools|content|design/art|design/prototypes/interactions/tools)/' || true)"
           echo "swift=$([ -n "$swift_files" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
           echo "tools=$([ -n "$tools_files" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
 
@@ -74,6 +75,15 @@ jobs:
 
       - name: Test the image pipeline
         run: python3 -I -m pytest -q tools/imagegen/tests
+
+      # Every master measured against the reference; fails when a master,
+      # the config or a correction changed without re-running harmony.py
+      # measure (and preblur.py app, which bakes the corrections).
+      - name: Check the asset harmony manifest
+        run: python3 -I tools/assets/harmony.py check
+
+      - name: Test Pofu's rig compositor
+        run: python3 -I -m pytest -q tools/rig/tests
 
       - name: Validate the content graph (Pofu Atlas)
         run: |
@@ -201,6 +211,11 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Check out
+        uses: actions/checkout@v5
+        with:
+          path: repo
+
       - name: Download the world screenshots
         uses: actions/download-artifact@v4
         with:
@@ -215,7 +230,7 @@ jobs:
       - name: Convert to JPEG and draw a contact sheet
         run: |
           set -euo pipefail
-          pip install --quiet "Pillow>=10.0"
+          pip install --quiet "Pillow>=10.1" "numpy>=1.26"
           mkdir -p out
           python3 -I - shots out <<'PY'
           import pathlib, sys
@@ -227,8 +242,8 @@ jobs:
           thumbs = []
           for png in pngs:
               im = Image.open(png).convert("RGB")
-              # The look-dev grid holds twelve phones; keep it readable.
-              h = 1800 if png.stem == "look-compare" else 1000
+              # The look grids and the camera strip hold many phones; keep them readable.
+              h = {"look-compare": 1800, "look-grades": 2000, "look-motion": 1100}.get(png.stem, 1000)
               w = round(im.width * h / im.height)
               im.resize((w, h), Image.LANCZOS).save(out / (png.stem + ".jpg"), "JPEG", quality=85, optimize=True)
               if png.stem.startswith("look-"):
@@ -249,6 +264,11 @@ jobs:
           sheet.save(out / "contact.jpg", "JPEG", quality=85, optimize=True)
           PY
           cp shots/*.txt out/ 2>/dev/null || true
+          # The asset-harmony contact sheet: every master before and after its correction.
+          python3 -I repo/tools/assets/harmony.py measure --dry-run --sheet out/harmony.jpg > out/harmony.txt
+          # Measured numbers for every grade frame (tools/assets/frame_metrics.py).
+          python3 -I repo/tools/assets/frame_metrics.py shots > out/grade-metrics.txt || true
+          cat out/grade-metrics.txt
           ls -la out
 
       - name: Force-push the screenshots branch

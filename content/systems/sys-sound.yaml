@@ -1,0 +1,37 @@
+id: sys-sound
+type: system
+title_tr: Ses kimliği
+title_en: Sound identity
+status: planned
+horizon: later
+summary: >-
+  Sound B (founder, 2026-11-02): Pofu's tiny sounds on, island music optional. The shield and
+  notifications are silent; AVAudioSession ambient obeys the Silent switch and mixes under the
+  user's music. About 22 micro-sounds (synthesized, foley, and a pitched-up human performer
+  for the vocal ones). Music in one key: every island's mode contains D major pentatonic;
+  calm opens the voicing, wellbeing changes only density, never the harmony.
+notes:
+- 'Islands: Ayçiçeği D Ionian, İskele D Mixolydian, Yıldız D Lydian, Kaplıca B Dorian, Kitap B Aeolian.'
+- 'iOS path: pre-rendered stems plus a runtime note composer on AVAudioEngine; about 5 days, about 6 MB.'
+- 'Proof: tools/sound/render.py renders 9 sounds and 4 seamless 30 s loops into design/sound/proof/, measured (≤ −1 dBTP, loops −20 LUFS).'
+- 'Sad states, resets and errors are silent; arrival cues play once per island, ever.'
+- 'Micro-sounds land with the touch reactions in stage W; the ambience follows the friends beta.'
+- 'Open: who performs the vocal sounds (recommendation: the founder, in Voice Memos).'
+links:
+  related:
+  - sys-reactions
+  - sys-island-arrivals
+  - sys-calm
+  - sys-wellbeing
+  - sys-voice
+  - idea-soundscape
+sources:
+- doc: docs/design/sound-identity.md
+- doc: docs/design/design-language.md
+  anchor: '#11-haptics-and-sound'
+- doc: docs/design/interaction-spec.md
+  anchor: '#62-sound-palette-optional-off-when-the-sounds-toggle-is-off'
+group: character
+board:
+  col: 8
+  row: 1

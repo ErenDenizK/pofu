@@ -75,6 +75,14 @@ class Job:
     # generated here: it only lets this manifest's jobs edit or attach a
     # master another batch made (approved once that master is on disk).
     external: str | None = None
+    # An external master outside the pipeline's folder layout (R1, the
+    # approved Pofu, predates the pipeline): a repository path to its image.
+    master: str | None = None
+    # 9-slice insets for a surface the app stretches (ui-system-v2 section
+    # 6.1): {caps: [top, left, bottom, right] in pt at 1x, ship_height: pt}.
+    # Written to the master's meta.json on promote; the asset catalog step
+    # converts it to Contents.json.
+    slice: dict | None = None
 
     @property
     def asset(self) -> str:
@@ -157,6 +165,9 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
             if merged.get("edit_of") or merged.get("attach"):
                 raise ManifestError(f"{where}: an external job only points at another batch's master (no edit_of, no attach)")
             prompt = prompt or []
+        master = merged.get("master")
+        if master is not None and not external:
+            raise ManifestError(f"{where}: master names an external job's image; add external: <who made it>")
         if not isinstance(prompt, list) or (not prompt and not external):
             raise ManifestError(f"{where}: prompt must be a non-empty list of {{text: ...}} or {{block: ...}} parts")
         for part in prompt:
@@ -182,10 +193,23 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
         transparent = bool(merged.get("transparent", kind not in OPAQUE_KINDS))
         if kind == "appicon" and transparent:
             raise ManifestError(f"{where}: an app icon is opaque (transparent: false)")
+        slice_ = merged.get("slice")
+        if slice_ is not None:
+            caps = slice_.get("caps") if isinstance(slice_, dict) else None
+            height = slice_.get("ship_height") if isinstance(slice_, dict) else None
+            if (not isinstance(caps, list) or len(caps) != 4 or not all(isinstance(c, (int, float)) and c >= 0 for c in caps)
+                    or not isinstance(height, (int, float)) or height <= 0 or set(slice_) - {"caps", "ship_height"}):
+                raise ManifestError(f"{where}: slice must be {{caps: [top, left, bottom, right], ship_height: pt}} with non-negative caps")
+            if kind not in ("ui", "icon"):
+                raise ManifestError(f"{where}: slice applies to ui jobs only")
+            if 2 * max(caps[0], caps[2]) >= height:
+                raise ManifestError(f"{where}: top and bottom caps must leave a stretchable centre inside ship_height")
+            slice_ = {"caps": [float(c) for c in caps], "ship_height": float(height)}
         job = Job(id=jid, kind=kind, name=name, prompt=prompt, attach=attach, edit_of=merged.get("edit_of"),
                   size=size, transparent=transparent, key=key,
                   variants=variants, acceptance=merged.get("acceptance", {}) or {}, chat=merged.get("chat"),
-                  notes=merged.get("notes", "") or "", canvas=canvas, external=str(external) if external else None)
+                  notes=merged.get("notes", "") or "", canvas=canvas, external=str(external) if external else None,
+                  master=str(master) if master else None, slice=slice_)
         jobs.append(job)
     if not jobs:
         raise ManifestError("manifest has no jobs")
@@ -317,6 +341,8 @@ def approved_dir(job: Job) -> Path:
 
 
 def approved_image(job: Job) -> Path:
+    if job.master:
+        return (REPO_ROOT / job.master).resolve()
     d = approved_dir(job)
     return d / f"{d.name}.png"
 

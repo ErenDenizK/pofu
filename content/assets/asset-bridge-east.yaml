@@ -11,7 +11,8 @@ summary: >-
   left of the canvas to the upper right, rising gently, so the far end is higher and a little
   smaller. Chunky, toy-like proportions; the ropes are thi…
 art:
-  images: []
+  images:
+  - design/art/masters/bridge-east/bridge-east.png
   jobs:
   - batch-03-home-island:bridge-east
 sources:

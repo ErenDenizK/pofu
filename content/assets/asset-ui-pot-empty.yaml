@@ -1,0 +1,18 @@
+id: asset-ui-pot-empty
+type: asset
+title_tr: ui-pot-empty
+title_en: pot-empty (ui)
+status: in-production
+horizon: now
+summary: >-
+  A small terracotta flower pot with a slightly flared rim, filled with dark soft-brown soil,
+  nothing growing in it, front view at a slight angle from above. Chunky and simple, in soft
+  muted terracotta with a cream rim band. Tall enough to leave room above it for a plant.
+art:
+  images: []
+  jobs:
+  - batch-11-ui-pilot:ui-pot-empty
+sources:
+- doc: tools/imagegen/manifest/batch-11-ui-pilot.yaml
+kind: ui
+batch: batch-11-ui-pilot

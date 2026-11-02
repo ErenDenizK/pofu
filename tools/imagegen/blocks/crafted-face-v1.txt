@@ -1,0 +1,13 @@
+CRAFTED FACE: a painted surface for a control that the app slices and
+stretches (the crafted skin of the Home A/B, ADR-0018 timing amendment).
+Paint only the material, never the control's content: no text, no letters,
+no numbers, no symbols, no icons, no glass, no frosted or transparent
+parts. The face is lit from straight above, so the centre is perfectly flat
+and even from left to right and top to bottom of its middle (no gradient
+that would stretch badly, no spots, no texture that varies along the
+width). Every rounded edge, lip and shadow sits inside the outer margin
+that the slice caps will hold; the middle is a plain, calm area. A clean
+silhouette on a transparent background, centered, with no ground shadow,
+no cast shadow, no outline and no border. Material is matte-to-soft-gloss
+clay glaze or paper, painted in the same soft, milky, high-key picture-book
+style as the world's props.

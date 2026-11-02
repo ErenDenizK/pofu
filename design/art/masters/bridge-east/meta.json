@@ -1,0 +1,94 @@
+{
+  "job": "bridge-east",
+  "batch": "batch-03-home-island",
+  "asset": "prop__bridge-east",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T15:02:45+00:00",
+  "image": "design/art/masters/bridge-east/bridge-east.png",
+  "raw": "design/art/masters/bridge-east/raw.png",
+  "fingerprint": "73fb39c3c16f7575",
+  "prompt": "REFERENCES (attached, in this order):\n1. The large island: match its painting, light and camera (do not draw it).\n2. The east islet the bridge leads to: same style and colors (do not draw it).\n\nA short rope bridge for the same diorama, on its own: six broad\nplanks of soft honey wood hung on two soft cream rope lines that\nsag gently between a pair of short, stubby wooden posts at each\nend. Seen from the same low front three-quarter camera, it runs\nfrom the lower left of the canvas to the upper right, rising\ngently, so the far end is higher and a little smaller. Chunky,\ntoy-like proportions; the ropes are thick and soft, never thin\nlines. The posts end in the air (the islands are separate\nimages). Centered, with a clear transparent margin.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-l-v2/island-main-l-v2.png",
+      "role": "The large island: match its painting, light and camera (do not draw it)."
+    },
+    {
+      "path": "design/art/masters/islet-east/islet-east.png",
+      "role": "The east islet the bridge leads to: same style and colors (do not draw it)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T14:57:55+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "soft-lock",
+    "version": 1
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 26 (R1 51)",
+        "value": 26.5
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 73 (R1 59)",
+        "value": 72.7
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.4 (R1 5.3)",
+        "value": 1.43
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 7.8",
+        "value": 7.8284
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.7, p95 1.6, off-palette 0.0%",
+        "value": 0.7295
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}

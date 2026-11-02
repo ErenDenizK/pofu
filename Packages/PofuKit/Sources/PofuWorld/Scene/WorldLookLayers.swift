@@ -2,8 +2,8 @@
 import PofuCore
 import SwiftUI
 
-// The world's look, drawn (look-dev A, B, C): the runtime grade, the
-// painted HD-2D lite layers, and the terrarium's glass rim. Every layer
+// The world's look, drawn (look-dev A, B): the runtime grade and the
+// painted HD-2D lite layers. Every layer
 // here is either a Metal pass over the world layer or a cheap gradient
 // layer; all of them render only when the scene's timeline does, so a
 // settled world is a cached frame and costs nothing.
@@ -17,7 +17,7 @@ extension EnvironmentValues {
 
 /// Access to PofuWorld's Metal shaders (`WorldShaders.metal`). Like
 /// `CompanionShaders`, the compiled library exists only in Xcode builds;
-/// without it the grade and the rim are skipped.
+/// without it the grade is skipped.
 enum WorldShaders {
     static let isAvailable: Bool =
         Bundle.module.url(forResource: "default", withExtension: "metallib") != nil
@@ -26,18 +26,12 @@ enum WorldShaders {
 
     static func grade(_ g: WorldGrade, size: CGSize) -> Shader {
         Shader(function: ShaderFunction(library: library, name: "pofuWorldGrade"), arguments: [
+            .float2(g.black, g.white),
             .float3(g.lift.r, g.lift.g, g.lift.b),
             .float3(g.gamma.r, g.gamma.g, g.gamma.b),
             .float3(g.gain.r, g.gain.g, g.gain.b),
             .float4(g.contrast, g.pivot, g.saturation, g.vignette),
             .float2(size.width, size.height),
-        ])
-    }
-
-    static func terrariumRim(size: CGSize, cornerRadius: Double, width: Double, strength: Double, maxOffset: Double) -> Shader {
-        Shader(function: ShaderFunction(library: library, name: "pofuTerrariumRim"), arguments: [
-            .float2(size.width, size.height),
-            .float4(cornerRadius, width, strength, maxOffset),
         ])
     }
 }
@@ -56,13 +50,16 @@ struct GradeVector: VectorArithmetic {
         values = [
             g.lift.r, g.lift.g, g.lift.b, g.gamma.r, g.gamma.g, g.gamma.b,
             g.gain.r, g.gain.g, g.gain.b, g.contrast, g.pivot, g.saturation, g.vignette,
+            g.black, g.white,
         ]
     }
 
     var grade: WorldGrade {
-        guard values.count == 13 else { return .neutral }
+        guard values.count == 15 else { return .neutral }
         let v = values
         return WorldGrade(
+            black: v[13],
+            white: v[14],
             lift: GradeRGB(v[0], v[1], v[2]),
             gamma: GradeRGB(v[3], v[4], v[5]),
             gain: GradeRGB(v[6], v[7], v[8]),
@@ -134,6 +131,10 @@ struct HD2DLayer: View {
     let size: CGSize
     /// Seconds; frozen while the scene is settled.
     let time: Double
+    /// The camera's motion and the lens focus, so the glows ride with
+    /// their objects during depth in motion.
+    var motion: CameraMotion = .still
+    var focus: Double = 0
 
     var body: some View {
         Canvas(rendersAsynchronously: false) { context, size in
@@ -216,7 +217,14 @@ struct HD2DLayer: View {
                (world.stations.first(where: { $0.id == station })?.level ?? 0) == 0 { continue }
             let k = emitter.strength(in: light)
             guard k > 0.02 else { continue }
-            let p = screen(emitter.point)
+            let m = DepthMotion.shift(
+                point: emitter.point,
+                depth: IslandLayout.depth(ofY: emitter.point.y),
+                focus: focus,
+                look: WorldPoint(x: pose.lookX, y: pose.lookY),
+                motion: motion
+            )
+            let p = screen(WorldPoint(x: emitter.point.x + m.x, y: emitter.point.y + m.y))
             // A wide halo and a tight core: bloom, not a lamp shade.
             for (radius, opacity) in [(emitter.radius * 3.2, 0.30), (emitter.radius, 0.75)] {
                 let r = max(radius * s, 2)
@@ -276,84 +284,6 @@ struct HD2DLayer: View {
         }
         let n = Double(i * 31 + salt * 977)
         return (h(n * 12.9898), h(n * 78.233 + 1), h(n * 39.425 + 2))
-    }
-}
-
-// MARK: - The terrarium
-
-/// The terrarium's rim: the world seen through the curved edge of a glass
-/// that lives inside the iPhone. A Metal pass bends the world at the
-/// screen's edges and a thin lip of system Liquid Glass sits on top, so
-/// the terrarium is made of the same glass as iOS itself.
-struct TerrariumRim: ViewModifier {
-    var strength: Double
-    var isEnabled: Bool
-
-    static let cornerRadius = 56.0
-    static let width = 26.0
-    static let maxOffset = 9.0
-
-    func body(content: Content) -> some View {
-        let on = isEnabled && strength > 0.01
-        let strength = strength
-        let shaderOn = on && WorldShaders.isAvailable
-        let corner = Self.cornerRadius, width = Self.width, maxOffset = Self.maxOffset
-        content
-            .visualEffect { view, proxy in
-                view.layerEffect(
-                    WorldShaders.terrariumRim(
-                        size: proxy.size,
-                        cornerRadius: corner,
-                        width: width,
-                        strength: strength,
-                        maxOffset: maxOffset
-                    ),
-                    maxSampleOffset: CGSize(width: maxOffset * 1.2, height: maxOffset * 1.2),
-                    isEnabled: shaderOn
-                )
-            }
-            .overlay {
-                if on, strength > 0.5 {
-                    TerrariumLip(cornerRadius: Self.cornerRadius)
-                        .opacity(strength)
-                        .ignoresSafeArea()
-                        .allowsHitTesting(false)
-                        .accessibilityHidden(true)
-                }
-            }
-    }
-}
-
-/// The terrarium's lip: four thin capsules of system Liquid Glass along
-/// the screen's straight edges, clear of the rounded corners where the
-/// Metal rim does the bending. (A ring-shaped glass is not expressible:
-/// glass fills its shape's whole outline, holes and all.)
-struct TerrariumLip: View {
-    var cornerRadius: Double
-    var inset: Double = 3
-    var thickness: Double = 4
-
-    var body: some View {
-        GeometryReader { proxy in
-            let w = proxy.size.width, h = proxy.size.height
-            let run = cornerRadius + 6
-            ZStack(alignment: .topLeading) {
-                strip(width: w - 2 * run, height: thickness)
-                    .position(x: w / 2, y: inset + thickness / 2)
-                strip(width: w - 2 * run, height: thickness)
-                    .position(x: w / 2, y: h - inset - thickness / 2)
-                strip(width: thickness, height: h - 2 * run)
-                    .position(x: inset + thickness / 2, y: h / 2)
-                strip(width: thickness, height: h - 2 * run)
-                    .position(x: w - inset - thickness / 2, y: h / 2)
-            }
-        }
-    }
-
-    private func strip(width: Double, height: Double) -> some View {
-        Color.clear
-            .frame(width: max(width, 0), height: max(height, 0))
-            .glassEffect(.clear, in: Capsule(style: .continuous))
     }
 }
 #endif

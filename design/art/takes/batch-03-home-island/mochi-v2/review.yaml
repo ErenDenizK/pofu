@@ -1,0 +1,125 @@
+batch: batch-03-home-island
+job: mochi-v2
+pick: 1
+note: auto-picked by QA; founder review pending
+takes:
+  t1:
+    qa: pass
+    summary: all pass
+  t2:
+    qa: pass
+    summary: all pass
+approved:
+  take: 1
+  at: '2026-11-02T14:36:22+00:00'
+qa_reports:
+- job: mochi-v2
+  take: 1
+  status: pass
+  preset: char-guard
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 31 (R1 51)
+    value: 30.7
+  - check: value_floor
+    status: pass
+    message: lightness p5 68 (R1 59)
+    value: 68.3
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.8 (R1 5.3)
+    value: 3.75
+  - check: palette_drift
+    status: pass
+    message: 'mean dE 0.9, p95 1.7, off-palette 0.9% (top: #441100 (0.1%), #CC5544
+      (0.1%))'
+    value: 0.8743
+  - check: ground_line
+    status: pass
+    message: feet at 87.8% of the height (contract 88%)
+    value: 0.8776
+  - check: edit_stability
+    status: pass
+    message: 83% of the parent level unchanged
+    value: 0.8302
+  info:
+    metrics_raw:
+      L_p5: 68.3
+      L_p50: 93.0
+      L_p95: 97.9
+      C_p50: 9.0
+      C_p95: 30.7
+      C_p99: 41.6
+      detail: 3.75
+    metrics_locked:
+      L_p5: 68.3
+      L_p50: 93.0
+      L_p95: 97.9
+      C_p50: 9.0
+      C_p95: 30.7
+      C_p99: 41.6
+      detail: 3.75
+  fingerprint: 60aeea5a68828d55
+- job: mochi-v2
+  take: 2
+  status: pass
+  preset: char-guard
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 29 (R1 51)
+    value: 29.4
+  - check: value_floor
+    status: pass
+    message: lightness p5 69 (R1 59)
+    value: 69.1
+  - check: detail_budget
+    status: pass
+    message: detail at display size 3.7 (R1 5.3)
+    value: 3.69
+  - check: palette_drift
+    status: pass
+    message: 'mean dE 0.9, p95 1.7, off-palette 0.9% (top: #441100 (0.1%), #CC5544
+      (0.1%))'
+    value: 0.8607
+  - check: ground_line
+    status: pass
+    message: feet at 87.8% of the height (contract 88%)
+    value: 0.8776
+  - check: edit_stability
+    status: pass
+    message: 82% of the parent level unchanged
+    value: 0.8193
+  info:
+    metrics_raw:
+      L_p5: 69.1
+      L_p50: 93.2
+      L_p95: 98.1
+      C_p50: 8.6
+      C_p95: 29.4
+      C_p99: 40.1
+      detail: 3.68
+    metrics_locked:
+      L_p5: 69.1
+      L_p50: 93.2
+      L_p95: 98.1
+      C_p50: 8.6
+      C_p95: 29.4
+      C_p99: 40.1
+      detail: 3.69
+  fingerprint: 60aeea5a68828d55
+upload_notes:
+- raw.png not uploaded (over 600 KB); the q90 takes are the record

@@ -1,0 +1,142 @@
+batch: batch-04-sky
+contact_sheet: design/art/takes/batch-04-sky/far-isle-1/contact.jpg
+jobs:
+  far-isle-1:
+    pick: 1
+    note: auto-picked by QA; founder review pending
+    takes:
+      t1:
+        qa: pass
+        summary: all pass
+      t2:
+        qa: pass
+        summary: all pass
+    approved:
+      take: 1
+      at: '2026-11-02T14:35:04+00:00'
+    qa_reports:
+      world__far-isle-1--t1:
+        job: far-isle-1
+        take: 1
+        status: pass
+        preset: soft-lock
+        checks:
+        - check: transparency
+          status: pass
+          message: source has an alpha channel
+        - check: canvas
+          status: pass
+          message: 1536x1024
+        - check: chroma_ceiling
+          status: pass
+          message: chroma p95 17 (R1 51)
+          value: 16.8
+        - check: value_floor
+          status: pass
+          message: lightness p5 79 (R1 59)
+          value: 79.4
+        - check: detail_budget
+          status: pass
+          message: detail at display size 0.7 (R1 5.3)
+          value: 0.66
+        - check: lock_load
+          status: pass
+          message: the lock moved colors by mean dE 4.3
+          value: 4.2644
+        - check: no_guide_magenta
+          status: pass
+          message: 0 guide-magenta pixels (per 1024^2)
+          value: 0.0
+        - check: palette_drift
+          status: pass
+          message: mean dE 1.5, p95 3.6, off-palette 0.0%
+          value: 1.5497
+        - check: depth_ratio
+          status: pass
+          message: earth depth / width 0.22 (target <= 0.30)
+          value: 0.2155
+        - check: lawn_chroma
+          status: pass
+          message: lawn chroma p95 17 (palette meadow 38)
+          value: 17.4449
+        info:
+          metrics_raw:
+            L_p5: 77.3
+            L_p50: 87.1
+            L_p95: 94.3
+            C_p50: 16.5
+            C_p95: 23.2
+            C_p99: 24.7
+            detail: 0.96
+          metrics_locked:
+            L_p5: 79.4
+            L_p50: 87.0
+            L_p95: 93.5
+            C_p50: 11.9
+            C_p95: 16.8
+            C_p99: 17.8
+            detail: 0.66
+        fingerprint: 48dc38ea86e147f7
+      world__far-isle-1--t2:
+        job: far-isle-1
+        take: 2
+        status: pass
+        preset: soft-lock
+        checks:
+        - check: transparency
+          status: pass
+          message: source has an alpha channel
+        - check: canvas
+          status: pass
+          message: 1536x1024
+        - check: chroma_ceiling
+          status: pass
+          message: chroma p95 19 (R1 51)
+          value: 18.6
+        - check: value_floor
+          status: pass
+          message: lightness p5 82 (R1 59)
+          value: 81.9
+        - check: detail_budget
+          status: pass
+          message: detail at display size 0.7 (R1 5.3)
+          value: 0.71
+        - check: lock_load
+          status: pass
+          message: the lock moved colors by mean dE 5.2
+          value: 5.1589
+        - check: no_guide_magenta
+          status: pass
+          message: 0 guide-magenta pixels (per 1024^2)
+          value: 0.0
+        - check: palette_drift
+          status: pass
+          message: mean dE 1.5, p95 4.0, off-palette 0.0%
+          value: 1.4926
+        - check: depth_ratio
+          status: pass
+          message: earth depth / width 0.20 (target <= 0.30)
+          value: 0.2037
+        - check: lawn_chroma
+          status: pass
+          message: lawn chroma p95 19 (palette meadow 38)
+          value: 19.1432
+        info:
+          metrics_raw:
+            L_p5: 80.5
+            L_p50: 89.2
+            L_p95: 95.1
+            C_p50: 18.4
+            C_p95: 25.8
+            C_p99: 28.1
+            detail: 1.04
+          metrics_locked:
+            L_p5: 81.9
+            L_p50: 88.6
+            L_p95: 94.0
+            C_p50: 13.2
+            C_p95: 18.6
+            C_p99: 19.9
+            detail: 0.71
+        fingerprint: 48dc38ea86e147f7
+    upload_note: raw.png not uploaded (over 600 KB); the q90 takes are the record

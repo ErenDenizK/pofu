@@ -1,0 +1,111 @@
+{
+  "job": "workshop-1",
+  "batch": "batch-03-home-island",
+  "asset": "station__workshop-1",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T14:35:53+00:00",
+  "image": "design/art/stations/workshop-1/workshop-1.png",
+  "raw": "design/art/stations/workshop-1/raw.png",
+  "fingerprint": "67f653a4b71f7009",
+  "prompt": "REFERENCES (attached, in this order):\n1. The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.\n2. P-station, the approved tea stall: match its style, camera, light, colors and scale exactly (do not draw the stall).\n3. The island this station stands on: same camera and softness.\n4. The palette card for props: use only these colors (and mixes of them).\n\nA tiny tinker's workshop for the island diorama: a small, rounded,\nchunky shed of soft honey wood with an open, round-topped cream\ndoorway (a soft warm-brown shadow inside, nothing visible in it)\nand a low sloped roof of broad caramel wooden shingles; on its\nright, a sturdy little workbench of the same wood with one small\ncream vise. Friendly, toy-like proportions with few parts. The\nshed and the bench fill only the lower 60% of the height bar:\nleave the upper part empty, because later levels add a wind vane,\na chimney and a sign there.\n\nVIEW: the same fixed front three-quarter view as the attached island: a\nlow camera about 20 degrees above the horizon, so you see the front of\nthe object fully and only a narrow sliver of its top (a round tabletop\nreads as a flat oval about a third as tall as it is wide). Follow the\nattached guide exactly: the object stands on the magenta ground ellipse,\ncentered on the magenta cross, its front edge on the front of the\nellipse, no taller than the magenta height bar. Then remove the guide\ncompletely: no ellipse, no cross, no bar, no magenta, no grid may remain\nin the output.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/templates/station-guide.png",
+      "role": "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+    },
+    {
+      "path": "design/art/stations/cay-1/cay-1.png",
+      "role": "P-station, the approved tea stall: match its style, camera, light, colors and scale exactly (do not draw the stall)."
+    },
+    {
+      "path": "design/art/masters/island-main-s/island-main-s.png",
+      "role": "The island this station stands on: same camera and softness."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T14:35:24+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "soft-lock",
+    "version": 1
+  },
+  "registration": {
+    "dx": -110,
+    "dy": 37
+  },
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 31 (R1 51)",
+        "value": 31.0
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 56 (R1 59)",
+        "value": 56.2
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.7 (R1 5.3)",
+        "value": 1.72
+      },
+      {
+        "check": "lock_load",
+        "status": "warn",
+        "message": "the lock moved colors by mean dE 11.2 (prefer a take that needs less)",
+        "value": 11.2324
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.9, p95 2.0, off-palette 0.0%",
+        "value": 0.8944
+      },
+      {
+        "check": "station_anchor",
+        "status": "warn",
+        "message": "width 875 px wider than the footprint (720)",
+        "value": 900.0
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}

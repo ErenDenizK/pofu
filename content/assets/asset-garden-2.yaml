@@ -11,7 +11,8 @@ links:
   variant_of:
   - asset-garden-1
 art:
-  images: []
+  images:
+  - design/art/stations/garden-2/garden-2.png
   jobs:
   - batch-01-slice:garden-2
 sources:

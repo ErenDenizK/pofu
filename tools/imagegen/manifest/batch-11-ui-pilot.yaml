@@ -1,0 +1,271 @@
+# Batch 11, pilot: the hybrid UI's first painted pieces
+# (docs/design/ui-system-v2.md section 6; the 14 pilot items).
+#
+# PILOT, production look-dev: it feeds the Home A/B (native Liquid Glass
+# against the crafted skin) and the cheek-pouch idea. ADR-0018 held Glass++
+# production until the friends beta; the founder's "include UI"
+# (2026-11-02) accepts the timing amendment for these pilot items only.
+# Everything else in section 6 stays blocked until the lead has reviewed
+# this pilot. The pieces ship if they pass, so they are promoted like any
+# production job (provenance, harmony manifest).
+#
+# Not repeated here, because the rig batch already makes them:
+#   pofu-cheeks-full  = batch-06-pofu-rig-pilot : pofu-cheeks-puff-2
+#   pofu-cheeks-huge  = batch-06-pofu-rig       : pofu-cheeks-puff-3
+# Review them there; the UI spec's ids are aliases for those masters.
+#
+# New in the pipeline: block `crafted-face-v1` and the job field
+# `slice: {caps: [top, left, bottom, right], ship_height}` (points at 1x),
+# written to the master's meta.json on promote. `ui-object-v1`'s "never
+# paint buttons" stays true for every job except the crafted faces, which
+# use `crafted-face-v1` instead of it. Faces carry no text and no symbols
+# (SF Symbols are drawn over them by the app), and no glass.
+#
+# Review checks: indicators and pots read at their ship size (56 x 72 pt,
+# 30 x 96 pt, 36 x 56 pt) on light and dark; each edit keeps its base
+# (edit_stability above 0.9); crafted faces have a flat centre (no
+# gradient, spots or texture across the middle) and the whole rounded edge
+# sits inside the caps.
+#
+# Tracks: `icon` (icon-seed); `jar` (empty -> full); `lantern`
+# (off -> on); `pot` (empty -> bloom, bud); `skin` (the four crafted faces;
+# primary comes first and the others take their glaze from the approved
+# jar). Tracks run at once.
+
+batch: batch-11-ui-pilot
+title: Hybrid UI pilot (seed icon, jar, lantern, pots, crafted faces)
+status: open
+
+refs:
+  cay-1: design/art/stations/cay-1/cay-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  # ------------------------------------------------------------ icon
+  - id: icon-seed
+    kind: icon
+    name: seed
+    chat: "Pofu · Icons"
+    notes: "Domain icon, 28 pt or larger with a hand-traced vector twin below. Check it at 28, 44 and 60 pt on both glass tones and on cream clay."
+    attach:
+      - ref: R1
+        role: "Style reference only: the hamster's soft painting and pastel colors."
+      - ref: cay-1
+        role: "Style reference for objects: how a prop is painted in this world (matte, simple, high key)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for seeds, the game's one currency: a single plump
+          sunflower seed seen at a slight angle, a soft warm-brown shell with
+          two broad cream stripes, its tip pointing up and to the right.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  # ------------------------------------------------- world indicators
+  - id: ui-jar-empty
+    kind: ui
+    name: jar-empty
+    chat: "Pofu · UI objects"
+    notes: "Ship 56 x 72 pt. The seed jar, one continuous fill (revealed bottom-up by a drawn wavy mask over this image)."
+    attach:
+      - ref: cay-1
+        role: "Style reference for objects: how a prop is painted in this world."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The seed jar, empty: a small, round, chunky honey-pot-shaped jar
+          with a wide mouth and a soft cream cloth lid tied with a thin rose
+          ribbon, front view at a slight angle from above. The jar body is
+          painted as soft matte milky glaze in cream and pale honey (not
+          glass, not transparent), with a large, rounded, slightly darker
+          oval window panel on its front, empty for now.
+      - block: ui-object-v1
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: ui-jar-full
+    kind: ui
+    name: jar-full
+    edit_of: ui-jar-empty
+    chat: "Pofu · UI objects"
+    notes: "The window full of seeds; the app reveals it bottom-up with a wavy mask over the empty jar."
+    prompt:
+      - text: |
+          Fill the jar's front window panel completely with sunflower seeds:
+          a soft, full pile of chunky warm-brown and cream-striped seeds up
+          to the top of the window, painted simply (big shapes, not seed by
+          seed). Nothing else changes.
+      - block: edit-keep-v1
+
+  - id: ui-lantern-off
+    kind: ui
+    name: lantern-off
+    chat: "Pofu · UI objects"
+    notes: "Ship 30 x 96 pt. The calm lantern on a short post; the glow is code."
+    attach:
+      - ref: cay-1
+        role: "Style reference for objects: how a prop is painted in this world."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The calm lantern, unlit, on a short post: a small, round paper
+          lantern in warm cream paper with three soft horizontal ribs and a
+          chunky honey-wood top and bottom cap, hung from the top of a short,
+          thick honey-wood post by a short loop, the post standing straight
+          below it with a small flat base. Tall and narrow overall. Unlit:
+          the paper is a soft matte cream, no glow, no light inside.
+      - block: ui-object-v1
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: ui-lantern-on
+    kind: ui
+    name: lantern-on
+    edit_of: ui-lantern-off
+    chat: "Pofu · UI objects"
+    notes: "The night hero. Cross-faded with the unlit one by calm."
+    prompt:
+      - text: |
+          Light the lantern from inside: the paper glows a warm honey-gold,
+          brightest at its center, the ribs, caps and post unchanged. Light
+          only inside the lantern's own outline: no halo, no glow, no rays and
+          no light spill outside the lantern (the app draws the glow around
+          it).
+      - block: edit-keep-v1
+
+  # -------------------------------------------------------------- pots
+  - id: ui-pot-empty
+    kind: ui
+    name: pot-empty
+    chat: "Pofu · UI objects"
+    notes: "Ship 36 x 56 pt. One pot per reach; a socket. The bloom and the bud are edits of it."
+    attach:
+      - ref: cay-1
+        role: "Style reference for objects: how a prop is painted in this world."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          A small terracotta flower pot with a slightly flared rim, filled
+          with dark soft-brown soil, nothing growing in it, front view at a
+          slight angle from above. Chunky and simple, in soft muted
+          terracotta with a cream rim band. Tall enough to leave room above
+          it for a plant.
+      - block: ui-object-v1
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: ui-pot-bloom
+    kind: ui
+    name: pot-bloom
+    edit_of: ui-pot-empty
+    chat: "Pofu · UI objects"
+    notes: "A skipped reach: one sunflower bloom."
+    prompt:
+      - text: |
+          Add one small sunflower growing from the soil on a short green
+          stem with two rounded leaves: a round golden-yellow bloom with a
+          warm-brown center facing the viewer, simple soft shapes. The pot
+          and soil stay as they are.
+      - block: edit-keep-v1
+
+  - id: ui-pot-bud
+    kind: ui
+    name: pot-bud
+    edit_of: ui-pot-empty
+    chat: "Pofu · UI objects"
+    notes: "An opened reach: one closed green bud (an edit of the empty pot, not of the bloom)."
+    prompt:
+      - text: |
+          Add one small closed bud growing from the soil on a short green
+          stem with two rounded leaves: a plump, pointed green bud with a hint
+          of golden yellow at its tip, simple soft shapes. The pot and soil
+          stay as they are.
+      - block: edit-keep-v1
+
+  # ---------------------------------------------------- crafted faces
+  - id: ui-face-primary
+    kind: ui
+    name: face-primary
+    canvas: 1024x1024
+    slice: {caps: [16, 26, 16, 26], ship_height: 52}
+    chat: "Pofu · UI objects"
+    notes: "Primary action face, 52 pt tall, 120-360 wide. Review: flat centre across the middle, the rounded edge fully inside the caps."
+    attach:
+      - ref: approved:ui-jar-empty
+        role: "The glaze: paint the capsule in this same matte-to-soft-gloss ceramic glaze."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          A wide, chunky capsule of glazed clay in soft violet (#6C4FD8 at
+          its mid-tone), lit from straight above: a soft cream highlight
+          along the top edge, a slightly darker rounded lip along the bottom
+          edge, perfectly even from left to right. Nothing on it.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+
+  - id: ui-face-disc
+    kind: ui
+    name: face-disc
+    canvas: 1024x1024
+    chat: "Pofu · UI objects"
+    notes: "Icon button disc, 44-52 pt, scaled (no slice). The SF Symbol is drawn over it by the app."
+    attach:
+      - ref: approved:ui-jar-empty
+        role: "The glaze: paint the disc in this same milky cream ceramic glaze."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          A round, chunky disc of cream-glazed clay seen straight on, a
+          perfect circle filling most of the canvas, a soft lighter highlight
+          along the top edge and a slightly darker rounded lip along the
+          bottom edge, the middle flat and empty. Nothing on it.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+
+  - id: ui-tag-paper
+    kind: ui
+    name: tag-paper
+    canvas: 1024x1024
+    slice: {caps: [8, 14, 8, 10], ship_height: 26}
+    chat: "Pofu · UI objects"
+    notes: "World tag, 26 pt tall. The punched hole sits in the left cap; the app draws the string to the object."
+    attach:
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          A wide, slim paper tag of warm cream paper with softly rounded
+          corners, one small round punched hole near its left end (no string,
+          no ribbon), a faint slightly darker paper edge, the middle flat and
+          empty. Seen straight on. Nothing written on it.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+
+  - id: ui-panel-paper
+    kind: ui
+    name: panel-paper
+    canvas: 1024x1024
+    slice: {caps: [20, 20, 20, 20], ship_height: 120}
+    chat: "Pofu · UI objects"
+    notes: "Cream paper panel with a stitched inset edge. The centre is a 64 pt tile the app repeats, so it must be plain."
+    attach:
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          A cream paper panel with softly rounded corners, a thin row of
+          small, even, warm-brown stitches running just inside its edge all
+          the way around, a faint darker paper edge outside the stitches. The
+          middle is plain, flat, even cream paper with no stains and no
+          texture variation, so it can be tiled. Seen straight on. Nothing
+          written on it.
+      - block: crafted-face-v1
+      - block: prop-style-v2

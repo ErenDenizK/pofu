@@ -1,0 +1,13 @@
+id: idea-decor-spots
+type: idea
+title_tr: Serbest dekor alanları
+title_en: Free decor spots
+status: idea
+horizon: next
+kind: feature
+summary: >-
+  Besides fixed stations, islands have free spots where the player places decor from a cozy,
+  multicultural kit. Decor is pure joy, never function.
+sources:
+- doc: docs/product/founder-input.md
+  anchor: '#game-direction-views-to-discuss'

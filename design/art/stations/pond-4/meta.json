@@ -1,0 +1,117 @@
+{
+  "job": "pond-4",
+  "batch": "batch-03-home-island",
+  "asset": "station__pond-4",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T14:51:28+00:00",
+  "image": "design/art/stations/pond-4/pond-4.png",
+  "raw": "design/art/stations/pond-4/raw.png",
+  "fingerprint": "92ea8b5806e3b05a",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nAdd a short, low wooden dock of four broad planks of soft honey\nwood on two stubby posts, reaching from the front right edge of\nthe pond onto the water, inside the footprint.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/pond-3/pond-3.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T14:50:55+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "soft-lock",
+    "version": 1
+  },
+  "registration": {
+    "dx": -9,
+    "dy": 57
+  },
+  "alignment": {
+    "scale": 0.9989,
+    "cx": 500.5,
+    "cy": 962.0,
+    "dx": 8,
+    "dy": -58
+  },
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "edit_alignment",
+        "status": "pass",
+        "message": "the edit rescaled the object x1.001 and moved it; aligned back to the parent",
+        "value": 0.9989
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 21 (R1 51)",
+        "value": 20.9
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 70 (R1 59)",
+        "value": 70.3
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.5 (R1 5.3)",
+        "value": 1.48
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 4.5",
+        "value": 4.4913
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.5, p95 3.6, off-palette 0.0% (top: #888866 (0.0%), #888877 (0.0%))",
+        "value": 1.4753
+      },
+      {
+        "check": "station_anchor",
+        "status": "warn",
+        "message": "width 945 px wider than the footprint (720)",
+        "value": 904.0
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "92% of the parent level unchanged",
+        "value": 0.9228
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}

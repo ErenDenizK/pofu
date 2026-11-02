@@ -1,0 +1,270 @@
+batch: batch-03-home-island
+job: findik-work
+pick: 3
+note: auto-picked by QA; founder review pending
+takes:
+  t1:
+    qa: warn
+    summary: value_floor warn; detail_budget warn; palette_drift warn
+  t2:
+    qa: warn
+    summary: value_floor warn; palette_drift warn
+  t3:
+    qa: warn
+    summary: value_floor warn; palette_drift warn
+  t4:
+    qa: fail
+    summary: value_floor warn; palette_drift fail
+approved:
+  take: 3
+  at: '2026-11-02T15:03:51+00:00'
+qa_reports:
+- job: findik-work
+  take: 1
+  status: warn
+  preset: char-guard
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: edit_alignment
+    status: pass
+    message: the edit rescaled the object x0.998 and moved it; aligned back to the
+      parent
+    value: 1.0023
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 50 (R1 51)
+    value: 50.5
+  - check: value_floor
+    status: warn
+    message: lightness p5 44 (R1 59)
+    value: 43.6
+  - check: detail_budget
+    status: warn
+    message: detail at display size 7.0 (R1 5.3)
+    value: 7.03
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.3, p95 13.5, off-palette 7.6% (top: #AA5533 (1.7%), #995522
+      (0.8%))'
+    value: 3.3387
+  - check: ground_line
+    status: pass
+    message: feet at 89.5% of the height (contract 88%)
+    value: 0.8952
+  - check: edit_stability
+    status: pass
+    message: 89% of the parent level unchanged
+    value: 0.8933
+  info:
+    alignment:
+      scale: 1.0023
+      cx: 512.0
+      cy: 1375.0
+      dx: 2
+      dy: 1
+    metrics_raw:
+      L_p5: 43.4
+      L_p50: 82.8
+      L_p95: 95.2
+      C_p50: 22.2
+      C_p95: 50.5
+      C_p99: 54.8
+      detail: 6.99
+    metrics_locked:
+      L_p5: 43.6
+      L_p50: 83.1
+      L_p95: 95.5
+      C_p50: 22.5
+      C_p95: 50.5
+      C_p99: 54.4
+      detail: 7.03
+  fingerprint: c4ddbdc3db139f7a
+- job: findik-work
+  take: 2
+  status: warn
+  preset: char-guard
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: edit_alignment
+    status: pass
+    message: the edit rescaled the object x1.001 and moved it; aligned back to the
+      parent
+    value: 0.9989
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 50 (R1 51)
+    value: 50.1
+  - check: value_floor
+    status: warn
+    message: lightness p5 44 (R1 59)
+    value: 44.1
+  - check: detail_budget
+    status: pass
+    message: detail at display size 6.7 (R1 5.3)
+    value: 6.66
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.1, p95 12.9, off-palette 6.7% (top: #AA5533 (1.4%), #994422
+      (0.7%))'
+    value: 3.1425
+  - check: ground_line
+    status: pass
+    message: feet at 89.6% of the height (contract 88%)
+    value: 0.8958
+  - check: edit_stability
+    status: pass
+    message: 91% of the parent level unchanged
+    value: 0.9088
+  info:
+    alignment:
+      scale: 0.9989
+      cx: 511.5
+      cy: 1376.0
+      dx: 2
+      dy: 0
+    metrics_raw:
+      L_p5: 43.9
+      L_p50: 83.2
+      L_p95: 95.0
+      C_p50: 21.6
+      C_p95: 50.2
+      C_p99: 54.7
+      detail: 6.64
+    metrics_locked:
+      L_p5: 44.1
+      L_p50: 83.5
+      L_p95: 95.3
+      C_p50: 21.9
+      C_p95: 50.1
+      C_p99: 54.3
+      detail: 6.66
+  fingerprint: c4ddbdc3db139f7a
+- job: findik-work
+  take: 3
+  status: warn
+  preset: char-guard
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 50 (R1 51)
+    value: 50.1
+  - check: value_floor
+    status: warn
+    message: lightness p5 44 (R1 59)
+    value: 44.2
+  - check: detail_budget
+    status: pass
+    message: detail at display size 6.8 (R1 5.3)
+    value: 6.77
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.4, p95 13.9, off-palette 8.7% (top: #AA5533 (1.9%), #BB6633
+      (1.1%))'
+    value: 3.3779
+  - check: ground_line
+    status: pass
+    message: feet at 89.7% of the height (contract 88%)
+    value: 0.8971
+  - check: edit_stability
+    status: pass
+    message: 94% of the parent level unchanged
+    value: 0.9381
+  info:
+    metrics_raw:
+      L_p5: 44.2
+      L_p50: 83.3
+      L_p95: 95.5
+      C_p50: 23.1
+      C_p95: 50.1
+      C_p99: 54.4
+      detail: 6.76
+    metrics_locked:
+      L_p5: 44.2
+      L_p50: 83.3
+      L_p95: 95.5
+      C_p50: 23.1
+      C_p95: 50.1
+      C_p99: 54.0
+      detail: 6.77
+  fingerprint: 3d824fc66ecc84dc
+- job: findik-work
+  take: 4
+  status: fail
+  preset: char-guard
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 52 (R1 51)
+    value: 52.1
+  - check: value_floor
+    status: warn
+    message: lightness p5 44 (R1 59)
+    value: 44.5
+  - check: detail_budget
+    status: pass
+    message: detail at display size 6.4 (R1 5.3)
+    value: 6.41
+  - check: palette_drift
+    status: fail
+    message: 'mean dE 3.5, p95 14.6, off-palette 9.8% (top: #AA5533 (1.9%), #BB6633
+      (1.5%))'
+    value: 3.505
+  - check: ground_line
+    status: pass
+    message: feet at 89.7% of the height (contract 88%)
+    value: 0.8971
+  - check: edit_stability
+    status: pass
+    message: 95% of the parent level unchanged
+    value: 0.9486
+  info:
+    metrics_raw:
+      L_p5: 44.5
+      L_p50: 83.4
+      L_p95: 95.1
+      C_p50: 22.9
+      C_p95: 52.1
+      C_p99: 56.3
+      detail: 6.4
+    metrics_locked:
+      L_p5: 44.5
+      L_p50: 83.4
+      L_p95: 95.1
+      C_p50: 22.9
+      C_p95: 52.1
+      C_p99: 55.2
+      detail: 6.41
+  fingerprint: 3d824fc66ecc84dc
+upload_notes:
+- raw.png not uploaded (over 600 KB); the q90 takes are the record
+- Master downscaled from 1024x1536 to 870x1306 to meet the 600 KB upload cap; saved
+  lossless WebP (589662 bytes).
+- For the single retry round, the shipped 870x1306 findik-base WebP was decoded and
+  reconstructed at the manifest 1024x1536 canvas using Lanczos before attaching and
+  parent QA. First-round t1/t2 failed edit_stability at 0% due to the different pixel
+  grids; these takes became stale when the reference changed. Fresh retry t3 passed
+  with warnings (value_floor, palette_drift); t4 failed palette_drift. Selected t3;
+  character lock load is zero. No prompt or QA threshold changed. All four takes are
+  retained.

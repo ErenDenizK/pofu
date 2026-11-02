@@ -1,6 +1,6 @@
 import Foundation
 
-/// The world scene's look features, as flags (look-dev A, B, C). They
+/// The world scene's look features, as flags (look-dev A, B). They
 /// default to on in the world scene only; the UI around it never reads
 /// them. Screenshots and the debug overlay switch them to compare.
 public struct WorldLook: Hashable, Sendable {
@@ -12,6 +12,18 @@ public struct WorldLook: Hashable, Sendable {
         /// The `soft-lock` bake the app shipped until 2026-11-02, kept to
         /// compare; drop it once the founder has chosen.
         case softLock
+        /// The lock-light bake without its asset-harmony correction
+        /// (`tools/assets/harmony.py`, look round 2), to compare.
+        case unharmonized
+
+        /// The suffix of this set's sprites, `nil` for the default.
+        var suffix: String? {
+            switch self {
+            case .lockLight: nil
+            case .softLock: "--softlock"
+            case .unharmonized: "--unharmonized"
+            }
+        }
     }
 
     public var art: ArtSet
@@ -20,10 +32,14 @@ public struct WorldLook: Hashable, Sendable {
     /// Painted HD-2D lite: bloom, light shafts, ambient particles and the
     /// stronger tilt-shift. The vignette belongs to the grade.
     public var hd2d: Bool
-    /// The terrarium's glass rim at the Island and Map framings.
-    public var terrarium: Bool
+    /// Depth in motion: parallax and depth of field that follow the
+    /// camera while it moves (`DepthMotion`); part of HD-2D.
+    public var depthMotion: Bool
     /// A fixed local hour (screenshots); `nil` follows the world's clock.
     public var hourOverride: Double?
+    /// A fixed grade instead of the light's (screenshots: before and
+    /// after a grade change); `nil` follows the hour and Pofu's state.
+    public var gradeOverride: WorldGrade?
     /// The frame-time counter in a corner (debug).
     public var frameMeter: Bool
 
@@ -31,15 +47,17 @@ public struct WorldLook: Hashable, Sendable {
         art: ArtSet = .lockLight,
         grade: Bool = true,
         hd2d: Bool = true,
-        terrarium: Bool = true,
+        depthMotion: Bool = true,
         hourOverride: Double? = nil,
+        gradeOverride: WorldGrade? = nil,
         frameMeter: Bool = false
     ) {
         self.art = art
         self.grade = grade
         self.hd2d = hd2d
-        self.terrarium = terrarium
+        self.depthMotion = depthMotion
         self.hourOverride = hourOverride
+        self.gradeOverride = gradeOverride
         self.frameMeter = frameMeter
     }
 
@@ -47,22 +65,15 @@ public struct WorldLook: Hashable, Sendable {
     public static let standard = WorldLook()
 
     /// The look before look-dev: the soft-lock art and nothing else.
-    public static let legacy = WorldLook(art: .softLock, grade: false, hd2d: false, terrarium: false)
+    public static let legacy = WorldLook(art: .softLock, grade: false, hd2d: false, depthMotion: false)
 }
 
 extension WorldArt {
-    /// The suffix of the soft-lock bake's sprites (`cay-1--softlock`).
-    static let softLockSuffix = "--softlock"
-
-    /// The sprite key to draw for `name` in `art`: the soft-lock bake when
-    /// the pipeline baked one, otherwise `name` itself.
+    /// The sprite key to draw for `name` in `art`: the set's own bake when
+    /// the pipeline baked one (`cay-1--softlock`), otherwise `name` itself.
     public static func key(_ name: String, art: WorldLook.ArtSet) -> String {
-        switch art {
-        case .lockLight:
-            return name
-        case .softLock:
-            let alt = name + softLockSuffix
-            return generated[alt] != nil ? alt : name
-        }
+        guard let suffix = art.suffix else { return name }
+        let alt = name + suffix
+        return generated[alt] != nil ? alt : name
     }
 }

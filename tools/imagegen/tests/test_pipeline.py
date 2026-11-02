@@ -99,6 +99,35 @@ class ParseTests(unittest.TestCase):
                 with self.assertRaises(pl.ManifestError):
                     pl.parse_manifest(bad, REFS)
 
+    def test_slice_field_is_validated(self):
+        data = manifest()
+        data["jobs"][0].update(kind="ui", slice={"caps": [16, 26, 16, 26], "ship_height": 52})
+        job = pl.parse_manifest(data, REFS).jobs[0]
+        self.assertEqual(job.slice, {"caps": [16.0, 26.0, 16.0, 26.0], "ship_height": 52.0})
+        for bad_slice in ({"caps": [16, 26, 16], "ship_height": 52},      # three caps
+                          {"caps": [30, 26, 30, 26], "ship_height": 52},  # no centre left
+                          {"caps": [16, 26, 16, 26]},                      # no ship height
+                          {"caps": [-1, 26, 16, 26], "ship_height": 52}):
+            bad = manifest()
+            bad["jobs"][0].update(kind="ui", slice=bad_slice)
+            with self.assertRaises(pl.ManifestError, msg=str(bad_slice)):
+                pl.parse_manifest(bad, REFS)
+        bad = manifest()  # a station is never sliced
+        bad["jobs"][0]["slice"] = {"caps": [1, 1, 1, 1], "ship_height": 52}
+        with self.assertRaises(pl.ManifestError):
+            pl.parse_manifest(bad, REFS)
+
+    def test_external_master_at_its_own_path(self):
+        data = manifest()
+        r1 = "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png"
+        data["jobs"][0] = {"id": "cay-1", "kind": "station", "external": "r1", "master": r1}
+        m = pl.parse_manifest(data, REFS)
+        self.assertEqual(pl.approved_image(m.job("cay-1")), (pl.REPO_ROOT / r1).resolve())
+        bad = manifest()
+        bad["jobs"][0]["master"] = r1  # only an external job may name its image
+        with self.assertRaises(pl.ManifestError):
+            pl.parse_manifest(bad, REFS)
+
 
 class PromptTests(unittest.TestCase):
     def test_blocks_are_verbatim_and_refs_listed_in_order(self):
@@ -142,7 +171,7 @@ class PromptTests(unittest.TestCase):
     def test_blocks_never_name_artists_and_ui_blocks_forbid_painted_glass(self):
         for path in pl.BLOCKS_DIR.glob("*.txt"):
             self.assertNotIn("in the style of", path.read_text(encoding="utf-8").lower(), path.name)
-        for name in ("icon-style-v1", "ui-object-v1", "widget-v1", "appicon-v1"):
+        for name in ("icon-style-v1", "ui-object-v1", "widget-v1", "appicon-v1", "crafted-face-v1"):
             text = pl.read_block(name).lower()
             self.assertRegex(text, r"no\s+glass|never\s+paint\s+glass", name)
 

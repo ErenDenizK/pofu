@@ -10,7 +10,8 @@ summary: >-
   to soft, rounded ends. Centered, filling about 85% of the image width, with a clear transparent
   margin.
 art:
-  images: []
+  images:
+  - design/art/masters/cloud-4/cloud-4.png
   jobs:
   - batch-04-sky:cloud-4
 sources:

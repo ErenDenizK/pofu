@@ -1,0 +1,149 @@
+# Batch 05, pilot: the batch-03 fixes (docs/design/art-production-plan.md).
+#
+# Why batch 03's jobs failed, measured by the lead (2026-11-02):
+# - simit-2 and workshop-2 (edit_stability 28-55 %): a pipeline bug, not
+#   the prompts. An edit is drawn on the approved master, which is already
+#   on the station anchor; `post` moved it again by the chain root's
+#   registration (simit-1 dx +110, workshop-1 dx -110), so the edit sat
+#   110 px off its parent and was cut at the canvas edge. Fixed in
+#   tools/imagegen (edits are never registered again). Re-run on batch 03's
+#   own takes, every take now passes: simit-2 keeps 100 % (t1, t4: all
+#   checks pass), workshop-2 keeps 90-94 % (t4: lowest lock load).
+#   So these two are SALVAGED from the takes already on main, not
+#   regenerated (the method principle: fix the method, not the dice).
+# - garden-5 (station_anchor: top y 0): the prompt asked for a sunflower
+#   taller than the arch, but garden-4's arch already reaches the height
+#   bar (top y 147). The giant sunflower now grows inside the arch.
+# - island-main-l-v2 reads squashed (founder: "short is fine, just too
+#   squashed"): its earth depth is 0.168 of its width against 0.205 for
+#   island-main-s. island-main-l-v3 deepens only the earth body.
+#
+# Batch 03's chains also faded about 30 % in chroma per level (cay-1 C50
+# 31 to cay-5 11; windmill-1 28 to windmill-5 7) under the old soft-lock
+# preset. The new edit_chroma check catches that per level; the harmony
+# grade (tools/assets/harmony.py, in progress) brings the faded levels
+# back in code. Nothing here regenerates them.
+#
+# Pilot gate: the lead reviews this PR before batch-05-fixes (simit-3..5,
+# workshop-3..5) opens. Tracks: `salvage` (simit-2, workshop-2), `garden`
+# (garden-5), `plate` (island-main-l-v3). All start now.
+
+batch: batch-05-fixes-pilot
+title: Batch 03 fixes, pilot (salvage simit-2 and workshop-2, garden-5 inside the arch, a deeper large island)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  # ------------------------------------------------------ parents on main
+  - {id: simit-1, kind: station, name: simit-1, external: batch-01-slice}
+  - {id: workshop-1, kind: station, name: workshop-1, external: batch-03-home-island}
+  - {id: garden-4, kind: station, name: garden-4, external: batch-03-home-island}
+  - {id: island-main-l-v2, kind: world, name: island-main-l-v2, external: batch-03-home-island}
+
+  # ------------------------------------------------- salvaged, not drawn
+  - id: simit-2
+    kind: station
+    name: simit-2
+    edit_of: simit-1
+    chat: "Pofu · Simit cart"
+    notes: >-
+      SALVAGE FIRST, do not generate: ingest batch 03's four takes
+      (design/art/takes/batch-03-home-island/simit-2/station__simit-2--t1.webp
+      to --t4.webp) with `ingest --source salvage-batch-03`, then `post`.
+      With the registration fix t1 and t4 pass every check (lead,
+      2026-11-02). Auto-pick as usual; write in the provenance note that
+      the raw is batch 03's lossy WebP q90 take (the original PNG was not
+      kept). Generate 2 new takes only if no salvaged take passes. Prompt
+      unchanged from batch 03.
+    prompt:
+      - text: |
+          Add a small round sun umbrella above the cart on a wooden pole
+          fixed to the cart's back: a scalloped canopy of soft coral and
+          cream segments, matte cloth. The umbrella's top stays below the
+          top of the canvas with a clear margin.
+      - block: edit-keep-v1
+
+  - id: workshop-2
+    kind: station
+    name: workshop-2
+    edit_of: workshop-1
+    chat: "Pofu · Workshop"
+    notes: >-
+      SALVAGE FIRST, as simit-2: ingest
+      design/art/takes/batch-03-home-island/workshop-2/station__workshop-2--t1.webp
+      to --t4.webp, then `post`. All four pass edit_stability now (90-94 %;
+      t3 is a rescale and keeps 74 %, avoid it); the width warning (876 px)
+      is the parent's own width (875 px), accept it. Generate only if none
+      passes.
+    prompt:
+      - text: |
+          Add a pale wooden pegboard on the shed's front wall, right of the
+          doorway, holding five simple, chunky tools: a hammer, a saw, a
+          wrench, a pair of pliers and a hand drill, with honey wood handles
+          and their metal painted as soft stone-beige shapes with no shine.
+      - block: edit-keep-v1
+
+  # --------------------------------------------- re-prompted, generated
+  - id: garden-5
+    kind: station
+    name: garden-5
+    edit_of: garden-4
+    key: blue
+    chat: "Pofu · Sunflower garden"
+    notes: >-
+      Batch 03's four takes put the sunflower above the arch (top y 0).
+      garden-4 already fills the height bar (top y 147), so the arch is the
+      ceiling. Review check: the top of the take is no higher than the
+      arch's top (station_anchor must not warn about the top), and the
+      width stays within 20 px of garden-4's (861 px). The app turns the
+      head to follow the sun; a separate head layer is a later job if the
+      turn needs one.
+    prompt:
+      - text: |
+          Make the one sunflower in the middle of the bed, under the arch,
+          a giant: a thick soft stem and three broad leaves rising from
+          the center of the bed, and one big round head of honey-yellow
+          petals around a warm brown center, about twice as wide as the
+          other sunflower heads, facing up and to the left toward the
+          light. The whole giant sunflower stays INSIDE the arch's opening:
+          its head sits just below the top of the arch, nothing of it
+          reaches above or outside the arch, and the arch, the bunting, the
+          fence and the other flowers stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: anything above the arch, a sunflower taller than the arch, a wider bed, a zoomed-out view."
+
+  - id: island-main-l-v3
+    kind: world
+    name: island-main-l-v3
+    size: 1536x1024
+    key: blue
+    edit_of: island-main-l-v2
+    chat: "Pofu · Island"
+    notes: >-
+      Founder (2026-11-02): the large island is too squashed; short is
+      fine. island-main-l-v2's earth depth is 0.168 of its width,
+      island-main-s's 0.205. Target 0.22-0.26: QA's depth_floor warns
+      below 0.22 and fails below 0.20 (look round 2 added the lower bound;
+      depth_ratio still caps a deep plate). The lawn stays identical, so
+      terrace-v2, islet-east and bridge-east still fit. If the deeper body
+      does not fit the canvas, stop and say so; do not let the lawn move.
+    prompt:
+      - text: |
+          Make only the earth body under the lawn deeper, so the island
+          has visible thickness: about one and a half times as deep as now,
+          a full, rounded mass of the same light honey and caramel soil with
+          its gentle strata, and one more soft band of pale stone near the
+          bottom, so it reads as solid ground with a rocky underside, never
+          as a thin slab and never as a cone. Its underside stays soft and
+          rounded. Keep the round door, its window, the pebbles and the
+          roots where they are on the body; the roots hang from the new,
+          lower underside. The lawn, its outline, its front lip, its
+          position on the canvas and its size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: moving or resizing the lawn, a cone-shaped or pointed underside, dark or grey rock, a cliff face, hard edges, water, sky, background, text."
+    acceptance:
+      depth_ratio: {warn: 0.30, fail: 0.36}
+      depth_floor: {warn: 0.22, fail: 0.20}
+      edit_kept: {warn: 0.60, fail: 0.45}

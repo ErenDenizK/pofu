@@ -1,0 +1,112 @@
+{
+  "job": "cay-1-lit",
+  "batch": "batch-07-light-pilot",
+  "asset": "station__cay-1-lit",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T18:07:38+00:00",
+  "image": "design/art/stations/cay-1-lit/cay-1-lit.png",
+  "raw": "design/art/stations/cay-1-lit/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "14cf00a76e45d6a2",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the little round burner under the çaydanlık: inside its\nopening, a small, soft flame of warm honey and coral shapes, and\nthe inside of the burner glows warm amber. Paint the flame as a\nfew soft, rounded tongues with no hard edges, matte, no sparks.\nOnly the burner changes: no glow, no light and no color change on\nthe teapot, the counter or anything else (the app adds the glow\nand the warm light around it).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a big fire, sparks, smoke, steam, a glow outside the burner, light on other objects, yellow-white blown highlights, text.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/cay-1/cay-1.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T18:06:57+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 0,
+    "dy": 0
+  },
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 33 (R1 51)",
+        "value": 33.4
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 60 (R1 59)",
+        "value": 59.9
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.6 (R1 5.3)",
+        "value": 1.65
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.7",
+        "value": 0.7482
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.9, p95 1.9, off-palette 0.0%",
+        "value": 0.9333
+      },
+      {
+        "check": "station_anchor",
+        "status": "pass",
+        "message": "on the anchor",
+        "value": 902.0
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "98% of the parent level unchanged",
+        "value": 0.9848
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.98 of the parent level (drift compounds along a chain)",
+        "value": 0.9764
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both takes pass; t1 lowest lock load0.7482. Parent preservation98.48% exceeds90% manual gate. Alpha-aware blue composition is clean; flame remains inside burner, no added glow or brighter objects outside burner."
+}

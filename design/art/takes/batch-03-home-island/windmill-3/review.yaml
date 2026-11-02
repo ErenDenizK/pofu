@@ -1,0 +1,175 @@
+batch: batch-03-home-island
+contact_sheet: design/art/takes/batch-03-home-island/windmill-3/contact.jpg
+jobs:
+  windmill-3:
+    pick: 1
+    note: auto-picked by QA; founder review pending
+    takes:
+      t1:
+        qa: warn
+        summary: station_anchor warn
+      t2:
+        qa: warn
+        summary: station_anchor warn
+    approved:
+      take: 1
+      at: '2026-11-02T14:58:03+00:00'
+    lock_load:
+      t1: 4.7132
+      t2: 4.8193
+    upload_note: raw.png not uploaded (over 600 KB); the q90 takes are the record
+    qa_reports:
+      t1:
+        job: windmill-3
+        take: 1
+        status: warn
+        preset: soft-lock
+        checks:
+        - check: transparency
+          status: pass
+          message: source has an alpha channel
+        - check: canvas
+          status: pass
+          message: 1254x1254 scaled x0.817 into 1024x1024
+          value: 0.8166
+        - check: edit_alignment
+          status: pass
+          message: the edit rescaled the object x1.007 and moved it; aligned back
+            to the parent
+          value: 0.9927
+        - check: chroma_ceiling
+          status: pass
+          message: chroma p95 18 (R1 51)
+          value: 18.0
+        - check: value_floor
+          status: pass
+          message: lightness p5 70 (R1 59)
+          value: 69.8
+        - check: detail_budget
+          status: pass
+          message: detail at display size 1.7 (R1 5.3)
+          value: 1.69
+        - check: lock_load
+          status: pass
+          message: the lock moved colors by mean dE 4.7
+          value: 4.7132
+        - check: no_guide_magenta
+          status: pass
+          message: 0 guide-magenta pixels (per 1024^2)
+          value: 0.0
+        - check: palette_drift
+          status: pass
+          message: mean dE 0.8, p95 1.6, off-palette 0.0%
+          value: 0.844
+        - check: station_anchor
+          status: warn
+          message: top y 57 above the height bar (150)
+          value: 900.0
+        - check: edit_stability
+          status: pass
+          message: 96% of the parent level unchanged
+          value: 0.9563
+        info:
+          registration:
+            dx: -15
+            dy: -25
+          alignment:
+            scale: 0.9927
+            cx: 503.5
+            cy: 880.0
+            dx: 14
+            dy: 20
+          metrics_raw:
+            L_p5: 64.2
+            L_p50: 81.5
+            L_p95: 89.9
+            C_p50: 14.5
+            C_p95: 25.2
+            C_p99: 27.1
+            detail: 2.87
+          metrics_locked:
+            L_p5: 69.8
+            L_p50: 82.8
+            L_p95: 89.7
+            C_p50: 10.8
+            C_p95: 18.0
+            C_p99: 18.9
+            detail: 1.69
+        fingerprint: 2f0b9d3ef6aeb050
+      t2:
+        job: windmill-3
+        take: 2
+        status: warn
+        preset: soft-lock
+        checks:
+        - check: transparency
+          status: pass
+          message: source has an alpha channel
+        - check: canvas
+          status: pass
+          message: 1254x1254 scaled x0.817 into 1024x1024
+          value: 0.8166
+        - check: edit_alignment
+          status: pass
+          message: the edit rescaled the object x0.998 and moved it; aligned back
+            to the parent
+          value: 1.0018
+        - check: chroma_ceiling
+          status: pass
+          message: chroma p95 18 (R1 51)
+          value: 17.9
+        - check: value_floor
+          status: pass
+          message: lightness p5 70 (R1 59)
+          value: 69.6
+        - check: detail_budget
+          status: pass
+          message: detail at display size 1.5 (R1 5.3)
+          value: 1.48
+        - check: lock_load
+          status: pass
+          message: the lock moved colors by mean dE 4.8
+          value: 4.8193
+        - check: no_guide_magenta
+          status: pass
+          message: 0 guide-magenta pixels (per 1024^2)
+          value: 0.0
+        - check: palette_drift
+          status: pass
+          message: mean dE 0.8, p95 1.5, off-palette 0.0%
+          value: 0.8175
+        - check: station_anchor
+          status: warn
+          message: top y 55 above the height bar (150)
+          value: 904.0
+        - check: edit_stability
+          status: pass
+          message: 97% of the parent level unchanged
+          value: 0.9663
+        info:
+          registration:
+            dx: -15
+            dy: -25
+          alignment:
+            scale: 1.0018
+            cx: 501.0
+            cy: 877.0
+            dx: 13
+            dy: 27
+          metrics_raw:
+            L_p5: 63.9
+            L_p50: 80.7
+            L_p95: 88.6
+            C_p50: 14.7
+            C_p95: 25.0
+            C_p99: 26.8
+            detail: 2.55
+          metrics_locked:
+            L_p5: 69.6
+            L_p50: 82.3
+            L_p95: 88.8
+            C_p50: 10.9
+            C_p95: 17.9
+            C_p99: 18.8
+            detail: 1.48
+        fingerprint: 2f0b9d3ef6aeb050
