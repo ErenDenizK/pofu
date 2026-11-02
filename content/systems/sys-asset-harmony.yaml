@@ -14,7 +14,7 @@ notes:
 - 'Tool: tools/assets/harmony.py; config and manifest in design/art/harmony/; CI fails a stale manifest.'
 - 'First run (2026-11-02): the çaydanlık copper turned from hue 54 to 59; station chains lost ~30 % chroma per level (cay-5 median chroma 10.9 vs L1 43.6) and are restored toward L1.'
 - 'Batch 03/04 masters were baked with soft-lock and measure paler than the lock-light island; re-lock them from their raws where kept.'
-- 'Look round 3: harmony corrects technical defects only (value range, white balance, chain chroma); materials are ranges in design/art/materials.json, pulled back only when out of range, so the rose copper stays rose. Re-locked six batch-03 masters with lock-light where it scored better (the large plate 87 -> 93 after correction).'
+- 'Look round 3: harmony corrects technical defects only (value range, white balance, chain chroma); materials are ranges in design/art/materials.json, pulled back only when out of range, so the rose copper stays rose. Re-locked seven batch-03 masters with lock-light where it scored better after correction (island-main-l-v2 87.2 -> 95.8, garden-3 69.6 -> 87.2); the app ships batch 05''s island-main-l-v3 (68.3 -> 86.4).'
 links:
   related: [sys-depth-lens, sys-colour-script]
 sources:
