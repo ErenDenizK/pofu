@@ -1,0 +1,18 @@
+id: asset-ui-face-disc
+type: asset
+title_tr: ui-face-disc
+title_en: face-disc (ui)
+status: in-production
+horizon: now
+summary: >-
+  A round, chunky disc of cream-glazed clay seen straight on, a perfect circle filling most
+  of the canvas, a soft lighter highlight along the top edge and a slightly darker rounded
+  lip along the bottom edge, the middle flat and empty. Nothing on it.
+art:
+  images: []
+  jobs:
+  - batch-11-ui-pilot:ui-face-disc
+sources:
+- doc: tools/imagegen/manifest/batch-11-ui-pilot.yaml
+kind: ui
+batch: batch-11-ui-pilot

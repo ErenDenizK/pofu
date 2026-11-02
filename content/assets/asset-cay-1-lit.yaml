@@ -14,7 +14,8 @@ links:
   variant_of:
   - asset-cay-1
 art:
-  images: []
+  images:
+  - design/art/stations/cay-1-lit/cay-1-lit.png
   jobs:
   - batch-07-light-pilot:cay-1-lit
 sources:

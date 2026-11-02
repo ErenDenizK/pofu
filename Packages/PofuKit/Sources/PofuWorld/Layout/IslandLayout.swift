@@ -27,8 +27,8 @@ public struct ResidentID: RawRepresentable, Hashable, Sendable, Comparable, Cust
 /// residents, Pofu, the plate's depth bands, and the other islands on the
 /// map. World units are points at camera scale 1 (game design §15).
 ///
-/// The home plate is the large island (`island-main-l-v2`, batch 03; look
-/// round 3): a lawn oval 480 × 87 units, 0.18 as deep as it is wide, so
+/// The home plate is the large island (`island-main-l-v3`, batch 05, the
+/// same lawn as batch 03's v2 over a deeper body; look round 3): a lawn oval 480 × 87 units, 0.18 as deep as it is wide, so
 /// depth, not width, limits the layout. Its slots are authored for it:
 /// tall stations (the windmill, the workshop) in the back row, the low
 /// pond in front, the garden and the çay ocağı at the tips, Pofu front and
@@ -101,9 +101,9 @@ public enum IslandLayout {
     }
 
     /// How many levels of each home station the art queue has generated
-    /// (batches 01 and 03); `preblur.py app` bakes every one.
+    /// (batches 01, 03 and 05); `preblur.py app` bakes every one.
     public static let generatedLevels: [StationID: Int] = [
-        .cay: 5, .garden: 4, .pond: 5, .windmill: 5, .workshop: 1,
+        .cay: 5, .garden: 5, .pond: 5, .windmill: 5, .workshop: 1,
     ]
 
     /// The baked sprite for a station at a level: its own level's art, or
@@ -143,8 +143,8 @@ public enum IslandLayout {
     public static let isles: [Isle] = [
         Isle(id: .yildiz, center: WorldPoint(x: -270, y: -255), art: "isle-stars-standin"),
         Isle(id: .kaplica, center: WorldPoint(x: 275, y: -245), art: "isle-hamam-standin"),
-        Isle(id: .iskele, center: WorldPoint(x: 265, y: 285), art: "isle-harbor-standin"),
-        Isle(id: .kitap, center: WorldPoint(x: -280, y: 290), art: "isle-library-standin"),
+        Isle(id: .iskele, center: WorldPoint(x: 265, y: 320), art: "isle-harbor-standin"),
+        Isle(id: .kitap, center: WorldPoint(x: -280, y: 320), art: "isle-library-standin"),
     ]
 
     /// The world canvas the scene lays objects out on: x −500…500,

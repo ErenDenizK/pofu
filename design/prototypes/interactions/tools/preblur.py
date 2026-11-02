@@ -225,8 +225,11 @@ PLATES = {
                       "softlock": "design/art/masters/island-main-s/island-main-s.png"},
     "island-main-l-v2": {"folder": "design/art/masters/island-main-l-v2", "lawn": (767.0, 415.0, 742.0, 135.0),
                          "units": 480.0, "window": (439, 660)},
+    # Batch 05: the same lawn over a deeper earth body (the founder found v2 too squashed).
+    "island-main-l-v3": {"folder": "design/art/masters/island-main-l-v3", "lawn": (767.0, 415.0, 742.0, 135.0),
+                         "units": 480.0, "window": (437, 563)},
 }
-APP_PLATE_MASTER = "island-main-l-v2"
+APP_PLATE_MASTER = "island-main-l-v3"
 
 
 def _plate(key):
@@ -246,7 +249,9 @@ def _plate(key):
 
 # The home island's station chains: every level the art queue has generated (a level without art
 # shows the highest one below it, with a level badge).
-STATION_LEVELS = {"cay": 5, "garden": 4, "pond": 5, "windmill": 5, "workshop": 1}
+# workshop-2 (batch 05) is left out: it was edited from workshop-1's master, which lost the left of
+# its roof to the registration shift, so the edit is cut too; regenerate it from the padded re-lock.
+STATION_LEVELS = {"cay": 5, "garden": 5, "pond": 5, "windmill": 5, "workshop": 1}
 
 APP_SOURCES = {
     # The app draws the lock-light bakes (WorldGrade grades them at runtime); "softlock" also bakes a

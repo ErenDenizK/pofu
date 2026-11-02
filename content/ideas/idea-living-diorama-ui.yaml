@@ -1,0 +1,19 @@
+id: idea-living-diorama-ui
+type: idea
+title_tr: Yaşayan diorama arayüzü
+title_en: Living Diorama game screen
+status: idea
+horizon: next
+summary: >-
+  UI critique 01's recommended direction for Home: state lives in the world
+  (a seed jar for the balance, a calm lantern for the multiplier, a
+  sunflower bed for today's skips), glass is only for actions, and one
+  peeking native glance carries the exact numbers. Needs an ADR-0018
+  amendment (three world indicators, jar and lantern at W4).
+notes:
+- Direction A (Quiet Glass) is the fallback and its structural fixes ship first.
+- Direction C (Cozy HUD) was rejected against game design A4, A8 and A18.
+sources:
+- doc: docs/design/ui-critique-01.md
+  anchor: '#3-three-directions-for-the-game-screen'
+kind: design
