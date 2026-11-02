@@ -122,7 +122,8 @@ struct GardenRoundTests {
         var round = GardenRound(seed: 4)
         for step in 0..<3 {
             let move = try #require(GardenAutoplayer.bestMove(in: round))
-            let outcome = try #require(round.place(slot: move.slot, at: move.origin))
+            let outcomeResult = round.place(slot: move.slot, at: move.origin)
+            let outcome = try #require(outcomeResult)
             #expect(round.piece(in: move.slot) == nil || step == 2)
             #expect((outcome.dealtTray != nil) == (step == 2))
         }
@@ -147,12 +148,15 @@ struct GardenRoundTests {
             scenario: GardenBoard(rows: ["#######.", "#######.", "#######."]),
             tray: [single, single, single]
         )
-        let first = try #require(round.place(slot: 0, at: GardenCell(row: 0, column: 7)))
+        let firstResult = round.place(slot: 0, at: GardenCell(row: 0, column: 7))
+        let first = try #require(firstResult)
         #expect(first.cleared.rows == [0])
         #expect(first.combo == 1)
-        let second = try #require(round.place(slot: 1, at: GardenCell(row: 1, column: 7)))
+        let secondResult = round.place(slot: 1, at: GardenCell(row: 1, column: 7))
+        let second = try #require(secondResult)
         #expect(second.combo == 2)
-        let third = try #require(round.place(slot: 2, at: GardenCell(row: 2, column: 7)))
+        let thirdResult = round.place(slot: 2, at: GardenCell(row: 2, column: 7))
+        let third = try #require(thirdResult)
         #expect(third.combo == 3)
         #expect(round.bestCombo == 3)
         #expect(round.linesBloomed == 3)
@@ -188,7 +192,8 @@ struct GardenRoundTests {
             ]),
             tray: [single]
         )
-        let outcome = try #require(round.place(slot: 0, at: GardenCell(row: 0, column: 7)))
+        let outcomeResult = round.place(slot: 0, at: GardenCell(row: 0, column: 7))
+        let outcome = try #require(outcomeResult)
         #expect(outcome.cleared.count == 2)
         #expect(outcome.seedsBefore == 2)
         #expect(outcome.seedsAfter == 3, "the good-round seed")
@@ -203,7 +208,8 @@ struct GardenRoundTests {
         }
         var round = GardenRound(scenario: GardenBoard(rows: rows), tray: [single, square3])
         let origin = try #require(round.board.origins(for: single).first)
-        let outcome = try #require(round.place(slot: 0, at: origin))
+        let outcomeResult = round.place(slot: 0, at: origin)
+        let outcome = try #require(outcomeResult)
         #expect(outcome.ending == .gardenFull)
         #expect(round.isOver)
         #expect(round.result.seeds >= SeedYield.base, "a full garden still pays")

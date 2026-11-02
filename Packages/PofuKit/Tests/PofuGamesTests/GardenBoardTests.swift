@@ -39,7 +39,8 @@ struct GardenBoardTests {
     @Test func placingFillsAndClearsARow() throws {
         let pair = try #require(PieceCatalog.shapes(of: .pair).first { $0.width == 2 })
         var board = GardenBoard(rows: ["######.."])
-        let placement = try #require(board.place(pair, at: GardenCell(row: 0, column: 6)))
+        let placementResult = board.place(pair, at: GardenCell(row: 0, column: 6))
+        let placement = try #require(placementResult)
         #expect(placement.cleared == LineSet(rows: [0], columns: []))
         #expect(board.isEmpty)
     }
@@ -56,7 +57,8 @@ struct GardenBoardTests {
             ".......#",
             ".......#",
         ])
-        let placement = try #require(board.place(single, at: GardenCell(row: 0, column: 7)))
+        let placementResult = board.place(single, at: GardenCell(row: 0, column: 7))
+        let placement = try #require(placementResult)
         #expect(placement.cleared.rows == [0])
         #expect(placement.cleared.columns == [7])
         #expect(placement.cleared.count == 2)
