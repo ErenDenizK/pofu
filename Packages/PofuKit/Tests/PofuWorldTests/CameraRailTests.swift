@@ -28,16 +28,19 @@ struct CameraRailTests {
     }
 
     @Test func scaleInterpolatesInLogSpace() {
+        let map = CameraRail.referenceStops[0].scale
+        let island = CameraRail.referenceStops[1].scale
         let mid = rail.pose(z: 1.5).scale
-        #expect(abs(mid - (1.06 * 2.40).squareRoot()) < 1e-9)
+        #expect(abs(mid - (island * 2.40).squareRoot()) < 1e-9)
         let quarter = rail.pose(z: 0.25).scale
-        #expect(abs(quarter - exp(log(0.46) * 0.75 + log(1.06) * 0.25)) < 1e-9)
+        #expect(abs(quarter - exp(log(map) * 0.75 + log(island) * 0.25)) < 1e-9)
     }
 
     @Test func positionInterpolatesLinearlyWithTheSameFraction() {
+        let island = CameraRail.referenceStops[1]
         let pose = rail.pose(z: 1.25)
-        #expect(abs(pose.lookY - (40 + (20 - 40) * 0.25)) < 1e-9)
-        #expect(abs(pose.anchorY - (470 + (600 - 470) * 0.25)) < 1e-9)
+        #expect(abs(pose.lookY - (island.look.y + (20 - island.look.y) * 0.25)) < 1e-9)
+        #expect(abs(pose.anchorY - (island.anchorY + (600 - island.anchorY) * 0.25)) < 1e-9)
     }
 
     @Test func zAndLogScaleAreInverses() {
