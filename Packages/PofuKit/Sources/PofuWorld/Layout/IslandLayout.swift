@@ -27,16 +27,23 @@ public struct ResidentID: RawRepresentable, Hashable, Sendable, Comparable, Cust
 /// residents, Pofu, the plate's depth bands, and the other islands on the
 /// map. World units are points at camera scale 1 (game design §15).
 ///
-/// The batch 01 plate (`island-main-s`) is a flat lawn oval about
-/// 350 × 82 units, so the slots are laid out for it rather than copied
-/// from the prototype's taller stand-in plate.
+/// The home plate is the large island (`island-main-l-v2`, batch 03; look
+/// round 3): a lawn oval 480 × 87 units, 0.18 as deep as it is wide, so
+/// depth, not width, limits the layout. Its slots are authored for it:
+/// tall stations (the windmill, the workshop) in the back row, the low
+/// pond in front, the garden and the çay ocağı at the tips, Pofu front and
+/// centre with Fındık and Mochi beside their stations. Every footprint, at
+/// every level, stays inside the walkable lawn and off every other
+/// (`IslandFootprintTests`).
 public enum IslandLayout {
-    /// Pofu's feet.
-    public static let pofu = WorldPoint(x: 6, y: 20)
+    /// Pofu's feet: front and centre, a little right of the middle so the
+    /// pond and the windmill stay visible beside him at Home.
+    public static let pofu = WorldPoint(x: 22, y: 27)
 
-    /// The plate's lawn as an ellipse: centre, half-width, half-height.
-    public static let lawnRadiusX = 175.0
-    public static let lawnRadiusY = 40.0
+    /// The plate's lawn as an ellipse around the origin: half-width and
+    /// half-depth, measured by the pipeline (`WorldArt.generatedPlate`).
+    public static var lawnRadiusX: Double { WorldArt.generatedPlate.lawnRadiusX }
+    public static var lawnRadiusY: Double { WorldArt.generatedPlate.lawnRadiusY }
 
     /// The flat plate's rows understate distance: the camera looks down
     /// at about 17°, so one unit of y is several units of depth. Depth is
@@ -52,11 +59,11 @@ public enum IslandLayout {
     /// (`IslandFootprint`, look round 2: round 1's garden and çay ocağı hung
     /// over the rim); the test fails before a slot can stick out again.
     public static let stationAnchors: [StationID: WorldPoint] = [
-        .windmill: WorldPoint(x: -55, y: -20),
-        .workshop: WorldPoint(x: 68, y: -10),
-        .garden: WorldPoint(x: -100, y: -3),
-        .cay: WorldPoint(x: 100, y: 4),
-        .pond: WorldPoint(x: -63, y: 8),
+        .windmill: WorldPoint(x: -50, y: -25),
+        .workshop: WorldPoint(x: 61, y: -9),
+        .garden: WorldPoint(x: -173, y: 6),
+        .cay: WorldPoint(x: 154, y: 6),
+        .pond: WorldPoint(x: -65, y: 23),
     ]
 
     /// A station's tap target over its footprint (§2.7): x ± 46, y − 84
@@ -76,36 +83,36 @@ public enum IslandLayout {
     }
 
     public static let residents: [Resident] = [
-        Resident(id: .mochi, station: .cay, feet: WorldPoint(x: 62, y: 24), art: "mochi", isStandIn: false),
-        // In front of the workshop, not inside its wall.
-        Resident(id: .findik, station: .workshop, feet: WorldPoint(x: 40, y: -2), art: "findik-standin", isStandIn: true),
+        // In front of the çay ocağı's left end, where its stools are.
+        Resident(id: .mochi, station: .cay, feet: WorldPoint(x: 108, y: 29), art: "mochi", isStandIn: false),
+        // In front of the workshop's bench, not inside its wall.
+        Resident(id: .findik, station: .workshop, feet: WorldPoint(x: 76, y: 20), art: "findik", isStandIn: false),
     ]
 
     public static func resident(_ id: ResidentID) -> Resident? {
         residents.first { $0.id == id }
     }
 
-    /// Whether the art for a station's level is its own (not a shared
-    /// stand-in): where it is not, the station wears a small level badge
-    /// from level 2.
+    /// Whether the art for a station's level is its own (not a lower
+    /// level's): where it is not, the station wears a small level badge.
     public static func hasLevelArt(_ station: StationID, level: Int) -> Bool {
         guard let art = stationArt(station, level: level) else { return false }
-        return !art.isStandIn && level == 1
+        return !art.isStandIn
     }
 
-    /// The baked sprite for a station at a level; `nil` when there is no
-    /// art at all (a labelled placeholder is drawn).
+    /// How many levels of each home station the art queue has generated
+    /// (batches 01 and 03); `preblur.py app` bakes every one.
+    public static let generatedLevels: [StationID: Int] = [
+        .cay: 5, .garden: 4, .pond: 5, .windmill: 5, .workshop: 1,
+    ]
+
+    /// The baked sprite for a station at a level: its own level's art, or
+    /// the highest level below it (`isStandIn`); `nil` when there is no art
+    /// at all (a labelled placeholder is drawn).
     public static func stationArt(_ station: StationID, level: Int) -> (name: String, isStandIn: Bool)? {
-        switch station {
-        // Only level 1 exists from batch 01; higher levels show it until
-        // their edits are generated.
-        case .cay: ("cay-1", level > 1)
-        case .garden: ("garden-standin", true)
-        case .pond: ("pond-standin", true)
-        case .workshop: ("workshop-standin", true)
-        case .windmill: ("windmill-standin", true)
-        default: nil
-        }
+        guard let generated = generatedLevels[station], generated > 0 else { return nil }
+        let shown = min(max(level, 1), generated)
+        return ("\(station.rawValue)-\(shown)", shown != max(level, 1))
     }
 
     /// One depth band of the home plate.
@@ -116,13 +123,11 @@ public enum IslandLayout {
     }
 
     /// Back lawn, middle lawn, front lawn and lip, earth body; the pipeline
-    /// cuts them at y −14, 14 and 44.
-    public static let plateBands: [PlateBand] = [
-        PlateBand(art: "island-main-band0", depth: depth(ofY: -28)),
-        PlateBand(art: "island-main-band1", depth: depth(ofY: 0)),
-        PlateBand(art: "island-main-band2", depth: depth(ofY: 29)),
-        PlateBand(art: "island-main-band3", depth: depth(ofY: 60)),
-    ]
+    /// cuts them at −0.32, 0.32 and 1.0 of the lawn's half-depth and
+    /// records each band's centre.
+    public static let plateBands: [PlateBand] = WorldArt.generatedPlate.bandDepthY.enumerated().map { k, y in
+        PlateBand(art: "island-main-band\(k)", depth: IslandLayout.depth(ofY: y))
+    }
 
     /// The other islands, at fixed world positions around the home one.
     public struct Isle: Hashable, Sendable, Identifiable {
@@ -131,22 +136,22 @@ public enum IslandLayout {
         public var art: String
     }
 
-    /// An X around the home island, close enough that at the Island
-    /// framing each neighbour's rim peeks into a corner (game design §3: the
-    /// archipelago is felt, never cluttering) and the Map shows all five
-    /// large.
+    /// An X around the home island, clear of the large plate (488 units
+    /// wide), so the Map shows all five (game design §3: the archipelago is
+    /// felt, never cluttering). At the Island framing the neighbours leave
+    /// the frame to the far isles of the living sky.
     public static let isles: [Isle] = [
-        Isle(id: .yildiz, center: WorldPoint(x: -185, y: -265), art: "isle-stars-standin"),
-        Isle(id: .kaplica, center: WorldPoint(x: 200, y: -250), art: "isle-hamam-standin"),
-        Isle(id: .iskele, center: WorldPoint(x: 195, y: 265), art: "isle-harbor-standin"),
-        Isle(id: .kitap, center: WorldPoint(x: -205, y: 270), art: "isle-library-standin"),
+        Isle(id: .yildiz, center: WorldPoint(x: -270, y: -255), art: "isle-stars-standin"),
+        Isle(id: .kaplica, center: WorldPoint(x: 275, y: -245), art: "isle-hamam-standin"),
+        Isle(id: .iskele, center: WorldPoint(x: 265, y: 285), art: "isle-harbor-standin"),
+        Isle(id: .kitap, center: WorldPoint(x: -280, y: 290), art: "isle-library-standin"),
     ]
 
-    /// The world canvas the scene lays objects out on: x −400…400,
+    /// The world canvas the scene lays objects out on: x −500…500,
     /// y −700…500, with the world origin at `canvasOrigin`.
-    public static let canvasWidth = 800.0
+    public static let canvasWidth = 1000.0
     public static let canvasHeight = 1200.0
-    public static let canvasOrigin = WorldPoint(x: 400, y: 700)
+    public static let canvasOrigin = WorldPoint(x: 500, y: 700)
 
     /// The camera framing that focuses a station with a sheet at
     /// `sheetFraction` of the height (§1.2): the station centred between
