@@ -1,4 +1,5 @@
 import PofuDesignSystem
+import PofuGames
 import SwiftUI
 
 /// Everything Rehearsal mode puts over Pofu: the shield replica or the
@@ -22,7 +23,15 @@ struct RehearsalOverlay: View {
             case nil:
                 EmptyView()
             }
-            if !model.needsOnboarding {
+            if rehearsal.isPlayingGarden {
+                // Five earned rounds stand in for the ledger. The seeds are
+                // not credited yet: rounds and their yield join PofuCore
+                // with RoundLedger (docs/product/minigames.md §7).
+                GardenGameView(roundsAvailable: 5) { _ in
+                    rehearsal.isPlayingGarden = false
+                }
+                .transition(.opacity)
+            } else if !model.needsOnboarding {
                 #if DEBUG
                 if Ayar.session.isOpen {
                     AyarPanel(model: model, store: Ayar.store, session: Ayar.session)
@@ -36,6 +45,7 @@ struct RehearsalOverlay: View {
             }
         }
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: rehearsal.screen)
+        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: rehearsal.isPlayingGarden)
         #if DEBUG
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: Ayar.session.isOpen)
         #endif
