@@ -93,8 +93,8 @@ the project's persistent memory; keep it accurate and concise.
   change. Public means: never commit secrets, team IDs, or private data. CI treats Swift warnings as errors.
 - Founder's own target apps: Instagram, YouTube, TikTok. Goal: resist half
   of reflexive opens.
-- The paid Apple Developer membership is not active yet; the founder is on a
-  free account for about two weeks (from 2026-10-31). Family Controls cannot run on device until then; build against
+- The paid Apple Developer membership is not active yet; expected **after
+  2026-11-24**. Family Controls cannot run on device until then; build against
   the simulated Screen Time service (ADR-0003).
 - The agent environment is Linux without Xcode and cannot download a Swift
   toolchain (swift.org is blocked). PyPI and Ubuntu apt are reachable

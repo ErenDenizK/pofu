@@ -58,7 +58,14 @@ day 1 instead of fighting the manual Shortcuts setup (founder's call,
 While the founder waits, the cloud also writes the game model in
 `PofuCore` (W3) against measured minutes, and the 8-image art test (W1)
 may run as soon as the account is decided, because art has the longest
-lead time. Nothing else from stage W starts before G5.
+lead time.
+
+_Update 2026-11-02:_ the membership is expected after 2026-11-24, about
+three weeks of waiting. Because nothing can be dogfooded before then, the
+wait is used for code-only, low-regret stage W work: W3 (game model), W2
+(`PofuWorld` skeleton with stand-in art), widgets, and regenerating Pofu
+on the founder's own account. No production art batches and no islands
+2+ until G5 has data.
 
 ## Stage W: the world (after two weeks of daily use)
 
