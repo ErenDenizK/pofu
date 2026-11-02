@@ -77,8 +77,10 @@ of the same glass as iOS. At the Island and Map framings
 (`LookTuning.terrariumRim`) the `pofuTerrariumRim` Metal layer effect
 bends the world within 26 pt of the screen's rounded edge (up to 9 pt,
 with a faint chromatic split and a thin highlight on the side facing the
-upper-left light), and a 3.5 pt ring of system Liquid Glass
-(`glassEffect(.clear)`) sits on the lip. At Home the rim is gone: Pofu
+upper-left light), and four thin capsules of system Liquid Glass
+(`glassEffect(.clear)`) sit along the straight edges as the lip. A ring of
+glass with a hole is not possible: glass fills its shape's whole outline
+(the first try washed the screen white). At Home the rim is gone: Pofu
 fills the screen.
 
 **The rule: system UI is glass, celebration is painted.** Controls,

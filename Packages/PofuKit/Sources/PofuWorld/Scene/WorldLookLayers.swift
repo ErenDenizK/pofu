@@ -182,7 +182,7 @@ struct HD2DLayer: View {
             path.addLine(to: CGPoint(x: sun.x + dir.x * length - normal.x * w1, y: sun.y + dir.y * length - normal.y * w1))
             path.addLine(to: CGPoint(x: sun.x - normal.x * w0, y: sun.y - normal.y * w0))
             path.closeSubpath()
-            let strength = 0.16 * light.shafts * beam.strength * (0.85 + 0.15 * sin(time * 0.37 + Double(i)))
+            let strength = 0.26 * light.shafts * beam.strength * (0.85 + 0.15 * sin(time * 0.37 + Double(i)))
             layer.fill(path, with: .linearGradient(
                 Gradient(stops: [
                     .init(color: color(warm, strength * 0.4), location: 0),
@@ -314,9 +314,7 @@ struct TerrariumRim: ViewModifier {
             }
             .overlay {
                 if on, strength > 0.5 {
-                    TerrariumLip(cornerRadius: Self.cornerRadius, inset: 2.5, width: 3.5)
-                        .fill(Color.clear)
-                        .glassEffect(.clear, in: TerrariumLip(cornerRadius: Self.cornerRadius, inset: 2.5, width: 3.5))
+                    TerrariumLip(cornerRadius: Self.cornerRadius)
                         .opacity(strength)
                         .ignoresSafeArea()
                         .allowsHitTesting(false)
@@ -326,24 +324,36 @@ struct TerrariumRim: ViewModifier {
     }
 }
 
-/// A thin ring just inside the screen's rounded edge. The inner contour is
-/// mirrored so it winds the other way: with the non-zero rule, the middle
-/// is a hole.
-struct TerrariumLip: Shape {
+/// The terrarium's lip: four thin capsules of system Liquid Glass along
+/// the screen's straight edges, clear of the rounded corners where the
+/// Metal rim does the bending. (A ring-shaped glass is not expressible:
+/// glass fills its shape's whole outline, holes and all.)
+struct TerrariumLip: View {
     var cornerRadius: Double
-    var inset: Double
-    var width: Double
+    var inset: Double = 3
+    var thickness: Double = 4
 
-    func path(in rect: CGRect) -> Path {
-        let outer = rect.insetBy(dx: inset, dy: inset)
-        let inner = outer.insetBy(dx: width, dy: width)
-        var path = Path(roundedRect: outer, cornerRadius: cornerRadius - inset, style: .continuous)
-        let hole = Path(roundedRect: inner, cornerRadius: max(cornerRadius - inset - width, 0), style: .continuous)
-        let mirror = CGAffineTransform(translationX: inner.midX, y: 0)
-            .scaledBy(x: -1, y: 1)
-            .translatedBy(x: -inner.midX, y: 0)
-        path.addPath(hole.applying(mirror))
-        return path
+    var body: some View {
+        GeometryReader { proxy in
+            let w = proxy.size.width, h = proxy.size.height
+            let run = cornerRadius + 6
+            ZStack(alignment: .topLeading) {
+                strip(width: w - 2 * run, height: thickness)
+                    .position(x: w / 2, y: inset + thickness / 2)
+                strip(width: w - 2 * run, height: thickness)
+                    .position(x: w / 2, y: h - inset - thickness / 2)
+                strip(width: thickness, height: h - 2 * run)
+                    .position(x: inset + thickness / 2, y: h / 2)
+                strip(width: thickness, height: h - 2 * run)
+                    .position(x: w - inset - thickness / 2, y: h / 2)
+            }
+        }
+    }
+
+    private func strip(width: Double, height: Double) -> some View {
+        Color.clear
+            .frame(width: max(width, 0), height: max(height, 0))
+            .glassEffect(.clear, in: Capsule(style: .continuous))
     }
 }
 #endif

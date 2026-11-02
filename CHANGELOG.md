@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   light shafts, pollen by day and fireflies at night, and a stronger
   tilt-shift per framing; the layers run only while the camera moves or
   during a 6 s visit. At the Island and Map framings the world sits in a
-  terrarium: a Metal glass rim with a thin Liquid Glass lip. Celebration
+  terrarium: a Metal glass rim with thin Liquid Glass strips as its lip. Celebration
   moments get a painted `CelebrationCard` (system UI is glass,
   celebration is painted). All of it is behind `WorldLook` flags, on in
   the world scene only; a `FrameMeter` debug overlay measures frame
