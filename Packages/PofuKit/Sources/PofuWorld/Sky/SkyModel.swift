@@ -80,7 +80,7 @@ public enum SkyModel {
     /// crossing, golden hour 17:45–19:15, dusk (the blue hour) 19:45–20:15,
     /// night from 20:45; each edge blends over 30 minutes.
     static let keyframes: [(minute: Double, palette: SkyPalette)] = ColourScript.schedule.map { key in
-        (key.minute, palette(of: ColourScript.cell(key.cell), sun: key.sun))
+        (minute: key.minute, palette: SkyModel.palette(of: ColourScript.cell(key.cell), sun: key.sun))
     }
 
     /// The palette at a minute of the local day. Dark appearance and the

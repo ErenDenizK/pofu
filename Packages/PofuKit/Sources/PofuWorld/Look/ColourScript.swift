@@ -41,13 +41,14 @@ public enum ColourScript {
     public static func weights(minuteOfDay minute: Double) -> [ColourCell.Name: Double] {
         let m = minute.isFinite ? min(max(minute, 0), 24 * 60) : 12 * 60
         let keys = schedule
-        var out: [ColourCell.Name: Double] = [:]
         for (a, b) in zip(keys, keys.dropFirst()) where m >= a.minute && m <= b.minute {
+            // A hold between two keys of one cell is exactly that cell.
+            if a.cell == b.cell {
+                return [a.cell: 1]
+            }
             let span = b.minute - a.minute
             let t = span > 0 ? smooth((m - a.minute) / span) : 0
-            out[a.cell, default: 0] += 1 - t
-            out[b.cell, default: 0] += t
-            return out
+            return [a.cell: 1 - t, b.cell: t]
         }
         return [keys.last?.cell ?? .night: 1]
     }
