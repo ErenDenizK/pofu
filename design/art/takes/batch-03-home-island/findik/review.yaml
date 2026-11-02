@@ -1,0 +1,119 @@
+batch: batch-03-home-island
+job: findik
+pick: 2
+note: auto-picked by QA; founder review pending
+takes:
+  t1:
+    qa: fail
+    summary: value_floor warn; detail_budget warn; palette_drift fail
+  t2:
+    qa: warn
+    summary: value_floor warn; palette_drift warn
+approved:
+  take: 2
+  at: '2026-11-02T14:52:22+00:00'
+qa_reports:
+- job: findik
+  take: 1
+  status: fail
+  preset: char-guard
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 51 (R1 51)
+    value: 50.7
+  - check: value_floor
+    status: warn
+    message: lightness p5 40 (R1 59)
+    value: 40.0
+  - check: detail_budget
+    status: warn
+    message: detail at display size 8.1 (R1 5.3)
+    value: 8.08
+  - check: palette_drift
+    status: fail
+    message: 'mean dE 3.4, p95 15.7, off-palette 11.2% (top: #994422 (1.7%), #AA5533
+      (1.5%))'
+    value: 3.4293
+  - check: ground_line
+    status: pass
+    message: feet at 88.6% of the height (contract 88%)
+    value: 0.8861
+  info:
+    metrics_raw:
+      L_p5: 40.0
+      L_p50: 86.0
+      L_p95: 96.1
+      C_p50: 18.9
+      C_p95: 50.7
+      C_p99: 55.4
+      detail: 8.09
+    metrics_locked:
+      L_p5: 40.0
+      L_p50: 86.0
+      L_p95: 96.1
+      C_p50: 18.9
+      C_p95: 50.7
+      C_p99: 54.6
+      detail: 8.08
+  fingerprint: 7511002ce010ecc6
+- job: findik
+  take: 2
+  status: warn
+  preset: char-guard
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 49 (R1 51)
+    value: 48.8
+  - check: value_floor
+    status: warn
+    message: lightness p5 44 (R1 59)
+    value: 43.7
+  - check: detail_budget
+    status: pass
+    message: detail at display size 6.7 (R1 5.3)
+    value: 6.65
+  - check: palette_drift
+    status: warn
+    message: 'mean dE 3.0, p95 12.9, off-palette 6.7% (top: #AA5533 (1.3%), #995522
+      (0.9%))'
+    value: 3.0236
+  - check: ground_line
+    status: pass
+    message: feet at 89.6% of the height (contract 88%)
+    value: 0.8958
+  info:
+    metrics_raw:
+      L_p5: 43.7
+      L_p50: 85.9
+      L_p95: 96.0
+      C_p50: 19.3
+      C_p95: 48.8
+      C_p99: 53.8
+      detail: 6.64
+    metrics_locked:
+      L_p5: 43.7
+      L_p50: 85.9
+      L_p95: 96.0
+      C_p50: 19.3
+      C_p95: 48.8
+      C_p99: 53.6
+      detail: 6.65
+  fingerprint: 7511002ce010ecc6
+upload_notes:
+- raw.png not uploaded (over 600 KB); the q90 takes are the record
+- Master downscaled from 1024x1536 to 870x1306 to meet the 600 KB upload cap; saved
+  lossless WebP (598484 bytes).

@@ -1,0 +1,125 @@
+batch: batch-03-home-island
+job: mochi-work
+pick: 1
+note: auto-picked by QA; founder review pending
+takes:
+  t1:
+    qa: pass
+    summary: all pass
+  t2:
+    qa: pass
+    summary: all pass
+approved:
+  take: 1
+  at: '2026-11-02T14:52:22+00:00'
+qa_reports:
+- job: mochi-work
+  take: 1
+  status: pass
+  preset: char-guard
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 36 (R1 51)
+    value: 35.7
+  - check: value_floor
+    status: pass
+    message: lightness p5 63 (R1 59)
+    value: 62.7
+  - check: detail_budget
+    status: pass
+    message: detail at display size 4.0 (R1 5.3)
+    value: 3.99
+  - check: palette_drift
+    status: pass
+    message: 'mean dE 1.1, p95 2.8, off-palette 2.1% (top: #DD7744 (0.3%), #441100
+      (0.2%))'
+    value: 1.0841
+  - check: ground_line
+    status: pass
+    message: feet at 87.8% of the height (contract 88%)
+    value: 0.8783
+  - check: edit_stability
+    status: pass
+    message: 96% of the parent level unchanged
+    value: 0.9634
+  info:
+    metrics_raw:
+      L_p5: 62.7
+      L_p50: 92.4
+      L_p95: 98.1
+      C_p50: 9.6
+      C_p95: 35.7
+      C_p99: 57.9
+      detail: 3.98
+    metrics_locked:
+      L_p5: 62.7
+      L_p50: 92.4
+      L_p95: 98.1
+      C_p50: 9.6
+      C_p95: 35.7
+      C_p99: 55.9
+      detail: 3.99
+  fingerprint: ad3e0a5b0241e148
+- job: mochi-work
+  take: 2
+  status: pass
+  preset: char-guard
+  checks:
+  - check: transparency
+    status: pass
+    message: source has an alpha channel
+  - check: canvas
+    status: pass
+    message: 1024x1536
+  - check: chroma_ceiling
+    status: pass
+    message: chroma p95 38 (R1 51)
+    value: 38.1
+  - check: value_floor
+    status: pass
+    message: lightness p5 61 (R1 59)
+    value: 60.6
+  - check: detail_budget
+    status: pass
+    message: detail at display size 4.2 (R1 5.3)
+    value: 4.19
+  - check: palette_drift
+    status: pass
+    message: 'mean dE 1.1, p95 3.2, off-palette 2.1% (top: #CC6644 (0.4%), #DD7744
+      (0.2%))'
+    value: 1.105
+  - check: ground_line
+    status: pass
+    message: feet at 87.8% of the height (contract 88%)
+    value: 0.8783
+  - check: edit_stability
+    status: pass
+    message: 96% of the parent level unchanged
+    value: 0.9588
+  info:
+    metrics_raw:
+      L_p5: 60.6
+      L_p50: 92.2
+      L_p95: 97.9
+      C_p50: 9.9
+      C_p95: 38.1
+      C_p99: 53.5
+      detail: 4.19
+    metrics_locked:
+      L_p5: 60.6
+      L_p50: 92.2
+      L_p95: 97.9
+      C_p50: 9.9
+      C_p95: 38.1
+      C_p99: 53.3
+      detail: 4.19
+  fingerprint: ad3e0a5b0241e148
+upload_notes:
+- raw.png not uploaded (over 600 KB); the q90 takes are the record
