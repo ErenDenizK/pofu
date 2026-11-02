@@ -54,92 +54,57 @@ public struct SkyPalette: Hashable, Sendable {
 public enum SkyModel {
     // MARK: Keyframes
 
-    static let night = SkyPalette(
-        zenith: PofuRGB(hex: 0x1C2242),
-        horizon: PofuRGB(hex: 0x3E3659),
-        glow: PofuRGB(hex: 0xD9D2F5),
-        glowStrength: 0.22,
-        sun: SkyPoint(x: 0.76, y: 0.16),
-        cloudLight: PofuRGB(hex: 0x6F6A92),
-        cloudShade: PofuRGB(hex: 0x3A3759),
-        cloudOpacity: 0.7,
-        grade: PofuRGB(red: 0.74, green: 0.76, blue: 0.92),
-        stars: 1
-    )
-
-    static let dawn = SkyPalette(
-        zenith: PofuRGB(hex: 0xBCD3EC),
-        horizon: PofuRGB(hex: 0xFAD9C6),
-        glow: PofuRGB(hex: 0xFFDCBC),
-        glowStrength: 0.6,
-        sun: SkyPoint(x: 0.16, y: 0.30),
-        cloudLight: PofuRGB(hex: 0xFFF4EE),
-        cloudShade: PofuRGB(hex: 0xE6C5C6),
-        cloudOpacity: 0.95,
-        grade: PofuRGB(red: 1.0, green: 0.95, blue: 0.94),
-        stars: 0
-    )
-
-    static func day(sun: SkyPoint) -> SkyPalette {
+    /// A cell's sky as a palette, with the sun where the schedule key (or
+    /// else the cell) puts it.
+    static func palette(of cell: ColourCell, sun: SkyPoint? = nil) -> SkyPalette {
         SkyPalette(
-            zenith: PofuRGB(hex: 0xC4DEF2),
-            horizon: PofuRGB(hex: 0xF8F0DF),
-            glow: PofuRGB(hex: 0xFFF6DD),
-            glowStrength: 0.62,
-            sun: sun,
-            cloudLight: PofuRGB(hex: 0xFFFFFF),
-            cloudShade: PofuRGB(hex: 0xD8E3EF),
-            cloudOpacity: 0.95,
-            grade: PofuRGB(red: 1, green: 1, blue: 1),
-            stars: 0
+            zenith: cell.sky.zenith,
+            horizon: cell.sky.horizon,
+            glow: cell.sky.glow,
+            glowStrength: cell.sky.glowStrength,
+            sun: sun ?? cell.sun,
+            cloudLight: cell.sky.cloudLight,
+            cloudShade: cell.sky.cloudShade,
+            cloudOpacity: cell.sky.cloudOpacity,
+            grade: cell.sky.tint,
+            stars: cell.sky.stars
         )
     }
 
-    static let golden = SkyPalette(
-        zenith: PofuRGB(hex: 0x9C90D2),
-        horizon: PofuRGB(hex: 0xF8BC8C),
-        glow: PofuRGB(hex: 0xFFC983),
-        glowStrength: 0.72,
-        sun: SkyPoint(x: 0.84, y: 0.30),
-        cloudLight: PofuRGB(hex: 0xFFE7D3),
-        cloudShade: PofuRGB(hex: 0xC99BAA),
-        cloudOpacity: 0.95,
-        grade: PofuRGB(red: 1.0, green: 0.93, blue: 0.86),
-        stars: 0
-    )
+    static var night: SkyPalette {
+        palette(of: ColourScript.cell(.night))
+    }
 
-    /// Minute of the day → palette. Bands: dawn 05:30–08:00, day
-    /// 08:00–17:30, golden hour 17:30–20:30, night 20:30–05:30; each edge
-    /// blends over the 30 minutes around it.
-    static let keyframes: [(minute: Double, palette: SkyPalette)] = [
-        (0, night),
-        (5 * 60 + 15, night),
-        (5 * 60 + 45, dawn),
-        (7 * 60 + 45, dawn),
-        (8 * 60 + 15, day(sun: SkyPoint(x: 0.22, y: 0.20))),
-        (12 * 60 + 45, day(sun: SkyPoint(x: 0.50, y: 0.11))),
-        (17 * 60 + 15, day(sun: SkyPoint(x: 0.78, y: 0.20))),
-        (17 * 60 + 45, golden),
-        (20 * 60 + 15, golden),
-        (20 * 60 + 45, night),
-        (24 * 60, night),
-    ]
+    /// Minute of the day → palette, on the colour script's schedule (look
+    /// round 3): night, dawn 05:45–07:15, day 07:45–17:15 with the sun
+    /// crossing, golden hour 17:45–19:15, dusk (the blue hour) 19:45–20:15,
+    /// night from 20:45; each edge blends over 30 minutes.
+    static let keyframes: [(minute: Double, palette: SkyPalette)] = ColourScript.schedule.map { key in
+        (key.minute, palette(of: ColourScript.cell(key.cell), sun: key.sun))
+    }
 
     /// The palette at a minute of the local day. Dark appearance and the
     /// bedtime window draw the night (dark mode is a night meadow, design
-    /// language §3); dark mode keeps a trace of the hour.
-    public static func palette(minuteOfDay: Double, isDark: Bool = false, isBedtime: Bool = false) -> SkyPalette {
+    /// language §3); dark mode keeps a trace of the hour. `unwell` (0…1)
+    /// turns the sky overcast: cooler, slightly darker, lower in chroma,
+    /// never brighter than the hour's (the colour script's unwell state).
+    public static func palette(minuteOfDay: Double, isDark: Bool = false, isBedtime: Bool = false, unwell: Double = 0) -> SkyPalette {
+        var palette: SkyPalette
         if isBedtime {
-            return night
+            palette = night
+        } else {
+            let minute = minuteOfDay.isFinite ? min(max(minuteOfDay, 0), 24 * 60) : 12 * 60
+            palette = keyframes.last?.palette ?? night
+            for (a, b) in zip(keyframes, keyframes.dropFirst()) where minute >= a.minute && minute <= b.minute {
+                let span = b.minute - a.minute
+                palette = SkyPalette.mix(a.palette, b.palette, span > 0 ? (minute - a.minute) / span : 0)
+                break
+            }
+            if isDark {
+                palette = SkyPalette.mix(palette, night, 0.82)
+            }
         }
-        let minute = minuteOfDay.isFinite ? min(max(minuteOfDay, 0), 24 * 60) : 12 * 60
-        var palette = keyframes.last?.palette ?? night
-        for (a, b) in zip(keyframes, keyframes.dropFirst()) where minute >= a.minute && minute <= b.minute {
-            let span = b.minute - a.minute
-            palette = SkyPalette.mix(a.palette, b.palette, span > 0 ? (minute - a.minute) / span : 0)
-            break
-        }
-        return isDark ? SkyPalette.mix(palette, night, 0.82) : palette
+        return unwell > 0 ? palette.overcast(ColourScript.unwell, amount: unwell) : palette
     }
 
     /// The minute of the local day of `date`.
@@ -254,5 +219,34 @@ public enum CloudShape {
             x += r * 1.15
         }
         return lobes
+    }
+}
+
+extension SkyPalette {
+    /// The palette under the unwell state at `amount` (0…1).
+    public func overcast(_ state: ColourState, amount: Double) -> SkyPalette {
+        var copy = self
+        copy.zenith = zenith.overcast(state, amount: amount)
+        copy.horizon = horizon.overcast(state, amount: amount)
+        copy.glow = glow.overcast(state, amount: amount)
+        copy.cloudLight = cloudLight.overcast(state, amount: amount)
+        copy.cloudShade = cloudShade.overcast(state, amount: amount)
+        copy.glowStrength = glowStrength * (1 - 0.5 * min(max(amount, 0), 1))
+        return copy
+    }
+
+    /// Every colour of the palette through `grade` on the CPU (look round
+    /// 3): the sky is pre-graded, so it needs no full-screen shader pass of
+    /// its own. The grade's input levels are not applied (`WorldGrade.sky`).
+    public func graded(by grade: WorldGrade) -> SkyPalette {
+        let g = grade.sky
+        guard !g.withoutVignette.isNeutral else { return self }
+        var copy = self
+        copy.zenith = g.apply(zenith)
+        copy.horizon = g.apply(horizon)
+        copy.glow = g.apply(glow)
+        copy.cloudLight = g.apply(cloudLight)
+        copy.cloudShade = g.apply(cloudShade)
+        return copy
     }
 }

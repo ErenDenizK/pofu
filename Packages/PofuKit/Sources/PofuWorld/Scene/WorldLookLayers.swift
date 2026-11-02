@@ -121,8 +121,12 @@ struct GradeEffect: ViewModifier, Animatable {
 // MARK: - Painted HD-2D lite
 
 /// Bloom on the emissive points, soft light shafts from the sun at golden
-/// hour, and ambient particles (pollen by day, fireflies at night), drawn
-/// additively over the graded world in one Canvas.
+/// hour, ambient particles (pollen by day, fireflies at night) and, from
+/// look round 3, the colour script's light on things: the practicals' warm
+/// pools on what stands near them (the ember on the çaydanlık) and a soft
+/// rim on Pofu and the residents from the key or the nearest practical.
+/// Drawn additively over the graded world in one Canvas; the pools and rims
+/// are masked by the receiving sprite's alpha.
 struct HD2DLayer: View {
     let world: WorldSnapshot
     let light: WorldLight
@@ -135,6 +139,10 @@ struct HD2DLayer: View {
     /// their objects during depth in motion.
     var motion: CameraMotion = .still
     var focus: Double = 0
+    /// The peek and device tilt, so the light lands where the canvas drew.
+    var tilt: (x: Double, y: Double) = (0, 0)
+    /// The art set, so a mask is the sprite that was drawn.
+    var art: WorldLook.ArtSet = .lockLight
 
     var body: some View {
         Canvas(rendersAsynchronously: false) { context, size in
@@ -142,6 +150,8 @@ struct HD2DLayer: View {
             glow.blendMode = .plusLighter
             drawShafts(in: &glow, size: size)
             drawSunBloom(in: &glow, size: size)
+            drawPools(in: &glow)
+            drawRims(in: &glow)
             drawEmitters(in: &glow)
             drawParticles(in: &glow)
         }
@@ -236,6 +246,117 @@ struct HD2DLayer: View {
                     )
                 )
             }
+        }
+    }
+
+    // MARK: Light on things
+
+    /// Where a world point at `depth` lands on screen, with the canvas's
+    /// parallax (peek, tilt, depth in motion).
+    private func screen(_ p: WorldPoint, depth: Double) -> CGPoint {
+        let s = max(pose.scale, 0.01)
+        let m = DepthMotion.shift(point: p, depth: depth, focus: focus, look: WorldPoint(x: pose.lookX, y: pose.lookY), motion: motion)
+        let px = (depth - focus) * tilt.x * 0.12 / s
+        let py = (depth - focus) * tilt.y * 0.06 / s
+        return screen(WorldPoint(x: p.x + px + m.x, y: p.y + py + m.y))
+    }
+
+    /// A sprite's sharp image and its rect on screen, anchored at `anchor`.
+    private func sprite(_ name: String, variant: DepthVariant = .sharp, at anchor: WorldPoint, depth: Double) -> (Image, CGRect)? {
+        let key = WorldArt.key(name, art: art)
+        guard let sprite = WorldArt.sprite(key), let box = sprite.box(for: variant) else { return nil }
+        let a = screen(anchor, depth: depth)
+        let s = pose.scale
+        let rect = CGRect(x: a.x + box.minX * s, y: a.y + box.minY * s, width: box.width * s, height: box.height * s)
+        return (Image(WorldArt.assetName(key, variant: variant), bundle: .module), rect)
+    }
+
+    /// Light falling on a sprite: `shading` filled over its rect, masked by
+    /// its alpha.
+    private func shine(_ context: inout GraphicsContext, on mask: (Image, CGRect), with shading: GraphicsContext.Shading) {
+        context.drawLayer { layer in
+            layer.clipToLayer { m in
+                m.draw(mask.0, in: mask.1)
+            }
+            layer.fill(Path(mask.1), with: shading)
+        }
+    }
+
+    /// The practicals' warm pools: the ember lights the çaydanlık and the
+    /// stall around it, so the copper reads warm because the fire lights it
+    /// (the colour script), not because it was repainted.
+    private func drawPools(in context: inout GraphicsContext) {
+        let s = pose.scale
+        for emitter in IslandLayout.emitters {
+            guard let station = emitter.station,
+                  let level = world.stations.first(where: { $0.id == station })?.level, level > 0,
+                  let slot = IslandLayout.stationAnchors[station],
+                  let art = IslandLayout.stationArt(station, level: level)?.name else { continue }
+            let k = min(emitter.strength(in: light), 1.2)
+            guard k > 0.05 else { continue }
+            let anchor = IslandFootprint.clamped(slot, footprint: IslandFootprint.footprint(of: art))
+            let depth = IslandLayout.depth(ofY: anchor.y)
+            guard let mask = sprite(art, at: anchor, depth: depth) else { continue }
+            let c = screen(emitter.point, depth: IslandLayout.depth(ofY: emitter.point.y))
+            let r = max(emitter.reach * s, 4)
+            shine(&context, on: mask, with: .radialGradient(
+                Gradient(stops: [
+                    .init(color: color(emitter.color, 0.42 * k), location: 0),
+                    .init(color: color(emitter.color, 0.16 * k), location: 0.45),
+                    .init(color: color(emitter.color, 0), location: 1),
+                ]),
+                center: c, startRadius: 0, endRadius: r
+            ))
+        }
+    }
+
+    /// A soft rim on Pofu and the residents: from the nearest practical
+    /// when it outshines the key (night, dusk), else from the key's side in
+    /// the cell's rim colour.
+    private func drawRims(in context: inout GraphicsContext) {
+        guard pose.scale > 0.3 else { return }
+        var subjects: [(name: String, variant: DepthVariant, feet: WorldPoint)] = [("pofu", .soft, IslandLayout.pofu)]
+        for resident in IslandLayout.residents {
+            guard (world.stations.first(where: { $0.id == resident.station })?.level ?? 0) > 0 else { continue }
+            subjects.append((resident.art, .sharp, IslandFootprint.clamped(resident.feet, footprint: IslandFootprint.footprint(of: resident.art))))
+        }
+        let calm = 1 - 0.5 * light.unwell
+        for subject in subjects {
+            let depth = IslandLayout.depth(ofY: subject.feet.y)
+            guard let mask = sprite(subject.name, variant: subject.variant, at: subject.feet, depth: depth) else { continue }
+            // The key's rim, from the side the key comes from.
+            var dir = (x: -light.cell.key.from.x, y: -light.cell.key.from.y)
+            var tint = light.cell.rim.colour
+            var strength = light.cell.rim.intensity * calm
+            // A practical close enough outshines it.
+            for emitter in IslandLayout.emitters {
+                if let station = emitter.station, (world.stations.first(where: { $0.id == station })?.level ?? 0) == 0 { continue }
+                let dx = emitter.point.x - subject.feet.x, dy = emitter.point.y - (subject.feet.y - 14)
+                let d = hypot(dx, dy)
+                let falloff = max(0, 1 - d / (emitter.reach * 1.6))
+                let k = min(emitter.strength(in: light), 1.2) * falloff * 0.55
+                if k > strength {
+                    strength = k
+                    tint = emitter.color
+                    dir = (x: dx / max(d, 1e-6), y: dy / max(d, 1e-6))
+                }
+            }
+            guard strength > 0.02 else { continue }
+            let r = mask.1
+            let centre = CGPoint(x: r.midX, y: r.midY)
+            let n = hypot(dir.x, dir.y)
+            let ux = dir.x / max(n, 1e-6), uy = dir.y / max(n, 1e-6)
+            let reach = Double(max(r.width, r.height)) / 2
+            let start = CGPoint(x: centre.x + ux * reach, y: centre.y + uy * reach)
+            let end = CGPoint(x: centre.x - ux * reach * 0.1, y: centre.y - uy * reach * 0.1)
+            shine(&context, on: mask, with: .linearGradient(
+                Gradient(stops: [
+                    .init(color: color(tint, min(strength, 0.7)), location: 0),
+                    .init(color: color(tint, min(strength, 0.7) * 0.35), location: 0.3),
+                    .init(color: color(tint, 0), location: 1),
+                ]),
+                startPoint: start, endPoint: end
+            ))
         }
     }
 
