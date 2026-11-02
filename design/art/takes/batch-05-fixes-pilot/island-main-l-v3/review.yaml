@@ -1,0 +1,162 @@
+batch: batch-05-fixes-pilot
+contact_sheet: design/art/takes/batch-05-fixes-pilot/island-main-l-v3/contact.jpg
+jobs:
+  island-main-l-v3:
+    pick: 2
+    note: 'auto-picked by QA; founder review pending. Both takes pass automated QA;
+      t2 has lowest lock load 0.4545 (t1 0.4667). Manual lower bound passes: depth
+      ratio 0.2505 >=0.21, target 0.22-0.26. Lawn remains in the same framing; edit
+      stability 99.02%. Source composited over blue confirms clean transparency: a
+      glow visible in the tool preview comes from RGB under alpha-zero pixels and
+      is not visible in a correct alpha composite.'
+    takes:
+      t1:
+        qa: pass
+        summary: all pass
+      t2:
+        qa: pass
+        summary: all pass
+    approved:
+      take: 2
+      at: '2026-11-02T18:01:48+00:00'
+qa_reports:
+  world__island-main-l-v3--t2:
+    job: island-main-l-v3
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 25 (R1 51)
+      value: 25.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 71 (R1 59)
+      value: 70.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.27
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.4545
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 4.4, off-palette 0.0%
+      value: 1.4295
+    - check: depth_ratio
+      status: pass
+      message: earth depth / width 0.25 (target <= 0.30)
+      value: 0.2505
+    - check: lawn_chroma
+      status: pass
+      message: lawn chroma p95 18 (palette meadow 38)
+      value: 18.3092
+    - check: edit_stability
+      status: pass
+      message: 99% of the parent level unchanged
+      value: 0.9902
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.97 of the parent level (drift compounds along a chain)
+      value: 0.9682
+    info:
+      metrics_raw:
+        L_p5: 70.3
+        L_p50: 84.8
+        L_p95: 91.5
+        C_p50: 17.3
+        C_p95: 25.7
+        C_p99: 29.8
+        detail: 1.7
+      metrics_locked:
+        L_p5: 70.6
+        L_p50: 84.8
+        L_p95: 91.3
+        C_p50: 17.3
+        C_p95: 25.4
+        C_p99: 28.9
+        detail: 1.27
+    fingerprint: 560282a02ea4f2e0
+  world__island-main-l-v3--t1:
+    job: island-main-l-v3
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 29 (R1 51)
+      value: 29.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 69 (R1 59)
+      value: 68.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.33
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.4667
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 4.5, off-palette 0.0%
+      value: 1.5358
+    - check: depth_ratio
+      status: pass
+      message: earth depth / width 0.24 (target <= 0.30)
+      value: 0.2433
+    - check: lawn_chroma
+      status: pass
+      message: lawn chroma p95 19 (palette meadow 38)
+      value: 18.9456
+    - check: edit_stability
+      status: pass
+      message: 98% of the parent level unchanged
+      value: 0.9826
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.03 of the parent level (drift compounds along a chain)
+      value: 1.0266
+    info:
+      metrics_raw:
+        L_p5: 68.7
+        L_p50: 84.7
+        L_p95: 90.6
+        C_p50: 18.1
+        C_p95: 29.4
+        C_p99: 33.2
+        detail: 1.8
+      metrics_locked:
+        L_p5: 68.9
+        L_p50: 84.6
+        L_p95: 90.5
+        C_p50: 18.1
+        C_p95: 29.0
+        C_p99: 32.4
+        detail: 1.33
+    fingerprint: 560282a02ea4f2e0

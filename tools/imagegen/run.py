@@ -453,6 +453,8 @@ def cmd_promote(args, config, m: pl.Manifest) -> int:
                 "style_lock": {"preset": report["preset"], "version": presets.get("version")},
                 "registration": report["info"].get("registration"), "alignment": report["info"].get("alignment"),
                 "qa": {"status": report["status"], "checks": report["checks"]}, "note": entry.get("note", "")}
+        if job.slice:
+            meta["slice"] = job.slice
         if job.edit_of and not meta["registration"]:
             meta["registration"] = load_meta(m.job(job.edit_of)).get("registration")
         (dest / "meta.json").write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

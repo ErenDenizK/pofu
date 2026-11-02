@@ -1,0 +1,24 @@
+id: sys-asset-harmony
+type: system
+title_tr: Görsel uyum ölçümü
+title_en: Asset harmony
+status: in-app
+horizon: now
+summary: >-
+  Every world master is measured on one footing (black and white point, chroma, white balance,
+  edge softness, detail, named materials) against the approved island, Pofu for characters, and
+  each station level against its chain's first level. Outliers get a 0-100 score and, where colour
+  can fix them, a correction that the art pipeline bakes into the app's sprites; edges and detail
+  are reported for the next generation. QA scores every new take the same way at promote time.
+notes:
+- 'Tool: tools/assets/harmony.py; config and manifest in design/art/harmony/; CI fails a stale manifest.'
+- 'First run (2026-11-02): the çaydanlık copper turned from hue 54 to 59; station chains lost ~30 % chroma per level (cay-5 median chroma 10.9 vs L1 43.6) and are restored toward L1.'
+- 'Batch 03/04 masters were baked with soft-lock and measure paler than the lock-light island; re-lock them from their raws where kept.'
+links:
+  related: [sys-depth-lens]
+sources:
+- doc: docs/design/look-dev.md
+group: visual
+board:
+  col: 9
+  row: 5

@@ -4,17 +4,18 @@ title_tr: island-main-l-v3
 title_en: island-main-l-v3 (world)
 status: in-production
 horizon: now
-summary: >-
-  Make only the earth body under the lawn deeper, so the island has visible thickness: about
-  one and a half times as deep as now, a full, rounded mass of the same light honey and caramel
-  soil with its gentle strata, and one more soft band of pale stone near the bottom, so it
-  reads as solid ground with a rocky underside, never as a thin slab and never as a cone.
-  Its underside stays soft and rounded. Keep the round door,…
+summary: 'Make only the earth body under the lawn deeper, so the island has visible
+  thickness: about one and a half times as deep as now, a full, rounded mass of the
+  same light honey and caramel soil with its gentle strata, and one more soft band
+  of pale stone near the bottom, so it reads as solid ground with a rocky underside,
+  never as a thin slab and never as a cone. Its underside stays soft and rounded.
+  Keep the round door,…'
 links:
   variant_of:
   - asset-island-main-l-v2
 art:
-  images: []
+  images:
+  - design/art/masters/island-main-l-v3/island-main-l-v3.webp
   jobs:
   - batch-05-fixes-pilot:island-main-l-v3
 sources:
@@ -22,3 +23,7 @@ sources:
 kind: world
 batch: batch-05-fixes-pilot
 size: 1536x1024
+notes:
+- 'Batch05 pilot take2 approved: depth_ratio0.2505, edit_stability0.9902, lock_load0.4545.
+  Raw retained. Transparent cutout verified on blue composite; RGB-only preview halo
+  was an artifact.'

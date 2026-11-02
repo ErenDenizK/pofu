@@ -18,6 +18,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   colour and light approach (rose copper as a protected accent). Content
   node `idea-pro-craft-upgrades`.
 
+- UI system v2 (`docs/design/ui-system-v2.md`): a hybrid of native Liquid
+  Glass and painted craft. Every component is Native, Crafted or Drawn,
+  with a decision table; one `PofuSkin` switch (glass / crafted) on four
+  over-world roles for an A/B on the founder's iPhone and in the friends
+  beta; glass legibility rules L1–L12 for the pastel world; a component
+  inventory for Home, the island, the map, an island game round, the
+  shield, Hop!, Today, build and decor sheets, the paywall, settings and
+  onboarding; Pofu's cheek pouches as the uncollected balance (founder
+  idea); a 46-item art list (14 pilot) for the Codex queue; proposed
+  ADR-0018 amendments; four mockup boards in `docs/design/ui-system-v2/`.
+
+- UI critique 01 (`docs/design/ui-critique-01.md`): a review of the game
+  screen and its neighbours, a reference study, three directions for Home
+  as annotated mockups (Living Diorama recommended) and a fix list in
+  two-day iterations.
+
+- Look round 2 (`docs/design/look-dev.md`, "Round 2"): **containment**
+  (the pipeline measures the plate's walkable polygon and every sprite's
+  ground footprint; `IslandFootprint` validates and clamps every slot,
+  resident and Pofu, and a test fails on any overhang), **asset harmony**
+  (`tools/assets/harmony.py` measures every master against the approved
+  island, Pofu for characters and each station level against its chain's
+  L1, scores it, and writes corrections that `preblur.py app` bakes; QA
+  scores each take at promote time and CI fails a stale manifest; the
+  çaydanlık's copper is warmed and the faded station chains restored),
+  **true darks** for night and unwell (`WorldGrade` input levels, measured
+  with `tools/assets/frame_metrics.py` against
+  `design/art/harmony/grade-targets.json`), **depth in motion**
+  (velocity-driven parallax and depth of field that settle to zero), and
+  a `depth_floor` QA check so a plate that is too squashed fails (set on
+  batch 05's `island-main-l-v3`). The terrarium rim is removed.
+
 - Pofu's voice (`docs/brand/pofu-voice.md`): research on what makes a
   mascot's humour land or grate, the rules for personality B (jealous as
   play, never guilt; comedy rationed per day and decaying with the reach

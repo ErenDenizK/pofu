@@ -13,7 +13,8 @@ links:
   variant_of:
   - asset-pofu-base-v1
 art:
-  images: []
+  images:
+  - design/art/masters/pofu-cheeks-puff-2/pofu-cheeks-puff-2.webp
   jobs:
   - batch-06-pofu-rig-pilot:pofu-cheeks-puff-2
 sources:

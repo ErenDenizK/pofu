@@ -4,8 +4,8 @@ import SwiftUI
 /// A celebration moment (a station's new level, a new island) on a
 /// painted, craft-style card: warm paper with a torn edge, a painted
 /// border and a ribbon. The rule (look-dev C): **system UI is glass,
-/// celebration is painted.** Glass frames the terrarium and carries the
-/// controls; the world's own moments are drawn in the world's medium.
+/// celebration is painted.** Glass carries the controls; the world's own
+/// moments are drawn in the world's medium.
 public struct CelebrationCard: View {
     let kicker: String
     let title: String

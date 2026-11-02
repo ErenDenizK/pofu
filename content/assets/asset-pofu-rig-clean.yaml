@@ -14,7 +14,8 @@ links:
   variant_of:
   - asset-pofu-base-v1
 art:
-  images: []
+  images:
+  - design/art/masters/pofu-rig-clean/pofu-rig-clean.webp
   jobs:
   - batch-06-pofu-rig-pilot:pofu-rig-clean
 sources:
@@ -22,3 +23,7 @@ sources:
 kind: char
 batch: batch-06-pofu-rig-pilot
 size: 1024x1536
+notes:
+- >-
+  Transparent margins verified by actual alpha composition on blue; raw viewer halo was invisible
+  RGB under alpha zero, not an art defect.
