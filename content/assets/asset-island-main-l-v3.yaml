@@ -1,0 +1,24 @@
+id: asset-island-main-l-v3
+type: asset
+title_tr: island-main-l-v3
+title_en: island-main-l-v3 (world)
+status: in-production
+horizon: now
+summary: >-
+  Make only the earth body under the lawn deeper, so the island has visible thickness: about
+  one and a half times as deep as now, a full, rounded mass of the same light honey and caramel
+  soil with its gentle strata, and one more soft band of pale stone near the bottom, so it
+  reads as solid ground with a rocky underside, never as a thin slab and never as a cone.
+  Its underside stays soft and rounded. Keep the round door,…
+links:
+  variant_of:
+  - asset-island-main-l-v2
+art:
+  images: []
+  jobs:
+  - batch-05-fixes-pilot:island-main-l-v3
+sources:
+- doc: tools/imagegen/manifest/batch-05-fixes-pilot.yaml
+kind: world
+batch: batch-05-fixes-pilot
+size: 1536x1024

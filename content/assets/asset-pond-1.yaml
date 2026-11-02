@@ -11,7 +11,8 @@ summary: >-
   the ground ellipse and stays low: leave the upper two thirds of the height bar empty, because
   later levels add lily pads, reeds, a dock and lanterns.
 art:
-  images: []
+  images:
+  - design/art/stations/pond-1/pond-1.png
   jobs:
   - batch-03-home-island:pond-1
 sources:

@@ -12,7 +12,8 @@ links:
   variant_of:
   - asset-garden-2
 art:
-  images: []
+  images:
+  - design/art/stations/garden-3/garden-3.png
   jobs:
   - batch-03-home-island:garden-3
 sources:

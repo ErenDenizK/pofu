@@ -66,6 +66,7 @@ backends:
 refs:
   R1: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
   station-guide: design/art/templates/station-guide.png
+  decor-guide: design/art/templates/decor-guide.png
   island-take1: design/art/tests/2026-11-01/world__island-main-s_take1.png
   bunny-concept: design/prototypes/home-directions/assets/neighbor-bunny.webp
 

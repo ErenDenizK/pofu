@@ -1,0 +1,144 @@
+# Batch 06, pilot: Pofu's layered rig (docs/design/art-production-plan.md,
+# "Pofu's reactions are a rig").
+#
+# Founder (2026-11-02): "You want 12 expressions, but can you really combine
+# them as an animation?" No: full-frame poses cannot be tweened, and
+# swapping them looks like a slideshow. So Pofu becomes a rig: one clean
+# body plate plus parts, all in R1's exact framing, so code breathes,
+# blinks, squashes, flicks the ears, puffs the cheeks and moves the paws,
+# and an expression is a set of part swaps plus a body pose
+# (companion-motion.md, ADR-0011).
+#
+# How the parts are made (the reliable way with GPT Image): every image is
+# an EDIT of R1 that changes one region and lines up with R1 everywhere
+# else (edit_stability checks it). The lead cuts each part out with soft
+# region masks drawn once on R1 (tools/rig, code) and composites them over
+# the clean plate. Isolated parts are never requested from the model: an
+# edit keeps R1's light, fur and registration; an isolated part does not.
+#
+# Pilot (5 jobs): the clean plate, the parts for three expressions, and
+# the full cheek pouch (founder's idea: the pouches visibly fill as
+# uncollected seeds accumulate; the full pouch tests the biggest region
+# change the rig must composite). Expressions:
+# happy (eyes-happy), sleepy (eyes-closed + slow breath), sulky
+# (mouth-pout + a procedural half-lid + a look-away lean). The lead
+# composites the neutral rig and the three expressions and checks the
+# seams at 1x and 3x before batch-06-pofu-rig opens.
+#
+# Pofu is never style-locked (char-guard). Canvas 1024 x 1536, as R1.
+# Tracks: `rig` (all five jobs; they only need R1, so they may run at once).
+
+batch: batch-06-pofu-rig-pilot
+title: Pofu's layered rig, pilot (clean plate, happy eyes, closed eyes, pout, full cheek pouches)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - id: pofu
+    kind: char
+    name: pofu-r1
+    external: r1
+    master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+
+  - id: pofu-rig-clean
+    kind: char
+    name: pofu-rig-clean
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: >-
+      The underlay every moving part sits on: the ears rotate and the paws
+      move, so what is behind them must be painted. Review check: the
+      curl, eyes, face and body outline are R1's (edit_stability passes);
+      the head top is a smooth dome with no hole or seam where the ears
+      were; the chest is unbroken cream fur where the paws were.
+    prompt:
+      - text: |
+          Edit the attached hamster. Remove only his two ears and his two
+          front paws:
+          1. Where each ear was, the top of the head continues as a smooth,
+             rounded dome of the same golden-peach fur with the same soft
+             fur strands along the outline. Keep the cream curl on top of
+             the head exactly as it is.
+          2. Where the two front paws were held together at the chest, the
+             chest continues as smooth, fluffy cream fur, the same as
+             around it.
+          The eyes, face, blush, curl, body outline, feet, colors, size and
+          position stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: new ears, holes, bald patches, seams, arms, paws, a changed outline, a ground shadow, text."
+
+  - id: pofu-eyes-happy
+    kind: char
+    name: pofu-eyes-happy
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Motion contract image 3 (companion-motion.md section 5). Region: the eyes only."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his eyes: make both eyes
+          happy closed arcs, the classic smiling ^ shape. Each eye becomes a
+          thick, soft, dark espresso-brown upward-curved arc at the height
+          of the top of the original eye, with soft cream fur below it where
+          the eye was. The cheeks lift very slightly. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: eyelashes, tears, eyebrows, a changed mouth, text."
+
+  - id: pofu-eyes-closed
+    kind: char
+    name: pofu-eyes-closed
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Motion contract image 2. Blinks, sleepy, sleeping, breathing with the orb. Region: the eyes only."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his eyes: close both eyes
+          gently and calmly, as if peacefully asleep. Each closed eye is a
+          thin, soft, slightly downward-curved dark espresso line where the
+          lower edge of the eye was, with the eyelid area above it covered
+          by the same short cream fur as the surrounding face. Nothing else
+          changes.
+      - block: edit-keep-v1
+      - text: "AVOID: eyelashes, tears, wrinkles, a changed mouth, text."
+
+  - id: pofu-mouth-pout
+    kind: char
+    name: pofu-mouth-pout
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: >-
+      Sulky and jealous (playful, game design section 12: tease the app,
+      never the person). Region: the mouth only; the half-lid and the lean
+      are code. Review check: cute and comic, never sad or hurt.
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his mouth: make it a small,
+          playful pout, a tiny rounded mouth pushed slightly forward and a
+          little to one side, like a comic "hmph". Cute and theatrical,
+          never sad. Nothing else changes: the eyes, cheeks, blush and fur
+          stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: a frown, tears, teeth, a tongue, eyebrows, an angry face, text."
+
+  - id: pofu-cheeks-puff-2
+    kind: char
+    name: pofu-cheeks-puff-2
+    size: 1024x1536
+    edit_of: pofu
+    chat: "Pofu · Rig"
+    notes: "Cheek pouches stuffed full: the top of the pouch blend (collect empties them with a little hop)."
+    prompt:
+      - text: |
+          Edit the attached hamster. Change only his cheeks: puff both cheek
+          pouches out as far as they go, stuffed with sunflower seeds, bulging
+          outward and slightly down, so the face is much rounder and wider at
+          cheek height, comic and proud. Keep the same blush, eyes, mouth and
+          expression. No visible food. Nothing else changes.
+      - block: edit-keep-v1
+      - text: "AVOID: visible seeds, a changed mouth, an open mouth, a ground shadow, text."
+

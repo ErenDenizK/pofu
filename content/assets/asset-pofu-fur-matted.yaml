@@ -1,0 +1,24 @@
+id: asset-pofu-fur-matted
+type: asset
+title_tr: pofu-fur-matted
+title_en: pofu-fur-matted (char)
+status: planned
+horizon: later
+summary: >-
+  Edit the attached hamster. Make the fur look tired: flatter and smoother, lying close to
+  the body in soft clumps, with fewer fluffy wisps on the outline, and the colors gently washed
+  toward warm ash (warm grayish cream and muted beige-peach, never blue-gray, never green).
+  Same pose, same size, same face and expression. Still cute and clean, never dirty, wet,
+  sick or injured. Nothing else changes.
+links:
+  variant_of:
+  - asset-pofu-base-v1
+art:
+  images: []
+  jobs:
+  - batch-06-pofu-rig:pofu-fur-matted
+sources:
+- doc: tools/imagegen/manifest/batch-06-pofu-rig.yaml
+kind: char
+batch: batch-06-pofu-rig
+size: 1024x1536

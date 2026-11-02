@@ -80,7 +80,19 @@ as an **external** job (same `kind` and `name`, no prompt, no `attach`):
 
 An external job is never generated, ingested or promoted here; it counts
 as approved once its master is on disk (fetched from `main` or the other
-batch's branch), and `plan` shows where it comes from.
+batch's branch), and `plan` shows where it comes from. A master outside
+the pipeline's folders (R1, the approved Pofu) is named by path:
+
+```yaml
+  - {id: pofu, kind: char, name: pofu-r1, external: r1,
+     master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png}
+```
+
+Edits are never moved by the chain root's anchor registration: they are
+drawn on the registered master already (batch 03's simit and workshop
+chains failed `edit_stability` because they were moved twice). Every edit
+also gets `edit_chroma`: its median chroma over the parent's, which
+catches the per-level fading that batch 03's chains accumulated.
 
 `check_upload.py` re-downloads pushed art from the remote branch and
 decodes it; uploads must stay under 600 KB (AGENTS.md, "Uploads").

@@ -1,0 +1,21 @@
+id: asset-pofu-mouth-worried
+type: asset
+title_tr: pofu-mouth-worried
+title_en: pofu-mouth-worried (char)
+status: planned
+horizon: later
+summary: >-
+  Edit the attached hamster. Change only his mouth: a small, soft, gently wavy mouth, slightly
+  turned down at the corners, a little unsure, still cute and calm. Nothing else changes.
+links:
+  variant_of:
+  - asset-pofu-base-v1
+art:
+  images: []
+  jobs:
+  - batch-06-pofu-rig:pofu-mouth-worried
+sources:
+- doc: tools/imagegen/manifest/batch-06-pofu-rig.yaml
+kind: char
+batch: batch-06-pofu-rig
+size: 1024x1536

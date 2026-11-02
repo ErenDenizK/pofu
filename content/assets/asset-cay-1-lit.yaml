@@ -1,0 +1,23 @@
+id: asset-cay-1-lit
+type: asset
+title_tr: cay-1-lit
+title_en: cay-1-lit (station)
+status: in-production
+horizon: now
+summary: >-
+  Light the little round burner under the çaydanlık: inside its opening, a small, soft flame
+  of warm honey and coral shapes, and the inside of the burner glows warm amber. Paint the
+  flame as a few soft, rounded tongues with no hard edges, matte, no sparks. Only the burner
+  changes: no glow, no light and no color change on the teapot, the counter or anything else
+  (the app adds the glow and the warm light around it).
+links:
+  variant_of:
+  - asset-cay-1
+art:
+  images: []
+  jobs:
+  - batch-07-light-pilot:cay-1-lit
+sources:
+- doc: tools/imagegen/manifest/batch-07-light-pilot.yaml
+kind: station
+batch: batch-07-light-pilot

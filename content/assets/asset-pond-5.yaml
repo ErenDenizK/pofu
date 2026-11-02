@@ -11,7 +11,8 @@ links:
   variant_of:
   - asset-pond-4
 art:
-  images: []
+  images:
+  - design/art/stations/pond-5/pond-5.png
   jobs:
   - batch-03-home-island:pond-5
 sources:

@@ -43,6 +43,7 @@ DEFAULT_LIMITS = {
     "detail": {"warn": 6.0, "fail": 7.5},              # Laplacian at display size, R1 = 5.3
     "lock_load": {"warn": 10.0, "fail": 18.0},         # mean Delta E the lock had to move
     "edit_kept": {"warn": 0.75, "fail": 0.55},         # share of the parent left unchanged
+    "edit_chroma": {"warn": 0.85, "fail": 0.70},       # child / parent median chroma on the kept area
     "depth_ratio": {"warn": 0.32, "fail": 0.42},       # island earth depth / width
     "lawn_chroma": {"warn": 38.0, "fail": 46.0},       # p95 chroma of lawn greens
     "magenta_px": {"warn": 40, "fail": 300},           # guide remnants (pixels at 1024)
@@ -174,6 +175,11 @@ def shift(rgba: np.ndarray, dx: int, dy: int) -> np.ndarray:
     return out
 
 
+# An edit's attachment is the parent master, already registered, so the
+# edit itself is never moved again (run.py post passes this to edits).
+EDIT_REGISTRATION = {"dx": 0, "dy": 0}
+
+
 def station_registration(rgba: np.ndarray) -> dict:
     """Translation that puts a station's footprint on the guide's anchor."""
     g = pa.measure(rgba)
@@ -271,6 +277,25 @@ def edit_kept_fraction(child: np.ndarray, parent: np.ndarray, tol: float = 10.0,
     same_alpha = child[..., 3] > 0.9
     d = np.linalg.norm(sl.srgb_to_lab(child[..., :3][p_solid]) - sl.srgb_to_lab(parent[..., :3][p_solid]), axis=-1)
     return float(((d < tol) & same_alpha[p_solid]).mean())
+
+
+def edit_chroma_ratio(child: np.ndarray, parent: np.ndarray) -> float | None:
+    """Median chroma of the edit over the parent's, on the area both cover.
+
+    Batch 03 lost about a third of its chroma per level (windmill-1 C50 28,
+    windmill-5 7; cay-1 31, cay-5 11): each edit re-drew the locked parent
+    and was locked again, and every step stayed under edit_stability's
+    tolerance. The ratio makes that drift visible one level at a time.
+    """
+    if child.shape != parent.shape:
+        return None
+    both = (child[..., 3] > 0.9) & (parent[..., 3] > 0.9)
+    if both.sum() < 500:
+        return None
+    _, cc, _ = sl.lch(sl.srgb_to_lab(child[..., :3][both]))
+    _, cp, _ = sl.lch(sl.srgb_to_lab(parent[..., :3][both]))
+    base = float(np.median(cp))
+    return float(np.median(cc) / base) if base > 2.0 else None
 
 
 def _band_extent(alpha: np.ndarray, frac: tuple[float, float]) -> tuple[float, float, int] | None:
@@ -488,6 +513,11 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
         kept = edit_kept_fraction(locked, parent_locked)
         checks.append(Check("edit_stability", grade(kept, lim["edit_kept"], higher_is_worse=False),
                             f"{kept:.0%} of the parent level unchanged", kept))
+        ratio = edit_chroma_ratio(locked, parent_locked)
+        if ratio is not None:
+            lo = lim["edit_chroma"]
+            status = "pass" if lo["warn"] <= ratio <= 1 / lo["warn"] else "warn" if lo["fail"] <= ratio <= 1 / lo["fail"] else "fail"
+            checks.append(Check("edit_chroma", status, f"chroma x{ratio:.2f} of the parent level (drift compounds along a chain)", ratio))
     return checks
 
 

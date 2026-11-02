@@ -11,7 +11,8 @@ summary: >-
   hazy sky-blue and cream with only a faint warmer tint on the top and a slightly lighter
   left side, low contrast, no small details (no door, no pebb…
 art:
-  images: []
+  images:
+  - design/art/masters/far-isle-1/far-isle-1.png
   jobs:
   - batch-04-sky:far-isle-1
 sources:
