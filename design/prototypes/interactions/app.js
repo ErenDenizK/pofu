@@ -15,7 +15,7 @@
 'use strict';
 
 // ------------------------------------------------------------------ data
-const BLUR = {"isle-hamam":{"b1":[0.0174,0.0202],"b2":[0.0469,0.0547]},"isle-harbor":{"b1":[0.0166,0.0192],"b2":[0.0448,0.0517]},"isle-home":{"b1":[0.0119,0.015],"b2":[0.033,0.0417]},"isle-library":{"b1":[0.0182,0.0215],"b2":[0.0492,0.0579]},"isle-stars":{"b1":[0.0182,0.0215],"b2":[0.0492,0.0579]},"neighbor-bunny":{"b1":[0.1583,0.1751],"b2":[0.4458,0.4931]},"pofu":{"b1":[0.0661,0.0698],"b2":[0.1875,0.1981]},"res-hog":{"b1":[0.1567,0.168],"b2":[0.4328,0.464]},"st-cay-2":{"b1":[0.035,0.0318],"b2":[0.1,0.0909]},"st-cay-3":{"b1":[0.035,0.0318],"b2":[0.1,0.0909]},"st-garden-3":{"b1":[0.035,0.0318],"b2":[0.1,0.0909]},"st-garden-4":{"b1":[0.035,0.0318],"b2":[0.1,0.0909]},"st-pond-2":{"b1":[0.035,0.0318],"b2":[0.1,0.0909]},"st-windmill-2":{"b1":[0.035,0.0318],"b2":[0.1,0.0909]},"st-workshop-2":{"b1":[0.035,0.0318],"b2":[0.1,0.0909]}};
+const BLUR = {"_haze":{"isle-hamam":0.3,"isle-harbor":0.3,"isle-home-band0":0.204,"isle-home-band1":0.112,"isle-home-band2":0.026,"isle-library":0.3,"isle-stars":0.3,"st-cay-2":0.073,"st-cay-3":0.073,"st-garden-3":0.076,"st-garden-4":0.076,"st-pond-2":0.038,"st-windmill-2":0.197,"st-workshop-2":0.19},"cloud-a":{"b1":[0.0556,0.1013],"b2":[0.1528,0.2785],"b3":[0.3403,0.6203]},"cloud-b":{"b1":[0.0361,0.0774],"b2":[0.1,0.2143],"b3":[0.225,0.4821]},"isle-hamam":{"b1":[0.0174,0.0202],"b2":[0.0469,0.0547],"b3":[0.1059,0.1235]},"isle-harbor":{"b1":[0.0166,0.0192],"b2":[0.0448,0.0517],"b3":[0.1012,0.1169]},"isle-home":{"b1":[0.0119,0.015],"b2":[0.033,0.0417],"b3":[0.0742,0.0938]},"isle-home-band0":{"b1":[0.0119,0.015],"b2":[0.033,0.0417],"b3":[0.0742,0.0938],"crop":{"b1":[0.02247,0.23596],"b2":[0.02564,0.25],"b3":[0.02734,0.27344],"s":[0.01852,0.22917]}},"isle-home-band1":{"b1":[0.0119,0.015],"b2":[0.033,0.0417],"b3":[0.0742,0.0938],"crop":{"b1":[0.17079,0.40449],"b2":[0.1891,0.41026],"b3":[0.21484,0.41797],"s":[0.16204,0.40278]}},"isle-home-band2":{"b1":[0.0119,0.015],"b2":[0.033,0.0417],"b3":[0.0742,0.0938],"crop":{"b1":[0.33933,0.57528],"b2":[0.34936,0.57051],"b3":[0.35938,0.5625],"s":[0.33565,0.57639]}},"isle-home-band3":{"b1":[0.0119,0.015],"b2":[0.033,0.0417],"b3":[0.0742,0.0938],"crop":{"b1":[0.50787,0.97079],"b2":[0.50962,0.96154],"b3":[0.50781,0.94531],"s":[0.50926,0.97685]}},"isle-library":{"b1":[0.0182,0.0215],"b2":[0.0492,0.0579],"b3":[0.1111,0.1309]},"isle-stars":{"b1":[0.0182,0.0215],"b2":[0.0492,0.0579],"b3":[0.1111,0.1309]},"neighbor-bunny":{"b1":[0.1583,0.1751],"b2":[0.4458,0.4931],"b3":[1.0,1.106]},"pofu":{"b1":[0.0661,0.0698],"b2":[0.1875,0.1981],"b3":[0.4232,0.4472]},"res-hog":{"b1":[0.1567,0.168],"b2":[0.4328,0.464],"b3":[0.9701,1.04]},"st-cay-2":{"b1":[0.035,0.0318],"b2":[0.1,0.0909],"b3":[0.225,0.2045]},"st-cay-3":{"b1":[0.035,0.0318],"b2":[0.1,0.0909],"b3":[0.225,0.2045]},"st-garden-3":{"b1":[0.035,0.0318],"b2":[0.1,0.0909],"b3":[0.225,0.2045]},"st-garden-4":{"b1":[0.035,0.0318],"b2":[0.1,0.0909],"b3":[0.225,0.2045]},"st-pond-2":{"b1":[0.035,0.0318],"b2":[0.1,0.0909],"b3":[0.225,0.2045]},"st-windmill-2":{"b1":[0.035,0.0318],"b2":[0.1,0.0909],"b3":[0.225,0.2045]},"st-workshop-2":{"b1":[0.035,0.0318],"b2":[0.1,0.0909],"b3":[0.225,0.2045]}};
 // Image boxes in world units, relative to the object's anchor (feet or footprint centre).
 const BOX = {
   'isle-home': [-182, -106, 182, 182], 'isle-harbor': [-134, -106.4, 134, 125.44], 'isle-stars': [-122, -95, 122, 112],
@@ -23,6 +23,9 @@ const BOX = {
   'neighbor-bunny': [-13.5, -24.4, 13.5, 0], 'res-hog': [-14, -22, 14, 4], pofu: [-32, -59.66, 32, 0.91],
   face: [-35.2, -66.67, 35.2, 3.73], 'cloud-a': [-40, -26, 40, 18], 'cloud-b': [-60, -34, 60, 22],
 };
+// The home plate is four depth bands (tools/preblur.py): back terrace, terrace front, main lawn, lip and rock.
+const BANDS = [-78, -25, 25, 75];
+BANDS.forEach((d, k) => { BOX['isle-home-band' + k] = BOX['isle-home']; });
 const STATIONS = [
   { id: 'windmill', name: 'Yel değirmeni', who: 'Pofu ve Fındık', at: [-62, -74], lv: 2, art: { 2: 'st-windmill-2' }, cost: [1400, 3080, 6776, 14907, 32796], rate: [12, 19, 25, 32, 38],
     lvl: ['Taş değirmen, dört çıplak kanat', 'Krem yelken bezleri', 'Ay çekirdeği çuvalları', 'Tepede fenerler', 'Bayrak ve pencere saksıları'] },
@@ -61,7 +64,11 @@ const S = {
   home: 38,
   rm: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
   hits: false, haptics: true, fps: false,
+  dof: 'depth', // depth: continuous blur by distance from a focus plane (v2); flat: v1 on/off levels
+  npc: 'card', // a resident tap shows a small card with "Tezgâha git", or opens the station sheet
+  fx: { parallax: true, tilt: false, haze: true, bokeh: true, shadows: true, tiltshift: false, depthmap: false, dolly: false },
 };
+const RECOMMENDED = { parallax: true, tilt: false, haze: true, bokeh: true, shadows: true, tiltshift: false, depthmap: false, dolly: false };
 
 // ------------------------------------------------------------------ helpers
 const $ = (s) => document.querySelector(s);
@@ -73,6 +80,8 @@ const el = (tag, cls, parent, html) => { const e = document.createElement(tag); 
 // Apple-style rubber band: the further you pull, the less it follows. D is the asymptote.
 const rb = (x, D) => Math.sign(x) * (1 - 1 / (Math.abs(x) * 0.55 / D + 1)) * D;
 function setOp(e, v) { v = Math.round(v * 1000) / 1000; if (e._op !== v) { e._op = v; e.style.opacity = v; } }
+// Hidden layers leave the render tree (and their CSS animations stop): opacity 0 is not free.
+function setShown(e, on) { if (e._shown !== on) { e._shown = on; e.style.display = on ? '' : 'none'; } }
 function setTf(e, t) { if (e._tf !== t) { e._tf = t; e.style.transform = t; } }
 
 // A damped spring with SwiftUI parameters, spring(duration:bounce:). Retargeting keeps velocity,
@@ -132,11 +141,22 @@ const topBand = () => SAFE_T + 100;
 
 // ------------------------------------------------------------------ the world
 const OBJ = []; // every world object with a depth-of-field level
+// Atmospheric perspective is baked into `.hz` variants by tools/preblur.py (amount from depth).
+function srcOf(name, lvl) { return 'assets/' + name + (S.fx.haze && BLUR._haze[name] !== undefined ? '.hz' : '') + (lvl ? '.' + lvl : '') + '.webp'; }
+function applyHaze() {
+  for (const o of OBJ) {
+    if (o.kind === 'pofu' || BLUR._haze[o.src] === undefined) continue;
+    for (const [im, lvl] of [[o.sharp, ''], [o.b1, 'b1'], [o.b2, 'b2'], [o.clImg, 'b3']]) { if (!im) continue; const u = srcOf(o.src, lvl); if (im._src !== u) { im._src = u; im.src = u; } }
+  }
+}
 function addImg(parent, name, box, cls) {
   const im = el('img', cls || '', parent); im.alt = ''; im.decoding = 'async'; im.draggable = false;
-  im.src = 'assets/' + name + (cls === 'b1' || cls === 'b2' ? '.' + cls : '') + '.webp';
+  const LV = cls === 'b1' || cls === 'b2' || cls === 'b3';
+  im.src = srcOf(name, LV ? cls : '');
   let [x0, y0, x1, y1] = box;
-  if (cls === 'b1' || cls === 'b2') { const [px, py] = BLUR[name][cls]; const w = x1 - x0, h = y1 - y0; x0 -= px * w; x1 += px * w; y0 -= py * h; y1 += py * h; }
+  if (LV) { const [px, py] = BLUR[name][cls]; const w = x1 - x0, h = y1 - y0; x0 -= px * w; x1 += px * w; y0 -= py * h; y1 += py * h; }
+  const crop = BLUR[name] && BLUR[name].crop && BLUR[name].crop[LV ? cls : 's'];
+  if (crop) { const h = y1 - y0; [y0, y1] = [y0 + crop[0] * h, y0 + crop[1] * h]; } // band images are cropped to their rows
   Object.assign(im.style, { left: x0 + 'px', top: y0 + 'px', width: (x1 - x0) + 'px', height: (y1 - y0) + 'px' });
   return im;
 }
@@ -154,29 +174,58 @@ function makeObj(o) {
     o.faces = {};
     for (const f of ['breathe', 'excited', 'proud', 'relieved', 'worried', 'smug']) { const im = addImg(o.sharp, 'pofu-' + f, BOX.face, ''); im.classList.add('face'); o.faces[f] = im; }
   } else o.sharp = addImg(o.inner, o.src, BOX[o.box], '');
-  o.bs = new Sp(0, 0.002); o.bT = 0; o.w = [-1, -1, -1];
+  // Contact shadow and ambient occlusion where the object meets the ground (drawn under the art).
+  if (o.kind === 'station' || o.kind === 'res') {
+    const st = o.kind === 'station', w = st ? 92 : 24, h = st ? 20 : 6, cy = st ? -4 : 0;
+    const sh = el('i', 'csh', null); sh.style.cssText = `left:${-w / 2}px;top:${cy - h / 2}px;width:${w}px;height:${h}px`;
+    const ao = el('i', 'cao', null); ao.style.cssText = `left:${-w * 0.27}px;top:${cy - h * 0.22}px;width:${w * 0.54}px;height:${h * 0.44}px`;
+    o.inner.insertBefore(ao, o.inner.firstChild); o.inner.insertBefore(sh, o.inner.firstChild);
+  }
+  o.bs = new Sp(0, 0.002); o.bT = 0; o.w = [-1, -1, -1]; o.par = '';
   OBJ.push(o); return o;
 }
 function buildWorld() {
   // Sky clouds (screen space, slow parallax) and the sea of clouds in front.
-  [['cloud-b', 300, 200, 1.1, 0], ['cloud-a', 30, 290, 1, -3], ['cloud-b', 120, 110, 0.8, -6], ['cloud-a', 320, 410, 0.9, -9]].forEach(([n, x, y, k, d]) => {
-    const b = BOX[n]; const im = el('img', 'drift', skyEl); im.src = 'assets/' + n + '.webp'; im.alt = '';
-    Object.assign(im.style, { left: x + b[0] * k + 'px', top: y + b[1] * k + 'px', width: (b[2] - b[0]) * k + 'px', animationDelay: d + 's' });
+  // Sky clouds and the sea of clouds, each with a deep-blurred twin layer for tilt-shift.
+  for (const [layer, lvl] of [[skyEl, ''], [$('#skycB'), 'b3']]) [['cloud-b', 300, 200, 1.1, 0], ['cloud-a', 30, 290, 1, -3], ['cloud-b', 120, 110, 0.8, -6], ['cloud-a', 320, 410, 0.9, -9]].forEach(([n, x, y, k, d]) => {
+    const b = BOX[n], [px, py] = lvl ? BLUR[n][lvl] : [0, 0], w = (b[2] - b[0]) * k, h = (b[3] - b[1]) * k;
+    const im = el('img', 'drift', layer); im.src = 'assets/' + n + (lvl ? '.' + lvl : '') + '.webp'; im.alt = '';
+    Object.assign(im.style, { left: x + b[0] * k - px * w + 'px', top: y + b[1] * k - py * h + 'px', width: w * (1 + 2 * px) + 'px', animationDelay: d + 's' });
   });
-  [[-20, 1.6], [110, 1.3], [230, 1.7], [360, 1.4], [470, 1.5]].forEach(([x, k], i) => {
-    const b = BOX['cloud-b']; const im = el('img', 'drift', seaEl); im.src = 'assets/cloud-b.webp'; im.alt = '';
-    Object.assign(im.style, { left: x + b[0] * k + 'px', bottom: (20 + (i % 2) * 18) + 'px', width: (b[2] - b[0]) * k + 'px', animationDelay: -i * 2 + 's' });
+  for (const [layer, lvl] of [[seaEl, ''], [$('#seaB'), 'b3']]) [[-20, 1.6], [110, 1.3], [230, 1.7], [360, 1.4], [470, 1.5]].forEach(([x, k], i) => {
+    const b = BOX['cloud-b'], [px, py] = lvl ? BLUR['cloud-b'][lvl] : [0, 0], w = (b[2] - b[0]) * k, h = (b[3] - b[1]) * k;
+    const im = el('img', 'drift', layer); im.src = 'assets/cloud-b' + (lvl ? '.' + lvl : '') + '.webp'; im.alt = '';
+    Object.assign(im.style, { left: x + b[0] * k - px * w + 'px', bottom: (20 + (i % 2) * 18) - py * h + 'px', width: w * (1 + 2 * px) + 'px', animationDelay: -i * 2 + 's' });
+  });
+  // Foreground bokeh at Home: a few out-of-focus petals, leaves, and pollen near the lens.
+  const bk = $('#bokeh');
+  [[-14, 120, 70, 'petal', '#F7C548', 0.5, 'bkA', 11], [318, 210, 96, '', '#FFF1C9', 0.35, 'bkB', 14], [-30, 560, 110, 'petal', '#8CC084', 0.42, 'bkA', 16],
+    [300, 640, 64, 'petal', '#F7C548', 0.55, 'bkB', 12], [150, 70, 40, '', '#FFFFFF', 0.4, 'bkA', 9], [250, 470, 30, '', '#FFF4C2', 0.5, 'bkB', 10]].forEach(([x, y, d, cls, c, a, an, t], i) => {
+    const e = el('i', 'bk ' + cls, bk);
+    e.style.cssText = `left:${x}px;top:${y}px;width:${d}px;height:${d * (cls ? 0.7 : 1)}px;opacity:${a};background:radial-gradient(closest-side, ${c}, ${c}cc 45%, ${c}00);animation:${an} ${t}s ease-in-out ${-i * 2}s infinite alternate`;
   });
   const items = [];
   for (const i of ISLES) items.push({ kind: 'isle', id: i.id, src: 'isle-' + i.id, box: 'isle-' + i.id, x: i.pos[0], y: i.pos[1], cls: i.locked ? 'locked' : '', z: -1000 + i.pos[1], data: i });
-  items.push({ kind: 'home', id: 'home', src: 'isle-home', box: 'isle-home', x: 0, y: 0, z: -900 });
+  BANDS.forEach((d, k) => items.push({ kind: 'plate', id: 'band' + k, src: 'isle-home-band' + k, box: 'isle-home-band' + k, x: 0, y: 0, z: -900 + k, depth: d }));
   for (const s of STATIONS) items.push({ kind: 'station', id: s.id, src: s.art[s.lv], box: 'st', x: s.at[0], y: s.at[1], z: s.at[1], data: s });
   items.push({ kind: 'res', id: 'bunny', name: 'Mochi', src: 'neighbor-bunny', box: 'neighbor-bunny', x: ST.cay.at[0] + 34, y: ST.cay.at[1] + 8, z: ST.cay.at[1] + 8, station: 'cay' });
   items.push({ kind: 'res', id: 'hog', name: 'Fındık', src: 'res-hog', box: 'res-hog', x: ST.workshop.at[0] - 39, y: ST.workshop.at[1] + 6, z: ST.workshop.at[1] + 6, station: 'workshop' });
   items.push({ kind: 'pofu', id: 'pofu', cls: 'pofu', src: 'pofu', box: 'pofu', x: POFU_AT[0], y: POFU_AT[1], z: POFU_AT[1], station: 'garden' });
+  // Depth: the diorama's y is the proxy (larger is nearer), refined per object where needed.
+  for (const it of items) if (it.depth === undefined) it.depth = it.kind === 'isle' ? -400 : it.y;
   items.sort((a, b) => a.z - b.z).forEach(makeObj);
+  // In-focus mid-ground pollen around Pofu's plane (world space, sharp).
+  // Tilt-shift twin: each object's deep variant in a second camera layer under a gradient mask.
+  const camB = $('#camB');
+  for (const o of OBJ) {
+    o.cl = el('div', 'obj', camB); o.cl.style.left = o.x + 'px'; o.cl.style.top = o.y + 'px';
+    o.clImg = addImg(o.cl, o.src, BOX[o.box], 'b3'); // the strongest blur, used only here
+  }
+  pollenEl = el('div', 'pollen', camEl);
+  [[-40, -30], [-10, -52], [30, -40], [52, -18], [-58, -8], [18, -70], [70, -48], [-26, -78]].forEach(([x, y], i) => { const q = el('i', '', pollenEl); q.style.cssText = `left:${x}px;top:${y}px;animation-delay:${-i * 0.9}s`; });
 }
 const O = {}; // by id
+let pollenEl;
 let POFU;
 
 // Screen-space overlays: map labels, the Pofu pin, the speech bubble, chips, tags.
@@ -193,8 +242,31 @@ function buildOverlays() {
 
 // ------------------------------------------------------------------ camera
 const cam = { x: new Sp(0, 0.01), y: new Sp(0, 0.01), l: new Sp(0, 0.0004), ay: new Sp(0, 0.05), ox: new Sp(0, 0.05), oy: new Sp(0, 0.05) };
-let view = 'home', focus = null, returnView = 'home', returnCam = null;
+let view = 'home', focus = null, returnView = 'home', returnCam = null, npc = null;
 const camS = () => Math.exp(cam.l.v);
+// Tilt vector for parallax and the depth-map plate: peek drag plus (opt-in) device orientation.
+const tilt = { x: new Sp(0, 0.001), y: new Sp(0, 0.001) }, dev = { x: 0, y: 0, g0: null, b0: null };
+function onOrient(e) {
+  if (e.gamma == null || e.beta == null) return;
+  if (dev.g0 === null) { dev.g0 = e.gamma; dev.b0 = e.beta; }
+  dev.g0 += (e.gamma - dev.g0) * 0.01; dev.b0 += (e.beta - dev.b0) * 0.01; // slow recentre, like iOS wallpapers
+  dev.x = clamp((e.gamma - dev.g0) / 18, -1, 1); dev.y = clamp((e.beta - dev.b0) / 18, -1, 1); kick();
+}
+async function enableTilt(on) {
+  window.removeEventListener('deviceorientation', onOrient); dev.x = dev.y = 0; dev.g0 = null; S.fx.tilt = false;
+  if (on) {
+    try {
+      // iOS Safari asks for permission, and only from inside a tap.
+      if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        const r = await DeviceOrientationEvent.requestPermission();
+        if (r !== 'granted') { toast('Eğim izni verilmedi; sürükleyerek deneyin.'); renderPanel(); kick(); return; }
+      }
+      if (!('DeviceOrientationEvent' in window)) throw new Error('none');
+      window.addEventListener('deviceorientation', onOrient); S.fx.tilt = true; toast('Telefonu hafifçe eğin.');
+    } catch (e) { toast('Eğim bu cihazda yok; sürükleyerek deneyin.'); }
+  }
+  renderPanel(); kick();
+}
 function toScreen(wx, wy) { const s = camS(); return [W / 2 + cam.ox.v + (wx - cam.x.v) * s, cam.ay.v + cam.oy.v + (wy - cam.y.v) * s]; }
 function toWorld(sx, sy) { const s = camS(); return [cam.x.v + (sx - W / 2 - cam.ox.v) / s, cam.y.v + (sy - cam.ay.v - cam.oy.v) / s]; }
 function setCam(f) { cam.x.set(f.x); cam.y.set(f.y); cam.l.set(f.l); cam.ay.set(f.ay); cam.ox.set(0); cam.oy.set(0); kick(); }
@@ -221,7 +293,7 @@ function dip(apply) {
 }
 function goTo(n, why) {
   if (cloud) return;
-  closeMorph(); closePanel();
+  closeMorph(); closePanel(); hideNpc(false);
   if (sheet.open) closeSheet(true);
   const far = n === 'map' || view === 'map';
   view = n; focus = null;
@@ -243,7 +315,10 @@ function focusFr(id, compact) {
 // is an opacity cross-fade of three stacked images; with the live option it is a CSS filter.
 const SIG = (b) => (b <= 1 ? 1.4 * b : 1.4 + 2.6 * (b - 1)); // world units, matches tools/preblur.py
 function weights(b) {
-  return [b <= 0.5 ? 1 : clamp(1 - (b - 0.5) * 2), b <= 0.5 ? b * 2 : b <= 1.5 ? 1 : clamp(1 - (b - 1.5) * 2), b <= 1 ? 0 : clamp((b - 1) * 2)];
+  // Stacked deep < soft < sharp. The sharp layer fades out over the soft one (b 0 to 1), then the
+  // soft one over the deep one (b 1 to 2); the lower layer ramps in quickly so edges never thin out.
+  if (b <= 1) return [1 - b, clamp(b * 4), 0];
+  return [0, 2 - b, clamp((b - 1) * 4)];
 }
 function applyBlur(o) {
   const b = o.bs.v;
@@ -257,11 +332,29 @@ function applyBlur(o) {
     if (o.filt !== f) { o.filt = f; o.sharp.style.filter = f; }
   }
 }
+// Depth of field as a lens: an object's blur grows with its distance from the focus plane.
+// b = clamp((|depth - focus| - dz) * k), with focus, dz (half the in-focus slab) and k (1 / range)
+// animated by springs, so a new focus is a rack focus, not a cut.
+const foc = { f: new Sp(20, 0.05), dz: new Sp(8, 0.05), k: new Sp(0.02, 0.00002) };
+const LENS = { home: [20, 8, 1 / 50], island: [-15, 35, 1 / 160], map: [-15, 35, 0], station: [6, 1 / 55], npc: [4, 1 / 45] };
+function focusGoal(z) {
+  if (npc) return [O[npc].depth, ...LENS.npc];
+  if (focus) return [ST[focus].at[1], ...LENS.station];
+  if (z >= 1) { const t = clamp(z - 1); return LENS.island.map((v, i) => lerp(v, LENS.home[i], t)); }
+  const t = clamp(z); return LENS.map.map((v, i) => lerp(v, LENS.island[i], t));
+}
+function tiltShiftW(z) { return S.fx.tiltshift && !sheet.open && !npc ? clamp(1 - Math.abs(z - 1) * 2.5) : 0; }
 function blurTarget(o, z, sheetP) {
+  if (S.dof === 'depth') {
+    let b = o.kind === 'isle' ? clamp(z) : clamp((Math.abs(o.depth - foc.f.v) - foc.dz.v) * foc.k.v, 0, 2);
+    if (sheet.open && S.behind === 'dof') b = !focus ? Math.max(b, 1) + sheetP : b + 2 * sheetP;
+    return Math.min(2, b);
+  }
   let b;
   if (o.kind === 'isle') b = clamp(z) * 1.0; // distant islands are soft once you are on an island
   else if (o.kind === 'pofu') b = 0;
   else b = clamp((z - 1.3) / 0.5); // Home: the world behind Pofu softens
+  if (npc) b = o.id === npc || o.id === O[npc].station ? 0 : Math.max(b, 1);
   if (sheet.open && S.behind === 'dof') {
     const focused = focus && (o.id === focus || o.station === focus);
     if (focus) b = focused ? 0 : Math.max(b, 1);
@@ -272,18 +365,22 @@ function blurTarget(o, z, sheetP) {
 }
 
 // ------------------------------------------------------------------ render loop
+const RT = { n: 0, sum: 0, max: 0 }; // render() cost, for the check
 let raf = 0, lastT = 0, gestureLive = false, fpsN = 0, fpsT = 0;
 function kick() { if (!raf) { lastT = now(); raf = requestAnimationFrame(frame); } }
 function frame(t) {
   raf = 0; const dt = Math.min(0.05, Math.max(0.001, (t - lastT) / 1000)); lastT = t;
   let busy = false;
   for (const s of SPRINGS) if (s.on) { s.step(dt); busy = true; }
-  render();
+  const r0 = performance.now(); render(); const rt = performance.now() - r0;
+  RT.n++; RT.sum += rt; if (rt > RT.max) RT.max = rt;
   if (S.fps) { fpsN++; if (t - fpsT > 500) { $('#fps').textContent = Math.round(fpsN * 1000 / (t - fpsT)) + ' fps'; fpsN = 0; fpsT = t; } }
-  if (busy || gestureLive || S.fps || SPRINGS.some((s) => s.on)) raf = requestAnimationFrame(frame);
+  // One callback per frame: render() may already have scheduled the next one through kick().
+  if (!raf && (busy || gestureLive || S.fps || SPRINGS.some((s) => s.on))) raf = requestAnimationFrame(frame);
 }
 const CH = {};
 function render() {
+  if (!CH.calm) { for (const id of ['calm', 'ctxIsland', 'ctxMap', 'segInd', 'seg', 'skycB', 'seaB', 'bokeh', 'tilt', 'npc', 'tsw', 'camB']) CH[id] = $('#' + id); CH.tab = $('#tabBtn'); CH.top = $('.top'); CH.calm2 = CH.calm; }
   const s = camS();
   setTf(camEl, `translate3d(${(W / 2 + cam.ox.v - cam.x.v * s).toFixed(2)}px,${(cam.ay.v + cam.oy.v - cam.y.v * s).toFixed(2)}px,0) scale(${s.toFixed(5)})`);
   const z = zOf(cam.l.v);
@@ -299,9 +396,20 @@ function render() {
   setOp(dimEl, dim);
   setTf(wrap, sc < 0.999 ? `scale(${sc.toFixed(4)})` : 'none');
   const rounded = sc < 0.999; if (wrap._r !== rounded) { wrap._r = rounded; wrap.style.borderRadius = rounded ? '28px' : ''; wrap.style.overflow = rounded ? 'hidden' : ''; }
+  const goal = focusGoal(z);
+  foc.f.to(goal[0], 0.6, 0); foc.dz.to(goal[1], 0.6, 0); foc.k.to(goal[2], 0.6, 0); // `rack` spring
+  // Parallax: the tilt vector comes from the peek drag and, if allowed, the device's tilt.
+  const par = S.fx.parallax && !S.rm;
+  tilt.x.to(par ? clamp(cam.ox.v / 30 + dev.x, -1.4, 1.4) : 0, 0.3, 0); tilt.y.to(par ? clamp(cam.oy.v / 30 + dev.y, -1.4, 1.4) : 0, 0.3, 0);
+  const tx = tilt.x.v, ty = tilt.y.v, pivot = foc.f.v;
+  const tsw = tiltShiftW(z);
   for (const o of OBJ) {
     o.bs.to(S.blur === 'none' ? 0 : blurTarget(o, z, sheetP), 0.35, 0);
     applyBlur(o);
+    const pd = o.kind === 'isle' ? -260 : o.depth;
+    const t = par && (tx || ty) ? `translate3d(${(tx * (pd - pivot) * 0.12 / s).toFixed(2)}px,${(ty * (pd - pivot) * 0.06 / s).toFixed(2)}px,0)` : '';
+    if (o.par !== t) { o.par = t; o.el.style.transform = t; if (o.cl) o.cl.style.transform = t; }
+    if (o.cl && tsw > 0) setOp(o.cl, o.el._op ?? 1);
     if (o.kind === 'isle') setOp(o.el, (z <= 1 ? lerp(1, 0.35, clamp(z)) : lerp(0.35, 0, clamp(z - 1))) * (o.arrive ?? 1));
   }
   // Pofu becomes the 30 pt vector pin on the map.
@@ -318,9 +426,8 @@ function render() {
   const bub = bubble.on && z > 0.8 && !sheet.open ? 1 : 0; setOp(bubbleEl, bub); bubble.was = !!bub;
   if (bub) { const [bx, by] = toScreen(POFU_AT[0], POFU_AT[1] - 62); setTf(bubbleEl, `translate3d(${bx.toFixed(1)}px,${(by - 12).toFixed(1)}px,0) translate(-50%,-100%)`); }
   // Chrome follows the camera continuously: it is a readout of where the camera is.
-  if (!CH.calm) { for (const id of ['calm', 'ctxIsland', 'ctxMap', 'segInd', 'seg']) CH[id] = $('#' + id); CH.tab = $('#tabBtn'); CH.top = $('.top'); CH.calm2 = CH.calm; }
   setOp(CH.calm, clamp((z - 0.55) / 0.3) * (1 - Math.max(sheetP, cloud ? 1 : 0)));
-  setOp(CH.ctxIsland, clamp(1 - Math.abs(z - 1) * 3) * (sheet.open || morph ? 0 : 1));
+  setOp(CH.ctxIsland, clamp(1 - Math.abs(z - 1) * 3) * (sheet.open || morph || npc ? 0 : 1));
   setOp(CH.ctxMap, clamp((0.4 - z) / 0.3) * (cloud ? 0 : 1));
   setTf(CH.segInd, `translateX(${(clamp(2 - z, 0, 2) * 88).toFixed(1)}px)`);
   // The bottom bar slides under a sheet; the top bar yields to a large sheet. No chrome reads through.
@@ -330,10 +437,96 @@ function render() {
   if (CH._b !== blockB) { CH._b = blockB; CH.seg.style.pointerEvents = CH.tab.style.pointerEvents = blockB ? 'none' : ''; }
   if (CH._t !== blockT) { CH._t = blockT; CH.top.style.visibility = blockT ? 'hidden' : ''; }
   // Parallax: the sky moves less than the island, the sea of clouds more.
-  setTf(skyEl, `translate3d(${(cam.ox.v * 0.3).toFixed(1)}px,${(cam.oy.v * 0.3 + (z - 1) * 10).toFixed(1)}px,0)`);
-  setTf(seaEl, `translate3d(${(cam.ox.v * 1.25).toFixed(1)}px,${((2 - z) * -14 + cam.oy.v * 1.2).toFixed(1)}px,0)`);
+  const skyT = `translate3d(${(cam.ox.v * 0.3 - tx * 14).toFixed(1)}px,${(cam.oy.v * 0.3 + (z - 1) * 10 - ty * 7).toFixed(1)}px,0)`;
+  const seaT = `translate3d(${(cam.ox.v * 1.25 + tx * 18).toFixed(1)}px,${((2 - z) * -14 + cam.oy.v * 1.2 + ty * 9).toFixed(1)}px,0)`;
+  setTf(skyEl, skyT); setTf(seaEl, seaT); setTf(CH.skycB, skyT); setTf(CH.seaB, seaT);
+  setOp(CH.skycB, tsw); setOp(CH.seaB, tsw); setOp(CH.tsw, tsw);
+  setShown(CH.skycB, tsw > 0); setShown(CH.seaB, tsw > 0); setShown(CH.tsw, tsw > 0);
+  if (tsw > 0) setTf(CH.camB, camEl._tf);
+  // Foreground bokeh (near the lens, Home only) and in-focus pollen around Pofu's plane.
+  const bkO = S.fx.bokeh && !sheet.open ? clamp((z - 1.5) / 0.4) : 0; setOp(CH.bokeh, bkO); setShown(CH.bokeh, bkO > 0);
+  setTf(CH.bokeh, `translate3d(${(tx * 26).toFixed(1)}px,${(ty * 13).toFixed(1)}px,0)`);
+  const plO = S.fx.bokeh && !sheet.open ? clamp((z - 0.8) / 0.4) : 0; setOp(pollenEl, plO); setShown(pollenEl, plO > 0);
+  // A slight perspective tilt while the camera travels between framings (a crane, not a zoom).
+  const tiltA = S.fx.dolly && !S.rm ? clamp(-cam.l.vel * 3.2, -6, 6) : 0;
+  setTf(CH.tilt, Math.abs(tiltA) > 0.01 ? `perspective(900px) rotateX(${tiltA.toFixed(2)}deg)` : 'none');
+  if (S.fx.depthmap && gl) drawGL(tx, ty); // redraws only when tilt or the lens changed
+  placeNpc();
   renderPofu();
   if (S.hits) drawHits();
+}
+
+// ------------------------------------------------------------------ technique (f): depth-map plate in WebGL
+// One canvas replaces the four plate bands. A fragment shader displaces each pixel by its depth
+// (from tools/depthmap.py) against the tilt vector, and blends sharp, soft, and deep textures per
+// pixel by distance from the focus plane: per-pixel depth of field and a true 3D wobble.
+let gl = null, glEl = null, glReady = false, glLast = '', glU = {};
+const VS = 'attribute vec2 p; varying vec2 v; void main(){ v = vec2(p.x * 0.5 + 0.5, 0.5 - p.y * 0.5); gl_Position = vec4(p, 0.0, 1.0); }';
+const FS = `precision mediump float; varying vec2 v;
+uniform sampler2D uS, uB1, uB2, uD; uniform vec4 uPad; uniform vec2 uTilt; uniform vec4 uFoc; uniform float uHaze;
+float dep(vec2 q) { return texture2D(uD, q).r * 240.0 - 120.0; }
+vec2 pad(vec2 q, vec2 p) { return (q + p) / (1.0 + 2.0 * p); }
+void main() {
+  float d = dep(v); vec2 q = v - uTilt * (d - uFoc.x);
+  d = dep(q); q = v - uTilt * (d - uFoc.x); d = dep(q);           // two refinement steps
+  float b = clamp((abs(d - uFoc.x) - uFoc.y) * uFoc.z + uFoc.w, 0.0, 2.0);
+  vec4 s = texture2D(uS, q), b1 = texture2D(uB1, pad(q, uPad.xy)), b2 = texture2D(uB2, pad(q, uPad.zw));
+  if (q.x < 0.0 || q.y < 0.0 || q.x > 1.0 || q.y > 1.0) s = vec4(0.0);
+  vec4 c = b < 1.0 ? mix(s, b1, b) : mix(b1, b2, b - 1.0);
+  float hz = clamp((40.0 - d) / 220.0, 0.0, 1.0) * 0.38 * uHaze;  // atmospheric perspective, per pixel
+  c.rgb = mix(c.rgb, vec3(0.863, 0.922, 0.961) * c.a, hz);
+  gl_FragColor = c;
+}`;
+function initGL() {
+  if (gl) return glReady;
+  glEl = document.createElement('canvas'); glEl.className = 'glplate'; glEl.width = 546; glEl.height = 432; // half resolution: the plate is soft at every framing it is drawn at
+  const [x0, y0, x1, y1] = BOX['isle-home'];
+  Object.assign(glEl.style, { left: x0 + 'px', top: y0 + 'px', width: x1 - x0 + 'px', height: y1 - y0 + 'px' });
+  camEl.insertBefore(glEl, O.band0.el);
+  const c = glEl.getContext('webgl', { premultipliedAlpha: true, alpha: true, antialias: false });
+  if (!c) { toast('WebGL yok.'); return false; }
+  gl = c;
+  const sh = (t, src) => { const x = c.createShader(t); c.shaderSource(x, src); c.compileShader(x); return x; };
+  const pr = c.createProgram(); c.attachShader(pr, sh(c.VERTEX_SHADER, VS)); c.attachShader(pr, sh(c.FRAGMENT_SHADER, FS)); c.linkProgram(pr); c.useProgram(pr);
+  const buf = c.createBuffer(); c.bindBuffer(c.ARRAY_BUFFER, buf); c.bufferData(c.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), c.STATIC_DRAW);
+  const loc = c.getAttribLocation(pr, 'p'); c.enableVertexAttribArray(loc); c.vertexAttribPointer(loc, 2, c.FLOAT, false, 0, 0);
+  for (const n of ['uS', 'uB1', 'uB2', 'uD', 'uPad', 'uTilt', 'uFoc', 'uHaze']) glU[n] = c.getUniformLocation(pr, n);
+  const pads = BLUR['isle-home']; c.uniform4f(glU.uPad, pads.b1[0], pads.b1[1], pads.b2[0], pads.b2[1]);
+  c.pixelStorei(c.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
+  let left = 4;
+  ['isle-home', 'isle-home.b1', 'isle-home.b2', 'isle-home.depth'].forEach((n, i) => {
+    const im = new Image(); im.crossOrigin = 'anonymous';
+    im.onload = () => {
+      c.activeTexture(c.TEXTURE0 + i); const t = c.createTexture(); c.bindTexture(c.TEXTURE_2D, t);
+      c.texParameteri(c.TEXTURE_2D, c.TEXTURE_MIN_FILTER, c.LINEAR); c.texParameteri(c.TEXTURE_2D, c.TEXTURE_MAG_FILTER, c.LINEAR);
+      c.texParameteri(c.TEXTURE_2D, c.TEXTURE_WRAP_S, c.CLAMP_TO_EDGE); c.texParameteri(c.TEXTURE_2D, c.TEXTURE_WRAP_T, c.CLAMP_TO_EDGE);
+      try { c.texImage2D(c.TEXTURE_2D, 0, c.RGBA, c.RGBA, c.UNSIGNED_BYTE, im); } catch (e) { toast('Derinlik haritası yüklenemedi (dosyadan açılınca olur).'); return; }
+      c.uniform1i(glU[['uS', 'uB1', 'uB2', 'uD'][i]], i);
+      if (--left === 0) { glReady = true; glLast = ''; applyFx(); kick(); }
+    };
+    im.onerror = () => toast('Derinlik haritası yüklenemedi.');
+    im.src = 'assets/' + n + '.webp';
+  });
+  return false;
+}
+function drawGL(tx, ty) {
+  if (!glReady) return;
+  const s = camS(), z = zOf(cam.l.v);
+  const add = sheet.open && S.behind === 'dof' ? (focus ? 2 : 1) * clamp((H - sheetY.v - sheetH('medium')) / (sheetH('large') - sheetH('medium'))) + (focus ? 0 : 1) : 0;
+  const u = [tx * 0.12 / s / 364, ty * 0.06 / s / 288, foc.f.v, foc.dz.v, foc.k.v, add, S.fx.haze ? 1 : 0];
+  const key = u.map((x) => x.toFixed(5)).join();
+  if (key === glLast) return; glLast = key;
+  gl.viewport(0, 0, 546, 432); gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.uniform2f(glU.uTilt, u[0], u[1]); gl.uniform4f(glU.uFoc, u[2], u[3], u[4], u[5]); gl.uniform1f(glU.uHaze, u[6]);
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  void z;
+}
+function applyFx() {
+  app.classList.toggle('noshadow', !S.fx.shadows); applyHaze();
+  const useGL = S.fx.depthmap && (glReady || initGL());
+  if (glEl) glEl.style.display = useGL ? 'block' : 'none';
+  for (const k of [0, 1, 2, 3]) O['band' + k].el.style.display = useGL ? 'none' : '';
+  glLast = ''; kick();
 }
 
 // ------------------------------------------------------------------ haptics HUD, toast
@@ -442,11 +635,48 @@ function petEnd() {
 }
 
 // ------------------------------------------------------------------ residents, lawn
-const resSaid = {};
+// Residents. A tap focuses on the resident: a small camera move, a rack focus to its depth, and a
+// small card with its line, its station, and one action. Lines are rationed: each once per visit.
+const NPC = {
+  bunny: { name: 'Mochi', lines: ['Çay demlendi. Bir bardak?', 'İnce belli bardakta, tavşan kanı.', 'Tabureler gelince otur biraz.'] },
+  hog: { name: 'Fındık', lines: ['Tık tık. Bir şey tamir ediyorum.', 'Rüzgâr gülü yakında döner.', 'Vida mı lazım? Bende bin tane var.'] },
+};
+const npcSeen = {}; let npcReturn = null;
 function residentTap(o) {
-  hop(o, 7); haptic('yumuşak darbe · 0,4');
-  if (!resSaid[o.id]) { resSaid[o.id] = true; chip(o.id === 'bunny' ? 'Mochi: Çay demlendi.' : 'Fındık: Tık tık. Bir şey tamir ediyorum.', o.x, o.y - (o.id === 'bunny' ? 26 : 24), 2200); }
+  if (S.npc === 'sheet') { hop(o, 7); openStation(o.station); return; }
+  showNpc(o);
 }
+function showNpc(o) {
+  closeMorph(); closePanel();
+  if (!npc) npcReturn = { ...framing(nearestView()) };
+  npc = o.id; hop(o, 7); haptic('yumuşak darbe · 0,4');
+  const st = ST[o.station], d = NPC[o.id], i = (npcSeen[o.id] = (npcSeen[o.id] ?? -1) + 1);
+  $('#npcName').textContent = d.name; $('#npcSt').textContent = `${st.name} · Seviye ${st.lv}`;
+  $('#npcLine').textContent = d.lines[i] || '';
+  const c = $('#npc'); c.classList.add('on'); CH.npcH = c.offsetHeight;
+  c.getAnimations().forEach((a) => a.cancel());
+  const sp = ease(0.42, 0.35);
+  c.animate([{ opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1 }], { duration: S.rm ? 150 : sp.ms, easing: S.rm ? 'linear' : sp.css, fill: 'forwards' });
+  const b = npcReturn;
+  moveCam({ x: lerp(b.x, o.x, 0.35), y: lerp(b.y, o.y - 14, 0.35), l: b.l + Math.log(1.3), ay: b.ay }, 0.6, 0.12);
+  kick();
+}
+function hideNpc(back) {
+  if (!npc) return; npc = null; const c = $('#npc');
+  c.getAnimations().forEach((a) => a.cancel());
+  c.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 140, fill: 'forwards' }).finished.then(() => { if (!npc) c.classList.remove('on'); });
+  if (back && npcReturn) moveCam(npcReturn, 0.6, 0.1);
+  kick();
+}
+function placeNpc() {
+  if (!npc) return; const o = O[npc], c = CH.npc, w = 232, h = CH.npcH || 130;
+  // Below the resident's feet: the card covers lawn and rock, never the resident's own stall.
+  const [x, y] = toScreen(o.x, o.y + 2);
+  const left = clamp(x - w / 2, 12, W - 12 - w), top = Math.min(y + 14, H - h - 90);
+  setTf(c, `translate3d(${left.toFixed(1)}px,${top.toFixed(1)}px,0)`);
+  const tail = clamp(x - left, 24, w - 24).toFixed(0) + 'px'; if (c._tail !== tail) { c._tail = tail; c.style.setProperty('--tail', tail); }
+}
+$('#npcGo').addEventListener('click', () => { const o = O[npc]; if (!o) return; hideNpc(false); openStation(o.station); });
 function chip(text, wx, wy, ms) {
   const c = el('div', 'chipw', ov); c.textContent = text; const a = { el: c, wx, wy, dx: 0, dy: -6 }; ANCH.push(a); render();
   c.animate([{ opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1 }], { duration: 260, easing: ease(0.42, 0.35).css });
@@ -584,7 +814,14 @@ function press(o, down) {
 function tap(hit, x, y) {
   if (sheet.open) {
     // A tap on the world behind a medium sheet: another station retargets, anything else dismisses.
-    if (hit.type === 'station') openStation(hit.id); else closeSheet();
+    if (hit.type === 'station') openStation(hit.id); else if (hit.type === 'res') openStation(O[hit.id].station); else closeSheet();
+    return;
+  }
+  if (npc) {
+    // While a resident's card is up: another resident swaps, a station opens, anything else closes.
+    if (hit.type === 'res') residentTap(O[hit.id]);
+    else if (hit.type === 'station') openStation(hit.id);
+    else hideNpc(true);
     return;
   }
   if (hit.type === 'pofu') { pofuUp(); poke(); }
@@ -620,6 +857,7 @@ function startPinch() {
   if (g && g.type === 'pending') releasePress();
   if (g && g.type === 'pet') petEnd();
   if (sheet.open) closeSheet(true); // the pinch takes the camera; nothing is swallowed
+  hideNpc(false);
   for (const k in cam) cam[k].set(cam[k].v);
   const [mx, my, d] = mid();
   const l0 = cam.l.v, z0 = zOf(l0), r = rail(z0), s0 = camS();
@@ -702,7 +940,7 @@ function setDetent(d, vel) {
   if (S.rm) sheetY.to(y, 0.3, 0, vel); else sheetY.to(y, 0.42, 0, vel);
 }
 function openStation(id) {
-  closeMorph(); closePanel();
+  closeMorph(); closePanel(); hideNpc(false);
   const retarget = sheet.open && sheet.kind === 'station';
   if (!sheet.open) { returnView = view; returnCam = S.model === 'B' ? { x: cam.x.t, y: cam.y.t, l: cam.l.t, ay: cam.ay.t } : null; }
   if (retarget && focus === id) return;
@@ -803,8 +1041,7 @@ function swapArt(o, src) {
   // 120 ms cross-fade of the new art over the old, then the old set takes the new sources.
   const top = addImg(o.inner, src, BOX.st, ''); top.style.opacity = 0;
   top.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 120, fill: 'forwards' }).finished.then(() => {
-    o.sharp.src = 'assets/' + src + '.webp'; o.b1.src = 'assets/' + src + '.b1.webp'; o.b2.src = 'assets/' + src + '.b2.webp';
-    o.src = src; const done = () => top.remove(); if (o.sharp.decode) o.sharp.decode().then(done, done); else setTimeout(done, 50);
+    o.src = src; applyHaze(); const done = () => top.remove(); if (o.sharp.decode) o.sharp.decode().then(done, done); else setTimeout(done, 50);
   });
 }
 function puffs(o) {
@@ -961,6 +1198,7 @@ function endCloud(ok) {
 }
 
 // ------------------------------------------------------------------ compare panel
+const FX = [['parallax', 'a · Paralaks'], ['tilt', 'a · Cihaz eğimi'], ['haze', 'b · Hava perspektifi'], ['bokeh', 'c · Ön plan bokeh'], ['shadows', 'd · Temas gölgeleri'], ['tiltshift', 'e · Tilt-shift'], ['depthmap', 'f · Derinlik haritası'], ['dolly', 'g · Perspektif eğim']];
 const OPTS = [
   { key: 'model', title: 'Yakınlaştırma modeli', items: [['A', 'A · Yalnız dokunma'], ['B', 'B · Serbest'], ['C', 'C · Kademeli', true]],
     note: { A: 'Çerçeveler yalnız düğmelerle ve dokunmayla değişir. Kıstırma sadece bir kısayol: eşik geçilince aynı hareket oynar.', B: 'Haritalar gibi: serbest kıstırma, kaydırma, momentum. Çerçeveler kaybolur, sanat çözünürlüğü açığa çıkar.', C: 'Kıstırma kamerayı üç çerçeve arasındaki rayda parmakla birlikte taşır; bırakınca hıza göre en yakın çerçeveye oturur. Sınırlarda lastik etkisi.' } },
@@ -972,12 +1210,19 @@ const OPTS = [
     note: { morph: 'Cam düğme büyüyerek panele dönüşür (glassEffectID). Kısa, bir bakışlık bilgi için.', sheet: 'Aynı bilgi alt sayfada. Tek sayfa kuralı: istasyon sayfası açıksa kapanır.' } },
   { key: 'home', title: 'Ana ekranda Pofu ölçeği', items: [[38, '%38 (inceleme B)', true], [20, '%20 (ADR metni)']],
     note: { 38: 'İnceleme 01\'de ölçülen B: Pofu 154 pt. Ana ekran ile ada arasında ×2,3 adım.', 20: 'ADR-0018 metnindeki rakam. Ana ekran ile ada neredeyse aynı çerçeve olur (×1,2); kıstırma rayı kısalır.' } },
+  { key: 'dof', title: 'Odak modeli', items: [['depth', 'Derinliğe göre (lens)', true], ['flat', 'Açık / kapalı (v1)']],
+    note: { depth: 'Her nesnenin bir derinliği var; bulanıklık, odak düzlemine uzaklıkla orantılı artar, önde ve arkada. Odak değişince lens yeniden odaklanır (rack focus).', flat: 'v1: odaktaki nesne keskin, gerisi aynı derecede yumuşak.' } },
+  { key: 'npc', title: 'Komşuya dokununca', items: [['card', 'Küçük kart + Tezgâha git', true], ['sheet', 'Doğrudan istasyon sayfası']],
+    note: { card: 'Kamera komşuya hafifçe yaklaşır ve odaklanır; cam bir kartta repliği, istasyonu ve tek bir eylem. Dünya yerinde kalır.', sheet: 'Komşu, istasyonunun kısayolu olur: sayfa açılır. Hızlı ama komşu bir kişilik değil, bir düğme gibi hissedilir.' } },
   { key: 'rm', title: 'Hareketi azalt', items: [[false, 'Kapalı'], [true, 'Açık']],
     note: { false: 'Sistem ayarı da okunur.', true: 'Kamera yolculuğu yerine 200 ms kesme; sıçrama, ezilme, parçacık ve göz atma yok. Kıstırma parmağı izlemeye devam eder.' } },
 ];
 function renderPanel() {
   const pc = $('#panelBody');
   pc.innerHTML = OPTS.map((o) => `<div class="opt"><h3>${o.title}</h3><div class="sg">${o.items.map(([v, label, rec]) => `<button data-k="${o.key}" data-v="${v}" aria-pressed="${String(S[o.key]) === String(v)}">${label}${rec ? '<span class="rec">öneri</span>' : ''}</button>`).join('')}</div><p>${o.note[String(S[o.key])]}</p></div>`).join('') +
+    `<div class="opt"><h3>Derinlik teknikleri</h3><div class="sg multi">${FX.map(([k, label]) => `<button data-fx="${k}" aria-pressed="${S.fx[k]}">${label}</button>`).join('')}</div>
+      <div class="sg" style="margin-top:8px"><button data-set="rec">Önerilen set</button><button data-set="all">Hepsi</button><button data-set="none">Hiçbiri</button></div>
+      <p>a: katmanlar derinliğe göre kayar (sürükle; cihaz eğimi izin ister). b: uzaktakiler daha açık, serin, soluk. c: ana ekranda lensin önünde odak dışı yapraklar, Pofu'nun düzleminde keskin polen. d: her şeyin altında yumuşak gölge. e: ada görünümünde üst ve alt bant bulanık, minyatür etkisi. f: ada plakası WebGL ile piksel piksel derinlikle oynar. g: çerçeveler arası geçişte hafif perspektif eğimi.</p></div>` +
     `<div class="opt"><h3>Göster</h3><div class="sg"><button data-t="hits" aria-pressed="${S.hits}">Dokunma alanları</button><button data-t="haptics" aria-pressed="${S.haptics}">Dokunsal geri bildirim</button><button data-t="fps" aria-pressed="${S.fps}">FPS</button></div><p>Dokunsal geri bildirimler sol altta adıyla görünür (tarayıcı titreşim veremez).</p></div>` +
     `<div class="opt"><h3>Uygulamaya dönüş tepkisi</h3><div class="sg"><button data-r="proud">Direndin</button><button data-r="worried">Uzun oturum</button><button data-r="morning">Sakin gece sonrası sabah</button></div><p>Her açılışta en fazla bir tepki; ilk kareden 250 ms sonra. Dokunsal yok: pasif olaylar titremez.</p></div>` +
     `<div class="opt"><h3>Yeni ada (bulut geçişi)</h3><div class="sg"><button data-c="1">Bulut geçişini oynat</button></div><p>Günde en fazla bir kez. Dokununca atlanır.</p></div>` +
@@ -994,6 +1239,8 @@ $('#panelBody').addEventListener('click', (e) => {
     renderPanel(); kick();
   }
   if (b.dataset.t) { const t = b.dataset.t; S[t] = !S[t]; hitsEl.style.display = S.hits ? '' : 'none'; $('#fps').style.display = S.fps ? 'block' : 'none'; renderPanel(); kick(); }
+  if (b.dataset.fx) { const k = b.dataset.fx; if (k === 'tilt') { enableTilt(!S.fx.tilt); return; } S.fx[k] = !S.fx[k]; applyFx(); renderPanel(); }
+  if (b.dataset.set) { const on = b.dataset.set; for (const k in S.fx) if (k !== 'tilt') S.fx[k] = on === 'all' ? true : on === 'none' ? false : RECOMMENDED[k]; applyFx(); renderPanel(); }
   if (b.dataset.r) playReturn(b.dataset.r);
   if (b.dataset.c) cloudPass();
 });
@@ -1018,13 +1265,16 @@ function boot() {
   setCam(framing('home')); sheetY.set(H + 24); panelY.set(H * 0.8 + 40);
   app.classList.toggle('rm', S.rm); hitsEl.style.display = 'none'; updateSeeds(); updateSeg('home');
   app.addEventListener('scroll', () => { app.scrollTop = 0; app.scrollLeft = 0; });
-  render(); renderPofu(); scheduleBlink();
+  applyFx(); render(); renderPofu(); scheduleBlink();
+  // Decode every world image up front, off the main thread, so the first frame that shows a blur
+  // variant does not stall on a synchronous decode (UIImage.preparingForDisplay() on iOS).
+  for (const im of document.querySelectorAll('#world img')) if (im.decode) im.decode().catch(() => {});
   setTimeout(() => say('Sen yokken ada 186 çekirdek topladı.', 4200), 600);
   window.addEventListener('resize', () => { measure(); if (!sheet.open) setCam(framing(view)); else setDetent(sheet.detent); panelY.set(panelY.v > 10 ? H * 0.8 + 40 : 0); kick(); });
 }
 // Test hooks for tools/check.js (read-only state and a few drivers).
 window.__pofu = {
-  state: () => ({ view, focus, z: zOf(cam.l.v), s: camS(), sheet: { ...sheet, y: sheetY.v }, seeds, building, faceKind, petting, dozing, run: run.n, morph: morph ? morph.panel.id : null, settings: { ...S }, H, W, idle: SPRINGS.every((s) => !s.on), blur: Object.fromEntries(OBJ.map((o) => [o.id, +o.bs.v.toFixed(2)])) }),
+  state: () => ({ view, focus, npc, z: zOf(cam.l.v), s: camS(), sheet: { ...sheet, y: sheetY.v }, seeds, building, faceKind, petting, dozing, run: run.n, morph: morph ? morph.panel.id : null, settings: { ...S }, H, W, idle: SPRINGS.every((s) => !s.on), blur: Object.fromEntries(OBJ.map((o) => [o.id, +o.bs.v.toFixed(2)])) }),
   screenOf: (id) => {
     if (id === 'pofu') { const [x, y] = toScreen(POFU_AT[0], POFU_AT[1] - 28); return { x, y }; }
     const o = O[id]; if (!o) return null;
@@ -1032,6 +1282,23 @@ window.__pofu = {
   },
   set: (k, v) => { S[k] = v; app.classList.toggle('rm', S.rm); renderPanel(); kick(); },
   hit: (x, y) => hitTest(x, y),
+  fx: (k, v) => { S.fx[k] = v; applyFx(); renderPanel(); },
+  preset: (name) => { for (const k in S.fx) if (k !== 'tilt') S.fx[k] = name === 'all' ? true : name === 'none' ? false : RECOMMENDED[k]; applyFx(); },
+  orient: (g, b) => { onOrient({ gamma: g, beta: b }); },
+  renderCost: (reset) => { const r = { n: RT.n, avg: RT.n ? +(RT.sum / RT.n).toFixed(2) : 0, max: +RT.max.toFixed(2) }; if (reset) { RT.n = 0; RT.sum = 0; RT.max = 0; } return r; },
+  lens: () => ({ f: foc.f.v, dz: foc.dz.v, k: foc.k.v, tx: tilt.x.v, ty: tilt.y.v, gl: glReady }),
+  // Frame-time bench: camera flights Home <-> Island every 0.9 s and a tilt sweep, for ms.
+  bench: (ms = 3000) => new Promise((res) => {
+    const times = []; let last = performance.now(); const t0 = last; let i = 0;
+    const flip = setInterval(() => goTo(i++ % 2 ? 'home' : 'island'), 900);
+    const tick = (t) => {
+      times.push(t - last); last = t; const e = (t - t0) / 1000;
+      dev.x = Math.sin(e * 2.2) * 0.8; dev.y = Math.cos(e * 1.7) * 0.5; kick();
+      if (t - t0 < ms) requestAnimationFrame(tick);
+      else { clearInterval(flip); dev.x = dev.y = 0; kick(); times.shift(); times.sort((a, b) => a - b); res({ fps: Math.round(times.length * 1000 / ms), p95: +times[Math.floor(times.length * 0.95)].toFixed(1), worst: +times[times.length - 1].toFixed(1) }); }
+    };
+    requestAnimationFrame(tick);
+  }),
   toScreen: (x, y) => toScreen(x, y),
 };
 boot();

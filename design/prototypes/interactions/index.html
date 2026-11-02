@@ -66,6 +66,42 @@ img { -webkit-user-drag: none; user-select: none; }
 .sea { position: absolute; left: -70px; right: -70px; bottom: -14px; height: 170px; pointer-events: none; will-change: transform; }
 .sea::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 90px; background: linear-gradient(180deg, rgba(239, 230, 243, 0), #EFE6F3 62%); }
 .sea img { position: absolute; bottom: 30px; max-width: none; }
+#tilt { position: absolute; inset: 0; transform-origin: 50% 62%; will-change: transform; pointer-events: none; }
+#skycB, #seaB { opacity: 0; }
+/* Tilt-shift: a second camera layer holding only the deep-blur variants, under a static
+   screen-space gradient mask (clear in the middle, opaque at the top and bottom). */
+#tsw, #skycB, #seaB { -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 8%, transparent 34%, transparent 60%, #000 86%); mask-image: linear-gradient(180deg, #000 0%, #000 8%, transparent 34%, transparent 60%, #000 86%); }
+#tsw { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+#camB { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-origin: 0 0; will-change: transform; }
+#camB img { position: absolute; display: block; max-width: none; }
+.sea.nofade::after { display: none; }
+/* Depth cues */
+.csh, .cao { position: absolute; border-radius: 50%; pointer-events: none; }
+.csh { background: radial-gradient(closest-side, rgba(52, 66, 44, .34), rgba(52, 66, 44, .16) 55%, rgba(52, 66, 44, 0)); }
+.cao { background: radial-gradient(closest-side, rgba(40, 44, 30, .38), rgba(40, 44, 30, 0)); }
+.noshadow .csh, .noshadow .cao, .noshadow .psh { display: none; }
+.haze { position: absolute; background: #DCEBF5; opacity: 0; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; pointer-events: none; }
+.glplate { position: absolute; display: none; }
+#bokeh { opacity: 0; will-change: transform, opacity; }
+.bk { position: absolute; border-radius: 50%; will-change: transform; }
+.bk.petal { border-radius: 60% 40% 55% 45%; }
+@keyframes bkA { 0% { transform: translate(0, 0) rotate(0); } 50% { transform: translate(18px, -26px) rotate(40deg); } 100% { transform: translate(-6px, -48px) rotate(90deg); } }
+@keyframes bkB { 0% { transform: translate(0, 0); } 50% { transform: translate(-20px, 14px); } 100% { transform: translate(8px, 30px); } }
+.pollen { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+.pollen i { position: absolute; width: 2.4px; height: 2.4px; margin: -1.2px 0 0 -1.2px; border-radius: 50%; background: radial-gradient(closest-side, #FFF8D6, #FFF4C2 55%, rgba(255, 236, 160, 0)); animation: pol 7s ease-in-out infinite alternate; }
+@keyframes pol { to { transform: translate(9px, -12px); } }
+.rm .bk, .rm .pollen i { animation: none; }
+/* NPC card: a small glass card above the resident (a readout with one action). */
+.npc { position: absolute; left: 0; top: 0; z-index: 15; width: 232px; padding: 12px 14px 12px; border-radius: 22px; background: var(--panel); box-shadow: 0 10px 28px rgba(42, 31, 45, .2), inset 0 1px 0 var(--glass-edge); opacity: 0; visibility: hidden; transform-origin: 50% 0; }
+.npc.on { visibility: visible; }
+.npc::after { content: ""; position: absolute; left: var(--tail, 50%); top: -7px; width: 16px; height: 16px; margin-left: -8px; transform: rotate(45deg); background: var(--panel); border-radius: 3px; }
+.npc .nh { display: flex; align-items: baseline; gap: 8px; }
+.npc .nh b { font: 800 17px/1.1 var(--display); }
+.npc .nh span { font: 700 12.5px/1.2 var(--body); color: var(--ink-2); }
+.npc p { margin: 6px 0 10px; font: 650 15px/1.3 var(--body); }
+.npc p:empty { display: none; }
+.npc .go { width: 100%; height: 44px; border-radius: 22px; background: var(--accent-tint); color: var(--accent-on-tint); font: 850 15px/1 var(--body); position: relative; z-index: 1; }
+.sg.multi button[aria-pressed="true"]::before { content: "✓ "; }
 #dim { position: absolute; inset: 0; background: #1B1320; opacity: 0; pointer-events: none; }
 
 /* Pofu: anchor (feet) > hop (WAAPI) > squash/lean (springs) > breathing (CSS) > art */
@@ -203,8 +239,11 @@ img { -webkit-user-drag: none; user-select: none; }
     <div id="world" aria-label="Pofu'nun adası" role="img">
       <div class="sky"></div>
       <div class="par" id="skyc"></div>
-      <div id="cam"></div>
+      <div class="par" id="skycB"></div>
+      <div id="tilt"><div id="cam"></div><div id="tsw"><div id="camB"></div></div></div>
       <div class="sea" id="sea"></div>
+      <div class="sea nofade" id="seaB"></div>
+      <div class="layer" id="bokeh"></div>
       <div id="dim"></div>
       <div class="layer" id="ov"></div>
       <div class="layer" id="fx"></div>
@@ -234,6 +273,11 @@ img { -webkit-user-drag: none; user-select: none; }
     <div id="fps" aria-hidden="true"></div>
   </div>
 
+  <div class="npc" id="npc" role="dialog" aria-label="Komşu">
+    <div class="nh"><b id="npcName">Mochi</b><span id="npcSt">Çay ocağı · Seviye 2</span></div>
+    <p id="npcLine">Çay demlendi.</p>
+    <button class="go pressable" id="npcGo">Tezgâha git</button>
+  </div>
   <div id="scrim"></div>
   <div class="morph" id="seedMorph"><div class="mp glass"><div class="mc seedp">
     <h3><svg width="32" height="32" viewBox="0 0 24 24"><g transform="rotate(28 12 12)"><ellipse cx="12" cy="12" rx="6" ry="10" fill="#5B4636"/><path d="M12 4v16" stroke="#F3E6D6" stroke-width="1.8" stroke-linecap="round"/></g></svg><span id="seedN2">420</span></h3>
