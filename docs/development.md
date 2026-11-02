@@ -316,6 +316,18 @@ runner with Xcode 26 or newer:
 4. The same for the PofuLive scheme, which also builds the three Screen
    Time extensions. It proves they compile; signing them needs the paid
    team, and running them needs a device.
+5. `xcodebuild test` of the PofuWorldScreenshots scheme in an iPhone 17
+   class simulator, uploading the island's PNGs as the `world-screenshots`
+   artifact.
+
+**Screenshot branches.** After a green macOS job, `publish-screenshots`
+converts those PNGs to JPEGs about 1000 px tall, adds a `contact.jpg`
+grid, and force-pushes them as a single-commit orphan branch named
+`screenshots/<head branch, with / replaced by ->` (for example
+`screenshots/feat-pofu-world`). Anyone who can run git can review them
+with `git fetch origin screenshots/feat-pofu-world`, even where the
+artifact host is unreachable. The branch is rewritten on every run and is
+never merged; it does not run for pull requests from forks.
 
 A newer push to the same branch cancels the run in progress. A pull request
 must be green before it merges.
