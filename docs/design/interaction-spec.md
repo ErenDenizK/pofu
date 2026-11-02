@@ -1,6 +1,6 @@
 # Interaction Spec: Camera, Focus, Sheets, Reactions, Depth
 
-_Status: proposal, for founder review. Last updated: 2026-11-01._
+_Status: proposal, for founder review. Last updated: 2026-11-02 (v2: the depth lens, residents, and 2.5D techniques in [section 12](#12-depth-v2-a-lens-residents-and-other-ways-to-show-3d))._
 _Interactive prototype (touch, Turkish copy):
 [`design/prototypes/interactions/`](../../design/prototypes/interactions/index.html).
 Builds on [ADR-0018](../adr/0018-visual-system-v1.md) (on the open
@@ -29,7 +29,10 @@ elsewhere; every rule below works whatever sits in the chrome.
 | Reactions | The first touch gets the biggest response, repeats get smaller. No counters, combos, or random rewards. The world gets **quieter** the longer you watch. | [4](#4-reactions) |
 | Blur | **Pre-blurred plate variants** from the asset pipeline (soft and deep), cross-faded by opacity. Live blur only inside native glass. About +36 % texture memory, near-zero per-frame cost. | [5](#5-blur-and-depth) |
 | Haptics | Haptics confirm a recognized gesture, never a touch-down, a passive event, or a dismissal. Rationed within a poke run. | [6](#6-feedback-layers) |
-| Timing | Eleven new spring tokens on top of the six in the design language; every animation retargetable; nothing blocks input for more than 150 ms. | [7](#7-timing-springs-and-interruptibility) |
+| Timing | Twelve new spring tokens on top of the six in the design language; every animation retargetable; nothing blocks input for more than 150 ms. | [7](#7-timing-springs-and-interruptibility) |
+| **Depth (v2)** | **A lens, not a switch.** Every object has a depth; blur grows with the distance from the focus plane, in front and behind (`b = clamp((|d − f| − dz)·k)`). Shallow at Home on Pofu, medium and subtle on the Island, a rack focus to whatever you touch. | [12.1](#121-the-lens) |
+| **Residents (v2)** | A tap focuses on the resident (×1.3, rack focus) and shows a small glass card under their feet with a line, their station, and "Tezgâha git". Not a sheet. | [12.2](#122-residents-npcs) |
+| **2.5D set (v2)** | Default: lens, contact shadows, baked haze, drag and device-tilt parallax, foreground bokeh at Home. Rationed wow: depth-map wobble, tilt-shift, perspective tilt on map flights. | [12.5](#125-the-recommended-set) |
 
 **One discrepancy, now resolved** (the lead corrected ADR-0018 to 38 % on 2026-11-01). ADR-0018 said Pofu is "about 20 % of
 the screen width" at Home. Review 01's measured spec for the chosen
@@ -470,7 +473,7 @@ undiscoverable.
 
 | Touch | Response | Haptic |
 |---|---|---|
-| Resident (Island framing or focus) | Hop 7 units (`hop`); first time per visit a chip line, 2.2 s: "Mochi: Çay demlendi." · "Fındık: Tık tık. Bir şey tamir ediyorum." | soft impact 0.4 |
+| Resident (Island framing or focus) | Focus on the resident and a small card (v2, [12.2](#122-residents-npcs)) | soft impact 0.4 |
 | Station touch-down | Press 0.965 | — |
 | Station tap | Opens it (section 2) | `.selection` |
 | Locked slot (dotted plot, blank sign) | The sign hops; a sheet with the opening condition | `.selection` |
@@ -533,6 +536,10 @@ reaction plays first, the bubble follows it after 1.2 s.
 ## 5. Blur and depth
 
 ### 5.1 The depth model
+
+_v2 replaces the fixed levels below with a continuous lens: see
+[12.1](#121-the-lens). The rendering (three baked variants, cross-faded)
+is unchanged; this table remains as the "Açık / kapalı (v1)" alternative._
 
 Every world object (an island plate, a station vignette, a resident,
 Pofu) has a **blur level** `b` from 0 to 2: 0 sharp, 1 soft, 2 deep.
@@ -698,6 +705,7 @@ New tokens, all `spring(duration:bounce:)`:
 | `morphOpen` / `morphClose` | 0.38, 0.18 / 0.30, 0 | Glass panels |
 | `melt` / `lean` / `sigh` | 0.60, 0 / 0.25, 0 / 0.90, 0.10 | Petting |
 | `glance` | 0.50, 0.20 (return 0.70, 0.15) | Pofu looks at a touch |
+| `rack` | 0.60, 0 | The lens's focus depth, slab, and range (v2) |
 
 ### 7.2 Gesture and timing constants
 
@@ -799,7 +807,11 @@ behind it; build the çay ocağı and the garden; open the seed pill.
 
 **Verification:** `node tools/check.js --shots` (Playwright, Chromium,
 390 × 844, `hasTouch`, `isMobile`, real multi-touch through the DevTools
-protocol) runs 61 checks: layout, 44 pt targets, which element receives
+protocol) runs 81 checks (v2 adds the lens at each framing, the rack
+focus, the resident card and its placement, parallax direction by depth,
+the tilt permission granted and refused, baked haze, tilt-shift, the
+WebGL plate, bokeh, and the perspective tilt; `--bench` adds the frame
+bench of 12.4): layout, 44 pt targets, which element receives
 each tap, pinch snapping and rubber band, double and two-finger taps,
 tap-during-flight retargeting, focus and depth levels, detents, the
 build, retargeting behind the sheet, the morph, all three zoom models,
@@ -837,6 +849,239 @@ vibration API), and whether σ 1.4 reads as depth at arm's length.
   plates with more texture will change how much blur reads as depth.
 
 ---
+
+## 12. Depth v2: a lens, residents, and other ways to show 3D
+
+_Added after the founder's direction of 2026-11-01: "Blur should not be
+all-or-nothing. When I interact with something, the camera focuses on its
+depth plane and everything else blurs in proportion to its distance from
+that plane, nearer and farther alike."_ All of this is in the prototype;
+the **Alternatifler** panel switches each technique on and off.
+
+| Station focus with the lens | A resident's card | Tilt-shift at the Island view | Depth-map plate, tilted |
+|---|---|---|---|
+| ![Lens](../../design/prototypes/interactions/screenshots/07-station.png) | ![NPC](../../design/prototypes/interactions/screenshots/20-npc-card.png) | ![Tilt-shift](../../design/prototypes/interactions/screenshots/22-tilt-shift.png) | ![Depth map](../../design/prototypes/interactions/screenshots/23-depthmap-tilt.png) |
+
+### 12.1 The lens
+
+Every world object gets a **depth** `d`, in world units, larger is nearer.
+The diorama's y is a good proxy, because the camera looks down at about 25°
+and the ground recedes up the screen. It is refined per object:
+
+| Object | Depth |
+|---|---|
+| Station | its footprint's y (çay ocağı −2, garden −4, pond 18, workshop −70, windmill −74) |
+| Resident, Pofu | the y of their feet (Mochi 6, Fındık −64, Pofu 20) |
+| Home plate | **four depth bands** (below), at −78 (back terrace), −25 (terrace front), 25 (main lawn), 75 (front lip and rock) |
+| Other islands | not on the lens: soft at the Island view, sharp on the map |
+
+An object's blur level is continuous:
+
+```
+b = clamp((|d − f| − dz) · k, 0, 2)
+```
+
+where `f` is the focus depth, `dz` is half the thickness of the in-focus
+slab, and `k = 1 / range` sets how fast blur grows with distance. The
+same formula blurs things **in front of** the focus plane and **behind**
+it, which is what reads as a lens rather than a filter.
+
+| State | Focus `f` | Slab `dz` | Range `1/k` | Character |
+|---|---|---|---|---|
+| Home | Pofu (20) | 8 | 50 | **Shallow**: Pofu and the lawn he sits on are sharp; the garden beside him is slightly soft (0.32); the back terrace and windmill are deep (1.7) |
+| Island | −15 | 35 | 160 | **Medium and subtle**: the back of the island is at most 0.15 to 0.3 |
+| Map | — | — | ∞ | Everything sharp |
+| Station focus | the station's depth | 6 | 55 | The station's **plane** is sharp, so the garden right beside the çay ocağı stays sharp; Pofu, 22 units nearer, is 0.29; the workshop and the windmill, 70 units behind, are 1.1 to 1.2; the front lip, 77 units in front, is 1.3 |
+| Resident focus | the resident's depth | 4 | 45 | The tightest focus: a portrait |
+
+Between framings the lens is interpolated with the camera's rail position
+`z`, so a pinch racks focus continuously. A jump in focus (a tap on a
+station or a resident) moves `f`, `dz`, and `k` with a new **`rack`
+spring(0.6, 0)**: a visible rack focus, landing a little before the camera
+(0.7 s) does. The prototype's check asserts that the focus plane passes
+through intermediate depths on the way.
+
+**Rendering stays the three-image cross-fade.** The weights change so any
+level between the variants is a smooth blend: the sharp image fades out
+over the soft one between b 0 and 1 (the soft one is fully in by b 0.25,
+so edges never thin out), then the soft one fades over the deep one
+between 1 and 2. An object between levels draws two images instead of
+one; at Home about half the world is between levels. That is a fill cost
+on the GPU, not a computation, and the bench shows no frame-time change
+from it (12.4).
+
+**The plate's depth bands.** One plate image can only have one blur level,
+so `tools/preblur.py` cuts the home plate (and its blur variants) into
+four horizontal bands by world y. Each band's alpha is the plate's alpha
+times a band mask; a band is fully opaque through the overlap with the
+band in front of it, and the front band fades in over it across ±10
+units, so stacked back to front they recompose the plate with no seam.
+Each band is cropped to its own rows (the first version kept the full
+canvas and paid for four times the overdraw). In production the bands
+come from the plate's depth map (12.3 f) instead of y ranges.
+
+The v1 behavior (the focused object sharp, everything else at one soft
+level) remains as _Odak modeli → Açık / kapalı (v1)_ for comparison.
+
+### 12.2 Residents (NPCs)
+
+| | **A. Focus + a small card** (recommended) | B. Open the station's sheet | C. A speech bubble only |
+|---|---|---|---|
+| What | Camera moves ×1.3 toward the resident; the lens racks to their plane; a small glass card under their feet: name, station and level, one line, and **"Tezgâha git"** | The resident is a shortcut: the station's sheet opens, focused on the station | The resident says a line in a bubble; nothing else |
+| Pros | Residents stay characters, not buttons; the world stays in place; one tap more to build | Fastest path to building | Lightest |
+| Cons | Two taps to the sheet from a resident | Residents feel like big buttons; their personality has no room | A dead end; nothing to do next |
+
+**Recommendation: A.** The spec:
+
+| Step | Value |
+|---|---|
+| Touch | hop 7 units (`hop`), soft impact 0.4 |
+| Camera | from the current framing, ×1.3 scale, 35 % of the way toward the resident; `focus` spring(0.6, 0.12) |
+| Lens | `f` = the resident's depth, `dz` 4, range 45, on `rack` |
+| Card | 232 pt wide, thick glass (≥ 95 % opaque content), radius 22, **below the resident's feet** (over the low-detail lawn and rock, so the resident and their own stall stay visible), clamped 12 pt from the screen edges, a tail pointing up at the resident. Appears with `hop` spring from 0.9 scale; 150 ms fade under Reduce Motion |
+| Content | name (Baloo 2, 17 pt), "station · Seviye n", one line, one secondary button "Tezgâha git" (44 pt) |
+| Lines | three per resident, each **once per visit**, in order; after that the card shows no line (rationed, never repeated). Mochi: "Çay demlendi. Bir bardak?", "İnce belli bardakta, tavşan kanı.", "Tabureler gelince otur biraz." Fındık: "Tık tık. Bir şey tamir ediyorum.", "Rüzgâr gülü yakında döner.", "Vida mı lazım? Bende bin tane var." |
+| Dismiss | a tap anywhere else (consumed; the camera and lens return), a pinch, a framing button |
+| Retarget | tap another resident: the card and the lens move to them; tap a station: its sheet opens |
+| Behind a station sheet | a resident tap means their station (the sheet retargets) |
+| At Home | residents are part of the soft world and not tappable (section 1.4) |
+
+SwiftUI: the card is an overlay positioned from the resident's anchor
+(`anchorPreference` or the camera transform applied to the world point),
+`.glassEffect(.regular, in: .rect(cornerRadius: 22))` with a solid content
+background, `.transition(.scale(0.9, anchor: .top).combined(with: .opacity))`;
+the resident is a button with the label "Mochi, çay ocağı" and the action
+"Tezgâha git".
+
+### 12.3 Other ways to show 3D
+
+Each is a toggle under _Alternatifler → Derinlik teknikleri_.
+
+| | Technique | How the prototype builds it | iOS implementation |
+|---|---|---|---|
+| a | **Parallax** | Each object translates by `(d − f) × tilt × 0.12 pt` horizontally (0.06 vertically), so things in front of the focus plane move one way and things behind it the other; sky −14 pt, sea of clouds +18 pt, bokeh +26 pt at full tilt. The tilt comes from the peek drag and, opt-in, from **DeviceOrientation** (`gamma`, `beta`; ±18° is full tilt; the zero point recentres by 1 % per event, as iOS wallpapers do). On iOS Safari the permission is requested from inside the tap (`DeviceOrientationEvent.requestPermission()`); a refusal falls back to drag parallax with a toast. Off under Reduce Motion | `CMMotionManager.deviceMotion` attitude at 30 Hz (no permission prompt is needed for attitude in a native app), smoothed, into an `@Observable` tilt; per-object `.offset` or `visualEffect`. Off under Reduce Motion and Low Power Mode; updates stop when the scene is inactive |
+| b | **Atmospheric perspective** | **Baked** into `.hz` variants of every blur level by `tools/preblur.py`: toward `#DCEBF5` by `clamp((40 − d) / 220) × 0.38` (0.04 for the pond, 0.2 for the windmill and the back terrace, 0.3 for distant islands), desaturated by 60 % of that amount. The toggle swaps image sources. A first version used sky-coloured masked overlays at runtime; together with parallax that halved the frame rate (moving layers with masks), see 12.4 | Bake at export, per placement depth. If one vignette is used at several depths, bake per depth bucket (three are enough). Do not use `.mask` overlays at runtime: on Core Animation every masked moving layer is an offscreen pass |
+| c | **Foreground bokeh** | Six large, soft discs (radial gradients: two sunflower petals, a leaf, cream pollen) at the screen edges at Home, opacity 0.35 to 0.55, drifting on 9 to 16 s loops, parallax ×2; plus eight **sharp** pollen motes in Pofu's plane (world space). Both leave the render tree when invisible (opacity 0 is not free; hidden animations still cost) | A `TimelineView(.animation(minimumInterval: 1/30))` with a few `Image`s or a `Canvas`, `.allowsHitTesting(false)`, never over Pofu's face; seasonal art (petals in spring, snow in winter) |
+| d | **Contact shadows and occlusion** | A soft ellipse under every station (92 × 20 units) and resident (24 × 6), plus a darker, tighter core (54 % × 44 %) where the object meets the ground | `Ellipse().fill(RadialGradient(…))` under each object, squashing with hops like Pofu's (design language §7) |
+| e | **Tilt-shift miniature** | A second camera layer holding each object's **`b3`** variant (σ 9 world units, ¼ resolution, made only for this) under a **static screen-space gradient mask**: opaque at the top 8 %, clear from 34 % to 60 %, opaque again from 86 %. Sky and sea get `b3` twins under the same mask. On only around the Island framing (weight `1 − 2.5·|z − 1|`), off under sheets and resident focus | A second `ZStack` of deep images with `.mask(LinearGradient(…))`; the mask is static, so the cost is one offscreen composite while it shows. There is no public variable blur in SwiftUI |
+| f | **Depth-map 2.5D** ("Spatial Scenes") | `tools/depthmap.py` builds an approximate depth map for the home plate (lawn surfaces as planes, the terrace face and the rock bowl from the ellipses of their edges; classed by hue). One WebGL canvas replaces the four bands: a fragment shader displaces each pixel by `tilt × (d − f)` with two refinement steps (a parallax-occlusion lookup), blends sharp, soft, and deep **per pixel** by the lens formula, and applies haze per pixel. 546 × 432, redrawn only when the tilt or the lens changes | `layerEffect(ShaderLibrary.depthParallax(.image(depthMap), .image(soft), .float2(tilt), .float3(lens)), maxSampleOffset: CGSize(width: 12, height: 12))` on the plate, or a Metal view. iOS 26 Lock Screen "Spatial Scenes" do the same with a depth model **and inpainting** of what is behind edges; without inpainting, edges smear at large tilts, so keep the displacement within ±6 units |
+| g | **Perspective tilt while travelling** | During automatic camera flights the world tips by `rotateX = clamp(−d(ln s)/dt × 3.2°, ±6°)` around 50 % / 62 % with a 900 pt perspective: pulling back to the map, the top recedes like a crane rising. Level again at rest; off under Reduce Motion | `.rotation3DEffect(.degrees(a), axis: (1, 0, 0), anchor: UnitPoint(x: 0.5, y: 0.62), perspective: 0.5)` driven by the camera spring's velocity |
+
+**A production depth map.** Run a monocular depth model in `tools/art`
+over every plate and vignette (Depth Anything V2, or Apple's Depth Pro,
+which outputs metric depth with sharp boundaries), save it as a 16-bit
+grey PNG next to the art, and correct it by hand where models guess wrong
+(thin props, the island's underside, painted shadows). The same map gives
+the band cuts for 12.1, the per-object depth (its median over the
+footprint), and the haze amount. For technique f at large tilts, an
+inpainted "behind" layer would be generated with GPT Image as an edit of
+the plate ("remove the terrace, continue the lawn").
+
+### 12.4 Measured cost
+
+`node tools/check.js --bench`: headless Chromium, 390 × 844 at 3×,
+**software rendering** (SwiftShader), capped at 60 fps. Each run flies the
+camera Home ↔ Island every 0.9 s and sweeps the tilt for 3 s. The numbers
+are relative; absolute iPhone cost must be measured with Instruments.
+
+| Configuration | fps | p95 frame | worst frame |
+|---|---|---|---|
+| Nothing (lens only) | 60 | 16.7 ms | 33.3 ms |
+| a Parallax | 60 | 16.7 ms | 16.8 ms |
+| b Haze (baked) | 60 | 16.8 ms | 16.8 ms |
+| c Bokeh | 60 | 16.8 ms | 16.8 ms |
+| d Shadows | 60 | 16.7 ms | 16.8 ms |
+| e Tilt-shift | 52 | 33.4 ms | 50.1 ms |
+| f Depth map (WebGL) | 53 | 33.4 ms | 50.0 ms |
+| g Perspective tilt | 60 | 16.8 ms | 16.8 ms |
+| **Recommended set** (lens, a, b, c, d) | **60** | **16.7 ms** | 50.0 ms |
+| Everything at once | 38 | 50.0 ms | 66.7 ms |
+
+The cheap techniques do not register at all; tilt-shift (an extra masked
+layer) and the WebGL plate (a full-plate shader in software GL) are the
+only ones that cost frames on their own, which matches rationing them.
+
+Three findings mattered more than the table:
+
+1. **The prototype had a scheduling bug, present since v1.** `render()`
+   requests the next frame through `kick()`, and the end of the frame
+   loop requested another, so animation callbacks doubled every frame
+   while anything moved. It caused the 100 to 200 ms frames in v1's check
+   and a runaway with the WebGL plate. Fixed: one callback per frame;
+   `render()` now costs 0.24 ms per frame on average (5 ms worst, over
+   3,500 frames).
+2. **Masks plus motion are the expensive combination**, not any technique
+   alone: runtime haze overlays with parallax ran at 32 to 35 fps against
+   56 for either alone. Baking the haze removed the cost entirely.
+3. **Hidden is not free.** Invisible bokeh, pollen, and tilt-shift twins
+   kept animating and compositing; taking them out of the render tree
+   when their opacity is 0 removed the remaining long frames.
+
+Reasoned iPhone cost, per technique:
+
+| Technique | GPU per frame (estimate, iPhone 17 class) | CPU | When |
+|---|---|---|---|
+| Lens (depth focus pull) | ~0.3 ms extra fill (≈ 10 extra half- and third-resolution layers at Home) | spring + one formula per object | always |
+| a Parallax | transforms only, ~0 | motion updates at 30 Hz | while dragging or tilting |
+| b Haze (baked) | 0 | 0 | always |
+| c Bokeh | ~0.1 ms (6 soft layers) | none (Core Animation) | Home only |
+| d Shadows | ~0.05 ms | 0 | always |
+| e Tilt-shift | one masked offscreen composite, ~0.5 to 1 ms | 0 | the rationed moment |
+| f Depth map | one full-plate shader pass, ~7 texture reads per pixel at 3×, ~0.5 to 1 ms | 0 | while tilting, rationed |
+| g Perspective tilt | one 3D transform, ~0 | 0 | during long flights |
+
+### 12.5 The recommended set
+
+**Always on (the default):** the **lens** (12.1), **contact shadows** (d),
+**baked haze** (b), **drag parallax** (a), and **foreground bokeh at Home**
+(c, at most six, at the screen edges, never over Pofu). Together they
+cost about the same as v1 and make the diorama read as a place.
+
+**On by default but subtle:** **device-tilt parallax** (a) at Home and
+the Island framing, at ±8 pt at most, off with Reduce Motion and Low
+Power Mode. It is the strongest depth cue for the least work, and iOS
+users know it from their wallpaper.
+
+**Wow moments, rationed:**
+
+| Technique | When | Why rationed |
+|---|---|---|
+| f Depth-map wobble | The new-island arrival (after the cloud pass), and for 3 s on the first open of the day | The most magical, and its edge smearing shows if you play with it |
+| e Tilt-shift | The first view of a new island, and an "island portrait" for sharing | A miniature look every visit would make the world feel like a toy and blur the stations you came to build |
+| g Perspective tilt | Map flights only (the long moves) | On short moves it reads as wobble |
+
+### 12.6 SwiftUI notes for the lens
+
+- Give every world object `depth: CGFloat`. Keep a `Lens { focus, slab,
+  range }` that is `Animatable` and animated with
+  `.spring(duration: 0.6, bounce: 0)` when the focus target changes.
+- `DepthImage(name:, level:)` (section 5.4) takes `level` computed from
+  the lens in the parent's body. With about 20 objects, re-evaluating
+  bodies per frame during a rack focus is cheap; if Instruments disagrees,
+  drive the levels from the same `TimelineView` as the camera.
+- The plate bands are four `DepthImage`s in a `ZStack`; their art comes
+  from the pipeline.
+
+### 12.7 Self-critique (v2)
+
+- **y is only a proxy for depth.** It is right for things standing on the
+  lawn and wrong for tall or overhanging shapes; the per-object depth
+  should come from the depth map's median under each footprint.
+- **Between levels the blur is a dissolve, not a true intermediate blur.**
+  At b 0.2 to 0.5 an object looks a little glowy rather than slightly
+  soft. A σ 0.7 variant would fix it for about +6 % memory.
+- **The band steps can show.** At Home the terrace front (b 0.74) and the
+  main lawn (b 0) meet across a 20-unit feather; it reads as falloff, but
+  a real lens is continuous. More bands, or the WebGL plate, fix it.
+- **The depth map is a heuristic.** There is a thin bright line at the
+  terrace's base, and disocclusion smears at large tilts.
+- **Device tilt is untested on an iPhone.** The permission flow was tested
+  with a stub, granting and refusing.
+- **The bench is software rendering, capped at 60 fps.** It ranks the
+  techniques; it does not predict iPhone frame times.
+- **Stand-in art again.** Real plates with texture will show depth of
+  field more strongly than these gouache stand-ins; the ranges in 12.1
+  may need to grow by about a third.
 
 ## Proposed changes to existing docs
 
@@ -889,3 +1134,23 @@ Not edited in this change; listed for the lead to apply or reject.
 11. **Iteration plan:** I6 adds "Instruments: hitch ratio < 5 ms/s during
     camera moves with the blur variants"; I7 names this spec as the
     timing reference.
+
+**Added with v2 (section 12):**
+
+12. **Design language §10 Tokens:** add `rack` spring(0.6, 0). **§12
+    Layer stack, Home:** add a contact shadow under every object (not only
+    Pofu), the foreground bokeh layer above the world and below the
+    chrome, and "haze is baked into the art by depth".
+13. **Art bible and `tools/art`:** every plate gets a 16-bit depth map
+    from a depth model plus hand fixes; plates are delivered as depth
+    bands (or with their depth map for the shader); every placed asset gets
+    a baked haze variant per depth bucket; a `b3` (σ 9) variant is
+    generated only for assets used in the tilt-shift moment.
+14. **Game design §8 Residents:** a tap shows the resident's card with one
+    line, each line once per visit, three per resident, and "Tezgâha git";
+    lines never carry rewards.
+15. **A new ADR, "Depth system v1",** once the founder has felt it on the
+    iPhone: the lens formula and its constants, the depth sources (y proxy
+    now, depth maps later), baked haze, and which 2.5D techniques are
+    default and which are rationed. It commits the art pipeline, which is
+    expensive to reverse.
