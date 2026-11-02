@@ -1,0 +1,626 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%@ seeds an hour": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatte %@ çekirdek"
+          }
+        }
+      }
+    },
+    "%@ · level %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · Seviye %2$lld"
+          }
+        }
+      }
+    },
+    "%@ → level %lld · Ready": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ → %2$lld. seviye · Hazır"
+          }
+        }
+      }
+    },
+    "%lld more seeds": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld çekirdek daha"
+          }
+        }
+      }
+    },
+    "%lld seeds": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld çekirdek"
+          }
+        }
+      }
+    },
+    "A bit tired": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Biraz yorgun"
+          }
+        }
+      }
+    },
+    "A guard isn't working.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir kural çalışmıyor."
+          }
+        }
+      }
+    },
+    "Build": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İnşa et"
+          }
+        }
+      }
+    },
+    "Build spot": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İnşa yeri"
+          }
+        }
+      }
+    },
+    "Build · %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İnşa et · %lld"
+          }
+        }
+      }
+    },
+    "Building opens soon.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İnşa etmek yakında açılıyor."
+          }
+        }
+      }
+    },
+    "Building…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İnşa ediliyor…"
+          }
+        }
+      }
+    },
+    "Calm ×%@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Huzur ×%@"
+          }
+        }
+      }
+    },
+    "Calm ×%@, full": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Huzur ×%@, dolu"
+          }
+        }
+      }
+    },
+    "Calm ×%@, growing": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Huzur ×%@, büyüyor"
+          }
+        }
+      }
+    },
+    "Close": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kapat"
+          }
+        }
+      }
+    },
+    "Collect": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Topla"
+          }
+        }
+      }
+    },
+    "Content": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keyfi iyi"
+          }
+        }
+      }
+    },
+    "Curled up": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kıvrılmış yatıyor"
+          }
+        }
+      }
+    },
+    "Every level is built.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tüm seviyeler tamam."
+          }
+        }
+      }
+    },
+    "Fix": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Onar"
+          }
+        }
+      }
+    },
+    "Fındık's": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fındık'ın"
+          }
+        }
+      }
+    },
+    "Go to the stall": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tezgâha git"
+          }
+        }
+      }
+    },
+    "Home": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ev"
+          }
+        }
+      }
+    },
+    "I'm not feeling great. Shall we put the phone down for a bit?": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pek iyi değilim. Telefonu biraz bırakalım mı?"
+          }
+        }
+      }
+    },
+    "In good spirits": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keyfi yerinde"
+          }
+        }
+      }
+    },
+    "Island": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ada"
+          }
+        }
+      }
+    },
+    "Level %lld of %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seviye %1$lld / %2$lld"
+          }
+        }
+      }
+    },
+    "Level %lld!": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seviye %lld!"
+          }
+        }
+      }
+    },
+    "Lily pond": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nilüferli gölet"
+          }
+        }
+      }
+    },
+    "Look: a new island drifted close overnight!": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bak hele: gece yeni bir ada yanaştı!"
+          }
+        }
+      }
+    },
+    "Look: the island grew overnight!": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bak hele: ada gece büyüdü!"
+          }
+        }
+      }
+    },
+    "Map": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harita"
+          }
+        }
+      }
+    },
+    "Mochi's": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mochi'nin"
+          }
+        }
+      }
+    },
+    "Mochi's tea is on.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mochi'nin çayı demleniyor."
+          }
+        }
+      }
+    },
+    "Need a screw? I have a thousand.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vida mı lazım? Bende bin tane var."
+          }
+        }
+      }
+    },
+    "No reaches yet today.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün henüz uzanma yok."
+          }
+        }
+      }
+    },
+    "Not open yet": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz açılmadı"
+          }
+        }
+      }
+    },
+    "Not so well": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pek iyi değil"
+          }
+        }
+      }
+    },
+    "Okay": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamam"
+          }
+        }
+      }
+    },
+    "Our week is ready.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haftamız hazır."
+          }
+        }
+      }
+    },
+    "Pofu's": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pofu'nun"
+          }
+        }
+      }
+    },
+    "Pofu's mood: %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pofu'nun keyfi: %@"
+          }
+        }
+      }
+    },
+    "See the island": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adaya bak"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayarlar"
+          }
+        }
+      }
+    },
+    "Sit a while once the stools arrive.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabureler gelince otur biraz."
+          }
+        }
+      }
+    },
+    "Skipped %lld of %lld today": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün %1$lld / %2$lld boş verdin"
+          }
+        }
+      }
+    },
+    "Steeped just right, in a tulip glass.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İnce belli bardakta, tavşan kanı."
+          }
+        }
+      }
+    },
+    "Sunflower garden": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayçiçeği bahçesi"
+          }
+        }
+      }
+    },
+    "Take a look": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bak"
+          }
+        }
+      }
+    },
+    "Tap tap. Fixing something.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tık tık. Bir şey tamir ediyorum."
+          }
+        }
+      }
+    },
+    "Tea stall": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çay ocağı"
+          }
+        }
+      }
+    },
+    "The island hums along.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ada kendi kendine işliyor."
+          }
+        }
+      }
+    },
+    "The island works without you.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ada sensiz de çalışıyor."
+          }
+        }
+      }
+    },
+    "The tea has brewed. A glass?": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çay demlendi. Bir bardak?"
+          }
+        }
+      }
+    },
+    "The weathervane will turn soon.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rüzgâr gülü yakında döner."
+          }
+        }
+      }
+    },
+    "Time in guarded apps: at least %lld of %lld minutes": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Korunan uygulamalarda süre: en az %1$lld / %2$lld dakika"
+          }
+        }
+      }
+    },
+    "Watering the sunflowers.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayçiçeklerini suluyorum."
+          }
+        }
+      }
+    },
+    "While you were away, the island gathered %lld seeds. Calm ×%@.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sen yokken ada %1$lld çekirdek topladı. Huzur ×%2$@."
+          }
+        }
+      }
+    },
+    "Windmill": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yel değirmeni"
+          }
+        }
+      }
+    },
+    "Workshop": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atölye"
+          }
+        }
+      }
+    },
+    "at least %lld / %lld min": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "en az %1$lld / %2$lld dk"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

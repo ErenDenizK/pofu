@@ -1,0 +1,17 @@
+id: moment-reach
+type: moment
+title_tr: Uzanış
+title_en: The reach
+status: in-app
+horizon: now
+summary: >-
+  The thumb opens Instagram; the speaking shield appears with Pofu's mood, a line and today's
+  tally.
+links:
+  leads_to:
+  - sys-shield
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#51-anatomy'
+act: gate
+sequence: 10

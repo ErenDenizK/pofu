@@ -57,6 +57,8 @@ struct SettingsView: View {
                 }
                 .listRowBackground(PofuColor.card)
 
+                RehearsalSettingsSection()
+
                 Section {
                     Label("Everything stays on this iPhone.", systemImage: "lock.shield")
                     if model.persistenceProblem {
@@ -74,6 +76,38 @@ struct SettingsView: View {
             .onAppear { name = model.profile.companionName }
             .onDisappear { model.setCompanionName(name) }
         }
+    }
+}
+
+/// The developer switch for Rehearsal mode. It applies from the next
+/// launch, because Rehearsal mode runs on its own store.
+private struct RehearsalSettingsSection: View {
+    @State private var isOn = RehearsalMode.isEnabled
+
+    var body: some View {
+        Section {
+            Toggle(isOn: Binding(
+                get: { isOn },
+                set: { value in
+                    isOn = value
+                    RehearsalMode.setEnabled(value)
+                }
+            )) {
+                Label("Rehearsal mode", systemImage: "theatermasks")
+            }
+            .tint(PofuColor.accent)
+            if isOn != RehearsalMode.isOnAtLaunch {
+                Text("Close Pofu in the app switcher and open it again to switch.")
+                    .font(PofuFont.footnote)
+                    .foregroundStyle(PofuColor.warning)
+            }
+        } header: {
+            Text("Developer")
+                .pofuSectionHeader()
+        } footer: {
+            Text("Rehearsal mode simulates Screen Time inside Pofu: the permission, the app picker, the shield and usage. Its data is kept apart from live data and tagged as simulated.")
+        }
+        .listRowBackground(PofuColor.card)
     }
 }
 

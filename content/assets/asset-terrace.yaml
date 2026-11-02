@@ -1,0 +1,24 @@
+id: asset-terrace
+type: asset
+title_tr: terrace
+title_en: terrace (world)
+status: cut
+horizon: now
+summary: >-
+  For the attached island, draw only a raised grassy terrace that will sit on the back half
+  of its lawn: a soft oval lawn about 75% of the island's width, lifted on a low earthen step
+  with the same strata and colors, and a short flight of four cream stone steps on its front
+  left. The terrace lawn is empty. Nothing else: not the island itself, no characters, no
+  objects.
+notes:
+- >-
+  Do not promote: drawn against the old large island; batch 03's terrace-v2 replaces it.
+art:
+  images: []
+  jobs:
+  - batch-01-slice:terrace
+sources:
+- doc: tools/imagegen/manifest/batch-01-slice.yaml
+kind: world
+batch: batch-01-slice
+size: 1536x1024

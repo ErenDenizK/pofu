@@ -1,0 +1,13 @@
+id: idea-app-store
+type: idea
+title_tr: App Store sayfası
+title_en: App Store presence
+status: planned
+horizon: later
+summary: >-
+  Icon, screenshots, preview video, TR and EN metadata; privacy policy, support page and a
+  domain for universal links. Public release in Türkiye, then global.
+sources:
+- doc: docs/roadmap.md
+  anchor: '#phase-6-launch'
+kind: launch

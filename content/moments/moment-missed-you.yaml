@@ -1,0 +1,13 @@
+id: moment-missed-you
+type: moment
+title_tr: Geldin!
+title_en: Missed you
+status: planned
+horizon: later
+summary: >-
+  Back after 3+ days: "Geldin! Komşular her şeyi idare etti." Nothing was lost.
+sources:
+- doc: docs/design/interaction-spec.md
+  anchor: '#46-reacting-to-the-users-real-behavior-on-return'
+act: arc
+sequence: 90

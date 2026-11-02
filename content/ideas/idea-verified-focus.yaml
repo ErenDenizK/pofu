@@ -1,0 +1,18 @@
+id: idea-verified-focus
+type: idea
+title_tr: Doğrulanmış odak
+title_en: Verified focus as a calm boost
+status: idea
+horizon: later
+summary: >-
+  Keep verified focus only as a calm boost (1.5× faster) and only if the founder uses focus
+  sessions at all.
+links:
+  feeds:
+  - sys-calm
+sources:
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+- doc: docs/product/game-design.md
+  anchor: '#the-calm-multiplier-tr-huzur'
+kind: feature

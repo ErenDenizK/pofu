@@ -1,0 +1,31 @@
+id: sys-build
+type: system
+title_tr: İnşa
+title_en: Build a level
+status: in-production
+horizon: now
+summary: >-
+  Spend seeds on the next designed level of a station; the vignette pops into its new art.
+  Five designed levels per station, each an edit of the one before; costs grow ×2.2, rates
+  +55 % of base per level.
+notes:
+- >-
+  The build moment: the model commits on the tap; squash, swap at the deepest point, dust
+  puffs, sparkles, "Seviye 3!", Pofu hops, the resident hops, .success.
+- >-
+  Usually 0–1 builds a visit, at most about 3; the next-build card suggests the cheapest level
+  on the island in view.
+links:
+  feeds:
+  - sys-island-arrivals
+  leads_to:
+  - moment-build
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#idle-production-and-stations'
+- doc: docs/design/interaction-spec.md
+  anchor: '#24-the-build-moment'
+group: economy
+board:
+  col: 7
+  row: 0

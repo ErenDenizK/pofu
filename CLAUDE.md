@@ -35,6 +35,8 @@ the project's persistent memory; keep it accurate and concise.
 - Research: `docs/research/`
 - Brand, character bible, naming: `docs/brand/`
 - Decisions: `docs/adr/`
+- Content graph and Pofu Atlas board (every decision, idea and generated
+  asset gets a node): `content/`, see `content/README.md`
 - Local Mac agent brief (Xcode, simulator, device, image generation):
   `docs/local-agent.md`
 
@@ -55,10 +57,17 @@ the project's persistent memory; keep it accurate and concise.
   membership (founder, 2026-11-02):** new work targets the Screen Time
   product; the free `Pofu` target and the Shortcuts path get no new
   features. After membership day 1, collapse `Pofu` and `PofuLive` into one
-  app target with the entitlements. World and `PofuWorld` work waits; the game model in
-  `PofuCore` and an 8-image art test may run meanwhile. XcodeGen project (`project.yml`, regenerate after
+  app target with the entitlements. During the wait (membership after
+  2026-11-24) the cloud builds code-only stage W work: the game model is in
+  `PofuCore/Game` (#46, #48), the native island is `PofuWorld` (#49), and
+  the free build gets **Rehearsal mode** (an in-app replica of the shield
+  and simulated reaches driven by the same code paths), so the founder can
+  feel the whole loop on his iPhone before the membership. XcodeGen project (`project.yml`, regenerate after
   pulling); `Packages/PofuKit` has `PofuCore`, `PofuScreenTime`,
-  `PofuPersistence`, `PofuDesignSystem`, and `PofuCompanion`. CI must stay
+  `PofuPersistence`, `PofuDesignSystem`, `PofuCompanion`, and `PofuWorld`
+  (the island scene; its art is baked by
+  `design/prototypes/interactions/tools/preblur.py app`, and CI uploads
+  simulator screenshots as `world-screenshots`). CI must stay
   green. Keep `docs/product/economy.md` in sync with `PofuCore`.
 - Design references: `docs/design/` (design language, art bible, prompt
   library, motion spec), `docs/product/ux/` (IA, flows), and the clickable
@@ -80,9 +89,11 @@ the project's persistent memory; keep it accurate and concise.
   and never buy screen time; a breathing break is the hard limit (ADR-0015,
   not yet in `PofuCore`); ADR-0016 archipelago; ADR-0017 Pofu never dies.
 - Character: Pofu is an **illustrated fluffy hamster** (ADR-0010). The
-  founder generates art with GPT Image under the art bible, **only on the
-  founder's own OpenAI account** (sharing the uncle's account conflicts
-  with OpenAI's terms and clouds ownership);
+  founder generates art with GPT Image under the art bible, through Codex
+  in the cloud. By the founder's decision (2026-11-02) it runs on his
+  uncle's ChatGPT plan with permission, recorded truthfully in provenance;
+  before launch, get a written assignment or regenerate shipped masters on
+  his own plan (roadmap Phase 6). Do not re-raise this before then;
   the agent owns prompts, the pipeline, motion, and integration. The 3D
   Blender spike is parked as a reference.
 - Without a local Swift toolchain, the compile and test loop is: push,

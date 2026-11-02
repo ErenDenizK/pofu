@@ -1,0 +1,24 @@
+id: char-pofu-jealous-tiktok
+type: character
+title_tr: 'Pofu: Kıskanç (TikTok)'
+title_en: 'Pofu: Jealous (TikTok)'
+status: planned
+horizon: later
+summary: 'Trigger: Same, TikTok. Line: "Oh. TikTok. I see how it is."'
+notes:
+- 'TR line (native, not translated): "Hı. TikTok. Anladım ben seni."'
+- 'Face recipe: side-eye.'
+- 'Body motion (code, ADR-0011): turns a quarter away.'
+- 'Postponed by the decision audit: 15 of the 20 emotions wait.'
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: Hı. TikTok. Anladım ben seni.

@@ -1,0 +1,16 @@
+id: idea-evening-summary
+type: idea
+title_tr: Akşam özeti bildirimi
+title_en: Evening summary notification (opt-in)
+status: idea
+horizon: later
+summary: >-
+  Off by default; when on, the notification carries the whole summary and is complete without
+  opening the app.
+links:
+  part_of:
+  - sys-notifications
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#73-notification-policy'
+kind: feature

@@ -1,0 +1,19 @@
+id: asset-cloud-5
+type: asset
+title_tr: cloud-5
+title_en: cloud-5 (prop)
+status: in-production
+horizon: now
+summary: >-
+  Two tiny, round cloud puffs for the same sky, on their own, floating close together with
+  a small gap: each a single soft, plump billow with a gently flattened underside, the left
+  one a little larger. Centered, together filling about 70% of the canvas width, with a clear
+  transparent margin.
+art:
+  images: []
+  jobs:
+  - batch-04-sky:cloud-5
+sources:
+- doc: tools/imagegen/manifest/batch-04-sky.yaml
+kind: prop
+batch: batch-04-sky

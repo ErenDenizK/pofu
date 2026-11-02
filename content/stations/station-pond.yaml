@@ -1,0 +1,61 @@
+id: station-pond
+type: station
+title_tr: Nilüferli gölet
+title_en: Lily pond
+status: in-production
+horizon: next
+summary: >-
+  A small lily pond run by the frogs, opening when the island widens at stage 3.
+notes:
+- >-
+  Opens: Stage 3 (4 tended days; the island widens). Level costs 1→5: 160 · 352 · 774 · 1,704
+  · 3,748 (total 6,738). Rate L1→L5: 6 → 19.2 seeds/hour before calm.
+- PofuWorld shows a stand-in; batch 03 track `pond` paints L1–L5.
+links:
+  part_of:
+  - island-aycicegi
+  related:
+  - char-frogs
+  - sys-station-production
+  - sys-build
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#idle-production-and-stations'
+- doc: tools/sim/island_economy.py
+resident: char-frogs
+opens_en: Stage 3 (4 tended days; the island widens)
+levels:
+- level: 1
+  title_tr: Küçük gölet, çakıllar
+  title_en: Small pond, pebbles
+  cost: 160
+  rate: 6.0
+  asset: asset-pond-1
+- level: 2
+  title_tr: Nilüfer yaprakları
+  title_en: Lily pads
+  cost: 352
+  rate: 9.3
+  asset: asset-pond-2
+- level: 3
+  title_tr: Sazlar ve bir çiçek
+  title_en: Reeds and a blossom
+  cost: 774
+  rate: 12.6
+  asset: asset-pond-3
+- level: 4
+  title_tr: Ahşap iskele
+  title_en: Wooden dock
+  cost: 1704
+  rate: 15.9
+  asset: asset-pond-4
+- level: 5
+  title_tr: Yüzen fenerler
+  title_en: Floating lanterns
+  cost: 3748
+  rate: 19.2
+  asset: asset-pond-5
+unlock:
+  day: 4
+  rule_en: >-
+    Stage 3 (4 tended days; the island widens) (days ≈ tended days for a daily user)

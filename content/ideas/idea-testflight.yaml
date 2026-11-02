@@ -1,0 +1,17 @@
+id: idea-testflight
+type: idea
+title_tr: TestFlight arkadaş betası
+title_en: TestFlight friends beta
+status: planned
+horizon: next
+summary: >-
+  Requires Apple's distribution entitlement. Unlocks Glass++ production and W7's island test.
+links:
+  unlocks:
+  - sys-glass-plus
+sources:
+- doc: docs/roadmap.md
+  anchor: '#phase-6-launch'
+- doc: docs/design/iteration-plan.md
+  anchor: '#what-it-can-become'
+kind: launch

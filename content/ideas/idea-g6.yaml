@@ -1,0 +1,13 @@
+id: idea-g6
+type: idea
+title_tr: G6 Veri ne istiyor?
+title_en: 'G6: What does the data ask for?'
+status: planned
+horizon: next
+summary: >-
+  The smallest ADR-0015 slice the week shows is needed. Check: week 2's resisted share against
+  week 1.
+sources:
+- doc: docs/design/iteration-plan.md
+  anchor: '#stage-g-the-gate'
+kind: milestone

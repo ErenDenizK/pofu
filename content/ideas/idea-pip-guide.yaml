@@ -1,0 +1,13 @@
+id: idea-pip-guide
+type: idea
+title_tr: PiP video kurulum rehberi
+title_en: Picture-in-picture setup video
+status: cut
+horizon: maybe
+summary: >-
+  The PiP video setup guide is postponed: the iOS 27 import replaces most of it, and a better
+  text guide covers iOS 26.
+sources:
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: feature

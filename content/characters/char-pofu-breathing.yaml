@@ -1,0 +1,29 @@
+id: char-pofu-breathing
+type: character
+title_tr: 'Pofu: Nefes'
+title_en: 'Pofu: Breathing'
+status: planned
+horizon: next
+summary: >-
+  Trigger: The breathing break. Line: "We've had our hour today. Breathe with me first?"
+notes:
+- >-
+  TR line (native, not translated): "Bugünkü saatimizi doldurduk. Önce benimle bir nefes alır
+  mısın?"
+- 'Face recipe: eyes open while waiting, closed while breathing.'
+- 'Body motion (code, ADR-0011): belly rises and falls with the orb.'
+- >-
+  In the first five emotions to ship (decision audit): proud, pout, easy-going, breathing,
+  unwell.
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: Bugünkü saatimizi doldurduk. Önce benimle bir nefes alır mısın?

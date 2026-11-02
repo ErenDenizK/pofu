@@ -1,0 +1,30 @@
+id: sys-island-arrivals
+type: system
+title_tr: Ada gelişi
+title_en: Island arrivals
+status: in-production
+horizon: later
+summary: >-
+  Islands drift close with tended days, calm nights and station levels, and later with seasons.
+  Cumulative and monotonic: every archetype gets İskele on day 9 and Yıldız on day 22. Behavior
+  changes what you can build there, not whether the island comes.
+notes:
+- >-
+  Gating islands on calm was rejected: a heavy scroller locked out of the new island is a
+  churn risk.
+- >-
+  Before arrival: misty desaturated silhouettes with plain progress bars (tended days 19 /
+  21), no dates, no countdowns.
+- Arrival uses the cloud pass (ADR-0018), the only cinematic camera move.
+links:
+  leads_to:
+  - sys-rituals
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+- doc: docs/product/game-design.md
+  anchor: '#14-economy-simulation'
+group: world
+board:
+  col: 8
+  row: 0

@@ -1,0 +1,20 @@
+id: asset-workshop-3
+type: asset
+title_tr: workshop-3
+title_en: workshop-3 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add a small wind vane on a short wooden pole on the roof's ridge: four rounded cream and
+  honey blades like a little pinwheel, facing the viewer, matte.
+links:
+  variant_of:
+  - asset-workshop-2
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:workshop-3
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

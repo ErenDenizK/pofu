@@ -1,0 +1,25 @@
+id: sys-daily-hour
+type: system
+title_tr: Günlük saat
+title_en: The daily hour
+status: in-production
+horizon: now
+summary: >-
+  60 guarded minutes a day (settable 15–180) before the breathing break. Pre-membership it
+  sums granted pass minutes; with Screen Time a DeviceActivity event at 60 minutes. Resets
+  at local midnight.
+notes:
+- >-
+  Shown on Home and the shield as "n / 60 dk"; Settings shows the count so it is never a surprise.
+links:
+  leads_to:
+  - sys-breathing-break
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#the-breathing-break-the-hard-limit'
+- doc: docs/product/game-design.md
+  anchor: '#6-measuring-usage-honestly'
+group: gate
+board:
+  col: 2
+  row: 1

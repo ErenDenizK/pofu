@@ -19,7 +19,8 @@ promote the approved take with full provenance.
 | `pipeline.py` | Manifest model and validation, prompt composition, paths, fingerprints |
 | `backends.py` | `codex` (with the one marked adapter block), `openai-api` (key guard, cost estimate), `manual` |
 | `qa.py` | Normalization (keying, canvas fit, station registration, edit alignment) and every QA check |
-| `style_lock.py`, `style_lock.json` | The style lock and its presets (`soft-lock` is the recommendation) |
+| `style_lock.py`, `style_lock.json` | The style lock and its presets (`lock-light` is the default; `soft-lock` was until 2026-11-02) |
+| `relock.py` | Re-locks an approved master from its kept raw with another preset (no regeneration) |
 | `review.py` | Contact sheets, the review file, provenance |
 | `palettes.json` | The `world-props` palette (extends `design/tokens/pofu-tokens.json` for drift checks) |
 | `config.yaml` | Account, paths, rate limits, backends, reference aliases, palettes per kind |
@@ -68,3 +69,18 @@ jobs:
 A job runs only when every job it depends on (`edit_of`,
 `approved:<id>` attachments) is approved and every other reference
 exists.
+
+To continue a chain another batch started, declare that batch's master
+as an **external** job (same `kind` and `name`, no prompt, no `attach`):
+
+```yaml
+  - {id: garden-2, kind: station, name: garden-2, external: batch-01-slice}
+  - {id: garden-3, kind: station, edit_of: garden-2, prompt: [...]}
+```
+
+An external job is never generated, ingested or promoted here; it counts
+as approved once its master is on disk (fetched from `main` or the other
+batch's branch), and `plan` shows where it comes from.
+
+`check_upload.py` re-downloads pushed art from the remote branch and
+decodes it; uploads must stay under 600 KB (AGENTS.md, "Uploads").

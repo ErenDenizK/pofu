@@ -1,0 +1,25 @@
+id: theme-living-sky
+type: theme
+title_tr: Yaşayan gökyüzü
+title_en: The living sky
+status: in-production
+horizon: now
+summary: >-
+  Batch 04: five soft clouds, a sun glow, three distant hazy islands and a tiling sea of clouds,
+  so the island floats in a sky that moves.
+links:
+  uses_asset:
+  - asset-cloud-1
+  - asset-cloud-2
+  - asset-cloud-3
+  - asset-cloud-4
+  - asset-cloud-5
+  - asset-cloud-sea
+  - asset-sun-glow
+  - asset-far-isle-1
+  - asset-far-isle-2
+  - asset-far-isle-3
+sources:
+- doc: AGENTS.md
+  anchor: '#batch-04-the-living-sky-batch-04-sky'
+kind: world

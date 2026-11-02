@@ -1,0 +1,17 @@
+id: moment-stargazing
+type: moment
+title_tr: Bu gecenin yıldızı
+title_en: Tonight's star
+status: planned
+horizon: later
+summary: >-
+  On Yıldız: a 20-second bedtime moment where Pofu points at tonight's star, then says good
+  night.
+links:
+  part_of:
+  - island-yildiz
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+act: night
+sequence: 30

@@ -1,0 +1,25 @@
+id: asset-lantern-on
+type: asset
+title_tr: lantern-on
+title_en: lantern-on (ui)
+status: planned
+horizon: later
+summary: >-
+  Light the lantern from inside: the paper glows a warm honey-gold, brightest at its center,
+  the ribs and caps unchanged. Light only inside the lantern's own outline: no halo, no glow,
+  no rays and no light spill outside the lantern (the app draws the glow around it).
+notes:
+- >-
+  Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
+  and cay-1 approved
+links:
+  variant_of:
+  - asset-lantern-off
+art:
+  images: []
+  jobs:
+  - batch-02-ui:lantern-on
+sources:
+- doc: tools/imagegen/manifest/batch-02-ui.yaml
+kind: ui
+batch: batch-02-ui

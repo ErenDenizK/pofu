@@ -91,10 +91,19 @@ sits. A rail parameter `z` runs 0 (Map) → 1 (Island) → 2 (Home).
 
 | Framing | z | Scale (×W/402) | Looks at | Placed at (pt, ×H/874) | Pofu |
 |---|---|---|---|---|---|
-| Map | 0 | 0.46 | (0, −80) | y 430 | 30 pt vector pin |
-| Island | 1 | 1.06 | (0, 40) | y 470 | 68 pt |
+| Map | 0 | 0.56 | (0, 12) | y 405 | 30 pt vector pin |
+| Island | 1 | fitted: ≈ 1.25 (the station row fills the width, 6 pt margins; `IslandFraming`) | (row centre, island centre) ≈ (−7, −6) | the band's middle, y 397 | ≈ 80 pt |
 | Home | 2 | 2.40 | Pofu's feet (6, 20) | y 600 | 154 pt (38 %) |
 | Station focus | off-rail | min(1.70, band × 0.62 / 112) | station centre (x, y − 46) | midway between the top band (safe area + 100) and the sheet's top edge, + 8 | soft |
+| Build push-in | off-rail | min(1.95, …) for the 132 pt compact sheet | as station focus | as station focus | soft |
+
+Round 2 (2026-11-02): a station focus is then nudged sideways (at most
+22 % of the width) so Pofu and the residents are either whole or out of
+frame, never cut by an edge; it keeps the most characters, then moves
+least. The Island framing cannot reach ADR-0018's 70 % of the band height
+without cropping stations (the plate is about 2:1); it fills the width
+and about 54 % of the band, and the living sky, the cloud sea and the
+neighbouring islands fill the rest.
 
 Between framings, `ln s` is interpolated linearly in `z`, and `(x, y, ay)`
 linearly with the same fraction. Interpolating log-scale is what makes a

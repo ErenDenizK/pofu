@@ -1,0 +1,20 @@
+id: asset-simit-4
+type: asset
+title_tr: simit-4
+title_en: simit-4 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add a small, low, rounded wooden bench for regulars beside the cart's right wheel, inside
+  the footprint and lower than the cart's tray.
+links:
+  variant_of:
+  - asset-simit-3
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:simit-4
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

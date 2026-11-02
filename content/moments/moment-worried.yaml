@@ -1,0 +1,14 @@
+id: moment-worried
+type: moment
+title_tr: Bu uzun sürdü
+title_en: That was a long one
+status: planned
+horizon: later
+summary: >-
+  First open after a guarded session over 60 minutes: six small trembles, worried face. "Bu
+  uzun sürdü. İyi misin?"
+sources:
+- doc: docs/design/interaction-spec.md
+  anchor: '#46-reacting-to-the-users-real-behavior-on-return'
+act: day
+sequence: 30

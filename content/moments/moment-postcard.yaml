@@ -1,0 +1,17 @@
+id: moment-postcard
+type: moment
+title_tr: Vapurdan kartpostal
+title_en: The ferry's postcard
+status: planned
+horizon: later
+summary: >-
+  After every calm night the little vapur docks with a postcard (a Bosphorus morning, a Cappadocia
+  balloon, a Kyoto teahouse). Seven make a set for Pofu's wall.
+links:
+  part_of:
+  - island-iskele
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+act: night
+sequence: 50

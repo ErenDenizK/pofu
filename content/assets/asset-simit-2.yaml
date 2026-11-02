@@ -1,0 +1,21 @@
+id: asset-simit-2
+type: asset
+title_tr: simit-2
+title_en: simit-2 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add a small round sun umbrella above the cart on a wooden pole fixed to the cart's back:
+  a scalloped canopy of soft coral and cream segments, matte cloth. The umbrella's top stays
+  below the top of the canvas with a clear margin.
+links:
+  variant_of:
+  - asset-simit-1
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:simit-2
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

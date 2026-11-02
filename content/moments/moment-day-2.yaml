@@ -1,0 +1,16 @@
+id: moment-day-2
+type: moment
+title_tr: '2. gün: Mochi gelir'
+title_en: 'Day 2: Mochi arrives'
+status: planned
+horizon: next
+summary: >-
+  Build the çay ocağı (40); Mochi arrives. The bubble offers a widget: "Beni ana ekrana koy,
+  açmadan bakarsın."
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#94-the-first-seven-days'
+act: arc
+sequence: 20
+unlock:
+  day: 2

@@ -1,0 +1,12 @@
+id: theme-palette-day
+type: theme
+title_tr: Gündüz paleti
+title_en: Day palette
+status: in-app
+horizon: now
+summary: >-
+  The world-day, world-props, world-night, world-sunset and character palette cards attached
+  to every prompt.
+sources:
+- doc: docs/design/art-bible.md
+kind: grade

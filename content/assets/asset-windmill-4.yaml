@@ -1,0 +1,20 @@
+id: asset-windmill-4
+type: asset
+title_tr: windmill-4
+title_en: windmill-4 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add five small round lanterns of honey-cream paper hanging along the lower edge of the cap,
+  unlit: simple soft shapes, not glowing (the app adds the glow at night).
+links:
+  variant_of:
+  - asset-windmill-3
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:windmill-4
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

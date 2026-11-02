@@ -1,0 +1,15 @@
+id: moment-day-3
+type: moment
+title_tr: '3. gün: ilk nefes'
+title_en: 'Day 3: the first breath'
+status: planned
+horizon: next
+summary: >-
+  The breathing break is explained the first time it happens, inside Hop!, never in advance.
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#94-the-first-seven-days'
+act: arc
+sequence: 30
+unlock:
+  day: 3

@@ -1,0 +1,24 @@
+id: sys-the-minute
+type: system
+title_tr: Pofu'yla bir dakika
+title_en: A minute with Pofu
+status: planned
+horizon: next
+summary: >-
+  After a skip, a finite substitute for the reflex: at most 3 a day, ≤ 60 s shown by a filling
+  ring, the visit queue or a fur-brushing care moment, and Pofu ends it: "Bu kadar. Telefonu
+  bırakalım mı?" Earns nothing.
+notes:
+- Never at night, never in a notification, never chained.
+- >-
+  Success metric: ≥ 80 % of minutes not followed by a guarded app within 10 minutes.
+links:
+  requires:
+  - sys-visit-queue
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#33-a-minute-with-pofu-pofuyla-bir-dakika-the-substitute'
+group: app
+board:
+  col: 2
+  row: 3

@@ -1,0 +1,20 @@
+id: asset-pond-4
+type: asset
+title_tr: pond-4
+title_en: pond-4 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add a short, low wooden dock of four broad planks of soft honey wood on two stubby posts,
+  reaching from the front right edge of the pond onto the water, inside the footprint.
+links:
+  variant_of:
+  - asset-pond-3
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:pond-4
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

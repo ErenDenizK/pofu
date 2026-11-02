@@ -1,0 +1,12 @@
+id: theme-hidirellez
+type: theme
+title_tr: Hıdırellez dilek ağacı
+title_en: Hıdırellez wish-ribbon tree
+status: planned
+horizon: later
+summary: >-
+  On 5–6 May, a wish-ribbon tree appears on the islands. Free, returns every year, no countdown.
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#9-seasons-and-events'
+kind: event

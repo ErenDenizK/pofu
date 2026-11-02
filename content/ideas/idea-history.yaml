@@ -1,0 +1,14 @@
+id: idea-history
+type: idea
+title_tr: Geçmiş grafikleri
+title_en: History with Swift Charts
+status: idea
+horizon: later
+summary: 'Today → Week: 7 days free; Plus: all. Native Swift Charts.'
+links:
+  related:
+  - sys-today
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#8-where-every-utility-function-lives'
+kind: feature

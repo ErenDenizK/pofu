@@ -1,0 +1,65 @@
+id: station-garden
+type: station
+title_tr: Ayçiçeği bahçesi
+title_en: Sunflower garden
+status: in-production
+horizon: now
+summary: >-
+  Pofu's own sunflower bed, built from the start. The first build of the game (L2 for 30 seeds)
+  is affordable on every archetype's first morning.
+notes:
+- >-
+  Opens: Stage 1 (built from the start). Level costs 1→5: 0 · 30 · 66 · 145 · 319 (total 560).
+  Rate L1→L5: 6 → 19.2 seeds/hour before calm.
+- >-
+  The windmill grinds these sunflower seeds: the island's own story of where seeds come from.
+- >-
+  Batch 01 queues L1–L2; batch 03 continues L3–L5 as edits. PofuWorld shows a stand-in until
+  then.
+links:
+  part_of:
+  - island-aycicegi
+  related:
+  - char-pofu
+  - sys-station-production
+  - sys-build
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#idle-production-and-stations'
+- doc: tools/sim/island_economy.py
+resident: char-pofu
+opens_en: Stage 1 (built from the start)
+levels:
+- level: 1
+  title_tr: Üç ayçiçeği
+  title_en: Three sunflowers in a bed
+  cost: 0
+  rate: 6.0
+  asset: asset-garden-1
+- level: 2
+  title_tr: Çit ve iki ayçiçeği daha
+  title_en: Picket fence, two more
+  cost: 30
+  rate: 9.3
+  asset: asset-garden-2
+- level: 3
+  title_tr: Sulama kabı ve fideler
+  title_en: Watering can, seedlings
+  cost: 66
+  rate: 12.6
+  asset: asset-garden-3
+- level: 4
+  title_tr: Flamalı ayçiçeği kemeri
+  title_en: Sunflower arch with bunting
+  cost: 145
+  rate: 15.9
+  asset: asset-garden-4
+- level: 5
+  title_tr: Güneşi izleyen dev ayçiçeği
+  title_en: One giant sunflower that follows the sun
+  cost: 319
+  rate: 19.2
+  asset: asset-garden-5
+unlock:
+  day: 0
+  rule_en: Stage 1 (built from the start) (days ≈ tended days for a daily user)

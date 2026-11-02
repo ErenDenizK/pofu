@@ -1,0 +1,20 @@
+id: asset-pond-5
+type: asset
+title_tr: pond-5
+title_en: pond-5 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add three small round paper lanterns of honey cream floating on the water between the pads,
+  unlit: simple soft shapes, not glowing (the app adds the glow at night).
+links:
+  variant_of:
+  - asset-pond-4
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:pond-5
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

@@ -21,6 +21,13 @@ struct RootView: View {
                 HomeView(model: model)
             }
         }
+        .overlay {
+            // Rehearsal mode: the shield replica, the simulated app, and
+            // the Prova panel, under any sheet and Hop!'s cover.
+            if let rehearsal = model.rehearsal {
+                RehearsalOverlay(model: model, rehearsal: rehearsal)
+            }
+        }
         .fullScreenCover(item: $presentedHop) { _ in
             HopView(model: model)
         }
@@ -40,7 +47,7 @@ struct RootView: View {
                 // within the request's lifetime (notifications off).
                 model.answerShieldRequest()
             case .background:
-                model.leftForeground()
+                model.enteredBackground()
                 // Swiping home from Hop! counts as skipping (ADR-0008).
                 model.leaveHop()
             default:
@@ -58,7 +65,7 @@ struct RootView: View {
             return
         }
         guard presentedHop?.id != id else { return }
-        guard model.homeSheet != nil else {
+        guard model.homeSheet != nil || model.island.hasSheet else {
             Log.routing.info("Presenting the Hop! cover")
             presentedHop = HopCover(id: id)
             return
@@ -67,6 +74,7 @@ struct RootView: View {
         // Hop! takes the whole screen: the sheet over Home steps aside
         // first, and the cover follows once its dismissal has finished.
         model.homeSheet = nil
+        model.island.dismissFocus()
         Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(450))
             if model.hop?.id == id {

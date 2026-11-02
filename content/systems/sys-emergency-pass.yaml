@@ -1,0 +1,23 @@
+id: sys-emergency-pass
+type: system
+title_tr: Acil geçiş
+title_en: Emergency pass
+status: in-app
+horizon: now
+summary: >-
+  A 3-minute pass on the friend rung that always works: never breathed, unchanged by every
+  redesign, and it always resets calm.
+notes:
+- Never an over-limit open; never breathed.
+links:
+  drains:
+  - sys-calm
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#13-mapping-to-pofucore'
+- doc: docs/product/economy.md
+  anchor: '#the-emergency-pass'
+group: gate
+board:
+  col: 2
+  row: 2

@@ -1,0 +1,17 @@
+id: idea-structure-bridges
+type: idea
+title_tr: Sakin gece köprüleri
+title_en: Bridges built by calm nights
+status: idea
+horizon: maybe
+summary: >-
+  A structure that connects the archipelago: every 5 cumulative calm nights add one plank
+  to a rope bridge between two islands, until the archipelago is visibly walkable. Cosmetic,
+  cumulative, never lost (A4), and it makes the map itself a record of good nights.
+notes:
+- Uses batch 03's bridge-east as the style seed.
+links:
+  related:
+  - island-aycicegi
+source: lead-brainstorm
+kind: structure

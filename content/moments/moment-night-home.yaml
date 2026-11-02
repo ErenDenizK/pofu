@@ -1,0 +1,17 @@
+id: moment-night-home
+type: moment
+title_tr: Şşş. Ada uyuyor
+title_en: The island sleeps
+status: planned
+horizon: next
+summary: >-
+  Bedtime to 06:00: the sleeping island, Pofu asleep, "Şşş. Ada uyuyor. Sabah görüşürüz."
+  Nothing new (A21).
+links:
+  part_of:
+  - sys-bedtime
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#95-bedtime-and-morning'
+act: night
+sequence: 20

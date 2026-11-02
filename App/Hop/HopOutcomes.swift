@@ -25,6 +25,12 @@ struct HopSkipped: View {
                     .font(PofuFont.title2)
                     .foregroundStyle(PofuColor.textPrimary)
                     .contentTransition(.numericText(value: Double(skipsToday)))
+                if let calm = session.calm, !session.isNight {
+                    // Gate v2 E9: a skip never costs calm; it keeps growing.
+                    Text("Calm ×\(calm.formatted(.number.precision(.fractionLength(1)))) · growing")
+                        .font(PofuFont.footnote)
+                        .foregroundStyle(PofuColor.textSecondary)
+                }
             }
             .accessibilityElement(children: .combine)
             .accessibilityAddTraits(.isHeader)
@@ -136,6 +142,12 @@ struct HopHandoff: View {
             // A beat to read the line, then back to the app (user flows).
             try? await Task.sleep(for: .milliseconds(600))
             guard !Task.isCancelled else { return }
+            if model.rehearsal != nil, session.shieldedApp != nil {
+                // Rehearsal mode: into the simulated app behind the
+                // simulated shield, not the real one.
+                model.rehearsalHandOff(to: session.app)
+                return
+            }
             if !(await AppOpener.open(session.app)) {
                 model.handoffFailed(for: pass, app: session.app)
             }

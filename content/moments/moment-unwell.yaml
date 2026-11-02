@@ -1,0 +1,18 @@
+id: moment-unwell
+type: moment
+title_tr: Benimle biraz otur
+title_en: Sit with me for a quiet hour
+status: planned
+horizon: next
+summary: >-
+  On a bad day Pofu curls up, ash-tinted and matted, never gone. One quiet hour visibly lifts
+  him a band; every night he sleeps part of it off.
+links:
+  part_of:
+  - sys-wellbeing
+sources:
+- doc: docs/adr/0017-pofu-never-dies.md
+- doc: docs/product/game-design.md
+  anchor: '#pofus-wellbeing-tr-pofunun-keyfi'
+act: arc
+sequence: 80

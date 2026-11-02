@@ -314,9 +314,13 @@ to 14 are unchanged except the provenance line in section 13. Pipeline:
    ground ellipses 0.3 tall : wide (view block v2); the approved island
    is attached as the camera reference for stations.
 3. **Style lock:** every station, prop, plate and UI image passes the
-   `soft-lock` preset ([`style_lock.json`](../../tools/imagegen/style_lock.json))
-   before it becomes a master; characters are not locked. Masters keep
-   the raw take next to the locked one.
+   `lock-light` preset ([`style_lock.json`](../../tools/imagegen/style_lock.json))
+   before it becomes a master; characters are not locked. Since
+   2026-11-02 the lock bakes only the value floor, the detail budget, the
+   hue fixes and the edges; saturation, contrast and the value range are a
+   runtime grade in the app ([look-dev](look-dev.md)), so the look can
+   change without regenerating. Masters always keep the raw take
+   (`raw.webp`) next to the locked one.
 4. **Props palette:** `world-props` in
    [`tools/imagegen/palettes.json`](../../tools/imagegen/palettes.json)
    (card: `design/reference/palette-card-world-props.png`) joins the
@@ -328,8 +332,8 @@ to 14 are unchanged except the provenance line in section 13. Pipeline:
 6. **Glass++ (ADR-0018):** no image ever paints glass, frosted panels,
    buttons or interface chrome; domain icons follow the icon style block
    (simplified, legible at 24 pt, no outline).
-7. **Generating account:** production art is generated only on the
-   founder's own OpenAI account; every master records its owner.
+7. **Generating account:** every master records its generating account
+   truthfully. _Founder's decision (2026-11-02): art is generated on his uncle's ChatGPT plan with permission, and provenance says so truthfully. Before launch: a written assignment or shipped masters regenerated on his own plan (roadmap Phase 6)._
 8. **New defects:** _reframed edit_ (the edit rescaled or moved the
    object: aligned automatically, regenerate if beyond 25 %); _heavy
    lock_ (the lock moved colors by mean Delta E above 10: the take

@@ -1,0 +1,17 @@
+id: idea-structure-lanterns
+type: idea
+title_tr: Yarısı fener yolu
+title_en: The half-resisted lantern path
+status: idea
+horizon: maybe
+summary: >-
+  A lantern path along Ayçiçeği's edge: each week the founder's own goal is met (half of reflexive
+  opens resisted), one lantern is lit for good. Weeks count cumulatively, never in a row;
+  a missed week is invisible. The north-star metric becomes a place.
+notes:
+- Must never show an unlit gap for a missed week (A19).
+links:
+  related:
+  - island-aycicegi
+source: lead-brainstorm
+kind: structure

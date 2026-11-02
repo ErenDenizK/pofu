@@ -1,0 +1,17 @@
+id: moment-spring-soak
+type: moment
+title_tr: Hep birlikte kaplıcada
+title_en: Everyone soaks together
+status: planned
+horizon: later
+summary: >-
+  When Kaplıca's spring holds 12 ladles, everyone soaks for an evening and Pofu comes out
+  glowing.
+links:
+  part_of:
+  - island-kaplica
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+act: arc
+sequence: 100

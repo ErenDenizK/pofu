@@ -1,0 +1,23 @@
+id: asset-findik-work
+type: asset
+title_tr: findik-work
+title_en: findik-work (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached hedgehog, Fındık, into a working pose at the workshop. Change only the
+  two front paws: they now hold a small, chunky, round wooden gear in front of the chest,
+  as if showing a finished part: soft honey wood, six rounded teeth and a round hole in the
+  middle, matte, no shine. Everything else stays exactly as it is.
+links:
+  variant_of:
+  - asset-findik
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:findik-work
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: char
+batch: batch-03-home-island
+size: 1024x1536

@@ -34,6 +34,9 @@ struct HopSession: Identifiable, Equatable {
     var breath: BreathPlan?
     /// The breath was taken; the choices follow.
     var breathDone = false
+    /// The live calm multiplier when Hop! opened (gate v2 E9); `nil`
+    /// until Pofu has seen a sign of life.
+    var calm: Double?
 
     var id: UUID { attempt.id }
     var rung: FrictionRung { attempt.rung }

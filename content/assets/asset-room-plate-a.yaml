@@ -1,0 +1,16 @@
+id: asset-room-plate-a
+type: asset
+title_tr: Oda plakası A
+title_en: Room plate A
+status: cut
+horizon: now
+summary: >-
+  Pofu's room, take A: the room-era Home backdrop, superseded by the island direction (ADR-0016).
+art:
+  images:
+  - design/art/plates/room-v1/room-plate-a.png
+  jobs: []
+sources:
+- doc: design/art/plates/room-v1/provenance.md
+kind: plate
+batch: unbatched

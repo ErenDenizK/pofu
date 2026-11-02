@@ -4,6 +4,7 @@ import os
 import PofuCore
 import PofuPersistence
 import PofuScreenTime
+import PofuWorld
 
 /// The app's state holder. It owns the domain state, persists every change,
 /// and runs the soft gate for `CheckInIntent`. Views read from it and call
@@ -15,12 +16,16 @@ import PofuScreenTime
 @MainActor
 @Observable
 final class AppModel {
-    static let shared = AppModel(store: AppModel.makeStore())
+    static let shared = AppModel.makeShared()
 
     private(set) var state: PofuState
     private(set) var profile: UserProfile
     /// The running honor session, if any.
     private(set) var activeSession: ActiveSession?
+    /// The game model (game design v2), fed by the gate's event log and
+    /// Pofu's foreground time. Only calm is shown so far (the shield and
+    /// Hop!); the developer readout shows the rest through `world`.
+    private(set) var game: GameState
     /// The result of the session that just ended, until Pofu has shown the
     /// cheeks-fill moment.
     private(set) var earningResult: EarningResult?
@@ -32,7 +37,24 @@ final class AppModel {
     /// The Hop! on screen, if any. Drives the full-screen cover.
     var hop: HopSession?
     /// The sheet open over Home, if any.
-    var homeSheet: HomeSheet?
+    var homeSheet: HomeSheet? {
+        didSet {
+            // Rehearsal mode never shows the Shortcuts setup unasked: Home's
+            // setup prompt opens Settings, where the gate's state is.
+            if rehearsal != nil, homeSheet == .setup {
+                homeSheet = .settings
+            }
+        }
+    }
+    /// The island's camera, focus and station sheet
+    /// (`FeatureFlags.islandHome`). Here rather than in the view, so Hop!
+    /// can close a station sheet before its cover.
+    let island = IslandSceneModel()
+    /// Home's visit and its collect and build moments
+    /// (`FeatureFlags.worldHome`).
+    let worldHome = WorldHomeModel()
+    /// When the last visit settled, for the 15-minute reopen rule (A15).
+    private var lastVisitSettled: Date?
     /// Set when the last save failed, so a broken disk is never silent.
     private(set) var persistenceProblem = false
     /// Whether Pofu is on screen. Being here is a sign the user left the
@@ -46,8 +68,12 @@ final class AppModel {
     let gatekeeper: Gatekeeper
     let router = CheckInRouter()
     let vitalityModel: VitalityModel
-    /// The Screen Time gate; available only in the `PofuLive` build.
+    /// The Screen Time gate; available in the `PofuLive` build and in
+    /// Rehearsal mode.
     let screenTime: ScreenTimeGate
+    /// Rehearsal mode's simulated system and what it shows; `nil` when
+    /// this launch is not a rehearsal.
+    let rehearsal: RehearsalStage?
     /// What the app learned from the Screen Time extensions.
     private(set) var screenTimeLedger: ScreenTimeLedger
     private let clock: any WallClock
@@ -58,7 +84,8 @@ final class AppModel {
         store: PofuStore?,
         clock: any WallClock = SystemWallClock(),
         configuration: EconomyConfiguration = .standard,
-        calendar: Calendar = .autoupdatingCurrent
+        calendar: Calendar = .autoupdatingCurrent,
+        rehearsal: RehearsalStage? = nil
     ) {
         let economy = Economy(configuration: configuration, calendar: calendar)
         self.store = store
@@ -67,9 +94,14 @@ final class AppModel {
         self.gatekeeper = Gatekeeper(economy: economy)
         self.vitalityModel = VitalityModel(rules: configuration.vitality)
         self.now = clock.now
-        // The extensions can only see the App Group, so the gate's shared
-        // files live there whenever the build is entitled to it.
-        self.screenTime = ScreenTimeGate(location: StorageLocation.appGroup() ?? store?.location)
+        self.rehearsal = rehearsal
+        if let rehearsal {
+            self.screenTime = ScreenTimeGate(rehearsal: rehearsal.system)
+        } else {
+            // The extensions can only see the App Group, so the gate's
+            // shared files live there whenever the build is entitled to it.
+            self.screenTime = ScreenTimeGate(location: StorageLocation.appGroup() ?? store?.location)
+        }
         let ledgerFile = store.map { JSONFile<ScreenTimeLedger>(url: $0.location.directory.appendingPathComponent("screen-time-ledger.json")) }
         self.ledgerFile = ledgerFile
         self.screenTimeLedger = ledgerFile?.read() ?? ScreenTimeLedger()
@@ -93,6 +125,7 @@ final class AppModel {
         self.state = snapshot.state
         self.profile = snapshot.profile
         self.activeSession = snapshot.activeSession
+        self.game = snapshot.game ?? GameState()
         if snapshot.state.vitality.settledThrough == nil {
             state.vitality = VitalityLedger(initialVitality: configuration.vitality.initialVitality)
         }
@@ -101,7 +134,17 @@ final class AppModel {
         if let lastCheckIn = snapshot.profile.lastCheckIn.values.max() {
             gatekeeper.quietTime.bootstrap(&state.quietTime, lastSignal: lastCheckIn, checkIns: state.checkIns)
         }
+        if snapshot.game == nil {
+            // A store from before the game: the game starts now, observing
+            // for what is left of the last check-in's window.
+            gameClock.start(&game, at: now, lastSignal: snapshot.profile.lastCheckIn.values.max())
+        }
         settleDay()
+        if game.foregroundSince != nil {
+            // The last process ended with Pofu in the foreground: that
+            // session is over.
+            advanceGame(to: now, applying: [GameEvent(at: now, kind: .foregroundEnded)])
+        }
         screenTime.update(rules: gateRules)
     }
 
@@ -120,6 +163,19 @@ final class AppModel {
             }
         }
         return PofuStore(location: location)
+    }
+
+    /// The shared model: on Rehearsal mode's own store, clock and simulated
+    /// Screen Time when this launch rehearses, else on the real store.
+    static func makeShared() -> AppModel {
+        guard RehearsalMode.isOnAtLaunch else {
+            return AppModel(store: makeStore())
+        }
+        let location = RehearsalMode.location
+        let clock = RehearsalMode.clock
+        Log.persistence.notice("Rehearsal mode: simulated Screen Time, separate store")
+        let stage = RehearsalStage(system: RehearsalScreenTime(location: location, clock: clock), clock: clock)
+        return AppModel(store: PofuStore(location: location), clock: clock, rehearsal: stage)
     }
 
     // MARK: - Derived values
@@ -229,14 +285,99 @@ final class AppModel {
         profile.protectedApps.filter { !profile.isVerified($0) }
     }
 
+    // MARK: - The game (game design v2)
+
+    /// The game's clock with today's rules: the user's daily hour, and
+    /// what Pofu can measure (the shield's return ends a pass only when the
+    /// live gate is on).
+    var gameClock: WorldClock {
+        WorldClock(
+            rules: GameRules(gate: gateRules, measurement: screenTime.isOn ? .screenTime : .softGate),
+            calendar: economy.calendar
+        )
+    }
+
+    /// The world as it is at the last refresh: read-only.
+    var world: WorldSnapshot {
+        gameClock.snapshot(of: game)
+    }
+
+    /// The calm multiplier the shield and Hop! show; `nil` until Pofu has
+    /// seen a sign of life.
+    var liveCalm: Double? {
+        let snapshot = world
+        return snapshot.activity == .notSetUp ? nil : snapshot.calm
+    }
+
+    /// Builds the visit queue for an app landing (app–game boundary §6.1):
+    /// a broken guard shows the repair banner, a reopen within 15 minutes
+    /// lands settled.
+    func beginWorldVisit() {
+        now = clock.now
+        if let settled = worldHome.settledAt {
+            lastVisitSettled = settled
+        }
+        let inputs = VisitInputs(
+            now: now,
+            world: world,
+            isGuardBroken: needsSetupOrRepair,
+            lastSettled: lastVisitSettled,
+            calendar: economy.calendar
+        )
+        worldHome.beginVisit(VisitQueue.plan(inputs))
+    }
+
+    /// No guarded app yet, or the guard has gone silent.
+    private var needsSetupOrRepair: Bool {
+        profile.protectedApps.isEmpty || isAwaitingSignOfLife
+    }
+
+    /// Collects every waiting seed into the jar (`WorldClock.collect`).
+    ///
+    /// - Returns: What was collected; `nil` when nothing waits, the seeds
+    ///   are held, or the islands sleep.
+    @discardableResult
+    func collectWorldSeeds() -> SeedPouch? {
+        now = clock.now
+        let pouch = gameClock.collect(&game, at: now)
+        if pouch != nil {
+            save()
+        }
+        return pouch
+    }
+
+    /// Builds a station's next level from the jar (`WorldClock.build`).
+    @discardableResult
+    func buildStation(_ station: StationID) -> BuildReceipt? {
+        now = clock.now
+        do {
+            let receipt = try gameClock.build(station, in: &game, at: now)
+            save()
+            return receipt
+        } catch {
+            Log.economy.info("Build refused: \(String(describing: error), privacy: .public)")
+            return nil
+        }
+    }
+
+    /// Advances the game to `date`, taking in `events`.
+    private func advanceGame(to date: Date, applying events: [GameEvent] = []) {
+        gameClock.advance(&game, to: date, applying: events)
+    }
+
     // MARK: - Lifecycle
 
     /// Brings the model up to date: today's allowance, expired passes, and
     /// settled vitality. Called whenever the app becomes active: Pofu on
     /// screen is a sign of life for quiet time (decision audit C1).
     func refresh() {
+        let cameForward = !isOnScreen
         isOnScreen = true
         settleDay()
+        if cameForward, game.foregroundSince == nil {
+            // A20: the first two minutes in Pofu count as away.
+            advanceGame(to: now, applying: [GameEvent(at: now, kind: .foregroundBegan)])
+        }
         gatekeeper.noteUserReturned(at: now, state: &state)
         syncScreenTime()
         save()
@@ -247,16 +388,26 @@ final class AppModel {
         isOnScreen = false
     }
 
+    /// The scene went to the background: Pofu's foreground session ends
+    /// (A20). A passing inactive phase does not end it, so pulling down
+    /// Control Center never restarts the grace.
+    func enteredBackground() {
+        leftForeground()
+        now = clock.now
+        advanceGame(to: now, applying: [GameEvent(at: now, kind: .foregroundEnded)])
+        save()
+    }
+
     /// Keeps quiet time and the day current while Home is on screen, and
     /// saves only when something the user can see changed. A pass that
     /// expires while Pofu is on screen hands over to quiet time at once.
     func tick() {
-        let before = (state.quietTime.pending, state.wallet.balance, state.quietTime.quietSince)
+        let before = (state.quietTime.pending, state.wallet.balance, state.quietTime.quietSince, game.calm.tenths, game.stations.pending)
         settleDay()
         if isOnScreen {
             gatekeeper.noteUserReturned(at: now, state: &state)
         }
-        if before != (state.quietTime.pending, state.wallet.balance, state.quietTime.quietSince) {
+        if before != (state.quietTime.pending, state.wallet.balance, state.quietTime.quietSince, game.calm.tenths, game.stations.pending) {
             save()
         }
     }
@@ -265,6 +416,7 @@ final class AppModel {
         now = clock.now
         economy.openDay(&state.wallet, at: now)
         gatekeeper.advanceQuietTime(to: now, state: &state)
+        advanceGame(to: now)
         state.passes.removeExpired(at: now)
         let calendar = economy.calendar
         let snapshotState = state
@@ -317,6 +469,11 @@ final class AppModel {
     ///   from it, and its own target keeps unknown apps' passes apart.
     func startHop(for app: ProtectedApp, shieldedApp: ShieldedApp? = nil) {
         now = clock.now
+        // Rehearsal mode: Hop! takes the screen from the shield replica or
+        // the simulated app, as Pofu coming forward does on a device.
+        if let rehearsal, rehearsal.isAway {
+            rehearsal.screen = nil
+        }
         if let current = hop {
             if current.app == app && current.isDeciding {
                 Log.hop.debug("Hop! already on screen for this app")
@@ -346,7 +503,8 @@ final class AppModel {
                 attempt: attempt,
                 isNight: economy.isBedtime(now),
                 reachOrdinal: ordinal,
-                shieldedApp: shieldedApp
+                shieldedApp: shieldedApp,
+                calm: liveCalm
             )
             if isPastDailyHour {
                 // Past the daily hour every open starts with a breath
@@ -541,11 +699,12 @@ final class AppModel {
         guard screenTimeLedger != ledgerBefore || !(contents?.consumable.isEmpty ?? true) else { return }
         for event in events {
             do {
-                try store?.events.append(event)
+                try store?.events.append(event.tagged(eventSource))
             } catch {
                 Log.persistence.error("Appending to the event log failed: \(error.localizedDescription, privacy: .public)")
             }
         }
+        advanceGame(to: now, applying: events.flatMap { GameEvent.events(for: $0) })
         Log.screenTime.info("Ingested \(records.count, privacy: .public) Screen Time records")
         // The snapshot and the ledger are saved before the files go, so a
         // crash in between ingests nothing twice (the ledger remembers ids).
@@ -626,7 +785,7 @@ final class AppModel {
                 resistedToday: tally.resisted,
                 recentReaches: recent,
                 wellbeing: vitality,
-                calm: nil,
+                calm: liveCalm,
                 measuredMinutes: screenTimeLedger.measuredMinutes(on: today),
                 dailyHourMinutes: gateRules.dailyHourMinutes,
                 overLimitOpensToday: screenTimeLedger.overLimitOpens(on: today),
@@ -671,6 +830,7 @@ final class AppModel {
         now = clock.now
         Log.economy.info("Pass reminder tapped")
         gatekeeper.noteUserReturned(at: now, state: &state)
+        advanceGame(to: now, applying: [GameEvent(at: now, kind: .returned)])
         save()
     }
 
@@ -790,12 +950,185 @@ final class AppModel {
         save()
     }
 
+    // MARK: - Rehearsal mode
+
+    /// How this launch tags what it logs: Rehearsal mode's events are
+    /// simulated.
+    var eventSource: EventSource {
+        rehearsal == nil ? .live : .simulated
+    }
+
+    /// The model's time at the system time `date`: the same in live use,
+    /// ahead by the skipped time in Rehearsal mode. For timelines that
+    /// tick on the system clock.
+    func modelTime(at date: Date) -> Date {
+        rehearsal?.clock.time(at: date) ?? date
+    }
+
+    /// Rehearsal mode's time controls, with the user's bedtime.
+    var rehearsalTime: RehearsalTime {
+        RehearsalTime(bedtime: economy.configuration.spending.bedtime, calendar: economy.calendar)
+    }
+
+    /// The Prova panel's reach: the user leaves Pofu and taps `app` on the
+    /// Home Screen. The shield replica stands in front of it when the
+    /// simulated shield covers it; otherwise the app opens.
+    func rehearsalReach(for app: ProtectedApp) {
+        guard let rehearsal else { return }
+        if !rehearsal.isAway {
+            enteredBackground()
+        }
+        let system = rehearsal.system
+        if let shielded = system.shieldedApp(for: app), system.isShielded(app, at: clock.now) {
+            rehearsal.screen = .shield(app: app, shielded: shielded, copy: system.drawShield(for: shielded))
+        } else {
+            rehearsal.screen = .app(app)
+        }
+        Log.screenTime.info("Rehearsal reach for \(app.rawValue, privacy: .public)")
+    }
+
+    /// A button on the shield replica, answered as the action extension
+    /// answers it.
+    func rehearsalShieldButton(_ button: ShieldButton) async {
+        guard let rehearsal, case .shield(_, let shielded, let copy) = rehearsal.screen else { return }
+        let intent = ShieldExtensionCore.intent(for: button, shown: copy)
+        let notificationsAllowed = await RehearsalScreenTime.notificationsAllowed()
+        // The screen may have changed while the settings were read.
+        guard case .shield(let app, let current, _) = rehearsal.screen, current == shielded else { return }
+        switch rehearsal.system.respond(to: intent, for: shielded, notificationsAllowed: notificationsAllowed) {
+        case .close:
+            // The app closes; Pofu is this rehearsal's Home Screen.
+            returnFromRehearsal()
+        case .lifted:
+            rehearsal.screen = .app(app)
+        case .requested:
+            // `.defer`: the system redraws the shield into its waiting
+            // state.
+            rehearsal.screen = .shield(app: app, shielded: shielded, copy: rehearsal.system.drawShield(for: shielded))
+        }
+    }
+
+    /// The user swipes home from the shield (a silent leave) or from the
+    /// app, and opens Pofu.
+    func rehearsalGoHome() {
+        returnFromRehearsal()
+    }
+
+    /// Hop!'s hand-off in Rehearsal mode: into the simulated app, not the
+    /// real one.
+    func rehearsalHandOff(to app: ProtectedApp) {
+        guard let rehearsal else { return }
+        enteredBackground()
+        rehearsal.screen = .app(app)
+        dismissHop()
+    }
+
+    /// While the user is in a simulated app: the shield returns when the
+    /// pass that lifted it ends, as the pass's monitor puts it back.
+    func rehearsalTick() {
+        guard let rehearsal, case .app(let app) = rehearsal.screen else { return }
+        let date = clock.now
+        let system = rehearsal.system
+        system.runMonitor(at: date)
+        guard let shielded = system.shieldedApp(for: app), system.isShielded(app, at: date) else { return }
+        rehearsal.screen = .shield(app: app, shielded: shielded, copy: system.drawShield(for: shielded))
+    }
+
+    /// "+15 dk kullanım": DeviceActivity measures 15 more guarded minutes.
+    func rehearsalAddUsage() async {
+        guard let rehearsal else { return }
+        _ = await rehearsal.system.addUsage(minutes: 15)
+        if !rehearsal.isAway {
+            refresh()
+        }
+    }
+
+    /// The time controls. In Pofu or at a shield, a jump is the phone put
+    /// down and picked up again; inside an app, the time runs in the app,
+    /// up to the moment the shield comes back.
+    func rehearsalJump(_ jump: RehearsalJump) {
+        guard let rehearsal else { return }
+        var destination = rehearsalTime.destination(of: jump, from: clock.now)
+        if case .app(let app) = rehearsal.screen {
+            if let shielded = rehearsal.system.shieldedApp(for: app),
+                let lift = rehearsal.system.activeLift(for: shielded, at: clock.now),
+                lift.until < destination
+            {
+                destination = lift.until
+            }
+            rehearsal.clock.jump(to: destination)
+            rehearsal.noteJump()
+            tick()
+            rehearsalTick()
+            return
+        }
+        if rehearsal.isAway {
+            // Leaving the shield without a tap.
+            rehearsal.screen = nil
+        } else {
+            enteredBackground()
+        }
+        rehearsal.clock.jump(to: destination)
+        rehearsal.noteJump()
+        Log.screenTime.info("Rehearsal jump: \(jump.rawValue, privacy: .public)")
+        returnFromRehearsal()
+    }
+
+    /// "Sıfırla": a fresh install of the rehearsal, onboarding included,
+    /// on the system clock. Live data is never touched.
+    func resetRehearsal() {
+        guard let rehearsal else { return }
+        rehearsal.screen = nil
+        hop = nil
+        homeSheet = nil
+        activeSession = nil
+        earningResult = nil
+        quietCollections = 0
+        rehearsal.system.reset()
+        rehearsal.clock.reset()
+        rehearsal.noteJump()
+        now = clock.now
+        let fresh = PofuSnapshot()
+        state = fresh.state
+        state.vitality = VitalityLedger(initialVitality: economy.configuration.vitality.initialVitality)
+        profile = fresh.profile
+        game = GameState()
+        gameClock.start(&game, at: now, lastSignal: nil)
+        screenTimeLedger = ScreenTimeLedger()
+        saveScreenTimeLedger()
+        isOnScreen = false
+        screenTime.refreshStatus()
+        Log.persistence.notice("Rehearsal reset")
+        refresh()
+    }
+
+    /// Back in Pofu from the shield or an app, as when its scene becomes
+    /// active: the inbox is taken in, and a waiting "Pofu'yla aç" starts
+    /// Hop!.
+    private func returnFromRehearsal() {
+        rehearsal?.screen = nil
+        refresh()
+        answerShieldRequest()
+    }
+
     // MARK: - Persistence
+
+    /// The newest `limit` entries of the event log, oldest first, for the
+    /// developer readout.
+    func recentEvents(limit: Int = 200) -> [LoggedEvent] {
+        guard let store else { return [] }
+        do {
+            return Array(try store.events.readAll().suffix(limit))
+        } catch {
+            Log.persistence.error("Reading the event log failed: \(error.localizedDescription, privacy: .public)")
+            return []
+        }
+    }
 
     private func save() {
         guard let store else { return }
         do {
-            try store.save(PofuSnapshot(state: state, profile: profile, activeSession: activeSession))
+            try store.save(PofuSnapshot(state: state, profile: profile, activeSession: activeSession, game: game))
             persistenceProblem = false
         } catch {
             Log.persistence.error("Saving the snapshot failed: \(error.localizedDescription, privacy: .public)")
@@ -804,12 +1137,16 @@ final class AppModel {
         writeShieldState()
     }
 
+    /// Appends `event` to the log and feeds it to the game, which follows
+    /// the gate through its log (`GameEvent.events(for:)`).
     private func log(_ event: PofuEvent) {
+        let logged = LoggedEvent(at: clock.now, event: event, source: eventSource)
         do {
-            try store?.log(event, at: clock.now)
+            try store?.events.append(logged)
         } catch {
             Log.persistence.error("Appending to the event log failed: \(error.localizedDescription, privacy: .public)")
         }
+        advanceGame(to: logged.at, applying: GameEvent.events(for: logged))
     }
 }
 

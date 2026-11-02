@@ -1,0 +1,28 @@
+id: char-pofu-bored
+type: character
+title_tr: 'Pofu: Sıkılmış'
+title_en: 'Pofu: Bored'
+status: planned
+horizon: later
+summary: >-
+  Trigger: Fourth Pofu open within an hour (A9). Line: "Nothing new here, I promise. The island's
+  fine without us watching."
+notes:
+- >-
+  TR line (native, not translated): "Burada yeni bir şey yok, söz. Biz bakmasak da ada gayet
+  iyi."
+- 'Face recipe: half-lid + flat mouth.'
+- 'Body motion (code, ADR-0011): looks away, slow blink.'
+- 'Postponed by the decision audit: 15 of the 20 emotions wait.'
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: Burada yeni bir şey yok, söz. Biz bakmasak da ada gayet iyi.

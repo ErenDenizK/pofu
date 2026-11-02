@@ -1,0 +1,23 @@
+id: asset-mochi-work
+type: asset
+title_tr: mochi-work
+title_en: mochi-work (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached bunny, Mochi, into her working pose at the tea stall. Change only her
+  two front paws: they now hold a small tulip-shaped tea glass of warm amber tea on a tiny
+  cream saucer in front of her chest, as if offering it. The glass is a soft tinted shape,
+  matte, with no shine. Her ears, head, face, body and feet stay exactly as they are.
+links:
+  variant_of:
+  - asset-mochi-v2
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:mochi-work
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: char
+batch: batch-03-home-island
+size: 1024x1536

@@ -1,0 +1,29 @@
+id: char-pofu-easy-going
+type: character
+title_tr: 'Pofu: Rahat'
+title_en: 'Pofu: Easy-going'
+status: planned
+horizon: next
+summary: >-
+  Trigger: A quick check (≤ 3 min): never jealous. Line: "Quick one? Go ahead. I'll keep the
+  calm warm."
+notes:
+- >-
+  TR line (native, not translated): "Hızlıca mı? Tamam. Huzuru ben sıcak tutarım."
+- 'Face recipe: neutral, soft eyes.'
+- 'Body motion (code, ADR-0011): a small nod.'
+- >-
+  In the first five emotions to ship (decision audit): proud, pout, easy-going, breathing,
+  unwell.
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: Hızlıca mı? Tamam. Huzuru ben sıcak tutarım.

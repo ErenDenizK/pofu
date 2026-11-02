@@ -1,0 +1,14 @@
+id: moment-welcome
+type: moment
+title_tr: Merhaba, ben Pofu
+title_en: Welcome
+status: in-app
+horizon: now
+summary: >-
+  O1: the home island asleep in morning mist, Pofu at 38 % width, one line and one primary
+  button. A world frame.
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#o1-welcome-world'
+act: first-run
+sequence: 10

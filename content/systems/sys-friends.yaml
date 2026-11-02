@@ -1,0 +1,23 @@
+id: sys-friends
+type: system
+title_tr: Arkadaşlar
+title_en: Friends
+status: planned
+horizon: later
+summary: >-
+  Serverless friend approval (ADR-0005) as a rung on the fourth rapid reach, Phase 5. Until
+  it ships, the fourth rapid reach falls back to the breath, never to a lockout.
+notes:
+- >-
+  Friends visiting each other's islands is a year-one idea; no comparison (A8).
+links:
+  uses_asset:
+  - asset-icon-friend
+sources:
+- doc: docs/adr/0005-serverless-friend-approval.md
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+group: meta
+board:
+  col: 8
+  row: 2

@@ -1,0 +1,16 @@
+id: idea-w7
+type: idea
+title_tr: W7 Yeni adalar emeğe değer mi?
+title_en: 'W7: Do new islands earn their cost?'
+status: planned
+horizon: later
+summary: >-
+  Island 2 and the map, only if friends still use the gate after two weeks. Check: friends'
+  D7 and resisted share.
+links:
+  unlocks:
+  - island-iskele
+sources:
+- doc: docs/design/iteration-plan.md
+  anchor: '#stage-w-the-world-after-two-weeks-of-daily-use'
+kind: milestone

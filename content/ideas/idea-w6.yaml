@@ -1,0 +1,16 @@
+id: idea-w6
+type: idea
+title_tr: W6 Tek bir ürün gibi mi?
+title_en: 'W6: Does the product look like one thing?'
+status: planned
+horizon: later
+summary: >-
+  Glass++ production: icon family with vector twins, jar and lantern, widgets, layered app
+  icon. Check: icons named correctly at 30 pt by a stranger.
+links:
+  part_of:
+  - sys-glass-plus
+sources:
+- doc: docs/design/iteration-plan.md
+  anchor: '#stage-w-the-world-after-two-weeks-of-daily-use'
+kind: milestone

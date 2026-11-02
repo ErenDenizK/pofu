@@ -1,0 +1,14 @@
+id: moment-map
+type: moment
+title_tr: Takımada haritası
+title_en: The map
+status: planned
+horizon: later
+summary: >-
+  The map button pulls back to every island; locked islands are misty silhouettes with plain
+  progress bars. Pofu is a 30 pt vector pin.
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#home--island--archipelago'
+act: visit
+sequence: 80

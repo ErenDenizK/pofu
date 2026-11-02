@@ -1,0 +1,27 @@
+id: char-pofu-grateful
+type: character
+title_tr: 'Pofu: Minnettar'
+title_en: 'Pofu: Grateful'
+status: planned
+horizon: later
+summary: >-
+  Trigger: A resident's wish fulfilled. Line: "Mochi napped all afternoon. She says thank
+  you!"
+notes:
+- >-
+  TR line (native, not translated): "Mochi bütün öğleden sonra uyudu. Sana teşekkür ediyor!"
+- 'Face recipe: eyes happy.'
+- 'Body motion (code, ADR-0011): a little wave of the paws.'
+- 'Postponed by the decision audit: 15 of the 20 emotions wait.'
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: Mochi bütün öğleden sonra uyudu. Sana teşekkür ediyor!

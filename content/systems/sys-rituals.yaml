@@ -1,0 +1,23 @@
+id: sys-rituals
+type: system
+title_tr: Ada ritüelleri
+title_en: Island rituals
+status: planned
+horizon: later
+summary: >-
+  Each island has one small ritual that uses a behavior Pofu already measures: postcards (İskele),
+  stars (Yıldız), the warm spring (Kaplıca), Bulut's story (Kitap). At most once a day, earned
+  by calm, never on a timer, deterministic.
+notes:
+- >-
+  Risk named in the self-critique: "small" may read as "thin". Prototype the postcard set
+  and the constellation next.
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+- doc: docs/product/app-game-boundary.md
+  anchor: '#74-no-infinite-content-no-variable-ratio-rewards'
+group: world
+board:
+  col: 9
+  row: 0

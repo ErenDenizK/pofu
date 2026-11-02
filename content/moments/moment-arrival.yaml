@@ -1,0 +1,14 @@
+id: moment-arrival
+type: moment
+title_tr: Pofu başını kaldırır
+title_en: Pofu looks up
+status: planned
+horizon: next
+summary: >-
+  At most one arrival reaction per open, 250 ms after the first frame: missed you, worried,
+  proud, morning stretch or bored, by priority. Never with a haptic.
+sources:
+- doc: docs/design/interaction-spec.md
+  anchor: '#46-reacting-to-the-users-real-behavior-on-return'
+act: visit
+sequence: 10

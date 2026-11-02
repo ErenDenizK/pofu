@@ -1,0 +1,34 @@
+id: island-kitap
+type: island
+title_tr: Kitap
+title_en: The library island
+status: planned
+horizon: later
+summary: >-
+  A library island. Bulut's story: a short illustrated story, one page per tended day, read
+  in half a minute. Never more than one page a day, no cliffhanger nudges; finished books
+  go on the shelf. Stations: reading tree, book house, printing press. Resident: Bulut, a
+  cloud-soft chinchilla who reads aloud.
+notes:
+- >-
+  Arrives with a season update, for everyone, and stays (simulated at day 50).
+- >-
+  Seasonal islands after Kitap follow the same template: a theme, three stations, one ritual,
+  one resident, an arrival rule. They arrive in app updates and stay forever (A7).
+links:
+  requires:
+  - island-aycicegi
+  - sys-island-arrivals
+  related:
+  - sys-rituals
+  - theme-seasonal-islands
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+theme_en: A library island
+ritual_en: 'Bulut''s story: one page per tended day'
+residents:
+- char-bulut
+unlock:
+  day: 50
+  rule_en: Arrives with a season update, for everyone

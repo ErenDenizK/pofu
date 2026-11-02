@@ -14,8 +14,8 @@ permissions:
 
 jobs:
   # macOS minutes bill at 10x. Decide first, on a cheap Linux runner, whether
-  # anything that affects the Swift build changed; docs, design and Python
-  # tooling never need the macOS job.
+  # anything that affects the Swift build changed; docs, design, content and
+  # Python tooling never need the macOS job.
   changes:
     name: Detect what changed
     runs-on: ubuntu-latest
@@ -45,8 +45,8 @@ jobs:
           files="$(git diff --name-only "$BASE...$HEAD")"
           printf '%s\n' "$files"
           # Anything outside these paths can affect the app build.
-          swift_files="$(printf '%s\n' "$files" | grep -Ev '^(docs/|design/|tools/|[^/]+\.md$|\.gitignore$|LICENSE)' | grep -v '^$' || true)"
-          tools_files="$(printf '%s\n' "$files" | grep -E '^tools/' || true)"
+          swift_files="$(printf '%s\n' "$files" | grep -Ev '^(docs/|design/|tools/|content/|[^/]+\.md$|\.gitignore$|LICENSE)' | grep -v '^$' || true)"
+          tools_files="$(printf '%s\n' "$files" | grep -E '^(tools|content)/' || true)"
           echo "swift=$([ -n "$swift_files" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
           echo "tools=$([ -n "$tools_files" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
 
@@ -67,13 +67,18 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r tools/assets/requirements.txt -r tools/imagegen/requirements.txt
+          pip install -r tools/assets/requirements.txt -r tools/imagegen/requirements.txt -r tools/content/requirements.txt
 
       - name: Test the asset tools
         run: python3 -I -m unittest discover -s tools/assets -p "test_*.py"
 
       - name: Test the image pipeline
         run: python3 -I -m pytest -q tools/imagegen/tests
+
+      - name: Validate the content graph (Pofu Atlas)
+        run: |
+          python3 -I tools/content/validate.py
+          python3 -I -m pytest -q tools/content/tests
 
   build-and-test:
     name: Test PofuKit and build the app
@@ -132,3 +137,134 @@ jobs:
             -destination 'generic/platform=iOS Simulator' \
             CODE_SIGNING_ALLOWED=NO \
             SWIFT_TREAT_WARNINGS_AS_ERRORS=YES
+
+      # The founder reviews screenshots, never web prototypes: render the
+      # island scene in the simulator (402 x 874 pt at 3x, the iPhone 17
+      # class) and upload the PNGs as the world-screenshots artifact.
+      - name: Render the world screenshots
+        run: |
+          set -euo pipefail
+          udid="$(xcrun simctl list devices available --json | python3 -I -c '
+          import json, sys
+          devices = [d for runtime, ds in json.load(sys.stdin)["devices"].items() if "iOS" in runtime for d in ds]
+          for name in ("iPhone 17 Pro", "iPhone 17", "iPhone 16 Pro"):
+              match = [d for d in devices if d["name"] == name]
+              if match:
+                  print(match[-1]["udid"])
+                  break
+          ')"
+          if [ -z "$udid" ]; then
+            echo "::error::No iPhone 17 Pro, iPhone 17 or iPhone 16 Pro simulator is installed."
+            xcrun simctl list devices available
+            exit 1
+          fi
+          out="$RUNNER_TEMP/world-screenshots"
+          mkdir -p "$out"
+          set -o pipefail
+          TEST_RUNNER_WORLD_SCREENSHOTS_DIR="$out" xcodebuild test \
+            -project Pofu.xcodeproj \
+            -scheme PofuWorldScreenshots \
+            -destination "id=$udid" \
+            -resultBundlePath "$RUNNER_TEMP/world-screenshots.xcresult" \
+            CODE_SIGNING_ALLOWED=NO \
+            SWIFT_TREAT_WARNINGS_AS_ERRORS=YES
+          # The PNGs are attached to the result as well; export them if the
+          # simulator could not write to the runner's folder.
+          if ! ls "$out"/*.png >/dev/null 2>&1; then
+            xcrun xcresulttool export attachments \
+              --path "$RUNNER_TEMP/world-screenshots.xcresult" \
+              --output-path "$out"
+          fi
+          ls -la "$out"
+
+      - name: Upload the world screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: world-screenshots
+          path: ${{ runner.temp }}/world-screenshots
+          if-no-files-found: error
+
+  # The artifact host is not reachable from every review environment, so
+  # the screenshots are also published where git can fetch them: a
+  # single-commit orphan branch, screenshots/<head branch with / as ->,
+  # force-pushed on every green run. See docs/development.md.
+  publish-screenshots:
+    name: Publish the world screenshots to a branch
+    needs: build-and-test
+    if: >-
+      needs.build-and-test.result == 'success' &&
+      (github.event_name != 'pull_request' ||
+       github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Download the world screenshots
+        uses: actions/download-artifact@v4
+        with:
+          name: world-screenshots
+          path: shots
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Convert to JPEG and draw a contact sheet
+        run: |
+          set -euo pipefail
+          pip install --quiet "Pillow>=10.0"
+          mkdir -p out
+          python3 -I - shots out <<'PY'
+          import pathlib, sys
+          from PIL import Image, ImageDraw
+          src, out = map(pathlib.Path, sys.argv[1:3])
+          pngs = sorted(src.glob("*.png"))
+          if not pngs:
+              sys.exit("no screenshots in the artifact")
+          thumbs = []
+          for png in pngs:
+              im = Image.open(png).convert("RGB")
+              # The look-dev grid holds twelve phones; keep it readable.
+              h = 1800 if png.stem == "look-compare" else 1000
+              w = round(im.width * h / im.height)
+              im.resize((w, h), Image.LANCZOS).save(out / (png.stem + ".jpg"), "JPEG", quality=85, optimize=True)
+              if png.stem.startswith("look-"):
+                  continue
+              thumbs.append((png.stem, im.resize((round(im.width * 600 / im.height), 600), Image.LANCZOS)))
+          # One row per appearance (light, then dark), one column per state.
+          rows = [[t for t in thumbs if t[0].endswith(s)] for s in ("-light", "-dark")]
+          rows = [r for r in rows if r] or [thumbs]
+          cols = max(len(r) for r in rows)
+          tw, th, pad, label = thumbs[0][1].width, 600, 16, 28
+          sheet = Image.new("RGB", (pad + cols * (tw + pad), pad + len(rows) * (th + label + pad)), (240, 240, 240))
+          draw = ImageDraw.Draw(sheet)
+          for r, row in enumerate(rows):
+              for c, (name, im) in enumerate(row):
+                  x, y = pad + c * (tw + pad), pad + r * (th + label + pad)
+                  draw.text((x, y + 6), name, fill=(40, 40, 40))
+                  sheet.paste(im, (x, y + label))
+          sheet.save(out / "contact.jpg", "JPEG", quality=85, optimize=True)
+          PY
+          cp shots/*.txt out/ 2>/dev/null || true
+          ls -la out
+
+      - name: Force-push the screenshots branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_BRANCH: ${{ github.head_ref || github.ref_name }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          branch="screenshots/${SOURCE_BRANCH//\//-}"
+          cd out
+          git init -q
+          git checkout -q --orphan "$branch"
+          git config user.name "Eren Deniz Kuyucaklıoğlu"
+          git config user.email "109629701+ErenDenizK@users.noreply.github.com"
+          git add -A
+          git commit -q -m "chore(screenshots): world screenshots for $SOURCE_BRANCH at ${SOURCE_SHA:0:7}"
+          git push -q --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/$branch"
+          echo "Published to $branch"

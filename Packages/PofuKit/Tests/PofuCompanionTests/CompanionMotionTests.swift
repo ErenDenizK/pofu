@@ -22,6 +22,13 @@ struct CompanionMotionTests {
         #expect(poses.allSatisfy { abs($0.lean) < 0.03 }, "sway stays subtle")
     }
 
+    @Test func withBlinksOffTheEyesStayOpen() {
+        var motion = CompanionMotion(vitality: 1, energy: 0.25)
+        motion.blinks = false
+        let poses = run(&motion, seconds: 20)
+        #expect(poses.allSatisfy { $0.lidClosure < 0.2 }, "a still frame never catches Pofu mid-blink")
+    }
+
     @Test func idlePofuBlinksEveryFewSeconds() {
         var motion = CompanionMotion(vitality: 1, energy: 0.25)
         let poses = run(&motion, seconds: 20)

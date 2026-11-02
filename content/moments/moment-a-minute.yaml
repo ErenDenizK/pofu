@@ -1,0 +1,17 @@
+id: moment-a-minute
+type: moment
+title_tr: Bir dakika
+title_en: A minute with Pofu
+status: planned
+horizon: next
+summary: >-
+  The cover becomes the world, a soft ring fills over 60 s, the queue plays or Pofu's fur
+  gets brushed, and Pofu ends it: "Bu kadar. Telefonu bırakalım mı?"
+links:
+  part_of:
+  - sys-the-minute
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#63-a-minute-with-pofu'
+act: gate
+sequence: 50

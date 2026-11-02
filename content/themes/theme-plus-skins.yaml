@@ -1,0 +1,15 @@
+id: theme-plus-skins
+type: theme
+title_tr: Mevsimlik istasyon kaplamaları
+title_en: Seasonal station skins (Plus)
+status: planned
+horizon: later
+summary: >-
+  Plus: seasonal station skins, made as edits of the level art, returning every year.
+links:
+  part_of:
+  - sys-plus
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#9-seasons-and-events'
+kind: plus

@@ -127,9 +127,11 @@ class EndToEnd(unittest.TestCase):
         code, out = self.cli("promote", *m)
         self.assertEqual(code, 0, out)
         master = pl.ART_ROOT / "stations" / "cay-1"
-        self.assertTrue((master / "cay-1.png").exists() and (master / "raw.png").exists())
+        self.assertTrue((master / "cay-1.png").exists() and (master / "raw.webp").exists())
+        self.assertFalse((master / "raw.png").exists())
         meta = json.loads((master / "meta.json").read_text())
         self.assertEqual(meta["take"], 2)
+        self.assertEqual(meta["raw_encoding"], "webp lossless")  # a small test take fits
         self.assertEqual(meta["account"]["owner"], "Test Owner (founder)")
         self.assertIn("Generating account:** Test Owner (founder)", (master / "provenance.md").read_text())
         self.assertTrue(meta["registration"])  # the chain root was put on the anchor
@@ -233,6 +235,29 @@ class EndToEnd(unittest.TestCase):
             self.assertNotIn(os.environ["POFU_OPENAI_API_KEY"], out)
         finally:
             os.environ.pop("POFU_OPENAI_API_KEY", None)
+
+    def test_external_parent_is_never_generated(self):
+        self.manifest.write_text(MANIFEST.replace(
+            "    attach:\n      - {ref: station-guide, role: \"the guide\"}\n    prompt:\n      - text: A tea stall.\n"
+            "      - block: view-v2\n      - block: prop-style-v2\n", "    external: batch-01-slice\n"), encoding="utf-8")
+        m = ["--manifest", str(self.manifest)]
+        os.environ["STUB_IMAGE"] = str(save(stall(dx=30, scale=0.95, awning=True, size=1254), self.tmp / "l2.png"))
+        code, out = self.cli("plan", *m)
+        self.assertIn("external: made by batch-01-slice", out)
+        code, out = self.cli("run", *m, "--takes", "1")
+        self.assertIn("skip cay-1: external", out)
+        self.assertIn("skip cay-2: waiting for cay-1", out)
+        self.assertFalse((self.tmp / "stub.log").exists())
+        # once the other batch's master is on disk, the edit runs and the parent is never regenerated
+        parent = pl.ART_ROOT / "stations" / "cay-1" / "cay-1.png"
+        parent.parent.mkdir(parents=True)
+        save(stall(), parent)
+        code, out = self.cli("run", *m, "--takes", "1")
+        self.assertEqual(code, 0, out)
+        inbox = self.tmp / "inbox" / "e2e"
+        self.assertEqual(sorted(p.name for p in inbox.glob("*.png")), ["station__cay-2--t1.png"])
+        code, out = self.cli("ingest", *m, "--job", "cay-1", str(parent))
+        self.assertEqual(code, run.EXIT_ERR, out)
 
     def test_dry_run_sends_nothing(self):
         code, out = self.cli("run", "--manifest", str(self.manifest), "--dry-run")

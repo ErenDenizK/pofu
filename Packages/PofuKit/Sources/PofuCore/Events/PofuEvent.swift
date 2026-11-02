@@ -54,15 +54,85 @@ public enum PofuEvent: Hashable, Sendable, Codable {
     case guardedUsageMeasured(minutes: Int)
 }
 
+/// Where an event came from: the real gate, or Rehearsal mode, which
+/// simulates the Screen Time system inside the app (free build).
+///
+/// Simulated events are kept apart from live ones twice over: Rehearsal
+/// mode writes to its own store, and every event it logs carries
+/// `.simulated`, so no readout can count one as real.
+public enum EventSource: String, Hashable, Sendable, Codable, CaseIterable {
+    case live
+    case simulated
+}
+
+/// Which events a readout shows, by `EventSource`.
+public enum EventSourceFilter: String, Hashable, Sendable, CaseIterable {
+    case all
+    case live
+    case simulated
+
+    public func includes(_ source: EventSource) -> Bool {
+        switch self {
+        case .all: true
+        case .live: source == .live
+        case .simulated: source == .simulated
+        }
+    }
+}
+
 /// One entry of the event log.
-public struct LoggedEvent: Hashable, Sendable, Codable, Identifiable {
+public struct LoggedEvent: Hashable, Sendable, Identifiable {
     public let id: UUID
     public let at: Date
     public let event: PofuEvent
+    /// `.live` unless Rehearsal mode logged it.
+    public let source: EventSource
 
-    public init(id: UUID = UUID(), at: Date, event: PofuEvent) {
+    public init(id: UUID = UUID(), at: Date, event: PofuEvent, source: EventSource = .live) {
         self.id = id
         self.at = at
         self.event = event
+        self.source = source
+    }
+
+    /// The same entry, from `source`.
+    public func tagged(_ source: EventSource) -> LoggedEvent {
+        LoggedEvent(id: id, at: at, event: event, source: source)
+    }
+}
+
+extension LoggedEvent: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case id, at, event, source
+    }
+
+    /// Lines written before sources existed are live.
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.init(
+            id: try container.decode(UUID.self, forKey: .id),
+            at: try container.decode(Date.self, forKey: .at),
+            event: try container.decode(PofuEvent.self, forKey: .event),
+            source: try container.decodeIfPresent(EventSource.self, forKey: .source) ?? .live
+        )
+    }
+
+    /// Live entries are written exactly as before; only simulated ones
+    /// carry the tag.
+    public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(at, forKey: .at)
+        try container.encode(event, forKey: .event)
+        if source != .live {
+            try container.encode(source, forKey: .source)
+        }
+    }
+}
+
+extension Sequence where Element == LoggedEvent {
+    /// The entries `filter` lets through, in order.
+    public func filtered(by filter: EventSourceFilter) -> [LoggedEvent] {
+        self.filter { filter.includes($0.source) }
     }
 }

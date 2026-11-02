@@ -1,0 +1,19 @@
+id: asset-concept-bunny
+type: asset
+title_tr: Tavşan konsepti
+title_en: Bunny neighbor concept
+status: cut
+horizon: now
+summary: >-
+  The bunny neighbor concept from Home direction B, attached to Mochi's prompt (D8) as her
+  design reference.
+notes:
+- Prototype-era concept art, 240–508 px; a reference, not a master.
+art:
+  images:
+  - design/prototypes/home-directions/assets/neighbor-bunny.webp
+  jobs: []
+sources:
+- doc: docs/brand/character-exploration.md
+kind: concept
+batch: unbatched

@@ -1,0 +1,27 @@
+id: sys-pass
+type: system
+title_tr: Geçiş ve Canlı Etkinlik
+title_en: Pass and Live Activity
+status: in-app
+horizon: now
+summary: >-
+  An open grants a pass (3 or 15 minutes). The Live Activity counts down with the vector Pofu
+  and an "End now" button; when it ends the shield returns with "Süre doldu." There is no
+  pass-expiry push in the live build.
+notes:
+- >-
+  Colors never turn red and the last minute does not change color (no countdown anxiety).
+- Quick checks started on the shield have no Live Activity (Apple).
+links:
+  feeds:
+  - sys-daily-hour
+  drains:
+  - sys-station-production
+  - sys-calm
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#7-pass-life'
+group: gate
+board:
+  col: 1
+  row: 2

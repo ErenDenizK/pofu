@@ -83,6 +83,8 @@ founder in Turkish.
 
 ### T4. Image generation (batch 01 open for the W1 test, D1–D8 only)
 
+_Founder's decision (2026-11-02): art is generated on his uncle's ChatGPT plan with permission, and provenance says so truthfully. Before launch: a written assignment or shipped masters regenerated on his own plan (roadmap Phase 6)._
+
 Production art is generated **only on the founder's own OpenAI account**:
 his own ChatGPT plan through the Codex CLI, or his own API key through the
 pipeline's `openai-api` backend. Using anyone else's account is against

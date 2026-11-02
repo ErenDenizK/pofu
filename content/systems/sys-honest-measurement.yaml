@@ -1,0 +1,27 @@
+id: sys-honest-measurement
+type: system
+title_tr: Dürüst ölçüm
+title_en: Honest measurement
+status: in-app
+horizon: now
+summary: >-
+  The rules depend only on what we can measure, and the copy never claims more. After a pass
+  expires under the soft gate, time is unobserved until the next sign of life; nothing that
+  rewards absence accrues across it. The 72-hour observation window holds seeds when unobserved.
+notes:
+- 'Done in G2 (#32): pass-expiry notification, post-expiry time unobserved.'
+- >-
+  With Screen Time, usage is measured at thresholds; exact per-session minutes are never visible.
+links:
+  feeds:
+  - sys-quiet-time
+  - sys-calm
+  - sys-station-production
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#6-measuring-usage-honestly'
+- doc: docs/adr/0014-quiet-time-earning.md
+group: care
+board:
+  col: 0
+  row: 3

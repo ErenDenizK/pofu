@@ -1,0 +1,20 @@
+id: asset-windmill-2
+type: asset
+title_tr: windmill-2
+title_en: windmill-2 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add soft cream sail cloths stretched over each of the four sail frames, matte cloth with
+  one gentle fold, the slats showing only at the edges.
+links:
+  variant_of:
+  - asset-windmill-1
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:windmill-2
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

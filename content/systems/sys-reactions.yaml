@@ -1,0 +1,21 @@
+id: sys-reactions
+type: system
+title_tr: Tepkiler
+title_en: Touch reactions
+status: planned
+horizon: next
+summary: >-
+  Poking, petting, residents, stations and the lawn. The first touch gets the biggest response,
+  repeats get smaller; the world gets quieter the longer you watch. No counters, combos or
+  random rewards.
+notes:
+- >-
+  A run is touches < 2.5 s apart; response rises for 3, stays playful for 3, then calms.
+- 'Petting: long press, then stroke; 8 strokes and Pofu dozes.'
+sources:
+- doc: docs/design/interaction-spec.md
+  anchor: '#4-reactions'
+group: character
+board:
+  col: 6
+  row: 4

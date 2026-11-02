@@ -1,0 +1,14 @@
+id: moment-station-sheet
+type: moment
+title_tr: İstasyona dokun
+title_en: Opening a station
+status: in-app
+horizon: now
+summary: >-
+  Tap a station: the camera focuses in 0.7 s while a sheet rises to a 42 % detent; everything
+  but the station and its resident goes soft. The world behind stays live.
+sources:
+- doc: docs/design/interaction-spec.md
+  anchor: '#2-opening-a-station'
+act: visit
+sequence: 50

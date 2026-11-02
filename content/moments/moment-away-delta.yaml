@@ -1,0 +1,17 @@
+id: moment-away-delta
+type: moment
+title_tr: Sen yokken
+title_en: While you were away
+status: planned
+horizon: next
+summary: >-
+  "Sen yokken huzur ×1,6'ya çıktı, komşular 186 çekirdek topladı." The result of the time
+  away leads, not a score.
+links:
+  part_of:
+  - sys-visit-queue
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#92-coming-back-to-the-app-after-resisting'
+act: visit
+sequence: 20

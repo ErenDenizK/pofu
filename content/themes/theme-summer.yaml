@@ -1,0 +1,11 @@
+id: theme-summer
+type: theme
+title_tr: 'Yaz: ateşböcekleri'
+title_en: Summer fireflies
+status: planned
+horizon: later
+summary: 'Free: fireflies on calm summer nights.'
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#9-seasons-and-events'
+kind: season

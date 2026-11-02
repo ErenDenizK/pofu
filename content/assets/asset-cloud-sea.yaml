@@ -1,0 +1,21 @@
+id: asset-cloud-sea
+type: asset
+title_tr: cloud-sea
+title_en: cloud-sea (world)
+status: in-production
+horizon: now
+summary: >-
+  A wide band of soft, dense, plump clouds seen from slightly above, like a calm sea of clouds,
+  for the bottom of the same sky. The band fills the bottom 40% of the image from edge to
+  edge; its top edge is a gentle, even row of rounded billows of similar size, and everything
+  above it is fully transparent. The left and right edges must tile seamlessly when two copies
+  are placed side by side: the band has the same height…
+art:
+  images: []
+  jobs:
+  - batch-04-sky:cloud-sea
+sources:
+- doc: tools/imagegen/manifest/batch-04-sky.yaml
+kind: world
+batch: batch-04-sky
+size: 1536x1024

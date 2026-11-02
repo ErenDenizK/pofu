@@ -1,0 +1,29 @@
+id: char-pofu-pout
+type: character
+title_tr: 'Pofu: Surat asma'
+title_en: 'Pofu: Pout'
+status: planned
+horizon: next
+summary: >-
+  Trigger: Opened anyway: calm resets. Line: "Hmph. Calm's back to ×1.0. Fine. It'll grow
+  again."
+notes:
+- >-
+  TR line (native, not translated): "Hıh. Huzur yine ×1.0. Peki. Yine büyür."
+- 'Face recipe: pout mouth + cheeks full + half-lid.'
+- 'Body motion (code, ADR-0011): squash, a puff of air.'
+- >-
+  In the first five emotions to ship (decision audit): proud, pout, easy-going, breathing,
+  unwell.
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: Hıh. Huzur yine ×1.0. Peki. Yine büyür.

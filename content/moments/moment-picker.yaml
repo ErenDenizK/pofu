@@ -1,0 +1,14 @@
+id: moment-picker
+type: moment
+title_tr: Uygulama seçimi
+title_en: Picking apps
+status: in-app
+horizon: now
+summary: >-
+  O4–O5: a primer (apps, not categories), then Apple's FamilyActivityPicker; an empty pick
+  gets "Kapıda kimse yok".
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#o5-apples-picker-and-what-can-go-wrong'
+act: first-run
+sequence: 40

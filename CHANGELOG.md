@@ -9,6 +9,137 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Look-dev for the world (`docs/design/look-dev.md`): a reversible color
+  pipeline, "painted HD-2D lite" and the terrarium. The art is baked with
+  the new `lock-light` style-lock preset (the default for new jobs;
+  `soft-lock` stays available), and saturation, contrast and the value
+  range move into `WorldGrade`, a Metal color grade with a vignette on
+  the world layer only, with presets for day, golden hour, night, Pofu
+  unwell and high calm, driven by the snapshot's clock and wellbeing and
+  eased over 2.5 s. `WorldLight` adds bloom on emissive points, golden-hour
+  light shafts, pollen by day and fireflies at night, and a stronger
+  tilt-shift per framing; the layers run only while the camera moves or
+  during a 6 s visit. At the Island and Map framings the world sits in a
+  terrarium: a Metal glass rim with thin Liquid Glass strips as its lip. Celebration
+  moments get a painted `CelebrationCard` (system UI is glass,
+  celebration is painted). All of it is behind `WorldLook` flags, on in
+  the world scene only; a `FrameMeter` debug overlay measures frame
+  intervals and CPU. `lock-light` versions of `island-main-s` and
+  `cay-1` are re-locked from their raws with the new
+  `tools/imagegen/relock.py`; the app also carries the soft-lock bake to
+  compare until the founder chooses. The look sits on round 2's living
+  sky: `WorldLight` follows the sky's keyframes, the cloud drift holds
+  still once the world settles, and the build's level tag is painted.
+
+- Pofu Hub (`design/hub/index.html`): the founder's phone-first surface,
+  replacing the canvas atlas as his daily view (the atlas stays as a linked
+  deep map). One column of cards with a sticky segmented control: Sorular
+  (the lead's questions with options, pros, cons, cost, a recommendation,
+  the founder's pick and a notes thread with dictation), Şu an (doing, done
+  today, next, and the founder's ideas), Yol haritası (a status timeline)
+  and Onay (review items with Beğendim, Yeniden and Not), plus a floating
+  Fikir sheet. All content lives in the artifact `db`, so the lead updates
+  it without republishing. `design/hub/tools/check.js` drives it with a mock
+  `window.claude` at phone and desktop sizes in light and dark.
+- `PofuWorld` round 2: Home per the app–game boundary (`WorldHome`, behind
+  `FeatureFlags.worldHome`, off until the gate's dogfood week ends). Five
+  chrome items in native glass: the wellbeing pill in the art's warm
+  palette, the calm chip (its dot breathes while calm grows), the gear,
+  the Today card (beads, guarded minutes in honest 15-minute steps) and one
+  contextual primary that gives way to "Ada sensiz de çalışıyor." once the
+  visit settles. The visit queue (§6.2: repair banner, care, collect, news,
+  one affordable build, the weekly recap; at most three beats; nights and
+  reopens within 15 minutes land settled) is a pure, tested type. The
+  collect moment flies up to 24 seeds from the stations into a seed pill
+  whose counter rolls and pops, with tap, tick and success haptics; the
+  build moment pushes the camera in under a compact sheet, squashes the
+  station, swaps its art inside the squash with puffs and sparkles, pops
+  "Seviye n!", hops Pofu and the resident, and settles back. Both commit
+  through `WorldClock.collect` and `WorldClock.build` first. Reduce Motion
+  cross-fades camera moves (200 ms) and drops particles, squash and hops.
+  A living sky follows the snapshot's clock (dawn, day, golden hour,
+  night; dark mode is a night sky) with drifting cloud layers, a sun or
+  moon glow and a cloud sea that keeps the bottom band calm. Stations
+  whose art is a shared stand-in wear a small level badge.
+
+- Rehearsal mode (Prova modu): the Screen Time product on the free build,
+  with the system parts simulated in the app. It is the default in the
+  `Pofu` scheme and a developer toggle, off by default, in `PofuLive`.
+  Onboarding is gate v2's O1 to O8 with labelled stand-ins for Apple's
+  Screen Time alert and app picker. A glass, draggable Prova panel reaches
+  for Instagram, YouTube or TikTok: a replica of the shield, drawn by the
+  new `ShieldExtensionCore` that the shield extensions now share, answers
+  "Boş ver", the 3-minute quick check, "Pofu'yla aç" (a real local
+  notification that opens Hop!), the breath past the daily hour, and the
+  shield's return when a pass ends, through the real inbox, ingestion,
+  event log and game. Time controls: "+15 dk kullanım", "1 saat ileri",
+  "Gece/Sabah", "Sıfırla". Rehearsal mode keeps its own store and tags
+  every event `simulated` (`EventSource` on `LoggedEvent`); the developer
+  readout filters by source. The founder's install guide in Turkish is
+  `docs/local/ucretsiz-kurulum.md`.
+
+- Pofu Atlas, the content system: `content/` holds one YAML node per
+  island, station (with its five levels), character and emotion, system,
+  storyboard moment, theme, idea and image asset (270 nodes seeded from the
+  game design, the app and game boundary, gate v2, the interaction spec,
+  ADR-0015 to ADR-0018, the roadmap, the decision audit, the iteration plan
+  and all four art manifests, plus ten lead-brainstorm ideas).
+  `tools/content/validate.py` (run in CI's Python job; `content/` never
+  triggers macOS) checks ids, links, art paths, manifest jobs and source
+  anchors; `sync_assets.py` keeps asset nodes in step with promoted art;
+  `build_atlas.py` renders `design/atlas/index.html`, a phone-first
+  pannable board with a detail drawer and founder notes through the
+  artifact runtime.
+
+- Art batches 03 and 04 for Codex (open): `batch-03-home-island`
+  completes Ayçiçeği for stages 1–5 (lily pond, workshop and windmill
+  L1–L5, garden L3–L5, simit cart L2–L5, `mochi-v2` without Pofu's curl,
+  Fındık, working poses, the large island about 40 % larger, the terrace,
+  the east islet and bridge; 30 jobs) and `batch-04-sky` the living sky
+  (five clouds, a sun glow, three distant islands, a tiling sea of clouds;
+  10 jobs). Manifests can continue another batch's chains through
+  `external` jobs, and `check_upload.py` reads pushed art back to catch
+  the connector's silent 768 KB truncation; uploads stay under 600 KB.
+
+- `PofuWorld`, Pofu's island in SwiftUI (iteration W2): `IslandScene`
+  reads only a `WorldSnapshot` and stacks the batch 01 island plate (cut
+  into four depth bands), the station vignettes at fixed slots (Mochi's
+  çay ocağı L1 from batch 01, prototype stand-ins for the rest), Mochi,
+  and Pofu's live companion view. One continuous camera through Home,
+  Island and Map: a pinch scrubs the rail 1:1 with a rubber band at the
+  ends and lands on the nearest framing with velocity projection; a
+  double tap steps in; a drag peeks. A station tap focuses the camera and
+  raises a stub sheet (42 % and large detents, the world live behind it);
+  a resident tap shows a card with "Tezgâha git". The depth lens blurs by
+  distance from an animated focus plane (a rack focus) by cross-fading
+  pre-blurred variants, with contact shadows and parallax (device tilt
+  behind a flag, off). Home shows the island behind
+  `FeatureFlags.islandHome`, on in both builds; Hop!, the gate and
+  onboarding are unchanged. `preblur.py app` bakes the art into the
+  package's asset catalog. CI renders ten simulator screenshots (five
+  states, light and dark, in Turkish) as the `world-screenshots` artifact.
+
+- The game state is saved with the snapshot (schema version 2, versioned
+  and tolerant: a store from before the game starts one, an unreadable game
+  never costs the gate its state) and follows the gate's event log on every
+  refresh, tick, log entry and Screen Time ingestion, plus Pofu's own
+  foreground time (A20). The shield and Hop!'s skip screen show the live
+  calm multiplier (gate v2 E9); the developer readout shows the world.
+
+- The game model in `PofuCore/Game` (iteration W3, not yet wired into the
+  app): `CareLedger` (Pofu's wellbeing, 5–100, never below 5, "sleeps it
+  off"), `CalmAccrual` (×1.0–×2.0, quick checks halve, the 20-minute
+  chain, resets), `StationLedger` and `ArchipelagoCatalog` (the 17
+  designed station ladders, idle production × calm only while away and
+  observed, seeds as world material, capped skip gifts, collection,
+  builds, island arrivals), `BreathRules` (5 s, 10 s from the 4th
+  over-limit open, capped at 10 s), and one deterministic facade,
+  `WorldClock` with `GameState`, fed by the gate's event log. Measurement
+  is honest: after a pass expires under the soft gate the time is
+  unobserved until the next sign of life, and past 2 minutes in Pofu's
+  foreground the world waits (A20). Swift Testing suites mirror the
+  economy simulation's archetypes and check the guardrails as properties.
+
 - App and game boundary ([app-game-boundary.md](docs/product/app-game-boundary.md)):
   opening intents, the finished visit, "Pofu'yla bir dakika" as a bounded
   substitute, and anti-compulsion guardrails with measurable targets.
@@ -49,6 +180,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- The image pipeline never drops a raw: `promote` keeps the unlocked
+  take as `raw.webp` (lossless under 600 KB, otherwise WebP q95), and
+  `check_upload.py` fails a master folder without one (AGENTS.md,
+  Uploads).
+
+- The Island framing is fitted, not fixed: the station row fills the width
+  (×1.25 at 402 pt, was ×1.06) and the island is centred between the
+  chrome bands; the neighbouring islands sit in an X close enough to peek
+  in at the corners, and the Map frames all five larger (×0.56). A
+  station focus nudges the camera so Pofu and the residents are whole or
+  out of frame, never cut by the edge. Screenshots render still frames
+  (no blinks, no cloud drift) and cover thirteen states.
+
+- One quiet hour lifts Pofu out of the two lowest bands, from the floor
+  too (ADR-0017): there, calm waking time heals 1/60 of the band's width a
+  minute; from "tired" up it stays 5 an hour. The economy simulation uses
+  the same rule.
 - Without notifications, "Pofu'yla aç" is never a dead end: the shield
   says "Pofu'yu kendin aç", and opening Pofu within 10 minutes starts
   Hop!. The notification tap is routed by the notification delegate; the

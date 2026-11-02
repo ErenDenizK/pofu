@@ -1,0 +1,20 @@
+id: asset-far-isle-3
+type: asset
+title_tr: far-isle-3
+title_en: far-isle-3 (world)
+status: in-production
+horizon: now
+summary: >-
+  A third distant view for the same hazy far layer, on its own: two tiny floating islets side
+  by side with a gap between them, the right one smaller and a little higher, flat tops without
+  trees, soft rounded undersides, almost silhouettes in the same pale, hazy sky-blue and cream.
+  Centered, together filling about 75% of the image width, with a clear transparent margin.
+art:
+  images: []
+  jobs:
+  - batch-04-sky:far-isle-3
+sources:
+- doc: tools/imagegen/manifest/batch-04-sky.yaml
+kind: world
+batch: batch-04-sky
+size: 1536x1024

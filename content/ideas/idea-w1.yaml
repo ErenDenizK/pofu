@@ -1,0 +1,13 @@
+id: idea-w1
+type: idea
+title_tr: W1 Kendi hesabımızla stil
+title_en: 'W1: On-style art'
+status: in-production
+horizon: now
+summary: >-
+  Batch 01: the first 8 images. Check: pipeline QA passes; the founder judges the phone composite
+  "not AI-looking".
+sources:
+- doc: docs/design/iteration-plan.md
+  anchor: '#stage-w-the-world-after-two-weeks-of-daily-use'
+kind: milestone

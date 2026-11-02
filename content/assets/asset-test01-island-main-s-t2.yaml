@@ -1,0 +1,20 @@
+id: asset-test01-island-main-s-t2
+type: asset
+title_tr: 'Test 01: island-main-s çekim 2'
+title_en: 'Art test 01: island-main-s take 2'
+status: cut
+horizon: now
+summary: >-
+  Island take 2: the other take of art test 01. The test's findings (a saturated lawn, a deep
+  cone-shaped earth body) became batch 01's corrections: flatter, wider, softer green.
+notes:
+- >-
+  Art test 01 (2026-11-01): the founder's first GPT Image run of D1, D4 and D5.
+art:
+  images:
+  - design/art/tests/2026-11-01/world__island-main-s_take2.png
+  jobs: []
+sources:
+- doc: design/art/tests/2026-11-01/README.md
+kind: test
+batch: unbatched

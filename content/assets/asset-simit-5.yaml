@@ -1,0 +1,22 @@
+id: asset-simit-5
+type: asset
+title_tr: simit-5
+title_en: simit-5 (station)
+status: in-production
+horizon: now
+summary: >-
+  Turn the cart into a little kiosk: replace only the umbrella with a small peaked roof of
+  soft coral and cream boards on two thin wooden posts, and add a small plain triangular coral-and-cream
+  pennant on top of the roof (no symbols, no letters). Keep the cart, the rings, the pole
+  and the bench.
+links:
+  variant_of:
+  - asset-simit-4
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:simit-5
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

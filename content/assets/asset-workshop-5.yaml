@@ -1,0 +1,20 @@
+id: asset-workshop-5
+type: asset
+title_tr: workshop-5
+title_en: workshop-5 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add a big, round, gear-shaped wooden sign above the doorway: soft honey wood with a cream
+  rim and eight rounded teeth, plain (no letters, no symbols).
+links:
+  variant_of:
+  - asset-workshop-4
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:workshop-5
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

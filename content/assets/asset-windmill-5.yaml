@@ -1,0 +1,21 @@
+id: asset-windmill-5
+type: asset
+title_tr: windmill-5
+title_en: windmill-5 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add a small plain triangular rose-and-cream pennant on a short pole on top of the cap (no
+  symbols, no letters), and two small round windows on the tower, each with a little window
+  box of blush-pink and honey flowers.
+links:
+  variant_of:
+  - asset-windmill-4
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:windmill-5
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

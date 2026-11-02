@@ -1,0 +1,21 @@
+id: asset-garden-3
+type: asset
+title_tr: garden-3
+title_en: garden-3 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add a small, round watering can of soft sage and cream painted metal (matte, no shine) at
+  the front right corner of the bed, and three tiny seedlings with two small round leaves
+  each in the soil at the front left, all inside the bed and much smaller than the sunflowers.
+links:
+  variant_of:
+  - asset-garden-2
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:garden-3
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

@@ -1,0 +1,18 @@
+id: moment-build
+type: moment
+title_tr: Seviye 3!
+title_en: The build moment
+status: planned
+horizon: next
+summary: >-
+  Squash, the swap hidden at the deepest point, six dust puffs, seven sparkles, "Seviye 3!",
+  Pofu hops excited, the resident hops, .success. Level 5 gets the three-transient celebration
+  haptic.
+links:
+  part_of:
+  - sys-build
+sources:
+- doc: docs/design/interaction-spec.md
+  anchor: '#24-the-build-moment'
+act: visit
+sequence: 60

@@ -1,0 +1,21 @@
+id: char-pamuk
+type: character
+title_tr: Pamuk
+title_en: Pamuk, the capybara
+status: planned
+horizon: later
+summary: >-
+  An unbothered capybara at Kaplıca's hot spring. Nothing has ever hurried Pamuk.
+links:
+  related:
+  - station-spring
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#8-residents-neighbors'
+kind: resident
+unlock:
+  day: 36
+  rule_en: Arrives with its station or island
+species_en: Capybara
+home: island-kaplica
+station: station-spring

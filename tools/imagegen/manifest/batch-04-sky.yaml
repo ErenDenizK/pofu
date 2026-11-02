@@ -1,0 +1,265 @@
+# Batch 04: the living sky (interaction spec v2: sections 1.5, 5 and 12).
+#
+# The native world needs a sky it can move: the gradient itself is code
+# (world-day sky-top to sky-haze, graded at night by code), and these
+# cutouts ride on parallax layers (sky x0.3, world x1, foreground sea of
+# clouds x1.25), drift on slow loops, and get their __soft and __deep
+# variants and baked haze from the pipeline, never from a prompt.
+#
+# - five cloud cutouts at different sizes (cloud-1 sets the look);
+# - one soft sun glow;
+# - three distant-island silhouettes for the far parallax layer;
+# - one sea-of-clouds strip that tiles horizontally.
+#
+# Every image is on transparency, in the soft-lock palette (world-day and
+# world-props), with no text and no characters. Clouds are matte, chunky
+# and high key like the props; no painted sky behind them.
+#
+# Tracks (AGENTS.md, "Next batches"): clouds, isles, sun. All three start
+# at once: they need only island-main-s, which is on main.
+
+batch: batch-04-sky
+title: Living sky (clouds, sun glow, distant islands, a tiling sea of clouds)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  # ------------------------------------------------ batch 01's master
+  - id: island-main-s
+    kind: world
+    name: island-main-s
+    external: batch-01-slice
+
+  # ----------------------------------------------------------- clouds
+  - id: cloud-1
+    kind: world
+    name: cloud-1
+    size: 1536x1024
+    key: green
+    chat: "Pofu · Sky"
+    notes: "The large cumulus and the look of every other cloud. Shown about 220 pt wide on the sky layer."
+    attach:
+      - ref: approved:island-main-s
+        role: "The island this sky belongs to: match its soft painting, its warm light from the upper left and its milky pastel values (do not draw it)."
+      - ref: R1
+        role: "Style reference only (no characters): the hamster's soft airbrushed painting."
+      - ref: palette:world-day
+        role: "The palette card: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          One large, soft cumulus cloud for a cozy pastel sky, on its own:
+          a wide, rounded cloud built from five or six big, plump billows,
+          with a gently flattened underside. Warm cream-white tops lit from
+          the upper left, undersides shaded in soft, pale sky blue with a
+          hint of warm cream bounce light, broad and smooth value changes.
+          The edges are soft but clean (a soft cutout, not a fading haze).
+          Centered, filling about 85% of the image width, with a clear
+          transparent margin.
+      - block: prop-style-v2
+      - text: "AVOID: a sky, a background color or gradient, the sun, rays, birds, rain, gray or dark storm clouds, wispy noise, hard white outlines, a ground shadow, text."
+
+  - id: cloud-2
+    kind: prop
+    name: cloud-2
+    key: green
+    chat: "Pofu · Sky"
+    notes: "Medium cumulus, shown about 140 pt wide."
+    attach: &cloud_refs
+      - ref: approved:cloud-1
+        role: "The approved large cloud: the cloud family's look. Match its painting, light, colors, softness and edge exactly (do not copy its shape)."
+      - ref: R1
+        role: "Style reference only (no characters): the hamster's soft airbrushed painting."
+      - ref: palette:world-day
+        role: "The palette card: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          One medium, soft cumulus cloud for the same sky, on its own: a
+          rounded cloud of three or four plump billows, taller than it is
+          wide at the middle, with a gently flattened underside. Centered,
+          filling about 80% of the canvas width, with a clear transparent
+          margin.
+      - block: prop-style-v2
+      - text: "AVOID: a sky, a background color or gradient, the sun, birds, gray storm clouds, hard white outlines, a ground shadow, text."
+
+  - id: cloud-3
+    kind: prop
+    name: cloud-3
+    key: green
+    chat: "Pofu · Sky"
+    notes: "Small puff, shown about 80 pt wide; the simplest shape of the set."
+    attach: *cloud_refs
+    prompt:
+      - text: |
+          One small, simple puff of cloud for the same sky, on its own: two
+          round billows, one larger than the other, side by side, with a
+          gently flattened underside. Centered, filling about 70% of the
+          canvas width, with a clear transparent margin.
+      - block: prop-style-v2
+      - text: "AVOID: a sky, a background color or gradient, the sun, birds, gray storm clouds, hard white outlines, a ground shadow, text."
+
+  - id: cloud-4
+    kind: world
+    name: cloud-4
+    size: 1536x1024
+    key: green
+    chat: "Pofu · Sky"
+    notes: "Long, low wisp for the band above the horizon, shown about 260 pt wide."
+    attach: *cloud_refs
+    prompt:
+      - text: |
+          One long, low, flat cloud for the same sky, on its own: a slim,
+          horizontal band of soft billows, about five times as wide as it
+          is tall, slightly thicker in the middle and thinning to soft,
+          rounded ends. Centered, filling about 85% of the image width, with
+          a clear transparent margin.
+      - block: prop-style-v2
+      - text: "AVOID: a sky, a background color or gradient, the sun, birds, gray storm clouds, streaky or brushy noise, hard white outlines, a ground shadow, text."
+
+  - id: cloud-5
+    kind: prop
+    name: cloud-5
+    key: green
+    chat: "Pofu · Sky"
+    notes: "Tiny pair for the far sky, shown about 50 pt wide; it also drifts across the map."
+    attach: *cloud_refs
+    prompt:
+      - text: |
+          Two tiny, round cloud puffs for the same sky, on their own,
+          floating close together with a small gap: each a single soft,
+          plump billow with a gently flattened underside, the left one a
+          little larger. Centered, together filling about 70% of the canvas
+          width, with a clear transparent margin.
+      - block: prop-style-v2
+      - text: "AVOID: a sky, a background color or gradient, the sun, birds, gray storm clouds, hard white outlines, a ground shadow, text."
+
+  # ------------------------------------------------- sea of clouds
+  - id: cloud-sea
+    kind: world
+    name: cloud-sea
+    size: 1536x1024
+    key: green
+    chat: "Pofu · Sky"
+    notes: >-
+      Foreground band at parallax x1.25, tiled side by side. Review check:
+      put two copies side by side; if the seam shows, the lead cross-fades
+      the outer 10 % of each side in post and records it in provenance.
+    attach:
+      - ref: approved:cloud-1
+        role: "The approved large cloud: paint the sea of clouds with exactly its billows, light, colors and softness."
+      - ref: approved:cloud-4
+        role: "The approved long cloud: the same calm, horizontal rhythm."
+      - ref: palette:world-day
+        role: "The palette card: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A wide band of soft, dense, plump clouds seen from slightly above,
+          like a calm sea of clouds, for the bottom of the same sky. The
+          band fills the bottom 40% of the image from edge to edge; its top
+          edge is a gentle, even row of rounded billows of similar size, and
+          everything above it is fully transparent. The left and right edges
+          must tile seamlessly when two copies are placed side by side: the
+          band has the same height and the same shading at both edges, and
+          no billow is cut in half there. Calm and low in detail, because
+          interface buttons float over it.
+      - block: prop-style-v2
+      - text: "AVOID: islands, mountains, the sun, rays, birds, a sky color above the band, a dark bottom edge, a big single billow that breaks the row, text."
+
+  # ------------------------------------------------------- sun glow
+  - id: sun-glow
+    kind: prop
+    name: sun-glow
+    key: green
+    chat: "Pofu · Sky"
+    notes: >-
+      Sits behind the clouds at the upper left (the key light's source).
+      Needs real partial transparency: if a take comes back opaque, do not
+      key it (keying destroys the falloff); stop the job and say so, and the
+      lead draws the glow in code (a RadialGradient).
+    attach:
+      - ref: approved:island-main-s
+        role: "The island this sky belongs to: the same warm light and milky pastel values (do not draw it)."
+      - ref: palette:world-day
+        role: "The palette card: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A soft sun glow for a calm pastel morning sky, on its own: a
+          round, warm glow of pale honey and cream light, brightest and
+          almost cream-white in a small soft core at the center, fading
+          smoothly and evenly to fully transparent at its edge. No visible
+          disc edge, no face, no rays, no lens flare, no rings, no sparkle.
+          Centered, the glow fading out before it reaches the canvas edges.
+      - block: prop-style-v2
+      - text: "AVOID: a sky or background color, clouds, a hard sun disc, rays, flares, rings, saturated yellow or orange, text."
+
+  # ---------------------------------- distant-island silhouettes
+  - id: far-isle-1
+    kind: world
+    name: far-isle-1
+    size: 1536x1024
+    key: green
+    chat: "Pofu · Sky"
+    notes: "Far parallax layer, decoration only (the archipelago's real islands are their own plates). Shown about 120 pt wide."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the distant islands are its far-away cousins. Match its silhouette language (flat lawn, rounded underside) and camera, but not its detail (do not draw it)."
+      - ref: palette:world-day
+        role: "The palette card: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A distant floating island seen far away through soft morning
+          haze, on its own: a long, low island with a flat top and a soft,
+          rounded underside, and two tiny round trees on its top, at the
+          same low camera as the attached island. It is almost a
+          silhouette: painted in pale, hazy sky-blue and cream with only a
+          faint warmer tint on the top and a slightly lighter left side, low
+          contrast, no small details (no door, no pebbles, no roots, no
+          blades of grass). Centered, filling about 80% of the image width,
+          with a clear transparent margin.
+      - block: prop-style-v2
+      - text: "AVOID: saturated green grass, dark shadows, buildings, characters, water, clouds, a sky or background color, text."
+
+  - id: far-isle-2
+    kind: world
+    name: far-isle-2
+    size: 1536x1024
+    key: green
+    chat: "Pofu · Sky"
+    notes: "Far parallax layer; shown about 70 pt wide."
+    attach: &isle_refs
+      - ref: approved:far-isle-1
+        role: "The approved distant island: the silhouette family's look. Match its haze, values, colors and softness exactly (do not copy its shape)."
+      - ref: R1
+        role: "Style reference only (no characters): the hamster's soft airbrushed painting."
+      - ref: palette:world-day
+        role: "The palette card: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A second distant floating island for the same hazy far layer, on
+          its own: a small, round islet a little taller than the first, with
+          one tiny round tree on its top, a soft rounded underside, almost a
+          silhouette in the same pale, hazy sky-blue and cream. Centered,
+          filling about 55% of the image width, with a clear transparent
+          margin.
+      - block: prop-style-v2
+      - text: "AVOID: saturated green grass, dark shadows, buildings, characters, water, clouds, a sky or background color, text."
+
+  - id: far-isle-3
+    kind: world
+    name: far-isle-3
+    size: 1536x1024
+    key: green
+    chat: "Pofu · Sky"
+    notes: "Far parallax layer; shown about 100 pt wide."
+    attach: *isle_refs
+    prompt:
+      - text: |
+          A third distant view for the same hazy far layer, on its own: two
+          tiny floating islets side by side with a gap between them, the
+          right one smaller and a little higher, flat tops without trees,
+          soft rounded undersides, almost silhouettes in the same pale, hazy
+          sky-blue and cream. Centered, together filling about 75% of the
+          image width, with a clear transparent margin.
+      - block: prop-style-v2
+      - text: "AVOID: saturated green grass, dark shadows, buildings, characters, water, clouds, a bridge, a sky or background color, text."

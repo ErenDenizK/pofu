@@ -1,0 +1,15 @@
+id: idea-friend-visits
+type: idea
+title_tr: Arkadaş adalarını ziyaret
+title_en: Friends visiting each other's islands
+status: idea
+horizon: later
+summary: >-
+  Year one: friends visit each other's islands (ADR-0005), never compared (A8).
+links:
+  requires:
+  - sys-friends
+sources:
+- doc: docs/design/iteration-plan.md
+  anchor: '#what-it-can-become'
+kind: feature

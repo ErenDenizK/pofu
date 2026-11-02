@@ -1,0 +1,18 @@
+id: moment-setup-postponed
+type: moment
+title_tr: Ada siste uyuyor
+title_en: The island asleep in mist
+status: planned
+horizon: next
+summary: >-
+  If setup fails or is postponed: Home shows the island asleep in mist, Pofu at his door,
+  and a native banner. "Kapıda durabildiğim an ada uyanır." One reminder the next evening,
+  then never.
+links:
+  part_of:
+  - sys-setup-repair
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#93-first-run-the-island-wakes-with-the-first-hop'
+act: repair
+sequence: 10

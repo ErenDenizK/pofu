@@ -1,0 +1,22 @@
+id: asset-lantern-off
+type: asset
+title_tr: lantern-off
+title_en: lantern-off (ui)
+status: planned
+horizon: later
+summary: >-
+  The calm lantern, unlit: a small, round paper lantern in warm cream paper with three soft
+  horizontal ribs, a chunky honey-wood top and bottom cap and a short, thick loop handle on
+  top. Unlit: the paper is a soft matte cream, no glow, no light inside.
+notes:
+- >-
+  Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
+  and cay-1 approved
+art:
+  images: []
+  jobs:
+  - batch-02-ui:lantern-off
+sources:
+- doc: tools/imagegen/manifest/batch-02-ui.yaml
+kind: ui
+batch: batch-02-ui

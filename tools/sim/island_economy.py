@@ -11,8 +11,9 @@ Models docs/product/game-design.md (v2) and ADR-0015 to ADR-0017:
   capped gift per resisted reach. They buy station levels and nothing
   else; never screen time.
 - **Pofu's wellbeing** (keyif, 5-100, never below 5): guarded-app time
-  drains it, quiet time and calm nights heal it, and each night he "sleeps
-  it off" part of the way back to 60.
+  drains it, quiet time and calm nights heal it (from the bottom, one quiet
+  hour lifts him a band; from "tired" up, 5 an hour), and each night he
+  "sleeps it off" part of the way back to 60.
 - **The calm multiplier** (huzur, x1.0 -> x2.0): grows with continuous calm
   waking time. A full open resets it to x1.0; a **quick check** (a pass of
   3 minutes or less) only halves the bonus, unless it follows another quick
@@ -81,11 +82,26 @@ DRAIN_PER_MIN = 0.35
 DRAIN_NIGHT_MULT = 2.0
 DRAIN_ESCALATION = 1.25
 DRAIN_PER_OPEN = 1.5
-HEAL_PER_CALM_HOUR = 5.0
+HEAL_PER_CALM_HOUR = 5.0     # from "tired" (25) up
+CURLED_UP_BELOW = 12.0       # the two lowest bands heal band-relative (ADR-0017):
 HEAL_SLEPT_ON_IT = 10.0
 HEAL_PER_SKIP = 1.0
 SKIP_HEAL_CAP = 6
 UNWELL = 25.0
+
+
+def heal_minute(health):
+    """One observed calm waking minute (PofuCore `CareLedger.healMinute`).
+
+    From "tired" up, a flat 5 an hour. In "curled up" (5-12) and "unwell"
+    (12-25), 1/60 of the band's width, stopping at its upper edge, so one
+    quiet hour lifts Pofu out of either band from anywhere in it
+    (ADR-0017's "one quiet hour lifts him a band").
+    """
+    if health >= UNWELL:
+        return min(100.0, health + HEAL_PER_CALM_HOUR / 60)
+    lower, upper = (HEALTH_FLOOR, CURLED_UP_BELOW) if health < CURLED_UP_BELOW else (CURLED_UP_BELOW, UNWELL)
+    return min(health + (upper - lower) / 60 * (1 + 1e-9), upper)
 UNWELL_PRODUCTION = 0.6
 NIGHT_RECOVERY = 0.3         # "sleeps it off": below 60, 30 % of the way back each night
 RECOVERY_TARGET = 60.0
@@ -335,7 +351,7 @@ def simulate(a: Archetype, rng: random.Random, resist_shift=0.0, loss_aversion=0
             elif not bedtime:
                 calm_run += 1
                 quiet_run += 1
-                health = min(100.0, health + HEAL_PER_CALM_HOUR / 60)
+                health = heal_minute(health)
                 if calm_run % CALM_STEP_MIN == 0:
                     calm = min(CALM_MAX, round(calm + CALM_STEP, 2))
                 if quiet_run % QUIET_BLOCK_MIN == 0 and quiet_today < QUIET_DAILY_CAP:
