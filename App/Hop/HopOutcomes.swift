@@ -142,6 +142,12 @@ struct HopHandoff: View {
             // A beat to read the line, then back to the app (user flows).
             try? await Task.sleep(for: .milliseconds(600))
             guard !Task.isCancelled else { return }
+            if model.rehearsal != nil, session.shieldedApp != nil {
+                // Rehearsal mode: into the simulated app behind the
+                // simulated shield, not the real one.
+                model.rehearsalHandOff(to: session.app)
+                return
+            }
             if !(await AppOpener.open(session.app)) {
                 model.handoffFailed(for: pass, app: session.app)
             }

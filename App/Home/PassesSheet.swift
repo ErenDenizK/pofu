@@ -91,8 +91,9 @@ private struct PassRow: View {
 
     var body: some View {
         TimelineView(.periodic(from: .now, by: 1)) { context in
-            let remaining = max(0, pass.expiresAt.timeIntervalSince(context.date))
-            let refund = model.economy.refund(for: pass, endingAt: context.date)
+            let date = model.modelTime(at: context.date)
+            let remaining = max(0, pass.expiresAt.timeIntervalSince(date))
+            let refund = model.economy.refund(for: pass, endingAt: date)
             HStack(spacing: PofuSpacing.m) {
                 Image(systemName: app?.symbolName ?? "app")
                     .foregroundStyle(PofuColor.accent)

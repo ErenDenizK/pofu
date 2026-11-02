@@ -70,8 +70,14 @@ struct ScreenTimeSettingsSection: View {
                 AllowScreenTimeRow(model: model)
             }
         } header: {
-            Text("Screen Time")
-                .pofuSectionHeader()
+            Group {
+                if gate.isRehearsal {
+                    Text("Screen Time (rehearsal)")
+                } else {
+                    Text("Screen Time")
+                }
+            }
+            .pofuSectionHeader()
         } footer: {
             Text("Measured by Screen Time, in 15-minute steps. Past the daily hour, every open starts with a breath.")
         }
@@ -138,9 +144,14 @@ private struct ChooseAppsRow: View {
 
     @State private var isPickerPresented = false
     @State private var picked = FamilyActivitySelection()
+    @State private var showsRehearsalPicker = false
 
     var body: some View {
         Button {
+            if gate.isRehearsal {
+                showsRehearsalPicker = true
+                return
+            }
             picked = gate.pickedSelection()
             isPickerPresented = true
         } label: {
@@ -157,6 +168,15 @@ private struct ChooseAppsRow: View {
                 try gate.applyPicked(picked)
             } catch {
                 Log.screenTime.error("Saving the picked apps failed: \(String(describing: error), privacy: .public)")
+            }
+        }
+        .sheet(isPresented: $showsRehearsalPicker) {
+            RehearsalAppPicker(initial: gate.selection) { selection in
+                do {
+                    try gate.applyRehearsalSelection(selection)
+                } catch {
+                    Log.screenTime.error("Saving the rehearsal pick failed: \(String(describing: error), privacy: .public)")
+                }
             }
         }
     }

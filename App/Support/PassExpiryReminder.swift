@@ -118,12 +118,15 @@ final class PofuNotificationDelegate: NSObject, UNUserNotificationCenterDelegate
         completionHandler()
     }
 
-    /// Pofu is on screen already: the user is here, so no banner.
+    /// Pofu is on screen already: the user is here, so no banner. Rehearsal
+    /// mode's "Open with Pofu" is the exception: on screen, Pofu stands in
+    /// for the app behind the shield, so its banner shows as on a device.
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        completionHandler([])
+        let isRehearsal = notification.request.content.userInfo[RehearsalScreenTime.rehearsalKey] as? Bool == true
+        completionHandler(isRehearsal ? [.banner, .list] : [])
     }
 }

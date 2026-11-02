@@ -21,6 +21,13 @@ struct RootView: View {
                 HomeView(model: model)
             }
         }
+        .overlay {
+            // Rehearsal mode: the shield replica, the simulated app, and
+            // the Prova panel, under any sheet and Hop!'s cover.
+            if let rehearsal = model.rehearsal {
+                RehearsalOverlay(model: model, rehearsal: rehearsal)
+            }
+        }
         .fullScreenCover(item: $presentedHop) { _ in
             HopView(model: model)
         }

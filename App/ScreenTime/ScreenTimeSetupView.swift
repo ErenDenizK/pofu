@@ -34,6 +34,9 @@ struct ScreenTimeSetupView: View {
     @State private var pickedNothing = false
     /// The user saw the category note and kept the pick.
     @State private var keptCategory = false
+    /// Rehearsal mode: the stand-ins for Apple's alert and picker.
+    @State private var showsRehearsalAlert = false
+    @State private var showsRehearsalPicker = false
 
     private var gate: ScreenTimeGate { model.screenTime }
 
@@ -80,6 +83,23 @@ struct ScreenTimeSetupView: View {
                 .padding(.bottom, PofuSpacing.xs)
         }
         .familyActivityPicker(isPresented: $isPickerPresented, selection: $picked)
+        .overlay {
+            if showsRehearsalAlert {
+                RehearsalPermissionAlert { approved in
+                    showsRehearsalAlert = false
+                    gate.answerRehearsalAuthorization(approved: approved)
+                    if !approved {
+                        denials += 1
+                    }
+                }
+                .transition(.opacity)
+            }
+        }
+        .sheet(isPresented: $showsRehearsalPicker) {
+            RehearsalAppPicker(initial: gate.selection) { selection in
+                saveRehearsalPick(selection)
+            }
+        }
         .onChange(of: isPickerPresented) { _, isPresented in
             guard !isPresented else { return }
             savePicked()
@@ -181,7 +201,7 @@ struct ScreenTimeSetupView: View {
                     .buttonStyle(PofuPrimaryButtonStyle())
                     .disabled(isAsking)
             case .denied:
-                if denials >= 2 {
+                if denials >= 2, !gate.isRehearsal {
                     Button("Open Settings") {
                         if let url = URL(string: UIApplication.openSettingsURLString) {
                             openURL(url)
@@ -201,7 +221,7 @@ struct ScreenTimeSetupView: View {
                         .buttonStyle(PofuQuietButtonStyle())
                 }
             case .primer:
-                Button(pickedNothing ? LocalizedStringKey("Pick again") : LocalizedStringKey("Choose apps")) { isPickerPresented = true }
+                Button(pickedNothing ? LocalizedStringKey("Pick again") : LocalizedStringKey("Choose apps")) { openPicker() }
                     .buttonStyle(PofuPrimaryButtonStyle())
                 if pickedNothing, let onLater {
                     Button("I'll pick later") { onLater() }
@@ -210,7 +230,7 @@ struct ScreenTimeSetupView: View {
             case .category:
                 Button("Keep it") { keptCategory = true }
                     .buttonStyle(PofuPrimaryButtonStyle())
-                Button("Fix it") { isPickerPresented = true }
+                Button("Fix it") { openPicker() }
                     .buttonStyle(PofuQuietButtonStyle())
             case .ready:
                 Button("Continue") { onFinish() }
@@ -227,6 +247,11 @@ struct ScreenTimeSetupView: View {
     }
 
     private func ask() {
+        if gate.isRehearsal {
+            couldNotAsk = false
+            showsRehearsalAlert = true
+            return
+        }
         isAsking = true
         couldNotAsk = false
         Task {
@@ -240,6 +265,26 @@ struct ScreenTimeSetupView: View {
             }
             isAsking = false
         }
+    }
+
+    /// Apple's picker, or Rehearsal mode's stand-in.
+    private func openPicker() {
+        if gate.isRehearsal {
+            showsRehearsalPicker = true
+        } else {
+            isPickerPresented = true
+        }
+    }
+
+    private func saveRehearsalPick(_ selection: DistractionSelection) {
+        do {
+            try gate.applyRehearsalSelection(selection)
+        } catch {
+            Log.screenTime.error("Saving the rehearsal pick failed: \(String(describing: error), privacy: .public)")
+            return
+        }
+        pickedNothing = gate.selection.isEmpty
+        keptCategory = false
     }
 
     private func savePicked() {
