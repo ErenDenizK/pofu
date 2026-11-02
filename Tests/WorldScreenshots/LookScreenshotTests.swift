@@ -186,6 +186,7 @@ final class LookScreenshotTests: XCTestCase {
         ]
         let looks: [(String, WorldLook)] = [
             ("look off (soft-lock, no grade)", .legacy),
+            ("look on, depth in motion off (grade + HD-2D lite), golden hour", WorldLook(depthMotion: false, hourOverride: 18.5)),
             ("look on (grade + HD-2D lite + depth in motion), golden hour", WorldLook(hourOverride: 18.5)),
         ]
         for (label, look) in looks {
