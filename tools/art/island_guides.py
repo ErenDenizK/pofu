@@ -6,6 +6,10 @@ Writes:
       one station vignette: the ground ellipse (the slot's footprint in the
       diorama's fixed 3/4 view), the anchor cross, and the height bar.
       Attach it to station prompts; the prompt asks to remove it.
+  design/art/templates/decor-guide.png     1024 x 1024 guide for one placeable
+      decor item at the station guide's scale: a footprint half as wide as a
+      station's, a height bar at 45 % of a station's height, and a dashed
+      hang line for items that hang from an awning or a branch.
   docs/product/assets/island-layout.png    the world layout schematic: the
       main island, the back terrace, the two islets, every slot and the
       stage that opens it.
@@ -43,6 +47,33 @@ def station_guide():
     out = os.path.join(ROOT, "design", "art", "templates")
     os.makedirs(out, exist_ok=True)
     img.save(os.path.join(out, "station-guide.png"), optimize=True)
+
+
+def decor_guide():
+    """A decor item at the station guide's scale (same pixels per meter).
+
+    Footprint: half a station's width (rx 180 against 360), centered lower
+    on the canvas so the item sits large enough to paint. Height bar: 340 px
+    (a station's is 650 px from its ellipse). Hanging items hang from the
+    dashed line at y 300 and stay above y 620.
+    """
+    img = Image.new("RGB", (1024, 1024), (248, 246, 242))
+    d = ImageDraw.Draw(img)
+    cx, cy, rx, ry = 512, 840, 180, 54
+    for k in range(1, 3):
+        d.ellipse([cx - rx * k / 2, cy - ry * k / 2, cx + rx * k / 2, cy + ry * k / 2], outline=GRID, width=2)
+    d.ellipse([cx - rx, cy - ry, cx + rx, cy + ry], outline=MAG, width=6)
+    d.line([(cx - 18, cy), (cx + 18, cy)], fill=MAG, width=5)
+    d.line([(cx, cy - 18), (cx, cy + 18)], fill=MAG, width=5)
+    top = cy - 340
+    for y in range(top, cy, 26):
+        d.line([(cx, y), (cx, y + 13)], fill=MAG, width=3)
+    d.line([(cx - 40, top), (cx + 40, top)], fill=MAG, width=4)
+    for x in range(232, 792, 30):
+        d.line([(x, 300), (x + 15, 300)], fill=MAG, width=3)
+    out = os.path.join(ROOT, "design", "art", "templates")
+    os.makedirs(out, exist_ok=True)
+    img.save(os.path.join(out, "decor-guide.png"), optimize=True)
 
 
 STAGE_COL = [(108, 79, 216), (143, 116, 240), (217, 130, 43), (47, 143, 91), (62, 124, 177), (194, 69, 122)]
@@ -100,5 +131,6 @@ def layout():
 
 if __name__ == "__main__":
     station_guide()
+    decor_guide()
     layout()
-    print("wrote station-guide.png and island-layout.png")
+    print("wrote station-guide.png, decor-guide.png and island-layout.png")
