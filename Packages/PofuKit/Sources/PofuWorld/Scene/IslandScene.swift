@@ -266,15 +266,14 @@ private struct SceneFrame<Bubble: View>: View {
             ?? world.clock.map { SkyModel.minuteOfDay($0, calendar: .current) } ?? 12 * 60
         let isDark = colorScheme == .dark && look.hourOverride == nil
         let palette = SkyModel.palette(minuteOfDay: minute, isDark: isDark, isBedtime: world.isBedtime)
-        var light = WorldLight.at(
+        // The living sky places the sun; the light follows it.
+        let light = WorldLight.at(
             hour: minute / 60,
             wellbeing: world.wellbeing,
             calm: world.calm,
             isBedtime: world.isBedtime,
             darkAppearance: isDark
-        )
-        light.sunX = palette.sun.x
-        light.sunY = palette.sun.y
+        ).withSun(x: palette.sun.x, y: palette.sun.y)
         // Without the runtime grade, the time of day tints the painted
         // world as before (game design §15: no night versions are
         // generated); with it, WorldGrade does the whole job.

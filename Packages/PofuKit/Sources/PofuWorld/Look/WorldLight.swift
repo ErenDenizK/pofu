@@ -107,6 +107,14 @@ public struct WorldLight: Hashable, Sendable {
         )
     }
 
+    /// This light with the sun (or moon) at a unit screen point.
+    public func withSun(x: Double, y: Double) -> WorldLight {
+        var copy = self
+        copy.sunX = x
+        copy.sunY = y
+        return copy
+    }
+
     /// Day, golden and night weights for a local hour, on the living
     /// sky's keyframes (`SkyModel`): night until 5:15, dawn (golden light)
     /// 5:45–7:45, day 8:15–17:15, golden 17:45–20:15, night from 20:45,
