@@ -1,0 +1,102 @@
+{
+  "job": "pofu-paws-belly",
+  "batch": "batch-06-pofu-rig",
+  "asset": "char__pofu-paws-belly",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T19:15:11+00:00",
+  "image": "design/art/masters/pofu-paws-belly/pofu-paws-belly.webp",
+  "raw": "design/art/masters/pofu-paws-belly/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "251eb924a841f692",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached hamster. Change only his front paws: both paws\nrest gently on his round belly, lower than in the original, relaxed\nand calm. The chest is smooth cream fur where the paws were. Nothing\nelse changes.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: crossed arms, a changed head, a ground shadow, text.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T19:14:24+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 50 (R1 51)",
+        "value": 50.5
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 58 (R1 59)",
+        "value": 58.4
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 5.2 (R1 5.3)",
+        "value": 5.2
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.2, p95 9.1, off-palette 3.2% (top: #EE9955 (0.4%), #EE7766 (0.4%))",
+        "value": 2.1753
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.5% of the height (contract 88%)",
+        "value": 0.8952
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "97% of the parent level unchanged",
+        "value": 0.9727
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.02 of the parent level (drift compounds along a chain)",
+        "value": 1.0167
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 84 against the char reference (outliers: detail, tint_b)",
+        "value": 84.4
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending Publication resumed under the repeated user request from original cached PNGs/local raw; no new generation. Current harmony audit at f35258d leaves the selected take unchanged; QA implementation, presets and rig manifest are byte-unchanged."
+}

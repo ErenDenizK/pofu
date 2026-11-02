@@ -2720,6 +2720,62 @@
    "source": "design/art/masters/pofu-mouth-worried/pofu-mouth-worried.webp",
    "source_sha": "8f0f1c1b57d2a8ae"
   },
+  "pofu-paws-belly": {
+   "after": {
+    "C_mean": 20.06,
+    "C_p50": 12.659,
+    "C_p95": 50.542,
+    "L_mean": 84.457,
+    "L_p2": 17.885,
+    "L_p98": 97.287,
+    "detail": 8.349,
+    "edge": 0.108,
+    "tint_a": 3.731,
+    "tint_b": 6.168,
+    "warmth_b": 16.766
+   },
+   "before": {
+    "C_mean": 20.06,
+    "C_p50": 12.659,
+    "C_p95": 50.542,
+    "L_mean": 84.457,
+    "L_p2": 17.885,
+    "L_p98": 97.287,
+    "detail": 8.349,
+    "edge": 0.108,
+    "tint_a": 3.731,
+    "tint_b": 6.168,
+    "warmth_b": 16.766
+   },
+   "chain": null,
+   "correction": {
+    "black": 0.0,
+    "ceiling": 0.0,
+    "chroma": 1.0,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": true,
+   "kind": "char",
+   "matched_to": "char",
+   "outliers_after": [
+    "detail",
+    "tint_b"
+   ],
+   "outliers_before": [
+    "detail",
+    "tint_b"
+   ],
+   "ppu": 29.0,
+   "reference": false,
+   "score_after": 84.4,
+   "score_before": 84.4,
+   "shipped": false,
+   "source": "design/art/masters/pofu-paws-belly/pofu-paws-belly.webp",
+   "source_sha": "54474d105abd9db1"
+  },
   "pofu-paws-seed": {
    "after": {
     "C_mean": 21.268,

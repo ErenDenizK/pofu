@@ -3,10 +3,10 @@ contact_sheet: design/art/takes/batch-06-pofu-rig/pofu-paws-belly/contact.jpg
 jobs:
   pofu-paws-belly:
     pick: 1
-    note: 'auto-picked by QA; founder review pending Global queue stop: batch-07-light
-      workshop-1-lit retry takes 3 and 4 both failed chroma_ceiling. No new image
-      calls after stop; this generated pair is retained for later review and is NOT
-      published as a master on this branch.'
+    note: auto-picked by QA; founder review pending Publication resumed under the
+      repeated user request from original cached PNGs/local raw; no new generation.
+      Current harmony audit at f35258d leaves the selected take unchanged; QA implementation,
+      presets and rig manifest are byte-unchanged.
     takes:
       t1:
         qa: warn
@@ -14,13 +14,82 @@ jobs:
       t2:
         qa: warn
         summary: palette_drift warn
-    local_candidate_preparation:
+    approved:
       take: 1
       at: '2026-11-02T19:15:11+00:00'
-    publication: selected candidate, not published as a master on this branch due
-      global stop
 qa_reports:
-  '2':
+  t1:
+    job: pofu-paws-belly
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 58 (R1 59)
+      value: 58.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.2 (R1 5.3)
+      value: 5.2
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.2, p95 9.1, off-palette 3.2% (top: #EE9955 (0.4%), #EE7766
+        (0.4%))'
+      value: 2.1753
+    - check: ground_line
+      status: pass
+      message: feet at 89.5% of the height (contract 88%)
+      value: 0.8952
+    - check: edit_stability
+      status: pass
+      message: 97% of the parent level unchanged
+      value: 0.9727
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.02 of the parent level (drift compounds along a chain)
+      value: 1.0167
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the char reference (outliers: detail, tint_b)'
+      value: 84.4
+    info:
+      metrics_raw:
+        L_p5: 58.4
+        L_p50: 88.5
+        L_p95: 96.7
+        C_p50: 12.4
+        C_p95: 50.5
+        C_p99: 60.1
+        detail: 5.23
+      metrics_locked:
+        L_p5: 58.4
+        L_p50: 88.5
+        L_p95: 96.7
+        C_p50: 12.4
+        C_p95: 50.5
+        C_p99: 56.8
+        detail: 5.2
+    fingerprint: 251eb924a841f692
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/qa/char__pofu-paws-belly--t1.json
+      locked_pixels: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/locked/char__pofu-paws-belly--t1.png
+      old_harmony: 84.4
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
+  t2:
     job: pofu-paws-belly
     take: 2
     status: warn
@@ -58,11 +127,6 @@ qa_reports:
       status: pass
       message: feet at 89.5% of the height (contract 88%)
       value: 0.8945
-    - check: harmony
-      status: pass
-      message: 'harmony score 81 against the char reference (outliers: C_p95, detail,
-        tint_b)'
-      value: 81.1
     - check: edit_stability
       status: pass
       message: 97% of the parent level unchanged
@@ -71,6 +135,11 @@ qa_reports:
       status: pass
       message: chroma x0.98 of the parent level (drift compounds along a chain)
       value: 0.9751
+    - check: harmony
+      status: pass
+      message: 'harmony score 81 against the char reference (outliers: C_p95, detail,
+        tint_b)'
+      value: 81.1
     info:
       alignment:
         scale: 0.9973
@@ -95,66 +164,22 @@ qa_reports:
         C_p99: 58.6
         detail: 5.32
     fingerprint: 251eb924a841f692
-  '1':
-    job: pofu-paws-belly
-    take: 1
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/qa/char__pofu-paws-belly--t2.json
+      locked_pixels: /workspace/run06-body/build/imagegen/batch-06-pofu-rig/locked/char__pofu-paws-belly--t2.png
+      old_harmony: 81.1
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
+current_policy_audit:
+  base: f35258d
+  old_pick: 1
+  pick: 1
+  take_scores:
+  - n: 1
     status: warn
-    preset: char-guard
-    checks:
-    - check: transparency
-      status: pass
-      message: source has an alpha channel
-    - check: canvas
-      status: pass
-      message: 1024x1536
-    - check: chroma_ceiling
-      status: pass
-      message: chroma p95 50 (R1 51)
-      value: 50.5
-    - check: value_floor
-      status: pass
-      message: lightness p5 58 (R1 59)
-      value: 58.4
-    - check: detail_budget
-      status: pass
-      message: detail at display size 5.2 (R1 5.3)
-      value: 5.2
-    - check: palette_drift
-      status: warn
-      message: 'mean dE 2.2, p95 9.1, off-palette 3.2% (top: #EE9955 (0.4%), #EE7766
-        (0.4%))'
-      value: 2.1753
-    - check: ground_line
-      status: pass
-      message: feet at 89.5% of the height (contract 88%)
-      value: 0.8952
-    - check: harmony
-      status: pass
-      message: 'harmony score 84 against the char reference (outliers: detail, tint_b)'
-      value: 84.4
-    - check: edit_stability
-      status: pass
-      message: 97% of the parent level unchanged
-      value: 0.9727
-    - check: edit_chroma
-      status: pass
-      message: chroma x1.02 of the parent level (drift compounds along a chain)
-      value: 1.0167
-    info:
-      metrics_raw:
-        L_p5: 58.4
-        L_p50: 88.5
-        L_p95: 96.7
-        C_p50: 12.4
-        C_p95: 50.5
-        C_p99: 60.1
-        detail: 5.23
-      metrics_locked:
-        L_p5: 58.4
-        L_p50: 88.5
-        L_p95: 96.7
-        C_p50: 12.4
-        C_p95: 50.5
-        C_p99: 56.8
-        detail: 5.2
-    fingerprint: 251eb924a841f692
+    harmony: 84.4
+  - n: 2
+    status: warn
+    harmony: 81.1
