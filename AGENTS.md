@@ -82,27 +82,29 @@ account, and every master must name its generating account owner.
 ## Current status (2026-11-02): parallel auto mode
 
 **Batch 01 is fully open.** The founder wants art to flow fast and
-automatically: many Codex cloud tasks in parallel, **one job per task**,
+automatically: many Codex cloud tasks in parallel, **one object per task**,
 with the take picked automatically by QA. The founder reviews afterwards
 and can veto any pick. Batch 02 stays `status: blocked` until the friends
 beta.
 
-**Waves.** A job can start only when every job it depends on has an
-approved master on `main` (or on a merged `art/` branch). Run each wave
-as parallel tasks; start the next wave after the lead merges the previous
-one.
+**Tracks: one object per task, on its own branch.** A task runs one
+object's whole chain from start to end (each level an edit of the
+previous, auto-picked), so there are three short starts instead of six
+waves. Every job
+makes **2 takes** (a third is usually a weaker copy of the second).
 
-| Wave | Jobs (one Codex task each) |
-|---|---|
-| 1 | `island-main-s`, `mochi` |
-| 2 | `island-main-l`, `cay-1` |
-| 3 | `terrace`, `cay-2`, `garden-1`, `simit-1` |
-| 4 | `cay-3`, `garden-2` |
-| 5 | `cay-4` |
-| 6 | `cay-5` |
+| Track | Jobs, in order | Starts |
+|---|---|---|
+| `island` | `island-main-s` → `island-main-l` → `terrace` | now |
+| `mochi` | `mochi` | now |
+| `cay` | `cay-1` → `cay-2` → `cay-3` → `cay-4` → `cay-5` | after the `island` track is merged (`island-main-s` is its style reference) |
+| `garden` | `garden-1` → `garden-2` | after `cay-1` is merged |
+| `simit` | `simit-1` | after `cay-1` is merged |
 
-**One task = one job.** The founder starts a task with: "AGENTS.md
-parallel auto mode, batch-01-slice, job `<id>`". Then:
+The founder starts a task with: "AGENTS.md parallel auto mode,
+batch-01-slice, track `<name>`". Branch: `art/batch-01-slice/<track>`. PR
+title: `art(batch-01): <track>`. Within the task, run steps 2 to 6 for each
+job of the track in order.
 
 1. Install the tools: `pip install -r tools/imagegen/requirements.txt`. If
    that fails, stop and ask the founder to add it to the Codex
@@ -111,7 +113,7 @@ parallel auto mode, batch-01-slice, job `<id>`". Then:
    `main`. They are already in the repo; do nothing if they are present.
 3. Print the exact prompt and attachments with
    `python3 -I tools/imagegen/run.py prompt --manifest tools/imagegen/manifest/batch-01-slice.yaml --job <id>`,
-   and generate the job's `variants` with **your built-in image generation
+   and generate the job's 2 takes with **your built-in image generation
    tool**, attaching the listed references. If you have no image tool here,
    stop and say so.
 4. Ingest the takes with
@@ -130,8 +132,8 @@ parallel auto mode, batch-01-slice, job `<id>`". Then:
    - the job's QA summary as `.../<id>/review.yaml`.
 
    Do **not** edit the shared `design/art/review/batch-01-slice.yaml`; the
-   lead merges the fragments. Push branch `art/batch-01-slice/<id>`, open a
-   PR named `art(batch-01): <id>`, and stop.
+   lead merges the fragments. After the last job of the track, push branch
+   `art/batch-01-slice/<track>`, open the PR, and stop.
 
 The founder vetoes in Turkish ("cay-1: take 2", or "redo"). The lead or
 a new task applies the veto.

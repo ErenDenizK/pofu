@@ -30,7 +30,7 @@ jobs:
     name: island-main-s
     size: 1536x1024
     key: blue
-    variants: 3
+    variants: 2
     chat: "Pofu · Island"
     attach:
       - ref: island-take1
@@ -104,7 +104,7 @@ jobs:
   - id: cay-1
     kind: station
     name: cay-1
-    variants: 3
+    variants: 2
     chat: "Pofu · Çay ocağı"
     attach:
       - ref: station-guide
@@ -188,7 +188,7 @@ jobs:
   - id: garden-1
     kind: station
     name: garden-1
-    variants: 3
+    variants: 2
     key: blue
     chat: "Pofu · Sunflower garden"
     attach:
@@ -249,7 +249,7 @@ jobs:
     kind: char
     name: mochi-base
     size: 1024x1536
-    variants: 3
+    variants: 2
     chat: "Pofu · Residents"
     attach:
       - ref: R1

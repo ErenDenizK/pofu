@@ -27,7 +27,7 @@ paths:
 # rate-limit or usage message and never retries in a loop.
 rate:
   pause_seconds: 90          # wait between two generations
-  max_takes_per_job: 3       # hard cap per job and run, below the manifest's variants if lower
+  max_takes_per_job: 2       # hard cap per job and run; a third take is usually a weaker copy of the second (founder, 2026-11-02)
   max_images_per_run: 12     # session budget; a run never generates more
   timeout_seconds: 600       # one generation
 
