@@ -8,6 +8,11 @@ extension WorldArt {
             soft: WorldBox(minX: -51.845, minY: -62.743, maxX: 50.022, maxY: 16.723),
             deep: WorldBox(minX: -59.578, minY: -70.477, maxX: 57.755, maxY: 24.457)
         ),
+        "cay-1--softlock": WorldSprite(
+            sharp: WorldBox(minX: -47.578, minY: -58.477, maxX: 45.755, maxY: 12.457),
+            soft: WorldBox(minX: -51.845, minY: -62.743, maxX: 50.022, maxY: 16.723),
+            deep: WorldBox(minX: -59.578, minY: -70.477, maxX: 57.755, maxY: 24.457)
+        ),
         "findik-standin": WorldSprite(
             sharp: WorldBox(minX: -13.164, minY: -21.474, maxX: 11.91, maxY: 4.018),
             soft: WorldBox(minX: -17.552, minY: -25.862, maxX: 16.299, maxY: 8.406),
@@ -23,7 +28,17 @@ extension WorldArt {
             soft: WorldBox(minX: -183.774, minY: -51.671, maxX: 184.018, maxY: -5.85),
             deep: WorldBox(minX: -191.574, minY: -58.5, maxX: 191.818, maxY: -5.921)
         ),
+        "island-main-band0--softlock": WorldSprite(
+            sharp: WorldBox(minX: -179.387, minY: -48.99, maxX: 179.631, maxY: -6.093),
+            soft: WorldBox(minX: -183.774, minY: -51.671, maxX: 184.018, maxY: -5.85),
+            deep: WorldBox(minX: -191.574, minY: -58.5, maxX: 191.818, maxY: -5.921)
+        ),
         "island-main-band1": WorldSprite(
+            sharp: WorldBox(minX: -179.387, minY: -21.692, maxX: 179.631, maxY: 21.936),
+            soft: WorldBox(minX: -183.774, minY: -21.448, maxX: 184.018, maxY: 21.936),
+            deep: WorldBox(minX: -191.574, minY: -21.257, maxX: 191.818, maxY: 21.828)
+        ),
+        "island-main-band1--softlock": WorldSprite(
             sharp: WorldBox(minX: -179.387, minY: -21.692, maxX: 179.631, maxY: 21.936),
             soft: WorldBox(minX: -183.774, minY: -21.448, maxX: 184.018, maxY: 21.936),
             deep: WorldBox(minX: -191.574, minY: -21.257, maxX: 191.818, maxY: 21.828)
@@ -33,7 +48,17 @@ extension WorldArt {
             soft: WorldBox(minX: -183.774, minY: 6.337, maxX: 184.018, maxY: 52.159),
             deep: WorldBox(minX: -191.574, minY: 6.493, maxX: 191.818, maxY: 51.769)
         ),
+        "island-main-band2--softlock": WorldSprite(
+            sharp: WorldBox(minX: -179.387, minY: 6.337, maxX: 179.631, maxY: 51.915),
+            soft: WorldBox(minX: -183.774, minY: 6.337, maxX: 184.018, maxY: 52.159),
+            deep: WorldBox(minX: -191.574, minY: 6.493, maxX: 191.818, maxY: 51.769)
+        ),
         "island-main-band3": WorldSprite(
+            sharp: WorldBox(minX: -179.387, minY: 36.316, maxX: 179.631, maxY: 115.042),
+            soft: WorldBox(minX: -183.774, minY: 36.56, maxX: 184.018, maxY: 117.479),
+            deep: WorldBox(minX: -191.574, minY: 36.434, maxX: 191.818, maxY: 122.604)
+        ),
+        "island-main-band3--softlock": WorldSprite(
             sharp: WorldBox(minX: -179.387, minY: 36.316, maxX: 179.631, maxY: 115.042),
             soft: WorldBox(minX: -183.774, minY: 36.56, maxX: 184.018, maxY: 117.479),
             deep: WorldBox(minX: -191.574, minY: 36.434, maxX: 191.818, maxY: 122.604)
