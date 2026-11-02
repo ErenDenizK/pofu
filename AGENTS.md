@@ -97,9 +97,9 @@ makes **2 takes** (a third is usually a weaker copy of the second).
 |---|---|---|
 | `island` | `island-main-s` → `island-main-l` → `terrace` | now |
 | `mochi` | `mochi` | now |
-| `cay` | `cay-1` → `cay-2` → `cay-3` → `cay-4` → `cay-5` | after the `island` track is merged (`island-main-s` is its style reference) |
-| `garden` | `garden-1` → `garden-2` | after `cay-1` is merged |
-| `simit` | `simit-1` | after `cay-1` is merged |
+| `cay` | `cay-1` → `cay-2` → `cay-3` → `cay-4` → `cay-5` | when the `island` task has pushed `island-main-s` (its style reference) |
+| `garden` | `garden-1` → `garden-2` | when the `cay` task has pushed `cay-1` |
+| `simit` | `simit-1` | when the `cay` task has pushed `cay-1` |
 
 **Or one task for everything:** "AGENTS.md parallel auto mode,
 batch-01-slice, track `all`" runs the tracks one after another in the
@@ -116,8 +116,12 @@ job of the track in order.
 1. Install the tools: `pip install -r tools/imagegen/requirements.txt`. If
    that fails, stop and ask the founder to add it to the Codex
    environment's setup script (setup runs with internet access).
-2. If the job depends on others, restore their approved masters from
-   `main`. They are already in the repo; do nothing if they are present.
+2. If the job depends on others, get their approved masters from `main`,
+   or, if they are not merged yet, from the other track's branch:
+   `git fetch origin art/batch-01-slice/<track>` and
+   `git checkout origin/art/batch-01-slice/<track> -- design/art/<path of the master>`.
+   Do not wait for the lead to merge. Track tasks push after **each**
+   promoted job, not only at the end, so dependent tasks can start early.
 3. Print the exact prompt and attachments with
    `python3 -I tools/imagegen/run.py prompt --manifest tools/imagegen/manifest/batch-01-slice.yaml --job <id>`,
    and generate the job's 2 takes with **your built-in image generation
@@ -139,8 +143,9 @@ job of the track in order.
    - the job's QA summary as `.../<id>/review.yaml`.
 
    Do **not** edit the shared `design/art/review/batch-01-slice.yaml`; the
-   lead merges the fragments. After the last job of the track, push branch
-   `art/batch-01-slice/<track>`, open the PR, and stop.
+   lead merges the fragments. Push branch `art/batch-01-slice/<track>` after
+   every promoted job; after the first push, open the PR. After the last
+   job, say so in the PR and stop.
 
 The founder vetoes in Turkish ("cay-1: take 2", or "redo"). The lead or
 a new task applies the veto.
