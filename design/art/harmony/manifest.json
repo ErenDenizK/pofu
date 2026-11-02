@@ -70,8 +70,8 @@
     "edge": 0.427,
     "materials": {
      "copper": {
-      "chroma": 45.40157004254297,
-      "hue": 58.91537731322668,
+      "chroma": 45.401570042542986,
+      "hue": 58.915377313226635,
       "pixels": 14894
      }
     },
@@ -88,8 +88,8 @@
     "edge": 0.427,
     "materials": {
      "copper": {
-      "chroma": 40.3579091331905,
-      "hue": 54.03455182601406,
+      "chroma": 40.357909133190496,
+      "hue": 54.03455182601405,
       "pixels": 41174
      }
     },
@@ -2850,6 +2850,66 @@
    "shipped": false,
    "source": "design/art/stations/simit-2/simit-2.png",
    "source_sha": "9a7ac2f6bfc15fd5"
+  },
+  "simit-3": {
+   "after": {
+    "C_mean": 34.499,
+    "C_p50": 37.26,
+    "C_p95": 52.002,
+    "L_mean": 74.925,
+    "L_p2": 51.12,
+    "L_p98": 88.802,
+    "detail": 2.11,
+    "edge": 0.434,
+    "tint_a": 5.095,
+    "tint_b": 10.253,
+    "warmth_b": 30.583
+   },
+   "before": {
+    "C_mean": 30.356,
+    "C_p50": 32.598,
+    "C_p95": 46.623,
+    "L_mean": 72.417,
+    "L_p2": 44.31,
+    "L_p98": 88.802,
+    "detail": 2.399,
+    "edge": 0.434,
+    "tint_a": 4.512,
+    "tint_b": 9.042,
+    "warmth_b": 26.908
+   },
+   "chain": {
+    "C_p50": 37.248,
+    "L_p2": 51.116,
+    "L_p98": 89.723
+   },
+   "correction": {
+    "black": 6.81,
+    "ceiling": 49.0,
+    "chroma": 1.143,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": false,
+   "kind": "station",
+   "matched_to": "world",
+   "outliers_after": [
+    "edge"
+   ],
+   "outliers_before": [
+    "chain_C_p50",
+    "chain_L_p2",
+    "edge"
+   ],
+   "ppu": 8.533,
+   "reference": false,
+   "score_after": 90.1,
+   "score_before": 69.0,
+   "shipped": false,
+   "source": "design/art/stations/simit-3/simit-3.png",
+   "source_sha": "dae7796dba08f5fc"
   },
   "sun-glow": {
    "after": {
