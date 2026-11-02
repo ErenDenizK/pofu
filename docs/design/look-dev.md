@@ -154,10 +154,83 @@ from the production queue) deepens only the earth body, lawn untouched;
 the new `depth_floor` QA check now fails it if the body comes back too
 thin, instead of the lower bound being read by hand.
 
+## Round 3 (2026-11-02): the island as hero, real art, the colour script
+
+The lead's review of round 2: at the Island framing the island was small
+under about 45 % of empty sky with a dead cloud area below, and the
+small plate's tips bled off the sides; the art was still stand-ins; at
+night Pofu and the residents turned lavender; unwell read pale because
+the sky stayed pale. The founder added: the rose copper was prettier
+than round 2's warm shift, and colour needs a real light design.
+
+### Framing
+
+- **Island:** the plate, tip to tip, fills 88 % of the width with nothing
+  cropped; the island's box (the windmill's top to the roots) is centred
+  between the top chrome and the bottom band (`IslandFraming.islandStop`).
+  A phone is about twice as tall as the plate's silhouette is wide, so
+  the island can never fill the band: the band above it is composed with
+  the batch-04 far isles and painted clouds (`FarSkyLayout`, per framing,
+  each element keeping its side so a flight reads as parallax), the band
+  below with the cloud sea, now with the painted cloud-sea master as its
+  front row.
+- **Home** keeps ADR-0018's diorama (Pofu 154 pt, feet at 600 pt), nudged
+  sideways at most a quarter of the width so Mochi and Fındık are whole or
+  out (`IslandFraming.homeStop`). What shows where: at Home, Pofu with
+  Fındık and Mochi, the workshop and the windmill deep behind him, the
+  pond at the left edge and the far isles over the lawn's horizon; at the
+  Island, every station, Pofu and both residents.
+- **Measured:** `frame_metrics.py` counts the near-uniform rows below the
+  top chrome (`empty`) and the longest such run (`run`); targets in
+  `grade-targets.json` (`framing`). `look-framing.jpg` puts round 2's
+  frames beside this round's with both numbers.
+
+### Real art
+
+The large plate is batch 05's `island-main-l-v3` (the same lawn as v2 over
+the deeper body the founder asked for; `APP_PLATE_MASTER` switches back to
+v2 in one line), 480 units across. Its lawn is 0.18 as deep as it is wide,
+so depth, not width, limits the layout; a search over the real footprints
+found the smallest plate that holds every station at every level, Pofu and
+both residents without overlap. Every generated level ships: çay 1–5,
+garden 1–5, pond 1–5, windmill 1–5, workshop 1 (workshop-2 is cut on the
+left like its parent's master; regenerate it from the padded re-lock).
+Mochi v2 and Fındık replace the stand-ins. Simit is İskele's, not the home
+island's, so it is not placed here.
+
+### Night and unwell, and the colour script
+
+See `colour-script.md`: Pofu and the residents are drawn in their own
+layer under the cell's character light (never the world's saturation cut)
+with a rim from the nearest practical or the key; the ember lights the
+rose copper; the cloud sea is pre-graded and lifted at night; the unwell
+sky turns overcast. Frame checks: Pofu's hue at night and unwell within
+20° of the day's and his chroma at least 0.6 × day's at night; the unwell
+sky 0.80–0.94 × day's lightness and cooler.
+
+### One full-screen grade pass
+
+The sky and the cloud sea are pre-graded on the CPU (`SkyPalette.graded`,
+`CloudSea.Colours`), so the sky's own shader pass is gone; the vignette is
+one gradient overlay instead of a term in each pass; the characters are
+graded per sprite (their rects only). The world layer's grade is the only
+full-screen shader pass left.
+
+### Re-locks
+
+Re-locked from their kept takes with `lock-light` where it scored better
+after harmony than the soft-lock master: island-main-l-v2 87.2 → 95.8,
+pond-1 74.0 → 86.3, garden-3 69.6 → 87.2, garden-4 60.6 → 77.9,
+windmill-3 69.6 → 87.5, windmill-4 64.7 → 70.9; workshop-1 (86.6 → 80.4,
+lower) only to recover its clipped roof (`relock.py --pad`). The sky
+masters, the characters, pond-2..5 and windmill-1, -2, -5 measured the
+same or worse re-locked and stay on their masters. `relock.py` now applies
+a level edit's alignment (it silently failed every chain level before).
+
 ## Flags
 
 `WorldLook` (environment value `worldLook`): `art` (lock-light,
-soft-lock, unharmonized), `grade`, `hd2d`, `depthMotion`, `hourOverride`,
+soft-lock, unharmonized, round 2's copper), `grade`, `hd2d`, `depthMotion`, `hourOverride`,
 `gradeOverride`, `frameMeter`. The default is everything on,
 in the world scene only. `WorldLook.legacy` is the look before look-dev.
 `FeatureFlags.worldHome` is unchanged (off).

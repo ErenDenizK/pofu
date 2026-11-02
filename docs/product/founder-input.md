@@ -29,11 +29,17 @@ not orders: each entry records **what he meant**, the **status**, and
 ## 2026-11-02 (evening): after the look-dev round and the Hub answers
 
 ### Art and look
+- **The rose copper (before harmony) was prettier**; harmony must not
+  average everything toward a reference: "we should do a proper colour and
+  light design". Handled: look round 3, the colour script and the material
+  library (`docs/design/colour-script.md`); the copper stays rose, warmed by
+  the ember's light.
 - **Objects never stick out past the island**, even in prototypes.
   Handled: look round 2 (containment test), `feat/look-round-2`.
 - Liked the new overall colour. **Night and unwell grades still look washed
   out**; day, golden hour are fine. **Terrarium rim does not look good**
-  (removed). **The çay ocağı/teapot still reads cold.** Handled: look round 2.
+  (removed). **The çay ocağı/teapot still reads cold.** Handled: look round 2;
+  look round 3 keeps the characters warm at night and makes unwell overcast.
 - **Assets must be tuned, matched and measured against each other**, by a
   technical system. Handled: harmony system (`tools/assets/harmony.py`,
   look round 2) and harmony scores at promote time in the art pipeline.

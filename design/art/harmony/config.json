@@ -2,16 +2,16 @@
   "$note": "Asset harmony (tools/assets/harmony.py, look round 2). Every world master is measured against the reference set on the same scale (world units), and the measurable differences become per-asset corrections that preblur.py app bakes into the app's sprites. Change a target or a tolerance only with the harmony contact sheet in the PR. L and C are CIELAB lightness and chroma; tint is the mean a*, b* of the near-neutral pixels (the light's white balance).",
   "version": 1,
   "reference": {
-    "$note": "What each kind is matched against: the approved island take (ADR-0018's style target) for the world, Pofu for characters (a white bunny's chroma or a character's eyes say nothing about the lawn).",
+    "$note": "What each kind is matched against: the approved island take (ADR-0018's style target, island-main-s; the app now draws the large plate, which is matched to it like any other world asset) for the world, Pofu for characters (a white bunny's chroma or a character's eyes say nothing about the lawn).",
     "world": [
-      "island-main"
+      "island-main-s"
     ],
     "char": [
       "pofu"
     ]
   },
   "guard": {
-    "$note": "Measured and scored, never corrected (fnmatch patterns). Pofu is the hero and keeps his own art (char-guard). Sky elements and the far isles are tinted and hazed by the living sky on purpose, so they are not matched to the lawn.",
+    "$note": "Measured and scored, never corrected (fnmatch patterns). Pofu is the hero and keeps his own art (char-guard). Sky elements and the far isles are lit and hazed by the colour script on purpose, so they are not matched to the lawn.",
     "assets": [
       "pofu",
       "pofu-*",
@@ -76,35 +76,22 @@
     ],
     "max_tint_shift": 6.0
   },
-  "materials": {
-    "$note": "Material targets from the props palette (tools/imagegen/palettes.json), measured on the pixels whose hue falls in the band. Copper: the founder found the çaydanlık cold (2026-11-02); the measured copper sits at hue 54, on the palette's pink-leaning copper (#D4875F, hue 53), against honey wood at hue 63. The target is the midpoint of copper and tea-amber (#E09A55, hue 66) so the kettle reads as warm metal, not rose.",
-    "copper": {
-      "$note": "Hue alone cannot separate copper (H 52-58) from honey wood (H 56-72), so the material is also bounded by a region of the canvas (x0, y0, x1, y1 as fractions, feathered): the çaydanlık on cay-1.",
-      "hue": 54.0,
-      "width": 10.0,
-      "min_chroma": 18.0,
-      "target_hue": 61.0,
-      "target_chroma": 44.0,
-      "regions": {
-        "cay-1": [
-          0.22,
-          0.29,
-          0.55,
-          0.55
-        ]
-      }
-    }
-  },
   "kinds": {
     "$note": "The kind of each shipped source (preblur's APP_SOURCES) that is not a station.",
     "island-main": "world",
     "mochi": "char",
-    "findik-standin": "char",
     "pofu": "char",
     "isle-harbor-standin": "world",
     "isle-stars-standin": "world",
     "isle-hamam-standin": "world",
-    "isle-library-standin": "world"
+    "isle-library-standin": "world",
+    "findik": "char",
+    "far-isle-1": "world",
+    "far-isle-2": "world",
+    "far-isle-3": "world",
+    "cloud-2": "world",
+    "cloud-4": "world",
+    "cloud-sea": "world"
   },
   "correct_by_kind": {
     "$note": "Which metrics may be corrected per kind (all when a kind is absent). A character's identity is its own colour: a white bunny is not under-saturated, so characters only get white balance; their other outliers are reported for the next generation.",
@@ -131,5 +118,9 @@
       0.75,
       3.0
     ]
+  },
+  "materials_file": {
+    "$note": "Materials live in the material library, design/art/materials.json (look round 3): a hue and chroma range per material, corrected only when the generator drifted out of it. load_config() reads it under 'materials'.",
+    "path": "design/art/materials.json"
   }
 }

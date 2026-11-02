@@ -16,6 +16,23 @@ public enum IslandSamples {
         )
     }
 
+    /// The home island grown: all five stations open and built at mixed
+    /// levels (the large plate's whole layout, look round 3), İskele on the
+    /// horizon.
+    public static func grownIsland(
+        clock: Date = Date(timeIntervalSinceReferenceDate: 815_000_000),
+        wellbeing: Double = 78
+    ) -> WorldSnapshot {
+        world(
+            clock: clock,
+            tendedDays: 120,
+            levels: [.garden: 3, .cay: 3, .pond: 2, .workshop: 1, .windmill: 2],
+            jar: Energy(60),
+            islands: [.aycicegi, .iskele],
+            wellbeing: wellbeing
+        )
+    }
+
     /// A first day: the garden only.
     public static func firstDay(clock: Date = Date(timeIntervalSinceReferenceDate: 815_000_000)) -> WorldSnapshot {
         world(clock: clock, tendedDays: 0, levels: [.garden: 1], jar: .zero, islands: [.aycicegi])

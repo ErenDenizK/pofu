@@ -13,8 +13,13 @@ public struct WorldLook: Hashable, Sendable {
         /// compare; drop it once the founder has chosen.
         case softLock
         /// The lock-light bake without its asset-harmony correction
-        /// (`tools/assets/harmony.py`, look round 2), to compare.
+        /// (`tools/assets/harmony.py`, look round 2), to compare; baked for
+        /// the plate and two chain levels only.
         case unharmonized
+        /// Look round 2's warm copper on the çaydanlık (its hue moved from
+        /// 54 to 59), kept to compare with the colour script's rose copper
+        /// lit by the ember (look round 3).
+        case round2Copper
 
         /// The suffix of this set's sprites, `nil` for the default.
         var suffix: String? {
@@ -22,6 +27,7 @@ public struct WorldLook: Hashable, Sendable {
             case .lockLight: nil
             case .softLock: "--softlock"
             case .unharmonized: "--unharmonized"
+            case .round2Copper: "--round2"
             }
         }
     }

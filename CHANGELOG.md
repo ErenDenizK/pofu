@@ -16,6 +16,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   scene with tuned feel and Reduce Motion, crafted HUD and cards, a
   Rehearsal entry ("Bahçede oyna"), and simulator screenshots.
 
+- Look round 3 (`docs/design/look-dev.md`, "Round 3";
+  `docs/design/colour-script.md`): the **Island framing** fits the large
+  plate (batch 05's `island-main-l-v3`) to 88 % of the width with nothing
+  cropped, centred between the chrome, and the empty bands are composed
+  with the batch-04 far isles, painted clouds and cloud sea (`FarSkyLayout`);
+  **real art** for every generated station level, Mochi v2 and Fındık on
+  a layout where nothing overlaps or overhangs; the **colour script v1**
+  (`design/art/colour-script.json`, five hour cells and the unwell state,
+  generated into Swift) and the **material library**
+  (`design/art/materials.json`): harmony now corrects technical defects
+  only and the çaydanlık keeps its rose copper, lit by the ember; Pofu and
+  the residents keep their warmth at night under the character light; the
+  unwell sky turns overcast; the sky's own full-screen grade pass is gone;
+  `frame_metrics.py` measures empty rows, the sky and Pofu's hue.
+
 - Pro game craft research (`docs/research/pro-game-craft.md`): how cozy
   and mobile studios work (engines, colour scripts and lighting keys,
   skeletal rigs, juice systems, UI kits, tuning tools, playtests), an

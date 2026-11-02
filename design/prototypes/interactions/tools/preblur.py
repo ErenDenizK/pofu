@@ -167,13 +167,31 @@ APP_RESOURCES = os.path.join(REPO, "Packages", "PofuKit", "Sources", "PofuWorld"
 APP_CATALOG = os.path.join(APP_RESOURCES, "World.xcassets")
 APP_SWIFT = os.path.join(REPO, "Packages", "PofuKit", "Sources", "PofuWorld", "Geometry", "WorldArt+Generated.swift")
 APP_MAX_PPU = 7.5
+# Stations are seen at most at the build push-in (x1.95 at 3x, 5.9 px per unit); capping them lower
+# than the characters keeps the catalog small now that every level ships.
+STATION_MAX_PPU = 6.0
 APP_LEVELS = {"soft": (1.4, 2), "deep": (4.0, 3)}  # suffix -> (sigma in world units, downscale)
 PROTO = os.path.join("design", "prototypes", "interactions", "assets")
+ART = os.path.join("design", "art")
 
 
-def _st(name):
-    # The prototype's station stand-ins: 600 x 660 for a 120 x 132 unit box, anchor 112 units down.
-    return {"src": os.path.join(PROTO, name + ".webp"), "ppu": 5.0, "anchor": (300, 560)}
+def _master(folder):
+    """A master folder's image: the lock-light re-lock when one was adopted (relock.py), else the
+    master itself. harmony.py reads the same order."""
+    name = os.path.basename(folder)
+    for candidate in (f"{name}--lock-light.png", f"{name}.png", f"{name}.webp"):
+        if os.path.exists(os.path.join(REPO, folder, candidate)):
+            return os.path.join(folder, candidate)
+    raise FileNotFoundError(folder)
+
+
+def _station(level_name):
+    """A station level master on the station guide: 1024 px for 120 units, the footprint centre at
+    (512, 800). A re-lock with --pad grows the canvas evenly, so the anchor moves with it."""
+    src = _master(os.path.join(ART, "stations", level_name))
+    with Image.open(os.path.join(REPO, src)) as im:
+        pad = (im.width - 1024) // 2
+    return {"src": src, "ppu": 1024 / 120, "anchor": (512 + pad, 800 + pad), "max_ppu": STATION_MAX_PPU}
 
 
 def _isle(name, box):
@@ -181,43 +199,107 @@ def _isle(name, box):
     return {"src": os.path.join(PROTO, name + ".webp"), "units": box[2] - box[0], "anchor_box": box}
 
 
+def _sky(folder, width_pt, anchor="centre"):
+    """A sky element drawn in screen space (far isles, clouds, the cloud sea): one image `width_pt`
+    points wide at most, stored at 3 px per point, never blurred (it is far and soft already)."""
+    src = _master(os.path.join(ART, "masters", folder))
+    with Image.open(os.path.join(REPO, src)) as im:
+        box = im.getchannel("A").point(lambda v: 255 if v > 2 else 0).getbbox()
+    w = box[2] - box[0]
+    return {"src": src, "ppu": w / width_pt, "anchor": ((box[0] + box[2]) / 2, (box[1] + box[3]) / 2), "sky": True, "max_ppu": 3.0}
+
+
+# The home plate. Each master's lawn is measured once (its top surface as an ellipse in pixels:
+# centre x, centre y, radius x, radius y, from the plate drawn on a grid) and given a width in world
+# units; the anchor is the lawn's centre, so the world origin stays the middle of the lawn whatever
+# the plate. Swap APP_PLATE_MASTER to change plates (island-main-l-v3 when batch 05 lands: measure
+# its lawn and add it here); the walkable polygon, the depth bands and the door's window follow.
+#
+# island-main-l-v2 is drawn 40 % wider than island-main-s. At 480 units its lawn holds the five
+# home stations at every level, Pofu, Mochi and Findik with no footprint overlapping another or
+# the rim (look round 3; the small plate held at most four). Its lawn is 0.18 as deep as wide, so
+# depth, not width, is what limits the layout.
+PLATES = {
+    "island-main-s": {"folder": "design/art/masters/island-main-s", "ppu": 1436 / 350, "anchor": (768, 441),
+                      "walkable": {"inset": 6.0}, "lawn_radius": (175.0, 43.6), "window": (492, 670),
+                      "softlock": "design/art/masters/island-main-s/island-main-s.png"},
+    "island-main-l-v2": {"folder": "design/art/masters/island-main-l-v2", "lawn": (767.0, 415.0, 742.0, 135.0),
+                         "units": 480.0, "window": (439, 660)},
+    # Batch 05: the same lawn over a deeper earth body (the founder found v2 too squashed).
+    "island-main-l-v3": {"folder": "design/art/masters/island-main-l-v3", "lawn": (767.0, 415.0, 742.0, 135.0),
+                         "units": 480.0, "window": (437, 563)},
+}
+APP_PLATE_MASTER = "island-main-l-v3"
+
+
+def _plate(key):
+    p = PLATES[key]
+    spec = {"src": _master(p["folder"]), "plate": key, "window": p["window"]}
+    if "lawn" in p:
+        cx, cy, rx, ry = p["lawn"]
+        ppu = 2 * rx / p["units"]
+        spec.update(ppu=ppu, anchor=(cx, cy), walkable={"ellipse": (rx / ppu, ry / ppu), "inset": 6.0},
+                    lawn_radius=(rx / ppu, ry / ppu))
+    else:
+        spec.update(ppu=p["ppu"], anchor=p["anchor"], walkable=p["walkable"], lawn_radius=p["lawn_radius"])
+    if p.get("softlock"):
+        spec["softlock"] = p["softlock"]
+    return spec
+
+
+# The home island's station chains: every level the art queue has generated (a level without art
+# shows the highest one below it, with a level badge).
+# workshop-2 (batch 05) is left out: it was edited from workshop-1's master, which lost the left of
+# its roof to the registration shift, so the edit is cut too; regenerate it from the padded re-lock.
+STATION_LEVELS = {"cay": 5, "garden": 5, "pond": 5, "windmill": 5, "workshop": 1}
+
 APP_SOURCES = {
-    # Batch 01 masters (design/art). The home plate's lawn spans x 50-1486 px for 350 units, centred
-    # at (768, 441); it is cut into depth bands below. The app draws the lock-light bakes (WorldGrade
-    # grades them at runtime); "softlock" also bakes the soft-lock masters as <name>--softlock, to
-    # compare, until the founder has chosen (WorldLook.ArtSet).
-    "island-main": {"src": "design/art/masters/island-main-s/island-main-s--lock-light.png", "ppu": 1436 / 350, "anchor": (768, 441),
-                    "softlock": "design/art/masters/island-main-s/island-main-s.png", "walkable": {"inset": 6.0}},
-    "cay-1": {"src": "design/art/stations/cay-1/cay-1--lock-light.png", "ppu": 1024 / 120, "anchor": (512, 800),
-              "softlock": "design/art/stations/cay-1/cay-1.png"},
-    "mochi": {"src": "design/art/masters/mochi-base/mochi-base.png", "ppu": 871 / 30, "anchor": (511, 1349)},
+    # The app draws the lock-light bakes (WorldGrade grades them at runtime); "softlock" also bakes a
+    # soft-lock master as <name>--softlock to compare (WorldLook.ArtSet), for cay-1 only now.
+    "island-main": _plate(APP_PLATE_MASTER),
+    **{f"{st}-{lvl}": _station(f"{st}-{lvl}") for st, n in STATION_LEVELS.items() for lvl in range(1, n + 1)},
+    # Characters: Mochi v2 (batch 03) and Findik (batch 03), 30 and 28 units wide, feet on the anchor.
+    "mochi": {"src": "design/art/masters/mochi-v2/mochi-v2.webp", "ppu": 901 / 30, "anchor": (515.5, 1349)},
+    "findik": {"src": "design/art/masters/findik-base/findik-base.webp", "ppu": 769 / 28, "anchor": (434.5, 1170)},
     # Pofu's own art: only the blurred variants (the live CompanionView is the sharp one). 64 units
     # wide with the feet at the rig's ground point, so the variants register with the live view.
     "pofu": {"src": "Packages/PofuKit/Sources/PofuCompanion/Resources/pofu-hamster.png", "ppu": 522 / 64, "anchor": (266, 481), "no_sharp": True},
-    # Stand-ins from the interaction prototype until batch 01 covers them.
-    "garden-standin": _st("st-garden-3"),
-    "pond-standin": _st("st-pond-2"),
-    "workshop-standin": _st("st-workshop-2"),
-    "windmill-standin": _st("st-windmill-2"),
-    "findik-standin": {"src": os.path.join(PROTO, "res-hog.webp"), "ppu": 134 / 28, "anchor": (67, 125 * 22 / 26)},
+    # The other islands on the map: the prototype's stand-ins until their islands are generated.
     "isle-harbor-standin": _isle("isle-harbor", (-134, -106.4, 134, 125.44)),
     "isle-stars-standin": _isle("isle-stars", (-122, -95, 122, 112)),
     "isle-hamam-standin": _isle("isle-hamam", (-128, -100.7, 128, 118.72)),
     "isle-library-standin": _isle("isle-library", (-122, -95, 122, 112)),
+    # The sky (batch 04), in screen points: far isles in the haze, clouds and the cloud sea.
+    "far-isle-1": _sky("far-isle-1", 300),
+    "far-isle-2": _sky("far-isle-2", 160),
+    "far-isle-3": _sky("far-isle-3", 260),
+    "cloud-2": _sky("cloud-2", 200),
+    "cloud-4": _sky("cloud-4", 260),
+    "cloud-sea": _sky("cloud-sea", 520),
 }
+APP_SOURCES["cay-1"]["softlock"] = "design/art/stations/cay-1/cay-1.png"
+# Look round 2's warm copper (the çaydanlık's hue moved from 54 to 59), kept only to compare in the
+# teapot sheet: the colour script (look round 3) keeps the rose copper as an accent instead.
+ROUND2_COPPER = {"cay-1": {"rose-copper": {"hue_shift": 6.97, "chroma_scale": 1.09}}}
+# The uncorrected bake is kept to compare only where it tells a story; every other sprite ships
+# corrected only (the catalog would double otherwise).
+UNHARMONIZED_COMPARE = {"island-main", "cay-3", "windmill-4"}
 # The home plate's depth bands in world y (larger is nearer): back lawn, middle lawn, front lawn
-# and lip, earth body. Each band's depth lives in PofuWorld's IslandLayout.
+# and lip, earth body, cut at these fractions of the lawn's half depth. Their depths are generated
+# into WorldArt.generatedPlate.
 APP_PLATE = "island-main"
+BAND_CUTS = (-0.32, 0.32, 1.0)
+BAND_CENTRES = (-0.64, 0.0, 0.66, 1.38)
 # Containment (look round 2): every object stands inside the plate's walkable footprint. The
-# walkable polygon is the plate's lawn (its largest green region) eroded by "inset" world units,
-# so nothing stands on the grass lip or hangs over the rim; a plate may instead author its polygon
-# as "walkable": {"polygon": [[x, y], ...]} in world units. A sprite's footprint is the convex hull
+# walkable polygon is the plate's lawn eroded by "inset" world units, so nothing stands on the grass
+# lip or hangs over the rim: either its largest green region ("inset" alone), or an authored ellipse
+# ("ellipse": [rx, ry] in world units; the pale lawn of the large plate defeats the green mask), or
+# an authored "polygon": [[x, y], ...] in world units. A sprite's footprint is the convex hull
 # of its opaque pixels within the bottom FOOT_DEPTH x (base width) of the image: the ground ellipse
 # of an object seen from about 20 degrees, matching the station guide (rx 360, ry 108 px).
 WALK_ROWS = 20
 FOOT_DEPTH = 0.30
 FOOT_MAX_POINTS = 16
-APP_BANDS = [(-1e9, -14.0), (-14.0, 14.0), (14.0, 44.0), (44.0, 1e9)]
 APP_FEATHER = 8.0
 
 
@@ -249,6 +331,13 @@ def _walkable(img, ppu, anchor, spec):
     front, then left edge front to back."""
     if "polygon" in spec:
         return [[round(float(x), 2), round(float(y), 2)] for x, y in spec["polygon"]]
+    if "ellipse" in spec:
+        rx, ry = spec["ellipse"][0] - spec["inset"], spec["ellipse"][1] - spec["inset"]
+        # Right edge back to front, then left edge front to back, like the measured polygon.
+        ts = [math.pi * (-0.5 + i / WALK_ROWS) for i in range(WALK_ROWS + 1)]
+        right = [[round(rx * math.cos(t), 2), round(ry * math.sin(t), 2)] for t in ts]
+        left = [[-x, y] for x, y in reversed(right[1:-1])]
+        return right + left
     from scipy import ndimage
 
     k = max(1, int(round(spec["inset"] * ppu)))
@@ -329,11 +418,17 @@ def _box(origin, size, ppu, anchor):
     return [round(x0, 3), round(y0, 3), round(x0 + size[0] / ppu, 3), round(y0 + size[1] / ppu, 3)]
 
 
-def _band_cut(img, box, k):
+def _bands(lawn_ry):
+    """The plate's depth bands in world y: (from, to) per band, back to front."""
+    edges = [-1e9] + [c * lawn_ry for c in BAND_CUTS] + [1e9]
+    return list(zip(edges[:-1], edges[1:]))
+
+
+def _band_cut(img, box, k, bands):
     """Cuts band k out of an image spanning `box` (world units); returns the crop and its box."""
     a = np.asarray(img, dtype=np.float32)
     y = box[1] + (np.arange(a.shape[0]) + 0.5) / a.shape[0] * (box[3] - box[1])
-    s0, s1 = APP_BANDS[k]
+    s0, s1 = bands[k]
     w = np.ones_like(y) if k == 0 else smoothstep(s0 - APP_FEATHER, s0 + APP_FEATHER, y)
     if s1 < 1e8:
         w = np.where(y <= s1 + APP_FEATHER, w, 0.0)
@@ -379,16 +474,20 @@ def app_main():
             jobs.append((name, "--softlock", {**spec, "src": spec["softlock"]}))
         # Every sprite carries its harmony correction; the uncorrected colour is kept as
         # <name>--unharmonized to compare (WorldLook.ArtSet.unharmonized) until the founder signs off.
-        if corrected(name):
+        if corrected(name) and name in UNHARMONIZED_COMPARE:
             jobs.append((name, "--unharmonized", spec))
+        if name in ROUND2_COPPER:
+            jobs.append((name, "--round2", spec))
     for name, alt, spec in jobs:
         path = os.path.join(REPO, spec["src"])
         if not os.path.exists(path):
             print("missing", path, file=sys.stderr)
             return 1
         src = Image.open(path).convert("RGBA")
-        if not alt and corrected(name):
+        if alt in ("", "--round2") and corrected(name):
             src = harmony.correct_image(name, src, manifest, harmony_cfg)
+        if alt == "--round2":
+            src = _round2_copper(harmony, harmony_cfg, name, src)
         if "anchor_box" in spec:
             bx = spec["anchor_box"]
             ppu = src.width / spec["units"]
@@ -397,26 +496,40 @@ def app_main():
             ppu, anchor = spec["ppu"], spec["anchor"]
         img, (ox, oy) = _trim(src)
         anchor = (anchor[0] - ox, anchor[1] - oy)
-        if ppu > APP_MAX_PPU:
-            f = APP_MAX_PPU / ppu
+        cap = spec.get("max_ppu", APP_MAX_PPU)
+        if ppu > cap:
+            f = cap / ppu
             img = img.resize((max(1, round(img.width * f)), max(1, round(img.height * f))), Image.LANCZOS)
-            anchor, ppu = (anchor[0] * f, anchor[1] * f), APP_MAX_PPU
+            anchor, ppu = (anchor[0] * f, anchor[1] * f), cap
         variants = {"sharp": (img, _box((0, 0), img.size, ppu, anchor))}
+        if spec.get("sky"):
+            # Screen-space sky art: one image, its box in points around its centre.
+            _write_imageset(f"world-{name}{alt}", img)
+            box = variants["sharp"][1]
+            table[name + alt] = {"sharp": box, "soft": box, "deep": box}
+            print(f"{name}{alt}: sky, {img.width}x{img.height}, box {box}")
+            continue
         if "walkable" in spec and not alt:
             walkable[name] = _walkable(img, ppu, anchor, spec["walkable"])
+            rx, ry = spec["lawn_radius"]
+            wx, wy = spec["window"]
+            plate = {"master": spec["plate"], "lawn": [round(rx, 2), round(ry, 2)],
+                     "bands": [round(c * ry, 2) for c in BAND_CENTRES],
+                     "window": [round((wx - spec["anchor"][0]) / spec["ppu"], 2), round((wy - spec["anchor"][1]) / spec["ppu"], 2)]}
+            bands = _bands(ry)
         for suffix, (sigma_u, down) in APP_LEVELS.items():
             blurred, pad = blur_variant(img, sigma_u * ppu, down)
             # The blurred image covers the source padded by `pad` source pixels on every side.
             variants[suffix] = (blurred, _box((-pad, -pad), (img.width + 2 * pad, img.height + 2 * pad), ppu, anchor))
         if name == APP_PLATE:
-            for k in range(len(APP_BANDS)):
+            for k in range(len(bands)):
                 entry = {}
                 for suffix, (vimg, vbox) in variants.items():
-                    crop, cbox = _band_cut(vimg, vbox, k)
+                    crop, cbox = _band_cut(vimg, vbox, k, bands)
                     _write_imageset(f"world-{name}-band{k}{alt}" + ("" if suffix == "sharp" else "__" + suffix), crop)
                     entry[suffix] = cbox
                 table[f"{name}-band{k}{alt}"] = entry
-            print(f"{name}{alt}: {len(APP_BANDS)} bands, {ppu:.2f} px/unit")
+            print(f"{name}{alt}: {len(bands)} bands, {ppu:.2f} px/unit")
             continue
         entry = {}
         for suffix, (vimg, vbox) in variants.items():
@@ -427,11 +540,20 @@ def app_main():
         entry["footprint"] = _footprint(img, ppu, anchor)
         table[name + alt] = entry
         print(f"{name}{alt}: {img.width}x{img.height}, {ppu:.2f} px/unit, box {entry.get('sharp', entry['soft'])}")
-    _write_swift(table, walkable)
+    _write_swift(table, walkable, plate)
     return 0
 
 
-def _write_swift(table, walkable):
+def _round2_copper(harmony, cfg, name, img):
+    """Look round 2's copper hue shift, for the teapot comparison only."""
+    rgba = np.asarray(img.convert("RGBA"), dtype=np.float64) / 255.0
+    mats = harmony.materials_for(name, cfg, rgba.shape[:2])
+    corr = dict(harmony.IDENTITY, materials=ROUND2_COPPER[name])
+    out = harmony.apply(rgba, corr, None, mats)
+    return Image.fromarray(np.uint8(np.clip(out * 255 + 0.5, 0, 255)), "RGBA")
+
+
+def _write_swift(table, walkable, plate):
     def box(b):
         return f"WorldBox(minX: {b[0]}, minY: {b[1]}, maxX: {b[2]}, maxY: {b[3]})" if b else "nil"
 
@@ -463,7 +585,17 @@ def _write_swift(table, walkable):
     lines.append("    static let generatedWalkable: [String: [WorldPoint]] = [")
     for name in sorted(walkable):
         lines.append(f'        "{name}": {points(walkable[name], 8)},')
-    lines += ["    ]", "}", ""]
+    lines += ["    ]", ""]
+    lines.append(f"    /// The home plate (`{plate['master']}`): its lawn's radii, its depth bands' centres and the door's")
+    lines.append("    /// round window, in world units.")
+    lines.append("    static let generatedPlate = WorldPlate(")
+    lines.append(f'        master: "{plate["master"]}",')
+    lines.append(f"        lawnRadiusX: {plate['lawn'][0]},")
+    lines.append(f"        lawnRadiusY: {plate['lawn'][1]},")
+    lines.append(f"        bandDepthY: [{', '.join(str(b) for b in plate['bands'])}],")
+    lines.append(f"        window: WorldPoint(x: {plate['window'][0]}, y: {plate['window'][1]})")
+    lines.append("    )")
+    lines += ["}", ""]
     with open(APP_SWIFT, "w") as f:
         f.write("\n".join(lines))
 
