@@ -1,0 +1,170 @@
+batch: batch-07-light
+contact_sheet: design/art/takes/batch-07-light/windmill-5-lit/contact.jpg
+jobs:
+  windmill-5-lit:
+    pick: 1
+    note: auto-picked by QA; founder review pending. Take1 has lowest non-failing
+      load0.5129 and stability0.9870 above manual0.9 gate. Only window interiors are
+      lit; frames, flower boxes and other objects retain their shapes/light. Harmony44.0
+      advisory warning retained. Already generated before global workshop stop.
+    takes:
+      t1:
+        qa: warn
+        summary: harmony warn
+      t2:
+        qa: warn
+        summary: station_anchor warn; harmony warn
+    approved:
+      take: 1
+      at: '2026-11-02T19:22:21+00:00'
+qa_reports:
+  station__windmill-5-lit--t2:
+    job: windmill-5-lit
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 12 (R1 51)
+      value: 11.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 75.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.06
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5138
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.1, p95 2.0, off-palette 0.0%
+      value: 1.1405
+    - check: station_anchor
+      status: warn
+      message: top y 0 above the parent's bar (52)
+      value: 906.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 38 against the world reference (outliers: C_p95, L_p2,
+        L_p98, edge)'
+      value: 37.7
+    - check: edit_stability
+      status: pass
+      message: 99% of the parent level unchanged
+      value: 0.9868
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.05 of the parent level (drift compounds along a chain)
+      value: 1.0464
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 74.8
+        L_p50: 82.2
+        L_p95: 86.3
+        C_p50: 7.3
+        C_p95: 11.9
+        C_p99: 30.6
+        detail: 1.59
+      metrics_locked:
+        L_p5: 75.3
+        L_p50: 82.2
+        L_p95: 86.2
+        C_p50: 7.2
+        C_p95: 11.8
+        C_p99: 29.9
+        detail: 1.06
+    fingerprint: 95fc7d19cec89b0c
+  station__windmill-5-lit--t1:
+    job: windmill-5-lit
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 12 (R1 51)
+      value: 11.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 75.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.05
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5129
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.2, p95 2.0, off-palette 0.0%
+      value: 1.2097
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 906.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 44 against the world reference (outliers: C_p95, L_p2,
+        L_p98, edge)'
+      value: 44.0
+    - check: edit_stability
+      status: pass
+      message: 99% of the parent level unchanged
+      value: 0.987
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.05 of the parent level (drift compounds along a chain)
+      value: 1.0544
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 74.8
+        L_p50: 82.6
+        L_p95: 86.7
+        C_p50: 7.3
+        C_p95: 11.8
+        C_p99: 31.8
+        detail: 1.64
+      metrics_locked:
+        L_p5: 75.3
+        L_p50: 82.5
+        L_p95: 86.7
+        C_p50: 7.3
+        C_p95: 11.6
+        C_p99: 31.2
+        detail: 1.05
+    fingerprint: 95fc7d19cec89b0c
