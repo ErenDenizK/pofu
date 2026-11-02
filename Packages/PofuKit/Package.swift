@@ -24,6 +24,7 @@ let package = Package(
         .library(name: "PofuDesignSystem", targets: ["PofuDesignSystem"]),
         .library(name: "PofuCompanion", targets: ["PofuCompanion"]),
         .library(name: "PofuWorld", targets: ["PofuWorld"]),
+        .library(name: "PofuGames", targets: ["PofuGames"]),
         .library(name: "PofuTuning", targets: ["PofuTuning"]),
     ],
     targets: [
@@ -68,6 +69,17 @@ let package = Package(
             resources: [.process("Resources")]
         ),
 
+        // The island minigames. The rules (board, pieces, rounds, yields,
+        // the fair generator, feel math) are pure and tested on any
+        // platform; the SpriteKit scene and its SwiftUI shell are iOS only.
+        // Sprites are baked from the art masters by
+        // design/games/bake_garden_art.py. See docs/product/minigames.md.
+        .target(
+            name: "PofuGames",
+            dependencies: ["PofuDesignSystem"],
+            resources: [.process("Resources")]
+        ),
+
         // Every number that decides feel, as data: the bundled
         // `tuning.json` defaults and the live store the Ayar panel in
         // Rehearsal mode edits and exports. Foundation only.
@@ -82,6 +94,7 @@ let package = Package(
         .testTarget(name: "PofuDesignSystemTests", dependencies: ["PofuDesignSystem"]),
         .testTarget(name: "PofuCompanionTests", dependencies: ["PofuCompanion"]),
         .testTarget(name: "PofuWorldTests", dependencies: ["PofuWorld", "PofuCore"]),
+        .testTarget(name: "PofuGamesTests", dependencies: ["PofuGames"]),
         .testTarget(name: "PofuTuningTests", dependencies: ["PofuTuning"]),
     ],
     swiftLanguageModes: [.v6]

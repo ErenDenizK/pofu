@@ -18,6 +18,13 @@
 		<key>UIColorName</key>
 		<string>LaunchBackground</string>
 	</dict>
+	<!--
+	  Lets views that ask for it (the island games' SKView, the world's
+	  frame meter) run at 120 Hz on ProMotion iPhones. Everything else
+	  keeps the system's default rate.
+	-->
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>instagram</string>

@@ -91,6 +91,11 @@ struct RehearsalPanel: View {
             }
             nightOrMorning
             Divider()
+            control(Text("Play the garden"), symbol: "square.grid.3x3.fill") {
+                rehearsal.isPanelExpanded = false
+                rehearsal.isPlayingGarden = true
+            }
+            Divider()
             #if DEBUG
             // Ayar: the live tuning panel (debug builds only).
             control(Text(verbatim: "Ayar"), symbol: "slider.horizontal.3") {
