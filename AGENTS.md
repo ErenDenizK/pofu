@@ -101,12 +101,20 @@ makes **2 takes** (a third is usually a weaker copy of the second).
 | `garden` | `garden-1` → `garden-2` | when the `cay` task has pushed `cay-1` |
 | `simit` | `simit-1` | when the `cay` task has pushed `cay-1` |
 
-**Or one task for everything:** "AGENTS.md parallel auto mode,
-batch-01-slice, track `all`" runs the tracks one after another in the
-order of the table (island, mochi, cay, garden, simit) in a single task,
-on branch `art/batch-01-slice/all`, with one PR at the end. It is slower
-than parallel tasks but needs no merges in between, because every
-reference is already on its own branch.
+**Or one task for everything (preferred by the founder):** "AGENTS.md
+parallel auto mode, batch-01-slice, track `all`" runs every track in a
+single task, on branch `art/batch-01-slice/all`, with one PR.
+
+- **Parallelise inside the task if you can.** If your environment lets you
+  spawn sub-agents or run several image generations concurrently, run
+  independent work at the same time: `island`, `mochi` and, once
+  `island-main-s` exists, `cay`; then `garden` and `simit` once `cay-1`
+  exists. Say in the PR which mechanism you used.
+- **If you cannot,** run the tracks one after another in the table's
+  order.
+- **Either way,** a chain's levels stay sequential: each level is an edit of
+  the approved previous level. Wall time is at least the longest chain,
+  the five `cay` levels.
 
 The founder starts a task with: "AGENTS.md parallel auto mode,
 batch-01-slice, track `<name>`". Branch: `art/batch-01-slice/<track>`. PR
