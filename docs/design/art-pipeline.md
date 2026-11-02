@@ -15,6 +15,8 @@ what was done to it afterwards.
 | Batch | Manifest | Contents | Status |
 |---|---|---|---|
 | `batch-01-slice` | [`batch-01-slice.yaml`](../../tools/imagegen/manifest/batch-01-slice.yaml) | Game design §15 D1–D8 (island small and large, terrace, çay ocağı L1–L2, sunflower garden L1, simit cart L1, Mochi) plus çay ocağı L3–L5 and garden L2 | **Open for the W1 test, D1–D8 only** (`--only island-main-s island-main-l terrace cay-1 cay-2 garden-1 simit-1 mochi`); the founder's own ChatGPT plan. The other four jobs wait for the lead's review |
+| `batch-03-home-island` | [`batch-03-home-island.yaml`](../../tools/imagegen/manifest/batch-03-home-island.yaml) | Ayçiçeği stages 1–5: lily pond, workshop and windmill L1–L5, garden L3–L5, simit cart L2–L5, `mochi-v2` (no curl, longer ears) and Fındık with working poses, `island-main-l-v2` (40 % larger), `terrace-v2`, east islet and rope bridge (30 jobs) | **Open** (parallel auto mode, `AGENTS.md` "Next batches"). Continues batch 01's chains through `external` jobs |
+| `batch-04-sky` | [`batch-04-sky.yaml`](../../tools/imagegen/manifest/batch-04-sky.yaml) | The living sky (interaction spec v2): 5 clouds, a sun glow, 3 distant-island silhouettes, a tiling sea of clouds (10 jobs) | **Open**, in parallel with batch 03 |
 | `batch-02-ui` | [`batch-02-ui.yaml`](../../tools/imagegen/manifest/batch-02-ui.yaml) | Glass++ (ADR-0018): 6 domain icons, seed jar ×2 states, calm lantern off/on, a medium widget, an app icon draft (12 jobs) | **Not started.** Waits for the friends beta (ADR-0018 amendment); runs after batch 01's island and çay ocağı L1 are approved |
 
 A blocked manifest cannot generate: `run` refuses until the lead flips
