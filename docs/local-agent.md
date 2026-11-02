@@ -1,5 +1,9 @@
 # Local Agent Brief
 
+> **Status (2026-11-02):** the founder no longer runs a local Claude
+> session; this brief is a reference. Art runs on Codex in the cloud
+> (`AGENTS.md`); membership day 1 follows `docs/local/membership-day-1.md`.
+
 This is the standing brief for a **Claude Code session running on the
 founder's Mac** (folder `/Users/edk/projects/pofu`). The cloud session is the
 lead: it plans, writes most code, reviews, and merges. The local session is
