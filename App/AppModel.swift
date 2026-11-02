@@ -523,8 +523,18 @@ final class AppModel {
         let contents = screenTime.readInbox()
         let records = (contents?.records ?? []).map { screenTime.resolved($0) }
         let ledgerBefore = screenTimeLedger
+        // Local copies: `state` is observed, so two inout arguments into it
+        // would alias.
+        var checkIns = state.checkIns
+        var passes = state.passes
         let events = ScreenTimeIngestion(calendar: economy.calendar, rules: gateRules)
-            .ingest(records, at: now, into: &screenTimeLedger, checkIns: &state.checkIns, passes: &state.passes)
+            .ingest(records, at: now, into: &screenTimeLedger, checkIns: &checkIns, passes: &passes)
+        if checkIns != state.checkIns {
+            state.checkIns = checkIns
+        }
+        if passes != state.passes {
+            state.passes = passes
+        }
         if let note = screenTime.openRequestNote(), !note.isWaiting(at: now, lifetime: gateRules.openRequestLifetime) {
             screenTime.clearOpenRequest()
         }
