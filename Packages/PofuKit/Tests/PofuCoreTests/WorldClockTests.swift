@@ -29,8 +29,7 @@ struct WorldClockTests {
         #expect(delta.awayMinutes == 60)
         #expect(delta.calmSteps == 3)
         #expect(world.state.calm.multiplier == 1.3)
-        // Content to the edge in 12 minutes, then 48 minutes of cozy.
-        #expect(abs(world.state.care.wellbeing - 95) < 1e-6)
+        #expect(abs(world.state.care.wellbeing - 75) < 1e-9)
         #expect(delta.gatheredSeeds == 6)
         // 19 minutes at ×1.0, 20 at ×1.1, 20 at ×1.2, 1 at ×1.3 of 6 an
         // hour: 6.63 seeds, the fraction carried.
@@ -161,18 +160,17 @@ struct WorldClockTests {
     // MARK: - Opens and calm
 
     /// ADR-0017 through the facade: an observed quiet waking hour lifts
-    /// Pofu exactly one band, from any band below the top.
-    @Test(arguments: [5.0, 11.99, 12, 24.5, 25, 49.99, 50, 74, 80])
-    func anObservedQuietHourLiftsPofuOneBand(wellbeing: Double) {
+    /// Pofu out of the two lowest bands; above them it heals 5.
+    @Test(arguments: [(5.0, 12.0), (11.99, 12), (12, 25), (24.5, 25), (25, 30), (49.99, 54.99), (98, 100)])
+    func anObservedQuietHourHeals(wellbeing: Double, atLeast: Double) {
         var world = World()
         world.state.care = CareLedger(wellbeing: wellbeing, rules: world.rules.care)
-        let before = world.state.care.band(rules: world.rules.care)
         world.advance(to: noon, .signOfLife(at: noon))
         world.advance(to: noon.adding(hours: 1))
-        let after = world.state.care.band(rules: world.rules.care)
-        let all = WellbeingBand.allCases
-        let expected = before == .cozy ? WellbeingBand.cozy : all[(all.firstIndex(of: before) ?? 0) + 1]
-        #expect(after == expected)
+        #expect(world.state.care.wellbeing >= atLeast - 1e-9)
+        if wellbeing >= 25 {
+            #expect(abs(world.state.care.wellbeing - atLeast) < 1e-9)
+        }
     }
 
     @Test func aQuickCheckHalvesAndAChainedOneResets() {
@@ -266,9 +264,9 @@ struct WorldClockTests {
         // 22:00–23:00 grows three steps (×1.3), the night holds the run
         // and adds 0.2, and 06:00–07:00 grows three more.
         #expect(world.state.calm.tenths == 18)
-        // 70 → 95 for the quiet hour, + 10 for the calm night (no sleep-off
-        // above 60), capped at 100.
-        #expect(world.state.care.wellbeing == 100)
+        // 70 + 5 for the quiet hour, + 10 for the calm night (no sleep-off
+        // above 60); then one waking hour heals 5 more.
+        #expect(abs(world.state.care.wellbeing - 90) < 1e-9)
     }
 
     @Test func anOpenAtNightSpoilsTheCalmNight() {

@@ -541,7 +541,7 @@ full rules are [game design §5](game-design.md#5-mechanics-and-numbers).
 
 | Part | Type | What it holds |
 |---|---|---|
-| Wellbeing | `CareLedger` | 5–100 (start 70); −0.35 a minute in a guarded app (×2 at night, ×1.25 per earlier open in 3 h), −1.5 per open; one band per calm waking hour (1/60 of the band's width a minute, never past its edge), +1 a skip (6 a day), +10 a calm night; below 60, 30 % of the way back each night |
+| Wellbeing | `CareLedger` | 5–100 (start 70); −0.35 a minute in a guarded app (×2 at night, ×1.25 per earlier open in 3 h), −1.5 per open; +5 a calm waking hour from "tired" up, and in "curled up" and "unwell" one band per quiet hour (1/60 of the band's width a minute, never past its edge), +1 a skip (6 a day), +10 a calm night; below 60, 30 % of the way back each night |
 | Calm | `CalmAccrual` | ×1.0–×2.0 in integer tenths; +0.1 per 20 observed calm waking minutes; a quick check (≤ 3 min) halves the bonus, a second within 20 min of the last one's end resets it; any other open resets; +0.2 a calm night |
 | Seeds | `StationLedger` | A pouch by source, collected into a jar, spent only on builds. Stations: designed ladders × calm × care (×0.6 below 25), only while away and observed, fractions carried. Pofu's gathering: 1 per 10 quiet waking minutes, 48 a day, +10 a calm night. Skips: +3, 5 a day |
 | The breath | `BreathRules` | Past the daily hour: 5 s for the 1st–3rd over-limit open, 10 s from the 4th, never more than 10 s; the fourth rapid reach falls back to the 10 s breath; never for the emergency pass; "Not now" is a skip |

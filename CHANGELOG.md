@@ -70,9 +70,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- One quiet hour lifts Pofu exactly one band, from the floor too
-  (ADR-0017): calm waking time heals 1/60 of the current band's width a
-  minute instead of a flat 5 an hour.
+- One quiet hour lifts Pofu out of the two lowest bands, from the floor
+  too (ADR-0017): there, calm waking time heals 1/60 of the band's width a
+  minute; from "tired" up it stays 5 an hour. The economy simulation uses
+  the same rule.
 - Without notifications, "Pofu'yla aç" is never a dead end: the shield
   says "Pofu'yu kendin aç", and opening Pofu within 10 minutes starts
   Hop!. The notification tap is routed by the notification delegate; the
