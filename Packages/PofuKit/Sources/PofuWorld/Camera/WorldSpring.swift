@@ -87,6 +87,8 @@ public enum WorldSprings {
     public static let residentFocus = (duration: 0.60, bounce: 0.12)
     public static let refocus = (duration: 0.60, bounce: 0.10)
     public static let peek = (duration: 0.45, bounce: 0.15)
+    /// The build moment's push-in (§2.4).
+    public static let buildPush = (duration: 0.60, bounce: 0.10)
     public static let rack = (duration: 0.60, bounce: 0.0)
     /// Reduce Motion: automatic travel lands in 200 ms without overshoot.
     public static let reduced = (duration: 0.20, bounce: 0.0)

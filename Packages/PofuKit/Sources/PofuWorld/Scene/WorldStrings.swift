@@ -80,5 +80,118 @@ enum WorldStrings {
     static func stationAndLevel(_ station: String, level: Int) -> String {
         String(localized: "\(station) · level \(level)", bundle: .module)
     }
+
+    /// The build's one exclamation (interaction spec §6.3).
+    static func levelUp(_ level: Int) -> String {
+        String(localized: "Level \(level)!", bundle: .module)
+    }
+
+    // MARK: - Home
+
+    /// Calm as the chips show it: one decimal, in the user's locale.
+    static func calm(_ value: Double) -> String {
+        value.formatted(.number.precision(.fractionLength(1)))
+    }
+
+    /// Pofu's line for a visit beat (app–game boundary §6.2).
+    static func beatLine(_ beat: VisitBeat, calm: Double) -> String {
+        switch beat {
+        case .care:
+            String(localized: "I'm not feeling great. Shall we put the phone down for a bit?", bundle: .module)
+        case .collect(let pouch):
+            String(localized: "While you were away, the island gathered \(pouch.total.units) seeds. Calm ×\(Self.calm(calm)).", bundle: .module)
+        case .news(.stageGrew):
+            String(localized: "Look: the island grew overnight!", bundle: .module)
+        case .news(.islandArrived):
+            String(localized: "Look: a new island drifted close overnight!", bundle: .module)
+        case .build(let station, let level):
+            String(localized: "\(stationName(station)) → level \(level) · Ready", bundle: .module)
+        case .weeklyRecap:
+            String(localized: "Our week is ready.", bundle: .module)
+        }
+    }
+
+    /// The beat's one primary action.
+    static func beatAction(_ beat: VisitBeat) -> String {
+        switch beat {
+        case .care: String(localized: "Okay", bundle: .module)
+        case .collect: String(localized: "Collect", bundle: .module)
+        case .news: String(localized: "See the island", bundle: .module)
+        case .build: String(localized: "Build", bundle: .module)
+        case .weeklyRecap: String(localized: "Take a look", bundle: .module)
+        }
+    }
+
+    /// What Pofu says when tapped in the settled state, in a fixed order.
+    static func settledLine(_ index: Int) -> String {
+        switch index % WorldHomeModel.settledLineCount {
+        case 0: String(localized: "Watering the sunflowers.", bundle: .module)
+        case 1: String(localized: "Mochi's tea is on.", bundle: .module)
+        default: String(localized: "The island hums along.", bundle: .module)
+        }
+    }
+
+    static var settled: String {
+        String(localized: "The island works without you.", bundle: .module)
+    }
+
+    static func wellbeing(_ band: WellbeingBand) -> String {
+        switch band {
+        case .cozy: String(localized: "In good spirits", bundle: .module)
+        case .content: String(localized: "Content", bundle: .module)
+        case .tired: String(localized: "A bit tired", bundle: .module)
+        case .unwell: String(localized: "Not so well", bundle: .module)
+        case .curledUp: String(localized: "Curled up", bundle: .module)
+        }
+    }
+
+    static func wellbeingLabel(_ band: WellbeingBand) -> String {
+        String(localized: "Pofu's mood: \(wellbeing(band))", bundle: .module)
+    }
+
+    static func calmChip(_ value: Double) -> String {
+        String(localized: "Calm ×\(calm(value))", bundle: .module)
+    }
+
+    static func calmLabel(_ value: Double, growing: Bool, full: Bool) -> String {
+        if full {
+            return String(localized: "Calm ×\(calm(value)), full", bundle: .module)
+        }
+        if growing {
+            return String(localized: "Calm ×\(calm(value)), growing", bundle: .module)
+        }
+        return calmChip(value)
+    }
+
+    static func todayLine(_ today: TodaySummary) -> String {
+        if today.reaches == 0 {
+            return String(localized: "No reaches yet today.", bundle: .module)
+        }
+        return String(localized: "Skipped \(today.skips) of \(today.reaches) today", bundle: .module)
+    }
+
+    static func guarded(_ today: TodaySummary) -> String {
+        String(localized: "at least \(today.guardedAtLeast) / \(today.dailyHourMinutes) min", bundle: .module)
+    }
+
+    static func guardedLabel(_ today: TodaySummary) -> String {
+        String(localized: "Time in guarded apps: at least \(today.guardedAtLeast) of \(today.dailyHourMinutes) minutes", bundle: .module)
+    }
+
+    static func seeds(_ count: Int) -> String {
+        String(localized: "\(count) seeds", bundle: .module)
+    }
+
+    static var repairBanner: String {
+        String(localized: "A guard isn't working.", bundle: .module)
+    }
+
+    static var repairAction: String {
+        String(localized: "Fix", bundle: .module)
+    }
+
+    static var settings: String {
+        String(localized: "Settings", bundle: .module)
+    }
 }
 #endif

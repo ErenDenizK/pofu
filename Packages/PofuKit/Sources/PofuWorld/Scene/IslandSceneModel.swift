@@ -9,6 +9,14 @@ public enum SceneFocus: Hashable, Sendable {
     case resident(ResidentID)
 }
 
+/// The station sheet's detents (interaction spec §2.3): compact is used
+/// only while building.
+public enum StationSheetDetent: Hashable, Sendable {
+    case compact
+    case medium
+    case large
+}
+
 /// The station whose sheet is up. The identity is constant, so a tap on
 /// another station swaps the sheet's content in place instead of
 /// dismissing and presenting again (§2.3).
@@ -44,11 +52,21 @@ public final class IslandSceneModel {
     /// camera.
     public var sheet: StationSheetItem? {
         didSet {
-            if sheet == nil, case .station = focus {
-                releaseFocus()
+            if sheet == nil {
+                sheetDetent = .medium
+                buildFraming = nil
+                if case .station = focus {
+                    releaseFocus()
+                }
             }
         }
     }
+
+    /// The sheet's detent; the build moment drops it to compact.
+    public var sheetDetent: StationSheetDetent = .medium
+
+    /// The station the build moment has the camera pushed in on.
+    public private(set) var buildFraming: StationID?
 
     /// Device-tilt parallax (interaction spec §12.3 a), at most a few
     /// points. Off by default: untested on a phone. Reduce Motion and Low
@@ -95,6 +113,10 @@ public final class IslandSceneModel {
     /// Not observed: a `let` reference, mutated per frame.
     let engine: SceneEngine
 
+    /// How long Reduce Motion's cross-fade between two camera framings
+    /// lasts (interaction spec §1.8).
+    public nonisolated static let crossFade = 0.2
+
     public init(framing: WorldFraming = .home) {
         self.framing = framing
         self.projectedFraming = framing
@@ -115,7 +137,7 @@ public final class IslandSceneModel {
     public func go(to target: WorldFraming, animated: Bool = true) {
         closeSurfaces()
         if animated {
-            engine.rig.fly(to: target)
+            travel { $0.fly(to: target) }
         } else {
             engine.rig.jump(to: target)
         }
@@ -152,8 +174,11 @@ public final class IslandSceneModel {
         else { return }
         residentLine = nil
         focus = .station(id)
-        engine.rig.focus(pose: pose, lens: .station(depth: IslandLayout.depth(ofY: anchor.y)))
-        if !animated {
+        let lens = Lens.station(depth: IslandLayout.depth(ofY: anchor.y))
+        if animated {
+            travel { $0.focus(pose: pose, lens: lens) }
+        } else {
+            engine.rig.focus(pose: pose, lens: lens)
             engine.rig.snapToTargets()
         }
         sheet = StationSheetItem(station: id)
@@ -177,8 +202,11 @@ public final class IslandSceneModel {
         let said = linesSaid[id, default: 0]
         residentLine = said < lines.count ? lines[said] : nil
         linesSaid[id] = said + 1
-        engine.rig.focus(pose: pose, lens: .resident(depth: IslandLayout.depth(ofY: resident.feet.y)), camera: WorldSprings.residentFocus)
-        if !animated {
+        let lens = Lens.resident(depth: IslandLayout.depth(ofY: resident.feet.y))
+        if animated {
+            travel { $0.focus(pose: pose, lens: lens, camera: WorldSprings.residentFocus) }
+        } else {
+            engine.rig.focus(pose: pose, lens: lens, camera: WorldSprings.residentFocus)
             engine.rig.snapToTargets()
         }
         kick()
@@ -202,14 +230,36 @@ public final class IslandSceneModel {
         if sheet != nil {
             sheet = nil
         }
-        engine.rig.releaseFocus()
+        travel { $0.releaseFocus() }
     }
 
     private func releaseFocus() {
         focus = nil
         residentLine = nil
-        engine.rig.releaseFocus()
+        travel { $0.releaseFocus() }
         kick()
+    }
+
+    /// Moves the camera with `change`; under Reduce Motion the camera jumps
+    /// and the old framing cross-fades out over the new one in 200 ms
+    /// instead of travelling (interaction spec §1.8).
+    private func travel(_ change: (inout CameraRig) -> Void) {
+        guard reduceMotion else {
+            change(&engine.rig)
+            return
+        }
+        let from = engine.crossfade?.from ?? engine.rig
+        change(&engine.rig)
+        engine.rig.snapToTargets()
+        engine.crossfade = SceneEngine.Crossfade(from: from, start: nil)
+    }
+
+    // MARK: - Screen points
+
+    /// The screen point of a world point now, with the peek's offset.
+    public func screenPoint(of point: WorldPoint) -> (x: Double, y: Double) {
+        let p = engine.rig.pose.project(point, width: engine.rig.rail.width)
+        return (p.x + engine.rig.offsetX.value, p.y + engine.rig.offsetY.value)
     }
 
     // MARK: - Taps
@@ -317,7 +367,17 @@ public final class IslandSceneModel {
             engine.rig.advance(date.timeIntervalSince(last))
         }
         engine.lastDate = date
-        if isAnimating, engine.rig.isSettled, !isDeviceTiltEnabled, !engine.settleScheduled {
+        if var crossfade = engine.crossfade {
+            if let start = crossfade.start {
+                if date.timeIntervalSince(start) >= Self.crossFade {
+                    engine.crossfade = nil
+                }
+            } else {
+                crossfade.start = date
+                engine.crossfade = crossfade
+            }
+        }
+        if isAnimating, engine.rig.isSettled, engine.crossfade == nil, !isDeviceTiltEnabled, !engine.settleScheduled {
             engine.settleScheduled = true
             Task { @MainActor [weak self] in
                 self?.settle()
@@ -326,9 +386,18 @@ public final class IslandSceneModel {
         return engine.rig
     }
 
+    /// Reduce Motion's outgoing framing and its opacity at `date`, while
+    /// a cross-fade runs.
+    func crossfade(at date: Date) -> (rig: CameraRig, opacity: Double)? {
+        guard let crossfade = engine.crossfade else { return nil }
+        let elapsed = crossfade.start.map { date.timeIntervalSince($0) } ?? 0
+        let opacity = 1 - min(max(elapsed / Self.crossFade, 0), 1)
+        return opacity > 0.001 ? (crossfade.from, opacity) : nil
+    }
+
     private func settle() {
         engine.settleScheduled = false
-        guard engine.rig.isSettled else { return }
+        guard engine.rig.isSettled, engine.crossfade == nil else { return }
         isAnimating = false
         engine.lastDate = nil
     }
@@ -346,7 +415,15 @@ public final class IslandSceneModel {
 /// observable; see `IslandSceneModel`.
 @MainActor
 final class SceneEngine {
+    /// Reduce Motion's cross-fade: the framing the camera jumped from.
+    struct Crossfade {
+        var from: CameraRig
+        /// Set on the first frame drawn after the jump.
+        var start: Date?
+    }
+
     var rig: CameraRig
+    var crossfade: Crossfade?
     let tilt = DeviceTilt()
     var lastDate: Date?
     var settleScheduled = false
@@ -371,6 +448,49 @@ final class SceneEngine {
         let dt = last.time.timeIntervalSince(first.time)
         guard dt > 0.008 else { return 0 }
         return (last.logScale - first.logScale) / dt
+    }
+}
+
+extension IslandSceneModel: WorldCamera {
+    /// The build moment pushes in (§2.4): the sheet drops to compact and
+    /// the camera comes in to ×1.95 on spring(0.6, 0.1).
+    public func beginBuildFraming(_ station: StationID) {
+        guard
+            let anchor = IslandLayout.stationAnchors[station],
+            let pose = IslandLayout.buildFocusPose(
+                station,
+                width: engine.rig.rail.width,
+                height: engine.rig.rail.height,
+                safeTop: engine.safeTop
+            )
+        else { return }
+        buildFraming = station
+        sheetDetent = .compact
+        focus = .station(station)
+        let lens = Lens.station(depth: IslandLayout.depth(ofY: anchor.y))
+        travel { $0.focus(pose: pose, lens: lens, camera: WorldSprings.buildPush) }
+        kick()
+    }
+
+    /// The sheet returns to medium and the camera settles back to the
+    /// station's focus, unless the user already closed the sheet.
+    public func endBuildFraming(_ station: StationID) {
+        guard buildFraming == station else { return }
+        buildFraming = nil
+        guard sheet?.station == station else { return }
+        sheetDetent = .medium
+        guard
+            let anchor = IslandLayout.stationAnchors[station],
+            let pose = IslandLayout.stationFocusPose(
+                station,
+                width: engine.rig.rail.width,
+                height: engine.rig.rail.height,
+                safeTop: engine.safeTop
+            )
+        else { return }
+        let lens = Lens.station(depth: IslandLayout.depth(ofY: anchor.y))
+        travel { $0.focus(pose: pose, lens: lens, camera: WorldSprings.refocus) }
+        kick()
     }
 }
 #endif
