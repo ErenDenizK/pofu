@@ -55,8 +55,12 @@ the project's persistent memory; keep it accurate and concise.
   membership (founder, 2026-11-02):** new work targets the Screen Time
   product; the free `Pofu` target and the Shortcuts path get no new
   features. After membership day 1, collapse `Pofu` and `PofuLive` into one
-  app target with the entitlements. World and `PofuWorld` work waits; the game model in
-  `PofuCore` and an 8-image art test may run meanwhile. XcodeGen project (`project.yml`, regenerate after
+  app target with the entitlements. During the wait (membership after
+  2026-11-24) the cloud builds code-only stage W work: the game model is in
+  `PofuCore/Game` (#46, #48), the native island is `PofuWorld` (#49), and
+  the free build gets **Rehearsal mode** (an in-app replica of the shield
+  and simulated reaches driven by the same code paths), so the founder can
+  feel the whole loop on his iPhone before the membership. XcodeGen project (`project.yml`, regenerate after
   pulling); `Packages/PofuKit` has `PofuCore`, `PofuScreenTime`,
   `PofuPersistence`, `PofuDesignSystem`, `PofuCompanion`, and `PofuWorld`
   (the island scene; its art is baked by
