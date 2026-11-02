@@ -15,6 +15,7 @@ notes:
 - Painted icons must pass a legibility check at 24, 30 and 60 pt.
 links:
   uses_asset:
+  - asset-ui-panel-paper
   - asset-ui-tag-paper
   - asset-ui-pot-empty
   - asset-ui-lantern-off

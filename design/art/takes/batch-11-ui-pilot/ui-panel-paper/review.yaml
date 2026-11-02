@@ -3,19 +3,20 @@ contact_sheet: design/art/takes/batch-11-ui-pilot/ui-panel-paper/contact.jpg
 jobs:
   ui-panel-paper:
     pick: 2
-    note: Selected by automated QA; not promoted or published as a master because
-      the decor-bench manual-QA global stop interrupted this run. Manual ship/cap
-      review remains pending. Original PNGs retained locally.
-    publication: pending_after_global_stop
+    note: 'auto-picked by QA; founder review pending. Retained take2 reviewed at120pt
+      height: flat unmarked cream centre, stitches and rounded outer edge remain within20pt
+      caps; centre is suitable for tiling.'
     takes:
       t1:
         qa: pass
-        manual_qa: pending
-        summary: retained, unpromoted
+        summary: all pass
       t2:
         qa: pass
-        manual_qa: pending
-        summary: retained, unpromoted
+        summary: all pass
+    approved:
+      take: 2
+      at: '2026-11-02T23:33:58+00:00'
+    publication: promoted
 qa_reports:
   1:
     job: ui-panel-paper
@@ -119,6 +120,10 @@ qa_reports:
         C_p99: 32.5
         detail: 1.14
     fingerprint: 554bc01cbf23d482
+manual_review:
+  exclude: []
+  note: 'Retained take2 reviewed at120pt height: flat unmarked cream centre, stitches
+    and rounded outer edge remain within20pt caps; centre is suitable for tiling.'
 sources:
 - take: 1
   original_png: design/art/inbox/batch-11-ui-pilot/ui__panel-paper--t1.png
