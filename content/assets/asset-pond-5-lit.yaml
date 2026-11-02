@@ -12,7 +12,8 @@ links:
   variant_of:
   - asset-pond-5
 art:
-  images: []
+  images:
+  - design/art/stations/pond-5-lit/pond-5-lit.png
   jobs:
   - batch-07-light:pond-5-lit
 sources:

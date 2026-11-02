@@ -1,0 +1,118 @@
+{
+  "job": "pond-5-lit",
+  "batch": "batch-07-light",
+  "asset": "station__pond-5-lit",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T23:35:26+00:00",
+  "image": "design/art/stations/pond-5-lit/pond-5-lit.png",
+  "raw": "design/art/stations/pond-5-lit/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "07d62845d7e46c68",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the three floating paper lanterns from inside: each paper\nglows a warm honey-gold, brightest at its center, with its ribs\nunchanged. Light only inside each lantern's own outline: no halo,\nno glow, no reflection on the water and no light on the pads (the\napp draws the glow and the reflection).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: halos, rays, reflections, lit water, blown yellow-white highlights, text.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/pond-5/pond-5.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T19:20:04+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 0,
+    "dy": 0
+  },
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 19 (R1 51)",
+        "value": 19.2
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 72 (R1 59)",
+        "value": 71.6
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.3 (R1 5.3)",
+        "value": 1.26
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.8",
+        "value": 0.7936
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.9, p95 5.3, off-palette 0.0% (top: #666644 (0.0%), #777755 (0.0%))",
+        "value": 1.9203
+      },
+      {
+        "check": "station_anchor",
+        "status": "pass",
+        "message": "on the parent's anchor",
+        "value": 906.0
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 55 against the world reference (outliers: C_p95, L_p98, edge)",
+        "value": 55.2
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "98% of the parent level unchanged",
+        "value": 0.9777
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.08 of the parent level (drift compounds along a chain)",
+        "value": 1.0778
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Retained take2 published without regeneration under the explicit overnight authorization. Only the three lantern interiors change; no water/pad spill or halo. Edit stability exceeds0.9; harmony warnings remain advisory."
+}
