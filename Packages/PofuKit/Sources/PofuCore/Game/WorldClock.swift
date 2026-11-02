@@ -97,6 +97,29 @@ public struct WorldClock: Sendable {
         return try state.stations.build(station, tendedDays: state.tendedDays, catalog: rules.catalog)
     }
 
+    // MARK: - Island-game rounds
+
+    /// Rounds that can be played at `date`: none at night (A21), else the
+    /// banked ones within today's plays.
+    public func playableRounds(in state: GameState, at date: Date) -> Int {
+        guard !isBedtime(date) else { return 0 }
+        return state.rounds.playable(on: LocalDay(containing: date, in: calendar), rules: rules.rounds)
+    }
+
+    /// Spends a round played at `date` and credits its yield (at most
+    /// `maximumYield`) to the pouch, after advancing to `date`.
+    ///
+    /// - Returns: The seeds credited.
+    @discardableResult
+    public func playRound(yield seeds: Int, in state: inout GameState, at date: Date) throws -> Energy {
+        advance(&state, to: date)
+        guard !isBedtime(date) else { throw RoundError.islandsAsleep }
+        try state.rounds.play(on: LocalDay(containing: date, in: calendar), rules: rules.rounds)
+        let credited = Energy(min(max(0, seeds), rules.rounds.maximumYield))
+        state.stations.creditRound(credited)
+        return credited
+    }
+
     // MARK: - Reading
 
     /// Whether Pofu is observing at `date`: after a sign of life, and,
@@ -361,6 +384,7 @@ public struct WorldClock: Sendable {
             noteSignal(&state, at: at)
             state.care.skipped(on: frame.day, rules: rules.care)
             delta.skipSeeds += state.stations.giftSkip(on: frame.day, rules: rules.seeds)
+            state.rounds.earnForResist(on: frame.day, rules: rules.rounds)
             delta.resisted += 1
         case .opened(let pass):
             open(pass, at: at, in: &state, delta: &delta)

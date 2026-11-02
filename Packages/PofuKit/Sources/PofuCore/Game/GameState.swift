@@ -81,6 +81,8 @@ public struct GameState: Hashable, Sendable {
     public internal(set) var care: CareLedger
     public internal(set) var calm: CalmAccrual
     public internal(set) var stations: StationLedger
+    /// Island-game rounds earned and played.
+    public internal(set) var rounds: RoundLedger
 
     public init(rules: GameRules = GameRules()) {
         self.clock = nil
@@ -97,6 +99,7 @@ public struct GameState: Hashable, Sendable {
         self.care = CareLedger(rules: rules.care)
         self.calm = CalmAccrual(rules: rules.calm)
         self.stations = StationLedger(catalog: rules.catalog)
+        self.rounds = RoundLedger()
     }
 
     /// Whether a guarded app is open at the clock.
@@ -117,7 +120,7 @@ extension GameState: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case version, clock, lastSignalAt, awaitingReturn, guarded, foregroundSince, recentOpens, today
-        case calmNightCandidate, tendedDays, calmNights, quietRunMinutes, care, calm, stations
+        case calmNightCandidate, tendedDays, calmNights, quietRunMinutes, care, calm, stations, rounds
     }
 
     /// A state from a newer build fails with `unsupportedVersion`; any
@@ -143,6 +146,7 @@ extension GameState: Codable {
         care = try container.decodeIfPresent(CareLedger.self, forKey: .care) ?? care
         calm = try container.decodeIfPresent(CalmAccrual.self, forKey: .calm) ?? calm
         stations = try container.decodeIfPresent(StationLedger.self, forKey: .stations) ?? stations
+        rounds = try container.decodeIfPresent(RoundLedger.self, forKey: .rounds) ?? rounds
     }
 
     public func encode(to encoder: any Encoder) throws {
@@ -162,6 +166,7 @@ extension GameState: Codable {
         try container.encode(care, forKey: .care)
         try container.encode(calm, forKey: .calm)
         try container.encode(stations, forKey: .stations)
+        try container.encode(rounds, forKey: .rounds)
     }
 }
 
