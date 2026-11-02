@@ -22,6 +22,8 @@ final class GardenHaptics {
     private var soft: UIImpactFeedbackGenerator?
     private var selection: UISelectionFeedbackGenerator?
     private var lastTick: TimeInterval = -1
+    /// The tuned intensities (`GardenFeel`).
+    var feel = GardenFeel.standard
 
     func attach(to view: UIView) {
         light = UIImpactFeedbackGenerator(style: .light, view: view)
@@ -32,7 +34,7 @@ final class GardenHaptics {
     }
 
     func lift() {
-        light?.impactOccurred(intensity: 0.5)
+        light?.impactOccurred(intensity: CGFloat(feel.hapticLift))
         medium?.prepare()
         selection?.prepare()
     }
@@ -45,7 +47,7 @@ final class GardenHaptics {
     }
 
     func plant() {
-        medium?.impactOccurred(intensity: 0.75)
+        medium?.impactOccurred(intensity: CGFloat(feel.hapticPlant))
         rigid?.prepare()
     }
 
@@ -55,7 +57,7 @@ final class GardenHaptics {
     }
 
     func cheek() {
-        soft?.impactOccurred(intensity: 0.35)
+        soft?.impactOccurred(intensity: CGFloat(feel.hapticCheek))
     }
 }
 #endif

@@ -79,6 +79,7 @@ final class GardenTextures {
 
     enum Art: String, CaseIterable {
         case pofu = "garden-pofu"
+        case pofuPuff = "garden-pofu-puff"
         case mochi = "garden-mochi"
         case findik = "garden-findik"
         case bloom = "garden-bloom"

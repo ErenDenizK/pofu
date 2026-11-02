@@ -1,4 +1,5 @@
 import Foundation
+import PofuTuning
 
 /// Easing curves for the game layer, pure so they are tested and so the
 /// scene's SpriteKit timing functions and any SwiftUI twin agree.
@@ -67,49 +68,54 @@ public struct ShakeBudget: Sendable, Equatable {
     }
 }
 
-/// Every number the garden's feel is tuned with, in one place. Durations
-/// are in seconds, lengths in cells unless named in points.
-public enum GardenFeel {
-    /// The tray draws plots at this scale; lifting brings them to 1.
-    public static let trayScale = 0.52
-    /// The dragged plot floats this many cells above the finger, plus half
-    /// its own height, so the thumb never hides it.
-    public static let liftCells = 1.6
-    /// How quickly the dragged plot catches the finger (per second; higher
-    /// is stiffer). 38 is near-instant but never teleports.
-    public static let followStiffness = 38.0
-    public static let pickUp = 0.12
-    public static let snapToCell = 0.07
-    public static let squash = 0.2
-    public static let trayReturn = 0.24
-    public static let dealStagger = 0.07
-    public static let deal = 0.3
+/// Every number the garden's feel is tuned with. The values are data
+/// (`TuningValues.Garden` in `PofuTuning`'s `tuning.json`), so the Ayar
+/// panel in Rehearsal mode changes them live on the phone and exports the
+/// result; read them as properties (`feel.bloomPop`). Durations are in
+/// seconds, lengths in cells unless named.
+@dynamicMemberLookup
+public struct GardenFeel: Sendable, Equatable {
+    public var values: TuningValues.Garden
 
-    /// Each cell of a bloom starts this long after the one before it,
-    /// sweeping out from where the plot landed.
-    public static let bloomStagger = 0.032
+    public init(_ values: TuningValues.Garden = TuningValues.defaults.garden) {
+        self.values = values
+    }
+
+    /// The bundled defaults.
+    public static var standard: GardenFeel { GardenFeel() }
+
+    public subscript<T>(dynamicMember keyPath: KeyPath<TuningValues.Garden, T>) -> T {
+        values[keyPath: keyPath]
+    }
+
+    /// Blooms start this long after the plot lands.
     public static let bloomDelay = 0.06
-    public static let bloomPop = 0.24
-    public static let bloomHold = 0.26
-    public static let seedFlight = 0.5
+    /// Seeds leave a little apart.
     public static let seedStagger = 0.02
+    /// Haptic ticks while dragging are rationed: at most one per this long.
+    public static let tickInterval = 0.06
 
-    /// The bloom pop's overshoot grows with the combo, capped.
-    public static func bloomOvershoot(combo: Int) -> Double {
-        min(2.8, 1.7 + 0.3 * Double(max(0, combo - 1)))
+    /// The bloom pop's overshoot grows with the combo, at most 1.1 above
+    /// the tuned base.
+    public func bloomOvershoot(combo: Int) -> Double {
+        values.bloomOvershoot + min(1.1, 0.3 * Double(max(0, combo - 1)))
     }
 
     /// Petals per bloomed cell grow with the combo, capped.
-    public static func petals(combo: Int) -> Int {
+    public func petals(combo: Int) -> Int {
         min(7, 3 + max(0, combo - 1))
     }
 
-    /// Haptic intensity of a bloom (0...1): stronger with more lines and a
-    /// longer combo, never full for a single line.
-    public static func bloomHaptic(lines: Int, combo: Int) -> Double {
-        min(1, 0.45 + 0.15 * Double(lines - 1) + 0.08 * Double(max(0, combo - 1)))
+    /// Haptic intensity of a bloom (0...1): the tuned base, stronger with
+    /// more lines and a longer combo.
+    public func bloomHaptic(lines: Int, combo: Int) -> Double {
+        min(1, values.hapticBloom + 0.15 * Double(max(0, lines - 1)) + 0.08 * Double(max(0, combo - 1)))
     }
 
-    /// Haptic ticks while dragging are rationed: at most one per this long.
-    public static let tickInterval = 0.06
+    /// How many of a bloom's `cells` release a seed: `seedsPerLine` per
+    /// line, spread evenly, at least one.
+    public func seedStride(cells: Int, lines: Int) -> Int {
+        let seeds = max(1, Int(values.seedsPerLine.rounded()) * max(1, lines))
+        return max(1, cells / seeds)
+    }
 }

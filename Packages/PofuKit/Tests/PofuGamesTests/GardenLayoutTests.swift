@@ -44,6 +44,26 @@ struct GardenLayoutTests {
         #expect(topLeft.y == layout.grid.maxY - 20.5)
     }
 
+    @Test func theTraySitsRightUnderTheBedWithNoDeadBand() {
+        for (size, top, bottom) in phones {
+            let layout = GardenLayout(size: size, safeTop: top, safeBottom: bottom)
+            #expect(abs(layout.bed.minY - layout.tray.maxY - GardenLayout.trayGap) < 0.001, "\(size)")
+            #expect(layout.tray.height >= GardenLayout.trayHeight && layout.tray.height <= GardenLayout.maximumTrayHeight)
+        }
+    }
+
+    @Test func everyPlotFitsItsTraySlot() {
+        for (size, top, bottom) in phones {
+            let layout = GardenLayout(size: size, safeTop: top, safeBottom: bottom)
+            for shape in PieceCatalog.all {
+                let scale = layout.trayScale(for: shape, preferred: 0.66)
+                #expect(scale <= 0.66)
+                #expect(CGFloat(shape.width) * layout.cell * scale <= layout.tray.width / 3 - 14 + 0.001, "\(shape) on \(size)")
+                #expect(CGFloat(shape.height) * layout.cell * scale <= layout.tray.height - 30 + 0.001, "\(shape) on \(size)")
+            }
+        }
+    }
+
     @Test func traySlotsSplitTheTrayInThirds() {
         let layout = GardenLayout(size: CGSize(width: 402, height: 874), safeTop: 62, safeBottom: 34)
         #expect(layout.slot(at: CGPoint(x: layout.tray.minX + 5, y: layout.tray.midY)) == 0)

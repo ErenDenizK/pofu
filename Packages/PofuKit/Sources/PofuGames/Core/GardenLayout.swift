@@ -7,10 +7,15 @@ import CoreGraphics
 /// Mochi and Fındık peeking over the bed's back rim, the 8 × 8 bed, and
 /// the wooden tray of three plots above the home indicator. Cells are as
 /// large as the width allows (41 pt on a 402 pt iPhone 17), never above
-/// 46 pt, so the thumb covers about one cell.
+/// 46 pt, so the thumb covers about one cell. The tray grows into any
+/// spare height (up to `maximumTrayHeight`) and sits right under the bed,
+/// so there is no dead band between them; what is left goes to the sky
+/// above Pofu.
 public struct GardenLayout: Equatable, Sendable {
     public static let hudHeight: CGFloat = 56
     public static let trayHeight: CGFloat = 132
+    public static let maximumTrayHeight: CGFloat = 190
+    public static let trayGap: CGFloat = 16
     public static let charactersHeight: CGFloat = 100
     public static let bedPadding: CGFloat = 10
     public static let sideGutter: CGFloat = 24
@@ -36,11 +41,8 @@ public struct GardenLayout: Equatable, Sendable {
         self.size = size
         let hudBottom = size.height - safeTop - Self.hudHeight
         let bottom = safeBottom + 12
-        let tray = CGRect(x: 16, y: bottom, width: max(0, size.width - 32), height: Self.trayHeight)
-        self.tray = tray
         let availableTop = hudBottom - 8
-        let availableBottom = tray.maxY + 18
-        let available = max(0, availableTop - availableBottom)
+        let available = max(0, availableTop - (bottom + Self.trayHeight + Self.trayGap))
 
         let byWidth = (size.width - 2 * Self.sideGutter - 2 * Self.bedPadding) / 8
         let byHeight = (available - Self.charactersHeight - 2 * Self.bedPadding) / 8
@@ -50,8 +52,10 @@ public struct GardenLayout: Equatable, Sendable {
         let bedSide = gridSide + 2 * Self.bedPadding
 
         let group = Self.charactersHeight + bedSide
-        let top = availableTop - max(0, (available - group) / 2)
-        let bed = CGRect(x: (size.width - bedSide) / 2, y: top - Self.charactersHeight - bedSide, width: bedSide, height: bedSide)
+        let trayHeight = Self.trayHeight + min(Self.maximumTrayHeight - Self.trayHeight, max(0, available - group))
+        let tray = CGRect(x: 16, y: bottom, width: max(0, size.width - 32), height: trayHeight)
+        self.tray = tray
+        let bed = CGRect(x: (size.width - bedSide) / 2, y: tray.maxY + Self.trayGap, width: bedSide, height: bedSide)
         self.bed = bed
         grid = bed.insetBy(dx: Self.bedPadding, dy: Self.bedPadding)
 
@@ -64,6 +68,16 @@ public struct GardenLayout: Equatable, Sendable {
         pofu = CGPoint(x: bed.midX, y: feet)
         mochi = CGPoint(x: bed.minX + 52, y: feet)
         findik = CGPoint(x: bed.maxX - 52, y: feet)
+    }
+
+    /// The scale a plot is drawn at in the tray: `preferred`, or smaller
+    /// when the plot would not fit its third of the tray.
+    public func trayScale(for shape: PieceShape, preferred: CGFloat) -> CGFloat {
+        let slotWidth = tray.width / 3 - 14
+        let slotHeight = tray.height - 30
+        let byWidth = slotWidth / (CGFloat(shape.width) * cell)
+        let byHeight = slotHeight / (CGFloat(shape.height) * cell)
+        return max(0.2, min(preferred, byWidth, byHeight))
     }
 
     /// The centre of a cell of the grid.

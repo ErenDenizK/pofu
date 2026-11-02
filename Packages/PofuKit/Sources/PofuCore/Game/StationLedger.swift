@@ -10,20 +10,37 @@ public struct SeedPouch: Hashable, Sendable, Codable {
     public var sleepBonus: Energy
     /// The thank-you for resisted reaches.
     public var skips: Energy
+    /// Island-game rounds' yields ("+3 yanaklarına").
+    public var rounds: Energy
 
-    public init(stations: Energy = .zero, gathered: Energy = .zero, sleepBonus: Energy = .zero, skips: Energy = .zero) {
+    public init(stations: Energy = .zero, gathered: Energy = .zero, sleepBonus: Energy = .zero, skips: Energy = .zero, rounds: Energy = .zero) {
         self.stations = stations
         self.gathered = gathered
         self.sleepBonus = sleepBonus
         self.skips = skips
+        self.rounds = rounds
     }
 
     public var total: Energy {
-        stations + gathered + sleepBonus + skips
+        stations + gathered + sleepBonus + skips + rounds
     }
 
     public var isEmpty: Bool {
         total == .zero
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case stations, gathered, sleepBonus, skips, rounds
+    }
+
+    /// Pouches saved before rounds existed read with no round seeds.
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        stations = try container.decodeIfPresent(Energy.self, forKey: .stations) ?? .zero
+        gathered = try container.decodeIfPresent(Energy.self, forKey: .gathered) ?? .zero
+        sleepBonus = try container.decodeIfPresent(Energy.self, forKey: .sleepBonus) ?? .zero
+        skips = try container.decodeIfPresent(Energy.self, forKey: .skips) ?? .zero
+        rounds = try container.decodeIfPresent(Energy.self, forKey: .rounds) ?? .zero
     }
 }
 
@@ -175,6 +192,11 @@ public struct StationLedger: Hashable, Sendable, Codable {
         giftedSkips = DayCount(day: day, count: used + 1)
         pending.skips += rules.skipGift
         return rules.skipGift
+    }
+
+    /// A played round's yield, into the pouch with the other seeds.
+    mutating func creditRound(_ seeds: Energy) {
+        pending.rounds += max(seeds, .zero)
     }
 
     /// Moves every waiting seed into the jar.

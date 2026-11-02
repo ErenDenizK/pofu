@@ -35,7 +35,7 @@ final class AyarSession {
 }
 
 enum AyarSection: String, CaseIterable, Identifiable {
-    case colour, camera, depth, pofu, haptics, seeds
+    case colour, camera, depth, pofu, haptics, seeds, garden
 
     var id: String { rawValue }
 }

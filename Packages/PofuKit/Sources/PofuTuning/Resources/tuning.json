@@ -34,6 +34,32 @@
     "tiltShiftHome" : 1.3,
     "tiltShiftIsland" : 1.7
   },
+  "garden" : {
+    "bloomHold" : 0.26,
+    "bloomOvershoot" : 1.7,
+    "bloomPop" : 0.24,
+    "bloomStagger" : 0.045,
+    "deal" : 0.3,
+    "dealStagger" : 0.07,
+    "followStiffness" : 38,
+    "glowStrength" : 0.5,
+    "hapticBloom" : 0.45,
+    "hapticCheek" : 0.35,
+    "hapticLift" : 0.5,
+    "hapticPlant" : 0.75,
+    "liftCells" : 1.6,
+    "pickUp" : 0.12,
+    "seedFlight" : 0.5,
+    "seedSize" : 18,
+    "seedsPerLine" : 4,
+    "shakeMaximum" : 4,
+    "snapToCell" : 0.07,
+    "snapTolerance" : 0.9,
+    "squash" : 0.2,
+    "squashAmount" : 0.14,
+    "trayReturn" : 0.24,
+    "trayScale" : 0.66
+  },
   "grade" : {
     "day" : {
       "contrast" : 1,

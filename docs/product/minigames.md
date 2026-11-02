@@ -124,9 +124,13 @@ the two. The rival schedule ([3, 6] lines, combo 3) paid the expert 5
 in 74 % of rounds: no headroom, so it was rejected. `GardenRoundTests` asserts
 the autoplayer's mean stays in 3.3–4.8.
 
-Seeds go into Pofu's cheek pouch ("+3 yanaklarına"), and are **not
-credited yet**: rounds, their ledger and their yield join `PofuCore`
-with `RoundLedger` (archipelago §13).
+Seeds go into Pofu's cheek pouch ("+3 yanaklarına") and are credited
+through `RoundLedger` in `PofuCore` (`WorldClock.playRound`): the yield
+(capped at 5) lands in the pouch as `SeedPouch.rounds` and reaches the jar
+with the next Collect. The ledger banks rounds: 2 a day for everyone, +1
+per resisted reach (at most 6 a day), at most 12 played a day, none at
+night (A21); unplayed rounds never expire. The Rehearsal entry plays the
+rounds earned so far.
 
 ## 6. Engine: SpriteKit, in a new `PofuGames` module
 
@@ -205,6 +209,12 @@ failure, no score.
 | **Çömlek** | Merge (Suika, Merge Mansion) | Merge clay into larger pots on the wheel; a round is a fixed lump of clay |
 | **Emanet** | Daily deduction (Wordle-style) | One "who lost this?" a day from three clues; the rare once-a-day island |
 
+**Tuning.** Every number above lives in `PofuTuning`'s `tuning.json`
+under `garden` (`TuningValues.Garden`, read through `GardenFeel`). In
+Rehearsal mode the Ayar panel's **Bahçe** section changes them while the
+game plays (an "Ayar" pill sits over the garden), and "Dışa aktar"
+exports the changes for the agent to commit as new defaults.
+
 ## 9. What is built, and what is next
 
 Built in this slice: the rules and their tests, the SpriteKit scene with
@@ -213,12 +223,31 @@ copy, the Rehearsal entry ("Bahçede oyna" in the Prova panel, five
 rounds), and simulator screenshots (mid-round, bloom, combo, round end,
 set end, a slow-motion bloom sequence).
 
-Next, in order: tune feel on the founder's iPhone (lift height, snap
-tolerance, bloom timing, haptic strength); generate the painted plot
-faces, the paper and clay slices, `pofu-cheeks-full` and the seed icon;
-`RoundLedger` in `PofuCore` with the earned-round rules and crediting
-the yield; the "Oyna" door on Ayçiçeği; `PofuAudio` behind the cues;
+Feel round 2 added: every feel number in the Ayar panel; larger tray
+plots with no dead band under the bed; a glow that adds light; more and
+larger seeds with a "+1" that arcs to the seed plate; Pofu's painted
+cheeks-puff pose (batch 06) fading in with the yield; the round ledger
+and crediting; the harvest-to-card screenshots and the `07-garden-round`
+motion beat.
+
+Next, in order: tune feel on the founder's iPhone with Ayar; the painted
+art below; the "Oyna" door on Ayçiçeği; `PofuAudio` behind the cues;
 VoiceOver play (§10).
+
+### Art queue: painted tiles for the garden
+
+The game's surfaces are drawn stand-ins. Art bible, crafted layer
+(ui-system-v2 §3.1), transparent PNG, no text, no ground shadow:
+
+| # | Asset | Size (master → in game) | Notes |
+|---|---|---|---|
+| 1 | `game-plot-tile` ×6 glazes (sage, honey, terracotta, lilac, mint, rose) | 512² → 41 pt | One clay tile with a soft top light and a darker lip, a small sprout embossed; one master, the glazes as edits so they match |
+| 2 | `game-soil-cell` | 512² → 41 pt | Empty soil mound with two crumbs; must read darker than any glaze |
+| 3 | `game-bed-rim` | 9-slice, 1024² | The peach clay stone rim of the garden station, as a frame |
+| 4 | `game-bloom` ×3 variants | 512² → 44 pt | Sunflower heads facing slightly left, front, right; one with a bee-size gap in the petals; replaces the cut from garden L1 |
+| 5 | `game-combo-stamp` | 512² → 120 pt | A round paper stamp with a sunflower, blank centre for the live word ("Çifte çiçek!", "Kombo ×3") |
+| 6 | `game-seed` | 256² → 18–28 pt | The painted seed (the vector twin stays below 28 pt) |
+| 7 | `ui-game-tray` | 9-slice | Honey-wood tray (already listed in ui-system-v2 §D) |
 
 ## 10. Self-critique
 
@@ -228,8 +257,8 @@ VoiceOver play (§10).
 - **The plots are drawn, not painted.** Clay tiles from Core Graphics
   are clean but read "vector" beside painted Pofu; the art bible wants
   painted faces with live state on top.
-- **Pofu's cheeks are faked** with a horizontal stretch and a drawn
-  blush; the real "cheeks full" edit (3e) was never generated.
+- **Pofu's cheeks are a crossfade**, base to the cheeks-puff pose; a
+  real puff (squash into the pose, a gulp frame) needs the rig.
 - **Silent.** Half of a bloom's satisfaction is sound.
 - **VoiceOver cannot play.** Dragging has no accessible alternative yet
   (select a plot, then a cell, with the preview spoken); rule 5 of the

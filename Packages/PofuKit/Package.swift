@@ -76,7 +76,7 @@ let package = Package(
         // design/games/bake_garden_art.py. See docs/product/minigames.md.
         .target(
             name: "PofuGames",
-            dependencies: ["PofuDesignSystem"],
+            dependencies: ["PofuDesignSystem", "PofuTuning"],
             resources: [.process("Resources")]
         ),
 
@@ -94,7 +94,7 @@ let package = Package(
         .testTarget(name: "PofuDesignSystemTests", dependencies: ["PofuDesignSystem"]),
         .testTarget(name: "PofuCompanionTests", dependencies: ["PofuCompanion"]),
         .testTarget(name: "PofuWorldTests", dependencies: ["PofuWorld", "PofuCore"]),
-        .testTarget(name: "PofuGamesTests", dependencies: ["PofuGames"]),
+        .testTarget(name: "PofuGamesTests", dependencies: ["PofuGames", "PofuTuning"]),
         .testTarget(name: "PofuTuningTests", dependencies: ["PofuTuning"]),
     ],
     swiftLanguageModes: [.v6]

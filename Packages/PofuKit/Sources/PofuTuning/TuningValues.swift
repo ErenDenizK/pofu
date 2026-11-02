@@ -15,13 +15,15 @@ public struct TuningValues: Codable, Hashable, Sendable {
     public var grade: Grade
     public var companion: Companion
     public var haptics: Haptics
+    public var garden: Garden
 
-    public init(camera: Camera, depth: Depth, grade: Grade, companion: Companion, haptics: Haptics) {
+    public init(camera: Camera, depth: Depth, grade: Grade, companion: Companion, haptics: Haptics, garden: Garden) {
         self.camera = camera
         self.depth = depth
         self.grade = grade
         self.companion = companion
         self.haptics = haptics
+        self.garden = garden
     }
 
     /// A spring as SwiftUI and `WorldSpring` describe one: how long it
@@ -118,6 +120,59 @@ public struct TuningValues: Codable, Hashable, Sendable {
         /// Seconds between idle blinks.
         public var blinkIntervalMin: Double
         public var blinkIntervalMax: Double
+    }
+
+    /// The Ayçiçeği garden minigame's feel (`PofuGames.GardenFeel`):
+    /// durations in seconds, lengths in cells unless named, haptics 0…1.
+    public struct Garden: Codable, Hashable, Sendable {
+        /// Plots in the tray, as a share of a bed cell (each also fits its slot).
+        public var trayScale: Double
+        /// How far above the thumb a lifted plot floats, in cells (plus half its height).
+        public var liftCells: Double
+        /// How quickly the dragged plot catches the finger, per second.
+        public var followStiffness: Double
+        /// How far, in cells, a blocked drop looks for the nearest fit.
+        public var snapTolerance: Double
+        /// Seconds for a plot to grow from the tray to full size.
+        public var pickUp: Double
+        /// Seconds for planted tiles to glide into their cells.
+        public var snapToCell: Double
+        /// Seconds of the planting squash.
+        public var squash: Double
+        /// How wide the planting squash goes (0.14 is 1.14 x 0.86).
+        public var squashAmount: Double
+        /// Seconds for a missed drop to spring back to the tray.
+        public var trayReturn: Double
+        /// Seconds for a new plot to pop into the tray.
+        public var deal: Double
+        /// Seconds between the three new plots.
+        public var dealStagger: Double
+        /// Seconds between bloom steps sweeping out from the drop.
+        public var bloomStagger: Double
+        /// Seconds of a sunflower's pop.
+        public var bloomPop: Double
+        /// Seconds a sunflower stays before its seed flies.
+        public var bloomHold: Double
+        /// The pop's overshoot at combo 1; it grows with the combo.
+        public var bloomOvershoot: Double
+        /// Seconds of a seed's arc into Pofu's cheeks.
+        public var seedFlight: Double
+        /// A flying seed's height in points.
+        public var seedSize: Double
+        /// Seeds that fly per bloomed line.
+        public var seedsPerLine: Double
+        /// How bright lines about to bloom glow (added light).
+        public var glowStrength: Double
+        /// The screen shake's ceiling in points (double blooms and combos of 3 only).
+        public var shakeMaximum: Double
+        /// Lifting a plot.
+        public var hapticLift: Double
+        /// Planting.
+        public var hapticPlant: Double
+        /// A one-line bloom; more lines and combos add to it.
+        public var hapticBloom: Double
+        /// A seed landing in Pofu's cheeks.
+        public var hapticCheek: Double
     }
 
     /// Haptic intensities, 0…1.

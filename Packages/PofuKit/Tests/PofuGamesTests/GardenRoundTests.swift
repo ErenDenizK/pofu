@@ -1,3 +1,4 @@
+import PofuTuning
 import Testing
 @testable import PofuGames
 
@@ -332,11 +333,25 @@ struct GardenFeelTests {
     }
 
     @Test func comboEscalationIsCapped() {
-        #expect(GardenFeel.bloomOvershoot(combo: 1) < GardenFeel.bloomOvershoot(combo: 3))
-        #expect(GardenFeel.bloomOvershoot(combo: 50) == 2.8)
-        #expect(GardenFeel.petals(combo: 50) == 7)
-        #expect(GardenFeel.bloomHaptic(lines: 1, combo: 1) < 1)
-        #expect(GardenFeel.bloomHaptic(lines: 4, combo: 6) == 1)
+        let feel = GardenFeel.standard
+        #expect(feel.bloomOvershoot(combo: 1) < feel.bloomOvershoot(combo: 3))
+        #expect(abs(feel.bloomOvershoot(combo: 50) - (feel.values.bloomOvershoot + 1.1)) < 1e-9)
+        #expect(feel.petals(combo: 50) == 7)
+        #expect(feel.bloomHaptic(lines: 1, combo: 1) < 1)
+        #expect(feel.bloomHaptic(lines: 4, combo: 6) == 1)
+    }
+
+    @Test func theFeelReadsTheTunedValues() {
+        var values = TuningValues.defaults.garden
+        #expect(GardenFeel.standard.bloomPop == values.bloomPop)
+        values.bloomPop = 0.5
+        values.seedsPerLine = 2
+        let feel = GardenFeel(values)
+        #expect(feel.bloomPop == 0.5)
+        // Two seeds a line: one bloomed row of 8 sends a seed every 4th cell.
+        #expect(feel.seedStride(cells: 8, lines: 1) == 4)
+        #expect(feel.seedStride(cells: 15, lines: 2) == 3)
+        #expect(GardenFeel(values).seedStride(cells: 1, lines: 1) == 1)
     }
 
     @Test func bloomsClimbThePentatonicLadder() {

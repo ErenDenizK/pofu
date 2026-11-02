@@ -1,6 +1,7 @@
 import Observation
 import PofuCore
 import PofuDesignSystem
+import PofuGames
 import PofuWorld
 import SwiftUI
 import UIKit
@@ -140,6 +141,19 @@ final class MotionBeatTests: XCTestCase {
                     stage.finish()
                 }
                 return (AnyView(ShieldHopBeat(stage: stage)), script)
+            },
+            Beat(name: "07-garden-round", title: "A garden round to its harvest and card") {
+                // A nine-plot bag, played by the autoplayer about as fast as
+                // a calm player, to the harvest and the round's card.
+                let model = GardenGameModel(seed: 9, config: GardenRound.Config(piecesPerRound: 9))
+                let script: Script = {
+                    for _ in 0..<9 {
+                        guard model.playSuggestedMove() else { break }
+                        try await Task.sleep(for: .milliseconds(1300))
+                    }
+                    try await Task.sleep(for: .milliseconds(4500))
+                }
+                return (AnyView(GardenGameView(model: model)), script)
             },
         ]
     }

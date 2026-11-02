@@ -1,5 +1,6 @@
 #if os(iOS)
 import Observation
+import PofuTuning
 import SpriteKit
 import SwiftUI
 import UIKit
@@ -26,6 +27,8 @@ public final class GardenGameModel {
     public private(set) var seeds: Int
     public private(set) var piecesLeft: Int
     public let piecesPerRound: Int
+    /// The round's harvest is playing (its last plot is in).
+    public private(set) var isHarvesting = false
     /// Bumps when a card lands, for its haptic.
     public private(set) var cards = 0
     /// A still of the scene shown in place of the live view (screenshots).
@@ -35,16 +38,20 @@ public final class GardenGameModel {
     @ObservationIgnored private weak var view: SKView?
     @ObservationIgnored private let config: GardenRound.Config
     @ObservationIgnored private let onFinish: (Int) -> Void
+    @ObservationIgnored private let onRoundEnd: (GardenRoundResult) -> Void
 
     /// - Parameters:
     ///   - roundsAvailable: earned rounds banked (the debug entry passes 5;
     ///     the ledger will pass what the gate earned, at most 12 a day).
     ///   - seed: the set's seed; rounds replay exactly from it.
+    ///   - onRoundEnd: called once per finished round, to credit its seeds
+    ///     (`WorldClock.playRound`).
     ///   - onFinish: called with the set's seeds when the player stops.
     public init(
         roundsAvailable: Int = GardenSet.roundsPerSet,
         seed: UInt64 = UInt64.random(in: 1...UInt64.max),
         config: GardenRound.Config = .standard,
+        onRoundEnd: @escaping (GardenRoundResult) -> Void = { _ in },
         onFinish: @escaping (Int) -> Void = { _ in }
     ) {
         let set = GardenSet(seed: seed, roundsAvailable: roundsAvailable)
@@ -55,6 +62,7 @@ public final class GardenGameModel {
         piecesPerRound = config.piecesPerRound
         self.config = config
         self.onFinish = onFinish
+        self.onRoundEnd = onRoundEnd
         scene = GardenScene(round: round, size: CGSize(width: 402, height: 874))
         scene.onEvent = { [weak self] event in self?.handle(event) }
     }
@@ -76,6 +84,12 @@ public final class GardenGameModel {
         scene.safeBottom = bottom
     }
 
+    /// The tuned feel; the Ayar panel changes it live.
+    public func setFeel(_ values: TuningValues.Garden) {
+        guard scene.feel.values != values else { return }
+        scene.feel = GardenFeel(values)
+    }
+
     func setReduceMotion(_ reduceMotion: Bool) {
         scene.reduceMotion = reduceMotion
     }
@@ -85,8 +99,12 @@ public final class GardenGameModel {
         case .progress(let seeds, let piecesLeft):
             self.seeds = seeds
             self.piecesLeft = piecesLeft
+        case .harvestBegan:
+            isHarvesting = true
         case .roundEnded(let result):
+            isHarvesting = false
             gardenSet.record(result)
+            onRoundEnd(result)
             seeds = result.seeds
             phase = gardenSet.isComplete ? .setEnd : .roundEnd(result)
             scene.setCardShown(true)
@@ -132,6 +150,7 @@ public final class GardenGameModel {
         seeds = round.seeds
         piecesLeft = round.piecesLeft
         phase = .playing
+        isHarvesting = false
         view?.isPaused = false
         scene.begin(round)
     }
@@ -170,6 +189,16 @@ public final class GardenGameModel {
             scene.play(move, animated: false)
         }
         return false
+    }
+
+    /// Plays the autoplayer's choice (a bloom when there is one), animated,
+    /// as a drop would. Returns whether a plot was planted.
+    @discardableResult
+    public func playSuggestedMove() -> Bool {
+        guard !scene.round.isOver,
+            let move = GardenAutoplayer.bloomingMove(in: scene.round) ?? GardenAutoplayer.bestMove(in: scene.round)
+        else { return false }
+        return scene.play(move, animated: true) != nil
     }
 
     /// Plays `slot` at `origin`, animated, as a drop would.

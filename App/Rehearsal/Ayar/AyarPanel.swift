@@ -135,6 +135,17 @@ struct AyarPanel: View {
         case .pofu: pofu
         case .haptics: haptics
         case .seeds: seeds
+        case .garden: garden
+        }
+    }
+
+    /// The garden game's feel (`TuningValues.Garden`), live while it plays.
+    private var garden: some View {
+        VStack(alignment: .leading, spacing: PofuSpacing.m) {
+            note("Bahçe oyunu açıkken değişiklik anında oyuna yansır. Sürüklemeyi denemek için paneli kapat; değerler kalır.")
+            ForEach(TuningSpec.all.filter { $0.domain == "garden" }) { spec in
+                TuningRow(store: store, key: spec.key)
+            }
         }
     }
 
@@ -398,6 +409,7 @@ enum AyarLabels {
         case .pofu: "Pofu"
         case .haptics: "Dokunuş"
         case .seeds: "Tohum"
+        case .garden: "Bahçe"
         }
     }
 
@@ -409,6 +421,7 @@ enum AyarLabels {
         case .pofu: "pawprint"
         case .haptics: "hand.tap"
         case .seeds: "leaf"
+        case .garden: "square.grid.3x3"
         }
     }
 
@@ -456,6 +469,30 @@ enum AyarLabels {
         case "hopAppearDay": return "Hop! gündüz"
         case "hopAppearNight": return "Hop! gece"
         case "breathStart": return "Nefes başlangıcı"
+        case "trayScale": return "Tepsideki fide boyu"
+        case "liftCells": return "Parmağın üstünde (hücre)"
+        case "followStiffness": return "Takip sıkılığı"
+        case "snapTolerance": return "Yapışma payı (hücre)"
+        case "pickUp": return "Kaldırma (sn)"
+        case "snapToCell": return "Yerine kayma (sn)"
+        case "squash": return "Ezilme (sn)"
+        case "squashAmount": return "Ezilme miktarı"
+        case "trayReturn": return "Tepsiye dönüş (sn)"
+        case "deal": return "Yeni fide (sn)"
+        case "dealStagger": return "Yeni fide arası (sn)"
+        case "bloomStagger": return "Çiçek dalgası arası (sn)"
+        case "bloomPop": return "Çiçek açma (sn)"
+        case "bloomHold": return "Çiçek bekleme (sn)"
+        case "bloomOvershoot": return "Çiçek sekmesi"
+        case "seedFlight": return "Çekirdek uçuşu (sn)"
+        case "seedSize": return "Çekirdek boyu (pt)"
+        case "seedsPerLine": return "Sıra başına çekirdek"
+        case "glowStrength": return "Dolacak sıra parlaklığı"
+        case "shakeMaximum": return "Sarsıntı tavanı (pt)"
+        case "hapticLift": return "Dokunuş · kaldırma"
+        case "hapticPlant": return "Dokunuş · dikme"
+        case "hapticBloom": return "Dokunuş · çiçek"
+        case "hapticCheek": return "Dokunuş · yanak"
         default: return name
         }
     }
