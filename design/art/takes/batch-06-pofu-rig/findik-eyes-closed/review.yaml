@@ -1,0 +1,154 @@
+batch: batch-06-pofu-rig
+contact_sheet: design/art/takes/batch-06-pofu-rig/findik-eyes-closed/contact.jpg
+jobs:
+  findik-eyes-closed:
+    pick: 1
+    note: 'auto-picked by QA; founder review pending. Reference adaptation: original
+      committed findik-base WebP (870x1306) is unchanged. Its exact decoded pixels
+      were center-padded at offset (77,115) into an untracked 1024x1536 transparent
+      PNG for generation and QA, without rescaling. Selected master remains canonical
+      1024x1536. Lead composite inverse crop is (left77,top115,right947,bottom1421);
+      no direct pixel alignment to unpadded base is claimed. Ground-line warning from
+      padding, palette/value warnings retained. Global queue stop: batch-07-light
+      workshop-1-lit retry takes 3 and 4 both failed chroma_ceiling. No new image
+      calls after stop; this generated pair is retained for later review and is NOT
+      published as a master on this branch.'
+    takes:
+      t1:
+        qa: warn
+        summary: value_floor warn; palette_drift warn; ground_line warn
+      t2:
+        qa: warn
+        summary: value_floor warn; palette_drift warn; ground_line warn
+    local_candidate_preparation:
+      take: 1
+      at: '2026-11-02T19:11:56+00:00'
+    publication: selected candidate, not published as a master on this branch due
+      global stop
+qa_reports:
+  char__findik-eyes-closed--t1:
+    job: findik-eyes-closed
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 49.8
+    - check: value_floor
+      status: warn
+      message: lightness p5 48 (R1 59)
+      value: 48.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.9 (R1 5.3)
+      value: 5.89
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.9, p95 13.3, off-palette 7.3% (top: #AA5533 (1.7%), #BB6633
+        (1.3%))'
+      value: 2.9057
+    - check: ground_line
+      status: warn
+      message: feet at 83.7% of the height (contract 88%)
+      value: 0.8366
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the char reference (outliers: L_p2, detail)'
+      value: 73.6
+    - check: edit_stability
+      status: pass
+      message: 96% of the parent level unchanged
+      value: 0.9625
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.99 of the parent level (drift compounds along a chain)
+      value: 0.9939
+    info:
+      metrics_raw:
+        L_p5: 48.3
+        L_p50: 85.6
+        L_p95: 95.5
+        C_p50: 20.0
+        C_p95: 49.8
+        C_p99: 53.9
+        detail: 5.87
+      metrics_locked:
+        L_p5: 48.3
+        L_p50: 85.6
+        L_p95: 95.5
+        C_p50: 20.0
+        C_p95: 49.8
+        C_p99: 53.7
+        detail: 5.89
+    fingerprint: 6b7543f46469b023
+  char__findik-eyes-closed--t2:
+    job: findik-eyes-closed
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.0
+    - check: value_floor
+      status: warn
+      message: lightness p5 49 (R1 59)
+      value: 48.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.9 (R1 5.3)
+      value: 5.91
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.9, p95 13.5, off-palette 7.4% (top: #AA5533 (1.8%), #BB6633
+        (1.2%))'
+      value: 2.8528
+    - check: ground_line
+      status: warn
+      message: feet at 83.7% of the height (contract 88%)
+      value: 0.8372
+    - check: harmony
+      status: pass
+      message: 'harmony score 73 against the char reference (outliers: L_p2, detail)'
+      value: 73.0
+    - check: edit_stability
+      status: pass
+      message: 96% of the parent level unchanged
+      value: 0.9631
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.97 of the parent level (drift compounds along a chain)
+      value: 0.9737
+    info:
+      metrics_raw:
+        L_p5: 48.7
+        L_p50: 85.8
+        L_p95: 95.4
+        C_p50: 19.6
+        C_p95: 50.0
+        C_p99: 54.2
+        detail: 5.91
+      metrics_locked:
+        L_p5: 48.7
+        L_p50: 85.8
+        L_p95: 95.4
+        C_p50: 19.6
+        C_p95: 50.0
+        C_p99: 53.9
+        detail: 5.91
+    fingerprint: 6b7543f46469b023
