@@ -1,0 +1,109 @@
+{
+  "job": "island-main-s",
+  "batch": "batch-01-slice",
+  "asset": "world__island-main-s",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-01T20:27:33-05:00",
+  "image": "design/art/masters/island-main-s/island-main-s.png",
+  "raw": "design/art/masters/island-main-s/raw.png",
+  "fingerprint": "a72a328c7c2fde8d",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit: my favorite take of the floating island. Keep its soft, light painting, its warm light, its round door and its pebbles.\n2. Style reference only (no characters): the hamster's soft painting, light and pastel colors.\n3. The palette card: use only these colors (and mixes of them).\n\nEdit the attached floating island into a flatter, wider diorama for\na cozy mobile game. Change only its proportions and its lawn:\n- The lawn is a wide, flat, empty oval filling about 85% of the\n  image width, seen from a low camera about 20 degrees above the\n  horizon, so the oval is about 0.3 times as tall as it is wide.\n- The lawn is a soft, muted sage-to-spring green, milky and\n  pastel, painted as a smooth velvety surface: only a hint of\n  short grass along the darker front lip, no individual blades\n  across the lawn.\n- The earth body underneath is about half as deep as now, no\n  deeper than 30% of the island's width: a soft, rounded\n  underside, not a cone. Light honey and caramel earth with two or\n  three gentle strata.\n- Keep the tiny round wooden door with its round window and ledge\n  on the lower left, a few cream pebbles and three or four thin\n  dangling roots.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: characters, plants or objects on the lawn, water, sky, clouds, background, ground shadow, saturated or yellow-green grass, a deep cone-shaped underside, text.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/tests/2026-11-01/world__island-main-s_take1.png",
+      "role": "The image to edit: my favorite take of the floating island. Keep its soft, light painting, its warm light, its round door and its pebbles."
+    },
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "Style reference only (no characters): the hamster's soft painting, light and pastel colors."
+    },
+    {
+      "path": "design/reference/palette-card-world-day.png",
+      "role": "The palette card: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-01T20:26:48-05:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "soft-lock",
+    "version": 1
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 35 (R1 51)",
+        "value": 35.2
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 65 (R1 59)",
+        "value": 64.8
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 2.3 (R1 5.3)",
+        "value": 2.3
+      },
+      {
+        "check": "lock_load",
+        "status": "warn",
+        "message": "the lock moved colors by mean dE 11.3 (prefer a take that needs less)",
+        "value": 11.2952
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.7, p95 5.5, off-palette 0.2% (top: #888866 (0.1%), #998866 (0.1%))",
+        "value": 1.723
+      },
+      {
+        "check": "depth_ratio",
+        "status": "pass",
+        "message": "earth depth / width 0.20 (target <= 0.30)",
+        "value": 0.2045
+      },
+      {
+        "check": "lawn_chroma",
+        "status": "pass",
+        "message": "lawn chroma p95 26 (palette meadow 38)",
+        "value": 26.3566
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}

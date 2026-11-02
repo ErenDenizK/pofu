@@ -4,6 +4,7 @@ import os
 import PofuCore
 import PofuPersistence
 import PofuScreenTime
+import PofuWorld
 
 /// The app's state holder. It owns the domain state, persists every change,
 /// and runs the soft gate for `CheckInIntent`. Views read from it and call
@@ -37,6 +38,10 @@ final class AppModel {
     var hop: HopSession?
     /// The sheet open over Home, if any.
     var homeSheet: HomeSheet?
+    /// The island's camera, focus and station sheet
+    /// (`FeatureFlags.islandHome`). Here rather than in the view, so Hop!
+    /// can close a station sheet before its cover.
+    let island = IslandSceneModel()
     /// Set when the last save failed, so a broken disk is never silent.
     private(set) var persistenceProblem = false
     /// Whether Pofu is on screen. Being here is a sign the user left the

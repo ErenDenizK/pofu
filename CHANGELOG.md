@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `PofuWorld`, Pofu's island in SwiftUI (iteration W2): `IslandScene`
+  reads only a `WorldSnapshot` and stacks the batch 01 island plate (cut
+  into four depth bands), the station vignettes at fixed slots (Mochi's
+  çay ocağı L1 from batch 01, prototype stand-ins for the rest), Mochi,
+  and Pofu's live companion view. One continuous camera through Home,
+  Island and Map: a pinch scrubs the rail 1:1 with a rubber band at the
+  ends and lands on the nearest framing with velocity projection; a
+  double tap steps in; a drag peeks. A station tap focuses the camera and
+  raises a stub sheet (42 % and large detents, the world live behind it);
+  a resident tap shows a card with "Tezgâha git". The depth lens blurs by
+  distance from an animated focus plane (a rack focus) by cross-fading
+  pre-blurred variants, with contact shadows and parallax (device tilt
+  behind a flag, off). Home shows the island behind
+  `FeatureFlags.islandHome`, on in both builds; Hop!, the gate and
+  onboarding are unchanged. `preblur.py app` bakes the art into the
+  package's asset catalog. CI renders ten simulator screenshots (five
+  states, light and dark, in Turkish) as the `world-screenshots` artifact.
+
 - The game state is saved with the snapshot (schema version 2, versioned
   and tolerant: a store from before the game starts one, an unreadable game
   never costs the gate its state) and follows the gate's event log on every

@@ -49,6 +49,8 @@ targets:
         product: PofuDesignSystem
       - package: PofuKit
         product: PofuCompanion
+      - package: PofuKit
+        product: PofuWorld
     settings:
       base:
         PRODUCT_NAME: Pofu
@@ -91,6 +93,8 @@ targets:
         product: PofuDesignSystem
       - package: PofuKit
         product: PofuCompanion
+      - package: PofuKit
+        product: PofuWorld
       - target: PofuShieldConfiguration
       - target: PofuShieldAction
       - target: PofuActivityMonitor
@@ -114,6 +118,35 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         ENABLE_PREVIEWS: true
+
+  # Renders IslandScene in the simulator, hosted in the Pofu app so sheets
+  # and glass draw as they do on a phone, and writes PNGs for the founder's
+  # review (the world-screenshots artifact in CI). Not part of the Pofu
+  # scheme's tests; run it with the PofuWorldScreenshots scheme.
+  PofuWorldScreenshots:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests/WorldScreenshots
+    dependencies:
+      - target: Pofu
+      - package: PofuKit
+        product: PofuCore
+      - package: PofuKit
+        product: PofuDesignSystem
+      - package: PofuKit
+        product: PofuWorld
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(POFU_BUNDLE_ID_BASE).WorldScreenshots
+        GENERATE_INFOPLIST_FILE: true
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/Pofu.app/Pofu
+        BUNDLE_LOADER: $(TEST_HOST)
+    configFiles:
+      Debug: Config/Pofu.xcconfig
+      Release: Config/Pofu.xcconfig
 
   # The Screen Time extensions, embedded only in PofuLive. Their bundle
   # identifiers derive from POFU_BUNDLE_ID_BASE, so they always start with
@@ -216,6 +249,7 @@ schemes:
         - package: PofuKit/PofuPersistenceTests
         - package: PofuKit/PofuDesignSystemTests
         - package: PofuKit/PofuCompanionTests
+        - package: PofuKit/PofuWorldTests
     profile:
       config: Release
     analyze:
@@ -238,9 +272,24 @@ schemes:
         - package: PofuKit/PofuPersistenceTests
         - package: PofuKit/PofuDesignSystemTests
         - package: PofuKit/PofuCompanionTests
+        - package: PofuKit/PofuWorldTests
     profile:
       config: Release
     analyze:
       config: Debug
     archive:
       config: Release
+
+  # Simulator screenshots of the island scene, in Turkish (the founder's
+  # language): xcodebuild test -scheme PofuWorldScreenshots.
+  PofuWorldScreenshots:
+    build:
+      targets:
+        Pofu: all
+        PofuWorldScreenshots: [test]
+    test:
+      config: Debug
+      language: tr
+      region: TR
+      targets:
+        - PofuWorldScreenshots

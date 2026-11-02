@@ -9,6 +9,8 @@ import PackageDescription
 // docs/adr/0009-xcodegen-and-package-layout.md.
 let package = Package(
     name: "PofuKit",
+    // PofuWorld's string catalog is in English with Turkish translations.
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v26),
         // macOS is a test host only: it lets `swift test` run on any Mac
@@ -21,6 +23,7 @@ let package = Package(
         .library(name: "PofuPersistence", targets: ["PofuPersistence"]),
         .library(name: "PofuDesignSystem", targets: ["PofuDesignSystem"]),
         .library(name: "PofuCompanion", targets: ["PofuCompanion"]),
+        .library(name: "PofuWorld", targets: ["PofuWorld"]),
     ],
     targets: [
         // Pure domain: economy, friction ladder, passes, metrics, vitality.
@@ -53,11 +56,23 @@ let package = Package(
             resources: [.process("Resources")]
         ),
 
+        // Pofu's island: the camera rail, the depth lens and the layout are
+        // pure and tested on any platform; the SwiftUI scene (`IslandScene`)
+        // is iOS only. The world art is an asset catalog that the pipeline
+        // writes (design/prototypes/interactions/tools/preblur.py app);
+        // Xcode compiles it, and command-line builds only copy it.
+        .target(
+            name: "PofuWorld",
+            dependencies: ["PofuCore", "PofuDesignSystem", "PofuCompanion"],
+            resources: [.process("Resources")]
+        ),
+
         .testTarget(name: "PofuCoreTests", dependencies: ["PofuCore"]),
         .testTarget(name: "PofuScreenTimeTests", dependencies: ["PofuScreenTime", "PofuCore", "PofuPersistence"]),
         .testTarget(name: "PofuPersistenceTests", dependencies: ["PofuPersistence", "PofuCore"]),
         .testTarget(name: "PofuDesignSystemTests", dependencies: ["PofuDesignSystem"]),
         .testTarget(name: "PofuCompanionTests", dependencies: ["PofuCompanion"]),
+        .testTarget(name: "PofuWorldTests", dependencies: ["PofuWorld", "PofuCore"]),
     ],
     swiftLanguageModes: [.v6]
 )
