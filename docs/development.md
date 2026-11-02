@@ -220,6 +220,11 @@ applies from the next launch.
 
 ## Use Pofu daily (free account)
 
+> **Legacy path (2026-11-02).** The product targets Screen Time (ADR-0013;
+> [membership day 1](local/membership-day-1.md)). The Shortcuts path gets
+> no new features and is kept only for the free build with Rehearsal mode
+> off. Setup guide v2 in the app replaces the old guided steps.
+
 These Shortcuts steps apply with Rehearsal mode turned off (Settings,
 Developer).
 
@@ -365,6 +370,21 @@ never merged; it does not run for pull requests from forks.
 
 A newer push to the same branch cancels the run in progress. A pull request
 must be green before it merges.
+
+## The cloud agent environment
+
+The lead agent runs on Linux without Xcode and cannot download a Swift
+toolchain (swift.org is blocked), so the compile and test loop is: push,
+then read the GitHub Actions results. PyPI and Ubuntu apt are reachable
+(`bpy` from PyPI works for Blender); Chromium and Playwright are
+preinstalled for rendering and inspecting prototypes. The repository has
+been **public** since 2026-11-01, so Actions minutes are free; if it ever
+goes private again, macOS bills at 10x (about 30 minutes a run) against
+3,000 a month, so batch pushes. CI skips the macOS job when only `docs/`,
+`design/`, `tools/`, `content/` or Markdown change, and treats Swift
+warnings as errors. Public means: never commit secrets, team IDs, or
+private data. The island's art is baked by
+`design/prototypes/interactions/tools/preblur.py app`.
 
 ## Conventions worth knowing
 

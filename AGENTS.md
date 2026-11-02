@@ -8,14 +8,10 @@ they ever disagree, `CLAUDE.md` wins and you say so in your PR.
 ## Who and what
 
 - **Product:** Pofu, an iOS app with an illustrated fluffy hamster
-  companion that helps people resist reflexive opens of Instagram,
-  YouTube and TikTok. The repository is `ErenDenizK/pofu` (renamed from
-  `rot`; the old URLs redirect).
-- **Founder:** Eren Deniz Kuyucaklıoğlu (GitHub `ErenDenizK`). He sets
-  the vision, approves art, and tests on his Mac and iPhone. He speaks
-  Turkish, often by dictation.
-- **Lead:** a Claude session in the cloud plans the work, writes
-  manifests and prompts, reviews and merges PRs.
+  companion (repository `ErenDenizK/pofu`). **Founder:** Eren Deniz
+  Kuyucaklıoğlu (`ErenDenizK`); he approves art and speaks Turkish.
+  **Lead:** a Claude session in the cloud writes manifests and prompts,
+  reviews and merges PRs.
 - **Your job (Codex on the founder's Mac):** operate the image pipeline
   in [`tools/imagegen/`](tools/imagegen/README.md): generate takes,
   run post-processing and QA, show the founder the contact sheet, record
@@ -222,19 +218,8 @@ So, for every task and every push:
 The ordered list of batches, their state (`READY`, `BLOCKED`, `NEXT PR`)
 and why each exists is in
 [`docs/design/art-production-plan.md`](docs/design/art-production-plan.md#the-queue).
-The lead keeps it current; read it at the start of every task. Right now
-six pilots are `READY` and may run at once:
-
-```text
-AGENTS.md parallel auto mode, batch-05-fixes-pilot, track all
-AGENTS.md parallel auto mode, batch-06-pofu-rig-pilot, track all
-AGENTS.md parallel auto mode, batch-07-light-pilot, track all
-AGENTS.md parallel auto mode, batch-08-decor-pilot, track all
-AGENTS.md parallel auto mode, batch-09-explore-pilot, track all
-AGENTS.md parallel auto mode, batch-10-island-concepts-pilot, track all
-```
-
-Batches 09 and 10 are EXPLORATION: never run `promote` on them.
+The lead keeps it current; read it at the start of every task. Batches 09
+and 10 are EXPLORATION: never run `promote` on them. Notes that matter:
 
 - **batch-05-fixes-pilot:** `simit-2` and `workshop-2` are SALVAGED from
   batch 03's takes on `main` (their `notes` list the files). Batch 03's
@@ -291,11 +276,10 @@ From the founder (2026-11-01) and the lead:
   (off, on) so code drives the glow. The map shows a 30 pt vector Pofu
   pin (code, not art). The camera is continuous; the cloud pass happens
   only when a new island arrives (code).
-- **Batches:** 01, 03 and 04 are merged; the order from here is the
-  [queue](docs/design/art-production-plan.md#the-queue). `batch-02-ui`
-  (12 UI images) stays blocked until the friends beta. The UI direction
-  is now a hybrid of native Liquid Glass and custom painted elements,
-  specified separately; UI boards stay explorations.
+- **UI batch:** `batch-02-ui` (12 UI images) stays blocked until the
+  friends beta. The UI direction is a hybrid of native Liquid Glass and
+  custom painted elements, specified separately; UI boards stay
+  explorations.
 
 ## The workflow, step by step
 

@@ -1,8 +1,10 @@
 # Home Directions: Three Explorations and a Recommendation
 
+> **Archived (2026-11-02).** The room was rejected and the island won. Superseded by [game design v2](../product/game-design.md), [ADR-0016](../adr/0016-pre-planned-idle-archipelago.md) and [ADR-0018](../adr/0018-visual-system-v1.md).
+
 _Status: proposal, for founder review. Last updated: 2026-11-01._
 _Mockups: [`design/prototypes/home-directions/`](../../design/prototypes/home-directions/README.md).
-Read with the [design language](design-language.md), the [art bible](art-bible.md)
+Read with the [design language](../design/design-language.md), the [art bible](../design/art-bible.md)
 and the [information architecture](../product/ux/information-architecture.md)._
 
 ![Comparison sheet](../../design/prototypes/home-directions/screenshots/comparison.png)

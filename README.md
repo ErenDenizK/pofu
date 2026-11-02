@@ -30,7 +30,7 @@ The core experience is free, forever.
 | [Platform constraints](docs/research/platform-constraints.md) | What Apple's Screen Time APIs allow, and the workarounds |
 | [Monetization research](docs/research/monetization.md) | Paywall data and the recommended model |
 | [Character bible](docs/brand/character.md) | Who Pofu is: anatomy, states, motion, voice |
-| [Naming exploration](docs/brand/naming-exploration.md) | How the name Pofu was chosen |
+| [Naming exploration](docs/archive/naming-exploration.md) | How the name Pofu was chosen |
 | [Architecture decisions](docs/adr/README.md) | ADR index |
 | [Development guide](docs/development.md) | Mac setup, running on device, tests, CI |
 | [Contributing](CONTRIBUTING.md) | Branching, commits, PRs, releases |

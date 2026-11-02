@@ -1,6 +1,6 @@
 # Local Agent Brief
 
-> **Status (2026-11-02):** the founder no longer runs a local Claude
+> **Archived (2026-11-02).** **Status:** the founder no longer runs a local Claude
 > session; this brief is a reference. Art runs on Codex in the cloud
 > (`AGENTS.md`); membership day 1 follows `docs/local/membership-day-1.md`.
 
@@ -9,7 +9,7 @@ founder's Mac** (folder `/Users/edk/projects/pofu`). The cloud session is the
 lead: it plans, writes most code, reviews, and merges. The local session is
 its hands on the Mac: Xcode, the simulator, the iPhone, and image generation.
 
-Read [`CLAUDE.md`](../CLAUDE.md) and [`CONTRIBUTING.md`](../CONTRIBUTING.md)
+Read [`CLAUDE.md`](../../CLAUDE.md) and [`CONTRIBUTING.md`](../../CONTRIBUTING.md)
 first. Every rule there applies here: English in the repo, the founder's
 commit identity, Conventional Commits, and no pushes to `main`. Talk to the
 founder in Turkish.
@@ -68,7 +68,7 @@ founder in Turkish.
    and run on the device (`xcodebuild -destination 'id=<udid>'`, or ask the
    founder to press Run in Xcode).
 2. Guide the founder through the Shortcuts automations
-   ([development.md](development.md), "Use Pofu daily"). Then record what
+   ([development.md](../development.md), "Use Pofu daily"). Then record what
    happens for each case:
    - Pofu comes to the foreground from the automation, with or without a
      prompt, and how fast;
@@ -94,13 +94,13 @@ W1 test (D1–D8, run with `--only`); batch 02 stays blocked until the friends
 beta.
 
 The operator is **OpenAI Codex on the Mac**, briefed by
-[`AGENTS.md`](../AGENTS.md) (who, rules, decisions, stop conditions), in
+[`AGENTS.md`](../../AGENTS.md) (who, rules, decisions, stop conditions), in
 a separate clone such as `~/projects/pofu-art`. A local Claude session
 may operate it instead with the same rules. Everything else is in
-[art-pipeline.md](design/art-pipeline.md):
+[art-pipeline.md](../design/art-pipeline.md):
 
 1. When the lead opens a batch, do the
-   [first-run checklist](design/art-pipeline.md#first-run-checklist) with
+   [first-run checklist](../design/art-pipeline.md#first-run-checklist) with
    the founder: account fields in `tools/imagegen/config.yaml`, venv and
    tests, and either the Codex checks (signed in with ChatGPT as the
    founder, `OPENAI_API_KEY` unset, one test image outside the repo,
@@ -132,7 +132,7 @@ iOS 27 documentation, then answer these questions:
 If one sec is installed or can be installed, record its flow as reference;
 ask the founder first. Write the report in PR `local/ios27-automation-import`.
 It decides how "Live Pofu" is onboarded
-([ADR-0013](adr/0013-zero-setup-default-gate.md)).
+([ADR-0013](../adr/0013-zero-setup-default-gate.md)).
 
 ## Etiquette
 

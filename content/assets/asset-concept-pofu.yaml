@@ -13,6 +13,6 @@ art:
   - design/boards/assets/pofu-hamster-concept-cutout.png
   jobs: []
 sources:
-- doc: docs/brand/character-exploration.md
+- doc: docs/archive/character-exploration.md
 kind: concept
 batch: unbatched

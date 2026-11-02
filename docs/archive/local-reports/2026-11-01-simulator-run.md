@@ -2,7 +2,7 @@
 
 Date: 2026-11-01. Device: iPhone 17 simulator, iOS 26.5 (23F77), Xcode
 26.6 (17F113), `main` at `d1cd7cd`. Screenshots are in
-[`docs/local/screenshots/2026-11-01/`](../screenshots/2026-11-01/),
+[`docs/local/screenshots/2026-11-01/`](../../local/screenshots/2026-11-01/),
 named `<lang>-<appearance>-<nn>-<screen>.png` and downscaled to 1000 px tall.
 
 ## Summary
