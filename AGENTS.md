@@ -81,7 +81,7 @@ what `account.owner` in `tools/imagegen/config.yaml` says.
 
 ## Current status (2026-11-02): parallel auto mode
 
-**Batch 01 is fully open.** The founder wants art to flow fast and
+**Batches 01, 03 and 04 are open** ([Next batches](#next-batches-2026-11-02-finish-01-then-03-and-04)). The founder wants art to flow fast and
 automatically: many Codex cloud tasks in parallel, **one object per task**,
 with the take picked automatically by QA. The founder reviews afterwards
 and can veto any pick. Batch 02 stays `status: blocked` until the friends
@@ -92,6 +92,9 @@ object's whole chain from start to end (each level an edit of the
 previous, auto-picked), so there are three short starts instead of six
 waves. Every job
 makes **2 takes** (a third is usually a weaker copy of the second).
+
+Batch 01's tracks (batches 03 and 04 are under
+[Next batches](#next-batches-2026-11-02-finish-01-then-03-and-04)):
 
 | Track | Jobs, in order | Starts |
 |---|---|---|
@@ -117,21 +120,31 @@ single task, on branch `art/batch-01-slice/all`, with one PR.
   the five `cay` levels.
 
 The founder starts a task with: "AGENTS.md parallel auto mode,
-batch-01-slice, track `<name>`". Branch: `art/batch-01-slice/<track>`. PR
-title: `art(batch-01): <track>`. Within the task, run steps 2 to 6 for each
-job of the track in order.
+`<batch>`, track `<name>`" (for example "AGENTS.md parallel auto mode,
+batch-03-home-island, track pond"). Branch: `art/<batch>/<track>`. PR
+title: `art(batch-NN): <track>`. Within the task, run steps 2 to 6 for each
+job of the track in order. The manifest is
+`tools/imagegen/manifest/<batch>.yaml`. Open batches and their tracks are in
+[Next batches](#next-batches-2026-11-02-finish-01-then-03-and-04).
 
 1. Install the tools: `pip install -r tools/imagegen/requirements.txt`. If
    that fails, stop and ask the founder to add it to the Codex
    environment's setup script (setup runs with internet access).
 2. If the job depends on others, get their approved masters from `main`,
    or, if they are not merged yet, from the other track's branch:
-   `git fetch origin art/batch-01-slice/<track>` and
-   `git checkout origin/art/batch-01-slice/<track> -- design/art/<path of the master>`.
+   `git fetch origin art/<batch>/<track>` and
+   `git checkout origin/art/<batch>/<track> -- design/art/<master folder>`
+   (the whole folder: later edits read its `meta.json`). Jobs marked
+   `external: batch-01-slice` in a manifest are batch 01's masters: `plan`
+   shows them as "external"; never generate them, fetch them the same way
+   from `main` or `art/batch-01-slice/all`. If a master folder holds
+   `<name>.webp` but no `<name>.png` (see [Uploads](#uploads-every-file-under-600-kb)),
+   decode it:
+   `python3 -I -c "from PIL import Image; Image.open('<dir>/<name>.webp').save('<dir>/<name>.png')"`.
    Do not wait for the lead to merge. Track tasks push after **each**
    promoted job, not only at the end, so dependent tasks can start early.
 3. Print the exact prompt and attachments with
-   `python3 -I tools/imagegen/run.py prompt --manifest tools/imagegen/manifest/batch-01-slice.yaml --job <id>`,
+   `python3 -I tools/imagegen/run.py prompt --manifest <manifest> --job <id>`,
    and generate the job's 2 takes with **your built-in image generation
    tool**, attaching the listed references. If you have no image tool here,
    stop and say so.
@@ -143,23 +156,146 @@ job of the track in order.
    one more round of the job's variants. If that also fails, stop and report
    the failing checks; do not loop. Set that take as the pick for this job
    only, and run `promote --only <id>`. In the provenance note, write
-   "auto-picked by QA; founder review pending".
-6. **Commit only this job's files**, so parallel tasks never conflict:
-   - the master or station output that `promote` wrote;
-   - every take as lossless WebP in `design/art/takes/batch-01-slice/<id>/`;
-   - the job's contact sheet as `design/art/takes/batch-01-slice/<id>/contact.jpg`;
+   "auto-picked by QA; founder review pending". Read the job's `notes` in
+   the manifest: some name a review check or a case where you must stop.
+6. **Commit only this job's files**, so parallel tasks never conflict, and
+   every file under 600 KB ([Uploads](#uploads-every-file-under-600-kb)):
+   - the master or station folder that `promote` wrote;
+   - every take as **lossy WebP, quality 90**, in `design/art/takes/<batch>/<id>/`;
+   - the job's contact sheet as `design/art/takes/<batch>/<id>/contact.jpg`;
    - the job's QA summary as `.../<id>/review.yaml`.
 
-   Do **not** edit the shared `design/art/review/batch-01-slice.yaml`; the
-   lead merges the fragments. Push branch `art/batch-01-slice/<track>` after
-   every promoted job; after the first push, open the PR. After the last
-   job, say so in the PR and stop.
+   Do **not** edit the shared `design/art/review/<batch>.yaml`; the lead
+   merges the fragments. Push branch `art/<batch>/<track>` after every
+   promoted job, run the upload check, and after the first push open the
+   PR. After the last job, say so in the PR and stop.
 
 The founder vetoes in Turkish ("cay-1: take 2", or "redo"). The lead or
 a new task applies the veto.
 
 On the Mac, the `codex` backend (`run.py run --backend codex`) does steps
 3 and 4 by itself.
+
+## Uploads: every file under 600 KB
+
+The GitHub connector a Codex cloud task pushes through **cuts every file
+off at 768 KB, silently**. Batch 01's takes and `raw.png` files on
+`art/batch-01-slice/all` arrived as 786,443-byte stubs that do not open.
+So, for every task and every push:
+
+- **Every uploaded file is under 600 KB** (614,400 bytes).
+- **Takes are lossy WebP at quality 90:**
+  `python3 -I -c "from PIL import Image; Image.open('<take>.png').save('<take>.webp', 'WEBP', quality=90, method=6)"`.
+  A 1536 × 1024 take is about 70 to 90 KB.
+- **`raw.png` is uploaded only if it is under 600 KB.** Otherwise leave it
+  out of the commit and write "raw.png not uploaded (over 600 KB); the q90
+  takes are the record" in the job's `review.yaml`.
+- **The master stays lossless.** If `<name>.png` is under 600 KB, upload
+  it. If not, upload a lossless WebP twin `<name>.webp` in the same folder
+  instead of the PNG
+  (`Image.open(p).save(q, 'WEBP', lossless=True, method=6)`; masters land
+  at 430 to 500 KB). It decodes back to identical pixels; dependent tasks
+  decode it (step 2) and the lead restores the PNG on merge.
+- **Check every upload:** after each push, re-download every file you
+  pushed and decode it:
+
+  ```sh
+  git fetch origin art/<batch>/<track>
+  python3 -I tools/imagegen/check_upload.py --branch art/<batch>/<track> \
+      design/art/takes/<batch>/<id> design/art/<stations|masters>/<name>
+  ```
+
+  It fails a file that is 600 KB or more, differs from your local copy, or
+  does not decode. Fix and re-push before you start the next job. (Batch
+  01 masters already on `main` decode and may stay as they are.)
+
+## Next batches (2026-11-02): finish 01, then 03 and 04
+
+Three open manifests, so Codex never sits idle. Every job makes 2 takes
+and is auto-picked by QA (steps above); the founder reviews afterwards.
+
+### Batch 01: finish it (`art/batch-01-slice/all`)
+
+- Remaining jobs: `cay-2` → `cay-5`, `garden-1` → `garden-2`, `simit-1`.
+  Batch 03's `garden` and `simit` tracks wait for `garden-2` and
+  `simit-1`, so push them as soon as they are promoted.
+- **Do not promote `terrace`.** It was drawn against the old large island;
+  batch 03's `terrace-v2` replaces it. `island-main-l` and `mochi-base`
+  stay where they are; batch 03's `island-main-l-v2` and `mochi-v2`
+  replace them in the app (founder: the large island must be clearly
+  larger; Mochi has no curl on her head, it is Pofu's alone).
+- **Repair the truncated uploads** on that branch: every `*.webp` take and
+  every `raw.png` there is cut off. Re-upload the takes as lossy WebP q90
+  from the original files, re-upload a `raw.png` only if it is under
+  600 KB and delete the others, then run `check_upload.py` on each job's
+  folders. If the originals are gone (a new container), delete the broken
+  files and say so in the PR.
+
+### Batch 03: Ayçiçeği, stages 1–5 (`batch-03-home-island`)
+
+One object per track. "Needs" is what must be on `main` or a pushed
+branch first.
+
+| Track | Jobs, in order | Needs | Starts |
+|---|---|---|---|
+| `mochi` | `mochi-v2` → `mochi-work` | `mochi-base` (main) | **now** |
+| `plates` | `island-main-l-v2` → `terrace-v2` → `islet-east` → `bridge-east` | `island-main-s` (main) | **now** |
+| `pond` | `pond-1` → `pond-2` → `pond-3` → `pond-4` → `pond-5` | `cay-1`, `island-main-s` (main) | **now** |
+| `workshop` | `workshop-1` → … → `workshop-5` | `cay-1`, `island-main-s` (main) | **now** |
+| `windmill` | `windmill-1` → … → `windmill-5` | `cay-1`, `island-main-s` (main) | **now** |
+| `findik` | `findik` → `findik-work` | `mochi-v2` (scale and finish) | when `mochi` has pushed `mochi-v2` |
+| `garden` | `garden-3` → `garden-4` → `garden-5` | batch 01's `garden-2` | when batch 01 has pushed `garden-2` |
+| `simit` | `simit-2` → `simit-3` → `simit-4` → `simit-5` | batch 01's `simit-1` | when batch 01 has pushed `simit-1` |
+
+30 jobs, 60 takes. The longest chains are the five-level stations.
+
+### Batch 04: the living sky (`batch-04-sky`)
+
+| Track | Jobs, in order | Needs | Starts |
+|---|---|---|---|
+| `clouds` | `cloud-1` → (`cloud-2`, `cloud-3`, `cloud-4`, `cloud-5`) → `cloud-sea` | `island-main-s` (main) | **now** |
+| `isles` | `far-isle-1` → (`far-isle-2`, `far-isle-3`) | `island-main-s` (main) | **now** |
+| `sun` | `sun-glow` | `island-main-s` (main) | **now** |
+
+10 jobs, 20 takes. Jobs in parentheses need only the first job of their
+track and may run at the same time; `cloud-sea` also needs `cloud-4`. If
+`sun-glow` comes back opaque, do not key it: stop that job and say so
+(its `notes`).
+
+**Can start immediately:** batch 03's `mochi`, `plates`, `pond`,
+`workshop` and `windmill`, and all of batch 04 (`clouds`, `isles`, `sun`),
+alongside batch 01's remaining jobs.
+
+### Task lines (paste one per Codex task)
+
+```text
+AGENTS.md parallel auto mode, batch-01-slice, track all
+AGENTS.md parallel auto mode, batch-03-home-island, track all
+AGENTS.md parallel auto mode, batch-04-sky, track all
+```
+
+`track all` runs every track of the batch in one task, on
+`art/<batch>/all`, with one PR, in parallel inside the task where it can
+(as for batch 01) and otherwise in the table's order. To split a batch
+across tasks instead, one line per track:
+
+```text
+AGENTS.md parallel auto mode, batch-03-home-island, track mochi
+AGENTS.md parallel auto mode, batch-03-home-island, track plates
+AGENTS.md parallel auto mode, batch-03-home-island, track pond
+AGENTS.md parallel auto mode, batch-03-home-island, track workshop
+AGENTS.md parallel auto mode, batch-03-home-island, track windmill
+AGENTS.md parallel auto mode, batch-03-home-island, track findik
+AGENTS.md parallel auto mode, batch-03-home-island, track garden
+AGENTS.md parallel auto mode, batch-03-home-island, track simit
+AGENTS.md parallel auto mode, batch-04-sky, track clouds
+AGENTS.md parallel auto mode, batch-04-sky, track isles
+AGENTS.md parallel auto mode, batch-04-sky, track sun
+```
+
+A track whose "Needs" is not pushed yet waits: fetch again every few
+minutes, and if it has not appeared after 30 minutes, stop and say so in
+the PR.
 
 ## Decisions you must respect
 
@@ -185,8 +321,10 @@ From the founder (2026-11-01) and the lead:
   pin (code, not art). The camera is continuous; the cloud pass happens
   only when a new island arrives (code).
 - **Batches:** `batch-01-slice` (game design §15 D1–D8, then çay ocağı
-  L3–L5 and garden L2) first; `batch-02-ui` (12 UI images) after batch
-  01's island and çay ocağı L1 are approved.
+  L3–L5 and garden L2) first; then `batch-03-home-island` (the rest of
+  the home island, stages 1–5) and `batch-04-sky` (the living sky) in
+  parallel; `batch-02-ui` (12 UI images) stays blocked until the friends
+  beta.
 
 ## The workflow, step by step
 

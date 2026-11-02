@@ -234,6 +234,29 @@ class EndToEnd(unittest.TestCase):
         finally:
             os.environ.pop("POFU_OPENAI_API_KEY", None)
 
+    def test_external_parent_is_never_generated(self):
+        self.manifest.write_text(MANIFEST.replace(
+            "    attach:\n      - {ref: station-guide, role: \"the guide\"}\n    prompt:\n      - text: A tea stall.\n"
+            "      - block: view-v2\n      - block: prop-style-v2\n", "    external: batch-01-slice\n"), encoding="utf-8")
+        m = ["--manifest", str(self.manifest)]
+        os.environ["STUB_IMAGE"] = str(save(stall(dx=30, scale=0.95, awning=True, size=1254), self.tmp / "l2.png"))
+        code, out = self.cli("plan", *m)
+        self.assertIn("external: made by batch-01-slice", out)
+        code, out = self.cli("run", *m, "--takes", "1")
+        self.assertIn("skip cay-1: external", out)
+        self.assertIn("skip cay-2: waiting for cay-1", out)
+        self.assertFalse((self.tmp / "stub.log").exists())
+        # once the other batch's master is on disk, the edit runs and the parent is never regenerated
+        parent = pl.ART_ROOT / "stations" / "cay-1" / "cay-1.png"
+        parent.parent.mkdir(parents=True)
+        save(stall(), parent)
+        code, out = self.cli("run", *m, "--takes", "1")
+        self.assertEqual(code, 0, out)
+        inbox = self.tmp / "inbox" / "e2e"
+        self.assertEqual(sorted(p.name for p in inbox.glob("*.png")), ["station__cay-2--t1.png"])
+        code, out = self.cli("ingest", *m, "--job", "cay-1", str(parent))
+        self.assertEqual(code, run.EXIT_ERR, out)
+
     def test_dry_run_sends_nothing(self):
         code, out = self.cli("run", "--manifest", str(self.manifest), "--dry-run")
         self.assertIn("Nothing was sent", out)

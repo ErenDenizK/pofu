@@ -68,3 +68,18 @@ jobs:
 A job runs only when every job it depends on (`edit_of`,
 `approved:<id>` attachments) is approved and every other reference
 exists.
+
+To continue a chain another batch started, declare that batch's master
+as an **external** job (same `kind` and `name`, no prompt, no `attach`):
+
+```yaml
+  - {id: garden-2, kind: station, name: garden-2, external: batch-01-slice}
+  - {id: garden-3, kind: station, edit_of: garden-2, prompt: [...]}
+```
+
+An external job is never generated, ingested or promoted here; it counts
+as approved once its master is on disk (fetched from `main` or the other
+batch's branch), and `plan` shows where it comes from.
+
+`check_upload.py` re-downloads pushed art from the remote branch and
+decodes it; uploads must stay under 600 KB (AGENTS.md, "Uploads").

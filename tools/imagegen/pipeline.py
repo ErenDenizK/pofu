@@ -71,6 +71,10 @@ class Job:
     chat: str | None = None
     notes: str = ""
     canvas: tuple[int, int] | None = None
+    # The batch that generates this master. An external job is never
+    # generated here: it only lets this manifest's jobs edit or attach a
+    # master another batch made (approved once that master is on disk).
+    external: str | None = None
 
     @property
     def asset(self) -> str:
@@ -145,8 +149,15 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
         if f"{kind}__{name}" in assets:
             raise ManifestError(f"{where}: another job already writes {kind}__{name}")
         assets.add(f"{kind}__{name}")
+        external = merged.get("external")
+        if external is not None and not ID_RE.match(str(external)):
+            raise ManifestError(f"{where}: external must name the batch that makes this master, e.g. batch-01-slice")
         prompt = merged.get("prompt")
-        if not isinstance(prompt, list) or not prompt:
+        if external:
+            if merged.get("edit_of") or merged.get("attach"):
+                raise ManifestError(f"{where}: an external job only points at another batch's master (no edit_of, no attach)")
+            prompt = prompt or []
+        if not isinstance(prompt, list) or (not prompt and not external):
             raise ManifestError(f"{where}: prompt must be a non-empty list of {{text: ...}} or {{block: ...}} parts")
         for part in prompt:
             if not isinstance(part, dict) or len(part) != 1 or not ({"text", "block"} & set(part)):
@@ -174,7 +185,7 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
         job = Job(id=jid, kind=kind, name=name, prompt=prompt, attach=attach, edit_of=merged.get("edit_of"),
                   size=size, transparent=transparent, key=key,
                   variants=variants, acceptance=merged.get("acceptance", {}) or {}, chat=merged.get("chat"),
-                  notes=merged.get("notes", "") or "", canvas=canvas)
+                  notes=merged.get("notes", "") or "", canvas=canvas, external=str(external) if external else None)
         jobs.append(job)
     if not jobs:
         raise ManifestError("manifest has no jobs")

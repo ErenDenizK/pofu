@@ -79,7 +79,7 @@ def job_state(job: pl.Job, m: pl.Manifest, config: dict, background: str) -> dic
     fp = pl.fingerprint(prompt, [p for _, p in refs]) if not blocked and not missing else None
     takes = existing_takes(job, pl.inbox_dir(config, m.batch))
     fresh = [t for t in takes if fp and t[2].get("fingerprint") == fp]
-    return {"approved": pl.approved_image(job).exists(), "blocked": blocked, "missing": missing,
+    return {"approved": pl.approved_image(job).exists(), "external": job.external, "blocked": blocked, "missing": missing,
             "prompt": prompt, "fingerprint": fp, "takes": takes, "fresh": fresh, "refs": refs}
 
 
@@ -97,7 +97,9 @@ def cmd_plan(args, config, m: pl.Manifest) -> int:
     for job in m.jobs:
         st = job_state(job, m, config, bg)
         if st["approved"]:
-            state = "approved"
+            state = "approved" + (f" (made by {job.external})" if job.external else "")
+        elif job.external:
+            state = f"external: made by {job.external}; fetch its master, never generate it here"
         elif st["blocked"]:
             state = "waiting for approval of " + ", ".join(st["blocked"])
         elif st["missing"]:
@@ -111,6 +113,11 @@ def cmd_plan(args, config, m: pl.Manifest) -> int:
 
 def cmd_prompt(args, config, m: pl.Manifest) -> int:
     job = m.job(args.job)
+    if job.external:
+        path = pl.approved_image(job)
+        print(f"{job.id} is external: {job.external} generates it; here it is only a parent or a reference.")
+        print(f"  {rel(path)}{'' if path.exists() else '  (missing: fetch it)'}")
+        return EXIT_OK
     st = job_state(job, m, config, background_mode(args, config))
     print(st["prompt"])
     print("--- attachments, in order:")
@@ -157,6 +164,10 @@ def cmd_run(args, config, m: pl.Manifest) -> int:
     plan = []
     for job in jobs:
         st = job_state(job, m, config, bg)
+        if job.external:
+            if not st["approved"]:
+                print(f"skip {job.id}: external, made by {job.external}; fetch its master")
+            continue
         if st["approved"] and not args.redo_approved:
             continue
         if st["blocked"] or st["missing"]:
@@ -276,7 +287,7 @@ def write_manual_pack(jobs, m, config, bg, per_job_cap) -> int:
     count = 0
     for job in jobs:
         st = job_state(job, m, config, bg)
-        if st["approved"] or st["blocked"] or st["missing"]:
+        if job.external or st["approved"] or st["blocked"] or st["missing"]:
             continue
         want = max(0, min(job.variants, per_job_cap) - len(st["fresh"]))
         if not want:
@@ -294,6 +305,9 @@ def write_manual_pack(jobs, m, config, bg, per_job_cap) -> int:
 
 def cmd_ingest(args, config, m: pl.Manifest) -> int:
     job = m.job(args.job)
+    if job.external:
+        print(f"{job.id} is external: ingest its takes with {job.external}'s manifest.")
+        return EXIT_ERR
     bg = background_mode(args, config)
     st = job_state(job, m, config, bg)
     owner = (args.account_owner or (config.get("account") or {}).get("owner") or "").strip()

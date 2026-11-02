@@ -83,6 +83,22 @@ class ParseTests(unittest.TestCase):
         self.assertTrue(m.job("i").transparent)
         self.assertEqual(pl.approved_dir(m.job("i")).name, "icon-i")
 
+    def test_external_parent_from_another_batch(self):
+        data = manifest()
+        data["jobs"][0] = {"id": "cay-1", "kind": "station", "external": "batch-01-slice"}
+        m = pl.parse_manifest(data, REFS)
+        self.assertEqual(m.job("cay-1").external, "batch-01-slice")
+        self.assertEqual(m.job("cay-1").prompt, [])
+        self.assertEqual(pl.approved_image(m.job("cay-1")), pl.ART_ROOT / "stations" / "cay-1" / "cay-1.png")
+        self.assertEqual(pl.dependencies(m.job("cay-2")), ["cay-1"])
+        for label, extra in {"edit": {"edit_of": "cay-2"}, "attach": {"attach": [{"ref": "R1", "role": "x"}]},
+                             "bad batch": {"external": "Batch 01"}}.items():
+            with self.subTest(label):
+                bad = manifest()
+                bad["jobs"][0] = {"id": "cay-1", "kind": "station", "external": "batch-01-slice", **extra}
+                with self.assertRaises(pl.ManifestError):
+                    pl.parse_manifest(bad, REFS)
+
 
 class PromptTests(unittest.TestCase):
     def test_blocks_are_verbatim_and_refs_listed_in_order(self):
@@ -152,6 +168,39 @@ class ShippedManifestTests(unittest.TestCase):
         self.assertEqual(kinds.count("icon"), 6)
         self.assertEqual(m.job("jar-1").edit_of, "jar-0")
         self.assertEqual(m.job("lantern-on").edit_of, "lantern-off")
+
+    def test_batch_03_completes_the_home_island(self):
+        m = pl.load_manifest(pl.HERE / "manifest" / "batch-03-home-island.yaml")
+        made = [j for j in m.jobs if not j.external]
+        self.assertTrue(all(j.variants == 2 for j in made))
+        for station in ("pond", "workshop", "windmill"):
+            first = m.job(f"{station}-1")
+            self.assertEqual([a.ref for a in first.attach][:2], ["station-guide", "approved:cay-1"])
+            for level in range(2, 6):
+                self.assertEqual(m.job(f"{station}-{level}").edit_of, f"{station}-{level - 1}")
+        # chains batch 01 started continue from its masters
+        self.assertEqual((m.job("garden-3").edit_of, m.job("garden-2").external), ("garden-2", "batch-01-slice"))
+        self.assertEqual((m.job("simit-2").edit_of, m.job("simit-1").external), ("simit-1", "batch-01-slice"))
+        # founder feedback: Mochi loses Pofu's curl; Fındık never gets one
+        self.assertEqual(m.job("mochi-v2").edit_of, "mochi")
+        self.assertIn("Remove the single cream curl", pl.compose_prompt(m.job("mochi-v2")))
+        self.assertIn("No curl or swirl", pl.compose_prompt(m.job("findik")))
+        self.assertEqual(m.job("mochi-work").edit_of, "mochi-v2")
+        self.assertEqual(m.job("findik-work").edit_of, "findik")
+        self.assertIn("40% wider", pl.compose_prompt(m.job("island-main-l-v2")))
+        self.assertIn("approved:island-main-l-v2", [a.ref for a in m.job("terrace-v2").attach])
+
+    def test_batch_04_sky_is_transparent_and_has_no_characters(self):
+        m = pl.load_manifest(pl.HERE / "manifest" / "batch-04-sky.yaml")
+        made = [j for j in m.jobs if not j.external]
+        self.assertEqual(len(made), 10)
+        self.assertEqual(sum(j.id.startswith("cloud-") and j.id != "cloud-sea" for j in made), 5)
+        for j in made:
+            with self.subTest(j.id):
+                self.assertTrue(j.transparent)
+                self.assertNotEqual(j.kind, "char")
+                self.assertRegex(pl.compose_prompt(j), r"No text")
+        self.assertIn("tile seamlessly", pl.compose_prompt(m.job("cloud-sea")))
 
 
 if __name__ == "__main__":
