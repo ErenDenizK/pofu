@@ -4,22 +4,20 @@ title_tr: Mochi
 title_en: Mochi, the bunny
 status: in-app
 horizon: now
-summary: >-
-  A cream lop-eared bunny who runs the çay ocağı. The host: remembers how you take your tea.
-  Arrives at home stage 2.
+summary: 'A cream lop-eared bunny who runs the çay ocağı. The host: remembers how
+  you take your tea. Arrives at home stage 2.'
 notes:
-- >-
-  Founder feedback (2026-11-02): Mochi has no curl on her head; she has long, soft ears. mochi-v2
-  fixes the batch 01 master.
-- >-
-  Two poses each for residents (working, idle) as edits; mochi-work is her working pose at
-  the tea stall.
+- 'Founder feedback (2026-11-02): Mochi has no curl on her head; she has long, soft
+  ears. mochi-v2 fixes the batch 01 master.'
+- Two poses each for residents (working, idle) as edits; mochi-work is her working
+  pose at the tea stall.
 - 'Idle beat 2 (45 s without input): Mochi hops in place.'
 links:
   uses_asset:
   - asset-mochi
   - asset-mochi-v2
   - asset-mochi-work
+  - asset-mochi-eyes-happy
   inspired_by:
   - asset-concept-bunny
   related:
