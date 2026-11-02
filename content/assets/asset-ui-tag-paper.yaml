@@ -4,12 +4,13 @@ title_tr: ui-tag-paper
 title_en: tag-paper (ui)
 status: in-production
 horizon: now
-summary: >-
-  A wide, slim paper tag of warm cream paper with softly rounded corners, one small round
-  punched hole near its left end (no string, no ribbon), a faint slightly darker paper edge,
-  the middle flat and empty. Seen straight on. Nothing written on it.
+summary: A wide, slim paper tag of warm cream paper with softly rounded corners, one
+  small round punched hole near its left end (no string, no ribbon), a faint slightly
+  darker paper edge, the middle flat and empty. Seen straight on. Nothing written
+  on it.
 art:
-  images: []
+  images:
+  - design/art/ui/ui-tag-paper/ui-tag-paper.png
   jobs:
   - batch-11-ui-pilot:ui-tag-paper
 sources:

@@ -1,0 +1,334 @@
+batch: batch-07-light
+contact_sheet: design/art/takes/batch-07-light/workshop-1-lit/contact.jpg
+jobs:
+  workshop-1-lit:
+    pick: none
+    note: 'Stopped after the single allowed retry round: t3 and t4 both fail chroma_ceiling.
+      t1 also fails chroma_ceiling; t2 automated status is warn but exact edit_stability0.8997
+      is below the manifest manual >0.9 gate, so it is excluded without rounding.
+      No take promoted. No further generation after the stop.'
+    takes:
+      t1:
+        qa: fail
+        summary: chroma_ceiling fail; palette_drift warn
+      t2:
+        qa: warn
+        summary: chroma_ceiling warn; palette_drift warn
+      t3:
+        qa: fail
+        summary: chroma_ceiling fail; palette_drift warn
+      t4:
+        qa: fail
+        summary: chroma_ceiling fail; palette_drift warn
+qa_reports:
+  station__workshop-1-lit--t4:
+    job: workshop-1-lit
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 62 (R1 51)
+      value: 61.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 59 (R1 59)
+      value: 59.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.59
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7501
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 1.8, p95 11.6, off-palette 3.8% (top: #DD8833 (1.0%), #CC7733
+        (0.9%))'
+      value: 1.7927
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 903.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the world reference (outliers: C_p95, edge)'
+      value: 73.5
+    - check: edit_stability
+      status: pass
+      message: 90% of the parent level unchanged
+      value: 0.8986
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.99 of the parent level (drift compounds along a chain)
+      value: 0.988
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 59.0
+        L_p50: 77.0
+        L_p95: 88.3
+        C_p50: 26.8
+        C_p95: 64.1
+        C_p99: 68.4
+        detail: 2.16
+      metrics_locked:
+        L_p5: 59.3
+        L_p50: 76.9
+        L_p95: 88.2
+        C_p50: 26.8
+        C_p95: 61.5
+        C_p99: 63.3
+        detail: 1.59
+    fingerprint: 402bc9b40f2c9a5e
+  station__workshop-1-lit--t3:
+    job: workshop-1-lit
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.001 and moved it; aligned back to the
+        parent
+      value: 0.9988
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 60 (R1 51)
+      value: 60.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 59 (R1 59)
+      value: 58.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.7
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0028
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 1.6, p95 10.2, off-palette 0.5% (top: #CC7733 (0.2%), #BB7733
+        (0.1%))'
+      value: 1.6086
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 901.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 76 against the world reference (outliers: C_p95, edge)'
+      value: 75.9
+    - check: edit_stability
+      status: pass
+      message: 90% of the parent level unchanged
+      value: 0.9018
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.99 of the parent level (drift compounds along a chain)
+      value: 0.9858
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      alignment:
+        scale: 0.9988
+        cx: 433.0
+        cy: 901.0
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 58.3
+        L_p50: 77.7
+        L_p95: 88.2
+        C_p50: 26.6
+        C_p95: 61.8
+        C_p99: 67.1
+        detail: 2.26
+      metrics_locked:
+        L_p5: 58.7
+        L_p50: 77.7
+        L_p95: 88.4
+        C_p50: 26.7
+        C_p95: 60.4
+        C_p99: 62.9
+        detail: 1.7
+    fingerprint: 402bc9b40f2c9a5e
+  station__workshop-1-lit--t1:
+    job: workshop-1-lit
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 61 (R1 51)
+      value: 61.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 60 (R1 59)
+      value: 60.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.53
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7002
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 1.8, p95 10.1, off-palette 2.5% (top: #CC7733 (1.2%), #DD8833
+        (0.6%))'
+      value: 1.7851
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 902.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the world reference (outliers: C_p95, edge)'
+      value: 74.2
+    - check: edit_stability
+      status: pass
+      message: 90% of the parent level unchanged
+      value: 0.9005
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.02 of the parent level (drift compounds along a chain)
+      value: 1.0197
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 59.7
+        L_p50: 77.4
+        L_p95: 88.2
+        C_p50: 27.6
+        C_p95: 63.4
+        C_p99: 67.3
+        detail: 2.09
+      metrics_locked:
+        L_p5: 60.2
+        L_p50: 77.3
+        L_p95: 88.1
+        C_p50: 27.6
+        C_p95: 61.2
+        C_p99: 62.9
+        detail: 1.53
+    fingerprint: 402bc9b40f2c9a5e
+  station__workshop-1-lit--t2:
+    job: workshop-1-lit
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 59.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 60 (R1 59)
+      value: 60.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.56
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6349
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 1.6, p95 9.9, off-palette 0.0% (top: #CC7733 (0.0%), #CC8833
+        (0.0%))'
+      value: 1.5852
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 903.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 76 against the world reference (outliers: C_p95, edge)'
+      value: 75.7
+    - check: edit_stability
+      status: pass
+      message: 90% of the parent level unchanged
+      value: 0.8997
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.99 of the parent level (drift compounds along a chain)
+      value: 0.9935
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 60.0
+        L_p50: 76.8
+        L_p95: 88.0
+        C_p50: 26.9
+        C_p95: 59.9
+        C_p99: 65.9
+        detail: 2.1
+      metrics_locked:
+        L_p5: 60.5
+        L_p50: 76.7
+        L_p95: 87.9
+        C_p50: 26.9
+        C_p95: 59.1
+        C_p99: 62.4
+        detail: 1.56
+    fingerprint: 402bc9b40f2c9a5e

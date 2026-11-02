@@ -26,6 +26,14 @@ not orders: each entry records **what he meant**, the **status**, and
   Feel is tuned natively on his iPhone.
 - **Merging:** the agent may merge PRs, with merge commits, only on green CI.
 
+## 2026-11-02 (overnight): autonomous art queue
+
+- Publish the retained 14 rig picks, pond-5-lit and four UI picks without regenerating; then finish the UI pilot and every READY batch in queue order.
+- Re-fetch main before every batch and follow its newest brief. Decor pilot stays paused until its QA fix lands on main. Never start BLOCKED, promote EXPLORATION or merge.
+- Tonight overrides earlier QA stop rules: one allowed extra pair, then skip only the failed job and its dependents and continue. Stop globally only for account/sign-in/quota/usage messages, refusals, identity/upload corruption or three consecutive actual job failures.
+- Measure harmony for each promoted master and commit the current manifest with its art. One PR per batch; continue immediately. Once the queue is empty, check main every 20 minutes for two hours.
+- Status: in progress in art PRs #83, #84 and #87; later READY batches follow.
+
 ## 2026-11-02 (evening): after the look-dev round and the Hub answers
 
 ### Art and look

@@ -4,13 +4,14 @@ title_tr: ui-panel-paper
 title_en: panel-paper (ui)
 status: in-production
 horizon: now
-summary: >-
-  A cream paper panel with softly rounded corners, a thin row of small, even, warm-brown stitches
-  running just inside its edge all the way around, a faint darker paper edge outside the stitches.
-  The middle is plain, flat, even cream paper with no stains and no texture variation, so
-  it can be tiled. Seen straight on. Nothing written on it.
+summary: A cream paper panel with softly rounded corners, a thin row of small, even,
+  warm-brown stitches running just inside its edge all the way around, a faint darker
+  paper edge outside the stitches. The middle is plain, flat, even cream paper with
+  no stains and no texture variation, so it can be tiled. Seen straight on. Nothing
+  written on it.
 art:
-  images: []
+  images:
+  - design/art/ui/ui-panel-paper/ui-panel-paper.webp
   jobs:
   - batch-11-ui-pilot:ui-panel-paper
 sources:

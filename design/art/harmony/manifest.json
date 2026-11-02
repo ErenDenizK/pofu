@@ -3629,6 +3629,63 @@
    "source": "design/art/stations/pond-5/pond-5.png",
    "source_sha": "fc025e66edbaf2c1"
   },
+  "pond-5-lit": {
+   "after": {
+    "C_mean": 11.859,
+    "C_p50": 10.246,
+    "C_p95": 27.803,
+    "L_mean": 84.969,
+    "L_p2": 64.21,
+    "L_p98": 92.881,
+    "detail": 1.344,
+    "edge": 0.435,
+    "tint_a": 1.43,
+    "tint_b": 3.62,
+    "warmth_b": 8.332
+   },
+   "before": {
+    "C_mean": 8.219,
+    "C_p50": 7.066,
+    "C_p95": 19.174,
+    "L_mean": 81.842,
+    "L_p2": 64.21,
+    "L_p98": 88.683,
+    "detail": 1.168,
+    "edge": 0.435,
+    "tint_a": 1.121,
+    "tint_b": 3.787,
+    "warmth_b": 5.775
+   },
+   "chain": null,
+   "correction": {
+    "black": 0.0,
+    "ceiling": 0.0,
+    "chroma": 1.45,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 4.38
+   },
+   "guarded": false,
+   "kind": "station",
+   "matched_to": "world",
+   "outliers_after": [
+    "C_p95",
+    "edge"
+   ],
+   "outliers_before": [
+    "C_p95",
+    "L_p98",
+    "edge"
+   ],
+   "ppu": 8.533,
+   "reference": false,
+   "score_after": 65.2,
+   "score_before": 55.2,
+   "shipped": false,
+   "source": "design/art/stations/pond-5-lit/pond-5-lit.png",
+   "source_sha": "0c83e447abeaa523"
+  },
   "simit-1": {
    "after": {
     "C_mean": 34.526,
@@ -3744,6 +3801,185 @@
    "shipped": false,
    "source": "design/art/stations/simit-2/simit-2.png",
    "source_sha": "9a7ac2f6bfc15fd5"
+  },
+  "simit-3": {
+   "after": {
+    "C_mean": 34.499,
+    "C_p50": 37.26,
+    "C_p95": 52.002,
+    "L_mean": 74.925,
+    "L_p2": 51.12,
+    "L_p98": 88.802,
+    "detail": 2.11,
+    "edge": 0.434,
+    "tint_a": 5.095,
+    "tint_b": 10.253,
+    "warmth_b": 30.583
+   },
+   "before": {
+    "C_mean": 30.356,
+    "C_p50": 32.598,
+    "C_p95": 46.623,
+    "L_mean": 72.417,
+    "L_p2": 44.31,
+    "L_p98": 88.802,
+    "detail": 2.399,
+    "edge": 0.434,
+    "tint_a": 4.512,
+    "tint_b": 9.042,
+    "warmth_b": 26.908
+   },
+   "chain": {
+    "C_p50": 37.248,
+    "L_p2": 51.116,
+    "L_p98": 89.723
+   },
+   "correction": {
+    "black": 6.81,
+    "ceiling": 49.0,
+    "chroma": 1.143,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": false,
+   "kind": "station",
+   "matched_to": "world",
+   "outliers_after": [
+    "edge"
+   ],
+   "outliers_before": [
+    "chain_C_p50",
+    "chain_L_p2",
+    "edge"
+   ],
+   "ppu": 8.533,
+   "reference": false,
+   "score_after": 90.1,
+   "score_before": 69.0,
+   "shipped": false,
+   "source": "design/art/stations/simit-3/simit-3.png",
+   "source_sha": "dae7796dba08f5fc"
+  },
+  "simit-4": {
+   "after": {
+    "C_mean": 33.866,
+    "C_p50": 37.239,
+    "C_p95": 51.741,
+    "L_mean": 73.029,
+    "L_p2": 45.547,
+    "L_p98": 88.547,
+    "detail": 2.141,
+    "edge": 0.531,
+    "tint_a": 5.025,
+    "tint_b": 9.267,
+    "warmth_b": 30.193
+   },
+   "before": {
+    "C_mean": 30.682,
+    "C_p50": 33.579,
+    "C_p95": 47.589,
+    "L_mean": 73.029,
+    "L_p2": 45.547,
+    "L_p98": 88.547,
+    "detail": 2.126,
+    "edge": 0.531,
+    "tint_a": 4.565,
+    "tint_b": 8.417,
+    "warmth_b": 27.353
+   },
+   "chain": {
+    "C_p50": 37.248,
+    "L_p2": 51.116,
+    "L_p98": 89.723
+   },
+   "correction": {
+    "black": 0.0,
+    "ceiling": 49.0,
+    "chroma": 1.109,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": false,
+   "kind": "station",
+   "matched_to": "world",
+   "outliers_after": [
+    "edge"
+   ],
+   "outliers_before": [
+    "chain_C_p50",
+    "edge"
+   ],
+   "ppu": 8.533,
+   "reference": false,
+   "score_after": 85.5,
+   "score_before": 76.8,
+   "shipped": false,
+   "source": "design/art/stations/simit-4/simit-4.png",
+   "source_sha": "45bc29daddf1c3c1"
+  },
+  "simit-5": {
+   "after": {
+    "C_mean": 33.458,
+    "C_p50": 37.187,
+    "C_p95": 52.08,
+    "L_mean": 75.579,
+    "L_p2": 51.116,
+    "L_p98": 88.849,
+    "detail": 1.897,
+    "edge": 0.444,
+    "tint_a": 4.809,
+    "tint_b": 7.992,
+    "warmth_b": 29.675
+   },
+   "before": {
+    "C_mean": 30.163,
+    "C_p50": 33.366,
+    "C_p95": 47.894,
+    "L_mean": 73.228,
+    "L_p2": 44.406,
+    "L_p98": 88.849,
+    "detail": 2.146,
+    "edge": 0.444,
+    "tint_a": 4.615,
+    "tint_b": 7.752,
+    "warmth_b": 26.745
+   },
+   "chain": {
+    "C_p50": 37.248,
+    "L_p2": 51.116,
+    "L_p98": 89.723
+   },
+   "correction": {
+    "black": 6.71,
+    "ceiling": 49.0,
+    "chroma": 1.116,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": false,
+   "kind": "station",
+   "matched_to": "world",
+   "outliers_after": [
+    "edge"
+   ],
+   "outliers_before": [
+    "chain_C_p50",
+    "chain_L_p2",
+    "edge"
+   ],
+   "ppu": 8.533,
+   "reference": false,
+   "score_after": 90.8,
+   "score_before": 73.1,
+   "shipped": false,
+   "source": "design/art/stations/simit-5/simit-5.png",
+   "source_sha": "52f37ea73f0bf609"
   },
   "sun-glow": {
    "after": {
@@ -4145,6 +4381,64 @@
    "source": "design/art/stations/windmill-5/windmill-5.png",
    "source_sha": "2b39b888f828ae71"
   },
+  "windmill-5-lit": {
+   "after": {
+    "C_mean": 11.249,
+    "C_p50": 10.715,
+    "C_p95": 16.923,
+    "L_mean": 79.826,
+    "L_p2": 56.067,
+    "L_p98": 93.065,
+    "detail": 2.089,
+    "edge": 0.456,
+    "tint_a": 4.867,
+    "tint_b": 8.435,
+    "warmth_b": 9.915
+   },
+   "before": {
+    "C_mean": 7.763,
+    "C_p50": 7.389,
+    "C_p95": 11.695,
+    "L_mean": 81.877,
+    "L_p2": 72.066,
+    "L_p98": 87.344,
+    "detail": 1.029,
+    "edge": 0.456,
+    "tint_a": 3.451,
+    "tint_b": 6.274,
+    "warmth_b": 6.844
+   },
+   "chain": null,
+   "correction": {
+    "black": -16.0,
+    "ceiling": 0.0,
+    "chroma": 1.45,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 5.72
+   },
+   "guarded": false,
+   "kind": "station",
+   "matched_to": "world",
+   "outliers_after": [
+    "C_p95",
+    "edge"
+   ],
+   "outliers_before": [
+    "C_p95",
+    "L_p2",
+    "L_p98",
+    "edge"
+   ],
+   "ppu": 8.533,
+   "reference": false,
+   "score_after": 66.0,
+   "score_before": 44.0,
+   "shipped": false,
+   "source": "design/art/stations/windmill-5-lit/windmill-5-lit.png",
+   "source_sha": "c7db2ac7a5ea6c97"
+  },
   "workshop-1": {
    "after": {
     "C_mean": 35.485,
@@ -4252,6 +4546,183 @@
    "shipped": false,
    "source": "design/art/stations/workshop-2/workshop-2.png",
    "source_sha": "380849188599ca2d"
+  },
+  "workshop-3": {
+   "after": {
+    "C_mean": 36.177,
+    "C_p50": 37.956,
+    "C_p95": 45.338,
+    "L_mean": 70.141,
+    "L_p2": 43.101,
+    "L_p98": 88.912,
+    "detail": 2.182,
+    "edge": 0.416,
+    "warmth_b": 32.996
+   },
+   "before": {
+    "C_mean": 25.387,
+    "C_p50": 26.286,
+    "C_p95": 31.764,
+    "L_mean": 74.67,
+    "L_p2": 54.151,
+    "L_p98": 88.912,
+    "detail": 1.715,
+    "edge": 0.416,
+    "tint_a": 4.073,
+    "tint_b": 11.223,
+    "warmth_b": 23.164
+   },
+   "chain": {
+    "C_p50": 37.957,
+    "L_p2": 43.098,
+    "L_p98": 91.037
+   },
+   "correction": {
+    "black": -11.05,
+    "ceiling": 43.3,
+    "chroma": 1.444,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": false,
+   "kind": "station",
+   "matched_to": "world",
+   "outliers_after": [
+    "edge"
+   ],
+   "outliers_before": [
+    "chain_C_p50",
+    "chain_L_p2",
+    "edge"
+   ],
+   "ppu": 8.533,
+   "reference": false,
+   "score_after": 86.9,
+   "score_before": 47.7,
+   "shipped": false,
+   "source": "design/art/stations/workshop-3/workshop-3.png",
+   "source_sha": "2cd781173f7cf97f"
+  },
+  "workshop-4": {
+   "after": {
+    "C_mean": 35.942,
+    "C_p50": 37.956,
+    "C_p95": 45.805,
+    "L_mean": 69.578,
+    "L_p2": 43.095,
+    "L_p98": 88.13,
+    "detail": 2.014,
+    "edge": 0.421,
+    "warmth_b": 33.156
+   },
+   "before": {
+    "C_mean": 25.268,
+    "C_p50": 26.249,
+    "C_p95": 32.26,
+    "L_mean": 74.505,
+    "L_p2": 55.055,
+    "L_p98": 88.13,
+    "detail": 1.548,
+    "edge": 0.421,
+    "tint_a": 4.202,
+    "tint_b": 10.177,
+    "warmth_b": 23.321
+   },
+   "chain": {
+    "C_p50": 37.957,
+    "L_p2": 43.098,
+    "L_p98": 91.037
+   },
+   "correction": {
+    "black": -11.96,
+    "ceiling": 43.3,
+    "chroma": 1.446,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": false,
+   "kind": "station",
+   "matched_to": "world",
+   "outliers_after": [
+    "edge"
+   ],
+   "outliers_before": [
+    "chain_C_p50",
+    "chain_L_p2",
+    "edge"
+   ],
+   "ppu": 8.533,
+   "reference": false,
+   "score_after": 84.9,
+   "score_before": 44.0,
+   "shipped": false,
+   "source": "design/art/stations/workshop-4/workshop-4.png",
+   "source_sha": "9044ac9e4e998e5e"
+  },
+  "workshop-5": {
+   "after": {
+    "C_mean": 36.05,
+    "C_p50": 37.929,
+    "C_p95": 50.513,
+    "L_mean": 71.487,
+    "L_p2": 43.101,
+    "L_p98": 90.8,
+    "detail": 2.52,
+    "edge": 0.426,
+    "tint_a": 5.808,
+    "tint_b": 12.265,
+    "warmth_b": 33.393
+   },
+   "before": {
+    "C_mean": 26.237,
+    "C_p50": 26.049,
+    "C_p95": 47.486,
+    "L_mean": 74.118,
+    "L_p2": 54.481,
+    "L_p98": 87.612,
+    "detail": 1.824,
+    "edge": 0.426,
+    "tint_a": 4.313,
+    "tint_b": 9.408,
+    "warmth_b": 24.326
+   },
+   "chain": {
+    "C_p50": 37.957,
+    "L_p2": 43.098,
+    "L_p98": 91.037
+   },
+   "correction": {
+    "black": -11.38,
+    "ceiling": 43.3,
+    "chroma": 1.457,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 3.43
+   },
+   "guarded": false,
+   "kind": "station",
+   "matched_to": "world",
+   "outliers_after": [
+    "edge"
+   ],
+   "outliers_before": [
+    "chain_C_p50",
+    "chain_L_p2",
+    "chain_L_p98",
+    "edge"
+   ],
+   "ppu": 8.533,
+   "reference": false,
+   "score_after": 89.4,
+   "score_before": 42.6,
+   "shipped": false,
+   "source": "design/art/stations/workshop-5/workshop-5.png",
+   "source_sha": "7c6835dc23044924"
   }
  },
  "config_sha": "64af2fd9f8d3e4b4",
