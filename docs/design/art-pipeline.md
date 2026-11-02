@@ -23,6 +23,8 @@ A blocked manifest cannot generate: `run` refuses until the lead flips
 
 ## Whose account
 
+_Founder's decision (2026-11-02): art is generated on his uncle's ChatGPT plan with permission, and provenance says so truthfully. Before launch: a written assignment or shipped masters regenerated on his own plan (roadmap Phase 6)._ The original rule follows for reference.
+
 **Production art is generated only on the founder's own OpenAI
 account.** OpenAI's terms forbid sharing an account or making it
 available to anyone else, and a shipped master must name a real,
