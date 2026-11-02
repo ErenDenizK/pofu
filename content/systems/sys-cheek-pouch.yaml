@@ -1,0 +1,28 @@
+id: sys-cheek-pouch
+type: system
+title_tr: Yanak keseleri
+title_en: Pofu's cheek pouches (the uncollected balance)
+status: idea
+horizon: next
+summary: >-
+  Uncollected seeds live in Pofu's cheek pouches and puff them out in four steps (0, 1-7, 8-19,
+  20+ on Scale A); "Topla" empties them into the jar while Pofu presses his paws to his cheeks.
+  At step 3 he may say "Yanaklarım kocaman oldu!" once a day. Island game rounds pay into the
+  pouch too.
+notes:
+- 'Founder idea, 2026-11-02: "yanaklarım kocaman oldu".'
+- Pouch shader for in-betweens; painted edits 3e (cheeks full) and new 3h (cheeks huge) anchor the ends.
+- Never on the shield, in a notification or on a small widget; cap the visible step at 2 outside visits if it drives opens.
+links:
+  related:
+  - sys-seeds
+  - sys-face-kit
+  - sys-ui-hybrid
+sources:
+- doc: docs/design/ui-system-v2.md
+  anchor: '#521-the-cheek-pouch-the-founders-yanaklarım-kocaman-oldu'
+source: founder
+group: character
+board:
+  col: 5
+  row: 4

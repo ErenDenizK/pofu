@@ -47,14 +47,16 @@ public enum IslandLayout {
         y * depthPerY
     }
 
-    /// The home island's station slots: their footprint centres.
+    /// The home island's station slots: their footprint centres. Every
+    /// footprint stays inside the plate's walkable polygon
+    /// (`IslandFootprint`, look round 2: round 1's garden and çay ocağı hung
+    /// over the rim); the test fails before a slot can stick out again.
     public static let stationAnchors: [StationID: WorldPoint] = [
-        .windmill: WorldPoint(x: -62, y: -28),
-        .workshop: WorldPoint(x: 78, y: -26),
-        .garden: WorldPoint(x: -118, y: 2),
-        .cay: WorldPoint(x: 104, y: 6),
-        // On the lawn, clear of the front lip (y 28 sat on the lip).
-        .pond: WorldPoint(x: -72, y: 20),
+        .windmill: WorldPoint(x: -55, y: -20),
+        .workshop: WorldPoint(x: 68, y: -10),
+        .garden: WorldPoint(x: -100, y: -3),
+        .cay: WorldPoint(x: 100, y: 4),
+        .pond: WorldPoint(x: -63, y: 8),
     ]
 
     /// A station's tap target over its footprint (§2.7): x ± 46, y − 84
@@ -75,7 +77,8 @@ public enum IslandLayout {
 
     public static let residents: [Resident] = [
         Resident(id: .mochi, station: .cay, feet: WorldPoint(x: 62, y: 24), art: "mochi", isStandIn: false),
-        Resident(id: .findik, station: .workshop, feet: WorldPoint(x: 34, y: -14), art: "findik-standin", isStandIn: true),
+        // In front of the workshop, not inside its wall.
+        Resident(id: .findik, station: .workshop, feet: WorldPoint(x: 40, y: -2), art: "findik-standin", isStandIn: true),
     ]
 
     public static func resident(_ id: ResidentID) -> Resident? {

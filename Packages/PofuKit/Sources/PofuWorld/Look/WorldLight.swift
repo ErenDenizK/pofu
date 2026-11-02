@@ -149,7 +149,7 @@ public struct WorldLight: Hashable, Sendable {
     }
 }
 
-/// Per-framing tuning of the look (interaction spec §12; look-dev B, C).
+/// Per-framing tuning of the look (interaction spec §12; look-dev B).
 public enum LookTuning {
     /// How much stronger the depth lens is than the plain rail lens: the
     /// HD-2D tilt-shift. 1 is the rail's own lens; the map stays sharp.
@@ -158,13 +158,6 @@ public enum LookTuning {
         // Map 1.0 → Island 1.7 → Home 1.3.
         if z <= 1 { return 1 + 0.7 * z }
         return 1.7 - 0.4 * (z - 1)
-    }
-
-    /// The terrarium rim's strength: full at the Island and Map framings,
-    /// gone at Home, where Pofu fills the screen.
-    public static func terrariumRim(z: Double) -> Double {
-        let z = z.isFinite ? z : 2
-        return 1 - min(max((z - 1.05) / 0.45, 0), 1)
     }
 
     /// How long the effects stay live after the scene appears (a visit),

@@ -25,6 +25,10 @@ let package = Package(
         .library(name: "PofuCompanion", targets: ["PofuCompanion"]),
         .library(name: "PofuWorld", targets: ["PofuWorld"]),
         .library(name: "PofuGames", targets: ["PofuGames"]),
+            resources: [.process("Resources")]
+        ),
+
+        .library(name: "PofuTuning", targets: ["PofuTuning"]),
     ],
     targets: [
         // Pure domain: economy, friction ladder, passes, metrics, vitality.
@@ -79,6 +83,14 @@ let package = Package(
             resources: [.process("Resources")]
         ),
 
+        // Every number that decides feel, as data: the bundled
+        // `tuning.json` defaults and the live store the Ayar panel in
+        // Rehearsal mode edits and exports. Foundation only.
+        .target(
+            name: "PofuTuning",
+            resources: [.process("Resources")]
+        ),
+
         .testTarget(name: "PofuCoreTests", dependencies: ["PofuCore"]),
         .testTarget(name: "PofuScreenTimeTests", dependencies: ["PofuScreenTime", "PofuCore", "PofuPersistence"]),
         .testTarget(name: "PofuPersistenceTests", dependencies: ["PofuPersistence", "PofuCore"]),
@@ -86,6 +98,7 @@ let package = Package(
         .testTarget(name: "PofuCompanionTests", dependencies: ["PofuCompanion"]),
         .testTarget(name: "PofuWorldTests", dependencies: ["PofuWorld", "PofuCore"]),
         .testTarget(name: "PofuGamesTests", dependencies: ["PofuGames"]),
+        .testTarget(name: "PofuTuningTests", dependencies: ["PofuTuning"]),
     ],
     swiftLanguageModes: [.v6]
 )

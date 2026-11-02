@@ -1,5 +1,7 @@
 # Decision Audit: Are We Sure?
 
+> **Historical record (2026-11-02).** Its findings are integrated: the gate-first order lives in the [iteration plan](../design/iteration-plan.md) and the [roadmap](../roadmap.md); ADR amendments carry the rest. Read it for the reasoning, not for current status.
+
 _Independent red-team review. Date: 2026-11-01. Scope: every ADR (0001 to
 0018), the vision, roadmap, research, economy, game design v2, UX, design,
 brand, local reports, the simulation, and the code on `main` at `975577d`
@@ -15,7 +17,7 @@ problem and a validation problem**:
 
 - **The core loop has intercepted zero real reaches.** On 2026-11-01 the
   founder could not create the Shortcuts automation from the in-app guide
-  ([ios27 report](../local/reports/2026-11-01-ios27-automation-import.md),
+  ([ios27 report](../archive/local-reports/2026-11-01-ios27-automation-import.md),
   "Context from T3 so far"): he searched Shortcuts for "Insta" and "Pofu",
   which finds actions, not the App trigger, and the guide did not redirect
   him. Hop! has only ever been opened by running the App Shortcut by hand.
@@ -59,7 +61,7 @@ document or decision), **Unproven** (may be right; nothing yet shows it).
 | 0007 Name Pofu | **Keep**, with an action | Name is good; but bundle IDs are declared "final" while the trademark check is still "before launch". A blocking conflict found later costs more than a search now. | ADR-0007 Consequences; no TÜRKPATENT/EUIPO search on record. |
 | 0008 Hybrid delivery | **Keep**, **Unproven** on device | The architecture matches one sec, the only friction app with published field evidence. Nothing about it has run end to end on the founder's phone. | PNAS 2023 one sec study ([Grüning et al.][pnas]); T5 report: App Shortcut runs on device, automation not yet created. |
 | 0009 XcodeGen, one package | **Keep** | Works; local agent generated and built on first try. | T1 and T2 reports. |
-| 0010 Illustrated hamster | **Keep**, amend clause 4 | Art direction is the founder's strongest conviction and is coherent. Clause 4 (bunny, kitten, chinchilla as Plus collectibles) contradicts 0016, where the same species are free residents. Production depends on an account that is not the founder's (section 4). | ADR-0010 §4 vs ADR-0016 "Neighbors arrive with stages"; `docs/local-agent.md` T4 "The ChatGPT account belongs to the founder's uncle". |
+| 0010 Illustrated hamster | **Keep**, amend clause 4 | Art direction is the founder's strongest conviction and is coherent. Clause 4 (bunny, kitten, chinchilla as Plus collectibles) contradicts 0016, where the same species are free residents. Production depends on an account that is not the founder's (section 4). | ADR-0010 §4 vs ADR-0016 "Neighbors arrive with stages"; `docs/archive/local-agent.md` T4 "The ChatGPT account belongs to the founder's uncle". |
 | 0011 Companion motion | **Unproven** | Builds in CI, never run on a device; shader performance and the look of lids and cheeks are unknown. | ADR-0011 status "pending on-device validation"; roadmap "Companion motion validated on the founder's iPhone" unchecked. |
 | 0012 UX v1 | **Revise** (keep 2, 4, 6) | Decision 4 ("Skip it" primary) is the single best-evidenced product decision we have. Decisions 1, 3 and 5 are dead or half-dead. | PNAS follow-up: "the option to dismiss had the strongest effect; the deliberation message was not effective" ([pnas]). |
 | 0013 Zero-setup default gate | **Keep** (most important) | Correctly identifies that mainstream users will not build automations by hand, which the founder has now proven on himself. | T5 report: founder could not create the automation. |
@@ -88,7 +90,7 @@ document or decision), **Unproven** (may be right; nothing yet shows it).
 | Companion motion spec | **Unproven** | Good engineering; no device frame has been measured. | ADR-0011. |
 | Home directions, Review 01 | **Keep** as records | Honest self-critiques; they are decisions' evidence, not live specs. | review-01 §6. |
 | Iteration plan (branch) | **Revise** | Dogfood is I11 of 12 and depends on I8, which depends on I6 (art + icons + world). The one test that can falsify the product comes last. | iteration-plan table, I8 "Depends on I6, T3", I11 "Depends on I8". |
-| Local agent brief | **Revise** | T3 is blocked on automation creation and needs a concrete protocol; T4 uses a third party's ChatGPT account. | `docs/local-agent.md` T3, T4. |
+| Local agent brief | **Revise** | T3 is blocked on automation creation and needs a concrete protocol; T4 uses a third party's ChatGPT account. | `docs/archive/local-agent.md` T3, T4. |
 | Economy simulation | **Revise** | Behavior change is an input, not an output; lockouts are counted as resists; a non-existent friend approves half the time; users leave exactly when passes expire. | sim lines 201–209, 391–399, 432. |
 
 ---

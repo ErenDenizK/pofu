@@ -56,6 +56,9 @@ targets:
         product: PofuWorld
       - package: PofuKit
         product: PofuGames
+      # The Ayar tuning panel's values (debug builds' Rehearsal mode).
+      - package: PofuKit
+        product: PofuTuning
     settings:
       base:
         PRODUCT_NAME: Pofu
@@ -103,6 +106,7 @@ targets:
         product: PofuWorld
       - package: PofuKit
         product: PofuGames
+        product: PofuTuning
       - target: PofuShieldConfiguration
       - target: PofuShieldAction
       - target: PofuActivityMonitor
@@ -263,6 +267,7 @@ schemes:
         - package: PofuKit/PofuCompanionTests
         - package: PofuKit/PofuWorldTests
         - package: PofuKit/PofuGamesTests
+        - package: PofuKit/PofuTuningTests
     profile:
       config: Release
     analyze:
@@ -287,6 +292,7 @@ schemes:
         - package: PofuKit/PofuCompanionTests
         - package: PofuKit/PofuWorldTests
         - package: PofuKit/PofuGamesTests
+        - package: PofuKit/PofuTuningTests
     profile:
       config: Release
     analyze:

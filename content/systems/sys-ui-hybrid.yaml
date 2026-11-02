@@ -1,0 +1,32 @@
+id: sys-ui-hybrid
+type: system
+title_tr: Karma arayüz (cam + el işi)
+title_en: Hybrid UI system (glass and craft)
+status: idea
+horizon: next
+summary: >-
+  Every component is Native (system Liquid Glass, SF Symbols, sheets, lists), Crafted (painted
+  art with live text: the island game HUD, rewards, world objects, domain icons) or Drawn (code:
+  twins, meters, the pouch shader, motion). One switch, PofuSkin (glass / crafted), changes only
+  the material of four over-world roles (action, icon button, world tag, glance) so glass and
+  craft can be A/B tested on the founder's iPhone and in the friends beta.
+notes:
+- Behaviour is always native, material may be crafted, numbers are always live.
+- Glass legibility rules L1-L12 for the pastel world; the crafted skin doubles as the Reduce Transparency fallback.
+- 'Art list: 46 items (12 already in batch-02-ui, 34 new); pilot 14 for the Home A/B and the cheek pouch.'
+- Needs an ADR-0018 amendment (nine points in the doc, section 7). Builds on UI critique 01's Living Diorama (idea-living-diorama-ui, PR #63).
+- 'Prediction to falsify: crafted wins the tag and the primary, glass wins the gear, the map and the glance.'
+links:
+  related:
+  - sys-glass-plus
+  - sys-today
+  - sys-cheek-pouch
+sources:
+- doc: docs/design/ui-system-v2.md
+  anchor: '#2-the-principle-three-layers-and-a-switch'
+- doc: docs/design/ui-system-v2.md
+  anchor: '#6-art-list-feeds-the-codex-production-queue'
+group: visual
+board:
+  col: 9
+  row: 5

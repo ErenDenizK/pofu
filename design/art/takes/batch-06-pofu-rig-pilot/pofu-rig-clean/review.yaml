@@ -1,0 +1,138 @@
+batch: batch-06-pofu-rig-pilot
+contact_sheet: design/art/takes/batch-06-pofu-rig-pilot/pofu-rig-clean/contact.jpg
+jobs:
+  pofu-rig-clean:
+    pick: 1
+    note: 'auto-picked by QA; founder review pending. Both takes pass QA. Alpha compositing
+      on blue confirms transparent margins: the raw-image preview displayed RGB under
+      alpha zero as a halo; it is not visible in actual composition. The temporary
+      visual rejection was withdrawn after this check.'
+    takes:
+      t1:
+        qa: pass
+        summary: all pass
+      t2:
+        qa: pass
+        summary: all pass
+    approved:
+      take: 1
+      at: '2026-11-02T18:02:55+00:00'
+qa_reports:
+  char__pofu-rig-clean--t1:
+    job: pofu-rig-clean
+    take: 1
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 66 (R1 59)
+      value: 65.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.5 (R1 5.3)
+      value: 4.53
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 6.7, off-palette 1.8% (top: #EE9955 (0.4%), #DD8844
+        (0.1%))'
+      value: 1.9825
+    - check: ground_line
+      status: pass
+      message: feet at 89.5% of the height (contract 88%)
+      value: 0.8952
+    - check: edit_stability
+      status: pass
+      message: 92% of the parent level unchanged
+      value: 0.9165
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.88 of the parent level (drift compounds along a chain)
+      value: 0.8804
+    info:
+      metrics_raw:
+        L_p5: 65.7
+        L_p50: 90.1
+        L_p95: 96.7
+        C_p50: 10.0
+        C_p95: 47.5
+        C_p99: 57.1
+        detail: 4.54
+      metrics_locked:
+        L_p5: 65.7
+        L_p50: 90.1
+        L_p95: 96.7
+        C_p50: 10.0
+        C_p95: 47.5
+        C_p99: 55.6
+        detail: 4.53
+    fingerprint: 6c68c2e862f13579
+  char__pofu-rig-clean--t2:
+    job: pofu-rig-clean
+    take: 2
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 63.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.7 (R1 5.3)
+      value: 4.69
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 6.6, off-palette 1.8% (top: #EE9955 (0.3%), #DD8844
+        (0.2%))'
+      value: 1.9534
+    - check: ground_line
+      status: pass
+      message: feet at 89.5% of the height (contract 88%)
+      value: 0.8952
+    - check: edit_stability
+      status: pass
+      message: 92% of the parent level unchanged
+      value: 0.9217
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.98 of the parent level (drift compounds along a chain)
+      value: 0.9766
+    info:
+      metrics_raw:
+        L_p5: 63.6
+        L_p50: 89.5
+        L_p95: 96.7
+        C_p50: 11.0
+        C_p95: 47.9
+        C_p99: 56.7
+        detail: 4.7
+      metrics_locked:
+        L_p5: 63.6
+        L_p50: 89.5
+        L_p95: 96.7
+        C_p50: 11.0
+        C_p95: 47.9
+        C_p99: 55.4
+        detail: 4.69
+    fingerprint: 6c68c2e862f13579

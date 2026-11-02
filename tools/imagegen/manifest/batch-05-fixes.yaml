@@ -3,17 +3,15 @@
 #
 # simit-3..5 and workshop-3..5, with batch 03's prompts unchanged: they
 # never ran, because their parents failed on a pipeline bug that the
-# pilot's salvage proves fixed. Opens when the lead has reviewed
-# batch-05-fixes-pilot (status flips to open in the PR that merges it).
+# pilot's salvage proves fixed. Opened by the lead on 2026-11-02, after
+# reviewing batch-05-fixes-pilot (merged, #71).
 #
 # Tracks: `simit` (simit-3 -> simit-4 -> simit-5), `workshop`
 # (workshop-3 -> workshop-4 -> workshop-5). Both start at once.
 
 batch: batch-05-fixes
 title: Batch 03 fixes (simit L3-L5, workshop L3-L5)
-status: blocked
-blocked_on:
-  - "the lead's review of batch-05-fixes-pilot (simit-2 and workshop-2 promoted)"
+status: open
 
 defaults:
   variants: 2

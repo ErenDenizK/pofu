@@ -46,7 +46,8 @@ jobs:
           printf '%s\n' "$files"
           # Anything outside these paths can affect the app build.
           swift_files="$(printf '%s\n' "$files" | grep -Ev '^(docs/|design/|tools/|content/|[^/]+\.md$|\.gitignore$|LICENSE)' | grep -v '^$' || true)"
-          tools_files="$(printf '%s\n' "$files" | grep -E '^(tools|content)/' || true)"
+          # Art masters and the bake script feed the asset-harmony check.
+          tools_files="$(printf '%s\n' "$files" | grep -E '^(tools|content|design/art|design/prototypes/interactions/tools)/' || true)"
           echo "swift=$([ -n "$swift_files" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
           echo "tools=$([ -n "$tools_files" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
 
@@ -75,8 +76,20 @@ jobs:
       - name: Test the image pipeline
         run: python3 -I -m pytest -q tools/imagegen/tests
 
+      # Every master measured against the reference; fails when a master,
+      # the config or a correction changed without re-running harmony.py
+      # measure (and preblur.py app, which bakes the corrections).
+      - name: Check the asset harmony manifest
+        run: python3 -I tools/assets/harmony.py check
+
+      - name: Test the review sheets
+        run: python3 -I -m pytest -q tools/review/tests
+
       - name: Test Pofu's rig compositor
         run: python3 -I -m pytest -q tools/rig/tests
+
+      - name: Check relative Markdown links
+        run: python3 -I tools/docs/check_links.py
 
       - name: Validate the content graph (Pofu Atlas)
         run: |
@@ -161,6 +174,7 @@ jobs:
             xcrun simctl list devices available
             exit 1
           fi
+          echo "SIM_UDID=$udid" >> "$GITHUB_ENV"
           out="$RUNNER_TEMP/world-screenshots"
           mkdir -p "$out"
           set -o pipefail
@@ -188,6 +202,48 @@ jobs:
           path: ${{ runner.temp }}/world-screenshots
           if-no-files-found: error
 
+      # Motion review (docs/research/pro-game-craft.md, upgrade 1): scripted
+      # beats played live in the same simulator while the host records the
+      # screen, one clip per beat. The test and the recorder hand off
+      # through files; see .github/scripts/record-beats.sh.
+      - name: Record the motion beats
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/motion-beats"
+          mkdir -p "$out"
+          .github/scripts/record-beats.sh "$SIM_UDID" "$out" > "$RUNNER_TEMP/recorder.log" 2>&1 &
+          recorder=$!
+          set +e
+          TEST_RUNNER_MOTION_BEATS_DIR="$out" xcodebuild test \
+            -project Pofu.xcodeproj \
+            -scheme PofuWorldScreenshots \
+            -destination "id=$SIM_UDID" \
+            -only-testing:PofuWorldScreenshots/MotionBeatTests \
+            -resultBundlePath "$RUNNER_TEMP/motion-beats.xcresult" \
+            CODE_SIGNING_ALLOWED=NO \
+            SWIFT_TREAT_WARNINGS_AS_ERRORS=YES 2>&1 | tail -n 80
+          status=${PIPESTATUS[0]}
+          touch "$out/all.done"
+          for _ in $(seq 1 120); do
+            kill -0 "$recorder" 2>/dev/null || break
+            sleep 0.5
+          done
+          kill "$recorder" 2>/dev/null || true
+          wait "$recorder" || true
+          cat "$RUNNER_TEMP/recorder.log"
+          ls -la "$out" "$out/raw"
+          exit "$status"
+
+      - name: Upload the motion beats
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: motion-beats
+          path: |
+            ${{ runner.temp }}/motion-beats/raw/*.mov
+            ${{ runner.temp }}/motion-beats/beats.tsv
+          if-no-files-found: error
+
   # The artifact host is not reachable from every review environment, so
   # the screenshots are also published where git can fetch them: a
   # single-commit orphan branch, screenshots/<head branch with / as ->,
@@ -204,11 +260,22 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Check out
+        uses: actions/checkout@v5
+        with:
+          path: repo
+
       - name: Download the world screenshots
         uses: actions/download-artifact@v4
         with:
           name: world-screenshots
           path: shots
+
+      - name: Download the motion beats
+        uses: actions/download-artifact@v4
+        with:
+          name: motion-beats
+          path: beats-raw
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -218,7 +285,7 @@ jobs:
       - name: Convert to JPEG and draw a contact sheet
         run: |
           set -euo pipefail
-          pip install --quiet "Pillow>=10.0"
+          pip install --quiet "Pillow>=10.1" "numpy>=1.26"
           mkdir -p out
           python3 -I - shots out <<'PY'
           import pathlib, sys
@@ -230,8 +297,8 @@ jobs:
           thumbs = []
           for png in pngs:
               im = Image.open(png).convert("RGB")
-              # The look-dev grid holds twelve phones; keep it readable.
-              h = 1800 if png.stem == "look-compare" else 1000
+              # The look grids and the camera strip hold many phones; keep them readable.
+              h = {"look-compare": 1800, "look-grades": 2000, "look-motion": 1100}.get(png.stem, 1000)
               w = round(im.width * h / im.height)
               im.resize((w, h), Image.LANCZOS).save(out / (png.stem + ".jpg"), "JPEG", quality=85, optimize=True)
               if png.stem.startswith("look-"):
@@ -252,7 +319,27 @@ jobs:
           sheet.save(out / "contact.jpg", "JPEG", quality=85, optimize=True)
           PY
           cp shots/*.txt out/ 2>/dev/null || true
+          # The asset-harmony contact sheet: every master before and after its correction.
+          python3 -I repo/tools/assets/harmony.py measure --dry-run --sheet out/harmony.jpg > out/harmony.txt
+          # Measured numbers for every grade frame (tools/assets/frame_metrics.py).
+          python3 -I repo/tools/assets/frame_metrics.py shots > out/grade-metrics.txt || true
+          cat out/grade-metrics.txt
           ls -la out
+
+      - name: Check out the encoding script
+        uses: actions/checkout@v5
+        with:
+          path: src
+          sparse-checkout: .github/scripts
+
+      - name: Encode the motion beats and write the index
+        env:
+          SOURCE_BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          set -euo pipefail
+          command -v ffmpeg >/dev/null || { sudo apt-get update -q && sudo apt-get install -y -q ffmpeg; }
+          python3 -I src/.github/scripts/encode-beats.py beats-raw out "$GITHUB_REPOSITORY" "screenshots/${SOURCE_BRANCH//\//-}"
+          ls -la out/beats
 
       - name: Force-push the screenshots branch
         env:
@@ -268,6 +355,6 @@ jobs:
           git config user.name "Eren Deniz Kuyucaklıoğlu"
           git config user.email "109629701+ErenDenizK@users.noreply.github.com"
           git add -A
-          git commit -q -m "chore(screenshots): world screenshots for $SOURCE_BRANCH at ${SOURCE_SHA:0:7}"
+          git commit -q -m "chore(screenshots): world screenshots and motion beats for $SOURCE_BRANCH at ${SOURCE_SHA:0:7}"
           git push -q --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/$branch"
           echo "Published to $branch"

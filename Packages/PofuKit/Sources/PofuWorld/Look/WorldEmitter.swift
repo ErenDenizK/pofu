@@ -35,9 +35,15 @@ extension IslandLayout {
     /// The home island's emissive points.
     public static let emitters: [WorldEmitter] = [
         // The ember under the çaydanlık: (387, 603) px on cay-1, anchor
-        // (512, 800), 8.53 px per unit, from the stall at (104, 6).
-        WorldEmitter(point: WorldPoint(x: 89.4, y: -17.1), radius: 10, color: GradeRGB(1, 0.62, 0.26), dayStrength: 0.35, nightStrength: 1, station: .cay),
+        // (512, 800), 8.53 px per unit: (−14.6, −23.1) from the stall.
+        WorldEmitter(point: onStation(.cay, x: -14.6, y: -23.1), radius: 10, color: GradeRGB(1, 0.62, 0.26), dayStrength: 0.35, nightStrength: 1, station: .cay),
         // The round window in the door: (492, 670) px on the plate.
         WorldEmitter(point: WorldPoint(x: -67.3, y: 55.8), radius: 8, color: GradeRGB(1, 0.78, 0.44), dayStrength: 0, nightStrength: 1),
     ]
+
+    /// A point on a station's art, so its emitter moves with the slot.
+    static func onStation(_ station: StationID, x: Double, y: Double) -> WorldPoint {
+        let anchor = stationAnchors[station] ?? .zero
+        return WorldPoint(x: anchor.x + x, y: anchor.y + y)
+    }
 }

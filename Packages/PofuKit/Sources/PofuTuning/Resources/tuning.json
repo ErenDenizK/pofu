@@ -1,0 +1,68 @@
+{
+  "camera" : {
+    "buildPush" : {
+      "bounce" : 0.1,
+      "duration" : 0.6
+    },
+    "far" : {
+      "bounce" : 0.08,
+      "duration" : 1.1
+    },
+    "focus" : {
+      "bounce" : 0.12,
+      "duration" : 0.7
+    },
+    "release" : {
+      "bounce" : 0.08,
+      "duration" : 0.55
+    },
+    "travel" : {
+      "bounce" : 0.1,
+      "duration" : 0.9
+    }
+  },
+  "companion" : {
+    "blinkIntervalMax" : 6,
+    "blinkIntervalMin" : 2.5,
+    "breathAmplitudeHigh" : 0.016,
+    "breathAmplitudeLow" : 0.024,
+    "breathPeriodHigh" : 3.3,
+    "breathPeriodLow" : 4.6
+  },
+  "depth" : {
+    "parallax" : 1,
+    "tiltShiftHome" : 1.3,
+    "tiltShiftIsland" : 1.7
+  },
+  "grade" : {
+    "day" : {
+      "contrast" : 1,
+      "exposure" : 1,
+      "saturation" : 1,
+      "vignette" : 0,
+      "warmth" : 0
+    },
+    "golden" : {
+      "contrast" : 1,
+      "exposure" : 1,
+      "saturation" : 1,
+      "vignette" : 0,
+      "warmth" : 0
+    },
+    "night" : {
+      "contrast" : 1,
+      "exposure" : 1,
+      "saturation" : 1,
+      "vignette" : 0,
+      "warmth" : 0
+    }
+  },
+  "haptics" : {
+    "breathStart" : 0.5,
+    "buildSwap" : 1,
+    "collectTap" : 0.5,
+    "hopAppearDay" : 0.6,
+    "hopAppearNight" : 0.35,
+    "pofuTap" : 0.7
+  }
+}

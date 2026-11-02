@@ -1,0 +1,20 @@
+id: asset-ui-lantern-off
+type: asset
+title_tr: ui-lantern-off
+title_en: lantern-off (ui)
+status: in-production
+horizon: now
+summary: >-
+  The calm lantern, unlit, on a short post: a small, round paper lantern in warm cream paper
+  with three soft horizontal ribs and a chunky honey-wood top and bottom cap, hung from the
+  top of a short, thick honey-wood post by a short loop, the post standing straight below
+  it with a small flat base. Tall and narrow overall. Unlit: the paper is a soft matte cream,
+  no glow, no light inside.
+art:
+  images: []
+  jobs:
+  - batch-11-ui-pilot:ui-lantern-off
+sources:
+- doc: tools/imagegen/manifest/batch-11-ui-pilot.yaml
+kind: ui
+batch: batch-11-ui-pilot

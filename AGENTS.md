@@ -8,14 +8,10 @@ they ever disagree, `CLAUDE.md` wins and you say so in your PR.
 ## Who and what
 
 - **Product:** Pofu, an iOS app with an illustrated fluffy hamster
-  companion that helps people resist reflexive opens of Instagram,
-  YouTube and TikTok. The repository is `ErenDenizK/pofu` (renamed from
-  `rot`; the old URLs redirect).
-- **Founder:** Eren Deniz Kuyucaklıoğlu (GitHub `ErenDenizK`). He sets
-  the vision, approves art, and tests on his Mac and iPhone. He speaks
-  Turkish, often by dictation.
-- **Lead:** a Claude session in the cloud plans the work, writes
-  manifests and prompts, reviews and merges PRs.
+  companion (repository `ErenDenizK/pofu`). **Founder:** Eren Deniz
+  Kuyucaklıoğlu (`ErenDenizK`); he approves art and speaks Turkish.
+  **Lead:** a Claude session in the cloud writes manifests and prompts,
+  reviews and merges PRs.
 - **Your job (Codex on the founder's Mac):** operate the image pipeline
   in [`tools/imagegen/`](tools/imagegen/README.md): generate takes,
   run post-processing and QA, show the founder the contact sheet, record
@@ -90,7 +86,9 @@ QA; he reviews afterwards and can veto any pick. Batch 02 stays
 **The standing rule:** when you open a batch's PR, immediately start the
 next `READY` batch in the queue, in order, on a new branch. Never wait for
 a review or a merge. Never start a `BLOCKED` batch (`status: blocked` in
-its manifest). If no row is `READY`, say so in your last PR and stop.
+its manifest). When a batch is finished (its PR is open), continue to the
+next `READY` batch automatically, again and again, until none is left; do
+not stop to ask. If no row is `READY`, say so in your last PR and stop.
 
 **Pilots first:** every new batch has a small pilot manifest
 (`batch-NN-<name>-pilot`, 2 to 5 jobs) that the lead reviews before the
@@ -152,7 +150,11 @@ job of the track in order. The manifest is
    `run.py ingest --manifest <manifest> --job <id> --source codex-cloud <files>`,
    then run `run.py post --manifest <manifest> --only <id>`.
 5. **Auto-pick:** choose the take that passes QA with the lowest style-lock
-   load (the post report lists both). If no take passes, generate at most
+   load (the post report lists both); between takes that are otherwise
+   equal, prefer the higher **harmony** score (the QA line `harmony`:
+   how closely the take matches the approved island, or Pofu for
+   characters, measured by `tools/assets/harmony.py`; below 70 it warns).
+   If no take passes, generate at most
    one more round of the job's variants. If that also fails, stop and report
    the failing checks; do not loop. Set that take as the pick for this job
    only, and run `promote --only <id>`. In the provenance note, write
@@ -213,18 +215,30 @@ So, for every task and every push:
   no `raw.webp`. Fix and re-push before you start the next job. (Batch
   01 masters already on `main` decode and may stay as they are.)
 
+## Harmony manifest: commit it with every promoted master
+
+CI runs `python3 -I tools/assets/harmony.py check`, and a new master changes
+the harmony manifest, so an art PR without the refreshed manifest fails CI
+(batches 05 to 07 did). The push checklist for every promoted master:
+
+1. `python3 -I tools/assets/harmony.py measure`
+2. Commit the changed manifest in the same PR as the master (and its
+   `raw.webp`, content node and provenance).
+3. `python3 -I tools/assets/harmony.py check` must pass before you push.
+
 ## Next batches: the queue
 
 The ordered list of batches, their state (`READY`, `BLOCKED`, `NEXT PR`)
 and why each exists is in
 [`docs/design/art-production-plan.md`](docs/design/art-production-plan.md#the-queue).
 The lead keeps it current; read it at the start of every task. Right now
-six pilots are `READY` and may run at once:
+these batches are `READY` and may run at once (the table has the order):
 
 ```text
-AGENTS.md parallel auto mode, batch-05-fixes-pilot, track all
-AGENTS.md parallel auto mode, batch-06-pofu-rig-pilot, track all
-AGENTS.md parallel auto mode, batch-07-light-pilot, track all
+AGENTS.md parallel auto mode, batch-05-fixes, track all
+AGENTS.md parallel auto mode, batch-06-pofu-rig, track all
+AGENTS.md parallel auto mode, batch-07-light, track all
+AGENTS.md parallel auto mode, batch-11-ui-pilot, track all
 AGENTS.md parallel auto mode, batch-08-decor-pilot, track all
 AGENTS.md parallel auto mode, batch-09-explore-pilot, track all
 AGENTS.md parallel auto mode, batch-10-island-concepts-pilot, track all
@@ -287,11 +301,10 @@ From the founder (2026-11-01) and the lead:
   (off, on) so code drives the glow. The map shows a 30 pt vector Pofu
   pin (code, not art). The camera is continuous; the cloud pass happens
   only when a new island arrives (code).
-- **Batches:** 01, 03 and 04 are merged; the order from here is the
-  [queue](docs/design/art-production-plan.md#the-queue). `batch-02-ui`
-  (12 UI images) stays blocked until the friends beta. The UI direction
-  is now a hybrid of native Liquid Glass and custom painted elements,
-  specified separately; UI boards stay explorations.
+- **UI batch:** `batch-02-ui` (12 UI images) stays blocked until the
+  friends beta. The UI direction is a hybrid of native Liquid Glass and
+  custom painted elements, specified separately; UI boards stay
+  explorations.
 
 ## The workflow, step by step
 
