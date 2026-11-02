@@ -166,7 +166,7 @@ down.
 | Start | 70 |
 | Drain while a guarded app is open | 0.35 per minute; ×2 inside bedtime; ×1.25 per earlier open in the last 3 h |
 | Drain per open | 1.5 (the reach itself) |
-| Heal while calm (waking) | 5 per hour |
+| Heal while calm (waking) | **one band per quiet hour** (ADR-0017's promise): each observed calm minute heals 1/60 of the current band's width (7 from the floor, 13 unwell, 25 tired and up), and no minute crosses more than one band edge, so an hour lifts Pofu exactly one band from anywhere |
 | Calm night (no opens 23:00–06:00) | +10 |
 | Skip | +1, at most 6 a day |
 | **Sleeps it off** | each night, wellbeing below 60 moves 30 % of the way back to 60 |
@@ -459,9 +459,12 @@ code (ADR-0011).
 
 ## 13. Mapping to PofuCore
 
-_Game model implemented in `PofuCore/Game` (iteration W3, 2026-11-02);
-not yet wired into the app, which still runs the v0 gate and economy.
-`PofuWorld` will only read it._
+_Game model implemented in `PofuCore/Game` (iteration W3, 2026-11-02).
+The app saves the game state with its snapshot and advances it from the
+gate's event log and Pofu's foreground time; the shield and Hop!'s skip
+screen show the live calm, and the developer readout shows the world.
+Seeds, wellbeing and the islands are not shown yet, and the gate still
+runs the v0 economy. `PofuWorld` will only read the model._
 
 | Concept | Today in PofuCore | Status |
 |---|---|---|
@@ -501,10 +504,13 @@ Rules the spec left open, as implemented:
   stretch starts at the sign of life); **A20 pauses** them (the run
   holds). Neither drains nor heals Pofu. "Sleeps it off" applies every
   night, observed or not: it only ever lifts him toward 60.
-- **From the floor**, one quiet hour lifts Pofu from 5 to 10, still curled
-  up (the band ends at 12); ADR-0017's "one quiet hour lifts him a band"
-  holds from about 7 up. Kept as tuned; a candidate for the founder's
-  dogfood.
+- **One quiet hour lifts Pofu exactly one band**, from any wellbeing and
+  from the floor (ADR-0017). A flat 5 an hour could not keep that promise
+  (5 → 10 stays curled up; the bands are 7, 13 and 25 wide), so healing is
+  band-relative: 1/60 of the current band's width a minute, stopping at
+  the edge. Tested as a property (`CareLedgerTests`, `WorldClockTests`).
+  The simulation (`tools/sim`) still heals a flat 5 an hour; its
+  wellbeing tables predate this and understate recovery.
 
 ## 14. Economy simulation
 

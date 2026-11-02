@@ -17,8 +17,12 @@ public struct CareRules: Hashable, Sendable, Codable {
     public var escalationWindow: TimeInterval = 3 * 60 * 60
     /// Drain for the reach itself, once per open.
     public var drainPerOpen: Double = 1.5
-    /// Healing per hour of calm waking time.
-    public var healPerCalmHour: Double = 5
+    /// Calm waking time heals by bands, keeping ADR-0017's promise that
+    /// one quiet hour visibly lifts Pofu a band, whatever band he is in:
+    /// each observed calm minute heals 1/60 of the current band's width
+    /// (7 from the floor, 13 unwell, 25 tired, content and cozy), and no
+    /// minute crosses more than one band edge, so an hour lifts him exactly
+    /// one band (`CareLedger.healMinute`).
     /// Healing for a calm night (no opens, observed throughout).
     public var calmNightHeal: Double = 10
     /// Healing per resisted reach, for at most `healedSkipsPerDay` a day.

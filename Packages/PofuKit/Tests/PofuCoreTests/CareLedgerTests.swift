@@ -49,26 +49,50 @@ struct CareLedgerTests {
         #expect(CareLedger(wellbeing: 400, rules: rules).wellbeing == 100)
     }
 
-    @Test func aQuietHourHealsFive() {
-        var care = CareLedger(wellbeing: 20, rules: rules)
+    @Test func aQuietHourHealsOneBandsWidth() {
+        var tired = CareLedger(wellbeing: 25, rules: rules)
+        for _ in 0..<60 {
+            tired.healMinute(rules: rules)
+        }
+        #expect(tired.wellbeing == 50)
+        #expect(tired.band(rules: rules) == .content)
+
+        var curled = CareLedger(wellbeing: 5, rules: rules)
+        for _ in 0..<30 {
+            curled.healMinute(rules: rules)
+        }
+        #expect(abs(curled.wellbeing - 8.5) < 1e-6)
+    }
+
+    /// ADR-0017: one quiet hour visibly lifts Pofu a band, from the floor.
+    @Test func oneQuietHourLiftsACurledUpPofuABand() {
+        var care = CareLedger(wellbeing: 5, rules: rules)
+        #expect(care.band(rules: rules) == .curledUp)
         for _ in 0..<60 {
             care.healMinute(rules: rules)
         }
-        #expect(abs(care.wellbeing - 25) < 1e-9)
+        #expect(care.band(rules: rules) == .unwell)
     }
 
-    @Test func aQuietEveningAndACalmNightLiftACurledUpPofu() {
-        var care = CareLedger(wellbeing: 5, rules: rules)
-        #expect(care.band(rules: rules) == .curledUp)
-        // From the floor, a quiet hour and a half lifts him to unwell
-        // (5 + 7.5 ≥ 12)...
-        for _ in 0..<90 {
-            care.healMinute(rules: rules)
+    /// The promise as a property: from any wellbeing, one quiet hour moves
+    /// Pofu up exactly one band, unless he is already cozy.
+    @Test(arguments: [UInt64(1), 2, 3, 4])
+    func oneQuietHourMovesExactlyOneBand(seed: UInt64) {
+        var rng = SplitMix64(seed: seed)
+        let edges = [5.0, 12, 25, 50, 75, 100]
+        var starts = edges + edges.map { $0 - 1e-9 } + edges.map { $0 - 0.01 } + edges.map { $0 + 1e-9 }
+        starts += (0..<200).map { _ in Double.random(in: 5...100, using: &rng) }
+        let all = WellbeingBand.allCases
+        for start in starts where start >= 5 && start <= 100 {
+            var care = CareLedger(wellbeing: start, rules: rules)
+            let before = care.band(rules: rules)
+            for _ in 0..<60 {
+                care.healMinute(rules: rules)
+            }
+            let after = care.band(rules: rules)
+            let expected = before == .cozy ? WellbeingBand.cozy : all[(all.firstIndex(of: before) ?? 0) + 1]
+            #expect(after == expected, "from \(start): \(before) → \(after)")
         }
-        #expect(care.band(rules: rules) == .unwell)
-        // ...and a calm night to tired.
-        care.nightEnded(calm: true, rules: rules)
-        #expect(care.band(rules: rules) == .tired)
     }
 
     @Test func skipsHealOneForAtMostSixADay() {

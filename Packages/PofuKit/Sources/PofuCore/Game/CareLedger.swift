@@ -64,9 +64,32 @@ public struct CareLedger: Hashable, Sendable, Codable {
         change(by: -rules.drainPerMinute * night * escalation, rules: rules)
     }
 
-    /// One minute of calm waking time.
+    /// One minute of calm waking time: 1/60 of the current band's width,
+    /// stopping at the band's upper edge. Sixty such minutes lift Pofu
+    /// exactly one band, from anywhere in it (ADR-0017's "one quiet hour
+    /// lifts him a band"): from the band's floor the hour reaches the next
+    /// edge, and once an edge is crossed the minutes left are fewer than
+    /// the next band needs.
     public mutating func healMinute(rules: CareRules) {
-        change(by: rules.healPerCalmHour / 60, rules: rules)
+        let bounds = bandBounds(rules: rules)
+        // A hair over 1/60, so sixty minutes from the floor always reach
+        // the edge despite rounding; the edge caps the overshoot.
+        let step = (bounds.upper - bounds.lower) / 60 * (1 + 1e-9)
+        guard step > 0 else { return }
+        let next = min(wellbeing + step, bounds.upper)
+        wellbeing = Self.clamped(next, rules)
+    }
+
+    /// The band Pofu is in, as `lower..<upper` (the top band ends at the
+    /// ceiling).
+    public func bandBounds(rules: CareRules) -> (lower: Double, upper: Double) {
+        let floor = rules.floor.isFinite ? rules.floor : 5
+        let ceiling = max(floor, rules.ceiling.isFinite ? rules.ceiling : 100)
+        let edges = [floor, rules.unwellFrom, rules.tiredFrom, rules.contentFrom, rules.cozyFrom, ceiling]
+        for index in 0..<(edges.count - 1) where wellbeing < edges[index + 1] {
+            return (edges[index], edges[index + 1])
+        }
+        return (rules.cozyFrom, ceiling)
     }
 
     /// A guarded app opened: the reach itself.
