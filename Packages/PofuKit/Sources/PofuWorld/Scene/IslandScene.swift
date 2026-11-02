@@ -234,8 +234,8 @@ typealias BuildFrame = (moment: BuildMoment, time: Double)
 // MARK: - One frame
 
 /// Everything at one camera and lens: the sky, the world canvas, Pofu and
-/// the cloud sea under the runtime grade, the HD-2D lite layers, the
-/// terrarium's rim, and the screen-space overlays, which are never graded.
+/// the cloud sea under the runtime grade, the HD-2D lite layers, and the
+/// screen-space overlays, which are never graded.
 private struct SceneFrame<Bubble: View>: View {
     let world: WorldSnapshot
     let rig: CameraRig
@@ -255,8 +255,12 @@ private struct SceneFrame<Bubble: View>: View {
     var body: some View {
         let pose = rig.pose
         let z = rig.railPosition
+        // Depth in motion (HD-2D): while the camera moves, layers parallax
+        // by depth and the depth of field strengthens; both settle to zero.
+        let motion = look.hd2d && look.depthMotion && !model.reduceMotion ? rig.motion : CameraMotion.still
+        let lookPoint = WorldPoint(x: pose.lookX, y: pose.lookY)
         // HD-2D's tilt-shift: the depth lens, stronger per framing.
-        let lens = look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z)) : rig.lens
+        let lens = DepthMotion.lens(look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z)) : rig.lens, motion: motion)
         let peek = rig.peekTilt
         let device = model.deviceTilt
         let tilt = (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
@@ -278,21 +282,28 @@ private struct SceneFrame<Bubble: View>: View {
         // world as before (game design §15: no night versions are
         // generated); with it, WorldGrade does the whole job.
         let tint = look.grade ? Color.white : palette.grade.color
-        let grade = look.grade ? light.grade : WorldGrade.neutral
+        let grade = look.grade ? look.gradeOverride ?? light.grade : WorldGrade.neutral
         // Settled: the ambient layers hold still, so the frame is cached.
         let ambientPaused = look.hd2d && !model.needsFrames && build == nil
 
         ZStack(alignment: .topLeading) {
             ZStack(alignment: .topLeading) {
-                ZStack(alignment: .topLeading) {
-                    LivingSky(palette: palette, offset: offset)
+                // The sky takes the grade without its input levels, which
+                // would crush its designed night colours to black.
+                LivingSky(palette: palette, offset: offset)
+                    .environment(\.worldAmbientPaused, ambientPaused)
+                    .modifier(GradeEffect(grade: grade.sky, isEnabled: look.grade))
+                    .animation(still ? nil : .easeInOut(duration: 2.5), value: grade)
 
+                ZStack(alignment: .topLeading) {
                     WorldCanvas(
                         world: world,
                         lens: lens,
                         z: z,
                         scale: pose.scale,
                         tilt: tilt,
+                        motion: motion,
+                        look: lookPoint,
                         isInteractive: interactive,
                         build: build,
                         model: model
@@ -308,6 +319,7 @@ private struct SceneFrame<Bubble: View>: View {
                         lens: lens,
                         z: z,
                         tilt: tilt,
+                        motion: motion,
                         size: size,
                         offset: offset,
                         grade: tint,
@@ -326,11 +338,10 @@ private struct SceneFrame<Bubble: View>: View {
                 .animation(still ? nil : .easeInOut(duration: 2.5), value: grade)
 
                 if look.hd2d {
-                    HD2DLayer(world: world, light: light, pose: pose, offset: offset, size: size, time: still ? 0 : time)
+                    HD2DLayer(world: world, light: light, pose: pose, offset: offset, size: size, time: still ? 0 : time, motion: motion, focus: lens.focus)
                 }
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
-            .modifier(TerrariumRim(strength: LookTuning.terrariumRim(z: z), isEnabled: look.terrarium))
 
             PofuLayer(
                 world: world,
@@ -338,6 +349,7 @@ private struct SceneFrame<Bubble: View>: View {
                 lens: lens,
                 z: z,
                 tilt: tilt,
+                motion: motion,
                 size: size,
                 offset: offset,
                 grade: tint,
@@ -384,6 +396,10 @@ private struct WorldCanvas: View {
     let z: Double
     let scale: Double
     let tilt: (x: Double, y: Double)
+    /// The camera's motion, for depth in motion.
+    let motion: CameraMotion
+    /// Where the camera looks, in world units.
+    let look: WorldPoint
     let isInteractive: Bool
     let build: BuildFrame?
     let model: IslandSceneModel
@@ -426,12 +442,17 @@ private struct WorldCanvas: View {
     private var objects: [Object] {
         var objects: [Object] = []
         for status in world.stations where status.island == .aycicegi && status.isOpen {
-            guard let anchor = IslandLayout.stationAnchors[status.id] else { continue }
+            guard let slot = IslandLayout.stationAnchors[status.id] else { continue }
+            // Containment: never past the walkable edge, whatever the art.
+            let art = IslandLayout.stationArt(status.id, level: max(status.level, 1))?.name
+            let footprint = status.level > 0 ? art.map(IslandFootprint.footprint(of:)) ?? IslandFootprint.buildSpot : IslandFootprint.buildSpot
+            let anchor = IslandFootprint.clamped(slot, footprint: footprint)
             objects.append(Object(id: "station-\(status.id)", kind: .station(status), anchor: anchor, depth: IslandLayout.depth(ofY: anchor.y)))
         }
         for resident in IslandLayout.residents {
             guard let station = world.stations.first(where: { $0.id == resident.station }), station.level > 0 else { continue }
-            objects.append(Object(id: "resident-\(resident.id)", kind: .resident(resident), anchor: resident.feet, depth: IslandLayout.depth(ofY: resident.feet.y)))
+            let feet = IslandFootprint.clamped(resident.feet, footprint: IslandFootprint.footprint(of: resident.art))
+            objects.append(Object(id: "resident-\(resident.id)", kind: .resident(resident), anchor: feet, depth: IslandLayout.depth(ofY: feet.y)))
         }
         return objects.sorted { $0.depth < $1.depth }
     }
@@ -524,13 +545,15 @@ private struct WorldCanvas: View {
     // MARK: Placement
 
     /// A world point on the canvas, shifted by parallax: objects in front
-    /// of the focus plane move one way, those behind it the other (§12.3 a).
+    /// of the focus plane move one way, those behind it the other (§12.3 a),
+    /// from the peek or tilt and, while the camera moves, from its motion.
     private func canvasPoint(_ point: WorldPoint, depth: Double) -> CGPoint {
         let origin = IslandLayout.canvasOrigin
         let s = max(scale, 0.01)
         let px = (depth - lens.focus) * tilt.x * 0.12 / s
         let py = (depth - lens.focus) * tilt.y * 0.06 / s
-        return CGPoint(x: origin.x + point.x + px, y: origin.y + point.y + py)
+        let m = DepthMotion.shift(point: point, depth: depth, focus: lens.focus, look: look, motion: motion)
+        return CGPoint(x: origin.x + point.x + px + m.x, y: origin.y + point.y + py + m.y)
     }
 }
 
@@ -645,6 +668,7 @@ private struct PofuLayer<Bubble: View>: View {
     let lens: Lens
     let z: Double
     let tilt: (x: Double, y: Double)
+    let motion: CameraMotion
     let size: CGSize
     let offset: CGSize
     let grade: Color
@@ -672,8 +696,15 @@ private struct PofuLayer<Bubble: View>: View {
         let depth = IslandLayout.depth(ofY: IslandLayout.pofu.y)
         let s = pose.scale
         let projected = pose.project(IslandLayout.pofu, width: Double(size.width))
-        let parallaxX = (depth - lens.focus) * tilt.x * 0.12
-        let parallaxY = (depth - lens.focus) * tilt.y * 0.06
+        let moving = DepthMotion.shift(
+            point: IslandLayout.pofu,
+            depth: depth,
+            focus: lens.focus,
+            look: WorldPoint(x: pose.lookX, y: pose.lookY),
+            motion: motion
+        )
+        let parallaxX = (depth - lens.focus) * tilt.x * 0.12 + moving.x * s
+        let parallaxY = (depth - lens.focus) * tilt.y * 0.06 + moving.y * s
         let feet = CGPoint(
             x: projected.x + Double(offset.width) + parallaxX,
             y: projected.y + Double(offset.height) + parallaxY

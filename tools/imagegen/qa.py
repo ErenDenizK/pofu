@@ -44,7 +44,11 @@ DEFAULT_LIMITS = {
     "lock_load": {"warn": 10.0, "fail": 18.0},         # mean Delta E the lock had to move
     "edit_kept": {"warn": 0.75, "fail": 0.55},         # share of the parent left unchanged
     "edit_chroma": {"warn": 0.85, "fail": 0.70},       # child / parent median chroma on the kept area
+    "harmony": {"warn": 70.0, "fail": 0.0},            # harmony score (tools/assets/harmony.py): advisory, harmony corrects
     "depth_ratio": {"warn": 0.32, "fail": 0.42},       # island earth depth / width
+    # The other side (look round 2: "too squashed"): an earth body too thin to
+    # read as soil and rock. Off by default; plate jobs set it.
+    "depth_floor": {"warn": 0.0, "fail": 0.0},
     "lawn_chroma": {"warn": 38.0, "fail": 46.0},       # p95 chroma of lawn greens
     "magenta_px": {"warn": 40, "fail": 300},           # guide remnants (pixels at 1024)
 }
@@ -470,6 +474,33 @@ def check_palette(rgba: np.ndarray, names: list[str]) -> Check:
                  + (f" (top: {', '.join(rep.top_off_palette[:2])})" if rep.top_off_palette else ""), rep.mean)
 
 
+HARMONY_KINDS = ("station", "prop", "world", "char")
+
+
+def check_harmony(locked: np.ndarray, kind: str, lim: dict) -> Check | None:
+    """The take's harmony score against the approved reference (tools/assets/harmony.py): the
+    same measurement that corrects the shipped masters, so a take that needs less correction
+    wins. Skipped when the harmony manifest is not there (a fresh checkout of the tools only)."""
+    try:
+        import harmony
+    except ImportError:
+        return None
+    if not harmony.MANIFEST.exists():
+        return None
+    cfg = harmony.load_config()
+    ppu = cfg["ppu_by_kind"].get(kind, cfg["ppu_by_kind"]["world"]) * locked.shape[1] / 1024
+    if kind == "world":
+        ppu = cfg["ppu_by_kind"]["world"] * locked.shape[1] / 1536
+    try:
+        r = harmony.score_image(locked, ppu, cfg, kind=kind)
+    except ValueError:
+        return None
+    out = ", ".join(r["outliers"]) or "none"
+    return Check("harmony", grade(r["score"], lim["harmony"], higher_is_worse=False),
+                 f"harmony score {r['score']:.0f} against the {harmony.reference_group(kind, cfg)} reference (outliers: {out})",
+                 r["score"])
+
+
 def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[str], acceptance: dict | None = None,
                parent_locked: np.ndarray | None = None) -> list[Check]:
     acceptance = acceptance or {}
@@ -494,7 +525,11 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
     if kind == "world":
         ratio = island_depth_ratio(locked)
         if ratio is not None:
-            checks.append(Check("depth_ratio", grade(ratio, lim["depth_ratio"]), f"earth depth / width {ratio:.2f} (target <= 0.30)", ratio))
+            checks.append(Check("depth_ratio", grade(ratio, lim["depth_ratio"]),
+                                f"earth depth / width {ratio:.2f} (at most {lim['depth_ratio']['warn']:.2f})", ratio))
+            if lim["depth_floor"]["warn"] > 0:
+                checks.append(Check("depth_floor", grade(ratio, lim["depth_floor"], higher_is_worse=False),
+                                    f"earth depth / width {ratio:.2f} (at least {lim['depth_floor']['warn']:.2f}: visible soil and rock)", ratio))
         lc = lawn_chroma(locked)
         if lc is not None:
             checks.append(Check("lawn_chroma", grade(lc, lim["lawn_chroma"]), f"lawn chroma p95 {lc:.0f} (palette meadow 38)", lc))
@@ -509,6 +544,10 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
         checks.extend(icon_checks(locked))
     if kind == "appicon":
         checks.extend(appicon_checks(locked))
+    if kind in HARMONY_KINDS:
+        h = check_harmony(locked, kind, lim)
+        if h is not None:
+            checks.append(h)
     if parent_locked is not None:
         kept = edit_kept_fraction(locked, parent_locked)
         checks.append(Check("edit_stability", grade(kept, lim["edit_kept"], higher_is_worse=False),
