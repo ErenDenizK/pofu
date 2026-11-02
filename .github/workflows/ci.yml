@@ -132,3 +132,50 @@ jobs:
             -destination 'generic/platform=iOS Simulator' \
             CODE_SIGNING_ALLOWED=NO \
             SWIFT_TREAT_WARNINGS_AS_ERRORS=YES
+
+      # The founder reviews screenshots, never web prototypes: render the
+      # island scene in the simulator (402 x 874 pt at 3x, the iPhone 17
+      # class) and upload the PNGs as the world-screenshots artifact.
+      - name: Render the world screenshots
+        run: |
+          set -euo pipefail
+          udid="$(xcrun simctl list devices available --json | python3 -I -c '
+          import json, sys
+          devices = [d for runtime, ds in json.load(sys.stdin)["devices"].items() if "iOS" in runtime for d in ds]
+          for name in ("iPhone 17 Pro", "iPhone 17", "iPhone 16 Pro"):
+              match = [d for d in devices if d["name"] == name]
+              if match:
+                  print(match[-1]["udid"])
+                  break
+          ')"
+          if [ -z "$udid" ]; then
+            echo "::error::No iPhone 17 Pro, iPhone 17 or iPhone 16 Pro simulator is installed."
+            xcrun simctl list devices available
+            exit 1
+          fi
+          out="$RUNNER_TEMP/world-screenshots"
+          mkdir -p "$out"
+          set -o pipefail
+          TEST_RUNNER_WORLD_SCREENSHOTS_DIR="$out" xcodebuild test \
+            -project Pofu.xcodeproj \
+            -scheme PofuWorldScreenshots \
+            -destination "id=$udid" \
+            -resultBundlePath "$RUNNER_TEMP/world-screenshots.xcresult" \
+            CODE_SIGNING_ALLOWED=NO \
+            SWIFT_TREAT_WARNINGS_AS_ERRORS=YES
+          # The PNGs are attached to the result as well; export them if the
+          # simulator could not write to the runner's folder.
+          if ! ls "$out"/*.png >/dev/null 2>&1; then
+            xcrun xcresulttool export attachments \
+              --path "$RUNNER_TEMP/world-screenshots.xcresult" \
+              --output-path "$out"
+          fi
+          ls -la "$out"
+
+      - name: Upload the world screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: world-screenshots
+          path: ${{ runner.temp }}/world-screenshots
+          if-no-files-found: error
