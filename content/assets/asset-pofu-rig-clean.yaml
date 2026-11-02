@@ -2,14 +2,14 @@ id: asset-pofu-rig-clean
 type: asset
 title_tr: pofu-rig-clean
 title_en: pofu-rig-clean (char)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Edit the attached hamster. Remove only his two ears and his two front paws: 1. Where each
-  ear was, the top of the head continues as a smooth, rounded dome of the same golden-peach
-  fur with the same soft fur strands along the outline. Keep the cream curl on top of the
-  head exactly as it is. 2. Where the two front paws were held together at the chest, the
-  chest continues as smooth, fluffy cream fur, the same as around …
+summary: 'Edit the attached hamster. Remove only his two ears and his two front paws:
+  1. Where each ear was, the top of the head continues as a smooth, rounded dome of
+  the same golden-peach fur with the same soft fur strands along the outline. Keep
+  the cream curl on top of the head exactly as it is. 2. Where the two front paws
+  were held together at the chest, the chest continues as smooth, fluffy cream fur,
+  the same as around …'
 links:
   variant_of:
   - asset-pofu-base-v1
@@ -22,3 +22,7 @@ sources:
 kind: char
 batch: batch-06-pofu-rig-pilot
 size: 1024x1536
+notes:
+- 'Pilot stopped without promotion: both takes show an unwanted broad halo outside
+  R1. Automatic alpha-channel check passes; visual transparency review fails. Retained
+  takes and contact sheet: design/art/takes/batch-06-pofu-rig-pilot/pofu-rig-clean/'
