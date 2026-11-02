@@ -126,11 +126,13 @@ struct WorldClockTests {
         #expect(delta.awayMinutes == 72 * 60)
         #expect(delta.unobservedMinutes == 8 * 60)
         #expect(world.snapshot.isHolding)
-        #expect(world.collect(at: noon.adding(hours: 80)) == nil)
+        let result1 = world.collect(at: noon.adding(hours: 80))
+        #expect(result1 == nil)
 
         let back = noon.adding(hours: 80)
         world.advance(to: back, .signOfLife(at: back))
-        let collected = try #require(world.collect(at: back))
+        let result2 = world.collect(at: back)
+        let collected = try #require(result2)
         #expect(collected.total > 0)
         #expect(world.state.stations.jar == collected.total)
     }
@@ -294,11 +296,13 @@ struct WorldClockTests {
         world.advance(to: evening, .signOfLife(at: evening))
         let late = instant(2026, 11, 2, 23, 30)
         world.advance(to: late)
-        #expect(world.collect(at: late) == nil)
+        let result3 = world.collect(at: late)
+        #expect(result3 == nil)
         #expect(throws: BuildError.islandsAsleep) { try world.build(.garden, at: late) }
         #expect(world.snapshot.isBedtime)
         let morning = instant(2026, 11, 3, 7)
-        #expect(world.collect(at: morning) != nil)
+        let result4 = world.collect(at: morning)
+        #expect(result4 != nil)
     }
 
     // MARK: - Skips

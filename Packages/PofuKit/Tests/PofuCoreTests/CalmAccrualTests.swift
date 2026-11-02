@@ -17,9 +17,11 @@ struct CalmAccrualTests {
         var accrual = CalmAccrual(rules: rules)
         #expect(accrual.multiplier == 1.0)
         for _ in 0..<19 {
-            #expect(!accrual.calmMinute(rules: rules))
+            let result1 = accrual.calmMinute(rules: rules)
+            #expect(!result1)
         }
-        #expect(accrual.calmMinute(rules: rules))
+        let result2 = accrual.calmMinute(rules: rules)
+        #expect(result2)
         #expect(accrual.tenths == 11)
         for _ in 0..<(180 - 20) {
             accrual.calmMinute(rules: rules)
@@ -65,7 +67,8 @@ struct CalmAccrualTests {
 
     @Test func aQuickCheckWithinTwentyMinutesOfTheLastOnesEndIsAFullOpen() {
         var accrual = calm(20)
-        #expect(accrual.opened(passMinutes: 3, isEmergency: false, startedAt: noon, rules: rules).kind == .quickCheck)
+        let result3 = accrual.opened(passMinutes: 3, isEmergency: false, startedAt: noon, rules: rules)
+        #expect(result3.kind == .quickCheck)
         #expect(accrual.tenths == 15)
         // The first ended at 12:03; 12:22:59 is inside the chain.
         let chained = accrual.opened(passMinutes: 2, isEmergency: false, startedAt: noon.adding(minutes: 22).addingTimeInterval(59), rules: rules)
@@ -83,7 +86,8 @@ struct CalmAccrualTests {
 
     @Test func theEmergencyPassResetsEvenWhenShort() {
         var accrual = calm(18)
-        #expect(accrual.opened(passMinutes: 3, isEmergency: true, startedAt: noon, rules: rules).kind == .fullOpen)
+        let result4 = accrual.opened(passMinutes: 3, isEmergency: true, startedAt: noon, rules: rules)
+        #expect(result4.kind == .fullOpen)
         #expect(accrual.tenths == 10)
     }
 

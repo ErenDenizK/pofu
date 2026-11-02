@@ -90,12 +90,14 @@ struct StationLedgerTests {
         let gifts = (0..<8).map { _ in ledger.giftSkip(on: day, rules: SeedRules()) }
         #expect(gifts == [3, 3, 3, 3, 3, 0, 0, 0])
         #expect(ledger.pending.skips == 15)
-        #expect(ledger.giftSkip(on: day.adding(days: 1), rules: SeedRules()) == 3)
+        let result1 = ledger.giftSkip(on: day.adding(days: 1), rules: SeedRules())
+        #expect(result1 == 3)
     }
 
     @Test func collectingMovesThePouchIntoTheJar() {
         var ledger = StationLedger(catalog: catalog)
-        #expect(ledger.collect() == nil)
+        let result2 = ledger.collect()
+        #expect(result2 == nil)
         ledger.gather(4)
         ledger.addSleepBonus(10)
         ledger.giftSkip(on: day, rules: SeedRules())
@@ -157,14 +159,17 @@ struct StationLedgerTests {
 
     @Test func iskeleWaitsForEightTendedDaysAndMochisStallAtLevelThree() throws {
         var ledger = StationLedger(catalog: catalog)
-        #expect(ledger.settleArrivals(tendedDays: 8, calmNights: 0, released: [], catalog: catalog).isEmpty)
+        let result3 = ledger.settleArrivals(tendedDays: 8, calmNights: 0, released: [], catalog: catalog)
+        #expect(result3.isEmpty)
         ledger.gather(1_000)
         ledger.collect()
         for _ in 1...3 {
             try ledger.build(.cay, tendedDays: 8, catalog: catalog)
         }
-        #expect(ledger.settleArrivals(tendedDays: 7, calmNights: 0, released: [], catalog: catalog).isEmpty)
-        #expect(ledger.settleArrivals(tendedDays: 8, calmNights: 0, released: [], catalog: catalog) == [.iskele])
+        let result4 = ledger.settleArrivals(tendedDays: 7, calmNights: 0, released: [], catalog: catalog)
+        #expect(result4.isEmpty)
+        let result5 = ledger.settleArrivals(tendedDays: 8, calmNights: 0, released: [], catalog: catalog)
+        #expect(result5 == [.iskele])
         #expect(ledger.arrivals[.iskele] == 8)
         // Its stations open 0, 3 and 7 tended days after it arrived.
         let simit = try spec(.simit)
@@ -176,16 +181,21 @@ struct StationLedgerTests {
 
     @Test func yildizCountsCalmNightsNeverInARow() {
         var ledger = StationLedger(catalog: catalog)
-        #expect(ledger.settleArrivals(tendedDays: 21, calmNights: 9, released: [], catalog: catalog).isEmpty)
-        #expect(ledger.settleArrivals(tendedDays: 21, calmNights: 10, released: [], catalog: catalog) == [.yildiz])
+        let result6 = ledger.settleArrivals(tendedDays: 21, calmNights: 9, released: [], catalog: catalog)
+        #expect(result6.isEmpty)
+        let result7 = ledger.settleArrivals(tendedDays: 21, calmNights: 10, released: [], catalog: catalog)
+        #expect(result7 == [.yildiz])
     }
 
     @Test func kitapArrivesOnlyOnceReleased() {
         var ledger = StationLedger(catalog: catalog)
-        #expect(!ledger.settleArrivals(tendedDays: 60, calmNights: 30, released: [], catalog: catalog).contains(.kitap))
-        #expect(ledger.settleArrivals(tendedDays: 60, calmNights: 30, released: [.kitap], catalog: catalog) == [.kitap])
+        let result8 = ledger.settleArrivals(tendedDays: 60, calmNights: 30, released: [], catalog: catalog)
+        #expect(!result8.contains(.kitap))
+        let result9 = ledger.settleArrivals(tendedDays: 60, calmNights: 30, released: [.kitap], catalog: catalog)
+        #expect(result9 == [.kitap])
         // Arrivals never repeat or go back.
-        #expect(ledger.settleArrivals(tendedDays: 0, calmNights: 0, released: [], catalog: catalog).isEmpty)
+        let result10 = ledger.settleArrivals(tendedDays: 0, calmNights: 0, released: [], catalog: catalog)
+        #expect(result10.isEmpty)
         #expect(ledger.hasArrived(.kitap))
     }
 }

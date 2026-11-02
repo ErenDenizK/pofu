@@ -76,7 +76,8 @@ struct CareLedgerTests {
         let healed = (0..<9).map { _ in care.skipped(on: day, rules: rules) }
         #expect(healed == [true, true, true, true, true, true, false, false, false])
         #expect(care.wellbeing == 56)
-        #expect(care.skipped(on: day.adding(days: 1), rules: rules))
+        let result1 = care.skipped(on: day.adding(days: 1), rules: rules)
+        #expect(result1)
         #expect(care.wellbeing == 57)
     }
 
