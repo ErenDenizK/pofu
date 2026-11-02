@@ -1308,6 +1308,65 @@
    "source": "design/art/stations/garden-4/garden-4.png",
    "source_sha": "540d672e0a17f03f"
   },
+  "garden-5": {
+   "after": {
+    "C_mean": 25.35,
+    "C_p50": 25.221,
+    "C_p95": 50.045,
+    "L_mean": 78.594,
+    "L_p2": 56.308,
+    "L_p98": 89.241,
+    "detail": 2.023,
+    "edge": 0.437,
+    "tint_a": 5.466,
+    "tint_b": 7.353,
+    "warmth_b": 23.559
+   },
+   "before": {
+    "C_mean": 16.302,
+    "C_p50": 14.309,
+    "C_p95": 42.308,
+    "L_mean": 78.608,
+    "L_p2": 56.308,
+    "L_p98": 89.409,
+    "detail": 2.005,
+    "edge": 0.437,
+    "tint_a": 2.74,
+    "tint_b": 6.582,
+    "warmth_b": 15.257
+   },
+   "chain": {
+    "C_p50": 25.32,
+    "L_p2": 55.091,
+    "L_p98": 91.189
+   },
+   "correction": {
+    "black": 0.0,
+    "ceiling": 42.4,
+    "chroma": 1.77,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": false,
+   "kind": "station",
+   "matched_to": "world",
+   "outliers_after": [
+    "edge"
+   ],
+   "outliers_before": [
+    "chain_C_p50",
+    "edge"
+   ],
+   "ppu": 8.533,
+   "reference": false,
+   "score_after": 87.8,
+   "score_before": 63.8,
+   "shipped": false,
+   "source": "design/art/stations/garden-5/garden-5.webp",
+   "source_sha": "88a8f3b6f4cebee9"
+  },
   "garden-standin": {
    "after": {
     "C_mean": 29.581,
@@ -1512,6 +1571,59 @@
    "shipped": false,
    "source": "design/art/masters/island-main-l-v2/island-main-l-v2.webp",
    "source_sha": "a8674aa50e710cc0"
+  },
+  "island-main-l-v3": {
+   "after": {
+    "C_mean": 26.886,
+    "C_p50": 25.041,
+    "C_p95": 36.815,
+    "L_mean": 78.772,
+    "L_p2": 53.547,
+    "L_p98": 92.397,
+    "detail": 1.003,
+    "edge": 0.958,
+    "warmth_b": 24.329
+   },
+   "before": {
+    "C_mean": 18.582,
+    "C_p50": 17.289,
+    "C_p95": 25.393,
+    "L_mean": 83.496,
+    "L_p2": 66.727,
+    "L_p98": 92.792,
+    "detail": 0.777,
+    "edge": 0.958,
+    "tint_a": 4.612,
+    "tint_b": 11.427,
+    "warmth_b": 16.803
+   },
+   "chain": null,
+   "correction": {
+    "black": -13.18,
+    "ceiling": 0.0,
+    "chroma": 1.45,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": false,
+   "kind": "world",
+   "matched_to": "world",
+   "outliers_after": [
+    "C_p95"
+   ],
+   "outliers_before": [
+    "C_p95",
+    "L_p2"
+   ],
+   "ppu": 4.103,
+   "reference": false,
+   "score_after": 87.1,
+   "score_before": 69.1,
+   "shipped": false,
+   "source": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+   "source_sha": "f2e539ed4eb75131"
   },
   "isle-hamam-standin": {
    "after": {
@@ -2680,6 +2792,65 @@
    "source": "design/art/stations/simit-1/simit-1.png",
    "source_sha": "8b9b1668c8497849"
   },
+  "simit-2": {
+   "after": {
+    "C_mean": 33.751,
+    "C_p50": 37.239,
+    "C_p95": 48.57,
+    "L_mean": 73.393,
+    "L_p2": 50.654,
+    "L_p98": 89.596,
+    "detail": 2.352,
+    "edge": 0.441,
+    "tint_a": 4.98,
+    "tint_b": 10.013,
+    "warmth_b": 29.396
+   },
+   "before": {
+    "C_mean": 27.584,
+    "C_p50": 30.424,
+    "C_p95": 39.682,
+    "L_mean": 73.394,
+    "L_p2": 50.654,
+    "L_p98": 89.596,
+    "detail": 2.332,
+    "edge": 0.441,
+    "tint_a": 4.18,
+    "tint_b": 8.313,
+    "warmth_b": 24.024
+   },
+   "chain": {
+    "C_p50": 37.248,
+    "L_p2": 51.116,
+    "L_p98": 89.723
+   },
+   "correction": {
+    "black": 0.0,
+    "ceiling": 49.0,
+    "chroma": 1.224,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": false,
+   "kind": "station",
+   "matched_to": "world",
+   "outliers_after": [
+    "edge"
+   ],
+   "outliers_before": [
+    "chain_C_p50",
+    "edge"
+   ],
+   "ppu": 8.533,
+   "reference": false,
+   "score_after": 90.1,
+   "score_before": 70.8,
+   "shipped": false,
+   "source": "design/art/stations/simit-2/simit-2.png",
+   "source_sha": "9a7ac2f6bfc15fd5"
+  },
   "sun-glow": {
    "after": {
     "C_mean": 13.333,
@@ -3192,6 +3363,63 @@
    "shipped": false,
    "source": "design/art/stations/workshop-1/workshop-1.webp",
    "source_sha": "5e65dc49a99c2565"
+  },
+  "workshop-2": {
+   "after": {
+    "C_mean": 36.833,
+    "C_p50": 39.225,
+    "C_p95": 44.95,
+    "L_mean": 74.48,
+    "L_p2": 52.141,
+    "L_p98": 90.136,
+    "detail": 2.004,
+    "edge": 0.416,
+    "warmth_b": 33.474
+   },
+   "before": {
+    "C_mean": 25.522,
+    "C_p50": 27.058,
+    "C_p95": 30.979,
+    "L_mean": 74.489,
+    "L_p2": 52.141,
+    "L_p98": 90.136,
+    "detail": 1.978,
+    "edge": 0.416,
+    "tint_a": 3.524,
+    "tint_b": 11.73,
+    "warmth_b": 23.191
+   },
+   "chain": {
+    "C_p50": 39.248,
+    "L_p2": 53.663,
+    "L_p98": 90.444
+   },
+   "correction": {
+    "black": 0.0,
+    "ceiling": 44.9,
+    "chroma": 1.451,
+    "materials": {},
+    "tint_a": 0.0,
+    "tint_b": 0.0,
+    "white": 0.0
+   },
+   "guarded": false,
+   "kind": "station",
+   "matched_to": "world",
+   "outliers_after": [
+    "edge"
+   ],
+   "outliers_before": [
+    "chain_C_p50",
+    "edge"
+   ],
+   "ppu": 8.533,
+   "reference": false,
+   "score_after": 90.2,
+   "score_before": 65.5,
+   "shipped": false,
+   "source": "design/art/stations/workshop-2/workshop-2.png",
+   "source_sha": "380849188599ca2d"
   },
   "workshop-standin": {
    "after": {
