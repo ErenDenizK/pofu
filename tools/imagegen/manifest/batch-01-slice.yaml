@@ -16,11 +16,8 @@
 
 batch: batch-01-slice
 title: Vertical slice (island, çay ocağı L1-L5, sunflower garden L1-L2, simit cart, Mochi)
-# Open for the W1 art test only (iteration plan, 2026-11-01): the founder
-# chose his own ChatGPT plan (#36). Generate D1-D8 and nothing else:
-#   run --manifest <this file> --backend codex --only island-main-s island-main-l terrace cay-1 cay-2 garden-1 simit-1 mochi
-# Rounds still gate the order (round 1: island-main-s, mochi). cay-3..5 and
-# garden-2 wait until the lead has reviewed the eight on the phone.
+# Fully open (2026-11-02): parallel auto mode, one Codex task per job in
+# waves (AGENTS.md). Picks are automatic by QA; the founder reviews after.
 status: open
 
 defaults:
@@ -33,7 +30,7 @@ jobs:
     name: island-main-s
     size: 1536x1024
     key: blue
-    variants: 3
+    variants: 2
     chat: "Pofu · Island"
     attach:
       - ref: island-take1
@@ -107,7 +104,7 @@ jobs:
   - id: cay-1
     kind: station
     name: cay-1
-    variants: 3
+    variants: 2
     chat: "Pofu · Çay ocağı"
     attach:
       - ref: station-guide
@@ -191,7 +188,7 @@ jobs:
   - id: garden-1
     kind: station
     name: garden-1
-    variants: 3
+    variants: 2
     key: blue
     chat: "Pofu · Sunflower garden"
     attach:
@@ -252,7 +249,7 @@ jobs:
     kind: char
     name: mochi-base
     size: 1024x1536
-    variants: 3
+    variants: 2
     chat: "Pofu · Residents"
     attach:
       - ref: R1

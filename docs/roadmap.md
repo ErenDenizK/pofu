@@ -117,6 +117,8 @@ focus only as a calm boost, and only if the founder uses focus sessions._
 - Monetization ADR and StoreKit 2 implementation
 - App Store presence: icon, screenshots, preview video, TR and EN metadata
 - Privacy policy, support page, and the domain for universal links
+- Art provenance: a written assignment for art made on a family member's
+  ChatGPT plan, or the shipped masters regenerated on the founder's own plan
 - Public release in Türkiye, then global
 
 ## Open questions

@@ -8,7 +8,12 @@
 # take and master records them. `kind` must match the backend:
 #   chatgpt-plan -> --backend codex (or manual)    api -> --backend openai-api
 account:
-  owner: "Eren Deniz Kuyucaklıoğlu (founder)"        # e.g. "Eren Deniz Kuyucaklıoğlu (founder)"
+  # Provenance must be truthful. The founder generates on a family member's
+  # ChatGPT plan with that person's permission (founder's decision,
+  # 2026-11-02). Before the App Store launch, either secure a written
+  # assignment of the outputs or regenerate the shipped masters on the
+  # founder's own plan (docs/roadmap.md, Phase 6).
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
   kind: "chatgpt-plan"         # chatgpt-plan | api
 
 paths:
@@ -17,13 +22,14 @@ paths:
   contact_sheets: build/review       # git-ignored full-size contact sheets
   review: design/art/review          # committed: <batch>.yaml decisions and a small contact sheet copy
 
-# Small batches, one generation at a time, pauses: these limits keep runs
-# reviewable and well inside plan limits. A run stops on the first
-# rate-limit or usage message and never retries in a loop.
+# Speed over pacing (founder, 2026-11-02): no pause between generations,
+# and concurrent generation across agents is allowed. The only brakes left:
+# a run stops on the first rate-limit, usage, sign-in or refusal message and
+# never retries in a loop.
 rate:
-  pause_seconds: 90          # wait between two generations
-  max_takes_per_job: 3       # hard cap per job and run, below the manifest's variants if lower
-  max_images_per_run: 12     # session budget; a run never generates more
+  pause_seconds: 0           # wait between two generations
+  max_takes_per_job: 2       # hard cap per job and run; a third take is usually a weaker copy of the second (founder, 2026-11-02)
+  max_images_per_run: 40     # covers a whole batch with one redo round (12 jobs x 2 takes, plus redos)
   timeout_seconds: 600       # one generation
 
 backends:
