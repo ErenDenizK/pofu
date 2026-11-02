@@ -24,6 +24,7 @@ let package = Package(
         .library(name: "PofuDesignSystem", targets: ["PofuDesignSystem"]),
         .library(name: "PofuCompanion", targets: ["PofuCompanion"]),
         .library(name: "PofuWorld", targets: ["PofuWorld"]),
+        .library(name: "PofuGames", targets: ["PofuGames"]),
     ],
     targets: [
         // Pure domain: economy, friction ladder, passes, metrics, vitality.
@@ -67,12 +68,24 @@ let package = Package(
             resources: [.process("Resources")]
         ),
 
+        // The island minigames. The rules (board, pieces, rounds, yields,
+        // the fair generator, feel math) are pure and tested on any
+        // platform; the SpriteKit scene and its SwiftUI shell are iOS only.
+        // Sprites are baked from the art masters by
+        // tools/games/bake_garden_art.py. See docs/product/minigames.md.
+        .target(
+            name: "PofuGames",
+            dependencies: ["PofuDesignSystem"],
+            resources: [.process("Resources")]
+        ),
+
         .testTarget(name: "PofuCoreTests", dependencies: ["PofuCore"]),
         .testTarget(name: "PofuScreenTimeTests", dependencies: ["PofuScreenTime", "PofuCore", "PofuPersistence"]),
         .testTarget(name: "PofuPersistenceTests", dependencies: ["PofuPersistence", "PofuCore"]),
         .testTarget(name: "PofuDesignSystemTests", dependencies: ["PofuDesignSystem"]),
         .testTarget(name: "PofuCompanionTests", dependencies: ["PofuCompanion"]),
         .testTarget(name: "PofuWorldTests", dependencies: ["PofuWorld", "PofuCore"]),
+        .testTarget(name: "PofuGamesTests", dependencies: ["PofuGames"]),
     ],
     swiftLanguageModes: [.v6]
 )

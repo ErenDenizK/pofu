@@ -1,0 +1,246 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%lld seeds this round": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu tur %lld çekirdek"
+          }
+        }
+      }
+    },
+    "+%lld to your cheeks": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+%lld yanaklarına"
+          }
+        }
+      }
+    },
+    "Combo ×%lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kombo ×%lld"
+          }
+        }
+      }
+    },
+    "Double bloom!": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çifte çiçek!"
+          }
+        }
+      }
+    },
+    "Enough for today": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugünlük yeter"
+          }
+        }
+      }
+    },
+    "Full spring!": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bahar geldi!"
+          }
+        }
+      }
+    },
+    "Keep planting": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekmeye devam"
+          }
+        }
+      }
+    },
+    "Mochi brewed the tea.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mochi çayı demledi."
+          }
+        }
+      }
+    },
+    "Next round": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonraki tur"
+          }
+        }
+      }
+    },
+    "One more set · %lld rounds ready": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir set daha · %lld tur hazır"
+          }
+        }
+      }
+    },
+    "Pause": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mola ver"
+          }
+        }
+      }
+    },
+    "Pofu's cheeks are stuffed.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pofu'nun yanakları tıka basa doldu."
+          }
+        }
+      }
+    },
+    "Pofu, with %lld seeds in his cheeks": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pofu, yanaklarında %lld çekirdek"
+          }
+        }
+      }
+    },
+    "ROUND %lld / %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TUR %1$lld / %2$lld"
+          }
+        }
+      }
+    },
+    "Round %lld of %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tur %1$lld / %2$lld"
+          }
+        }
+      }
+    },
+    "Rows in bloom: %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çiçek açan sıra: %lld"
+          }
+        }
+      }
+    },
+    "SET DONE": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SET TAMAM"
+          }
+        }
+      }
+    },
+    "Sunflower garden": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayçiçeği bahçesi"
+          }
+        }
+      }
+    },
+    "Taking a breather": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mola"
+          }
+        }
+      }
+    },
+    "That's enough garden for today.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugünlük bu kadar bahçe yeter."
+          }
+        }
+      }
+    },
+    "The bed is full!": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarh doldu!"
+          }
+        }
+      }
+    },
+    "The bed is full. Harvest time!": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarh doldu. Hasat zamanı!"
+          }
+        }
+      }
+    },
+    "The garden bed. Drag a plot from the tray onto the soil.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bahçe tarhı. Tepsiden bir fide kümesini toprağa sürükle."
+          }
+        }
+      }
+    },
+    "The garden bloomed.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bahçe çiçek açtı."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
