@@ -425,12 +425,17 @@ private struct WorldCanvas: View {
     private var objects: [Object] {
         var objects: [Object] = []
         for status in world.stations where status.island == .aycicegi && status.isOpen {
-            guard let anchor = IslandLayout.stationAnchors[status.id] else { continue }
+            guard let slot = IslandLayout.stationAnchors[status.id] else { continue }
+            // Containment: never past the walkable edge, whatever the art.
+            let art = IslandLayout.stationArt(status.id, level: max(status.level, 1))?.name
+            let footprint = status.level > 0 ? art.map(IslandFootprint.footprint(of:)) ?? IslandFootprint.buildSpot : IslandFootprint.buildSpot
+            let anchor = IslandFootprint.clamped(slot, footprint: footprint)
             objects.append(Object(id: "station-\(status.id)", kind: .station(status), anchor: anchor, depth: IslandLayout.depth(ofY: anchor.y)))
         }
         for resident in IslandLayout.residents {
             guard let station = world.stations.first(where: { $0.id == resident.station }), station.level > 0 else { continue }
-            objects.append(Object(id: "resident-\(resident.id)", kind: .resident(resident), anchor: resident.feet, depth: IslandLayout.depth(ofY: resident.feet.y)))
+            let feet = IslandFootprint.clamped(resident.feet, footprint: IslandFootprint.footprint(of: resident.art))
+            objects.append(Object(id: "resident-\(resident.id)", kind: .resident(resident), anchor: feet, depth: IslandLayout.depth(ofY: feet.y)))
         }
         return objects.sorted { $0.depth < $1.depth }
     }
