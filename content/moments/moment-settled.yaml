@@ -1,0 +1,17 @@
+id: moment-settled
+type: moment
+title_tr: Ada sensiz de çalışıyor
+title_en: Settled
+status: planned
+horizon: next
+summary: >-
+  Pofu turns back to his garden; eye contact ends; the primary button is gone; one quiet line.
+  No "come back at", no countdown, no close button.
+links:
+  part_of:
+  - sys-visit-queue
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#72-what-done-for-now-feels-like'
+act: visit
+sequence: 70

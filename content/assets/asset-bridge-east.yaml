@@ -1,0 +1,20 @@
+id: asset-bridge-east
+type: asset
+title_tr: bridge-east
+title_en: bridge-east (prop)
+status: in-production
+horizon: now
+summary: >-
+  A short rope bridge for the same diorama, on its own: six broad planks of soft honey wood
+  hung on two soft cream rope lines that sag gently between a pair of short, stubby wooden
+  posts at each end. Seen from the same low front three-quarter camera, it runs from the lower
+  left of the canvas to the upper right, rising gently, so the far end is higher and a little
+  smaller. Chunky, toy-like proportions; the ropes are thi…
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:bridge-east
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: prop
+batch: batch-03-home-island

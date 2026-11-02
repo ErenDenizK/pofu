@@ -1,0 +1,13 @@
+id: moment-bored
+type: moment
+title_tr: Burada yeni bir şey yok
+title_en: Nothing new here
+status: planned
+horizon: later
+summary: >-
+  Fourth Pofu open within an hour: half-lid, looks away. Looking earns nothing (A9).
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#4-anti-addiction-rules-acceptance-criteria'
+act: day
+sequence: 40

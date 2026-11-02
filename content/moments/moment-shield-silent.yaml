@@ -1,0 +1,17 @@
+id: moment-shield-silent
+type: moment
+title_tr: Kalkanı görmüyorum
+title_en: The shield went silent
+status: in-app
+horizon: now
+summary: >-
+  Thresholds rose by 30 minutes with no shield shown and no pass: the banner "Kalkanı görmüyorum";
+  re-apply shields, then the picker.
+links:
+  part_of:
+  - sys-setup-repair
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#9-setup-health-and-repair'
+act: repair
+sequence: 30

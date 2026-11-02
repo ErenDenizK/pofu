@@ -1,0 +1,24 @@
+id: char-pofu-playful
+type: character
+title_tr: 'Pofu: Oyuncu'
+title_en: 'Pofu: Playful'
+status: planned
+horizon: later
+summary: 'Trigger: Tapping Pofu. Line: "Boop. That''s my nose."'
+notes:
+- 'TR line (native, not translated): "Dıt. Orası benim burnum."'
+- 'Face recipe: eyes happy.'
+- 'Body motion (code, ADR-0011): squish.'
+- 'Postponed by the decision audit: 15 of the 20 emotions wait.'
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: Dıt. Orası benim burnum.

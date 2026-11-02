@@ -1,0 +1,19 @@
+id: asset-garden-1
+type: asset
+title_tr: garden-1
+title_en: garden-1 (station)
+status: in-production
+horizon: now
+summary: >-
+  A small oval garden bed of soft brown soil with three plump, cheerful sunflowers of slightly
+  different heights, for the same island diorama. Big, round, simple honey-yellow petals around
+  warm brown centers, two soft leaves on each stem, thick stems. Room on the bed for more
+  flowers later.
+art:
+  images: []
+  jobs:
+  - batch-01-slice:garden-1
+sources:
+- doc: tools/imagegen/manifest/batch-01-slice.yaml
+kind: station
+batch: batch-01-slice

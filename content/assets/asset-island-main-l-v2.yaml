@@ -1,0 +1,21 @@
+id: asset-island-main-l-v2
+type: asset
+title_tr: island-main-l-v2
+title_en: island-main-l-v2 (world)
+status: in-production
+horizon: now
+summary: >-
+  Draw the large version of the attached floating island: the same island after it has grown,
+  for a cozy mobile game diorama. - The lawn is about 40% wider, side to side, and about 15%
+  deeper, front to back, than the attached island's: a longer, wider oval, still completely
+  empty, at the same low camera (the oval about 0.3 times as tall as it is wide). - To fit
+  the canvas, the camera is a little farther away: the islan…
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:island-main-l-v2
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: world
+batch: batch-03-home-island
+size: 1536x1024

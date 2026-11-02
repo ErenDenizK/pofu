@@ -1,0 +1,17 @@
+id: moment-try-it
+type: moment
+title_tr: Şimdi Instagram'ı aç
+title_en: Try it
+status: in-app
+horizon: now
+summary: >-
+  O7: "Şimdi Instagram'ı aç." Onboarding ends on the real shield; verification is part of
+  setup.
+links:
+  leads_to:
+  - sys-shield
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#o7-try-it-world'
+act: first-run
+sequence: 50

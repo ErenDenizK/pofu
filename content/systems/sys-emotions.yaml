@@ -1,0 +1,28 @@
+id: sys-emotions
+type: system
+title_tr: Pofu'nun duyguları
+title_en: Pofu's emotional range
+status: planned
+horizon: next
+summary: >-
+  20 emotions, each with a trigger in the loop, a line in English and one written natively
+  in Turkish, a face recipe and a body motion. Aimed at the reach, never at the person.
+notes:
+- >-
+  Rationed: one sassy line per Hop!; never the same line twice in 7 days; at most 3 jealous
+  or pouting moments a day; after two pouts the next reaction is kind.
+- No tears, no sickness props (art bible §9).
+- 'A Gentle mode: no sass, same warmth.'
+- 'Respect a stated reason and a short pass: no jealousy.'
+links:
+  requires:
+  - sys-face-kit
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#12-pofus-emotional-range'
+- doc: docs/product/game-design.md
+  anchor: '#guardrails'
+group: character
+board:
+  col: 5
+  row: 3

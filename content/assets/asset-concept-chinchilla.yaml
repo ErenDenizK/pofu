@@ -1,0 +1,18 @@
+id: asset-concept-chinchilla
+type: asset
+title_tr: Çinçilya konsepti
+title_en: Chinchilla neighbor concept
+status: cut
+horizon: now
+summary: >-
+  A chinchilla neighbor concept from the clickable UX prototype; a starting point for Bulut.
+notes:
+- Prototype-era concept art, 240–508 px; a reference, not a master.
+art:
+  images:
+  - design/prototypes/ux/assets/neighbor-chinchilla.png
+  jobs: []
+sources:
+- doc: docs/brand/character-exploration.md
+kind: concept
+batch: unbatched

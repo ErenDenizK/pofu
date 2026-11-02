@@ -1,0 +1,23 @@
+id: char-frogs
+type: character
+title_tr: Kurbağalar
+title_en: The frogs
+status: planned
+horizon: next
+summary: The frogs who look after the lily pond.
+notes:
+- >-
+  No character art is planned; they could live as small props in the pond vignettes.
+links:
+  related:
+  - station-pond
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#idle-production-and-stations'
+kind: resident
+unlock:
+  day: 4
+  rule_en: Arrives with its station or island
+species_en: Frogs
+home: island-aycicegi
+station: station-pond

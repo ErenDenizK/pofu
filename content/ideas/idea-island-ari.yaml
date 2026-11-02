@@ -1,0 +1,20 @@
+id: idea-island-ari
+type: idea
+title_tr: Arı Adası
+title_en: Bee island (pine honey)
+status: idea
+horizon: maybe
+summary: >-
+  A Muğla pine-honey island. The bees visit Ayçiçeği's sunflower garden on calm afternoons,
+  and the honey jar fills a band per calm night. Cosmetic payoff on the home island: bees
+  drift over the garden, the garden's sunflowers turn gold. Links two islands without a second
+  currency.
+notes:
+- 'Resident idea: Petek, a round bumblebee.'
+- Honey must stay a ritual reward, never a second currency (ADR-0015).
+links:
+  related:
+  - sys-island-arrivals
+  - sys-rituals
+source: lead-brainstorm
+kind: island

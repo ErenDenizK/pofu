@@ -1,0 +1,26 @@
+id: asset-jar-1
+type: asset
+title_tr: jar-1
+title_en: jar-1 (ui)
+status: planned
+horizon: later
+summary: >-
+  Fill the jar's front window panel with sunflower seeds up to about one quarter of its height:
+  a soft pile of chunky warm-brown and cream-striped seeds with a gently rounded top, painted
+  simply (big shapes, not seed by seed). This is fill state 1 of 4; later edits fill to one
+  half, three quarters and full.
+notes:
+- >-
+  Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
+  and cay-1 approved
+links:
+  variant_of:
+  - asset-jar-0
+art:
+  images: []
+  jobs:
+  - batch-02-ui:jar-1
+sources:
+- doc: tools/imagegen/manifest/batch-02-ui.yaml
+kind: ui
+batch: batch-02-ui

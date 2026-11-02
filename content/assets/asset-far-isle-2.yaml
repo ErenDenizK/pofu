@@ -1,0 +1,20 @@
+id: asset-far-isle-2
+type: asset
+title_tr: far-isle-2
+title_en: far-isle-2 (world)
+status: in-production
+horizon: now
+summary: >-
+  A second distant floating island for the same hazy far layer, on its own: a small, round
+  islet a little taller than the first, with one tiny round tree on its top, a soft rounded
+  underside, almost a silhouette in the same pale, hazy sky-blue and cream. Centered, filling
+  about 55% of the image width, with a clear transparent margin.
+art:
+  images: []
+  jobs:
+  - batch-04-sky:far-isle-2
+sources:
+- doc: tools/imagegen/manifest/batch-04-sky.yaml
+kind: world
+batch: batch-04-sky
+size: 1536x1024

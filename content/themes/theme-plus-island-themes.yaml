@@ -1,0 +1,15 @@
+id: theme-plus-island-themes
+type: theme
+title_tr: Ada temaları
+title_en: Island themes (Plus)
+status: planned
+horizon: later
+summary: >-
+  Plus: island themes such as cherry, autumn and snow-globe. Looks only; never progress.
+links:
+  part_of:
+  - sys-plus
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#9-seasons-and-events'
+kind: plus

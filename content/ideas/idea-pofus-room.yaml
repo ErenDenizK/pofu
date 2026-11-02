@@ -1,0 +1,18 @@
+id: idea-pofus-room
+type: idea
+title_tr: Pofu'nun odası
+title_en: Pofu's room (superseded)
+status: cut
+horizon: maybe
+summary: >-
+  Pofu's room v1: animated companion, seeds, today's beads and an honor focus timer. Superseded
+  by the island direction (ADR-0016). Its two painted room plates are still in the repo.
+links:
+  uses_asset:
+  - asset-room-plate-a
+  - asset-room-plate-b
+sources:
+- doc: docs/roadmap.md
+  anchor: '#phase-1-the-companion-lives-pre-membership-free-account'
+- doc: docs/adr/0016-pre-planned-idle-archipelago.md
+kind: design

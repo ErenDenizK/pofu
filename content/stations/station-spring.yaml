@@ -1,0 +1,58 @@
+id: station-spring
+type: station
+title_tr: Kaplıca
+title_en: Hot spring
+status: planned
+horizon: later
+summary: Pamuk's hot spring, filled a ladle per quiet hour.
+notes:
+- >-
+  Opens: With Kaplıca. Level costs 1→5: 3,600 · 7,920 · 17,424 · 38,333 · 84,332 (total 151,609).
+  Rate L1→L5: 13 → 41.6 seeds/hour before calm.
+- >-
+  Level art and names are not designed yet; the ladder follows the same pattern (costs ×2.2,
+  rates +55 % of base per level) and lives in the simulation.
+links:
+  part_of:
+  - island-kaplica
+  related:
+  - char-pamuk
+  - sys-station-production
+  - sys-build
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#idle-production-and-stations'
+- doc: tools/sim/island_economy.py
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+resident: char-pamuk
+opens_en: With Kaplıca
+levels:
+- level: 1
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 3600
+  rate: 13.0
+- level: 2
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 7920
+  rate: 20.2
+- level: 3
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 17424
+  rate: 27.3
+- level: 4
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 38333
+  rate: 34.5
+- level: 5
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 84332
+  rate: 41.6
+unlock:
+  day: 36
+  rule_en: With Kaplıca (days ≈ tended days for a daily user)

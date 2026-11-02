@@ -1,0 +1,23 @@
+id: asset-icon-mood-content
+type: asset
+title_tr: icon-mood-content
+title_en: mood-content (icon)
+status: planned
+horizon: later
+summary: >-
+  A mood glyph, content: Pofu's face only, simplified into a round icon: the golden-peach
+  head with the cream blaze, the single cream curl on top, two small round ears, two big round
+  espresso eyes with one round catchlight each, two blush ovals and a tiny "w" smile. No whiskers,
+  no fur strands along the outline (a smooth soft edge), no body.
+notes:
+- >-
+  Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
+  and cay-1 approved
+art:
+  images: []
+  jobs:
+  - batch-02-ui:icon-mood-content
+sources:
+- doc: tools/imagegen/manifest/batch-02-ui.yaml
+kind: icon
+batch: batch-02-ui

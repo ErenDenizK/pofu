@@ -1,0 +1,21 @@
+id: asset-windmill-3
+type: asset
+title_tr: windmill-3
+title_en: windmill-3 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add three plump sacks of cream burlap at the foot of the tower on the right, tied at the
+  top, one open and showing striped sunflower seeds, all inside the footprint and lower than
+  the door.
+links:
+  variant_of:
+  - asset-windmill-2
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:windmill-3
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

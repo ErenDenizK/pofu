@@ -1,0 +1,18 @@
+id: asset-concept-pofu
+type: asset
+title_tr: Pofu konsepti
+title_en: Pofu hamster concept
+status: cut
+horizon: now
+summary: >-
+  The early hamster concept cutout from the design-language board, before R1.
+notes:
+- Prototype-era concept art, 240–508 px; a reference, not a master.
+art:
+  images:
+  - design/boards/assets/pofu-hamster-concept-cutout.png
+  jobs: []
+sources:
+- doc: docs/brand/character-exploration.md
+kind: concept
+batch: unbatched

@@ -1,0 +1,18 @@
+id: moment-breath
+type: moment
+title_tr: Pofu'yla nefes al
+title_en: Breathe with Pofu
+status: in-production
+horizon: now
+summary: >-
+  Past the daily hour: a lavender room, Pofu in a calm orb, eyes open and waiting. Tap, the
+  orb grows over 2 s ("Nefes al…") and shrinks over 3 s ("…ve ver."), then "Çok güzel." and
+  "İyiyim, boş ver".
+links:
+  part_of:
+  - sys-breathing-break
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#65-the-breathing-break-v2-past-60-guarded-minutes'
+act: gate
+sequence: 80

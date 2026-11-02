@@ -1,0 +1,28 @@
+id: char-pofu-unwell
+type: character
+title_tr: 'Pofu: Keyifsiz'
+title_en: 'Pofu: Unwell'
+status: planned
+horizon: next
+summary: >-
+  Trigger: Wellbeing < 25. Line: "Not feeling great. Sit with me for a quiet hour?"
+notes:
+- >-
+  TR line (native, not translated): "Pek iyi değilim. Benimle biraz sessizce oturur musun?"
+- 'Face recipe: eyes closed + worried mouth + matted.'
+- 'Body motion (code, ADR-0011): flattened, slow breath, ash grade.'
+- >-
+  In the first five emotions to ship (decision audit): proud, pout, easy-going, breathing,
+  unwell.
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: Pek iyi değilim. Benimle biraz sessizce oturur musun?

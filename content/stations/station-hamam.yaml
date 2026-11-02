@@ -1,0 +1,58 @@
+id: station-hamam
+type: station
+title_tr: Hamam
+title_en: Bathhouse
+status: planned
+horizon: later
+summary: A tiny domed hamam.
+notes:
+- >-
+  Opens: Kaplıca + 3 days. Level costs 1→5: 4,400 · 9,680 · 21,296 · 46,851 · 103,073 (total
+  185,300). Rate L1→L5: 14 → 44.8 seeds/hour before calm.
+- >-
+  Level art and names are not designed yet; the ladder follows the same pattern (costs ×2.2,
+  rates +55 % of base per level) and lives in the simulation.
+links:
+  part_of:
+  - island-kaplica
+  related:
+  - char-pamuk
+  - sys-station-production
+  - sys-build
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#idle-production-and-stations'
+- doc: tools/sim/island_economy.py
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+resident: char-pamuk
+opens_en: Kaplıca + 3 days
+levels:
+- level: 1
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 4400
+  rate: 14.0
+- level: 2
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 9680
+  rate: 21.7
+- level: 3
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 21296
+  rate: 29.4
+- level: 4
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 46851
+  rate: 37.1
+- level: 5
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 103073
+  rate: 44.8
+unlock:
+  day: 39
+  rule_en: Kaplıca + 3 days (days ≈ tended days for a daily user)

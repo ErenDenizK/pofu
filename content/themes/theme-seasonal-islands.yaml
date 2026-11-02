@@ -1,0 +1,16 @@
+id: theme-seasonal-islands
+type: theme
+title_tr: Mevsim adaları
+title_en: Seasonal islands
+status: planned
+horizon: later
+summary: >-
+  New islands arrive in seasonal updates on the same template (theme, three stations, one
+  ritual, one resident, an arrival rule) and stay forever (A7). Kitap is the first.
+links:
+  related:
+  - island-kitap
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#9-seasons-and-events'
+kind: season

@@ -1,0 +1,17 @@
+id: idea-route-regional-islands
+type: idea
+title_tr: Pazara özel adalar
+title_en: An island for each launch market
+status: idea
+horizon: maybe
+summary: >-
+  When Pofu launches beyond Türkiye, each market gets one island written natively by someone
+  from there (a Kyoto teahouse, a Lisbon tram stop), as Ayçiçeği and İskele are for Türkiye.
+  It arrives for everyone, everywhere; the postcards already point the way.
+notes:
+- 'Same rule as the Turkish lines: native, never translated.'
+links:
+  related:
+  - sys-guardrails
+source: lead-brainstorm
+kind: route

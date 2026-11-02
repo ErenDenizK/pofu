@@ -1,0 +1,26 @@
+id: sys-visit-queue
+type: system
+title_tr: Ziyaret kuyruğu
+title_en: The visit queue
+status: planned
+horizon: next
+summary: >-
+  At most three beats per visit, by priority: guard broken, Pofu needs care, the away delta
+  and collect, one piece of news, one affordable build, the weekly recap. Then the world settles:
+  Pofu turns back to his garden and the primary button disappears.
+notes:
+- 'A15: visits and minutes end. Median visit ≤ 60 s, p90 ≤ 150 s.'
+- 'The settled line: "Ada sensiz de çalışıyor."'
+links:
+  leads_to:
+  - moment-away-delta
+  - moment-settled
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#62-the-visit-queue'
+- doc: docs/product/app-game-boundary.md
+  anchor: '#71-session-budget'
+group: app
+board:
+  col: 4
+  row: 2

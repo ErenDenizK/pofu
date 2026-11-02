@@ -1,0 +1,17 @@
+id: sys-notifications
+type: system
+title_tr: Bildirim politikası
+title_en: Notification policy
+status: in-app
+horizon: now
+summary: >-
+  Pofu may push only for the user's own action or a real person (A16): the "Açmam lazım" open
+  request, a friend, one reminder after a skipped setup, an opt-in evening summary. Never
+  seeds, builds, islands, rituals, mood or re-engagement. No badge, ever.
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#73-notification-policy'
+group: app
+board:
+  col: 7
+  row: 3

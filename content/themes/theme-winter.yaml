@@ -1,0 +1,11 @@
+id: theme-winter
+type: theme
+title_tr: 'Kış: adalarda kar'
+title_en: Winter snow
+status: planned
+horizon: later
+summary: 'Free for everyone: snow on the islands in winter, returning every year.'
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#9-seasons-and-events'
+kind: season

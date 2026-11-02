@@ -1,0 +1,18 @@
+id: moment-day-1
+type: moment
+title_tr: '1. gün: ilk inşa'
+title_en: 'Day 1: the first build'
+status: planned
+horizon: next
+summary: >-
+  The first morning delta covers the garden's level 2 (30 seeds) for every archetype; stage
+  2 shows Mochi's plot.
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#94-the-first-seven-days'
+- doc: docs/product/game-design.md
+  anchor: '#14-economy-simulation'
+act: arc
+sequence: 10
+unlock:
+  day: 1

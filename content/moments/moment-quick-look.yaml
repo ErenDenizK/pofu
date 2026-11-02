@@ -1,0 +1,16 @@
+id: moment-quick-look
+type: moment
+title_tr: 3 dakika bakacağım
+title_en: A quick look
+status: in-production
+horizon: now
+summary: >-
+  "Quick one? Go ahead. I'll keep the calm warm." The bonus halves; Pofu is easy-going.
+links:
+  part_of:
+  - sys-quick-check
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#the-calm-multiplier-tr-huzur'
+act: day
+sequence: 20

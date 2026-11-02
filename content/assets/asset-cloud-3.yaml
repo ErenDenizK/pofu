@@ -1,0 +1,18 @@
+id: asset-cloud-3
+type: asset
+title_tr: cloud-3
+title_en: cloud-3 (prop)
+status: in-production
+horizon: now
+summary: >-
+  One small, simple puff of cloud for the same sky, on its own: two round billows, one larger
+  than the other, side by side, with a gently flattened underside. Centered, filling about
+  70% of the canvas width, with a clear transparent margin.
+art:
+  images: []
+  jobs:
+  - batch-04-sky:cloud-3
+sources:
+- doc: tools/imagegen/manifest/batch-04-sky.yaml
+kind: prop
+batch: batch-04-sky

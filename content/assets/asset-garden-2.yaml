@@ -1,0 +1,20 @@
+id: asset-garden-2
+type: asset
+title_tr: garden-2
+title_en: garden-2 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add a low, rounded cream picket fence along the front edge of the bed and two more sunflowers
+  between the existing ones, a little shorter than them.
+links:
+  variant_of:
+  - asset-garden-1
+art:
+  images: []
+  jobs:
+  - batch-01-slice:garden-2
+sources:
+- doc: tools/imagegen/manifest/batch-01-slice.yaml
+kind: station
+batch: batch-01-slice

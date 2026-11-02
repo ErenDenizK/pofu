@@ -1,0 +1,16 @@
+id: idea-open-quick-check
+type: idea
+title_tr: 'Açık soru: hızlı bakış adil mi'
+title_en: 'Open question: is halving fair?'
+status: idea
+horizon: now
+summary: >-
+  3 minutes, halving and the 20-minute chain: does halving feel fair when you really did just
+  reply to a message?
+links:
+  related:
+  - sys-quick-check
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#16-open-questions-for-the-founder'
+kind: question

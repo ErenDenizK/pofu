@@ -1,0 +1,17 @@
+id: moment-bos-ver
+type: moment
+title_tr: Boş ver
+title_en: Let it go (one tap)
+status: in-app
+horizon: now
+summary: >-
+  One tap on the shield, about a second, no app launch: the cheapest possible "no" is the
+  product. A shield left without a tap counts as resisted too.
+links:
+  feeds:
+  - sys-skip-gift
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#0-the-answer-in-one-page'
+act: gate
+sequence: 20

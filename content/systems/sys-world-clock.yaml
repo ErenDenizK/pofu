@@ -1,0 +1,25 @@
+id: sys-world-clock
+type: system
+title_tr: Pofu dışarıda sayılmaz
+title_en: Pofu is not "away" (A20)
+status: in-production
+horizon: now
+summary: >-
+  The first 2 minutes of a Pofu foreground session count as away; past that the world is paused
+  (calm stops growing, stations pause, nothing drains). Pofu yawns once a day: "Biz bakarken
+  ada beklemede."
+notes:
+- >-
+  Makes "staying longer yields nothing" literally true; WorldClock takes Pofu's foreground
+  sessions.
+links:
+  drains:
+  - sys-calm
+  - sys-station-production
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#77-growth-while-away-not-while-staring'
+group: care
+board:
+  col: 5
+  row: 1

@@ -1,0 +1,33 @@
+id: sys-screen-time
+type: system
+title_tr: Ekran Süresi
+title_en: Screen Time access
+status: in-app
+horizon: now
+summary: >-
+  Family Controls authorization, the FamilyActivityPicker, DeviceActivity thresholds, and
+  the shield, action and monitor extensions in the separate PofuLive target. Zero-setup onboarding
+  (ADR-0013).
+notes:
+- >-
+  Needs the paid Apple Developer membership (expected after 2026-11-24) and Family Controls
+  (Distribution) for each bundle ID.
+- >-
+  After membership day 1, Pofu and PofuLive collapse into one app target with the entitlements.
+- >-
+  Measured guarded minutes come from DeviceActivity threshold events (for example 15, 30,
+  45, 60).
+links:
+  feeds:
+  - sys-honest-measurement
+  - sys-daily-hour
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#1-apples-constraints-researched'
+- doc: docs/adr/0013-zero-setup-default-gate.md
+- doc: docs/roadmap.md
+  anchor: '#day-1-of-the-paid-membership'
+group: gate
+board:
+  col: 0
+  row: 1

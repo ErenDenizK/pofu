@@ -1,0 +1,17 @@
+id: moment-morning
+type: moment
+title_tr: Günaydın
+title_en: The morning visit
+status: planned
+horizon: next
+summary: >-
+  After 06:00 the first visit is the day's main game moment: the night's growth, the calm
+  night bonus, a stage that grew, later the ferry's postcard. Morning stretch: "Günaydın.
+  Ada bütün gece huzurluydu."
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#95-bedtime-and-morning'
+- doc: docs/design/interaction-spec.md
+  anchor: '#46-reacting-to-the-users-real-behavior-on-return'
+act: night
+sequence: 40

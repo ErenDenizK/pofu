@@ -1,0 +1,58 @@
+id: station-book-house
+type: station
+title_tr: Kitap evi
+title_en: Book house
+status: planned
+horizon: later
+summary: Bulut's book house; finished books go on its shelf.
+notes:
+- >-
+  Opens: Kitap + 3 days. Level costs 1→5: 7,200 · 15,840 · 34,848 · 76,666 · 168,664 (total
+  303,218). Rate L1→L5: 15 → 48 seeds/hour before calm.
+- >-
+  Level art and names are not designed yet; the ladder follows the same pattern (costs ×2.2,
+  rates +55 % of base per level) and lives in the simulation.
+links:
+  part_of:
+  - island-kitap
+  related:
+  - char-bulut
+  - sys-station-production
+  - sys-build
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#idle-production-and-stations'
+- doc: tools/sim/island_economy.py
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+resident: char-bulut
+opens_en: Kitap + 3 days
+levels:
+- level: 1
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 7200
+  rate: 15.0
+- level: 2
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 15840
+  rate: 23.2
+- level: 3
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 34848
+  rate: 31.5
+- level: 4
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 76666
+  rate: 39.8
+- level: 5
+  title_tr: Tasarlanmadı
+  title_en: Not designed yet
+  cost: 168664
+  rate: 48.0
+unlock:
+  day: 53
+  rule_en: Kitap + 3 days (days ≈ tended days for a daily user)

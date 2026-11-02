@@ -1,0 +1,25 @@
+id: char-pofu-sleepy
+type: character
+title_tr: 'Pofu: Uykulu'
+title_en: 'Pofu: Sleepy'
+status: planned
+horizon: later
+summary: 'Trigger: Bedtime. Line: "Sleep well. The residents are closing up too."'
+notes:
+- >-
+  TR line (native, not translated): "İyi uykular. Komşular da dükkânı kapatıyor."
+- 'Face recipe: eyes closed.'
+- 'Body motion (code, ADR-0011): z''s, slow breath.'
+- 'Postponed by the decision audit: 15 of the 20 emotions wait.'
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: İyi uykular. Komşular da dükkânı kapatıyor.

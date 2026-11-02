@@ -1,0 +1,18 @@
+id: asset-concept-kitten
+type: asset
+title_tr: Kedi konsepti
+title_en: Kitten neighbor concept
+status: cut
+horizon: now
+summary: >-
+  A kitten neighbor concept from the clickable UX prototype; a starting point for Simit.
+notes:
+- Prototype-era concept art, 240–508 px; a reference, not a master.
+art:
+  images:
+  - design/prototypes/ux/assets/neighbor-kitten.png
+  jobs: []
+sources:
+- doc: docs/brand/character-exploration.md
+kind: concept
+batch: unbatched

@@ -1,0 +1,28 @@
+id: asset-island-main-l
+type: asset
+title_tr: island-main-l
+title_en: island-main-l (world)
+status: in-production
+horizon: now
+summary: >-
+  Make the island about 40% wider and a little deeper, so the lawn becomes a longer oval at
+  the same bottom-center position. The lawn stays completely empty. Keep the same style, colors,
+  light, door, strata, pebbles and roots.
+notes:
+- >-
+  Came back almost identical to the small island (1505 px against 1471 px); batch 03's island-main-l-v2
+  replaces it in the app.
+links:
+  variant_of:
+  - asset-island-main-s
+art:
+  images:
+  - path: design/art/masters/island-main-l/island-main-l.png
+    branch: art/batch-01-slice/all
+  jobs:
+  - batch-01-slice:island-main-l
+sources:
+- doc: tools/imagegen/manifest/batch-01-slice.yaml
+kind: world
+batch: batch-01-slice
+size: 1536x1024

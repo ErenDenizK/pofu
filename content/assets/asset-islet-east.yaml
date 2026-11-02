@@ -1,0 +1,21 @@
+id: asset-islet-east
+type: asset
+title_tr: islet-east
+title_en: islet-east (world)
+status: in-production
+horizon: now
+summary: >-
+  A small floating islet for the same diorama, as if it had drifted close to the attached
+  island: a soft oval lawn, completely empty, with the same darker front lip; underneath,
+  a shallow rounded earth body of the same honey and caramel strata, no deeper than 30% of
+  the islet's width, with three cream pebbles and two short dangling roots. No door. Seen
+  from the same low camera (the lawn oval about 0.3 times as tall as …
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:islet-east
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: world
+batch: batch-03-home-island
+size: 1024x1024

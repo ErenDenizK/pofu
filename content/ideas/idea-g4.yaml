@@ -1,0 +1,13 @@
+id: idea-g4
+type: idea
+title_tr: G4 Ekran Süresi'ni kullanabilir miyiz?
+title_en: 'G4: Can we use Screen Time?'
+status: planned
+horizon: now
+summary: >-
+  Membership day 1: enroll, request Family Controls distribution for every bundle ID, switch
+  to the live configuration, build to the iPhone. Check: the shield appears on Instagram.
+sources:
+- doc: docs/design/iteration-plan.md
+  anchor: '#stage-g-the-gate'
+kind: milestone

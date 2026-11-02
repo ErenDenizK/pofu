@@ -1,0 +1,17 @@
+id: moment-hand-off
+type: moment
+title_tr: Kapıda beklerim
+title_en: The hand-off
+status: in-app
+horizon: now
+summary: >-
+  "15 dakika. Kapıda beklerim." The shield lifts for that app, the Live Activity starts, the
+  stations in the backdrop pause: the consequence, shown.
+links:
+  leads_to:
+  - sys-pass
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#64-the-hand-off'
+act: gate
+sequence: 60

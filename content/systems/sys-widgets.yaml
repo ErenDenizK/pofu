@@ -1,0 +1,28 @@
+id: sys-widgets
+type: system
+title_tr: Widget'lar
+title_en: Widgets and Lock Screen
+status: planned
+horizon: next
+summary: >-
+  Small and medium Home Screen widgets and Lock Screen widgets answer and never ask (A18):
+  mood, calm, skips today, guarded minutes, the island as it is. A tap opens the Today sheet,
+  not a visit.
+notes:
+- >-
+  Painted plates with Pofu at 44 pt or larger, the vector glyph below (ADR-0018). The painted
+  plate waits for the friends beta.
+- >-
+  Code-only widgets may be built during the membership wait (iteration plan update 2026-11-02).
+links:
+  uses_asset:
+  - asset-widget-medium
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#should-a-glance-need-the-app'
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#8-today-and-glance'
+group: glance
+board:
+  col: 6
+  row: 2

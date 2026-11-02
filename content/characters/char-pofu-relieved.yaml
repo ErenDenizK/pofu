@@ -1,0 +1,26 @@
+id: char-pofu-relieved
+type: character
+title_tr: 'Pofu: Rahatlamış'
+title_en: 'Pofu: Relieved'
+status: planned
+horizon: later
+summary: >-
+  Trigger: A skip on the third reach in an hour; coming back after a lapse. Line: "Phew. You
+  came back to me."
+notes:
+- 'TR line (native, not translated): "Oh be. Bana döndün."'
+- 'Face recipe: eyes happy.'
+- 'Body motion (code, ADR-0011): soft exhale (squash out).'
+- 'Postponed by the decision audit: 15 of the 20 emotions wait.'
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: Oh be. Bana döndün.

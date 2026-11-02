@@ -1,0 +1,29 @@
+id: sys-station-production
+type: system
+title_tr: İstasyon üretimi
+title_en: Station production
+status: in-production
+horizon: now
+summary: >-
+  Each built station makes seeds every minute while no guarded app is open (nights included),
+  at its level's rate × calm, × 0.6 while Pofu is unwell. No cap, no deadline. About 90 %
+  of seeds.
+notes:
+- >-
+  Why stations pause during a pass: the island visibly stops while you scroll, so the morning
+  number is bigger because the phone was down.
+- 'A20: past 2 minutes in Pofu''s foreground the world is paused too.'
+- >-
+  Rates in hundredths of a seed an hour, fractions carried (StationLedger.produceMinute).
+links:
+  feeds:
+  - sys-seeds
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#seeds-tr-çekirdek'
+- doc: docs/product/game-design.md
+  anchor: '#idle-production-and-stations'
+group: economy
+board:
+  col: 5
+  row: 0

@@ -1,0 +1,14 @@
+id: moment-apple-alert
+type: moment
+title_tr: Apple izni
+title_en: Apple's alert
+status: in-app
+horizon: now
+summary: >-
+  O3: Apple's Screen Time alert and Face ID; a denial gets "Okay, no pressure" with Try again,
+  the Settings path, or Later.
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#o3-apples-alert-and-a-denial'
+act: first-run
+sequence: 30

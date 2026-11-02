@@ -1,0 +1,19 @@
+id: moment-weekly-recap
+type: moment
+title_tr: Haftamız hazır
+title_en: The weekly recap
+status: planned
+horizon: next
+summary: >-
+  Day 7: skips against the goal of half, guarded minutes, Pofu's own minutes; a quiet Plus
+  row at the end, never a modal paywall.
+links:
+  part_of:
+  - sys-weekly-recap
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#94-the-first-seven-days'
+act: arc
+sequence: 60
+unlock:
+  day: 7

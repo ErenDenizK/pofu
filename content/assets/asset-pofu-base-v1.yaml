@@ -1,0 +1,17 @@
+id: asset-pofu-base-v1
+type: asset
+title_tr: 'R1: Pofu temel'
+title_en: Pofu base (R1)
+status: in-app
+horizon: now
+summary: >-
+  R1, the motion asset contract: Pofu sitting, front view, feet on the line at 88 %, about
+  70 % of the width. Every character and face edit is matched to it.
+art:
+  images:
+  - design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+  jobs: []
+sources:
+- doc: design/art/masters/pofu-hamster-base-v1/provenance.md
+kind: master
+batch: unbatched

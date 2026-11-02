@@ -1,0 +1,15 @@
+id: idea-collapse-targets
+type: idea
+title_tr: Pofu ve PofuLive'ı birleştir
+title_en: Collapse Pofu and PofuLive
+status: planned
+horizon: next
+summary: >-
+  After membership day 1, collapse the free Pofu target and PofuLive into one app target with
+  the entitlements.
+links:
+  related:
+  - sys-screen-time
+sources:
+- doc: CLAUDE.md
+kind: engineering

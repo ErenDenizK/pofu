@@ -1,0 +1,15 @@
+id: moment-day-5
+type: moment
+title_tr: '5. gün: gölet'
+title_en: 'Day 5: the lily pond'
+status: planned
+horizon: next
+summary: >-
+  Stage 3: the island widens and the lily pond opens. Never announced by push.
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#94-the-first-seven-days'
+act: arc
+sequence: 40
+unlock:
+  day: 5

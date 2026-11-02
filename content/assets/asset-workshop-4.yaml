@@ -1,0 +1,20 @@
+id: asset-workshop-4
+type: asset
+title_tr: workshop-4
+title_en: workshop-4 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add a short, round chimney of soft cream stones on the left side of the roof, with a small
+  rose-copper cap. No smoke (the app adds it).
+links:
+  variant_of:
+  - asset-workshop-3
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:workshop-4
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

@@ -1,0 +1,21 @@
+id: asset-far-isle-1
+type: asset
+title_tr: far-isle-1
+title_en: far-isle-1 (world)
+status: in-production
+horizon: now
+summary: >-
+  A distant floating island seen far away through soft morning haze, on its own: a long, low
+  island with a flat top and a soft, rounded underside, and two tiny round trees on its top,
+  at the same low camera as the attached island. It is almost a silhouette: painted in pale,
+  hazy sky-blue and cream with only a faint warmer tint on the top and a slightly lighter
+  left side, low contrast, no small details (no door, no pebb…
+art:
+  images: []
+  jobs:
+  - batch-04-sky:far-isle-1
+sources:
+- doc: tools/imagegen/manifest/batch-04-sky.yaml
+kind: world
+batch: batch-04-sky
+size: 1536x1024

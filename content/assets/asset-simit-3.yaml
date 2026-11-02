@@ -1,0 +1,20 @@
+id: asset-simit-3
+type: asset
+title_tr: simit-3
+title_en: simit-3 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add a short upright wooden pole at the cart's front left corner with eight golden-brown
+  simit rings stacked on it, the same rings as on the tray, the pole's top below the umbrella.
+links:
+  variant_of:
+  - asset-simit-2
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:simit-3
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

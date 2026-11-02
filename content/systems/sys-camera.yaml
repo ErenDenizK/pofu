@@ -1,0 +1,21 @@
+id: sys-camera
+type: system
+title_tr: Sürekli kamera
+title_en: One continuous camera
+status: in-app
+horizon: now
+summary: >-
+  Home, an island and the map are three framings of one world; a detented camera: pinch scrubs
+  a rail 1:1 and snaps on release. The cloud pass is reserved for a new island's arrival.
+  Reduce Motion cross-fades.
+notes:
+- >-
+  Built in PofuWorld (#49) with velocity projection and a rubber band at the ends.
+sources:
+- doc: docs/adr/0018-visual-system-v1.md
+- doc: docs/design/interaction-spec.md
+  anchor: '#1-zoom-and-camera'
+group: visual
+board:
+  col: 7
+  row: 4

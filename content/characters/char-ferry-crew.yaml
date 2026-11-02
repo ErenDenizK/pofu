@@ -1,0 +1,21 @@
+id: char-ferry-crew
+type: character
+title_tr: Vapur tayfası
+title_en: The ferry crew
+status: planned
+horizon: later
+summary: >-
+  The crew of the little vapur who bring the morning postcard to İskele's pier.
+links:
+  related:
+  - station-pier
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#idle-production-and-stations'
+kind: resident
+unlock:
+  day: 12
+  rule_en: Arrives with its station or island
+species_en: Unspecified
+home: island-iskele
+station: station-pier

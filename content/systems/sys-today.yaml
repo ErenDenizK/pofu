@@ -1,0 +1,19 @@
+id: sys-today
+type: system
+title_tr: Bugün
+title_en: Today card and sheet
+status: in-app
+horizon: now
+summary: >-
+  Home's Today card ("Bugün 8 / 11 boş verdin", beads, "en az 30 / 60 dk") and the Today sheet:
+  beads, guarded time in honest 15-minute steps, calm, "Pofu'da bugün: 3 dk", from day 3 the
+  hardest hour.
+notes:
+- 'Footer: "Bu sayılar iPhone''dan çıkmaz."'
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#8-today-and-glance'
+group: glance
+board:
+  col: 5
+  row: 2

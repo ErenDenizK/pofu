@@ -1,0 +1,20 @@
+id: asset-pond-1
+type: asset
+title_tr: pond-1
+title_en: pond-1 (station)
+status: in-production
+horizon: now
+summary: >-
+  A small, round, shallow lily pond for the island diorama: an oval of calm water painted
+  as a flat, milky, soft sky-blue-green tint with one gentle lighter band (no reflections
+  of anything), rimmed by a low ring of rounded cream and soft beige pebbles. The pond fills
+  the ground ellipse and stays low: leave the upper two thirds of the height bar empty, because
+  later levels add lily pads, reeds, a dock and lanterns.
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:pond-1
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

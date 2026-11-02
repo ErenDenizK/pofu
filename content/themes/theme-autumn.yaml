@@ -1,0 +1,11 @@
+id: theme-autumn
+type: theme
+title_tr: 'Sonbahar: fenerler'
+title_en: Autumn lanterns
+status: planned
+horizon: later
+summary: 'Free: lanterns on calm autumn evenings.'
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#9-seasons-and-events'
+kind: season

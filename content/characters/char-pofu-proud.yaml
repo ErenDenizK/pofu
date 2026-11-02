@@ -1,0 +1,27 @@
+id: char-pofu-proud
+type: character
+title_tr: 'Pofu: Gururlu'
+title_en: 'Pofu: Proud'
+status: planned
+horizon: next
+summary: 'Trigger: A skip. Line: "Skipped! We did that. Mostly you."'
+notes:
+- >-
+  TR line (native, not translated): "Vazgeçtin! Başardık. Yani, çoğunu sen."
+- 'Face recipe: eyes happy.'
+- 'Body motion (code, ADR-0011): a hop.'
+- >-
+  In the first five emotions to ship (decision audit): proud, pout, easy-going, breathing,
+  unwell.
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: Vazgeçtin! Başardık. Yani, çoğunu sen.

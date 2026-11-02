@@ -1,0 +1,13 @@
+id: idea-w5
+type: idea
+title_tr: W5 Anlar elde iyi hissettiriyor mu?
+title_en: 'W5: Do the key moments feel good in the hand?'
+status: planned
+horizon: next
+summary: >-
+  Camera springs, seed collection, level-up, haptics. Check: the founder repeats one without
+  being asked; the visit guardrail holds.
+sources:
+- doc: docs/design/iteration-plan.md
+  anchor: '#stage-w-the-world-after-two-weeks-of-daily-use'
+kind: milestone

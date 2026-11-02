@@ -1,0 +1,14 @@
+id: moment-day-6
+type: moment
+title_tr: '6. gün: sessiz gün'
+title_en: 'Day 6: a quiet day'
+status: planned
+horizon: next
+summary: Nothing. A quiet day is part of the design; we never invent news.
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#94-the-first-seven-days'
+act: arc
+sequence: 50
+unlock:
+  day: 6

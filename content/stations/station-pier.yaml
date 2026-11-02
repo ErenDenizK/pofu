@@ -1,0 +1,57 @@
+id: station-pier
+type: station
+title_tr: Vapur iskelesi
+title_en: Ferry pier
+status: planned
+horizon: later
+summary: >-
+  Planks and posts over the clouds where the little vapur moors with the morning postcard.
+notes:
+- >-
+  Opens: With İskele (3 days after arrival). Level costs 1→5: 550 · 1,210 · 2,662 · 5,856
+  · 12,884 (total 23,162). Rate L1→L5: 9 → 28.8 seeds/hour before calm.
+- Reaching L3 is part of Kaplıca's arrival rule.
+links:
+  part_of:
+  - island-iskele
+  related:
+  - char-ferry-crew
+  - sys-station-production
+  - sys-build
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#idle-production-and-stations'
+- doc: tools/sim/island_economy.py
+- doc: docs/product/game-design.md
+  anchor: '#7-the-archipelago'
+resident: char-ferry-crew
+opens_en: With İskele (3 days after arrival)
+levels:
+- level: 1
+  title_tr: Bulutların üstünde tahtalar
+  title_en: Planks and posts over the clouds
+  cost: 550
+  rate: 9.0
+- level: 2
+  title_tr: Fener direği
+  title_en: A lantern post
+  cost: 1210
+  rate: 14.0
+- level: 3
+  title_tr: Minik vapur yanaşır
+  title_en: The little vapur moors here
+  cost: 2662
+  rate: 18.9
+- level: 4
+  title_tr: Bank ve iki çay bardağı
+  title_en: A bench and two tea glasses
+  cost: 5856
+  rate: 23.9
+- level: 5
+  title_tr: Direkten direğe flama
+  title_en: Bunting post to post
+  cost: 12884
+  rate: 28.8
+unlock:
+  day: 12
+  rule_en: With İskele (3 days after arrival) (days ≈ tended days for a daily user)

@@ -1,0 +1,34 @@
+id: sys-quick-check
+type: system
+title_tr: Hızlı bakış
+title_en: Quick check
+status: in-production
+horizon: now
+summary: >-
+  A pass of 3 minutes or less. Halves the calm bonus instead of resetting it (×1.6 → ×1.3),
+  and Pofu is not jealous. Defined by pass length, which we control, not by intent, which
+  we cannot see.
+notes:
+- >-
+  Chained: a quick check that starts within 20 minutes of the previous one's end counts as
+  a full open.
+- >-
+  On the shield: "Açmam lazım → 3 dakika bakacağım" lifts the shield for 3 minutes, no app
+  launch; the shield's return is its ending.
+- >-
+  Known loophole: a determined user can live on 3-minute passes at half the calm cost; watch
+  quick checks per day against full opens.
+links:
+  drains:
+  - sys-calm
+  feeds:
+  - sys-daily-hour
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#the-calm-multiplier-tr-huzur'
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#64-the-hand-off'
+group: gate
+board:
+  col: 1
+  row: 1

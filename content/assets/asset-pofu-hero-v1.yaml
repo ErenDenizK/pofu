@@ -1,0 +1,20 @@
+id: asset-pofu-hero-v1
+type: asset
+title_tr: Pofu kahraman
+title_en: Pofu hero (alternate)
+status: in-production
+horizon: now
+summary: >-
+  An alternate, larger hero rendering of Pofu that fills the canvas. Not R1. For marketing,
+  the App Store and onboarding hero crops.
+notes:
+- >-
+  Not yet used in any surface: a candidate for the onboarding welcome and the App Store page.
+art:
+  images:
+  - design/art/masters/pofu-hamster-hero-v1.png
+  jobs: []
+sources:
+- doc: design/art/masters/pofu-hamster-hero-v1.md
+kind: master
+batch: unbatched

@@ -1,0 +1,27 @@
+id: char-pofu-jealous
+type: character
+title_tr: 'Pofu: Kıskanç'
+title_en: 'Pofu: Jealous'
+status: planned
+horizon: later
+summary: >-
+  Trigger: Hop! care step, a reach for a guarded app. Line: "Instagram again? What does it
+  have that I don't?"
+notes:
+- >-
+  TR line (native, not translated): "Yine mi Instagram? Onda olup bende olmayan ne?"
+- 'Face recipe: side-eye + flat mouth.'
+- 'Body motion (code, ADR-0011): leans away, a little cross-vein.'
+- 'Postponed by the decision audit: 15 of the 20 emotions wait.'
+links:
+  variant_of:
+  - char-pofu
+  part_of:
+  - sys-emotions
+sources:
+- doc: docs/product/game-design.md
+  anchor: '#catalog'
+- doc: docs/product/decision-audit.md
+  anchor: '#6-what-to-cut-or-postpone'
+kind: emotion
+line_tr: Yine mi Instagram? Onda olup bende olmayan ne?

@@ -1,0 +1,21 @@
+id: asset-findik
+type: asset
+title_tr: findik
+title_en: findik-base (char)
+status: in-production
+horizon: now
+summary: >-
+  Draw Fındık, a neighbor of the attached hamster, in exactly the same art style, lighting
+  and level of fluff as the hamster and the attached bunny. Same canvas rules as the hamster:
+  full body, sitting upright, front view, centered, feet on an invisible line at 88% of the
+  height, about 62% of the canvas width. CHARACTER: Fındık, a baby hedgehog whose body is
+  a soft round ball. The back, the top and the sides of the hea…
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:findik
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: char
+batch: batch-03-home-island
+size: 1024x1536

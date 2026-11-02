@@ -1,0 +1,17 @@
+id: moment-news
+type: moment
+title_tr: Haber
+title_en: One piece of news
+status: planned
+horizon: next
+summary: >-
+  At most one a visit: a stage grew, an island drifted close, the ferry's postcard, a wish.
+  A quiet day has none, and that is fine.
+links:
+  part_of:
+  - sys-visit-queue
+sources:
+- doc: docs/product/app-game-boundary.md
+  anchor: '#62-the-visit-queue'
+act: visit
+sequence: 40

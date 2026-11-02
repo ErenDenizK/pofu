@@ -1,0 +1,20 @@
+id: asset-workshop-1
+type: asset
+title_tr: workshop-1
+title_en: workshop-1 (station)
+status: in-production
+horizon: now
+summary: >-
+  A tiny tinker's workshop for the island diorama: a small, rounded, chunky shed of soft honey
+  wood with an open, round-topped cream doorway (a soft warm-brown shadow inside, nothing
+  visible in it) and a low sloped roof of broad caramel wooden shingles; on its right, a sturdy
+  little workbench of the same wood with one small cream vise. Friendly, toy-like proportions
+  with few parts. The shed and the bench fill only the …
+art:
+  images: []
+  jobs:
+  - batch-03-home-island:workshop-1
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+kind: station
+batch: batch-03-home-island

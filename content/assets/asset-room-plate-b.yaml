@@ -1,0 +1,15 @@
+id: asset-room-plate-b
+type: asset
+title_tr: Oda plakası B
+title_en: Room plate B
+status: cut
+horizon: now
+summary: Pofu's room, take B.
+art:
+  images:
+  - design/art/plates/room-v1/room-plate-b.png
+  jobs: []
+sources:
+- doc: design/art/plates/room-v1/provenance.md
+kind: plate
+batch: unbatched

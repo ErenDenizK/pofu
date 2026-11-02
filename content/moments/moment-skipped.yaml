@@ -1,0 +1,14 @@
+id: moment-skipped
+type: moment
+title_tr: Vazgeçtin!
+title_en: Skipped!
+status: in-app
+horizon: now
+summary: >-
+  Pofu proud hops, the bead drops, a seed hops into the jar while the gift lasts. "Vazgeçtin!
+  Başardık. Yani, çoğunu sen." After 4 s Pofu turns back to his garden: terminal.
+sources:
+- doc: docs/product/ux/gate-v2.md
+  anchor: '#62-skipped'
+act: gate
+sequence: 40
