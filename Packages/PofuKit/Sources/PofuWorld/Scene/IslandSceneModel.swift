@@ -92,7 +92,27 @@ public final class IslandSceneModel {
     /// Whether the timeline must run: springs moving, or the phone's tilt
     /// feeding parallax.
     var needsFrames: Bool {
-        isAnimating || (isDeviceTiltEnabled && !reduceMotion)
+        isAnimating || isVisiting || (isDeviceTiltEnabled && !reduceMotion)
+    }
+
+    /// The look's live window after the scene appears (look-dev B): the
+    /// HD-2D layers animate during a visit and while the camera moves;
+    /// otherwise the settled frame is cached and costs nothing.
+    public private(set) var isVisiting = false
+    private var visitTask: Task<Void, Never>?
+
+    /// Starts (or extends) a visit: the look animates for `seconds`.
+    /// Reduce Motion skips it.
+    public func beginLookVisit(seconds: Double = LookTuning.visitSeconds) {
+        guard !reduceMotion, seconds > 0 else { return }
+        visitTask?.cancel()
+        isVisiting = true
+        kick()
+        visitTask = Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .seconds(seconds))
+            guard !Task.isCancelled else { return }
+            self?.isVisiting = false
+        }
     }
     /// Reduce Motion, from the environment.
     public var reduceMotion = false {

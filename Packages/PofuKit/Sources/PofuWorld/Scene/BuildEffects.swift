@@ -96,12 +96,11 @@ struct BuildTag: View {
     var body: some View {
         Text(WorldStrings.levelUp(level))
             .font(PofuFont.headline)
-            .foregroundStyle(PofuColor.energyOnFill)
-            .padding(.horizontal, PofuSpacing.m)
-            .frame(minHeight: 34)
-            .background(Capsule(style: .continuous).fill(PofuColor.energyFill))
-            .overlay(Capsule(style: .continuous).strokeBorder(Color.white.opacity(0.7), lineWidth: 1.5))
-            .shadow(color: Color.shadowInk.opacity(0.22), radius: 6, y: 3)
+            .foregroundStyle(Color.paperInk)
+            .padding(.horizontal, PofuSpacing.m + 4)
+            .frame(minHeight: 36)
+            // Celebration is painted, system UI is glass (look-dev C).
+            .paintedPaper(cornerSeed: 5)
             .fixedSize()
             .allowsHitTesting(false)
             .accessibilityElement()
