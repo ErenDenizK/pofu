@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- UI critique 01 (`docs/design/ui-critique-01.md`): a review of the game
+  screen and its neighbours, a reference study, three directions for Home
+  as annotated mockups (Living Diorama recommended) and a fix list in
+  two-day iterations.
 - Look-dev for the world (`docs/design/look-dev.md`): a reversible color
   pipeline, "painted HD-2D lite" and the terrarium. The art is baked with
   the new `lock-light` style-lock preset (the default for new jobs;
