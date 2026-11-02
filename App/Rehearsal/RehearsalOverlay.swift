@@ -23,9 +23,21 @@ struct RehearsalOverlay: View {
                 EmptyView()
             }
             if !model.needsOnboarding {
+                #if DEBUG
+                if Ayar.session.isOpen {
+                    AyarPanel(model: model, store: Ayar.store, session: Ayar.session)
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                } else {
+                    RehearsalPanel(model: model, rehearsal: rehearsal)
+                }
+                #else
                 RehearsalPanel(model: model, rehearsal: rehearsal)
+                #endif
             }
         }
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: rehearsal.screen)
+        #if DEBUG
+        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: Ayar.session.isOpen)
+        #endif
     }
 }

@@ -217,6 +217,18 @@ applies from the next launch.
   (`Application Support/Pofu-Rehearsal`), never the App Group, and tags
   every event it logs `simulated`. The developer readout filters the log
   by source and labels simulated numbers.
+- **Ayar** (debug builds only): the Prova panel's "Ayar" row opens a
+  tuning panel over the bottom half of the screen, with the world still
+  visible above it. Every value is a key of `PofuTuning`'s
+  `TuningValues`, whose defaults are the bundled `tuning.json`; sliders
+  come from `TuningSpec`. Live today: the grade trims per time of day
+  (with the hour pinnable to day, golden hour or night) and the HD-2D and
+  depth-in-motion switches. The camera springs, depth strengths and
+  Pofu's breath and blinks have previews in the panel and are read by the
+  scene in a follow-up; haptics have a "Dene" button. "Dışa aktar"
+  shares JSON with the changed keys and the complete values: commit
+  `values` as the new `tuning.json`. Changes persist on the device until
+  "Sıfırla".
 
 ## Use Pofu daily (free account)
 
