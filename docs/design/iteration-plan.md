@@ -49,9 +49,9 @@ day 1 instead of fighting the manual Shortcuts setup (founder's call,
 | # | Question | Artifact | Check | Who |
 |---|---|---|---|---|
 | G1 | Does the manual automation fire? (**optional**) | One "Instagram is opened → Hop in" automation, created with the local agent guiding live; a screen recording | Hop! fires from a real reach. Worth one 30-minute try for early data on Hop!; not a blocker | Founder + Mac |
-| G2 | Is the measurement honest and the setup guide followable? | Post-expiry time counts as unobserved; pass-expiry notification; setup guide v2 in "when Instagram opens, Pofu hops in" language. Still needed for Live Pofu (ADR-0013) | Tests pass; later, a friend sets it up from the guide alone | Cloud (now) |
-| G3 | Is the zero-setup gate ready for day 1? | `LiveScreenTimeService`, shield, shield action, and monitor extensions behind a separate signing configuration; a day-1 test script | CI green; the free build still signs with a Personal Team | Cloud (now) |
-| G4 | Can we use Screen Time? | Membership day 1: enroll, request Family Controls distribution for every bundle ID, switch to the live configuration, build to the iPhone | The shield appears on Instagram; distribution request date recorded | Founder + Mac |
+| G2 | Is the measurement honest and the setup guide followable? | Post-expiry time counts as unobserved; pass-expiry notification; setup guide v2 in "when Instagram opens, Pofu hops in" language. Still needed for Live Pofu (ADR-0013) | Tests pass; later, a friend sets it up from the guide alone | **Done** (#32) |
+| G3 | Is the zero-setup gate ready for day 1? | `LiveScreenTimeService`, shield, shield action, and monitor extensions behind a separate signing configuration; a day-1 test script | CI green; the free build still signs with a Personal Team | **Done** (#34, gate v2 #41) |
+| G4 | Can we use Screen Time? | Membership day 1: enroll, request Family Controls distribution for every bundle ID, switch to the live configuration, build to the iPhone (`docs/local/membership-day-1.md`) | The shield appears on Instagram; distribution request date recorded | Founder (Xcode on the Mac, once) |
 | G5 | Does the gate change behavior? | A 7-day dogfood on the shield (plus Live Pofu if G1 worked), with no feature changes during the week, and a daily readout | Resisted share of reaches, measured minutes, against the goal of half | Founder |
 | G6 | What does the data ask for? | The smallest ADR-0015 slice the week shows is needed | Week 2's resisted share against week 1 | Cloud |
 
