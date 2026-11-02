@@ -91,6 +91,22 @@ class PlanTests(unittest.TestCase):
         self.assertEqual(corr["chroma"], 1.0)
         self.assertGreater(corr["tint_b"], 0)
 
+    def test_a_faded_chain_level_is_matched_to_its_first_level(self):
+        # Each level was redrawn from its locked parent and locked again, so
+        # chroma fell level by level (PR #67): cay-5 against cay-1.
+        self.assertEqual(hm.chain_of("cay-5", self.cfg), ("cay", 5))
+        self.assertIsNone(hm.chain_of("island-main", self.cfg))
+        first = dict(self.ref, C_p50=40.0, C_p95=55.0, L_p2=46.0, L_p98=92.0)
+        faded = dict(self.ref, C_p50=11.0, C_p95=20.0, L_p2=60.0, L_p98=92.0)
+        corr = hm.plan(faded, self.ref, self.cfg, guarded=False, kind="station", chain=first)
+        self.assertGreater(corr["chroma"], 2.5)
+        self.assertLessEqual(corr["chroma"], self.cfg["chains"]["chroma_scale"][1])
+        self.assertEqual(corr["ceiling"], 55.0)
+        self.assertLess(corr["black"], -10)
+        devs = hm.deviations(faded, self.ref, self.cfg, "station", first)
+        self.assertIn("chain_C_p50", devs)
+        self.assertNotIn("C_p95", devs)
+
     def test_score_is_100_at_the_reference_and_falls_with_distance(self):
         self.assertEqual(hm.score(self.ref, self.ref, self.cfg), 100.0)
         one = dict(self.ref, L_p98=self.ref["L_p98"] + self.cfg["metrics"]["L_p98"]["tolerance"])
@@ -154,6 +170,13 @@ class ManifestTests(unittest.TestCase):
         cay = manifest["assets"]["cay-1"]
         self.assertIn("copper", cay["correction"]["materials"])
         self.assertGreater(cay["after"]["materials"]["copper"]["hue"], cay["before"]["materials"]["copper"]["hue"] + 3)
+        # The faded chain levels come back toward their L1's median chroma.
+        for level in ("cay-2", "cay-3"):
+            e = manifest["assets"][level]
+            self.assertLess(abs(e["after"]["C_p50"] - e["chain"]["C_p50"]), self.cfg_tol())
+
+    def cfg_tol(self):
+        return hm.load_config()["chains"]["metrics"]["C_p50"]["tolerance"]
 
 
 if __name__ == "__main__":

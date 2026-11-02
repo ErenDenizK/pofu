@@ -112,5 +112,24 @@
       "tint_a",
       "tint_b"
     ]
+  },
+  "chains": {
+    "$note": "Station level chains (cay-1 ... cay-5). Each level was redrawn from its locked parent and locked again, losing about 30 % chroma per level (art queue finding, PR #67: çay ocağı median chroma 31 -> 11 from L1 to L5, windmill 28 -> 7). A level's black point, white point and median chroma are matched to its chain's L1 as corrected, with a chroma scale up to x3. New losses are stopped at promote time by the pipeline's edit_chroma QA check (an edit below 0.70 of its parent's chroma fails); harmony only restores the chains already generated.",
+    "pattern": "^(?P<chain>[a-z]+)-(?P<level>[0-9]+)$",
+    "metrics": {
+      "L_p2": {
+        "tolerance": 6.0
+      },
+      "L_p98": {
+        "tolerance": 3.0
+      },
+      "C_p50": {
+        "tolerance": 3.0
+      }
+    },
+    "chroma_scale": [
+      0.75,
+      3.0
+    ]
   }
 }

@@ -4,6 +4,7 @@
   "bridge-east": {
    "after": {
     "C_mean": 27.692,
+    "C_p50": 30.969,
     "C_p95": 38.458,
     "L_mean": 76.947,
     "L_p2": 54.844,
@@ -16,6 +17,7 @@
    },
    "before": {
     "C_mean": 19.098,
+    "C_p50": 21.358,
     "C_p95": 26.523,
     "L_mean": 83.191,
     "L_p2": 70.844,
@@ -26,8 +28,10 @@
     "tint_b": 10.25,
     "warmth_b": 18.109
    },
+   "chain": null,
    "correction": {
     "black": -16.0,
+    "ceiling": 0.0,
     "chroma": 1.45,
     "materials": {},
     "tint_a": 0.0,
@@ -57,6 +61,7 @@
   "cay-1": {
    "after": {
     "C_mean": 39.796,
+    "C_p50": 43.636,
     "C_p95": 49.206,
     "L_mean": 70.243,
     "L_p2": 46.406,
@@ -74,6 +79,7 @@
    },
    "before": {
     "C_mean": 39.303,
+    "C_p50": 43.14,
     "C_p95": 46.969,
     "L_mean": 70.243,
     "L_p2": 46.406,
@@ -89,8 +95,10 @@
     },
     "warmth_b": 34.503
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {
      "copper": {
@@ -122,19 +130,19 @@
   },
   "cay-2": {
    "after": {
-    "C_mean": 28.917,
-    "C_p95": 36.685,
-    "L_mean": 77.99,
-    "L_p2": 62.318,
-    "L_p98": 91.494,
-    "detail": 1.362,
+    "C_mean": 38.524,
+    "C_p50": 43.626,
+    "C_p95": 49.133,
+    "L_mean": 70.621,
+    "L_p2": 46.408,
+    "L_p98": 91.437,
+    "detail": 1.964,
     "edge": 0.421,
-    "tint_a": 4.598,
-    "tint_b": 12.356,
-    "warmth_b": 24.685
+    "warmth_b": 32.894
    },
    "before": {
     "C_mean": 19.943,
+    "C_p50": 22.465,
     "C_p95": 25.3,
     "L_mean": 77.99,
     "L_p2": 62.318,
@@ -145,9 +153,15 @@
     "tint_b": 9.362,
     "warmth_b": 17.024
    },
+   "chain": {
+    "C_p50": 43.636,
+    "L_p2": 46.406,
+    "L_p98": 91.368
+   },
    "correction": {
-    "black": 0.0,
-    "chroma": 1.45,
+    "black": -15.91,
+    "ceiling": 49.2,
+    "chroma": 1.942,
     "materials": {},
     "tint_a": 0.0,
     "tint_b": 0.0,
@@ -157,36 +171,36 @@
    "kind": "station",
    "matched_to": "world",
    "outliers_after": [
-    "C_p95",
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
+    "chain_C_p50",
+    "chain_L_p2",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 74.8,
-   "score_before": 64.2,
+   "score_after": 90.9,
+   "score_before": 45.2,
    "shipped": false,
    "source": "design/art/stations/cay-2/cay-2.webp",
    "source_sha": "fa270b1ec602d720"
   },
   "cay-3": {
    "after": {
-    "C_mean": 22.992,
-    "C_p95": 29.278,
-    "L_mean": 79.281,
-    "L_p2": 63.298,
-    "L_p98": 91.835,
-    "detail": 1.236,
+    "C_mean": 38.759,
+    "C_p50": 43.584,
+    "C_p95": 49.924,
+    "L_mean": 72.188,
+    "L_p2": 47.298,
+    "L_p98": 91.493,
+    "detail": 1.809,
     "edge": 0.42,
-    "tint_a": 4.725,
-    "tint_b": 10.492,
-    "warmth_b": 19.921
+    "warmth_b": 33.647
    },
    "before": {
     "C_mean": 15.857,
+    "C_p50": 17.626,
     "C_p95": 20.191,
     "L_mean": 79.281,
     "L_p2": 63.298,
@@ -197,9 +211,15 @@
     "tint_b": 7.972,
     "warmth_b": 13.739
    },
+   "chain": {
+    "C_p50": 43.636,
+    "L_p2": 46.406,
+    "L_p98": 91.368
+   },
    "correction": {
-    "black": 0.0,
-    "chroma": 1.45,
+    "black": -16.0,
+    "ceiling": 49.2,
+    "chroma": 2.476,
     "materials": {},
     "tint_a": 0.0,
     "tint_b": 0.0,
@@ -209,36 +229,36 @@
    "kind": "station",
    "matched_to": "world",
    "outliers_after": [
-    "C_p95",
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
+    "chain_C_p50",
+    "chain_L_p2",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 66.2,
-   "score_before": 62.5,
+   "score_after": 91.0,
+   "score_before": 44.3,
    "shipped": false,
    "source": "design/art/stations/cay-3/cay-3.png",
    "source_sha": "3d894e1577104c56"
   },
   "cay-4": {
    "after": {
-    "C_mean": 18.715,
-    "C_p95": 24.627,
-    "L_mean": 80.239,
-    "L_p2": 65.382,
-    "L_p98": 91.885,
-    "detail": 1.118,
+    "C_mean": 38.012,
+    "C_p50": 41.782,
+    "C_p95": 50.496,
+    "L_mean": 73.122,
+    "L_p2": 49.382,
+    "L_p98": 91.392,
+    "detail": 1.662,
     "edge": 0.43,
-    "tint_a": 4.244,
-    "tint_b": 8.46,
-    "warmth_b": 16.419
+    "warmth_b": 33.458
    },
    "before": {
     "C_mean": 12.907,
+    "C_p50": 14.001,
     "C_p95": 16.984,
     "L_mean": 80.239,
     "L_p2": 65.382,
@@ -249,9 +269,15 @@
     "tint_b": 8.991,
     "warmth_b": 11.324
    },
+   "chain": {
+    "C_p50": 43.636,
+    "L_p2": 46.406,
+    "L_p98": 91.368
+   },
    "correction": {
-    "black": 0.0,
-    "chroma": 1.45,
+    "black": -16.0,
+    "ceiling": 49.2,
+    "chroma": 3.0,
     "materials": {},
     "tint_a": 0.0,
     "tint_b": 0.0,
@@ -261,36 +287,36 @@
    "kind": "station",
    "matched_to": "world",
    "outliers_after": [
-    "C_p95",
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
+    "chain_C_p50",
+    "chain_L_p2",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 62.1,
-   "score_before": 60.6,
+   "score_after": 87.3,
+   "score_before": 43.3,
    "shipped": false,
    "source": "design/art/stations/cay-4/cay-4.png",
    "source_sha": "64ad4bf356f006c3"
   },
   "cay-5": {
    "after": {
-    "C_mean": 19.605,
-    "C_p95": 38.133,
-    "L_mean": 78.432,
-    "L_p2": 59.252,
-    "L_p98": 89.852,
-    "detail": 1.322,
+    "C_mean": 36.261,
+    "C_p50": 32.558,
+    "C_p95": 56.671,
+    "L_mean": 73.6,
+    "L_p2": 46.402,
+    "L_p98": 89.74,
+    "detail": 1.779,
     "edge": 0.418,
-    "tint_a": 4.711,
-    "tint_b": 10.264,
-    "warmth_b": 16.905
+    "warmth_b": 31.537
    },
    "before": {
     "C_mean": 13.521,
+    "C_p50": 10.904,
     "C_p95": 26.298,
     "L_mean": 78.432,
     "L_p2": 59.252,
@@ -301,9 +327,15 @@
     "tint_b": 8.843,
     "warmth_b": 11.659
    },
+   "chain": {
+    "C_p50": 43.636,
+    "L_p2": 46.406,
+    "L_p98": 91.368
+   },
    "correction": {
-    "black": 0.0,
-    "chroma": 1.45,
+    "black": -12.85,
+    "ceiling": 49.2,
+    "chroma": 3.0,
     "materials": {},
     "tint_a": 0.0,
     "tint_b": 0.0,
@@ -313,17 +345,18 @@
    "kind": "station",
    "matched_to": "world",
    "outliers_after": [
-    "C_p95",
+    "chain_C_p50",
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
+    "chain_C_p50",
+    "chain_L_p2",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 75.7,
-   "score_before": 63.5,
+   "score_after": 64.7,
+   "score_before": 46.8,
    "shipped": false,
    "source": "design/art/stations/cay-5/cay-5.png",
    "source_sha": "c9a9f018b2dc6bcb"
@@ -331,6 +364,7 @@
   "cloud-1": {
    "after": {
     "C_mean": 7.051,
+    "C_p50": 7.129,
     "C_p95": 10.838,
     "L_mean": 90.697,
     "L_p2": 81.373,
@@ -343,6 +377,7 @@
    },
    "before": {
     "C_mean": 7.051,
+    "C_p50": 7.129,
     "C_p95": 10.838,
     "L_mean": 90.697,
     "L_p2": 81.373,
@@ -353,8 +388,10 @@
     "tint_b": 4.4,
     "warmth_b": 4.417
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -383,6 +420,7 @@
   "cloud-2": {
    "after": {
     "C_mean": 5.912,
+    "C_p50": 6.134,
     "C_p95": 9.747,
     "L_mean": 90.177,
     "L_p2": 82.626,
@@ -395,6 +433,7 @@
    },
    "before": {
     "C_mean": 5.912,
+    "C_p50": 6.134,
     "C_p95": 9.747,
     "L_mean": 90.177,
     "L_p2": 82.626,
@@ -405,8 +444,14 @@
     "tint_b": 3.1,
     "warmth_b": 3.1
    },
+   "chain": {
+    "C_p50": 7.129,
+    "L_p2": 81.373,
+    "L_p98": 95.821
+   },
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -417,19 +462,15 @@
    "kind": "prop",
    "matched_to": "world",
    "outliers_after": [
-    "C_p95",
-    "L_p2",
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
-    "L_p2",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 47.4,
-   "score_before": 47.4,
+   "score_after": 92.3,
+   "score_before": 92.3,
    "shipped": false,
    "source": "design/art/masters/cloud-2/cloud-2.png",
    "source_sha": "c161425b09f2f5ef"
@@ -437,6 +478,7 @@
   "cloud-3": {
    "after": {
     "C_mean": 6.276,
+    "C_p50": 6.742,
     "C_p95": 9.388,
     "L_mean": 89.63,
     "L_p2": 83.039,
@@ -449,6 +491,7 @@
    },
    "before": {
     "C_mean": 6.276,
+    "C_p50": 6.742,
     "C_p95": 9.388,
     "L_mean": 89.63,
     "L_p2": 83.039,
@@ -459,8 +502,14 @@
     "tint_b": 3.743,
     "warmth_b": 3.743
    },
+   "chain": {
+    "C_p50": 7.129,
+    "L_p2": 81.373,
+    "L_p98": 95.821
+   },
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -470,18 +519,12 @@
    "guarded": true,
    "kind": "prop",
    "matched_to": "world",
-   "outliers_after": [
-    "C_p95",
-    "L_p2"
-   ],
-   "outliers_before": [
-    "C_p95",
-    "L_p2"
-   ],
+   "outliers_after": [],
+   "outliers_before": [],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 50.1,
-   "score_before": 50.1,
+   "score_after": 93.9,
+   "score_before": 93.9,
    "shipped": false,
    "source": "design/art/masters/cloud-3/cloud-3.png",
    "source_sha": "610e921146b8ab26"
@@ -489,6 +532,7 @@
   "cloud-4": {
    "after": {
     "C_mean": 6.131,
+    "C_p50": 6.742,
     "C_p95": 9.697,
     "L_mean": 90.501,
     "L_p2": 84.831,
@@ -501,6 +545,7 @@
    },
    "before": {
     "C_mean": 6.131,
+    "C_p50": 6.742,
     "C_p95": 9.697,
     "L_mean": 90.501,
     "L_p2": 84.831,
@@ -511,8 +556,14 @@
     "tint_b": 4.332,
     "warmth_b": 4.332
    },
+   "chain": {
+    "C_p50": 7.129,
+    "L_p2": 81.373,
+    "L_p98": 95.821
+   },
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -522,18 +573,12 @@
    "guarded": true,
    "kind": "world",
    "matched_to": "world",
-   "outliers_after": [
-    "C_p95",
-    "L_p2"
-   ],
-   "outliers_before": [
-    "C_p95",
-    "L_p2"
-   ],
+   "outliers_after": [],
+   "outliers_before": [],
    "ppu": 4.103,
    "reference": false,
-   "score_after": 50.3,
-   "score_before": 50.3,
+   "score_after": 94.7,
+   "score_before": 94.7,
    "shipped": false,
    "source": "design/art/masters/cloud-4/cloud-4.png",
    "source_sha": "c540c338f2bb2328"
@@ -541,6 +586,7 @@
   "cloud-5": {
    "after": {
     "C_mean": 5.461,
+    "C_p50": 6.087,
     "C_p95": 8.666,
     "L_mean": 89.635,
     "L_p2": 83.33,
@@ -553,6 +599,7 @@
    },
    "before": {
     "C_mean": 5.461,
+    "C_p50": 6.087,
     "C_p95": 8.666,
     "L_mean": 89.635,
     "L_p2": 83.33,
@@ -563,8 +610,14 @@
     "tint_b": 3.202,
     "warmth_b": 3.202
    },
+   "chain": {
+    "C_p50": 7.129,
+    "L_p2": 81.373,
+    "L_p98": 95.821
+   },
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -574,18 +627,12 @@
    "guarded": true,
    "kind": "prop",
    "matched_to": "world",
-   "outliers_after": [
-    "C_p95",
-    "L_p2"
-   ],
-   "outliers_before": [
-    "C_p95",
-    "L_p2"
-   ],
+   "outliers_after": [],
+   "outliers_before": [],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 50.8,
-   "score_before": 50.8,
+   "score_after": 95.5,
+   "score_before": 95.5,
    "shipped": false,
    "source": "design/art/masters/cloud-5/cloud-5.png",
    "source_sha": "9c36e80534a1b659"
@@ -593,6 +640,7 @@
   "cloud-sea": {
    "after": {
     "C_mean": 4.728,
+    "C_p50": 5.218,
     "C_p95": 7.161,
     "L_mean": 90.285,
     "L_p2": 84.501,
@@ -605,6 +653,7 @@
    },
    "before": {
     "C_mean": 4.728,
+    "C_p50": 5.218,
     "C_p95": 7.161,
     "L_mean": 90.285,
     "L_p2": 84.501,
@@ -615,8 +664,10 @@
     "tint_b": 2.57,
     "warmth_b": 2.57
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -645,6 +696,7 @@
   "far-isle-1": {
    "after": {
     "C_mean": 10.623,
+    "C_p50": 11.829,
     "C_p95": 16.997,
     "L_mean": 86.756,
     "L_p2": 77.796,
@@ -657,6 +709,7 @@
    },
    "before": {
     "C_mean": 10.623,
+    "C_p50": 11.829,
     "C_p95": 16.997,
     "L_mean": 86.756,
     "L_p2": 77.796,
@@ -667,8 +720,10 @@
     "tint_b": 7.541,
     "warmth_b": 9.629
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -697,6 +752,7 @@
   "far-isle-2": {
    "after": {
     "C_mean": 7.073,
+    "C_p50": 7.023,
     "C_p95": 12.3,
     "L_mean": 86.876,
     "L_p2": 80.363,
@@ -709,6 +765,7 @@
    },
    "before": {
     "C_mean": 7.073,
+    "C_p50": 7.023,
     "C_p95": 12.3,
     "L_mean": 86.876,
     "L_p2": 80.363,
@@ -719,8 +776,10 @@
     "tint_b": 6.141,
     "warmth_b": 6.145
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -751,6 +810,7 @@
   "far-isle-3": {
    "after": {
     "C_mean": 7.054,
+    "C_p50": 7.791,
     "C_p95": 11.737,
     "L_mean": 88.514,
     "L_p2": 82.896,
@@ -763,6 +823,7 @@
    },
    "before": {
     "C_mean": 7.054,
+    "C_p50": 7.791,
     "C_p95": 11.737,
     "L_mean": 88.514,
     "L_p2": 82.896,
@@ -773,8 +834,10 @@
     "tint_b": 5.872,
     "warmth_b": 5.872
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -805,6 +868,7 @@
   "findik-base": {
    "after": {
     "C_mean": 24.433,
+    "C_p50": 19.666,
     "C_p95": 48.807,
     "L_mean": 77.891,
     "L_p2": 21.127,
@@ -817,6 +881,7 @@
    },
    "before": {
     "C_mean": 24.433,
+    "C_p50": 19.666,
     "C_p95": 48.807,
     "L_mean": 77.891,
     "L_p2": 21.127,
@@ -827,8 +892,10 @@
     "tint_b": 8.854,
     "warmth_b": 20.743
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -855,6 +922,7 @@
   "findik-standin": {
    "after": {
     "C_mean": 25.703,
+    "C_p50": 26.289,
     "C_p95": 30.703,
     "L_mean": 68.373,
     "L_p2": 12.521,
@@ -865,6 +933,7 @@
    },
    "before": {
     "C_mean": 25.703,
+    "C_p50": 26.289,
     "C_p95": 30.703,
     "L_mean": 68.373,
     "L_p2": 12.521,
@@ -873,8 +942,10 @@
     "edge": 0.982,
     "warmth_b": 23.487
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -905,6 +976,7 @@
   "findik-work": {
    "after": {
     "C_mean": 26.619,
+    "C_p50": 23.442,
     "C_p95": 50.129,
     "L_mean": 76.545,
     "L_p2": 22.76,
@@ -917,6 +989,7 @@
    },
    "before": {
     "C_mean": 26.619,
+    "C_p50": 23.442,
     "C_p95": 50.129,
     "L_mean": 76.545,
     "L_p2": 22.76,
@@ -927,8 +1000,10 @@
     "tint_b": 8.613,
     "warmth_b": 22.475
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -955,6 +1030,7 @@
   "garden-1": {
    "after": {
     "C_mean": 27.815,
+    "C_p50": 25.32,
     "C_p95": 42.443,
     "L_mean": 74.126,
     "L_p2": 55.091,
@@ -965,6 +1041,7 @@
    },
    "before": {
     "C_mean": 27.815,
+    "C_p50": 25.32,
     "C_p95": 42.443,
     "L_mean": 74.126,
     "L_p2": 55.091,
@@ -973,8 +1050,10 @@
     "edge": 0.428,
     "warmth_b": 25.786
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -1000,17 +1079,19 @@
   },
   "garden-2": {
    "after": {
-    "C_mean": 29.644,
-    "C_p95": 48.865,
-    "L_mean": 79.181,
+    "C_mean": 28.405,
+    "C_p50": 25.329,
+    "C_p95": 45.631,
+    "L_mean": 79.19,
     "L_p2": 58.357,
     "L_p98": 91.422,
-    "detail": 1.879,
+    "detail": 1.888,
     "edge": 0.428,
-    "warmth_b": 28.043
+    "warmth_b": 26.862
    },
    "before": {
     "C_mean": 20.85,
+    "C_p50": 18.475,
     "C_p95": 34.457,
     "L_mean": 79.192,
     "L_p2": 58.357,
@@ -1021,9 +1102,15 @@
     "tint_b": 11.221,
     "warmth_b": 19.718
    },
+   "chain": {
+    "C_p50": 25.32,
+    "L_p2": 55.091,
+    "L_p98": 91.189
+   },
    "correction": {
     "black": 0.0,
-    "chroma": 1.423,
+    "ceiling": 42.4,
+    "chroma": 1.371,
     "materials": {},
     "tint_a": 0.0,
     "tint_b": 0.0,
@@ -1036,32 +1123,34 @@
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
+    "chain_C_p50",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 88.9,
-   "score_before": 73.5,
+   "score_after": 89.1,
+   "score_before": 69.7,
    "shipped": false,
    "source": "design/art/stations/garden-2/garden-2.png",
    "source_sha": "39fd1ede45f1efa1"
   },
   "garden-3": {
    "after": {
-    "C_mean": 21.065,
-    "C_p95": 34.424,
-    "L_mean": 80.103,
-    "L_p2": 61.681,
+    "C_mean": 27.185,
+    "C_p50": 25.323,
+    "C_p95": 44.049,
+    "L_mean": 77.771,
+    "L_p2": 55.091,
     "L_p98": 90.109,
-    "detail": 1.613,
+    "detail": 1.896,
     "edge": 0.437,
-    "tint_a": 4.929,
-    "tint_b": 10.7,
-    "warmth_b": 19.842
+    "tint_a": 5.682,
+    "tint_b": 12.0,
+    "warmth_b": 25.613
    },
    "before": {
     "C_mean": 14.528,
+    "C_p50": 13.491,
     "C_p95": 23.74,
     "L_mean": 80.103,
     "L_p2": 61.681,
@@ -1072,9 +1161,15 @@
     "tint_b": 9.217,
     "warmth_b": 13.684
    },
+   "chain": {
+    "C_p50": 25.32,
+    "L_p2": 55.091,
+    "L_p98": 91.189
+   },
    "correction": {
-    "black": 0.0,
-    "chroma": 1.45,
+    "black": -6.59,
+    "ceiling": 42.4,
+    "chroma": 1.877,
     "materials": {},
     "tint_a": 0.0,
     "tint_b": 0.0,
@@ -1084,36 +1179,38 @@
    "kind": "station",
    "matched_to": "world",
    "outliers_after": [
-    "C_p95",
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
+    "chain_C_p50",
+    "chain_L_p2",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 69.6,
-   "score_before": 61.5,
+   "score_after": 90.4,
+   "score_before": 58.8,
    "shipped": false,
    "source": "design/art/stations/garden-3/garden-3.png",
    "source_sha": "647533d13db77bce"
   },
   "garden-4": {
    "after": {
-    "C_mean": 17.337,
-    "C_p95": 29.828,
-    "L_mean": 80.543,
-    "L_p2": 64.766,
-    "L_p98": 89.409,
-    "detail": 1.707,
+    "C_mean": 27.585,
+    "C_p50": 25.326,
+    "C_p95": 46.564,
+    "L_mean": 77.007,
+    "L_p2": 55.086,
+    "L_p98": 89.009,
+    "detail": 2.242,
     "edge": 0.444,
-    "tint_a": 3.289,
-    "tint_b": 9.049,
-    "warmth_b": 16.113
+    "tint_a": 6.562,
+    "tint_b": 10.613,
+    "warmth_b": 25.637
    },
    "before": {
     "C_mean": 11.957,
+    "C_p50": 10.517,
     "C_p95": 20.571,
     "L_mean": 80.543,
     "L_p2": 64.766,
@@ -1124,9 +1221,15 @@
     "tint_b": 7.712,
     "warmth_b": 11.113
    },
+   "chain": {
+    "C_p50": 25.32,
+    "L_p2": 55.091,
+    "L_p98": 91.189
+   },
    "correction": {
-    "black": 0.0,
-    "chroma": 1.45,
+    "black": -9.68,
+    "ceiling": 42.4,
+    "chroma": 2.408,
     "materials": {},
     "tint_a": 0.0,
     "tint_b": 0.0,
@@ -1136,17 +1239,17 @@
    "kind": "station",
    "matched_to": "world",
    "outliers_after": [
-    "C_p95",
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
+    "chain_C_p50",
+    "chain_L_p2",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 60.6,
-   "score_before": 56.5,
+   "score_after": 87.0,
+   "score_before": 51.2,
    "shipped": false,
    "source": "design/art/stations/garden-4/garden-4.png",
    "source_sha": "540d672e0a17f03f"
@@ -1154,6 +1257,7 @@
   "garden-standin": {
    "after": {
     "C_mean": 29.581,
+    "C_p50": 24.407,
     "C_p95": 51.571,
     "L_mean": 75.631,
     "L_p2": 50.421,
@@ -1166,6 +1270,7 @@
    },
    "before": {
     "C_mean": 39.442,
+    "C_p50": 32.542,
     "C_p95": 68.762,
     "L_mean": 71.733,
     "L_p2": 34.421,
@@ -1176,8 +1281,10 @@
     "tint_b": 8.01,
     "warmth_b": 35.603
    },
+   "chain": null,
    "correction": {
     "black": 16.0,
+    "ceiling": 0.0,
     "chroma": 0.75,
     "materials": {},
     "tint_a": 0.0,
@@ -1204,6 +1311,7 @@
   "island-main": {
    "after": {
     "C_mean": 37.256,
+    "C_p50": 35.616,
     "C_p95": 49.04,
     "L_mean": 80.105,
     "L_p2": 53.55,
@@ -1214,6 +1322,7 @@
    },
    "before": {
     "C_mean": 37.256,
+    "C_p50": 35.616,
     "C_p95": 49.04,
     "L_mean": 80.105,
     "L_p2": 53.55,
@@ -1222,8 +1331,10 @@
     "edge": 1.084,
     "warmth_b": 33.742
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -1246,6 +1357,7 @@
   "island-main-l": {
    "after": {
     "C_mean": 29.616,
+    "C_p50": 28.548,
     "C_p95": 40.068,
     "L_mean": 83.311,
     "L_p2": 65.451,
@@ -1256,6 +1368,7 @@
    },
    "before": {
     "C_mean": 20.446,
+    "C_p50": 19.688,
     "C_p95": 27.771,
     "L_mean": 83.322,
     "L_p2": 65.451,
@@ -1266,8 +1379,10 @@
     "tint_b": 10.049,
     "warmth_b": 18.457
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.45,
     "materials": {},
     "tint_a": 0.0,
@@ -1294,6 +1409,7 @@
   "island-main-l-v2": {
    "after": {
     "C_mean": 26.949,
+    "C_p50": 25.689,
     "C_p95": 36.4,
     "L_mean": 79.03,
     "L_p2": 53.552,
@@ -1304,6 +1420,7 @@
    },
    "before": {
     "C_mean": 18.585,
+    "C_p50": 17.717,
     "C_p95": 25.104,
     "L_mean": 84.264,
     "L_p2": 68.202,
@@ -1314,8 +1431,10 @@
     "tint_b": 10.49,
     "warmth_b": 16.946
    },
+   "chain": null,
    "correction": {
     "black": -14.65,
+    "ceiling": 0.0,
     "chroma": 1.45,
     "materials": {},
     "tint_a": 0.0,
@@ -1343,6 +1462,7 @@
   "isle-hamam-standin": {
    "after": {
     "C_mean": 37.913,
+    "C_p50": 41.845,
     "C_p95": 49.058,
     "L_mean": 70.151,
     "L_p2": 44.607,
@@ -1355,6 +1475,7 @@
    },
    "before": {
     "C_mean": 31.308,
+    "C_p50": 34.554,
     "C_p95": 40.51,
     "L_mean": 70.152,
     "L_p2": 44.607,
@@ -1365,8 +1486,10 @@
     "tint_b": 0.126,
     "warmth_b": 22.341
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.211,
     "materials": {},
     "tint_a": 0.0,
@@ -1394,6 +1517,7 @@
   "isle-harbor-standin": {
    "after": {
     "C_mean": 35.034,
+    "C_p50": 35.122,
     "C_p95": 47.85,
     "L_mean": 67.03,
     "L_p2": 44.084,
@@ -1406,6 +1530,7 @@
    },
    "before": {
     "C_mean": 35.034,
+    "C_p50": 35.122,
     "C_p95": 47.85,
     "L_mean": 67.03,
     "L_p2": 44.084,
@@ -1416,8 +1541,10 @@
     "tint_b": -2.091,
     "warmth_b": 26.802
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -1440,6 +1567,7 @@
   "isle-library-standin": {
    "after": {
     "C_mean": 27.373,
+    "C_p50": 26.684,
     "C_p95": 49.556,
     "L_mean": 67.893,
     "L_p2": 44.921,
@@ -1452,6 +1580,7 @@
    },
    "before": {
     "C_mean": 36.497,
+    "C_p50": 35.579,
     "C_p95": 66.075,
     "L_mean": 67.893,
     "L_p2": 44.921,
@@ -1462,8 +1591,10 @@
     "tint_b": 8.265,
     "warmth_b": 16.981
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 0.75,
     "materials": {},
     "tint_a": 0.0,
@@ -1488,6 +1619,7 @@
   "isle-stars-standin": {
    "after": {
     "C_mean": 39.31,
+    "C_p50": 41.559,
     "C_p95": 49.03,
     "L_mean": 68.555,
     "L_p2": 43.863,
@@ -1500,6 +1632,7 @@
    },
    "before": {
     "C_mean": 32.87,
+    "C_p50": 34.749,
     "C_p95": 40.995,
     "L_mean": 68.555,
     "L_p2": 43.863,
@@ -1510,8 +1643,10 @@
     "tint_b": 3.581,
     "warmth_b": 23.655
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.196,
     "materials": {},
     "tint_a": 0.0,
@@ -1539,6 +1674,7 @@
   "islet-east": {
    "after": {
     "C_mean": 19.409,
+    "C_p50": 18.104,
     "C_p95": 27.94,
     "L_mean": 79.726,
     "L_p2": 56.081,
@@ -1551,6 +1687,7 @@
    },
    "before": {
     "C_mean": 13.386,
+    "C_p50": 12.485,
     "C_p95": 19.269,
     "L_mean": 85.611,
     "L_p2": 72.081,
@@ -1561,8 +1698,10 @@
     "tint_b": 10.37,
     "warmth_b": 12.192
    },
+   "chain": null,
    "correction": {
     "black": -16.0,
+    "ceiling": 0.0,
     "chroma": 1.45,
     "materials": {},
     "tint_a": 0.0,
@@ -1590,6 +1729,7 @@
   "mochi": {
    "after": {
     "C_mean": 11.79,
+    "C_p50": 9.515,
     "C_p95": 29.654,
     "L_mean": 88.832,
     "L_p2": 19.108,
@@ -1602,6 +1742,7 @@
    },
    "before": {
     "C_mean": 11.79,
+    "C_p50": 9.515,
     "C_p95": 29.654,
     "L_mean": 88.832,
     "L_p2": 19.108,
@@ -1612,8 +1753,10 @@
     "tint_b": 7.343,
     "warmth_b": 9.94
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -1640,6 +1783,7 @@
   "mochi-v2": {
    "after": {
     "C_mean": 11.822,
+    "C_p50": 9.101,
     "C_p95": 30.924,
     "L_mean": 88.6,
     "L_p2": 19.93,
@@ -1652,6 +1796,7 @@
    },
    "before": {
     "C_mean": 11.822,
+    "C_p50": 9.101,
     "C_p95": 30.924,
     "L_mean": 88.6,
     "L_p2": 19.93,
@@ -1662,8 +1807,10 @@
     "tint_b": 6.848,
     "warmth_b": 9.64
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -1690,6 +1837,7 @@
   "mochi-work": {
    "after": {
     "C_mean": 12.939,
+    "C_p50": 9.629,
     "C_p95": 35.802,
     "L_mean": 87.672,
     "L_p2": 20.989,
@@ -1702,6 +1850,7 @@
    },
    "before": {
     "C_mean": 12.939,
+    "C_p50": 9.629,
     "C_p95": 35.802,
     "L_mean": 87.672,
     "L_p2": 20.989,
@@ -1712,8 +1861,10 @@
     "tint_b": 6.538,
     "warmth_b": 10.518
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -1740,6 +1891,7 @@
   "pofu": {
    "after": {
     "C_mean": 21.984,
+    "C_p50": 17.746,
     "C_p95": 43.005,
     "L_mean": 83.309,
     "L_p2": 18.099,
@@ -1752,6 +1904,7 @@
    },
    "before": {
     "C_mean": 21.984,
+    "C_p50": 17.746,
     "C_p95": 43.005,
     "L_mean": 83.309,
     "L_p2": 18.099,
@@ -1762,8 +1915,10 @@
     "tint_b": 10.318,
     "warmth_b": 19.384
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -1786,6 +1941,7 @@
   "pond-1": {
    "after": {
     "C_mean": 17.742,
+    "C_p50": 12.369,
     "C_p95": 33.201,
     "L_mean": 77.752,
     "L_p2": 53.547,
@@ -1798,6 +1954,7 @@
    },
    "before": {
     "C_mean": 12.237,
+    "C_p50": 8.531,
     "C_p95": 22.897,
     "L_mean": 82.968,
     "L_p2": 67.816,
@@ -1808,8 +1965,10 @@
     "tint_b": 4.501,
     "warmth_b": 9.08
    },
+   "chain": null,
    "correction": {
     "black": -14.27,
+    "ceiling": 0.0,
     "chroma": 1.45,
     "materials": {},
     "tint_a": 0.0,
@@ -1838,19 +1997,21 @@
   },
   "pond-2": {
    "after": {
-    "C_mean": 15.181,
-    "C_p95": 28.497,
-    "L_mean": 76.708,
+    "C_mean": 10.471,
+    "C_p50": 9.919,
+    "C_p95": 19.653,
+    "L_mean": 76.709,
     "L_p2": 54.556,
     "L_p98": 91.231,
-    "detail": 1.858,
+    "detail": 1.837,
     "edge": 0.426,
-    "tint_a": -5.733,
-    "tint_b": 4.004,
-    "warmth_b": 11.953
+    "tint_a": -1.537,
+    "tint_b": 5.363,
+    "warmth_b": 8.244
    },
    "before": {
     "C_mean": 10.471,
+    "C_p50": 9.919,
     "C_p95": 19.653,
     "L_mean": 83.044,
     "L_p2": 70.556,
@@ -1861,9 +2022,15 @@
     "tint_b": 5.363,
     "warmth_b": 8.244
    },
+   "chain": {
+    "C_p50": 12.369,
+    "L_p2": 53.547,
+    "L_p98": 91.697
+   },
    "correction": {
     "black": -16.0,
-    "chroma": 1.45,
+    "ceiling": 0.0,
+    "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
     "tint_b": 0.0,
@@ -1873,37 +2040,37 @@
    "kind": "station",
    "matched_to": "world",
    "outliers_after": [
-    "C_p95",
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
-    "L_p2",
+    "chain_L_p2",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 68.4,
-   "score_before": 55.1,
+   "score_after": 86.5,
+   "score_before": 64.9,
    "shipped": false,
    "source": "design/art/stations/pond-2/pond-2.webp",
    "source_sha": "aa045f860cb88d77"
   },
   "pond-3": {
    "after": {
-    "C_mean": 12.336,
-    "C_p95": 23.556,
+    "C_mean": 12.959,
+    "C_p50": 12.373,
+    "C_p95": 24.823,
     "L_mean": 77.172,
     "L_p2": 54.234,
     "L_p98": 90.768,
-    "detail": 1.775,
+    "detail": 1.773,
     "edge": 0.429,
-    "tint_a": -1.924,
-    "tint_b": 5.154,
-    "warmth_b": 9.602
+    "tint_a": -2.508,
+    "tint_b": 4.892,
+    "warmth_b": 10.079
    },
    "before": {
     "C_mean": 8.508,
+    "C_p50": 8.097,
     "C_p95": 16.246,
     "L_mean": 83.126,
     "L_p2": 70.233,
@@ -1914,9 +2081,15 @@
     "tint_b": 5.421,
     "warmth_b": 6.622
    },
+   "chain": {
+    "C_p50": 12.369,
+    "L_p2": 53.547,
+    "L_p98": 91.697
+   },
    "correction": {
     "black": -16.0,
-    "chroma": 1.45,
+    "ceiling": 33.2,
+    "chroma": 1.528,
     "materials": {},
     "tint_a": 0.0,
     "tint_b": 0.0,
@@ -1926,37 +2099,38 @@
    "kind": "station",
    "matched_to": "world",
    "outliers_after": [
-    "C_p95",
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
-    "L_p2",
+    "chain_C_p50",
+    "chain_L_p2",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 65.5,
-   "score_before": 54.3,
+   "score_after": 90.6,
+   "score_before": 58.0,
    "shipped": false,
    "source": "design/art/stations/pond-3/pond-3.png",
    "source_sha": "584d15c4e458c1fa"
   },
   "pond-4": {
    "after": {
-    "C_mean": 13.749,
-    "C_p95": 30.25,
-    "L_mean": 83.075,
-    "L_p2": 63.566,
-    "L_p98": 91.484,
-    "detail": 1.414,
+    "C_mean": 14.44,
+    "C_p50": 12.369,
+    "C_p95": 31.877,
+    "L_mean": 80.057,
+    "L_p2": 53.545,
+    "L_p98": 91.483,
+    "detail": 1.798,
     "edge": 0.505,
-    "tint_a": -2.103,
-    "tint_b": 2.896,
-    "warmth_b": 9.213
+    "tint_a": -2.689,
+    "tint_b": 2.479,
+    "warmth_b": 9.661
    },
    "before": {
     "C_mean": 9.482,
+    "C_p50": 8.095,
     "C_p95": 20.862,
     "L_mean": 83.075,
     "L_p2": 63.566,
@@ -1967,9 +2141,15 @@
     "tint_b": 4.176,
     "warmth_b": 6.354
    },
+   "chain": {
+    "C_p50": 12.369,
+    "L_p2": 53.547,
+    "L_p98": 91.697
+   },
    "correction": {
-    "black": 0.0,
-    "chroma": 1.45,
+    "black": -10.02,
+    "ceiling": 33.2,
+    "chroma": 1.528,
     "materials": {},
     "tint_a": 0.0,
     "tint_b": 0.0,
@@ -1979,36 +2159,38 @@
    "kind": "station",
    "matched_to": "world",
    "outliers_after": [
-    "C_p95",
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
+    "chain_C_p50",
+    "chain_L_p2",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 67.5,
-   "score_before": 63.1,
+   "score_after": 92.4,
+   "score_before": 68.2,
    "shipped": false,
    "source": "design/art/stations/pond-4/pond-4.png",
    "source_sha": "97acb60e07e88c5d"
   },
   "pond-5": {
    "after": {
-    "C_mean": 10.163,
-    "C_p95": 23.25,
-    "L_mean": 79.095,
+    "C_mean": 13.113,
+    "C_p50": 12.362,
+    "C_p95": 30.065,
+    "L_mean": 79.094,
     "L_p2": 53.55,
     "L_p98": 90.828,
-    "detail": 1.74,
+    "detail": 1.747,
     "edge": 0.513,
-    "tint_a": 1.152,
-    "tint_b": 4.573,
-    "warmth_b": 7.773
+    "tint_a": -0.288,
+    "tint_b": 3.753,
+    "warmth_b": 10.024
    },
    "before": {
     "C_mean": 7.009,
+    "C_p50": 6.596,
     "C_p95": 16.035,
     "L_mean": 83.624,
     "L_p2": 67.94,
@@ -2019,9 +2201,15 @@
     "tint_b": 4.356,
     "warmth_b": 5.361
    },
+   "chain": {
+    "C_p50": 12.369,
+    "L_p2": 53.547,
+    "L_p98": 91.697
+   },
    "correction": {
     "black": -14.39,
-    "chroma": 1.45,
+    "ceiling": 33.2,
+    "chroma": 1.875,
     "materials": {},
     "tint_a": 0.0,
     "tint_b": 0.0,
@@ -2031,18 +2219,17 @@
    "kind": "station",
    "matched_to": "world",
    "outliers_after": [
-    "C_p95",
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
-    "L_p2",
+    "chain_C_p50",
+    "chain_L_p2",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 66.8,
-   "score_before": 57.9,
+   "score_after": 92.1,
+   "score_before": 56.1,
    "shipped": false,
    "source": "design/art/stations/pond-5/pond-5.png",
    "source_sha": "fc025e66edbaf2c1"
@@ -2050,6 +2237,7 @@
   "pond-standin": {
    "after": {
     "C_mean": 21.712,
+    "C_p50": 20.436,
     "C_p95": 49.051,
     "L_mean": 70.965,
     "L_p2": 54.179,
@@ -2062,6 +2250,7 @@
    },
    "before": {
     "C_mean": 16.866,
+    "C_p50": 15.867,
     "C_p95": 38.083,
     "L_mean": 79.93,
     "L_p2": 70.179,
@@ -2072,8 +2261,10 @@
     "tint_b": 7.844,
     "warmth_b": -0.623
    },
+   "chain": null,
    "correction": {
     "black": -16.0,
+    "ceiling": 0.0,
     "chroma": 1.288,
     "materials": {},
     "tint_a": 0.0,
@@ -2099,6 +2290,7 @@
   "simit-1": {
    "after": {
     "C_mean": 34.526,
+    "C_p50": 37.248,
     "C_p95": 49.045,
     "L_mean": 73.034,
     "L_p2": 51.116,
@@ -2111,6 +2303,7 @@
    },
    "before": {
     "C_mean": 27.822,
+    "C_p50": 30.015,
     "C_p95": 39.52,
     "L_mean": 73.034,
     "L_p2": 51.116,
@@ -2121,8 +2314,10 @@
     "tint_b": 8.67,
     "warmth_b": 23.75
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.241,
     "materials": {},
     "tint_a": 0.0,
@@ -2152,6 +2347,7 @@
   "sun-glow": {
    "after": {
     "C_mean": 13.333,
+    "C_p50": 13.664,
     "C_p95": 15.718,
     "L_mean": 90.596,
     "L_p2": 88.78,
@@ -2164,6 +2360,7 @@
    },
    "before": {
     "C_mean": 13.333,
+    "C_p50": 13.664,
     "C_p95": 15.718,
     "L_mean": 90.596,
     "L_p2": 88.78,
@@ -2174,8 +2371,10 @@
     "tint_b": 11.838,
     "warmth_b": 13.014
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.0,
     "materials": {},
     "tint_a": 0.0,
@@ -2206,6 +2405,7 @@
   "terrace-v2": {
    "after": {
     "C_mean": 20.016,
+    "C_p50": 19.544,
     "C_p95": 26.287,
     "L_mean": 80.002,
     "L_p2": 54.269,
@@ -2218,6 +2418,7 @@
    },
    "before": {
     "C_mean": 13.804,
+    "C_p50": 13.479,
     "C_p95": 18.129,
     "L_mean": 85.712,
     "L_p2": 70.269,
@@ -2228,8 +2429,10 @@
     "tint_b": 11.337,
     "warmth_b": 12.685
    },
+   "chain": null,
    "correction": {
     "black": -16.0,
+    "ceiling": 0.0,
     "chroma": 1.45,
     "materials": {},
     "tint_a": 0.0,
@@ -2257,6 +2460,7 @@
   "windmill-1": {
    "after": {
     "C_mean": 35.666,
+    "C_p50": 40.156,
     "C_p95": 45.311,
     "L_mean": 76.886,
     "L_p2": 56.577,
@@ -2267,6 +2471,7 @@
    },
    "before": {
     "C_mean": 24.6,
+    "C_p50": 27.709,
     "C_p95": 31.249,
     "L_mean": 76.888,
     "L_p2": 56.577,
@@ -2277,8 +2482,10 @@
     "tint_b": 11.964,
     "warmth_b": 22.457
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.45,
     "materials": {},
     "tint_a": 0.0,
@@ -2305,19 +2512,19 @@
   },
   "windmill-2": {
    "after": {
-    "C_mean": 23.022,
-    "C_p95": 36.223,
-    "L_mean": 80.535,
+    "C_mean": 39.009,
+    "C_p50": 39.36,
+    "C_p95": 52.35,
+    "L_mean": 80.412,
     "L_p2": 60.363,
-    "L_p98": 91.924,
-    "detail": 1.811,
+    "L_p98": 91.79,
+    "detail": 1.834,
     "edge": 0.45,
-    "tint_a": 3.111,
-    "tint_b": 12.0,
-    "warmth_b": 21.146
+    "warmth_b": 36.12
    },
    "before": {
     "C_mean": 15.877,
+    "C_p50": 14.489,
     "C_p95": 24.982,
     "L_mean": 80.535,
     "L_p2": 60.363,
@@ -2328,9 +2535,15 @@
     "tint_b": 9.879,
     "warmth_b": 14.583
    },
+   "chain": {
+    "C_p50": 40.156,
+    "L_p2": 56.577,
+    "L_p98": 91.243
+   },
    "correction": {
     "black": 0.0,
-    "chroma": 1.45,
+    "ceiling": 45.3,
+    "chroma": 2.771,
     "materials": {},
     "tint_a": 0.0,
     "tint_b": 0.0,
@@ -2340,36 +2553,35 @@
    "kind": "station",
    "matched_to": "world",
    "outliers_after": [
-    "C_p95",
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
+    "chain_C_p50",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 75.8,
-   "score_before": 65.7,
+   "score_after": 88.1,
+   "score_before": 63.6,
    "shipped": false,
    "source": "design/art/stations/windmill-2/windmill-2.png",
    "source_sha": "e15380bf4b2c7fdb"
   },
   "windmill-3": {
    "after": {
-    "C_mean": 16.866,
-    "C_p95": 26.117,
-    "L_mean": 76.938,
-    "L_p2": 53.547,
+    "C_mean": 33.932,
+    "C_p50": 32.646,
+    "C_p95": 49.962,
+    "L_mean": 78.041,
+    "L_p2": 56.577,
     "L_p98": 90.783,
-    "detail": 2.385,
+    "detail": 2.268,
     "edge": 0.457,
-    "tint_a": 3.556,
-    "tint_b": 9.632,
-    "warmth_b": 15.49
+    "warmth_b": 31.21
    },
    "before": {
     "C_mean": 11.632,
+    "C_p50": 10.894,
     "C_p95": 18.012,
     "L_mean": 81.7,
     "L_p2": 66.356,
@@ -2380,9 +2592,15 @@
     "tint_b": 8.024,
     "warmth_b": 10.683
    },
+   "chain": {
+    "C_p50": 40.156,
+    "L_p2": 56.577,
+    "L_p98": 91.243
+   },
    "correction": {
-    "black": -12.81,
-    "chroma": 1.45,
+    "black": -9.78,
+    "ceiling": 45.3,
+    "chroma": 3.0,
     "materials": {},
     "tint_a": 0.0,
     "tint_b": 0.0,
@@ -2392,37 +2610,39 @@
    "kind": "station",
    "matched_to": "world",
    "outliers_after": [
-    "C_p95",
+    "chain_C_p50",
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
-    "L_p2",
+    "chain_C_p50",
+    "chain_L_p2",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 65.4,
-   "score_before": 58.1,
+   "score_after": 69.6,
+   "score_before": 53.5,
    "shipped": false,
    "source": "design/art/stations/windmill-3/windmill-3.png",
    "source_sha": "5daca251d910106d"
   },
   "windmill-4": {
    "after": {
-    "C_mean": 12.734,
-    "C_p95": 19.509,
-    "L_mean": 75.81,
-    "L_p2": 54.415,
-    "L_p98": 89.718,
-    "detail": 2.009,
+    "C_mean": 26.32,
+    "C_p50": 24.489,
+    "C_p95": 40.363,
+    "L_mean": 76.659,
+    "L_p2": 56.575,
+    "L_p98": 89.719,
+    "detail": 1.943,
     "edge": 0.458,
-    "tint_a": 3.705,
-    "tint_b": 8.607,
-    "warmth_b": 11.589
+    "tint_a": 6.032,
+    "tint_b": 11.921,
+    "warmth_b": 23.954
    },
    "before": {
     "C_mean": 8.782,
+    "C_p50": 8.163,
     "C_p95": 13.454,
     "L_mean": 82.113,
     "L_p2": 70.415,
@@ -2433,9 +2653,15 @@
     "tint_b": 7.807,
     "warmth_b": 7.993
    },
+   "chain": {
+    "C_p50": 40.156,
+    "L_p2": 56.577,
+    "L_p98": 91.243
+   },
    "correction": {
-    "black": -16.0,
-    "chroma": 1.45,
+    "black": -13.84,
+    "ceiling": 45.3,
+    "chroma": 3.0,
     "materials": {},
     "tint_a": 0.0,
     "tint_b": 0.0,
@@ -2445,37 +2671,39 @@
    "kind": "station",
    "matched_to": "world",
    "outliers_after": [
-    "C_p95",
+    "chain_C_p50",
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
-    "L_p2",
+    "chain_C_p50",
+    "chain_L_p2",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 62.2,
-   "score_before": 52.1,
+   "score_after": 64.7,
+   "score_before": 46.1,
    "shipped": false,
    "source": "design/art/stations/windmill-4/windmill-4.png",
    "source_sha": "c77c2681a606dfad"
   },
   "windmill-5": {
    "after": {
-    "C_mean": 10.418,
-    "C_p95": 15.625,
-    "L_mean": 76.084,
-    "L_p2": 55.912,
+    "C_mean": 21.467,
+    "C_p50": 20.682,
+    "C_p95": 32.324,
+    "L_mean": 76.344,
+    "L_p2": 56.572,
     "L_p98": 89.17,
-    "detail": 2.065,
+    "detail": 2.056,
     "edge": 0.461,
-    "tint_a": 4.168,
-    "tint_b": 8.483,
-    "warmth_b": 9.365
+    "tint_a": 6.234,
+    "tint_b": 11.139,
+    "warmth_b": 19.291
    },
    "before": {
     "C_mean": 7.185,
+    "C_p50": 6.894,
     "C_p95": 10.782,
     "L_mean": 82.38,
     "L_p2": 71.913,
@@ -2486,9 +2714,15 @@
     "tint_b": 6.318,
     "warmth_b": 6.459
    },
+   "chain": {
+    "C_p50": 40.156,
+    "L_p2": 56.577,
+    "L_p98": 91.243
+   },
    "correction": {
-    "black": -16.0,
-    "chroma": 1.45,
+    "black": -15.34,
+    "ceiling": 45.3,
+    "chroma": 3.0,
     "materials": {},
     "tint_a": 0.0,
     "tint_b": 0.0,
@@ -2498,18 +2732,18 @@
    "kind": "station",
    "matched_to": "world",
    "outliers_after": [
-    "C_p95",
+    "chain_C_p50",
     "edge"
    ],
    "outliers_before": [
-    "C_p95",
-    "L_p2",
+    "chain_C_p50",
+    "chain_L_p2",
     "edge"
    ],
    "ppu": 8.533,
    "reference": false,
-   "score_after": 60.2,
-   "score_before": 49.3,
+   "score_after": 63.0,
+   "score_before": 43.1,
    "shipped": false,
    "source": "design/art/stations/windmill-5/windmill-5.png",
    "source_sha": "2b39b888f828ae71"
@@ -2517,6 +2751,7 @@
   "windmill-standin": {
    "after": {
     "C_mean": 18.762,
+    "C_p50": 15.199,
     "C_p95": 49.057,
     "L_mean": 78.023,
     "L_p2": 41.63,
@@ -2529,6 +2764,7 @@
    },
    "before": {
     "C_mean": 15.366,
+    "C_p50": 12.448,
     "C_p95": 40.178,
     "L_mean": 82.214,
     "L_p2": 41.63,
@@ -2539,8 +2775,10 @@
     "tint_b": 7.848,
     "warmth_b": 13.561
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.221,
     "materials": {},
     "tint_a": 0.0,
@@ -2569,6 +2807,7 @@
   "workshop-1": {
    "after": {
     "C_mean": 36.793,
+    "C_p50": 39.248,
     "C_p95": 44.894,
     "L_mean": 74.923,
     "L_p2": 53.663,
@@ -2579,6 +2818,7 @@
    },
    "before": {
     "C_mean": 25.39,
+    "C_p50": 27.075,
     "C_p95": 30.961,
     "L_mean": 74.932,
     "L_p2": 53.663,
@@ -2589,8 +2829,10 @@
     "tint_b": 12.613,
     "warmth_b": 22.902
    },
+   "chain": null,
    "correction": {
     "black": 0.0,
+    "ceiling": 0.0,
     "chroma": 1.45,
     "materials": {},
     "tint_a": 0.0,
@@ -2618,6 +2860,7 @@
   "workshop-standin": {
    "after": {
     "C_mean": 36.425,
+    "C_p50": 36.864,
     "C_p95": 49.051,
     "L_mean": 70.592,
     "L_p2": 53.549,
@@ -2630,6 +2873,7 @@
    },
    "before": {
     "C_mean": 28.436,
+    "C_p50": 28.777,
     "C_p95": 38.293,
     "L_mean": 63.386,
     "L_p2": 40.379,
@@ -2640,8 +2884,10 @@
     "tint_b": -1.645,
     "warmth_b": 18.042
    },
+   "chain": null,
    "correction": {
     "black": 13.17,
+    "ceiling": 0.0,
     "chroma": 1.281,
     "materials": {},
     "tint_a": 0.0,
@@ -2668,7 +2914,7 @@
    "source_sha": "fcbdd2cbdc155dbd"
   }
  },
- "config_sha": "5e76a5ec8c2e97e3",
+ "config_sha": "72bb862bf68b5d41",
  "reference": {
   "char": {
    "C_p95": 43.005,

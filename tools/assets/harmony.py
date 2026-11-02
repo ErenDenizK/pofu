@@ -13,6 +13,13 @@ opaque pixels, at the same world scale:
   detail           detail density: mean |Laplacian| of lightness at display size (4 px per unit)
   materials        per-material hue and chroma where the config names one (copper on the çaydanlık)
 
+Station level chains (cay-1 ... cay-5) are also matched along the chain: every level was redrawn
+from its locked parent and locked again, so each level lost about 30 % chroma (the çay ocağı's
+median chroma fell 31 -> 11 from L1 to L5). A level's black point, white point and median chroma
+(C_p50) are matched to its chain's L1 as corrected, and the chroma correction may go as far as the
+chain needs. The pipeline's edit_chroma QA check stops new losses at promote time; harmony restores
+the chains already generated.
+
 The reference is the approved island take (ADR-0018's style target). A metric is an outlier when it
 is more than its tolerance away from the reference; the harmony score is 100 when everything
 matches and drops as metrics leave their tolerance. Whatever is measurable becomes a correction:
@@ -35,6 +42,7 @@ import hashlib
 import importlib.util
 import json
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -115,6 +123,18 @@ def catalog_sources(cfg: dict, shipped: dict[str, dict]) -> dict[str, dict]:
     return out
 
 
+def chain_of(name: str, cfg: dict) -> tuple[str, int] | None:
+    """(chain, level) for a station level such as cay-3, else None."""
+    spec = cfg.get("chains")
+    if not spec:
+        return None
+    m = re.match(spec["pattern"], name)
+    return (m.group("chain"), int(m.group("level"))) if m else None
+
+
+CHAIN_REPLACES = ("L_p2", "L_p98", "C_p95")
+
+
 def is_guarded(name: str, cfg: dict) -> bool:
     return any(fnmatch.fnmatch(name, pattern) for pattern in cfg["guard"]["assets"])
 
@@ -174,6 +194,7 @@ def measure(rgba: np.ndarray, ppu: float, display_ppu: float = 4.0, materials: d
         "L_p2": float(np.percentile(L, 2)),
         "L_p98": float(np.percentile(L, 98)),
         "C_mean": float(C.mean()),
+        "C_p50": float(np.percentile(C, 50)),
         "C_p95": float(np.percentile(C, 95)),
         "warmth_b": float(lab[:, 2].mean()),
     }
@@ -253,12 +274,19 @@ def reference_stats(stats: dict[str, dict], cfg: dict) -> dict[str, dict]:
 # Scoring
 # ---------------------------------------------------------------------------
 
-def deviations(stats: dict, ref: dict, cfg: dict, kind: str = "world") -> dict[str, float]:
-    """Each metric's distance from the reference in tolerances (signed)."""
+def deviations(stats: dict, ref: dict, cfg: dict, kind: str = "world", chain: dict | None = None) -> dict[str, float]:
+    """Each metric's distance from the reference in tolerances (signed). A chain level is matched
+    on value and chroma to its chain's L1 (`chain`) instead of the world reference."""
     out = {}
     for metric, spec in cfg["metrics"].items():
+        if chain is not None and metric in CHAIN_REPLACES:
+            continue
         if metric in stats and metric in ref:
             out[metric] = (stats[metric] - ref[metric]) / spec["tolerance"]
+    if chain is not None:
+        for metric, spec in cfg["chains"]["metrics"].items():
+            if metric in stats and metric in chain:
+                out[f"chain_{metric}"] = (stats[metric] - chain[metric]) / spec["tolerance"]
     for mname, m in stats.get("materials", {}).items():
         mat = cfg["materials"][mname]
         dh = (m["hue"] - mat["target_hue"] + 180) % 360 - 180
@@ -267,9 +295,9 @@ def deviations(stats: dict, ref: dict, cfg: dict, kind: str = "world") -> dict[s
     return out
 
 
-def score(stats: dict, ref: dict, cfg: dict, kind: str = "world") -> float:
+def score(stats: dict, ref: dict, cfg: dict, kind: str = "world", chain: dict | None = None) -> float:
     """100 when every metric matches; a metric one tolerance away counts 75, two 31, three 7."""
-    devs = deviations(stats, ref, cfg, kind)
+    devs = deviations(stats, ref, cfg, kind, chain)
     if not devs:
         return 100.0
     total = weight = 0.0
@@ -280,15 +308,15 @@ def score(stats: dict, ref: dict, cfg: dict, kind: str = "world") -> float:
     return round(100 * total / weight, 1)
 
 
-def outliers(stats: dict, ref: dict, cfg: dict, kind: str = "world") -> list[str]:
-    return sorted(m for m, d in deviations(stats, ref, cfg, kind).items() if abs(d) > 1)
+def outliers(stats: dict, ref: dict, cfg: dict, kind: str = "world", chain: dict | None = None) -> list[str]:
+    return sorted(m for m, d in deviations(stats, ref, cfg, kind, chain).items() if abs(d) > 1)
 
 
 # ---------------------------------------------------------------------------
 # Correcting
 # ---------------------------------------------------------------------------
 
-IDENTITY = {"black": 0.0, "white": 0.0, "chroma": 1.0, "tint_a": 0.0, "tint_b": 0.0, "materials": {}}
+IDENTITY = {"black": 0.0, "white": 0.0, "chroma": 1.0, "ceiling": 0.0, "tint_a": 0.0, "tint_b": 0.0, "materials": {}}
 
 
 def is_identity(corr: dict) -> bool:
@@ -298,7 +326,7 @@ def is_identity(corr: dict) -> bool:
     )
 
 
-def plan(stats: dict, ref: dict, cfg: dict, guarded: bool, kind: str = "world") -> dict:
+def plan(stats: dict, ref: dict, cfg: dict, guarded: bool, kind: str = "world", chain: dict | None = None) -> dict:
     """The correction that brings `stats` within tolerance of `ref`, as far as colour can."""
     corr = json.loads(json.dumps(IDENTITY))
     if guarded:
@@ -314,11 +342,24 @@ def plan(stats: dict, ref: dict, cfg: dict, guarded: bool, kind: str = "world") 
             return False
         return metric in stats and metric in ref and abs(stats[metric] - ref[metric]) > tol[metric]
 
-    if needed("L_p2"):
+    if chain is not None:
+        # A chain level: value and chroma back to its L1.
+        ctol = {m: s["tolerance"] for m, s in cfg["chains"]["metrics"].items()}
+        if abs(stats["L_p2"] - chain["L_p2"]) > ctol["L_p2"]:
+            corr["black"] = round(float(np.clip((chain["L_p2"] - stats["L_p2"]) * k, -c["max_black_shift"], c["max_black_shift"])), 2)
+        if abs(stats["L_p98"] - chain["L_p98"]) > ctol["L_p98"]:
+            corr["white"] = round(float(np.clip((chain["L_p98"] - stats["L_p98"]) * k, -c["max_white_shift"], c["max_white_shift"])), 2)
+        if abs(stats["C_p50"] - chain["C_p50"]) > ctol["C_p50"]:
+            lo, hi = cfg["chains"]["chroma_scale"]
+            corr["chroma"] = round(float(np.clip(1 + (chain["C_p50"] / max(stats["C_p50"], 1e-3) - 1) * k, lo, hi)), 3)
+            # A uniform scale would push the parts that kept their colour (a
+            # tiled roof) past the L1's most colourful; a soft ceiling there.
+            corr["ceiling"] = round(float(chain["C_p95"]), 1)
+    if chain is None and needed("L_p2"):
         corr["black"] = round(float(np.clip((ref["L_p2"] - stats["L_p2"]) * k, -c["max_black_shift"], c["max_black_shift"])), 2)
-    if needed("L_p98"):
+    if chain is None and needed("L_p98"):
         corr["white"] = round(float(np.clip((ref["L_p98"] - stats["L_p98"]) * k, -c["max_white_shift"], c["max_white_shift"])), 2)
-    if needed("C_p95"):
+    if chain is None and needed("C_p95"):
         lo, hi = c["chroma_scale"]
         corr["chroma"] = round(float(np.clip(1 + (ref["C_p95"] / max(stats["C_p95"], 1e-3) - 1) * k, lo, hi)), 3)
     for axis in ("a", "b"):
@@ -354,6 +395,8 @@ def apply(rgba: np.ndarray, corr: dict, src: dict | None = None, materials: dict
         L = np.clip(L, 0, 100)
     if corr["chroma"] != 1:
         C = C * corr["chroma"]
+        if corr.get("ceiling"):
+            C = sl.soft_ceiling(C, corr["ceiling"], corr["ceiling"] + 10)
     for mname, m in corr["materials"].items():
         w = material_weight(lab, materials[mname], materials[mname].get("_region"))
         H = (H + m["hue_shift"] * w) % 360
@@ -404,11 +447,23 @@ def build(cfg: dict | None = None) -> tuple[dict, dict]:
     refs = reference_stats(before, cfg)
     reference_names = {n for g, names in cfg["reference"].items() if not g.startswith("$") for n in names}
     assets = {}
-    for name, src in sources.items():
+
+    def chain_ref(name):
+        """The chain's L1 as corrected, for a level above 1."""
+        cl = chain_of(name, cfg)
+        if cl is None or cl[1] <= 1:
+            return None
+        first = f"{cl[0]}-1"
+        return assets[first]["after"] if first in assets else None
+
+    order = sorted(sources, key=lambda n: (chain_of(n, cfg) or ("", 0))[1])
+    for name in order:
+        src = sources[name]
         guarded = is_guarded(name, cfg)
         kind = src["kind"]
         ref = refs[reference_group(kind, cfg)]
-        corr = plan(before[name], ref, cfg, guarded, kind)
+        chain = chain_ref(name)
+        corr = plan(before[name], ref, cfg, guarded, kind, chain)
         after_img = apply(images[name]["before"], corr, before[name], mats[name])
         images[name]["after"] = after_img
         after = before[name] if is_identity(corr) else measure(after_img, src["ppu"], cfg["display_ppu"], mats[name])
@@ -421,14 +476,16 @@ def build(cfg: dict | None = None) -> tuple[dict, dict]:
             "guarded": guarded,
             "reference": name in reference_names,
             "matched_to": reference_group(kind, cfg),
+            "chain": {k: chain[k] for k in cfg["chains"]["metrics"]} if chain else None,
             "before": before[name],
-            "score_before": score(before[name], ref, cfg, kind),
-            "outliers_before": outliers(before[name], ref, cfg, kind),
+            "score_before": score(before[name], ref, cfg, kind, chain),
+            "outliers_before": outliers(before[name], ref, cfg, kind, chain),
             "correction": corr,
             "after": after,
-            "score_after": score(after, ref, cfg, kind),
-            "outliers_after": outliers(after, ref, cfg, kind),
+            "score_after": score(after, ref, cfg, kind, chain),
+            "outliers_after": outliers(after, ref, cfg, kind, chain),
         }
+    assets = {name: assets[name] for name in sources}
     manifest = {
         "$note": "Generated by tools/assets/harmony.py measure. Do not edit; change design/art/harmony/config.json and re-run. preblur.py app bakes each correction into the app's sprites.",
         "version": 1,
@@ -533,13 +590,13 @@ def sheet(manifest: dict, images: dict, cfg: dict, path: Path, zooms: dict | Non
         d.text((x, y + 30), f"score {e['score_before']:.0f} -> {e['score_after']:.0f}  {tag}", fill=(60, 60, 60), font=small)
         ly = y + 56
         ref = manifest["reference"][e["matched_to"]]
-        devs_b = deviations(e["before"], ref, cfg, e["kind"])
-        devs_a = deviations(e["after"], ref, cfg, e["kind"])
+        devs_b = deviations(e["before"], ref, cfg, e["kind"], e.get("chain"))
+        devs_a = deviations(e["after"], ref, cfg, e["kind"], e.get("chain"))
         for metric in list(cfg["metrics"]) + [k for k in devs_b if k not in cfg["metrics"]]:
             if metric not in devs_b:
                 continue
-            vb = e["before"].get(metric)
-            va = e["after"].get(metric)
+            vb = e["before"].get(metric.removeprefix("chain_"))
+            va = e["after"].get(metric.removeprefix("chain_"))
             if vb is None:
                 mname, part = metric.rsplit("_", 1)
                 vb = e["before"]["materials"][mname][part]
