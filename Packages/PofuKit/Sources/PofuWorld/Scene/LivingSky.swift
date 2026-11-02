@@ -244,9 +244,9 @@ struct CloudSea: View {
                         // under the island reads as a sea of clouds in
                         // depth, not a flat bank.
                         paintedRow(width: Double(size.width), time: time, scale: 0.62, speed: 0.6, phase: 0.3)
-                            .offset(x: offset.width * 1.05, y: CGFloat(-rise * 0.62) + offset.height * 0.32)
+                            .offset(x: offset.width * 1.05, y: CGFloat(-rise - 40) + offset.height * 0.32)
                         paintedRow(width: Double(size.width), time: time, scale: 0.8, speed: 0.9, phase: 0.65)
-                            .offset(x: offset.width * 1.2, y: CGFloat(-rise * 0.25) + offset.height * 0.38)
+                            .offset(x: offset.width * 1.2, y: CGFloat(-rise * 0.5) + offset.height * 0.38)
                     }
                     strip(copies: copies)
                         .offset(x: CGFloat(-drift) + offset.width * 1.25, y: offset.height * 0.4)
