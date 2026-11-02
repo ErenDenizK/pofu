@@ -1,0 +1,96 @@
+{
+  "job": "pofu-eyes-happy",
+  "batch": "batch-06-pofu-rig-pilot",
+  "asset": "char__pofu-eyes-happy",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T18:07:58+00:00",
+  "image": "design/art/masters/pofu-eyes-happy/pofu-eyes-happy.webp",
+  "raw": "design/art/masters/pofu-eyes-happy/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "fcec32b98755de03",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached hamster. Change only his eyes: make both eyes\nhappy closed arcs, the classic smiling ^ shape. Each eye becomes a\nthick, soft, dark espresso-brown upward-curved arc at the height\nof the top of the original eye, with soft cream fur below it where\nthe eye was. The cheeks lift very slightly. Nothing else changes.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: eyelashes, tears, eyebrows, a changed mouth, text.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T18:07:17+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 50 (R1 51)",
+        "value": 50.2
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 69 (R1 59)",
+        "value": 69.3
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 4.8 (R1 5.3)",
+        "value": 4.81
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.1, p95 9.0, off-palette 3.2% (top: #EE7766 (0.4%), #EE9955 (0.4%))",
+        "value": 2.1049
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.5% of the height (contract 88%)",
+        "value": 0.8945
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "94% of the parent level unchanged",
+        "value": 0.9401
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.95 of the parent level (drift compounds along a chain)",
+        "value": 0.9475
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both takes have warnings only; Pofu is never locked, so take 1 wins the zero-lock-load tie. Palette drift warning retained."
+}

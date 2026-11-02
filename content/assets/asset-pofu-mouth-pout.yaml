@@ -13,7 +13,8 @@ links:
   variant_of:
   - asset-pofu-base-v1
 art:
-  images: []
+  images:
+  - design/art/masters/pofu-mouth-pout/pofu-mouth-pout.webp
   jobs:
   - batch-06-pofu-rig-pilot:pofu-mouth-pout
 sources:

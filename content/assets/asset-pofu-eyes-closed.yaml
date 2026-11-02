@@ -13,7 +13,8 @@ links:
   variant_of:
   - asset-pofu-base-v1
 art:
-  images: []
+  images:
+  - design/art/masters/pofu-eyes-closed/pofu-eyes-closed.webp
   jobs:
   - batch-06-pofu-rig-pilot:pofu-eyes-closed
 sources:
