@@ -1,0 +1,286 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%@ seeds an hour": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saatte %@ çekirdek"
+          }
+        }
+      }
+    },
+    "%@ · level %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · Seviye %2$lld"
+          }
+        }
+      }
+    },
+    "%lld more seeds": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld çekirdek daha"
+          }
+        }
+      }
+    },
+    "Build spot": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İnşa yeri"
+          }
+        }
+      }
+    },
+    "Build · %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İnşa et · %lld"
+          }
+        }
+      }
+    },
+    "Building opens soon.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İnşa etmek yakında açılıyor."
+          }
+        }
+      }
+    },
+    "Close": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kapat"
+          }
+        }
+      }
+    },
+    "Every level is built.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tüm seviyeler tamam."
+          }
+        }
+      }
+    },
+    "Fındık's": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fındık'ın"
+          }
+        }
+      }
+    },
+    "Go to the stall": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tezgâha git"
+          }
+        }
+      }
+    },
+    "Home": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ev"
+          }
+        }
+      }
+    },
+    "Island": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ada"
+          }
+        }
+      }
+    },
+    "Level %lld of %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seviye %1$lld / %2$lld"
+          }
+        }
+      }
+    },
+    "Lily pond": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nilüferli gölet"
+          }
+        }
+      }
+    },
+    "Map": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harita"
+          }
+        }
+      }
+    },
+    "Mochi's": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mochi'nin"
+          }
+        }
+      }
+    },
+    "Need a screw? I have a thousand.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vida mı lazım? Bende bin tane var."
+          }
+        }
+      }
+    },
+    "Not open yet": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz açılmadı"
+          }
+        }
+      }
+    },
+    "Pofu's": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pofu'nun"
+          }
+        }
+      }
+    },
+    "Sit a while once the stools arrive.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabureler gelince otur biraz."
+          }
+        }
+      }
+    },
+    "Steeped just right, in a tulip glass.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İnce belli bardakta, tavşan kanı."
+          }
+        }
+      }
+    },
+    "Sunflower garden": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayçiçeği bahçesi"
+          }
+        }
+      }
+    },
+    "Tap tap. Fixing something.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tık tık. Bir şey tamir ediyorum."
+          }
+        }
+      }
+    },
+    "Tea stall": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çay ocağı"
+          }
+        }
+      }
+    },
+    "The tea has brewed. A glass?": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çay demlendi. Bir bardak?"
+          }
+        }
+      }
+    },
+    "The weathervane will turn soon.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rüzgâr gülü yakında döner."
+          }
+        }
+      }
+    },
+    "Windmill": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yel değirmeni"
+          }
+        }
+      }
+    },
+    "Workshop": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atölye"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
