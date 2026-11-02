@@ -8,7 +8,12 @@
 # take and master records them. `kind` must match the backend:
 #   chatgpt-plan -> --backend codex (or manual)    api -> --backend openai-api
 account:
-  owner: "Eren Deniz Kuyucaklıoğlu (founder)"        # e.g. "Eren Deniz Kuyucaklıoğlu (founder)"
+  # Provenance must be truthful. The founder generates on a family member's
+  # ChatGPT plan with that person's permission (founder's decision,
+  # 2026-11-02). Before the App Store launch, either secure a written
+  # assignment of the outputs or regenerate the shipped masters on the
+  # founder's own plan (docs/roadmap.md, Phase 6).
+  owner: "Founder's uncle's ChatGPT plan, used by the founder with permission"
   kind: "chatgpt-plan"         # chatgpt-plan | api
 
 paths:
