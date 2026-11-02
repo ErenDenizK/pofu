@@ -27,7 +27,10 @@ struct DepthMotionTests {
     @Test func theFlightStartsAndEndsWithoutParallax() {
         // Velocity, not displacement: nothing jumps on the first frame or
         // stays offset after the springs rest.
-        #expect(flight(at: 0).motion.speed < 0.2)
+        // The first frame's speed is the springs' first step: small next to
+        // the flight's peak (the large plate's Island framing made the
+        // flight about twice as long in ln s, so the bound is relative).
+        #expect(flight(at: 0).motion.speed < flight(at: 0.3).motion.speed * 0.4)
         #expect(flight(at: 3).motion == .still)
     }
 

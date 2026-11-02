@@ -189,6 +189,37 @@ public final class IslandSceneModel {
         revision &+= 1
     }
 
+    /// Holds the camera `seconds` into a pan from one station's focus to
+    /// another's, still and without a sheet: a frame of the move, for the
+    /// screenshots of depth in motion across the island. Any interaction
+    /// lets go of the hold.
+    public func holdStationPan(from start: StationID, to target: StationID, at seconds: Double) {
+        closeSurfaces()
+        let width = engine.rig.rail.width, height = engine.rig.rail.height
+        guard
+            let a = IslandLayout.stationAnchors[start],
+            let b = IslandLayout.stationAnchors[target],
+            let from = IslandLayout.stationFocusPose(start, width: width, height: height, safeTop: engine.safeTop),
+            let to = IslandLayout.stationFocusPose(target, width: width, height: height, safeTop: engine.safeTop)
+        else { return }
+        engine.rig.jump(to: .island)
+        engine.rig.focus(pose: from, lens: Lens.station(depth: IslandLayout.depth(ofY: a.y)))
+        engine.rig.snapToTargets()
+        engine.rig.focus(pose: to, lens: Lens.station(depth: IslandLayout.depth(ofY: b.y)))
+        let step = 1.0 / 120
+        var t = 0.0
+        while t + 1e-9 < seconds {
+            engine.rig.advance(min(step, seconds - t))
+            t += step
+        }
+        focus = .station(target)
+        framing = .island
+        projectedFraming = .island
+        engine.isHeld = true
+        engine.lastDate = nil
+        revision &+= 1
+    }
+
     /// One framing in (Map → Island → Home); at Home, the Island (§1.4).
     public func stepIn() {
         go(to: framing.stepIn ?? .island)
