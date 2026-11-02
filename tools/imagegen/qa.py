@@ -46,6 +46,9 @@ DEFAULT_LIMITS = {
     "edit_chroma": {"warn": 0.85, "fail": 0.70},       # child / parent median chroma on the kept area
     "harmony": {"warn": 70.0, "fail": 0.0},            # harmony score (tools/assets/harmony.py): advisory, harmony corrects
     "depth_ratio": {"warn": 0.32, "fail": 0.42},       # island earth depth / width
+    # The other side (look round 2: "too squashed"): an earth body too thin to
+    # read as soil and rock. Off by default; plate jobs set it.
+    "depth_floor": {"warn": 0.0, "fail": 0.0},
     "lawn_chroma": {"warn": 38.0, "fail": 46.0},       # p95 chroma of lawn greens
     "magenta_px": {"warn": 40, "fail": 300},           # guide remnants (pixels at 1024)
 }
@@ -522,7 +525,11 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
     if kind == "world":
         ratio = island_depth_ratio(locked)
         if ratio is not None:
-            checks.append(Check("depth_ratio", grade(ratio, lim["depth_ratio"]), f"earth depth / width {ratio:.2f} (target <= 0.30)", ratio))
+            checks.append(Check("depth_ratio", grade(ratio, lim["depth_ratio"]),
+                                f"earth depth / width {ratio:.2f} (at most {lim['depth_ratio']['warn']:.2f})", ratio))
+            if lim["depth_floor"]["warn"] > 0:
+                checks.append(Check("depth_floor", grade(ratio, lim["depth_floor"], higher_is_worse=False),
+                                    f"earth depth / width {ratio:.2f} (at least {lim['depth_floor']['warn']:.2f}: visible soil and rock)", ratio))
         lc = lawn_chroma(locked)
         if lc is not None:
             checks.append(Check("lawn_chroma", grade(lc, lim["lawn_chroma"]), f"lawn chroma p95 {lc:.0f} (palette meadow 38)", lc))

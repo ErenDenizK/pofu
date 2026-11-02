@@ -137,6 +137,20 @@ class LookTests(unittest.TestCase):
         self.assertLess(qa.island_depth_ratio(island(200)), qa.island_depth_ratio(island(400)))
         self.assertGreater(qa.island_depth_ratio(island(400)), 0.32)
 
+    def test_a_plate_job_can_flag_a_squashed_island(self):
+        # Look round 2: the founder found the plate too squashed; a job's
+        # depth_floor makes a too-thin earth body a QA warning or failure.
+        im = canvas(1536, 1024)
+        d = ImageDraw.Draw(im)
+        d.ellipse((200, 520, 1336, 640), fill=(240, 191, 134, 255))  # a thin earth body
+        d.ellipse((200, 300, 1336, 560), fill=(140, 192, 132, 255))  # lawn
+        flat = np.asarray(im, dtype=np.float64) / 255.0
+        default = {c.name for c in qa.run_checks("world", flat, flat, ["world-day"])}
+        self.assertNotIn("depth_floor", default)
+        checks = qa.run_checks("world", flat, flat, ["world-day"], {"depth_floor": {"warn": 0.26, "fail": 0.2}})
+        floor = next(c for c in checks if c.name == "depth_floor")
+        self.assertEqual(floor.status, "fail")
+
 
 class IconTests(unittest.TestCase):
     def icon(self, stem: bool, dark_accent: bool) -> np.ndarray:
