@@ -1,0 +1,126 @@
+batch: batch-04-sky
+contact_sheet: design/art/takes/batch-04-sky/cloud-4/contact.jpg
+jobs:
+  cloud-4:
+    pick: 1
+    note: auto-picked by QA; founder review pending
+    takes:
+      t1:
+        qa: pass
+        summary: all pass
+      t2:
+        qa: pass
+        summary: all pass
+    approved:
+      take: 1
+      at: '2026-11-02T14:50:56+00:00'
+    qa_reports:
+      world__cloud-4--t2:
+        job: cloud-4
+        take: 2
+        status: pass
+        preset: soft-lock
+        checks:
+        - check: transparency
+          status: pass
+          message: source has an alpha channel
+        - check: canvas
+          status: pass
+          message: 1536x1024
+        - check: chroma_ceiling
+          status: pass
+          message: chroma p95 10 (R1 51)
+          value: 9.6
+        - check: value_floor
+          status: pass
+          message: lightness p5 86 (R1 59)
+          value: 85.5
+        - check: detail_budget
+          status: pass
+          message: detail at display size 0.6 (R1 5.3)
+          value: 0.61
+        - check: lock_load
+          status: pass
+          message: the lock moved colors by mean dE 2.8
+          value: 2.7517
+        - check: no_guide_magenta
+          status: pass
+          message: 0 guide-magenta pixels (per 1024^2)
+          value: 0.0
+        - check: palette_drift
+          status: pass
+          message: mean dE 1.0, p95 2.3, off-palette 0.0%
+          value: 1.0384
+        info:
+          metrics_raw:
+            L_p5: 85.8
+            L_p50: 93.3
+            L_p95: 97.1
+            C_p50: 8.8
+            C_p95: 12.9
+            C_p99: 14.8
+            detail: 0.84
+          metrics_locked:
+            L_p5: 85.5
+            L_p50: 91.7
+            L_p95: 95.0
+            C_p50: 6.5
+            C_p95: 9.6
+            C_p99: 10.5
+            detail: 0.61
+        fingerprint: ed73916335c7ee4f
+      world__cloud-4--t1:
+        job: cloud-4
+        take: 1
+        status: pass
+        preset: soft-lock
+        checks:
+        - check: transparency
+          status: pass
+          message: source has an alpha channel
+        - check: canvas
+          status: pass
+          message: 1536x1024
+        - check: chroma_ceiling
+          status: pass
+          message: chroma p95 10 (R1 51)
+          value: 9.6
+        - check: value_floor
+          status: pass
+          message: lightness p5 86 (R1 59)
+          value: 85.5
+        - check: detail_budget
+          status: pass
+          message: detail at display size 0.6 (R1 5.3)
+          value: 0.59
+        - check: lock_load
+          status: pass
+          message: the lock moved colors by mean dE 2.7
+          value: 2.696
+        - check: no_guide_magenta
+          status: pass
+          message: 0 guide-magenta pixels (per 1024^2)
+          value: 0.0
+        - check: palette_drift
+          status: pass
+          message: mean dE 1.0, p95 1.9, off-palette 0.0%
+          value: 0.9793
+        info:
+          metrics_raw:
+            L_p5: 85.6
+            L_p50: 92.4
+            L_p95: 96.0
+            C_p50: 9.1
+            C_p95: 12.9
+            C_p99: 14.0
+            detail: 0.8
+          metrics_locked:
+            L_p5: 85.5
+            L_p50: 91.0
+            L_p95: 94.6
+            C_p50: 6.7
+            C_p95: 9.6
+            C_p99: 10.2
+            detail: 0.59
+        fingerprint: ed73916335c7ee4f
+    upload_note: raw.png not uploaded (over 600 KB); the q90 takes are the record
