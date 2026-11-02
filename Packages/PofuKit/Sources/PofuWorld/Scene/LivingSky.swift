@@ -243,9 +243,9 @@ struct CloudSea: View {
                         // smaller and slower toward the back, so the band
                         // under the island reads as a sea of clouds in
                         // depth, not a flat bank.
-                        paintedRow(width: Double(size.width), time: time, scale: 0.62, speed: 0.6, phase: 0.3)
+                        paintedRow(width: Double(size.width), time: time, scale: 0.62, speed: 0.6, phase: 0.3, fades: true)
                             .offset(x: offset.width * 1.05, y: CGFloat(-rise - 40) + offset.height * 0.32)
-                        paintedRow(width: Double(size.width), time: time, scale: 0.8, speed: 0.9, phase: 0.65)
+                        paintedRow(width: Double(size.width), time: time, scale: 0.8, speed: 0.9, phase: 0.65, fades: true)
                             .offset(x: offset.width * 1.2, y: CGFloat(-rise * 0.5) + offset.height * 0.38)
                     }
                     strip(copies: copies)
@@ -277,7 +277,9 @@ struct CloudSea: View {
     /// The painted cloud-sea row: the master tinted by the hour's sea light,
     /// drifting a little faster than the procedural bank behind it.
     @ViewBuilder
-    private func paintedRow(width: Double, time: Double, scale: Double = 1, speed: Double = 1.3, phase: Double = 0) -> some View {
+    /// `fades`: the row's bottom melts into the row in front of it (the
+    /// master's bottom edge is a hard cut).
+    private func paintedRow(width: Double, time: Double, scale: Double = 1, speed: Double = 1.3, phase: Double = 0, fades: Bool = false) -> some View {
         if let box = WorldArt.sprite("cloud-sea")?.sharp {
             let w = Self.paintedWidth * scale
             let h = w * box.height / box.width
@@ -296,6 +298,17 @@ struct CloudSea: View {
                 }
             }
             .colorMultiply(colours.light.color)
+            .mask {
+                LinearGradient(
+                    stops: [
+                        .init(color: .white, location: 0),
+                        .init(color: .white, location: fades ? 0.45 : 1),
+                        .init(color: .white.opacity(fades ? 0 : 1), location: 1),
+                    ],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            }
             .offset(x: CGFloat(-drift - 40))
             .allowsHitTesting(false)
         }
