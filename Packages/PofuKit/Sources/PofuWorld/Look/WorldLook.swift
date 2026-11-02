@@ -1,6 +1,6 @@
 import Foundation
 
-/// The world scene's look features, as flags (look-dev A, B, C). They
+/// The world scene's look features, as flags (look-dev A, B). They
 /// default to on in the world scene only; the UI around it never reads
 /// them. Screenshots and the debug overlay switch them to compare.
 public struct WorldLook: Hashable, Sendable {
@@ -20,8 +20,6 @@ public struct WorldLook: Hashable, Sendable {
     /// Painted HD-2D lite: bloom, light shafts, ambient particles and the
     /// stronger tilt-shift. The vignette belongs to the grade.
     public var hd2d: Bool
-    /// The terrarium's glass rim at the Island and Map framings.
-    public var terrarium: Bool
     /// A fixed local hour (screenshots); `nil` follows the world's clock.
     public var hourOverride: Double?
     /// The frame-time counter in a corner (debug).
@@ -31,14 +29,12 @@ public struct WorldLook: Hashable, Sendable {
         art: ArtSet = .lockLight,
         grade: Bool = true,
         hd2d: Bool = true,
-        terrarium: Bool = true,
         hourOverride: Double? = nil,
         frameMeter: Bool = false
     ) {
         self.art = art
         self.grade = grade
         self.hd2d = hd2d
-        self.terrarium = terrarium
         self.hourOverride = hourOverride
         self.frameMeter = frameMeter
     }
@@ -47,7 +43,7 @@ public struct WorldLook: Hashable, Sendable {
     public static let standard = WorldLook()
 
     /// The look before look-dev: the soft-lock art and nothing else.
-    public static let legacy = WorldLook(art: .softLock, grade: false, hd2d: false, terrarium: false)
+    public static let legacy = WorldLook(art: .softLock, grade: false, hd2d: false)
 }
 
 extension WorldArt {

@@ -2,8 +2,8 @@
 import PofuCore
 import SwiftUI
 
-// The world's look, drawn (look-dev A, B, C): the runtime grade, the
-// painted HD-2D lite layers, and the terrarium's glass rim. Every layer
+// The world's look, drawn (look-dev A, B): the runtime grade and the
+// painted HD-2D lite layers. Every layer
 // here is either a Metal pass over the world layer or a cheap gradient
 // layer; all of them render only when the scene's timeline does, so a
 // settled world is a cached frame and costs nothing.
@@ -17,7 +17,7 @@ extension EnvironmentValues {
 
 /// Access to PofuWorld's Metal shaders (`WorldShaders.metal`). Like
 /// `CompanionShaders`, the compiled library exists only in Xcode builds;
-/// without it the grade and the rim are skipped.
+/// without it the grade is skipped.
 enum WorldShaders {
     static let isAvailable: Bool =
         Bundle.module.url(forResource: "default", withExtension: "metallib") != nil
@@ -31,13 +31,6 @@ enum WorldShaders {
             .float3(g.gain.r, g.gain.g, g.gain.b),
             .float4(g.contrast, g.pivot, g.saturation, g.vignette),
             .float2(size.width, size.height),
-        ])
-    }
-
-    static func terrariumRim(size: CGSize, cornerRadius: Double, width: Double, strength: Double, maxOffset: Double) -> Shader {
-        Shader(function: ShaderFunction(library: library, name: "pofuTerrariumRim"), arguments: [
-            .float2(size.width, size.height),
-            .float4(cornerRadius, width, strength, maxOffset),
         ])
     }
 }
@@ -276,84 +269,6 @@ struct HD2DLayer: View {
         }
         let n = Double(i * 31 + salt * 977)
         return (h(n * 12.9898), h(n * 78.233 + 1), h(n * 39.425 + 2))
-    }
-}
-
-// MARK: - The terrarium
-
-/// The terrarium's rim: the world seen through the curved edge of a glass
-/// that lives inside the iPhone. A Metal pass bends the world at the
-/// screen's edges and a thin lip of system Liquid Glass sits on top, so
-/// the terrarium is made of the same glass as iOS itself.
-struct TerrariumRim: ViewModifier {
-    var strength: Double
-    var isEnabled: Bool
-
-    static let cornerRadius = 56.0
-    static let width = 26.0
-    static let maxOffset = 9.0
-
-    func body(content: Content) -> some View {
-        let on = isEnabled && strength > 0.01
-        let strength = strength
-        let shaderOn = on && WorldShaders.isAvailable
-        let corner = Self.cornerRadius, width = Self.width, maxOffset = Self.maxOffset
-        content
-            .visualEffect { view, proxy in
-                view.layerEffect(
-                    WorldShaders.terrariumRim(
-                        size: proxy.size,
-                        cornerRadius: corner,
-                        width: width,
-                        strength: strength,
-                        maxOffset: maxOffset
-                    ),
-                    maxSampleOffset: CGSize(width: maxOffset * 1.2, height: maxOffset * 1.2),
-                    isEnabled: shaderOn
-                )
-            }
-            .overlay {
-                if on, strength > 0.5 {
-                    TerrariumLip(cornerRadius: Self.cornerRadius)
-                        .opacity(strength)
-                        .ignoresSafeArea()
-                        .allowsHitTesting(false)
-                        .accessibilityHidden(true)
-                }
-            }
-    }
-}
-
-/// The terrarium's lip: four thin capsules of system Liquid Glass along
-/// the screen's straight edges, clear of the rounded corners where the
-/// Metal rim does the bending. (A ring-shaped glass is not expressible:
-/// glass fills its shape's whole outline, holes and all.)
-struct TerrariumLip: View {
-    var cornerRadius: Double
-    var inset: Double = 3
-    var thickness: Double = 4
-
-    var body: some View {
-        GeometryReader { proxy in
-            let w = proxy.size.width, h = proxy.size.height
-            let run = cornerRadius + 6
-            ZStack(alignment: .topLeading) {
-                strip(width: w - 2 * run, height: thickness)
-                    .position(x: w / 2, y: inset + thickness / 2)
-                strip(width: w - 2 * run, height: thickness)
-                    .position(x: w / 2, y: h - inset - thickness / 2)
-                strip(width: thickness, height: h - 2 * run)
-                    .position(x: inset + thickness / 2, y: h / 2)
-                strip(width: thickness, height: h - 2 * run)
-                    .position(x: w - inset - thickness / 2, y: h / 2)
-            }
-        }
-    }
-
-    private func strip(width: Double, height: Double) -> some View {
-        Color.clear
-            .frame(width: max(width, 0), height: max(height, 0))
-            .glassEffect(.clear, in: Capsule(style: .continuous))
     }
 }
 #endif

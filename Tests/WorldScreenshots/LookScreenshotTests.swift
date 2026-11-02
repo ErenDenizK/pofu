@@ -20,15 +20,13 @@ final class LookScreenshotTests: XCTestCase {
     private let variants: [Variant] = [
         Variant(id: "1-softlock", title: "1 · soft-lock, no grade", look: .legacy.with(hour: 12)),
         Variant(id: "2-lightlock-day", title: "2 · lock-light + day grade",
-                look: WorldLook(grade: true, hd2d: false, terrarium: false, hourOverride: 12)),
+                look: WorldLook(grade: true, hd2d: false, hourOverride: 12)),
         Variant(id: "3-hd2d-golden", title: "3 · + HD-2D lite, golden hour",
-                look: WorldLook(grade: true, hd2d: true, terrarium: false, hourOverride: 18.5)),
+                look: WorldLook(grade: true, hd2d: true, hourOverride: 18.5)),
         Variant(id: "4-hd2d-night", title: "4 · + HD-2D lite, night",
-                look: WorldLook(grade: true, hd2d: true, terrarium: false, hourOverride: 22)),
+                look: WorldLook(grade: true, hd2d: true, hourOverride: 22)),
         Variant(id: "5-unwell", title: "5 · unwell grade (day)",
-                look: WorldLook(grade: true, hd2d: true, terrarium: false, hourOverride: 12), wellbeing: 25),
-        Variant(id: "6-terrarium", title: "6 · + terrarium rim (day)",
-                look: WorldLook(grade: true, hd2d: true, terrarium: true, hourOverride: 12)),
+                look: WorldLook(grade: true, hd2d: true, hourOverride: 12), wellbeing: 25),
     ]
 
     @MainActor
@@ -85,7 +83,7 @@ final class LookScreenshotTests: XCTestCase {
         ]
         let looks: [(String, WorldLook)] = [
             ("look off (soft-lock, no grade)", .legacy),
-            ("look on (grade + HD-2D lite + rim), golden hour", WorldLook(hourOverride: 18.5)),
+            ("look on (grade + HD-2D lite), golden hour", WorldLook(hourOverride: 18.5)),
         ]
         for (label, look) in looks {
             let model = IslandSceneModel(framing: .island)

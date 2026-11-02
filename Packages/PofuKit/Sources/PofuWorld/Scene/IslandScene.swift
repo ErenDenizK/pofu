@@ -234,8 +234,8 @@ typealias BuildFrame = (moment: BuildMoment, time: Double)
 // MARK: - One frame
 
 /// Everything at one camera and lens: the sky, the world canvas, Pofu and
-/// the cloud sea under the runtime grade, the HD-2D lite layers, the
-/// terrarium's rim, and the screen-space overlays, which are never graded.
+/// the cloud sea under the runtime grade, the HD-2D lite layers, and the
+/// screen-space overlays, which are never graded.
 private struct SceneFrame<Bubble: View>: View {
     let world: WorldSnapshot
     let rig: CameraRig
@@ -330,7 +330,6 @@ private struct SceneFrame<Bubble: View>: View {
                 }
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
-            .modifier(TerrariumRim(strength: LookTuning.terrariumRim(z: z), isEnabled: look.terrarium))
 
             PofuLayer(
                 world: world,

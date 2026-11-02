@@ -149,12 +149,6 @@ struct LookTuningTests {
         #expect(Lens.map.tiltShifted(by: 1.7).blurLevel(depth: 200) == 0)
     }
 
-    @Test func theTerrariumRimShowsAtTheIslandAndMapOnly() {
-        #expect(LookTuning.terrariumRim(z: 0) == 1)
-        #expect(LookTuning.terrariumRim(z: 1) == 1)
-        #expect(LookTuning.terrariumRim(z: 2) == 0)
-    }
-
     @Test func theSoftLockSetFallsBackWhereNothingWasBaked() {
         #expect(WorldArt.key("cay-1", art: .softLock) == "cay-1--softlock")
         #expect(WorldArt.key("island-main-band2", art: .softLock) == "island-main-band2--softlock")
