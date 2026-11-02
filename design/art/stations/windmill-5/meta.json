@@ -1,0 +1,117 @@
+{
+  "job": "windmill-5",
+  "batch": "batch-03-home-island",
+  "asset": "station__windmill-5",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T15:06:35+00:00",
+  "image": "design/art/stations/windmill-5/windmill-5.png",
+  "raw": "design/art/stations/windmill-5/raw.png",
+  "fingerprint": "1d94f688c85b158d",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nAdd a small plain triangular rose-and-cream pennant on a short\npole on top of the cap (no symbols, no letters), and two small\nround windows on the tower, each with a little window box of\nblush-pink and honey flowers.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/windmill-4/windmill-4.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T15:05:56+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "soft-lock",
+    "version": 1
+  },
+  "registration": {
+    "dx": -15,
+    "dy": -25
+  },
+  "alignment": {
+    "scale": 1.0057,
+    "cx": 502.5,
+    "cy": 877.0,
+    "dx": 16,
+    "dy": 27
+  },
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "edit_alignment",
+        "status": "pass",
+        "message": "the edit rescaled the object x0.994 and moved it; aligned back to the parent",
+        "value": 1.0057
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 11 (R1 51)",
+        "value": 10.7
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 75 (R1 59)",
+        "value": 75.1
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.2 (R1 5.3)",
+        "value": 1.23
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 3.0",
+        "value": 2.9776
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.1, p95 2.0, off-palette 0.0%",
+        "value": 1.0591
+      },
+      {
+        "check": "station_anchor",
+        "status": "warn",
+        "message": "top y 52 above the height bar (150)",
+        "value": 904.0
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "97% of the parent level unchanged",
+        "value": 0.9727
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}
