@@ -57,6 +57,32 @@ extension TuningSpec {
         + ["pofuTap", "collectTap", "buildSwap", "hopAppearDay", "hopAppearNight", "breathStart"].map {
             TuningSpec("haptics.\($0)", 0...1, step: 0.05)
         }
+        + [
+            TuningSpec("garden.trayScale", 0.4...0.9, step: 0.01),
+            TuningSpec("garden.liftCells", 0.5...3, step: 0.1),
+            TuningSpec("garden.followStiffness", 10...80, step: 1),
+            TuningSpec("garden.snapTolerance", 0.3...1.5, step: 0.05),
+            TuningSpec("garden.pickUp", 0.04...0.4, step: 0.01),
+            TuningSpec("garden.snapToCell", 0.02...0.3, step: 0.01),
+            TuningSpec("garden.squash", 0.05...0.6, step: 0.01),
+            TuningSpec("garden.squashAmount", 0...0.3, step: 0.01),
+            TuningSpec("garden.trayReturn", 0.08...0.6, step: 0.01),
+            TuningSpec("garden.deal", 0.1...0.8, step: 0.01),
+            TuningSpec("garden.dealStagger", 0...0.2, step: 0.01),
+            TuningSpec("garden.bloomStagger", 0...0.15, step: 0.005),
+            TuningSpec("garden.bloomPop", 0.08...0.6, step: 0.01),
+            TuningSpec("garden.bloomHold", 0...0.8, step: 0.01),
+            TuningSpec("garden.bloomOvershoot", 1...3, step: 0.1),
+            TuningSpec("garden.seedFlight", 0.2...1.2, step: 0.05),
+            TuningSpec("garden.seedSize", 8...30, step: 1),
+            TuningSpec("garden.seedsPerLine", 1...8, step: 1),
+            TuningSpec("garden.glowStrength", 0...1, step: 0.05),
+            TuningSpec("garden.shakeMaximum", 0...8, step: 0.5),
+            TuningSpec("garden.hapticLift", 0...1, step: 0.05),
+            TuningSpec("garden.hapticPlant", 0...1, step: 0.05),
+            TuningSpec("garden.hapticBloom", 0...1, step: 0.05),
+            TuningSpec("garden.hapticCheek", 0...1, step: 0.05),
+        ]
 
     /// The spec for `key`, if it is tunable.
     public static func spec(for key: String) -> TuningSpec? {

@@ -26,10 +26,17 @@ OUT = ROOT / "Packages/PofuKit/Sources/PofuGames/Resources"
 # (output name, master, target height in px). Heights are 3x the largest
 # on-screen size the scene uses, so sprites never upscale.
 CHARACTERS = [
-    ("garden-pofu", "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png", 360),
     ("garden-mochi", "design/art/masters/mochi-v2/mochi-v2.webp", 270),
     ("garden-findik", "design/art/masters/findik-base/findik-base.webp", 270),
 ]
+
+# Pofu and his cheeks-puff pose (batch 06's rig pilot) share one canvas
+# and one crop, so the puff lies exactly over the base and can fade in.
+POFU_POSES = [
+    ("garden-pofu", "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png"),
+    ("garden-pofu-puff", "design/art/masters/pofu-cheeks-puff-2/pofu-cheeks-puff-2.webp"),
+]
+POFU_HEIGHT = 360
 
 # Sunflower heads cut from garden level 1: (name, centre x, centre y, radius).
 BLOOMS = [
@@ -48,6 +55,17 @@ def bake_character(name: str, master: str, height: int) -> None:
     image = trim(Image.open(ROOT / master).convert("RGBA"))
     width = round(image.width * height / image.height)
     image.resize((width, height), Image.LANCZOS).save(OUT / f"{name}.png", optimize=True)
+
+
+def bake_pofu_poses() -> None:
+    images = [Image.open(ROOT / master).convert("RGBA") for _, master in POFU_POSES]
+    assert len({image.size for image in images}) == 1, "Pofu's poses must share a canvas"
+    boxes = [image.getchannel("A").point(lambda a: 255 if a > 6 else 0).getbbox() for image in images]
+    box = (min(b[0] for b in boxes), min(b[1] for b in boxes), max(b[2] for b in boxes), max(b[3] for b in boxes))
+    for (name, _), image in zip(POFU_POSES, images):
+        crop = image.crop(box)
+        width = round(crop.width * POFU_HEIGHT / crop.height)
+        crop.resize((width, POFU_HEIGHT), Image.LANCZOS).save(OUT / f"{name}.png", optimize=True)
 
 
 def bake_bloom(name: str, cx: int, cy: int, radius: int) -> None:
@@ -77,6 +95,7 @@ def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     for name, master, height in CHARACTERS:
         bake_character(name, master, height)
+    bake_pofu_poses()
     for name, cx, cy, radius in BLOOMS:
         bake_bloom(name, cx, cy, radius)
     for path in sorted(OUT.glob("*.png")):

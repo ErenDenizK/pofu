@@ -1,4 +1,5 @@
 #if os(iOS)
+import PofuTuning
 import SpriteKit
 import SwiftUI
 
@@ -8,16 +9,26 @@ import SwiftUI
 /// presents it from an island's "Play" door or the debug entry.
 public struct GardenGameView: View {
     @State private var model: GardenGameModel
+    /// The tuned feel; pass the Ayar store's values to tune it live.
+    private let tuning: TuningValues.Garden
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    public init(model: GardenGameModel) {
+    public init(model: GardenGameModel, tuning: TuningValues.Garden = TuningValues.defaults.garden) {
         _model = State(initialValue: model)
+        self.tuning = tuning
     }
 
-    /// A set of rounds; `onFinish` gets the set's seeds when the player
-    /// says "Enough for today".
-    public init(roundsAvailable: Int = GardenSet.roundsPerSet, onFinish: @escaping (Int) -> Void) {
-        _model = State(initialValue: GardenGameModel(roundsAvailable: roundsAvailable, onFinish: onFinish))
+    /// A set of rounds. `onRoundEnd` credits each finished round's seeds;
+    /// `onFinish` gets the set's seeds when the player says "Enough for
+    /// today".
+    public init(
+        roundsAvailable: Int = GardenSet.roundsPerSet,
+        tuning: TuningValues.Garden = TuningValues.defaults.garden,
+        onRoundEnd: @escaping (GardenRoundResult) -> Void = { _ in },
+        onFinish: @escaping (Int) -> Void
+    ) {
+        _model = State(initialValue: GardenGameModel(roundsAvailable: roundsAvailable, onRoundEnd: onRoundEnd, onFinish: onFinish))
+        self.tuning = tuning
     }
 
     public var body: some View {
@@ -31,6 +42,10 @@ public struct GardenGameView: View {
             .onAppear {
                 model.setSafeArea(top: proxy.safeAreaInsets.top, bottom: proxy.safeAreaInsets.bottom)
                 model.setReduceMotion(reduceMotion)
+                model.setFeel(tuning)
+            }
+            .onChange(of: tuning) { _, values in
+                model.setFeel(values)
             }
             .onChange(of: proxy.safeAreaInsets) { _, insets in
                 model.setSafeArea(top: insets.top, bottom: insets.bottom)
@@ -356,14 +371,25 @@ struct RoundCard: View {
     }
 
     /// Pofu, wider with each seed above the base: his cheeks show the yield.
+    /// Pofu with his cheeks as full as the yield: the painted puff pose
+    /// fades in over his base as the count lands.
     @ViewBuilder private var pofu: some View {
         if let image = GardenTextures.image(.pofu) {
-            Image(uiImage: image)
-                .resizable()
-                .scaledToFit()
-                .frame(height: 118)
-                .scaleEffect(x: 1 + 0.035 * CGFloat(max(0, min(shown, SeedYield.maximum) - SeedYield.base)), y: 1, anchor: .bottom)
-                .accessibilityLabel(Text(verbatim: GardenStrings.cheeksAccessibility(seeds)))
+            let extra = Double(max(0, min(shown, SeedYield.maximum) - SeedYield.base))
+            ZStack {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                if let puff = GardenTextures.image(.pofuPuff) {
+                    Image(uiImage: puff)
+                        .resizable()
+                        .scaledToFit()
+                        .opacity(min(1, extra / 3))
+                }
+            }
+            .frame(height: 118)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text(verbatim: GardenStrings.cheeksAccessibility(seeds)))
         }
     }
 }

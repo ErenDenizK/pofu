@@ -7,6 +7,8 @@ enum GardenSceneEvent: Equatable {
     /// A plot was planted; the yield and the bag after it (sent when its
     /// seeds have landed, so the HUD counts with Pofu's gulp).
     case progress(seeds: Int, piecesLeft: Int)
+    /// The round's last plot is in: the harvest starts.
+    case harvestBegan
     /// The round is over and the harvest has played.
     case roundEnded(GardenRoundResult)
 }
@@ -22,6 +24,14 @@ final class GardenScene: SKScene {
     var onEvent: ((GardenSceneEvent) -> Void)?
     var sound: any GameSoundPlaying = SilentGameSound()
     var reduceMotion = false
+    /// The tuned feel (`TuningValues.Garden`); the Ayar panel changes it
+    /// live.
+    var feel = GardenFeel.standard {
+        didSet {
+            shakeBudget.maximum = feel.shakeMaximum
+            haptics.feel = feel
+        }
+    }
     var safeTop: CGFloat = 62 {
         didSet { if safeTop != oldValue { rebuild() } }
     }
@@ -108,7 +118,7 @@ final class GardenScene: SKScene {
 
         let step = dt * Double(speed)
         if let drag {
-            let follow = CGFloat(1 - exp(-step * GardenFeel.followStiffness))
+            let follow = CGFloat(1 - exp(-step * feel.followStiffness))
             let position = drag.node.position
             drag.node.position = CGPoint(
                 x: position.x + (drag.target.x - position.x) * follow,
@@ -184,6 +194,7 @@ final class GardenScene: SKScene {
             let glow = SKSpriteNode(texture: glowTexture, size: CGSize(width: cell - 2, height: cell - 2))
             glow.position = layout.center(of: GardenCell(row: index / 8, column: index % 8))
             glow.alpha = 0
+            glow.blendMode = .add
             glow.zPosition = 1.5
             tileLayer.addChild(glow)
             return glow
@@ -238,22 +249,27 @@ final class GardenScene: SKScene {
                 node.setScale(0.01)
                 node.alpha = 0
                 node.run(.sequence([
-                    .wait(forDuration: Double(dealt) * GardenFeel.dealStagger),
+                    .wait(forDuration: Double(dealt) * feel.dealStagger),
                     .group([
-                        SKAction.scale(to: GardenFeel.trayScale, duration: GardenFeel.deal).eased { GameEasing.outBack($0, overshoot: 1.4) },
+                        SKAction.scale(to: trayScale(for: shape), duration: feel.deal).eased { GameEasing.outBack($0, overshoot: 1.4) },
                         .fadeIn(withDuration: 0.12),
                     ]),
                 ]))
             } else if animated {
-                node.setScale(GardenFeel.trayScale)
+                node.setScale(trayScale(for: shape))
                 node.alpha = 0
                 node.run(.fadeIn(withDuration: 0.2))
             } else {
-                node.setScale(GardenFeel.trayScale)
+                node.setScale(trayScale(for: shape))
             }
             dealt += 1
         }
         if animated, dealt > 0 { sound.play(.deal) }
+    }
+
+    /// The tuned tray scale, shrunk where a plot would not fit its slot.
+    private func trayScale(for shape: PieceShape) -> CGFloat {
+        layout.trayScale(for: shape, preferred: CGFloat(feel.trayScale))
     }
 
     // MARK: Touches
@@ -285,7 +301,7 @@ final class GardenScene: SKScene {
     /// The plot floats above the finger: `liftCells` plus half its height,
     /// so the thumb never covers it (the proven block-puzzle offset).
     private func liftTarget(for point: CGPoint, shape: PieceShape) -> CGPoint {
-        CGPoint(x: point.x, y: point.y + layout.cell * (GardenFeel.liftCells + CGFloat(shape.height) / 2))
+        CGPoint(x: point.x, y: point.y + layout.cell * (CGFloat(feel.liftCells) + CGFloat(shape.height) / 2))
     }
 
     private func lift(_ node: PieceNode, slot: Int, to target: CGPoint) {
@@ -293,7 +309,7 @@ final class GardenScene: SKScene {
         node.removeAllActions()
         node.alpha = 1
         node.zPosition = 100
-        node.run(SKAction.scale(to: 1, duration: GardenFeel.pickUp).eased { GameEasing.outBack($0, overshoot: 1.2) })
+        node.run(SKAction.scale(to: 1, duration: feel.pickUp).eased { GameEasing.outBack($0, overshoot: 1.2) })
         node.setLifted(true)
         drag = Drag(slot: slot, node: node, target: target, origin: nil, preview: LineSet.empty)
         haptics.lift()
@@ -317,9 +333,9 @@ final class GardenScene: SKScene {
         node.zPosition = 20
         node.removeAllActions()
         node.run(.group([
-            SKAction.move(to: layout.slots[slot], duration: GardenFeel.trayReturn).eased { GameEasing.outBack($0, overshoot: 1.1) },
-            SKAction.scale(to: GardenFeel.trayScale, duration: GardenFeel.trayReturn).eased(GameEasing.outCubic),
-            SKAction.rotate(toAngle: 0, duration: GardenFeel.trayReturn),
+            SKAction.move(to: layout.slots[slot], duration: feel.trayReturn).eased { GameEasing.outBack($0, overshoot: 1.1) },
+            SKAction.scale(to: trayScale(for: node.shape), duration: feel.trayReturn).eased(GameEasing.outCubic),
+            SKAction.rotate(toAngle: 0, duration: feel.trayReturn),
         ]))
         trayPieces[slot] = node
         sound.play(.putBack)
@@ -330,7 +346,7 @@ final class GardenScene: SKScene {
     private func updateGhost() {
         guard var drag else { return }
         let fractional = layout.fractionalOrigin(of: drag.node.shape, centeredAt: drag.target)
-        let origin = round.board.snap(drag.node.shape, row: fractional.row, column: fractional.column)
+        let origin = round.board.snap(drag.node.shape, row: fractional.row, column: fractional.column, tolerance: feel.snapTolerance)
         guard origin != drag.origin else { return }
         drag.origin = origin
         drag.preview = origin.map { round.preview(slot: drag.slot, at: $0) } ?? LineSet.empty
@@ -363,17 +379,19 @@ final class GardenScene: SKScene {
         showPreview(LineSet.empty)
     }
 
-    /// Cells of every line the drop would bloom glow honey and breathe.
+    /// Cells of every line the drop would bloom brighten with added honey
+    /// light and breathe.
     private func showPreview(_ lines: LineSet) {
         let mask = lines.mask
+        let peak = CGFloat(feel.glowStrength)
         for (index, glow) in glowNodes.enumerated() {
             let on = mask & (UInt64(1) << UInt64(index)) != 0
             if on, glow.action(forKey: "pulse") == nil {
                 glow.run(.sequence([
-                    SKAction.fadeAlpha(to: 0.8, duration: 0.1),
+                    SKAction.fadeAlpha(to: peak, duration: 0.1),
                     .repeatForever(.sequence([
-                        SKAction.fadeAlpha(to: 0.5, duration: 0.42).eased(GameEasing.inOutSine),
-                        SKAction.fadeAlpha(to: 0.8, duration: 0.42).eased(GameEasing.inOutSine),
+                        SKAction.fadeAlpha(to: peak * 0.55, duration: 0.42).eased(GameEasing.inOutSine),
+                        SKAction.fadeAlpha(to: peak, duration: 0.42).eased(GameEasing.inOutSine),
                     ])),
                 ]), withKey: "pulse")
             } else if !on, glow.alpha > 0 || glow.action(forKey: "pulse") != nil {
@@ -397,30 +415,39 @@ final class GardenScene: SKScene {
             tiles[cell] = sprite
             tints[cell] = tint
             let travel = SKAction.group([
-                SKAction.move(to: layout.center(of: cell), duration: GardenFeel.snapToCell).eased(GameEasing.outCubic),
-                SKAction.rotate(toAngle: 0, duration: GardenFeel.snapToCell),
+                SKAction.move(to: layout.center(of: cell), duration: feel.snapToCell).eased(GameEasing.outCubic),
+                SKAction.rotate(toAngle: 0, duration: feel.snapToCell),
             ])
             sprite.run(.sequence([travel, squash(delay: Double(index) * 0.012)]))
         }
         node.removeFromParent()
 
-        after(GardenFeel.snapToCell) { [weak self] in
+        after(feel.snapToCell) { [weak self] in
             guard let self else { return }
             haptics.plant()
             sound.play(.plant)
             crumbs(around: outcome.planted)
         }
 
-        let bloomEnd = outcome.cleared.isEmpty ? GardenFeel.snapToCell : bloom(outcome)
+        let bloomEnd = outcome.cleared.isEmpty ? feel.snapToCell : bloom(outcome)
         if outcome.dealtTray != nil {
             after(0.12) { [weak self] in self?.dealTray(animated: true) }
         }
         after(bloomEnd) { [weak self] in
             guard let self else { return }
-            onEvent?(.progress(seeds: outcome.seedsAfter, piecesLeft: round.piecesLeft))
-            if outcome.seedsAfter > cheekLevel {
-                cheekLevel = outcome.seedsAfter
-                residents?.pofu.setCheeks(level: cheekLevel, animated: !reduceMotion)
+            let gained = outcome.seedsAfter - cheekLevel
+            guard gained > 0 else {
+                onEvent?(.progress(seeds: outcome.seedsAfter, piecesLeft: round.piecesLeft))
+                return
+            }
+            cheekLevel = outcome.seedsAfter
+            residents?.pofu.setCheeks(level: cheekLevel, animated: !reduceMotion)
+            // The yield's step arcs from Pofu's cheeks up to the seed plate,
+            // and the plate counts when it lands.
+            let landing = countArc(gained)
+            after(landing) { [weak self] in
+                guard let self else { return }
+                onEvent?(.progress(seeds: outcome.seedsAfter, piecesLeft: round.piecesLeft))
             }
         }
         if outcome.ending != nil {
@@ -432,11 +459,12 @@ final class GardenScene: SKScene {
     /// One decaying wobble: wide and short, then tall, then still.
     private func squash(delay: TimeInterval) -> SKAction {
         if reduceMotion { return .wait(forDuration: 0) }
-        let d = GardenFeel.squash
+        let d = feel.squash
+        let a = CGFloat(feel.squashAmount)
         return .sequence([
             .wait(forDuration: delay),
-            SKAction.group([SKAction.scaleX(to: 1.14, duration: d * 0.3), SKAction.scaleY(to: 0.86, duration: d * 0.3)]).eased(GameEasing.outCubic),
-            SKAction.group([SKAction.scaleX(to: 0.96, duration: d * 0.35), SKAction.scaleY(to: 1.05, duration: d * 0.35)]).eased(GameEasing.inOutSine),
+            SKAction.group([SKAction.scaleX(to: 1 + a, duration: d * 0.3), SKAction.scaleY(to: 1 - a, duration: d * 0.3)]).eased(GameEasing.outCubic),
+            SKAction.group([SKAction.scaleX(to: 1 - a * 0.28, duration: d * 0.35), SKAction.scaleY(to: 1 + a * 0.36, duration: d * 0.35)]).eased(GameEasing.inOutSine),
             SKAction.group([SKAction.scaleX(to: 1, duration: d * 0.35), SKAction.scaleY(to: 1, duration: d * 0.35)]).eased(GameEasing.outCubic),
         ])
     }
@@ -475,11 +503,12 @@ final class GardenScene: SKScene {
             return (cell, distance)
         }.sorted { ($0.distance, $0.cell) < ($1.distance, $1.cell) }
 
-        let start = GardenFeel.snapToCell + GardenFeel.bloomDelay
+        let start = feel.snapToCell + GardenFeel.bloomDelay
+        let seedEvery = feel.seedStride(cells: ordered.count, lines: lines.count)
         var lastSeed: TimeInterval = start
         var noteIndex = 0
         for (rank, entry) in ordered.enumerated() {
-            let delay = start + Double(entry.distance) * GardenFeel.bloomStagger * 1.4
+            let delay = start + Double(entry.distance) * feel.bloomStagger * 1.4
             let sprite = tiles.removeValue(forKey: entry.cell)
             tints.removeValue(forKey: entry.cell)
             let isNote = rank == 0 || ordered[rank - 1].distance != entry.distance
@@ -490,9 +519,9 @@ final class GardenScene: SKScene {
                 bloomCell(entry.cell, tile: sprite, rank: rank, combo: combo)
                 if isNote { sound.play(.bloom(midi: PentatonicLadder.bloomNote(index: note, combo: combo))) }
             }
-            if rank % 2 == 0 {
-                let launch = delay + GardenFeel.bloomPop + GardenFeel.bloomHold
-                let landing = launch + GardenFeel.seedFlight + Double(rank) * GardenFeel.seedStagger * 0.5
+            if rank % seedEvery == 0 {
+                let launch = delay + feel.bloomPop + feel.bloomHold
+                let landing = launch + feel.seedFlight + Double(rank) * GardenFeel.seedStagger * 0.5
                 lastSeed = max(lastSeed, landing)
                 after(launch) { [weak self] in
                     self?.launchSeed(from: entry.cell, rank: rank)
@@ -502,7 +531,7 @@ final class GardenScene: SKScene {
 
         after(start) { [weak self] in
             guard let self else { return }
-            haptics.bloom(intensity: GardenFeel.bloomHaptic(lines: lines.count, combo: combo))
+            haptics.bloom(intensity: feel.bloomHaptic(lines: lines.count, combo: combo))
             word(for: lines, combo: outcome.combo)
             residents?.react(lines: lines.count, combo: combo, reduceMotion: reduceMotion)
             let amplitude = shakeBudget.request(lines: lines.count, combo: combo, at: sceneTime, reduceMotion: reduceMotion)
@@ -525,12 +554,12 @@ final class GardenScene: SKScene {
         flower.position = center
         flower.zPosition = 2
         effectsLayer.addChild(flower)
-        let hold = GardenFeel.bloomHold + Double(min(combo, 4)) * 0.03
+        let hold = feel.bloomHold + Double(min(combo, 4)) * 0.03
         if reduceMotion {
             flower.alpha = 0
             flower.run(.sequence([
                 .fadeIn(withDuration: 0.16),
-                .wait(forDuration: GardenFeel.bloomPop + hold),
+                .wait(forDuration: feel.bloomPop + hold),
                 .fadeOut(withDuration: 0.2),
                 .removeFromParent(),
             ]))
@@ -539,11 +568,11 @@ final class GardenScene: SKScene {
         let spin = CGFloat((cell.row * 7 + cell.column * 13) % 9 - 4) * 0.08
         flower.setScale(0.15)
         flower.zRotation = spin
-        let overshoot = GardenFeel.bloomOvershoot(combo: combo)
+        let overshoot = feel.bloomOvershoot(combo: combo)
         flower.run(.sequence([
             .group([
-                SKAction.scale(to: 1, duration: GardenFeel.bloomPop).eased { GameEasing.outBack($0, overshoot: overshoot) },
-                SKAction.rotate(toAngle: 0, duration: GardenFeel.bloomPop).eased(GameEasing.outCubic),
+                SKAction.scale(to: 1, duration: feel.bloomPop).eased { GameEasing.outBack($0, overshoot: overshoot) },
+                SKAction.rotate(toAngle: 0, duration: feel.bloomPop).eased(GameEasing.outCubic),
             ]),
             .wait(forDuration: hold),
             .group([
@@ -553,7 +582,7 @@ final class GardenScene: SKScene {
             .removeFromParent(),
         ]))
 
-        let petals = GardenFeel.petals(combo: combo)
+        let petals = feel.petals(combo: combo)
         for index in 0..<petals {
             let angle = (Double(index) / Double(petals) + Double(rank % 5) * 0.07) * 2 * Double.pi
             let reach = layout.cell * (0.55 + CGFloat((rank + index) % 3) * 0.12)
@@ -592,11 +621,12 @@ final class GardenScene: SKScene {
     private func launchSeed(from cell: GardenCell, rank: Int) {
         let start = layout.center(of: cell)
         let mouth = CGPoint(x: layout.pofu.x, y: layout.pofu.y + layout.pofuHeight * 0.4)
-        let seed = SKSpriteNode(texture: textures.seed(), size: CGSize(width: 13, height: 19))
+        let seedHeight = CGFloat(feel.seedSize)
+        let seed = SKSpriteNode(texture: textures.seed(), size: CGSize(width: seedHeight * 0.68, height: seedHeight))
         seed.position = start
         seed.zPosition = 30
         effectsLayer.addChild(seed)
-        let flight = GardenFeel.seedFlight + Double(rank) * GardenFeel.seedStagger * 0.5
+        let flight = feel.seedFlight + Double(rank) * GardenFeel.seedStagger * 0.5
         if reduceMotion {
             seed.alpha = 0
             seed.run(.sequence([.fadeIn(withDuration: 0.1), .fadeOut(withDuration: 0.25), .removeFromParent()]))
@@ -625,6 +655,38 @@ final class GardenScene: SKScene {
         residents?.pofu.gulp(reduceMotion: reduceMotion)
         haptics.cheek()
         sound.play(.cheek)
+    }
+
+    /// "+1" rises out of Pofu's cheeks and arcs to the HUD's seed plate;
+    /// returns when it lands.
+    private func countArc(_ gained: Int) -> TimeInterval {
+        let start = CGPoint(x: layout.pofu.x + layout.pofuHeight * 0.3, y: layout.pofu.y + layout.pofuHeight * 0.55)
+        let plate = CGPoint(x: size.width - 52, y: size.height - safeTop - GardenLayout.hudHeight / 2)
+        let label = Self.label("+\(gained)", size: 34, color: GardenPalette.comboInk(1))
+        label.position = start
+        label.zPosition = 60
+        effectsLayer.addChild(label)
+        if reduceMotion {
+            label.alpha = 0
+            label.run(.sequence([.fadeIn(withDuration: 0.12), .wait(forDuration: 0.35), .fadeOut(withDuration: 0.2), .removeFromParent()]))
+            return 0.45
+        }
+        let path = CGMutablePath()
+        path.move(to: start)
+        path.addQuadCurve(to: plate, control: CGPoint(x: (start.x + plate.x) / 2 - 30, y: max(start.y, plate.y) + 60))
+        label.setScale(0.4)
+        let rise = 0.22
+        let flight = 0.5
+        label.run(.sequence([
+            SKAction.scale(to: 1.25, duration: rise).eased { GameEasing.outBack($0, overshoot: 2.4) },
+            .group([
+                SKAction.follow(path, asOffset: false, orientToPath: false, duration: flight).eased(GameEasing.inQuad),
+                SKAction.scale(to: 0.6, duration: flight).eased(GameEasing.inQuad),
+            ]),
+            .fadeOut(withDuration: 0.08),
+            .removeFromParent(),
+        ]))
+        return rise + flight
     }
 
     /// The bloom's word: a double bloom, a full spring, and the combo.
@@ -693,6 +755,7 @@ final class GardenScene: SKScene {
     /// The round's end: every remaining sprout blooms, row by row, then the
     /// card. The harvest pays nothing extra: it is the natural, kind end.
     private func harvest(ending: GardenRound.Ending) {
+        onEvent?(.harvestBegan)
         if ending == .gardenFull {
             let label = Self.label(GardenStrings.gardenFull, size: 30, color: GardenPalette.comboInk(1))
             label.position = CGPoint(x: layout.grid.midX, y: layout.grid.midY)
@@ -715,7 +778,7 @@ final class GardenScene: SKScene {
                 self?.bloomCell(entry.key, tile: entry.value, rank: index, combo: 1)
             }
         }
-        let harvestEnd = 0.25 + Double(GardenBoard.size) * 0.07 + GardenFeel.bloomPop + GardenFeel.bloomHold + 0.3
+        let harvestEnd = 0.25 + Double(GardenBoard.size) * 0.07 + feel.bloomPop + feel.bloomHold + 0.3
         after(harvestEnd) { [weak self] in
             guard let self else { return }
             residents?.cheer(reduceMotion: reduceMotion)
@@ -787,7 +850,9 @@ final class GardenScene: SKScene {
         for slot in trayPieces.indices {
             trayPieces[slot]?.removeAllActions()
             trayPieces[slot]?.alpha = 1
-            trayPieces[slot]?.setScale(GardenFeel.trayScale)
+            if let node = trayPieces[slot] {
+                node.setScale(trayScale(for: node.shape))
+            }
         }
         for cell in round.board.plantedCells {
             let tint = (cell.row / 2 + cell.column / 3 * 2) % GardenPalette.glazes.count
@@ -882,6 +947,9 @@ final class Residents {
         let sprite: SKSpriteNode
         let shadow: SKSpriteNode
         var blushes: [SKSpriteNode] = []
+        /// Pofu's painted cheeks-puff pose over his base, faded in with
+        /// the round's yield.
+        var puff: SKSpriteNode?
         private var fill: CGFloat = 1
         /// The body's resting height inside `spin` (its feet at the root).
         private let rest: CGFloat
@@ -950,9 +1018,22 @@ final class Residents {
             hop(height: 14, delay: delay + 0.08, reduceMotion: false)
         }
 
-        /// Pofu's cheeks: wider and pinker with each seed above the base.
+        /// Pofu's cheeks: the painted puff fades in with each seed above
+        /// the base (without the art, a drawn stand-in widens and blushes).
         func setCheeks(level: Int, animated: Bool) {
             let extra = CGFloat(max(0, level - SeedYield.base))
+            if let puff {
+                let target = min(1, extra / 3)
+                fill = 1 + 0.01 * extra
+                if animated {
+                    puff.run(.fadeAlpha(to: target, duration: 0.25))
+                    body.run(SKAction.scaleX(to: fill, duration: 0.3).eased { GameEasing.outBack($0, overshoot: 2.4) })
+                } else {
+                    puff.alpha = target
+                    body.xScale = fill
+                }
+                return
+            }
             fill = 1 + 0.035 * extra
             let alpha = min(0.5, 0.14 * extra)
             if animated {
@@ -985,9 +1066,19 @@ final class Residents {
         mochi = Figure(texture: textures.art(.mochi), shadowTexture: ground, feet: layout.mochi, height: layout.residentHeight)
         findik = Figure(texture: textures.art(.findik), shadowTexture: ground, feet: layout.findik, height: layout.residentHeight)
         pofu.root.zPosition = 1
-        // Pofu's blush sits on his painted cheeks (measured on the master).
+        if GardenTextures.image(.pofuPuff) != nil {
+            // Same canvas as the base (baked together), so it lies exactly
+            // over him and breathes with him as a child of his sprite.
+            let puff = SKSpriteNode(texture: textures.art(.pofuPuff), size: pofu.sprite.size)
+            puff.anchorPoint = CGPoint(x: 0.5, y: 0)
+            puff.alpha = 0
+            puff.zPosition = 0.5
+            pofu.sprite.addChild(puff)
+            pofu.puff = puff
+        }
+        // The drawn stand-in's blush sits on his painted cheeks.
         let size = pofu.sprite.size
-        for x in [-0.24, 0.24] {
+        for x in [-0.24, 0.24] where pofu.puff == nil {
             let blush = SKSpriteNode(texture: textures.blush(), size: CGSize(width: size.width * 0.2, height: size.width * 0.14))
             blush.position = CGPoint(x: size.width * CGFloat(x), y: size.height * 0.45)
             blush.alpha = 0
