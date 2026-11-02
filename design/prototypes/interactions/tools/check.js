@@ -60,7 +60,14 @@ function touch(cdp) {
 const settle = (p, ms) => p.waitForTimeout(ms);
 const st = (p) => p.evaluate(() => window.__pofu.state());
 const pos = (p, id) => p.evaluate((i) => window.__pofu.screenOf(i), id);
-async function shot(page, name) { if (!SHOTS) return; await page.screenshot({ path: path.join(ROOT, 'screenshots', name + '.png') }); console.log('  shot', name); }
+// Screenshot capture itself shows up as a long task; it is bracketed and excluded from the check.
+async function shot(page, name) {
+  if (!SHOTS) return;
+  await page.evaluate(() => window.__long && window.__long.push('[shot'));
+  await page.screenshot({ path: path.join(ROOT, 'screenshots', name + '.png') });
+  await page.waitForTimeout(80); await page.evaluate(() => window.__long && window.__long.push('shot]'));
+  console.log('  shot', name);
+}
 // What element would actually receive a tap at (x, y)?
 const topAt = (p, x, y) => p.evaluate(([x, y]) => { const e = document.elementFromPoint(x, y); return e ? (e.id || e.className || e.tagName).toString() + '|' + (e.closest('#world') ? 'world' : e.closest('#chrome') ? 'chrome' : e.closest('#sheet') ? 'sheet' : 'other') : 'none'; }, [x, y]);
 
@@ -70,7 +77,7 @@ async function phone(browser, base) {
   const errors = [], failed = [];
   page.on('pageerror', (e) => errors.push(String(e)));
   page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
-  page.on('requestfailed', (r) => failed.push(r.url()));
+  page.on('requestfailed', (r) => { if (!/ERR_ABORTED/.test(r.failure()?.errorText || '')) failed.push(r.url()); }); // a swapped image source cancels its old request
   page.on('response', (r) => { if (r.status() >= 400) failed.push(r.status() + ' ' + r.url()); });
   page.on('dialog', (d) => { errors.push('dialog: ' + d.message()); d.dismiss(); });
   await page.addInitScript(() => {
@@ -98,10 +105,12 @@ async function phone(browser, base) {
   ok((await topAt(page, p.x, p.y)).endsWith('world'), 'a tap on Pofu reaches the world, not the chrome');
   let s = await st(page);
   ok(s.view === 'home' && Math.abs(s.z - 2) < 0.02, `starts at Home (z ${s.z.toFixed(2)})`);
-  ok(s.blur.garden > 0.9 && s.blur.pofu === 0, `Home depth of field: stations soft (${s.blur.garden}), Pofu sharp`);
+  ok(s.blur.pofu === 0 && s.blur.band2 < 0.05, `Home lens: Pofu and the lawn he stands on are sharp (lawn ${s.blur.band2})`);
+  ok(s.blur.garden > 0.15 && s.blur.garden < 0.6 && s.blur.windmill > 1.3 && s.blur.band0 > 1.3, `Home lens is shallow and proportional: garden ${s.blur.garden}, windmill ${s.blur.windmill}, back terrace ${s.blur.band0}`);
   await shot(page, '01-home');
 
   // ---- Pofu: poke, escalation, pet
+  await page.evaluate(() => window.__long.push('[pofu]'));
   await T.tap(p.x, p.y); await settle(page, 80);
   s = await st(page); ok(s.run === 1 && s.faceKind === 'excited', `poke: Pofu reacts at once (run ${s.run}, face ${s.faceKind})`);
   await T.tap(p.x, p.y); await settle(page, 120); await T.tap(p.x, p.y); await settle(page, 200);
@@ -123,16 +132,32 @@ async function phone(browser, base) {
   s = await st(page); ok(!s.dozing, 'a poke wakes him');
 
   // ---- camera: pinch with snapping (C)
+  await page.evaluate(() => window.__long.push('[pinch]'));
   await settle(page, 2600);
   await T.pinch(195, 450, 260, 150, 320); await settle(page, 1300);
   s = await st(page); ok(s.view === 'island' && Math.abs(s.z - 1) < 0.03, `pinch in from Home snaps to the island (z ${s.z.toFixed(2)})`);
   await shot(page, '04-island');
 
   // ---- residents and lawn (at the island framing, where they are in focus)
-  const bun = await pos(page, 'bunny');
-  await T.tap(bun.x, bun.y); await settle(page, 200);
-  const chipT = await page.evaluate(() => [...document.querySelectorAll('.chipw')].map((c) => c.textContent).join(' '));
-  ok(chipT.includes('Mochi'), `Mochi answers a tap once ("${chipT}")`);
+  await page.evaluate(() => window.__long.push('[npc]'));
+  s = await st(page);
+  ok(s.blur.windmill > 0.05 && s.blur.windmill < 0.5 && s.blur.cay < 0.05, `Island lens is medium: the back is only slightly soft (windmill ${s.blur.windmill})`);
+  const bun = await pos(page, 'bunny'); const sIsl = s.s;
+  await T.tap(bun.x, bun.y); await settle(page, 1100);
+  s = await st(page);
+  const card = await page.evaluate(() => { const c = document.getElementById('npc'); const r = c.getBoundingClientRect(); return { o: +getComputedStyle(c).opacity, name: c.querySelector('#npcName').textContent, line: c.querySelector('#npcLine').textContent, top: r.top, bottom: r.bottom, left: r.left, right: r.right }; });
+  ok(s.npc === 'bunny' && card.o > 0.95 && card.name === 'Mochi' && card.line.length > 0, `tapping Mochi focuses her and shows her card ("${card.line}")`);
+  ok(s.s > sIsl * 1.2 && s.s < sIsl * 1.4, `a small camera move toward the resident (×${(s.s / sIsl).toFixed(2)})`);
+  ok(s.blur.bunny < 0.05 && s.blur.cay < 0.15 && s.blur.windmill > 0.8, `rack focus to Mochi's plane: Mochi ${s.blur.bunny}, her stall ${s.blur.cay}, the windmill ${s.blur.windmill}`);
+  ok(card.left >= 0 && card.right <= 390 && card.top > 60, 'the card stays on screen');
+  const bun2 = await pos(page, 'bunny');
+  const cay2 = await pos(page, 'cay');
+  ok(card.top > bun2.y && card.top > cay2.y + 20, 'the card sits below Mochi, leaving her and her stall in view');
+  await shot(page, '20-npc-card');
+  await page.locator('#npcGo').tap(); await settle(page, 1100);
+  s = await st(page); ok(s.focus === 'cay' && s.sheet.open && !s.npc, '"Tezgâha git" opens her station');
+  await page.locator('#sheetClose').tap(); await settle(page, 1100);
+  s = await st(page); ok(s.view === 'island' && !s.sheet.open, `back on the island (${s.view})`);
   const [lx, ly] = await page.evaluate(() => window.__pofu.toScreen(-110, 25));
   const lawn = await page.evaluate(([x, y]) => window.__pofu.hit(x, y), [lx, ly]);
   ok(lawn.type === 'empty', `open lawn is empty space, not a station (${lawn.type})`);
@@ -159,6 +184,7 @@ async function phone(browser, base) {
   s = await st(page); ok(s.view === 'island', `two-finger tap steps out one framing (${s.view})`);
 
   // ---- Home: the blurred world is one target
+  await page.evaluate(() => window.__long.push('[home-target]'));
   await page.locator('#seg button', { hasText: 'Pofu' }).tap(); await settle(page, 1300);
   const hh = await page.evaluate(() => window.__pofu.hit(330, 260));
   ok(hh.type === 'island', `at Home a tap on the soft world means "the island" (${hh.type})`);
@@ -170,9 +196,11 @@ async function phone(browser, base) {
   await settle(page, 1200);
 
   // ---- station focus, depth of field, detents, build
+  await page.evaluate(() => window.__long.push('[station]'));
   s = await st(page);
   ok(s.focus === 'cay' && s.sheet.open && Math.abs(s.sheet.y - (844 - Math.round(844 * 0.42))) < 3, `station sheet at the medium detent (y ${Math.round(s.sheet.y)})`);
-  ok(s.blur.cay < 0.05 && s.blur.bunny < 0.05 && s.blur.garden > 0.9 && s.blur.home > 0.9, `focus: çay ocağı and Mochi sharp, the rest soft (cay ${s.blur.cay}, garden ${s.blur.garden})`);
+  ok(s.blur.cay < 0.05 && s.blur.bunny < 0.15 && s.blur.garden < 0.15, `focus on the çay ocağı's plane: the stall, Mochi, and the garden beside it are sharp (garden ${s.blur.garden})`);
+  ok(s.blur.pofu > 0.1 && s.blur.pofu < 0.6 && s.blur.workshop > 0.8 && s.blur.band0 > 0.8 && s.blur.band3 > 0.6, `blur grows with distance, in front and behind: Pofu ${s.blur.pofu}, workshop ${s.blur.workshop}, front lip ${s.blur.band3}`);
   const c1 = await pos(page, 'cay');
   ok(c1.y > 120 && c1.y < s.sheet.y - 20, `the focused station stays visible above the sheet (y ${Math.round(c1.y)})`);
   await shot(page, '07-station');
@@ -195,18 +223,21 @@ async function phone(browser, base) {
   // Retarget behind the sheet.
   const gp = await pos(page, 'workshop');
   ok(gp.y > 130 && gp.y < s.sheet.y && (await topAt(page, gp.x, gp.y)).endsWith('world'), `the workshop behind a medium sheet can be tapped (y ${Math.round(gp.y)})`);
+  await page.evaluate(() => { window.__rack = []; const t0 = performance.now(); const f = () => { window.__rack.push(window.__pofu.lens().f); if (performance.now() - t0 < 900) requestAnimationFrame(f); }; requestAnimationFrame(f); });
   await T.tap(gp.x, gp.y); await settle(page, 1000);
+  const rack = await page.evaluate(() => window.__rack);
+  const mids = rack.filter((v) => v < -12 && v > -60);
+  ok(mids.length >= 2, `the focus plane travels like a rack focus, not a cut (${mids.length} frames between the planes)`);
   s = await st(page); ok(s.focus === 'workshop' && s.sheet.open, `tapping another station retargets the focus without closing (${s.focus})`);
   ok(s.blur.hog < 0.05 && s.blur.cay > 0.9, `Fındık is sharp with his workshop; the çay ocağı softens (${s.blur.cay})`);
   await shot(page, '10b-retarget');
   await T.tap(40, 200); await settle(page, 1200);
   s = await st(page); ok(!s.sheet.open && s.view === 'island', `tap on empty world dismisses and returns to where you were (${s.view})`);
   await page.locator('#seg button', { hasText: 'Ada' }).tap(); await settle(page, 1200);
-  const gp2 = await pos(page, 'garden'); await T.tap(gp2.x, gp2.y); await settle(page, 1200);
-  s = await st(page); ok(s.focus === 'garden' && s.blur.pofu < 0.05, 'Pofu stays sharp when his garden is in focus');
-  await page.locator('#sheetClose').tap(); await settle(page, 1000);
+
 
   // ---- glass morph menu
+  await page.evaluate(() => window.__long.push('[morph]'));
   await page.locator('#seedBtn').tap(); await settle(page, 450);
   s = await st(page); ok(s.morph === 'seedMorph', 'seed pill morphs into its panel');
   await shot(page, '11-morph');
@@ -220,6 +251,7 @@ async function phone(browser, base) {
   await page.evaluate(() => window.__pofu.set('hits', false)); await page.evaluate(() => { document.getElementById('hits').style.display = 'none'; });
 
   // ---- compare panel: free model, tap-only, live blur, reduce motion, cloud pass
+  await page.evaluate(() => window.__long.push('[panel]'));
   await page.locator('#tabBtn').tap(); await settle(page, 600);
   await shot(page, '13-panel');
   await page.locator('#panelBody button[data-k="model"][data-v="B"]').tap();
@@ -250,14 +282,116 @@ async function phone(browser, base) {
   await page.locator('#panelBody button[data-r="proud"]').tap(); await settle(page, 1400);
   await shot(page, '17-return-proud');
 
+  const longV1 = await page.evaluate(() => window.__long.length);
+  // ---- v2: depth techniques
+  await page.evaluate(() => { window.__pofu.set('rm', false); });
+  await page.locator('#seg button', { hasText: 'Ada' }).tap(); await settle(page, 1300);
+  await page.evaluate(() => window.__pofu.set('npc', 'sheet'));
+  const bun3 = await pos(page, 'bunny'); await T.tap(bun3.x, bun3.y); await settle(page, 1000);
+  s = await st(page); ok(s.focus === 'cay' && s.sheet.open && !s.npc, 'the "sheet" alternative: a resident opens its station directly');
+  await page.locator('#sheetClose').tap(); await settle(page, 1100);
+  await page.evaluate(() => window.__pofu.set('npc', 'card'));
+  // (a) parallax: near and far objects move in opposite directions around the focus plane.
+  await page.evaluate(() => { window.__pofu.orient(0, 0); window.__pofu.orient(14, 6); });
+  await settle(page, 700);
+  const par = await page.evaluate(() => { const g = (sel) => new DOMMatrix(getComputedStyle(document.querySelector(sel)).transform).m41; const objs = [...document.querySelectorAll('#cam > .obj')]; return objs.map((o) => new DOMMatrix(getComputedStyle(o).transform).m41); });
+  const lens = await page.evaluate(() => window.__pofu.lens());
+  ok(Math.abs(lens.tx) > 0.4 && Math.min(...par) < -0.3 && Math.max(...par) > 0.3, `tilt parallax: layers separate by depth (tilt ${lens.tx.toFixed(2)}, offsets ${Math.min(...par).toFixed(1)} … ${Math.max(...par).toFixed(1)})`);
+  await shot(page, '21-parallax-tilt');
+  await page.evaluate(() => { window.__pofu.orient(0, 0); }); await settle(page, 2500);
+  // Device tilt permission: granted where there is no prompt, refused gracefully on iOS.
+  await page.locator('#tabBtn').tap(); await settle(page, 600);
+  await page.evaluate(() => { DeviceOrientationEvent.requestPermission = async () => 'granted'; });
+  await page.locator('#panelBody button[data-fx="tilt"]').tap(); await settle(page, 200);
+  s = await st(page); ok(s.settings.fx.tilt === true, 'device tilt turns on when permission is granted (asked from inside the tap)');
+  await page.locator('#panelBody button[data-fx="tilt"]').tap(); await settle(page, 200);
+  await page.evaluate(() => { DeviceOrientationEvent.requestPermission = async () => 'denied'; });
+  await page.locator('#panelBody button[data-fx="tilt"]').tap(); await settle(page, 300);
+  s = await st(page); const tt = await page.locator('#toast').textContent();
+  ok(s.settings.fx.tilt === false && tt.includes('izni'), `iOS-style refusal degrades to drag parallax ("${tt}")`);
+  await page.evaluate(() => { delete DeviceOrientationEvent.requestPermission; });
+  await page.locator('#panelClose').tap(); await settle(page, 600);
+  // (b) haze: far objects carry more veil than near ones.
+  const hz = await page.evaluate(() => [...document.querySelectorAll('#cam img')].filter((i) => i.src.includes('.hz')).map((i) => i.src.split('/').pop()));
+  ok(hz.some((n) => n.startsWith('st-windmill')) && !hz.some((n) => n.startsWith('pofu')), `atmospheric perspective is baked per depth and swapped in (${hz.length} hazed images, none on Pofu)`);
+  await page.evaluate(() => window.__pofu.fx('haze', false));
+  const hz0 = await page.evaluate(() => [...document.querySelectorAll('#cam img')].filter((i) => i.src.includes('.hz')).length);
+  ok(hz0 === 0, 'turning haze off swaps back to the plain art');
+  await page.evaluate(() => window.__pofu.fx('haze', true));
+  // (e) tilt-shift at the Island view.
+  await page.evaluate(() => window.__pofu.fx('tiltshift', true)); await settle(page, 700);
+  s = await st(page); const tsB = await page.evaluate(() => +getComputedStyle(document.getElementById('seaB')).opacity);
+  const tswO = await page.evaluate(() => +getComputedStyle(document.getElementById('tsw')).opacity);
+  ok(tsB > 0.9 && tswO > 0.9 && s.blur.cay < 0.05, `tilt-shift: a masked deep layer blurs the top and bottom bands; the middle stays sharp (çay ${s.blur.cay})`);
+  await shot(page, '22-tilt-shift');
+  await page.evaluate(() => window.__pofu.fx('tiltshift', false));
+  // (f) depth-map plate in WebGL.
+  await page.evaluate(() => window.__pofu.fx('depthmap', true)); await settle(page, 900);
+  const glOk = await page.evaluate(() => ({ ready: window.__pofu.lens().gl, canvas: getComputedStyle(document.querySelector('.glplate')).display, band: getComputedStyle(document.querySelector('#cam > .obj:nth-child(5)')).display }));
+  ok(glOk.ready && glOk.canvas === 'block', 'depth-map plate: the WebGL canvas replaces the bands');
+  await page.evaluate(() => { window.__pofu.orient(0, 0); window.__pofu.orient(-16, 8); }); await settle(page, 700);
+  await shot(page, '23-depthmap-tilt');
+  await page.evaluate(() => { window.__pofu.orient(0, 0); }); await settle(page, 1500);
+  await page.locator('#seg button', { hasText: 'Pofu' }).tap(); await settle(page, 1400);
+  await shot(page, '24-depthmap-home');
+  await page.evaluate(() => window.__pofu.fx('depthmap', false));
+  // (c) bokeh at Home.
+  const bko = await page.evaluate(() => +getComputedStyle(document.getElementById('bokeh')).opacity);
+  ok(bko > 0.9, 'foreground bokeh shows at Home');
+  await shot(page, '25-home-recommended');
+  // (g) perspective tilt during a move.
+  await page.evaluate(() => window.__pofu.fx('dolly', true));
+  await page.evaluate(() => { window.__tilts = []; const t0 = performance.now(); const f = () => { const m = getComputedStyle(document.getElementById('tilt')).transform; window.__tilts.push(m === 'none' ? 0 : 1); if (performance.now() - t0 < 1200) requestAnimationFrame(f); }; requestAnimationFrame(f); });
+  await page.locator('#seg button', { hasText: 'Harita' }).tap(); await settle(page, 200);
+  await shot(page, '26-dolly-mid');
+  await settle(page, 1300);
+  const tilts = await page.evaluate(() => window.__tilts);
+  ok(tilts.filter(Boolean).length >= 2, `perspective tilt while travelling (${tilts.filter(Boolean).length} of ${tilts.length} frames tilted)`);
+  await settle(page, 400);
+  const tiltEnd = await page.evaluate(() => getComputedStyle(document.getElementById('tilt')).transform);
+  ok(tiltEnd === 'none', 'and level again when the camera rests');
+  await page.evaluate(() => window.__pofu.fx('dolly', false));
+  await page.locator('#seg button', { hasText: 'Pofu' }).tap(); await settle(page, 1400);
+  // Everything on, for a look.
+  await page.evaluate(() => window.__pofu.preset('all')); await settle(page, 900);
+  await page.locator('#seg button', { hasText: 'Ada' }).tap(); await settle(page, 1400);
+  await shot(page, '27-island-all');
+  await page.evaluate(() => window.__pofu.preset('rec')); await settle(page, 400);
+  await page.evaluate(() => window.__pofu.set('dof', 'flat')); await settle(page, 600);
+  await shot(page, '28-island-flat-v1');
+  await page.evaluate(() => window.__pofu.set('dof', 'depth')); await settle(page, 600);
+
   // ---- input never blocked
-  const longs = await page.evaluate(() => window.__long);
+  const longAll = await page.evaluate(() => window.__long);
+  const fmtL = (a) => a.map((v) => (typeof v === 'number' ? Math.round(v) : v)).join(' ');
+  console.log('  long tasks before v2:', fmtL(longAll.slice(0, longV1)) || 'none');
+  console.log('  long tasks in the v2 section:', fmtL(longAll.slice(longV1)) || 'none');
+  let inShot = false; const longs = longAll.filter((v) => { if (v === '[shot') inShot = true; if (v === 'shot]') { inShot = false; return false; } return typeof v === 'number' && !inShot; });
+  const rc = await page.evaluate(() => window.__pofu.renderCost());
+  console.log(`  render() per frame: avg ${rc.avg} ms, max ${rc.max} ms over ${rc.n} frames`);
   ok(longs.every((d) => d <= 150), `no long task over 150 ms (${longs.length ? Math.round(Math.max(...longs)) + ' ms max' : 'none'})`);
   ok(errors.length === 0, `no errors or dialogs${errors.length ? ': ' + errors.slice(0, 3).join(' | ') : ''}`);
   ok(failed.length === 0, `every request succeeded${failed.length ? ': ' + failed.slice(0, 3).join(', ') : ''}`);
   // Idle: nothing animates in JS when nobody touches it (CSS breathing only).
   await page.locator('#panelClose').tap().catch(() => {}); await settle(page, 4000);
   s = await st(page); ok(s.idle, 'the JS frame loop stops when the world is at rest');
+  await ctx.close();
+}
+
+// Frame-time bench per technique (headless Chromium, software GL: relative numbers only).
+async function bench(browser, base) {
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, hasTouch: true, isMobile: true });
+  const page = await ctx.newPage(); await page.goto(base + '/index.html'); await page.waitForFunction(() => window.__pofu && [...document.images].every((i) => i.complete)); await settle(page, 1200);
+  const rows = [];
+  const cfgs = [['none', {}], ['a parallax', { parallax: true }], ['b haze', { haze: true }], ['c bokeh', { bokeh: true }], ['d shadows', { shadows: true }], ['e tilt-shift', { tiltshift: true }], ['f depth map', { depthmap: true }], ['g dolly', { dolly: true }], ['recommended', 'rec'], ['all', 'all']];
+  for (const [name, c] of cfgs) {
+    await page.evaluate((c) => { window.__pofu.preset(typeof c === 'string' ? c : 'none'); if (typeof c === 'object') for (const k in c) window.__pofu.fx(k, c[k]); }, c);
+    await settle(page, 600);
+    const r = await page.evaluate(() => window.__pofu.bench(3000));
+    rows.push([name, r]); console.log(`BENCH ${name.padEnd(12)} ${String(r.fps).padStart(3)} fps  p95 ${String(r.p95).padStart(5)} ms  worst ${r.worst} ms`);
+  }
+  await page.evaluate(() => window.__pofu.preset('rec'));
+  ok(rows.length === cfgs.length, 'bench ran for every technique');
   await ctx.close();
 }
 
@@ -300,7 +434,7 @@ async function sandbox(browser, base) {
   const srv = await serve(); const base = `http://127.0.0.1:${srv.address().port}`;
   if (SHOTS) fs.mkdirSync(path.join(ROOT, 'screenshots'), { recursive: true });
   const browser = await chromium.launch();
-  try { await phone(browser, base); await dark(browser, base); await desktop(browser, base); await sandbox(browser, base); }
+  try { await phone(browser, base); if (process.argv.includes('--bench')) await bench(browser, base); await dark(browser, base); await desktop(browser, base); await sandbox(browser, base); }
   catch (e) { console.error(e); failures++; }
   await browser.close(); srv.close();
   const size = fs.readdirSync(path.join(ROOT, 'assets')).reduce((a, f) => a + fs.statSync(path.join(ROOT, 'assets', f)).size, 0);
