@@ -169,6 +169,27 @@ class ShippedManifestTests(unittest.TestCase):
         self.assertEqual(m.job("jar-1").edit_of, "jar-0")
         self.assertEqual(m.job("lantern-on").edit_of, "lantern-off")
 
+    def test_batch_03_completes_the_home_island(self):
+        m = pl.load_manifest(pl.HERE / "manifest" / "batch-03-home-island.yaml")
+        made = [j for j in m.jobs if not j.external]
+        self.assertTrue(all(j.variants == 2 for j in made))
+        for station in ("pond", "workshop", "windmill"):
+            first = m.job(f"{station}-1")
+            self.assertEqual([a.ref for a in first.attach][:2], ["station-guide", "approved:cay-1"])
+            for level in range(2, 6):
+                self.assertEqual(m.job(f"{station}-{level}").edit_of, f"{station}-{level - 1}")
+        # chains batch 01 started continue from its masters
+        self.assertEqual((m.job("garden-3").edit_of, m.job("garden-2").external), ("garden-2", "batch-01-slice"))
+        self.assertEqual((m.job("simit-2").edit_of, m.job("simit-1").external), ("simit-1", "batch-01-slice"))
+        # founder feedback: Mochi loses Pofu's curl; Fındık never gets one
+        self.assertEqual(m.job("mochi-v2").edit_of, "mochi")
+        self.assertIn("Remove the single cream curl", pl.compose_prompt(m.job("mochi-v2")))
+        self.assertIn("No curl or swirl", pl.compose_prompt(m.job("findik")))
+        self.assertEqual(m.job("mochi-work").edit_of, "mochi-v2")
+        self.assertEqual(m.job("findik-work").edit_of, "findik")
+        self.assertIn("40% wider", pl.compose_prompt(m.job("island-main-l-v2")))
+        self.assertIn("approved:island-main-l-v2", [a.ref for a in m.job("terrace-v2").attach])
+
 
 if __name__ == "__main__":
     unittest.main()

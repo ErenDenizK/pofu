@@ -1,0 +1,613 @@
+# Batch 03: Ayçiçeği, the home island, stages 1-5 (game design sections
+# 5, 8 and 15).
+#
+# What it completes:
+# - the three stations batch 01 does not touch (lily pond, workshop,
+#   windmill), five levels each, every level an edit of the one before;
+# - the levels batch 01 started but does not finish: sunflower garden
+#   L3-L5 and simit cart L2-L5 (the simit cart is İskele's, but its chain
+#   stays in one place);
+# - the residents: Mochi fixed (mochi-v2), Fındık the hedgehog, and each
+#   one's working pose as an edit;
+# - the plate parts: the large island fixed (island-main-l-v2), the back
+#   terrace against it (stage 4), the east islet and its rope bridge
+#   (stage 5).
+#
+# Founder feedback carried in (2026-11-02):
+# - Mochi has no curl on her head: the cream curl is Pofu's alone. Mochi
+#   has long, soft ears.
+# - The large island must be clearly larger than the small one: about 40 %
+#   wider and a little deeper. Batch 01's island-main-l came back almost
+#   identical (bounding box 1505 px wide against 1471 px), because the
+#   small island already fills 96 % of the canvas. The fix draws the large
+#   island at a smaller scale (the door and pebbles at about 70 %), and the
+#   app draws island-main-s at 1/1.4 of the large plate's width.
+# - Two takes per job: a third is usually a weaker copy of the second.
+#
+# External jobs (`external: batch-01-slice`) are batch 01's masters. They
+# are never generated here; they let this batch's chains continue from
+# them. Fetch them from main or from batch 01's branch (AGENTS.md).
+#
+# Tracks (AGENTS.md, "Next batches"): mochi, findik, plates, pond,
+# workshop, windmill, garden, simit. About 30 generated jobs, 60 takes.
+
+batch: batch-03-home-island
+title: Ayçiçeği stages 1-5 (pond, workshop, windmill, garden L3-L5, simit L2-L5, Mochi v2, Fındık, plate parts)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  # ------------------------------------------------ batch 01's masters
+  - id: island-main-s
+    kind: world
+    name: island-main-s
+    external: batch-01-slice
+
+  - id: cay-1
+    kind: station
+    name: cay-1
+    external: batch-01-slice
+
+  - id: garden-2
+    kind: station
+    name: garden-2
+    external: batch-01-slice
+
+  - id: simit-1
+    kind: station
+    name: simit-1
+    external: batch-01-slice
+
+  - id: mochi
+    kind: char
+    name: mochi-base
+    external: batch-01-slice
+
+  # ------------------------------------------------------- residents
+  - id: mochi-v2
+    kind: char
+    name: mochi-v2
+    size: 1024x1536
+    edit_of: mochi
+    chat: "Pofu · Residents"
+    notes: "Founder feedback: no curl on Mochi's head (it is Pofu's signature), long soft ears. Replaces mochi-base in the app."
+    prompt:
+      - text: |
+          Edit the attached bunny, Mochi. Change only these two things:
+          1. Remove the single cream curl of fur on top of her head
+             completely. The top of her head becomes a smooth, softly
+             rounded dome of the same cream fur: no curl, no swirl, no
+             tuft, no quiff of any kind. (That curl belongs to Pofu, the
+             hamster, alone.)
+          2. Make her two floppy ears longer and softer: they hang from the
+             top of her head down beside her face to about the level of her
+             front paws, about one and a half times as long as now, with
+             the same blush-pink insides and soft, fluffy edges.
+          Her eyes, face, cheeks, body, paws, feet, colors and size stay
+          exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: any curl, swirl or tuft of fur on top of the head, upright ears, a ground shadow, text."
+
+  - id: mochi-work
+    kind: char
+    name: mochi-work
+    size: 1024x1536
+    edit_of: mochi-v2
+    chat: "Pofu · Residents"
+    notes: "Working pose (game design section 15: residents get a working and an idle pose as edits). Idle is mochi-v2."
+    attach:
+      - ref: approved:cay-1
+        role: "The tea stall she runs: paint the tea glass and saucer exactly like the ones on its counter (do not draw the stall)."
+    prompt:
+      - text: |
+          Edit the attached bunny, Mochi, into her working pose at the tea
+          stall. Change only her two front paws: they now hold a small
+          tulip-shaped tea glass of warm amber tea on a tiny cream saucer in
+          front of her chest, as if offering it. The glass is a soft tinted
+          shape, matte, with no shine. Her ears, head, face, body and feet
+          stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: a curl on the head, a teapot, a tray, steam, a ground shadow, text."
+
+  - id: findik
+    kind: char
+    name: findik-base
+    size: 1024x1536
+    chat: "Pofu · Residents"
+    notes: "Fındık, the hedgehog of the workshop (game design section 8). Arrives at home stage 4."
+    attach:
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him)."
+      - ref: approved:mochi-v2
+        role: "Mochi, a neighbor: Fındık stands next to her, so match her size on the canvas, her eyes and her finish (do not draw her)."
+      - ref: palette:character
+        role: "The character palette card."
+    prompt:
+      - text: |
+          Draw Fındık, a neighbor of the attached hamster, in exactly the
+          same art style, lighting and level of fluff as the hamster and the
+          attached bunny. Same canvas rules as the hamster: full body,
+          sitting upright, front view, centered, feet on an invisible line
+          at 88% of the height, about 62% of the canvas width.
+          CHARACTER: Fındık, a baby hedgehog whose body is a soft round
+          ball. The back, the top and the sides of the head are covered in a
+          thick coat of soft, rounded quills in warm hazelnut brown with
+          cream tips, painted as short, soft tufts like a plush toy, never
+          sharp; the quills frame the face like a hood and stop at a
+          smooth, clean line around it. A creamy beige face, chest and
+          belly. A small, softly pointed snout with a tiny round cocoa-brown
+          nose and a small smiling "w" mouth. Big round glossy dark
+          espresso eyes with one large round catchlight and one tiny
+          sparkle each, soft blush ovals on the cheeks, two small round ears
+          with pink insides peeking out of the quills, two tiny cream front
+          paws together at the chest, two small feet peeking out; three
+          small toe creases on each paw and foot. No curl or swirl of fur on
+          top of the head (that belongs to Pofu alone). No clothes, no
+          accessories.
+      - block: style-anchor-v1
+      - block: negative-v1
+      - text: "AVOID: sharp, spiky or wiry quills, a curl or swirl on top of the head, glasses, a hat, tools."
+
+  - id: findik-work
+    kind: char
+    name: findik-work
+    size: 1024x1536
+    edit_of: findik
+    chat: "Pofu · Residents"
+    notes: "Working pose; idle is findik-base."
+    prompt:
+      - text: |
+          Edit the attached hedgehog, Fındık, into a working pose at the
+          workshop. Change only the two front paws: they now hold a small,
+          chunky, round wooden gear in front of the chest, as if showing a
+          finished part: soft honey wood, six rounded teeth and a round
+          hole in the middle, matte, no shine. Everything else stays
+          exactly as it is.
+      - block: edit-keep-v1
+      - text: "AVOID: metal tools, sharp quills, a curl on the head, a ground shadow, text."
+
+  # ------------------------------------------------------ plate parts
+  - id: island-main-l-v2
+    kind: world
+    name: island-main-l-v2
+    size: 1536x1024
+    key: blue
+    chat: "Pofu · Island"
+    notes: >-
+      Replaces batch 01's island-main-l, which came back as wide as the small
+      island. The small island fills 96 % of its canvas, so this plate shows
+      the larger island at a smaller scale; the app draws island-main-s at
+      1/1.4 of this plate's width. Review check: the door here is at most
+      75 % as wide as the door in island-main-s.
+    attach:
+      - ref: approved:island-main-s
+        role: "The small island, approved: the same island before it grows. Match its painting, colors, light, camera, lawn, front lip, strata, door, pebbles and roots exactly."
+      - ref: R1
+        role: "Style reference only (no characters): the hamster's soft painting, light and pastel colors."
+      - ref: palette:world-day
+        role: "The palette card: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          Draw the large version of the attached floating island: the same
+          island after it has grown, for a cozy mobile game diorama.
+          - The lawn is about 40% wider, side to side, and about 15% deeper,
+            front to back, than the attached island's: a longer, wider
+            oval, still completely empty, at the same low camera (the oval
+            about 0.3 times as tall as it is wide).
+          - To fit the canvas, the camera is a little farther away: the
+            island fills about 94% of the image width, and the round door,
+            its window, the pebbles and the roots are drawn at about 70% of
+            their size in the attached image (the same real size on a
+            bigger island). The door stays on the lower left of the earth
+            body; add two or three more pebbles and one more root along the
+            longer earth body.
+          - Relative to its own width, the earth body is a little shallower
+            than in the attached image (about 17% of the island's width),
+            because the island grew more in width than in depth: the same
+            soft, rounded underside, never a cone.
+          - The same soft, muted sage lawn painted as a smooth velvety
+            surface, the same darker front lip with a hint of short grass,
+            the same light honey and caramel earth with gentle strata.
+      - block: prop-style-v2
+      - text: "AVOID: characters, plants or objects on the lawn, water, sky, clouds, background, ground shadow, saturated or yellow-green grass, a deep cone-shaped underside, a door as large as in the attached image, text."
+    acceptance:
+      depth_ratio: {warn: 0.24, fail: 0.32}
+
+  - id: terrace-v2
+    kind: world
+    name: terrace-v2
+    size: 1536x1024
+    key: blue
+    chat: "Pofu · Island"
+    notes: "Stage 4 (10 tended days). Replaces batch 01's terrace, which was drawn against the old large island."
+    attach:
+      - ref: approved:island-main-l-v2
+        role: "The large island: match its style, colors, light, camera and scale exactly. Do not redraw it."
+      - ref: palette:world-day
+        role: "The palette card: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          For the attached island, draw only a raised grassy terrace that
+          will sit on the back half of its lawn: a soft oval lawn about 75%
+          of the island's width, at the same scale as the attached island
+          and placed where it would sit on it, lifted on a low earthen step
+          with the same strata and colors, and a short flight of four cream
+          stone steps on its front left. The terrace lawn is empty. Nothing
+          else: not the island itself, no characters, no objects.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: islet-east
+    kind: world
+    name: islet-east
+    size: 1024x1024
+    canvas: 1024x1024
+    key: blue
+    chat: "Pofu · Island"
+    notes: "Stage 5 (game design section 15: east islet and a rope bridge). Lawn empty for a later slot."
+    attach:
+      - ref: approved:island-main-l-v2
+        role: "The large island: match its painting, colors, light, camera, lawn, strata, pebbles and roots exactly (do not draw it)."
+      - ref: palette:world-day
+        role: "The palette card: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small floating islet for the same diorama, as if it had drifted
+          close to the attached island: a soft oval lawn, completely empty,
+          with the same darker front lip; underneath, a shallow rounded
+          earth body of the same honey and caramel strata, no deeper than
+          30% of the islet's width, with three cream pebbles and two short
+          dangling roots. No door. Seen from the same low camera (the lawn
+          oval about 0.3 times as tall as it is wide). Centered, filling
+          about 65% of the canvas width, with a generous transparent
+          margin.
+      - block: prop-style-v2
+      - text: "AVOID: characters, plants, trees or objects on the lawn, a door, water, sky, clouds, background, ground shadow, saturated grass, a cone-shaped underside, text."
+    acceptance:
+      depth_ratio: {warn: 0.34, fail: 0.42}
+
+  - id: bridge-east
+    kind: prop
+    name: bridge-east
+    chat: "Pofu · Island"
+    notes: "Stage 5. Spans from the large island's back right edge up to the east islet; the app places and scales it."
+    attach:
+      - ref: approved:island-main-l-v2
+        role: "The large island: match its painting, light and camera (do not draw it)."
+      - ref: approved:islet-east
+        role: "The east islet the bridge leads to: same style and colors (do not draw it)."
+    prompt:
+      - text: |
+          A short rope bridge for the same diorama, on its own: six broad
+          planks of soft honey wood hung on two soft cream rope lines that
+          sag gently between a pair of short, stubby wooden posts at each
+          end. Seen from the same low front three-quarter camera, it runs
+          from the lower left of the canvas to the upper right, rising
+          gently, so the far end is higher and a little smaller. Chunky,
+          toy-like proportions; the ropes are thick and soft, never thin
+          lines. The posts end in the air (the islands are separate
+          images). Centered, with a clear transparent margin.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  # --------------------------------- sunflower garden L3-L5 (Pofu's)
+  - id: garden-3
+    kind: station
+    name: garden-3
+    edit_of: garden-2
+    key: blue
+    chat: "Pofu · Sunflower garden"
+    prompt:
+      - text: |
+          Add a small, round watering can of soft sage and cream painted
+          metal (matte, no shine) at the front right corner of the bed, and
+          three tiny seedlings with two small round leaves each in the soil
+          at the front left, all inside the bed and much smaller than the
+          sunflowers.
+      - block: edit-keep-v1
+
+  - id: garden-4
+    kind: station
+    name: garden-4
+    edit_of: garden-3
+    key: blue
+    chat: "Pofu · Sunflower garden"
+    prompt:
+      - text: |
+          Add a low, rounded arch of soft honey wood over the back of the
+          bed, wound with small sunflowers and leaves, and a short string of
+          small triangular bunting in soft rose, honey and cream (plain, no
+          symbols, no letters) along the arch. The arch's top stays below
+          the top of the canvas with a clear margin.
+      - block: edit-keep-v1
+
+  - id: garden-5
+    kind: station
+    name: garden-5
+    edit_of: garden-4
+    key: blue
+    chat: "Pofu · Sunflower garden"
+    notes: "L5 'one giant sunflower that follows the sun': the app may turn the head; if that needs a separate head layer, the lead adds a job."
+    prompt:
+      - text: |
+          Add one giant sunflower rising from the center back of the bed,
+          behind the arch and taller than it: a thick soft stem with three
+          broad leaves and one big round head of honey-yellow petals around
+          a warm brown center, facing up and to the left toward the light.
+          The head stays inside the canvas with a clear margin at the top.
+      - block: edit-keep-v1
+
+  # --------------------------------------------- simit cart L2-L5
+  - id: simit-2
+    kind: station
+    name: simit-2
+    edit_of: simit-1
+    chat: "Pofu · Simit cart"
+    prompt:
+      - text: |
+          Add a small round sun umbrella above the cart on a wooden pole
+          fixed to the cart's back: a scalloped canopy of soft coral and
+          cream segments, matte cloth. The umbrella's top stays below the
+          top of the canvas with a clear margin.
+      - block: edit-keep-v1
+
+  - id: simit-3
+    kind: station
+    name: simit-3
+    edit_of: simit-2
+    chat: "Pofu · Simit cart"
+    prompt:
+      - text: |
+          Add a short upright wooden pole at the cart's front left corner
+          with eight golden-brown simit rings stacked on it, the same rings
+          as on the tray, the pole's top below the umbrella.
+      - block: edit-keep-v1
+
+  - id: simit-4
+    kind: station
+    name: simit-4
+    edit_of: simit-3
+    chat: "Pofu · Simit cart"
+    prompt:
+      - text: |
+          Add a small, low, rounded wooden bench for regulars beside the
+          cart's right wheel, inside the footprint and lower than the
+          cart's tray.
+      - block: edit-keep-v1
+
+  - id: simit-5
+    kind: station
+    name: simit-5
+    edit_of: simit-4
+    chat: "Pofu · Simit cart"
+    prompt:
+      - text: |
+          Turn the cart into a little kiosk: replace only the umbrella with
+          a small peaked roof of soft coral and cream boards on two thin
+          wooden posts, and add a small plain triangular coral-and-cream
+          pennant on top of the roof (no symbols, no letters). Keep the
+          cart, the rings, the pole and the bench.
+      - block: edit-keep-v1
+
+  # ----------------------------------- lily pond L1-L5 (the frogs')
+  - id: pond-1
+    kind: station
+    name: pond-1
+    key: blue
+    chat: "Pofu · Lily pond"
+    attach: &station_l1
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:cay-1
+        role: "P-station, the approved tea stall: match its style, camera, light, colors and scale exactly (do not draw the stall)."
+      - ref: approved:island-main-s
+        role: "The island this station stands on: same camera and softness."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small, round, shallow lily pond for the island diorama: an oval
+          of calm water painted as a flat, milky, soft sky-blue-green tint
+          with one gentle lighter band (no reflections of anything), rimmed
+          by a low ring of rounded cream and soft beige pebbles. The pond
+          fills the ground ellipse and stays low: leave the upper two thirds
+          of the height bar empty, because later levels add lily pads,
+          reeds, a dock and lanterns.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: pond-2
+    kind: station
+    name: pond-2
+    edit_of: pond-1
+    key: blue
+    chat: "Pofu · Lily pond"
+    prompt:
+      - text: |
+          Add five round lily pads of soft sage green floating flat on the
+          water, of different sizes, each with one small notch.
+      - block: edit-keep-v1
+
+  - id: pond-3
+    kind: station
+    name: pond-3
+    edit_of: pond-2
+    key: blue
+    chat: "Pofu · Lily pond"
+    prompt:
+      - text: |
+          Add two small clumps of soft, rounded reeds at the back left and
+          back right edges of the pond, and one blush-pink and cream water
+          lily blossom on the largest pad.
+      - block: edit-keep-v1
+
+  - id: pond-4
+    kind: station
+    name: pond-4
+    edit_of: pond-3
+    key: blue
+    chat: "Pofu · Lily pond"
+    prompt:
+      - text: |
+          Add a short, low wooden dock of four broad planks of soft honey
+          wood on two stubby posts, reaching from the front right edge of
+          the pond onto the water, inside the footprint.
+      - block: edit-keep-v1
+
+  - id: pond-5
+    kind: station
+    name: pond-5
+    edit_of: pond-4
+    key: blue
+    chat: "Pofu · Lily pond"
+    prompt:
+      - text: |
+          Add three small round paper lanterns of honey cream floating on
+          the water between the pads, unlit: simple soft shapes, not
+          glowing (the app adds the glow at night).
+      - block: edit-keep-v1
+
+  # -------------------------------------- workshop L1-L5 (Fındık's)
+  - id: workshop-1
+    kind: station
+    name: workshop-1
+    chat: "Pofu · Workshop"
+    attach: *station_l1
+    prompt:
+      - text: |
+          A tiny tinker's workshop for the island diorama: a small, rounded,
+          chunky shed of soft honey wood with an open, round-topped cream
+          doorway (a soft warm-brown shadow inside, nothing visible in it)
+          and a low sloped roof of broad caramel wooden shingles; on its
+          right, a sturdy little workbench of the same wood with one small
+          cream vise. Friendly, toy-like proportions with few parts. The
+          shed and the bench fill only the lower 60% of the height bar:
+          leave the upper part empty, because later levels add a wind vane,
+          a chimney and a sign there.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: workshop-2
+    kind: station
+    name: workshop-2
+    edit_of: workshop-1
+    chat: "Pofu · Workshop"
+    prompt:
+      - text: |
+          Add a pale wooden pegboard on the shed's front wall, right of the
+          doorway, holding five simple, chunky tools: a hammer, a saw, a
+          wrench, a pair of pliers and a hand drill, with honey wood handles
+          and their metal painted as soft stone-beige shapes with no shine.
+      - block: edit-keep-v1
+
+  - id: workshop-3
+    kind: station
+    name: workshop-3
+    edit_of: workshop-2
+    chat: "Pofu · Workshop"
+    prompt:
+      - text: |
+          Add a small wind vane on a short wooden pole on the roof's ridge:
+          four rounded cream and honey blades like a little pinwheel,
+          facing the viewer, matte.
+      - block: edit-keep-v1
+
+  - id: workshop-4
+    kind: station
+    name: workshop-4
+    edit_of: workshop-3
+    chat: "Pofu · Workshop"
+    prompt:
+      - text: |
+          Add a short, round chimney of soft cream stones on the left side
+          of the roof, with a small rose-copper cap. No smoke (the app adds
+          it).
+      - block: edit-keep-v1
+
+  - id: workshop-5
+    kind: station
+    name: workshop-5
+    edit_of: workshop-4
+    chat: "Pofu · Workshop"
+    prompt:
+      - text: |
+          Add a big, round, gear-shaped wooden sign above the doorway: soft
+          honey wood with a cream rim and eight rounded teeth, plain (no
+          letters, no symbols).
+      - block: edit-keep-v1
+
+  # ----------------------------- windmill L1-L5 (Pofu and Fındık's)
+  - id: windmill-1
+    kind: station
+    name: windmill-1
+    chat: "Pofu · Windmill"
+    attach: *station_l1
+    prompt:
+      - text: |
+          A small, stout windmill for the island diorama: a round, gently
+          tapering tower of soft cream and pale honey stones painted as
+          broad, smooth shapes (no mortar lines), a small round wooden door
+          at its base, a rounded cap of caramel wood on top, and four bare
+          sail frames on the front of the cap arranged as an X, each sail a
+          simple ladder of a few broad wooden slats, no cloth yet. Friendly,
+          toy-like proportions with few parts. The tower stands on the
+          center of the ground ellipse and is about a third of its width;
+          the top sail tip stays below the top of the height bar and
+          nothing touches the canvas edges. Leave a little room above the
+          cap for a small flag later.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: windmill-2
+    kind: station
+    name: windmill-2
+    edit_of: windmill-1
+    chat: "Pofu · Windmill"
+    prompt:
+      - text: |
+          Add soft cream sail cloths stretched over each of the four sail
+          frames, matte cloth with one gentle fold, the slats showing only
+          at the edges.
+      - block: edit-keep-v1
+
+  - id: windmill-3
+    kind: station
+    name: windmill-3
+    edit_of: windmill-2
+    chat: "Pofu · Windmill"
+    prompt:
+      - text: |
+          Add three plump sacks of cream burlap at the foot of the tower on
+          the right, tied at the top, one open and showing striped sunflower
+          seeds, all inside the footprint and lower than the door.
+      - block: edit-keep-v1
+
+  - id: windmill-4
+    kind: station
+    name: windmill-4
+    edit_of: windmill-3
+    chat: "Pofu · Windmill"
+    prompt:
+      - text: |
+          Add five small round lanterns of honey-cream paper hanging along
+          the lower edge of the cap, unlit: simple soft shapes, not glowing
+          (the app adds the glow at night).
+      - block: edit-keep-v1
+
+  - id: windmill-5
+    kind: station
+    name: windmill-5
+    edit_of: windmill-4
+    chat: "Pofu · Windmill"
+    prompt:
+      - text: |
+          Add a small plain triangular rose-and-cream pennant on a short
+          pole on top of the cap (no symbols, no letters), and two small
+          round windows on the tower, each with a little window box of
+          blush-pink and honey flowers.
+      - block: edit-keep-v1
