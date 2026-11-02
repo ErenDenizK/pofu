@@ -25,9 +25,6 @@ let package = Package(
         .library(name: "PofuCompanion", targets: ["PofuCompanion"]),
         .library(name: "PofuWorld", targets: ["PofuWorld"]),
         .library(name: "PofuGames", targets: ["PofuGames"]),
-            resources: [.process("Resources")]
-        ),
-
         .library(name: "PofuTuning", targets: ["PofuTuning"]),
     ],
     targets: [
