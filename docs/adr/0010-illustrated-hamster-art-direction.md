@@ -8,7 +8,7 @@
 ## Context
 
 Three rendering pipelines were explored for Pofu
-([character-exploration.md](../brand/character-exploration.md)):
+([character-exploration.md](../archive/character-exploration.md)):
 
 1. **Code-native vector rig** (ADR-0006, prototype v0.1). The geometry and
    motion worked, but the founder found the character species-less, and the

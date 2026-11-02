@@ -379,7 +379,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   confirmed are marked for checking on a device.
 
 Polish from the first simulator run
-([report](docs/local/reports/2026-11-01-simulator-run.md)):
+([report](docs/archive/local-reports/2026-11-01-simulator-run.md)):
 
 - The setup guide's footer is opaque with a hairline edge, and the guide
   shows one primary action at a time, always the next real step; "Done"

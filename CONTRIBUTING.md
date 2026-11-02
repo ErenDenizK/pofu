@@ -32,7 +32,7 @@ Trunk-based development with short-lived branches.
   | `design/`   | Design system, assets, visual work        |
 
   Two operator branches are also allowed: `local/<topic>` for the local Mac
-  agent's reports ([local agent brief](docs/local-agent.md)) and
+  agent's reports ([local agent brief](docs/archive/local-agent.md)) and
   `art/<batch>` for image pipeline rounds ([`AGENTS.md`](AGENTS.md)).
 
 ## Commit messages

@@ -1,7 +1,9 @@
 # Iteration Plan: Gate First, Then Pofu's World
 
-_Living document. Last updated: 2026-11-01 (reordered after the
-[decision audit](../product/decision-audit.md))._
+_Living document. Last updated: 2026-11-02. Reordered 2026-11-01 after the
+[decision audit](../product/decision-audit.md); dates refreshed 2026-11-02:
+the membership is expected **after 2026-11-24**, and new work targets the
+Screen Time product (the Shortcuts path, G1, is dropped)._
 
 The prototypes proved the idea; they did not prove the craft. More
 importantly, **the gate has not yet caught one real reach** on the founder's
@@ -16,7 +18,7 @@ builds on: [ADR-0013](../adr/0013-zero-setup-default-gate.md) and
 
 | Horizon | What the founder holds in their hand |
 |---|---|
-| **Gate week** (now) | The current app on the iPhone: a working automation for Instagram, YouTube, and TikTok, Hop!, honest measurement, and a daily readout |
+| **Gate week** (from membership day 1, after 2026-11-24; Rehearsal mode until then) | The Screen Time gate on the iPhone for Instagram, YouTube, and TikTok, Hop!, honest measurement, and a daily readout |
 | **Vertical slice** | Shield-based zero-setup gate (membership), the 5 s breathing break, and Ayçiçeği island at stages 1–3 with the çay ocağı and Mochi |
 | **Friends beta** | The Glass++ frame (painted domain icons, the jar and the lantern), widgets, the layered app icon, Turkish and English |
 | **Launch and year one** | More islands as evidence allows, seasonal skins as edits, friends visiting each other's islands ([ADR-0005](../adr/0005-serverless-friend-approval.md)), Live Activity for quiet time, an ambient soundscape per island |
@@ -39,7 +41,7 @@ an app, and which never becomes a new thing to scroll.
 
 ## Stage G: the gate
 
-The paid membership (about two weeks away) turns on the Screen Time shield
+The paid membership (expected after 2026-11-24) turns on the Screen Time shield
 for development builds on the founder's own iPhone on day 1; TestFlight
 waits for Apple's separate distribution approval. So the cloud builds the
 shield path **now**, and the founder's real test week starts on membership
@@ -48,7 +50,7 @@ day 1 instead of fighting the manual Shortcuts setup (founder's call,
 
 | # | Question | Artifact | Check | Who |
 |---|---|---|---|---|
-| G1 | Does the manual automation fire? (**optional**) | One "Instagram is opened → Hop in" automation, created with the local agent guiding live; a screen recording | Hop! fires from a real reach. Worth one 30-minute try for early data on Hop!; not a blocker | Founder + Mac |
+| G1 | Does the manual automation fire? (**dropped 2026-11-02**: the free Shortcuts path gets no new features) | One "Instagram is opened → Hop in" automation, created with the local agent guiding live; a screen recording | Hop! fires from a real reach. Worth one 30-minute try for early data on Hop!; not a blocker | Founder + Mac |
 | G2 | Is the measurement honest and the setup guide followable? | Post-expiry time counts as unobserved; pass-expiry notification; setup guide v2 in "when Instagram opens, Pofu hops in" language. Still needed for Live Pofu (ADR-0013) | Tests pass; later, a friend sets it up from the guide alone | **Done** (#32) |
 | G3 | Is the zero-setup gate ready for day 1? | `LiveScreenTimeService`, shield, shield action, and monitor extensions behind a separate signing configuration; a day-1 test script | CI green; the free build still signs with a Personal Team | **Done** (#34, gate v2 #41) |
 | G4 | Can we use Screen Time? | Membership day 1: enroll, request Family Controls distribution for every bundle ID, switch to the live configuration, build to the iPhone (`docs/local/membership-day-1.md`) | The shield appears on Instagram; distribution request date recorded | Founder (Xcode on the Mac, once) |
@@ -68,6 +70,8 @@ on the founder's own account. No production art batches and no islands
 2+ until G5 has data.
 
 ## Stage W: the world (after two weeks of daily use)
+
+_Code-only stage W work runs during the membership wait; production art waits for G5 data._
 
 | # | Question | Artifact | Check | Depends on |
 |---|---|---|---|---|

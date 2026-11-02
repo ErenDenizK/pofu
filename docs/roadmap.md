@@ -1,6 +1,35 @@
 # Roadmap
 
-_Living document. Last updated: 2026-11-01._
+_Living document. Last updated: 2026-11-02._
+
+## Status (2026-11-02)
+
+- **Done:** soft gate v1 (#14: `CheckInIntent`, the Hop! flow, Pofu's room,
+  persistence, minimal onboarding); honest measurement and setup guide v2
+  (#32); the Screen Time gate as a separate `PofuLive` target with three
+  extensions (#34); gate v2 (#41: the speaking shield, honest reach
+  counting, "Açmam lazım", onboarding with a live demo); the game model in
+  `PofuCore/Game` (#46, #48); the native island `PofuWorld` (#49);
+  Rehearsal mode in the free build.
+- **Why the gate comes first:** the Shortcuts automation never fired on the
+  founder's phone (he searched Shortcuts for the app instead of opening the
+  Automation tab); see the [decision audit](product/decision-audit.md).
+- **Next:** the founder's 7-day dogfood from membership day 1
+  ([script](local/membership-day-1.md)); the membership is expected after
+  2026-11-24. Until then the cloud builds code-only stage W work.
+- **Build for the membership (founder, 2026-11-02):** new work targets the
+  Screen Time product; the free `Pofu` target and the Shortcuts path get no
+  new features. After membership day 1, collapse `Pofu` and `PofuLive` into
+  one app target with the entitlements.
+- **Rehearsal mode:** an in-app replica of the shield and simulated reaches
+  driven by the same code paths, so the founder feels the whole loop on his
+  iPhone before the membership
+  ([development guide](development.md#rehearsal-mode-the-free-build)).
+- **Packages** (`Packages/PofuKit`): `PofuCore`, `PofuScreenTime`,
+  `PofuPersistence`, `PofuDesignSystem`, `PofuCompanion`, `PofuWorld`. Keep
+  [economy.md](product/economy.md) in sync with `PofuCore`. ADR-0015's
+  breathing break is not yet in `PofuCore`.
+- The 3D Blender spike is parked as a reference.
 
 Phases are sequenced by risk: the earliest phases remove the largest
 unknowns. Each phase ends with something the founder can hold in their hand.
