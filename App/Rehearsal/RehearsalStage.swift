@@ -24,6 +24,9 @@ final class RehearsalStage {
     var screen: Screen?
     /// The panel shows its controls rather than its pill.
     var isPanelExpanded = true
+    /// The Ayçiçeği garden game is open (the debug entry for the island
+    /// minigame, until islands have a "Play" door and rounds a ledger).
+    var isPlayingGarden = false
     /// Counts the clock's jumps, so the panel's clock readout follows.
     private(set) var jumps = 0
 

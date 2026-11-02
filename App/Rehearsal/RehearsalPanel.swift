@@ -91,6 +91,11 @@ struct RehearsalPanel: View {
             }
             nightOrMorning
             Divider()
+            control(Text("Play the garden"), symbol: "square.grid.3x3.fill") {
+                rehearsal.isPanelExpanded = false
+                rehearsal.isPlayingGarden = true
+            }
+            Divider()
             control(Text("Reset"), symbol: "arrow.counterclockwise", role: .destructive) {
                 confirmsReset = true
             }

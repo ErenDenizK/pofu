@@ -54,6 +54,8 @@ targets:
         product: PofuCompanion
       - package: PofuKit
         product: PofuWorld
+      - package: PofuKit
+        product: PofuGames
     settings:
       base:
         PRODUCT_NAME: Pofu
@@ -99,6 +101,8 @@ targets:
         product: PofuCompanion
       - package: PofuKit
         product: PofuWorld
+      - package: PofuKit
+        product: PofuGames
       - target: PofuShieldConfiguration
       - target: PofuShieldAction
       - target: PofuActivityMonitor
@@ -140,6 +144,8 @@ targets:
         product: PofuDesignSystem
       - package: PofuKit
         product: PofuWorld
+      - package: PofuKit
+        product: PofuGames
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(POFU_BUNDLE_ID_BASE).WorldScreenshots
@@ -256,6 +262,7 @@ schemes:
         - package: PofuKit/PofuDesignSystemTests
         - package: PofuKit/PofuCompanionTests
         - package: PofuKit/PofuWorldTests
+        - package: PofuKit/PofuGamesTests
     profile:
       config: Release
     analyze:
@@ -279,6 +286,7 @@ schemes:
         - package: PofuKit/PofuDesignSystemTests
         - package: PofuKit/PofuCompanionTests
         - package: PofuKit/PofuWorldTests
+        - package: PofuKit/PofuGamesTests
     profile:
       config: Release
     analyze:
