@@ -1,0 +1,158 @@
+batch: batch-06-pofu-rig
+contact_sheet: design/art/takes/batch-06-pofu-rig/pofu-mouth-o/contact.jpg
+jobs:
+  pofu-mouth-o:
+    pick: 2
+    note: auto-picked by QA; founder review pending. Pofu is never locked; equal zero
+      lock loads are resolved by higher harmony score. Alpha composites verify clean
+      transparency.
+    takes:
+      t1:
+        qa: warn
+        summary: palette_drift warn
+      t2:
+        qa: warn
+        summary: palette_drift warn
+    approved:
+      take: 2
+      at: '2026-11-02T19:21:09+00:00'
+qa_reports:
+  t1:
+    job: pofu-mouth-o
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 53 (R1 51)
+      value: 52.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 58 (R1 59)
+      value: 57.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.1 (R1 5.3)
+      value: 5.13
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.4, p95 11.2, off-palette 4.5% (top: #EE9955 (0.8%), #EE7766
+        (0.4%))'
+      value: 2.3767
+    - check: ground_line
+      status: pass
+      message: feet at 89.5% of the height (contract 88%)
+      value: 0.8952
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the char reference (outliers: C_p95, detail,
+        tint_b)'
+      value: 81.9
+    - check: edit_stability
+      status: pass
+      message: 100% of the parent level unchanged
+      value: 0.9966
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.03 of the parent level (drift compounds along a chain)
+      value: 1.0282
+    info:
+      metrics_raw:
+        L_p5: 57.9
+        L_p50: 88.2
+        L_p95: 96.7
+        C_p50: 12.7
+        C_p95: 53.0
+        C_p99: 63.1
+        detail: 5.16
+      metrics_locked:
+        L_p5: 57.9
+        L_p50: 88.2
+        L_p95: 96.7
+        C_p50: 12.7
+        C_p95: 52.9
+        C_p99: 57.8
+        detail: 5.13
+    fingerprint: 9f9c4f3f5faa7e10
+  t2:
+    job: pofu-mouth-o
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.003 and moved it; aligned back to the
+        parent
+      value: 0.9973
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 51.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 58 (R1 59)
+      value: 58.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.1 (R1 5.3)
+      value: 5.12
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.4, p95 10.6, off-palette 4.0% (top: #EE9955 (0.7%), #EE7766
+        (0.4%))'
+      value: 2.3729
+    - check: ground_line
+      status: pass
+      message: feet at 89.5% of the height (contract 88%)
+      value: 0.8945
+    - check: harmony
+      status: pass
+      message: 'harmony score 83 against the char reference (outliers: C_p95, detail,
+        tint_b)'
+      value: 83.0
+    - check: edit_stability
+      status: pass
+      message: 100% of the parent level unchanged
+      value: 0.9963
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.03 of the parent level (drift compounds along a chain)
+      value: 1.0332
+    info:
+      alignment:
+        scale: 0.9973
+        cx: 516.5
+        cy: 1375.0
+        dx: 0
+        dy: -1
+      metrics_raw:
+        L_p5: 57.9
+        L_p50: 87.6
+        L_p95: 96.3
+        C_p50: 12.4
+        C_p95: 52.0
+        C_p99: 62.2
+        detail: 5.12
+      metrics_locked:
+        L_p5: 58.2
+        L_p50: 87.9
+        L_p95: 96.7
+        C_p50: 12.5
+        C_p95: 51.9
+        C_p99: 57.7
+        detail: 5.12
+    fingerprint: 9f9c4f3f5faa7e10
