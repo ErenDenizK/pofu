@@ -3,71 +3,21 @@ contact_sheet: design/art/takes/batch-11-ui-pilot/ui-lantern-off/contact.jpg
 jobs:
   ui-lantern-off:
     pick: 2
-    note: Selected by automated QA; not promoted or published as a master because
-      the decor-bench manual-QA global stop interrupted this run. Manual ship/cap
-      review remains pending. Original PNGs retained locally.
-    publication: pending_after_global_stop
+    note: 'auto-picked by QA; founder review pending. Retained take2 reviewed on cream
+      and dark backgrounds at30x96pt: the paper body, ribs, caps and straight wooden
+      post read clearly; no external glow.'
     takes:
       t1:
         qa: pass
-        manual_qa: pending
-        summary: retained, unpromoted
+        summary: all pass
       t2:
         qa: pass
-        manual_qa: pending
-        summary: retained, unpromoted
+        summary: all pass
+    approved:
+      take: 2
+      at: '2026-11-02T23:28:44+00:00'
+    publication: promoted
 qa_reports:
-  1:
-    job: ui-lantern-off
-    take: 1
-    status: pass
-    preset: lock-light
-    checks:
-    - check: transparency
-      status: pass
-      message: source has an alpha channel
-    - check: canvas
-      status: pass
-      message: 1254x1254 scaled x0.817 into 1024x1024
-      value: 0.8166
-    - check: chroma_ceiling
-      status: pass
-      message: chroma p95 40 (R1 51)
-      value: 40.3
-    - check: value_floor
-      status: pass
-      message: lightness p5 64 (R1 59)
-      value: 64.2
-    - check: detail_budget
-      status: pass
-      message: detail at display size 1.1 (R1 5.3)
-      value: 1.12
-    - check: lock_load
-      status: pass
-      message: the lock moved colors by mean dE 0.5
-      value: 0.4904
-    - check: palette_drift
-      status: pass
-      message: mean dE 0.5, p95 1.1, off-palette 0.0%
-      value: 0.5373
-    info:
-      metrics_raw:
-        L_p5: 63.9
-        L_p50: 76.8
-        L_p95: 90.5
-        C_p50: 37.0
-        C_p95: 40.6
-        C_p99: 41.6
-        detail: 1.72
-      metrics_locked:
-        L_p5: 64.2
-        L_p50: 76.8
-        L_p95: 90.5
-        C_p50: 37.1
-        C_p95: 40.3
-        C_p99: 41.4
-        detail: 1.12
-    fingerprint: 0dd38bcae2197aa7
   2:
     job: ui-lantern-off
     take: 2
@@ -119,6 +69,61 @@ qa_reports:
         C_p99: 42.2
         detail: 0.98
     fingerprint: 0dd38bcae2197aa7
+  1:
+    job: ui-lantern-off
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 64.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.4904
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.5, p95 1.1, off-palette 0.0%
+      value: 0.5373
+    info:
+      metrics_raw:
+        L_p5: 63.9
+        L_p50: 76.8
+        L_p95: 90.5
+        C_p50: 37.0
+        C_p95: 40.6
+        C_p99: 41.6
+        detail: 1.72
+      metrics_locked:
+        L_p5: 64.2
+        L_p50: 76.8
+        L_p95: 90.5
+        C_p50: 37.1
+        C_p95: 40.3
+        C_p99: 41.4
+        detail: 1.12
+    fingerprint: 0dd38bcae2197aa7
+manual_review:
+  exclude: []
+  note: 'Retained take2 reviewed on cream and dark backgrounds at30x96pt: the paper
+    body, ribs, caps and straight wooden post read clearly; no external glow.'
 sources:
 - take: 1
   original_png: design/art/inbox/batch-11-ui-pilot/ui__lantern-off--t1.png
