@@ -27,6 +27,7 @@ links:
   - sys-cheek-pouch
   uses_asset:
   - asset-ui-face-secondary
+  - asset-icon-calm
 sources:
 - doc: docs/design/ui-system-v2.md
   anchor: '#2-the-principle-three-layers-and-a-switch'

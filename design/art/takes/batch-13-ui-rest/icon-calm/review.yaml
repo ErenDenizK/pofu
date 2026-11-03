@@ -1,0 +1,170 @@
+batch: batch-13-ui-rest
+contact_sheet: design/art/takes/batch-13-ui-rest/icon-calm/contact.jpg
+jobs:
+  icon-calm:
+    pick: 1
+    note: auto-picked by QA; founder review pending. Both takes read as lit paper
+      lanterns at28,44and60pt on light glass, dark glass and cream clay. Honey-wood
+      cap/stub and two broad ribs retain the silhouette; glow remains within the body,
+      with no halo. Light-glass separation warnings are retained; native review passes.
+      Take1 has the lowest non-failing lock load0.3739; its74%fill warning is retained.
+    takes:
+      t1:
+        qa: warn
+        summary: icon_fill warn; icon_on_light_glass warn
+      t2:
+        qa: warn
+        summary: icon_on_light_glass warn
+    approved:
+      take: 1
+      at: '2026-11-03T00:47:57+00:00'
+qa_reports:
+  1:
+    job: icon-calm
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 51.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 55 (R1 59)
+      value: 55.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.65
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3739
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.3, p95 5.9, off-palette 0.0%
+      value: 2.2651
+    - check: icon_fill
+      status: warn
+      message: icon spans 74% of the canvas (target 80-92%)
+      value: 0.7412
+    - check: icon_thin_parts
+      status: pass
+      message: 0.1% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0007
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 2.9 (busy above 7)
+      value: 2.86
+    - check: icon_on_light_glass
+      status: warn
+      message: 28% of the icon separates from light glass at 24 pt
+      value: 0.2814
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 55.3
+        L_p50: 80.5
+        L_p95: 91.2
+        C_p50: 47.0
+        C_p95: 51.6
+        C_p99: 52.6
+        detail: 0.9
+      metrics_locked:
+        L_p5: 55.4
+        L_p50: 80.5
+        L_p95: 91.2
+        C_p50: 47.1
+        C_p95: 51.5
+        C_p99: 52.5
+        detail: 0.65
+    fingerprint: 05c535d81849c304
+  2:
+    job: icon-calm
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 50.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 57 (R1 59)
+      value: 56.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.62
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.4235
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 4.8, off-palette 0.0%
+      value: 2.0405
+    - check: icon_fill
+      status: pass
+      message: icon spans 78% of the canvas (target 80-92%)
+      value: 0.7764
+    - check: icon_thin_parts
+      status: pass
+      message: 0.0% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0003
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 2.8 (busy above 7)
+      value: 2.76
+    - check: icon_on_light_glass
+      status: warn
+      message: 35% of the icon separates from light glass at 24 pt
+      value: 0.3461
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 56.5
+        L_p50: 79.6
+        L_p95: 90.2
+        C_p50: 45.8
+        C_p95: 50.8
+        C_p99: 51.8
+        detail: 0.88
+      metrics_locked:
+        L_p5: 56.7
+        L_p50: 79.6
+        L_p95: 90.2
+        C_p50: 45.8
+        C_p95: 50.7
+        C_p99: 51.6
+        detail: 0.62
+    fingerprint: 05c535d81849c304
+manual_review:
+  exclude: []
+  note: Both takes read as lit paper lanterns at28,44and60pt on light glass, dark
+    glass and cream clay. Honey-wood cap/stub and two broad ribs retain the silhouette;
+    glow remains within the body, with no halo. Light-glass separation warnings are
+    retained; native review passes. Take1 has the lowest non-failing lock load0.3739;
+    its74%fill warning is retained.
