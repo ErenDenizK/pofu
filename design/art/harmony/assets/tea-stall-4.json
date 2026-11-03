@@ -1,0 +1,58 @@
+{
+ "after": {
+  "C_mean": 37.903,
+  "C_p50": 41.782,
+  "C_p95": 49.697,
+  "L_mean": 73.123,
+  "L_p2": 49.382,
+  "L_p98": 91.392,
+  "detail": 1.663,
+  "edge": 0.43,
+  "warmth_b": 33.364
+ },
+ "before": {
+  "C_mean": 12.907,
+  "C_p50": 14.001,
+  "C_p95": 16.984,
+  "L_mean": 80.239,
+  "L_p2": 65.382,
+  "L_p98": 91.885,
+  "detail": 1.098,
+  "edge": 0.43,
+  "tint_a": 4.4,
+  "tint_b": 8.991,
+  "warmth_b": 11.324
+ },
+ "chain": {
+  "C_p50": 43.14,
+  "L_p2": 46.406,
+  "L_p98": 91.368
+ },
+ "correction": {
+  "black": -16.0,
+  "ceiling": 47.0,
+  "chroma": 3.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "chain_C_p50",
+  "chain_L_p2",
+  "edge"
+ ],
+ "ppu": 8.5333,
+ "reference": false,
+ "score_after": 88.5,
+ "score_before": 43.3,
+ "shipped": true,
+ "source": "design/art/stations/tea-stall-4/tea-stall-4.png",
+ "source_sha": "64ad4bf356f006c3"
+}

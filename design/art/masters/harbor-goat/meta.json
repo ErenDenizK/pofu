@@ -1,0 +1,98 @@
+{
+  "job": "harbor-goat",
+  "batch": "retry-2026-11-03",
+  "asset": "char__harbor-goat",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T14:57:40+00:00",
+  "image": "design/art/masters/harbor-goat/harbor-goat.png",
+  "raw": "design/art/masters/harbor-goat/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "ff2a45afcaf6ec93",
+  "prompt": "REFERENCES (attached, in this order):\n1. The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him).\n2. Mochi, a neighbor: match her size on the canvas, her eyes and her finish (do not draw her).\n3. The character palette card.\n\nDraw a baby goat in exactly the same art style, lighting and level\nof fluff as the attached hamster and bunny. Same canvas rules:\nfull body, sitting upright, front view, centered, feet on an\ninvisible line at 88% of the height, about 62% of the canvas width.\nCHARACTER: a baby goat whose body is a soft round ball of cream\nplush fur, a warm tan patch over one eye, two tiny rounded horn\nbuds, two soft floppy ears, a small beard tuft, big round glossy\ndark espresso eyes with a catchlight each, and a very indignant\nexpression: the brows low, the small mouth pressed in a flat, soft\nline, the chin lifted. Two small cream front paws at the chest.\nNo curl on top of the head.\n\nSTYLE: soft painterly 2D digital illustration with the polish of a premium\nstorybook and a top-tier mobile app mascot. Gentle airbrushed shading, no\noutlines, no hard edges. Fine, soft fur strands along the silhouette and a\nvelvety fur texture inside it. Warm diffused key light from the upper left,\na faint warm rim light along the right edge, soft ambient shadow only where\nforms touch. Pastel warm palette of cream, golden peach and blush pink with\ndark espresso-brown eyes. Clean, calm, uncluttered. No text, no letters,\nno numbers, no logos, no watermark, no border, no frame, no sticker outline.\n\nAVOID: outlines, cel shading, 3D plastic or vinyl render, anime sparkle\neyes with many highlights, extra limbs, extra toes or fingers, claws,\nteeth, eyebrows, a long tail, lilac or gray fur, a ground shadow, a floor,\na cast shadow, a white sticker border, text, watermarks, signatures,\nmotion blur, film grain, paper texture, vignette.\n\nAVOID: realistic goat anatomy, sharp horns, rectangular pupils, a hat, text, a ground shadow.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him)."
+    },
+    {
+      "path": "design/art/masters/mochi-v2/mochi-v2.png",
+      "role": "Mochi, a neighbor: match her size on the canvas, her eyes and her finish (do not draw her)."
+    },
+    {
+      "path": "design/reference/palette-card-character.png",
+      "role": "The character palette card."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T13:49:40+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 41 (R1 51)",
+        "value": 41.1
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 65 (R1 59)",
+        "value": 64.6
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 3.3 (R1 5.3)",
+        "value": 3.29
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.9, p95 2.9, off-palette 0.6% (top: #662211 (0.1%), #441100 (0.0%))",
+        "value": 0.9225
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.3% of the height (contract 88%)",
+        "value": 0.8926
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 98 against the char reference (outliers: none)",
+        "value": 97.6
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Retained pair re-posted under main9ede62e; no new image generation. Both takes depict a cream plush baby goat with a warm tan eye patch, tiny rounded horn buds, floppy ears, beard tuft and indignant expression. No head curl, sharp horns or rectangular pupils. Both pass every current automated check. The existing saved t1 remains the QA pick by Harmony97.6 versus95.6; characters have no lock-load check. The previous partial master remains untouched in its old worktree; this master is rebuilt from the retained original and current pipeline."
+}

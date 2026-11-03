@@ -13,6 +13,8 @@ from pathlib import Path
 
 import yaml
 
+from legacy_ids import canonical
+
 HERE = Path(__file__).resolve().parent
 REPO_ROOT = HERE.parents[1]
 # Where approved art lives (design/art). Tests point it at a temporary folder.
@@ -95,7 +97,7 @@ class Job:
 
     @property
     def asset(self) -> str:
-        """Pipeline file stem, e.g. station__cay-1."""
+        """Pipeline file stem, e.g. station__tea-stall-1."""
         return f"{self.kind}__{self.name}"
 
     def take_file(self, take: int) -> str:
@@ -113,6 +115,7 @@ class Manifest:
     blocked_on: list[str] = field(default_factory=list)
 
     def job(self, job_id: str) -> Job:
+        job_id = canonical(job_id)  # old Turkish ids still resolve
         for j in self.jobs:
             if j.id == job_id:
                 return j

@@ -14,7 +14,7 @@
 ## References
 
 - `design/art/masters/mochi-v2/mochi-v2.png`: The image to edit (the approved previous level). Edit it; do not redraw it.
-- `design/art/stations/cay-1/cay-1.png`: The tea stall she runs: paint the tea glass and saucer exactly like the ones on its counter (do not draw the stall).
+- `design/art/stations/tea-stall-1/tea-stall-1.png`: The tea stall she runs: paint the tea glass and saucer exactly like the ones on its counter (do not draw the stall).
 
 ## Prompt (fingerprint ad3e0a5b0241e148)
 

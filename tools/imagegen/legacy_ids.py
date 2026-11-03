@@ -1,0 +1,77 @@
+"""Old (Turkish) asset, job and batch ids and the English ids that replaced them
+(rename of 2026-11-03; map: docs/development/rename-map.md). Old ids in history,
+scripts and notes still resolve: `canonical(old)` returns the current id."""
+
+LEGACY_IDS = {
+    "arrival-iskele": "arrival-harbor",
+    "asset-cay-1": "asset-tea-stall-1",
+    "asset-cay-1-lit": "asset-tea-stall-1-lit",
+    "asset-cay-2": "asset-tea-stall-2",
+    "asset-cay-3": "asset-tea-stall-3",
+    "asset-cay-4": "asset-tea-stall-4",
+    "asset-cay-5": "asset-tea-stall-5",
+    "asset-cay-5-lit": "asset-tea-stall-5-lit",
+    "asset-cl1-duo-vapur": "asset-cl1-duo-ferry",
+    "asset-icon-cay": "asset-icon-tea-stall",
+    "asset-iskele-crates-1": "asset-harbor-crates-1",
+    "asset-iskele-goat": "asset-harbor-goat",
+    "asset-iskele-horn-1": "asset-harbor-horn-1",
+    "asset-iskele-island-s": "asset-harbor-island-s",
+    "asset-iskele-lamp-1": "asset-harbor-lamp-1",
+    "asset-iskele-vapur-1": "asset-harbor-ferry-1",
+    "asset-iskele-vapur-2": "asset-harbor-ferry-2",
+    "asset-simit-1": "asset-bagel-cart-1",
+    "asset-simit-2": "asset-bagel-cart-2",
+    "asset-simit-3": "asset-bagel-cart-3",
+    "asset-simit-4": "asset-bagel-cart-4",
+    "asset-simit-5": "asset-bagel-cart-5",
+    "asset-test01-cay-1-t1": "asset-test01-tea-stall-1-t1",
+    "asset-test01-cay-1-t2": "asset-test01-tea-stall-1-t2",
+    "asset-test01-cay-1-t3": "asset-test01-tea-stall-1-t3",
+    "asset-test01-cay-2-t1": "asset-test01-tea-stall-2-t1",
+    "batch-14-iskele": "batch-14-harbor",
+    "cay-1": "tea-stall-1",
+    "cay-1--lock-light": "tea-stall-1--lock-light",
+    "cay-1-lit": "tea-stall-1-lit",
+    "cay-2": "tea-stall-2",
+    "cay-3": "tea-stall-3",
+    "cay-4": "tea-stall-4",
+    "cay-5": "tea-stall-5",
+    "cay-5-lit": "tea-stall-5-lit",
+    "cl1-duo-vapur": "cl1-duo-ferry",
+    "icon-cay": "icon-tea-stall",
+    "icon-station-cay": "icon-station-tea-stall",
+    "iskele-crates-1": "harbor-crates-1",
+    "iskele-goat": "harbor-goat",
+    "iskele-horn-1": "harbor-horn-1",
+    "iskele-island-s": "harbor-island-s",
+    "iskele-lamp-1": "harbor-lamp-1",
+    "iskele-vapur-1": "harbor-ferry-1",
+    "iskele-vapur-2": "harbor-ferry-2",
+    "island-aycicegi-day-calm1": "island-home-day-calm1",
+    "island-aycicegi-day-calm2": "island-home-day-calm2",
+    "simit-1": "bagel-cart-1",
+    "simit-2": "bagel-cart-2",
+    "simit-3": "bagel-cart-3",
+    "simit-4": "bagel-cart-4",
+    "simit-5": "bagel-cart-5",
+    "world-cay-1": "world-tea-stall-1",
+    "world-cay-1--normal": "world-tea-stall-1--normal",
+    "world-cay-1--round2": "world-tea-stall-1--round2",
+    "world-cay-1--softlock": "world-tea-stall-1--softlock",
+    "world-cay-1-glow": "world-tea-stall-1-glow",
+    "world-cay-2": "world-tea-stall-2",
+    "world-cay-3": "world-tea-stall-3",
+    "world-cay-3--unharmonized": "world-tea-stall-3--unharmonized",
+    "world-cay-4": "world-tea-stall-4",
+    "world-cay-5": "world-tea-stall-5",
+}
+
+
+def canonical(asset_id: str) -> str:
+    """The current id for `asset_id`; unknown and current ids come back unchanged.
+    A `batch:job` pair resolves both halves."""
+    if ":" in asset_id:
+        batch, job = asset_id.split(":", 1)
+        return f"{canonical(batch)}:{canonical(job)}"
+    return LEGACY_IDS.get(asset_id, asset_id)

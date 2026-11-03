@@ -172,7 +172,7 @@ job of the track in order. The manifest is
    promoted job, run the upload check, and after the first push open the
    PR. After the last job, say so in the PR and stop.
 
-The founder vetoes in Turkish ("cay-1: take 2", or "redo"). The lead or
+The founder vetoes in Turkish ("tea-stall-1: take 2", or "redo"). The lead or
 a new task applies the veto.
 
 On the Mac, the `codex` backend (`run.py run --backend codex`) does steps
@@ -248,7 +248,7 @@ AGENTS.md parallel auto mode, batch-09-explore-pilot, track all
 AGENTS.md parallel auto mode, batch-10-island-concepts-pilot, track all
 AGENTS.md parallel auto mode, batch-12-minigame-art, track all
 AGENTS.md parallel auto mode, batch-13-ui-rest, track all
-AGENTS.md parallel auto mode, batch-14-iskele, track all
+AGENTS.md parallel auto mode, batch-14-harbor, track all
 AGENTS.md parallel auto mode, batch-15-explore, track all
 AGENTS.md parallel auto mode, retry-2026-11-03, track all
 ```
@@ -263,13 +263,13 @@ Edits that repaint the object declare it (`acceptance: {edit_mode: recolor |
 region}`), and a brief that names colors outside the kind's palettes adds
 `palettes: [...]` (`tools/imagegen/README.md`).
 
-- **batch-05-fixes-pilot:** `simit-2` and `workshop-2` are SALVAGED from
+- **batch-05-fixes-pilot:** `bagel-cart-2` and `workshop-2` are SALVAGED from
   batch 03's takes on `main` (their `notes` list the files). Batch 03's
   failures there were a pipeline bug (edits were moved twice), now fixed.
 - **batch-06-pofu-rig-pilot:** edits of R1, which lives at
   `design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png` (the
   manifest's `pofu` job names it with `master:`). Pofu is never locked.
-- **batch-07-light-pilot:** lit edits of `cay-1` and `cay-5` that change
+- **batch-07-light-pilot:** lit edits of `tea-stall-1` and `tea-stall-5` that change
   only the burner. Do not add glow; the app does.
 
 Masters on `main` stored only as `<name>.webp` (for example `mochi-v2`,

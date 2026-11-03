@@ -24,7 +24,7 @@ title: Garden minigame art (plot tiles, soil, bloom, seed, combo stamp, bed rim,
 status: open
 
 refs:
-  cay-1: design/art/stations/cay-1/cay-1.png
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
 
 defaults:
   variants: 2
@@ -38,7 +38,7 @@ jobs:
     chat: "Pofu · Minigame art"
     notes: "PILOT. Ship 41 pt. The master of the six glazes: one clay tile with a soft top light and a darker lip, a small sprout embossed. Review at 41 pt: tile and sprout both read."
     attach:
-      - ref: cay-1
+      - ref: tea-stall-1
         role: "Style reference for objects: how a prop is painted in this world."
       - ref: palette:world-props
         role: "The palette card for props."
@@ -62,7 +62,7 @@ jobs:
     chat: "Pofu · Minigame art"
     notes: "PILOT. Ship 41 pt. An empty cell: it must read darker than every glaze, at 41 pt, beside the sage tile."
     attach:
-      - ref: cay-1
+      - ref: tea-stall-1
         role: "Style reference for objects: how a prop is painted in this world."
       - ref: palette:world-props
         role: "The palette card for props."
@@ -86,7 +86,7 @@ jobs:
     attach:
       - ref: R1
         role: "Style reference only: the hamster's soft painting and pastel colors."
-      - ref: cay-1
+      - ref: tea-stall-1
         role: "Style reference for objects: how a prop is painted in this world."
       - ref: palette:world-props
         role: "The palette card for props."

@@ -29,7 +29,7 @@ title: Islands v2 exploration (20 wonder island concepts under the uniqueness co
 status: open
 
 refs:
-  cay-1: design/art/stations/cay-1/cay-1.png
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
 
 defaults:
   variants: 2
@@ -146,7 +146,7 @@ jobs:
     attach:
       - ref: approved:island-main-s
         role: "THIS is the island to paint: keep its exact shape, lawn, sunflower, çay ocağı, pond and round door; change only what the prompt names."
-      - ref: cay-1
+      - ref: tea-stall-1
         role: "The çay ocağı as built."
     prompt:
       - text: |
@@ -694,7 +694,7 @@ jobs:
     attach:
       - ref: approved:island-main-s
         role: "THIS is the island to paint: keep its exact shape, lawn, sunflower, çay ocağı, pond and round door; change only what the prompt names."
-      - ref: cay-1
+      - ref: tea-stall-1
         role: "The çay ocağı as built."
     prompt:
       - text: |
@@ -716,7 +716,7 @@ jobs:
     attach:
       - ref: approved:island-main-s
         role: "THIS is the island to paint: keep its exact shape, lawn, sunflower, çay ocağı, pond and round door; change only what the prompt names."
-      - ref: cay-1
+      - ref: tea-stall-1
         role: "The çay ocağı as built."
     prompt:
       - text: |
@@ -738,7 +738,7 @@ jobs:
     attach:
       - ref: approved:island-main-s
         role: "THIS is the island to paint: keep its exact shape, lawn, sunflower, çay ocağı, pond and round door; change only what the prompt names."
-      - ref: cay-1
+      - ref: tea-stall-1
         role: "The çay ocağı as built."
     prompt:
       - text: |

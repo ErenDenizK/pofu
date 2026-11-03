@@ -36,31 +36,31 @@ levels:
   title_en: Counter, çaydanlık, two tulip glasses
   cost: 40
   rate: 5.0
-  asset: asset-cay-1
+  asset: asset-tea-stall-1
 - level: 2
   title_tr: Çizgili tente
   title_en: Striped awning
   cost: 88
   rate: 7.8
-  asset: asset-cay-2
+  asset: asset-tea-stall-2
 - level: 3
   title_tr: İki tabure, minik masa
   title_en: 'Two stools, a tiny table (style: rose stripes or İznik blue)'
   cost: 194
   rate: 10.5
-  asset: asset-cay-3
+  asset: asset-tea-stall-3
 - level: 4
   title_tr: Ampul dizisi
   title_en: String lights
   cost: 426
   rate: 13.3
-  asset: asset-cay-4
+  asset: asset-tea-stall-4
 - level: 5
   title_tr: Kiremit çatı, sardunya, bayrak
   title_en: Tiled roof, geranium, a flag
   cost: 937
   rate: 16.0
-  asset: asset-cay-5
+  asset: asset-tea-stall-5
 unlock:
   day: 1
   rule_en: Stage 2 (1 tended day) (days ≈ tended days for a daily user)

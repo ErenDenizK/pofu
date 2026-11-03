@@ -1,13 +1,13 @@
 # Batch 05, pilot: the batch-03 fixes (docs/design/art-production-plan.md).
 #
 # Why batch 03's jobs failed, measured by the lead (2026-11-02):
-# - simit-2 and workshop-2 (edit_stability 28-55 %): a pipeline bug, not
+# - bagel-cart-2 and workshop-2 (edit_stability 28-55 %): a pipeline bug, not
 #   the prompts. An edit is drawn on the approved master, which is already
 #   on the station anchor; `post` moved it again by the chain root's
-#   registration (simit-1 dx +110, workshop-1 dx -110), so the edit sat
+#   registration (bagel-cart-1 dx +110, workshop-1 dx -110), so the edit sat
 #   110 px off its parent and was cut at the canvas edge. Fixed in
 #   tools/imagegen (edits are never registered again). Re-run on batch 03's
-#   own takes, every take now passes: simit-2 keeps 100 % (t1, t4: all
+#   own takes, every take now passes: bagel-cart-2 keeps 100 % (t1, t4: all
 #   checks pass), workshop-2 keeps 90-94 % (t4: lowest lock load).
 #   So these two are SALVAGED from the takes already on main, not
 #   regenerated (the method principle: fix the method, not the dice).
@@ -18,18 +18,18 @@
 #   squashed"): its earth depth is 0.168 of its width against 0.205 for
 #   island-main-s. island-main-l-v3 deepens only the earth body.
 #
-# Batch 03's chains also faded about 30 % in chroma per level (cay-1 C50
-# 31 to cay-5 11; windmill-1 28 to windmill-5 7) under the old soft-lock
+# Batch 03's chains also faded about 30 % in chroma per level (tea-stall-1 C50
+# 31 to tea-stall-5 11; windmill-1 28 to windmill-5 7) under the old soft-lock
 # preset. The new edit_chroma check catches that per level; the harmony
 # grade (tools/assets/harmony.py, in progress) brings the faded levels
 # back in code. Nothing here regenerates them.
 #
-# Pilot gate: the lead reviews this PR before batch-05-fixes (simit-3..5,
-# workshop-3..5) opens. Tracks: `salvage` (simit-2, workshop-2), `garden`
+# Pilot gate: the lead reviews this PR before batch-05-fixes (bagel-cart-3..5,
+# workshop-3..5) opens. Tracks: `salvage` (bagel-cart-2, workshop-2), `garden`
 # (garden-5), `plate` (island-main-l-v3). All start now.
 
 batch: batch-05-fixes-pilot
-title: Batch 03 fixes, pilot (salvage simit-2 and workshop-2, garden-5 inside the arch, a deeper large island)
+title: Batch 03 fixes, pilot (salvage bagel-cart-2 and workshop-2, garden-5 inside the arch, a deeper large island)
 status: open
 
 defaults:
@@ -37,20 +37,20 @@ defaults:
 
 jobs:
   # ------------------------------------------------------ parents on main
-  - {id: simit-1, kind: station, name: simit-1, external: batch-01-slice}
+  - {id: bagel-cart-1, kind: station, name: bagel-cart-1, external: batch-01-slice}
   - {id: workshop-1, kind: station, name: workshop-1, external: batch-03-home-island}
   - {id: garden-4, kind: station, name: garden-4, external: batch-03-home-island}
   - {id: island-main-l-v2, kind: world, name: island-main-l-v2, external: batch-03-home-island}
 
   # ------------------------------------------------- salvaged, not drawn
-  - id: simit-2
+  - id: bagel-cart-2
     kind: station
-    name: simit-2
-    edit_of: simit-1
+    name: bagel-cart-2
+    edit_of: bagel-cart-1
     chat: "Pofu · Simit cart"
     notes: >-
       SALVAGE FIRST, do not generate: ingest batch 03's four takes
-      (design/art/takes/batch-03-home-island/simit-2/station__simit-2--t1.webp
+      (design/art/takes/batch-03-home-island/bagel-cart-2/station__bagel-cart-2--t1.webp
       to --t4.webp) with `ingest --source salvage-batch-03`, then `post`.
       With the registration fix t1 and t4 pass every check (lead,
       2026-11-02). Auto-pick as usual; write in the provenance note that
@@ -71,7 +71,7 @@ jobs:
     edit_of: workshop-1
     chat: "Pofu · Workshop"
     notes: >-
-      SALVAGE FIRST, as simit-2: ingest
+      SALVAGE FIRST, as bagel-cart-2: ingest
       design/art/takes/batch-03-home-island/workshop-2/station__workshop-2--t1.webp
       to --t4.webp, then `post`. All four pass edit_stability now (90-94 %;
       t3 is a rescale and keeps 74 %, avoid it); the width warning (876 px)

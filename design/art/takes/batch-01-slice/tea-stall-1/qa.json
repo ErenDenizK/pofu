@@ -1,0 +1,127 @@
+{
+  "job": "tea-stall-1",
+  "pick": 1,
+  "note": "auto-picked by QA; founder review pending",
+  "takes": [
+    {
+      "take": 1,
+      "status": "warn",
+      "lock_load": 12.6783,
+      "checks": [
+        {
+          "check": "transparency",
+          "status": "pass",
+          "message": "source has an alpha channel"
+        },
+        {
+          "check": "canvas",
+          "status": "pass",
+          "message": "1254x1254 scaled x0.817 into 1024x1024",
+          "value": 0.8166
+        },
+        {
+          "check": "chroma_ceiling",
+          "status": "pass",
+          "message": "chroma p95 34 (R1 51)",
+          "value": 33.5
+        },
+        {
+          "check": "value_floor",
+          "status": "pass",
+          "message": "lightness p5 59 (R1 59)",
+          "value": 59.0
+        },
+        {
+          "check": "detail_budget",
+          "status": "pass",
+          "message": "detail at display size 1.9 (R1 5.3)",
+          "value": 1.93
+        },
+        {
+          "check": "lock_load",
+          "status": "warn",
+          "message": "the lock moved colors by mean dE 12.7 (prefer a take that needs less)",
+          "value": 12.6783
+        },
+        {
+          "check": "no_guide_magenta",
+          "status": "pass",
+          "message": "0 guide-magenta pixels (per 1024^2)",
+          "value": 0.0
+        },
+        {
+          "check": "palette_drift",
+          "status": "pass",
+          "message": "mean dE 0.9, p95 1.9, off-palette 0.0%",
+          "value": 0.8541
+        },
+        {
+          "check": "station_anchor",
+          "status": "pass",
+          "message": "on the anchor",
+          "value": 900.0
+        }
+      ]
+    },
+    {
+      "take": 2,
+      "status": "warn",
+      "lock_load": 13.6011,
+      "checks": [
+        {
+          "check": "transparency",
+          "status": "pass",
+          "message": "source has an alpha channel"
+        },
+        {
+          "check": "canvas",
+          "status": "pass",
+          "message": "1254x1254 scaled x0.817 into 1024x1024",
+          "value": 0.8166
+        },
+        {
+          "check": "chroma_ceiling",
+          "status": "pass",
+          "message": "chroma p95 35 (R1 51)",
+          "value": 34.7
+        },
+        {
+          "check": "value_floor",
+          "status": "pass",
+          "message": "lightness p5 55 (R1 59)",
+          "value": 55.2
+        },
+        {
+          "check": "detail_budget",
+          "status": "pass",
+          "message": "detail at display size 1.9 (R1 5.3)",
+          "value": 1.9
+        },
+        {
+          "check": "lock_load",
+          "status": "warn",
+          "message": "the lock moved colors by mean dE 13.6 (prefer a take that needs less)",
+          "value": 13.6011
+        },
+        {
+          "check": "no_guide_magenta",
+          "status": "pass",
+          "message": "0 guide-magenta pixels (per 1024^2)",
+          "value": 0.0
+        },
+        {
+          "check": "palette_drift",
+          "status": "pass",
+          "message": "mean dE 1.0, p95 2.2, off-palette 0.0%",
+          "value": 0.9538
+        },
+        {
+          "check": "station_anchor",
+          "status": "pass",
+          "message": "on the anchor",
+          "value": 900.0
+        }
+      ]
+    }
+  ]
+}

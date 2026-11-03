@@ -1,0 +1,116 @@
+{
+  "job": "harbor-island-s",
+  "batch": "batch-14-harbor",
+  "asset": "world__harbor-island-s",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T00:51:15+00:00",
+  "image": "design/art/masters/harbor-island-s/harbor-island-s.webp",
+  "raw": "design/art/masters/harbor-island-s/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "37abd6e24818be18",
+  "prompt": "REFERENCES (attached, in this order):\n1. The home island: the same painting, the same low camera (about 20 degrees), the same softness, lights, scale and depth of earth. Paint a sibling of it, not a copy.\n2. Style reference only (no characters): the hamster's soft painting and pastel colors.\n3. The palette card: use only these colors (and mixes of them).\n\nA sibling of the attached floating island, for a cozy mobile game:\nİskele, a harbor island. Same size, same low camera and same\nearth body as the attached island, but:\n- The lawn is a wide, flat, empty oval of soft cream-sand and\n  pale sage, filling about 80% of the image width, with nothing\n  on it.\n- On the right a short, chunky wooden pier of honey planks juts\n  out past the lawn's edge, with two stubby round mooring posts\n  with coiled cream rope, at the height of the lawn, ending in\n  open air (no water, no boat).\n- The earth body underneath is a soft, rounded underside in warm\n  coral-tinted earth with two or three gentle strata, no deeper\n  than the attached island's.\n- Keep the same few cream pebbles, and three or four thin\n  dangling roots.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: characters, stations, a boat, buildings, water, sky, clouds, background, ground shadow, saturated colors, a deep cone-shaped underside, text.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-s/island-main-s.png",
+      "role": "The home island: the same painting, the same low camera (about 20 degrees), the same softness, lights, scale and depth of earth. Paint a sibling of it, not a copy."
+    },
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "Style reference only (no characters): the hamster's soft painting and pastel colors."
+    },
+    {
+      "path": "design/reference/palette-card-world-day.png",
+      "role": "The palette card: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T00:47:58+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 38 (R1 51)",
+        "value": 38.1
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 69 (R1 59)",
+        "value": 69.3
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.4 (R1 5.3)",
+        "value": 1.45
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.7",
+        "value": 0.6694
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.5, p95 3.2, off-palette 0.0%",
+        "value": 1.5029
+      },
+      {
+        "check": "depth_ratio",
+        "status": "pass",
+        "message": "earth depth / width 0.22 (at most 0.32)",
+        "value": 0.2174
+      },
+      {
+        "check": "lawn_chroma",
+        "status": "pass",
+        "message": "lawn chroma p95 23 (palette meadow 38)",
+        "value": 23.219
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 84 against the world reference (outliers: C_p95)",
+        "value": 83.9
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both takes pass manual real-alpha/world review: wide empty cream/sage lawn, only the requested right-hand honey-wood pier with two rope-wrapped posts, soft coral earth, few pebbles/roots, no water/boat/stations/characters. Camera and earth depth match the home family (0.2174/0.2075, target within0.32); take1 has lowest lock load0.6694, harmony83.9. Full1536x1024 master stays lossless with no resizing. Temporary decoded reference PNGs are hidden only during Harmony catalog generation, then restored."
+}

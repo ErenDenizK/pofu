@@ -1,0 +1,22 @@
+id: asset-tea-stall-4
+type: asset
+title_tr: tea-stall-4
+title_en: tea-stall-4 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add one string of small, round, warm cream light bulbs, unlit, hanging in a gentle curve
+  along the front edge of the awning between the two poles. The bulbs are simple soft dots,
+  not glowing (the app adds the glow at night).
+links:
+  variant_of:
+  - asset-tea-stall-3
+art:
+  images:
+  - design/art/stations/tea-stall-4/tea-stall-4.png
+  jobs:
+  - batch-01-slice:tea-stall-4
+sources:
+- doc: tools/imagegen/manifest/batch-01-slice.yaml
+kind: station
+batch: batch-01-slice

@@ -23,12 +23,12 @@ OUT = ROOT / "docs/development/rename-map.md"
 
 # token -> (English words, rule). Words are joined per style (teaStall / tea-stall).
 RULES = {
-    "cay": (["tea", "stall"], "common noun: cay ocagi (Mochi's tea stall) becomes tea stall"),
-    "simit": (["bagel", "cart"], "common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name)"),
-    "iskele": (["harbor"], "common noun: iskele becomes harbor"),
-    "vapur": (["ferry"], "common noun: vapur becomes ferry"),
-    "aycicegi": (["home"], "the home island as a concept becomes home"),
-    "ayar": (["tuning", "lab"], "common noun: ayar (the tuning panel) becomes tuning lab"),
+    "tea-stall": (["tea", "stall"], "common noun: tea-stall ocagi (Mochi's tea stall) becomes tea stall"),
+    "bagel-cart": (["bagel", "cart"], "common noun: the bagel-cart stall becomes bagel cart (the kitten `simit-kitten` keeps its name)"),
+    "harbor": (["harbor"], "common noun: harbor becomes harbor"),
+    "ferry": (["ferry"], "common noun: ferry becomes ferry"),
+    "home": (["home"], "the home island as a concept becomes home"),
+    "tuning-lab": (["tuning", "lab"], "common noun: tuning-lab (the tuning panel) becomes tuning lab"),
 }
 # Kept on purpose (counted and reported, not renamed).
 KEEP = {
@@ -41,7 +41,7 @@ KEEP = {
     "serbet": "same as yildiz",
 }
 # A token followed by one of these is a character, not the noun.
-CHAR_FOLLOW = {"simit": {"kitten"}}
+CHAR_FOLLOW = {"bagel-cart": {"kitten"}}
 
 DEFERRED = ("content/islands/", "content/characters/", "content/ideas/", "content/stories/", "docs/")
 LAYERS = [

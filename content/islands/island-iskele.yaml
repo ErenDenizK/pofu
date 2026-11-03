@@ -34,11 +34,11 @@ links:
   related:
   - sys-rituals
   uses_asset:
-  - asset-iskele-island-s
-  - asset-iskele-horn-1
-  - asset-iskele-crates-1
-  - asset-iskele-lamp-1
-  - asset-iskele-goat
+  - asset-harbor-island-s
+  - asset-harbor-horn-1
+  - asset-harbor-crates-1
+  - asset-harbor-lamp-1
+  - asset-harbor-goat
 sources:
 - doc: docs/product/archipelago-system.md
   anchor: '#11-island-concepts'

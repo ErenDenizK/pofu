@@ -63,7 +63,7 @@ class RawRuleTests(unittest.TestCase):
 
     def test_save_raw_replaces_an_old_raw_png(self):
         with tempfile.TemporaryDirectory() as tmp:
-            folder = Path(tmp) / "cay-1"
+            folder = Path(tmp) / "tea-stall-1"
             folder.mkdir()
             src = Path(tmp) / "take.png"
             Image.new("RGBA", (64, 64), (10, 20, 30, 255)).save(src)
@@ -74,16 +74,16 @@ class RawRuleTests(unittest.TestCase):
 
     def test_master_folder_without_a_raw_fails(self):
         names = [
-            "design/art/stations/cay-1/cay-1.png",
-            "design/art/stations/cay-1/meta.json",
-            "design/art/stations/cay-2/cay-2.png",
-            "design/art/stations/cay-2/meta.json",
-            "design/art/stations/cay-2/raw.webp",
+            "design/art/stations/tea-stall-1/tea-stall-1.png",
+            "design/art/stations/tea-stall-1/meta.json",
+            "design/art/stations/tea-stall-2/tea-stall-2.png",
+            "design/art/stations/tea-stall-2/meta.json",
+            "design/art/stations/tea-stall-2/raw.webp",
             "design/art/masters/old/meta.json",
             "design/art/masters/old/raw.png",
-            "design/art/takes/batch-01/cay-1/contact.jpg",
+            "design/art/takes/batch-01/tea-stall-1/contact.jpg",
         ]
-        self.assertEqual(cu.missing_raws(names), ["design/art/stations/cay-1"])
+        self.assertEqual(cu.missing_raws(names), ["design/art/stations/tea-stall-1"])
 
 
 if __name__ == "__main__":

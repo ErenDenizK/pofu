@@ -8,11 +8,11 @@
 #
 # Rounds (a job runs only when every job it depends on is approved):
 #   round 1: island-main-s, mochi
-#   round 2: island-main-l, cay-1
-#   round 3: terrace, cay-2, garden-1, simit-1
-#   round 4: cay-3, garden-2      round 5: cay-4      round 6: cay-5
+#   round 2: island-main-l, tea-stall-1
+#   round 3: terrace, tea-stall-2, garden-1, bagel-cart-1
+#   round 4: tea-stall-3, garden-2      round 5: tea-stall-4      round 6: tea-stall-5
 # D1-D8 (the founder's "first 8") are island-main-s, island-main-l,
-# terrace, cay-1, cay-2, garden-1, simit-1 and mochi.
+# terrace, tea-stall-1, tea-stall-2, garden-1, bagel-cart-1 and mochi.
 
 batch: batch-01-slice
 title: Vertical slice (island, çay ocağı L1-L5, sunflower garden L1-L2, simit cart, Mochi)
@@ -101,9 +101,9 @@ jobs:
       - block: prop-avoid-v2
 
   # ----------------------------------------------------------------- D4
-  - id: cay-1
+  - id: tea-stall-1
     kind: station
-    name: cay-1
+    name: tea-stall-1
     variants: 2
     chat: "Pofu · Çay ocağı"
     attach:
@@ -131,10 +131,10 @@ jobs:
       - block: prop-avoid-v2
 
   # ----------------------------------------------------------------- D5
-  - id: cay-2
+  - id: tea-stall-2
     kind: station
-    name: cay-2
-    edit_of: cay-1
+    name: tea-stall-2
+    edit_of: tea-stall-1
     chat: "Pofu · Çay ocağı"
     prompt:
       - text: |
@@ -144,10 +144,10 @@ jobs:
           canvas with a clear margin.
       - block: edit-keep-v1
 
-  - id: cay-3
+  - id: tea-stall-3
     kind: station
-    name: cay-3
-    edit_of: cay-2
+    name: tea-stall-3
+    edit_of: tea-stall-2
     chat: "Pofu · Çay ocağı"
     prompt:
       - text: |
@@ -157,10 +157,10 @@ jobs:
           counter.
       - block: edit-keep-v1
 
-  - id: cay-4
+  - id: tea-stall-4
     kind: station
-    name: cay-4
-    edit_of: cay-3
+    name: tea-stall-4
+    edit_of: tea-stall-3
     chat: "Pofu · Çay ocağı"
     prompt:
       - text: |
@@ -170,10 +170,10 @@ jobs:
           glowing (the app adds the glow at night).
       - block: edit-keep-v1
 
-  - id: cay-5
+  - id: tea-stall-5
     kind: station
-    name: cay-5
-    edit_of: cay-4
+    name: tea-stall-5
+    edit_of: tea-stall-4
     chat: "Pofu · Çay ocağı"
     prompt:
       - text: |
@@ -194,7 +194,7 @@ jobs:
     attach:
       - ref: station-guide
         role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
-      - ref: approved:cay-1
+      - ref: approved:tea-stall-1
         role: "P-station, the approved tea stall: match its style, camera, light and colors exactly (do not draw the stall)."
       - ref: approved:island-main-s
         role: "The island this garden stands on: same camera and softness."
@@ -223,14 +223,14 @@ jobs:
       - block: edit-keep-v1
 
   # ----------------------------------------------------------------- D7
-  - id: simit-1
+  - id: bagel-cart-1
     kind: station
-    name: simit-1
+    name: bagel-cart-1
     chat: "Pofu · Simit cart"
     attach:
       - ref: station-guide
         role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
-      - ref: approved:cay-1
+      - ref: approved:tea-stall-1
         role: "P-station, the approved tea stall: match its style, camera, light and colors exactly (do not draw the stall)."
     prompt:
       - text: |

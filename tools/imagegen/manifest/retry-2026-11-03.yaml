@@ -21,7 +21,7 @@
 # gate: `plan` skips exactly the jobs whose edit_of or approved: master is
 # missing, and nothing else. Jobs that depend on a retry job:
 # ui-sheet-paper -> ui-menu-paper, ui-sheet-paper-night;
-# iskele-vapur-1 -> iskele-vapur-2; simit-kitten -> simit-kitten-work, -ears.
+# harbor-ferry-1 -> harbor-ferry-2; simit-kitten -> simit-kitten-work, -ears.
 #
 # Tracks: `ui` (face-primary, jar-full, lantern-on, bloom-right, five glazes),
 # `surfaces` (sheet, menu, night sheet, pressed face), `icons` (13, all at
@@ -32,7 +32,7 @@ title: Retry of the 32 skipped jobs of batches 11-14 (fixed QA profiles and brie
 status: open
 
 refs:
-  cay-1: design/art/stations/cay-1/cay-1.png
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
 
 defaults:
   variants: 2
@@ -45,8 +45,8 @@ jobs:
   - {id: game-plot-tile-sage, kind: ui, name: game-plot-tile-sage, external: batch-12-minigame-art}
   - {id: game-bloom-front, kind: ui, name: game-bloom-front, external: batch-12-minigame-art}
   - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
-  - {id: iskele-island-s, kind: world, name: iskele-island-s, external: batch-14-iskele}
-  - {id: cay-1, kind: station, name: cay-1, external: batch-01-slice}
+  - {id: harbor-island-s, kind: world, name: harbor-island-s, external: batch-14-harbor}
+  - {id: tea-stall-1, kind: station, name: tea-stall-1, external: batch-01-slice}
   - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island}
   - {id: pofu, kind: char, name: pofu-r1, external: r1, master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png}
   - {id: ui-lantern-off, kind: ui, name: lantern-off, external: batch-11-ui-pilot}
@@ -300,7 +300,7 @@ jobs:
       - block: icon-style-v1
       - block: prop-style-v2
 
-  - id: icon-cay
+  - id: icon-tea-stall
     kind: icon
     name: station-cay
     chat: "Pofu · Icons"
@@ -467,17 +467,17 @@ jobs:
       - block: icon-style-v1
       - block: prop-style-v2
 
-  - id: iskele-vapur-1
+  - id: harbor-ferry-1
     kind: station
-    name: iskele-vapur-1
+    name: harbor-ferry-1
     chat: "Pofu · İskele"
-    notes: "PILOT (style anchor of the harbor stations only through vapur-2). RETRY: the four takes were 875-935 px wide against the 720 px footprint (the old brief said 'fills the footprint's width' for a long hull) and had round undersides (it asked for a plump rounded hull and a flat waterline). Now: a short hull no wider than the footprint, flat-bottomed. Review: reads as a vapur (funnel, cabin, round windows), not a rowing boat; at most 720 px wide on the footprint; the bottom is one straight horizontal edge with no water."
+    notes: "PILOT (style anchor of the harbor stations only through ferry-2). RETRY: the four takes were 875-935 px wide against the 720 px footprint (the old brief said 'fills the footprint's width' for a long hull) and had round undersides (it asked for a plump rounded hull and a flat waterline). Now: a short hull no wider than the footprint, flat-bottomed. Review: reads as a vapur (funnel, cabin, round windows), not a rowing boat; at most 720 px wide on the footprint; the bottom is one straight horizontal edge with no water."
     attach:
       - ref: station-guide
         role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
       - ref: approved:island-main-s
         role: "The home island: match its camera angle, light, softness and colors."
-      - ref: approved:cay-1
+      - ref: approved:tea-stall-1
         role: "The approved tea stall: match its painting, finish, scale and colors exactly (do not draw the stall)."
       - ref: palette:world-props
         role: "The palette card for props: use only these colors (and mixes of them)."
@@ -498,10 +498,10 @@ jobs:
       - block: prop-style-v2
       - block: prop-avoid-v2
 
-  - id: iskele-vapur-2
+  - id: harbor-ferry-2
     kind: station
-    name: iskele-vapur-2
-    edit_of: iskele-vapur-1
+    name: harbor-ferry-2
+    edit_of: harbor-ferry-1
     chat: "Pofu · İskele"
     acceptance: {edit_mode: region}
     notes: "Level 2: the ferry gets bigger (second deck). Edit of level 1."
@@ -585,17 +585,17 @@ jobs:
       - block: edit-keep-v1
       - text: "AVOID: tears, a worried look, a ground shadow, text."
 
-  - id: iskele-horn-1
+  - id: harbor-horn-1
     kind: station
-    name: iskele-horn-1
+    name: harbor-horn-1
     chat: "Pofu · İskele"
     notes: "The toy: a post with a horn cord to pull (düüüt). Level 1, a small post; the pull is code."
     attach:
       - ref: station-guide
         role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
-      - ref: approved:cay-1
+      - ref: approved:tea-stall-1
         role: "The approved tea stall: match its painting, light, colors, finish and scale exactly (do not draw the stall)."
-      - ref: approved:iskele-island-s
+      - ref: approved:harbor-island-s
         role: "The harbor island: its coral, cream and sea-blue colors and its light (do not draw the island)."
       - ref: palette:world-props
         role: "The palette card for props: use only these colors (and mixes of them)."
@@ -611,17 +611,17 @@ jobs:
       - block: prop-style-v2
       - block: prop-avoid-v2
 
-  - id: iskele-crates-1
+  - id: harbor-crates-1
     kind: station
-    name: iskele-crates-1
+    name: harbor-crates-1
     chat: "Pofu · İskele"
     notes: "The Pack game's cargo: a little stack of parcels waiting on the pier."
     attach:
       - ref: station-guide
         role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
-      - ref: approved:cay-1
+      - ref: approved:tea-stall-1
         role: "The approved tea stall: match its painting, light, colors, finish and scale exactly (do not draw the stall)."
-      - ref: approved:iskele-island-s
+      - ref: approved:harbor-island-s
         role: "The harbor island: its coral, cream and sea-blue colors and its light (do not draw the island)."
       - ref: palette:world-props
         role: "The palette card for props: use only these colors (and mixes of them)."
@@ -636,17 +636,17 @@ jobs:
       - block: prop-style-v2
       - block: prop-avoid-v2
 
-  - id: iskele-lamp-1
+  - id: harbor-lamp-1
     kind: station
-    name: iskele-lamp-1
+    name: harbor-lamp-1
     chat: "Pofu · İskele"
     notes: "A pier lamp. Unlit; the glow is code."
     attach:
       - ref: station-guide
         role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
-      - ref: approved:cay-1
+      - ref: approved:tea-stall-1
         role: "The approved tea stall: match its painting, light, colors, finish and scale exactly (do not draw the stall)."
-      - ref: approved:iskele-island-s
+      - ref: approved:harbor-island-s
         role: "The harbor island: its coral, cream and sea-blue colors and its light (do not draw the island)."
       - ref: palette:world-props
         role: "The palette card for props: use only these colors (and mixes of them)."
@@ -661,9 +661,9 @@ jobs:
       - block: prop-style-v2
       - block: prop-avoid-v2
 
-  - id: iskele-goat
+  - id: harbor-goat
     kind: char
-    name: iskele-goat
+    name: harbor-goat
     size: 1024x1536
     chat: "Pofu · Residents"
     notes: "The very indignant goat of the Pack game: cargo with opinions. Same family as the residents, small."

@@ -42,7 +42,7 @@ COMPANION = ROOT / "Packages/PofuKit/Sources/PofuCompanion/Resources"
 # Pofu. Normals are baked from the app's sprites so they register exactly.
 SPIKE = [
     # A table with a kettle on it: a tight bevel, strong painted detail.
-    (ASSETS / "world-cay-1.imageset/world-cay-1.png", "world-cay-1--normal", dict(bevel=14.0, dome=0.25, detail=0.45, strength=6.0)),
+    (ASSETS / "world-tea-stall-1.imageset/world-tea-stall-1.png", "world-tea-stall-1--normal", dict(bevel=14.0, dome=0.25, detail=0.45, strength=6.0)),
     (ASSETS / "world-mochi.imageset/world-mochi.png", "world-mochi--normal", dict(bevel=18.0, dome=0.6, detail=0.25, strength=6.0)),
     # A fur ball: nearly all dome, so the key wraps round the whole body.
     (COMPANION / "pofu-hamster.png", "world-pofu--normal", dict(bevel=60.0, dome=0.8, detail=0.2, strength=8.0)),

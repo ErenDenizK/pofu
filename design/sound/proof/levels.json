@@ -128,7 +128,7 @@
     "problems": []
   },
   {
-    "file": "arrival-iskele.wav",
+    "file": "arrival-harbor.wav",
     "kind": "micro",
     "seconds": 3.0,
     "bytes": 288044,
@@ -144,7 +144,7 @@
     "problems": []
   },
   {
-    "file": "island-aycicegi-day-calm1.0.m4a",
+    "file": "island-home-day-calm1.0.m4a",
     "kind": "loop",
     "seconds": 30.02,
     "bytes": 368052,
@@ -160,7 +160,7 @@
     "problems": []
   },
   {
-    "file": "island-aycicegi-day-calm2.0.m4a",
+    "file": "island-home-day-calm2.0.m4a",
     "kind": "loop",
     "seconds": 30.02,
     "bytes": 367140,

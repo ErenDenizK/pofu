@@ -187,11 +187,11 @@ struct LookTuningTests {
     }
 
     @Test func theSoftLockSetFallsBackWhereNothingWasBaked() {
-        #expect(WorldArt.key("cay-1", art: .softLock) == "cay-1--softlock")
+        #expect(WorldArt.key("tea-stall-1", art: .softLock) == "tea-stall-1--softlock")
         // The large plate has no soft-lock bake.
         #expect(WorldArt.key("island-main-band2", art: .softLock) == "island-main-band2")
         #expect(WorldArt.key("mochi", art: .softLock) == "mochi")
-        #expect(WorldArt.key("cay-1", art: .lockLight) == "cay-1")
+        #expect(WorldArt.key("tea-stall-1", art: .lockLight) == "tea-stall-1")
     }
 
     @Test func theCompareSetsKeepTheirBakes() {
@@ -200,15 +200,15 @@ struct LookTuningTests {
         #expect(WorldArt.key("island-main-band2", art: .unharmonized) == "island-main-band2--unharmonized")
         // The rose copper is in its material's range: no correction, so no
         // uncorrected bake (look round 3).
-        #expect(WorldArt.key("cay-1", art: .unharmonized) == "cay-1")
-        #expect(WorldArt.key("cay-1", art: .round2Copper) == "cay-1--round2")
+        #expect(WorldArt.key("tea-stall-1", art: .unharmonized) == "tea-stall-1")
+        #expect(WorldArt.key("tea-stall-1", art: .round2Copper) == "tea-stall-1--round2")
         // The founder's plate choice (look round 4): v2 beside the shipped v3.
         #expect(WorldArt.key("island-main-band1", art: .plateV2) == "island-main-band1--v2")
-        #expect(WorldArt.key("cay-1", art: .plateV2) == "cay-1")
+        #expect(WorldArt.key("tea-stall-1", art: .plateV2) == "tea-stall-1")
     }
 
     @Test func theLitFlameShowsAtNightOnly() {
-        #expect(IslandLayout.litOverlay(.teaStall, level: 1) == "cay-1-glow")
+        #expect(IslandLayout.litOverlay(.teaStall, level: 1) == "tea-stall-1-glow")
         #expect(IslandLayout.litOverlay(.teaStall, level: 3) == nil)
         #expect(IslandLayout.litOverlayStrength(in: .at(hour: 12, wellbeing: 78, calm: 1.4)) == 0)
         #expect(IslandLayout.litOverlayStrength(in: .at(hour: 22, wellbeing: 78, calm: 1.4)) > 0.99)

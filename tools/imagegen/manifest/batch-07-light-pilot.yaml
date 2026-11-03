@@ -14,16 +14,16 @@
 # burner. The lead turns it into an emissive overlay by difference against
 # the master (code), registered to it pixel for pixel, and the app draws it
 # above the night grade so the fire stays warm while the world goes blue.
-# cay-1-lit and cay-5-lit test whether one overlay serves every level (the
+# tea-stall-1-lit and tea-stall-5-lit test whether one overlay serves every level (the
 # burner is the same region on all five); if it does, later stations get
 # one lit edit, not five.
 #
 # The warm re-take: measured, the çay ocağı is not cold in hue (every
-# pixel stays in warm hues) but its chain FADED: median chroma 31 at cay-1,
-# 22, 18, 14, then 11 at cay-5, because each level re-drew the soft-locked
+# pixel stays in warm hues) but its chain FADED: median chroma 31 at tea-stall-1,
+# 22, 18, 14, then 11 at tea-stall-5, because each level re-drew the soft-locked
 # parent and was locked again. That is a grade problem: the harmony grade
 # (tools/assets/harmony.py) restores it in code. A re-take of the chain is
-# in this batch's follow-up only if the restored cay-5 still reads cold to
+# in this batch's follow-up only if the restored tea-stall-5 still reads cold to
 # the founder.
 #
 # Tracks: `cay` (both jobs; they may run at once).
@@ -36,13 +36,13 @@ defaults:
   variants: 2
 
 jobs:
-  - {id: cay-1, kind: station, name: cay-1, external: batch-01-slice}
-  - {id: cay-5, kind: station, name: cay-5, external: batch-01-slice}
+  - {id: tea-stall-1, kind: station, name: tea-stall-1, external: batch-01-slice}
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
 
-  - id: cay-1-lit
+  - id: tea-stall-1-lit
     kind: station
-    name: cay-1-lit
-    edit_of: cay-1
+    name: tea-stall-1-lit
+    edit_of: tea-stall-1
     chat: "Pofu · Çay ocağı"
     notes: >-
       Source of the burner's emissive overlay (the lead derives it by
@@ -61,14 +61,14 @@ jobs:
       - block: edit-keep-v1
       - text: "AVOID: a big fire, sparks, smoke, steam, a glow outside the burner, light on other objects, yellow-white blown highlights, text."
 
-  - id: cay-5-lit
+  - id: tea-stall-5-lit
     kind: station
-    name: cay-5-lit
-    edit_of: cay-5
+    name: tea-stall-5-lit
+    edit_of: tea-stall-5
     chat: "Pofu · Çay ocağı"
     notes: >-
-      The same change on the top level, to test whether cay-1-lit's overlay
-      fits every level. Same review check as cay-1-lit.
+      The same change on the top level, to test whether tea-stall-1-lit's overlay
+      fits every level. Same review check as tea-stall-1-lit.
     prompt:
       - text: |
           Light the little round burner under the çaydanlık: inside its

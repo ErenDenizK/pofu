@@ -4,7 +4,7 @@
 
 extension WorldArt {
     static let generated: [String: WorldSprite] = [
-        "cay-1": WorldSprite(
+        "tea-stall-1": WorldSprite(
             sharp: WorldBox(minX: -47.578, minY: -58.477, maxX: 45.755, maxY: 12.357),
             soft: WorldBox(minX: -51.911, minY: -62.81, maxX: 50.089, maxY: 16.69),
             deep: WorldBox(minX: -59.578, minY: -70.477, maxX: 57.755, maxY: 24.357),
@@ -27,7 +27,7 @@ extension WorldArt {
                 WorldPoint(x: -44.58, y: 1.19),
             ]
         ),
-        "cay-1--round2": WorldSprite(
+        "tea-stall-1--round2": WorldSprite(
             sharp: WorldBox(minX: -47.578, minY: -58.477, maxX: 45.755, maxY: 12.357),
             soft: WorldBox(minX: -51.911, minY: -62.81, maxX: 50.089, maxY: 16.69),
             deep: WorldBox(minX: -59.578, minY: -70.477, maxX: 57.755, maxY: 24.357),
@@ -50,7 +50,7 @@ extension WorldArt {
                 WorldPoint(x: -44.58, y: 1.19),
             ]
         ),
-        "cay-1--softlock": WorldSprite(
+        "tea-stall-1--softlock": WorldSprite(
             sharp: WorldBox(minX: -47.578, minY: -58.477, maxX: 45.755, maxY: 12.357),
             soft: WorldBox(minX: -51.911, minY: -62.81, maxX: 50.089, maxY: 16.69),
             deep: WorldBox(minX: -59.578, minY: -70.477, maxX: 57.755, maxY: 24.357),
@@ -73,13 +73,13 @@ extension WorldArt {
                 WorldPoint(x: -44.58, y: 1.19),
             ]
         ),
-        "cay-1-glow": WorldSprite(
+        "tea-stall-1-glow": WorldSprite(
             sharp: WorldBox(minX: -21.211, minY: -28.359, maxX: -8.044, maxY: -18.193),
             soft: WorldBox(minX: -21.211, minY: -28.359, maxX: -8.044, maxY: -18.193),
             deep: WorldBox(minX: -21.211, minY: -28.359, maxX: -8.044, maxY: -18.193),
             footprint: []
         ),
-        "cay-2": WorldSprite(
+        "tea-stall-2": WorldSprite(
             sharp: WorldBox(minX: -47.695, minY: -80.742, maxX: 45.971, maxY: 12.591),
             soft: WorldBox(minX: -52.029, minY: -85.076, maxX: 50.305, maxY: 16.924),
             deep: WorldBox(minX: -59.695, minY: -92.742, maxX: 57.971, maxY: 24.591),
@@ -102,7 +102,7 @@ extension WorldArt {
                 WorldPoint(x: -44.7, y: 0.92),
             ]
         ),
-        "cay-3": WorldSprite(
+        "tea-stall-3": WorldSprite(
             sharp: WorldBox(minX: -47.695, minY: -80.859, maxX: 46.138, maxY: 13.807),
             soft: WorldBox(minX: -52.029, minY: -85.193, maxX: 50.471, maxY: 18.141),
             deep: WorldBox(minX: -59.695, minY: -92.859, maxX: 58.138, maxY: 25.807),
@@ -125,7 +125,7 @@ extension WorldArt {
                 WorldPoint(x: -45.7, y: 8.47),
             ]
         ),
-        "cay-3--unharmonized": WorldSprite(
+        "tea-stall-3--unharmonized": WorldSprite(
             sharp: WorldBox(minX: -47.695, minY: -80.859, maxX: 46.138, maxY: 13.807),
             soft: WorldBox(minX: -52.029, minY: -85.193, maxX: 50.471, maxY: 18.141),
             deep: WorldBox(minX: -59.695, minY: -92.859, maxX: 58.138, maxY: 25.807),
@@ -148,7 +148,7 @@ extension WorldArt {
                 WorldPoint(x: -45.7, y: 8.47),
             ]
         ),
-        "cay-4": WorldSprite(
+        "tea-stall-4": WorldSprite(
             sharp: WorldBox(minX: -47.812, minY: -81.094, maxX: 46.188, maxY: 13.906),
             soft: WorldBox(minX: -52.146, minY: -85.427, maxX: 50.521, maxY: 18.24),
             deep: WorldBox(minX: -59.812, minY: -93.094, maxX: 58.188, maxY: 25.906),
@@ -171,7 +171,7 @@ extension WorldArt {
                 WorldPoint(x: -45.81, y: 8.24),
             ]
         ),
-        "cay-5": WorldSprite(
+        "tea-stall-5": WorldSprite(
             sharp: WorldBox(minX: -48.047, minY: -88.242, maxX: 47.786, maxY: 14.258),
             soft: WorldBox(minX: -52.38, minY: -92.576, maxX: 52.12, maxY: 18.591),
             deep: WorldBox(minX: -60.047, minY: -100.242, maxX: 59.786, maxY: 26.258),

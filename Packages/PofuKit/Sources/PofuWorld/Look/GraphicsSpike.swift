@@ -51,7 +51,7 @@ public struct GraphicsSpike: Hashable, Sendable {
 
     /// The sprites that have a baked normal map (`world-<name>--normal` in
     /// the asset catalog).
-    public static let litSprites: Set<String> = ["cay-1", "mochi", "pofu"]
+    public static let litSprites: Set<String> = ["tea-stall-1", "mochi", "pofu"]
 
     /// The depth blur's lens: in focus at `focus` (the focal object's
     /// depth), tuned for the Home framing.

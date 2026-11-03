@@ -1,0 +1,22 @@
+id: asset-tea-stall-3
+type: asset
+title_tr: tea-stall-3
+title_en: tea-stall-3 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add two small round wooden stools and one tiny round table with a rose-and-cream striped
+  tablecloth in front of the counter's left end, all inside the stall's footprint and smaller
+  than the counter.
+links:
+  variant_of:
+  - asset-tea-stall-2
+art:
+  images:
+  - design/art/stations/tea-stall-3/tea-stall-3.png
+  jobs:
+  - batch-01-slice:tea-stall-3
+sources:
+- doc: tools/imagegen/manifest/batch-01-slice.yaml
+kind: station
+batch: batch-01-slice

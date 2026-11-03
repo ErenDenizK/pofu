@@ -1,0 +1,102 @@
+{
+  "job": "tea-stall-4",
+  "batch": "batch-01-slice",
+  "asset": "station__tea-stall-4",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T14:53:02+00:00",
+  "image": "design/art/stations/tea-stall-4/tea-stall-4.png",
+  "raw": "design/art/stations/tea-stall-4/raw.png",
+  "fingerprint": "a61bbf3e82c8ef3f",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nAdd one string of small, round, warm cream light bulbs, unlit,\nhanging in a gentle curve along the front edge of the awning\nbetween the two poles. The bulbs are simple soft dots, not\nglowing (the app adds the glow at night).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/tea-stall-3/tea-stall-3.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T14:52:01+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "soft-lock",
+    "version": 1
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 17 (R1 51)",
+        "value": 16.8
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 68 (R1 59)",
+        "value": 68.5
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.1 (R1 5.3)",
+        "value": 1.07
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 5.5",
+        "value": 5.4909
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.8, p95 1.6, off-palette 0.0%",
+        "value": 0.8447
+      },
+      {
+        "check": "station_anchor",
+        "status": "warn",
+        "message": "top y 112 above the height bar (150)",
+        "value": 912.0
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "100% of the parent level unchanged",
+        "value": 0.9998
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. t2 excluded by visual transparency QA: visible opaque halo and repeated edges fill the required transparent margin, despite automated transparency pass; t1 is lowest-load take passing complete QA."
+}

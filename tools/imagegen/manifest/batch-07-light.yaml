@@ -4,9 +4,9 @@
 # Lead's decision (2026-11-02), after batch-07-light-pilot: night light comes
 # mostly from code (the night grade, glow sprites, halos, flicker). Painted
 # lit overlays exist only for the light-carrying stations, one per station,
-# at the first level that carries the light. cay-1-lit was accepted; cay-5-lit
+# at the first level that carries the light. tea-stall-1-lit was accepted; tea-stall-5-lit
 # is dropped (its lit change was barely visible, and one overlay serves the
-# chain). The pilot's QA failure on cay-5-lit was the check, not the art:
+# chain). The pilot's QA failure on tea-stall-5-lit was the check, not the art:
 # edits are now anchored against their parent's bounds.
 #
 # L1 where the station carries light at L1 (the workshop's doorway). The

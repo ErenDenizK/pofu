@@ -344,10 +344,10 @@ def s_skip_chime(rng):
     return out
 
 
-ISKELE_MOTIF = [("A4", 0.0), ("B4", 0.13), ("D5", 0.26), ("C5", 0.42), ("D5", 0.6)]
+HARBOR_MOTIF = [("A4", 0.0), ("B4", 0.13), ("D5", 0.26), ("C5", 0.42), ("D5", 0.6)]
 
 
-def s_arrival_iskele(rng):
+def s_arrival_harbor(rng):
     """İskele's arrival: a wind swell under the cloud pass, the ferry's low
     horn (D3 + A3), the island motif on kalimba, a mixolydian cadence
     (C to D) resolving into the island's pad."""
@@ -364,7 +364,7 @@ def s_arrival_iskele(rng):
             horn += a / k ** 1.6 * osc(f * k * (1 + 0.0015 * (k % 2)), horn_d)
     horn = lowpass(horn, 650) * env_asr(horn_d, 0.15, 0.45)
     place(out, 0.22 * horn / np.max(np.abs(horn)), 0.35)
-    for n, at in ISKELE_MOTIF:
+    for n, at in HARBOR_MOTIF:
         place(out, kalimba(n, 1.4 if at == 0.6 else 0.9, 0.7, rng), 0.75 + at)
     pad = sum(pad_voice(hz(n), 1.6, 0.5, 1.0, 0.6, rng) for n in ("D4", "A4", "E5", "F#5"))
     place(out, 0.05 * pad, 1.35)
@@ -380,7 +380,7 @@ MICRO = {
     "pofu-chew": s_chew,
     "ui-tok": s_tok,
     "skip-chime": s_skip_chime,
-    "arrival-iskele": s_arrival_iskele,
+    "arrival-harbor": s_arrival_harbor,
 }
 
 
@@ -549,7 +549,7 @@ class Island:
 D = 50  # D3
 ISLANDS = {
     # D Ionian: I - IV - vi - Vsus  (Dadd9, Gmaj7, Bm7, Asus4)
-    "aycicegi": Island("Ayçiçeği", D, (0, 2, 4, 5, 7, 9, 11),
+    "home": Island("Ayçiçeği", D, (0, 2, 4, 5, 7, 9, 11),
                        ((0, 2, 4, 8), (3, 5, 7, 9), (5, 7, 9, 11), (4, 7, 8, 9)),
                        (0, 2, 4, 5), "kalimba", (300, 1400)),
     # D Lydian: I - II over a D pedal (Dmaj7, E/D): the floating night.
@@ -557,7 +557,7 @@ ISLANDS = {
                      ((0, 2, 4, 6), (1, 3, 5, 7), (0, 4, 6, 8), (1, 3, 5, 8)),
                      (4, 6, 5, 2), "kalimba", (1800, 4200)),
     # D Mixolydian: I - bVII - IV - I (D, C, G, D): the harbor.
-    "iskele": Island("İskele", D, (0, 2, 4, 5, 7, 9, 10),
+    "harbor": Island("İskele", D, (0, 2, 4, 5, 7, 9, 10),
                      ((0, 2, 4, 8), (6, 8, 10, 12), (3, 5, 7, 9), (0, 4, 7, 9)),
                      (4, 5, 7, 6, 7), "kalimba", (150, 700)),
     # B Dorian over the D-major-pentatonic core: i - IV (Bm9, E9).
@@ -706,8 +706,8 @@ def circular_convolve(x: np.ndarray, ir: np.ndarray) -> np.ndarray:
 
 
 LOOPS = {
-    "island-aycicegi-day-calm1.0": ("aycicegi", Mood(calm=1.0, wellbeing=0.7, hour=14), 11),
-    "island-aycicegi-day-calm2.0": ("aycicegi", Mood(calm=2.0, wellbeing=0.9, hour=14), 11),
+    "island-home-day-calm1.0": ("home", Mood(calm=1.0, wellbeing=0.7, hour=14), 11),
+    "island-home-day-calm2.0": ("home", Mood(calm=2.0, wellbeing=0.9, hour=14), 11),
     "island-yildiz-night": ("yildiz", Mood(calm=1.5, wellbeing=0.7, hour=22), 23),
     "island-kaplica-evening": ("kaplica", Mood(calm=1.6, wellbeing=0.6, hour=19), 31),
 }

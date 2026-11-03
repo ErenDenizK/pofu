@@ -1,0 +1,14 @@
+batch: retry-2026-11-03
+jobs:
+  harbor-ferry-2:
+    pick: none
+    publication: dependent-skip
+    note: 'Skipped without generation: true dependency harbor-ferry-1 failed after
+      its one allowed retry. All four takes read as compact Istanbul vapur ferries
+      with a funnel, low cabin, round windows and flat waterlines, but the explicit
+      maximum720px footprint width fails: alpha>24 widths t1=741,t2=844,t3=835,t4=834px
+      on the1024px processed canvas. Automated t1 PASS and t2-t4 station_anchor WARN
+      preserved unchanged. No resizing, QA waiver or extra retry; only true dependent
+      harbor-ferry-2 is skipped.'
+generated_takes: 0
+failed_dependency: harbor-ferry-1

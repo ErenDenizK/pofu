@@ -1,0 +1,21 @@
+# Review for batch-01-slice. Edited by people (or by Codex on the founder's word).
+# For each job set `pick` to the take number to approve (1, 2, ...),
+# `none` to reject every take (regenerate), or leave it null (undecided).
+# Never approve a take whose QA is `fail` without writing why in `note`.
+# Then run: python3 -I tools/imagegen/run.py promote --manifest tools/imagegen/manifest/batch-01-slice.yaml
+batch: batch-01-slice
+contact_sheet: build/control/tea-stall-1/review/batch-01-slice-contact.jpg
+jobs:
+  tea-stall-1:
+    pick: 1
+    note: auto-picked by QA; founder review pending
+    takes:
+      t1:
+        qa: warn
+        summary: lock_load warn
+      t2:
+        qa: warn
+        summary: lock_load warn
+    approved:
+      take: 1
+      at: '2026-11-01T20:34:42-05:00'

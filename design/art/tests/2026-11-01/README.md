@@ -9,8 +9,8 @@ Purpose: verify that level chains stay consistent when made as edits.
 | Asset | Verdict |
 |---|---|
 | `world__island-main-s_take1/2` | Clean transparency and good fur-like lawn. Two issues: the lawn is too saturated against the pastel palette, and the earth body is too deep (a cone) for a diorama that needs lawn space. A rejected take with a baked dark glow is not kept. |
-| `station__cay-1_take1..3` | Good object, toy-like proportions, correct Turkish details. **Style drift:** more saturated and glossy (a "mobile game render" look) than R1's soft pastel painting, and the camera sits higher than the island's. |
-| `station__cay-2_take1` | **The key risk is retired:** as an edit of L1, the counter, çaydanlık, glasses and position are unchanged; only the awning was added. Level chains as edits work. |
+| `station__tea-stall-1_take1..3` | Good object, toy-like proportions, correct Turkish details. **Style drift:** more saturated and glossy (a "mobile game render" look) than R1's soft pastel painting, and the camera sits higher than the island's. |
+| `station__tea-stall-2_take1` | **The key risk is retired:** as an edit of L1, the counter, çaydanlık, glasses and position are unchanged; only the awning was added. Level chains as edits work. |
 | `composite-scene.jpg` | All pieces with R1 on a sky gradient. The world already reads as one place; the stall's saturation and the grass's green are the visible mismatches. |
 
 ## Next prompt corrections

@@ -1,0 +1,23 @@
+id: asset-tea-stall-2
+type: asset
+title_tr: tea-stall-2
+title_en: tea-stall-2 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add two thin wooden poles at the back corners of the counter and a scalloped striped awning
+  between them, soft rose-pink and cream stripes, matte cloth. The awning's top stays below
+  the top of the canvas with a clear margin.
+links:
+  variant_of:
+  - asset-tea-stall-1
+  inspired_by:
+  - asset-test01-tea-stall-2-t1
+art:
+  images: []
+  jobs:
+  - batch-01-slice:tea-stall-2
+sources:
+- doc: tools/imagegen/manifest/batch-01-slice.yaml
+kind: station
+batch: batch-01-slice

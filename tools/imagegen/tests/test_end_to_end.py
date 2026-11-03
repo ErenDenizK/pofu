@@ -30,7 +30,7 @@ from test_qa import stall  # noqa: E402
 MANIFEST = """
 batch: e2e
 jobs:
-  - id: cay-1
+  - id: tea-stall-1
     kind: station
     attach:
       - {ref: station-guide, role: "the guide"}
@@ -38,9 +38,9 @@ jobs:
       - text: A tea stall.
       - block: view-v2
       - block: prop-style-v2
-  - id: cay-2
+  - id: tea-stall-2
     kind: station
-    edit_of: cay-1
+    edit_of: tea-stall-1
     prompt:
       - text: Add an awning.
       - block: edit-keep-v1
@@ -98,10 +98,10 @@ class EndToEnd(unittest.TestCase):
         os.environ["STUB_IMAGE"] = str(save(stall(dx=30, scale=1.1, size=1254), self.tmp / "l1.png"))
         code, out = self.cli("run", *m, "--takes", "2")
         self.assertEqual(code, 0, out)
-        self.assertIn("skip cay-2: waiting for cay-1", out)
+        self.assertIn("skip tea-stall-2: waiting for tea-stall-1", out)
         inbox = self.tmp / "inbox" / "e2e"
-        self.assertEqual(sorted(p.name for p in inbox.glob("*.png")), ["station__cay-1--t1.png", "station__cay-1--t2.png"])
-        side = json.loads((inbox / "station__cay-1--t1.json").read_text())
+        self.assertEqual(sorted(p.name for p in inbox.glob("*.png")), ["station__tea-stall-1--t1.png", "station__tea-stall-1--t2.png"])
+        side = json.loads((inbox / "station__tea-stall-1--t1.json").read_text())
         self.assertEqual(side["backend"], "codex")
         self.assertTrue(side["thread_id"])
         calls = [json.loads(l) for l in (self.tmp / "stub.log").read_text().splitlines()]
@@ -118,16 +118,16 @@ class EndToEnd(unittest.TestCase):
         self.assertTrue((self.tmp / "contact_sheets" / "e2e.png").exists())
         self.assertTrue((self.tmp / "review" / "e2e-contact.jpg").exists())
         data = rv.load_review(review_path)
-        self.assertIsNone(data["jobs"]["cay-1"]["pick"])
-        self.assertIn("t2", data["jobs"]["cay-1"]["takes"])
+        self.assertIsNone(data["jobs"]["tea-stall-1"]["pick"])
+        self.assertIn("t2", data["jobs"]["tea-stall-1"]["takes"])
 
-        data["jobs"]["cay-1"]["pick"] = 2
-        data["jobs"]["cay-1"]["note"] = "the softer one"
+        data["jobs"]["tea-stall-1"]["pick"] = 2
+        data["jobs"]["tea-stall-1"]["note"] = "the softer one"
         rv.save_review(review_path, data, "e2e.yaml")
         code, out = self.cli("promote", *m)
         self.assertEqual(code, 0, out)
-        master = pl.ART_ROOT / "stations" / "cay-1"
-        self.assertTrue((master / "cay-1.png").exists() and (master / "raw.webp").exists())
+        master = pl.ART_ROOT / "stations" / "tea-stall-1"
+        self.assertTrue((master / "tea-stall-1.png").exists() and (master / "raw.webp").exists())
         self.assertFalse((master / "raw.png").exists())
         meta = json.loads((master / "meta.json").read_text())
         self.assertEqual(meta["take"], 2)
@@ -136,31 +136,31 @@ class EndToEnd(unittest.TestCase):
         self.assertIn("Generating account:** Test Owner (founder)", (master / "provenance.md").read_text())
         self.assertTrue(meta["registration"])  # the chain root was put on the anchor
         self.assertIn("the softer one", (master / "provenance.md").read_text())
-        self.assertIn("cay-2", out)
+        self.assertIn("tea-stall-2", out)
         self.assertIn("ready (0/2 takes)", out)
 
         # round 2: the edit attaches the approved L1 first, and is aligned back on post
         os.environ["STUB_IMAGE"] = str(save(stall(dx=30, scale=0.95, awning=True, size=1254), self.tmp / "l2.png"))
-        code, out = self.cli("run", *m, "--only", "cay-2", "--takes", "1")
+        code, out = self.cli("run", *m, "--only", "tea-stall-2", "--takes", "1")
         self.assertEqual(code, 0, out)
         task = json.loads((self.tmp / "stub.log").read_text().splitlines()[-1])["task"]
         self.assertIn("1. The image to edit", task)
-        code, out = self.cli("post", *m, "--only", "cay-2")
-        self.assertIn("cay-2 t1", out)
-        report = json.loads((self.tmp / "build" / "e2e" / "qa" / "station__cay-2--t1.json").read_text())
+        code, out = self.cli("post", *m, "--only", "tea-stall-2")
+        self.assertIn("tea-stall-2 t1", out)
+        report = json.loads((self.tmp / "build" / "e2e" / "qa" / "station__tea-stall-2--t1.json").read_text())
         checks = {c["check"]: c for c in report["checks"]}
         self.assertEqual(checks["edit_stability"]["status"], "pass")
 
         # parallel mode: promote --only touches only the named job
         data = rv.load_review(review_path)
-        data["jobs"]["cay-2"]["pick"] = 1
+        data["jobs"]["tea-stall-2"]["pick"] = 1
         rv.save_review(review_path, data, "e2e.yaml")
-        code, out = self.cli("promote", *m, "--only", "cay-1")
+        code, out = self.cli("promote", *m, "--only", "tea-stall-1")
         self.assertEqual(code, 0, out)
-        self.assertFalse((pl.ART_ROOT / "stations" / "cay-2" / "cay-2.png").exists())
-        code, out = self.cli("promote", *m, "--only", "cay-2")
+        self.assertFalse((pl.ART_ROOT / "stations" / "tea-stall-2" / "tea-stall-2.png").exists())
+        code, out = self.cli("promote", *m, "--only", "tea-stall-2")
         self.assertEqual(code, 0, out)
-        self.assertTrue((pl.ART_ROOT / "stations" / "cay-2" / "cay-2.png").exists())
+        self.assertTrue((pl.ART_ROOT / "stations" / "tea-stall-2" / "tea-stall-2.png").exists())
 
     def test_limit_stops_the_run(self):
         os.environ["STUB_IMAGE"] = str(save(stall(), self.tmp / "l1.png"))
@@ -188,11 +188,11 @@ class EndToEnd(unittest.TestCase):
         m = ["--manifest", str(self.manifest)]
         code, out = self.cli("run", *m, "--backend", "manual")
         pack = (self.tmp / "build" / "e2e" / "manual-pack.md").read_text()
-        self.assertIn("## cay-1", pack)
-        self.assertNotIn("## cay-2", pack)
+        self.assertIn("## tea-stall-1", pack)
+        self.assertNotIn("## tea-stall-2", pack)
         self.assertIn("station-guide.png", pack)
-        code, out = self.cli("ingest", *m, "--job", "cay-1", str(save(stall(), self.tmp / "dl.png")))
-        self.assertTrue((self.tmp / "inbox" / "e2e" / "station__cay-1--t1.png").exists())
+        code, out = self.cli("ingest", *m, "--job", "tea-stall-1", str(save(stall(), self.tmp / "dl.png")))
+        self.assertTrue((self.tmp / "inbox" / "e2e" / "station__tea-stall-1--t1.png").exists())
 
     def test_blocked_batch_refuses_to_generate(self):
         self.manifest.write_text(MANIFEST.replace("batch: e2e", "batch: e2e\nstatus: blocked\nblocked_on: [dogfood]"))
@@ -245,18 +245,18 @@ class EndToEnd(unittest.TestCase):
         code, out = self.cli("plan", *m)
         self.assertIn("external: made by batch-01-slice", out)
         code, out = self.cli("run", *m, "--takes", "1")
-        self.assertIn("skip cay-1: external", out)
-        self.assertIn("skip cay-2: waiting for cay-1", out)
+        self.assertIn("skip tea-stall-1: external", out)
+        self.assertIn("skip tea-stall-2: waiting for tea-stall-1", out)
         self.assertFalse((self.tmp / "stub.log").exists())
         # once the other batch's master is on disk, the edit runs and the parent is never regenerated
-        parent = pl.ART_ROOT / "stations" / "cay-1" / "cay-1.png"
+        parent = pl.ART_ROOT / "stations" / "tea-stall-1" / "tea-stall-1.png"
         parent.parent.mkdir(parents=True)
         save(stall(), parent)
         code, out = self.cli("run", *m, "--takes", "1")
         self.assertEqual(code, 0, out)
         inbox = self.tmp / "inbox" / "e2e"
-        self.assertEqual(sorted(p.name for p in inbox.glob("*.png")), ["station__cay-2--t1.png"])
-        code, out = self.cli("ingest", *m, "--job", "cay-1", str(parent))
+        self.assertEqual(sorted(p.name for p in inbox.glob("*.png")), ["station__tea-stall-2--t1.png"])
+        code, out = self.cli("ingest", *m, "--job", "tea-stall-1", str(parent))
         self.assertEqual(code, run.EXIT_ERR, out)
 
     def test_dry_run_sends_nothing(self):

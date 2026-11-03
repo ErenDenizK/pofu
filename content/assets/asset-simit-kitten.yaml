@@ -14,12 +14,12 @@ art:
   images:
   - design/art/masters/simit-kitten/simit-kitten.webp
   jobs:
-  - batch-14-iskele:simit-kitten
+  - batch-14-harbor:simit-kitten
   - retry-2026-11-03:simit-kitten
 sources:
-- doc: tools/imagegen/manifest/batch-14-iskele.yaml
+- doc: tools/imagegen/manifest/batch-14-harbor.yaml
 kind: char
-batch: batch-14-iskele
+batch: batch-14-harbor
 size: 1024x1536
 notes:
 - 'Skipped after exactly four takes: all fail palette_drift. Retry meanDeltaE4.1/4.1,p95DeltaE14.5/14.7,off-palette8.1%

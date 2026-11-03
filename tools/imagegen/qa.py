@@ -302,7 +302,7 @@ def check_station_anchor(rgba: np.ndarray, is_edit: bool = False,
     Edits inherit the chain root's registration, so their footprint center
     is not re-checked (new poles or stools legitimately move it). With the
     parent given, an edit is anchored against the PARENT's bounds instead of
-    the contract: a tall parent (cay-5 tops out at y 49) or a lit variant of
+    the contract: a tall parent (tea-stall-5 tops out at y 49) or a lit variant of
     it must not fail for geometry the parent already has.
     """
     g = pa.measure(rgba)
@@ -409,7 +409,7 @@ def edit_chroma_ratio(child: np.ndarray, parent: np.ndarray) -> float | None:
     """Median chroma of the edit over the parent's, on the area both cover.
 
     Batch 03 lost about a third of its chroma per level (windmill-1 C50 28,
-    windmill-5 7; cay-1 31, cay-5 11): each edit re-drew the locked parent
+    windmill-5 7; tea-stall-1 31, tea-stall-5 11): each edit re-drew the locked parent
     and was locked again, and every step stayed under edit_stability's
     tolerance. The ratio makes that drift visible one level at a time.
     """

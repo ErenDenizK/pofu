@@ -16,7 +16,7 @@ It writes to `design/sound/proof/`:
 |---|---|
 | `pofu-poke.wav` … `pofu-chew.wav` | Six of Pofu's micro-sounds (stand-ins; the vocal ones get a performer) |
 | `ui-tok.wav`, `skip-chime.wav` | A station tap and the skip / build-settle chime |
-| `arrival-iskele.wav` | İskele's arrival cue, built from the island's motif |
+| `arrival-harbor.wav` | İskele's arrival cue, built from the island's motif |
 | `island-*.m4a` | 30-second seamless island loops: Ayçiçeği at calm ×1.0 and ×2.0, Yıldız at night, Kaplıca in the evening |
 | `levels.json` | The measurements below, per file |
 | `spectrograms.png` | A contact sheet, 0–10 kHz, to eyeball clicks and harshness |

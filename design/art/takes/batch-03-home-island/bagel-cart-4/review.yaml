@@ -1,0 +1,5 @@
+batch: batch-03-home-island
+job: bagel-cart-4
+reason: 'Dependency chain blocked: bagel-cart-2 failed QA after four takes. No approved
+  parent available.'
+status: skipped

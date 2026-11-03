@@ -54,7 +54,7 @@ public struct WorldLook: Hashable, Sendable {
     public var frameMeter: Bool
     /// The feel numbers the tuning lab panel tunes live (look round 4).
     public var tuning: WorldTuning = .standard
-    /// The painted night overlays of practical lights (cay-1-lit's flame);
+    /// The painted night overlays of practical lights (tea-stall-1-lit's flame);
     /// off only to compare.
     public var litOverlays = true
     /// Depth-map depth of field (on by default) and normal-lit art (off by
@@ -89,7 +89,7 @@ public struct WorldLook: Hashable, Sendable {
 
 extension WorldArt {
     /// The sprite key to draw for `name` in `art`: the set's own bake when
-    /// the pipeline baked one (`cay-1--softlock`), otherwise `name` itself.
+    /// the pipeline baked one (`tea-stall-1--softlock`), otherwise `name` itself.
     public static func key(_ name: String, art: WorldLook.ArtSet) -> String {
         guard let suffix = art.suffix else { return name }
         let alt = name + suffix

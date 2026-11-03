@@ -1,5 +1,5 @@
 {
-  "$note": "Extra locked palettes for world props and stations (docs/design/art-direction-study.md). Sampled with k-means from the style-locked art test 01 (cay ocagi L1 and L2, island take 1) and rounded by hand. They extend design/tokens/pofu-tokens.json artPalettes for drift checks only; the app never reads them. Darkest allowed accent is wood-deep; nothing darker than ink-brown.",
+  "$note": "Extra locked palettes for world props and stations (docs/design/art-direction-study.md). Sampled with k-means from the style-locked art test 01 (tea-stall ocagi L1 and L2, island take 1) and rounded by hand. They extend design/tokens/pofu-tokens.json artPalettes for drift checks only; the app never reads them. Darkest allowed accent is wood-deep; nothing darker than ink-brown.",
   "world-props": {
     "cream": "#FBF1E6",
     "earth-cream": "#F3E2CC",
@@ -37,7 +37,7 @@
     "rose-light": "#D8B8B9"
   },
   "character-tabby": {
-    "$note": "Simit's honey tabby coat and coral neckerchief (batch 14 retry). The character palette is Pofu's peach; a honey-gold tabby with darker stripes sits outside it (drift failed at mean dE 4.0-4.4, off-palette 8-9%: #DD8844, #CC7733). Sampled (k-means) from the batch-14 takes' off-palette pixels and rounded by hand. A job adds it through `palettes:`.",
+    "$note": "bagel-cart's honey tabby coat and coral neckerchief (batch 14 retry). The character palette is Pofu's peach; a honey-gold tabby with darker stripes sits outside it (drift failed at mean dE 4.0-4.4, off-palette 8-9%: #DD8844, #CC7733). Sampled (k-means) from the batch-14 takes' off-palette pixels and rounded by hand. A job adds it through `palettes:`.",
     "honey-light": "#FFDDAB",
     "honey-cream": "#FDC98D",
     "honey-gold": "#FCBF7D",

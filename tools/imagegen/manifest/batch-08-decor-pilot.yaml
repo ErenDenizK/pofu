@@ -29,7 +29,7 @@ defaults:
   variants: 2
 
 jobs:
-  - {id: cay-1, kind: station, name: cay-1, external: batch-01-slice}
+  - {id: tea-stall-1, kind: station, name: tea-stall-1, external: batch-01-slice}
   - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
 
   - id: decor-bench
@@ -40,7 +40,7 @@ jobs:
     attach:
       - ref: decor-guide
         role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
-      - ref: approved:cay-1
+      - ref: approved:tea-stall-1
         role: "The approved tea stall: match its style, camera, light, colors and scale exactly (do not draw the stall)."
       - ref: approved:island-main-s
         role: "The island the piece stands on: same camera and softness."

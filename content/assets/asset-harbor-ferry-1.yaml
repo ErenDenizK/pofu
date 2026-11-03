@@ -1,0 +1,49 @@
+id: asset-harbor-ferry-1
+type: asset
+title_tr: harbor-ferry-1
+title_en: harbor-ferry-1 (station)
+status: cut
+horizon: now
+summary: 'A small Istanbul-style passenger ferry (vapur), toy-like and chunky, for
+  the island diorama: a plump rounded hull in soft sea blue with a cream stripe, a
+  low white-cream cabin with three round windows, one tall rounded funnel in soft
+  coral with a cream band, and a small flag. Seen from the same low front three-quarter
+  camera, floating upright; its waterline is a flat, clean edge with no water drawn,
+  no wake, no smoke…'
+art:
+  images: []
+  jobs:
+  - batch-14-harbor:harbor-ferry-1
+  - retry-2026-11-03:harbor-ferry-1
+sources:
+- doc: tools/imagegen/manifest/batch-14-harbor.yaml
+kind: station
+batch: batch-14-harbor
+notes:
+- 'Skipped after exactly four takes: manual station-guide and flat-waterline checks
+  fail. Widths929/875/935/898px exceed the720px guide footprint, and each hull underside
+  is rounded instead of a clean flat waterline. Automated WARN reports preserved unchanged;
+  no waiver, resizing, extra generation or master. Failed embedded pilot gates the
+  remaining seven jobs.'
+- 'Retry 2026-11-03 skipped after four takes: All four takes read as compact Istanbul
+  vapur ferries with a funnel, low cabin, round windows and flat waterlines, but the
+  explicit maximum720px footprint width fails: alpha>24 widths t1=741,t2=844,t3=835,t4=834px
+  on the1024px processed canvas. Automated t1 PASS and t2-t4 station_anchor WARN preserved
+  unchanged. No resizing, QA waiver or extra retry; only true dependent harbor-ferry-2
+  is skipped.'
+- 'Retry 2026-11-03 skipped after four takes: Re-evaluated all four saved original
+  generations under current main QA. One generation retry was already spent historically;
+  no new image call or fifth generation. Explicit ferry maximum720px remains hard.
+  Current alpha16 footprint widths: {"1": 741, "4": 834, "2": 844, "3": 835}. Current
+  CLI salvage fingerprint denotes re-ingestion for current QA, not a new generation.
+  Historical generation lineage: [{"old_take": 1, "source_file": "/workspace/generated_images/exec-973f8465-0c0c-4cf9-bfa2-e4dd31a31e9e.png",
+  "original_generated_png_sha256": "0fc3730b29615082b1a62f920b0da24d7640907a1808298329eef7a6906829df",
+  "historical_generation_fingerprint": "49dc7805556656f8"}, {"old_take": 2, "source_file":
+  "/workspace/generated_images/exec-75c7acd5-2b0a-4c46-aab3-0390d31cbded.png", "original_generated_png_sha256":
+  "cfc3c962d5b5fe326c4c9db68c8b5dc1c72af3ed5ac88ad31eb75be591984365", "historical_generation_fingerprint":
+  "49dc7805556656f8"}, {"old_take": 3, "source_file": "/workspace/generated_images/exec-b60aa3ce-903e-4179-8189-c863329d0127.png",
+  "original_generated_png_sha256": "bd7bf5913dcfc4068fd62f66c1ac633f581ca26397ebfbe83797dae73cb99302",
+  "historical_generation_fingerprint": "49dc7805556656f8"}, {"old_take": 4, "source_file":
+  "/workspace/generated_images/exec-57c5c892-2e07-4ebb-a0ad-93c4c1ea5993.png", "original_generated_png_sha256":
+  "e6cd815905f200ebbfa65cf867154bab711b8ab5e83396220cb9c4432185bb0a", "historical_generation_fingerprint":
+  "49dc7805556656f8"}]'

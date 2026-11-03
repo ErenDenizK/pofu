@@ -1,0 +1,188 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/icon-tea-stall/contact.jpg
+jobs:
+  icon-tea-stall:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Resume from the fixed pre-stop
+      original candidate, with zero image generation. Re-posted both retained PNGs
+      under main9ede62e; both locked RGBA rasters match their retained versions exactly
+      and the same eligible take remains lowest lock load. Fresh light/dark small-size
+      visual review reconfirms the choice. Both takes show one chunky tulip-shaped
+      amber tea glass on a cream saucer, painted as a soft tinted solid shape. The
+      narrow waist, flared lip and saucer remain identifiable at 28, 44 and 60 pt
+      on pale and dark backgrounds.
+qa_reports:
+  2:
+    job: icon-tea-stall
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 48.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 48 (R1 59)
+      value: 48.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.78
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.1
+      value: 2.0906
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.8, p95 10.0, off-palette 0.0%
+      value: 3.7893
+    - check: icon_fill
+      status: pass
+      message: icon spans 83% of the canvas (target 80-92%)
+      value: 0.8252
+    - check: icon_thin_parts
+      status: pass
+      message: 0.4% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0044
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 4.4 (busy above 7)
+      value: 4.39
+    - check: icon_on_light_glass
+      status: pass
+      message: 56% of the icon separates from light glass at 24 pt
+      value: 0.5614
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 48.0
+        L_p50: 71.3
+        L_p95: 91.8
+        C_p50: 43.8
+        C_p95: 49.1
+        C_p99: 49.8
+        detail: 1.05
+      metrics_locked:
+        L_p5: 48.0
+        L_p50: 71.1
+        L_p95: 91.7
+        C_p50: 43.8
+        C_p95: 48.6
+        C_p99: 49.1
+        detail: 0.78
+    fingerprint: b4b6ae3e2d0d6753
+  1:
+    job: icon-tea-stall
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 43 (R1 59)
+      value: 42.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.77
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.7
+      value: 2.7448
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.4, p95 11.2, off-palette 0.0% (top: #AA5533 (0.0%), #995533
+        (0.0%))'
+      value: 4.4324
+    - check: icon_fill
+      status: pass
+      message: icon spans 85% of the canvas (target 80-92%)
+      value: 0.8486
+    - check: icon_thin_parts
+      status: pass
+      message: 0.4% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0037
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 4.8 (busy above 7)
+      value: 4.8
+    - check: icon_on_light_glass
+      status: pass
+      message: 61% of the icon separates from light glass at 24 pt
+      value: 0.6147
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 42.7
+        L_p50: 69.3
+        L_p95: 90.3
+        C_p50: 39.9
+        C_p95: 50.0
+        C_p99: 50.8
+        detail: 1.08
+      metrics_locked:
+        L_p5: 42.7
+        L_p50: 69.1
+        L_p95: 90.1
+        C_p50: 40.0
+        C_p95: 49.0
+        C_p99: 49.6
+        detail: 0.77
+    fingerprint: b4b6ae3e2d0d6753
+manual_review:
+  excluded_takes: []
+  note: Resume from the fixed pre-stop original candidate, with zero image generation.
+    Re-posted both retained PNGs under main9ede62e; both locked RGBA rasters match
+    their retained versions exactly and the same eligible take remains lowest lock
+    load. Fresh light/dark small-size visual review reconfirms the choice. Both takes
+    show one chunky tulip-shaped amber tea glass on a cream saucer, painted as a soft
+    tinted solid shape. The narrow waist, flared lip and saucer remain identifiable
+    at 28, 44 and 60 pt on pale and dark backgrounds.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-47fa3565-301f-47a1-bbe6-1a46ddffd543.png
+  original_generated_png_sha256: e5ce087d41af50a7889027cb2904632b1098ad02dba5a0f450a3b3aff21691c6
+  inbox_png_sha256: 9a95953b70ad50294f2ff5e5ac3124fa0d4f3b69b1784a665ddf0ceb81799b70
+  rgba_sha256: a970bee80a744e14f27cb077cc130e798db8808ef110af785d1bbea93fb1ecf3
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b4b6ae3e2d0d6753
+- take: 2
+  source_file: /workspace/generated_images/exec-ea58ad50-87ac-488c-a2ce-b5e0f8525c17.png
+  original_generated_png_sha256: 98a4681656331181bffcff0e977b5e6e7af53fb3a21da204718e853ed13ef31f
+  inbox_png_sha256: c0df4c286fdd6e6b202c5e4c3a300ea7aa5b935d6134ca79a2ae412f855d0ec8
+  rgba_sha256: a17f023d0f7a588ba9e0af1bcb902f6595da1ef7bc15c56e2eb7d9498c914ea8
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b4b6ae3e2d0d6753

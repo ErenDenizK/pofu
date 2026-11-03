@@ -13,7 +13,7 @@
 
 ## References
 
-- `design/art/stations/cay-1/cay-1.png`: Style reference for objects: how a prop is painted in this world.
+- `design/art/stations/tea-stall-1/tea-stall-1.png`: Style reference for objects: how a prop is painted in this world.
 - `design/reference/palette-card-world-props.png`: The palette card for props.
 
 ## Prompt (fingerprint 495d8dfd87cbe707)

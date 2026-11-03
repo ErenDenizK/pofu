@@ -14,7 +14,7 @@
 ## References
 
 - `design/art/templates/station-guide.png`: The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.
-- `design/art/stations/cay-1/cay-1.png`: P-station, the approved tea stall: match its style, camera, light and colors exactly (do not draw the stall).
+- `design/art/stations/tea-stall-1/tea-stall-1.png`: P-station, the approved tea stall: match its style, camera, light and colors exactly (do not draw the stall).
 - `design/art/masters/island-main-s/island-main-s.png`: The island this garden stands on: same camera and softness.
 
 ## Prompt (fingerprint e63f1d3ceadd2835)
