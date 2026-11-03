@@ -1,0 +1,2148 @@
+batch: batch-18-loop-1-concepts
+contact_sheet: design/art/takes/batch-18-loop-1-concepts/cl1-water-cluster-delta/contact.jpg
+jobs:
+  cl1-water-cluster-delta:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Independent source-bound read-only
+      review: both takes receive eligibility recommendations. Home alone is explicitly
+      exempt from copied-template bans; the water wonders remain distinct. Each physical
+      island has its own source crop/observed black profile at actual native60, per-island
+      pixel swatches, and disclosed occlusion uncertainty. No final take selection,
+      generation, post, promotion, Git or source-art edits. Effective QA is the original
+      official advisory function for EXPLORATION; raw reports remain retained.'
+qa_reports:
+  1:
+    job: cl1-water-cluster-delta
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 33 (R1 51)
+      value: 33.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 75.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.54
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6429
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.4, p95 8.0, off-palette 0.0%
+      value: 2.3907
+    info:
+      metrics_raw:
+        L_p5: 75.5
+        L_p50: 88.2
+        L_p95: 96.4
+        C_p50: 12.4
+        C_p95: 33.6
+        C_p99: 41.3
+        detail: 2.08
+      metrics_locked:
+        L_p5: 75.8
+        L_p50: 88.2
+        L_p95: 96.2
+        C_p50: 12.2
+        C_p95: 33.0
+        C_p99: 40.0
+        detail: 1.54
+    fingerprint: f86af32e1d20b945
+  2:
+    job: cl1-water-cluster-delta
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 33.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 76.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.52
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6538
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 10.1, off-palette 2.2% (top: #88CCEE (1.2%), #88BBEE
+        (1.0%))'
+      value: 2.6117
+    info:
+      metrics_raw:
+        L_p5: 76.0
+        L_p50: 89.3
+        L_p95: 96.8
+        C_p50: 11.0
+        C_p95: 34.0
+        C_p99: 43.8
+        detail: 2.05
+      metrics_locked:
+        L_p5: 76.2
+        L_p50: 89.3
+        L_p95: 96.5
+        C_p50: 10.7
+        C_p95: 33.6
+        C_p99: 42.7
+        detail: 1.52
+    fingerprint: f86af32e1d20b945
+effective_exploration_reports:
+  1:
+    job: cl1-water-cluster-delta
+    take: 1
+    raw_status: pass
+    status: pass
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 33 (R1 51)
+      value: 33.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 75.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.54
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6429
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.4, p95 8.0, off-palette 0.0%
+      value: 2.3907
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: fa75acd0e3f1b9c4981d440d1235b39712e78323840973e136c8d0ea0fa400eb
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+  2:
+    job: cl1-water-cluster-delta
+    take: 2
+    raw_status: warn
+    status: warn
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 33.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 76.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.52
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6538
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 10.1, off-palette 2.2% (top: #88CCEE (1.2%), #88BBEE
+        (1.0%))'
+      value: 2.6117
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: 49c564444e375b0e4f530c3c4402e0b2d7fc1d99db28be01edbd5605b9739a63
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+manual_review:
+  recommendation_only: true
+  note: 'Independent source-bound read-only review: both takes receive eligibility
+    recommendations. Home alone is explicitly exempt from copied-template bans; the
+    water wonders remain distinct. Each physical island has its own source crop/observed
+    black profile at actual native60, per-island pixel swatches, and disclosed occlusion
+    uncertainty. No final take selection, generation, post, promotion, Git or source-art
+    edits. Effective QA is the original official advisory function for EXPLORATION;
+    raw reports remain retained.'
+  takes:
+    '1':
+      pass: true
+      silhouette_name: home front-left, tall travertine column behind-right, separate
+        bonsai boulder in orbital spray
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 1
+      - 1
+      evidence: 'Three distinct physical islands are visible: home in front-left,
+        the tall chalk/teal travertine water column behind-right, and a separate small
+        cream boulder carrying a bonsai pine at far right. An actual sky/spray gap
+        separates bonsai from the main column; it is not a top terrace or a tree planted
+        on the column. Each gets its own actual native60 profile: retained home terrain,
+        tall stepped fountain/column, and tree-plus-boulder satellite. The home base
+        retains the reference broad oval grass rim, shallow layered cream soil, left-of-centre
+        entry/stone arrangement and three dangling-root positions after approximate
+        uniform scale and translation. Sunflower, pond and tea stall are explicitly
+        named additions; the attached parent contains none. The water pair has chalk
+        cream rock and mineral-teal water/blue-teal foliage, distinct from the warm
+        home lawn/soil while sharing cream. Swatches are actual individual source
+        pixels, not an imposed style/score gate. No painted text/UI/border is visible.'
+      swatch_points:
+      - - 530
+        - 770
+      - - 1120
+        - 205
+      - - 1315
+        - 160
+      contours:
+      - - - 28
+          - 617
+        - - 39
+          - 582
+        - - 64
+          - 550
+        - - 104
+          - 521
+        - - 169
+          - 491
+        - - 247
+          - 472
+        - - 327
+          - 456
+        - - 418
+          - 447
+        - - 521
+          - 453
+        - - 630
+          - 466
+        - - 738
+          - 489
+        - - 834
+          - 523
+        - - 917
+          - 550
+        - - 978
+          - 586
+        - - 1013
+          - 625
+        - - 995
+          - 668
+        - - 967
+          - 713
+        - - 930
+          - 755
+        - - 897
+          - 783
+        - - 889
+          - 813
+        - - 894
+          - 831
+        - - 887
+          - 845
+        - - 882
+          - 827
+        - - 875
+          - 811
+        - - 881
+          - 785
+        - - 846
+          - 803
+        - - 796
+          - 831
+        - - 725
+          - 854
+        - - 651
+          - 869
+        - - 569
+          - 882
+        - - 479
+          - 878
+        - - 413
+          - 864
+        - - 403
+          - 882
+        - - 408
+          - 900
+        - - 399
+          - 915
+        - - 405
+          - 927
+        - - 392
+          - 921
+        - - 384
+          - 904
+        - - 387
+          - 887
+        - - 377
+          - 875
+        - - 382
+          - 856
+        - - 319
+          - 842
+        - - 260
+          - 819
+        - - 218
+          - 798
+        - - 186
+          - 772
+        - - 173
+          - 786
+        - - 170
+          - 807
+        - - 178
+          - 821
+        - - 174
+          - 841
+        - - 162
+          - 845
+        - - 161
+          - 828
+        - - 153
+          - 811
+        - - 154
+          - 794
+        - - 145
+          - 777
+        - - 146
+          - 756
+        - - 119
+          - 734
+        - - 92
+          - 706
+        - - 66
+          - 677
+        - - 45
+          - 650
+      - - - 785
+          - 435
+        - - 799
+          - 406
+        - - 814
+          - 394
+        - - 822
+          - 345
+        - - 834
+          - 318
+        - - 860
+          - 299
+        - - 876
+          - 298
+        - - 876
+          - 252
+        - - 887
+          - 216
+        - - 909
+          - 197
+        - - 911
+          - 162
+        - - 920
+          - 115
+        - - 944
+          - 82
+        - - 976
+          - 65
+        - - 1017
+          - 52
+        - - 1062
+          - 53
+        - - 1107
+          - 60
+        - - 1151
+          - 75
+        - - 1178
+          - 100
+        - - 1193
+          - 143
+        - - 1199
+          - 197
+        - - 1205
+          - 251
+        - - 1213
+          - 286
+        - - 1231
+          - 323
+        - - 1268
+          - 337
+        - - 1290
+          - 364
+        - - 1301
+          - 399
+        - - 1307
+          - 442
+        - - 1324
+          - 472
+        - - 1368
+          - 492
+        - - 1414
+          - 518
+        - - 1449
+          - 545
+        - - 1458
+          - 577
+        - - 1450
+          - 603
+        - - 1423
+          - 620
+        - - 1378
+          - 625
+        - - 1315
+          - 621
+        - - 1257
+          - 621
+        - - 1200
+          - 611
+        - - 1146
+          - 603
+        - - 1103
+          - 587
+        - - 1060
+          - 575
+        - - 1027
+          - 559
+        - - 999
+          - 537
+        - - 966
+          - 530
+        - - 939
+          - 517
+        - - 907
+          - 504
+        - - 881
+          - 489
+        - - 850
+          - 474
+        - - 819
+          - 463
+      - - - 1275
+          - 270
+        - - 1284
+          - 253
+        - - 1306
+          - 247
+        - - 1330
+          - 244
+        - - 1357
+          - 248
+        - - 1376
+          - 258
+        - - 1387
+          - 276
+        - - 1385
+          - 293
+        - - 1371
+          - 305
+        - - 1345
+          - 314
+        - - 1320
+          - 312
+        - - 1296
+          - 301
+        - - 1280
+          - 287
+      - - - 1314
+          - 249
+        - - 1322
+          - 233
+        - - 1336
+          - 218
+        - - 1341
+          - 201
+        - - 1335
+          - 193
+        - - 1339
+          - 185
+        - - 1348
+          - 192
+        - - 1349
+          - 207
+        - - 1361
+          - 211
+        - - 1377
+          - 205
+        - - 1380
+          - 212
+        - - 1366
+          - 220
+        - - 1350
+          - 221
+        - - 1345
+          - 238
+        - - 1333
+          - 251
+      - - - 1329
+          - 230
+        - - 1304
+          - 234
+        - - 1283
+          - 228
+        - - 1274
+          - 220
+        - - 1281
+          - 216
+        - - 1295
+          - 223
+        - - 1312
+          - 224
+      - - - 1233
+          - 211
+        - - 1239
+          - 201
+        - - 1252
+          - 193
+        - - 1268
+          - 188
+        - - 1285
+          - 190
+        - - 1302
+          - 199
+        - - 1316
+          - 210
+        - - 1310
+          - 221
+        - - 1296
+          - 227
+        - - 1273
+          - 229
+        - - 1251
+          - 225
+        - - 1236
+          - 220
+      - - - 1274
+          - 168
+        - - 1283
+          - 157
+        - - 1297
+          - 148
+        - - 1314
+          - 142
+        - - 1330
+          - 142
+        - - 1349
+          - 149
+        - - 1364
+          - 160
+        - - 1367
+          - 173
+        - - 1354
+          - 182
+        - - 1337
+          - 185
+        - - 1319
+          - 184
+        - - 1304
+          - 187
+        - - 1286
+          - 180
+        - - 1274
+          - 176
+      - - - 1351
+          - 182
+        - - 1359
+          - 174
+        - - 1375
+          - 172
+        - - 1390
+          - 177
+        - - 1406
+          - 185
+        - - 1417
+          - 198
+        - - 1413
+          - 208
+        - - 1400
+          - 215
+        - - 1383
+          - 215
+        - - 1367
+          - 211
+        - - 1358
+          - 202
+      holes: []
+      components:
+        home:
+          silhouette_name: retained home lawn/soil body with three visible roots
+          contours:
+          - - - 28
+              - 617
+            - - 39
+              - 582
+            - - 64
+              - 550
+            - - 104
+              - 521
+            - - 169
+              - 491
+            - - 247
+              - 472
+            - - 327
+              - 456
+            - - 418
+              - 447
+            - - 521
+              - 453
+            - - 630
+              - 466
+            - - 738
+              - 489
+            - - 834
+              - 523
+            - - 917
+              - 550
+            - - 978
+              - 586
+            - - 1013
+              - 625
+            - - 995
+              - 668
+            - - 967
+              - 713
+            - - 930
+              - 755
+            - - 897
+              - 783
+            - - 889
+              - 813
+            - - 894
+              - 831
+            - - 887
+              - 845
+            - - 882
+              - 827
+            - - 875
+              - 811
+            - - 881
+              - 785
+            - - 846
+              - 803
+            - - 796
+              - 831
+            - - 725
+              - 854
+            - - 651
+              - 869
+            - - 569
+              - 882
+            - - 479
+              - 878
+            - - 413
+              - 864
+            - - 403
+              - 882
+            - - 408
+              - 900
+            - - 399
+              - 915
+            - - 405
+              - 927
+            - - 392
+              - 921
+            - - 384
+              - 904
+            - - 387
+              - 887
+            - - 377
+              - 875
+            - - 382
+              - 856
+            - - 319
+              - 842
+            - - 260
+              - 819
+            - - 218
+              - 798
+            - - 186
+              - 772
+            - - 173
+              - 786
+            - - 170
+              - 807
+            - - 178
+              - 821
+            - - 174
+              - 841
+            - - 162
+              - 845
+            - - 161
+              - 828
+            - - 153
+              - 811
+            - - 154
+              - 794
+            - - 145
+              - 777
+            - - 146
+              - 756
+            - - 119
+              - 734
+            - - 92
+              - 706
+            - - 66
+              - 677
+            - - 45
+              - 650
+          holes: []
+          observed_bbox:
+          - 28
+          - 447
+          - 1014
+          - 928
+          native_longest_px: 60
+          native_source_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-water-cluster-delta-t1-home-QA-native60.png
+          native_source_sha256: 7338816f9e98674aa99f4f296dc71f25a9d7031d9528961eb201f57181870e52
+          native_profile_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-water-cluster-delta-t1-home-QA-profile60.png
+          native_profile_sha256: 30e93fe7ded606edb3df7e0c692db34a856a2d987268bd33e2e1f13e85e9c600
+          sampled_swatches:
+          - point:
+            - 500
+            - 620
+            hex: '#E3E2B2'
+          - point:
+            - 530
+            - 770
+            hex: '#FFE7C2'
+          - point:
+            - 525
+            - 387
+            hex: '#E2A160'
+          black_profile_readable: true
+          annotation_source_png_sha256: 149de6a72a4126b4b4acee2846a1b12255b1d101dcd7f63879130cbdcc4a1c4e
+          annotation_source_rgba_sha256: 90a5fc6547299114308059d0bdd27f1c3558feaa60facd7b4bbaa8a68592012c
+          uncertainty: Manual coarse source-visible edges only. No reconstruction
+            behind home/props or clouds. Column lower soft fall boundary is a conservative
+            visible-cloud closure. Bonsai polygons separate observed canopy, trunk
+            and boulder; unobserved branch continuations are not added. Home base
+            excludes newly requested props in this landform diagnostic.
+          preview_verified: true
+        column:
+          silhouette_name: tall tiered travertine fountain/column
+          contours:
+          - - - 785
+              - 435
+            - - 799
+              - 406
+            - - 814
+              - 394
+            - - 822
+              - 345
+            - - 834
+              - 318
+            - - 860
+              - 299
+            - - 876
+              - 298
+            - - 876
+              - 252
+            - - 887
+              - 216
+            - - 909
+              - 197
+            - - 911
+              - 162
+            - - 920
+              - 115
+            - - 944
+              - 82
+            - - 976
+              - 65
+            - - 1017
+              - 52
+            - - 1062
+              - 53
+            - - 1107
+              - 60
+            - - 1151
+              - 75
+            - - 1178
+              - 100
+            - - 1193
+              - 143
+            - - 1199
+              - 197
+            - - 1205
+              - 251
+            - - 1213
+              - 286
+            - - 1231
+              - 323
+            - - 1268
+              - 337
+            - - 1290
+              - 364
+            - - 1301
+              - 399
+            - - 1307
+              - 442
+            - - 1324
+              - 472
+            - - 1368
+              - 492
+            - - 1414
+              - 518
+            - - 1449
+              - 545
+            - - 1458
+              - 577
+            - - 1450
+              - 603
+            - - 1423
+              - 620
+            - - 1378
+              - 625
+            - - 1315
+              - 621
+            - - 1257
+              - 621
+            - - 1200
+              - 611
+            - - 1146
+              - 603
+            - - 1103
+              - 587
+            - - 1060
+              - 575
+            - - 1027
+              - 559
+            - - 999
+              - 537
+            - - 966
+              - 530
+            - - 939
+              - 517
+            - - 907
+              - 504
+            - - 881
+              - 489
+            - - 850
+              - 474
+            - - 819
+              - 463
+          holes: []
+          observed_bbox:
+          - 785
+          - 52
+          - 1459
+          - 626
+          native_longest_px: 60
+          native_source_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-water-cluster-delta-t1-column-QA-native60.png
+          native_source_sha256: 290a0d7ad7d7a3cdd4ffb49cecb7d6a20cd93d2d8e0ae8248bd96525435e53a1
+          native_profile_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-water-cluster-delta-t1-column-QA-profile60.png
+          native_profile_sha256: eb2348cd163cff5c0d5290bd0fcb73cd99264f272a8d3ef45e2dac494590eaf3
+          sampled_swatches:
+          - point:
+            - 984
+            - 151
+            hex: '#F1DFC7'
+          - point:
+            - 1120
+            - 205
+            hex: '#A0C6C2'
+          - point:
+            - 1250
+            - 526
+            hex: '#C5E0DA'
+          black_profile_readable: true
+          annotation_source_png_sha256: 149de6a72a4126b4b4acee2846a1b12255b1d101dcd7f63879130cbdcc4a1c4e
+          annotation_source_rgba_sha256: 90a5fc6547299114308059d0bdd27f1c3558feaa60facd7b4bbaa8a68592012c
+          uncertainty: Manual coarse source-visible edges only. No reconstruction
+            behind home/props or clouds. Column lower soft fall boundary is a conservative
+            visible-cloud closure. Bonsai polygons separate observed canopy, trunk
+            and boulder; unobserved branch continuations are not added. Home base
+            excludes newly requested props in this landform diagnostic.
+          preview_verified: true
+        bonsai:
+          silhouette_name: separate bonsai pine and small floating boulder
+          contours:
+          - - - 1275
+              - 270
+            - - 1284
+              - 253
+            - - 1306
+              - 247
+            - - 1330
+              - 244
+            - - 1357
+              - 248
+            - - 1376
+              - 258
+            - - 1387
+              - 276
+            - - 1385
+              - 293
+            - - 1371
+              - 305
+            - - 1345
+              - 314
+            - - 1320
+              - 312
+            - - 1296
+              - 301
+            - - 1280
+              - 287
+          - - - 1314
+              - 249
+            - - 1322
+              - 233
+            - - 1336
+              - 218
+            - - 1341
+              - 201
+            - - 1335
+              - 193
+            - - 1339
+              - 185
+            - - 1348
+              - 192
+            - - 1349
+              - 207
+            - - 1361
+              - 211
+            - - 1377
+              - 205
+            - - 1380
+              - 212
+            - - 1366
+              - 220
+            - - 1350
+              - 221
+            - - 1345
+              - 238
+            - - 1333
+              - 251
+          - - - 1329
+              - 230
+            - - 1304
+              - 234
+            - - 1283
+              - 228
+            - - 1274
+              - 220
+            - - 1281
+              - 216
+            - - 1295
+              - 223
+            - - 1312
+              - 224
+          - - - 1233
+              - 211
+            - - 1239
+              - 201
+            - - 1252
+              - 193
+            - - 1268
+              - 188
+            - - 1285
+              - 190
+            - - 1302
+              - 199
+            - - 1316
+              - 210
+            - - 1310
+              - 221
+            - - 1296
+              - 227
+            - - 1273
+              - 229
+            - - 1251
+              - 225
+            - - 1236
+              - 220
+          - - - 1274
+              - 168
+            - - 1283
+              - 157
+            - - 1297
+              - 148
+            - - 1314
+              - 142
+            - - 1330
+              - 142
+            - - 1349
+              - 149
+            - - 1364
+              - 160
+            - - 1367
+              - 173
+            - - 1354
+              - 182
+            - - 1337
+              - 185
+            - - 1319
+              - 184
+            - - 1304
+              - 187
+            - - 1286
+              - 180
+            - - 1274
+              - 176
+          - - - 1351
+              - 182
+            - - 1359
+              - 174
+            - - 1375
+              - 172
+            - - 1390
+              - 177
+            - - 1406
+              - 185
+            - - 1417
+              - 198
+            - - 1413
+              - 208
+            - - 1400
+              - 215
+            - - 1383
+              - 215
+            - - 1367
+              - 211
+            - - 1358
+              - 202
+          holes: []
+          observed_bbox:
+          - 1233
+          - 142
+          - 1418
+          - 315
+          native_longest_px: 60
+          native_source_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-water-cluster-delta-t1-bonsai-QA-native60.png
+          native_source_sha256: 8129c59dc8bec189c65707fde60c11858a13ce0f5f5fc9f8b5904b453c8ecb43
+          native_profile_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-water-cluster-delta-t1-bonsai-QA-profile60.png
+          native_profile_sha256: d96ffb9a6fdac7d7348eea5fc9fbbb146fefee826e8ffffb9b65811f66c05a15
+          sampled_swatches:
+          - point:
+            - 1315
+            - 160
+            hex: '#BED6C3'
+          - point:
+            - 1338
+            - 278
+            hex: '#F4D6B6'
+          - point:
+            - 1340
+            - 224
+            hex: '#D5A273'
+          black_profile_readable: true
+          annotation_source_png_sha256: 149de6a72a4126b4b4acee2846a1b12255b1d101dcd7f63879130cbdcc4a1c4e
+          annotation_source_rgba_sha256: 90a5fc6547299114308059d0bdd27f1c3558feaa60facd7b4bbaa8a68592012c
+          uncertainty: Manual coarse source-visible edges only. No reconstruction
+            behind home/props or clouds. Column lower soft fall boundary is a conservative
+            visible-cloud closure. Bonsai polygons separate observed canopy, trunk
+            and boulder; unobserved branch continuations are not added. Home base
+            excludes newly requested props in this landform diagnostic.
+          preview_verified: true
+      source_file: /workspace/generated_images/exec-2115c44c-b4dd-4756-af88-74c5404b2539.png
+      original_generated_png_sha256: 149de6a72a4126b4b4acee2846a1b12255b1d101dcd7f63879130cbdcc4a1c4e
+      rgba_sha256: 90a5fc6547299114308059d0bdd27f1c3558feaa60facd7b4bbaa8a68592012c
+      palette_caveat: Water is very pale blue/green-teal, especially take2 mint-leaning.
+        Per-island samples record this honestly; no exact engineered hue-delta compliance
+        or new numeric style gate is asserted.
+      source_dimensions:
+      - 1536
+      - 1024
+      callback_sha256: e1e0596b466d8d9982d0337de1298c04c86b352a562532b144cdd7d44ee13fa3
+      posted_marker_sha256: 45f31f9e0643510863cdcf6285ed1fa49ea7699324d8000e79f1b9eabbcb3531
+      effective_report_file: /workspace/art-operator-runtime/batch18/effective/cl1-water-cluster-delta-t1.json
+      effective_report_sha256: 817147b54bfd43f5b69314d33b8fb78a4a5379caf355a81d99caa8952fb8681d
+      original_report_sha256: fa75acd0e3f1b9c4981d440d1235b39712e78323840973e136c8d0ea0fa400eb
+      source_sha_verified: true
+      source_rgba_verified: true
+      home_reference:
+        path: /workspace/run18/design/art/masters/island-main-s/island-main-s.png
+        png_sha256: 75840e71b906b9fcc63c1b2572429024ce901fa7357c974c43916416573a05a7
+        rgba_sha256: 29edc760d4e3228078d567c9b0aac10306922dbcd0eca8c7ff84a16960d6f9da
+        comparison: Direct source/parent inspection. Broad base outline and three-root/entry
+          arrangement match after approximate scale0.65–0.67 plus translation; this
+          is a concept-repaint geometry comparison, not an asserted pixel-identical
+          registration. Parent is bare terrain and door; named stations/seasonal props
+          are additions.
+      banned_template:
+        home_only_exception: true
+        water_wonders_copied_lawn_soil_roots_pebbles_round_door: false
+      uncertainty: Cloud/mist hides portions of the lower column and home overlap;
+        no unseen underside is completed. Fine bonsai branches/foliage edges are coarse
+        traced QA shapes. Matching home geometry is judged after scale/translation,
+        not an invented exact pixel IoU. Whole-image alpha is opaque and is never
+        the subject silhouette. Rubric is advisory; no production eight-point threshold
+        or style failure gate.
+      inbox_png_sha256: 13e9774ce159b504dac5b70db15a876cd0c8c647036c60f461c6e715e0fa408f
+      inbox_rgba_matches_original: true
+      sampled_swatches:
+      - point:
+        - 530
+        - 770
+        hex: '#FFE7C2'
+      - point:
+        - 1120
+        - 205
+        hex: '#A0C6C2'
+      - point:
+        - 1315
+        - 160
+        hex: '#BED6C3'
+      annotation_source_inbox_sha256: 13e9774ce159b504dac5b70db15a876cd0c8c647036c60f461c6e715e0fa408f
+      observed_bbox:
+      - 28
+      - 52
+      - 1459
+      - 928
+      silhouette_native_longest_px: 60
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+    '2':
+      pass: true
+      silhouette_name: home front-left, tall travertine column behind-right, separate
+        bonsai boulder in orbital spray
+      rubric:
+      - 3
+      - 1
+      - 2
+      - 1
+      - 1
+      evidence: 'Three distinct physical islands are visible: home in front-left,
+        the tall chalk/teal travertine water column behind-right, and a separate small
+        cream boulder carrying a bonsai pine at far right. An actual sky/spray gap
+        separates bonsai from the main column; it is not a top terrace or a tree planted
+        on the column. Each gets its own actual native60 profile: retained home terrain,
+        tall stepped fountain/column, and tree-plus-boulder satellite. The home base
+        retains the reference broad oval grass rim, shallow layered cream soil, left-of-centre
+        entry/stone arrangement and three dangling-root positions after approximate
+        uniform scale and translation. Sunflower, pond and tea stall are explicitly
+        named additions; the attached parent contains none. The water pair has chalk
+        cream rock and mineral-teal water/blue-teal foliage, distinct from the warm
+        home lawn/soil while sharing cream. Swatches are actual individual source
+        pixels, not an imposed style/score gate. No painted text/UI/border is visible.'
+      swatch_points:
+      - - 516
+        - 750
+      - - 1000
+        - 200
+      - - 1344
+        - 183
+      contours:
+      - - - 21
+          - 603
+        - - 37
+          - 566
+        - - 71
+          - 534
+        - - 118
+          - 502
+        - - 176
+          - 480
+        - - 244
+          - 466
+        - - 326
+          - 450
+        - - 413
+          - 443
+        - - 500
+          - 448
+        - - 584
+          - 461
+        - - 674
+          - 477
+        - - 760
+          - 499
+        - - 841
+          - 527
+        - - 907
+          - 556
+        - - 959
+          - 584
+        - - 983
+          - 613
+        - - 975
+          - 647
+        - - 952
+          - 681
+        - - 928
+          - 711
+        - - 895
+          - 744
+        - - 875
+          - 768
+        - - 876
+          - 790
+        - - 869
+          - 813
+        - - 858
+          - 828
+        - - 858
+          - 810
+        - - 865
+          - 790
+        - - 859
+          - 776
+        - - 833
+          - 791
+        - - 782
+          - 820
+        - - 718
+          - 844
+        - - 644
+          - 859
+        - - 564
+          - 868
+        - - 478
+          - 861
+        - - 403
+          - 850
+        - - 389
+          - 868
+        - - 393
+          - 885
+        - - 386
+          - 901
+        - - 390
+          - 916
+        - - 378
+          - 910
+        - - 371
+          - 895
+        - - 373
+          - 879
+        - - 365
+          - 862
+        - - 370
+          - 843
+        - - 311
+          - 827
+        - - 254
+          - 806
+        - - 209
+          - 783
+        - - 174
+          - 762
+        - - 160
+          - 777
+        - - 158
+          - 795
+        - - 164
+          - 812
+        - - 157
+          - 832
+        - - 150
+          - 835
+        - - 150
+          - 818
+        - - 143
+          - 805
+        - - 144
+          - 789
+        - - 135
+          - 773
+        - - 136
+          - 751
+        - - 105
+          - 729
+        - - 75
+          - 702
+        - - 55
+          - 675
+        - - 35
+          - 644
+      - - - 765
+          - 454
+        - - 774
+          - 418
+        - - 786
+          - 385
+        - - 791
+          - 338
+        - - 799
+          - 302
+        - - 818
+          - 281
+        - - 856
+          - 267
+        - - 884
+          - 268
+        - - 891
+          - 237
+        - - 897
+          - 200
+        - - 890
+          - 164
+        - - 877
+          - 143
+        - - 871
+          - 117
+        - - 879
+          - 90
+        - - 902
+          - 70
+        - - 941
+          - 55
+        - - 990
+          - 47
+        - - 1044
+          - 44
+        - - 1106
+          - 48
+        - - 1167
+          - 51
+        - - 1215
+          - 66
+        - - 1241
+          - 85
+        - - 1250
+          - 105
+        - - 1244
+          - 128
+        - - 1230
+          - 161
+        - - 1218
+          - 192
+        - - 1206
+          - 220
+        - - 1212
+          - 260
+        - - 1223
+          - 293
+        - - 1230
+          - 331
+        - - 1251
+          - 359
+        - - 1287
+          - 385
+        - - 1311
+          - 414
+        - - 1316
+          - 449
+        - - 1337
+          - 471
+        - - 1377
+          - 488
+        - - 1406
+          - 516
+        - - 1414
+          - 547
+        - - 1403
+          - 564
+        - - 1364
+          - 578
+        - - 1316
+          - 577
+        - - 1268
+          - 574
+        - - 1213
+          - 558
+        - - 1165
+          - 552
+        - - 1117
+          - 540
+        - - 1066
+          - 528
+        - - 1021
+          - 520
+        - - 974
+          - 503
+        - - 931
+          - 495
+        - - 887
+          - 486
+        - - 844
+          - 475
+        - - 801
+          - 468
+      - - - 1282
+          - 284
+        - - 1286
+          - 267
+        - - 1303
+          - 254
+        - - 1326
+          - 247
+        - - 1350
+          - 247
+        - - 1371
+          - 257
+        - - 1389
+          - 274
+        - - 1397
+          - 292
+        - - 1394
+          - 308
+        - - 1380
+          - 324
+        - - 1358
+          - 336
+        - - 1337
+          - 340
+        - - 1316
+          - 330
+        - - 1298
+          - 314
+      - - - 1354
+          - 193
+        - - 1351
+          - 207
+        - - 1356
+          - 216
+        - - 1370
+          - 223
+        - - 1374
+          - 233
+        - - 1367
+          - 242
+        - - 1356
+          - 250
+        - - 1354
+          - 260
+        - - 1340
+          - 269
+        - - 1327
+          - 269
+        - - 1335
+          - 258
+        - - 1337
+          - 246
+        - - 1348
+          - 236
+        - - 1355
+          - 229
+        - - 1353
+          - 221
+        - - 1342
+          - 212
+        - - 1344
+          - 198
+      - - - 1372
+          - 225
+        - - 1388
+          - 221
+        - - 1399
+          - 215
+        - - 1404
+          - 208
+        - - 1400
+          - 206
+        - - 1392
+          - 215
+        - - 1375
+          - 217
+      - - - 1348
+          - 242
+        - - 1331
+          - 246
+        - - 1312
+          - 242
+        - - 1303
+          - 235
+        - - 1307
+          - 233
+        - - 1316
+          - 239
+        - - 1334
+          - 239
+      - - - 1262
+          - 221
+        - - 1268
+          - 212
+        - - 1280
+          - 203
+        - - 1293
+          - 200
+        - - 1308
+          - 204
+        - - 1326
+          - 215
+        - - 1331
+          - 227
+        - - 1322
+          - 237
+        - - 1302
+          - 243
+        - - 1283
+          - 239
+        - - 1267
+          - 234
+      - - - 1304
+          - 183
+        - - 1313
+          - 173
+        - - 1325
+          - 162
+        - - 1341
+          - 157
+        - - 1358
+          - 160
+        - - 1374
+          - 170
+        - - 1387
+          - 184
+        - - 1385
+          - 195
+        - - 1373
+          - 203
+        - - 1352
+          - 205
+        - - 1335
+          - 201
+        - - 1316
+          - 199
+        - - 1305
+          - 194
+      - - - 1374
+          - 200
+        - - 1381
+          - 191
+        - - 1394
+          - 191
+        - - 1411
+          - 198
+        - - 1426
+          - 209
+        - - 1433
+          - 219
+        - - 1426
+          - 227
+        - - 1407
+          - 230
+        - - 1389
+          - 225
+        - - 1379
+          - 216
+      holes: []
+      components:
+        home:
+          silhouette_name: retained home lawn/soil body with three visible roots
+          contours:
+          - - - 21
+              - 603
+            - - 37
+              - 566
+            - - 71
+              - 534
+            - - 118
+              - 502
+            - - 176
+              - 480
+            - - 244
+              - 466
+            - - 326
+              - 450
+            - - 413
+              - 443
+            - - 500
+              - 448
+            - - 584
+              - 461
+            - - 674
+              - 477
+            - - 760
+              - 499
+            - - 841
+              - 527
+            - - 907
+              - 556
+            - - 959
+              - 584
+            - - 983
+              - 613
+            - - 975
+              - 647
+            - - 952
+              - 681
+            - - 928
+              - 711
+            - - 895
+              - 744
+            - - 875
+              - 768
+            - - 876
+              - 790
+            - - 869
+              - 813
+            - - 858
+              - 828
+            - - 858
+              - 810
+            - - 865
+              - 790
+            - - 859
+              - 776
+            - - 833
+              - 791
+            - - 782
+              - 820
+            - - 718
+              - 844
+            - - 644
+              - 859
+            - - 564
+              - 868
+            - - 478
+              - 861
+            - - 403
+              - 850
+            - - 389
+              - 868
+            - - 393
+              - 885
+            - - 386
+              - 901
+            - - 390
+              - 916
+            - - 378
+              - 910
+            - - 371
+              - 895
+            - - 373
+              - 879
+            - - 365
+              - 862
+            - - 370
+              - 843
+            - - 311
+              - 827
+            - - 254
+              - 806
+            - - 209
+              - 783
+            - - 174
+              - 762
+            - - 160
+              - 777
+            - - 158
+              - 795
+            - - 164
+              - 812
+            - - 157
+              - 832
+            - - 150
+              - 835
+            - - 150
+              - 818
+            - - 143
+              - 805
+            - - 144
+              - 789
+            - - 135
+              - 773
+            - - 136
+              - 751
+            - - 105
+              - 729
+            - - 75
+              - 702
+            - - 55
+              - 675
+            - - 35
+              - 644
+          holes: []
+          observed_bbox:
+          - 21
+          - 443
+          - 984
+          - 917
+          native_longest_px: 60
+          native_source_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-water-cluster-delta-t2-home-QA-native60.png
+          native_source_sha256: bfabc4d9eda58c8920128f3c1e7fb05a662d648302cdc83fbb06d1a83e15cb30
+          native_profile_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-water-cluster-delta-t2-home-QA-profile60.png
+          native_profile_sha256: eb338e0be81e42a3edcede121ed9acf694f992f842efb35ffffaa1d71f547558
+          sampled_swatches:
+          - point:
+            - 520
+            - 618
+            hex: '#E0E2A3'
+          - point:
+            - 516
+            - 750
+            hex: '#FEDBAB'
+          - point:
+            - 219
+            - 464
+            hex: '#D99458'
+          black_profile_readable: true
+          annotation_source_png_sha256: 5e2b93574f46061385e9bf78e6364ccd3cedb3e7d8d08e5cc6de1b127b4ec058
+          annotation_source_rgba_sha256: d116ec42dbc40f1550840766665d82f0d93fb3297f43d68ce6c744403e22f54a
+          uncertainty: Manual coarse source-visible edges only. No reconstruction
+            behind home/props or clouds. Column lower soft fall boundary is a conservative
+            visible-cloud closure. Bonsai polygons separate observed canopy, trunk
+            and boulder; unobserved branch continuations are not added. Home base
+            excludes newly requested props in this landform diagnostic.
+          preview_verified: true
+        column:
+          silhouette_name: tall scalloped travertine pool/column
+          contours:
+          - - - 765
+              - 454
+            - - 774
+              - 418
+            - - 786
+              - 385
+            - - 791
+              - 338
+            - - 799
+              - 302
+            - - 818
+              - 281
+            - - 856
+              - 267
+            - - 884
+              - 268
+            - - 891
+              - 237
+            - - 897
+              - 200
+            - - 890
+              - 164
+            - - 877
+              - 143
+            - - 871
+              - 117
+            - - 879
+              - 90
+            - - 902
+              - 70
+            - - 941
+              - 55
+            - - 990
+              - 47
+            - - 1044
+              - 44
+            - - 1106
+              - 48
+            - - 1167
+              - 51
+            - - 1215
+              - 66
+            - - 1241
+              - 85
+            - - 1250
+              - 105
+            - - 1244
+              - 128
+            - - 1230
+              - 161
+            - - 1218
+              - 192
+            - - 1206
+              - 220
+            - - 1212
+              - 260
+            - - 1223
+              - 293
+            - - 1230
+              - 331
+            - - 1251
+              - 359
+            - - 1287
+              - 385
+            - - 1311
+              - 414
+            - - 1316
+              - 449
+            - - 1337
+              - 471
+            - - 1377
+              - 488
+            - - 1406
+              - 516
+            - - 1414
+              - 547
+            - - 1403
+              - 564
+            - - 1364
+              - 578
+            - - 1316
+              - 577
+            - - 1268
+              - 574
+            - - 1213
+              - 558
+            - - 1165
+              - 552
+            - - 1117
+              - 540
+            - - 1066
+              - 528
+            - - 1021
+              - 520
+            - - 974
+              - 503
+            - - 931
+              - 495
+            - - 887
+              - 486
+            - - 844
+              - 475
+            - - 801
+              - 468
+          holes: []
+          observed_bbox:
+          - 765
+          - 44
+          - 1415
+          - 579
+          native_longest_px: 60
+          native_source_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-water-cluster-delta-t2-column-QA-native60.png
+          native_source_sha256: c1b5b2826e1f3acd489dfc9f2b56b72eb05e4a87bd0ee1a47b8d295a6f90398a
+          native_profile_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-water-cluster-delta-t2-column-QA-profile60.png
+          native_profile_sha256: 48024216f3235677ef9bcd6e96dc0548a9c13eec9b6fb372a5632a47cc3c7530
+          sampled_swatches:
+          - point:
+            - 926
+            - 126
+            hex: '#FEF1DD'
+          - point:
+            - 1000
+            - 200
+            hex: '#B9DCCC'
+          - point:
+            - 1149
+            - 430
+            hex: '#E5EEDA'
+          black_profile_readable: true
+          annotation_source_png_sha256: 5e2b93574f46061385e9bf78e6364ccd3cedb3e7d8d08e5cc6de1b127b4ec058
+          annotation_source_rgba_sha256: d116ec42dbc40f1550840766665d82f0d93fb3297f43d68ce6c744403e22f54a
+          uncertainty: Manual coarse source-visible edges only. No reconstruction
+            behind home/props or clouds. Column lower soft fall boundary is a conservative
+            visible-cloud closure. Bonsai polygons separate observed canopy, trunk
+            and boulder; unobserved branch continuations are not added. Home base
+            excludes newly requested props in this landform diagnostic.
+          preview_verified: true
+        bonsai:
+          silhouette_name: separate bonsai pine and small floating boulder
+          contours:
+          - - - 1282
+              - 284
+            - - 1286
+              - 267
+            - - 1303
+              - 254
+            - - 1326
+              - 247
+            - - 1350
+              - 247
+            - - 1371
+              - 257
+            - - 1389
+              - 274
+            - - 1397
+              - 292
+            - - 1394
+              - 308
+            - - 1380
+              - 324
+            - - 1358
+              - 336
+            - - 1337
+              - 340
+            - - 1316
+              - 330
+            - - 1298
+              - 314
+          - - - 1354
+              - 193
+            - - 1351
+              - 207
+            - - 1356
+              - 216
+            - - 1370
+              - 223
+            - - 1374
+              - 233
+            - - 1367
+              - 242
+            - - 1356
+              - 250
+            - - 1354
+              - 260
+            - - 1340
+              - 269
+            - - 1327
+              - 269
+            - - 1335
+              - 258
+            - - 1337
+              - 246
+            - - 1348
+              - 236
+            - - 1355
+              - 229
+            - - 1353
+              - 221
+            - - 1342
+              - 212
+            - - 1344
+              - 198
+          - - - 1372
+              - 225
+            - - 1388
+              - 221
+            - - 1399
+              - 215
+            - - 1404
+              - 208
+            - - 1400
+              - 206
+            - - 1392
+              - 215
+            - - 1375
+              - 217
+          - - - 1348
+              - 242
+            - - 1331
+              - 246
+            - - 1312
+              - 242
+            - - 1303
+              - 235
+            - - 1307
+              - 233
+            - - 1316
+              - 239
+            - - 1334
+              - 239
+          - - - 1262
+              - 221
+            - - 1268
+              - 212
+            - - 1280
+              - 203
+            - - 1293
+              - 200
+            - - 1308
+              - 204
+            - - 1326
+              - 215
+            - - 1331
+              - 227
+            - - 1322
+              - 237
+            - - 1302
+              - 243
+            - - 1283
+              - 239
+            - - 1267
+              - 234
+          - - - 1304
+              - 183
+            - - 1313
+              - 173
+            - - 1325
+              - 162
+            - - 1341
+              - 157
+            - - 1358
+              - 160
+            - - 1374
+              - 170
+            - - 1387
+              - 184
+            - - 1385
+              - 195
+            - - 1373
+              - 203
+            - - 1352
+              - 205
+            - - 1335
+              - 201
+            - - 1316
+              - 199
+            - - 1305
+              - 194
+          - - - 1374
+              - 200
+            - - 1381
+              - 191
+            - - 1394
+              - 191
+            - - 1411
+              - 198
+            - - 1426
+              - 209
+            - - 1433
+              - 219
+            - - 1426
+              - 227
+            - - 1407
+              - 230
+            - - 1389
+              - 225
+            - - 1379
+              - 216
+          holes: []
+          observed_bbox:
+          - 1262
+          - 157
+          - 1434
+          - 341
+          native_longest_px: 60
+          native_source_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-water-cluster-delta-t2-bonsai-QA-native60.png
+          native_source_sha256: 4d4853699e7886ee530e74319fc2ecf1390285b1c58c6de054f1fdb957287648
+          native_profile_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-water-cluster-delta-t2-bonsai-QA-profile60.png
+          native_profile_sha256: e1c78d6358f3f383cef91b9741280f7277fd0615cec85fe8f356c8695c6b5991
+          sampled_swatches:
+          - point:
+            - 1344
+            - 183
+            hex: '#80B9B5'
+          - point:
+            - 1337
+            - 290
+            hex: '#F8DEC2'
+          - point:
+            - 1335
+            - 245
+            hex: '#D8A97A'
+          black_profile_readable: true
+          annotation_source_png_sha256: 5e2b93574f46061385e9bf78e6364ccd3cedb3e7d8d08e5cc6de1b127b4ec058
+          annotation_source_rgba_sha256: d116ec42dbc40f1550840766665d82f0d93fb3297f43d68ce6c744403e22f54a
+          uncertainty: Manual coarse source-visible edges only. No reconstruction
+            behind home/props or clouds. Column lower soft fall boundary is a conservative
+            visible-cloud closure. Bonsai polygons separate observed canopy, trunk
+            and boulder; unobserved branch continuations are not added. Home base
+            excludes newly requested props in this landform diagnostic.
+          preview_verified: true
+      source_file: /workspace/generated_images/exec-c626c04c-926a-451c-b2c8-72326f0c2001.png
+      original_generated_png_sha256: 5e2b93574f46061385e9bf78e6364ccd3cedb3e7d8d08e5cc6de1b127b4ec058
+      rgba_sha256: d116ec42dbc40f1550840766665d82f0d93fb3297f43d68ce6c744403e22f54a
+      palette_caveat: Water is very pale blue/green-teal, especially take2 mint-leaning.
+        Per-island samples record this honestly; no exact engineered hue-delta compliance
+        or new numeric style gate is asserted.
+      source_dimensions:
+      - 1536
+      - 1024
+      callback_sha256: 38b36c1625cc4d9d63de513ab599d01bbb636266e5261fc27721a1c3c9dfd0c9
+      posted_marker_sha256: 45f31f9e0643510863cdcf6285ed1fa49ea7699324d8000e79f1b9eabbcb3531
+      effective_report_file: /workspace/art-operator-runtime/batch18/effective/cl1-water-cluster-delta-t2.json
+      effective_report_sha256: 56443cab75ac43d538fdd3fac159ccd705260859cad530c681effd6c149dc4a6
+      original_report_sha256: 49c564444e375b0e4f530c3c4402e0b2d7fc1d99db28be01edbd5605b9739a63
+      source_sha_verified: true
+      source_rgba_verified: true
+      home_reference:
+        path: /workspace/run18/design/art/masters/island-main-s/island-main-s.png
+        png_sha256: 75840e71b906b9fcc63c1b2572429024ce901fa7357c974c43916416573a05a7
+        rgba_sha256: 29edc760d4e3228078d567c9b0aac10306922dbcd0eca8c7ff84a16960d6f9da
+        comparison: Direct source/parent inspection. Broad base outline and three-root/entry
+          arrangement match after approximate scale0.65–0.67 plus translation; this
+          is a concept-repaint geometry comparison, not an asserted pixel-identical
+          registration. Parent is bare terrain and door; named stations/seasonal props
+          are additions.
+      banned_template:
+        home_only_exception: true
+        water_wonders_copied_lawn_soil_roots_pebbles_round_door: false
+      uncertainty: Cloud/mist hides portions of the lower column and home overlap;
+        no unseen underside is completed. Fine bonsai branches/foliage edges are coarse
+        traced QA shapes. Matching home geometry is judged after scale/translation,
+        not an invented exact pixel IoU. Whole-image alpha is opaque and is never
+        the subject silhouette. Rubric is advisory; no production eight-point threshold
+        or style failure gate.
+      inbox_png_sha256: a79f20fbea9e4e3709c512b611d11aec16d4cba91fe6907c50bf80908ff17549
+      inbox_rgba_matches_original: true
+      sampled_swatches:
+      - point:
+        - 516
+        - 750
+        hex: '#FEDBAB'
+      - point:
+        - 1000
+        - 200
+        hex: '#B9DCCC'
+      - point:
+        - 1344
+        - 183
+        hex: '#80B9B5'
+      annotation_source_inbox_sha256: a79f20fbea9e4e3709c512b611d11aec16d4cba91fe6907c50bf80908ff17549
+      observed_bbox:
+      - 21
+      - 44
+      - 1434
+      - 917
+      silhouette_native_longest_px: 60
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+  reviewed_at: '2026-11-03T17:08:15.767763+00:00'
+  preview_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-water-cluster-delta-QA-preview.jpg
+  preview_sha256: e1b2b8cefba11435134136361f4fd2a1cf640f239dee1be7cf903d4fc5a143df
+  preview_verified: true
+  no_authoritative_pick: true
+  production_score_threshold_applied: false
+  preview_verified_at: '2026-11-03T17:08:46.648858+00:00'
+  validation: Original byte/RGBA, inbox RGBA, official POSTED report hashes, effective
+    advisory report provenance, per-island native60 proof hashes, actual pixel swatches
+    and visually inspected contact verified. Reviewer made no final pick.
+  reviewer_source_json_sha256: f2f97e126fd24f58d43dc3119eeb37f118ad32b8946cac6c0611f9bdb8754ac9
+  reviewer_source_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-water-cluster-delta.json
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-2115c44c-b4dd-4756-af88-74c5404b2539.png
+  original_generated_png_sha256: 149de6a72a4126b4b4acee2846a1b12255b1d101dcd7f63879130cbdcc4a1c4e
+  inbox_png_sha256: 13e9774ce159b504dac5b70db15a876cd0c8c647036c60f461c6e715e0fa408f
+  rgba_sha256: 90a5fc6547299114308059d0bdd27f1c3558feaa60facd7b4bbaa8a68592012c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f86af32e1d20b945
+- take: 2
+  source_file: /workspace/generated_images/exec-c626c04c-926a-451c-b2c8-72326f0c2001.png
+  original_generated_png_sha256: 5e2b93574f46061385e9bf78e6364ccd3cedb3e7d8d08e5cc6de1b127b4ec058
+  inbox_png_sha256: a79f20fbea9e4e3709c512b611d11aec16d4cba91fe6907c50bf80908ff17549
+  rgba_sha256: d116ec42dbc40f1550840766665d82f0d93fb3297f43d68ce6c744403e22f54a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f86af32e1d20b945
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
