@@ -1,16 +1,18 @@
 batch: batch-16-brand-explore
+assessment_epoch: batch-16-brand-explore@58d4742a77d30663dd144f989dc5977a5c3c8e5a/x-b16-infographic
+assessment_main: 58d4742a77d30663dd144f989dc5977a5c3c8e5a
 contact_sheet: design/art/takes/batch-16-brand-explore/x-b16-infographic/contact.jpg
 jobs:
   x-b16-infographic:
     pick: none
-    publication: skipped after one allowed retry
-    note: All four originals read Instagram’a uzandın / Pofu / boş ver / ada büyür
-      in correct order, including dotless ı, ş and both ü accents. All render a curled
-      apostrophe instead of required ASCII apostrophe; phone symbols also resemble
-      Instagram camera mark (t2/t4 definite). Labels vary in size. Manual verbatim-text/logo/layout
-      failure after one unchanged-prompt retry. No dependents. Archived q90 WebPs
-      were separately inspected at enlarged first-label crops and full four-row views;
-      the same curled apostrophes and logo issues remain.
+    publication: skipped; generation budget exhausted for this brief
+    note: 'All four retained originals and archived q90 enlarged-label/full views
+      re-inspected: Instagram’a uzandın / Pofu / boş ver / ada büyür, with dotless
+      ı, ş and both ü correct. The first label still paints a curly apostrophe instead
+      of REQUIRED ASCII apostrophe; camera glyph also resembles real Instagram logo.
+      Hard verbatim-text/semantic rejection survives advisory style QA. Original unchanged-brief
+      initial pair plus retry pair exhausted; never a fifth generation. Independent
+      jobs continue.'
 qa_reports:
   1:
     job: x-b16-infographic
@@ -222,13 +224,19 @@ manual_review:
   - 2
   - 3
   - 4
-  note: All four originals read Instagram’a uzandın / Pofu / boş ver / ada büyür in
-    correct order, including dotless ı, ş and both ü accents. All render a curled
-    apostrophe instead of required ASCII apostrophe; phone symbols also resemble Instagram
-    camera mark (t2/t4 definite). Labels vary in size. Manual verbatim-text/logo/layout
-    failure after one unchanged-prompt retry. No dependents. Archived q90 WebPs were
-    separately inspected at enlarged first-label crops and full four-row views; the
-    same curled apostrophes and logo issues remain.
+  terminal_skip: true
+  note: 'All four retained originals and archived q90 enlarged-label/full views re-inspected:
+    Instagram’a uzandın / Pofu / boş ver / ada büyür, with dotless ı, ş and both ü
+    correct. The first label still paints a curly apostrophe instead of REQUIRED ASCII
+    apostrophe; camera glyph also resembles real Instagram logo. Hard verbatim-text/semantic
+    rejection survives advisory style QA. Original unchanged-brief initial pair plus
+    retry pair exhausted; never a fifth generation. Independent jobs continue.'
+  generation_budget: &id001
+    historical_unique_originals: 4
+    retry_used: true
+    new_generation_calls: 0
+    brief_changed: false
+generation_budget: *id001
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-81106a15-4297-4097-a6f3-e6f5a111c692.png
@@ -242,14 +250,84 @@ sources:
   source_dimensions:
   - 1024
   - 1536
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-infographic/plate__x-b16-infographic--t1.webp
-  uploaded_artifact_sha256: 0bda31678f500c713ca34ded807f1269f9a4ce8d7679fb381d7ef0c38c6de1fc
-  uploaded_dimensions:
-  - 1024
-  - 1536
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-infographic/plate__x-b16-infographic--t1.webp
+  archive_artifact_sha256: 0bda31678f500c713ca34ded807f1269f9a4ce8d7679fb381d7ef0c38c6de1fc
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: b57f19597ceb5b89
+    ingested_at: '2026-11-03T13:51:32+00:00'
+  historical_generation:
+    job: x-b16-infographic
+    take: 1
+    batch: batch-16-brand-explore
+    fingerprint: b57f19597ceb5b89
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET INFOGRAPHIC: a portrait picture that explains a loop in a few steps.
+      Fill the fields of the brief in this order: PURPOSE (what the viewer should
+      understand in five seconds), AUDIENCE, TEXT HIERARCHY (one short label per step,
+      nothing else), REQUIRED TEXT (each label spelled exactly, letter for letter,
+      with every accent mark, apostrophe and arrow, and paint no other words), LAYOUT
+      (steps in reading order from top to bottom, each one a painted picture with
+      its label beside or beneath it, soft painted arrows between the steps), STYLE
+      (the attached painting), PALETTE (pastel, warm light from the upper left). Labels
+      are large, in one rounded hand-lettered face, dark warm brown on a pale ground,
+      fully legible on a phone. No chart axes, no numbers other than those required,
+      no border, no glass, no buttons.
+
+
+      PURPOSE: explain the whole Pofu loop in five seconds.
+
+      AUDIENCE: a Turkish-speaking adult scrolling too much; friendly and light.
+
+      TEXT HIERARCHY: four short labels, one per step, same size.
+
+      REQUIRED TEXT, top to bottom, each on its own line, verbatim:
+
+      Instagram''a uzandın
+
+      Pofu
+
+      boş ver
+
+      ada büyür
+
+      LAYOUT: a vertical path of four painted steps joined by soft painted arrows:
+      (1) a thumb reaching toward a rounded phone with a camera-like glyph, no real
+      logo; (2) Pofu raising a paw in a gentle wait; (3) Pofu shrugging with a relaxed
+      smile beside a lowered phone; (4) the floating home island with a new little
+      tree grown. Each label sits beside its picture.
+
+      STYLE: the attached painting. PALETTE: pastel.
+
+
+      AVOID: any other words, real app logos, numbers, a border, a chart
+
+
+      Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T13:51:32+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-81106a15-4297-4097-a6f3-e6f5a111c692.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: 0396c20dafd1f8e1d6b73d13e71cc5f61b8ecb3d40f60ba7749d44c591484f9a
 - take: 2
   source_file: /workspace/generated_images/exec-a4b5bfc8-0486-4c73-8c0b-5d33cfc51136.png
   account:
@@ -262,14 +340,84 @@ sources:
   source_dimensions:
   - 1024
   - 1536
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-infographic/plate__x-b16-infographic--t2.webp
-  uploaded_artifact_sha256: 80da9a67715f0569920f1a26788a6b9e9184b974cc7b892aee13ae3633069b26
-  uploaded_dimensions:
-  - 1024
-  - 1536
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-infographic/plate__x-b16-infographic--t2.webp
+  archive_artifact_sha256: 80da9a67715f0569920f1a26788a6b9e9184b974cc7b892aee13ae3633069b26
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: b57f19597ceb5b89
+    ingested_at: '2026-11-03T13:51:32+00:00'
+  historical_generation:
+    job: x-b16-infographic
+    take: 2
+    batch: batch-16-brand-explore
+    fingerprint: b57f19597ceb5b89
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET INFOGRAPHIC: a portrait picture that explains a loop in a few steps.
+      Fill the fields of the brief in this order: PURPOSE (what the viewer should
+      understand in five seconds), AUDIENCE, TEXT HIERARCHY (one short label per step,
+      nothing else), REQUIRED TEXT (each label spelled exactly, letter for letter,
+      with every accent mark, apostrophe and arrow, and paint no other words), LAYOUT
+      (steps in reading order from top to bottom, each one a painted picture with
+      its label beside or beneath it, soft painted arrows between the steps), STYLE
+      (the attached painting), PALETTE (pastel, warm light from the upper left). Labels
+      are large, in one rounded hand-lettered face, dark warm brown on a pale ground,
+      fully legible on a phone. No chart axes, no numbers other than those required,
+      no border, no glass, no buttons.
+
+
+      PURPOSE: explain the whole Pofu loop in five seconds.
+
+      AUDIENCE: a Turkish-speaking adult scrolling too much; friendly and light.
+
+      TEXT HIERARCHY: four short labels, one per step, same size.
+
+      REQUIRED TEXT, top to bottom, each on its own line, verbatim:
+
+      Instagram''a uzandın
+
+      Pofu
+
+      boş ver
+
+      ada büyür
+
+      LAYOUT: a vertical path of four painted steps joined by soft painted arrows:
+      (1) a thumb reaching toward a rounded phone with a camera-like glyph, no real
+      logo; (2) Pofu raising a paw in a gentle wait; (3) Pofu shrugging with a relaxed
+      smile beside a lowered phone; (4) the floating home island with a new little
+      tree grown. Each label sits beside its picture.
+
+      STYLE: the attached painting. PALETTE: pastel.
+
+
+      AVOID: any other words, real app logos, numbers, a border, a chart
+
+
+      Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T13:51:32+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-a4b5bfc8-0486-4c73-8c0b-5d33cfc51136.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: a7f3f99221c0f327f5dda21f480929034af4bde42e39cd5062beecb5403e8bd4
 - take: 3
   source_file: /workspace/generated_images/exec-fb086072-e1e7-4f77-a177-89e67ed7ebff.png
   account:
@@ -282,14 +430,84 @@ sources:
   source_dimensions:
   - 1024
   - 1536
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-infographic/plate__x-b16-infographic--t3.webp
-  uploaded_artifact_sha256: 330af586aba07d024e3df7b200d5fb51537ee51459ee06131da8678afe4ca173
-  uploaded_dimensions:
-  - 1024
-  - 1536
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-infographic/plate__x-b16-infographic--t3.webp
+  archive_artifact_sha256: 330af586aba07d024e3df7b200d5fb51537ee51459ee06131da8678afe4ca173
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: b57f19597ceb5b89
+    ingested_at: '2026-11-03T13:57:23+00:00'
+  historical_generation:
+    job: x-b16-infographic
+    take: 3
+    batch: batch-16-brand-explore
+    fingerprint: b57f19597ceb5b89
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET INFOGRAPHIC: a portrait picture that explains a loop in a few steps.
+      Fill the fields of the brief in this order: PURPOSE (what the viewer should
+      understand in five seconds), AUDIENCE, TEXT HIERARCHY (one short label per step,
+      nothing else), REQUIRED TEXT (each label spelled exactly, letter for letter,
+      with every accent mark, apostrophe and arrow, and paint no other words), LAYOUT
+      (steps in reading order from top to bottom, each one a painted picture with
+      its label beside or beneath it, soft painted arrows between the steps), STYLE
+      (the attached painting), PALETTE (pastel, warm light from the upper left). Labels
+      are large, in one rounded hand-lettered face, dark warm brown on a pale ground,
+      fully legible on a phone. No chart axes, no numbers other than those required,
+      no border, no glass, no buttons.
+
+
+      PURPOSE: explain the whole Pofu loop in five seconds.
+
+      AUDIENCE: a Turkish-speaking adult scrolling too much; friendly and light.
+
+      TEXT HIERARCHY: four short labels, one per step, same size.
+
+      REQUIRED TEXT, top to bottom, each on its own line, verbatim:
+
+      Instagram''a uzandın
+
+      Pofu
+
+      boş ver
+
+      ada büyür
+
+      LAYOUT: a vertical path of four painted steps joined by soft painted arrows:
+      (1) a thumb reaching toward a rounded phone with a camera-like glyph, no real
+      logo; (2) Pofu raising a paw in a gentle wait; (3) Pofu shrugging with a relaxed
+      smile beside a lowered phone; (4) the floating home island with a new little
+      tree grown. Each label sits beside its picture.
+
+      STYLE: the attached painting. PALETTE: pastel.
+
+
+      AVOID: any other words, real app logos, numbers, a border, a chart
+
+
+      Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T13:57:23+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-fb086072-e1e7-4f77-a177-89e67ed7ebff.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: e29aef6e3a4e1d56a1aed079f76b0a02274d3671dc01d0be5e9ed9b5aec0d4d4
 - take: 4
   source_file: /workspace/generated_images/exec-9536d33c-61ed-474c-bd60-9606d43d5102.png
   account:
@@ -302,11 +520,81 @@ sources:
   source_dimensions:
   - 1024
   - 1536
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-infographic/plate__x-b16-infographic--t4.webp
-  uploaded_artifact_sha256: 58883043ce8d23f3d80c7523aa183e02620387cf0a352d0fb347bd9ffb797d0b
-  uploaded_dimensions:
-  - 1024
-  - 1536
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-infographic/plate__x-b16-infographic--t4.webp
+  archive_artifact_sha256: 58883043ce8d23f3d80c7523aa183e02620387cf0a352d0fb347bd9ffb797d0b
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: b57f19597ceb5b89
+    ingested_at: '2026-11-03T13:57:24+00:00'
+  historical_generation:
+    job: x-b16-infographic
+    take: 4
+    batch: batch-16-brand-explore
+    fingerprint: b57f19597ceb5b89
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET INFOGRAPHIC: a portrait picture that explains a loop in a few steps.
+      Fill the fields of the brief in this order: PURPOSE (what the viewer should
+      understand in five seconds), AUDIENCE, TEXT HIERARCHY (one short label per step,
+      nothing else), REQUIRED TEXT (each label spelled exactly, letter for letter,
+      with every accent mark, apostrophe and arrow, and paint no other words), LAYOUT
+      (steps in reading order from top to bottom, each one a painted picture with
+      its label beside or beneath it, soft painted arrows between the steps), STYLE
+      (the attached painting), PALETTE (pastel, warm light from the upper left). Labels
+      are large, in one rounded hand-lettered face, dark warm brown on a pale ground,
+      fully legible on a phone. No chart axes, no numbers other than those required,
+      no border, no glass, no buttons.
+
+
+      PURPOSE: explain the whole Pofu loop in five seconds.
+
+      AUDIENCE: a Turkish-speaking adult scrolling too much; friendly and light.
+
+      TEXT HIERARCHY: four short labels, one per step, same size.
+
+      REQUIRED TEXT, top to bottom, each on its own line, verbatim:
+
+      Instagram''a uzandın
+
+      Pofu
+
+      boş ver
+
+      ada büyür
+
+      LAYOUT: a vertical path of four painted steps joined by soft painted arrows:
+      (1) a thumb reaching toward a rounded phone with a camera-like glyph, no real
+      logo; (2) Pofu raising a paw in a gentle wait; (3) Pofu shrugging with a relaxed
+      smile beside a lowered phone; (4) the floating home island with a new little
+      tree grown. Each label sits beside its picture.
+
+      STYLE: the attached painting. PALETTE: pastel.
+
+
+      AVOID: any other words, real app logos, numbers, a border, a chart
+
+
+      Output: one image, opaque, full bleed, portrait 1024 x 1536.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T13:57:24+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-9536d33c-61ed-474c-bd60-9606d43d5102.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: 3ad940cc0049b0c2d8a6911797d6c1f364f6c2336d87d0a6adb7e70647a4cfe0

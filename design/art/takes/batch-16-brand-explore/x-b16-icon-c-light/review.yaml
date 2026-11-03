@@ -1,15 +1,28 @@
 batch: batch-16-brand-explore
+assessment_epoch: batch-16-brand-explore@58d4742a77d30663dd144f989dc5977a5c3c8e5a/x-b16-icon-c-light
+assessment_main: 58d4742a77d30663dd144f989dc5977a5c3c8e5a
 contact_sheet: design/art/takes/batch-16-brand-explore/x-b16-icon-c-light/contact.jpg
 jobs:
   x-b16-icon-c-light:
     pick: none
-    publication: skipped after one allowed retry
-    note: All four originals show a fully blooming sunflower rather than the requested
-      sunflower sprout, and flower/island silhouette extends beyond required central
-      80% circle. Exact prompt/references unchanged on the single retry. Manual subject/layout
-      failure overrides automated non-fail statuses. Skip only C-dark/C-tinted; no
-      extra generation or pixel fixes. Archived q90 WebPs and contact separately inspected;
-      full bloom and oversized focal silhouettes preserved, so rejection still applies.
+    publication: skipped; generation budget exhausted for this brief
+    note: 'Historical unique originals1-4 depict full flowers and belong to the old
+      exhausted sunflower brief; their complete historical generating sidecars remain
+      embedded and none was regenerated. New lead subject fingerprint1c6d71d91a65dfc3
+      explicitly requires exactly two leaves, no flower, and the WHOLE island/sprout/clouds
+      inside the central80% circle with >=10% empty edge margin. New epoch originals5-8
+      all correctly depict two leaves, but roots/clouds enter the10% edge bands and
+      clouds visibly cross the80% circle. Original guide-overlay proof separately
+      inspected for all four new candidates; explicit subject/safe-area layout failure
+      remains hard despite advisory style QA. One new-brief initial pair(pipeline5/6,
+      epochordinals1/2) and one unchanged retry pair(pipeline7/8, ordinals3/4) exhausted.
+      No padding/painting/pixel repair, no further generation; skip only C-dark/C-tinted.
+      Archived q90 candidates5-8 separately inspected at29/60px and masked60px: the
+      two-leaf sprout DOES read at native sizes, but the declared80% circle clips
+      root tips/cloud silhouettes. No legibility failure is invented; the failure
+      is the exact new SUBJECT clause naming the WHOLE island/sprout/clouds and10%
+      empty margins. Automated corner-detail ratios remain advisory regardless of
+      their values. All candidates retained for founder review/veto.'
 qa_reports:
   1:
     job: x-b16-icon-c-light
@@ -70,7 +83,7 @@ qa_reports:
         C_p95: 56.2
         C_p99: 58.9
         detail: 1.49
-    fingerprint: 461ebb3ba6c1d463
+    fingerprint: 1c6d71d91a65dfc3
   2:
     job: x-b16-icon-c-light
     take: 2
@@ -130,7 +143,7 @@ qa_reports:
         C_p95: 54.3
         C_p99: 59.4
         detail: 1.4
-    fingerprint: 461ebb3ba6c1d463
+    fingerprint: 1c6d71d91a65dfc3
   3:
     job: x-b16-icon-c-light
     take: 3
@@ -190,7 +203,7 @@ qa_reports:
         C_p95: 51.4
         C_p99: 57.9
         detail: 1.55
-    fingerprint: 461ebb3ba6c1d463
+    fingerprint: 1c6d71d91a65dfc3
   4:
     job: x-b16-icon-c-light
     take: 4
@@ -250,97 +263,779 @@ qa_reports:
         C_p95: 57.3
         C_p99: 59.3
         detail: 1.45
-    fingerprint: 461ebb3ba6c1d463
+    fingerprint: 1c6d71d91a65dfc3
+  5:
+    job: x-b16-icon-c-light
+    take: 5
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 71 (R1 59)
+      value: 71.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.42
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.1
+      value: 0.0637
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.5, p95 9.7, off-palette 4.4% (top: #DDDD77 (0.7%), #CCCC66
+        (0.5%))'
+      value: 2.4934
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: warn
+      message: corner detail is 51% of the center's (the system masks corners)
+      value: 0.5122
+    info:
+      metrics_raw:
+        L_p5: 71.4
+        L_p50: 90.9
+        L_p95: 93.5
+        C_p50: 14.0
+        C_p95: 46.0
+        C_p99: 58.2
+        detail: 1.42
+      metrics_locked:
+        L_p5: 71.4
+        L_p50: 90.9
+        L_p95: 93.5
+        C_p50: 14.0
+        C_p95: 46.0
+        C_p99: 56.1
+        detail: 1.42
+    fingerprint: 1c6d71d91a65dfc3
+  6:
+    job: x-b16-icon-c-light
+    take: 6
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 73 (R1 59)
+      value: 72.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.27
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.1
+      value: 0.0847
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.5, p95 9.2, off-palette 4.3% (top: #DDDD77 (0.5%), #99AA44
+        (0.5%))'
+      value: 2.5491
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: warn
+      message: corner detail is 55% of the center's (the system masks corners)
+      value: 0.5459
+    info:
+      metrics_raw:
+        L_p5: 72.6
+        L_p50: 90.6
+        L_p95: 94.2
+        C_p50: 13.8
+        C_p95: 47.3
+        C_p99: 60.4
+        detail: 1.27
+      metrics_locked:
+        L_p5: 72.6
+        L_p50: 90.6
+        L_p95: 94.2
+        C_p50: 13.8
+        C_p95: 47.3
+        C_p99: 56.9
+        detail: 1.27
+    fingerprint: 1c6d71d91a65dfc3
+  7:
+    job: x-b16-icon-c-light
+    take: 7
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 73 (R1 59)
+      value: 72.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.24
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0012
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 6.2, off-palette 1.7% (top: #AABB55 (0.3%), #99AA55
+        (0.2%))'
+      value: 2.0285
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: warn
+      message: corner detail is 61% of the center's (the system masks corners)
+      value: 0.6081
+    info:
+      metrics_raw:
+        L_p5: 72.9
+        L_p50: 91.1
+        L_p95: 94.7
+        C_p50: 13.2
+        C_p95: 46.3
+        C_p99: 50.6
+        detail: 1.24
+      metrics_locked:
+        L_p5: 72.9
+        L_p50: 91.1
+        L_p95: 94.7
+        C_p50: 13.2
+        C_p95: 46.3
+        C_p99: 50.6
+        detail: 1.24
+    fingerprint: 1c6d71d91a65dfc3
+  8:
+    job: x-b16-icon-c-light
+    take: 8
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 72 (R1 59)
+      value: 72.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.23
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0354
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 1.8, p95 7.3, off-palette 3.5% (top: #CCCC66 (0.3%), #99AA44
+        (0.3%))'
+      value: 1.8083
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: warn
+      message: corner detail is 59% of the center's (the system masks corners)
+      value: 0.589
+    info:
+      metrics_raw:
+        L_p5: 72.3
+        L_p50: 90.3
+        L_p95: 93.9
+        C_p50: 15.1
+        C_p95: 45.1
+        C_p99: 56.6
+        detail: 1.23
+      metrics_locked:
+        L_p5: 72.3
+        L_p50: 90.3
+        L_p95: 93.9
+        C_p50: 15.1
+        C_p95: 45.1
+        C_p99: 55.3
+        detail: 1.23
+    fingerprint: 1c6d71d91a65dfc3
 manual_review:
   exclude:
   - 1
   - 2
   - 3
   - 4
-  note: All four originals show a fully blooming sunflower rather than the requested
-    sunflower sprout, and flower/island silhouette extends beyond required central
-    80% circle. Exact prompt/references unchanged on the single retry. Manual subject/layout
-    failure overrides automated non-fail statuses. Skip only C-dark/C-tinted; no extra
-    generation or pixel fixes. Archived q90 WebPs and contact separately inspected;
-    full bloom and oversized focal silhouettes preserved, so rejection still applies.
+  - 5
+  - 6
+  - 7
+  - 8
+  terminal_skip: true
+  note: 'Historical unique originals1-4 depict full flowers and belong to the old
+    exhausted sunflower brief; their complete historical generating sidecars remain
+    embedded and none was regenerated. New lead subject fingerprint1c6d71d91a65dfc3
+    explicitly requires exactly two leaves, no flower, and the WHOLE island/sprout/clouds
+    inside the central80% circle with >=10% empty edge margin. New epoch originals5-8
+    all correctly depict two leaves, but roots/clouds enter the10% edge bands and
+    clouds visibly cross the80% circle. Original guide-overlay proof separately inspected
+    for all four new candidates; explicit subject/safe-area layout failure remains
+    hard despite advisory style QA. One new-brief initial pair(pipeline5/6, epochordinals1/2)
+    and one unchanged retry pair(pipeline7/8, ordinals3/4) exhausted. No padding/painting/pixel
+    repair, no further generation; skip only C-dark/C-tinted. Archived q90 candidates5-8
+    separately inspected at29/60px and masked60px: the two-leaf sprout DOES read at
+    native sizes, but the declared80% circle clips root tips/cloud silhouettes. No
+    legibility failure is invented; the failure is the exact new SUBJECT clause naming
+    the WHOLE island/sprout/clouds and10% empty margins. Automated corner-detail ratios
+    remain advisory regardless of their values. All candidates retained for founder
+    review/veto.'
+  generation_budget: &id001
+    historical_sunflower_brief:
+      unique_originals: 4
+      retry_used: true
+      accounted_separately: true
+    new_lead_two_leaf_brief:
+      fingerprint: 1c6d71d91a65dfc3
+      unique_originals: 4
+      initial_pipeline_takes:
+      - 5
+      - 6
+      retry_pipeline_takes:
+      - 7
+      - 8
+      generation_ordinals:
+      - 1
+      - 2
+      - 3
+      - 4
+      retry_used: true
+    fresh_capacity_from_reingest_or_main_SHA: false
+generation_budget: *id001
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-10b72061-4db6-433c-bb78-f71b9394ae2b.png
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  fingerprint: 461ebb3ba6c1d463
+  fingerprint: 1c6d71d91a65dfc3
   original_generated_png_sha256: 0113653e63db7954ee5ae0a07863127ec9e78103d0126cf5df1e6e953151d655
   ingested_png_sha256: 8ba66e41d8be8ff5ec461abf3a5a563b767c1ef1bb162dd60ac3de65687d8256
   source_rgba_sha256: 5ee27bd268792105bce926ae63ea6e431e7e4ba44ce223f2861ef0d6ffe2c08d
   source_dimensions:
   - 1254
   - 1254
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-c-light/appicon__x-b16-icon-c-light--t1.webp
-  uploaded_artifact_sha256: 82743b99cb704b381d87ada9f20f5969643797decc0cdeffd8742c379dde3559
-  uploaded_dimensions:
-  - 1254
-  - 1254
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-c-light/appicon__x-b16-icon-c-light--t1.webp
+  archive_artifact_sha256: 82743b99cb704b381d87ada9f20f5969643797decc0cdeffd8742c379dde3559
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: salvage-batch-16-brand-explore
+    fingerprint: 1c6d71d91a65dfc3
+    ingested_at: '2026-11-03T15:27:04+00:00'
+  historical_generation:
+    job: x-b16-icon-c-light
+    take: 1
+    batch: batch-16-brand-explore
+    fingerprint: 461ebb3ba6c1d463
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET ICON: a painted icon or a family of icons. Fill the fields of the brief
+      in this order: PURPOSE (what each icon means), AUDIENCE, SUBJECT (one object
+      per icon), LAYOUT (a family sits on an even grid with equal size and spacing,
+      nothing touching), STYLE (the attached icons and painting, the same finish for
+      every icon of the family), PALETTE (milky pastel with one warm-brown accent
+      shape per icon), CONSTRAINTS. Each icon is one centered object of three or four
+      large rounded shapes that reads as a silhouette at 24 points; no thin parts,
+      no outline, no background shape, no text, no letters, no numbers, no glass,
+      no glossy highlight.
+
+
+      PURPOSE: the Pofu app icon, direction C (island and seed), light appearance
+      for iOS 26.
+
+      AUDIENCE: adults who want to open social apps less; calm, not clinical.
+
+      SUBJECT: the small floating home island seen from the front filling the lower
+      middle, with one big sunflower sprout rising from its lawn as the focal shape,
+      over a pale morning sky and a few clouds.
+
+      LIGHT variant: soft pale sky, warm cream and peach light, the painting as described.
+
+      LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80%
+      circle, corners calm background only.
+
+      STYLE: the attached painting. PALETTE: milky pastel. No text.
+
+
+      APP ICON: a square, fully opaque app icon. The focal shape sits inside
+
+      the central 80% circle; the corners are calm background only, because
+
+      the system masks them. It must read at 60 pixels: one clear shape, big
+
+      and simple, high value contrast between the focal shape and the
+
+      background. No text, no letters, no logo type, no border, no frame, no
+
+      glass, no glossy highlight, no drop shadow.
+
+
+      AVOID: text, a border, rounded corners, glass, gloss, a crowd of objects, tiny
+      details, Pofu''s face
+
+
+      Output: one image, opaque, full bleed, square 1024 x 1024.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T14:04:13+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-10b72061-4db6-433c-bb78-f71b9394ae2b.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: a03e95a5ed66bb8d4d27b7f76a6d34ee66e0205d5e499b71527e86e6961ad070
 - take: 2
   source_file: /workspace/generated_images/exec-4184756b-5ece-4e67-888a-f990ab5181dc.png
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  fingerprint: 461ebb3ba6c1d463
+  fingerprint: 1c6d71d91a65dfc3
   original_generated_png_sha256: 8a0a5064dd7602eb8bebd17408283125b85a73d04edc66efbaa8227aac7adac5
   ingested_png_sha256: e48cd68fb8b9393dc5d978a0640984220c8910a46f3e0911a9a6aa7bc31d4010
   source_rgba_sha256: 387b9ad8d56a42a7e423152a679d2e20c57b9617b550083feaf11429f754ce58
   source_dimensions:
   - 1254
   - 1254
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-c-light/appicon__x-b16-icon-c-light--t2.webp
-  uploaded_artifact_sha256: a26e4c50a319788d6c23aee801ded04645ec6a58632fa03b50d9d1ac0d9a3de7
-  uploaded_dimensions:
-  - 1254
-  - 1254
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-c-light/appicon__x-b16-icon-c-light--t2.webp
+  archive_artifact_sha256: a26e4c50a319788d6c23aee801ded04645ec6a58632fa03b50d9d1ac0d9a3de7
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: salvage-batch-16-brand-explore
+    fingerprint: 1c6d71d91a65dfc3
+    ingested_at: '2026-11-03T15:27:05+00:00'
+  historical_generation:
+    job: x-b16-icon-c-light
+    take: 2
+    batch: batch-16-brand-explore
+    fingerprint: 461ebb3ba6c1d463
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET ICON: a painted icon or a family of icons. Fill the fields of the brief
+      in this order: PURPOSE (what each icon means), AUDIENCE, SUBJECT (one object
+      per icon), LAYOUT (a family sits on an even grid with equal size and spacing,
+      nothing touching), STYLE (the attached icons and painting, the same finish for
+      every icon of the family), PALETTE (milky pastel with one warm-brown accent
+      shape per icon), CONSTRAINTS. Each icon is one centered object of three or four
+      large rounded shapes that reads as a silhouette at 24 points; no thin parts,
+      no outline, no background shape, no text, no letters, no numbers, no glass,
+      no glossy highlight.
+
+
+      PURPOSE: the Pofu app icon, direction C (island and seed), light appearance
+      for iOS 26.
+
+      AUDIENCE: adults who want to open social apps less; calm, not clinical.
+
+      SUBJECT: the small floating home island seen from the front filling the lower
+      middle, with one big sunflower sprout rising from its lawn as the focal shape,
+      over a pale morning sky and a few clouds.
+
+      LIGHT variant: soft pale sky, warm cream and peach light, the painting as described.
+
+      LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80%
+      circle, corners calm background only.
+
+      STYLE: the attached painting. PALETTE: milky pastel. No text.
+
+
+      APP ICON: a square, fully opaque app icon. The focal shape sits inside
+
+      the central 80% circle; the corners are calm background only, because
+
+      the system masks them. It must read at 60 pixels: one clear shape, big
+
+      and simple, high value contrast between the focal shape and the
+
+      background. No text, no letters, no logo type, no border, no frame, no
+
+      glass, no glossy highlight, no drop shadow.
+
+
+      AVOID: text, a border, rounded corners, glass, gloss, a crowd of objects, tiny
+      details, Pofu''s face
+
+
+      Output: one image, opaque, full bleed, square 1024 x 1024.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T14:04:14+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-4184756b-5ece-4e67-888a-f990ab5181dc.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: 22c1c19b4a5109a47965990156c85d9468a7a370a5b38dce88a8fb9ef2c69e73
 - take: 3
   source_file: /workspace/generated_images/exec-5ec2c83b-0568-43c1-8926-ef768ea703c8.png
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  fingerprint: 461ebb3ba6c1d463
+  fingerprint: 1c6d71d91a65dfc3
   original_generated_png_sha256: b405eaf092ef677a7e3dd7019e692fdbcb41619817f718eebfd82e9ccf65c476
   ingested_png_sha256: 42d7595add70f072fe6f8f2156a42d90c21507a1c82db0a89abfe34d40a65a6b
   source_rgba_sha256: 02fa6501c20199b4b4fc0939353e4dc82a9e8e8d5f795b69e8146488bcee5a21
   source_dimensions:
   - 1254
   - 1254
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-c-light/appicon__x-b16-icon-c-light--t3.webp
-  uploaded_artifact_sha256: 473bb89857b833ac0452b915abd8f38f7da9d6b126b309f4550e368be03345a9
-  uploaded_dimensions:
-  - 1254
-  - 1254
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-c-light/appicon__x-b16-icon-c-light--t3.webp
+  archive_artifact_sha256: 473bb89857b833ac0452b915abd8f38f7da9d6b126b309f4550e368be03345a9
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: salvage-batch-16-brand-explore
+    fingerprint: 1c6d71d91a65dfc3
+    ingested_at: '2026-11-03T15:27:05+00:00'
+  historical_generation:
+    job: x-b16-icon-c-light
+    take: 3
+    batch: batch-16-brand-explore
+    fingerprint: 461ebb3ba6c1d463
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET ICON: a painted icon or a family of icons. Fill the fields of the brief
+      in this order: PURPOSE (what each icon means), AUDIENCE, SUBJECT (one object
+      per icon), LAYOUT (a family sits on an even grid with equal size and spacing,
+      nothing touching), STYLE (the attached icons and painting, the same finish for
+      every icon of the family), PALETTE (milky pastel with one warm-brown accent
+      shape per icon), CONSTRAINTS. Each icon is one centered object of three or four
+      large rounded shapes that reads as a silhouette at 24 points; no thin parts,
+      no outline, no background shape, no text, no letters, no numbers, no glass,
+      no glossy highlight.
+
+
+      PURPOSE: the Pofu app icon, direction C (island and seed), light appearance
+      for iOS 26.
+
+      AUDIENCE: adults who want to open social apps less; calm, not clinical.
+
+      SUBJECT: the small floating home island seen from the front filling the lower
+      middle, with one big sunflower sprout rising from its lawn as the focal shape,
+      over a pale morning sky and a few clouds.
+
+      LIGHT variant: soft pale sky, warm cream and peach light, the painting as described.
+
+      LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80%
+      circle, corners calm background only.
+
+      STYLE: the attached painting. PALETTE: milky pastel. No text.
+
+
+      APP ICON: a square, fully opaque app icon. The focal shape sits inside
+
+      the central 80% circle; the corners are calm background only, because
+
+      the system masks them. It must read at 60 pixels: one clear shape, big
+
+      and simple, high value contrast between the focal shape and the
+
+      background. No text, no letters, no logo type, no border, no frame, no
+
+      glass, no glossy highlight, no drop shadow.
+
+
+      AVOID: text, a border, rounded corners, glass, gloss, a crowd of objects, tiny
+      details, Pofu''s face
+
+
+      Output: one image, opaque, full bleed, square 1024 x 1024.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T14:10:02+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-5ec2c83b-0568-43c1-8926-ef768ea703c8.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: 32592e833bf6d66dcaef7d0c3c75c2b472eea8fcb56a28f43bc2b926e8cd899a
 - take: 4
   source_file: /workspace/generated_images/exec-a36df948-de69-4dfe-b153-d7ade4e46324.png
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  fingerprint: 461ebb3ba6c1d463
+  fingerprint: 1c6d71d91a65dfc3
   original_generated_png_sha256: 57c09bd4c5d53b450ea0b21efc12a8d693649a3cc22712d490545ea45b708442
   ingested_png_sha256: 6993f62c891ae148143ff6b73f31eb92561674aa13b8fe6ca9b46589a713dbf4
   source_rgba_sha256: 7b0737441b4f736e79e02d810131214f9c8766f08bada9d98378b3f60c07dd21
   source_dimensions:
   - 1254
   - 1254
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-c-light/appicon__x-b16-icon-c-light--t4.webp
-  uploaded_artifact_sha256: f3e43e0141f60bb891e332d543c01a76940c9ff24cfbb01431bb52c780b29246
-  uploaded_dimensions:
-  - 1254
-  - 1254
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-c-light/appicon__x-b16-icon-c-light--t4.webp
+  archive_artifact_sha256: f3e43e0141f60bb891e332d543c01a76940c9ff24cfbb01431bb52c780b29246
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: salvage-batch-16-brand-explore
+    fingerprint: 1c6d71d91a65dfc3
+    ingested_at: '2026-11-03T15:27:06+00:00'
+  historical_generation:
+    job: x-b16-icon-c-light
+    take: 4
+    batch: batch-16-brand-explore
+    fingerprint: 461ebb3ba6c1d463
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET ICON: a painted icon or a family of icons. Fill the fields of the brief
+      in this order: PURPOSE (what each icon means), AUDIENCE, SUBJECT (one object
+      per icon), LAYOUT (a family sits on an even grid with equal size and spacing,
+      nothing touching), STYLE (the attached icons and painting, the same finish for
+      every icon of the family), PALETTE (milky pastel with one warm-brown accent
+      shape per icon), CONSTRAINTS. Each icon is one centered object of three or four
+      large rounded shapes that reads as a silhouette at 24 points; no thin parts,
+      no outline, no background shape, no text, no letters, no numbers, no glass,
+      no glossy highlight.
+
+
+      PURPOSE: the Pofu app icon, direction C (island and seed), light appearance
+      for iOS 26.
+
+      AUDIENCE: adults who want to open social apps less; calm, not clinical.
+
+      SUBJECT: the small floating home island seen from the front filling the lower
+      middle, with one big sunflower sprout rising from its lawn as the focal shape,
+      over a pale morning sky and a few clouds.
+
+      LIGHT variant: soft pale sky, warm cream and peach light, the painting as described.
+
+      LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80%
+      circle, corners calm background only.
+
+      STYLE: the attached painting. PALETTE: milky pastel. No text.
+
+
+      APP ICON: a square, fully opaque app icon. The focal shape sits inside
+
+      the central 80% circle; the corners are calm background only, because
+
+      the system masks them. It must read at 60 pixels: one clear shape, big
+
+      and simple, high value contrast between the focal shape and the
+
+      background. No text, no letters, no logo type, no border, no frame, no
+
+      glass, no glossy highlight, no drop shadow.
+
+
+      AVOID: text, a border, rounded corners, glass, gloss, a crowd of objects, tiny
+      details, Pofu''s face
+
+
+      Output: one image, opaque, full bleed, square 1024 x 1024.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T14:10:03+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-a36df948-de69-4dfe-b153-d7ade4e46324.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: e7f9221e7df8ae4e038a92254f60cd372dbdbe028b3858f573f7a17507d37cb2
+- take: 5
+  source_file: /workspace/generated_images/exec-559b5d2b-fa97-4ea7-85a4-c47dc17ed613.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 1c6d71d91a65dfc3
+  original_generated_png_sha256: 8be8dcd27a3ca1e0a39d0acf4f328ca0f1615d2c350952ff2907d28b898de533
+  ingested_png_sha256: d281dcb7d0e7c689310bbbe8eec80c9a7d9a5ed76d7bcf193ca8281cccb0254e
+  source_rgba_sha256: dde86c16dd01e0802ddfe82a19e2c7a448d20f6b2a414641708d59845fd2abda
+  source_dimensions:
+  - 1254
+  - 1254
+  source_rgba_identity: verified equal; original and inbox
+  original_storage: local only; not uploaded
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-c-light/appicon__x-b16-icon-c-light--t5.webp
+  archive_artifact_sha256: ac29d4d081fa39f194420820f1fc45450a257d1e279045254d6bc946a11faa88
+  encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 1c6d71d91a65dfc3
+    ingested_at: '2026-11-03T15:42:52+00:00'
+  historical_generation:
+    request_key: batch-16-brand-explore@58d4742/x-b16-icon-c-light/lead-two-leaf-1c6d71d91a65dfc3/round0
+    brief_epoch: lead-two-leaf-1c6d71d91a65dfc3
+    generated_at: '2026-11-03T15:39:07.715Z'
+    prompt_sha256: 859175c8348ad841f6d9f11cea0b706944c483295f2210540d13c4ac29ab08f8
+    note: New unique original generated in the stated lead brief epoch.
+- take: 6
+  source_file: /workspace/generated_images/exec-0c3efdd3-06d8-4e86-a084-c85b52ea123c.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 1c6d71d91a65dfc3
+  original_generated_png_sha256: fe41db9afeb811f87806d7a9a84b2fbbb3f0e9a43e6fe7455947cdf0075094b0
+  ingested_png_sha256: 61fd65025c7eceb16a6d4be45700cf9dc1174f86b6b30e5c52aa3b2f2c07bada
+  source_rgba_sha256: 41ae0dc79f7d206a5ce9a23f37258b3dfb0e602150c4405320dc47b9e9572f62
+  source_dimensions:
+  - 1254
+  - 1254
+  source_rgba_identity: verified equal; original and inbox
+  original_storage: local only; not uploaded
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-c-light/appicon__x-b16-icon-c-light--t6.webp
+  archive_artifact_sha256: 9e72c8bbb7c72da25ee564312e2f1df8a3466e0f044b3ee181753f974a9449b4
+  encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 1c6d71d91a65dfc3
+    ingested_at: '2026-11-03T15:42:52+00:00'
+  historical_generation:
+    request_key: batch-16-brand-explore@58d4742/x-b16-icon-c-light/lead-two-leaf-1c6d71d91a65dfc3/round0
+    brief_epoch: lead-two-leaf-1c6d71d91a65dfc3
+    generated_at: '2026-11-03T15:40:18.091Z'
+    prompt_sha256: 859175c8348ad841f6d9f11cea0b706944c483295f2210540d13c4ac29ab08f8
+    note: New unique original generated in the stated lead brief epoch.
+- take: 7
+  source_file: /workspace/generated_images/exec-20da6344-1c90-4255-a27b-29ac17811784.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 1c6d71d91a65dfc3
+  original_generated_png_sha256: e3ecf6e36f3fec88c11516b7c90e9d64abe5ec99d6f126faa17dc5fb14687a26
+  ingested_png_sha256: 4eb75477f7461c6460704fc3c9cacbe7856a83bcfc6378d2d7776f409e6c2cc1
+  source_rgba_sha256: 95d94dbb9f2ffd722a299a7fb84ed20dd26b9e5950f4345688935bde3e270fa0
+  source_dimensions:
+  - 1254
+  - 1254
+  source_rgba_identity: verified equal; original and inbox
+  original_storage: local only; not uploaded
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-c-light/appicon__x-b16-icon-c-light--t7.webp
+  archive_artifact_sha256: f80d8c40dc996fd2ad63a59b828b9a6e4a7919b257ab8095fdf153f6f86b130e
+  encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 1c6d71d91a65dfc3
+    ingested_at: '2026-11-03T15:47:56+00:00'
+  historical_generation:
+    request_key: batch-16-brand-explore@58d4742/x-b16-icon-c-light/lead-two-leaf-1c6d71d91a65dfc3/round1
+    brief_epoch: lead-two-leaf-1c6d71d91a65dfc3
+    generated_at: '2026-11-03T15:45:27.302Z'
+    prompt_sha256: 859175c8348ad841f6d9f11cea0b706944c483295f2210540d13c4ac29ab08f8
+    note: New unique original generated in the stated lead brief epoch.
+- take: 8
+  source_file: /workspace/generated_images/exec-ed9179fe-88f4-4984-991d-b560a73b2ba8.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 1c6d71d91a65dfc3
+  original_generated_png_sha256: d9a2684629bae81056ba26b4a9805e8f0411e4286d33dfafc61dbaa9196a0a8c
+  ingested_png_sha256: aeba9993235f4dbdbecc9f3c5a2198548cba35dae2f5b3be22734ee0c58c53d7
+  source_rgba_sha256: f293d265b38472c73835e23a948c7fd5c3cfa9fc8d290ba50bab8274fececb22
+  source_dimensions:
+  - 1254
+  - 1254
+  source_rgba_identity: verified equal; original and inbox
+  original_storage: local only; not uploaded
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-c-light/appicon__x-b16-icon-c-light--t8.webp
+  archive_artifact_sha256: 1de4426eb94253780ee74e6c4a29610e8301004a824f24b2b1344a87cf249032
+  encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 1c6d71d91a65dfc3
+    ingested_at: '2026-11-03T15:47:56+00:00'
+  historical_generation:
+    request_key: batch-16-brand-explore@58d4742/x-b16-icon-c-light/lead-two-leaf-1c6d71d91a65dfc3/round1
+    brief_epoch: lead-two-leaf-1c6d71d91a65dfc3
+    generated_at: '2026-11-03T15:46:01.280Z'
+    prompt_sha256: 859175c8348ad841f6d9f11cea0b706944c483295f2210540d13c4ac29ab08f8
+    note: New unique original generated in the stated lead brief epoch.

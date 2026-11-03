@@ -1,11 +1,204 @@
 batch: batch-16-brand-explore
-contact_sheet: null
+assessment_epoch: batch-16-brand-explore@58d4742a77d30663dd144f989dc5977a5c3c8e5a/x-b16-icon-a-dark
+assessment_main: 58d4742a77d30663dd144f989dc5977a5c3c8e5a
+contact_sheet: design/art/takes/batch-16-brand-explore/x-b16-icon-a-dark/contact.jpg
 jobs:
   x-b16-icon-a-dark:
-    pick: none
-    publication: skipped true dependent; no generation
-    note: Required selected x-b16-icon-a-light reference is unavailable after its
-      one allowed retry. Latest user override skips only actual dependents; independent
-      jobs continue.
-qa_reports: {}
-sources: []
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both new originals manually
+      checked against selected A-light3: same face/cream curl/one cloud composition,
+      one Pofu, no lettering, indigo-to-plum night sky and warm brightest focal face.
+      Originals and archived q90 WebPs inspected at29/60px: face/curl clear, same
+      composition, warm focal subject preserved on night sky. Outer soft fur remains
+      an advisory mask-margin concern as in A-light, no invented whole-fur geometry
+      fail.'
+qa_reports:
+  1:
+    job: x-b16-icon-a-dark
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 50.8
+    - check: value_floor
+      status: warn
+      message: lightness p5 20 (R1 59) (advisory in an exploration)
+      value: 20.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.1
+      value: 0.1102
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 10.9, off-palette 2.9% (top: #996677 (0.5%), #AA6677
+        (0.4%))'
+      value: 3.1332
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: pass
+      message: corner detail is 49% of the center's (the system masks corners)
+      value: 0.4914
+    info:
+      metrics_raw:
+        L_p5: 20.3
+        L_p50: 72.1
+        L_p95: 94.6
+        C_p50: 29.7
+        C_p95: 50.8
+        C_p99: 61.1
+        detail: 3.13
+      metrics_locked:
+        L_p5: 20.3
+        L_p50: 72.1
+        L_p95: 94.6
+        C_p50: 29.7
+        C_p95: 50.8
+        C_p99: 57.2
+        detail: 3.12
+    fingerprint: efac91d16ba9a5b9
+  2:
+    job: x-b16-icon-a-dark
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 50.6
+    - check: value_floor
+      status: warn
+      message: lightness p5 17 (R1 59) (advisory in an exploration)
+      value: 17.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.0 (R1 5.3)
+      value: 2.97
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.1
+      value: 0.0833
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.6, p95 13.2, off-palette 6.3% (top: #AA6688 (1.8%), #996688
+        (1.0%))'
+      value: 3.5798
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: warn
+      message: corner detail is 57% of the center's (the system masks corners)
+      value: 0.5737
+    info:
+      metrics_raw:
+        L_p5: 17.2
+        L_p50: 70.0
+        L_p95: 95.0
+        C_p50: 30.0
+        C_p95: 50.6
+        C_p99: 59.8
+        detail: 2.98
+      metrics_locked:
+        L_p5: 17.2
+        L_p50: 70.0
+        L_p95: 95.0
+        C_p50: 30.0
+        C_p95: 50.6
+        C_p99: 56.7
+        detail: 2.97
+    fingerprint: efac91d16ba9a5b9
+manual_review:
+  exclude: []
+  note: 'Both new originals manually checked against selected A-light3: same face/cream
+    curl/one cloud composition, one Pofu, no lettering, indigo-to-plum night sky and
+    warm brightest focal face. Originals and archived q90 WebPs inspected at29/60px:
+    face/curl clear, same composition, warm focal subject preserved on night sky.
+    Outer soft fur remains an advisory mask-margin concern as in A-light, no invented
+    whole-fur geometry fail.'
+  generation_budget: &id001
+    brief_epoch: original-brief-efac91d16ba9a5b9
+    unique_new_originals: 2
+    retry_used: false
+generation_budget: *id001
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-49e114ac-14aa-4802-8dd3-42d1e29e7da7.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: efac91d16ba9a5b9
+  original_generated_png_sha256: c5bb41241359fe35e065cd5cce84e35ecae5611be014484c28a82bab206629c2
+  ingested_png_sha256: 397e255e8c2cb2cd5844e97adcede991ce14fdb097f705cb07f0f6cb79d3756b
+  source_rgba_sha256: 329a732dcba3e9b64465006b37a36e4bcdd095f6398063dd9954682a67f968de
+  source_dimensions:
+  - 1254
+  - 1254
+  source_rgba_identity: verified equal; original and inbox
+  original_storage: local only; not uploaded
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-a-dark/appicon__x-b16-icon-a-dark--t1.webp
+  archive_artifact_sha256: 67b1a463681a916682e47ca40d920fad4d083bedbb558b1c6c6b25c7f1e40f54
+  encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: efac91d16ba9a5b9
+    ingested_at: '2026-11-03T15:42:24+00:00'
+  historical_generation:
+    request_key: batch-16-brand-explore@58d4742/x-b16-icon-a-dark/original-brief-efac91d16ba9a5b9/round0
+    brief_epoch: original-brief-efac91d16ba9a5b9
+    generated_at: '2026-11-03T15:37:17.939Z'
+    prompt_sha256: 72a61824a0a6a0ba94227af96de513c6fdaff8495abe532d0b5c13392abd2a3f
+    note: New unique original generated in the stated lead brief epoch.
+- take: 2
+  source_file: /workspace/generated_images/exec-8d033181-4518-4ddc-870f-5bb1b5252d04.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: efac91d16ba9a5b9
+  original_generated_png_sha256: 923f6d4746be6cc722fa2e99d0ccd020e9eba7a85a28ce096bae9d9bfff27f09
+  ingested_png_sha256: 21a3fff85299adc44f405daf0c783b0cc5bff413bbde9e5a625bb5af21aec77e
+  source_rgba_sha256: 8d3242e3330339b3df268013aa6e070110ab17c8a28e0f26565a45f9359fd425
+  source_dimensions:
+  - 1254
+  - 1254
+  source_rgba_identity: verified equal; original and inbox
+  original_storage: local only; not uploaded
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-a-dark/appicon__x-b16-icon-a-dark--t2.webp
+  archive_artifact_sha256: fd90636dfeba7d4b79f8d14590b5da6b5dfc79bf027423c2464e78f3e3bb9ced
+  encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: efac91d16ba9a5b9
+    ingested_at: '2026-11-03T15:42:24+00:00'
+  historical_generation:
+    request_key: batch-16-brand-explore@58d4742/x-b16-icon-a-dark/original-brief-efac91d16ba9a5b9/round0
+    brief_epoch: original-brief-efac91d16ba9a5b9
+    generated_at: '2026-11-03T15:36:05.913Z'
+    prompt_sha256: 72a61824a0a6a0ba94227af96de513c6fdaff8495abe532d0b5c13392abd2a3f
+    note: New unique original generated in the stated lead brief epoch.

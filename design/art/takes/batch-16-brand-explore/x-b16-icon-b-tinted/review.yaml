@@ -1,14 +1,18 @@
 batch: batch-16-brand-explore
+assessment_epoch: batch-16-brand-explore@58d4742a77d30663dd144f989dc5977a5c3c8e5a/x-b16-icon-b-tinted
+assessment_main: 58d4742a77d30663dd144f989dc5977a5c3c8e5a
 contact_sheet: design/art/takes/batch-16-brand-explore/x-b16-icon-b-tinted/contact.jpg
 jobs:
   x-b16-icon-b-tinted:
-    pick: null
-    publication: stopped before retry/selection
-    note: Preservation only after shared global stop; original request ordinals 1/2
-      and existing QA retained. No new QA, generation, selection, promotion, or retry.
-      One retry (takes3/4) remains unused. Resume only after explicit authorization.
-      Initial automated warnings; previously recorded manual multihue rejection requires
-      retry.
+    pick: none
+    publication: skipped; generation budget exhausted for this brief
+    note: All four unique original generations retain blue/purple sky and green lawn,
+      rather than the required near-monochrome single warm hue on dark brown-grey
+      ground. Both retry originals3/4 repeat this explicit TINTED semantic failure
+      despite advisory automated palette warnings. One original-brief initial pair
+      and one unchanged retry pair exhausted; no fifth take, no pixel recolor. Independent
+      jobs continue. Archived q90 contact separately inspected; all four still show
+      blue/purple sky and green grass, so the same explicit semantic rejection applies.
 qa_reports:
   1:
     job: x-b16-icon-b-tinted
@@ -130,20 +134,147 @@ qa_reports:
         C_p99: 54.0
         detail: 1.57
     fingerprint: 4b1047846ca43ec1
-manual_review_before_stop:
+  3:
+    job: x-b16-icon-b-tinted
+    take: 3
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 60 (R1 59)
+      value: 59.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.58
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.016
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.3, p95 12.4, off-palette 7.0% (top: #7788CC (6.2%), #7799CC
+        (0.1%))'
+      value: 4.295
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: warn
+      message: corner detail is 54% of the center's (the system masks corners)
+      value: 0.5382
+    info:
+      metrics_raw:
+        L_p5: 59.9
+        L_p50: 79.9
+        L_p95: 94.9
+        C_p50: 28.0
+        C_p95: 41.9
+        C_p99: 53.5
+        detail: 1.58
+      metrics_locked:
+        L_p5: 59.9
+        L_p50: 79.9
+        L_p95: 94.9
+        C_p50: 28.0
+        C_p95: 41.9
+        C_p99: 53.3
+        detail: 1.58
+    fingerprint: 4b1047846ca43ec1
+  4:
+    job: x-b16-icon-b-tinted
+    take: 4
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 60.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.61
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.008
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.0, p95 11.3, off-palette 2.4% (top: #7788CC (2.0%), #888866
+        (0.1%))'
+      value: 3.9755
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: warn
+      message: corner detail is 58% of the center's (the system masks corners)
+      value: 0.5762
+    info:
+      metrics_raw:
+        L_p5: 60.7
+        L_p50: 79.3
+        L_p95: 94.6
+        C_p50: 28.0
+        C_p95: 41.4
+        C_p99: 52.6
+        detail: 1.61
+      metrics_locked:
+        L_p5: 60.7
+        L_p50: 79.3
+        L_p95: 94.6
+        C_p50: 28.0
+        C_p95: 41.4
+        C_p99: 52.6
+        detail: 1.61
+    fingerprint: 4b1047846ca43ec1
+manual_review:
   exclude:
   - 1
   - 2
-  note: Both originals retain blue/purple sky, green grass and peach Pofu instead
-    of required single warm hue on dark brown-grey ground. Manual tinted-color failure;
-    one unchanged-prompt retry required.
-stop:
-  reason: three consecutive actual job failures
-  last_event:
-    job: retry-2026-11-03/ui-sheet-paper-night
-    status: failed
-    consecutive_actual_failures: 3
-    at: '2026-11-03T14:12:48.328101+00:00'
+  - 3
+  - 4
+  terminal_skip: true
+  note: All four unique original generations retain blue/purple sky and green lawn,
+    rather than the required near-monochrome single warm hue on dark brown-grey ground.
+    Both retry originals3/4 repeat this explicit TINTED semantic failure despite advisory
+    automated palette warnings. One original-brief initial pair and one unchanged
+    retry pair exhausted; no fifth take, no pixel recolor. Independent jobs continue.
+    Archived q90 contact separately inspected; all four still show blue/purple sky
+    and green grass, so the same explicit semantic rejection applies.
+  generation_budget: &id001
+    brief_epoch: original-brief-4b1047846ca43ec1
+    historical_unique_originals: 2
+    new_unique_originals: 2
+    retry_used: true
+    total_unique_generations: 4
+generation_budget: *id001
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-848f280d-79d7-4052-a0bf-745672f7bf58.png
@@ -157,14 +288,96 @@ sources:
   source_dimensions:
   - 1254
   - 1254
-  source_rgba_identity: verified equal before preservation
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
   archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-b-tinted/appicon__x-b16-icon-b-tinted--t1.webp
   archive_artifact_sha256: 04dd3fcbcef54d501c06580e95e1a387f7c21a2be49ff1a5031ce1ec3e595c00
-  archive_dimensions:
-  - 1254
-  - 1254
-  encoding: lossy WebP quality 90; preservation only
+  encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 4b1047846ca43ec1
+    ingested_at: '2026-11-03T14:12:28+00:00'
+  historical_generation:
+    job: x-b16-icon-b-tinted
+    take: 1
+    batch: batch-16-brand-explore
+    fingerprint: 4b1047846ca43ec1
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+      3. The light version of this same icon: keep the exact composition, shape and
+      position of the focal subject.
+
+
+      PRESET ICON: a painted icon or a family of icons. Fill the fields of the brief
+      in this order: PURPOSE (what each icon means), AUDIENCE, SUBJECT (one object
+      per icon), LAYOUT (a family sits on an even grid with equal size and spacing,
+      nothing touching), STYLE (the attached icons and painting, the same finish for
+      every icon of the family), PALETTE (milky pastel with one warm-brown accent
+      shape per icon), CONSTRAINTS. Each icon is one centered object of three or four
+      large rounded shapes that reads as a silhouette at 24 points; no thin parts,
+      no outline, no background shape, no text, no letters, no numbers, no glass,
+      no glossy highlight.
+
+
+      PURPOSE: the Pofu app icon, direction B (the paper lantern), tinted appearance
+      for iOS 26.
+
+      AUDIENCE: adults who want to open social apps less; calm, not clinical.
+
+      SUBJECT: one large round paper lantern with a warm glowing cream light, hanging
+      low and centered, with Pofu small and sleepy beside it, over a calm dusk-blue-to-peach
+      sky.
+
+      TINTED variant: the same composition as a near-monochrome painting in one warm
+      hue: the focal shape in light and mid values of that single hue on a dark brown-grey
+      ground, high value contrast, no other colors, so the system can tint it.
+
+      LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80%
+      circle, corners calm background only.
+
+      STYLE: the attached painting. PALETTE: milky pastel. No text.
+
+
+      APP ICON: a square, fully opaque app icon. The focal shape sits inside
+
+      the central 80% circle; the corners are calm background only, because
+
+      the system masks them. It must read at 60 pixels: one clear shape, big
+
+      and simple, high value contrast between the focal shape and the
+
+      background. No text, no letters, no logo type, no border, no frame, no
+
+      glass, no glossy highlight, no drop shadow.
+
+
+      AVOID: text, a border, rounded corners, glass, gloss, text, a candle flame with
+      thin rays, many lanterns
+
+
+      Output: one image, opaque, full bleed, square 1024 x 1024.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    - path: build/imagegen/batch-16-brand-explore/locked/appicon__x-b16-icon-b-light--t2.png
+      role: 'The light version of this same icon: keep the exact composition, shape
+        and position of the focal subject.'
+    background: transparent
+    generated_at: '2026-11-03T14:12:28+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-848f280d-79d7-4052-a0bf-745672f7bf58.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: be5f9937a27b615cf081c508df2b26d20eb17e694629ab07dbc20c39e637f34f
 - take: 2
   source_file: /workspace/generated_images/exec-0ac8512f-9fb8-4a8b-acff-bd932c09192f.png
   account:
@@ -177,11 +390,147 @@ sources:
   source_dimensions:
   - 1254
   - 1254
-  source_rgba_identity: verified equal before preservation
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
   archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-b-tinted/appicon__x-b16-icon-b-tinted--t2.webp
   archive_artifact_sha256: 11835923e091a9158c06c867584f62afa4c29248fb27d00a357b0b3cb02fa9cd
-  archive_dimensions:
+  encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 4b1047846ca43ec1
+    ingested_at: '2026-11-03T14:12:29+00:00'
+  historical_generation:
+    job: x-b16-icon-b-tinted
+    take: 2
+    batch: batch-16-brand-explore
+    fingerprint: 4b1047846ca43ec1
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+      3. The light version of this same icon: keep the exact composition, shape and
+      position of the focal subject.
+
+
+      PRESET ICON: a painted icon or a family of icons. Fill the fields of the brief
+      in this order: PURPOSE (what each icon means), AUDIENCE, SUBJECT (one object
+      per icon), LAYOUT (a family sits on an even grid with equal size and spacing,
+      nothing touching), STYLE (the attached icons and painting, the same finish for
+      every icon of the family), PALETTE (milky pastel with one warm-brown accent
+      shape per icon), CONSTRAINTS. Each icon is one centered object of three or four
+      large rounded shapes that reads as a silhouette at 24 points; no thin parts,
+      no outline, no background shape, no text, no letters, no numbers, no glass,
+      no glossy highlight.
+
+
+      PURPOSE: the Pofu app icon, direction B (the paper lantern), tinted appearance
+      for iOS 26.
+
+      AUDIENCE: adults who want to open social apps less; calm, not clinical.
+
+      SUBJECT: one large round paper lantern with a warm glowing cream light, hanging
+      low and centered, with Pofu small and sleepy beside it, over a calm dusk-blue-to-peach
+      sky.
+
+      TINTED variant: the same composition as a near-monochrome painting in one warm
+      hue: the focal shape in light and mid values of that single hue on a dark brown-grey
+      ground, high value contrast, no other colors, so the system can tint it.
+
+      LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80%
+      circle, corners calm background only.
+
+      STYLE: the attached painting. PALETTE: milky pastel. No text.
+
+
+      APP ICON: a square, fully opaque app icon. The focal shape sits inside
+
+      the central 80% circle; the corners are calm background only, because
+
+      the system masks them. It must read at 60 pixels: one clear shape, big
+
+      and simple, high value contrast between the focal shape and the
+
+      background. No text, no letters, no logo type, no border, no frame, no
+
+      glass, no glossy highlight, no drop shadow.
+
+
+      AVOID: text, a border, rounded corners, glass, gloss, text, a candle flame with
+      thin rays, many lanterns
+
+
+      Output: one image, opaque, full bleed, square 1024 x 1024.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    - path: build/imagegen/batch-16-brand-explore/locked/appicon__x-b16-icon-b-light--t2.png
+      role: 'The light version of this same icon: keep the exact composition, shape
+        and position of the focal subject.'
+    background: transparent
+    generated_at: '2026-11-03T14:12:29+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-0ac8512f-9fb8-4a8b-acff-bd932c09192f.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: cbfb6c44024365b9f049429dad88b1ed3b53b738cef7e4fbf95abc6343aa32e1
+- take: 3
+  source_file: /workspace/generated_images/exec-11fa7881-8492-43be-b10c-797b5501e04f.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4b1047846ca43ec1
+  original_generated_png_sha256: acc948c1fbc5f7ce8d8bdf5e67ce2d59be2bb0a6a81f58e86b6db5fb0524e048
+  ingested_png_sha256: fcf93eeab7e0bce5a9781e8ff5cc74a27e31657413beaa3992e0cffc4f8a41b1
+  source_rgba_sha256: 600a4d9685c60a7fcb1df68d818907393f5125bcea6ead3efa9ee778937b5751
+  source_dimensions:
   - 1254
   - 1254
-  encoding: lossy WebP quality 90; preservation only
+  source_rgba_identity: verified equal; original and inbox
+  original_storage: local only; not uploaded
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-b-tinted/appicon__x-b16-icon-b-tinted--t3.webp
+  archive_artifact_sha256: cb5eeacc7cb15dbb7fc70051f4568e4b249aa7ab8d3b59c58a38c1bbe512d4a7
+  encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 4b1047846ca43ec1
+    ingested_at: '2026-11-03T15:43:36+00:00'
+  historical_generation:
+    request_key: batch-16-brand-explore@58d4742/x-b16-icon-b-tinted/original-brief-4b1047846ca43ec1/round1
+    brief_epoch: original-brief-4b1047846ca43ec1
+    generated_at: '2026-11-03T15:38:34.413Z'
+    prompt_sha256: 5588526c15b94f1fb78ece6183040ef9614937497a429daf7f1796257fe7914e
+    note: New unique original generated in the stated lead brief epoch.
+- take: 4
+  source_file: /workspace/generated_images/exec-2641d649-e965-42be-b8fe-e1f388fbb217.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4b1047846ca43ec1
+  original_generated_png_sha256: 4d7a69d15d9105edf9c5cc826a19ddcfdc50d04679dfc2c83ca44ec726ae82f1
+  ingested_png_sha256: f4065bd10b15cc06f073f5f8e186ad23fd8f731a4f7ce9df86254b8eeb9331b8
+  source_rgba_sha256: bdb5e721e9e6c8198328977308d53ba8ac5935f8ba1d068caaa85a18ec14f98e
+  source_dimensions:
+  - 1254
+  - 1254
+  source_rgba_identity: verified equal; original and inbox
+  original_storage: local only; not uploaded
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-b-tinted/appicon__x-b16-icon-b-tinted--t4.webp
+  archive_artifact_sha256: 078690cdd0d01e4a6936fe701490c6e57266328ef5deaa5bd8d33ec84a462dce
+  encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 4b1047846ca43ec1
+    ingested_at: '2026-11-03T15:43:37+00:00'
+  historical_generation:
+    request_key: batch-16-brand-explore@58d4742/x-b16-icon-b-tinted/original-brief-4b1047846ca43ec1/round1
+    brief_epoch: original-brief-4b1047846ca43ec1
+    generated_at: '2026-11-03T15:39:40.173Z'
+    prompt_sha256: 5588526c15b94f1fb78ece6183040ef9614937497a429daf7f1796257fe7914e
+    note: New unique original generated in the stated lead brief epoch.

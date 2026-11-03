@@ -1,14 +1,21 @@
 batch: batch-16-brand-explore
+assessment_epoch: batch-16-brand-explore@58d4742a77d30663dd144f989dc5977a5c3c8e5a/x-b16-logo-c
+assessment_main: 58d4742a77d30663dd144f989dc5977a5c3c8e5a
 contact_sheet: design/art/takes/batch-16-brand-explore/x-b16-logo-c/contact.jpg
 jobs:
   x-b16-logo-c:
     pick: 2
     publication: selected exploration; never promoted
-    note: auto-picked by QA; founder review pending. Originals read exactly capital
+    note: 'auto-picked by QA; founder review pending. Originals read exactly capital
       P, lowercase o f u plus a tiny seed after u. Interpreted job-specific pillow
       letters with warm-brown shading as soft painted volume, retaining matte illustration
       rather than rendered/glossy3D. Both archived q90 WebPs read P-o-f-u at 120px
       image width; cream letters and final seed remain distinct, no extra lettering.
+      Reassessed from identical retained source and q90 archive bytes on main58d4742:
+      previous chroma/value/palette/corner failures are advisory exploration warnings
+      under current QA, never a reason to regenerate. Original generating prompt/account/time/fingerprint
+      is embedded separately from current salvage assessment. No new image generated
+      for this recovered job.'
 qa_reports:
   1:
     job: x-b16-logo-c
@@ -60,7 +67,7 @@ qa_reports:
         C_p95: 39.5
         C_p99: 48.7
         detail: 0.99
-    fingerprint: 6382ea4ea307c2ab
+    fingerprint: 1761583f486502a3
   2:
     job: x-b16-logo-c
     take: 2
@@ -111,52 +118,187 @@ qa_reports:
         C_p95: 38.9
         C_p99: 48.7
         detail: 0.9
-    fingerprint: 6382ea4ea307c2ab
+    fingerprint: 1761583f486502a3
 manual_review:
   exclude: []
-  note: Originals read exactly capital P, lowercase o f u plus a tiny seed after u.
-    Interpreted job-specific pillow letters with warm-brown shading as soft painted
+  note: 'Originals read exactly capital P, lowercase o f u plus a tiny seed after
+    u. Interpreted job-specific pillow letters with warm-brown shading as soft painted
     volume, retaining matte illustration rather than rendered/glossy3D. Both archived
     q90 WebPs read P-o-f-u at 120px image width; cream letters and final seed remain
-    distinct, no extra lettering.
+    distinct, no extra lettering. Reassessed from identical retained source and q90
+    archive bytes on main58d4742: previous chroma/value/palette/corner failures are
+    advisory exploration warnings under current QA, never a reason to regenerate.
+    Original generating prompt/account/time/fingerprint is embedded separately from
+    current salvage assessment. No new image generated for this recovered job.'
+  generation_budget: &id001
+    historical_unique_originals: 2
+    new_generation_calls: 0
+    reingest_grants_capacity: false
+generation_budget: *id001
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-de92a8a0-724a-475f-a6e1-3f72aa713ac3.png
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  fingerprint: 6382ea4ea307c2ab
+  fingerprint: 1761583f486502a3
   original_generated_png_sha256: 8d9623f984058d37f4143112647edd6304d75754a0f6b0279c59488079e20c49
   ingested_png_sha256: f7694ce7a627b09f0bbf27a46ea01e235c4416f93b874dd239c3662cfe690c08
   source_rgba_sha256: a3e5d35e2ad3ffcbdef5c1ed02facbe6315e3e0621992bae826ef662fd9ddcdc
   source_dimensions:
   - 1536
   - 1024
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-logo-c/plate__x-b16-logo-c--t1.webp
-  uploaded_artifact_sha256: d4e22d48fc77a77c3b8a71355ba67aa6f659eb91bc379714a1f930059d3b54d0
-  uploaded_dimensions:
-  - 1536
-  - 1024
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-logo-c/plate__x-b16-logo-c--t1.webp
+  archive_artifact_sha256: d4e22d48fc77a77c3b8a71355ba67aa6f659eb91bc379714a1f930059d3b54d0
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: salvage-batch-16-brand-explore
+    fingerprint: 1761583f486502a3
+    ingested_at: '2026-11-03T15:27:03+00:00'
+  historical_generation:
+    job: x-b16-logo-c
+    take: 1
+    batch: batch-16-brand-explore
+    fingerprint: 6382ea4ea307c2ab
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET LOGO: a wordmark on a plain pale cream background, shown large and centered,
+      with generous empty margin on every side. Fill the fields of the brief in this
+      order: PURPOSE, AUDIENCE, REQUIRED TEXT (spell it exactly, letter for letter,
+      and paint no other words), LETTERFORM (round, soft, friendly, built from a few
+      thick shapes with even stroke weight), COLOR (one or two flat warm colors from
+      the attached painting), CONSTRAINTS. It must stay legible at 120 pixels wide:
+      no thin hairlines, no gradients inside the letters, no outline, no drop shadow,
+      no glow, no 3D, no texture, no frame, no glass. One lockup only, no variations
+      on the page.
+
+
+      PURPOSE: a wordmark for the app Pofu, direction C (pillow letters).
+
+      AUDIENCE: adults and teens who open social apps by reflex; warm, humorous, never
+      preachy.
+
+      REQUIRED TEXT: Pofu
+
+      (exactly four letters: capital P, lowercase o, f, u.)
+
+      LETTERFORM: puffy inflated pillow letters in cream with a soft warm brown shading
+      side, tightly spaced. Extra mark: a tiny sunflower seed sitting after the last
+      letter.
+
+      COLOR: warm brown and cream from the attached painting on a plain pale cream
+      ground.
+
+      LAYOUT: one lockup, centered, wide, with generous margin.
+
+
+      AVOID: any word other than Pofu, a hamster, a border, 3D, glow, outline, a drop
+      shadow
+
+
+      Output: one image, opaque, full bleed, landscape 1536 x 1024.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T14:04:46+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-de92a8a0-724a-475f-a6e1-3f72aa713ac3.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: d354ba5b12c2754f8b79d7250f7135185e549dc2d88636e7e68127ba653cf13f
 - take: 2
   source_file: /workspace/generated_images/exec-6c3ddd72-aebd-46fd-8087-aa71daee0e34.png
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  fingerprint: 6382ea4ea307c2ab
+  fingerprint: 1761583f486502a3
   original_generated_png_sha256: 6a91c569b9b626ccb242de7b645de9ab9593a21c03211b80e306a1e6c9091477
   ingested_png_sha256: 1b1e662a17f693672f49e9326060527885c4f731df4a8f221e5f47892a797ad1
   source_rgba_sha256: bc2b259333f29a98a8a1fdb8d9ba8e1d9f96029f628afc1d24dfcbfc9abc0a39
   source_dimensions:
   - 1536
   - 1024
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-logo-c/plate__x-b16-logo-c--t2.webp
-  uploaded_artifact_sha256: 7d22e035dece67d33386491224a0c524701439ffc8e83fae7c52bf6da93917eb
-  uploaded_dimensions:
-  - 1536
-  - 1024
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-logo-c/plate__x-b16-logo-c--t2.webp
+  archive_artifact_sha256: 7d22e035dece67d33386491224a0c524701439ffc8e83fae7c52bf6da93917eb
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: salvage-batch-16-brand-explore
+    fingerprint: 1761583f486502a3
+    ingested_at: '2026-11-03T15:27:03+00:00'
+  historical_generation:
+    job: x-b16-logo-c
+    take: 2
+    batch: batch-16-brand-explore
+    fingerprint: 6382ea4ea307c2ab
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET LOGO: a wordmark on a plain pale cream background, shown large and centered,
+      with generous empty margin on every side. Fill the fields of the brief in this
+      order: PURPOSE, AUDIENCE, REQUIRED TEXT (spell it exactly, letter for letter,
+      and paint no other words), LETTERFORM (round, soft, friendly, built from a few
+      thick shapes with even stroke weight), COLOR (one or two flat warm colors from
+      the attached painting), CONSTRAINTS. It must stay legible at 120 pixels wide:
+      no thin hairlines, no gradients inside the letters, no outline, no drop shadow,
+      no glow, no 3D, no texture, no frame, no glass. One lockup only, no variations
+      on the page.
+
+
+      PURPOSE: a wordmark for the app Pofu, direction C (pillow letters).
+
+      AUDIENCE: adults and teens who open social apps by reflex; warm, humorous, never
+      preachy.
+
+      REQUIRED TEXT: Pofu
+
+      (exactly four letters: capital P, lowercase o, f, u.)
+
+      LETTERFORM: puffy inflated pillow letters in cream with a soft warm brown shading
+      side, tightly spaced. Extra mark: a tiny sunflower seed sitting after the last
+      letter.
+
+      COLOR: warm brown and cream from the attached painting on a plain pale cream
+      ground.
+
+      LAYOUT: one lockup, centered, wide, with generous margin.
+
+
+      AVOID: any word other than Pofu, a hamster, a border, 3D, glow, outline, a drop
+      shadow
+
+
+      Output: one image, opaque, full bleed, landscape 1536 x 1024.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T14:04:47+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-6c3ddd72-aebd-46fd-8087-aa71daee0e34.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: a8739abf2ddc03a00430465b65fa93b70a6eb96388cddce9d4720be7db4b3946
