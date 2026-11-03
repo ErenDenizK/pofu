@@ -1,0 +1,18 @@
+id: asset-x-appicon-layer-sky
+type: asset
+title_tr: x-appicon-layer-sky
+title_en: x-appicon-layer-sky (appicon)
+status: in-production
+horizon: now
+summary: >-
+  Only the sky for a layered app icon: a soft warm peach-to-cream vertical gradient with two
+  faint, small clouds low down on the left and right, nothing else. Square, opaque.
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-appicon-layer-sky
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: appicon
+batch: batch-15-explore
+size: 1024x1024

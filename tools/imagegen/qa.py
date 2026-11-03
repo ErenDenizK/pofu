@@ -36,6 +36,12 @@ ORDER = {"pass": 0, "warn": 1, "fail": 2}
 # of the ellipse (y 800...908), so the anchor check looks at that band.
 STATION = {"cx": 512, "cy": 800, "rx": 360, "ry": 108, "top": 150, "baseline_target": 900}
 
+# The decor guide (design/art/templates/decor-guide.png, tools/art/island_guides.py):
+# half a station's footprint, a 340 px height bar, a hang line at y 300 that a
+# hanging piece stays under and above y 620.
+DECOR = {"cx": 512, "cy": 840, "rx": 180, "ry": 54, "top": 500, "baseline_target": 888,
+         "hang_y": 300, "hang_floor": 620, "hang_width": 560}
+
 # Thresholds on the locked image, derived from R1 (art-direction study).
 DEFAULT_LIMITS = {
     "chroma_p95": {"warn": 52.0, "fail": 60.0},
@@ -190,9 +196,59 @@ def station_registration(rgba: np.ndarray) -> dict:
     return {"dx": int(round(STATION["cx"] - g.base_x)), "dy": int(round(STATION["baseline_target"] - g.baseline))}
 
 
+def decor_registration(rgba: np.ndarray, mode: str = "ground") -> dict:
+    """Translation that puts a decor piece on the decor guide's anchor (like a
+    station's). A ground piece stands on the footprint; a hanging piece hangs
+    from the hang line. Scale is never changed here: a piece drawn at the
+    wrong size fails check_decor_anchor, and the prompt is fixed instead."""
+    g = pa.measure(rgba)
+    if mode == "hang":
+        return {"dx": int(round(DECOR["cx"] - (g.left + g.right) / 2)), "dy": int(round(DECOR["hang_y"] - g.top))}
+    return {"dx": int(round(DECOR["cx"] - g.base_x)), "dy": int(round(DECOR["baseline_target"] - g.baseline))}
+
+
 # ---------------------------------------------------------------------------
 # Checks
 # ---------------------------------------------------------------------------
+
+def check_decor_anchor(rgba: np.ndarray, mode: str = "ground") -> Check:
+    """A decor piece against the decor guide: footprint width, height bar, ground line.
+
+    Batch 08's bench came out 740 px wide and 80 px above the bar against a
+    360 px footprint and a bar at y 500, and automated QA passed it. Now the
+    same numbers fail it."""
+    g = pa.measure(rgba)
+    problems, status = [], "pass"
+    if mode == "hang":
+        if abs(g.top - DECOR["hang_y"]) > 40:
+            problems.append(f"top y {g.top} (hang line {DECOR['hang_y']})")
+            status = worst([status, "fail" if abs(g.top - DECOR["hang_y"]) > 100 else "warn"])
+        if g.bottom > DECOR["hang_floor"] + 30:
+            problems.append(f"bottom y {g.bottom} below the floor ({DECOR['hang_floor']})")
+            status = worst([status, "fail" if g.bottom > DECOR["hang_floor"] + 100 else "warn"])
+        limit = DECOR["hang_width"] + 80
+        if g.width > limit:
+            problems.append(f"width {g.width} px wider than the hang line ({DECOR['hang_width']})")
+            status = worst([status, "fail" if g.width > limit + 120 else "warn"])
+        return Check("decor_anchor", status, "; ".join(problems) or "on the hang line", g.bottom)
+    dx = g.base_x - DECOR["cx"]
+    if abs(dx) > 40:
+        problems.append(f"footprint center x {g.base_x:.0f} (anchor {DECOR['cx']})")
+        status = worst([status, "fail" if abs(dx) > 90 else "warn"])
+    lo, hi = DECOR["cy"] - 10, DECOR["cy"] + DECOR["ry"] + 26
+    if not lo <= g.baseline <= hi:
+        off = min(abs(g.baseline - lo), abs(g.baseline - hi))
+        problems.append(f"ground line y {g.baseline} (expected {lo}-{hi})")
+        status = worst([status, "fail" if off > 60 else "warn"])
+    if g.top < DECOR["top"] - 30:
+        problems.append(f"top y {g.top} above the height bar ({DECOR['top']})")
+        status = worst([status, "fail" if g.top < DECOR["top"] - 100 else "warn"])
+    foot = 2 * DECOR["rx"]
+    if g.width > foot + 60:
+        problems.append(f"width {g.width} px wider than the footprint ({foot})")
+        status = worst([status, "fail" if g.width > foot * 1.4 else "warn"])
+    return Check("decor_anchor", status, "; ".join(problems) or "on the decor guide", g.baseline)
+
 
 def check_station_anchor(rgba: np.ndarray, is_edit: bool = False,
                          parent: np.ndarray | None = None) -> Check:
@@ -506,7 +562,7 @@ def check_harmony(locked: np.ndarray, kind: str, lim: dict) -> Check | None:
         import harmony
     except ImportError:
         return None
-    if not harmony.MANIFEST.exists():
+    if not harmony.MANIFEST.is_dir():
         return None
     cfg = harmony.load_config()
     ppu = cfg["ppu_by_kind"].get(kind, cfg["ppu_by_kind"]["world"]) * locked.shape[1] / 1024
@@ -523,7 +579,7 @@ def check_harmony(locked: np.ndarray, kind: str, lim: dict) -> Check | None:
 
 
 def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[str], acceptance: dict | None = None,
-               parent_locked: np.ndarray | None = None) -> list[Check]:
+               parent_locked: np.ndarray | None = None, decor: str | None = None) -> list[Check]:
     acceptance = acceptance or {}
     lim = limits_for(kind, acceptance)
     m = sl.measure(locked)
@@ -543,6 +599,8 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
     checks.append(check_palette(locked, palettes))
     if kind == "station":
         checks.append(check_station_anchor(locked, is_edit=parent_locked is not None, parent=parent_locked))
+    if decor and parent_locked is None:
+        checks.append(check_decor_anchor(locked, decor))
     if kind == "world":
         ratio = island_depth_ratio(locked)
         if ratio is not None:
@@ -588,7 +646,7 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
 def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, preset: dict, palettes: list[str],
                  acceptance: dict | None = None, registration: dict | None = None,
                  parent_locked: np.ndarray | None = None, register_root: bool = False,
-                 transparent: bool = True) -> TakeResult:
+                 transparent: bool = True, decor: str | None = None) -> TakeResult:
     checks: list[Check] = []
     if transparent:
         rgba, c = ensure_alpha(raw)
@@ -607,6 +665,11 @@ def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, pre
         if reg:
             rgba = shift(rgba, reg["dx"], reg["dy"])
             info["registration"] = reg
+    if decor and parent_locked is None:
+        reg = registration if registration is not None else (decor_registration(rgba, decor) if register_root else None)
+        if reg:
+            rgba = shift(rgba, reg["dx"], reg["dy"])
+            info["registration"] = reg
     normalized = rgba
     locked = sl.apply_lock(normalized, preset)
     if parent_locked is not None and transparent and locked.shape == parent_locked.shape:
@@ -618,7 +681,7 @@ def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, pre
             checks.append(Check("edit_alignment", "pass" if off <= 0.03 else "warn" if off <= 0.25 else "fail",
                                 f"the edit rescaled the object x{1 / t['scale']:.3f} and moved it; aligned back to the parent",
                                 t["scale"]))
-    checks.extend(run_checks(kind, normalized, locked, palettes, acceptance, parent_locked))
+    checks.extend(run_checks(kind, normalized, locked, palettes, acceptance, parent_locked, decor))
     info["metrics_raw"] = sl.measure(normalized)
     info["metrics_locked"] = sl.measure(locked)
     return TakeResult(raw=raw, normalized=normalized, locked=locked, checks=checks, info=info)

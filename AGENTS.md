@@ -155,8 +155,8 @@ job of the track in order. The manifest is
    how closely the take matches the approved island, or Pofu for
    characters, measured by `tools/assets/harmony.py`; below 70 it warns).
    If no take passes, generate at most
-   one more round of the job's variants. If that also fails, stop and report
-   the failing checks; do not loop. Set that take as the pick for this job
+   one more round of the job's variants. If that also fails, skip the job and its
+   dependents and go on (see Stop conditions); do not loop. Set that take as the pick for this job
    only, and run `promote --only <id>`. In the provenance note, write
    "auto-picked by QA; founder review pending". Read the job's `notes` in
    the manifest: some name a review check or a case where you must stop.
@@ -215,15 +215,19 @@ So, for every task and every push:
   no `raw.webp`. Fix and re-push before you start the next job. (Batch
   01 masters already on `main` decode and may stay as they are.)
 
-## Harmony manifest: commit it with every promoted master
+## Harmony manifest: commit your master's own file
 
-CI runs `python3 -I tools/assets/harmony.py check`, and a new master changes
-the harmony manifest, so an art PR without the refreshed manifest fails CI
-(batches 05 to 07 did). The push checklist for every promoted master:
+CI runs `python3 -I tools/assets/harmony.py check`, and a new master needs
+its harmony entry, so an art PR without it fails CI (batches 05 to 07 did).
+The manifest is one small file per asset, `design/art/harmony/assets/<id>.json`,
+so parallel art PRs never touch the same file. The push checklist for every
+promoted master:
 
 1. `python3 -I tools/assets/harmony.py measure`
-2. Commit the changed manifest in the same PR as the master (and its
-   `raw.webp`, content node and provenance).
+2. Commit only the new or changed `design/art/harmony/assets/<id>.json` of
+   your masters in the same PR as the master (and its `raw.webp`, content
+   node and provenance). If other assets' files changed too, a shared input
+   moved (config, reference); do not commit those, tell the lead.
 3. `python3 -I tools/assets/harmony.py check` must pass before you push.
 
 ## Next batches: the queue
@@ -242,9 +246,15 @@ AGENTS.md parallel auto mode, batch-11-ui-pilot, track all
 AGENTS.md parallel auto mode, batch-08-decor-pilot, track all
 AGENTS.md parallel auto mode, batch-09-explore-pilot, track all
 AGENTS.md parallel auto mode, batch-10-island-concepts-pilot, track all
+AGENTS.md parallel auto mode, batch-12-minigame-art, track all
+AGENTS.md parallel auto mode, batch-13-ui-rest, track all
+AGENTS.md parallel auto mode, batch-14-iskele, track all
+AGENTS.md parallel auto mode, batch-15-explore, track all
 ```
 
-Batches 09 and 10 are EXPLORATION: never run `promote` on them.
+Batches 09, 10 and 15 are EXPLORATION: never run `promote` on them. Batches
+12 to 15 carry their pilot as their first jobs: a failed pilot skips only the
+rest of that batch.
 
 - **batch-05-fixes-pilot:** `simit-2` and `workshop-2` are SALVAGED from
   batch 03's takes on `main` (their `notes` list the files). Batch 03's
@@ -259,10 +269,9 @@ Masters on `main` stored only as `<name>.webp` (for example `mochi-v2`,
 `island-main-l-v2`, `workshop-1`) are decoded to `<name>.png` first, as in
 step 2.
 
-## Pofu Atlas: one asset node per promoted master
+## Content graph: one asset node per promoted master
 
-Content planning lives in `content/` and renders into Pofu Atlas
-([`content/README.md`](content/README.md)). For **each master you
+Content planning lives in `content/` ([`content/README.md`](content/README.md)). For **each master you
 promote**, add an `asset` node or update its `art:`:
 
 1. After `run.py promote`, run `python3 -I tools/content/sync_assets.py`.
@@ -342,18 +351,36 @@ File names are made by the pipeline: raw takes are
 `<kind>__<name>--t<n>.png`; do not rename them. Kinds: `char`, `station`,
 `world`, `prop`, `plate`, `sheet`, `icon`, `ui`, `widget`, `appicon`.
 
-## Stop conditions (stop, report, do not retry)
+## Stop conditions
+
+**A failed job does not stop the line** (lead, 2026-11-02: one failed decor
+bench froze 14 finished rig picks and every later batch). Two levels:
+
+**Skip and continue.** A job that fails (QA failure on the same check twice,
+a timeout, a Codex answer without an image, a manual check such as the decor
+guide fit) gets its one allowed retry round (a fresh pair of takes). If that
+also fails, record the job as `skipped` with its reason in its `review.yaml`
+and its content node (`status: cut`, never delete), skip every job that depends
+on it (`edit_of`, `approved:`), say so in the PR, and **go on with the next
+job and the next batch**. Never loop, never waive a check to force a pass.
+Finished picks are always published; a skipped job never holds them back.
+
+**Global stop** (stop, report, do not retry) only for:
 
 - The batch is `blocked`, or `account.owner` / `account.kind` is empty.
-- Any usage-limit, rate-limit, quota, sign-in or key message.
-- Codex answers without an image, or refuses.
-- A generation times out.
-- Two takes in a row of one job fail QA on the same check: the prompt
-  needs fixing; tell the lead in the PR, do not "roll again".
-- The key guard fires, or the API estimate is above what the founder
-  agreed.
+- Any account, sign-in, key, quota, usage-limit or rate-limit message.
+- Codex refuses, or answers without an image three times in a row.
+- Identity or upload corruption (a pushed file fails `check_upload.py`
+  after one re-push, or the commit identity is wrong).
+- Three consecutive job failures (each after its retry), in any batches.
+- The key guard fires, or the API estimate is above what the founder agreed.
 - Anything needs `sudo`, a system install, or a change outside
   `tools/imagegen/`, `design/art/` and the PR: ask the founder first.
+
+**Before every batch:** run `git fetch origin main` and re-read
+[the queue](docs/design/art-production-plan.md#the-queue); new `READY` rows
+may have appeared. **When the queue is empty,** re-check it every 20 minutes
+for 2 hours before ending the session.
 
 ## Changing things
 

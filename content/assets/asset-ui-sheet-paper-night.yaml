@@ -1,0 +1,20 @@
+id: asset-ui-sheet-paper-night
+type: asset
+title_tr: ui-sheet-paper-night
+title_en: sheet-paper-night (ui)
+status: in-production
+horizon: now
+summary: >-
+  Dye the paper a deep, soft indigo-blue, the stitches a pale warm cream, the paper lip a
+  slightly lighter indigo. Keep it matte and calm; the middle stays plain, flat and even.
+links:
+  variant_of:
+  - asset-ui-sheet-paper
+art:
+  images: []
+  jobs:
+  - batch-13-ui-rest:ui-sheet-paper-night
+sources:
+- doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
+kind: ui
+batch: batch-13-ui-rest

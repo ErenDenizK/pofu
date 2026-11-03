@@ -1,0 +1,59 @@
+{
+ "after": {
+  "C_mean": 25.35,
+  "C_p50": 25.221,
+  "C_p95": 50.045,
+  "L_mean": 78.594,
+  "L_p2": 56.308,
+  "L_p98": 89.241,
+  "detail": 2.023,
+  "edge": 0.437,
+  "tint_a": 5.466,
+  "tint_b": 7.353,
+  "warmth_b": 23.559
+ },
+ "before": {
+  "C_mean": 16.302,
+  "C_p50": 14.309,
+  "C_p95": 42.308,
+  "L_mean": 78.608,
+  "L_p2": 56.308,
+  "L_p98": 89.409,
+  "detail": 2.005,
+  "edge": 0.437,
+  "tint_a": 2.74,
+  "tint_b": 6.582,
+  "warmth_b": 15.257
+ },
+ "chain": {
+  "C_p50": 25.32,
+  "L_p2": 55.091,
+  "L_p98": 91.189
+ },
+ "correction": {
+  "black": 0.0,
+  "ceiling": 42.4,
+  "chroma": 1.77,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "chain_C_p50",
+  "edge"
+ ],
+ "ppu": 8.5333,
+ "reference": false,
+ "score_after": 87.8,
+ "score_before": 63.8,
+ "shipped": true,
+ "source": "design/art/stations/garden-5/garden-5.webp",
+ "source_sha": "88a8f3b6f4cebee9"
+}

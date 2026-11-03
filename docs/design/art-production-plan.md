@@ -25,8 +25,21 @@ Codex reads it at the start of every task.
 4. **Explorations never ship.** An `EXPLORATION` batch is generated, posted
    and auto-picked, but never promoted; its takes, contact sheet and
    `review.yaml` are committed for deciding.
-5. **Stop conditions are unchanged** (`AGENTS.md`): two failing takes on the
-   same check stop the job, and the PR says why.
+5. **A failed job skips, it does not stop the line** (`AGENTS.md`, Stop
+   conditions, 2026-11-02): after its one retry it is recorded as skipped with
+   its reason, its dependents are skipped, and Codex goes on to the next job and
+   batch. Global stop only for account, sign-in, quota or usage-limit messages,
+   refusals, identity or upload corruption, or three consecutive job failures.
+   Before each batch Codex re-reads this queue; when it is empty it re-checks
+   every 20 minutes for 2 hours.
+6. **Publish before you generate.** Selected candidates that were never promoted
+   (the 14 rig picks of batch 06, `pond-5-lit`, 4 UI takes of batch 11) are
+   published from their retained takes first, without regenerating.
+7. **Decor is checked against its guide.** A prop that attaches `decor-guide`
+   is registered on the guide and gets a `decor_anchor` check (footprint width,
+   height bar, ground line; a `decor: hang` piece uses the hang line), so the
+   decor-bench failure of batch 08 (740 px wide against a 360 px footprint) is
+   caught by QA, not by eye.
 
 ### How the lead marks a batch
 
@@ -52,12 +65,21 @@ until none is left.
 | 2 | `batch-06-pofu-rig` | production | The rest of the rig (eyes, mouths, cheeks puff-1 and puff-3, paws, `pofu-ears-droop`, matted fur) and Mochi's and Fındık's blink and happy eyes (pilot passed as composites) | pilot on main | 19 | **READY** |
 | 3 | `batch-07-light` | production | Night light, painted only for light-carrying stations: workshop doorway (L1), windmill windows (L5), pond lanterns (L5). cay-1-lit accepted; cay-5-lit dropped | main | 3 | **READY** |
 | 4 | `batch-11-ui-pilot` | production · PILOT | The hybrid UI's look-dev (ui-system-v2 section 6, 12 of the 14 pilot items; the two cheek stages are `pofu-cheeks-puff-2` and `-3` in row 2): seed icon, jar, lantern on a post, three pots, crafted primary face, disc, paper tag and panel | main | 12 | **READY** |
-| 5 | `batch-08-decor-pilot` | production · pilot | Four decor pieces, one per Ayçiçeği decor spot (bench, lantern string, toy sailboat, mailbox) | main | 4 | **READY** |
+| 5 | `batch-08-decor-pilot` | production · pilot | Four decor pieces, one per Ayçiçeği decor spot (bench, lantern string, toy sailboat, mailbox) | main | 4 | **READY** (re-run the bench: #88 failed its guide fit; QA now checks it and the prompt gives its size) |
 | 6 | `batch-09-explore-pilot` | EXPLORATION · pilot | Painted seed icon at 28–60 pt, App Store key art A, a Home ideation board | main | 3 | **READY** |
 | 7 | `batch-10-island-concepts-pilot` | EXPLORATION · pilot | Establishing shots of Çağlayan, Ayna, Revontuli | main | 3 | **READY** |
 | 8 | `batch-10-island-concepts` | EXPLORATION | Their signature moments (Damla at the falls, Pekmez and the seed falling up, Tuli painting the aurora), attaching the picked pilot takes | review of #6 | 3 | BLOCKED, manifest after #6 |
 | 9 | `batch-11-ui` | production | The rest of ui-system-v2 section 6 (night variants, secondary and pressed faces, game layer, domain icons, surfaces) | review of #4 | about 32 | BLOCKED, no manifest yet |
 | 10 | `batch-08-decor` | production | The rest of a decor kit | the decor mechanic decided (archipelago system, PR #64) and review of #5 | — | BLOCKED, no manifest yet |
+| 11 | `batch-12-minigame-art` | production · pilot inside | The garden minigame's painted art (minigames.md): sage plot tile, soil cell, seed (pilot), five glazes, three blooms, bed rim, combo stamp, tray | main | 14 | **READY** |
+| 12 | `batch-13-ui-rest` | production · pilot inside | The rest of the hybrid UI: crafted secondary face and pressed, sheet and menu paper (and a painted night sheet), the icon family at 28-60 pt (calm lit lantern first, then island, çay, friend, mood, skip, round, breath, rumour, decor, plus). Founder review pending | #87 merged | 16 | **READY** |
+| 13 | `batch-14-iskele` | production · pilot inside | İskele, the second free island: plate, vapur 1-2, horn post, crates, lamp, Simit the kitten (+ work and horn poses), the goat. The simit stall chain is reused from home | main | 10 | **READY** |
+| 14 | `batch-15-explore` | EXPLORATION · pilot inside | Two concepts for each of seven wonder islands, six resident model sheets, the archipelago sky map with fog, three app icons and two icon layers, three key art compositions, a winter Ayçiçeği edit, three onboarding illustrations | main | 33 | **READY** |
+
+**Order of work:** first publish what is already selected (rule 6), then rows
+1 to 7, then rows 11 to 14 in that order. Each of rows 11 to 14 is one
+manifest whose first 2 to 4 jobs are its pilot (the header names them); if a
+pilot job still fails after its retry, only the rest of that batch is skipped.
 
 Row 9 is the scale-up of row 4; row 8 of row 7; row 10 of row 5. Rows 1 to
 3 were the scale-ups of the passed pilots (batch-05, 06 and 07).

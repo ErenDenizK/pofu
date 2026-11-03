@@ -1,0 +1,20 @@
+id: asset-x-store-a
+type: asset
+title_tr: x-store-a
+title_en: x-store-a (plate)
+status: in-production
+horizon: now
+summary: >-
+  A portrait poster painting for an app store page: the small floating home island at golden
+  morning over a soft sea of clouds, filling the lower two thirds, Pofu the hamster sitting
+  small on the lawn beside the round door looking up at the sky, a thin sky above with generous
+  empty space at the top (calm zone for a title added later). Quiet and peaceful.
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-store-a
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1024x1536

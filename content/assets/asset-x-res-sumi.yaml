@@ -1,0 +1,21 @@
+id: asset-x-res-sumi
+type: asset
+title_tr: x-res-sumi
+title_en: x-res-sumi (sheet)
+status: in-production
+horizon: now
+summary: >-
+  A character model sheet on a plain transparent background, in exactly the same art style,
+  lighting and level of fluff as the attached hamster and bunny: three full-body views of
+  the same character in a row: front view sitting upright, three-quarter view, and a happy
+  pose. CHARACTER: Sumi, a baby Japanese dormouse, a round plush ball of soft fawn fur with
+  a cream belly, tiny round ears, a long fluffy tail curled, half…
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-res-sumi
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: sheet
+batch: batch-15-explore
+size: 1536x1024

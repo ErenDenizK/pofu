@@ -1,0 +1,58 @@
+{
+ "after": {
+  "C_mean": 19.38,
+  "C_p50": 11.367,
+  "C_p95": 49.754,
+  "L_mean": 86.504,
+  "L_p2": 59.326,
+  "L_p98": 96.992,
+  "detail": 7.494,
+  "edge": 0.157,
+  "tint_a": 3.706,
+  "tint_b": 6.158,
+  "warmth_b": 16.347
+ },
+ "before": {
+  "C_mean": 19.38,
+  "C_p50": 11.367,
+  "C_p95": 49.754,
+  "L_mean": 86.504,
+  "L_p2": 59.326,
+  "L_p98": 96.992,
+  "detail": 7.494,
+  "edge": 0.157,
+  "tint_a": 3.706,
+  "tint_b": 6.158,
+  "warmth_b": 16.347
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": true,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "L_p2",
+  "detail",
+  "tint_b"
+ ],
+ "outliers_before": [
+  "L_p2",
+  "detail",
+  "tint_b"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 71.2,
+ "score_before": 71.2,
+ "shipped": false,
+ "source": "design/art/masters/pofu-eyes-closed/pofu-eyes-closed.webp",
+ "source_sha": "fd927f4d59b3ea14"
+}

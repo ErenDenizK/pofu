@@ -1,0 +1,20 @@
+id: asset-x-store-c
+type: asset
+title_tr: x-store-c
+title_en: x-store-c (plate)
+status: in-production
+horizon: now
+summary: >-
+  A portrait poster painting for an app store page: the home island and a second small harbor
+  island with a pier and a tiny ferry, joined by a thin rope bridge, with a trail of far dim
+  islands behind them, at golden hour over a sea of clouds, warm light from the left, a calm
+  clear zone at the top for a title added later.
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-store-c
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1024x1536

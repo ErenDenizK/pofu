@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 37.913,
+  "C_p50": 41.845,
+  "C_p95": 49.058,
+  "L_mean": 70.151,
+  "L_p2": 44.607,
+  "L_p98": 96.195,
+  "detail": 0.392,
+  "edge": 1.673,
+  "tint_a": 2.33,
+  "tint_b": -1.173,
+  "warmth_b": 27.054
+ },
+ "before": {
+  "C_mean": 31.308,
+  "C_p50": 34.554,
+  "C_p95": 40.51,
+  "L_mean": 70.152,
+  "L_p2": 44.607,
+  "L_p98": 96.195,
+  "detail": 0.381,
+  "edge": 1.673,
+  "tint_a": 1.925,
+  "tint_b": 0.126,
+  "warmth_b": 22.341
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.211,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "world",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 2.25,
+ "reference": false,
+ "score_after": 84.7,
+ "score_before": 77.7,
+ "shipped": true,
+ "source": "design/prototypes/interactions/assets/isle-hamam.webp",
+ "source_sha": "2d21a0fe06337175"
+}

@@ -1,0 +1,21 @@
+id: asset-x-leylek-1
+type: asset
+title_tr: x-leylek-1
+title_en: x-leylek-1 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Leylek, a small reedy floating island with a
+  plump brick chimney crowned by a huge round nest of straw, in straw, white and soft black,
+  tall reeds along its edge, and three storks (white with black wing tips, plush and rounded)
+  circling on a thermal above it. Seen from the same low front three-quarter camera as the
+  attached island, the island floating over a sea of clouds. P…
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-leylek-1
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1536x1024

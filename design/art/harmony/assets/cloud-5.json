@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 5.461,
+  "C_p50": 6.087,
+  "C_p95": 8.666,
+  "L_mean": 89.635,
+  "L_p2": 83.33,
+  "L_p98": 94.815,
+  "detail": 0.449,
+  "edge": 0.844,
+  "tint_a": 0.025,
+  "tint_b": 3.202,
+  "warmth_b": 3.202
+ },
+ "before": {
+  "C_mean": 5.461,
+  "C_p50": 6.087,
+  "C_p95": 8.666,
+  "L_mean": 89.635,
+  "L_p2": 83.33,
+  "L_p98": 94.815,
+  "detail": 0.449,
+  "edge": 0.844,
+  "tint_a": 0.025,
+  "tint_b": 3.202,
+  "warmth_b": 3.202
+ },
+ "chain": {
+  "C_p50": 7.129,
+  "L_p2": 81.373,
+  "L_p98": 95.821
+ },
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": true,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [],
+ "outliers_before": [],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 95.5,
+ "score_before": 95.5,
+ "shipped": false,
+ "source": "design/art/masters/cloud-5/cloud-5.png",
+ "source_sha": "9c36e80534a1b659"
+}

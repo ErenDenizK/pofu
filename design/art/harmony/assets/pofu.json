@@ -1,0 +1,50 @@
+{
+ "after": {
+  "C_mean": 21.984,
+  "C_p50": 17.746,
+  "C_p95": 43.005,
+  "L_mean": 83.309,
+  "L_p2": 18.099,
+  "L_p98": 96.857,
+  "detail": 5.071,
+  "edge": 0.363,
+  "tint_a": 2.919,
+  "tint_b": 10.318,
+  "warmth_b": 19.384
+ },
+ "before": {
+  "C_mean": 21.984,
+  "C_p50": 17.746,
+  "C_p95": 43.005,
+  "L_mean": 83.309,
+  "L_p2": 18.099,
+  "L_p98": 96.857,
+  "detail": 5.071,
+  "edge": 0.363,
+  "tint_a": 2.919,
+  "tint_b": 10.318,
+  "warmth_b": 19.384
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": true,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [],
+ "outliers_before": [],
+ "ppu": 8.1562,
+ "reference": true,
+ "score_after": 100.0,
+ "score_before": 100.0,
+ "shipped": true,
+ "source": "Packages/PofuKit/Sources/PofuCompanion/Resources/pofu-hamster.png",
+ "source_sha": "3190c9c2ff7fcbc8"
+}
