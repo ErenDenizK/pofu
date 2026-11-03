@@ -1,0 +1,883 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-revontuli-a/contact.jpg
+jobs:
+  x2-revontuli-a:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Both originals depict the stated ice/snow/aurora place and contain no literal
+      lawn, soil bowl, dangling roots, pebbles or circular home door. The actual floe-only
+      outline remains a broad softly oval/scalloped platform; the native60 black test
+      loses the ice identity and does not distinguish this landform as a named object.
+      Recommend rejection on the mandatory distinct-landform silhouette test, not
+      on the advisory rubric total or an invented ban on every oval. The fishing opening
+      visibly contains water, not sky; no fake see-through hole is cut into the mask.
+      One permitted retry produced real takes3/4, likewise generic broad scalloped
+      slabs in the actual60px black test. All four are retained; no fifth call. Owner
+      visually inspected originals and source-bound contour preview.
+qa_reports:
+  1:
+    job: x2-revontuli-a
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 41 (R1 59)
+      value: 40.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.45
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6884
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 7.4, p95 16.1, off-palette 29.8% (top: #4466AA (5.3%), #5577BB
+        (3.2%)) (advisory in an exploration)'
+      value: 7.4111
+    info:
+      metrics_raw:
+        L_p5: 40.7
+        L_p50: 78.8
+        L_p95: 95.9
+        C_p50: 20.7
+        C_p95: 45.4
+        C_p99: 53.4
+        detail: 3.01
+      metrics_locked:
+        L_p5: 40.9
+        L_p50: 78.8
+        L_p95: 95.6
+        C_p50: 20.5
+        C_p95: 45.3
+        C_p99: 53.4
+        detail: 2.45
+    fingerprint: 9f741fa622e3e8c8
+  2:
+    job: x2-revontuli-a
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 39 (R1 59)
+      value: 38.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.54
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6883
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 7.4, p95 15.7, off-palette 30.4% (top: #4466AA (5.3%), #335599
+        (3.7%)) (advisory in an exploration)'
+      value: 7.3701
+    info:
+      metrics_raw:
+        L_p5: 38.5
+        L_p50: 76.7
+        L_p95: 96.5
+        C_p50: 20.6
+        C_p95: 40.8
+        C_p99: 45.3
+        detail: 3.11
+      metrics_locked:
+        L_p5: 38.6
+        L_p50: 76.7
+        L_p95: 96.2
+        C_p50: 20.3
+        C_p95: 40.6
+        C_p99: 45.1
+        detail: 2.54
+    fingerprint: 9f741fa622e3e8c8
+  3:
+    job: x2-revontuli-a
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 39 (R1 59)
+      value: 39.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.39
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6649
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 6.8, p95 14.9, off-palette 23.9% (top: #446699 (3.6%), #5577AA
+        (3.0%)) (advisory in an exploration)'
+      value: 6.7925
+    info:
+      metrics_raw:
+        L_p5: 39.1
+        L_p50: 79.6
+        L_p95: 95.4
+        C_p50: 18.1
+        C_p95: 40.2
+        C_p99: 46.1
+        detail: 2.95
+      metrics_locked:
+        L_p5: 39.2
+        L_p50: 79.7
+        L_p95: 95.2
+        C_p50: 17.9
+        C_p95: 40.1
+        C_p99: 45.7
+        detail: 2.39
+    fingerprint: 9f741fa622e3e8c8
+  4:
+    job: x2-revontuli-a
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 38 (R1 59)
+      value: 38.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.35
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7139
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 7.6, p95 16.7, off-palette 30.9% (top: #4466AA (3.7%), #335599
+        (3.5%)) (advisory in an exploration)'
+      value: 7.5828
+    info:
+      metrics_raw:
+        L_p5: 38.4
+        L_p50: 75.3
+        L_p95: 94.4
+        C_p50: 21.6
+        C_p95: 44.6
+        C_p99: 51.4
+        detail: 2.97
+      metrics_locked:
+        L_p5: 38.5
+        L_p50: 75.4
+        L_p95: 94.2
+        C_p50: 21.3
+        C_p95: 44.5
+        C_p99: 51.2
+        detail: 2.35
+    fingerprint: 9f741fa622e3e8c8
+manual_review:
+  recommendation_only: true
+  note: Both originals depict the stated ice/snow/aurora place and contain no literal
+    lawn, soil bowl, dangling roots, pebbles or circular home door. The actual floe-only
+    outline remains a broad softly oval/scalloped platform; the native60 black test
+    loses the ice identity and does not distinguish this landform as a named object.
+    Recommend rejection on the mandatory distinct-landform silhouette test, not on
+    the advisory rubric total or an invented ban on every oval. The fishing opening
+    visibly contains water, not sky; no fake see-through hole is cut into the mask.
+    One permitted retry produced real takes3/4, likewise generic broad scalloped slabs
+    in the actual60px black test. All four are retained; no fifth call. Owner visually
+    inspected originals and source-bound contour preview.
+  takes:
+    '1':
+      pass: false
+      silhouette_name: broad shallow scalloped floe/platform; ice identity depends
+        on colour
+      rubric:
+      - 1
+      - 2
+      - 2
+      - 2
+      - 0
+      evidence: Glowing blue-white edge, snow surface, one spruce, sauna on stilts
+        with steam, fox beside a round water-filled fishing opening, green/violet
+        aurora and falling snow are visible. The sauna entry has straight lower jambs
+        and a flat bottom under an arch, not the home fully oval door with separate
+        porthole. No actual home lawn/soil/root/pebble parts occur. However the black
+        landform-only profile at60px is a generic flattened scalloped platform; the
+        characteristic ice appearance comes from interior blue material and winter
+        props, not a unique recognisable outer landform.
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 800
+        - 400
+      - - 800
+        - 600
+      - - 100
+        - 180
+      contours:
+      - - - 75
+          - 590
+        - - 110
+          - 567
+        - - 162
+          - 548
+        - - 210
+          - 528
+        - - 260
+          - 533
+        - - 313
+          - 537
+        - - 379
+          - 544
+        - - 450
+          - 530
+        - - 510
+          - 514
+        - - 568
+          - 506
+        - - 628
+          - 483
+        - - 691
+          - 471
+        - - 750
+          - 475
+        - - 820
+          - 503
+        - - 870
+          - 520
+        - - 920
+          - 527
+        - - 990
+          - 522
+        - - 1062
+          - 522
+        - - 1140
+          - 526
+        - - 1200
+          - 532
+        - - 1270
+          - 535
+        - - 1314
+          - 545
+        - - 1392
+          - 562
+        - - 1431
+          - 581
+        - - 1446
+          - 610
+        - - 1442
+          - 632
+        - - 1400
+          - 702
+        - - 1354
+          - 757
+        - - 1250
+          - 802
+        - - 1120
+          - 838
+        - - 1066
+          - 847
+        - - 927
+          - 874
+        - - 800
+          - 891
+        - - 722
+          - 876
+        - - 590
+          - 850
+        - - 440
+          - 853
+        - - 300
+          - 794
+        - - 165
+          - 759
+        - - 89
+          - 699
+      holes: []
+      components:
+      - One visible floe landform. The spruce, hut, fox and steam remain in the source
+        scene but are not allowed to substitute for a unique landform silhouette.
+      negative_space_evidence: The fishing opening contains blue water; it is not
+        visibly open sky and is therefore not an observed silhouette hole.
+      uncertainty: Some rear-edge stretches are hidden by snow mounds and the hut/tree.
+        Mask joins there are conservative visible-occlusion closures, not recovered
+        hidden geometry. The clear front/side blue slab boundary is directly observed;
+        no hidden underside is invented.
+      source_file: /workspace/generated_images/exec-d493d8a9-3807-4b9b-80b5-6f8bef914646.png
+      original_generated_png_sha256: caa8a56be547cb47a0834b2e3ee1630ca6242ee42210a18d88f935528c856da1
+      rgba_sha256: dbde288bbb80a4dc87c333ea867c4f92e416c252e9946ea27b78f2d70f631dcf
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: 156dc310968989a79e476a351c82b29c0e8c4a2ca2464a9071c371bea031d250
+      sampled_swatches:
+      - point:
+        - 800
+        - 400
+        hex: '#4D72B8'
+      - point:
+        - 800
+        - 600
+        hex: '#F1E8EA'
+      - point:
+        - 100
+        - 180
+        hex: '#8ED1BA'
+      observed_bbox:
+      - 75
+      - 471
+      - 1447
+      - 892
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 1
+      qa_native60_black_pixels: 755
+      annotation_contours_count: 1
+      annotation_holes_count: 0
+      native60_mask_sha256: ca8417ba36531537036bc55e0c774c9cd2b456b9704a088af8db2f8eae08b13b
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 41ba3e2f2641e69503e681d5dba16ce56ce256a7a1c67e00aadead98a3ddaf16
+    '2':
+      pass: false
+      silhouette_name: broad shallow rounded/scalloped floe platform; not identifiable
+        as ice in black
+      rubric:
+      - 1
+      - 2
+      - 2
+      - 2
+      - 0
+      evidence: A blue glowing ice edge supports snow, one spruce, a stilt sauna with
+        steam, a fox and a blue water-filled fishing opening beneath an aurora/snow
+        sky. The wooden door is rectangular with straight sides and flat bottom, not
+        the home oval/porthole door. No home lawn, soil bowl, dangling roots or soil
+        pebbles. The floe-only native60 black profile remains a generic low oval/scalloped
+        plate; ice material and sauna/tree props supply identity only in the colour
+        scene, so the mandatory unique-landform silhouette is not demonstrated.
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 700
+        - 350
+      - - 900
+        - 650
+      - - 890
+        - 70
+      contours:
+      - - - 72
+          - 620
+        - - 89
+          - 587
+        - - 136
+          - 567
+        - - 195
+          - 545
+        - - 261
+          - 534
+        - - 336
+          - 530
+        - - 409
+          - 540
+        - - 485
+          - 537
+        - - 565
+          - 520
+        - - 658
+          - 522
+        - - 746
+          - 524
+        - - 826
+          - 522
+        - - 904
+          - 525
+        - - 980
+          - 528
+        - - 1052
+          - 536
+        - - 1128
+          - 538
+        - - 1212
+          - 541
+        - - 1292
+          - 555
+        - - 1377
+          - 574
+        - - 1425
+          - 596
+        - - 1448
+          - 618
+        - - 1446
+          - 649
+        - - 1427
+          - 700
+        - - 1396
+          - 744
+        - - 1340
+          - 782
+        - - 1265
+          - 810
+        - - 1160
+          - 834
+        - - 1038
+          - 850
+        - - 901
+          - 870
+        - - 793
+          - 881
+        - - 674
+          - 871
+        - - 554
+          - 850
+        - - 454
+          - 842
+        - - 350
+          - 816
+        - - 233
+          - 798
+        - - 158
+          - 767
+        - - 106
+          - 723
+        - - 87
+          - 679
+      holes: []
+      components:
+      - One observed floe body; tall winter props are intentionally excluded from
+        the landform-only test.
+      negative_space_evidence: The fishing opening is visibly filled with water, not
+        background sky. No hole is manufactured in the black mask.
+      uncertainty: The rear rim is partly occluded by props and snow; simple joins
+        close only visible sections, not a reconstructed full boundary. The front
+        ice edge is clear. Material identity cannot legitimately be recovered from
+        the black profile.
+      source_file: /workspace/generated_images/exec-b67a0128-bc3a-4725-8a0e-cb605f8c3f1c.png
+      original_generated_png_sha256: 4c97444cfaad01e6453e33c1ed72a030dec8983738ea8cbda7454460ca770cd3
+      rgba_sha256: fc9d89bc7f8b05bca8d3d66b3f3e6f4914b438f6af32cea8040879eec0f0f598
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: 905fe08bac68dc8d031160e4b36bb042d584a44063548806af2a55984333877f
+      sampled_swatches:
+      - point:
+        - 700
+        - 350
+        hex: '#5172B2'
+      - point:
+        - 900
+        - 650
+        hex: '#F7ECF3'
+      - point:
+        - 890
+        - 70
+        hex: '#79C8C1'
+      observed_bbox:
+      - 72
+      - 520
+      - 1449
+      - 882
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 1
+      qa_native60_black_pixels: 756
+      annotation_contours_count: 1
+      annotation_holes_count: 0
+      native60_mask_sha256: 67263637e8ab895bf70138965f739da9ecc665aa20112795e3113b234e684295
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: ede373e3d942343fab5e330e28b4a7a96fb0e822125fb2525084275f3a3215a0
+    '3':
+      pass: false
+      silhouette_name: broad scalloped ice slab; no distinctive nameable black landform
+      rubric:
+      - 1
+      - 2
+      - 2
+      - 2
+      - 0
+      evidence: Retry still depicts the requested blue glassy ice edge, snow, spruce,
+        sauna on stilts with steam, arctic fox, water-filled fishing opening, green/violet
+        aurora and snow. No copied home soil/lawn/roots/pebbles/oval door is observed.
+        The source-observed floe-only outer profile remains a generic broad oval/scalloped
+        platform at native60px; its ice identity depends on internal blue material
+        and winter props, so the mandatory distinctive-landform test fails. This is
+        a semantic silhouette decision, not an advisory style/rubric threshold.
+      swatch_points:
+      - - 800
+        - 400
+      - - 800
+        - 600
+      - - 100
+        - 180
+      contours:
+      - - - 101
+          - 608
+        - - 122
+          - 585
+        - - 160
+          - 554
+        - - 225
+          - 536
+        - - 280
+          - 529
+        - - 339
+          - 530
+        - - 390
+          - 535
+        - - 449
+          - 535
+        - - 512
+          - 507
+        - - 565
+          - 500
+        - - 623
+          - 499
+        - - 679
+          - 507
+        - - 730
+          - 522
+        - - 795
+          - 539
+        - - 857
+          - 546
+        - - 930
+          - 548
+        - - 1000
+          - 551
+        - - 1086
+          - 543
+        - - 1170
+          - 539
+        - - 1235
+          - 547
+        - - 1307
+          - 571
+        - - 1368
+          - 594
+        - - 1380
+          - 617
+        - - 1366
+          - 657
+        - - 1349
+          - 700
+        - - 1297
+          - 738
+        - - 1234
+          - 768
+        - - 1137
+          - 795
+        - - 1045
+          - 813
+        - - 941
+          - 841
+        - - 834
+          - 852
+        - - 723
+          - 840
+        - - 627
+          - 834
+        - - 522
+          - 813
+        - - 421
+          - 799
+        - - 321
+          - 770
+        - - 220
+          - 748
+        - - 158
+          - 709
+        - - 125
+          - 666
+      holes: []
+      negative_space_evidence: The fishing opening visibly contains water, not sky;
+        it is not cut as a fake silhouette hole.
+      uncertainty: Rear edge portions hidden by the tree/sauna/snow overlap are joined
+        only as conservative visible-occlusion closures, not recovered hidden geometry.
+        Cloud/mist blurs lower extremities; front/side ice boundary is directly observed.
+        No props are added to substitute for the landform test.
+      source_file: /workspace/generated_images/exec-3fd56120-e27d-467b-9e47-3eedad778a65.png
+      original_generated_png_sha256: 341bb01ea929b835bb4d7cfc3d74bc78d06a39a8e06011b522377504956a8855
+      rgba_sha256: c5797aaa87da4f3a4d52978e2af3eb4667222fbae063938fbd450889edcd396c
+      source_dimensions:
+      - 1536
+      - 1024
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      sampled_swatches:
+      - point:
+        - 800
+        - 400
+        hex: '#557AB5'
+      - point:
+        - 800
+        - 600
+        hex: '#FDF0E8'
+      - point:
+        - 100
+        - 180
+        hex: '#666EB0'
+      annotation_source_inbox_sha256: fe4f1ff3c8a68ee5768cab655b4ed22662a5e93ac93954ab33122ed6a374f069
+      observed_bbox:
+      - 101
+      - 499
+      - 1381
+      - 853
+      silhouette_native_longest_px: 60
+    '4':
+      pass: false
+      silhouette_name: broad scalloped ice slab; no distinctive nameable black landform
+      rubric:
+      - 1
+      - 2
+      - 2
+      - 2
+      - 0
+      evidence: Retry still depicts the requested blue glassy ice edge, snow, spruce,
+        sauna on stilts with steam, arctic fox, water-filled fishing opening, green/violet
+        aurora and snow. No copied home soil/lawn/roots/pebbles/oval door is observed.
+        The source-observed floe-only outer profile remains a generic broad oval/scalloped
+        platform at native60px; its ice identity depends on internal blue material
+        and winter props, so the mandatory distinctive-landform test fails. This is
+        a semantic silhouette decision, not an advisory style/rubric threshold.
+      swatch_points:
+      - - 800
+        - 400
+      - - 800
+        - 600
+      - - 100
+        - 180
+      contours:
+      - - - 70
+          - 640
+        - - 88
+          - 620
+        - - 143
+          - 596
+        - - 206
+          - 580
+        - - 261
+          - 563
+        - - 312
+          - 554
+        - - 367
+          - 555
+        - - 416
+          - 567
+        - - 470
+          - 569
+        - - 523
+          - 560
+        - - 584
+          - 550
+        - - 640
+          - 552
+        - - 701
+          - 565
+        - - 751
+          - 576
+        - - 817
+          - 579
+        - - 885
+          - 578
+        - - 945
+          - 576
+        - - 1015
+          - 577
+        - - 1090
+          - 571
+        - - 1160
+          - 568
+        - - 1235
+          - 578
+        - - 1314
+          - 594
+        - - 1390
+          - 611
+        - - 1452
+          - 638
+        - - 1452
+          - 667
+        - - 1427
+          - 703
+        - - 1376
+          - 737
+        - - 1301
+          - 770
+        - - 1212
+          - 801
+        - - 1114
+          - 833
+        - - 1007
+          - 855
+        - - 910
+          - 868
+        - - 800
+          - 878
+        - - 696
+          - 868
+        - - 590
+          - 862
+        - - 477
+          - 831
+        - - 370
+          - 808
+        - - 267
+          - 776
+        - - 169
+          - 736
+        - - 106
+          - 688
+      holes: []
+      negative_space_evidence: The fishing opening visibly contains water, not sky;
+        it is not cut as a fake silhouette hole.
+      uncertainty: Rear edge portions hidden by the tree/sauna/snow overlap are joined
+        only as conservative visible-occlusion closures, not recovered hidden geometry.
+        Cloud/mist blurs lower extremities; front/side ice boundary is directly observed.
+        No props are added to substitute for the landform test.
+      source_file: /workspace/generated_images/exec-f8de4391-b44f-4c2d-a7f5-38c93f7ac724.png
+      original_generated_png_sha256: 2f560f15777ce3c08b720d573af92e28e590c51bea80b285b25892987644f2b1
+      rgba_sha256: 8dccb88be1bf4a6d02379164848c031483700b6437fbb560333ee5ccb772e020
+      source_dimensions:
+      - 1536
+      - 1024
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      sampled_swatches:
+      - point:
+        - 800
+        - 400
+        hex: '#506DAB'
+      - point:
+        - 800
+        - 600
+        hex: '#F9EDE9'
+      - point:
+        - 100
+        - 180
+        hex: '#7D97CE'
+      annotation_source_inbox_sha256: c6bbdfe5e41670ab427215105c7b6c635d988f7127fa06a45838583da757f596
+      observed_bbox:
+      - 70
+      - 550
+      - 1453
+      - 879
+      silhouette_native_longest_px: 60
+  reviewed_at: '2026-11-03T16:09:17.106594+00:00'
+  preview_verified: true
+  preview_sha256: 2043825acf872a6cd274b71953752ecffd54f092c12f6e28cc5b87f2e24d0b74
+  no_authoritative_pick: true
+  production_score_threshold_applied: false
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-d493d8a9-3807-4b9b-80b5-6f8bef914646.png
+  original_generated_png_sha256: caa8a56be547cb47a0834b2e3ee1630ca6242ee42210a18d88f935528c856da1
+  inbox_png_sha256: 41ba3e2f2641e69503e681d5dba16ce56ce256a7a1c67e00aadead98a3ddaf16
+  rgba_sha256: dbde288bbb80a4dc87c333ea867c4f92e416c252e9946ea27b78f2d70f631dcf
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 9f741fa622e3e8c8
+- take: 2
+  source_file: /workspace/generated_images/exec-b67a0128-bc3a-4725-8a0e-cb605f8c3f1c.png
+  original_generated_png_sha256: 4c97444cfaad01e6453e33c1ed72a030dec8983738ea8cbda7454460ca770cd3
+  inbox_png_sha256: ede373e3d942343fab5e330e28b4a7a96fb0e822125fb2525084275f3a3215a0
+  rgba_sha256: fc9d89bc7f8b05bca8d3d66b3f3e6f4914b438f6af32cea8040879eec0f0f598
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 9f741fa622e3e8c8
+- take: 3
+  source_file: /workspace/generated_images/exec-3fd56120-e27d-467b-9e47-3eedad778a65.png
+  original_generated_png_sha256: 341bb01ea929b835bb4d7cfc3d74bc78d06a39a8e06011b522377504956a8855
+  inbox_png_sha256: fe4f1ff3c8a68ee5768cab655b4ed22662a5e93ac93954ab33122ed6a374f069
+  rgba_sha256: c5797aaa87da4f3a4d52978e2af3eb4667222fbae063938fbd450889edcd396c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 9f741fa622e3e8c8
+- take: 4
+  source_file: /workspace/generated_images/exec-f8de4391-b44f-4c2d-a7f5-38c93f7ac724.png
+  original_generated_png_sha256: 2f560f15777ce3c08b720d573af92e28e590c51bea80b285b25892987644f2b1
+  inbox_png_sha256: c6bbdfe5e41670ab427215105c7b6c635d988f7127fa06a45838583da757f596
+  rgba_sha256: 8dccb88be1bf4a6d02379164848c031483700b6437fbb560333ee5ccb772e020
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 9f741fa622e3e8c8
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
