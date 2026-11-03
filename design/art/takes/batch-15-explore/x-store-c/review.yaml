@@ -1,89 +1,137 @@
 batch: batch-15-explore
-contact_sheet: null
+contact_sheet: design/art/takes/batch-15-explore/x-store-c/contact.jpg
 jobs:
   x-store-c:
-    pick: null
-    publication: unselected due global account stop
-    note: 'UNSELECTED due global account/sign-in stop; no terminal QA failure/skip,
-      no pick, no further generation or QA after stop. Retained generated takes are
-      for resuming the existing allowed round, never regeneration of a completed pair.
-      This job never made an image call: the planned second logical group failed JavaScript
-      preflight before dispatch.'
-    takes_generated: 0
-    retry_round_used: false
-qa_reports: {}
-pre_stop_manual_notes: null
-sources: []
-prompt: 'REFERENCES (attached, in this order):
-
-  1. The home island: the same painting, the same low camera (about 20 degrees), the
-  same softness and scale of a floating island. Do not draw this island.
-
-  2. The sea of clouds below every island: paint the clouds like this.
-
-  3. Style reference only (no characters unless asked): the hamster''s soft painting
-  and pastel colors.
-
-  4. Key art A of this batch: the same world and light. Do not copy it.
-
-
-  A portrait poster painting for an app store page: the home island and a
-
-  second small harbor island with a pier and a tiny ferry, joined by a thin
-
-  rope bridge, with a trail of far dim islands behind them, at golden hour
-
-  over a sea of clouds, warm light from the left, a calm clear zone at the
-
-  top for a title added later.
-
-
-  STYLE: soft painterly 2D illustration from the same picture book as the
-
-  attached hamster: the same gentle airbrushed shading, the same light,
-
-  high-key values and the same milky pastel colors. Simple, rounded, chunky
-
-  shapes with few parts; fewer, larger shapes, because this is seen small on
-
-  a phone. Every material is painted matte, as a soft form with broad,
-
-  smooth value changes: wood without grain, metal without hammering or
-
-  reflections, glass as a soft tinted shape, cloth without weave. At most
-
-  one small, soft highlight per object; no glints, no shine. Colors are
-
-  muted and lifted toward cream; the darkest shadow is a warm mid-brown,
-
-  never near black. Warm diffused key light from the upper left, a faint
-
-  warm rim light along the right edge, soft ambient shadow only where forms
-
-  touch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no
-
-  letters, no numbers, no logos, no watermark, no border, no frame, no
-
-  sticker outline.
-
-
-  AVOID: text, a border, a UI, characters larger than a speck, harsh shadows
-
-
-  Output: one image, opaque, full bleed, portrait 1024 x 1536.'
-references_in_order:
-- /workspace/run15/design/art/masters/island-main-s/island-main-s.png
-- /workspace/run15/design/art/masters/cloud-sea/cloud-sea.png
-- /workspace/run15/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
-- /workspace/run15/build/imagegen/batch-15-explore/locked/plate__x-store-a--t1.png
-stop:
-  reason: Git authentication/account stop condition
-  observed_at: '2026-11-03T10:45:59Z'
-  job: x-emanet-2
-  message: 'fatal: could not read Username for ''https://github.com'': No such device
-    or address'
-  last_verified_head: 9a4209a585e4aaf89997c96f5a902e105d1b016c
-  next_publication_job: x-emanet-2
-  policy: No new generations or terminal decisions; preserve already-finished candidates
-    and publish completed work through an already-authorized functioning transport
-    if possible; notify coordinator immediately.
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Coordinator manual review: both
+      have home/harbor islands joined by a thin rope bridge, small ferry at pier,
+      trail of far dim islands, golden left light/cloud sea, generous clear upper
+      title zone and no UI/text/large characters. Low camera and soft painting family
+      read. Lowest non-failing lock load wins; exploration only.'
+qa_reports:
+  1:
+    job: x-store-c
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 82.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.71
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6446
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 4.1, off-palette 0.0%
+      value: 1.5428
+    info:
+      metrics_raw:
+        L_p5: 82.1
+        L_p50: 89.9
+        L_p95: 93.9
+        C_p50: 13.1
+        C_p95: 37.4
+        C_p99: 44.9
+        detail: 0.9
+      metrics_locked:
+        L_p5: 82.1
+        L_p50: 89.9
+        L_p95: 93.7
+        C_p50: 13.0
+        C_p95: 36.8
+        C_p99: 44.4
+        detail: 0.71
+    fingerprint: 014d5f9090799772
+  2:
+    job: x-store-c
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 34.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 81.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6751
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 4.1, off-palette 0.0%
+      value: 1.5269
+    info:
+      metrics_raw:
+        L_p5: 81.5
+        L_p50: 90.1
+        L_p95: 94.1
+        C_p50: 12.5
+        C_p95: 34.6
+        C_p99: 39.3
+        detail: 0.97
+      metrics_locked:
+        L_p5: 81.6
+        L_p50: 90.0
+        L_p95: 93.9
+        C_p50: 12.6
+        C_p95: 34.2
+        C_p99: 38.9
+        detail: 0.76
+    fingerprint: 014d5f9090799772
+manual_review:
+  exclude: []
+  note: 'Coordinator manual review: both have home/harbor islands joined by a thin
+    rope bridge, small ferry at pier, trail of far dim islands, golden left light/cloud
+    sea, generous clear upper title zone and no UI/text/large characters. Low camera
+    and soft painting family read. Lowest non-failing lock load wins; exploration
+    only.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-75684a9a-426c-4428-aa3c-df3bbbcad03c.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 014d5f9090799772
+  original_png_sha256: 3df30f04c2f952f2980316ee7429c3767b5451cf268e7e9453da45d8550362d6
+- take: 2
+  source_file: /workspace/generated_images/exec-aca21681-6ee6-4146-9cd4-e554c545172f.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 014d5f9090799772
+  original_png_sha256: 46e418fca6fedd16b0f73887a3e013ed41d4c15068854fd82a8e53c7f4bd338c
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
