@@ -34,6 +34,21 @@ not orders: each entry records **what he meant**, the **status**, and
 - Measure harmony for each promoted master and commit the current manifest with its art. One PR per batch; continue immediately. Once the queue is empty, check main every 20 minutes for two hours.
 - Status: in progress in art PRs #83, #84 and #87; later READY batches follow.
 
+## 2026-11-03 (morning)
+
+- **English identifiers everywhere.** Turkish names in code, asset ids,
+  file names, branches and props (`cay`, `simit`, `findik`, `aycicegi`,
+  `iskele`…) contradict the English-artifacts rule. Rename them to English
+  **at a planned point**: at the start of a quiet workflow window when the
+  Codex queue is drained and no PRs are open, in one coordinated PR per
+  layer (assets and manifests, Swift identifiers, docs and content ids),
+  with a mapping table and redirects in the pipeline. Not in a rush.
+  User-facing Turkish strings stay Turkish (localization); display names
+  may stay Turkish where they are proper names (Pofu's island names).
+  Merged PR titles stay as history. Status: planned, not started.
+- Workflow optimization round comes before the next large round (in
+  progress: local Swift toolchain, CI scope and caching, merge hotspots).
+
 ## 2026-11-02 (evening): after the look-dev round and the Hub answers
 
 ### Art and look
