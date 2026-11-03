@@ -1,0 +1,7328 @@
+batch: batch-18-loop-1-concepts
+contact_sheet: design/art/takes/batch-18-loop-1-concepts/cl1-backdrop-day/contact.jpg
+jobs:
+  cl1-backdrop-day:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Independent read-only recommendations. Sole owner selects/publishes. Exploration
+      style/rubric advisory. Required satellite remains a semantic constraint.
+qa_reports:
+  1:
+    job: cl1-backdrop-day
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 34.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 75.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.34
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7284
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.7, p95 3.8, off-palette 0.0%
+      value: 1.7119
+    info:
+      metrics_raw:
+        L_p5: 74.8
+        L_p50: 91.6
+        L_p95: 95.0
+        C_p50: 6.3
+        C_p95: 35.0
+        C_p99: 41.6
+        detail: 1.8
+      metrics_locked:
+        L_p5: 75.2
+        L_p50: 91.6
+        L_p95: 94.8
+        C_p50: 6.3
+        C_p95: 34.5
+        C_p99: 40.5
+        detail: 1.34
+    fingerprint: 7e8ed943294b2986
+  2:
+    job: cl1-backdrop-day
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 32.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 75.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7916
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 3.7, off-palette 0.0%
+      value: 1.4246
+    info:
+      metrics_raw:
+        L_p5: 75.6
+        L_p50: 91.3
+        L_p95: 94.8
+        C_p50: 8.4
+        C_p95: 32.6
+        C_p99: 40.7
+        detail: 1.57
+      metrics_locked:
+        L_p5: 75.9
+        L_p50: 91.3
+        L_p95: 94.7
+        C_p50: 8.4
+        C_p95: 32.2
+        C_p99: 39.6
+        detail: 1.14
+    fingerprint: 7e8ed943294b2986
+  3:
+    job: cl1-backdrop-day
+    take: 3
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 35.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 77 (R1 59)
+      value: 77.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.11
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8061
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 3.5, off-palette 0.0%
+      value: 1.6031
+    info:
+      metrics_raw:
+        L_p5: 76.8
+        L_p50: 90.8
+        L_p95: 94.0
+        C_p50: 7.1
+        C_p95: 35.4
+        C_p99: 41.8
+        detail: 1.54
+      metrics_locked:
+        L_p5: 77.0
+        L_p50: 90.8
+        L_p95: 93.9
+        C_p50: 7.1
+        C_p95: 35.0
+        C_p99: 40.8
+        detail: 1.11
+    fingerprint: 7e8ed943294b2986
+  4:
+    job: cl1-backdrop-day
+    take: 4
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 31 (R1 51)
+      value: 31.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 76.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.09
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7679
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 3.2, off-palette 0.0%
+      value: 1.2614
+    info:
+      metrics_raw:
+        L_p5: 75.9
+        L_p50: 91.2
+        L_p95: 94.2
+        C_p50: 8.5
+        C_p95: 31.2
+        C_p99: 37.7
+        detail: 1.49
+      metrics_locked:
+        L_p5: 76.2
+        L_p50: 91.1
+        L_p95: 94.1
+        C_p50: 8.5
+        C_p95: 31.0
+        C_p99: 36.8
+        detail: 1.09
+    fingerprint: 7e8ed943294b2986
+effective_exploration_reports:
+  1:
+    job: cl1-backdrop-day
+    take: 1
+    raw_status: pass
+    status: pass
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 34.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 75.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.34
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7284
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.7, p95 3.8, off-palette 0.0%
+      value: 1.7119
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: 9d45a15a00acd1900b7768e6820ae649a972b82dc23943458ba2a86904ef21ea
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+  2:
+    job: cl1-backdrop-day
+    take: 2
+    raw_status: pass
+    status: pass
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 32.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 75.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7916
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 3.7, off-palette 0.0%
+      value: 1.4246
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: 6b828bfa7614390f0cd23928db08615f8dcfa1f5c7f4e5dcddfb0d6890cee2e1
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+  3:
+    job: cl1-backdrop-day
+    take: 3
+    raw_status: pass
+    status: pass
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 35.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 77 (R1 59)
+      value: 77.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.11
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8061
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 3.5, off-palette 0.0%
+      value: 1.6031
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: a4143e88ff76bd7cfaa348ae56849224da269b0a0ee311a41e458fbe8295bdc5
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+  4:
+    job: cl1-backdrop-day
+    take: 4
+    raw_status: pass
+    status: pass
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 31 (R1 51)
+      value: 31.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 76.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.09
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7679
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 3.2, off-palette 0.0%
+      value: 1.2614
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: 7fc04963ca4a80bdee4479ee714546fcef67ba11dc1150e7cae22caec2c248c1
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+manual_review:
+  note: Independent read-only recommendations. Sole owner selects/publishes. Exploration
+    style/rubric advisory. Required satellite remains a semantic constraint.
+  recommendation_only: true
+  takes:
+    '1':
+      pass: false
+      silhouette_name: Home oval foreground; stepped pool mass with planted bonsai;
+        cold conical kiln; bell arch; whale and trailing rock stack
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 1
+      - 1
+      evidence: 'The exact home terrain family is retained: broad oval grass rim,
+        cream layered soil bowl, round wooden entry and three hanging root groups.
+        Sunflowers, a tea kiosk and pond are explicitly named additions. Behind it,
+        the left pool cluster, cold unlit/no-smoke fairy-chimney kiln, bell arcade/spire
+        and whale with trailing sea stack occupy distinct slots. Warm diffuse sky,
+        cloud separation and increasing haze create foreground/mid/far depth. No painted
+        letters, digits, logo, watermark, border or UI is visible. The bell arch is
+        a real sky gap with a separate suspended bell; it is not filled into a solid
+        rectangular proxy. HARD SEMANTIC FAILURE: the named bonsai satellite is not
+        visibly separate. The bonsai trunk/base at x145–227,y407–472 joins the top
+        pool at x95–270,y466–536. It is a tree planted directly on the main travertine
+        island, with no separate boulder/float or visible orbit relation. Hidden separation
+        is not inferred. All other islands have independently traced native60 profiles;
+        color/detail/style concerns remain advisory, never an 8-point production gate.'
+      swatch_points:
+      - - 910
+        - 175
+      - - 281
+        - 524
+      - - 1111
+        - 754
+      contours:
+      - - - 380
+          - 561
+        - - 401
+          - 515
+        - - 467
+          - 477
+        - - 554
+          - 451
+        - - 677
+          - 429
+        - - 806
+          - 418
+        - - 926
+          - 420
+        - - 1090
+          - 427
+        - - 1210
+          - 445
+        - - 1326
+          - 481
+        - - 1400
+          - 522
+        - - 1441
+          - 566
+        - - 1431
+          - 619
+        - - 1393
+          - 665
+        - - 1351
+          - 699
+        - - 1307
+          - 715
+        - - 1300
+          - 747
+        - - 1319
+          - 776
+        - - 1313
+          - 804
+        - - 1301
+          - 826
+        - - 1288
+          - 810
+        - - 1299
+          - 784
+        - - 1289
+          - 757
+        - - 1287
+          - 725
+        - - 1249
+          - 769
+        - - 1159
+          - 814
+        - - 1051
+          - 843
+        - - 945
+          - 860
+        - - 844
+          - 855
+        - - 780
+          - 836
+        - - 768
+          - 851
+        - - 784
+          - 880
+        - - 774
+          - 916
+        - - 762
+          - 922
+        - - 762
+          - 902
+        - - 760
+          - 884
+        - - 743
+          - 867
+        - - 742
+          - 839
+        - - 685
+          - 827
+        - - 620
+          - 807
+        - - 554
+          - 777
+        - - 517
+          - 748
+        - - 517
+          - 782
+        - - 530
+          - 798
+        - - 521
+          - 827
+        - - 510
+          - 813
+        - - 512
+          - 795
+        - - 495
+          - 777
+        - - 496
+          - 753
+        - - 483
+          - 736
+        - - 494
+          - 715
+        - - 455
+          - 690
+        - - 421
+          - 660
+        - - 403
+          - 620
+      - - - 95
+          - 485
+        - - 107
+          - 471
+        - - 146
+          - 462
+        - - 203
+          - 459
+        - - 250
+          - 467
+        - - 269
+          - 480
+        - - 272
+          - 501
+        - - 307
+          - 507
+        - - 337
+          - 520
+        - - 346
+          - 540
+        - - 343
+          - 576
+        - - 344
+          - 605
+        - - 361
+          - 619
+        - - 360
+          - 654
+        - - 334
+          - 668
+        - - 280
+          - 673
+        - - 224
+          - 668
+        - - 191
+          - 655
+        - - 147
+          - 650
+        - - 116
+          - 643
+        - - 72
+          - 626
+        - - 29
+          - 625
+        - - 21
+          - 599
+        - - 25
+          - 574
+        - - 49
+          - 554
+        - - 81
+          - 550
+        - - 94
+          - 526
+      - - - 95
+          - 421
+        - - 108
+          - 408
+        - - 132
+          - 404
+        - - 145
+          - 391
+        - - 166
+          - 365
+        - - 194
+          - 360
+        - - 215
+          - 368
+        - - 226
+          - 387
+        - - 249
+          - 390
+        - - 270
+          - 402
+        - - 274
+          - 414
+        - - 251
+          - 426
+        - - 222
+          - 424
+        - - 210
+          - 418
+        - - 199
+          - 429
+        - - 196
+          - 441
+        - - 211
+          - 452
+        - - 218
+          - 464
+        - - 204
+          - 467
+        - - 187
+          - 457
+        - - 176
+          - 444
+        - - 170
+          - 430
+        - - 154
+          - 423
+        - - 133
+          - 432
+        - - 111
+          - 433
+      - - - 270
+          - 331
+        - - 283
+          - 307
+        - - 294
+          - 268
+        - - 308
+          - 247
+        - - 321
+          - 250
+        - - 336
+          - 279
+        - - 348
+          - 270
+        - - 361
+          - 295
+        - - 373
+          - 271
+        - - 389
+          - 237
+        - - 397
+          - 205
+        - - 392
+          - 195
+        - - 403
+          - 182
+        - - 424
+          - 180
+        - - 438
+          - 188
+        - - 442
+          - 200
+        - - 430
+          - 205
+        - - 441
+          - 239
+        - - 457
+          - 266
+        - - 476
+          - 296
+        - - 487
+          - 271
+        - - 494
+          - 241
+        - - 503
+          - 235
+        - - 512
+          - 256
+        - - 520
+          - 284
+        - - 530
+          - 273
+        - - 539
+          - 288
+        - - 550
+          - 316
+        - - 571
+          - 325
+        - - 588
+          - 339
+        - - 568
+          - 359
+        - - 528
+          - 367
+        - - 464
+          - 368
+        - - 405
+          - 364
+        - - 349
+          - 364
+        - - 297
+          - 354
+      - - - 1203
+          - 351
+        - - 1230
+          - 333
+        - - 1273
+          - 324
+        - - 1274
+          - 270
+        - - 1268
+          - 264
+        - - 1274
+          - 246
+        - - 1287
+          - 224
+        - - 1298
+          - 216
+        - - 1300
+          - 208
+        - - 1309
+          - 199
+        - - 1315
+          - 207
+        - - 1315
+          - 216
+        - - 1328
+          - 225
+        - - 1341
+          - 245
+        - - 1344
+          - 263
+        - - 1337
+          - 271
+        - - 1339
+          - 326
+        - - 1381
+          - 327
+        - - 1405
+          - 342
+        - - 1417
+          - 355
+        - - 1397
+          - 370
+        - - 1358
+          - 379
+        - - 1307
+          - 378
+        - - 1252
+          - 372
+      - - - 801
+          - 180
+        - - 807
+          - 159
+        - - 825
+          - 141
+        - - 848
+          - 128
+        - - 855
+          - 118
+        - - 874
+          - 115
+        - - 884
+          - 108
+        - - 906
+          - 104
+        - - 917
+          - 97
+        - - 941
+          - 98
+        - - 954
+          - 106
+        - - 970
+          - 113
+        - - 982
+          - 126
+        - - 998
+          - 136
+        - - 1004
+          - 147
+        - - 1044
+          - 153
+        - - 1062
+          - 143
+        - - 1067
+          - 134
+        - - 1054
+          - 129
+        - - 1045
+          - 115
+        - - 1043
+          - 101
+        - - 1052
+          - 105
+        - - 1072
+          - 110
+        - - 1083
+          - 119
+        - - 1092
+          - 111
+        - - 1126
+          - 102
+        - - 1127
+          - 116
+        - - 1120
+          - 131
+        - - 1105
+          - 140
+        - - 1086
+          - 147
+        - - 1079
+          - 169
+        - - 1064
+          - 189
+        - - 1030
+          - 206
+        - - 982
+          - 218
+        - - 937
+          - 223
+        - - 885
+          - 219
+        - - 847
+          - 207
+        - - 816
+          - 193
+      - - - 1201
+          - 165
+        - - 1206
+          - 149
+        - - 1212
+          - 135
+        - - 1220
+          - 134
+        - - 1228
+          - 148
+        - - 1237
+          - 111
+        - - 1245
+          - 102
+        - - 1256
+          - 106
+        - - 1261
+          - 130
+        - - 1269
+          - 156
+        - - 1275
+          - 145
+        - - 1283
+          - 149
+        - - 1292
+          - 169
+        - - 1271
+          - 177
+        - - 1232
+          - 176
+      - - - 1292
+          - 286
+        - - 1298
+          - 275
+        - - 1303
+          - 272
+        - - 1305
+          - 261
+        - - 1310
+          - 261
+        - - 1312
+          - 273
+        - - 1320
+          - 280
+        - - 1322
+          - 291
+        - - 1310
+          - 295
+        - - 1295
+          - 292
+      holes:
+      - - - 1286
+          - 329
+        - - 1287
+          - 271
+        - - 1290
+          - 253
+        - - 1298
+          - 243
+        - - 1310
+          - 242
+        - - 1321
+          - 251
+        - - 1328
+          - 270
+        - - 1327
+          - 328
+      components:
+      - home
+      - column
+      - bonsai_planted
+      - kiln
+      - bell_spire
+      - whale
+      - sea_stack
+      uncertainty: Clouds/haze obscure lower edges of all distant landforms; coarse
+        polygon closures follow only the visible fade and do not reconstruct hidden
+        bottoms. Tiny twigs and tea-kiosk details are omitted from the primary terrain
+        mask. The bonsai is not labelled a separate satellite because no separate
+        supporting landform is visible. The 60px crops show observed source resolution;
+        no missing edges or features are invented.
+      subject_profiles:
+        home:
+        - - - 380
+            - 561
+          - - 401
+            - 515
+          - - 467
+            - 477
+          - - 554
+            - 451
+          - - 677
+            - 429
+          - - 806
+            - 418
+          - - 926
+            - 420
+          - - 1090
+            - 427
+          - - 1210
+            - 445
+          - - 1326
+            - 481
+          - - 1400
+            - 522
+          - - 1441
+            - 566
+          - - 1431
+            - 619
+          - - 1393
+            - 665
+          - - 1351
+            - 699
+          - - 1307
+            - 715
+          - - 1300
+            - 747
+          - - 1319
+            - 776
+          - - 1313
+            - 804
+          - - 1301
+            - 826
+          - - 1288
+            - 810
+          - - 1299
+            - 784
+          - - 1289
+            - 757
+          - - 1287
+            - 725
+          - - 1249
+            - 769
+          - - 1159
+            - 814
+          - - 1051
+            - 843
+          - - 945
+            - 860
+          - - 844
+            - 855
+          - - 780
+            - 836
+          - - 768
+            - 851
+          - - 784
+            - 880
+          - - 774
+            - 916
+          - - 762
+            - 922
+          - - 762
+            - 902
+          - - 760
+            - 884
+          - - 743
+            - 867
+          - - 742
+            - 839
+          - - 685
+            - 827
+          - - 620
+            - 807
+          - - 554
+            - 777
+          - - 517
+            - 748
+          - - 517
+            - 782
+          - - 530
+            - 798
+          - - 521
+            - 827
+          - - 510
+            - 813
+          - - 512
+            - 795
+          - - 495
+            - 777
+          - - 496
+            - 753
+          - - 483
+            - 736
+          - - 494
+            - 715
+          - - 455
+            - 690
+          - - 421
+            - 660
+          - - 403
+            - 620
+        column:
+        - - - 95
+            - 485
+          - - 107
+            - 471
+          - - 146
+            - 462
+          - - 203
+            - 459
+          - - 250
+            - 467
+          - - 269
+            - 480
+          - - 272
+            - 501
+          - - 307
+            - 507
+          - - 337
+            - 520
+          - - 346
+            - 540
+          - - 343
+            - 576
+          - - 344
+            - 605
+          - - 361
+            - 619
+          - - 360
+            - 654
+          - - 334
+            - 668
+          - - 280
+            - 673
+          - - 224
+            - 668
+          - - 191
+            - 655
+          - - 147
+            - 650
+          - - 116
+            - 643
+          - - 72
+            - 626
+          - - 29
+            - 625
+          - - 21
+            - 599
+          - - 25
+            - 574
+          - - 49
+            - 554
+          - - 81
+            - 550
+          - - 94
+            - 526
+        bonsai_planted:
+        - - - 95
+            - 421
+          - - 108
+            - 408
+          - - 132
+            - 404
+          - - 145
+            - 391
+          - - 166
+            - 365
+          - - 194
+            - 360
+          - - 215
+            - 368
+          - - 226
+            - 387
+          - - 249
+            - 390
+          - - 270
+            - 402
+          - - 274
+            - 414
+          - - 251
+            - 426
+          - - 222
+            - 424
+          - - 210
+            - 418
+          - - 199
+            - 429
+          - - 196
+            - 441
+          - - 211
+            - 452
+          - - 218
+            - 464
+          - - 204
+            - 467
+          - - 187
+            - 457
+          - - 176
+            - 444
+          - - 170
+            - 430
+          - - 154
+            - 423
+          - - 133
+            - 432
+          - - 111
+            - 433
+        kiln:
+        - - - 270
+            - 331
+          - - 283
+            - 307
+          - - 294
+            - 268
+          - - 308
+            - 247
+          - - 321
+            - 250
+          - - 336
+            - 279
+          - - 348
+            - 270
+          - - 361
+            - 295
+          - - 373
+            - 271
+          - - 389
+            - 237
+          - - 397
+            - 205
+          - - 392
+            - 195
+          - - 403
+            - 182
+          - - 424
+            - 180
+          - - 438
+            - 188
+          - - 442
+            - 200
+          - - 430
+            - 205
+          - - 441
+            - 239
+          - - 457
+            - 266
+          - - 476
+            - 296
+          - - 487
+            - 271
+          - - 494
+            - 241
+          - - 503
+            - 235
+          - - 512
+            - 256
+          - - 520
+            - 284
+          - - 530
+            - 273
+          - - 539
+            - 288
+          - - 550
+            - 316
+          - - 571
+            - 325
+          - - 588
+            - 339
+          - - 568
+            - 359
+          - - 528
+            - 367
+          - - 464
+            - 368
+          - - 405
+            - 364
+          - - 349
+            - 364
+          - - 297
+            - 354
+        bell_spire:
+        - - - 1203
+            - 351
+          - - 1230
+            - 333
+          - - 1273
+            - 324
+          - - 1274
+            - 270
+          - - 1268
+            - 264
+          - - 1274
+            - 246
+          - - 1287
+            - 224
+          - - 1298
+            - 216
+          - - 1300
+            - 208
+          - - 1309
+            - 199
+          - - 1315
+            - 207
+          - - 1315
+            - 216
+          - - 1328
+            - 225
+          - - 1341
+            - 245
+          - - 1344
+            - 263
+          - - 1337
+            - 271
+          - - 1339
+            - 326
+          - - 1381
+            - 327
+          - - 1405
+            - 342
+          - - 1417
+            - 355
+          - - 1397
+            - 370
+          - - 1358
+            - 379
+          - - 1307
+            - 378
+          - - 1252
+            - 372
+        whale:
+        - - - 801
+            - 180
+          - - 807
+            - 159
+          - - 825
+            - 141
+          - - 848
+            - 128
+          - - 855
+            - 118
+          - - 874
+            - 115
+          - - 884
+            - 108
+          - - 906
+            - 104
+          - - 917
+            - 97
+          - - 941
+            - 98
+          - - 954
+            - 106
+          - - 970
+            - 113
+          - - 982
+            - 126
+          - - 998
+            - 136
+          - - 1004
+            - 147
+          - - 1044
+            - 153
+          - - 1062
+            - 143
+          - - 1067
+            - 134
+          - - 1054
+            - 129
+          - - 1045
+            - 115
+          - - 1043
+            - 101
+          - - 1052
+            - 105
+          - - 1072
+            - 110
+          - - 1083
+            - 119
+          - - 1092
+            - 111
+          - - 1126
+            - 102
+          - - 1127
+            - 116
+          - - 1120
+            - 131
+          - - 1105
+            - 140
+          - - 1086
+            - 147
+          - - 1079
+            - 169
+          - - 1064
+            - 189
+          - - 1030
+            - 206
+          - - 982
+            - 218
+          - - 937
+            - 223
+          - - 885
+            - 219
+          - - 847
+            - 207
+          - - 816
+            - 193
+        sea_stack:
+        - - - 1201
+            - 165
+          - - 1206
+            - 149
+          - - 1212
+            - 135
+          - - 1220
+            - 134
+          - - 1228
+            - 148
+          - - 1237
+            - 111
+          - - 1245
+            - 102
+          - - 1256
+            - 106
+          - - 1261
+            - 130
+          - - 1269
+            - 156
+          - - 1275
+            - 145
+          - - 1283
+            - 149
+          - - 1292
+            - 169
+          - - 1271
+            - 177
+          - - 1232
+            - 176
+      bell_material_contours:
+      - - - 1292
+          - 286
+        - - 1298
+          - 275
+        - - 1303
+          - 272
+        - - 1305
+          - 261
+        - - 1310
+          - 261
+        - - 1312
+          - 273
+        - - 1320
+          - 280
+        - - 1322
+          - 291
+        - - 1310
+          - 295
+        - - 1295
+          - 292
+      bell_air_holes:
+      - - - 1286
+          - 329
+        - - 1287
+          - 271
+        - - 1290
+          - 253
+        - - 1298
+          - 243
+        - - 1310
+          - 242
+        - - 1321
+          - 251
+        - - 1328
+          - 270
+        - - 1327
+          - 328
+      semantic_failures:
+      - Named bonsai satellite fused into the main travertine column; no separate
+        supporting rock/float or orbit gap observed.
+      source_file: /workspace/generated_images/exec-f7c27a50-87a8-44f3-943c-731a69953e1f.png
+      original_generated_png_sha256: 777f0cf4d06e275845045264bd94aec6c96ffcd348d7c5caeeba20f37d4109e0
+      rgba_sha256: 6817b8296ae27ead6d4019782947f4f0738e8ac5e7ea50dbdf9f2b883d26281e
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: 4cceb160e7670aa84f0bc97754a5ed113ca5e1540ea44c4d4219cf0a88c6c5aa
+      sampled_swatches:
+      - point:
+        - 910
+        - 175
+        hex: '#DFD7E0'
+      - point:
+        - 281
+        - 524
+        hex: '#D8EAEA'
+      - point:
+        - 1111
+        - 754
+        hex: '#F4C196'
+      observed_bbox:
+      - 21
+      - 97
+      - 1442
+      - 923
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      subject_profile_proof:
+      - name: home
+        bbox:
+        - 380
+        - 418
+        - 1442
+        - 923
+        contours:
+        - - - 380
+            - 561
+          - - 401
+            - 515
+          - - 467
+            - 477
+          - - 554
+            - 451
+          - - 677
+            - 429
+          - - 806
+            - 418
+          - - 926
+            - 420
+          - - 1090
+            - 427
+          - - 1210
+            - 445
+          - - 1326
+            - 481
+          - - 1400
+            - 522
+          - - 1441
+            - 566
+          - - 1431
+            - 619
+          - - 1393
+            - 665
+          - - 1351
+            - 699
+          - - 1307
+            - 715
+          - - 1300
+            - 747
+          - - 1319
+            - 776
+          - - 1313
+            - 804
+          - - 1301
+            - 826
+          - - 1288
+            - 810
+          - - 1299
+            - 784
+          - - 1289
+            - 757
+          - - 1287
+            - 725
+          - - 1249
+            - 769
+          - - 1159
+            - 814
+          - - 1051
+            - 843
+          - - 945
+            - 860
+          - - 844
+            - 855
+          - - 780
+            - 836
+          - - 768
+            - 851
+          - - 784
+            - 880
+          - - 774
+            - 916
+          - - 762
+            - 922
+          - - 762
+            - 902
+          - - 760
+            - 884
+          - - 743
+            - 867
+          - - 742
+            - 839
+          - - 685
+            - 827
+          - - 620
+            - 807
+          - - 554
+            - 777
+          - - 517
+            - 748
+          - - 517
+            - 782
+          - - 530
+            - 798
+          - - 521
+            - 827
+          - - 510
+            - 813
+          - - 512
+            - 795
+          - - 495
+            - 777
+          - - 496
+            - 753
+          - - 483
+            - 736
+          - - 494
+            - 715
+          - - 455
+            - 690
+          - - 421
+            - 660
+          - - 403
+            - 620
+        native_dimensions:
+        - 60
+        - 29
+        native60_mask_sha256: 110e9eb30c4303d7f78db4453dad932ff3453ec67c65d2fbe229a5ff8e7d1e8d
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: column
+        bbox:
+        - 21
+        - 459
+        - 362
+        - 674
+        contours:
+        - - - 95
+            - 485
+          - - 107
+            - 471
+          - - 146
+            - 462
+          - - 203
+            - 459
+          - - 250
+            - 467
+          - - 269
+            - 480
+          - - 272
+            - 501
+          - - 307
+            - 507
+          - - 337
+            - 520
+          - - 346
+            - 540
+          - - 343
+            - 576
+          - - 344
+            - 605
+          - - 361
+            - 619
+          - - 360
+            - 654
+          - - 334
+            - 668
+          - - 280
+            - 673
+          - - 224
+            - 668
+          - - 191
+            - 655
+          - - 147
+            - 650
+          - - 116
+            - 643
+          - - 72
+            - 626
+          - - 29
+            - 625
+          - - 21
+            - 599
+          - - 25
+            - 574
+          - - 49
+            - 554
+          - - 81
+            - 550
+          - - 94
+            - 526
+        native_dimensions:
+        - 60
+        - 38
+        native60_mask_sha256: f94da6c8e3742e0831dc745c3b6ea5fbab592c069804a124be2340a4d35185ff
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: bonsai_planted
+        bbox:
+        - 95
+        - 360
+        - 275
+        - 468
+        contours:
+        - - - 95
+            - 421
+          - - 108
+            - 408
+          - - 132
+            - 404
+          - - 145
+            - 391
+          - - 166
+            - 365
+          - - 194
+            - 360
+          - - 215
+            - 368
+          - - 226
+            - 387
+          - - 249
+            - 390
+          - - 270
+            - 402
+          - - 274
+            - 414
+          - - 251
+            - 426
+          - - 222
+            - 424
+          - - 210
+            - 418
+          - - 199
+            - 429
+          - - 196
+            - 441
+          - - 211
+            - 452
+          - - 218
+            - 464
+          - - 204
+            - 467
+          - - 187
+            - 457
+          - - 176
+            - 444
+          - - 170
+            - 430
+          - - 154
+            - 423
+          - - 133
+            - 432
+          - - 111
+            - 433
+        native_dimensions:
+        - 60
+        - 36
+        native60_mask_sha256: 4bdb62a1550e8129fea30489c9148b0f1dbbc2ecd7bb5495ba2216e653c6a773
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: kiln
+        bbox:
+        - 270
+        - 180
+        - 589
+        - 369
+        contours:
+        - - - 270
+            - 331
+          - - 283
+            - 307
+          - - 294
+            - 268
+          - - 308
+            - 247
+          - - 321
+            - 250
+          - - 336
+            - 279
+          - - 348
+            - 270
+          - - 361
+            - 295
+          - - 373
+            - 271
+          - - 389
+            - 237
+          - - 397
+            - 205
+          - - 392
+            - 195
+          - - 403
+            - 182
+          - - 424
+            - 180
+          - - 438
+            - 188
+          - - 442
+            - 200
+          - - 430
+            - 205
+          - - 441
+            - 239
+          - - 457
+            - 266
+          - - 476
+            - 296
+          - - 487
+            - 271
+          - - 494
+            - 241
+          - - 503
+            - 235
+          - - 512
+            - 256
+          - - 520
+            - 284
+          - - 530
+            - 273
+          - - 539
+            - 288
+          - - 550
+            - 316
+          - - 571
+            - 325
+          - - 588
+            - 339
+          - - 568
+            - 359
+          - - 528
+            - 367
+          - - 464
+            - 368
+          - - 405
+            - 364
+          - - 349
+            - 364
+          - - 297
+            - 354
+        native_dimensions:
+        - 60
+        - 36
+        native60_mask_sha256: 08344c7e51efe700eab494b32ad15a323f6bf6e49dcda8373cbbddfc38570700
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: bell_spire
+        bbox:
+        - 1203
+        - 199
+        - 1418
+        - 380
+        contours:
+        - - - 1203
+            - 351
+          - - 1230
+            - 333
+          - - 1273
+            - 324
+          - - 1274
+            - 270
+          - - 1268
+            - 264
+          - - 1274
+            - 246
+          - - 1287
+            - 224
+          - - 1298
+            - 216
+          - - 1300
+            - 208
+          - - 1309
+            - 199
+          - - 1315
+            - 207
+          - - 1315
+            - 216
+          - - 1328
+            - 225
+          - - 1341
+            - 245
+          - - 1344
+            - 263
+          - - 1337
+            - 271
+          - - 1339
+            - 326
+          - - 1381
+            - 327
+          - - 1405
+            - 342
+          - - 1417
+            - 355
+          - - 1397
+            - 370
+          - - 1358
+            - 379
+          - - 1307
+            - 378
+          - - 1252
+            - 372
+        native_dimensions:
+        - 60
+        - 51
+        native60_mask_sha256: ba6ae198eccb12bc1b782505cd1c037822ee47c120238fc18bc6c0ed16bc51db
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: whale
+        bbox:
+        - 801
+        - 97
+        - 1128
+        - 224
+        contours:
+        - - - 801
+            - 180
+          - - 807
+            - 159
+          - - 825
+            - 141
+          - - 848
+            - 128
+          - - 855
+            - 118
+          - - 874
+            - 115
+          - - 884
+            - 108
+          - - 906
+            - 104
+          - - 917
+            - 97
+          - - 941
+            - 98
+          - - 954
+            - 106
+          - - 970
+            - 113
+          - - 982
+            - 126
+          - - 998
+            - 136
+          - - 1004
+            - 147
+          - - 1044
+            - 153
+          - - 1062
+            - 143
+          - - 1067
+            - 134
+          - - 1054
+            - 129
+          - - 1045
+            - 115
+          - - 1043
+            - 101
+          - - 1052
+            - 105
+          - - 1072
+            - 110
+          - - 1083
+            - 119
+          - - 1092
+            - 111
+          - - 1126
+            - 102
+          - - 1127
+            - 116
+          - - 1120
+            - 131
+          - - 1105
+            - 140
+          - - 1086
+            - 147
+          - - 1079
+            - 169
+          - - 1064
+            - 189
+          - - 1030
+            - 206
+          - - 982
+            - 218
+          - - 937
+            - 223
+          - - 885
+            - 219
+          - - 847
+            - 207
+          - - 816
+            - 193
+        native_dimensions:
+        - 60
+        - 23
+        native60_mask_sha256: 97d986a3bb7aabb8eb35b7ba57ff3541a7925ee25228a51c296e4017d931cd17
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: sea_stack
+        bbox:
+        - 1201
+        - 102
+        - 1293
+        - 178
+        contours:
+        - - - 1201
+            - 165
+          - - 1206
+            - 149
+          - - 1212
+            - 135
+          - - 1220
+            - 134
+          - - 1228
+            - 148
+          - - 1237
+            - 111
+          - - 1245
+            - 102
+          - - 1256
+            - 106
+          - - 1261
+            - 130
+          - - 1269
+            - 156
+          - - 1275
+            - 145
+          - - 1283
+            - 149
+          - - 1292
+            - 169
+          - - 1271
+            - 177
+          - - 1232
+            - 176
+        native_dimensions:
+        - 60
+        - 50
+        native60_mask_sha256: 4edc84abf8264915fef7c5fa4d6a785676ed77e6073cbde6e41a49f81a0805c6
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 11
+      qa_native60_black_pixels: 865
+      annotation_contours_count: 8
+      annotation_holes_count: 1
+      native60_mask_sha256: 14b3f22f531cef7d51401d94d1ab3b5eef59ec6973b957d7340ee75f2d3d2af5
+      official_qa:
+        file: /workspace/run18/build/imagegen/batch-18-loop-1-concepts/qa/plate__cl1-backdrop-day--t1.json
+        sha256: 9d45a15a00acd1900b7768e6820ae649a972b82dc23943458ba2a86904ef21ea
+        raw_status: pass
+        exploration_style_advisory: true
+        effective:
+          file: /workspace/art-operator-runtime/batch18/effective/cl1-backdrop-day-t1.json
+          sha256: c9f67130a1f410ccd0f6bd62d8eb70ced24300dce0caac5a4af488ff997a4c03
+          status: pass
+          threshold_changes: false
+      annotation_source_inbox_sha256: 9e117ab0904d3563c310b9ba8c002a7d9cec5560f3d9d72ebe0be19fd9bfd0ab
+    '2':
+      pass: false
+      silhouette_name: Home oval foreground; stepped pool mass with planted bonsai;
+        cold conical kiln; bell arch; whale and trailing rock stack
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 1
+      - 1
+      evidence: 'The exact home terrain family is retained: broad oval grass rim,
+        cream layered soil bowl, round wooden entry and three hanging root groups.
+        Sunflowers, a tea kiosk and pond are explicitly named additions. Behind it,
+        the left pool cluster, cold unlit/no-smoke fairy-chimney kiln, bell arcade/spire
+        and whale with trailing sea stack occupy distinct slots. Warm diffuse sky,
+        cloud separation and increasing haze create foreground/mid/far depth. No painted
+        letters, digits, logo, watermark, border or UI is visible. The bell arch is
+        a real sky gap with a separate suspended bell; it is not filled into a solid
+        rectangular proxy. HARD SEMANTIC FAILURE: the named bonsai satellite is not
+        visibly separate. The bonsai trunk/base at x210–278,y405–475 joins the top
+        pool at x150–350,y459–538. It is a tree planted directly on the main travertine
+        island, with no separate boulder/float or visible orbit relation. Hidden separation
+        is not inferred. All other islands have independently traced native60 profiles;
+        color/detail/style concerns remain advisory, never an 8-point production gate.'
+      swatch_points:
+      - - 887
+        - 178
+      - - 272
+        - 587
+      - - 1101
+        - 765
+      contours:
+      - - - 399
+          - 565
+        - - 422
+          - 529
+        - - 484
+          - 497
+        - - 566
+          - 470
+        - - 677
+          - 444
+        - - 800
+          - 420
+        - - 936
+          - 412
+        - - 1075
+          - 419
+        - - 1214
+          - 438
+        - - 1340
+          - 473
+        - - 1453
+          - 518
+        - - 1507
+          - 557
+        - - 1514
+          - 586
+        - - 1493
+          - 621
+        - - 1467
+          - 645
+        - - 1437
+          - 680
+        - - 1399
+          - 713
+        - - 1361
+          - 735
+        - - 1366
+          - 760
+        - - 1382
+          - 787
+        - - 1380
+          - 809
+        - - 1365
+          - 836
+        - - 1357
+          - 827
+        - - 1363
+          - 802
+        - - 1354
+          - 786
+        - - 1350
+          - 762
+        - - 1347
+          - 747
+        - - 1281
+          - 796
+        - - 1191
+          - 839
+        - - 1076
+          - 867
+        - - 978
+          - 875
+        - - 884
+          - 867
+        - - 800
+          - 850
+        - - 794
+          - 870
+        - - 809
+          - 894
+        - - 803
+          - 929
+        - - 789
+          - 932
+        - - 788
+          - 910
+        - - 775
+          - 894
+        - - 771
+          - 870
+        - - 782
+          - 846
+        - - 700
+          - 832
+        - - 622
+          - 809
+        - - 561
+          - 783
+        - - 543
+          - 768
+        - - 536
+          - 784
+        - - 547
+          - 808
+        - - 540
+          - 834
+        - - 531
+          - 824
+        - - 530
+          - 804
+        - - 514
+          - 783
+        - - 510
+          - 759
+        - - 519
+          - 733
+        - - 481
+          - 700
+        - - 449
+          - 671
+        - - 422
+          - 618
+      - - - 147
+          - 484
+        - - 158
+          - 468
+        - - 193
+          - 460
+        - - 239
+          - 460
+        - - 305
+          - 463
+        - - 337
+          - 475
+        - - 350
+          - 492
+        - - 350
+          - 548
+        - - 351
+          - 579
+        - - 346
+          - 623
+        - - 328
+          - 643
+        - - 294
+          - 648
+        - - 254
+          - 639
+        - - 218
+          - 636
+        - - 189
+          - 621
+        - - 156
+          - 622
+        - - 108
+          - 630
+        - - 71
+          - 623
+        - - 42
+          - 608
+        - - 42
+          - 572
+        - - 48
+          - 543
+        - - 80
+          - 528
+        - - 121
+          - 520
+        - - 146
+          - 520
+      - - - 145
+          - 431
+        - - 153
+          - 418
+        - - 177
+          - 409
+        - - 192
+          - 407
+        - - 177
+          - 394
+        - - 181
+          - 379
+        - - 201
+          - 368
+        - - 210
+          - 358
+        - - 236
+          - 352
+        - - 263
+          - 358
+        - - 277
+          - 372
+        - - 298
+          - 378
+        - - 300
+          - 389
+        - - 285
+          - 403
+        - - 301
+          - 397
+        - - 322
+          - 396
+        - - 341
+          - 406
+        - - 347
+          - 418
+        - - 335
+          - 427
+        - - 313
+          - 431
+        - - 289
+          - 426
+        - - 273
+          - 423
+        - - 260
+          - 434
+        - - 250
+          - 439
+        - - 253
+          - 452
+        - - 273
+          - 464
+        - - 279
+          - 473
+        - - 261
+          - 474
+        - - 242
+          - 464
+        - - 227
+          - 447
+        - - 220
+          - 430
+        - - 210
+          - 421
+        - - 196
+          - 439
+        - - 173
+          - 444
+        - - 153
+          - 441
+      - - - 345
+          - 334
+        - - 365
+          - 311
+        - - 386
+          - 307
+        - - 396
+          - 274
+        - - 405
+          - 251
+        - - 408
+          - 243
+        - - 417
+          - 241
+        - - 428
+          - 249
+        - - 433
+          - 276
+        - - 443
+          - 254
+        - - 456
+          - 225
+        - - 464
+          - 215
+        - - 462
+          - 209
+        - - 474
+          - 202
+        - - 486
+          - 203
+        - - 494
+          - 213
+        - - 491
+          - 222
+        - - 496
+          - 243
+        - - 507
+          - 272
+        - - 516
+          - 295
+        - - 523
+          - 278
+        - - 525
+          - 263
+        - - 534
+          - 247
+        - - 542
+          - 248
+        - - 549
+          - 261
+        - - 553
+          - 281
+        - - 560
+          - 311
+        - - 583
+          - 315
+        - - 598
+          - 333
+        - - 615
+          - 340
+        - - 588
+          - 353
+        - - 541
+          - 363
+        - - 479
+          - 363
+        - - 421
+          - 360
+        - - 371
+          - 350
+      - - - 913
+          - 366
+        - - 930
+          - 350
+        - - 953
+          - 342
+        - - 983
+          - 337
+        - - 992
+          - 306
+        - - 995
+          - 276
+        - - 1004
+          - 249
+        - - 1019
+          - 235
+        - - 1027
+          - 232
+        - - 1028
+          - 221
+        - - 1035
+          - 218
+        - - 1044
+          - 224
+        - - 1040
+          - 232
+        - - 1055
+          - 248
+        - - 1063
+          - 275
+        - - 1068
+          - 337
+        - - 1097
+          - 340
+        - - 1127
+          - 356
+        - - 1144
+          - 370
+        - - 1114
+          - 383
+        - - 1073
+          - 386
+        - - 1027
+          - 383
+        - - 973
+          - 382
+        - - 932
+          - 377
+      - - - 741
+          - 189
+        - - 748
+          - 171
+        - - 760
+          - 159
+        - - 786
+          - 150
+        - - 804
+          - 141
+        - - 814
+          - 128
+        - - 829
+          - 124
+        - - 846
+          - 116
+        - - 866
+          - 116
+        - - 880
+          - 124
+        - - 894
+          - 129
+        - - 906
+          - 143
+        - - 929
+          - 151
+        - - 953
+          - 162
+        - - 978
+          - 172
+        - - 1003
+          - 174
+        - - 1019
+          - 160
+        - - 1024
+          - 146
+        - - 1003
+          - 140
+        - - 989
+          - 127
+        - - 987
+          - 114
+        - - 1000
+          - 116
+        - - 1017
+          - 122
+        - - 1027
+          - 131
+        - - 1040
+          - 125
+        - - 1066
+          - 124
+        - - 1074
+          - 121
+        - - 1070
+          - 136
+        - - 1058
+          - 145
+        - - 1043
+          - 151
+        - - 1035
+          - 176
+        - - 1019
+          - 194
+        - - 1000
+          - 205
+        - - 967
+          - 214
+        - - 931
+          - 219
+        - - 906
+          - 218
+        - - 895
+          - 226
+        - - 912
+          - 244
+        - - 926
+          - 249
+        - - 914
+          - 255
+        - - 899
+          - 254
+        - - 883
+          - 247
+        - - 867
+          - 234
+        - - 846
+          - 237
+        - - 811
+          - 227
+        - - 778
+          - 211
+        - - 753
+          - 202
+      - - - 1086
+          - 227
+        - - 1097
+          - 217
+        - - 1103
+          - 197
+        - - 1112
+          - 197
+        - - 1118
+          - 210
+        - - 1125
+          - 175
+        - - 1134
+          - 158
+        - - 1142
+          - 160
+        - - 1150
+          - 183
+        - - 1156
+          - 210
+        - - 1162
+          - 197
+        - - 1170
+          - 198
+        - - 1178
+          - 222
+        - - 1195
+          - 233
+        - - 1167
+          - 241
+        - - 1124
+          - 240
+        - - 1100
+          - 234
+      - - - 1021
+          - 286
+        - - 1025
+          - 278
+        - - 1029
+          - 274
+        - - 1029
+          - 264
+        - - 1034
+          - 264
+        - - 1036
+          - 277
+        - - 1041
+          - 281
+        - - 1045
+          - 295
+        - - 1032
+          - 299
+        - - 1021
+          - 295
+      holes:
+      - - - 1008
+          - 338
+        - - 1010
+          - 279
+        - - 1015
+          - 260
+        - - 1029
+          - 250
+        - - 1040
+          - 252
+        - - 1048
+          - 267
+        - - 1053
+          - 338
+      components:
+      - home
+      - column
+      - bonsai_planted
+      - kiln
+      - bell_spire
+      - whale
+      - sea_stack
+      uncertainty: Clouds/haze obscure lower edges of all distant landforms; coarse
+        polygon closures follow only the visible fade and do not reconstruct hidden
+        bottoms. Tiny twigs and tea-kiosk details are omitted from the primary terrain
+        mask. The bonsai is not labelled a separate satellite because no separate
+        supporting landform is visible. The 60px crops show observed source resolution;
+        no missing edges or features are invented.
+      subject_profiles:
+        home:
+        - - - 399
+            - 565
+          - - 422
+            - 529
+          - - 484
+            - 497
+          - - 566
+            - 470
+          - - 677
+            - 444
+          - - 800
+            - 420
+          - - 936
+            - 412
+          - - 1075
+            - 419
+          - - 1214
+            - 438
+          - - 1340
+            - 473
+          - - 1453
+            - 518
+          - - 1507
+            - 557
+          - - 1514
+            - 586
+          - - 1493
+            - 621
+          - - 1467
+            - 645
+          - - 1437
+            - 680
+          - - 1399
+            - 713
+          - - 1361
+            - 735
+          - - 1366
+            - 760
+          - - 1382
+            - 787
+          - - 1380
+            - 809
+          - - 1365
+            - 836
+          - - 1357
+            - 827
+          - - 1363
+            - 802
+          - - 1354
+            - 786
+          - - 1350
+            - 762
+          - - 1347
+            - 747
+          - - 1281
+            - 796
+          - - 1191
+            - 839
+          - - 1076
+            - 867
+          - - 978
+            - 875
+          - - 884
+            - 867
+          - - 800
+            - 850
+          - - 794
+            - 870
+          - - 809
+            - 894
+          - - 803
+            - 929
+          - - 789
+            - 932
+          - - 788
+            - 910
+          - - 775
+            - 894
+          - - 771
+            - 870
+          - - 782
+            - 846
+          - - 700
+            - 832
+          - - 622
+            - 809
+          - - 561
+            - 783
+          - - 543
+            - 768
+          - - 536
+            - 784
+          - - 547
+            - 808
+          - - 540
+            - 834
+          - - 531
+            - 824
+          - - 530
+            - 804
+          - - 514
+            - 783
+          - - 510
+            - 759
+          - - 519
+            - 733
+          - - 481
+            - 700
+          - - 449
+            - 671
+          - - 422
+            - 618
+        column:
+        - - - 147
+            - 484
+          - - 158
+            - 468
+          - - 193
+            - 460
+          - - 239
+            - 460
+          - - 305
+            - 463
+          - - 337
+            - 475
+          - - 350
+            - 492
+          - - 350
+            - 548
+          - - 351
+            - 579
+          - - 346
+            - 623
+          - - 328
+            - 643
+          - - 294
+            - 648
+          - - 254
+            - 639
+          - - 218
+            - 636
+          - - 189
+            - 621
+          - - 156
+            - 622
+          - - 108
+            - 630
+          - - 71
+            - 623
+          - - 42
+            - 608
+          - - 42
+            - 572
+          - - 48
+            - 543
+          - - 80
+            - 528
+          - - 121
+            - 520
+          - - 146
+            - 520
+        bonsai_planted:
+        - - - 145
+            - 431
+          - - 153
+            - 418
+          - - 177
+            - 409
+          - - 192
+            - 407
+          - - 177
+            - 394
+          - - 181
+            - 379
+          - - 201
+            - 368
+          - - 210
+            - 358
+          - - 236
+            - 352
+          - - 263
+            - 358
+          - - 277
+            - 372
+          - - 298
+            - 378
+          - - 300
+            - 389
+          - - 285
+            - 403
+          - - 301
+            - 397
+          - - 322
+            - 396
+          - - 341
+            - 406
+          - - 347
+            - 418
+          - - 335
+            - 427
+          - - 313
+            - 431
+          - - 289
+            - 426
+          - - 273
+            - 423
+          - - 260
+            - 434
+          - - 250
+            - 439
+          - - 253
+            - 452
+          - - 273
+            - 464
+          - - 279
+            - 473
+          - - 261
+            - 474
+          - - 242
+            - 464
+          - - 227
+            - 447
+          - - 220
+            - 430
+          - - 210
+            - 421
+          - - 196
+            - 439
+          - - 173
+            - 444
+          - - 153
+            - 441
+        kiln:
+        - - - 345
+            - 334
+          - - 365
+            - 311
+          - - 386
+            - 307
+          - - 396
+            - 274
+          - - 405
+            - 251
+          - - 408
+            - 243
+          - - 417
+            - 241
+          - - 428
+            - 249
+          - - 433
+            - 276
+          - - 443
+            - 254
+          - - 456
+            - 225
+          - - 464
+            - 215
+          - - 462
+            - 209
+          - - 474
+            - 202
+          - - 486
+            - 203
+          - - 494
+            - 213
+          - - 491
+            - 222
+          - - 496
+            - 243
+          - - 507
+            - 272
+          - - 516
+            - 295
+          - - 523
+            - 278
+          - - 525
+            - 263
+          - - 534
+            - 247
+          - - 542
+            - 248
+          - - 549
+            - 261
+          - - 553
+            - 281
+          - - 560
+            - 311
+          - - 583
+            - 315
+          - - 598
+            - 333
+          - - 615
+            - 340
+          - - 588
+            - 353
+          - - 541
+            - 363
+          - - 479
+            - 363
+          - - 421
+            - 360
+          - - 371
+            - 350
+        bell_spire:
+        - - - 913
+            - 366
+          - - 930
+            - 350
+          - - 953
+            - 342
+          - - 983
+            - 337
+          - - 992
+            - 306
+          - - 995
+            - 276
+          - - 1004
+            - 249
+          - - 1019
+            - 235
+          - - 1027
+            - 232
+          - - 1028
+            - 221
+          - - 1035
+            - 218
+          - - 1044
+            - 224
+          - - 1040
+            - 232
+          - - 1055
+            - 248
+          - - 1063
+            - 275
+          - - 1068
+            - 337
+          - - 1097
+            - 340
+          - - 1127
+            - 356
+          - - 1144
+            - 370
+          - - 1114
+            - 383
+          - - 1073
+            - 386
+          - - 1027
+            - 383
+          - - 973
+            - 382
+          - - 932
+            - 377
+        whale:
+        - - - 741
+            - 189
+          - - 748
+            - 171
+          - - 760
+            - 159
+          - - 786
+            - 150
+          - - 804
+            - 141
+          - - 814
+            - 128
+          - - 829
+            - 124
+          - - 846
+            - 116
+          - - 866
+            - 116
+          - - 880
+            - 124
+          - - 894
+            - 129
+          - - 906
+            - 143
+          - - 929
+            - 151
+          - - 953
+            - 162
+          - - 978
+            - 172
+          - - 1003
+            - 174
+          - - 1019
+            - 160
+          - - 1024
+            - 146
+          - - 1003
+            - 140
+          - - 989
+            - 127
+          - - 987
+            - 114
+          - - 1000
+            - 116
+          - - 1017
+            - 122
+          - - 1027
+            - 131
+          - - 1040
+            - 125
+          - - 1066
+            - 124
+          - - 1074
+            - 121
+          - - 1070
+            - 136
+          - - 1058
+            - 145
+          - - 1043
+            - 151
+          - - 1035
+            - 176
+          - - 1019
+            - 194
+          - - 1000
+            - 205
+          - - 967
+            - 214
+          - - 931
+            - 219
+          - - 906
+            - 218
+          - - 895
+            - 226
+          - - 912
+            - 244
+          - - 926
+            - 249
+          - - 914
+            - 255
+          - - 899
+            - 254
+          - - 883
+            - 247
+          - - 867
+            - 234
+          - - 846
+            - 237
+          - - 811
+            - 227
+          - - 778
+            - 211
+          - - 753
+            - 202
+        sea_stack:
+        - - - 1086
+            - 227
+          - - 1097
+            - 217
+          - - 1103
+            - 197
+          - - 1112
+            - 197
+          - - 1118
+            - 210
+          - - 1125
+            - 175
+          - - 1134
+            - 158
+          - - 1142
+            - 160
+          - - 1150
+            - 183
+          - - 1156
+            - 210
+          - - 1162
+            - 197
+          - - 1170
+            - 198
+          - - 1178
+            - 222
+          - - 1195
+            - 233
+          - - 1167
+            - 241
+          - - 1124
+            - 240
+          - - 1100
+            - 234
+      bell_material_contours:
+      - - - 1021
+          - 286
+        - - 1025
+          - 278
+        - - 1029
+          - 274
+        - - 1029
+          - 264
+        - - 1034
+          - 264
+        - - 1036
+          - 277
+        - - 1041
+          - 281
+        - - 1045
+          - 295
+        - - 1032
+          - 299
+        - - 1021
+          - 295
+      bell_air_holes:
+      - - - 1008
+          - 338
+        - - 1010
+          - 279
+        - - 1015
+          - 260
+        - - 1029
+          - 250
+        - - 1040
+          - 252
+        - - 1048
+          - 267
+        - - 1053
+          - 338
+      semantic_failures:
+      - Named bonsai satellite fused into the main travertine column; no separate
+        supporting rock/float or orbit gap observed.
+      source_file: /workspace/generated_images/exec-f8f87247-aa1f-463a-8192-acb493db6161.png
+      original_generated_png_sha256: ed659c8c24efdcdb93139301aa6203f5dbeeb5431a9ab31409e79ff59a46f9ba
+      rgba_sha256: aaac1450f4cae1688bd1c1a56e530ccbeafe561f3a880936b5f4679ebf47808d
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: c11673f946b1c5a12d636879c5d70eac4d80c91fbf66bdcdf0bfe8c073349524
+      sampled_swatches:
+      - point:
+        - 887
+        - 178
+        hex: '#D3D2E0'
+      - point:
+        - 272
+        - 587
+        hex: '#D8E1D4'
+      - point:
+        - 1101
+        - 765
+        hex: '#F6DBCB'
+      observed_bbox:
+      - 42
+      - 114
+      - 1515
+      - 933
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      subject_profile_proof:
+      - name: home
+        bbox:
+        - 399
+        - 412
+        - 1515
+        - 933
+        contours:
+        - - - 399
+            - 565
+          - - 422
+            - 529
+          - - 484
+            - 497
+          - - 566
+            - 470
+          - - 677
+            - 444
+          - - 800
+            - 420
+          - - 936
+            - 412
+          - - 1075
+            - 419
+          - - 1214
+            - 438
+          - - 1340
+            - 473
+          - - 1453
+            - 518
+          - - 1507
+            - 557
+          - - 1514
+            - 586
+          - - 1493
+            - 621
+          - - 1467
+            - 645
+          - - 1437
+            - 680
+          - - 1399
+            - 713
+          - - 1361
+            - 735
+          - - 1366
+            - 760
+          - - 1382
+            - 787
+          - - 1380
+            - 809
+          - - 1365
+            - 836
+          - - 1357
+            - 827
+          - - 1363
+            - 802
+          - - 1354
+            - 786
+          - - 1350
+            - 762
+          - - 1347
+            - 747
+          - - 1281
+            - 796
+          - - 1191
+            - 839
+          - - 1076
+            - 867
+          - - 978
+            - 875
+          - - 884
+            - 867
+          - - 800
+            - 850
+          - - 794
+            - 870
+          - - 809
+            - 894
+          - - 803
+            - 929
+          - - 789
+            - 932
+          - - 788
+            - 910
+          - - 775
+            - 894
+          - - 771
+            - 870
+          - - 782
+            - 846
+          - - 700
+            - 832
+          - - 622
+            - 809
+          - - 561
+            - 783
+          - - 543
+            - 768
+          - - 536
+            - 784
+          - - 547
+            - 808
+          - - 540
+            - 834
+          - - 531
+            - 824
+          - - 530
+            - 804
+          - - 514
+            - 783
+          - - 510
+            - 759
+          - - 519
+            - 733
+          - - 481
+            - 700
+          - - 449
+            - 671
+          - - 422
+            - 618
+        native_dimensions:
+        - 60
+        - 28
+        native60_mask_sha256: cc94879d90e835680f1503e6939110fd504bbea7ddcf8d55e8cbde9450cd2cf9
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: column
+        bbox:
+        - 42
+        - 460
+        - 352
+        - 649
+        contours:
+        - - - 147
+            - 484
+          - - 158
+            - 468
+          - - 193
+            - 460
+          - - 239
+            - 460
+          - - 305
+            - 463
+          - - 337
+            - 475
+          - - 350
+            - 492
+          - - 350
+            - 548
+          - - 351
+            - 579
+          - - 346
+            - 623
+          - - 328
+            - 643
+          - - 294
+            - 648
+          - - 254
+            - 639
+          - - 218
+            - 636
+          - - 189
+            - 621
+          - - 156
+            - 622
+          - - 108
+            - 630
+          - - 71
+            - 623
+          - - 42
+            - 608
+          - - 42
+            - 572
+          - - 48
+            - 543
+          - - 80
+            - 528
+          - - 121
+            - 520
+          - - 146
+            - 520
+        native_dimensions:
+        - 60
+        - 37
+        native60_mask_sha256: c3d765e6a4a7df352d1e474fd2158a8e387314d14bcbe79387794044c48bb4f4
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: bonsai_planted
+        bbox:
+        - 145
+        - 352
+        - 348
+        - 475
+        contours:
+        - - - 145
+            - 431
+          - - 153
+            - 418
+          - - 177
+            - 409
+          - - 192
+            - 407
+          - - 177
+            - 394
+          - - 181
+            - 379
+          - - 201
+            - 368
+          - - 210
+            - 358
+          - - 236
+            - 352
+          - - 263
+            - 358
+          - - 277
+            - 372
+          - - 298
+            - 378
+          - - 300
+            - 389
+          - - 285
+            - 403
+          - - 301
+            - 397
+          - - 322
+            - 396
+          - - 341
+            - 406
+          - - 347
+            - 418
+          - - 335
+            - 427
+          - - 313
+            - 431
+          - - 289
+            - 426
+          - - 273
+            - 423
+          - - 260
+            - 434
+          - - 250
+            - 439
+          - - 253
+            - 452
+          - - 273
+            - 464
+          - - 279
+            - 473
+          - - 261
+            - 474
+          - - 242
+            - 464
+          - - 227
+            - 447
+          - - 220
+            - 430
+          - - 210
+            - 421
+          - - 196
+            - 439
+          - - 173
+            - 444
+          - - 153
+            - 441
+        native_dimensions:
+        - 60
+        - 36
+        native60_mask_sha256: 1bb6dcd3562eb920590e3e11c592edfbe8ac617edef641bee76679c27405f3f0
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: kiln
+        bbox:
+        - 345
+        - 202
+        - 616
+        - 364
+        contours:
+        - - - 345
+            - 334
+          - - 365
+            - 311
+          - - 386
+            - 307
+          - - 396
+            - 274
+          - - 405
+            - 251
+          - - 408
+            - 243
+          - - 417
+            - 241
+          - - 428
+            - 249
+          - - 433
+            - 276
+          - - 443
+            - 254
+          - - 456
+            - 225
+          - - 464
+            - 215
+          - - 462
+            - 209
+          - - 474
+            - 202
+          - - 486
+            - 203
+          - - 494
+            - 213
+          - - 491
+            - 222
+          - - 496
+            - 243
+          - - 507
+            - 272
+          - - 516
+            - 295
+          - - 523
+            - 278
+          - - 525
+            - 263
+          - - 534
+            - 247
+          - - 542
+            - 248
+          - - 549
+            - 261
+          - - 553
+            - 281
+          - - 560
+            - 311
+          - - 583
+            - 315
+          - - 598
+            - 333
+          - - 615
+            - 340
+          - - 588
+            - 353
+          - - 541
+            - 363
+          - - 479
+            - 363
+          - - 421
+            - 360
+          - - 371
+            - 350
+        native_dimensions:
+        - 60
+        - 36
+        native60_mask_sha256: c90c1184887ddc703e1008f514df319d44cb3ef18ae49899dcb6576cbaa4ab0d
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: bell_spire
+        bbox:
+        - 913
+        - 218
+        - 1145
+        - 387
+        contours:
+        - - - 913
+            - 366
+          - - 930
+            - 350
+          - - 953
+            - 342
+          - - 983
+            - 337
+          - - 992
+            - 306
+          - - 995
+            - 276
+          - - 1004
+            - 249
+          - - 1019
+            - 235
+          - - 1027
+            - 232
+          - - 1028
+            - 221
+          - - 1035
+            - 218
+          - - 1044
+            - 224
+          - - 1040
+            - 232
+          - - 1055
+            - 248
+          - - 1063
+            - 275
+          - - 1068
+            - 337
+          - - 1097
+            - 340
+          - - 1127
+            - 356
+          - - 1144
+            - 370
+          - - 1114
+            - 383
+          - - 1073
+            - 386
+          - - 1027
+            - 383
+          - - 973
+            - 382
+          - - 932
+            - 377
+        native_dimensions:
+        - 60
+        - 44
+        native60_mask_sha256: 97d40f23064e8f20e74ffc4cabda4b36e41185ec2e1e1b7c818516cfa770d5e5
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: whale
+        bbox:
+        - 741
+        - 114
+        - 1075
+        - 256
+        contours:
+        - - - 741
+            - 189
+          - - 748
+            - 171
+          - - 760
+            - 159
+          - - 786
+            - 150
+          - - 804
+            - 141
+          - - 814
+            - 128
+          - - 829
+            - 124
+          - - 846
+            - 116
+          - - 866
+            - 116
+          - - 880
+            - 124
+          - - 894
+            - 129
+          - - 906
+            - 143
+          - - 929
+            - 151
+          - - 953
+            - 162
+          - - 978
+            - 172
+          - - 1003
+            - 174
+          - - 1019
+            - 160
+          - - 1024
+            - 146
+          - - 1003
+            - 140
+          - - 989
+            - 127
+          - - 987
+            - 114
+          - - 1000
+            - 116
+          - - 1017
+            - 122
+          - - 1027
+            - 131
+          - - 1040
+            - 125
+          - - 1066
+            - 124
+          - - 1074
+            - 121
+          - - 1070
+            - 136
+          - - 1058
+            - 145
+          - - 1043
+            - 151
+          - - 1035
+            - 176
+          - - 1019
+            - 194
+          - - 1000
+            - 205
+          - - 967
+            - 214
+          - - 931
+            - 219
+          - - 906
+            - 218
+          - - 895
+            - 226
+          - - 912
+            - 244
+          - - 926
+            - 249
+          - - 914
+            - 255
+          - - 899
+            - 254
+          - - 883
+            - 247
+          - - 867
+            - 234
+          - - 846
+            - 237
+          - - 811
+            - 227
+          - - 778
+            - 211
+          - - 753
+            - 202
+        native_dimensions:
+        - 60
+        - 26
+        native60_mask_sha256: ae39acd1c5e36478712fc20b966fde80360287c265b7fa93e4b766a15720ee0a
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: sea_stack
+        bbox:
+        - 1086
+        - 158
+        - 1196
+        - 242
+        contours:
+        - - - 1086
+            - 227
+          - - 1097
+            - 217
+          - - 1103
+            - 197
+          - - 1112
+            - 197
+          - - 1118
+            - 210
+          - - 1125
+            - 175
+          - - 1134
+            - 158
+          - - 1142
+            - 160
+          - - 1150
+            - 183
+          - - 1156
+            - 210
+          - - 1162
+            - 197
+          - - 1170
+            - 198
+          - - 1178
+            - 222
+          - - 1195
+            - 233
+          - - 1167
+            - 241
+          - - 1124
+            - 240
+          - - 1100
+            - 234
+        native_dimensions:
+        - 60
+        - 46
+        native60_mask_sha256: 0bc192c7da10b68de3ae32de1804ea1595f57e1c478db52460f1b6a5c6903e9e
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 9
+      qa_native60_black_pixels: 827
+      annotation_contours_count: 8
+      annotation_holes_count: 1
+      native60_mask_sha256: 7db1b281752a35c44c190b377faa857b317c4cf31b109ff36fbe8fc80db575d8
+      official_qa:
+        file: /workspace/run18/build/imagegen/batch-18-loop-1-concepts/qa/plate__cl1-backdrop-day--t2.json
+        sha256: 6b828bfa7614390f0cd23928db08615f8dcfa1f5c7f4e5dcddfb0d6890cee2e1
+        raw_status: pass
+        exploration_style_advisory: true
+        effective:
+          file: /workspace/art-operator-runtime/batch18/effective/cl1-backdrop-day-t2.json
+          sha256: 62532d297dd7b11592b3ccc5ae52972411c7888c10fb3ff861f0737961a318d0
+          status: pass
+          threshold_changes: false
+      annotation_source_inbox_sha256: 54d3ba626d87a34bfd24a91c0c783a1ade6b7792c38d4cf55981cbb167d2cc1a
+    '3':
+      pass: false
+      silhouette_name: Home oval foreground; stepped pool mass with planted bonsai;
+        cold conical kiln; bell arch; whale and trailing rock stack
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 1
+      - 1
+      evidence: 'Retry: t3 bonsai base x146–218,y437–452 rests on the highest pool;
+        no separate satellite is visible. The home terrain/door/root identity and
+        named props are retained. Left unlit fairy-chimney kiln, left-low stepped
+        pools, far bell spire, whale and trailing rock stack remain separately visible
+        with depth haze. No painted text or UI is seen. HARD SEMANTIC FAILURE remains
+        the absent separate bonsai satellite; no hidden orbit relation is inferred.
+        Per-subject native60 material masks are traced only from observed boundaries;
+        style/rubric advisory. The pool-cluster base also has cream dangling root-like
+        appendages around x30–283,y579–636, a possible copied-home-base concern; this
+        is documented separately and is not needed for the satellite rejection.'
+      uncertainty: Clouds/haze obscure lower edges of all distant landforms; coarse
+        polygon closures follow only the visible fade and do not reconstruct hidden
+        bottoms. Tiny twigs and tea-kiosk details are omitted from the primary terrain
+        mask. The bonsai is not labelled a separate satellite because no separate
+        supporting landform is visible. The 60px crops show observed source resolution;
+        no missing edges or features are invented.
+      semantic_failures:
+      - Named bonsai satellite fused into the main travertine column; no separate
+        supporting rock/float or orbit gap observed.
+      subject_profiles:
+        home:
+        - - - 361
+            - 579
+          - - 377
+            - 543
+          - - 439
+            - 511
+          - - 522
+            - 479
+          - - 643
+            - 451
+          - - 789
+            - 435
+          - - 946
+            - 437
+          - - 1092
+            - 442
+          - - 1230
+            - 461
+          - - 1340
+            - 494
+          - - 1418
+            - 529
+          - - 1455
+            - 568
+          - - 1456
+            - 602
+          - - 1429
+            - 640
+          - - 1392
+            - 678
+          - - 1348
+            - 708
+          - - 1315
+            - 729
+          - - 1310
+            - 752
+          - - 1328
+            - 778
+          - - 1320
+            - 803
+          - - 1308
+            - 838
+          - - 1298
+            - 829
+          - - 1303
+            - 802
+          - - 1307
+            - 781
+          - - 1296
+            - 760
+          - - 1287
+            - 747
+          - - 1228
+            - 797
+          - - 1157
+            - 833
+          - - 1068
+            - 864
+          - - 974
+            - 879
+          - - 876
+            - 872
+          - - 780
+            - 855
+          - - 772
+            - 878
+          - - 786
+            - 899
+          - - 782
+            - 932
+          - - 770
+            - 940
+          - - 762
+            - 919
+          - - 761
+            - 900
+          - - 745
+            - 884
+          - - 746
+            - 858
+          - - 752
+            - 844
+          - - 669
+            - 829
+          - - 592
+            - 803
+          - - 522
+            - 773
+          - - 494
+            - 751
+          - - 492
+            - 771
+          - - 503
+            - 799
+          - - 494
+            - 837
+          - - 480
+            - 841
+          - - 481
+            - 815
+          - - 479
+            - 799
+          - - 469
+            - 780
+          - - 468
+            - 761
+          - - 481
+            - 737
+          - - 442
+            - 709
+          - - 408
+            - 676
+          - - 383
+            - 635
+        column:
+        - - - 18
+            - 549
+          - - 32
+            - 522
+          - - 65
+            - 506
+          - - 64
+            - 480
+          - - 92
+            - 468
+          - - 96
+            - 449
+          - - 132
+            - 438
+          - - 176
+            - 438
+          - - 227
+            - 438
+          - - 246
+            - 449
+          - - 249
+            - 469
+          - - 277
+            - 476
+          - - 295
+            - 490
+          - - 297
+            - 505
+          - - 325
+            - 511
+          - - 337
+            - 527
+          - - 337
+            - 547
+          - - 352
+            - 550
+          - - 352
+            - 570
+          - - 334
+            - 591
+          - - 303
+            - 601
+          - - 283
+            - 611
+          - - 277
+            - 636
+          - - 269
+            - 625
+          - - 273
+            - 608
+          - - 238
+            - 617
+          - - 172
+            - 614
+          - - 117
+            - 606
+          - - 89
+            - 606
+          - - 86
+            - 633
+          - - 78
+            - 623
+          - - 79
+            - 603
+          - - 50
+            - 589
+          - - 39
+            - 610
+          - - 30
+            - 602
+          - - 30
+            - 579
+        bonsai_planted:
+        - - - 121
+            - 382
+          - - 129
+            - 367
+          - - 149
+            - 353
+          - - 165
+            - 347
+          - - 169
+            - 337
+          - - 184
+            - 330
+          - - 204
+            - 327
+          - - 224
+            - 335
+          - - 237
+            - 350
+          - - 259
+            - 355
+          - - 270
+            - 368
+          - - 264
+            - 380
+          - - 250
+            - 382
+          - - 276
+            - 386
+          - - 294
+            - 397
+          - - 298
+            - 411
+          - - 284
+            - 420
+          - - 258
+            - 423
+          - - 233
+            - 417
+          - - 214
+            - 411
+          - - 204
+            - 423
+          - - 203
+            - 435
+          - - 218
+            - 446
+          - - 197
+            - 451
+          - - 179
+            - 445
+          - - 164
+            - 450
+          - - 147
+            - 449
+          - - 157
+            - 439
+          - - 166
+            - 418
+          - - 176
+            - 399
+          - - 164
+            - 390
+          - - 145
+            - 395
+          - - 128
+            - 393
+        kiln:
+        - - - 285
+            - 332
+          - - 305
+            - 309
+          - - 329
+            - 303
+          - - 345
+            - 261
+          - - 357
+            - 235
+          - - 358
+            - 230
+          - - 355
+            - 224
+          - - 365
+            - 217
+          - - 376
+            - 218
+          - - 384
+            - 226
+          - - 380
+            - 234
+          - - 386
+            - 254
+          - - 397
+            - 272
+          - - 415
+            - 229
+          - - 438
+            - 190
+          - - 434
+            - 186
+          - - 433
+            - 177
+          - - 445
+            - 169
+          - - 462
+            - 169
+          - - 472
+            - 175
+          - - 474
+            - 185
+          - - 463
+            - 192
+          - - 476
+            - 223
+          - - 493
+            - 259
+          - - 505
+            - 280
+          - - 508
+            - 247
+          - - 503
+            - 238
+          - - 507
+            - 231
+          - - 520
+            - 227
+          - - 527
+            - 233
+          - - 527
+            - 241
+          - - 521
+            - 247
+          - - 529
+            - 266
+          - - 541
+            - 294
+          - - 549
+            - 315
+          - - 572
+            - 318
+          - - 585
+            - 329
+          - - 579
+            - 345
+          - - 545
+            - 357
+          - - 487
+            - 365
+          - - 431
+            - 361
+          - - 367
+            - 361
+          - - 312
+            - 348
+        bell_spire:
+        - - - 1154
+            - 376
+          - - 1172
+            - 362
+          - - 1202
+            - 351
+          - - 1238
+            - 344
+          - - 1244
+            - 307
+          - - 1247
+            - 272
+          - - 1258
+            - 248
+          - - 1274
+            - 228
+          - - 1280
+            - 216
+          - - 1275
+            - 208
+          - - 1284
+            - 198
+          - - 1292
+            - 207
+          - - 1290
+            - 216
+          - - 1302
+            - 237
+          - - 1314
+            - 253
+          - - 1321
+            - 277
+          - - 1323
+            - 347
+          - - 1356
+            - 344
+          - - 1385
+            - 354
+          - - 1408
+            - 371
+          - - 1416
+            - 385
+          - - 1394
+            - 398
+          - - 1354
+            - 405
+          - - 1312
+            - 404
+          - - 1261
+            - 401
+          - - 1209
+            - 400
+          - - 1175
+            - 390
+        whale:
+        - - - 780
+            - 177
+          - - 787
+            - 158
+          - - 802
+            - 143
+          - - 825
+            - 134
+          - - 840
+            - 125
+          - - 855
+            - 124
+          - - 862
+            - 116
+          - - 883
+            - 111
+          - - 903
+            - 120
+          - - 916
+            - 124
+          - - 936
+            - 134
+          - - 961
+            - 143
+          - - 986
+            - 155
+          - - 1013
+            - 163
+          - - 1020
+            - 155
+          - - 1025
+            - 142
+          - - 1014
+            - 135
+          - - 1002
+            - 125
+          - - 997
+            - 111
+          - - 999
+            - 103
+          - - 1016
+            - 109
+          - - 1034
+            - 116
+          - - 1038
+            - 124
+          - - 1055
+            - 114
+          - - 1076
+            - 109
+          - - 1075
+            - 122
+          - - 1065
+            - 136
+          - - 1045
+            - 144
+          - - 1040
+            - 160
+          - - 1031
+            - 182
+          - - 1017
+            - 196
+          - - 994
+            - 209
+          - - 971
+            - 216
+          - - 940
+            - 218
+          - - 927
+            - 226
+          - - 944
+            - 240
+          - - 928
+            - 246
+          - - 909
+            - 232
+          - - 890
+            - 226
+          - - 864
+            - 222
+          - - 832
+            - 210
+          - - 799
+            - 196
+        sea_stack:
+        - - - 1081
+            - 203
+          - - 1093
+            - 194
+          - - 1099
+            - 185
+          - - 1109
+            - 185
+          - - 1115
+            - 174
+          - - 1121
+            - 165
+          - - 1128
+            - 166
+          - - 1136
+            - 143
+          - - 1145
+            - 128
+          - - 1156
+            - 125
+          - - 1167
+            - 139
+          - - 1172
+            - 159
+          - - 1179
+            - 185
+          - - 1185
+            - 160
+          - - 1193
+            - 160
+          - - 1201
+            - 180
+          - - 1207
+            - 184
+          - - 1217
+            - 184
+          - - 1225
+            - 199
+          - - 1237
+            - 207
+          - - 1204
+            - 218
+          - - 1159
+            - 217
+          - - 1118
+            - 214
+      contours:
+      - - - 361
+          - 579
+        - - 377
+          - 543
+        - - 439
+          - 511
+        - - 522
+          - 479
+        - - 643
+          - 451
+        - - 789
+          - 435
+        - - 946
+          - 437
+        - - 1092
+          - 442
+        - - 1230
+          - 461
+        - - 1340
+          - 494
+        - - 1418
+          - 529
+        - - 1455
+          - 568
+        - - 1456
+          - 602
+        - - 1429
+          - 640
+        - - 1392
+          - 678
+        - - 1348
+          - 708
+        - - 1315
+          - 729
+        - - 1310
+          - 752
+        - - 1328
+          - 778
+        - - 1320
+          - 803
+        - - 1308
+          - 838
+        - - 1298
+          - 829
+        - - 1303
+          - 802
+        - - 1307
+          - 781
+        - - 1296
+          - 760
+        - - 1287
+          - 747
+        - - 1228
+          - 797
+        - - 1157
+          - 833
+        - - 1068
+          - 864
+        - - 974
+          - 879
+        - - 876
+          - 872
+        - - 780
+          - 855
+        - - 772
+          - 878
+        - - 786
+          - 899
+        - - 782
+          - 932
+        - - 770
+          - 940
+        - - 762
+          - 919
+        - - 761
+          - 900
+        - - 745
+          - 884
+        - - 746
+          - 858
+        - - 752
+          - 844
+        - - 669
+          - 829
+        - - 592
+          - 803
+        - - 522
+          - 773
+        - - 494
+          - 751
+        - - 492
+          - 771
+        - - 503
+          - 799
+        - - 494
+          - 837
+        - - 480
+          - 841
+        - - 481
+          - 815
+        - - 479
+          - 799
+        - - 469
+          - 780
+        - - 468
+          - 761
+        - - 481
+          - 737
+        - - 442
+          - 709
+        - - 408
+          - 676
+        - - 383
+          - 635
+      - - - 18
+          - 549
+        - - 32
+          - 522
+        - - 65
+          - 506
+        - - 64
+          - 480
+        - - 92
+          - 468
+        - - 96
+          - 449
+        - - 132
+          - 438
+        - - 176
+          - 438
+        - - 227
+          - 438
+        - - 246
+          - 449
+        - - 249
+          - 469
+        - - 277
+          - 476
+        - - 295
+          - 490
+        - - 297
+          - 505
+        - - 325
+          - 511
+        - - 337
+          - 527
+        - - 337
+          - 547
+        - - 352
+          - 550
+        - - 352
+          - 570
+        - - 334
+          - 591
+        - - 303
+          - 601
+        - - 283
+          - 611
+        - - 277
+          - 636
+        - - 269
+          - 625
+        - - 273
+          - 608
+        - - 238
+          - 617
+        - - 172
+          - 614
+        - - 117
+          - 606
+        - - 89
+          - 606
+        - - 86
+          - 633
+        - - 78
+          - 623
+        - - 79
+          - 603
+        - - 50
+          - 589
+        - - 39
+          - 610
+        - - 30
+          - 602
+        - - 30
+          - 579
+      - - - 121
+          - 382
+        - - 129
+          - 367
+        - - 149
+          - 353
+        - - 165
+          - 347
+        - - 169
+          - 337
+        - - 184
+          - 330
+        - - 204
+          - 327
+        - - 224
+          - 335
+        - - 237
+          - 350
+        - - 259
+          - 355
+        - - 270
+          - 368
+        - - 264
+          - 380
+        - - 250
+          - 382
+        - - 276
+          - 386
+        - - 294
+          - 397
+        - - 298
+          - 411
+        - - 284
+          - 420
+        - - 258
+          - 423
+        - - 233
+          - 417
+        - - 214
+          - 411
+        - - 204
+          - 423
+        - - 203
+          - 435
+        - - 218
+          - 446
+        - - 197
+          - 451
+        - - 179
+          - 445
+        - - 164
+          - 450
+        - - 147
+          - 449
+        - - 157
+          - 439
+        - - 166
+          - 418
+        - - 176
+          - 399
+        - - 164
+          - 390
+        - - 145
+          - 395
+        - - 128
+          - 393
+      - - - 285
+          - 332
+        - - 305
+          - 309
+        - - 329
+          - 303
+        - - 345
+          - 261
+        - - 357
+          - 235
+        - - 358
+          - 230
+        - - 355
+          - 224
+        - - 365
+          - 217
+        - - 376
+          - 218
+        - - 384
+          - 226
+        - - 380
+          - 234
+        - - 386
+          - 254
+        - - 397
+          - 272
+        - - 415
+          - 229
+        - - 438
+          - 190
+        - - 434
+          - 186
+        - - 433
+          - 177
+        - - 445
+          - 169
+        - - 462
+          - 169
+        - - 472
+          - 175
+        - - 474
+          - 185
+        - - 463
+          - 192
+        - - 476
+          - 223
+        - - 493
+          - 259
+        - - 505
+          - 280
+        - - 508
+          - 247
+        - - 503
+          - 238
+        - - 507
+          - 231
+        - - 520
+          - 227
+        - - 527
+          - 233
+        - - 527
+          - 241
+        - - 521
+          - 247
+        - - 529
+          - 266
+        - - 541
+          - 294
+        - - 549
+          - 315
+        - - 572
+          - 318
+        - - 585
+          - 329
+        - - 579
+          - 345
+        - - 545
+          - 357
+        - - 487
+          - 365
+        - - 431
+          - 361
+        - - 367
+          - 361
+        - - 312
+          - 348
+      - - - 1154
+          - 376
+        - - 1172
+          - 362
+        - - 1202
+          - 351
+        - - 1238
+          - 344
+        - - 1244
+          - 307
+        - - 1247
+          - 272
+        - - 1258
+          - 248
+        - - 1274
+          - 228
+        - - 1280
+          - 216
+        - - 1275
+          - 208
+        - - 1284
+          - 198
+        - - 1292
+          - 207
+        - - 1290
+          - 216
+        - - 1302
+          - 237
+        - - 1314
+          - 253
+        - - 1321
+          - 277
+        - - 1323
+          - 347
+        - - 1356
+          - 344
+        - - 1385
+          - 354
+        - - 1408
+          - 371
+        - - 1416
+          - 385
+        - - 1394
+          - 398
+        - - 1354
+          - 405
+        - - 1312
+          - 404
+        - - 1261
+          - 401
+        - - 1209
+          - 400
+        - - 1175
+          - 390
+      - - - 780
+          - 177
+        - - 787
+          - 158
+        - - 802
+          - 143
+        - - 825
+          - 134
+        - - 840
+          - 125
+        - - 855
+          - 124
+        - - 862
+          - 116
+        - - 883
+          - 111
+        - - 903
+          - 120
+        - - 916
+          - 124
+        - - 936
+          - 134
+        - - 961
+          - 143
+        - - 986
+          - 155
+        - - 1013
+          - 163
+        - - 1020
+          - 155
+        - - 1025
+          - 142
+        - - 1014
+          - 135
+        - - 1002
+          - 125
+        - - 997
+          - 111
+        - - 999
+          - 103
+        - - 1016
+          - 109
+        - - 1034
+          - 116
+        - - 1038
+          - 124
+        - - 1055
+          - 114
+        - - 1076
+          - 109
+        - - 1075
+          - 122
+        - - 1065
+          - 136
+        - - 1045
+          - 144
+        - - 1040
+          - 160
+        - - 1031
+          - 182
+        - - 1017
+          - 196
+        - - 994
+          - 209
+        - - 971
+          - 216
+        - - 940
+          - 218
+        - - 927
+          - 226
+        - - 944
+          - 240
+        - - 928
+          - 246
+        - - 909
+          - 232
+        - - 890
+          - 226
+        - - 864
+          - 222
+        - - 832
+          - 210
+        - - 799
+          - 196
+      - - - 1081
+          - 203
+        - - 1093
+          - 194
+        - - 1099
+          - 185
+        - - 1109
+          - 185
+        - - 1115
+          - 174
+        - - 1121
+          - 165
+        - - 1128
+          - 166
+        - - 1136
+          - 143
+        - - 1145
+          - 128
+        - - 1156
+          - 125
+        - - 1167
+          - 139
+        - - 1172
+          - 159
+        - - 1179
+          - 185
+        - - 1185
+          - 160
+        - - 1193
+          - 160
+        - - 1201
+          - 180
+        - - 1207
+          - 184
+        - - 1217
+          - 184
+        - - 1225
+          - 199
+        - - 1237
+          - 207
+        - - 1204
+          - 218
+        - - 1159
+          - 217
+        - - 1118
+          - 214
+      - - - 1269
+          - 298
+        - - 1274
+          - 280
+        - - 1279
+          - 277
+        - - 1281
+          - 267
+        - - 1286
+          - 268
+        - - 1288
+          - 278
+        - - 1296
+          - 287
+        - - 1298
+          - 303
+        - - 1284
+          - 309
+        - - 1266
+          - 303
+      components:
+      - home
+      - column
+      - bonsai_planted
+      - kiln
+      - bell_spire
+      - whale
+      - sea_stack
+      holes:
+      - - - 1259
+          - 343
+        - - 1260
+          - 279
+        - - 1268
+          - 255
+        - - 1283
+          - 240
+        - - 1296
+          - 257
+        - - 1309
+          - 280
+        - - 1309
+          - 344
+      bell_air_holes:
+      - - - 1259
+          - 343
+        - - 1260
+          - 279
+        - - 1268
+          - 255
+        - - 1283
+          - 240
+        - - 1296
+          - 257
+        - - 1309
+          - 280
+        - - 1309
+          - 344
+      bell_material_contours:
+      - - - 1269
+          - 298
+        - - 1274
+          - 280
+        - - 1279
+          - 277
+        - - 1281
+          - 267
+        - - 1286
+          - 268
+        - - 1288
+          - 278
+        - - 1296
+          - 287
+        - - 1298
+          - 303
+        - - 1284
+          - 309
+        - - 1266
+          - 303
+      swatch_points:
+      - - 925
+        - 175
+      - - 281
+        - 521
+      - - 1083
+        - 764
+      source_file: /workspace/generated_images/exec-970fca6e-db83-4ef9-984e-34b5472844ed.png
+      original_generated_png_sha256: 8a3b64e57c771cca5ed28b4ded7620cf139b1e1ed25b42b03059fb582e90b621
+      rgba_sha256: 39d4cc6bd7e80c2d0589f018a50f0842a6bd510e958f84e007076be7cb8ce0bd
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: 35283f57fb56e323b3e9b14592c5a4069fe5dab028f3defc0c58fc56b9297361
+      sampled_swatches:
+      - point:
+        - 925
+        - 175
+        hex: '#D0CEDF'
+      - point:
+        - 281
+        - 521
+        hex: '#D0E2DC'
+      - point:
+        - 1083
+        - 764
+        hex: '#EDB07D'
+      observed_bbox:
+      - 18
+      - 103
+      - 1457
+      - 941
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      subject_profile_proof:
+      - name: home
+        bbox:
+        - 361
+        - 435
+        - 1457
+        - 941
+        contours:
+        - - - 361
+            - 579
+          - - 377
+            - 543
+          - - 439
+            - 511
+          - - 522
+            - 479
+          - - 643
+            - 451
+          - - 789
+            - 435
+          - - 946
+            - 437
+          - - 1092
+            - 442
+          - - 1230
+            - 461
+          - - 1340
+            - 494
+          - - 1418
+            - 529
+          - - 1455
+            - 568
+          - - 1456
+            - 602
+          - - 1429
+            - 640
+          - - 1392
+            - 678
+          - - 1348
+            - 708
+          - - 1315
+            - 729
+          - - 1310
+            - 752
+          - - 1328
+            - 778
+          - - 1320
+            - 803
+          - - 1308
+            - 838
+          - - 1298
+            - 829
+          - - 1303
+            - 802
+          - - 1307
+            - 781
+          - - 1296
+            - 760
+          - - 1287
+            - 747
+          - - 1228
+            - 797
+          - - 1157
+            - 833
+          - - 1068
+            - 864
+          - - 974
+            - 879
+          - - 876
+            - 872
+          - - 780
+            - 855
+          - - 772
+            - 878
+          - - 786
+            - 899
+          - - 782
+            - 932
+          - - 770
+            - 940
+          - - 762
+            - 919
+          - - 761
+            - 900
+          - - 745
+            - 884
+          - - 746
+            - 858
+          - - 752
+            - 844
+          - - 669
+            - 829
+          - - 592
+            - 803
+          - - 522
+            - 773
+          - - 494
+            - 751
+          - - 492
+            - 771
+          - - 503
+            - 799
+          - - 494
+            - 837
+          - - 480
+            - 841
+          - - 481
+            - 815
+          - - 479
+            - 799
+          - - 469
+            - 780
+          - - 468
+            - 761
+          - - 481
+            - 737
+          - - 442
+            - 709
+          - - 408
+            - 676
+          - - 383
+            - 635
+        native_dimensions:
+        - 60
+        - 28
+        native60_mask_sha256: d9c04ae2460caa34ed3853ddb0aa8aaa33c4bf7b32c8f9ca302214bf57e51a08
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: column
+        bbox:
+        - 18
+        - 438
+        - 353
+        - 637
+        contours:
+        - - - 18
+            - 549
+          - - 32
+            - 522
+          - - 65
+            - 506
+          - - 64
+            - 480
+          - - 92
+            - 468
+          - - 96
+            - 449
+          - - 132
+            - 438
+          - - 176
+            - 438
+          - - 227
+            - 438
+          - - 246
+            - 449
+          - - 249
+            - 469
+          - - 277
+            - 476
+          - - 295
+            - 490
+          - - 297
+            - 505
+          - - 325
+            - 511
+          - - 337
+            - 527
+          - - 337
+            - 547
+          - - 352
+            - 550
+          - - 352
+            - 570
+          - - 334
+            - 591
+          - - 303
+            - 601
+          - - 283
+            - 611
+          - - 277
+            - 636
+          - - 269
+            - 625
+          - - 273
+            - 608
+          - - 238
+            - 617
+          - - 172
+            - 614
+          - - 117
+            - 606
+          - - 89
+            - 606
+          - - 86
+            - 633
+          - - 78
+            - 623
+          - - 79
+            - 603
+          - - 50
+            - 589
+          - - 39
+            - 610
+          - - 30
+            - 602
+          - - 30
+            - 579
+        native_dimensions:
+        - 60
+        - 36
+        native60_mask_sha256: fe9964ff074d9f3d0f902bdfa8b867f2758aa2e3bd3e71c1d8ef1f7808e0fbe4
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: bonsai_planted
+        bbox:
+        - 121
+        - 327
+        - 299
+        - 452
+        contours:
+        - - - 121
+            - 382
+          - - 129
+            - 367
+          - - 149
+            - 353
+          - - 165
+            - 347
+          - - 169
+            - 337
+          - - 184
+            - 330
+          - - 204
+            - 327
+          - - 224
+            - 335
+          - - 237
+            - 350
+          - - 259
+            - 355
+          - - 270
+            - 368
+          - - 264
+            - 380
+          - - 250
+            - 382
+          - - 276
+            - 386
+          - - 294
+            - 397
+          - - 298
+            - 411
+          - - 284
+            - 420
+          - - 258
+            - 423
+          - - 233
+            - 417
+          - - 214
+            - 411
+          - - 204
+            - 423
+          - - 203
+            - 435
+          - - 218
+            - 446
+          - - 197
+            - 451
+          - - 179
+            - 445
+          - - 164
+            - 450
+          - - 147
+            - 449
+          - - 157
+            - 439
+          - - 166
+            - 418
+          - - 176
+            - 399
+          - - 164
+            - 390
+          - - 145
+            - 395
+          - - 128
+            - 393
+        native_dimensions:
+        - 60
+        - 42
+        native60_mask_sha256: 0af6a549a236f26c1e06dc28a39dc0a67f683732794a75dd84f528680e0ce1ac
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: kiln
+        bbox:
+        - 285
+        - 169
+        - 586
+        - 366
+        contours:
+        - - - 285
+            - 332
+          - - 305
+            - 309
+          - - 329
+            - 303
+          - - 345
+            - 261
+          - - 357
+            - 235
+          - - 358
+            - 230
+          - - 355
+            - 224
+          - - 365
+            - 217
+          - - 376
+            - 218
+          - - 384
+            - 226
+          - - 380
+            - 234
+          - - 386
+            - 254
+          - - 397
+            - 272
+          - - 415
+            - 229
+          - - 438
+            - 190
+          - - 434
+            - 186
+          - - 433
+            - 177
+          - - 445
+            - 169
+          - - 462
+            - 169
+          - - 472
+            - 175
+          - - 474
+            - 185
+          - - 463
+            - 192
+          - - 476
+            - 223
+          - - 493
+            - 259
+          - - 505
+            - 280
+          - - 508
+            - 247
+          - - 503
+            - 238
+          - - 507
+            - 231
+          - - 520
+            - 227
+          - - 527
+            - 233
+          - - 527
+            - 241
+          - - 521
+            - 247
+          - - 529
+            - 266
+          - - 541
+            - 294
+          - - 549
+            - 315
+          - - 572
+            - 318
+          - - 585
+            - 329
+          - - 579
+            - 345
+          - - 545
+            - 357
+          - - 487
+            - 365
+          - - 431
+            - 361
+          - - 367
+            - 361
+          - - 312
+            - 348
+        native_dimensions:
+        - 60
+        - 39
+        native60_mask_sha256: dbae0488a762072ce6bb3f291844beaa92c17d50c19505c36188c5b4b2cbc01c
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: bell_spire
+        bbox:
+        - 1154
+        - 198
+        - 1417
+        - 406
+        contours:
+        - - - 1154
+            - 376
+          - - 1172
+            - 362
+          - - 1202
+            - 351
+          - - 1238
+            - 344
+          - - 1244
+            - 307
+          - - 1247
+            - 272
+          - - 1258
+            - 248
+          - - 1274
+            - 228
+          - - 1280
+            - 216
+          - - 1275
+            - 208
+          - - 1284
+            - 198
+          - - 1292
+            - 207
+          - - 1290
+            - 216
+          - - 1302
+            - 237
+          - - 1314
+            - 253
+          - - 1321
+            - 277
+          - - 1323
+            - 347
+          - - 1356
+            - 344
+          - - 1385
+            - 354
+          - - 1408
+            - 371
+          - - 1416
+            - 385
+          - - 1394
+            - 398
+          - - 1354
+            - 405
+          - - 1312
+            - 404
+          - - 1261
+            - 401
+          - - 1209
+            - 400
+          - - 1175
+            - 390
+        native_dimensions:
+        - 60
+        - 47
+        native60_mask_sha256: 2642591a627cf98426c84386ac86513eafa6d5a548848a495e543eb159b73206
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: whale
+        bbox:
+        - 780
+        - 103
+        - 1077
+        - 247
+        contours:
+        - - - 780
+            - 177
+          - - 787
+            - 158
+          - - 802
+            - 143
+          - - 825
+            - 134
+          - - 840
+            - 125
+          - - 855
+            - 124
+          - - 862
+            - 116
+          - - 883
+            - 111
+          - - 903
+            - 120
+          - - 916
+            - 124
+          - - 936
+            - 134
+          - - 961
+            - 143
+          - - 986
+            - 155
+          - - 1013
+            - 163
+          - - 1020
+            - 155
+          - - 1025
+            - 142
+          - - 1014
+            - 135
+          - - 1002
+            - 125
+          - - 997
+            - 111
+          - - 999
+            - 103
+          - - 1016
+            - 109
+          - - 1034
+            - 116
+          - - 1038
+            - 124
+          - - 1055
+            - 114
+          - - 1076
+            - 109
+          - - 1075
+            - 122
+          - - 1065
+            - 136
+          - - 1045
+            - 144
+          - - 1040
+            - 160
+          - - 1031
+            - 182
+          - - 1017
+            - 196
+          - - 994
+            - 209
+          - - 971
+            - 216
+          - - 940
+            - 218
+          - - 927
+            - 226
+          - - 944
+            - 240
+          - - 928
+            - 246
+          - - 909
+            - 232
+          - - 890
+            - 226
+          - - 864
+            - 222
+          - - 832
+            - 210
+          - - 799
+            - 196
+        native_dimensions:
+        - 60
+        - 29
+        native60_mask_sha256: 8abd37a4eb7ddd7e3e11ee44333f5baa247a45e030c83446476169b2db5e0ce8
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: sea_stack
+        bbox:
+        - 1081
+        - 125
+        - 1238
+        - 219
+        contours:
+        - - - 1081
+            - 203
+          - - 1093
+            - 194
+          - - 1099
+            - 185
+          - - 1109
+            - 185
+          - - 1115
+            - 174
+          - - 1121
+            - 165
+          - - 1128
+            - 166
+          - - 1136
+            - 143
+          - - 1145
+            - 128
+          - - 1156
+            - 125
+          - - 1167
+            - 139
+          - - 1172
+            - 159
+          - - 1179
+            - 185
+          - - 1185
+            - 160
+          - - 1193
+            - 160
+          - - 1201
+            - 180
+          - - 1207
+            - 184
+          - - 1217
+            - 184
+          - - 1225
+            - 199
+          - - 1237
+            - 207
+          - - 1204
+            - 218
+          - - 1159
+            - 217
+          - - 1118
+            - 214
+        native_dimensions:
+        - 60
+        - 36
+        native60_mask_sha256: 29677b7ba7de8fe9878aee51474e41988096280a0d1d5bf30de5c95a782d0bcc
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 9
+      qa_native60_black_pixels: 867
+      annotation_contours_count: 8
+      annotation_holes_count: 1
+      native60_mask_sha256: f1b9f43e6a0bda75dcfb544b26eb8a4d2af4c1993097069a81edb2695a14b886
+      official_qa:
+        file: /workspace/run18/build/imagegen/batch-18-loop-1-concepts/qa/plate__cl1-backdrop-day--t3.json
+        sha256: a4143e88ff76bd7cfaa348ae56849224da269b0a0ee311a41e458fbe8295bdc5
+        raw_status: pass
+        exploration_style_advisory: true
+        effective:
+          file: /workspace/art-operator-runtime/batch18/effective/cl1-backdrop-day-t3.json
+          sha256: ef896f638072aa7656e3209b6defd82f9e8e09e4ec62648e154b6fc251efefd0
+          status: pass
+          threshold_changes: false
+      annotation_source_inbox_sha256: df97e03c7a3e2bd49207be95f94116756129326319c88252f3463ec4c983f3bf
+    '4':
+      pass: false
+      silhouette_name: Home oval foreground; stepped pool mass with planted bonsai;
+        cold conical kiln; bell arch; whale and trailing rock stack
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 1
+      - 1
+      evidence: 'Retry: t4 bonsai base x198–258,y507–528 rests on the highest pool;
+        no separate satellite is visible. The home terrain/door/root identity and
+        named props are retained. Left unlit fairy-chimney kiln, left-low stepped
+        pools, far bell spire, whale and trailing rock stack remain separately visible
+        with depth haze. No painted text or UI is seen. HARD SEMANTIC FAILURE remains
+        the absent separate bonsai satellite; no hidden orbit relation is inferred.
+        Per-subject native60 material masks are traced only from observed boundaries;
+        style/rubric advisory. '
+      uncertainty: Clouds/haze obscure lower edges of all distant landforms; coarse
+        polygon closures follow only the visible fade and do not reconstruct hidden
+        bottoms. Tiny twigs and tea-kiosk details are omitted from the primary terrain
+        mask. The bonsai is not labelled a separate satellite because no separate
+        supporting landform is visible. The 60px crops show observed source resolution;
+        no missing edges or features are invented.
+      semantic_failures:
+      - Named bonsai satellite fused into the main travertine column; no separate
+        supporting rock/float or orbit gap observed.
+      subject_profiles:
+        home:
+        - - - 414
+            - 594
+          - - 436
+            - 553
+          - - 502
+            - 520
+          - - 590
+            - 497
+          - - 711
+            - 478
+          - - 858
+            - 468
+          - - 1015
+            - 471
+          - - 1169
+            - 482
+          - - 1298
+            - 507
+          - - 1393
+            - 541
+          - - 1445
+            - 578
+          - - 1455
+            - 605
+          - - 1431
+            - 643
+          - - 1408
+            - 679
+          - - 1369
+            - 715
+          - - 1325
+            - 744
+          - - 1318
+            - 762
+          - - 1339
+            - 792
+          - - 1336
+            - 813
+          - - 1324
+            - 848
+          - - 1311
+            - 849
+          - - 1316
+            - 826
+          - - 1323
+            - 807
+          - - 1311
+            - 785
+          - - 1302
+            - 766
+          - - 1228
+            - 819
+          - - 1138
+            - 859
+          - - 1034
+            - 886
+          - - 938
+            - 899
+          - - 848
+            - 893
+          - - 792
+            - 878
+          - - 788
+            - 900
+          - - 806
+            - 925
+          - - 801
+            - 949
+          - - 790
+            - 952
+          - - 785
+            - 933
+          - - 771
+            - 916
+          - - 770
+            - 893
+          - - 778
+            - 874
+          - - 700
+            - 857
+          - - 634
+            - 834
+          - - 571
+            - 802
+          - - 553
+            - 779
+          - - 546
+            - 797
+          - - 561
+            - 824
+          - - 553
+            - 859
+          - - 542
+            - 856
+          - - 546
+            - 838
+          - - 537
+            - 821
+          - - 527
+            - 803
+          - - 523
+            - 780
+          - - 532
+            - 756
+          - - 492
+            - 725
+          - - 460
+            - 688
+          - - 434
+            - 647
+        column:
+        - - - 43
+            - 628
+          - - 59
+            - 603
+          - - 78
+            - 595
+          - - 78
+            - 561
+          - - 94
+            - 544
+          - - 126
+            - 538
+          - - 131
+            - 523
+          - - 155
+            - 514
+          - - 201
+            - 509
+          - - 249
+            - 508
+          - - 280
+            - 516
+          - - 294
+            - 530
+          - - 293
+            - 551
+          - - 315
+            - 554
+          - - 329
+            - 566
+          - - 330
+            - 585
+          - - 360
+            - 593
+          - - 379
+            - 607
+          - - 383
+            - 631
+          - - 377
+            - 655
+          - - 350
+            - 665
+          - - 303
+            - 669
+          - - 253
+            - 668
+          - - 211
+            - 655
+          - - 174
+            - 652
+          - - 137
+            - 641
+          - - 108
+            - 644
+          - - 80
+            - 639
+        bonsai_planted:
+        - - - 160
+            - 465
+          - - 164
+            - 448
+          - - 185
+            - 433
+          - - 205
+            - 429
+          - - 211
+            - 415
+          - - 229
+            - 408
+          - - 249
+            - 408
+          - - 266
+            - 417
+          - - 274
+            - 429
+          - - 292
+            - 433
+          - - 304
+            - 443
+          - - 301
+            - 456
+          - - 320
+            - 459
+          - - 325
+            - 470
+          - - 314
+            - 479
+          - - 290
+            - 479
+          - - 268
+            - 473
+          - - 251
+            - 477
+          - - 242
+            - 490
+          - - 246
+            - 505
+          - - 260
+            - 516
+          - - 250
+            - 525
+          - - 228
+            - 521
+          - - 213
+            - 521
+          - - 199
+            - 524
+          - - 198
+            - 515
+          - - 209
+            - 501
+          - - 213
+            - 488
+          - - 210
+            - 477
+          - - 196
+            - 470
+          - - 177
+            - 480
+          - - 162
+            - 476
+        kiln:
+        - - - 246
+            - 354
+          - - 268
+            - 335
+          - - 291
+            - 322
+          - - 304
+            - 285
+          - - 315
+            - 269
+          - - 312
+            - 263
+          - - 321
+            - 255
+          - - 332
+            - 256
+          - - 338
+            - 265
+          - - 334
+            - 273
+          - - 345
+            - 296
+          - - 361
+            - 252
+          - - 381
+            - 217
+          - - 372
+            - 216
+          - - 372
+            - 207
+          - - 383
+            - 198
+          - - 402
+            - 196
+          - - 416
+            - 203
+          - - 419
+            - 213
+          - - 404
+            - 218
+          - - 420
+            - 247
+          - - 438
+            - 277
+          - - 447
+            - 294
+          - - 448
+            - 266
+          - - 453
+            - 247
+          - - 461
+            - 240
+          - - 469
+            - 244
+          - - 475
+            - 255
+          - - 471
+            - 263
+          - - 479
+            - 280
+          - - 489
+            - 306
+          - - 500
+            - 300
+          - - 510
+            - 307
+          - - 520
+            - 332
+          - - 547
+            - 340
+          - - 559
+            - 355
+          - - 550
+            - 372
+          - - 512
+            - 385
+          - - 459
+            - 389
+          - - 400
+            - 382
+          - - 340
+            - 381
+          - - 287
+            - 373
+        bell_spire:
+        - - - 774
+            - 348
+          - - 802
+            - 324
+          - - 834
+            - 316
+          - - 861
+            - 305
+          - - 864
+            - 236
+          - - 862
+            - 230
+          - - 865
+            - 211
+          - - 878
+            - 194
+          - - 893
+            - 185
+          - - 895
+            - 177
+          - - 896
+            - 165
+          - - 905
+            - 159
+          - - 913
+            - 166
+          - - 911
+            - 177
+          - - 917
+            - 182
+          - - 931
+            - 197
+          - - 939
+            - 218
+          - - 941
+            - 232
+          - - 937
+            - 238
+          - - 941
+            - 304
+          - - 970
+            - 286
+          - - 988
+            - 299
+          - - 1001
+            - 315
+          - - 1019
+            - 335
+          - - 1012
+            - 352
+          - - 980
+            - 364
+          - - 929
+            - 368
+          - - 876
+            - 365
+          - - 830
+            - 364
+          - - 791
+            - 359
+        whale:
+        - - - 1004
+            - 197
+          - - 1010
+            - 174
+          - - 1026
+            - 158
+          - - 1041
+            - 148
+          - - 1053
+            - 136
+          - - 1070
+            - 130
+          - - 1087
+            - 122
+          - - 1103
+            - 116
+          - - 1126
+            - 117
+          - - 1144
+            - 128
+          - - 1160
+            - 136
+          - - 1176
+            - 147
+          - - 1187
+            - 167
+          - - 1204
+            - 176
+          - - 1239
+            - 182
+          - - 1257
+            - 165
+          - - 1262
+            - 151
+          - - 1249
+            - 148
+          - - 1237
+            - 137
+          - - 1231
+            - 121
+          - - 1241
+            - 124
+          - - 1259
+            - 129
+          - - 1273
+            - 141
+          - - 1286
+            - 134
+          - - 1308
+            - 134
+          - - 1318
+            - 130
+          - - 1314
+            - 145
+          - - 1303
+            - 158
+          - - 1285
+            - 165
+          - - 1276
+            - 186
+          - - 1261
+            - 207
+          - - 1240
+            - 222
+          - - 1216
+            - 232
+          - - 1183
+            - 236
+          - - 1165
+            - 239
+          - - 1175
+            - 255
+          - - 1158
+            - 259
+          - - 1143
+            - 249
+          - - 1133
+            - 238
+          - - 1113
+            - 237
+          - - 1086
+            - 228
+          - - 1054
+            - 216
+          - - 1025
+            - 210
+          - - 1007
+            - 205
+        sea_stack:
+        - - - 1341
+            - 219
+          - - 1351
+            - 210
+          - - 1356
+            - 196
+          - - 1365
+            - 183
+          - - 1374
+            - 185
+          - - 1377
+            - 198
+          - - 1388
+            - 171
+          - - 1399
+            - 149
+          - - 1409
+            - 147
+          - - 1419
+            - 159
+          - - 1424
+            - 182
+          - - 1436
+            - 211
+          - - 1452
+            - 218
+          - - 1460
+            - 228
+          - - 1427
+            - 236
+          - - 1393
+            - 235
+          - - 1362
+            - 232
+      contours:
+      - - - 414
+          - 594
+        - - 436
+          - 553
+        - - 502
+          - 520
+        - - 590
+          - 497
+        - - 711
+          - 478
+        - - 858
+          - 468
+        - - 1015
+          - 471
+        - - 1169
+          - 482
+        - - 1298
+          - 507
+        - - 1393
+          - 541
+        - - 1445
+          - 578
+        - - 1455
+          - 605
+        - - 1431
+          - 643
+        - - 1408
+          - 679
+        - - 1369
+          - 715
+        - - 1325
+          - 744
+        - - 1318
+          - 762
+        - - 1339
+          - 792
+        - - 1336
+          - 813
+        - - 1324
+          - 848
+        - - 1311
+          - 849
+        - - 1316
+          - 826
+        - - 1323
+          - 807
+        - - 1311
+          - 785
+        - - 1302
+          - 766
+        - - 1228
+          - 819
+        - - 1138
+          - 859
+        - - 1034
+          - 886
+        - - 938
+          - 899
+        - - 848
+          - 893
+        - - 792
+          - 878
+        - - 788
+          - 900
+        - - 806
+          - 925
+        - - 801
+          - 949
+        - - 790
+          - 952
+        - - 785
+          - 933
+        - - 771
+          - 916
+        - - 770
+          - 893
+        - - 778
+          - 874
+        - - 700
+          - 857
+        - - 634
+          - 834
+        - - 571
+          - 802
+        - - 553
+          - 779
+        - - 546
+          - 797
+        - - 561
+          - 824
+        - - 553
+          - 859
+        - - 542
+          - 856
+        - - 546
+          - 838
+        - - 537
+          - 821
+        - - 527
+          - 803
+        - - 523
+          - 780
+        - - 532
+          - 756
+        - - 492
+          - 725
+        - - 460
+          - 688
+        - - 434
+          - 647
+      - - - 43
+          - 628
+        - - 59
+          - 603
+        - - 78
+          - 595
+        - - 78
+          - 561
+        - - 94
+          - 544
+        - - 126
+          - 538
+        - - 131
+          - 523
+        - - 155
+          - 514
+        - - 201
+          - 509
+        - - 249
+          - 508
+        - - 280
+          - 516
+        - - 294
+          - 530
+        - - 293
+          - 551
+        - - 315
+          - 554
+        - - 329
+          - 566
+        - - 330
+          - 585
+        - - 360
+          - 593
+        - - 379
+          - 607
+        - - 383
+          - 631
+        - - 377
+          - 655
+        - - 350
+          - 665
+        - - 303
+          - 669
+        - - 253
+          - 668
+        - - 211
+          - 655
+        - - 174
+          - 652
+        - - 137
+          - 641
+        - - 108
+          - 644
+        - - 80
+          - 639
+      - - - 160
+          - 465
+        - - 164
+          - 448
+        - - 185
+          - 433
+        - - 205
+          - 429
+        - - 211
+          - 415
+        - - 229
+          - 408
+        - - 249
+          - 408
+        - - 266
+          - 417
+        - - 274
+          - 429
+        - - 292
+          - 433
+        - - 304
+          - 443
+        - - 301
+          - 456
+        - - 320
+          - 459
+        - - 325
+          - 470
+        - - 314
+          - 479
+        - - 290
+          - 479
+        - - 268
+          - 473
+        - - 251
+          - 477
+        - - 242
+          - 490
+        - - 246
+          - 505
+        - - 260
+          - 516
+        - - 250
+          - 525
+        - - 228
+          - 521
+        - - 213
+          - 521
+        - - 199
+          - 524
+        - - 198
+          - 515
+        - - 209
+          - 501
+        - - 213
+          - 488
+        - - 210
+          - 477
+        - - 196
+          - 470
+        - - 177
+          - 480
+        - - 162
+          - 476
+      - - - 246
+          - 354
+        - - 268
+          - 335
+        - - 291
+          - 322
+        - - 304
+          - 285
+        - - 315
+          - 269
+        - - 312
+          - 263
+        - - 321
+          - 255
+        - - 332
+          - 256
+        - - 338
+          - 265
+        - - 334
+          - 273
+        - - 345
+          - 296
+        - - 361
+          - 252
+        - - 381
+          - 217
+        - - 372
+          - 216
+        - - 372
+          - 207
+        - - 383
+          - 198
+        - - 402
+          - 196
+        - - 416
+          - 203
+        - - 419
+          - 213
+        - - 404
+          - 218
+        - - 420
+          - 247
+        - - 438
+          - 277
+        - - 447
+          - 294
+        - - 448
+          - 266
+        - - 453
+          - 247
+        - - 461
+          - 240
+        - - 469
+          - 244
+        - - 475
+          - 255
+        - - 471
+          - 263
+        - - 479
+          - 280
+        - - 489
+          - 306
+        - - 500
+          - 300
+        - - 510
+          - 307
+        - - 520
+          - 332
+        - - 547
+          - 340
+        - - 559
+          - 355
+        - - 550
+          - 372
+        - - 512
+          - 385
+        - - 459
+          - 389
+        - - 400
+          - 382
+        - - 340
+          - 381
+        - - 287
+          - 373
+      - - - 774
+          - 348
+        - - 802
+          - 324
+        - - 834
+          - 316
+        - - 861
+          - 305
+        - - 864
+          - 236
+        - - 862
+          - 230
+        - - 865
+          - 211
+        - - 878
+          - 194
+        - - 893
+          - 185
+        - - 895
+          - 177
+        - - 896
+          - 165
+        - - 905
+          - 159
+        - - 913
+          - 166
+        - - 911
+          - 177
+        - - 917
+          - 182
+        - - 931
+          - 197
+        - - 939
+          - 218
+        - - 941
+          - 232
+        - - 937
+          - 238
+        - - 941
+          - 304
+        - - 970
+          - 286
+        - - 988
+          - 299
+        - - 1001
+          - 315
+        - - 1019
+          - 335
+        - - 1012
+          - 352
+        - - 980
+          - 364
+        - - 929
+          - 368
+        - - 876
+          - 365
+        - - 830
+          - 364
+        - - 791
+          - 359
+      - - - 1004
+          - 197
+        - - 1010
+          - 174
+        - - 1026
+          - 158
+        - - 1041
+          - 148
+        - - 1053
+          - 136
+        - - 1070
+          - 130
+        - - 1087
+          - 122
+        - - 1103
+          - 116
+        - - 1126
+          - 117
+        - - 1144
+          - 128
+        - - 1160
+          - 136
+        - - 1176
+          - 147
+        - - 1187
+          - 167
+        - - 1204
+          - 176
+        - - 1239
+          - 182
+        - - 1257
+          - 165
+        - - 1262
+          - 151
+        - - 1249
+          - 148
+        - - 1237
+          - 137
+        - - 1231
+          - 121
+        - - 1241
+          - 124
+        - - 1259
+          - 129
+        - - 1273
+          - 141
+        - - 1286
+          - 134
+        - - 1308
+          - 134
+        - - 1318
+          - 130
+        - - 1314
+          - 145
+        - - 1303
+          - 158
+        - - 1285
+          - 165
+        - - 1276
+          - 186
+        - - 1261
+          - 207
+        - - 1240
+          - 222
+        - - 1216
+          - 232
+        - - 1183
+          - 236
+        - - 1165
+          - 239
+        - - 1175
+          - 255
+        - - 1158
+          - 259
+        - - 1143
+          - 249
+        - - 1133
+          - 238
+        - - 1113
+          - 237
+        - - 1086
+          - 228
+        - - 1054
+          - 216
+        - - 1025
+          - 210
+        - - 1007
+          - 205
+      - - - 1341
+          - 219
+        - - 1351
+          - 210
+        - - 1356
+          - 196
+        - - 1365
+          - 183
+        - - 1374
+          - 185
+        - - 1377
+          - 198
+        - - 1388
+          - 171
+        - - 1399
+          - 149
+        - - 1409
+          - 147
+        - - 1419
+          - 159
+        - - 1424
+          - 182
+        - - 1436
+          - 211
+        - - 1452
+          - 218
+        - - 1460
+          - 228
+        - - 1427
+          - 236
+        - - 1393
+          - 235
+        - - 1362
+          - 232
+      - - - 887
+          - 246
+        - - 892
+          - 231
+        - - 898
+          - 228
+        - - 900
+          - 210
+        - - 906
+          - 211
+        - - 907
+          - 230
+        - - 914
+          - 236
+        - - 918
+          - 256
+        - - 903
+          - 261
+        - - 886
+          - 257
+      components:
+      - home
+      - column
+      - bonsai_planted
+      - kiln
+      - bell_spire
+      - whale
+      - sea_stack
+      holes:
+      - - - 877
+          - 303
+        - - 877
+          - 236
+        - - 884
+          - 214
+        - - 896
+          - 202
+        - - 909
+          - 205
+        - - 922
+          - 220
+        - - 926
+          - 237
+        - - 926
+          - 303
+      bell_air_holes:
+      - - - 877
+          - 303
+        - - 877
+          - 236
+        - - 884
+          - 214
+        - - 896
+          - 202
+        - - 909
+          - 205
+        - - 922
+          - 220
+        - - 926
+          - 237
+        - - 926
+          - 303
+      bell_material_contours:
+      - - - 887
+          - 246
+        - - 892
+          - 231
+        - - 898
+          - 228
+        - - 900
+          - 210
+        - - 906
+          - 211
+        - - 907
+          - 230
+        - - 914
+          - 236
+        - - 918
+          - 256
+        - - 903
+          - 261
+        - - 886
+          - 257
+      swatch_points:
+      - - 1171
+        - 189
+      - - 306
+        - 604
+      - - 1107
+        - 783
+      source_file: /workspace/generated_images/exec-8f985dad-a427-4a3f-a173-558946049de5.png
+      original_generated_png_sha256: 686e12cb413d46e3a937ec80b433ed4ad658d6948d6b030f3a2f2d819f232d12
+      rgba_sha256: 185bf5762cad29a4291d1747759ee0f21df1eb4fbb0a03ccd7662175ac96949d
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: 0b674bdf71a90224bbb1dd32d35493442986a4cda146b625ebcb5cacdcce4d69
+      sampled_swatches:
+      - point:
+        - 1171
+        - 189
+        hex: '#D8D4DE'
+      - point:
+        - 306
+        - 604
+        hex: '#D7E0D6'
+      - point:
+        - 1107
+        - 783
+        hex: '#F1BD96'
+      observed_bbox:
+      - 43
+      - 116
+      - 1461
+      - 953
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      subject_profile_proof:
+      - name: home
+        bbox:
+        - 414
+        - 468
+        - 1456
+        - 953
+        contours:
+        - - - 414
+            - 594
+          - - 436
+            - 553
+          - - 502
+            - 520
+          - - 590
+            - 497
+          - - 711
+            - 478
+          - - 858
+            - 468
+          - - 1015
+            - 471
+          - - 1169
+            - 482
+          - - 1298
+            - 507
+          - - 1393
+            - 541
+          - - 1445
+            - 578
+          - - 1455
+            - 605
+          - - 1431
+            - 643
+          - - 1408
+            - 679
+          - - 1369
+            - 715
+          - - 1325
+            - 744
+          - - 1318
+            - 762
+          - - 1339
+            - 792
+          - - 1336
+            - 813
+          - - 1324
+            - 848
+          - - 1311
+            - 849
+          - - 1316
+            - 826
+          - - 1323
+            - 807
+          - - 1311
+            - 785
+          - - 1302
+            - 766
+          - - 1228
+            - 819
+          - - 1138
+            - 859
+          - - 1034
+            - 886
+          - - 938
+            - 899
+          - - 848
+            - 893
+          - - 792
+            - 878
+          - - 788
+            - 900
+          - - 806
+            - 925
+          - - 801
+            - 949
+          - - 790
+            - 952
+          - - 785
+            - 933
+          - - 771
+            - 916
+          - - 770
+            - 893
+          - - 778
+            - 874
+          - - 700
+            - 857
+          - - 634
+            - 834
+          - - 571
+            - 802
+          - - 553
+            - 779
+          - - 546
+            - 797
+          - - 561
+            - 824
+          - - 553
+            - 859
+          - - 542
+            - 856
+          - - 546
+            - 838
+          - - 537
+            - 821
+          - - 527
+            - 803
+          - - 523
+            - 780
+          - - 532
+            - 756
+          - - 492
+            - 725
+          - - 460
+            - 688
+          - - 434
+            - 647
+        native_dimensions:
+        - 60
+        - 28
+        native60_mask_sha256: 4baf1791bd5c8755720973c99e7032f6de86fdfa78117825cccbfd78346f5c0f
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: column
+        bbox:
+        - 43
+        - 508
+        - 384
+        - 670
+        contours:
+        - - - 43
+            - 628
+          - - 59
+            - 603
+          - - 78
+            - 595
+          - - 78
+            - 561
+          - - 94
+            - 544
+          - - 126
+            - 538
+          - - 131
+            - 523
+          - - 155
+            - 514
+          - - 201
+            - 509
+          - - 249
+            - 508
+          - - 280
+            - 516
+          - - 294
+            - 530
+          - - 293
+            - 551
+          - - 315
+            - 554
+          - - 329
+            - 566
+          - - 330
+            - 585
+          - - 360
+            - 593
+          - - 379
+            - 607
+          - - 383
+            - 631
+          - - 377
+            - 655
+          - - 350
+            - 665
+          - - 303
+            - 669
+          - - 253
+            - 668
+          - - 211
+            - 655
+          - - 174
+            - 652
+          - - 137
+            - 641
+          - - 108
+            - 644
+          - - 80
+            - 639
+        native_dimensions:
+        - 60
+        - 29
+        native60_mask_sha256: be6672863d4b4c3a470ed408790d57f0a73ceefa576af03583fdd2302580fc81
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: bonsai_planted
+        bbox:
+        - 160
+        - 408
+        - 326
+        - 526
+        contours:
+        - - - 160
+            - 465
+          - - 164
+            - 448
+          - - 185
+            - 433
+          - - 205
+            - 429
+          - - 211
+            - 415
+          - - 229
+            - 408
+          - - 249
+            - 408
+          - - 266
+            - 417
+          - - 274
+            - 429
+          - - 292
+            - 433
+          - - 304
+            - 443
+          - - 301
+            - 456
+          - - 320
+            - 459
+          - - 325
+            - 470
+          - - 314
+            - 479
+          - - 290
+            - 479
+          - - 268
+            - 473
+          - - 251
+            - 477
+          - - 242
+            - 490
+          - - 246
+            - 505
+          - - 260
+            - 516
+          - - 250
+            - 525
+          - - 228
+            - 521
+          - - 213
+            - 521
+          - - 199
+            - 524
+          - - 198
+            - 515
+          - - 209
+            - 501
+          - - 213
+            - 488
+          - - 210
+            - 477
+          - - 196
+            - 470
+          - - 177
+            - 480
+          - - 162
+            - 476
+        native_dimensions:
+        - 60
+        - 43
+        native60_mask_sha256: 52d4e687775edefdb465e8a2b69db8087950d06dd62675a686d2096ba5dea58c
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: kiln
+        bbox:
+        - 246
+        - 196
+        - 560
+        - 390
+        contours:
+        - - - 246
+            - 354
+          - - 268
+            - 335
+          - - 291
+            - 322
+          - - 304
+            - 285
+          - - 315
+            - 269
+          - - 312
+            - 263
+          - - 321
+            - 255
+          - - 332
+            - 256
+          - - 338
+            - 265
+          - - 334
+            - 273
+          - - 345
+            - 296
+          - - 361
+            - 252
+          - - 381
+            - 217
+          - - 372
+            - 216
+          - - 372
+            - 207
+          - - 383
+            - 198
+          - - 402
+            - 196
+          - - 416
+            - 203
+          - - 419
+            - 213
+          - - 404
+            - 218
+          - - 420
+            - 247
+          - - 438
+            - 277
+          - - 447
+            - 294
+          - - 448
+            - 266
+          - - 453
+            - 247
+          - - 461
+            - 240
+          - - 469
+            - 244
+          - - 475
+            - 255
+          - - 471
+            - 263
+          - - 479
+            - 280
+          - - 489
+            - 306
+          - - 500
+            - 300
+          - - 510
+            - 307
+          - - 520
+            - 332
+          - - 547
+            - 340
+          - - 559
+            - 355
+          - - 550
+            - 372
+          - - 512
+            - 385
+          - - 459
+            - 389
+          - - 400
+            - 382
+          - - 340
+            - 381
+          - - 287
+            - 373
+        native_dimensions:
+        - 60
+        - 37
+        native60_mask_sha256: bfd8936daeb711b70c379e5da7a12d59f8e1afb2d764ae491b7fc1056f8e0a45
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: bell_spire
+        bbox:
+        - 774
+        - 159
+        - 1020
+        - 369
+        contours:
+        - - - 774
+            - 348
+          - - 802
+            - 324
+          - - 834
+            - 316
+          - - 861
+            - 305
+          - - 864
+            - 236
+          - - 862
+            - 230
+          - - 865
+            - 211
+          - - 878
+            - 194
+          - - 893
+            - 185
+          - - 895
+            - 177
+          - - 896
+            - 165
+          - - 905
+            - 159
+          - - 913
+            - 166
+          - - 911
+            - 177
+          - - 917
+            - 182
+          - - 931
+            - 197
+          - - 939
+            - 218
+          - - 941
+            - 232
+          - - 937
+            - 238
+          - - 941
+            - 304
+          - - 970
+            - 286
+          - - 988
+            - 299
+          - - 1001
+            - 315
+          - - 1019
+            - 335
+          - - 1012
+            - 352
+          - - 980
+            - 364
+          - - 929
+            - 368
+          - - 876
+            - 365
+          - - 830
+            - 364
+          - - 791
+            - 359
+        native_dimensions:
+        - 60
+        - 51
+        native60_mask_sha256: 8421a972a67ad60ca92f2d48118e2c9a736a69660d3cfab75f46d50d2411eebb
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: whale
+        bbox:
+        - 1004
+        - 116
+        - 1319
+        - 260
+        contours:
+        - - - 1004
+            - 197
+          - - 1010
+            - 174
+          - - 1026
+            - 158
+          - - 1041
+            - 148
+          - - 1053
+            - 136
+          - - 1070
+            - 130
+          - - 1087
+            - 122
+          - - 1103
+            - 116
+          - - 1126
+            - 117
+          - - 1144
+            - 128
+          - - 1160
+            - 136
+          - - 1176
+            - 147
+          - - 1187
+            - 167
+          - - 1204
+            - 176
+          - - 1239
+            - 182
+          - - 1257
+            - 165
+          - - 1262
+            - 151
+          - - 1249
+            - 148
+          - - 1237
+            - 137
+          - - 1231
+            - 121
+          - - 1241
+            - 124
+          - - 1259
+            - 129
+          - - 1273
+            - 141
+          - - 1286
+            - 134
+          - - 1308
+            - 134
+          - - 1318
+            - 130
+          - - 1314
+            - 145
+          - - 1303
+            - 158
+          - - 1285
+            - 165
+          - - 1276
+            - 186
+          - - 1261
+            - 207
+          - - 1240
+            - 222
+          - - 1216
+            - 232
+          - - 1183
+            - 236
+          - - 1165
+            - 239
+          - - 1175
+            - 255
+          - - 1158
+            - 259
+          - - 1143
+            - 249
+          - - 1133
+            - 238
+          - - 1113
+            - 237
+          - - 1086
+            - 228
+          - - 1054
+            - 216
+          - - 1025
+            - 210
+          - - 1007
+            - 205
+        native_dimensions:
+        - 60
+        - 27
+        native60_mask_sha256: e87056f2fc5bcfa05deab2adae5a010129fbfe7473536dae64fbbe630846e86d
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      - name: sea_stack
+        bbox:
+        - 1341
+        - 147
+        - 1461
+        - 237
+        contours:
+        - - - 1341
+            - 219
+          - - 1351
+            - 210
+          - - 1356
+            - 196
+          - - 1365
+            - 183
+          - - 1374
+            - 185
+          - - 1377
+            - 198
+          - - 1388
+            - 171
+          - - 1399
+            - 149
+          - - 1409
+            - 147
+          - - 1419
+            - 159
+          - - 1424
+            - 182
+          - - 1436
+            - 211
+          - - 1452
+            - 218
+          - - 1460
+            - 228
+          - - 1427
+            - 236
+          - - 1393
+            - 235
+          - - 1362
+            - 232
+        native_dimensions:
+        - 60
+        - 45
+        native60_mask_sha256: 68b5ec36e7f9e08f98b6c5afcd82ca65975490450d25e48b2ecbc8fe94a86bdb
+        qa_only: true
+        cloud_occluded_edges_uncertain: true
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 8
+      qa_native60_black_pixels: 812
+      annotation_contours_count: 8
+      annotation_holes_count: 1
+      native60_mask_sha256: a69c21fd90d72f9389a8efc6ee8379dfd67a5501bf8e5a7b9af3b8a1d810e852
+      official_qa:
+        file: /workspace/run18/build/imagegen/batch-18-loop-1-concepts/qa/plate__cl1-backdrop-day--t4.json
+        sha256: 7fc04963ca4a80bdee4479ee714546fcef67ba11dc1150e7cae22caec2c248c1
+        raw_status: pass
+        exploration_style_advisory: true
+        effective:
+          file: /workspace/art-operator-runtime/batch18/effective/cl1-backdrop-day-t4.json
+          sha256: cef6cbfdc3376223ce47bfd7ba0d72226a40fd8b67a93f69bceb442727f278f9
+          status: pass
+          threshold_changes: false
+      annotation_source_inbox_sha256: eff9b9d672ae16c59a43c2edbb6a581c03e2085fed7600f32991f70e727da16f
+  reviewed_at: '2026-11-03T17:01:13.286067+00:00'
+  preview_verified: true
+  preview_sha256: 2222b8ed4443a7f62f10c677a64f17d6137845923596b53e741808f04e0f5b3f
+  no_authoritative_pick: true
+  production_score_threshold_applied: false
+  posted_sha256: 3ec0c934c7c1ca4a1bf62f817c5a386ec48ea67e18abc18ca89f9ecda13e8133
+  subject_profiles_preview_sha256: aa41cc9b4aadf732d9f6ec1f1cb4d84dfda50b48a4f0f670637d2b74f7774d6b
+  subject_profiles_preview_verified: true
+  reviewer_source_json_sha256: fdaadcf8acfdd8ed7b0f5a102b5d1bfdaad9c2c40612f96e00d729585f0d7ae3
+  reviewer_source_file: /workspace/art-operator-runtime/batch18/reviews-ui/cl1-backdrop-day.json
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-f7c27a50-87a8-44f3-943c-731a69953e1f.png
+  original_generated_png_sha256: 777f0cf4d06e275845045264bd94aec6c96ffcd348d7c5caeeba20f37d4109e0
+  inbox_png_sha256: 9e117ab0904d3563c310b9ba8c002a7d9cec5560f3d9d72ebe0be19fd9bfd0ab
+  rgba_sha256: 6817b8296ae27ead6d4019782947f4f0738e8ac5e7ea50dbdf9f2b883d26281e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7e8ed943294b2986
+- take: 2
+  source_file: /workspace/generated_images/exec-f8f87247-aa1f-463a-8192-acb493db6161.png
+  original_generated_png_sha256: ed659c8c24efdcdb93139301aa6203f5dbeeb5431a9ab31409e79ff59a46f9ba
+  inbox_png_sha256: 54d3ba626d87a34bfd24a91c0c783a1ade6b7792c38d4cf55981cbb167d2cc1a
+  rgba_sha256: aaac1450f4cae1688bd1c1a56e530ccbeafe561f3a880936b5f4679ebf47808d
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7e8ed943294b2986
+- take: 3
+  source_file: /workspace/generated_images/exec-970fca6e-db83-4ef9-984e-34b5472844ed.png
+  original_generated_png_sha256: 8a3b64e57c771cca5ed28b4ded7620cf139b1e1ed25b42b03059fb582e90b621
+  inbox_png_sha256: df97e03c7a3e2bd49207be95f94116756129326319c88252f3463ec4c983f3bf
+  rgba_sha256: 39d4cc6bd7e80c2d0589f018a50f0842a6bd510e958f84e007076be7cb8ce0bd
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7e8ed943294b2986
+- take: 4
+  source_file: /workspace/generated_images/exec-8f985dad-a427-4a3f-a173-558946049de5.png
+  original_generated_png_sha256: 686e12cb413d46e3a937ec80b433ed4ad658d6948d6b030f3a2f2d819f232d12
+  inbox_png_sha256: eff9b9d672ae16c59a43c2edbb6a581c03e2085fed7600f32991f70e727da16f
+  rgba_sha256: 185bf5762cad29a4291d1747759ee0f21df1eb4fbb0a03ccd7662175ac96949d
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7e8ed943294b2986
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
