@@ -30,6 +30,7 @@ links:
   - asset-ui-game-tray
   - asset-game-bloom-left
   - asset-game-bloom-right
+  - asset-game-plot-tile-honey
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'
