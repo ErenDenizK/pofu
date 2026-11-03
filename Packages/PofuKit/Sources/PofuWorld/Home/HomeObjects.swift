@@ -191,7 +191,7 @@ public struct CheekCollectBeat: Hashable, Sendable {
 /// Where the objects stand, relative to Pofu's feet on screen. Pure, so the
 /// collect flight lands where the jar is drawn.
 public enum HomeObjectsLayout {
-    public static let jarSize = (width: 56.0, height: 72.0)
+    public static let jarSize = (width: 62.0, height: 72.0)
     public static let lanternHeight = 96.0
     public static let potWidth = 36.0
 

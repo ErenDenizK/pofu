@@ -94,12 +94,12 @@ enum WorldStrings {
     }
 
     /// Pofu's line for a visit beat (app–game boundary §6.2).
-    static func beatLine(_ beat: VisitBeat, calm: Double) -> String {
+    static func beatLine(_ beat: VisitBeat) -> String {
         switch beat {
         case .care:
             String(localized: "I'm not feeling great. Shall we put the phone down for a bit?", bundle: .module)
         case .collect(let pouch):
-            String(localized: "While you were away, the island gathered \(pouch.total.units) seeds. Calm ×\(Self.calm(calm)).", bundle: .module)
+            String(localized: "While you were away, the island gathered \(pouch.total.units) seeds.", bundle: .module)
         case .news(.stageGrew):
             String(localized: "Look: the island grew overnight!", bundle: .module)
         case .news(.islandArrived):
@@ -180,6 +180,64 @@ enum WorldStrings {
 
     static func seeds(_ count: Int) -> String {
         String(localized: "\(count) seeds", bundle: .module)
+    }
+
+    // MARK: - The Living Diorama
+
+    /// Pofu's one exclamation when his cheeks are huge (once a day).
+    static var cheeksHuge: String {
+        String(localized: "My cheeks are huge!", bundle: .module)
+    }
+
+    static func collectAction(_ seeds: Int) -> String {
+        String(localized: "Collect · \(seeds)", bundle: .module)
+    }
+
+    static func collectLabel(_ seeds: Int) -> String {
+        String(localized: "Collect, \(seeds) seeds", bundle: .module)
+    }
+
+    static var jarLabel: String {
+        String(localized: "Seed jar", bundle: .module)
+    }
+
+    static func jarValue(_ seeds: Int) -> String {
+        String(localized: "\(seeds) seeds in the jar", bundle: .module)
+    }
+
+    static var jarHint: String {
+        String(localized: "Collects the seeds in Pofu's cheeks", bundle: .module)
+    }
+
+    static var lanternLabel: String {
+        String(localized: "Calm lantern", bundle: .module)
+    }
+
+    static var potsLabel: String {
+        String(localized: "Skip pots", bundle: .module)
+    }
+
+    /// Pofu's accessibility value: his mood and what his cheeks hold.
+    static func pofuValue(band: WellbeingBand, uncollected: Int) -> String {
+        guard uncollected > 0 else { return wellbeing(band) }
+        let cheeks = String(localized: "\(uncollected) seeds in his cheeks", bundle: .module)
+        return "\(wellbeing(band)), \(cheeks)"
+    }
+
+    static func collected(_ seeds: Int, jar: Int) -> String {
+        String(localized: "\(seeds) seeds collected. \(jar) in the jar.", bundle: .module)
+    }
+
+    /// The glance: "Today 3/4 · 15 min".
+    static func glance(_ today: TodaySummary) -> String {
+        if today.reaches == 0 {
+            return String(localized: "Today · no reaches yet · \(today.guardedAtLeast) min", bundle: .module)
+        }
+        return String(localized: "Today \(today.skips)/\(today.reaches) · \(today.guardedAtLeast) min", bundle: .module)
+    }
+
+    static var openToday: String {
+        String(localized: "Open Today", bundle: .module)
     }
 
     static var repairBanner: String {
