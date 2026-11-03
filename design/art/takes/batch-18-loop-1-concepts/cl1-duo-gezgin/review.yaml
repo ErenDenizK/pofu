@@ -1,0 +1,884 @@
+batch: batch-18-loop-1-concepts
+contact_sheet: design/art/takes/batch-18-loop-1-concepts/cl1-duo-gezgin/contact.jpg
+jobs:
+  cl1-duo-gezgin:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Read-only source-bound review
+      of both retained originals and actual Pofu/Mochi references. Both receive eligibility
+      recommendations; final owner picks from hard-passing candidates. Native60 profiles
+      use only visible whale contours with frame/cloud uncertainty disclosed and internal
+      facial marks filled. Meadow-on-whale is explicitly named and is not a home-template
+      violation. Original official QA and effective official advisory profile are
+      retained and hash-verified; no production eight-point/style threshold is applied.
+      No generation, post, final pick, promotion, Git or source-art mutation.
+qa_reports:
+  1:
+    job: cl1-duo-gezgin
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 33.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 78 (R1 59)
+      value: 78.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.23
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6649
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.4, p95 5.0, off-palette 0.0%
+      value: 2.3686
+    info:
+      metrics_raw:
+        L_p5: 77.9
+        L_p50: 89.2
+        L_p95: 96.3
+        C_p50: 9.4
+        C_p95: 33.9
+        C_p99: 37.2
+        detail: 1.67
+      metrics_locked:
+        L_p5: 78.0
+        L_p50: 89.1
+        L_p95: 96.1
+        C_p50: 9.3
+        C_p95: 33.6
+        C_p99: 36.6
+        detail: 1.23
+    fingerprint: 35e25896c7082892
+  2:
+    job: cl1-duo-gezgin
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 78 (R1 59)
+      value: 78.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.15
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6663
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.4, p95 5.1, off-palette 0.0%
+      value: 2.3534
+    info:
+      metrics_raw:
+        L_p5: 78.4
+        L_p50: 90.7
+        L_p95: 96.9
+        C_p50: 8.3
+        C_p95: 35.1
+        C_p99: 38.3
+        detail: 1.57
+      metrics_locked:
+        L_p5: 78.5
+        L_p50: 90.7
+        L_p95: 96.6
+        C_p50: 8.3
+        C_p95: 34.6
+        C_p99: 37.9
+        detail: 1.15
+    fingerprint: 35e25896c7082892
+effective_exploration_reports:
+  1:
+    job: cl1-duo-gezgin
+    take: 1
+    raw_status: pass
+    status: pass
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 33.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 78 (R1 59)
+      value: 78.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.23
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6649
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.4, p95 5.0, off-palette 0.0%
+      value: 2.3686
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: 50aafb97e7017a853384dde0102211937af6781387324c449fe45a1463a7ea18
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+  2:
+    job: cl1-duo-gezgin
+    take: 2
+    raw_status: pass
+    status: pass
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 78 (R1 59)
+      value: 78.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.15
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6663
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.4, p95 5.1, off-palette 0.0%
+      value: 2.3534
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: a2aab2b4e359554d9b74747df164e6b6f9d0520e2f25ff8984ee9737d8518c09
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+manual_review:
+  recommendation_only: true
+  note: Read-only source-bound review of both retained originals and actual Pofu/Mochi
+    references. Both receive eligibility recommendations; final owner picks from hard-passing
+    candidates. Native60 profiles use only visible whale contours with frame/cloud
+    uncertainty disclosed and internal facial marks filled. Meadow-on-whale is explicitly
+    named and is not a home-template violation. Original official QA and effective
+    official advisory profile are retained and hash-verified; no production eight-point/style
+    threshold is applied. No generation, post, final pick, promotion, Git or source-art
+    mutation.
+  takes:
+    '1':
+      pass: true
+      silhouette_name: visible cloud-whale with forked tail, broad head and lower-left
+        flipper; meadow on back
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 1
+      - 1
+      evidence: 'The giant gentle cloud-whale is the actual landform, with a visible
+        forked tail at upper-left, broad head at right and long lower-left flipper.
+        Its closed eyelid and soft smile are visibly painted at the head edge. A meadow
+        is explicitly requested on its back; this is not a copied separate home lawn/soil
+        island. Pofu and Mochi walk toward the tortoise postman ahead at right: shell,
+        post cap and satchel are visible. Pofu alone has the forehead curl and small
+        round hamster ears; Mochi has a smooth no-curl crown and long soft hanging
+        lop ears. Character cues match the attached Pofu/Mochi references. The whale
+        body dominates the entire frame while the trio occupies a small area on its
+        back. Soft periwinkle-white body, meadow green-gold and clear afternoon sky
+        are visible. No copied home soil bowl, dangling roots, pebbles embedded in
+        home soil or round home door occurs, and no text/UI/border is visible. Actual
+        native60 whale-only source-observed profile remains nameable from tail/body/flipper,
+        without cutting fake eye or mouth holes.'
+      swatch_points:
+      - - 900
+        - 780
+      - - 850
+        - 520
+      - - 400
+        - 400
+      sampled_swatches:
+      - point:
+        - 900
+        - 780
+        hex: '#F2E2E7'
+      - point:
+        - 850
+        - 520
+        hex: '#E7DD95'
+      - point:
+        - 400
+        - 400
+        hex: '#FBBB76'
+      contours:
+      - - - 0
+          - 390
+        - - 34
+          - 375
+        - - 81
+          - 352
+        - - 128
+          - 327
+        - - 145
+          - 291
+        - - 113
+          - 271
+        - - 79
+          - 261
+        - - 48
+          - 239
+        - - 22
+          - 209
+        - - 7
+          - 170
+        - - 1
+          - 125
+        - - 10
+          - 82
+        - - 30
+          - 51
+        - - 50
+          - 40
+        - - 63
+          - 66
+        - - 96
+          - 77
+        - - 143
+          - 85
+        - - 188
+          - 102
+        - - 220
+          - 124
+        - - 243
+          - 158
+        - - 247
+          - 184
+        - - 278
+          - 151
+        - - 310
+          - 136
+        - - 362
+          - 122
+        - - 408
+          - 125
+        - - 456
+          - 119
+        - - 485
+          - 105
+        - - 501
+          - 104
+        - - 513
+          - 119
+        - - 515
+          - 153
+        - - 505
+          - 195
+        - - 480
+          - 232
+        - - 450
+          - 258
+        - - 410
+          - 280
+        - - 363
+          - 297
+        - - 315
+          - 305
+        - - 275
+          - 315
+        - - 254
+          - 342
+        - - 247
+          - 362
+        - - 298
+          - 351
+        - - 350
+          - 355
+        - - 401
+          - 365
+        - - 449
+          - 364
+        - - 500
+          - 371
+        - - 552
+          - 375
+        - - 611
+          - 380
+        - - 666
+          - 386
+        - - 730
+          - 383
+        - - 797
+          - 375
+        - - 861
+          - 370
+        - - 924
+          - 375
+        - - 985
+          - 379
+        - - 1044
+          - 380
+        - - 1110
+          - 386
+        - - 1180
+          - 404
+        - - 1250
+          - 423
+        - - 1315
+          - 448
+        - - 1376
+          - 473
+        - - 1435
+          - 493
+        - - 1478
+          - 516
+        - - 1508
+          - 540
+        - - 1525
+          - 568
+        - - 1528
+          - 598
+        - - 1518
+          - 635
+        - - 1503
+          - 668
+        - - 1484
+          - 703
+        - - 1468
+          - 741
+        - - 1447
+          - 773
+        - - 1419
+          - 794
+        - - 1375
+          - 807
+        - - 1320
+          - 816
+        - - 1265
+          - 816
+        - - 1200
+          - 814
+        - - 1140
+          - 828
+        - - 1080
+          - 843
+        - - 1020
+          - 849
+        - - 950
+          - 855
+        - - 882
+          - 850
+        - - 817
+          - 847
+        - - 759
+          - 839
+        - - 698
+          - 812
+        - - 637
+          - 811
+        - - 591
+          - 835
+        - - 548
+          - 855
+        - - 491
+          - 876
+        - - 432
+          - 893
+        - - 369
+          - 902
+        - - 301
+          - 905
+        - - 235
+          - 895
+        - - 172
+          - 883
+        - - 143
+          - 867
+        - - 153
+          - 838
+        - - 177
+          - 814
+        - - 215
+          - 789
+        - - 257
+          - 768
+        - - 296
+          - 751
+        - - 260
+          - 741
+        - - 214
+          - 738
+        - - 166
+          - 735
+        - - 120
+          - 730
+        - - 80
+          - 713
+        - - 42
+          - 698
+        - - 0
+          - 675
+      holes: []
+      uncertainty: 'This is a deliberately close, partly framed whale: left/tail/body
+        and (especially take2) right edge reach the actual image boundary. The mask
+        uses those real frame cuts, not an invented complete off-frame whale. Diffuse
+        lower body/cloud overlaps and rear meadow sections hidden by characters are
+        conservative observed-occlusion closures, never recovered hidden geometry.
+        Fine cloud/fur boundaries are coarse manual QA traces. Internal eyes/smile
+        remain filled in black; no artificial negative space. The landmark/character
+        reading is verified in the source crop, not claimed to survive as separate
+        characters inside the whale-only60px profile. Rubric/style advisory, no eight-point
+        threshold.'
+      source_file: /workspace/generated_images/exec-463c660c-5bc0-4f5a-b1f3-aad223fe2e64.png
+      original_generated_png_sha256: 948e0152c2db46e8f5c65b46922f6b632046ed106f5bd7a5971cbf2e9234cd15
+      rgba_sha256: 19dfdcab87b841d1a9c92e0aad9cbb769ca7e080df0d04113b1bfc2eff89fe00
+      source_dimensions:
+      - 1536
+      - 1024
+      inbox_png_sha256: 11788dc93aba6983b1153c5d8cddba50ac895c9db1467dcdd594359917a18a3e
+      inbox_rgba_matches_original: true
+      callback_sha256: 159b66d2bf5046837194bc40b97821255c5abe331cfade779f7d2204a21649df
+      posted_marker_sha256: e43ec2c25e7b0e0d9dab6c0f957f9bf2c8e486c63b319ce0158132e9a0244349
+      original_report_sha256: 50aafb97e7017a853384dde0102211937af6781387324c449fe45a1463a7ea18
+      effective_report_file: /workspace/art-operator-runtime/batch18/effective/cl1-duo-gezgin-t1.json
+      effective_report_sha256: f942c8ba0ca42b9d017e295321ed08d76a2c341aac0194d9ad996525bb4e014c
+      observed_bbox:
+      - 0
+      - 40
+      - 1529
+      - 906
+      silhouette_native_longest_px: 60
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-duo-gezgin-t1-QA-native60.png
+      qa_native60_source_sha256: c4512b137f0a3322b27e227afd7a3e93724c0744d31a1be2361da136b6f0061c
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-duo-gezgin-t1-QA-profile60.png
+      qa_native60_black_profile_sha256: a1df70b37a98f769e682ed069c571335ae1233f61fd55567e3fabbfd953b6033
+      whole_alpha_rectangle_used: false
+      internal_eye_or_mouth_hole_cut: false
+      character_source_crop_box:
+      - 350
+      - 230
+      - 1140
+      - 525
+      character_checks:
+        pofu_curl_only: true
+        mochi_long_soft_hanging_ears: true
+        mochi_no_curl: true
+        tortoise_postman_with_satchel_ahead: true
+        whale_closed_eye_and_soft_smile: true
+      references:
+        pofu:
+          path: /workspace/run18/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+          png_sha256: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+        mochi:
+          path: /workspace/run18/design/art/masters/mochi-v2/mochi-v2.png
+          png_sha256: 1c8fb65e650197d638f77760a8bb545041865d078ad2783aca40b7bea782a1b8
+      source_sha_verified: true
+      source_rgba_verified: true
+      preview_verified: true
+      annotation_source_inbox_sha256: 11788dc93aba6983b1153c5d8cddba50ac895c9db1467dcdd594359917a18a3e
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+    '2':
+      pass: true
+      silhouette_name: visible cloud-whale with forked tail, broad head and lower-left
+        flipper; meadow on back
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 1
+      - 1
+      evidence: 'The giant gentle cloud-whale is the actual landform, with a visible
+        forked tail at upper-left, broad head at right and long lower-left flipper.
+        Its closed eyelid and soft smile are visibly painted at the head edge. A meadow
+        is explicitly requested on its back; this is not a copied separate home lawn/soil
+        island. Pofu and Mochi walk toward the tortoise postman ahead at right: shell,
+        post cap and satchel are visible. Pofu alone has the forehead curl and small
+        round hamster ears; Mochi has a smooth no-curl crown and long soft hanging
+        lop ears. Character cues match the attached Pofu/Mochi references. The whale
+        body dominates the entire frame while the trio occupies a small area on its
+        back. Soft periwinkle-white body, meadow green-gold and clear afternoon sky
+        are visible. No copied home soil bowl, dangling roots, pebbles embedded in
+        home soil or round home door occurs, and no text/UI/border is visible. Actual
+        native60 whale-only source-observed profile remains nameable from tail/body/flipper,
+        without cutting fake eye or mouth holes.'
+      swatch_points:
+      - - 1100
+        - 730
+      - - 1100
+        - 400
+      - - 660
+        - 380
+      sampled_swatches:
+      - point:
+        - 1100
+        - 730
+        hex: '#F9DDDA'
+      - point:
+        - 1100
+        - 400
+        hex: '#C9D099'
+      - point:
+        - 660
+        - 380
+        hex: '#FCBC73'
+      contours:
+      - - - 0
+          - 521
+        - - 35
+          - 484
+        - - 63
+          - 447
+        - - 84
+          - 408
+        - - 102
+          - 370
+        - - 124
+          - 335
+        - - 141
+          - 307
+        - - 106
+          - 290
+        - - 74
+          - 279
+        - - 46
+          - 261
+        - - 27
+          - 239
+        - - 17
+          - 211
+        - - 23
+          - 177
+        - - 46
+          - 145
+        - - 73
+          - 138
+        - - 111
+          - 145
+        - - 144
+          - 154
+        - - 175
+          - 169
+        - - 200
+          - 187
+        - - 216
+          - 217
+        - - 237
+          - 182
+        - - 265
+          - 159
+        - - 301
+          - 147
+        - - 340
+          - 144
+        - - 378
+          - 134
+        - - 414
+          - 118
+        - - 440
+          - 117
+        - - 452
+          - 128
+        - - 456
+          - 148
+        - - 450
+          - 180
+        - - 432
+          - 219
+        - - 405
+          - 256
+        - - 369
+          - 284
+        - - 327
+          - 304
+        - - 283
+          - 317
+        - - 243
+          - 326
+        - - 228
+          - 349
+        - - 218
+          - 378
+        - - 213
+          - 404
+        - - 263
+          - 411
+        - - 321
+          - 411
+        - - 380
+          - 416
+        - - 439
+          - 418
+        - - 503
+          - 419
+        - - 570
+          - 418
+        - - 634
+          - 411
+        - - 699
+          - 398
+        - - 766
+          - 381
+        - - 831
+          - 370
+        - - 894
+          - 357
+        - - 954
+          - 348
+        - - 1017
+          - 341
+        - - 1079
+          - 333
+        - - 1140
+          - 321
+        - - 1207
+          - 312
+        - - 1272
+          - 303
+        - - 1332
+          - 302
+        - - 1395
+          - 303
+        - - 1461
+          - 300
+        - - 1503
+          - 301
+        - - 1535
+          - 310
+        - - 1535
+          - 492
+        - - 1529
+          - 536
+        - - 1516
+          - 582
+        - - 1498
+          - 626
+        - - 1476
+          - 671
+        - - 1452
+          - 708
+        - - 1428
+          - 742
+        - - 1389
+          - 770
+        - - 1346
+          - 785
+        - - 1293
+          - 798
+        - - 1238
+          - 805
+        - - 1182
+          - 812
+        - - 1125
+          - 819
+        - - 1063
+          - 827
+        - - 1000
+          - 833
+        - - 939
+          - 834
+        - - 880
+          - 827
+        - - 823
+          - 819
+        - - 766
+          - 812
+        - - 716
+          - 797
+        - - 670
+          - 788
+        - - 623
+          - 798
+        - - 579
+          - 823
+        - - 531
+          - 842
+        - - 480
+          - 859
+        - - 423
+          - 871
+        - - 367
+          - 879
+        - - 313
+          - 880
+        - - 258
+          - 873
+        - - 212
+          - 860
+        - - 184
+          - 841
+        - - 185
+          - 816
+        - - 206
+          - 787
+        - - 236
+          - 762
+        - - 271
+          - 742
+        - - 300
+          - 721
+        - - 268
+          - 716
+        - - 227
+          - 709
+        - - 184
+          - 699
+        - - 141
+          - 683
+        - - 100
+          - 665
+        - - 63
+          - 646
+        - - 31
+          - 623
+        - - 0
+          - 597
+      holes: []
+      uncertainty: 'This is a deliberately close, partly framed whale: left/tail/body
+        and (especially take2) right edge reach the actual image boundary. The mask
+        uses those real frame cuts, not an invented complete off-frame whale. Diffuse
+        lower body/cloud overlaps and rear meadow sections hidden by characters are
+        conservative observed-occlusion closures, never recovered hidden geometry.
+        Fine cloud/fur boundaries are coarse manual QA traces. Internal eyes/smile
+        remain filled in black; no artificial negative space. The landmark/character
+        reading is verified in the source crop, not claimed to survive as separate
+        characters inside the whale-only60px profile. Rubric/style advisory, no eight-point
+        threshold.'
+      source_file: /workspace/generated_images/exec-aeafb76f-f4df-4a67-982a-672fa21b378a.png
+      original_generated_png_sha256: 2bc9f6c3dc1e9021ff2afc8ad796a186a2a2847c3c660cc2b553f2bb42f27b75
+      rgba_sha256: 1056ad221b03d62e6beea891b0de20aa0d0491526b9a31dcace8069c4a48d21a
+      source_dimensions:
+      - 1536
+      - 1024
+      inbox_png_sha256: 94cfeb71cb203b4530f60e87dd57b6a92766793e5b166b111198d1f6d6f0a755
+      inbox_rgba_matches_original: true
+      callback_sha256: e1edb0db4c1b035c60d7dbc305ea39101299361cfb89317da1aba1ebb7244aa8
+      posted_marker_sha256: e43ec2c25e7b0e0d9dab6c0f957f9bf2c8e486c63b319ce0158132e9a0244349
+      original_report_sha256: a2aab2b4e359554d9b74747df164e6b6f9d0520e2f25ff8984ee9737d8518c09
+      effective_report_file: /workspace/art-operator-runtime/batch18/effective/cl1-duo-gezgin-t2.json
+      effective_report_sha256: 06086b2c1048a82bc7720e67bbb4244231d6ea2db59af8fdaf01d96d33a2f5e6
+      observed_bbox:
+      - 0
+      - 117
+      - 1536
+      - 881
+      silhouette_native_longest_px: 60
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-duo-gezgin-t2-QA-native60.png
+      qa_native60_source_sha256: b4cd5fac00349e1f6a8ff538b47e0dac618a008434bd94f92ddc20202a423d18
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-duo-gezgin-t2-QA-profile60.png
+      qa_native60_black_profile_sha256: 518cf18e5141b4f235b141dfc12a760eed7cb24cb2288820952b63070efe4e64
+      whole_alpha_rectangle_used: false
+      internal_eye_or_mouth_hole_cut: false
+      character_source_crop_box:
+      - 390
+      - 190
+      - 1090
+      - 485
+      character_checks:
+        pofu_curl_only: true
+        mochi_long_soft_hanging_ears: true
+        mochi_no_curl: true
+        tortoise_postman_with_satchel_ahead: true
+        whale_closed_eye_and_soft_smile: true
+      references:
+        pofu:
+          path: /workspace/run18/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+          png_sha256: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+        mochi:
+          path: /workspace/run18/design/art/masters/mochi-v2/mochi-v2.png
+          png_sha256: 1c8fb65e650197d638f77760a8bb545041865d078ad2783aca40b7bea782a1b8
+      source_sha_verified: true
+      source_rgba_verified: true
+      preview_verified: true
+      annotation_source_inbox_sha256: 94cfeb71cb203b4530f60e87dd57b6a92766793e5b166b111198d1f6d6f0a755
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+  reviewed_at: '2026-11-03T17:20:35.574285+00:00'
+  preview_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-duo-gezgin-QA-preview.jpg
+  preview_sha256: 4f62b1165ac2891c08fdaabc9fbfbade4d2f610cc1d7cbacdadb36194812fb25
+  preview_verified: true
+  no_authoritative_pick: true
+  production_score_threshold_applied: false
+  preview_verified_at: '2026-11-03T17:20:36.091624+00:00'
+  validation: Original/inbox byte and RGBA bindings, official POSTED QA and effective
+    advisory report hashes, native60 source/profile hashes, actual source swatches
+    and final preview visually checked. No final reviewer pick.
+  reviewer_source_json_sha256: 79988c823cfb203cda9cd6f2cfaea17ec915b5bb50941d219201742c42a1f801
+  reviewer_source_file: /workspace/art-operator-runtime/batch18/reviews-garden/cl1-duo-gezgin.json
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-463c660c-5bc0-4f5a-b1f3-aad223fe2e64.png
+  original_generated_png_sha256: 948e0152c2db46e8f5c65b46922f6b632046ed106f5bd7a5971cbf2e9234cd15
+  inbox_png_sha256: 11788dc93aba6983b1153c5d8cddba50ac895c9db1467dcdd594359917a18a3e
+  rgba_sha256: 19dfdcab87b841d1a9c92e0aad9cbb769ca7e080df0d04113b1bfc2eff89fe00
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 35e25896c7082892
+- take: 2
+  source_file: /workspace/generated_images/exec-aeafb76f-f4df-4a67-982a-672fa21b378a.png
+  original_generated_png_sha256: 2bc9f6c3dc1e9021ff2afc8ad796a186a2a2847c3c660cc2b553f2bb42f27b75
+  inbox_png_sha256: 94cfeb71cb203b4530f60e87dd57b6a92766793e5b166b111198d1f6d6f0a755
+  rgba_sha256: 1056ad221b03d62e6beea891b0de20aa0d0491526b9a31dcace8069c4a48d21a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 35e25896c7082892
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
