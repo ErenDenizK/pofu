@@ -2,16 +2,17 @@ id: asset-game-bloom-right
 type: asset
 title_tr: game-bloom-right
 title_en: game-bloom-right (ui)
-status: planned
+status: in-production
 horizon: now
-summary: 'Turn the sunflower head slightly to the right, as if looking right: the
-  center sits a little right of the middle and the petals on the left side are foreshortened.
+summary: 'Turn the sunflower head to the right: the brown center is at least 70 px
+  right of the front, with broad left petals and narrower foreshortened right petals.
   Same size, colors and finish.'
 links:
   variant_of:
   - asset-game-bloom-front
 art:
-  images: []
+  images:
+  - design/art/ui/ui-game-bloom-right/ui-game-bloom-right.png
   jobs:
   - batch-12-minigame-art:game-bloom-right
   - retry-2026-11-03:game-bloom-right
@@ -27,3 +28,5 @@ notes:
   measurements are review-only, not QA threshold edits. Take4 also fails automated
   chroma_ceiling. No waiver, prompt/manifest change or further retry. No dependent
   jobs; all original PNGs preserved.'
+- 'Retry 2026-11-03 passes: t1 selected by lowest passing lock load; brown-disc center
+  is +104.43 px right of the front. Earlier skip notes are retained as history.'
