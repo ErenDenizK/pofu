@@ -2,7 +2,7 @@ id: asset-iskele-goat
 type: asset
 title_tr: iskele-goat
 title_en: iskele-goat (char)
-status: planned
+status: in-production
 horizon: now
 summary: 'Draw a baby goat in exactly the same art style, lighting and level of fluff
   as the attached hamster and kitten. Same canvas rules: full body, sitting upright,
@@ -11,7 +11,8 @@ summary: 'Draw a baby goat in exactly the same art style, lighting and level of 
   plush fur, a warm tan patch over one eye, two tiny rounded horn buds, two soft floppy
   ears, a sm…'
 art:
-  images: []
+  images:
+  - design/art/masters/iskele-goat/iskele-goat.webp
   jobs:
   - batch-14-iskele:iskele-goat
   - retry-2026-11-03:iskele-goat
