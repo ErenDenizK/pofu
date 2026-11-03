@@ -57,6 +57,9 @@ public struct WorldLook: Hashable, Sendable {
     /// The painted night overlays of practical lights (cay-1-lit's flame);
     /// off only to compare.
     public var litOverlays = true
+    /// The graphics spike (normal-lit art, depth-map depth of field); off
+    /// by default and switched in Rehearsal mode's Ayar panel.
+    public var spike: GraphicsSpike = .off
 
     public init(
         art: ArtSet = .lockLight,

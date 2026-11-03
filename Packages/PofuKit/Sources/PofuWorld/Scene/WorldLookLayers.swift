@@ -145,6 +145,9 @@ struct HD2DLayer: View {
     var art: WorldLook.ArtSet = .lockLight
     /// The painted night overlays of practical lights.
     var litOverlays = true
+    /// The graphics spike's normal lighting does the practicals' pools and
+    /// the characters' rims instead.
+    var relit = false
 
     var body: some View {
         Canvas(rendersAsynchronously: false) { context, size in
@@ -154,8 +157,10 @@ struct HD2DLayer: View {
             drawLitOverlays(in: &paint)
             drawShafts(in: &glow, size: size)
             drawSunBloom(in: &glow, size: size)
-            drawPools(in: &glow)
-            drawRims(in: &glow)
+            if !relit {
+                drawPools(in: &glow)
+                drawRims(in: &glow)
+            }
             drawEmitters(in: &glow)
             drawParticles(in: &glow)
         }
