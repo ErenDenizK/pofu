@@ -1,7 +1,8 @@
 import Foundation
 
 /// The graphics spike's switches (Rehearsal mode's Ayar panel, `WorldLook.spike`).
-/// Everything is off by default, so nothing about the shipped look changes.
+/// Decision (docs/design/look-dev.md): depth-map depth of field is the
+/// default look; normal lighting stays off by default but available.
 ///
 /// 1. **Normal lighting**: the hour's key, a soft fill, the practicals
 ///    (the ember) and a rim computed on the painted art from baked normal
@@ -31,7 +32,7 @@ public struct GraphicsSpike: Hashable, Sendable {
     public init(
         normalLighting: Bool = false,
         lightStrength: Double = 1,
-        depthOfField: Bool = false,
+        depthOfField: Bool = true,
         dofStrength: Double = 1,
         debug: Debug = .off
     ) {
@@ -42,8 +43,11 @@ public struct GraphicsSpike: Hashable, Sendable {
         self.debug = debug
     }
 
-    /// Both switches off.
-    public static let off = GraphicsSpike()
+    /// The default: depth of field on, normal lighting off.
+    public static let standard = GraphicsSpike()
+
+    /// Both switches off (whole-layer blur only, the pre-spike look).
+    public static let off = GraphicsSpike(depthOfField: false)
 
     /// The sprites that have a baked normal map (`world-<name>--normal` in
     /// the asset catalog).

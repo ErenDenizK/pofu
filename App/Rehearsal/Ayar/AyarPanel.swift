@@ -215,7 +215,7 @@ struct AyarPanel: View {
             TuningRow(store: store, key: "depth.tiltShiftIsland")
             TuningRow(store: store, key: "depth.tiltShiftHome")
             Divider()
-            Text(verbatim: "Grafik deneyi (varsayılan kapalı)")
+            Text(verbatim: "Grafik (alan derinliği açık, ışık kapalı)")
                 .font(PofuFont.headline)
             Toggle(isOn: Binding(get: { session.spikeLighting }, set: { session.spikeLighting = $0 })) {
                 Text(verbatim: "Normal haritalı ışık (anahtar, ember, kenar)")

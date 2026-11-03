@@ -43,7 +43,7 @@ final class SpikeScreenshotTests: XCTestCase {
         var shots: [(String, WorldLook)] = []
         for (id, hour) in [("day", 12.0), ("golden", 18.5), ("night", 22.0)] {
             shots.append(("spike-light-\(id)-baked", look(hour: hour)))
-            shots.append(("spike-light-\(id)-lit", look(hour: hour, spike: GraphicsSpike(normalLighting: true))))
+            shots.append(("spike-light-\(id)-lit", look(hour: hour, spike: GraphicsSpike(normalLighting: true, depthOfField: false))))
         }
         shots.append(("spike-dof-old", look(hour: 12)))
         shots.append(("spike-dof-new", look(hour: 12, spike: GraphicsSpike(depthOfField: true))))

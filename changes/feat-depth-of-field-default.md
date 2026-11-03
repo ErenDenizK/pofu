@@ -1,0 +1,1 @@
+Changed: the island and Home now use depth-map depth of field by default, so blur follows each pixel's real depth instead of whole layers; normal-map lighting stays off by default and can be switched on in Ayar.

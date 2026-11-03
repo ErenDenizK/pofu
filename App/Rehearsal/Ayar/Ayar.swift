@@ -33,10 +33,10 @@ final class AyarSession {
     var hd2d = true
     var depthMotion = true
     /// The graphics spike (`GraphicsSpike`): normal-lit art and depth of
-    /// field from a depth map. Off by default.
+    /// field from a depth map. Depth of field is on by default, lighting off.
     var spikeLighting = false
     var spikeLightStrength = 1.0
-    var spikeDepthOfField = false
+    var spikeDepthOfField = true
     var spikeDOFStrength = 1.0
 }
 
