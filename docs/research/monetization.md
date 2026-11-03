@@ -2,7 +2,9 @@
 
 _Last updated: 2026-11-01. Status: research complete; decision deferred to the
 launch phase, constrained by the principles below. Paywall timing decided
-in [ADR-0012](../adr/0012-ux-v1-decisions.md): no paywall in onboarding._
+in [ADR-0012](../adr/0012-ux-v1-decisions.md): no paywall in onboarding.
+The concrete models, prices and the recommendation for the founder are in
+[product/monetization.md](../product/monetization.md) (2026-11-02)._
 
 ## Founder constraints
 
