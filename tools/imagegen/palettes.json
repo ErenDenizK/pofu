@@ -17,5 +17,32 @@
     "awning-rose": "#EE9A90",
     "petal-honey": "#F6C95C",
     "stone-soft": "#D8CFC6"
+  },
+  "game-glazes": {
+    "$note": "The five recolor glazes of the garden minigame's plot tiles (batch 12 retry). A recolor asks for colors the props palette does not hold, so drift is measured against these. Body, shade and light per glaze, sampled (k-means) from the batch-12 takes and rounded by hand. A job adds it through `palettes:`.",
+    "honey": "#E8CA8E",
+    "honey-shade": "#DBBB73",
+    "honey-light": "#F4DDB0",
+    "terracotta": "#CA8667",
+    "terracotta-shade": "#BF7959",
+    "terracotta-light": "#E8B098",
+    "lilac": "#D3C2E2",
+    "lilac-shade": "#BEADCA",
+    "lilac-light": "#DECEE9",
+    "mint": "#B5CDC4",
+    "mint-shade": "#9DB9AE",
+    "mint-light": "#BFD4CC",
+    "rose": "#C7A7A9",
+    "rose-shade": "#B39292",
+    "rose-light": "#D8B8B9"
+  },
+  "character-tabby": {
+    "$note": "Simit's honey tabby coat and coral neckerchief (batch 14 retry). The character palette is Pofu's peach; a honey-gold tabby with darker stripes sits outside it (drift failed at mean dE 4.0-4.4, off-palette 8-9%: #DD8844, #CC7733). Sampled (k-means) from the batch-14 takes' off-palette pixels and rounded by hand. A job adds it through `palettes:`.",
+    "honey-light": "#FFDDAB",
+    "honey-cream": "#FDC98D",
+    "honey-gold": "#FCBF7D",
+    "honey-stripe": "#EA9C57",
+    "honey-stripe-deep": "#D5803E",
+    "scarf-coral": "#F07A5E"
   }
 }
