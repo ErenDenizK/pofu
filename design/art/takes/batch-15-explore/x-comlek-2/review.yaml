@@ -1,0 +1,207 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-comlek-2/contact.jpg
+jobs:
+  x-comlek-2:
+    pick: null
+    publication: unselected due global account stop
+    note: UNSELECTED due global account/sign-in stop; no terminal QA failure/skip,
+      no pick, no further generation or QA after stop. Retained generated takes are
+      for resuming the existing allowed round, never regeneration of a completed pair.
+      Initial pair retained; its one extra pair remains available only if complete
+      QA/manual review later rejects both.
+    takes_generated: 2
+    retry_round_used: false
+qa_reports:
+  1:
+    job: x-comlek-2
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 42.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 64.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.811
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 4.5, off-palette 0.4% (top: #EE9944 (0.1%), #EE8844
+        (0.1%))'
+      value: 2.0545
+    info:
+      metrics_raw:
+        L_p5: 64.0
+        L_p50: 88.0
+        L_p95: 95.0
+        C_p50: 18.4
+        C_p95: 43.4
+        C_p99: 53.3
+        detail: 2.83
+      metrics_locked:
+        L_p5: 64.4
+        L_p50: 88.0
+        L_p95: 94.9
+        C_p50: 18.6
+        C_p95: 42.7
+        C_p99: 52.2
+        detail: 2.14
+    fingerprint: cf7b2171cecc86e3
+  2:
+    job: x-comlek-2
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 64.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.03
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8351
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 3.8, off-palette 0.1% (top: #FF9955 (0.0%), #EE9955
+        (0.0%))'
+      value: 1.455
+    info:
+      metrics_raw:
+        L_p5: 63.7
+        L_p50: 89.7
+        L_p95: 96.3
+        C_p50: 16.4
+        C_p95: 39.0
+        C_p99: 46.4
+        detail: 2.7
+      metrics_locked:
+        L_p5: 64.1
+        L_p50: 89.7
+        L_p95: 96.2
+        C_p50: 16.8
+        C_p95: 38.5
+        C_p99: 45.4
+        detail: 2.03
+    fingerprint: cf7b2171cecc86e3
+pre_stop_manual_notes: null
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-977464ba-19e4-440c-9094-a0eb360c59c6.png
+  original_png_sha256: e3a34d0892767388660b931b0e379aa1b3c898dd241bbc7243395e5247d55177
+  callback_file: /workspace/art-operator-runtime/generated-x-comlek-2-t1.json
+  account: &id001
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  backend: codex-cloud built-in image tool
+  prompt_sha256: e7423568327bb17d6b35c9ac85b7981a03cab46ce2f71c69bfa95bb842b49eab
+- take: 2
+  source_file: /workspace/generated_images/exec-a674726a-f4ed-4319-9afb-f64bdb74efa9.png
+  original_png_sha256: c05e54f07722bd2d8cdfc304ba151e65aae5bf11db209d8cabe265eba285e68b
+  callback_file: /workspace/art-operator-runtime/generated-x-comlek-2-t2.json
+  account: *id001
+  backend: codex-cloud built-in image tool
+  prompt_sha256: e7423568327bb17d6b35c9ac85b7981a03cab46ce2f71c69bfa95bb842b49eab
+prompt: 'REFERENCES (attached, in this order):
+
+  1. The home island: the same painting, the same low camera (about 20 degrees), the
+  same softness and scale of a floating island. Do not draw this island.
+
+  2. The sea of clouds below every island: paint the clouds like this.
+
+  3. Style reference only (no characters unless asked): the hamster''s soft painting
+  and pastel colors.
+
+
+  A concept painting for a cozy mobile game: A tiny mole (Kil) at the
+
+  potter''s wheel with wet clay-covered paws, pulling up a tall rounded jug,
+
+  a single thumbprint pressed into its side, the kiln glowing softly behind,
+
+  warm and calm. Seen from the same low front three-quarter camera as the
+
+  attached island, the island floating over a sea of clouds. Peaceful and
+
+  wondrous, never dramatic.
+
+
+  STYLE: soft painterly 2D illustration from the same picture book as the
+
+  attached hamster: the same gentle airbrushed shading, the same light,
+
+  high-key values and the same milky pastel colors. Simple, rounded, chunky
+
+  shapes with few parts; fewer, larger shapes, because this is seen small on
+
+  a phone. Every material is painted matte, as a soft form with broad,
+
+  smooth value changes: wood without grain, metal without hammering or
+
+  reflections, glass as a soft tinted shape, cloth without weave. At most
+
+  one small, soft highlight per object; no glints, no shine. Colors are
+
+  muted and lifted toward cream; the darkest shadow is a warm mid-brown,
+
+  never near black. Warm diffused key light from the upper left, a faint
+
+  warm rim light along the right edge, soft ambient shadow only where forms
+
+  touch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no
+
+  letters, no numbers, no logos, no watermark, no border, no frame, no
+
+  sticker outline.
+
+
+  AVOID: characters (except where named), a border, text, harsh shadows, saturated
+  or neon colors, dark moods
+
+
+  Output: one image, opaque, full bleed, landscape 1536 x 1024.'
+references_in_order:
+- /workspace/run15/design/art/masters/island-main-s/island-main-s.png
+- /workspace/run15/design/art/masters/cloud-sea/cloud-sea.png
+- /workspace/run15/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+stop:
+  reason: Git authentication/account stop condition
+  observed_at: '2026-11-03T10:45:59Z'
+  job: x-emanet-2
+  message: 'fatal: could not read Username for ''https://github.com'': No such device
+    or address'
+  last_verified_head: 9a4209a585e4aaf89997c96f5a902e105d1b016c
+  next_publication_job: x-emanet-2
+  policy: No new generations or terminal decisions; preserve already-finished candidates
+    and publish completed work through an already-authorized functioning transport
+    if possible; notify coordinator immediately.

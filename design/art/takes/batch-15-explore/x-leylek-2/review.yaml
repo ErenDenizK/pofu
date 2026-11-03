@@ -1,0 +1,105 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-leylek-2/contact.jpg
+jobs:
+  x-leylek-2:
+    pick: null
+    publication: unselected due global account stop
+    note: UNSELECTED due global account/sign-in stop; no terminal QA failure/skip,
+      no pick, no further generation or QA after stop. Retained generated takes are
+      for resuming the existing allowed round, never regeneration of a completed pair.
+      Initial pair retained; its one extra pair remains available only if complete
+      QA/manual review later rejects both.
+    takes_generated: 2
+    retry_round_used: false
+qa_reports: {}
+pre_stop_manual_notes: null
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-7cd07121-e662-4cc8-8257-9c8e9ae66dc5.png
+  original_png_sha256: 3155fff9d1217d7d701c3c9070999a4fb25413b424df7c899a7c3f40e829f7db
+  callback_file: /workspace/art-operator-runtime/generated-x-leylek-2-t1.json
+  account: &id001
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  backend: codex-cloud built-in image tool
+  prompt_sha256: bf44e404810e38ccddcf444da3e260288108fa879fb196d7a44bd0894046cd69
+- take: 2
+  source_file: /workspace/generated_images/exec-ef9434d7-225e-412f-b9ca-b63996d41e40.png
+  original_png_sha256: 0c926d759f8731d78da6437c412d0b7b1ecf7bcc660cb66fa7c2879cd2aacae6
+  callback_file: /workspace/art-operator-runtime/generated-x-leylek-2-t2.json
+  account: *id001
+  backend: codex-cloud built-in image tool
+  prompt_sha256: bf44e404810e38ccddcf444da3e260288108fa879fb196d7a44bd0894046cd69
+prompt: 'REFERENCES (attached, in this order):
+
+  1. The home island: the same painting, the same low camera (about 20 degrees), the
+  same softness and scale of a floating island. Do not draw this island.
+
+  2. The sea of clouds below every island: paint the clouds like this.
+
+  3. Style reference only (no characters unless asked): the hamster''s soft painting
+  and pastel colors.
+
+
+  A concept painting for a cozy mobile game: Two storks on the huge nest
+
+  facing each other with their long beaks lifted, clattering them (soft
+
+  motion arcs), a tiny stork chick between them looking up, the chimney warm
+
+  with evening light. Seen from the same low front three-quarter camera as
+
+  the attached island, the island floating over a sea of clouds. Peaceful
+
+  and wondrous, never dramatic.
+
+
+  STYLE: soft painterly 2D illustration from the same picture book as the
+
+  attached hamster: the same gentle airbrushed shading, the same light,
+
+  high-key values and the same milky pastel colors. Simple, rounded, chunky
+
+  shapes with few parts; fewer, larger shapes, because this is seen small on
+
+  a phone. Every material is painted matte, as a soft form with broad,
+
+  smooth value changes: wood without grain, metal without hammering or
+
+  reflections, glass as a soft tinted shape, cloth without weave. At most
+
+  one small, soft highlight per object; no glints, no shine. Colors are
+
+  muted and lifted toward cream; the darkest shadow is a warm mid-brown,
+
+  never near black. Warm diffused key light from the upper left, a faint
+
+  warm rim light along the right edge, soft ambient shadow only where forms
+
+  touch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no
+
+  letters, no numbers, no logos, no watermark, no border, no frame, no
+
+  sticker outline.
+
+
+  AVOID: characters (except where named), a border, text, harsh shadows, saturated
+  or neon colors, dark moods
+
+
+  Output: one image, opaque, full bleed, landscape 1536 x 1024.'
+references_in_order:
+- /workspace/run15/design/art/masters/island-main-s/island-main-s.png
+- /workspace/run15/design/art/masters/cloud-sea/cloud-sea.png
+- /workspace/run15/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+stop:
+  reason: Git authentication/account stop condition
+  observed_at: '2026-11-03T10:45:59Z'
+  job: x-emanet-2
+  message: 'fatal: could not read Username for ''https://github.com'': No such device
+    or address'
+  last_verified_head: 9a4209a585e4aaf89997c96f5a902e105d1b016c
+  next_publication_job: x-emanet-2
+  policy: No new generations or terminal decisions; preserve already-finished candidates
+    and publish completed work through an already-authorized functioning transport
+    if possible; notify coordinator immediately.

@@ -1,0 +1,79 @@
+batch: batch-15-explore
+contact_sheet: null
+jobs:
+  x-onb-3:
+    pick: null
+    publication: unselected due global account stop
+    note: 'UNSELECTED due global account/sign-in stop; no terminal QA failure/skip,
+      no pick, no further generation or QA after stop. Retained generated takes are
+      for resuming the existing allowed round, never regeneration of a completed pair.
+      This job never made an image call: the planned second logical group failed JavaScript
+      preflight before dispatch.'
+    takes_generated: 0
+    retry_round_used: false
+qa_reports: {}
+pre_stop_manual_notes: null
+sources: []
+prompt: 'REFERENCES (attached, in this order):
+
+  1. The home island: the same painting and softness.
+
+  2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+  A portrait storybook illustration for an onboarding screen: Pofu happily
+
+  holding one big sunflower seed in both paws, his cheeks slightly puffed, a
+
+  small cream seed jar beside him, a sunflower in bloom behind. Warm
+
+  afternoon light. A calm clear zone in the upper third.
+
+
+  STYLE: soft painterly 2D illustration from the same picture book as the
+
+  attached hamster: the same gentle airbrushed shading, the same light,
+
+  high-key values and the same milky pastel colors. Simple, rounded, chunky
+
+  shapes with few parts; fewer, larger shapes, because this is seen small on
+
+  a phone. Every material is painted matte, as a soft form with broad,
+
+  smooth value changes: wood without grain, metal without hammering or
+
+  reflections, glass as a soft tinted shape, cloth without weave. At most
+
+  one small, soft highlight per object; no glints, no shine. Colors are
+
+  muted and lifted toward cream; the darkest shadow is a warm mid-brown,
+
+  never near black. Warm diffused key light from the upper left, a faint
+
+  warm rim light along the right edge, soft ambient shadow only where forms
+
+  touch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no
+
+  letters, no numbers, no logos, no watermark, no border, no frame, no
+
+  sticker outline.
+
+
+  AVOID: text, a border, a phone, buttons, more characters than Pofu
+
+
+  Output: one image, opaque, full bleed, portrait 1024 x 1536.'
+references_in_order:
+- /workspace/run15/design/art/masters/island-main-s/island-main-s.png
+- /workspace/run15/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+stop:
+  reason: Git authentication/account stop condition
+  observed_at: '2026-11-03T10:45:59Z'
+  job: x-emanet-2
+  message: 'fatal: could not read Username for ''https://github.com'': No such device
+    or address'
+  last_verified_head: 9a4209a585e4aaf89997c96f5a902e105d1b016c
+  next_publication_job: x-emanet-2
+  policy: No new generations or terminal decisions; preserve already-finished candidates
+    and publish completed work through an already-authorized functioning transport
+    if possible; notify coordinator immediately.

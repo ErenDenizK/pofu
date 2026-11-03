@@ -1,0 +1,232 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-res-sumi/contact.jpg
+jobs:
+  x-res-sumi:
+    pick: null
+    publication: unselected due global account stop
+    note: UNSELECTED due global account/sign-in stop; no terminal QA failure/skip,
+      no pick, no further generation or QA after stop. Retained generated takes are
+      for resuming the existing allowed round, never regeneration of a completed pair.
+      Initial pair has forbidden unrequested green neckerchiefs. Exactly one retry
+      pair (takes3/4) was already in flight before stop and is retained unreviewed;
+      no additional retry remains.
+    takes_generated: 4
+    retry_round_used: true
+qa_reports:
+  1:
+    job: x-res-sumi
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 64.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.4 (R1 5.3)
+      value: 4.44
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0017
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 1.8, p95 11.0, off-palette 4.5% (top: #CCBB88 (0.8%), #CCAA77
+        (0.6%))'
+      value: 1.8299
+    info:
+      metrics_raw:
+        L_p5: 64.6
+        L_p50: 81.6
+        L_p95: 93.2
+        C_p50: 26.8
+        C_p95: 36.7
+        C_p99: 41.7
+        detail: 4.41
+      metrics_locked:
+        L_p5: 64.6
+        L_p50: 81.6
+        L_p95: 93.2
+        C_p50: 26.8
+        C_p95: 36.7
+        C_p99: 41.7
+        detail: 4.44
+    fingerprint: 3f6a9ecf7e7c9cb3
+  2:
+    job: x-res-sumi
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 33 (R1 51)
+      value: 33.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 68 (R1 59)
+      value: 67.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.5 (R1 5.3)
+      value: 4.45
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0013
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 1.5, p95 10.7, off-palette 3.3% (top: #CCBB88 (0.9%), #CCAA77
+        (0.6%))'
+      value: 1.5143
+    info:
+      metrics_raw:
+        L_p5: 67.7
+        L_p50: 82.1
+        L_p95: 92.9
+        C_p50: 24.7
+        C_p95: 33.4
+        C_p99: 41.2
+        detail: 4.39
+      metrics_locked:
+        L_p5: 67.7
+        L_p50: 82.1
+        L_p95: 92.9
+        C_p50: 24.7
+        C_p95: 33.4
+        C_p99: 41.2
+        detail: 4.45
+    fingerprint: 3f6a9ecf7e7c9cb3
+pre_stop_manual_notes:
+  exclude:
+  - 1
+  - 2
+  note: 'Initial takes1/2 have non-failing palette WARNs but both fail the explicit
+    no-clothes manual requirement: each adds a green neckerchief. Exactly one unchanged-prompt
+    retry pair requested; no terminal failure or publication yet.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-3e2f6db9-c089-431b-b3fa-0d33fcb4dd9b.png
+  original_png_sha256: c8f23c9f88b51b5abbe9c32b7921455737b3015714f45a247d58309483e2e544
+  callback_file: /workspace/art-operator-runtime/generated-x-res-sumi-t1.json
+  account: &id001
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  backend: codex-cloud built-in image tool
+  prompt_sha256: f5fc2208cfc26a6d2a8a6775b3798986f539491a79be5f9c8f60edf827614ce2
+- take: 2
+  source_file: /workspace/generated_images/exec-e6ed0bb6-8db4-4dfe-9a24-a5ddc365b82d.png
+  original_png_sha256: fad2622715b5e99dca092e2b7e77286f98291be1e64cfccb52fcd3ccd8509ae3
+  callback_file: /workspace/art-operator-runtime/generated-x-res-sumi-t2.json
+  account: *id001
+  backend: codex-cloud built-in image tool
+  prompt_sha256: f5fc2208cfc26a6d2a8a6775b3798986f539491a79be5f9c8f60edf827614ce2
+- take: 3
+  source_file: /workspace/generated_images/exec-05e43ceb-3497-420c-b9c9-a24205f878fe.png
+  original_png_sha256: 78a842e364fce2edbe2d00cb0e8517d0d4d2616e594d21654aab3611d845cd46
+  callback_file: /workspace/art-operator-runtime/generated-x-res-sumi-t3.json
+  account: *id001
+  backend: codex-cloud built-in image tool
+  prompt_sha256: f5fc2208cfc26a6d2a8a6775b3798986f539491a79be5f9c8f60edf827614ce2
+- take: 4
+  source_file: /workspace/generated_images/exec-91ee74c0-6809-4c40-a117-c340e64ba110.png
+  original_png_sha256: c6a57708e0cddcf7e069327a19cca3c5084a4fb061fd28f19c1bb42752ef3904
+  callback_file: /workspace/art-operator-runtime/generated-x-res-sumi-t4.json
+  account: *id001
+  backend: codex-cloud built-in image tool
+  prompt_sha256: f5fc2208cfc26a6d2a8a6775b3798986f539491a79be5f9c8f60edf827614ce2
+prompt: 'REFERENCES (attached, in this order):
+
+  1. The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly
+  (do not draw him).
+
+  2. Mochi, a neighbor: the same finish, eyes and size language (do not draw her).
+
+  3. The first concept of this batch: the world these residents live in (palette and
+  softness only; do not draw it).
+
+
+  A character model sheet on a plain transparent background, in exactly the
+
+  same art style, lighting and level of fluff as the attached hamster and
+
+  bunny: three full-body views of the same character in a row: front view
+
+  sitting upright, three-quarter view, and a happy pose. CHARACTER: Sumi, a
+
+  baby Japanese dormouse, a round plush ball of soft fawn fur with a cream
+
+  belly, tiny round ears, a long fluffy tail curled, half-closed sleepy
+
+  glossy dark eyes, an apologetic small smile. No curl or swirl on top of
+
+  the head (that belongs to Pofu alone). No clothes except what is named.
+
+
+  STYLE: soft painterly 2D illustration from the same picture book as the
+
+  attached hamster: the same gentle airbrushed shading, the same light,
+
+  high-key values and the same milky pastel colors. Simple, rounded, chunky
+
+  shapes with few parts; fewer, larger shapes, because this is seen small on
+
+  a phone. Every material is painted matte, as a soft form with broad,
+
+  smooth value changes: wood without grain, metal without hammering or
+
+  reflections, glass as a soft tinted shape, cloth without weave. At most
+
+  one small, soft highlight per object; no glints, no shine. Colors are
+
+  muted and lifted toward cream; the darkest shadow is a warm mid-brown,
+
+  never near black. Warm diffused key light from the upper left, a faint
+
+  warm rim light along the right edge, soft ambient shadow only where forms
+
+  touch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no
+
+  letters, no numbers, no logos, no watermark, no border, no frame, no
+
+  sticker outline.
+
+
+  AVOID: realistic animal anatomy, a curl on top of the head, sharp claws, a ground
+  shadow, text, labels
+
+
+  Output: one image, transparent background PNG, landscape 1536 x 1024.'
+references_in_order:
+- /workspace/run15/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+- /workspace/run15/design/art/masters/mochi-v2/mochi-v2.png
+- /workspace/run15/build/imagegen/batch-15-explore/locked/plate__x-koke-1--t2.png
+stop:
+  reason: Git authentication/account stop condition
+  observed_at: '2026-11-03T10:45:59Z'
+  job: x-emanet-2
+  message: 'fatal: could not read Username for ''https://github.com'': No such device
+    or address'
+  last_verified_head: 9a4209a585e4aaf89997c96f5a902e105d1b016c
+  next_publication_job: x-emanet-2
+  policy: No new generations or terminal decisions; preserve already-finished candidates
+    and publish completed work through an already-authorized functioning transport
+    if possible; notify coordinator immediately.
