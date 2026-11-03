@@ -19,7 +19,7 @@ grow the blurred image's box by the same amount.
 caps its resolution, bakes the soft and deep variants, cuts the home plate into depth bands, and
 writes an Xcode asset catalog plus a generated Swift table of every image's box in world units,
 each standing sprite's ground footprint and the plate's walkable polygon (needs scipy). Each master's
-harmony correction (design/art/harmony/manifest.json, tools/assets/harmony.py) is baked in first.
+harmony correction (design/art/harmony/assets/*.json, tools/assets/harmony.py) is baked in first.
 
   python3 -I design/prototypes/interactions/tools/preblur.py app   (from anywhere)
 """
@@ -453,8 +453,7 @@ def _harmony():
     sys.path.insert(0, os.path.join(REPO, "tools", "assets"))
     import harmony
 
-    with open(harmony.MANIFEST) as f:
-        return harmony, json.load(f), harmony.load_config()
+    return harmony, harmony.load_manifest(), harmony.load_config()
 
 
 def app_main():

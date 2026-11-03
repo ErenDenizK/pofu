@@ -1,12 +1,11 @@
-# content/: the source of truth for Pofu Atlas
+# content/: planned and shipped content nodes
 
 Every piece of planned or shipped content lives here as one YAML file per
 node: islands, stations (with their five levels), characters and Pofu's
 emotions, systems, storyboard moments, themes and seasons, ideas, and every
 image asset (each generated master and each manifest job not yet
-generated). `tools/content/build_atlas.py` renders it into **Pofu Atlas**
-(`design/atlas/index.html`), the 2D board the founder browses and comments
-on from his phone.
+generated). The Atlas board that once rendered it is retired (2026-11-02); the nodes
+stay as the art pipeline's asset records (`sync_assets.py`, `validate.py`).
 
 **The rule: every new decision, idea, or generated asset gets a node.** If
 it is not in `content/`, it is not on the board, and the board is where
@@ -81,27 +80,8 @@ picks them up.
 ```sh
 python3 -I tools/content/validate.py        # ids, links, art paths, jobs, anchors (CI runs it)
 python3 -I tools/content/sync_assets.py     # asset nodes in step with manifests and promoted art
-python3 -I tools/content/build_atlas.py     # design/atlas/index.html + design/atlas/thumbs/
 ```
 
 `pip install -r tools/content/requirements.txt` installs PyYAML, jsonschema,
-Pillow and pytest. To show an image that is still on an art branch, fetch the
-branch first (`git fetch origin art/batch-01-slice/all`); the build reads it
-with `git show`.
+Pillow and pytest.
 
-## The board
-
-`design/atlas/index.html` is one self-contained page (inline CSS and JS, the
-whole graph as one inline JSON blob). It loads only its thumbnails,
-`design/atlas/thumbs/*.webp` (320 px for cards, 720 px for the drawer),
-which are build output and git-ignored. Rebuild before publishing.
-
-The lead publishes it as an Artifact with
-`capabilities: {db: {}, user: {}, comments: {"composer_only": true}}` and
-the thumbnails as `files` (`thumbs/<name>.webp` → `design/atlas/thumbs/<name>.webp`).
-Founder notes are documents in the artifact's `notes` collection,
-`{nodeId, text, createdAt, authorId}`; they are never written into
-`content/`. When a note turns into a decision, the lead edits the node.
-
-Screenshots of the board (phone 390 × 844 and desktop) are in
-`design/atlas/screenshots/`.

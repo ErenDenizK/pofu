@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 39.31,
+  "C_p50": 41.559,
+  "C_p95": 49.03,
+  "L_mean": 68.555,
+  "L_p2": 43.863,
+  "L_p98": 92.189,
+  "detail": 0.41,
+  "edge": 1.441,
+  "tint_a": 3.093,
+  "tint_b": 3.809,
+  "warmth_b": 28.289
+ },
+ "before": {
+  "C_mean": 32.87,
+  "C_p50": 34.749,
+  "C_p95": 40.995,
+  "L_mean": 68.555,
+  "L_p2": 43.863,
+  "L_p98": 92.189,
+  "detail": 0.402,
+  "edge": 1.441,
+  "tint_a": 3.189,
+  "tint_b": 3.581,
+  "warmth_b": 23.655
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.196,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "world",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 2.25,
+ "reference": false,
+ "score_after": 91.5,
+ "score_before": 85.2,
+ "shipped": true,
+ "source": "design/prototypes/interactions/assets/isle-stars.webp",
+ "source_sha": "8442c771252a34e4"
+}

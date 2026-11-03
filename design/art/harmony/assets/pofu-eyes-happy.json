@@ -1,0 +1,56 @@
+{
+ "after": {
+  "C_mean": 19.738,
+  "C_p50": 11.691,
+  "C_p95": 50.189,
+  "L_mean": 86.286,
+  "L_p2": 54.639,
+  "L_p98": 97.016,
+  "detail": 7.846,
+  "edge": 0.157,
+  "tint_a": 3.776,
+  "tint_b": 6.434,
+  "warmth_b": 16.653
+ },
+ "before": {
+  "C_mean": 19.738,
+  "C_p50": 11.691,
+  "C_p95": 50.189,
+  "L_mean": 86.286,
+  "L_p2": 54.639,
+  "L_p98": 97.016,
+  "detail": 7.846,
+  "edge": 0.157,
+  "tint_a": 3.776,
+  "tint_b": 6.434,
+  "warmth_b": 16.653
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": true,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "L_p2",
+  "detail"
+ ],
+ "outliers_before": [
+  "L_p2",
+  "detail"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 71.1,
+ "score_before": 71.1,
+ "shipped": false,
+ "source": "design/art/masters/pofu-eyes-happy/pofu-eyes-happy.webp",
+ "source_sha": "de29808cf49e9b06"
+}

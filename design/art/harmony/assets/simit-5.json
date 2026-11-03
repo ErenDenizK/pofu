@@ -1,0 +1,60 @@
+{
+ "after": {
+  "C_mean": 33.458,
+  "C_p50": 37.187,
+  "C_p95": 52.08,
+  "L_mean": 75.579,
+  "L_p2": 51.116,
+  "L_p98": 88.849,
+  "detail": 1.897,
+  "edge": 0.444,
+  "tint_a": 4.809,
+  "tint_b": 7.992,
+  "warmth_b": 29.675
+ },
+ "before": {
+  "C_mean": 30.163,
+  "C_p50": 33.366,
+  "C_p95": 47.894,
+  "L_mean": 73.228,
+  "L_p2": 44.406,
+  "L_p98": 88.849,
+  "detail": 2.146,
+  "edge": 0.444,
+  "tint_a": 4.615,
+  "tint_b": 7.752,
+  "warmth_b": 26.745
+ },
+ "chain": {
+  "C_p50": 37.248,
+  "L_p2": 51.116,
+  "L_p98": 89.723
+ },
+ "correction": {
+  "black": 6.71,
+  "ceiling": 49.0,
+  "chroma": 1.116,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "chain_C_p50",
+  "chain_L_p2",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 90.8,
+ "score_before": 73.1,
+ "shipped": false,
+ "source": "design/art/stations/simit-5/simit-5.png",
+ "source_sha": "52f37ea73f0bf609"
+}
