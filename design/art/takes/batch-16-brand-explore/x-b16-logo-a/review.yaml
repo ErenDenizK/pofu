@@ -1,0 +1,160 @@
+batch: batch-16-brand-explore
+contact_sheet: design/art/takes/batch-16-brand-explore/x-b16-logo-a/contact.jpg
+jobs:
+  x-b16-logo-a:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Original and archived q90 WebP
+      takes manually read as capital P, lowercase o, f, u, no other lettering; one
+      cream curl above P, rounded o, centered wide layout. Both archived versions
+      remain legible at 120 px image width. Take1 fails automated palette; take2 warns
+      only and is the lowest lock-load eligible take.
+qa_reports:
+  1:
+    job: x-b16-logo-a
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 47 (R1 59)
+      value: 47.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.59
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3509
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 2.7, p95 12.3, off-palette 11.7% (top: #AA5533 (9.2%), #AA6633
+        (2.4%))'
+      value: 2.6507
+    info:
+      metrics_raw:
+        L_p5: 46.9
+        L_p50: 96.8
+        L_p95: 97.2
+        C_p50: 7.4
+        C_p95: 47.3
+        C_p99: 47.7
+        detail: 1.83
+      metrics_locked:
+        L_p5: 47.0
+        L_p50: 96.7
+        L_p95: 96.8
+        C_p50: 7.5
+        C_p95: 47.2
+        C_p99: 47.5
+        detail: 1.59
+    fingerprint: 191a0146129bddcc
+  2:
+    job: x-b16-logo-a
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 42.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 44 (R1 59)
+      value: 43.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.56
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5926
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.2, p95 10.0, off-palette 0.1% (top: #995522 (0.1%))'
+      value: 2.2183
+    info:
+      metrics_raw:
+        L_p5: 43.5
+        L_p50: 97.2
+        L_p95: 97.5
+        C_p50: 7.1
+        C_p95: 42.8
+        C_p99: 43.1
+        detail: 2.02
+      metrics_locked:
+        L_p5: 43.5
+        L_p50: 96.8
+        L_p95: 97.0
+        C_p50: 7.0
+        C_p95: 42.7
+        C_p99: 42.9
+        detail: 1.56
+    fingerprint: 191a0146129bddcc
+manual_review:
+  exclude: []
+  note: Original and archived q90 WebP takes manually read as capital P, lowercase
+    o, f, u, no other lettering; one cream curl above P, rounded o, centered wide
+    layout. Both archived versions remain legible at 120 px image width. Take1 fails
+    automated palette; take2 warns only and is the lowest lock-load eligible take.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-9f852c97-784b-4ca9-aa51-defd8158d4b7.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 191a0146129bddcc
+  original_generated_png_sha256: f3d768b7d283e80dfc04a28cfcbb5cbb5e19ced2f69b012935c6ce7a00c26dca
+  ingested_png_sha256: 3edd46b4851720541071a861633e847ac936d7a7e9393b692ffa4fdf0bb4489f
+  source_rgba_sha256: ea0947e471efb3864837d43b4b00c3c3ebc90b2b4dd90ee4b5dc15448c8c1d13
+  source_dimensions:
+  - 1536
+  - 1024
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-logo-a/plate__x-b16-logo-a--t1.webp
+  uploaded_artifact_sha256: aba72c8a4d1607275a06881427e82a089211d3109c2e676d4812b0f8c2b87240
+  uploaded_dimensions:
+  - 1536
+  - 1024
+  encoding: lossy WebP quality 90
+- take: 2
+  source_file: /workspace/generated_images/exec-345506d3-da16-4f18-b9f8-cd660544582f.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 191a0146129bddcc
+  original_generated_png_sha256: 27e5548b8facd848ebe21b2545abcc0a29dbb404edc7cf0577be265f1cc770e8
+  ingested_png_sha256: 23e09aa8b6cee9f2cdb655874dffaf395c00833addcf078dfcf4df77c513402b
+  source_rgba_sha256: bae44e5a6d49723fabd6285b833e8ee734ebc847419c33ea04519ae7faf8ea16
+  source_dimensions:
+  - 1536
+  - 1024
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-logo-a/plate__x-b16-logo-a--t2.webp
+  uploaded_artifact_sha256: 112cf12e124a74e323adf5e6aa56ae0e4e228412af8b9c18f1f5f93b2e6bc05e
+  uploaded_dimensions:
+  - 1536
+  - 1024
+  encoding: lossy WebP quality 90
