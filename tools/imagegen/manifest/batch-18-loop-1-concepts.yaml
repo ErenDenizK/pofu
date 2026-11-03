@@ -25,7 +25,9 @@
 
 batch: batch-18-loop-1-concepts
 title: Design loop 1 concept round (12 exploration images - Çağlayan, backdrop day/dusk/night, duo, Olta, Gezgin, far-view sheet)
-status: open
+status: blocked
+blocked_on:
+  - "delivered and merged (#126, #128); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 refs:
   sky-map-t1: design/art/takes/batch-15-explore/x-sky-map/plate__x-sky-map--t1.webp

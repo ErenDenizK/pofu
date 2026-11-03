@@ -21,7 +21,9 @@
 
 batch: batch-10-island-concepts-pilot
 title: Wonder island concepts, pilot (Çağlayan, Ayna, Revontuli establishing shots)
-status: open
+status: blocked
+blocked_on:
+  - "delivered and merged (#93); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 defaults:
   variants: 2

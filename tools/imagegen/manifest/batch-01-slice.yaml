@@ -18,7 +18,9 @@ batch: batch-01-slice
 title: Vertical slice (island, çay ocağı L1-L5, sunflower garden L1-L2, simit cart, Mochi)
 # Fully open (2026-11-02): parallel auto mode, one Codex task per job in
 # waves (AGENTS.md). Picks are automatic by QA; the founder reviews after.
-status: open
+status: blocked
+blocked_on:
+  - "delivered and merged (#47); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 defaults:
   variants: 2

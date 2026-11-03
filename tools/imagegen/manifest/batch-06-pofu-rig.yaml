@@ -19,7 +19,9 @@
 
 batch: batch-06-pofu-rig
 title: Pofu's layered rig (eyes, mouths, cheek pouches, paws, ears, matted fur; Mochi and Fındık eyes)
-status: open
+status: blocked
+blocked_on:
+  - "delivered and merged (#83); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 defaults:
   variants: 2

@@ -61,33 +61,43 @@ until none is left.
 
 | # | Batch | Kind | Purpose | Needs | Jobs | State |
 |---|---|---|---|---|---|---|
-| 1 | `batch-05-fixes` | production | simit-3..5, workshop-3..5 (pilot passed, #71) | main | 6 | **READY** |
-| 2 | `batch-06-pofu-rig` | production | The rest of the rig (eyes, mouths, cheeks puff-1 and puff-3, paws, `pofu-ears-droop`, matted fur) and Mochi's and Fındık's blink and happy eyes (pilot passed as composites) | pilot on main | 19 | **READY** |
-| 3 | `batch-07-light` | production | Night light, painted only for light-carrying stations: workshop doorway (L1), windmill windows (L5), pond lanterns (L5). cay-1-lit accepted; cay-5-lit dropped | main | 3 | **READY** |
-| 4 | `batch-11-ui-pilot` | production · PILOT | The hybrid UI's look-dev (ui-system-v2 section 6, 12 of the 14 pilot items; the two cheek stages are `pofu-cheeks-puff-2` and `-3` in row 2): seed icon, jar, lantern on a post, three pots, crafted primary face, disc, paper tag and panel | main | 12 | **READY** |
-| 5 | `batch-08-decor-pilot` | production · pilot | Four decor pieces, one per Ayçiçeği decor spot (bench, lantern string, toy sailboat, mailbox) | main | 4 | **READY** (re-run the bench: #88 failed its guide fit; QA now checks it and the prompt gives its size) |
-| 6 | `batch-09-explore-pilot` | EXPLORATION · pilot | Painted seed icon at 28–60 pt, App Store key art A, a Home ideation board | main | 3 | **READY** |
-| 7 | `batch-10-island-concepts-pilot` | EXPLORATION · pilot | Establishing shots of Çağlayan, Ayna, Revontuli | main | 3 | **READY** |
-| 8 | `batch-10-island-concepts` | EXPLORATION | Their signature moments (Damla at the falls, Pekmez and the seed falling up, Tuli painting the aurora), attaching the picked pilot takes | review of #6 | 3 | BLOCKED, manifest after #6 |
-| 9 | `batch-11-ui` | production | The rest of ui-system-v2 section 6 (night variants, secondary and pressed faces, game layer, domain icons, surfaces) | review of #4 | about 32 | BLOCKED, no manifest yet |
-| 10 | `batch-08-decor` | production | The rest of a decor kit | the decor mechanic decided (archipelago system, PR #64) and review of #5 | — | BLOCKED, no manifest yet |
-| 11 | `batch-12-minigame-art` | production · pilot inside | The garden minigame's painted art (minigames.md): sage plot tile, soil cell, seed (pilot), five glazes, three blooms, bed rim, combo stamp, tray | main | 14 | **READY** |
-| 12 | `batch-13-ui-rest` | production · pilot inside | The rest of the hybrid UI: crafted secondary face and pressed, sheet and menu paper (and a painted night sheet), the icon family at 28-60 pt (calm lit lantern first, then island, çay, friend, mood, skip, round, breath, rumour, decor, plus). Founder review pending | #87 merged | 16 | **READY** |
-| 13 | `batch-14-iskele` | production · pilot inside | İskele, the second free island: plate, vapur 1-2, horn post, crates, lamp, Simit the kitten (+ work and horn poses), the goat. The simit stall chain is reused from home | main | 10 | **READY** |
-| 14 | `batch-15-explore` | EXPLORATION · pilot inside | Two concepts for each of seven wonder islands, six resident model sheets, the archipelago sky map with fog, three app icons and two icon layers, three key art compositions, a winter Ayçiçeği edit, three onboarding illustrations | main | 33 | **READY** |
-| 15 | `retry-2026-11-03` | production | The 32 jobs batches 11-14 skipped, with QA profiles and briefs fixed (below): 3 UI (primary face, jar-full, lantern-on), bloom-right and five glazes, 14 of batch 13 (sheet paper and its two dependents, pressed face, 10 icons), 9 of batch 14 (vapur 1-2, Simit and two poses, horn, crates, lamp, goat). Manifest `tools/imagegen/manifest/retry-2026-11-03.yaml`. No pilot gate: only true dependents wait | main | 32 | **READY** |
-| 16 | `batch-17-islands-v2` | EXPLORATION · pilot inside | Islands v2 under the uniqueness contract (archipelago-system.md section 17): two concepts for each of ten wonder islands, with the home island attached for style only, and four Ayçiçeği hub edits (rain, winter, festival, grown). Pilot: `x2-mehtap-a`, `x2-comlek-a`, `x2-leylek-a`, `x2-hub-grown`. Never promoted | main | 24 | **READY** |
-| 17 | `batch-18-loop-1-concepts` | EXPLORATION · pilot inside | Design loop 1 concept round (design-loop/loop-1.md section 6): Çağlayan's pools as windows and its arrival, the water-cluster palette delta, the three-cluster backdrop at day, dusk and night, the Pofu and Mochi duo (ferry, pier, Gezgin), Olta, Gezgin's night crossing and a far-view silhouette sheet. Home island attached for style only (exact shape only in backdrop and delta jobs). Pilot: `cl1-caglayan-pools`, `cl1-backdrop-day`, `cl1-duo-vapur`; continue if 2 of 3 pass. Never promoted | main | 12 | **READY** |
+| 1 | `batch-08-decor-pilot` | production · pilot | Re-run all four decor pieces: `--only decor-bench decor-lanterns decor-sailboat decor-mailbox`. #88 and #95 delivered no pick: the bench failed its guide fit (740 px against a 360 px footprint) and the other three were skipped as dependents. QA now checks `decor_anchor` and the prompt gives the bench its size | main | 4 | **READY** |
+| 2 | `batch-07-light` | production | Only `workshop-1-lit` is left (`--only workshop-1-lit`): t1, t3 and t4 failed `chroma_ceiling`, t2 kept 0.8997 against the manual gate of 0.9. `windmill-5-lit` and `pond-5-lit` merged in #84. Low priority: night light is mostly code | main | 1 | **READY** |
+| 3 | `retry-2026-11-03` (remainder) | production | Four jobs still skipped after the retry (#111, #117): `icon-breath` (24 pt on light glass, 12-16% separates), `iskele-vapur-1` (width 741-844 against 720; `iskele-vapur-2` depends on it), `ui-sheet-paper-night` (palette drift: the `night` palette does not cover the dark-paper navy). The icon family also needs a semantic pass (see the lead review below). Manifest is `blocked` | lead brief and profile fix | 4 | BLOCKED, the lead rewrites the briefs and the night palette |
+| 4 | `batch-11-ui` | production | What is still missing of ui-system-v2 section 6 after batches 11-13 and the retry: night variants of the faces, game layer extras, the remaining domain icons, surfaces. The lead lists the exact gaps when it writes the manifest | the light standard and the icon semantics rule | about 15 | BLOCKED, no manifest yet |
+| 5 | `batch-08-decor` | production | The rest of a decor kit | the decor mechanic decided (archipelago system, PR #64) and a passed row 1 | none yet | BLOCKED, no manifest yet |
 
-**Order of work:** first publish what is already selected (rule 6), then rows
-1 to 7, then rows 11 to 14 in that order. Each of rows 11 to 14 is one
-manifest whose first 2 to 4 jobs are its pilot (the header names them); if a
-pilot job still fails after its retry, only the rest of that batch is skipped.
+Rows to come: the design-loop-2 concepts (batch-19) and the lead's production
+batches are added above row 3 as `READY` by their own PRs.
 
-Row 9 is the scale-up of row 4; row 8 of row 7; row 10 of row 5. Rows 1 to
-3 were the scale-ups of the passed pilots (batch-05, 06 and 07).
-Batch 02 (Glass++ production) stays blocked until the friends beta
-(ADR-0018 amendment).
+**Order of work:** top to bottom. Rows 1 and 2 are re-runs by `--only` of
+jobs that never produced a pick; every other earlier row is delivered and
+lives in the Log. Batch 02 (Glass++ production) stays blocked until the
+friends beta (ADR-0018 amendment).
+
+## Review 2026-11-03 (lead)
+
+Of batches 16 to 18 and the retry (#117, #122, #123, #128). Decisions only:
+
+- **App icon:** direction A (Pofu's face on a dark sky) is recommended: the
+  only one that says "Pofu" at small size. Pending the founder. Tinted
+  variants of A were muddy brown: iOS tinted icons need a luminance-only
+  master, not a brown recolour. B (lantern and sleeping Pofu) is too small
+  at 60 px; C (sprout on an island) reads as a generic garden app.
+- **Icon semantics rule:** one metaphor per action, and every icon passes a
+  silhouette test at 28 pt before it is called done. `icon-plus` and
+  `icon-skip` both used a sunflower, `icon-friend` reads "plant", and
+  `icon-island` reads as a pie. Style is consistent, meaning is not: fixed by
+  briefs (row 3), not by regenerating the family wholesale.
+- **No regeneration for haze or contrast.** Batch 17 and 18 frames are
+  washed out under one shared sky, cloud sea and daylight. That is fixed by
+  grading and the coming light standard, not by new takes.
+- **Kept:** batch 17 silhouettes (Çağlayan, Fanus, Gezgin, Mehtap crescent
+  without the face, Revontuli, Çömlek-b, Koke-b, Çanlar-a, Leylek-a),
+  batch 18 backdrop day, dusk and night (night strongest), Çağlayan pools as
+  windows (best idea of the round) and the Pofu and Mochi duo. The
+  water-cluster delta must be bolder.
+- **Simit and the goat** (retry): on-model and kept.
 
 ## What the retry taught (2026-11-03)
 
@@ -273,7 +283,7 @@ Paste this into a new Codex task:
 ```text
 Read AGENTS.md and docs/design/art-production-plan.md.
 Run the queue: take the first READY batch nobody is on, in parallel auto mode, track all.
-Start with batch-05-fixes, then batch-06-pofu-rig, batch-07-light and batch-11-ui-pilot.
+Start at the top of the queue; a row names its --only jobs when it is a re-run.
 For every promoted master run `python3 -I tools/assets/harmony.py measure` and commit
 the manifest in the same PR, or CI fails.
 When you open a batch's PR, start the next READY batch at once on a new branch, until none is left.
@@ -283,6 +293,23 @@ Stop and report on any stop condition in AGENTS.md.
 
 ## Log
 
+- 2026-11-03 (queue groomed): every delivered row left the queue.
+  Delivered and merged: batch-05-fixes (#82), batch-06-pofu-rig (#83, all 19
+  jobs incl. Mochi and Findik eyes), batch-07-light (#84; `pond-5-lit`,
+  `windmill-5-lit`; `workshop-1-lit` left, `cay-5-lit` dropped),
+  batch-11-ui-pilot (#87, #94), batch-12-minigame-art (#97), batch-13-ui-rest
+  (#98), batch-14-iskele (#99), batch-09 and batch-10 pilots (#91, #93),
+  batch-15-explore (#100), batch-16-brand-explore (#110, #112, #122),
+  batch-17-islands-v2 (#114, #123), batch-18-loop-1-concepts (#126, #128) and
+  retry-2026-11-03 (#111, #117: 28 of 32 jobs). Batch-08-decor-pilot (#88,
+  #95) produced no pick and was re-queued as row 1.
+- 2026-11-03 (closed as superseded): `batch-10-island-concepts` (never
+  written) by batches 17 and 18, which answer it under the uniqueness
+  contract. `batch-15-explore` skipped jobs `x-appicon-layer-island`,
+  `x-appicon-layer-sky` (app icon redone in batch 16), `x-winter-island`
+  (batch 17 hub edits) and `x-res-sumi` (resident sheets wait for the story
+  work); not re-queued. `batch-16` skipped salvage variants (`icon-b-tinted`,
+  `icon-c-*`, `infographic`) are exploration only and not re-queued.
 - 2026-11-02 (round 2): batch-05-fixes-pilot merged (#71); batch-06 pilot
   passed as composites (neutral against R1 dE 3.0); batch-07 pilot: cay-1-lit
   accepted, cay-5-lit failed `station_anchor` for its parent's own geometry
