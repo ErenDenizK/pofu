@@ -1,0 +1,513 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-fanus-a/contact.jpg
+jobs:
+  x2-fanus-a:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both takes recommend pass: the
+      bell jar itself is the unique landform, with a knob, interior rain/condensation,
+      orchid-fern microforest, waterfall and frog. No home lawn/soil/roots/pebbles/door
+      template. Filled outer profiles and native60 crops are QA annotations, not edited
+      art or final picks.'
+qa_reports:
+  1:
+    job: x2-fanus-a
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 68 (R1 59)
+      value: 68.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.94
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7926
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.8, p95 10.4, off-palette 0.0% (top: #CCDD77 (0.0%), #DDEE88
+        (0.0%))'
+      value: 3.7719
+    info:
+      metrics_raw:
+        L_p5: 68.1
+        L_p50: 84.5
+        L_p95: 95.2
+        C_p50: 18.8
+        C_p95: 37.2
+        C_p99: 46.2
+        detail: 2.64
+      metrics_locked:
+        L_p5: 68.4
+        L_p50: 84.5
+        L_p95: 95.1
+        C_p50: 18.7
+        C_p95: 36.3
+        C_p99: 42.6
+        detail: 1.94
+    fingerprint: f3b9f23459de1b20
+  2:
+    job: x2-fanus-a
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 64.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.08
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9638
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.0, p95 12.1, off-palette 5.2% (top: #99CCFF (2.1%), #88BBFF
+        (1.6%))'
+      value: 4.004
+    info:
+      metrics_raw:
+        L_p5: 64.3
+        L_p50: 85.5
+        L_p95: 95.9
+        C_p50: 18.2
+        C_p95: 41.1
+        C_p99: 48.7
+        detail: 2.75
+      metrics_locked:
+        L_p5: 64.7
+        L_p50: 85.5
+        L_p95: 95.7
+        C_p50: 18.2
+        C_p95: 38.5
+        C_p99: 43.5
+        detail: 2.08
+    fingerprint: f3b9f23459de1b20
+manual_review:
+  note: 'Both takes recommend pass: the bell jar itself is the unique landform, with
+    a knob, interior rain/condensation, orchid-fern microforest, waterfall and frog.
+    No home lawn/soil/roots/pebbles/door template. Filled outer profiles and native60
+    crops are QA annotations, not edited art or final picks.'
+  takes:
+    '1':
+      pass: true
+      silhouette_name: tall bell-jar microforest with a brass knob
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 1
+      - 1
+      evidence: The entire place is a tall glass cloche with a rounded crown and brass
+        knob, immediately legible at native60; glass teal, forest emerald and orchid
+        pink identify its palette. Clear blue sky outside contrasts with rain and
+        condensation inside. Ferns, orchids, a tiny waterfall and the leaf-perched
+        frog provide the specific habitat, resident and scale cue. Glass rim/moss
+        mounds are not a sandy soil bowl or flat lawn oval. Gloss/condensation is
+        an explicitly requested material treatment, not a style hard-failure.
+      swatch_points:
+      - - 895
+        - 535
+      - - 949
+        - 346
+      - - 782
+        - 60
+      contours:
+      - - - 694
+          - 63
+        - - 701
+          - 41
+        - - 727
+          - 24
+        - - 764
+          - 18
+        - - 798
+          - 23
+        - - 828
+          - 41
+        - - 844
+          - 64
+        - - 838
+          - 85
+        - - 813
+          - 103
+        - - 806
+          - 112
+        - - 811
+          - 121
+        - - 834
+          - 127
+        - - 843
+          - 142
+        - - 867
+          - 150
+        - - 923
+          - 166
+        - - 986
+          - 200
+        - - 1044
+          - 245
+        - - 1088
+          - 297
+        - - 1120
+          - 357
+        - - 1141
+          - 419
+        - - 1153
+          - 494
+        - - 1162
+          - 595
+        - - 1170
+          - 704
+        - - 1185
+          - 838
+        - - 1195
+          - 858
+        - - 1197
+          - 879
+        - - 1182
+          - 901
+        - - 1144
+          - 921
+        - - 1074
+          - 942
+        - - 1005
+          - 957
+        - - 906
+          - 968
+        - - 794
+          - 969
+        - - 719
+          - 962
+        - - 647
+          - 969
+        - - 549
+          - 961
+        - - 462
+          - 943
+        - - 392
+          - 923
+        - - 354
+          - 902
+        - - 337
+          - 879
+        - - 337
+          - 852
+        - - 349
+          - 818
+        - - 359
+          - 702
+        - - 366
+          - 571
+        - - 374
+          - 457
+        - - 390
+          - 381
+        - - 416
+          - 309
+        - - 464
+          - 250
+        - - 521
+          - 201
+        - - 589
+          - 167
+        - - 657
+          - 149
+        - - 674
+          - 142
+        - - 670
+          - 132
+        - - 697
+          - 122
+        - - 726
+          - 114
+        - - 729
+          - 104
+        - - 705
+          - 88
+      holes: []
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      uncertainty: Outer glass outline and brass knob are visibly traced; the black
+        profile represents the filled outer cloche envelope, not its opaque full-frame
+        alpha. Foreground cloud covers portions of the very bottom rim, so those short
+        cloud-contact segments are approximate, not an inferred hidden base. Interior
+        transparency is material, not an open geometric hole.
+      source_file: /workspace/generated_images/exec-18fbd920-9d6a-4244-bb7d-4ee9865844bf.png
+      original_generated_png_sha256: 6ed62890e9d1c6c2bc58628729f2ff1f512735c4029859afa6fd619f6e32e186
+      rgba_sha256: ebf3cb20d44f4d0af1a73e6453c23202d82b949db821df02d57edbb32eed87d4
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 337
+      - 18
+      - 1198
+      - 970
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 54
+      - 60
+      sampled_swatches:
+      - point:
+        - 895
+        - 535
+        hex: '#6AA893'
+      - point:
+        - 949
+        - 346
+        hex: '#FEDBE5'
+      - point:
+        - 782
+        - 60
+        hex: '#D8AB60'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-fanus-a-t1-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-fanus-a-t1-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: feec023cc0f49d1d99de418095ca32129fc593d70453009f574ea7e21246a15f
+      silhouette_native_longest_px: 60
+    '2':
+      pass: true
+      silhouette_name: tall bell-jar microforest with a brass knob
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 1
+      - 1
+      evidence: The entire place is a tall glass cloche with a rounded crown and brass
+        knob, immediately legible at native60; glass teal, forest emerald and orchid
+        pink identify its palette. Clear blue sky outside contrasts with rain and
+        condensation inside. Ferns, orchids, a tiny waterfall and the leaf-perched
+        frog provide the specific habitat, resident and scale cue. Glass rim/moss
+        mounds are not a sandy soil bowl or flat lawn oval. Gloss/condensation is
+        an explicitly requested material treatment, not a style hard-failure.
+      swatch_points:
+      - - 674
+        - 676
+      - - 970
+        - 329
+      - - 776
+        - 61
+      contours:
+      - - - 698
+          - 61
+        - - 704
+          - 40
+        - - 730
+          - 23
+        - - 760
+          - 18
+        - - 793
+          - 21
+        - - 825
+          - 39
+        - - 839
+          - 62
+        - - 833
+          - 81
+        - - 813
+          - 94
+        - - 805
+          - 104
+        - - 811
+          - 111
+        - - 846
+          - 126
+        - - 874
+          - 143
+        - - 935
+          - 160
+        - - 991
+          - 186
+        - - 1040
+          - 221
+        - - 1082
+          - 264
+        - - 1116
+          - 321
+        - - 1137
+          - 385
+        - - 1149
+          - 463
+        - - 1158
+          - 583
+        - - 1165
+          - 704
+        - - 1170
+          - 799
+        - - 1174
+          - 820
+        - - 1172
+          - 849
+        - - 1155
+          - 869
+        - - 1113
+          - 890
+        - - 1048
+          - 910
+        - - 954
+          - 924
+        - - 850
+          - 938
+        - - 757
+          - 943
+        - - 696
+          - 935
+        - - 623
+          - 934
+        - - 540
+          - 924
+        - - 467
+          - 912
+        - - 405
+          - 891
+        - - 371
+          - 869
+        - - 354
+          - 847
+        - - 351
+          - 820
+        - - 354
+          - 781
+        - - 356
+          - 682
+        - - 364
+          - 533
+        - - 372
+          - 431
+        - - 388
+          - 350
+        - - 415
+          - 284
+        - - 451
+          - 234
+        - - 508
+          - 192
+        - - 574
+          - 166
+        - - 634
+          - 145
+        - - 658
+          - 142
+        - - 656
+          - 129
+        - - 685
+          - 116
+        - - 726
+          - 109
+        - - 729
+          - 97
+        - - 710
+          - 86
+      holes: []
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      uncertainty: Outer glass outline and brass knob are visibly traced; the black
+        profile represents the filled outer cloche envelope, not its opaque full-frame
+        alpha. Foreground cloud covers portions of the very bottom rim, so those short
+        cloud-contact segments are approximate, not an inferred hidden base. Interior
+        transparency is material, not an open geometric hole.
+      source_file: /workspace/generated_images/exec-2143bfe3-6c2b-4b29-828f-15ee0a623e71.png
+      original_generated_png_sha256: 3316a9e37fac9250da36cad5e5459ffbee1f85179ec757f54505951bcf8dbfc6
+      rgba_sha256: ca0585b7c37e9d33a027bf1df055108e9d89818e9aa67c4d70d1e63cbffcab0e
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 351
+      - 18
+      - 1175
+      - 944
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 53
+      - 60
+      sampled_swatches:
+      - point:
+        - 674
+        - 676
+        hex: '#68A58E'
+      - point:
+        - 970
+        - 329
+        hex: '#F6ABB7'
+      - point:
+        - 776
+        - 61
+        hex: '#C39969'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-fanus-a-t2-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-fanus-a-t2-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: e466581fc108c29436faf38bfe438bc262a6c4385aa3732e95595a002b1f7b3a
+      silhouette_native_longest_px: 60
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-18fbd920-9d6a-4244-bb7d-4ee9865844bf.png
+  original_generated_png_sha256: 6ed62890e9d1c6c2bc58628729f2ff1f512735c4029859afa6fd619f6e32e186
+  inbox_png_sha256: feec023cc0f49d1d99de418095ca32129fc593d70453009f574ea7e21246a15f
+  rgba_sha256: ebf3cb20d44f4d0af1a73e6453c23202d82b949db821df02d57edbb32eed87d4
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f3b9f23459de1b20
+- take: 2
+  source_file: /workspace/generated_images/exec-2143bfe3-6c2b-4b29-828f-15ee0a623e71.png
+  original_generated_png_sha256: 3316a9e37fac9250da36cad5e5459ffbee1f85179ec757f54505951bcf8dbfc6
+  inbox_png_sha256: e466581fc108c29436faf38bfe438bc262a6c4385aa3732e95595a002b1f7b3a
+  rgba_sha256: ca0585b7c37e9d33a027bf1df055108e9d89818e9aa67c4d70d1e63cbffcab0e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f3b9f23459de1b20
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
