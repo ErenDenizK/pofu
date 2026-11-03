@@ -4,15 +4,15 @@ title_tr: game-bloom-left
 title_en: game-bloom-left (ui)
 status: in-production
 horizon: now
-summary: >-
-  Turn the sunflower head slightly to the left, as if looking left: the center sits a little
-  left of the middle and the petals on the right side are foreshortened. Same size, colors
-  and finish.
+summary: 'Turn the sunflower head slightly to the left, as if looking left: the center
+  sits a little left of the middle and the petals on the right side are foreshortened.
+  Same size, colors and finish.'
 links:
   variant_of:
   - asset-game-bloom-front
 art:
-  images: []
+  images:
+  - design/art/ui/ui-game-bloom-left/ui-game-bloom-left.png
   jobs:
   - batch-12-minigame-art:game-bloom-left
 sources:

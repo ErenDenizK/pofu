@@ -28,6 +28,7 @@ links:
   - asset-game-bed-rim
   - asset-game-combo-stamp
   - asset-ui-game-tray
+  - asset-game-bloom-left
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'
