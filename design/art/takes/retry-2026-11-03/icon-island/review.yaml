@@ -3,10 +3,15 @@ contact_sheet: design/art/takes/retry-2026-11-03/icon-island/contact.jpg
 jobs:
   icon-island:
     pick: 1
-    publication: selected before global stop; promotion pending
-    note: Both takes read as a tiny empty sage lawn on rounded honey earth at 28,
-      44 and 60 pt on pale and dark backgrounds. t1 has no roots; t2 has two chunky
-      roots. No added lawn objects, badge, text or border.
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Resume from the fixed pre-stop
+      original candidate, with zero image generation. Re-posted both retained PNGs
+      under main9ede62e; both locked RGBA rasters match their retained versions exactly
+      and the same eligible take remains lowest lock load. Fresh light/dark small-size
+      visual review reconfirms the choice. Both takes read as a tiny empty sage lawn
+      on rounded honey earth at 28, 44 and 60 pt on pale and dark backgrounds. t1
+      has no roots; t2 has two chunky roots. No added lawn objects, badge, text or
+      border.
 qa_reports:
   1:
     job: icon-island
@@ -153,14 +158,14 @@ qa_reports:
         detail: 0.56
     fingerprint: 473ba3ec59c56d2a
 manual_review:
-  note: Both takes read as a tiny empty sage lawn on rounded honey earth at 28, 44
-    and 60 pt on pale and dark backgrounds. t1 has no roots; t2 has two chunky roots.
-    No added lawn objects, badge, text or border.
-  terminal_decided_at: '2026-11-03T14:07:28.845767+00:00'
-  decision_qa_sha256: cc6c396a4504ba370f1f64da6f98e15ef922f1b75f97f501d27017ba9f4c5696
   excluded_takes: []
-  preservation_only_after_global_stop: true
-  no_new_selection_or_promotion: true
+  note: Resume from the fixed pre-stop original candidate, with zero image generation.
+    Re-posted both retained PNGs under main9ede62e; both locked RGBA rasters match
+    their retained versions exactly and the same eligible take remains lowest lock
+    load. Fresh light/dark small-size visual review reconfirms the choice. Both takes
+    read as a tiny empty sage lawn on rounded honey earth at 28, 44 and 60 pt on pale
+    and dark backgrounds. t1 has no roots; t2 has two chunky roots. No added lawn
+    objects, badge, text or border.
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-bad23220-d1ae-46af-912b-71455a336c12.png

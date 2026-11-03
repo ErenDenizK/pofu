@@ -2,7 +2,7 @@ id: asset-icon-island
 type: asset
 title_tr: icon-island
 title_en: island (icon)
-status: planned
+status: in-production
 horizon: now
 summary: 'The icon for an island: a tiny floating island, a flat soft sage lawn on
   a short, rounded honey-earth underside, nothing on the lawn, no roots or with at
@@ -16,7 +16,8 @@ notes:
   retry, so the manifest skips the rest of batch13. Other batch timings remain as
   specified.'
 art:
-  images: []
+  images:
+  - design/art/ui/icon-island/icon-island.png
   jobs:
   - batch-02-ui:icon-island
   - batch-13-ui-rest:icon-island
