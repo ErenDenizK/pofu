@@ -12,8 +12,10 @@ struct RehearsalPanel: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     /// Where the user left the panel, from its resting place.
-    @AppStorage("rehearsal.panel.x") private var restingX: Double = 0
-    @AppStorage("rehearsal.panel.y") private var restingY: Double = 0
+    @AppStorage("rehearsal.panel.leading.x") private var restingX: Double = 0
+    @AppStorage("rehearsal.panel.leading.y") private var restingY: Double = 0
+    /// "glass" or "crafted"; empty follows the default skin.
+    @AppStorage("PofuSkin") private var skinOverride = ""
     @State private var drag: CGSize = .zero
     @State private var confirmsReset = false
     @State private var isBusy = false
@@ -22,9 +24,9 @@ struct RehearsalPanel: View {
         GeometryReader { proxy in
             content
                 .offset(clamped(in: proxy.size))
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                .padding(.top, 64)
-                .padding(.trailing, PofuSpacing.s)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                .padding(.top, PofuSpacing.s)
+                .padding(.leading, PofuSpacing.s)
         }
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: rehearsal.isPanelExpanded)
         .confirmationDialog(Text("Reset the rehearsal?"), isPresented: $confirmsReset, titleVisibility: .visible) {
@@ -41,7 +43,7 @@ struct RehearsalPanel: View {
             expanded
                 .frame(width: 228)
                 .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
-                .transition(.opacity.combined(with: .scale(scale: 0.9, anchor: .topTrailing)))
+                .transition(.opacity.combined(with: .scale(scale: 0.9, anchor: .topLeading)))
         } else {
             collapsed
                 .glassEffect(.regular.interactive(), in: Capsule(style: .continuous))
@@ -90,6 +92,15 @@ struct RehearsalPanel: View {
                 model.rehearsalJump(.quietHour)
             }
             nightOrMorning
+            Divider()
+            // The skin of the over-world chrome, to feel both on the phone.
+            Picker(selection: $skinOverride) {
+                Text("Glass").tag("glass")
+                Text("Crafted").tag("crafted")
+            } label: {
+                Text("Skin")
+            }
+            .pickerStyle(.segmented)
             Divider()
             // Rounds are earned (two a day, one per resisted reach) and
             // credited to the pouch: the same ledger the product will use.
@@ -208,12 +219,12 @@ struct RehearsalPanel: View {
             }
     }
 
-    /// The offset from the top-trailing corner, kept on screen.
+    /// The offset from the top-leading corner, kept on screen.
     private func clamped(in size: CGSize) -> CGSize {
         let width: CGFloat = rehearsal.isPanelExpanded ? 228 : 120
         let wantedX = CGFloat(restingX) + drag.width
         let wantedY = CGFloat(restingY) + drag.height
-        let x = min(0, max(-(size.width - width - PofuSpacing.l), wantedX))
+        let x = max(0, min(size.width - width - PofuSpacing.l, wantedX))
         let y = min(max(0, size.height - 380), max(-40, wantedY))
         return CGSize(width: x, height: y)
     }

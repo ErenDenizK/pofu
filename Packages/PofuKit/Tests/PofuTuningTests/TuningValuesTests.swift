@@ -32,6 +32,18 @@ struct TuningValuesTests {
         #expect(d.haptics.hopAppearNight == 0.35)
     }
 
+    /// `PofuWorld.HomeTiming` carries the same defaults (PofuWorld does not
+    /// link PofuTuning, so the numbers are mirrored and pinned here).
+    @Test func theHomeDefaultsMatchHomeTiming() {
+        let home = TuningValues.defaults.home
+        #expect(home.pawsPress == 0.3)
+        #expect(home.cheekRelease == 0.45)
+        #expect(home.jarFill == 0.6)
+        #expect(home.lanternGlow == 1.2)
+        #expect(home.potBloom == 0.5)
+        #expect(home.jarCapacity == 120)
+    }
+
     @Test func theGradeTrimsStartAsTheIdentity() {
         let grade = TuningValues.defaults.grade
         #expect(grade.day == .identity)

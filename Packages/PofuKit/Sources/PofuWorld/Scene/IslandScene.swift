@@ -83,6 +83,7 @@ public struct IslandScene<Bubble: View>: View {
                         time: context.date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 3600),
                         build: build,
                         celebrations: home?.celebrations ?? 0,
+                        home: home,
                         onPofuTap: onPofuTap,
                         bubble: bubble
                     )
@@ -97,6 +98,7 @@ public struct IslandScene<Bubble: View>: View {
                             time: context.date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 3600),
                             build: build,
                             celebrations: home?.celebrations ?? 0,
+                            home: home,
                             onPofuTap: nil,
                             bubble: bubble
                         )
@@ -264,6 +266,7 @@ private struct SceneFrame<Bubble: View>: View {
     let time: Double
     let build: BuildFrame?
     let celebrations: Int
+    let home: WorldHomeModel?
     let onPofuTap: (@MainActor () -> Void)?
     let bubble: Bubble
 
@@ -375,6 +378,7 @@ private struct SceneFrame<Bubble: View>: View {
                     grade: tint,
                     characterGrade: characterGrade,
                     celebrations: celebrations,
+                    home: home,
                     model: model,
                     onPofuTap: onPofuTap,
                     part: .body,
@@ -420,6 +424,7 @@ private struct SceneFrame<Bubble: View>: View {
                 grade: tint,
                 characterGrade: characterGrade,
                 celebrations: celebrations,
+                home: home,
                 model: model,
                 onPofuTap: onPofuTap,
                 part: .overlay,
@@ -760,6 +765,7 @@ private struct PofuLayer<Bubble: View>: View {
     /// The colour script's character light: Pofu keeps his warmth at night.
     let characterGrade: WorldGrade
     let celebrations: Int
+    let home: WorldHomeModel?
     let model: IslandSceneModel
     let onPofuTap: (@MainActor () -> Void)?
     /// Pofu himself (under the character light), or his map pin and speech
@@ -844,7 +850,8 @@ private struct PofuLayer<Bubble: View>: View {
         let groundY = artHeight * (0.24 + rig.ground.y)
         return CompanionView(
             vitality: min(max(world.wellbeing / 100, 0), 1),
-            energy: min(Double(world.pending.total.units) / 60, 1),
+            energy: home?.cheekEnergy(uncollected: world.pending.total.units)
+                ?? CheekStep(uncollected: world.pending.total.units).companionEnergy,
             celebrations: celebrations,
             art: art,
             onTap: {
@@ -857,7 +864,17 @@ private struct PofuLayer<Bubble: View>: View {
         )
         // A still frame never catches him mid-blink.
         .environment(\.companionBlinks, !still)
+        .accessibilityValue(Text(verbatim: WorldStrings.pofuValue(band: world.band, uncollected: world.pending.total.units)))
         .frame(width: viewWidth, height: viewHeight)
+        .overlay {
+            if home?.pawsPressed == true {
+                CheekPaws(
+                    artWidth: artWidth,
+                    left: CGPoint(x: artWidth * (0.1 + rig.leftCheek.x + 0.05), y: artHeight * (0.24 + rig.leftCheek.y)),
+                    right: CGPoint(x: artWidth * (0.1 + rig.rightCheek.x - 0.05), y: artHeight * (0.24 + rig.rightCheek.y))
+                )
+            }
+        }
         .modifier(GradeEffect(grade: characterGrade, isEnabled: !characterGrade.isNeutral))
         .position(x: feet.x - groundX + viewWidth / 2, y: feet.y - groundY + viewHeight / 2)
     }
