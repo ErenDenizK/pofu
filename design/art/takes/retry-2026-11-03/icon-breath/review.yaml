@@ -1,0 +1,350 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/icon-breath/contact.jpg
+jobs:
+  icon-breath:
+    pick: none
+    publication: skipped after one allowed retry; never promoted
+    note: 'All four takes fail icon_on_light_glass: t1 0.1283, t2 0.1642, t3 0.1176,
+      t4 0.1228. t4 additionally fails icon_thin_parts 0.0404. The allowed retry pair
+      is exhausted. None passes, no threshold waiver, no further generation. The independent
+      icon family continues; no jobs depend on icon-breath.'
+qa_reports:
+  4:
+    job: icon-breath
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 30 (R1 51)
+      value: 29.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 69 (R1 59)
+      value: 69.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.66
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3312
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.2, p95 2.7, off-palette 1.9% (top: #998866 (1.1%), #888855
+        (0.4%))'
+      value: 1.2263
+    - check: icon_fill
+      status: pass
+      message: icon spans 89% of the canvas (target 80-92%)
+      value: 0.8857
+    - check: icon_thin_parts
+      status: warn
+      message: 4.0% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0404
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 4.1 (busy above 7)
+      value: 4.09
+    - check: icon_on_light_glass
+      status: fail
+      message: 12% of the icon separates from light glass at 24 pt
+      value: 0.1228
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 69.0
+        L_p50: 86.8
+        L_p95: 95.2
+        C_p50: 15.9
+        C_p95: 30.3
+        C_p99: 39.8
+        detail: 0.98
+      metrics_locked:
+        L_p5: 69.3
+        L_p50: 86.8
+        L_p95: 95.2
+        C_p50: 15.9
+        C_p95: 29.9
+        C_p99: 39.7
+        detail: 0.66
+    fingerprint: 4d214ec94fc06fbd
+  2:
+    job: icon-breath
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 30 (R1 51)
+      value: 29.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 68 (R1 59)
+      value: 67.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.63
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.32
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.2, p95 2.3, off-palette 2.4% (top: #888855 (1.0%), #998855
+        (0.7%))'
+      value: 1.2388
+    - check: icon_fill
+      status: pass
+      message: icon spans 87% of the canvas (target 80-92%)
+      value: 0.8652
+    - check: icon_thin_parts
+      status: pass
+      message: 2.7% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0271
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 3.8 (busy above 7)
+      value: 3.76
+    - check: icon_on_light_glass
+      status: fail
+      message: 16% of the icon separates from light glass at 24 pt
+      value: 0.1642
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 67.7
+        L_p50: 86.3
+        L_p95: 94.0
+        C_p50: 14.9
+        C_p95: 29.7
+        C_p99: 38.7
+        detail: 0.93
+      metrics_locked:
+        L_p5: 67.8
+        L_p50: 86.3
+        L_p95: 94.0
+        C_p50: 14.9
+        C_p95: 29.5
+        C_p99: 38.7
+        detail: 0.63
+    fingerprint: 4d214ec94fc06fbd
+  3:
+    job: icon-breath
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 33 (R1 51)
+      value: 33.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 68 (R1 59)
+      value: 68.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.63
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3107
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 5.4, off-palette 2.2% (top: #998855 (1.0%), #888855
+        (0.5%))'
+      value: 1.3325
+    - check: icon_fill
+      status: pass
+      message: icon spans 91% of the canvas (target 80-92%)
+      value: 0.9053
+    - check: icon_thin_parts
+      status: pass
+      message: 1.6% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0158
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 4.0 (busy above 7)
+      value: 4.05
+    - check: icon_on_light_glass
+      status: fail
+      message: 12% of the icon separates from light glass at 24 pt
+      value: 0.1176
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 67.7
+        L_p50: 87.0
+        L_p95: 95.3
+        C_p50: 15.9
+        C_p95: 33.5
+        C_p99: 41.2
+        detail: 0.94
+      metrics_locked:
+        L_p5: 68.0
+        L_p50: 87.0
+        L_p95: 95.3
+        C_p50: 15.9
+        C_p95: 33.1
+        C_p99: 41.2
+        detail: 0.63
+    fingerprint: 4d214ec94fc06fbd
+  1:
+    job: icon-breath
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 28 (R1 51)
+      value: 27.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 71 (R1 59)
+      value: 71.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.66
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3255
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.1, p95 2.2, off-palette 1.0% (top: #999966 (0.7%), #998866
+        (0.3%))'
+      value: 1.1327
+    - check: icon_fill
+      status: warn
+      message: icon spans 100% of the canvas (target 80-92%)
+      value: 1.0
+    - check: icon_thin_parts
+      status: pass
+      message: 2.4% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0235
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 4.1 (busy above 7)
+      value: 4.07
+    - check: icon_on_light_glass
+      status: fail
+      message: 13% of the icon separates from light glass at 24 pt
+      value: 0.1283
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 70.9
+        L_p50: 85.8
+        L_p95: 94.3
+        C_p50: 15.3
+        C_p95: 28.0
+        C_p99: 40.5
+        detail: 0.93
+      metrics_locked:
+        L_p5: 71.1
+        L_p50: 85.8
+        L_p95: 94.3
+        C_p50: 15.2
+        C_p95: 27.8
+        C_p99: 40.4
+        detail: 0.66
+    fingerprint: 4d214ec94fc06fbd
+manual_review:
+  note: 'All four takes fail icon_on_light_glass: t1 0.1283, t2 0.1642, t3 0.1176,
+    t4 0.1228. t4 additionally fails icon_thin_parts 0.0404. The allowed retry pair
+    is exhausted. None passes, no threshold waiver, no further generation. The independent
+    icon family continues; no jobs depend on icon-breath.'
+  terminal_decided_at: '2026-11-03T14:05:55.722176+00:00'
+  decision_qa_sha256: ee08d1626489cca1e7aab5d17e479f7102763df45f0b1046e5ba55c47d16aab7
+  excluded_takes: []
+  preservation_only_after_global_stop: true
+  no_new_selection_or_promotion: true
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-66eaf9d7-75dc-4547-8dc2-6d16157acbd6.png
+  original_generated_png_sha256: 0049130c2439ea4fb5ef7cf9e0a444f752b954199783c27eb66a39b8a1420bd1
+  inbox_png_sha256: bd51352bec59c9a7d5dcb204a436a08e6b9b62d99fdea87b7a40205b5b6ccaf9
+  rgba_sha256: 3ddd984e198f4619efa85317ad7345030d89a0fa572813e20af1060f4e826c30
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4d214ec94fc06fbd
+- take: 2
+  source_file: /workspace/generated_images/exec-33997e3b-657a-424b-8ed4-e37e4488ae81.png
+  original_generated_png_sha256: 5074783ec45e3d8d94a9ffbbbc1cd32675c2d6158e79c19ae5cc55ec39636b41
+  inbox_png_sha256: 85bfd503e0bba443a5845c3fd3dff135e2fc2fdf60fe22014e1b0f7bee436c2c
+  rgba_sha256: 9432ac0d11f5ef3ceff3a8722e338a7309a704a0c8970adfd5531f625471ac0c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4d214ec94fc06fbd
+- take: 3
+  source_file: /workspace/generated_images/exec-c07b5b43-df4d-4ad6-8956-9f743afe60c2.png
+  original_generated_png_sha256: 7c00d81788e46a81f29abd71ff83fadb702b3e1cbb7119255dd6bb00ef1c74f8
+  inbox_png_sha256: a8b33e9fd84cbefb2b953ad1ee5925dad59b57b053875b70000b48482ca30761
+  rgba_sha256: 3360dc1898e6e9865a199c638f82c1af22c7362efe88936fc58a68bf96ed2849
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4d214ec94fc06fbd
+- take: 4
+  source_file: /workspace/generated_images/exec-766e8fcf-c7ba-4589-803e-b286b459dac8.png
+  original_generated_png_sha256: 6d31cfa8e15e6d4bdaaa10ec1bf5cf6bd7074571eaeec2e34fa61738bfd8dfbc
+  inbox_png_sha256: 9591928c1ecde1392fc92ac34c9956848261706dc55e147aff3030ea1fc2763b
+  rgba_sha256: 20ba0dd83b6c2ba9776a207f56039803f8f2212d7b4915d60466bef09d07c4c4
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4d214ec94fc06fbd

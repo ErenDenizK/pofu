@@ -1,0 +1,188 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/simit-kitten-work/contact.jpg
+jobs:
+  simit-kitten-work:
+    pick: null
+    publication: stopped before selection; no master promoted
+    note: Both pre-stop takes have WARN-only reports and preserve the kitten holding
+      exactly three simit rings on a wooden tray. Pre-stop manual review proposed
+      t2 by Harmony79.8 versus79.0, but the selection was not sealed and promote was
+      never invoked. Preserve both candidates without making a new selection.
+    pre_stop_unsealed_proposal:
+      take: 2
+      approved: false
+      note: Historical proposal only; no selection was sealed and this archive makes
+        no new pick.
+qa_reports:
+  1:
+    job: simit-kitten-work
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 56.6
+    - check: value_floor
+      status: warn
+      message: lightness p5 45 (R1 59)
+      value: 44.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 6.5 (R1 5.3)
+      value: 6.53
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.2, p95 10.0, off-palette 3.9% (top: #BB5522 (0.3%), #441100
+        (0.2%))'
+      value: 2.2305
+    - check: ground_line
+      status: warn
+      message: feet at 92.5% of the height (contract 88%)
+      value: 0.9251
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the char reference (outliers: C_p95, detail)'
+      value: 79.0
+    - check: edit_stability
+      status: pass
+      message: 86% of the parent level unchanged
+      value: 0.8622
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.16 of the parent level (drift compounds along a chain)
+      value: 1.1584
+    info:
+      metrics_raw:
+        L_p5: 44.7
+        L_p50: 81.3
+        L_p95: 94.4
+        C_p50: 34.9
+        C_p95: 59.4
+        C_p99: 72.9
+        detail: 6.55
+      metrics_locked:
+        L_p5: 44.7
+        L_p50: 81.3
+        L_p95: 94.4
+        C_p50: 34.9
+        C_p95: 56.6
+        C_p99: 59.6
+        detail: 6.53
+    fingerprint: 6c681022e2f2b0f5
+  2:
+    job: simit-kitten-work
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 56.6
+    - check: value_floor
+      status: warn
+      message: lightness p5 44 (R1 59)
+      value: 44.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 6.4 (R1 5.3)
+      value: 6.42
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.2, p95 9.6, off-palette 3.9% (top: #995522 (0.4%), #884411
+        (0.2%))'
+      value: 2.2282
+    - check: ground_line
+      status: warn
+      message: feet at 92.6% of the height (contract 88%)
+      value: 0.9258
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the char reference (outliers: C_p95, detail)'
+      value: 79.8
+    - check: edit_stability
+      status: pass
+      message: 87% of the parent level unchanged
+      value: 0.8681
+    - check: edit_chroma
+      status: warn
+      message: chroma x1.18 of the parent level (drift compounds along a chain)
+      value: 1.183
+    info:
+      metrics_raw:
+        L_p5: 44.4
+        L_p50: 80.3
+        L_p95: 94.2
+        C_p50: 35.7
+        C_p95: 59.6
+        C_p99: 72.1
+        detail: 6.45
+      metrics_locked:
+        L_p5: 44.4
+        L_p50: 80.3
+        L_p95: 94.2
+        C_p50: 35.7
+        C_p95: 56.6
+        C_p99: 59.5
+        detail: 6.42
+    fingerprint: 6c681022e2f2b0f5
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-7035dc83-2859-4119-92a1-8ace1c58721f.png
+  original_generated_png_sha256: a216b328eafa74b21020f0a9675c8657bb8c4a4944ab527730b8410cc95181ca
+  inbox_png_sha256: 8c144680255053a08a59a2723e338fa74b38aff7f6f87cfd7ad7a1bfead0ee75
+  rgba_sha256: d9c9534d6a7655bab0e054e9187ac586a3c1eab62eba8529072b2e5765df9b6e
+  source_rgba_matches_inbox: true
+  original_dimensions:
+  - 1024
+  - 1536
+  archived_dimensions:
+  - 1024
+  - 1536
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 6c681022e2f2b0f5
+  qa_json_sha256: 2a329458a89c9f94b00f476782dfe539a117810902c54ed677414cd97439cff6
+- take: 2
+  source_file: /workspace/generated_images/exec-46750b53-3b48-4a7f-9651-faf3253850be.png
+  original_generated_png_sha256: 2eeff36e32554eeec4941872a7c6dd38fc1e35e45c0e5754bfc74d341ae626e3
+  inbox_png_sha256: fdfa5bbff73abd6d4438a2f99bb1aeb2b924823fd1a3929c9e1b9e0f5cec8f15
+  rgba_sha256: 541e8953232a8c5047ca8626c500e67ebd251ba779a03a8a40a4866c187d89d1
+  source_rgba_matches_inbox: true
+  original_dimensions:
+  - 1024
+  - 1536
+  archived_dimensions:
+  - 1024
+  - 1536
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 6c681022e2f2b0f5
+  qa_json_sha256: 3888dc8ada229c51651c5853130e1c87760ab1a7206574afcdea98b2d0c0e49f
+global_stop:
+  reason: three consecutive actual job failures
+  last_event:
+    job: retry-2026-11-03/ui-sheet-paper-night
+    status: failed
+    consecutive_actual_failures: 3
+    at: '2026-11-03T14:12:48.328101+00:00'
+global_stop_sha256: 8c25535bcf7a8cfd83b5ecdad7b2c817b66e1776f9fa9563eb81f583afe1f170
+preservation_only: true
+note: No generation, post, selection, promotion, Harmony command or content edit was
+  performed by this archive operation.

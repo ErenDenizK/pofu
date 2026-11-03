@@ -1,0 +1,161 @@
+batch: batch-16-brand-explore
+contact_sheet: design/art/takes/batch-16-brand-explore/x-b16-illus-archipelago/contact.jpg
+jobs:
+  x-b16-illus-archipelago:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both originals manually checked:
+      one Pofu at lower left, exactly six distant islands in rising chain (moss, snow,
+      spire, whale, red clay, star), home lawn foreground, calm top sky; no lettering,
+      extra characters or border. Archived WebP/contact separately inspected; six-island
+      count, character and calm top zone preserved.'
+qa_reports:
+  1:
+    job: x-b16-illus-archipelago
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 33 (R1 51)
+      value: 33.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 76.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.33
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8893
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.0, p95 2.6, off-palette 0.0% (top: #BB6633 (0.0%), #CC7744
+        (0.0%))'
+      value: 0.9633
+    info:
+      metrics_raw:
+        L_p5: 75.6
+        L_p50: 91.4
+        L_p95: 95.5
+        C_p50: 11.2
+        C_p95: 33.9
+        C_p99: 40.6
+        detail: 1.81
+      metrics_locked:
+        L_p5: 76.0
+        L_p50: 91.4
+        L_p95: 95.3
+        C_p50: 11.2
+        C_p95: 33.4
+        C_p99: 39.7
+        detail: 1.33
+    fingerprint: 8d48d4076923e3c3
+  2:
+    job: x-b16-illus-archipelago
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 74 (R1 59)
+      value: 74.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.42
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8769
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.1, p95 3.9, off-palette 0.0% (top: #773311 (0.0%), #DD7733
+        (0.0%))'
+      value: 1.0984
+    info:
+      metrics_raw:
+        L_p5: 74.2
+        L_p50: 92.1
+        L_p95: 95.7
+        C_p50: 11.5
+        C_p95: 38.0
+        C_p99: 45.4
+        detail: 1.95
+      metrics_locked:
+        L_p5: 74.5
+        L_p50: 92.1
+        L_p95: 95.5
+        C_p50: 11.6
+        C_p95: 37.5
+        C_p99: 44.2
+        detail: 1.42
+    fingerprint: 8d48d4076923e3c3
+manual_review:
+  exclude: []
+  note: 'Both originals manually checked: one Pofu at lower left, exactly six distant
+    islands in rising chain (moss, snow, spire, whale, red clay, star), home lawn
+    foreground, calm top sky; no lettering, extra characters or border. Archived WebP/contact
+    separately inspected; six-island count, character and calm top zone preserved.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-b77e0e48-fa75-478f-a919-aaa7ec32b570.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 8d48d4076923e3c3
+  original_generated_png_sha256: ae0d1b9c43adf519f905ac60769e88d8009d64d0dc74f0ce370f210b3325271a
+  ingested_png_sha256: ac8d799b5fcca03e78b9a9c36868f038145a7812c6225a0742811b4c8af31b90
+  source_rgba_sha256: 2ac9b1f4e57d20241e0dbdd089c01f0de2d7b83a223a25e9ae982e4838a23d1a
+  source_dimensions:
+  - 1536
+  - 1024
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-illus-archipelago/plate__x-b16-illus-archipelago--t1.webp
+  uploaded_artifact_sha256: ea8a949a4257612dbba1725f0c9a10bd767a4443d4f18b41de295ddc46ad8fc8
+  uploaded_dimensions:
+  - 1536
+  - 1024
+  encoding: lossy WebP quality 90
+- take: 2
+  source_file: /workspace/generated_images/exec-da56977d-86b4-4907-b97c-f14e089cef9f.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 8d48d4076923e3c3
+  original_generated_png_sha256: e90854e172ba9e6f5ccf10f491273bcfa0353afd172cf2e15288d86f989e3875
+  ingested_png_sha256: d8171bcc8d341f5dc8ab72e62d44626a6834b690e64afc6ae8eaf4e98af9295b
+  source_rgba_sha256: 001cf4d766953301725186784c92fdf02d2724f520f0cb19309e31f6c5d4e72b
+  source_dimensions:
+  - 1536
+  - 1024
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-illus-archipelago/plate__x-b16-illus-archipelago--t2.webp
+  uploaded_artifact_sha256: fe52f5d226c16d532d730a6be12bdaf94a0e1deb8b3c29025786df08aad3f533
+  uploaded_dimensions:
+  - 1536
+  - 1024
+  encoding: lossy WebP quality 90

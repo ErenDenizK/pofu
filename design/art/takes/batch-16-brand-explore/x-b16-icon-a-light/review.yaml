@@ -1,0 +1,340 @@
+batch: batch-16-brand-explore
+contact_sheet: design/art/takes/batch-16-brand-explore/x-b16-icon-a-light/contact.jpg
+jobs:
+  x-b16-icon-a-light:
+    pick: none
+    publication: skipped after one allowed retry
+    note: All four original takes read as Pofu at 29/60 px but outer cheek silhouette
+      exceeds the required central 80% circle. Exact prompt and references unchanged
+      for the one allowed retry. Manual layout failure, skip A-dark/A-tinted only.
+qa_reports:
+  1:
+    job: x-b16-icon-a-light
+    take: 1
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 44.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 75.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.42
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0436
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 3.8, off-palette 0.9% (top: #EE7755 (0.1%), #552211
+        (0.1%))'
+      value: 1.6142
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: pass
+      message: corner detail is 42% of the center's (the system masks corners)
+      value: 0.4236
+    info:
+      metrics_raw:
+        L_p5: 75.2
+        L_p50: 85.8
+        L_p95: 95.9
+        C_p50: 24.3
+        C_p95: 44.6
+        C_p99: 57.1
+        detail: 2.43
+      metrics_locked:
+        L_p5: 75.2
+        L_p50: 85.8
+        L_p95: 95.9
+        C_p50: 24.3
+        C_p95: 44.6
+        C_p99: 55.6
+        detail: 2.42
+    fingerprint: 5489a500a7ae94ff
+  2:
+    job: x-b16-icon-a-light
+    take: 2
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 74.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.46
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.1
+      value: 0.0732
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 5.3, off-palette 1.1% (top: #EE7755 (0.1%), #DD7744
+        (0.1%))'
+      value: 1.6313
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: pass
+      message: corner detail is 37% of the center's (the system masks corners)
+      value: 0.3712
+    info:
+      metrics_raw:
+        L_p5: 74.7
+        L_p50: 88.1
+        L_p95: 95.7
+        C_p50: 25.2
+        C_p95: 47.0
+        C_p99: 59.4
+        detail: 2.47
+      metrics_locked:
+        L_p5: 74.7
+        L_p50: 88.1
+        L_p95: 95.7
+        C_p50: 25.2
+        C_p95: 47.0
+        C_p99: 56.6
+        detail: 2.46
+    fingerprint: 5489a500a7ae94ff
+  3:
+    job: x-b16-icon-a-light
+    take: 3
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 75.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.38
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.035
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 3.6, off-palette 1.0% (top: #EE7766 (0.1%), #EE7755
+        (0.1%))'
+      value: 1.4651
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: pass
+      message: corner detail is 49% of the center's (the system masks corners)
+      value: 0.4916
+    info:
+      metrics_raw:
+        L_p5: 75.3
+        L_p50: 87.6
+        L_p95: 95.7
+        C_p50: 24.5
+        C_p95: 45.2
+        C_p99: 56.2
+        detail: 2.38
+      metrics_locked:
+        L_p5: 75.3
+        L_p50: 87.6
+        L_p95: 95.7
+        C_p50: 24.5
+        C_p95: 45.2
+        C_p99: 55.1
+        detail: 2.38
+    fingerprint: 5489a500a7ae94ff
+  4:
+    job: x-b16-icon-a-light
+    take: 4
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 74.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.62
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.1
+      value: 0.072
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 5.3, off-palette 1.2% (top: #DD6655 (0.1%), #EE7766
+        (0.1%))'
+      value: 1.6363
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: pass
+      message: corner detail is 44% of the center's (the system masks corners)
+      value: 0.4367
+    info:
+      metrics_raw:
+        L_p5: 74.9
+        L_p50: 86.9
+        L_p95: 95.8
+        C_p50: 26.3
+        C_p95: 48.1
+        C_p99: 59.3
+        detail: 2.63
+      metrics_locked:
+        L_p5: 74.9
+        L_p50: 86.9
+        L_p95: 95.8
+        C_p50: 26.3
+        C_p95: 48.1
+        C_p99: 56.5
+        detail: 2.62
+    fingerprint: 5489a500a7ae94ff
+manual_review:
+  exclude:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: All four original takes read as Pofu at 29/60 px but outer cheek silhouette
+    exceeds the required central 80% circle. Exact prompt and references unchanged
+    for the one allowed retry. Manual layout failure, skip A-dark/A-tinted only.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-45c15a7a-e2ed-4598-a5bb-de393d0fc83d.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5489a500a7ae94ff
+  original_generated_png_sha256: 0b2a11c18fd66cb32fe466f9a7e6c662dd1f8f0b47d25911d2fa99344d2ed0ea
+  ingested_png_sha256: a5e2be0464ca5c0b07335a32399d2ebc43627ce54366d674ee80129fb7dc8b5e
+  source_rgba_sha256: 03b3e1de6f8428dbd9879a86470c946f56ac415da89a67756c3b9a66f7fa3527
+  source_dimensions:
+  - 1254
+  - 1254
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-a-light/appicon__x-b16-icon-a-light--t1.webp
+  uploaded_artifact_sha256: 9f1db6f7868154420030f44167ff93f2868d13899bbc5c3ea7c562d59e39e07b
+  uploaded_dimensions:
+  - 1254
+  - 1254
+  encoding: lossy WebP quality 90
+- take: 2
+  source_file: /workspace/generated_images/exec-9c1878f2-2f68-46fd-ab45-077342484589.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5489a500a7ae94ff
+  original_generated_png_sha256: 1d67ce6fe6c2b6f166c028bd693209f9ba31fec52e21f143b05587583f298ec0
+  ingested_png_sha256: 94175404e46dcf402b442662f6f8431d1cc67f100570b3d60311a7c7fb81df5d
+  source_rgba_sha256: 8a494793dd10c5379cdb55fecb674a7ddab6368c2067a757b86f47da82b63fdd
+  source_dimensions:
+  - 1254
+  - 1254
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-a-light/appicon__x-b16-icon-a-light--t2.webp
+  uploaded_artifact_sha256: 1136c455c53d6f8ea61d7affe76e6e78d680ce495a4c6dafc006daaa132cd87f
+  uploaded_dimensions:
+  - 1254
+  - 1254
+  encoding: lossy WebP quality 90
+- take: 3
+  source_file: /workspace/generated_images/exec-b59ab80b-c5e4-42f0-9d9a-793e6753e9d4.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5489a500a7ae94ff
+  original_generated_png_sha256: 171dc848c4b6c7fe6124e8fc3fcd36a6f945f550e0580902522cef6d8e8c9c0a
+  ingested_png_sha256: 7d288732c356df007fba9435dcb02ed49f87c3f5e4caada233f9916d4924c971
+  source_rgba_sha256: 5b2151b337334d0720a647c3f77dfe7381a1e10c9b844b165db983a75f9f60da
+  source_dimensions:
+  - 1254
+  - 1254
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-a-light/appicon__x-b16-icon-a-light--t3.webp
+  uploaded_artifact_sha256: 60925b29e8d2aa14fee0a9f9a3ab0e0f1a48e2b9b20a4c6a2aa381968b3429e0
+  uploaded_dimensions:
+  - 1254
+  - 1254
+  encoding: lossy WebP quality 90
+- take: 4
+  source_file: /workspace/generated_images/exec-b0c6dbca-7460-4ab1-849e-442d45c1b314.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5489a500a7ae94ff
+  original_generated_png_sha256: 8a10d78e81e699dc05399cf86ad5bd36ad8fa700e57b01848a67b58bb7d13fdd
+  ingested_png_sha256: 7618f1f81d728bc1ea67a794778b12ddc6275172c41059aa7e585e188185f2d3
+  source_rgba_sha256: cb46966f163a6d7bd58d6649da6994d6fc6ab01800e37ef890817b0c63b6751a
+  source_dimensions:
+  - 1254
+  - 1254
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-a-light/appicon__x-b16-icon-a-light--t4.webp
+  uploaded_artifact_sha256: 04e7f17257a1c6b1f75f561df3806f909b945eea51132639f87f28c6198215d8
+  uploaded_dimensions:
+  - 1254
+  - 1254
+  encoding: lossy WebP quality 90

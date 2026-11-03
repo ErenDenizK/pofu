@@ -1,0 +1,115 @@
+{
+  "job": "game-plot-tile-lilac",
+  "batch": "retry-2026-11-03",
+  "asset": "ui__game-plot-tile-lilac",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T14:06:24+00:00",
+  "image": "design/art/ui/ui-game-plot-tile-lilac/ui-game-plot-tile-lilac.png",
+  "raw": "design/art/ui/ui-game-plot-tile-lilac/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "dabd391127b0b204",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nChange only the glaze color of the tile and its sprout to a soft\nlilac, in the same finish and the same lightness as before. The\nshape, highlight, lip and sprout stay.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/ui-game-plot-tile-sage/ui-game-plot-tile-sage.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T13:49:38+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": {
+    "scale": 0.9988,
+    "cx": 506.0,
+    "cy": 955.0,
+    "dx": -1,
+    "dy": -1
+  },
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "edit_alignment",
+        "status": "pass",
+        "message": "the edit rescaled the object x1.001 and moved it; aligned back to the parent",
+        "value": 0.9988
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 15 (R1 51)",
+        "value": 14.8
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 76 (R1 59)",
+        "value": 75.7
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.5 (R1 5.3)",
+        "value": 0.51
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.6",
+        "value": 0.5582
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.3, p95 2.3, off-palette 0.0%",
+        "value": 1.3055
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "pass",
+        "message": "100% of the parent's shape kept",
+        "value": 0.9981
+      },
+      {
+        "check": "edit_structure",
+        "status": "pass",
+        "message": "light structure matches the parent (r 0.96)",
+        "value": 0.9551
+      },
+      {
+        "check": "edit_lightness",
+        "status": "pass",
+        "message": "mean lightness moved by 4.4 L (the same lightness was asked)",
+        "value": 4.3506
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both takes preserve the tile, highlight, lip and sprout with soft lilac glaze. All automated checks pass; t1 has lower lock load0.5582 versus0.6775. Exactly two image requests were dispatched. After a shell callback ARG_MAX failure, original PNGs were recovered by visual identity and numbered in stable completion-time order; original request ordinal is not claimed. Source/inbox/RGBA hashes preserve lineage."
+}

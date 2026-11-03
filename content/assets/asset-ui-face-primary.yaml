@@ -2,14 +2,15 @@ id: asset-ui-face-primary
 type: asset
 title_tr: ui-face-primary
 title_en: face-primary (ui)
-status: planned
+status: in-production
 horizon: now
 summary: 'A wide, chunky capsule of glazed clay in soft violet (#6C4FD8 at its mid-tone),
   lit from straight above: a soft cream highlight along the top edge, a slightly darker
   rounded lip along the bottom edge, perfectly even from left to right. Nothing on
   it.'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-face-primary/ui-face-primary.png
   jobs:
   - batch-11-ui-pilot:ui-face-primary
   - retry-2026-11-03:ui-face-primary

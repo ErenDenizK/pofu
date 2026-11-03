@@ -1,0 +1,184 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/icon-island/contact.jpg
+jobs:
+  icon-island:
+    pick: 1
+    publication: selected before global stop; promotion pending
+    note: Both takes read as a tiny empty sage lawn on rounded honey earth at 28,
+      44 and 60 pt on pale and dark backgrounds. t1 has no roots; t2 has two chunky
+      roots. No added lawn objects, badge, text or border.
+qa_reports:
+  1:
+    job: icon-island
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 56 (R1 59)
+      value: 55.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.59
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3961
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.0, p95 8.2, off-palette 0.2% (top: #AA9966 (0.1%), #999955
+        (0.0%))'
+      value: 4.0364
+    - check: icon_fill
+      status: pass
+      message: icon spans 82% of the canvas (target 80-92%)
+      value: 0.8242
+    - check: icon_thin_parts
+      status: pass
+      message: 0.1% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0007
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 2.4 (busy above 7)
+      value: 2.35
+    - check: icon_on_light_glass
+      status: pass
+      message: 68% of the icon separates from light glass at 24 pt
+      value: 0.6799
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 55.5
+        L_p50: 72.3
+        L_p95: 84.6
+        C_p50: 31.0
+        C_p95: 42.0
+        C_p99: 43.2
+        detail: 0.89
+      metrics_locked:
+        L_p5: 55.5
+        L_p50: 72.3
+        L_p95: 84.5
+        C_p50: 30.8
+        C_p95: 41.9
+        C_p99: 43.1
+        detail: 0.59
+    fingerprint: 473ba3ec59c56d2a
+  2:
+    job: icon-island
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 38.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 57 (R1 59)
+      value: 56.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.56
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3712
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.5, p95 9.6, off-palette 1.2% (top: #999966 (0.8%), #AA9966
+        (0.3%))'
+      value: 4.545
+    - check: icon_fill
+      status: pass
+      message: icon spans 84% of the canvas (target 80-92%)
+      value: 0.8418
+    - check: icon_thin_parts
+      status: pass
+      message: 0.3% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0034
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 2.1 (busy above 7)
+      value: 2.11
+    - check: icon_on_light_glass
+      status: pass
+      message: 69% of the icon separates from light glass at 24 pt
+      value: 0.6885
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 56.6
+        L_p50: 72.6
+        L_p95: 83.7
+        C_p50: 30.0
+        C_p95: 38.8
+        C_p99: 39.7
+        detail: 0.85
+      metrics_locked:
+        L_p5: 56.7
+        L_p50: 72.7
+        L_p95: 83.4
+        C_p50: 29.9
+        C_p95: 38.8
+        C_p99: 39.6
+        detail: 0.56
+    fingerprint: 473ba3ec59c56d2a
+manual_review:
+  note: Both takes read as a tiny empty sage lawn on rounded honey earth at 28, 44
+    and 60 pt on pale and dark backgrounds. t1 has no roots; t2 has two chunky roots.
+    No added lawn objects, badge, text or border.
+  terminal_decided_at: '2026-11-03T14:07:28.845767+00:00'
+  decision_qa_sha256: cc6c396a4504ba370f1f64da6f98e15ef922f1b75f97f501d27017ba9f4c5696
+  excluded_takes: []
+  preservation_only_after_global_stop: true
+  no_new_selection_or_promotion: true
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-bad23220-d1ae-46af-912b-71455a336c12.png
+  original_generated_png_sha256: 7b58b1fc32578eab9932797c1aa49fb736bbf15fc3d212309796cf523b5c99a4
+  inbox_png_sha256: ec7d3787f043eadfa781a9663907520908d6400cb873cf7d595d5c16e54ddf63
+  rgba_sha256: 25b77871609c8c74e45a58b759f24af0d782fc2e9d7f7d18ce3cd783a55ea901
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 473ba3ec59c56d2a
+- take: 2
+  source_file: /workspace/generated_images/exec-25687ce5-9837-49c4-96de-a680c68ce9d3.png
+  original_generated_png_sha256: 0f1ace6625ba508552d256e229c798be21af31a6e8c174e8dbfbaf5bb2a705ee
+  inbox_png_sha256: b34a17451768ee0b6a0fedfd97d4418c0a31f367cc4bf0152b5a97cf241efe5b
+  rgba_sha256: d121ec6cb88d41c142fad9f0b4f8b2594bbd6284b740f0238fc331f7352719f7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 473ba3ec59c56d2a

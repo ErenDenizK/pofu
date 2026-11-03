@@ -2,7 +2,7 @@ id: asset-iskele-vapur-2
 type: asset
 title_tr: iskele-vapur-2
 title_en: iskele-vapur-2 (station)
-status: planned
+status: cut
 horizon: now
 summary: 'Add a second deck to the ferry: a smaller cream cabin on top of the first
   with two round windows, a rail of three cream posts around the upper deck, and a
@@ -24,3 +24,9 @@ notes:
 - 'Skipped without generation: failed embedded pilots iskele-vapur-1 and simit-kitten
   exhausted their one allowed retry. Manifest pilot gate skips every remaining job
   of this batch; no QA waiver or master.'
+- 'Skipped without generation: true dependency iskele-vapur-1 failed after its one
+  allowed retry. All four takes read as compact Istanbul vapur ferries with a funnel,
+  low cabin, round windows and flat waterlines, but the explicit maximum720px footprint
+  width fails: alpha>24 widths t1=741,t2=844,t3=835,t4=834px on the1024px processed
+  canvas. Automated t1 PASS and t2-t4 station_anchor WARN preserved unchanged. No
+  resizing, QA waiver or extra retry; only true dependent iskele-vapur-2 is skipped.'

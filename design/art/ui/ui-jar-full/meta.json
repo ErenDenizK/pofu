@@ -1,0 +1,103 @@
+{
+  "job": "ui-jar-full",
+  "batch": "retry-2026-11-03",
+  "asset": "ui__jar-full",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T13:55:42+00:00",
+  "image": "design/art/ui/ui-jar-full/ui-jar-full.png",
+  "raw": "design/art/ui/ui-jar-full/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "0d4a4c75e0a3ad72",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nFill the jar's front window panel completely with sunflower seeds:\na soft, full pile of chunky warm-brown and cream-striped seeds up\nto the top of the window, painted simply (big shapes, not seed by\nseed). Nothing else changes.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/ui-jar-empty/ui-jar-empty.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T13:47:27+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 36 (R1 51)",
+        "value": 35.7
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 41 (R1 59)",
+        "value": 41.0
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 2.6 (R1 5.3)",
+        "value": 2.62
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.8",
+        "value": 0.7543
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.8, p95 1.8, off-palette 0.0%",
+        "value": 0.7851
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "pass",
+        "message": "99% of the parent's shape kept",
+        "value": 0.9923
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "77% of the parent level unchanged",
+        "value": 0.7653
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.89 of the parent level (drift compounds along a chain)",
+        "value": 0.893
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both takes completely fill the front window with chunky warm-brown cream-striped seeds, without changing the lid, bow, body silhouette or framing. Region edit QA passes: t1 silhouette IoU 0.9923, stability 0.7653, chroma 0.893. Select t1 by lower lock load 0.7543 vs 0.7564. No obsolete manual stability >0.9 gate applied."
+}

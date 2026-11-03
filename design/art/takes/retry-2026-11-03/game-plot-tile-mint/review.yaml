@@ -1,0 +1,201 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/game-plot-tile-mint/contact.jpg
+jobs:
+  game-plot-tile-mint:
+    pick: 2
+    publication: selected before global stop; Harmony/promotion completion pending
+    note: Preserved from the pre-stop QA/manual selection; delivery is incomplete
+      and this archive is not a published master. auto-picked by QA; founder review
+      pending. Both takes preserve the tile and sprout with visibly cool blue-mint
+      glaze distinct from sage. All automated checks pass; t2 has lower lock load0.5998
+      versus0.6082. Exactly two image requests were dispatched. After a shell callback
+      ARG_MAX failure, original PNGs were recovered by visual identity and numbered
+      in stable completion-time order; original request ordinal is not claimed. Source/inbox/RGBA
+      hashes preserve lineage.
+qa_reports:
+  2:
+    job: game-plot-tile-mint
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.006 and moved it; aligned back to the
+        parent
+      value: 0.9941
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 12 (R1 51)
+      value: 12.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 74.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.52
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5998
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 2.5, off-palette 0.0%
+      value: 1.2955
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9883
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.96)
+      value: 0.9612
+    - check: edit_lightness
+      status: pass
+      message: mean lightness moved by 3.8 L (the same lightness was asked)
+      value: 3.7504
+    info:
+      alignment:
+        scale: 0.9941
+        cx: 507.0
+        cy: 956.0
+        dx: -5
+        dy: -2
+      metrics_raw:
+        L_p5: 74.7
+        L_p50: 79.9
+        L_p95: 86.7
+        C_p50: 10.3
+        C_p95: 12.3
+        C_p99: 14.3
+        detail: 0.76
+      metrics_locked:
+        L_p5: 74.7
+        L_p50: 80.2
+        L_p95: 86.9
+        C_p50: 10.6
+        C_p95: 12.2
+        C_p99: 13.9
+        detail: 0.52
+    fingerprint: f470d536dd3b0cd8
+  1:
+    job: game-plot-tile-mint
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.005 and moved it; aligned back to the
+        parent
+      value: 0.9953
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 11 (R1 51)
+      value: 11.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 75.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.47
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6082
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.7, p95 2.0, off-palette 0.0%
+      value: 0.6824
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9881
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.95)
+      value: 0.9452
+    - check: edit_lightness
+      status: pass
+      message: mean lightness moved by 3.4 L (the same lightness was asked)
+      value: 3.4313
+    info:
+      alignment:
+        scale: 0.9953
+        cx: 505.5
+        cy: 955.0
+        dx: -4
+        dy: -1
+      metrics_raw:
+        L_p5: 75.1
+        L_p50: 79.6
+        L_p95: 85.0
+        C_p50: 9.6
+        C_p95: 11.0
+        C_p99: 13.3
+        detail: 0.65
+      metrics_locked:
+        L_p5: 75.4
+        L_p50: 79.8
+        L_p95: 85.2
+        C_p50: 10.0
+        C_p95: 11.3
+        C_p99: 13.2
+        detail: 0.47
+    fingerprint: f470d536dd3b0cd8
+manual_review:
+  excluded_takes: []
+  note: Both takes preserve the tile and sprout with visibly cool blue-mint glaze
+    distinct from sage. All automated checks pass; t2 has lower lock load0.5998 versus0.6082.
+    Exactly two image requests were dispatched. After a shell callback ARG_MAX failure,
+    original PNGs were recovered by visual identity and numbered in stable completion-time
+    order; original request ordinal is not claimed. Source/inbox/RGBA hashes preserve
+    lineage.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-21d6615c-6f3b-4856-82eb-419257125850.png
+  original_generated_png_sha256: 261d7aee25fcaafec1d3e473300a412f0d12bc000192cc00001f514edd20ef79
+  inbox_png_sha256: ce42ef5d519cb1c58ae39d61ca57e9adcccd8975b1aee98be4675cc43c6913b5
+  rgba_sha256: 8c9d834dab84b25953895e4d49b943891e2fff069d55339ef1491b05eb64aa21
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f470d536dd3b0cd8
+- take: 2
+  source_file: /workspace/generated_images/exec-97c80a40-6ccf-4d16-92c0-afb9f7189eb4.png
+  original_generated_png_sha256: e178c4b1cbb5550e430656c8190cba3a5fd3bd7b876138c12fa3daa61e1c3f59
+  inbox_png_sha256: b5e4b560d6d7ec04fb4633ca287f71f35fffeaeffc0eb9e5a397788949579514
+  rgba_sha256: 4ff3bcec5711c1063d0a42a5fd9a12bd1ff81e4b39de8a17ac7095ba554b8a26
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f470d536dd3b0cd8
+preservation:
+  global_stop_at: '2026-11-03T14:12:48.328101+00:00'
+  global_stop_reason: three consecutive actual job failures
+  frozen_pick: 2
+  new_generation: false
+  qa_recomputed: false
+  pick_changed: false
+  master_published: false
+  harmony_completed: false

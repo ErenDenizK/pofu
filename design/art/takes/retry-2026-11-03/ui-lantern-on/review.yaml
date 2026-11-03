@@ -1,0 +1,168 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/ui-lantern-on/contact.jpg
+jobs:
+  ui-lantern-on:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both takes light only the lantern
+      paper inside its outline; ribs, caps, wooden post and foot retain the unlit
+      shape. Alpha composites show no external halo or light spill. Select t2 by lower
+      lock load 0.7053 vs 0.7130; chroma WARN 58.7 and palette WARN mean dE 2.3755
+      are retained as reported, with no threshold waiver. Region edit QA passes silhouette
+      0.9686 and stability 0.6209.
+qa_reports:
+  1:
+    job: ui-lantern-on
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 51.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 62.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.99
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.713
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 6.9, off-palette 0.0%
+      value: 1.8482
+    - check: edit_silhouette
+      status: pass
+      message: 97% of the parent's shape kept
+      value: 0.9736
+    - check: edit_stability
+      status: pass
+      message: 65% of the parent level unchanged
+      value: 0.651
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.02 of the parent level (drift compounds along a chain)
+      value: 1.0221
+    info:
+      metrics_raw:
+        L_p5: 61.8
+        L_p50: 73.9
+        L_p95: 92.8
+        C_p50: 41.2
+        C_p95: 52.3
+        C_p99: 57.0
+        detail: 1.52
+      metrics_locked:
+        L_p5: 62.2
+        L_p50: 73.9
+        L_p95: 92.7
+        C_p50: 41.2
+        C_p95: 51.9
+        C_p99: 55.0
+        detail: 0.99
+    fingerprint: 78db578785fa62d6
+  2:
+    job: ui-lantern-on
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 58.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 63 (R1 59)
+      value: 62.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.89
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7053
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.4, p95 9.8, off-palette 1.2% (top: #FFEE77 (1.1%), #FFEE88
+        (0.2%))'
+      value: 2.3755
+    - check: edit_silhouette
+      status: pass
+      message: 97% of the parent's shape kept
+      value: 0.9686
+    - check: edit_stability
+      status: pass
+      message: 62% of the parent level unchanged
+      value: 0.6209
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.05 of the parent level (drift compounds along a chain)
+      value: 1.0517
+    info:
+      metrics_raw:
+        L_p5: 62.3
+        L_p50: 74.0
+        L_p95: 91.6
+        C_p50: 42.4
+        C_p95: 59.6
+        C_p99: 62.0
+        detail: 1.45
+      metrics_locked:
+        L_p5: 62.7
+        L_p50: 74.0
+        L_p95: 91.6
+        C_p50: 42.4
+        C_p95: 58.7
+        C_p99: 59.8
+        detail: 0.89
+    fingerprint: 78db578785fa62d6
+manual_review:
+  excluded_takes: []
+  note: Both takes light only the lantern paper inside its outline; ribs, caps, wooden
+    post and foot retain the unlit shape. Alpha composites show no external halo or
+    light spill. Select t2 by lower lock load 0.7053 vs 0.7130; chroma WARN 58.7 and
+    palette WARN mean dE 2.3755 are retained as reported, with no threshold waiver.
+    Region edit QA passes silhouette 0.9686 and stability 0.6209.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-df413adf-1272-471f-b78b-287fa4c0dc75.png
+  original_generated_png_sha256: b9fbf075afc9ebdc9a960b19535d02b3a5d4808dc73076c3f562f04cdb8c1fac
+  inbox_png_sha256: 5886bff67259dea8a2b7e077d39d52ae6bf1f5ec8e67f258f237fea7206ff360
+  rgba_sha256: bc8b014f3aa82897041edb6bdf2fa1eb27f412aaf5d45ff6519753ef1d45e2b0
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 78db578785fa62d6
+- take: 2
+  source_file: /workspace/generated_images/exec-1be3922b-38a3-461a-91e1-3dad045dc09c.png
+  original_generated_png_sha256: 0ab0753cf3d77c6682cbcef3f27987ee26d3d482c750e0e97d785206bf769643
+  inbox_png_sha256: 8815e9faebe943378552842b59c5037b8f9245743149c50c4088c1d026ffd814
+  rgba_sha256: 2f7723485836c1c8e856d6cceda77210a9f127fb683fec4c71810bf626537b78
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 78db578785fa62d6

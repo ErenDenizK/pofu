@@ -1,0 +1,192 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/game-plot-tile-terracotta/contact.jpg
+jobs:
+  game-plot-tile-terracotta:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both takes preserve tile shape
+      and sprout, with soft terracotta-orange glaze. Select t1 by lower passing lock
+      load1.3340 versus1.6657; lightness warns14.0L, without threshold waiver. T2
+      additionally warns structure. Exactly two image requests were dispatched. After
+      a shell callback ARG_MAX failure, original PNGs were recovered by visual identity
+      and numbered in stable completion-time order; original request ordinal is not
+      claimed. Source/inbox/RGBA hashes preserve lineage.
+qa_reports:
+  1:
+    job: game-plot-tile-terracotta
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.972 and moved it; aligned back to the
+        parent
+      value: 1.0288
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 56 (R1 59)
+      value: 56.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.53
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.334
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 4.4, off-palette 0.1% (top: #AA5533 (0.1%), #995522
+        (0.0%))'
+      value: 1.4959
+    - check: edit_silhouette
+      status: pass
+      message: 94% of the parent's shape kept
+      value: 0.9439
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.83)
+      value: 0.8324
+    - check: edit_lightness
+      status: warn
+      message: mean lightness moved by 14.0 L (the same lightness was asked)
+      value: 13.9816
+    info:
+      alignment:
+        scale: 1.0288
+        cx: 506.0
+        cy: 954.0
+        dx: 4
+        dy: 0
+      metrics_raw:
+        L_p5: 55.8
+        L_p50: 62.6
+        L_p95: 71.9
+        C_p50: 42.5
+        C_p95: 44.7
+        C_p99: 46.7
+        detail: 0.71
+      metrics_locked:
+        L_p5: 56.1
+        L_p50: 62.8
+        L_p95: 71.6
+        C_p50: 42.5
+        C_p95: 44.5
+        C_p99: 46.1
+        detail: 0.53
+    fingerprint: 99d61d01b95566e3
+  2:
+    job: game-plot-tile-terracotta
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.972 and moved it; aligned back to the
+        parent
+      value: 1.0288
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 58 (R1 59)
+      value: 58.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.56
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.7
+      value: 1.6657
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.1, p95 1.9, off-palette 0.0%
+      value: 1.1355
+    - check: edit_silhouette
+      status: pass
+      message: 94% of the parent's shape kept
+      value: 0.944
+    - check: edit_structure
+      status: warn
+      message: light structure matches the parent (r 0.79)
+      value: 0.7903
+    - check: edit_lightness
+      status: warn
+      message: mean lightness moved by 13.3 L (the same lightness was asked)
+      value: 13.3449
+    info:
+      alignment:
+        scale: 1.0288
+        cx: 506.0
+        cy: 955.0
+        dx: -4
+        dy: 3
+      metrics_raw:
+        L_p5: 57.7
+        L_p50: 63.0
+        L_p95: 72.5
+        C_p50: 40.1
+        C_p95: 41.9
+        C_p99: 43.7
+        detail: 0.72
+      metrics_locked:
+        L_p5: 58.0
+        L_p50: 63.1
+        L_p95: 72.1
+        C_p50: 40.2
+        C_p95: 41.7
+        C_p99: 43.2
+        detail: 0.56
+    fingerprint: 99d61d01b95566e3
+manual_review:
+  excluded_takes: []
+  note: Both takes preserve tile shape and sprout, with soft terracotta-orange glaze.
+    Select t1 by lower passing lock load1.3340 versus1.6657; lightness warns14.0L,
+    without threshold waiver. T2 additionally warns structure. Exactly two image requests
+    were dispatched. After a shell callback ARG_MAX failure, original PNGs were recovered
+    by visual identity and numbered in stable completion-time order; original request
+    ordinal is not claimed. Source/inbox/RGBA hashes preserve lineage.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-dc873edd-2425-4795-934e-1a24e90b7817.png
+  original_generated_png_sha256: 0d4ba7a2d5a8e6c208a0fd2bfd091e69e05bbb44aa0ef62b42f403b502a053ce
+  inbox_png_sha256: 5689a9bcd2de4eb023a16f3386819466dd8ed5abc0906777bab40813e928a759
+  rgba_sha256: d3b19cbf1efa7014352b6d685d07c9636f61885c5dc896d11d0304f2806f0ae7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 99d61d01b95566e3
+- take: 2
+  source_file: /workspace/generated_images/exec-b7fda1fe-300e-4054-8373-d78582d0d9c2.png
+  original_generated_png_sha256: 6572e5767f70b3814150cd0cf72f2a1c5fa1f0f8810aef8717088c47e92b587c
+  inbox_png_sha256: e55425f180a8d28d8d894263053222e5a36d2d8b2e531575d3785de59fbe24e2
+  rgba_sha256: e44cbf5884808849f2f5fbb798dc5b3597a5b70d2aabfcb2747d6db4dc63fcb7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 99d61d01b95566e3

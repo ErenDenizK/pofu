@@ -1,0 +1,304 @@
+batch: batch-16-brand-explore
+contact_sheet: design/art/takes/batch-16-brand-explore/x-b16-icon-family/contact.jpg
+jobs:
+  x-b16-icon-family:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'All four originals show separated 3x2 icons in required order with no labels/background
+      tiles and native RGBA transparency. All four automated reports fail palette_drift:
+      mean dE 10.0/9.7/8.6/10.4 and off-palette 30.3/28.5/28.0/29.0 percent. One unchanged-prompt
+      retry exhausted; skip. No 24px acceptability claim made because automated QA
+      already rejects every take.'
+qa_reports:
+  1:
+    job: x-b16-icon-family
+    take: 1
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 51.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 58 (R1 59)
+      value: 57.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.96
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0002
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 10.0, p95 30.5, off-palette 30.3% (top: #CCCC66 (2.7%), #BBBB55
+        (2.6%))'
+      value: 10.027
+    info:
+      metrics_raw:
+        L_p5: 57.7
+        L_p50: 80.5
+        L_p95: 92.8
+        C_p50: 34.1
+        C_p95: 51.1
+        C_p99: 52.0
+        detail: 1.85
+      metrics_locked:
+        L_p5: 57.7
+        L_p50: 80.5
+        L_p95: 92.8
+        C_p50: 34.1
+        C_p95: 51.1
+        C_p99: 52.0
+        detail: 1.96
+    fingerprint: 478058d9107e668c
+  2:
+    job: x-b16-icon-family
+    take: 2
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 51.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 56 (R1 59)
+      value: 55.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.95
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0041
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 9.7, p95 30.2, off-palette 28.5% (top: #BBBB66 (2.6%), #DDCC77
+        (2.5%))'
+      value: 9.7083
+    info:
+      metrics_raw:
+        L_p5: 55.7
+        L_p50: 79.1
+        L_p95: 91.5
+        C_p50: 34.7
+        C_p95: 51.2
+        C_p99: 53.5
+        detail: 1.82
+      metrics_locked:
+        L_p5: 55.7
+        L_p50: 79.1
+        L_p95: 91.5
+        C_p50: 34.7
+        C_p95: 51.2
+        C_p99: 53.3
+        detail: 1.95
+    fingerprint: 478058d9107e668c
+  3:
+    job: x-b16-icon-family
+    take: 3
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 55 (R1 59)
+      value: 55.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.23
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 8.6, p95 27.4, off-palette 28.0% (top: #999955 (3.3%), #AAAA66
+        (3.2%))'
+      value: 8.6375
+    info:
+      metrics_raw:
+        L_p5: 55.4
+        L_p50: 81.7
+        L_p95: 94.5
+        C_p50: 33.1
+        C_p95: 48.3
+        C_p99: 50.7
+        detail: 2.11
+      metrics_locked:
+        L_p5: 55.4
+        L_p50: 81.7
+        L_p95: 94.5
+        C_p50: 33.1
+        C_p95: 48.3
+        C_p99: 50.7
+        detail: 2.23
+    fingerprint: 478058d9107e668c
+  4:
+    job: x-b16-icon-family
+    take: 4
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 48.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 57 (R1 59)
+      value: 56.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.04
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 10.4, p95 33.2, off-palette 29.0% (top: #99AA55 (2.8%), #CCCC77
+        (2.7%))'
+      value: 10.3889
+    info:
+      metrics_raw:
+        L_p5: 56.9
+        L_p50: 81.8
+        L_p95: 94.1
+        C_p50: 34.4
+        C_p95: 48.6
+        C_p99: 50.1
+        detail: 1.92
+      metrics_locked:
+        L_p5: 56.9
+        L_p50: 81.8
+        L_p95: 94.1
+        C_p50: 34.4
+        C_p95: 48.6
+        C_p99: 50.1
+        detail: 2.04
+    fingerprint: 478058d9107e668c
+manual_review:
+  exclude: []
+  note: 'All four originals show separated 3x2 icons in required order with no labels/background
+    tiles and native RGBA transparency. All four automated reports fail palette_drift:
+    mean dE 10.0/9.7/8.6/10.4 and off-palette 30.3/28.5/28.0/29.0 percent. One unchanged-prompt
+    retry exhausted; skip. No 24px acceptability claim made because automated QA already
+    rejects every take.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-629491a4-cea1-4ff2-bbfb-74e11be16e13.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 478058d9107e668c
+  original_generated_png_sha256: 49298afc443b7c827bf89c3ef2598a63eecd6b6de7463c56ab1d521331f64308
+  ingested_png_sha256: 87514945bcd14ff576b216d507fbcae8b6ae4b2c9b2e4bbfd43be64285d2a1cc
+  source_rgba_sha256: 2fff79bc34708b6df650dbb2f2d5684384edc7e7d637359f5c066acbb2d3053f
+  source_dimensions:
+  - 1536
+  - 1024
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-family/sheet__x-b16-icon-family--t1.webp
+  uploaded_artifact_sha256: 417ec5ae8acc8f73b7cfdac27a34afa414dd601246f7c588005e3a1e1a16c32c
+  uploaded_dimensions:
+  - 1536
+  - 1024
+  encoding: lossy WebP quality 90
+- take: 2
+  source_file: /workspace/generated_images/exec-a11245c6-1c8b-45a9-88ad-6b111789ca6b.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 478058d9107e668c
+  original_generated_png_sha256: ce38325a52d6497388dfbd8328ecd13012e0af2923c1c6225db3cd5dffca1edf
+  ingested_png_sha256: 1cce263667ee1ff6061b4038f92b1645e25166c81f878469c49df348c2095e7e
+  source_rgba_sha256: 7779a0cff2a02d53a9c564f998fed152fc972b97ccfab62d6bc1b87b2038be9b
+  source_dimensions:
+  - 1536
+  - 1024
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-family/sheet__x-b16-icon-family--t2.webp
+  uploaded_artifact_sha256: 4add45993f74276c4b2e709342a7a801de3894ed3657b8bfb3b7f0c6633c087b
+  uploaded_dimensions:
+  - 1536
+  - 1024
+  encoding: lossy WebP quality 90
+- take: 3
+  source_file: /workspace/generated_images/exec-e853d008-ff3d-450c-b9e4-ffe5c7e0ae78.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 478058d9107e668c
+  original_generated_png_sha256: 2b7eb9e36886217e1714864f3383fc3d9078047bf6b0a3968b6e7f81beab89ef
+  ingested_png_sha256: 718c7a54a1caa278d3ac9a5e0be3e987f1018230a689a9cc952cbeb26df87350
+  source_rgba_sha256: f0d9ae851e52be060e31ba83933151202cb000185380b0d015096be33f57077f
+  source_dimensions:
+  - 1536
+  - 1024
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-family/sheet__x-b16-icon-family--t3.webp
+  uploaded_artifact_sha256: 6178ee5e107f496b27bedf888a357cf00e25f832b0b6ab11dc0095c7a19bdb18
+  uploaded_dimensions:
+  - 1536
+  - 1024
+  encoding: lossy WebP quality 90
+- take: 4
+  source_file: /workspace/generated_images/exec-2814257c-7811-43ff-84cd-3a6aa4136ccd.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 478058d9107e668c
+  original_generated_png_sha256: 3fb3f37ee5b10973a06c7b3f477a95eee461c2353df46121d831765e88421b4d
+  ingested_png_sha256: ded5161c5453f024b935ccbf775146a167da1633cd816cd25f2bb434fb4eed9e
+  source_rgba_sha256: c2616d28b685c7697371aebb0a510edb35a22187d93e23c8c737b546a9a72bee
+  source_dimensions:
+  - 1536
+  - 1024
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-family/sheet__x-b16-icon-family--t4.webp
+  uploaded_artifact_sha256: 310e1e28bbbcf1f219ffc7be1a283a4630c660ce53c57e3da4c50ff55e360882
+  uploaded_dimensions:
+  - 1536
+  - 1024
+  encoding: lossy WebP quality 90

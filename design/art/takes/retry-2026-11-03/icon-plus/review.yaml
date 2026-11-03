@@ -1,0 +1,182 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/icon-plus/contact.jpg
+jobs:
+  icon-plus:
+    pick: 1
+    publication: selected before global stop; promotion pending
+    note: Both takes show a warm-brown centre and eight plump sun-gold petals, with
+      small cream highlights and no stem, pot or background badge. The sunflower head
+      remains readable at 28, 44 and 60 pt on pale and dark backgrounds.
+qa_reports:
+  1:
+    job: icon-plus
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 58.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 42 (R1 59)
+      value: 41.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.65
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7976
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.6, p95 6.7, off-palette 0.0%
+      value: 3.6324
+    - check: icon_fill
+      status: pass
+      message: icon spans 91% of the canvas (target 80-92%)
+      value: 0.9053
+    - check: icon_thin_parts
+      status: pass
+      message: 0.4% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0042
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 3.4 (busy above 7)
+      value: 3.35
+    - check: icon_on_light_glass
+      status: pass
+      message: 51% of the icon separates from light glass at 24 pt
+      value: 0.512
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 41.5
+        L_p50: 75.0
+        L_p95: 87.7
+        C_p50: 54.6
+        C_p95: 58.6
+        C_p99: 59.3
+        detail: 0.91
+      metrics_locked:
+        L_p5: 41.5
+        L_p50: 74.8
+        L_p95: 87.7
+        C_p50: 54.6
+        C_p95: 58.2
+        C_p99: 58.7
+        detail: 0.65
+    fingerprint: 96c9f6f38dc2ad19
+  2:
+    job: icon-plus
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 60 (R1 51)
+      value: 59.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 40 (R1 59)
+      value: 39.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.69
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8378
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.2, p95 7.1, off-palette 0.0%
+      value: 3.2016
+    - check: icon_fill
+      status: pass
+      message: icon spans 86% of the canvas (target 80-92%)
+      value: 0.8623
+    - check: icon_thin_parts
+      status: pass
+      message: 0.5% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0046
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 3.6 (busy above 7)
+      value: 3.65
+    - check: icon_on_light_glass
+      status: warn
+      message: 45% of the icon separates from light glass at 24 pt
+      value: 0.4474
+    - check: icon_on_dark_glass
+      status: pass
+      message: 99% of the icon separates from dark glass at 24 pt
+      value: 0.989
+    info:
+      metrics_raw:
+        L_p5: 39.8
+        L_p50: 76.6
+        L_p95: 89.2
+        C_p50: 56.0
+        C_p95: 60.8
+        C_p99: 61.9
+        detail: 0.98
+      metrics_locked:
+        L_p5: 39.8
+        L_p50: 76.5
+        L_p95: 89.1
+        C_p50: 56.0
+        C_p95: 59.7
+        C_p99: 60.4
+        detail: 0.69
+    fingerprint: 96c9f6f38dc2ad19
+manual_review:
+  note: Both takes show a warm-brown centre and eight plump sun-gold petals, with
+    small cream highlights and no stem, pot or background badge. The sunflower head
+    remains readable at 28, 44 and 60 pt on pale and dark backgrounds.
+  terminal_decided_at: '2026-11-03T14:07:29.063327+00:00'
+  decision_qa_sha256: 322b8d083dc010a8c908b4cc3943178deab82c7a97c4af3b2afeb87559208d12
+  excluded_takes: []
+  preservation_only_after_global_stop: true
+  no_new_selection_or_promotion: true
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-c7286a3b-684c-4197-9846-0b4c4027d168.png
+  original_generated_png_sha256: ddc2338f25b4ab403a2bcf8a13f81a79bb5a5a65c53c82428466f98d6547426f
+  inbox_png_sha256: 330e4c19b4e3d13c457f7497cd1327a8be7d0714ea083567ba35774b418cd6ec
+  rgba_sha256: 39906a26fac791188629589b168b9f70a553072fd2cae59e407e7660c79908bf
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 96c9f6f38dc2ad19
+- take: 2
+  source_file: /workspace/generated_images/exec-95ed39ce-ef9c-42c6-8671-f63351f441ba.png
+  original_generated_png_sha256: 6f2f903e60aef74417c5ce6fc2d2745fdee42ec1dd3433efe605b06dfd4dbf48
+  inbox_png_sha256: d762db95a25534fdf317ea262fdcc162dd784be5f07e5e5550745dda7850ba59
+  rgba_sha256: b96cfdc0f21c65306b0d0a09d2b1f63129397f117a5556ef60dafd72cf0aa8a0
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 96c9f6f38dc2ad19

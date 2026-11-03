@@ -1,0 +1,11 @@
+batch: batch-16-brand-explore
+contact_sheet: null
+jobs:
+  x-b16-icon-a-tinted:
+    pick: none
+    publication: skipped true dependent; no generation
+    note: Required selected x-b16-icon-a-light reference is unavailable after its
+      one allowed retry. Latest user override skips only actual dependents; independent
+      jobs continue.
+qa_reports: {}
+sources: []

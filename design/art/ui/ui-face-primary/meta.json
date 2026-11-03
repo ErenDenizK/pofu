@@ -1,0 +1,102 @@
+{
+  "job": "ui-face-primary",
+  "batch": "retry-2026-11-03",
+  "asset": "ui__face-primary",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T13:49:46+00:00",
+  "image": "design/art/ui/ui-face-primary/ui-face-primary.png",
+  "raw": "design/art/ui/ui-face-primary/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "f6091441f5cc6432",
+  "prompt": "REFERENCES (attached, in this order):\n1. The glaze: paint the capsule in this same matte-to-soft-gloss ceramic glaze.\n2. The palette card for props.\n3. The palette card for the UI accents: the violet of the primary action.\n\nA wide, chunky capsule of glazed clay in soft violet (a mid-tone\nbetween #6C4FD8 and #B9A2FF), lit from straight above: a soft cream highlight\nalong the top edge, a slightly darker rounded lip along the bottom\nedge, perfectly even from left to right. Nothing on it.\n\nCRAFTED FACE: a painted surface for a control that the app slices and\nstretches (the crafted skin of the Home A/B, ADR-0018 timing amendment).\nPaint only the material, never the control's content: no text, no letters,\nno numbers, no symbols, no icons, no glass, no frosted or transparent\nparts. The face is lit from straight above, so the centre is perfectly flat\nand even from left to right and top to bottom of its middle (no gradient\nthat would stretch badly, no spots, no texture that varies along the\nwidth). Every rounded edge, lip and shadow sits inside the outer margin\nthat the slice caps will hold; the middle is a plain, calm area. A clean\nsilhouette on a transparent background, centered, with no ground shadow,\nno cast shadow, no outline and no border. Material is matte-to-soft-gloss\nclay glaze or paper, painted in the same soft, milky, high-key picture-book\nstyle as the world's props.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/ui-jar-empty/ui-jar-empty.png",
+      "role": "The glaze: paint the capsule in this same matte-to-soft-gloss ceramic glaze."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props."
+    },
+    {
+      "path": "design/reference/palette-card-ui.png",
+      "role": "The palette card for the UI accents: the violet of the primary action."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T13:47:17+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 57 (R1 51)",
+        "value": 57.3
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 56 (R1 59)",
+        "value": 56.5
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.6 (R1 5.3)",
+        "value": 0.55
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.3",
+        "value": 0.3122
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 3.1, p95 4.2, off-palette 0.0%",
+        "value": 3.0795
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both takes show an unmarked soft violet capsule with a calm flat middle and rounded ends; reviewed at the 52 pt shipping height. The end rounding fits the 26 pt side caps and the highlight/lip remain in the edge regions. Select t1 by lower lock load (0.3122 vs 0.3174); chroma WARN 57.3 and palette WARN mean dE 3.0795 are retained as reported, with no threshold waiver.",
+  "slice": {
+    "caps": [
+      16.0,
+      26.0,
+      16.0,
+      26.0
+    ],
+    "ship_height": 52.0
+  }
+}
