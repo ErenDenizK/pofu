@@ -1,0 +1,422 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-comlek-a/contact.jpg
+jobs:
+  x2-comlek-a:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both takes read as Cappadocia
+      fairy-chimney clusters with a glowing kiln, pottery shelves/wheel and three
+      balloons. No lawn, home soil bowl, dangling roots or pebbles. Door interpretation:
+      the small vertical arch-topped rectangular workshop entry is not the circular
+      home-door motif; no round cross-window home door is copied.'
+qa_reports:
+  1:
+    job: x2-comlek-a
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 60 (R1 59)
+      value: 60.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.75
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.7
+      value: 1.7467
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 6.2, off-palette 1.5% (top: #CC7744 (0.5%), #DD7744
+        (0.2%))'
+      value: 1.9903
+    info:
+      metrics_raw:
+        L_p5: 59.7
+        L_p50: 85.7
+        L_p95: 92.8
+        C_p50: 20.0
+        C_p95: 46.7
+        C_p99: 54.6
+        detail: 2.37
+      metrics_locked:
+        L_p5: 60.0
+        L_p50: 85.6
+        L_p95: 92.7
+        C_p50: 20.0
+        C_p95: 46.3
+        C_p99: 53.6
+        detail: 1.75
+    fingerprint: bbcae94869ed9200
+  2:
+    job: x2-comlek-a
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 46.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 64.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.55
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.8213
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 6.0, off-palette 1.6% (top: #EE8844 (0.3%), #FF9955
+        (0.3%))'
+      value: 2.2098
+    info:
+      metrics_raw:
+        L_p5: 64.6
+        L_p50: 86.5
+        L_p95: 94.2
+        C_p50: 17.6
+        C_p95: 47.2
+        C_p99: 63.0
+        detail: 2.1
+      metrics_locked:
+        L_p5: 64.9
+        L_p50: 86.4
+        L_p95: 94.1
+        C_p50: 17.5
+        C_p95: 46.7
+        C_p99: 59.1
+        detail: 1.55
+    fingerprint: bbcae94869ed9200
+manual_review:
+  note: 'Both takes read as Cappadocia fairy-chimney clusters with a glowing kiln,
+    pottery shelves/wheel and three balloons. No lawn, home soil bowl, dangling roots
+    or pebbles. Door interpretation: the small vertical arch-topped rectangular workshop
+    entry is not the circular home-door motif; no round cross-window home door is
+    copied.'
+  takes:
+    '1':
+      pass: true
+      silhouette_name: cluster of capped fairy chimneys
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 1
+      - 1
+      evidence: Multiple capped vertical tuff peaks constitute the landform, with
+        kiln/pots and tiny entry for scale. Balloon rise and fire imply motion; no
+        production-score gate applied.
+      swatch_points:
+      - - 580
+        - 320
+      - - 490
+        - 130
+      - - 1260
+        - 425
+      contours:
+      - - - 20
+          - 600
+        - - 110
+          - 350
+        - - 115
+          - 300
+        - - 180
+          - 180
+        - - 220
+          - 165
+        - - 285
+          - 260
+        - - 330
+          - 220
+        - - 325
+          - 170
+        - - 390
+          - 90
+        - - 470
+          - 18
+        - - 520
+          - 25
+        - - 600
+          - 70
+        - - 710
+          - 135
+        - - 706
+          - 170
+        - - 658
+          - 199
+        - - 744
+          - 403
+        - - 750
+          - 331
+        - - 791
+          - 300
+        - - 845
+          - 345
+        - - 833
+          - 374
+        - - 866
+          - 430
+        - - 885
+          - 361
+        - - 950
+          - 285
+        - - 970
+          - 278
+        - - 1058
+          - 360
+        - - 1055
+          - 390
+        - - 1010
+          - 417
+        - - 1087
+          - 600
+        - - 1098
+          - 535
+        - - 1145
+          - 488
+        - - 1209
+          - 548
+        - - 1188
+          - 570
+        - - 1234
+          - 657
+        - - 1265
+          - 629
+        - - 1310
+          - 711
+        - - 1342
+          - 741
+        - - 1320
+          - 779
+        - - 1180
+          - 840
+        - - 895
+          - 923
+        - - 790
+          - 882
+        - - 603
+          - 900
+        - - 360
+          - 820
+        - - 220
+          - 784
+        - - 60
+          - 740
+      uncertainty: Observed coarse tuff-cluster contour; cloud-occluded lower boundary
+        is approximate. Balloons/sky excluded from the landform mask and retained
+        in the source thumbnail.
+      sampled_swatches:
+      - point:
+        - 580
+        - 320
+        hex: '#FBBC91'
+      - point:
+        - 490
+        - 130
+        hex: '#975C4E'
+      - point:
+        - 1260
+        - 425
+        hex: '#FEDCB3'
+      annotation_source_inbox_sha256: a76be0693f8db4c412c7bfa915c350a1289382ba1c4fbb1f4599cbf47e373096
+      observed_bbox:
+      - 20
+      - 18
+      - 1343
+      - 924
+      silhouette_native_longest_px: 60
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+    '2':
+      pass: true
+      silhouette_name: cluster of capped fairy chimneys
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 1
+      - 1
+      evidence: Vertical capped chimneys and kiln workshop replace the home template.
+        Three balloons and pottery give place/scale cues.
+      swatch_points:
+      - - 1080
+        - 330
+      - - 1020
+        - 130
+      - - 1250
+        - 350
+      contours:
+      - - - 111
+          - 747
+        - - 167
+          - 615
+        - - 214
+          - 503
+        - - 285
+          - 452
+        - - 347
+          - 508
+        - - 392
+          - 510
+        - - 408
+          - 392
+        - - 398
+          - 362
+        - - 435
+          - 300
+        - - 510
+          - 239
+        - - 540
+          - 241
+        - - 600
+          - 310
+        - - 629
+          - 369
+        - - 610
+          - 383
+        - - 632
+          - 443
+        - - 697
+          - 427
+        - - 719
+          - 365
+        - - 706
+          - 335
+        - - 752
+          - 283
+        - - 797
+          - 310
+        - - 782
+          - 348
+        - - 808
+          - 401
+        - - 853
+          - 399
+        - - 889
+          - 267
+        - - 854
+          - 241
+        - - 836
+          - 204
+        - - 888
+          - 146
+        - - 972
+          - 65
+        - - 1025
+          - 35
+        - - 1080
+          - 90
+        - - 1155
+          - 149
+        - - 1196
+          - 201
+        - - 1194
+          - 230
+        - - 1138
+          - 256
+        - - 1204
+          - 450
+        - - 1240
+          - 401
+        - - 1268
+          - 386
+        - - 1307
+          - 419
+        - - 1335
+          - 453
+        - - 1313
+          - 485
+        - - 1330
+          - 557
+        - - 1398
+          - 745
+        - - 1240
+          - 804
+        - - 1000
+          - 844
+        - - 900
+          - 878
+        - - 780
+          - 839
+        - - 650
+          - 850
+        - - 570
+          - 870
+        - - 420
+          - 811
+        - - 190
+          - 787
+      uncertainty: Coarse source-observed cluster; lower boundary is cloud-occluded
+        and not used to claim a hidden underside. Sky balloons excluded.
+      sampled_swatches:
+      - point:
+        - 1080
+        - 330
+        hex: '#EF8D6D'
+      - point:
+        - 1020
+        - 130
+        hex: '#C0846E'
+      - point:
+        - 1250
+        - 350
+        hex: '#FCDBD6'
+      annotation_source_inbox_sha256: 8a93da95dea94755aef064ab4eca203a7123324aaa6201d88bda82c3b490ae70
+      observed_bbox:
+      - 111
+      - 35
+      - 1399
+      - 879
+      silhouette_native_longest_px: 60
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-c29b369d-3bb8-49ce-bae8-74253d685805.png
+  original_generated_png_sha256: 77f5be1f804f62c574091aeb45714bee55e5effac2c0e73f9e993a7b609ec623
+  inbox_png_sha256: a76be0693f8db4c412c7bfa915c350a1289382ba1c4fbb1f4599cbf47e373096
+  rgba_sha256: 54d4490b819be696bf91c636dc3d56194e552218858a6d6f380b9ed50b2f51f7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: bbcae94869ed9200
+- take: 2
+  source_file: /workspace/generated_images/exec-1108a67e-6439-4ed1-8d54-0c1f537a3d56.png
+  original_generated_png_sha256: 43e345799450c51cceaf025ea60f1b7a83308c340538c6472a943463f700534b
+  inbox_png_sha256: 8a93da95dea94755aef064ab4eca203a7123324aaa6201d88bda82c3b490ae70
+  rgba_sha256: f12872e50ba5980245efdbc24115bb643b31544bf97f8b02936864802705f24e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: bbcae94869ed9200
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
