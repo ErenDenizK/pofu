@@ -40,3 +40,18 @@ sine at 0 dBFS reads −3.01 LUFS) before it measures anything.
 Nobody has listened to these yet: the agent environment has no speakers.
 The numbers say they are clean, level and loopable; only ears can say they
 are charming.
+
+## Game cues for the app
+
+```sh
+python3 tools/sound/render.py --cues
+```
+
+renders the 30 cues `PofuSound` plays (seed-pop ladder, bloom ladder, combo
+rise, piece pickup/snap/drop/put-back, deal, cheek, round end, collect, skip
+chime, hop, gulp) as mono 32 kHz CAF files into
+`Packages/PofuKit/Sources/PofuSound/Resources/`, under the same micro-sound
+limits (≤ −1 dBTP, −18 LUFS momentary, clean edges) plus 100 KB per file.
+A few are also written as WAV to `design/sound/proof/cues/` for listening.
+The file names are `SoundCue.assetName`; a test checks every cue has a file.
+Vocal sounds stay synthesized placeholders until a performer records them.

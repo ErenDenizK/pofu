@@ -1,5 +1,6 @@
 import PofuDesignSystem
 import PofuGames
+import PofuSound
 import PofuTuning
 import SwiftUI
 
@@ -30,6 +31,7 @@ struct RehearsalOverlay: View {
                 GardenGameView(
                     roundsAvailable: rehearsal.gardenRounds,
                     tuning: gardenTuning,
+                    sound: GardenSoundBridge(),
                     onRoundEnd: { model.creditRound(seeds: $0.seeds) },
                     onFinish: { _ in rehearsal.isPlayingGarden = false }
                 )
@@ -53,6 +55,9 @@ struct RehearsalOverlay: View {
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: rehearsal.screen)
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: rehearsal.isPlayingGarden)
         #if DEBUG
+        .onChange(of: Ayar.store.values.sound, initial: true) { _, volumes in
+            SoundEngine.shared.volumes = volumes
+        }
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: Ayar.session.isOpen)
         #endif
     }

@@ -532,6 +532,7 @@ final class GardenScene: SKScene {
         after(start) { [weak self] in
             guard let self else { return }
             haptics.bloom(intensity: feel.bloomHaptic(lines: lines.count, combo: combo))
+            if combo >= 2 { sound.play(.comboRise(level: combo)) }
             word(for: lines, combo: outcome.combo)
             residents?.react(lines: lines.count, combo: combo, reduceMotion: reduceMotion)
             let amplitude = shakeBudget.request(lines: lines.count, combo: combo, at: sceneTime, reduceMotion: reduceMotion)

@@ -86,6 +86,9 @@ extension TuningSpec {
             TuningSpec("garden.hapticBloom", 0...1, step: 0.05),
             TuningSpec("garden.hapticCheek", 0...1, step: 0.05),
         ]
+        specs += ["master", "seeds", "pieces", "pofu"].map { (name: String) -> TuningSpec in
+            TuningSpec("sound.\(name)", 0...1, step: 0.05)
+        }
         return specs
     }()
 

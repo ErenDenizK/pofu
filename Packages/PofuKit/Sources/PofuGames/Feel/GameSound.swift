@@ -1,8 +1,8 @@
-/// The garden's sound hooks. The sound system (`PofuAudio`,
-/// docs/design/sound-identity.md §5) is not built yet, so the scene calls
-/// a `GameSoundPlaying` and the default plays nothing. When `PofuAudio`
-/// lands, it conforms and maps each cue to a micro-sound; the cues and
-/// their pitches are decided here so the game and the sound system agree.
+/// The garden's sound hooks. The scene calls a `GameSoundPlaying`; the
+/// default plays nothing, and the app sets `PofuSound.GardenSoundBridge`,
+/// which maps each cue to a pre-rendered micro-sound
+/// (docs/design/sound-identity.md §5). The cues and their pitches are
+/// decided here so the game and the sound system agree.
 public enum GardenSoundCue: Sendable, Equatable {
     /// A plot lifts from the tray (a soft paper "fff").
     case lift
@@ -14,6 +14,8 @@ public enum GardenSoundCue: Sendable, Equatable {
     case putBack
     /// A cell blooms: a kalimba note, `MIDI` from `PentatonicLadder`.
     case bloom(midi: Int)
+    /// A streak of two or more lines: three rising notes (`level` is the combo).
+    case comboRise(level: Int)
     /// A seed lands in Pofu's cheeks (the "pomf", sound 9).
     case cheek
     /// A new tray is dealt (three small paper slides).

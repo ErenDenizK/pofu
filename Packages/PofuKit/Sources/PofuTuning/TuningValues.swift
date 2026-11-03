@@ -16,14 +16,16 @@ public struct TuningValues: Codable, Hashable, Sendable {
     public var companion: Companion
     public var haptics: Haptics
     public var garden: Garden
+    public var sound: Sound
 
-    public init(camera: Camera, depth: Depth, grade: Grade, companion: Companion, haptics: Haptics, garden: Garden) {
+    public init(camera: Camera, depth: Depth, grade: Grade, companion: Companion, haptics: Haptics, garden: Garden, sound: Sound) {
         self.camera = camera
         self.depth = depth
         self.grade = grade
         self.companion = companion
         self.haptics = haptics
         self.garden = garden
+        self.sound = sound
     }
 
     /// A spring as SwiftUI and `WorldSpring` describe one: how long it
@@ -183,6 +185,19 @@ public struct TuningValues: Codable, Hashable, Sendable {
         public var hopAppearDay: Double
         public var hopAppearNight: Double
         public var breathStart: Double
+    }
+
+    /// Volumes, 0…1, for `PofuSound` (docs/design/sound-identity.md).
+    /// The mute is the user's setting, not a tuning value.
+    public struct Sound: Codable, Hashable, Sendable {
+        /// Everything Pofu plays.
+        public var master: Double
+        /// Seed pops, blooms and the combo rise.
+        public var seeds: Double
+        /// Plots lifting, snapping, planting and dealing.
+        public var pieces: Double
+        /// Pofu's own sounds: hop, gulp, cheeks, collect, chimes.
+        public var pofu: Double
     }
 }
 

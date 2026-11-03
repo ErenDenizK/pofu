@@ -385,6 +385,152 @@ MICRO = {
 
 
 # --------------------------------------------------------------------------
+# Game cues for the app bundle (PofuSound): `python3 tools/sound/render.py --cues`
+# writes mono 32 kHz CAF files, each under 100 KB, to
+# Packages/PofuKit/Sources/PofuSound/Resources/. Every tonal cue stays in
+# D major pentatonic (D E F# A B); the names match `SoundCue.assetName`.
+
+CUES_OUT = ROOT / "Packages" / "PofuKit" / "Sources" / "PofuSound" / "Resources"
+LISTEN_OUT = ROOT / "design" / "sound" / "proof" / "cues"
+CUE_SR = 32_000
+MAX_CUE_BYTES = 100_000
+LADDER = [62, 64, 66, 69, 71]  # D4 E4 F#4 A4 B4 (PentatonicLadder.degrees)
+
+
+def ladder_midi(step: int) -> int:
+    return LADDER[step % 5] + 12 * (step // 5)
+
+
+def paper(rng, seconds: float, lo: float = 800, hi: float = 3200) -> np.ndarray:
+    n = bandpass(pink(rng, seconds), lo, hi, order=3)
+    return n * env_asr(seconds, seconds * 0.35, seconds * 0.5)
+
+
+def c_bloom(step):
+    def make(rng):
+        return kalimba(midi_hz(ladder_midi(step)), 0.65, 1.0, rng)
+    return make
+
+
+def c_seed_pop(index):
+    def make(rng):
+        f = midi_hz(74 + [0, 2, 4, 7, 9][index])  # D5 E5 F#5 A5 B5
+        t = t_axis(0.16)
+        tone = np.sin(2 * np.pi * glide(f * 0.94, f, 0.16, curve=0.3).cumsum() / SR)
+        return (tone * np.exp(-t / 0.035) + 0.15 * np.sin(2 * np.pi * 2 * f * t) * np.exp(-t / 0.015)) * np.clip(t / 0.002, 0, 1)
+    return make
+
+
+def c_combo(level):
+    def make(rng):
+        start = 3 + (level - 2)  # ladder steps 3, 4, 5
+        out = silence(0.8)
+        for i, step in enumerate([start, start + 1, start + 3]):
+            place(out, kalimba(midi_hz(ladder_midi(step)), 0.55, 0.8 + 0.1 * i, rng), 0.075 * i)
+        return out
+    return make
+
+
+def c_pickup(rng):
+    return paper(rng, 0.13)
+
+
+def c_snap(rng):
+    return wood_tok("D5", 0.12)
+
+
+def c_drop(rng):
+    x = felt_thump(rng, 0.2, cutoff=1500, pitch=(300, 210), tau=0.03)
+    return x
+
+
+def c_putback(rng):
+    return wood_tok("A4", 0.16)
+
+
+def c_deal(rng):
+    out = silence(0.34)
+    for i in range(3):
+        place(out, paper(rng, 0.1, 700, 3000), 0.07 * i, 1.0 - 0.15 * i)
+    return out
+
+
+def c_cheek(rng):
+    return felt_thump(rng, 0.16, cutoff=1700, pitch=(380, 270), tau=0.024)
+
+
+def c_round_end(rng):
+    out = silence(1.2)
+    for i, n in enumerate(["D5", "F#5", "A5", "D6"]):
+        place(out, kalimba(n, 0.85 if i == 3 else 0.6, 0.7 + 0.1 * i, rng), 0.12 * i)
+    return out
+
+
+def c_collect(rng):
+    out = silence(0.75)
+    place(out, c_seed_pop(2)(rng), 0.0, 0.8)
+    place(out, kalimba("A5", 0.6, 0.8, rng), 0.09)
+    place(out, kalimba("D6", 0.6, 0.9, rng), 0.19)
+    return out
+
+
+def c_gulp(rng):
+    d = 0.14
+    out = silence(d)
+    glug = osc(glide(560, 360, 0.07), 0.07) * env_asr(0.07, 0.008, 0.04)
+    place(out, glug, 0.0, 0.6)
+    place(out, bandpass(white(rng, 0.03), 1400, 3800) * env_ar(0.03, 0.002, 0.008), 0.0, 0.3)
+    place(out, osc(glide(480, 300, 0.05), 0.05) * env_asr(0.05, 0.006, 0.03), 0.075, 0.5)
+    return out
+
+
+CUES = {
+    **{f"seed-pop-{i}": c_seed_pop(i) for i in range(5)},
+    **{f"bloom-{i:02d}": c_bloom(i) for i in range(11)},
+    **{f"combo-rise-{i}": c_combo(i + 2) for i in range(3)},
+    "piece-pickup": c_pickup,
+    "piece-snap": c_snap,
+    "piece-drop": c_drop,
+    "piece-putback": c_putback,
+    "deal": c_deal,
+    "cheek": c_cheek,
+    "round-end": c_round_end,
+    "collect": c_collect,
+    "skip-chime": s_skip_chime,
+    "pofu-hop": s_hop,
+    "gulp": c_gulp,
+}
+# Cues the founder can listen to as plain WAV (the rest are variations).
+LISTEN = ["bloom-04", "combo-rise-1", "round-end", "collect", "seed-pop-2", "pofu-hop"]
+
+
+def render_cues(out: Path) -> int:
+    out.mkdir(parents=True, exist_ok=True)
+    LISTEN_OUT.mkdir(parents=True, exist_ok=True)
+    tmp = out / "_cue.tmp.wav"
+    rows = []
+    for i, (name, fn) in enumerate(CUES.items()):
+        x = master_micro(np.concatenate([fn(np.random.default_rng(500 + i)), silence(0.04)]))
+        write_wav(tmp, x)
+        path = out / f"{name}.caf"
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(tmp), "-ar", str(CUE_SR), "-ac", "1",
+                        "-c:a", "pcm_s16le", "-f", "caf", str(path)], check=True)
+        if name in LISTEN:
+            write_wav(LISTEN_OUT / f"{name}.wav", x)
+        row = measure(path, "micro")
+        if row["bytes"] > MAX_CUE_BYTES:
+            row["problems"].append("cue over 100 KB")
+        rows.append(row)
+    tmp.unlink()
+    failed = False
+    for r in rows:
+        print(f"{r['file']:24} {r['seconds']:5.2f}s {r['bytes'] / 1000:5.0f}KB {r['true_peak_dbtp']:6.1f}dBTP "
+              f"{r['lufs_momentary_max']:6.1f}LUFS-M  {', '.join(r['problems']) or 'ok'}")
+        failed |= bool(r["problems"])
+    return 1 if failed else 0
+
+
+# --------------------------------------------------------------------------
 # The island composer: key/mode, progression, calm opens the voicing.
 
 @dataclass(frozen=True)
@@ -781,11 +927,15 @@ def spectrogram_sheet(paths: list[Path], out: Path) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--out", type=Path, default=OUT)
+    parser.add_argument("--cues", action="store_true",
+                        help="render only the app's game cues (CAF) into PofuSound/Resources")
     args = parser.parse_args()
     if not shutil.which("ffmpeg"):
         print("ffmpeg is required (apt install ffmpeg / brew install ffmpeg)", file=sys.stderr)
         return 2
     self_test()
+    if args.cues:
+        return render_cues(CUES_OUT)
     out: Path = args.out
     out.mkdir(parents=True, exist_ok=True)
 
