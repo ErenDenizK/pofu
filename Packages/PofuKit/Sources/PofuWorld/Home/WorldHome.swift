@@ -53,6 +53,9 @@ public struct WorldHome: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.dynamicTypeSize) private var typeSize
+    /// The left safe-area inset the objects layer last measured, for the
+    /// collect flight's target (the jar keeps clear of it).
+    @State private var leadingInset = 0.0
 
     public init(world: WorldSnapshot, today: TodaySummary, scene: IslandSceneModel, home: WorldHomeModel, actions: Actions) {
         self.world = world
@@ -249,7 +252,12 @@ public struct WorldHome: View {
     private var objects: some View {
         TimelineView(.periodic(from: .now, by: 1.0 / 15.0)) { _ in
             GeometryReader { proxy in
-                objectsBody(width: Double(proxy.size.width))
+                objectsBody(
+                    width: Double(proxy.size.width),
+                    leadingInset: Double(proxy.safeAreaInsets.leading),
+                    trailingInset: Double(proxy.safeAreaInsets.trailing)
+                )
+                .onGeometryChange(for: Double.self) { Double($0.safeAreaInsets.leading) } action: { leadingInset = $0 }
             }
         }
         .ignoresSafeArea()
@@ -258,9 +266,9 @@ public struct WorldHome: View {
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: showsHomeChrome)
     }
 
-    private func objectsBody(width: Double) -> some View {
+    private func objectsBody(width: Double, leadingInset: Double, trailingInset: Double) -> some View {
         let feet = pofuFeet()
-        let jar = HomeObjectsLayout.jarCenter(feet: feet, screenWidth: width)
+        let jar = HomeObjectsLayout.jarCenter(feet: feet, screenWidth: width, leadingInset: leadingInset)
         let lantern = HomeObjectsLayout.lanternCenter(feet: feet, screenWidth: width)
         let pots = HomeObjectsLayout.potsCenter(feet: feet)
         return ZStack {
@@ -287,7 +295,10 @@ public struct WorldHome: View {
                 canCollect: collectBeatIsOpen,
                 isNight: isNight,
                 showsTag: showsJarTag,
-                shiftX: HomeObjectsLayout.collectShift(jarX: jar.x),
+                jarX: jar.x,
+                screenWidth: width,
+                leadingInset: leadingInset,
+                trailingInset: trailingInset,
                 home: home,
                 collect: { collect() }
             )
@@ -330,7 +341,7 @@ public struct WorldHome: View {
         home.collectSeeds(
             jarBefore: world.jar.units,
             sources: seedSources(),
-            target: HomeObjectsLayout.jarCenter(feet: pofuFeet(), screenWidth: width),
+            target: HomeObjectsLayout.jarCenter(feet: pofuFeet(), screenWidth: width, leadingInset: leadingInset),
             commit: actions.collect
         )
     }

@@ -867,7 +867,7 @@ private struct PofuLayer<Bubble: View>: View {
         .accessibilityValue(Text(verbatim: WorldStrings.pofuValue(band: world.band, uncollected: world.pending.total.units)))
         .frame(width: viewWidth, height: viewHeight)
         .overlay {
-            if home?.pawsPressed == true {
+            if HomeArt.paintedPaws, home?.pawsPressed == true {
                 CheekPaws(
                     artWidth: artWidth,
                     left: CGPoint(x: artWidth * (0.1 + rig.leftCheek.x + 0.05), y: artHeight * (0.24 + rig.leftCheek.y)),
