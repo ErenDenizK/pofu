@@ -1,0 +1,131 @@
+batch: batch-12-minigame-art
+contact_sheet: design/art/takes/batch-12-minigame-art/ui-game-tray/contact.jpg
+jobs:
+  ui-game-tray:
+    pick: 2
+    note: 'auto-picked by QA; founder review pending. Both takes pass manual review:
+      honey-wood tray with plain raised rim, no handles and a calm flat unmarked floor
+      without directional grain. Unchanged24/32/24/32pt caps hold the edges at138pt
+      content height and240/360pt widths on cream/dark; review-only content-bounds
+      projection is documented. Take2 has lowest passing lock load0.3562 versus0.3563.
+      Canonical master is not cropped or resized.'
+    takes:
+      t1:
+        qa: pass
+        summary: all pass
+      t2:
+        qa: pass
+        summary: all pass
+    approved:
+      take: 2
+      at: '2026-11-03T01:17:18+00:00'
+qa_reports:
+  1:
+    job: ui-game-tray
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 61.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.6
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3563
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 2.6, off-palette 0.0%
+      value: 0.8743
+    info:
+      metrics_raw:
+        L_p5: 61.3
+        L_p50: 77.2
+        L_p95: 80.6
+        C_p50: 40.0
+        C_p95: 45.4
+        C_p99: 46.7
+        detail: 0.81
+      metrics_locked:
+        L_p5: 61.4
+        L_p50: 77.2
+        L_p95: 80.6
+        C_p50: 39.9
+        C_p95: 45.3
+        C_p99: 46.5
+        detail: 0.6
+    fingerprint: b4429f0aab17422e
+  2:
+    job: ui-game-tray
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 66 (R1 59)
+      value: 65.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.62
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3562
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.2, p95 3.1, off-palette 0.0%
+      value: 1.2238
+    info:
+      metrics_raw:
+        L_p5: 65.5
+        L_p50: 79.0
+        L_p95: 83.6
+        C_p50: 34.9
+        C_p95: 41.3
+        C_p99: 42.1
+        detail: 0.89
+      metrics_locked:
+        L_p5: 65.6
+        L_p50: 79.0
+        L_p95: 83.4
+        C_p50: 34.8
+        C_p95: 41.2
+        C_p99: 41.9
+        detail: 0.62
+    fingerprint: b4429f0aab17422e
+manual_review:
+  exclude: []
+  note: 'Both takes pass manual review: honey-wood tray with plain raised rim, no
+    handles and a calm flat unmarked floor without directional grain. Unchanged24/32/24/32pt
+    caps hold the edges at138pt content height and240/360pt widths on cream/dark;
+    review-only content-bounds projection is documented. Take2 has lowest passing
+    lock load0.3562 versus0.3563. Canonical master is not cropped or resized.'

@@ -4,14 +4,15 @@ title_tr: game-plot-tile-sage
 title_en: game-plot-tile-sage (ui)
 status: in-production
 horizon: now
-summary: >-
-  One square tile of glazed clay seen from straight above with a very slight tilt, rounded
-  corners, filling most of the canvas: a soft sage-green matte-to-soft-gloss glaze, a soft
-  cream highlight along the top edge, a slightly darker rounded lip along the other edges,
-  and in the middle a small, simple sprout (two round leaves on a short stem) pressed into
-  the clay in the same glaze, only a little lighter than the tile.
+summary: 'One square tile of glazed clay seen from straight above with a very slight
+  tilt, rounded corners, filling most of the canvas: a soft sage-green matte-to-soft-gloss
+  glaze, a soft cream highlight along the top edge, a slightly darker rounded lip
+  along the other edges, and in the middle a small, simple sprout (two round leaves
+  on a short stem) pressed into the clay in the same glaze, only a little lighter
+  than the tile.'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-game-plot-tile-sage/ui-game-plot-tile-sage.png
   jobs:
   - batch-12-minigame-art:game-plot-tile-sage
 sources:

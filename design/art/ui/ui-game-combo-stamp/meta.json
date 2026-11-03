@@ -1,0 +1,89 @@
+{
+  "job": "game-combo-stamp",
+  "batch": "batch-12-minigame-art",
+  "asset": "ui__game-combo-stamp",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T01:15:18+00:00",
+  "image": "design/art/ui/ui-game-combo-stamp/ui-game-combo-stamp.webp",
+  "raw": "design/art/ui/ui-game-combo-stamp/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "7d321491ac735128",
+  "prompt": "REFERENCES (attached, in this order):\n1. The family look of the game's pieces: same softness, same light, same finish. Do not draw this tile.\n2. The palette card for props.\n\nA round cream paper stamp with a softly scalloped edge, filling\nmost of the canvas: a ring of small plump sunflower-yellow petals\naround the rim, and a large plain cream disc in the middle that is\ncompletely empty and flat (for text added later). Soft honey ink\nfor the ring. No letters, no numbers, no symbols.\n\nUI OBJECT: a painted object that the app places under or inside native\niOS glass controls. Never paint glass, frosted panels, buttons, frames,\nprogress bars or any interface chrome: the app draws all glass and all\ncontrols natively. The object is centered with a generous transparent\nmargin of about 10% on every side.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/ui-game-plot-tile-sage/ui-game-plot-tile-sage.png",
+      "role": "The family look of the game's pieces: same softness, same light, same finish. Do not draw this tile."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T01:06:38+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 58 (R1 51)",
+        "value": 58.0
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 73 (R1 59)",
+        "value": 73.4
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.7 (R1 5.3)",
+        "value": 0.71
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.4",
+        "value": 0.3897
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.9, p95 3.1, off-palette 0.0%",
+        "value": 0.9237
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both takes pass manual native120pt and four-background review: scalloped sunflower-petal rim, honey ring and a large plain cream centre with no letters, symbols or marks. Take2 has the lowest non-failing lock load0.3897 versus0.5389; non-failing chroma warning retained."
+}

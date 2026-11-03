@@ -1,0 +1,315 @@
+batch: batch-12-minigame-art
+contact_sheet: design/art/takes/batch-12-minigame-art/game-plot-tile-terracotta/contact.jpg
+jobs:
+  game-plot-tile-terracotta:
+    pick: none
+    publication: skipped
+    note: 'Skipped after four takes, the initial pair and its single allowed retry:
+      all fail edit_stability and edit_chroma for the requested full-glaze recolor.
+      Stability0.0013,0.0010,0.0026,0.0026; chroma ratios2.0960,2.1435,2.2695,2.3463.
+      No waiver, threshold/prompt/manifest change or further retry. No dependent jobs;
+      sibling glazes and independent tracks continue. Original PNGs preserved.'
+    retry_policy: Initial pair plus one additional pair exhausted; no further generation.
+      Skip only dependents.
+qa_reports:
+  1:
+    job: game-plot-tile-terracotta
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.978 and moved it; aligned back to the
+        parent
+      value: 1.0228
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 57 (R1 59)
+      value: 57.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.57
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.4
+      value: 2.3602
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.7, p95 1.5, off-palette 0.0%
+      value: 0.6558
+    - check: edit_stability
+      status: fail
+      message: 0% of the parent level unchanged
+      value: 0.0013
+    - check: edit_chroma
+      status: fail
+      message: chroma x2.10 of the parent level (drift compounds along a chain)
+      value: 2.096
+    info:
+      alignment:
+        scale: 1.0228
+        cx: 505.5
+        cy: 955.0
+        dx: 0
+        dy: -1
+      metrics_raw:
+        L_p5: 56.8
+        L_p50: 61.8
+        L_p95: 69.9
+        C_p50: 35.9
+        C_p95: 38.7
+        C_p99: 40.1
+        detail: 0.78
+      metrics_locked:
+        L_p5: 57.1
+        L_p50: 61.9
+        L_p95: 69.8
+        C_p50: 35.9
+        C_p95: 38.4
+        C_p99: 39.4
+        detail: 0.57
+    fingerprint: 99d61d01b95566e3
+  2:
+    job: game-plot-tile-terracotta
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.975 and moved it; aligned back to the
+        parent
+      value: 1.0252
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 60.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.59
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.3
+      value: 2.3349
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 1.6, off-palette 0.0%
+      value: 0.8459
+    - check: edit_stability
+      status: fail
+      message: 0% of the parent level unchanged
+      value: 0.001
+    - check: edit_chroma
+      status: fail
+      message: chroma x2.14 of the parent level (drift compounds along a chain)
+      value: 2.1435
+    info:
+      alignment:
+        scale: 1.0252
+        cx: 506.5
+        cy: 956.0
+        dx: 3
+        dy: 2
+      metrics_raw:
+        L_p5: 60.8
+        L_p50: 64.8
+        L_p95: 74.1
+        C_p50: 36.6
+        C_p95: 38.4
+        C_p99: 39.7
+        detail: 0.74
+      metrics_locked:
+        L_p5: 60.9
+        L_p50: 64.9
+        L_p95: 73.8
+        C_p50: 36.6
+        C_p95: 38.3
+        C_p99: 39.6
+        detail: 0.59
+    fingerprint: 99d61d01b95566e3
+  3:
+    job: game-plot-tile-terracotta
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.974 and moved it; aligned back to the
+        parent
+      value: 1.0264
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 56 (R1 59)
+      value: 55.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.56
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.4
+      value: 2.4268
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 1.8, off-palette 0.0%
+      value: 0.8306
+    - check: edit_stability
+      status: fail
+      message: 0% of the parent level unchanged
+      value: 0.0026
+    - check: edit_chroma
+      status: fail
+      message: chroma x2.27 of the parent level (drift compounds along a chain)
+      value: 2.2695
+    info:
+      alignment:
+        scale: 1.0264
+        cx: 505.0
+        cy: 956.0
+        dx: 0
+        dy: -2
+      metrics_raw:
+        L_p5: 55.8
+        L_p50: 61.9
+        L_p95: 71.5
+        C_p50: 38.7
+        C_p95: 40.9
+        C_p99: 42.0
+        detail: 0.79
+      metrics_locked:
+        L_p5: 55.9
+        L_p50: 62.0
+        L_p95: 71.3
+        C_p50: 38.8
+        C_p95: 40.7
+        C_p99: 41.6
+        detail: 0.56
+    fingerprint: 99d61d01b95566e3
+  4:
+    job: game-plot-tile-terracotta
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.972 and moved it; aligned back to the
+        parent
+      value: 1.0288
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 59 (R1 59)
+      value: 58.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.54
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0032
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 2.1, off-palette 0.0%
+      value: 1.2736
+    - check: edit_stability
+      status: fail
+      message: 0% of the parent level unchanged
+      value: 0.0026
+    - check: edit_chroma
+      status: fail
+      message: chroma x2.35 of the parent level (drift compounds along a chain)
+      value: 2.3463
+    info:
+      alignment:
+        scale: 1.0288
+        cx: 506.0
+        cy: 954.0
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 58.3
+        L_p50: 63.8
+        L_p95: 72.1
+        C_p50: 40.1
+        C_p95: 41.8
+        C_p99: 43.6
+        detail: 0.69
+      metrics_locked:
+        L_p5: 58.6
+        L_p50: 64.0
+        L_p95: 71.9
+        C_p50: 40.1
+        C_p95: 41.7
+        C_p99: 43.0
+        detail: 0.54
+    fingerprint: 99d61d01b95566e3
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-f3ca979a-c9b3-4598-bfbd-19c42f018020.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 2
+  source_file: /workspace/generated_images/exec-beebc14c-74c5-490b-9cb7-4687197a8350.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 3
+  source_file: /workspace/generated_images/exec-9ab1edbd-792d-4581-bc33-c1bd36eb422d.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 4
+  source_file: /workspace/generated_images/exec-0acfdce6-b052-48ae-9791-303c049200db.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
