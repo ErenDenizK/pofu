@@ -1,0 +1,1060 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-caglayan-a/contact.jpg
+jobs:
+  x2-caglayan-a:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Independent read-only recommendation. Both originals replace the home template
+      with three white travertine pool terraces and a tapered mineral landform, wheel
+      and leaf boat. However the explicit longer-than-island waterfall is not demonstrated
+      by the visible fall. Hidden continuation through clouds is not assumed. Rubric
+      is recorded as advisory only; no 8-point production gate is applied. The single
+      allowed fresh pair3/4 was also inspected; both again fail to demonstrate the
+      longer-than-island fall. All four real takes remain recorded; no fifth generation
+      is proposed.
+qa_reports:
+  1:
+    job: x2-caglayan-a
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 24.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 82.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.09
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5793
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 4.0, off-palette 0.0%
+      value: 1.8214
+    info:
+      metrics_raw:
+        L_p5: 82.2
+        L_p50: 90.8
+        L_p95: 96.8
+        C_p50: 6.3
+        C_p95: 25.2
+        C_p99: 40.8
+        detail: 1.5
+      metrics_locked:
+        L_p5: 82.4
+        L_p50: 90.9
+        L_p95: 96.5
+        C_p50: 6.3
+        C_p95: 24.2
+        C_p99: 39.8
+        detail: 1.09
+    fingerprint: e889e1b60e35bf2b
+  2:
+    job: x2-caglayan-a
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 20 (R1 51)
+      value: 19.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 82.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6356
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 3.8, off-palette 0.0%
+      value: 1.7622
+    info:
+      metrics_raw:
+        L_p5: 81.9
+        L_p50: 89.9
+        L_p95: 96.1
+        C_p50: 6.7
+        C_p95: 20.4
+        C_p99: 41.3
+        detail: 1.59
+      metrics_locked:
+        L_p5: 82.2
+        L_p50: 89.9
+        L_p95: 95.9
+        C_p50: 6.6
+        C_p95: 19.7
+        C_p99: 38.7
+        detail: 1.14
+    fingerprint: e889e1b60e35bf2b
+  3:
+    job: x2-caglayan-a
+    take: 3
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 21 (R1 51)
+      value: 20.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 81.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.1
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5761
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 4.4, off-palette 0.0% (top: #BBAA55 (0.0%), #BBBB55
+        (0.0%))'
+      value: 2.1329
+    info:
+      metrics_raw:
+        L_p5: 81.6
+        L_p50: 90.1
+        L_p95: 96.6
+        C_p50: 7.0
+        C_p95: 20.7
+        C_p99: 46.7
+        detail: 1.5
+      metrics_locked:
+        L_p5: 81.8
+        L_p50: 90.1
+        L_p95: 96.3
+        C_p50: 7.0
+        C_p95: 20.6
+        C_p99: 44.8
+        detail: 1.1
+    fingerprint: e889e1b60e35bf2b
+  4:
+    job: x2-caglayan-a
+    take: 4
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 23.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 81.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.11
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6373
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 4.6, off-palette 0.1% (top: #CCCC66 (0.0%), #BBBB55
+        (0.0%))'
+      value: 2.104
+    info:
+      metrics_raw:
+        L_p5: 81.4
+        L_p50: 89.7
+        L_p95: 96.4
+        C_p50: 7.9
+        C_p95: 23.9
+        C_p99: 47.9
+        detail: 1.56
+      metrics_locked:
+        L_p5: 81.6
+        L_p50: 89.8
+        L_p95: 96.1
+        C_p50: 7.9
+        C_p95: 23.8
+        C_p99: 46.1
+        detail: 1.11
+    fingerprint: e889e1b60e35bf2b
+manual_review:
+  note: Independent read-only recommendation. Both originals replace the home template
+    with three white travertine pool terraces and a tapered mineral landform, wheel
+    and leaf boat. However the explicit longer-than-island waterfall is not demonstrated
+    by the visible fall. Hidden continuation through clouds is not assumed. Rubric
+    is recorded as advisory only; no 8-point production gate is applied. The single
+    allowed fresh pair3/4 was also inspected; both again fail to demonstrate the longer-than-island
+    fall. All four real takes remain recorded; no fifth generation is proposed.
+  recommendation_only: true
+  takes:
+    '1':
+      pass: false
+      silhouette_name: three stepped travertine pools with a pointed mineral underside
+        and hanging waterfall
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 1
+      - 0
+      evidence: 'Three distinct turquoise pools, scalloped white mineral rims, rim-only
+        moss, a waterwheel near(1100,250), leaf boat near(920,420), pale morning sky
+        and mist rainbow. No home lawn oval, sandy soil bowl, dangling roots, soil
+        pebbles or round home door is visible. The landform extends approximately
+        y55-835 while the clearly visible lowest-rim waterfall runs about y470-950:
+        its visible length is shorter than the landform height, although the brief
+        explicitly asks for a longer fall. The source does not establish a hidden
+        longer continuation.'
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 1430
+        - 90
+      - - 720
+        - 650
+      - - 990
+        - 110
+      contours:
+      - - - 241
+          - 417
+        - - 252
+          - 380
+        - - 300
+          - 345
+        - - 365
+          - 321
+        - - 451
+          - 312
+        - - 503
+          - 332
+        - - 509
+          - 236
+        - - 527
+          - 207
+        - - 572
+          - 180
+        - - 635
+          - 168
+        - - 712
+          - 176
+        - - 784
+          - 155
+        - - 785
+          - 117
+        - - 804
+          - 88
+        - - 856
+          - 69
+        - - 921
+          - 56
+        - - 1005
+          - 65
+        - - 1121
+          - 72
+        - - 1236
+          - 84
+        - - 1261
+          - 106
+        - - 1268
+          - 135
+        - - 1251
+          - 207
+        - - 1298
+          - 226
+        - - 1335
+          - 250
+        - - 1348
+          - 283
+        - - 1331
+          - 329
+        - - 1301
+          - 393
+        - - 1277
+          - 442
+        - - 1231
+          - 487
+        - - 1169
+          - 526
+        - - 1125
+          - 556
+        - - 1051
+          - 637
+        - - 948
+          - 687
+        - - 838
+          - 737
+        - - 782
+          - 797
+        - - 750
+          - 832
+        - - 720
+          - 804
+        - - 682
+          - 755
+        - - 635
+          - 716
+        - - 593
+          - 688
+        - - 562
+          - 650
+        - - 554
+          - 716
+        - - 548
+          - 811
+        - - 541
+          - 889
+        - - 527
+          - 933
+        - - 418
+          - 934
+        - - 404
+          - 880
+        - - 400
+          - 769
+        - - 404
+          - 677
+        - - 408
+          - 597
+        - - 379
+          - 582
+        - - 340
+          - 548
+        - - 296
+          - 498
+        - - 260
+          - 453
+      components:
+      - Connected visible travertine terraces and the lowest fall; minor wheel/boat
+        lie inside the landform footprint
+      holes: []
+      uncertainty: The water/cloud boundary around y890-934 is diffuse; the mask closes
+        at the observed fade zone as an annotation, not a claim of the physical fall
+        ending. It includes only visible water and mineral material. Hidden continuation
+        cannot establish the requested greater-than-island fall length.
+      source_file: /workspace/generated_images/exec-97ab9a42-66f5-415a-9dd5-a24730264bf0.png
+      original_generated_png_sha256: 8c7974ee13701a3505916997b352153b335c225ae2bce02981c45440e374cfb4
+      rgba_sha256: f719b68cfd6c9d06f79b320d68595a8bc9e8959d848fce81f1c4929f85985f2b
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: f2e3e066dd040d76ba469b3c7a139b437f03d485dda845cb7d7206c554f404cb
+      sampled_swatches:
+      - point:
+        - 1430
+        - 90
+        hex: '#BED9F9'
+      - point:
+        - 720
+        - 650
+        hex: '#FDEBDF'
+      - point:
+        - 990
+        - 110
+        hex: '#B1E4E5'
+      observed_bbox:
+      - 241
+      - 56
+      - 1349
+      - 935
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 1
+      qa_native60_black_pixels: 1593
+      annotation_contours_count: 1
+      annotation_holes_count: 0
+      native60_mask_sha256: 3e7a7ad5e6db0f8622811c9fa55cc7e658d7b48ce14959eb2550ba65a0d5ca82
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 4668f5326061b8099faa46247c9e9f9a0c4f8d45eefb469e4054a41150a7ad4a
+    '2':
+      pass: false
+      silhouette_name: three stepped travertine pools with a pointed mineral underside
+        and hanging waterfall
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 1
+      - 0
+      evidence: Three cream travertine terraces with turquoise pools, rim moss, a
+        wheel around(1120,250), leaf boat around(460,385), morning sky and faint rainbow.
+        No copied-home lawn, soil bowl, dangling roots, pebbles or round door is visible.
+        Mineral subject top is around y65 and point around y830; the lowest fall is
+        clearly observed from about y490 into cloud around y925, so its visible length
+        does not demonstrate the prompt's longer-than-island requirement.
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 1420
+        - 145
+      - - 818
+        - 650
+      - - 700
+        - 381
+      contours:
+      - - - 173
+          - 407
+        - - 185
+          - 374
+        - - 235
+          - 345
+        - - 300
+          - 320
+        - - 391
+          - 314
+        - - 448
+          - 333
+        - - 452
+          - 251
+        - - 469
+          - 222
+        - - 520
+          - 200
+        - - 592
+          - 190
+        - - 678
+          - 186
+        - - 712
+          - 165
+        - - 713
+          - 130
+        - - 730
+          - 107
+        - - 782
+          - 85
+        - - 865
+          - 76
+        - - 991
+          - 71
+        - - 1129
+          - 70
+        - - 1206
+          - 78
+        - - 1250
+          - 91
+        - - 1263
+          - 123
+        - - 1252
+          - 192
+        - - 1298
+          - 217
+        - - 1342
+          - 244
+        - - 1355
+          - 276
+        - - 1347
+          - 321
+        - - 1324
+          - 374
+        - - 1286
+          - 424
+        - - 1233
+          - 468
+        - - 1166
+          - 503
+        - - 1095
+          - 559
+        - - 1024
+          - 617
+        - - 940
+          - 665
+        - - 851
+          - 711
+        - - 784
+          - 763
+        - - 751
+          - 818
+        - - 736
+          - 834
+        - - 720
+          - 805
+        - - 699
+          - 757
+        - - 668
+          - 713
+        - - 657
+          - 682
+        - - 649
+          - 750
+        - - 645
+          - 837
+        - - 637
+          - 898
+        - - 620
+          - 928
+        - - 505
+          - 928
+        - - 497
+          - 863
+        - - 495
+          - 772
+        - - 501
+          - 694
+        - - 507
+          - 632
+        - - 478
+          - 621
+        - - 421
+          - 590
+        - - 363
+          - 559
+        - - 298
+          - 531
+        - - 246
+          - 496
+        - - 205
+          - 455
+      components:
+      - Connected visible three-tier travertine landform and foreground waterfall;
+        wheel and leaf boat remain inside its footprint
+      holes: []
+      uncertainty: Clouds and rainbow soften the lower waterfall margin around y900-928.
+        That annotation closure is not an inferred hidden boundary or proof of a longer
+        fall. The three terraces are visible, but the extra waterfall length requested
+        is not demonstrated.
+      source_file: /workspace/generated_images/exec-42fe7f17-ef65-4193-84f5-19b3b8922f48.png
+      original_generated_png_sha256: 8c27106853ac574cb6940680bfcc3e4975372328f6bb571c8e291e05974adc3c
+      rgba_sha256: fad386fc9aa08f4773004d27c2582ef34c456ec2dc98003b72c3d13561742c73
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: c4d7f250985551d60568cb362005086f4b6facb2d4877329359f98098f48e06f
+      sampled_swatches:
+      - point:
+        - 1420
+        - 145
+        hex: '#BFD9F3'
+      - point:
+        - 818
+        - 650
+        hex: '#F1D5BD'
+      - point:
+        - 700
+        - 381
+        hex: '#B9D8C8'
+      observed_bbox:
+      - 173
+      - 70
+      - 1356
+      - 929
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 1
+      qa_native60_black_pixels: 1400
+      annotation_contours_count: 1
+      annotation_holes_count: 0
+      native60_mask_sha256: 32df27085c35c73984e8fbd716f4a5e52620a683d8a06e2c7cd29c4d27fb2ee5
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 1d6707df9c83014c18e91bab3a5a2d4949edd9d7c34e3cc4f807ee63f9205a1e
+    '3':
+      pass: false
+      silhouette_name: three-tier travertine pool cascade with mineral point and visible
+        lowest-rim waterfall
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 1
+      - 0
+      evidence: Three turquoise terraces, pointed white travertine body, rim moss,
+        waterwheel near(920,300), and leaf boat near(550,420). The lowest-rim fall
+        starts aroundy470, while the stone landform spans roughlyy70-835(765px). Even
+        the maximum visible continuation to the1024px frame is only554px, so the required
+        longer-than-island fall is not demonstrated. Mist-hidden/off-frame continuation
+        is not assumed. No home lawn oval, soil bowl, dangling roots, pebbles or round
+        home door is visible.
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 1400
+        - 100
+      - - 625
+        - 658
+      - - 680
+        - 397
+      contours:
+      - - - 177
+          - 271
+        - - 191
+          - 248
+        - - 231
+          - 232
+        - - 285
+          - 224
+        - - 285
+          - 190
+        - - 270
+          - 158
+        - - 269
+          - 135
+        - - 291
+          - 113
+        - - 337
+          - 93
+        - - 406
+          - 80
+        - - 476
+          - 70
+        - - 545
+          - 77
+        - - 638
+          - 90
+        - - 710
+          - 110
+        - - 745
+          - 133
+        - - 757
+          - 157
+        - - 745
+          - 188
+        - - 728
+          - 204
+        - - 825
+          - 199
+        - - 880
+          - 215
+        - - 933
+          - 206
+        - - 986
+          - 220
+        - - 1009
+          - 245
+        - - 1011
+          - 288
+        - - 1003
+          - 309
+        - - 1075
+          - 319
+        - - 1127
+          - 344
+        - - 1177
+          - 367
+        - - 1207
+          - 397
+        - - 1213
+          - 428
+        - - 1198
+          - 474
+        - - 1173
+          - 517
+        - - 1135
+          - 552
+        - - 1083
+          - 581
+        - - 1037
+          - 616
+        - - 1032
+          - 708
+        - - 1030
+          - 811
+        - - 1024
+          - 901
+        - - 1020
+          - 965
+        - - 899
+          - 969
+        - - 897
+          - 906
+        - - 893
+          - 814
+        - - 887
+          - 735
+        - - 885
+          - 650
+        - - 830
+          - 707
+        - - 744
+          - 757
+        - - 696
+          - 802
+        - - 665
+          - 834
+        - - 650
+          - 816
+        - - 621
+          - 762
+        - - 570
+          - 710
+        - - 519
+          - 675
+        - - 470
+          - 621
+        - - 396
+          - 584
+        - - 329
+          - 549
+        - - 277
+          - 505
+        - - 269
+          - 468
+        - - 260
+          - 441
+        - - 232
+          - 416
+        - - 204
+          - 379
+        - - 191
+          - 331
+      holes: []
+      components:
+      - Connected visible travertine terraces and water cascade; minor scale props
+        are inside the scene, not used to invent landform boundaries.
+      uncertainty: The fall fades into cloud near the lower frame. Its annotation
+        closes on the visible fade zone only, not a physical end or reconstructed
+        hidden continuation. The image-bound visible-length upper bound is used for
+        the explicit scale comparison.
+      retry_pair: true
+      source_file: /workspace/generated_images/exec-46a9d2a3-a958-4caf-b06c-3a0c09d83367.png
+      original_generated_png_sha256: 4056e65ef7f2921ad35f54fbe32d7b90526de83a0c02eb518968777d1d85e9b6
+      rgba_sha256: 0121ee22454f36e36674309c19d54903f4e9022d306db61e3ec90f3084f07182
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: 3335880c4babc9ff78dddce75f564162b68af7472d4a2b7a73d9db6b798b1126
+      sampled_swatches:
+      - point:
+        - 1400
+        - 100
+        hex: '#BBD8F6'
+      - point:
+        - 625
+        - 658
+        hex: '#ECD5C4'
+      - point:
+        - 680
+        - 397
+        hex: '#9ED2D2'
+      observed_bbox:
+      - 177
+      - 70
+      - 1214
+      - 970
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 1
+      qa_native60_black_pixels: 1677
+      annotation_contours_count: 1
+      annotation_holes_count: 0
+      native60_mask_sha256: 96663834e48c497df59205674e59047d8d5334b32cbcd7cbaaa71d09db9dfdec
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: ee5a977f0a6a4e756a03c582e0695a72d258a821b15cb2f8c18ea0aad142f8a8
+    '4':
+      pass: false
+      silhouette_name: three-tier travertine pool cascade with mineral point and visible
+        lowest-rim waterfall
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 1
+      - 0
+      evidence: Three turquoise travertine terraces with pointed mineral body, rim-only
+        moss, wheel near(990,270), leaf boat near(860,410), and a mist rainbow. Landform
+        spans roughlyy60-840(780px); the lowest fall starts aroundy480, leaving at
+        most544px within the frame. This cannot demonstrate a visible fall longer
+        than the island. No hidden cloud/off-frame continuation is inferred. No home
+        lawn oval, soil bowl, dangling roots, pebbles or round home door is visible.
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 1390
+        - 110
+      - - 802
+        - 685
+      - - 906
+        - 393
+      contours:
+      - - - 188
+          - 392
+        - - 202
+          - 362
+        - - 247
+          - 341
+        - - 294
+          - 329
+        - - 349
+          - 319
+        - - 347
+          - 275
+        - - 364
+          - 250
+        - - 415
+          - 229
+        - - 470
+          - 213
+        - - 529
+          - 204
+        - - 561
+          - 188
+        - - 562
+          - 139
+        - - 576
+          - 111
+        - - 625
+          - 86
+        - - 705
+          - 71
+        - - 826
+          - 60
+        - - 949
+          - 63
+        - - 1071
+          - 65
+        - - 1190
+          - 75
+        - - 1271
+          - 94
+        - - 1300
+          - 120
+        - - 1292
+          - 155
+        - - 1264
+          - 197
+        - - 1229
+          - 240
+        - - 1201
+          - 271
+        - - 1240
+          - 298
+        - - 1274
+          - 327
+        - - 1288
+          - 359
+        - - 1281
+          - 400
+        - - 1254
+          - 449
+        - - 1220
+          - 494
+        - - 1171
+          - 534
+        - - 1105
+          - 574
+        - - 1018
+          - 619
+        - - 931
+          - 670
+        - - 856
+          - 727
+        - - 789
+          - 775
+        - - 752
+          - 816
+        - - 730
+          - 838
+        - - 711
+          - 808
+        - - 684
+          - 759
+        - - 641
+          - 715
+        - - 626
+          - 778
+        - - 616
+          - 857
+        - - 601
+          - 942
+        - - 591
+          - 978
+        - - 458
+          - 982
+        - - 447
+          - 937
+        - - 445
+          - 847
+        - - 447
+          - 751
+        - - 451
+          - 660
+        - - 453
+          - 590
+        - - 401
+          - 564
+        - - 349
+          - 535
+        - - 285
+          - 500
+        - - 232
+          - 454
+        - - 204
+          - 423
+      holes: []
+      components:
+      - Connected visible travertine terraces and water cascade; minor scale props
+        are inside the scene, not used to invent landform boundaries.
+      uncertainty: The fall fades into cloud near the lower frame. Its annotation
+        closes on the visible fade zone only, not a physical end or reconstructed
+        hidden continuation. The image-bound visible-length upper bound is used for
+        the explicit scale comparison.
+      retry_pair: true
+      source_file: /workspace/generated_images/exec-363dc206-3cf4-47d5-aa44-b866c30c086b.png
+      original_generated_png_sha256: f54ed2113f780f78d05a698bc5b630635e8179e1ec9e1403fce02ad2928ccd30
+      rgba_sha256: 1884a083720a8b9417fba0b6c9e7c0f16f6fcc1ad64afc285052fd0781640bef
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: 25c0130981feb04b2e9417778c996aecdcef2a67653b71049eccb7e8893e6d37
+      sampled_swatches:
+      - point:
+        - 1390
+        - 110
+        hex: '#B3D1F5'
+      - point:
+        - 802
+        - 685
+        hex: '#E7D9D2'
+      - point:
+        - 906
+        - 393
+        hex: '#BADCD8'
+      observed_bbox:
+      - 188
+      - 60
+      - 1301
+      - 983
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 1
+      qa_native60_black_pixels: 1674
+      annotation_contours_count: 1
+      annotation_holes_count: 0
+      native60_mask_sha256: 22e4630d2fc94d0ca58f9fbd237794ab3f99d09caea98e6fb42993cff4267f80
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: cc958113703f301a3106cc7c206d9fde598c1bbd3f3f9c31c78fedbf93db4080
+  reviewed_at: '2026-11-03T16:04:58.890737+00:00'
+  preview_verified: true
+  preview_sha256: 2f19524ff3231dd57f4dc8259098657fd0f47f13aa844c0a3f6f10fe5608d303
+  no_authoritative_pick: true
+  production_score_threshold_applied: false
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-97ab9a42-66f5-415a-9dd5-a24730264bf0.png
+  original_generated_png_sha256: 8c7974ee13701a3505916997b352153b335c225ae2bce02981c45440e374cfb4
+  inbox_png_sha256: 4668f5326061b8099faa46247c9e9f9a0c4f8d45eefb469e4054a41150a7ad4a
+  rgba_sha256: f719b68cfd6c9d06f79b320d68595a8bc9e8959d848fce81f1c4929f85985f2b
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e889e1b60e35bf2b
+- take: 2
+  source_file: /workspace/generated_images/exec-42fe7f17-ef65-4193-84f5-19b3b8922f48.png
+  original_generated_png_sha256: 8c27106853ac574cb6940680bfcc3e4975372328f6bb571c8e291e05974adc3c
+  inbox_png_sha256: 1d6707df9c83014c18e91bab3a5a2d4949edd9d7c34e3cc4f807ee63f9205a1e
+  rgba_sha256: fad386fc9aa08f4773004d27c2582ef34c456ec2dc98003b72c3d13561742c73
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e889e1b60e35bf2b
+- take: 3
+  source_file: /workspace/generated_images/exec-46a9d2a3-a958-4caf-b06c-3a0c09d83367.png
+  original_generated_png_sha256: 4056e65ef7f2921ad35f54fbe32d7b90526de83a0c02eb518968777d1d85e9b6
+  inbox_png_sha256: ee5a977f0a6a4e756a03c582e0695a72d258a821b15cb2f8c18ea0aad142f8a8
+  rgba_sha256: 0121ee22454f36e36674309c19d54903f4e9022d306db61e3ec90f3084f07182
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e889e1b60e35bf2b
+- take: 4
+  source_file: /workspace/generated_images/exec-363dc206-3cf4-47d5-aa44-b866c30c086b.png
+  original_generated_png_sha256: f54ed2113f780f78d05a698bc5b630635e8179e1ec9e1403fce02ad2928ccd30
+  inbox_png_sha256: cc958113703f301a3106cc7c206d9fde598c1bbd3f3f9c31c78fedbf93db4080
+  rgba_sha256: 1884a083720a8b9417fba0b6c9e7c0f16f6fcc1ad64afc285052fd0781640bef
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e889e1b60e35bf2b
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
