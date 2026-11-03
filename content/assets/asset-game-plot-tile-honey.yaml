@@ -12,7 +12,7 @@ links:
   - asset-game-plot-tile-sage
 art:
   images:
-  - design/art/ui/ui-game-plot-tile-honey/ui-game-plot-tile-honey.png
+  - design/art/ui/ui-game-plot-tile-honey/ui-game-plot-tile-honey.webp
   jobs:
   - batch-12-minigame-art:game-plot-tile-honey
   - retry-2026-11-03:game-plot-tile-honey

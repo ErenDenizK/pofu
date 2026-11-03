@@ -12,7 +12,7 @@ links:
   - asset-game-plot-tile-sage
 art:
   images:
-  - design/art/ui/ui-game-plot-tile-terracotta/ui-game-plot-tile-terracotta.png
+  - design/art/ui/ui-game-plot-tile-terracotta/ui-game-plot-tile-terracotta.webp
   jobs:
   - batch-12-minigame-art:game-plot-tile-terracotta
   - retry-2026-11-03:game-plot-tile-terracotta

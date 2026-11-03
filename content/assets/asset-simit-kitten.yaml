@@ -12,7 +12,7 @@ summary: 'Draw Simit, a neighbor of the attached hamster, in exactly the same ar
   honey-gold with soft…'
 art:
   images:
-  - design/art/masters/simit-kitten/simit-kitten.png
+  - design/art/masters/simit-kitten/simit-kitten.webp
   jobs:
   - batch-14-iskele:simit-kitten
   - retry-2026-11-03:simit-kitten
