@@ -1,48 +1,154 @@
 batch: batch-15-explore
-contact_sheet: null
+contact_sheet: design/art/takes/batch-15-explore/x-appicon-c/contact.jpg
 jobs:
   x-appicon-c:
-    pick: null
-    publication: unselected due global account stop
-    note: 'UNSELECTED due global account/sign-in stop; no terminal QA failure/skip,
-      no pick, no further generation or QA after stop. Retained generated takes are
-      for resuming the existing allowed round, never regeneration of a completed pair.
-      This job never made an image call: the planned second logical group failed JavaScript
-      preflight before dispatch.'
-    takes_generated: 0
-    retry_round_used: false
-qa_reports: {}
-pre_stop_manual_notes: null
-sources: []
-prompt: 'REFERENCES (attached, in this order):
-
-  1. The home island: the same painting and softness.
-
-  2. Pofu, the hamster: his exact look, fur, colors and eyes.
-
-
-  An app icon master: one large plump sunflower seed with cream stripes,
-
-  centered, slightly tilted, over a flat soft peach-to-cream sky with a
-
-  faint cloud. Square, opaque, edge to edge, no text, no border.
-
-
-  AVOID: text, a border, rounded corners, a frame, glass, gloss, a hamster
-
-
-  Output: one image, opaque, full bleed, square 1024 x 1024.'
-references_in_order:
-- /workspace/run15/design/art/masters/island-main-s/island-main-s.png
-- /workspace/run15/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
-stop:
-  reason: Git authentication/account stop condition
-  observed_at: '2026-11-03T10:45:59Z'
-  job: x-emanet-2
-  message: 'fatal: could not read Username for ''https://github.com'': No such device
-    or address'
-  last_verified_head: 9a4209a585e4aaf89997c96f5a902e105d1b016c
-  next_publication_job: x-emanet-2
-  policy: No new generations or terminal decisions; preserve already-finished candidates
-    and publish completed work through an already-authorized functioning transport
-    if possible; notify coordinator immediately.
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Coordinator manual review at
+      native29/60pt on white/dark/cream: both plump dark seeds with cream stripes
+      read clearly, one faint cloud, opaque square, no text, glass, corner mask or
+      hamster. Lowest non-failing lock load wins. Value-floor WARNs remain unchanged;
+      exploration only.'
+qa_reports:
+  1:
+    job: x-appicon-c
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 33 (R1 51)
+      value: 32.6
+    - check: value_floor
+      status: warn
+      message: lightness p5 32 (R1 59)
+      value: 32.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.7 (R1 5.3)
+      value: 2.67
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 2.2, off-palette 0.0%
+      value: 0.9576
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: pass
+      message: corner detail is 15% of the center's (the system masks corners)
+      value: 0.1534
+    info:
+      metrics_raw:
+        L_p5: 32.2
+        L_p50: 82.2
+        L_p95: 93.8
+        C_p50: 23.2
+        C_p95: 32.6
+        C_p99: 37.3
+        detail: 2.67
+      metrics_locked:
+        L_p5: 32.2
+        L_p50: 82.2
+        L_p95: 93.8
+        C_p50: 23.2
+        C_p95: 32.6
+        C_p99: 37.3
+        detail: 2.67
+    fingerprint: d51a5b17425e684b
+  2:
+    job: x-appicon-c
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.5
+    - check: value_floor
+      status: warn
+      message: lightness p5 31 (R1 59)
+      value: 30.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 2.0, off-palette 0.0%
+      value: 0.9649
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: pass
+      message: corner detail is 21% of the center's (the system masks corners)
+      value: 0.2097
+    info:
+      metrics_raw:
+        L_p5: 30.7
+        L_p50: 81.6
+        L_p95: 92.6
+        C_p50: 23.2
+        C_p95: 36.5
+        C_p99: 37.4
+        detail: 2.64
+      metrics_locked:
+        L_p5: 30.7
+        L_p50: 81.6
+        L_p95: 92.6
+        C_p50: 23.2
+        C_p95: 36.5
+        C_p99: 37.4
+        detail: 2.64
+    fingerprint: d51a5b17425e684b
+manual_review:
+  exclude: []
+  note: 'Coordinator manual review at native29/60pt on white/dark/cream: both plump
+    dark seeds with cream stripes read clearly, one faint cloud, opaque square, no
+    text, glass, corner mask or hamster. Lowest non-failing lock load wins. Value-floor
+    WARNs remain unchanged; exploration only.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-e89d81a4-be57-4b1f-8129-532aed9ef4e5.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d51a5b17425e684b
+  original_png_sha256: f38beeacee818bcd6d5c73596c9788e85f041daa14447e252dba55fcf809f73e
+- take: 2
+  source_file: /workspace/generated_images/exec-4d4a1552-ac87-4acf-b049-db2a638fa36f.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d51a5b17425e684b
+  original_png_sha256: 24a4790ba05cc0f045eadff3d60d0ac1cb7c5b55aff150e4ea56a98c5c2f2043
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
