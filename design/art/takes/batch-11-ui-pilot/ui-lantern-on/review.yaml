@@ -1,0 +1,297 @@
+batch: batch-11-ui-pilot
+contact_sheet: design/art/takes/batch-11-ui-pilot/ui-lantern-on/contact.jpg
+jobs:
+  ui-lantern-on:
+    pick: none
+    publication: skipped
+    note: 'Skipped after initial pair plus the single allowed retry pair: all four
+      fail the strict manifest manual edit_stability >0.9 gate. Ratios t1 0.6258,
+      t2 0.6262, t3 0.6234, t4 0.6278. Retry take4 additionally fails palette_drift
+      (mean dE 3.1246). Alpha composites are clean and interior lighting is contained,
+      but no check is waived. No dependents; original four PNGs remain preserved.'
+    retry_policy: Initial pair plus one additional pair exhausted; no further generation.
+      Skip only dependents.
+qa_reports:
+  1:
+    job: ui-lantern-on
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.001 and moved it; aligned back to the
+        parent
+      value: 0.9995
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 51.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 62.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.01
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0076
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.3, p95 10.7, off-palette 3.2% (top: #FFEE99 (1.6%), #FFEE88
+        (1.5%))'
+      value: 2.2783
+    - check: edit_stability
+      status: warn
+      message: 63% of the parent level unchanged
+      value: 0.6258
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.04 of the parent level (drift compounds along a chain)
+      value: 1.04
+    info:
+      alignment:
+        scale: 0.9995
+        cx: 599.5
+        cy: 925.0
+        dx: 0
+        dy: 1
+      metrics_raw:
+        L_p5: 62.0
+        L_p50: 73.9
+        L_p95: 93.2
+        C_p50: 42.0
+        C_p95: 52.0
+        C_p99: 55.4
+        detail: 1.59
+      metrics_locked:
+        L_p5: 62.4
+        L_p50: 74.0
+        L_p95: 93.4
+        C_p50: 41.9
+        C_p95: 51.6
+        C_p99: 53.7
+        detail: 1.01
+    fingerprint: 78db578785fa62d6
+  2:
+    job: ui-lantern-on
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 56 (R1 51)
+      value: 55.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 62.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.98
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6727
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 13.3, off-palette 6.2% (top: #FFEE77 (2.9%), #FFEE88
+        (1.8%))'
+      value: 2.6716
+    - check: edit_stability
+      status: warn
+      message: 63% of the parent level unchanged
+      value: 0.6262
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.06 of the parent level (drift compounds along a chain)
+      value: 1.0647
+    info:
+      metrics_raw:
+        L_p5: 61.7
+        L_p50: 74.8
+        L_p95: 91.8
+        C_p50: 42.9
+        C_p95: 56.2
+        C_p99: 59.1
+        detail: 1.59
+      metrics_locked:
+        L_p5: 62.2
+        L_p50: 75.0
+        L_p95: 91.7
+        C_p50: 42.9
+        C_p95: 55.7
+        C_p99: 57.9
+        detail: 0.98
+    fingerprint: 78db578785fa62d6
+  3:
+    job: ui-lantern-on
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 55 (R1 51)
+      value: 55.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 63 (R1 59)
+      value: 63.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.88
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6603
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.4, p95 11.5, off-palette 4.6% (top: #FFEE88 (2.3%), #FFEE77
+        (1.2%))'
+      value: 2.4257
+    - check: edit_stability
+      status: warn
+      message: 62% of the parent level unchanged
+      value: 0.6234
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.03 of the parent level (drift compounds along a chain)
+      value: 1.0257
+    info:
+      metrics_raw:
+        L_p5: 63.0
+        L_p50: 74.1
+        L_p95: 90.8
+        C_p50: 41.3
+        C_p95: 55.7
+        C_p99: 60.3
+        detail: 1.35
+      metrics_locked:
+        L_p5: 63.4
+        L_p50: 74.1
+        L_p95: 90.8
+        C_p50: 41.3
+        C_p95: 55.3
+        C_p99: 58.3
+        detail: 0.88
+    fingerprint: 78db578785fa62d6
+  4:
+    job: ui-lantern-on
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.006 and moved it; aligned back to the
+        parent
+      value: 0.9945
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 55 (R1 51)
+      value: 54.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 63 (R1 59)
+      value: 63.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.02
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0224
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 3.1, p95 15.4, off-palette 10.1% (top: #FFEE88 (4.9%), #FFEE99
+        (1.8%))'
+      value: 3.1246
+    - check: edit_stability
+      status: warn
+      message: 63% of the parent level unchanged
+      value: 0.6278
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.01 of the parent level (drift compounds along a chain)
+      value: 1.0111
+    info:
+      alignment:
+        scale: 0.9945
+        cx: 599.0
+        cy: 924.0
+        dx: 0
+        dy: -2
+      metrics_raw:
+        L_p5: 62.8
+        L_p50: 74.1
+        L_p95: 94.5
+        C_p50: 40.8
+        C_p95: 55.3
+        C_p99: 58.7
+        detail: 1.68
+      metrics_locked:
+        L_p5: 63.3
+        L_p50: 74.3
+        L_p95: 94.7
+        C_p50: 40.7
+        C_p95: 54.7
+        C_p99: 57.3
+        detail: 1.02
+    fingerprint: 78db578785fa62d6
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-9f1e6b4d-3361-4988-89af-3feb537c75b0.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 2
+  source_file: /workspace/generated_images/exec-f7fe5b25-8bd4-4287-ba1f-ef12fc648105.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 3
+  source_file: /workspace/generated_images/exec-13532174-d263-4cd8-9270-7aa435c0d59e.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 4
+  source_file: /workspace/generated_images/exec-1c325276-5f0b-4c9a-9a3e-5a4754d31f95.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan

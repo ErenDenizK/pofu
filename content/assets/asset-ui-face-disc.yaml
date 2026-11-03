@@ -4,12 +4,13 @@ title_tr: ui-face-disc
 title_en: face-disc (ui)
 status: in-production
 horizon: now
-summary: >-
-  A round, chunky disc of cream-glazed clay seen straight on, a perfect circle filling most
-  of the canvas, a soft lighter highlight along the top edge and a slightly darker rounded
-  lip along the bottom edge, the middle flat and empty. Nothing on it.
+summary: A round, chunky disc of cream-glazed clay seen straight on, a perfect circle
+  filling most of the canvas, a soft lighter highlight along the top edge and a slightly
+  darker rounded lip along the bottom edge, the middle flat and empty. Nothing on
+  it.
 art:
-  images: []
+  images:
+  - design/art/ui/ui-face-disc/ui-face-disc.png
   jobs:
   - batch-11-ui-pilot:ui-face-disc
 sources:
