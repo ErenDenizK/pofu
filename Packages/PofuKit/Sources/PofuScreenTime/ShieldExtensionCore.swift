@@ -1,5 +1,7 @@
 import Foundation
+#if canImport(os)
 import os
+#endif
 import PofuCore
 import PofuPersistence
 
@@ -22,7 +24,9 @@ public enum ShieldButton: Hashable, Sendable {
 /// effects that need the system (lifting a shield in ManagedSettings,
 /// posting the notification) are passed in.
 public struct ShieldExtensionCore: Sendable {
+    #if canImport(os)
     private static let log = Logger(subsystem: "com.erendenizk.pofu", category: "shield")
+    #endif
 
     /// A tap belongs to the shield drawn for the app within this window.
     public static let shownWindow: TimeInterval = 30 * 60
@@ -177,7 +181,9 @@ public struct ShieldExtensionCore: Sendable {
                 try effects.liftForQuickCheck(app, passID, now, until)
             } catch {
                 // Could not lift here: the way through Pofu still works.
+                #if canImport(os)
                 Self.log.error("Quick check lift failed: \(error.localizedDescription, privacy: .public)")
+                #endif
                 return requestOpen(resolved, breath: false, at: now, store: store, inbox: inbox, appState: appState, effects: effects)
             }
             try? inbox.post(ScreenTimeRecord(at: now, kind: .quickCheckStarted(app: resolved, passID: passID, until: until)))

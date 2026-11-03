@@ -1,0 +1,129 @@
+batch: batch-12-minigame-art
+contact_sheet: design/art/takes/batch-12-minigame-art/game-soil-cell/contact.jpg
+jobs:
+  game-soil-cell:
+    pick: 1
+    note: 'auto-picked by QA; founder review pending. Both takes pass automated QA.
+      Four-background composites and native41pt side-by-side comparison with sage
+      pass: warm matte soil, two round crumbs, darker rim and a clearly darker plain
+      cell. Median L is46.3/42.0 versus sage76.4. Take1 has the lowest passing lock
+      load1.6128 versus2.1344. Full palette/value checks pass.'
+    takes:
+      t1:
+        qa: pass
+        summary: all pass
+      t2:
+        qa: pass
+        summary: all pass
+    approved:
+      take: 1
+      at: '2026-11-03T00:29:22+00:00'
+qa_reports:
+  1:
+    job: game-soil-cell
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 31 (R1 51)
+      value: 31.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 38 (R1 59)
+      value: 37.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.58
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.6128
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 1.4, off-palette 0.0%
+      value: 0.9155
+    info:
+      metrics_raw:
+        L_p5: 37.5
+        L_p50: 46.3
+        L_p95: 56.0
+        C_p50: 28.5
+        C_p95: 31.5
+        C_p99: 32.2
+        detail: 0.86
+      metrics_locked:
+        L_p5: 37.5
+        L_p50: 46.3
+        L_p95: 56.0
+        C_p50: 28.5
+        C_p95: 31.4
+        C_p99: 32.0
+        detail: 0.58
+    fingerprint: bace2983c22db22f
+  2:
+    job: game-soil-cell
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 29 (R1 51)
+      value: 29.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 36 (R1 59)
+      value: 35.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.53
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.1
+      value: 2.1344
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.7, p95 1.4, off-palette 0.0%
+      value: 0.6964
+    info:
+      metrics_raw:
+        L_p5: 35.4
+        L_p50: 42.0
+        L_p95: 53.7
+        C_p50: 25.2
+        C_p95: 29.3
+        C_p99: 30.9
+        detail: 0.8
+      metrics_locked:
+        L_p5: 35.5
+        L_p50: 41.9
+        L_p95: 53.5
+        C_p50: 25.2
+        C_p95: 29.3
+        C_p99: 30.8
+        detail: 0.53
+    fingerprint: bace2983c22db22f
+manual_review:
+  exclude: []
+  note: 'Both takes pass automated QA. Four-background composites and native41pt side-by-side
+    comparison with sage pass: warm matte soil, two round crumbs, darker rim and a
+    clearly darker plain cell. Median L is46.3/42.0 versus sage76.4. Take1 has the
+    lowest passing lock load1.6128 versus2.1344. Full palette/value checks pass.'

@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 26.619,
+  "C_p50": 23.442,
+  "C_p95": 50.129,
+  "L_mean": 76.545,
+  "L_p2": 22.76,
+  "L_p98": 96.427,
+  "detail": 15.719,
+  "edge": 0.164,
+  "tint_a": 4.077,
+  "tint_b": 8.613,
+  "warmth_b": 22.475
+ },
+ "before": {
+  "C_mean": 26.619,
+  "C_p50": 23.442,
+  "C_p95": 50.129,
+  "L_mean": 76.545,
+  "L_p2": 22.76,
+  "L_p98": 96.427,
+  "detail": 15.719,
+  "edge": 0.164,
+  "tint_a": 4.077,
+  "tint_b": 8.613,
+  "warmth_b": 22.475
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "detail"
+ ],
+ "outliers_before": [
+  "detail"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 85.2,
+ "score_before": 85.2,
+ "shipped": false,
+ "source": "design/art/masters/findik-work/findik-work.webp",
+ "source_sha": "6abad077c0c15189"
+}

@@ -1,0 +1,178 @@
+batch: batch-09-explore-pilot
+contact_sheet: design/art/takes/batch-09-explore-pilot/x-icon-seed/contact.jpg
+jobs:
+  x-icon-seed:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. EXPLORATION: no promote or master.
+      Both takes read as sunflower seeds at28,44and60pt on light and dark backgrounds.
+      The two broad cream stripes and pointed upper-right tip carry the28pt silhouette;
+      the warm-brown centre separates from pale glass and cream stripes separate from
+      dark glass. Take2 has the lowest passing style-lock load0.5942.'
+qa_reports:
+  1:
+    job: x-icon-seed
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 35.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 48 (R1 59)
+      value: 48.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.92
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6465
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 1.5, off-palette 0.0%
+      value: 0.8037
+    - check: icon_fill
+      status: pass
+      message: icon spans 78% of the canvas (target 80-92%)
+      value: 0.7773
+    - check: icon_thin_parts
+      status: pass
+      message: 0.1% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0012
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 5.6 (busy above 7)
+      value: 5.59
+    - check: icon_on_light_glass
+      status: pass
+      message: 59% of the icon separates from light glass at 24 pt
+      value: 0.593
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 48.2
+        L_p50: 68.6
+        L_p95: 91.9
+        C_p50: 30.9
+        C_p95: 35.4
+        C_p99: 39.5
+        detail: 1.34
+      metrics_locked:
+        L_p5: 48.3
+        L_p50: 68.5
+        L_p95: 91.8
+        C_p50: 30.9
+        C_p95: 35.0
+        C_p99: 39.2
+        detail: 0.92
+    fingerprint: 24e6615e95d1a6aa
+  2:
+    job: x-icon-seed
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 51 (R1 59)
+      value: 50.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.82
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5942
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 1.9, off-palette 0.0%
+      value: 0.8715
+    - check: icon_fill
+      status: pass
+      message: icon spans 77% of the canvas (target 80-92%)
+      value: 0.7715
+    - check: icon_thin_parts
+      status: pass
+      message: 0.1% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.001
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 4.9 (busy above 7)
+      value: 4.92
+    - check: icon_on_light_glass
+      status: pass
+      message: 54% of the icon separates from light glass at 24 pt
+      value: 0.5425
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 50.9
+        L_p50: 71.7
+        L_p95: 92.9
+        C_p50: 28.1
+        C_p95: 36.9
+        C_p99: 39.5
+        detail: 1.19
+      metrics_locked:
+        L_p5: 50.9
+        L_p50: 71.5
+        L_p95: 92.8
+        C_p50: 28.0
+        C_p95: 36.8
+        C_p99: 39.3
+        detail: 0.82
+    fingerprint: 24e6615e95d1a6aa
+manual_review:
+  exclude: []
+  note: Both takes read as sunflower seeds at28,44and60pt on light and dark backgrounds.
+    The two broad cream stripes and pointed upper-right tip carry the28pt silhouette;
+    the warm-brown centre separates from pale glass and cream stripes separate from
+    dark glass. Take2 has the lowest passing style-lock load0.5942.
+  takes:
+    t1: '28pt: clear two-stripe seed;44/60pt: rounded shell and pointed tip remain
+      clear on both backgrounds.'
+    t2: '28pt: clear two-stripe seed;44/60pt: softer, equally legible rounded shell
+      and tip on both backgrounds.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-4a834249-030a-44b5-8d15-0e10e1db7a97.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 24e6615e95d1a6aa
+- take: 2
+  source_file: /workspace/generated_images/exec-da7ab39d-f740-4582-aadb-0f45eba35415.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 24e6615e95d1a6aa

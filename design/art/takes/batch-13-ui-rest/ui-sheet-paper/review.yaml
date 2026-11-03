@@ -1,0 +1,239 @@
+batch: batch-13-ui-rest
+contact_sheet: design/art/takes/batch-13-ui-rest/ui-sheet-paper/contact.jpg
+jobs:
+  ui-sheet-paper:
+    pick: none
+    publication: skipped
+    note: 'Skipped after one allowed retry pair: all four takes pass automated QA
+      but remain fully inset cards. The job explicitly requires the side and bottom
+      edges to run off canvas; retry bboxes are(56,26,968,1001) and(69,40,954,1001),
+      with zero visible alpha on every bottom/side boundary. Do not waive the manual
+      shape requirement. Embedded pilot failure skips all13rest jobs.'
+    retry_policy: Initial pair plus one additional pair exhausted; no further generation.
+      Skip only dependents.
+qa_reports:
+  1:
+    job: ui-sheet-paper
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 16 (R1 51)
+      value: 15.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 89 (R1 59)
+      value: 89.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.95
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2555
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.5, p95 1.0, off-palette 0.0%
+      value: 0.5479
+    info:
+      metrics_raw:
+        L_p5: 89.1
+        L_p50: 92.8
+        L_p95: 93.2
+        C_p50: 8.0
+        C_p95: 16.2
+        C_p99: 27.0
+        detail: 1.07
+      metrics_locked:
+        L_p5: 89.1
+        L_p50: 92.8
+        L_p95: 93.2
+        C_p50: 8.0
+        C_p95: 15.6
+        C_p99: 25.5
+        detail: 0.95
+    fingerprint: d812d608d4d4a4ca
+  2:
+    job: ui-sheet-paper
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 17 (R1 51)
+      value: 17.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 88 (R1 59)
+      value: 88.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.84
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2768
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.4, p95 0.8, off-palette 0.0%
+      value: 0.4261
+    info:
+      metrics_raw:
+        L_p5: 88.5
+        L_p50: 92.9
+        L_p95: 93.4
+        C_p50: 8.1
+        C_p95: 17.4
+        C_p99: 25.8
+        detail: 0.97
+      metrics_locked:
+        L_p5: 88.4
+        L_p50: 93.0
+        L_p95: 93.3
+        C_p50: 8.1
+        C_p95: 17.4
+        C_p99: 24.2
+        detail: 0.84
+    fingerprint: d812d608d4d4a4ca
+  3:
+    job: ui-sheet-paper
+    take: 3
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 17 (R1 51)
+      value: 17.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 88 (R1 59)
+      value: 88.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.0
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2765
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.4, p95 0.8, off-palette 0.0%
+      value: 0.407
+    info:
+      metrics_raw:
+        L_p5: 88.6
+        L_p50: 93.1
+        L_p95: 93.5
+        C_p50: 7.6
+        C_p95: 17.6
+        C_p99: 24.8
+        detail: 1.14
+      metrics_locked:
+        L_p5: 88.5
+        L_p50: 93.1
+        L_p95: 93.4
+        C_p50: 7.6
+        C_p95: 17.4
+        C_p99: 23.3
+        detail: 1.0
+    fingerprint: d812d608d4d4a4ca
+  4:
+    job: ui-sheet-paper
+    take: 4
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 17 (R1 51)
+      value: 17.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 87 (R1 59)
+      value: 87.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.01
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2765
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.4, p95 0.7, off-palette 0.0%
+      value: 0.4126
+    info:
+      metrics_raw:
+        L_p5: 87.4
+        L_p50: 91.7
+        L_p95: 92.2
+        C_p50: 8.9
+        C_p95: 17.3
+        C_p99: 24.4
+        detail: 1.13
+      metrics_locked:
+        L_p5: 87.3
+        L_p50: 91.7
+        L_p95: 92.2
+        C_p50: 8.9
+        C_p95: 17.4
+        C_p99: 22.5
+        detail: 1.01
+    fingerprint: d812d608d4d4a4ca
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-f3584105-dd9c-40d7-bac9-2ef9030fab3c.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 2
+  source_file: /workspace/generated_images/exec-c866d7ed-d8c8-4e19-b97e-c20e14cb733a.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 3
+  source_file: /workspace/generated_images/exec-977483c5-5fd9-48e9-8764-943a3173e303.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 4
+  source_file: /workspace/generated_images/exec-c9703a75-b708-4ae9-b693-8026c36b36d5.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan

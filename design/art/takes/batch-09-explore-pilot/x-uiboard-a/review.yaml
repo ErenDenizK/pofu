@@ -1,0 +1,142 @@
+batch: batch-09-explore-pilot
+contact_sheet: design/art/takes/batch-09-explore-pilot/x-uiboard-a/contact.jpg
+jobs:
+  x-uiboard-a:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: "auto-picked by QA; founder review pending. EXPLORATION: no promote or master.\
+      \ Both boards preserve Pofu\u2019s curl and warm design, a tea stall and garden\
+      \ on the lawn, three empty pale bottom placeholders and one empty top status\
+      \ pill, with no text or painted glass. Pofu reads near one fifth of portrait\
+      \ width. The world is closer to60%than70%of portrait height; record this as\
+      \ a composition warning for the lead, not a new hard QA threshold in this inspiration-only\
+      \ exploration. Take2 has the lowest passing lock load0.8217."
+qa_reports:
+  1:
+    job: x-uiboard-a
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 37.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 72 (R1 59)
+      value: 71.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.95
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9019
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 4.6, off-palette 0.0% (top: #DD7744 (0.0%), #DD7755
+        (0.0%))'
+      value: 1.8794
+    info:
+      metrics_raw:
+        L_p5: 71.4
+        L_p50: 90.1
+        L_p95: 96.3
+        C_p50: 10.3
+        C_p95: 37.8
+        C_p99: 46.0
+        detail: 2.57
+      metrics_locked:
+        L_p5: 71.8
+        L_p50: 90.1
+        L_p95: 96.1
+        C_p50: 10.2
+        C_p95: 37.1
+        C_p99: 42.3
+        detail: 1.95
+    fingerprint: 0dc6df9399042e48
+  2:
+    job: x-uiboard-a
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 35.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 72 (R1 59)
+      value: 72.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.86
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8217
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 4.4, off-palette 0.0% (top: #AA5522 (0.0%), #BB6633
+        (0.0%))'
+      value: 1.8794
+    info:
+      metrics_raw:
+        L_p5: 71.8
+        L_p50: 90.1
+        L_p95: 95.4
+        C_p50: 10.7
+        C_p95: 35.5
+        C_p99: 40.5
+        detail: 2.48
+      metrics_locked:
+        L_p5: 72.1
+        L_p50: 90.2
+        L_p95: 95.4
+        C_p50: 10.7
+        C_p95: 35.0
+        C_p99: 39.6
+        detail: 1.86
+    fingerprint: 0dc6df9399042e48
+manual_review:
+  exclude: []
+  note: "Both boards preserve Pofu\u2019s curl and warm design, a tea stall and garden\
+    \ on the lawn, three empty pale bottom placeholders and one empty top status pill,\
+    \ with no text or painted glass. Pofu reads near one fifth of portrait width.\
+    \ The world is closer to60%than70%of portrait height; record this as a composition\
+    \ warning for the lead, not a new hard QA threshold in this inspiration-only exploration.\
+    \ Take2 has the lowest passing lock load0.8217."
+  takes:
+    t1: Larger tree/garden and island read as the main diorama; blank control placeholders,
+      world-height target undershot.
+    t2: Compact diorama with clear sky/cloud breathing room and blank control placeholders;
+      world-height target undershot.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-a37a45eb-7909-4262-97ea-b3408626e72c.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0dc6df9399042e48
+- take: 2
+  source_file: /workspace/generated_images/exec-df4ed57e-e9d7-4571-84bb-09efbf0dbe33.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0dc6df9399042e48

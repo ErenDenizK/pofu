@@ -2,11 +2,10 @@ id: asset-icon-round
 type: asset
 title_tr: icon-round
 title_en: round (icon)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  The icon for an earned round: a round, chunky honey-wood token with a rounded rim and a
-  simple sunflower burnt into its face in a darker brown, large shapes only.
+summary: 'The icon for an earned round: a round, chunky honey-wood token with a rounded
+  rim and a simple sunflower burnt into its face in a darker brown, large shapes only.'
 art:
   images: []
   jobs:
@@ -15,3 +14,7 @@ sources:
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
 kind: icon
 batch: batch-13-ui-rest
+notes:
+- 'Batch13overnight: Not generated: the embedded ui-sheet-paper pilot failed its allowed
+  retry, so the manifest skips the rest of batch13. Other batch timings remain as
+  specified.'

@@ -1,0 +1,245 @@
+batch: batch-11-ui-pilot
+contact_sheet: design/art/takes/batch-11-ui-pilot/ui-face-primary/contact.jpg
+jobs:
+  ui-face-primary:
+    pick: none
+    publication: skipped
+    note: 'Skipped after initial pair plus the single allowed retry pair: all four
+      takes fail palette_drift. Exact mean dE values t1 13.4668, t2 10.1055, t3 17.7247,
+      t4 15.5414; off-palette ratios 75.1%,28.3%,84.5%,79.7%. The unchanged prompt
+      requests violet #6C4FD8 while the supplied world-props palette contains no violet.
+      No palette, manifest, prompt or QA threshold changed; no waiver or more retries.
+      Alpha composites remain preserved in the contact sheet. No jobs depend on ui-face-primary
+      in this pilot.'
+    retry_policy: Initial pair plus one additional pair exhausted; no further generation.
+      Skip only dependents.
+qa_reports:
+  1:
+    job: ui-face-primary
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 57.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 50 (R1 59)
+      value: 50.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.54
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3345
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 13.5, p95 22.9, off-palette 75.1% (top: #9977DD (51.2%), #9977CC
+        (6.7%))'
+      value: 13.4668
+    info:
+      metrics_raw:
+        L_p5: 50.5
+        L_p50: 58.2
+        L_p95: 84.0
+        C_p50: 54.1
+        C_p95: 57.8
+        C_p99: 60.0
+        detail: 0.75
+      metrics_locked:
+        L_p5: 50.5
+        L_p50: 58.2
+        L_p95: 83.8
+        C_p50: 54.1
+        C_p95: 57.6
+        C_p99: 59.2
+        detail: 0.54
+    fingerprint: b3c572ebf2c55291
+  2:
+    job: ui-face-primary
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 51.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 54 (R1 59)
+      value: 54.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.55
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3133
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 10.1, p95 18.5, off-palette 28.3% (top: #AA88DD (14.4%), #9977CC
+        (4.1%))'
+      value: 10.1055
+    info:
+      metrics_raw:
+        L_p5: 54.2
+        L_p50: 62.0
+        L_p95: 86.9
+        C_p50: 48.8
+        C_p95: 51.6
+        C_p99: 52.3
+        detail: 0.81
+      metrics_locked:
+        L_p5: 54.2
+        L_p50: 61.9
+        L_p95: 86.9
+        C_p50: 49.0
+        C_p95: 51.3
+        C_p99: 51.8
+        detail: 0.55
+    fingerprint: b3c572ebf2c55291
+  3:
+    job: ui-face-primary
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 56 (R1 51)
+      value: 55.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 47 (R1 59)
+      value: 47.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.55
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2877
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 17.7, p95 25.1, off-palette 84.5% (top: #9966CC (49.5%), #9977CC
+        (12.7%))'
+      value: 17.7247
+    info:
+      metrics_raw:
+        L_p5: 47.1
+        L_p50: 53.1
+        L_p95: 77.1
+        C_p50: 54.3
+        C_p95: 55.7
+        C_p99: 56.3
+        detail: 0.71
+      metrics_locked:
+        L_p5: 47.1
+        L_p50: 53.1
+        L_p95: 76.9
+        C_p50: 54.3
+        C_p95: 55.6
+        C_p99: 56.0
+        detail: 0.55
+    fingerprint: b3c572ebf2c55291
+  4:
+    job: ui-face-primary
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 56 (R1 51)
+      value: 56.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 49 (R1 59)
+      value: 49.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.54
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3541
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 15.5, p95 23.0, off-palette 79.7% (top: #9977CC (58.6%), #9966CC
+        (5.8%))'
+      value: 15.5414
+    info:
+      metrics_raw:
+        L_p5: 49.2
+        L_p50: 55.1
+        L_p95: 82.7
+        C_p50: 53.9
+        C_p95: 56.5
+        C_p99: 57.1
+        detail: 0.76
+      metrics_locked:
+        L_p5: 49.3
+        L_p50: 55.0
+        L_p95: 82.0
+        C_p50: 54.0
+        C_p95: 56.2
+        C_p99: 56.7
+        detail: 0.54
+    fingerprint: b3c572ebf2c55291
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-bb7fae7b-fb88-4f4d-bbcc-d68c747eca78.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 2
+  source_file: /workspace/generated_images/exec-6233d09e-412a-48fb-ae7a-9ffb0afbc05b.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 3
+  source_file: /workspace/generated_images/exec-2de8914a-06bc-4a67-8799-24ca23ffa6fe.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 4
+  source_file: /workspace/generated_images/exec-ddf07f0d-9450-4478-8e71-9e0353e3c770.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan

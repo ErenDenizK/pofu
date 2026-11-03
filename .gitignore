@@ -48,6 +48,4 @@ __pycache__/
 # Raw AI generations awaiting review (see docs/design/art-bible.md)
 design/art/inbox/
 
-# Pofu Atlas thumbnails (build output of tools/content/build_atlas.py)
-design/atlas/thumbs/
 design/hub/dictation/vendor/

@@ -1,0 +1,136 @@
+batch: batch-12-minigame-art
+contact_sheet: design/art/takes/batch-12-minigame-art/game-bed-rim/contact.jpg
+jobs:
+  game-bed-rim:
+    pick: 2
+    note: 'auto-picked by QA; founder review pending. Both takes pass automated QA.
+      Manual 9-slice review with unchanged28pt caps at180pt content height excludes
+      take1: its border invades10.99% of the central tile. Take2 keeps the centre
+      visibly transparent (no alpha>16 in the central tile; max3 edge antialiasing),
+      with even peach-stone border and corners held in the caps at180/260pt widths
+      on cream/dark. Review uses alpha content-bounds projection only; master canvas/pixels
+      stay canonical and unchanged. Eligible take2 lock load0.8543; take1 excluded
+      regardless of lower load0.5303.'
+    takes:
+      t1:
+        qa: pass
+        summary: all pass
+      t2:
+        qa: pass
+        summary: all pass
+    approved:
+      take: 2
+      at: '2026-11-03T00:51:42+00:00'
+qa_reports:
+  1:
+    job: game-bed-rim
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 63 (R1 59)
+      value: 62.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.71
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5303
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.6, p95 1.2, off-palette 0.0%
+      value: 0.6496
+    info:
+      metrics_raw:
+        L_p5: 62.4
+        L_p50: 75.1
+        L_p95: 83.9
+        C_p50: 30.5
+        C_p95: 38.1
+        C_p99: 40.0
+        detail: 1.08
+      metrics_locked:
+        L_p5: 62.9
+        L_p50: 75.0
+        L_p95: 83.8
+        C_p50: 30.6
+        C_p95: 37.9
+        C_p99: 39.5
+        detail: 0.71
+    fingerprint: 86b4e0b2cf79ccf7
+  2:
+    job: game-bed-rim
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 37.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 62.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.79
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8543
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.6, p95 1.2, off-palette 0.0%
+      value: 0.6079
+    info:
+      metrics_raw:
+        L_p5: 61.8
+        L_p50: 75.3
+        L_p95: 84.0
+        C_p50: 30.1
+        C_p95: 37.5
+        C_p99: 40.3
+        detail: 1.19
+      metrics_locked:
+        L_p5: 62.5
+        L_p50: 75.3
+        L_p95: 83.9
+        C_p50: 30.1
+        C_p95: 37.2
+        C_p99: 39.7
+        detail: 0.79
+    fingerprint: 86b4e0b2cf79ccf7
+manual_review:
+  exclude:
+  - 1
+  note: 'Both takes pass automated QA. Manual 9-slice review with unchanged28pt caps
+    at180pt content height excludes take1: its border invades10.99% of the central
+    tile. Take2 keeps the centre visibly transparent (no alpha>16 in the central tile;
+    max3 edge antialiasing), with even peach-stone border and corners held in the
+    caps at180/260pt widths on cream/dark. Review uses alpha content-bounds projection
+    only; master canvas/pixels stay canonical and unchanged. Eligible take2 lock load0.8543;
+    take1 excluded regardless of lower load0.5303.'

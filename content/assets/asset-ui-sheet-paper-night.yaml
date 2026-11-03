@@ -2,11 +2,11 @@ id: asset-ui-sheet-paper-night
 type: asset
 title_tr: ui-sheet-paper-night
 title_en: sheet-paper-night (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Dye the paper a deep, soft indigo-blue, the stitches a pale warm cream, the paper lip a
-  slightly lighter indigo. Keep it matte and calm; the middle stays plain, flat and even.
+summary: Dye the paper a deep, soft indigo-blue, the stitches a pale warm cream, the
+  paper lip a slightly lighter indigo. Keep it matte and calm; the middle stays plain,
+  flat and even.
 links:
   variant_of:
   - asset-ui-sheet-paper
@@ -18,3 +18,7 @@ sources:
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
 kind: ui
 batch: batch-13-ui-rest
+notes:
+- 'Batch13overnight: Not generated: the embedded ui-sheet-paper pilot failed its allowed
+  retry, so the manifest skips the rest of batch13. Other batch timings remain as
+  specified.'

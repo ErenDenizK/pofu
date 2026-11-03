@@ -4,13 +4,13 @@ title_tr: game-bloom-front
 title_en: game-bloom-front (ui)
 status: in-production
 horizon: now
-summary: >-
-  A single sunflower head seen straight on, filling most of the canvas: a round, soft brown
-  center with a few simple darker seed-swirl marks, ringed by plump rounded petals of warm
-  sunflower yellow, with one small gap between two petals at the upper right. No stem, no
-  leaves.
+summary: 'A single sunflower head seen straight on, filling most of the canvas: a
+  round, soft brown center with a few simple darker seed-swirl marks, ringed by plump
+  rounded petals of warm sunflower yellow, with one small gap between two petals at
+  the upper right. No stem, no leaves.'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-game-bloom-front/ui-game-bloom-front.webp
   jobs:
   - batch-12-minigame-art:game-bloom-front
 sources:

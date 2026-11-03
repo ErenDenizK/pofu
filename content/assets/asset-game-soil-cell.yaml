@@ -4,13 +4,13 @@ title_tr: game-soil-cell
 title_en: game-soil-cell (ui)
 status: in-production
 horizon: now
-summary: >-
-  One square tile-sized cell of soft brown garden soil seen from straight above with a very
-  slight tilt, rounded corners, filling most of the canvas: a gently mounded surface of dark
-  warm brown, two tiny round crumbs on it, a slightly darker rim. Matte and calm; clearly
-  darker and duller than a glazed clay tile.
+summary: 'One square tile-sized cell of soft brown garden soil seen from straight
+  above with a very slight tilt, rounded corners, filling most of the canvas: a gently
+  mounded surface of dark warm brown, two tiny round crumbs on it, a slightly darker
+  rim. Matte and calm; clearly darker and duller than a glazed clay tile.'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-game-soil-cell/ui-game-soil-cell.png
   jobs:
   - batch-12-minigame-art:game-soil-cell
 sources:

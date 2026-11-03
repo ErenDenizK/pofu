@@ -161,7 +161,7 @@ class ManifestTests(unittest.TestCase):
         self.assertEqual(len(problems), 3)
 
     def test_the_committed_manifest_covers_every_shipped_source(self):
-        manifest = json.loads(hm.MANIFEST.read_text())
+        manifest = hm.load_manifest()
         shipped = hm.world_sources(hm.load_config())
         for name in shipped:
             self.assertIn(name, manifest["assets"])

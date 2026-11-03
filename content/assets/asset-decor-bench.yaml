@@ -22,3 +22,6 @@ notes:
 - 'Stopped: both takes fail the supplied decor-guide fit. Automated prop QA passed
   but does not validate this guide; no promotion or retry. Widths740/694px versus360px
   guide, tops419/397 versus500. See take-folder guide-review.jpg.'
+- 'Overnight continuation: four takes exhaust the allowed retry; all visible widths
+  exceed the strict360px guide footprint; see guide-review.jpg and separate manual
+  QA in review.yaml.'

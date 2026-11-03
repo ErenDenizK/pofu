@@ -1,0 +1,52 @@
+{
+ "after": {
+  "C_mean": 27.373,
+  "C_p50": 26.684,
+  "C_p95": 49.556,
+  "L_mean": 67.893,
+  "L_p2": 44.921,
+  "L_p98": 95.026,
+  "detail": 0.408,
+  "edge": 1.415,
+  "tint_a": 1.254,
+  "tint_b": 7.321,
+  "warmth_b": 12.736
+ },
+ "before": {
+  "C_mean": 36.497,
+  "C_p50": 35.579,
+  "C_p95": 66.075,
+  "L_mean": 67.893,
+  "L_p2": 44.921,
+  "L_p98": 95.026,
+  "detail": 0.412,
+  "edge": 1.415,
+  "tint_a": 1.327,
+  "tint_b": 8.265,
+  "warmth_b": 16.981
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 0.75,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "world",
+ "matched_to": "world",
+ "outliers_after": [],
+ "outliers_before": [
+  "C_p95"
+ ],
+ "ppu": 2.25,
+ "reference": false,
+ "score_after": 91.4,
+ "score_before": 73.2,
+ "shipped": true,
+ "source": "design/prototypes/interactions/assets/isle-library.webp",
+ "source_sha": "f59b22e2987fce29"
+}

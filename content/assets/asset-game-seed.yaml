@@ -4,11 +4,12 @@ title_tr: game-seed
 title_en: game-seed (icon)
 status: in-production
 horizon: now
-summary: >-
-  A single plump sunflower seed, a soft warm-brown shell with two broad cream stripes, its
-  tip pointing up and to the right, a little rounder and chunkier than a real seed.
+summary: A single plump sunflower seed, a soft warm-brown shell with two broad cream
+  stripes, its tip pointing up and to the right, a little rounder and chunkier than
+  a real seed.
 art:
-  images: []
+  images:
+  - design/art/ui/icon-game-seed/icon-game-seed.png
   jobs:
   - batch-12-minigame-art:game-seed
 sources:

@@ -562,7 +562,7 @@ def check_harmony(locked: np.ndarray, kind: str, lim: dict) -> Check | None:
         import harmony
     except ImportError:
         return None
-    if not harmony.MANIFEST.exists():
+    if not harmony.MANIFEST.is_dir():
         return None
     cfg = harmony.load_config()
     ppu = cfg["ppu_by_kind"].get(kind, cfg["ppu_by_kind"]["world"]) * locked.shape[1] / 1024

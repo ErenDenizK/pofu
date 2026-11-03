@@ -2,12 +2,11 @@ id: asset-icon-skip
 type: asset
 title_tr: icon-skip
 title_en: skip (icon)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  The icon for a skipped reach: one plump sunflower bloom in a small terracotta pot, the bloom
-  round with a brown center and a few chunky yellow petals, one short chunky stem and two
-  leaves hidden behind the pot rim.
+summary: 'The icon for a skipped reach: one plump sunflower bloom in a small terracotta
+  pot, the bloom round with a brown center and a few chunky yellow petals, one short
+  chunky stem and two leaves hidden behind the pot rim.'
 art:
   images: []
   jobs:
@@ -16,3 +15,7 @@ sources:
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
 kind: icon
 batch: batch-13-ui-rest
+notes:
+- 'Batch13overnight: Not generated: the embedded ui-sheet-paper pilot failed its allowed
+  retry, so the manifest skips the rest of batch13. Other batch timings remain as
+  specified.'

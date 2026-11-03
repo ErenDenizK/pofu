@@ -1,0 +1,56 @@
+{
+ "after": {
+  "C_mean": 19.828,
+  "C_p50": 12.746,
+  "C_p95": 49.971,
+  "L_mean": 84.759,
+  "L_p2": 16.186,
+  "L_p98": 97.533,
+  "detail": 8.037,
+  "edge": 0.124,
+  "tint_a": 3.48,
+  "tint_b": 6.016,
+  "warmth_b": 16.694
+ },
+ "before": {
+  "C_mean": 19.828,
+  "C_p50": 12.746,
+  "C_p95": 49.971,
+  "L_mean": 84.759,
+  "L_p2": 16.186,
+  "L_p98": 97.533,
+  "detail": 8.037,
+  "edge": 0.124,
+  "tint_a": 3.48,
+  "tint_b": 6.016,
+  "warmth_b": 16.694
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": true,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "detail",
+  "tint_b"
+ ],
+ "outliers_before": [
+  "detail",
+  "tint_b"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 85.3,
+ "score_before": 85.3,
+ "shipped": false,
+ "source": "design/art/masters/pofu-eyes-matte/pofu-eyes-matte.webp",
+ "source_sha": "94e90198513fe7f9"
+}
