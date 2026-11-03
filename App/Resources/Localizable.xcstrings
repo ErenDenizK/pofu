@@ -2951,6 +2951,16 @@
           }
         }
       }
+    },
+    "A minute with Pofu" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pofu'yla bir dakika"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
