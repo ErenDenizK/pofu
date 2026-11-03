@@ -1,0 +1,291 @@
+# Batch 19: design loop 2 concept round (12 images), EXPLORATION, never promoted
+# (docs/design/art-production-plan.md; spec: docs/product/design-loop/loop-2.md
+# section 5; island rules: docs/product/archipelago-system.md section 17).
+#
+# Loop 2's finding: landforms are now unique, but every take shares one sky,
+# one cloud sea, one pastel daylight and one haze. Two causes are in the
+# pipeline, not the painter: the prop-style-v2 block asks for "the same
+# light, high-key values and milky pastel colors" and batch 17-18 attached
+# the cloud-sea plate as "paint clouds like this". So this round uses the
+# new block island-light-v1 (same finish, the place's own light) and does
+# NOT attach the cloud sea; every brief states its cluster's atmosphere
+# (hour, sky, key light, shadow colour, haze, floor, weather, value key) from
+# content/islands/profiles.yaml. Shape refs from batches 17-18 are SHAPE ONLY.
+#
+# EXPLORATION RULES (AGENTS.md): do NOT run `promote`; commit the takes (WebP
+# q90), the contact sheet and review.yaml under design/art/takes/<batch>/<id>/
+# and nothing else. No painted text anywhere. Review wonder takes with the
+# rubric of archipelago-system.md 1A.3, the 60 pt black-silhouette test and
+# the light test of loop-2.md section 4 (cover the island: can you still name
+# the place by its light?).
+#
+# PILOT (run first, in this order): cl2-atmosphere-board, cl2-caglayan-noon,
+# cl2-koke-sleeper. Continue to THE REST only if at least 2 of the 3 pass
+# review; otherwise skip every job below the "THE REST" line and finish the
+# session. A failed job gets one retry.
+#
+# Track: `loop2` (all 12 jobs).
+
+batch: batch-19-loop-2-concepts
+title: Design loop 2 concept round (12 exploration images - cluster atmospheres, Çağlayan at noon, Koke the sleeper, Mehtap without a face, Leylek's nest, backdrop pockets)
+status: open
+refs:
+  caglayan-pools-t1: design/art/takes/batch-18-loop-1-concepts/cl1-caglayan-pools/plate__cl1-caglayan-pools--t1.webp
+  koke-b-t1: design/art/takes/batch-17-islands-v2/x2-koke-b/plate__x2-koke-b--t1.webp
+  mehtap-b-t1: design/art/takes/batch-17-islands-v2/x2-mehtap-b/plate__x2-mehtap-b--t1.webp
+  leylek-a-t1: design/art/takes/batch-17-islands-v2/x2-leylek-a/plate__x2-leylek-a--t1.webp
+  gezgin-crossing-t1: design/art/takes/batch-18-loop-1-concepts/cl1-gezgin-night-crossing/plate__cl1-gezgin-night-crossing--t1.webp
+  canlar-a-t1: design/art/takes/batch-17-islands-v2/x2-canlar-a/plate__x2-canlar-a--t1.webp
+  comlek-b-t1: design/art/takes/batch-17-islands-v2/x2-comlek-b/plate__x2-comlek-b--t1.webp
+  emanet-a-t1: design/art/takes/batch-17-islands-v2/x2-emanet-a/plate__x2-emanet-a--t1.webp
+  fanus-a-t1: design/art/takes/batch-17-islands-v2/x2-fanus-a/plate__x2-fanus-a--t1.webp
+  backdrop-night-t1: design/art/takes/batch-18-loop-1-concepts/cl1-backdrop-night/plate__cl1-backdrop-night--t1.webp
+defaults:
+  variants: 2
+jobs:
+- id: island-main-s
+  kind: world
+  name: island-main-s
+  external: batch-01-slice
+- id: pofu
+  kind: char
+  name: pofu-r1
+  external: r1
+  master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+- id: mochi-v2
+  kind: char
+  name: mochi-v2
+  external: batch-03-home-island
+# ------------------------------------------------------------- PILOT
+
+- id: cl2-atmosphere-board
+  kind: plate
+  name: cl2-atmosphere-board
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  notes: 'Exploration. Nine cluster atmospheres read as nine places at thumbnail size (the light delta, not only the palette). Review: each cell nameable by its light alone with the island covered; no two cells share hour, shadow colour and haze; home''s cell is the only pastel one.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'STYLE ONLY: the soft painterly finish and the rounded chunky shapes. Do NOT copy its shape, its pastel daylight, its cream haze or its palette: this place has its own light. No lawn oval, no soil bowl, no hanging roots, no round door.'
+  prompt:
+  - text: |
+      A concept painting for a cozy mobile game: A board of nine equal square cells in a 3x3 grid with thin dark gutters, each cell one small distant floating island under its own sky, painted at far-view detail, no characters.
+      Row 1: (1) home: a round grassy island with a sunflower, soft warm pastel morning, warm brown shadows, cream haze, white cloud sea. (2) WATER: a white travertine column of round pools with a long waterfall, hard white NOON sun straight overhead, deep cerulean sky, TURQUOISE shadows, a bright white spray halo around it and nothing visible below but spray, crisp high contrast. (3) JOURNEY: a cloud-whale with a sea stack behind, low orange sun slit under a periwinkle fog bank, rim light from behind, periwinkle shadows, dark rolling cloud swell below, a passing shower.
+      Row 2: (4) COLD: a snowy ice floe with spruces and a hut, aurora night, cool moonlight and one warm window, deep blue shadows, diamond-dust sparkle, dark floes below. (5) GLASS: a glass bell jar, low gold winter afternoon light refracting through the glass into caustics, violet shadows, frost breath haze, rime crust on the cloud tops. (6) CRAFT: a giant red-clay pot lying on its side, dusk lit from BELOW by a kiln glow at its mouth, plum shadows, ochre smoke haze, clouds stained dusty red, sparks.
+      Row 3: (7) MOON: a pale moonstone crescent, blue hour, deep indigo starfield, silver light from above, ink-blue shadows, crystal-clear air, the cloud sea flat and glassy like a mirror. (8) EAR: a slim spire hung with bells, bright morning after rain, washed blue sky with racing cloud shadows, cool grey-blue shadows, no haze, the cloud sea torn open by wind. (9) MEMORY: an upturned umbrella over shelves, drizzly dusk, many small amber lamps and no sun, sepia-grey shadows, rain mist, rain-darkened clouds.
+      UNIQUE PLACES: every cell has its own hour, key light, shadow colour, haze and floor; the board is a light test, not a style test. Simple silhouettes, readable at thumbnail size.
+  - block: island-light-v1
+  - text: 'AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, a round door, the home island''s pastel daylight, a cream haze over everything, one even light, text, a border, UI, phones or screens, neon, horror or danger'
+- id: cl2-caglayan-noon
+  kind: plate
+  name: cl2-caglayan-noon
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  notes: 'Exploration. The bolder water-cluster delta (hard Aegean noon, turquoise shadows, a spray halo) and the pools as windows that carry their own island''s hour. Review: at thumbnail it reads ''noon, wet, white and turquoise'', never pastel; at least one pool shows NIGHT inside a NOON frame; not green; 60 pt silhouette.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'STYLE ONLY: the soft painterly finish and the rounded chunky shapes. Do NOT copy its shape, its pastel daylight, its cream haze or its palette: this place has its own light. No lawn oval, no soil bowl, no hanging roots, no round door.'
+  - ref: caglayan-pools-t1
+    role: 'SHAPE ONLY: keep this travertine column of spiralling pools silhouette and landform; repaint its light, sky, shadows and colours completely as the brief says.'
+  - ref: R1
+    role: 'The hamster, Pofu: match his art style, fluff and scale exactly. Light him with THIS scene''s light.'
+  prompt:
+  - text: |
+      A concept painting for a cozy mobile game: Çağlayan at stage 5: a tall white travertine column of round pools spiralling down in rings, the fall pouring off the lowest rim into a bright white wall of spray far below. Hard white NOON sun straight overhead; deep cerulean sky, clearest air; every shadow is TURQUOISE, never brown. The pools are windows, each holding another place in ITS own hour: one pool is a small deep piece of aurora night with stars, one holds a periwinkle dusk with a whale's back, one a snowy floe in falling snow; their light spills a little onto the white rims. An otter with a tea glass on one rim and a small hamster beside her, tiny against the column, their noon shadows short and turquoise.
+      UNIQUE PLACE: silhouette: a column of pools, no lawn top. Palette: chalk white, deep mineral turquoise, cerulean; sunflower-gold glints only on the tea glass and the wet rims. Floor: no cloud sea visible, only bright spray and a rainbow band in it. Value: crisp, high contrast, chalk white against deep teal.
+  - block: island-light-v1
+  - text: 'AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, a round door, the home island''s pastel daylight, a cream haze over everything, one even light, text, a border, UI, phones or screens, neon, horror or danger'
+- id: cl2-koke-sleeper
+  kind: plate
+  name: cl2-koke-sleeper
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  notes: 'Exploration. Koke as the sleeping moss creature, a satellite that keeps the water cluster''s light but has its own weather (drizzle from Çağlayan''s spray). Review: reads first as a mossy boulder with a bonsai and raked gravel, and only on a second look as a sleeper (a crease of a closed eye, a slow breath); not a mascot face; drizzle and teal shadows, not pastel day.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'STYLE ONLY: the soft painterly finish and the rounded chunky shapes. Do NOT copy its shape, its pastel daylight, its cream haze or its palette: this place has its own light. No lawn oval, no soil bowl, no hanging roots, no round door.'
+  - ref: koke-b-t1
+    role: 'SHAPE ONLY: keep this sleeping moss mound silhouette and landform; repaint its light, sky, shadows and colours completely as the brief says.'
+  - ref: R1
+    role: 'The hamster, Pofu: match his art style, fluff and scale exactly. Light him with THIS scene''s light.'
+  prompt:
+  - text: |
+      A concept painting for a cozy mobile game: Koke: a small round mound of deep wet moss on a white travertine boulder, curled like a sleeping animal so that only a long crease (a closed eye) and a soft rounded back give it away; on its back a bonsai pine, a patch of raked gravel with one closed raked line around three stones, one paper lantern glowing warm. Soft constant drizzle falling from a white spray cloud just above (the big waterfall island's spray, out of frame), rain rings in a tiny gravel pond. A small dormouse with a rake, asleep standing up; a tiny hamster tiptoeing. Grey-white noon light through drizzle, shadows TEAL, the lantern the only warm light.
+      UNIQUE PLACE: silhouette: a curled sleeping mound with a bonsai, not a tree island and not a face. Palette: wet moss teal-green kept dark and cool, travertine white, one warm paper-lantern glow. Weather: drizzle. No torii, no sakura, no Mount Fuji.
+  - block: island-light-v1
+  - text: 'AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, a round door, the home island''s pastel daylight, a cream haze over everything, one even light, text, a border, UI, phones or screens, neon, horror or danger'
+# ------------------------------------------------------------- THE REST
+
+- id: cl2-caglayan-deep-pool
+  kind: plate
+  name: cl2-caglayan-deep-pool
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  notes: 'Exploration. The rung-1 moment of Çağlayan''s bloom: in the deepest pool a far lit window goes dark; Pofu hears it, Mochi sees water. Review: the dark window is the focus without text; Pofu''s ears flat, Mochi watching him not the pool; still noon and turquoise around a pool of night.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'STYLE ONLY: the soft painterly finish and the rounded chunky shapes. Do NOT copy its shape, its pastel daylight, its cream haze or its palette: this place has its own light. No lawn oval, no soil bowl, no hanging roots, no round door.'
+  - ref: R1
+    role: 'The hamster, Pofu: match his art style, fluff and scale exactly. Light him with THIS scene''s light.'
+  - ref: approved:mochi-v2
+    role: 'Mochi, the lop bunny: match her size, eyes and finish; light her with this scene''s light.'
+  prompt:
+  - text: |
+      A concept painting for a cozy mobile game: Close on the lowest, deepest pool of a white travertine column at noon: the water inside the pool is night, a deep blue far city of tiny warm windows seen from very far, and exactly one window, slightly larger, has just gone dark with a faint ring of ripple around it. On the rim a small hamster leans over the water, ears flattened back; beside him a lop bunny holding a tea glass looks at HIM, not at the pool. Hard noon sun, turquoise shadows, spray glitter.
+      UNIQUE PLACE: a travertine rim and one round pool; the pool holds night inside a noon frame. Never a screen or a phone: a window in a far night, softly painted.
+  - block: island-light-v1
+  - text: 'AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, a round door, the home island''s pastel daylight, a cream haze over everything, one even light, text, a border, UI, phones or screens, neon, horror or danger'
+- id: cl2-mehtap-crescent
+  kind: plate
+  name: cl2-mehtap-crescent
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  notes: 'Exploration. Mehtap as a crescent landform with NO face, in the moon cluster''s light (blue hour, silver from above, a mirror-flat cloud sea). Review: no face, no eyes, no smile anywhere on the moon; the crescent silhouette reads at 60 pt; the cloud sea mirrors it; deep indigo, not pastel lilac.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'STYLE ONLY: the soft painterly finish and the rounded chunky shapes. Do NOT copy its shape, its pastel daylight, its cream haze or its palette: this place has its own light. No lawn oval, no soil bowl, no hanging roots, no round door.'
+  - ref: mehtap-b-t1
+    role: 'SHAPE ONLY: keep this crescent silhouette and landform; repaint its light, sky, shadows and colours completely as the brief says.'
+  prompt:
+  - text: |
+      A concept painting for a cozy mobile game: Mehtap: a pale moonstone crescent resting on its back like a cradle, smooth and faceless, its inner curve holding a small telescope terrace, a hammock and one pale-gold lit window; an owl sits on the upper horn. Blue hour turning to night: deep indigo sky full of stars, with a few gaps where stars are missing, dark spots in the starfield. Silver moonlight from above, ink-blue shadows, crystal-clear air. Below, the cloud sea lies flat and glassy like a still sea and mirrors the crescent and the stars.
+      UNIQUE PLACE: silhouette: a faceless crescent. Palette: moonstone white, silver, deep indigo, one pale-gold window. Floor: a mirror-flat cloud sea. Absolutely no face on the moon.
+  - block: island-light-v1
+  - text: 'AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, a round door, the home island''s pastel daylight, a cream haze over everything, one even light, text, a border, UI, phones or screens, neon, horror or danger'
+- id: cl2-leylek-nest
+  kind: plate
+  name: cl2-leylek-nest
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  notes: 'Exploration. Leylek as the nest: a woven nest island carried by storks, with a backlit hot windy dusk of its own. Review: the nest silhouette (not a tower) reads at 60 pt; backlight (contre-jour) with warm dust haze makes it unlike every other island; storks hold ribbons, nothing dangles messily.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'STYLE ONLY: the soft painterly finish and the rounded chunky shapes. Do NOT copy its shape, its pastel daylight, its cream haze or its palette: this place has its own light. No lawn oval, no soil bowl, no hanging roots, no round door.'
+  - ref: leylek-a-t1
+    role: 'SHAPE ONLY: keep this woven nest carried by ribbons silhouette and landform; repaint its light, sky, shadows and colours completely as the brief says.'
+  prompt:
+  - text: |
+      A concept painting for a cozy mobile game: Leylek: a huge round woven nest, big enough for a small cottage with one lit window, carried through the sky by a V of white storks holding coloured ribbons in their beaks. The sun is low and BEHIND the nest: the whole scene is backlit, rims of gold on every stork and twig, the faces of things in soft warm shadow, a hot dry wind blowing long wisps of amber dust haze. Far below, the clouds are stretched into long streaks by the wind. One stork with a satchel looks back.
+      UNIQUE PLACE: silhouette: a woven nest in flight, no ground, no tower. Palette: twig umber, stork white, ribbon red, amber dust, low gold. Light: contre-jour, warm rim light, long windblown streaks.
+  - block: island-light-v1
+  - text: 'AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, a round door, the home island''s pastel daylight, a cream haze over everything, one even light, text, a border, UI, phones or screens, neon, horror or danger'
+- id: cl2-gezgin-dusk
+  kind: plate
+  name: cl2-gezgin-dusk
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  notes: 'Exploration. Gezgin''s night crossing pushed to the journey cluster''s real light (a low orange sun under a fog bank, periwinkle shadows, a dark rolling swell), beyond batch 18''s pastel lilac. Review: a real dusk, not lilac pastel; the portholes and barnacle windows are the warm light; the fog banks frame it like a strait; scale: tiny duo, huge whale.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'STYLE ONLY: the soft painterly finish and the rounded chunky shapes. Do NOT copy its shape, its pastel daylight, its cream haze or its palette: this place has its own light. No lawn oval, no soil bowl, no hanging roots, no round door.'
+  - ref: gezgin-crossing-t1
+    role: 'SHAPE ONLY: keep this cloud-whale with a barnacle village silhouette and landform; repaint its light, sky, shadows and colours completely as the brief says.'
+  - ref: R1
+    role: 'The hamster, Pofu: match his art style, fluff and scale exactly. Light him with THIS scene''s light.'
+  - ref: approved:mochi-v2
+    role: 'Mochi, the lop bunny: match her size, eyes and finish; light her with this scene''s light.'
+  prompt:
+  - text: |
+      A concept painting for a cozy mobile game: Gezgin crossing at dusk: a huge gentle cloud-whale, eyes closed, swimming through a strait between two tall walls of periwinkle fog. A slit of low orange sun under the far fog bank lights her from behind, a hot rim along her back; everything facing us is in cool periwinkle shadow. Along her flank glowing freckles like a ferry's portholes; on her back a little village of round barnacle houses with warm windows. Her spout falls as a local shower with a pale moonbow. Below, the cloud sea rolls in dark slow swells like an evening sea. A tiny hamster and a lop bunny sit on her back with tea glasses.
+      UNIQUE PLACE: silhouette: the whale. Palette: periwinkle, slate violet, porthole amber, one orange sun slit. Floor: dark rolling cloud swell. No lawn, no cottage template.
+  - block: island-light-v1
+  - text: 'AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, a round door, the home island''s pastel daylight, a cream haze over everything, one even light, text, a border, UI, phones or screens, neon, horror or danger'
+- id: cl2-canlar-washed
+  kind: plate
+  name: cl2-canlar-washed
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  notes: 'Exploration. Çanlar in the ear cluster''s light: a bright windy morning after rain, racing cloud shadows, a cloud sea torn open by wind. Review: the wind reads (bunting, torn clouds, moving shadows); crisp washed colours, not pastel; the bell spire reads at 60 pt; no church iconography.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'STYLE ONLY: the soft painterly finish and the rounded chunky shapes. Do NOT copy its shape, its pastel daylight, its cream haze or its palette: this place has its own light. No lawn oval, no soil bowl, no hanging roots, no round door.'
+  - ref: canlar-a-t1
+    role: 'SHAPE ONLY: keep this slim bell spire silhouette and landform; repaint its light, sky, shadows and colours completely as the brief says.'
+  prompt:
+  - text: |
+      A concept painting for a cozy mobile game: Çanlar: a slim spire of pale stone hung with bronze bells of many sizes and strings of red bunting, the morning right after rain. A strong wind: bunting snapping sideways, the bells swinging, big racing cloud shadows sliding across the spire, the cloud sea below torn open into gaps that show deep blue sky underneath. Washed, crisp light; wet stone glints; cool grey-blue shadows; one warm bronze glint. A tiny mouse with her paws on the biggest bell at the top.
+      UNIQUE PLACE: silhouette: a thin spire of bells. Palette: washed sky blue, pale stone, bronze, bunting red. No haze. No church, no cross, no steeple roof.
+  - block: island-light-v1
+  - text: 'AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, a round door, the home island''s pastel daylight, a cream haze over everything, one even light, text, a border, UI, phones or screens, neon, horror or danger'
+- id: cl2-comlek-kiln
+  kind: plate
+  name: cl2-comlek-kiln
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  notes: 'Exploration. Çömlek as the giant red-clay pot (Avanos, not İznik blue), lit from below by its kiln at dusk: the craft cluster''s underlight. Review: the key light comes from the kiln, below and inside; clouds stained red; unglazed terracotta, no blue tile pattern; the pot silhouette reads at 60 pt.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'STYLE ONLY: the soft painterly finish and the rounded chunky shapes. Do NOT copy its shape, its pastel daylight, its cream haze or its palette: this place has its own light. No lawn oval, no soil bowl, no hanging roots, no round door.'
+  - ref: comlek-b-t1
+    role: 'SHAPE ONLY: keep this giant pot lying on its side silhouette and landform; repaint its light, sky, shadows and colours completely as the brief says.'
+  - ref: R1
+    role: 'The hamster, Pofu: match his art style, fluff and scale exactly. Light him with THIS scene''s light.'
+  prompt:
+  - text: |
+      A concept painting for a cozy mobile game: Çömlek: a giant unglazed red-clay pot lying on its side as an island, its mouth a workshop; inside, a kiln glows orange and is the main light of the scene, lighting faces and the underside of the smoke from below. Dusk: plum shadows, warm ochre smoke drifting up, sparks rising, the cloud sea below stained a dusty red by clay dust. A mole at a potter's wheel at the mouth, a tiny hamster carrying a lump of clay. No hot air balloons.
+      UNIQUE PLACE: silhouette: a giant pot. Palette: red-river terracotta, kiln orange, plum, ochre. Light: underlight from the kiln. No blue İznik patterns, no balloons, no fairy chimneys.
+  - block: island-light-v1
+  - text: 'AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, a round door, the home island''s pastel daylight, a cream haze over everything, one even light, text, a border, UI, phones or screens, neon, horror or danger'
+- id: cl2-emanet-drizzle
+  kind: plate
+  name: cl2-emanet-drizzle
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  notes: 'Exploration. Emanet in the memory cluster''s light (drizzly dusk, many small lamps, no sun), with a calmer, readable silhouette than batch 17''s suitcase pile. Review: the upturned umbrella silhouette reads at 60 pt; lamps are the only light; sepia-grey rain mood stays cozy; fewer, larger objects.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'STYLE ONLY: the soft painterly finish and the rounded chunky shapes. Do NOT copy its shape, its pastel daylight, its cream haze or its palette: this place has its own light. No lawn oval, no soil bowl, no hanging roots, no round door.'
+  - ref: emanet-a-t1
+    role: 'SHAPE ONLY: keep this umbrella over shelves silhouette and landform; repaint its light, sky, shadows and colours completely as the brief says.'
+  prompt:
+  - text: |
+      A concept painting for a cozy mobile game: Emanet: a big upturned umbrella on a stack of three old suitcases, its rim hung with small brass lamps, under it shelves of kept things (a hat, a teapot, a kite, a little night-light). Drizzly dusk with no sun: rain falling in fine lines, many small amber lamplights reflected in wet surfaces, sepia-grey shadows, a soft rain mist, the clouds below darkened by rain. A magpie in a postman's cap sorting a parcel.
+      UNIQUE PLACE: silhouette: an umbrella over shelves on suitcases. Palette: oilcloth teal-grey, paper, brass, lamp amber, sepia. Fewer, larger objects; nothing piled.
+  - block: island-light-v1
+  - text: 'AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, a round door, the home island''s pastel daylight, a cream haze over everything, one even light, text, a border, UI, phones or screens, neon, horror or danger'
+- id: cl2-fanus-frost
+  kind: plate
+  name: cl2-fanus-frost
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  notes: 'Exploration. Fanus as two skies in one frame: frost outside, a midsummer afternoon inside, low gold light refracting through the glass. Review: outside and inside read as two different hours and temperatures; caustics from the glass; violet shadows outside; the bell jar reads at 60 pt.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'STYLE ONLY: the soft painterly finish and the rounded chunky shapes. Do NOT copy its shape, its pastel daylight, its cream haze or its palette: this place has its own light. No lawn oval, no soil bowl, no hanging roots, no round door.'
+  - ref: fanus-a-t1
+    role: 'SHAPE ONLY: keep this glass bell jar silhouette and landform; repaint its light, sky, shadows and colours completely as the brief says.'
+  prompt:
+  - text: |
+      A concept painting for a cozy mobile game: Fanus: a glass-blower's bell jar as an island, frost feathers on the outside of the glass. Outside: a pale gold winter afternoon, low sun, violet shadows, frost breath in the air, rime crust on the cloud tops. Inside the glass: a dry, warm, golden midsummer meadow with sunflowers and butterflies, as if it were another season. The low sun refracts through the glass and throws bright caustic patterns on the frost. A small frog peeks through a wiped clear pane.
+      UNIQUE PLACE: silhouette: a bell jar. Palette: frost white, violet, pale gold outside; warm meadow gold inside. Two temperatures in one frame.
+  - block: island-light-v1
+  - text: 'AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, a round door, the home island''s pastel daylight, a cream haze over everything, one even light, text, a border, UI, phones or screens, neon, horror or danger'
+- id: cl2-backdrop-pockets
+  kind: plate
+  name: cl2-backdrop-pockets
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  notes: 'Exploration. The archipelago backdrop where every far island carries a pocket of its own atmosphere into home''s sky. Review: home keeps its own hour; each far island has its own small weather and light (spray halo, snow, aurora, kiln smoke, fog bank) and they read as different places; nothing crowds home; depth in three steps.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'THIS is the home island: keep its exact shape, lawn, sunflower, çay ocağı, pond and round door; it is the one place that keeps them.'
+  - ref: backdrop-night-t1
+    role: 'Slot layout and depth of the earlier backdrop: keep the slots, change the atmospheres.'
+  prompt:
+  - text: |
+      A concept painting for a cozy mobile game: The archipelago at early evening, seen from home. The home island large in front (exact shape of the attached home island), in its own soft early-evening light. Behind it, receding in three depth steps, every far island sits in a small pocket of its OWN sky, like a bubble of weather around it: left-low the travertine column in a bright pocket of white noon spray with a rainbow; a sleeping moss mound beside it in a little drizzle; far right a snowy floe inside a pocket of night with an aurora and falling snow; centre a cloud-whale between two periwinkle fog banks with an orange sun slit; left side a giant red-clay pot glowing from its kiln with ochre smoke; high above, a faceless moonstone crescent in a pocket of indigo stars.
+      Each pocket fades softly into home's sky at its edge; no hard bubbles, no glass domes. Home's sky stays home's.
+  - block: island-light-v1
+  - text: 'AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, a round door, the home island''s pastel daylight, a cream haze over everything, one even light, text, a border, UI, phones or screens, neon, horror or danger'
