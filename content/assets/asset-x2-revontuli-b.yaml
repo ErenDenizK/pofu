@@ -1,0 +1,21 @@
+id: asset-x2-revontuli-b
+type: asset
+title_tr: x2-revontuli-b
+title_en: x2-revontuli-b (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: a floating frozen lake shaped like a teardrop
+  of ice, a ring of snow around it, a wooden sauna with a lantern at its edge; above, the
+  aurora sweeps from a snow drift in the shape of a fox's tail. Polar twilight, ice blue and
+  violet. UNIQUE PLACE (this island is not the attached home island): silhouette and landform:
+  a snow-capped frozen lake in a ring of ice, like a frozen d…
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-revontuli-b
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

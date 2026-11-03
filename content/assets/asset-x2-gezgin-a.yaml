@@ -1,0 +1,21 @@
+id: asset-x2-gezgin-a
+type: asset
+title_tr: x2-gezgin-a
+title_en: x2-gezgin-a (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Gezgin, an enormous sleeping cloud-whale in grey-blue
+  and cream swimming slowly through a moonlit sea of clouds, only part of her body in frame;
+  on her back a patch of dandelions and a tiny cottage with one warm window; her blowhole
+  puffs a small cloud with a soft moonbow. Calm, huge, gentle. UNIQUE PLACE (this island is
+  not the attached home island): silhouette and landform…
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-gezgin-a
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

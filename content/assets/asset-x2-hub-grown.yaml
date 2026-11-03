@@ -1,0 +1,24 @@
+id: asset-x2-hub-grown
+type: asset
+title_tr: x2-hub-grown
+title_en: x2-hub-grown (world)
+status: in-production
+horizon: now
+summary: >-
+  The same island a year later, grown: a wooden harbor pier reaching from its right edge into
+  the clouds with a little ferry docked and a kitten's simit cart; a sauna hut at the pier's
+  end with a steam ribbon; a small bell set on the çay ocağı; a bamboo water clacker at the
+  pond; a stork nest on the windmill cap; a glass greenhouse by the garden; a small brass
+  telescope on the lawn; and an enormous gentle cloud-whale m…
+links:
+  variant_of:
+  - asset-island-main-s
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-hub-grown
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: world
+batch: batch-17-islands-v2
+size: 1536x1024

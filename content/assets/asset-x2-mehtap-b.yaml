@@ -1,0 +1,21 @@
+id: asset-x2-mehtap-b
+type: asset
+title_tr: x2-mehtap-b
+title_en: x2-mehtap-b (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: a crescent moon hanging like a cradle from a
+  long chain of tiny stars above the clouds, a telescope, a hammock, a lantern and an open
+  star book on it; faint constellations joined by thin gold lines. Deep night blue, silver,
+  lamp gold. UNIQUE PLACE (this island is not the attached home island): silhouette and landform:
+  a crescent moon hanging like a cradle from a star-chain. …
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-mehtap-b
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

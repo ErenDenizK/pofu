@@ -1,0 +1,21 @@
+id: asset-x2-fanus-b
+type: asset
+title_tr: x2-fanus-b
+title_en: x2-fanus-b (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: a round glass greenhouse dome on a brass base
+  hanging on a long chain from above the clouds, its panes fogged with condensation, a few
+  wiped clear to show orchids inside; a small brass door; sunbeams through the clouds. UNIQUE
+  PLACE (this island is not the attached home island): silhouette and landform: a glass greenhouse
+  dome on a brass base, hanging from a chain into the c…
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-fanus-b
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

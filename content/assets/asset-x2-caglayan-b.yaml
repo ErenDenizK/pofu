@@ -1,0 +1,21 @@
+id: asset-x2-caglayan-b
+type: asset
+title_tr: x2-caglayan-b
+title_en: x2-caglayan-b (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Çağlayan, a tall floating column of white travertine
+  shaped like a frozen fountain, turquoise pools spilling over in rings, and a wide curtain
+  of water wrapping half the column and falling into a sea of clouds; behind the curtain a
+  tiny stone hut glows. Bright soft mist, the sun behind the water. UNIQUE PLACE (this island
+  is not the attached home island): silhouette and land…
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-caglayan-b
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

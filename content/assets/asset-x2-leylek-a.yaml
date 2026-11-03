@@ -1,0 +1,21 @@
+id: asset-x2-leylek-a
+type: asset
+title_tr: x2-leylek-a
+title_en: x2-leylek-a (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Leylek, a giant woven nest of reeds and twigs
+  big enough for a cottage, with a little door, a chimney pot and a lantern, carried across
+  a warm windy dusk sky by a V of white storks holding ribbons in their beaks; the nest never
+  touches the clouds below. Straw gold, white, black, sunset coral, light haze. UNIQUE PLACE
+  (this island is not the attached home island): silhouette …
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-leylek-a
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

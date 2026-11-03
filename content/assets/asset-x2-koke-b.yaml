@@ -1,0 +1,21 @@
+id: asset-x2-koke-b
+type: asset
+title_tr: x2-koke-b
+title_en: x2-koke-b (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: a single huge mossy stone floating in misty rain,
+  shaped like a curled sleeping animal, a raked gravel garden and a lit stone lantern on its
+  back, a thin stream of rain water running off one edge. Dusk, amber lantern glow. UNIQUE
+  PLACE (this island is not the attached home island): silhouette and landform: one huge moss-covered
+  stone shaped like a sleeping animal. Palette: m…
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-koke-b
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

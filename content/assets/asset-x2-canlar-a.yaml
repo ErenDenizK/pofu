@@ -1,0 +1,21 @@
+id: asset-x2-canlar-a
+type: asset
+title_tr: x2-canlar-a
+title_en: x2-canlar-a (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Çanlar, a tall slender floating stone spire,
+  many times taller than it is wide, hung with bronze wind bells of many sizes on wooden arms,
+  poppies in the cracks, bunting streaming in a bright wind, a mouse-sized door and rope ladder.
+  UNIQUE PLACE (this island is not the attached home island): silhouette and landform: a tall
+  thin stone spire, many times taller than wide. Palet…
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-canlar-a
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

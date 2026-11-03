@@ -1,0 +1,21 @@
+id: asset-x2-caglayan-a
+type: asset
+title_tr: x2-caglayan-a
+title_en: x2-caglayan-a (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Çağlayan, a floating island made of three stacked
+  terraces of white travertine with scalloped cream rims and still turquoise pools, the island
+  narrowing downward to a point; from the lowest rim a ribbon waterfall pours down past the
+  island and far into a sea of clouds, longer than the island is tall, with a soft mist rainbow.
+  Moss only on the rims. A tiny waterwheel and one …
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-caglayan-a
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

@@ -1,0 +1,21 @@
+id: asset-x2-canlar-b
+type: asset
+title_tr: x2-canlar-b
+title_en: x2-canlar-b (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: a ring of thin floating stone spires joined by
+  rope bridges, one great bronze bell hanging between them, smaller bells on every spire;
+  golden hour light. UNIQUE PLACE (this island is not the attached home island): silhouette
+  and landform: a ring of thin spires around one great bell. Palette: bronze, pale stone,
+  sky blue. Weather and sky: golden hour. Landmark: one great bell…
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-canlar-b
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

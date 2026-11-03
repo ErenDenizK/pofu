@@ -1,0 +1,21 @@
+id: asset-x2-mehtap-a
+type: asset
+title_tr: x2-mehtap-a
+title_en: x2-mehtap-a (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Mehtap, a sleeping crescent moon of pale moonstone
+  with soft craters resting in a sea of clouds, a small observatory dome with a warm window
+  in its inner curve, a rope ladder up to its upper tip where a tiny owl perches; blue hour,
+  many small stars and a faint Milky Way. Indigo, silver, pale gold. UNIQUE PLACE (this island
+  is not the attached home island): silhouette and lan…
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-mehtap-a
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024
