@@ -1,0 +1,26 @@
+id: idea-open-monetization
+type: idea
+title_tr: 'Açık soru: ne satıyoruz, nasıl'
+title_en: 'Open question: what we sell, and how'
+status: idea
+horizon: now
+summary: >-
+  Proposal for the founder (2026-11-02): "free home, paid voyage". The gate, Pofu, seeds,
+  Ayçiçeği and İskele stay free forever; Pofu Plus (349,99 TL or $29.99 a year, 999,99 TL or
+  $89.99 lifetime) opens Yıldız, Kaplıca, Kitap and every future seasonal island. Islands are
+  the expansion unit, included in yearly and lifetime, never sold on top to members.
+notes:
+- The paywall first appears on day ~22, when Yıldız drifts close, with weeks of free building left.
+- Pofu never sells; never on the shield, Hop!, the breath, the emergency pass or a notification.
+- No monthly, weekly, trial or tips; lapsed members keep everything they built.
+- Reverses game-design pillar 7 ("never islands"); needs an ADR before the public launch.
+links:
+  related:
+  - sys-plus
+  - sys-island-arrivals
+sources:
+- doc: docs/product/monetization.md
+  anchor: '#0-the-short-answer'
+- doc: docs/product/monetization.md
+  anchor: '#10-decisions-for-the-founder'
+kind: question
