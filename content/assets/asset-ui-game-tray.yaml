@@ -4,12 +4,12 @@ title_tr: ui-game-tray
 title_en: ui-game-tray (ui)
 status: in-production
 horizon: now
-summary: >-
-  A wide wooden serving tray seen from above with a slight tilt: soft honey wood, a low rounded
-  raised rim all round (a plain rim, no handles), a perfectly even flat wooden floor inside
-  with no grain pattern that varies across its width.
+summary: 'A wide wooden serving tray seen from above with a slight tilt: soft honey
+  wood, a low rounded raised rim all round (a plain rim, no handles), a perfectly
+  even flat wooden floor inside with no grain pattern that varies across its width.'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-ui-game-tray/ui-ui-game-tray.png
   jobs:
   - batch-12-minigame-art:ui-game-tray
 sources:
