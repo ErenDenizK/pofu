@@ -2,12 +2,11 @@ id: asset-game-bloom-right
 type: asset
 title_tr: game-bloom-right
 title_en: game-bloom-right (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Turn the sunflower head slightly to the right, as if looking right: the center sits a little
-  right of the middle and the petals on the left side are foreshortened. Same size, colors
-  and finish.
+summary: 'Turn the sunflower head slightly to the right, as if looking right: the
+  center sits a little right of the middle and the petals on the left side are foreshortened.
+  Same size, colors and finish.'
 links:
   variant_of:
   - asset-game-bloom-front
@@ -19,3 +18,11 @@ sources:
 - doc: tools/imagegen/manifest/batch-12-minigame-art.yaml
 kind: ui
 batch: batch-12-minigame-art
+notes:
+- 'Skipped after initial pair plus the single allowed retry pair: all four fail the
+  manual right-turn interpretation. The brown centre remains approximately neutral/left
+  instead of visibly right of the midpoint, so the required right pose is not reliable;
+  diagnostic centres are502.5,487.0,507.5,502.5px against canvas midpoint512. Diagnostic
+  measurements are review-only, not QA threshold edits. Take4 also fails automated
+  chroma_ceiling. No waiver, prompt/manifest change or further retry. No dependent
+  jobs; all original PNGs preserved.'
