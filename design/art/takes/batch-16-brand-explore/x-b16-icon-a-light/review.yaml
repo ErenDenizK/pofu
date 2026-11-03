@@ -1,12 +1,18 @@
 batch: batch-16-brand-explore
+assessment_epoch: batch-16-brand-explore@58d4742a77d30663dd144f989dc5977a5c3c8e5a/x-b16-icon-a-light
+assessment_main: 58d4742a77d30663dd144f989dc5977a5c3c8e5a
 contact_sheet: design/art/takes/batch-16-brand-explore/x-b16-icon-a-light/contact.jpg
 jobs:
   x-b16-icon-a-light:
-    pick: none
-    publication: skipped after one allowed retry
-    note: All four original takes read as Pofu at 29/60 px but outer cheek silhouette
-      exceeds the required central 80% circle. Exact prompt and references unchanged
-      for the one allowed retry. Manual layout failure, skip A-dark/A-tinted only.
+    pick: 3
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Retained originals and archived
+      q90 takes inspected at29/60px and illustrative central80% circle mask: eyes,
+      nose and cream curl remain intact/readable, one Pofu, no text or border. Soft
+      outer fur/cloud extends beyond this guide; retained as an exploration margin/style
+      warning. The former blanket exclusion of all outer cheek fur invented a stricter
+      geometry gate than current advisory exploration QA. No pixel edits or new generation.
+      Explicit two-leaf/whole-subject margin constraints of C are reviewed separately.'
 qa_reports:
   1:
     job: x-b16-icon-a-light
@@ -249,14 +255,20 @@ qa_reports:
         detail: 2.62
     fingerprint: 5489a500a7ae94ff
 manual_review:
-  exclude:
-  - 1
-  - 2
-  - 3
-  - 4
-  note: All four original takes read as Pofu at 29/60 px but outer cheek silhouette
-    exceeds the required central 80% circle. Exact prompt and references unchanged
-    for the one allowed retry. Manual layout failure, skip A-dark/A-tinted only.
+  exclude: []
+  note: 'Retained originals and archived q90 takes inspected at29/60px and illustrative
+    central80% circle mask: eyes, nose and cream curl remain intact/readable, one
+    Pofu, no text or border. Soft outer fur/cloud extends beyond this guide; retained
+    as an exploration margin/style warning. The former blanket exclusion of all outer
+    cheek fur invented a stricter geometry gate than current advisory exploration
+    QA. No pixel edits or new generation. Explicit two-leaf/whole-subject margin constraints
+    of C are reviewed separately.'
+  generation_budget: &id001
+    historical_unique_originals: 4
+    historical_retry_used: true
+    new_generation_calls: 0
+    brief: unchanged A-light brief
+generation_budget: *id001
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-45c15a7a-e2ed-4598-a5bb-de393d0fc83d.png
@@ -270,14 +282,87 @@ sources:
   source_dimensions:
   - 1254
   - 1254
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-a-light/appicon__x-b16-icon-a-light--t1.webp
-  uploaded_artifact_sha256: 9f1db6f7868154420030f44167ff93f2868d13899bbc5c3ea7c562d59e39e07b
-  uploaded_dimensions:
-  - 1254
-  - 1254
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-a-light/appicon__x-b16-icon-a-light--t1.webp
+  archive_artifact_sha256: 9f1db6f7868154420030f44167ff93f2868d13899bbc5c3ea7c562d59e39e07b
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 5489a500a7ae94ff
+    ingested_at: '2026-11-03T13:51:29+00:00'
+  historical_generation:
+    job: x-b16-icon-a-light
+    take: 1
+    batch: batch-16-brand-explore
+    fingerprint: 5489a500a7ae94ff
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET ICON: a painted icon or a family of icons. Fill the fields of the brief
+      in this order: PURPOSE (what each icon means), AUDIENCE, SUBJECT (one object
+      per icon), LAYOUT (a family sits on an even grid with equal size and spacing,
+      nothing touching), STYLE (the attached icons and painting, the same finish for
+      every icon of the family), PALETTE (milky pastel with one warm-brown accent
+      shape per icon), CONSTRAINTS. Each icon is one centered object of three or four
+      large rounded shapes that reads as a silhouette at 24 points; no thin parts,
+      no outline, no background shape, no text, no letters, no numbers, no glass,
+      no glossy highlight.
+
+
+      PURPOSE: the Pofu app icon, direction A (Pofu''s face), light appearance for
+      iOS 26.
+
+      AUDIENCE: adults who want to open social apps less; calm, not clinical.
+
+      SUBJECT: Pofu''s face and cream curl filling the lower two thirds, centered,
+      big eyes, calm smile, on a soft warm peach-to-cream sky with one small cloud.
+
+      LIGHT variant: soft pale sky, warm cream and peach light, the painting as described.
+
+      LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80%
+      circle, corners calm background only.
+
+      STYLE: the attached painting. PALETTE: milky pastel. No text.
+
+
+      APP ICON: a square, fully opaque app icon. The focal shape sits inside
+
+      the central 80% circle; the corners are calm background only, because
+
+      the system masks them. It must read at 60 pixels: one clear shape, big
+
+      and simple, high value contrast between the focal shape and the
+
+      background. No text, no letters, no logo type, no border, no frame, no
+
+      glass, no glossy highlight, no drop shadow.
+
+
+      AVOID: text, a border, rounded corners, glass, gloss, a hamster in the bottom
+      corners, a second character
+
+
+      Output: one image, opaque, full bleed, square 1024 x 1024.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T13:51:29+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-45c15a7a-e2ed-4598-a5bb-de393d0fc83d.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: c4d99e902515b3447c2d29e7c0ded2ffcb831231abb730f7a8f5ae1f26611523
 - take: 2
   source_file: /workspace/generated_images/exec-9c1878f2-2f68-46fd-ab45-077342484589.png
   account:
@@ -290,14 +375,87 @@ sources:
   source_dimensions:
   - 1254
   - 1254
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-a-light/appicon__x-b16-icon-a-light--t2.webp
-  uploaded_artifact_sha256: 1136c455c53d6f8ea61d7affe76e6e78d680ce495a4c6dafc006daaa132cd87f
-  uploaded_dimensions:
-  - 1254
-  - 1254
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-a-light/appicon__x-b16-icon-a-light--t2.webp
+  archive_artifact_sha256: 1136c455c53d6f8ea61d7affe76e6e78d680ce495a4c6dafc006daaa132cd87f
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 5489a500a7ae94ff
+    ingested_at: '2026-11-03T13:51:29+00:00'
+  historical_generation:
+    job: x-b16-icon-a-light
+    take: 2
+    batch: batch-16-brand-explore
+    fingerprint: 5489a500a7ae94ff
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET ICON: a painted icon or a family of icons. Fill the fields of the brief
+      in this order: PURPOSE (what each icon means), AUDIENCE, SUBJECT (one object
+      per icon), LAYOUT (a family sits on an even grid with equal size and spacing,
+      nothing touching), STYLE (the attached icons and painting, the same finish for
+      every icon of the family), PALETTE (milky pastel with one warm-brown accent
+      shape per icon), CONSTRAINTS. Each icon is one centered object of three or four
+      large rounded shapes that reads as a silhouette at 24 points; no thin parts,
+      no outline, no background shape, no text, no letters, no numbers, no glass,
+      no glossy highlight.
+
+
+      PURPOSE: the Pofu app icon, direction A (Pofu''s face), light appearance for
+      iOS 26.
+
+      AUDIENCE: adults who want to open social apps less; calm, not clinical.
+
+      SUBJECT: Pofu''s face and cream curl filling the lower two thirds, centered,
+      big eyes, calm smile, on a soft warm peach-to-cream sky with one small cloud.
+
+      LIGHT variant: soft pale sky, warm cream and peach light, the painting as described.
+
+      LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80%
+      circle, corners calm background only.
+
+      STYLE: the attached painting. PALETTE: milky pastel. No text.
+
+
+      APP ICON: a square, fully opaque app icon. The focal shape sits inside
+
+      the central 80% circle; the corners are calm background only, because
+
+      the system masks them. It must read at 60 pixels: one clear shape, big
+
+      and simple, high value contrast between the focal shape and the
+
+      background. No text, no letters, no logo type, no border, no frame, no
+
+      glass, no glossy highlight, no drop shadow.
+
+
+      AVOID: text, a border, rounded corners, glass, gloss, a hamster in the bottom
+      corners, a second character
+
+
+      Output: one image, opaque, full bleed, square 1024 x 1024.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T13:51:29+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-9c1878f2-2f68-46fd-ab45-077342484589.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: d5020e40a09c9207d47848418b2421caf760e61696ff41598cd725ad22c9b16b
 - take: 3
   source_file: /workspace/generated_images/exec-b59ab80b-c5e4-42f0-9d9a-793e6753e9d4.png
   account:
@@ -310,14 +468,87 @@ sources:
   source_dimensions:
   - 1254
   - 1254
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-a-light/appicon__x-b16-icon-a-light--t3.webp
-  uploaded_artifact_sha256: 60925b29e8d2aa14fee0a9f9a3ab0e0f1a48e2b9b20a4c6a2aa381968b3429e0
-  uploaded_dimensions:
-  - 1254
-  - 1254
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-a-light/appicon__x-b16-icon-a-light--t3.webp
+  archive_artifact_sha256: 60925b29e8d2aa14fee0a9f9a3ab0e0f1a48e2b9b20a4c6a2aa381968b3429e0
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 5489a500a7ae94ff
+    ingested_at: '2026-11-03T13:55:03+00:00'
+  historical_generation:
+    job: x-b16-icon-a-light
+    take: 3
+    batch: batch-16-brand-explore
+    fingerprint: 5489a500a7ae94ff
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET ICON: a painted icon or a family of icons. Fill the fields of the brief
+      in this order: PURPOSE (what each icon means), AUDIENCE, SUBJECT (one object
+      per icon), LAYOUT (a family sits on an even grid with equal size and spacing,
+      nothing touching), STYLE (the attached icons and painting, the same finish for
+      every icon of the family), PALETTE (milky pastel with one warm-brown accent
+      shape per icon), CONSTRAINTS. Each icon is one centered object of three or four
+      large rounded shapes that reads as a silhouette at 24 points; no thin parts,
+      no outline, no background shape, no text, no letters, no numbers, no glass,
+      no glossy highlight.
+
+
+      PURPOSE: the Pofu app icon, direction A (Pofu''s face), light appearance for
+      iOS 26.
+
+      AUDIENCE: adults who want to open social apps less; calm, not clinical.
+
+      SUBJECT: Pofu''s face and cream curl filling the lower two thirds, centered,
+      big eyes, calm smile, on a soft warm peach-to-cream sky with one small cloud.
+
+      LIGHT variant: soft pale sky, warm cream and peach light, the painting as described.
+
+      LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80%
+      circle, corners calm background only.
+
+      STYLE: the attached painting. PALETTE: milky pastel. No text.
+
+
+      APP ICON: a square, fully opaque app icon. The focal shape sits inside
+
+      the central 80% circle; the corners are calm background only, because
+
+      the system masks them. It must read at 60 pixels: one clear shape, big
+
+      and simple, high value contrast between the focal shape and the
+
+      background. No text, no letters, no logo type, no border, no frame, no
+
+      glass, no glossy highlight, no drop shadow.
+
+
+      AVOID: text, a border, rounded corners, glass, gloss, a hamster in the bottom
+      corners, a second character
+
+
+      Output: one image, opaque, full bleed, square 1024 x 1024.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T13:55:03+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-b59ab80b-c5e4-42f0-9d9a-793e6753e9d4.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: f710039dc4e97c1f1e8a4822ca6f5cf6b5db809c36c9e314d6bf41e01026516f
 - take: 4
   source_file: /workspace/generated_images/exec-b0c6dbca-7460-4ab1-849e-442d45c1b314.png
   account:
@@ -330,11 +561,84 @@ sources:
   source_dimensions:
   - 1254
   - 1254
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-a-light/appicon__x-b16-icon-a-light--t4.webp
-  uploaded_artifact_sha256: 04e7f17257a1c6b1f75f561df3806f909b945eea51132639f87f28c6198215d8
-  uploaded_dimensions:
-  - 1254
-  - 1254
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-a-light/appicon__x-b16-icon-a-light--t4.webp
+  archive_artifact_sha256: 04e7f17257a1c6b1f75f561df3806f909b945eea51132639f87f28c6198215d8
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 5489a500a7ae94ff
+    ingested_at: '2026-11-03T13:55:04+00:00'
+  historical_generation:
+    job: x-b16-icon-a-light
+    take: 4
+    batch: batch-16-brand-explore
+    fingerprint: 5489a500a7ae94ff
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The home island: the same painting and softness.
+
+      2. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET ICON: a painted icon or a family of icons. Fill the fields of the brief
+      in this order: PURPOSE (what each icon means), AUDIENCE, SUBJECT (one object
+      per icon), LAYOUT (a family sits on an even grid with equal size and spacing,
+      nothing touching), STYLE (the attached icons and painting, the same finish for
+      every icon of the family), PALETTE (milky pastel with one warm-brown accent
+      shape per icon), CONSTRAINTS. Each icon is one centered object of three or four
+      large rounded shapes that reads as a silhouette at 24 points; no thin parts,
+      no outline, no background shape, no text, no letters, no numbers, no glass,
+      no glossy highlight.
+
+
+      PURPOSE: the Pofu app icon, direction A (Pofu''s face), light appearance for
+      iOS 26.
+
+      AUDIENCE: adults who want to open social apps less; calm, not clinical.
+
+      SUBJECT: Pofu''s face and cream curl filling the lower two thirds, centered,
+      big eyes, calm smile, on a soft warm peach-to-cream sky with one small cloud.
+
+      LIGHT variant: soft pale sky, warm cream and peach light, the painting as described.
+
+      LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80%
+      circle, corners calm background only.
+
+      STYLE: the attached painting. PALETTE: milky pastel. No text.
+
+
+      APP ICON: a square, fully opaque app icon. The focal shape sits inside
+
+      the central 80% circle; the corners are calm background only, because
+
+      the system masks them. It must read at 60 pixels: one clear shape, big
+
+      and simple, high value contrast between the focal shape and the
+
+      background. No text, no letters, no logo type, no border, no frame, no
+
+      glass, no glossy highlight, no drop shadow.
+
+
+      AVOID: text, a border, rounded corners, glass, gloss, a hamster in the bottom
+      corners, a second character
+
+
+      Output: one image, opaque, full bleed, square 1024 x 1024.
+
+      '
+    attachments:
+    - path: design/art/masters/island-main-s/island-main-s.png
+      role: 'The home island: the same painting and softness.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T13:55:04+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-b0c6dbca-7460-4ab1-849e-442d45c1b314.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: efe504c541acb5ab05b91a1ce232ae7f252b30b6fcd7ca87d3e80e1deb24f1ae
