@@ -1,0 +1,115 @@
+{
+  "job": "game-plot-tile-mint",
+  "batch": "retry-2026-11-03",
+  "asset": "ui__game-plot-tile-mint",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T14:54:17+00:00",
+  "image": "design/art/ui/ui-game-plot-tile-mint/ui-game-plot-tile-mint.png",
+  "raw": "design/art/ui/ui-game-plot-tile-mint/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "f470d536dd3b0cd8",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nChange only the glaze color of the tile and its sprout to a cool\nmint, a little bluer than before, in the same finish and the same\nlightness. The shape, highlight, lip and sprout stay.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/ui-game-plot-tile-sage/ui-game-plot-tile-sage.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T13:49:40+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": {
+    "scale": 0.9941,
+    "cx": 507.0,
+    "cy": 956.0,
+    "dx": -5,
+    "dy": -2
+  },
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "edit_alignment",
+        "status": "pass",
+        "message": "the edit rescaled the object x1.006 and moved it; aligned back to the parent",
+        "value": 0.9941
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 12 (R1 51)",
+        "value": 12.2
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 75 (R1 59)",
+        "value": 74.7
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.5 (R1 5.3)",
+        "value": 0.52
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.6",
+        "value": 0.5998
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.3, p95 2.5, off-palette 0.0%",
+        "value": 1.2955
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "pass",
+        "message": "99% of the parent's shape kept",
+        "value": 0.9883
+      },
+      {
+        "check": "edit_structure",
+        "status": "pass",
+        "message": "light structure matches the parent (r 0.96)",
+        "value": 0.9612
+      },
+      {
+        "check": "edit_lightness",
+        "status": "pass",
+        "message": "mean lightness moved by 3.8 L (the same lightness was asked)",
+        "value": 3.7504
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Resume from the saved pre-stop choice t2, with zero image generation. Re-posted all two original PNGs under main9ede62e QA: both pass; t2 remains lowest lock load0.5998 versus0.6082 and its locked RGBA is unchanged from the retained candidate. Matte cool blue-mint glaze remains distinct from sage; tile silhouette, highlight, lip and sprout are preserved. Exactly two original image requests; source files recovered after the historical ARG_MAX callback failure and assigned stable completion-time numbering, not claimed original request ordinal. This fresh preparation adopts no old partial master or journal."
+}

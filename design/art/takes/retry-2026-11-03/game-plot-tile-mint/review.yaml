@@ -3,15 +3,16 @@ contact_sheet: design/art/takes/retry-2026-11-03/game-plot-tile-mint/contact.jpg
 jobs:
   game-plot-tile-mint:
     pick: 2
-    publication: selected before global stop; Harmony/promotion completion pending
-    note: Preserved from the pre-stop QA/manual selection; delivery is incomplete
-      and this archive is not a published master. auto-picked by QA; founder review
-      pending. Both takes preserve the tile and sprout with visibly cool blue-mint
-      glaze distinct from sage. All automated checks pass; t2 has lower lock load0.5998
-      versus0.6082. Exactly two image requests were dispatched. After a shell callback
-      ARG_MAX failure, original PNGs were recovered by visual identity and numbered
-      in stable completion-time order; original request ordinal is not claimed. Source/inbox/RGBA
-      hashes preserve lineage.
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Resume from the saved pre-stop
+      choice t2, with zero image generation. Re-posted all two original PNGs under
+      main9ede62e QA: both pass; t2 remains lowest lock load0.5998 versus0.6082 and
+      its locked RGBA is unchanged from the retained candidate. Matte cool blue-mint
+      glaze remains distinct from sage; tile silhouette, highlight, lip and sprout
+      are preserved. Exactly two original image requests; source files recovered after
+      the historical ARG_MAX callback failure and assigned stable completion-time
+      numbering, not claimed original request ordinal. This fresh preparation adopts
+      no old partial master or journal.'
 qa_reports:
   2:
     job: game-plot-tile-mint
@@ -163,12 +164,14 @@ qa_reports:
     fingerprint: f470d536dd3b0cd8
 manual_review:
   excluded_takes: []
-  note: Both takes preserve the tile and sprout with visibly cool blue-mint glaze
-    distinct from sage. All automated checks pass; t2 has lower lock load0.5998 versus0.6082.
-    Exactly two image requests were dispatched. After a shell callback ARG_MAX failure,
-    original PNGs were recovered by visual identity and numbered in stable completion-time
-    order; original request ordinal is not claimed. Source/inbox/RGBA hashes preserve
-    lineage.
+  note: 'Resume from the saved pre-stop choice t2, with zero image generation. Re-posted
+    all two original PNGs under main9ede62e QA: both pass; t2 remains lowest lock
+    load0.5998 versus0.6082 and its locked RGBA is unchanged from the retained candidate.
+    Matte cool blue-mint glaze remains distinct from sage; tile silhouette, highlight,
+    lip and sprout are preserved. Exactly two original image requests; source files
+    recovered after the historical ARG_MAX callback failure and assigned stable completion-time
+    numbering, not claimed original request ordinal. This fresh preparation adopts
+    no old partial master or journal.'
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-21d6615c-6f3b-4856-82eb-419257125850.png
@@ -190,12 +193,3 @@ sources:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   fingerprint: f470d536dd3b0cd8
-preservation:
-  global_stop_at: '2026-11-03T14:12:48.328101+00:00'
-  global_stop_reason: three consecutive actual job failures
-  frozen_pick: 2
-  new_generation: false
-  qa_recomputed: false
-  pick_changed: false
-  master_published: false
-  harmony_completed: false
