@@ -2,12 +2,12 @@ id: asset-ui-face-primary
 type: asset
 title_tr: ui-face-primary
 title_en: face-primary (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A wide, chunky capsule of glazed clay in soft violet (#6C4FD8 at its mid-tone), lit from
-  straight above: a soft cream highlight along the top edge, a slightly darker rounded lip
-  along the bottom edge, perfectly even from left to right. Nothing on it.
+summary: 'A wide, chunky capsule of glazed clay in soft violet (#6C4FD8 at its mid-tone),
+  lit from straight above: a soft cream highlight along the top edge, a slightly darker
+  rounded lip along the bottom edge, perfectly even from left to right. Nothing on
+  it.'
 art:
   images: []
   jobs:
@@ -16,3 +16,10 @@ sources:
 - doc: tools/imagegen/manifest/batch-11-ui-pilot.yaml
 kind: ui
 batch: batch-11-ui-pilot
+notes:
+- 'Skipped after initial pair plus the single allowed retry pair: all four takes fail
+  palette_drift. Exact mean dE values t1 13.4668, t2 10.1055, t3 17.7247, t4 15.5414;
+  off-palette ratios 75.1%,28.3%,84.5%,79.7%. The unchanged prompt requests violet
+  #6C4FD8 while the supplied world-props palette contains no violet. No palette, manifest,
+  prompt or QA threshold changed; no waiver or more retries. Alpha composites remain
+  preserved in the contact sheet. No jobs depend on ui-face-primary in this pilot.'
