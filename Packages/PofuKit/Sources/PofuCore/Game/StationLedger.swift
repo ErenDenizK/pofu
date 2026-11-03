@@ -4,7 +4,7 @@ import Foundation
 public struct SeedPouch: Hashable, Sendable, Codable {
     /// The stations' idle production.
     public var stations: Energy
-    /// Pofu's quiet gathering: 1 per 10 quiet waking minutes (ADR-0014).
+    /// Pofu's quiet gathering: 1 per quiet waking hour at scale A.
     public var gathered: Energy
     /// The slept-on-it bonus for calm nights.
     public var sleepBonus: Energy

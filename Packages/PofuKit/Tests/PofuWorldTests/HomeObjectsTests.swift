@@ -99,8 +99,21 @@ struct HomeObjectsLayoutTests {
     }
 
     @Test func theCollectActionSlidesRightFromTheLeftEdge() {
-        #expect(HomeObjectsLayout.collectShift(jarX: 57) == 25)
+        // 16 gutter + 70 half-width - 57: the capsule's left edge sits on
+        // the gutter, not at 12 as before (it read as clipped).
+        #expect(HomeObjectsLayout.collectShift(jarX: 57) == 29)
         #expect(HomeObjectsLayout.collectShift(jarX: 200) == 0)
+    }
+
+    @Test func theCollectActionKeepsTheSafeAreaAndFollowsItsOwnWidth() {
+        // A landscape notch of 59 pt moves the left edge by that much more.
+        #expect(HomeObjectsLayout.collectShift(jarX: 57, leadingInset: 59) == 88)
+        // "Topla · 7" is narrower than "Topla · 1.234".
+        #expect(HomeObjectsLayout.collectShift(jarX: 57, actionWidth: 100) == 9)
+        // Never past the right edge either.
+        #expect(HomeObjectsLayout.collectShift(jarX: 380, screenWidth: 393, trailingInset: 0) == -73)
+        // Too narrow for both gutters: the left one wins.
+        #expect(HomeObjectsLayout.collectShift(jarX: 50, actionWidth: 200, screenWidth: 210) == 66)
     }
 
     @Test func objectsStayOnAScreenEdge() {

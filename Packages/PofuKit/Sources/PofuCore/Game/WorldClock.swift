@@ -18,7 +18,7 @@ import Foundation
 /// - **paused** (Pofu in the foreground past A20's 2-minute grace): nothing
 ///   grows and nothing drains; looking earns nothing;
 /// - **away** and observed: the stations produce × calm × care, and in
-///   waking time calm grows, Pofu heals, and Pofu gathers a seed per 10
+///   waking time calm grows, Pofu heals, and Pofu gathers a seed per quiet
 ///   minutes (ADR-0014).
 ///
 /// An event takes effect at the start of its minute; an event older than

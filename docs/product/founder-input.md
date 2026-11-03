@@ -26,6 +26,15 @@ not orders: each entry records **what he meant**, the **status**, and
   Feel is tuned natively on his iPhone.
 - **Merging:** the agent may merge PRs, with merge commits, only on green CI.
 
+## 2026-11-03 (evening): story and lore
+
+- Asked for a story and lore with a realistic, human flow; does not trust
+  standard AI output for creative story and lyricism. The agent starts
+  with real human spice (tools, repos, craft); he and his friends step in
+  where needed. Handled: [lore-bible.md](lore-bible.md) (draft 0) and
+  [narrative-craft.md](../research/narrative-craft.md) (tool pick and the
+  human spice pipeline), PR on `docs/narrative`.
+
 ## 2026-11-02 (overnight): autonomous art queue
 
 - Publish the retained 14 rig picks, pond-5-lit and four UI picks without regenerating; then finish the UI pilot and every READY batch in queue order.
