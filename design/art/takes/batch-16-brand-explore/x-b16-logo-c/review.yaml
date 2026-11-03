@@ -1,0 +1,162 @@
+batch: batch-16-brand-explore
+contact_sheet: design/art/takes/batch-16-brand-explore/x-b16-logo-c/contact.jpg
+jobs:
+  x-b16-logo-c:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Originals read exactly capital
+      P, lowercase o f u plus a tiny seed after u. Interpreted job-specific pillow
+      letters with warm-brown shading as soft painted volume, retaining matte illustration
+      rather than rendered/glossy3D. Both archived q90 WebPs read P-o-f-u at 120px
+      image width; cream letters and final seed remain distinct, no extra lettering.
+qa_reports:
+  1:
+    job: x-b16-logo-c
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 71 (R1 59)
+      value: 71.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.99
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.4266
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.0, p95 2.0, off-palette 0.1% (top: #CC7744 (0.0%), #BB7733
+        (0.0%))'
+      value: 0.9794
+    info:
+      metrics_raw:
+        L_p5: 70.7
+        L_p50: 96.9
+        L_p95: 97.2
+        C_p50: 7.2
+        C_p95: 39.8
+        C_p99: 49.0
+        detail: 1.57
+      metrics_locked:
+        L_p5: 71.1
+        L_p50: 96.7
+        L_p95: 96.8
+        C_p50: 7.1
+        C_p95: 39.5
+        C_p99: 48.7
+        detail: 0.99
+    fingerprint: 6382ea4ea307c2ab
+  2:
+    job: x-b16-logo-c
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 38.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 75.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.9
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3868
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.0, p95 1.4, off-palette 0.1% (top: #BB6633 (0.0%), #BB7733
+        (0.0%))'
+      value: 1.0122
+    info:
+      metrics_raw:
+        L_p5: 75.0
+        L_p50: 96.8
+        L_p95: 97.2
+        C_p50: 7.0
+        C_p95: 39.3
+        C_p99: 49.1
+        detail: 1.44
+      metrics_locked:
+        L_p5: 75.2
+        L_p50: 96.7
+        L_p95: 96.8
+        C_p50: 6.9
+        C_p95: 38.9
+        C_p99: 48.7
+        detail: 0.9
+    fingerprint: 6382ea4ea307c2ab
+manual_review:
+  exclude: []
+  note: Originals read exactly capital P, lowercase o f u plus a tiny seed after u.
+    Interpreted job-specific pillow letters with warm-brown shading as soft painted
+    volume, retaining matte illustration rather than rendered/glossy3D. Both archived
+    q90 WebPs read P-o-f-u at 120px image width; cream letters and final seed remain
+    distinct, no extra lettering.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-de92a8a0-724a-475f-a6e1-3f72aa713ac3.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 6382ea4ea307c2ab
+  original_generated_png_sha256: 8d9623f984058d37f4143112647edd6304d75754a0f6b0279c59488079e20c49
+  ingested_png_sha256: f7694ce7a627b09f0bbf27a46ea01e235c4416f93b874dd239c3662cfe690c08
+  source_rgba_sha256: a3e5d35e2ad3ffcbdef5c1ed02facbe6315e3e0621992bae826ef662fd9ddcdc
+  source_dimensions:
+  - 1536
+  - 1024
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-logo-c/plate__x-b16-logo-c--t1.webp
+  uploaded_artifact_sha256: d4e22d48fc77a77c3b8a71355ba67aa6f659eb91bc379714a1f930059d3b54d0
+  uploaded_dimensions:
+  - 1536
+  - 1024
+  encoding: lossy WebP quality 90
+- take: 2
+  source_file: /workspace/generated_images/exec-6c3ddd72-aebd-46fd-8087-aa71daee0e34.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 6382ea4ea307c2ab
+  original_generated_png_sha256: 6a91c569b9b626ccb242de7b645de9ab9593a21c03211b80e306a1e6c9091477
+  ingested_png_sha256: 1b1e662a17f693672f49e9326060527885c4f731df4a8f221e5f47892a797ad1
+  source_rgba_sha256: bc2b259333f29a98a8a1fdb8d9ba8e1d9f96029f628afc1d24dfcbfc9abc0a39
+  source_dimensions:
+  - 1536
+  - 1024
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-logo-c/plate__x-b16-logo-c--t2.webp
+  uploaded_artifact_sha256: 7d22e035dece67d33386491224a0c524701439ffc8e83fae7c52bf6da93917eb
+  uploaded_dimensions:
+  - 1536
+  - 1024
+  encoding: lossy WebP quality 90
