@@ -187,6 +187,8 @@ struct HomeJar: View {
     let canCollect: Bool
     let isNight: Bool
     let showsTag: Bool
+    /// Slides the action right when the jar stands at the left edge.
+    let shiftX: Double
     let home: WorldHomeModel
     let collect: @MainActor () -> Void
 
@@ -219,7 +221,7 @@ struct HomeJar: View {
                     }
                 }
                 .fixedSize()
-                .offset(y: HomeObjectsLayout.jarSize.height + 4)
+                .offset(x: shiftX, y: HomeObjectsLayout.jarSize.height + 4)
             }
     }
 

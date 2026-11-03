@@ -98,6 +98,11 @@ struct HomeObjectsLayoutTests {
         #expect(jar.y > 0 && lantern.y > 0)
     }
 
+    @Test func theCollectActionSlidesRightFromTheLeftEdge() {
+        #expect(HomeObjectsLayout.collectShift(jarX: 57) == 25)
+        #expect(HomeObjectsLayout.collectShift(jarX: 200) == 0)
+    }
+
     @Test func objectsStayOnAScreenEdge() {
         let near = MomentPoint(x: 20, y: 500)
         #expect(HomeObjectsLayout.jarCenter(feet: near, screenWidth: 393).x >= 28)

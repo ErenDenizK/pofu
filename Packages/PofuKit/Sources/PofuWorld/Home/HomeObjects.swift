@@ -201,6 +201,13 @@ public enum HomeObjectsLayout {
         return MomentPoint(x: max(feet.x - 100, margin), y: feet.y - 30)
     }
 
+    /// How far the "Topla · N" action slides right so it stays on screen
+    /// when the jar stands near the left edge (the action is wider than the
+    /// jar).
+    public static func collectShift(jarX: Double, actionWidth: Double = 140, margin: Double = 12) -> Double {
+        max(0, margin + actionWidth / 2 - jarX)
+    }
+
     /// The lantern's centre: right of Pofu.
     public static func lanternCenter(feet: MomentPoint, screenWidth: Double) -> MomentPoint {
         let margin = 30.0

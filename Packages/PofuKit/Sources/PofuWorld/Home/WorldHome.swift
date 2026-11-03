@@ -287,6 +287,7 @@ public struct WorldHome: View {
                 canCollect: collectBeatIsOpen,
                 isNight: isNight,
                 showsTag: showsJarTag,
+                shiftX: HomeObjectsLayout.collectShift(jarX: jar.x),
                 home: home,
                 collect: { collect() }
             )
