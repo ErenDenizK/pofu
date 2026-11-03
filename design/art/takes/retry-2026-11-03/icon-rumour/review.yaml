@@ -3,10 +3,14 @@ contact_sheet: design/art/takes/retry-2026-11-03/icon-rumour/contact.jpg
 jobs:
   icon-rumour:
     pick: 2
-    publication: selected before global stop; promotion pending
-    note: Both takes show a round pale-sage bottle, honey cork and a plump rolled
-      cream note without letters. The bottle and diagonal scroll remain readable at
-      28, 44 and 60 pt on pale and dark backgrounds.
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Resume from the fixed pre-stop
+      original candidate, with zero image generation. Re-posted both retained PNGs
+      under main9ede62e; both locked RGBA rasters match their retained versions exactly
+      and the same eligible take remains lowest lock load. Fresh light/dark small-size
+      visual review reconfirms the choice. Both takes show a round pale-sage bottle,
+      honey cork and a plump rolled cream note without letters. The bottle and diagonal
+      scroll remain readable at 28, 44 and 60 pt on pale and dark backgrounds.
 qa_reports:
   1:
     job: icon-rumour
@@ -151,14 +155,14 @@ qa_reports:
         detail: 0.76
     fingerprint: 86b31c35b295f21c
 manual_review:
-  note: Both takes show a round pale-sage bottle, honey cork and a plump rolled cream
-    note without letters. The bottle and diagonal scroll remain readable at 28, 44
-    and 60 pt on pale and dark backgrounds.
-  terminal_decided_at: '2026-11-03T14:07:29.033160+00:00'
-  decision_qa_sha256: 8966299b995cc16c3a7b098d06401fafcb9a040a9d4958bb3b3197a6b614a9a8
   excluded_takes: []
-  preservation_only_after_global_stop: true
-  no_new_selection_or_promotion: true
+  note: Resume from the fixed pre-stop original candidate, with zero image generation.
+    Re-posted both retained PNGs under main9ede62e; both locked RGBA rasters match
+    their retained versions exactly and the same eligible take remains lowest lock
+    load. Fresh light/dark small-size visual review reconfirms the choice. Both takes
+    show a round pale-sage bottle, honey cork and a plump rolled cream note without
+    letters. The bottle and diagonal scroll remain readable at 28, 44 and 60 pt on
+    pale and dark backgrounds.
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-7da3f75f-f553-4da6-b1b8-0a0824094bb7.png
