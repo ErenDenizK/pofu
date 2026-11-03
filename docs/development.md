@@ -379,6 +379,14 @@ runner with Xcode 26 or newer:
    test skips. CI machines drop frames, so judge choreography and timing
    from the clips, and smoothness only on a phone.
 
+**When screenshots run.** The macOS build and tests run for any Swift or
+app change; the screenshot render, the motion-beat recording and
+`publish-screenshots` run only when `App/`, `PofuWorld`, `PofuCompanion`,
+`PofuGames`, `PofuDesignSystem`, `PofuCore/Rehearsal`, `Tests/WorldScreenshots`,
+`project.yml` or `.github/scripts` change, or when the PR has the `screens`
+label (adding the label re-runs CI). Need pictures of a PR that skipped
+them? Add the label.
+
 **Screenshot branches.** After a green macOS job, `publish-screenshots`
 converts those PNGs to JPEGs about 1000 px tall, adds a `contact.jpg`
 grid, encodes the motion beats as phone-friendly MP4s in `beats/`
