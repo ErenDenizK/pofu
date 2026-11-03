@@ -1,0 +1,473 @@
+# Batch 16: brand exploration, never promoted
+# (docs/design/art-production-plan.md; EXPLORATION in the queue).
+#
+# Modelled on ChatGPT Images' guided presets (poster, illustration, logo,
+# icon, infographic, app mockup, promo item, flyer): each job pastes one
+# `preset-*-v1` block that fixes the structure of the brief (purpose,
+# audience, text hierarchy, required legible text verbatim, layout, style,
+# palette, constraints), and the job text fills those fields. Jobs here:
+# the app icon set (3 directions x light, dark, tinted for iOS 26), the
+# wordmark (3 directions), the icon family sheet, the loop infographic, two
+# illustrations and a promo poster.
+#
+# EXPLORATION RULES (AGENTS.md): do NOT run `promote`; commit the takes (WebP
+# q90), the contact sheet and review.yaml under design/art/takes/<batch>/<id>/
+# and nothing else. UNLIKE other batches, text IS painted here, but only the
+# REQUIRED TEXT of a job, spelled verbatim; review reads every letter. The
+# icons never paint glass; the system masks the corners.
+#
+# PILOT (run first, in this order): x-b16-icon-a-light, x-b16-logo-a,
+# x-b16-infographic. If a pilot job still fails after its one retry, skip
+# the REST (every job below the "THE REST" line) and finish the session.
+#
+# Tracks (run in parallel, two sessions): `mark` (icons, logos, icon family)
+# and `story` (infographic, illustrations, poster).
+
+batch: batch-16-brand-explore
+title: Brand exploration (app icon set, wordmark, icon family, infographic, illustrations, poster)
+status: open
+
+refs:
+  cay-1: design/art/stations/cay-1/cay-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: pofu, kind: char, name: pofu-r1, external: r1, master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png}
+  - {id: icon-seed, kind: icon, name: seed, external: batch-11-ui-pilot}
+  - {id: icon-calm, kind: icon, name: calm, external: batch-13-ui-rest}
+
+  # ------------------------------------------------------------- PILOT
+
+  - id: x-b16-icon-a-light
+    kind: appicon
+    name: x-b16-icon-a-light
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. App icon direction A (Pofu's face), light. Review: reads at 60 and 29 pt; light, dark and tinted are one icon."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - block: preset-icon-v1
+      - text: |
+          PURPOSE: the Pofu app icon, direction A (Pofu's face), light appearance for iOS 26.
+          AUDIENCE: adults who want to open social apps less; calm, not clinical.
+          SUBJECT: Pofu's face and cream curl filling the lower two thirds, centered, big eyes, calm smile, on a soft warm peach-to-cream sky with one small cloud.
+          LIGHT variant: soft pale sky, warm cream and peach light, the painting as described.
+          LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80% circle, corners calm background only.
+          STYLE: the attached painting. PALETTE: milky pastel. No text.
+      - block: appicon-v1
+      - text: "AVOID: text, a border, rounded corners, glass, gloss, a hamster in the bottom corners, a second character"
+
+  - id: x-b16-logo-a
+    kind: plate
+    name: x-b16-logo-a
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Wordmark direction A (round and chunky). Review: the text reads exactly 'Pofu', legible at 120 px wide, same family as the painting."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - block: preset-logo-v1
+      - text: |
+          PURPOSE: a wordmark for the app Pofu, direction A (round and chunky).
+          AUDIENCE: adults and teens who open social apps by reflex; warm, humorous, never preachy.
+          REQUIRED TEXT: Pofu
+          (exactly four letters: capital P, lowercase o, f, u.)
+          LETTERFORM: fat rounded letters like soft dough, the lowercase o a perfect circle, in warm brown. Extra mark: a small cream curl above the P as the only mark.
+          COLOR: warm brown and cream from the attached painting on a plain pale cream ground.
+          LAYOUT: one lockup, centered, wide, with generous margin.
+      - text: "AVOID: any word other than Pofu, a hamster, a border, 3D, glow, outline, a drop shadow"
+
+  - id: x-b16-infographic
+    kind: plate
+    name: x-b16-infographic
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Loop infographic. Review: the four labels read exactly as given (apostrophe, dotless and dotted i, ş, ı); steps read in order."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - block: preset-infographic-v1
+      - text: |
+          PURPOSE: explain the whole Pofu loop in five seconds.
+          AUDIENCE: a Turkish-speaking adult scrolling too much; friendly and light.
+          TEXT HIERARCHY: four short labels, one per step, same size.
+          REQUIRED TEXT, top to bottom, each on its own line, verbatim:
+          Instagram'a uzandın
+          Pofu
+          boş ver
+          ada büyür
+          LAYOUT: a vertical path of four painted steps joined by soft painted arrows: (1) a thumb reaching toward a rounded phone with a camera-like glyph, no real logo; (2) Pofu raising a paw in a gentle wait; (3) Pofu shrugging with a relaxed smile beside a lowered phone; (4) the floating home island with a new little tree grown. Each label sits beside its picture.
+          STYLE: the attached painting. PALETTE: pastel.
+      - text: "AVOID: any other words, real app logos, numbers, a border, a chart"
+
+
+  # ------------------------------------------------------------- THE REST
+
+  - id: x-b16-icon-b-light
+    kind: appicon
+    name: x-b16-icon-b-light
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. App icon direction B (the paper lantern), light. Review: reads at 60 and 29 pt; light, dark and tinted are one icon."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - block: preset-icon-v1
+      - text: |
+          PURPOSE: the Pofu app icon, direction B (the paper lantern), light appearance for iOS 26.
+          AUDIENCE: adults who want to open social apps less; calm, not clinical.
+          SUBJECT: one large round paper lantern with a warm glowing cream light, hanging low and centered, with Pofu small and sleepy beside it, over a calm dusk-blue-to-peach sky.
+          LIGHT variant: soft pale sky, warm cream and peach light, the painting as described.
+          LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80% circle, corners calm background only.
+          STYLE: the attached painting. PALETTE: milky pastel. No text.
+      - block: appicon-v1
+      - text: "AVOID: text, a border, rounded corners, glass, gloss, text, a candle flame with thin rays, many lanterns"
+
+  - id: x-b16-icon-c-light
+    kind: appicon
+    name: x-b16-icon-c-light
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. App icon direction C (island and seed), light. Review: reads at 60 and 29 pt; light, dark and tinted are one icon."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - block: preset-icon-v1
+      - text: |
+          PURPOSE: the Pofu app icon, direction C (island and seed), light appearance for iOS 26.
+          AUDIENCE: adults who want to open social apps less; calm, not clinical.
+          SUBJECT: the small floating home island seen from the front filling the lower middle, with one big sunflower sprout rising from its lawn as the focal shape, over a pale morning sky and a few clouds.
+          LIGHT variant: soft pale sky, warm cream and peach light, the painting as described.
+          LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80% circle, corners calm background only.
+          STYLE: the attached painting. PALETTE: milky pastel. No text.
+      - block: appicon-v1
+      - text: "AVOID: text, a border, rounded corners, glass, gloss, a crowd of objects, tiny details, Pofu's face"
+
+  - id: x-b16-icon-a-dark
+    kind: appicon
+    name: x-b16-icon-a-dark
+    size: 1024x1024
+    canvas: 1024x1024
+    palettes: [world-night]
+    chat: "Pofu · Exploration"
+    notes: "Exploration. App icon direction A (Pofu's face), dark. Review: reads at 60 and 29 pt; light, dark and tinted are one icon."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+      - ref: approved:x-b16-icon-a-light
+        role: "The light version of this same icon: keep the exact composition, shape and position of the focal subject."
+    prompt:
+      - block: preset-icon-v1
+      - text: |
+          PURPOSE: the Pofu app icon, direction A (Pofu's face), dark appearance for iOS 26.
+          AUDIENCE: adults who want to open social apps less; calm, not clinical.
+          SUBJECT: Pofu's face and cream curl filling the lower two thirds, centered, big eyes, calm smile, on a soft warm peach-to-cream sky with one small cloud.
+          DARK variant: the same composition and the same drawing at night: a deep soft indigo-to-plum sky, the focal shape lit warmly from within so it stays the brightest thing; still milky and painted, never black, never neon.
+          LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80% circle, corners calm background only.
+          STYLE: the attached painting. PALETTE: milky pastel. No text.
+      - block: appicon-v1
+      - text: "AVOID: text, a border, rounded corners, glass, gloss, a hamster in the bottom corners, a second character"
+
+  - id: x-b16-icon-a-tinted
+    kind: appicon
+    name: x-b16-icon-a-tinted
+    size: 1024x1024
+    canvas: 1024x1024
+    acceptance: {edit_mode: recolor}
+    chat: "Pofu · Exploration"
+    notes: "Exploration. App icon direction A (Pofu's face), tinted. Review: reads at 60 and 29 pt; light, dark and tinted are one icon."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+      - ref: approved:x-b16-icon-a-light
+        role: "The light version of this same icon: keep the exact composition, shape and position of the focal subject."
+    prompt:
+      - block: preset-icon-v1
+      - text: |
+          PURPOSE: the Pofu app icon, direction A (Pofu's face), tinted appearance for iOS 26.
+          AUDIENCE: adults who want to open social apps less; calm, not clinical.
+          SUBJECT: Pofu's face and cream curl filling the lower two thirds, centered, big eyes, calm smile, on a soft warm peach-to-cream sky with one small cloud.
+          TINTED variant: the same composition as a near-monochrome painting in one warm hue: the focal shape in light and mid values of that single hue on a dark brown-grey ground, high value contrast, no other colors, so the system can tint it.
+          LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80% circle, corners calm background only.
+          STYLE: the attached painting. PALETTE: milky pastel. No text.
+      - block: appicon-v1
+      - text: "AVOID: text, a border, rounded corners, glass, gloss, a hamster in the bottom corners, a second character"
+
+  - id: x-b16-icon-b-dark
+    kind: appicon
+    name: x-b16-icon-b-dark
+    size: 1024x1024
+    canvas: 1024x1024
+    palettes: [world-night]
+    chat: "Pofu · Exploration"
+    notes: "Exploration. App icon direction B (the paper lantern), dark. Review: reads at 60 and 29 pt; light, dark and tinted are one icon."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+      - ref: approved:x-b16-icon-b-light
+        role: "The light version of this same icon: keep the exact composition, shape and position of the focal subject."
+    prompt:
+      - block: preset-icon-v1
+      - text: |
+          PURPOSE: the Pofu app icon, direction B (the paper lantern), dark appearance for iOS 26.
+          AUDIENCE: adults who want to open social apps less; calm, not clinical.
+          SUBJECT: one large round paper lantern with a warm glowing cream light, hanging low and centered, with Pofu small and sleepy beside it, over a calm dusk-blue-to-peach sky.
+          DARK variant: the same composition and the same drawing at night: a deep soft indigo-to-plum sky, the focal shape lit warmly from within so it stays the brightest thing; still milky and painted, never black, never neon.
+          LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80% circle, corners calm background only.
+          STYLE: the attached painting. PALETTE: milky pastel. No text.
+      - block: appicon-v1
+      - text: "AVOID: text, a border, rounded corners, glass, gloss, text, a candle flame with thin rays, many lanterns"
+
+  - id: x-b16-icon-b-tinted
+    kind: appicon
+    name: x-b16-icon-b-tinted
+    size: 1024x1024
+    canvas: 1024x1024
+    acceptance: {edit_mode: recolor}
+    chat: "Pofu · Exploration"
+    notes: "Exploration. App icon direction B (the paper lantern), tinted. Review: reads at 60 and 29 pt; light, dark and tinted are one icon."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+      - ref: approved:x-b16-icon-b-light
+        role: "The light version of this same icon: keep the exact composition, shape and position of the focal subject."
+    prompt:
+      - block: preset-icon-v1
+      - text: |
+          PURPOSE: the Pofu app icon, direction B (the paper lantern), tinted appearance for iOS 26.
+          AUDIENCE: adults who want to open social apps less; calm, not clinical.
+          SUBJECT: one large round paper lantern with a warm glowing cream light, hanging low and centered, with Pofu small and sleepy beside it, over a calm dusk-blue-to-peach sky.
+          TINTED variant: the same composition as a near-monochrome painting in one warm hue: the focal shape in light and mid values of that single hue on a dark brown-grey ground, high value contrast, no other colors, so the system can tint it.
+          LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80% circle, corners calm background only.
+          STYLE: the attached painting. PALETTE: milky pastel. No text.
+      - block: appicon-v1
+      - text: "AVOID: text, a border, rounded corners, glass, gloss, text, a candle flame with thin rays, many lanterns"
+
+  - id: x-b16-icon-c-dark
+    kind: appicon
+    name: x-b16-icon-c-dark
+    size: 1024x1024
+    canvas: 1024x1024
+    palettes: [world-night]
+    chat: "Pofu · Exploration"
+    notes: "Exploration. App icon direction C (island and seed), dark. Review: reads at 60 and 29 pt; light, dark and tinted are one icon."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+      - ref: approved:x-b16-icon-c-light
+        role: "The light version of this same icon: keep the exact composition, shape and position of the focal subject."
+    prompt:
+      - block: preset-icon-v1
+      - text: |
+          PURPOSE: the Pofu app icon, direction C (island and seed), dark appearance for iOS 26.
+          AUDIENCE: adults who want to open social apps less; calm, not clinical.
+          SUBJECT: the small floating home island seen from the front filling the lower middle, with one big sunflower sprout rising from its lawn as the focal shape, over a pale morning sky and a few clouds.
+          DARK variant: the same composition and the same drawing at night: a deep soft indigo-to-plum sky, the focal shape lit warmly from within so it stays the brightest thing; still milky and painted, never black, never neon.
+          LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80% circle, corners calm background only.
+          STYLE: the attached painting. PALETTE: milky pastel. No text.
+      - block: appicon-v1
+      - text: "AVOID: text, a border, rounded corners, glass, gloss, a crowd of objects, tiny details, Pofu's face"
+
+  - id: x-b16-icon-c-tinted
+    kind: appicon
+    name: x-b16-icon-c-tinted
+    size: 1024x1024
+    canvas: 1024x1024
+    acceptance: {edit_mode: recolor}
+    chat: "Pofu · Exploration"
+    notes: "Exploration. App icon direction C (island and seed), tinted. Review: reads at 60 and 29 pt; light, dark and tinted are one icon."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+      - ref: approved:x-b16-icon-c-light
+        role: "The light version of this same icon: keep the exact composition, shape and position of the focal subject."
+    prompt:
+      - block: preset-icon-v1
+      - text: |
+          PURPOSE: the Pofu app icon, direction C (island and seed), tinted appearance for iOS 26.
+          AUDIENCE: adults who want to open social apps less; calm, not clinical.
+          SUBJECT: the small floating home island seen from the front filling the lower middle, with one big sunflower sprout rising from its lawn as the focal shape, over a pale morning sky and a few clouds.
+          TINTED variant: the same composition as a near-monochrome painting in one warm hue: the focal shape in light and mid values of that single hue on a dark brown-grey ground, high value contrast, no other colors, so the system can tint it.
+          LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80% circle, corners calm background only.
+          STYLE: the attached painting. PALETTE: milky pastel. No text.
+      - block: appicon-v1
+      - text: "AVOID: text, a border, rounded corners, glass, gloss, a crowd of objects, tiny details, Pofu's face"
+
+  - id: x-b16-logo-b
+    kind: plate
+    name: x-b16-logo-b
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Wordmark direction B (hand-brushed). Review: the text reads exactly 'Pofu', legible at 120 px wide, same family as the painting."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - block: preset-logo-v1
+      - text: |
+          PURPOSE: a wordmark for the app Pofu, direction B (hand-brushed).
+          AUDIENCE: adults and teens who open social apps by reflex; warm, humorous, never preachy.
+          REQUIRED TEXT: Pofu
+          (exactly four letters: capital P, lowercase o, f, u.)
+          LETTERFORM: friendly hand-brushed letters with slightly uneven baseline, in warm brown with the first letter in sunflower yellow. Extra mark: no mark.
+          COLOR: warm brown and cream from the attached painting on a plain pale cream ground.
+          LAYOUT: one lockup, centered, wide, with generous margin.
+      - text: "AVOID: any word other than Pofu, a hamster, a border, 3D, glow, outline, a drop shadow"
+
+  - id: x-b16-logo-c
+    kind: plate
+    name: x-b16-logo-c
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Wordmark direction C (pillow letters). Review: the text reads exactly 'Pofu', legible at 120 px wide, same family as the painting."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - block: preset-logo-v1
+      - text: |
+          PURPOSE: a wordmark for the app Pofu, direction C (pillow letters).
+          AUDIENCE: adults and teens who open social apps by reflex; warm, humorous, never preachy.
+          REQUIRED TEXT: Pofu
+          (exactly four letters: capital P, lowercase o, f, u.)
+          LETTERFORM: puffy inflated pillow letters in cream with a soft warm brown shading side, tightly spaced. Extra mark: a tiny sunflower seed sitting after the last letter.
+          COLOR: warm brown and cream from the attached painting on a plain pale cream ground.
+          LAYOUT: one lockup, centered, wide, with generous margin.
+      - text: "AVOID: any word other than Pofu, a hamster, a border, 3D, glow, outline, a drop shadow"
+
+  - id: x-b16-icon-family
+    kind: sheet
+    name: x-b16-icon-family
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Icon family sheet. Review: six icons, one family with the attached seed and calm, silhouettes read at 24 pt."
+    attach:
+      - ref: approved:icon-seed
+        role: "The seed icon: the exact finish, size and softness every icon of the family must share."
+      - ref: approved:icon-calm
+        role: "The calm icon: the exact finish, size and softness every icon of the family must share."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - block: preset-icon-v1
+      - text: |
+          PURPOSE: the icon family of the Pofu interface, in the painted style.
+          AUDIENCE: the app's users, who see the icons at 24 to 44 points.
+          SUBJECT: six icons in a grid of three columns and two rows, in this order: seed (a sunflower seed); lantern (a calm paper lantern); wellbeing (a small heart-shaped leaf); breath (a soft cloud with a curl of air); map (a rolled paper map); island (a tiny floating island).
+          LAYOUT: even grid on a transparent background, equal size and spacing, nothing touching, no labels.
+          STYLE: exactly the finish of the attached seed and calm icons. PALETTE: milky pastel with one warm-brown accent shape each.
+      - block: icon-style-v1
+      - text: "AVOID: text, labels, a background tile, glass, gloss, outlines, thin parts"
+
+  - id: x-b16-illus-archipelago
+    kind: plate
+    name: x-b16-illus-archipelago
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Illustration: Pofu with the archipelago. Review: Pofu is clearly the same Pofu; the chain reads at a glance."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - block: preset-illustration-v1
+      - text: |
+          PURPOSE: show that Pofu's world is a whole archipelago to grow, not one island.
+          AUDIENCE: new players, store visitors.
+          SUBJECT: Pofu small in the foreground on the home island's lawn, looking out with big eyes at a gentle chain of six floating islands (mossy, snowy, tall spire, whale shaped, red clay, a glowing star one) rising into a soft cream sky over a sea of clouds.
+          LAYOUT: wide, Pofu at lower left, the chain climbing to the upper right, a calm clear zone at the top.
+          STYLE: the attached painting. PALETTE: pastel, morning light from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: text, a border, more than one character, harsh shadows, dark moods"
+
+  - id: x-b16-illus-wheel
+    kind: plate
+    name: x-b16-illus-wheel
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Illustration: Pofu steps off the hamster wheel. Review: the idea reads without text; Pofu is the same Pofu; kind, not mocking."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - block: preset-illustration-v1
+      - text: |
+          PURPOSE: the feeling of the product: stepping out of a reflex loop.
+          AUDIENCE: adults who scroll by habit; a little humor, no shame.
+          SUBJECT: Pofu stepping off a toy hamster wheel onto soft grass, one foot still on the wheel's rim, the wheel gently stopping behind him, a relaxed smile, a floating island and a lantern ahead.
+          LAYOUT: portrait, Pofu centered low, the wheel behind, the island in the distance, a calm clear zone at the top.
+          STYLE: the attached painting. PALETTE: pastel, warm light from the upper left.
+      - block: prop-style-v2
+      - text: "AVOID: text, a border, a cage, sadness, a phone, more than one character"
+
+  - id: x-b16-poster
+    kind: plate
+    name: x-b16-poster
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Promo poster. Review: the headline reads 'Pofu' and the subline reads 'Boş ver. Ada büyüsün.' exactly; Pofu is the same Pofu."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - block: preset-poster-v1
+      - block: preset-promo-v1
+      - text: |
+          PURPOSE: a promo poster for the app, to announce it in a calm, charming way.
+          AUDIENCE: Turkish-speaking adults who want to scroll less.
+          TEXT HIERARCHY: headline, then subline.
+          REQUIRED TEXT, verbatim: headline "Pofu"; subline "Boş ver. Ada büyüsün."
+          LAYOUT: headline in the clear upper third, Pofu on the home island lawn below it looking up at a lit paper lantern, the subline at the foot on a pale area.
+          STYLE: the attached painting. PALETTE: pastel, morning light from the upper left.
+      - text: "AVOID: any other words, a border, a phone, store badges, prices, more than one character"

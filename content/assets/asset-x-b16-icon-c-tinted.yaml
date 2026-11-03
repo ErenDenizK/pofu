@@ -1,0 +1,21 @@
+id: asset-x-b16-icon-c-tinted
+type: asset
+title_tr: x-b16-icon-c-tinted
+title_en: x-b16-icon-c-tinted (appicon)
+status: in-production
+horizon: now
+summary: >-
+  PURPOSE: the Pofu app icon, direction C (island and seed), tinted appearance for iOS 26.
+  AUDIENCE: adults who want to open social apps less; calm, not clinical. SUBJECT: the small
+  floating home island seen from the front filling the lower middle, with one big sunflower
+  sprout rising from its lawn as the focal shape, over a pale morning sky and a few clouds.
+  TINTED variant: the same composition as a near-monochrome pa…
+art:
+  images: []
+  jobs:
+  - batch-16-brand-explore:x-b16-icon-c-tinted
+sources:
+- doc: tools/imagegen/manifest/batch-16-brand-explore.yaml
+kind: appicon
+batch: batch-16-brand-explore
+size: 1024x1024

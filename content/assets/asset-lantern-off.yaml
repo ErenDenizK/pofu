@@ -2,7 +2,7 @@ id: asset-lantern-off
 type: asset
 title_tr: lantern-off
 title_en: lantern-off (ui)
-status: planned
+status: in-production
 horizon: later
 summary: >-
   The calm lantern, unlit: a small, round paper lantern in warm cream paper with three soft
@@ -13,7 +13,8 @@ notes:
   Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
   and cay-1 approved
 art:
-  images: []
+  images:
+  - design/art/ui/ui-lantern-off/ui-lantern-off.png
   jobs:
   - batch-02-ui:lantern-off
 sources:

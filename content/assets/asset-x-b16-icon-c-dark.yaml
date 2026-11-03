@@ -1,0 +1,21 @@
+id: asset-x-b16-icon-c-dark
+type: asset
+title_tr: x-b16-icon-c-dark
+title_en: x-b16-icon-c-dark (appicon)
+status: in-production
+horizon: now
+summary: >-
+  PURPOSE: the Pofu app icon, direction C (island and seed), dark appearance for iOS 26. AUDIENCE:
+  adults who want to open social apps less; calm, not clinical. SUBJECT: the small floating
+  home island seen from the front filling the lower middle, with one big sunflower sprout
+  rising from its lawn as the focal shape, over a pale morning sky and a few clouds. DARK
+  variant: the same composition and the same drawing at nig…
+art:
+  images: []
+  jobs:
+  - batch-16-brand-explore:x-b16-icon-c-dark
+sources:
+- doc: tools/imagegen/manifest/batch-16-brand-explore.yaml
+kind: appicon
+batch: batch-16-brand-explore
+size: 1024x1024

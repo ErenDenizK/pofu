@@ -1,0 +1,21 @@
+id: asset-x-b16-illus-archipelago
+type: asset
+title_tr: x-b16-illus-archipelago
+title_en: x-b16-illus-archipelago (plate)
+status: in-production
+horizon: now
+summary: >-
+  PURPOSE: show that Pofu's world is a whole archipelago to grow, not one island. AUDIENCE:
+  new players, store visitors. SUBJECT: Pofu small in the foreground on the home island's
+  lawn, looking out with big eyes at a gentle chain of six floating islands (mossy, snowy,
+  tall spire, whale shaped, red clay, a glowing star one) rising into a soft cream sky over
+  a sea of clouds. LAYOUT: wide, Pofu at lower left, the chain cl…
+art:
+  images: []
+  jobs:
+  - batch-16-brand-explore:x-b16-illus-archipelago
+sources:
+- doc: tools/imagegen/manifest/batch-16-brand-explore.yaml
+kind: plate
+batch: batch-16-brand-explore
+size: 1536x1024
