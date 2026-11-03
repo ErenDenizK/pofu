@@ -16,14 +16,16 @@ public struct TuningValues: Codable, Hashable, Sendable {
     public var companion: Companion
     public var haptics: Haptics
     public var garden: Garden
+    public var home: Home
 
-    public init(camera: Camera, depth: Depth, grade: Grade, companion: Companion, haptics: Haptics, garden: Garden) {
+    public init(camera: Camera, depth: Depth, grade: Grade, companion: Companion, haptics: Haptics, garden: Garden, home: Home) {
         self.camera = camera
         self.depth = depth
         self.grade = grade
         self.companion = companion
         self.haptics = haptics
         self.garden = garden
+        self.home = home
     }
 
     /// A spring as SwiftUI and `WorldSpring` describe one: how long it
@@ -173,6 +175,23 @@ public struct TuningValues: Codable, Hashable, Sendable {
         public var hapticBloom: Double
         /// A seed landing in Pofu's cheeks.
         public var hapticCheek: Double
+    }
+
+    /// The Living Diorama's objects on Home (`PofuWorld.HomeTiming`):
+    /// durations in seconds.
+    public struct Home: Codable, Hashable, Sendable {
+        /// Pofu turns and presses his paws to his cheeks.
+        public var pawsPress: Double
+        /// The cheeks step down once the seeds are in flight.
+        public var cheekRelease: Double
+        /// The jar's fill rises to the new level.
+        public var jarFill: Double
+        /// The lantern's glow follows calm.
+        public var lanternGlow: Double
+        /// A pot's bloom or bud grows in.
+        public var potBloom: Double
+        /// Seeds a full jar holds.
+        public var jarCapacity: Double
     }
 
     /// Haptic intensities, 0…1.
