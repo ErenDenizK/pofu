@@ -96,7 +96,7 @@ jobs:
       - name: Check relative Markdown links
         run: python3 -I tools/docs/check_links.py
 
-      - name: Validate the content graph (Pofu Atlas)
+      - name: Validate the content graph (asset nodes)
         run: |
           python3 -I tools/content/validate.py
           python3 -I -m pytest -q tools/content/tests

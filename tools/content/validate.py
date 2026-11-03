@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate Pofu Atlas content: content/<folder>/<id>.yaml against content/schema.json.
+"""Validate content nodes: content/<folder>/<id>.yaml against content/schema.json.
 
     python3 -I tools/content/validate.py            # errors fail, warnings print
     python3 -I tools/content/validate.py --strict   # warnings fail too

@@ -269,10 +269,9 @@ Masters on `main` stored only as `<name>.webp` (for example `mochi-v2`,
 `island-main-l-v2`, `workshop-1`) are decoded to `<name>.png` first, as in
 step 2.
 
-## Pofu Atlas: one asset node per promoted master
+## Content graph: one asset node per promoted master
 
-Content planning lives in `content/` and renders into Pofu Atlas
-([`content/README.md`](content/README.md)). For **each master you
+Content planning lives in `content/` ([`content/README.md`](content/README.md)). For **each master you
 promote**, add an `asset` node or update its `art:`:
 
 1. After `run.py promote`, run `python3 -I tools/content/sync_assets.py`.
@@ -361,7 +360,7 @@ bench froze 14 finished rig picks and every later batch). Two levels:
 a timeout, a Codex answer without an image, a manual check such as the decor
 guide fit) gets its one allowed retry round (a fresh pair of takes). If that
 also fails, record the job as `skipped` with its reason in its `review.yaml`
-and its Atlas node (`status: cut`, never delete), skip every job that depends
+and its content node (`status: cut`, never delete), skip every job that depends
 on it (`edit_of`, `approved:`), say so in the PR, and **go on with the next
 job and the next batch**. Never loop, never waive a check to force a pass.
 Finished picks are always published; a skipped job never holds them back.
