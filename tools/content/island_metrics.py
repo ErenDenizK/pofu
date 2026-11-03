@@ -12,6 +12,10 @@ Checks (thresholds live in the file's `rules`):
 - any two wonder islands differ on >= 3 axes, and on >= 3 from home;
 - no three arrivals in a row share a game texture;
 - palette deltas stay kin to home (bounded) yet distinct, keeping a home anchor;
+- every cluster has its own atmosphere (hour, sky, key light, shadow, haze,
+  floor, weather, value key): any two clusters differ on enough of these,
+  and the home-only fields (home's shadow colour, haze and cloud sea) are
+  never reused, so islands differ by light, not only by palette (loop 2);
 - the schedule: each arrival day is derived from the previous island's
   content runway (its first day without a fresh beat), the minimum gaps and
   the wow spacing; then founder targets, dead days (no fresh beat from any
@@ -200,6 +204,8 @@ def check(data: dict) -> tuple[list[str], dict]:
             if islands[m]["cluster"] != cname:
                 v.append(f"cluster: {m} listed in {cname} but says {islands[m]['cluster']}")
 
+    v.extend(check_atmospheres(data))
+
     # Schedule: targets, dead days, stacked wows.
     sched = schedule(data)
     for name, t in (data.get("targets") or {}).items():
@@ -227,6 +233,41 @@ def check(data: dict) -> tuple[list[str], dict]:
             v.append(f"stacked wows: {e1} (day {d1}) and {e2} (day {d2})")
     v.extend(check_tiers(data, sched))
     return v, sched
+
+
+def check_atmospheres(data: dict) -> list[str]:
+    """Each cluster's own light and air (design loop 2).
+
+    A palette delta alone left every island under one pastel daylight, one
+    cream haze and one cloud sea; the atmosphere is what a visit repaints.
+    """
+    rule = data["rules"].get("atmosphere")
+    if not rule:
+        return []
+    fields, atm = rule["fields"], data.get("atmospheres") or {}
+    home = data["islands"][data["order"][0]]["cluster"]
+    v: list[str] = []
+    for cname in data["clusters"]:
+        a = atm.get(cname)
+        if a is None:
+            v.append(f"atmosphere: cluster {cname} has none")
+            continue
+        missing = [f for f in fields if f not in a]
+        if missing:
+            v.append(f"atmosphere: {cname} lacks {missing}")
+    if v:
+        return v
+    for a, b in combinations(list(data["clusters"]), 2):
+        same = [f for f in fields if atm[a][f] == atm[b][f]]
+        if len(fields) - len(same) < rule["min_diff"]:
+            v.append(f"atmosphere: {a} / {b} differ on {len(fields) - len(same)} of {len(fields)}; want >= {rule['min_diff']} (same {same})")
+    for cname in data["clusters"]:
+        if cname == home:
+            continue
+        for f in rule.get("home_only", []):
+            if atm[cname][f] == atm[home][f]:
+                v.append(f"atmosphere: {cname} reuses home's {f} ({atm[home][f]})")
+    return v
 
 
 def check_tiers(data: dict, sched: dict) -> list[str]:

@@ -1,5 +1,6 @@
 # Island profiles for year one: constellations, six axes, palette deltas,
-# beats, story spine. Design loop 1 (docs/product/design-loop/loop-1.md).
+# beats, story spine, cluster atmospheres. Design loops 1 and 2
+# (docs/product/design-loop/loop-1.md, loop-2.md).
 #
 # Not a content node: tools/content/validate.py skips this file. It is the
 # input of tools/content/island_metrics.py, which checks continuity and
@@ -25,6 +26,7 @@ rules:
   run_max:                   # arrivals in a row that may share one value
     texture: 2               # never three games of one texture in a row
     culture: 3               # a culture may hold a short chapter, not a season
+    sky: 3                   # loop 2: one hour may hold a chapter (the three dusks of chapter 3), never a season
   min_gap: 2                 # days between any two arrivals
   big_gap: 5                 # days between two big arrivals
   wow_gap: 3                 # days between any two wows (big arrival, big bloom)
@@ -42,6 +44,10 @@ rules:
     value_max: 0.45          # value delta (fraction)
     distinct_min: 0.15       # at least one of |hue|/100, |sat|, |value| this big
     keeps_min: 1             # home anchors kept in the island's palette
+  atmosphere:                # each cluster's own light and air (loop-2.md section 4)
+    fields: [hour, sky, key_light, shadow, haze, floor, weather, value_key]
+    min_diff: 5              # any two clusters differ on >= 5 of the 8
+    home_only: [shadow, haze, floor]   # home's warm-brown shadow, cream haze and white cloud sea are never reused
 
 # Founder's pacing targets (2026-11-03): Çağlayan d4, Koke d5-6, Gezgin
 # d8-10, Revontuli's rumour heard by the end of week two.
@@ -69,7 +75,7 @@ clusters:
 # new accent. Satellites inherit their cluster's delta.
 palette_deltas:
   home:    {hue: 0,   sat: 0.0,   value: 0.0,   accent: none, keeps: [honey, sage, sunflower, cream, rose-copper]}
-  water:   {hue: -30, sat: -0.15, value: 0.12,  accent: mineral turquoise, keeps: [cream, sunflower]}
+  water:   {hue: -50, sat: 0.2,   value: -0.1,  accent: deep mineral turquoise, keeps: [cream, sunflower]}   # loop 2: bolder (was -30/-0.15/+0.12, read as home in pastel)
   journey: {hue: -45, sat: -0.2,  value: -0.1,  accent: periwinkle, keeps: [cream, rose-copper]}
   cold:    {hue: -40, sat: -0.1,  value: -0.4,  accent: aurora green, keeps: [honey, rose-copper]}
   glass:   {hue: 15,  sat: 0.15,  value: 0.1,   accent: orchid violet, keeps: [sunflower, honey]}
@@ -77,6 +83,22 @@ palette_deltas:
   moon:    {hue: -35, sat: -0.3,  value: -0.3,  accent: moon silver, keeps: [cream, sunflower]}
   ear:     {hue: 5,   sat: 0.3,   value: 0.1,   accent: bunting red, keeps: [sunflower, cream]}
   memory:  {hue: 10,  sat: -0.3,  value: -0.15, accent: lamp amber, keeps: [honey, rose-copper]}
+
+# Atmospheres, per cluster (loop 2): what a visit repaints, edge to edge.
+# Every island keeps the hour it went quiet in; only home runs on the
+# player's clock (loop-2.md section 2). Satellites inherit their cluster's
+# atmosphere; their own `sky` axis may change the hour (Olta's dawn), and
+# loop-2.md section 4 lists their weather. The concept prompts quote these.
+atmospheres:
+  home:    {hour: real-time, sky: pastel-blue, key_light: warm-soft-upper-left, shadow: warm-brown, haze: cream, floor: cloud-sea-white, weather: fair, value_key: high-soft}
+  water:   {hour: noon, sky: deep-cerulean, key_light: hard-white-overhead, shadow: turquoise, haze: spray-halo, floor: spray-wall-rainbow, weather: spray, value_key: high-contrast}
+  journey: {hour: dusk, sky: periwinkle-fog-strait, key_light: orange-sun-slit-behind, shadow: periwinkle, haze: fog-banks, floor: dark-cloud-swell, weather: passing-shower-moonbow, value_key: mid}
+  cold:    {hour: night, sky: aurora-night, key_light: moon-cool-plus-one-window, shadow: deep-blue, haze: diamond-dust, floor: dark-floes, weather: snow, value_key: low}
+  glass:   {hour: winter-afternoon, sky: frost-pale-gold, key_light: low-gold-refracted, shadow: violet, haze: frost-breath, floor: rime-crust, weather: frost-sparkle, value_key: high-soft}
+  craft:   {hour: dusk, sky: smoke-amber, key_light: kiln-underlight, shadow: plum, haze: ochre-smoke, floor: red-dust-cloud, weather: sparks, value_key: mid-warm}
+  moon:    {hour: blue-hour, sky: indigo-starfield-with-gaps, key_light: silver-from-above, shadow: ink-blue, haze: crystal-clear, floor: mirror-flat-cloud, weather: still, value_key: low-silver}
+  ear:     {hour: morning-after-rain, sky: washed-blue-racing-clouds, key_light: hard-sun-moving-shadows, shadow: cool-grey-blue, haze: none-washed, floor: torn-cloud-sea, weather: wind, value_key: high-contrast}
+  memory:  {hour: dusk, sky: drizzle-grey, key_light: many-small-lamps, shadow: sepia-grey, haze: rain-mist, floor: rain-dark-cloud, weather: drizzle, value_key: low-mid}
 
 # Arrival order. The tool derives each arrival day from the previous
 # island's runway (its first day without a fresh beat), the gaps above
@@ -105,13 +127,13 @@ islands:
     cluster: water
     tier: premium
     intensity: 8
-    design_loop: 1
+    design_loop: 2
     founder_scores:
       - {loop: 0, date: 2026-11-03, score: null, note: 'Not rated; the agent scored the painting 5/10 (the template with a waterfall). Founder: Çağlayan must be unique too.'}
     axes: {palette: travertine-teal, material: travertine-water, sky: mist, landform: column, texture: juicy, culture: turkiye}
     bloom: 10
     beats: {0: arrival and the milky pools, 1: stage 1 and Damla's glass, 3: stage 2 the first clear pool, 4: the leaf boat comes home, 5: stage 3 the turn, 7: stage 4 the mill and the planks, 10: stage 5 the pools show the sky, 11: feast in the rain, 12: first rainbow at home}
-    unforgettable: "The pools are windows. Water that has gone round the sky shows what it passed; each pool you clear shows another island, live."
+    unforgettable: "The pools are windows that hold other hours. At hard white noon, a cleared pool shows another island in its own light: a pool of aurora night, a pool of dusk with a whale in it."
     spine: "Rung 1. The deepest pool shows, for one breath, a far window whose light goes out. Pofu knows that window. Mochi sees water."
   koke:
     name_tr: Koke
@@ -119,14 +141,14 @@ islands:
     size: satellite
     orbits: caglayan
     cluster: water
-    design_loop: 1
+    design_loop: 2
     founder_scores:
       - {loop: 0, date: 2026-11-03, score: 6, note: 'Japanese garden on the home template.'}
-    axes: {palette: travertine-teal, material: travertine-water, sky: mist, landform: tree, texture: brainy, culture: japan}
+    axes: {palette: travertine-teal, material: travertine-water, sky: mist, landform: sleeping-mound, texture: brainy, culture: japan}
     bloom: 7
-    beats: {0: arrival in the spray, 1: stage 1 the raked letter, 3: stage 2, 5: a reply in gravel, 7: stage 3 the red leaf}
-    unforgettable: "A bonsai riding a travertine boulder in Çağlayan's spray, so it rains on Koke only when Çağlayan pours."
-    spine: "Rung 2. Sumi rakes thank-you letters every night \"to whoever makes it quiet\". Someone does."
+    beats: {0: arrival in the spray, 1: stage 1 the raked letter, 3: stage 2, 5: a reply in gravel, 7: stage 3 the mound breathes once}
+    unforgettable: "A mossy mound with a bonsai, in a drizzle that falls only when Çağlayan pours. On a second look it is asleep: an old moss creature Sumi rakes around so as not to wake it."
+    spine: "Rung 2. Sumi rakes thank-you letters every night \"to whoever makes it quiet\": the sleeper sleeps because someone keeps it quiet. Its one breath at stage 3 is the first hint that the sky is alive, which Gezgin pays off at scale."
   gezgin:
     name_tr: Gezgin
     node: island-gezgin
@@ -199,9 +221,9 @@ islands:
     founder_scores: []
     axes: {palette: sky-cotton, material: sea-rock, sky: dusk, landform: stack, texture: juicy, culture: sky}
     bloom: 6
-    beats: {0: the gull rock catches up with the whale, 1: the first simit toss, 3: a gull brings a trinket back, 4: stage 2, 6: the storks rest here}
+    beats: {0: the gull rock catches up with the whale, 1: the first simit toss, 3: a gull brings a trinket back, 4: stage 2, 6: a gull trades a stork's feather}
     unforgettable: "A sea stack that follows the whale the way gulls follow a vapur; the gulls trade what they snatched."
-    spine: "Lale, resting on the flyway, once carried \"a small one with a squeaky door\" south. Mochi's glass trembles."
+    spine: "A gull trades a stork's feather and the story that came with it: a stork once carried \"a small one with a squeaky door\" south. Mochi's glass trembles. In the real migration season Leylek's nest passes and Lale tells it herself (loop 2)."
   fanus:
     name_tr: Fanus
     node: island-fanus
@@ -253,13 +275,13 @@ islands:
     cluster: craft
     tier: premium
     intensity: 9
-    design_loop: 1
+    design_loop: 2
     founder_scores:
       - {loop: 0, date: 2026-11-03, score: 4, note: 'Liked the mole and the wheel; the island is a postcard.'}
-    axes: {palette: ember-clay, material: clay-fire, sky: dusk, landform: cones, texture: juicy, culture: turkiye}
+    axes: {palette: ember-clay, material: clay-fire, sky: dusk, landform: giant-pot, texture: juicy, culture: turkiye}
     bloom: 13
     beats: {0: the cold kiln comes out of the backdrop, 1: stage 1 the first lump, 2: a pot cracks, 4: stage 2, 6: stage 3 four islands send goods, 9: stage 4, 13: stage 5 the first firing, 14: the keeper's glass turned upright}
-    unforgettable: "It has been on the horizon since day one, a cold side island behind home. It is the first island that was always there."
+    unforgettable: "A giant red-clay pot lying on its side, on the horizon since day one, cold. The day its kiln is lit it becomes the only island lit from below."
     spine: "Mochi's arc closes. Kil fires a glass for every island; Mochi turns the keeper's glass upright, pours, and sits down in the seat."
   ari:
     name_tr: Arı
