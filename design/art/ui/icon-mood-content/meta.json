@@ -1,0 +1,123 @@
+{
+  "job": "icon-mood-content",
+  "batch": "retry-2026-11-03",
+  "asset": "icon__mood-content",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T15:07:37+00:00",
+  "image": "design/art/ui/icon-mood-content/icon-mood-content.png",
+  "raw": "design/art/ui/icon-mood-content/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "9b76f6be62eb8d92",
+  "prompt": "REFERENCES (attached, in this order):\n1. The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed).\n2. A second family member: the same painting and value structure.\n3. Pofu: the face to simplify. Same colors, same eyes, same tuft.\n\nA mood glyph, content: Pofu's face only, simplified into a round\nicon: the golden-peach head with the cream blaze, the single cream\ncurl on top, two small round ears, two big round espresso eyes with\none round catchlight each, two blush ovals and a tiny \"w\" smile.\nNo whiskers, no fur strands along the outline (a smooth soft edge),\nno body.\n\nICON STYLE: a painted icon from the same picture book as the attached\nhamster and island: the same soft airbrushed shading, the same warm\nlight from the upper left and the same milky pastel colors, simplified\nfor small sizes. One object only, centered, filling about 86% of the\ncanvas, built from three or four large, rounded shapes, so it reads as a\nsilhouette at 24 points. No thin parts: nothing narrower than a tenth of\nthe icon's width (no stems, strings, whiskers, spikes or tiny dots). A\nclear value structure: the shadow side, or one warm-brown accent shape,\nis dark enough to read on pale frosted glass, and the lit side reads on\ndark glass. Matte, no glints, no texture. No outline, no drop shadow, no\nbackground shape: no circle, tile, badge or plate behind the object. No\nglass, no frosted panel, no glossy button. No text, no letters, no\nnumbers.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/icon-seed/icon-seed.png",
+      "role": "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+    },
+    {
+      "path": "design/art/ui/icon-calm/icon-calm.png",
+      "role": "A second family member: the same painting and value structure."
+    },
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "Pofu: the face to simplify. Same colors, same eyes, same tuft."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T13:56:46+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 48 (R1 51)",
+        "value": 48.4
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 46 (R1 59)",
+        "value": 45.6
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.2 (R1 5.3)",
+        "value": 1.17
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.3",
+        "value": 1.2536
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.4, p95 5.5, off-palette 0.6% (top: #BB5533 (0.2%), #BB6633 (0.1%))",
+        "value": 1.4203
+      },
+      {
+        "check": "icon_fill",
+        "status": "pass",
+        "message": "icon spans 84% of the canvas (target 80-92%)",
+        "value": 0.8438
+      },
+      {
+        "check": "icon_thin_parts",
+        "status": "pass",
+        "message": "0.2% of the silhouette is thinner than 1.5 pt at 24 pt",
+        "value": 0.0016
+      },
+      {
+        "check": "icon_small_detail",
+        "status": "pass",
+        "message": "detail at 24 pt @3x 6.0 (busy above 7)",
+        "value": 6.01
+      },
+      {
+        "check": "icon_on_light_glass",
+        "status": "warn",
+        "message": "26% of the icon separates from light glass at 24 pt",
+        "value": 0.2569
+      },
+      {
+        "check": "icon_on_dark_glass",
+        "status": "pass",
+        "message": "96% of the icon separates from dark glass at 24 pt",
+        "value": 0.9635
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Resume from the fixed pre-stop original candidate, with zero image generation. Re-posted both retained PNGs under main9ede62e; both locked RGBA rasters match their retained versions exactly and the same eligible take remains lowest lock load. Fresh light/dark small-size visual review reconfirms the choice. Both takes simplify Pofu to his round golden-peach face, cream blaze and single curl, two round ears, espresso eyes with one catchlight each, blush ovals and a small w smile. Smooth silhouette, no whiskers or body. Reviewed at 28, 44 and 60 pt on pale and dark backgrounds."
+}

@@ -3,11 +3,15 @@ contact_sheet: design/art/takes/retry-2026-11-03/icon-mood-content/contact.jpg
 jobs:
   icon-mood-content:
     pick: 2
-    publication: selected before global stop; promotion pending
-    note: Both takes simplify Pofu to his round golden-peach face, cream blaze and
-      single curl, two round ears, espresso eyes with one catchlight each, blush ovals
-      and a small w smile. Smooth silhouette, no whiskers or body. Reviewed at 28,
-      44 and 60 pt on pale and dark backgrounds.
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Resume from the fixed pre-stop
+      original candidate, with zero image generation. Re-posted both retained PNGs
+      under main9ede62e; both locked RGBA rasters match their retained versions exactly
+      and the same eligible take remains lowest lock load. Fresh light/dark small-size
+      visual review reconfirms the choice. Both takes simplify Pofu to his round golden-peach
+      face, cream blaze and single curl, two round ears, espresso eyes with one catchlight
+      each, blush ovals and a small w smile. Smooth silhouette, no whiskers or body.
+      Reviewed at 28, 44 and 60 pt on pale and dark backgrounds.
 qa_reports:
   2:
     job: icon-mood-content
@@ -154,15 +158,15 @@ qa_reports:
         detail: 1.16
     fingerprint: 9b76f6be62eb8d92
 manual_review:
-  note: Both takes simplify Pofu to his round golden-peach face, cream blaze and single
-    curl, two round ears, espresso eyes with one catchlight each, blush ovals and
-    a small w smile. Smooth silhouette, no whiskers or body. Reviewed at 28, 44 and
-    60 pt on pale and dark backgrounds.
-  terminal_decided_at: '2026-11-03T14:07:28.940118+00:00'
-  decision_qa_sha256: b4022fea3684f0df034c81d2737d086c8cf30149ce81203339dbce70616ad735
   excluded_takes: []
-  preservation_only_after_global_stop: true
-  no_new_selection_or_promotion: true
+  note: Resume from the fixed pre-stop original candidate, with zero image generation.
+    Re-posted both retained PNGs under main9ede62e; both locked RGBA rasters match
+    their retained versions exactly and the same eligible take remains lowest lock
+    load. Fresh light/dark small-size visual review reconfirms the choice. Both takes
+    simplify Pofu to his round golden-peach face, cream blaze and single curl, two
+    round ears, espresso eyes with one catchlight each, blush ovals and a small w
+    smile. Smooth silhouette, no whiskers or body. Reviewed at 28, 44 and 60 pt on
+    pale and dark backgrounds.
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-5e63df3a-87a7-4f17-96d9-a71842d0e3a3.png
