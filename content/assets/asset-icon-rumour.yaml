@@ -2,7 +2,7 @@ id: asset-icon-rumour
 type: asset
 title_tr: icon-rumour
 title_en: rumour (icon)
-status: cut
+status: planned
 horizon: now
 summary: 'The icon for a rumour: a small round-bellied glass-colored bottle painted
   as a soft tinted pale sage shape (not transparent), a honey-wood cork in its neck,
@@ -11,6 +11,7 @@ art:
   images: []
   jobs:
   - batch-13-ui-rest:icon-rumour
+  - retry-2026-11-03:icon-rumour
 sources:
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
 kind: icon

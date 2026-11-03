@@ -1,0 +1,692 @@
+# Retry 2026-11-03: the 32 jobs that batches 11 to 14 skipped (production)
+#
+# Why they skipped (docs/design/art-production-plan.md, "What the retry
+# taught"): not bad art. Four causes, all fixed here and in qa.py:
+#   - the brief named colors the drift check did not hold (violet button,
+#     honey tabby, glaze recolors, a lit lantern): jobs add `palettes:`;
+#   - an edit that repaints the object cannot keep its colors (glaze
+#     recolors, a refilled jar, a lit lantern): jobs declare
+#     `acceptance: {edit_mode: recolor | region}`, which swaps edit_stability
+#     for shape and light-structure checks (qa.py, EDIT_MODES);
+#   - two briefs asked for the impossible (a sheet that bleeds off a
+#     transparent canvas; a ferry wider than its footprint with a flat and a
+#     round hull): rewritten;
+#   - a failed pilot skipped whole batches (batch 13's icons never attached
+#     the sheet; batch 14's props attached the ferry). Only true dependents
+#     skip now: props attach the approved tea stall and island, the goat
+#     attaches Mochi.
+#
+# Every job here is a retry of a skipped job with the same asset name, so a
+# pick promotes over the same path. Nothing that passed is repeated. No pilot
+# gate: `plan` skips exactly the jobs whose edit_of or approved: master is
+# missing, and nothing else. Jobs that depend on a retry job:
+# ui-sheet-paper -> ui-menu-paper, ui-sheet-paper-night;
+# iskele-vapur-1 -> iskele-vapur-2; simit-kitten -> simit-kitten-work, -ears.
+#
+# Tracks: `ui` (face-primary, jar-full, lantern-on, bloom-right, five glazes),
+# `surfaces` (sheet, menu, night sheet, pressed face), `icons` (13, all at
+# once), `harbor` (vapur 1 -> 2; props; Simit -> poses; goat).
+
+batch: retry-2026-11-03
+title: Retry of the 32 skipped jobs of batches 11-14 (fixed QA profiles and briefs)
+status: open
+
+refs:
+  cay-1: design/art/stations/cay-1/cay-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: icon-seed, kind: icon, name: seed, external: batch-11-ui-pilot}
+  - {id: icon-calm, kind: icon, name: calm, external: batch-13-ui-rest}
+  - {id: ui-jar-empty, kind: ui, name: jar-empty, external: batch-11-ui-pilot}
+  - {id: ui-face-secondary, kind: ui, name: face-secondary, external: batch-13-ui-rest}
+  - {id: game-plot-tile-sage, kind: ui, name: game-plot-tile-sage, external: batch-12-minigame-art}
+  - {id: game-bloom-front, kind: ui, name: game-bloom-front, external: batch-12-minigame-art}
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: iskele-island-s, kind: world, name: iskele-island-s, external: batch-14-iskele}
+  - {id: cay-1, kind: station, name: cay-1, external: batch-01-slice}
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island}
+  - {id: pofu, kind: char, name: pofu-r1, external: r1, master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png}
+  - {id: ui-lantern-off, kind: ui, name: lantern-off, external: batch-11-ui-pilot}
+
+  - id: ui-face-primary
+    kind: ui
+    name: face-primary
+    canvas: 1024x1024
+    slice: {caps: [16, 26, 16, 26], ship_height: 52}
+    chat: "Pofu · UI objects"
+    palettes: [ui]
+    notes: "RETRY: batch 11 failed palette_drift because the violet is in the ui palette, which the drift check did not hold; the job now adds it. Primary action face, 52 pt tall, 120-360 wide. Review: flat centre across the middle, the rounded edge fully inside the caps."
+    attach:
+      - ref: approved:ui-jar-empty
+        role: "The glaze: paint the capsule in this same matte-to-soft-gloss ceramic glaze."
+      - ref: palette:world-props
+        role: "The palette card for props."
+      - ref: palette:ui
+        role: "The palette card for the UI accents: the violet of the primary action."
+    prompt:
+      - text: |
+          A wide, chunky capsule of glazed clay in soft violet (a mid-tone
+          between #6C4FD8 and #B9A2FF), lit from straight above: a soft cream highlight
+          along the top edge, a slightly darker rounded lip along the bottom
+          edge, perfectly even from left to right. Nothing on it.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+
+  - id: ui-jar-full
+    kind: ui
+    name: jar-full
+    edit_of: ui-jar-empty
+    chat: "Pofu · UI objects"
+    acceptance: {edit_mode: region}
+    notes: "RETRY: the manual edit_stability >0.9 gate cannot hold when a window is refilled (measured 0.77-0.79 on all four takes); edit_mode region keeps the shape check (edit_silhouette) instead. The window full of seeds; the app reveals it bottom-up with a wavy mask over the empty jar."
+    prompt:
+      - text: |
+          Fill the jar's front window panel completely with sunflower seeds:
+          a soft, full pile of chunky warm-brown and cream-striped seeds up
+          to the top of the window, painted simply (big shapes, not seed by
+          seed). Nothing else changes.
+      - block: edit-keep-v1
+
+  - id: ui-lantern-on
+    kind: ui
+    name: lantern-on
+    edit_of: ui-lantern-off
+    chat: "Pofu · UI objects"
+    palettes: [world-night]
+    acceptance: {edit_mode: region}
+    notes: "RETRY: lighting the paper repaints about a third of the lantern (measured 0.62-0.63 kept), and the glow colors are world-night's (window-glow, firefly, moon), so the job uses edit_mode region and adds that palette. The night hero. Cross-faded with the unlit one by calm."
+    prompt:
+      - text: |
+          Light the lantern from inside: the paper glows a warm honey-gold,
+          brightest at its center, the ribs, caps and post unchanged. Light
+          only inside the lantern's own outline: no halo, no glow, no rays and
+          no light spill outside the lantern (the app draws the glow around
+          it).
+      - block: edit-keep-v1
+
+  - id: game-bloom-right
+    kind: ui
+    name: game-bloom-right
+    edit_of: game-bloom-front
+    canvas: 1024x1024
+    acceptance: {edit_mode: region}
+    chat: "Pofu · Minigame art"
+    notes: "RETRY: the four takes kept the centre at x 502-507 (the front's own centre is 501), so the head did not turn. Review: the brown centre sits at least 70 px right of the front's centre and the left petals are larger than the right ones. Variant: faces slightly right."
+    prompt:
+      - text: |
+          Turn the sunflower head to the right, as if looking right: slide
+          the whole brown center clearly to the right, about one tenth of the
+          canvas width (about 100 px) further right than it is now, so it
+          sits well right of the middle; the petals on the right side are
+          narrow and foreshortened, the petals on the left side are broad and
+          open. The head stays the same size, colors and finish.
+      - block: edit-keep-v1
+
+  - id: game-plot-tile-honey
+    kind: ui
+    name: game-plot-tile-honey
+    edit_of: game-plot-tile-sage
+    canvas: 1024x1024
+    palettes: [game-glazes]
+    acceptance: {edit_mode: recolor}
+    chat: "Pofu · Minigame art"
+    notes: "RETRY: a glaze recolor changes every color, so edit_stability (0.00-0.02) and edit_chroma cannot hold; edit_mode recolor checks shape, light structure and lightness instead, and drift is measured against the game-glazes palette. Glaze 2 of 6, an edit so the six match."
+    prompt:
+      - text: |
+          Change only the glaze color of the tile and its sprout to a warm
+          honey yellow, in the same matte-to-soft-gloss finish and the same
+          lightness as before. The shape, highlight, lip and sprout stay.
+      - block: edit-keep-v1
+
+  - id: game-plot-tile-terracotta
+    kind: ui
+    name: game-plot-tile-terracotta
+    edit_of: game-plot-tile-sage
+    canvas: 1024x1024
+    palettes: [game-glazes]
+    acceptance: {edit_mode: recolor}
+    chat: "Pofu · Minigame art"
+    notes: "RETRY: a glaze recolor changes every color, so edit_stability (0.00-0.02) and edit_chroma cannot hold; edit_mode recolor checks shape, light structure and lightness instead, and drift is measured against the game-glazes palette. Glaze 3 of 6."
+    prompt:
+      - text: |
+          Change only the glaze color of the tile and its sprout to a soft
+          terracotta orange, in the same finish and the same lightness as
+          before. The shape, highlight, lip and sprout stay.
+      - block: edit-keep-v1
+
+  - id: game-plot-tile-lilac
+    kind: ui
+    name: game-plot-tile-lilac
+    edit_of: game-plot-tile-sage
+    canvas: 1024x1024
+    palettes: [game-glazes]
+    acceptance: {edit_mode: recolor}
+    chat: "Pofu · Minigame art"
+    notes: "RETRY: a glaze recolor changes every color, so edit_stability (0.00-0.02) and edit_chroma cannot hold; edit_mode recolor checks shape, light structure and lightness instead, and drift is measured against the game-glazes palette. Glaze 4 of 6."
+    prompt:
+      - text: |
+          Change only the glaze color of the tile and its sprout to a soft
+          lilac, in the same finish and the same lightness as before. The
+          shape, highlight, lip and sprout stay.
+      - block: edit-keep-v1
+
+  - id: game-plot-tile-mint
+    kind: ui
+    name: game-plot-tile-mint
+    edit_of: game-plot-tile-sage
+    canvas: 1024x1024
+    palettes: [game-glazes]
+    acceptance: {edit_mode: recolor}
+    chat: "Pofu · Minigame art"
+    notes: "RETRY: a glaze recolor changes every color, so edit_stability (0.00-0.02) and edit_chroma cannot hold; edit_mode recolor checks shape, light structure and lightness instead, and drift is measured against the game-glazes palette. Glaze 5 of 6. Keep it clearly different from sage (cooler and bluer)."
+    prompt:
+      - text: |
+          Change only the glaze color of the tile and its sprout to a cool
+          mint, a little bluer than before, in the same finish and the same
+          lightness. The shape, highlight, lip and sprout stay.
+      - block: edit-keep-v1
+
+  - id: game-plot-tile-rose
+    kind: ui
+    name: game-plot-tile-rose
+    edit_of: game-plot-tile-sage
+    canvas: 1024x1024
+    palettes: [game-glazes]
+    acceptance: {edit_mode: recolor}
+    chat: "Pofu · Minigame art"
+    notes: "RETRY: a glaze recolor changes every color, so edit_stability (0.00-0.02) and edit_chroma cannot hold; edit_mode recolor checks shape, light structure and lightness instead, and drift is measured against the game-glazes palette. Glaze 6 of 6."
+    prompt:
+      - text: |
+          Change only the glaze color of the tile and its sprout to a soft
+          dusty rose, in the same finish and the same lightness as before.
+          The shape, highlight, lip and sprout stay.
+      - block: edit-keep-v1
+
+  - id: ui-sheet-paper
+    kind: ui
+    name: sheet-paper
+    canvas: 1024x1024
+    slice: {caps: [32, 24, 20, 24], ship_height: 240}
+    chat: "Pofu · UI objects"
+    notes: "RETRY: all four takes were inset cards; an image model draws a card inside the canvas, never bleeding off it. The sheet is now an inset card with a plain flat bottom edge, like the other faces; the app slides the sheet so the bottom edge is below the screen. The centre is plain and tileable. Review: rounded top corners with a small paper lip, the whole edge inside the caps."
+    attach:
+      - ref: approved:ui-jar-empty
+        role: "The material: the same milky cream glaze and warm lights."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          A tall sheet of cream paper seen straight on, centered with a
+          small margin of empty canvas all round: its top corners softly
+          rounded with a thin lighter paper lip along the top, its bottom
+          corners also softly rounded, a faint darker paper edge just outside
+          a thin row of small, even, warm-brown stitches running just inside
+          the whole edge. The middle is plain, flat, even cream paper with
+          no stains and no texture variation. Nothing written on it.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+
+  - id: ui-face-secondary-pressed
+    kind: ui
+    name: face-secondary-pressed
+    edit_of: ui-face-secondary
+    canvas: 1024x1024
+    slice: {caps: [16, 26, 16, 26], ship_height: 52}
+    chat: "Pofu · UI objects"
+    acceptance: {edit_mode: region}
+    notes: "Pressed state: pushed into the page."
+    prompt:
+      - text: |
+          Show the capsule pressed in: a soft shadow along its top edge, the
+          highlight gone, the lip along the bottom edge flatter, and the
+          whole capsule a touch darker. The shape and outline stay.
+      - block: edit-keep-v1
+
+  - id: ui-menu-paper
+    kind: ui
+    name: menu-paper
+    canvas: 1024x1024
+    slice: {caps: [20, 20, 20, 20], ship_height: 160}
+    chat: "Pofu · UI objects"
+    notes: "The background of a pop-up menu or card (island menu, share card): a cream paper card with a soft scalloped rim. Plain tileable centre."
+    attach:
+      - ref: approved:ui-sheet-paper
+        role: "The family look of the paper surfaces: the same cream paper, stitches and lights. Do not copy its shape."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          A small cream paper card with four softly rounded corners, a thin
+          row of small, even, warm-brown stitches just inside its edge all
+          the way around, and a faint darker paper edge. The middle is plain,
+          flat, even cream paper, tileable. Seen straight on. Nothing
+          written on it.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+
+  - id: ui-sheet-paper-night
+    kind: ui
+    name: sheet-paper-night
+    edit_of: ui-sheet-paper
+    canvas: 1024x1024
+    slice: {caps: [32, 24, 20, 24], ship_height: 240}
+    chat: "Pofu · UI objects"
+    acceptance: {edit_mode: recolor}
+    notes: "Painted night version (one of the three painted N items): indigo-dyed paper."
+    prompt:
+      - text: |
+          Dye the paper a deep, soft indigo-blue, the stitches a pale warm
+          cream, the paper lip a slightly lighter indigo. Keep it matte and
+          calm; the middle stays plain, flat and even.
+      - block: edit-keep-v1
+
+  - id: icon-island
+    kind: icon
+    name: island
+    chat: "Pofu · Icons"
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for an island: a tiny floating island, a flat soft sage
+          lawn on a short, rounded honey-earth underside, nothing on the
+          lawn, no roots or at most two chunky ones.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-cay
+    kind: icon
+    name: station-cay
+    chat: "Pofu · Icons"
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for the cay ocagi station: one chunky tulip-shaped tea
+          glass of warm amber tea on a small cream saucer, the glass painted
+          as a soft tinted shape, not transparent glass.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-friend
+    kind: icon
+    name: friend
+    chat: "Pofu · Icons"
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for a friend: two small, round, soft sprouts in a tiny
+          clay pot, leaning toward each other, each with two chunky leaves.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-mood-content
+    kind: icon
+    name: mood-content
+    chat: "Pofu · Icons"
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: approved:icon-calm
+        role: "A second family member: the same painting and value structure."
+      - ref: R1
+        role: "Pofu: the face to simplify. Same colors, same eyes, same tuft."
+    prompt:
+      - text: |
+          A mood glyph, content: Pofu's face only, simplified into a round
+          icon: the golden-peach head with the cream blaze, the single cream
+          curl on top, two small round ears, two big round espresso eyes with
+          one round catchlight each, two blush ovals and a tiny "w" smile.
+          No whiskers, no fur strands along the outline (a smooth soft edge),
+          no body.
+      - block: icon-style-v1
+
+  - id: icon-skip
+    kind: icon
+    name: skip
+    chat: "Pofu · Icons"
+    notes: "A reach resisted: a bloom in a pot."
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for a skipped reach: one plump sunflower bloom in a small
+          terracotta pot, the bloom round with a brown center and a few
+          chunky yellow petals, one short chunky stem and two leaves hidden
+          behind the pot rim.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-round
+    kind: icon
+    name: round
+    chat: "Pofu · Icons"
+    notes: "An earned game round: a wooden token."
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for an earned round: a round, chunky honey-wood token with
+          a rounded rim and a simple sunflower burnt into its face in a
+          darker brown, large shapes only.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-breath
+    kind: icon
+    name: breath
+    chat: "Pofu · Icons"
+    notes: "The breathing break: a soft dandelion clock. Thin seeds must become chunky tufts to survive 28 pt."
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for the breathing break: a dandelion clock, a round,
+          fluffy ball built from about a dozen plump cream tufts around a
+          small honey center, a short chunky sage stem below, two tufts
+          drifting off to the upper right. No thin lines.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-rumour
+    kind: icon
+    name: rumour
+    chat: "Pofu · Icons"
+    notes: "A rumour: a corked bottle with a rolled note, no letters."
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for a rumour: a small round-bellied glass-colored bottle
+          painted as a soft tinted pale sage shape (not transparent), a
+          honey-wood cork in its neck, and a plump cream rolled note showing
+          inside, no letters or marks on the note.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-decor
+    kind: icon
+    name: decor
+    chat: "Pofu · Icons"
+    notes: "Decor: a small wind chime. Cords become one chunky cord."
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for decor: a small wind chime, a round honey-wood top
+          disc, three plump hanging rounded tubes in cream, rose and sage of
+          different lengths hanging from one short thick cord each, and a
+          little round clapper between them.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-plus
+    kind: icon
+    name: plus
+    chat: "Pofu · Icons"
+    notes: "Plus: a sun-gold sunflower head."
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for Plus: one sun-gold sunflower head seen straight on, a
+          round warm-brown center and eight plump rounded petals in a richer
+          gold than a normal sunflower, with a small cream highlight on each
+          petal.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: iskele-vapur-1
+    kind: station
+    name: iskele-vapur-1
+    chat: "Pofu · İskele"
+    notes: "PILOT (style anchor of the harbor stations only through vapur-2). RETRY: the four takes were 875-935 px wide against the 720 px footprint (the old brief said 'fills the footprint's width' for a long hull) and had round undersides (it asked for a plump rounded hull and a flat waterline). Now: a short hull no wider than the footprint, flat-bottomed. Review: reads as a vapur (funnel, cabin, round windows), not a rowing boat; at most 720 px wide on the footprint; the bottom is one straight horizontal edge with no water."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:island-main-s
+        role: "The home island: match its camera angle, light, softness and colors."
+      - ref: approved:cay-1
+        role: "The approved tea stall: match its painting, finish, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small Istanbul-style passenger ferry (vapur), toy-like and
+          chunky, for the island diorama: a short, plump hull in soft sea
+          blue with a cream stripe and softly rounded ends, a flat bottom (the
+          hull is cut off by one straight horizontal line, as if it floats
+          level in water that is not drawn), a low white-cream cabin with
+          three round windows, one tall rounded funnel in soft coral with a
+          cream band, and a small flag. Seen from the same low front
+          three-quarter camera, floating upright; no water, no wake, no
+          smoke. Friendly, few parts. It is compact: about 65% of the canvas
+          width (never wider than the footprint ellipse) and the lower two
+          thirds of the height bar.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: iskele-vapur-2
+    kind: station
+    name: iskele-vapur-2
+    edit_of: iskele-vapur-1
+    chat: "Pofu · İskele"
+    acceptance: {edit_mode: region}
+    notes: "Level 2: the ferry gets bigger (second deck). Edit of level 1."
+    prompt:
+      - text: |
+          Add a second deck to the ferry: a smaller cream cabin on top of the
+          first with two round windows, a rail of three cream posts around
+          the upper deck, and a second small funnel beside the first. The
+          hull, the first cabin and the colors stay. Keep it inside the
+          height bar.
+      - block: edit-keep-v1
+
+  - id: simit-kitten
+    kind: char
+    name: simit-kitten
+    size: 1024x1536
+    chat: "Pofu · Residents"
+    palettes: [character-tabby]
+    notes: "PILOT (style anchor of the residents only through her two poses). RETRY: all four takes failed palette_drift (honey stripes #DD8844, #CC7733 are not in the character palette); the job adds the character-tabby palette. Simit, a honey tabby kitten, the harbor's resident. Review: same scale, finish and fluff as Pofu and Mochi, a different silhouette (upright tail, small ears), no curl on the head."
+    attach:
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him)."
+      - ref: approved:mochi-v2
+        role: "Mochi, a neighbor: match her size on the canvas, her eyes and her finish (do not draw her)."
+      - ref: palette:character
+        role: "The character palette card."
+    prompt:
+      - text: |
+          Draw Simit, a neighbor of the attached hamster, in exactly the same
+          art style, lighting and level of fluff as the hamster and the
+          attached bunny. Same canvas rules as the hamster: full body,
+          sitting upright, front view, centered, feet on an invisible line
+          at 88% of the height, about 62% of the canvas width.
+          CHARACTER: Simit, a baby tabby kitten whose body is a soft round
+          ball of plush fur in warm honey-gold with soft darker honey
+          stripes on the forehead, the cheeks and the tail, a cream muzzle,
+          chest and belly. Two small, softly rounded triangular ears with
+          pink insides. Big round glossy dark espresso eyes with one large
+          round catchlight and one tiny sparkle each, soft blush ovals, a
+          tiny rounded pink nose and a small smiling "w" mouth. A short,
+          plump tail curls up beside her. Two tiny cream front paws together
+          at the chest, two small feet peeking out. No curl or swirl of fur
+          on top of the head (that belongs to Pofu alone). A tiny coral
+          neckerchief. No other clothes or accessories.
+      - block: style-anchor-v1
+      - block: negative-v1
+      - text: "AVOID: realistic cat anatomy, sharp ears or claws, a curl on top of the head, a hat, text, a ground shadow."
+
+  - id: simit-kitten-work
+    kind: char
+    name: simit-kitten-work
+    size: 1024x1536
+    edit_of: simit-kitten
+    chat: "Pofu · Residents"
+    palettes: [character-tabby]
+    notes: "Working pose: she carries a tray of simit."
+    prompt:
+      - text: |
+          Edit the attached kitten, Simit, into her working pose. Change only
+          her two front paws: they now hold a small round wooden tray in
+          front of her chest with three plump sesame-crusted simit rings
+          (golden-brown rings dotted with cream seeds) on it. Her ears, head,
+          face, body, tail and feet stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: a ground shadow, steam, text, a curl on the head."
+
+  - id: simit-kitten-ears
+    kind: char
+    name: simit-kitten-ears
+    size: 1024x1536
+    edit_of: simit-kitten
+    chat: "Pofu · Residents"
+    palettes: [character-tabby]
+    notes: "The horn toy: she covers her ears and squeezes her eyes shut."
+    prompt:
+      - text: |
+          Edit the attached kitten, Simit: both front paws are raised and
+          pressed flat over her two ears, and her eyes are squeezed shut in
+          two happy-scrunched curves with her small mouth open in a soft "o".
+          Her body, tail, feet, colors and size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: tears, a worried look, a ground shadow, text."
+
+  - id: iskele-horn-1
+    kind: station
+    name: iskele-horn-1
+    chat: "Pofu · İskele"
+    notes: "The toy: a post with a horn cord to pull (düüüt). Level 1, a small post; the pull is code."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:cay-1
+        role: "The approved tea stall: match its painting, light, colors, finish and scale exactly (do not draw the stall)."
+      - ref: approved:iskele-island-s
+        role: "The harbor island: its coral, cream and sea-blue colors and its light (do not draw the island)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small harbor signal post for the island diorama: a short, chunky
+          post of honey wood on a round stone foot, a plump brass-colored
+          horn pointing out to the right on top, and a thick cream cord with
+          a round wooden toggle hanging straight down from the horn. Few
+          parts, toy-like proportions; it fills about the lower half of the
+          height bar.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: iskele-crates-1
+    kind: station
+    name: iskele-crates-1
+    chat: "Pofu · İskele"
+    notes: "The Pack game's cargo: a little stack of parcels waiting on the pier."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:cay-1
+        role: "The approved tea stall: match its painting, light, colors, finish and scale exactly (do not draw the stall)."
+      - ref: approved:iskele-island-s
+        role: "The harbor island: its coral, cream and sea-blue colors and its light (do not draw the island)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small stack of cargo for the island diorama: two plump honey-wood
+          crates and one round cream sack tied with a coral cord, with a
+          small parcel wrapped in kraft paper and cream string on top. Chunky,
+          toy-like, rounded corners, no labels, no letters. It fills about
+          the lower half of the height bar.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: iskele-lamp-1
+    kind: station
+    name: iskele-lamp-1
+    chat: "Pofu · İskele"
+    notes: "A pier lamp. Unlit; the glow is code."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:cay-1
+        role: "The approved tea stall: match its painting, light, colors, finish and scale exactly (do not draw the stall)."
+      - ref: approved:iskele-island-s
+        role: "The harbor island: its coral, cream and sea-blue colors and its light (do not draw the island)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A pier lamp for the island diorama: a short, chunky post of honey
+          wood with a plump round lantern of cream glass-colored paper (a
+          soft tinted shape, not transparent, unlit) under a small coral cap.
+          Few parts, toy-like; it fills about the lower two thirds of the
+          height bar.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: iskele-goat
+    kind: char
+    name: iskele-goat
+    size: 1024x1536
+    chat: "Pofu · Residents"
+    notes: "The very indignant goat of the Pack game: cargo with opinions. Same family as the residents, small."
+    attach:
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him)."
+      - ref: approved:mochi-v2
+        role: "Mochi, a neighbor: match her size on the canvas, her eyes and her finish (do not draw her)."
+      - ref: palette:character
+        role: "The character palette card."
+    prompt:
+      - text: |
+          Draw a baby goat in exactly the same art style, lighting and level
+          of fluff as the attached hamster and bunny. Same canvas rules:
+          full body, sitting upright, front view, centered, feet on an
+          invisible line at 88% of the height, about 62% of the canvas width.
+          CHARACTER: a baby goat whose body is a soft round ball of cream
+          plush fur, a warm tan patch over one eye, two tiny rounded horn
+          buds, two soft floppy ears, a small beard tuft, big round glossy
+          dark espresso eyes with a catchlight each, and a very indignant
+          expression: the brows low, the small mouth pressed in a flat, soft
+          line, the chin lifted. Two small cream front paws at the chest.
+          No curl on top of the head.
+      - block: style-anchor-v1
+      - block: negative-v1
+      - text: "AVOID: realistic goat anatomy, sharp horns, rectangular pupils, a hat, text, a ground shadow."

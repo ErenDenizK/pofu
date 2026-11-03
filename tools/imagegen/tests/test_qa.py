@@ -238,6 +238,88 @@ class ProcessTakeTests(unittest.TestCase):
 
 
 
+def tile(rgb, size=1024, inset=140, notch=False) -> np.ndarray:
+    """A rounded tile with a lighter sprout, in one glaze (a stand-in for a plot tile)."""
+    im = canvas(size, size)
+    d = ImageDraw.Draw(im)
+    d.rounded_rectangle((inset, inset, size - inset, size - inset), radius=90, fill=rgb + (255,))
+    light = tuple(min(255, c + 25) for c in rgb)
+    d.ellipse((430, 400, 600, 570), fill=light + (255,))
+    d.rectangle((500, 560, 530, 760), fill=light + (255,))
+    if notch:  # the edit changed the shape: a bite out of the tile
+        d.rectangle((inset, inset, 520, 520), fill=(0, 0, 0, 0))
+    return np.asarray(im, dtype=np.float64) / 255.0
+
+
+class EditModeTests(unittest.TestCase):
+    """Edits that repaint the object (batches 11-12: glaze recolors, a refilled jar, a lit lantern)."""
+
+    SAGE, HONEY = (168, 190, 150), (214, 188, 120)
+
+    def names(self, child, parent, **acc):
+        cs = qa.run_checks("ui", child, child, ["world-props", "world-day", "character"], acc, parent_locked=parent)
+        return {c.name: c for c in cs}
+
+    def test_a_recolor_fails_the_default_edit_stability_by_construction(self):
+        c = self.names(tile(self.HONEY), tile(self.SAGE))
+        self.assertNotEqual(c["edit_stability"].status, "pass")
+
+    def test_recolor_mode_checks_shape_and_light_instead_of_colors(self):
+        c = self.names(tile(self.HONEY), tile(self.SAGE), edit_mode="recolor")
+        self.assertNotIn("edit_stability", c)
+        self.assertNotIn("edit_chroma", c)
+        for name in ("edit_silhouette", "edit_structure", "edit_lightness"):
+            self.assertEqual(c[name].status, "pass", name)
+
+    def test_recolor_mode_still_catches_a_changed_shape_and_a_changed_lightness(self):
+        c = self.names(tile(self.HONEY, notch=True), tile(self.SAGE), edit_mode="recolor")
+        self.assertEqual(c["edit_silhouette"].status, "fail")
+        dark = self.names(tile((70, 90, 55)), tile(self.SAGE), edit_mode="recolor")
+        self.assertEqual(dark["edit_lightness"].status, "fail")
+
+    def test_region_mode_relaxes_edit_stability_but_keeps_the_shape_check(self):
+        parent = tile(self.SAGE)
+        child = tile(self.SAGE)
+        child[430:600, 430:600, :3] = (0.2, 0.15, 0.1)  # the window is refilled
+        keep = self.names(child, parent)
+        region = self.names(child, parent, edit_mode="region")
+        self.assertLess(keep["edit_stability"].value, 0.99)
+        self.assertEqual(region["edit_stability"].status, "pass")
+        self.assertEqual(region["edit_silhouette"].status, "pass")
+        gone = self.names(tile(self.SAGE, notch=True), parent, edit_mode="region")
+        self.assertEqual(gone["edit_silhouette"].status, "fail")
+
+    def test_default_mode_adds_no_new_check(self):
+        c = self.names(tile(self.SAGE), tile(self.SAGE))
+        self.assertNotIn("edit_silhouette", c)
+        self.assertEqual(c["edit_stability"].status, "pass")
+
+    def test_unknown_mode_is_an_error(self):
+        with self.assertRaises(ValueError):
+            self.names(tile(self.SAGE), tile(self.SAGE), edit_mode="recolour")
+
+
+class KindProfileTests(unittest.TestCase):
+    def test_ui_accepts_a_saturated_accent_but_a_prop_does_not(self):
+        self.assertEqual(qa.grade(58.0, qa.limits_for("ui")["chroma_p95"]), "warn")
+        self.assertEqual(qa.grade(60.5, qa.limits_for("ui")["chroma_p95"]), "warn")
+        self.assertEqual(qa.grade(60.5, qa.limits_for("prop")["chroma_p95"]), "fail")
+        self.assertEqual(qa.grade(66.0, qa.limits_for("ui")["chroma_p95"]), "fail")
+
+    def test_extra_palettes_cover_the_colors_a_brief_names(self):
+        violet = np.zeros((64, 64, 4))
+        violet[..., :3] = (0x6C / 255, 0x4F / 255, 0xD8 / 255)
+        violet[..., 3] = 1
+        base = ["world-props", "world-day", "character"]
+        self.assertEqual(qa.check_palette(violet, base).status, "fail")
+        self.assertEqual(qa.check_palette(violet, base + ["ui"]).status, "pass")
+        tabby = np.zeros((64, 64, 4))
+        tabby[..., :3] = (0xD5 / 255, 0x80 / 255, 0x3E / 255)
+        tabby[..., 3] = 1
+        self.assertNotEqual(qa.check_palette(tabby, ["character"]).status, "pass")
+        self.assertEqual(qa.check_palette(tabby, ["character", "character-tabby"]).status, "pass")
+
+
 class HarmonyCheckTests(unittest.TestCase):
     """The promote-time harmony score (tools/assets/harmony.py)."""
 

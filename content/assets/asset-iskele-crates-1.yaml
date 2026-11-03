@@ -2,7 +2,7 @@ id: asset-iskele-crates-1
 type: asset
 title_tr: iskele-crates-1
 title_en: iskele-crates-1 (station)
-status: cut
+status: planned
 horizon: now
 summary: 'A small stack of cargo for the island diorama: two plump honey-wood crates
   and one round cream sack tied with a coral cord, with a small parcel wrapped in
@@ -12,6 +12,7 @@ art:
   images: []
   jobs:
   - batch-14-iskele:iskele-crates-1
+  - retry-2026-11-03:iskele-crates-1
 sources:
 - doc: tools/imagegen/manifest/batch-14-iskele.yaml
 kind: station

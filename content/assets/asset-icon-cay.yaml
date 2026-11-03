@@ -2,7 +2,7 @@ id: asset-icon-cay
 type: asset
 title_tr: icon-cay
 title_en: station-cay (icon)
-status: cut
+status: planned
 horizon: now
 summary: 'The icon for the çay ocağı station: one chunky tulip-shaped tea glass of
   warm amber tea on a small cream saucer, the glass painted as a soft tinted shape,
@@ -20,6 +20,7 @@ art:
   jobs:
   - batch-02-ui:icon-cay
   - batch-13-ui-rest:icon-cay
+  - retry-2026-11-03:icon-cay
 sources:
 - doc: tools/imagegen/manifest/batch-02-ui.yaml
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml

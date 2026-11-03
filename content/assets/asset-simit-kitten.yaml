@@ -2,7 +2,7 @@ id: asset-simit-kitten
 type: asset
 title_tr: simit-kitten
 title_en: simit-kitten (char)
-status: cut
+status: planned
 horizon: now
 summary: 'Draw Simit, a neighbor of the attached hamster, in exactly the same art
   style, lighting and level of fluff as the hamster and the attached bunny. Same canvas
@@ -14,6 +14,7 @@ art:
   images: []
   jobs:
   - batch-14-iskele:simit-kitten
+  - retry-2026-11-03:simit-kitten
 sources:
 - doc: tools/imagegen/manifest/batch-14-iskele.yaml
 kind: char

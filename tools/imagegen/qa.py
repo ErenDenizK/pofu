@@ -67,7 +67,22 @@ LIMITS_BY_KIND = {
     # Icons need one darker accent to read on light glass (ADR-0018), so
     # their value floor is lower than a prop's.
     "icon": {"value_floor": {"warn": 25.0, "fail": 15.0}},
+    # Crafted UI pieces carry saturated accents on purpose (a violet primary
+    # face, a sunflower bloom, a lit lantern): batch 11-12 measured p95
+    # chroma 55-60 on those. Same envelope as characters.
+    "ui": {"chroma_p95": {"warn": 56.0, "fail": 64.0}},
 }
+# An edit declares what it changes with `acceptance: {edit_mode: ...}`:
+#   keep    (default) the edit adds a part; everything else keeps its colors.
+#   region  the edit repaints a large part of the object (fill a jar window,
+#           light a lantern): edit_stability is relaxed, the shape must hold.
+#   recolor the edit changes the glaze of the whole object: colors are not
+#           compared; shape and light structure must hold.
+EDIT_MODES = ("keep", "region", "recolor")
+SILHOUETTE = {"warn": 0.93, "fail": 0.85}           # alpha IoU with the parent
+STRUCTURE = {"warn": 0.80, "fail": 0.60}            # lightness correlation with the parent (recolor)
+LIGHTNESS_SHIFT = {"warn": 10.0, "fail": 18.0}      # mean |L shift| (recolor: "the same lightness")
+REGION_EDIT_KEPT = {"warn": 0.50, "fail": 0.30}
 
 
 @dataclass
@@ -379,6 +394,33 @@ def edit_chroma_ratio(child: np.ndarray, parent: np.ndarray) -> float | None:
     return float(np.median(cc) / base) if base > 2.0 else None
 
 
+def edit_silhouette_iou(child: np.ndarray, parent: np.ndarray) -> float | None:
+    """Alpha IoU of the edit with its parent: the shape stayed, whatever the colors did."""
+    if child.shape != parent.shape:
+        return None
+    a, b = child[..., 3] > 0.5, parent[..., 3] > 0.5
+    union = int((a | b).sum())
+    return float((a & b).sum() / union) if union else None
+
+
+def edit_structure(child: np.ndarray, parent: np.ndarray, px: int = 128) -> tuple[float, float] | None:
+    """Lightness correlation and mean lightness shift of a recolor against its parent.
+
+    A glaze change moves hue and chroma, not where the highlight, lip and
+    sprout are (correlation stays high) and not how light the tile is."""
+    if child.shape != parent.shape:
+        return None
+    c, p = downsample(child, px), downsample(parent, px)
+    m = (c[..., 3] > 0.9) & (p[..., 3] > 0.9)
+    if m.sum() < 200:
+        return None
+    lc = sl.srgb_to_lab(c[..., :3][m])[:, 0]
+    lp = sl.srgb_to_lab(p[..., :3][m])[:, 0]
+    if lc.std() < 1e-6 or lp.std() < 1e-6:
+        return None
+    return float(np.corrcoef(lc, lp)[0, 1]), float(abs((lc - lp).mean()))
+
+
 def _band_extent(alpha: np.ndarray, frac: tuple[float, float]) -> tuple[float, float, int] | None:
     """Left, right and bottom of the solid mask within a vertical band of its bbox."""
     solid = alpha > 0.5
@@ -628,6 +670,25 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
         if h is not None:
             checks.append(h)
     if parent_locked is not None:
+        mode = acceptance.get("edit_mode", "keep")
+        if mode not in EDIT_MODES:
+            raise ValueError(f"edit_mode must be one of {', '.join(EDIT_MODES)}, got {mode!r}")
+        if mode != "keep":
+            iou = edit_silhouette_iou(locked, parent_locked)
+            if iou is not None:
+                checks.append(Check("edit_silhouette", grade(iou, SILHOUETTE, higher_is_worse=False),
+                                    f"{iou:.0%} of the parent's shape kept", iou))
+        if mode == "recolor":
+            st = edit_structure(locked, parent_locked)
+            if st is not None:
+                corr, dl = st
+                checks.append(Check("edit_structure", grade(corr, STRUCTURE, higher_is_worse=False),
+                                    f"light structure matches the parent (r {corr:.2f})", corr))
+                checks.append(Check("edit_lightness", grade(dl, LIGHTNESS_SHIFT),
+                                    f"mean lightness moved by {dl:.1f} L (the same lightness was asked)", dl))
+            return checks
+        if mode == "region" and "edit_kept" not in acceptance:
+            lim["edit_kept"] = dict(REGION_EDIT_KEPT)
         kept = edit_kept_fraction(locked, parent_locked)
         checks.append(Check("edit_stability", grade(kept, lim["edit_kept"], higher_is_worse=False),
                             f"{kept:.0%} of the parent level unchanged", kept))
