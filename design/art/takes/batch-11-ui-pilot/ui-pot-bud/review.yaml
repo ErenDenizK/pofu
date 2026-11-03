@@ -1,0 +1,148 @@
+batch: batch-11-ui-pilot
+contact_sheet: design/art/takes/batch-11-ui-pilot/ui-pot-bud/contact.jpg
+jobs:
+  ui-pot-bud:
+    pick: 2
+    note: auto-picked by QA; founder review pending. Both takes pass the strict edit_stability
+      >0.9 gate (0.9668 and 0.9709). Four-background alpha composites are clean. The
+      closed pointed green bud with a yellow hint and two rounded leaves is distinct
+      from the bloom at native36x56pt. Pot, rim and soil remain aligned. Take2 has
+      the lowest passing lock load0.6653 versus0.7266.
+    takes:
+      t1:
+        qa: pass
+        summary: all pass
+      t2:
+        qa: pass
+        summary: all pass
+    approved:
+      take: 2
+      at: '2026-11-03T00:10:36+00:00'
+    publication: promoted
+qa_reports:
+  1:
+    job: ui-pot-bud
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 42 (R1 59)
+      value: 42.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.94
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7266
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.2, p95 1.8, off-palette 2.3% (top: #888833 (0.3%), #99AA44
+        (0.3%))'
+      value: 1.2278
+    - check: edit_stability
+      status: pass
+      message: 97% of the parent level unchanged
+      value: 0.9668
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.03 of the parent level (drift compounds along a chain)
+      value: 1.0266
+    info:
+      metrics_raw:
+        L_p5: 42.3
+        L_p50: 68.8
+        L_p95: 85.3
+        C_p50: 31.6
+        C_p95: 40.0
+        C_p99: 55.8
+        detail: 1.24
+      metrics_locked:
+        L_p5: 42.4
+        L_p50: 68.7
+        L_p95: 85.2
+        C_p50: 31.6
+        C_p95: 39.8
+        C_p99: 51.4
+        detail: 0.94
+    fingerprint: 040b9c8ed6cc959e
+  2:
+    job: ui-pot-bud
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 38.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 42 (R1 59)
+      value: 41.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.97
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6653
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.1, p95 1.5, off-palette 1.8% (top: #667722 (0.2%), #778833
+        (0.2%))'
+      value: 1.1177
+    - check: edit_stability
+      status: pass
+      message: 97% of the parent level unchanged
+      value: 0.9709
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.97 of the parent level (drift compounds along a chain)
+      value: 0.9695
+    info:
+      metrics_raw:
+        L_p5: 41.5
+        L_p50: 69.0
+        L_p95: 86.0
+        C_p50: 29.9
+        C_p95: 39.1
+        C_p99: 60.8
+        detail: 1.22
+      metrics_locked:
+        L_p5: 41.6
+        L_p50: 68.9
+        L_p95: 85.9
+        C_p50: 29.9
+        C_p95: 38.9
+        C_p99: 51.9
+        detail: 0.97
+    fingerprint: 040b9c8ed6cc959e
+manual_review:
+  exclude: []
+  note: Both takes pass the strict edit_stability >0.9 gate (0.9668 and 0.9709). Four-background
+    alpha composites are clean. The closed pointed green bud with a yellow hint and
+    two rounded leaves is distinct from the bloom at native36x56pt. Pot, rim and soil
+    remain aligned. Take2 has the lowest passing lock load0.6653 versus0.7266.
