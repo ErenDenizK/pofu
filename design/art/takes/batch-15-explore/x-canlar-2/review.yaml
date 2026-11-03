@@ -1,0 +1,140 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-canlar-2/contact.jpg
+jobs:
+  x-canlar-2:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both automated PASS and exploratory
+      signature mood passes: a tiny proud mouse rings the largest bell, soft concentric
+      light rings read through warm fog, bells and cream stone stay in the home-family
+      painting. Take2 has lowest lock load0.5841. Shape caveat: the signature view
+      explores a broad lawn/bell-court layout rather than the establishing shot narrow
+      spire; retained as an explicitly flagged look-development alternative, not a
+      consistent production island plate. No promoted asset.'
+qa_reports:
+  1:
+    job: x-canlar-2
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 28 (R1 51)
+      value: 28.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 75.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.15
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6867
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 3.8, off-palette 0.0%
+      value: 1.6196
+    info:
+      metrics_raw:
+        L_p5: 75.2
+        L_p50: 88.8
+        L_p95: 94.2
+        C_p50: 8.0
+        C_p95: 28.8
+        C_p99: 38.2
+        detail: 1.58
+      metrics_locked:
+        L_p5: 75.5
+        L_p50: 88.8
+        L_p95: 94.1
+        C_p50: 8.0
+        C_p95: 28.3
+        C_p99: 37.7
+        detail: 1.15
+    fingerprint: aa63dd41e7871b77
+  2:
+    job: x-canlar-2
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 26 (R1 51)
+      value: 26.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 75.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.95
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5841
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 3.2, off-palette 0.0%
+      value: 1.2819
+    info:
+      metrics_raw:
+        L_p5: 75.7
+        L_p50: 90.2
+        L_p95: 94.7
+        C_p50: 8.4
+        C_p95: 26.6
+        C_p99: 37.7
+        detail: 1.33
+      metrics_locked:
+        L_p5: 75.8
+        L_p50: 90.1
+        L_p95: 94.6
+        C_p50: 8.5
+        C_p95: 26.3
+        C_p99: 36.6
+        detail: 0.95
+    fingerprint: aa63dd41e7871b77
+manual_review:
+  exclude: []
+  note: 'Both automated PASS and exploratory signature mood passes: a tiny proud mouse
+    rings the largest bell, soft concentric light rings read through warm fog, bells
+    and cream stone stay in the home-family painting. Take2 has lowest lock load0.5841.
+    Shape caveat: the signature view explores a broad lawn/bell-court layout rather
+    than the establishing shot narrow spire; retained as an explicitly flagged look-development
+    alternative, not a consistent production island plate. No promoted asset.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-c2f222f1-735d-46a1-9b01-b3c83568b7a0.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: aa63dd41e7871b77
+  original_png_sha256: 92662682fa7b3fac58b1798a7f93ed454a8e2afb94e3376811b225e9d876520c
+- take: 2
+  source_file: /workspace/generated_images/exec-001f144f-d2dd-4fc9-9879-cb36010305b2.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: aa63dd41e7871b77
+  original_png_sha256: 7476e648357f1bb14b49c40d4d43d3569b1e34a298a8453299ed07ad6cc94279
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
