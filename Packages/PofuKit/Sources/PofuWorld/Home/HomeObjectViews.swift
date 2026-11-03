@@ -15,6 +15,12 @@ enum HomeArt {
     static let paintedJar = true
     static let paintedLantern = true
     static let paintedPot = true
+    /// The painted "collect push" pose is not made yet. The pofu-paws-*
+    /// masters are whole-body rig poses (a seed held at the chest), not
+    /// cheek-press layers, and the vector stand-in paws read as a dark blob
+    /// on his face, so the cheek squeeze plays alone. Flip when the pose
+    /// lands.
+    static let paintedPaws = false
 }
 
 /// Night, for the objects that sit over the graded world: a gentle code
@@ -187,12 +193,18 @@ struct HomeJar: View {
     let canCollect: Bool
     let isNight: Bool
     let showsTag: Bool
-    /// Slides the action right when the jar stands at the left edge.
-    let shiftX: Double
+    /// The jar's centre and the screen's width and safe-area insets, in
+    /// points: the action keeps the gutter plus the inset from both edges.
+    let jarX: Double
+    let screenWidth: Double
+    let leadingInset: Double
+    let trailingInset: Double
     let home: WorldHomeModel
     let collect: @MainActor () -> Void
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// The action's measured width (it grows with the seed count).
+    @State private var actionWidth = 140.0
 
     var body: some View {
         TimelineView(.animation(minimumInterval: nil, paused: home.collect == nil || home.frozenOffset != nil)) { context in
@@ -217,11 +229,21 @@ struct HomeJar: View {
                     }
                     if canCollect, home.collect == nil {
                         CollectAction(seeds: uncollected, action: collect)
+                            .onGeometryChange(for: Double.self) { Double($0.size.width) } action: { actionWidth = $0 }
                             .transition(.opacity.combined(with: .scale(scale: 0.9)))
                     }
                 }
                 .fixedSize()
-                .offset(x: shiftX, y: HomeObjectsLayout.jarSize.height + 4)
+                .offset(
+                    x: HomeObjectsLayout.collectShift(
+                        jarX: jarX,
+                        actionWidth: actionWidth,
+                        screenWidth: screenWidth,
+                        leadingInset: leadingInset,
+                        trailingInset: trailingInset
+                    ),
+                    y: HomeObjectsLayout.jarSize.height + 4
+                )
             }
     }
 

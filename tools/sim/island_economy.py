@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 """Archipelago economy simulation for Pofu: seeds as world material, care,
+
+NOTE (2026-11-03): this script models the v2 scale (hundreds of seeds a day,
+ladders up to tens of thousands). `PofuCore` now runs economy scale A (about
+10-40 seeds a day, prices 5-200); the up-to-date simulation is the Swift
+`GameScenarioTests` (typical archetype), which plays the real game model, and
+docs/product/economy.md#economy-scale-a-small-numbers holds its table. The
+behavior model below still describes the archetypes; do not read its seed
+numbers as current.
+
 calm, the breathing break, and idle stations across several islands.
 
 Models docs/product/game-design.md (v2) and ADR-0015 to ADR-0017:

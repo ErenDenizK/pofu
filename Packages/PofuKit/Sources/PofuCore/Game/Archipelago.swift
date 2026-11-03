@@ -87,7 +87,7 @@ public struct StationSpec: Hashable, Sendable, Codable, Identifiable {
     /// starts built has a zero first entry.
     public var levelCosts: [Energy]
     /// Seeds an hour at each level, 1 to 5, before calm, in hundredths so
-    /// the designed rates (+55 % of base per level) stay exact.
+    /// the designed rates stay exact.
     public var centiSeedsPerHour: [Int]
     /// Whether the station exists at level 1 from the start (Pofu's
     /// sunflower garden).
@@ -131,25 +131,32 @@ public struct StationSpec: Hashable, Sendable, Codable, Identifiable {
         Double(centiRate(at: level)) / 100
     }
 
-    /// The pattern every designed ladder follows: costs grow ×2.2 per
-    /// level (rounded), rates +55 % of the base per level.
-    public static func designed(
+    /// Seeds an hour per built level at economy scale A: 0.03 of a seed, so
+    /// about 0.6 seeds a day per level at calm ×1.0 while Pofu is away and
+    /// observing (archipelago system §7.3). Stations add up by level, not
+    /// by station, so what you build matters less than that you build.
+    public static let scaleACentiSeedsPerHourPerLevel = 2
+
+    /// A ladder at economy scale A (founder, 2026-11-02): small, legible
+    /// prices (5 to 200) and a rate that grows by the same step each level.
+    /// `costs` are the prices of levels 1 to 5 (a station that starts built
+    /// has a zero first entry).
+    public static func ladder(
         _ id: StationID,
         island: IslandID,
         opensAt: Int,
-        firstCost: Int,
-        baseSeedsPerHour: Int,
+        costs: [Int],
         startsBuilt: Bool = false
     ) -> StationSpec {
-        // The garden starts built; its ladder starts at level 2.
-        let costs: [Energy] = (1...5).map { level in
-            if startsBuilt {
-                return level == 1 ? .zero : Energy(Int((Double(firstCost) * pow(2.2, Double(level - 2))).rounded()))
-            }
-            return Energy(Int((Double(firstCost) * pow(2.2, Double(level - 1))).rounded()))
-        }
-        let rates = (1...5).map { level in baseSeedsPerHour * 100 + baseSeedsPerHour * 55 * (level - 1) }
-        return StationSpec(id: id, island: island, opensAt: opensAt, levelCosts: costs, centiSeedsPerHour: rates, startsBuilt: startsBuilt)
+        let rates = (1...costs.count).map { $0 * scaleACentiSeedsPerHourPerLevel }
+        return StationSpec(
+            id: id,
+            island: island,
+            opensAt: opensAt,
+            levelCosts: costs.map { Energy($0) },
+            centiSeedsPerHour: rates,
+            startsBuilt: startsBuilt
+        )
     }
 }
 
@@ -236,7 +243,8 @@ public struct ArchipelagoCatalog: Hashable, Sendable, Codable {
         stations.flatMap(\.levelCosts).reduce(.zero, +)
     }
 
-    /// Game design v2: five islands, 17 stations, 1,944,103 seeds.
+    /// Game design v2 at economy scale A: five islands, 17 stations, every
+    /// level 5 to 200 seeds.
     public static let standard = ArchipelagoCatalog(
         home: .aycicegi,
         homeStageTendedDays: [0, 1, 4, 10, 24],
@@ -248,23 +256,23 @@ public struct ArchipelagoCatalog: Hashable, Sendable, Codable {
             IslandSpec(id: .kitap, arrival: IslandArrival(tendedDays: 50, needsRelease: true)),
         ],
         stations: [
-            .designed(.garden, island: .aycicegi, opensAt: 1, firstCost: 30, baseSeedsPerHour: 6, startsBuilt: true),
-            .designed(.cay, island: .aycicegi, opensAt: 2, firstCost: 40, baseSeedsPerHour: 5),
-            .designed(.pond, island: .aycicegi, opensAt: 3, firstCost: 160, baseSeedsPerHour: 6),
-            .designed(.workshop, island: .aycicegi, opensAt: 4, firstCost: 500, baseSeedsPerHour: 9),
-            .designed(.windmill, island: .aycicegi, opensAt: 5, firstCost: 1400, baseSeedsPerHour: 12),
-            .designed(.simit, island: .iskele, opensAt: 0, firstCost: 300, baseSeedsPerHour: 8),
-            .designed(.pier, island: .iskele, opensAt: 3, firstCost: 550, baseSeedsPerHour: 9),
-            .designed(.lighthouse, island: .iskele, opensAt: 7, firstCost: 1000, baseSeedsPerHour: 11),
-            .designed(.observatory, island: .yildiz, opensAt: 0, firstCost: 2000, baseSeedsPerHour: 12),
-            .designed(.fireflies, island: .yildiz, opensAt: 3, firstCost: 2400, baseSeedsPerHour: 11),
-            .designed(.hammock, island: .yildiz, opensAt: 7, firstCost: 3000, baseSeedsPerHour: 13),
-            .designed(.spring, island: .kaplica, opensAt: 0, firstCost: 3600, baseSeedsPerHour: 13),
-            .designed(.hamam, island: .kaplica, opensAt: 3, firstCost: 4400, baseSeedsPerHour: 14),
-            .designed(.serbet, island: .kaplica, opensAt: 7, firstCost: 5200, baseSeedsPerHour: 15),
-            .designed(.readingTree, island: .kitap, opensAt: 0, firstCost: 6000, baseSeedsPerHour: 14),
-            .designed(.bookHouse, island: .kitap, opensAt: 3, firstCost: 7200, baseSeedsPerHour: 15),
-            .designed(.press, island: .kitap, opensAt: 7, firstCost: 8400, baseSeedsPerHour: 16),
+            .ladder(.garden, island: .aycicegi, opensAt: 1, costs: [0, 5, 9, 15, 25], startsBuilt: true),
+            .ladder(.cay, island: .aycicegi, opensAt: 2, costs: [8, 14, 24, 38, 60]),
+            .ladder(.pond, island: .aycicegi, opensAt: 3, costs: [15, 25, 40, 60, 85]),
+            .ladder(.workshop, island: .aycicegi, opensAt: 4, costs: [30, 50, 75, 105, 140]),
+            .ladder(.windmill, island: .aycicegi, opensAt: 5, costs: [50, 80, 110, 150, 190]),
+            .ladder(.simit, island: .iskele, opensAt: 0, costs: [25, 40, 60, 85, 115]),
+            .ladder(.pier, island: .iskele, opensAt: 3, costs: [40, 60, 85, 115, 150]),
+            .ladder(.lighthouse, island: .iskele, opensAt: 7, costs: [60, 85, 115, 150, 200]),
+            .ladder(.observatory, island: .yildiz, opensAt: 0, costs: [45, 70, 100, 135, 170]),
+            .ladder(.fireflies, island: .yildiz, opensAt: 3, costs: [55, 80, 110, 145, 180]),
+            .ladder(.hammock, island: .yildiz, opensAt: 7, costs: [65, 90, 120, 155, 190]),
+            .ladder(.spring, island: .kaplica, opensAt: 0, costs: [50, 75, 105, 140, 175]),
+            .ladder(.hamam, island: .kaplica, opensAt: 3, costs: [60, 85, 115, 150, 185]),
+            .ladder(.serbet, island: .kaplica, opensAt: 7, costs: [70, 95, 125, 160, 195]),
+            .ladder(.readingTree, island: .kitap, opensAt: 0, costs: [55, 80, 110, 145, 180]),
+            .ladder(.bookHouse, island: .kitap, opensAt: 3, costs: [65, 90, 120, 155, 190]),
+            .ladder(.press, island: .kitap, opensAt: 7, costs: [75, 100, 130, 165, 200]),
         ]
     )
 }

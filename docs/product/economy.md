@@ -543,7 +543,7 @@ full rules are [game design §5](game-design.md#5-mechanics-and-numbers).
 |---|---|---|
 | Wellbeing | `CareLedger` | 5–100 (start 70); −0.35 a minute in a guarded app (×2 at night, ×1.25 per earlier open in 3 h), −1.5 per open; +5 a calm waking hour from "tired" up, and in "curled up" and "unwell" one band per quiet hour (1/60 of the band's width a minute, never past its edge), +1 a skip (6 a day), +10 a calm night; below 60, 30 % of the way back each night |
 | Calm | `CalmAccrual` | ×1.0–×2.0 in integer tenths; +0.1 per 20 observed calm waking minutes; a quick check (≤ 3 min) halves the bonus, a second within 20 min of the last one's end resets it; any other open resets; +0.2 a calm night |
-| Seeds | `StationLedger` | A pouch by source, collected into a jar, spent only on builds. Stations: designed ladders × calm × care (×0.6 below 25), only while away and observed, fractions carried. Pofu's gathering: 1 per 10 quiet waking minutes, 48 a day, +10 a calm night. Skips: +3, 5 a day |
+| Seeds | `StationLedger` | A pouch by source, collected into a jar, spent only on builds. Economy scale A (see [below](#economy-scale-a-small-numbers)): stations 0.02 of a seed an hour per built level × calm × care (×0.6 below 25), only while away and observed, fractions carried. Pofu's gathering: 1 per quiet waking hour, 8 a day, +2 a calm night. Skips: +1, 6 a day. Levels cost 5–200 |
 | Island-game rounds | `RoundLedger`, `RoundRules`, `WorldClock.playRound`; yield from `PofuGames.SeedYield` | 2 rounds a day for everyone, +1 per resisted reach (6 a day), at most 12 played a day, none at night, banked rounds never expire. A round pays 2 seeds, +1 at 3 lines bloomed, +1 at 7, +1 for a double bloom or a combo of 4, at most 5 (simulated: about 4.1 for expert play, 2.5 for random), into the pouch as `rounds` ("+3 yanaklarına"). Five rounds a set; see [minigames](minigames.md) |
 | The breath | `BreathRules` | Past the daily hour: 5 s for the 1st–3rd over-limit open, 10 s from the 4th, never more than 10 s; the fourth rapid reach falls back to the 10 s breath; never for the emergency pass; "Not now" is a skip |
 | The facade | `WorldClock`, `GameState` | A deterministic minute grid fed by `GameEvent`s (from the gate's event log); `advance`, `collect`, `build`, `breath`, `snapshot` |
@@ -556,3 +556,67 @@ is **unobserved** and earns nothing; with Screen Time the shield ends each
 pass, so the time after it is observed. Pre-membership, today's guarded
 time for the breath is the granted pass minutes; with DeviceActivity, the
 measured step when higher.
+
+## Economy scale A: small numbers
+
+_Founder decision, 2026-11-02 ("economy scale A"); implemented in
+`PofuCore/Game` on 2026-11-03._ The numbers a person sees stay small and
+legible: a typical user earns about 10 to 40 seeds a day, a station level
+costs 5 to 200, and a garden round pays 2 to 5. Before this change the game
+model ran at the v2 scale (hundreds of seeds a day, ladders up to 32,796),
+so the Home screen showed "Topla · 991" and a jar of 2.199.
+
+| Rule | Before | Scale A (default in code) |
+|---|---|---|
+| Pofu's gathering (`QuietTimeRules.archipelago`) | 1 per 10 quiet minutes, 48 a day | **1 per quiet waking hour, 8 a day** |
+| Calm night bonus | +10 seeds | **+2 seeds** |
+| A resisted reach (`SeedRules`) | +3, 5 a day | **+1, 6 a day** |
+| Station level price | ×2.2 a level, 30 to 32,796 | **5 to 200** (archipelago system proposal §7.4, PR #64), home island 1,403 in all, 17 stations 8,143 |
+| Station rate | 5–16 an hour at L1, +55 % a level | **0.02 of a seed an hour per built level**, so about 0.5 a day per level at calm ×1.0 (`ArchipelagoCatalog.scaleACentiSeedsPerHourPerLevel`) |
+| Garden round (`SeedYield`) | 2 to 5 | unchanged: 2 to 5 (2 + 1 at 3 lines + 1 at 7 + 1 for a double bloom or combo of 4) |
+| Calm multiplier, care, rounds a day | ×1.0 to ×2.0; ×0.6 below 25; 2 + 1 per resisted reach | unchanged |
+
+Stations add up by built level, not by station: what you build matters
+less than that you build. The calm multiplier still doubles them at most,
+so a rested user earns about a third more than an average one, never ten
+times more.
+
+### The 60-day typical user
+
+`GameScenarioTests` (`typical` archetype) plays the real `WorldClock` minute
+by minute for 90 days: about one reach an hour while awake, 60 % resisted
+(about 12 resisted reaches a day, the brief's "about ten"), three short
+visits a day that collect and build the cheapest open level, at most two a
+visit. Seeds are the passive sources (gathering, stations, calm nights,
+skips); rounds are shown apart, five a day at 3 seeds each, as the
+optional play layer (today they pay seeds; the archipelago design has them
+pay island material, which would leave the passive column as the whole
+income).
+
+| Week | Seeds a day | + a five-round set | Station levels built (end of week) | Station levels (with rounds) |
+|---|---|---|---|---|
+| 1 | 17.9 | 19.0 | 9 | 12 |
+| 2 | 24.1 | 26.9 | 14 | 18 |
+| 3 | 26.4 | 29.9 | 18 | 23 |
+| 4 | 29.1 | 33.6 | 21 | 29 |
+| 6 | 28.9 | 33.7 | 28 | 38 |
+| 8 | 36.6 | 44.1 | 34 | 47 |
+| Days 54–60 | **37.6** | 45.7 | 36 | about 50 |
+
+The bands the tests hold (`dailyIncomeLandsInTheScaleABands`,
+`levelPacingFollowsTheIncome`): week 1 between 12 and 20 seeds a day (target
+about 15), days 54 to 60 between 30 and 42 (target about 37), every week
+between 10 and 40, the last week at least 1.7 times the first, something
+built on day 1 and in every one of the first eight weeks, 5 to 14 levels by
+day 7, 16 to 28 by day 30, 28 to 42 by day 60, İskele on day 7 to 14 and
+Yıldız on day 20 to 30. Skips are at most half of week-1 income for anyone
+and under a quarter of the typical user's income from week 2 on (archipelago
+system open question 10: confirmed). The old "at most 5 % of week 1" check
+is gone with the +3.
+
+The shape is deliberate: the day-1 number is mostly behaviour (gathering,
+skips), and from week 2 the stations carry a growing share, up to about
+60 % by day 60, which is the "my island is working for me" feeling at a
+scale where every digit can be read at a glance. Heavier scrollers earn less
+(fewer hours of unbroken quiet, a reset calm), and nobody earns more than
+about 16 seeds a day without a built station.

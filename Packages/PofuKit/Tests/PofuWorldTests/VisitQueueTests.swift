@@ -16,8 +16,8 @@ struct VisitQueueTests {
         calendar.date(from: DateComponents(year: 2026, month: 10, day: 30, hour: 10, minute: 40)) ?? Date()
     }
 
-    /// Day three: garden 2, çay 1, pond open; 15 seeds waiting.
-    func world(jar: Int = 60, wellbeing: Double = 78) -> WorldSnapshot {
+    /// Day three: garden 2, çay 1, pond open; 12 seeds waiting (scale A).
+    func world(jar: Int = 34, wellbeing: Double = 78) -> WorldSnapshot {
         IslandSamples.world(
             clock: friday,
             tendedDays: 4,
@@ -37,15 +37,15 @@ struct VisitQueueTests {
     @Test func waitingSeedsMakeAVisitThatOpensWithCollect() {
         let plan = VisitQueue.plan(inputs(world()))
         #expect(plan.landing == .visit)
-        #expect(plan.beats.first == .collect(SeedPouch(stations: Energy(12), gathered: Energy(3))))
+        #expect(plan.beats.first == .collect(IslandSamples.cheeks))
     }
 
     @Test func theBuildCountsTheSeedsTheCollectBrings() {
-        // 60 in the jar + 15 waiting = 75: the garden's level 3 (66) is
-        // covered only after the collect.
-        let plan = VisitQueue.plan(inputs(world(jar: 60)))
-        #expect(plan.beats == [.collect(SeedPouch(stations: Energy(12), gathered: Energy(3))), .build(.garden, level: 3)])
-        var held = world(jar: 60)
+        // 6 in the jar + 12 waiting = 18: the garden's level 3 (9) is
+        // covered only after the collect (scale A prices).
+        let plan = VisitQueue.plan(inputs(world(jar: 6)))
+        #expect(plan.beats == [.collect(IslandSamples.cheeks), .build(.garden, level: 3)])
+        var held = world(jar: 6)
         held.isHolding = true
         let noCollect = VisitQueue.plan(inputs(held))
         #expect(noCollect.beats.isEmpty)
@@ -53,10 +53,10 @@ struct VisitQueueTests {
     }
 
     @Test func theCheapestAffordableLevelIsTheBuild() {
-        // 200 seeds: garden 3 (66), çay 2 (88), pond 1 (160) all fit.
-        let beat = VisitQueue.affordableBuild(in: world(jar: 200), seeds: Energy(200))
+        // 40 seeds: garden 3 (9), çay 2 (14) and pond 1 (15) all fit.
+        let beat = VisitQueue.affordableBuild(in: world(jar: 40), seeds: Energy(40))
         #expect(beat == .build(.garden, level: 3))
-        #expect(VisitQueue.affordableBuild(in: world(jar: 0), seeds: Energy(10)) == nil)
+        #expect(VisitQueue.affordableBuild(in: world(jar: 0), seeds: Energy(8)) == nil)
     }
 
     @Test func careComesFirstOnceADay() {
@@ -70,13 +70,13 @@ struct VisitQueueTests {
     }
 
     @Test func atMostThreeBeatsInPriorityOrder() {
-        let low = world(jar: 60, wellbeing: 20)
+        let low = world(wellbeing: 20)
         let plan = VisitQueue.plan(inputs(low) {
             $0.news = .stageGrew(3)
             $0.lastRecapSeen = friday.addingTimeInterval(-10 * 86_400)
         })
         #expect(plan.beats.count == VisitQueue.maxBeats)
-        #expect(plan.beats == [.care, .collect(SeedPouch(stations: Energy(12), gathered: Energy(3))), .news(.stageGrew(3))])
+        #expect(plan.beats == [.care, .collect(IslandSamples.cheeks), .news(.stageGrew(3))])
     }
 
     @Test func theRepairBannerTakesABeatButNotThePrimary() {

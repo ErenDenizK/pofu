@@ -195,17 +195,33 @@ public enum HomeObjectsLayout {
     public static let lanternHeight = 96.0
     public static let potWidth = 36.0
 
-    /// The jar's centre: left of Pofu, its base on the lawn.
-    public static func jarCenter(feet: MomentPoint, screenWidth: Double) -> MomentPoint {
-        let margin = jarSize.width / 2 + 12
+    /// The screen gutter the Home chrome keeps (`PofuSpacing.screen`), which
+    /// the collect action keeps from the edges on top of the safe area.
+    public static let gutter = 16.0
+
+    /// The jar's centre: left of Pofu, its base on the lawn, never inside
+    /// the left safe area.
+    public static func jarCenter(feet: MomentPoint, screenWidth: Double, leadingInset: Double = 0) -> MomentPoint {
+        let margin = jarSize.width / 2 + 12 + max(0, leadingInset)
         return MomentPoint(x: max(feet.x - 100, margin), y: feet.y - 30)
     }
 
-    /// How far the "Topla · N" action slides right so it stays on screen
-    /// when the jar stands near the left edge (the action is wider than the
-    /// jar).
-    public static func collectShift(jarX: Double, actionWidth: Double = 140, margin: Double = 12) -> Double {
-        max(0, margin + actionWidth / 2 - jarX)
+    /// How far the "Topla · N" action slides from under the jar so it keeps
+    /// the gutter plus the safe area from both screen edges (it is wider
+    /// than the jar). Zero when it already fits; on a screen too narrow for
+    /// both edges, the left one wins.
+    public static func collectShift(
+        jarX: Double,
+        actionWidth: Double = 140,
+        screenWidth: Double = .infinity,
+        leadingInset: Double = 0,
+        trailingInset: Double = 0
+    ) -> Double {
+        let half = actionWidth / 2
+        let lowest = gutter + max(0, leadingInset) + half
+        let highest = screenWidth - gutter - max(0, trailingInset) - half
+        let centre = min(max(jarX, lowest), max(highest, lowest))
+        return centre - jarX
     }
 
     /// The lantern's centre: right of Pofu.

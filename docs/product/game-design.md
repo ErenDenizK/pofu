@@ -270,6 +270,16 @@ Yıldız, Kaplıca and Kitap each have three stations on the same pattern
 archipelago is **1,944,103 seeds**: a season-long horizon, not a
 two-month one.
 
+> **Superseded by economy scale A (2026-11-03).** The seed numbers on this
+> page (ladders up to 32,796, rates of 5 to 35 an hour, gathering 1 per 10
+> minutes, +3 a skip) are the v2 scale. `PofuCore` now runs the founder's
+> scale A: levels cost 5 to 200 (8,143 seeds for all 17 stations), a station
+> level makes 0.02 of a seed an hour, Pofu gathers 1 an hour (8 a day), a
+> skip gives +1 (6 a day), a calm night +2; a typical user earns about 18
+> seeds a day in week 1 and 37 by day 60. The current table and the
+> simulation are in
+> [economy.md](economy.md#economy-scale-a-small-numbers).
+
 What each home and harbor level looks like (every level is an edit of
 the level before):
 
@@ -474,7 +484,7 @@ runs the v0 economy. `PofuWorld` will only read the model._
 | The breathing break | `BreathRules` (5, 5, 5, then 10 s; capped at 10 s in code; started on a tap; the fourth rapid reach falls back to the long breath; never for the emergency pass) and `GameDay.guardedMinutes`: granted pass minutes, or DeviceActivity's measurement when higher. | **Implemented** as rules; the shield and Hop! still read `ScreenTimeGateRules`. |
 | Wellbeing | `CareLedger`: 5–100, bands, "sleeps it off", skip healing (6 a day). Unobserved time neither drains nor heals. | **Implemented.** `VitalityLedger` still drives the app. |
 | Production | `StationLedger.produceMinute`: rates in hundredths of a seed an hour × calm × care, fractions carried, so many small steps equal one. | **Implemented.** |
-| Islands | `ArchipelagoCatalog.standard` (five islands, 17 ladders, 1,944,103 seeds) and `StationLedger.settleArrivals`: tended days, calm nights, levels; Kitap needs a release. Monotonic. | **Implemented.** Rituals are not. |
+| Islands | `ArchipelagoCatalog.standard` (five islands, 17 ladders, 8,143 seeds at scale A) and `StationLedger.settleArrivals`: tended days, calm nights, levels; Kitap needs a release. Monotonic. | **Implemented.** Rituals are not. |
 | A20 | `WorldClock` takes Pofu's foreground sessions: past 2 minutes the world is paused (nothing grows, nothing drains, calm holds). | **Implemented.** |
 | Honest measurement (§6) | `GuardedMeasurement.softGate`: after an expiry, time is unobserved until the next sign of life; the 72-hour window. `.screenTime`: the shield ends each pass. | **Implemented.** |
 | The facade | `WorldClock.advance(_:to:applying:)` over `GameEvent`s (adapters from the gate's `LoggedEvent` and `CheckInRecord`), `collect`, `build`, `breath`, `snapshot`. A deterministic minute grid; an event takes effect at the start of its minute. | **Implemented.** |

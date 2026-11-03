@@ -1,0 +1,1 @@
+Changed: Seeds now come in small, readable numbers (economy scale A): about 10 to 40 a day, level prices from 5 to 200, a garden round pays 2 to 5, so Home shows a dozen seeds in the cheeks instead of hundreds. The Collect capsule keeps the screen gutter and safe area from both edges and Pofu's face no longer carries the stand-in paws while the cheeks empty.
