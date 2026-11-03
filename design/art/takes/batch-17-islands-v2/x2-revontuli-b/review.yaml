@@ -1,0 +1,494 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-revontuli-b/contact.jpg
+jobs:
+  x2-revontuli-b:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both originals make the frozen
+      lake an asymmetric pointed ice teardrop/leaf, not the home lawn/soil bowl. The
+      long raised tip remains visible in the black60px landform test. Twilight, ice/snow,
+      lantern sauna and a fox-tail-shaped aurora growing from a snow drift supply
+      the named identity. No literal banned home parts; rubric is advisory.
+qa_reports:
+  1:
+    job: x2-revontuli-b
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 51.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 54 (R1 59)
+      value: 54.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.4
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6606
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.6, p95 8.4, off-palette 0.5% (top: #88BBEE (0.2%), #88AAEE
+        (0.1%))'
+      value: 3.5649
+    info:
+      metrics_raw:
+        L_p5: 54.4
+        L_p50: 82.9
+        L_p95: 94.1
+        C_p50: 19.9
+        C_p95: 51.4
+        C_p99: 54.1
+        detail: 1.89
+      metrics_locked:
+        L_p5: 54.4
+        L_p50: 82.9
+        L_p95: 93.9
+        C_p50: 19.7
+        C_p95: 51.3
+        C_p99: 54.0
+        detail: 1.4
+    fingerprint: c61c81c2d6d8fb10
+  2:
+    job: x2-revontuli-b
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 60 (R1 59)
+      value: 59.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.24
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6225
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.9, p95 9.7, off-palette 0.8% (top: #88BBDD (0.4%), #7799DD
+        (0.1%))'
+      value: 3.9091
+    info:
+      metrics_raw:
+        L_p5: 59.8
+        L_p50: 80.8
+        L_p95: 94.9
+        C_p50: 20.7
+        C_p95: 50.3
+        C_p99: 58.3
+        detail: 1.66
+      metrics_locked:
+        L_p5: 59.8
+        L_p50: 80.8
+        L_p95: 94.7
+        C_p50: 20.6
+        C_p95: 50.2
+        C_p99: 58.0
+        detail: 1.24
+    fingerprint: c61c81c2d6d8fb10
+manual_review:
+  recommendation_only: true
+  note: Both originals make the frozen lake an asymmetric pointed ice teardrop/leaf,
+    not the home lawn/soil bowl. The long raised tip remains visible in the black60px
+    landform test. Twilight, ice/snow, lantern sauna and a fox-tail-shaped aurora
+    growing from a snow drift supply the named identity. No literal banned home parts;
+    rubric is advisory.
+  takes:
+    '1':
+      pass: true
+      silhouette_name: asymmetric leaf/teardrop-shaped frozen lake with a long pointed
+        ice tip
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 1
+      - 1
+      evidence: A broad rounded left basin narrows to a sharp raised right tip, with
+        blue faceted ice edge and snow ring. The sauna/lantern are at the left edge.
+        A broad green/violet fox-tail-like aurora visibly rises from the snow drift
+        and sweeps rightward through polar twilight. The sauna door has a tall arch,
+        straight lower jambs and flat bottom, not the fully oval home door with separate
+        porthole. No lawn, soil, roots or pebbles. The pointed landform remains a
+        named leaf/drop shape at native60 without needing the blue material to create
+        it.
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 850
+        - 550
+      - - 1400
+        - 320
+      - - 1200
+        - 250
+      contours:
+      - - - 43
+          - 511
+        - - 69
+          - 479
+        - - 118
+          - 447
+        - - 190
+          - 435
+        - - 286
+          - 451
+        - - 350
+          - 466
+        - - 424
+          - 464
+        - - 518
+          - 453
+        - - 598
+          - 453
+        - - 627
+          - 421
+        - - 678
+          - 386
+        - - 728
+          - 356
+        - - 769
+          - 340
+        - - 813
+          - 341
+        - - 842
+          - 357
+        - - 867
+          - 378
+        - - 914
+          - 397
+        - - 983
+          - 413
+        - - 1079
+          - 427
+        - - 1192
+          - 443
+        - - 1283
+          - 447
+        - - 1363
+          - 442
+        - - 1425
+          - 426
+        - - 1468
+          - 414
+        - - 1485
+          - 417
+        - - 1482
+          - 435
+        - - 1468
+          - 469
+        - - 1430
+          - 523
+        - - 1381
+          - 579
+        - - 1312
+          - 635
+        - - 1227
+          - 697
+        - - 1126
+          - 747
+        - - 1012
+          - 784
+        - - 887
+          - 814
+        - - 740
+          - 845
+        - - 594
+          - 850
+        - - 461
+          - 826
+        - - 333
+          - 790
+        - - 218
+          - 746
+        - - 143
+          - 692
+        - - 100
+          - 636
+        - - 71
+          - 586
+        - - 44
+          - 549
+      holes: []
+      components:
+      - One visible ice-lake/snow-bank landform, including its long pointed tip. Sauna,
+        tiny trees and aurora are excluded from the landform-only mask and remain
+        in the unmodified scene.
+      uncertainty: Small rear-left rim sections are obscured by the sauna/snow; their
+        simple annotation joins close observed visible segments rather than reconstruct
+        a hidden base. The long right-hand point and most faceted lower ice edge are
+        directly visible. Some lower-left cloud overlap is approximate.
+      source_file: /workspace/generated_images/exec-7fc5b947-8ba3-44ae-b52a-3fb80ee967f9.png
+      original_generated_png_sha256: 91e5e53aca45632a6bdb19c8ad61864b3ccd0e3414d83dc1918e10cb4b650c00
+      rgba_sha256: 894dca925cc97d5e51ee3dab4d364f0e5624744e20f5198c756fe0ac53bb41c1
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: ea58a761bfbdb35501d726e5890bc0819ae9c3062cede5819707b1d5f74837ee
+      sampled_swatches:
+      - point:
+        - 850
+        - 550
+        hex: '#B0D3F6'
+      - point:
+        - 1400
+        - 320
+        hex: '#B39FE6'
+      - point:
+        - 1200
+        - 250
+        hex: '#B0E4E3'
+      observed_bbox:
+      - 43
+      - 340
+      - 1486
+      - 851
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 1
+      qa_native60_black_pixels: 792
+      annotation_contours_count: 1
+      annotation_holes_count: 0
+      native60_mask_sha256: c6c36cbc90be8abb0e03591ccb91821fe1b2927feb1fb8c7cf7a864f1e92a9e3
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 7775491ca9239bdfcfbee62d98b7c1171f67b4dbd4e08b7d7727c8ad599b2231
+    '2':
+      pass: true
+      silhouette_name: long pointed frozen teardrop/leaf with a snow-bank hump
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 1
+      - 1
+      evidence: 'The ice lake is visibly asymmetric: a round left body and a single
+        long raised right tip rather than an oval lawn platform. A snow drift behind
+        the sauna leads into the large fox-tail aurora. Ice blue, lavender twilight
+        and green-violet light are distinct from home. The hut entry has straight
+        lower sides and a flat sill, with rectangular cross-pane glazing; that shared
+        glazing alone is not the banned fully oval/porthole door. Lantern and sauna
+        give inhabitable scale.'
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 750
+        - 620
+      - - 1200
+        - 400
+      - - 1230
+        - 200
+      contours:
+      - - - 48
+          - 557
+        - - 61
+          - 525
+        - - 94
+          - 502
+        - - 142
+          - 486
+        - - 205
+          - 480
+        - - 273
+          - 495
+        - - 350
+          - 510
+        - - 400
+          - 492
+        - - 413
+          - 374
+        - - 449
+          - 350
+        - - 481
+          - 330
+        - - 521
+          - 317
+        - - 563
+          - 319
+        - - 598
+          - 339
+        - - 633
+          - 366
+        - - 668
+          - 396
+        - - 726
+          - 421
+        - - 796
+          - 443
+        - - 877
+          - 464
+        - - 930
+          - 480
+        - - 1037
+          - 496
+        - - 1166
+          - 500
+        - - 1262
+          - 497
+        - - 1362
+          - 486
+        - - 1427
+          - 468
+        - - 1496
+          - 451
+        - - 1492
+          - 480
+        - - 1473
+          - 523
+        - - 1442
+          - 572
+        - - 1391
+          - 635
+        - - 1324
+          - 690
+        - - 1235
+          - 739
+        - - 1132
+          - 776
+        - - 1002
+          - 815
+        - - 850
+          - 847
+        - - 714
+          - 868
+        - - 600
+          - 873
+        - - 485
+          - 850
+        - - 381
+          - 826
+        - - 273
+          - 790
+        - - 185
+          - 746
+        - - 120
+          - 700
+        - - 79
+          - 641
+        - - 54
+          - 591
+      holes: []
+      components:
+      - One directly observed ice-lake landform with the rear snow drift and long
+        tip. Hut, steam and aurora are not fabricated into the landform outline.
+      uncertainty: A short left-rear stretch is hidden by the sauna; the mask uses
+        a conservative closure there and does not infer unseen snow/ice geometry.
+        The large snow-bank crest is visible, as are the pointed right tip and the
+        blue front edge. Native60 recognition is of the pointed drop/leaf shape, not
+        inferred ice material.
+      source_file: /workspace/generated_images/exec-21fc604d-f2e6-4d3f-a7bf-e06e209a1a21.png
+      original_generated_png_sha256: 3044a8d1d91b57096eb913e2f89d59f8e19684ed0a4b2b4313416ed20d2db489
+      rgba_sha256: c707b4cfdd79da2d53bb3642134c475ac192bd53a5a70ce72765d28c25369259
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: fb7b7417fce86a896c924fd8142a772d821ccf216811097a0a62d8ffd448620a
+      sampled_swatches:
+      - point:
+        - 750
+        - 620
+        hex: '#A3CFED'
+      - point:
+        - 1200
+        - 400
+        hex: '#B09DE2'
+      - point:
+        - 1230
+        - 200
+        hex: '#D3F7DF'
+      observed_bbox:
+      - 48
+      - 317
+      - 1497
+      - 874
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 1
+      qa_native60_black_pixels: 800
+      annotation_contours_count: 1
+      annotation_holes_count: 0
+      native60_mask_sha256: 08836fc4862f973e620b5c2334e25b73c122933d931aba2708babffffd798ec0
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: ff44dcecf795e50cf5ddaa95f99c1576c1114160fb3fac20403eb3c057bcd43d
+  reviewed_at: '2026-11-03T16:12:24.933579+00:00'
+  preview_verified: true
+  preview_sha256: c6a58193f5ebbbc30a86a5e728791fd2286e45011e48b13273e47639aae07301
+  no_authoritative_pick: true
+  production_score_threshold_applied: false
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-7fc5b947-8ba3-44ae-b52a-3fb80ee967f9.png
+  original_generated_png_sha256: 91e5e53aca45632a6bdb19c8ad61864b3ccd0e3414d83dc1918e10cb4b650c00
+  inbox_png_sha256: 7775491ca9239bdfcfbee62d98b7c1171f67b4dbd4e08b7d7727c8ad599b2231
+  rgba_sha256: 894dca925cc97d5e51ee3dab4d364f0e5624744e20f5198c756fe0ac53bb41c1
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c61c81c2d6d8fb10
+- take: 2
+  source_file: /workspace/generated_images/exec-21fc604d-f2e6-4d3f-a7bf-e06e209a1a21.png
+  original_generated_png_sha256: 3044a8d1d91b57096eb913e2f89d59f8e19684ed0a4b2b4313416ed20d2db489
+  inbox_png_sha256: ff44dcecf795e50cf5ddaa95f99c1576c1114160fb3fac20403eb3c057bcd43d
+  rgba_sha256: c707b4cfdd79da2d53bb3642134c475ac192bd53a5a70ce72765d28c25369259
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c61c81c2d6d8fb10
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
