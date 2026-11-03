@@ -581,16 +581,6 @@
         }
       }
     },
-    "While you were away, the island gathered %lld seeds. Calm ×%@.": {
-      "localizations": {
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sen yokken ada %1$lld çekirdek topladı. Huzur ×%2$@."
-          }
-        }
-      }
-    },
     "Windmill": {
       "localizations": {
         "tr": {
@@ -617,6 +607,146 @@
           "stringUnit": {
             "state": "translated",
             "value": "en az %1$lld / %2$lld dk"
+          }
+        }
+      }
+    },
+    "While you were away, the island gathered %lld seeds.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sen yokken ada %lld çekirdek topladı."
+          }
+        }
+      }
+    },
+    "My cheeks are huge!": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yanaklarım kocaman oldu!"
+          }
+        }
+      }
+    },
+    "Collect · %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Topla · %lld"
+          }
+        }
+      }
+    },
+    "Collect, %lld seeds": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Topla, %lld çekirdek"
+          }
+        }
+      }
+    },
+    "Seed jar": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çekirdek kavanozu"
+          }
+        }
+      }
+    },
+    "Collects the seeds in Pofu's cheeks": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pofu'nun yanaklarındaki çekirdekleri toplar"
+          }
+        }
+      }
+    },
+    "Calm lantern": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Huzur feneri"
+          }
+        }
+      }
+    },
+    "%lld seeds in his cheeks": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yanaklarında %lld çekirdek"
+          }
+        }
+      }
+    },
+    "%lld seeds collected. %lld in the jar.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld çekirdek toplandı. Kavanozda %2$lld."
+          }
+        }
+      }
+    },
+    "Today %lld/%lld · %lld min": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün %1$lld/%2$lld · %3$lld dk"
+          }
+        }
+      }
+    },
+    "Today · no reaches yet · %lld min": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün · henüz uzanış yok · %lld dk"
+          }
+        }
+      }
+    },
+    "%lld seeds in the jar": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kavanozda %lld çekirdek"
+          }
+        }
+      }
+    },
+    "Skip pots": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boş verme saksıları"
+          }
+        }
+      }
+    },
+    "Open Today": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün'ü aç"
           }
         }
       }

@@ -254,7 +254,7 @@ private final class BeatWorld {
     }
 
     /// What Home's Collect button does: seeds leave the built stations
-    /// and Pofu and fly to the pill at the top.
+    /// and Pofu and arc into the jar.
     func collect() {
         let snapshot = world.game.snapshot
         var points: [WorldPoint] = snapshot.stations
@@ -273,7 +273,10 @@ private final class BeatWorld {
         home.collectSeeds(
             jarBefore: snapshot.jar.units,
             sources: sources,
-            target: MomentPoint(x: width / 2, y: 74),
+            target: HomeObjectsLayout.jarCenter(
+                feet: MomentPoint(x: island.screenPoint(of: IslandLayout.pofu).x, y: island.screenPoint(of: IslandLayout.pofu).y),
+                screenWidth: width
+            ),
             commit: { world.game.collect() }
         )
     }

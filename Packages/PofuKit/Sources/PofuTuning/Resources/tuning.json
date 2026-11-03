@@ -83,6 +83,14 @@
       "warmth" : 0
     }
   },
+  "home" : {
+    "cheekRelease" : 0.45,
+    "jarCapacity" : 120,
+    "jarFill" : 0.6,
+    "lanternGlow" : 1.2,
+    "pawsPress" : 0.3,
+    "potBloom" : 0.5
+  },
   "haptics" : {
     "breathStart" : 0.5,
     "buildSwap" : 1,

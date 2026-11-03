@@ -6,11 +6,15 @@ import SwiftUI
 /// Home: the island at its Home framing with the chrome of the app–game
 /// boundary §6.3, and the visit's moments.
 ///
-/// At most five chrome items: the wellbeing pill, the calm chip and the
-/// gear in the top band; the Today card and one contextual primary action
-/// in the bottom band. In the settled state the primary is gone and one
-/// quiet line takes its place ("Ada sensiz de çalışıyor."). Away from the
-/// Home framing, the Home chrome yields to the framing control.
+/// "Living Diorama" (UI direction B): state lives in the world, glass is for
+/// what you do. The seed jar by Pofu carries the balance on its tag and
+/// the Collect action, the calm lantern is the multiplier, today's skips
+/// are clay pots on the island's lip and Pofu's cheeks show the seeds
+/// waiting. The chrome is the gear (top), the peeking Today glance and the
+/// map button (bottom), and one contextual primary for the beats that are
+/// not Collect. In the settled state one quiet line takes the primary's
+/// place ("Ada sensiz de çalışıyor."). Away from the Home framing, the Home
+/// chrome yields to the framing control.
 ///
 /// Collect and build go through `actions`, which the app wires to
 /// `WorldClock.collect` and `WorldClock.build`; the moments then play from
@@ -47,8 +51,8 @@ public struct WorldHome: View {
     let actions: Actions
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    /// The action slot's centre on screen: where collected seeds land.
-    @State private var slotCenter = CGPoint(x: 201, y: 790)
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     public init(world: WorldSnapshot, today: TodaySummary, scene: IslandSceneModel, home: WorldHomeModel, actions: Actions) {
         self.world = world
@@ -69,12 +73,19 @@ public struct WorldHome: View {
                 bubble: { bubble }
             )
 
+            objects
+
             chrome
 
             CollectFlight(home: home)
         }
         .onAppear {
             home.camera = scene
+        }
+        .onChange(of: home.collectSuccesses) { _, _ in
+            if let moment = home.collect?.moment {
+                AccessibilityNotification.Announcement(WorldStrings.collected(moment.total, jar: moment.jarAfter)).post()
+            }
         }
         .sensoryFeedback(.impact(flexibility: .soft, intensity: 0.5), trigger: home.collectTaps)
         .sensoryFeedback(.selection, trigger: home.collectTicks)
@@ -92,7 +103,11 @@ public struct WorldHome: View {
     /// tap.
     private var line: String? {
         if let beat = home.currentBeat {
-            return WorldStrings.beatLine(beat, calm: world.calm)
+            // At the top cheek step, once a day, Pofu says the one line.
+            if case .collect = beat, home.saysCheeksHuge {
+                return WorldStrings.cheeksHuge
+            }
+            return WorldStrings.beatLine(beat)
         }
         return home.settledLine.map(WorldStrings.settledLine)
     }
@@ -148,8 +163,7 @@ public struct WorldHome: View {
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: home.collect == nil)
     }
 
-    /// Wellbeing pill · calm chip · gear; a broken guard replaces the pill
-    /// row with the repair banner.
+    /// The gear alone; a broken guard replaces it with the repair banner.
     @ViewBuilder
     private var topBand: some View {
         if home.visit.plan.showsRepairBanner {
@@ -157,56 +171,55 @@ public struct WorldHome: View {
                 .padding(.top, PofuSpacing.s)
         } else {
             HStack(spacing: PofuSpacing.s) {
-                WellbeingPill(band: world.band)
-                CalmChip(calm: world.calm, isGrowing: world.activity == .away && !world.calmIsFull, isFull: world.calmIsFull)
                 Spacer(minLength: 0)
-                GearButton(action: actions.openSettings)
+                PofuIconButton(systemName: "gearshape", label: WorldStrings.settings, action: actions.openSettings)
             }
             .padding(.top, PofuSpacing.s)
         }
     }
 
+    /// The beat's primary (never Collect: that lives at the jar), the
+    /// settled line, and the glance with the map button.
     private var bottomBand: some View {
         VStack(spacing: PofuSpacing.m) {
-            TodayCard(today: today, onOpen: actions.openToday)
             actionSlot
-                .frame(minHeight: PofuSize.buttonHeight)
-                .onGeometryChange(for: CGPoint.self) { proxy in
-                    let frame = proxy.frame(in: .global)
-                    return CGPoint(x: frame.midX, y: frame.midY)
-                } action: { center in
-                    slotCenter = center
+            HStack(alignment: .bottom, spacing: PofuSpacing.m) {
+                HomeGlance(
+                    today: today,
+                    seedsInGlance: showsJarTag ? nil : world.jar.units,
+                    onOpen: actions.openToday
+                )
+                .frame(maxWidth: typeSize.isAccessibilitySize ? CGFloat.infinity : 280, alignment: .leading)
+                Spacer(minLength: 0)
+                PofuIconButton(systemName: "map", label: WorldStrings.framingName(.map)) {
+                    scene.go(to: .map)
                 }
+            }
         }
     }
 
-    /// The beat's primary, the seed pill while seeds land, or the settled
-    /// line.
+    /// Past the first accessibility size the jar's tag hides and the glance
+    /// carries the number.
+    private var showsJarTag: Bool {
+        typeSize <= .accessibility1
+    }
+
     @ViewBuilder
     private var actionSlot: some View {
-        if home.collect != nil {
-            SeedCounterPill(home: home)
-                .transition(.opacity)
-        } else if let beat = home.currentBeat {
-            Button {
-                primary(beat)
-            } label: {
-                HStack(spacing: PofuSpacing.s) {
-                    if case .collect = beat {
-                        SeedGlyph()
-                            .fill(PofuColor.onAccent)
-                            .frame(width: 10, height: 16)
-                            .rotationEffect(.degrees(18))
-                            .accessibilityHidden(true)
-                    }
+        if let beat = home.currentBeat {
+            if case .collect = beat {
+                EmptyView()
+            } else {
+                Button {
+                    primary(beat)
+                } label: {
                     Text(verbatim: WorldStrings.beatAction(beat))
                         .font(PofuFont.headline)
+                        .frame(maxWidth: .infinity, minHeight: PofuSize.buttonHeight - 8)
                 }
-                .frame(maxWidth: .infinity, minHeight: PofuSize.buttonHeight - 8)
+                .pofuActionStyle(.primary)
+                .transition(.opacity)
             }
-            .buttonStyle(.glassProminent)
-            .tint(PofuColor.accent)
-            .transition(.opacity)
         } else {
             Text(verbatim: WorldStrings.settled)
                 .font(PofuFont.subheadline)
@@ -217,6 +230,77 @@ public struct WorldHome: View {
                 .frame(maxWidth: .infinity)
                 .transition(.opacity)
         }
+    }
+
+    // MARK: - The objects
+
+    /// Pofu's feet on screen: the objects stand relative to them.
+    private func pofuFeet() -> MomentPoint {
+        let p = scene.screenPoint(of: IslandLayout.pofu)
+        return MomentPoint(x: p.x, y: p.y)
+    }
+
+    private var isNight: Bool {
+        world.isBedtime || colorScheme == .dark
+    }
+
+    /// The jar, the lantern and the pots, glued to the world at the Home
+    /// framing (they follow the camera at 15 Hz while it settles).
+    private var objects: some View {
+        TimelineView(.periodic(from: .now, by: 1.0 / 15.0)) { _ in
+            GeometryReader { proxy in
+                objectsBody(width: Double(proxy.size.width))
+            }
+        }
+        .ignoresSafeArea()
+        .opacity(showsHomeChrome ? 1 : 0)
+        .allowsHitTesting(showsHomeChrome)
+        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: showsHomeChrome)
+    }
+
+    private func objectsBody(width: Double) -> some View {
+        let feet = pofuFeet()
+        let jar = HomeObjectsLayout.jarCenter(feet: feet, screenWidth: width)
+        let lantern = HomeObjectsLayout.lanternCenter(feet: feet, screenWidth: width)
+        let pots = HomeObjectsLayout.potsCenter(feet: feet)
+        return ZStack {
+            SkipPotsView(
+                pots: SkipPots(beads: today.beads, isAsleep: world.isBedtime),
+                today: today,
+                timing: home.timing,
+                isNight: isNight
+            )
+            .position(x: pots.x, y: pots.y)
+
+            CalmLanternView(
+                calm: world.calm,
+                isGrowing: world.activity == .away && !world.calmIsFull,
+                isFull: world.calmIsFull,
+                isNight: isNight,
+                timing: home.timing
+            )
+            .position(x: lantern.x, y: lantern.y)
+
+            HomeJar(
+                jar: world.jar.units,
+                uncollected: world.pending.total.units,
+                canCollect: collectBeatIsOpen,
+                isNight: isNight,
+                showsTag: showsJarTag,
+                shiftX: HomeObjectsLayout.collectShift(jarX: jar.x),
+                home: home,
+                collect: { collect() }
+            )
+            .position(x: jar.x, y: jar.y)
+        }
+    }
+
+    /// Seeds wait and the visit is on its Collect beat.
+    private var collectBeatIsOpen: Bool {
+        if case .collect? = home.currentBeat {
+            return home.collect == nil
+        }
+        return false
     }
 
     // MARK: - Actions
@@ -239,12 +323,14 @@ public struct WorldHome: View {
         }
     }
 
-    /// Seeds leave the built stations and Pofu and land in the pill.
+    /// Seeds leave the built stations and Pofu, arc into the jar, and the
+    /// cheeks step down.
     private func collect() {
+        let width = Double(scene.engine.rig.rail.width)
         home.collectSeeds(
             jarBefore: world.jar.units,
             sources: seedSources(),
-            target: MomentPoint(x: Double(slotCenter.x), y: Double(slotCenter.y)),
+            target: HomeObjectsLayout.jarCenter(feet: pofuFeet(), screenWidth: width),
             commit: actions.collect
         )
     }
@@ -274,104 +360,6 @@ public struct WorldHome: View {
 
 // MARK: - Chrome components
 
-/// Pofu's wellbeing band in the art's warm palette (gate v2 §8): a glass
-/// capsule tinted by the band, a heart and the band's words.
-struct WellbeingPill: View {
-    let band: WellbeingBand
-
-    var body: some View {
-        HStack(spacing: 6) {
-            Image(systemName: "heart.fill")
-                .font(.system(size: 13, weight: .semibold))
-                .foregroundStyle(heart)
-            Text(verbatim: WorldStrings.wellbeing(band))
-                .font(PofuFont.subheadline)
-                .foregroundStyle(PofuColor.textPrimary)
-                .lineLimit(1)
-        }
-        .padding(.horizontal, PofuSpacing.m)
-        .frame(minHeight: PofuSize.minimumTouch - 6)
-        .glassEffect(.regular.tint(tint.opacity(0.45)), in: Capsule(style: .continuous))
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text(verbatim: WorldStrings.wellbeingLabel(band)))
-    }
-
-    private var tint: Color {
-        switch band {
-        case .cozy: PofuPrimitive.honey300.rgb.color
-        case .content: PofuPrimitive.peach300.rgb.color
-        case .tired: PofuPrimitive.cream300.rgb.color
-        case .unwell: PofuPrimitive.blush200.rgb.color
-        case .curledUp: PofuPrimitive.ink300.rgb.color
-        }
-    }
-
-    private var heart: Color {
-        switch band {
-        case .cozy: PofuPrimitive.blush500.rgb.color
-        case .content: PofuPrimitive.peach600.rgb.color
-        case .tired: PofuPrimitive.peach400.rgb.color
-        case .unwell, .curledUp: PofuPrimitive.ink400.rgb.color
-        }
-    }
-}
-
-/// Calm, the stake (§6.3): "Huzur ×1,6" with a green dot that breathes
-/// while calm grows, the only animated chrome (home directions §6).
-struct CalmChip: View {
-    let calm: Double
-    let isGrowing: Bool
-    let isFull: Bool
-
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @Environment(\.worldStillFrame) private var still
-    @State private var breathe = false
-
-    var body: some View {
-        HStack(spacing: 6) {
-            Circle()
-                .fill(isGrowing || isFull ? PofuPrimitive.meadow400.rgb.color : PofuColor.textTertiary)
-                .frame(width: 8, height: 8)
-                .scaleEffect(breathe ? 1.3 : 0.85)
-                .opacity(breathe ? 1 : 0.75)
-            Text(verbatim: WorldStrings.calmChip(calm))
-                .font(PofuFont.subheadline.monospacedDigit())
-                .foregroundStyle(PofuColor.textPrimary)
-                .lineLimit(1)
-        }
-        .padding(.horizontal, PofuSpacing.m)
-        .frame(minHeight: PofuSize.minimumTouch - 6)
-        .glassEffect(.regular, in: Capsule(style: .continuous))
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text(verbatim: WorldStrings.calmLabel(calm, growing: isGrowing, full: isFull)))
-        .onAppear {
-            guard isGrowing, !reduceMotion, !still else { return }
-            // 4 s in, 4 s out: the breathing rate.
-            withAnimation(.easeInOut(duration: 4).repeatForever(autoreverses: true)) {
-                breathe = true
-            }
-        }
-    }
-}
-
-/// Settings, a system action: SF Symbol in a 44 pt glass circle.
-struct GearButton: View {
-    let action: @MainActor () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            Image(systemName: "gearshape")
-                .font(PofuFont.title3)
-                .foregroundStyle(PofuColor.textPrimary)
-                .frame(width: PofuSize.minimumTouch, height: PofuSize.minimumTouch)
-                .glassEffect(.regular.interactive(), in: Circle())
-                .contentShape(Circle())
-        }
-        .buttonStyle(.plain)
-        .accessibilityLabel(Text(verbatim: WorldStrings.settings))
-    }
-}
-
 /// A broken guard, natively and first (§6.1): one line and "Onar".
 struct RepairBanner: View {
     let onRepair: @MainActor () -> Void
@@ -393,57 +381,11 @@ struct RepairBanner: View {
             }
             .buttonStyle(.glassProminent)
             .tint(PofuColor.accent)
-            GearButton(action: onSettings)
+            PofuIconButton(systemName: "gearshape", label: WorldStrings.settings, action: onSettings)
         }
         .padding(.leading, PofuSpacing.m)
         .padding(.vertical, 2)
         .glassEffect(.regular, in: Capsule(style: .continuous))
-    }
-}
-
-/// Today's honest readout (gate v2 §8): skips of reaches, one bead per
-/// reach (filled = skipped, a ring = opened; shape, not only color), and
-/// guarded time in 15-minute steps against the daily hour.
-struct TodayCard: View {
-    let today: TodaySummary
-    let onOpen: (@MainActor () -> Void)?
-
-    var body: some View {
-        let card = VStack(alignment: .leading, spacing: PofuSpacing.s) {
-            HStack(alignment: .firstTextBaseline, spacing: PofuSpacing.s) {
-                Text(verbatim: WorldStrings.todayLine(today))
-                    .font(PofuFont.headline)
-                    .foregroundStyle(PofuColor.textPrimary)
-                    .lineLimit(2)
-                Spacer(minLength: PofuSpacing.s)
-                GuardedSteps(today: today)
-            }
-            HStack(alignment: .center, spacing: PofuSpacing.s) {
-                if today.reaches > 0 {
-                    BeadRow(skipped: today.beads, beadSize: 12)
-                }
-                Spacer(minLength: PofuSpacing.s)
-                Text(verbatim: WorldStrings.guarded(today))
-                    .font(PofuFont.footnote.monospacedDigit())
-                    .foregroundStyle(PofuColor.textSecondary)
-                    .lineLimit(1)
-            }
-        }
-        .padding(.horizontal, PofuSpacing.l)
-        .padding(.vertical, PofuSpacing.m + 2)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(PofuColor.card.opacity(0.96), in: RoundedRectangle(cornerRadius: PofuRadius.large, style: .continuous))
-        .shadow(color: PofuColor.shadow.opacity(0.08), radius: 10, y: 4)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text(verbatim: "\(WorldStrings.todayLine(today)). \(WorldStrings.guardedLabel(today))"))
-
-        if let onOpen {
-            Button(action: onOpen) { card }
-                .buttonStyle(.plain)
-                .accessibilityAddTraits(.isButton)
-        } else {
-            card
-        }
     }
 }
 
@@ -473,36 +415,8 @@ struct IslandNameChip: View {
             .foregroundStyle(PofuColor.textPrimary)
             .padding(.horizontal, PofuSpacing.l)
             .frame(minHeight: 34)
-            .glassEffect(.regular, in: Capsule(style: .continuous))
+            .pofuChrome(.worldTag)
             .accessibilityAddTraits(.isHeader)
-    }
-}
-
-/// The seed pill that takes the primary's place while seeds land: its
-/// counter rolls up to the jar's new total and pops (the jar itself is
-/// deferred, ADR-0018 amendment; this is the native readout).
-struct SeedCounterPill: View {
-    let home: WorldHomeModel
-
-    var body: some View {
-        TimelineView(.animation(minimumInterval: nil, paused: home.collect == nil || home.frozenOffset != nil)) { context in
-            let time = home.collectTime(at: context.date) ?? 0
-            let moment = home.collect?.moment
-            let count = moment?.counter(at: time) ?? 0
-            HStack(spacing: PofuSpacing.s) {
-                SeedIcon(size: 18)
-                Text(count, format: .number)
-                    .font(PofuFont.title3.monospacedDigit())
-                    .foregroundStyle(PofuColor.energyOnFill)
-            }
-            .padding(.horizontal, PofuSpacing.l)
-            .frame(minHeight: PofuSize.buttonHeight - 8)
-            .glassEffect(.regular.tint(PofuColor.energyFill.opacity(0.75)), in: Capsule(style: .continuous))
-            .scaleEffect(CGFloat(moment?.pillScale(at: time) ?? 1))
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(Text(verbatim: WorldStrings.seeds(moment?.jarAfter ?? count)))
-        }
-        .frame(maxWidth: .infinity)
     }
 }
 

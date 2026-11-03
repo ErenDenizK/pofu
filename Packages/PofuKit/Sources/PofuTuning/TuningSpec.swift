@@ -86,6 +86,14 @@ extension TuningSpec {
             TuningSpec("garden.hapticBloom", 0...1, step: 0.05),
             TuningSpec("garden.hapticCheek", 0...1, step: 0.05),
         ]
+        specs += [
+            TuningSpec("home.pawsPress", 0.1...1, step: 0.05),
+            TuningSpec("home.cheekRelease", 0.1...1.2, step: 0.05),
+            TuningSpec("home.jarFill", 0.2...1.5, step: 0.05),
+            TuningSpec("home.lanternGlow", 0.3...3, step: 0.1),
+            TuningSpec("home.potBloom", 0.2...1.2, step: 0.05),
+            TuningSpec("home.jarCapacity", 40...400, step: 10),
+        ]
         specs += ["master", "seeds", "pieces", "pofu"].map { (name: String) -> TuningSpec in
             TuningSpec("sound.\(name)", 0...1, step: 0.05)
         }

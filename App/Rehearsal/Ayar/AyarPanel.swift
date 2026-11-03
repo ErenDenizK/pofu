@@ -138,6 +138,7 @@ struct AyarPanel: View {
         case .sound: sound
         case .seeds: seeds
         case .garden: garden
+        case .home: homeObjects
         }
     }
 
@@ -146,6 +147,17 @@ struct AyarPanel: View {
         VStack(alignment: .leading, spacing: PofuSpacing.m) {
             note("Bahçe oyunu açıkken değişiklik anında oyuna yansır. Sürüklemeyi denemek için paneli kapat; değerler kalır.")
             ForEach(TuningSpec.all.filter { $0.domain == "garden" }) { spec in
+                TuningRow(store: store, key: spec.key)
+            }
+        }
+    }
+
+    /// The Living Diorama's objects on Home (`TuningValues.Home`): the
+    /// collect beat's cheeks and the jar, lantern and pots.
+    private var homeObjects: some View {
+        VStack(alignment: .leading, spacing: PofuSpacing.m) {
+            note("Ana ekrandaki kavanoz, fener, saksılar ve Pofu'nun yanakları. Değişiklik anında yansır; toplamayı yeniden dene.")
+            ForEach(TuningSpec.all.filter { $0.domain == "home" }) { spec in
                 TuningRow(store: store, key: spec.key)
             }
         }
@@ -474,6 +486,7 @@ enum AyarLabels {
         case .sound: "Ses"
         case .seeds: "Tohum"
         case .garden: "Bahçe"
+        case .home: "Ada"
         }
     }
 
@@ -487,6 +500,7 @@ enum AyarLabels {
         case .sound: "speaker.wave.2"
         case .seeds: "leaf"
         case .garden: "square.grid.3x3"
+        case .home: "house"
         }
     }
 
