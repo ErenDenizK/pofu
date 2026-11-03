@@ -8,6 +8,8 @@ summary: >-
   A mossy limestone wonder island with a waterfall that pours off its edge forever into the sea of clouds. Lore hook: where does the water come from, and where does it go? Its game (Flow grammar): rotate channel stones to route Damla's leaf boats; stages add a spring, a mill, and the edge (boats sent over it wash up on İskele's pier days later). Answer: the falls water every island. Material: water drops. Learning: the water cycle.
 notes:
 - >-
+  Revision 2026-11-03 (archipelago-system.md 1A, 11): wonder 1 on day 4; silhouette: three stacked travertine terraces, the fall pouring off the lowest; free in cut C2. Goods: jars of falls water. Gift to home: a spring, then morning rainbows.
+- >-
   Signature motion: a painted ribbon with a Metal layerEffect scrolling noise, Canvas mist where it meets the clouds, a mist rainbow at golden hour.
 - >-
   Rumours: water heard at night; a bottle the vapur brings (the water never stops here); a mist rainbow caught by the lighthouse beam.
@@ -36,5 +38,5 @@ ritual_en: 'Leaf boats (Flow); echo: morning rainbows at home'
 residents:
 - char-damla
 unlock:
-  day: 36
-  rule_en: '30 tended days and its three rumours heard'
+  day: 4
+  rule_en: 'Wonder island 1: 3 tended days and its rumours (compressed into days 2 and 3)'

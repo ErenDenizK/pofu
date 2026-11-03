@@ -8,6 +8,8 @@ summary: >-
   A snowy island with a lakeside sauna and a frozen pond. Revontulet, the northern lights, means fox fires: an arctic fox sweeps sparks into the sky with its tail. Two verbs: ice fishing (Patience: drop a line, put the phone down, after 20 quiet minutes something has bitten) and painting the aurora (Trace: swipe Tuli's tail; your stroke is tonight's aurora). Material: frost.
 notes:
 - >-
+  Revision 2026-11-03 (archipelago-system.md 1A, 11): wonder 3; silhouette strengthened: an ice floe with a glowing glassy edge, no soil. Always a winter night. Gift to home: a sauna hut on the pier, then the aurora on calm winter nights.
+- >-
   Signature motion: an aurora layerEffect shaped by the player's own last stroke.
 - >-
   Native Finnish writer required; Tuli is serious about saunas, not a stereotype.
@@ -33,5 +35,5 @@ ritual_en: 'Ice fishing (Patience) and aurora painting (Trace)'
 residents:
 - char-tuli
 unlock:
-  day: 120
-  rule_en: 'Season 2 release and 45 tended days'
+  day: 13
+  rule_en: 'Wonder island 3: 13 tended days'

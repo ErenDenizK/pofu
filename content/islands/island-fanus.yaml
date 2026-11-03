@@ -1,0 +1,36 @@
+id: island-fanus
+type: island
+title_tr: Fanus
+title_en: The bell jar
+status: idea
+horizon: maybe
+summary: >-
+  A tall glass bell jar floating in the sky with a tiny cloud forest inside: ferns, orchids, a thumb-sized waterfall and warm rain that never leaves the glass. Toy: wipe the condensation with a finger; it beads back. Game: picross on fogged panes, revealing flowers. Resident: Zümrüt, a shy glass frog.
+notes:
+- >-
+  Revision 2026-11-03 (archipelago-system.md 1A, 11): replaces Ayna as wonder 7 (43 tended days). Goods: orchid cuttings; requests Revontuli's ice. Gift to home: a glass cloche on the windowsill, then a greenhouse whose rare flowers join the garden game.
+- >-
+  The glass is the terrarium rim shader of look-dev section C. Origin to be chosen by a native writer (a cloud forest of Costa Rica or Borneo).
+links:
+  requires:
+  - island-aycicegi
+  - sys-island-arrivals
+  related:
+  - sys-island-games
+  - sys-island-toys
+  - sys-island-materials
+  supersedes:
+  - island-ayna
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+- doc: docs/product/archipelago-system.md
+  anchor: '#1a-revision-after-the-founders-review-2026-11-03'
+source: lead-brainstorm
+theme_en: A cloud forest under glass
+ritual_en: 'Fogged panes (picross); echo: a greenhouse at home'
+residents:
+- char-zumrut
+unlock:
+  day: 43
+  rule_en: 'Wonder island 7: 43 tended days'

@@ -8,6 +8,8 @@ summary: >-
   A crooked office on stilts at the end of the cloud current where everything that falls off an island ends up; the keepsake museum, told through objects. Boncuk the magpie must give every shiny thing back. Game (Deduce): from small clues (a sesame seed, a wet paw print) return each object to its owner.
 notes:
 - >-
+  Revision 2026-11-03 (archipelago-system.md 1A, 11): wonder 6; silhouette strengthened: the office on stilts is built from lost things (an umbrella roof, a teacup water tank, a top-hat chimney). Gift to home: a lost-and-found box, then a display shelf in the den.
+- >-
   No completion percentage, no empty slots shown.
 links:
   requires:
@@ -28,5 +30,5 @@ ritual_en: 'Who lost this? (Deduce)'
 residents:
 - char-boncuk
 unlock:
-  day: 130
-  rule_en: 'Six keepsakes owned'
+  day: 34
+  rule_en: 'Wonder island 6: 34 tended days'

@@ -1,15 +1,14 @@
 id: island-yildiz
 type: island
-title_tr: Yıldız
-title_en: The star island
-status: planned
+title_tr: Mehtap
+title_en: The crescent (was Yıldız)
+status: idea
 horizon: later
 summary: >-
-  A high night observatory. Stargazing: each calm night adds a star; at bedtime a 20-second
-  moment where Pofu points at tonight's star and says good night. Seven stars make a constellation
-  you name. A phone-down ritual that only ever ends with "good night". Stations: observatory,
-  firefly meadow, hammock. Resident: Nane, a sleepy owl.
+  A sleeping crescent moon resting in the clouds, an observatory dome in its inner curve and a rope ladder to its tip; always blue hour. The crescent waxes and wanes with the real moon. Resident: Nane, the sleepy owl. Game: one-stroke constellations with three cultures' names. The stargazing ritual is kept.
 notes:
+- >-
+  Revision 2026-11-03 (archipelago-system.md 1A, 11): redesigned from Yıldız (3/10, an observatory on the home base) and renamed Mehtap; the id stays until the planned identifier rename. Never paint a single star beside the crescent's tip. Gift to home: a telescope, then the real moon over home.
 - >-
   Proposed (archipelago-system.md): becomes a wonder island; its three station ladders are retired, the stargazing ritual stays; island game: constellations with three cultures' names (Connect); season 2, Plus.
 - >-
@@ -31,10 +30,10 @@ sources:
   anchor: '#7-the-archipelago'
 - doc: docs/product/app-game-boundary.md
   anchor: '#95-bedtime-and-morning'
-theme_en: A high night observatory
+theme_en: A sleeping crescent moon with an observatory in its curve
 ritual_en: 'Stargazing: a star per calm night; seven make a constellation'
 residents:
 - char-nane
 unlock:
-  day: 22
-  rule_en: 21 tended days and 10 calm nights
+  day: 64
+  rule_en: 'Wonder island 9: 64 tended days'

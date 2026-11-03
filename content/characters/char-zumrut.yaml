@@ -1,0 +1,18 @@
+id: char-zumrut
+type: character
+title_tr: Zümrüt
+title_en: Zümrüt, the glass frog
+status: idea
+horizon: maybe
+summary: >-
+  A tiny glass frog on Fanus who is very shy and therefore see-through.
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+source: lead-brainstorm
+kind: resident
+unlock:
+  day: 43
+  rule_en: Arrives with its island
+species_en: 'Glass frog, tiny'
+home: island-fanus

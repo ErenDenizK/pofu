@@ -1,12 +1,14 @@
 id: island-comlek
 type: island
 title_tr: Çömlek
-title_en: The potter's island
+title_en: The fairy-chimney kiln (Cappadocia)
 status: idea
 horizon: maybe
 summary: >-
-  A red-clay island whose wheel turns only while the phone is down and stops during a pass. After twelve quiet hours a pot is fired. Game (Shape): drag to pull a pot to a shape from many cultures (an Avanos jug, a Japanese tea bowl, a Greek amphora). Toy: a thumbprint in wet clay stays forever. Material: clay.
+  A cluster of Cappadocia fairy chimneys in rose tuff; the tallest is hollowed into a kiln that glows like a lantern; always dawn, with hot-air balloons rising past. Resident: Kil, a mole. Game: merge clay into larger pots from many cultures (Suika's verb). Toy: a thumbprint in wet clay stays forever. Goods: pots and tea bowls, the web's most requested goods.
 notes:
+- >-
+  Revision 2026-11-03 (archipelago-system.md 1A, 11): redesigned from 4/10 (the mole and the game were fun, the island was not): the island is the kiln. Gift to home: Avanos cups, then a dawn balloon.
 - >-
   Developed from idea-island-comlek. Resident: Kil, a mole who only works when it is quiet.
 links:
@@ -26,10 +28,10 @@ sources:
 - doc: docs/product/archipelago-system.md
   anchor: '#3-the-island-schema'
 source: lead-brainstorm
-theme_en: 'A red-clay potter''s island that only works in quiet'
-ritual_en: 'The wheel (Shape); echo: the wheel mirrors calm'
+theme_en: 'Cappadocia fairy chimneys hollowed into a glowing kiln'
+ritual_en: 'The wheel (merge); the kiln burns only in quiet'
 residents:
 - char-kil
 unlock:
-  day: 200
-  rule_en: 'Season 3 release'
+  day: 53
+  rule_en: 'Wonder island 8: 53 tended days'

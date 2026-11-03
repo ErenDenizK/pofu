@@ -1,6 +1,7 @@
 # The Archipelago System: Islands You Want to Play
 
-_Status: proposal for discussion with the founder. Date: 2026-11-02.
+_Status: proposal for discussion with the founder. Date: 2026-11-02;
+**revised 2026-11-03** after his review of the concept deck (section 1A).
 Builds on [game-design.md](game-design.md) (v2), [ADR-0015](../adr/0015-care-over-currency.md),
 [ADR-0016](../adr/0016-pre-planned-idle-archipelago.md),
 [ADR-0017](../adr/0017-pofu-never-dies.md), [app-game-boundary.md](app-game-boundary.md)
@@ -49,7 +50,7 @@ What changes from game-design v2:
 
 | v2 today | Proposed |
 |---|---|
-| Every island: three stations × five levels, one ritual (about 27 images) | Two **yield** islands (the free pair); every later island is a **wonder island** with a game, a secret, decor spots (about 12–16 images plus one game) |
+| Every island: three stations × five levels, one ritual (about 27 images) | One **home** cluster (Ayçiçeği and its harbor, free; 1A.2); every later island is a **wonder island** with a game, a secret, decor spots (about 12–16 images plus one game) |
 | Islands are places you build | Islands are places you **play**: one game per island, one shared loop |
 | Yıldız, Kaplıca, Kitap carry station ladders (45 vignettes, 1.5 M seeds) | They become wonder islands with games; the ladders are retired |
 | One currency for everything | Seeds stay universal; each wonder island adds one local, non-convertible **material** earned by playing it |
@@ -57,6 +58,20 @@ What changes from game-design v2:
 | Placement is never the player's | **Decor spots**: fixed sockets where the player chooses what goes (section 5) |
 | Arrival is a bubble and a cloud pass | A **rumour ladder** before, a choreographed **arrival**, a **secret** after |
 | Mostly Turkish settings | A sky of many cultures; Turkish warmth at home |
+
+**Revision of 2026-11-03 in one paragraph (section 1A).** İskele is no
+longer a second island: it becomes **Ayçiçeği's harbor district**, so the
+free part is one home cluster where everything meets. Wonder islands sign
+a **uniqueness contract**: no lawn-oval plates; the island *is* the idea
+(a whale, a bell spire, a crescent moon, a bonsai in the rain, a glass
+bell jar, a kiln of fairy chimneys, a nest carried by storks), and each
+changes at least three axes including its silhouette. Islands work **in
+parallel**: each keeps a job through **goods** that later islands request
+(materials stay local), **awake islands** rotate daily, and every island
+leaves a **permanent gift on Ayçiçeği**. Home changes daily through time,
+simulated weather (real weather opt-in later), seasons, events, growth
+and visitors. The first wonder island arrives on **day 4**, Gezgin on day
+8, then each wait is a day longer than the last.
 
 ## 1. The problem, stated precisely
 
@@ -78,6 +93,275 @@ that feeling:
 And it must not break the product: the game must never become the new
 reflex (decision audit §3). Section 6 states how play can be longer and
 still safe.
+
+## 1A. Revision after the founder's review (2026-11-03)
+
+The founder reviewed the concept deck (batches 10 and 15). His views, in
+short: islands must work **in parallel**, each staying useful as you move
+between them; Ayçiçeği and İskele are too far apart and İskele feels
+empty; Ayçiçeği is the hub, simple in design but **always changing**, and
+"everything meets on the home island"; wonder islands must not be flat
+green copies of the home plate; the first wow should come sooner. His
+ratings: Gezgin 10, Çanlar and Emanet "great", Revontuli 7, Koke 6,
+Çömlek 4, Yıldız 3, Leylek 2, Ayna "must change" (full entry in
+[founder-input.md](founder-input.md)). This section is the answer; the
+sections after it are edited to match.
+
+### 1A.1 Diagnosis: why most concepts read as copies
+
+Seen side by side, eight of eleven concepts share one object: **a lawn
+oval on a sandy soil bowl with dangling roots, pebbles and Pofu's round
+door**. Only Gezgin (a whale), Çanlar (a spire) and Revontuli (a night
+palette) escape it, and they are exactly the three he rated highest. Two
+causes, both ours: the brief gave every island the same landform with a
+prop on top ("an island *with* an observatory"), and the batch-15 manifest
+attached the home island with the role "the same painting, the same
+camera, the same scale of a floating island", which the model read as
+"the same island". The fix is not more assets; it is a contract (1A.3)
+and briefs where **the island is the idea**, not a carrier for it.
+
+### 1A.2 Decision A: one home cluster; İskele becomes Ayçiçeği's harbor
+
+**Decision.** İskele is no longer a separate island. It is **Ayçiçeği's
+harbor district**: a pier that grows from the plate's right edge (the
+ferry-pier notch the İskele plate already planned) into the cloud sea,
+unfolding over the first days. Name in the UI: *İskele*, "Ayçiçeği'nin
+iskelesi". It keeps everything the founder liked: Simit and her cart, the
+vapur, the postcards, the horn, the sort-puzzle game.
+
+| Option | For | Against | Verdict |
+|---|---|---|---|
+| **Harbor district on the home plate** | One place, one pan; the Island framing already pans with snap points per station (look round 4), so the pier is one more stop; the vapur docks *at home*, so every visitor and parcel lands where Pofu lives ("everything meets at home"); İskele's emptiness disappears because it shares Ayçiçeği's life | The home plate grows wider (one extra pan stop; a pier edit, not a new plate) | **Chosen** |
+| Two islets joined by a rope bridge, same frame | Keeps "a second island" for the map | A second plate to keep in harmony; the bridge is already home stage 5's east islet; still two places | Rejected |
+| Keep İskele separate, move it closer and give it more | Least change | Treats the symptom; a free "yield island" is still a +1 island, the exact feeling we are removing | Rejected |
+
+**How it unfolds** (tended days, cumulative): day 1, a lone mooring post
+at the right edge and a bell; day 2, the planks and Simit's cart (Simit
+moves in; the **sort game** opens: loading the vapur); day 3, the vapur's
+first run (the first postcard, and the first rumour object); later, the
+lighthouse (home stage 4) and the cargo shed (when the first export good
+exists, 1A.4). The harbor's stations (simit cart, pier, lighthouse) stay
+yield stations with the same price ladder; the home cluster is the only
+place that produces seeds.
+
+**What the vapur becomes.** The archipelago's one ferry: it carries
+visitors to the çay ocağı, goods between islands, postcards and rumour
+objects, and Pofu himself when he visits a wonder island (the travel
+transition is the vapur leaving the pier, then the cloud pass). The map's
+routes are its routes. The harbor is the hub's front door.
+
+### 1A.3 Decision B: the uniqueness contract for wonder islands
+
+A wonder island enters production only if it signs this contract.
+
+**The banned template.** No wonder island may use: a lawn oval top, the
+soil bowl underside with roots and pebbles, the round door (Pofu's, home
+only), a flat lawn as its main surface, or the home palette (honey, sage,
+sunflower) as its dominant colours. The home island owns that look; it is
+what makes home feel like home.
+
+**The seven axes.** Each wonder island must differ from home **and from
+every other island** on at least **three** axes, and **silhouette is
+mandatory** among them:
+
+| Axis | Question | Example of a pass |
+|---|---|---|
+| 1. Silhouette and landform | Filled black at 60 pt, can a child name it? | A whale, a bell spire, a crescent moon, a bonsai |
+| 2. Palette | Does a 3-colour swatch alone identify it? | Revontuli's night blue, snow and aurora green |
+| 3. Weather and time (its own sky) | Does it have its own climate or hour, independent of home's? | Koke always in soft rain; Mehtap always at blue hour |
+| 4. Mechanic | Is its game a different proven verb? | Merge, glide, slide, picross, echo |
+| 5. Signature motion | Is there one continuous movement nothing else has? | The whale breathing; the crescent waxing with the real moon |
+| 6. Culture | Is it lovingly *from* somewhere, written natively? | Finland, Japan, Cappadocia |
+| 7. Scale | Does it break the standard island size or orientation? | The whale is huger than any island; Çanlar is tall and thin |
+
+**Checklist for a concept review** (all yes, or it goes back): the black
+silhouette test at 60 pt; the swatch test; none of the banned template;
+three axes including silhouette; one sentence lore hook that is a
+question; a resident of a new species; the toy's second answer; the game
+playable in one round without text; a permanent gift to Ayçiçeği (1A.4);
+a scale cue in the painting (Pofu, a door, a person-sized object) so it
+reads as a place, not an ornament.
+
+**Rubric (10 points)**, calibrated so the current concepts land on his
+ratings:
+
+| Criterion | Points |
+|---|---|
+| Silhouette and landform (0 = the template; 1 = template plus a big prop; 2 = its own landform; 3 = the island *is* the object) | 0–3 |
+| Palette and its own sky (weather, time) | 0–2 |
+| Signature motion | 0–2 |
+| Heart: resident, story, a verb that is fun | 0–2 |
+| Surprise: something never seen in a cozy game | 0–1 |
+
+| Concept (batches 10, 15) | Sil. | Pal. | Mot. | Heart | Surp. | Score | His |
+|---|---|---|---|---|---|---|---|
+| Gezgin | 3 | 1 | 2 | 2 | 1 | **9** | 10 |
+| Çanlar | 3 | 1 | 2 | 1 | 1 | **8** | great |
+| Emanet | 1 | 1 | 1 | 2 | 1 | **6** | great (the heart; the plate is the template) |
+| Revontuli | 1 | 2 | 2 | 1 | 1 | **7** | 7 |
+| Koke | 0 | 1 | 2 | 2 | 1 | **6** | 6 |
+| Çağlayan | 1 | 1 | 2 | 1 | 0 | **5** | (not rated) |
+| Çömlek | 0 | 0 | 1 | 2 | 1 | **4** | 4 |
+| Yıldız | 0 | 2 | 1 | 0 | 0 | **3** | 3 |
+| Ayna | 1 | 1 | 1 | 0 | 0 | **3** | must change |
+| Leylek | 0 | 0 | 1 | 1 | 0 | **2** | 2 |
+
+**Bars:** 8 or more to enter production; silhouette at least 2 always; a
+concept under 6 is redesigned, not repainted. Every redesign in section
+11 targets 8+.
+
+**Under the hood this changes the art plan.** The first plan's
+five shared landform blockouts become **one blockout per island**
+(section 3.3 is updated), built from
+a shared camera rig and light, not a shared landform. The camera, light
+and painting style stay common (that is the family); the outline never
+is.
+
+### 1A.4 Decision C: the living web (islands in parallel)
+
+Islands stop being a ladder (finish one, move on) and become a **web**:
+each keeps a job forever, and the home island is where the jobs meet.
+
+**Resolving "local materials" versus "cross-island needs".** The two
+ideas conflict only if one thing does both jobs. So there are two things:
+
+| | **Material** (local) | **Goods** (travel) |
+|---|---|---|
+| What | A counter earned by the island's game: water drops, clay, frost | A named, crafted object made on an island from its material: a jar of falls water, a fired tea bowl, a block of clear ice |
+| Where it is spent | Only on its own island's stages and decor (unchanged: each island is played and starts at a fresh zero) | Only by **requests** from other islands and from home; never sold, never converted, never touches the gate |
+| How many | Small numbers on that island | **At most three of each** on the harbor's cargo shelf; no counter elsewhere |
+| How it moves | It does not | The vapur carries it; loading it is the harbor's sort game |
+
+So material keeps every island a game of its own, and goods make every
+island needed by the others, without a shared currency.
+
+**The dependency rule (never a wall).** A wonder island's request may only ask for
+goods from islands that arrived **earlier** than the asker; home's
+requests appear only once the island they name has arrived. Dependencies point
+backward in time, so they always point at islands the player already
+owns (also after a lapse in Plus), and no island ever waits for one the
+player does not have. Requests fill **stage 4 or 5 extras, decor, and
+gifts to home**, never a stage 1–3 step, so a player who ignores old
+islands is slowed, never stopped.
+
+**What keeps an old island relevant**, five mechanisms:
+
+1. **Requests.** Each new island asks for goods from two or three older
+   ones (Revontuli's sauna wants Çağlayan's falls water for its stones;
+   Koke's tea house wants falls water and a Revontuli ice block; Çömlek's
+   kiln wants Revontuli's ice to quench and Koke's moss to pack the
+   pots). Home asks too, for goods of any island the player has (the
+   çay ocağı wants Koke's matcha for Sumi's visit). The older island's
+   game is the way to make them.
+2. **New pieces in old games.** Every arrival adds one piece or rule to
+   one older island's game (after Revontuli, ice blocks appear in
+   Çağlayan's channels and slow the boats; after Gezgin, the vapur's
+   sort game gets whale-mail sacks). Old games never go stale.
+3. **Awake islands.** Each day **two or three islands are awake**: they
+   have a request on their noticeboard, a resident visiting home, or a
+   weather moment (Koke on a rainy day, Revontuli's aurora night, Mehtap
+   at full moon). The choice is deterministic from the date and the
+   islands the player has, one awake island is always at least three
+   arrivals old, and nothing expires: an open request waits; a sleeping
+   island is still fully playable. No checklist of ten islands a day.
+4. **Visitors.** The awake island's resident takes the vapur to
+   Ayçiçeği and drinks tea at the çay ocağı (Mochi serves each the way
+   their culture does: the tea-customs learning thread finally has a
+   stage).
+5. **Gifts to home.** Every island, at arrival and at stage 5, adds one
+   **permanent** thing to Ayçiçeği (table below).
+
+**Each island's permanent gift to Ayçiçeği:**
+
+| Island | At arrival | At stage 5 (the larger gift) |
+|---|---|---|
+| Çağlayan | A spring that bubbles up beside the pond | **New weather:** morning rainbows over home after calm nights |
+| Gezgin | Yosun the tortoise postman lodges at the harbor | **Resident visitor:** Nazlı the whale moors at the pier on full-moon nights |
+| Revontuli | A sauna hut at the end of the pier (steam ribbon) | **New weather:** on calm winter nights the aurora reaches home |
+| Çanlar | A small bell on the çay ocağı that rings the awake island's motif | **Station upgrade:** the çay ocağı's bell set (every arrived island's motif) |
+| Koke | A bamboo water clacker at the pond | **New weather:** rain greens moss on the roof stones; frogs sing in rain |
+| Emanet | A lost-and-found box at the harbor | **Station upgrade:** Pofu's den gets a display shelf for every keepsake |
+| Mehtap | A tiny brass telescope on the lawn (decor spot) | **New sky:** the real moon phase over home at night, and meteor showers on their real nights |
+| Çömlek | Avanos tea glasses and a jug at the çay ocağı | **Souvenir:** a hot-air balloon that drifts past home at dawn on calm mornings |
+| Leylek | A stork nest on the windmill cap | **Resident visitor:** a stork pair nests there each spring and autumn, every year |
+| Fanus | A glass cloche over a flower on the windowsill | **Station upgrade:** a small greenhouse by the garden that blooms rare flowers in the garden game |
+
+The home island is drawn once; gifts are small edits, sockets and code
+effects, so the hub fills up over a year **without changing its simple
+outline**: the founder's "simple in design, always changing".
+
+### 1A.5 Decision D: Ayçiçeği always changing
+
+Simple in design (one plate, one outline); never the same two days in a
+row. Six layers, each cheap because each is a grade, an overlay, a
+particle system or a small edit, never a repaint:
+
+| Layer | How | Cadence |
+|---|---|---|
+| **Time of day** | The colour script's five hour cells (exists) | Hourly |
+| **Weather** | **Simulated by default**: a deterministic daily weather drawn from the date, the hemisphere and a mild climate table (clear, cloudy, light rain, fog, wind; snow only in winter), with fronts lasting one to three days so it feels like weather, not dice. **Real local weather is opt-in later** (WeatherKit, settings only, never during onboarding; coarse location, fetched at most every three hours and cached; falls back to simulated) | Daily |
+| **Seasons** | Four edits by real calendar and hemisphere (spring blossom, summer fireflies, autumn leaves, winter snow), plus Koke's micro-season line once Koke has arrived | Seasonal |
+| **Events** | A free, recurring calendar: Hıdırellez's wish-ribbon tree (5–6 May), the first snow, the Perseids (around 12 Aug) and Geminids (around 14 Dec), the solstices, the new year's lanterns, Pofu's own anniversary with the player. Each returns every year; its decor stays (A7) | A few a year |
+| **Growth** | Stations, stages, decor spots, the harbor's unfolding | Every few days |
+| **The web** | The awake island's visitor at the çay ocağı, cargo on the pier, gifts from every island | Daily |
+
+**Weather is flavour, never income.** Rain never pays more seeds or more
+rounds; it changes what is beautiful and which island is awake (a rainy
+day wakes Koke, a clear night Mehtap). That keeps real weather fair for
+someone in a rainy city.
+
+**The daily diff.** Every morning shows **at least one noticeable change**
+on home, drawn in a fixed order from the layers above (a visitor, a
+weather turn, a bloom, a postcard, a gift). Pofu points at it in the
+morning bubble. This is the "never boring" guarantee, and it is
+deterministic (A17).
+
+### 1A.6 Decision E: pacing, and where the free part ends
+
+**The curve.** The first wonder island arrives on **day 4** (tended days,
+cumulative), with its rumour ladder compressed into the first days: a
+sound on day 2, a bottle on the vapur's first run on day 3. After that
+the cadence slows gently: **each wait is one tended day longer than the
+one before** (4, then 4, 5, 6, 7… days apart), settling at about two
+weeks per island once releases set the pace.
+
+| Wonder island | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Tended days | 4 | 8 | 13 | 19 | 26 | 34 | 43 | 53 | 64 | 76 |
+| Island | Çağlayan | **Gezgin** | Revontuli | Çanlar | Koke | Emanet | Fanus | Çömlek | Mehtap | Leylek* |
+
+\* Leylek arrives by the calendar (the first spring or autumn migration
+after day 26), whatever its place in the order; it is the only seasonal
+island.
+
+Why this order: the first wow comes inside the founder's 2–4 days for a
+quick player and by day 5–6 for a slow one; **the end of the first week
+lands on the best island we have** (Gezgin, his 10), so a week never ends
+on an underwhelming island; Revontuli changes the colour world third;
+Çanlar needs three islands to have bells for. Between arrivals, the daily
+diff on home, the stages of the newest island and the web's requests
+carry the days. An engaged player outruns releases near island 5–7; the
+fog holds at the third rumour until the next season, while the web and
+home keep changing.
+
+**Monetization reconciled.** PR #60's decision was "free: the gate, Pofu,
+Ayçiçeği and İskele; Plus opens the further islands, the cut decided by
+data". With İskele inside the home cluster, the cut candidates become:
+
+| Cut | Free part | Plus starts at | Day | For | Against |
+|---|---|---|---|---|---|
+| C1 | The home cluster | Çağlayan | 4 | Clearest promise | A free user never feels a wonder island; the first wow sits behind a wall |
+| **C2** | Home cluster + Çağlayan | **Gezgin** | 8 | The free user feels the whole loop, the web and one wonder; the whale arriving as a huge silhouette in the fog is the most honest "want more" we can make | The best island is paid |
+| C3 | Home cluster + Çağlayan + Gezgin | Revontuli | 13 | Most generous; retention signal strongest | Two weeks of free play; weaker conversion pull |
+
+**Recommendation:** test C2 against C3 in the friends beta (the signals
+of section 10: stage completion, sets per day, return visits, rumour
+taps), prior **C2**. The rules of section 10 hold: cut only at an island
+boundary, tell the shape from day one, never at the gate, nothing taken
+away. If Plus gets a free trial, islands opened in it stay (ADR-0017):
+a kept whale is the best advert we have. Gifts to home come only from
+islands the player has; a free player's home still changes daily through
+the other five layers.
 
 ## 2. Research
 
@@ -105,7 +389,7 @@ still safe.
 | **Sky: Children of the Light** | Seasons of 9–11 weeks add spirits, areas, cosmetics; free with a paid season pass | Music and vistas create awe | Large studio | **Steal** music as the emotional core, places that stay. **Avoid** limited-time items |
 | **Ooblets** | Whimsy; disputes settled by dance-offs | Silliness makes a world lovable | Mid | **Steal** whimsy, a playful verb instead of combat |
 | **Unpacking** | Story told only through objects | Inference is delight | Object art | **Steal** lore through objects (Emanet, keepsakes) |
-| **Monument Valley** | Impossible architecture; paid expansion chapters | The "ah" when geometry turns | Hand-made; premium plus chapters | **Steal** impossible geometry (Ayna) and clean paid chapters |
+| **Monument Valley** | Impossible architecture; paid expansion chapters | The "ah" when geometry turns | Hand-made; premium plus chapters | **Steal** impossible geometry (Mehtap's waxing crescent) and clean paid chapters |
 
 ### 2.2 How cozy games make places playable (added for the founder's "turn it into a game")
 
@@ -166,11 +450,14 @@ in and the checklist a reviewer uses.
 
 | Field | What it is | Rules |
 |---|---|---|
-| **Kind** | `yield` (stations, seeds; the free pair) or `wonder` (a game, a secret; everything after). A wonder island may be a `wanderer` (it moves) | Only yield islands produce seeds |
+| **Kind** | `home` (Ayçiçeği with its harbor: stations, seeds) or `wonder` (a game, a secret; everything after). A wonder island may be a `wanderer` (it moves) or `seasonal` (Leylek) | Only home produces seeds |
 | **Origin** | The culture or place it is lovingly from, and who writes it | Native writer; never a postcard cliché |
 | **Biome and feel** | One line: "a spring that never stops", not "water island" | Distinct from every earlier island |
 | **Colour key** | Two or three dominant palette colours | Art bible palette; runtime grade can shift it |
-| **Silhouette** | What reads at map scale (about 60 pt) | Never repeated |
+| **Silhouette** | What reads at map scale (about 60 pt) | Never repeated; the uniqueness contract (1A.3) |
+| **Its own sky** | The island's climate or hour, independent of home | One of the contract's axes |
+| **Goods and requests** | The good it makes from its material; the goods it asks for | Requests point only to earlier islands (1A.4) |
+| **Gift to home** | What it adds to Ayçiçeği at arrival and at stage 5 | Permanent; a small edit, socket or code effect |
 | **Signature motion** | One continuous movement it owns (section 8) | Code over paintings; never reused |
 | **Lore hook** | One sentence that raises a question | Asked by the first rumour, answered by stage 5 |
 | **Secret (stages)** | Five stages, each an edit of the whole plate and a chapter | Each stage also deepens the game (a new piece, rule, or place) |
@@ -219,7 +506,7 @@ are fine under the hood. A wonder island targets **12–16 images**:
 
 | Item | Images | Reuse under the hood |
 |---|---|---|
-| Plate | 1 | Painted from one of five **landform blockouts** (Blender gray boxes in the fixed camera), so the camera and light never drift; the outline is always new |
+| Plate | 1 | Painted from **its own blockout** (a Blender grey box) in the shared camera rig and light, so the camera and light never drift and the outline is always new (1A.3) |
 | Stage edits | 4 | Each an edit of the plate ("add the rope bridge; change nothing else") |
 | Resident | 3 | Base plus two pose edits; expressions by the face-kit method |
 | Game pieces | 2–4 | Small props on one sheet; the rule set is code |
@@ -232,7 +519,7 @@ What makes 50 affordable without anything looking reused:
 |---|---|
 | **Motion engines** (a fluid ribbon, a particle emitter, a damped swing, a flock on a spline, a grade cycle) retuned per island | A waterfall, steam, bells, storks, an aurora: never the same thing twice |
 | **Game grammars** (about eight rule engines, section 4.3) | Each island's game has its own pieces, rules and story |
-| **Landform blockouts** | Consistent camera and light; every outline different |
+| **One camera rig and light** (a blockout per island) | Consistent camera and light; every outline different |
 | **Resident rig** (base, two poses, face kit) | Every resident a new species and personality |
 | **Decor families** (sockets by shape) | A chair bought on İskele also fits Koke's porch |
 | **Runtime grade** | Night, seasons, restoration from grey to colour without repaints |
@@ -284,18 +571,25 @@ Under the hood, about eight rule engines. Each island instantiates one
 with its own pieces, rules, art and story, and each stage adds a twist,
 so the game deepens as the secret unfolds.
 
-| Grammar | The verb | Islands using it |
+| Grammar | The verb (proven model) | Island |
 |---|---|---|
-| **Serve** | Remember and fulfil small orders | Ayçiçeği (Mochi's tea orders) |
-| **Pack** | Fit shapes into a space | İskele (loading the vapur) |
-| **Flow** | Route something through a channel | Çağlayan (leaf boats) |
-| **Connect** | Draw lines between points | Yıldız (constellations) |
-| **Trace** | Draw a pattern along a guide | Koke (raking the moss garden), Revontuli (the fox's tail) |
-| **Echo** | Repeat or answer a phrase | Çanlar (bells), Gezgin (whale song) |
-| **Patience** | Set something up, put the phone down, come back | Revontuli (ice fishing) |
-| **Deduce** | Infer from clues | Emanet (who lost this?) |
-| **Shape** | Mould with a drag | Çömlek (the wheel) |
-| **Guide** | Steer gently with taps | Leylek (storks on thermals) |
+| **Fit** | Place shapes, clear rows (Block Blast) | Ayçiçeği (the garden) |
+| **Sort** | Sort by kind (Goods Sort) | The harbor (loading the vapur) |
+| **Route** | Rotate pieces to connect (Flow, Pipe) | Çağlayan (leaf boats) |
+| **Slide** | Slide blocks to clear a path (Rush Hour) | Gezgin (cloud banks) |
+| **Patience** and **Trace** | Put the phone down; draw a stroke | Revontuli (ice fishing; the aurora) |
+| **Echo** | Repeat a phrase (Simon) | Çanlar (bells) |
+| **Match** | Match in threes, no fail bar (Triple Tile) | Koke (moss stones) |
+| **Deduce** | One puzzle a day from clues (Wordle's shape) | Emanet (who lost this?) |
+| **Picross** | Fill the grid from edge numbers | Fanus (fogged panes) |
+| **Merge** | Merge into larger (Suika) | Çömlek (pots) |
+| **One stroke** | Draw without lifting the finger | Mehtap (constellations) |
+| **Glide** | Dip and rise on hills or air (Tiny Wings) | Leylek (thermals) |
+
+No verb repeats between two islands (the contract's mechanic axis); the
+mapping follows [minigames.md](minigames.md) §8, extended to the new
+islands. Serve (tea orders) lives on as the visitors' tea at the çay
+ocağı, not as a round game.
 
 Rules for every island game:
 
@@ -316,8 +610,8 @@ Rules for every island game:
 
 Each wonder island has **one** material, earned only by its game and
 spent only there, on its stages and decor: water drops on Çağlayan, star
-dust on Yıldız, clay on Çömlek, frost on Revontuli, moss on Koke. Seeds
-stay the universal material (yield islands, stations, and a small seed
+dust on Mehtap, clay on Çömlek, frost on Revontuli, moss on Koke. Seeds
+stay the universal material (home, stations, and a small seed
 part of every stage cost).
 
 - **Why not one currency:** a single pool lets a rich home island buy a
@@ -338,7 +632,7 @@ art stays composed and the camera fixed (an amendment to ADR-0016's
 
 | Spot family | Where | Example items (and what they do) |
 |---|---|---|
-| **Ground** | A level patch of lawn | A hammock between two trees (a resident naps there at noon); a tiny telescope (at night it points at Yıldız); a sunflower-seed bird table (a specific bird visits) |
+| **Ground** | A level patch of lawn | A hammock between two trees (a resident naps there at noon); a tiny telescope (at night it points at Mehtap); a sunflower-seed bird table (a specific bird visits) |
 | **Hanging** | A branch, an awning, an eave | A wind chime that plays the island's motif at golden hour; a string of lanterns that light on calm nights; a nazar-blue glass mobile |
 | **Water** | A pond edge, a spring, a pier | A floating lantern; a toy sailboat that drifts on its own; a bamboo water clacker from Koke |
 | **Sky** | A post above the island | A kite whose tail grows on calm days; a weather vane shaped like Pofu; a paper lantern balloon |
@@ -443,7 +737,7 @@ materials.** Prices stay 5–200 on every island, forever.
 | Pofu's quiet gathering | 1 seed per quiet waking hour, at most 8 a day | 6 → 7 |
 | A resisted reach | +1 seed (and +1 round), at most 6 a day | 6 → 6 |
 | A calm night | +2 seeds (and +1 round) | about 1.3 a day |
-| Stations (yield islands) | 0.6 seeds a day per station level at calm ×1.0, × calm, only while no guarded app is open | 1 → 23 |
+| Stations (home and harbor) | 0.6 seeds a day per station level at calm ×1.0, × calm, only while no guarded app is open | 1 → 23 |
 | **Seeds total** | | **about 15 → 37 a day**; saturates near 40 |
 | Rounds | Section 4.2 | about 7 → 8 a day earned; a typical user plays 5 |
 | Island material | About 4 a round (+1 for a good round) | About 20 a day on the island in play |
@@ -480,32 +774,34 @@ items: 10–40 of the island's material.
 | Every day (if they play) | A set: material, a story beat, maybe a learning card |
 | Every 2–3 days | A build: a station's next level |
 | Every week | An island stage: the island changes shape, its game deepens, a decor spot opens |
-| Every 2–4 weeks | A rumour, then an island: the full arrival |
+| Days 4, 8, 13, 19… then about every two weeks | A rumour ladder, then an island: the full arrival (1A.6) |
 | Every season | New islands for the season; the archipelago changes clothes |
 | The long arc | The map clears from fog; Pofu's shelf fills; decor across islands tells the user's own story; Çanlar's bells learn one more motif per island |
-| Pofu himself | Gifts that stay: Simit's scarf, a ferry ticket in his cheek pouch, a satchel badge per island, a lantern from Yıldız; his den behind the round door gets a shelf |
+| Pofu himself | Gifts that stay: Simit's scarf, a ferry ticket in his cheek pouch, a satchel badge per island, a lantern from Mehtap; his den behind the round door gets a shelf |
 
 ### 7.6 The first 60 days for a typical user
 
-About 10 reaches resisted a day, average calm, a Plus member (or a free
-user if the first wonder island is free; open question 5). One or two
-short visits a day plus one play set (about 5 minutes) on most days.
+Revised 2026-11-03 (pacing in 1A.6). About 10 reaches resisted a day,
+average calm, a Plus member. One or two short visits a day and one play
+set on most days. Days are tended days.
 
 | Day | What happens | Feeling |
 |---|---|---|
-| 1 | The island wakes with the first gate catch. Garden L2, çay ocağı L1. Mochi arrives with her first tea order: the **Serve** game's tutorial round. About 15 seeds. | "I did something, and someone moved in." |
-| 2–6 | A build almost every day; the island widens (stage 3, lily pond). Tea orders learn the residents' tastes; first learning card: how tea is drunk in Türkiye, Japan and Morocco. | |
-| 8 | **İskele drifts close.** Simit; the **Pack** game: loading the vapur. | **Whoa 1** |
-| 10–12 | Back terrace, Fındık. **Rumour 1**: "Did you hear water last night? Behind the fog, past the pier." | "Wait, what was that?" |
-| 15–20 | The vapur's first run brings a postcard and, on day 18, a **bottle** (rumour 2): "the water never stops here". First decor spots open on Ayçiçeği: the user hangs lanterns on the çay ocağı. | |
-| 24 | Home stage 5: the east islet and rope bridge; windmill L1. | |
-| 28 | The lighthouse beam catches a **mist rainbow** at the map's edge (rumour 3). | |
-| 36 | **Çağlayan arrives.** The waterfall starts pouring, on camera. Damla the otter; the **Flow** game: route leaf boats down the chute. | **Whoa 2** |
-| 38–50 | Çağlayan's stages: the hidden spring (a new channel piece), the chute (boats can now be sent over the edge), the mill (a rule: water turns it). Learning: the water cycle, one card a stage. | A secret unfolding |
-| 44 | The leaf boat sent over the falls on day 37 washes up on İskele's pier. | "It went all the way round!" |
-| 46 | **Ayna** appears beneath the clouds (20 calm nights): the camera dips under and the world turns over. Pekmez. | **Whoa 3** |
-| 50 | Çağlayan stage 5: the falls water every island. Keepsake: a jar of falls water. Morning rainbows at home after calm nights. | Closure, a new question |
-| 55–60 | Stations keep levelling (26 builds in 60 days). Ayna's game opens. Day 60: **rumour 1 of Revontuli**: a green flicker in the north at dusk. | One open question, always |
+| 1 | The island wakes with the first gate catch. Garden L2. The garden game's first round. A mooring post and a bell at the right edge. About 15 seeds | "I did something, and someone noticed." |
+| 2 | The harbor's planks; Simit moves in; the sort game. Morning: "Did you hear water last night?" (rumour 1) | "Home is getting bigger." |
+| 3 | The vapur's first run: the first postcard and a bottle ("the water never stops here", rumour 2); the lighthouse beam catches a mist rainbow (rumour 3). First rain on home (simulated weather) | "Wait, what was that?" |
+| 4 | **Çağlayan arrives**, the waterfall starts on camera; Damla; leaf boats; a spring bubbles up beside home's pond | **Whoa 1** |
+| 5–7 | Çağlayan stages 2–3; Damla visits the çay ocağı; the first daily diffs (a fog morning, a frog chorus); a whale-sized shadow under the fog on the map | |
+| 8 | **Gezgin**: the map's edge moves; a sleeping whale with a cottage on her back. Yosun lodges at the harbor | **Whoa 2**, at the end of week one |
+| 9–12 | The first request: Gezgin's cottage asks for a jar of falls water; old island, new reason. A leaf boat sent over the falls on day 5 washes up on the pier | "Everything is connected." |
+| 13 | **Revontuli**: the first night-blue world; Tuli; ice fishing | **Whoa 3**: a new colour world |
+| 14–18 | Çağlayan stage 5: morning rainbows at home after calm nights. Revontuli's sauna wants falls water; ice blocks appear in Çağlayan's channels | Closure, a new question |
+| 19 | **Çanlar**: a spire of bells, one per island so far; a small bell on the çay ocağı | **Whoa 4** |
+| 20–25 | A free calendar event if one falls here; the full moon brings Nazlı to the pier | |
+| 26 | **Koke**: a bonsai in the rain; on rainy days at home, the frogs sing | **Whoa 5** |
+| 34 | **Emanet**: things you never knew were lost come home | **Whoa 6** |
+| 43 | **Fanus**, if season 1 has shipped; otherwise the fog holds at its third rumour while the web and home carry the days | **Whoa 7** |
+| 44–60 | Stages, requests and awake islands; Gezgin stage 5 (the whale moors on full moons); the first migration may bring Leylek | One open question, always |
 
 ## 8. Signature motion: what code can do
 
@@ -517,14 +813,14 @@ paintings.
 | Motion | Technique | Island |
 |---|---|---|
 | A waterfall pouring off the edge into the clouds | A painted ribbon masked to the fall; a `layerEffect` scrolls two noise layers down it; `Canvas` mist where it meets the clouds; a mist rainbow at golden hour | Çağlayan |
-| An island hanging upside down beneath the cloud sea | The home plate mirrored, a ripple `distortionEffect` along the cloud line, a moonlit grade; fireflies fall upward | Ayna |
+| Condensation on a glass bell jar, wiped by a finger | A `layerEffect` droplet field over the glass rim shader; the touch path clears it and it beads back | Fanus |
 | An aurora painted by a fox's tail | A `layerEffect` curtain of two noise fields in green and violet, its shape driven by the last tail stroke the player drew | Revontuli |
-| A bamboo water clacker and moss that greens in the rain | A damped spring on the bamboo, a sound; the moss layer's grade shifts on rainy real-weather days | Koke |
+| Steady rain on a bonsai; rings on the gravel pond; a bamboo clacker | `Canvas` rain and ring particles; a damped spring on the bamboo | Koke |
 | An island on the back of a breathing cloud-whale | Whole-plate scale and offset on a slow sine; a blowhole spray that makes a small rainbow; the map position moves at night only | Gezgin |
 | Bells that swing and ring | Each bell a layer on a damped spring; ropes as curves; sound per bell | Çanlar |
-| Storks circling on thermals | A flock on splines with soft cloud shadows, in migration months | Leylek |
-| A slow wheel that turns only when it is quiet | Rotation tied to calm, pausing during a pass | Çömlek |
-| A telescope tracking the real moon | The computed moon phase in `Canvas`; the telescope rotates to it | Yıldız |
+| A nest carried by a flock | A flock on splines with ribbon curves to the nest; the nest swings on a damped pendulum | Leylek |
+| Balloons rising at dawn; a kiln that glows like a lantern | Balloon sprites on slow paths; the kiln windows' glow breathes with calm | Çömlek |
+| A crescent island that waxes and wanes with the real moon | The computed moon phase drives a mask over the painted moon | Mehtap |
 | Things floating home on the cloud current | Keepsake sprites drift along a curve and settle on a shelf | Emanet |
 
 Cost at rest stays near zero (look-dev §B): full rate only while that
@@ -546,14 +842,14 @@ story.
 | How many? | A design horizon of **50**: enough for four years at about 12 a year. The template, rumours and map have no end, so the run can continue if it is loved |
 | How often? | A season (about 13 weeks) brings **three islands**: one big (a wanderer or a showpiece motion), two smaller. Each ships only when it passes the whoa test |
 | Can a small team make one in ~3 weeks? | With the reuse in section 3.3 (blockouts, motion engines, grammars, rig, decor families) and the art pipeline (Codex under the art bible): one plate, 4 edits, a 3-image resident, 2–4 game pieces, 1–3 decor items, a keepsake, one grammar instance with new rules, a motif, about 30 lines of story and learning cards. Yes, if the grammars exist first |
-| Will users run out? | Each island's stages need at least 14 tended days, and arrivals follow the user's own tended days, so an engaged user meets about one island every 2–4 weeks. Twelve a year matches that pace; a slower user has a backlog and never runs dry |
-| What fills the gaps? | Rumours (always one open question), seasonal edits, each island's game (sets keep yielding material for decor), decor spots, wishes, and Yıldız-like rituals |
+| Will users run out? | Each island's stages need at least 14 tended days, and arrivals follow the user's own tended days, so an engaged user meets islands on the 1A.6 curve (days 4, 8, 13, 19, 26…) and then about one every two weeks. Twelve a year matches that later pace; launch ships five to cover the fast first month; a slower user has a backlog and never runs dry |
+| What fills the gaps? | Rumours (always one open question), seasonal edits, each island's game (sets keep yielding material for decor), decor spots, wishes, Mehtap-like rituals, the living web (1A.4) and the home island's daily diff (1A.5) |
 
 ### 9.2 The sky map: rings and fog
 
 | Ring | Contents | Visible as |
 |---|---|---|
-| Inner | The yield islands | Clear |
+| Inner | Ayçiçeği and its harbor | Clear |
 | Middle | Wonder islands as they arrive | Fog that recedes with every arrival |
 | Outer, "Uzak Sular" (the far waters) | Islands to come; the wanderer's route | Fog with lights, sounds, silhouettes (rumours) |
 
@@ -565,7 +861,7 @@ empty slot, a count of islands left, or a date.
 | Rung | Sense | Example (Çağlayan) | Carried by |
 |---|---|---|---|
 | 1. A sound | Its motif, faint, from the fog; Pofu mentions it in the morning | "Did you hear water last night?" | Morning bubble; the fog shimmers |
-| 2. An object | Something arrives: a bottle, a feather, a leaf, a lost hat | A bottle: "the water never stops here" | The vapur, on İskele's pier (hand-painted, one per island) |
+| 2. An object | Something arrives: a bottle, a feather, a leaf, a lost hat | A bottle: "the water never stops here" | The vapur, on the home harbor's pier (hand-painted, one per island) |
 | 3. A sight | A silhouette, a light, a rainbow at the map's edge | A mist rainbow caught by the lighthouse beam | The map's outer ring |
 
 Rumours advance with the next island's cumulative arrival conditions (a
@@ -584,14 +880,15 @@ the user's life and stays deterministic (A17).
 "The sky sea is full of islands that drifted apart when the world got
 loud. **Islands drift toward quiet.** When it is calm long enough, they
 hear it and come home." (TR *Adalar sessizliğe yanaşır.*) Never an
-exposition dump: Pofu says it once at İskele's arrival; Çanlar's bells
+exposition dump: Pofu says it once, on the vapur's first run; Çanlar's bells
 and Kitap's archive explain it; it is true to the mechanics, because the
 user's calm is what brings the islands.
 
 ## 10. Monetization: how the system carries Plus
 
 **Decided (PR #60, founder-approved):** free is the gate, Pofu,
-Ayçiçeği and İskele; Plus (349,99 TL a year, 999,99 TL lifetime) opens
+Ayçiçeği and İskele (since 2026-11-03 one home cluster; cut candidates in
+1A.6); Plus (349,99 TL a year, 999,99 TL lifetime) opens
 the further islands. This amends ADR-0016's "Plus never sells islands";
 the amendment is clean only because **wonder islands produce nothing**:
 paying never buys seeds, calm, wellbeing, speed, rounds or time.
@@ -611,10 +908,11 @@ must know it in advance. Recommendations:
    instrument the "happy and want more" signals per island: stage
    completion, sets played per day, return visits to the island, rumour
    taps, decor placed, and the founder's Hub feedback. The line belongs
-   just after the island where completion and return visits peak. The
-   strongest candidate to test: **the first wonder island free**
+   just after the island where completion and return visits peak. Test
+   **C2 against C3** (1A.6), prior C2: the first wonder island free
    (Çağlayan), because a free user who has never played a wonder island
-   does not know what Plus is.
+   does not know what Plus is, and the whale arriving at the line is the
+   honest "want more".
 4. **Rumours are the honest "want more".** Rumours play for everyone. A
    free user sees the Plus island arrive as a silhouette that clears from
    the fog, with one card, once ("Çağlayan came close. It opens with Pofu
@@ -625,240 +923,279 @@ must know it in advance. Recommendations:
 6. **Nothing is taken away.** A lapsed member keeps every island, stage,
    decor item and keepsake they unlocked, and can still play those
    islands' games; only new stages of Plus islands wait (ADR-0017).
-7. **The free game stays whole.** Two yield islands with their games,
-   decor spots, the postcards, rumours, and every seasonal edit: a
-   complete Turkish (and global) game, not a demo.
+7. **The free game stays whole.** The home cluster with its two games,
+   the harbor, decor spots, postcards, rumours, weather, seasons, events,
+   and (in C2) Çağlayan: a complete game, not a demo.
 
 ## 11. Island concepts
 
-Twelve concepts: the free pair, ten wonder islands. Seven new, three
-reworked from v2, two developed from idea nodes. Cultures: Turkish at
-home and on the pier and in the spring; Finnish, Japanese, and a
-European-African migration route in the sky; more to come from native
-writers. Each passes the whoa test: a new silhouette, a never-used
-motion, a toy with a second answer, a game with its own verb, a question
-answered at stage 5.
+Revised 2026-11-03 (section 1A). One home cluster and ten wonder islands.
+Kept: Çağlayan, Gezgin, Revontuli, Çanlar, Emanet, each with a stronger
+silhouette. Redesigned: Koke, Çömlek, Leylek, and Yıldız as **Mehtap**.
+Replaced: Ayna by **Fanus**. Every wonder island signs the uniqueness
+contract (1A.3); the "Axes" column lists the axes it changes against
+home.
 
-| Island | Origin | Signature motion | Game (grammar) | Material | Learning thread | Tier |
-|---|---|---|---|---|---|---|
-| Ayçiçeği | Türkiye | The giant sunflower turns with the real sun | Mochi's tea orders (Serve) | seeds | Tea customs around the world | Free |
-| İskele | Türkiye (Bosphorus) | The vapur docking and puffing | Loading the vapur (Pack) | seeds | Where the postcards come from | Free |
-| Çağlayan | Anywhere with travertine | A waterfall pouring off the edge into the clouds | Leaf boats (Flow) | water drops | The water cycle | Plus (first; test free) |
-| Ayna | The home island's reflection | Upside down beneath the clouds | Catch falling seeds in the mirror (Trace) | moonlight | The moon's phases | Plus |
-| Revontuli | Finland | An aurora painted by a fox's tail | Ice fishing (Patience) and painting the aurora (Trace) | frost | Nordic sky lore, the real aurora | Plus |
-| Koke | Japan | A bamboo clacker; moss greening in real rain | Raking the moss garden (Trace) | moss | The 72 Japanese micro-seasons | Plus |
-| Yıldız | Above the clouds | A telescope tracking the real moon | Constellations (Connect) | star dust | One star, three cultures' names | Plus |
-| Çanlar | The sky itself | Bells that swing and ring | Bell echoes (Echo) | — (bronze) | Folk melodies of the islands' cultures | Plus |
-| Gezgin | The open sky | An island on a breathing whale | Whale song (Echo) | — (shells) | Whales, songs that travel | Plus |
-| Emanet | The cloud current | Things floating home | Who lost this? (Deduce) | — (tags) | Objects and their stories | Plus |
-| Çömlek | Anatolia (Avanos) | A wheel that turns only in quiet | The wheel (Shape) | clay | Pottery shapes across cultures | Plus |
-| Leylek | The Europe–Africa flyway | Storks circling on thermals | Guiding storks (Guide) | feathers | Migration, the cities on the route | Plus |
+| # | Island | The island *is* (silhouette) | Palette · its own sky | Signature motion | Game (proven verb) | Gift to home | Axes |
+|---|---|---|---|---|---|---|---|
+| — | **Ayçiçeği** + harbor | Home: the lawn oval, sunflower, round door, a pier into the clouds | Honey, sage, sunflower · real time, simulated or real weather | The giant sunflower follows the real sun | Garden block puzzle; at the harbor, sorting cargo onto the vapur | — | — |
+| 1 | **Çağlayan** | A stack of white travertine terraces; the fall pours off the lowest one, longer than the island is tall | Travertine cream, turquoise, mist white · late morning, mist rainbows | The waterfall into the clouds | Path-connect: leaf boats | Spring; morning rainbows | sil, pal, mot, scale |
+| 2 | **Gezgin** | A cottage on the back of a sleeping cloud-whale | Grey-blue, cream, dandelion · moonlit when travelling | The whale breathing; it moves at night | Slide puzzle: clear cloud banks for the whale | Yosun; the whale moors on full moons | sil, mot, scale, mech |
+| 3 | **Revontuli** | An ice floe: a clear blue-white ice shelf, a single spruce, a sauna, a fishing hole | Night blue, snow, aurora green · always a winter night | An aurora painted by the player's stroke | Ice fishing (patience) and aurora painting (trace) | Sauna; winter aurora at home | sil, pal, sky, culture |
+| 4 | **Çanlar** | A tall, thin stone spire hung with bells | Bronze, sky blue, poppy · windy bright noon | Bells on damped springs | Simon echo | The çay ocağı's bell set | sil, scale, mot, mech |
+| 5 | **Koke** | A great bonsai pine whose roots cradle a moss and gravel garden; the tree is larger than the land | Deep moss, wet slate, one maple red · always soft rain | Rain rings on the raked gravel pond; the clacker | Tile matching (three moss stones) | Water clacker; rain greens home | sil, pal, sky, culture |
+| 6 | **Emanet** | An office on stilts built out of lost things: an upturned umbrella roof, a teacup water tank, a hat for a chimney | Weathered teal, brass, brown paper · overcast, lamplit | Lost things floating home on the cloud current | Daily deduction | Den display shelf | sil, pal, mech |
+| 7 | **Fanus** | A glass bell jar floating in the sky with a tiny cloud forest inside | Emerald, glass teal, orchid pink · warm rain inside, clear sky outside | Condensation that beads, runs and is wiped by a finger | Picross: wipe the fogged panes | Greenhouse by the garden | sil, pal, sky, mech |
+| 8 | **Çömlek** | A cluster of Cappadocia fairy chimneys; the tallest is hollowed into a glowing kiln | Rose tuff, ochre, dawn apricot · always dawn, balloons rising | Hot-air balloons rising past; the kiln's glow breathing | Merge: clay into larger pots | Avanos cups; a dawn balloon | sil, pal, sky, culture |
+| 9 | **Mehtap** | A sleeping crescent moon resting in the clouds, an observatory in its inner curve, a ladder to its tip | Indigo, moon silver, pale gold · always blue hour | The crescent waxes and wanes with the real moon | One-stroke constellation drawing | Telescope; the real moon over home | sil, pal, sky, mot |
+| 10 | **Leylek** | A giant woven nest carried across the sky by a V of storks on ribbons | Straw gold, white, black, sunset coral · warm windy dusk, Saharan haze | The flock flying, the nest swaying | Glide on thermals (Tiny Wings) | A stork pair nests on the windmill each migration | sil, pal, mot, scale |
 
-Kaplıca (the hot spring) and Kitap (the library) stay in the pool with
-the same treatment (a ritual plus a game: temperature mixing for
-Kaplıca, story-ordering for Kitap); Arı (the bee island) is a candidate.
+Kaplıca (the hot spring) and Kitap (the library) stay in the pool and
+must pass the contract before they are briefed (Kaplıca as a steaming
+teacup-shaped caldera; Kitap as an island that is an open book whose
+pages are terraces). Arı (bees) stays a candidate.
 
-### 11.1 Ayçiçeği, home (yield, free)
+### 11.1 Ayçiçeği, home, with its harbor (yield, free)
 
-Pofu's sunflower island; warm honey, sunflower yellow, sage. Signature:
-the giant sunflower (garden L5) follows the real sun. Lore hook: "What is
-behind the little round door?" (Pofu's den, which fills with keepsakes.)
-Residents: Pofu, Mochi, Fındık, the frogs. **Toy:** boop Pofu; three fast
-boops and he sneezes a seed off the edge into the clouds. **Game: Mochi's
-tea orders** (Serve): residents arrive at the çay ocağı and you remember
-how each takes their tea (strong, light, two sugars, a lemon slice for
-the frogs); visitors from later islands bring their own customs (Tuli
-wants it with a sugar cube in her teeth, the Finnish way; Sumi wants
-matcha). Learning: tea around the world. Decor spots: the çay ocağı's
-awning, the lawn, the pond edge, the door. Motif: a hummed four-note
-lullaby that every later motif harmonises with.
+Pofu's sunflower island; warm honey, sunflower yellow, sage. The only
+island with the lawn oval, the soil bowl and the round door: that look
+*is* home. Signature: the giant sunflower (garden L5) follows the real
+sun. Lore hook: "What is behind the little round door?" (Pofu's den,
+which fills with keepsakes.) Residents: Pofu, Mochi, Fındık, the frogs,
+and Simit at the harbor. **Toy:** boop Pofu; three fast boops and he
+sneezes a seed off the edge into the clouds. **Games:** the garden block
+puzzle ([minigames.md](minigames.md)); at the harbor, sorting cargo onto
+the vapur. **Always changing** (1A.5): time, weather, seasons, events,
+growth, the daily visitor and the gifts of every island (1A.4). Decor
+spots: the çay ocağı's awning, the lawn, the pond edge, the door, the
+pier's end. Motif: a hummed four-note lullaby every later motif
+harmonises with.
 
-### 11.2 İskele, the harbor (yield, free)
+### 11.2 İskele, Ayçiçeği's harbor (a district of home, free)
 
-A tea-and-simit pier over the clouds; coral, cream, sea blue. Signature:
-the little vapur docking after calm nights. Lore hook: "Where does the
+No longer an island (1A.2). A tea-and-simit pier that grows from home's
+right edge into the cloud sea; coral, cream, sea blue as accents on the
+home palette. Signature: the vapur docking. Lore hook: "Where does the
 ferry go?" (It is the route every returning island follows home.)
 Resident: Simit, a honey tabby kitten who sells out by noon. **Toy:**
-pull the horn cord: *düüüt*, the gulls lift, Simit covers her ears;
-at dusk with a rumour active, a horn answers from the fog. **Game:
-loading the vapur** (Pack): fit parcels, simit trays and a very
-indignant goat into the hold; stage by stage the ferry gets bigger and
-the cargo stranger. The ferry brings the postcards and every rumour
-object: İskele is the archipelago's inbox. Learning: one line about the
-place on each postcard.
+pull the horn cord: *düüüt*, the gulls lift, Simit covers her ears; at
+dusk with a rumour active, a horn answers from the fog. **Game: loading
+the vapur** (sort puzzle): parcels, simit trays, the goods of the web and
+a very indignant goat. The harbor is the archipelago's inbox and outbox:
+postcards, rumour objects, visitors and goods all pass here. Unfolds on
+days 1–3 (1A.2).
 
-### 11.3 Çağlayan, the island that pours (wonder)
+### 11.3 Çağlayan, the island that pours (wonder 1)
 
-A mossy limestone island in travertine cream, turquoise and moss, with a
-waterfall pouring off its edge forever into the sea of clouds; the fall
-is longer than the island is tall. **Lore hook:** "Where does the water
-come from, and where does it go?" **Stages:** the fall starts; a hidden
-spring behind it; Damla's leaf-boat chute; a mill under the falls that
-grinds nothing, it just likes turning; the answer: the water falls into
-the clouds, the clouds rain on every island, which is why the
-archipelago is green. Keepsake: a jar of falls water that never empties.
-**Resident:** Damla, an otter who tries to catch the waterfall in a cup.
-**Toy:** drop a leaf boat in the stream; it goes over the edge, and days
-later washes up on İskele's pier. **Game: leaf boats** (Flow): rotate
-channel stones so boats reach the pools where Damla waits; later stages
-add the spring (a second source), the mill (water must turn it), and
-the edge (boats sent over it return in a few days). Material: water
-drops. Echo: morning rainbows at home after calm nights. Unlock: 30
-tended days and its rumours. Art: about 13 images; the water is code.
-**Whoa:** water pouring off an island into the sky, and a boat that
-comes back.
+**Silhouette:** a stack of three white travertine terraces (Pamukkale's
+cream rims, turquoise pools), the island narrowing downward to a point,
+and a waterfall pouring off the lowest rim into the clouds, longer than
+the island is tall. No lawn: moss only on the rims. **Lore hook:** "Where
+does the water come from, and where does it go?" **Stages:** the fall
+starts; a hidden spring behind it; Damla's leaf-boat chute; a mill under
+the falls that grinds nothing, it just likes turning; the answer: the
+water falls into the clouds, the clouds rain on every island, which is
+why the archipelago is green. Keepsake: a jar of falls water that never
+empties. **Resident:** Damla, an otter who tries to catch the waterfall
+in a cup. **Toy:** drop a leaf boat in the stream; it goes over the edge
+and a few days later washes up on the home pier. **Game: leaf boats**
+(path-connect): rotate channel stones so boats reach Damla's pools.
+**Goods:** jars of falls water. Material: water drops. Unlock: day 4.
+Free in cut C2. **Whoa:** water pouring off an island into the sky, and
+a boat that comes back.
 
-### 11.4 Ayna, the island under the clouds (wonder)
+### 11.4 Gezgin, the island on a whale (wonder 2, a wanderer)
 
-Ayçiçeği's reflection, hanging upside down beneath the cloud sea in
-moonlight even at noon; moon blue, silver, lavender. **Lore hook:** "Why
-is there a second round door, upside down, under the clouds?" **Stages:**
-a dark mirror; it starts copying your stations in moonlight; a lantern
-in its door; a rope ladder through the clouds; the answer: Ayna keeps
-the island's quiet nights, and every calm night you have had is a lit
-window. Keepsake: a small mirror. **Resident:** Pekmez, a fruit bat who
-lives upside down and thinks you are. Polite about it. **Toy:** drop a
-seed off the home island and it falls *up* onto Ayna. **Game: mirror
-catch** (Trace): seeds fall from Ayçiçeği; trace the path of Ayna's
-silhouette-Pofu so he catches them, in a world where up is down. Arrival:
-the only camera flip in the game. Unlock: 20 calm nights. Art: the home
-plate mirrored and regraded plus about 9 images. **Whoa:** impossible
-geometry built from the user's own island.
+Kept as rated (10). A little grassy island with one cottage on the back
+of an enormous sleeping cloud-whale; grey-blue, cream, dandelion. The
+grass is the whale's back, not a plate. **Lore hook:** "The map's edge
+moved. Something big is out there." **Stages:** the whale stops at the
+outer ring; opens one eye; the cottage door opens; the whale sings; the
+answer: she carries lost islands home, and now circles the archipelago.
+**Residents:** Nazlı the whale, and Yosun, an old tortoise postman who
+lodges in the cottage and brings the vapur's letters, slowly. **Toy:**
+tap the blowhole: a cloud puff and a small rainbow. **Game: the way
+home** (slide puzzle, Rush Hour's verb): slide drifting cloud banks
+aside so Nazlı can swim to the next mooring; each solved board moves her
+one mooring along a fixed tour. She moves only at night, is never
+highlighted, and nothing is gained by finding her. **Goods:** whale-mail
+sacks (letters from far islands). Material: shells. Unlock: day 8, at
+the end of the first week. **Whoa:** the island is alive.
 
-### 11.5 Revontuli, the fox-fire island (wonder; Finland)
+### 11.5 Revontuli, the fox-fire island (wonder 3; Finland)
 
-A snowy island with a lakeside sauna, a frozen pond and a single spruce;
-night blue, snow, aurora green. In Finnish, *revontulet* (the northern
-lights) means "fox fires": the old story says an arctic fox runs across
-the fells and its tail sweeps sparks into the sky. **Lore hook:** "Who
-paints the sky green?" **Stages:** the frozen pond; the sauna (steam
-rises, Pofu emerges pink and proud); the ice-fishing hut; the fox's
-tracks lead up the fell; the answer: the fox paints the aurora only on
-nights when the island is quiet. Keepsake: a carved wooden fox.
-**Resident:** Tuli, a small arctic fox, very serious about saunas.
-**Toy:** brush snow off the spruce; it falls in a soft clump on Pofu.
-**Game, two verbs:** *ice fishing* (Patience): drop a line, then put the
-phone down; after 20 quiet minutes something has bitten (a fish, a lost
-mitten, a message in a bottle); *painting the aurora* (Trace): swipe
-Tuli's tail across the sky and your stroke becomes tonight's aurora,
-which stays over the island until tomorrow. Learning: the real aurora,
-Nordic sky lore, sauna customs. Signature: the aurora shader, shaped by
-the player's own stroke. **Whoa:** you paint the sky, and the game rewards
-putting the phone down.
+**Silhouette strengthened:** not a snowy lawn oval but **an ice floe**: a
+flat shelf of clear blue-white ice, thick and glassy at its edge (the
+underside glows blue, never soil), with one spruce, a lakeside sauna on
+stilts and a round fishing hole. Night blue, snow, aurora green; always
+a winter night, whatever the season at home. In Finnish *revontulet*
+means "fox fires": an arctic fox sweeps sparks into the sky with its
+tail. **Lore hook:** "Who paints the sky green?" **Stages:** the frozen
+pond; the sauna (steam rises, Pofu emerges pink and proud); the fishing
+hut; the fox's tracks lead up the snow drift; the answer: the fox paints
+the aurora only on nights when the island is quiet. Keepsake: a carved
+wooden fox. **Resident:** Tuli, a small arctic fox, very serious about
+saunas. **Toy:** brush snow off the spruce; it falls in a soft clump on
+Pofu. **Games:** *ice fishing* (patience): drop a line, put the phone
+down; after 20 quiet minutes something has bitten; *painting the aurora*
+(trace): your stroke becomes tonight's aurora. **Goods:** clear ice
+blocks. Requests: Çağlayan's water for the sauna stones. **Whoa:** a new
+colour world, and you paint the sky.
 
-### 11.6 Koke, the moss garden (wonder; Japan)
+### 11.6 Çanlar, the island of bells (wonder 4)
 
-A small island of moss, maples and a dry stone garden, with a bamboo
-water clacker (*shishi-odoshi*) that tips and clacks; moss green, maple
-red, raked-gravel grey. **Lore hook:** "Why does the gravel move by
-itself at night?" **Stages:** the stones; the clacker; a tiny shrine
-gate; a maple that changes with the real season; the answer: a dormouse
-rakes it every night, and the patterns are letters to the other islands.
-Keepsake: a small rake. **Resident:** Sumi, a Japanese dormouse
-(*yamane*) who sleeps through winter and apologises for it. **Toy:** tap
-the clacker; it tips, clacks, and a koi rises. **Game: raking** (Trace):
-trace calm wave patterns around stones to a template; each completed
-garden is kept on the island until you rake the next. Learning: the 72
-Japanese micro-seasons (*shichijūni kō*): every visit the garden's sign
-names the real micro-season of the week ("the east wind melts the ice").
-Moss greens on real rainy days. **Whoa:** calm made physical, and a
-calendar that matches the world outside.
+Kept (great). A narrow stone spire, taller than any island is wide, hung
+with wind bells of many sizes, bunting and poppies; bronze, sky blue,
+poppy; always a windy, bright noon. **Lore hook:** "Who rings the bells
+in the fog?" **Stages:** one bell; the frame; each bell turns out to play
+one island's motif; a bell for every island you have; the answer: the
+bells were rung long ago to call drifted islands home, and your calm has
+been ringing them. **Resident:** Zil, a slightly deaf, very proud
+bell-ringer mouse. **Toy:** tap bells; every combination resolves into
+harmony. **Game: echoes** (Simon): Zil rings a phrase, you answer;
+phrases are folk tunes of the islands' cultures. **Goods:** small
+hand bells. Requests: Gezgin's whale-mail (tunes from far islands). Every later island's first rumour is heard
+as a new, unknown bell. **Whoa:** the archipelago has a song, and you
+made it.
 
-### 11.7 Yıldız, the star island (wonder; reworked)
+### 11.7 Koke, the bonsai in the rain (wonder 5; Japan; redesigned from 6)
 
-A high, cold island above the cloud line with an observatory dome;
-indigo, gold, snow. **Lore hook:** "Why are there more stars over Pofu's
-island than anywhere else?" **Stages:** the dome; the telescope, which
-tracks the real moon; the star book (a star per calm night: the v2
+**Silhouette:** a great, wind-shaped bonsai pine floating in the sky; its
+roots grip a moss and raked-gravel garden that is smaller than the tree.
+At 60 pt it reads as a tree, not an island. **Its own sky:** always soft
+rain (the *tsuyu* season), rings on the gravel pond, mist in the
+branches. Deep moss, wet slate, one maple-red accent. **Lore hook:** "Why
+does the gravel move by itself at night?" **Stages:** the stones; the
+clacker; a tiny tea house on a root; a maple branch that changes with
+the real season; the answer: a dormouse rakes it every night, and the
+patterns are letters to the other islands. Keepsake: a small rake.
+**Resident:** Sumi, a Japanese dormouse (*yamane*) who sleeps through
+winter and apologises for it. **Toy:** tap the clacker; it tips, clacks,
+and a koi rises through the rain rings. **Game: moss stones** (tile
+matching without a fail bar); raking is the toy between rounds.
+Learning: the 72 micro-seasons, the real one named on the garden sign.
+**Goods:** matcha tins. Requests: Çağlayan's falls water and a Revontuli ice block for the tea
+house.
+**Whoa:** a tree you can live in, in rain that sounds like calm.
+
+### 11.8 Emanet, the lost-and-found (wonder 6)
+
+Kept (great), **silhouette strengthened:** the office on stilts is built
+*from* lost things: an upturned umbrella for a roof, a giant teacup as
+its water tank, a top hat as its chimney, a ladder of mismatched spoons,
+all on a raft of drifted things at the end of the cloud current; no lawn.
+Weathered teal, brass, brown paper; always a soft overcast with lamplit
+windows. **Lore hook:** "Everything that falls off an island ends up
+somewhere." **Stages:** a shack and an empty shelf; your keepsakes
+arrive; things you never knew were lost arrive (Simit's umbrella,
+Mochi's spoon); a back room with a hand-drawn map of the outer ring; the
+answer: it keeps what the archipelago lost when it drifted apart.
+**Resident:** Boncuk, a magpie who loves shiny things and must give every
+one back. **Toy:** ring the counter bell; Boncuk tells one keepsake's
+story. **Game: who lost this?** (daily deduction, Wordle's shape): from
+three clues return the object to its owner on the right island; the
+answer sends a visitor to home. **Goods:** returned objects (each a
+request fulfilled for another island). **Whoa:** the island is the
+archipelago's memory, made of its things.
+
+### 11.9 Fanus, the bell jar (wonder 7; replaces Ayna)
+
+Ayna was the home plate mirrored, the purest copy of all; the impossible
+geometry it promised is kept for Mehtap's waxing crescent and Gezgin's
+motion. **Silhouette:** a tall glass bell jar floating in the sky, its
+brass knob catching the sun; inside, a tiny cloud forest of ferns,
+orchids and a waterfall the size of a thumb, in warm rain that never
+leaves the glass. The terrarium rim shader of look-dev §C becomes the
+island's glass. Emerald, glass teal, orchid pink. **Lore hook:** "Who
+put a forest under glass, and why is it so warm in there?" **Stages:**
+fogged glass; the first orchid; a hummingbird's nest; the door in the
+glass; the answer: the jar keeps the archipelago's rarest seeds safe
+until the sky is quiet enough to plant them (each one later blooms in
+home's greenhouse). Keepsake: a glass seed. **Resident:** Zümrüt, a
+tiny glass frog who is shy and therefore see-through. **Toy:** wipe the
+glass with a finger; the condensation clears and beads back slowly.
+**Game: fogged panes** (picross): number clues on the edges tell which
+panes hide flowers; wiping the right panes reveals the picture.
+**Goods:** orchid cuttings. Requests: Revontuli's ice to cool the jar
+in summer. Origin: a cloud forest under Victorian glass; native writer
+to choose its home (Costa Rica or Borneo). **Whoa:** a world inside a
+jar, and the glass is real.
+
+### 11.10 Çömlek, the fairy-chimney kiln (wonder 8; Cappadocia; redesigned from 4)
+
+The founder liked the mole and the wheel, not the island. **Silhouette:**
+a cluster of three to five Cappadocia fairy chimneys, soft rose-tuff
+cones with dark caps, rising from the clouds; the tallest is hollowed
+into a kiln whose little windows glow like a lantern; a wheel on a
+ledge; pots on carved shelves. **Its own sky:** always dawn, with two or
+three hot-air balloons rising past. Rose tuff, ochre, dawn apricot.
+**Lore hook:** "Something is being made slowly here." **Stages:** the
+wheel; the kiln lit (it turns only while the phone is down); the first
+pot; the shelf of pots in a fixed sequence of shapes; the answer: Kil, a
+mole, has made a pot for every island that came home. **Toy:** press a
+thumbprint into wet clay; it stays forever. **Game: the wheel** (merge,
+Suika's verb): a fixed lump of clay a round; merge into larger shapes
+from many cultures (an Avanos jug, a tea bowl, an amphora). **Goods:**
+fired pots, jugs, tea bowls (wanted by every later island and by home,
+so Çömlek stays relevant for good). Requests: Revontuli's ice to quench,
+Koke's moss to pack the pots. **Whoa:** the island is a lantern, and the sky
+fills with balloons.
+
+### 11.11 Mehtap, the crescent (wonder 9; redesigned from Yıldız 3)
+
+**Silhouette:** the island **is a sleeping crescent moon**, pale
+moonstone with soft craters, resting in the cloud sea; a small
+observatory dome nestles in its inner curve, a rope ladder climbs to its
+upper tip where Nane perches. **Its own sky:** always blue hour, many
+small stars, a faint Milky Way. Indigo, moon silver, pale gold.
+**Signature motion:** the crescent's lit part follows the **real moon
+phase**: on a new-moon night the island is a dark sliver; at full moon
+it glows whole for one night. **Cultural care:** never paint a single
+star beside the crescent's tip (that reads as a flag); the stars are
+always many. **Lore hook:** "Why does the moon sleep here?" **Stages:**
+the dome; the telescope; the star book (a star per calm night, the v2
 ritual, kept); seven stars make a constellation you name; the answer:
-the constellations are a map of the outer ring. **Resident:** Nane, the
-sleepy owl. **Toy:** spin the dome; on real meteor-shower nights the
-shutter shows a shooting star. **Game: constellations** (Connect): join
-stars to reveal a figure, then learn what three cultures saw in the same
-stars (the Plough, the Great Bear, the Big Dipper, *Yedi Kardeş*).
-Station ladders retired. Ritual kept (the 20-second stargazing, A21's
-one exception).
+the moon rests here between nights, and the constellations are a map of
+the outer ring. **Resident:** Nane, the sleepy owl. **Toy:** rock the
+crescent; it rocks like a cradle and a star slides down to the dome.
+**Game: one-stroke constellations** (one-line drawing): draw a
+constellation without lifting the finger, then learn what three cultures
+saw (the Plough, the Great Bear, the Big Dipper, *Yedi Kardeş*).
+**Goods:** star charts (each opens a route on the map). Ritual kept: the
+20-second stargazing, A21's one exception. **Whoa:** the island changes
+shape with the sky outside your window.
 
-### 11.8 Çanlar, the island of bells (wonder)
+### 11.12 Leylek, the flying nest (wonder 10; seasonal; redesigned from 2)
 
-A narrow stone spire with wind bells of many sizes, bunting and poppies;
-bronze, sky blue, poppy. **Lore hook:** "Who rings the bells in the fog?"
-**Stages:** one bell; the frame; each bell turns out to play one island's
-motif; a bell for every island you have; the answer: the bells were rung
-long ago to call drifted islands home, and your calm has been ringing
-them. **Resident:** Zil, a slightly deaf, very proud bell-ringer mouse.
-**Toy:** tap bells; every combination resolves into harmony; ring them in
-arrival order and they play the archipelago's song. **Game: echoes**
-(Echo): Zil rings a phrase, you answer; phrases are folk tunes from the
-islands' cultures. Every island's motif joins the bells when it arrives;
-every later island's first rumour is heard as a new, unknown bell.
-Unlock: three wonder islands.
-
-### 11.9 Gezgin, the island on a whale (wanderer)
-
-A little grassy island with one cottage, on the back of an enormous
-sleeping cloud-whale; grey-blue, cream, dandelion. **Lore hook:** "The
-map's edge moved. Something big is out there." **Stages:** the whale
-stops at the outer ring; opens one eye; the cottage door opens; the whale
-sings; the answer: she carries lost islands home, and now circles the
-archipelago. **Residents:** Nazlı the whale, and Yosun, an old tortoise
-postman who lodges in the cottage and brings the ferry's letters, slowly.
-**Toy:** tap the blowhole: a cloud puff and a small rainbow. **Game:
-whale song** (Echo, a call-and-response variant): answer Nazlı's song to
-steer her to the next mooring. She moves only at night on a fixed tour,
-is never highlighted, and nothing is gained by finding her. Unlock: 100
-tended days, the archipelago's big milestone.
-
-### 11.10 Emanet, the lost-and-found (wonder)
-
-A crooked office on stilts at the end of the cloud current; weathered
-teal, brass, brown paper. **Lore hook:** "Everything that falls off an
-island ends up somewhere." **Stages:** a shack and an empty shelf; your
-keepsakes arrive to be displayed; things you never knew were lost
-arrive (Simit's umbrella, Mochi's spoon); a back room with a hand-drawn
-map of the outer ring; the answer: it keeps what the archipelago lost
-when it drifted apart. **Resident:** Boncuk, a magpie who loves shiny
-things and must give every one back, which pains her beautifully.
-**Toy:** ring the counter bell; Boncuk tells one keepsake's one-line
-story. **Game: who lost this?** (Deduce): from small clues (a sesame
-seed, a wet paw print, a smell of şerbet) return each object to its
-owner on the right island. The museum, told through objects. Unlock: six
-keepsakes.
-
-### 11.11 Çömlek, the potter's island (wonder; from the idea node)
-
-A red-clay island with a beehive kiln and a wheel; terracotta, ochre,
-cream. Signature: the wheel turns only while the phone is down and stops
-during a pass. **Lore hook:** "Something is being made slowly here."
-**Stages:** the wheel; the kiln; the first pot (12 quiet hours); a shelf
-of pots in a fixed sequence of shapes; the answer: Kil, a mole, has made
-a pot for every island that came home. **Toy:** press a thumbprint into
-wet clay; it stays forever. **Game: the wheel** (Shape): drag to pull a
-pot up to a shape; shapes come from many cultures (an Avanos jug, a
-Japanese tea bowl, a Greek amphora), each with one line.
-
-### 11.12 Leylek, the stork island (wonder; from the idea node)
-
-A reedy island with a chimney and a huge nest on the Europe–Africa
-flyway; straw, white, black. Signature: storks circling on thermals in
-spring and autumn. **Lore hook:** "The storks always come back. Where do
-they go?" **Stages:** the chimney; the nest; the first feather; a lined
-nest; the answer: Lale has seen every city on the route and leaves one
-line about each. **Toy:** tap twice; the storks clatter their beaks
-back. **Game: thermals** (Guide): tap to find rising warm air and lift a
-young stork along the route, city by city. Returns every year; nothing
-is missed (A7).
+**Silhouette:** a giant woven nest of reeds and twigs, big enough for a
+cottage, carried across the sky by a V of storks holding ribbons; a
+chimney pot and a lantern in the nest; the island never touches the
+cloud sea. **Its own sky:** warm, windy dusk with a Saharan haze. Straw
+gold, white, black, sunset coral. **Seasonal:** it arrives with the real
+spring or autumn migration and crosses the map for about six weeks, then
+flies on and returns next season (it stays in the collection; A7).
+**Lore hook:** "The storks always come back. Where do they go?"
+**Stages** (one per migration): the nest; the first feather; a lined
+nest; the route map; the answer: Lale has seen every city on the
+Europe–Africa flyway and leaves one line about each. **Toy:** tap twice;
+the storks clatter their beaks back. **Game: thermals** (glide, Tiny
+Wings' verb): dip and rise on warm air to carry a young stork city by
+city. **Goods:** feathers for quills and fletching. **Whoa:** an island
+that flies away and comes back.
 
 ### 11.13 Proposed first year
 
-| When | Islands | Why |
+| When | Ships | Why |
 |---|---|---|
-| Launch (free) | Ayçiçeği, İskele, with their games and decor; Çağlayan's rumours | The pair the founder chose; rumours open the first question |
-| Season 1 | **Çağlayan**, **Ayna**, **Koke** | The founder's waterfall; the cheapest whoa; a first non-Turkish culture |
-| Season 2 | **Revontuli**, **Yıldız**, **Emanet** | Winter: the aurora and the stars; by now everyone has six keepsakes |
-| Season 3 | **Çanlar**, **Leylek**, **Çömlek** | Spring: the bells need three wonder islands; the storks return |
-| Season 4 | Kaplıca, Kitap, and a native island for the next market | Autumn |
-| Per user, around day 100 | **Gezgin** | The milestone wanderer |
+| Launch | Ayçiçeği with its harbor; Çağlayan, Gezgin, Revontuli, Çanlar, Koke complete | Covers the first month of an engaged player (islands 1–5 by day 26) |
+| Season 1 (about launch + 6 weeks) | Emanet, Fanus, Çömlek | Lands as engaged players reach island 6 (day 34) |
+| Season 2 | Mehtap, Kaplıca, Kitap (if they pass the contract) | Winter skies |
+| First spring or autumn | Leylek | The migration |
+| Season 3 | A native island for the next market (Japan or the Nordics already have one; the third market gets theirs) | Expansion |
+
+Launch needs five wonder islands, not two: the cost of the faster first
+month. The art plan (one blockout per island, about 12–16 images each)
+holds; the five launch islands are the critical path.
 
 ## 12. Guardrail check
 
@@ -874,21 +1211,26 @@ is missed (A7).
 | A17 deterministic | Fixed orders; skill bonuses fixed; no random drops |
 | A18 glances never ask | Widgets never show rounds, rumours or "new island" |
 | A20′ | The world waits while you play |
-| A21 nights are a dead end | Arrivals revealed after 06:00; no rounds at night; Yıldız's stargazing stays the exception |
+| A21 nights are a dead end | Arrivals revealed after 06:00; no rounds at night; Mehtap's stargazing stays the exception |
+| Fairness of weather | Weather never pays seeds or rounds; simulated by default, real weather opt-in |
+| The living web | Requests point only to earlier islands, fill only stage 4–5 extras, decor and gifts; nothing expires |
 | ADR-0017 | Nothing leaves; lapsed members keep everything |
 
 ## 13. Consequences for code and content
 
-- **`PofuCore`:** yield ladders for the free pair (rescaled to scale A);
-  Yıldız, Kaplıca and Kitap's nine ladders retired. New, all monotonic and
+- **`PofuCore`:** yield ladders for the home cluster (rescaled to scale A);
+  Yıldız (now Mehtap), Kaplıca and Kitap's nine ladders retired. New, all monotonic and
   tested: `IslandKind`, wonder stages (material, seeds, tended days),
   `RoundLedger` (earned, banked, daily cap, A26's automatic step-down),
+  `Goods` and `Request` (backward-only, never expiring), the awake-island
+  schedule and the simulated `Weather` (all deterministic from the date
+  and the player's islands),
   per-island `Material` balances, decor sockets and inventory, a
   `RumourLadder`, keepsakes. A `GameGrammar` protocol in a new
   `PofuGames` module, one type per grammar, deterministic and offline.
 - **`PofuWorld`:** signature motions per island, the map's fog and rings,
   the arrival timeline, decor socket anchors.
-- **Art:** five landform blockouts first; then 12–16 images per wonder
+- **Art:** the shared camera rig and a blockout per island first; then 12–16 images per wonder
   island; one image per decor item.
 - **Sound:** one motif per island and the bell set; a composer before
   season 1.
@@ -906,7 +1248,7 @@ is missed (A7).
 
 | # | Question | Recommendation |
 |---|---|---|
-| 1 | Islands after the free pair produce nothing and are about play and secrets? | **Yes.** Small numbers forever, and Plus never sells progress |
+| 1 | Islands after the home cluster produce nothing and are about play and secrets? | **Yes.** Small numbers forever, and Plus never sells progress |
 | 2 | Every wonder island has its own game from a shared grammar, rounds earned by resisting? | **Yes.** "Resisting earns the round; playing it is the reward" |
 | 3 | The revised session rule (A10′, A20′, A22–A26): visits short, play 5–10 min, finite and earned, with a reflex watch? | **Yes, as an experiment** during the dogfood, with the section 6.3 thresholds; an ADR afterwards |
 | 4 | Per-island materials instead of Roblox-style scaling? | **Yes.** Flat 5–200 prices everywhere; each island starts at a fresh zero |
@@ -918,6 +1260,11 @@ is missed (A7).
 | 10 | Skip seeds at scale A (+1, at most 6: up to 40 % of day-1 income)? | **Keep, and let the simulation confirm** skips stay under a quarter of income from week 2 |
 | 11 | The myth "islands drift toward quiet"? | **Yes.** True to the mechanics and to the product |
 | 12 | Gezgin, the moving whale: delight or a checking risk? | **Ship it,** moving only at night, never highlighted; cut it if reflex opens rise after it arrives |
+| 13 | İskele as Ayçiçeği's harbor district, not a separate island? | **Yes** (1A.2) |
+| 14 | The uniqueness contract and rubric as the bar (8+ to produce)? | **Yes** (1A.3) |
+| 15 | Gezgin second (day 8) rather than a day-100 milestone? | **Yes:** the first week ends on the best island |
+| 16 | Ayna replaced by Fanus; Yıldız redesigned as Mehtap? | **Yes;** judge on the batch-17 concepts |
+| 17 | Real local weather via WeatherKit? | **Later, opt-in;** simulated weather ships first |
 
 ## 15. Self-critique
 
@@ -944,6 +1291,18 @@ is missed (A7).
   `tools/sim` with rounds, materials and these ladders.
 - **The paid line contradicts a written rule** (ADR-0016 "never
   islands"); PR #60's decision needs the ADR amendment to land with it.
+
+- **The faster curve costs content.** Five wonder islands at launch
+  instead of two; an engaged player reaches island 6 around day 34, so
+  season 1 must land about six weeks after launch or the fog waits. The
+  web and the daily diff are what make waiting bearable; if they are not
+  built, the early wows only move the cliff.
+- **The web can turn into chores.** Requests and awake islands are the
+  first thing to become a to-do list. Hence: at most three awake, nothing
+  expires, requests only for extras, and no badge counts on the map.
+- **The rubric is calibrated to one person's taste.** It matches the
+  founder's ratings by construction; the friends beta should score the
+  batch-17 concepts blind to test it.
 
 ## 16. Sources
 
@@ -978,3 +1337,361 @@ is missed (A7).
   them. Revontulet's "fox fires" etymology and the 72 Japanese
   micro-seasons are common cultural knowledge, to be checked by the native
   writers.
+
+## 17. Codex exploration spec: wonder islands under the contract, and the living hub
+
+A spec for the next exploration batch (to be turned into a manifest by
+the art-queue owner; the job format follows `batch-15-explore.yaml`).
+Two concepts per wonder island, each a different reading of the same
+contract, plus four Ayçiçeği hub variants. Exploration only: never
+promoted. **Pilot first** (AGENTS.md): `x2-mehtap-a`, `x2-comlek-a`,
+`x2-leylek-a`, `x2-hub-grown`; scale to the rest only after review.
+
+The key change from batch 15 is the **attach roles**: the home island is
+a style reference, never a shape reference.
+
+```yaml
+batch: batch-17-uniqueness-explore   # number assigned by the queue owner
+kind: plate
+size: 1536x1024
+variants: 2
+review: >-
+  Score every take with the rubric of archipelago-system.md 1A.3; reject any
+  take with a lawn oval, a soil bowl, dangling roots or a round door (wonder
+  islands only). Check the 60 pt black-silhouette test on the contact sheet.
+
+attach_wonder:            # every wonder-island job
+  - ref: approved:island-main-s
+    role: >-
+      STYLE ONLY: the soft painterly finish, the gentle light and the low
+      camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl,
+      no dangling roots, no pebbles, no round door. This is a different place.
+  - ref: approved:cloud-sea
+    role: The sea of clouds below; paint clouds like this (unless the sky says otherwise).
+  - ref: R1
+    role: Style reference only for softness and pastel handling; no characters unless named.
+attach_hub:               # every hub job
+  - ref: approved:island-main-s
+    role: >-
+      THIS is the island to paint: keep its exact shape, lawn, sunflower,
+      çay ocağı, pond and round door; change only what the prompt names.
+  - ref: cay-1
+    role: The çay ocağı as built.
+
+avoid_wonder: >-
+  a lawn oval island, a soil or sand bowl underside, roots hanging below,
+  pebbles in the soil, a round door, sunflowers, honey-and-sage palette,
+  text, a border, harsh shadows, neon, dark moods
+avoid_hub: text, a border, harsh shadows, neon, dark moods, a new island shape
+
+jobs:
+  # ---------------------------------------------------------- Çağlayan
+  - id: x2-caglayan-a
+    island: Çağlayan
+    silhouette: three stacked white travertine terraces narrowing downward to a point
+    palette: [travertine cream, turquoise, mist white]
+    sky: late morning, mist, a faint mist rainbow where the fall meets the clouds
+    landmark: a waterfall from the lowest rim, falling far below the island into the clouds
+    scale_cue: a tiny wooden waterwheel and a leaf boat on one pool
+    prompt: >-
+      A concept painting for a cozy mobile game: Çağlayan, a floating island
+      made of three stacked terraces of white travertine with scalloped
+      cream rims and still turquoise pools, the island narrowing downward to
+      a point; from the lowest rim a ribbon waterfall pours down past the
+      island and far into a sea of clouds, longer than the island is tall,
+      with a soft mist rainbow. Moss only on the rims. A tiny waterwheel and
+      one leaf boat for scale. Low front three-quarter camera.
+  - id: x2-caglayan-b
+    island: Çağlayan
+    silhouette: a tall travertine column like a frozen fountain, pools spilling in rings
+    palette: [cream, turquoise, pale jade]
+    sky: bright mist, sun behind the falls
+    landmark: a curtain fall wrapping half the column
+    scale_cue: a small otter-sized stone hut behind the fall
+    prompt: >-
+      A concept painting for a cozy mobile game: Çağlayan, a tall floating
+      column of white travertine shaped like a frozen fountain, turquoise
+      pools spilling over in rings, and a wide curtain of water wrapping
+      half the column and falling into a sea of clouds; behind the curtain a
+      tiny stone hut glows. Bright soft mist, the sun behind the water.
+
+  # ---------------------------------------------------------- Gezgin
+  - id: x2-gezgin-a
+    island: Gezgin
+    silhouette: an enormous sleeping cloud-whale; a cottage on her back
+    palette: [grey-blue, cream, dandelion]
+    sky: moonlit night travel, silver-edged clouds
+    landmark: the blowhole puffing a tiny cloud with a moonbow
+    scale_cue: a cottage with one lit window, smaller than the whale's eye
+    prompt: >-
+      A concept painting for a cozy mobile game: Gezgin, an enormous
+      sleeping cloud-whale in grey-blue and cream swimming slowly through a
+      moonlit sea of clouds, only part of her body in frame; on her back a
+      patch of dandelions and a tiny cottage with one warm window; her
+      blowhole puffs a small cloud with a soft moonbow. Calm, huge, gentle.
+  - id: x2-gezgin-b
+    island: Gezgin
+    silhouette: the whale surfacing beside the home pier, seen from the side
+    palette: [grey-blue, cream, coral accents]
+    sky: dawn, pink light
+    landmark: the whale's open eye, a mooring rope to a post
+    scale_cue: a small tortoise postman with a satchel on her back
+    prompt: >-
+      A concept painting for a cozy mobile game: a vast gentle cloud-whale
+      surfacing from a sea of clouds at dawn, one kind eye just opening, a
+      mooring rope from her flipper to a little wooden post; on her back a
+      tiny cottage and an old tortoise postman with a satchel. Pink dawn.
+
+  # ---------------------------------------------------------- Revontuli
+  - id: x2-revontuli-a
+    island: Revontuli
+    silhouette: a flat ice floe with a thick, glassy blue edge, glowing from inside
+    palette: [night blue, snow white, aurora green]
+    sky: winter night, aurora curtains, falling snow
+    landmark: a sauna on stilts with a steam ribbon; a round fishing hole
+    scale_cue: a tiny arctic fox beside the fishing hole
+    prompt: >-
+      A concept painting for a cozy mobile game: Revontuli, a floating ice
+      floe of clear blue-white ice with a thick glassy edge that glows softly
+      from within, no soil underneath; on it one snowy spruce, a small
+      wooden sauna on stilts with a ribbon of steam, and a round fishing
+      hole; a tiny arctic fox sits by the hole. Green and violet aurora
+      curtains, gentle falling snow, deep night blue.
+  - id: x2-revontuli-b
+    island: Revontuli
+    silhouette: a snow-capped frozen lake in a ring of ice, like a frozen drop
+    palette: [ice blue, snow, aurora green, violet]
+    sky: polar twilight
+    landmark: an aurora shaped like a fox's tail sweeping from a snow drift
+    scale_cue: a sauna door and a lantern
+    prompt: >-
+      A concept painting for a cozy mobile game: a floating frozen lake shaped
+      like a teardrop of ice, a ring of snow around it, a wooden sauna with a
+      lantern at its edge; above, the aurora sweeps from a snow drift in
+      the shape of a fox's tail. Polar twilight, ice blue and violet.
+
+  # ---------------------------------------------------------- Çanlar
+  - id: x2-canlar-a
+    island: Çanlar
+    silhouette: a tall thin stone spire, many times taller than wide
+    palette: [bronze, sky blue, poppy red]
+    sky: bright windy noon, bunting streaming
+    landmark: bronze bells of many sizes on wooden arms, ropes swaying
+    scale_cue: a mouse-sized rope ladder and door
+    prompt: >-
+      A concept painting for a cozy mobile game: Çanlar, a tall slender
+      floating stone spire, many times taller than it is wide, hung with
+      bronze wind bells of many sizes on wooden arms, poppies in the cracks,
+      bunting streaming in a bright wind, a mouse-sized door and rope ladder.
+  - id: x2-canlar-b
+    island: Çanlar
+    silhouette: a ring of thin spires around one great bell
+    palette: [bronze, pale stone, sky blue]
+    sky: golden hour
+    landmark: one great bell hanging between the spires
+    scale_cue: a tiny bell-ringer's platform
+    prompt: >-
+      A concept painting for a cozy mobile game: a ring of thin floating stone
+      spires joined by rope bridges, one great bronze bell hanging between
+      them, smaller bells on every spire; golden hour light.
+
+  # ---------------------------------------------------------- Koke
+  - id: x2-koke-a
+    island: Koke
+    silhouette: a great wind-shaped bonsai pine larger than the land under it
+    palette: [deep moss, wet slate, one maple red]
+    sky: soft steady rain, mist in the branches
+    landmark: a raked gravel pond with rain rings; a bamboo water clacker
+    scale_cue: a tiny tea house on a root
+    prompt: >-
+      A concept painting for a cozy mobile game: Koke, a great wind-shaped
+      bonsai pine floating in the sky, its sweeping branches larger than the
+      small moss and raked-gravel garden its roots hold; soft steady rain,
+      rain rings on a tiny gravel pond, a bamboo water clacker, a tiny tea
+      house on a root, one red maple branch. Deep moss and wet slate.
+  - id: x2-koke-b
+    island: Koke
+    silhouette: one huge moss-covered stone shaped like a sleeping animal
+    palette: [moss green, slate, lantern amber]
+    sky: misty rain at dusk
+    landmark: a stone lantern lit on the stone's back
+    scale_cue: a dormouse-sized raked garden
+    prompt: >-
+      A concept painting for a cozy mobile game: a single huge mossy stone
+      floating in misty rain, shaped like a curled sleeping animal, a raked
+      gravel garden and a lit stone lantern on its back, a thin stream of
+      rain water running off one edge. Dusk, amber lantern glow.
+
+  # ---------------------------------------------------------- Emanet
+  - id: x2-emanet-a
+    island: Emanet
+    silhouette: an office on stilts built from lost things
+    palette: [weathered teal, brass, brown paper]
+    sky: soft overcast, lamplit windows
+    landmark: an upturned umbrella roof, a giant teacup water tank, a top-hat chimney
+    scale_cue: a magpie at the counter window
+    prompt: >-
+      A concept painting for a cozy mobile game: Emanet, a crooked little
+      lost-and-found office on tall stilts built from lost things: an upturned
+      umbrella for a roof, a giant teacup as its water tank, a top hat for a
+      chimney, a ladder of mismatched spoons, on a raft of drifted things at
+      the end of a cloud current; a magpie at the counter window. Overcast,
+      warm lamplight.
+  - id: x2-emanet-b
+    island: Emanet
+    silhouette: a tall pile of lost luggage and parcels forming a tower
+    palette: [brown paper, teal, brass, red string]
+    sky: drifting fog
+    landmark: tagged objects floating in on a current
+    scale_cue: a little door in the side of a suitcase
+    prompt: >-
+      A concept painting for a cozy mobile game: a floating tower of lost
+      suitcases, parcels and hatboxes tied with red string, a little door in
+      the side of a suitcase, a brass bell, tagged lost objects drifting in
+      on a current of cloud. Soft drifting fog.
+
+  # ---------------------------------------------------------- Fanus
+  - id: x2-fanus-a
+    island: Fanus
+    silhouette: a tall glass bell jar floating in the sky, a brass knob on top
+    palette: [emerald, glass teal, orchid pink]
+    sky: clear outside; warm rain and condensation inside the glass
+    landmark: a thumb-sized waterfall and orchids inside
+    scale_cue: a tiny glass frog on a leaf
+    prompt: >-
+      A concept painting for a cozy mobile game: Fanus, a tall glass bell jar
+      floating in a clear sky, a brass knob on top catching the sun; inside a
+      tiny cloud forest of ferns, orchids and a thumb-sized waterfall, warm
+      rain falling only inside, droplets beading on the glass; a tiny glass
+      frog on a leaf. Emerald and orchid pink.
+  - id: x2-fanus-b
+    island: Fanus
+    silhouette: a glass greenhouse dome on a brass base, hanging from a chain into the clouds
+    palette: [glass teal, brass, fern green, pink]
+    sky: sunbeams through cloud
+    landmark: fogged panes, some wiped clear showing flowers
+    scale_cue: a little brass door in the base
+    prompt: >-
+      A concept painting for a cozy mobile game: a round glass greenhouse dome
+      on a brass base hanging on a long chain from above the clouds, its
+      panes fogged with condensation, a few wiped clear to show orchids
+      inside; a small brass door; sunbeams through the clouds.
+
+  # ---------------------------------------------------------- Çömlek
+  - id: x2-comlek-a
+    island: Çömlek
+    silhouette: a cluster of Cappadocia fairy chimneys; the tallest is a glowing kiln
+    palette: [rose tuff, ochre, dawn apricot]
+    sky: dawn, three hot-air balloons rising
+    landmark: kiln windows glowing like a lantern; a potter's wheel on a ledge
+    scale_cue: pots on carved shelves, a mole-sized door
+    prompt: >-
+      A concept painting for a cozy mobile game: Çömlek, a floating cluster of
+      soft rose-tuff fairy chimneys from Cappadocia with dark caps, the
+      tallest hollowed into a kiln whose little windows glow like a lantern,
+      pots on carved shelves, a potter's wheel on a ledge, a mole-sized door;
+      dawn sky with three hot-air balloons rising. Rose, ochre, apricot.
+  - id: x2-comlek-b
+    island: Çömlek
+    silhouette: the island is a giant clay pot lying on its side, its mouth a workshop
+    palette: [terracotta, cream glaze, cobalt pattern]
+    sky: warm dawn haze
+    landmark: smoke curling from a chimney in the pot's neck
+    scale_cue: the wheel and a tiny mole in the mouth
+    prompt: >-
+      A concept painting for a cozy mobile game: a floating island that is a
+      giant terracotta pot lying on its side, cream-glazed with a cobalt
+      pattern, its open mouth a cosy potter's workshop with a wheel, smoke
+      curling from a chimney in its neck; warm dawn haze, a balloon far off.
+
+  # ---------------------------------------------------------- Mehtap
+  - id: x2-mehtap-a
+    island: Mehtap
+    silhouette: a sleeping crescent moon resting in the clouds
+    palette: [indigo, moon silver, pale gold]
+    sky: blue hour, many small stars, a faint Milky Way (never a single star by the tip)
+    landmark: an observatory dome in the inner curve; a rope ladder to the tip
+    scale_cue: a small owl on the upper tip
+    prompt: >-
+      A concept painting for a cozy mobile game: Mehtap, a sleeping crescent
+      moon of pale moonstone with soft craters resting in a sea of clouds, a
+      small observatory dome with a warm window in its inner curve, a rope
+      ladder up to its upper tip where a tiny owl perches; blue hour, many
+      small stars and a faint Milky Way. Indigo, silver, pale gold.
+  - id: x2-mehtap-b
+    island: Mehtap
+    silhouette: a crescent moon hanging like a cradle from a star-chain
+    palette: [deep blue, silver, warm lamp gold]
+    sky: deep night, constellations faintly joined by thin gold lines
+    landmark: a telescope and a hammock on the crescent
+    scale_cue: a lantern and a book
+    prompt: >-
+      A concept painting for a cozy mobile game: a crescent moon hanging like a
+      cradle from a long chain of tiny stars above the clouds, a telescope,
+      a hammock, a lantern and an open star book on it; faint constellations
+      joined by thin gold lines. Deep night blue, silver, lamp gold.
+
+  # ---------------------------------------------------------- Leylek
+  - id: x2-leylek-a
+    island: Leylek
+    silhouette: a giant woven nest carried by a V of storks on ribbons
+    palette: [straw gold, white, black, sunset coral]
+    sky: warm windy dusk, light Saharan haze
+    landmark: a chimney pot and a lantern in the nest
+    scale_cue: a cottage door woven into the nest
+    prompt: >-
+      A concept painting for a cozy mobile game: Leylek, a giant woven nest of
+      reeds and twigs big enough for a cottage, with a little door, a chimney
+      pot and a lantern, carried across a warm windy dusk sky by a V of white
+      storks holding ribbons in their beaks; the nest never touches the
+      clouds below. Straw gold, white, black, sunset coral, light haze.
+  - id: x2-leylek-b
+    island: Leylek
+    silhouette: a nest atop an impossibly tall brick chimney rising from the clouds
+    palette: [brick, straw, white, apricot]
+    sky: spring morning, storks circling on a thermal
+    landmark: a spiral of storks rising above the nest
+    scale_cue: a small window in the chimney
+    prompt: >-
+      A concept painting for a cozy mobile game: one impossibly tall, thin brick
+      chimney rising out of a sea of clouds with a huge stork nest on top and
+      a small window halfway up; a spiral of white storks circling on a
+      warm thermal above. Spring morning, apricot light.
+
+  # ---------------------------------------------------------- Ayçiçeği hub
+  - id: x2-hub-rain
+    island: Ayçiçeği
+    edit_of: island-main-s
+    prompt: >-
+      The same island on a soft rainy afternoon: gentle rain, rain rings on
+      the pond, wet glossy leaves, the sunflower drooping a little, the
+      çay ocağı's window glowing warm, a frog on a lily pad delighted, the
+      moss on the roof stones greener. Keep everything else the same.
+  - id: x2-hub-winter
+    island: Ayçiçeği
+    edit_of: island-main-s
+    prompt: >-
+      The same island on a calm winter evening: soft snow on the lawn and
+      roofs, the sunflower bowed under a cap of snow, smoke from the çay
+      ocağı, warm windows, a faint green aurora low in the sky. Keep the
+      island's shape exactly.
+  - id: x2-hub-festival
+    island: Ayçiçeği
+    edit_of: island-main-s
+    prompt: >-
+      The same island on a festival night: strings of paper lanterns from the
+      çay ocağı to the sunflower, a ribbon wish-tree, floating lanterns on
+      the pond, small visitors from other islands (an otter, an arctic fox,
+      a dormouse) gathered around the çay ocağı. Warm, joyful, quiet.
+  - id: x2-hub-grown
+    island: Ayçiçeği
+    edit_of: island-main-s
+    prompt: >-
+      The same island a year later, grown: a wooden harbor pier reaching from
+      its right edge into the clouds with a little ferry docked and a kitten's
+      simit cart; a sauna hut at the pier's end with a steam ribbon; a small
+      bell set on the çay ocağı; a bamboo water clacker at the pond; a stork
+      nest on the windmill cap; a glass greenhouse by the garden; a small
+      brass telescope on the lawn; and an enormous gentle cloud-whale moored
+      beyond the pier. Busy but calm; the island's outline unchanged.
+```

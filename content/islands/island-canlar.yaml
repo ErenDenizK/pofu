@@ -8,6 +8,8 @@ summary: >-
   A stone spire hung with wind bells. Every island's motif joins the bells when it arrives, and every later island's first rumour is heard as a new, unknown bell. Toy: tap bells, always in harmony; ring them in arrival order for the archipelago's song. Game (Echo): answer Zil's phrases, folk tunes from the islands' cultures.
 notes:
 - >-
+  Revision 2026-11-03 (archipelago-system.md 1A, 11): wonder 4; game: Simon echo. Gift to home: a bell on the çay ocağı, then the full bell set.
+- >-
   Arrives after three wonder islands, so there are motifs to ring.
 - >-
   Sound is the real cost: one motif per island and a bell set.
@@ -31,5 +33,5 @@ ritual_en: 'Bell echoes (Echo)'
 residents:
 - char-zil
 unlock:
-  day: 150
-  rule_en: 'Three wonder islands arrived'
+  day: 19
+  rule_en: 'Wonder island 4: 19 tended days (three wonder islands arrived)'
