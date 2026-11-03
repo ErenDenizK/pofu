@@ -1,0 +1,342 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/game-plot-tile-rose/contact.jpg
+jobs:
+  game-plot-tile-rose:
+    pick: 1
+    publication: selected before global stop; Harmony/promotion completion pending
+    note: 'Preserved from the pre-stop QA/manual selection; delivery is incomplete
+      and this archive is not a published master. auto-picked by QA; founder review
+      pending. All three real images pass automated QA and visual review: dusty rose
+      glaze preserves tile shape, highlight, lip and sprout. Take1 has lowest passing
+      lock load0.5414 versus0.5650 and0.5851. Four image requests were attempted:
+      one initial-pair result remains unresolved after shell callback ARG_MAX/isolate
+      failure and a conservative600s timeout; the retained first-round image has unknown
+      original requestordinal. One allowed fresh retry pair was then spent. Official
+      ingest numbers only real files: t1 is the retained initial output, t2/t3 are
+      dispatch3/4. No missing image, source hash or original ordinal is invented;
+      no fifth dispatch. The archived interruption receipt documents timing, sourcehashes
+      and filesystem searches.'
+qa_reports:
+  3:
+    job: game-plot-tile-rose
+    take: 3
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.005 and moved it; aligned back to the
+        parent
+      value: 0.9953
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 16 (R1 51)
+      value: 15.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 66 (R1 59)
+      value: 66.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.52
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5851
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.7, p95 2.2, off-palette 0.0%
+      value: 1.6703
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 0.998
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.96)
+      value: 0.9568
+    - check: edit_lightness
+      status: pass
+      message: mean lightness moved by 4.8 L (the same lightness was asked)
+      value: 4.848
+    info:
+      alignment:
+        scale: 0.9953
+        cx: 505.5
+        cy: 957.0
+        dx: 0
+        dy: -3
+      metrics_raw:
+        L_p5: 66.3
+        L_p50: 71.7
+        L_p95: 78.1
+        C_p50: 14.0
+        C_p95: 15.6
+        C_p99: 16.5
+        detail: 0.77
+      metrics_locked:
+        L_p5: 66.3
+        L_p50: 71.8
+        L_p95: 78.0
+        C_p50: 14.3
+        C_p95: 15.5
+        C_p99: 16.4
+        detail: 0.52
+    fingerprint: 6a19a4c6554b8e58
+  1:
+    job: game-plot-tile-rose
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.005 and moved it; aligned back to the
+        parent
+      value: 0.9953
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 14 (R1 51)
+      value: 13.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 67 (R1 59)
+      value: 66.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.5
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5414
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.5, p95 1.3, off-palette 0.0%
+      value: 0.5224
+    - check: edit_silhouette
+      status: pass
+      message: 98% of the parent's shape kept
+      value: 0.984
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.95)
+      value: 0.9529
+    - check: edit_lightness
+      status: pass
+      message: mean lightness moved by 4.3 L (the same lightness was asked)
+      value: 4.3188
+    info:
+      alignment:
+        scale: 0.9953
+        cx: 505.5
+        cy: 958.0
+        dx: -4
+        dy: 0
+      metrics_raw:
+        L_p5: 66.6
+        L_p50: 72.1
+        L_p95: 79.0
+        C_p50: 11.7
+        C_p95: 13.5
+        C_p99: 14.4
+        detail: 0.68
+      metrics_locked:
+        L_p5: 66.6
+        L_p50: 72.2
+        L_p95: 78.8
+        C_p50: 12.0
+        C_p95: 13.5
+        C_p99: 14.2
+        detail: 0.5
+    fingerprint: 6a19a4c6554b8e58
+  2:
+    job: game-plot-tile-rose
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.007 and moved it; aligned back to the
+        parent
+      value: 0.993
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 16 (R1 51)
+      value: 15.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 68 (R1 59)
+      value: 67.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.51
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.565
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 2.2, off-palette 0.0%
+      value: 1.5883
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9946
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.95)
+      value: 0.9508
+    - check: edit_lightness
+      status: pass
+      message: mean lightness moved by 3.9 L (the same lightness was asked)
+      value: 3.8758
+    info:
+      alignment:
+        scale: 0.993
+        cx: 505.5
+        cy: 955.0
+        dx: 0
+        dy: -1
+      metrics_raw:
+        L_p5: 67.5
+        L_p50: 72.2
+        L_p95: 79.9
+        C_p50: 14.1
+        C_p95: 15.7
+        C_p99: 17.4
+        detail: 0.78
+      metrics_locked:
+        L_p5: 67.5
+        L_p50: 72.2
+        L_p95: 79.8
+        C_p50: 14.4
+        C_p95: 15.8
+        C_p99: 17.3
+        detail: 0.51
+    fingerprint: 6a19a4c6554b8e58
+manual_review:
+  excluded_takes: []
+  note: 'All three real images pass automated QA and visual review: dusty rose glaze
+    preserves tile shape, highlight, lip and sprout. Take1 has lowest passing lock
+    load0.5414 versus0.5650 and0.5851. Four image requests were attempted: one initial-pair
+    result remains unresolved after shell callback ARG_MAX/isolate failure and a conservative600s
+    timeout; the retained first-round image has unknown original requestordinal. One
+    allowed fresh retry pair was then spent. Official ingest numbers only real files:
+    t1 is the retained initial output, t2/t3 are dispatch3/4. No missing image, source
+    hash or original ordinal is invented; no fifth dispatch. The archived interruption
+    receipt documents timing, sourcehashes and filesystem searches.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-12285ecf-95a0-4ac3-8f47-bea920a41601.png
+  original_generated_png_sha256: d9684738c606c8507868fcc3676298d41e5e3e5a137946dcbb75d1a7eab647e5
+  inbox_png_sha256: 48e8a2ca1ba7b9d5bcf4afce3158da53846123480d6d458e950d4b9e5a88be23
+  rgba_sha256: 05d062dab3f13fe473e0c129da7ef5fe8c2bf9e325e40d39d58f92aa02e317b5
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 6a19a4c6554b8e58
+- take: 2
+  source_file: /workspace/generated_images/exec-093b3970-9ac0-47ad-a653-1f9b4e13a9f1.png
+  original_generated_png_sha256: 3648843fbb934fea64db22c0636581d5a58d40af34f96c254471967789584e15
+  inbox_png_sha256: 22111b499b04770188a85be86824a3555e55c118fa44e79ffbc5a76b2e44d057
+  rgba_sha256: 0fc292ae92bf2bd91cb48eab1929b837d1877973353539cc23247bd876983ce6
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 6a19a4c6554b8e58
+- take: 3
+  source_file: /workspace/generated_images/exec-6e6103fe-5d7d-4479-9842-f293be2a3c32.png
+  original_generated_png_sha256: 17bc60a2e063bec00dab2ebc150a9d506b8cdc48e240461cf910aafc2733a648
+  inbox_png_sha256: 7212787c543aae331eb9656da9cb00090caea45aae703af92c12d0fd1efee06e
+  rgba_sha256: b2ef3c8578e091be5ad853d747e13565f53d2cc0e5cfb0e3084bb236fa49d608
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 6a19a4c6554b8e58
+interruption:
+  batch: retry-2026-11-03
+  job: game-plot-tile-rose
+  type: lost-first-round-tool-result
+  total_dispatched: 4
+  first_round_dispatched: 2
+  retry_round_dispatched: 2
+  missing_first_round_results: 1
+  waited_seconds: 604
+  retained_inbox_takes:
+  - 1
+  - 2
+  - 3
+  dispatch_ordinal_by_inbox_take:
+    '1': null
+    '2': 3
+    '3': 4
+  retained_sources:
+    '1':
+      path: /workspace/generated_images/exec-12285ecf-95a0-4ac3-8f47-bea920a41601.png
+      sha256: d9684738c606c8507868fcc3676298d41e5e3e5a137946dcbb75d1a7eab647e5
+    '2':
+      path: /workspace/generated_images/exec-093b3970-9ac0-47ad-a653-1f9b4e13a9f1.png
+      sha256: 3648843fbb934fea64db22c0636581d5a58d40af34f96c254471967789584e15
+    '3':
+      path: /workspace/generated_images/exec-6e6103fe-5d7d-4479-9842-f293be2a3c32.png
+      sha256: 17bc60a2e063bec00dab2ebc150a9d506b8cdc48e240461cf910aafc2733a648
+  evidence:
+    job: game-plot-tile-rose
+    batch: retry-2026-11-03
+    at: '2026-11-03T13:56:52.891200+00:00'
+    initial_requests_attempted: 2
+    initial_retained_sources: 1
+    missing_initial_request_ordinal: null
+    dispatch_started_no_later_than: '2026-11-03T13:46:34Z'
+    600_second_deadline_no_later_than: '2026-11-03T13:56:34Z'
+    deadline_search: rose-deadline-search.json
+    reason: Shell callback serialized image_url base64 and exceeded ARG_MAX, ending
+      isolate; one initial output remains unresolved after conservative original600s
+      deadline. Source/originalordinal is not invented.
+    retry_dispatch_ordinals:
+    - 3
+    - 4
+    total_attempted_requests_after_dispatch: 4
+    retry_rounds_used: 1
+    mapping: Initial retained source → official ingest t1, original requestordinalunknown;
+      freshdispatch3→t2, freshdispatch4→t3.
+  note: One initial request was interrupted after shell callback ARG_MAX/isolate failure.
+    The retained first-round image has unknown requestordinal 1or2. Originalresult2wasnotinvented.
+    Exactlyone freshretrypairspent; nofifthdispatch. Numberingrefersactualofficialingestfiles.
+preservation:
+  global_stop_at: '2026-11-03T14:12:48.328101+00:00'
+  global_stop_reason: three consecutive actual job failures
+  frozen_pick: 1
+  new_generation: false
+  qa_recomputed: false
+  pick_changed: false
+  master_published: false
+  harmony_completed: false
