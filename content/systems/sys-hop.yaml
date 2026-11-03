@@ -28,6 +28,7 @@ links:
   - sys-wellbeing
   uses_asset:
   - asset-icon-skip
+  - asset-icon-round
 sources:
 - doc: docs/product/ux/gate-v2.md
   anchor: '#61-the-landing'
