@@ -30,7 +30,9 @@
 
 batch: batch-06-pofu-rig-pilot
 title: Pofu's layered rig, pilot (clean plate, happy eyes, closed eyes, pout, full cheek pouches)
-status: open
+status: blocked
+blocked_on:
+  - "delivered and merged (#72); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 defaults:
   variants: 2

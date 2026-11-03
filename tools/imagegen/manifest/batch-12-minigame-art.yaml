@@ -21,7 +21,9 @@
 
 batch: batch-12-minigame-art
 title: Garden minigame art (plot tiles, soil, bloom, seed, combo stamp, bed rim, tray)
-status: open
+status: blocked
+blocked_on:
+  - "delivered and merged (#97); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 refs:
   tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png

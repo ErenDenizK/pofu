@@ -34,7 +34,9 @@
 
 batch: batch-11-ui-pilot
 title: Hybrid UI pilot (seed icon, jar, lantern, pots, crafted faces)
-status: open
+status: blocked
+blocked_on:
+  - "delivered and merged (#87, #94); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 refs:
   tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png

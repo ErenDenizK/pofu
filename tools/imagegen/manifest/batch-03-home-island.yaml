@@ -33,7 +33,9 @@
 
 batch: batch-03-home-island
 title: Ayçiçeği stages 1-5 (pond, workshop, windmill, garden L3-L5, simit L2-L5, Mochi v2, Fındık, plate parts)
-status: open
+status: blocked
+blocked_on:
+  - "delivered and merged (#57); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 defaults:
   variants: 2

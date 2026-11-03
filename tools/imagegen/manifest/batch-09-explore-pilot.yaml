@@ -23,7 +23,9 @@
 
 batch: batch-09-explore-pilot
 title: Look-dev explorations, pilot (seed icon, key art A, Home ideation board A)
-status: open
+status: blocked
+blocked_on:
+  - "delivered and merged (#91); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 defaults:
   variants: 2

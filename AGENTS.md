@@ -307,6 +307,7 @@ From the founder (2026-11-01) and the lead:
   grain, no outlines; the `lock-light` style lock (since 2026-11-02: saturation
   and contrast are graded at runtime by the app, so the files stay near
   neutral; `soft-lock` remains for comparison); Pofu is never locked.
+- **Light standard (new manifests):** every job declares `light: {cell, layer}`; paint sprites under the day cell with no cast shadow, never lift the blacks of the subject plane, and use `style-anchor-v2`; see [light standard](docs/design/light-standard.md).
 - **Proportion B:** a balanced diorama, Pofu about 20 % of the screen
   width, the world about 70 % of the height.
 - **Glass++ (ADR-0018):** native iOS glass plus illustrated UI art.

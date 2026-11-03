@@ -30,7 +30,9 @@
 
 batch: batch-05-fixes-pilot
 title: Batch 03 fixes, pilot (salvage bagel-cart-2 and workshop-2, garden-5 inside the arch, a deeper large island)
-status: open
+status: blocked
+blocked_on:
+  - "delivered and merged (#71); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 defaults:
   variants: 2

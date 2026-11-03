@@ -2,7 +2,7 @@
 
 _Status: process, 2026-11-03. How Pofu's islands, clusters and big story
 get better on a fixed rhythm instead of by accident. First run:
-[loop 1](loop-1.md). Data: [`content/islands/profiles.yaml`](../../../content/islands/profiles.yaml);
+[loop 1](loop-1.md); latest: [loop 2](loop-2.md). Data: [`content/islands/profiles.yaml`](../../../content/islands/profiles.yaml);
 checks: [`tools/content/island_metrics.py`](../../../tools/content/island_metrics.py)._
 
 The founder's rule behind it: nothing is accepted as it is; think again

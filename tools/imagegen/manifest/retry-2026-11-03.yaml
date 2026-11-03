@@ -29,7 +29,9 @@
 
 batch: retry-2026-11-03
 title: Retry of the 32 skipped jobs of batches 11-14 (fixed QA profiles and briefs)
-status: open
+status: blocked
+blocked_on:
+  - "28 of 32 jobs delivered (#111, #117); the lead rewrites the briefs of icon-breath, iskele-vapur-1/2 and ui-sheet-paper-night first"
 
 refs:
   tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png

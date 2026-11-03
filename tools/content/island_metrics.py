@@ -12,6 +12,12 @@ Checks (thresholds live in the file's `rules`):
 - any two wonder islands differ on >= 3 axes, and on >= 3 from home;
 - no three arrivals in a row share a game texture;
 - palette deltas stay kin to home (bounded) yet distinct, keeping a home anchor;
+- every cluster has its own atmosphere (hour, sky, key light, shadow, haze,
+  floor, weather, value key): any two clusters differ on enough of these,
+  and the home-only fields (home's shadow colour, haze and cloud sea) are
+  never reused, so islands differ by light, not only by palette (loop 2);
+- every big and parallel island has a playable island block (game, twist,
+  round length, toy, >= 3 stations, what it feeds, far view) (loop 2);
 - the schedule: each arrival day is derived from the previous island's
   content runway (its first day without a fresh beat), the minimum gaps and
   the wow spacing; then founder targets, dead days (no fresh beat from any
@@ -47,6 +53,13 @@ def runway(island: dict) -> int:
     return k
 
 
+def blooms_are_wows(island: dict) -> bool:
+    """A big island's bloom is a wow; so is a god-tier parallel island's
+    (loop 2: Emanet's bloom had landed two days before Çömlek's, unchecked).
+    A parallel island's arrival stays quiet: it arrives as infrastructure."""
+    return island["size"] == "big" or (island["size"] == "parallel" and island.get("tier") == "god")
+
+
 def schedule(data: dict) -> dict[str, dict]:
     """Derive arrival days from runways, gaps and wow spacing."""
     r, islands = data["rules"], data["islands"]
@@ -79,8 +92,8 @@ def schedule(data: dict) -> dict[str, dict]:
         if isl["size"] == "big":
             last_big = day
             wows.append(day)
-            if "bloom" in isl:
-                wows.append(entry["bloom"])
+        if blooms_are_wows(isl) and "bloom" in isl:
+            wows.append(entry["bloom"])
         out[name] = entry
         prev = name
     return out
@@ -89,10 +102,11 @@ def schedule(data: dict) -> dict[str, dict]:
 def wow_events(data: dict, sched: dict) -> list[tuple[int, str]]:
     ev = []
     for name, s in sched.items():
-        if data["islands"][name]["size"] == "big":
+        isl = data["islands"][name]
+        if isl["size"] == "big":
             ev.append((s["arrival"], f"{name} arrives"))
-            if "bloom" in s:
-                ev.append((s["bloom"], f"{name} blooms"))
+        if blooms_are_wows(isl) and "bloom" in s:
+            ev.append((s["bloom"], f"{name} blooms"))
     return sorted(ev)
 
 
@@ -200,6 +214,9 @@ def check(data: dict) -> tuple[list[str], dict]:
             if islands[m]["cluster"] != cname:
                 v.append(f"cluster: {m} listed in {cname} but says {islands[m]['cluster']}")
 
+    v.extend(check_atmospheres(data))
+    v.extend(check_play(data))
+
     # Schedule: targets, dead days, stacked wows.
     sched = schedule(data)
     for name, t in (data.get("targets") or {}).items():
@@ -227,6 +244,70 @@ def check(data: dict) -> tuple[list[str], dict]:
             v.append(f"stacked wows: {e1} (day {d1}) and {e2} (day {d2})")
     v.extend(check_tiers(data, sched))
     return v, sched
+
+
+def check_play(data: dict) -> list[str]:
+    """Every big and parallel island is designed around what the player does.
+
+    A playable island block: the game, its reference, our twist, one round's
+    length, the toy, the plate's stations, what it feeds and its far view.
+    """
+    rule = data["rules"].get("play")
+    if not rule:
+        return []
+    v: list[str] = []
+    play = data.get("play") or {}
+    for n in data["order"]:
+        if data["islands"][n]["size"] not in ("big", "parallel"):
+            continue
+        p = play.get(n)
+        if p is None:
+            v.append(f"play: {n} has no playable island block")
+            continue
+        missing = [f for f in rule["fields"] if not p.get(f)]
+        if missing:
+            v.append(f"play: {n} lacks {missing}")
+            continue
+        if len(p["stations"]) < rule["stations_min"]:
+            v.append(f"play: {n} has {len(p['stations'])} stations; want >= {rule['stations_min']}")
+        if p["round_s"] > rule["round_max_s"]:
+            v.append(f"play: {n} round of {p['round_s']} s; want <= {rule['round_max_s']}")
+    return v
+
+
+def check_atmospheres(data: dict) -> list[str]:
+    """Each cluster's own light and air (design loop 2).
+
+    A palette delta alone left every island under one pastel daylight, one
+    cream haze and one cloud sea; the atmosphere is what a visit repaints.
+    """
+    rule = data["rules"].get("atmosphere")
+    if not rule:
+        return []
+    fields, atm = rule["fields"], data.get("atmospheres") or {}
+    home = data["islands"][data["order"][0]]["cluster"]
+    v: list[str] = []
+    for cname in data["clusters"]:
+        a = atm.get(cname)
+        if a is None:
+            v.append(f"atmosphere: cluster {cname} has none")
+            continue
+        missing = [f for f in fields if f not in a]
+        if missing:
+            v.append(f"atmosphere: {cname} lacks {missing}")
+    if v:
+        return v
+    for a, b in combinations(list(data["clusters"]), 2):
+        same = [f for f in fields if atm[a][f] == atm[b][f]]
+        if len(fields) - len(same) < rule["min_diff"]:
+            v.append(f"atmosphere: {a} / {b} differ on {len(fields) - len(same)} of {len(fields)}; want >= {rule['min_diff']} (same {same})")
+    for cname in data["clusters"]:
+        if cname == home:
+            continue
+        for f in rule.get("home_only", []):
+            if atm[cname][f] == atm[home][f]:
+                v.append(f"atmosphere: {cname} reuses home's {f} ({atm[home][f]})")
+    return v
 
 
 def check_tiers(data: dict, sched: dict) -> list[str]:

@@ -13,6 +13,7 @@ from pathlib import Path
 
 import yaml
 
+import light as lt
 from legacy_ids import canonical
 
 HERE = Path(__file__).resolve().parent
@@ -49,6 +50,27 @@ MAX_VARIANTS = 4  # art bible section 10: "ask 3-4 times", never more
 
 class ManifestError(ValueError):
     pass
+
+
+# The light standard applies to NEW manifests only; older batches are
+# grandfathered by this switch (batch number, retry date, or an explicit
+# `light_standard: true` in the manifest, which batch 19 and any older open
+# manifest may use to opt in early).
+LIGHT_FROM_BATCH = 20
+LIGHT_FROM_DATE = (2026, 11, 4)
+
+
+def light_required(data: dict) -> bool:
+    if data.get("light_standard") is True:
+        return True
+    batch = str(data.get("batch", ""))
+    m = re.match(r"^batch-(\d+)(?:-|$)", batch)
+    if m:
+        return int(m[1]) >= LIGHT_FROM_BATCH
+    m = re.match(r"^retry-(\d{4})-(\d{2})-(\d{2})$", batch)
+    if m:
+        return tuple(int(x) for x in m.groups()) >= LIGHT_FROM_DATE
+    return False
 
 
 @dataclass
@@ -94,6 +116,9 @@ class Job:
     # palettes do not hold: an emissive glow (world-night), a violet
     # button (ui), a honey tabby (character-tabby).
     palettes: list[str] = field(default_factory=list)
+    # The art light standard (docs/design/light-standard.md): {cell, layer}.
+    # Required on new manifests for every kind except icon, ui, widget, appicon.
+    light: dict | None = None
 
     @property
     def asset(self) -> str:
@@ -147,6 +172,7 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
     defaults = data.get("defaults", {}) or {}
     refs = dict(config_refs or {})
     refs.update(data.get("refs", {}) or {})
+    need_light = light_required(data)
     jobs: list[Job] = []
     seen: set[str] = set()
     assets: set[str] = set()
@@ -225,11 +251,23 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
         extra = merged.get("palettes") or []
         if not isinstance(extra, list) or not all(isinstance(x, str) and ID_RE.match(x) for x in extra):
             raise ManifestError(f"{where}: palettes must be a list of palette names, e.g. [world-night]")
+        light = merged.get("light")
+        if light is not None:
+            try:
+                light = lt.parse_light(light, where)
+            except lt.LightError as e:
+                raise ManifestError(str(e)) from None
+            if kind in lt.EXEMPT_KINDS:
+                raise ManifestError(f"{where}: {kind} jobs carry no scene light (drop `light`)")
+            if lt.is_sprite(kind, transparent) and light["cell"] != "day":
+                raise ManifestError(f"{where}: a sprite ({kind}, transparent) is painted under the day cell; the game relights it (got {light['cell']!r})")
+        elif need_light and not external and kind not in lt.EXEMPT_KINDS:
+            raise ManifestError(f"{where}: a {kind} job needs `light: {{cell, layer}}` (docs/design/light-standard.md); set it per job or in defaults")
         job = Job(id=jid, kind=kind, name=name, prompt=prompt, attach=attach, edit_of=merged.get("edit_of"),
                   size=size, transparent=transparent, key=key,
                   variants=variants, acceptance=merged.get("acceptance", {}) or {}, chat=merged.get("chat"),
                   notes=merged.get("notes", "") or "", canvas=canvas, external=str(external) if external else None,
-                  master=str(master) if master else None, slice=slice_, decor=decor, palettes=list(extra))
+                  master=str(master) if master else None, slice=slice_, decor=decor, palettes=list(extra), light=light)
         jobs.append(job)
     if not jobs:
         raise ManifestError("manifest has no jobs")
@@ -326,6 +364,8 @@ def compose_prompt(job: Job, background: str = "transparent") -> str:
         parts.append("\n".join(lines))
     for p in job.prompt:
         parts.append(read_block(p["block"]) if "block" in p else str(p["text"]).strip())
+    if job.light:
+        parts.append(lt.render_block(job.light, sprite=lt.is_sprite(job.kind, job.transparent)))
     parts.append(output_line(job, background))
     return "\n\n".join(parts) + "\n"
 

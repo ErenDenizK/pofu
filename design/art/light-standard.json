@@ -1,0 +1,262 @@
+{
+  "$note": "Light standard v1 (docs/design/light-standard.md). Value targets per colour-script cell x layer, measured by tools/imagegen/light.py on the subject region at 800 px. Key direction, rim, fill, shadow hue and fog are NOT stored here: they are read from design/art/colour-script.json. Thresholds are WARN-ONLY (enforce: false) until the founder has seen the light pilot; set enforce to true to make a failing check a hard fail for production jobs (exploration jobs stay advisory either way).",
+  "version": 1,
+  "enforce": false,
+  "metrics": {
+    "L": "CIELAB lightness 0-100 of the subject region",
+    "p2/p98/spread": "L percentiles; spread = p98 - p2",
+    "median": "L p50 band [lo, hi]",
+    "haze": "dark-channel p10 (min over RGB, 9 px minimum filter, 0-1) on the subject region: high means no true dark anywhere",
+    "lc": "p75 of the local standard deviation of L/100 in a 9x9 window, x100"
+  },
+  "fail_slack": {
+    "p2": 18,
+    "p98": 10,
+    "spread": 18,
+    "haze": 0.12,
+    "lc": 0.6,
+    "median": 8
+  },
+  "layers": {
+    "subject": "the plane the player reads (the character, the station, the home island): full value range, no haze",
+    "near": "close but not the focus: nearly full range, a touch of atmosphere",
+    "far": "receding: contrast falls with distance only, fog tint from colour-script"
+  },
+  "cells": {
+    "day": {
+      "subject": {
+        "p2_max": 22,
+        "p98_min": 90,
+        "spread_min": 60,
+        "median": [
+          55,
+          90
+        ],
+        "haze_max": 0.2,
+        "lc_p75_min": 3.5,
+        "contact_shadow": {
+          "sprite": "occlusion-only",
+          "plate": "painted, firm, in the cell's shadow hue, opposite the key"
+        }
+      },
+      "near": {
+        "p2_max": 28,
+        "p98_min": 88,
+        "spread_min": 51,
+        "median": [
+          55,
+          90
+        ],
+        "haze_max": 0.25,
+        "lc_p75_min": 2.98,
+        "contact_shadow": {
+          "sprite": "occlusion-only",
+          "plate": "painted, soft, in the cell's shadow hue, opposite the key"
+        }
+      },
+      "far": {
+        "p2_max": 40,
+        "p98_min": 84,
+        "spread_min": 33,
+        "median": [
+          50,
+          95
+        ],
+        "haze_max": 0.38,
+        "lc_p75_min": 1.75,
+        "contact_shadow": {
+          "sprite": "none",
+          "plate": "none (too small to read)"
+        }
+      }
+    },
+    "dawn": {
+      "subject": {
+        "p2_max": 26,
+        "p98_min": 88,
+        "spread_min": 55,
+        "median": [
+          50,
+          88
+        ],
+        "haze_max": 0.24,
+        "lc_p75_min": 3.2,
+        "contact_shadow": {
+          "sprite": "occlusion-only",
+          "plate": "painted, firm, in the cell's shadow hue, opposite the key"
+        }
+      },
+      "near": {
+        "p2_max": 32,
+        "p98_min": 86,
+        "spread_min": 47,
+        "median": [
+          50,
+          88
+        ],
+        "haze_max": 0.29,
+        "lc_p75_min": 2.72,
+        "contact_shadow": {
+          "sprite": "occlusion-only",
+          "plate": "painted, soft, in the cell's shadow hue, opposite the key"
+        }
+      },
+      "far": {
+        "p2_max": 44,
+        "p98_min": 82,
+        "spread_min": 30,
+        "median": [
+          45,
+          93
+        ],
+        "haze_max": 0.42,
+        "lc_p75_min": 1.6,
+        "contact_shadow": {
+          "sprite": "none",
+          "plate": "none (too small to read)"
+        }
+      }
+    },
+    "golden": {
+      "subject": {
+        "p2_max": 24,
+        "p98_min": 86,
+        "spread_min": 55,
+        "median": [
+          48,
+          86
+        ],
+        "haze_max": 0.22,
+        "lc_p75_min": 3.4,
+        "contact_shadow": {
+          "sprite": "occlusion-only",
+          "plate": "painted, firm, in the cell's shadow hue, opposite the key"
+        }
+      },
+      "near": {
+        "p2_max": 30,
+        "p98_min": 84,
+        "spread_min": 47,
+        "median": [
+          48,
+          86
+        ],
+        "haze_max": 0.27,
+        "lc_p75_min": 2.89,
+        "contact_shadow": {
+          "sprite": "occlusion-only",
+          "plate": "painted, soft, in the cell's shadow hue, opposite the key"
+        }
+      },
+      "far": {
+        "p2_max": 42,
+        "p98_min": 80,
+        "spread_min": 30,
+        "median": [
+          43,
+          91
+        ],
+        "haze_max": 0.4,
+        "lc_p75_min": 1.7,
+        "contact_shadow": {
+          "sprite": "none",
+          "plate": "none (too small to read)"
+        }
+      }
+    },
+    "dusk": {
+      "subject": {
+        "p2_max": 12,
+        "p98_min": 68,
+        "spread_min": 48,
+        "median": [
+          28,
+          60
+        ],
+        "haze_max": 0.14,
+        "lc_p75_min": 3.0,
+        "contact_shadow": {
+          "sprite": "occlusion-only",
+          "plate": "painted, firm, in the cell's shadow hue, opposite the key"
+        }
+      },
+      "near": {
+        "p2_max": 18,
+        "p98_min": 66,
+        "spread_min": 41,
+        "median": [
+          28,
+          60
+        ],
+        "haze_max": 0.19,
+        "lc_p75_min": 2.55,
+        "contact_shadow": {
+          "sprite": "occlusion-only",
+          "plate": "painted, soft, in the cell's shadow hue, opposite the key"
+        }
+      },
+      "far": {
+        "p2_max": 30,
+        "p98_min": 62,
+        "spread_min": 26,
+        "median": [
+          23,
+          65
+        ],
+        "haze_max": 0.32,
+        "lc_p75_min": 1.5,
+        "contact_shadow": {
+          "sprite": "none",
+          "plate": "none (too small to read)"
+        }
+      }
+    },
+    "night": {
+      "subject": {
+        "p2_max": 8,
+        "p98_min": 58,
+        "spread_min": 42,
+        "median": [
+          18,
+          50
+        ],
+        "haze_max": 0.1,
+        "lc_p75_min": 2.8,
+        "contact_shadow": {
+          "sprite": "occlusion-only",
+          "plate": "painted, firm, in the cell's shadow hue, opposite the key"
+        }
+      },
+      "near": {
+        "p2_max": 14,
+        "p98_min": 56,
+        "spread_min": 36,
+        "median": [
+          18,
+          50
+        ],
+        "haze_max": 0.15,
+        "lc_p75_min": 2.38,
+        "contact_shadow": {
+          "sprite": "occlusion-only",
+          "plate": "painted, soft, in the cell's shadow hue, opposite the key"
+        }
+      },
+      "far": {
+        "p2_max": 26,
+        "p98_min": 52,
+        "spread_min": 23,
+        "median": [
+          13,
+          55
+        ],
+        "haze_max": 0.28,
+        "lc_p75_min": 1.4,
+        "contact_shadow": {
+          "sprite": "none",
+          "plate": "none (too small to read)"
+        }
+      }
+    }
+  }
+}

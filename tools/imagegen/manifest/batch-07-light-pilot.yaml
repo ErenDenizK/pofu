@@ -30,7 +30,9 @@
 
 batch: batch-07-light-pilot
 title: Night light, pilot (the çay ocağı's burner, lit, at L1 and L5)
-status: open
+status: blocked
+blocked_on:
+  - "delivered and merged (#74); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 defaults:
   variants: 2

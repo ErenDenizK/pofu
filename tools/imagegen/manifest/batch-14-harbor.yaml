@@ -25,7 +25,9 @@
 
 batch: batch-14-harbor
 title: İskele, the second free island (plate, vapur, pier stations, Simit, the goat)
-status: open
+status: blocked
+blocked_on:
+  - "delivered and merged (#99); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 refs:
   tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png

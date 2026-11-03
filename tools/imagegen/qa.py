@@ -28,6 +28,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE.parent / "assets"))
 import process_assets as pa  # noqa: E402
 import style_lock as sl  # noqa: E402
+import light as lt  # noqa: E402
 
 ORDER = {"pass": 0, "warn": 1, "fail": 2}
 
@@ -650,11 +651,30 @@ def check_harmony(locked: np.ndarray, kind: str, lim: dict) -> Check | None:
                  r["score"])
 
 
+def check_light(rgba: np.ndarray, light: dict, enforce: bool | None = None) -> list[Check]:
+    """The light standard (design/art/light-standard.json): values, median band,
+    dark-channel haze and local contrast of the subject region, per colour-script
+    cell x layer. Generalises NIGHT_PROFILE and replaces value_floor for jobs that
+    declare `light`. A failure is hard for production unless the standard is still
+    warn-only (`enforce: false`); an exploration job downgrades it again (advisory)."""
+    std = lt.standard()
+    enforce = std.get("enforce", False) if enforce is None else enforce
+    m = lt.measure_light(rgba)
+    if "error" in m:
+        return [Check("light_values", "fail", "no subject pixels to measure")]
+    checks = []
+    for name, status, message, value in lt.evaluate(m, light, std):
+        if status == "fail" and not enforce:
+            status, message = "warn", message + " (warn-only until the founder has seen the light pilot)"
+        checks.append(Check(name, status, message, value))
+    return checks
+
+
 def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[str], acceptance: dict | None = None,
-               parent_locked: np.ndarray | None = None, decor: str | None = None) -> list[Check]:
+               parent_locked: np.ndarray | None = None, decor: str | None = None, light: dict | None = None) -> list[Check]:
     acceptance = acceptance or {}
     lim = limits_for(kind, acceptance)
-    night = acceptance.get("profile") == "night"
+    night = acceptance.get("profile") == "night" and not light
     if night:
         lim["value_floor"] = dict(NIGHT_PROFILE["value_floor"])
     m = sl.measure(locked)
@@ -662,8 +682,11 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
     if "error" in m:
         return [Check("opaque_pixels", "fail", "no opaque pixels")]
     checks.append(Check("chroma_ceiling", grade(m["C_p95"], lim["chroma_p95"]), f"chroma p95 {m['C_p95']:.0f} (R1 51)", m["C_p95"]))
-    checks.append(Check("value_floor", grade(m["L_p5"], lim["value_floor"], higher_is_worse=False),
-                        f"lightness p5 {m['L_p5']:.0f} (R1 59)", m["L_p5"]))
+    if light:
+        checks.extend(check_light(locked, light))
+    else:
+        checks.append(Check("value_floor", grade(m["L_p5"], lim["value_floor"], higher_is_worse=False),
+                            f"lightness p5 {m['L_p5']:.0f} (R1 59)", m["L_p5"]))
     if night:
         med, band = m["L_p50"], NIGHT_PROFILE["median_L"]
         ok = band["pass"][0] <= med <= band["pass"][1]
@@ -723,7 +746,7 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
                 corr, dl = st
                 checks.append(Check("edit_structure", grade(corr, STRUCTURE, higher_is_worse=False),
                                     f"light structure matches the parent (r {corr:.2f})", corr))
-                if not night:  # a night recolor is asked to get darker: night_lightness judges it
+                if acceptance.get("profile") != "night":  # a night recolor is asked to get darker: night_lightness judges it
                     checks.append(Check("edit_lightness", grade(dl, LIGHTNESS_SHIFT),
                                         f"mean lightness moved by {dl:.1f} L (the same lightness was asked)", dl))
             return checks
@@ -747,7 +770,7 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
 def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, preset: dict, palettes: list[str],
                  acceptance: dict | None = None, registration: dict | None = None,
                  parent_locked: np.ndarray | None = None, register_root: bool = False,
-                 transparent: bool = True, decor: str | None = None) -> TakeResult:
+                 transparent: bool = True, decor: str | None = None, light: dict | None = None) -> TakeResult:
     checks: list[Check] = []
     if transparent:
         rgba, c = ensure_alpha(raw)
@@ -782,7 +805,7 @@ def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, pre
             checks.append(Check("edit_alignment", "pass" if off <= 0.03 else "warn" if off <= 0.25 else "fail",
                                 f"the edit rescaled the object x{1 / t['scale']:.3f} and moved it; aligned back to the parent",
                                 t["scale"]))
-    style = run_checks(kind, normalized, locked, palettes, acceptance, parent_locked, decor)
+    style = run_checks(kind, normalized, locked, palettes, acceptance, parent_locked, decor, light)
     checks.extend(advisory(style) if (acceptance or {}).get("exploration") else style)
     info["metrics_raw"] = sl.measure(normalized)
     info["metrics_locked"] = sl.measure(locked)
