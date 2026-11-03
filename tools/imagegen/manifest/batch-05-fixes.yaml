@@ -11,7 +11,9 @@
 
 batch: batch-05-fixes
 title: Batch 03 fixes (simit L3-L5, workshop L3-L5)
-status: open
+status: blocked
+blocked_on:
+  - "delivered and merged (#82); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 defaults:
   variants: 2

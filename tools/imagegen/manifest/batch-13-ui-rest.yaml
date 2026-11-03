@@ -27,7 +27,9 @@
 
 batch: batch-13-ui-rest
 title: Hybrid UI, the rest (button faces, sheet and menu backgrounds, icon family)
-status: open
+status: blocked
+blocked_on:
+  - "delivered and merged (#98); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 refs:
   cay-1: design/art/stations/cay-1/cay-1.png

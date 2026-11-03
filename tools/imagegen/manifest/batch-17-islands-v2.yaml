@@ -26,7 +26,9 @@
 
 batch: batch-17-islands-v2
 title: Islands v2 exploration (20 wonder island concepts under the uniqueness contract, 4 Ayçiçeği hub variants)
-status: open
+status: blocked
+blocked_on:
+  - "delivered and merged (#114, #123); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 refs:
   cay-1: design/art/stations/cay-1/cay-1.png
