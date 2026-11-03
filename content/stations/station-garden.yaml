@@ -26,6 +26,7 @@ links:
   - asset-game-seed
   - asset-game-bloom-front
   - asset-game-bed-rim
+  - asset-game-combo-stamp
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'
