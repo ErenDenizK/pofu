@@ -15,7 +15,7 @@ point; this is the map. Retired material is in [archive/](archive/README.md).
 | Brand | [brand/character.md](brand/character.md) (partly superseded), [brand/pofu-voice.md](brand/pofu-voice.md) | current |
 | Story | [product/lore-bible.md](product/lore-bible.md) (draft for human spice), [product/story-delivery.md](product/story-delivery.md) (the app–game–story axis, the companion, beat triggers; proposal), [research/narrative-craft.md](research/narrative-craft.md) (tools, the writing pipeline), [research/ai-story-methods.md](research/ai-story-methods.md) (AI story methods; the `pofu-story` skill), [product/story-tests/round-1.md](product/story-tests/round-1.md) (first test), [product/design-loop/README.md](product/design-loop/README.md) (the design loop) and [loop 1](product/design-loop/loop-1.md) (constellations, the Bekçi spine, the duo, Çağlayan, the backdrop; proposal) | draft |
 | Research | [research/](research/) (check before researching again), [research/pro-game-craft.md](research/pro-game-craft.md) (game craft, colour and light plan) | reference |
-| Engineering | [development.md](development.md), `CONTRIBUTING.md` | current |
+| Engineering | [development.md](development.md), [development/rename-map.md](development/rename-map.md) (Turkish to English identifier map), `CONTRIBUTING.md` | current |
 | Free build | [local/ucretsiz-kurulum.md](local/ucretsiz-kurulum.md) (Turkish, Rehearsal mode) | current |
 | History | [product/decision-audit.md](product/decision-audit.md), [design/review-01.md](design/review-01.md) (superseded in part by ui-critique-01 and ui-system-v2) | historical |
 
