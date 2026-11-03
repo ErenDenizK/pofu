@@ -1,0 +1,158 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-appicon-a/contact.jpg
+jobs:
+  x-appicon-a:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both non-failing and coordinator
+      native29/60pt manual review PASS on light/dark/cream: Pofu exact curl/eyes/ears
+      read instantly, opaque square edge-to-edge with no painted corner mask/text/glass/border.
+      Native29/60 review is included in contact.jpg, no standalone proof shipped.
+      Take1 lowest lock load0.076; automated non-failing warnings preserved. Never
+      promoted.'
+qa_reports:
+  1:
+    job: x-appicon-a
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 71 (R1 59)
+      value: 71.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.3 (R1 5.3)
+      value: 3.27
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.1
+      value: 0.076
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 6.9, off-palette 1.6% (top: #EE7766 (0.2%), #DD6655
+        (0.2%))'
+      value: 1.696
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: warn
+      message: corner detail is 79% of the center's (the system masks corners)
+      value: 0.7902
+    info:
+      metrics_raw:
+        L_p5: 71.4
+        L_p50: 85.5
+        L_p95: 96.6
+        C_p50: 25.6
+        C_p95: 50.1
+        C_p99: 59.0
+        detail: 3.28
+      metrics_locked:
+        L_p5: 71.4
+        L_p50: 85.5
+        L_p95: 96.6
+        C_p50: 25.6
+        C_p95: 50.1
+        C_p99: 56.4
+        detail: 3.27
+    fingerprint: 7f319f98a7c13af3
+  2:
+    job: x-appicon-a
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 71 (R1 59)
+      value: 71.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.2 (R1 5.3)
+      value: 3.19
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.1
+      value: 0.108
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 7.2, off-palette 1.9% (top: #EE7766 (0.2%), #441100
+        (0.1%))'
+      value: 2.2498
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: warn
+      message: corner detail is 81% of the center's (the system masks corners)
+      value: 0.8088
+    info:
+      metrics_raw:
+        L_p5: 71.0
+        L_p50: 85.2
+        L_p95: 96.2
+        C_p50: 29.2
+        C_p95: 50.3
+        C_p99: 61.1
+        detail: 3.21
+      metrics_locked:
+        L_p5: 71.0
+        L_p50: 85.2
+        L_p95: 96.2
+        C_p50: 29.2
+        C_p95: 50.3
+        C_p99: 57.2
+        detail: 3.19
+    fingerprint: 7f319f98a7c13af3
+manual_review:
+  exclude: []
+  note: 'Both non-failing and coordinator native29/60pt manual review PASS on light/dark/cream:
+    Pofu exact curl/eyes/ears read instantly, opaque square edge-to-edge with no painted
+    corner mask/text/glass/border. Native29/60 review is included in contact.jpg,
+    no standalone proof shipped. Take1 lowest lock load0.076; automated non-failing
+    warnings preserved. Never promoted.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-4baff930-f9cc-45c3-b56a-54b2ca0bdd2d.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7f319f98a7c13af3
+  original_png_sha256: 87c26eb4120d8ae3f65dbdc304e586e95c923f4fe219c1a7f4e2ddbb62969ba5
+- take: 2
+  source_file: /workspace/generated_images/exec-72e7c792-4571-4338-8bdf-7639efaad72a.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7f319f98a7c13af3
+  original_png_sha256: 19dbcac0f1babf45c342ae54be7a655f130657e136c4d5730457c44668bcbbbe
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
