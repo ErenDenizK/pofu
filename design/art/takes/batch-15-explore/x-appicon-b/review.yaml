@@ -1,50 +1,157 @@
 batch: batch-15-explore
-contact_sheet: null
+contact_sheet: design/art/takes/batch-15-explore/x-appicon-b/contact.jpg
 jobs:
   x-appicon-b:
-    pick: null
-    publication: unselected due global account stop
-    note: 'UNSELECTED due global account/sign-in stop; no terminal QA failure/skip,
-      no pick, no further generation or QA after stop. Retained generated takes are
-      for resuming the existing allowed round, never regeneration of a completed pair.
-      This job never made an image call: the planned second logical group failed JavaScript
-      preflight before dispatch.'
-    takes_generated: 0
-    retry_round_used: false
-qa_reports: {}
-pre_stop_manual_notes: null
-sources: []
-prompt: 'REFERENCES (attached, in this order):
-
-  1. The home island: the same painting and softness.
-
-  2. Pofu, the hamster: his exact look, fur, colors and eyes.
-
-
-  An app icon master: the small floating home island seen from the front
-
-  filling the lower middle, Pofu a tiny hamster sitting on its lawn, over a
-
-  soft pale morning sky and a few clouds. Square, opaque, edge to edge, no
-
-  text, no border.
-
-
-  AVOID: text, a border, rounded corners, a frame, glass, gloss
-
-
-  Output: one image, opaque, full bleed, square 1024 x 1024.'
-references_in_order:
-- /workspace/run15/design/art/masters/island-main-s/island-main-s.png
-- /workspace/run15/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
-stop:
-  reason: Git authentication/account stop condition
-  observed_at: '2026-11-03T10:45:59Z'
-  job: x-emanet-2
-  message: 'fatal: could not read Username for ''https://github.com'': No such device
-    or address'
-  last_verified_head: 9a4209a585e4aaf89997c96f5a902e105d1b016c
-  next_publication_job: x-emanet-2
-  policy: No new generations or terminal decisions; preserve already-finished candidates
-    and publish completed work through an already-authorized functioning transport
-    if possible; notify coordinator immediately.
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Coordinator native29/60pt manual
+      review on white/dark/cream: both floating-island silhouettes read immediately
+      at29pt; tiny warm hamster spot is expected for iconB and curl/eyes read at60pt.
+      Opaque morning-cloud square, no rounded corners, text, border or glass. Lowest
+      non-failing lock load wins; automated warnings retained, exploration only.'
+qa_reports:
+  1:
+    job: x-appicon-b
+    take: 1
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 37.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 74.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.74
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0058
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 4.7, off-palette 0.3% (top: #AA9966 (0.0%), #DD6655
+        (0.0%))'
+      value: 1.9975
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: pass
+      message: corner detail is 35% of the center's (the system masks corners)
+      value: 0.3471
+    info:
+      metrics_raw:
+        L_p5: 74.8
+        L_p50: 89.6
+        L_p95: 95.0
+        C_p50: 14.1
+        C_p95: 37.4
+        C_p99: 44.2
+        detail: 1.75
+      metrics_locked:
+        L_p5: 74.8
+        L_p50: 89.6
+        L_p95: 95.0
+        C_p50: 14.1
+        C_p95: 37.4
+        C_p99: 44.2
+        detail: 1.74
+    fingerprint: 38b4fb4dda7f5b04
+  2:
+    job: x-appicon-b
+    take: 2
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 74 (R1 59)
+      value: 73.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.85
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0075
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 4.6, off-palette 0.5% (top: #999966 (0.1%), #AA9966
+        (0.1%))'
+      value: 1.9418
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: pass
+      message: corner detail is 31% of the center's (the system masks corners)
+      value: 0.3112
+    info:
+      metrics_raw:
+        L_p5: 73.6
+        L_p50: 90.2
+        L_p95: 94.0
+        C_p50: 14.2
+        C_p95: 37.7
+        C_p99: 47.3
+        detail: 1.85
+      metrics_locked:
+        L_p5: 73.6
+        L_p50: 90.2
+        L_p95: 94.0
+        C_p50: 14.2
+        C_p95: 37.7
+        C_p99: 47.3
+        detail: 1.85
+    fingerprint: 38b4fb4dda7f5b04
+manual_review:
+  exclude: []
+  note: 'Coordinator native29/60pt manual review on white/dark/cream: both floating-island
+    silhouettes read immediately at29pt; tiny warm hamster spot is expected for iconB
+    and curl/eyes read at60pt. Opaque morning-cloud square, no rounded corners, text,
+    border or glass. Lowest non-failing lock load wins; automated warnings retained,
+    exploration only.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-35161864-4fc4-4dad-bb11-05efa3d76c5f.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 38b4fb4dda7f5b04
+  original_png_sha256: 9ef3ad0015c180992690c8e8abcb633782144916bca89e173a48744b12522c72
+- take: 2
+  source_file: /workspace/generated_images/exec-119ce03b-bdb4-4791-adf4-0c6090629b0b.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 38b4fb4dda7f5b04
+  original_png_sha256: 70a558eee604540f747ff8dc68790cd30c7d275c21a09d0b19f96d7a258fe9ee
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
