@@ -50,8 +50,14 @@ final class SpikeScreenshotTests: XCTestCase {
         shots.append(("spike-debug-normals", look(hour: 12, spike: GraphicsSpike(debug: .normals))))
         shots.append(("spike-debug-depth", look(hour: 12, spike: GraphicsSpike(debug: .depth))))
 
-        for (name, look) in shots {
-            let model = IslandSceneModel(framing: .home)
+        // The same looks again at the Island pan settled on the çay ocağı, so
+        // the stall, Mochi and Pofu share the frame.
+        let pan = shots.filter { !$0.0.hasPrefix("spike-debug") }.map { ($0.0 + "-pan", $0.1) }
+        for (name, look) in shots + pan {
+            let model = IslandSceneModel(framing: name.hasSuffix("-pan") ? .island : .home)
+            if name.hasSuffix("-pan") {
+                model.holdPan(start: 0, velocity: -1100, at: 2.0)
+            }
             let view = AnyView(SpikeScene(world: world(), model: model).environment(\.worldLook, look))
             let image = try await render(view, in: scene, settle: 1600)
             try write(image, name: name, to: folder)
