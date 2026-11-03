@@ -1,0 +1,37 @@
+id: island-koke
+type: island
+title_tr: Koke
+title_en: The bonsai in the rain (Japan)
+status: idea
+horizon: maybe
+summary: >-
+  A great wind-shaped bonsai pine floating in the sky, its roots cradling a small moss and raked-gravel garden; always soft rain, rain rings on the gravel pond, a bamboo water clacker. Resident: Sumi, a Japanese dormouse. Game: matching moss stones in threes (no fail bar); raking is the toy. Learning: the 72 micro-seasons.
+notes:
+- >-
+  Revision 2026-11-03 (archipelago-system.md 1A, 11): redesigned from 6/10 (the same world set): the island is the bonsai; its own sky is rain. Gift to home: a water clacker, then rain greens home's moss.
+- >-
+  Resident: Sumi, a Japanese dormouse who sleeps through winter and apologises for it.
+- >-
+  Native Japanese writer required; proposed for the Japan market test (open question 9).
+links:
+  requires:
+  - island-aycicegi
+  - sys-island-arrivals
+  related:
+  - sys-island-games
+  - sys-island-toys
+  - sys-island-materials
+  - idea-route-regional-islands
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+- doc: docs/product/archipelago-system.md
+  anchor: '#3-the-island-schema'
+source: lead-brainstorm
+theme_en: 'A bonsai pine in the rain cradling a moss garden'
+ritual_en: 'Moss stones (match three); raking is the toy'
+residents:
+- char-sumi
+unlock:
+  day: 26
+  rule_en: 'Wonder island 5: 26 tended days'

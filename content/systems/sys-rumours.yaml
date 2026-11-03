@@ -1,0 +1,23 @@
+id: sys-rumours
+type: system
+title_tr: Söylentiler
+title_en: Rumours
+status: idea
+horizon: maybe
+summary: >-
+  The curiosity engine: every upcoming island is announced by three rumours in a fixed order (a sound from the fog, an object the vapur brings, a sight at the map's edge). They advance with the island's cumulative arrival conditions, never carry a date, never expire; at most one per visit.
+notes:
+- >-
+  Plus islands: rumours play for everyone; a free user sees the island arrive as a silhouette with one honest card, once.
+links:
+  related:
+  - sys-island-arrivals
+  - island-iskele
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#93-the-curiosity-engine-rumours'
+source: lead-brainstorm
+group: world
+board:
+  col: 10
+  row: 4

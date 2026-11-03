@@ -1,0 +1,18 @@
+id: char-zil
+type: character
+title_tr: Zil
+title_en: Zil, the bell-ringer
+status: idea
+horizon: maybe
+summary: >-
+  A tiny bell-ringer mouse on Çanlar, slightly deaf and very proud.
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+source: lead-brainstorm
+kind: resident
+unlock:
+  day: 150
+  rule_en: Arrives with its island
+species_en: 'Mouse, tiny'
+home: island-canlar

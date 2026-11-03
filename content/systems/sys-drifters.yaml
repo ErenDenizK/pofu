@@ -1,0 +1,22 @@
+id: sys-drifters
+type: system
+title_tr: Sürüklenen adacıklar
+title_en: Drifter islets (cut)
+status: cut
+horizon: maybe
+summary: >-
+  A first draft proposed tiny islets composited in code from a shared art kit to fill gaps between islands. Cut by the founder (2026-11-02): everything in the game must read as hand-made; the moment it switches to islets from ready-made parts, the user disconnects. Replaced by a steady run of hand-made wonder islands with reuse only under the hood.
+notes:
+- >-
+  Kept for history; do not revive without the founder.
+links:
+  related:
+  - sys-rumours
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#91-fifty-hand-made-islands'
+source: lead-brainstorm
+group: world
+board:
+  col: 11
+  row: 0

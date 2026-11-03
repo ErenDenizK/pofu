@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- The archipelago system proposal (`docs/product/archipelago-system.md`):
+  two free yield islands, then a run of hand-made wonder islands, each
+  with a signature motion in code, a resident, a toy, a five-stage secret
+  and its own game built on a shared grammar; rounds earned by resisting
+  reaches, per-island materials instead of growing numbers, decor spots,
+  rumours that tease the next island, a revised session guardrail for
+  5–10 minute play, the Plus line, a first-60-days timeline and twelve
+  island concepts from several cultures. Content nodes for the new
+  islands, residents and systems (all `horizon: maybe`).
+  Revised after the founder's review of the concept deck: İskele becomes
+  Ayçiçeği's harbor district; a uniqueness contract and rubric for wonder
+  islands; the living web (goods, backward-only requests, awake islands,
+  gifts to home); an ever-changing home (simulated weather, seasons,
+  events); the first wonder island on day 4; redesigned Koke, Çömlek,
+  Leylek, Mehtap (was Yıldız) and Fanus (replaces Ayna); an exploration
+  spec for their concepts and four hub variants.
+
 - Look round 4 (`docs/design/look-dev.md`, "Round 4"): the Island framing
   is a horizontal pan at full size (Pofu 80 pt) with momentum, snap points
   per station and rubber-banded ends, opening on Pofu after a brief

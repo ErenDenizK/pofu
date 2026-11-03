@@ -4,11 +4,13 @@ title_tr: İskele
 title_en: The harbor
 status: planned
 horizon: later
-summary: 'A tea-and-simit harbor. Its loop is the morning ferry: after every calm
-  night the little vapur docks with a postcard from somewhere far away; seven make
-  a set for Pofu''s wall. Stations: simit cart, ferry pier, lighthouse. Resident:
-  Simit, a honey tabby kitten.'
+summary: >-
+  Ayçiçeği's harbor district, no longer a separate island: a tea-and-simit pier growing from the home plate's right edge into the cloud sea. The vapur docks here with postcards, rumour objects, visiting residents and goods from every island. Stations: simit cart, ferry pier, lighthouse. Resident: Simit, a honey tabby kitten. Game: loading the vapur (sort puzzle).
 notes:
+- >-
+  Revision 2026-11-03 (archipelago-system.md 1A, 11): merged into the home cluster as Ayçiçeği's harbor district (1A.2); unfolds on tended days 1 to 3; the vapur is the archipelago's one ferry.
+- >-
+  Proposed (archipelago-system.md): a yield island of the launch pair and the archipelago's curiosity inbox (rumour objects wash up on its pier); toy: the ferry horn, answered from the fog when a rumour is active; island game: loading the vapur (Pack); free tier.
 - 'Arrives at 8 tended days and the çay ocağı at level 3 ("Mochi''s regulars want
   simit with their tea"). Simulation: day 9 for every archetype.'
 - Stations open 0, 3 and 7 tended days after it arrives.
@@ -28,17 +30,19 @@ links:
   uses_asset:
   - asset-iskele-island-s
 sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
 - doc: docs/product/game-design.md
   anchor: '#7-the-archipelago'
 - doc: docs/product/game-design.md
   anchor: '#archipelago-assets-added-in-v2'
 - doc: docs/product/decision-audit.md
   anchor: '#6-what-to-cut-or-postpone'
-theme_en: A tea-and-simit harbor
+theme_en: Ayçiçeği's tea-and-simit harbor district
 ritual_en: 'The morning ferry: a postcard after every calm night; seven make a set'
 residents:
 - char-simit
 - char-ferry-crew
 unlock:
-  day: 9
-  rule_en: 8 tended days and the çay ocağı at level 3
+  day: 2
+  rule_en: 'Day 2 on the home plate: the harbor unfolds over tended days 1 to 3'

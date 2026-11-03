@@ -1,0 +1,37 @@
+id: island-canlar
+type: island
+title_tr: Çanlar
+title_en: The island of bells
+status: idea
+horizon: maybe
+summary: >-
+  A stone spire hung with wind bells. Every island's motif joins the bells when it arrives, and every later island's first rumour is heard as a new, unknown bell. Toy: tap bells, always in harmony; ring them in arrival order for the archipelago's song. Game (Echo): answer Zil's phrases, folk tunes from the islands' cultures.
+notes:
+- >-
+  Revision 2026-11-03 (archipelago-system.md 1A, 11): wonder 4; game: Simon echo. Gift to home: a bell on the çay ocağı, then the full bell set.
+- >-
+  Arrives after three wonder islands, so there are motifs to ring.
+- >-
+  Sound is the real cost: one motif per island and a bell set.
+links:
+  requires:
+  - island-aycicegi
+  - sys-island-arrivals
+  related:
+  - sys-island-games
+  - sys-island-toys
+  - sys-island-materials
+  - sys-rumours
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+- doc: docs/product/archipelago-system.md
+  anchor: '#3-the-island-schema'
+source: lead-brainstorm
+theme_en: 'A spire of wind bells that plays every island''s motif'
+ritual_en: 'Bell echoes (Echo)'
+residents:
+- char-zil
+unlock:
+  day: 19
+  rule_en: 'Wonder island 4: 19 tended days (three wonder islands arrived)'

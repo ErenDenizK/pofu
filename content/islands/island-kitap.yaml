@@ -11,6 +11,8 @@ summary: >-
   cloud-soft chinchilla who reads aloud.
 notes:
 - >-
+  Proposed (archipelago-system.md): becomes a wonder island; station ladders retired, the story-page ritual stays; its mystery answers who wrote the bottle messages; game idea: story-ordering; year-2 pool.
+- >-
   Arrives with a season update, for everyone, and stays (simulated at day 50).
 - >-
   Seasonal islands after Kitap follow the same template: a theme, three stations, one ritual,
@@ -23,6 +25,8 @@ links:
   - sys-rituals
   - theme-seasonal-islands
 sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
 - doc: docs/product/game-design.md
   anchor: '#7-the-archipelago'
 theme_en: A library island

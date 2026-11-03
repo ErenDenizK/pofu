@@ -1,0 +1,18 @@
+id: char-sumi
+type: character
+title_tr: Sumi
+title_en: Sumi, the dormouse
+status: idea
+horizon: maybe
+summary: >-
+  A Japanese dormouse (yamane) on Koke who rakes the garden at night and sleeps through winter, apologising for it.
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+source: lead-brainstorm
+kind: resident
+unlock:
+  day: 60
+  rule_en: Arrives with its island
+species_en: 'Japanese dormouse'
+home: island-koke

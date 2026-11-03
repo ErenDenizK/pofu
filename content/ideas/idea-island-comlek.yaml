@@ -2,13 +2,15 @@ id: idea-island-comlek
 type: idea
 title_tr: Çömlek Adası
 title_en: Pottery island
-status: idea
+status: cut
 horizon: maybe
 summary: >-
   An Avanos-style pottery island whose ritual is slow time made visible: each quiet hour turns
   the wheel a notch, and after twelve quiet hours a pot is finished and fired. Pots go on
   Pofu's shelf in a fixed sequence of shapes. Nothing breaks, nothing cools, nothing expires.
 notes:
+- >-
+  Cut as an idea because it was developed into island-comlek (archipelago-system.md); kept for history.
 - 'Resident idea: Kil, a mole who only works when it is quiet.'
 - A second answer to "what does quiet time look like?" besides seeds.
 links:

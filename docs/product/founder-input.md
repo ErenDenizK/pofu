@@ -34,6 +34,42 @@ not orders: each entry records **what he meant**, the **status**, and
 - Measure harmony for each promoted master and commit the current manifest with its art. One PR per batch; continue immediately. Once the queue is empty, check main every 20 minutes for two hours.
 - Status: in progress in art PRs #83, #84 and #87; later READY batches follow.
 
+## 2026-11-03 (afternoon): review of the island concept deck
+
+His views (translated), not orders; the decisions are ours. Handled in
+[archipelago-system.md](archipelago-system.md) section 1A (PR #64).
+
+- **Islands in parallel, not a ladder.** All islands should work together;
+  moving between them, the player should need and want every island, and
+  each keeps its usefulness ("a level structure where every island stays
+  relevant"). Handled: the living web (goods, backward-only requests,
+  awake islands, gifts to home), 1A.4.
+- **Ayçiçeği and İskele are too far apart; İskele feels empty.** Maybe
+  connect or merge them into one home cluster; İskele's concept is nice.
+  Every island after that must be a real wow; a week of play must not end
+  in an underwhelming island. Handled: İskele becomes Ayçiçeği's harbor
+  district (1A.2); Gezgin lands at the end of week one (1A.6).
+- **Ayçiçeği is the hub:** simple in design but always changing: weather
+  (maybe real-world weather), time of day, level, seasons, special events;
+  every newly opened island should add something to it; "everything meets
+  on the home island"; it must never get boring. Handled: 1A.5 (simulated
+  weather by default, real weather opt-in later) and the gift table in 1A.4.
+- **Wonder islands must not be flat green copies of the home plate.**
+  Ratings of the concepts: Gezgin (whale) 10/10; Revontuli 7 (a different
+  colour theme, snow, water: feels new); Çanlar and Emanet "great"; Koke
+  (Japan) 6 (the same world set); Çömlek 4 (the character and minigame are
+  fun, the island concept is boring); Yıldız 3 (an observatory on our same
+  island base, not unique); Leylek 2 (pretty storks, but just a green
+  island); Ayna must change. Partly missing assets, but the design must be
+  schematised better: unique silhouettes, landforms, palettes, weather.
+  Handled: the uniqueness contract and rubric (1A.3), redesigns (Koke,
+  Çömlek, Leylek, Mehtap for Yıldız, Fanus for Ayna) in section 11, and an
+  exploration spec (section 17).
+- **Pacing:** he personally wants the first wow sooner (he reacts fast);
+  leaves the call to us. Handled: first wonder island on day 4, then each
+  wait a day longer (1A.6); the free cut re-framed as C2 vs C3 for the
+  beta.
+
 ## 2026-11-03 (morning)
 
 - **English identifiers everywhere.** Turkish names in code, asset ids,

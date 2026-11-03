@@ -1,0 +1,23 @@
+id: sys-island-materials
+type: system
+title_tr: Ada malzemeleri
+title_en: Island materials
+status: idea
+horizon: maybe
+summary: >-
+  Each wonder island has one local material (water drops, star dust, clay, frost, moss) earned only by its game and spent only there, on stages and decor, with a small seed part. Chosen over Roblox-style proportional scaling: prices stay 5 to 200 everywhere and every island starts at a fresh zero.
+notes:
+- >-
+  Never touch the gate, never convert, never sold, never on Home (A13 extended).
+links:
+  related:
+  - sys-seeds
+  - sys-island-games
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#44-materials'
+source: lead-brainstorm
+group: world
+board:
+  col: 10
+  row: 2

@@ -1,0 +1,18 @@
+id: char-pekmez
+type: character
+title_tr: Pekmez
+title_en: Pekmez, the fruit bat
+status: cut
+horizon: maybe
+summary: >-
+  A tiny fruit bat on Ayna who lives upside down and thinks you are the one upside down. Polite about it.
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+source: lead-brainstorm
+kind: resident
+unlock:
+  day: 46
+  rule_en: Arrives with its island
+species_en: 'Fruit bat, tiny'
+home: island-ayna

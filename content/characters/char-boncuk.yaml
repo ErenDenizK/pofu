@@ -1,0 +1,18 @@
+id: char-boncuk
+type: character
+title_tr: Boncuk
+title_en: Boncuk, the magpie
+status: idea
+horizon: maybe
+summary: >-
+  A magpie who runs the lost-and-found on Emanet, loves shiny things, and has to give every one of them back.
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+source: lead-brainstorm
+kind: resident
+unlock:
+  day: 130
+  rule_en: Arrives with its island
+species_en: 'Magpie'
+home: island-emanet

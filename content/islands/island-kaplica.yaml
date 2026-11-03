@@ -11,6 +11,8 @@ summary: >-
   never farmable. Stations: hot spring, hamam, şerbet stand. Resident: Pamuk, an unbothered
   capybara.
 notes:
+- >-
+  Proposed (archipelago-system.md): becomes a wonder island; station ladders retired, the warm-spring ritual stays; signature motion: steam that drifts to other islands as clouds; game idea: temperature mixing; year-2 pool.
 - Arrives at 35 tended days and the ferry pier at level 3.
 - Breathing breaks do not fill the spring (anti-farming).
 links:
@@ -22,6 +24,8 @@ links:
   - sys-rituals
   - sys-wellbeing
 sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
 - doc: docs/product/game-design.md
   anchor: '#7-the-archipelago'
 theme_en: A hot-spring hamam

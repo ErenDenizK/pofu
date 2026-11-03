@@ -2,7 +2,7 @@ id: idea-island-leylek
 type: idea
 title_tr: Leylek Adası
 title_en: Stork island (a migration island)
-status: idea
+status: cut
 horizon: maybe
 summary: >-
   A seasonal island that returns every spring and autumn with the storks that cross the Bosphorus.
@@ -11,6 +11,8 @@ summary: >-
   all year as a quiet nesting island, and the storks come back every season (A7: nothing is
   missed).
 notes:
+- >-
+  Cut as an idea because it was developed into island-leylek (archipelago-system.md); kept for history.
 - >-
   Resident idea: Lale, an old stork who has seen every city and tells one line about it.
 - >-

@@ -1,0 +1,18 @@
+id: char-lale
+type: character
+title_tr: Lale
+title_en: Lale, the old stork
+status: idea
+horizon: maybe
+summary: >-
+  An old stork on Leylek who has seen every city on the route and leaves one line about each.
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+source: lead-brainstorm
+kind: resident
+unlock:
+  day: 190
+  rule_en: Arrives with its island
+species_en: 'Stork, old'
+home: island-leylek

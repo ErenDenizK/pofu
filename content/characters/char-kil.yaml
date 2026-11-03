@@ -1,0 +1,18 @@
+id: char-kil
+type: character
+title_tr: Kil
+title_en: Kil, the potter mole
+status: idea
+horizon: maybe
+summary: >-
+  A mole on Çömlek who only works when it is quiet and has made a pot for every island that came home.
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+source: lead-brainstorm
+kind: resident
+unlock:
+  day: 200
+  rule_en: Arrives with its island
+species_en: 'Mole'
+home: island-comlek

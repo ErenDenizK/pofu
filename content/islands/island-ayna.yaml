@@ -1,0 +1,39 @@
+id: island-ayna
+type: island
+title_tr: Ayna
+title_en: The island under the clouds
+status: cut
+horizon: maybe
+summary: >-
+  Ayçiçeği's reflection, hanging upside down beneath the cloud sea in moonlight. It copies your stations; every calm night is a lit window. Toy: a seed dropped off the home island falls up onto Ayna. Game (Trace): guide the mirror Pofu to catch falling seeds where up is down. The cheapest whoa: the home plate mirrored and regraded.
+notes:
+- >-
+  Revision 2026-11-03 (archipelago-system.md 1A, 11): cut: the home plate mirrored was the purest copy of all (the founder: Ayna must change). Replaced by island-fanus; its impossible geometry lives on in Mehtap's waxing crescent.
+- >-
+  Arrival: the only camera flip in the game.
+- >-
+  Material: moonlight. Learning: the moon's phases.
+- >-
+  Art: home plate mirrored plus about 9 images.
+links:
+  requires:
+  - island-aycicegi
+  - sys-island-arrivals
+  related:
+  - sys-island-games
+  - sys-island-toys
+  - sys-island-materials
+  - sys-bedtime
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#11-island-concepts'
+- doc: docs/product/archipelago-system.md
+  anchor: '#3-the-island-schema'
+source: lead-brainstorm
+theme_en: 'The home island''s moonlit reflection, upside down'
+ritual_en: 'Mirror catch (Trace); echo: calm nights as lit windows'
+residents:
+- char-pekmez
+unlock:
+  day: 46
+  rule_en: '20 calm nights (any, not in a row)'

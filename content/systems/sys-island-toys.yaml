@@ -1,0 +1,23 @@
+id: sys-island-toys
+type: system
+title_tr: Ada oyuncakları
+title_en: Island toys
+status: idea
+horizon: maybe
+summary: >-
+  Each island has one toy: one gesture, a delightful answer in 2 to 6 seconds, and a hidden second answer. Pure play, ten seconds, no score, no reward; always available, also outside rounds and in A minute with Pofu.
+notes:
+- >-
+  Example: drop a leaf boat over Çağlayan's edge; days later it washes up on İskele's pier.
+links:
+  related:
+  - sys-the-minute
+  - sys-island-games
+sources:
+- doc: docs/product/archipelago-system.md
+  anchor: '#31-the-toy-ten-seconds-pure-play'
+source: lead-brainstorm
+group: world
+board:
+  col: 10
+  row: 1
