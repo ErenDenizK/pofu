@@ -1,0 +1,327 @@
+batch: batch-14-iskele
+contact_sheet: design/art/takes/batch-14-iskele/iskele-vapur-1/contact.jpg
+jobs:
+  iskele-vapur-1:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after exactly four takes: manual station-guide and flat-waterline
+      checks fail. Widths929/875/935/898px exceed the720px guide footprint, and each
+      hull underside is rounded instead of a clean flat waterline. Automated WARN
+      reports preserved unchanged; no waiver, resizing, extra generation or master.
+      Failed embedded pilot gates the remaining seven jobs.'
+qa_reports:
+  1:
+    job: iskele-vapur-1
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 59 (R1 59)
+      value: 58.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.78
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0891
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.7, p95 6.0, off-palette 0.0%
+      value: 1.6597
+    - check: station_anchor
+      status: warn
+      message: width 929 px wider than the footprint (720)
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 88 against the world reference (outliers: edge)'
+      value: 87.7
+    info:
+      registration:
+        dx: 9
+        dy: -47
+      metrics_raw:
+        L_p5: 58.7
+        L_p50: 77.9
+        L_p95: 93.0
+        C_p50: 16.7
+        C_p95: 44.1
+        C_p99: 49.0
+        detail: 2.38
+      metrics_locked:
+        L_p5: 58.9
+        L_p50: 78.0
+        L_p95: 92.7
+        C_p50: 16.6
+        C_p95: 44.0
+        C_p99: 47.9
+        detail: 1.78
+    fingerprint: d25edca62eac10d4
+  2:
+    job: iskele-vapur-1
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 60 (R1 59)
+      value: 59.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.69
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0497
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 6.3, off-palette 0.0%
+      value: 1.9526
+    - check: station_anchor
+      status: warn
+      message: width 875 px wider than the footprint (720)
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 85 against the world reference (outliers: edge)'
+      value: 85.3
+    info:
+      registration:
+        dx: 18
+        dy: -35
+      metrics_raw:
+        L_p5: 59.7
+        L_p50: 76.2
+        L_p95: 92.1
+        C_p50: 17.4
+        C_p95: 41.9
+        C_p99: 43.9
+        detail: 2.28
+      metrics_locked:
+        L_p5: 59.9
+        L_p50: 76.4
+        L_p95: 91.8
+        C_p50: 17.4
+        C_p95: 41.7
+        C_p99: 43.7
+        detail: 1.69
+    fingerprint: d25edca62eac10d4
+  3:
+    job: iskele-vapur-1
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 60 (R1 59)
+      value: 60.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.69
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0334
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 6.2, off-palette 0.0%
+      value: 2.0004
+    - check: station_anchor
+      status: warn
+      message: width 935 px wider than the footprint (720)
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the world reference (outliers: edge)'
+      value: 86.3
+    info:
+      registration:
+        dx: 28
+        dy: -70
+      metrics_raw:
+        L_p5: 60.3
+        L_p50: 76.0
+        L_p95: 91.8
+        C_p50: 16.3
+        C_p95: 42.7
+        C_p99: 44.8
+        detail: 2.28
+      metrics_locked:
+        L_p5: 60.5
+        L_p50: 76.1
+        L_p95: 91.5
+        C_p50: 16.2
+        C_p95: 42.5
+        C_p99: 44.5
+        detail: 1.69
+    fingerprint: d25edca62eac10d4
+  4:
+    job: iskele-vapur-1
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 43.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 60 (R1 59)
+      value: 60.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9854
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.2, p95 6.4, off-palette 0.0%
+      value: 2.2354
+    - check: station_anchor
+      status: warn
+      message: width 898 px wider than the footprint (720)
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: edge)'
+      value: 87.3
+    info:
+      registration:
+        dx: 25
+        dy: -2
+      metrics_raw:
+        L_p5: 59.9
+        L_p50: 76.5
+        L_p95: 92.3
+        C_p50: 17.9
+        C_p95: 43.6
+        C_p99: 45.0
+        detail: 2.37
+      metrics_locked:
+        L_p5: 60.0
+        L_p50: 76.6
+        L_p95: 92.0
+        C_p50: 17.8
+        C_p95: 43.5
+        C_p99: 44.7
+        detail: 1.76
+    fingerprint: d25edca62eac10d4
+manual_review:
+  exclude:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: 'Skipped after exactly four takes: manual station-guide and flat-waterline
+    checks fail. Widths929/875/935/898px exceed the720px guide footprint, and each
+    hull underside is rounded instead of a clean flat waterline. Automated WARN reports
+    preserved unchanged; no waiver, resizing, extra generation or master. Failed embedded
+    pilot gates the remaining seven jobs.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-f978eea3-893c-4e0d-9228-2a5c3d3b7c55.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d25edca62eac10d4
+- take: 2
+  source_file: /workspace/generated_images/exec-fd76d6c1-3d59-45ac-a5df-e4fade3e57c6.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d25edca62eac10d4
+- take: 3
+  source_file: /workspace/generated_images/exec-336109b8-0559-404a-9632-e24d95f26f33.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d25edca62eac10d4
+- take: 4
+  source_file: /workspace/generated_images/exec-f8d53389-311c-4980-89e3-6d3dd7145dca.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d25edca62eac10d4
+recovery:
+  note: Runtime /tmp and prior exec result store were not retained across environment
+    restart. Original image bytes recovered from /workspace/generated_images. Job
+    pairing established by visible subject and the already-recorded calls; within
+    each pair ordinal assigned by completion time where original callback ordinal
+    was unavailable. No extra generation and no source modification.
+  sources:
+  - take: 3
+    path: /workspace/generated_images/exec-336109b8-0559-404a-9632-e24d95f26f33.png
+    sha256: 5915e5f079ef92dc2b369c8891cb16baadeeb2c22b7990b52d3ac87f2b7f3e12
+    mtime: '2026-11-03T01:04:02.269188+00:00'
+  - take: 4
+    path: /workspace/generated_images/exec-f8d53389-311c-4980-89e3-6d3dd7145dca.png
+    sha256: d2dbafaa5f13fdd1d5d90cc0c5476ab4904d41c5ce946a5c2a1116e7b9ab0f68
+    mtime: '2026-11-03T01:04:52.573120+00:00'

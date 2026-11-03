@@ -4,24 +4,20 @@ title_tr: İskele
 title_en: The harbor
 status: planned
 horizon: later
-summary: >-
-  A tea-and-simit harbor. Its loop is the morning ferry: after every calm night the little
-  vapur docks with a postcard from somewhere far away; seven make a set for Pofu's wall. Stations:
-  simit cart, ferry pier, lighthouse. Resident: Simit, a honey tabby kitten.
+summary: 'A tea-and-simit harbor. Its loop is the morning ferry: after every calm
+  night the little vapur docks with a postcard from somewhere far away; seven make
+  a set for Pofu''s wall. Stations: simit cart, ferry pier, lighthouse. Resident:
+  Simit, a honey tabby kitten.'
 notes:
-- >-
-  Arrives at 8 tended days and the çay ocağı at level 3 ("Mochi's regulars want simit with
-  their tea"). Simulation: day 9 for every archetype.
+- 'Arrives at 8 tended days and the çay ocağı at level 3 ("Mochi''s regulars want
+  simit with their tea"). Simulation: day 9 for every archetype.'
 - Stations open 0, 3 and 7 tended days after it arrives.
-- >-
-  Postponed by the decision audit until after two weeks of daily use (islands 2–5, rituals,
-  the map, the cloud pass).
-- >-
-  Postcards arrive in a fixed, published order: no random draw, no duplicates, no rarities
-  (A17).
-- >-
-  Asset counts for İskele: 1 plate + 15 level vignettes + Simit × 3 + the vapur + 7 postcards
-  ≈ 27 images. The plate has a ferry-pier notch on its right edge.
+- Postponed by the decision audit until after two weeks of daily use (islands 2–5,
+  rituals, the map, the cloud pass).
+- 'Postcards arrive in a fixed, published order: no random draw, no duplicates, no
+  rarities (A17).'
+- 'Asset counts for İskele: 1 plate + 15 level vignettes + Simit × 3 + the vapur +
+  7 postcards ≈ 27 images. The plate has a ferry-pier notch on its right edge.'
 links:
   requires:
   - island-aycicegi
@@ -29,6 +25,8 @@ links:
   - sys-island-arrivals
   related:
   - sys-rituals
+  uses_asset:
+  - asset-iskele-island-s
 sources:
 - doc: docs/product/game-design.md
   anchor: '#7-the-archipelago'

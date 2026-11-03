@@ -2,13 +2,13 @@ id: asset-iskele-horn-1
 type: asset
 title_tr: iskele-horn-1
 title_en: iskele-horn-1 (station)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A small harbor signal post for the island diorama: a short, chunky post of honey wood on
-  a round stone foot, a plump brass-colored horn pointing out to the right on top, and a thick
-  cream cord with a round wooden toggle hanging straight down from the horn. Few parts, toy-like
-  proportions; it fills about the lower half of the height bar.
+summary: 'A small harbor signal post for the island diorama: a short, chunky post
+  of honey wood on a round stone foot, a plump brass-colored horn pointing out to
+  the right on top, and a thick cream cord with a round wooden toggle hanging straight
+  down from the horn. Few parts, toy-like proportions; it fills about the lower half
+  of the height bar.'
 art:
   images: []
   jobs:
@@ -17,3 +17,7 @@ sources:
 - doc: tools/imagegen/manifest/batch-14-iskele.yaml
 kind: station
 batch: batch-14-iskele
+notes:
+- 'Skipped without generation: failed embedded pilots iskele-vapur-1 and simit-kitten
+  exhausted their one allowed retry. Manifest pilot gate skips every remaining job
+  of this batch; no QA waiver or master.'

@@ -2,12 +2,12 @@ id: asset-iskele-vapur-2
 type: asset
 title_tr: iskele-vapur-2
 title_en: iskele-vapur-2 (station)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Add a second deck to the ferry: a smaller cream cabin on top of the first with two round
-  windows, a rail of three cream posts around the upper deck, and a second small funnel beside
-  the first. The hull, the first cabin and the colors stay. Keep it inside the height bar.
+summary: 'Add a second deck to the ferry: a smaller cream cabin on top of the first
+  with two round windows, a rail of three cream posts around the upper deck, and a
+  second small funnel beside the first. The hull, the first cabin and the colors stay.
+  Keep it inside the height bar.'
 links:
   variant_of:
   - asset-iskele-vapur-1
@@ -19,3 +19,7 @@ sources:
 - doc: tools/imagegen/manifest/batch-14-iskele.yaml
 kind: station
 batch: batch-14-iskele
+notes:
+- 'Skipped without generation: failed embedded pilots iskele-vapur-1 and simit-kitten
+  exhausted their one allowed retry. Manifest pilot gate skips every remaining job
+  of this batch; no QA waiver or master.'
