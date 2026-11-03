@@ -2,14 +2,15 @@ id: asset-iskele-crates-1
 type: asset
 title_tr: iskele-crates-1
 title_en: iskele-crates-1 (station)
-status: planned
+status: in-production
 horizon: now
 summary: 'A small stack of cargo for the island diorama: two plump honey-wood crates
   and one round cream sack tied with a coral cord, with a small parcel wrapped in
   kraft paper and cream string on top. Chunky, toy-like, rounded corners, no labels,
   no letters. It fills about the lower half of the height bar.'
 art:
-  images: []
+  images:
+  - design/art/stations/iskele-crates-1/iskele-crates-1.png
   jobs:
   - batch-14-iskele:iskele-crates-1
   - retry-2026-11-03:iskele-crates-1
