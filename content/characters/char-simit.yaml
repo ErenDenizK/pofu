@@ -4,9 +4,8 @@ title_tr: Simit
 title_en: Simit, the kitten
 status: planned
 horizon: later
-summary: >-
-  A honey tabby kitten who runs the simit cart and keeps the lighthouse at dusk. Loud, cheerful,
-  sells out by noon.
+summary: A honey tabby kitten who runs the simit cart and keeps the lighthouse at
+  dusk. Loud, cheerful, sells out by noon.
 notes:
 - The early UX prototype had a kitten neighbor concept (neighbor-kitten).
 links:
@@ -15,6 +14,8 @@ links:
   related:
   - station-simit
   - station-lighthouse
+  uses_asset:
+  - asset-simit-kitten
 sources:
 - doc: docs/product/game-design.md
   anchor: '#8-residents-neighbors'

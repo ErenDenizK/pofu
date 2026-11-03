@@ -2,7 +2,7 @@ id: asset-simit-kitten
 type: asset
 title_tr: simit-kitten
 title_en: simit-kitten (char)
-status: planned
+status: in-production
 horizon: now
 summary: 'Draw Simit, a neighbor of the attached hamster, in exactly the same art
   style, lighting and level of fluff as the hamster and the attached bunny. Same canvas
@@ -11,7 +11,8 @@ summary: 'Draw Simit, a neighbor of the attached hamster, in exactly the same ar
   Simit, a baby tabby kitten whose body is a soft round ball of plush fur in warm
   honey-gold with soft…'
 art:
-  images: []
+  images:
+  - design/art/masters/simit-kitten/simit-kitten.png
   jobs:
   - batch-14-iskele:simit-kitten
   - retry-2026-11-03:simit-kitten

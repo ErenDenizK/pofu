@@ -1,0 +1,149 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/simit-kitten/contact.jpg
+jobs:
+  simit-kitten:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both takes depict a honey tabby
+      with coral neckerchief, soft small ears, upright plump tail, no head curl, and
+      the same plush resident family. t1 ground-line WARN at 92.4% versus 88% retained
+      without a waiver; t2 is 89.6%. Characters have no lock-load check, so the Harmony
+      tie-break selects t1 (86.3 versus 84.8).
+qa_reports:
+  1:
+    job: simit-kitten
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 55 (R1 51)
+      value: 55.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 58 (R1 59)
+      value: 58.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.9 (R1 5.3)
+      value: 4.87
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 3.9, off-palette 0.8% (top: #441100 (0.1%), #CC5533
+        (0.1%))'
+      value: 1.3534
+    - check: ground_line
+      status: warn
+      message: feet at 92.4% of the height (contract 88%)
+      value: 0.9245
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the char reference (outliers: C_p95, detail)'
+      value: 86.3
+    info:
+      metrics_raw:
+        L_p5: 58.2
+        L_p50: 83.7
+        L_p95: 95.4
+        C_p50: 30.5
+        C_p95: 56.5
+        C_p99: 62.2
+        detail: 4.89
+      metrics_locked:
+        L_p5: 58.2
+        L_p50: 83.7
+        L_p95: 95.4
+        C_p50: 30.5
+        C_p95: 55.3
+        C_p99: 57.5
+        detail: 4.87
+    fingerprint: d3a0b69f834ba4a6
+  2:
+    job: simit-kitten
+    take: 2
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 55 (R1 51)
+      value: 55.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 60 (R1 59)
+      value: 60.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.1 (R1 5.3)
+      value: 4.1
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 3.8, off-palette 0.8% (top: #441100 (0.2%), #CC5533
+        (0.1%))'
+      value: 1.3297
+    - check: ground_line
+      status: pass
+      message: feet at 89.6% of the height (contract 88%)
+      value: 0.8958
+    - check: harmony
+      status: pass
+      message: 'harmony score 85 against the char reference (outliers: C_p95, detail)'
+      value: 84.8
+    info:
+      metrics_raw:
+        L_p5: 60.0
+        L_p50: 84.8
+        L_p95: 95.2
+        C_p50: 28.7
+        C_p95: 56.3
+        C_p99: 60.6
+        detail: 4.11
+      metrics_locked:
+        L_p5: 60.0
+        L_p50: 84.8
+        L_p95: 95.2
+        C_p50: 28.7
+        C_p95: 55.2
+        C_p99: 57.0
+        detail: 4.1
+    fingerprint: d3a0b69f834ba4a6
+manual_review:
+  excluded_takes: []
+  note: Both takes depict a honey tabby with coral neckerchief, soft small ears, upright
+    plump tail, no head curl, and the same plush resident family. t1 ground-line WARN
+    at 92.4% versus 88% retained without a waiver; t2 is 89.6%. Characters have no
+    lock-load check, so the Harmony tie-break selects t1 (86.3 versus 84.8).
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-3413bf71-b344-4698-ba26-379a20b7a96b.png
+  original_generated_png_sha256: 7aff6250a6e7b0744f73dd51509b5f7c6faef69501f96f5aa2d57c7b3da1e177
+  inbox_png_sha256: c4cee31b3a75890cc91a1c701801184735945308d5c8e225c23ca7f60839d174
+  rgba_sha256: 90611842a1a04af6a57617a59062797f5a5422928dec9478855f67a210ab6338
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d3a0b69f834ba4a6
+- take: 2
+  source_file: /workspace/generated_images/exec-ddef0ca0-96b5-4cb9-be0c-368226d86d32.png
+  original_generated_png_sha256: dbe1342002b7b5eadc38bb929452549d949b9ba27818eb926c243d9019a3466f
+  inbox_png_sha256: 3878da7a35cbc8147c65308d4c8bab1bd72cdb253866df41f7d81408426b9ca0
+  rgba_sha256: 6dd1bb9d106c8a295f608f6c733f936b070051984fc6ecb5f830294a47eefb67
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d3a0b69f834ba4a6
