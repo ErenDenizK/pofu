@@ -1,0 +1,163 @@
+batch: batch-16-brand-explore
+contact_sheet: design/art/takes/batch-16-brand-explore/x-b16-illus-wheel/contact.jpg
+jobs:
+  x-b16-illus-wheel:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both originals manually checked:
+      one Pofu stepping onto grass, one foot still touching wheel rim, stopping toy
+      wheel behind, relaxed expression, distant floating island and lantern, calm
+      upper sky. No phone, cage, text or second character. Archived q90 WebPs/contact
+      independently inspected: rim-foot contact, second foot on grass and all story/layout
+      checks preserved.'
+qa_reports:
+  1:
+    job: x-b16-illus-wheel
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 69 (R1 59)
+      value: 68.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.72
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9518
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 4.0, off-palette 0.2% (top: #CC7744 (0.0%), #DD8844
+        (0.0%))'
+      value: 1.3941
+    info:
+      metrics_raw:
+        L_p5: 68.3
+        L_p50: 88.0
+        L_p95: 94.0
+        C_p50: 18.8
+        C_p95: 43.5
+        C_p99: 48.8
+        detail: 2.41
+      metrics_locked:
+        L_p5: 68.6
+        L_p50: 88.0
+        L_p95: 93.7
+        C_p50: 18.9
+        C_p95: 43.0
+        C_p99: 47.8
+        detail: 1.72
+    fingerprint: d2311518562f7266
+  2:
+    job: x-b16-illus-wheel
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 43.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 69 (R1 59)
+      value: 68.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9334
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 4.8, off-palette 0.6% (top: #EE9944 (0.1%), #EE9955
+        (0.1%))'
+      value: 1.7625
+    info:
+      metrics_raw:
+        L_p5: 68.3
+        L_p50: 88.0
+        L_p95: 93.9
+        C_p50: 18.2
+        C_p95: 44.4
+        C_p99: 53.8
+        detail: 2.27
+      metrics_locked:
+        L_p5: 68.6
+        L_p50: 88.0
+        L_p95: 93.6
+        C_p50: 18.4
+        C_p95: 43.9
+        C_p99: 52.2
+        detail: 1.64
+    fingerprint: d2311518562f7266
+manual_review:
+  exclude: []
+  note: 'Both originals manually checked: one Pofu stepping onto grass, one foot still
+    touching wheel rim, stopping toy wheel behind, relaxed expression, distant floating
+    island and lantern, calm upper sky. No phone, cage, text or second character.
+    Archived q90 WebPs/contact independently inspected: rim-foot contact, second foot
+    on grass and all story/layout checks preserved.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-f61b5746-30cf-4a7b-95cf-e3bbf3684c1d.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d2311518562f7266
+  original_generated_png_sha256: f4ac713c44c09112b9e3892427c971b4325c3ba1fb1a5e390429d5543d198ea4
+  ingested_png_sha256: f2467326422f452e6e9d07b2969fb512ab4f9b30131b5d795a125333679ca06c
+  source_rgba_sha256: db86d8ec87f2c4c080ff9ec8f8f604e414c4ee4e42aaf49f2fe5013505cc7150
+  source_dimensions:
+  - 1024
+  - 1536
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-illus-wheel/plate__x-b16-illus-wheel--t1.webp
+  uploaded_artifact_sha256: 4a2c7908ed7d97d25840ccd6855ec44d7d7934c55942a0a968ec035c9f6c6a9f
+  uploaded_dimensions:
+  - 1024
+  - 1536
+  encoding: lossy WebP quality 90
+- take: 2
+  source_file: /workspace/generated_images/exec-de1d0299-0dd2-4798-b084-20014eaec012.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d2311518562f7266
+  original_generated_png_sha256: 19b7cb5930df56be32d44f940bff1ae39e2055fc5fb4aab73d3417b3eeee10b8
+  ingested_png_sha256: b1fb591cf4312c6286c37f27ecd883b7fdfd05c24d25a55a7e1e4c9db44cf391
+  source_rgba_sha256: 56f7c3a8a7a3e2b34632ba0191f1e9a7eb02f68ecf7ad40bf8fb9166d45d4cfa
+  source_dimensions:
+  - 1024
+  - 1536
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-illus-wheel/plate__x-b16-illus-wheel--t2.webp
+  uploaded_artifact_sha256: 8af168fa4675f07a0fc0f5f72c292dd4517bb1c8a762f2752df9818b4a17dfde
+  uploaded_dimensions:
+  - 1024
+  - 1536
+  encoding: lossy WebP quality 90

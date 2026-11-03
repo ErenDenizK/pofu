@@ -1,0 +1,11 @@
+batch: batch-16-brand-explore
+contact_sheet: null
+jobs:
+  x-b16-icon-c-dark:
+    pick: none
+    publication: skipped true dependent; no generation
+    note: Required selected x-b16-icon-c-light reference unavailable after one allowed
+      retry (full bloom instead of sprout; focal circle layout). User override skips
+      only true dependents.
+qa_reports: {}
+sources: []
