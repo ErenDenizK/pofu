@@ -1,0 +1,140 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-res-zil/contact.jpg
+jobs:
+  x-res-zil:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both automated PASS and manual
+      resident-sheet review pass: exactly three full-body views (front, three-quarter,
+      happy), same round grey/cream mouse with large pink-lined ears, bronze hand
+      bell, lifted chin and a cupped listening paw. Soft Pofu/Mochi-family fur/eyes/light,
+      no Pofu head curl, labels, clothes or ground shadow. Take2 lowest lock load0.0010.
+      Never promoted.'
+qa_reports:
+  1:
+    job: x-res-zil
+    take: 1
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 38.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 67 (R1 59)
+      value: 66.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.3 (R1 5.3)
+      value: 4.34
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0017
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.1, p95 2.7, off-palette 0.3% (top: #663311 (0.1%), #552211
+        (0.1%))'
+      value: 1.1012
+    info:
+      metrics_raw:
+        L_p5: 66.7
+        L_p50: 81.5
+        L_p95: 93.5
+        C_p50: 15.6
+        C_p95: 38.6
+        C_p99: 45.5
+        detail: 4.29
+      metrics_locked:
+        L_p5: 66.7
+        L_p50: 81.5
+        L_p95: 93.5
+        C_p50: 15.6
+        C_p95: 38.6
+        C_p99: 45.5
+        detail: 4.34
+    fingerprint: 66da4c8d7d8549bc
+  2:
+    job: x-res-zil
+    take: 2
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 34.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 64.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.4 (R1 5.3)
+      value: 4.41
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.001
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.1, p95 2.7, off-palette 0.2% (top: #DD6655 (0.0%), #884422
+        (0.0%))'
+      value: 1.1074
+    info:
+      metrics_raw:
+        L_p5: 64.9
+        L_p50: 81.6
+        L_p95: 93.1
+        C_p50: 15.1
+        C_p95: 34.3
+        C_p99: 42.0
+        detail: 4.36
+      metrics_locked:
+        L_p5: 64.9
+        L_p50: 81.6
+        L_p95: 93.1
+        C_p50: 15.1
+        C_p95: 34.3
+        C_p99: 42.0
+        detail: 4.41
+    fingerprint: 66da4c8d7d8549bc
+manual_review:
+  exclude: []
+  note: 'Both automated PASS and manual resident-sheet review pass: exactly three
+    full-body views (front, three-quarter, happy), same round grey/cream mouse with
+    large pink-lined ears, bronze hand bell, lifted chin and a cupped listening paw.
+    Soft Pofu/Mochi-family fur/eyes/light, no Pofu head curl, labels, clothes or ground
+    shadow. Take2 lowest lock load0.0010. Never promoted.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-45ee9b6b-5742-4007-9947-66be340158a0.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 66da4c8d7d8549bc
+  original_png_sha256: 6979ff01020bbe1fb75a9578813cebe300bde5d84aaa64b5323206ed9c81f1d1
+- take: 2
+  source_file: /workspace/generated_images/exec-1383b3ed-df9e-457b-a3fa-b02e67e0f606.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 66da4c8d7d8549bc
+  original_png_sha256: 3f64ddcc4d155e06f94d7b6a2063dfd0e5a201f18a5fd589858c46dd6d5c251b
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
