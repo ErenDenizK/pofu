@@ -59,6 +59,10 @@ targets:
       # The Ayar tuning panel's values (debug builds' Rehearsal mode).
       - package: PofuKit
         product: PofuTuning
+      # Pofu's tiny sounds. App targets only: the shield and the other
+      # extensions never link it, so they can never play audio.
+      - package: PofuKit
+        product: PofuSound
     settings:
       base:
         PRODUCT_NAME: Pofu
@@ -108,6 +112,10 @@ targets:
         product: PofuGames
       - package: PofuKit
         product: PofuTuning
+      # Pofu's tiny sounds. App targets only: the shield and the other
+      # extensions never link it, so they can never play audio.
+      - package: PofuKit
+        product: PofuSound
       - target: PofuShieldConfiguration
       - target: PofuShieldAction
       - target: PofuActivityMonitor
