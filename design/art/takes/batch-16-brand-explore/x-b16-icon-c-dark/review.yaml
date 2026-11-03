@@ -1,11 +1,15 @@
 batch: batch-16-brand-explore
+assessment_main: 58d4742a77d30663dd144f989dc5977a5c3c8e5a
+assessment_epoch: batch-16-brand-explore@58d4742/x-b16-icon-c-dark
 contact_sheet: null
 jobs:
   x-b16-icon-c-dark:
     pick: none
     publication: skipped true dependent; no generation
-    note: Required selected x-b16-icon-c-light reference unavailable after one allowed
-      retry (full bloom instead of sprout; focal circle layout). User override skips
-      only true dependents.
+    note: 'The required selected C-light reference is unavailable: the materially
+      revised two-leaf subject brief exhausted its initial/retry pairs with explicit
+      whole-island/cloud safe-area failures. Skip only this approved:C-light dependent;
+      independent jobs completed. No image was requested for this job, no fabricated
+      contact sheet.'
 qa_reports: {}
 sources: []
