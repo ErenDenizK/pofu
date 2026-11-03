@@ -2,6 +2,8 @@ name: CI
 
 on:
   pull_request:
+    # `labeled` so adding the `screens` label re-runs CI with screenshots.
+    types: [opened, synchronize, reopened, labeled]
   push:
     branches: [main]
 
@@ -23,6 +25,7 @@ jobs:
     outputs:
       swift: ${{ steps.diff.outputs.swift }}
       tools: ${{ steps.diff.outputs.tools }}
+      screens: ${{ steps.diff.outputs.screens }}
     steps:
       - name: Check out
         uses: actions/checkout@v5
@@ -34,12 +37,15 @@ jobs:
         env:
           BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
           HEAD: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+          # Manual override: the `screens` label forces the screenshot jobs.
+          LABEL_SCREENS: ${{ github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'screens') }}
         run: |
           set -euo pipefail
           if [ -z "${BASE:-}" ] || ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then
             echo "No usable base; running everything."
             echo "swift=true" >> "$GITHUB_OUTPUT"
             echo "tools=true" >> "$GITHUB_OUTPUT"
+            echo "screens=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           files="$(git diff --name-only "$BASE...$HEAD")"
@@ -48,6 +54,13 @@ jobs:
           swift_files="$(printf '%s\n' "$files" | grep -Ev '^(docs/|design/|tools/|content/|[^/]+\.md$|\.gitignore$|LICENSE)' | grep -v '^$' || true)"
           # Art masters and the bake script feed the asset-harmony check.
           tools_files="$(printf '%s\n' "$files" | grep -E '^(tools|content|design/art|design/prototypes/interactions/tools)/' || true)"
+          # Screenshots and motion beats only matter when what they show can
+          # change: the app, the world, Pofu, the minigames, Rehearsal, the
+          # design system, the screenshot tests and the recording scripts.
+          screen_files="$(printf '%s\n' "$files" | grep -E '^(App/|Tests/WorldScreenshots/|project\.yml$|\.github/scripts/|Packages/PofuKit/Sources/(PofuWorld|PofuCompanion|PofuGames|PofuDesignSystem)/|Packages/PofuKit/Sources/PofuCore/Rehearsal/)' || true)"
+          screens=false
+          if [ -n "$screen_files" ] || [ "$LABEL_SCREENS" = "true" ]; then screens=true; fi
+          echo "screens=$screens" >> "$GITHUB_OUTPUT"
           echo "swift=$([ -n "$swift_files" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
           echo "tools=$([ -n "$tools_files" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
 
@@ -93,10 +106,13 @@ jobs:
       - name: Test Pofu's rig compositor
         run: python3 -I -m pytest -q tools/rig/tests
 
+      - name: Test the changelog collector
+        run: python3 -I -m unittest discover -s tools/changelog/tests
+
       - name: Check relative Markdown links
         run: python3 -I tools/docs/check_links.py
 
-      - name: Validate the content graph (Pofu Atlas)
+      - name: Validate the content graph (asset nodes)
         run: |
           python3 -I tools/content/validate.py
           python3 -I -m pytest -q tools/content/tests
@@ -126,6 +142,19 @@ jobs:
           fi
           xcodebuild -version
           swift --version
+
+      # PofuKit has no external dependencies (no Package.resolved), so the
+      # key covers the manifests; restore-keys reuse the newest build.
+      - name: Cache SwiftPM and DerivedData
+        uses: actions/cache@v4
+        with:
+          path: |
+            Packages/PofuKit/.build
+            ~/Library/Developer/Xcode/DerivedData
+          key: xcode-${{ runner.os }}-${{ hashFiles('Packages/PofuKit/Package.swift', 'project.yml') }}-${{ github.sha }}
+          restore-keys: |
+            xcode-${{ runner.os }}-${{ hashFiles('Packages/PofuKit/Package.swift', 'project.yml') }}-
+            xcode-${{ runner.os }}-
 
       - name: Test PofuKit
         run: swift test --package-path Packages/PofuKit -Xswiftc -warnings-as-errors
@@ -163,6 +192,7 @@ jobs:
       # island scene in the simulator (402 x 874 pt at 3x, the iPhone 17
       # class) and upload the PNGs as the world-screenshots artifact.
       - name: Render the world screenshots
+        if: needs.changes.outputs.screens == 'true'
         run: |
           set -euo pipefail
           udid="$(xcrun simctl list devices available --json | python3 -I -c '
@@ -200,7 +230,7 @@ jobs:
           ls -la "$out"
 
       - name: Upload the world screenshots
-        if: always()
+        if: always() && needs.changes.outputs.screens == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: world-screenshots
@@ -212,6 +242,7 @@ jobs:
       # screen, one clip per beat. The test and the recorder hand off
       # through files; see .github/scripts/record-beats.sh.
       - name: Record the motion beats
+        if: needs.changes.outputs.screens == 'true'
         run: |
           set -euo pipefail
           out="$RUNNER_TEMP/motion-beats"
@@ -240,7 +271,7 @@ jobs:
           exit "$status"
 
       - name: Upload the motion beats
-        if: always()
+        if: always() && needs.changes.outputs.screens == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: motion-beats
@@ -255,9 +286,10 @@ jobs:
   # force-pushed on every green run. See docs/development.md.
   publish-screenshots:
     name: Publish the world screenshots to a branch
-    needs: build-and-test
+    needs: [changes, build-and-test]
     if: >-
       needs.build-and-test.result == 'success' &&
+      needs.changes.outputs.screens == 'true' &&
       (github.event_name != 'pull_request' ||
        github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-latest

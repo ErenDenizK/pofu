@@ -1,0 +1,58 @@
+{
+ "after": {
+  "C_mean": 35.638,
+  "C_p50": 37.962,
+  "C_p95": 43.461,
+  "L_mean": 70.766,
+  "L_p2": 43.101,
+  "L_p98": 90.136,
+  "detail": 2.404,
+  "edge": 0.416,
+  "warmth_b": 32.379
+ },
+ "before": {
+  "C_mean": 25.522,
+  "C_p50": 27.058,
+  "C_p95": 30.979,
+  "L_mean": 74.489,
+  "L_p2": 52.141,
+  "L_p98": 90.136,
+  "detail": 1.978,
+  "edge": 0.416,
+  "tint_a": 3.524,
+  "tint_b": 11.73,
+  "warmth_b": 23.191
+ },
+ "chain": {
+  "C_p50": 37.957,
+  "L_p2": 43.098,
+  "L_p98": 91.037
+ },
+ "correction": {
+  "black": -9.04,
+  "ceiling": 43.3,
+  "chroma": 1.403,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "chain_C_p50",
+  "chain_L_p2",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 89.0,
+ "score_before": 53.7,
+ "shipped": false,
+ "source": "design/art/stations/workshop-2/workshop-2.png",
+ "source_sha": "380849188599ca2d"
+}

@@ -1,0 +1,60 @@
+{
+ "after": {
+  "C_mean": 18.694,
+  "C_p50": 17.858,
+  "C_p95": 35.851,
+  "L_mean": 80.283,
+  "L_p2": 62.614,
+  "L_p98": 90.633,
+  "detail": 1.481,
+  "edge": 0.429,
+  "tint_a": -8.0,
+  "tint_b": 2.749,
+  "warmth_b": 14.541
+ },
+ "before": {
+  "C_mean": 8.508,
+  "C_p50": 8.097,
+  "C_p95": 16.246,
+  "L_mean": 83.126,
+  "L_p2": 70.233,
+  "L_p98": 90.768,
+  "detail": 1.135,
+  "edge": 0.429,
+  "tint_a": 0.243,
+  "tint_b": 5.421,
+  "warmth_b": 6.622
+ },
+ "chain": {
+  "C_p50": 17.882,
+  "L_p2": 62.615,
+  "L_p98": 92.5
+ },
+ "correction": {
+  "black": -7.62,
+  "ceiling": 45.2,
+  "chroma": 2.208,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "chain_C_p50",
+  "chain_L_p2",
+  "edge"
+ ],
+ "ppu": 8.5333,
+ "reference": false,
+ "score_after": 89.2,
+ "score_before": 56.7,
+ "shipped": true,
+ "source": "design/art/stations/pond-3/pond-3.png",
+ "source_sha": "584d15c4e458c1fa"
+}

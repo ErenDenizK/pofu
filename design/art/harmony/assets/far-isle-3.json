@@ -1,0 +1,56 @@
+{
+ "after": {
+  "C_mean": 7.054,
+  "C_p50": 7.791,
+  "C_p95": 11.737,
+  "L_mean": 88.514,
+  "L_p2": 82.896,
+  "L_p98": 94.645,
+  "detail": 0.5,
+  "edge": 1.4,
+  "tint_a": 0.303,
+  "tint_b": 5.872,
+  "warmth_b": 5.872
+ },
+ "before": {
+  "C_mean": 7.054,
+  "C_p50": 7.791,
+  "C_p95": 11.737,
+  "L_mean": 88.514,
+  "L_p2": 82.896,
+  "L_p98": 94.645,
+  "detail": 0.5,
+  "edge": 1.4,
+  "tint_a": 0.303,
+  "tint_b": 5.872,
+  "warmth_b": 5.872
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": true,
+ "kind": "world",
+ "matched_to": "world",
+ "outliers_after": [
+  "C_p95",
+  "L_p2"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2"
+ ],
+ "ppu": 4.8885,
+ "reference": false,
+ "score_after": 50.3,
+ "score_before": 50.3,
+ "shipped": true,
+ "source": "design/art/masters/far-isle-3/far-isle-3.png",
+ "source_sha": "2fa0df45fb432700"
+}

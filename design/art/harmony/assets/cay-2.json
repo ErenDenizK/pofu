@@ -1,0 +1,58 @@
+{
+ "after": {
+  "C_mean": 38.041,
+  "C_p50": 43.132,
+  "C_p95": 48.362,
+  "L_mean": 70.622,
+  "L_p2": 46.408,
+  "L_p98": 91.458,
+  "detail": 1.962,
+  "edge": 0.421,
+  "warmth_b": 32.482
+ },
+ "before": {
+  "C_mean": 19.943,
+  "C_p50": 22.465,
+  "C_p95": 25.3,
+  "L_mean": 77.99,
+  "L_p2": 62.318,
+  "L_p98": 91.494,
+  "detail": 1.335,
+  "edge": 0.421,
+  "tint_a": 3.861,
+  "tint_b": 9.362,
+  "warmth_b": 17.024
+ },
+ "chain": {
+  "C_p50": 43.14,
+  "L_p2": 46.406,
+  "L_p98": 91.368
+ },
+ "correction": {
+  "black": -15.91,
+  "ceiling": 47.0,
+  "chroma": 1.92,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "chain_C_p50",
+  "chain_L_p2",
+  "edge"
+ ],
+ "ppu": 8.5333,
+ "reference": false,
+ "score_after": 90.9,
+ "score_before": 45.2,
+ "shipped": true,
+ "source": "design/art/stations/cay-2/cay-2.webp",
+ "source_sha": "fa270b1ec602d720"
+}
