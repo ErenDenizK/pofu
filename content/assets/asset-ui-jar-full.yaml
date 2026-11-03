@@ -2,12 +2,11 @@ id: asset-ui-jar-full
 type: asset
 title_tr: ui-jar-full
 title_en: jar-full (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Fill the jar's front window panel completely with sunflower seeds: a soft, full pile of
-  chunky warm-brown and cream-striped seeds up to the top of the window, painted simply (big
-  shapes, not seed by seed). Nothing else changes.
+summary: 'Fill the jar''s front window panel completely with sunflower seeds: a soft,
+  full pile of chunky warm-brown and cream-striped seeds up to the top of the window,
+  painted simply (big shapes, not seed by seed). Nothing else changes.'
 links:
   variant_of:
   - asset-ui-jar-empty
@@ -19,3 +18,9 @@ sources:
 - doc: tools/imagegen/manifest/batch-11-ui-pilot.yaml
 kind: ui
 batch: batch-11-ui-pilot
+notes:
+- 'Skipped after the initial pair and single allowed retry pair: all four takes pass
+  automated QA but fail the manifest manual edit_stability >0.9 gate. Exact ratios:
+  t1 0.7935, t2 0.7690, t3 0.7741, t4 0.7763. No waiver, threshold change or extra
+  retry. No jobs depend on ui-jar-full; crafted faces reference ui-jar-empty, which
+  remains approved.'
