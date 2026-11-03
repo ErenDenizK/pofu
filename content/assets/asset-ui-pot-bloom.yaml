@@ -4,15 +4,15 @@ title_tr: ui-pot-bloom
 title_en: pot-bloom (ui)
 status: in-production
 horizon: now
-summary: >-
-  Add one small sunflower growing from the soil on a short green stem with two rounded leaves:
-  a round golden-yellow bloom with a warm-brown center facing the viewer, simple soft shapes.
-  The pot and soil stay as they are.
+summary: 'Add one small sunflower growing from the soil on a short green stem with
+  two rounded leaves: a round golden-yellow bloom with a warm-brown center facing
+  the viewer, simple soft shapes. The pot and soil stay as they are.'
 links:
   variant_of:
   - asset-ui-pot-empty
 art:
-  images: []
+  images:
+  - design/art/ui/ui-pot-bloom/ui-pot-bloom.png
   jobs:
   - batch-11-ui-pilot:ui-pot-bloom
 sources:

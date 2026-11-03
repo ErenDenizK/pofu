@@ -2,15 +2,19 @@ id: asset-icon-island
 type: asset
 title_tr: icon-island
 title_en: island (icon)
-status: in-production
+status: cut
 horizon: now
-summary: 'The icon for an island: a tiny floating island, a flat soft sage lawn on a short, rounded honey-earth
-  underside, nothing on the lawn, no roots or with at most two chunky ones.'
+summary: 'The icon for an island: a tiny floating island, a flat soft sage lawn on
+  a short, rounded honey-earth underside, nothing on the lawn, no roots or with at
+  most two chunky ones.'
 notes:
-- 'Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
-  and cay-1 approved'
-- Revised and produced by batch-13-ui-rest (ui-system-v2 section 6 E); the batch-02-ui prompt is superseded.
-  Auto-picked by QA; founder review pending.
+- 'Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice:
+  island-main-s and cay-1 approved'
+- Revised and produced by batch-13-ui-rest (ui-system-v2 section 6 E); the batch-02-ui
+  prompt is superseded. Auto-picked by QA; founder review pending.
+- 'Batch13overnight: Not generated: the embedded ui-sheet-paper pilot failed its allowed
+  retry, so the manifest skips the rest of batch13. Other batch timings remain as
+  specified.'
 art:
   images: []
   jobs:

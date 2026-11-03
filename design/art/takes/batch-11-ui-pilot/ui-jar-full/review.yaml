@@ -1,0 +1,271 @@
+batch: batch-11-ui-pilot
+contact_sheet: design/art/takes/batch-11-ui-pilot/ui-jar-full/contact.jpg
+jobs:
+  ui-jar-full:
+    pick: none
+    publication: skipped
+    note: 'Skipped after the initial pair and single allowed retry pair: all four
+      takes pass automated QA but fail the manifest manual edit_stability >0.9 gate.
+      Exact ratios: t1 0.7935, t2 0.7690, t3 0.7741, t4 0.7763. No waiver, threshold
+      change or extra retry. No jobs depend on ui-jar-full; crafted faces reference
+      ui-jar-empty, which remains approved.'
+    retry_policy: Initial pair plus one additional pair exhausted; no further generation.
+      Skip only dependents.
+qa_reports:
+  1:
+    job: ui-jar-full
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 46 (R1 59)
+      value: 46.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.18
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7356
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 2.5, off-palette 0.0%
+      value: 0.8256
+    - check: edit_stability
+      status: pass
+      message: 79% of the parent level unchanged
+      value: 0.7935
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.99 of the parent level (drift compounds along a chain)
+      value: 0.9928
+    info:
+      metrics_raw:
+        L_p5: 45.8
+        L_p50: 80.7
+        L_p95: 90.6
+        C_p50: 27.9
+        C_p95: 38.0
+        C_p99: 42.3
+        detail: 2.68
+      metrics_locked:
+        L_p5: 46.2
+        L_p50: 80.6
+        L_p95: 90.6
+        C_p50: 27.8
+        C_p95: 37.5
+        C_p99: 42.2
+        detail: 2.18
+    fingerprint: 0d4a4c75e0a3ad72
+  2:
+    job: ui-jar-full
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 44 (R1 59)
+      value: 43.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.41
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7142
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.7, p95 1.5, off-palette 0.0%
+      value: 0.7157
+    - check: edit_stability
+      status: pass
+      message: 77% of the parent level unchanged
+      value: 0.769
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.90 of the parent level (drift compounds along a chain)
+      value: 0.8973
+    info:
+      metrics_raw:
+        L_p5: 43.3
+        L_p50: 80.8
+        L_p95: 90.0
+        C_p50: 25.1
+        C_p95: 35.2
+        C_p99: 39.2
+        detail: 2.88
+      metrics_locked:
+        L_p5: 43.5
+        L_p50: 80.7
+        L_p95: 89.9
+        C_p50: 25.1
+        C_p95: 34.9
+        C_p99: 39.1
+        detail: 2.41
+    fingerprint: 0d4a4c75e0a3ad72
+  3:
+    job: ui-jar-full
+    take: 3
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 35.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 45 (R1 59)
+      value: 45.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.44
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8932
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.7, p95 1.6, off-palette 0.0%
+      value: 0.7132
+    - check: edit_stability
+      status: pass
+      message: 77% of the parent level unchanged
+      value: 0.7741
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.92 of the parent level (drift compounds along a chain)
+      value: 0.9228
+    info:
+      metrics_raw:
+        L_p5: 44.7
+        L_p50: 81.0
+        L_p95: 89.7
+        C_p50: 25.8
+        C_p95: 36.0
+        C_p99: 41.3
+        detail: 2.93
+      metrics_locked:
+        L_p5: 45.0
+        L_p50: 80.9
+        L_p95: 89.6
+        C_p50: 25.8
+        C_p95: 35.5
+        C_p99: 41.1
+        detail: 2.44
+    fingerprint: 0d4a4c75e0a3ad72
+  4:
+    job: ui-jar-full
+    take: 4
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 44 (R1 59)
+      value: 44.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.5
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7062
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 1.6, off-palette 0.0%
+      value: 0.7813
+    - check: edit_stability
+      status: pass
+      message: 78% of the parent level unchanged
+      value: 0.7763
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.95 of the parent level (drift compounds along a chain)
+      value: 0.9523
+    info:
+      metrics_raw:
+        L_p5: 44.0
+        L_p50: 80.1
+        L_p95: 89.4
+        C_p50: 26.8
+        C_p95: 36.9
+        C_p99: 42.1
+        detail: 2.95
+      metrics_locked:
+        L_p5: 44.4
+        L_p50: 80.1
+        L_p95: 89.3
+        C_p50: 26.7
+        C_p95: 36.6
+        C_p99: 41.8
+        detail: 2.5
+    fingerprint: 0d4a4c75e0a3ad72
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-25d26fda-23a5-4004-8b1e-77fe68f8e807.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 2
+  source_file: /workspace/generated_images/exec-1fba6e7f-a7c6-490a-ac31-a672b871cffa.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 3
+  source_file: /workspace/generated_images/exec-78f55a7c-1c67-4a8b-9d8d-4daf74ad7fbc.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 4
+  source_file: /workspace/generated_images/exec-64930acf-3574-48ff-ba4e-76f06e8c675a.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan

@@ -1,0 +1,128 @@
+batch: batch-12-minigame-art
+contact_sheet: design/art/takes/batch-12-minigame-art/game-combo-stamp/contact.jpg
+jobs:
+  game-combo-stamp:
+    pick: 2
+    note: 'auto-picked by QA; founder review pending. Both takes pass manual native120pt
+      and four-background review: scalloped sunflower-petal rim, honey ring and a
+      large plain cream centre with no letters, symbols or marks. Take2 has the lowest
+      non-failing lock load0.3897 versus0.5389; non-failing chroma warning retained.'
+    takes:
+      t1:
+        qa: warn
+        summary: chroma_ceiling warn
+      t2:
+        qa: warn
+        summary: chroma_ceiling warn
+    approved:
+      take: 2
+      at: '2026-11-03T01:15:18+00:00'
+qa_reports:
+  1:
+    job: game-combo-stamp
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 57.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 74.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.79
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5389
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.7, p95 1.8, off-palette 0.0%
+      value: 0.7077
+    info:
+      metrics_raw:
+        L_p5: 74.4
+        L_p50: 91.1
+        L_p95: 92.7
+        C_p50: 12.1
+        C_p95: 58.1
+        C_p99: 60.7
+        detail: 1.07
+      metrics_locked:
+        L_p5: 74.8
+        L_p50: 91.1
+        L_p95: 92.7
+        C_p50: 12.1
+        C_p95: 57.5
+        C_p99: 59.4
+        detail: 0.79
+    fingerprint: 7d321491ac735128
+  2:
+    job: game-combo-stamp
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 58.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 73 (R1 59)
+      value: 73.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.71
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3897
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 3.1, off-palette 0.0%
+      value: 0.9237
+    info:
+      metrics_raw:
+        L_p5: 73.2
+        L_p50: 90.6
+        L_p95: 92.4
+        C_p50: 14.6
+        C_p95: 58.5
+        C_p99: 60.2
+        detail: 0.95
+      metrics_locked:
+        L_p5: 73.4
+        L_p50: 90.6
+        L_p95: 92.4
+        C_p50: 14.4
+        C_p95: 58.0
+        C_p99: 59.2
+        detail: 0.71
+    fingerprint: 7d321491ac735128
+manual_review:
+  exclude: []
+  note: 'Both takes pass manual native120pt and four-background review: scalloped
+    sunflower-petal rim, honey ring and a large plain cream centre with no letters,
+    symbols or marks. Take2 has the lowest non-failing lock load0.3897 versus0.5389;
+    non-failing chroma warning retained.'
