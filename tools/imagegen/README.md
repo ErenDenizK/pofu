@@ -20,6 +20,7 @@ promote the approved take with full provenance.
 | `backends.py` | `codex` (with the one marked adapter block), `openai-api` (key guard, cost estimate), `manual` |
 | `qa.py` | Normalization (keying, canvas fit, station registration, edit alignment) and every QA check |
 | `style_lock.py`, `style_lock.json` | The style lock and its presets (`lock-light` is the default; `soft-lock` was until 2026-11-02) |
+| `light.py` | The light standard: LIGHT prompt block, subject-region measurements, cell x layer grading (`design/art/light-standard.json`; [rules](../../docs/design/light-standard.md)) |
 | `relock.py` | Re-locks an approved master from its kept raw with another preset (no regeneration) |
 | `review.py` | Contact sheets, the review file, provenance |
 | `palettes.json` | The `world-props` palette (extends `design/tokens/pofu-tokens.json` for drift checks) |
