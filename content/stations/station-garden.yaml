@@ -31,6 +31,7 @@ links:
   - asset-game-bloom-left
   - asset-game-bloom-right
   - asset-game-plot-tile-honey
+  - asset-game-plot-tile-terracotta
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'
