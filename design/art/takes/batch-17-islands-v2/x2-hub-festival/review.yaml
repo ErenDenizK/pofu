@@ -1,0 +1,477 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-hub-festival/contact.jpg
+jobs:
+  x2-hub-festival:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both home edits receive source-bound
+      manual eligibility recommendations, no final take selection. Actual approved
+      parent is bare terrain/door; home oval, soil, roots, stones and round entry
+      are intentional and exempt from wonder bans. Explicit seasonal/weather/festival
+      props are additions, never an invented existing station layout. Automated style
+      checks remain advisory.
+qa_reports:
+  1:
+    job: x2-hub-festival
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 56 (R1 59)
+      value: 56.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.2 (R1 5.3)
+      value: 5.15
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4075
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.2, p95 10.7, off-palette 3.3% (top: #888855 (0.4%), #888844
+        (0.3%))'
+      value: 3.2028
+    - check: depth_ratio
+      status: pass
+      message: earth depth / width 0.21 (at most 0.32)
+      value: 0.208
+    - check: lawn_chroma
+      status: pass
+      message: lawn chroma p95 37 (palette meadow 38)
+      value: 36.8094
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the world reference (outliers: edge)'
+      value: 83.8
+    - check: edit_stability
+      status: warn
+      message: 66% of the parent level unchanged
+      value: 0.6606
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.14 of the parent level (drift compounds along a chain)
+      value: 1.1413
+    info:
+      metrics_raw:
+        L_p5: 55.4
+        L_p50: 78.8
+        L_p95: 90.4
+        C_p50: 29.8
+        C_p95: 46.7
+        C_p99: 61.8
+        detail: 6.48
+      metrics_locked:
+        L_p5: 56.4
+        L_p50: 78.7
+        L_p95: 89.9
+        C_p50: 29.7
+        C_p95: 45.0
+        C_p99: 59.1
+        detail: 5.15
+    fingerprint: 54377faaace5444d
+  2:
+    job: x2-hub-festival
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 57 (R1 59)
+      value: 56.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.3 (R1 5.3)
+      value: 5.32
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4456
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.0, p95 10.4, off-palette 2.8% (top: #888855 (0.5%), #888866
+        (0.3%))'
+      value: 2.996
+    - check: depth_ratio
+      status: pass
+      message: earth depth / width 0.21 (at most 0.32)
+      value: 0.2071
+    - check: lawn_chroma
+      status: pass
+      message: lawn chroma p95 36 (palette meadow 38)
+      value: 35.5722
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the world reference (outliers: edge)'
+      value: 83.5
+    - check: edit_stability
+      status: warn
+      message: 65% of the parent level unchanged
+      value: 0.6453
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.10 of the parent level (drift compounds along a chain)
+      value: 1.0959
+    info:
+      metrics_raw:
+        L_p5: 55.7
+        L_p50: 78.2
+        L_p95: 90.5
+        C_p50: 28.7
+        C_p95: 45.3
+        C_p99: 63.2
+        detail: 6.73
+      metrics_locked:
+        L_p5: 56.7
+        L_p50: 78.1
+        L_p95: 89.9
+        C_p50: 28.6
+        C_p95: 43.4
+        C_p99: 60.4
+        detail: 5.32
+    fingerprint: 54377faaace5444d
+manual_review:
+  recommendation_only: true
+  note: Both home edits receive source-bound manual eligibility recommendations, no
+    final take selection. Actual approved parent is bare terrain/door; home oval,
+    soil, roots, stones and round entry are intentional and exempt from wonder bans.
+    Explicit seasonal/weather/festival props are additions, never an invented existing
+    station layout. Automated style checks remain advisory.
+  takes:
+    '1':
+      pass: true
+      silhouette_name: Ayçiçeği home terrain retained with festival additions
+      evidence: Paper-lantern string links the tea area toward the sunflower; ribbon
+        wish-tree, floating pond lanterns and three visitors surround tea. Long brown
+        otter, white pointed-ear/fluffy-tail fox and small brown dormouse-like rodent
+        are visible. Warm joyful quiet lighting matches the festival. These named
+        additions do not imply the bare parent previously contained stations. Existing
+        soil-body outline, three hanging roots, six stone positions and the original
+        rounded wooden doorway remain aligned in the source-coordinate overlay/door
+        closeups. Actual1536x1024 canvas preserved; no new island shape. Native60
+        alpha is the full legitimate composite, including named additions/weather.
+      swatch_points:
+      - - 766
+        - 235
+      - - 320
+        - 220
+      - - 800
+        - 730
+      sampled_swatches:
+      - point:
+        - 766
+        - 235
+        hex: '#FEFBCC'
+      - point:
+        - 320
+        - 220
+        hex: '#987748'
+      - point:
+        - 800
+        - 730
+        hex: '#FACA9F'
+      contours: []
+      holes: []
+      components:
+      - Actual registered transparent-alpha composite; the main terrain and all named
+        additions/weather are retained from its real alpha, never a filled opaque
+        scene rectangle.
+      hub_exception:
+        wonder_template_ban_applicable: false
+        home_lawn_soil_roots_pebbles_door_intentionally_retained: true
+        actual_parent_is_bare_terrain_and_door: true
+        named_new_props_are_allowed: true
+        no_prior_station_layout_inferred: true
+      rubric_applicability: Wonder uniqueness production rubric is not a hub eligibility
+        bar; unchanged home silhouette is intentional. Style metrics remain advisory.
+      parent_reference:
+        source_file: /workspace/run17/design/art/masters/island-main-s/island-main-s.png
+        original_png_sha256: 75840e71b906b9fcc63c1b2572429024ce901fa7357c974c43916416573a05a7
+        rgba_sha256: 29edc760d4e3228078d567c9b0aac10306922dbcd0eca8c7ff84a16960d6f9da
+        dimensions:
+        - 1536
+        - 1024
+        door_roi_source_coords:
+        - 414
+        - 598
+        - 572
+        - 754
+        root_tip_landmarks_approx:
+        - - 236
+          - 790
+        - - 591
+          - 909
+        - - 1307
+          - 781
+        pebble_centres_approx:
+        - - 323
+          - 612
+        - - 366
+          - 649
+        - - 625
+          - 730
+        - - 677
+          - 773
+        - - 973
+          - 687
+        - - 1086
+          - 735
+      uncertainty: Soft weather/steam/aurora/light halos are semi-transparent; the
+        true registered alpha threshold127 used by the official reviewer is recorded
+        for the binary diagnostic only, not an acceptance threshold. All real components
+        and alpha holes remain in extraction; no unseen terrain is reconstructed.
+        Named additions obscure parts of the original lawn, so no claim about hidden
+        pre-existing stations is made. Small visitor species cues are plausible at
+        full size but cannot be taxonomically certified at60px; no extra resident
+        is inferred.
+      source_file: /workspace/generated_images/exec-2550b6f2-be70-4fc3-9945-9be76499ab0c.png
+      original_generated_png_sha256: 69d0ea32979b9f230299903acc6ec3ed5ee2cb22ad05c62f4b154ab5c96736a1
+      rgba_sha256: 7d8930885a00f0b9d5f86609acfec0d0f8ba1911ad8f9e8b71ddbf0705d1ffaa
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      annotation_source_inbox_sha256: 4fddfd678d80d4e5dda4ba19be8b7177feafb78ca512752e1de97664e437357c
+      callback_sha256: 419a4c2c8607cb7b9854e2494e3d5ce18bb004c5610a34a04b99d1ae5bcb0a5c
+      observed_bbox:
+      - 35
+      - 46
+      - 1501
+      - 912
+      annotation_kind: Actual transparent sprite alpha
+      native_profile_dimensions:
+      - 60
+      - 35
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      mask_source: /workspace/run17/build/imagegen/batch-17-islands-v2/locked/world__x2-hub-festival--t1.png
+      mask_source_sha256: 08ccc08862406bdf631d6eb8bdc55e963df4f9021f30b1376478bb3207dd9254
+      mask_threshold_alpha: 127
+      mask_sha256: e92528bc282b9cf3c3cd852de6136427ca499185a9f2d49fb3295e8ce8a811fa
+      alpha_component_count_8connected: 5
+      alpha_largest_components:
+      - area_px: 712275
+        bbox:
+        - 35
+        - 99
+        - 1501
+        - 912
+      - area_px: 5608
+        bbox:
+        - 965
+        - 46
+        - 1046
+        - 135
+      - area_px: 1863
+        bbox:
+        - 658
+        - 86
+        - 706
+        - 136
+      - area_px: 954
+        bbox:
+        - 1127
+        - 114
+        - 1161
+        - 150
+      - area_px: 303
+        bbox:
+        - 330
+        - 133
+        - 352
+        - 153
+      alpha_enclosed_hole_count_informational: 31
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-workflow/x2-hub-festival-t1-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-workflow/x2-hub-festival-t1-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+    '2':
+      pass: true
+      silhouette_name: Ayçiçeği home terrain retained with festival additions
+      evidence: Lantern garland, ribbon wish-tree, floating lotus-like pond lights
+        and otter/white fox/small brown dormouse-like visitor gather at the tea counter.
+        Ground/root/pebble/door layout is retained. The garland, cushions, ribbons
+        and flower/pond decorations support the named festival rather than a new island
+        landform. Existing soil-body outline, three hanging roots, six stone positions
+        and the original rounded wooden doorway remain aligned in the source-coordinate
+        overlay/door closeups. Actual1536x1024 canvas preserved; no new island shape.
+        Native60 alpha is the full legitimate composite, including named additions/weather.
+      swatch_points:
+      - - 740
+        - 257
+      - - 320
+        - 220
+      - - 800
+        - 730
+      sampled_swatches:
+      - point:
+        - 740
+        - 257
+        hex: '#FDD988'
+      - point:
+        - 320
+        - 220
+        hex: '#D1B76E'
+      - point:
+        - 800
+        - 730
+        hex: '#FAD1A8'
+      contours: []
+      holes: []
+      components:
+      - Actual registered transparent-alpha composite; the main terrain and all named
+        additions/weather are retained from its real alpha, never a filled opaque
+        scene rectangle.
+      hub_exception:
+        wonder_template_ban_applicable: false
+        home_lawn_soil_roots_pebbles_door_intentionally_retained: true
+        actual_parent_is_bare_terrain_and_door: true
+        named_new_props_are_allowed: true
+        no_prior_station_layout_inferred: true
+      rubric_applicability: Wonder uniqueness production rubric is not a hub eligibility
+        bar; unchanged home silhouette is intentional. Style metrics remain advisory.
+      parent_reference:
+        source_file: /workspace/run17/design/art/masters/island-main-s/island-main-s.png
+        original_png_sha256: 75840e71b906b9fcc63c1b2572429024ce901fa7357c974c43916416573a05a7
+        rgba_sha256: 29edc760d4e3228078d567c9b0aac10306922dbcd0eca8c7ff84a16960d6f9da
+        dimensions:
+        - 1536
+        - 1024
+        door_roi_source_coords:
+        - 414
+        - 598
+        - 572
+        - 754
+        root_tip_landmarks_approx:
+        - - 236
+          - 790
+        - - 591
+          - 909
+        - - 1307
+          - 781
+        pebble_centres_approx:
+        - - 323
+          - 612
+        - - 366
+          - 649
+        - - 625
+          - 730
+        - - 677
+          - 773
+        - - 973
+          - 687
+        - - 1086
+          - 735
+      uncertainty: Soft weather/steam/aurora/light halos are semi-transparent; the
+        true registered alpha threshold127 used by the official reviewer is recorded
+        for the binary diagnostic only, not an acceptance threshold. All real components
+        and alpha holes remain in extraction; no unseen terrain is reconstructed.
+        Named additions obscure parts of the original lawn, so no claim about hidden
+        pre-existing stations is made. Small visitor species cues are plausible at
+        full size but cannot be taxonomically certified at60px; no extra resident
+        is inferred.
+      source_file: /workspace/generated_images/exec-3850fffa-7ba8-4707-9450-18dbdf094721.png
+      original_generated_png_sha256: f9c277df4125a792b6eae3abfb258fdf7fc5e2eae4e00270be69211dacf94247
+      rgba_sha256: 5f30eaea1c7cc1d4f66ed523b5c52b677f3bf58e7f14c8bbb291673b5d8059b1
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      annotation_source_inbox_sha256: c2ff066fe4ed3a353d1b25ef08cf72e27743bc3b624001911c3399ad9de3bed9
+      callback_sha256: 8a324df0c91195bfb2587dcc6c207c5dcbecd216617a42efc2174f0e62e26af3
+      observed_bbox:
+      - 37
+      - 110
+      - 1500
+      - 912
+      annotation_kind: Actual transparent sprite alpha
+      native_profile_dimensions:
+      - 60
+      - 33
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      mask_source: /workspace/run17/build/imagegen/batch-17-islands-v2/locked/world__x2-hub-festival--t2.png
+      mask_source_sha256: 638eb6777399bb473fe83bda475f3c56a777caa1a152356753dd2641105976c3
+      mask_threshold_alpha: 127
+      mask_sha256: 7a66e425ee0218a553349dfffa183bae672716e9d00b9a09bb005b7318318e88
+      alpha_component_count_8connected: 1
+      alpha_largest_components:
+      - area_px: 706625
+        bbox:
+        - 37
+        - 110
+        - 1500
+        - 912
+      alpha_enclosed_hole_count_informational: 18
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-workflow/x2-hub-festival-t2-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-workflow/x2-hub-festival-t2-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+  reviewed_at: '2026-11-03T16:22:29.670604+00:00'
+  qa_preview: /workspace/art-operator-runtime/batch17/reviews-workflow/x2-hub-festival-review.jpg
+  preview_sha256: 18aceb3bf7bb844b59e71123f60a80e5ba6e5f9fc69891a32b5c5d6bdaa791a2
+  preview_verified: true
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-2550b6f2-be70-4fc3-9945-9be76499ab0c.png
+  original_generated_png_sha256: 69d0ea32979b9f230299903acc6ec3ed5ee2cb22ad05c62f4b154ab5c96736a1
+  inbox_png_sha256: 4fddfd678d80d4e5dda4ba19be8b7177feafb78ca512752e1de97664e437357c
+  rgba_sha256: 7d8930885a00f0b9d5f86609acfec0d0f8ba1911ad8f9e8b71ddbf0705d1ffaa
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 54377faaace5444d
+- take: 2
+  source_file: /workspace/generated_images/exec-3850fffa-7ba8-4707-9450-18dbdf094721.png
+  original_generated_png_sha256: f9c277df4125a792b6eae3abfb258fdf7fc5e2eae4e00270be69211dacf94247
+  inbox_png_sha256: c2ff066fe4ed3a353d1b25ef08cf72e27743bc3b624001911c3399ad9de3bed9
+  rgba_sha256: 5f30eaea1c7cc1d4f66ed523b5c52b677f3bf58e7f14c8bbb291673b5d8059b1
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 54377faaace5444d
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
