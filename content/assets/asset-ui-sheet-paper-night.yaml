@@ -29,3 +29,27 @@ notes:
   the recolor profile requires retained lightness and light structure. No extra night
   palette is declared. The allowed retry is exhausted; no further generation and no
   threshold waiver. No jobs depend on this night sheet.
+- 'Retry 2026-11-03 skipped after four takes: Re-evaluated all four saved original
+  generations under current main QA. One generation retry was already spent historically;
+  no new image call or fifth generation. Current official profile is night. Required
+  dark paper/cream stitches are reviewed from retained originals; no thresholds are
+  waived. Current CLI salvage fingerprint denotes re-ingestion for current QA, not
+  a new generation. Historical generation lineage: [{"old_take": 1, "source_file":
+  "/workspace/generated_images/exec-9163cfc3-34d0-4434-a0d4-6ca06a079669.png", "original_generated_png_sha256":
+  "290649adfcafd37aa86c922e5063223cf2a8084f406b868945bdca9b6b578890", "historical_generation_fingerprint":
+  "9ebe6b290d790baa"}, {"old_take": 2, "source_file": "/workspace/generated_images/exec-f4acf272-5b89-4683-b822-90fdeb5cfac4.png",
+  "original_generated_png_sha256": "96599ac728e9bd075185a58ceaae5ca1f991818eafb847559aed91527302a061",
+  "historical_generation_fingerprint": "9ebe6b290d790baa"}, {"old_take": 3, "source_file":
+  "/workspace/generated_images/exec-7dd8a214-e8d3-4b57-86d3-0cfc76fba422.png", "original_generated_png_sha256":
+  "6b5e7612c9b79e4119421a7908edc03664118e59ca55c1803c376cf01ed43871", "historical_generation_fingerprint":
+  "9ebe6b290d790baa"}, {"old_take": 4, "source_file": "/workspace/generated_images/exec-6665f0c0-39d7-4c3a-93cf-c4fb9e3d1570.png",
+  "original_generated_png_sha256": "0efc3bcbd79e2262c2bbc239be2d41a81f1b8c6ab78db91e916ca47f6e3f7b94",
+  "historical_generation_fingerprint": "9ebe6b290d790baa"}] Automated failures: t1
+  palette_drift: mean dE 34.3, p95 36.3, off-palette 98.7% (top: #334477 (67.7%),
+  #444477 (23.1%)), edit_structure: light structure matches the parent (r -0.80);
+  t2 palette_drift: mean dE 35.6, p95 37.4, off-palette 98.6% (top: #334477 (83.0%),
+  #444477 (6.1%)), edit_structure: light structure matches the parent (r -0.80); t3
+  palette_drift: mean dE 40.7, p95 44.9, off-palette 98.7% (top: #333377 (76.6%),
+  #334477 (11.5%)), edit_structure: light structure matches the parent (r -0.76);
+  t4 palette_drift: mean dE 36.1, p95 37.6, off-palette 98.8% (top: #334477 (88.4%),
+  #444477 (5.0%)), edit_structure: light structure matches the parent (r -0.78).'

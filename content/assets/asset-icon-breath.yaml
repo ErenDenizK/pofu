@@ -25,3 +25,23 @@ notes:
   fails icon_thin_parts 0.0404. The allowed retry pair is exhausted. None passes,
   no threshold waiver, no further generation. The independent icon family continues;
   no jobs depend on icon-breath.'
+- 'Retry 2026-11-03 skipped after four takes: Re-evaluated all four saved original
+  generations under current main QA. One generation retry was already spent historically;
+  no new image call or fifth generation. Production icon legibility remains a hard
+  check; exploration advisories do not apply to this icon. Current CLI salvage fingerprint
+  denotes re-ingestion for current QA, not a new generation. Historical generation
+  lineage: [{"old_take": 1, "source_file": "/workspace/generated_images/exec-66eaf9d7-75dc-4547-8dc2-6d16157acbd6.png",
+  "original_generated_png_sha256": "0049130c2439ea4fb5ef7cf9e0a444f752b954199783c27eb66a39b8a1420bd1",
+  "historical_generation_fingerprint": "4d214ec94fc06fbd"}, {"old_take": 2, "source_file":
+  "/workspace/generated_images/exec-33997e3b-657a-424b-8ed4-e37e4488ae81.png", "original_generated_png_sha256":
+  "5074783ec45e3d8d94a9ffbbbc1cd32675c2d6158e79c19ae5cc55ec39636b41", "historical_generation_fingerprint":
+  "4d214ec94fc06fbd"}, {"old_take": 3, "source_file": "/workspace/generated_images/exec-c07b5b43-df4d-4ad6-8956-9f743afe60c2.png",
+  "original_generated_png_sha256": "7c00d81788e46a81f29abd71ff83fadb702b3e1cbb7119255dd6bb00ef1c74f8",
+  "historical_generation_fingerprint": "4d214ec94fc06fbd"}, {"old_take": 4, "source_file":
+  "/workspace/generated_images/exec-766e8fcf-c7ba-4589-803e-b286b459dac8.png", "original_generated_png_sha256":
+  "6d31cfa8e15e6d4bdaaa10ec1bf5cf6bd7074571eaeec2e34fa61738bfd8dfbc", "historical_generation_fingerprint":
+  "4d214ec94fc06fbd"}] Automated failures: t1 icon_on_light_glass: 13% of the icon
+  separates from light glass at 24 pt; t2 icon_on_light_glass: 16% of the icon separates
+  from light glass at 24 pt; t3 icon_on_light_glass: 12% of the icon separates from
+  light glass at 24 pt; t4 icon_on_light_glass: 12% of the icon separates from light
+  glass at 24 pt.'

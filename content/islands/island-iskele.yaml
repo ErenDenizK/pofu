@@ -4,13 +4,19 @@ title_tr: İskele
 title_en: The harbor
 status: planned
 horizon: later
-summary: >-
-  Ayçiçeği's harbor district, no longer a separate island: a tea-and-simit pier growing from the home plate's right edge into the cloud sea. The vapur docks here with postcards, rumour objects, visiting residents and goods from every island. Stations: simit cart, ferry pier, lighthouse. Resident: Simit, a honey tabby kitten. Game: loading the vapur (sort puzzle).
+summary: 'Ayçiçeği''s harbor district, no longer a separate island: a tea-and-simit
+  pier growing from the home plate''s right edge into the cloud sea. The vapur docks
+  here with postcards, rumour objects, visiting residents and goods from every island.
+  Stations: simit cart, ferry pier, lighthouse. Resident: Simit, a honey tabby kitten.
+  Game: loading the vapur (sort puzzle).'
 notes:
-- >-
-  Revision 2026-11-03 (archipelago-system.md 1A, 11): merged into the home cluster as Ayçiçeği's harbor district (1A.2); unfolds on tended days 1 to 3; the vapur is the archipelago's one ferry.
-- >-
-  Proposed (archipelago-system.md): a yield island of the launch pair and the archipelago's curiosity inbox (rumour objects wash up on its pier); toy: the ferry horn, answered from the fog when a rumour is active; island game: loading the vapur (Pack); free tier.
+- 'Revision 2026-11-03 (archipelago-system.md 1A, 11): merged into the home cluster
+  as Ayçiçeği''s harbor district (1A.2); unfolds on tended days 1 to 3; the vapur
+  is the archipelago''s one ferry.'
+- 'Proposed (archipelago-system.md): a yield island of the launch pair and the archipelago''s
+  curiosity inbox (rumour objects wash up on its pier); toy: the ferry horn, answered
+  from the fog when a rumour is active; island game: loading the vapur (Pack); free
+  tier.'
 - 'Arrives at 8 tended days and the çay ocağı at level 3 ("Mochi''s regulars want
   simit with their tea"). Simulation: day 9 for every archetype.'
 - Stations open 0, 3 and 7 tended days after it arrives.
@@ -32,6 +38,7 @@ links:
   - asset-iskele-horn-1
   - asset-iskele-crates-1
   - asset-iskele-lamp-1
+  - asset-iskele-goat
 sources:
 - doc: docs/product/archipelago-system.md
   anchor: '#11-island-concepts'

@@ -2,17 +2,16 @@ batch: retry-2026-11-03
 contact_sheet: design/art/takes/retry-2026-11-03/simit-kitten-ears/contact.jpg
 jobs:
   simit-kitten-ears:
-    pick: null
-    publication: stopped before selection; no master promoted
-    note: Both pre-stop takes cover the ears with the paws, squeeze the eyes into
-      happy curves and open a soft o mouth. Pre-stop manual review proposed t1 by
-      Harmony71.7 versus69.1, but the selection was not sealed and promote was never
-      invoked. Preserve both candidates without making a new selection.
-    pre_stop_unsealed_proposal:
-      take: 1
-      approved: false
-      note: Historical proposal only; no selection was sealed and this archive makes
-        no new pick.
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Retained pair re-posted under
+      main9ede62e; no new image generation. Both raise the front paws to cover both
+      ears, squeeze the eyes into happy curves and open a soft o mouth, with no tears
+      or worried look. Body, tail, feet and kitten identity remain. Current reports
+      have warnings only from the inherited ground line; t2 also warns on Harmony69.1.
+      Stability passes at0.7572/0.7804; no obsolete manual >0.9 gate. The previously
+      unsealed proposal is now selected as t1 by Harmony71.7 versus69.1, with no character
+      lock-load check and no failure waived.
 qa_reports:
   1:
     job: simit-kitten-ears
@@ -142,6 +141,15 @@ qa_reports:
         C_p99: 55.9
         detail: 4.46
     fingerprint: 549bb6831e90149b
+manual_review:
+  excluded_takes: []
+  note: Retained pair re-posted under main9ede62e; no new image generation. Both raise
+    the front paws to cover both ears, squeeze the eyes into happy curves and open
+    a soft o mouth, with no tears or worried look. Body, tail, feet and kitten identity
+    remain. Current reports have warnings only from the inherited ground line; t2
+    also warns on Harmony69.1. Stability passes at0.7572/0.7804; no obsolete manual
+    >0.9 gate. The previously unsealed proposal is now selected as t1 by Harmony71.7
+    versus69.1, with no character lock-load check and no failure waived.
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-132440f7-0593-4bef-a55c-c80a06b7101d.png
@@ -149,42 +157,17 @@ sources:
   inbox_png_sha256: c9d2e26bc44a56828580e0908934cdca8a20e8c591c27d594c5e1f760ee627fb
   rgba_sha256: 518a10587d9924e4932a3d031deca0f3efcd80d9859db81b392d5efe5e551d4d
   source_rgba_matches_inbox: true
-  original_dimensions:
-  - 1024
-  - 1536
-  archived_dimensions:
-  - 1024
-  - 1536
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   fingerprint: 549bb6831e90149b
-  qa_json_sha256: a17913d00d9ee0bc920017c8c3457632d53afab6358927d2cf6333682c88872e
 - take: 2
   source_file: /workspace/generated_images/exec-83e9e97f-b058-4e0a-ad3c-bb513b17386d.png
   original_generated_png_sha256: 2c911a19941d55af5641e608e94b34b34498cca1d8f39da353d98e33096a713a
   inbox_png_sha256: 4c233da536dbb329beba15a1557b8840582054ae7b71f4bbd4a491f101ccba8d
   rgba_sha256: c44ec4fb1c89da429ea18585cc193abf370c261e883d5f7cd8a05051ca45396f
   source_rgba_matches_inbox: true
-  original_dimensions:
-  - 1024
-  - 1536
-  archived_dimensions:
-  - 1024
-  - 1536
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   fingerprint: 549bb6831e90149b
-  qa_json_sha256: 581eae9ef8a76b41d00654d655a858850be21af0d0ec2c0d126e935ba7bfa144
-global_stop:
-  reason: three consecutive actual job failures
-  last_event:
-    job: retry-2026-11-03/ui-sheet-paper-night
-    status: failed
-    consecutive_actual_failures: 3
-    at: '2026-11-03T14:12:48.328101+00:00'
-global_stop_sha256: 8c25535bcf7a8cfd83b5ecdad7b2c817b66e1776f9fa9563eb81f583afe1f170
-preservation_only: true
-note: No generation, post, selection, promotion, Harmony command or content edit was
-  performed by this archive operation.

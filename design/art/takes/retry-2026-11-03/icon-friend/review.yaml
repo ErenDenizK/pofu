@@ -3,10 +3,15 @@ contact_sheet: design/art/takes/retry-2026-11-03/icon-friend/contact.jpg
 jobs:
   icon-friend:
     pick: 1
-    publication: selected before global stop; promotion pending
-    note: Both takes show two soft sprouts in one clay pot, each with two broad chunky
-      leaves; the paired silhouettes and pot remain readable at 28, 44 and 60 pt on
-      pale and dark backgrounds. No lettering, thin stems or extra background plate.
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Resume from the fixed pre-stop
+      original candidate, with zero image generation. Re-posted both retained PNGs
+      under main9ede62e; both locked RGBA rasters match their retained versions exactly
+      and the same eligible take remains lowest lock load. Fresh light/dark small-size
+      visual review reconfirms the choice. Both takes show two soft sprouts in one
+      clay pot, each with two broad chunky leaves; the paired silhouettes and pot
+      remain readable at 28, 44 and 60 pt on pale and dark backgrounds. No lettering,
+      thin stems or extra background plate.
 qa_reports:
   1:
     job: icon-friend
@@ -153,14 +158,14 @@ qa_reports:
         detail: 0.74
     fingerprint: 10c4e27325479028
 manual_review:
-  note: Both takes show two soft sprouts in one clay pot, each with two broad chunky
-    leaves; the paired silhouettes and pot remain readable at 28, 44 and 60 pt on
-    pale and dark backgrounds. No lettering, thin stems or extra background plate.
-  terminal_decided_at: '2026-11-03T14:07:28.912101+00:00'
-  decision_qa_sha256: 157159845c22962adeb98dbb857ab7638da9b706cc11801d6ad596334f3e1c49
   excluded_takes: []
-  preservation_only_after_global_stop: true
-  no_new_selection_or_promotion: true
+  note: Resume from the fixed pre-stop original candidate, with zero image generation.
+    Re-posted both retained PNGs under main9ede62e; both locked RGBA rasters match
+    their retained versions exactly and the same eligible take remains lowest lock
+    load. Fresh light/dark small-size visual review reconfirms the choice. Both takes
+    show two soft sprouts in one clay pot, each with two broad chunky leaves; the
+    paired silhouettes and pot remain readable at 28, 44 and 60 pt on pale and dark
+    backgrounds. No lettering, thin stems or extra background plate.
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-704e36dd-b5c1-4582-aa1a-78987015be08.png

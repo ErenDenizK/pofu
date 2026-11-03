@@ -16,6 +16,8 @@ links:
   - station-lighthouse
   uses_asset:
   - asset-simit-kitten
+  - asset-simit-kitten-work
+  - asset-simit-kitten-ears
 sources:
 - doc: docs/product/game-design.md
   anchor: '#8-residents-neighbors'

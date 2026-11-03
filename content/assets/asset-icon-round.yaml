@@ -2,12 +2,13 @@ id: asset-icon-round
 type: asset
 title_tr: icon-round
 title_en: round (icon)
-status: planned
+status: in-production
 horizon: now
 summary: 'The icon for an earned round: a round, chunky honey-wood token with a rounded
   rim and a simple sunflower burnt into its face in a darker brown, large shapes only.'
 art:
-  images: []
+  images:
+  - design/art/ui/icon-round/icon-round.png
   jobs:
   - batch-13-ui-rest:icon-round
   - retry-2026-11-03:icon-round

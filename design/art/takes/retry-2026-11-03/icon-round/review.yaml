@@ -3,10 +3,14 @@ contact_sheet: design/art/takes/retry-2026-11-03/icon-round/contact.jpg
 jobs:
   icon-round:
     pick: 1
-    publication: selected before global stop; promotion pending
-    note: Both takes show a chunky honey-wood token with a rounded rim and a simple
-      dark burnt sunflower. The token and its large sunflower mark remain readable
-      at 28, 44 and 60 pt on pale and dark backgrounds.
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Resume from the fixed pre-stop
+      original candidate, with zero image generation. Re-posted both retained PNGs
+      under main9ede62e; both locked RGBA rasters match their retained versions exactly
+      and the same eligible take remains lowest lock load. Fresh light/dark small-size
+      visual review reconfirms the choice. Both takes show a chunky honey-wood token
+      with a rounded rim and a simple dark burnt sunflower. The token and its large
+      sunflower mark remain readable at 28, 44 and 60 pt on pale and dark backgrounds.
 qa_reports:
   1:
     job: icon-round
@@ -151,14 +155,14 @@ qa_reports:
         detail: 1.03
     fingerprint: 505db64906f64301
 manual_review:
-  note: Both takes show a chunky honey-wood token with a rounded rim and a simple
-    dark burnt sunflower. The token and its large sunflower mark remain readable at
-    28, 44 and 60 pt on pale and dark backgrounds.
-  terminal_decided_at: '2026-11-03T14:07:28.998650+00:00'
-  decision_qa_sha256: 1b0e875c01f7b499c266194c4f6d55361fa42e7f8b880e73a8a468006a68ea81
   excluded_takes: []
-  preservation_only_after_global_stop: true
-  no_new_selection_or_promotion: true
+  note: Resume from the fixed pre-stop original candidate, with zero image generation.
+    Re-posted both retained PNGs under main9ede62e; both locked RGBA rasters match
+    their retained versions exactly and the same eligible take remains lowest lock
+    load. Fresh light/dark small-size visual review reconfirms the choice. Both takes
+    show a chunky honey-wood token with a rounded rim and a simple dark burnt sunflower.
+    The token and its large sunflower mark remain readable at 28, 44 and 60 pt on
+    pale and dark backgrounds.
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-d53e07bd-dd81-4f65-bd31-8a48c2125818.png

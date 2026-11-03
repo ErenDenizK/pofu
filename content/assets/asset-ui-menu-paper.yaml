@@ -2,14 +2,15 @@ id: asset-ui-menu-paper
 type: asset
 title_tr: ui-menu-paper
 title_en: menu-paper (ui)
-status: planned
+status: in-production
 horizon: now
 summary: A small cream paper card with four softly rounded corners, a thin row of
   small, even, warm-brown stitches just inside its edge all the way around, and a
   faint darker paper edge. The middle is plain, flat, even cream paper, tileable.
   Seen straight on. Nothing written on it.
 art:
-  images: []
+  images:
+  - design/art/ui/ui-menu-paper/ui-menu-paper.png
   jobs:
   - batch-13-ui-rest:ui-menu-paper
   - retry-2026-11-03:ui-menu-paper

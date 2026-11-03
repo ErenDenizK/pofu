@@ -3,10 +3,15 @@ contact_sheet: design/art/takes/retry-2026-11-03/icon-cay/contact.jpg
 jobs:
   icon-cay:
     pick: 2
-    publication: selected before global stop; promotion pending
-    note: Both takes show one chunky tulip-shaped amber tea glass on a cream saucer,
-      painted as a soft tinted solid shape. The narrow waist, flared lip and saucer
-      remain identifiable at 28, 44 and 60 pt on pale and dark backgrounds.
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Resume from the fixed pre-stop
+      original candidate, with zero image generation. Re-posted both retained PNGs
+      under main9ede62e; both locked RGBA rasters match their retained versions exactly
+      and the same eligible take remains lowest lock load. Fresh light/dark small-size
+      visual review reconfirms the choice. Both takes show one chunky tulip-shaped
+      amber tea glass on a cream saucer, painted as a soft tinted solid shape. The
+      narrow waist, flared lip and saucer remain identifiable at 28, 44 and 60 pt
+      on pale and dark backgrounds.
 qa_reports:
   2:
     job: icon-cay
@@ -152,14 +157,14 @@ qa_reports:
         detail: 0.77
     fingerprint: b4b6ae3e2d0d6753
 manual_review:
-  note: Both takes show one chunky tulip-shaped amber tea glass on a cream saucer,
-    painted as a soft tinted solid shape. The narrow waist, flared lip and saucer
-    remain identifiable at 28, 44 and 60 pt on pale and dark backgrounds.
-  terminal_decided_at: '2026-11-03T14:07:28.881620+00:00'
-  decision_qa_sha256: 766e6f8123d2b9a4f53b641e989a5488dec90b06edc33a04116907c3584e36e3
   excluded_takes: []
-  preservation_only_after_global_stop: true
-  no_new_selection_or_promotion: true
+  note: Resume from the fixed pre-stop original candidate, with zero image generation.
+    Re-posted both retained PNGs under main9ede62e; both locked RGBA rasters match
+    their retained versions exactly and the same eligible take remains lowest lock
+    load. Fresh light/dark small-size visual review reconfirms the choice. Both takes
+    show one chunky tulip-shaped amber tea glass on a cream saucer, painted as a soft
+    tinted solid shape. The narrow waist, flared lip and saucer remain identifiable
+    at 28, 44 and 60 pt on pale and dark backgrounds.
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-47fa3565-301f-47a1-bbe6-1a46ddffd543.png

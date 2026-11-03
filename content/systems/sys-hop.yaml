@@ -4,20 +4,17 @@ title_tr: Hop!
 title_en: Hop!
 status: in-app
 horizon: now
-summary: >-
-  Pofu's full-screen cover on the open path. Since gate v2 it lands directly on the care rung:
-  each open row says what it does to calm and to Pofu, "Boş ver" is primary, and optional
-  reason chips only change Pofu's tone.
+summary: 'Pofu''s full-screen cover on the open path. Since gate v2 it lands directly
+  on the care rung: each open row says what it does to calm and to Pofu, "Boş ver"
+  is primary, and optional reason chips only change Pofu''s tone.'
 notes:
-- >-
-  The backdrop is the world at the Home framing, blurred and dimmed: the stake, shown and
-  not explained.
+- 'The backdrop is the world at the Home framing, blurred and dimmed: the stake, shown
+  and not explained.'
 - 'A22: Hop! shows the world and opens it only through the minute.'
-- >-
-  Timing: notification tap to first frame ≤ 800 ms warm, ≤ 1.5 s cold; skip path ≤ 3 s.
-- >-
-  The ladder: pause → intent → care → ask a friend on the fourth rapid reach, which falls
-  back to the breath until friends ship.
+- 'Timing: notification tap to first frame ≤ 800 ms warm, ≤ 1.5 s cold; skip path
+  ≤ 3 s.'
+- 'The ladder: pause → intent → care → ask a friend on the fourth rapid reach, which
+  falls back to the breath until friends ship.'
 links:
   leads_to:
   - sys-the-minute
@@ -29,6 +26,9 @@ links:
   drains:
   - sys-calm
   - sys-wellbeing
+  uses_asset:
+  - asset-icon-skip
+  - asset-icon-round
 sources:
 - doc: docs/product/ux/gate-v2.md
   anchor: '#61-the-landing'

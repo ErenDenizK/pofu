@@ -4,12 +4,11 @@ title_tr: Arkadaşlar
 title_en: Friends
 status: planned
 horizon: later
-summary: >-
-  Serverless friend approval (ADR-0005) as a rung on the fourth rapid reach, Phase 5. Until
-  it ships, the fourth rapid reach falls back to the breath, never to a lockout.
+summary: Serverless friend approval (ADR-0005) as a rung on the fourth rapid reach,
+  Phase 5. Until it ships, the fourth rapid reach falls back to the breath, never
+  to a lockout.
 notes:
-- >-
-  Friends visiting each other's islands is a year-one idea; no comparison (A8).
+- Friends visiting each other's islands is a year-one idea; no comparison (A8).
 links:
   uses_asset:
   - asset-icon-friend

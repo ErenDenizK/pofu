@@ -1,0 +1,102 @@
+{
+  "job": "simit-kitten-work",
+  "batch": "retry-2026-11-03",
+  "asset": "char__simit-kitten-work",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T15:02:19+00:00",
+  "image": "design/art/masters/simit-kitten-work/simit-kitten-work.png",
+  "raw": "design/art/masters/simit-kitten-work/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "6c681022e2f2b0f5",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached kitten, Simit, into her working pose. Change only\nher two front paws: they now hold a small round wooden tray in\nfront of her chest with three plump sesame-crusted simit rings\n(golden-brown rings dotted with cream seeds) on it. Her ears, head,\nface, body, tail and feet stay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a ground shadow, steam, text, a curl on the head.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/simit-kitten/simit-kitten.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T13:53:29+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 57 (R1 51)",
+        "value": 56.6
+      },
+      {
+        "check": "value_floor",
+        "status": "warn",
+        "message": "lightness p5 44 (R1 59)",
+        "value": 44.4
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 6.4 (R1 5.3)",
+        "value": 6.42
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.2, p95 9.6, off-palette 3.9% (top: #995522 (0.4%), #884411 (0.2%))",
+        "value": 2.2282
+      },
+      {
+        "check": "ground_line",
+        "status": "warn",
+        "message": "feet at 92.6% of the height (contract 88%)",
+        "value": 0.9258
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 80 against the char reference (outliers: C_p95, detail)",
+        "value": 79.8
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "87% of the parent level unchanged",
+        "value": 0.8681
+      },
+      {
+        "check": "edit_chroma",
+        "status": "warn",
+        "message": "chroma x1.18 of the parent level (drift compounds along a chain)",
+        "value": 1.183
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Retained pair re-posted under main9ede62e; no new image generation. Both preserve the approved kitten identity and framing and change the front paws to hold one round wooden tray with exactly three simit rings. No head curl, steam or text. Current reports have warnings only: chroma, value, palette drift and inherited ground line; t2 additionally warns on edit_chroma x1.183. Stability passes at0.8622/0.8681; no obsolete manual >0.9 gate. The previously unsealed proposal is now selected as t2 by Harmony79.8 versus79.0, with no character lock-load check and no failure waived."
+}

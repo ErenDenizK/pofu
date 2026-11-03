@@ -4,17 +4,15 @@ title_tr: Plus
 title_en: 'Plus: variety, never progress'
 status: planned
 horizon: later
-summary: >-
-  Plus sells extra style variants, extra residents with cosmetic stalls that produce nothing,
-  seasonal station skins and island themes. Never seeds, calm, wellbeing, speed, time or islands.
+summary: Plus sells extra style variants, extra residents with cosmetic stalls that
+  produce nothing, seasonal station skins and island themes. Never seeds, calm, wellbeing,
+  speed, time or islands.
 notes:
-- >-
-  A Plus member and a free member who behave the same have the same seeds, calm, islands and
-  levels.
+- A Plus member and a free member who behave the same have the same seeds, calm, islands
+  and levels.
 - Monetization ADR and StoreKit 2 in Phase 6.
-- >-
-  Proposal (2026-11-02, awaiting the founder): Plus also opens every island after İskele
-  (docs/product/monetization.md); see idea-open-monetization.
+- 'Proposal (2026-11-02, awaiting the founder): Plus also opens every island after
+  İskele (docs/product/monetization.md); see idea-open-monetization.'
 sources:
 - doc: docs/product/monetization.md
   anchor: '#5-the-four-models'
@@ -26,3 +24,6 @@ group: meta
 board:
   col: 9
   row: 3
+links:
+  uses_asset:
+  - asset-icon-plus
