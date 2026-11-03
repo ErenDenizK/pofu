@@ -1,0 +1,584 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-leylek-a/contact.jpg
+jobs:
+  x2-leylek-a:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after the initial pair and one allowed fresh retry pair: all four
+      visibly reuse the home wooden oval/round entry with circular cross-window, a
+      hard forbidden home-door motif for wonder concepts. Woven nest/stork flight
+      otherwise matches the brief, but a style pass cannot waive this semantic ban.
+      The QA annotation profiles isolate the visible nest body for reference only;
+      no complete flight-assembly silhouette pass is claimed. No true dependents;
+      Leylek B remains independent. No fifth image call.'
+qa_reports:
+  1:
+    job: x2-leylek-a
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 50.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 63 (R1 59)
+      value: 62.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.6
+      value: 2.5946
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 10.6, off-palette 2.5% (top: #CC7744 (0.6%), #DD8844
+        (0.4%))'
+      value: 2.6021
+    info:
+      metrics_raw:
+        L_p5: 62.3
+        L_p50: 77.4
+        L_p95: 92.7
+        C_p50: 30.0
+        C_p95: 52.6
+        C_p99: 57.9
+        detail: 2.31
+      metrics_locked:
+        L_p5: 62.6
+        L_p50: 77.4
+        L_p95: 92.6
+        C_p50: 30.2
+        C_p95: 50.7
+        C_p99: 54.1
+        detail: 1.76
+    fingerprint: 569eaf4238142cf9
+  2:
+    job: x2-leylek-a
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 56 (R1 51)
+      value: 55.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 60 (R1 59)
+      value: 60.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.02
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.7
+      value: 2.7194
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 14.7, off-palette 9.2% (top: #DD8844 (2.0%), #DD7744
+        (1.1%)) (advisory in an exploration)'
+      value: 3.298
+    info:
+      metrics_raw:
+        L_p5: 60.0
+        L_p50: 78.1
+        L_p95: 91.7
+        C_p50: 32.9
+        C_p95: 57.2
+        C_p99: 61.2
+        detail: 2.69
+      metrics_locked:
+        L_p5: 60.4
+        L_p50: 78.1
+        L_p95: 91.6
+        C_p50: 33.0
+        C_p95: 55.5
+        C_p99: 58.4
+        detail: 2.02
+    fingerprint: 569eaf4238142cf9
+  3:
+    job: x2-leylek-a
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 52.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 65.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.01
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.5
+      value: 2.4904
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.5, p95 11.2, off-palette 4.2% (top: #DD8844 (1.0%), #CC7744
+        (0.7%))'
+      value: 2.4826
+    info:
+      metrics_raw:
+        L_p5: 64.7
+        L_p50: 80.3
+        L_p95: 91.9
+        C_p50: 28.9
+        C_p95: 54.2
+        C_p99: 58.6
+        detail: 2.6
+      metrics_locked:
+        L_p5: 65.0
+        L_p50: 80.2
+        L_p95: 91.7
+        C_p50: 28.9
+        C_p95: 52.7
+        C_p99: 56.5
+        detail: 2.01
+    fingerprint: 569eaf4238142cf9
+  4:
+    job: x2-leylek-a
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 63.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.15
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.8
+      value: 2.8029
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.1, p95 10.3, off-palette 2.1% (top: #CC7744 (0.5%), #DD8844
+        (0.4%))'
+      value: 2.098
+    info:
+      metrics_raw:
+        L_p5: 63.1
+        L_p50: 79.0
+        L_p95: 93.1
+        C_p50: 30.3
+        C_p95: 51.7
+        C_p99: 57.0
+        detail: 2.74
+      metrics_locked:
+        L_p5: 63.5
+        L_p50: 78.9
+        L_p95: 92.9
+        C_p50: 30.4
+        C_p95: 50.3
+        C_p99: 53.8
+        detail: 2.15
+    fingerprint: 569eaf4238142cf9
+manual_review:
+  note: 'Skipped after the initial pair and one allowed fresh retry pair: all four
+    visibly reuse the home wooden oval/round entry with circular cross-window, a hard
+    forbidden home-door motif for wonder concepts. Woven nest/stork flight otherwise
+    matches the brief, but a style pass cannot waive this semantic ban. The QA annotation
+    profiles isolate the visible nest body for reference only; no complete flight-assembly
+    silhouette pass is claimed. No true dependents; Leylek B remains independent.
+    No fifth image call.'
+  takes:
+    '1':
+      pass: false
+      silhouette_name: 'REJECT: copied home door; nest-body profile only, no silhouette
+        acceptance'
+      rubric:
+      - 2
+      - 2
+      - 2
+      - 1
+      - 1
+      evidence: Home-like wooden oval entry and round cross-window are present; the
+        nest remains airborne on stork ribbons, with chimney and lantern. Semantic
+        door ban fails before silhouette eligibility.
+      swatch_points:
+      - - 1400
+        - 100
+      - - 450
+        - 550
+      - - 1100
+        - 500
+      contours:
+      - - - 70
+          - 561
+        - - 140
+          - 520
+        - - 230
+          - 480
+        - - 350
+          - 460
+        - - 490
+          - 470
+        - - 650
+          - 492
+        - - 745
+          - 520
+        - - 815
+          - 560
+        - - 835
+          - 620
+        - - 803
+          - 694
+        - - 730
+          - 740
+        - - 630
+          - 772
+        - - 500
+          - 790
+        - - 330
+          - 780
+        - - 200
+          - 740
+        - - 112
+          - 670
+      uncertainty: Approximate source-visible NEST-BODY contour only; birds/ribbons
+        remain visible in original scene. This diagnostic is not a claim that the
+        full flight assembly passed the60pt test.
+      sampled_swatches:
+      - point:
+        - 1400
+        - 100
+        hex: '#DC9CA0'
+      - point:
+        - 450
+        - 550
+        hex: '#FEC887'
+      - point:
+        - 1100
+        - 500
+        hex: '#F47A5D'
+      annotation_source_inbox_sha256: 359eec57798a730e31e740444cdb0623567860f0584a6d9ee31d6752b8a9e2ec
+      observed_bbox:
+      - 70
+      - 460
+      - 836
+      - 791
+      silhouette_native_longest_px: 60
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+    '2':
+      pass: false
+      silhouette_name: 'REJECT: copied home door; nest-body profile only, no silhouette
+        acceptance'
+      rubric:
+      - 2
+      - 2
+      - 2
+      - 1
+      - 1
+      evidence: Home-like wooden oval entry and round cross-window are present; the
+        nest remains airborne on stork ribbons, with chimney and lantern. Semantic
+        door ban fails before silhouette eligibility.
+      swatch_points:
+      - - 1400
+        - 100
+      - - 450
+        - 550
+      - - 1100
+        - 500
+      contours:
+      - - - 350
+          - 610
+        - - 400
+          - 560
+        - - 500
+          - 530
+        - - 670
+          - 515
+        - - 830
+          - 502
+        - - 1000
+          - 503
+        - - 1180
+          - 523
+        - - 1320
+          - 560
+        - - 1360
+          - 610
+        - - 1360
+          - 675
+        - - 1300
+          - 740
+        - - 1200
+          - 808
+        - - 1050
+          - 850
+        - - 890
+          - 870
+        - - 730
+          - 850
+        - - 550
+          - 800
+        - - 430
+          - 730
+        - - 365
+          - 660
+      uncertainty: Approximate source-visible NEST-BODY contour only; birds/ribbons
+        remain visible in original scene. This diagnostic is not a claim that the
+        full flight assembly passed the60pt test.
+      sampled_swatches:
+      - point:
+        - 1400
+        - 100
+        hex: '#F0A5A0'
+      - point:
+        - 450
+        - 550
+        hex: '#FED49D'
+      - point:
+        - 1100
+        - 500
+        hex: '#FAB68B'
+      annotation_source_inbox_sha256: afca3711b24ea805dc30daee4df6f99c056c15330a5e06833d2095aa6ffb933c
+      observed_bbox:
+      - 350
+      - 502
+      - 1361
+      - 871
+      silhouette_native_longest_px: 60
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+    '3':
+      pass: false
+      silhouette_name: 'REJECT: copied home door; nest-body profile only, no silhouette
+        acceptance'
+      rubric:
+      - 2
+      - 2
+      - 2
+      - 1
+      - 1
+      evidence: Home-like wooden oval entry and round cross-window are present; the
+        nest remains airborne on stork ribbons, with chimney and lantern. Semantic
+        door ban fails before silhouette eligibility.
+      swatch_points:
+      - - 1400
+        - 100
+      - - 450
+        - 550
+      - - 1100
+        - 500
+      contours:
+      - - - 120
+          - 450
+        - - 140
+          - 410
+        - - 230
+          - 370
+        - - 350
+          - 345
+        - - 480
+          - 350
+        - - 600
+          - 365
+        - - 700
+          - 395
+        - - 755
+          - 440
+        - - 777
+          - 500
+        - - 747
+          - 580
+        - - 680
+          - 640
+        - - 570
+          - 690
+        - - 430
+          - 710
+        - - 300
+          - 685
+        - - 200
+          - 640
+        - - 140
+          - 550
+      uncertainty: Approximate source-visible NEST-BODY contour only; birds/ribbons
+        remain visible in original scene. This diagnostic is not a claim that the
+        full flight assembly passed the60pt test.
+      sampled_swatches:
+      - point:
+        - 1400
+        - 100
+        hex: '#E89D99'
+      - point:
+        - 450
+        - 550
+        hex: '#DB8045'
+      - point:
+        - 1100
+        - 500
+        hex: '#F8D3BE'
+      annotation_source_inbox_sha256: a4e0ad857076a97fc2e63a4c7dbcd54f537bfef1df2eee189fd779236e06f59e
+      observed_bbox:
+      - 120
+      - 345
+      - 778
+      - 711
+      silhouette_native_longest_px: 60
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+    '4':
+      pass: false
+      silhouette_name: 'REJECT: copied home door; nest-body profile only, no silhouette
+        acceptance'
+      rubric:
+      - 2
+      - 2
+      - 2
+      - 1
+      - 1
+      evidence: Home-like wooden oval entry and round cross-window are present; the
+        nest remains airborne on stork ribbons, with chimney and lantern. Semantic
+        door ban fails before silhouette eligibility.
+      swatch_points:
+      - - 1400
+        - 100
+      - - 450
+        - 550
+      - - 1100
+        - 500
+      contours:
+      - - - 65
+          - 581
+        - - 100
+          - 540
+        - - 190
+          - 505
+        - - 300
+          - 482
+        - - 460
+          - 470
+        - - 610
+          - 490
+        - - 735
+          - 530
+        - - 790
+          - 575
+        - - 790
+          - 646
+        - - 750
+          - 720
+        - - 650
+          - 780
+        - - 490
+          - 810
+        - - 350
+          - 800
+        - - 230
+          - 768
+        - - 130
+          - 700
+      uncertainty: Approximate source-visible NEST-BODY contour only; birds/ribbons
+        remain visible in original scene. This diagnostic is not a claim that the
+        full flight assembly passed the60pt test.
+      sampled_swatches:
+      - point:
+        - 1400
+        - 100
+        hex: '#E69C9B'
+      - point:
+        - 450
+        - 550
+        hex: '#ECA56B'
+      - point:
+        - 1100
+        - 500
+        hex: '#FEB39A'
+      annotation_source_inbox_sha256: 2847fac3ab5e09d445e7419cfeb8447a8207c81fee0b433d9799ec54cdd8e3c1
+      observed_bbox:
+      - 65
+      - 470
+      - 791
+      - 811
+      silhouette_native_longest_px: 60
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-f1dc8f5a-6205-43d5-8e3b-e0877ef0b947.png
+  original_generated_png_sha256: a677e181f70b3cffd116a196111d65be2ae74ec10d9509e866ddfbc4908338a7
+  inbox_png_sha256: 359eec57798a730e31e740444cdb0623567860f0584a6d9ee31d6752b8a9e2ec
+  rgba_sha256: b38e615bfd4a4ec410a9779f3d67bc9b648f22b38334ba67c5d219ef5c2e76a2
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 569eaf4238142cf9
+- take: 2
+  source_file: /workspace/generated_images/exec-66d2e805-3688-499d-b5fb-f4da14b21acf.png
+  original_generated_png_sha256: 3a97b8599ba5591a5c93ab1d07511c18898fdf8241d5ad8c31d9e9c52f9eae78
+  inbox_png_sha256: afca3711b24ea805dc30daee4df6f99c056c15330a5e06833d2095aa6ffb933c
+  rgba_sha256: 6a346f73e5a8b26f91c9cd0cd4cc2ce12b25cea46b6cd187a7097b9382298263
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 569eaf4238142cf9
+- take: 3
+  source_file: /workspace/generated_images/exec-e0695068-b92e-44fb-88a2-a35bd3be7c28.png
+  original_generated_png_sha256: c5d737dfcdf2fb96dc4dcf1c4b8ff256ef770f37d9284a7adfb2c310d6a943e4
+  inbox_png_sha256: a4e0ad857076a97fc2e63a4c7dbcd54f537bfef1df2eee189fd779236e06f59e
+  rgba_sha256: 28bc70a34a0886b168e030ed6b139557d60df3cdc0e484ec5d7c114d5a9686f9
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 569eaf4238142cf9
+- take: 4
+  source_file: /workspace/generated_images/exec-713db2ca-dffb-4a2d-83ff-1c91857a7163.png
+  original_generated_png_sha256: f4c6decb787b4604b23daaaedfad89694d8579f295c78d41eedaf9ffa6605312
+  inbox_png_sha256: 2847fac3ab5e09d445e7419cfeb8447a8207c81fee0b433d9799ec54cdd8e3c1
+  rgba_sha256: f255672af7dcf3acb98d5967cf8cae9880d69c0f2ebe7df07e87e0ee09e3465d
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 569eaf4238142cf9
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
