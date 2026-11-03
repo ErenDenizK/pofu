@@ -27,6 +27,7 @@ links:
   - sys-rituals
   uses_asset:
   - asset-iskele-island-s
+  - asset-iskele-horn-1
 sources:
 - doc: docs/product/game-design.md
   anchor: '#7-the-archipelago'
