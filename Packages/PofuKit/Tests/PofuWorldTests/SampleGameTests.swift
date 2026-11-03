@@ -20,8 +20,8 @@ struct SampleGameTests {
         #expect(world.tendedDays == 4)
         #expect(!world.pending.isEmpty)
         #expect(!world.isHolding)
-        let cay = world.stations.first { $0.id == .cay }
-        #expect((cay?.level ?? 0) >= 1)
+        let teaStall = world.stations.first { $0.id == .teaStall }
+        #expect((teaStall?.level ?? 0) >= 1)
         let garden = world.stations.first { $0.id == .garden }
         #expect((garden?.level ?? 0) >= 2)
         #expect(world.guardedMinutesToday == 15)

@@ -37,12 +37,12 @@ struct RehearsalOverlay: View {
                 )
                 .transition(.opacity)
                 #if DEBUG
-                gardenAyar
+                gardenTuningLab
                 #endif
             } else if !model.needsOnboarding {
                 #if DEBUG
-                if Ayar.session.isOpen {
-                    AyarPanel(model: model, store: Ayar.store, session: Ayar.session)
+                if TuningLab.session.isOpen {
+                    TuningLabPanel(model: model, store: TuningLab.store, session: TuningLab.session)
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                 } else {
                     RehearsalPanel(model: model, rehearsal: rehearsal)
@@ -55,33 +55,33 @@ struct RehearsalOverlay: View {
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: rehearsal.screen)
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: rehearsal.isPlayingGarden)
         #if DEBUG
-        .onChange(of: Ayar.store.values.sound, initial: true) { _, volumes in
+        .onChange(of: TuningLab.store.values.sound, initial: true) { _, volumes in
             SoundEngine.shared.volumes = volumes
         }
-        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: Ayar.session.isOpen)
+        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: TuningLab.session.isOpen)
         #endif
     }
 
-    /// The garden's feel: the Ayar panel's live values in debug builds.
+    /// The garden's feel: the tuning lab panel's live values in debug builds.
     private var gardenTuning: TuningValues.Garden {
         #if DEBUG
-        Ayar.store.values.garden
+        TuningLab.store.values.garden
         #else
         TuningValues.defaults.garden
         #endif
     }
 
     #if DEBUG
-    /// Ayar over the garden: a small pill that opens the panel on the
+    /// tuning lab over the garden: a small pill that opens the panel on the
     /// garden's values, which the game reads live.
-    @ViewBuilder private var gardenAyar: some View {
-        if Ayar.session.isOpen {
-            AyarPanel(model: model, store: Ayar.store, session: Ayar.session)
+    @ViewBuilder private var gardenTuningLab: some View {
+        if TuningLab.session.isOpen {
+            TuningLabPanel(model: model, store: TuningLab.store, session: TuningLab.session)
                 .transition(.move(edge: .bottom).combined(with: .opacity))
         } else {
             Button {
-                Ayar.session.section = .garden
-                Ayar.session.isOpen = true
+                TuningLab.session.section = .garden
+                TuningLab.session.isOpen = true
             } label: {
                 Label {
                     Text(verbatim: "Ayar")

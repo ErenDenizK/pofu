@@ -167,7 +167,7 @@ public enum LookTuning {
     /// HD-2D tilt-shift. 1 is the rail's own lens; the map stays sharp.
     public static func tiltShift(z: Double, island: Double = 1.7, home: Double = 1.3) -> Double {
         let z = min(max(z.isFinite ? z : 2, 0), 2)
-        // Map 1.0 → Island 1.7 → Home 1.3 (the Ayar panel tunes the two).
+        // Map 1.0 → Island 1.7 → Home 1.3 (the tuning lab panel tunes the two).
         if z <= 1 { return 1 + (island - 1) * z }
         return island + (home - island) * (z - 1)
     }

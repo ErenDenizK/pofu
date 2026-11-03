@@ -2,7 +2,7 @@ import Foundation
 
 /// Every number that decides how Pofu *feels*, in one data-driven value
 /// (pro game craft §3.3, upgrade 3). The defaults are the bundled
-/// `tuning.json`, the single source of truth; the Ayar panel in Rehearsal
+/// `tuning.json`, the single source of truth; the tuning lab panel in Rehearsal
 /// mode changes them live on the phone and exports the changes as JSON,
 /// which the agent commits back into `tuning.json`.
 ///

@@ -71,7 +71,7 @@ struct HomeView: View {
         // default. Reduce Transparency is resolved where the faces draw.
         .environment(\.pofuSkin, PofuSkinPolicy(developerOverride: PofuSkinPolicy.override(from: skinOverride)).skin)
         #if DEBUG
-        .onChange(of: Ayar.store.values.home, initial: true) { _, values in
+        .onChange(of: TuningLab.store.values.home, initial: true) { _, values in
             var timing = HomeTiming()
             timing.pawsPress = values.pawsPress
             timing.cheekRelease = values.cheekRelease

@@ -154,6 +154,17 @@ struct TuningStoreTests {
         let reloaded = TuningStore(storage: defaults)
         #expect(reloaded.values.companion.breathPeriodLow == 5.2)
         reloaded.resetAll()
+        #expect(defaults.dictionary(forKey: TuningStore.defaultStorageKey) == nil)
+    }
+
+    @Test func overridesSavedUnderTheOldKeyMoveToTheNewOne() throws {
+        let suite = "TuningStoreTests.\(UUID().uuidString)"
+        let defaults = try #require(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        defaults.set(["companion.breathPeriodLow": 5.2], forKey: "ayar.overrides")
+        let store = TuningStore(storage: defaults)
+        #expect(store.values.companion.breathPeriodLow == 5.2)
         #expect(defaults.dictionary(forKey: "ayar.overrides") == nil)
+        #expect(defaults.dictionary(forKey: TuningStore.defaultStorageKey) != nil)
     }
 }

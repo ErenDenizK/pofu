@@ -224,7 +224,7 @@ private struct SpikeDepthMapView: View {
 
     private var items: [Item] {
         var items: [Item] = []
-        for status in world.stations where status.island == .aycicegi && status.isOpen && status.level > 0 {
+        for status in world.stations where status.island == .home && status.isOpen && status.level > 0 {
             guard let slot = IslandLayout.stationAnchors[status.id],
                   let art = IslandLayout.stationArt(status.id, level: status.level)?.name else { continue }
             let base = IslandFootprint.clamped(slot, footprint: IslandFootprint.footprint(of: art))

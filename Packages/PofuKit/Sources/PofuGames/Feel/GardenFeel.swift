@@ -69,7 +69,7 @@ public struct ShakeBudget: Sendable, Equatable {
 }
 
 /// Every number the garden's feel is tuned with. The values are data
-/// (`TuningValues.Garden` in `PofuTuning`'s `tuning.json`), so the Ayar
+/// (`TuningValues.Garden` in `PofuTuning`'s `tuning.json`), so the tuning lab
 /// panel in Rehearsal mode changes them live on the phone and exports the
 /// result; read them as properties (`feel.bloomPop`). Durations are in
 /// seconds, lengths in cells unless named.

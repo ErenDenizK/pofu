@@ -1,7 +1,7 @@
 import Foundation
 
 /// Pofu's idle life as numbers: how he breathes and how often he blinks,
-/// low and thriving. The defaults are the motion spec's; the Ayar panel in
+/// low and thriving. The defaults are the motion spec's; the tuning lab panel in
 /// Rehearsal mode sets them live through the `companionLife` environment
 /// value (look round 4), mapped from `PofuTuning`'s `companion` values.
 public struct CompanionLife: Hashable, Sendable {

@@ -208,13 +208,13 @@ struct LookTuningTests {
     }
 
     @Test func theLitFlameShowsAtNightOnly() {
-        #expect(IslandLayout.litOverlay(.cay, level: 1) == "cay-1-glow")
-        #expect(IslandLayout.litOverlay(.cay, level: 3) == nil)
+        #expect(IslandLayout.litOverlay(.teaStall, level: 1) == "cay-1-glow")
+        #expect(IslandLayout.litOverlay(.teaStall, level: 3) == nil)
         #expect(IslandLayout.litOverlayStrength(in: .at(hour: 12, wellbeing: 78, calm: 1.4)) == 0)
         #expect(IslandLayout.litOverlayStrength(in: .at(hour: 22, wellbeing: 78, calm: 1.4)) > 0.99)
     }
 
-    @Test func theAyarTuningDefaultsChangeNothing() {
+    @Test func theTuningLabTuningDefaultsChangeNothing() {
         #expect(LookTuning.tiltShift(z: 1, island: WorldTuning.standard.tiltShiftIsland, home: WorldTuning.standard.tiltShiftHome) == LookTuning.tiltShift(z: 1))
         #expect(CameraSprings.standard.travel == SpringSpec(duration: WorldSprings.camera.duration, bounce: WorldSprings.camera.bounce))
         let motion = CameraMotion(lookX: 120, lookY: 0, logScale: 0)

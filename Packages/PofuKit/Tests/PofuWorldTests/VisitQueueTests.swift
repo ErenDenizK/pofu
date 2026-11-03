@@ -21,9 +21,9 @@ struct VisitQueueTests {
         IslandSamples.world(
             clock: friday,
             tendedDays: 4,
-            levels: [.garden: 2, .cay: 1],
+            levels: [.garden: 2, .teaStall: 1],
             jar: Energy(jar),
-            islands: [.aycicegi],
+            islands: [.home],
             wellbeing: wellbeing
         )
     }
@@ -82,7 +82,7 @@ struct VisitQueueTests {
     @Test func theRepairBannerTakesABeatButNotThePrimary() {
         let plan = VisitQueue.plan(inputs(world()) {
             $0.isGuardBroken = true
-            $0.news = .islandArrived(.iskele)
+            $0.news = .islandArrived(.harbor)
         })
         #expect(plan.showsRepairBanner)
         #expect(plan.beats.count == 2)
@@ -134,13 +134,13 @@ struct VisitQueueTests {
 
     @Test func aVisitPlaysItsBeatsThenSettles() {
         let collect = VisitBeat.collect(SeedPouch(stations: Energy(12)))
-        var progress = VisitProgress(plan: VisitPlan(landing: .visit, showsRepairBanner: false, beats: [collect, .build(.cay, level: 2)]))
+        var progress = VisitProgress(plan: VisitPlan(landing: .visit, showsRepairBanner: false, beats: [collect, .build(.teaStall, level: 2)]))
         #expect(progress.current == collect)
-        let outOfOrder = progress.complete(.build(.cay, level: 2))
+        let outOfOrder = progress.complete(.build(.teaStall, level: 2))
         #expect(!outOfOrder)
         let inOrder = progress.complete(collect)
         #expect(inOrder)
-        #expect(progress.current == .build(.cay, level: 2))
+        #expect(progress.current == .build(.teaStall, level: 2))
         progress.skip()
         #expect(progress.isSettled)
         #expect(progress.current == nil)

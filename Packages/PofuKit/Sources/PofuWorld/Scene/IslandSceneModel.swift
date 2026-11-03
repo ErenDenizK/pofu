@@ -461,7 +461,7 @@ public final class IslandSceneModel {
         peekEnded(velocityX: velocityX)
     }
 
-    /// The camera's springs; the Ayar panel tunes them live.
+    /// The camera's springs; the tuning lab panel tunes them live.
     public var cameraSprings: CameraSprings {
         get { engine.rig.springs }
         set { engine.rig.springs = newValue }

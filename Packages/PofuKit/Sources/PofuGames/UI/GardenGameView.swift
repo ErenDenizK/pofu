@@ -9,7 +9,7 @@ import SwiftUI
 /// presents it from an island's "Play" door or the debug entry.
 public struct GardenGameView: View {
     @State private var model: GardenGameModel
-    /// The tuned feel; pass the Ayar store's values to tune it live.
+    /// The tuned feel; pass the tuning lab store's values to tune it live.
     private let tuning: TuningValues.Garden
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 

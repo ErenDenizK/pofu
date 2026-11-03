@@ -19,9 +19,9 @@ final class SpikeScreenshotTests: XCTestCase {
         IslandSamples.world(
             clock: Date(timeIntervalSinceReferenceDate: 815_000_000),
             tendedDays: 4,
-            levels: [.cay: 1],
+            levels: [.teaStall: 1],
             jar: Energy(60),
-            islands: [.aycicegi]
+            islands: [.home]
         )
     }
 

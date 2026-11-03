@@ -46,7 +46,7 @@ struct WorldHomeModelTests {
 
     @Test func collectCommitsFirstThenPlaysAndEndsTheBeat() {
         let home = model()
-        home.beginVisit(visit([.collect(pouch), .build(.cay, level: 2)]))
+        home.beginVisit(visit([.collect(pouch), .build(.teaStall, level: 2)]))
         var commits = 0
         let started = home.collectSeeds(jarBefore: 50, sources: [MomentPoint(x: 10, y: 400)], target: MomentPoint(x: 200, y: 800)) {
             commits += 1
@@ -74,7 +74,7 @@ struct WorldHomeModelTests {
         clock.advance(CollectMoment.hold)
         home.advance(to: clock.now)
         #expect(home.collect == nil)
-        #expect(home.currentBeat == .build(.cay, level: 2))
+        #expect(home.currentBeat == .build(.teaStall, level: 2))
         // Cues never fire twice.
         home.advance(to: clock.now)
         #expect(home.collectSuccesses == 1)
@@ -97,18 +97,18 @@ struct WorldHomeModelTests {
         let home = model()
         let camera = CameraSpy()
         home.camera = camera
-        home.beginVisit(visit([.build(.cay, level: 2)]))
-        let started = home.buildStation(.cay, maxLevel: 5) { station in
+        home.beginVisit(visit([.build(.teaStall, level: 2)]))
+        let started = home.buildStation(.teaStall, maxLevel: 5) { station in
             BuildReceipt(station: station, level: 2, cost: Energy(88))
         }
         #expect(started)
-        #expect(home.buildingStation == .cay)
-        #expect(camera.calls == ["in:cay"])
+        #expect(home.buildingStation == .teaStall)
+        #expect(camera.calls == ["in:teaStall"])
         #expect(home.isSettled)
 
         // Refused while the sheet is compact.
         var commits = 0
-        let again = home.buildStation(.cay, maxLevel: 5) { station in
+        let again = home.buildStation(.teaStall, maxLevel: 5) { station in
             commits += 1
             return BuildReceipt(station: station, level: 3, cost: Energy(194))
         }
@@ -127,7 +127,7 @@ struct WorldHomeModelTests {
         clock.advance(0.7)
         home.advance(to: clock.now)
         #expect(home.buildingStation == nil)
-        #expect(camera.calls == ["in:cay", "back:cay"])
+        #expect(camera.calls == ["in:teaStall", "back:teaStall"])
         clock.advance(2)
         home.advance(to: clock.now)
         #expect(home.build == nil)
@@ -137,7 +137,7 @@ struct WorldHomeModelTests {
         let home = model()
         let camera = CameraSpy()
         home.camera = camera
-        let started = home.buildStation(.cay, maxLevel: 5) { _ in nil }
+        let started = home.buildStation(.teaStall, maxLevel: 5) { _ in nil }
         #expect(!started)
         #expect(home.build == nil)
         #expect(camera.calls.isEmpty)
@@ -145,7 +145,7 @@ struct WorldHomeModelTests {
 
     @Test func theLastLevelCelebratesDifferently() {
         let home = model()
-        home.buildStation(.cay, maxLevel: 5) { station in BuildReceipt(station: station, level: 5, cost: Energy(937)) }
+        home.buildStation(.teaStall, maxLevel: 5) { station in BuildReceipt(station: station, level: 5, cost: Energy(937)) }
         clock.advance(1.1)
         home.advance(to: clock.now)
         #expect(home.finalBuilds == 1)
@@ -154,11 +154,11 @@ struct WorldHomeModelTests {
 
     @Test func aSecondBuildAfterTheSheetReturnsReplacesTheFirst() {
         let home = model()
-        home.buildStation(.cay, maxLevel: 5) { station in BuildReceipt(station: station, level: 2, cost: Energy(88)) }
+        home.buildStation(.teaStall, maxLevel: 5) { station in BuildReceipt(station: station, level: 2, cost: Energy(88)) }
         clock.advance(2)
         home.advance(to: clock.now)
         #expect(home.buildingStation == nil)
-        let second = home.buildStation(.cay, maxLevel: 5) { station in BuildReceipt(station: station, level: 3, cost: Energy(194)) }
+        let second = home.buildStation(.teaStall, maxLevel: 5) { station in BuildReceipt(station: station, level: 3, cost: Energy(194)) }
         #expect(second)
         #expect(home.build?.moment.toLevel == 3)
     }
@@ -166,7 +166,7 @@ struct WorldHomeModelTests {
     @Test func reduceMotionBuildsWithoutHops() {
         let home = model()
         home.reduceMotion = true
-        home.buildStation(.cay, maxLevel: 5) { station in BuildReceipt(station: station, level: 2, cost: Energy(88)) }
+        home.buildStation(.teaStall, maxLevel: 5) { station in BuildReceipt(station: station, level: 2, cost: Energy(88)) }
         clock.advance(3)
         home.advance(to: clock.now)
         #expect(home.celebrations == 0)
@@ -178,12 +178,12 @@ struct WorldHomeModelTests {
         let home = model()
         let camera = CameraSpy()
         home.camera = camera
-        home.buildStation(.cay, maxLevel: 5) { station in BuildReceipt(station: station, level: 2, cost: Energy(88)) }
+        home.buildStation(.teaStall, maxLevel: 5) { station in BuildReceipt(station: station, level: 2, cost: Energy(88)) }
         home.freeze(at: 0.5)
         #expect(home.buildTime(at: clock.now.addingTimeInterval(10)) == 0.5)
         #expect(home.buildSwaps == 1)
         #expect(home.celebrations == 0)
-        #expect(home.buildingStation == .cay)
+        #expect(home.buildingStation == .teaStall)
     }
 
     // MARK: The visit

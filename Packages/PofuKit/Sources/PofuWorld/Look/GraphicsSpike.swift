@@ -1,6 +1,6 @@
 import Foundation
 
-/// The graphics spike's switches (Rehearsal mode's Ayar panel, `WorldLook.spike`).
+/// The graphics spike's switches (Rehearsal mode's tuning lab panel, `WorldLook.spike`).
 /// Decision (docs/design/look-dev.md): depth-map depth of field is the
 /// default look; normal lighting stays off by default but available.
 ///
@@ -22,10 +22,10 @@ public struct GraphicsSpike: Hashable, Sendable {
 
     public var normalLighting: Bool
     /// How much the light modulates the painted albedo: 0 off, 1 as
-    /// authored, up to 2 (Ayar).
+    /// authored, up to 2 (tuning lab).
     public var lightStrength: Double
     public var depthOfField: Bool
-    /// Scales the largest blur radius (Ayar).
+    /// Scales the largest blur radius (tuning lab).
     public var dofStrength: Double
     public var debug: Debug
 

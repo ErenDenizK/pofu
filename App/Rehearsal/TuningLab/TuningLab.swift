@@ -5,7 +5,7 @@ import PofuTuning
 import PofuWorld
 import SwiftUI
 
-/// Ayar: the tuning panel in Rehearsal mode (pro game craft §3.3,
+/// tuning lab: the tuning panel in Rehearsal mode (pro game craft §3.3,
 /// upgrade 3). The founder turns the knobs on his phone and shares the
 /// changes as JSON; the agent commits them as the new defaults in
 /// `PofuTuning`'s `tuning.json`.
@@ -13,22 +13,22 @@ import SwiftUI
 /// Debug builds only, and only reachable from the Prova panel, which only
 /// exists in Rehearsal mode: never in the live product path.
 @MainActor
-enum Ayar {
+enum TuningLab {
     /// The live values, persisted on this device.
     static let store = TuningStore()
     /// The panel's own state.
-    static let session = AyarSession()
+    static let session = TuningLabSession()
 }
 
 /// What the panel shows and the look switches it holds; not tuning data.
 @MainActor
 @Observable
-final class AyarSession {
+final class TuningLabSession {
     var isOpen = false
-    var section: AyarSection = .colour
+    var section: TuningLabSection = .colour
     /// The time of day pinned for the world, so a grade can be tuned at
     /// noon in the evening; `nil` follows the clock.
-    var pinnedPhase: AyarPhase?
+    var pinnedPhase: TuningLabPhase?
     /// Painted HD-2D lite and depth in motion (`WorldLook`), live.
     var hd2d = true
     var depthMotion = true
@@ -40,14 +40,14 @@ final class AyarSession {
     var spikeDOFStrength = 1.0
 }
 
-enum AyarSection: String, CaseIterable, Identifiable {
+enum TuningLabSection: String, CaseIterable, Identifiable {
     case colour, camera, depth, pofu, haptics, sound, seeds, garden, home
 
     var id: String { rawValue }
 }
 
 /// The colour script's times of day, as `WorldLight` weighs them.
-enum AyarPhase: String, CaseIterable, Identifiable {
+enum TuningLabPhase: String, CaseIterable, Identifiable {
     case day, golden, night
 
     var id: String { rawValue }
@@ -67,12 +67,12 @@ enum AyarPhase: String, CaseIterable, Identifiable {
 
 // MARK: - The look
 
-/// Lays the Ayar look over the world in Rehearsal mode: the pinned time
+/// Lays the tuning lab look over the world in Rehearsal mode: the pinned time
 /// of day, the HD-2D switches, the grade trims blended by the light's
 /// time-of-day weights, and (look round 4) the camera springs, the depth
 /// strengths and Pofu's breath and blinks, all live. With the defaults it
 /// changes nothing.
-struct AyarLook: ViewModifier {
+struct TuningLabLook: ViewModifier {
     let model: AppModel
 
     @Environment(\.colorScheme) private var colorScheme
@@ -81,10 +81,10 @@ struct AyarLook: ViewModifier {
         let rehearsing = model.rehearsal != nil
         content
             .environment(\.worldLook, rehearsing ? look : .standard)
-            .environment(\.companionLife, rehearsing ? Self.life(Ayar.store.values.companion) : .standard)
+            .environment(\.companionLife, rehearsing ? Self.life(TuningLab.store.values.companion) : .standard)
     }
 
-    /// The world's tunable feel from the Ayar values.
+    /// The world's tunable feel from the tuning lab values.
     static func tuning(_ values: TuningValues) -> WorldTuning {
         func spring(_ s: TuningValues.Spring) -> SpringSpec {
             SpringSpec(duration: s.duration, bounce: s.bounce)
@@ -104,7 +104,7 @@ struct AyarLook: ViewModifier {
         )
     }
 
-    /// Pofu's breath and blinks from the Ayar values.
+    /// Pofu's breath and blinks from the tuning lab values.
     static func life(_ c: TuningValues.Companion) -> CompanionLife {
         CompanionLife(
             breathPeriodLow: c.breathPeriodLow,
@@ -117,10 +117,10 @@ struct AyarLook: ViewModifier {
     }
 
     private var look: WorldLook {
-        let session = Ayar.session
-        let trims = Ayar.store.values.grade
+        let session = TuningLab.session
+        let trims = TuningLab.store.values.grade
         var look = WorldLook(hd2d: session.hd2d, depthMotion: session.depthMotion, hourOverride: session.pinnedPhase?.hour)
-        look.tuning = Self.tuning(Ayar.store.values)
+        look.tuning = Self.tuning(TuningLab.store.values)
         look.spike = GraphicsSpike(
             normalLighting: session.spikeLighting,
             lightStrength: session.spikeLightStrength,
@@ -146,7 +146,7 @@ struct AyarLook: ViewModifier {
 }
 
 extension WorldGrade {
-    /// This grade with an Ayar trim: exposure scales the gain, warmth
+    /// This grade with an tuning lab trim: exposure scales the gain, warmth
     /// leans it toward red or blue, saturation and contrast scale, and
     /// the vignette adds.
     func trimmed(by trim: TuningValues.GradeTrim) -> WorldGrade {

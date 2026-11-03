@@ -56,12 +56,12 @@ struct LensTests {
     }
 
     @Test func aStationFocusKeepsItsRowSharpAndSoftensPofu() {
-        guard let cay = IslandLayout.stationAnchors[.cay] else {
+        guard let teaStall = IslandLayout.stationAnchors[.teaStall] else {
             Issue.record("no çay ocağı slot")
             return
         }
-        let lens = Lens.station(depth: IslandLayout.depth(ofY: cay.y))
-        #expect(lens.blurLevel(depth: IslandLayout.depth(ofY: cay.y)) == 0)
+        let lens = Lens.station(depth: IslandLayout.depth(ofY: teaStall.y))
+        #expect(lens.blurLevel(depth: IslandLayout.depth(ofY: teaStall.y)) == 0)
         let pofu = lens.blurLevel(depth: IslandLayout.depth(ofY: IslandLayout.pofu.y))
         #expect(pofu > 0.1 && pofu < 0.6)
     }
@@ -148,7 +148,7 @@ struct WorldArtTests {
     }
 
     @Test func aStationFocusCentresTheStationAboveTheSheet() {
-        guard let pose = IslandLayout.stationFocusPose(.cay, width: 402, height: 874, safeTop: 62) else {
+        guard let pose = IslandLayout.stationFocusPose(.teaStall, width: 402, height: 874, safeTop: 62) else {
             Issue.record("no pose")
             return
         }
@@ -161,8 +161,8 @@ struct WorldArtTests {
     @Test func samplesReadTheStandardCatalog() {
         let world = IslandSamples.dayThree()
         #expect(world.homeStage == 3)
-        let open = world.stations.filter { $0.island == .aycicegi && $0.isOpen }.map(\.id)
-        #expect(Set(open) == [.garden, .cay, .pond])
+        let open = world.stations.filter { $0.island == .home && $0.isOpen }.map(\.id)
+        #expect(Set(open) == [.garden, .teaStall, .pond])
     }
 }
 

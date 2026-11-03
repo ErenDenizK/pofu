@@ -113,9 +113,9 @@ struct RehearsalPanel: View {
             .disabled(rounds == 0)
             Divider()
             #if DEBUG
-            // Ayar: the live tuning panel (debug builds only).
+            // tuning lab: the live tuning panel (debug builds only).
             control(Text(verbatim: "Ayar"), symbol: "slider.horizontal.3") {
-                Ayar.session.isOpen = true
+                TuningLab.session.isOpen = true
             }
             #endif
             control(Text("Reset"), symbol: "arrow.counterclockwise", role: .destructive) {

@@ -549,7 +549,7 @@ private struct WorldCanvas: View {
     /// of built stations, sorted back to front.
     private var objects: [Object] {
         var objects: [Object] = []
-        for status in world.stations where layer == .environment && status.island == .aycicegi && status.isOpen {
+        for status in world.stations where layer == .environment && status.island == .home && status.isOpen {
             guard let slot = IslandLayout.stationAnchors[status.id] else { continue }
             // Containment: never past the walkable edge, whatever the art.
             let art = IslandLayout.stationArt(status.id, level: max(status.level, 1))?.name
@@ -964,7 +964,7 @@ private struct ScreenOverlays: View {
         let labels = 1 - min(max((z - 0.2) / 0.25, 0), 1)
         ZStack(alignment: .topLeading) {
             if labels > 0.01 {
-                mapLabel(.aycicegi, at: WorldPoint(x: 0, y: 128), arrived: true)
+                mapLabel(.home, at: WorldPoint(x: 0, y: 128), arrived: true)
                     .opacity(labels)
                 ForEach(IslandLayout.isles) { isle in
                     mapLabel(isle.id, at: WorldPoint(x: isle.center.x, y: isle.center.y + 122), arrived: world.islands.contains(isle.id))

@@ -297,7 +297,7 @@ struct HD2DLayer: View {
         guard litOverlays else { return }
         let k = IslandLayout.litOverlayStrength(in: light)
         guard k > 0.01 else { return }
-        for status in world.stations where status.island == .aycicegi && status.level > 0 {
+        for status in world.stations where status.island == .home && status.level > 0 {
             guard let overlay = IslandLayout.litOverlay(status.id, level: status.level),
                   let slot = IslandLayout.stationAnchors[status.id],
                   let art = IslandLayout.stationArt(status.id, level: status.level)?.name else { continue }

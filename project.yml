@@ -56,7 +56,7 @@ targets:
         product: PofuWorld
       - package: PofuKit
         product: PofuGames
-      # The Ayar tuning panel's values (debug builds' Rehearsal mode).
+      # The tuning lab panel's values (debug builds' Rehearsal mode).
       - package: PofuKit
         product: PofuTuning
       # Pofu's tiny sounds. App targets only: the shield and the other

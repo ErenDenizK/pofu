@@ -19,13 +19,24 @@ public final class TuningStore {
     private let storage: UserDefaults?
     private let storageKey: String
 
+    /// Where overrides persist by default.
+    nonisolated public static let defaultStorageKey = "tuning.overrides"
+    /// The key before the English rename (2026-11-03); moved on first read.
+    nonisolated static let legacyStorageKey = "ayar.overrides"
+
     /// - Parameters:
     ///   - defaults: The values "Sıfırla" returns to.
     ///   - storage: Where changes persist; `nil` keeps them in memory.
-    public init(defaults: TuningValues = .defaults, storage: UserDefaults? = .standard, storageKey: String = "ayar.overrides") {
+    public init(defaults: TuningValues = .defaults, storage: UserDefaults? = .standard, storageKey: String = TuningStore.defaultStorageKey) {
         self.defaults = defaults
         self.storage = storage
         self.storageKey = storageKey
+        if storageKey == Self.defaultStorageKey, storage?.object(forKey: storageKey) == nil,
+           let legacy = storage?.dictionary(forKey: Self.legacyStorageKey)
+        {
+            storage?.set(legacy, forKey: storageKey)
+            storage?.removeObject(forKey: Self.legacyStorageKey)
+        }
         let saved = storage?.dictionary(forKey: storageKey) ?? [:]
         let overrides = saved.compactMapValues { ($0 as? NSNumber)?.doubleValue }
         let values = TuningValues(base: defaults, overrides: overrides)

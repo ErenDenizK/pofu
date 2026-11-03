@@ -52,13 +52,13 @@ public struct WorldLook: Hashable, Sendable {
     public var gradeOverride: WorldGrade?
     /// The frame-time counter in a corner (debug).
     public var frameMeter: Bool
-    /// The feel numbers the Ayar panel tunes live (look round 4).
+    /// The feel numbers the tuning lab panel tunes live (look round 4).
     public var tuning: WorldTuning = .standard
     /// The painted night overlays of practical lights (cay-1-lit's flame);
     /// off only to compare.
     public var litOverlays = true
     /// Depth-map depth of field (on by default) and normal-lit art (off by
-    /// default), switched in Rehearsal mode's Ayar panel. Whole-layer blur
+    /// default), switched in Rehearsal mode's tuning lab panel. Whole-layer blur
     /// remains the fallback where shaders are unavailable.
     public var spike: GraphicsSpike = .standard
 

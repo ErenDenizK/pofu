@@ -7,7 +7,7 @@ public struct CameraMotion: Hashable, Sendable {
     public var lookY: Double
     public var logScale: Double
     /// How strongly layers parallax for this motion, as a multiple of the
-    /// authored lead (the Ayar panel's `depth.parallax`).
+    /// authored lead (the tuning lab panel's `depth.parallax`).
     public var parallax: Double = 1
 
     public init(lookX: Double, lookY: Double, logScale: Double) {

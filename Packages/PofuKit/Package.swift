@@ -82,7 +82,7 @@ let package = Package(
         ),
 
         // Every number that decides feel, as data: the bundled
-        // `tuning.json` defaults and the live store the Ayar panel in
+        // `tuning.json` defaults and the live store the tuning lab panel in
         // Rehearsal mode edits and exports. Foundation only.
         .target(
             name: "PofuTuning",

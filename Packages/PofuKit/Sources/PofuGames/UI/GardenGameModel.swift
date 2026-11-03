@@ -84,7 +84,7 @@ public final class GardenGameModel {
         scene.safeBottom = bottom
     }
 
-    /// The tuned feel; the Ayar panel changes it live.
+    /// The tuned feel; the tuning lab panel changes it live.
     public func setFeel(_ values: TuningValues.Garden) {
         guard scene.feel.values != values else { return }
         scene.feel = GardenFeel(values)

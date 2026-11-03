@@ -62,7 +62,7 @@ public enum IslandLayout {
         .windmill: WorldPoint(x: -50, y: -25),
         .workshop: WorldPoint(x: 61, y: -9),
         .garden: WorldPoint(x: -173, y: 6),
-        .cay: WorldPoint(x: 154, y: 6),
+        .teaStall: WorldPoint(x: 154, y: 6),
         .pond: WorldPoint(x: -65, y: 23),
     ]
 
@@ -84,7 +84,7 @@ public enum IslandLayout {
 
     public static let residents: [Resident] = [
         // In front of the çay ocağı's left end, where its stools are.
-        Resident(id: .mochi, station: .cay, feet: WorldPoint(x: 108, y: 29), art: "mochi", isStandIn: false),
+        Resident(id: .mochi, station: .teaStall, feet: WorldPoint(x: 108, y: 29), art: "mochi", isStandIn: false),
         // In front of the workshop's bench, not inside its wall.
         Resident(id: .findik, station: .workshop, feet: WorldPoint(x: 76, y: 20), art: "findik", isStandIn: false),
     ]
@@ -103,7 +103,7 @@ public enum IslandLayout {
     /// How many levels of each home station the art queue has generated
     /// (batches 01, 03 and 05); `preblur.py app` bakes every one.
     public static let generatedLevels: [StationID: Int] = [
-        .cay: 5, .garden: 5, .pond: 5, .windmill: 5, .workshop: 1,
+        .teaStall: 5, .garden: 5, .pond: 5, .windmill: 5, .workshop: 1,
     ]
 
     /// The baked sprite for a station at a level: its own level's art, or
@@ -112,7 +112,7 @@ public enum IslandLayout {
     public static func stationArt(_ station: StationID, level: Int) -> (name: String, isStandIn: Bool)? {
         guard let generated = generatedLevels[station], generated > 0 else { return nil }
         let shown = min(max(level, 1), generated)
-        return ("\(station.rawValue)-\(shown)", shown != max(level, 1))
+        return ("\(station.artStem)-\(shown)", shown != max(level, 1))
     }
 
     /// One depth band of the home plate.
@@ -143,7 +143,7 @@ public enum IslandLayout {
     public static let isles: [Isle] = [
         Isle(id: .yildiz, center: WorldPoint(x: -270, y: -255), art: "isle-stars-standin"),
         Isle(id: .kaplica, center: WorldPoint(x: 275, y: -245), art: "isle-hamam-standin"),
-        Isle(id: .iskele, center: WorldPoint(x: 265, y: 320), art: "isle-harbor-standin"),
+        Isle(id: .harbor, center: WorldPoint(x: 265, y: 320), art: "isle-harbor-standin"),
         Isle(id: .kitap, center: WorldPoint(x: -280, y: 320), art: "isle-library-standin"),
     ]
 
@@ -212,5 +212,18 @@ public enum IslandLayout {
         )
         // Keep the resident's screen row where it was, scaled.
         return CameraPose(logScale: pose.logScale + log(1.3), lookX: look.x, lookY: look.y, anchorY: pose.anchorY)
+    }
+}
+
+extension StationID {
+    /// The stem of this station's sprite names (`<stem>-<level>`). The sprites
+    /// still carry their old Turkish names; the asset rename PR renames the
+    /// files and this goes back to `rawValue` (map: docs/development/rename-map.md).
+    var artStem: String {
+        switch rawValue {
+        case "teaStall": "cay"
+        case "bagelCart": "simit"
+        default: rawValue
+        }
     }
 }

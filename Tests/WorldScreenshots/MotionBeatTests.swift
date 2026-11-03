@@ -92,7 +92,7 @@ final class MotionBeatTests: XCTestCase {
                 let stage = BeatWorld(framing: .island, settled: false, collected: true)
                 let script: Script = {
                     try await Task.sleep(for: .milliseconds(500))
-                    let station = stage.world.buildableStation ?? .cay
+                    let station = stage.world.buildableStation ?? .teaStall
                     stage.island.focusStation(station)
                     try await Task.sleep(for: .milliseconds(1500))
                     stage.build(station)
@@ -258,7 +258,7 @@ private final class BeatWorld {
     func collect() {
         let snapshot = world.game.snapshot
         var points: [WorldPoint] = snapshot.stations
-            .filter { $0.island == .aycicegi && $0.level > 0 }
+            .filter { $0.island == .home && $0.level > 0 }
             .compactMap { status in
                 IslandLayout.stationAnchors[status.id].map { WorldPoint(x: $0.x, y: $0.y - 24) }
             }
