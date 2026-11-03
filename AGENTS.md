@@ -215,15 +215,19 @@ So, for every task and every push:
   no `raw.webp`. Fix and re-push before you start the next job. (Batch
   01 masters already on `main` decode and may stay as they are.)
 
-## Harmony manifest: commit it with every promoted master
+## Harmony manifest: commit your master's own file
 
-CI runs `python3 -I tools/assets/harmony.py check`, and a new master changes
-the harmony manifest, so an art PR without the refreshed manifest fails CI
-(batches 05 to 07 did). The push checklist for every promoted master:
+CI runs `python3 -I tools/assets/harmony.py check`, and a new master needs
+its harmony entry, so an art PR without it fails CI (batches 05 to 07 did).
+The manifest is one small file per asset, `design/art/harmony/assets/<id>.json`,
+so parallel art PRs never touch the same file. The push checklist for every
+promoted master:
 
 1. `python3 -I tools/assets/harmony.py measure`
-2. Commit the changed manifest in the same PR as the master (and its
-   `raw.webp`, content node and provenance).
+2. Commit only the new or changed `design/art/harmony/assets/<id>.json` of
+   your masters in the same PR as the master (and its `raw.webp`, content
+   node and provenance). If other assets' files changed too, a shared input
+   moved (config, reference); do not commit those, tell the lead.
 3. `python3 -I tools/assets/harmony.py check` must pass before you push.
 
 ## Next batches: the queue

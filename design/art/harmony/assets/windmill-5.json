@@ -1,0 +1,61 @@
+{
+ "after": {
+  "C_mean": 21.467,
+  "C_p50": 20.682,
+  "C_p95": 32.324,
+  "L_mean": 76.344,
+  "L_p2": 56.572,
+  "L_p98": 89.17,
+  "detail": 2.056,
+  "edge": 0.461,
+  "tint_a": 6.234,
+  "tint_b": 11.139,
+  "warmth_b": 19.291
+ },
+ "before": {
+  "C_mean": 7.185,
+  "C_p50": 6.894,
+  "C_p95": 10.782,
+  "L_mean": 82.38,
+  "L_p2": 71.913,
+  "L_p98": 89.17,
+  "detail": 1.214,
+  "edge": 0.461,
+  "tint_a": 3.025,
+  "tint_b": 6.318,
+  "warmth_b": 6.459
+ },
+ "chain": {
+  "C_p50": 40.156,
+  "L_p2": 56.577,
+  "L_p98": 91.243
+ },
+ "correction": {
+  "black": -15.34,
+  "ceiling": 45.3,
+  "chroma": 3.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "chain_C_p50",
+  "edge"
+ ],
+ "outliers_before": [
+  "chain_C_p50",
+  "chain_L_p2",
+  "edge"
+ ],
+ "ppu": 8.5333,
+ "reference": false,
+ "score_after": 63.0,
+ "score_before": 43.1,
+ "shipped": true,
+ "source": "design/art/stations/windmill-5/windmill-5.png",
+ "source_sha": "2b39b888f828ae71"
+}

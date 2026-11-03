@@ -1,0 +1,57 @@
+{
+ "after": {
+  "C_mean": 28.405,
+  "C_p50": 25.329,
+  "C_p95": 45.631,
+  "L_mean": 79.19,
+  "L_p2": 58.357,
+  "L_p98": 91.422,
+  "detail": 1.888,
+  "edge": 0.428,
+  "warmth_b": 26.862
+ },
+ "before": {
+  "C_mean": 20.85,
+  "C_p50": 18.475,
+  "C_p95": 34.457,
+  "L_mean": 79.192,
+  "L_p2": 58.357,
+  "L_p98": 91.422,
+  "detail": 1.88,
+  "edge": 0.428,
+  "tint_a": 3.95,
+  "tint_b": 11.221,
+  "warmth_b": 19.718
+ },
+ "chain": {
+  "C_p50": 25.32,
+  "L_p2": 55.091,
+  "L_p98": 91.189
+ },
+ "correction": {
+  "black": 0.0,
+  "ceiling": 42.4,
+  "chroma": 1.371,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "chain_C_p50",
+  "edge"
+ ],
+ "ppu": 8.5333,
+ "reference": false,
+ "score_after": 89.1,
+ "score_before": 69.7,
+ "shipped": true,
+ "source": "design/art/stations/garden-2/garden-2.png",
+ "source_sha": "39fd1ede45f1efa1"
+}

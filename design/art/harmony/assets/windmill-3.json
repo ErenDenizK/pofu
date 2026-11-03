@@ -1,0 +1,57 @@
+{
+ "after": {
+  "C_mean": 38.204,
+  "C_p50": 39.364,
+  "C_p95": 52.119,
+  "L_mean": 79.973,
+  "L_p2": 60.218,
+  "L_p98": 91.142,
+  "detail": 2.089,
+  "edge": 0.456,
+  "warmth_b": 35.448
+ },
+ "before": {
+  "C_mean": 15.873,
+  "C_p50": 14.985,
+  "C_p95": 24.904,
+  "L_mean": 80.072,
+  "L_p2": 60.218,
+  "L_p98": 91.166,
+  "detail": 2.068,
+  "edge": 0.456,
+  "tint_a": 3.048,
+  "tint_b": 9.168,
+  "warmth_b": 14.65
+ },
+ "chain": {
+  "C_p50": 40.156,
+  "L_p2": 56.577,
+  "L_p98": 91.243
+ },
+ "correction": {
+  "black": 0.0,
+  "ceiling": 45.3,
+  "chroma": 2.68,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "chain_C_p50",
+  "edge"
+ ],
+ "ppu": 8.5333,
+ "reference": false,
+ "score_after": 88.1,
+ "score_before": 63.6,
+ "shipped": true,
+ "source": "design/art/stations/windmill-3/windmill-3--lock-light.png",
+ "source_sha": "fba417e86564037a"
+}

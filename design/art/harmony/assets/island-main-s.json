@@ -1,0 +1,46 @@
+{
+ "after": {
+  "C_mean": 37.256,
+  "C_p50": 35.616,
+  "C_p95": 49.04,
+  "L_mean": 80.105,
+  "L_p2": 53.55,
+  "L_p98": 93.064,
+  "detail": 1.079,
+  "edge": 1.084,
+  "warmth_b": 33.742
+ },
+ "before": {
+  "C_mean": 37.256,
+  "C_p50": 35.616,
+  "C_p95": 49.04,
+  "L_mean": 80.105,
+  "L_p2": 53.55,
+  "L_p98": 93.064,
+  "detail": 1.079,
+  "edge": 1.084,
+  "warmth_b": 33.742
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "world",
+ "matched_to": "world",
+ "outliers_after": [],
+ "outliers_before": [],
+ "ppu": 4.103,
+ "reference": true,
+ "score_after": 100.0,
+ "score_before": 100.0,
+ "shipped": false,
+ "source": "design/art/masters/island-main-s/island-main-s--lock-light.png",
+ "source_sha": "cd772a9ea217bbfb"
+}

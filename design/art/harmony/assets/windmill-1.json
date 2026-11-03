@@ -1,0 +1,53 @@
+{
+ "after": {
+  "C_mean": 35.666,
+  "C_p50": 40.156,
+  "C_p95": 45.311,
+  "L_mean": 76.886,
+  "L_p2": 56.577,
+  "L_p98": 91.243,
+  "detail": 2.213,
+  "edge": 0.468,
+  "warmth_b": 32.56
+ },
+ "before": {
+  "C_mean": 24.6,
+  "C_p50": 27.709,
+  "C_p95": 31.249,
+  "L_mean": 76.888,
+  "L_p2": 56.577,
+  "L_p98": 91.243,
+  "detail": 2.181,
+  "edge": 0.468,
+  "tint_a": 2.481,
+  "tint_b": 11.964,
+  "warmth_b": 22.457
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.45,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 8.5333,
+ "reference": false,
+ "score_after": 87.5,
+ "score_before": 70.2,
+ "shipped": true,
+ "source": "design/art/stations/windmill-1/windmill-1.webp",
+ "source_sha": "26d2dabe088b5ae3"
+}
