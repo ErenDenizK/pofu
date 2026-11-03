@@ -2,7 +2,7 @@ id: asset-ui-face-secondary-pressed
 type: asset
 title_tr: ui-face-secondary-pressed
 title_en: face-secondary-pressed (ui)
-status: cut
+status: planned
 horizon: now
 summary: 'Show the capsule pressed in: a soft shadow along its top edge, the highlight
   gone, the lip along the bottom edge flatter, and the whole capsule a touch darker.
@@ -14,6 +14,7 @@ art:
   images: []
   jobs:
   - batch-13-ui-rest:ui-face-secondary-pressed
+  - retry-2026-11-03:ui-face-secondary-pressed
 sources:
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
 kind: ui

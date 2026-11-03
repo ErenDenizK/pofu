@@ -2,7 +2,7 @@ id: asset-game-plot-tile-terracotta
 type: asset
 title_tr: game-plot-tile-terracotta
 title_en: game-plot-tile-terracotta (ui)
-status: cut
+status: planned
 horizon: now
 summary: Change only the glaze color of the tile and its sprout to a soft terracotta
   orange, in the same finish and the same lightness as before. The shape, highlight,
@@ -14,6 +14,7 @@ art:
   images: []
   jobs:
   - batch-12-minigame-art:game-plot-tile-terracotta
+  - retry-2026-11-03:game-plot-tile-terracotta
 sources:
 - doc: tools/imagegen/manifest/batch-12-minigame-art.yaml
 kind: ui

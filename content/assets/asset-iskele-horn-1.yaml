@@ -2,7 +2,7 @@ id: asset-iskele-horn-1
 type: asset
 title_tr: iskele-horn-1
 title_en: iskele-horn-1 (station)
-status: cut
+status: planned
 horizon: now
 summary: 'A small harbor signal post for the island diorama: a short, chunky post
   of honey wood on a round stone foot, a plump brass-colored horn pointing out to
@@ -13,6 +13,7 @@ art:
   images: []
   jobs:
   - batch-14-iskele:iskele-horn-1
+  - retry-2026-11-03:iskele-horn-1
 sources:
 - doc: tools/imagegen/manifest/batch-14-iskele.yaml
 kind: station

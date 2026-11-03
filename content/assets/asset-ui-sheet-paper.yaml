@@ -2,7 +2,7 @@ id: asset-ui-sheet-paper
 type: asset
 title_tr: ui-sheet-paper
 title_en: sheet-paper (ui)
-status: cut
+status: planned
 horizon: now
 summary: 'A tall sheet of cream paper seen straight on, filling the canvas from the
   left edge to the right edge and from near the top to the bottom edge: its top corners
@@ -14,6 +14,7 @@ art:
   images: []
   jobs:
   - batch-13-ui-rest:ui-sheet-paper
+  - retry-2026-11-03:ui-sheet-paper
 sources:
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
 kind: ui

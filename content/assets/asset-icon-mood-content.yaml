@@ -2,7 +2,7 @@ id: asset-icon-mood-content
 type: asset
 title_tr: icon-mood-content
 title_en: mood-content (icon)
-status: cut
+status: planned
 horizon: now
 summary: 'A mood glyph, content: Pofu''s face only, simplified into a round icon:
   the golden-peach head with the cream blaze, the single cream curl on top, two small
@@ -22,6 +22,7 @@ art:
   jobs:
   - batch-02-ui:icon-mood-content
   - batch-13-ui-rest:icon-mood-content
+  - retry-2026-11-03:icon-mood-content
 sources:
 - doc: tools/imagegen/manifest/batch-02-ui.yaml
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml

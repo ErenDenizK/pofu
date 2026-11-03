@@ -2,7 +2,7 @@ id: asset-game-plot-tile-honey
 type: asset
 title_tr: game-plot-tile-honey
 title_en: game-plot-tile-honey (ui)
-status: cut
+status: planned
 horizon: now
 summary: Change only the glaze color of the tile and its sprout to a warm honey yellow,
   in the same matte-to-soft-gloss finish and the same lightness as before. The shape,
@@ -14,6 +14,7 @@ art:
   images: []
   jobs:
   - batch-12-minigame-art:game-plot-tile-honey
+  - retry-2026-11-03:game-plot-tile-honey
 sources:
 - doc: tools/imagegen/manifest/batch-12-minigame-art.yaml
 kind: ui

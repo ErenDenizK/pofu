@@ -2,7 +2,7 @@ id: asset-ui-lantern-on
 type: asset
 title_tr: ui-lantern-on
 title_en: lantern-on (ui)
-status: cut
+status: planned
 horizon: now
 summary: 'Light the lantern from inside: the paper glows a warm honey-gold, brightest
   at its center, the ribs, caps and post unchanged. Light only inside the lantern''s
@@ -15,6 +15,7 @@ art:
   images: []
   jobs:
   - batch-11-ui-pilot:ui-lantern-on
+  - retry-2026-11-03:ui-lantern-on
 sources:
 - doc: tools/imagegen/manifest/batch-11-ui-pilot.yaml
 kind: ui
