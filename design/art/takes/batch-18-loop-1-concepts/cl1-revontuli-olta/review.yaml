@@ -1,0 +1,1903 @@
+batch: batch-18-loop-1-concepts
+contact_sheet: design/art/takes/batch-18-loop-1-concepts/cl1-revontuli-olta/contact.jpg
+jobs:
+  cl1-revontuli-olta:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both retained originals recommend
+      eligible. Olta is a round ice floe with a real water-filled circular fishing
+      aperture, line, stool and lantern; both correctly identified friends are wrapped
+      in blankets, under a pale aurora and pink polar dawn. A separate snowy spruce
+      floe behind establishes Revontuli without duplicating the ring-floe silhouette.
+      Native60 proofs are separate for foreground and background; no whole opaque
+      alpha rectangle. The water-filled aperture is excluded from solid ice geometry
+      as an observed structural opening, not a claim that sky is visible through it.
+      Owner chooses the lowest-load eligible take.
+qa_reports:
+  1:
+    job: cl1-revontuli-olta
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 68 (R1 59)
+      value: 68.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.52
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.808
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.9, p95 6.3, off-palette 0.0% (top: #663311 (0.0%), #773311
+        (0.0%))'
+      value: 2.8977
+    info:
+      metrics_raw:
+        L_p5: 68.2
+        L_p50: 81.8
+        L_p95: 93.4
+        C_p50: 17.3
+        C_p95: 37.0
+        C_p99: 43.2
+        detail: 1.97
+      metrics_locked:
+        L_p5: 68.4
+        L_p50: 81.8
+        L_p95: 93.1
+        C_p50: 17.2
+        C_p95: 36.8
+        C_p99: 41.8
+        detail: 1.52
+    fingerprint: d94b016a5ee6e51d
+  2:
+    job: cl1-revontuli-olta
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 67 (R1 59)
+      value: 67.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.63
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8166
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 7.0, off-palette 0.6% (top: #88BBDD (0.3%), #77AACC
+        (0.0%))'
+      value: 3.1181
+    info:
+      metrics_raw:
+        L_p5: 66.8
+        L_p50: 81.3
+        L_p95: 92.9
+        C_p50: 18.6
+        C_p95: 41.0
+        C_p99: 46.1
+        detail: 2.12
+      metrics_locked:
+        L_p5: 67.0
+        L_p50: 81.3
+        L_p95: 92.5
+        C_p50: 18.4
+        C_p95: 40.9
+        C_p99: 44.8
+        detail: 1.63
+    fingerprint: d94b016a5ee6e51d
+effective_exploration_reports:
+  1:
+    job: cl1-revontuli-olta
+    take: 1
+    raw_status: warn
+    status: warn
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 68 (R1 59)
+      value: 68.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.52
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.808
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.9, p95 6.3, off-palette 0.0% (top: #663311 (0.0%), #773311
+        (0.0%))'
+      value: 2.8977
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: 829af293d8180615c879472c501ddefc221871c482f6b5fe813afca787443a5f
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+  2:
+    job: cl1-revontuli-olta
+    take: 2
+    raw_status: warn
+    status: warn
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 67 (R1 59)
+      value: 67.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.63
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8166
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 7.0, off-palette 0.6% (top: #88BBDD (0.3%), #77AACC
+        (0.0%))'
+      value: 3.1181
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: 63f6544216a59bc1e2763e67cfb44486067ad197560e8bbaf8dcf59386559a67
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+manual_review:
+  note: Both retained originals recommend eligible. Olta is a round ice floe with
+    a real water-filled circular fishing aperture, line, stool and lantern; both correctly
+    identified friends are wrapped in blankets, under a pale aurora and pink polar
+    dawn. A separate snowy spruce floe behind establishes Revontuli without duplicating
+    the ring-floe silhouette. Native60 proofs are separate for foreground and background;
+    no whole opaque alpha rectangle. The water-filled aperture is excluded from solid
+    ice geometry as an observed structural opening, not a claim that sky is visible
+    through it. Owner chooses the lowest-load eligible take.
+  takes:
+    '1':
+      pass: true
+      silhouette_name: Foreground ring ice floe with blanket-wrapped duo; separate
+        spruce-topped snowy floe behind
+      rubric:
+      - 2
+      - 2
+      - 1
+      - 2
+      - 0
+      evidence: The fishing line visibly enters the single circular pool/opening in
+        the round floe. Stool and warm lantern sit alongside Pofu and Mochi, both
+        wrapped in soft blankets. Pofu has round raised ears and his forelock curl;
+        Mochi has a smooth crown and long hanging ears, with no curl. The pale aurora
+        lies over a luminous pink/peach horizon, so the scene reads polar dawn rather
+        than night. Background snowy spruce floe is spatially separate and has a tree-shaped
+        profile, while the foreground ice aperture makes a ring-like landform. No
+        home lawn oval, soil bowl, hanging roots, pebbles, wooden round home door
+        or sunflower is present.
+      contours:
+      - - - 66
+          - 585
+        - - 76
+          - 558
+        - - 104
+          - 540
+        - - 145
+          - 523
+        - - 190
+          - 512
+        - - 238
+          - 506
+        - - 280
+          - 513
+        - - 301
+          - 508
+        - - 301
+          - 501
+        - - 325
+          - 491
+        - - 361
+          - 488
+        - - 401
+          - 492
+        - - 438
+          - 505
+        - - 464
+          - 523
+        - - 476
+          - 490
+        - - 489
+          - 451
+        - - 507
+          - 411
+        - - 532
+          - 377
+        - - 548
+          - 341
+        - - 553
+          - 310
+        - - 561
+          - 287
+        - - 579
+          - 280
+        - - 598
+          - 283
+        - - 609
+          - 296
+        - - 625
+          - 281
+        - - 646
+          - 273
+        - - 653
+          - 258
+        - - 671
+          - 255
+        - - 690
+          - 264
+        - - 707
+          - 283
+        - - 728
+          - 275
+        - - 748
+          - 278
+        - - 763
+          - 297
+        - - 769
+          - 322
+        - - 787
+          - 350
+        - - 800
+          - 384
+        - - 807
+          - 407
+        - - 823
+          - 372
+        - - 845
+          - 337
+        - - 870
+          - 311
+        - - 899
+          - 290
+        - - 926
+          - 279
+        - - 954
+          - 274
+        - - 981
+          - 279
+        - - 1009
+          - 294
+        - - 1035
+          - 317
+        - - 1056
+          - 343
+        - - 1076
+          - 376
+        - - 1091
+          - 407
+        - - 1108
+          - 434
+        - - 1126
+          - 460
+        - - 1137
+          - 488
+        - - 1139
+          - 516
+        - - 1149
+          - 545
+        - - 1165
+          - 538
+        - - 1156
+          - 511
+        - - 1157
+          - 482
+        - - 1168
+          - 460
+        - - 1180
+          - 446
+        - - 1178
+          - 420
+        - - 1185
+          - 394
+        - - 1202
+          - 381
+        - - 1221
+          - 377
+        - - 1241
+          - 384
+        - - 1255
+          - 400
+        - - 1262
+          - 425
+        - - 1262
+          - 447
+        - - 1279
+          - 462
+        - - 1287
+          - 480
+        - - 1283
+          - 503
+        - - 1280
+          - 536
+        - - 1286
+          - 562
+        - - 1282
+          - 589
+        - - 1326
+          - 548
+        - - 1370
+          - 554
+        - - 1413
+          - 566
+        - - 1447
+          - 585
+        - - 1466
+          - 610
+        - - 1473
+          - 641
+        - - 1465
+          - 671
+        - - 1451
+          - 707
+        - - 1427
+          - 741
+        - - 1391
+          - 767
+        - - 1347
+          - 794
+        - - 1295
+          - 818
+        - - 1235
+          - 842
+        - - 1175
+          - 864
+        - - 1109
+          - 885
+        - - 1044
+          - 903
+        - - 976
+          - 916
+        - - 906
+          - 928
+        - - 835
+          - 936
+        - - 764
+          - 931
+        - - 695
+          - 916
+        - - 625
+          - 905
+        - - 556
+          - 888
+        - - 488
+          - 870
+        - - 422
+          - 849
+        - - 359
+          - 826
+        - - 298
+          - 797
+        - - 244
+          - 765
+        - - 192
+          - 731
+        - - 148
+          - 699
+        - - 110
+          - 665
+        - - 84
+          - 632
+      - - - 64
+          - 375
+        - - 79
+          - 356
+        - - 110
+          - 345
+        - - 142
+          - 337
+        - - 164
+          - 316
+        - - 189
+          - 307
+        - - 209
+          - 317
+        - - 219
+          - 301
+        - - 234
+          - 290
+        - - 235
+          - 279
+        - - 249
+          - 262
+        - - 258
+          - 249
+        - - 239
+          - 249
+        - - 236
+          - 237
+        - - 252
+          - 223
+        - - 271
+          - 213
+        - - 278
+          - 199
+        - - 266
+          - 191
+        - - 265
+          - 180
+        - - 282
+          - 162
+        - - 297
+          - 142
+        - - 309
+          - 122
+        - - 322
+          - 117
+        - - 333
+          - 126
+        - - 346
+          - 149
+        - - 358
+          - 164
+        - - 370
+          - 177
+        - - 371
+          - 190
+        - - 358
+          - 198
+        - - 370
+          - 211
+        - - 390
+          - 224
+        - - 401
+          - 239
+        - - 395
+          - 250
+        - - 379
+          - 256
+        - - 397
+          - 273
+        - - 417
+          - 287
+        - - 429
+          - 305
+        - - 431
+          - 318
+        - - 409
+          - 329
+        - - 436
+          - 337
+        - - 462
+          - 348
+        - - 490
+          - 361
+        - - 505
+          - 380
+        - - 504
+          - 399
+        - - 486
+          - 418
+        - - 458
+          - 433
+        - - 423
+          - 445
+        - - 384
+          - 454
+        - - 340
+          - 457
+        - - 295
+          - 457
+        - - 250
+          - 450
+        - - 208
+          - 441
+        - - 168
+          - 430
+        - - 130
+          - 417
+        - - 95
+          - 399
+      holes:
+      - - - 595
+          - 652
+        - - 620
+          - 637
+        - - 656
+          - 627
+        - - 699
+          - 621
+        - - 747
+          - 620
+        - - 798
+          - 624
+        - - 850
+          - 631
+        - - 898
+          - 644
+        - - 937
+          - 660
+        - - 966
+          - 681
+        - - 976
+          - 699
+        - - 958
+          - 713
+        - - 924
+          - 722
+        - - 883
+          - 727
+        - - 834
+          - 729
+        - - 783
+          - 726
+        - - 733
+          - 721
+        - - 686
+          - 713
+        - - 646
+          - 701
+        - - 615
+          - 686
+        - - 597
+          - 670
+      components:
+        foreground_ring:
+          contours:
+          - - - 66
+              - 585
+            - - 76
+              - 558
+            - - 104
+              - 540
+            - - 145
+              - 523
+            - - 190
+              - 512
+            - - 238
+              - 506
+            - - 280
+              - 513
+            - - 301
+              - 508
+            - - 301
+              - 501
+            - - 325
+              - 491
+            - - 361
+              - 488
+            - - 401
+              - 492
+            - - 438
+              - 505
+            - - 464
+              - 523
+            - - 476
+              - 490
+            - - 489
+              - 451
+            - - 507
+              - 411
+            - - 532
+              - 377
+            - - 548
+              - 341
+            - - 553
+              - 310
+            - - 561
+              - 287
+            - - 579
+              - 280
+            - - 598
+              - 283
+            - - 609
+              - 296
+            - - 625
+              - 281
+            - - 646
+              - 273
+            - - 653
+              - 258
+            - - 671
+              - 255
+            - - 690
+              - 264
+            - - 707
+              - 283
+            - - 728
+              - 275
+            - - 748
+              - 278
+            - - 763
+              - 297
+            - - 769
+              - 322
+            - - 787
+              - 350
+            - - 800
+              - 384
+            - - 807
+              - 407
+            - - 823
+              - 372
+            - - 845
+              - 337
+            - - 870
+              - 311
+            - - 899
+              - 290
+            - - 926
+              - 279
+            - - 954
+              - 274
+            - - 981
+              - 279
+            - - 1009
+              - 294
+            - - 1035
+              - 317
+            - - 1056
+              - 343
+            - - 1076
+              - 376
+            - - 1091
+              - 407
+            - - 1108
+              - 434
+            - - 1126
+              - 460
+            - - 1137
+              - 488
+            - - 1139
+              - 516
+            - - 1149
+              - 545
+            - - 1165
+              - 538
+            - - 1156
+              - 511
+            - - 1157
+              - 482
+            - - 1168
+              - 460
+            - - 1180
+              - 446
+            - - 1178
+              - 420
+            - - 1185
+              - 394
+            - - 1202
+              - 381
+            - - 1221
+              - 377
+            - - 1241
+              - 384
+            - - 1255
+              - 400
+            - - 1262
+              - 425
+            - - 1262
+              - 447
+            - - 1279
+              - 462
+            - - 1287
+              - 480
+            - - 1283
+              - 503
+            - - 1280
+              - 536
+            - - 1286
+              - 562
+            - - 1282
+              - 589
+            - - 1326
+              - 548
+            - - 1370
+              - 554
+            - - 1413
+              - 566
+            - - 1447
+              - 585
+            - - 1466
+              - 610
+            - - 1473
+              - 641
+            - - 1465
+              - 671
+            - - 1451
+              - 707
+            - - 1427
+              - 741
+            - - 1391
+              - 767
+            - - 1347
+              - 794
+            - - 1295
+              - 818
+            - - 1235
+              - 842
+            - - 1175
+              - 864
+            - - 1109
+              - 885
+            - - 1044
+              - 903
+            - - 976
+              - 916
+            - - 906
+              - 928
+            - - 835
+              - 936
+            - - 764
+              - 931
+            - - 695
+              - 916
+            - - 625
+              - 905
+            - - 556
+              - 888
+            - - 488
+              - 870
+            - - 422
+              - 849
+            - - 359
+              - 826
+            - - 298
+              - 797
+            - - 244
+              - 765
+            - - 192
+              - 731
+            - - 148
+              - 699
+            - - 110
+              - 665
+            - - 84
+              - 632
+          holes:
+          - - - 595
+              - 652
+            - - 620
+              - 637
+            - - 656
+              - 627
+            - - 699
+              - 621
+            - - 747
+              - 620
+            - - 798
+              - 624
+            - - 850
+              - 631
+            - - 898
+              - 644
+            - - 937
+              - 660
+            - - 966
+              - 681
+            - - 976
+              - 699
+            - - 958
+              - 713
+            - - 924
+              - 722
+            - - 883
+              - 727
+            - - 834
+              - 729
+            - - 783
+              - 726
+            - - 733
+              - 721
+            - - 686
+              - 713
+            - - 646
+              - 701
+            - - 615
+              - 686
+            - - 597
+              - 670
+        spruce_floe:
+          contours:
+          - - - 64
+              - 375
+            - - 79
+              - 356
+            - - 110
+              - 345
+            - - 142
+              - 337
+            - - 164
+              - 316
+            - - 189
+              - 307
+            - - 209
+              - 317
+            - - 219
+              - 301
+            - - 234
+              - 290
+            - - 235
+              - 279
+            - - 249
+              - 262
+            - - 258
+              - 249
+            - - 239
+              - 249
+            - - 236
+              - 237
+            - - 252
+              - 223
+            - - 271
+              - 213
+            - - 278
+              - 199
+            - - 266
+              - 191
+            - - 265
+              - 180
+            - - 282
+              - 162
+            - - 297
+              - 142
+            - - 309
+              - 122
+            - - 322
+              - 117
+            - - 333
+              - 126
+            - - 346
+              - 149
+            - - 358
+              - 164
+            - - 370
+              - 177
+            - - 371
+              - 190
+            - - 358
+              - 198
+            - - 370
+              - 211
+            - - 390
+              - 224
+            - - 401
+              - 239
+            - - 395
+              - 250
+            - - 379
+              - 256
+            - - 397
+              - 273
+            - - 417
+              - 287
+            - - 429
+              - 305
+            - - 431
+              - 318
+            - - 409
+              - 329
+            - - 436
+              - 337
+            - - 462
+              - 348
+            - - 490
+              - 361
+            - - 505
+              - 380
+            - - 504
+              - 399
+            - - 486
+              - 418
+            - - 458
+              - 433
+            - - 423
+              - 445
+            - - 384
+              - 454
+            - - 340
+              - 457
+            - - 295
+              - 457
+            - - 250
+              - 450
+            - - 208
+              - 441
+            - - 168
+              - 430
+            - - 130
+              - 417
+            - - 95
+              - 399
+          holes: []
+      swatch_points:
+      - - 1068
+        - 805
+      - - 770
+        - 688
+      - - 1218
+        - 526
+      uncertainty: Cloud hides portions of both low ice edges; only coarse visible
+        cloud-contact boundaries are traced. No hidden underside is completed. Fishing-water
+        aperture is an actual observed ice opening, not alpha transparency or sky-through;
+        thin fishing line is excluded from the structural-ice hole diagnostic. Small
+        fur/snow lobes and lantern details are simplified only for QA annotation;
+        the art stays unchanged.
+      frame_cut_edges: []
+      banned_template:
+        home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        embedded_soil_pebbles: false
+        round_home_door: false
+      hard_failures: []
+      confidence: High on required scene, character identity and two distinct observed
+        landforms
+      sampled_swatches:
+      - point:
+        - 1068
+        - 805
+        hex: '#CBCBEC'
+      - point:
+        - 770
+        - 688
+        hex: '#9EC1E2'
+      - point:
+        - 1218
+        - 526
+        hex: '#FDFBE4'
+      source_file: /workspace/generated_images/exec-bcd56285-9a9d-4e15-9d25-0b60d57dce59.png
+      original_generated_png_sha256: 26942dc3ea398fa1c583c615c18945373b306087d3a3507f6a15cbe238895729
+      rgba_sha256: 3af57504a63fd15d27ca0347b7a9f2e14d128f155eb6bb279ce9d70ae9373bc7
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 64
+      - 117
+      - 1474
+      - 937
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch18/reviews-root/cl1-revontuli-olta-t1-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch18/reviews-root/cl1-revontuli-olta-t1-QA-profile60.png
+      native60_mask_sha256: e2c040fbccf227f3b844a57f684052a96e862f152a63f05878b92d5c36bb185f
+      component_native60_proofs:
+        foreground_ring:
+          observed_bbox:
+          - 66
+          - 255
+          - 1474
+          - 937
+          native_dimensions:
+          - 60
+          - 29
+          mask_path: /workspace/art-operator-runtime/batch18/reviews-root/cl1-revontuli-olta-t1-foreground_ring-QA-profile60.png
+          mask_sha256: 7240f5c3b257425de27792bf120c7d7236a66b6bab268f0cc0965011911a3c45
+          source_path: /workspace/art-operator-runtime/batch18/reviews-root/cl1-revontuli-olta-t1-foreground_ring-QA-source60.png
+        spruce_floe:
+          observed_bbox:
+          - 64
+          - 117
+          - 506
+          - 458
+          native_dimensions:
+          - 60
+          - 46
+          mask_path: /workspace/art-operator-runtime/batch18/reviews-root/cl1-revontuli-olta-t1-spruce_floe-QA-profile60.png
+          mask_sha256: c09516c99ba4e9707f1b2d65dee2c368ffa477b83e2627aa13ef3866eaefca27
+          source_path: /workspace/art-operator-runtime/batch18/reviews-root/cl1-revontuli-olta-t1-spruce_floe-QA-source60.png
+      annotation_source_inbox_sha256: 008b4d344cd0d31e02657661927dd96f0395581b9f28ae86917fcf9b0be4dc7d
+    '2':
+      pass: true
+      silhouette_name: Foreground ring ice floe with blanket-wrapped duo; separate
+        spruce-topped snowy floe behind
+      rubric:
+      - 2
+      - 2
+      - 1
+      - 2
+      - 0
+      evidence: The fishing line visibly enters the single circular pool/opening in
+        the round floe. Stool and warm lantern sit alongside Pofu and Mochi, both
+        wrapped in soft blankets. Pofu has round raised ears and his forelock curl;
+        Mochi has a smooth crown and long hanging ears, with no curl. The pale aurora
+        lies over a luminous pink/peach horizon, so the scene reads polar dawn rather
+        than night. Background snowy spruce floe is spatially separate and has a tree-shaped
+        profile, while the foreground ice aperture makes a ring-like landform. No
+        home lawn oval, soil bowl, hanging roots, pebbles, wooden round home door
+        or sunflower is present.
+      contours:
+      - - - 43
+          - 640
+        - - 55
+          - 607
+        - - 76
+          - 580
+        - - 105
+          - 558
+        - - 140
+          - 545
+        - - 183
+          - 536
+        - - 226
+          - 531
+        - - 272
+          - 528
+        - - 309
+          - 529
+        - - 341
+          - 533
+        - - 350
+          - 501
+        - - 370
+          - 464
+        - - 394
+          - 426
+        - - 425
+          - 391
+        - - 455
+          - 365
+        - - 476
+          - 339
+        - - 480
+          - 316
+        - - 494
+          - 296
+        - - 514
+          - 291
+        - - 534
+          - 302
+        - - 550
+          - 283
+        - - 571
+          - 270
+        - - 586
+          - 267
+        - - 596
+          - 280
+        - - 610
+          - 296
+        - - 630
+          - 305
+        - - 649
+          - 300
+        - - 669
+          - 303
+        - - 689
+          - 320
+        - - 701
+          - 347
+        - - 713
+          - 375
+        - - 726
+          - 399
+        - - 737
+          - 375
+        - - 757
+          - 351
+        - - 785
+          - 332
+        - - 814
+          - 323
+        - - 844
+          - 324
+        - - 871
+          - 331
+        - - 898
+          - 346
+        - - 923
+          - 367
+        - - 943
+          - 396
+        - - 961
+          - 428
+        - - 982
+          - 460
+        - - 1003
+          - 494
+        - - 1027
+          - 528
+        - - 1046
+          - 568
+        - - 1065
+          - 558
+        - - 1078
+          - 550
+        - - 1073
+          - 528
+        - - 1074
+          - 514
+        - - 1092
+          - 502
+        - - 1123
+          - 491
+        - - 1155
+          - 490
+        - - 1188
+          - 495
+        - - 1208
+          - 507
+        - - 1212
+          - 476
+        - - 1220
+          - 451
+        - - 1236
+          - 438
+        - - 1255
+          - 436
+        - - 1275
+          - 443
+        - - 1289
+          - 460
+        - - 1298
+          - 482
+        - - 1298
+          - 503
+        - - 1315
+          - 519
+        - - 1321
+          - 537
+        - - 1314
+          - 555
+        - - 1310
+          - 587
+        - - 1318
+          - 619
+        - - 1312
+          - 642
+        - - 1360
+          - 581
+        - - 1406
+          - 596
+        - - 1445
+          - 618
+        - - 1471
+          - 644
+        - - 1488
+          - 674
+        - - 1492
+          - 705
+        - - 1483
+          - 736
+        - - 1463
+          - 770
+        - - 1433
+          - 801
+        - - 1397
+          - 828
+        - - 1354
+          - 852
+        - - 1305
+          - 877
+        - - 1252
+          - 898
+        - - 1192
+          - 918
+        - - 1129
+          - 937
+        - - 1067
+          - 951
+        - - 1003
+          - 961
+        - - 934
+          - 968
+        - - 865
+          - 964
+        - - 797
+          - 951
+        - - 730
+          - 937
+        - - 664
+          - 925
+        - - 599
+          - 908
+        - - 536
+          - 889
+        - - 472
+          - 870
+        - - 409
+          - 850
+        - - 349
+          - 824
+        - - 291
+          - 794
+        - - 235
+          - 762
+        - - 184
+          - 729
+        - - 135
+          - 696
+        - - 93
+          - 669
+      - - - 39
+          - 406
+        - - 49
+          - 387
+        - - 74
+          - 372
+        - - 104
+          - 364
+        - - 125
+          - 344
+        - - 150
+          - 338
+        - - 176
+          - 349
+        - - 185
+          - 335
+        - - 206
+          - 325
+        - - 222
+          - 310
+        - - 217
+          - 296
+        - - 231
+          - 280
+        - - 249
+          - 268
+        - - 224
+          - 260
+        - - 225
+          - 247
+        - - 244
+          - 232
+        - - 260
+          - 217
+        - - 266
+          - 202
+        - - 248
+          - 194
+        - - 247
+          - 181
+        - - 264
+          - 162
+        - - 281
+          - 140
+        - - 293
+          - 121
+        - - 307
+          - 115
+        - - 318
+          - 120
+        - - 332
+          - 142
+        - - 346
+          - 162
+        - - 360
+          - 181
+        - - 361
+          - 195
+        - - 344
+          - 204
+        - - 355
+          - 218
+        - - 375
+          - 233
+        - - 391
+          - 248
+        - - 390
+          - 261
+        - - 373
+          - 270
+        - - 391
+          - 286
+        - - 412
+          - 302
+        - - 414
+          - 315
+        - - 397
+          - 329
+        - - 419
+          - 344
+        - - 443
+          - 355
+        - - 462
+          - 370
+        - - 466
+          - 390
+        - - 456
+          - 409
+        - - 433
+          - 425
+        - - 404
+          - 437
+        - - 371
+          - 446
+        - - 331
+          - 450
+        - - 291
+          - 449
+        - - 250
+          - 443
+        - - 210
+          - 434
+        - - 171
+          - 424
+        - - 135
+          - 421
+        - - 100
+          - 421
+        - - 70
+          - 418
+      holes:
+      - - - 574
+          - 708
+        - - 600
+          - 696
+        - - 636
+          - 688
+        - - 678
+          - 682
+        - - 725
+          - 681
+        - - 775
+          - 683
+        - - 822
+          - 690
+        - - 865
+          - 700
+        - - 902
+          - 715
+        - - 928
+          - 732
+        - - 940
+          - 748
+        - - 931
+          - 762
+        - - 904
+          - 773
+        - - 863
+          - 781
+        - - 814
+          - 782
+        - - 764
+          - 778
+        - - 715
+          - 771
+        - - 670
+          - 761
+        - - 630
+          - 747
+        - - 598
+          - 732
+        - - 578
+          - 718
+      components:
+        foreground_ring:
+          contours:
+          - - - 43
+              - 640
+            - - 55
+              - 607
+            - - 76
+              - 580
+            - - 105
+              - 558
+            - - 140
+              - 545
+            - - 183
+              - 536
+            - - 226
+              - 531
+            - - 272
+              - 528
+            - - 309
+              - 529
+            - - 341
+              - 533
+            - - 350
+              - 501
+            - - 370
+              - 464
+            - - 394
+              - 426
+            - - 425
+              - 391
+            - - 455
+              - 365
+            - - 476
+              - 339
+            - - 480
+              - 316
+            - - 494
+              - 296
+            - - 514
+              - 291
+            - - 534
+              - 302
+            - - 550
+              - 283
+            - - 571
+              - 270
+            - - 586
+              - 267
+            - - 596
+              - 280
+            - - 610
+              - 296
+            - - 630
+              - 305
+            - - 649
+              - 300
+            - - 669
+              - 303
+            - - 689
+              - 320
+            - - 701
+              - 347
+            - - 713
+              - 375
+            - - 726
+              - 399
+            - - 737
+              - 375
+            - - 757
+              - 351
+            - - 785
+              - 332
+            - - 814
+              - 323
+            - - 844
+              - 324
+            - - 871
+              - 331
+            - - 898
+              - 346
+            - - 923
+              - 367
+            - - 943
+              - 396
+            - - 961
+              - 428
+            - - 982
+              - 460
+            - - 1003
+              - 494
+            - - 1027
+              - 528
+            - - 1046
+              - 568
+            - - 1065
+              - 558
+            - - 1078
+              - 550
+            - - 1073
+              - 528
+            - - 1074
+              - 514
+            - - 1092
+              - 502
+            - - 1123
+              - 491
+            - - 1155
+              - 490
+            - - 1188
+              - 495
+            - - 1208
+              - 507
+            - - 1212
+              - 476
+            - - 1220
+              - 451
+            - - 1236
+              - 438
+            - - 1255
+              - 436
+            - - 1275
+              - 443
+            - - 1289
+              - 460
+            - - 1298
+              - 482
+            - - 1298
+              - 503
+            - - 1315
+              - 519
+            - - 1321
+              - 537
+            - - 1314
+              - 555
+            - - 1310
+              - 587
+            - - 1318
+              - 619
+            - - 1312
+              - 642
+            - - 1360
+              - 581
+            - - 1406
+              - 596
+            - - 1445
+              - 618
+            - - 1471
+              - 644
+            - - 1488
+              - 674
+            - - 1492
+              - 705
+            - - 1483
+              - 736
+            - - 1463
+              - 770
+            - - 1433
+              - 801
+            - - 1397
+              - 828
+            - - 1354
+              - 852
+            - - 1305
+              - 877
+            - - 1252
+              - 898
+            - - 1192
+              - 918
+            - - 1129
+              - 937
+            - - 1067
+              - 951
+            - - 1003
+              - 961
+            - - 934
+              - 968
+            - - 865
+              - 964
+            - - 797
+              - 951
+            - - 730
+              - 937
+            - - 664
+              - 925
+            - - 599
+              - 908
+            - - 536
+              - 889
+            - - 472
+              - 870
+            - - 409
+              - 850
+            - - 349
+              - 824
+            - - 291
+              - 794
+            - - 235
+              - 762
+            - - 184
+              - 729
+            - - 135
+              - 696
+            - - 93
+              - 669
+          holes:
+          - - - 574
+              - 708
+            - - 600
+              - 696
+            - - 636
+              - 688
+            - - 678
+              - 682
+            - - 725
+              - 681
+            - - 775
+              - 683
+            - - 822
+              - 690
+            - - 865
+              - 700
+            - - 902
+              - 715
+            - - 928
+              - 732
+            - - 940
+              - 748
+            - - 931
+              - 762
+            - - 904
+              - 773
+            - - 863
+              - 781
+            - - 814
+              - 782
+            - - 764
+              - 778
+            - - 715
+              - 771
+            - - 670
+              - 761
+            - - 630
+              - 747
+            - - 598
+              - 732
+            - - 578
+              - 718
+        spruce_floe:
+          contours:
+          - - - 39
+              - 406
+            - - 49
+              - 387
+            - - 74
+              - 372
+            - - 104
+              - 364
+            - - 125
+              - 344
+            - - 150
+              - 338
+            - - 176
+              - 349
+            - - 185
+              - 335
+            - - 206
+              - 325
+            - - 222
+              - 310
+            - - 217
+              - 296
+            - - 231
+              - 280
+            - - 249
+              - 268
+            - - 224
+              - 260
+            - - 225
+              - 247
+            - - 244
+              - 232
+            - - 260
+              - 217
+            - - 266
+              - 202
+            - - 248
+              - 194
+            - - 247
+              - 181
+            - - 264
+              - 162
+            - - 281
+              - 140
+            - - 293
+              - 121
+            - - 307
+              - 115
+            - - 318
+              - 120
+            - - 332
+              - 142
+            - - 346
+              - 162
+            - - 360
+              - 181
+            - - 361
+              - 195
+            - - 344
+              - 204
+            - - 355
+              - 218
+            - - 375
+              - 233
+            - - 391
+              - 248
+            - - 390
+              - 261
+            - - 373
+              - 270
+            - - 391
+              - 286
+            - - 412
+              - 302
+            - - 414
+              - 315
+            - - 397
+              - 329
+            - - 419
+              - 344
+            - - 443
+              - 355
+            - - 462
+              - 370
+            - - 466
+              - 390
+            - - 456
+              - 409
+            - - 433
+              - 425
+            - - 404
+              - 437
+            - - 371
+              - 446
+            - - 331
+              - 450
+            - - 291
+              - 449
+            - - 250
+              - 443
+            - - 210
+              - 434
+            - - 171
+              - 424
+            - - 135
+              - 421
+            - - 100
+              - 421
+            - - 70
+              - 418
+          holes: []
+      swatch_points:
+      - - 1086
+        - 851
+      - - 757
+        - 731
+      - - 1256
+        - 551
+      uncertainty: Cloud hides portions of both low ice edges; only coarse visible
+        cloud-contact boundaries are traced. No hidden underside is completed. Fishing-water
+        aperture is an actual observed ice opening, not alpha transparency or sky-through;
+        thin fishing line is excluded from the structural-ice hole diagnostic. Small
+        fur/snow lobes and lantern details are simplified only for QA annotation;
+        the art stays unchanged.
+      frame_cut_edges: []
+      banned_template:
+        home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        embedded_soil_pebbles: false
+        round_home_door: false
+      hard_failures: []
+      confidence: High on required scene, character identity and two distinct observed
+        landforms
+      sampled_swatches:
+      - point:
+        - 1086
+        - 851
+        hex: '#B3C6E7'
+      - point:
+        - 757
+        - 731
+        hex: '#A7C5E4'
+      - point:
+        - 1256
+        - 551
+        hex: '#FDE0A9'
+      source_file: /workspace/generated_images/exec-20c823fe-1ee1-4b1b-9f15-25d4acaf1276.png
+      original_generated_png_sha256: 4b4df0976055b588e374e9d916f8c1197ac13e1a8c24aed4fd2febe8713797b4
+      rgba_sha256: 45056124c5f5f89025e5d7f67c56444fd1a2bcaf56c95764021aceeb1280f584
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 39
+      - 115
+      - 1493
+      - 969
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch18/reviews-root/cl1-revontuli-olta-t2-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch18/reviews-root/cl1-revontuli-olta-t2-QA-profile60.png
+      native60_mask_sha256: 13362804fe07e927c1efd6863fa7862fe177e4c682c49783f8f26a1f42d8410a
+      component_native60_proofs:
+        foreground_ring:
+          observed_bbox:
+          - 43
+          - 267
+          - 1493
+          - 969
+          native_dimensions:
+          - 60
+          - 29
+          mask_path: /workspace/art-operator-runtime/batch18/reviews-root/cl1-revontuli-olta-t2-foreground_ring-QA-profile60.png
+          mask_sha256: c97e660ca070fd826a5dd37fee8f844b8d42ed02b1aad511d19b6ef53608c42f
+          source_path: /workspace/art-operator-runtime/batch18/reviews-root/cl1-revontuli-olta-t2-foreground_ring-QA-source60.png
+        spruce_floe:
+          observed_bbox:
+          - 39
+          - 115
+          - 467
+          - 451
+          native_dimensions:
+          - 60
+          - 47
+          mask_path: /workspace/art-operator-runtime/batch18/reviews-root/cl1-revontuli-olta-t2-spruce_floe-QA-profile60.png
+          mask_sha256: d0a2e79ab73b18505936fa1a8ad224cfee7d13fd286a280c512a3032df9c472f
+          source_path: /workspace/art-operator-runtime/batch18/reviews-root/cl1-revontuli-olta-t2-spruce_floe-QA-source60.png
+      annotation_source_inbox_sha256: b5bbfb0ea1ae0a28344128116f9177395cd88504b75a1c8f6cec32f5e616f235
+  reviewed_at: '2026-11-03T17:20:03.074707+00:00'
+  qa_preview: /workspace/art-operator-runtime/batch18/reviews-root/cl1-revontuli-olta-QA-preview.jpg
+  preview_sha256: 615d30be257351cbc528a0cc9142eb25b7fb2d185e7e0ef964d7a230dadc2fbb
+  no_authoritative_pick: true
+  production_score_threshold_applied: false
+  reviewer_source_json_sha256: 857168469f452a38e8ecf83c37fa3adf4fe9a8431b750f6583ad8369dfb5e79f
+  reviewer_source_file: /workspace/art-operator-runtime/batch18/reviews-root/cl1-revontuli-olta.json
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-bcd56285-9a9d-4e15-9d25-0b60d57dce59.png
+  original_generated_png_sha256: 26942dc3ea398fa1c583c615c18945373b306087d3a3507f6a15cbe238895729
+  inbox_png_sha256: 008b4d344cd0d31e02657661927dd96f0395581b9f28ae86917fcf9b0be4dc7d
+  rgba_sha256: 3af57504a63fd15d27ca0347b7a9f2e14d128f155eb6bb279ce9d70ae9373bc7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d94b016a5ee6e51d
+- take: 2
+  source_file: /workspace/generated_images/exec-20c823fe-1ee1-4b1b-9f15-25d4acaf1276.png
+  original_generated_png_sha256: 4b4df0976055b588e374e9d916f8c1197ac13e1a8c24aed4fd2febe8713797b4
+  inbox_png_sha256: b5bbfb0ea1ae0a28344128116f9177395cd88504b75a1c8f6cec32f5e616f235
+  rgba_sha256: 45056124c5f5f89025e5d7f67c56444fd1a2bcaf56c95764021aceeb1280f584
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d94b016a5ee6e51d
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
