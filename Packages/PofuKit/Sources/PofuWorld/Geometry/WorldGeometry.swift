@@ -168,3 +168,62 @@ extension WorldSprite {
         }
     }
 }
+
+/// The home plate as the pipeline measured it (`preblur.py app`): which
+/// master it is, its lawn's radii, the centres of its depth bands (back
+/// lawn, middle lawn, front lawn and lip, earth body) and the door's round
+/// window, in world units around the lawn's centre.
+public struct WorldPlate: Hashable, Sendable {
+    public var master: String
+    public var lawnRadiusX: Double
+    public var lawnRadiusY: Double
+    public var bandDepthY: [Double]
+    public var window: WorldPoint
+}
+
+extension WorldPolygon {
+    /// The convex hull of `points`.
+    public static func hull(_ points: [WorldPoint]) -> WorldPolygon {
+        let pts = points.sorted { ($0.x, $0.y) < ($1.x, $1.y) }
+        guard pts.count >= 3 else { return WorldPolygon(pts) }
+        func cross(_ o: WorldPoint, _ a: WorldPoint, _ b: WorldPoint) -> Double {
+            (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x)
+        }
+        var lower: [WorldPoint] = []
+        for p in pts {
+            while lower.count >= 2 && cross(lower[lower.count - 2], lower[lower.count - 1], p) <= 0 {
+                lower.removeLast()
+            }
+            lower.append(p)
+        }
+        var upper: [WorldPoint] = []
+        for p in pts.reversed() {
+            while upper.count >= 2 && cross(upper[upper.count - 2], upper[upper.count - 1], p) <= 0 {
+                upper.removeLast()
+            }
+            upper.append(p)
+        }
+        return WorldPolygon(Array(lower.dropLast() + upper.dropLast()))
+    }
+
+    /// Whether two convex polygons overlap by more than `gap` (the
+    /// separating axis test).
+    public func intersects(_ other: WorldPolygon, gap: Double = 0.5) -> Bool {
+        for poly in [self, other] {
+            let n = poly.points.count
+            guard n >= 2 else { continue }
+            for i in 0..<n {
+                let a = poly.points[i], b = poly.points[(i + 1) % n]
+                let len = max(hypot(b.x - a.x, b.y - a.y), 1e-9)
+                let nx = (b.y - a.y) / len, ny = (a.x - b.x) / len
+                let p = points.map { $0.x * nx + $0.y * ny }
+                let q = other.points.map { $0.x * nx + $0.y * ny }
+                guard let pMin = p.min(), let pMax = p.max(), let qMin = q.min(), let qMax = q.max() else { continue }
+                if pMax + gap < qMin || qMax + gap < pMin {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+}

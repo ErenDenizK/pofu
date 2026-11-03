@@ -1,0 +1,20 @@
+id: asset-x-store-b
+type: asset
+title_tr: x-store-b
+title_en: x-store-b (plate)
+status: in-production
+horizon: now
+summary: >-
+  A portrait poster painting for an app store page: Pofu the hamster large in the lower half,
+  sitting contentedly on the lawn, eyes happy, beside a plain dark phone lying face down on
+  the grass like a stone, a soft blurred sunflower field behind, a calm clear zone at the
+  top for a title added later. Warm afternoon light.
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-store-b
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1024x1536

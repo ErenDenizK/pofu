@@ -1,0 +1,21 @@
+id: asset-x-comlek-1
+type: asset
+title_tr: x-comlek-1
+title_en: x-comlek-1 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Çömlek, a small red-clay floating island in terracotta,
+  ochre and cream, with a rounded beehive kiln, a low potter's wheel under a straw awning
+  and a shelf of different round pots drying in the sun. Morning light. Seen from the same
+  low front three-quarter camera as the attached island, the island floating over a sea of
+  clouds. Peaceful and wondrous, never dramatic.
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-comlek-1
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1536x1024

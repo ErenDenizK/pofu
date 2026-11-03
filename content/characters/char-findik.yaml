@@ -4,19 +4,19 @@ title_tr: Fındık
 title_en: Fındık, the hedgehog
 status: in-production
 horizon: later
-summary: >-
-  A hedgehog who tinkers in the workshop and makes the style variants. Arrives at home stage
-  4.
+summary: A hedgehog who tinkers in the workshop and makes the style variants. Arrives
+  at home stage 4.
 notes:
-- >-
-  PofuWorld shows a stand-in (findik-standin) until batch 03's findik and findik-work are
-  promoted.
-- >-
-  Every resident except Mochi is postponed in-app by the decision audit; the art runs now.
+- PofuWorld shows a stand-in (findik-standin) until batch 03's findik and findik-work
+  are promoted.
+- Every resident except Mochi is postponed in-app by the decision audit; the art runs
+  now.
 links:
   uses_asset:
   - asset-findik
   - asset-findik-work
+  - asset-findik-eyes-happy
+  - asset-findik-eyes-closed
   related:
   - station-workshop
   - station-windmill

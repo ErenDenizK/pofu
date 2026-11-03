@@ -1,6 +1,10 @@
 import PofuCompanion
 import PofuCore
 import PofuDesignSystem
+#if DEBUG
+import PofuTuning
+#endif
+import PofuSound
 import PofuWorld
 import SwiftUI
 
@@ -16,6 +20,9 @@ struct HomeView: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.scenePhase) private var scenePhase
+    /// "glass" or "crafted" from the Prova panel or the launch argument
+    /// `-PofuSkin crafted`; empty means the default skin.
+    @AppStorage("PofuSkin") private var skinOverride = ""
     /// The companion's laid-out width, for tucking the bubble into its
     /// headroom.
     @State private var companionWidth: CGFloat = 300
@@ -59,6 +66,22 @@ struct HomeView: View {
                     .zIndex(1)
             }
         }
+        // The skin of the over-world chrome, once at the root: the
+        // developer override (Prova panel or `-PofuSkin crafted`), else the
+        // default. Reduce Transparency is resolved where the faces draw.
+        .environment(\.pofuSkin, PofuSkinPolicy(developerOverride: PofuSkinPolicy.override(from: skinOverride)).skin)
+        #if DEBUG
+        .onChange(of: Ayar.store.values.home, initial: true) { _, values in
+            var timing = HomeTiming()
+            timing.pawsPress = values.pawsPress
+            timing.cheekRelease = values.cheekRelease
+            timing.jarFill = values.jarFill
+            timing.lanternGlow = values.lanternGlow
+            timing.potBloom = values.potBloom
+            timing.jarCapacity = values.jarCapacity
+            model.worldHome.timing = timing
+        }
+        #endif
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: model.activeSession != nil || model.earningResult != nil)
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: model.canCollectQuietSeeds)
         .sensoryFeedback(.success, trigger: model.quietCollections)
@@ -127,7 +150,11 @@ struct HomeView: View {
             scene: model.island,
             home: model.worldHome,
             actions: WorldHome.Actions(
-                collect: { model.collectWorldSeeds() },
+                collect: {
+                    let pouch = model.collectWorldSeeds()
+                    if pouch != nil { SoundEngine.shared.play(.collect) }
+                    return pouch
+                },
                 build: { model.buildStation($0) },
                 openSettings: { model.homeSheet = .settings },
                 repair: { model.homeSheet = .setup }
@@ -300,6 +327,7 @@ struct HomeView: View {
     /// Collects the quiet seeds: Pofu swallows the puff and hops, and the
     /// pill counts up.
     private func collect() {
+        SoundEngine.shared.play(.collect)
         withAnimation(PofuMotion.respecting(reduceMotion, PofuMotion.settle)) {
             _ = model.collectQuietSeeds()
         }

@@ -210,4 +210,61 @@ struct WorldHomeModelTests {
         home.pofuTapped()
         #expect(home.settledLine == nil)
     }
+
+    // MARK: Cheeks
+
+    @Test func theCheeksFollowTheSeedsWaiting() {
+        let home = model()
+        #expect(home.cheekEnergy(uncollected: 0) == 0)
+        #expect(home.cheekEnergy(uncollected: 5) == CheekStep.round.companionEnergy)
+        #expect(home.cheekEnergy(uncollected: 12) == CheekStep.full.companionEnergy)
+        #expect(home.cheekEnergy(uncollected: 40) == 1)
+    }
+
+    @Test func aCollectPressesThePawsThenEmptiesTheCheeks() {
+        let home = model()
+        let big = SeedPouch(stations: Energy(30), gathered: Energy(6))
+        home.beginVisit(visit([.collect(big)]))
+        home.collectSeeds(jarBefore: 10, sources: [], target: MomentPoint(x: 100, y: 100)) { big }
+        // The pouch is committed, yet the cheeks hold until the paws press.
+        #expect(home.pawsPressed)
+        #expect(home.cheekEnergy(uncollected: 0) == 1)
+        clock.advance(home.timing.pawsPress + 0.01)
+        home.advance(to: clock.now)
+        #expect(home.cheeksReleased)
+        #expect(home.cheekEnergy(uncollected: 0) == 0)
+        #expect(home.pawsPressed)
+        clock.advance(home.timing.cheekRelease)
+        home.advance(to: clock.now)
+        #expect(!home.pawsPressed)
+        clock.advance(5)
+        home.advance(to: clock.now)
+        #expect(home.collect == nil)
+        #expect(home.cheekEnergy(uncollected: 0) == 0)
+    }
+
+    @Test func reduceMotionNeverPressesThePaws() {
+        let home = model()
+        home.reduceMotion = true
+        home.beginVisit(visit([.collect(pouch)]))
+        home.collectSeeds(jarBefore: 0, sources: [], target: MomentPoint(x: 0, y: 0)) { pouch }
+        #expect(!home.pawsPressed)
+    }
+
+    @Test func theHugeCheeksLineIsSaidOncePerDayAtTheTopStep() {
+        let home = model()
+        let small = SeedPouch(stations: Energy(5))
+        home.beginVisit(visit([.collect(small)]))
+        #expect(!home.saysCheeksHuge)
+        home.beginVisit(visit([.collect(pouch)]))
+        #expect(home.saysCheeksHuge)
+        // The same day again: the line is gone.
+        clock.advance(3600)
+        home.beginVisit(visit([.collect(pouch)]))
+        #expect(!home.saysCheeksHuge)
+        // The next day it may come back.
+        clock.advance(86_400)
+        home.beginVisit(visit([.collect(pouch)]))
+        #expect(home.saysCheeksHuge)
+    }
 }

@@ -1,0 +1,132 @@
+batch: batch-13-ui-rest
+contact_sheet: design/art/takes/batch-13-ui-rest/ui-face-secondary/contact.jpg
+jobs:
+  ui-face-secondary:
+    pick: 1
+    note: auto-picked by QA; founder review pending. Both takes pass real-alpha review
+      on white, blue, cream clay and dark backgrounds. At52pt tall, alpha-trimmed
+      slice previews at120/240/360pt widths retain a flat even centre and the full
+      rounded edge within16/26/16/26pt caps. No text, symbols, glass or external shadow.
+      Take1 has lowest non-failing lock load0.2384. The cap review assumes transparent
+      margins are trimmed before the app applies the declared point insets.
+    takes:
+      t1:
+        qa: pass
+        summary: all pass
+      t2:
+        qa: pass
+        summary: all pass
+    approved:
+      take: 1
+      at: '2026-11-03T00:34:43+00:00'
+qa_reports:
+  1:
+    job: ui-face-secondary
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 26 (R1 51)
+      value: 26.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 81.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.54
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.2
+      value: 0.2384
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.5, p95 0.9, off-palette 0.0%
+      value: 0.5141
+    info:
+      metrics_raw:
+        L_p5: 81.6
+        L_p50: 89.0
+        L_p95: 92.8
+        C_p50: 11.6
+        C_p95: 26.5
+        C_p99: 32.0
+        detail: 0.7
+      metrics_locked:
+        L_p5: 81.8
+        L_p50: 89.0
+        L_p95: 92.9
+        C_p50: 11.5
+        C_p95: 26.2
+        C_p99: 31.6
+        detail: 0.54
+    fingerprint: ba21c837c22a600f
+  2:
+    job: ui-face-secondary
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 23 (R1 51)
+      value: 23.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 82.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.55
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.2
+      value: 0.2406
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.6, p95 1.1, off-palette 0.0%
+      value: 0.6218
+    info:
+      metrics_raw:
+        L_p5: 81.8
+        L_p50: 88.7
+        L_p95: 93.5
+        C_p50: 11.0
+        C_p95: 23.7
+        C_p99: 28.7
+        detail: 0.73
+      metrics_locked:
+        L_p5: 82.1
+        L_p50: 88.7
+        L_p95: 93.5
+        C_p50: 11.0
+        C_p95: 23.2
+        C_p99: 28.0
+        detail: 0.55
+    fingerprint: ba21c837c22a600f
+manual_review:
+  exclude: []
+  note: Both takes pass real-alpha review on white, blue, cream clay and dark backgrounds.
+    At52pt tall, alpha-trimmed slice previews at120/240/360pt widths retain a flat
+    even centre and the full rounded edge within16/26/16/26pt caps. No text, symbols,
+    glass or external shadow. Take1 has lowest non-failing lock load0.2384. The cap
+    review assumes transparent margins are trimmed before the app applies the declared
+    point insets.

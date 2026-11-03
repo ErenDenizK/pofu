@@ -1,0 +1,102 @@
+{
+  "job": "pofu-fur-matted",
+  "batch": "batch-06-pofu-rig",
+  "asset": "char__pofu-fur-matted",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T19:13:54+00:00",
+  "image": "design/art/masters/pofu-fur-matted/pofu-fur-matted.webp",
+  "raw": "design/art/masters/pofu-fur-matted/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "360d959517d2dc67",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached hamster. Make the fur look tired: flatter and\nsmoother, lying close to the body in soft clumps, with fewer fluffy\nwisps on the outline, and the colors gently washed toward warm ash\n(warm grayish cream and muted beige-peach, never blue-gray, never\ngreen). Same pose, same size, same face and expression. Still cute\nand clean, never dirty, wet, sick or injured. Nothing else changes.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: dirt, wetness, bandages, a thermometer, tears, a changed face, a ground shadow, text.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T19:13:14+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 30 (R1 51)",
+        "value": 30.2
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 57 (R1 59)",
+        "value": 56.7
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 4.0 (R1 5.3)",
+        "value": 3.97
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.3, p95 3.0, off-palette 0.8% (top: #BB4433 (0.1%), #441100 (0.1%))",
+        "value": 1.3298
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.5% of the height (contract 88%)",
+        "value": 0.8952
+      },
+      {
+        "check": "edit_stability",
+        "status": "warn",
+        "message": "68% of the parent level unchanged",
+        "value": 0.6797
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.06 of the parent level (drift compounds along a chain)",
+        "value": 1.057
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 81 against the char reference (outliers: C_p95, detail)",
+        "value": 80.9
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending Publication resumed under the repeated user request from original cached PNGs/local raw; no new generation. Current harmony audit at f35258d leaves the selected take unchanged; QA implementation, presets and rig manifest are byte-unchanged."
+}

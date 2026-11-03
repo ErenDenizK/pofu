@@ -1,0 +1,114 @@
+{
+  "job": "pofu-eyes-matte",
+  "batch": "batch-06-pofu-rig",
+  "asset": "char__pofu-eyes-matte",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T19:10:49+00:00",
+  "image": "design/art/masters/pofu-eyes-matte/pofu-eyes-matte.webp",
+  "raw": "design/art/masters/pofu-eyes-matte/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "60461ef0fc43b04d",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached hamster. Change only his eyes: remove the white\ncatchlights and the tiny sparkles, so each eye is a plain soft dark\nespresso-brown with its lighter warm-brown lower iris. Same eye\nshapes, sizes and positions. Nothing else changes.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: white dots, reflections, glints, changed eye shapes, a ground shadow, text.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T19:05:22+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": {
+    "scale": 0.9973,
+    "cx": 516.5,
+    "cy": 1375.0,
+    "dx": 0,
+    "dy": -1
+  },
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "edit_alignment",
+        "status": "pass",
+        "message": "the edit rescaled the object x1.003 and moved it; aligned back to the parent",
+        "value": 0.9973
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 50 (R1 51)",
+        "value": 50.0
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 58 (R1 59)",
+        "value": 58.4
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 5.1 (R1 5.3)",
+        "value": 5.11
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.3, p95 8.7, off-palette 3.2% (top: #EE9955 (0.4%), #EE7766 (0.4%))",
+        "value": 2.2738
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.4% of the height (contract 88%)",
+        "value": 0.8939
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 85 against the char reference (outliers: detail, tint_b)",
+        "value": 85.3
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "98% of the parent level unchanged",
+        "value": 0.9818
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.04 of the parent level (drift compounds along a chain)",
+        "value": 1.0375
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Pofu is never locked; equal zero lock loads are resolved by higher harmony score. Alpha composites verify clean transparency."
+}

@@ -1,0 +1,21 @@
+id: asset-x-b16-poster
+type: asset
+title_tr: x-b16-poster
+title_en: x-b16-poster (plate)
+status: in-production
+horizon: now
+summary: >-
+  PURPOSE: a promo poster for the app, to announce it in a calm, charming way. AUDIENCE: Turkish-speaking
+  adults who want to scroll less. TEXT HIERARCHY: headline, then subline. REQUIRED TEXT, verbatim:
+  headline "Pofu"; subline "Boş ver. Ada büyüsün." LAYOUT: headline in the clear upper third,
+  Pofu on the home island lawn below it looking up at a lit paper lantern, the subline at
+  the foot on a pale area. STYLE: the att…
+art:
+  images: []
+  jobs:
+  - batch-16-brand-explore:x-b16-poster
+sources:
+- doc: tools/imagegen/manifest/batch-16-brand-explore.yaml
+kind: plate
+batch: batch-16-brand-explore
+size: 1024x1536

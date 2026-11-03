@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 20.092,
+  "C_p50": 12.886,
+  "C_p95": 50.21,
+  "L_mean": 84.397,
+  "L_p2": 17.261,
+  "L_p98": 97.363,
+  "detail": 8.496,
+  "edge": 0.138,
+  "tint_a": 3.774,
+  "tint_b": 6.353,
+  "warmth_b": 16.829
+ },
+ "before": {
+  "C_mean": 20.092,
+  "C_p50": 12.886,
+  "C_p95": 50.21,
+  "L_mean": 84.397,
+  "L_p2": 17.261,
+  "L_p98": 97.363,
+  "detail": 8.496,
+  "edge": 0.138,
+  "tint_a": 3.774,
+  "tint_b": 6.353,
+  "warmth_b": 16.829
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": true,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "detail"
+ ],
+ "outliers_before": [
+  "detail"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 84.9,
+ "score_before": 84.9,
+ "shipped": false,
+ "source": "design/art/masters/pofu-paws-wave/pofu-paws-wave.webp",
+ "source_sha": "d86faa04a7a1cc7a"
+}

@@ -1,0 +1,21 @@
+id: asset-x-yildiz-2
+type: asset
+title_tr: x-yildiz-2
+title_en: x-yildiz-2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Yıldız at night: above the observatory, seven
+  plump gold stars joined by soft thin golden lines into a gentle constellation shape like
+  a ladle, the dome shutter open to it, a small round sleepy owl (Nane, tiny) on the dome
+  edge looking up. Seen from the same low front three-quarter camera as the attached island,
+  the island floating over a sea of clouds. Peaceful and wondrous…
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-yildiz-2
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1536x1024

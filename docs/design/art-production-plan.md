@@ -25,8 +25,21 @@ Codex reads it at the start of every task.
 4. **Explorations never ship.** An `EXPLORATION` batch is generated, posted
    and auto-picked, but never promoted; its takes, contact sheet and
    `review.yaml` are committed for deciding.
-5. **Stop conditions are unchanged** (`AGENTS.md`): two failing takes on the
-   same check stop the job, and the PR says why.
+5. **A failed job skips, it does not stop the line** (`AGENTS.md`, Stop
+   conditions, 2026-11-02): after its one retry it is recorded as skipped with
+   its reason, its dependents are skipped, and Codex goes on to the next job and
+   batch. Global stop only for account, sign-in, quota or usage-limit messages,
+   refusals, identity or upload corruption, or three consecutive job failures.
+   Before each batch Codex re-reads this queue; when it is empty it re-checks
+   every 20 minutes for 2 hours.
+6. **Publish before you generate.** Selected candidates that were never promoted
+   (the 14 rig picks of batch 06, `pond-5-lit`, 4 UI takes of batch 11) are
+   published from their retained takes first, without regenerating.
+7. **Decor is checked against its guide.** A prop that attaches `decor-guide`
+   is registered on the guide and gets a `decor_anchor` check (footprint width,
+   height bar, ground line; a `decor: hang` piece uses the hang line), so the
+   decor-bench failure of batch 08 (740 px wide against a 360 px footprint) is
+   caught by QA, not by eye.
 
 ### How the lead marks a batch
 
@@ -52,17 +65,58 @@ until none is left.
 | 2 | `batch-06-pofu-rig` | production | The rest of the rig (eyes, mouths, cheeks puff-1 and puff-3, paws, `pofu-ears-droop`, matted fur) and Mochi's and Fındık's blink and happy eyes (pilot passed as composites) | pilot on main | 19 | **READY** |
 | 3 | `batch-07-light` | production | Night light, painted only for light-carrying stations: workshop doorway (L1), windmill windows (L5), pond lanterns (L5). cay-1-lit accepted; cay-5-lit dropped | main | 3 | **READY** |
 | 4 | `batch-11-ui-pilot` | production · PILOT | The hybrid UI's look-dev (ui-system-v2 section 6, 12 of the 14 pilot items; the two cheek stages are `pofu-cheeks-puff-2` and `-3` in row 2): seed icon, jar, lantern on a post, three pots, crafted primary face, disc, paper tag and panel | main | 12 | **READY** |
-| 5 | `batch-08-decor-pilot` | production · pilot | Four decor pieces, one per Ayçiçeği decor spot (bench, lantern string, toy sailboat, mailbox) | main | 4 | **READY** |
+| 5 | `batch-08-decor-pilot` | production · pilot | Four decor pieces, one per Ayçiçeği decor spot (bench, lantern string, toy sailboat, mailbox) | main | 4 | **READY** (re-run the bench: #88 failed its guide fit; QA now checks it and the prompt gives its size) |
 | 6 | `batch-09-explore-pilot` | EXPLORATION · pilot | Painted seed icon at 28–60 pt, App Store key art A, a Home ideation board | main | 3 | **READY** |
 | 7 | `batch-10-island-concepts-pilot` | EXPLORATION · pilot | Establishing shots of Çağlayan, Ayna, Revontuli | main | 3 | **READY** |
 | 8 | `batch-10-island-concepts` | EXPLORATION | Their signature moments (Damla at the falls, Pekmez and the seed falling up, Tuli painting the aurora), attaching the picked pilot takes | review of #6 | 3 | BLOCKED, manifest after #6 |
 | 9 | `batch-11-ui` | production | The rest of ui-system-v2 section 6 (night variants, secondary and pressed faces, game layer, domain icons, surfaces) | review of #4 | about 32 | BLOCKED, no manifest yet |
 | 10 | `batch-08-decor` | production | The rest of a decor kit | the decor mechanic decided (archipelago system, PR #64) and review of #5 | — | BLOCKED, no manifest yet |
+| 11 | `batch-12-minigame-art` | production · pilot inside | The garden minigame's painted art (minigames.md): sage plot tile, soil cell, seed (pilot), five glazes, three blooms, bed rim, combo stamp, tray | main | 14 | **READY** |
+| 12 | `batch-13-ui-rest` | production · pilot inside | The rest of the hybrid UI: crafted secondary face and pressed, sheet and menu paper (and a painted night sheet), the icon family at 28-60 pt (calm lit lantern first, then island, çay, friend, mood, skip, round, breath, rumour, decor, plus). Founder review pending | #87 merged | 16 | **READY** |
+| 13 | `batch-14-iskele` | production · pilot inside | İskele, the second free island: plate, vapur 1-2, horn post, crates, lamp, Simit the kitten (+ work and horn poses), the goat. The simit stall chain is reused from home | main | 10 | **READY** |
+| 14 | `batch-15-explore` | EXPLORATION · pilot inside | Two concepts for each of seven wonder islands, six resident model sheets, the archipelago sky map with fog, three app icons and two icon layers, three key art compositions, a winter Ayçiçeği edit, three onboarding illustrations | main | 33 | **READY** |
+| 15 | `retry-2026-11-03` | production | The 32 jobs batches 11-14 skipped, with QA profiles and briefs fixed (below): 3 UI (primary face, jar-full, lantern-on), bloom-right and five glazes, 14 of batch 13 (sheet paper and its two dependents, pressed face, 10 icons), 9 of batch 14 (vapur 1-2, Simit and two poses, horn, crates, lamp, goat). Manifest `tools/imagegen/manifest/retry-2026-11-03.yaml`. No pilot gate: only true dependents wait | main | 32 | **READY** |
+
+**Order of work:** first publish what is already selected (rule 6), then rows
+1 to 7, then rows 11 to 14 in that order. Each of rows 11 to 14 is one
+manifest whose first 2 to 4 jobs are its pilot (the header names them); if a
+pilot job still fails after its retry, only the rest of that batch is skipped.
 
 Row 9 is the scale-up of row 4; row 8 of row 7; row 10 of row 5. Rows 1 to
 3 were the scale-ups of the passed pilots (batch-05, 06 and 07).
 Batch 02 (Glass++ production) stays blocked until the friends beta
 (ADR-0018 amendment).
+
+## What the retry taught (2026-11-03)
+
+Batches 11 to 14 skipped 3 + 6 + 14 + 9 jobs. Read from their `review.yaml`
+files, none was bad art:
+
+| Job | Check or gate | Value against threshold | Cause |
+|---|---|---|---|
+| ui-face-primary | palette_drift fail | mean dE 10.1-17.7, off-palette 28-85% (fail 4.5 / 10%) | (a)/(b) violet is in the `ui` palette, which the drift check did not hold |
+| ui-jar-full | manual edit_stability > 0.9 | 0.77-0.79 (automated warn 0.75) | (b) refilling the window cannot keep 90% |
+| ui-lantern-on | manual edit_stability > 0.9, palette_drift | 0.62-0.63; dE 2.3-3.1 | (a) lit glow is world-night colors, a region edit |
+| game-bloom-right | manual centre shift, chroma fail on t4 | centre x 487-507 (front itself 501); chroma 60.5 | (b) edit-keep forbids moving the head; (a) saturated accent |
+| 5 plot-tile glazes | edit_stability, edit_chroma, palette_drift | 0.00-0.02 kept; chroma x0.5-2.3; rose dE 6.4-7.1 | (a) a recolor changes every color by definition |
+| ui-sheet-paper (pilot) | manual: bottom runs off canvas | 0 alpha on every border, 4 of 4 | (b) an image model draws an inset card |
+| 13 other jobs of batch 13 | none (not generated) | pilot cascade | (b) the header skipped the batch though icons never attach the sheet |
+| iskele-vapur-1 (pilot) | manual footprint and flat waterline; station_anchor warn | width 875-935 against 720 | (b) the brief said "fills the footprint" for a long hull and asked for a round hull and a flat waterline |
+| simit-kitten (pilot) | palette_drift fail | mean dE 4.0-4.4, off-palette 8-9% (#DD8844, #CC7733) | (a)/(b) a honey tabby is not in Pofu's peach palette |
+| 7 other iskele jobs | none (not generated) | pilot cascade | (b) props attached the ferry, the goat attached Simit |
+
+Fixes: `LIMITS_BY_KIND["ui"]` (chroma p95 warn 56, fail 64, like characters);
+`acceptance: {edit_mode: recolor | region}` (recolor swaps edit_stability and
+edit_chroma for `edit_silhouette`, `edit_structure` and `edit_lightness`;
+region relaxes edit_kept to 0.50/0.30 and adds `edit_silhouette`); a job
+field `palettes:` that extends the drift palettes, with new locked palettes
+`game-glazes` and `character-tabby` in `palettes.json`; rewritten briefs; no
+pilot gate beyond real dependencies. Unchanged: every chroma, value, detail,
+lock-load and drift threshold, the station and icon checks, and
+edit_stability for ordinary edits. Re-measured on the old takes: glazes pass
+the new shape and structure checks (IoU 0.94-1.00, r 0.83-0.97; terracotta
+warns on lightness by 11-15 L), rose and lilac drift is 0.5-1.2 against
+`game-glazes`, the kitten is 0.6-0.8% off-palette with `character-tabby`.
 
 ## What batch 03 taught
 

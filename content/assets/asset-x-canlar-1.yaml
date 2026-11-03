@@ -1,0 +1,21 @@
+id: asset-x-canlar-1
+type: asset
+title_tr: x-canlar-1
+title_en: x-canlar-1 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Çanlar, a narrow tall spire of pale stone floating
+  over clouds, hung with wind bells of many sizes in soft bronze, strings of bunting in sky
+  blue and poppy red, and a few red poppies growing from its cracks. A morning haze. The spire
+  reads tall and slim against the sky. Seen from the same low front three-quarter camera as
+  the attached island, the island floating over a sea o…
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-canlar-1
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1536x1024

@@ -4,17 +4,18 @@ title_tr: pofu-cheeks-puff-3
 title_en: pofu-cheeks-puff-3 (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached hamster. Change only his cheeks and eyes: puff the cheek pouches out much
-  further, as if stuffed with far too many sunflower seeds: the cheeks bulge clearly past
-  the outline of the head on both sides and slightly down, the face becomes wider than the
-  body at cheek height, the blush stretches with them, and the eyes squint a little in proud
-  delight. Still cute. No visible food. Nothing else changes.
+summary: 'Edit the attached hamster. Change only his cheeks and eyes: puff the cheek
+  pouches out much further, as if stuffed with far too many sunflower seeds: the cheeks
+  bulge clearly past the outline of the head on both sides and slightly down, the
+  face becomes wider than the body at cheek height, the blush stretches with them,
+  and the eyes squint a little in proud delight. Still cute. No visible food. Nothing
+  else changes.'
 links:
   variant_of:
   - asset-pofu-cheeks-puff-2
 art:
-  images: []
+  images:
+  - design/art/masters/pofu-cheeks-puff-3/pofu-cheeks-puff-3.webp
   jobs:
   - batch-06-pofu-rig:pofu-cheeks-puff-3
 sources:

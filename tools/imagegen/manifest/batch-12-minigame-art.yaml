@@ -1,0 +1,286 @@
+# Batch 12: the garden minigame's painted art (production)
+# (docs/product/minigames.md, "Art queue: painted tiles for the garden";
+# docs/design/ui-system-v2.md section 6 D for the tray).
+#
+# The game's surfaces are drawn stand-ins; this batch paints them in the
+# crafted layer (ui-system-v2 section 3.1): clay and wood objects, matte to
+# soft gloss, no text, no ground shadow, no glass. Ship sizes: plot tile and
+# soil cell 41 pt, bloom 44 pt, seed 18-28 pt, combo stamp 120 pt, tray 138
+# pt tall. Review every piece at its ship size.
+#
+# PILOT (run first, in this order): game-plot-tile-sage, game-soil-cell,
+# game-seed. If a pilot job still fails after its one retry, skip the REST
+# of this batch (every job below the "THE REST" line) and move on to the
+# next batch; the pilot's own other jobs still finish. Every job of the
+# rest attaches the sage tile, so `plan` skips them automatically.
+#
+# Tracks: `tiles` (sage, then the five glazes as edits of it, then the soil
+# cell), `bloom` (front, then left and right as edits), `frame` (bed rim,
+# tray), `marks` (seed, combo stamp). Tracks run at once; the pilot jobs
+# are sage, soil and seed.
+
+batch: batch-12-minigame-art
+title: Garden minigame art (plot tiles, soil, bloom, seed, combo stamp, bed rim, tray)
+status: open
+
+refs:
+  cay-1: design/art/stations/cay-1/cay-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  # ------------------------------------------------------------- PILOT
+  - id: game-plot-tile-sage
+    kind: ui
+    name: game-plot-tile-sage
+    canvas: 1024x1024
+    chat: "Pofu · Minigame art"
+    notes: "PILOT. Ship 41 pt. The master of the six glazes: one clay tile with a soft top light and a darker lip, a small sprout embossed. Review at 41 pt: tile and sprout both read."
+    attach:
+      - ref: cay-1
+        role: "Style reference for objects: how a prop is painted in this world."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          One square tile of glazed clay seen from straight above with a
+          very slight tilt, rounded corners, filling most of the canvas: a
+          soft sage-green matte-to-soft-gloss glaze, a soft cream highlight
+          along the top edge, a slightly darker rounded lip along the other
+          edges, and in the middle a small, simple sprout (two round leaves
+          on a short stem) pressed into the clay in the same glaze, only a
+          little lighter than the tile.
+      - block: ui-object-v1
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: game-soil-cell
+    kind: ui
+    name: game-soil-cell
+    canvas: 1024x1024
+    chat: "Pofu · Minigame art"
+    notes: "PILOT. Ship 41 pt. An empty cell: it must read darker than every glaze, at 41 pt, beside the sage tile."
+    attach:
+      - ref: cay-1
+        role: "Style reference for objects: how a prop is painted in this world."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          One square tile-sized cell of soft brown garden soil seen from
+          straight above with a very slight tilt, rounded corners, filling
+          most of the canvas: a gently mounded surface of dark warm brown,
+          two tiny round crumbs on it, a slightly darker rim. Matte and
+          calm; clearly darker and duller than a glazed clay tile.
+      - block: ui-object-v1
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: game-seed
+    kind: icon
+    name: game-seed
+    canvas: 1024x1024
+    chat: "Pofu · Icons"
+    notes: "PILOT. Ship 18-28 pt (the vector twin stays below 28 pt). The painted seed of the game board and the +1 that arcs to the seed plate."
+    attach:
+      - ref: R1
+        role: "Style reference only: the hamster's soft painting and pastel colors."
+      - ref: cay-1
+        role: "Style reference for objects: how a prop is painted in this world."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          A single plump sunflower seed, a soft warm-brown shell with two
+          broad cream stripes, its tip pointing up and to the right, a
+          little rounder and chunkier than a real seed.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  # ---------------------------------------------------------- THE REST
+  - id: game-plot-tile-honey
+    kind: ui
+    name: game-plot-tile-honey
+    edit_of: game-plot-tile-sage
+    canvas: 1024x1024
+    chat: "Pofu · Minigame art"
+    notes: "Glaze 2 of 6, an edit so the six match."
+    prompt:
+      - text: |
+          Change only the glaze color of the tile and its sprout to a warm
+          honey yellow, in the same matte-to-soft-gloss finish and the same
+          lightness as before. The shape, highlight, lip and sprout stay.
+      - block: edit-keep-v1
+
+  - id: game-plot-tile-terracotta
+    kind: ui
+    name: game-plot-tile-terracotta
+    edit_of: game-plot-tile-sage
+    canvas: 1024x1024
+    chat: "Pofu · Minigame art"
+    notes: "Glaze 3 of 6."
+    prompt:
+      - text: |
+          Change only the glaze color of the tile and its sprout to a soft
+          terracotta orange, in the same finish and the same lightness as
+          before. The shape, highlight, lip and sprout stay.
+      - block: edit-keep-v1
+
+  - id: game-plot-tile-lilac
+    kind: ui
+    name: game-plot-tile-lilac
+    edit_of: game-plot-tile-sage
+    canvas: 1024x1024
+    chat: "Pofu · Minigame art"
+    notes: "Glaze 4 of 6."
+    prompt:
+      - text: |
+          Change only the glaze color of the tile and its sprout to a soft
+          lilac, in the same finish and the same lightness as before. The
+          shape, highlight, lip and sprout stay.
+      - block: edit-keep-v1
+
+  - id: game-plot-tile-mint
+    kind: ui
+    name: game-plot-tile-mint
+    edit_of: game-plot-tile-sage
+    canvas: 1024x1024
+    chat: "Pofu · Minigame art"
+    notes: "Glaze 5 of 6. Keep it clearly different from sage (cooler and bluer)."
+    prompt:
+      - text: |
+          Change only the glaze color of the tile and its sprout to a cool
+          mint, a little bluer than before, in the same finish and the same
+          lightness. The shape, highlight, lip and sprout stay.
+      - block: edit-keep-v1
+
+  - id: game-plot-tile-rose
+    kind: ui
+    name: game-plot-tile-rose
+    edit_of: game-plot-tile-sage
+    canvas: 1024x1024
+    chat: "Pofu · Minigame art"
+    notes: "Glaze 6 of 6."
+    prompt:
+      - text: |
+          Change only the glaze color of the tile and its sprout to a soft
+          dusty rose, in the same finish and the same lightness as before.
+          The shape, highlight, lip and sprout stay.
+      - block: edit-keep-v1
+
+  - id: game-bloom-front
+    kind: ui
+    name: game-bloom-front
+    canvas: 1024x1024
+    chat: "Pofu · Minigame art"
+    notes: "Ship 44 pt. A sunflower head facing front; replaces the cut from garden L1. Has a bee-size gap in the petals (a place for the sparkle)."
+    attach:
+      - ref: approved:game-plot-tile-sage
+        role: "The family look of the game's pieces: same softness, same light, same finish. Do not draw this tile."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          A single sunflower head seen straight on, filling most of the
+          canvas: a round, soft brown center with a few simple darker
+          seed-swirl marks, ringed by plump rounded petals of warm
+          sunflower yellow, with one small gap between two petals at the
+          upper right. No stem, no leaves.
+      - block: ui-object-v1
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: game-bloom-left
+    kind: ui
+    name: game-bloom-left
+    edit_of: game-bloom-front
+    canvas: 1024x1024
+    chat: "Pofu · Minigame art"
+    notes: "Variant: faces slightly left."
+    prompt:
+      - text: |
+          Turn the sunflower head slightly to the left, as if looking left:
+          the center sits a little left of the middle and the petals on the
+          right side are foreshortened. Same size, colors and finish.
+      - block: edit-keep-v1
+
+  - id: game-bloom-right
+    kind: ui
+    name: game-bloom-right
+    edit_of: game-bloom-front
+    canvas: 1024x1024
+    chat: "Pofu · Minigame art"
+    notes: "Variant: faces slightly right."
+    prompt:
+      - text: |
+          Turn the sunflower head slightly to the right, as if looking
+          right: the center sits a little right of the middle and the petals
+          on the left side are foreshortened. Same size, colors and finish.
+      - block: edit-keep-v1
+
+  - id: game-bed-rim
+    kind: ui
+    name: game-bed-rim
+    canvas: 1024x1024
+    slice: {caps: [28, 28, 28, 28], ship_height: 180}
+    chat: "Pofu · Minigame art"
+    notes: "9-slice frame: the peach clay stone rim of the garden station. A flat, even border all round; the middle is EMPTY and transparent."
+    attach:
+      - ref: approved:game-plot-tile-sage
+        role: "The family look of the game's pieces: same softness, same light, same finish. Do not draw this tile."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          A square frame of chunky, rounded peach-colored clay stones set
+          side by side, seen from straight above with a slight tilt, a soft
+          cream highlight on the top edge of each stone, a slightly darker
+          rounded lip. The frame is a border of equal width on all four
+          sides; the whole inside of the frame is empty and transparent (a
+          hole), and the stones near each corner are a rounded corner.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+
+  - id: game-combo-stamp
+    kind: ui
+    name: game-combo-stamp
+    canvas: 1024x1024
+    chat: "Pofu · Minigame art"
+    notes: "Ship 120 pt. A round paper stamp with a sunflower and a BLANK centre for the live word (the app writes 'Cifte cicek!', 'Kombo x3')."
+    attach:
+      - ref: approved:game-plot-tile-sage
+        role: "The family look of the game's pieces: same softness, same light, same finish. Do not draw this tile."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          A round cream paper stamp with a softly scalloped edge, filling
+          most of the canvas: a ring of small plump sunflower-yellow petals
+          around the rim, and a large plain cream disc in the middle that is
+          completely empty and flat (for text added later). Soft honey ink
+          for the ring. No letters, no numbers, no symbols.
+      - block: ui-object-v1
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: ui-game-tray
+    kind: ui
+    name: ui-game-tray
+    canvas: 1024x1024
+    slice: {caps: [24, 32, 24, 32], ship_height: 138}
+    chat: "Pofu · Minigame art"
+    notes: "Honey-wood serving tray, 9-slice, 138 pt tall (ui-system-v2 section 6 D #24). The middle is a calm flat wood area."
+    attach:
+      - ref: approved:game-plot-tile-sage
+        role: "The family look of the game's pieces: same softness, same light, same finish. Do not draw this tile."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          A wide wooden serving tray seen from above with a slight tilt:
+          soft honey wood, a low rounded raised rim all round (a plain rim,
+          no handles), a perfectly even flat wooden floor inside with no grain
+          pattern that varies across its width.
+      - block: crafted-face-v1
+      - block: prop-style-v2

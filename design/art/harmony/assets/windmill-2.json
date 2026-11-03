@@ -1,0 +1,57 @@
+{
+ "after": {
+  "C_mean": 39.009,
+  "C_p50": 39.36,
+  "C_p95": 52.35,
+  "L_mean": 80.412,
+  "L_p2": 60.363,
+  "L_p98": 91.79,
+  "detail": 1.834,
+  "edge": 0.45,
+  "warmth_b": 36.12
+ },
+ "before": {
+  "C_mean": 15.877,
+  "C_p50": 14.489,
+  "C_p95": 24.982,
+  "L_mean": 80.535,
+  "L_p2": 60.363,
+  "L_p98": 91.924,
+  "detail": 1.784,
+  "edge": 0.45,
+  "tint_a": 2.822,
+  "tint_b": 9.879,
+  "warmth_b": 14.583
+ },
+ "chain": {
+  "C_p50": 40.156,
+  "L_p2": 56.577,
+  "L_p98": 91.243
+ },
+ "correction": {
+  "black": 0.0,
+  "ceiling": 45.3,
+  "chroma": 2.771,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "chain_C_p50",
+  "edge"
+ ],
+ "ppu": 8.5333,
+ "reference": false,
+ "score_after": 88.1,
+ "score_before": 63.6,
+ "shipped": true,
+ "source": "design/art/stations/windmill-2/windmill-2.png",
+ "source_sha": "e15380bf4b2c7fdb"
+}

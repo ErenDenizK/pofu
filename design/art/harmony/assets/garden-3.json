@@ -1,0 +1,59 @@
+{
+ "after": {
+  "C_mean": 27.324,
+  "C_p50": 25.32,
+  "C_p95": 44.28,
+  "L_mean": 77.997,
+  "L_p2": 54.572,
+  "L_p98": 90.151,
+  "detail": 1.977,
+  "edge": 0.436,
+  "tint_a": 5.609,
+  "tint_b": 12.106,
+  "warmth_b": 25.826
+ },
+ "before": {
+  "C_mean": 20.022,
+  "C_p50": 18.509,
+  "C_p95": 32.7,
+  "L_mean": 77.998,
+  "L_p2": 54.572,
+  "L_p98": 90.151,
+  "detail": 1.963,
+  "edge": 0.436,
+  "tint_a": 4.552,
+  "tint_b": 10.36,
+  "warmth_b": 18.924
+ },
+ "chain": {
+  "C_p50": 25.32,
+  "L_p2": 55.091,
+  "L_p98": 91.189
+ },
+ "correction": {
+  "black": 0.0,
+  "ceiling": 42.4,
+  "chroma": 1.368,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "chain_C_p50",
+  "edge"
+ ],
+ "ppu": 8.5333,
+ "reference": false,
+ "score_after": 90.2,
+ "score_before": 70.9,
+ "shipped": true,
+ "source": "design/art/stations/garden-3/garden-3--lock-light.png",
+ "source_sha": "304dccbd503190a4"
+}

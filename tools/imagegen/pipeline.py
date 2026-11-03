@@ -78,11 +78,20 @@ class Job:
     # An external master outside the pipeline's folder layout (R1, the
     # approved Pofu, predates the pipeline): a repository path to its image.
     master: str | None = None
+    # Decor pieces are drawn on the decor guide and registered and checked
+    # against it: "ground" (stands on the footprint) or "hang" (hangs from the
+    # hang line). Set by `decor:` or, for a prop, by attaching `decor-guide`.
+    decor: str | None = None
     # 9-slice insets for a surface the app stretches (ui-system-v2 section
     # 6.1): {caps: [top, left, bottom, right] in pt at 1x, ship_height: pt}.
     # Written to the master's meta.json on promote; the asset catalog step
     # converts it to Contents.json.
     slice: dict | None = None
+    # Extra locked palettes for the drift check, added to the kind's list
+    # (config.yaml `palettes`). For art whose brief names colors the kind's
+    # palettes do not hold: an emissive glow (world-night), a violet
+    # button (ui), a honey tabby (character-tabby).
+    palettes: list[str] = field(default_factory=list)
 
     @property
     def asset(self) -> str:
@@ -205,11 +214,19 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
             if 2 * max(caps[0], caps[2]) >= height:
                 raise ManifestError(f"{where}: top and bottom caps must leave a stretchable centre inside ship_height")
             slice_ = {"caps": [float(c) for c in caps], "ship_height": float(height)}
+        decor = merged.get("decor")
+        if decor is None and kind == "prop" and any(a.ref == "decor-guide" for a in attach):
+            decor = "ground"
+        if decor not in (None, "ground", "hang") or (decor and kind != "prop"):
+            raise ManifestError(f"{where}: decor is ground or hang, and applies to prop jobs only")
+        extra = merged.get("palettes") or []
+        if not isinstance(extra, list) or not all(isinstance(x, str) and ID_RE.match(x) for x in extra):
+            raise ManifestError(f"{where}: palettes must be a list of palette names, e.g. [world-night]")
         job = Job(id=jid, kind=kind, name=name, prompt=prompt, attach=attach, edit_of=merged.get("edit_of"),
                   size=size, transparent=transparent, key=key,
                   variants=variants, acceptance=merged.get("acceptance", {}) or {}, chat=merged.get("chat"),
                   notes=merged.get("notes", "") or "", canvas=canvas, external=str(external) if external else None,
-                  master=str(master) if master else None, slice=slice_)
+                  master=str(master) if master else None, slice=slice_, decor=decor, palettes=list(extra))
         jobs.append(job)
     if not jobs:
         raise ManifestError("manifest has no jobs")

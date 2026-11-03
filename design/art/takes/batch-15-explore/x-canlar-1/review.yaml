@@ -1,0 +1,146 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-canlar-1/contact.jpg
+jobs:
+  x-canlar-1:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both automated PASS and manual
+      shape/palette/whoa review passes: tall slim pale-stone spire over clouds, many
+      soft-bronze wind bells, blue/coral bunting, soft red poppies in cracks, morning
+      haze, no characters/text/border. Take1 lowest lock load0.5119. Never promoted.'
+qa_reports:
+  1:
+    job: x-canlar-1
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 19 (R1 51)
+      value: 19.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 81.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.21
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5119
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 4.0, off-palette 0.1% (top: #EE8855 (0.0%), #DD7755
+        (0.0%))'
+      value: 1.8233
+    info:
+      metrics_raw:
+        L_p5: 81.3
+        L_p50: 91.0
+        L_p95: 95.9
+        C_p50: 6.4
+        C_p95: 19.9
+        C_p99: 42.5
+        detail: 1.49
+      metrics_locked:
+        L_p5: 81.5
+        L_p50: 90.9
+        L_p95: 95.8
+        C_p50: 6.4
+        C_p95: 19.3
+        C_p99: 41.6
+        detail: 1.21
+    fingerprint: b2aacbb8fd6c5c1e
+  2:
+    job: x-canlar-1
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 24.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 81 (R1 59)
+      value: 81.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.24
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5708
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 4.1, off-palette 0.2% (top: #EE8855 (0.1%), #DD8855
+        (0.0%))'
+      value: 1.7816
+    info:
+      metrics_raw:
+        L_p5: 80.8
+        L_p50: 89.9
+        L_p95: 96.2
+        C_p50: 8.4
+        C_p95: 25.0
+        C_p99: 41.1
+        detail: 1.53
+      metrics_locked:
+        L_p5: 81.0
+        L_p50: 89.9
+        L_p95: 96.2
+        C_p50: 8.3
+        C_p95: 24.1
+        C_p99: 39.7
+        detail: 1.24
+    fingerprint: b2aacbb8fd6c5c1e
+manual_review:
+  exclude: []
+  note: 'Both automated PASS and manual shape/palette/whoa review passes: tall slim
+    pale-stone spire over clouds, many soft-bronze wind bells, blue/coral bunting,
+    soft red poppies in cracks, morning haze, no characters/text/border. Take1 lowest
+    lock load0.5119. Never promoted.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-ceaae3b5-af58-4c54-9ff9-8df2efc2bd0b.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b2aacbb8fd6c5c1e
+  inbox_png_sha256: 058b413816cbd9736e7f8051e7a2ffda8631049502710394804134d859944cb9
+  original_generated_png_sha256: 6804c2132a03f56a8b4b1345fc1b6ce8ffb4281dd95cbdc643d7366e4b1310ed
+  rgba_sha256: 01ccf70547eb006c5d18a659c5f03cb31b0c3f4a79e4422d841738cb32ddae83
+  source_rgba_matches_inbox: true
+- take: 2
+  source_file: /workspace/generated_images/exec-91e8d5bd-d906-4427-951f-f19f1f9b7ce2.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b2aacbb8fd6c5c1e
+  inbox_png_sha256: 5c293a01204aa04ae88293966cc08f731faefd73dc27d983d0cfc49fbaf8332b
+  original_generated_png_sha256: 9ef479bbb54c1cdf1def0dc3726825f454218b162f66a0ca0908b7dc77b8c671
+  rgba_sha256: 5b5d0566ac6b5d27f9549908368f2c90f423af8f00ca36a7afac0179a8365369
+  source_rgba_matches_inbox: true
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.

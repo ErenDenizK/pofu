@@ -6,11 +6,21 @@ public struct CameraMotion: Hashable, Sendable {
     public var lookX: Double
     public var lookY: Double
     public var logScale: Double
+    /// How strongly layers parallax for this motion, as a multiple of the
+    /// authored lead (the Ayar panel's `depth.parallax`).
+    public var parallax: Double = 1
 
     public init(lookX: Double, lookY: Double, logScale: Double) {
         self.lookX = lookX
         self.lookY = lookY
         self.logScale = logScale
+    }
+
+    /// This motion with its parallax scaled by `gain`.
+    public func parallax(_ gain: Double) -> CameraMotion {
+        var copy = self
+        copy.parallax = max(gain.isFinite ? gain : 1, 0)
+        return copy
     }
 
     /// At rest.
@@ -72,11 +82,14 @@ public enum DepthMotion {
         // A zoom: nearer layers spread from the look point faster.
         dx += (point.x - look.x) * k * zoomLead * motion.logScale
         dy += (point.y - look.y) * k * zoomLead * motion.logScale
+        dx *= motion.parallax
+        dy *= motion.parallax
         let length = hypot(dx, dy)
         guard length.isFinite else { return .zero }
-        if length > maxShift {
-            dx *= maxShift / length
-            dy *= maxShift / length
+        let cap = maxShift * max(motion.parallax, 1)
+        if length > cap {
+            dx *= cap / length
+            dy *= cap / length
         }
         return WorldPoint(x: dx, y: dy)
     }

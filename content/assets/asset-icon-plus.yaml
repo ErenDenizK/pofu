@@ -1,0 +1,22 @@
+id: asset-icon-plus
+type: asset
+title_tr: icon-plus
+title_en: plus (icon)
+status: planned
+horizon: now
+summary: 'The icon for Plus: one sun-gold sunflower head seen straight on, a round
+  warm-brown center and eight plump rounded petals in a richer gold than a normal
+  sunflower, with a small cream highlight on each petal.'
+art:
+  images: []
+  jobs:
+  - batch-13-ui-rest:icon-plus
+  - retry-2026-11-03:icon-plus
+sources:
+- doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
+kind: icon
+batch: batch-13-ui-rest
+notes:
+- 'Batch13overnight: Not generated: the embedded ui-sheet-paper pilot failed its allowed
+  retry, so the manifest skips the rest of batch13. Other batch timings remain as
+  specified.'

@@ -24,5 +24,5 @@
 - [ ] Follows the conventions in `CONTRIBUTING.md`
 - [ ] User-facing strings are localized (English and Turkish)
 - [ ] Accessibility considered (Dynamic Type, VoiceOver labels, contrast)
-- [ ] `CHANGELOG.md` updated under `[Unreleased]`
+- [ ] Changelog fragment added in `changes/` (not needed for art or docs-only PRs)
 - [ ] ADR added or updated if an expensive-to-reverse decision was made

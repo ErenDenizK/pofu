@@ -1,0 +1,21 @@
+id: asset-x-emanet-1
+type: asset
+title_tr: x-emanet-1
+title_en: x-emanet-1 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Emanet, a crooked little office on stilts at
+  the end of a drifting cloud current, in weathered teal and brass and brown paper, with a
+  round window glowing warmly, a counter bell on the porch, and a tilted shelf crowded with
+  small lost things (an umbrella, a spoon, a sock, a button, a key) on its porch. Seen from
+  the same low front three-quarter camera as the attached island,…
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-emanet-1
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1536x1024

@@ -32,6 +32,7 @@ public struct IslandScene<Bubble: View>: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.worldLook) private var look
+    @Environment(\.worldStillFrame) private var still
     @State private var safeTop: Double = 59
 
     /// - Parameters:
@@ -82,6 +83,7 @@ public struct IslandScene<Bubble: View>: View {
                         time: context.date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 3600),
                         build: build,
                         celebrations: home?.celebrations ?? 0,
+                        home: home,
                         onPofuTap: onPofuTap,
                         bubble: bubble
                     )
@@ -96,6 +98,7 @@ public struct IslandScene<Bubble: View>: View {
                             time: context.date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 3600),
                             build: build,
                             celebrations: home?.celebrations ?? 0,
+                            home: home,
                             onPofuTap: nil,
                             bubble: bubble
                         )
@@ -132,7 +135,7 @@ public struct IslandScene<Bubble: View>: View {
                     .onChanged { value in
                         model.peekChanged(dx: Double(value.translation.width), dy: Double(value.translation.height))
                     }
-                    .onEnded { _ in model.peekEnded() }
+                    .onEnded { value in model.peekEnded(velocityX: Double(value.velocity.width)) }
             )
         }
         .ignoresSafeArea()
@@ -154,6 +157,14 @@ public struct IslandScene<Bubble: View>: View {
             if look.hd2d {
                 model.beginLookVisit()
             }
+            // Arriving at the Island: the establishing shot of the whole
+            // island, then the pan view centred on Pofu.
+            if !still {
+                model.establish()
+            }
+        }
+        .onChange(of: look.tuning.springs, initial: true) { _, springs in
+            model.cameraSprings = springs
         }
         .sensoryFeedback(.selection, trigger: model.projectedFraming)
         .accessibilityElement(children: .contain)
@@ -233,9 +244,19 @@ typealias BuildFrame = (moment: BuildMoment, time: Double)
 
 // MARK: - One frame
 
-/// Everything at one camera and lens: the sky, the world canvas, Pofu and
-/// the cloud sea under the runtime grade, the HD-2D lite layers, and the
-/// screen-space overlays, which are never graded.
+/// Everything at one camera and lens, back to front (look round 3):
+///
+/// 1. the living sky, its far isles and clouds, pre-graded on the CPU (no
+///    shader pass of its own);
+/// 2. the world canvas (plate and stations) under the world's grade, the
+///    only full-screen shader pass;
+/// 3. the characters (residents and Pofu) under the colour script's
+///    character light, each graded in its own small rect;
+/// 4. the cloud sea, pre-graded and lifted at night;
+/// 5. one vignette over the whole world;
+/// 6. the HD-2D lite light (bloom, shafts, particles, the practicals'
+///    pools and the characters' rims);
+/// 7. the screen-space overlays, which are never graded.
 private struct SceneFrame<Bubble: View>: View {
     let world: WorldSnapshot
     let rig: CameraRig
@@ -245,6 +266,7 @@ private struct SceneFrame<Bubble: View>: View {
     let time: Double
     let build: BuildFrame?
     let celebrations: Int
+    let home: WorldHomeModel?
     let onPofuTap: (@MainActor () -> Void)?
     let bubble: Bubble
 
@@ -257,10 +279,10 @@ private struct SceneFrame<Bubble: View>: View {
         let z = rig.railPosition
         // Depth in motion (HD-2D): while the camera moves, layers parallax
         // by depth and the depth of field strengthens; both settle to zero.
-        let motion = look.hd2d && look.depthMotion && !model.reduceMotion ? rig.motion : CameraMotion.still
+        let motion = look.hd2d && look.depthMotion && !model.reduceMotion ? rig.motion.parallax(look.tuning.parallax) : CameraMotion.still
         let lookPoint = WorldPoint(x: pose.lookX, y: pose.lookY)
         // HD-2D's tilt-shift: the depth lens, stronger per framing.
-        let lens = DepthMotion.lens(look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z)) : rig.lens, motion: motion)
+        let lens = DepthMotion.lens(look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z, island: look.tuning.tiltShiftIsland, home: look.tuning.tiltShiftHome)) : rig.lens, motion: motion)
         let peek = rig.peekTilt
         let device = model.deviceTilt
         let tilt = (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
@@ -269,76 +291,123 @@ private struct SceneFrame<Bubble: View>: View {
         let minute = look.hourOverride.map { $0 * 60 }
             ?? world.clock.map { SkyModel.minuteOfDay($0, calendar: .current) } ?? 12 * 60
         let isDark = colorScheme == .dark && look.hourOverride == nil
-        let palette = SkyModel.palette(minuteOfDay: minute, isDark: isDark, isBedtime: world.isBedtime)
-        // The living sky places the sun; the light follows it.
-        let light = WorldLight.at(
+        let baseLight = WorldLight.at(
             hour: minute / 60,
             wellbeing: world.wellbeing,
             calm: world.calm,
             isBedtime: world.isBedtime,
             darkAppearance: isDark
-        ).withSun(x: palette.sun.x, y: palette.sun.y)
+        )
+        // The colour script's sky, overcast when Pofu is unwell.
+        let palette = SkyModel.palette(minuteOfDay: minute, isDark: isDark, isBedtime: world.isBedtime, unwell: look.grade ? baseLight.unwell : 0)
+        // The living sky places the sun; the light follows it.
+        let light = baseLight.withSun(x: palette.sun.x, y: palette.sun.y)
         // Without the runtime grade, the time of day tints the painted
         // world as before (game design §15: no night versions are
-        // generated); with it, WorldGrade does the whole job.
+        // generated); with it, the colour script does the whole job.
         let tint = look.grade ? Color.white : palette.grade.color
         let grade = look.grade ? look.gradeOverride ?? light.grade : WorldGrade.neutral
+        let characterGrade = look.grade ? light.characterGrade : WorldGrade.neutral
+        // The sky and the cloud sea are pre-graded: no shader pass of their own.
+        let sky = palette.graded(by: grade)
+        let sea = CloudSea.Colours(cell: light.cell, grade: grade, unwell: look.grade ? light.unwell : 0)
+        let animation: Animation? = still ? nil : .easeInOut(duration: 2.5)
         // Settled: the ambient layers hold still, so the frame is cached.
         let ambientPaused = look.hd2d && !model.needsFrames && build == nil
 
         ZStack(alignment: .topLeading) {
             ZStack(alignment: .topLeading) {
-                // The sky takes the grade without its input levels, which
-                // would crush its designed night colours to black.
-                LivingSky(palette: palette, offset: offset)
+                LivingSky(palette: sky, offset: offset, far: FarSky.Look(z: z, cell: light.cell, grade: grade))
                     .environment(\.worldAmbientPaused, ambientPaused)
-                    .modifier(GradeEffect(grade: grade.sky, isEnabled: look.grade))
-                    .animation(still ? nil : .easeInOut(duration: 2.5), value: grade)
+                    .animation(animation, value: sky)
 
-                ZStack(alignment: .topLeading) {
-                    WorldCanvas(
-                        world: world,
-                        lens: lens,
-                        z: z,
-                        scale: pose.scale,
-                        tilt: tilt,
-                        motion: motion,
-                        look: lookPoint,
-                        isInteractive: interactive,
-                        build: build,
-                        model: model
-                    )
-                    .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
-                    .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
-                    .colorMultiply(tint)
-                    .frame(width: size.width, height: size.height, alignment: .topLeading)
-
-                    PofuLayer(
-                        world: world,
-                        pose: pose,
-                        lens: lens,
-                        z: z,
-                        tilt: tilt,
-                        motion: motion,
-                        size: size,
-                        offset: offset,
-                        grade: tint,
-                        celebrations: celebrations,
-                        model: model,
-                        onPofuTap: onPofuTap,
-                        part: .body,
-                        bubble: bubble
-                    )
-
-                    CloudSea(palette: palette, offset: offset, rise: CloudSea.rise(z: z))
-                }
+                WorldCanvas(
+                    world: world,
+                    layer: .environment,
+                    lens: lens,
+                    z: z,
+                    scale: pose.scale,
+                    tilt: tilt,
+                    motion: motion,
+                    look: lookPoint,
+                    isInteractive: interactive,
+                    build: build,
+                    model: model,
+                    characterGrade: characterGrade
+                )
+                .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
+                .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
+                .colorMultiply(tint)
+                .frame(width: size.width, height: size.height, alignment: .topLeading)
                 .environment(\.worldAmbientPaused, ambientPaused)
-                // The grade and the vignette: the world layer only.
-                .modifier(GradeEffect(grade: grade, isEnabled: look.grade))
-                .animation(still ? nil : .easeInOut(duration: 2.5), value: grade)
+                // The world's grade: plates and stations only. The vignette
+                // is drawn once over everything below.
+                .modifier(GradeEffect(grade: grade.withoutVignette, isEnabled: look.grade))
+                .animation(animation, value: grade)
+
+                // The characters keep their warmth: the colour script's
+                // character light, graded per sprite.
+                WorldCanvas(
+                    world: world,
+                    layer: .characters,
+                    lens: lens,
+                    z: z,
+                    scale: pose.scale,
+                    tilt: tilt,
+                    motion: motion,
+                    look: lookPoint,
+                    isInteractive: interactive,
+                    build: build,
+                    model: model,
+                    characterGrade: characterGrade
+                )
+                .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
+                .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
+                .colorMultiply(tint)
+                .frame(width: size.width, height: size.height, alignment: .topLeading)
+
+                PofuLayer(
+                    world: world,
+                    pose: pose,
+                    lens: lens,
+                    z: z,
+                    tilt: tilt,
+                    motion: motion,
+                    size: size,
+                    offset: offset,
+                    grade: tint,
+                    characterGrade: characterGrade,
+                    celebrations: celebrations,
+                    home: home,
+                    model: model,
+                    onPofuTap: onPofuTap,
+                    part: .body,
+                    bubble: bubble
+                )
+
+                CloudSea(colours: sea, offset: offset, rise: CloudSea.rise(z: z, pose: pose, height: Double(size.height)))
+                    .environment(\.worldAmbientPaused, ambientPaused)
+                    .animation(animation, value: sea)
+
+                if look.grade {
+                    VignetteOverlay(strength: grade.vignette)
+                        .animation(animation, value: grade.vignette)
+                }
 
                 if look.hd2d {
-                    HD2DLayer(world: world, light: light, pose: pose, offset: offset, size: size, time: still ? 0 : time, motion: motion, focus: lens.focus)
+                    HD2DLayer(
+                        world: world,
+                        light: light,
+                        pose: pose,
+                        offset: offset,
+                        size: size,
+                        time: still ? 0 : time,
+                        motion: motion,
+                        focus: lens.focus,
+                        tilt: tilt,
+                        art: look.art,
+                        litOverlays: look.litOverlays
+                    )
                 }
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
@@ -353,7 +422,9 @@ private struct SceneFrame<Bubble: View>: View {
                 size: size,
                 offset: offset,
                 grade: tint,
+                characterGrade: characterGrade,
                 celebrations: celebrations,
+                home: home,
                 model: model,
                 onPofuTap: onPofuTap,
                 part: .overlay,
@@ -389,9 +460,20 @@ extension View {
 
 // MARK: - The world canvas
 
-/// The world objects on the canvas, back to front by depth.
+/// The world objects on the canvas, back to front by depth: either the
+/// environment (other isles, the plate, the stations) or the characters
+/// (the residents), which are drawn in their own layer so the world's grade
+/// never turns them lavender. The layout keeps every resident in front of
+/// the stations it overlaps (`IslandFootprintTests`), so the split never
+/// changes what hides what.
 private struct WorldCanvas: View {
+    enum Layer {
+        case environment
+        case characters
+    }
+
     let world: WorldSnapshot
+    let layer: Layer
     let lens: Lens
     let z: Double
     let scale: Double
@@ -403,18 +485,22 @@ private struct WorldCanvas: View {
     let isInteractive: Bool
     let build: BuildFrame?
     let model: IslandSceneModel
+    /// The residents' light (the colour script's character grade).
+    let characterGrade: WorldGrade
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            otherIsles
-            ForEach(IslandLayout.plateBands, id: \.art) { band in
-                if let sprite = WorldArt.sprite(band.art) {
-                    DepthImage(
-                        name: band.art,
-                        sprite: sprite,
-                        level: lens.blurLevel(depth: band.depth),
-                        anchor: canvasPoint(.zero, depth: band.depth)
-                    )
+            if layer == .environment {
+                otherIsles
+                ForEach(IslandLayout.plateBands, id: \.art) { band in
+                    if let sprite = WorldArt.sprite(band.art) {
+                        DepthImage(
+                            name: band.art,
+                            sprite: sprite,
+                            level: lens.blurLevel(depth: band.depth),
+                            anchor: canvasPoint(.zero, depth: band.depth)
+                        )
+                    }
                 }
             }
             ForEach(objects) { object in
@@ -441,7 +527,7 @@ private struct WorldCanvas: View {
     /// of built stations, sorted back to front.
     private var objects: [Object] {
         var objects: [Object] = []
-        for status in world.stations where status.island == .aycicegi && status.isOpen {
+        for status in world.stations where layer == .environment && status.island == .aycicegi && status.isOpen {
             guard let slot = IslandLayout.stationAnchors[status.id] else { continue }
             // Containment: never past the walkable edge, whatever the art.
             let art = IslandLayout.stationArt(status.id, level: max(status.level, 1))?.name
@@ -449,7 +535,7 @@ private struct WorldCanvas: View {
             let anchor = IslandFootprint.clamped(slot, footprint: footprint)
             objects.append(Object(id: "station-\(status.id)", kind: .station(status), anchor: anchor, depth: IslandLayout.depth(ofY: anchor.y)))
         }
-        for resident in IslandLayout.residents {
+        for resident in IslandLayout.residents where layer == .characters {
             guard let station = world.stations.first(where: { $0.id == resident.station }), station.level > 0 else { continue }
             let feet = IslandFootprint.clamped(resident.feet, footprint: IslandFootprint.footprint(of: resident.art))
             objects.append(Object(id: "resident-\(resident.id)", kind: .resident(resident), anchor: feet, depth: IslandLayout.depth(ofY: feet.y)))
@@ -477,7 +563,7 @@ private struct WorldCanvas: View {
                 }
         case .resident(let resident):
             let lift = build.map { $0.moment.station == resident.station ? $0.moment.residentLift(at: $0.time) : 0 } ?? 0
-            ResidentView(resident: resident, point: point, level: level, lift: lift)
+            ResidentView(resident: resident, point: point, level: level, lift: lift, grade: characterGrade)
                 .overlay {
                     hitArea(
                         box: IslandLayout.residentHitBox,
@@ -527,8 +613,10 @@ private struct WorldCanvas: View {
                     // Soft once you are on an island, sharp on the map
                     // (§5.1); 35 % at the Island framing.
                     // A focus pushes in on one station: the neighbours,
-                    // blurred and huge at that scale, step aside.
-                    let fade = (1 - min(max(z, 0), 1) * 0.65) * (model.focus == nil ? 1 : 0)
+                    // blurred and huge at that scale, step aside. At the
+                    // Island framing they have left the frame to the far
+                    // isles of the living sky (look round 3).
+                    let fade = max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0)
                     DepthImage(
                         name: isle.art,
                         sprite: sprite,
@@ -645,13 +733,15 @@ private struct ResidentView: View {
     let level: Double
     /// World units off the ground (a hop).
     var lift: Double = 0
+    /// The colour script's character light.
+    var grade: WorldGrade = .neutral
 
     var body: some View {
         ZStack(alignment: .topLeading) {
             ContactShadow(width: 24, height: 6, strength: 1 - min(lift / 20, 0.5))
                 .position(x: point.x, y: point.y)
             if let sprite = WorldArt.sprite(resident.art) {
-                DepthImage(name: resident.art, sprite: sprite, level: level, anchor: CGPoint(x: point.x, y: point.y - CGFloat(lift)))
+                DepthImage(name: resident.art, sprite: sprite, level: level, anchor: CGPoint(x: point.x, y: point.y - CGFloat(lift)), grade: grade)
             }
         }
     }
@@ -672,10 +762,13 @@ private struct PofuLayer<Bubble: View>: View {
     let size: CGSize
     let offset: CGSize
     let grade: Color
+    /// The colour script's character light: Pofu keeps his warmth at night.
+    let characterGrade: WorldGrade
     let celebrations: Int
+    let home: WorldHomeModel?
     let model: IslandSceneModel
     let onPofuTap: (@MainActor () -> Void)?
-    /// Pofu himself (in the graded world), or his map pin and speech
+    /// Pofu himself (under the character light), or his map pin and speech
     /// bubble (UI, never graded).
     let part: Part
     let bubble: Bubble
@@ -718,7 +811,7 @@ private struct PofuLayer<Bubble: View>: View {
         ZStack(alignment: .topLeading) {
             if part == .body, painted > 0.01 {
                 if let sprite = WorldArt.sprite("pofu") {
-                    DepthImage(name: "pofu", sprite: sprite, level: level, anchor: feet, scale: CGFloat(s), opacity: painted, skipsSharp: true)
+                    DepthImage(name: "pofu", sprite: sprite, level: level, anchor: feet, scale: CGFloat(s), opacity: painted, skipsSharp: true, grade: characterGrade)
                         .colorMultiply(grade)
                 }
                 if weights.sharp * painted > DepthWeights.visibleThreshold {
@@ -757,7 +850,8 @@ private struct PofuLayer<Bubble: View>: View {
         let groundY = artHeight * (0.24 + rig.ground.y)
         return CompanionView(
             vitality: min(max(world.wellbeing / 100, 0), 1),
-            energy: min(Double(world.pending.total.units) / 60, 1),
+            energy: home?.cheekEnergy(uncollected: world.pending.total.units)
+                ?? CheekStep(uncollected: world.pending.total.units).companionEnergy,
             celebrations: celebrations,
             art: art,
             onTap: {
@@ -770,7 +864,18 @@ private struct PofuLayer<Bubble: View>: View {
         )
         // A still frame never catches him mid-blink.
         .environment(\.companionBlinks, !still)
+        .accessibilityValue(Text(verbatim: WorldStrings.pofuValue(band: world.band, uncollected: world.pending.total.units)))
         .frame(width: viewWidth, height: viewHeight)
+        .overlay {
+            if home?.pawsPressed == true {
+                CheekPaws(
+                    artWidth: artWidth,
+                    left: CGPoint(x: artWidth * (0.1 + rig.leftCheek.x + 0.05), y: artHeight * (0.24 + rig.leftCheek.y)),
+                    right: CGPoint(x: artWidth * (0.1 + rig.rightCheek.x - 0.05), y: artHeight * (0.24 + rig.rightCheek.y))
+                )
+            }
+        }
+        .modifier(GradeEffect(grade: characterGrade, isEnabled: !characterGrade.isNeutral))
         .position(x: feet.x - groundX + viewWidth / 2, y: feet.y - groundY + viewHeight / 2)
     }
 }

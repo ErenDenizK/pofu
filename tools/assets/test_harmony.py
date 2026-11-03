@@ -130,15 +130,15 @@ class ApplyTests(unittest.TestCase):
         self.assertAlmostEqual(after["L_p2"], src["L_p2"] - 20, delta=1.0)
         self.assertAlmostEqual(after["L_p98"], src["L_p98"], delta=1.0)
 
-    def test_the_copper_warms_inside_its_region_only(self):
+    def test_a_material_correction_stays_inside_its_region(self):
         # A rose copper (hue 54) on both halves of the canvas; the region covers the left half.
         h = 54.0
         img = lab_patch(62, 40 * np.cos(np.radians(h)), 40 * np.sin(np.radians(h)), (40, 80))
-        mat = dict(self.cfg["materials"]["copper"])
+        mat = dict(self.cfg["materials"]["rose-copper"])
         mat["_region"] = hm._region_weight((40, 80), [0.0, 0.0, 0.5, 1.0], feather=0.0)
-        mats = {"copper": mat}
+        mats = {"rose-copper": mat}
         before = hm.measure(img, ppu=4.0, materials=mats)
-        corr = dict(json.loads(json.dumps(hm.IDENTITY)), materials={"copper": {"hue_shift": 7.0, "chroma_scale": 1.1}})
+        corr = dict(json.loads(json.dumps(hm.IDENTITY)), materials={"rose-copper": {"hue_shift": 7.0, "chroma_scale": 1.1}})
         out = hm.apply(img, corr, before, mats)
         _, C, H = sl.lch(sl.srgb_to_lab(out[..., :3]))
         self.assertAlmostEqual(float(H[20, 10]), h + 7, delta=1.0)
@@ -161,15 +161,16 @@ class ManifestTests(unittest.TestCase):
         self.assertEqual(len(problems), 3)
 
     def test_the_committed_manifest_covers_every_shipped_source(self):
-        manifest = json.loads(hm.MANIFEST.read_text())
+        manifest = hm.load_manifest()
         shipped = hm.world_sources(hm.load_config())
         for name in shipped:
             self.assertIn(name, manifest["assets"])
             self.assertTrue(manifest["assets"][name]["shipped"])
-        # The çaydanlık is the founder's cold-copper case: corrected toward warm copper.
+        # The çaydanlık's rose copper is inside its material's range (look round 3, the colour
+        # script): measured, never moved toward another material.
         cay = manifest["assets"]["cay-1"]
-        self.assertIn("copper", cay["correction"]["materials"])
-        self.assertGreater(cay["after"]["materials"]["copper"]["hue"], cay["before"]["materials"]["copper"]["hue"] + 3)
+        self.assertNotIn("rose-copper", cay["correction"]["materials"])
+        self.assertIn("rose-copper", cay["before"]["materials"])
         # The faded chain levels come back toward their L1's median chroma.
         for level in ("cay-2", "cay-3"):
             e = manifest["assets"][level]
@@ -177,6 +178,26 @@ class ManifestTests(unittest.TestCase):
 
     def cfg_tol(self):
         return hm.load_config()["chains"]["metrics"]["C_p50"]["tolerance"]
+
+class MaterialRangeTests(unittest.TestCase):
+    def setUp(self):
+        self.cfg = hm.load_config()
+
+    def test_a_material_inside_its_range_is_left_alone(self):
+        stats = {"materials": {"rose-copper": {"hue": 54.0, "chroma": 41.0, "pixels": 9000}}}
+        corr = hm.plan(stats, {}, self.cfg, guarded=False, kind="station")
+        self.assertEqual(corr["materials"], {})
+
+    def test_a_drift_out_of_range_comes_back_to_the_nearest_edge_only(self):
+        # Round 2's warm shift (hue 59) is out of the rose copper's range: it goes back to its
+        # top edge, never further toward rose than the range asks.
+        stats = {"materials": {"rose-copper": {"hue": 61.0, "chroma": 30.0, "pixels": 9000}}}
+        corr = hm.plan(stats, {}, self.cfg, guarded=False, kind="station")
+        m = corr["materials"]["rose-copper"]
+        lo, hi = self.cfg["materials"]["rose-copper"]["range"]["hue"]
+        self.assertAlmostEqual(61.0 + m["hue_shift"], hi, delta=0.01)
+        clo, _ = self.cfg["materials"]["rose-copper"]["range"]["chroma"]
+        self.assertAlmostEqual(30.0 * m["chroma_scale"], clo, delta=0.1)
 
 
 if __name__ == "__main__":

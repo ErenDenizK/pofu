@@ -1,0 +1,179 @@
+batch: batch-06-pofu-rig
+contact_sheet: design/art/takes/batch-06-pofu-rig/findik-eyes-happy/contact.jpg
+jobs:
+  findik-eyes-happy:
+    pick: 1
+    note: 'auto-picked by QA; founder review pending. Reference adaptation: original
+      committed findik-base WebP (870x1306) is unchanged. Its exact decoded pixels
+      were center-padded at offset (77,115) into an untracked 1024x1536 transparent
+      PNG for generation and QA, without rescaling. Selected master remains canonical
+      1024x1536. Lead composite inverse crop is (left77,top115,right947,bottom1421);
+      no direct pixel alignment to unpadded base is claimed. Ground-line warning from
+      padding, palette/value warnings retained. Publication resumed under the repeated
+      user request from original cached PNGs/local raw; no new generation. Current
+      harmony audit at f35258d leaves the selected take unchanged; QA implementation,
+      presets and rig manifest are byte-unchanged.'
+    takes:
+      t1:
+        qa: warn
+        summary: value_floor warn; palette_drift warn; ground_line warn
+      t2:
+        qa: warn
+        summary: value_floor warn; palette_drift warn; ground_line warn
+    approved:
+      take: 1
+      at: '2026-11-02T19:10:58+00:00'
+qa_reports:
+  t1:
+    job: findik-eyes-happy
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.1
+    - check: value_floor
+      status: warn
+      message: lightness p5 47 (R1 59)
+      value: 47.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.7 (R1 5.3)
+      value: 5.72
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 11.8, off-palette 4.8% (top: #AA5533 (1.5%), #995522
+        (0.6%))'
+      value: 2.6221
+    - check: ground_line
+      status: warn
+      message: feet at 83.7% of the height (contract 88%)
+      value: 0.8372
+    - check: edit_stability
+      status: pass
+      message: 96% of the parent level unchanged
+      value: 0.9626
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.98 of the parent level (drift compounds along a chain)
+      value: 0.9831
+    - check: harmony
+      status: pass
+      message: 'harmony score 75 against the char reference (outliers: L_p2, detail)'
+      value: 75.3
+    info:
+      metrics_raw:
+        L_p5: 47.4
+        L_p50: 85.4
+        L_p95: 95.3
+        C_p50: 19.7
+        C_p95: 48.1
+        C_p99: 52.4
+        detail: 5.71
+      metrics_locked:
+        L_p5: 47.4
+        L_p50: 85.4
+        L_p95: 95.3
+        C_p50: 19.7
+        C_p95: 48.1
+        C_p99: 52.4
+        detail: 5.72
+    fingerprint: 954a683dfed684c3
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-residents/build/imagegen/batch-06-pofu-rig/qa/char__findik-eyes-happy--t1.json
+      locked_pixels: /workspace/run06-residents/build/imagegen/batch-06-pofu-rig/locked/char__findik-eyes-happy--t1.png
+      old_harmony: 75.3
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
+  t2:
+    job: findik-eyes-happy
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.5
+    - check: value_floor
+      status: warn
+      message: lightness p5 48 (R1 59)
+      value: 47.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.9 (R1 5.3)
+      value: 5.92
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 13.8, off-palette 8.2% (top: #AA5533 (1.7%), #BB6633
+        (1.4%))'
+      value: 3.1243
+    - check: ground_line
+      status: warn
+      message: feet at 83.7% of the height (contract 88%)
+      value: 0.8372
+    - check: edit_stability
+      status: pass
+      message: 96% of the parent level unchanged
+      value: 0.9625
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.04 of the parent level (drift compounds along a chain)
+      value: 1.0365
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the char reference (outliers: L_p2, detail)'
+      value: 73.8
+    info:
+      metrics_raw:
+        L_p5: 47.8
+        L_p50: 85.5
+        L_p95: 95.4
+        C_p50: 20.9
+        C_p95: 50.5
+        C_p99: 54.6
+        detail: 5.91
+      metrics_locked:
+        L_p5: 47.8
+        L_p50: 85.5
+        L_p95: 95.4
+        C_p50: 20.9
+        C_p95: 50.5
+        C_p99: 54.1
+        detail: 5.92
+    fingerprint: 954a683dfed684c3
+    current_policy_audit:
+      base: f35258d
+      source_report: /workspace/run06-residents/build/imagegen/batch-06-pofu-rig/qa/char__findik-eyes-happy--t2.json
+      locked_pixels: /workspace/run06-residents/build/imagegen/batch-06-pofu-rig/locked/char__findik-eyes-happy--t2.png
+      old_harmony: 73.8
+      note: Only harmony scoring changed; QA implementation, presets and rig manifest
+        are byte-unchanged. Other cached checks retained; original source PNG and
+        locked pixels preserved.
+current_policy_audit:
+  base: f35258d
+  old_pick: 1
+  pick: 1
+  take_scores:
+  - n: 1
+    status: warn
+    harmony: 75.3
+  - n: 2
+    status: warn
+    harmony: 73.8

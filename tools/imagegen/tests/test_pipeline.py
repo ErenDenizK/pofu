@@ -117,6 +117,34 @@ class ParseTests(unittest.TestCase):
         with self.assertRaises(pl.ManifestError):
             pl.parse_manifest(bad, REFS)
 
+    def test_job_palettes_extend_the_drift_check(self):
+        data = manifest()
+        data["jobs"][0]["palettes"] = ["world-night", "character-tabby"]
+        self.assertEqual(pl.parse_manifest(data, REFS).jobs[0].palettes, ["world-night", "character-tabby"])
+        self.assertEqual(pl.parse_manifest(manifest(), REFS).jobs[0].palettes, [])
+        for bad_value in ("world-night", [3], ["Not Kebab"]):
+            bad = manifest()
+            bad["jobs"][0]["palettes"] = bad_value
+            with self.assertRaises(pl.ManifestError, msg=str(bad_value)):
+                pl.parse_manifest(bad, REFS)
+
+    def test_retry_manifest_loads_and_its_palettes_and_modes_exist(self):
+        import qa
+        m = pl.load_manifest(HERE.parent / "manifest" / "retry-2026-11-03.yaml")
+        todo = [j for j in m.jobs if not j.external]
+        self.assertEqual(len(todo), 32)
+        for j in todo:
+            qa.palette_sets(j.palettes)  # KeyError on an unknown palette
+            self.assertIn(j.acceptance.get("edit_mode", "keep"), qa.EDIT_MODES, j.id)
+        # a recolor or region edit says so; a plain edit does not need to
+        self.assertEqual(m.job("game-plot-tile-rose").acceptance["edit_mode"], "recolor")
+        self.assertEqual(m.job("ui-lantern-on").acceptance["edit_mode"], "region")
+        # no pilot cascade: the harbor props do not wait for the ferry, the goat not for Simit
+        deps = {j.id: pl.dependencies(j) for j in todo}
+        self.assertNotIn("iskele-vapur-1", deps["iskele-crates-1"] + deps["iskele-horn-1"] + deps["iskele-lamp-1"])
+        self.assertNotIn("simit-kitten", deps["iskele-goat"])
+        self.assertTrue(all("ui-sheet-paper" not in deps[j.id] for j in todo if j.id.startswith("icon-")))
+
     def test_external_master_at_its_own_path(self):
         data = manifest()
         r1 = "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png"

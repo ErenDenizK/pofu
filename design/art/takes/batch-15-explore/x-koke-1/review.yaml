@@ -1,0 +1,162 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-koke-1/contact.jpg
+jobs:
+  x-koke-1:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both meet the exploratory shape/palette/whoa
+      review: moss-green floating garden, two rounded maple trees, calm raked gravel
+      around three rounded stones, bamboo clacker tipped pouring beside a basin, gentle
+      low camera and soft cloud sea. Take2 has lowest lock load1.3627 and all automated
+      checks pass. Borrowed home-door motif is retained as an exploratory continuity
+      choice, not a production plate decision. Never promoted.'
+qa_reports:
+  1:
+    job: x-koke-1
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 50.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 63 (R1 59)
+      value: 62.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.05
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.4831
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 10.0, off-palette 3.0% (top: #CC6644 (0.6%), #DD7755
+        (0.5%))'
+      value: 2.5671
+    info:
+      metrics_raw:
+        L_p5: 62.7
+        L_p50: 90.7
+        L_p95: 95.6
+        C_p50: 10.3
+        C_p95: 52.6
+        C_p99: 62.8
+        detail: 2.79
+      metrics_locked:
+        L_p5: 62.9
+        L_p50: 90.6
+        L_p95: 95.4
+        C_p50: 10.6
+        C_p95: 50.6
+        C_p99: 53.1
+        detail: 2.05
+    fingerprint: bfbf9abe81cc5072
+  2:
+    job: x-koke-1
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 64.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.89
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.3627
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 7.7, off-palette 1.6% (top: #CC7744 (0.5%), #DD8855
+        (0.2%))'
+      value: 2.2235
+    info:
+      metrics_raw:
+        L_p5: 63.8
+        L_p50: 89.7
+        L_p95: 95.5
+        C_p50: 11.2
+        C_p95: 48.9
+        C_p99: 58.8
+        detail: 2.59
+      metrics_locked:
+        L_p5: 64.1
+        L_p50: 89.6
+        L_p95: 95.3
+        C_p50: 11.3
+        C_p95: 47.8
+        C_p99: 52.1
+        detail: 1.89
+    fingerprint: bfbf9abe81cc5072
+manual_review:
+  exclude: []
+  note: 'Both meet the exploratory shape/palette/whoa review: moss-green floating
+    garden, two rounded maple trees, calm raked gravel around three rounded stones,
+    bamboo clacker tipped pouring beside a basin, gentle low camera and soft cloud
+    sea. Take2 has lowest lock load1.3627 and all automated checks pass. Borrowed
+    home-door motif is retained as an exploratory continuity choice, not a production
+    plate decision. Never promoted.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-7cd4cb73-01ff-4d08-a741-3d6d2c5e45f5.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: bfbf9abe81cc5072
+  inbox_png_sha256: bc97c0b33000704925a188a7621f8a77df80f9cc4bb80707b453da6922c3d160
+  original_generated_png_sha256: 3885af913f0fcdbb840b9a5b05ed70d62b2401ae668f4b788d2623c6d9beae22
+  rgba_sha256: f447e4a9f9d36ebf8f8ec2aaa13ce22c4d70780a2129ec6340cbe9e4bd991721
+  source_rgba_matches_inbox: true
+- take: 2
+  source_file: /workspace/generated_images/exec-1fe68253-cfc0-46b2-97e8-ecca945b50ae.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: bfbf9abe81cc5072
+  inbox_png_sha256: 360e6da7b827f8998b2d8d77b152ce6546cf5c61925cec96fe685e1ab44b7d8c
+  original_generated_png_sha256: 19f18a354d3f98a883d59dad8eef89fb949663012214050b54476d811bdbf502
+  rgba_sha256: a90b7f933a2c97956a37ac8be6d459048fb05a4a96cac8d3357c2adbcbbceb3b
+  source_rgba_matches_inbox: true
+recovery:
+  note: Runtime /tmp and prior exec result store were not retained across environment
+    restart. Original image bytes recovered from /workspace/generated_images. Job
+    pairing established by visible subject and the already-recorded calls; within
+    each pair ordinal assigned by completion time where original callback ordinal
+    was unavailable. No extra generation and no source modification.
+  sources:
+  - take: 1
+    path: /workspace/generated_images/exec-7cd4cb73-01ff-4d08-a741-3d6d2c5e45f5.png
+    sha256: 3885af913f0fcdbb840b9a5b05ed70d62b2401ae668f4b788d2623c6d9beae22
+    mtime: '2026-11-03T01:03:37.269221+00:00'
+  - take: 2
+    path: /workspace/generated_images/exec-1fe68253-cfc0-46b2-97e8-ecca945b50ae.png
+    sha256: 19f18a354d3f98a883d59dad8eef89fb949663012214050b54476d811bdbf502
+    mtime: '2026-11-03T01:04:11.433175+00:00'
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.

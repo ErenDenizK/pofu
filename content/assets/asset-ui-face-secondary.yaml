@@ -1,0 +1,18 @@
+id: asset-ui-face-secondary
+type: asset
+title_tr: ui-face-secondary
+title_en: face-secondary (ui)
+status: in-production
+horizon: now
+summary: 'A wide, chunky capsule of cream-glazed clay, lit from straight above: a
+  soft lighter highlight along the top edge, a slightly darker rounded lip along the
+  bottom edge in pale honey, perfectly even from left to right. Nothing on it.'
+art:
+  images:
+  - design/art/ui/ui-face-secondary/ui-face-secondary.png
+  jobs:
+  - batch-13-ui-rest:ui-face-secondary
+sources:
+- doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
+kind: ui
+batch: batch-13-ui-rest

@@ -1,0 +1,273 @@
+batch: batch-12-minigame-art
+contact_sheet: design/art/takes/batch-12-minigame-art/game-bloom-right/contact.jpg
+jobs:
+  game-bloom-right:
+    pick: none
+    publication: skipped
+    note: 'Skipped after initial pair plus the single allowed retry pair: all four
+      fail the manual right-turn interpretation. The brown centre remains approximately
+      neutral/left instead of visibly right of the midpoint, so the required right
+      pose is not reliable; diagnostic centres are502.5,487.0,507.5,502.5px against
+      canvas midpoint512. Diagnostic measurements are review-only, not QA threshold
+      edits. Take4 also fails automated chroma_ceiling. No waiver, prompt/manifest
+      change or further retry. No dependent jobs; all original PNGs preserved.'
+    retry_policy: Initial pair plus one additional pair exhausted; no further generation.
+      Skip only dependents.
+qa_reports:
+  1:
+    job: game-bloom-right
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 58.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 50 (R1 59)
+      value: 49.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.61
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3787
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.2, p95 3.9, off-palette 0.0%
+      value: 1.2225
+    - check: edit_stability
+      status: pass
+      message: 87% of the parent level unchanged
+      value: 0.8686
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.97 of the parent level (drift compounds along a chain)
+      value: 0.9697
+    info:
+      metrics_raw:
+        L_p5: 49.4
+        L_p50: 79.9
+        L_p95: 85.0
+        C_p50: 53.5
+        C_p95: 58.5
+        C_p99: 59.4
+        detail: 0.83
+      metrics_locked:
+        L_p5: 49.5
+        L_p50: 79.8
+        L_p95: 85.0
+        C_p50: 53.6
+        C_p95: 58.1
+        C_p99: 58.8
+        detail: 0.61
+    fingerprint: 0e3cabb89bfa4bf4
+  2:
+    job: game-bloom-right
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 57.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 49 (R1 59)
+      value: 48.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.59
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3958
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.2, p95 3.2, off-palette 0.0%
+      value: 1.1572
+    - check: edit_stability
+      status: pass
+      message: 84% of the parent level unchanged
+      value: 0.8404
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.96 of the parent level (drift compounds along a chain)
+      value: 0.9552
+    info:
+      metrics_raw:
+        L_p5: 48.6
+        L_p50: 79.9
+        L_p95: 84.8
+        C_p50: 52.6
+        C_p95: 57.6
+        C_p99: 58.4
+        detail: 0.82
+      metrics_locked:
+        L_p5: 48.6
+        L_p50: 79.8
+        L_p95: 84.8
+        C_p50: 52.7
+        C_p95: 57.4
+        C_p99: 58.0
+        detail: 0.59
+    fingerprint: 0e3cabb89bfa4bf4
+  3:
+    job: game-bloom-right
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 58.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 47 (R1 59)
+      value: 47.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.62
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3928
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 4.2, off-palette 0.0%
+      value: 1.2502
+    - check: edit_stability
+      status: pass
+      message: 89% of the parent level unchanged
+      value: 0.8906
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.96 of the parent level (drift compounds along a chain)
+      value: 0.9582
+    info:
+      metrics_raw:
+        L_p5: 47.1
+        L_p50: 78.9
+        L_p95: 85.1
+        C_p50: 52.8
+        C_p95: 58.4
+        C_p99: 59.5
+        detail: 0.86
+      metrics_locked:
+        L_p5: 47.2
+        L_p50: 78.9
+        L_p95: 85.1
+        C_p50: 52.9
+        C_p95: 58.0
+        C_p99: 58.8
+        detail: 0.62
+    fingerprint: 0e3cabb89bfa4bf4
+  4:
+    job: game-bloom-right
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 60 (R1 51)
+      value: 60.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 46 (R1 59)
+      value: 46.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.6
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7148
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.4, p95 6.7, off-palette 0.0%
+      value: 2.3624
+    - check: edit_stability
+      status: pass
+      message: 86% of the parent level unchanged
+      value: 0.8576
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.03 of the parent level (drift compounds along a chain)
+      value: 1.0279
+    info:
+      metrics_raw:
+        L_p5: 46.1
+        L_p50: 78.7
+        L_p95: 84.6
+        C_p50: 56.9
+        C_p95: 62.1
+        C_p99: 62.8
+        detail: 0.83
+      metrics_locked:
+        L_p5: 46.2
+        L_p50: 78.7
+        L_p95: 84.5
+        C_p50: 56.9
+        C_p95: 60.5
+        C_p99: 60.8
+        detail: 0.6
+    fingerprint: 0e3cabb89bfa4bf4
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-8d5bcb5f-bebc-4a4a-9dbc-9d862dd32ead.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 2
+  source_file: /workspace/generated_images/exec-dcccc595-18cc-4aba-880f-e8dba6e29d64.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 3
+  source_file: /workspace/generated_images/exec-d7f91761-a3ac-441f-9bcf-13460aff344b.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 4
+  source_file: /workspace/generated_images/exec-78a7c131-545d-49bd-94f3-7dc9985fe983.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan

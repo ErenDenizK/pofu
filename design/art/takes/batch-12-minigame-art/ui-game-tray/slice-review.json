@@ -1,0 +1,41 @@
+{
+  "note": "QA preview only: projected from alpha content bounds; canonical master pixels/canvas remain unchanged. Insets are exact manifest points.",
+  "takes": [
+    {
+      "take": "ui__ui-game-tray--t1",
+      "review_only_content_bounds": [
+        29,
+        183,
+        995,
+        854
+      ],
+      "ship_height": 138,
+      "caps": [
+        24.0,
+        32.0,
+        24.0,
+        32.0
+      ],
+      "central_tile_nontransparent_fraction": 1.0,
+      "central_tile_alpha_max": 255
+    },
+    {
+      "take": "ui__ui-game-tray--t2",
+      "review_only_content_bounds": [
+        19,
+        210,
+        1004,
+        846
+      ],
+      "ship_height": 138,
+      "caps": [
+        24.0,
+        32.0,
+        24.0,
+        32.0
+      ],
+      "central_tile_nontransparent_fraction": 1.0,
+      "central_tile_alpha_max": 255
+    }
+  ]
+}

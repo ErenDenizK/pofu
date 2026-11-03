@@ -54,6 +54,15 @@ targets:
         product: PofuCompanion
       - package: PofuKit
         product: PofuWorld
+      - package: PofuKit
+        product: PofuGames
+      # The Ayar tuning panel's values (debug builds' Rehearsal mode).
+      - package: PofuKit
+        product: PofuTuning
+      # Pofu's tiny sounds. App targets only: the shield and the other
+      # extensions never link it, so they can never play audio.
+      - package: PofuKit
+        product: PofuSound
     settings:
       base:
         PRODUCT_NAME: Pofu
@@ -99,6 +108,14 @@ targets:
         product: PofuCompanion
       - package: PofuKit
         product: PofuWorld
+      - package: PofuKit
+        product: PofuGames
+      - package: PofuKit
+        product: PofuTuning
+      # Pofu's tiny sounds. App targets only: the shield and the other
+      # extensions never link it, so they can never play audio.
+      - package: PofuKit
+        product: PofuSound
       - target: PofuShieldConfiguration
       - target: PofuShieldAction
       - target: PofuActivityMonitor
@@ -140,6 +157,8 @@ targets:
         product: PofuDesignSystem
       - package: PofuKit
         product: PofuWorld
+      - package: PofuKit
+        product: PofuGames
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(POFU_BUNDLE_ID_BASE).WorldScreenshots
@@ -256,6 +275,8 @@ schemes:
         - package: PofuKit/PofuDesignSystemTests
         - package: PofuKit/PofuCompanionTests
         - package: PofuKit/PofuWorldTests
+        - package: PofuKit/PofuGamesTests
+        - package: PofuKit/PofuTuningTests
     profile:
       config: Release
     analyze:
@@ -279,6 +300,8 @@ schemes:
         - package: PofuKit/PofuDesignSystemTests
         - package: PofuKit/PofuCompanionTests
         - package: PofuKit/PofuWorldTests
+        - package: PofuKit/PofuGamesTests
+        - package: PofuKit/PofuTuningTests
     profile:
       config: Release
     analyze:

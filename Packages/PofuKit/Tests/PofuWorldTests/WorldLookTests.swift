@@ -165,6 +165,8 @@ struct WorldLightTests {
         let window = try #require(IslandLayout.emitters.first { $0.station == nil })
         #expect(window.strength(in: .at(hour: 12, wellbeing: 78, calm: 1.4)) == 0)
         #expect(window.strength(in: .at(hour: 22, wellbeing: 78, calm: 1.4)) > 0.8)
+        // Unwell, the window stays lit by day: care is still here.
+        #expect(window.strength(in: .at(hour: 12, wellbeing: 20, calm: 1.4)) > 0.15)
     }
 }
 
@@ -186,15 +188,38 @@ struct LookTuningTests {
 
     @Test func theSoftLockSetFallsBackWhereNothingWasBaked() {
         #expect(WorldArt.key("cay-1", art: .softLock) == "cay-1--softlock")
-        #expect(WorldArt.key("island-main-band2", art: .softLock) == "island-main-band2--softlock")
+        // The large plate has no soft-lock bake.
+        #expect(WorldArt.key("island-main-band2", art: .softLock) == "island-main-band2")
         #expect(WorldArt.key("mochi", art: .softLock) == "mochi")
         #expect(WorldArt.key("cay-1", art: .lockLight) == "cay-1")
     }
 
-    @Test func theUnharmonizedSetKeepsTheUncorrectedBake() {
-        // The çaydanlık's copper was corrected, so its raw colour is kept.
-        #expect(WorldArt.key("cay-1", art: .unharmonized) == "cay-1--unharmonized")
-        // The reference plate needs no correction.
-        #expect(WorldArt.key("island-main-band2", art: .unharmonized) == "island-main-band2")
+    @Test func theCompareSetsKeepTheirBakes() {
+        // The large plate was corrected toward the approved island; its raw
+        // colour is kept to compare.
+        #expect(WorldArt.key("island-main-band2", art: .unharmonized) == "island-main-band2--unharmonized")
+        // The rose copper is in its material's range: no correction, so no
+        // uncorrected bake (look round 3).
+        #expect(WorldArt.key("cay-1", art: .unharmonized) == "cay-1")
+        #expect(WorldArt.key("cay-1", art: .round2Copper) == "cay-1--round2")
+        // The founder's plate choice (look round 4): v2 beside the shipped v3.
+        #expect(WorldArt.key("island-main-band1", art: .plateV2) == "island-main-band1--v2")
+        #expect(WorldArt.key("cay-1", art: .plateV2) == "cay-1")
+    }
+
+    @Test func theLitFlameShowsAtNightOnly() {
+        #expect(IslandLayout.litOverlay(.cay, level: 1) == "cay-1-glow")
+        #expect(IslandLayout.litOverlay(.cay, level: 3) == nil)
+        #expect(IslandLayout.litOverlayStrength(in: .at(hour: 12, wellbeing: 78, calm: 1.4)) == 0)
+        #expect(IslandLayout.litOverlayStrength(in: .at(hour: 22, wellbeing: 78, calm: 1.4)) > 0.99)
+    }
+
+    @Test func theAyarTuningDefaultsChangeNothing() {
+        #expect(LookTuning.tiltShift(z: 1, island: WorldTuning.standard.tiltShiftIsland, home: WorldTuning.standard.tiltShiftHome) == LookTuning.tiltShift(z: 1))
+        #expect(CameraSprings.standard.travel == SpringSpec(duration: WorldSprings.camera.duration, bounce: WorldSprings.camera.bounce))
+        let motion = CameraMotion(lookX: 120, lookY: 0, logScale: 0)
+        let one = DepthMotion.shift(point: .zero, depth: 80, focus: 0, look: .zero, motion: motion)
+        let two = DepthMotion.shift(point: .zero, depth: 80, focus: 0, look: .zero, motion: motion.parallax(2))
+        #expect(abs(two.x - 2 * one.x) < 1e-9)
     }
 }

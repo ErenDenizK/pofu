@@ -1,0 +1,53 @@
+{
+ "after": {
+  "C_mean": 26.886,
+  "C_p50": 25.041,
+  "C_p95": 36.815,
+  "L_mean": 78.772,
+  "L_p2": 53.547,
+  "L_p98": 92.397,
+  "detail": 0.766,
+  "edge": 1.271,
+  "warmth_b": 24.329
+ },
+ "before": {
+  "C_mean": 18.582,
+  "C_p50": 17.289,
+  "C_p95": 25.393,
+  "L_mean": 83.496,
+  "L_p2": 66.727,
+  "L_p98": 92.792,
+  "detail": 0.593,
+  "edge": 1.271,
+  "tint_a": 4.612,
+  "tint_b": 11.427,
+  "warmth_b": 16.803
+ },
+ "chain": null,
+ "correction": {
+  "black": -13.18,
+  "ceiling": 0.0,
+  "chroma": 1.45,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "world",
+ "matched_to": "world",
+ "outliers_after": [
+  "C_p95"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2"
+ ],
+ "ppu": 3.0917,
+ "reference": false,
+ "score_after": 86.4,
+ "score_before": 68.3,
+ "shipped": true,
+ "source": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+ "source_sha": "f2e539ed4eb75131"
+}

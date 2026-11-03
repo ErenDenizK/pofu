@@ -1,0 +1,19 @@
+id: asset-x-appicon-b
+type: asset
+title_tr: x-appicon-b
+title_en: x-appicon-b (appicon)
+status: in-production
+horizon: now
+summary: >-
+  An app icon master: the small floating home island seen from the front filling the lower
+  middle, Pofu a tiny hamster sitting on its lawn, over a soft pale morning sky and a few
+  clouds. Square, opaque, edge to edge, no text, no border.
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-appicon-b
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: appicon
+batch: batch-15-explore
+size: 1024x1024

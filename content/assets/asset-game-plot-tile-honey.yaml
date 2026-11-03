@@ -1,0 +1,27 @@
+id: asset-game-plot-tile-honey
+type: asset
+title_tr: game-plot-tile-honey
+title_en: game-plot-tile-honey (ui)
+status: planned
+horizon: now
+summary: Change only the glaze color of the tile and its sprout to a warm honey yellow,
+  in the same matte-to-soft-gloss finish and the same lightness as before. The shape,
+  highlight, lip and sprout stay.
+links:
+  variant_of:
+  - asset-game-plot-tile-sage
+art:
+  images: []
+  jobs:
+  - batch-12-minigame-art:game-plot-tile-honey
+  - retry-2026-11-03:game-plot-tile-honey
+sources:
+- doc: tools/imagegen/manifest/batch-12-minigame-art.yaml
+kind: ui
+batch: batch-12-minigame-art
+notes:
+- 'Skipped after initial pair plus its single allowed retry pair: all four fail edit_stability
+  and edit_chroma on the requested full-glaze recolor. Exact stability t1 0.0166,t2
+  0.0096,t3 0.0135,t4 0.0158; chroma ratios1.9820,2.0789,1.9406,1.9559. No threshold,
+  prompt or manifest changes and no waiver. No jobs depend on this honey variant;
+  sibling glazes and independent tracks continue. Original four PNGs remain preserved.'

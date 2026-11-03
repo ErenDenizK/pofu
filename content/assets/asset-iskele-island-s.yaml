@@ -1,0 +1,22 @@
+id: asset-iskele-island-s
+type: asset
+title_tr: iskele-island-s
+title_en: iskele-island-s (world)
+status: in-production
+horizon: now
+summary: 'A sibling of the attached floating island, for a cozy mobile game: İskele,
+  a harbor island. Same size, same low camera and same earth body as the attached
+  island, but: - The lawn is a wide, flat, empty oval of soft cream-sand and pale
+  sage, filling about 80% of the image width, with nothing on it. - On the right a
+  short, chunky wooden pier of honey planks juts out past the lawn''s edge, with two
+  stubby round mooring p…'
+art:
+  images:
+  - design/art/masters/iskele-island-s/iskele-island-s.webp
+  jobs:
+  - batch-14-iskele:iskele-island-s
+sources:
+- doc: tools/imagegen/manifest/batch-14-iskele.yaml
+kind: world
+batch: batch-14-iskele
+size: 1536x1024

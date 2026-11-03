@@ -21,9 +21,10 @@ struct CameraRailTests {
         let width = 64 * rail.pose(of: .home).scale
         #expect(abs(width - 153.6) < 0.01)
         #expect(abs(width / CameraRail.referenceWidth - 0.38) < 0.005)
-        // His feet sit at the Home framing's anchor row, centred.
+        // His feet sit at the Home framing's anchor row, at most a quarter
+        // of the width off centre (nudged so no resident is cut).
         let feet = rail.pose(of: .home).project(IslandLayout.pofu, width: CameraRail.referenceWidth)
-        #expect(abs(feet.x - 201) < 1e-9)
+        #expect(abs(feet.x - 201) <= CameraRail.referenceWidth * 0.25 + 1e-9)
         #expect(abs(feet.y - 600) < 1e-9)
     }
 
@@ -39,7 +40,8 @@ struct CameraRailTests {
     @Test func positionInterpolatesLinearlyWithTheSameFraction() {
         let island = CameraRail.referenceStops[1]
         let pose = rail.pose(z: 1.25)
-        #expect(abs(pose.lookY - (island.look.y + (20 - island.look.y) * 0.25)) < 1e-9)
+        let home = IslandLayout.pofu.y
+        #expect(abs(pose.lookY - (island.look.y + (home - island.look.y) * 0.25)) < 1e-9)
         #expect(abs(pose.anchorY - (island.anchorY + (600 - island.anchorY) * 0.25)) < 1e-9)
     }
 

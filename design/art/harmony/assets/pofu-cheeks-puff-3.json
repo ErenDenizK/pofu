@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 18.395,
+  "C_p50": 12.03,
+  "C_p95": 50.063,
+  "L_mean": 84.947,
+  "L_p2": 50.11,
+  "L_p98": 96.074,
+  "detail": 6.458,
+  "edge": 0.171,
+  "tint_a": 5.346,
+  "tint_b": 6.872,
+  "warmth_b": 14.412
+ },
+ "before": {
+  "C_mean": 18.395,
+  "C_p50": 12.03,
+  "C_p95": 50.063,
+  "L_mean": 84.947,
+  "L_p2": 50.11,
+  "L_p98": 96.074,
+  "detail": 6.458,
+  "edge": 0.171,
+  "tint_a": 5.346,
+  "tint_b": 6.872,
+  "warmth_b": 14.412
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": true,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "L_p2"
+ ],
+ "outliers_before": [
+  "L_p2"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 73.6,
+ "score_before": 73.6,
+ "shipped": false,
+ "source": "design/art/masters/pofu-cheeks-puff-3/pofu-cheeks-puff-3.webp",
+ "source_sha": "9588856a6320721e"
+}

@@ -1,0 +1,21 @@
+id: asset-x-b16-icon-family
+type: asset
+title_tr: x-b16-icon-family
+title_en: x-b16-icon-family (sheet)
+status: in-production
+horizon: now
+summary: >-
+  PURPOSE: the icon family of the Pofu interface, in the painted style. AUDIENCE: the app's
+  users, who see the icons at 24 to 44 points. SUBJECT: six icons in a grid of three columns
+  and two rows, in this order: seed (a sunflower seed); lantern (a calm paper lantern); wellbeing
+  (a small heart-shaped leaf); breath (a soft cloud with a curl of air); map (a rolled paper
+  map); island (a tiny floating island). LAYOUT: even …
+art:
+  images: []
+  jobs:
+  - batch-16-brand-explore:x-b16-icon-family
+sources:
+- doc: tools/imagegen/manifest/batch-16-brand-explore.yaml
+kind: sheet
+batch: batch-16-brand-explore
+size: 1536x1024

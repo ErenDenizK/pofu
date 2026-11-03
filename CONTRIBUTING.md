@@ -32,7 +32,7 @@ Trunk-based development with short-lived branches.
   | `design/`   | Design system, assets, visual work        |
 
   Two operator branches are also allowed: `local/<topic>` for the local Mac
-  agent's reports ([local agent brief](docs/local-agent.md)) and
+  agent's reports ([local agent brief](docs/archive/local-agent.md)) and
   `art/<batch>` for image pipeline rounds ([`AGENTS.md`](AGENTS.md)).
 
 ## Commit messages
@@ -75,6 +75,12 @@ Rules:
 
 - [Semantic Versioning](https://semver.org/) for the marketing version
   (`MAJOR.MINOR.PATCH`); the build number increments monotonically.
+- **Changelog fragments.** Do not edit `CHANGELOG.md` in a PR (it makes
+  parallel PRs conflict). A user-visible change adds `changes/<branch>.md`
+  with one line, optionally prefixed with its section (`Added:`, `Changed:`,
+  `Fixed:`, `Removed:`; no prefix means Changed). Art and docs-only PRs need
+  no fragment. At release, `python3 -I tools/changelog/collect.py --version
+  X.Y.Z` folds the fragments into `CHANGELOG.md` and deletes them.
 - Every release is tagged `vMAJOR.MINOR.PATCH` and has a matching
   `CHANGELOG.md` entry following [Keep a Changelog](https://keepachangelog.com/).
 

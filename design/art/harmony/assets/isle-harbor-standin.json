@@ -1,0 +1,50 @@
+{
+ "after": {
+  "C_mean": 35.034,
+  "C_p50": 35.122,
+  "C_p95": 47.85,
+  "L_mean": 67.03,
+  "L_p2": 44.084,
+  "L_p98": 94.475,
+  "detail": 0.477,
+  "edge": 1.382,
+  "tint_a": 0.798,
+  "tint_b": -2.091,
+  "warmth_b": 26.802
+ },
+ "before": {
+  "C_mean": 35.034,
+  "C_p50": 35.122,
+  "C_p95": 47.85,
+  "L_mean": 67.03,
+  "L_p2": 44.084,
+  "L_p98": 94.475,
+  "detail": 0.477,
+  "edge": 1.382,
+  "tint_a": 0.798,
+  "tint_b": -2.091,
+  "warmth_b": 26.802
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "world",
+ "matched_to": "world",
+ "outliers_after": [],
+ "outliers_before": [],
+ "ppu": 2.25,
+ "reference": false,
+ "score_after": 92.0,
+ "score_before": 92.0,
+ "shipped": true,
+ "source": "design/prototypes/interactions/assets/isle-harbor.webp",
+ "source_sha": "ae4113957214af6e"
+}

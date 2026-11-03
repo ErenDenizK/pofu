@@ -217,8 +217,25 @@ applies from the next launch.
   (`Application Support/Pofu-Rehearsal`), never the App Group, and tags
   every event it logs `simulated`. The developer readout filters the log
   by source and labels simulated numbers.
+- **Ayar** (debug builds only): the Prova panel's "Ayar" row opens a
+  tuning panel over the bottom half of the screen, with the world still
+  visible above it. Every value is a key of `PofuTuning`'s
+  `TuningValues`, whose defaults are the bundled `tuning.json`; sliders
+  come from `TuningSpec`. Live today: the grade trims per time of day
+  (with the hour pinnable to day, golden hour or night) and the HD-2D and
+  depth-in-motion switches. The camera springs, depth strengths and
+  Pofu's breath and blinks have previews in the panel and are read by the
+  scene in a follow-up; haptics have a "Dene" button. "Dışa aktar"
+  shares JSON with the changed keys and the complete values: commit
+  `values` as the new `tuning.json`. Changes persist on the device until
+  "Sıfırla".
 
 ## Use Pofu daily (free account)
+
+> **Legacy path (2026-11-02).** The product targets Screen Time (ADR-0013;
+> [membership day 1](local/membership-day-1.md)). The Shortcuts path gets
+> no new features and is kept only for the free build with Rehearsal mode
+> off. Setup guide v2 in the app replaces the old guided steps.
 
 These Shortcuts steps apply with Rehearsal mode turned off (Settings,
 Developer).
@@ -353,10 +370,29 @@ runner with Xcode 26 or newer:
 5. `xcodebuild test` of the PofuWorldScreenshots scheme in an iPhone 17
    class simulator, uploading the island's PNGs as the `world-screenshots`
    artifact.
+6. The motion review: `MotionBeatTests` in the same scheme plays scripted
+   beats live (Home idle, Home to Island and back, Collect, Build, the
+   shield then Hop!) while `.github/scripts/record-beats.sh` records the
+   simulator screen with `xcrun simctl io recordVideo`, one clip per
+   beat, uploaded as the `motion-beats` artifact. The test and the
+   recorder hand off through files in `MOTION_BEATS_DIR`; without it the
+   test skips. CI machines drop frames, so judge choreography and timing
+   from the clips, and smoothness only on a phone.
+
+**When screenshots run.** The macOS build and tests run for any Swift or
+app change; the screenshot render, the motion-beat recording and
+`publish-screenshots` run only when `App/`, `PofuWorld`, `PofuCompanion`,
+`PofuGames`, `PofuDesignSystem`, `PofuCore/Rehearsal`, `Tests/WorldScreenshots`,
+`project.yml` or `.github/scripts` change, or when the PR has the `screens`
+label (adding the label re-runs CI). Need pictures of a PR that skipped
+them? Add the label.
 
 **Screenshot branches.** After a green macOS job, `publish-screenshots`
 converts those PNGs to JPEGs about 1000 px tall, adds a `contact.jpg`
-grid, and force-pushes them as a single-commit orphan branch named
+grid, encodes the motion beats as phone-friendly MP4s in `beats/`
+(H.264, 720 px wide, at most 10 s and 8 MB each, with a poster JPEG;
+`.github/scripts/encode-beats.py`), writes a `README.md` index with a
+playable link per clip, and force-pushes everything as a single-commit orphan branch named
 `screenshots/<head branch, with / replaced by ->` (for example
 `screenshots/feat-pofu-world`). Anyone who can run git can review them
 with `git fetch origin screenshots/feat-pofu-world`, even where the
@@ -365,6 +401,42 @@ never merged; it does not run for pull requests from forks.
 
 A newer push to the same branch cancels the run in progress. A pull request
 must be green before it merges.
+
+## Local Swift on the cloud agent
+
+swift.org is blocked, but Docker Hub is reachable, so the official
+`swift:6.2.1-noble` image's layers are unpacked straight into `/opt/swift`
+(no Docker daemon; about a minute; idempotent):
+
+```sh
+tools/swift/setup-linux.sh            # optional arg: tag, default 6.2.1
+export PATH=/opt/swift/usr/bin:$PATH  # swift --version -> 6.2.1
+tools/swift/test-linux.sh             # whole PofuKit suite, 725 tests, ~1 min
+cd Packages/PofuKit && swift build --target PofuCore   # one target
+```
+
+Every PofuKit target builds and its tests pass on Linux, because the
+Apple-only code (SwiftUI, SpriteKit, UIKit, FamilyControls, `os` logging)
+sits behind `#if os(iOS)` / `canImport` guards. Keep it that way: pure
+logic imports only Foundation (use `#if canImport(CoreGraphics)` for
+CGFloat and friends). What Linux cannot check is the iOS-only code
+(scenes, views, the live Screen Time service), so CI on macOS stays the
+source of truth; this is for fast local logic checks before pushing.
+
+## The cloud agent environment
+
+The lead agent runs on Linux without Xcode. swift.org is blocked, but a
+local Swift is possible (see above); full compile and test of the iOS
+targets is still push, then read the GitHub Actions results. PyPI and Ubuntu apt are reachable
+(`bpy` from PyPI works for Blender); Chromium and Playwright are
+preinstalled for rendering and inspecting prototypes. The repository has
+been **public** since 2026-11-01, so Actions minutes are free; if it ever
+goes private again, macOS bills at 10x (about 30 minutes a run) against
+3,000 a month, so batch pushes. CI skips the macOS job when only `docs/`,
+`design/`, `tools/`, `content/` or Markdown change, and treats Swift
+warnings as errors. Public means: never commit secrets, team IDs, or
+private data. The island's art is baked by
+`design/prototypes/interactions/tools/preblur.py app`.
 
 ## Conventions worth knowing
 

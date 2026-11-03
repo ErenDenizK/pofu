@@ -1,0 +1,1 @@
+Changed: Home is now the Living Diorama: a seed jar with the balance on its tag and Collect, a calm lantern, today's skips as clay pots, Pofu's cheeks puffing with the seeds waiting, a peeking Today glance and a visible map button; glass or crafted chrome with a Reduce Transparency fallback.

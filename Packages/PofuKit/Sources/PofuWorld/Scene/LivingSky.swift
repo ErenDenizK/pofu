@@ -21,9 +21,13 @@ extension EnvironmentValues {
 /// 30 Hz timeline (a cloud moves at most 5 pt a second, a sixth of a point
 /// a frame). Reduce Motion, Low Power Mode and still frames stop the drift.
 struct LivingSky: View {
+    /// Already graded (`SkyPalette.graded(by:)`): the sky takes no shader
+    /// pass of its own (look round 3).
     let palette: SkyPalette
     /// The peek's screen offset; the sky moves 0.3× and 0.6× of it.
     let offset: CGSize
+    /// The far isles and painted clouds (look round 3).
+    var far: FarSky.Look?
 
     @Environment(\.worldStillFrame) private var still
     @Environment(\.worldAmbientPaused) private var ambientPaused
@@ -51,6 +55,9 @@ struct LivingSky: View {
                         cloudLayer(SkyCloud.far, time: time, size: size, parallax: 0.3)
                         cloudLayer(SkyCloud.near, time: time, size: size, parallax: 0.6)
                     }
+                }
+                if let far {
+                    FarSky(look: far, offset: offset, size: size)
                 }
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
@@ -160,7 +167,25 @@ struct CloudPuff: View, Equatable {
 /// moving 1.25× with the peek (interaction spec §1.5). It keeps the bottom
 /// band calm under the Today card and the action.
 struct CloudSea: View {
-    let palette: SkyPalette
+    /// The sea's colours for the hour, pre-graded (look round 3): outside
+    /// the world's grade, so the night sea is lifted indigo, never the
+    /// black void the levels made of it.
+    struct Colours: Hashable {
+        var light: PofuRGB
+        var shade: PofuRGB
+        var opacity: Double
+
+        /// The colour script's sea for `cell` through the sky's grade
+        /// (without input levels), overcast when Pofu is unwell.
+        init(cell: ColourCell, grade: WorldGrade, unwell: Double) {
+            let g = grade.sky
+            light = g.apply(cell.sea.light).overcast(ColourScript.unwell, amount: unwell)
+            shade = g.apply(cell.sea.shade).overcast(ColourScript.unwell, amount: unwell)
+            opacity = cell.sea.opacity
+        }
+    }
+
+    let colours: Colours
     let offset: CGSize
     /// How far the sea rises above its Home height, in points: at the
     /// Island framing it climbs to meet the island's roots, so the band
@@ -174,6 +199,15 @@ struct CloudSea: View {
     static let height = 190.0
     static let period = 640.0
     static let speed = 3.0
+
+    /// The rise for a camera pose (look round 4): up to the island's roots,
+    /// so the band under the island is always the sea, never dead sky;
+    /// capped by the rail's rise (none at Home, a little on the Map).
+    static func rise(z: Double, pose: CameraPose, height: Double) -> Double {
+        let roots = pose.anchorY + (IslandFraming.islandBox.maxY - 30 - pose.lookY) * pose.scale
+        let reach = height - Self.height - roots
+        return min(max(reach, 0), rise(z: z))
+    }
 
     /// The rise along the camera rail: none at Home (the Today card sits
     /// there), most at the Island, a little on the Map.
@@ -204,25 +238,37 @@ struct CloudSea: View {
                         // light until the front row.
                         LinearGradient(
                             stops: [
-                                .init(color: palette.cloudLight.color.opacity(0), location: 0),
-                                .init(color: palette.cloudLight.color.opacity(0.97), location: 0.3),
-                                .init(color: palette.cloudLight.color.opacity(0.97), location: 0.75),
-                                .init(color: palette.cloudShade.color.opacity(0.6), location: 1),
+                                .init(color: colours.light.color.opacity(0), location: 0),
+                                .init(color: colours.light.color.opacity(0.97), location: 0.3),
+                                .init(color: colours.light.color.opacity(0.97), location: 0.75),
+                                .init(color: colours.shade.color.opacity(0.6), location: 1),
                             ],
                             startPoint: .top,
                             endPoint: .bottom
                         )
                         .frame(width: size.width + 120, height: CGFloat(rise) + 90)
                         .offset(x: -60, y: CGFloat(-Self.height * 0.35) + offset.height * 0.35)
+                        // Painted rows down the risen sea (look round 3):
+                        // smaller and slower toward the back, so the band
+                        // under the island reads as a sea of clouds in
+                        // depth, not a flat bank.
+                        paintedRow(width: Double(size.width), time: time, scale: 0.62, speed: 0.6, phase: 0.3, fades: true)
+                            .offset(x: offset.width * 1.05, y: CGFloat(-rise - 40) + offset.height * 0.32)
+                        paintedRow(width: Double(size.width), time: time, scale: 0.8, speed: 0.9, phase: 0.65, fades: true)
+                            .offset(x: offset.width * 1.2, y: CGFloat(-rise * 0.5) + offset.height * 0.38)
                     }
                     strip(copies: copies)
                         .offset(x: CGFloat(-drift) + offset.width * 1.25, y: offset.height * 0.4)
+                    // The painted front row (batch 04's cloud-sea master),
+                    // mirrored every other copy so it tiles.
+                    paintedRow(width: Double(size.width), time: time)
+                        .offset(x: offset.width * 1.4, y: offset.height * 0.45 + 18)
                 }
                 .frame(width: size.width, height: size.height, alignment: .bottomLeading)
             }
         }
         .ignoresSafeArea()
-        .opacity(palette.cloudOpacity)
+        .opacity(colours.opacity)
         .allowsHitTesting(false)
         .accessibilityHidden(true)
     }
@@ -230,12 +276,55 @@ struct CloudSea: View {
     private func strip(copies: Int) -> some View {
         HStack(spacing: 0) {
             ForEach(0..<copies, id: \.self) { _ in
-                SeaStrip(light: palette.cloudLight, shade: palette.cloudShade)
+                SeaStrip(light: colours.light, shade: colours.shade)
                     .equatable()
             }
         }
         .frame(height: CGFloat(Self.height))
     }
+
+    /// The painted cloud-sea row: the master tinted by the hour's sea light,
+    /// drifting a little faster than the procedural bank behind it.
+    @ViewBuilder
+    /// `fades`: the row's bottom melts into the row in front of it (the
+    /// master's bottom edge is a hard cut).
+    private func paintedRow(width: Double, time: Double, scale: Double = 1, speed: Double = 1.3, phase: Double = 0, fades: Bool = false) -> some View {
+        if let box = WorldArt.sprite("cloud-sea")?.sharp {
+            let w = Self.paintedWidth * scale
+            let h = w * box.height / box.width
+            let period = 2 * w
+            let drift = (time * Self.speed * speed + phase * period).truncatingRemainder(dividingBy: period)
+            let copies = Int(((width + 120) / period).rounded(.up)) + 1
+            HStack(spacing: 0) {
+                ForEach(0..<copies, id: \.self) { _ in
+                    Image(WorldArt.assetName("cloud-sea", variant: .sharp), bundle: .module)
+                        .resizable()
+                        .frame(width: CGFloat(w), height: CGFloat(h))
+                    Image(WorldArt.assetName("cloud-sea", variant: .sharp), bundle: .module)
+                        .resizable()
+                        .frame(width: CGFloat(w), height: CGFloat(h))
+                        .scaleEffect(x: -1, y: 1)
+                }
+            }
+            .colorMultiply(colours.light.color)
+            .mask {
+                LinearGradient(
+                    stops: [
+                        .init(color: .white, location: 0),
+                        .init(color: .white, location: fades ? 0.45 : 1),
+                        .init(color: .white.opacity(fades ? 0 : 1), location: 1),
+                    ],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            }
+            .offset(x: CGFloat(-drift - 40))
+            .allowsHitTesting(false)
+        }
+    }
+
+    /// The painted row's width per copy, in points.
+    static let paintedWidth = 520.0
 
     /// Enough strip copies to cover the width plus one period of drift and
     /// the peek.
@@ -310,6 +399,26 @@ private struct StarField: View, Equatable {
             }
         }
         .frame(width: CGFloat(width), height: CGFloat(height))
+    }
+}
+
+/// One vignette over the whole world (look round 3): the grade's vignette
+/// as a dark elliptical gradient instead of a term in every shader pass,
+/// the same curve as `pofuWorldGrade`'s (gentle in the middle third).
+struct VignetteOverlay: View {
+    let strength: Double
+
+    var body: some View {
+        let w = min(max(strength, 0), 1)
+        // v = 1 − w · ((d − 0.3) / 0.7)^1.6, d = the elliptical radius over
+        // 1.345; a black overlay at opacity 1 − v multiplies by v.
+        let stops: [Gradient.Stop] = stride(from: 0.3, through: 1.0, by: 0.1).map { d in
+            .init(color: Color.black.opacity(w * pow((d - 0.3) / 0.7, 1.6)), location: d)
+        }
+        EllipticalGradient(stops: stops, center: .center, startRadiusFraction: 0, endRadiusFraction: 0.6725)
+            .ignoresSafeArea()
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
     }
 }
 #endif

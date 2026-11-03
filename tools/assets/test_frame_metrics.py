@@ -44,5 +44,23 @@ class FrameMetricsTests(unittest.TestCase):
         self.assertEqual(fm.check(deep, targets["grades"]["night"], day), [])
 
 
+    def test_emptiness_counts_dead_rows_and_the_longest_run(self):
+        rng = np.random.default_rng(5)
+        flat = frame(np.full((874, 402), 200.0))
+        busy = frame(128 + 60 * rng.normal(0, 1, (874, 402)))
+        self.assertGreater(fm.emptiness(flat)["empty"], 0.99)
+        self.assertLess(fm.emptiness(busy)["empty"], 0.01)
+        # Dead sky above a busy island: the run is the sky's height.
+        half = np.vstack([np.full((437, 402), 200.0), 128 + 60 * rng.normal(0, 1, (437, 402))])
+        e = fm.emptiness(frame(half))
+        self.assertAlmostEqual(e["run"], 0.5 - 118 / 874, delta=0.03)
+
+    def test_hue_deltas_wrap_around(self):
+        day = {"pofu_h": 350.0}
+        spec = {"delta_day": {"pofu_h": [None, 20]}}
+        self.assertEqual(fm.check({"pofu_h": 5.0}, spec, day), [])
+        self.assertTrue(fm.check({"pofu_h": 300.0}, spec, day))
+
+
 if __name__ == "__main__":
     unittest.main()

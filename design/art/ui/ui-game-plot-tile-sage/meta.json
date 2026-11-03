@@ -1,0 +1,89 @@
+{
+  "job": "game-plot-tile-sage",
+  "batch": "batch-12-minigame-art",
+  "asset": "ui__game-plot-tile-sage",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T00:23:16+00:00",
+  "image": "design/art/ui/ui-game-plot-tile-sage/ui-game-plot-tile-sage.png",
+  "raw": "design/art/ui/ui-game-plot-tile-sage/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "495d8dfd87cbe707",
+  "prompt": "REFERENCES (attached, in this order):\n1. Style reference for objects: how a prop is painted in this world.\n2. The palette card for props.\n\nOne square tile of glazed clay seen from straight above with a\nvery slight tilt, rounded corners, filling most of the canvas: a\nsoft sage-green matte-to-soft-gloss glaze, a soft cream highlight\nalong the top edge, a slightly darker rounded lip along the other\nedges, and in the middle a small, simple sprout (two round leaves\non a short stem) pressed into the clay in the same glaze, only a\nlittle lighter than the tile.\n\nUI OBJECT: a painted object that the app places under or inside native\niOS glass controls. Never paint glass, frosted panels, buttons, frames,\nprogress bars or any interface chrome: the app draws all glass and all\ncontrols natively. The object is centered with a generous transparent\nmargin of about 10% on every side.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/cay-1/cay-1.png",
+      "role": "Style reference for objects: how a prop is painted in this world."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T00:20:23+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 20 (R1 51)",
+        "value": 19.9
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 68 (R1 59)",
+        "value": 68.4
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.6 (R1 5.3)",
+        "value": 0.55
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.3",
+        "value": 0.2978
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.6, p95 4.0, off-palette 0.0%",
+        "value": 2.6134
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both takes pass automated QA with non-failing palette warnings. Four-background alpha composites are clean; rounded sage clay tile, top highlight, darker lip and two-leaf sprout relief read at native41pt on cream/dark backgrounds. Take1 has lowest non-failing lock load0.2978 versus0.3039. Pilot visual review passed; no check waived."
+}

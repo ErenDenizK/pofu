@@ -1,0 +1,1 @@
+Added: Pofu's tiny sounds (PofuSound): garden minigame and Home's collect play short pentatonic cues, quiet under your music, silent with the Silent switch, with a "Pofu's sounds" switch in Settings and volumes in Ayar; the shield never plays audio.
