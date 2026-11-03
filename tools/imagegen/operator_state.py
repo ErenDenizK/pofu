@@ -495,9 +495,16 @@ def main(argv=None):
         # flock is released by the kernel on process death. Metadata is evidence,
         # never a stale PID lock that needs manual deletion.
         branch = "art/" + args.batch + "/all"
-        common = (git(repo, "rev-parse", "--git-common-dir") or str(repo).encode()).decode().strip()
-        key = digest(str((repo / common).resolve()) + "::" + branch)[:16]
-        with (args.state_dir / ("branch-" + key + ".lock")).open("a+") as writer:
+        common = git(repo, "rev-parse", "--git-common-dir")
+        if not common:
+            raise SystemExit("Cannot establish the common Git directory for a shared branch lock")
+        common_dir = (repo / common.decode().strip()).resolve()
+        key = digest(str(common_dir) + "::" + branch)[:16]
+        lock_dir = common_dir / "operator-state-locks"
+        lock_dir.mkdir(parents=True, exist_ok=True)
+        # Linked worktrees can use different state directories while publishing
+        # the same canonical branch. Their writer lock must have one shared inode.
+        with (lock_dir / ("branch-" + key + ".lock")).open("a+") as writer:
             fcntl.flock(writer, fcntl.LOCK_EX)
             if (args.runtime / "GLOBAL_STOP.json").exists():
                 raise SystemExit("Global stop active; branch writer not started")

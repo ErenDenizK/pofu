@@ -274,5 +274,82 @@ class RecoveryTests(unittest.TestCase):
         self.assertEqual(second.returncode, 0, second.stderr.decode())
         self.assertTrue(acquired.exists())
 
+    def test_linked_worktrees_with_distinct_state_dirs_share_branch_writer_lock(self):
+        linked = self.root / "linked"
+        self.run_git("worktree", "add", "-qb", "second-worker", str(linked), "HEAD")
+        script = str(Path(state.__file__))
+        # Announce the actual inode passed to flock, not a predicted lock path.
+        # This makes the cross-worktree regression deterministic while the
+        # command assertion below also verifies real kernel serialization.
+        runner = """import importlib.util,os,sys
+from pathlib import Path
+s=importlib.util.spec_from_file_location('locked_state',sys.argv[1])
+m=importlib.util.module_from_spec(s)
+s.loader.exec_module(m)
+real=m.fcntl.flock
+def announce(fd,operation):
+    st=os.fstat(fd if isinstance(fd,int) else fd.fileno())
+    m.atomic_json(Path(sys.argv[2]),[st.st_dev,st.st_ino])
+    return real(fd,operation)
+m.fcntl.flock=announce
+sys.exit(m.main(sys.argv[3:]))
+"""
+        for killed_wrapper in (False, True):
+            with self.subTest(killed_wrapper=killed_wrapper):
+                tag = "killed" if killed_wrapper else "alive"
+                started = self.root / (tag + "-started"); release = self.root / (tag + "-release")
+                finished = self.root / (tag + "-finished"); acquired = self.root / (tag + "-acquired")
+                first_inode = self.root / (tag + "-first-inode.json")
+                second_inode = self.root / (tag + "-second-inode.json")
+                first_state = self.root / (tag + "-state-a"); second_state = self.root / (tag + "-state-b")
+                first_code = f"""from pathlib import Path
+import time
+Path({str(started)!r}).write_text('yes')
+deadline=time.monotonic()+8
+while not Path({str(release)!r}).exists() and time.monotonic()<deadline:
+    time.sleep(.01)
+assert Path({str(release)!r}).exists()
+Path({str(finished)!r}).write_text('yes')
+"""
+                second_code = (
+                    "from pathlib import Path;assert Path(" + repr(str(finished)) + ").exists();"
+                    "Path(" + repr(str(acquired)) + ").write_text('yes')"
+                )
+                def command(repo, state_dir, inode_path, code):
+                    return [sys.executable, "-c", runner, script, str(inode_path),
+                            "--repo", str(repo), "--batch", self.batch,
+                            "--runtime", str(self.runtime), "--state-dir", str(state_dir),
+                            "with-branch-lock", "--", sys.executable, "-c", code]
+                first = subprocess.Popen(command(self.repo, first_state, first_inode, first_code),
+                                         stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+                second = None
+                try:
+                    deadline = time.monotonic() + 4
+                    while not started.exists() and time.monotonic() < deadline: time.sleep(.01)
+                    error = first.stderr.read().decode() if first.poll() is not None else "command did not start"
+                    self.assertTrue(started.exists(), error)
+                    second = subprocess.Popen(command(linked, second_state, second_inode, second_code),
+                                              stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    deadline = time.monotonic() + 4
+                    while not second_inode.exists() and time.monotonic() < deadline: time.sleep(.01)
+                    self.assertTrue(second_inode.exists())
+                    self.assertEqual(json.loads(first_inode.read_text()), json.loads(second_inode.read_text()))
+                    if killed_wrapper:
+                        first.kill(); first.wait()
+                    self.assertFalse(acquired.exists())
+                    release.write_text("yes")
+                    stdout, stderr = second.communicate(timeout=5)
+                    self.assertEqual(second.returncode, 0, stderr.decode())
+                    self.assertTrue(finished.exists()); self.assertTrue(acquired.exists())
+                    if not killed_wrapper:
+                        self.assertEqual(first.wait(timeout=3), 0)
+                finally:
+                    release.write_text("cleanup")
+                    if second is not None and second.poll() is None:
+                        second.kill(); second.communicate()
+                    if first.poll() is None:
+                        first.kill(); first.wait()
+                    first.stderr.close()
+
 
 if __name__ == "__main__": unittest.main()

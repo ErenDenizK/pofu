@@ -100,6 +100,9 @@ python3 -I tools/imagegen/operator_state.py --batch batch-NN-name \
   with-branch-lock --expected-head COMMIT -- command arg
 ```
 
+The lock lives under the common Git directory's `operator-state-locks/`, so
+linked worktrees and different state directories share one lock for the same
+canonical branch. Owner metadata stays in the selected local state directory.
 The child inherits the kernel lock if the wrapper disconnects. A leftover PID
 file is descriptive, not a lock that must be deleted. Git writes still need
 normal branch leases and identity checks. Wait for each publication and its
