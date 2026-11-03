@@ -15,6 +15,7 @@ Every check is a pure function of arrays, so it is unit-tested on Linux.
 from __future__ import annotations
 
 import json
+import re
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -83,6 +84,35 @@ SILHOUETTE = {"warn": 0.93, "fail": 0.85}           # alpha IoU with the parent
 STRUCTURE = {"warn": 0.80, "fail": 0.60}            # lightness correlation with the parent (recolor)
 LIGHTNESS_SHIFT = {"warn": 10.0, "fail": 18.0}      # mean |L shift| (recolor: "the same lightness")
 REGION_EDIT_KEPT = {"warn": 0.50, "fail": 0.30}
+
+# Exploration jobs (ids x-*, x2-*, or acceptance `exploration: true`; batches
+# 15-17) are looked at by the founder, not gated: every automated check is
+# advisory (warn, never fail) EXCEPT these hard ones: transparency, size and
+# decoding, and the legibility of a job's REQUIRED TEXT (read on the contact
+# sheet; a check named `text_legibility`, if a backend adds one, stays hard).
+EXPLORATION_HARD = {"transparency", "canvas", "opaque_pixels", "appicon_opaque", "text_legibility"}
+
+# Night / dark variants (acceptance `profile: night`): the brief asks for a
+# dark value range, so the default value floor and the "same lightness as the
+# parent" check of a recolor do not apply. Instead the median lightness of the
+# take must sit in a dark band.
+NIGHT_PROFILE = {
+    "value_floor": {"warn": 12.0, "fail": 4.0},
+    "median_L": {"pass": (18.0, 50.0), "warn": (10.0, 60.0)},
+}
+
+
+def is_exploration(job_id: str | None = None, acceptance: dict | None = None) -> bool:
+    return bool((acceptance or {}).get("exploration")) or bool(job_id and re.match(r"^x\d*-", job_id))
+
+
+def advisory(checks: list["Check"]) -> list["Check"]:
+    """Downgrade every failing style check to a warning; the hard checks stay."""
+    for c in checks:
+        if c.status == "fail" and c.name not in EXPLORATION_HARD:
+            c.status = "warn"
+            c.message += " (advisory in an exploration)"
+    return checks
 
 
 @dataclass
@@ -624,6 +654,9 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
                parent_locked: np.ndarray | None = None, decor: str | None = None) -> list[Check]:
     acceptance = acceptance or {}
     lim = limits_for(kind, acceptance)
+    night = acceptance.get("profile") == "night"
+    if night:
+        lim["value_floor"] = dict(NIGHT_PROFILE["value_floor"])
     m = sl.measure(locked)
     checks = []
     if "error" in m:
@@ -631,6 +664,12 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
     checks.append(Check("chroma_ceiling", grade(m["C_p95"], lim["chroma_p95"]), f"chroma p95 {m['C_p95']:.0f} (R1 51)", m["C_p95"]))
     checks.append(Check("value_floor", grade(m["L_p5"], lim["value_floor"], higher_is_worse=False),
                         f"lightness p5 {m['L_p5']:.0f} (R1 59)", m["L_p5"]))
+    if night:
+        med, band = m["L_p50"], NIGHT_PROFILE["median_L"]
+        ok = band["pass"][0] <= med <= band["pass"][1]
+        near = band["warn"][0] <= med <= band["warn"][1]
+        checks.append(Check("night_lightness", "pass" if ok else "warn" if near else "fail",
+                            f"night variant: median lightness {med:.0f} (dark band {band['pass'][0]:.0f}-{band['pass'][1]:.0f})", med))
     checks.append(Check("detail_budget", grade(m["detail"], lim["detail"]), f"detail at display size {m['detail']:.1f} (R1 5.3)", m["detail"]))
     if kind != "char":
         load = lock_load(raw, locked)
@@ -684,8 +723,9 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
                 corr, dl = st
                 checks.append(Check("edit_structure", grade(corr, STRUCTURE, higher_is_worse=False),
                                     f"light structure matches the parent (r {corr:.2f})", corr))
-                checks.append(Check("edit_lightness", grade(dl, LIGHTNESS_SHIFT),
-                                    f"mean lightness moved by {dl:.1f} L (the same lightness was asked)", dl))
+                if not night:  # a night recolor is asked to get darker: night_lightness judges it
+                    checks.append(Check("edit_lightness", grade(dl, LIGHTNESS_SHIFT),
+                                        f"mean lightness moved by {dl:.1f} L (the same lightness was asked)", dl))
             return checks
         if mode == "region" and "edit_kept" not in acceptance:
             lim["edit_kept"] = dict(REGION_EDIT_KEPT)
@@ -742,7 +782,8 @@ def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, pre
             checks.append(Check("edit_alignment", "pass" if off <= 0.03 else "warn" if off <= 0.25 else "fail",
                                 f"the edit rescaled the object x{1 / t['scale']:.3f} and moved it; aligned back to the parent",
                                 t["scale"]))
-    checks.extend(run_checks(kind, normalized, locked, palettes, acceptance, parent_locked, decor))
+    style = run_checks(kind, normalized, locked, palettes, acceptance, parent_locked, decor)
+    checks.extend(advisory(style) if (acceptance or {}).get("exploration") else style)
     info["metrics_raw"] = sl.measure(normalized)
     info["metrics_locked"] = sl.measure(locked)
     return TakeResult(raw=raw, normalized=normalized, locked=locked, checks=checks, info=info)

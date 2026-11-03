@@ -294,6 +294,36 @@ class EditModeTests(unittest.TestCase):
         self.assertNotIn("edit_silhouette", c)
         self.assertEqual(c["edit_stability"].status, "pass")
 
+    def test_night_profile_accepts_a_dark_recolor_and_rejects_a_light_one(self):
+        night = self.names(tile((38, 44, 92)), tile(self.SAGE), edit_mode="recolor", profile="night")
+        self.assertNotIn("edit_lightness", night)
+        self.assertEqual(night["night_lightness"].status, "pass")
+        self.assertNotEqual(night["value_floor"].status, "fail")
+        plain = self.names(tile((38, 44, 92)), tile(self.SAGE), edit_mode="recolor")
+        self.assertEqual(plain["edit_lightness"].status, "fail")
+        light = self.names(tile(self.HONEY), tile(self.SAGE), edit_mode="recolor", profile="night")
+        self.assertEqual(light["night_lightness"].status, "fail")
+
+    def test_exploration_style_failures_are_advisory_but_transparency_stays_hard(self):
+        loud = tile((12, 12, 20))  # far below the value floor
+        args = ("ui", (1024, 1024), sl.load_presets()["soft-lock"], ["world-props"])
+        strict = qa.process_take(loud, *args)
+        self.assertEqual({c.name: c.status for c in strict.checks}["value_floor"], "fail")
+        soft = qa.process_take(loud, *args, {"exploration": True})
+        by = {c.name: c.status for c in soft.checks}
+        self.assertEqual(by["value_floor"], "warn")
+        self.assertNotIn("fail", by.values())
+        cut = loud.copy()
+        cut[:300, :, 3] = 0
+        bad = qa.process_take(cut, *args, {"exploration": True}, transparent=False)
+        self.assertEqual({c.name: c.status for c in bad.checks}["transparency"], "fail")
+
+    def test_exploration_is_recognised_by_id(self):
+        for jid in ("x-koke-1", "x2-hub-grown", "x-b16-logo-b"):
+            self.assertTrue(qa.is_exploration(jid))
+        self.assertFalse(qa.is_exploration("ui-sheet-paper-night"))
+        self.assertTrue(qa.is_exploration("anything", {"exploration": True}))
+
     def test_unknown_mode_is_an_error(self):
         with self.assertRaises(ValueError):
             self.names(tile(self.SAGE), tile(self.SAGE), edit_mode="recolour")

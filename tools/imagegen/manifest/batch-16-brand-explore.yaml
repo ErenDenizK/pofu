@@ -85,7 +85,7 @@ jobs:
           REQUIRED TEXT: Pofu
           (exactly four letters: capital P, lowercase o, f, u.)
           LETTERFORM: fat rounded letters like soft dough, the lowercase o a perfect circle, in warm brown. Extra mark: a small cream curl above the P as the only mark.
-          COLOR: warm brown and cream from the attached painting on a plain pale cream ground.
+          COLOR: soft, muted warm brown and cream roughly like the attached painting, gentle and low-saturation, on a plain pale cream ground.
           LAYOUT: one lockup, centered, wide, with generous margin.
       - text: "AVOID: any word other than Pofu, a hamster, a border, 3D, glow, outline, a drop shadow"
 
@@ -160,7 +160,7 @@ jobs:
       - text: |
           PURPOSE: the Pofu app icon, direction C (island and seed), light appearance for iOS 26.
           AUDIENCE: adults who want to open social apps less; calm, not clinical.
-          SUBJECT: the small floating home island seen from the front filling the lower middle, with one big sunflower sprout rising from its lawn as the focal shape, over a pale morning sky and a few clouds.
+          SUBJECT: the small floating home island seen from the front filling the lower middle, with one single seedling sprout rising from its lawn as the focal shape: a short green stem with exactly two rounded leaves, a seedling sprout with two leaves, NOT a flower (no petals, no flower head, no sunflower). SAFE AREA: keep the whole island, sprout and clouds inside the central 80% circle with at least 10% empty margin to every edge; nothing may touch or cross the canvas edge. Pale morning sky and a few clouds behind.
           LIGHT variant: soft pale sky, warm cream and peach light, the painting as described.
           LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80% circle, corners calm background only.
           STYLE: the attached painting. PALETTE: milky pastel. No text.
@@ -295,7 +295,7 @@ jobs:
       - text: |
           PURPOSE: the Pofu app icon, direction C (island and seed), dark appearance for iOS 26.
           AUDIENCE: adults who want to open social apps less; calm, not clinical.
-          SUBJECT: the small floating home island seen from the front filling the lower middle, with one big sunflower sprout rising from its lawn as the focal shape, over a pale morning sky and a few clouds.
+          SUBJECT: the small floating home island seen from the front filling the lower middle, with one single seedling sprout rising from its lawn as the focal shape: a short green stem with exactly two rounded leaves, a seedling sprout with two leaves, NOT a flower (no petals, no flower head, no sunflower). SAFE AREA: keep the whole island, sprout and clouds inside the central 80% circle with at least 10% empty margin to every edge; nothing may touch or cross the canvas edge. Pale morning sky and a few clouds behind.
           DARK variant: the same composition and the same drawing at night: a deep soft indigo-to-plum sky, the focal shape lit warmly from within so it stays the brightest thing; still milky and painted, never black, never neon.
           LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80% circle, corners calm background only.
           STYLE: the attached painting. PALETTE: milky pastel. No text.
@@ -322,7 +322,7 @@ jobs:
       - text: |
           PURPOSE: the Pofu app icon, direction C (island and seed), tinted appearance for iOS 26.
           AUDIENCE: adults who want to open social apps less; calm, not clinical.
-          SUBJECT: the small floating home island seen from the front filling the lower middle, with one big sunflower sprout rising from its lawn as the focal shape, over a pale morning sky and a few clouds.
+          SUBJECT: the small floating home island seen from the front filling the lower middle, with one single seedling sprout rising from its lawn as the focal shape: a short green stem with exactly two rounded leaves, a seedling sprout with two leaves, NOT a flower (no petals, no flower head, no sunflower). SAFE AREA: keep the whole island, sprout and clouds inside the central 80% circle with at least 10% empty margin to every edge; nothing may touch or cross the canvas edge. Pale morning sky and a few clouds behind.
           TINTED variant: the same composition as a near-monochrome painting in one warm hue: the focal shape in light and mid values of that single hue on a dark brown-grey ground, high value contrast, no other colors, so the system can tint it.
           LAYOUT: square, opaque, edge to edge, the focal shape inside the central 80% circle, corners calm background only.
           STYLE: the attached painting. PALETTE: milky pastel. No text.
@@ -348,10 +348,10 @@ jobs:
           AUDIENCE: adults and teens who open social apps by reflex; warm, humorous, never preachy.
           REQUIRED TEXT: Pofu
           (exactly four letters: capital P, lowercase o, f, u.)
-          LETTERFORM: friendly hand-brushed letters with slightly uneven baseline, in warm brown with the first letter in sunflower yellow. Extra mark: no mark.
-          COLOR: warm brown and cream from the attached painting on a plain pale cream ground.
+          LETTERFORM: friendly hand-brushed letters with slightly uneven baseline, in soft warm brown with the first letter in a gentle, muted sunflower-yellow tint (pale and creamy, never neon). Extra mark: no mark.
+          COLOR: soft, muted warm brown and cream roughly like the attached painting, gentle and low-saturation, on a plain pale cream ground.
           LAYOUT: one lockup, centered, wide, with generous margin.
-      - text: "AVOID: any word other than Pofu, a hamster, a border, 3D, glow, outline, a drop shadow"
+      - text: "AVOID: any word other than Pofu, a hamster, a border, 3D, glow, outline, a drop shadow, neon or highly saturated colors"
 
   - id: x-b16-logo-c
     kind: plate
@@ -373,7 +373,7 @@ jobs:
           REQUIRED TEXT: Pofu
           (exactly four letters: capital P, lowercase o, f, u.)
           LETTERFORM: puffy inflated pillow letters in cream with a soft warm brown shading side, tightly spaced. Extra mark: a tiny sunflower seed sitting after the last letter.
-          COLOR: warm brown and cream from the attached painting on a plain pale cream ground.
+          COLOR: soft, muted warm brown and cream roughly like the attached painting, gentle and low-saturation, on a plain pale cream ground.
           LAYOUT: one lockup, centered, wide, with generous margin.
       - text: "AVOID: any word other than Pofu, a hamster, a border, 3D, glow, outline, a drop shadow"
 
