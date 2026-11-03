@@ -14,6 +14,8 @@ struct RehearsalPanel: View {
     /// Where the user left the panel, from its resting place.
     @AppStorage("rehearsal.panel.leading.x") private var restingX: Double = 0
     @AppStorage("rehearsal.panel.leading.y") private var restingY: Double = 0
+    /// "glass" or "crafted"; empty follows the default skin.
+    @AppStorage("PofuSkin") private var skinOverride = ""
     @State private var drag: CGSize = .zero
     @State private var confirmsReset = false
     @State private var isBusy = false
@@ -90,6 +92,15 @@ struct RehearsalPanel: View {
                 model.rehearsalJump(.quietHour)
             }
             nightOrMorning
+            Divider()
+            // The skin of the over-world chrome, to feel both on the phone.
+            Picker(selection: $skinOverride) {
+                Text("Glass").tag("glass")
+                Text("Crafted").tag("crafted")
+            } label: {
+                Text("Skin")
+            }
+            .pickerStyle(.segmented)
             Divider()
             // Rounds are earned (two a day, one per resisted reach) and
             // credited to the pouch: the same ledger the product will use.

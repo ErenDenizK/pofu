@@ -2961,6 +2961,36 @@
           }
         }
       }
+    },
+    "Glass" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cam"
+          }
+        }
+      }
+    },
+    "Crafted" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El işi"
+          }
+        }
+      }
+    },
+    "Skin" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaplama"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
