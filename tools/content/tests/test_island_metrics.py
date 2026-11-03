@@ -156,3 +156,10 @@ def test_plate_with_too_few_stations_is_flagged():
     d["play"]["canlar"]["stations"] = ["the bell"]
     violations, _ = im.check(d)
     assert any(v.startswith("play: canlar has 1 stations") for v in violations)
+
+
+def test_god_tier_parallel_bloom_counts_as_a_wow():
+    d = data()
+    d["islands"]["emanet"]["bloom"] = 14
+    violations, _ = im.check(d)
+    assert any(v.startswith("stacked wows: emanet blooms") for v in violations)
