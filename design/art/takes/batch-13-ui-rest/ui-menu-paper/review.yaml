@@ -1,0 +1,7 @@
+batch: batch-13-ui-rest
+jobs:
+  ui-menu-paper:
+    pick: none
+    publication: pilot-dependent-skip
+    note: 'Not generated: embedded ui-sheet-paper pilot failed after one allowed retry.
+      Rest-of-batch gate applies even if this job does not directly attach it.'

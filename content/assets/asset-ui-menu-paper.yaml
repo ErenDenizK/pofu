@@ -2,12 +2,12 @@ id: asset-ui-menu-paper
 type: asset
 title_tr: ui-menu-paper
 title_en: menu-paper (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A small cream paper card with four softly rounded corners, a thin row of small, even, warm-brown
-  stitches just inside its edge all the way around, and a faint darker paper edge. The middle
-  is plain, flat, even cream paper, tileable. Seen straight on. Nothing written on it.
+summary: A small cream paper card with four softly rounded corners, a thin row of
+  small, even, warm-brown stitches just inside its edge all the way around, and a
+  faint darker paper edge. The middle is plain, flat, even cream paper, tileable.
+  Seen straight on. Nothing written on it.
 art:
   images: []
   jobs:
@@ -16,3 +16,7 @@ sources:
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
 kind: ui
 batch: batch-13-ui-rest
+notes:
+- 'Batch13overnight: Not generated: the embedded ui-sheet-paper pilot failed its allowed
+  retry, so the manifest skips the rest of batch13. Other batch timings remain as
+  specified.'

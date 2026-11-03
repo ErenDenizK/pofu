@@ -2,14 +2,14 @@ id: asset-ui-sheet-paper
 type: asset
 title_tr: ui-sheet-paper
 title_en: sheet-paper (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A tall sheet of cream paper seen straight on, filling the canvas from the left edge to the
-  right edge and from near the top to the bottom edge: its top corners softly rounded with
-  a thin lighter paper lip along the top, a faint darker paper edge just outside a thin row
-  of small, even, warm-brown stitches running just inside the top and side edges. The middle
-  is plain, flat, even cream paper with no stains and no text…
+summary: 'A tall sheet of cream paper seen straight on, filling the canvas from the
+  left edge to the right edge and from near the top to the bottom edge: its top corners
+  softly rounded with a thin lighter paper lip along the top, a faint darker paper
+  edge just outside a thin row of small, even, warm-brown stitches running just inside
+  the top and side edges. The middle is plain, flat, even cream paper with no stains
+  and no text…'
 art:
   images: []
   jobs:
@@ -18,3 +18,6 @@ sources:
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
 kind: ui
 batch: batch-13-ui-rest
+notes:
+- 'Batch13overnight: All4takes pass automated QA but fail mandatory side/bottom canvas-bleed
+  shape; one retry exhausted. No master.'
