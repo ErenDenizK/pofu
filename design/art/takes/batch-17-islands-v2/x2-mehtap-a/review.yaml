@@ -1,0 +1,358 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-mehtap-a/contact.jpg
+jobs:
+  x2-mehtap-a:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both takes depict a crescent
+      landform, observatory, rope ladder, owl, many stars and Milky Way. No home lawn/soil/roots/pebbles/round
+      door. The visible crescent profile reads independently of its colors. Cloud-occluded
+      lower edges are marked approximate; no hidden complete moon is inferred.
+qa_reports:
+  1:
+    job: x2-mehtap-a
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 39 (R1 59)
+      value: 38.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.99
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6725
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.8, p95 11.7, off-palette 3.4% (top: #445599 (1.2%), #556699
+        (0.8%)) (advisory in an exploration)'
+      value: 4.7673
+    info:
+      metrics_raw:
+        L_p5: 38.5
+        L_p50: 78.3
+        L_p95: 95.0
+        C_p50: 16.7
+        C_p95: 40.4
+        C_p99: 41.9
+        detail: 2.52
+      metrics_locked:
+        L_p5: 38.6
+        L_p50: 78.3
+        L_p95: 94.8
+        C_p50: 16.5
+        C_p95: 40.3
+        C_p99: 41.5
+        detail: 1.99
+    fingerprint: e33770558d569ae7
+  2:
+    job: x2-mehtap-a
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 44.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 37 (R1 59)
+      value: 37.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.16
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6712
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 6.1, p95 14.2, off-palette 19.0% (top: #445599 (8.6%), #5566AA
+        (4.4%)) (advisory in an exploration)'
+      value: 6.1037
+    info:
+      metrics_raw:
+        L_p5: 37.1
+        L_p50: 77.4
+        L_p95: 94.9
+        C_p50: 19.2
+        C_p95: 45.0
+        C_p99: 46.9
+        detail: 2.69
+      metrics_locked:
+        L_p5: 37.1
+        L_p50: 77.4
+        L_p95: 94.7
+        C_p50: 19.0
+        C_p95: 44.8
+        C_p99: 46.6
+        detail: 2.16
+    fingerprint: e33770558d569ae7
+manual_review:
+  note: Both takes depict a crescent landform, observatory, rope ladder, owl, many
+    stars and Milky Way. No home lawn/soil/roots/pebbles/round door. The visible crescent
+    profile reads independently of its colors. Cloud-occluded lower edges are marked
+    approximate; no hidden complete moon is inferred.
+  takes:
+    '1':
+      pass: true
+      silhouette_name: crescent moon
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 1
+      - 1
+      evidence: The island is the moon; own indigo sky; ladder/owl and observatory
+        suggest inhabited scale. Motion is only implied, not animation.
+      swatch_points:
+      - - 140
+        - 100
+      - - 350
+        - 500
+      - - 835
+        - 570
+      contours:
+      - - - 654
+          - 137
+        - - 550
+          - 125
+        - - 436
+          - 173
+        - - 343
+          - 233
+        - - 268
+          - 315
+        - - 210
+          - 420
+        - - 190
+          - 530
+        - - 215
+          - 670
+        - - 286
+          - 764
+        - - 386
+          - 810
+        - - 600
+          - 837
+        - - 820
+          - 855
+        - - 1000
+          - 775
+        - - 1130
+          - 722
+        - - 1190
+          - 636
+        - - 1238
+          - 548
+        - - 1240
+          - 524
+        - - 1225
+          - 514
+        - - 1130
+          - 586
+        - - 1040
+          - 618
+        - - 965
+          - 638
+        - - 730
+          - 650
+        - - 650
+          - 614
+        - - 590
+          - 550
+        - - 541
+          - 468
+        - - 507
+          - 384
+        - - 499
+          - 292
+        - - 521
+          - 224
+        - - 575
+          - 180
+        - - 654
+          - 151
+      uncertainty: Coarse visible moon-body contour; lower boundary meets foreground
+        cloud and is not a reconstructed hidden edge. Minor props excluded from landform-only
+        mask; unmodified whole-subject thumbnail is beside it.
+      sampled_swatches:
+      - point:
+        - 140
+        - 100
+        hex: '#525D9A'
+      - point:
+        - 350
+        - 500
+        hex: '#FBE7DD'
+      - point:
+        - 835
+        - 570
+        hex: '#FCDD9F'
+      annotation_source_inbox_sha256: ade7923eda030888eda580d4869dc7c6e1cca54bcc382979616df38eb9563d3d
+      observed_bbox:
+      - 190
+      - 125
+      - 1241
+      - 856
+      silhouette_native_longest_px: 60
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+    '2':
+      pass: true
+      silhouette_name: crescent moon
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 1
+      - 1
+      evidence: Distinct crescent with observatory, ladder and owl; many stars rather
+        than a single tip star. Only implied motion is scored.
+      swatch_points:
+      - - 140
+        - 120
+      - - 300
+        - 450
+      - - 950
+        - 650
+      contours:
+      - - - 624
+          - 139
+        - - 574
+          - 122
+        - - 497
+          - 137
+        - - 405
+          - 177
+        - - 319
+          - 240
+        - - 254
+          - 321
+        - - 215
+          - 422
+        - - 207
+          - 521
+        - - 233
+          - 626
+        - - 279
+          - 710
+        - - 340
+          - 765
+        - - 460
+          - 795
+        - - 630
+          - 838
+        - - 730
+          - 805
+        - - 900
+          - 816
+        - - 1080
+          - 758
+        - - 1168
+          - 688
+        - - 1220
+          - 611
+        - - 1244
+          - 576
+        - - 1247
+          - 568
+        - - 1229
+          - 571
+        - - 1162
+          - 622
+        - - 1075
+          - 667
+        - - 960
+          - 690
+        - - 830
+          - 690
+        - - 710
+          - 625
+        - - 650
+          - 555
+        - - 604
+          - 467
+        - - 560
+          - 365
+        - - 544
+          - 280
+        - - 544
+          - 212
+        - - 570
+          - 165
+        - - 620
+          - 148
+      uncertainty: Approximate source-observed landform contour only; lower cloud
+        occlusion is not invented. Minor props excluded from landform mask; source
+        thumbnail shows the full subject.
+      sampled_swatches:
+      - point:
+        - 140
+        - 120
+        hex: '#495A9F'
+      - point:
+        - 300
+        - 450
+        hex: '#F9E3D4'
+      - point:
+        - 950
+        - 650
+        hex: '#FEF0BD'
+      annotation_source_inbox_sha256: c9e0959c77f79c66b8e8c2c36a26d77a8b72043d476eabcc971dd72649831b10
+      observed_bbox:
+      - 207
+      - 122
+      - 1248
+      - 839
+      silhouette_native_longest_px: 60
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-0fc0991b-0989-4205-a228-b17e41e4c0c4.png
+  original_generated_png_sha256: 3ff98623e0c4420c92df762b03951b35090b0b138e2e4a236bba6de0e1738b8f
+  inbox_png_sha256: ade7923eda030888eda580d4869dc7c6e1cca54bcc382979616df38eb9563d3d
+  rgba_sha256: 989a55747ba3d1bdf6b88ed84c9af207ccec4acfa66ff2332f8ec0e789183d8a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e33770558d569ae7
+- take: 2
+  source_file: /workspace/generated_images/exec-953daffe-1fe5-48a2-9214-7ad3efabb4ef.png
+  original_generated_png_sha256: c7179213fb502c2901140a7515897568c16d662a98eec63aa3e86937f9d47bb0
+  inbox_png_sha256: c9e0959c77f79c66b8e8c2c36a26d77a8b72043d476eabcc971dd72649831b10
+  rgba_sha256: 7a35b06a8f48b993542b822e7aaa62734d4fc6f695bf99b1c3986a3be2b9deef
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e33770558d569ae7
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true

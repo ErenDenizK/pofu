@@ -1,0 +1,975 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-emanet-a/contact.jpg
+jobs:
+  x2-emanet-a:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Independent read-only review
+      of both original takes; no final pick. t1 satisfies the upturned umbrella landmark;
+      t2 has an upright convex canopy despite a distinct otherwise compliant stilt-office
+      silhouette. No banned home landform is copied. Rubric is advisory and no8-point
+      gate is imposed. Palette scoring is conservative because teal reads muted sage/grey;
+      score below8 is not an exploration rejection.
+qa_reports:
+  1:
+    job: x2-emanet-a
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 37.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 53 (R1 59)
+      value: 52.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.8 (R1 5.3)
+      value: 2.75
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9833
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 3.5, off-palette 0.2% (top: #BB7733 (0.0%), #CC7733
+        (0.0%))'
+      value: 1.6376
+    info:
+      metrics_raw:
+        L_p5: 52.2
+        L_p50: 83.5
+        L_p95: 92.5
+        C_p50: 7.1
+        C_p95: 37.8
+        C_p99: 49.5
+        detail: 3.39
+      metrics_locked:
+        L_p5: 52.6
+        L_p50: 83.4
+        L_p95: 92.4
+        C_p50: 7.2
+        C_p95: 37.1
+        C_p99: 48.6
+        detail: 2.75
+    fingerprint: 0ea81a4f48a8be27
+  2:
+    job: x2-emanet-a
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 52 (R1 59)
+      value: 52.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.9 (R1 5.3)
+      value: 2.88
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8708
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 4.2, off-palette 0.2% (top: #BB7733 (0.1%), #CC7733
+        (0.0%))'
+      value: 2.0129
+    info:
+      metrics_raw:
+        L_p5: 51.7
+        L_p50: 80.7
+        L_p95: 92.3
+        C_p50: 5.6
+        C_p95: 39.3
+        C_p99: 50.8
+        detail: 3.54
+      metrics_locked:
+        L_p5: 52.3
+        L_p50: 80.6
+        L_p95: 92.1
+        C_p50: 5.6
+        C_p95: 38.5
+        C_p99: 49.6
+        detail: 2.88
+    fingerprint: 0ea81a4f48a8be27
+manual_review:
+  note: Independent read-only review of both original takes; no final pick. t1 satisfies
+    the upturned umbrella landmark; t2 has an upright convex canopy despite a distinct
+    otherwise compliant stilt-office silhouette. No banned home landform is copied.
+    Rubric is advisory and no8-point gate is imposed. Palette scoring is conservative
+    because teal reads muted sage/grey; score below8 is not an exploration rejection.
+  takes:
+    '1':
+      pass: true
+      silhouette_name: upturned umbrella-roof office on stilts over a salvage raft
+      rubric:
+      - 3
+      - 1
+      - 1
+      - 2
+      - 1
+      evidence: 'The place itself is a salvage-built stilt office, not a home terrain
+        plate with a prop. Concave upward umbrella roof, teacup water tank, top-hat
+        chimney, mismatched-spoon ladder and magpie at the counter are visible. Teal/wood/brass
+        against overcast warm grey supplies palette and own sky; smoke and cloudy
+        drift only imply motion. A magpie and usable counter give inhabited scale.
+        Native60 profile retains roof scallops, cup, hooked handle, separated supports
+        and raft. Palette caveat: the teal is rendered as muted sage/grey and overlaps
+        the home family; this lowers the advisory palette/sky score, without inventing
+        a new hard style threshold.'
+      swatch_points:
+      - - 745
+        - 290
+      - - 1127
+        - 764
+      - - 1380
+        - 292
+      contours:
+      - - - 446
+          - 280
+        - - 585
+          - 219
+        - - 622
+          - 249
+        - - 693
+          - 236
+        - - 756
+          - 185
+        - - 811
+          - 228
+        - - 903
+          - 234
+        - - 937
+          - 207
+        - - 998
+          - 242
+        - - 1080
+          - 250
+        - - 1087
+          - 228
+        - - 1142
+          - 279
+        - - 1216
+          - 278
+        - - 1192
+          - 335
+        - - 1160
+          - 364
+        - - 1109
+          - 386
+        - - 1147
+          - 610
+        - - 1164
+          - 617
+        - - 1163
+          - 649
+        - - 276
+          - 648
+        - - 274
+          - 613
+        - - 504
+          - 594
+        - - 506
+          - 419
+        - - 453
+          - 399
+      - - - 342
+          - 102
+        - - 443
+          - 91
+        - - 448
+          - 72
+        - - 468
+          - 67
+        - - 479
+          - 83
+        - - 579
+          - 113
+        - - 584
+          - 140
+        - - 571
+          - 175
+        - - 562
+          - 245
+        - - 553
+          - 276
+        - - 584
+          - 285
+        - - 578
+          - 318
+        - - 349
+          - 326
+        - - 348
+          - 287
+        - - 360
+          - 275
+        - - 334
+          - 276
+        - - 299
+          - 263
+        - - 269
+          - 236
+        - - 253
+          - 204
+        - - 256
+          - 165
+        - - 282
+          - 140
+        - - 310
+          - 135
+        - - 337
+          - 151
+        - - 343
+          - 173
+        - - 336
+          - 190
+        - - 318
+          - 194
+        - - 308
+          - 180
+        - - 317
+          - 173
+        - - 309
+          - 165
+        - - 293
+          - 170
+        - - 282
+          - 189
+        - - 290
+          - 211
+        - - 319
+          - 229
+        - - 342
+          - 239
+      - - - 791
+          - 235
+        - - 791
+          - 84
+        - - 801
+          - 48
+        - - 825
+          - 26
+        - - 854
+          - 19
+        - - 883
+          - 27
+        - - 902
+          - 48
+        - - 911
+          - 73
+        - - 904
+          - 94
+        - - 886
+          - 96
+        - - 875
+          - 84
+        - - 876
+          - 66
+        - - 861
+          - 54
+        - - 843
+          - 53
+        - - 825
+          - 65
+        - - 821
+          - 234
+      - - - 992
+          - 152
+        - - 1008
+          - 107
+        - - 1024
+          - 96
+        - - 1119
+          - 102
+        - - 1134
+          - 121
+        - - 1122
+          - 173
+        - - 1144
+          - 191
+        - - 1132
+          - 220
+        - - 1094
+          - 233
+        - - 992
+          - 211
+        - - 964
+          - 197
+        - - 969
+          - 179
+      - - - 110
+          - 831
+        - - 196
+          - 814
+        - - 231
+          - 710
+        - - 270
+          - 705
+        - - 308
+          - 725
+        - - 340
+          - 688
+        - - 366
+          - 678
+        - - 385
+          - 688
+        - - 406
+          - 713
+        - - 476
+          - 698
+        - - 517
+          - 746
+        - - 608
+          - 757
+        - - 671
+          - 774
+        - - 710
+          - 764
+        - - 776
+          - 767
+        - - 858
+          - 744
+        - - 940
+          - 742
+        - - 1085
+          - 730
+        - - 1111
+          - 691
+        - - 1137
+          - 680
+        - - 1162
+          - 693
+        - - 1182
+          - 726
+        - - 1241
+          - 747
+        - - 1300
+          - 776
+        - - 1307
+          - 814
+        - - 1348
+          - 819
+        - - 1355
+          - 844
+        - - 1264
+          - 860
+        - - 1192
+          - 872
+        - - 1090
+          - 875
+        - - 979
+          - 871
+        - - 888
+          - 891
+        - - 822
+          - 904
+        - - 765
+          - 905
+        - - 674
+          - 890
+        - - 574
+          - 905
+        - - 478
+          - 889
+        - - 402
+          - 893
+        - - 321
+          - 885
+        - - 260
+          - 878
+        - - 205
+          - 892
+        - - 147
+          - 875
+        - - 110
+          - 857
+      - - - 309
+          - 645
+        - - 344
+          - 647
+        - - 327
+          - 718
+        - - 296
+          - 727
+      - - - 442
+          - 646
+        - - 487
+          - 648
+        - - 486
+          - 706
+        - - 451
+          - 706
+      - - - 581
+          - 644
+        - - 627
+          - 647
+        - - 632
+          - 774
+        - - 586
+          - 773
+      - - - 884
+          - 646
+        - - 925
+          - 646
+        - - 923
+          - 747
+        - - 888
+          - 743
+      - - - 972
+          - 646
+        - - 1017
+          - 646
+        - - 1010
+          - 743
+        - - 978
+          - 744
+      - - - 1202
+          - 557
+        - - 1219
+          - 557
+        - - 1192
+          - 737
+        - - 1176
+          - 736
+      - - - 651
+          - 546
+        - - 668
+          - 537
+        - - 690
+          - 585
+        - - 723
+          - 574
+        - - 797
+          - 592
+        - - 829
+          - 646
+        - - 847
+          - 672
+        - - 851
+          - 695
+        - - 840
+          - 707
+        - - 865
+          - 745
+        - - 879
+          - 786
+        - - 905
+          - 826
+        - - 909
+          - 847
+        - - 893
+          - 856
+        - - 891
+          - 875
+        - - 778
+          - 912
+        - - 762
+          - 914
+        - - 746
+          - 854
+        - - 711
+          - 797
+        - - 688
+          - 719
+        - - 672
+          - 653
+      holes:
+      - - - 286
+          - 182
+        - - 292
+          - 169
+        - - 307
+          - 166
+        - - 319
+          - 176
+        - - 313
+          - 188
+        - - 319
+          - 207
+        - - 341
+          - 220
+        - - 343
+          - 236
+        - - 320
+          - 228
+        - - 298
+          - 210
+        - - 285
+          - 198
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      uncertainty: Visible foreground clouds hide parts of the raft bottom; its cloud-contact
+        boundary is approximate and no hidden underside is reconstructed. Minor hanging
+        lantern/flags excluded from the landform profile; source crop retains them.
+        Stilt gaps are left unfilled between separate observed polygons.
+      source_file: /workspace/generated_images/exec-abb5dfb0-4bea-4bfe-bcde-9b2b4b14f330.png
+      original_generated_png_sha256: ea3c6f2574974a81b870f3c0475fff349b9aca20c61b531537c4f9c143fde9be
+      rgba_sha256: ce199c886cd30268bf90a20471a124b25cceddfcb76655dfd85bf180f9682da3
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 110
+      - 19
+      - 1356
+      - 915
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 60
+      - 43
+      sampled_swatches:
+      - point:
+        - 745
+        - 290
+        hex: '#818A80'
+      - point:
+        - 1127
+        - 764
+        hex: '#FAD6B3'
+      - point:
+        - 1380
+        - 292
+        hex: '#CDC3C4'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-emanet-a-t1-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-emanet-a-t1-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: a590eb33ca65ad79c14efc6062ab07ebaf9442bee426ba7c0dd6b4aa405192f6
+      silhouette_native_longest_px: 60
+    '2':
+      pass: false
+      silhouette_name: ordinary umbrella-roof stilt office and salvage raft
+      rubric:
+      - 3
+      - 1
+      - 1
+      - 2
+      - 1
+      evidence: 'Distinct salvage office on stilts, giant teacup tank, hat chimney,
+        spoon ladder and magpie read correctly and avoid the home terrain. Native60
+        profile reads as an umbrella-roof building over a raft. However the canopy
+        is visibly convex like an ordinary upright umbrella, rather than the specifically
+        required upturned/concave umbrella roof. This is a defining-landmark orientation
+        discrepancy, not a style-score rejection; owner may independently adjudicate
+        the wording. Palette caveat: the teal is rendered as muted sage/grey and overlaps
+        the home family; this lowers the advisory palette/sky score, without inventing
+        a new hard style threshold.'
+      hard_failures:
+      - check: required_upturned_umbrella_orientation
+        evidence: The roof dome rises convexly to the central shaft and its rim tips
+          hang downward; the required upturned canopy is not depicted.
+      swatch_points:
+      - - 688
+        - 240
+      - - 530
+        - 756
+      - - 1304
+        - 224
+      contours:
+      - - - 314
+          - 352
+        - - 338
+          - 321
+        - - 380
+          - 274
+        - - 446
+          - 225
+        - - 548
+          - 180
+        - - 648
+          - 155
+        - - 729
+          - 156
+        - - 835
+          - 172
+        - - 907
+          - 203
+        - - 973
+          - 252
+        - - 1034
+          - 322
+        - - 1081
+          - 416
+        - - 1048
+          - 415
+        - - 1044
+          - 576
+        - - 1167
+          - 583
+        - - 1176
+          - 612
+        - - 1036
+          - 639
+        - - 419
+          - 635
+        - - 391
+          - 616
+        - - 393
+          - 590
+        - - 434
+          - 581
+        - - 430
+          - 422
+        - - 371
+          - 365
+      - - - 651
+          - 108
+        - - 654
+          - 65
+        - - 674
+          - 31
+        - - 701
+          - 17
+        - - 731
+          - 22
+        - - 752
+          - 45
+        - - 765
+          - 78
+        - - 764
+          - 106
+        - - 752
+          - 149
+        - - 728
+          - 151
+        - - 733
+          - 102
+        - - 731
+          - 71
+        - - 719
+          - 54
+        - - 702
+          - 52
+        - - 687
+          - 65
+        - - 679
+          - 100
+        - - 665
+          - 114
+      - - - 869
+          - 199
+        - - 894
+          - 128
+        - - 912
+          - 101
+        - - 1000
+          - 113
+        - - 1038
+          - 137
+        - - 1027
+          - 190
+        - - 1044
+          - 219
+        - - 1039
+          - 244
+        - - 997
+          - 260
+        - - 957
+          - 251
+        - - 910
+          - 235
+        - - 880
+          - 221
+      - - - 1049
+          - 282
+        - - 1099
+          - 266
+        - - 1161
+          - 248
+        - - 1222
+          - 250
+        - - 1261
+          - 271
+        - - 1262
+          - 299
+        - - 1292
+          - 284
+        - - 1321
+          - 294
+        - - 1322
+          - 325
+        - - 1311
+          - 352
+        - - 1270
+          - 376
+        - - 1250
+          - 409
+        - - 1241
+          - 429
+        - - 1051
+          - 423
+      - - - 160
+          - 793
+        - - 205
+          - 774
+        - - 246
+          - 776
+        - - 277
+          - 737
+        - - 303
+          - 702
+        - - 344
+          - 680
+        - - 392
+          - 680
+        - - 420
+          - 698
+        - - 493
+          - 723
+        - - 592
+          - 758
+        - - 656
+          - 776
+        - - 754
+          - 784
+        - - 785
+          - 744
+        - - 802
+          - 702
+        - - 829
+          - 699
+        - - 849
+          - 726
+        - - 859
+          - 773
+        - - 926
+          - 794
+        - - 1075
+          - 795
+        - - 1128
+          - 733
+        - - 1176
+          - 706
+        - - 1206
+          - 702
+        - - 1251
+          - 717
+        - - 1283
+          - 749
+        - - 1313
+          - 762
+        - - 1343
+          - 748
+        - - 1362
+          - 762
+        - - 1383
+          - 808
+        - - 1386
+          - 843
+        - - 1353
+          - 866
+        - - 1299
+          - 858
+        - - 1231
+          - 880
+        - - 1158
+          - 881
+        - - 1086
+          - 869
+        - - 1032
+          - 881
+        - - 955
+          - 886
+        - - 878
+          - 881
+        - - 793
+          - 886
+        - - 702
+          - 879
+        - - 639
+          - 886
+        - - 573
+          - 893
+        - - 488
+          - 888
+        - - 421
+          - 916
+        - - 383
+          - 908
+        - - 358
+          - 897
+        - - 288
+          - 885
+        - - 220
+          - 868
+        - - 169
+          - 845
+      - - - 420
+          - 633
+        - - 462
+          - 633
+        - - 460
+          - 730
+        - - 422
+          - 732
+      - - - 615
+          - 636
+        - - 656
+          - 636
+        - - 656
+          - 788
+        - - 617
+          - 787
+      - - - 710
+          - 636
+        - - 757
+          - 637
+        - - 764
+          - 792
+        - - 718
+          - 792
+      - - - 840
+          - 636
+        - - 887
+          - 630
+        - - 883
+          - 788
+        - - 842
+          - 789
+      - - - 1134
+          - 424
+        - - 1165
+          - 425
+        - - 1165
+          - 755
+        - - 1138
+          - 776
+      - - - 932
+          - 573
+        - - 960
+          - 567
+        - - 1013
+          - 595
+        - - 1038
+          - 560
+        - - 1050
+          - 558
+        - - 1071
+          - 615
+        - - 1133
+          - 788
+        - - 1149
+          - 844
+        - - 1127
+          - 861
+        - - 1105
+          - 840
+        - - 1031
+          - 691
+        - - 1010
+          - 648
+        - - 975
+          - 626
+      holes:
+      - - - 1264
+          - 310
+        - - 1280
+          - 303
+        - - 1301
+          - 305
+        - - 1304
+          - 322
+        - - 1294
+          - 339
+        - - 1260
+          - 353
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      uncertainty: Foreground cloud hides the raft underside; only its visible upper/bottom
+        cloud-contact edge is traced. Separate polygon supports leave actual open
+        stilt gaps. Canopy orientation is a semantic recommendation for owner adjudication,
+        not a fabricated geometry metric.
+      source_file: /workspace/generated_images/exec-c0b65f28-cd65-4a54-91a6-a6ae0e68c8e0.png
+      original_generated_png_sha256: 69884208dd35ace0072b3458030f4b33e77a26b037dcb24b19776b142f4ad9bf
+      rgba_sha256: 68975662ef11f317b390915832388b5effe389648c1d221c9d52a1a93eeea3b8
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 160
+      - 17
+      - 1387
+      - 917
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 60
+      - 44
+      sampled_swatches:
+      - point:
+        - 688
+        - 240
+        hex: '#B0BEB0'
+      - point:
+        - 530
+        - 756
+        hex: '#A16E52'
+      - point:
+        - 1304
+        - 224
+        hex: '#CCC0C3'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-emanet-a-t2-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-emanet-a-t2-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 2b8571eb7bec56297b68697f38fd86b4d886994acf03fb59f650bce183a4d92b
+      silhouette_native_longest_px: 60
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-abb5dfb0-4bea-4bfe-bcde-9b2b4b14f330.png
+  original_generated_png_sha256: ea3c6f2574974a81b870f3c0475fff349b9aca20c61b531537c4f9c143fde9be
+  inbox_png_sha256: a590eb33ca65ad79c14efc6062ab07ebaf9442bee426ba7c0dd6b4aa405192f6
+  rgba_sha256: ce199c886cd30268bf90a20471a124b25cceddfcb76655dfd85bf180f9682da3
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0ea81a4f48a8be27
+- take: 2
+  source_file: /workspace/generated_images/exec-c0b65f28-cd65-4a54-91a6-a6ae0e68c8e0.png
+  original_generated_png_sha256: 69884208dd35ace0072b3458030f4b33e77a26b037dcb24b19776b142f4ad9bf
+  inbox_png_sha256: 2b8571eb7bec56297b68697f38fd86b4d886994acf03fb59f650bce183a4d92b
+  rgba_sha256: 68975662ef11f317b390915832388b5effe389648c1d221c9d52a1a93eeea3b8
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0ea81a4f48a8be27
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true

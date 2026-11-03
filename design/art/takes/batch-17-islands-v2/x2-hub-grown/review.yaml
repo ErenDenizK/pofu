@@ -1,0 +1,274 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-hub-grown/contact.jpg
+jobs:
+  x2-hub-grown:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Home-edit exception: the actual
+      base terrain, roots, pebbles and home door are intentionally retained; this
+      is not a wonder. Take1 preserves the home-base outline and supplies the named
+      pier/ferry/kitten cart/sauna, bell, water clacker, windmill nest, greenhouse,
+      telescope and moored cloud-whale. Take2 adds an unrequested cottage, so it is
+      excluded. Named additions are allowed beyond the base outline. The actual approved
+      parent is bare terrain, so explicitly named stations are additions rather than
+      a claimed pre-existing layout.'
+qa_reports:
+  1:
+    job: x2-hub-grown
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 58 (R1 59)
+      value: 58.2
+    - check: detail_budget
+      status: warn
+      message: detail at display size 6.8 (R1 5.3)
+      value: 6.77
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5072
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.5, p95 8.1, off-palette 1.8% (top: #888855 (0.2%), #778855
+        (0.1%))'
+      value: 2.5303
+    - check: depth_ratio
+      status: pass
+      message: earth depth / width 0.21 (at most 0.32)
+      value: 0.2073
+    - check: lawn_chroma
+      status: pass
+      message: lawn chroma p95 35 (palette meadow 38)
+      value: 35.3545
+    - check: harmony
+      status: pass
+      message: 'harmony score 73 against the world reference (outliers: C_p95, detail,
+        edge)'
+      value: 73.4
+    - check: edit_stability
+      status: warn
+      message: 57% of the parent level unchanged
+      value: 0.5692
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.11 of the parent level (drift compounds along a chain)
+      value: 1.1146
+    info:
+      metrics_raw:
+        L_p5: 57.0
+        L_p50: 81.0
+        L_p95: 93.6
+        C_p50: 26.5
+        C_p95: 41.2
+        C_p99: 47.9
+        detail: 8.14
+      metrics_locked:
+        L_p5: 58.2
+        L_p50: 80.9
+        L_p95: 93.0
+        C_p50: 26.4
+        C_p95: 40.3
+        C_p99: 44.9
+        detail: 6.77
+    fingerprint: 1210b9f888efcf12
+  2:
+    job: x2-hub-grown
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 57 (R1 59)
+      value: 57.1
+    - check: detail_budget
+      status: warn
+      message: detail at display size 6.2 (R1 5.3)
+      value: 6.25
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.6046
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.8, p95 9.4, off-palette 2.6% (top: #888855 (0.4%), #778855
+        (0.2%))'
+      value: 2.766
+    - check: depth_ratio
+      status: pass
+      message: earth depth / width 0.21 (at most 0.32)
+      value: 0.207
+    - check: lawn_chroma
+      status: warn
+      message: lawn chroma p95 39 (palette meadow 38)
+      value: 39.3439
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the world reference (outliers: C_p95, detail)'
+      value: 85.7
+    - check: edit_stability
+      status: warn
+      message: 53% of the parent level unchanged (advisory in an exploration)
+      value: 0.5302
+    - check: edit_chroma
+      status: warn
+      message: chroma x1.18 of the parent level (drift compounds along a chain)
+      value: 1.1797
+    info:
+      metrics_raw:
+        L_p5: 56.0
+        L_p50: 78.8
+        L_p95: 91.0
+        C_p50: 29.0
+        C_p95: 41.6
+        C_p99: 47.8
+        detail: 7.69
+      metrics_locked:
+        L_p5: 57.1
+        L_p50: 78.6
+        L_p95: 90.5
+        C_p50: 28.9
+        C_p95: 40.2
+        C_p99: 44.4
+        detail: 6.25
+    fingerprint: 1210b9f888efcf12
+manual_review:
+  note: 'Home-edit exception: the actual base terrain, roots, pebbles and home door
+    are intentionally retained; this is not a wonder. Take1 preserves the home-base
+    outline and supplies the named pier/ferry/kitten cart/sauna, bell, water clacker,
+    windmill nest, greenhouse, telescope and moored cloud-whale. Take2 adds an unrequested
+    cottage, so it is excluded. Named additions are allowed beyond the base outline.
+    The actual approved parent is bare terrain, so explicitly named stations are additions
+    rather than a claimed pre-existing layout.'
+  takes:
+    '1':
+      pass: true
+      silhouette_name: Home terrain retained; named expansion elements added
+      swatch_points:
+      - - 700
+        - 760
+      - - 970
+        - 480
+      - - 1000
+        - 130
+      evidence: Existing soil-body outline, three roots, stones and door remain aligned.
+        Named expansion details are present. Structural edit stability warns0.5692;
+        no obsolete0.9manualgate is used.
+      uncertainty: 'Home exception: native60px alpha shows the full composite including
+        explicit pier/whale; base preservation reviewed against original terrain,
+        not a wonder-uniqueness gate.'
+      sampled_swatches:
+      - point:
+        - 700
+        - 760
+        hex: '#FCCDA5'
+      - point:
+        - 970
+        - 480
+        hex: '#DDBC7F'
+      - point:
+        - 1000
+        - 130
+        hex: '#E4D8D9'
+      annotation_source_inbox_sha256: 91dc9f493ae8c6fa7b504c213f418f34cf3e4251629954ee17c9d2e05cbaff8c
+      observed_bbox:
+      - 37
+      - 49
+      - 1499
+      - 912
+      silhouette_native_longest_px: 60
+      annotation_kind: Actual transparent sprite alpha
+    '2':
+      pass: false
+      silhouette_name: Home base with an unrequested cottage
+      swatch_points:
+      - - 700
+        - 760
+      - - 970
+        - 480
+      - - 1000
+        - 130
+      evidence: The additional grass-roof cottage is not a named change; excluded
+        under edit-keep.
+      uncertainty: Home-template ban does not apply; rejection is only the unrequested
+        added cottage.
+      sampled_swatches:
+      - point:
+        - 700
+        - 760
+        hex: '#F7C89E'
+      - point:
+        - 970
+        - 480
+        hex: '#D1CE99'
+      - point:
+        - 1000
+        - 130
+        hex: '#F1E0D9'
+      annotation_source_inbox_sha256: de60600dd1dcd1375c9f1e6704d87c30d7a5e4277540b92262832008229eb1d9
+      observed_bbox:
+      - 34
+      - 37
+      - 1512
+      - 914
+      silhouette_native_longest_px: 60
+      annotation_kind: Actual transparent sprite alpha
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-afc0847c-cedf-46ac-893f-7d2ffa4cabf1.png
+  original_generated_png_sha256: 2c219353eeaf4cc7dd073e57eb77d62105042e0c89eaeac43105c956c91c5e6e
+  inbox_png_sha256: 91dc9f493ae8c6fa7b504c213f418f34cf3e4251629954ee17c9d2e05cbaff8c
+  rgba_sha256: acb7763c9f4b4e59234fa95e1b2a8654d6af9bf2eed8a4b423dfcc7b9421b499
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 1210b9f888efcf12
+- take: 2
+  source_file: /workspace/generated_images/exec-ac0362f1-8475-4e41-a841-a3d6c1d579a2.png
+  original_generated_png_sha256: 82ce86b3a8b2242ca8ff6642e1e655ce725e20096329969ce06dcc544ed29d30
+  inbox_png_sha256: de60600dd1dcd1375c9f1e6704d87c30d7a5e4277540b92262832008229eb1d9
+  rgba_sha256: 6b1e4018a7a2b52a624a9428e5320d9a7c2dfa451a75d17c9b96c4fabcebda64
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 1210b9f888efcf12
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true

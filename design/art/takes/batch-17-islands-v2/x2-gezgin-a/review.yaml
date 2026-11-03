@@ -1,0 +1,1007 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-gezgin-a/contact.jpg
+jobs:
+  x2-gezgin-a:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Both are giant sleeping cloud-whales with a dandelion patch, tiny warm-window
+      cottage and blowhole moonbow in a moonlit cloud sea. No copied-home template
+      is visible. Recommend rejecting the initial pair because each cottage is visibly
+      wider than the depicted closed eye, reversing the explicit smaller-than-eye
+      cue. Partial framing is allowed and missing tail alone is not a rejection; no
+      hidden open eye or unseen whale geometry is inferred. The single fresh retry
+      pair3/4 is also recorded and again reverses the visible cottage/eye scale relation.
+      Cropping remains allowed; no fifth call is proposed.
+qa_reports:
+  1:
+    job: x2-gezgin-a
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 25 (R1 51)
+      value: 24.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 55 (R1 59)
+      value: 54.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.23
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.4903
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.5, p95 8.0, off-palette 0.0%
+      value: 2.4725
+    info:
+      metrics_raw:
+        L_p5: 54.6
+        L_p50: 81.8
+        L_p95: 94.1
+        C_p50: 9.0
+        C_p95: 25.0
+        C_p99: 26.6
+        detail: 1.63
+      metrics_locked:
+        L_p5: 54.7
+        L_p50: 81.8
+        L_p95: 94.0
+        C_p50: 8.9
+        C_p95: 24.9
+        C_p99: 26.4
+        detail: 1.23
+    fingerprint: e5d368d400837e1f
+  2:
+    job: x2-gezgin-a
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 27 (R1 51)
+      value: 26.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 52 (R1 59)
+      value: 52.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.13
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.4957
+    - check: palette_drift
+      status: warn
+      message: mean dE 2.5, p95 8.4, off-palette 0.0%
+      value: 2.5035
+    info:
+      metrics_raw:
+        L_p5: 52.3
+        L_p50: 83.7
+        L_p95: 94.5
+        C_p50: 8.4
+        C_p95: 26.8
+        C_p99: 29.7
+        detail: 1.48
+      metrics_locked:
+        L_p5: 52.3
+        L_p50: 83.7
+        L_p95: 94.3
+        C_p50: 8.3
+        C_p95: 26.7
+        C_p99: 29.5
+        detail: 1.13
+    fingerprint: e5d368d400837e1f
+  3:
+    job: x2-gezgin-a
+    take: 3
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 23 (R1 51)
+      value: 22.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 53 (R1 59)
+      value: 52.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.23
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5613
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.1, p95 5.5, off-palette 0.0%
+      value: 2.1471
+    info:
+      metrics_raw:
+        L_p5: 52.8
+        L_p50: 79.7
+        L_p95: 93.7
+        C_p50: 10.8
+        C_p95: 22.9
+        C_p99: 24.3
+        detail: 1.64
+      metrics_locked:
+        L_p5: 52.8
+        L_p50: 79.8
+        L_p95: 93.5
+        C_p50: 10.6
+        C_p95: 22.9
+        C_p99: 24.1
+        detail: 1.23
+    fingerprint: e5d368d400837e1f
+  4:
+    job: x2-gezgin-a
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 23.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 49 (R1 59)
+      value: 49.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.34
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5519
+    - check: palette_drift
+      status: warn
+      message: mean dE 2.9, p95 9.3, off-palette 0.0%
+      value: 2.8777
+    info:
+      metrics_raw:
+        L_p5: 49.2
+        L_p50: 81.3
+        L_p95: 94.2
+        C_p50: 8.1
+        C_p95: 23.8
+        C_p99: 24.9
+        detail: 1.76
+      metrics_locked:
+        L_p5: 49.3
+        L_p50: 81.3
+        L_p95: 94.0
+        C_p50: 8.1
+        C_p95: 23.7
+        C_p99: 24.6
+        detail: 1.34
+    fingerprint: e5d368d400837e1f
+manual_review:
+  recommendation_only: true
+  note: Both are giant sleeping cloud-whales with a dandelion patch, tiny warm-window
+    cottage and blowhole moonbow in a moonlit cloud sea. No copied-home template is
+    visible. Recommend rejecting the initial pair because each cottage is visibly
+    wider than the depicted closed eye, reversing the explicit smaller-than-eye cue.
+    Partial framing is allowed and missing tail alone is not a rejection; no hidden
+    open eye or unseen whale geometry is inferred. The single fresh retry pair3/4
+    is also recorded and again reverses the visible cottage/eye scale relation. Cropping
+    remains allowed; no fifth call is proposed.
+  takes:
+    '1':
+      pass: false
+      silhouette_name: actually visible sleeping whale head, back and broad flipper;
+        right body is frame-cut
+      rubric:
+      - 2
+      - 2
+      - 2
+      - 2
+      - 1
+      evidence: The enormous blue-grey/cream sleeping whale fills most of the scene.
+        Dandelions grow directly along the back rather than on a separate lawn-oval
+        plate. A warm cottage window and moonbow puff supply story and breathing motion.
+        Visible cottage width is approximatelyx1037-1240(203px), whereas the closed
+        eyelid spans aboutx627-757(130px), so the stated cottage-smaller-than-eye
+        cue is reversed. A hidden larger open eye is not assumed. The full painting
+        reads as whale through eye/baleen/flipper cues, while the partial body-only
+        black profile is less diagnostic; cropping itself is permitted and is not
+        the rejection reason.
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 900
+        - 80
+      - - 580
+        - 450
+      - - 250
+        - 670
+      contours:
+      - - - 48
+          - 568
+        - - 74
+          - 502
+        - - 120
+          - 447
+        - - 207
+          - 397
+        - - 312
+          - 356
+        - - 429
+          - 332
+        - - 566
+          - 327
+        - - 713
+          - 340
+        - - 855
+          - 364
+        - - 1035
+          - 394
+        - - 1211
+          - 416
+        - - 1362
+          - 445
+        - - 1450
+          - 481
+        - - 1535
+          - 522
+        - - 1535
+          - 720
+        - - 1475
+          - 799
+        - - 1337
+          - 835
+        - - 1182
+          - 824
+        - - 1035
+          - 806
+        - - 975
+          - 785
+        - - 873
+          - 795
+        - - 735
+          - 796
+        - - 603
+          - 789
+        - - 464
+          - 798
+        - - 340
+          - 814
+        - - 264
+          - 803
+        - - 218
+          - 778
+        - - 141
+          - 734
+        - - 87
+          - 690
+        - - 56
+          - 628
+      holes: []
+      components:
+      - Visible whale head/body and large flipper; moon, sky cloud plume, tiny cottage
+        and thin flowers are excluded from the primary animal-body contour
+      frame_cut_edges:
+      - right
+      frame_boundary_segments:
+      - - - 1535
+          - 522
+        - - 1535
+          - 720
+      measurements:
+        approx_visible_cottage_x_span:
+        - 1037
+        - 1240
+        approx_visible_closed_eyelid_x_span:
+        - 627
+        - 757
+      uncertainty: The right edge is an actual canvas cut, not the whale outer boundary.
+        Foreground clouds partly hide the lower body; the mask closes on the source-visible
+        occlusion frontier and does not invent a tail or hidden underside. The moonbow
+        puff remains visible in the scene thumbnail but is excluded from the whale-body
+        black test.
+      source_file: /workspace/generated_images/exec-d7be8661-c04b-48e1-9bf7-5d3abf95a46f.png
+      original_generated_png_sha256: 0da673bb7d6e9152b43c48f13878783bdd33aef9f074005e9ff6f1e4d613e75e
+      rgba_sha256: 72c12a7a4d76e9e201ada45d1bb94972628e59a9a0312248663d7819e63cdd5a
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: 6be9f6e5efb9317660d667722ae4025f4c9856e910abb4a868d0582bfcb3a557
+      sampled_swatches:
+      - point:
+        - 900
+        - 80
+        hex: '#697CA8'
+      - point:
+        - 580
+        - 450
+        hex: '#F1E0D7'
+      - point:
+        - 250
+        - 670
+        hex: '#FEEBD6'
+      observed_bbox:
+      - 48
+      - 327
+      - 1536
+      - 836
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 1
+      qa_native60_black_pixels: 989
+      annotation_contours_count: 1
+      annotation_holes_count: 0
+      native60_mask_sha256: 4adba6f0d253217bce976d3bb540e238fdb34407234709dee61e981c809c3e03
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 9dfb98184d96425045f8b9d292ebe420a1eb08302bd8d2d93918501ed7f31b1a
+    '2':
+      pass: false
+      silhouette_name: visible whale body, broad flipper and frame-cut upturned tail
+        fluke
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 2
+      - 1
+      evidence: A sleeping blue-grey/cream whale, obvious flipper and visible upturned
+        tail lobe distinguish the landform; cottage/dandelions sit directly on her
+        back, with moon, silver clouds and a moonbow puff. No home lawn oval, soil
+        bowl, dangling roots, pebbles or round home door. The cottage spans approximatelyx979-1145(166px),
+        versus the depicted closed eyelidx539-671(132px), reversing the explicit cottage-smaller-than-eye
+        scale cue. Partial framing is allowed and the visible tail/flipper body profile
+        remains whale-like at native60.
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 880
+        - 45
+      - - 400
+        - 425
+      - - 190
+        - 650
+      contours:
+      - - - 50
+          - 556
+        - - 75
+          - 493
+        - - 132
+          - 443
+        - - 200
+          - 385
+        - - 350
+          - 332
+        - - 510
+          - 310
+        - - 685
+          - 325
+        - - 845
+          - 345
+        - - 1035
+          - 383
+        - - 1200
+          - 433
+        - - 1300
+          - 466
+        - - 1380
+          - 420
+        - - 1435
+          - 349
+        - - 1465
+          - 274
+        - - 1465
+          - 228
+        - - 1445
+          - 215
+        - - 1410
+          - 211
+        - - 1375
+          - 219
+        - - 1330
+          - 212
+        - - 1290
+          - 193
+        - - 1271
+          - 167
+        - - 1288
+          - 156
+        - - 1325
+          - 152
+        - - 1367
+          - 145
+        - - 1409
+          - 145
+        - - 1450
+          - 157
+        - - 1460
+          - 181
+        - - 1468
+          - 149
+        - - 1485
+          - 126
+        - - 1510
+          - 103
+        - - 1535
+          - 94
+        - - 1535
+          - 460
+        - - 1503
+          - 547
+        - - 1448
+          - 604
+        - - 1380
+          - 650
+        - - 1265
+          - 684
+        - - 1142
+          - 726
+        - - 1255
+          - 779
+        - - 1267
+          - 797
+        - - 1248
+          - 811
+        - - 1190
+          - 824
+        - - 1080
+          - 825
+        - - 995
+          - 798
+        - - 921
+          - 744
+        - - 842
+          - 745
+        - - 730
+          - 773
+        - - 600
+          - 776
+        - - 460
+          - 752
+        - - 358
+          - 737
+        - - 251
+          - 745
+        - - 161
+          - 715
+        - - 105
+          - 670
+        - - 69
+          - 618
+      holes: []
+      components:
+      - Visible connected whale body, broad flipper and left/central part of upturned
+        tail; detached sky plume and small back props are excluded from the primary
+        body contour
+      frame_cut_edges:
+      - right
+      frame_boundary_segments:
+      - - - 1535
+          - 94
+        - - 1535
+          - 460
+      measurements:
+        approx_visible_cottage_x_span:
+        - 979
+        - 1145
+        approx_visible_closed_eyelid_x_span:
+        - 539
+        - 671
+      uncertainty: The tail/upper-right body runs out of frame. The straight right
+        mask closure denotes the image crop, not a physical whale edge. Lower belly/flipper
+        margins are partly obscured by foreground clouds; hidden anatomy is not reconstructed.
+      source_file: /workspace/generated_images/exec-97c82c02-1ab6-4969-bdad-78c5fb962d69.png
+      original_generated_png_sha256: c5be397159bd9245139e381ae130c6306efce79fe6b8a7be99e05d89efdb6839
+      rgba_sha256: 32e825c1cce49069e9cac163563d9d17b5109ea10059e2c510b83b1fbe48854d
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: cac81b6e26a26662a605f03487ecce996d1611fb64a04d935ad94c4505939c51
+      sampled_swatches:
+      - point:
+        - 880
+        - 45
+        hex: '#5C6FA0'
+      - point:
+        - 400
+        - 425
+        hex: '#C2C2D2'
+      - point:
+        - 190
+        - 650
+        hex: '#F9E3CF'
+      observed_bbox:
+      - 50
+      - 94
+      - 1536
+      - 826
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 1
+      qa_native60_black_pixels: 932
+      annotation_contours_count: 1
+      annotation_holes_count: 0
+      native60_mask_sha256: 30134dcb59ed230d50606152e2d3dd65839ef0c6db6e6005de0a4141bfe34ff9
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: a1f21016c84f2783e7884ae3770f00a2c2d4b5d9a65d1d75fa66d69b5b83c7f4
+    '3':
+      pass: false
+      silhouette_name: visible giant sleeping whale head/body and flipper; right body
+        frame-cut
+      rubric:
+      - 2
+      - 2
+      - 2
+      - 2
+      - 1
+      evidence: Giant sleeping grey-blue/cream whale, back dandelions, one warm-window
+        cottage, blowhole cloud with a moonbow and silver-edged moonlit clouds are
+        visible. No home template is observed. Cottage visible width is approximatelyx1007-1215(208px),
+        compared with closed-eyelidx574-693(119px), again reversing the explicit cottage-smaller-than-eye
+        cue. No hidden larger open eye is assumed. Partial framing is allowed and
+        is not itself the rejection reason.
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 920
+        - 90
+      - - 480
+        - 460
+      - - 190
+        - 694
+      contours:
+      - - - 49
+          - 599
+        - - 59
+          - 549
+        - - 106
+          - 500
+        - - 180
+          - 454
+        - - 278
+          - 418
+        - - 400
+          - 386
+        - - 515
+          - 367
+        - - 635
+          - 368
+        - - 759
+          - 377
+        - - 881
+          - 408
+        - - 1004
+          - 432
+        - - 1142
+          - 440
+        - - 1253
+          - 425
+        - - 1388
+          - 405
+        - - 1488
+          - 405
+        - - 1535
+          - 423
+        - - 1535
+          - 737
+        - - 1444
+          - 784
+        - - 1352
+          - 822
+        - - 1241
+          - 841
+        - - 1122
+          - 861
+        - - 1004
+          - 869
+        - - 925
+          - 862
+        - - 840
+          - 877
+        - - 737
+          - 866
+        - - 648
+          - 869
+        - - 530
+          - 857
+        - - 402
+          - 820
+        - - 300
+          - 801
+        - - 209
+          - 756
+        - - 135
+          - 701
+        - - 84
+          - 647
+        - - 56
+          - 617
+      holes: []
+      components:
+      - Source-visible whale body/flipper and any visible tail; detached cloud plume,
+        cottage and fine back flowers are excluded from the primary animal-body mask.
+      frame_cut_edges:
+      - right
+      frame_boundary_segments:
+      - - - 1535
+          - 423
+        - - 1535
+          - 737
+      measurements:
+        approx_visible_cottage_x_span:
+        - 1007
+        - 1215
+        approx_visible_closed_eyelid_x_span:
+        - 574
+        - 693
+      uncertainty: The right-back boundary blends into adjacent clouds, so the mask
+        closes conservatively through source-visible body/occlusion points. Right
+        frame closure is a canvas cut, not a whale edge. No hidden tail, open eye,
+        or complete underside is inferred.
+      retry_pair: true
+      source_file: /workspace/generated_images/exec-d3fbce98-15d5-4bcb-b864-356d9604b025.png
+      original_generated_png_sha256: 0c525feec844c7275f10b16879316bcc87668f2cc09478dac95b81d8d0326fdd
+      rgba_sha256: e4d344ccde16b2a774f58721d81a51e42e44736b9f6b1fd4c9d14405e20f6beb
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: f87ee9ca5f4488f3b3eb3236325e875fd16bf055f0d8a520e7d7d29c4ce05eaf
+      sampled_swatches:
+      - point:
+        - 920
+        - 90
+        hex: '#6D79A1'
+      - point:
+        - 480
+        - 460
+        hex: '#C3C5D6'
+      - point:
+        - 190
+        - 694
+        hex: '#FBE3D0'
+      observed_bbox:
+      - 49
+      - 367
+      - 1536
+      - 878
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 1
+      qa_native60_black_pixels: 1010
+      annotation_contours_count: 1
+      annotation_holes_count: 0
+      native60_mask_sha256: 6a7b3a7ff8e4a31f8032717654faf1e9b50974661a9adf2681ebe84f578a3bc3
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 227e0f50076f0365060482cb689de76dc185997032484ee100ac6e290d3b037d
+    '4':
+      pass: false
+      silhouette_name: visible whale body with large flipper and partly frame-cut
+        upturned tail
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 2
+      - 1
+      evidence: Giant sleeping grey-blue/cream whale, back dandelions, one warm-window
+        cottage, blowhole cloud with a moonbow and silver-edged moonlit clouds are
+        visible. No home template is observed. Cottage visible width is approximatelyx1007-1171(164px),
+        compared with closed-eyelidx608-711(103px), again reversing the explicit cottage-smaller-than-eye
+        cue. No hidden larger open eye is assumed. Partial framing is allowed and
+        is not itself the rejection reason.
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 900
+        - 80
+      - - 570
+        - 470
+      - - 200
+        - 660
+      contours:
+      - - - 72
+          - 568
+        - - 85
+          - 522
+        - - 125
+          - 474
+        - - 198
+          - 433
+        - - 290
+          - 401
+        - - 411
+          - 373
+        - - 535
+          - 359
+        - - 675
+          - 367
+        - - 816
+          - 382
+        - - 965
+          - 404
+        - - 1108
+          - 423
+        - - 1241
+          - 424
+        - - 1331
+          - 396
+        - - 1346
+          - 364
+        - - 1347
+          - 315
+        - - 1320
+          - 279
+        - - 1288
+          - 254
+        - - 1255
+          - 234
+        - - 1230
+          - 206
+        - - 1216
+          - 168
+        - - 1210
+          - 125
+        - - 1216
+          - 83
+        - - 1232
+          - 40
+        - - 1247
+          - 52
+        - - 1283
+          - 75
+        - - 1321
+          - 90
+        - - 1370
+          - 102
+        - - 1401
+          - 122
+        - - 1415
+          - 145
+        - - 1429
+          - 116
+        - - 1463
+          - 94
+        - - 1499
+          - 80
+        - - 1535
+          - 57
+        - - 1535
+          - 301
+        - - 1523
+          - 363
+        - - 1510
+          - 454
+        - - 1485
+          - 542
+        - - 1438
+          - 627
+        - - 1376
+          - 692
+        - - 1317
+          - 736
+        - - 1280
+          - 797
+        - - 1231
+          - 828
+        - - 1146
+          - 841
+        - - 1058
+          - 824
+        - - 979
+          - 790
+        - - 912
+          - 759
+        - - 827
+          - 796
+        - - 725
+          - 805
+        - - 623
+          - 812
+        - - 516
+          - 796
+        - - 412
+          - 783
+        - - 325
+          - 748
+        - - 238
+          - 711
+        - - 165
+          - 666
+        - - 114
+          - 619
+        - - 81
+          - 585
+      holes: []
+      components:
+      - Source-visible whale body/flipper and any visible tail; detached cloud plume,
+        cottage and fine back flowers are excluded from the primary animal-body mask.
+      frame_cut_edges:
+      - right
+      frame_boundary_segments:
+      - - - 1535
+          - 57
+        - - 1535
+          - 301
+      measurements:
+        approx_visible_cottage_x_span:
+        - 1007
+        - 1171
+        approx_visible_closed_eyelid_x_span:
+        - 608
+        - 711
+      uncertainty: Rightmost tail fluke is clipped by the frame. The actual canvas
+        boundary is marked rather than reconstructing that fluke. Foreground clouds
+        partially occlude the lower body; short mask joins are conservative occlusion
+        closures. No hidden open eye or underside is invented.
+      retry_pair: true
+      source_file: /workspace/generated_images/exec-7c490214-40fe-4665-8913-36fbb8e376bc.png
+      original_generated_png_sha256: dd9cabdcd667436a3c5b4809df4a7c96e68a3fe39ab6038f220a409537ab7b55
+      rgba_sha256: 394fd1cefdcfd1b5f36ca012e4c64e9aef83399e4754802c6e742727cadd2776
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: f0ff874218f429c1abfd96dac03d91f7f1f80040b73549c8308bc9cd9478cf72
+      sampled_swatches:
+      - point:
+        - 900
+        - 80
+        hex: '#5A7199'
+      - point:
+        - 570
+        - 470
+        hex: '#D1CDD5'
+      - point:
+        - 200
+        - 660
+        hex: '#FEEDD6'
+      observed_bbox:
+      - 72
+      - 40
+      - 1536
+      - 842
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 1
+      qa_native60_black_pixels: 997
+      annotation_contours_count: 1
+      annotation_holes_count: 0
+      native60_mask_sha256: bf6b986c5e8483076c9446c6c3e722fd4049f9fc107d427055e756716016861c
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: b602f101163088f8adfa9ca46c6160a75cc17cb626d547d39c1eacb80f358789
+  reviewed_at: '2026-11-03T16:14:47.668412+00:00'
+  preview_verified: true
+  preview_sha256: 19f62c1a866ddff64b21b8b8b57b0cdabb7740dc91e20c2a9c80ac5b2bc10009
+  no_authoritative_pick: true
+  production_score_threshold_applied: false
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-d7be8661-c04b-48e1-9bf7-5d3abf95a46f.png
+  original_generated_png_sha256: 0da673bb7d6e9152b43c48f13878783bdd33aef9f074005e9ff6f1e4d613e75e
+  inbox_png_sha256: 9dfb98184d96425045f8b9d292ebe420a1eb08302bd8d2d93918501ed7f31b1a
+  rgba_sha256: 72c12a7a4d76e9e201ada45d1bb94972628e59a9a0312248663d7819e63cdd5a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e5d368d400837e1f
+- take: 2
+  source_file: /workspace/generated_images/exec-97c82c02-1ab6-4969-bdad-78c5fb962d69.png
+  original_generated_png_sha256: c5be397159bd9245139e381ae130c6306efce79fe6b8a7be99e05d89efdb6839
+  inbox_png_sha256: a1f21016c84f2783e7884ae3770f00a2c2d4b5d9a65d1d75fa66d69b5b83c7f4
+  rgba_sha256: 32e825c1cce49069e9cac163563d9d17b5109ea10059e2c510b83b1fbe48854d
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e5d368d400837e1f
+- take: 3
+  source_file: /workspace/generated_images/exec-d3fbce98-15d5-4bcb-b864-356d9604b025.png
+  original_generated_png_sha256: 0c525feec844c7275f10b16879316bcc87668f2cc09478dac95b81d8d0326fdd
+  inbox_png_sha256: 227e0f50076f0365060482cb689de76dc185997032484ee100ac6e290d3b037d
+  rgba_sha256: e4d344ccde16b2a774f58721d81a51e42e44736b9f6b1fd4c9d14405e20f6beb
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e5d368d400837e1f
+- take: 4
+  source_file: /workspace/generated_images/exec-7c490214-40fe-4665-8913-36fbb8e376bc.png
+  original_generated_png_sha256: dd9cabdcd667436a3c5b4809df4a7c96e68a3fe39ab6038f220a409537ab7b55
+  inbox_png_sha256: b602f101163088f8adfa9ca46c6160a75cc17cb626d547d39c1eacb80f358789
+  rgba_sha256: 394fd1cefdcfd1b5f36ca012e4c64e9aef83399e4754802c6e742727cadd2776
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e5d368d400837e1f
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true

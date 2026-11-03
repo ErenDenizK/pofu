@@ -1,0 +1,1331 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-koke-a/contact.jpg
+jobs:
+  x2-koke-a:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Independent read-only recommendations,
+      not owner picks. Rubric advisory; no 8-point production gate. Every trace is
+      a QA annotation derived from immutable original.
+qa_reports:
+  1:
+    job: x2-koke-a
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 50 (R1 59)
+      value: 49.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.9 (R1 5.3)
+      value: 2.9
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0084
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 4.6, off-palette 0.1% (top: #CC6655 (0.1%), #DD7755
+        (0.0%))'
+      value: 1.9533
+    info:
+      metrics_raw:
+        L_p5: 49.3
+        L_p50: 80.2
+        L_p95: 93.3
+        C_p50: 7.1
+        C_p95: 35.7
+        C_p99: 48.2
+        detail: 3.89
+      metrics_locked:
+        L_p5: 49.7
+        L_p50: 80.1
+        L_p95: 93.1
+        C_p50: 7.2
+        C_p95: 34.7
+        C_p99: 46.3
+        detail: 2.9
+    fingerprint: fbab6d52e6a4975c
+  2:
+    job: x2-koke-a
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 30 (R1 51)
+      value: 30.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 50 (R1 59)
+      value: 50.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.55
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9852
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 4.3, off-palette 0.0% (top: #CC6644 (0.0%))'
+      value: 1.9704
+    info:
+      metrics_raw:
+        L_p5: 49.6
+        L_p50: 79.5
+        L_p95: 92.7
+        C_p50: 6.5
+        C_p95: 31.4
+        C_p99: 41.6
+        detail: 3.48
+      metrics_locked:
+        L_p5: 50.1
+        L_p50: 79.4
+        L_p95: 92.5
+        C_p50: 6.4
+        C_p95: 30.3
+        C_p99: 40.2
+        detail: 2.55
+    fingerprint: fbab6d52e6a4975c
+manual_review:
+  note: Independent read-only recommendations, not owner picks. Rubric advisory; no
+    8-point production gate. Every trace is a QA annotation derived from immutable
+    original.
+  recommendation_only: true
+  takes:
+    '1':
+      pass: true
+      silhouette_name: Wind-shaped, layered bonsai crown and twisting trunk rooted
+        into a wet slate garden
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 2
+      - 1
+      holes: []
+      evidence: 'The bonsai itself is the named landform: a massive curved trunk and
+        asymmetrical layered needle pads dominate the garden. Rain, reflective wet
+        slate, pond rings, bamboo clacker, root-side tea house and a single red maple
+        branch are visible. Raked fine gravel is explicitly requested; functional
+        slate pavers and upper structural roots are distinguished from copied loose
+        pebbles and dangling home roots. No brown soil bowl, lawn oval, fully oval
+        wooden home door or separate circular porthole is seen. Rectangular glazing
+        and straight lower jambs remain ordinary family style. The landform mask includes
+        actual trunk, needle pads and slate garden rather than a convex silhouette
+        filling the air gaps. Native60 profile remains recognizable as a windswept
+        bonsai without relying on the little house.'
+      components:
+      - Slate garden with cloud-occluded lower boundary
+      - Twisting structural trunk and upper roots
+      - Separate visible needle pads and branch strips; real sky gaps remain outside
+        polygon union
+      uncertainty: Contours are coarse observed material traces, not botanical segmentation.
+        Mist hides some branch connections; closures across small occluded sections
+        are QA annotation joins, not reconstructed hidden edges. Clouds obscure the
+        lower stone edge. Thin needles, maple leaves and small props are omitted from
+        the primary bonsai/garden mask but remain visible in the native source crop.
+      contours:
+      - - - 80
+          - 750
+        - - 105
+          - 710
+        - - 176
+          - 676
+        - - 231
+          - 625
+        - - 360
+          - 605
+        - - 490
+          - 605
+        - - 620
+          - 602
+        - - 739
+          - 627
+        - - 842
+          - 594
+        - - 941
+          - 548
+        - - 1000
+          - 565
+        - - 1041
+          - 614
+        - - 1196
+          - 619
+        - - 1293
+          - 655
+        - - 1377
+          - 680
+        - - 1418
+          - 722
+        - - 1410
+          - 776
+        - - 1359
+          - 803
+        - - 1280
+          - 800
+        - - 1207
+          - 822
+        - - 1115
+          - 853
+        - - 1050
+          - 874
+        - - 961
+          - 879
+        - - 871
+          - 908
+        - - 785
+          - 918
+        - - 711
+          - 894
+        - - 630
+          - 898
+        - - 564
+          - 872
+        - - 494
+          - 869
+        - - 431
+          - 838
+        - - 349
+          - 845
+        - - 279
+          - 824
+        - - 225
+          - 804
+        - - 163
+          - 809
+        - - 109
+          - 790
+      - - - 213
+          - 712
+        - - 230
+          - 650
+        - - 294
+          - 615
+        - - 375
+          - 594
+        - - 440
+          - 579
+        - - 474
+          - 537
+        - - 454
+          - 491
+        - - 418
+          - 449
+        - - 392
+          - 403
+        - - 406
+          - 367
+        - - 441
+          - 337
+        - - 472
+          - 328
+        - - 478
+          - 304
+        - - 445
+          - 281
+        - - 436
+          - 263
+        - - 469
+          - 254
+        - - 501
+          - 277
+        - - 512
+          - 309
+        - - 564
+          - 304
+        - - 602
+          - 271
+        - - 645
+          - 242
+        - - 693
+          - 217
+        - - 711
+          - 192
+        - - 694
+          - 169
+        - - 682
+          - 150
+        - - 703
+          - 137
+        - - 724
+          - 149
+        - - 752
+          - 174
+        - - 758
+          - 199
+        - - 734
+          - 225
+        - - 699
+          - 257
+        - - 681
+          - 289
+        - - 665
+          - 324
+        - - 684
+          - 351
+        - - 722
+          - 378
+        - - 756
+          - 411
+        - - 818
+          - 434
+        - - 884
+          - 423
+        - - 933
+          - 403
+        - - 989
+          - 396
+        - - 1010
+          - 410
+        - - 966
+          - 436
+        - - 920
+          - 461
+        - - 870
+          - 480
+        - - 809
+          - 477
+        - - 754
+          - 457
+        - - 705
+          - 437
+        - - 656
+          - 425
+        - - 612
+          - 417
+        - - 573
+          - 432
+        - - 537
+          - 469
+        - - 552
+          - 505
+        - - 589
+          - 533
+        - - 646
+          - 561
+        - - 722
+          - 587
+        - - 791
+          - 612
+        - - 848
+          - 625
+        - - 838
+          - 641
+        - - 764
+          - 636
+        - - 696
+          - 623
+        - - 640
+          - 604
+        - - 596
+          - 585
+        - - 560
+          - 593
+        - - 533
+          - 618
+        - - 483
+          - 648
+        - - 420
+          - 656
+        - - 354
+          - 669
+        - - 295
+          - 687
+        - - 257
+          - 728
+      - - - 160
+          - 281
+        - - 176
+          - 250
+        - - 222
+          - 223
+        - - 277
+          - 207
+        - - 336
+          - 196
+        - - 394
+          - 199
+        - - 440
+          - 208
+        - - 496
+          - 222
+        - - 551
+          - 242
+        - - 590
+          - 263
+        - - 594
+          - 283
+        - - 565
+          - 303
+        - - 514
+          - 312
+        - - 450
+          - 310
+        - - 390
+          - 323
+        - - 331
+          - 312
+        - - 267
+          - 323
+        - - 212
+          - 307
+        - - 174
+          - 302
+      - - - 327
+          - 174
+        - - 344
+          - 147
+        - - 387
+          - 127
+        - - 440
+          - 112
+        - - 488
+          - 110
+        - - 537
+          - 123
+        - - 580
+          - 145
+        - - 599
+          - 170
+        - - 566
+          - 190
+        - - 518
+          - 196
+        - - 460
+          - 198
+        - - 409
+          - 194
+        - - 355
+          - 193
+      - - - 453
+          - 121
+        - - 474
+          - 91
+        - - 521
+          - 67
+        - - 581
+          - 42
+        - - 645
+          - 20
+        - - 715
+          - 9
+        - - 774
+          - 12
+        - - 836
+          - 20
+        - - 892
+          - 38
+        - - 950
+          - 64
+        - - 991
+          - 95
+        - - 979
+          - 119
+        - - 937
+          - 138
+        - - 878
+          - 151
+        - - 818
+          - 156
+        - - 762
+          - 151
+        - - 698
+          - 161
+        - - 640
+          - 162
+        - - 577
+          - 148
+        - - 515
+          - 149
+        - - 472
+          - 137
+      - - - 776
+          - 171
+        - - 806
+          - 143
+        - - 847
+          - 118
+        - - 904
+          - 105
+        - - 966
+          - 100
+        - - 1029
+          - 108
+        - - 1085
+          - 118
+        - - 1140
+          - 140
+        - - 1190
+          - 163
+        - - 1225
+          - 187
+        - - 1236
+          - 207
+        - - 1216
+          - 222
+        - - 1160
+          - 231
+        - - 1114
+          - 229
+        - - 1064
+          - 221
+        - - 1011
+          - 219
+        - - 957
+          - 225
+        - - 908
+          - 215
+        - - 852
+          - 216
+        - - 799
+          - 207
+      - - - 675
+          - 354
+        - - 711
+          - 326
+        - - 753
+          - 305
+        - - 809
+          - 293
+        - - 860
+          - 300
+        - - 913
+          - 314
+        - - 957
+          - 335
+        - - 1005
+          - 350
+        - - 1015
+          - 374
+        - - 983
+          - 390
+        - - 922
+          - 393
+        - - 874
+          - 393
+        - - 819
+          - 401
+        - - 760
+          - 396
+        - - 705
+          - 396
+        - - 668
+          - 379
+      - - - 973
+          - 400
+        - - 1014
+          - 381
+        - - 1066
+          - 363
+        - - 1125
+          - 356
+        - - 1187
+          - 357
+        - - 1245
+          - 374
+        - - 1293
+          - 394
+        - - 1335
+          - 414
+        - - 1320
+          - 430
+        - - 1270
+          - 439
+        - - 1209
+          - 432
+        - - 1153
+          - 439
+        - - 1092
+          - 430
+        - - 1030
+          - 433
+        - - 983
+          - 421
+      - - - 1168
+          - 307
+        - - 1193
+          - 281
+        - - 1231
+          - 248
+        - - 1281
+          - 230
+        - - 1345
+          - 218
+        - - 1402
+          - 222
+        - - 1454
+          - 241
+        - - 1489
+          - 269
+        - - 1506
+          - 299
+        - - 1487
+          - 321
+        - - 1449
+          - 327
+        - - 1396
+          - 322
+        - - 1345
+          - 321
+        - - 1295
+          - 331
+        - - 1238
+          - 326
+        - - 1190
+          - 328
+      - - - 941
+          - 399
+        - - 1007
+          - 411
+        - - 1069
+          - 420
+        - - 1136
+          - 422
+        - - 1188
+          - 423
+        - - 1227
+          - 413
+        - - 1248
+          - 423
+        - - 1210
+          - 439
+        - - 1153
+          - 444
+        - - 1093
+          - 442
+        - - 1028
+          - 436
+        - - 972
+          - 425
+      - - - 1238
+          - 312
+        - - 1296
+          - 321
+        - - 1351
+          - 326
+        - - 1417
+          - 318
+        - - 1457
+          - 315
+        - - 1469
+          - 321
+        - - 1427
+          - 334
+        - - 1369
+          - 337
+        - - 1312
+          - 333
+        - - 1260
+          - 327
+      swatch_points:
+      - - 780
+        - 76
+      - - 1170
+        - 764
+      - - 124
+        - 331
+      source_file: /workspace/generated_images/exec-3f4aa15d-0c78-4d26-a925-7e4ec5ce0e20.png
+      original_generated_png_sha256: 4f36e19b08b005e532c49f171e2adbc69fb7013922e948ed380017bcc067c7e8
+      rgba_sha256: 376072f36799f6ef15006f19d147f6b890bb149e29916dec96a0aec83fd5a274
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: e3d65527a64fedd07910d61fe0366efee285b3eb1bb145e120b33cc626a9e844
+      sampled_swatches:
+      - point:
+        - 780
+        - 76
+        hex: '#717C5C'
+      - point:
+        - 1170
+        - 764
+        hex: '#787270'
+      - point:
+        - 124
+        - 331
+        hex: '#F39181'
+      observed_bbox:
+      - 80
+      - 9
+      - 1507
+      - 919
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 2
+      qa_native60_black_pixels: 1094
+      annotation_contours_count: 11
+      annotation_holes_count: 0
+      native60_mask_sha256: 5360a1370e782600388f2f3396352a6727effbd7f672806370fa0542b65a6530
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 9ed5d5494e7892514dc7d14441a4d05ecf32e77568b39abd888256128288a684
+    '2':
+      pass: true
+      silhouette_name: Wind-shaped, layered bonsai crown and twisting trunk rooted
+        into a wet slate garden
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 2
+      - 1
+      holes: []
+      evidence: 'The bonsai itself is the named landform: a massive curved trunk and
+        asymmetrical layered needle pads dominate the garden. Rain, reflective wet
+        slate, pond rings, bamboo clacker, root-side tea house and a single red maple
+        branch are visible. Raked fine gravel is explicitly requested; functional
+        slate pavers and upper structural roots are distinguished from copied loose
+        pebbles and dangling home roots. No brown soil bowl, lawn oval, fully oval
+        wooden home door or separate circular porthole is seen. Rectangular glazing
+        and straight lower jambs remain ordinary family style. The landform mask includes
+        actual trunk, needle pads and slate garden rather than a convex silhouette
+        filling the air gaps. Native60 profile remains recognizable as a windswept
+        bonsai without relying on the little house.'
+      components:
+      - Slate garden with cloud-occluded lower boundary
+      - Twisting structural trunk and upper roots
+      - Separate visible needle pads and branch strips; real sky gaps remain outside
+        polygon union
+      uncertainty: Contours are coarse observed material traces, not botanical segmentation.
+        Mist hides some branch connections; closures across small occluded sections
+        are QA annotation joins, not reconstructed hidden edges. Clouds obscure the
+        lower stone edge. Thin needles, maple leaves and small props are omitted from
+        the primary bonsai/garden mask but remain visible in the native source crop.
+      contours:
+      - - - 130
+          - 711
+        - - 157
+          - 673
+        - - 219
+          - 642
+        - - 288
+          - 612
+        - - 358
+          - 596
+        - - 431
+          - 620
+        - - 510
+          - 628
+        - - 587
+          - 610
+        - - 639
+          - 577
+        - - 710
+          - 557
+        - - 780
+          - 565
+        - - 842
+          - 544
+        - - 922
+          - 541
+        - - 1007
+          - 550
+        - - 1082
+          - 551
+        - - 1160
+          - 570
+        - - 1240
+          - 591
+        - - 1312
+          - 620
+        - - 1370
+          - 653
+        - - 1424
+          - 692
+        - - 1453
+          - 733
+        - - 1441
+          - 774
+        - - 1405
+          - 793
+        - - 1325
+          - 790
+        - - 1253
+          - 819
+        - - 1180
+          - 817
+        - - 1092
+          - 849
+        - - 1033
+          - 850
+        - - 948
+          - 887
+        - - 859
+          - 901
+        - - 798
+          - 913
+        - - 728
+          - 899
+        - - 653
+          - 918
+        - - 586
+          - 890
+        - - 516
+          - 884
+        - - 457
+          - 872
+        - - 405
+          - 843
+        - - 334
+          - 850
+        - - 266
+          - 817
+        - - 220
+          - 812
+        - - 186
+          - 782
+        - - 149
+          - 773
+      - - - 671
+          - 615
+        - - 700
+          - 577
+        - - 767
+          - 551
+        - - 834
+          - 525
+        - - 901
+          - 506
+        - - 938
+          - 469
+        - - 970
+          - 432
+        - - 1004
+          - 394
+        - - 1029
+          - 357
+        - - 1020
+          - 327
+        - - 998
+          - 303
+        - - 968
+          - 282
+        - - 919
+          - 279
+        - - 869
+          - 289
+        - - 812
+          - 305
+        - - 742
+          - 336
+        - - 683
+          - 359
+        - - 614
+          - 366
+        - - 544
+          - 358
+        - - 491
+          - 340
+        - - 464
+          - 315
+        - - 478
+          - 304
+        - - 523
+          - 324
+        - - 588
+          - 333
+        - - 657
+          - 328
+        - - 713
+          - 310
+        - - 768
+          - 284
+        - - 820
+          - 263
+        - - 876
+          - 245
+        - - 934
+          - 241
+        - - 992
+          - 253
+        - - 1054
+          - 280
+        - - 1107
+          - 316
+        - - 1135
+          - 363
+        - - 1131
+          - 405
+        - - 1110
+          - 445
+        - - 1082
+          - 486
+        - - 1076
+          - 521
+        - - 1116
+          - 543
+        - - 1176
+          - 552
+        - - 1236
+          - 583
+        - - 1289
+          - 618
+        - - 1320
+          - 663
+        - - 1362
+          - 700
+        - - 1368
+          - 728
+        - - 1348
+          - 741
+        - - 1318
+          - 700
+        - - 1291
+          - 671
+        - - 1235
+          - 651
+        - - 1177
+          - 639
+        - - 1126
+          - 618
+        - - 1080
+          - 599
+        - - 1048
+          - 577
+        - - 1022
+          - 594
+        - - 1009
+          - 625
+        - - 982
+          - 659
+        - - 949
+          - 658
+        - - 935
+          - 626
+        - - 941
+          - 583
+        - - 902
+          - 578
+        - - 857
+          - 598
+        - - 811
+          - 624
+        - - 751
+          - 631
+        - - 702
+          - 632
+      - - - 534
+          - 161
+        - - 566
+          - 127
+        - - 618
+          - 96
+        - - 686
+          - 70
+        - - 757
+          - 40
+        - - 835
+          - 21
+        - - 909
+          - 16
+        - - 985
+          - 21
+        - - 1063
+          - 38
+        - - 1125
+          - 61
+        - - 1150
+          - 90
+        - - 1136
+          - 121
+        - - 1087
+          - 144
+        - - 1025
+          - 171
+        - - 953
+          - 191
+        - - 873
+          - 190
+        - - 809
+          - 198
+        - - 748
+          - 184
+        - - 688
+          - 188
+        - - 625
+          - 181
+        - - 577
+          - 182
+      - - - 1037
+          - 177
+        - - 1080
+          - 146
+        - - 1134
+          - 117
+        - - 1190
+          - 101
+        - - 1249
+          - 106
+        - - 1303
+          - 129
+        - - 1354
+          - 157
+        - - 1392
+          - 185
+        - - 1408
+          - 221
+        - - 1383
+          - 250
+        - - 1345
+          - 264
+        - - 1291
+          - 269
+        - - 1233
+          - 262
+        - - 1181
+          - 253
+        - - 1133
+          - 248
+        - - 1073
+          - 228
+      - - - 158
+          - 204
+        - - 183
+          - 177
+        - - 230
+          - 161
+        - - 289
+          - 149
+        - - 348
+          - 147
+        - - 397
+          - 151
+        - - 449
+          - 170
+        - - 476
+          - 196
+        - - 462
+          - 222
+        - - 419
+          - 243
+        - - 369
+          - 260
+        - - 309
+          - 268
+        - - 250
+          - 266
+        - - 205
+          - 253
+        - - 166
+          - 238
+      - - - 83
+          - 290
+        - - 108
+          - 257
+        - - 160
+          - 231
+        - - 214
+          - 211
+        - - 268
+          - 206
+        - - 321
+          - 209
+        - - 369
+          - 227
+        - - 404
+          - 253
+        - - 399
+          - 279
+        - - 359
+          - 303
+        - - 306
+          - 321
+        - - 251
+          - 332
+        - - 195
+          - 338
+        - - 147
+          - 332
+        - - 104
+          - 316
+      - - - 408
+          - 295
+        - - 441
+          - 266
+        - - 490
+          - 244
+        - - 549
+          - 222
+        - - 606
+          - 211
+        - - 663
+          - 215
+        - - 724
+          - 232
+        - - 770
+          - 256
+        - - 786
+          - 281
+        - - 765
+          - 305
+        - - 720
+          - 321
+        - - 661
+          - 332
+        - - 606
+          - 340
+        - - 554
+          - 344
+        - - 496
+          - 341
+        - - 449
+          - 327
+      - - - 19
+          - 416
+        - - 43
+          - 392
+        - - 83
+          - 376
+        - - 129
+          - 370
+        - - 177
+          - 377
+        - - 222
+          - 393
+        - - 254
+          - 410
+        - - 260
+          - 428
+        - - 231
+          - 445
+        - - 186
+          - 454
+        - - 137
+          - 452
+        - - 89
+          - 452
+        - - 49
+          - 441
+      - - - 262
+          - 414
+        - - 289
+          - 393
+        - - 331
+          - 383
+        - - 379
+          - 379
+        - - 431
+          - 392
+        - - 460
+          - 413
+        - - 451
+          - 431
+        - - 414
+          - 444
+        - - 369
+          - 448
+        - - 323
+          - 450
+        - - 286
+          - 439
+      - - - 101
+          - 445
+        - - 153
+          - 463
+        - - 214
+          - 477
+        - - 261
+          - 480
+        - - 307
+          - 463
+        - - 347
+          - 442
+        - - 369
+          - 443
+        - - 331
+          - 476
+        - - 287
+          - 493
+        - - 232
+          - 493
+        - - 174
+          - 480
+        - - 119
+          - 465
+      - - - 724
+          - 429
+        - - 750
+          - 411
+        - - 792
+          - 406
+        - - 833
+          - 414
+        - - 859
+          - 432
+        - - 845
+          - 448
+        - - 806
+          - 453
+        - - 767
+          - 450
+        - - 733
+          - 445
+      - - - 823
+          - 386
+        - - 844
+          - 365
+        - - 881
+          - 351
+        - - 919
+          - 351
+        - - 955
+          - 366
+        - - 970
+          - 387
+        - - 955
+          - 400
+        - - 922
+          - 409
+        - - 885
+          - 404
+        - - 851
+          - 400
+      - - - 817
+          - 446
+        - - 861
+          - 443
+        - - 892
+          - 422
+        - - 913
+          - 402
+        - - 925
+          - 405
+        - - 910
+          - 431
+        - - 880
+          - 454
+        - - 840
+          - 462
+      - - - 874
+          - 192
+        - - 890
+          - 213
+        - - 934
+          - 232
+        - - 971
+          - 252
+        - - 991
+          - 273
+        - - 1017
+          - 279
+        - - 1013
+          - 249
+        - - 981
+          - 226
+        - - 937
+          - 211
+        - - 915
+          - 191
+      swatch_points:
+      - - 955
+        - 75
+      - - 1000
+        - 747
+      - - 1460
+        - 281
+      source_file: /workspace/generated_images/exec-a877f78b-3f66-4ba3-8f7d-1f2e3b77ea25.png
+      original_generated_png_sha256: 4dd631dcf79ad5827027b4595c1af07893cb7227ef03609cea1ed8845c681d29
+      rgba_sha256: 7b6eb4032ce8d25cb4b9e7d917e661bf82ae187f55dd17af34eed69da1317876
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: e703b477f1f4c60584786fa54f1c1f28d08512001c27eb17aa11f07b1ba48274
+      sampled_swatches:
+      - point:
+        - 955
+        - 75
+        hex: '#97A583'
+      - point:
+        - 1000
+        - 747
+        hex: '#B3B1B3'
+      - point:
+        - 1460
+        - 281
+        hex: '#DD7262'
+      observed_bbox:
+      - 19
+      - 16
+      - 1454
+      - 919
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 6
+      qa_native60_black_pixels: 1123
+      annotation_contours_count: 14
+      annotation_holes_count: 0
+      native60_mask_sha256: 971ad9ba98e097c44c8f4c9bd5fabe72040796a211525a8fbf57d9883f49f3ba
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 550f9c2c1bd56416e9e96284a72431b18fce7415b9118afce0082a14a202bd6e
+  reviewed_at: '2026-11-03T16:25:25.508721+00:00'
+  preview_verified: true
+  preview_sha256: c0ca3bad3a5737c23eced7623e5fdfdb87f8a0dca5a5dfd710718b50cd7531da
+  no_authoritative_pick: true
+  production_score_threshold_applied: false
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-3f4aa15d-0c78-4d26-a925-7e4ec5ce0e20.png
+  original_generated_png_sha256: 4f36e19b08b005e532c49f171e2adbc69fb7013922e948ed380017bcc067c7e8
+  inbox_png_sha256: 9ed5d5494e7892514dc7d14441a4d05ecf32e77568b39abd888256128288a684
+  rgba_sha256: 376072f36799f6ef15006f19d147f6b890bb149e29916dec96a0aec83fd5a274
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: fbab6d52e6a4975c
+- take: 2
+  source_file: /workspace/generated_images/exec-a877f78b-3f66-4ba3-8f7d-1f2e3b77ea25.png
+  original_generated_png_sha256: 4dd631dcf79ad5827027b4595c1af07893cb7227ef03609cea1ed8845c681d29
+  inbox_png_sha256: 550f9c2c1bd56416e9e96284a72431b18fce7415b9118afce0082a14a202bd6e
+  rgba_sha256: 7b6eb4032ce8d25cb4b9e7d917e661bf82ae187f55dd17af34eed69da1317876
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: fbab6d52e6a4975c
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true

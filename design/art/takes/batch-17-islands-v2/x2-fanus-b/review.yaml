@@ -1,0 +1,635 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-fanus-b/contact.jpg
+jobs:
+  x2-fanus-b:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both takes recommend pass: chain-suspended
+      greenhouse dome, brass base, fogged/wiped panes, orchids and sunbeams. The brass
+      base is not home soil, and its door is arch-topped rectangular rather than circular.
+      Source-bound black profiles/native60 views are annotations only, with chain/cloud
+      uncertainty explicit; no final pick. Root full-resolution door adjudication:
+      both entries have straight lower jambs/flat bottoms and arch-topped rectangular
+      glazing, distinct from the home oval wooden leaf with separate circular porthole.
+      Cross-panes/warm shading are common family style, not independently banned;
+      architectural echo is advisory. No retry spent.'
+qa_reports:
+  1:
+    job: x2-fanus-b
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 35.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 69 (R1 59)
+      value: 69.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.62
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7533
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.9, p95 4.9, off-palette 0.0%
+      value: 1.941
+    info:
+      metrics_raw:
+        L_p5: 69.0
+        L_p50: 87.9
+        L_p95: 95.6
+        C_p50: 7.5
+        C_p95: 36.7
+        C_p99: 44.6
+        detail: 2.14
+      metrics_locked:
+        L_p5: 69.4
+        L_p50: 87.9
+        L_p95: 95.5
+        C_p50: 7.5
+        C_p95: 35.7
+        C_p99: 44.2
+        detail: 1.62
+    fingerprint: 721b6c310ebcf664
+  2:
+    job: x2-fanus-b
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 69 (R1 59)
+      value: 69.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.75
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.827
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 5.0, off-palette 0.0%
+      value: 2.0135
+    info:
+      metrics_raw:
+        L_p5: 68.8
+        L_p50: 88.9
+        L_p95: 96.2
+        C_p50: 7.8
+        C_p95: 41.0
+        C_p99: 47.3
+        detail: 2.34
+      metrics_locked:
+        L_p5: 69.2
+        L_p50: 88.8
+        L_p95: 96.0
+        C_p50: 7.7
+        C_p95: 40.0
+        C_p99: 46.8
+        detail: 1.75
+    fingerprint: 721b6c310ebcf664
+manual_review:
+  note: 'Both takes recommend pass: chain-suspended greenhouse dome, brass base, fogged/wiped
+    panes, orchids and sunbeams. The brass base is not home soil, and its door is
+    arch-topped rectangular rather than circular. Source-bound black profiles/native60
+    views are annotations only, with chain/cloud uncertainty explicit; no final pick.
+    Root full-resolution door adjudication: both entries have straight lower jambs/flat
+    bottoms and arch-topped rectangular glazing, distinct from the home oval wooden
+    leaf with separate circular porthole. Cross-panes/warm shading are common family
+    style, not independently banned; architectural echo is advisory. No retry spent.'
+  takes:
+    '1':
+      pass: true
+      silhouette_name: chain-suspended greenhouse dome on a brass base
+      rubric:
+      - 3
+      - 1
+      - 1
+      - 1
+      - 1
+      evidence: 'The landform is a broad greenhouse dome suspended from a visible
+        chain, with condensation and wiped-clear panes showing orchids/ferns. The
+        base is clearly brass architecture, not sandy soil; the small brass entry
+        is vertically arch-topped with a flat bottom rather than a circular home door.
+        Sunbeams through the cloud give its own sky. Native60 preserves the dome,
+        base and suspension/large top ring, distinct from a home lawn plate and the
+        taller straight-sided bell jar variant. Glass shine is material-specific advisory
+        style information, not a hard rejection. Advisory palette caveat: sunlit glass/ferns
+        read pale sage rather than strong glass teal; the brass, pink orchids and
+        separate greenhouse form remain explicit. The reduced rubric is not a production-score
+        gate.'
+      swatch_points:
+      - - 1046
+        - 633
+      - - 1115
+        - 800
+      - - 720
+        - 490
+      contours:
+      - - - 753
+          - 208
+        - - 744
+          - 227
+        - - 699
+          - 239
+        - - 675
+          - 258
+        - - 664
+          - 273
+        - - 603
+          - 291
+        - - 537
+          - 323
+        - - 471
+          - 371
+        - - 411
+          - 436
+        - - 367
+          - 510
+        - - 343
+          - 584
+        - - 338
+          - 661
+        - - 344
+          - 725
+        - - 355
+          - 758
+        - - 348
+          - 770
+        - - 353
+          - 789
+        - - 365
+          - 820
+        - - 382
+          - 848
+        - - 423
+          - 865
+        - - 468
+          - 881
+        - - 533
+          - 889
+        - - 594
+          - 885
+        - - 644
+          - 899
+        - - 695
+          - 894
+        - - 747
+          - 908
+        - - 796
+          - 904
+        - - 840
+          - 905
+        - - 884
+          - 893
+        - - 944
+          - 897
+        - - 1002
+          - 883
+        - - 1088
+          - 869
+        - - 1159
+          - 849
+        - - 1172
+          - 820
+        - - 1183
+          - 789
+        - - 1197
+          - 769
+        - - 1206
+          - 722
+        - - 1206
+          - 659
+        - - 1196
+          - 578
+        - - 1173
+          - 505
+        - - 1134
+          - 436
+        - - 1081
+          - 372
+        - - 1014
+          - 325
+        - - 943
+          - 295
+        - - 899
+          - 282
+        - - 893
+          - 267
+        - - 852
+          - 246
+        - - 811
+          - 228
+        - - 800
+          - 208
+      - - - 766
+          - 151
+        - - 746
+          - 160
+        - - 731
+          - 184
+        - - 731
+          - 211
+        - - 747
+          - 230
+        - - 773
+          - 236
+        - - 800
+          - 230
+        - - 823
+          - 216
+        - - 829
+          - 193
+        - - 819
+          - 169
+        - - 801
+          - 157
+        - - 793
+          - 159
+        - - 792
+          - 139
+        - - 800
+          - 114
+        - - 798
+          - 85
+        - - 787
+          - 73
+        - - 796
+          - 51
+        - - 799
+          - 21
+        - - 795
+          - 0
+        - - 760
+          - 0
+        - - 754
+          - 14
+        - - 758
+          - 39
+        - - 766
+          - 53
+        - - 758
+          - 72
+        - - 753
+          - 96
+        - - 760
+          - 116
+        - - 767
+          - 124
+        - - 761
+          - 143
+      holes:
+      - - - 774
+          - 169
+        - - 759
+          - 175
+        - - 748
+          - 192
+        - - 752
+          - 210
+        - - 773
+          - 222
+        - - 796
+          - 211
+        - - 805
+          - 193
+        - - 796
+          - 177
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      uncertainty: The chain exits the top frame; nothing above the visible links
+        is reconstructed. Small link openings are subpixel at60 and only the clearly
+        visible large hanger-ring hole is traced. The lower brass rim is partly cloud-occluded;
+        only the observed cloud-contact boundary is used. A filled glass envelope
+        is a manual QA profile, not the source alpha rectangle.
+      source_file: /workspace/generated_images/exec-69f08312-d059-4e9e-a30a-1dbb5ad7b344.png
+      original_generated_png_sha256: cc3e21fc2977e58e8c888f918566b2adefd4c79d32085cc84254150394117bf1
+      rgba_sha256: 08cc6a1ca049ba25137b32e615606af145c0d7d459c84b132d41ac61ceab965a
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 338
+      - 0
+      - 1207
+      - 909
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 57
+      - 60
+      sampled_swatches:
+      - point:
+        - 1046
+        - 633
+        hex: '#9DAA8C'
+      - point:
+        - 1115
+        - 800
+        hex: '#A97754'
+      - point:
+        - 720
+        - 490
+        hex: '#F8B2B9'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-fanus-b-t1-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-fanus-b-t1-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      root_door_adjudication: 'Pass: arched rectangular architecture; cross-pane motif
+        alone is not a banned round home door.'
+      annotation_source_inbox_sha256: 97f034107ae542f209f2f6c4510a137ad7b8160c484ce3f65239de2d6f4f2111
+      silhouette_native_longest_px: 60
+    '2':
+      pass: true
+      silhouette_name: chain-suspended greenhouse dome on a brass base
+      rubric:
+      - 3
+      - 1
+      - 1
+      - 1
+      - 1
+      evidence: 'The landform is a broad greenhouse dome suspended from a visible
+        chain, with condensation and wiped-clear panes showing orchids/ferns. The
+        base is clearly brass architecture, not sandy soil; the small brass entry
+        is vertically arch-topped with a flat bottom rather than a circular home door.
+        Sunbeams through the cloud give its own sky. Native60 preserves the dome,
+        base and suspension/large top ring, distinct from a home lawn plate and the
+        taller straight-sided bell jar variant. Glass shine is material-specific advisory
+        style information, not a hard rejection. Advisory palette caveat: sunlit glass/ferns
+        read pale sage rather than strong glass teal; the brass, pink orchids and
+        separate greenhouse form remain explicit. The reduced rubric is not a production-score
+        gate.'
+      swatch_points:
+      - - 720
+        - 490
+      - - 1081
+        - 785
+      - - 666
+        - 524
+      contours:
+      - - - 745
+          - 192
+        - - 735
+          - 214
+        - - 704
+          - 223
+        - - 687
+          - 238
+        - - 681
+          - 252
+        - - 619
+          - 268
+        - - 545
+          - 299
+        - - 471
+          - 348
+        - - 408
+          - 409
+        - - 355
+          - 486
+        - - 319
+          - 567
+        - - 300
+          - 650
+        - - 301
+          - 710
+        - - 294
+          - 723
+        - - 302
+          - 744
+        - - 314
+          - 783
+        - - 338
+          - 819
+        - - 403
+          - 833
+        - - 451
+          - 839
+        - - 506
+          - 851
+        - - 570
+          - 855
+        - - 637
+          - 859
+        - - 706
+          - 857
+        - - 763
+          - 868
+        - - 830
+          - 858
+        - - 889
+          - 854
+        - - 951
+          - 851
+        - - 1014
+          - 837
+        - - 1103
+          - 817
+        - - 1176
+          - 793
+        - - 1206
+          - 774
+        - - 1220
+          - 740
+        - - 1231
+          - 720
+        - - 1226
+          - 684
+        - - 1226
+          - 626
+        - - 1212
+          - 556
+        - - 1183
+          - 490
+        - - 1137
+          - 423
+        - - 1078
+          - 366
+        - - 1010
+          - 319
+        - - 944
+          - 283
+        - - 884
+          - 264
+        - - 862
+          - 249
+        - - 855
+          - 232
+        - - 825
+          - 220
+        - - 792
+          - 202
+      - - - 747
+          - 125
+        - - 727
+          - 136
+        - - 714
+          - 158
+        - - 716
+          - 187
+        - - 734
+          - 210
+        - - 762
+          - 221
+        - - 792
+          - 211
+        - - 812
+          - 192
+        - - 816
+          - 165
+        - - 805
+          - 142
+        - - 784
+          - 130
+        - - 779
+          - 109
+        - - 791
+          - 91
+        - - 791
+          - 65
+        - - 779
+          - 48
+        - - 793
+          - 24
+        - - 793
+          - 0
+        - - 752
+          - 0
+        - - 746
+          - 18
+        - - 754
+          - 43
+        - - 746
+          - 61
+        - - 745
+          - 87
+        - - 753
+          - 105
+      holes:
+      - - - 765
+          - 146
+        - - 747
+          - 149
+        - - 733
+          - 165
+        - - 735
+          - 184
+        - - 752
+          - 199
+        - - 777
+          - 199
+        - - 795
+          - 185
+        - - 795
+          - 166
+        - - 783
+          - 152
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      uncertainty: The chain exits the top frame; nothing above the visible links
+        is reconstructed. Small link openings are subpixel at60 and only the clearly
+        visible large hanger-ring hole is traced. The lower brass rim is partly cloud-occluded;
+        only the observed cloud-contact boundary is used. A filled glass envelope
+        is a manual QA profile, not the source alpha rectangle.
+      source_file: /workspace/generated_images/exec-65b4710e-e913-410c-9bdd-577605e906da.png
+      original_generated_png_sha256: a1f1084a223a8f1b3b6b21d85489f58ee866c2d8c43782cd1d2ed9d128155663
+      rgba_sha256: 68bc46bc682d4441114967a09a5cb061d6916b9e536dfd9ab574f996fd53a708
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 294
+      - 0
+      - 1232
+      - 869
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 60
+      - 56
+      sampled_swatches:
+      - point:
+        - 720
+        - 490
+        hex: '#BBC49A'
+      - point:
+        - 1081
+        - 785
+        hex: '#CE985D'
+      - point:
+        - 666
+        - 524
+        hex: '#FDD7C9'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-fanus-b-t2-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-fanus-b-t2-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      root_door_adjudication: 'Pass: arched rectangular architecture; cross-pane motif
+        alone is not a banned round home door.'
+      annotation_source_inbox_sha256: 2285bb0c5041171d1d27013f1e1d13eb3ac17ad6529b242c3175f6b6cfce5c2f
+      silhouette_native_longest_px: 60
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-69f08312-d059-4e9e-a30a-1dbb5ad7b344.png
+  original_generated_png_sha256: cc3e21fc2977e58e8c888f918566b2adefd4c79d32085cc84254150394117bf1
+  inbox_png_sha256: 97f034107ae542f209f2f6c4510a137ad7b8160c484ce3f65239de2d6f4f2111
+  rgba_sha256: 08cc6a1ca049ba25137b32e615606af145c0d7d459c84b132d41ac61ceab965a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 721b6c310ebcf664
+- take: 2
+  source_file: /workspace/generated_images/exec-65b4710e-e913-410c-9bdd-577605e906da.png
+  original_generated_png_sha256: a1f1084a223a8f1b3b6b21d85489f58ee866c2d8c43782cd1d2ed9d128155663
+  inbox_png_sha256: 2285bb0c5041171d1d27013f1e1d13eb3ac17ad6529b242c3175f6b6cfce5c2f
+  rgba_sha256: 68bc46bc682d4441114967a09a5cb061d6916b9e536dfd9ab574f996fd53a708
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 721b6c310ebcf664
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true

@@ -1,0 +1,559 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-gezgin-b/contact.jpg
+jobs:
+  x2-gezgin-b:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both originals show a visibly
+      recognizable whale surfacing beside a wooden pier at pink dawn, with open kind
+      eye, flipper-to-post mooring rope, small cottage and tortoise postman with satchel.
+      No home lawn-oval/soil-bowl/roots/pebbles/round-door motif is visible. Animal-only
+      masks follow the visible whale; dock/rope/back props remain in the source scene
+      but are not invented as part of the animal contour. Rubric is advisory.
+qa_reports:
+  1:
+    job: x2-gezgin-b
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 26 (R1 51)
+      value: 26.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 74 (R1 59)
+      value: 74.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.24
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0364
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.7, p95 4.0, off-palette 0.0%
+      value: 1.7411
+    info:
+      metrics_raw:
+        L_p5: 74.0
+        L_p50: 85.0
+        L_p95: 94.1
+        C_p50: 11.5
+        C_p95: 26.2
+        C_p99: 34.4
+        detail: 1.64
+      metrics_locked:
+        L_p5: 74.2
+        L_p50: 85.0
+        L_p95: 93.9
+        C_p50: 11.6
+        C_p95: 26.0
+        C_p99: 33.8
+        detail: 1.24
+    fingerprint: f92aad01dd517542
+  2:
+    job: x2-gezgin-b
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 25 (R1 51)
+      value: 24.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 77 (R1 59)
+      value: 76.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.03
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8181
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 4.0, off-palette 0.0%
+      value: 1.9837
+    info:
+      metrics_raw:
+        L_p5: 76.7
+        L_p50: 85.3
+        L_p95: 93.8
+        C_p50: 10.9
+        C_p95: 24.8
+        C_p99: 34.4
+        detail: 1.35
+      metrics_locked:
+        L_p5: 76.8
+        L_p50: 85.3
+        L_p95: 93.6
+        C_p50: 10.9
+        C_p95: 24.6
+        C_p99: 33.7
+        detail: 1.03
+    fingerprint: f92aad01dd517542
+manual_review:
+  recommendation_only: true
+  note: Both originals show a visibly recognizable whale surfacing beside a wooden
+    pier at pink dawn, with open kind eye, flipper-to-post mooring rope, small cottage
+    and tortoise postman with satchel. No home lawn-oval/soil-bowl/roots/pebbles/round-door
+    motif is visible. Animal-only masks follow the visible whale; dock/rope/back props
+    remain in the source scene but are not invented as part of the animal contour.
+    Rubric is advisory.
+  takes:
+    '1':
+      pass: true
+      silhouette_name: broad whale head/body with one flipper and a forked upturned
+        tail
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 2
+      - 1
+      evidence: The whale has a gently opening eye, broad flipper and clearly split
+        tail. A rope loops around the flipper and reaches the small wooden pier post
+        at lower right. A tortoise postman with shell, cap and satchel stands by the
+        cottage on her back; the sky is coral-pink dawn. The cottage has arched rectangular
+        windows, not a circular home door. No flat home lawn or soil plate is added.
+        Native60 animal-body contour is recognizably whale-like. Surfacing/mooring
+        suggests signature movement; no animation is claimed.
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 1400
+        - 90
+      - - 350
+        - 460
+      - - 300
+        - 670
+      contours:
+      - - - 47
+          - 590
+        - - 54
+          - 548
+        - - 88
+          - 487
+        - - 148
+          - 433
+        - - 242
+          - 382
+        - - 345
+          - 345
+        - - 451
+          - 327
+        - - 559
+          - 331
+        - - 681
+          - 348
+        - - 813
+          - 369
+        - - 942
+          - 393
+        - - 1080
+          - 414
+        - - 1195
+          - 440
+        - - 1279
+          - 487
+        - - 1295
+          - 473
+        - - 1308
+          - 451
+        - - 1289
+          - 418
+        - - 1258
+          - 399
+        - - 1227
+          - 376
+        - - 1208
+          - 344
+        - - 1198
+          - 309
+        - - 1203
+          - 282
+        - - 1218
+          - 276
+        - - 1240
+          - 298
+        - - 1274
+          - 322
+        - - 1313
+          - 338
+        - - 1353
+          - 362
+        - - 1374
+          - 371
+        - - 1404
+          - 343
+        - - 1455
+          - 327
+        - - 1504
+          - 311
+        - - 1521
+          - 320
+        - - 1525
+          - 346
+        - - 1513
+          - 388
+        - - 1488
+          - 425
+        - - 1450
+          - 449
+        - - 1392
+          - 468
+        - - 1370
+          - 510
+        - - 1368
+          - 557
+        - - 1355
+          - 601
+        - - 1313
+          - 649
+        - - 1254
+          - 689
+        - - 1175
+          - 730
+        - - 1080
+          - 764
+        - - 986
+          - 778
+        - - 908
+          - 771
+        - - 810
+          - 791
+        - - 736
+          - 794
+        - - 694
+          - 770
+        - - 678
+          - 743
+        - - 687
+          - 707
+        - - 665
+          - 727
+        - - 620
+          - 746
+        - - 555
+          - 769
+        - - 455
+          - 794
+        - - 359
+          - 800
+        - - 266
+          - 781
+        - - 180
+          - 744
+        - - 118
+          - 700
+        - - 71
+          - 654
+        - - 50
+          - 611
+      holes: []
+      components:
+      - One visible whale-body component including tail and flipper. Dock, rope, tortoise,
+        cottage and detached blowhole cloud are not part of the animal mask.
+      uncertainty: Foreground clouds hide some lower belly/tail margins. The lower
+        contour follows the visible occlusion frontier only and does not recover hidden
+        anatomy. The pier and rope are visible semantic evidence, intentionally excluded
+        from the animal-only black test. Small upper-back stretches are occluded by
+        the cottage/postman; simple mask joins there denote conservative annotation
+        closures between visible body points, not recovered hidden back geometry.
+      source_file: /workspace/generated_images/exec-411f66c1-3d7e-4860-89d5-28cff8f8a55e.png
+      original_generated_png_sha256: 63f42788f3cb9f199ff3a8ba290c8259175c1de4486a8961fbca6e0945aad509
+      rgba_sha256: ded42813b1a3d29b8c22b746724b4ce20f002f003858234a85d9e33282fc32ce
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: 0c952649f1bcd88825889b11510241337afbb4813b2c1d6c221fc5f885f6ba89
+      sampled_swatches:
+      - point:
+        - 1400
+        - 90
+        hex: '#F7B5C0'
+      - point:
+        - 350
+        - 460
+        hex: '#D0CCD1'
+      - point:
+        - 300
+        - 670
+        hex: '#FEE5D0'
+      observed_bbox:
+      - 47
+      - 276
+      - 1526
+      - 801
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 1
+      qa_native60_black_pixels: 822
+      annotation_contours_count: 1
+      annotation_holes_count: 0
+      native60_mask_sha256: ef9deb0547d62d80fe2f00d1f962d3e8d27d0111eb3664045ae14f0fc778ee08
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 9f8c1b270011078567a1aadbabac048c8c22e6d8ca42f1b1b7f98edc0af0bc90
+    '2':
+      pass: true
+      silhouette_name: whale body with a large visible flipper and upright forked
+        tail
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 2
+      - 1
+      evidence: The side-view whale surfaces beside a timber pier in pink dawn. A
+        visible rope connects the flipper to the pier post. A shell-backed tortoise
+        postman with satchel stands beside the cottage. The whale has one kind open
+        eye and a clearly forked tail; the black body profile reads as a whale at
+        native60. Soft cloud tufts on the whale forehead are not a home lawn or soil
+        bowl. Cottage openings are arched rectangular windows, not round home doors.
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 800
+        - 80
+      - - 1000
+        - 470
+      - - 260
+        - 640
+      contours:
+      - - - 70
+          - 553
+        - - 74
+          - 512
+        - - 109
+          - 456
+        - - 169
+          - 415
+        - - 241
+          - 385
+        - - 345
+          - 363
+        - - 455
+          - 345
+        - - 571
+          - 342
+        - - 710
+          - 363
+        - - 858
+          - 386
+        - - 1040
+          - 414
+        - - 1179
+          - 451
+        - - 1288
+          - 512
+        - - 1318
+          - 480
+        - - 1330
+          - 438
+        - - 1324
+          - 416
+        - - 1274
+          - 405
+        - - 1244
+          - 387
+        - - 1226
+          - 359
+        - - 1225
+          - 329
+        - - 1234
+          - 297
+        - - 1251
+          - 306
+        - - 1299
+          - 313
+        - - 1342
+          - 335
+        - - 1379
+          - 363
+        - - 1396
+          - 326
+        - - 1417
+          - 295
+        - - 1456
+          - 265
+        - - 1486
+          - 250
+        - - 1500
+          - 235
+        - - 1516
+          - 245
+        - - 1526
+          - 288
+        - - 1522
+          - 324
+        - - 1505
+          - 373
+        - - 1478
+          - 407
+        - - 1439
+          - 434
+        - - 1407
+          - 444
+        - - 1400
+          - 491
+        - - 1389
+          - 547
+        - - 1368
+          - 602
+        - - 1323
+          - 651
+        - - 1265
+          - 699
+        - - 1162
+          - 732
+        - - 1090
+          - 745
+        - - 1081
+          - 777
+        - - 1051
+          - 791
+        - - 992
+          - 781
+        - - 936
+          - 757
+        - - 878
+          - 748
+        - - 824
+          - 717
+        - - 740
+          - 724
+        - - 649
+          - 740
+        - - 541
+          - 741
+        - - 435
+          - 751
+        - - 330
+          - 740
+        - - 239
+          - 712
+        - - 167
+          - 677
+        - - 112
+          - 626
+        - - 77
+          - 578
+      holes: []
+      components:
+      - One source-visible whale component, including connected flipper and forked
+        tail. Pier/rope/back cottage/postman are excluded from the animal-body silhouette.
+      uncertainty: Some lower-body edges dissolve into foreground cloud. Annotation
+        closure follows the visible frontier; no hidden tail, far flipper or underside
+        is invented. Main head, visible flipper and full tail fork are directly seen.
+        Small upper-back stretches are occluded by the cottage/postman; simple mask
+        joins there denote conservative annotation closures between visible body points,
+        not recovered hidden back geometry.
+      source_file: /workspace/generated_images/exec-9f5f1679-cfe7-4aff-821f-31a37f673d5a.png
+      original_generated_png_sha256: 47d05b698588921025655d8e4b1376e44c7461facc716c43ec83bbecfc3e6f2d
+      rgba_sha256: 06c2ebc84ef0f8983bcd1dba3eca9a231accfebe1d7562edbabbde83ba5943c0
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: ca3709072bc86ef16e5e985c7c7597a84978dd8e6823584093bbed24ed4d4881
+      sampled_swatches:
+      - point:
+        - 800
+        - 80
+        hex: '#F5C0CE'
+      - point:
+        - 1000
+        - 470
+        hex: '#BFC4D2'
+      - point:
+        - 260
+        - 640
+        hex: '#FEDDC4'
+      observed_bbox:
+      - 70
+      - 235
+      - 1527
+      - 792
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      source_alpha_extrema:
+      - 255
+      - 255
+      qa_native60_black_components: 1
+      qa_native60_black_pixels: 776
+      annotation_contours_count: 1
+      annotation_holes_count: 0
+      native60_mask_sha256: d5dceec8a5f9ec92767b67fa069341ba5d6ca60283806b1e829d0862a2570526
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 18a12bebba80bcaac75420287e3a89972f0c347a6d2ea9298b25112fb926ea7c
+  reviewed_at: '2026-11-03T16:02:14.470745+00:00'
+  preview_verified: true
+  preview_sha256: 69f5523aa8faf8682d02df9947ff48784296bedb9c37aef14e29ed72f7637223
+  no_authoritative_pick: true
+  production_score_threshold_applied: false
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-411f66c1-3d7e-4860-89d5-28cff8f8a55e.png
+  original_generated_png_sha256: 63f42788f3cb9f199ff3a8ba290c8259175c1de4486a8961fbca6e0945aad509
+  inbox_png_sha256: 9f8c1b270011078567a1aadbabac048c8c22e6d8ca42f1b1b7f98edc0af0bc90
+  rgba_sha256: ded42813b1a3d29b8c22b746724b4ce20f002f003858234a85d9e33282fc32ce
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f92aad01dd517542
+- take: 2
+  source_file: /workspace/generated_images/exec-9f5f1679-cfe7-4aff-821f-31a37f673d5a.png
+  original_generated_png_sha256: 47d05b698588921025655d8e4b1376e44c7461facc716c43ec83bbecfc3e6f2d
+  inbox_png_sha256: 18a12bebba80bcaac75420287e3a89972f0c347a6d2ea9298b25112fb926ea7c
+  rgba_sha256: 06c2ebc84ef0f8983bcd1dba3eca9a231accfebe1d7562edbabbde83ba5943c0
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f92aad01dd517542
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true

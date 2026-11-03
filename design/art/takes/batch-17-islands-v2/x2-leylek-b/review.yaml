@@ -1,0 +1,601 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-leylek-b/contact.jpg
+jobs:
+  x2-leylek-b:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both takes recommend pass: a
+      nest and perched stork pair on an impossibly tall thin brick chimney, a tiny
+      halfway window and a visible spiral of white storks. The observed chimney/nest/bird
+      profile is distinct from home at native60, with cloud occlusion explicit; no
+      final pick or production-score gate.'
+qa_reports:
+  1:
+    job: x2-leylek-b
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 25 (R1 51)
+      value: 25.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 79 (R1 59)
+      value: 79.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.2
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7443
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 4.7, off-palette 0.4% (top: #CC7744 (0.1%), #CC7733
+        (0.1%))'
+      value: 2.0951
+    info:
+      metrics_raw:
+        L_p5: 79.0
+        L_p50: 87.8
+        L_p95: 95.0
+        C_p50: 10.9
+        C_p95: 26.2
+        C_p99: 49.9
+        detail: 1.51
+      metrics_locked:
+        L_p5: 79.1
+        L_p50: 87.8
+        L_p95: 94.8
+        C_p50: 10.8
+        C_p95: 25.4
+        C_p99: 48.4
+        detail: 1.2
+    fingerprint: 83afc7505c90b022
+  2:
+    job: x2-leylek-b
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 24.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 81 (R1 59)
+      value: 80.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.93
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8693
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 4.3, off-palette 0.1% (top: #BB6633 (0.0%), #CC7744
+        (0.0%))'
+      value: 1.571
+    info:
+      metrics_raw:
+        L_p5: 80.5
+        L_p50: 88.0
+        L_p95: 94.5
+        C_p50: 10.5
+        C_p95: 24.5
+        C_p99: 46.0
+        detail: 1.19
+      metrics_locked:
+        L_p5: 80.6
+        L_p50: 88.0
+        L_p95: 94.4
+        C_p50: 10.5
+        C_p95: 24.5
+        C_p99: 45.3
+        detail: 0.93
+    fingerprint: 83afc7505c90b022
+manual_review:
+  note: 'Both takes recommend pass: a nest and perched stork pair on an impossibly
+    tall thin brick chimney, a tiny halfway window and a visible spiral of white storks.
+    The observed chimney/nest/bird profile is distinct from home at native60, with
+    cloud occlusion explicit; no final pick or production-score gate.'
+  takes:
+    '1':
+      pass: true
+      silhouette_name: extremely tall thin brick chimney carrying a broad stork nest
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 1
+      - 1
+      evidence: The place is the impossibly thin brick chimney, with a broad woven
+        nest and a perched stork pair on top; no home terrain plate is present. A
+        small halfway window provides inhabited scale and is not a home round door.
+        White storks visibly form a rising spiral through apricot spring clouds. The
+        native60 main profile includes the perched birds, preserving a nest-on-chimney
+        reading rather than a generic lollipop; distant flying birds stay in the source
+        crop, not the landform mask. Brick, straw and pale apricot establish its own
+        palette/time; circling is implied motion.
+      swatch_points:
+      - - 746
+        - 746
+      - - 818
+        - 408
+      - - 1223
+        - 463
+      contours:
+      - - - 544
+          - 389
+        - - 566
+          - 375
+        - - 581
+          - 349
+        - - 601
+          - 347
+        - - 610
+          - 332
+        - - 622
+          - 345
+        - - 651
+          - 350
+        - - 677
+          - 360
+        - - 715
+          - 364
+        - - 753
+          - 367
+        - - 792
+          - 365
+        - - 830
+          - 360
+        - - 853
+          - 344
+        - - 872
+          - 348
+        - - 894
+          - 348
+        - - 913
+          - 374
+        - - 933
+          - 393
+        - - 923
+          - 415
+        - - 900
+          - 438
+        - - 884
+          - 457
+        - - 856
+          - 469
+        - - 819
+          - 484
+        - - 798
+          - 487
+        - - 798
+          - 550
+        - - 799
+          - 650
+        - - 801
+          - 760
+        - - 804
+          - 863
+        - - 805
+          - 955
+        - - 791
+          - 969
+        - - 767
+          - 966
+        - - 744
+          - 970
+        - - 723
+          - 964
+        - - 696
+          - 962
+        - - 696
+          - 859
+        - - 698
+          - 758
+        - - 700
+          - 649
+        - - 701
+          - 554
+        - - 701
+          - 490
+        - - 677
+          - 483
+        - - 646
+          - 471
+        - - 623
+          - 459
+        - - 603
+          - 447
+        - - 580
+          - 435
+        - - 566
+          - 418
+      - - - 636
+          - 348
+        - - 653
+          - 319
+        - - 682
+          - 295
+        - - 708
+          - 289
+        - - 710
+          - 274
+        - - 720
+          - 256
+        - - 738
+          - 251
+        - - 753
+          - 257
+        - - 757
+          - 270
+        - - 774
+          - 280
+        - - 757
+          - 284
+        - - 750
+          - 282
+        - - 750
+          - 301
+        - - 741
+          - 319
+        - - 730
+          - 337
+        - - 713
+          - 349
+        - - 692
+          - 356
+        - - 686
+          - 373
+        - - 680
+          - 373
+        - - 681
+          - 356
+        - - 669
+          - 359
+        - - 668
+          - 374
+        - - 662
+          - 374
+        - - 664
+          - 355
+      - - - 746
+          - 342
+        - - 759
+          - 331
+        - - 762
+          - 317
+        - - 776
+          - 310
+        - - 789
+          - 311
+        - - 798
+          - 322
+        - - 794
+          - 333
+        - - 807
+          - 337
+        - - 824
+          - 349
+        - - 842
+          - 365
+        - - 829
+          - 375
+        - - 800
+          - 373
+        - - 778
+          - 367
+        - - 760
+          - 358
+      holes: []
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      uncertainty: The visible brick column disappears into cloud, so its bottom is
+        clipped at the observed cloud-contact edge; no full chimney length or footing
+        is invented. Nest strands/flowers and perched birds use coarse source-observed
+        silhouettes; thin individual toes/twigs are not extrapolated. Background flying
+        storks are excluded from the profile and retained in the source view.
+      source_file: /workspace/generated_images/exec-fc5a8605-e0cd-4b1b-ab2d-17a61d2c0244.png
+      original_generated_png_sha256: 670c1fd0d892734d55a81b6ca3c1ace8c1ad85aa5ce2b5dd7f2cb4d0d856f16b
+      rgba_sha256: 0c2c25c748b6a20b20984bfdb7091545eedf558ba281887eafd01bc88b08d053
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 544
+      - 251
+      - 934
+      - 971
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 32
+      - 60
+      sampled_swatches:
+      - point:
+        - 746
+        - 746
+        hex: '#F48E68'
+      - point:
+        - 818
+        - 408
+        hex: '#F7B477'
+      - point:
+        - 1223
+        - 463
+        hex: '#FDE5CC'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-leylek-b-t1-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-leylek-b-t1-QA-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 5d3f1abab02951bdd9f5eeb5551e170214d5b54310e5c2d184f5aacc6df65b68
+      silhouette_native_longest_px: 60
+    '2':
+      pass: true
+      silhouette_name: extremely tall thin brick chimney carrying a broad stork nest
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 1
+      - 1
+      evidence: The place is the impossibly thin brick chimney, with a broad woven
+        nest and a perched stork pair on top; no home terrain plate is present. A
+        small halfway window provides inhabited scale and is not a home round door.
+        White storks visibly form a rising spiral through apricot spring clouds. The
+        native60 main profile includes the perched birds, preserving a nest-on-chimney
+        reading rather than a generic lollipop; distant flying birds stay in the source
+        crop, not the landform mask. Brick, straw and pale apricot establish its own
+        palette/time; circling is implied motion.
+      swatch_points:
+      - - 756
+        - 742
+      - - 798
+        - 418
+      - - 1088
+        - 531
+      contours:
+      - - - 572
+          - 395
+        - - 599
+          - 381
+        - - 628
+          - 373
+        - - 659
+          - 367
+        - - 692
+          - 366
+        - - 731
+          - 375
+        - - 776
+          - 377
+        - - 815
+          - 375
+        - - 848
+          - 367
+        - - 879
+          - 375
+        - - 909
+          - 389
+        - - 929
+          - 408
+        - - 916
+          - 433
+        - - 893
+          - 457
+        - - 866
+          - 468
+        - - 830
+          - 477
+        - - 828
+          - 490
+        - - 812
+          - 501
+        - - 809
+          - 574
+        - - 808
+          - 672
+        - - 807
+          - 773
+        - - 805
+          - 876
+        - - 805
+          - 950
+        - - 789
+          - 972
+        - - 766
+          - 971
+        - - 745
+          - 966
+        - - 721
+          - 973
+        - - 711
+          - 958
+        - - 712
+          - 854
+        - - 711
+          - 751
+        - - 711
+          - 651
+        - - 710
+          - 559
+        - - 709
+          - 501
+        - - 692
+          - 497
+        - - 686
+          - 480
+        - - 658
+          - 475
+        - - 626
+          - 467
+        - - 604
+          - 451
+        - - 589
+          - 432
+      - - - 677
+          - 366
+        - - 689
+          - 347
+        - - 710
+          - 334
+        - - 715
+          - 314
+        - - 729
+          - 307
+        - - 741
+          - 313
+        - - 746
+          - 325
+        - - 738
+          - 336
+        - - 729
+          - 342
+        - - 718
+          - 355
+        - - 707
+          - 368
+        - - 704
+          - 387
+        - - 698
+          - 388
+        - - 698
+          - 372
+        - - 686
+          - 375
+      - - - 763
+          - 281
+        - - 777
+          - 276
+        - - 790
+          - 283
+        - - 794
+          - 297
+        - - 787
+          - 309
+        - - 787
+          - 327
+        - - 799
+          - 342
+        - - 821
+          - 354
+        - - 832
+          - 371
+        - - 816
+          - 380
+        - - 799
+          - 377
+        - - 790
+          - 366
+        - - 781
+          - 351
+        - - 774
+          - 333
+        - - 771
+          - 313
+        - - 767
+          - 299
+        - - 735
+          - 284
+      holes: []
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      uncertainty: The visible brick column disappears into cloud, so its bottom is
+        clipped at the observed cloud-contact edge; no full chimney length or footing
+        is invented. Nest strands/flowers and perched birds use coarse source-observed
+        silhouettes; thin individual toes/twigs are not extrapolated. Background flying
+        storks are excluded from the profile and retained in the source view.
+      source_file: /workspace/generated_images/exec-ef11a502-10e2-4c6f-bc48-e175e41e3869.png
+      original_generated_png_sha256: 662855ffe7196ebac524b98155cc013350c4454bb90c380712d45fb65f82e100
+      rgba_sha256: 18a8e6b039ab1ab8941deaa8b6498b3afd6246fd12986903993de634a0c47665
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 572
+      - 276
+      - 930
+      - 974
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 31
+      - 60
+      sampled_swatches:
+      - point:
+        - 756
+        - 742
+        hex: '#FDBC91'
+      - point:
+        - 798
+        - 418
+        hex: '#E89C62'
+      - point:
+        - 1088
+        - 531
+        hex: '#FEE6D7'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-leylek-b-t2-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-leylek-b-t2-QA-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 5f24a387ddf77d5a18b3244cf18d3444d463932658fa1e0efb4afb1430291009
+      silhouette_native_longest_px: 60
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-fc5a8605-e0cd-4b1b-ab2d-17a61d2c0244.png
+  original_generated_png_sha256: 670c1fd0d892734d55a81b6ca3c1ace8c1ad85aa5ce2b5dd7f2cb4d0d856f16b
+  inbox_png_sha256: 5d3f1abab02951bdd9f5eeb5551e170214d5b54310e5c2d184f5aacc6df65b68
+  rgba_sha256: 0c2c25c748b6a20b20984bfdb7091545eedf558ba281887eafd01bc88b08d053
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 83afc7505c90b022
+- take: 2
+  source_file: /workspace/generated_images/exec-ef11a502-10e2-4c6f-bc48-e175e41e3869.png
+  original_generated_png_sha256: 662855ffe7196ebac524b98155cc013350c4454bb90c380712d45fb65f82e100
+  inbox_png_sha256: 5f24a387ddf77d5a18b3244cf18d3444d463932658fa1e0efb4afb1430291009
+  rgba_sha256: 18a8e6b039ab1ab8941deaa8b6498b3afd6246fd12986903993de634a0c47665
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 83afc7505c90b022
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true

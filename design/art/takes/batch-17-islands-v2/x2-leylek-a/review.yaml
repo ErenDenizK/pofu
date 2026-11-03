@@ -1,0 +1,2477 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-leylek-a/contact.jpg
+jobs:
+  x2-leylek-a:
+    pick: 3
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Assessment revision, without
+      new generation or budget reset: root closeup adjudication distinguishes arch-rectangular
+      entries from the actual home oval leaf/separate circular porthole; wood/cross-pane
+      resemblance alone is shared style. Existing takes1 and3 now have complete source-observed
+      nest+storks+ribbon native60px proofs and pass. Take3 has the lowest QA lock
+      load of all four existing candidates (2.4904), so it is the eligible auto-pick.
+      The old blanket skip is historical and superseded; candidates2/4 remain higher-load
+      unselected diagnostics without a new geometry verdict. All four original takes
+      remain archived; the one allowed retry remains spent, no fifth call.'
+qa_reports:
+  1:
+    job: x2-leylek-a
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 50.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 63 (R1 59)
+      value: 62.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.6
+      value: 2.5946
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 10.6, off-palette 2.5% (top: #CC7744 (0.6%), #DD8844
+        (0.4%))'
+      value: 2.6021
+    info:
+      metrics_raw:
+        L_p5: 62.3
+        L_p50: 77.4
+        L_p95: 92.7
+        C_p50: 30.0
+        C_p95: 52.6
+        C_p99: 57.9
+        detail: 2.31
+      metrics_locked:
+        L_p5: 62.6
+        L_p50: 77.4
+        L_p95: 92.6
+        C_p50: 30.2
+        C_p95: 50.7
+        C_p99: 54.1
+        detail: 1.76
+    fingerprint: 569eaf4238142cf9
+  2:
+    job: x2-leylek-a
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 56 (R1 51)
+      value: 55.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 60 (R1 59)
+      value: 60.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.02
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.7
+      value: 2.7194
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 14.7, off-palette 9.2% (top: #DD8844 (2.0%), #DD7744
+        (1.1%)) (advisory in an exploration)'
+      value: 3.298
+    info:
+      metrics_raw:
+        L_p5: 60.0
+        L_p50: 78.1
+        L_p95: 91.7
+        C_p50: 32.9
+        C_p95: 57.2
+        C_p99: 61.2
+        detail: 2.69
+      metrics_locked:
+        L_p5: 60.4
+        L_p50: 78.1
+        L_p95: 91.6
+        C_p50: 33.0
+        C_p95: 55.5
+        C_p99: 58.4
+        detail: 2.02
+    fingerprint: 569eaf4238142cf9
+  3:
+    job: x2-leylek-a
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 52.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 65.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.01
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.5
+      value: 2.4904
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.5, p95 11.2, off-palette 4.2% (top: #DD8844 (1.0%), #CC7744
+        (0.7%))'
+      value: 2.4826
+    info:
+      metrics_raw:
+        L_p5: 64.7
+        L_p50: 80.3
+        L_p95: 91.9
+        C_p50: 28.9
+        C_p95: 54.2
+        C_p99: 58.6
+        detail: 2.6
+      metrics_locked:
+        L_p5: 65.0
+        L_p50: 80.2
+        L_p95: 91.7
+        C_p50: 28.9
+        C_p95: 52.7
+        C_p99: 56.5
+        detail: 2.01
+    fingerprint: 569eaf4238142cf9
+  4:
+    job: x2-leylek-a
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 63.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.15
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.8
+      value: 2.8029
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.1, p95 10.3, off-palette 2.1% (top: #CC7744 (0.5%), #DD8844
+        (0.4%))'
+      value: 2.098
+    info:
+      metrics_raw:
+        L_p5: 63.1
+        L_p50: 79.0
+        L_p95: 93.1
+        C_p50: 30.3
+        C_p95: 51.7
+        C_p99: 57.0
+        detail: 2.74
+      metrics_locked:
+        L_p5: 63.5
+        L_p50: 78.9
+        L_p95: 92.9
+        C_p50: 30.4
+        C_p95: 50.3
+        C_p99: 53.8
+        detail: 2.15
+    fingerprint: 569eaf4238142cf9
+manual_review:
+  note: 'Assessment revision, without new generation or budget reset: root closeup
+    adjudication distinguishes arch-rectangular entries from the actual home oval
+    leaf/separate circular porthole; wood/cross-pane resemblance alone is shared style.
+    Existing takes1 and3 now have complete source-observed nest+storks+ribbon native60px
+    proofs and pass. Take3 has the lowest QA lock load of all four existing candidates
+    (2.4904), so it is the eligible auto-pick. The old blanket skip is historical
+    and superseded; candidates2/4 remain higher-load unselected diagnostics without
+    a new geometry verdict. All four original takes remain archived; the one allowed
+    retry remains spent, no fifth call.'
+  takes:
+    '1':
+      pass: true
+      silhouette_name: 'whole flight assembly: giant woven cottage-nest carried by
+        a flock of storks on coral ribbons'
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 2
+      - 1
+      evidence: 'Re-review is limited to existing take1 and the complete depicted
+        physical assembly, not the nest body alone. The native60 unmodified source
+        crop and source-observed black profile retain the suspended nest, six flying
+        bird forms, and the thin actual ribbon supports with open sky between them.
+        This is nameable as a flying nest/bird-carried home and is distinct from a
+        lawn/soil island. The nest floats above a visible gap to the clouds. Chimney,
+        lantern and small entry provide inhabited scale; straw/white/black/coral at
+        warm windy dusk supply its own palette and sky. Door geometry is arch-topped
+        rectangular: straight lower wood-leaf sides and a flat lower edge/sill, with
+        arched rectangular four-pane glazing. It is not the home reference fully oval
+        wood leaf with a separate round/oval porthole. Wood, warm light and cross
+        panes alone are shared family style, not the banned shape.'
+      swatch_points:
+      - - 543
+        - 717
+      - - 987
+        - 191
+      - - 1147
+        - 494
+      contours:
+      - - - 85
+          - 567
+        - - 116
+          - 544
+        - - 128
+          - 525
+        - - 108
+          - 510
+        - - 87
+          - 512
+        - - 54
+          - 521
+        - - 65
+          - 499
+        - - 91
+          - 484
+        - - 132
+          - 483
+        - - 114
+          - 460
+        - - 90
+          - 449
+        - - 104
+          - 436
+        - - 141
+          - 444
+        - - 181
+          - 460
+        - - 211
+          - 472
+        - - 230
+          - 492
+        - - 252
+          - 472
+        - - 256
+          - 457
+        - - 238
+          - 445
+        - - 248
+          - 444
+        - - 273
+          - 469
+        - - 281
+          - 450
+        - - 279
+          - 432
+        - - 295
+          - 423
+        - - 341
+          - 422
+        - - 365
+          - 425
+        - - 371
+          - 438
+        - - 365
+          - 459
+        - - 369
+          - 494
+        - - 400
+          - 477
+        - - 411
+          - 449
+        - - 428
+          - 412
+        - - 404
+          - 426
+        - - 388
+          - 449
+        - - 381
+          - 470
+        - - 460
+          - 466
+        - - 547
+          - 469
+        - - 642
+          - 480
+        - - 708
+          - 490
+        - - 727
+          - 464
+        - - 750
+          - 444
+        - - 802
+          - 417
+        - - 839
+          - 414
+        - - 845
+          - 422
+        - - 801
+          - 432
+        - - 775
+          - 454
+        - - 767
+          - 476
+        - - 750
+          - 506
+        - - 777
+          - 518
+        - - 795
+          - 493
+        - - 806
+          - 481
+        - - 839
+          - 481
+        - - 840
+          - 494
+        - - 824
+          - 514
+        - - 828
+          - 528
+        - - 875
+          - 537
+        - - 854
+          - 552
+        - - 836
+          - 562
+        - - 832
+          - 585
+        - - 842
+          - 626
+        - - 838
+          - 671
+        - - 817
+          - 708
+        - - 784
+          - 741
+        - - 743
+          - 760
+        - - 690
+          - 774
+        - - 632
+          - 788
+        - - 569
+          - 791
+        - - 510
+          - 783
+        - - 453
+          - 784
+        - - 397
+          - 778
+        - - 338
+          - 771
+        - - 287
+          - 756
+        - - 246
+          - 742
+        - - 216
+          - 720
+        - - 189
+          - 690
+        - - 173
+          - 661
+        - - 164
+          - 636
+        - - 174
+          - 603
+        - - 148
+          - 597
+        - - 124
+          - 617
+        - - 109
+          - 622
+        - - 111
+          - 605
+        - - 121
+          - 587
+      - - - 264
+          - 205
+        - - 273
+          - 205
+        - - 287
+          - 217
+        - - 302
+          - 229
+        - - 318
+          - 240
+        - - 326
+          - 258
+        - - 340
+          - 271
+        - - 361
+          - 269
+        - - 367
+          - 260
+        - - 379
+          - 260
+        - - 390
+          - 264
+        - - 394
+          - 271
+        - - 423
+          - 279
+        - - 394
+          - 281
+        - - 386
+          - 287
+        - - 373
+          - 296
+        - - 350
+          - 305
+        - - 322
+          - 306
+        - - 308
+          - 308
+        - - 289
+          - 315
+        - - 264
+          - 320
+        - - 260
+          - 315
+        - - 286
+          - 306
+        - - 305
+          - 300
+        - - 289
+          - 297
+        - - 275
+          - 292
+        - - 266
+          - 287
+        - - 267
+          - 282
+        - - 282
+          - 284
+        - - 277
+          - 276
+        - - 274
+          - 266
+        - - 268
+          - 258
+        - - 265
+          - 249
+        - - 263
+          - 240
+        - - 264
+          - 233
+        - - 262
+          - 226
+        - - 264
+          - 217
+      - - - 487
+          - 190
+        - - 498
+          - 189
+        - - 513
+          - 201
+        - - 529
+          - 215
+        - - 546
+          - 229
+        - - 553
+          - 246
+        - - 569
+          - 259
+        - - 588
+          - 260
+        - - 601
+          - 250
+        - - 611
+          - 248
+        - - 622
+          - 251
+        - - 625
+          - 257
+        - - 655
+          - 264
+        - - 627
+          - 268
+        - - 617
+          - 279
+        - - 599
+          - 288
+        - - 576
+          - 295
+        - - 548
+          - 296
+        - - 523
+          - 303
+        - - 492
+          - 310
+        - - 483
+          - 306
+        - - 507
+          - 297
+        - - 530
+          - 290
+        - - 513
+          - 285
+        - - 498
+          - 280
+        - - 492
+          - 274
+        - - 510
+          - 277
+        - - 502
+          - 269
+        - - 496
+          - 258
+        - - 491
+          - 252
+        - - 485
+          - 244
+        - - 487
+          - 235
+        - - 484
+          - 227
+        - - 488
+          - 218
+        - - 484
+          - 208
+        - - 489
+          - 201
+      - - - 680
+          - 192
+        - - 691
+          - 193
+        - - 709
+          - 204
+        - - 725
+          - 217
+        - - 744
+          - 231
+        - - 755
+          - 248
+        - - 768
+          - 263
+        - - 789
+          - 274
+        - - 812
+          - 270
+        - - 823
+          - 260
+        - - 837
+          - 259
+        - - 848
+          - 266
+        - - 851
+          - 272
+        - - 877
+          - 278
+        - - 851
+          - 282
+        - - 840
+          - 294
+        - - 821
+          - 305
+        - - 795
+          - 312
+        - - 765
+          - 312
+        - - 744
+          - 317
+        - - 714
+          - 325
+        - - 701
+          - 324
+        - - 725
+          - 315
+        - - 750
+          - 306
+        - - 731
+          - 302
+        - - 715
+          - 297
+        - - 708
+          - 291
+        - - 724
+          - 292
+        - - 714
+          - 282
+        - - 704
+          - 272
+        - - 700
+          - 261
+        - - 693
+          - 253
+        - - 687
+          - 243
+        - - 683
+          - 234
+        - - 684
+          - 225
+        - - 680
+          - 217
+        - - 683
+          - 206
+      - - - 914
+          - 134
+        - - 925
+          - 137
+        - - 947
+          - 151
+        - - 966
+          - 168
+        - - 986
+          - 186
+        - - 998
+          - 208
+        - - 1012
+          - 228
+        - - 1034
+          - 242
+        - - 1053
+          - 241
+        - - 1063
+          - 226
+        - - 1077
+          - 225
+        - - 1089
+          - 230
+        - - 1094
+          - 239
+        - - 1129
+          - 246
+        - - 1094
+          - 250
+        - - 1082
+          - 262
+        - - 1062
+          - 273
+        - - 1034
+          - 281
+        - - 1005
+          - 282
+        - - 978
+          - 287
+        - - 947
+          - 297
+        - - 916
+          - 298
+        - - 902
+          - 294
+        - - 929
+          - 284
+        - - 957
+          - 273
+        - - 938
+          - 266
+        - - 920
+          - 264
+        - - 913
+          - 259
+        - - 937
+          - 260
+        - - 927
+          - 248
+        - - 921
+          - 236
+        - - 915
+          - 228
+        - - 910
+          - 215
+        - - 908
+          - 205
+        - - 915
+          - 206
+        - - 910
+          - 193
+        - - 905
+          - 183
+        - - 909
+          - 174
+        - - 909
+          - 163
+        - - 915
+          - 161
+        - - 912
+          - 146
+      - - - 1228
+          - 41
+        - - 1240
+          - 42
+        - - 1265
+          - 57
+        - - 1286
+          - 76
+        - - 1305
+          - 99
+        - - 1326
+          - 122
+        - - 1340
+          - 149
+        - - 1351
+          - 168
+        - - 1374
+          - 182
+        - - 1394
+          - 180
+        - - 1405
+          - 163
+        - - 1418
+          - 157
+        - - 1431
+          - 162
+        - - 1442
+          - 171
+        - - 1444
+          - 177
+        - - 1501
+          - 186
+        - - 1444
+          - 190
+        - - 1430
+          - 201
+        - - 1407
+          - 215
+        - - 1378
+          - 226
+        - - 1344
+          - 232
+        - - 1314
+          - 234
+        - - 1292
+          - 238
+        - - 1252
+          - 247
+        - - 1212
+          - 244
+        - - 1192
+          - 238
+        - - 1223
+          - 230
+        - - 1245
+          - 218
+        - - 1277
+          - 208
+        - - 1248
+          - 204
+        - - 1224
+          - 202
+        - - 1219
+          - 197
+        - - 1242
+          - 194
+        - - 1261
+          - 190
+        - - 1240
+          - 178
+        - - 1227
+          - 163
+        - - 1217
+          - 154
+        - - 1216
+          - 148
+        - - 1238
+          - 153
+        - - 1223
+          - 139
+        - - 1216
+          - 126
+        - - 1211
+          - 116
+        - - 1217
+          - 109
+        - - 1230
+          - 116
+        - - 1217
+          - 98
+        - - 1210
+          - 86
+        - - 1215
+          - 74
+        - - 1226
+          - 70
+        - - 1235
+          - 73
+        - - 1230
+          - 57
+      - - - 1124
+          - 247
+        - - 1138
+          - 251
+        - - 1161
+          - 267
+        - - 1187
+          - 285
+        - - 1205
+          - 305
+        - - 1216
+          - 328
+        - - 1233
+          - 349
+        - - 1256
+          - 363
+        - - 1280
+          - 356
+        - - 1291
+          - 337
+        - - 1306
+          - 328
+        - - 1321
+          - 329
+        - - 1334
+          - 336
+        - - 1338
+          - 345
+        - - 1382
+          - 356
+        - - 1339
+          - 359
+        - - 1328
+          - 373
+        - - 1309
+          - 383
+        - - 1282
+          - 392
+        - - 1253
+          - 396
+        - - 1222
+          - 395
+        - - 1195
+          - 401
+        - - 1165
+          - 410
+        - - 1128
+          - 416
+        - - 1105
+          - 410
+        - - 1092
+          - 403
+        - - 1117
+          - 397
+        - - 1143
+          - 385
+        - - 1179
+          - 373
+        - - 1155
+          - 371
+        - - 1135
+          - 371
+        - - 1126
+          - 365
+        - - 1152
+          - 361
+        - - 1167
+          - 356
+        - - 1152
+          - 345
+        - - 1146
+          - 331
+        - - 1137
+          - 323
+        - - 1135
+          - 314
+        - - 1147
+          - 317
+        - - 1134
+          - 303
+        - - 1127
+          - 292
+        - - 1124
+          - 284
+        - - 1133
+          - 284
+        - - 1124
+          - 272
+        - - 1120
+          - 260
+      - - - 401
+          - 282
+        - - 414
+          - 281
+        - - 405
+          - 319
+        - - 387
+          - 357
+        - - 367
+          - 389
+        - - 344
+          - 416
+        - - 337
+          - 405
+        - - 356
+          - 379
+        - - 375
+          - 347
+        - - 389
+          - 313
+      - - - 638
+          - 266
+        - - 650
+          - 265
+        - - 635
+          - 304
+        - - 614
+          - 337
+        - - 580
+          - 369
+        - - 538
+          - 393
+        - - 489
+          - 415
+        - - 441
+          - 438
+        - - 401
+          - 462
+        - - 381
+          - 477
+        - - 375
+          - 466
+        - - 398
+          - 449
+        - - 438
+          - 426
+        - - 485
+          - 403
+        - - 532
+          - 382
+        - - 571
+          - 358
+        - - 601
+          - 329
+        - - 623
+          - 296
+      - - - 856
+          - 279
+        - - 870
+          - 279
+        - - 853
+          - 316
+        - - 831
+          - 347
+        - - 801
+          - 377
+        - - 762
+          - 406
+        - - 714
+          - 432
+        - - 666
+          - 456
+        - - 620
+          - 479
+        - - 600
+          - 476
+        - - 617
+          - 463
+        - - 659
+          - 442
+        - - 704
+          - 419
+        - - 750
+          - 393
+        - - 786
+          - 365
+        - - 815
+          - 336
+        - - 839
+          - 304
+      - - - 1110
+          - 249
+        - - 1128
+          - 248
+        - - 1108
+          - 286
+        - - 1078
+          - 326
+        - - 1041
+          - 366
+        - - 995
+          - 402
+        - - 944
+          - 434
+        - - 891
+          - 462
+        - - 837
+          - 489
+        - - 782
+          - 513
+        - - 754
+          - 518
+        - - 747
+          - 503
+        - - 774
+          - 496
+        - - 826
+          - 474
+        - - 880
+          - 448
+        - - 932
+          - 420
+        - - 984
+          - 389
+        - - 1030
+          - 353
+        - - 1067
+          - 314
+        - - 1094
+          - 278
+      - - - 1471
+          - 187
+        - - 1490
+          - 187
+        - - 1472
+          - 231
+        - - 1445
+          - 277
+        - - 1412
+          - 320
+        - - 1376
+          - 350
+        - - 1366
+          - 345
+        - - 1398
+          - 309
+        - - 1431
+          - 268
+        - - 1454
+          - 225
+      - - - 1341
+          - 359
+        - - 1366
+          - 358
+        - - 1327
+          - 395
+        - - 1276
+          - 433
+        - - 1211
+          - 466
+        - - 1138
+          - 496
+        - - 1057
+          - 523
+        - - 969
+          - 549
+        - - 881
+          - 572
+        - - 814
+          - 591
+        - - 800
+          - 585
+        - - 800
+          - 570
+        - - 870
+          - 551
+        - - 959
+          - 527
+        - - 1048
+          - 501
+        - - 1128
+          - 474
+        - - 1201
+          - 445
+        - - 1264
+          - 414
+        - - 1310
+          - 382
+      holes: []
+      component_labels:
+      - visible woven nest/cottage/chimney/reed envelope
+      - visible flying stork 1
+      - visible flying stork 2
+      - visible flying stork 3
+      - visible flying stork 4
+      - visible flying stork 5
+      - visible flying stork 6
+      - visible ribbon support segment 1
+      - visible ribbon support segment 2
+      - visible ribbon support segment 3
+      - visible ribbon support segment 4
+      - visible ribbon support segment 5
+      - visible ribbon support segment 6
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      door_geometry:
+        wood_leaf: arched rectangular, straight lower jambs and flat bottom
+        glazing: arched rectangular upper glazing with four panes, not a separate
+          round porthole
+        observed_left_lower_jamb:
+        - - 438
+          - 625
+        - - 438
+          - 698
+        observed_right_lower_jamb:
+        - - 548
+          - 622
+        - - 548
+          - 701
+        observed_leaf_bottom:
+        - - 438
+          - 701
+        - - 548
+          - 701
+        coordinate_precision: Approximate source-visible observations, not fitted
+          production vectors.
+      uncertainty: Every polygon traces an observed part; sky gaps between birds/ribbons
+        are left empty, not filled by a convex hull. Coarse feather/twig extremities
+        are approximate. The first rear ribbon disappears behind the chimney and is
+        not extended through hidden space. Upper-right support pieces meet at the
+        lower-right bird beak; no hidden path through that bird is asserted. Smoke
+        and background clouds are excluded from the solid profile. No invisible nest
+        underside/footing is reconstructed. At native60 some real thin ribbons are
+        antialiased subpixel; they are not artificially thickened.
+      review_scope: Existing x2-leylek-a take1 only. No fifth image, no generation,
+        no post, no final pick. Other takes2-4 remain sole owner decision.
+      reassessment_reason: Root clarified the actual banned home oval leaf/round porthole
+        geometry and the whole-flight-assembly silhouette test; this reassesses existing
+        evidence without waiving a hard check or resetting the four-take budget.
+      source_file: /workspace/generated_images/exec-f1dc8f5a-6205-43d5-8e3b-e0877ef0b947.png
+      original_generated_png_sha256: a677e181f70b3cffd116a196111d65be2ae74ec10d9509e866ddfbc4908338a7
+      rgba_sha256: b38e615bfd4a4ec410a9779f3d67bc9b648f22b38334ba67c5d219ef5c2e76a2
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 54
+      - 41
+      - 1502
+      - 792
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 60
+      - 31
+      sampled_swatches:
+      - point:
+        - 543
+        - 717
+        hex: '#E4986B'
+      - point:
+        - 987
+        - 191
+        hex: '#F8CBAA'
+      - point:
+        - 1147
+        - 494
+        hex: '#F47C61'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-leylek-a-t1-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-leylek-a-t1-QA-profile60.png
+      profile_label: Observed full nest +6storks +visible ribbon supports; sky gaps
+        retained
+      annotation_source_inbox_sha256: 359eec57798a730e31e740444cdb0623567860f0584a6d9ee31d6752b8a9e2ec
+      silhouette_native_longest_px: 60
+    '2':
+      pass: false
+      silhouette_name: Higher-load unselected candidate; old nest-body diagnostic
+        only
+      rubric:
+      - 2
+      - 2
+      - 2
+      - 1
+      - 1
+      evidence: 'Not selected after the bounded root recheck. The prior categorical
+        oval-door claim is withdrawn: wood and cross-panes alone do not prove the
+        banned motif. No full-flight-assembly acceptance proof is claimed for this
+        higher-load candidate.'
+      swatch_points:
+      - - 1400
+        - 100
+      - - 450
+        - 550
+      - - 1100
+        - 500
+      contours:
+      - - - 350
+          - 610
+        - - 400
+          - 560
+        - - 500
+          - 530
+        - - 670
+          - 515
+        - - 830
+          - 502
+        - - 1000
+          - 503
+        - - 1180
+          - 523
+        - - 1320
+          - 560
+        - - 1360
+          - 610
+        - - 1360
+          - 675
+        - - 1300
+          - 740
+        - - 1200
+          - 808
+        - - 1050
+          - 850
+        - - 890
+          - 870
+        - - 730
+          - 850
+        - - 550
+          - 800
+        - - 430
+          - 730
+        - - 365
+          - 660
+      uncertainty: The diagram traces only the visible nest body, not the full assembly.
+        Eligibility is not newly asserted and no unsupported oval-door geometry claim
+        is made.
+      sampled_swatches:
+      - point:
+        - 1400
+        - 100
+        hex: '#F0A5A0'
+      - point:
+        - 450
+        - 550
+        hex: '#FED49D'
+      - point:
+        - 1100
+        - 500
+        hex: '#FAB68B'
+      annotation_source_inbox_sha256: afca3711b24ea805dc30daee4df6f99c056c15330a5e06833d2095aa6ffb933c
+      observed_bbox:
+      - 350
+      - 502
+      - 1361
+      - 871
+      silhouette_native_longest_px: 60
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+    '3':
+      pass: true
+      silhouette_name: 'full flight assembly: woven cottage-nest carried by six storks
+        and visible coral ribbon spans'
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 2
+      - 1
+      profile_label: Observed full nest +6storks +visible ribbon pieces; no hidden
+        paths or sky hull
+      evidence: Existing take3 is manually eligible under the clarified checks. The
+        complete physical subject is a suspended woven nest/cottage, six storks at
+        differing depths and real visible coral ribbon spans, not only a basket-body
+        oval. At native60 the foreground stork has a legible beak/body/raised wing,
+        the remaining birds retain wing/head profiles, and the nest is visibly carried
+        across open sky. The nest underside stays above the cloud sea. Chimney and
+        lantern/entry establish cottage scale. No lawn, sandy soil, roots or pebbles
+        appear. The visible door has an arched crown, straight lower jamb portions
+        and arched rectangular four-pane glazing with a flat glazing sill; no separate
+        round/oval porthole is depicted. Wood and cross panes alone do not instantiate
+        the banned home geometry.
+      swatch_points:
+      - - 521
+        - 654
+      - - 1209
+        - 574
+      - - 1161
+        - 651
+      contours:
+      - - - 54
+          - 372
+        - - 90
+          - 349
+        - - 132
+          - 345
+        - - 181
+          - 361
+        - - 216
+          - 374
+        - - 191
+          - 347
+        - - 148
+          - 321
+        - - 126
+          - 310
+        - - 158
+          - 287
+        - - 190
+          - 287
+        - - 224
+          - 299
+        - - 252
+          - 327
+        - - 271
+          - 351
+        - - 265
+          - 320
+        - - 234
+          - 294
+        - - 263
+          - 302
+        - - 290
+          - 328
+        - - 304
+          - 350
+        - - 305
+          - 318
+        - - 288
+          - 287
+        - - 254
+          - 268
+        - - 233
+          - 245
+        - - 251
+          - 243
+        - - 282
+          - 250
+        - - 310
+          - 271
+        - - 332
+          - 302
+        - - 349
+          - 341
+        - - 351
+          - 312
+        - - 336
+          - 278
+        - - 359
+          - 301
+        - - 368
+          - 334
+        - - 425
+          - 338
+        - - 427
+          - 311
+        - - 423
+          - 299
+        - - 435
+          - 289
+        - - 457
+          - 286
+        - - 497
+          - 287
+        - - 516
+          - 294
+        - - 521
+          - 305
+        - - 518
+          - 371
+        - - 557
+          - 351
+        - - 585
+          - 341
+        - - 614
+          - 340
+        - - 643
+          - 348
+        - - 674
+          - 360
+        - - 706
+          - 372
+        - - 733
+          - 384
+        - - 754
+          - 400
+        - - 769
+          - 426
+        - - 775
+          - 460
+        - - 786
+          - 482
+        - - 782
+          - 504
+        - - 771
+          - 523
+        - - 774
+          - 554
+        - - 758
+          - 582
+        - - 738
+          - 607
+        - - 707
+          - 643
+        - - 672
+          - 668
+        - - 625
+          - 688
+        - - 574
+          - 703
+        - - 521
+          - 709
+        - - 470
+          - 710
+        - - 421
+          - 705
+        - - 369
+          - 699
+        - - 320
+          - 688
+        - - 277
+          - 679
+        - - 239
+          - 661
+        - - 210
+          - 638
+        - - 184
+          - 610
+        - - 160
+          - 579
+        - - 146
+          - 546
+        - - 138
+          - 511
+        - - 143
+          - 476
+        - - 153
+          - 446
+        - - 170
+          - 423
+        - - 144
+          - 409
+        - - 112
+          - 400
+        - - 76
+          - 400
+        - - 99
+          - 389
+        - - 133
+          - 387
+        - - 166
+          - 401
+        - - 152
+          - 381
+        - - 126
+          - 366
+        - - 100
+          - 361
+        - - 77
+          - 368
+      - - - 947
+          - 74
+        - - 961
+          - 79
+        - - 979
+          - 90
+        - - 988
+          - 102
+        - - 999
+          - 112
+        - - 1018
+          - 115
+        - - 1025
+          - 105
+        - - 1037
+          - 104
+        - - 1043
+          - 111
+        - - 1061
+          - 119
+        - - 1044
+          - 121
+        - - 1032
+          - 130
+        - - 1015
+          - 136
+        - - 994
+          - 137
+        - - 976
+          - 143
+        - - 966
+          - 139
+        - - 982
+          - 133
+        - - 990
+          - 128
+        - - 971
+          - 124
+        - - 961
+          - 120
+        - - 968
+          - 116
+        - - 957
+          - 108
+        - - 950
+          - 99
+        - - 956
+          - 101
+        - - 947
+          - 89
+        - - 951
+          - 89
+        - - 945
+          - 81
+      - - - 841
+          - 99
+        - - 856
+          - 103
+        - - 877
+          - 118
+        - - 895
+          - 134
+        - - 906
+          - 152
+        - - 924
+          - 164
+        - - 943
+          - 166
+        - - 953
+          - 154
+        - - 967
+          - 150
+        - - 977
+          - 156
+        - - 981
+          - 163
+        - - 1000
+          - 174
+        - - 981
+          - 174
+        - - 967
+          - 185
+        - - 948
+          - 194
+        - - 925
+          - 195
+        - - 904
+          - 198
+        - - 879
+          - 206
+        - - 853
+          - 207
+        - - 853
+          - 202
+        - - 878
+          - 192
+        - - 896
+          - 186
+        - - 878
+          - 183
+        - - 868
+          - 179
+        - - 880
+          - 176
+        - - 867
+          - 166
+        - - 860
+          - 157
+        - - 850
+          - 148
+        - - 846
+          - 140
+        - - 853
+          - 140
+        - - 844
+          - 130
+        - - 841
+          - 121
+        - - 846
+          - 120
+        - - 839
+          - 110
+      - - - 1061
+          - 138
+        - - 1072
+          - 141
+        - - 1087
+          - 151
+        - - 1103
+          - 165
+        - - 1111
+          - 180
+        - - 1125
+          - 188
+        - - 1144
+          - 188
+        - - 1154
+          - 177
+        - - 1167
+          - 175
+        - - 1177
+          - 181
+        - - 1178
+          - 186
+        - - 1203
+          - 194
+        - - 1178
+          - 198
+        - - 1167
+          - 207
+        - - 1150
+          - 214
+        - - 1126
+          - 215
+        - - 1108
+          - 217
+        - - 1089
+          - 224
+        - - 1071
+          - 220
+        - - 1088
+          - 213
+        - - 1105
+          - 205
+        - - 1085
+          - 202
+        - - 1075
+          - 198
+        - - 1086
+          - 194
+        - - 1073
+          - 185
+        - - 1067
+          - 175
+        - - 1061
+          - 166
+        - - 1069
+          - 168
+        - - 1061
+          - 157
+        - - 1057
+          - 147
+      - - - 1200
+          - 214
+        - - 1217
+          - 218
+        - - 1237
+          - 233
+        - - 1256
+          - 249
+        - - 1268
+          - 266
+        - - 1282
+          - 278
+        - - 1305
+          - 279
+        - - 1318
+          - 266
+        - - 1330
+          - 255
+        - - 1345
+          - 255
+        - - 1354
+          - 263
+        - - 1358
+          - 268
+        - - 1383
+          - 277
+        - - 1359
+          - 280
+        - - 1342
+          - 290
+        - - 1319
+          - 299
+        - - 1293
+          - 302
+        - - 1267
+          - 304
+        - - 1244
+          - 310
+        - - 1226
+          - 307
+        - - 1249
+          - 298
+        - - 1265
+          - 290
+        - - 1245
+          - 286
+        - - 1234
+          - 281
+        - - 1245
+          - 280
+        - - 1230
+          - 271
+        - - 1220
+          - 261
+        - - 1213
+          - 251
+        - - 1220
+          - 251
+        - - 1207
+          - 240
+        - - 1201
+          - 230
+        - - 1207
+          - 230
+        - - 1197
+          - 219
+      - - - 1008
+          - 224
+        - - 1026
+          - 231
+        - - 1050
+          - 247
+        - - 1074
+          - 267
+        - - 1091
+          - 288
+        - - 1105
+          - 312
+        - - 1122
+          - 327
+        - - 1145
+          - 336
+        - - 1169
+          - 330
+        - - 1182
+          - 314
+        - - 1196
+          - 304
+        - - 1208
+          - 304
+        - - 1220
+          - 313
+        - - 1224
+          - 322
+        - - 1264
+          - 335
+        - - 1228
+          - 337
+        - - 1213
+          - 352
+        - - 1195
+          - 363
+        - - 1170
+          - 372
+        - - 1140
+          - 377
+        - - 1111
+          - 377
+        - - 1083
+          - 383
+        - - 1058
+          - 393
+        - - 1026
+          - 393
+        - - 1014
+          - 389
+        - - 1041
+          - 378
+        - - 1066
+          - 369
+        - - 1083
+          - 359
+        - - 1060
+          - 356
+        - - 1045
+          - 353
+        - - 1040
+          - 348
+        - - 1059
+          - 345
+        - - 1044
+          - 334
+        - - 1033
+          - 321
+        - - 1024
+          - 311
+        - - 1020
+          - 303
+        - - 1032
+          - 306
+        - - 1020
+          - 291
+        - - 1012
+          - 279
+        - - 1009
+          - 268
+        - - 1018
+          - 271
+        - - 1008
+          - 255
+        - - 1002
+          - 241
+        - - 1008
+          - 240
+      - - - 946
+          - 386
+        - - 963
+          - 390
+        - - 994
+          - 402
+        - - 1027
+          - 419
+        - - 1058
+          - 438
+        - - 1080
+          - 462
+        - - 1098
+          - 486
+        - - 1124
+          - 509
+        - - 1161
+          - 524
+        - - 1194
+          - 526
+        - - 1230
+          - 512
+        - - 1256
+          - 493
+        - - 1275
+          - 491
+        - - 1293
+          - 497
+        - - 1309
+          - 511
+        - - 1315
+          - 521
+        - - 1400
+          - 549
+        - - 1320
+          - 547
+        - - 1303
+          - 562
+        - - 1278
+          - 581
+        - - 1241
+          - 600
+        - - 1195
+          - 618
+        - - 1153
+          - 626
+        - - 1110
+          - 627
+        - - 1082
+          - 628
+        - - 1049
+          - 643
+        - - 1011
+          - 656
+        - - 977
+          - 655
+        - - 968
+          - 649
+        - - 991
+          - 640
+        - - 1018
+          - 629
+        - - 1044
+          - 615
+        - - 1011
+          - 612
+        - - 991
+          - 605
+        - - 987
+          - 598
+        - - 1010
+          - 594
+        - - 1042
+          - 587
+        - - 1020
+          - 577
+        - - 1003
+          - 562
+        - - 981
+          - 552
+        - - 958
+          - 541
+        - - 944
+          - 527
+        - - 933
+          - 513
+        - - 930
+          - 506
+        - - 953
+          - 512
+        - - 940
+          - 499
+        - - 926
+          - 485
+        - - 917
+          - 472
+        - - 915
+          - 462
+        - - 931
+          - 464
+        - - 918
+          - 452
+        - - 909
+          - 440
+        - - 912
+          - 429
+        - - 932
+          - 434
+        - - 921
+          - 421
+        - - 914
+          - 409
+        - - 921
+          - 401
+        - - 942
+          - 409
+        - - 936
+          - 399
+        - - 937
+          - 390
+      - - - 628
+          - 340
+        - - 667
+          - 325
+        - - 721
+          - 317
+        - - 783
+          - 300
+        - - 838
+          - 277
+        - - 884
+          - 246
+        - - 924
+          - 207
+        - - 954
+          - 178
+        - - 973
+          - 169
+        - - 981
+          - 175
+        - - 960
+          - 203
+        - - 930
+          - 239
+        - - 892
+          - 272
+        - - 849
+          - 299
+        - - 800
+          - 320
+        - - 747
+          - 332
+        - - 696
+          - 334
+        - - 656
+          - 336
+      - - - 979
+          - 169
+        - - 998
+          - 157
+        - - 1020
+          - 141
+        - - 1038
+          - 117
+        - - 1047
+          - 119
+        - - 1031
+          - 140
+        - - 1007
+          - 157
+        - - 986
+          - 174
+      - - - 981
+          - 175
+        - - 1002
+          - 191
+        - - 1037
+          - 201
+        - - 1074
+          - 204
+        - - 1111
+          - 201
+        - - 1143
+          - 193
+        - - 1171
+          - 188
+        - - 1183
+          - 192
+        - - 1151
+          - 204
+        - - 1118
+          - 212
+        - - 1080
+          - 213
+        - - 1041
+          - 209
+        - - 1014
+          - 200
+        - - 991
+          - 188
+      - - - 736
+          - 407
+        - - 765
+          - 384
+        - - 803
+          - 366
+        - - 850
+          - 353
+        - - 900
+          - 342
+        - - 946
+          - 329
+        - - 984
+          - 310
+        - - 1009
+          - 293
+        - - 1026
+          - 285
+        - - 1036
+          - 298
+        - - 1008
+          - 321
+        - - 973
+          - 340
+        - - 929
+          - 356
+        - - 881
+          - 367
+        - - 833
+          - 377
+        - - 793
+          - 390
+        - - 756
+          - 407
+      - - - 1090
+          - 257
+        - - 1117
+          - 237
+        - - 1144
+          - 216
+        - - 1176
+          - 193
+        - - 1185
+          - 193
+        - - 1163
+          - 216
+        - - 1138
+          - 238
+        - - 1108
+          - 260
+      - - - 767
+          - 504
+        - - 793
+          - 484
+        - - 828
+          - 474
+        - - 865
+          - 469
+        - - 904
+          - 469
+        - - 939
+          - 473
+        - - 945
+          - 485
+        - - 913
+          - 489
+        - - 875
+          - 490
+        - - 838
+          - 492
+        - - 804
+          - 500
+        - - 778
+          - 512
+      - - - 1097
+          - 431
+        - - 1137
+          - 405
+        - - 1176
+          - 375
+        - - 1210
+          - 348
+        - - 1231
+          - 331
+        - - 1240
+          - 337
+        - - 1223
+          - 367
+        - - 1195
+          - 397
+        - - 1161
+          - 422
+        - - 1124
+          - 442
+      - - - 1236
+          - 339
+        - - 1261
+          - 344
+        - - 1291
+          - 337
+        - - 1315
+          - 321
+        - - 1336
+          - 296
+        - - 1353
+          - 278
+        - - 1365
+          - 278
+        - - 1353
+          - 308
+        - - 1334
+          - 330
+        - - 1306
+          - 343
+        - - 1278
+          - 346
+        - - 1254
+          - 345
+      - - - 751
+          - 579
+        - - 790
+          - 582
+        - - 831
+          - 579
+        - - 874
+          - 573
+        - - 921
+          - 561
+        - - 970
+          - 544
+        - - 1010
+          - 524
+        - - 1044
+          - 508
+        - - 1055
+          - 518
+        - - 1020
+          - 542
+        - - 981
+          - 562
+        - - 936
+          - 579
+        - - 889
+          - 589
+        - - 840
+          - 592
+        - - 794
+          - 587
+        - - 757
+          - 586
+      - - - 748
+          - 586
+        - - 775
+          - 596
+        - - 817
+          - 615
+        - - 862
+          - 633
+        - - 911
+          - 652
+        - - 963
+          - 671
+        - - 1018
+          - 684
+        - - 1073
+          - 684
+        - - 1125
+          - 672
+        - - 1174
+          - 654
+        - - 1223
+          - 631
+        - - 1268
+          - 611
+        - - 1307
+          - 582
+        - - 1333
+          - 553
+        - - 1343
+          - 543
+        - - 1358
+          - 547
+        - - 1346
+          - 581
+        - - 1329
+          - 614
+        - - 1293
+          - 648
+        - - 1258
+          - 673
+        - - 1219
+          - 687
+        - - 1164
+          - 700
+        - - 1104
+          - 705
+        - - 1045
+          - 703
+        - - 987
+          - 693
+        - - 930
+          - 676
+        - - 874
+          - 655
+        - - 824
+          - 634
+        - - 781
+          - 608
+      - - - 1344
+          - 548
+        - - 1355
+          - 548
+        - - 1346
+          - 583
+        - - 1332
+          - 615
+        - - 1315
+          - 641
+        - - 1291
+          - 659
+        - - 1253
+          - 665
+        - - 1281
+          - 645
+        - - 1305
+          - 616
+        - - 1323
+          - 582
+      holes: []
+      component_labels:
+      - source-visible woven nest/cottage/chimney/reed envelope
+      - source-visible stork 1
+      - source-visible stork 2
+      - source-visible stork 3
+      - source-visible stork 4
+      - source-visible stork 5
+      - source-visible stork 6
+      - source-visible ribbon piece 1
+      - source-visible ribbon piece 2
+      - source-visible ribbon piece 3
+      - source-visible ribbon piece 4
+      - source-visible ribbon piece 5
+      - source-visible ribbon piece 6
+      - source-visible ribbon piece 7
+      - source-visible ribbon piece 8
+      - source-visible ribbon piece 9
+      - source-visible ribbon piece 10
+      - source-visible ribbon piece 11
+      door_geometry:
+        visible_leaf: arched upper crown with straight observed lower-jamb sections
+        glazing: arch-topped rectangular four-pane glazing with a flat lower sill;
+          not an independent round porthole
+        visible_left_lower_jamb:
+        - - 436
+          - 495
+        - - 436
+          - 542
+        visible_right_lower_jamb:
+        - - 573
+          - 496
+        - - 573
+          - 550
+        leaf_bottom: null
+        leaf_bottom_occluded: true
+        occlusion_note: Foreground woven strands cover the actual lower leaf/frame.
+          No flat or oval hidden bottom is inferred. The visible lower jamb portions
+          and rectangular glazing support the common arch-rectangle interpretation;
+          there is no positive observed full-home-oval geometry.
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      uncertainty: The door bottom is hidden by foreground weave; it is explicitly
+        unknown, not asserted flat. Coarse source-observed feather/twig edges are
+        approximate. Separate visible ribbon pieces stop at bird/wing/nest occlusions;
+        no unseen continuation through an occluder is drawn. The large lower loop
+        and free ribbon tail are visible parts, not invented support geometry. Empty
+        sky between separate polygons remains empty; no convex hull or artificial
+        ribbon thickening is used. Smoke/clouds are excluded from the solid physical
+        profile. Some fine source strands become antialiased/subpixel at native60.
+      review_scope: Only existing take3, original round2 of the already-used four-take
+        budget; no assessment of A2/A4, no generation/post/Git/source edits or final
+        pick.
+      reassessment_reason: 'Same root clarification as A1: evaluate observed actual
+        home-door geometry and the whole flight assembly. This is a source-evidence
+        reassessment, not a fifth take, budget reset, style threshold or QA waiver.'
+      source_file: /workspace/generated_images/exec-e0695068-b92e-44fb-88a2-a35bd3be7c28.png
+      original_generated_png_sha256: c5d737dfcdf2fb96dc4dcf1c4b8ff256ef770f37d9284a7adfb2c310d6a943e4
+      rgba_sha256: 28bc70a34a0886b168e030ed6b139557d60df3cdc0e484ec5d7c114d5a9686f9
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 54
+      - 74
+      - 1401
+      - 711
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 60
+      - 28
+      sampled_swatches:
+      - point:
+        - 521
+        - 654
+        hex: '#EC9B65'
+      - point:
+        - 1209
+        - 574
+        hex: '#FCD2B8'
+      - point:
+        - 1161
+        - 651
+        hex: '#F98566'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-leylek-a-t3-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-leylek-a-t3-QA-profile60.png
+      annotation_source_inbox_sha256: a4e0ad857076a97fc2e63a4c7dbcd54f537bfef1df2eee189fd779236e06f59e
+      silhouette_native_longest_px: 60
+    '4':
+      pass: false
+      silhouette_name: Higher-load unselected candidate; old nest-body diagnostic
+        only
+      rubric:
+      - 2
+      - 2
+      - 2
+      - 1
+      - 1
+      evidence: 'Not selected after the bounded root recheck. The prior categorical
+        oval-door claim is withdrawn: wood and cross-panes alone do not prove the
+        banned motif. No full-flight-assembly acceptance proof is claimed for this
+        higher-load candidate.'
+      swatch_points:
+      - - 1400
+        - 100
+      - - 450
+        - 550
+      - - 1100
+        - 500
+      contours:
+      - - - 65
+          - 581
+        - - 100
+          - 540
+        - - 190
+          - 505
+        - - 300
+          - 482
+        - - 460
+          - 470
+        - - 610
+          - 490
+        - - 735
+          - 530
+        - - 790
+          - 575
+        - - 790
+          - 646
+        - - 750
+          - 720
+        - - 650
+          - 780
+        - - 490
+          - 810
+        - - 350
+          - 800
+        - - 230
+          - 768
+        - - 130
+          - 700
+      uncertainty: The diagram traces only the visible nest body, not the full assembly.
+        Eligibility is not newly asserted and no unsupported oval-door geometry claim
+        is made.
+      sampled_swatches:
+      - point:
+        - 1400
+        - 100
+        hex: '#E69C9B'
+      - point:
+        - 450
+        - 550
+        hex: '#ECA56B'
+      - point:
+        - 1100
+        - 500
+        hex: '#FEB39A'
+      annotation_source_inbox_sha256: 2847fac3ab5e09d445e7419cfeb8447a8207c81fee0b433d9799ec54cdd8e3c1
+      observed_bbox:
+      - 65
+      - 470
+      - 791
+      - 811
+      silhouette_native_longest_px: 60
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+  assessment_revision:
+    previous_publication: skipped after one allowed retry
+    previous_reason: Conservative home-door motif interpretation
+    authority: Root full-resolution door adjudication and independent full-flight-assembly60px
+      proof
+    current_eligible_takes:
+    - 1
+    - 3
+    lowest_load_among_all_takes: 3
+    image_calls_total: 4
+    new_image_calls_for_revision: 0
+    retry_budget_reset: false
+    unreviewed_high_load_candidates:
+    - 2
+    - 4
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-f1dc8f5a-6205-43d5-8e3b-e0877ef0b947.png
+  original_generated_png_sha256: a677e181f70b3cffd116a196111d65be2ae74ec10d9509e866ddfbc4908338a7
+  inbox_png_sha256: 359eec57798a730e31e740444cdb0623567860f0584a6d9ee31d6752b8a9e2ec
+  rgba_sha256: b38e615bfd4a4ec410a9779f3d67bc9b648f22b38334ba67c5d219ef5c2e76a2
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 569eaf4238142cf9
+- take: 2
+  source_file: /workspace/generated_images/exec-66d2e805-3688-499d-b5fb-f4da14b21acf.png
+  original_generated_png_sha256: 3a97b8599ba5591a5c93ab1d07511c18898fdf8241d5ad8c31d9e9c52f9eae78
+  inbox_png_sha256: afca3711b24ea805dc30daee4df6f99c056c15330a5e06833d2095aa6ffb933c
+  rgba_sha256: 6a346f73e5a8b26f91c9cd0cd4cc2ce12b25cea46b6cd187a7097b9382298263
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 569eaf4238142cf9
+- take: 3
+  source_file: /workspace/generated_images/exec-e0695068-b92e-44fb-88a2-a35bd3be7c28.png
+  original_generated_png_sha256: c5d737dfcdf2fb96dc4dcf1c4b8ff256ef770f37d9284a7adfb2c310d6a943e4
+  inbox_png_sha256: a4e0ad857076a97fc2e63a4c7dbcd54f537bfef1df2eee189fd779236e06f59e
+  rgba_sha256: 28bc70a34a0886b168e030ed6b139557d60df3cdc0e484ec5d7c114d5a9686f9
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 569eaf4238142cf9
+- take: 4
+  source_file: /workspace/generated_images/exec-713db2ca-dffb-4a2d-83ff-1c91857a7163.png
+  original_generated_png_sha256: f4c6decb787b4604b23daaaedfad89694d8579f295c78d41eedaf9ffa6605312
+  inbox_png_sha256: 2847fac3ab5e09d445e7419cfeb8447a8207c81fee0b433d9799ec54cdd8e3c1
+  rgba_sha256: f255672af7dcf3acb98d5967cf8cae9880d69c0f2ebe7df07e87e0ee09e3465d
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 569eaf4238142cf9
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true

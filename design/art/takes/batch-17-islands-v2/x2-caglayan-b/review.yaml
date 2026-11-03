@@ -1,0 +1,505 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-caglayan-b/contact.jpg
+jobs:
+  x2-caglayan-b:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both originals show a large travertine
+      fountain/column with turquoise ring pools, a broad curtain fall, a tiny lit
+      hut behind it, and bright backlit mist. No copied-home template is observed.
+      Warm arched rectangular windows are windows, not circular home doors. Lower
+      cloud occlusion is explicitly left uncertain; rubric is advisory, not an 8-point
+      gate.
+qa_reports:
+  1:
+    job: x2-caglayan-b
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 16 (R1 51)
+      value: 15.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 84 (R1 59)
+      value: 83.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.18
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5757
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 3.5, off-palette 0.0%
+      value: 1.4915
+    info:
+      metrics_raw:
+        L_p5: 83.2
+        L_p50: 91.8
+        L_p95: 97.0
+        C_p50: 5.8
+        C_p95: 16.0
+        C_p99: 20.3
+        detail: 1.77
+      metrics_locked:
+        L_p5: 83.5
+        L_p50: 91.7
+        L_p95: 96.6
+        C_p50: 5.8
+        C_p95: 15.5
+        C_p99: 19.6
+        detail: 1.18
+    fingerprint: ef0bdc3c081ca704
+  2:
+    job: x2-caglayan-b
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 16 (R1 51)
+      value: 15.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 83 (R1 59)
+      value: 83.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.09
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5198
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 3.4, off-palette 0.0%
+      value: 1.4886
+    info:
+      metrics_raw:
+        L_p5: 82.9
+        L_p50: 91.5
+        L_p95: 96.6
+        C_p50: 6.1
+        C_p95: 16.3
+        C_p99: 27.6
+        detail: 1.57
+      metrics_locked:
+        L_p5: 83.2
+        L_p50: 91.5
+        L_p95: 96.3
+        C_p50: 6.1
+        C_p95: 15.8
+        C_p99: 26.9
+        detail: 1.09
+    fingerprint: ef0bdc3c081ca704
+manual_review:
+  recommendation_only: true
+  note: Both originals show a large travertine fountain/column with turquoise ring
+    pools, a broad curtain fall, a tiny lit hut behind it, and bright backlit mist.
+    No copied-home template is observed. Warm arched rectangular windows are windows,
+    not circular home doors. Lower cloud occlusion is explicitly left uncertain; rubric
+    is advisory, not an 8-point gate.
+  takes:
+    '1':
+      pass: true
+      silhouette_name: stepped travertine fountain with a long curtain of falling
+        water
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 1
+      - 0
+      evidence: Visible stepped mineral crown and ring pools form the whole place.
+        A broad fall wraps its left side, with a tiny hut behind the translucent curtain
+        near(665,505), and sunlit mist behind the water. The hut has an arched rectangular
+        four-pane window, not a circular home door. Cream/turquoise/blue sky are distinct
+        from home honey/sage. No lawn, soil bowl, dangling roots or soil pebbles.
+        Scale is supplied by the hut. Waterfall motion is visibly suggested, not claimed
+        to be animated.
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 1150
+        - 84
+      - - 1270
+        - 500
+      - - 1010
+        - 250
+      contours:
+      - - - 636
+          - 65
+        - - 695
+          - 47
+        - - 786
+          - 41
+        - - 868
+          - 51
+        - - 896
+          - 66
+        - - 930
+          - 65
+        - - 966
+          - 81
+        - - 974
+          - 97
+        - - 990
+          - 113
+        - - 1007
+          - 143
+        - - 1006
+          - 207
+        - - 1055
+          - 209
+        - - 1116
+          - 224
+        - - 1161
+          - 242
+        - - 1184
+          - 271
+        - - 1186
+          - 306
+        - - 1162
+          - 351
+        - - 1150
+          - 375
+        - - 1227
+          - 377
+        - - 1298
+          - 390
+        - - 1340
+          - 412
+        - - 1369
+          - 443
+        - - 1371
+          - 472
+        - - 1354
+          - 509
+        - - 1328
+          - 550
+        - - 1384
+          - 559
+        - - 1423
+          - 578
+        - - 1453
+          - 609
+        - - 1463
+          - 637
+        - - 1453
+          - 681
+        - - 1432
+          - 723
+        - - 1407
+          - 767
+        - - 1378
+          - 808
+        - - 1315
+          - 842
+        - - 1214
+          - 867
+        - - 1068
+          - 875
+        - - 888
+          - 878
+        - - 710
+          - 876
+        - - 549
+          - 860
+        - - 410
+          - 841
+        - - 276
+          - 829
+        - - 174
+          - 800
+        - - 143
+          - 772
+        - - 142
+          - 680
+        - - 155
+          - 550
+        - - 183
+          - 419
+        - - 223
+          - 301
+        - - 272
+          - 228
+        - - 344
+          - 178
+        - - 414
+          - 142
+        - - 491
+          - 117
+        - - 575
+          - 101
+        - - 639
+          - 96
+      holes: []
+      components:
+      - One connected visible mineral-and-water fountain subject; the hut is inside
+        the same visible footprint
+      uncertainty: Foreground clouds occlude the lowest stone/water boundary. The
+        contour closes conservatively along the visible fade/occlusion region at abouty800-878;
+        it does not reconstruct a hidden underside. The native60 test concerns the
+        observed fountain profile, not a fabricated complete column.
+      source_file: /workspace/generated_images/exec-d6185ffd-69bb-443c-b3b6-ae78cac0a8ce.png
+      original_generated_png_sha256: 41e238b7289da4f4ca812c18302e0341ae42822af23a5310d705a714907045b3
+      rgba_sha256: ee46c4c0df29cfc0197120934cbbf43e28d09abc429fa2066c3b1e7295338fb9
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: 1d1430bad6047dc4f8a1964de9fa8bb11e90831a6006b038ef454400cb3cdec8
+      sampled_swatches:
+      - point:
+        - 1150
+        - 84
+        hex: '#DAE3F2'
+      - point:
+        - 1270
+        - 500
+        hex: '#DFC7B0'
+      - point:
+        - 1010
+        - 250
+        hex: '#B4DED9'
+      observed_bbox:
+      - 142
+      - 41
+      - 1464
+      - 879
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 8dc69ab10621876c763fe6b8439c4b2301b420d3ea3f561584cceb71526df031
+    '2':
+      pass: true
+      silhouette_name: stepped travertine fountain with a tall curved curtain fall
+      rubric:
+      - 3
+      - 2
+      - 2
+      - 1
+      - 0
+      evidence: Ring pools step around a high mineral crown. The large right-hand
+        curtain falls past a small stone hut with a warm arched rectangular window
+        around(770,485), with the sun behind the fall. This is a fountain-like landform,
+        with no home lawn or soil-bowl base, roots, pebbles or round home door. Tiny
+        architecture supplies scale; cream/turquoise/pale violet sky identify the
+        waterfall place.
+      banned_parts:
+        copied_home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        soil_pebbles: false
+        round_home_door: false
+      swatch_points:
+      - - 1430
+        - 220
+      - - 395
+        - 750
+      - - 800
+        - 690
+      contours:
+      - - - 493
+          - 129
+        - - 508
+          - 104
+        - - 547
+          - 83
+        - - 576
+          - 59
+        - - 622
+          - 38
+        - - 680
+          - 42
+        - - 730
+          - 58
+        - - 815
+          - 64
+        - - 862
+          - 83
+        - - 899
+          - 112
+        - - 931
+          - 149
+        - - 982
+          - 174
+        - - 1070
+          - 209
+        - - 1123
+          - 253
+        - - 1169
+          - 323
+        - - 1204
+          - 411
+        - - 1227
+          - 526
+        - - 1246
+          - 618
+        - - 1285
+          - 645
+        - - 1304
+          - 694
+        - - 1313
+          - 751
+        - - 1292
+          - 822
+        - - 1245
+          - 854
+        - - 1167
+          - 877
+        - - 1060
+          - 895
+        - - 934
+          - 901
+        - - 780
+          - 899
+        - - 621
+          - 895
+        - - 456
+          - 875
+        - - 298
+          - 854
+        - - 199
+          - 829
+        - - 132
+          - 806
+        - - 111
+          - 752
+        - - 122
+          - 706
+        - - 177
+          - 665
+        - - 193
+          - 626
+        - - 193
+          - 584
+        - - 187
+          - 541
+        - - 205
+          - 510
+        - - 229
+          - 487
+        - - 265
+          - 467
+        - - 292
+          - 462
+        - - 303
+          - 427
+        - - 345
+          - 407
+        - - 364
+          - 368
+        - - 350
+          - 338
+        - - 347
+          - 301
+        - - 366
+          - 275
+        - - 411
+          - 248
+        - - 449
+          - 236
+        - - 491
+          - 234
+        - - 497
+          - 191
+      holes: []
+      components:
+      - One source-visible connected fountain, pools and water curtain; hut sits within
+        the same footprint
+      uncertainty: The broad lower fall and mineral base merge into foreground mist.
+        The bottom contour is an explicitly conservative cloud-occlusion closure,
+        not an inferred complete floating base. The top/side step profile remains
+        directly visible and recognizable at native60.
+      source_file: /workspace/generated_images/exec-4f04373b-0866-435a-9909-9e90da12aa62.png
+      original_generated_png_sha256: d336ac6afd2365ceff8942e870dd5a0f295c2e964f935820afb615d8cf1d0ace
+      rgba_sha256: 98cc07901d7d93e6170c47e9bf603bb207e99b99736f6495ab81ac87dbdee1c9
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: 4dbf1988771ad7b5ba570bccd216062a62c5d837f579786883ac281168ca019f
+      sampled_swatches:
+      - point:
+        - 1430
+        - 220
+        hex: '#E5E8EF'
+      - point:
+        - 395
+        - 750
+        hex: '#F3DBC3'
+      - point:
+        - 800
+        - 690
+        hex: '#ACD4D2'
+      observed_bbox:
+      - 111
+      - 38
+      - 1314
+      - 902
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 7fafa9bfc1731e64d39fb505dc856c67e0bfd8bb315a7a9663c4f9d587c64b42
+  reviewed_at: '2026-11-03T15:53:42.133692+00:00'
+  preview_verified: true
+  preview_sha256: 91ce9f4d44dbc2bbad450acfd3d32b89682a5ea3c3156716a6714817537653c3
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-d6185ffd-69bb-443c-b3b6-ae78cac0a8ce.png
+  original_generated_png_sha256: 41e238b7289da4f4ca812c18302e0341ae42822af23a5310d705a714907045b3
+  inbox_png_sha256: 8dc69ab10621876c763fe6b8439c4b2301b420d3ea3f561584cceb71526df031
+  rgba_sha256: ee46c4c0df29cfc0197120934cbbf43e28d09abc429fa2066c3b1e7295338fb9
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ef0bdc3c081ca704
+- take: 2
+  source_file: /workspace/generated_images/exec-4f04373b-0866-435a-9909-9e90da12aa62.png
+  original_generated_png_sha256: d336ac6afd2365ceff8942e870dd5a0f295c2e964f935820afb615d8cf1d0ace
+  inbox_png_sha256: 7fafa9bfc1731e64d39fb505dc856c67e0bfd8bb315a7a9663c4f9d587c64b42
+  rgba_sha256: 98cc07901d7d93e6170c47e9bf603bb207e99b99736f6495ab81ac87dbdee1c9
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ef0bdc3c081ca704
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
