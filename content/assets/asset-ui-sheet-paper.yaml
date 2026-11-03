@@ -2,7 +2,7 @@ id: asset-ui-sheet-paper
 type: asset
 title_tr: ui-sheet-paper
 title_en: sheet-paper (ui)
-status: planned
+status: in-production
 horizon: now
 summary: 'A tall sheet of cream paper seen straight on, filling the canvas from the
   left edge to the right edge and from near the top to the bottom edge: its top corners
@@ -11,7 +11,8 @@ summary: 'A tall sheet of cream paper seen straight on, filling the canvas from 
   the top and side edges. The middle is plain, flat, even cream paper with no stains
   and no text…'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-sheet-paper/ui-sheet-paper.png
   jobs:
   - batch-13-ui-rest:ui-sheet-paper
   - retry-2026-11-03:ui-sheet-paper

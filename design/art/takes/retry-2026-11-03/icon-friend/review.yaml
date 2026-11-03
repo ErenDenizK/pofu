@@ -1,0 +1,184 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/icon-friend/contact.jpg
+jobs:
+  icon-friend:
+    pick: 1
+    publication: selected before global stop; promotion pending
+    note: Both takes show two soft sprouts in one clay pot, each with two broad chunky
+      leaves; the paired silhouettes and pot remain readable at 28, 44 and 60 pt on
+      pale and dark backgrounds. No lettering, thin stems or extra background plate.
+qa_reports:
+  1:
+    job: icon-friend
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 49 (R1 59)
+      value: 49.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.74
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9593
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 9.9, off-palette 1.3% (top: #999944 (0.8%), #888844
+        (0.2%))'
+      value: 3.0732
+    - check: icon_fill
+      status: pass
+      message: icon spans 80% of the canvas (target 80-92%)
+      value: 0.7959
+    - check: icon_thin_parts
+      status: pass
+      message: 0.8% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0077
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 4.4 (busy above 7)
+      value: 4.38
+    - check: icon_on_light_glass
+      status: pass
+      message: 73% of the icon separates from light glass at 24 pt
+      value: 0.7294
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 49.1
+        L_p50: 67.1
+        L_p95: 86.7
+        C_p50: 38.6
+        C_p95: 46.6
+        C_p99: 47.8
+        detail: 1.09
+      metrics_locked:
+        L_p5: 49.2
+        L_p50: 67.0
+        L_p95: 86.6
+        C_p50: 38.5
+        C_p95: 45.8
+        C_p99: 46.8
+        detail: 0.74
+    fingerprint: 10c4e27325479028
+  2:
+    job: icon-friend
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 49 (R1 59)
+      value: 48.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.74
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5319
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 9.0, off-palette 0.1% (top: #999944 (0.1%), #998844
+        (0.0%))'
+      value: 2.7388
+    - check: icon_fill
+      status: pass
+      message: icon spans 78% of the canvas (target 80-92%)
+      value: 0.7783
+    - check: icon_thin_parts
+      status: pass
+      message: 0.8% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0078
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 4.0 (busy above 7)
+      value: 4.0
+    - check: icon_on_light_glass
+      status: pass
+      message: 71% of the icon separates from light glass at 24 pt
+      value: 0.7132
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 48.8
+        L_p50: 68.1
+        L_p95: 87.1
+        C_p50: 37.1
+        C_p95: 47.4
+        C_p99: 48.1
+        detail: 1.08
+      metrics_locked:
+        L_p5: 48.8
+        L_p50: 68.0
+        L_p95: 86.9
+        C_p50: 37.1
+        C_p95: 45.5
+        C_p99: 46.0
+        detail: 0.74
+    fingerprint: 10c4e27325479028
+manual_review:
+  note: Both takes show two soft sprouts in one clay pot, each with two broad chunky
+    leaves; the paired silhouettes and pot remain readable at 28, 44 and 60 pt on
+    pale and dark backgrounds. No lettering, thin stems or extra background plate.
+  terminal_decided_at: '2026-11-03T14:07:28.912101+00:00'
+  decision_qa_sha256: 157159845c22962adeb98dbb857ab7638da9b706cc11801d6ad596334f3e1c49
+  excluded_takes: []
+  preservation_only_after_global_stop: true
+  no_new_selection_or_promotion: true
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-704e36dd-b5c1-4582-aa1a-78987015be08.png
+  original_generated_png_sha256: 71602a2b82221aa19410a03cb7a2533789304e7bf628cb679744317fa1156637
+  inbox_png_sha256: 1faedf10f4baa491f00f83cac14c1cb431a7b7f53c833ef415be346e4e2019ea
+  rgba_sha256: 8fd31f4ff1a7bfbc40cc2f22919b8aeec580490c65e0cae94b8c4020be64ab58
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 10c4e27325479028
+- take: 2
+  source_file: /workspace/generated_images/exec-d74fca20-e3d8-4f9e-aba5-3f8b66166e0d.png
+  original_generated_png_sha256: e1e7431b0fdb60fe166bde1c063a05fcc2044d11e7e56bad407e68c3a4ed8126
+  inbox_png_sha256: 23574317c4e8abbcdf7867030857191bdb49e6b80738a128ddb308d2f95a3be7
+  rgba_sha256: 9e4d394986ca7ad67284904ee242a8ab32ae35ab78555a7b8534a1e2b038766f
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 10c4e27325479028

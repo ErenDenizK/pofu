@@ -1,0 +1,165 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/ui-jar-full/contact.jpg
+jobs:
+  ui-jar-full:
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Both takes completely fill the
+      front window with chunky warm-brown cream-striped seeds, without changing the
+      lid, bow, body silhouette or framing. Region edit QA passes: t1 silhouette IoU
+      0.9923, stability 0.7653, chroma 0.893. Select t1 by lower lock load 0.7543
+      vs 0.7564. No obsolete manual stability >0.9 gate applied.'
+qa_reports:
+  2:
+    job: ui-jar-full
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 44 (R1 59)
+      value: 44.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.5
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7564
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.7, p95 1.6, off-palette 0.0%
+      value: 0.7317
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9863
+    - check: edit_stability
+      status: pass
+      message: 78% of the parent level unchanged
+      value: 0.7796
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.95 of the parent level (drift compounds along a chain)
+      value: 0.9505
+    info:
+      metrics_raw:
+        L_p5: 44.1
+        L_p50: 80.1
+        L_p95: 89.1
+        C_p50: 26.6
+        C_p95: 37.0
+        C_p99: 42.3
+        detail: 2.97
+      metrics_locked:
+        L_p5: 44.5
+        L_p50: 80.0
+        L_p95: 89.1
+        C_p50: 26.6
+        C_p95: 36.6
+        C_p99: 42.2
+        detail: 2.5
+    fingerprint: 0d4a4c75e0a3ad72
+  1:
+    job: ui-jar-full
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 35.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 41 (R1 59)
+      value: 41.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.62
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7543
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 1.8, off-palette 0.0%
+      value: 0.7851
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9923
+    - check: edit_stability
+      status: pass
+      message: 77% of the parent level unchanged
+      value: 0.7653
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.89 of the parent level (drift compounds along a chain)
+      value: 0.893
+    info:
+      metrics_raw:
+        L_p5: 40.6
+        L_p50: 80.9
+        L_p95: 89.4
+        C_p50: 25.0
+        C_p95: 36.2
+        C_p99: 41.1
+        detail: 3.07
+      metrics_locked:
+        L_p5: 41.0
+        L_p50: 80.8
+        L_p95: 89.3
+        C_p50: 25.0
+        C_p95: 35.7
+        C_p99: 40.9
+        detail: 2.62
+    fingerprint: 0d4a4c75e0a3ad72
+manual_review:
+  excluded_takes: []
+  note: 'Both takes completely fill the front window with chunky warm-brown cream-striped
+    seeds, without changing the lid, bow, body silhouette or framing. Region edit
+    QA passes: t1 silhouette IoU 0.9923, stability 0.7653, chroma 0.893. Select t1
+    by lower lock load 0.7543 vs 0.7564. No obsolete manual stability >0.9 gate applied.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-5dc5926e-bdf6-4bbb-85fb-98dfa33b18c8.png
+  original_generated_png_sha256: 1611e7f0c9193b4504070fcda2327e41f84febde6dd231fc0ddd5b4bd36ef23c
+  inbox_png_sha256: 47d2aa5d49466c3abccb39bd22a1983cd3f070be4928a468d718ecd483274783
+  rgba_sha256: b4290f552300417951c2a9e117599de3c89c514202744f949d0a3b8e2502bfb7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0d4a4c75e0a3ad72
+- take: 2
+  source_file: /workspace/generated_images/exec-cd1c16c6-724b-4b1e-8f08-01ea8ea8633d.png
+  original_generated_png_sha256: 5d37487e0f3a5d44ae5538855c4a9c35965fc6b165ca03cf208068583bbe090b
+  inbox_png_sha256: 1ea0819c484ac201324e17fcde8675af3b3b931371fa70a3980d5a1e9edc5cf0
+  rgba_sha256: cbcdaccbaa59b4d064373c0f9a93a1b73141b460bd4084cfd426dc99848417ca
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0d4a4c75e0a3ad72

@@ -1,0 +1,103 @@
+{
+  "job": "game-bloom-right",
+  "batch": "retry-2026-11-03",
+  "asset": "ui__game-bloom-right",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T13:51:56+00:00",
+  "image": "design/art/ui/ui-game-bloom-right/ui-game-bloom-right.png",
+  "raw": "design/art/ui/ui-game-bloom-right/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "8001a8b0f185f41c",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nTurn the sunflower head to the right, as if looking right: slide\nthe whole brown center clearly to the right, about one tenth of the\ncanvas width (about 100 px) further right than it is now, so it\nsits well right of the middle; the petals on the right side are\nnarrow and foreshortened, the petals on the left side are broad and\nopen. The head stays the same size, colors and finish.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/ui-game-bloom-front/ui-game-bloom-front.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T13:49:34+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 58 (R1 51)",
+        "value": 57.9
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 48 (R1 59)",
+        "value": 47.9
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.6 (R1 5.3)",
+        "value": 0.59
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.4",
+        "value": 0.4213
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.3, p95 3.9, off-palette 0.0%",
+        "value": 1.2565
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "warn",
+        "message": "92% of the parent's shape kept",
+        "value": 0.9164
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "66% of the parent level unchanged",
+        "value": 0.6618
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.94 of the parent level (drift compounds along a chain)",
+        "value": 0.9418
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Manual review passes: brown-disc centroid x606.78 versus front x502.35, a +104.43px shift; left petals are broad and right petals foreshortened. The second take also passes (+83.68px). Both have only automated silhouette warnings; t1 has lowest lock load. Infrastructure recovery: exactly two image requests were dispatched; after shell callback ARG_MAX failure, generated originals were visually identified and numbered in stable completion-time order, not claimed original request order. Source/inbox/RGBA hashes preserve lineage."
+}

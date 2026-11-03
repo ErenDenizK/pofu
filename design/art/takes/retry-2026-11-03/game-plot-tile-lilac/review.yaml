@@ -1,0 +1,190 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/game-plot-tile-lilac/contact.jpg
+jobs:
+  game-plot-tile-lilac:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both takes preserve the tile,
+      highlight, lip and sprout with soft lilac glaze. All automated checks pass;
+      t1 has lower lock load0.5582 versus0.6775. Exactly two image requests were dispatched.
+      After a shell callback ARG_MAX failure, original PNGs were recovered by visual
+      identity and numbered in stable completion-time order; original request ordinal
+      is not claimed. Source/inbox/RGBA hashes preserve lineage.
+qa_reports:
+  1:
+    job: game-plot-tile-lilac
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.001 and moved it; aligned back to the
+        parent
+      value: 0.9988
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 15 (R1 51)
+      value: 14.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 75.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.51
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5582
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 2.3, off-palette 0.0%
+      value: 1.3055
+    - check: edit_silhouette
+      status: pass
+      message: 100% of the parent's shape kept
+      value: 0.9981
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.96)
+      value: 0.9551
+    - check: edit_lightness
+      status: pass
+      message: mean lightness moved by 4.4 L (the same lightness was asked)
+      value: 4.3506
+    info:
+      alignment:
+        scale: 0.9988
+        cx: 506.0
+        cy: 955.0
+        dx: -1
+        dy: -1
+      metrics_raw:
+        L_p5: 75.6
+        L_p50: 80.9
+        L_p95: 85.8
+        C_p50: 13.7
+        C_p95: 14.8
+        C_p99: 15.5
+        detail: 0.67
+      metrics_locked:
+        L_p5: 75.7
+        L_p50: 81.2
+        L_p95: 85.8
+        C_p50: 13.7
+        C_p95: 14.8
+        C_p99: 15.4
+        detail: 0.51
+    fingerprint: dabd391127b0b204
+  2:
+    job: game-plot-tile-lilac
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.004 and moved it; aligned back to the
+        parent
+      value: 0.9965
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 17 (R1 51)
+      value: 17.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 74 (R1 59)
+      value: 74.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6775
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 1.7, off-palette 0.0%
+      value: 0.7952
+    - check: edit_silhouette
+      status: pass
+      message: 98% of the parent's shape kept
+      value: 0.9837
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.91)
+      value: 0.9148
+    - check: edit_lightness
+      status: pass
+      message: mean lightness moved by 2.5 L (the same lightness was asked)
+      value: 2.459
+    info:
+      alignment:
+        scale: 0.9965
+        cx: 507.0
+        cy: 956.0
+        dx: 3
+        dy: -6
+      metrics_raw:
+        L_p5: 74.1
+        L_p50: 79.1
+        L_p95: 84.1
+        C_p50: 15.4
+        C_p95: 17.1
+        C_p99: 18.2
+        detail: 0.61
+      metrics_locked:
+        L_p5: 74.2
+        L_p50: 79.2
+        L_p95: 84.1
+        C_p50: 15.9
+        C_p95: 17.2
+        C_p99: 18.2
+        detail: 0.48
+    fingerprint: dabd391127b0b204
+manual_review:
+  excluded_takes: []
+  note: Both takes preserve the tile, highlight, lip and sprout with soft lilac glaze.
+    All automated checks pass; t1 has lower lock load0.5582 versus0.6775. Exactly
+    two image requests were dispatched. After a shell callback ARG_MAX failure, original
+    PNGs were recovered by visual identity and numbered in stable completion-time
+    order; original request ordinal is not claimed. Source/inbox/RGBA hashes preserve
+    lineage.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-2a82f0fc-783f-4a5c-b179-8bb46ef8feb3.png
+  original_generated_png_sha256: b4075ddae40cb38ce6d39e7430528525a0bb8ca4f196ce64e77465b0d4b4256f
+  inbox_png_sha256: 97209d0271207c768d6c4739b1ebf1c5d1b757d8f77a30469a8d7f39b608595f
+  rgba_sha256: cd966f63a511fc3c30d30e391138880dc9473cbd687fe5fee90b57c639f8be19
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: dabd391127b0b204
+- take: 2
+  source_file: /workspace/generated_images/exec-96a8da97-7a91-4798-808f-bfc21325dfe5.png
+  original_generated_png_sha256: 6a677515c4c0d49e7b4188ca62d8c3ff192be2294d856e6c4ef0421c2398dc04
+  inbox_png_sha256: 206081fb80e319dea8d33225915bdb8ada494f9d0fdd61d2f9f3e737c17ad8bc
+  rgba_sha256: 99e66337c95de595ded0693dc245f591268025615afd2660d2d8cb91aac0da3c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: dabd391127b0b204

@@ -1,0 +1,182 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/icon-round/contact.jpg
+jobs:
+  icon-round:
+    pick: 1
+    publication: selected before global stop; promotion pending
+    note: Both takes show a chunky honey-wood token with a rounded rim and a simple
+      dark burnt sunflower. The token and its large sunflower mark remain readable
+      at 28, 44 and 60 pt on pale and dark backgrounds.
+qa_reports:
+  1:
+    job: icon-round
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 46 (R1 59)
+      value: 46.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.08
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6714
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.7, p95 4.9, off-palette 0.0%
+      value: 1.7004
+    - check: icon_fill
+      status: pass
+      message: icon spans 83% of the canvas (target 80-92%)
+      value: 0.833
+    - check: icon_thin_parts
+      status: pass
+      message: 0.0% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0005
+    - check: icon_small_detail
+      status: warn
+      message: detail at 24 pt @3x 7.9 (busy above 7)
+      value: 7.88
+    - check: icon_on_light_glass
+      status: pass
+      message: 62% of the icon separates from light glass at 24 pt
+      value: 0.6151
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 46.0
+        L_p50: 72.2
+        L_p95: 88.8
+        C_p50: 38.9
+        C_p95: 43.2
+        C_p99: 44.5
+        detail: 1.38
+      metrics_locked:
+        L_p5: 46.0
+        L_p50: 72.2
+        L_p95: 88.7
+        C_p50: 38.9
+        C_p95: 43.1
+        C_p99: 44.3
+        detail: 1.08
+    fingerprint: 505db64906f64301
+  2:
+    job: icon-round
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 44.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 46 (R1 59)
+      value: 45.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.03
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7774
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 5.2, off-palette 0.0%
+      value: 2.0073
+    - check: icon_fill
+      status: pass
+      message: icon spans 80% of the canvas (target 80-92%)
+      value: 0.7979
+    - check: icon_thin_parts
+      status: pass
+      message: 0.0% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0
+    - check: icon_small_detail
+      status: warn
+      message: detail at 24 pt @3x 7.1 (busy above 7)
+      value: 7.11
+    - check: icon_on_light_glass
+      status: pass
+      message: 59% of the icon separates from light glass at 24 pt
+      value: 0.588
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 45.7
+        L_p50: 73.5
+        L_p95: 86.6
+        C_p50: 40.2
+        C_p95: 44.9
+        C_p99: 46.1
+        detail: 1.35
+      metrics_locked:
+        L_p5: 45.8
+        L_p50: 73.5
+        L_p95: 86.5
+        C_p50: 40.1
+        C_p95: 44.7
+        C_p99: 45.9
+        detail: 1.03
+    fingerprint: 505db64906f64301
+manual_review:
+  note: Both takes show a chunky honey-wood token with a rounded rim and a simple
+    dark burnt sunflower. The token and its large sunflower mark remain readable at
+    28, 44 and 60 pt on pale and dark backgrounds.
+  terminal_decided_at: '2026-11-03T14:07:28.998650+00:00'
+  decision_qa_sha256: 1b0e875c01f7b499c266194c4f6d55361fa42e7f8b880e73a8a468006a68ea81
+  excluded_takes: []
+  preservation_only_after_global_stop: true
+  no_new_selection_or_promotion: true
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-d53e07bd-dd81-4f65-bd31-8a48c2125818.png
+  original_generated_png_sha256: 50c245d98d361d1405c2b2f193e5ca2f85f713db1e0b98456fd50e4a806ecc0f
+  inbox_png_sha256: b19b6b1526db5ad733418b23dd98d17eff9718eacff1f155b6786142d2b7cb2f
+  rgba_sha256: 6fdc567b80d0878331c576c4e80e575609ebec74e9723e4875fb8d49654f5923
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 505db64906f64301
+- take: 2
+  source_file: /workspace/generated_images/exec-73e70c81-6749-4974-b2ac-381a8de86b5f.png
+  original_generated_png_sha256: a2f8f03c57ea7d2c3705599960e8882e4529817eca543f97887ef80de443a8b3
+  inbox_png_sha256: 52dcf15c649e53d2bccab92d34def89ad998b92185fe9ae987d9bb64cac610df
+  rgba_sha256: 5dbcc10baee4c7713940c06b40a4c34aedd826e80ee0896185493eec1bd37c39
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 505db64906f64301

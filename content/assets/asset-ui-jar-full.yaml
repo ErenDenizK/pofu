@@ -2,7 +2,7 @@ id: asset-ui-jar-full
 type: asset
 title_tr: ui-jar-full
 title_en: jar-full (ui)
-status: planned
+status: in-production
 horizon: now
 summary: 'Fill the jar''s front window panel completely with sunflower seeds: a soft,
   full pile of chunky warm-brown and cream-striped seeds up to the top of the window,
@@ -11,7 +11,8 @@ links:
   variant_of:
   - asset-ui-jar-empty
 art:
-  images: []
+  images:
+  - design/art/ui/ui-jar-full/ui-jar-full.png
   jobs:
   - batch-11-ui-pilot:ui-jar-full
   - retry-2026-11-03:ui-jar-full

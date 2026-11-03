@@ -1,0 +1,184 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/icon-decor/contact.jpg
+jobs:
+  icon-decor:
+    pick: 1
+    publication: selected before global stop; promotion pending
+    note: The fixed pre-stop selection is t1. t2 is excluded because its final alpha
+      minimum is 99 and the final composite has a white rectangular backdrop and ghost
+      cast shadow. t1 has a clean transparent silhouette and passes all automated
+      checks.
+qa_reports:
+  1:
+    job: icon-decor
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 54 (R1 59)
+      value: 54.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.2439
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 6.6, off-palette 0.0%
+      value: 1.7506
+    - check: icon_fill
+      status: pass
+      message: icon spans 85% of the canvas (target 80-92%)
+      value: 0.8457
+    - check: icon_thin_parts
+      status: pass
+      message: 4.0% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0397
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 4.0 (busy above 7)
+      value: 3.95
+    - check: icon_on_light_glass
+      status: pass
+      message: 54% of the icon separates from light glass at 24 pt
+      value: 0.5364
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 54.4
+        L_p50: 74.3
+        L_p95: 90.2
+        C_p50: 35.1
+        C_p95: 43.6
+        C_p99: 45.1
+        detail: 0.99
+      metrics_locked:
+        L_p5: 54.5
+        L_p50: 74.2
+        L_p95: 90.2
+        C_p50: 35.1
+        C_p95: 43.4
+        C_p99: 44.7
+        detail: 0.64
+    fingerprint: ec01c1c252b26091
+  2:
+    job: icon-decor
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 55 (R1 59)
+      value: 54.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.95
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2856
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 4.9, off-palette 0.0%
+      value: 1.3792
+    - check: icon_fill
+      status: warn
+      message: icon spans 100% of the canvas (target 80-92%)
+      value: 1.0
+    - check: icon_thin_parts
+      status: warn
+      message: 8.4% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0839
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 5.5 (busy above 7)
+      value: 5.48
+    - check: icon_on_light_glass
+      status: warn
+      message: 33% of the icon separates from light glass at 24 pt
+      value: 0.3342
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 54.4
+        L_p50: 74.2
+        L_p95: 89.5
+        C_p50: 33.8
+        C_p95: 41.6
+        C_p99: 42.7
+        detail: 1.27
+      metrics_locked:
+        L_p5: 54.6
+        L_p50: 74.2
+        L_p95: 89.5
+        C_p50: 33.7
+        C_p95: 41.5
+        C_p99: 42.6
+        detail: 0.95
+    fingerprint: ec01c1c252b26091
+manual_review:
+  note: The fixed pre-stop selection is t1. t2 is excluded because its final alpha
+    minimum is 99 and the final composite has a white rectangular backdrop and ghost
+    cast shadow. t1 has a clean transparent silhouette and passes all automated checks.
+  terminal_decided_at: '2026-11-03T14:07:29.090312+00:00'
+  decision_qa_sha256: cf553a1ed441617e942c8e5a51eee120dbcd0f6e34203dde54c2bb2cfbcc08ea
+  excluded_takes:
+  - 2
+  preservation_only_after_global_stop: true
+  no_new_selection_or_promotion: true
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-d8de9ae9-2476-4ed4-8c00-eb306fb9198a.png
+  original_generated_png_sha256: 0d180c7ce4198b42e42d0c40b29ef76eb2128830f2a3b83ef0c146617ceed96e
+  inbox_png_sha256: 59747ae75053fa87969ad648d73bbb35ef539b7a120198129e7529bb949164cf
+  rgba_sha256: 2c7e84ae34ff04d22f7a263144a670714bb6935d010c94fb0d4f84c29512cd82
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ec01c1c252b26091
+- take: 2
+  source_file: /workspace/generated_images/exec-7c842c33-3247-4ac6-908f-29b45f3dc3e3.png
+  original_generated_png_sha256: dda4c6a5418a675103697f1d36b8f492a1cd18f1910ab7aac46013f2f9e8c4bb
+  inbox_png_sha256: a2e0c315f426182c8035094613e3616752add6d75ff41856f9cbf0c22d75d025
+  rgba_sha256: 311fa1366a116d12dcd45a70817b67eb58383b1076fe898c6cea5e0b5507038f
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ec01c1c252b26091

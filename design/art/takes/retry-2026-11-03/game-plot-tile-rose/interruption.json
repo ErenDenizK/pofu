@@ -1,0 +1,54 @@
+{
+  "batch": "retry-2026-11-03",
+  "job": "game-plot-tile-rose",
+  "type": "lost-first-round-tool-result",
+  "total_dispatched": 4,
+  "first_round_dispatched": 2,
+  "retry_round_dispatched": 2,
+  "missing_first_round_results": 1,
+  "waited_seconds": 604,
+  "retained_inbox_takes": [
+    1,
+    2,
+    3
+  ],
+  "dispatch_ordinal_by_inbox_take": {
+    "1": null,
+    "2": 3,
+    "3": 4
+  },
+  "retained_sources": {
+    "1": {
+      "path": "/workspace/generated_images/exec-12285ecf-95a0-4ac3-8f47-bea920a41601.png",
+      "sha256": "d9684738c606c8507868fcc3676298d41e5e3e5a137946dcbb75d1a7eab647e5"
+    },
+    "2": {
+      "path": "/workspace/generated_images/exec-093b3970-9ac0-47ad-a653-1f9b4e13a9f1.png",
+      "sha256": "3648843fbb934fea64db22c0636581d5a58d40af34f96c254471967789584e15"
+    },
+    "3": {
+      "path": "/workspace/generated_images/exec-6e6103fe-5d7d-4479-9842-f293be2a3c32.png",
+      "sha256": "17bc60a2e063bec00dab2ebc150a9d506b8cdc48e240461cf910aafc2733a648"
+    }
+  },
+  "evidence": {
+    "job": "game-plot-tile-rose",
+    "batch": "retry-2026-11-03",
+    "at": "2026-11-03T13:56:52.891200+00:00",
+    "initial_requests_attempted": 2,
+    "initial_retained_sources": 1,
+    "missing_initial_request_ordinal": null,
+    "dispatch_started_no_later_than": "2026-11-03T13:46:34Z",
+    "600_second_deadline_no_later_than": "2026-11-03T13:56:34Z",
+    "deadline_search": "rose-deadline-search.json",
+    "reason": "Shell callback serialized image_url base64 and exceeded ARG_MAX, ending isolate; one initial output remains unresolved after conservative original600s deadline. Source/originalordinal is not invented.",
+    "retry_dispatch_ordinals": [
+      3,
+      4
+    ],
+    "total_attempted_requests_after_dispatch": 4,
+    "retry_rounds_used": 1,
+    "mapping": "Initial retained source → official ingest t1, original requestordinalunknown; freshdispatch3→t2, freshdispatch4→t3."
+  },
+  "note": "One initial request was interrupted after shell callback ARG_MAX/isolate failure. The retained first-round image has unknown requestordinal 1or2. Originalresult2wasnotinvented. Exactlyone freshretrypairspent; nofifthdispatch. Numberingrefersactualofficialingestfiles."
+}

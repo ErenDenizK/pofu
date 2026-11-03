@@ -1,0 +1,171 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/game-bloom-right/contact.jpg
+jobs:
+  game-bloom-right:
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Manual review passes: brown-disc
+      centroid x606.78 versus front x502.35, a +104.43px shift; left petals are broad
+      and right petals foreshortened. The second take also passes (+83.68px). Both
+      have only automated silhouette warnings; t1 has lowest lock load. Infrastructure
+      recovery: exactly two image requests were dispatched; after shell callback ARG_MAX
+      failure, generated originals were visually identified and numbered in stable
+      completion-time order, not claimed original request order. Source/inbox/RGBA
+      hashes preserve lineage.'
+qa_reports:
+  1:
+    job: game-bloom-right
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 57.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 48 (R1 59)
+      value: 47.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.59
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.4213
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 3.9, off-palette 0.0%
+      value: 1.2565
+    - check: edit_silhouette
+      status: warn
+      message: 92% of the parent's shape kept
+      value: 0.9164
+    - check: edit_stability
+      status: pass
+      message: 66% of the parent level unchanged
+      value: 0.6618
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.94 of the parent level (drift compounds along a chain)
+      value: 0.9418
+    info:
+      metrics_raw:
+        L_p5: 47.8
+        L_p50: 79.4
+        L_p95: 86.0
+        C_p50: 51.7
+        C_p95: 58.2
+        C_p99: 59.0
+        detail: 0.8
+      metrics_locked:
+        L_p5: 47.9
+        L_p50: 79.4
+        L_p95: 86.0
+        C_p50: 51.7
+        C_p95: 57.9
+        C_p99: 58.4
+        detail: 0.59
+    fingerprint: 8001a8b0f185f41c
+  2:
+    job: game-bloom-right
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 60 (R1 51)
+      value: 59.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 48 (R1 59)
+      value: 48.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.59
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5162
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 5.4, off-palette 0.0%
+      value: 1.7834
+    - check: edit_silhouette
+      status: warn
+      message: 91% of the parent's shape kept
+      value: 0.9146
+    - check: edit_stability
+      status: pass
+      message: 71% of the parent level unchanged
+      value: 0.7117
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.00 of the parent level (drift compounds along a chain)
+      value: 0.997
+    info:
+      metrics_raw:
+        L_p5: 48.1
+        L_p50: 80.0
+        L_p95: 86.2
+        C_p50: 55.0
+        C_p95: 60.8
+        C_p99: 61.4
+        detail: 0.8
+      metrics_locked:
+        L_p5: 48.1
+        L_p50: 79.9
+        L_p95: 86.2
+        C_p50: 55.0
+        C_p95: 59.7
+        C_p99: 60.0
+        detail: 0.59
+    fingerprint: 8001a8b0f185f41c
+manual_review:
+  excluded_takes: []
+  note: 'Manual review passes: brown-disc centroid x606.78 versus front x502.35, a
+    +104.43px shift; left petals are broad and right petals foreshortened. The second
+    take also passes (+83.68px). Both have only automated silhouette warnings; t1
+    has lowest lock load. Infrastructure recovery: exactly two image requests were
+    dispatched; after shell callback ARG_MAX failure, generated originals were visually
+    identified and numbered in stable completion-time order, not claimed original
+    request order. Source/inbox/RGBA hashes preserve lineage.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-b427e884-0599-4af8-93c6-68065aaeefa4.png
+  original_generated_png_sha256: 3cf4a3fac0a9c4b8702153c774444e74ec3a9be132cea3a56c54b98476e7e74b
+  inbox_png_sha256: 501853b02efa0864841a4df3d32e7305b39b6b09e89b5bb1032e067bd8382a9b
+  rgba_sha256: 01c23000d33c70a10a1f0e10001357427769244313c7286bdca1773dcc0f6ce5
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 8001a8b0f185f41c
+- take: 2
+  source_file: /workspace/generated_images/exec-2a1208ac-5ac6-41d4-af14-7ef22e582bf1.png
+  original_generated_png_sha256: 5b093b542ab351e060fb05fab2bf2b96fc1cf0d594a84c05f9bc9a00c2be7d7c
+  inbox_png_sha256: 0721380b4ac3957ec9aa5c5df9c2dd27be2357ad5bfe90f4c2c669f92b83f819
+  rgba_sha256: 4636999c8dba44821d133cd9a6fe3fafffbcf617a3e2374b034c7158ee01042a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 8001a8b0f185f41c

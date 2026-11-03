@@ -1,0 +1,189 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/game-plot-tile-honey/contact.jpg
+jobs:
+  game-plot-tile-honey:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both takes preserve the sage
+      tile silhouette, highlight, lip and sprout while recoloring to warm honey yellow.
+      All automated QA checks pass; select t1 by lower lock load0.7057 versus0.7267.
+      Exactly two image requests were dispatched; original PNGs recovered after ARG_MAX
+      callback failure and assigned stable completion-time numbering, not original
+      request ordinal. Source hashes preserve lineage.
+qa_reports:
+  1:
+    job: game-plot-tile-honey
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.021 and moved it; aligned back to the
+        parent
+      value: 0.9792
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 77 (R1 59)
+      value: 77.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7057
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.2, p95 2.4, off-palette 0.0%
+      value: 1.1671
+    - check: edit_silhouette
+      status: pass
+      message: 96% of the parent's shape kept
+      value: 0.9619
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.88)
+      value: 0.8772
+    - check: edit_lightness
+      status: pass
+      message: mean lightness moved by 4.9 L (the same lightness was asked)
+      value: 4.9386
+    info:
+      alignment:
+        scale: 0.9792
+        cx: 506.0
+        cy: 957.0
+        dx: 0
+        dy: 1
+      metrics_raw:
+        L_p5: 77.0
+        L_p50: 80.9
+        L_p95: 85.8
+        C_p50: 32.5
+        C_p95: 38.8
+        C_p99: 42.3
+        detail: 0.68
+      metrics_locked:
+        L_p5: 77.1
+        L_p50: 81.2
+        L_p95: 85.9
+        C_p50: 33.0
+        C_p95: 38.5
+        C_p99: 41.8
+        detail: 0.48
+    fingerprint: fd886acce11b71c6
+  2:
+    job: game-plot-tile-honey
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.002 and moved it; aligned back to the
+        parent
+      value: 0.9976
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 76.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.49
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7267
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 2.1, off-palette 0.0%
+      value: 1.0105
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9932
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.96)
+      value: 0.9568
+    - check: edit_lightness
+      status: pass
+      message: mean lightness moved by 4.0 L (the same lightness was asked)
+      value: 4.0081
+    info:
+      alignment:
+        scale: 0.9976
+        cx: 505.5
+        cy: 957.0
+        dx: 0
+        dy: 1
+      metrics_raw:
+        L_p5: 76.0
+        L_p50: 79.9
+        L_p95: 86.2
+        C_p50: 36.1
+        C_p95: 41.0
+        C_p99: 44.7
+        detail: 0.67
+      metrics_locked:
+        L_p5: 76.0
+        L_p50: 80.2
+        L_p95: 86.4
+        C_p50: 36.5
+        C_p95: 40.7
+        C_p99: 44.1
+        detail: 0.49
+    fingerprint: fd886acce11b71c6
+manual_review:
+  excluded_takes: []
+  note: Both takes preserve the sage tile silhouette, highlight, lip and sprout while
+    recoloring to warm honey yellow. All automated QA checks pass; select t1 by lower
+    lock load0.7057 versus0.7267. Exactly two image requests were dispatched; original
+    PNGs recovered after ARG_MAX callback failure and assigned stable completion-time
+    numbering, not original request ordinal. Source hashes preserve lineage.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-1840bed6-4c13-48eb-a920-1b27fa1ab3ee.png
+  original_generated_png_sha256: eca8adb12f496746dd733190dc0c34e7d86cbe7e20e9c3d16da9def57f7bbaea
+  inbox_png_sha256: 83a4a9edb0e51d7af35744f4b81b8f2ff00e0ef32d60ed120ba506e29af38a52
+  rgba_sha256: 7d68d29d60958fbff3bcb80147dd375c152f46717da825acab3223d8f9a40017
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: fd886acce11b71c6
+- take: 2
+  source_file: /workspace/generated_images/exec-18f0c19e-abf4-454b-a7d0-8a3184727547.png
+  original_generated_png_sha256: dd9875de40419b11138d99c930e42c92425df5b75df8c0eeefb8373ef12d2e37
+  inbox_png_sha256: f42d1ce14c0362769110dbd68416190b71effa8eb32adaf6a4d2c21ef44e6602
+  rgba_sha256: 18022c1429b5db833f8846350bcb19051ab8e1838f7cd34f0d48f31c65677569
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: fd886acce11b71c6

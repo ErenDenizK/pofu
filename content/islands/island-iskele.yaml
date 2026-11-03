@@ -29,6 +29,9 @@ links:
   - sys-rituals
   uses_asset:
   - asset-iskele-island-s
+  - asset-iskele-horn-1
+  - asset-iskele-crates-1
+  - asset-iskele-lamp-1
 sources:
 - doc: docs/product/archipelago-system.md
   anchor: '#11-island-concepts'

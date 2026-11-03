@@ -1,0 +1,98 @@
+{
+  "job": "simit-kitten",
+  "batch": "retry-2026-11-03",
+  "asset": "char__simit-kitten",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T13:46:53+00:00",
+  "image": "design/art/masters/simit-kitten/simit-kitten.png",
+  "raw": "design/art/masters/simit-kitten/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "d3a0b69f834ba4a6",
+  "prompt": "REFERENCES (attached, in this order):\n1. The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him).\n2. Mochi, a neighbor: match her size on the canvas, her eyes and her finish (do not draw her).\n3. The character palette card.\n\nDraw Simit, a neighbor of the attached hamster, in exactly the same\nart style, lighting and level of fluff as the hamster and the\nattached bunny. Same canvas rules as the hamster: full body,\nsitting upright, front view, centered, feet on an invisible line\nat 88% of the height, about 62% of the canvas width.\nCHARACTER: Simit, a baby tabby kitten whose body is a soft round\nball of plush fur in warm honey-gold with soft darker honey\nstripes on the forehead, the cheeks and the tail, a cream muzzle,\nchest and belly. Two small, softly rounded triangular ears with\npink insides. Big round glossy dark espresso eyes with one large\nround catchlight and one tiny sparkle each, soft blush ovals, a\ntiny rounded pink nose and a small smiling \"w\" mouth. A short,\nplump tail curls up beside her. Two tiny cream front paws together\nat the chest, two small feet peeking out. No curl or swirl of fur\non top of the head (that belongs to Pofu alone). A tiny coral\nneckerchief. No other clothes or accessories.\n\nSTYLE: soft painterly 2D digital illustration with the polish of a premium\nstorybook and a top-tier mobile app mascot. Gentle airbrushed shading, no\noutlines, no hard edges. Fine, soft fur strands along the silhouette and a\nvelvety fur texture inside it. Warm diffused key light from the upper left,\na faint warm rim light along the right edge, soft ambient shadow only where\nforms touch. Pastel warm palette of cream, golden peach and blush pink with\ndark espresso-brown eyes. Clean, calm, uncluttered. No text, no letters,\nno numbers, no logos, no watermark, no border, no frame, no sticker outline.\n\nAVOID: outlines, cel shading, 3D plastic or vinyl render, anime sparkle\neyes with many highlights, extra limbs, extra toes or fingers, claws,\nteeth, eyebrows, a long tail, lilac or gray fur, a ground shadow, a floor,\na cast shadow, a white sticker border, text, watermarks, signatures,\nmotion blur, film grain, paper texture, vignette.\n\nAVOID: realistic cat anatomy, sharp ears or claws, a curl on top of the head, a hat, text, a ground shadow.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him)."
+    },
+    {
+      "path": "design/art/masters/mochi-v2/mochi-v2.png",
+      "role": "Mochi, a neighbor: match her size on the canvas, her eyes and her finish (do not draw her)."
+    },
+    {
+      "path": "design/reference/palette-card-character.png",
+      "role": "The character palette card."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T13:45:45+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 55 (R1 51)",
+        "value": 55.3
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 58 (R1 59)",
+        "value": 58.2
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 4.9 (R1 5.3)",
+        "value": 4.87
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.4, p95 3.9, off-palette 0.8% (top: #441100 (0.1%), #CC5533 (0.1%))",
+        "value": 1.3534
+      },
+      {
+        "check": "ground_line",
+        "status": "warn",
+        "message": "feet at 92.4% of the height (contract 88%)",
+        "value": 0.9245
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 86 against the char reference (outliers: C_p95, detail)",
+        "value": 86.3
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both takes depict a honey tabby with coral neckerchief, soft small ears, upright plump tail, no head curl, and the same plush resident family. t1 ground-line WARN at 92.4% versus 88% retained without a waiver; t2 is 89.6%. Characters have no lock-load check, so the Harmony tie-break selects t1 (86.3 versus 84.8)."
+}

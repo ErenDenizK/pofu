@@ -1,0 +1,50 @@
+{
+ "after": {
+  "C_mean": 29.78,
+  "C_p50": 28.366,
+  "C_p95": 43.911,
+  "L_mean": 80.127,
+  "L_p2": 61.865,
+  "L_p98": 93.1,
+  "detail": 0.933,
+  "edge": 0.429,
+  "warmth_b": 26.754
+ },
+ "before": {
+  "C_mean": 29.78,
+  "C_p50": 28.366,
+  "C_p95": 43.911,
+  "L_mean": 80.127,
+  "L_p2": 61.865,
+  "L_p98": 93.1,
+  "detail": 0.933,
+  "edge": 0.429,
+  "warmth_b": 26.754
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 86.0,
+ "score_before": 86.0,
+ "shipped": false,
+ "source": "design/art/stations/iskele-lamp-1/iskele-lamp-1.png",
+ "source_sha": "b1ecf7bc5760669b"
+}

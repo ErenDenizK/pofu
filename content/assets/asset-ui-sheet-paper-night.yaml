@@ -2,7 +2,7 @@ id: asset-ui-sheet-paper-night
 type: asset
 title_tr: ui-sheet-paper-night
 title_en: sheet-paper-night (ui)
-status: planned
+status: cut
 horizon: now
 summary: Dye the paper a deep, soft indigo-blue, the stitches a pale warm cream, the
   paper lip a slightly lighter indigo. Keep it matte and calm; the middle stays plain,
@@ -23,3 +23,9 @@ notes:
 - 'Batch13overnight: Not generated: the embedded ui-sheet-paper pilot failed its allowed
   retry, so the manifest skips the rest of batch13. Other batch timings remain as
   specified.'
+- Retry 2026-11-03 skipped after its one allowed retry (four actual takes). All four
+  deep indigo cards fail value_floor, palette_drift, edit_structure and edit_lightness.
+  The manifest asks to darken cream paper and invert brown stitches to cream, while
+  the recolor profile requires retained lightness and light structure. No extra night
+  palette is declared. The allowed retry is exhausted; no further generation and no
+  threshold waiver. No jobs depend on this night sheet.
