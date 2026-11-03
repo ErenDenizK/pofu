@@ -1,0 +1,21 @@
+id: island-pervane
+type: island
+title_tr: Pervane
+title_en: The lantern islet (Fanus's satellite)
+status: idea
+horizon: maybe
+summary: >-
+  A floating glass lantern at dusk, home of the wordless compass moth. Lit only by hand and only at dusk; moths come to a quiet light. In Persian and Ottoman poetry the pervane is the moth that circles the candle. Satellite of Fanus in the glass constellation.
+notes:
+- >-
+  Design loop 1 (2026-11-03): the "good light" beat. A light kept for someone is not a light left on; Mochi lights one for Pofu when he travels.
+- >-
+  The moth stays wordless (story-delivery.md 3.3); this islet is where it sleeps.
+links:
+  related:
+  - island-fanus
+  - char-mochi
+sources:
+- doc: docs/product/design-loop/loop-1.md
+  anchor: '#3-islands-and-clusters'
+source: lead-brainstorm

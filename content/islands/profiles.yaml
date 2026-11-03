@@ -1,0 +1,304 @@
+# Island profiles for year one: constellations, six axes, palette deltas,
+# beats, story spine. Design loop 1 (docs/product/design-loop/loop-1.md).
+#
+# Not a content node: tools/content/validate.py skips this file. It is the
+# input of tools/content/island_metrics.py, which checks continuity and
+# novelty between neighbours, the arrival schedule derived from each
+# island's content runway, dead days and stacked wows:
+#
+#   python3 -I tools/content/island_metrics.py
+#
+# Days are tended days (cumulative; archipelago-system.md 1A.6). Arrival
+# days are DERIVED by the tool from `order`, `beats` and `rules`; they are
+# never written here, so a change in an island's content moves the
+# schedule honestly.
+
+axes: [palette, material, sky, landform, texture, culture]
+
+rules:
+  satellite_shared: [2, 3]   # a satellite shares 2-3 axes with the big it orbits
+  big_min_diff: 3            # consecutive big islands differ on >= 3 axes
+  step_min_shared: 1         # consecutive arrivals keep >= 1 axis (no cliff)
+  step_min_diff: 2           # ... and change >= 2 (no repeat)
+  pair_min_diff: 3           # any two wonder islands differ on >= 3 axes
+  home_min_diff: 3           # every wonder island differs from home on >= 3
+  run_max:                   # arrivals in a row that may share one value
+    texture: 2               # never three games of one texture in a row
+    culture: 3               # a culture may hold a short chapter, not a season
+  min_gap: 2                 # days between any two arrivals
+  big_gap: 5                 # days between two big arrivals
+  wow_gap: 3                 # days between any two wows (big arrival, big bloom)
+  rumour_lead: 2             # the first rumour comes this many days before arrival
+  thin_run_max: 2            # days in a row with only a daily (rumour, puzzle)
+  tiers:                     # the sawtooth (loop-1.md section 4.1)
+    floor: {premium: 7, god: 9}   # intensity floor per tier (1-10)
+    hook_by: 10              # the first god-tier island lands by this day
+    finale_god: true         # the last big island is god-tier
+    god_min_days: 7          # days between two god-tier arrivals
+    weak_runway: 2           # runway cap for an island the founder scored below the premium floor
+  palette_kin:               # controlled deltas from Ayçiçeği's palette
+    hue_max: 50              # degrees of hue rotation of the home palette
+    sat_max: 0.35            # saturation delta (fraction)
+    value_max: 0.45          # value delta (fraction)
+    distinct_min: 0.15       # at least one of |hue|/100, |sat|, |value| this big
+    keeps_min: 1             # home anchors kept in the island's palette
+
+# Founder's pacing targets (2026-11-03): Çağlayan d4, Koke d5-6, Gezgin
+# d8-10, Revontuli's rumour heard by the end of week two.
+targets:
+  caglayan: {arrival: [4, 4]}
+  koke: {arrival: [5, 6]}
+  gezgin: {arrival: [8, 10]}
+  revontuli: {rumour_by: 14}
+  mehtap: {arrival: [38, 50]}   # Book One ends on the next real full moon after its stage 4
+
+home_anchors: [honey, sage, sunflower, cream, rose-copper]
+
+clusters:
+  home:    {name_tr: Yuva, members: [aycicegi]}
+  water:   {name_tr: Su takımı, members: [caglayan, koke]}
+  journey: {name_tr: Yol takımı, members: [gezgin, marti]}
+  cold:    {name_tr: Ayaz takımı, members: [revontuli, olta]}
+  glass:   {name_tr: Cam takımı, members: [fanus, pervane]}
+  craft:   {name_tr: Ocak takımı, members: [comlek, ari]}
+  moon:    {name_tr: Mehtap takımı, members: [mehtap, yakamoz]}
+  ear:     {name_tr: Kulak (parallel), members: [canlar]}
+  memory:  {name_tr: Emanet (parallel), members: [emanet]}
+
+# Palette deltas, per cluster: a grade applied to the home palette plus one
+# new accent. Satellites inherit their cluster's delta.
+palette_deltas:
+  home:    {hue: 0,   sat: 0.0,   value: 0.0,   accent: none, keeps: [honey, sage, sunflower, cream, rose-copper]}
+  water:   {hue: -30, sat: -0.15, value: 0.12,  accent: mineral turquoise, keeps: [cream, sunflower]}
+  journey: {hue: -45, sat: -0.2,  value: -0.1,  accent: periwinkle, keeps: [cream, rose-copper]}
+  cold:    {hue: -40, sat: -0.1,  value: -0.4,  accent: aurora green, keeps: [honey, rose-copper]}
+  glass:   {hue: 15,  sat: 0.15,  value: 0.1,   accent: orchid violet, keeps: [sunflower, honey]}
+  craft:   {hue: 20,  sat: 0.2,   value: -0.15, accent: kiln ember, keeps: [honey, rose-copper]}
+  moon:    {hue: -35, sat: -0.3,  value: -0.3,  accent: moon silver, keeps: [cream, sunflower]}
+  ear:     {hue: 5,   sat: 0.3,   value: 0.1,   accent: bunting red, keeps: [sunflower, cream]}
+  memory:  {hue: 10,  sat: -0.3,  value: -0.15, accent: lamp amber, keeps: [honey, rose-copper]}
+
+# Arrival order. The tool derives each arrival day from the previous
+# island's runway (its first day without a fresh beat), the gaps above
+# and the wow spacing.
+order: [aycicegi, caglayan, koke, gezgin, canlar, marti, revontuli, olta,
+        fanus, pervane, emanet, comlek, ari, mehtap, yakamoz]
+
+# Beats: day offset from arrival -> the fresh thing that day (about ten
+# minutes of new play or story at most). A day with no beat from any island
+# is a dead day. `bloom` is the stage-5 offset (a wow for big islands).
+islands:
+  aycicegi:
+    name_tr: Ayçiçeği
+    node: island-aycicegi
+    size: home
+    cluster: home
+    design_loop: 1
+    founder_scores: []
+    axes: {palette: honey-sage, material: grass-wood, sky: real-time, landform: plate, texture: juicy, culture: turkiye}
+    beats: {0: first day, 1: harbor planks and Simit, 2: vapur's first run and the bottle, 4: home stage 2, 7: storks or first postcard, 10: home stage 3, 16: lighthouse, 24: home stage 5, 33: night of the first aurora at home, 45: Mochi's lantern}
+    spine: "Seeds the four notes, the wheel, Mochi's upside-down glass, the sunflower that turns to the fog at night."
+  caglayan:
+    name_tr: Çağlayan
+    node: island-caglayan
+    size: big
+    cluster: water
+    tier: premium
+    intensity: 8
+    design_loop: 1
+    founder_scores:
+      - {loop: 0, date: 2026-11-03, score: null, note: 'Not rated; the agent scored the painting 5/10 (the template with a waterfall). Founder: Çağlayan must be unique too.'}
+    axes: {palette: travertine-teal, material: travertine-water, sky: mist, landform: column, texture: juicy, culture: turkiye}
+    bloom: 10
+    beats: {0: arrival and the milky pools, 1: stage 1 and Damla's glass, 3: stage 2 the first clear pool, 4: the leaf boat comes home, 5: stage 3 the turn, 7: stage 4 the mill and the planks, 10: stage 5 the pools show the sky, 11: feast in the rain, 12: first rainbow at home}
+    unforgettable: "The pools are windows. Water that has gone round the sky shows what it passed; each pool you clear shows another island, live."
+    spine: "Rung 1. The deepest pool shows, for one breath, a far window whose light goes out. Pofu knows that window. Mochi sees water."
+  koke:
+    name_tr: Koke
+    node: island-koke
+    size: satellite
+    orbits: caglayan
+    cluster: water
+    design_loop: 1
+    founder_scores:
+      - {loop: 0, date: 2026-11-03, score: 6, note: 'Japanese garden on the home template.'}
+    axes: {palette: travertine-teal, material: travertine-water, sky: mist, landform: tree, texture: brainy, culture: japan}
+    bloom: 7
+    beats: {0: arrival in the spray, 1: stage 1 the raked letter, 3: stage 2, 5: a reply in gravel, 7: stage 3 the red leaf}
+    unforgettable: "A bonsai riding a travertine boulder in Çağlayan's spray, so it rains on Koke only when Çağlayan pours."
+    spine: "Rung 2. Sumi rakes thank-you letters every night \"to whoever makes it quiet\". Someone does."
+  gezgin:
+    name_tr: Gezgin
+    node: island-gezgin
+    size: big
+    cluster: journey
+    tier: god
+    intensity: 9
+    design_loop: 1
+    founder_scores:
+      - {loop: 0, date: 2026-11-03, score: 10, note: 'Concept deck review: the best island.'}
+      - {loop: 0, date: 2026-11-03, score: 7, note: 'Re-rated after seeing Revontuli: good, not great.'}
+    axes: {palette: sky-cotton, material: living-cloud, sky: dusk, landform: creature, texture: brainy, culture: sky}
+    bloom: 13
+    beats: {0: the whale arrives, 1: first night the moon rises twice, 2: Yosun's late letter, 3: stage 1, 5: stage 2, 7: the addressee is the Bekçi, 9: stage 3 the turn, 11: stage 4, 13: stage 5 the song, 14: feast a day late}
+    unforgettable: "The island is alive and huge; it breathes, and it carries letters nobody could deliver."
+    spine: "Rung 3. The undelivered letters are all addressed to one moving addressee, \"Bekçi\" (the night watchman). The whale swims where the quiet is."
+  canlar:
+    name_tr: Çanlar
+    node: island-canlar
+    size: parallel
+    cluster: ear
+    tier: premium
+    intensity: 8
+    design_loop: 0
+    founder_scores:
+      - {loop: 0, date: 2026-11-03, score: null, note: 'Great (no number).'}
+    axes: {palette: bright-primary, material: bronze-rope, sky: day, landform: spire, texture: rhythmic, culture: sky}
+    bloom: 14
+    daily_from: 6              # a rumour of the day from the bells
+    beats: {0: the spire arrives silent, 1: the first bell hears a far sound, 3: stage 1, 6: daily rumours begin, 8: stage 2, 11: stage 3 Pofu's notes in the oldest tune, 14: stage 5 every island rings}
+    unforgettable: "The archipelago's ear. Every morning one bell shivers before anything arrives; the awake islands of the day ring their motif."
+    spine: "Rung 4. The oldest tune, the one rung to call islands home, begins with Pofu's four notes. Pofu is a listener."
+  revontuli:
+    name_tr: Revontuli
+    node: island-revontuli
+    size: big
+    cluster: cold
+    tier: god
+    intensity: 10
+    design_loop: 0
+    founder_scores:
+      - {loop: 0, date: 2026-11-03, score: 7, note: 'Concept deck review.'}
+      - {loop: 0, date: 2026-11-03, score: 10, note: 'Why is it this good? Loves its mood.'}
+    rumour_lead: 3   # Çanlar's first bell hears it a day early
+    axes: {palette: aurora-night, material: snow-ice, sky: night, landform: floe, texture: juicy, culture: nordic}
+    bloom: 13
+    beats: {0: the floe arrives at night, 1: stage 1 and the sauna, 2: first lantern float round lights a streak, 4: stage 2, 6: stage 3 the fox tracks, 9: stage 4, 13: stage 5 the sky is painted, 14: feast in a sauna}
+    unforgettable: "Every light switched off below arrives here as aurora. The bubbles you light become tonight's sky."
+    spine: "Rung 5. The aurora is made of lights someone turned off. Many lights. Someone is busy."
+  olta:
+    name_tr: Olta
+    node: island-olta
+    size: satellite
+    orbits: revontuli
+    cluster: cold
+    design_loop: 1
+    founder_scores: []
+    axes: {palette: aurora-night, material: snow-ice, sky: dawn, landform: ring, texture: ritual, culture: nordic}
+    bloom: 6
+    beats: {0: a round hole in a round floe, 1: first wait at the hole, 2: something bites, 4: stage 2, 6: the lantern with a label}
+    unforgettable: "The only island where the game is to wait. You lower a line, put the phone down, and the island fishes up a thing from the sky's bottom."
+    spine: "Rung 6. The hole gives back a switched-off lantern labelled in the old letters' hand. Mochi says she knew them. The duo's midpoint."
+  marti:
+    name_tr: Martı Kayası
+    node: island-marti
+    size: satellite
+    orbits: gezgin
+    cluster: journey
+    design_loop: 1
+    founder_scores: []
+    axes: {palette: sky-cotton, material: sea-rock, sky: dusk, landform: stack, texture: juicy, culture: sky}
+    bloom: 6
+    beats: {0: the gull rock catches up with the whale, 1: the first simit toss, 3: a gull brings a trinket back, 4: stage 2, 6: the storks rest here}
+    unforgettable: "A sea stack that follows the whale the way gulls follow a vapur; the gulls trade what they snatched."
+    spine: "Lale, resting on the flyway, once carried \"a small one with a squeaky door\" south. Mochi's glass trembles."
+  fanus:
+    name_tr: Fanus
+    node: island-fanus
+    size: big
+    cluster: glass
+    tier: premium
+    intensity: 8
+    design_loop: 1
+    founder_scores:
+      - {loop: 0, date: 2026-11-03, score: null, note: 'Replaced Ayna (must change); paper concept only.'}
+    axes: {palette: sunlit-jewel, material: glass, sky: afternoon, landform: jar, texture: brainy, culture: nordic}
+    bloom: 13
+    beats: {0: the jar arrives fogged, 1: stage 1 wipe a pane, 2: Zümrüt hides, 4: stage 2, 6: stage 3 the sneezed seeds, 9: stage 4, 13: stage 5 the door in the glass, 14: butterflies come home}
+    unforgettable: "A sealed world you clear one pane at a time; the inside is dry, sunlit and full of what fell from the sky."
+    spine: "Rung 7. The sunflowers grown from Pofu's sneezes are tagged with dates. The dates are the player's quiet days."
+  pervane:
+    name_tr: Pervane
+    node: island-pervane
+    size: satellite
+    orbits: fanus
+    cluster: glass
+    design_loop: 1
+    founder_scores: []
+    axes: {palette: sunlit-jewel, material: glass, sky: dusk, landform: lantern, texture: ritual, culture: persian}
+    bloom: 5
+    beats: {0: a lantern islet drifts in at dusk, 1: light it, 3: the moths choose, 5: Mochi lights one for Pofu}
+    unforgettable: "A floating glass lantern where the compass moth lives. It is lit only at dusk and only by hand."
+    spine: "The good light. A light kept for someone is not a light left on. Mochi keeps one for Pofu when he travels."
+  emanet:
+    name_tr: Emanet
+    node: island-emanet
+    size: parallel
+    cluster: memory
+    tier: god
+    intensity: 9
+    design_loop: 1
+    founder_scores:
+      - {loop: 0, date: 2026-11-03, score: null, note: 'Great (no number): the heart; the plate is the template.'}
+    axes: {palette: lamplit-muted, material: kept-objects, sky: dusk, landform: umbrella, texture: brainy, culture: sky}
+    bloom: 14
+    daily_from: 1              # the daily logic puzzle
+    beats: {0: the umbrella arrives in drizzle, 1: the first daily puzzle, 3: stage 1, 6: stage 2, 9: stage 3 the top shelf, 11: stage 4, 14: stage 5 the map in the back room}
+    unforgettable: "The archipelago's post office and lost-and-found. Every day one thing is returned to the right island by deduction."
+    spine: "Rung 8. On the top shelf, Pofu's night-light, switch off, tagged in a NEW hand with the date of his first night here. There is a keeper now, and close."
+  comlek:
+    name_tr: Çömlek
+    node: island-comlek
+    size: big
+    cluster: craft
+    tier: premium
+    intensity: 9
+    design_loop: 1
+    founder_scores:
+      - {loop: 0, date: 2026-11-03, score: 4, note: 'Liked the mole and the wheel; the island is a postcard.'}
+    axes: {palette: ember-clay, material: clay-fire, sky: dusk, landform: cones, texture: juicy, culture: turkiye}
+    bloom: 13
+    beats: {0: the cold kiln comes out of the backdrop, 1: stage 1 the first lump, 2: a pot cracks, 4: stage 2, 6: stage 3 four islands send goods, 9: stage 4, 13: stage 5 the first firing, 14: the keeper's glass turned upright}
+    unforgettable: "It has been on the horizon since day one, a cold side island behind home. It is the first island that was always there."
+    spine: "Mochi's arc closes. Kil fires a glass for every island; Mochi turns the keeper's glass upright, pours, and sits down in the seat."
+  ari:
+    name_tr: Arı
+    node: island-ari
+    size: satellite
+    orbits: comlek
+    cluster: craft
+    design_loop: 1
+    founder_scores: []
+    axes: {palette: ember-clay, material: wax-honey, sky: afternoon, landform: hanging, texture: juicy, culture: turkiye}
+    bloom: 6
+    beats: {0: the hive hangs from its pine, 1: stage 1, 2: the first bee at home, 4: stage 2, 6: the bees' dance points}
+    unforgettable: "The only island that hangs. Its bees fly to home's sunflowers; their dance points where the sunflower points at night."
+    spine: "Rung 9. At night the sunflower and the bees point the same way, and it is not into the fog. It is toward the viewer."
+  mehtap:
+    name_tr: Mehtap
+    node: island-yildiz
+    size: big
+    cluster: moon
+    tier: god
+    intensity: 10
+    design_loop: 1
+    founder_scores:
+      - {loop: 0, date: 2026-11-03, score: 3, note: 'As Yıldız (an observatory on the home base); redesigned as the crescent.'}
+    axes: {palette: silver-dusk, material: moonstone, sky: blue-hour, landform: crescent, texture: brainy, culture: turkiye}
+    bloom: 16
+    beats: {0: a crescent settles, 1: stage 1 the first constellation, 3: stage 2, 5: Nane's chart of dark lights, 6: late secret on Çağlayan the wheel turns in the falls, 8: stage 3, 9: late secret on Koke Zil's bell in the tree, 11: stage 4, 12: the moon is waxing over home, 13: late secret on Gezgin the whale moors at the falls, 15: everyone sails to the pier, 16: stage 5 on the real full moon, 17: the morning after, 18: late secret on Yakamoz a letter in the old hand, 20: the bright room on the far edge}
+    unforgettable: "The island changes shape with the real moon. At the full moon it lifts, and its star chart is a map of every light someone turned off."
+    spine: "The reveal. The trail of dark lights ends at Ayçiçeği, tonight. The Bekçi is the player. Pofu looks at the camera once."
+  yakamoz:
+    name_tr: Yakamoz
+    node: island-yakamoz
+    size: satellite
+    orbits: mehtap
+    cluster: moon
+    design_loop: 1
+    founder_scores: []
+    axes: {palette: silver-dusk, material: glowing-water, sky: blue-hour, landform: disc, texture: ritual, culture: sky}
+    bloom: 5
+    beats: {0: the moon's reflection stays on the cloud sea, 1: a wade in light, 3: the glow draws the shore of every island, 5: the reflection shows one light more than the sky}
+    unforgettable: "The moon's reflection, left on the cloud sea, became land you can wade in; the plankton light up where you step."
+    spine: "Rung 10. The reflection holds one light the sky does not: a window still lit, far beyond the ring. After the full moon (Mehtap's late secret) it is where Book Two sails."

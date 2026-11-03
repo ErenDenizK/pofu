@@ -1,0 +1,21 @@
+id: island-olta
+type: island
+title_tr: Olta
+title_en: The ice-fishing hole (Revontuli's satellite)
+status: idea
+horizon: maybe
+summary: >-
+  A round floe with one round hole in it, a stool and a lantern, at polar dawn. The island's game is to wait: lower a line, put the phone down, and something from the bottom of the sky bites. Satellite of Revontuli in the cold constellation.
+notes:
+- >-
+  Design loop 1 (2026-11-03): takes Revontuli's ice-fishing ritual and gives it its own islet. Midpoint of the duo's arc: the hole gives back a switched-off lantern labelled in the old keeper's hand, and Mochi admits she knew them.
+- >-
+  Six-axis profile and schedule in content/islands/profiles.yaml.
+links:
+  related:
+  - island-revontuli
+  - char-mochi
+sources:
+- doc: docs/product/design-loop/loop-1.md
+  anchor: '#3-islands-and-clusters'
+source: lead-brainstorm
