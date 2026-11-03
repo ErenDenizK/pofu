@@ -1,0 +1,21 @@
+id: asset-x-b16-logo-a
+type: asset
+title_tr: x-b16-logo-a
+title_en: x-b16-logo-a (plate)
+status: in-production
+horizon: now
+summary: >-
+  PURPOSE: a wordmark for the app Pofu, direction A (round and chunky). AUDIENCE: adults and
+  teens who open social apps by reflex; warm, humorous, never preachy. REQUIRED TEXT: Pofu
+  (exactly four letters: capital P, lowercase o, f, u.) LETTERFORM: fat rounded letters like
+  soft dough, the lowercase o a perfect circle, in warm brown. Extra mark: a small cream curl
+  above the P as the only mark. COLOR: warm brown and cream…
+art:
+  images: []
+  jobs:
+  - batch-16-brand-explore:x-b16-logo-a
+sources:
+- doc: tools/imagegen/manifest/batch-16-brand-explore.yaml
+kind: plate
+batch: batch-16-brand-explore
+size: 1536x1024

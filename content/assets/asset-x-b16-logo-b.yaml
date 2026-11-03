@@ -1,0 +1,21 @@
+id: asset-x-b16-logo-b
+type: asset
+title_tr: x-b16-logo-b
+title_en: x-b16-logo-b (plate)
+status: in-production
+horizon: now
+summary: >-
+  PURPOSE: a wordmark for the app Pofu, direction B (hand-brushed). AUDIENCE: adults and teens
+  who open social apps by reflex; warm, humorous, never preachy. REQUIRED TEXT: Pofu (exactly
+  four letters: capital P, lowercase o, f, u.) LETTERFORM: friendly hand-brushed letters with
+  slightly uneven baseline, in warm brown with the first letter in sunflower yellow. Extra
+  mark: no mark. COLOR: warm brown and cream from the at…
+art:
+  images: []
+  jobs:
+  - batch-16-brand-explore:x-b16-logo-b
+sources:
+- doc: tools/imagegen/manifest/batch-16-brand-explore.yaml
+kind: plate
+batch: batch-16-brand-explore
+size: 1536x1024
