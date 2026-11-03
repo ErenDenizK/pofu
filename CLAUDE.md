@@ -38,8 +38,11 @@ Loaded every turn: keep it short. History lives in `docs/` (`docs/README.md`).
   (Playwright, renders); feel is tuned natively on his iPhone.
 - The agent may merge PRs, with merge commits, only on green CI. CI treats
   Swift warnings as errors and must stay green.
-- No Swift toolchain here: push, then read the GitHub Actions results
-  ([cloud environment](docs/development.md#the-cloud-agent-environment)).
+- Local Swift 6.2.1 via `tools/swift/setup-linux.sh`
+  ([docs](docs/development.md#local-swift-on-the-cloud-agent)): run the logic
+  tests locally first (`tools/swift/test-linux.sh`), then push to CI once per
+  finished change and read the GitHub Actions results (iOS-only code is
+  compiled only there).
 
 ## Where things are
 
@@ -50,7 +53,13 @@ Loaded every turn: keep it short. History lives in `docs/` (`docs/README.md`).
 - ADRs `docs/adr/`, research `docs/research/`, brand `docs/brand/`, game
   `docs/product/game-design.md` (keep `economy.md` in sync with `PofuCore`).
 - `content/` holds asset and island nodes used by the art pipeline (the Atlas
-  board and Pofu Hub are retired, 2026-11-02).
+  board is retired, 2026-11-02).
+- Pofu Hub (https://claude.ai/artifact/Qua2VFg3iSJ9V1HJgR8RS9, source
+  `design/hub/index.html`) is back as a simple panel for questions, status and
+  roadmap (not retired). Open questions carry comparable options and a
+  recommendation; the founder ticks one or ignores it, and unanswered
+  questions proceed with the recommendation. Update `status/now` and
+  `roadmap/main` in its db; no reviews, ideas or dictation.
 
 ## Current state (2026-11-02)
 

@@ -379,6 +379,14 @@ runner with Xcode 26 or newer:
    test skips. CI machines drop frames, so judge choreography and timing
    from the clips, and smoothness only on a phone.
 
+**When screenshots run.** The macOS build and tests run for any Swift or
+app change; the screenshot render, the motion-beat recording and
+`publish-screenshots` run only when `App/`, `PofuWorld`, `PofuCompanion`,
+`PofuGames`, `PofuDesignSystem`, `PofuCore/Rehearsal`, `Tests/WorldScreenshots`,
+`project.yml` or `.github/scripts` change, or when the PR has the `screens`
+label (adding the label re-runs CI). Need pictures of a PR that skipped
+them? Add the label.
+
 **Screenshot branches.** After a green macOS job, `publish-screenshots`
 converts those PNGs to JPEGs about 1000 px tall, adds a `contact.jpg`
 grid, encodes the motion beats as phone-friendly MP4s in `beats/`
@@ -394,11 +402,32 @@ never merged; it does not run for pull requests from forks.
 A newer push to the same branch cancels the run in progress. A pull request
 must be green before it merges.
 
+## Local Swift on the cloud agent
+
+swift.org is blocked, but Docker Hub is reachable, so the official
+`swift:6.2.1-noble` image's layers are unpacked straight into `/opt/swift`
+(no Docker daemon; about a minute; idempotent):
+
+```sh
+tools/swift/setup-linux.sh            # optional arg: tag, default 6.2.1
+export PATH=/opt/swift/usr/bin:$PATH  # swift --version -> 6.2.1
+tools/swift/test-linux.sh             # whole PofuKit suite, 725 tests, ~1 min
+cd Packages/PofuKit && swift build --target PofuCore   # one target
+```
+
+Every PofuKit target builds and its tests pass on Linux, because the
+Apple-only code (SwiftUI, SpriteKit, UIKit, FamilyControls, `os` logging)
+sits behind `#if os(iOS)` / `canImport` guards. Keep it that way: pure
+logic imports only Foundation (use `#if canImport(CoreGraphics)` for
+CGFloat and friends). What Linux cannot check is the iOS-only code
+(scenes, views, the live Screen Time service), so CI on macOS stays the
+source of truth; this is for fast local logic checks before pushing.
+
 ## The cloud agent environment
 
-The lead agent runs on Linux without Xcode and cannot download a Swift
-toolchain (swift.org is blocked), so the compile and test loop is: push,
-then read the GitHub Actions results. PyPI and Ubuntu apt are reachable
+The lead agent runs on Linux without Xcode. swift.org is blocked, but a
+local Swift is possible (see above); full compile and test of the iOS
+targets is still push, then read the GitHub Actions results. PyPI and Ubuntu apt are reachable
 (`bpy` from PyPI works for Blender); Chromium and Playwright are
 preinstalled for rendering and inspecting prototypes. The repository has
 been **public** since 2026-11-01, so Actions minutes are free; if it ever

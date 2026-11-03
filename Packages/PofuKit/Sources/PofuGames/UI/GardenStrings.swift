@@ -1,3 +1,4 @@
+#if os(iOS)
 import Foundation
 
 /// The garden game's copy, in English with Turkish translations in the
@@ -64,3 +65,4 @@ enum GardenStrings {
         String(localized: "The garden bed. Drag a plot from the tray onto the soil.", bundle: .module)
     }
 }
+#endif
