@@ -2,15 +2,12 @@ batch: batch-15-explore
 contact_sheet: design/art/takes/batch-15-explore/x-comlek-1/contact.jpg
 jobs:
   x-comlek-1:
-    pick: null
-    publication: unselected due global account stop
-    note: UNSELECTED due global account/sign-in stop; no terminal QA failure/skip,
-      no pick, no further generation or QA after stop. Retained generated takes are
-      for resuming the existing allowed round, never regeneration of a completed pair.
-      Initial pair retained; its one extra pair remains available only if complete
-      QA/manual review later rejects both.
-    takes_generated: 2
-    retry_round_used: false
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Coordinator manual review: both
+      have clay island, beehive kiln, low potter wheel, straw awning and shelf of
+      round drying pots. Shape/palette/signature read in the same soft island family.
+      Take2 lowest load1.0807. Exploration only.'
 qa_reports:
   1:
     job: x-comlek-1
@@ -114,60 +111,27 @@ qa_reports:
         C_p99: 53.2
         detail: 1.97
     fingerprint: 47757ad2bf801828
-pre_stop_manual_notes: null
+manual_review:
+  exclude: []
+  expected_pick: 2
+  note: 'Coordinator manual review: both have clay island, beehive kiln, low potter
+    wheel, straw awning and shelf of round drying pots. Shape/palette/signature read
+    in the same soft island family. Take2 lowest load1.0807. Exploration only.'
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-1ef52f0e-1ac0-473e-9594-93837c330039.png
-  original_png_sha256: 12504c640c42de1af2e6af41411fe33ecdd83fcd747b45be814a99b83e387e86
-  callback_file: /workspace/art-operator-runtime/generated-x-comlek-1-t1.json
-  account: &id001
+  account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  backend: codex-cloud built-in image tool
-  prompt_sha256: e13c5f91caed6d1dc8e2e573b08173089cd765af4fc247233245d214862307a1
+  fingerprint: 47757ad2bf801828
+  original_png_sha256: de3c4816aa6a15c04510cfdb0889cd004b9c3e3e2c157a0cab284a5f19a17c4b
 - take: 2
   source_file: /workspace/generated_images/exec-fd60cf0c-f8c4-437e-ac74-a49a4b7eca75.png
-  original_png_sha256: 0d7b340d2ec1c553e257e0927a289af71887d21cb02c363c0ed5d6a8e8d309d7
-  callback_file: /workspace/art-operator-runtime/generated-x-comlek-1-t2.json
-  account: *id001
-  backend: codex-cloud built-in image tool
-  prompt_sha256: e13c5f91caed6d1dc8e2e573b08173089cd765af4fc247233245d214862307a1
-prompt: "REFERENCES (attached, in this order):\n1. The home island: the same painting,\
-  \ the same low camera (about 20 degrees), the same softness and scale of a floating\
-  \ island. Do not draw this island.\n2. The sea of clouds below every island: paint\
-  \ the clouds like this.\n3. Style reference only (no characters unless asked): the\
-  \ hamster's soft painting and pastel colors.\n\nA concept painting for a cozy mobile\
-  \ game: \xC7\xF6mlek, a small red-clay\nfloating island in terracotta, ochre and\
-  \ cream, with a rounded beehive\nkiln, a low potter's wheel under a straw awning\
-  \ and a shelf of different\nround pots drying in the sun. Morning light. Seen from\
-  \ the same low front\nthree-quarter camera as the attached island, the island floating\
-  \ over a\nsea of clouds. Peaceful and wondrous, never dramatic.\n\nSTYLE: soft painterly\
-  \ 2D illustration from the same picture book as the\nattached hamster: the same\
-  \ gentle airbrushed shading, the same light,\nhigh-key values and the same milky\
-  \ pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes,\
-  \ because this is seen small on\na phone. Every material is painted matte, as a\
-  \ soft form with broad,\nsmooth value changes: wood without grain, metal without\
-  \ hammering or\nreflections, glass as a soft tinted shape, cloth without weave.\
-  \ At most\none small, soft highlight per object; no glints, no shine. Colors are\n\
-  muted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near\
-  \ black. Warm diffused key light from the upper left, a faint\nwarm rim light along\
-  \ the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered.\
-  \ No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark,\
-  \ no border, no frame, no\nsticker outline.\n\nAVOID: characters (except where named),\
-  \ a border, text, harsh shadows, saturated or neon colors, dark moods\n\nOutput:\
-  \ one image, opaque, full bleed, landscape 1536 x 1024."
-references_in_order:
-- /workspace/run15/design/art/masters/island-main-s/island-main-s.png
-- /workspace/run15/design/art/masters/cloud-sea/cloud-sea.png
-- /workspace/run15/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
-stop:
-  reason: Git authentication/account stop condition
-  observed_at: '2026-11-03T10:45:59Z'
-  job: x-emanet-2
-  message: 'fatal: could not read Username for ''https://github.com'': No such device
-    or address'
-  last_verified_head: 9a4209a585e4aaf89997c96f5a902e105d1b016c
-  next_publication_job: x-emanet-2
-  policy: No new generations or terminal decisions; preserve already-finished candidates
-    and publish completed work through an already-authorized functioning transport
-    if possible; notify coordinator immediately.
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 47757ad2bf801828
+  original_png_sha256: aa3676c6e62a586c49e01194c430f12b42ab6a081b393464890836c49a0afd6a
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
