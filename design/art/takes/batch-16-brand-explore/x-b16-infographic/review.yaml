@@ -1,0 +1,312 @@
+batch: batch-16-brand-explore
+contact_sheet: design/art/takes/batch-16-brand-explore/x-b16-infographic/contact.jpg
+jobs:
+  x-b16-infographic:
+    pick: none
+    publication: skipped after one allowed retry
+    note: All four originals read Instagram’a uzandın / Pofu / boş ver / ada büyür
+      in correct order, including dotless ı, ş and both ü accents. All render a curled
+      apostrophe instead of required ASCII apostrophe; phone symbols also resemble
+      Instagram camera mark (t2/t4 definite). Labels vary in size. Manual verbatim-text/logo/layout
+      failure after one unchanged-prompt retry. No dependents. Archived q90 WebPs
+      were separately inspected at enlarged first-label crops and full four-row views;
+      the same curled apostrophes and logo issues remain.
+qa_reports:
+  1:
+    job: x-b16-infographic
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 44.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 65.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.7 (R1 5.3)
+      value: 4.65
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0618
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 1.5, p95 6.2, off-palette 3.8% (top: #884411 (2.5%), #773311
+        (0.3%))'
+      value: 1.494
+    info:
+      metrics_raw:
+        L_p5: 64.6
+        L_p50: 92.8
+        L_p95: 95.5
+        C_p50: 13.3
+        C_p95: 45.7
+        C_p99: 51.8
+        detail: 5.32
+      metrics_locked:
+        L_p5: 65.3
+        L_p50: 92.7
+        L_p95: 95.3
+        C_p50: 13.4
+        C_p95: 44.9
+        C_p99: 49.7
+        detail: 4.65
+    fingerprint: b57f19597ceb5b89
+  2:
+    job: x-b16-infographic
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 42.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 63.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.6 (R1 5.3)
+      value: 4.58
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0405
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 1.5, p95 6.9, off-palette 3.8% (top: #884422 (3.2%), #884411
+        (0.2%))'
+      value: 1.5084
+    info:
+      metrics_raw:
+        L_p5: 62.3
+        L_p50: 90.6
+        L_p95: 95.9
+        C_p50: 14.4
+        C_p95: 43.2
+        C_p99: 51.3
+        detail: 5.25
+      metrics_locked:
+        L_p5: 63.5
+        L_p50: 90.6
+        L_p95: 95.7
+        C_p50: 14.5
+        C_p95: 42.8
+        C_p99: 48.6
+        detail: 4.58
+    fingerprint: b57f19597ceb5b89
+  3:
+    job: x-b16-infographic
+    take: 3
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 39.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 61.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.9 (R1 5.3)
+      value: 4.87
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1287
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.2, p95 6.1, off-palette 1.2% (top: #774422 (0.7%), #773311
+        (0.2%))'
+      value: 1.2447
+    info:
+      metrics_raw:
+        L_p5: 59.9
+        L_p50: 92.8
+        L_p95: 96.2
+        C_p50: 9.9
+        C_p95: 39.9
+        C_p99: 48.7
+        detail: 5.54
+      metrics_locked:
+        L_p5: 61.1
+        L_p50: 92.8
+        L_p95: 95.9
+        C_p50: 9.9
+        C_p95: 39.2
+        C_p99: 46.7
+        detail: 4.87
+    fingerprint: b57f19597ceb5b89
+  4:
+    job: x-b16-infographic
+    take: 4
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 69 (R1 59)
+      value: 69.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.5 (R1 5.3)
+      value: 4.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.1992
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 6.4, off-palette 0.8% (top: #884422 (0.4%), #774422
+        (0.1%))'
+      value: 1.3417
+    info:
+      metrics_raw:
+        L_p5: 68.3
+        L_p50: 91.6
+        L_p95: 95.6
+        C_p50: 10.9
+        C_p95: 41.2
+        C_p99: 50.9
+        detail: 5.18
+      metrics_locked:
+        L_p5: 69.1
+        L_p50: 91.6
+        L_p95: 95.3
+        C_p50: 11.1
+        C_p95: 40.4
+        C_p99: 48.3
+        detail: 4.48
+    fingerprint: b57f19597ceb5b89
+manual_review:
+  exclude:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: All four originals read Instagram’a uzandın / Pofu / boş ver / ada büyür in
+    correct order, including dotless ı, ş and both ü accents. All render a curled
+    apostrophe instead of required ASCII apostrophe; phone symbols also resemble Instagram
+    camera mark (t2/t4 definite). Labels vary in size. Manual verbatim-text/logo/layout
+    failure after one unchanged-prompt retry. No dependents. Archived q90 WebPs were
+    separately inspected at enlarged first-label crops and full four-row views; the
+    same curled apostrophes and logo issues remain.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-81106a15-4297-4097-a6f3-e6f5a111c692.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b57f19597ceb5b89
+  original_generated_png_sha256: 1bf228a8f06142ac314637139c127de745f65cf2ad2182b504bceea5c98ad2e1
+  ingested_png_sha256: 6451df06bd590ed3d810929e71eee10a3f62d95e8e01a95fc64b04256e27ed1c
+  source_rgba_sha256: 9834d6ce354d91ce53634ca266e78af2391c4b76d34db4e19a9e5ae077de6b69
+  source_dimensions:
+  - 1024
+  - 1536
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-infographic/plate__x-b16-infographic--t1.webp
+  uploaded_artifact_sha256: 0bda31678f500c713ca34ded807f1269f9a4ce8d7679fb381d7ef0c38c6de1fc
+  uploaded_dimensions:
+  - 1024
+  - 1536
+  encoding: lossy WebP quality 90
+- take: 2
+  source_file: /workspace/generated_images/exec-a4b5bfc8-0486-4c73-8c0b-5d33cfc51136.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b57f19597ceb5b89
+  original_generated_png_sha256: 406d89e696503be0408b815f5520db7ff087c9099078e56e48f56828f33616dc
+  ingested_png_sha256: 7bcf77fd5b4f5741e5203058e39679cc7aeb5f33586813ae137ec45eae6bbc5d
+  source_rgba_sha256: 803d74945c847c6d3fdc057e5de366c1080a0628579d3bda133cbde05602f11c
+  source_dimensions:
+  - 1024
+  - 1536
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-infographic/plate__x-b16-infographic--t2.webp
+  uploaded_artifact_sha256: 80da9a67715f0569920f1a26788a6b9e9184b974cc7b892aee13ae3633069b26
+  uploaded_dimensions:
+  - 1024
+  - 1536
+  encoding: lossy WebP quality 90
+- take: 3
+  source_file: /workspace/generated_images/exec-fb086072-e1e7-4f77-a177-89e67ed7ebff.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b57f19597ceb5b89
+  original_generated_png_sha256: 98a9f8150362323cb3aac20b4df8d16d4afdd90e9dbb184d04a64e794192dfb6
+  ingested_png_sha256: 5abe621dd63dc19341377fb390c09cfa2b05f180f72916d98e35730966f96163
+  source_rgba_sha256: 490f9d3ecc7e7e4a03cc74e45634c038e05b106b578d7c42d1cd455d77633851
+  source_dimensions:
+  - 1024
+  - 1536
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-infographic/plate__x-b16-infographic--t3.webp
+  uploaded_artifact_sha256: 330af586aba07d024e3df7b200d5fb51537ee51459ee06131da8678afe4ca173
+  uploaded_dimensions:
+  - 1024
+  - 1536
+  encoding: lossy WebP quality 90
+- take: 4
+  source_file: /workspace/generated_images/exec-9536d33c-61ed-474c-bd60-9606d43d5102.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b57f19597ceb5b89
+  original_generated_png_sha256: 95c355e402d92394d6689c50b6d736e7e03f5093030c9e7c8c185740078b580d
+  ingested_png_sha256: e6ddae1dd94ddc4a70a299357edca54d1e43751395e372452846eac7ea341323
+  source_rgba_sha256: 5a7349408599c96fa7cef83dd20f5788e192706c66dd78c8bd2be95131355406
+  source_dimensions:
+  - 1024
+  - 1536
+  source_rgba_identity: verified equal before archival
+  original_storage: local only; not uploaded
+  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-infographic/plate__x-b16-infographic--t4.webp
+  uploaded_artifact_sha256: 58883043ce8d23f3d80c7523aa183e02620387cf0a352d0fb347bd9ffb797d0b
+  uploaded_dimensions:
+  - 1024
+  - 1536
+  encoding: lossy WebP quality 90
