@@ -1,19 +1,27 @@
 batch: batch-16-brand-explore
+assessment_epoch: batch-16-brand-explore@58d4742a77d30663dd144f989dc5977a5c3c8e5a/x-b16-icon-family
+assessment_main: 58d4742a77d30663dd144f989dc5977a5c3c8e5a
 contact_sheet: design/art/takes/batch-16-brand-explore/x-b16-icon-family/contact.jpg
 jobs:
   x-b16-icon-family:
-    pick: none
-    publication: skipped after one allowed retry
-    note: 'All four originals show separated 3x2 icons in required order with no labels/background
-      tiles and native RGBA transparency. All four automated reports fail palette_drift:
-      mean dE 10.0/9.7/8.6/10.4 and off-palette 30.3/28.5/28.0/29.0 percent. One unchanged-prompt
-      retry exhausted; skip. No 24px acceptability claim made because automated QA
-      already rejects every take.'
+    pick: 3
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. All four originals show separated
+      3x2 icons in required order with no labels/background tiles and native RGBA
+      transparency. All four automated reports fail palette_drift: mean dE 10.0/9.7/8.6/10.4
+      and off-palette 30.3/28.5/28.0/29.0 percent. Current native-alpha and 24/60px
+      light/dark-background proofs inspected: all six semantic silhouettes remain
+      distinct in required grid order; palette mismatch is advisory. Same four original
+      generations, no new capacity. Reassessed from identical retained source and
+      q90 archive bytes on main58d4742: previous chroma/value/palette/corner failures
+      are advisory exploration warnings under current QA, never a reason to regenerate.
+      Original generating prompt/account/time/fingerprint is embedded separately from
+      current salvage assessment. No new image generated for this recovered job.'
 qa_reports:
   1:
     job: x-b16-icon-family
     take: 1
-    status: fail
+    status: warn
     preset: char-guard
     checks:
     - check: transparency
@@ -39,9 +47,9 @@ qa_reports:
       message: the lock moved colors by mean dE 0.0
       value: 0.0002
     - check: palette_drift
-      status: fail
+      status: warn
       message: 'mean dE 10.0, p95 30.5, off-palette 30.3% (top: #CCCC66 (2.7%), #BBBB55
-        (2.6%))'
+        (2.6%)) (advisory in an exploration)'
       value: 10.027
     info:
       metrics_raw:
@@ -64,7 +72,7 @@ qa_reports:
   2:
     job: x-b16-icon-family
     take: 2
-    status: fail
+    status: warn
     preset: char-guard
     checks:
     - check: transparency
@@ -90,9 +98,9 @@ qa_reports:
       message: the lock moved colors by mean dE 0.0
       value: 0.0041
     - check: palette_drift
-      status: fail
+      status: warn
       message: 'mean dE 9.7, p95 30.2, off-palette 28.5% (top: #BBBB66 (2.6%), #DDCC77
-        (2.5%))'
+        (2.5%)) (advisory in an exploration)'
       value: 9.7083
     info:
       metrics_raw:
@@ -115,7 +123,7 @@ qa_reports:
   3:
     job: x-b16-icon-family
     take: 3
-    status: fail
+    status: warn
     preset: char-guard
     checks:
     - check: transparency
@@ -141,9 +149,9 @@ qa_reports:
       message: the lock moved colors by mean dE 0.0
       value: 0.0
     - check: palette_drift
-      status: fail
+      status: warn
       message: 'mean dE 8.6, p95 27.4, off-palette 28.0% (top: #999955 (3.3%), #AAAA66
-        (3.2%))'
+        (3.2%)) (advisory in an exploration)'
       value: 8.6375
     info:
       metrics_raw:
@@ -166,7 +174,7 @@ qa_reports:
   4:
     job: x-b16-icon-family
     take: 4
-    status: fail
+    status: warn
     preset: char-guard
     checks:
     - check: transparency
@@ -192,9 +200,9 @@ qa_reports:
       message: the lock moved colors by mean dE 0.0
       value: 0.0
     - check: palette_drift
-      status: fail
+      status: warn
       message: 'mean dE 10.4, p95 33.2, off-palette 29.0% (top: #99AA55 (2.8%), #CCCC77
-        (2.7%))'
+        (2.7%)) (advisory in an exploration)'
       value: 10.3889
     info:
       metrics_raw:
@@ -218,9 +226,19 @@ manual_review:
   exclude: []
   note: 'All four originals show separated 3x2 icons in required order with no labels/background
     tiles and native RGBA transparency. All four automated reports fail palette_drift:
-    mean dE 10.0/9.7/8.6/10.4 and off-palette 30.3/28.5/28.0/29.0 percent. One unchanged-prompt
-    retry exhausted; skip. No 24px acceptability claim made because automated QA already
-    rejects every take.'
+    mean dE 10.0/9.7/8.6/10.4 and off-palette 30.3/28.5/28.0/29.0 percent. Current
+    native-alpha and 24/60px light/dark-background proofs inspected: all six semantic
+    silhouettes remain distinct in required grid order; palette mismatch is advisory.
+    Same four original generations, no new capacity. Reassessed from identical retained
+    source and q90 archive bytes on main58d4742: previous chroma/value/palette/corner
+    failures are advisory exploration warnings under current QA, never a reason to
+    regenerate. Original generating prompt/account/time/fingerprint is embedded separately
+    from current salvage assessment. No new image generated for this recovered job.'
+  generation_budget: &id001
+    historical_unique_originals: 4
+    new_generation_calls: 0
+    reingest_grants_capacity: false
+generation_budget: *id001
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-629491a4-cea1-4ff2-bbfb-74e11be16e13.png
@@ -234,14 +252,108 @@ sources:
   source_dimensions:
   - 1536
   - 1024
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-family/sheet__x-b16-icon-family--t1.webp
-  uploaded_artifact_sha256: 417ec5ae8acc8f73b7cfdac27a34afa414dd601246f7c588005e3a1e1a16c32c
-  uploaded_dimensions:
-  - 1536
-  - 1024
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-family/sheet__x-b16-icon-family--t1.webp
+  archive_artifact_sha256: 417ec5ae8acc8f73b7cfdac27a34afa414dd601246f7c588005e3a1e1a16c32c
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 478058d9107e668c
+    ingested_at: '2026-11-03T14:05:32+00:00'
+  historical_generation:
+    job: x-b16-icon-family
+    take: 1
+    batch: batch-16-brand-explore
+    fingerprint: 478058d9107e668c
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The seed icon: the exact finish, size and softness every icon of the family
+      must share.
+
+      2. The calm icon: the exact finish, size and softness every icon of the family
+      must share.
+
+      3. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET ICON: a painted icon or a family of icons. Fill the fields of the brief
+      in this order: PURPOSE (what each icon means), AUDIENCE, SUBJECT (one object
+      per icon), LAYOUT (a family sits on an even grid with equal size and spacing,
+      nothing touching), STYLE (the attached icons and painting, the same finish for
+      every icon of the family), PALETTE (milky pastel with one warm-brown accent
+      shape per icon), CONSTRAINTS. Each icon is one centered object of three or four
+      large rounded shapes that reads as a silhouette at 24 points; no thin parts,
+      no outline, no background shape, no text, no letters, no numbers, no glass,
+      no glossy highlight.
+
+
+      PURPOSE: the icon family of the Pofu interface, in the painted style.
+
+      AUDIENCE: the app''s users, who see the icons at 24 to 44 points.
+
+      SUBJECT: six icons in a grid of three columns and two rows, in this order: seed
+      (a sunflower seed); lantern (a calm paper lantern); wellbeing (a small heart-shaped
+      leaf); breath (a soft cloud with a curl of air); map (a rolled paper map); island
+      (a tiny floating island).
+
+      LAYOUT: even grid on a transparent background, equal size and spacing, nothing
+      touching, no labels.
+
+      STYLE: exactly the finish of the attached seed and calm icons. PALETTE: milky
+      pastel with one warm-brown accent shape each.
+
+
+      ICON STYLE: a painted icon from the same picture book as the attached
+
+      hamster and island: the same soft airbrushed shading, the same warm
+
+      light from the upper left and the same milky pastel colors, simplified
+
+      for small sizes. One object only, centered, filling about 86% of the
+
+      canvas, built from three or four large, rounded shapes, so it reads as a
+
+      silhouette at 24 points. No thin parts: nothing narrower than a tenth of
+
+      the icon''s width (no stems, strings, whiskers, spikes or tiny dots). A
+
+      clear value structure: the shadow side, or one warm-brown accent shape,
+
+      is dark enough to read on pale frosted glass, and the lit side reads on
+
+      dark glass. Matte, no glints, no texture. No outline, no drop shadow, no
+
+      background shape: no circle, tile, badge or plate behind the object. No
+
+      glass, no frosted panel, no glossy button. No text, no letters, no
+
+      numbers.
+
+
+      AVOID: text, labels, a background tile, glass, gloss, outlines, thin parts
+
+
+      Output: one image, transparent background PNG, landscape 1536 x 1024.
+
+      '
+    attachments:
+    - path: design/art/ui/icon-seed/icon-seed.png
+      role: 'The seed icon: the exact finish, size and softness every icon of the
+        family must share.'
+    - path: design/art/ui/icon-calm/icon-calm.png
+      role: 'The calm icon: the exact finish, size and softness every icon of the
+        family must share.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T14:05:32+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-629491a4-cea1-4ff2-bbfb-74e11be16e13.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: 198c3e48d9ce2e4d98fda594e9bae279cd38a4ce044dcb74a9e54168f5ba3bc1
 - take: 2
   source_file: /workspace/generated_images/exec-a11245c6-1c8b-45a9-88ad-6b111789ca6b.png
   account:
@@ -254,14 +366,108 @@ sources:
   source_dimensions:
   - 1536
   - 1024
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-family/sheet__x-b16-icon-family--t2.webp
-  uploaded_artifact_sha256: 4add45993f74276c4b2e709342a7a801de3894ed3657b8bfb3b7f0c6633c087b
-  uploaded_dimensions:
-  - 1536
-  - 1024
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-family/sheet__x-b16-icon-family--t2.webp
+  archive_artifact_sha256: 4add45993f74276c4b2e709342a7a801de3894ed3657b8bfb3b7f0c6633c087b
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 478058d9107e668c
+    ingested_at: '2026-11-03T14:05:33+00:00'
+  historical_generation:
+    job: x-b16-icon-family
+    take: 2
+    batch: batch-16-brand-explore
+    fingerprint: 478058d9107e668c
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The seed icon: the exact finish, size and softness every icon of the family
+      must share.
+
+      2. The calm icon: the exact finish, size and softness every icon of the family
+      must share.
+
+      3. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET ICON: a painted icon or a family of icons. Fill the fields of the brief
+      in this order: PURPOSE (what each icon means), AUDIENCE, SUBJECT (one object
+      per icon), LAYOUT (a family sits on an even grid with equal size and spacing,
+      nothing touching), STYLE (the attached icons and painting, the same finish for
+      every icon of the family), PALETTE (milky pastel with one warm-brown accent
+      shape per icon), CONSTRAINTS. Each icon is one centered object of three or four
+      large rounded shapes that reads as a silhouette at 24 points; no thin parts,
+      no outline, no background shape, no text, no letters, no numbers, no glass,
+      no glossy highlight.
+
+
+      PURPOSE: the icon family of the Pofu interface, in the painted style.
+
+      AUDIENCE: the app''s users, who see the icons at 24 to 44 points.
+
+      SUBJECT: six icons in a grid of three columns and two rows, in this order: seed
+      (a sunflower seed); lantern (a calm paper lantern); wellbeing (a small heart-shaped
+      leaf); breath (a soft cloud with a curl of air); map (a rolled paper map); island
+      (a tiny floating island).
+
+      LAYOUT: even grid on a transparent background, equal size and spacing, nothing
+      touching, no labels.
+
+      STYLE: exactly the finish of the attached seed and calm icons. PALETTE: milky
+      pastel with one warm-brown accent shape each.
+
+
+      ICON STYLE: a painted icon from the same picture book as the attached
+
+      hamster and island: the same soft airbrushed shading, the same warm
+
+      light from the upper left and the same milky pastel colors, simplified
+
+      for small sizes. One object only, centered, filling about 86% of the
+
+      canvas, built from three or four large, rounded shapes, so it reads as a
+
+      silhouette at 24 points. No thin parts: nothing narrower than a tenth of
+
+      the icon''s width (no stems, strings, whiskers, spikes or tiny dots). A
+
+      clear value structure: the shadow side, or one warm-brown accent shape,
+
+      is dark enough to read on pale frosted glass, and the lit side reads on
+
+      dark glass. Matte, no glints, no texture. No outline, no drop shadow, no
+
+      background shape: no circle, tile, badge or plate behind the object. No
+
+      glass, no frosted panel, no glossy button. No text, no letters, no
+
+      numbers.
+
+
+      AVOID: text, labels, a background tile, glass, gloss, outlines, thin parts
+
+
+      Output: one image, transparent background PNG, landscape 1536 x 1024.
+
+      '
+    attachments:
+    - path: design/art/ui/icon-seed/icon-seed.png
+      role: 'The seed icon: the exact finish, size and softness every icon of the
+        family must share.'
+    - path: design/art/ui/icon-calm/icon-calm.png
+      role: 'The calm icon: the exact finish, size and softness every icon of the
+        family must share.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T14:05:33+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-a11245c6-1c8b-45a9-88ad-6b111789ca6b.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: cb8941e1cf110b2271005738dc1b899fb80ef6bacbe55847f1c7ec2509a9d484
 - take: 3
   source_file: /workspace/generated_images/exec-e853d008-ff3d-450c-b9e4-ffe5c7e0ae78.png
   account:
@@ -274,14 +480,108 @@ sources:
   source_dimensions:
   - 1536
   - 1024
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-family/sheet__x-b16-icon-family--t3.webp
-  uploaded_artifact_sha256: 6178ee5e107f496b27bedf888a357cf00e25f832b0b6ab11dc0095c7a19bdb18
-  uploaded_dimensions:
-  - 1536
-  - 1024
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-family/sheet__x-b16-icon-family--t3.webp
+  archive_artifact_sha256: 6178ee5e107f496b27bedf888a357cf00e25f832b0b6ab11dc0095c7a19bdb18
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 478058d9107e668c
+    ingested_at: '2026-11-03T14:10:53+00:00'
+  historical_generation:
+    job: x-b16-icon-family
+    take: 3
+    batch: batch-16-brand-explore
+    fingerprint: 478058d9107e668c
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The seed icon: the exact finish, size and softness every icon of the family
+      must share.
+
+      2. The calm icon: the exact finish, size and softness every icon of the family
+      must share.
+
+      3. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET ICON: a painted icon or a family of icons. Fill the fields of the brief
+      in this order: PURPOSE (what each icon means), AUDIENCE, SUBJECT (one object
+      per icon), LAYOUT (a family sits on an even grid with equal size and spacing,
+      nothing touching), STYLE (the attached icons and painting, the same finish for
+      every icon of the family), PALETTE (milky pastel with one warm-brown accent
+      shape per icon), CONSTRAINTS. Each icon is one centered object of three or four
+      large rounded shapes that reads as a silhouette at 24 points; no thin parts,
+      no outline, no background shape, no text, no letters, no numbers, no glass,
+      no glossy highlight.
+
+
+      PURPOSE: the icon family of the Pofu interface, in the painted style.
+
+      AUDIENCE: the app''s users, who see the icons at 24 to 44 points.
+
+      SUBJECT: six icons in a grid of three columns and two rows, in this order: seed
+      (a sunflower seed); lantern (a calm paper lantern); wellbeing (a small heart-shaped
+      leaf); breath (a soft cloud with a curl of air); map (a rolled paper map); island
+      (a tiny floating island).
+
+      LAYOUT: even grid on a transparent background, equal size and spacing, nothing
+      touching, no labels.
+
+      STYLE: exactly the finish of the attached seed and calm icons. PALETTE: milky
+      pastel with one warm-brown accent shape each.
+
+
+      ICON STYLE: a painted icon from the same picture book as the attached
+
+      hamster and island: the same soft airbrushed shading, the same warm
+
+      light from the upper left and the same milky pastel colors, simplified
+
+      for small sizes. One object only, centered, filling about 86% of the
+
+      canvas, built from three or four large, rounded shapes, so it reads as a
+
+      silhouette at 24 points. No thin parts: nothing narrower than a tenth of
+
+      the icon''s width (no stems, strings, whiskers, spikes or tiny dots). A
+
+      clear value structure: the shadow side, or one warm-brown accent shape,
+
+      is dark enough to read on pale frosted glass, and the lit side reads on
+
+      dark glass. Matte, no glints, no texture. No outline, no drop shadow, no
+
+      background shape: no circle, tile, badge or plate behind the object. No
+
+      glass, no frosted panel, no glossy button. No text, no letters, no
+
+      numbers.
+
+
+      AVOID: text, labels, a background tile, glass, gloss, outlines, thin parts
+
+
+      Output: one image, transparent background PNG, landscape 1536 x 1024.
+
+      '
+    attachments:
+    - path: design/art/ui/icon-seed/icon-seed.png
+      role: 'The seed icon: the exact finish, size and softness every icon of the
+        family must share.'
+    - path: design/art/ui/icon-calm/icon-calm.png
+      role: 'The calm icon: the exact finish, size and softness every icon of the
+        family must share.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T14:10:53+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-e853d008-ff3d-450c-b9e4-ffe5c7e0ae78.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: 077e6cd2cea3c8fa7eac232dcda71c6cf8a5b023c602bbe52348da5cdfec9764
 - take: 4
   source_file: /workspace/generated_images/exec-2814257c-7811-43ff-84cd-3a6aa4136ccd.png
   account:
@@ -294,11 +594,105 @@ sources:
   source_dimensions:
   - 1536
   - 1024
-  source_rgba_identity: verified equal before archival
+  source_rgba_identity: verified equal; original and inbox
   original_storage: local only; not uploaded
-  uploaded_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-family/sheet__x-b16-icon-family--t4.webp
-  uploaded_artifact_sha256: 310e1e28bbbcf1f219ffc7be1a283a4630c660ce53c57e3da4c50ff55e360882
-  uploaded_dimensions:
-  - 1536
-  - 1024
+  archive_artifact: design/art/takes/batch-16-brand-explore/x-b16-icon-family/sheet__x-b16-icon-family--t4.webp
+  archive_artifact_sha256: 310e1e28bbbcf1f219ffc7be1a283a4630c660ce53c57e3da4c50ff55e360882
   encoding: lossy WebP quality 90
+  current_assessment_ingest:
+    backend: codex-cloud
+    fingerprint: 478058d9107e668c
+    ingested_at: '2026-11-03T14:10:54+00:00'
+  historical_generation:
+    job: x-b16-icon-family
+    take: 4
+    batch: batch-16-brand-explore
+    fingerprint: 478058d9107e668c
+    prompt: 'REFERENCES (attached, in this order):
+
+      1. The seed icon: the exact finish, size and softness every icon of the family
+      must share.
+
+      2. The calm icon: the exact finish, size and softness every icon of the family
+      must share.
+
+      3. Pofu, the hamster: his exact look, fur, colors and eyes.
+
+
+      PRESET ICON: a painted icon or a family of icons. Fill the fields of the brief
+      in this order: PURPOSE (what each icon means), AUDIENCE, SUBJECT (one object
+      per icon), LAYOUT (a family sits on an even grid with equal size and spacing,
+      nothing touching), STYLE (the attached icons and painting, the same finish for
+      every icon of the family), PALETTE (milky pastel with one warm-brown accent
+      shape per icon), CONSTRAINTS. Each icon is one centered object of three or four
+      large rounded shapes that reads as a silhouette at 24 points; no thin parts,
+      no outline, no background shape, no text, no letters, no numbers, no glass,
+      no glossy highlight.
+
+
+      PURPOSE: the icon family of the Pofu interface, in the painted style.
+
+      AUDIENCE: the app''s users, who see the icons at 24 to 44 points.
+
+      SUBJECT: six icons in a grid of three columns and two rows, in this order: seed
+      (a sunflower seed); lantern (a calm paper lantern); wellbeing (a small heart-shaped
+      leaf); breath (a soft cloud with a curl of air); map (a rolled paper map); island
+      (a tiny floating island).
+
+      LAYOUT: even grid on a transparent background, equal size and spacing, nothing
+      touching, no labels.
+
+      STYLE: exactly the finish of the attached seed and calm icons. PALETTE: milky
+      pastel with one warm-brown accent shape each.
+
+
+      ICON STYLE: a painted icon from the same picture book as the attached
+
+      hamster and island: the same soft airbrushed shading, the same warm
+
+      light from the upper left and the same milky pastel colors, simplified
+
+      for small sizes. One object only, centered, filling about 86% of the
+
+      canvas, built from three or four large, rounded shapes, so it reads as a
+
+      silhouette at 24 points. No thin parts: nothing narrower than a tenth of
+
+      the icon''s width (no stems, strings, whiskers, spikes or tiny dots). A
+
+      clear value structure: the shadow side, or one warm-brown accent shape,
+
+      is dark enough to read on pale frosted glass, and the lit side reads on
+
+      dark glass. Matte, no glints, no texture. No outline, no drop shadow, no
+
+      background shape: no circle, tile, badge or plate behind the object. No
+
+      glass, no frosted panel, no glossy button. No text, no letters, no
+
+      numbers.
+
+
+      AVOID: text, labels, a background tile, glass, gloss, outlines, thin parts
+
+
+      Output: one image, transparent background PNG, landscape 1536 x 1024.
+
+      '
+    attachments:
+    - path: design/art/ui/icon-seed/icon-seed.png
+      role: 'The seed icon: the exact finish, size and softness every icon of the
+        family must share.'
+    - path: design/art/ui/icon-calm/icon-calm.png
+      role: 'The calm icon: the exact finish, size and softness every icon of the
+        family must share.'
+    - path: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+      role: 'Pofu, the hamster: his exact look, fur, colors and eyes.'
+    background: transparent
+    generated_at: '2026-11-03T14:10:54+00:00'
+    backend: codex-cloud
+    source_file: /workspace/generated_images/exec-2814257c-7811-43ff-84cd-3a6aa4136ccd.png
+    account:
+      owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+      kind: chatgpt-plan
+    original_sidecar_sha256: 2362750976c121a8efb49678f71798e8d3eaadf6c50ab47e332057eb9c6e6fa4
