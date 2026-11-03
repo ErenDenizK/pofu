@@ -1,0 +1,141 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/ui-sheet-paper/contact.jpg
+jobs:
+  ui-sheet-paper:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both takes are inset cream cards
+      with rounded top and bottom corners, a lighter top paper lip, stitches just
+      inside the whole edge, and an unmarked calm cream centre. Rounded edges and
+      stitching remain in the shipping slice caps. The revised brief permits an inset
+      bottom; no obsolete off-canvas gate applied.
+qa_reports:
+  2:
+    job: ui-sheet-paper
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 18 (R1 51)
+      value: 17.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 87 (R1 59)
+      value: 86.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.1
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2831
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.4, p95 0.7, off-palette 0.0%
+      value: 0.3943
+    info:
+      metrics_raw:
+        L_p5: 86.5
+        L_p50: 91.8
+        L_p95: 92.4
+        C_p50: 8.9
+        C_p95: 17.9
+        C_p99: 28.1
+        detail: 1.26
+      metrics_locked:
+        L_p5: 86.7
+        L_p50: 91.9
+        L_p95: 92.2
+        C_p50: 8.9
+        C_p95: 17.5
+        C_p99: 26.5
+        detail: 1.1
+    fingerprint: 702e521dbf3db862
+  1:
+    job: ui-sheet-paper
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 16 (R1 51)
+      value: 16.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 85 (R1 59)
+      value: 85.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.13
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2852
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.5, p95 0.9, off-palette 0.0%
+      value: 0.4511
+    info:
+      metrics_raw:
+        L_p5: 85.5
+        L_p50: 92.1
+        L_p95: 92.6
+        C_p50: 8.2
+        C_p95: 16.1
+        C_p99: 23.6
+        detail: 1.28
+      metrics_locked:
+        L_p5: 85.3
+        L_p50: 92.1
+        L_p95: 92.5
+        C_p50: 8.1
+        C_p95: 16.1
+        C_p99: 21.6
+        detail: 1.13
+    fingerprint: 702e521dbf3db862
+manual_review:
+  excluded_takes: []
+  note: Both takes are inset cream cards with rounded top and bottom corners, a lighter
+    top paper lip, stitches just inside the whole edge, and an unmarked calm cream
+    centre. Rounded edges and stitching remain in the shipping slice caps. The revised
+    brief permits an inset bottom; no obsolete off-canvas gate applied.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-bfe6dad1-a444-48d3-ac33-efc8db8a71b6.png
+  original_generated_png_sha256: 1b7f584ac0446aa0e53a0425527bee6227724ed25dcff97d0dbb43fb4e52f80e
+  inbox_png_sha256: d7e46ee1b932b3a55ae5730c65327a87e6d08aa2d302790087be6580877cb731
+  rgba_sha256: 184c927716c9c30abc8f3b2fecdba6a30670c2997d970cba613bc4eb2c31cd3f
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 702e521dbf3db862
+- take: 2
+  source_file: /workspace/generated_images/exec-eb1373e8-fc8e-4d03-90bc-fc4d8ca0a17b.png
+  original_generated_png_sha256: e1e8e23e8c5d4b1ddcee4d9bde3681fd198b25e1dc185e980da73a12c0dbda5c
+  inbox_png_sha256: 2ab9ce72709d59d55220738375738a753530eba940b6b14ff2ff7d90f2bdee00
+  rgba_sha256: 543bc394b9f9379e1800f276c7bfe789f847d4f299d03efee36c36dd9a318487
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 702e521dbf3db862
