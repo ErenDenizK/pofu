@@ -24,10 +24,10 @@ only through their own PR, after the founder agrees._
   high-key values and the same milky pastel colors", a warm key light
   from the upper left and "colors lifted toward cream". And batches 17 and
   18 attached the cloud-sea plate with "paint clouds like this". Both are
-  right for home's props and wrong for a wonder island. Batch 19 uses a
-  new block, `island-light-v1`, that keeps the finish and hands light,
-  sky, shadow colour, haze and value range to the brief, and it attaches
-  no cloud sea.
+  right for home's props and wrong for a wonder island. The next island
+  brief must use a block that keeps the finish and hands light, sky,
+  shadow colour, haze and value range to the brief, and attach no cloud
+  sea (the light standard, section 4).
 - **Each cluster gets an atmosphere, not only a palette.** Eight fields
   (hour, sky, key light, shadow colour, haze, the floor below, weather,
   value key) per cluster, in `profiles.yaml`, quoted by every concept
@@ -53,9 +53,15 @@ only through their own PR, after the founder agrees._
   the crescent and loses the face; Leylek is the nest, back as a
   **seasonal visitor** outside the Book One order; Çömlek is the giant
   red-clay pot (Avanos, not İznik blue), lit from below by its kiln.
-- **Concept round: batch 19**, 12 images, pilot of 3 (the nine-cell
-  atmosphere board, Çağlayan at noon, Koke the sleeper), queued READY
-  in [PR #131](https://github.com/ErenDenizK/pofu/pull/131).
+- **Every island is designed around what the player does there** (the
+  founder's note, mid-loop): the painted concepts are identity, backdrop
+  and marketing art; the playable island is a diorama plate with
+  stations, like home. Each big and parallel island now has a playable
+  island block (game, twist, a round, toy, stations, what it feeds, its
+  far view), checked by the tool (section 3.6).
+- **No new images this loop** (the founder's note). The batch-19 concept
+  round was written and then withdrawn unmerged (PR #131 closed); its
+  spec is kept, deferred (section 5).
 
 ## 1. The loop log
 
@@ -112,7 +118,18 @@ pass (Martı's stork beat moved to a traded feather): **no violations**.
 
 Each island the lead's review named, weakest first (section 3.3), then
 the formula check for every island in the concept round (section 3.4).
-Final run: **no violations**; 26 tests pass.
+Metrics: **no violations**.
+
+### 1.4 Pass 4 (the founder's note: play first, no images)
+
+The founder asked that every island be designed around what the player
+does there, that no new images be made unless blocking, and that the
+loop finish on a tight budget. Pass 4 wrote a playable island block per
+big and parallel island (`profiles.yaml` → `play`, section 3.6), added
+the `play` check (every big and parallel island has a game, a twist, a
+round of at most 120 s, a toy, at least three stations, what it feeds and
+a far view) with two tests, withdrew batch 19 and deferred section 5.
+Final run: **no violations**; 28 tests pass.
 
 ## 2. The big story: what loop 2 adds
 
@@ -288,7 +305,7 @@ space) per island in batch 19:
 | Fanus | frost afternoon | frost + meadow gold | caustics | glass, frost | bell jar | Nordic glass, midsummer | frog in a jar | 7 |
 
 The board and the backdrop test the system, not one island, and are
-judged by the light test only.
+judged by the light test only. (The round is deferred; section 5.)
 
 ### 3.5 Every big and parallel island (stopping criteria)
 
@@ -298,10 +315,43 @@ unforgettable thing of Çağlayan (windows hold hours), Koke (the sleeper)
 and Çömlek (lit from below) in `profiles.yaml`, and none lost its rung,
 gift or satellite.
 
+### 3.6 The playable islands
+
+The painted concept is the island's identity (far view, rumour
+silhouette, store art). **The playable island is a diorama plate with
+stations, like home:** the game's station, the toy, the stage beats'
+places and decor spots, all on one plate whose outline is the
+concept's silhouette, simplified. Data: `profiles.yaml` → `play` (game,
+genre reference, twist, round length, toy, stations, what it feeds, far
+view). Here: one round in 30 seconds, and why it is fun on day 1 and on
+day 20. A session is one to three rounds (60 to 90 s each), then the
+island says "enough for today" ("bugünlük yeter" stays the rule).
+
+| Island | One round, in 30 seconds | Fun on day 1 | Fun on day 20 |
+|---|---|---|---|
+| **Çağlayan** (Flow) | A 4×4 board of channel stones; rotate stones so water runs from the spring to the pool; the last stone clicks, boats race through and splash, and the pool on the plate clears to a window | Instant, tactile, the splash pays | Boards grow (locks at S3, the mill race at S4); what the cleared pool shows changes daily (the awake island, a rumour's silhouette), so a win always shows something new |
+| **Gezgin** (sliding blocks) | Slide parcel tiles to open a lane from the post office to a barnacle house; tiles move only on the whale's out-breath, so you plan in the in-breath; the letter drops through a lit window | The breathing rhythm is novel and calming | The letters carry the Bekçi thread (rung 3); harder boards, and slow breathing lengthens the move window, the game rewarding calm without a meter |
+| **Çanlar** (call and response) | A bell shivers through a motif of 3 to 6 notes; tap the bells back in order; each right bell swings and the bunting snaps | Readable muted (the shiver is the cue) | The motif is the awake island's, so it changes daily; at S3 the oldest tune begins with Pofu's four notes (rung 4) |
+| **Revontuli** (Peggle, guarded) | Aim a lantern bubble under the ice; it bounces off frozen pegs and lights them; the lit pegs rise and become tonight's aurora strand | The bounce physics is a toy in itself | Tonight's sky is made of your rounds; after calm nights it is brighter (rung 5); no fanfare loops, no near-miss teasing (loop 1 guards) |
+| **Fanus** (nonograms) | Frost clues on a pane; tap cells clear; the solved pane is a butterfly wing; the butterfly lifts off into the jar's meadow | A quiet first board, 5×5 | Wings fill a collection inside the jar; the dated sunflower row grows (rung 7) |
+| **Emanet** (logic grid, daily) | Three kept things, three islands, three clues as objects and postmarks; drag each thing to its island; the magpie polishes and posts it | One puzzle, one minute, a satisfying click | A daily ritual (it is the parallel island's job); every return lands a small beat on the island it went to; the night-light at S3 (rung 8) |
+| **Çömlek** (merge-drop) | Drop clay pieces into the pot-shaped well; equal pieces merge into bigger vessels; the fixed lump never merges; a round ends when the well fills; the best vessel goes on the drying shelf | Juicy merges, a funny cracked pot | Goods from four islands become glazes; Kil fires a glass for every island; Mochi's seat (her arc closes) |
+| **Mehtap** (one-line logic) | Join the stars of a chart in one line without crossing; the line passes through dark stars, which light faintly when traced | Calm and short | The board shape follows the real moon phase, so the island changes nightly; the joined charts become the Bekçi's trail (the reveal) |
+
+Satellites keep their loop-1 rituals (Koke's raked loop, Olta's wait,
+Pervane's lantern, Arı's hive, Yakamoz's wade, Martı's toss); they are
+untiered and not checked by `play`.
+
+**Not done (listed honestly):** plate layouts as station coordinates
+(the station-guide template per island), the round tuning numbers for
+`PofuCore`, and each game's Rehearsal pilot. These come one island at a
+time, Çağlayan first, as code-only work before any art.
+
 ## 4. The light standard (for every future island brief)
 
 1. A wonder island's brief states its cluster's eight atmosphere fields
-   and uses `island-light-v1`, never `prop-style-v2`.
+   and uses a light block (`island-light-v1`, drafted in closed PR #131,
+   lands with the next island brief), never `prop-style-v2`.
 2. Never attach the cloud-sea plate to a wonder island; the floor is the
    cluster's.
 3. Shape references from earlier takes are attached as **SHAPE ONLY**.
@@ -311,15 +361,20 @@ gift or satellite.
    (a pastel noon where the brief says night) is the only reason to
    regenerate.
 
-## 5. Concept round 2 (batch 19, exploration, 12 images)
+## 5. Concept round 2: deferred
 
-The manifest is [`tools/imagegen/manifest/batch-19-loop-2-concepts.yaml`](../../../tools/imagegen/manifest/batch-19-loop-2-concepts.yaml)
-(full prompts); this is its spec.
+**Deferred by the founder's note (no new images this loop).** The spec
+below was written and its manifest opened as PR #131, then closed
+unmerged. It runs only when a playable island needs it; the first job to
+revive is the atmosphere board, since it tests the whole light system in
+one image. When revived, it also needs the `island-light-v1` block and
+asset nodes for its jobs (`tools/content/sync_assets.py`; PR #131's CI
+failed on that).
 
 ```yaml
 batch: batch-19-loop-2-concepts
 title: Design loop 2 concept round (12 images; exploration, never promoted)
-status: READY (queue row 18)
+status: deferred (PR #131 closed unmerged)
 spec: docs/product/design-loop/loop-2.md
 pilot: [cl2-atmosphere-board, cl2-caglayan-noon, cl2-koke-sleeper]   # continue only if 2 of 3 pass
 defaults:
@@ -392,4 +447,5 @@ jobs:
 | 2 | Çömlek's look | A the giant red-clay pot (Avanos) · B the fairy-chimney kiln (x2-comlek-a) · C the blue-patterned pot of x2-comlek-b as painted | **A** |
 | 3 | Leylek | A a seasonal visitor in the real migration windows · B a Book Two island · C stays cut (storks as a home event only) | **A** |
 | 4 | The lore PR (loop-1 decisions and the hour rule into lore-bible and story-delivery) | A merge as written · B change something first | Review it; it stays open until he agrees |
-| 5 | Scores | Score batch 19's takes in the Hub, 1–10 with one line, per island | They are step 0 of loop 3 |
+| 5 | Scores | Score the islands in the Hub (batch 17 and 18 takes), 1–10 with one line, per island | They are step 0 of loop 3 |
+| 6 | Which island's playable plate first | A Çağlayan (day 4, the first wonder) · B Gezgin (the hook) · C Revontuli (the 10) | **A**: it is the first the player meets, and its pools-as-windows need the atmosphere cells anyway |

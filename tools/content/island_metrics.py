@@ -16,6 +16,8 @@ Checks (thresholds live in the file's `rules`):
   floor, weather, value key): any two clusters differ on enough of these,
   and the home-only fields (home's shadow colour, haze and cloud sea) are
   never reused, so islands differ by light, not only by palette (loop 2);
+- every big and parallel island has a playable island block (game, twist,
+  round length, toy, >= 3 stations, what it feeds, far view) (loop 2);
 - the schedule: each arrival day is derived from the previous island's
   content runway (its first day without a fresh beat), the minimum gaps and
   the wow spacing; then founder targets, dead days (no fresh beat from any
@@ -205,6 +207,7 @@ def check(data: dict) -> tuple[list[str], dict]:
                 v.append(f"cluster: {m} listed in {cname} but says {islands[m]['cluster']}")
 
     v.extend(check_atmospheres(data))
+    v.extend(check_play(data))
 
     # Schedule: targets, dead days, stacked wows.
     sched = schedule(data)
@@ -233,6 +236,35 @@ def check(data: dict) -> tuple[list[str], dict]:
             v.append(f"stacked wows: {e1} (day {d1}) and {e2} (day {d2})")
     v.extend(check_tiers(data, sched))
     return v, sched
+
+
+def check_play(data: dict) -> list[str]:
+    """Every big and parallel island is designed around what the player does.
+
+    A playable island block: the game, its reference, our twist, one round's
+    length, the toy, the plate's stations, what it feeds and its far view.
+    """
+    rule = data["rules"].get("play")
+    if not rule:
+        return []
+    v: list[str] = []
+    play = data.get("play") or {}
+    for n in data["order"]:
+        if data["islands"][n]["size"] not in ("big", "parallel"):
+            continue
+        p = play.get(n)
+        if p is None:
+            v.append(f"play: {n} has no playable island block")
+            continue
+        missing = [f for f in rule["fields"] if not p.get(f)]
+        if missing:
+            v.append(f"play: {n} lacks {missing}")
+            continue
+        if len(p["stations"]) < rule["stations_min"]:
+            v.append(f"play: {n} has {len(p['stations'])} stations; want >= {rule['stations_min']}")
+        if p["round_s"] > rule["round_max_s"]:
+            v.append(f"play: {n} round of {p['round_s']} s; want <= {rule['round_max_s']}")
+    return v
 
 
 def check_atmospheres(data: dict) -> list[str]:

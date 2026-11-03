@@ -48,6 +48,10 @@ rules:
     fields: [hour, sky, key_light, shadow, haze, floor, weather, value_key]
     min_diff: 5              # any two clusters differ on >= 5 of the 8
     home_only: [shadow, haze, floor]   # home's warm-brown shadow, cream haze and white cloud sea are never reused
+  play:                      # the playable island (loop-2.md section 3.6)
+    stations_min: 3          # a big or parallel plate has >= 3 interactive stations, like home
+    round_max_s: 120         # one round of the island game fits a short session
+    fields: [game, genre_ref, twist, round_s, toy, stations, feeds, far_view]
 
 # Founder's pacing targets (2026-11-03): Çağlayan d4, Koke d5-6, Gezgin
 # d8-10, Revontuli's rumour heard by the end of week two.
@@ -99,6 +103,84 @@ atmospheres:
   moon:    {hour: blue-hour, sky: indigo-starfield-with-gaps, key_light: silver-from-above, shadow: ink-blue, haze: crystal-clear, floor: mirror-flat-cloud, weather: still, value_key: low-silver}
   ear:     {hour: morning-after-rain, sky: washed-blue-racing-clouds, key_light: hard-sun-moving-shadows, shadow: cool-grey-blue, haze: none-washed, floor: torn-cloud-sea, weather: wind, value_key: high-contrast}
   memory:  {hour: dusk, sky: drizzle-grey, key_light: many-small-lamps, shadow: sepia-grey, haze: rain-mist, floor: rain-dark-cloud, weather: drizzle, value_key: low-mid}
+
+# The playable island, per big and parallel island (loop 2, the founder's
+# note: design each island around what the player does there). The painted
+# concepts are identity and backdrop art; the playable island is a diorama
+# plate with stations, like home. Full blocks: loop-2.md section 3.6.
+play:
+  caglayan:
+    game: route the channels so leaf boats reach the pools
+    genre_ref: Flow / pipe puzzles
+    twist: a solved board clears a real pool on the plate, and the pool becomes a window onto another island's hour; boats race and splash
+    round_s: 60
+    toy: drop a leaf boat over the rim; watch it pass other islands in the pools; days later it bumps the home pier
+    stations: [Damla's rim (the game), the window pools (one per stage), the mill (stage 4), the spring and the leaf-boat rack (toy)]
+    feeds: jars of falls water to home's çeşme and Çömlek's clay; the top pool shows each morning's awake island and the next rumour
+    far_view: the white column with its fall ribbon in a spray halo, left-low; at night its mist catches moonlight
+  gezgin:
+    game: a sliding-tile route that delivers Yosun's letters across the whale's back
+    genre_ref: Rush Hour / sliding blocks
+    twist: tiles move only on the whale's out-breath, so the board has a calm rhythm; a slow breath gives a longer move window
+    round_s: 90
+    toy: tap the blowhole; the spout falls as a local shower with a moonbow
+    stations: [Yosun's post office under the blowhole (the game), the barnacle houses (residents' windows light per stage), the satchel bench (letters to read), the blowhole (toy)]
+    feeds: letters and parcels to Emanet's puzzle and to home's post office; Nazlı moors at home on full-moon nights
+    far_view: roams the far ring on a slow path, porthole freckles lit at dusk, Martı Kayası trailing
+  canlar:
+    game: ring the motif back in order on the bells
+    genre_ref: Simon / rhythm call and response
+    twist: Zil rings by the buzz in her feet, so the cue is a visible shiver of the bell, not sound alone (playable muted); the motif is the awake island's
+    round_s: 45
+    toy: flick any bell; it swings and rings the island's own motif
+    stations: [the great bell (the game), the bunting line (decor spot), Zil's ladder (stage beats), the rumour bell (each morning's daily rumour)]
+    feeds: the daily rumour for every island; a bell post at home's square
+    far_view: a thin spire on the horizon, centre-right, always visible; a bell glints when a rumour comes
+  revontuli:
+    game: aim a lantern bubble under the ice; it bounces off pegs and lights the ones it touches
+    genre_ref: Peggle (with loop-1's anti-casino guards; no fanfare loops, no near-miss teasing)
+    twist: the pegs you light rise as tonight's aurora over the island and, after calm nights, over home
+    round_s: 75
+    toy: pour water on the sauna stones; steam rises and Pofu comes out pink
+    stations: [the ice hole and launcher (the game), Tuli's easel (stage beats), the sauna (toy), the hut window (the warm light)]
+    feeds: the sauna at home's pier; the aurora over home on calm winter nights; Olta's ice line
+    far_view: right-back snowy floe; at night the aurora band is code
+  fanus:
+    game: wipe the panes to reveal butterfly-wing pictures by logic
+    genre_ref: Picross / nonograms
+    twist: the clues are frost on the glass; each solved wing lets a butterfly out into the jar's meadow
+    round_s: 90
+    toy: breathe on the glass (hold) and draw in the fog; it fades
+    stations: [the panes (the game), Zümrüt's pond inside (stage beats), the dated sunflower row (rung 7), the jar's door (bloom)]
+    feeds: rare flowers to home's greenhouse and garden game; butterflies to home
+    far_view: centre-back high in the haze; a moving glint along the glass by the hour
+  emanet:
+    game: the daily deduction - return one kept thing to the right island
+    genre_ref: logic grid / Clue-lite
+    twist: the clues are objects and postmarks on the shelf, not text; one puzzle a day, solvable in a minute
+    round_s: 60
+    toy: open the umbrella's lamps one by one; the magpie polishes whatever you tap
+    stations: [the sorting desk (the game), the shelves (kept things, the night-light at stage 3), the back room map (bloom), the parcel chute (deliveries from Gezgin)]
+    feeds: returns objects to every island (a small beat there); the keepsake shelf at home
+    far_view: right-mid on the vapur lane; lamps lit at dusk
+  comlek:
+    game: drop clay into the pot-shaped well; equal pieces merge into bigger vessels
+    genre_ref: Suika / merge-drop
+    twist: a fixed lump of clay never merges (the potter's anchor); goods from four islands are the glazes
+    round_s: 90
+    toy: spin the wheel; the lump wobbles into a random funny pot that cracks
+    stations: [the wheel at the pot's mouth (the game), the kiln (lit at arrival, the key light), the drying shelf (goods from four islands), the old Bekçi's seat (Mochi's arc)]
+    feeds: Avanos glasses to the çay ocağı; a bread-and-pot oven at the square; a balloon at dawn after the bloom
+    far_view: the giant pot on the left side slot from day 1, cold; then the kiln glows at dusk
+  mehtap:
+    game: trace constellations by joining stars without crossing a line
+    genre_ref: one-line drawing / connect-the-dots logic
+    twist: the charts are drawn negative, through dark stars; the board shape follows the real moon phase
+    round_s: 60
+    toy: tilt the telescope; it shows home from above, on the player's clock
+    stations: [Nane's chart table (the game), the telescope terrace (toy), the hammock (stage beats), the crescent's horn (the full-moon lift)]
+    feeds: the telescope terrace at home; the real moon phase and meteor nights over home
+    far_view: high in the sky above the horizon; scale and lit shape follow the real moon
 
 # Arrival order. The tool derives each arrival day from the previous
 # island's runway (its first day without a fresh beat), the gaps above
