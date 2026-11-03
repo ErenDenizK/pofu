@@ -1,6 +1,6 @@
 <title>Pofu Hub</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Pofu için sakin bir panel: seçmen gereken sorular, şu an yapılanlar ve yol haritası.">
+<meta name="description" content="Pofu için sakin bir panel: sorular, ada puanları, şu an yapılanlar ve yol haritası.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
@@ -146,6 +146,24 @@ details.done summary .n { color: var(--fg3); font-weight: 700; }
 .item.done .check svg { opacity: 1; }
 .item.done .txt { color: var(--fg3); font-weight: 600; }
 
+/* islands: one compact row per island, a 1-10 tap scale, a collapsed note */
+.isl { background: var(--card); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); padding: 14px; margin: 0 0 10px; }
+.isl-head { display: flex; align-items: flex-start; gap: 12px; }
+.isl-thumb { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; flex: none; background: var(--sunken); }
+.isl-main { flex: 1; min-width: 0; }
+.isl-name { margin: 0; font-size: 18px; line-height: 1.25; font-weight: 900; overflow-wrap: anywhere; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
+.chip { display: inline-flex; align-items: center; height: 22px; padding: 0 9px; border-radius: 11px; font-size: 12.5px; font-weight: 800; background: var(--muted-tint); color: var(--fg2); }
+.chip.size { background: var(--accent-tint); color: var(--accent); }
+.isl-sum { margin: 8px 0 0; color: var(--fg2); font-size: 15px; overflow-wrap: anywhere; }
+.scale { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; margin: 12px 0 0; padding: 0; border: 0; min-width: 0; }
+.dot { min-width: 0; min-height: 44px; padding: 0; border-radius: 12px; border: 1.5px solid var(--line2); background: var(--raised); font-weight: 800; font-size: 13.5px; font-variant-numeric: tabular-nums; color: var(--fg2); }
+.dot[aria-checked="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.dot.prev { border-style: dashed; border-color: var(--accent); color: var(--accent); }
+.dot:disabled { cursor: default; opacity: .6; }
+.isl-last { margin: 8px 0 0; color: var(--fg3); font-size: 13.5px; font-weight: 700; }
+.isl-last b { color: var(--fg2); font-weight: 900; }
+
 .toast { position: fixed; z-index: 50; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 12px); background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 20px; font-weight: 800; font-size: 15px; opacity: 0; transition: opacity .2s, transform .2s; pointer-events: none; max-width: calc(100% - 32px); }
 .toast.on { opacity: 1; transform: translate(-50%, 0); }
 @media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
@@ -166,6 +184,12 @@ details.done summary .n { color: var(--fg3); font-weight: 700; }
       <summary><span>Cevaplananlar</span><span class="n" id="done-n"></span></summary>
       <div id="done-list"></div>
     </details>
+  </section>
+
+  <section id="sec-isl" aria-labelledby="h-isl">
+    <div class="sec-head"><h2 id="h-isl">Adalar</h2><span class="meta" id="isl-meta"></span></div>
+    <p class="quiet">Puan vermek isteğe bağlı.</p>
+    <div id="isl-list"><div class="loading">Yükleniyor…</div></div>
   </section>
 
   <section id="sec-now" aria-labelledby="h-now">
@@ -192,7 +216,7 @@ details.done summary .n { color: var(--fg3); font-weight: 700; }
   const str = (v) => (v == null ? '' : String(v));
   const fmt = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long' });
 
-  const state = { db: null, userId: null, canWrite: false, mode: 'loading', stale: false, questions: null, answers: null, now: undefined, roadmap: undefined, reopen: new Set(), drafts: new Map() };
+  const state = { db: null, userId: null, canWrite: false, mode: 'loading', stale: false, questions: null, answers: null, now: undefined, roadmap: undefined, islands: null, scores: null, reopen: new Set(), drafts: new Map(), islDrafts: new Map() };
 
   let toastTimer = 0;
   function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('on'), 1800); }
@@ -220,7 +244,7 @@ details.done summary .n { color: var(--fg3); font-weight: 700; }
   }
   function writeFailed(e) {
     const c = e && e.code;
-    if (c === 'invalid_argument' || c === 'not_granted' || c === 'revoked' || c === 'capability_disabled') { state.canWrite = false; state.mode = 'readonly'; renderBanner(); renderQuestions(); return 'Bu görünümde yazma izni yok.'; }
+    if (c === 'invalid_argument' || c === 'not_granted' || c === 'revoked' || c === 'capability_disabled') { state.canWrite = false; state.mode = 'readonly'; renderBanner(); renderQuestions(); renderIslands(); return 'Bu görünümde yazma izni yok.'; }
     return 'Kaydedilemedi. Tekrar dene.';
   }
 
@@ -337,6 +361,95 @@ details.done summary .n { color: var(--fg3); font-weight: 700; }
     }
   }
 
+  // ---------------------------------------------------------------- islands
+  // islands/{id}: name, cluster, size, round, summary, imageUrl?, order?
+  // islandScores/{islandId}__r{round}: islandId, round, score (1-10), note, authorId, updatedAt
+  const scoreKey = (id, round) => id + '__r' + round;
+  const latestScore = (id) => {
+    let best = null;
+    for (const d of (state.scores ? state.scores.values() : [])) if (d.islandId === id && Number.isFinite(Number(d.score)) && (!best || Number(d.round) > Number(best.round))) best = d;
+    return best;
+  };
+
+  async function saveScore(isl, score, note) {
+    if (!state.canWrite || !state.db) return false;
+    const round = Number(isl.round) || 1; const key = scoreKey(isl.id, round);
+    const prev = state.scores.get(key);
+    const body = { islandId: isl.id, round, score, note: note == null ? str(prev && prev.note) : note, authorId: state.userId || null, updatedAt: nowIso() };
+    state.scores = new Map(state.scores); state.scores.set(key, Object.assign({ id: key }, body));
+    renderIslands();
+    try {
+      await queueWrite('islandScores/' + key, () => withRetry(() => state.db.doc('islandScores/' + key).set(body)));
+      toast('Kaydedildi'); return true;
+    } catch (e) {
+      state.scores = new Map(state.scores);
+      if (prev) state.scores.set(key, prev); else state.scores.delete(key);
+      renderIslands(); toast(writeFailed(e)); return false;
+    }
+  }
+
+  function islandRow(isl) {
+    const round = Number(isl.round) || 1;
+    const cur = state.scores.get(scoreKey(isl.id, round));
+    const last = latestScore(isl.id);
+    const curScore = cur ? Number(cur.score) : null;
+    const prevScore = !cur && last ? Number(last.score) : null;
+    const card = el('article', 'isl'); card.dataset.iid = isl.id;
+    const head = el('div', 'isl-head');
+    const img = str(isl.imageUrl);
+    if (img.startsWith('data:image/') || img.startsWith('/_blob/')) { const im = el('img', 'isl-thumb'); im.src = img; im.alt = ''; im.loading = 'lazy'; head.append(im); }
+    const main = el('div', 'isl-main');
+    main.append(el('h3', 'isl-name', str(isl.name) || isl.id));
+    const chips = el('div', 'chips');
+    for (const [c, v] of [['', isl.cluster], ['size', isl.size], ['', 'tur ' + round]]) if (str(v).trim()) chips.append(el('span', 'chip ' + c, str(v)));
+    main.append(chips); head.append(main); card.append(head);
+    if (isl.summary) card.append(el('p', 'isl-sum', str(isl.summary)));
+
+    const g = el('div', 'scale'); g.setAttribute('role', 'radiogroup'); g.setAttribute('aria-label', str(isl.name) + ' puanı');
+    for (let n = 1; n <= 10; n++) {
+      const b = el('button', 'dot' + (prevScore === n ? ' prev' : ''), String(n)); b.type = 'button'; b.setAttribute('role', 'radio');
+      b.setAttribute('aria-checked', String(curScore === n)); b.setAttribute('aria-label', n + ' puan'); b.disabled = !state.canWrite;
+      b.addEventListener('click', () => { if (curScore !== n) saveScore(isl, n, state.islDrafts.has(isl.id) ? state.islDrafts.get(isl.id) : undefined); });
+      g.append(b);
+    }
+    card.append(g);
+    if (cur) card.append(el('p', 'isl-last', 'Puanın: ' + curScore));
+    else if (last) { const p = el('p', 'isl-last'); p.append(document.createTextNode('Son puan: '), el('b', null, String(last.score)), document.createTextNode(' (tur ' + str(last.round) + ')')); card.append(p); }
+
+    if (state.canWrite) {
+      const d = el('details', 'note'); d.append(el('summary', null, (cur && cur.note) ? 'Notu düzenle' : 'Not ekle'));
+      const body = el('div', 'note-body');
+      const area = el('textarea'); area.id = 'inote-' + isl.id; area.rows = 3; area.setAttribute('aria-label', str(isl.name) + ' notu');
+      area.value = state.islDrafts.has(isl.id) ? state.islDrafts.get(isl.id) : str(cur && cur.note);
+      const foot = el('div', 'note-foot'); const hint = el('span', 'hint', cur ? 'Kısa bir not yeter.' : 'Not, puanla birlikte kaydedilir. Önce bir puan seç.');
+      const save = el('button', 'btn', 'Kaydet'); save.type = 'button';
+      const dirty = () => area.value.trim() !== str(cur && cur.note).trim();
+      save.disabled = !cur || !dirty();
+      area.addEventListener('input', () => { state.islDrafts.set(isl.id, area.value); save.disabled = !cur || !dirty(); });
+      save.addEventListener('click', async () => { save.disabled = true; if (await saveScore(isl, curScore, area.value.trim())) state.islDrafts.delete(isl.id); });
+      foot.append(hint, save); body.append(area, foot); d.append(body);
+      if (state.islDrafts.has(isl.id)) d.open = true;
+      card.append(d);
+    }
+    return card;
+  }
+
+  function renderIslands() {
+    const list = $('#isl-list');
+    if (state.islands == null || state.scores == null) return;
+    const openNotes = new Set([...list.querySelectorAll('details.note[open]')].map((d) => d.closest('[data-iid]').dataset.iid));
+    const ae = document.activeElement; const active = ae && ae.id && list.contains(ae) ? ae.id : null;
+    const caret = active && ae.selectionStart != null ? ae.selectionStart : null;
+    const items = state.islands.filter((i) => i && i.name).sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999) || str(a.name).localeCompare(str(b.name), 'tr'));
+    list.replaceChildren();
+    if (!items.length) list.append(el('div', 'empty', 'Henüz ada yok. Adalar eklenince burada görünür.'));
+    for (const isl of items) list.append(islandRow(isl));
+    for (const iid of openNotes) { const d = list.querySelector('[data-iid="' + CSS.escape(iid) + '"] details.note'); if (d) d.open = true; }
+    if (active) { const a = document.getElementById(active); if (a) { a.focus(); if (caret != null && a.setSelectionRange) a.setSelectionRange(caret, caret); } }
+    const scored = items.filter((i) => latestScore(i.id)).length;
+    $('#isl-meta').textContent = items.length ? scored + '/' + items.length + ' puanlandı' : '';
+  }
+
   // ---------------------------------------------------------------- render: now + roadmap
   const STATE_LABEL = { doing: 'Yapılıyor', next: 'Sırada', blocked: 'Takıldı' };
   const STATE_ORDER = { doing: 0, blocked: 1, next: 2 };
@@ -371,10 +484,10 @@ details.done summary .n { color: var(--fg3); font-weight: 700; }
     }
   }
 
-  function renderAll() { renderBanner(); renderQuestions(); renderNow(); renderRoadmap(); }
+  function renderAll() { renderBanner(); renderQuestions(); renderIslands(); renderNow(); renderRoadmap(); }
 
   function showEmpty() {
-    state.questions = []; state.answers = new Map(); state.now = null; state.roadmap = null; renderAll();
+    state.questions = []; state.answers = new Map(); state.islands = []; state.scores = new Map(); state.now = null; state.roadmap = null; renderAll();
   }
 
   // ---------------------------------------------------------------- boot
@@ -392,13 +505,14 @@ details.done summary .n { color: var(--fg3); font-weight: 700; }
     state.mode = state.canWrite ? 'live' : 'readonly';
     renderBanner();
 
-    const pending = new Set(['questions', 'answers', 'status', 'roadmap']);
-    const watchdog = setTimeout(() => { if (pending.size) { state.stale = true; if (state.questions == null) state.questions = []; if (state.answers == null) state.answers = new Map(); if (state.now === undefined) state.now = null; if (state.roadmap === undefined) state.roadmap = null; renderAll(); } }, 10000);
+    const pending = new Set(['questions', 'answers', 'islands', 'islandScores', 'status', 'roadmap']);
+    const watchdog = setTimeout(() => { if (pending.size) { state.stale = true; if (state.questions == null) state.questions = []; if (state.answers == null) state.answers = new Map(); if (state.islands == null) state.islands = []; if (state.scores == null) state.scores = new Map(); if (state.now === undefined) state.now = null; if (state.roadmap === undefined) state.roadmap = null; renderAll(); } }, 10000);
     const settle = (name, meta) => { if (meta && meta.fromCache) return; if (pending.delete(name) && !pending.size) { clearTimeout(watchdog); if (state.stale) { state.stale = false; renderBanner(); } } };
     const onErr = (name) => (e) => {
       pending.delete(name);
       if (e && (e.code === 'revoked' || e.code === 'not_granted')) { state.canWrite = false; state.mode = 'readonly'; } else state.stale = true;
       if (state.questions == null) state.questions = []; if (state.answers == null) state.answers = new Map();
+      if (state.islands == null) state.islands = []; if (state.scores == null) state.scores = new Map();
       if (state.now === undefined) state.now = null; if (state.roadmap === undefined) state.roadmap = null;
       renderAll();
     };
@@ -406,6 +520,8 @@ details.done summary .n { color: var(--fg3); font-weight: 700; }
     const subs = [
       ['questions', db.collection('questions'), (s) => { state.questions = docs(s); renderQuestions(); }],
       ['answers', db.collection('answers'), (s) => { const m = new Map(); for (const d of docs(s)) m.set(d.id, d); state.answers = m; renderQuestions(); }],
+      ['islands', db.collection('islands'), (s) => { state.islands = docs(s); renderIslands(); }],
+      ['islandScores', db.collection('islandScores'), (s) => { const m = new Map(); for (const d of docs(s)) m.set(d.id, d); state.scores = m; renderIslands(); }],
       ['status', db.doc('status/now'), (d) => { state.now = d.exists ? d.data() : null; renderNow(); }],
       ['roadmap', db.doc('roadmap/main'), (d) => { state.roadmap = d.exists ? d.data() : null; renderRoadmap(); }],
     ];
