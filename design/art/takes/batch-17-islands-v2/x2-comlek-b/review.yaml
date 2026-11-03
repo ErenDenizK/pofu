@@ -1,0 +1,529 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-comlek-b/contact.jpg
+jobs:
+  x2-comlek-b:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both takes recommend pass: a
+      giant sideways pot contains an inhabited working pottery shop, with blue-on-cream
+      glaze, a neck chimney, dawn haze and a distant balloon. Its large circular open
+      mouth is not a home round door; no lawn, soil bowl, dangling roots or pebbles.
+      No final pick or production8-point gate.'
+qa_reports:
+  1:
+    job: x2-comlek-b
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 61.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.87
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0446
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 6.9, off-palette 0.8% (top: #EE8855 (0.4%), #DD8855
+        (0.2%))'
+      value: 2.1968
+    info:
+      metrics_raw:
+        L_p5: 60.7
+        L_p50: 87.7
+        L_p95: 93.5
+        C_p50: 14.8
+        C_p95: 48.9
+        C_p99: 53.6
+        detail: 2.38
+      metrics_locked:
+        L_p5: 61.1
+        L_p50: 87.6
+        L_p95: 93.5
+        C_p50: 14.7
+        C_p95: 48.3
+        C_p99: 52.4
+        detail: 1.87
+    fingerprint: a9fe2247da8ee5c7
+  2:
+    job: x2-comlek-b
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 61.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.81
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8859
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 7.5, off-palette 0.4% (top: #DD8844 (0.3%), #EE9955
+        (0.0%))'
+      value: 2.1258
+    info:
+      metrics_raw:
+        L_p5: 60.6
+        L_p50: 87.0
+        L_p95: 94.4
+        C_p50: 14.3
+        C_p95: 47.6
+        C_p99: 52.0
+        detail: 2.28
+      metrics_locked:
+        L_p5: 61.0
+        L_p50: 87.0
+        L_p95: 94.3
+        C_p50: 14.2
+        C_p95: 47.3
+        C_p99: 51.3
+        detail: 1.81
+    fingerprint: a9fe2247da8ee5c7
+manual_review:
+  note: 'Both takes recommend pass: a giant sideways pot contains an inhabited working
+    pottery shop, with blue-on-cream glaze, a neck chimney, dawn haze and a distant
+    balloon. Its large circular open mouth is not a home round door; no lawn, soil
+    bowl, dangling roots or pebbles. No final pick or production8-point gate.'
+  takes:
+    '1':
+      pass: true
+      silhouette_name: giant sideways ceramic pot whose open mouth is a pottery workshop
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 2
+      - 1
+      evidence: The whole place is a side-lying ceramic pot with a protruding neck/chimney
+        and a huge open workshop mouth, not a soil bowl carrying a prop. Terracotta,
+        cream glaze and blue floral pattern provide its own palette against warm dawn/balloon
+        sky. A tiny mole actively using the potter wheel gives both resident and scale;
+        smoke exits the neck. The circular mouth is an open workshop recess, not a
+        wooden round home door. Native60 retains the pot body, neck projection and
+        large mouth in the source crop; the black profile reads as a side-lying vessel
+        rather than a lawn plate.
+      swatch_points:
+      - - 1139
+        - 606
+      - - 550
+        - 200
+      - - 500
+        - 388
+      contours:
+      - - - 213
+          - 206
+        - - 265
+          - 190
+        - - 322
+          - 198
+        - - 339
+          - 223
+        - - 339
+          - 253
+        - - 381
+          - 269
+        - - 429
+          - 232
+        - - 496
+          - 193
+        - - 570
+          - 164
+        - - 650
+          - 145
+        - - 740
+          - 146
+        - - 833
+          - 157
+        - - 905
+          - 175
+        - - 943
+          - 173
+        - - 962
+          - 160
+        - - 999
+          - 167
+        - - 1016
+          - 157
+        - - 1044
+          - 158
+        - - 1058
+          - 174
+        - - 1064
+          - 190
+        - - 1101
+          - 206
+        - - 1121
+          - 225
+        - - 1147
+          - 251
+        - - 1166
+          - 268
+        - - 1198
+          - 269
+        - - 1217
+          - 281
+        - - 1226
+          - 308
+        - - 1241
+          - 326
+        - - 1235
+          - 350
+        - - 1240
+          - 369
+        - - 1257
+          - 398
+        - - 1238
+          - 407
+        - - 1248
+          - 433
+        - - 1225
+          - 468
+        - - 1219
+          - 493
+        - - 1202
+          - 533
+        - - 1205
+          - 611
+        - - 1184
+          - 698
+        - - 1154
+          - 744
+        - - 1152
+          - 771
+        - - 1178
+          - 790
+        - - 1192
+          - 818
+        - - 1189
+          - 840
+        - - 1151
+          - 851
+        - - 1102
+          - 854
+        - - 1048
+          - 843
+        - - 975
+          - 833
+        - - 930
+          - 842
+        - - 847
+          - 834
+        - - 769
+          - 830
+        - - 693
+          - 807
+        - - 627
+          - 793
+        - - 559
+          - 788
+        - - 508
+          - 771
+        - - 445
+          - 741
+        - - 374
+          - 693
+        - - 318
+          - 643
+        - - 267
+          - 579
+        - - 213
+          - 504
+        - - 180
+          - 439
+        - - 168
+          - 365
+        - - 178
+          - 310
+        - - 196
+          - 267
+        - - 185
+          - 241
+      holes: []
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      uncertainty: Foreground clouds obscure the bottom pot outline; only visible
+        cloud-contact segments are traced. A few rim vines overlap the upper edge
+        and are included in the observed envelope rather than inventing a hidden ceramic
+        edge beneath them. The workshop mouth has a visible back wall/floor and is
+        not a through-hole, so it is not cut out of the black profile; smoke/sky balloon
+        are excluded from the vessel mask.
+      source_file: /workspace/generated_images/exec-c0933a2c-11ff-45d8-889f-978cfe75b63c.png
+      original_generated_png_sha256: b0f102660c1983146ec015abf18dd095446412d89d13e0e6ed10efc36cdfb5fa
+      rgba_sha256: 7780d9d1745c1c9ff13f498809b695aa90eac14c1833baeff48ad2a2db8a98b3
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 168
+      - 145
+      - 1258
+      - 855
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 60
+      - 39
+      sampled_swatches:
+      - point:
+        - 1139
+        - 606
+        hex: '#CA8664'
+      - point:
+        - 550
+        - 200
+        hex: '#FEDFCA'
+      - point:
+        - 500
+        - 388
+        hex: '#B1ACCE'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-comlek-b-t1-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-comlek-b-t1-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 5e0a99ecd0ff41db9ed429f37d0087eebe6f325b8153878281a756d125cc29a1
+      silhouette_native_longest_px: 60
+    '2':
+      pass: true
+      silhouette_name: giant sideways ceramic pot whose open mouth is a pottery workshop
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 2
+      - 1
+      evidence: The whole place is a side-lying ceramic pot with a protruding neck/chimney
+        and a huge open workshop mouth, not a soil bowl carrying a prop. Terracotta,
+        cream glaze and blue floral pattern provide its own palette against warm dawn/balloon
+        sky. A tiny mole actively using the potter wheel gives both resident and scale;
+        smoke exits the neck. The circular mouth is an open workshop recess, not a
+        wooden round home door. Native60 retains the pot body, neck projection and
+        large mouth in the source crop; the black profile reads as a side-lying vessel
+        rather than a lawn plate.
+      swatch_points:
+      - - 450
+        - 404
+      - - 700
+        - 230
+      - - 1139
+        - 606
+      contours:
+      - - - 291
+          - 431
+        - - 333
+          - 368
+        - - 352
+          - 331
+        - - 366
+          - 281
+        - - 392
+          - 247
+        - - 429
+          - 246
+        - - 456
+          - 267
+        - - 490
+          - 284
+        - - 519
+          - 269
+        - - 562
+          - 238
+        - - 626
+          - 217
+        - - 707
+          - 201
+        - - 786
+          - 203
+        - - 866
+          - 214
+        - - 941
+          - 242
+        - - 1010
+          - 267
+        - - 1051
+          - 267
+        - - 1043
+          - 250
+        - - 1034
+          - 221
+        - - 1044
+          - 209
+        - - 1082
+          - 202
+        - - 1125
+          - 206
+        - - 1177
+          - 217
+        - - 1219
+          - 234
+        - - 1224
+          - 250
+        - - 1214
+          - 273
+        - - 1198
+          - 292
+        - - 1189
+          - 330
+        - - 1209
+          - 385
+        - - 1224
+          - 447
+        - - 1235
+          - 524
+        - - 1230
+          - 601
+        - - 1206
+          - 676
+        - - 1161
+          - 750
+        - - 1102
+          - 791
+        - - 1019
+          - 813
+        - - 941
+          - 824
+        - - 877
+          - 818
+        - - 834
+          - 828
+        - - 794
+          - 845
+        - - 727
+          - 837
+        - - 654
+          - 835
+        - - 572
+          - 841
+        - - 512
+          - 845
+        - - 449
+          - 831
+        - - 387
+          - 814
+        - - 320
+          - 795
+        - - 271
+          - 780
+        - - 239
+          - 751
+        - - 218
+          - 682
+        - - 217
+          - 610
+        - - 231
+          - 539
+        - - 255
+          - 481
+      holes: []
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      uncertainty: Foreground clouds obscure the bottom pot outline; only visible
+        cloud-contact segments are traced. A few rim vines overlap the upper edge
+        and are included in the observed envelope rather than inventing a hidden ceramic
+        edge beneath them. The workshop mouth has a visible back wall/floor and is
+        not a through-hole, so it is not cut out of the black profile; smoke/sky balloon
+        are excluded from the vessel mask.
+      source_file: /workspace/generated_images/exec-e5c23d36-5ad9-476d-802d-1f288b74b9cb.png
+      original_generated_png_sha256: 625ca59783debe62b7a7ce09213bb779ab6b6c0d807a2f16442f3c5c438581c5
+      rgba_sha256: fcaf6c288c2a0c574db5dec0352bf9c1425063cfa7c4650cafc4f8633b74f597
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 217
+      - 201
+      - 1236
+      - 846
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 60
+      - 38
+      sampled_swatches:
+      - point:
+        - 450
+        - 404
+        hex: '#C47445'
+      - point:
+        - 700
+        - 230
+        hex: '#FEECD3'
+      - point:
+        - 1139
+        - 606
+        hex: '#8B8FC7'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-comlek-b-t2-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-comlek-b-t2-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 3e69d7b5eed2fc23e26a9a9e9fd310e1ebf3a65ebea728b124e9dc1a2722d6df
+      silhouette_native_longest_px: 60
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-c0933a2c-11ff-45d8-889f-978cfe75b63c.png
+  original_generated_png_sha256: b0f102660c1983146ec015abf18dd095446412d89d13e0e6ed10efc36cdfb5fa
+  inbox_png_sha256: 5e0a99ecd0ff41db9ed429f37d0087eebe6f325b8153878281a756d125cc29a1
+  rgba_sha256: 7780d9d1745c1c9ff13f498809b695aa90eac14c1833baeff48ad2a2db8a98b3
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: a9fe2247da8ee5c7
+- take: 2
+  source_file: /workspace/generated_images/exec-e5c23d36-5ad9-476d-802d-1f288b74b9cb.png
+  original_generated_png_sha256: 625ca59783debe62b7a7ce09213bb779ab6b6c0d807a2f16442f3c5c438581c5
+  inbox_png_sha256: 3e69d7b5eed2fc23e26a9a9e9fd310e1ebf3a65ebea728b124e9dc1a2722d6df
+  rgba_sha256: fcaf6c288c2a0c574db5dec0352bf9c1425063cfa7c4650cafc4f8633b74f597
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: a9fe2247da8ee5c7
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
