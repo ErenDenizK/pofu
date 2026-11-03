@@ -3,13 +3,32 @@ contact_sheet: design/art/takes/retry-2026-11-03/ui-sheet-paper-night/contact.jp
 jobs:
   ui-sheet-paper-night:
     pick: none
-    publication: skipped after one allowed retry; never promoted
-    note: All four deep indigo cards fail value_floor, palette_drift, edit_structure
-      and edit_lightness. The manifest asks to darken cream paper and invert brown
-      stitches to cream, while the recolor profile requires retained lightness and
-      light structure. No extra night palette is declared. The allowed retry is exhausted;
-      no further generation and no threshold waiver. No jobs depend on this night
-      sheet.
+    publication: skipped after one allowed retry
+    note: 'Re-evaluated all four saved original generations under current main QA.
+      One generation retry was already spent historically; no new image call or fifth
+      generation. Current official profile is night. Required dark paper/cream stitches
+      are reviewed from retained originals; no thresholds are waived. Current CLI
+      salvage fingerprint denotes re-ingestion for current QA, not a new generation.
+      Historical generation lineage: [{"old_take": 1, "source_file": "/workspace/generated_images/exec-9163cfc3-34d0-4434-a0d4-6ca06a079669.png",
+      "original_generated_png_sha256": "290649adfcafd37aa86c922e5063223cf2a8084f406b868945bdca9b6b578890",
+      "historical_generation_fingerprint": "9ebe6b290d790baa"}, {"old_take": 2, "source_file":
+      "/workspace/generated_images/exec-f4acf272-5b89-4683-b822-90fdeb5cfac4.png",
+      "original_generated_png_sha256": "96599ac728e9bd075185a58ceaae5ca1f991818eafb847559aed91527302a061",
+      "historical_generation_fingerprint": "9ebe6b290d790baa"}, {"old_take": 3, "source_file":
+      "/workspace/generated_images/exec-7dd8a214-e8d3-4b57-86d3-0cfc76fba422.png",
+      "original_generated_png_sha256": "6b5e7612c9b79e4119421a7908edc03664118e59ca55c1803c376cf01ed43871",
+      "historical_generation_fingerprint": "9ebe6b290d790baa"}, {"old_take": 4, "source_file":
+      "/workspace/generated_images/exec-6665f0c0-39d7-4c3a-93cf-c4fb9e3d1570.png",
+      "original_generated_png_sha256": "0efc3bcbd79e2262c2bbc239be2d41a81f1b8c6ab78db91e916ca47f6e3f7b94",
+      "historical_generation_fingerprint": "9ebe6b290d790baa"}] Automated failures:
+      t1 palette_drift: mean dE 34.3, p95 36.3, off-palette 98.7% (top: #334477 (67.7%),
+      #444477 (23.1%)), edit_structure: light structure matches the parent (r -0.80);
+      t2 palette_drift: mean dE 35.6, p95 37.4, off-palette 98.6% (top: #334477 (83.0%),
+      #444477 (6.1%)), edit_structure: light structure matches the parent (r -0.80);
+      t3 palette_drift: mean dE 40.7, p95 44.9, off-palette 98.7% (top: #333377 (76.6%),
+      #334477 (11.5%)), edit_structure: light structure matches the parent (r -0.76);
+      t4 palette_drift: mean dE 36.1, p95 37.6, off-palette 98.8% (top: #334477 (88.4%),
+      #444477 (5.0%)), edit_structure: light structure matches the parent (r -0.78).'
 qa_reports:
   2:
     job: ui-sheet-paper-night
@@ -29,9 +48,13 @@ qa_reports:
       message: chroma p95 35 (R1 51)
       value: 34.9
     - check: value_floor
-      status: warn
+      status: pass
       message: lightness p5 27 (R1 59)
       value: 26.8
+    - check: night_lightness
+      status: pass
+      message: 'night variant: median lightness 27 (dark band 18-50)'
+      value: 27.3
     - check: detail_budget
       status: pass
       message: detail at display size 2.0 (R1 5.3)
@@ -53,10 +76,6 @@ qa_reports:
       status: fail
       message: light structure matches the parent (r -0.80)
       value: -0.7989
-    - check: edit_lightness
-      status: fail
-      message: mean lightness moved by 62.5 L (the same lightness was asked)
-      value: 62.4731
     info:
       metrics_raw:
         L_p5: 25.9
@@ -74,7 +93,7 @@ qa_reports:
         C_p95: 34.9
         C_p99: 35.3
         detail: 1.96
-    fingerprint: 9ebe6b290d790baa
+    fingerprint: 0416f114fb7d3f0d
   1:
     job: ui-sheet-paper-night
     take: 1
@@ -93,9 +112,13 @@ qa_reports:
       message: chroma p95 34 (R1 51)
       value: 34.0
     - check: value_floor
-      status: warn
+      status: pass
       message: lightness p5 29 (R1 59)
       value: 28.6
+    - check: night_lightness
+      status: pass
+      message: 'night variant: median lightness 29 (dark band 18-50)'
+      value: 29.0
     - check: detail_budget
       status: pass
       message: detail at display size 2.0 (R1 5.3)
@@ -117,10 +140,6 @@ qa_reports:
       status: fail
       message: light structure matches the parent (r -0.80)
       value: -0.7996
-    - check: edit_lightness
-      status: fail
-      message: mean lightness moved by 60.6 L (the same lightness was asked)
-      value: 60.5984
     info:
       metrics_raw:
         L_p5: 28.5
@@ -138,7 +157,7 @@ qa_reports:
         C_p95: 34.0
         C_p99: 34.3
         detail: 2.03
-    fingerprint: 9ebe6b290d790baa
+    fingerprint: 0416f114fb7d3f0d
   3:
     job: ui-sheet-paper-night
     take: 3
@@ -157,9 +176,13 @@ qa_reports:
       message: chroma p95 44 (R1 51)
       value: 44.0
     - check: value_floor
-      status: warn
+      status: pass
       message: lightness p5 25 (R1 59)
       value: 25.3
+    - check: night_lightness
+      status: pass
+      message: 'night variant: median lightness 26 (dark band 18-50)'
+      value: 26.3
     - check: detail_budget
       status: pass
       message: detail at display size 1.9 (R1 5.3)
@@ -181,10 +204,6 @@ qa_reports:
       status: fail
       message: light structure matches the parent (r -0.76)
       value: -0.7602
-    - check: edit_lightness
-      status: fail
-      message: mean lightness moved by 63.1 L (the same lightness was asked)
-      value: 63.1322
     info:
       metrics_raw:
         L_p5: 23.4
@@ -202,7 +221,7 @@ qa_reports:
         C_p95: 44.0
         C_p99: 44.4
         detail: 1.91
-    fingerprint: 9ebe6b290d790baa
+    fingerprint: 0416f114fb7d3f0d
   4:
     job: ui-sheet-paper-night
     take: 4
@@ -221,9 +240,13 @@ qa_reports:
       message: chroma p95 35 (R1 51)
       value: 35.3
     - check: value_floor
-      status: warn
+      status: pass
       message: lightness p5 28 (R1 59)
       value: 28.2
+    - check: night_lightness
+      status: pass
+      message: 'night variant: median lightness 29 (dark band 18-50)'
+      value: 28.7
     - check: detail_budget
       status: pass
       message: detail at display size 1.9 (R1 5.3)
@@ -245,10 +268,6 @@ qa_reports:
       status: fail
       message: light structure matches the parent (r -0.78)
       value: -0.7785
-    - check: edit_lightness
-      status: fail
-      message: mean lightness moved by 61.2 L (the same lightness was asked)
-      value: 61.2443
     info:
       metrics_raw:
         L_p5: 27.8
@@ -266,18 +285,25 @@ qa_reports:
         C_p95: 35.3
         C_p99: 35.7
         detail: 1.93
-    fingerprint: 9ebe6b290d790baa
+    fingerprint: 0416f114fb7d3f0d
 manual_review:
-  note: All four deep indigo cards fail value_floor, palette_drift, edit_structure
-    and edit_lightness. The manifest asks to darken cream paper and invert brown stitches
-    to cream, while the recolor profile requires retained lightness and light structure.
-    No extra night palette is declared. The allowed retry is exhausted; no further
-    generation and no threshold waiver. No jobs depend on this night sheet.
-  terminal_decided_at: '2026-11-03T14:12:48.297677+00:00'
-  decision_qa_sha256: 613f75f6c4b011573a0aa9fe1b0e2e64cff0fd46a5683ef54437d8d14ab1fec5
   excluded_takes: []
-  preservation_only_after_global_stop: true
-  no_new_selection_or_promotion: true
+  note: 'Re-evaluated all four saved original generations under current main QA. One
+    generation retry was already spent historically; no new image call or fifth generation.
+    Current official profile is night. Required dark paper/cream stitches are reviewed
+    from retained originals; no thresholds are waived. Current CLI salvage fingerprint
+    denotes re-ingestion for current QA, not a new generation. Historical generation
+    lineage: [{"old_take": 1, "source_file": "/workspace/generated_images/exec-9163cfc3-34d0-4434-a0d4-6ca06a079669.png",
+    "original_generated_png_sha256": "290649adfcafd37aa86c922e5063223cf2a8084f406b868945bdca9b6b578890",
+    "historical_generation_fingerprint": "9ebe6b290d790baa"}, {"old_take": 2, "source_file":
+    "/workspace/generated_images/exec-f4acf272-5b89-4683-b822-90fdeb5cfac4.png", "original_generated_png_sha256":
+    "96599ac728e9bd075185a58ceaae5ca1f991818eafb847559aed91527302a061", "historical_generation_fingerprint":
+    "9ebe6b290d790baa"}, {"old_take": 3, "source_file": "/workspace/generated_images/exec-7dd8a214-e8d3-4b57-86d3-0cfc76fba422.png",
+    "original_generated_png_sha256": "6b5e7612c9b79e4119421a7908edc03664118e59ca55c1803c376cf01ed43871",
+    "historical_generation_fingerprint": "9ebe6b290d790baa"}, {"old_take": 4, "source_file":
+    "/workspace/generated_images/exec-6665f0c0-39d7-4c3a-93cf-c4fb9e3d1570.png", "original_generated_png_sha256":
+    "0efc3bcbd79e2262c2bbc239be2d41a81f1b8c6ab78db91e916ca47f6e3f7b94", "historical_generation_fingerprint":
+    "9ebe6b290d790baa"}]'
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-9163cfc3-34d0-4434-a0d4-6ca06a079669.png
@@ -288,7 +314,7 @@ sources:
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  fingerprint: 9ebe6b290d790baa
+  fingerprint: 0416f114fb7d3f0d
 - take: 2
   source_file: /workspace/generated_images/exec-f4acf272-5b89-4683-b822-90fdeb5cfac4.png
   original_generated_png_sha256: 96599ac728e9bd075185a58ceaae5ca1f991818eafb847559aed91527302a061
@@ -298,7 +324,7 @@ sources:
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  fingerprint: 9ebe6b290d790baa
+  fingerprint: 0416f114fb7d3f0d
 - take: 3
   source_file: /workspace/generated_images/exec-7dd8a214-e8d3-4b57-86d3-0cfc76fba422.png
   original_generated_png_sha256: 6b5e7612c9b79e4119421a7908edc03664118e59ca55c1803c376cf01ed43871
@@ -308,7 +334,7 @@ sources:
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  fingerprint: 9ebe6b290d790baa
+  fingerprint: 0416f114fb7d3f0d
 - take: 4
   source_file: /workspace/generated_images/exec-6665f0c0-39d7-4c3a-93cf-c4fb9e3d1570.png
   original_generated_png_sha256: 0efc3bcbd79e2262c2bbc239be2d41a81f1b8c6ab78db91e916ca47f6e3f7b94
@@ -318,4 +344,4 @@ sources:
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  fingerprint: 9ebe6b290d790baa
+  fingerprint: 0416f114fb7d3f0d
