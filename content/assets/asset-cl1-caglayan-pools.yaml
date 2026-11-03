@@ -1,0 +1,17 @@
+id: asset-cl1-caglayan-pools
+type: asset
+title_tr: cl1-caglayan-pools
+title_en: cl1-caglayan-pools (plate)
+status: in-production
+horizon: now
+summary: >-
+  Exploration. Çağlayan's new idea reads in one image (pools as windows). Review - a unique silhouette at 60 pt black; the pools read as windows, not mirrors; not green.
+art:
+  images: []
+  jobs:
+  - batch-18-loop-1-concepts:cl1-caglayan-pools
+sources:
+- doc: tools/imagegen/manifest/batch-18-loop-1-concepts.yaml
+kind: plate
+batch: batch-18-loop-1-concepts
+size: 1536x1024

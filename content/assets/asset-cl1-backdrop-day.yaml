@@ -1,0 +1,17 @@
+id: asset-cl1-backdrop-day
+type: asset
+title_tr: cl1-backdrop-day
+title_en: cl1-backdrop-day (plate)
+status: in-production
+horizon: now
+summary: >-
+  Exploration. the backdrop composition with three clusters (the founder's concept image). Review - depth reads in three steps; nothing crowds home; each far island passes the 60 pt test.
+art:
+  images: []
+  jobs:
+  - batch-18-loop-1-concepts:cl1-backdrop-day
+sources:
+- doc: tools/imagegen/manifest/batch-18-loop-1-concepts.yaml
+kind: plate
+batch: batch-18-loop-1-concepts
+size: 1536x1024

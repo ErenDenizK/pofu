@@ -1,0 +1,17 @@
+id: asset-cl1-gezgin-night-crossing
+type: asset
+title_tr: cl1-gezgin-night-crossing
+title_en: cl1-gezgin-night-crossing (plate)
+status: in-production
+horizon: now
+summary: >-
+  Exploration. Gezgin upgraded with the Revontuli formula (scored 7 as painted). Review - own sky, one temperature plus warm light, moving light, no lawn or cottage template.
+art:
+  images: []
+  jobs:
+  - batch-18-loop-1-concepts:cl1-gezgin-night-crossing
+sources:
+- doc: tools/imagegen/manifest/batch-18-loop-1-concepts.yaml
+kind: plate
+batch: batch-18-loop-1-concepts
+size: 1536x1024

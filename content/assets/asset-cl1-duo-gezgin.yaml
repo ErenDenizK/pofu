@@ -1,0 +1,17 @@
+id: asset-cl1-duo-gezgin
+type: asset
+title_tr: cl1-duo-gezgin
+title_en: cl1-duo-gezgin (plate)
+status: in-production
+horizon: now
+summary: >-
+  Exploration. the duo on an island, small in a big world. Review - scale (huge whale, tiny duo); warmth.
+art:
+  images: []
+  jobs:
+  - batch-18-loop-1-concepts:cl1-duo-gezgin
+sources:
+- doc: tools/imagegen/manifest/batch-18-loop-1-concepts.yaml
+kind: plate
+batch: batch-18-loop-1-concepts
+size: 1536x1024
