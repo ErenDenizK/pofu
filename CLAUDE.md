@@ -38,8 +38,11 @@ Loaded every turn: keep it short. History lives in `docs/` (`docs/README.md`).
   (Playwright, renders); feel is tuned natively on his iPhone.
 - The agent may merge PRs, with merge commits, only on green CI. CI treats
   Swift warnings as errors and must stay green.
-- No Swift toolchain here: push, then read the GitHub Actions results
-  ([cloud environment](docs/development.md#the-cloud-agent-environment)).
+- Local Swift 6.2.1 via `tools/swift/setup-linux.sh`
+  ([docs](docs/development.md#local-swift-on-the-cloud-agent)): run the logic
+  tests locally first (`tools/swift/test-linux.sh`), then push to CI once per
+  finished change and read the GitHub Actions results (iOS-only code is
+  compiled only there).
 
 ## Where things are
 

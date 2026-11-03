@@ -411,32 +411,17 @@ swift.org is blocked, but Docker Hub is reachable, so the official
 ```sh
 tools/swift/setup-linux.sh            # optional arg: tag, default 6.2.1
 export PATH=/opt/swift/usr/bin:$PATH  # swift --version -> 6.2.1
-tools/swift/test-linux.sh             # Linux-clean tests, 628 tests, ~1 min
+tools/swift/test-linux.sh             # whole PofuKit suite, 725 tests, ~1 min
 cd Packages/PofuKit && swift build --target PofuCore   # one target
 ```
 
-Plain `swift test` fails on Linux because it builds every target. The
-script tests a throwaway copy without the three non-clean targets.
-
-| Target | Linux build | Tests |
-| --- | --- | --- |
-| PofuCore, PofuPersistence, PofuDesignSystem, PofuCompanion, PofuWorld | yes | pass |
-| PofuScreenTime | no | not run |
-| PofuTuning, PofuGames | no | not run |
-
-Needed to make the rest Linux-clean (not done yet):
-
-- `PofuScreenTime/ShieldExtensionCore.swift` and
-  `LiveScreenTimeService.swift`: `import os` needs
-  `#if canImport(os)` (or `OSLog`-free logging).
-- `PofuTuning/TuningSpec.swift:36` (`TuningSpec.all`): the long `+` chain
-  hits "unable to type-check in reasonable time" on Linux; split it into
-  separate statements. `PofuGames` depends on PofuTuning, so it is blocked
-  by this too; its SpriteKit/SwiftUI files (`UI/Garden*`, `Scene/Garden*`)
-  still need an audit for `canImport` guards once it compiles.
-
-CI on macOS stays the source of truth; this is for fast local logic
-checks before pushing.
+Every PofuKit target builds and its tests pass on Linux, because the
+Apple-only code (SwiftUI, SpriteKit, UIKit, FamilyControls, `os` logging)
+sits behind `#if os(iOS)` / `canImport` guards. Keep it that way: pure
+logic imports only Foundation (use `#if canImport(CoreGraphics)` for
+CGFloat and friends). What Linux cannot check is the iOS-only code
+(scenes, views, the live Screen Time service), so CI on macOS stays the
+source of truth; this is for fast local logic checks before pushing.
 
 ## The cloud agent environment
 
