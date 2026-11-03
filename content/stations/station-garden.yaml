@@ -24,6 +24,7 @@ links:
   - asset-game-plot-tile-sage
   - asset-game-soil-cell
   - asset-game-seed
+  - asset-game-bloom-front
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'
