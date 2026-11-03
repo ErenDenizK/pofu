@@ -1,0 +1,315 @@
+# Batch 18: design loop 1 concept round (12 images), EXPLORATION, never promoted
+# (docs/design/art-production-plan.md; spec: docs/product/design-loop/loop-1.md
+# section 6; island rules: docs/product/archipelago-system.md section 17).
+#
+# Each image tests one risky idea of loop 1: Çağlayan's pools as windows, the
+# three-cluster backdrop at day, dusk and night, the Pofu and Mochi duo, Olta,
+# Gezgin's night crossing and a far-view silhouette sheet. UNIQUENESS CONTRACT
+# (as batch 17): the home island is attached for STYLE ONLY (soft painterly
+# finish, gentle light, low camera), never as the base to copy; every prompt
+# states its own silhouette/landform, palette, weather and landmark. Only the
+# backdrop and delta jobs show the home island, and they keep its exact shape.
+#
+# EXPLORATION RULES (AGENTS.md): do NOT run `promote`; commit the takes (WebP
+# q90), the contact sheet and review.yaml under design/art/takes/<batch>/<id>/
+# and nothing else. No painted text anywhere. Boards never paint glass UI,
+# chrome or buttons. Review wonder takes with the rubric of archipelago-system.md
+# 1A.3 and the 60 pt black-silhouette test.
+#
+# PILOT (run first, in this order): cl1-caglayan-pools, cl1-backdrop-day,
+# cl1-duo-vapur. Continue to THE REST only if at least 2 of the 3 pass review;
+# otherwise skip every job below the "THE REST" line and finish the session. A
+# failed job gets one retry.
+#
+# Track: `loop1` (all 12 jobs).
+
+batch: batch-18-loop-1-concepts
+title: Design loop 1 concept round (12 exploration images - Çağlayan, backdrop day/dusk/night, duo, Olta, Gezgin, far-view sheet)
+status: open
+
+refs:
+  sky-map-t1: design/art/takes/batch-15-explore/x-sky-map/plate__x-sky-map--t1.webp
+  revontuli-t1: design/art/takes/batch-10-island-concepts-pilot/x-revontuli-1/plate__x-revontuli-1--t1.webp
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: pofu, kind: char, name: pofu-r1, external: r1, master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png}
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island}
+
+  # ------------------------------------------------------------- PILOT
+
+  - id: cl1-caglayan-pools
+    kind: plate
+    name: cl1-caglayan-pools
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Çağlayan's new idea reads in one image (pools as windows). Review: a unique silhouette at 60 pt black; the pools read as windows, not mirrors; not green."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, fluff and scale exactly."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Çağlayan at stage 5: a tall white travertine column like a frozen fountain, pools spiralling down in rings, the fall pouring off the lowest rim into the clouds. Each clear pool reflects a different far place instead of the sky above it: a snowy floe with aurora, a whale's back, a bell spire. An otter with a tea glass on a rim; a small hamster beside her. Late morning, mist.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and landform: a tall travertine column of spiralling pools with no lawn top. Palette: chalk cream, mineral teal, sunflower-gold glints (not green). Weather and sky: late morning with mist rising from the fall. Landmark: pools that read as windows onto other places, not mirrors. Scale cue: an otter with a tea glass and a small hamster on a rim. The attached home island is a style reference only: copy its soft painterly finish, gentle light and low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, UI, phones or screens, harsh shadows, neon, dark moods"
+
+  - id: cl1-backdrop-day
+    kind: plate
+    name: cl1-backdrop-day
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. the backdrop composition with three clusters (the founder's concept image). Review: depth reads in three steps; nothing crowds home; each far island passes the 60 pt test."
+    attach:
+      - ref: approved:island-main-s
+        role: "THIS is the home island: keep its exact shape, lawn, sunflower, çay ocağı, pond and round door; it is the one place that keeps them."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this."
+      - ref: sky-map-t1
+        role: "The founder's backdrop concept: follow its depth and slot layout, not its exact islands."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: the archipelago backdrop at late morning. The home island large in front (exact shape of the attached home island). Behind it, receding in haze in three depth steps: left-low a travertine column with a bonsai satellite; far centre-right a slim bell spire; a cloud-whale with a sea stack trailing it crossing the far ring; a cold, unlit fairy-chimney kiln island on the left side.
+          UNIQUE PLACES (each far island has its own silhouette and landmark; none repeats home): column and bonsai in chalk cream and teal; bell spire in pale stone with a bronze bell; cloud-whale in periwinkle-white; cold kiln in dusty ochre with no smoke. Weather and sky: late morning, soft haze thickening with distance. Nothing crowds the home island.
+      - block: prop-style-v2
+      - text: "AVOID: text, a border, UI, phones or screens, harsh shadows, neon, dark moods, a new shape for the home island"
+
+  - id: cl1-duo-vapur
+    kind: plate
+    name: cl1-duo-vapur
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. the duo travelling (Pofu and Mochi on the ferry). Review: their relationship reads without words; Mochi stays Mochi."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, gentle light and low camera. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds; paint clouds like this."
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, fluff and scale exactly."
+      - ref: approved:mochi-v2
+        role: "Mochi, the lop bunny: match her size, eyes and finish."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: the little white vapur crossing the cloud sea in the morning; on its open deck a lop bunny pouring tea from a çaydanlık for a small hamster standing on the rail with his ears up, looking toward a silhouette in the fog. She looks at him, not at the fog.
+          UNIQUE PLACE: silhouette and landform: the small white ferry on open clouds, a fog bank ahead holding one faint island silhouette. Palette: ferry white, warm tea amber, pale morning blue. Weather and sky: morning with low fog. Landmark: the çaydanlık and the two friends on the deck. Scale cue: the ferry is small in a wide cloud sea.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, UI, phones or screens, harsh shadows, neon, dark moods"
+
+  # ------------------------------------------------------------- THE REST
+
+  - id: cl1-caglayan-arrival
+    kind: plate
+    name: cl1-caglayan-arrival
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. the arrival's wound (milky pools, a thin fall) still reads as a wow. Review: wow without the full fall; same silhouette as cl1-caglayan-pools."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: the same Çağlayan column arriving out of fog at morning: pools milky white, a thin trickle over the lowest rim, an otter holding an empty tea glass.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and landform: the same tall travertine column of spiralling pools, no lawn top. Palette: chalk cream, milky white, faint teal. Weather and sky: morning fog parting. Landmark: milky pools and a thin trickle over the lowest rim. Scale cue: an otter holding an empty tea glass. The attached home island is a style reference only: copy its soft painterly finish, gentle light and low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, UI, phones or screens, harsh shadows, neon, dark moods"
+
+  - id: cl1-water-cluster-delta
+    kind: plate
+    name: cl1-water-cluster-delta
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. the palette delta (kin to home, not green). Review: one family, two places; swatch test per island."
+    attach:
+      - ref: approved:island-main-s
+        role: "THIS is the home island: keep its exact shape, lawn, sunflower, çay ocağı, pond and round door; it is the one place that keeps them."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: side by side on one sky: the home island in front at left (exact shape of the attached home island), and behind it at right Çağlayan, a tall travertine column, with Koke (a bonsai pine on a travertine boulder) orbiting through its spray. The water pair is graded chalk and teal, keeping home's sunflower and cream.
+          UNIQUE PLACE (the water pair): silhouette and landform: a tall travertine column with a small boulder satellite carrying a bonsai pine. Palette: chalk cream and mineral teal, kin to home's sunflower and cream, not green. Weather and sky: clear day with spray around the column. Landmark: the bonsai pine on its boulder in the spray.
+      - block: prop-style-v2
+      - text: "AVOID: text, a border, UI, phones or screens, harsh shadows, neon, dark moods, a new shape for the home island"
+
+  - id: cl1-backdrop-dusk
+    kind: plate
+    name: cl1-backdrop-dusk
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. the same composition at golden hour with rim light. Review: same slots as cl1-backdrop-day; rim light separates the layers."
+    attach:
+      - ref: approved:island-main-s
+        role: "THIS is the home island: keep its exact shape, lawn, sunflower, çay ocağı, pond and round door; it is the one place that keeps them."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this."
+      - ref: sky-map-t1
+        role: "The founder's backdrop concept: follow its depth and slot layout, not its exact islands."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: the archipelago backdrop at golden hour. The home island large in front (exact shape of the attached home island). Behind it, receding in haze: left-low a travertine column with a bonsai satellite; far centre-right a slim bell spire; a cloud-whale with a sea stack trailing it crossing the far ring; a cold unlit fairy-chimney kiln island on the left side.
+          UNIQUE PLACES: column and bonsai in chalk cream and teal; bell spire in pale stone with a bronze bell; cloud-whale in periwinkle-white; cold kiln in dusty ochre. Weather and sky: golden hour, warm rim light from the left, haze warmer with distance. Same slots as the late-morning backdrop.
+      - block: prop-style-v2
+      - text: "AVOID: text, a border, UI, phones or screens, harsh shadows, neon, dark moods, a new shape for the home island"
+
+  - id: cl1-backdrop-night
+    kind: plate
+    name: cl1-backdrop-night
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. the night map of lights (story language). Review: lights read as presence; not gloomy (the founder's night-grade note)."
+    attach:
+      - ref: approved:island-main-s
+        role: "THIS is the home island: keep its exact shape, lawn, sunflower, çay ocağı, pond and round door; it is the one place that keeps them."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this."
+      - ref: sky-map-t1
+        role: "The founder's backdrop concept: follow its depth and slot layout, not its exact islands."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: the archipelago backdrop at night. The home island large in front (exact shape of the attached home island). Behind it: left-low a travertine column with a bonsai satellite; far centre-right a slim bell spire; a cloud-whale with a sea stack crossing the far ring; a cold fairy-chimney kiln island on the left; plus a snowy floe far right under an aurora band. Silhouettes dark; only lights speak: lantern windows, bell lanterns, mist catching moonlight, the aurora. One faint light in the fog band for a rumour.
+          UNIQUE PLACES: each far island keeps its own silhouette and landmark. Palette: deep indigo, lamp gold, aurora teal. Weather and sky: clear night with a fog band, soft and not gloomy.
+      - block: prop-style-v2
+      - text: "AVOID: text, a border, UI, phones or screens, harsh shadows, neon, dark moods, a new shape for the home island"
+
+  - id: cl1-duo-arrival
+    kind: plate
+    name: cl1-duo-arrival
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. the duo's contrast at an arrival (he hears, she does not). Review: the ripple is visible; a child could say who hears."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, gentle light and low camera. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds; paint clouds like this."
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, fluff and scale exactly."
+      - ref: approved:mochi-v2
+        role: "Mochi, the lop bunny: match her size, eyes and finish."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: the end of a pier at dawn: the hamster with ears straight up, the lop bunny beside him with ears hanging, holding a tea glass whose surface ripples in rings; fog parting ahead.
+          UNIQUE PLACE: silhouette and landform: a short wooden pier ending in fog over clouds. Palette: dawn peach, fog grey-blue, tea amber. Weather and sky: dawn, fog parting. Landmark: the rippling tea glass. Scale cue: two small friends at the pier's end.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, UI, phones or screens, harsh shadows, neon, dark moods"
+
+  - id: cl1-duo-gezgin
+    kind: plate
+    name: cl1-duo-gezgin
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. the duo on an island, small in a big world. Review: scale (huge whale, tiny duo); warmth."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, gentle light and low camera. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds; paint clouds like this."
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, fluff and scale exactly."
+      - ref: approved:mochi-v2
+        role: "Mochi, the lop bunny: match her size, eyes and finish."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: the hamster and the lop bunny walking on the meadow on a cloud-whale's back, a tortoise postman with a satchel ahead of them, the whale's closed eye and soft smile visible at the edge.
+          UNIQUE PLACE: silhouette and landform: a huge gentle cloud-whale whose back is a meadow. Palette: cloud white, periwinkle, soft meadow green-gold. Weather and sky: clear gentle afternoon. Landmark: the closed eye and soft smile. Scale cue: a huge whale, a tiny duo.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, UI, phones or screens, harsh shadows, neon, dark moods"
+
+  - id: cl1-revontuli-olta
+    kind: plate
+    name: cl1-revontuli-olta
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Revontuli's mood carried into its satellite (Olta at polar dawn). Review: keeps the loved painting's mood; dawn, not night; distinct from Revontuli."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, fluff and scale exactly."
+      - ref: approved:mochi-v2
+        role: "Mochi, the lop bunny: match her size, eyes and finish."
+      - ref: revontuli-t1
+        role: "The loved Revontuli painting: keep its mood."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Olta, a round ice floe with one round fishing hole, a small stool and a lantern; the hamster and the lop bunny sitting wrapped in blankets, a line in the hole; the last aurora fading into a pink polar dawn; Revontuli's spruce floe behind.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and landform: a round ice floe with one round hole, Revontuli's spruce floe behind it. Palette: ice blue, polar-dawn pink, lantern gold. Weather and sky: the last aurora fading into a pink polar dawn (dawn, not night). Landmark: the fishing hole with a line, a stool and a lantern. Scale cue: two small friends in blankets. The attached home island is a style reference only: copy its soft painterly finish, gentle light and low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, UI, phones or screens, harsh shadows, neon, dark moods"
+
+  - id: cl1-gezgin-night-crossing
+    kind: plate
+    name: cl1-gezgin-night-crossing
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Gezgin upgraded with the Revontuli formula (scored 7 as painted). Review: own sky, one temperature plus warm light, moving light, no lawn or cottage template."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, fluff and scale exactly."
+      - ref: approved:mochi-v2
+        role: "Mochi, the lop bunny: match her size, eyes and finish."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Gezgin, a huge gentle cloud-whale crossing at dusk between fog banks, eyes closed, soft smile; along her flank glowing freckles like a ferry's portholes; on her back a little village of round cloud-barnacle houses with warm windows; her spout falls as a small shower with a pale moonbow. A tiny hamster and a lop bunny sit on her back with tea glasses.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and landform: a huge cloud-whale with flank freckles and a barnacle village on her back. Palette: periwinkle dusk, porthole amber. Weather and sky: dusk between fog banks, a pale moonbow in the spout shower. Landmark: the porthole freckles and the cloud-barnacle village. Scale cue: a tiny hamster and a lop bunny on her back. The attached home island is a style reference only: copy its soft painterly finish, gentle light and low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, UI, phones or screens, harsh shadows, neon, dark moods"
+
+  - id: cl1-farview-sheet
+    kind: plate
+    name: cl1-farview-sheet
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. far-view silhouettes for the backdrop (the 60 pt test at scale). Review: each nameable in black at 60 pt; a reference for far-view production."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds; paint clouds like this."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: a sheet of twelve small distant island silhouettes on one hazy sky, evenly spaced in a grid, each painted at far-view detail: travertine column, bonsai on a boulder, cloud-whale, sea stack, bell spire, snowy floe, ring floe with a hole, bell jar, floating lantern, upturned umbrella, fairy-chimney kiln, hanging hive.
+          UNIQUE PLACES: every silhouette is distinct and none is a lawn oval. Palette: haze-softened pastels, one temperature per island. Weather and sky: one pale hazy sky. Landmark: one clear landmark per island.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, UI, phones or screens, harsh shadows, neon, dark moods"

@@ -1,0 +1,17 @@
+id: asset-cl1-farview-sheet
+type: asset
+title_tr: cl1-farview-sheet
+title_en: cl1-farview-sheet (plate)
+status: in-production
+horizon: now
+summary: >-
+  Exploration. far-view silhouettes for the backdrop (the 60 pt test at scale). Review - each nameable in black at 60 pt; a reference for far-view production.
+art:
+  images: []
+  jobs:
+  - batch-18-loop-1-concepts:cl1-farview-sheet
+sources:
+- doc: tools/imagegen/manifest/batch-18-loop-1-concepts.yaml
+kind: plate
+batch: batch-18-loop-1-concepts
+size: 1536x1024

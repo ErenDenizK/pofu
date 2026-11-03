@@ -1,0 +1,17 @@
+id: asset-cl1-caglayan-arrival
+type: asset
+title_tr: cl1-caglayan-arrival
+title_en: cl1-caglayan-arrival (plate)
+status: in-production
+horizon: now
+summary: >-
+  Exploration. the arrival's wound (milky pools, a thin fall) still reads as a wow. Review - wow without the full fall; same silhouette as cl1-caglayan-pools.
+art:
+  images: []
+  jobs:
+  - batch-18-loop-1-concepts:cl1-caglayan-arrival
+sources:
+- doc: tools/imagegen/manifest/batch-18-loop-1-concepts.yaml
+kind: plate
+batch: batch-18-loop-1-concepts
+size: 1536x1024

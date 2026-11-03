@@ -1,0 +1,17 @@
+id: asset-cl1-backdrop-dusk
+type: asset
+title_tr: cl1-backdrop-dusk
+title_en: cl1-backdrop-dusk (plate)
+status: in-production
+horizon: now
+summary: >-
+  Exploration. the same composition at golden hour with rim light. Review - same slots as cl1-backdrop-day; rim light separates the layers.
+art:
+  images: []
+  jobs:
+  - batch-18-loop-1-concepts:cl1-backdrop-dusk
+sources:
+- doc: tools/imagegen/manifest/batch-18-loop-1-concepts.yaml
+kind: plate
+batch: batch-18-loop-1-concepts
+size: 1536x1024

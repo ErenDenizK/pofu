@@ -1,0 +1,17 @@
+id: asset-cl1-backdrop-night
+type: asset
+title_tr: cl1-backdrop-night
+title_en: cl1-backdrop-night (plate)
+status: in-production
+horizon: now
+summary: >-
+  Exploration. the night map of lights (story language). Review - lights read as presence; not gloomy (the founder's night-grade note).
+art:
+  images: []
+  jobs:
+  - batch-18-loop-1-concepts:cl1-backdrop-night
+sources:
+- doc: tools/imagegen/manifest/batch-18-loop-1-concepts.yaml
+kind: plate
+batch: batch-18-loop-1-concepts
+size: 1536x1024

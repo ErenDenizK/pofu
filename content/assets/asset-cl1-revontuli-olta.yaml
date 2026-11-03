@@ -1,0 +1,17 @@
+id: asset-cl1-revontuli-olta
+type: asset
+title_tr: cl1-revontuli-olta
+title_en: cl1-revontuli-olta (plate)
+status: in-production
+horizon: now
+summary: >-
+  Exploration. Revontuli's mood carried into its satellite (Olta at polar dawn). Review - keeps the loved painting's mood; dawn, not night; distinct from Revontuli.
+art:
+  images: []
+  jobs:
+  - batch-18-loop-1-concepts:cl1-revontuli-olta
+sources:
+- doc: tools/imagegen/manifest/batch-18-loop-1-concepts.yaml
+kind: plate
+batch: batch-18-loop-1-concepts
+size: 1536x1024

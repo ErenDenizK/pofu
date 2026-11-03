@@ -1,0 +1,17 @@
+id: asset-cl1-water-cluster-delta
+type: asset
+title_tr: cl1-water-cluster-delta
+title_en: cl1-water-cluster-delta (plate)
+status: in-production
+horizon: now
+summary: >-
+  Exploration. the palette delta (kin to home, not green). Review - one family, two places; swatch test per island.
+art:
+  images: []
+  jobs:
+  - batch-18-loop-1-concepts:cl1-water-cluster-delta
+sources:
+- doc: tools/imagegen/manifest/batch-18-loop-1-concepts.yaml
+kind: plate
+batch: batch-18-loop-1-concepts
+size: 1536x1024

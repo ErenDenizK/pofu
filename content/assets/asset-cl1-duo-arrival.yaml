@@ -1,0 +1,17 @@
+id: asset-cl1-duo-arrival
+type: asset
+title_tr: cl1-duo-arrival
+title_en: cl1-duo-arrival (plate)
+status: in-production
+horizon: now
+summary: >-
+  Exploration. the duo's contrast at an arrival (he hears, she does not). Review - the ripple is visible; a child could say who hears.
+art:
+  images: []
+  jobs:
+  - batch-18-loop-1-concepts:cl1-duo-arrival
+sources:
+- doc: tools/imagegen/manifest/batch-18-loop-1-concepts.yaml
+kind: plate
+batch: batch-18-loop-1-concepts
+size: 1536x1024
