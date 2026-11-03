@@ -1,0 +1,146 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-onb-3/contact.jpg
+jobs:
+  x-onb-3:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Coordinator manual review: both
+      have exact Pofu curl and happy/slightly puffed cheeks, one large cream-striped
+      seed held in both paws, cream seed jar and blooming sunflower, warm light/clear
+      upper third, no UI/text/phone. Lowest non-failing lock load wins. Never promoted.'
+qa_reports:
+  1:
+    job: x-onb-3
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 54 (R1 51)
+      value: 53.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 70 (R1 59)
+      value: 70.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.82
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8336
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 6.1, off-palette 0.6% (top: #BB6633 (0.1%), #BB7733
+        (0.1%))'
+      value: 1.9093
+    info:
+      metrics_raw:
+        L_p5: 70.0
+        L_p50: 90.1
+        L_p95: 94.8
+        C_p50: 24.8
+        C_p95: 54.5
+        C_p99: 65.9
+        detail: 2.47
+      metrics_locked:
+        L_p5: 70.4
+        L_p50: 89.9
+        L_p95: 94.8
+        C_p50: 25.0
+        C_p95: 53.8
+        C_p99: 62.0
+        detail: 1.82
+    fingerprint: c7be8d7379ce1177
+  2:
+    job: x-onb-3
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 50.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 70 (R1 59)
+      value: 70.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.65
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7575
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 4.0, off-palette 0.6% (top: #CC7733 (0.2%), #BB7733
+        (0.1%))'
+      value: 1.5397
+    info:
+      metrics_raw:
+        L_p5: 69.8
+        L_p50: 89.9
+        L_p95: 93.8
+        C_p50: 20.0
+        C_p95: 51.7
+        C_p99: 63.0
+        detail: 2.26
+      metrics_locked:
+        L_p5: 70.0
+        L_p50: 89.8
+        L_p95: 93.7
+        C_p50: 20.2
+        C_p95: 50.8
+        C_p99: 60.9
+        detail: 1.65
+    fingerprint: c7be8d7379ce1177
+manual_review:
+  exclude: []
+  note: 'Coordinator manual review: both have exact Pofu curl and happy/slightly puffed
+    cheeks, one large cream-striped seed held in both paws, cream seed jar and blooming
+    sunflower, warm light/clear upper third, no UI/text/phone. Lowest non-failing
+    lock load wins. Never promoted.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-923c86f5-e506-4dd6-8bdd-3fd4bf5ec8de.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c7be8d7379ce1177
+  inbox_png_sha256: 3cff58cca56306b3a3fb356016e37943cfca491b694946a1a76e5463fcf4f230
+  original_generated_png_sha256: f5d976d8c482df89c3981179fb9b0f7b444c688566c466fa8640b326cc74416c
+  rgba_sha256: 40e99c4d137750e2ddea6bde90d0f6678acc530f75d9ef7cf467aa5e7725ee61
+  source_rgba_matches_inbox: true
+- take: 2
+  source_file: /workspace/generated_images/exec-7f2a793e-2437-44be-a204-d7308cb85834.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c7be8d7379ce1177
+  inbox_png_sha256: 0683f82e4573b0749e165177cb14701478efccc99a7123db8c2a4d4aa3b659ec
+  original_generated_png_sha256: 5958e57f1fff2d1d5faf6cbe5259975722f4f0a6a5faa16da79ab0f111e36e5e
+  rgba_sha256: e16c8cccffd6eb1a7003c9caa24872962dc7c2eca365ab1db540a5007fe4eb45
+  source_rgba_matches_inbox: true
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.
