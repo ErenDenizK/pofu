@@ -274,11 +274,11 @@ jobs:
     canvas: 1024x1024
     slice: {caps: [32, 24, 20, 24], ship_height: 240}
     chat: "Pofu · UI objects"
-    acceptance: {edit_mode: recolor}
+    acceptance: {edit_mode: recolor, profile: night}
     notes: "Painted night version (one of the three painted N items): indigo-dyed paper."
     prompt:
       - text: |
-          Dye the paper a deep, soft indigo-blue, the stitches a pale warm
+          Dye the paper a deep, soft, dark indigo-blue (clearly darker than the day paper), the stitches a pale warm
           cream, the paper lip a slightly lighter indigo. Keep it matte and
           calm; the middle stays plain, flat and even.
       - block: edit-keep-v1

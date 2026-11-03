@@ -368,7 +368,8 @@ def cmd_post(args, config, m: pl.Manifest) -> int:
         results = []
         for n, path, side in takes:
             raw = sl.load_rgba(path)
-            res = qa.process_take(raw, job.kind, job.canvas, preset, list(dict.fromkeys(config["palettes"][job.kind] + job.palettes)), job.acceptance,
+            res = qa.process_take(raw, job.kind, job.canvas, preset, list(dict.fromkeys(config["palettes"][job.kind] + job.palettes)),
+                                  {**job.acceptance, **({"exploration": True} if qa.is_exploration(job.id, job.acceptance) else {})},
                                   registration=registration, parent_locked=parent_locked,
                                   register_root=((job.kind == "station" or bool(job.decor)) and not job.edit_of),
                                   transparent=job.transparent, decor=job.decor)

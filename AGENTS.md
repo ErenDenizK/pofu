@@ -369,7 +369,7 @@ guide fit) gets its one allowed retry round (a fresh pair of takes). If that
 also fails, record the job as `skipped` with its reason in its `review.yaml`
 and its content node (`status: cut`, never delete), skip every job that depends
 on it (`edit_of`, `approved:`), say so in the PR, and **go on with the next
-job and the next batch**. Never loop, never waive a check to force a pass.
+job and the next batch**. Only true dependents are skipped; unrelated jobs and batches go on, however many jobs have failed in a row (there is no consecutive-failure stop). Never loop, never waive a check to force a pass.
 Finished picks are always published; a skipped job never holds them back.
 
 **Global stop** (stop, report, do not retry) only for:
@@ -379,7 +379,6 @@ Finished picks are always published; a skipped job never holds them back.
 - Codex refuses, or answers without an image three times in a row.
 - Identity or upload corruption (a pushed file fails `check_upload.py`
   after one re-push, or the commit identity is wrong).
-- Three consecutive job failures (each after its retry), in any batches.
 - The key guard fires, or the API estimate is above what the founder agreed.
 - Anything needs `sudo`, a system install, or a change outside
   `tools/imagegen/`, `design/art/` and the PR: ask the founder first.
