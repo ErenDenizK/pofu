@@ -2,13 +2,12 @@ id: asset-simit-kitten-work
 type: asset
 title_tr: simit-kitten-work
 title_en: simit-kitten-work (char)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Edit the attached kitten, Simit, into her working pose. Change only her two front paws:
-  they now hold a small round wooden tray in front of her chest with three plump sesame-crusted
-  simit rings (golden-brown rings dotted with cream seeds) on it. Her ears, head, face, body,
-  tail and feet stay exactly as they are.
+summary: 'Edit the attached kitten, Simit, into her working pose. Change only her
+  two front paws: they now hold a small round wooden tray in front of her chest with
+  three plump sesame-crusted simit rings (golden-brown rings dotted with cream seeds)
+  on it. Her ears, head, face, body, tail and feet stay exactly as they are.'
 links:
   variant_of:
   - asset-simit-kitten
@@ -21,3 +20,7 @@ sources:
 kind: char
 batch: batch-14-iskele
 size: 1024x1536
+notes:
+- 'Skipped without generation: failed embedded pilots iskele-vapur-1 and simit-kitten
+  exhausted their one allowed retry. Manifest pilot gate skips every remaining job
+  of this batch; no QA waiver or master.'
