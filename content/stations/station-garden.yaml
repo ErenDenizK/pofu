@@ -4,18 +4,15 @@ title_tr: Ayçiçeği bahçesi
 title_en: Sunflower garden
 status: in-production
 horizon: now
-summary: >-
-  Pofu's own sunflower bed, built from the start. The first build of the game (L2 for 30 seeds)
-  is affordable on every archetype's first morning.
+summary: Pofu's own sunflower bed, built from the start. The first build of the game
+  (L2 for 30 seeds) is affordable on every archetype's first morning.
 notes:
-- >-
-  Opens: Stage 1 (built from the start). Level costs 1→5: 0 · 30 · 66 · 145 · 319 (total 560).
-  Rate L1→L5: 6 → 19.2 seeds/hour before calm.
-- >-
-  The windmill grinds these sunflower seeds: the island's own story of where seeds come from.
-- >-
-  Batch 01 queues L1–L2; batch 03 continues L3–L5 as edits. PofuWorld shows a stand-in until
-  then.
+- 'Opens: Stage 1 (built from the start). Level costs 1→5: 0 · 30 · 66 · 145 · 319
+  (total 560). Rate L1→L5: 6 → 19.2 seeds/hour before calm.'
+- 'The windmill grinds these sunflower seeds: the island''s own story of where seeds
+  come from.'
+- Batch 01 queues L1–L2; batch 03 continues L3–L5 as edits. PofuWorld shows a stand-in
+  until then.
 links:
   part_of:
   - island-aycicegi
@@ -23,6 +20,8 @@ links:
   - char-pofu
   - sys-station-production
   - sys-build
+  uses_asset:
+  - asset-game-plot-tile-sage
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'
