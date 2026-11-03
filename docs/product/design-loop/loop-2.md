@@ -59,6 +59,13 @@ only through their own PR, after the founder agrees._
   stations, like home. Each big and parallel island now has a playable
   island block (game, twist, a round, toy, stations, what it feeds, its
   far view), checked by the tool (section 3.6).
+- **The three zooms, verbal (the founder's second note, section 8):**
+  each island's strongest and weakest point with its fix; the sequence
+  (strongest days 4–22, weakest Mehtap's wait, fixed by a moon-anchored
+  arrival; a missed stack caught, Emanet's bloom moved to day 49); the
+  real background lore (the Ring, the drift, the Bekçi as a job, the
+  handover) and the plot as a sixteen-beat ladder, turning at Olta from
+  _who is the Bekçi_ to _will Pofu leave_. A deck outline ends the doc.
 - **No new images this loop** (the founder's note). The batch-19 concept
   round was written and then withdrawn unmerged (PR #131 closed); its
   spec is kept, deferred (section 5).
@@ -449,3 +456,187 @@ jobs:
 | 4 | The lore PR (loop-1 decisions and the hour rule into lore-bible and story-delivery) | A merge as written · B change something first | Review it; it stays open until he agrees |
 | 5 | Scores | Score the islands in the Hub (batch 17 and 18 takes), 1–10 with one line, per island | They are step 0 of loop 3 |
 | 6 | Which island's playable plate first | A Çağlayan (day 4, the first wonder) · B Gezgin (the hook) · C Revontuli (the 10) | **A**: it is the first the player meets, and its pools-as-windows need the atmosphere cells anyway |
+
+## 8. The founder's second note: three zooms, verbal and logical
+
+The founder reshaped this loop's deliverable after section 7: no image
+work; each island on its own, then the sequence, then the story, at the
+bar of the best studio in the world. Pass 5 below. It changed one rule
+and one island in data (8.2); everything else is decisions.
+
+### 8.1 Close zoom: each island on its own
+
+One strongest point, one weakest point, the fix. The playable-island
+blocks of big and parallel islands are section 3.6 and `profiles.yaml` →
+`play`; satellites get their play line here.
+
+| Island | Strongest | Weakest | The fix (decided) |
+|---|---|---|---|
+| **Ayçiçeği** | It grows from a hamster's island into the harbor town where every island leaves a building | After day 3 it only _receives_: gifts arrive, its own play never deepens | Every cluster gift adds **one rule to home's garden game** (the çeşme waters a row; the greenhouse adds rare seeds; the oven turns a harvest into a feast dish; the bell post calls a visitor). Home's game is the only one that grows all book |
+| **Çağlayan** | Pools are windows that hold other islands' hours | Flow is the most familiar puzzle in the set, and a solved board stays solved | Boards are **generated from the day's awake islands** (the channel must reach the pool that shows that island), and the last stone is placed by **dropping a leaf boat**: the toy becomes the finishing move |
+| **Koke** (sat.) | The sleeper's single breath, a whisper of Gezgin's hook | The raked loop (Slitherlink-lite) is unproven and hard to teach in a minute | Play: rake one closed line round the stones, starting 3×3 with one rule shown. Rehearsal pilot before anything else; the fallback is "one line through every pebble", never a new genre |
+| **Gezgin** | An island that is alive and breathes | Sliding blocks are generic, and breath-timed moves can frustrate | The tiles are **barnacles that drift on her breath**: you plan, she moves them. Breath sets the window but never fails a move; slow breathing (the player's calm) widens it |
+| **Martı** (sat.) | A pure toy: toss simit, a gull trades back | Random trinkets read as a loot box | Play: toss and trade, **deterministic**: what you toss decides what returns, shown on the gulls' trade post; no rarity, no odds |
+| **Çanlar** | The archipelago's ear: each morning's rumour | Simon is the shallowest game in the set | From S3 the player **composes a four-note call**; it summons a resident to home's square tomorrow, a real effect in the web. The ear becomes a voice |
+| **Revontuli** | It replaces the sky (the 10) | Peggle's DNA is a casino's | One lantern per round, made by you; no multipliers, no fever, no score: the result is **tonight's aurora**, seen over home after calm nights. Physics as a gift, not a payout |
+| **Olta** (sat.) | The only island whose game is waiting | Waiting is not felt as play | Play: set the line, **close the app**; the catch is waiting on the next open. The game is literally the product's behaviour, rewarded, never punished |
+| **Fanus** | Two skies in one frame | Nonograms are slow for a casual player | 5×5 opening, 10×10 cap, clues as frost dots, the wing's picture previewed faintly so it reads as drawing, not arithmetic |
+| **Pervane** (sat.) | A light kept for someone | Almost nothing to do | Play: a **dusk ritual**, a long press lights the lantern; the moths settle into a shape that points to the next rumour. Short on purpose |
+| **Emanet** | The web's glue: one thing returned a day | Clutter, too many objects | Three objects a day, never more; the shelves fill over the book as the visible progress; its bloom moves into Mehtap's wait (8.2) |
+| **Çömlek** | On the horizon since day one; the kiln lit from below | Suika is a clone | The fixed lump, glazes from four islands, and **the best vessel leaves**: it becomes a decor piece on the island whose glaze it wore |
+| **Arı** (sat.) | The bees' dance points toward the viewer | It overlaps with home's garden | Play: **route bee flights over home's plate** to flowers; the only island whose game is played above home, so its rung (the dance) happens where you live |
+| **Mehtap** | The real moon reshapes it | Waiting for a real full moon can feel like a timer | The board's shape follows the moon nightly (a new puzzle every night), the wait is filled by late secrets and Emanet's bloom, and its **arrival is moon-anchored** (8.2) |
+| **Yakamoz** (sat.) | Wading in light | It comes after the climax | It is not an epilogue but **Book Two's door**: its one extra light is the next question. Play: wade; each step lights a shoreline that traces an island not yet arrived |
+
+### 8.2 Group zoom: order, durations, overlaps
+
+Days are the tool's derived schedule (section 4.2 of loop 1, re-run).
+
+| Days | What arrives (runway) | Overlaps (rich at once) | Wows |
+|---|---|---|---|
+| 1–3 | Home (3) | — | — |
+| 4–12 | Çağlayan d4 (2), Koke d6 (2), Gezgin d9 (4) | Çağlayan's stages run under both | d4, d9 (the hook), Koke's bloom d13 is quiet |
+| 13–24 | Çanlar d13 (2; daily from d19), Martı d15 (2), Revontuli d17 (3; rumour d14), Olta d20 (3) | Gezgin's stages; Çanlar's daily starts | d14 Çağlayan bloom, d17, d22 Gezgin bloom |
+| 25–40 | Fanus d25 (3), Pervane d28 (2), Emanet d30 (2; daily from d31), Çömlek d33 (3), Arı d36 (3) | Two dailies (rumour, puzzle) under everything | d25, d30 Revontuli bloom, d33, d38 Fanus bloom |
+| 41–57 | Mehtap d41 (2), Yakamoz d43 (2) | Late secrets on old islands; **Emanet's bloom d49** | d41, d46 Çömlek bloom, **d49 Emanet bloom**, d57 Mehtap's full moon |
+
+- **Strongest stretch: days 4–22.** An arrival every 2–4 days, the hook
+  on day 9 inside the free-to-Plus window, Revontuli's rumour by day 14,
+  and three different textures (juicy, brainy, rhythmic) in a row.
+- **Weakest stretch: days 41–57, Mehtap's wait,** worse in reality than
+  on paper: the full moon is real, so a player whose day 41 falls just
+  after one would wait up to four weeks. **Fix (decided): Mehtap's
+  arrival is moon-anchored.** It arrives when its stage 4 can land 3–7
+  days before a real full moon; the slack before it (0–25 days) is
+  absorbed by the elastic tail of chapter 4: Arı and the late secrets on
+  old islands stretch, Book One never waits empty. The tool models the
+  nominal case only; the elastic tail is a `PofuCore` rule (not done).
+- **A stack the tool missed, now caught:** Emanet (a god-tier parallel)
+  bloomed on day 44, two days before Çömlek's bloom, because parallel
+  blooms were not counted as wows. The rule now counts a god-tier
+  parallel's bloom (its arrival stays quiet: it arrives as
+  infrastructure), and Emanet's bloom moved from +14 to **+19 (day 49)**,
+  where it does the most good: the map in the back room, in the old
+  Bekçi's hand, lands in the middle of Mehtap's wait. Test added.
+- **The sag in chapter 3** (days 25–33): three dusks in a row and two
+  brainy games in four arrivals. Accepted for now (3.3, 6); the Fanus →
+  Emanet stretch must not both be logic at full size: Fanus's opening
+  boards stay 5×5.
+
+### 8.3 Whole zoom: the real background lore
+
+What actually happened before the game starts (writers only; never put
+in the game as exposition):
+
+1. **The Ring.** The islands were once one archipelago, a ring in the
+   sky above the loud world, held together by quiet. At dusk the
+   bell-ringers of Çanlar rang the oldest tune and every island answered.
+2. **The drift.** Below, the lights stopped going out: windows bright
+   all night, rooms that never got dark. Every light left on is a little
+   noise, and noise pushes islands apart (§1 of the lore bible). One by
+   one they drifted off into the fog, and each went still at the hour the
+   last light near it was switched off, and kept that hour: Çağlayan at
+   noon, Revontuli at night, Mehtap at blue hour. Çanlar's tune lost its
+   answers; the ringers grew old and forgot.
+3. **The Bekçi.** It was never a person by birth; it is a job. Whoever
+   switches off a light for someone's quiet is, that night, a Bekçi. For
+   a long time one small Bekçi kept Ayçiçeği: he hummed four notes, wrote
+   practical letters, drank his tea at Mochi's stall and walked the
+   quiet. Every light he switched off below let one island hold on. He
+   kept the Ring from coming apart entirely, alone, for years.
+4. **The handover.** He grew tired. One autumn night, far below, a light
+   went off that he had not switched off: someone else had done it, for
+   themselves. A new Bekçi had woken. So he did what old night watchmen
+   do when the next one arrives: he went to rest. Lale's nest carried him
+   south. He left his glass upside down on Mochi's top shelf, which in
+   her stall means _keep it for me_, and she has kept it ever since,
+   believing he left; he did not leave, he handed over.
+5. **The night the game starts.** The light that went off that night was
+   in the player's room; it was the light Pofu ran beside. Pofu stopped,
+   heard breath and a squeak (the four notes), and Ayçiçeği, the island
+   nearest to the quiet, took him in. **The player is the new Bekçi and
+   does not know it; nor does Pofu; Mochi suspects there is one.**
+6. **What everyone is really doing.** The player switches off lights
+   (every resist), and islands come home. Pofu thinks he is following
+   the old Bekçi's trail to say thank you; the letters, the aurora and
+   the dark stars all point to wherever the quiet is, i.e. to the
+   player. Mochi travels to keep Pofu from leaving the way the old one
+   did, and learns that people who go to rest are not people who leave.
+7. **The open question for Book Two.** Beyond the Ring, one window is
+   still lit: someone else's bright room. Book Two sails there, gently,
+   to switch it off for them (the door to friends).
+
+### 8.4 The plot as a ladder
+
+Each beat is tied to an arrival (days nominal). _Learns_ is what the
+player can piece together; _feels_ is the target emotion.
+
+| Day | Arrival | Beat (intent) | The player learns | Feels |
+|---|---|---|---|---|
+| 1–3 | Home | Four notes hummed and cut off; a dusted wheel; an upside-down glass on Mochi's shelf; the sunflower turns to the fog at night | This place has a past | Cozy curiosity |
+| 4 | Çağlayan | Pools become windows onto other hours | Islands are far apart and remember | Wonder |
+| 6 | Koke | Thank-you letters raked "to whoever makes it quiet"; the mound breathes once (S3) | Someone makes it quiet, and is thanked | A small warmth |
+| 9 | Gezgin | Every lost letter is addressed to "Bekçi", and the address moves | There is a Bekçi, and he moves | **The hook**: a question |
+| 13 | Çanlar | The oldest tune begins with Pofu's four notes (S3) | Pofu is a listener, like the ones before | Pride (Pofu's cocky phase) |
+| 14 | Çağlayan bloom | In the deepest pool a far night window goes dark | Lights going out matter | A shiver |
+| 15 | Martı | A stork's feather and a story: a small one was carried south | The old Bekçi went south | Mochi's glass ripples; the player notices before Pofu does |
+| 17 | Revontuli | The aurora is made of lights switched off below; brighter after the player's calm nights | The quiet is made somewhere, by someone, nightly | Awe, then a quiet "is that me?" |
+| 20 | Olta | The line brings up the old Bekçi's lantern; Mochi admits she knew him | **Midpoint**: the question turns from _who_ to _will Pofu leave too_ | Tenderness, worry |
+| 25 | Fanus | Sunflowers tagged with dates; the dates are the player's quiet days | The record is the player's | A recognition the player keeps to themself |
+| 28 | Pervane | Mochi lights a lantern for Pofu; he goes one trip alone | A light kept for someone is not a light left on | Letting go |
+| 30 | Emanet | Pofu's own night-light on the shelf, tagged with the player's day one in a **new** hand (S3, d39) | There is a new Bekçi, and close | The suspicion becomes near-certain |
+| 33 | Çömlek | Mochi turns the old glass upright, pours and sits down | She has stopped waiting | Release (her arc closes) |
+| 36 | Arı | The bees' dance and the sunflower point toward the viewer | It points at you | The player knows; Pofu does not yet |
+| 41–57 | Mehtap | The chart of dark stars is the trail; it ends at Ayçiçeği, tonight. Mochi sets a full glass at the edge of the screen; Pofu looks at the camera, once | **The Bekçi is the player** | Being thanked, not praised |
+| 43+ | Yakamoz | The reflection shows one light the sky does not | A window is still lit | Book Two's pull |
+
+### 8.5 Critique of the story
+
+- **Strongest point: the twist is literally true.** Every clue is built
+  from the player's own data (day one, quiet days, calm nights), so the
+  reveal is not a trick played on the player but a fact about them they
+  can verify. No other habit app can say "you did this" and mean it.
+- **Weakest point: the middle repeated one question.** Loop 1's rungs 5
+  to 8 each added evidence to _who is the Bekçi_; evidence is not drama.
+  **Fix (in 8.4):** at Olta the question turns from _who_ to _will Pofu
+  leave like the last one did_. Chapter 3 then carries an emotional stake
+  (Mochi's fear, Pervane's solo trip, Çömlek's release) while the
+  evidence keeps arriving in the background, and the player is one step
+  ahead of Pofu from Arı on, which turns the finale from a surprise into
+  a recognition.
+- **Risk to watch:** "you are the hero" tips into flattery if said more
+  than once. One look, one glass, one human line, then good night.
+
+### 8.6 Not done (budget)
+
+Plate layouts as station coordinates; the elastic chapter-4 tail and the
+moon-anchored arrival in `PofuCore`; the home garden's per-gift rules;
+Rehearsal pilots for the raked loop, the breath slider and the lantern
+Peggle; the lore bible's sections for 8.3 (the lore PR, #135, carries
+loop 1 and the hour rule; 8.3 joins it once the founder agrees).
+
+## 9. Deck outline (for the lead; one idea per slide)
+
+1. **The problem we found:** every island has its own shape now, but all
+   share one light. Two takes side by side.
+2. **Why:** our own prompt asked for "the same light"; fixed by a rule:
+   each cluster has its own hour, sky, light, shadow, haze and floor.
+3. **The hour rule:** every island keeps the hour it went quiet in; only
+   home runs on your clock.
+4. **Play first:** the painted island is the poster; the playable island
+   is a plate with stations. One slide per big island: game, one round,
+   day 1 vs day 20 (eight slides, from 3.6 and 8.1).
+5. **The weakest points, fixed:** Flow → boards from the awake islands;
+   Peggle → no score, the aurora is the payout; Suika → your pot leaves.
+6. **Home grows a rule per island:** the only game that deepens all book.
+7. **The sequence:** the curve from day 1 to 57, strongest stretch (4–22)
+   and weakest (Mehtap's wait), with the moon-anchored arrival.
+8. **The world before the game:** the Ring, the drift, the Bekçi as a
+   job, the handover.
+9. **What everyone is really doing:** the player switches off lights;
+   Pofu follows a trail to thank someone; Mochi keeps him from leaving.
+10. **The ladder:** sixteen beats, one per arrival, what you learn and
+    feel.
+11. **The turn at Olta:** from _who is the Bekçi_ to _will Pofu leave_.
+12. **The reveal:** one look at the camera, one glass, good night.
+13. **Questions for you:** section 7's table plus the lore PR (#135).

@@ -345,9 +345,9 @@ islands:
     founder_scores:
       - {loop: 0, date: 2026-11-03, score: null, note: 'Great (no number): the heart; the plate is the template.'}
     axes: {palette: lamplit-muted, material: kept-objects, sky: dusk, landform: umbrella, texture: brainy, culture: sky}
-    bloom: 14
+    bloom: 19                  # loop 2: inside Mehtap's wait, not on Çömlek's bloom
     daily_from: 1              # the daily logic puzzle
-    beats: {0: the umbrella arrives in drizzle, 1: the first daily puzzle, 3: stage 1, 6: stage 2, 9: stage 3 the top shelf, 11: stage 4, 14: stage 5 the map in the back room}
+    beats: {0: the umbrella arrives in drizzle, 1: the first daily puzzle, 3: stage 1, 6: stage 2, 9: stage 3 the top shelf, 12: stage 4, 15: a corner of the map is missing, 19: stage 5 the map in the back room}
     unforgettable: "The archipelago's post office and lost-and-found. Every day one thing is returned to the right island by deduction."
     spine: "Rung 8. On the top shelf, Pofu's night-light, switch off, tagged in a NEW hand with the date of his first night here. There is a keeper now, and close."
   comlek:

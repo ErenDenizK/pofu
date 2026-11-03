@@ -53,6 +53,13 @@ def runway(island: dict) -> int:
     return k
 
 
+def blooms_are_wows(island: dict) -> bool:
+    """A big island's bloom is a wow; so is a god-tier parallel island's
+    (loop 2: Emanet's bloom had landed two days before Çömlek's, unchecked).
+    A parallel island's arrival stays quiet: it arrives as infrastructure."""
+    return island["size"] == "big" or (island["size"] == "parallel" and island.get("tier") == "god")
+
+
 def schedule(data: dict) -> dict[str, dict]:
     """Derive arrival days from runways, gaps and wow spacing."""
     r, islands = data["rules"], data["islands"]
@@ -85,8 +92,8 @@ def schedule(data: dict) -> dict[str, dict]:
         if isl["size"] == "big":
             last_big = day
             wows.append(day)
-            if "bloom" in isl:
-                wows.append(entry["bloom"])
+        if blooms_are_wows(isl) and "bloom" in isl:
+            wows.append(entry["bloom"])
         out[name] = entry
         prev = name
     return out
@@ -95,10 +102,11 @@ def schedule(data: dict) -> dict[str, dict]:
 def wow_events(data: dict, sched: dict) -> list[tuple[int, str]]:
     ev = []
     for name, s in sched.items():
-        if data["islands"][name]["size"] == "big":
+        isl = data["islands"][name]
+        if isl["size"] == "big":
             ev.append((s["arrival"], f"{name} arrives"))
-            if "bloom" in s:
-                ev.append((s["bloom"], f"{name} blooms"))
+        if blooms_are_wows(isl) and "bloom" in s:
+            ev.append((s["bloom"], f"{name} blooms"))
     return sorted(ev)
 
 
