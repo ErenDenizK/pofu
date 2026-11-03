@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 6.131,
+  "C_p50": 6.742,
+  "C_p95": 9.697,
+  "L_mean": 90.501,
+  "L_p2": 84.831,
+  "L_p98": 94.746,
+  "detail": 0.427,
+  "edge": 0.948,
+  "tint_a": 0.171,
+  "tint_b": 4.332,
+  "warmth_b": 4.332
+ },
+ "before": {
+  "C_mean": 6.131,
+  "C_p50": 6.742,
+  "C_p95": 9.697,
+  "L_mean": 90.501,
+  "L_p2": 84.831,
+  "L_p98": 94.746,
+  "detail": 0.427,
+  "edge": 0.948,
+  "tint_a": 0.171,
+  "tint_b": 4.332,
+  "warmth_b": 4.332
+ },
+ "chain": {
+  "C_p50": 7.129,
+  "L_p2": 81.373,
+  "L_p98": 95.821
+ },
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": true,
+ "kind": "world",
+ "matched_to": "world",
+ "outliers_after": [],
+ "outliers_before": [],
+ "ppu": 5.6385,
+ "reference": false,
+ "score_after": 95.6,
+ "score_before": 95.6,
+ "shipped": true,
+ "source": "design/art/masters/cloud-4/cloud-4.png",
+ "source_sha": "c540c338f2bb2328"
+}

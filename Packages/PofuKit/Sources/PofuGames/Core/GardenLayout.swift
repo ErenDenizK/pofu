@@ -1,4 +1,7 @@
+import Foundation
+#if canImport(CoreGraphics)
 import CoreGraphics
+#endif
 
 /// Where everything sits in the garden scene, in SpriteKit points (origin
 /// at the bottom left, y up). Pure, so it is tested on any device size.

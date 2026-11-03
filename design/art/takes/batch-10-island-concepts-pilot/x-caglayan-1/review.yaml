@@ -1,0 +1,136 @@
+batch: batch-10-island-concepts-pilot
+contact_sheet: design/art/takes/batch-10-island-concepts-pilot/x-caglayan-1/contact.jpg
+jobs:
+  x-caglayan-1:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. EXPLORATION: no promote or master.
+      Both takes show two soft turquoise stepped pools on creamy rounded mossy stone,
+      a low camera and a calm waterfall longer than the visible island body, fading
+      into cloud mist. No buildings, characters, text or dramatic rapids. Take2 has
+      the lowest passing lock load0.5336.'
+qa_reports:
+  1:
+    job: x-caglayan-1
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 78 (R1 59)
+      value: 77.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.13
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5918
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 4.6, off-palette 0.0% (top: #888844 (0.0%), #889944
+        (0.0%))'
+      value: 1.8759
+    info:
+      metrics_raw:
+        L_p5: 77.4
+        L_p50: 91.8
+        L_p95: 96.2
+        C_p50: 6.2
+        C_p95: 38.8
+        C_p99: 47.4
+        detail: 1.56
+      metrics_locked:
+        L_p5: 77.7
+        L_p50: 91.8
+        L_p95: 96.1
+        C_p50: 6.3
+        C_p95: 38.2
+        C_p99: 46.2
+        detail: 1.13
+    fingerprint: 2b367edf03092491
+  2:
+    job: x-caglayan-1
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 77 (R1 59)
+      value: 76.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.02
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5336
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 3.8, off-palette 0.0%
+      value: 1.5935
+    info:
+      metrics_raw:
+        L_p5: 76.4
+        L_p50: 91.4
+        L_p95: 96.1
+        C_p50: 7.1
+        C_p95: 36.9
+        C_p99: 43.2
+        detail: 1.39
+      metrics_locked:
+        L_p5: 76.6
+        L_p50: 91.3
+        L_p95: 96.1
+        C_p50: 7.1
+        C_p95: 36.6
+        C_p99: 42.5
+        detail: 1.02
+    fingerprint: 2b367edf03092491
+manual_review:
+  exclude: []
+  note: Both takes show two soft turquoise stepped pools on creamy rounded mossy stone,
+    a low camera and a calm waterfall longer than the visible island body, fading
+    into cloud mist. No buildings, characters, text or dramatic rapids. Take2 has
+    the lowest passing lock load0.5336.
+  takes:
+    t1: Long gentle fall and two stepping pools read clearly; pale morning cloud mist.
+    t2: Longer, clearer vertical fall against the open sky; two pools and soft low-camera
+      island read clearly.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-129e6b1b-a6ee-4e30-848c-fbab51ad2d07.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2b367edf03092491
+- take: 2
+  source_file: /workspace/generated_images/exec-83b800e8-91d0-4ee5-8b1e-ba9d823bf0cd.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2b367edf03092491

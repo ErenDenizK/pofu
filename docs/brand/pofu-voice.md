@@ -562,7 +562,7 @@ place of `{App}` and a two-digit `{k}`.
   no line contains a never-say term (section 4.5) in either language; at
   most one "!" per shield; every R line has `notAfter`; every line has an
   English twin before English ships.
-- The Atlas node `sys-voice` tracks this system; lines are not nodes.
+- The content node `sys-voice` tracks this system; lines are not nodes.
 
 ## 8. Open questions for the founder
 
