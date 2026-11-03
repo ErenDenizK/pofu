@@ -214,6 +214,26 @@ struct AyarPanel: View {
             TuningRow(store: store, key: "depth.parallax")
             TuningRow(store: store, key: "depth.tiltShiftIsland")
             TuningRow(store: store, key: "depth.tiltShiftHome")
+            Divider()
+            Text(verbatim: "Grafik (alan derinliği açık, ışık kapalı)")
+                .font(PofuFont.headline)
+            Toggle(isOn: Binding(get: { session.spikeLighting }, set: { session.spikeLighting = $0 })) {
+                Text(verbatim: "Normal haritalı ışık (anahtar, ember, kenar)")
+            }
+            spikeSlider("Işık şiddeti", value: \.spikeLightStrength, range: 0...2)
+            Toggle(isOn: Binding(get: { session.spikeDepthOfField }, set: { session.spikeDepthOfField = $0 })) {
+                Text(verbatim: "Derinlik haritalı alan derinliği")
+            }
+            spikeSlider("Bulanıklık", value: \.spikeDOFStrength, range: 0...2)
+            note("Işık yalnızca çay ocağı, Mochi ve Pofu üzerinde. Netlik odağı Pofu; bir tezgâha odaklanınca tezgâh.")
+        }
+    }
+
+    private func spikeSlider(_ title: String, value: ReferenceWritableKeyPath<AyarSession, Double>, range: ClosedRange<Double>) -> some View {
+        HStack {
+            Text(verbatim: title)
+                .font(PofuFont.caption)
+            Slider(value: Binding(get: { session[keyPath: value] }, set: { session[keyPath: value] = $0 }), in: range)
         }
     }
 

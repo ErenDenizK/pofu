@@ -259,3 +259,19 @@ soft-lock, unharmonized, round 2's copper), `grade`, `hd2d`, `depthMotion`, `hou
 `gradeOverride`, `frameMeter`. The default is everything on,
 in the world scene only. `WorldLook.legacy` is the look before look-dev.
 `FeatureFlags.worldHome` is unchanged (off).
+
+## Decision: depth-map depth of field ships, normal lighting stays optional (2026-11-03)
+
+PR #119 spiked two graphics ideas behind Ayar toggles. Decision:
+
+- **Depth of field from a depth map is the default** (`GraphicsSpike`,
+  `depthOfField` on). It was clearly better than whole-layer blur: the
+  blur follows each pixel's true depth from the focal object, so a layer
+  is no longer sharp or soft as a slab. The old per-layer blur is not
+  removed: it is still the fallback where `WorldShaders` is unavailable,
+  and the pre-spike look (`GraphicsSpike.off`) the screenshot tests
+  compare against.
+- **Normal-map lighting stays off by default but available in Ayar.**
+  Its gain was modest: the art is already painted with baked light, so
+  relighting mostly adds on top of it. Revisit with flat-lit art and tuned
+  normal maps, where it should earn its cost.

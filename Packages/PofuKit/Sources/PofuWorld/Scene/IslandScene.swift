@@ -282,7 +282,12 @@ private struct SceneFrame<Bubble: View>: View {
         let motion = look.hd2d && look.depthMotion && !model.reduceMotion ? rig.motion.parallax(look.tuning.parallax) : CameraMotion.still
         let lookPoint = WorldPoint(x: pose.lookX, y: pose.lookY)
         // HD-2D's tilt-shift: the depth lens, stronger per framing.
-        let lens = DepthMotion.lens(look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z, island: look.tuning.tiltShiftIsland, home: look.tuning.tiltShiftHome)) : rig.lens, motion: motion)
+        let baseLens = DepthMotion.lens(look.hd2d ? rig.lens.tiltShifted(by: LookTuning.tiltShift(z: z, island: look.tuning.tiltShiftIsland, home: look.tuning.tiltShiftHome)) : rig.lens, motion: motion)
+        // Graphics spike: with the depth map's depth of field on, whole-layer
+        // blur is off (every layer stays sharp) and the shader blurs per pixel.
+        let spike = look.spike
+        let spikeDOF = spike.depthOfField && WorldShaders.isAvailable
+        let lens = spikeDOF ? Lens(focus: baseLens.focus, slab: baseLens.slab, gain: 0) : baseLens
         let peek = rig.peekTilt
         let device = model.deviceTilt
         let tilt = (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
@@ -311,6 +316,20 @@ private struct SceneFrame<Bubble: View>: View {
         // The sky and the cloud sea are pre-graded: no shader pass of their own.
         let sky = palette.graded(by: grade)
         let sea = CloudSea.Colours(cell: light.cell, grade: grade, unwell: look.grade ? light.unwell : 0)
+        // Graphics spike: the key, fill, practicals and rim on the painted art.
+        let relight: RelightRig? = (spike.normalLighting || spike.debug == .normals) && WorldShaders.isAvailable
+            ? RelightRig.make(
+                light: light,
+                emitters: IslandLayout.emitters.filter { e in
+                    e.station.map { id in (world.stations.first(where: { $0.id == id })?.level ?? 0) > 0 } ?? true
+                },
+                strength: spike.debug == .normals ? 1 : spike.lightStrength
+            )
+            : nil
+        let depthMap: Image? = spikeDOF || spike.debug == .depth
+            ? SpikeDepthMap.image(world: world, pose: pose, offset: offset, size: size, art: look.art)
+            : nil
+        let field = spike.field(focus: SpikeDepthMap.focusDepth(model.focus))
         let animation: Animation? = still ? nil : .easeInOut(duration: 2.5)
         // Settled: the ambient layers hold still, so the frame is cached.
         let ambientPaused = look.hd2d && !model.needsFrames && build == nil
@@ -406,11 +425,14 @@ private struct SceneFrame<Bubble: View>: View {
                         focus: lens.focus,
                         tilt: tilt,
                         art: look.art,
-                        litOverlays: look.litOverlays
+                        litOverlays: look.litOverlays,
+                        relit: relight != nil
                     )
                 }
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
+            .environment(\.worldRelight, relight)
+            .modifier(SpikeDepthOfFieldEffect(depth: depthMap, field: field, size: size, showsDepth: spike.debug == .depth))
 
             PofuLayer(
                 world: world,
@@ -779,6 +801,8 @@ private struct PofuLayer<Bubble: View>: View {
     }
 
     @Environment(\.worldStillFrame) private var still
+    @Environment(\.worldRelight) private var relight
+    @Environment(\.worldLook.spike.debug) private var spikeDebug
 
     /// Pofu's art is 64 units wide (154 pt at Home, ADR-0018).
     static var artWidth: Double {
@@ -875,8 +899,36 @@ private struct PofuLayer<Bubble: View>: View {
                 )
             }
         }
+        .modifier(RelightEffect(config: relightConfig(feet: feet, scale: s, ground: CGPoint(x: groundX, y: groundY), view: CGSize(width: viewWidth, height: viewHeight))))
         .modifier(GradeEffect(grade: characterGrade, isEnabled: !characterGrade.isNeutral))
         .position(x: feet.x - groundX + viewWidth / 2, y: feet.y - groundY + viewHeight / 2)
+    }
+}
+
+extension PofuLayer {
+    /// The graphics spike's relight of the live companion: his baked normal
+    /// map covers the art, which the stage lays out at 10 % side margins,
+    /// 24 % headroom and 6 % floor room (`CompanionStageLayout`).
+    fileprivate func relightConfig(feet: CGPoint, scale s: Double, ground: CGPoint, view: CGSize) -> RelightConfig? {
+        guard let rig = relight, GraphicsSpike.litSprites.contains("pofu") else { return nil }
+        let originX = Double(feet.x - ground.x), originY = Double(feet.y - ground.y)
+        let lights = rig.points(
+            place: { p in
+                let at = pose.project(p, width: Double(size.width))
+                return CGPoint(x: at.x + Double(offset.width) - originX, y: at.y + Double(offset.height) - originY)
+            },
+            unit: s
+        )
+        // The art's rectangle inside the view, as fractions of it.
+        let x0 = 0.1 / 1.2, y0 = 0.24 / 1.3, w = 1 / 1.2, h = 1 / 1.3
+        return RelightConfig(
+            normal: "world-pofu--normal",
+            rig: rig,
+            lights: lights,
+            size: view,
+            uvRect: CGRect(x: -x0 / w, y: -y0 / h, width: 1 / w, height: 1 / h),
+            showsNormals: spikeDebug == .normals
+        )
     }
 }
 

@@ -32,6 +32,12 @@ final class AyarSession {
     /// Painted HD-2D lite and depth in motion (`WorldLook`), live.
     var hd2d = true
     var depthMotion = true
+    /// The graphics spike (`GraphicsSpike`): normal-lit art and depth of
+    /// field from a depth map. Depth of field is on by default, lighting off.
+    var spikeLighting = false
+    var spikeLightStrength = 1.0
+    var spikeDepthOfField = true
+    var spikeDOFStrength = 1.0
 }
 
 enum AyarSection: String, CaseIterable, Identifiable {
@@ -115,6 +121,12 @@ struct AyarLook: ViewModifier {
         let trims = Ayar.store.values.grade
         var look = WorldLook(hd2d: session.hd2d, depthMotion: session.depthMotion, hourOverride: session.pinnedPhase?.hour)
         look.tuning = Self.tuning(Ayar.store.values)
+        look.spike = GraphicsSpike(
+            normalLighting: session.spikeLighting,
+            lightStrength: session.spikeLightStrength,
+            depthOfField: session.spikeDepthOfField,
+            dofStrength: session.spikeDOFStrength
+        )
         let untouched = trims.day == .identity && trims.golden == .identity && trims.night == .identity
         guard !untouched else { return look }
         let light = WorldLight.resolve(

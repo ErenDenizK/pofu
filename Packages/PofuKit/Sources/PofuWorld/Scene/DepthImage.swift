@@ -23,6 +23,8 @@ struct DepthImage: View {
     var grade: WorldGrade = .neutral
 
     @Environment(\.worldLook.art) private var art
+    @Environment(\.worldLook.spike.debug) private var spikeDebug
+    @Environment(\.worldRelight) private var relight
 
     var body: some View {
         let weights = DepthWeights(level: level)
@@ -46,6 +48,7 @@ struct DepthImage: View {
             Image(WorldArt.assetName(key, variant: variant), bundle: .module)
                 .resizable()
                 .frame(width: CGFloat(box.width) * scale, height: CGFloat(box.height) * scale)
+                .modifier(RelightEffect(config: variant == .sharp ? relightConfig(box: box) : nil))
                 .modifier(GradeEffect(grade: grade, isEnabled: !grade.isNeutral))
                 .opacity(weight * opacity)
                 .position(
@@ -53,6 +56,33 @@ struct DepthImage: View {
                     y: anchor.y + CGFloat(box.midY) * scale
                 )
         }
+    }
+}
+
+extension DepthImage {
+    /// The graphics spike's relight of this sprite's sharp layer, when the
+    /// scene lights art and this sprite has a baked normal map.
+    fileprivate func relightConfig(box: WorldBox) -> RelightConfig? {
+        guard let rig = relight, GraphicsSpike.litSprites.contains(name) else { return nil }
+        let origin = IslandLayout.canvasOrigin
+        let s = Double(scale)
+        let lights = rig.points(
+            place: { p in
+                CGPoint(
+                    x: (origin.x + p.x - Double(anchor.x) - box.minX) * s,
+                    y: (origin.y + p.y - Double(anchor.y) - box.minY) * s
+                )
+            },
+            unit: s
+        )
+        return RelightConfig(
+            normal: "world-\(name)--normal",
+            rig: rig,
+            lights: lights,
+            size: CGSize(width: box.width * s, height: box.height * s),
+            uvRect: CGRect(x: 0, y: 0, width: 1, height: 1),
+            showsNormals: spikeDebug == .normals
+        )
     }
 }
 
