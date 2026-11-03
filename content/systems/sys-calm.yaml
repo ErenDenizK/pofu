@@ -4,21 +4,16 @@ title_tr: Huzur
 title_en: Calm multiplier
 status: in-app
 horizon: now
-summary: >-
-  ×1.0 → ×2.0: +0.1 per 20 continuous calm waking minutes (×2.0 after 3 h 20 min). A quick
-  check halves the bonus, any other open resets it, a calm night adds +0.2. Shown on the shield
-  and Hop!'s skip screen.
+summary: '×1.0 → ×2.0: +0.1 per 20 continuous calm waking minutes (×2.0 after 3 h
+  20 min). A quick check halves the bonus, any other open resets it, a calm night
+  adds +0.2. Shown on the shield and Hop!''s skip screen.'
 notes:
-- >-
-  Not a reset: a resisted reach, a breath that ends in "not now", opening Pofu, bedtime.
-- >-
-  Verified focus would grow calm 1.5× faster (ADR-0004's bonus, re-homed); not implemented.
-- >-
-  The chip shows a ring filling toward the next +0.1 and "büyüyor"; at ×2.0 it glows and says
-  "full".
-- >-
-  Week-1 → week-13 calm average (sim): heavy 1.17× → 1.51×, moderate 1.36× → 1.45×, disciplined
-  1.88× → 1.87×.
+- 'Not a reset: a resisted reach, a breath that ends in "not now", opening Pofu, bedtime.'
+- Verified focus would grow calm 1.5× faster (ADR-0004's bonus, re-homed); not implemented.
+- The chip shows a ring filling toward the next +0.1 and "büyüyor"; at ×2.0 it glows
+  and says "full".
+- 'Week-1 → week-13 calm average (sim): heavy 1.17× → 1.51×, moderate 1.36× → 1.45×,
+  disciplined 1.88× → 1.87×.'
 links:
   feeds:
   - sys-station-production
@@ -27,6 +22,7 @@ links:
   - asset-lantern-off
   - asset-ui-lantern-off
   - asset-lantern-on
+  - asset-ui-lantern-on
 sources:
 - doc: docs/product/game-design.md
   anchor: '#the-calm-multiplier-tr-huzur'
