@@ -1,0 +1,119 @@
+{
+  "job": "icon-skip",
+  "batch": "retry-2026-11-03",
+  "asset": "icon__skip",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T15:10:57+00:00",
+  "image": "design/art/ui/icon-skip/icon-skip.png",
+  "raw": "design/art/ui/icon-skip/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "d3ceed6b6e442c1c",
+  "prompt": "REFERENCES (attached, in this order):\n1. The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed).\n2. The palette card for props.\n\nThe icon for a skipped reach: one plump sunflower bloom in a small\nterracotta pot, the bloom round with a brown center and a few\nchunky yellow petals, one short chunky stem and two leaves hidden\nbehind the pot rim.\n\nICON STYLE: a painted icon from the same picture book as the attached\nhamster and island: the same soft airbrushed shading, the same warm\nlight from the upper left and the same milky pastel colors, simplified\nfor small sizes. One object only, centered, filling about 86% of the\ncanvas, built from three or four large, rounded shapes, so it reads as a\nsilhouette at 24 points. No thin parts: nothing narrower than a tenth of\nthe icon's width (no stems, strings, whiskers, spikes or tiny dots). A\nclear value structure: the shadow side, or one warm-brown accent shape,\nis dark enough to read on pale frosted glass, and the lit side reads on\ndark glass. Matte, no glints, no texture. No outline, no drop shadow, no\nbackground shape: no circle, tile, badge or plate behind the object. No\nglass, no frosted panel, no glossy button. No text, no letters, no\nnumbers.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/icon-seed/icon-seed.png",
+      "role": "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T13:56:59+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 59 (R1 51)",
+        "value": 59.3
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 43 (R1 59)",
+        "value": 42.8
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.9 (R1 5.3)",
+        "value": 0.87
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.2",
+        "value": 1.2107
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.8, p95 8.9, off-palette 3.1% (top: #888844 (0.8%), #999955 (0.4%))",
+        "value": 2.8486
+      },
+      {
+        "check": "icon_fill",
+        "status": "pass",
+        "message": "icon spans 88% of the canvas (target 80-92%)",
+        "value": 0.8789
+      },
+      {
+        "check": "icon_thin_parts",
+        "status": "pass",
+        "message": "1.1% of the silhouette is thinner than 1.5 pt at 24 pt",
+        "value": 0.0109
+      },
+      {
+        "check": "icon_small_detail",
+        "status": "pass",
+        "message": "detail at 24 pt @3x 4.9 (busy above 7)",
+        "value": 4.92
+      },
+      {
+        "check": "icon_on_light_glass",
+        "status": "pass",
+        "message": "55% of the icon separates from light glass at 24 pt",
+        "value": 0.5545
+      },
+      {
+        "check": "icon_on_dark_glass",
+        "status": "pass",
+        "message": "100% of the icon separates from dark glass at 24 pt",
+        "value": 0.9995
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Resume from the fixed pre-stop original candidate, with zero image generation. Re-posted both retained PNGs under main9ede62e; both locked RGBA rasters match their retained versions exactly and the same eligible take remains lowest lock load. Fresh light/dark small-size visual review reconfirms the choice. Both takes show a plump yellow sunflower and brown centre above a terracotta pot; the short stem and two leaves stay chunky. The bloom and pot read at 28, 44 and 60 pt on pale and dark backgrounds."
+}

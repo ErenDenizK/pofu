@@ -3,10 +3,14 @@ contact_sheet: design/art/takes/retry-2026-11-03/icon-skip/contact.jpg
 jobs:
   icon-skip:
     pick: 2
-    publication: selected before global stop; promotion pending
-    note: Both takes show a plump yellow sunflower and brown centre above a terracotta
-      pot; the short stem and two leaves stay chunky. The bloom and pot read at 28,
-      44 and 60 pt on pale and dark backgrounds.
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Resume from the fixed pre-stop
+      original candidate, with zero image generation. Re-posted both retained PNGs
+      under main9ede62e; both locked RGBA rasters match their retained versions exactly
+      and the same eligible take remains lowest lock load. Fresh light/dark small-size
+      visual review reconfirms the choice. Both takes show a plump yellow sunflower
+      and brown centre above a terracotta pot; the short stem and two leaves stay
+      chunky. The bloom and pot read at 28, 44 and 60 pt on pale and dark backgrounds.
 qa_reports:
   1:
     job: icon-skip
@@ -153,14 +157,14 @@ qa_reports:
         detail: 0.87
     fingerprint: d3ceed6b6e442c1c
 manual_review:
-  note: Both takes show a plump yellow sunflower and brown centre above a terracotta
-    pot; the short stem and two leaves stay chunky. The bloom and pot read at 28,
-    44 and 60 pt on pale and dark backgrounds.
-  terminal_decided_at: '2026-11-03T14:07:28.968800+00:00'
-  decision_qa_sha256: 1d51bc4a5196dc81fcc931f0aaa4eea3c06ebb0e3fb9b205580f2a4f88db300f
   excluded_takes: []
-  preservation_only_after_global_stop: true
-  no_new_selection_or_promotion: true
+  note: Resume from the fixed pre-stop original candidate, with zero image generation.
+    Re-posted both retained PNGs under main9ede62e; both locked RGBA rasters match
+    their retained versions exactly and the same eligible take remains lowest lock
+    load. Fresh light/dark small-size visual review reconfirms the choice. Both takes
+    show a plump yellow sunflower and brown centre above a terracotta pot; the short
+    stem and two leaves stay chunky. The bloom and pot read at 28, 44 and 60 pt on
+    pale and dark backgrounds.
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-3ab057e7-4e8f-43f2-952d-b997ac9a0633.png

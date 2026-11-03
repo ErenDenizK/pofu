@@ -2,13 +2,14 @@ id: asset-icon-skip
 type: asset
 title_tr: icon-skip
 title_en: skip (icon)
-status: planned
+status: in-production
 horizon: now
 summary: 'The icon for a skipped reach: one plump sunflower bloom in a small terracotta
   pot, the bloom round with a brown center and a few chunky yellow petals, one short
   chunky stem and two leaves hidden behind the pot rim.'
 art:
-  images: []
+  images:
+  - design/art/ui/icon-skip/icon-skip.png
   jobs:
   - batch-13-ui-rest:icon-skip
   - retry-2026-11-03:icon-skip
