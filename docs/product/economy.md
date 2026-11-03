@@ -571,7 +571,7 @@ so the Home screen showed "Topla · 991" and a jar of 2.199.
 | Pofu's gathering (`QuietTimeRules.archipelago`) | 1 per 10 quiet minutes, 48 a day | **1 per quiet waking hour, 8 a day** |
 | Calm night bonus | +10 seeds | **+2 seeds** |
 | A resisted reach (`SeedRules`) | +3, 5 a day | **+1, 6 a day** |
-| Station level price | ×2.2 a level, 30 to 32,796 | **5 to 200** ([archipelago system §7.4](archipelago-system.md)), home island 1,403 in all, 17 stations 8,143 |
+| Station level price | ×2.2 a level, 30 to 32,796 | **5 to 200** (archipelago system proposal §7.4, PR #64), home island 1,403 in all, 17 stations 8,143 |
 | Station rate | 5–16 an hour at L1, +55 % a level | **0.02 of a seed an hour per built level**, so about 0.5 a day per level at calm ×1.0 (`ArchipelagoCatalog.scaleACentiSeedsPerHourPerLevel`) |
 | Garden round (`SeedYield`) | 2 to 5 | unchanged: 2 to 5 (2 + 1 at 3 lines + 1 at 7 + 1 for a double bloom or combo of 4) |
 | Calm multiplier, care, rounds a day | ×1.0 to ×2.0; ×0.6 below 25; 2 + 1 per resisted reach | unchanged |
