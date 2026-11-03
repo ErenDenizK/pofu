@@ -26,6 +26,40 @@ not orders: each entry records **what he meant**, the **status**, and
   Feel is tuned natively on his iPhone.
 - **Merging:** the agent may merge PRs, with merge commits, only on green CI.
 
+## 2026-11-03 (night): constellations, the big story, pacing
+
+- **Accepted as a working draft:** islands come as constellations (big
+  islands, satellites that orbit them and share their look, parallel
+  islands that are always active: Çanlar the ear, Emanet the post office).
+- **Loves that the app looks like a simple game while something bigger and
+  more curious slowly emerges behind it.** Early islands may look like
+  small mascots and stories; later a real event behind them is revealed
+  and resolves.
+- **Division of writing:** he and friends write the small banter and
+  dialogue; the AI owns the lore, the big story behind the islands,
+  momentum, deep connections, concepts and inspiration. Invent something
+  original; every step should feel important and big.
+- **A duo talking as they travel**, like Kratos and Atreus in God of War.
+- **No island may be boring, Çağlayan included**: nothing accepted as-is;
+  think again per island (design, features, story), each serving the
+  whole story.
+- **Concept images:** loves the one with home in front and the other
+  islands stretching away behind it (Çömlek could be a side island that
+  way, not a separate step), and Revontuli's mood. Wants a system that
+  makes the real game feel like those images.
+- **Each constellation has its own design language**, kin to the home
+  island (which he finds beautiful as a whole): controlled palette and
+  material deltas from Ayçiçeği, e.g. the Çağlayan cluster not green.
+- **Pacing:** likes the speed, wants it slightly tighter: Çağlayan day 4,
+  Koke day 5–6, Gezgin day 8–10, Revontuli's rumour by the end of week
+  two. Every unnecessary wait is a negative; chapters may end but the
+  player should not wait between things. Big arrivals must not stack. The
+  gap before the next island should match how long the current one stays
+  rich. Accepts that this needs more islands and more lore.
+- Handled: [design loop 1](design-loop/loop-1.md),
+  [the loop](design-loop/README.md),
+  `content/islands/profiles.yaml` and `tools/content/island_metrics.py`.
+
 ## 2026-11-03 (evening): story and lore
 
 - Asked for a story and lore with a realistic, human flow; does not trust

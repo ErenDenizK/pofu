@@ -12,6 +12,11 @@ and friends. Reads with: [archipelago system](archipelago-system.md)
 [character bible](../brand/character.md), ADR-0015 (seeds never buy
 screen time) and ADR-0017 (Pofu never dies)._
 
+> **Design loop 1 (2026-11-03) proposes changes** to Pofu's origin and to
+> mysteries M1, M3, M4 and M5 (the old Bekçi, the player as the new one):
+> [loop-1 §2.6](design-loop/loop-1.md#26-changes-to-earlier-docs-after-the-founder-agrees).
+> This bible changes only after the founder agrees.
+
 ## 0. How to read this
 
 The bible has two layers, on purpose (the iceberg rule,
