@@ -1,0 +1,697 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-mehtap-b/contact.jpg
+jobs:
+  x2-mehtap-b:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both takes recommend pass: a
+      moon-shaped cradle on a star-chain, telescope/hammock/lantern/star book, many
+      constellation stars and its own blue night. The filled observed landform profile
+      remains crescent-shaped at native60; no opaque full-frame alpha shortcut and
+      no final pick.'
+qa_reports:
+  1:
+    job: x2-mehtap-b
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 35.0
+    - check: value_floor
+      status: warn
+      message: lightness p5 29 (R1 59)
+      value: 29.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.53
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6135
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.8, p95 12.2, off-palette 6.7% (top: #445588 (3.0%), #446699
+        (1.3%)) (advisory in an exploration)'
+      value: 5.8259
+    info:
+      metrics_raw:
+        L_p5: 29.3
+        L_p50: 59.9
+        L_p95: 93.7
+        C_p50: 23.6
+        C_p95: 35.1
+        C_p99: 36.3
+        detail: 2.95
+      metrics_locked:
+        L_p5: 29.4
+        L_p50: 60.1
+        L_p95: 93.4
+        C_p50: 23.1
+        C_p95: 35.0
+        C_p99: 35.9
+        detail: 2.53
+    fingerprint: acce785ef312dd7d
+  2:
+    job: x2-mehtap-b
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.8
+    - check: value_floor
+      status: warn
+      message: lightness p5 27 (R1 59)
+      value: 26.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.26
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6165
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.8, p95 12.0, off-palette 5.0% (top: #445599 (1.9%), #446699
+        (1.6%)) (advisory in an exploration)'
+      value: 5.8344
+    info:
+      metrics_raw:
+        L_p5: 26.0
+        L_p50: 50.1
+        L_p95: 93.6
+        C_p50: 31.0
+        C_p95: 37.9
+        C_p99: 38.8
+        detail: 2.66
+      metrics_locked:
+        L_p5: 26.8
+        L_p50: 50.3
+        L_p95: 93.4
+        C_p50: 30.7
+        C_p95: 37.8
+        C_p99: 38.6
+        detail: 2.26
+    fingerprint: acce785ef312dd7d
+manual_review:
+  note: 'Both takes recommend pass: a moon-shaped cradle on a star-chain, telescope/hammock/lantern/star
+    book, many constellation stars and its own blue night. The filled observed landform
+    profile remains crescent-shaped at native60; no opaque full-frame alpha shortcut
+    and no final pick.'
+  takes:
+    '1':
+      pass: true
+      silhouette_name: a crescent-moon cradle suspended from a chain of stars
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 1
+      - 1
+      evidence: The crescent itself is the landform and remains a recognizable open
+        crescent/cradle at native60 black, with a visible star-chain exiting the upper
+        frame. Telescope, hanging hammock, lantern and open star book are all visible,
+        with many faintly joined constellations in a deep blue night sky. The book
+        uses star illustrations, not painted lettering. Moon/silver-lilac and lamp
+        gold differ from home; the continuous motion is only suggested swing, not
+        an animation claim. No soil, lawn, roots, pebbles or home door.
+      swatch_points:
+      - - 1330
+        - 432
+      - - 540
+        - 444
+      - - 681
+        - 620
+      contours:
+      - - - 648
+          - 184
+        - - 614
+          - 181
+        - - 567
+          - 189
+        - - 507
+          - 208
+        - - 442
+          - 237
+        - - 380
+          - 274
+        - - 323
+          - 322
+        - - 279
+          - 378
+        - - 245
+          - 437
+        - - 229
+          - 498
+        - - 227
+          - 555
+        - - 242
+          - 627
+        - - 276
+          - 696
+        - - 326
+          - 753
+        - - 385
+          - 800
+        - - 459
+          - 839
+        - - 541
+          - 864
+        - - 630
+          - 881
+        - - 734
+          - 883
+        - - 833
+          - 875
+        - - 930
+          - 851
+        - - 1034
+          - 814
+        - - 1106
+          - 767
+        - - 1166
+          - 706
+        - - 1203
+          - 641
+        - - 1226
+          - 576
+        - - 1238
+          - 513
+        - - 1234
+          - 459
+        - - 1217
+          - 413
+        - - 1207
+          - 389
+        - - 1195
+          - 390
+        - - 1187
+          - 420
+        - - 1176
+          - 475
+        - - 1161
+          - 529
+        - - 1137
+          - 567
+        - - 1108
+          - 594
+        - - 1076
+          - 608
+        - - 1041
+          - 609
+        - - 1008
+          - 595
+        - - 981
+          - 592
+        - - 961
+          - 590
+        - - 935
+          - 598
+        - - 908
+          - 608
+        - - 863
+          - 609
+        - - 822
+          - 609
+        - - 777
+          - 598
+        - - 738
+          - 586
+        - - 696
+          - 584
+        - - 644
+          - 581
+        - - 603
+          - 580
+        - - 553
+          - 567
+        - - 516
+          - 562
+        - - 481
+          - 555
+        - - 451
+          - 524
+        - - 427
+          - 484
+        - - 419
+          - 435
+        - - 425
+          - 388
+        - - 440
+          - 344
+        - - 464
+          - 306
+        - - 493
+          - 274
+        - - 533
+          - 246
+        - - 579
+          - 225
+        - - 619
+          - 212
+        - - 648
+          - 205
+      - - - 487
+          - 0
+        - - 493
+          - 0
+        - - 497
+          - 13
+        - - 507
+          - 17
+        - - 504
+          - 28
+        - - 497
+          - 33
+        - - 496
+          - 57
+        - - 509
+          - 69
+        - - 507
+          - 81
+        - - 499
+          - 90
+        - - 495
+          - 114
+        - - 512
+          - 126
+        - - 515
+          - 142
+        - - 503
+          - 151
+        - - 500
+          - 173
+        - - 512
+          - 178
+        - - 523
+          - 192
+        - - 523
+          - 211
+        - - 510
+          - 210
+        - - 506
+          - 191
+        - - 491
+          - 186
+        - - 477
+          - 196
+        - - 477
+          - 212
+        - - 465
+          - 212
+        - - 465
+          - 193
+        - - 479
+          - 177
+        - - 486
+          - 172
+        - - 486
+          - 153
+        - - 475
+          - 148
+        - - 467
+          - 134
+        - - 475
+          - 124
+        - - 485
+          - 116
+        - - 486
+          - 92
+        - - 478
+          - 88
+        - - 472
+          - 76
+        - - 477
+          - 66
+        - - 486
+          - 58
+        - - 486
+          - 35
+        - - 477
+          - 29
+        - - 475
+          - 19
+        - - 485
+          - 15
+      holes: []
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      uncertainty: This is a coarse moon-landform profile, excluding the separate
+        telescope and hammock. Floor furnishings overlap short inner-edge stretches;
+        those points follow the visible foreground envelope and are approximate, not
+        a reconstructed hidden moon edge. The star-chain exits frame and is not extended
+        beyond it. Foreground clouds partly meet the lower edge; no hidden underside
+        is inferred.
+      source_file: /workspace/generated_images/exec-1ed6dd49-0a68-4e63-9fe8-aa9fb556d9c5.png
+      original_generated_png_sha256: fc76f0fbe11688fad69ec3a83bd3a6085d06b13ee4b9bdbdbb923e429b05b9ac
+      rgba_sha256: 7c04957778f0146259ae653e276833801c4e4482f0cca4dcc8e668536fc34420
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 227
+      - 0
+      - 1239
+      - 884
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 60
+      - 52
+      sampled_swatches:
+      - point:
+        - 1330
+        - 432
+        hex: '#4B5F93'
+      - point:
+        - 540
+        - 444
+        hex: '#FBCC97'
+      - point:
+        - 681
+        - 620
+        hex: '#FEF1CC'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-mehtap-b-t1-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-mehtap-b-t1-QA-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: e461644b3e8ff86f83d0d3401593f7a42334f15fdd5328be1ecfaaeb63047d9a
+      silhouette_native_longest_px: 60
+    '2':
+      pass: true
+      silhouette_name: a crescent-moon cradle suspended from a chain of stars
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 1
+      - 1
+      evidence: The crescent itself is the landform and remains a recognizable open
+        crescent/cradle at native60 black, with a visible star-chain exiting the upper
+        frame. Telescope, hanging hammock, lantern and open star book are all visible,
+        with many faintly joined constellations in a deep blue night sky. The book
+        uses star illustrations, not painted lettering. Moon/silver-lilac and lamp
+        gold differ from home; the continuous motion is only suggested swing, not
+        an animation claim. No soil, lawn, roots, pebbles or home door.
+      swatch_points:
+      - - 1260
+        - 490
+      - - 486
+        - 534
+      - - 987
+        - 642
+      contours:
+      - - - 772
+          - 190
+        - - 724
+          - 188
+        - - 670
+          - 191
+        - - 613
+          - 201
+        - - 552
+          - 221
+        - - 494
+          - 254
+        - - 440
+          - 291
+        - - 389
+          - 344
+        - - 352
+          - 402
+        - - 324
+          - 468
+        - - 308
+          - 530
+        - - 306
+          - 583
+        - - 312
+          - 649
+        - - 338
+          - 711
+        - - 381
+          - 772
+        - - 431
+          - 814
+        - - 501
+          - 853
+        - - 575
+          - 877
+        - - 656
+          - 895
+        - - 744
+          - 905
+        - - 820
+          - 906
+        - - 902
+          - 887
+        - - 977
+          - 859
+        - - 1043
+          - 816
+        - - 1096
+          - 762
+        - - 1134
+          - 705
+        - - 1164
+          - 639
+        - - 1180
+          - 571
+        - - 1182
+          - 518
+        - - 1167
+          - 450
+        - - 1147
+          - 408
+        - - 1131
+          - 385
+        - - 1121
+          - 390
+        - - 1120
+          - 427
+        - - 1110
+          - 471
+        - - 1095
+          - 509
+        - - 1070
+          - 548
+        - - 1038
+          - 579
+        - - 1001
+          - 607
+        - - 951
+          - 630
+        - - 901
+          - 648
+        - - 845
+          - 655
+        - - 795
+          - 648
+        - - 731
+          - 640
+        - - 676
+          - 638
+        - - 635
+          - 631
+        - - 599
+          - 607
+        - - 574
+          - 575
+        - - 551
+          - 534
+        - - 537
+          - 487
+        - - 535
+          - 441
+        - - 548
+          - 395
+        - - 568
+          - 351
+        - - 593
+          - 310
+        - - 631
+          - 276
+        - - 674
+          - 247
+        - - 722
+          - 226
+        - - 769
+          - 210
+      - - - 763
+          - 0
+        - - 776
+          - 0
+        - - 781
+          - 13
+        - - 775
+          - 27
+        - - 774
+          - 49
+        - - 783
+          - 55
+        - - 783
+          - 68
+        - - 775
+          - 77
+        - - 775
+          - 100
+        - - 786
+          - 107
+        - - 786
+          - 120
+        - - 775
+          - 130
+        - - 774
+          - 149
+        - - 788
+          - 167
+        - - 810
+          - 175
+        - - 813
+          - 190
+        - - 800
+          - 204
+        - - 797
+          - 227
+        - - 779
+          - 231
+        - - 763
+          - 219
+        - - 744
+          - 230
+        - - 732
+          - 226
+        - - 732
+          - 207
+        - - 721
+          - 193
+        - - 722
+          - 179
+        - - 746
+          - 171
+        - - 760
+          - 152
+        - - 762
+          - 131
+        - - 754
+          - 124
+        - - 753
+          - 110
+        - - 762
+          - 101
+        - - 762
+          - 78
+        - - 753
+          - 71
+        - - 753
+          - 56
+        - - 761
+          - 50
+        - - 762
+          - 29
+        - - 755
+          - 19
+        - - 755
+          - 8
+      holes: []
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      uncertainty: This is a coarse moon-landform profile, excluding the separate
+        telescope and hammock. Floor furnishings overlap short inner-edge stretches;
+        those points follow the visible foreground envelope and are approximate, not
+        a reconstructed hidden moon edge. The star-chain exits frame and is not extended
+        beyond it. Foreground clouds partly meet the lower edge; no hidden underside
+        is inferred.
+      source_file: /workspace/generated_images/exec-b0a19ba8-d85d-418f-b2cd-fc9147dd8183.png
+      original_generated_png_sha256: 093e05f5ed8538dbb7dc1d4c9d902a527718bd16171add1e72ce7244685e6a87
+      rgba_sha256: 56150cb929bd60cab59212e2181cbf78beb95652ece5c3237965f236a9517b5f
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 306
+      - 0
+      - 1183
+      - 907
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 58
+      - 60
+      sampled_swatches:
+      - point:
+        - 1260
+        - 490
+        hex: '#384E8A'
+      - point:
+        - 486
+        - 534
+        hex: '#BBA9AC'
+      - point:
+        - 987
+        - 642
+        hex: '#FEEFBE'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-mehtap-b-t2-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-mehtap-b-t2-QA-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 117d87a0433fb251276e3687f0eae6823d7ce28e801a494954e7899f08b3e725
+      silhouette_native_longest_px: 60
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-1ed6dd49-0a68-4e63-9fe8-aa9fb556d9c5.png
+  original_generated_png_sha256: fc76f0fbe11688fad69ec3a83bd3a6085d06b13ee4b9bdbdbb923e429b05b9ac
+  inbox_png_sha256: e461644b3e8ff86f83d0d3401593f7a42334f15fdd5328be1ecfaaeb63047d9a
+  rgba_sha256: 7c04957778f0146259ae653e276833801c4e4482f0cca4dcc8e668536fc34420
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: acce785ef312dd7d
+- take: 2
+  source_file: /workspace/generated_images/exec-b0a19ba8-d85d-418f-b2cd-fc9147dd8183.png
+  original_generated_png_sha256: 093e05f5ed8538dbb7dc1d4c9d902a527718bd16171add1e72ce7244685e6a87
+  inbox_png_sha256: 117d87a0433fb251276e3687f0eae6823d7ce28e801a494954e7899f08b3e725
+  rgba_sha256: 56150cb929bd60cab59212e2181cbf78beb95652ece5c3237965f236a9517b5f
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: acce785ef312dd7d
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
