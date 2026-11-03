@@ -1,0 +1,478 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-canlar-a/contact.jpg
+jobs:
+  x2-canlar-a:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Read-only source-bound eligibility
+      recommendations only; C owner alone chooses/publishes. Rubric is advisory, no8-point
+      production gate. Both tall bell-spire concepts avoid home terrain. Entry closeups
+      distinguish arch-topped rectangular door outlines from the fully oval home entry;
+      cross-pane glazing alone is shared family style, not an independent ban.
+qa_reports:
+  1:
+    job: x2-canlar-a
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 71 (R1 59)
+      value: 71.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.01
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.1948
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.7, p95 10.4, off-palette 0.8% (top: #99CCEE (0.3%), #EE8855
+        (0.1%))'
+      value: 3.6521
+    info:
+      metrics_raw:
+        L_p5: 70.9
+        L_p50: 87.6
+        L_p95: 96.5
+        C_p50: 17.2
+        C_p95: 39.0
+        C_p99: 53.2
+        detail: 2.53
+      metrics_locked:
+        L_p5: 71.3
+        L_p50: 87.5
+        L_p95: 96.3
+        C_p50: 16.5
+        C_p95: 36.7
+        C_p99: 48.8
+        detail: 2.01
+    fingerprint: a34867066c18cc1b
+  2:
+    job: x2-canlar-a
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 35.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 68 (R1 59)
+      value: 68.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.06
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0668
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.6, p95 13.4, off-palette 8.7% (top: #88BBEE (3.9%), #99CCFF
+        (1.2%)) (advisory in an exploration)'
+      value: 4.6285
+    info:
+      metrics_raw:
+        L_p5: 68.0
+        L_p50: 85.3
+        L_p95: 96.2
+        C_p50: 20.0
+        C_p95: 36.8
+        C_p99: 50.4
+        detail: 2.53
+      metrics_locked:
+        L_p5: 68.4
+        L_p50: 85.3
+        L_p95: 96.1
+        C_p50: 19.4
+        C_p95: 35.2
+        C_p99: 46.9
+        detail: 2.06
+    fingerprint: a34867066c18cc1b
+manual_review:
+  recommendation_only: true
+  note: Read-only source-bound eligibility recommendations only; C owner alone chooses/publishes.
+    Rubric is advisory, no8-point production gate. Both tall bell-spire concepts avoid
+    home terrain. Entry closeups distinguish arch-topped rectangular door outlines
+    from the fully oval home entry; cross-pane glazing alone is shared family style,
+    not an independent ban.
+  takes:
+    '1':
+      pass: true
+      silhouette_name: tall narrow stone bell spire
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 1
+      - 1
+      evidence: A tall pale-stone spire carries bronze bells of multiple sizes on
+        wooden arms, red poppies, streaming bunting, a rope ladder and a small double-panel
+        entry. The entry is an arch-topped rectangle with a flat base and no home
+        circular cross-window. No home lawn oval, sandy bowl, roots or soil pebbles.
+        A native60 observed core profile reads as a long stone needle; full source
+        shows bell arms/scale cues. Wind is implied by fabric/ropes, never claimed
+        to be animated.
+      swatch_points:
+      - - 480
+        - 300
+      - - 300
+        - 200
+      - - 779
+        - 251
+      sampled_swatches:
+      - point:
+        - 480
+        - 300
+        hex: '#FBCA94'
+      - point:
+        - 300
+        - 200
+        hex: '#A4D3FA'
+      - point:
+        - 779
+        - 251
+        hex: '#FA4E39'
+      contours:
+      - - - 778
+          - 78
+        - - 749
+          - 105
+        - - 727
+          - 142
+        - - 703
+          - 193
+        - - 686
+          - 245
+        - - 670
+          - 294
+        - - 651
+          - 346
+        - - 639
+          - 398
+        - - 622
+          - 451
+        - - 612
+          - 506
+        - - 604
+          - 559
+        - - 596
+          - 609
+        - - 583
+          - 660
+        - - 575
+          - 706
+        - - 563
+          - 756
+        - - 554
+          - 805
+        - - 543
+          - 854
+        - - 540
+          - 906
+        - - 554
+          - 945
+        - - 605
+          - 969
+        - - 675
+          - 979
+        - - 720
+          - 969
+        - - 746
+          - 946
+        - - 759
+          - 912
+        - - 774
+          - 861
+        - - 788
+          - 811
+        - - 797
+          - 759
+        - - 802
+          - 708
+        - - 815
+          - 654
+        - - 825
+          - 601
+        - - 827
+          - 549
+        - - 826
+          - 494
+        - - 834
+          - 437
+        - - 828
+          - 380
+        - - 819
+          - 329
+        - - 814
+          - 277
+        - - 806
+          - 225
+        - - 801
+          - 179
+        - - 792
+          - 130
+        - - 793
+          - 96
+      holes: []
+      components:
+      - One visible stone-core landform. Wooden bell arms, bells, bunting and flowers
+        remain in the full source but are excluded from the landform-only black profile.
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+      uncertainty: Lower stone edge fades into foreground cloud; the conservative
+        closure follows the visible fade, not an invented complete underside. Attached
+        flowers partly cover its edges. The source-visible tip is included.
+      source_file: /workspace/generated_images/exec-0e01fcb5-3e94-4210-9e3c-b6f50821d4b6.png
+      original_generated_png_sha256: 1c4e2279c7d24417af9d9aa4ca8175ec82747bb61634b33ed37bf4c6781b00ab
+      rgba_sha256: cb7ac453aed3977cf683e7a21319da17e49c1653187c35ec3c6e8af6d0c6e3f7
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: df3f13ef39325720e84ee9ff0f7baba3daeae4a4ceff59a7c4a79e96a86d5edc
+      observed_bbox:
+      - 540
+      - 78
+      - 835
+      - 980
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 20
+      - 60
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-workflow/x2-canlar-a-t1-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-workflow/x2-canlar-a-t1-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 3f3230d052237a44b9cee365ed37f9c8a623dc2428f995bce0919c9fb4c4dde7
+    '2':
+      pass: true
+      silhouette_name: tall narrow stone bell spire
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 1
+      - 1
+      evidence: Tall stone needle with many bronze bells, streaming bunting, red poppies,
+        wooden arms and a rope ladder. No home lawn oval, soil bowl, roots or soil
+        pebbles. The source-closeup entry at(754,513)-(822,588) has an arched top,
+        straight lower jambs and flat bottom/tread rather than the fully oval home
+        doorway. Its circular cross-pane glazing is common family style and is not
+        by itself a banned copied door. Native60 core profile remains a distinct tall
+        spire; top tip is source-clipped and not reconstructed. Motion is implied
+        by bunting/ropes, not claimed animated.
+      swatch_points:
+      - - 465
+        - 345
+      - - 1200
+        - 210
+      - - 701
+        - 235
+      sampled_swatches:
+      - point:
+        - 465
+        - 345
+        hex: '#FED19E'
+      - point:
+        - 1200
+        - 210
+        hex: '#90C9F7'
+      - point:
+        - 701
+        - 235
+        hex: '#FD6240'
+      contours:
+      - - - 757
+          - 0
+        - - 749
+          - 34
+        - - 734
+          - 77
+        - - 719
+          - 124
+        - - 709
+          - 171
+        - - 691
+          - 219
+        - - 671
+          - 269
+        - - 657
+          - 320
+        - - 646
+          - 365
+        - - 635
+          - 413
+        - - 622
+          - 459
+        - - 612
+          - 503
+        - - 610
+          - 550
+        - - 610
+          - 604
+        - - 617
+          - 654
+        - - 625
+          - 704
+        - - 632
+          - 750
+        - - 638
+          - 796
+        - - 644
+          - 841
+        - - 649
+          - 889
+        - - 658
+          - 935
+        - - 686
+          - 967
+        - - 723
+          - 984
+        - - 759
+          - 971
+        - - 787
+          - 934
+        - - 801
+          - 891
+        - - 816
+          - 848
+        - - 831
+          - 801
+        - - 846
+          - 754
+        - - 860
+          - 702
+        - - 872
+          - 650
+        - - 883
+          - 598
+        - - 889
+          - 547
+        - - 889
+          - 498
+        - - 881
+          - 450
+        - - 873
+          - 401
+        - - 864
+          - 356
+        - - 851
+          - 305
+        - - 836
+          - 253
+        - - 821
+          - 206
+        - - 808
+          - 157
+        - - 798
+          - 106
+        - - 792
+          - 56
+        - - 785
+          - 0
+      holes: []
+      components:
+      - One visible stone-core landform. Wooden bell arms, bells, bunting and flowers
+        remain in the full source but are excluded from the landform-only black profile.
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+      uncertainty: 'The upper tip is clipped at the source frame; annotation closes
+        at y0 without reconstructing an unseen apex. Lower stone fades behind cloud,
+        with a conservative closure at that visible fade. Door closeup was reviewed
+        under coordinator clarification: outline, not cross-pane glazing alone, determines
+        the round-home-door ban.'
+      source_file: /workspace/generated_images/exec-5e051b9e-33bc-4dd6-82ab-835796d0fb96.png
+      original_generated_png_sha256: 915b38f2d45741b43b1f9f3242775dd14b855e92c66c3e097f38ac39bda94200
+      rgba_sha256: e0a3b61a0d0fd5ca2e49281a3e896d9c6b04341a5a3545d990f5382cdbb19b89
+      source_dimensions:
+      - 1536
+      - 1024
+      source_sha_verified: true
+      source_rgba_verified: true
+      callback_sha256: cce7b9ff9a99fff2860269c32540e04c32dde5714bb236463affb5b987b933cd
+      observed_bbox:
+      - 610
+      - 0
+      - 890
+      - 985
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 17
+      - 60
+      silhouette_native_longest_px: 60
+      whole_alpha_rectangle_used: false
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-workflow/x2-canlar-a-t2-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-workflow/x2-canlar-a-t2-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: b307e994439037ea883be5b94c26680a522761fb70dbd74b5f96407bc99aba98
+  reviewed_at: '2026-11-03T16:07:29.764393+00:00'
+  qa_preview: /workspace/art-operator-runtime/batch17/reviews-workflow/x2-canlar-a-review.jpg
+  preview_sha256: 2076ce880903da13a0de765c25de5850f95a700bebe5d50d49a9fb1f91861ed2
+  preview_verified: true
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-0e01fcb5-3e94-4210-9e3c-b6f50821d4b6.png
+  original_generated_png_sha256: 1c4e2279c7d24417af9d9aa4ca8175ec82747bb61634b33ed37bf4c6781b00ab
+  inbox_png_sha256: 3f3230d052237a44b9cee365ed37f9c8a623dc2428f995bce0919c9fb4c4dde7
+  rgba_sha256: cb7ac453aed3977cf683e7a21319da17e49c1653187c35ec3c6e8af6d0c6e3f7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: a34867066c18cc1b
+- take: 2
+  source_file: /workspace/generated_images/exec-5e051b9e-33bc-4dd6-82ab-835796d0fb96.png
+  original_generated_png_sha256: 915b38f2d45741b43b1f9f3242775dd14b855e92c66c3e097f38ac39bda94200
+  inbox_png_sha256: b307e994439037ea883be5b94c26680a522761fb70dbd74b5f96407bc99aba98
+  rgba_sha256: e0a3b61a0d0fd5ca2e49281a3e896d9c6b04341a5a3545d990f5382cdbb19b89
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: a34867066c18cc1b
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
