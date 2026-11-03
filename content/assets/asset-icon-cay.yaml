@@ -2,15 +2,19 @@ id: asset-icon-cay
 type: asset
 title_tr: icon-cay
 title_en: station-cay (icon)
-status: in-production
+status: cut
 horizon: now
-summary: 'The icon for the çay ocağı station: one chunky tulip-shaped tea glass of warm amber tea on a
-  small cream saucer, the glass painted as a soft tinted shape, not transparent glass.'
+summary: 'The icon for the çay ocağı station: one chunky tulip-shaped tea glass of
+  warm amber tea on a small cream saucer, the glass painted as a soft tinted shape,
+  not transparent glass.'
 notes:
-- 'Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
-  and cay-1 approved'
-- Revised and produced by batch-13-ui-rest (ui-system-v2 section 6 E); the batch-02-ui prompt is superseded.
-  Auto-picked by QA; founder review pending.
+- 'Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice:
+  island-main-s and cay-1 approved'
+- Revised and produced by batch-13-ui-rest (ui-system-v2 section 6 E); the batch-02-ui
+  prompt is superseded. Auto-picked by QA; founder review pending.
+- 'Batch13overnight: Not generated: the embedded ui-sheet-paper pilot failed its allowed
+  retry, so the manifest skips the rest of batch13. Other batch timings remain as
+  specified.'
 art:
   images: []
   jobs:

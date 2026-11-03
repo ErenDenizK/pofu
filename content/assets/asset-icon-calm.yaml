@@ -4,15 +4,17 @@ title_tr: icon-calm
 title_en: calm (icon)
 status: in-production
 horizon: now
-summary: 'The icon for calm (huzur): a small, round, soft cloud resting on a slim crescent moon, both
-  chunky and simple, the moon in honey cream with a warm-brown shadow side, the cloud in milky cream.'
+summary: 'The icon for calm (huzur): a small, round, soft cloud resting on a slim
+  crescent moon, both chunky and simple, the moon in honey cream with a warm-brown
+  shadow side, the cloud in milky cream.'
 notes:
-- 'Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
-  and cay-1 approved'
-- Revised and produced by batch-13-ui-rest (ui-system-v2 section 6 E); the batch-02-ui prompt is superseded.
-  Auto-picked by QA; founder review pending.
+- 'Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice:
+  island-main-s and cay-1 approved'
+- Revised and produced by batch-13-ui-rest (ui-system-v2 section 6 E); the batch-02-ui
+  prompt is superseded. Auto-picked by QA; founder review pending.
 art:
-  images: []
+  images:
+  - design/art/ui/icon-calm/icon-calm.png
   jobs:
   - batch-02-ui:icon-calm
   - batch-13-ui-rest:icon-calm
