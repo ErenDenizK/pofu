@@ -1,0 +1,705 @@
+batch: batch-17-islands-v2
+contact_sheet: design/art/takes/batch-17-islands-v2/x2-emanet-b/contact.jpg
+jobs:
+  x2-emanet-b:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both source takes recommend
+      pass: a distinct angular luggage-stack landform with tagged objects, brass bell,
+      red cord and tiny entry. The entry is vertically arch-topped rather than the
+      banned circular home door. Rubric advisory only; no production8-point gate or
+      final pick. Palette scoring is conservative because teal reads muted sage/grey;
+      score below8 is not an exploration rejection.'
+qa_reports:
+  1:
+    job: x2-emanet-b
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 60.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.88
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9373
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 3.7, off-palette 0.0% (top: #BB6644 (0.0%), #CC6644
+        (0.0%))'
+      value: 1.6701
+    info:
+      metrics_raw:
+        L_p5: 60.3
+        L_p50: 88.2
+        L_p95: 93.8
+        C_p50: 5.9
+        C_p95: 39.7
+        C_p99: 45.9
+        detail: 2.39
+      metrics_locked:
+        L_p5: 60.7
+        L_p50: 88.2
+        L_p95: 93.7
+        C_p50: 5.9
+        C_p95: 39.5
+        C_p99: 44.8
+        detail: 1.88
+    fingerprint: 5dd56e5e3f932363
+  2:
+    job: x2-emanet-b
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 39.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 59 (R1 59)
+      value: 59.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.38
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0046
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 3.5, off-palette 0.1% (top: #BB6644 (0.0%), #CC6644
+        (0.0%))'
+      value: 1.4743
+    info:
+      metrics_raw:
+        L_p5: 58.6
+        L_p50: 86.2
+        L_p95: 94.6
+        C_p50: 5.9
+        C_p95: 39.6
+        C_p99: 49.2
+        detail: 3.0
+      metrics_locked:
+        L_p5: 59.1
+        L_p50: 86.2
+        L_p95: 94.3
+        C_p50: 5.9
+        C_p95: 39.3
+        C_p99: 46.2
+        detail: 2.38
+    fingerprint: 5dd56e5e3f932363
+manual_review:
+  note: 'Both source takes recommend pass: a distinct angular luggage-stack landform
+    with tagged objects, brass bell, red cord and tiny entry. The entry is vertically
+    arch-topped rather than the banned circular home door. Rubric advisory only; no
+    production8-point gate or final pick. Palette scoring is conservative because
+    teal reads muted sage/grey; score below8 is not an exploration rejection.'
+  takes:
+    '1':
+      pass: true
+      silhouette_name: stepped floating tower made of suitcases, parcels and hatboxes
+      rubric:
+      - 3
+      - 1
+      - 1
+      - 1
+      - 1
+      evidence: 'The landform is the pile of oversized luggage itself, with angular
+        stepped sides and a high hatbox crown, not a home lawn or soil plate. Brown
+        paper, muted teal, brass and red cord give the requested swatch family; drifting
+        fog and tagged airborne lost objects establish its own sky/motion. A brass
+        bell and a small person-sized door in a suitcase make it an inhabited place.
+        At native60 the stepped luggage-tower profile remains distinct from an oval
+        home island. No painted lettering appears on the tags. Palette caveat: the
+        teal is rendered as muted sage/grey and overlaps the home family; this lowers
+        the advisory palette/sky score, without inventing a new hard style threshold.'
+      swatch_points:
+      - - 800
+        - 521
+      - - 807
+        - 650
+      - - 758
+        - 364
+      contours:
+      - - - 336
+          - 835
+        - - 289
+          - 781
+        - - 229
+          - 779
+        - - 228
+          - 735
+        - - 302
+          - 716
+        - - 303
+          - 582
+        - - 339
+          - 568
+        - - 459
+          - 554
+        - - 462
+          - 477
+        - - 492
+          - 443
+        - - 531
+          - 429
+        - - 532
+          - 411
+        - - 586
+          - 393
+        - - 585
+          - 345
+        - - 549
+          - 331
+        - - 546
+          - 249
+        - - 570
+          - 234
+        - - 609
+          - 233
+        - - 609
+          - 185
+        - - 627
+          - 157
+        - - 677
+          - 139
+        - - 676
+          - 103
+        - - 717
+          - 77
+        - - 754
+          - 80
+        - - 757
+          - 73
+        - - 804
+          - 58
+        - - 808
+          - 46
+        - - 846
+          - 29
+        - - 880
+          - 41
+        - - 907
+          - 44
+        - - 942
+          - 56
+        - - 971
+          - 85
+        - - 974
+          - 123
+        - - 957
+          - 185
+        - - 966
+          - 214
+        - - 965
+          - 271
+        - - 986
+          - 284
+        - - 999
+          - 329
+        - - 996
+          - 391
+        - - 1025
+          - 416
+        - - 1046
+          - 445
+        - - 1059
+          - 487
+        - - 1096
+          - 494
+        - - 1124
+          - 521
+        - - 1131
+          - 570
+        - - 1129
+          - 631
+        - - 1123
+          - 669
+        - - 1109
+          - 674
+        - - 1125
+          - 710
+        - - 1167
+          - 721
+        - - 1197
+          - 745
+        - - 1242
+          - 764
+        - - 1246
+          - 826
+        - - 1208
+          - 842
+        - - 1143
+          - 844
+        - - 1091
+          - 850
+        - - 1049
+          - 851
+        - - 987
+          - 868
+        - - 946
+          - 878
+        - - 900
+          - 882
+        - - 825
+          - 873
+        - - 776
+          - 860
+        - - 694
+          - 846
+        - - 613
+          - 842
+        - - 553
+          - 867
+        - - 488
+          - 875
+        - - 443
+          - 875
+        - - 384
+          - 854
+      - - - 955
+          - 335
+        - - 970
+          - 288
+        - - 981
+          - 248
+        - - 1008
+          - 214
+        - - 1033
+          - 207
+        - - 1059
+          - 209
+        - - 1074
+          - 223
+        - - 1080
+          - 253
+        - - 1081
+          - 285
+        - - 1091
+          - 294
+        - - 1120
+          - 324
+        - - 1139
+          - 368
+        - - 1133
+          - 381
+        - - 1097
+          - 387
+        - - 1098
+          - 397
+        - - 1091
+          - 409
+        - - 1077
+          - 402
+        - - 1075
+          - 387
+        - - 1039
+          - 383
+        - - 1030
+          - 369
+        - - 1050
+          - 324
+        - - 1064
+          - 300
+        - - 1068
+          - 281
+        - - 1068
+          - 246
+        - - 1056
+          - 226
+        - - 1034
+          - 220
+        - - 1016
+          - 226
+        - - 997
+          - 246
+        - - 985
+          - 277
+        - - 979
+          - 322
+      holes: []
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      door_interpretation: The small entry is a tall arch-topped rectangular door,
+        not the circular home door; its cross-window alone does not make the whole
+        door circular.
+      uncertainty: Foreground cloud occludes the bottom luggage edges; the profile
+        stops at their visible cloud-contact boundary and does not invent a hidden
+        underside. Separate drifting lost objects are excluded from the landform mask
+        but remain visible in the unmodified native source crop.
+      source_file: /workspace/generated_images/exec-93b5ff0b-60d4-47e7-b5ec-aae3a1cc33af.png
+      original_generated_png_sha256: 42a558d7ad94fc66cb7096b95bfb0755defa3bca17c1cd1512c79adefeae6b3d
+      rgba_sha256: afe1efb1485be4b434d95a0baf8b0a26f94ec9cf18ccfa951557865c2f334c41
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 228
+      - 29
+      - 1247
+      - 883
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 60
+      - 50
+      sampled_swatches:
+      - point:
+        - 800
+        - 521
+        hex: '#99A795'
+      - point:
+        - 807
+        - 650
+        hex: '#B97252'
+      - point:
+        - 758
+        - 364
+        hex: '#DE6756'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-emanet-b-t1-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-emanet-b-t1-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: 0cebe38c3c8fce4505dcfe39921223a3bc839dbc5043fbf1692aefdb20ed9716
+      silhouette_native_longest_px: 60
+    '2':
+      pass: true
+      silhouette_name: stepped floating tower made of suitcases, parcels and hatboxes
+      rubric:
+      - 3
+      - 1
+      - 1
+      - 1
+      - 1
+      evidence: 'The landform is the pile of oversized luggage itself, with angular
+        stepped sides and a high hatbox crown, not a home lawn or soil plate. Brown
+        paper, muted teal, brass and red cord give the requested swatch family; drifting
+        fog and tagged airborne lost objects establish its own sky/motion. A brass
+        bell and a small person-sized door in a suitcase make it an inhabited place.
+        At native60 the stepped luggage-tower profile remains distinct from an oval
+        home island. No painted lettering appears on the tags. Palette caveat: the
+        teal is rendered as muted sage/grey and overlaps the home family; this lowers
+        the advisory palette/sky score, without inventing a new hard style threshold.'
+      swatch_points:
+      - - 650
+        - 464
+      - - 803
+        - 675
+      - - 1104
+        - 485
+      contours:
+      - - - 181
+          - 778
+        - - 205
+          - 765
+        - - 257
+          - 773
+        - - 260
+          - 742
+        - - 300
+          - 723
+        - - 346
+          - 721
+        - - 348
+          - 647
+        - - 363
+          - 621
+        - - 404
+          - 599
+        - - 470
+          - 594
+        - - 470
+          - 552
+        - - 500
+          - 528
+        - - 503
+          - 493
+        - - 544
+          - 481
+        - - 608
+          - 481
+        - - 618
+          - 430
+        - - 623
+          - 407
+        - - 671
+          - 384
+        - - 698
+          - 380
+        - - 700
+          - 290
+        - - 720
+          - 248
+        - - 752
+          - 228
+        - - 772
+          - 220
+        - - 772
+          - 99
+        - - 786
+          - 64
+        - - 827
+          - 48
+        - - 906
+          - 47
+        - - 966
+          - 68
+        - - 983
+          - 91
+        - - 984
+          - 151
+        - - 1010
+          - 164
+        - - 1043
+          - 188
+        - - 1057
+          - 222
+        - - 1058
+          - 269
+        - - 1080
+          - 287
+        - - 1096
+          - 324
+        - - 1102
+          - 419
+        - - 1145
+          - 431
+        - - 1171
+          - 453
+        - - 1203
+          - 505
+        - - 1228
+          - 523
+        - - 1257
+          - 550
+        - - 1265
+          - 629
+        - - 1291
+          - 653
+        - - 1294
+          - 724
+        - - 1380
+          - 739
+        - - 1390
+          - 777
+        - - 1364
+          - 802
+        - - 1334
+          - 800
+        - - 1274
+          - 824
+        - - 1217
+          - 846
+        - - 1158
+          - 838
+        - - 1100
+          - 851
+        - - 1043
+          - 852
+        - - 995
+          - 863
+        - - 929
+          - 871
+        - - 857
+          - 881
+        - - 812
+          - 884
+        - - 760
+          - 886
+        - - 704
+          - 881
+        - - 640
+          - 882
+        - - 580
+          - 881
+        - - 527
+          - 868
+        - - 466
+          - 865
+        - - 419
+          - 857
+        - - 368
+          - 836
+        - - 320
+          - 836
+        - - 270
+          - 814
+        - - 222
+          - 810
+        - - 181
+          - 807
+      - - - 991
+          - 160
+        - - 998
+          - 42
+        - - 1005
+          - 27
+        - - 1019
+          - 29
+        - - 1027
+          - 41
+        - - 1024
+          - 93
+        - - 1036
+          - 77
+        - - 1071
+          - 53
+        - - 1115
+          - 46
+        - - 1140
+          - 50
+        - - 1157
+          - 70
+        - - 1166
+          - 103
+        - - 1161
+          - 127
+        - - 1174
+          - 146
+        - - 1191
+          - 196
+        - - 1199
+          - 225
+        - - 1186
+          - 239
+        - - 1165
+          - 243
+        - - 1160
+          - 251
+        - - 1144
+          - 253
+        - - 1134
+          - 244
+        - - 1104
+          - 235
+        - - 1093
+          - 221
+        - - 1109
+          - 178
+        - - 1126
+          - 146
+        - - 1148
+          - 131
+        - - 1150
+          - 99
+        - - 1141
+          - 78
+        - - 1122
+          - 66
+        - - 1099
+          - 64
+        - - 1073
+          - 72
+        - - 1052
+          - 88
+        - - 1031
+          - 112
+        - - 1022
+          - 159
+      holes: []
+      banned_template:
+        lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        home_pebbles: false
+        round_home_door: false
+        dominant_home_palette: false
+      door_interpretation: The small entry is a tall arch-topped rectangular door,
+        not the circular home door; its cross-window alone does not make the whole
+        door circular.
+      uncertainty: Foreground cloud occludes the bottom luggage edges; the profile
+        stops at their visible cloud-contact boundary and does not invent a hidden
+        underside. Separate drifting lost objects are excluded from the landform mask
+        but remain visible in the unmodified native source crop.
+      source_file: /workspace/generated_images/exec-9067fc2f-1d4d-4dcf-80b0-f559febb1119.png
+      original_generated_png_sha256: 4631e022406cb46b6b4b9ed4cb5232d237eb4936d570caa0611e62090c40223c
+      rgba_sha256: eeffbfb2f8e9f2c20ab7defd6dca60e14ccd6cd1ca648280386f7a8e283e59e0
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 181
+      - 27
+      - 1391
+      - 887
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 60
+      - 43
+      sampled_swatches:
+      - point:
+        - 650
+        - 464
+        hex: '#898D7B'
+      - point:
+        - 803
+        - 675
+        hex: '#DEA069'
+      - point:
+        - 1104
+        - 485
+        hex: '#D8695A'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-emanet-b-t2-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch17/reviews-harbor/x2-emanet-b-t2-profile60.png
+      owner_adjudication: Read-only source-bound recommendation accepted for auto-pick
+        eligibility; final take is still selected by the owner from hard-passing candidates
+        at lowest lock load.
+      annotation_source_inbox_sha256: a79c5cbcd04abdb2fed29010ee71580324b4346bac50b7bb6d1a0ffe11973a80
+      silhouette_native_longest_px: 60
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-93b5ff0b-60d4-47e7-b5ec-aae3a1cc33af.png
+  original_generated_png_sha256: 42a558d7ad94fc66cb7096b95bfb0755defa3bca17c1cd1512c79adefeae6b3d
+  inbox_png_sha256: 0cebe38c3c8fce4505dcfe39921223a3bc839dbc5043fbf1692aefdb20ed9716
+  rgba_sha256: afe1efb1485be4b434d95a0baf8b0a26f94ec9cf18ccfa951557865c2f334c41
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5dd56e5e3f932363
+- take: 2
+  source_file: /workspace/generated_images/exec-9067fc2f-1d4d-4dcf-80b0-f559febb1119.png
+  original_generated_png_sha256: 4631e022406cb46b6b4b9ed4cb5232d237eb4936d570caa0611e62090c40223c
+  inbox_png_sha256: a79c5cbcd04abdb2fed29010ee71580324b4346bac50b7bb6d1a0ffe11973a80
+  rgba_sha256: eeffbfb2f8e9f2c20ab7defd6dca60e14ccd6cd1ca648280386f7a8e283e59e0
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 5dd56e5e3f932363
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
