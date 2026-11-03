@@ -1,0 +1,102 @@
+{
+  "job": "pofu-mouth-chew",
+  "batch": "batch-06-pofu-rig",
+  "asset": "char__pofu-mouth-chew",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T23:31:16+00:00",
+  "image": "design/art/masters/pofu-mouth-chew/pofu-mouth-chew.webp",
+  "raw": "design/art/masters/pofu-mouth-chew/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "bc6a30f881fbb4b3",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached hamster. Change only his mouth: a tiny closed\nmouth mid-munch, pushed slightly to one side, as if happily chewing\na sunflower seed. No food visible. Nothing else changes.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: visible food, teeth, crumbs, a ground shadow, text.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T19:22:13+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 51 (R1 51)",
+        "value": 51.2
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 58 (R1 59)",
+        "value": 58.5
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 5.0 (R1 5.3)",
+        "value": 5.05
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.3, p95 9.5, off-palette 3.4% (top: #EE9955 (0.6%), #EE7766 (0.3%))",
+        "value": 2.2559
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.5% of the height (contract 88%)",
+        "value": 0.8952
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "99% of the parent level unchanged",
+        "value": 0.9948
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.03 of the parent level (drift compounds along a chain)",
+        "value": 1.0314
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 84 against the char reference (outliers: C_p95, detail, tint_b)",
+        "value": 84.4
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Pofu is never locked; equal zero lock loads are resolved by higher harmony score. Alpha composites verify clean transparency. Publication resumed under the repeated user request from original cached PNGs/local raw; no new generation. Current harmony audit at f35258d leaves the selected take unchanged; QA implementation, presets and rig manifest are byte-unchanged."
+}

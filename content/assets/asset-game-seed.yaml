@@ -1,0 +1,17 @@
+id: asset-game-seed
+type: asset
+title_tr: game-seed
+title_en: game-seed (icon)
+status: in-production
+horizon: now
+summary: >-
+  A single plump sunflower seed, a soft warm-brown shell with two broad cream stripes, its
+  tip pointing up and to the right, a little rounder and chunkier than a real seed.
+art:
+  images: []
+  jobs:
+  - batch-12-minigame-art:game-seed
+sources:
+- doc: tools/imagegen/manifest/batch-12-minigame-art.yaml
+kind: icon
+batch: batch-12-minigame-art

@@ -1,0 +1,21 @@
+id: asset-game-bloom-right
+type: asset
+title_tr: game-bloom-right
+title_en: game-bloom-right (ui)
+status: in-production
+horizon: now
+summary: >-
+  Turn the sunflower head slightly to the right, as if looking right: the center sits a little
+  right of the middle and the petals on the left side are foreshortened. Same size, colors
+  and finish.
+links:
+  variant_of:
+  - asset-game-bloom-front
+art:
+  images: []
+  jobs:
+  - batch-12-minigame-art:game-bloom-right
+sources:
+- doc: tools/imagegen/manifest/batch-12-minigame-art.yaml
+kind: ui
+batch: batch-12-minigame-art

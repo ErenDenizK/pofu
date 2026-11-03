@@ -1,0 +1,21 @@
+id: asset-x-emanet-2
+type: asset
+title_tr: x-emanet-2
+title_en: x-emanet-2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Boncuk, a small round magpie (tiny), holding
+  a shiny gold button in her beak and looking pained about giving it back, on the counter
+  of Emanet, with a rolled brown paper tag and a small brass bell beside her, warm lamp light.
+  Seen from the same low front three-quarter camera as the attached island, the island floating
+  over a sea of clouds. Peaceful and wondrous, never dramat…
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-emanet-2
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1536x1024

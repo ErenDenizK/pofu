@@ -1,0 +1,166 @@
+batch: batch-11-ui-pilot
+contact_sheet: design/art/takes/batch-11-ui-pilot/icon-seed/contact.jpg
+jobs:
+  icon-seed:
+    pick: 2
+    note: auto-picked by QA; founder review pending. Both takes read as seeds at 28,
+      44 and 60 pt on light glass, dark glass and cream clay; the two cream stripes
+      and pointed silhouette carry recognition. Canvas-fill warnings retained.
+    takes:
+      t1:
+        qa: warn
+        summary: icon_fill warn
+      t2:
+        qa: warn
+        summary: icon_fill warn
+    approved:
+      take: 2
+      at: '2026-11-02T23:04:10+00:00'
+qa_reports:
+  2:
+    job: icon-seed
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 52 (R1 59)
+      value: 51.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.88
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6036
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 1.7, off-palette 0.0%
+      value: 0.8306
+    - check: icon_fill
+      status: warn
+      message: icon spans 70% of the canvas (target 80-92%)
+      value: 0.7041
+    - check: icon_thin_parts
+      status: pass
+      message: 0.2% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0022
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 4.9 (busy above 7)
+      value: 4.92
+    - check: icon_on_light_glass
+      status: pass
+      message: 57% of the icon separates from light glass at 24 pt
+      value: 0.5656
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 51.8
+        L_p50: 71.5
+        L_p95: 93.1
+        C_p50: 29.4
+        C_p95: 36.2
+        C_p99: 41.2
+        detail: 1.26
+      metrics_locked:
+        L_p5: 51.9
+        L_p50: 71.4
+        L_p95: 93.0
+        C_p50: 29.4
+        C_p95: 36.0
+        C_p99: 41.0
+        detail: 0.88
+    fingerprint: 319494e7b6cc11ac
+  1:
+    job: icon-seed
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 34.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 50 (R1 59)
+      value: 49.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.89
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9036
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.7, p95 1.4, off-palette 0.0%
+      value: 0.7496
+    - check: icon_fill
+      status: warn
+      message: icon spans 75% of the canvas (target 80-92%)
+      value: 0.749
+    - check: icon_thin_parts
+      status: pass
+      message: 0.0% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0002
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 5.2 (busy above 7)
+      value: 5.17
+    - check: icon_on_light_glass
+      status: pass
+      message: 62% of the icon separates from light glass at 24 pt
+      value: 0.616
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 49.6
+        L_p50: 67.9
+        L_p95: 92.0
+        C_p50: 31.1
+        C_p95: 34.2
+        C_p99: 34.9
+        detail: 1.3
+      metrics_locked:
+        L_p5: 49.7
+        L_p50: 67.8
+        L_p95: 91.9
+        C_p50: 31.1
+        C_p95: 34.1
+        C_p99: 34.6
+        detail: 0.89
+    fingerprint: 319494e7b6cc11ac
+manual_review:
+  note: Both takes read as seeds at 28, 44 and 60 pt on light glass, dark glass and
+    cream clay; the two cream stripes and pointed silhouette carry recognition. Canvas-fill
+    warnings retained.
+  exclude: []

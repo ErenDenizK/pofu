@@ -2,20 +2,22 @@ id: asset-icon-friend
 type: asset
 title_tr: icon-friend
 title_en: friend (icon)
-status: planned
-horizon: later
-summary: >-
-  The icon for a friend: two small, round, soft sprouts in a tiny clay pot, leaning toward
-  each other, each with two chunky leaves.
+status: in-production
+horizon: now
+summary: 'The icon for a friend: two small, round, soft sprouts in a tiny clay pot, leaning toward each
+  other, each with two chunky leaves.'
 notes:
-- >-
-  Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
-  and cay-1 approved
+- 'Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice: island-main-s
+  and cay-1 approved'
+- Revised and produced by batch-13-ui-rest (ui-system-v2 section 6 E); the batch-02-ui prompt is superseded.
+  Auto-picked by QA; founder review pending.
 art:
   images: []
   jobs:
   - batch-02-ui:icon-friend
+  - batch-13-ui-rest:icon-friend
 sources:
 - doc: tools/imagegen/manifest/batch-02-ui.yaml
+- doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
 kind: icon
 batch: batch-02-ui

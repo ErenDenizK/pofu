@@ -1,0 +1,59 @@
+{
+ "after": {
+  "C_mean": 34.506,
+  "C_p50": 33.613,
+  "C_p95": 50.075,
+  "L_mean": 77.193,
+  "L_p2": 56.581,
+  "L_p98": 89.749,
+  "detail": 1.945,
+  "edge": 0.458,
+  "warmth_b": 31.595
+ },
+ "before": {
+  "C_mean": 11.793,
+  "C_p50": 11.209,
+  "C_p95": 18.147,
+  "L_mean": 80.599,
+  "L_p2": 65.561,
+  "L_p98": 89.749,
+  "detail": 1.456,
+  "edge": 0.458,
+  "tint_a": 3.299,
+  "tint_b": 8.155,
+  "warmth_b": 10.794
+ },
+ "chain": {
+  "C_p50": 40.156,
+  "L_p2": 56.577,
+  "L_p98": 91.243
+ },
+ "correction": {
+  "black": -8.98,
+  "ceiling": 45.3,
+  "chroma": 3.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "chain_C_p50",
+  "edge"
+ ],
+ "outliers_before": [
+  "chain_C_p50",
+  "chain_L_p2",
+  "edge"
+ ],
+ "ppu": 8.5333,
+ "reference": false,
+ "score_after": 71.1,
+ "score_before": 53.7,
+ "shipped": true,
+ "source": "design/art/stations/windmill-4/windmill-4--lock-light.png",
+ "source_sha": "c50eda4a8fa9cefc"
+}

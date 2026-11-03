@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 12.939,
+  "C_p50": 9.629,
+  "C_p95": 35.802,
+  "L_mean": 87.672,
+  "L_p2": 20.989,
+  "L_p98": 98.47,
+  "detail": 6.736,
+  "edge": 0.124,
+  "tint_a": 3.373,
+  "tint_b": 6.538,
+  "warmth_b": 10.518
+ },
+ "before": {
+  "C_mean": 12.939,
+  "C_p50": 9.629,
+  "C_p95": 35.802,
+  "L_mean": 87.672,
+  "L_p2": 20.989,
+  "L_p98": 98.47,
+  "detail": 6.736,
+  "edge": 0.124,
+  "tint_a": 3.373,
+  "tint_b": 6.538,
+  "warmth_b": 10.518
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "detail"
+ ],
+ "outliers_before": [
+  "detail"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 88.3,
+ "score_before": 88.3,
+ "shipped": false,
+ "source": "design/art/masters/mochi-work/mochi-work.webp",
+ "source_sha": "7165446ba2370dc4"
+}

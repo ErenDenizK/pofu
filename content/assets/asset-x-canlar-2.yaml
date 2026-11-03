@@ -1,0 +1,21 @@
+id: asset-x-canlar-2
+type: asset
+title_tr: x-canlar-2
+title_en: x-canlar-2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Çanlar half hidden in a soft fog, its bells glowing
+  faintly, a tiny proud mouse (Zil, tiny) at the top ringing the biggest bronze bell, soft
+  rings of light spreading from it like ripples in the fog. Seen from the same low front three-quarter
+  camera as the attached island, the island floating over a sea of clouds. Peaceful and wondrous,
+  never dramatic.
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-canlar-2
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1536x1024

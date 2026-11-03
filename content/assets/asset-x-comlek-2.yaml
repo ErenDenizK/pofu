@@ -1,0 +1,21 @@
+id: asset-x-comlek-2
+type: asset
+title_tr: x-comlek-2
+title_en: x-comlek-2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: A tiny mole (Kil) at the potter's wheel with
+  wet clay-covered paws, pulling up a tall rounded jug, a single thumbprint pressed into its
+  side, the kiln glowing softly behind, warm and calm. Seen from the same low front three-quarter
+  camera as the attached island, the island floating over a sea of clouds. Peaceful and wondrous,
+  never dramatic.
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-comlek-2
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1536x1024

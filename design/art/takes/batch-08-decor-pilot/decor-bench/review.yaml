@@ -1,0 +1,163 @@
+batch: batch-08-decor-pilot
+contact_sheet: design/art/takes/batch-08-decor-pilot/decor-bench/contact.jpg
+jobs:
+  decor-bench:
+    pick: none
+    note: 'Stopped: both takes fail the supplied decor-guide fit. Automated prop QA
+      passed but does not validate this guide; no promotion or retry.'
+    publication: stopped
+    takes:
+      t1:
+        qa: pass
+        manual_qa: fail
+        summary: guide geometry failed
+      t2:
+        qa: pass
+        manual_qa: fail
+        summary: guide geometry failed
+qa_reports:
+  1:
+    job: decor-bench
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 65.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.11
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.3012
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 2.2, off-palette 0.0%
+      value: 0.7849
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: edge)'
+      value: 81.5
+    info:
+      metrics_raw:
+        L_p5: 65.2
+        L_p50: 78.2
+        L_p95: 90.7
+        C_p50: 37.0
+        C_p95: 41.4
+        C_p99: 42.4
+        detail: 1.57
+      metrics_locked:
+        L_p5: 65.4
+        L_p50: 78.2
+        L_p95: 90.7
+        C_p50: 37.1
+        C_p95: 41.1
+        C_p99: 42.1
+        detail: 1.11
+    fingerprint: d91d84c1bcd56c32
+  2:
+    job: decor-bench
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 38.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 66 (R1 59)
+      value: 66.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.99
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0273
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 1.6, off-palette 0.0%
+      value: 0.7611
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: C_p95, edge)'
+      value: 79.4
+    info:
+      metrics_raw:
+        L_p5: 65.8
+        L_p50: 78.9
+        L_p95: 91.0
+        C_p50: 34.1
+        C_p95: 39.2
+        C_p99: 40.0
+        detail: 1.44
+      metrics_locked:
+        L_p5: 66.1
+        L_p50: 78.9
+        L_p95: 90.9
+        C_p50: 34.1
+        C_p95: 38.9
+        C_p99: 39.6
+        detail: 0.99
+    fingerprint: d91d84c1bcd56c32
+sources:
+- take: 1
+  original_png: design/art/inbox/batch-08-decor-pilot/prop__decor-bench--t1.png
+  source_file: /workspace/generated_images/exec-7a0eac74-a0bb-45b1-8249-35fb21b6ff6f.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 2
+  original_png: design/art/inbox/batch-08-decor-pilot/prop__decor-bench--t2.png
+  source_file: /workspace/generated_images/exec-d4f8055a-9191-46e8-9f12-369c534d41c4.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+manual_guide_fit:
+  status: fail
+  guide_width: 360
+  height_bar_y: 500
+  takes:
+    t1:
+      width: 740
+      top_y: 419
+    t2:
+      width: 694
+      top_y: 397
+  reason: Both footprints are about twice the guide width and both tops exceed the
+    height bar. Prop roots receive no station registration and no automated anchor
+    check; lead review needed before retry.

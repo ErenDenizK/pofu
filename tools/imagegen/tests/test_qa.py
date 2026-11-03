@@ -55,6 +55,38 @@ class StationTests(unittest.TestCase):
         fixed = qa.shift(off, reg["dx"], reg["dy"])
         self.assertEqual(qa.check_station_anchor(fixed).status, "pass")
 
+    def test_decor_piece_is_checked_against_the_decor_guide(self):
+        # Batch 08's bench: 740 px wide, top at y 419, against a 360 px footprint and a bar at y 500.
+        def piece(w, h, base=888, cx=512):
+            im = canvas()
+            ImageDraw.Draw(im).rounded_rectangle((cx - w / 2, base - h, cx + w / 2, base), radius=20, fill=PROP + (255,))
+            return np.asarray(im, dtype=np.float64) / 255.0
+        self.assertEqual(qa.check_decor_anchor(piece(340, 300)).status, "pass")
+        self.assertEqual(qa.check_decor_anchor(piece(740, 470)).status, "fail")
+        self.assertEqual(qa.check_decor_anchor(piece(694, 491)).status, "fail")
+        self.assertEqual(qa.check_decor_anchor(piece(340, 300, cx=700)).status, "fail")
+
+    def test_decor_registration_puts_the_piece_on_the_guide(self):
+        d = canvas()
+        ImageDraw.Draw(d).rounded_rectangle((300, 400, 640, 700), radius=20, fill=PROP + (255,))
+        off = np.asarray(d, dtype=np.float64) / 255.0
+        fixed = qa.shift(off, **qa.decor_registration(off))
+        self.assertEqual(qa.check_decor_anchor(fixed).status, "pass")
+
+    def test_hanging_decor_hangs_from_the_hang_line(self):
+        d = canvas()
+        ImageDraw.Draw(d).rounded_rectangle((200, 100, 700, 330), radius=20, fill=PROP + (255,))
+        off = np.asarray(d, dtype=np.float64) / 255.0
+        self.assertNotEqual(qa.check_decor_anchor(off, "hang").status, "pass")
+        fixed = qa.shift(off, **qa.decor_registration(off, "hang"))
+        self.assertEqual(qa.check_decor_anchor(fixed, "hang").status, "pass")
+
+    def test_a_prop_with_the_decor_guide_is_a_decor_job(self):
+        import pipeline
+        m = pipeline.load_manifest(HERE.parent / "manifest/batch-08-decor-pilot.yaml")
+        self.assertEqual({j.id: j.decor for j in m.jobs if j.kind == "prop"},
+                         {"decor-bench": "ground", "decor-lanterns": "hang", "decor-sailboat": "ground", "decor-mailbox": "ground"})
+
     def test_edit_alignment_recovers_a_zoomed_out_edit(self):
         parent = stall()
         child = stall(scale=0.85, dy=-20, awning=True)  # the model zoomed out to fit the awning

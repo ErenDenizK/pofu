@@ -38,8 +38,11 @@ Loaded every turn: keep it short. History lives in `docs/` (`docs/README.md`).
   (Playwright, renders); feel is tuned natively on his iPhone.
 - The agent may merge PRs, with merge commits, only on green CI. CI treats
   Swift warnings as errors and must stay green.
-- No Swift toolchain here: push, then read the GitHub Actions results
-  ([cloud environment](docs/development.md#the-cloud-agent-environment)).
+- Local Swift 6.2.1 via `tools/swift/setup-linux.sh`
+  ([docs](docs/development.md#local-swift-on-the-cloud-agent)): run the logic
+  tests locally first (`tools/swift/test-linux.sh`), then push to CI once per
+  finished change and read the GitHub Actions results (iOS-only code is
+  compiled only there).
 
 ## Where things are
 
@@ -49,12 +52,14 @@ Loaded every turn: keep it short. History lives in `docs/` (`docs/README.md`).
   input): `docs/product/founder-input.md`.
 - ADRs `docs/adr/`, research `docs/research/`, brand `docs/brand/`, game
   `docs/product/game-design.md` (keep `economy.md` in sync with `PofuCore`).
+- `content/` holds asset and island nodes used by the art pipeline (the Atlas
+  board is retired, 2026-11-02).
 - Pofu Hub (https://claude.ai/artifact/Qua2VFg3iSJ9V1HJgR8RS9, source
-  `design/hub/index.html`): read its db (`answers`, `notes`, `ideas`) when he
-  says he wrote there; post reviews with an image and questions with options
-  and a recommendation.
-- Content graph and Pofu Atlas (every decision, idea, asset gets a node):
-  `content/README.md`.
+  `design/hub/index.html`) is back as a simple panel for questions, status and
+  roadmap (not retired). Open questions carry comparable options and a
+  recommendation; the founder ticks one or ignores it, and unanswered
+  questions proceed with the recommendation. Update `status/now` and
+  `roadmap/main` in its db; no reviews, ideas or dictation.
 
 ## Current state (2026-11-02)
 
@@ -79,9 +84,15 @@ Same output, far less waste. Rules for the lead and its sub-agents:
   stream: world/look, game/minigames, art queue, docs/research. Continue a
   live owner with SendMessage instead of spawning a fresh agent that must
   re-read the repo.
-- **Model routing.** Opus for design judgement, architecture and hard Swift.
-  Sonnet for queue upkeep, manifests, rebases, merges, CI fixes and doc
-  edits. Haiku for lookups. Set `model` on every Agent call.
+- **Model routing (founder, 2026-11-02).** Always the 5.5 family: Opus 5.5
+  plans and judges, Sonnet 5.5 implements, Haiku 5.5 reads, searches and
+  summarizes. Set `model` on every Agent call; Opus sub-agents only for
+  planning or design judgement.
+- **Less CI.** Prove logic locally first (Python sims, a local Swift
+  toolchain when available); push to CI once per finished change, not to
+  debug.
+- **Optimize before the next big round.** No new large round of work
+  starts until the workflow review in `docs/development.md` is done.
 - **Tight briefs, short reports.** A brief states the goal, decisions made,
   files, and what done means. Reports: at most 200 words plus paths; details
   live in the PR.

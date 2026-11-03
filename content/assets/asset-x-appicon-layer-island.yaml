@@ -1,0 +1,19 @@
+id: asset-x-appicon-layer-island
+type: asset
+title_tr: x-appicon-layer-island
+title_en: x-appicon-layer-island (ui)
+status: in-production
+horizon: now
+summary: >-
+  Only the small floating home island with Pofu the hamster sitting tiny on its lawn, seen
+  from the front, centered, filling about 62% of the canvas width, on a transparent background,
+  no clouds, no sky.
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-appicon-layer-island
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: ui
+batch: batch-15-explore
+size: 1024x1024

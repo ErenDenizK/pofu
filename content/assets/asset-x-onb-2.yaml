@@ -1,0 +1,19 @@
+id: asset-x-onb-2
+type: asset
+title_tr: x-onb-2
+title_en: x-onb-2 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A portrait storybook illustration for an onboarding screen: Pofu standing on the lawn in
+  front of his round wooden door, holding up one paw in a gentle "wait" gesture, a small paper
+  lantern lit beside the door; the sky is soft dusk blue. A calm clear zone in the upper third.
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-onb-2
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1024x1536
