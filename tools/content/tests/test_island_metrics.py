@@ -121,3 +121,38 @@ def test_founder_targets_are_checked():
     d["targets"]["koke"] = {"arrival": [1, 2]}
     violations, _ = im.check(d)
     assert any(v.startswith("target: koke") for v in violations)
+
+
+def test_cluster_without_an_atmosphere_is_flagged():
+    d = data()
+    del d["atmospheres"]["water"]
+    violations, _ = im.check(d)
+    assert "atmosphere: cluster water has none" in violations
+
+
+def test_two_clusters_under_one_light_are_flagged():
+    d = data()
+    d["atmospheres"]["moon"] = dict(d["atmospheres"]["cold"])
+    violations, _ = im.check(d)
+    assert any(v.startswith("atmosphere: cold / moon differ on 0") for v in violations)
+
+
+def test_reusing_home_haze_is_flagged():
+    d = data()
+    d["atmospheres"]["water"]["haze"] = d["atmospheres"]["home"]["haze"]
+    violations, _ = im.check(d)
+    assert any(v.startswith("atmosphere: water reuses home's haze") for v in violations)
+
+
+def test_big_island_without_a_game_is_flagged():
+    d = data()
+    del d["play"]["gezgin"]
+    violations, _ = im.check(d)
+    assert "play: gezgin has no playable island block" in violations
+
+
+def test_plate_with_too_few_stations_is_flagged():
+    d = data()
+    d["play"]["canlar"]["stations"] = ["the bell"]
+    violations, _ = im.check(d)
+    assert any(v.startswith("play: canlar has 1 stations") for v in violations)
