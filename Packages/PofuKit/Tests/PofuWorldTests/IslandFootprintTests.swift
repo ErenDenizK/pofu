@@ -63,7 +63,7 @@ struct IslandFootprintTests {
             }
             // Past the generated levels the highest one stands in.
             let past = IslandLayout.stationArt(station, level: levels + 1)
-            #expect(past?.name == "\(station.rawValue)-\(levels)" && past?.isStandIn == true)
+            #expect(past?.name == "\(station.artStem)-\(levels)" && past?.isStandIn == true)
         }
     }
 
