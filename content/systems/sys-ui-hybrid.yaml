@@ -30,6 +30,7 @@ links:
   - asset-icon-calm
   - asset-ui-face-primary
   - asset-ui-sheet-paper
+  - asset-ui-face-secondary-pressed
 sources:
 - doc: docs/design/ui-system-v2.md
   anchor: '#2-the-principle-three-layers-and-a-switch'
