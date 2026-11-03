@@ -1,0 +1,41 @@
+{
+  "note": "QA preview only: projected from alpha content bounds; canonical master pixels/canvas remain unchanged. Insets are exact manifest points.",
+  "takes": [
+    {
+      "take": "ui__game-bed-rim--t1",
+      "review_only_content_bounds": [
+        55,
+        65,
+        966,
+        945
+      ],
+      "ship_height": 180,
+      "caps": [
+        28.0,
+        28.0,
+        28.0,
+        28.0
+      ],
+      "central_tile_nontransparent_fraction": 0.109859023578967,
+      "central_tile_alpha_max": 255
+    },
+    {
+      "take": "ui__game-bed-rim--t2",
+      "review_only_content_bounds": [
+        52,
+        59,
+        971,
+        978
+      ],
+      "ship_height": 180,
+      "caps": [
+        28.0,
+        28.0,
+        28.0,
+        28.0
+      ],
+      "central_tile_nontransparent_fraction": 0.0,
+      "central_tile_alpha_max": 3
+    }
+  ]
+}

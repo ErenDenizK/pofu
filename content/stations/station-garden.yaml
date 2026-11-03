@@ -25,6 +25,7 @@ links:
   - asset-game-soil-cell
   - asset-game-seed
   - asset-game-bloom-front
+  - asset-game-bed-rim
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'
