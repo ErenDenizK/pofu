@@ -1,0 +1,848 @@
+batch: batch-18-loop-1-concepts
+contact_sheet: design/art/takes/batch-18-loop-1-concepts/cl1-duo-vapur/contact.jpg
+jobs:
+  cl1-duo-vapur:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Independent read-only source-bound
+      exploration review of the actual retained pair. Both manually eligible with
+      the recorded close-cropped composition limitation; no final pick. Original byte/RGBA
+      hashes and official POSTED/QA bindings verified. Native60 profile describes
+      only the visible canvas-clipped assembly, never an imagined full ferry. No image
+      calls, post, promotion, source-art edits or Git writes by reviewer. Style scores
+      advisory.
+qa_reports:
+  1:
+    job: cl1-duo-vapur
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 23.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 80 (R1 59)
+      value: 80.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5552
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 4.0, off-palette 0.1% (top: #DD7744 (0.0%), #EE8855
+        (0.0%))'
+      value: 2.0889
+    info:
+      metrics_raw:
+        L_p5: 80.1
+        L_p50: 89.7
+        L_p95: 94.7
+        C_p50: 6.3
+        C_p95: 24.2
+        C_p99: 38.7
+        detail: 1.44
+      metrics_locked:
+        L_p5: 80.4
+        L_p50: 89.7
+        L_p95: 94.4
+        C_p50: 6.3
+        C_p95: 23.8
+        C_p99: 37.7
+        detail: 1.12
+    fingerprint: 4cf94c4451c8e947
+  2:
+    job: cl1-duo-vapur
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 26 (R1 51)
+      value: 26.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 78 (R1 59)
+      value: 77.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.11
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5471
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 4.1, off-palette 0.1% (top: #EE9944 (0.0%), #DD8833
+        (0.0%))'
+      value: 2.1013
+    info:
+      metrics_raw:
+        L_p5: 77.3
+        L_p50: 89.5
+        L_p95: 94.9
+        C_p50: 6.6
+        C_p95: 27.1
+        C_p99: 41.8
+        detail: 1.42
+      metrics_locked:
+        L_p5: 77.7
+        L_p50: 89.5
+        L_p95: 94.7
+        C_p50: 6.6
+        C_p95: 26.5
+        C_p99: 41.1
+        detail: 1.11
+    fingerprint: 4cf94c4451c8e947
+effective_exploration_reports:
+  1:
+    job: cl1-duo-vapur
+    take: 1
+    raw_status: pass
+    status: pass
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 23.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 80 (R1 59)
+      value: 80.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5552
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 4.0, off-palette 0.1% (top: #DD7744 (0.0%), #EE8855
+        (0.0%))'
+      value: 2.0889
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: ccf49d9f579525d3225cdb63b34676fa0e841ecf727355826990c12365b6213d
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+  2:
+    job: cl1-duo-vapur
+    take: 2
+    raw_status: pass
+    status: pass
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 26 (R1 51)
+      value: 26.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 78 (R1 59)
+      value: 77.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.11
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5471
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 4.1, off-palette 0.1% (top: #EE9944 (0.0%), #DD8833
+        (0.0%))'
+      value: 2.1013
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: 93921e28560d6f63beb8aa6ae6632d226fe8a61cc7b410506ffc63fe97fa4ac2
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+manual_review:
+  note: Independent read-only source-bound exploration review of the actual retained
+    pair. Both manually eligible with the recorded close-cropped composition limitation;
+    no final pick. Original byte/RGBA hashes and official POSTED/QA bindings verified.
+    Native60 profile describes only the visible canvas-clipped assembly, never an
+    imagined full ferry. No image calls, post, promotion, source-art edits or Git
+    writes by reviewer. Style scores advisory.
+  takes:
+    '1':
+      pass: true
+      silhouette_name: Observed canvas-clipped white ferry with chimney, lop bunny
+        and upright-eared hamster; not a reconstructed complete boat
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 2
+      - 0
+      evidence: 'The two friends retain their reference identities: Mochi has long
+        soft hanging ears and an uncurled crown, while Pofu has his distinct forelock
+        curl and raised round ears. Mochi holds a two-tier çaydanlık with a visible
+        amber stream reaching the tea glass; her face and pupils turn right toward
+        Pofu, while he faces farther right toward the faint island in morning fog.
+        Pofu rests his forepaws on the upper rail and his visible feet sit at the
+        lower rail level; part of the exact foot contact is occluded, so upper-rail
+        perching is not claimed. A broad cloud sea and pale morning blue surround
+        the white ferry, with warm amber tea as the landmark. The relationship reads
+        without letters. No painted text, UI, border, home lawn/soil bowl/roots/round
+        home door or sunflower is observed. Composition uses a close left-cropped
+        deck instead of a fully bounded little ferry in a wide shot; documented as
+        a limitation, not a fabricated off-canvas vessel. Rubric is descriptive/advisory
+        and no eight-point production bar is applied.'
+      swatch_points:
+      - - 160
+        - 520
+      - - 1250
+        - 500
+      - - 660
+        - 658
+      contours:
+      - - - 0
+          - 520
+        - - 40
+          - 518
+        - - 40
+          - 505
+        - - 48
+          - 492
+        - - 94
+          - 485
+        - - 116
+          - 486
+        - - 120
+          - 451
+        - - 155
+          - 450
+        - - 154
+          - 404
+        - - 164
+          - 389
+        - - 197
+          - 385
+        - - 226
+          - 390
+        - - 251
+          - 391
+        - - 260
+          - 452
+        - - 301
+          - 453
+        - - 301
+          - 398
+        - - 299
+          - 390
+        - - 295
+          - 380
+        - - 300
+          - 366
+        - - 313
+          - 358
+        - - 327
+          - 359
+        - - 339
+          - 372
+        - - 339
+          - 385
+        - - 327
+          - 395
+        - - 330
+          - 486
+        - - 364
+          - 488
+        - - 392
+          - 511
+        - - 402
+          - 538
+        - - 399
+          - 672
+        - - 485
+          - 677
+        - - 663
+          - 678
+        - - 839
+          - 656
+        - - 915
+          - 622
+        - - 948
+          - 626
+        - - 956
+          - 640
+        - - 952
+          - 655
+        - - 955
+          - 695
+        - - 961
+          - 716
+        - - 959
+          - 738
+        - - 949
+          - 757
+        - - 910
+          - 779
+        - - 899
+          - 824
+        - - 881
+          - 851
+        - - 838
+          - 873
+        - - 751
+          - 893
+        - - 625
+          - 899
+        - - 487
+          - 892
+        - - 336
+          - 875
+        - - 174
+          - 850
+        - - 0
+          - 811
+      - - - 348
+          - 598
+        - - 348
+          - 574
+        - - 358
+          - 542
+        - - 373
+          - 509
+        - - 398
+          - 475
+        - - 425
+          - 446
+        - - 465
+          - 423
+        - - 502
+          - 408
+        - - 530
+          - 405
+        - - 563
+          - 408
+        - - 599
+          - 422
+        - - 621
+          - 448
+        - - 637
+          - 483
+        - - 644
+          - 520
+        - - 647
+          - 558
+        - - 640
+          - 587
+        - - 627
+          - 606
+        - - 609
+          - 610
+        - - 600
+          - 653
+        - - 591
+          - 683
+        - - 564
+          - 699
+        - - 474
+          - 697
+        - - 405
+          - 689
+        - - 379
+          - 663
+        - - 366
+          - 629
+      - - - 713
+          - 653
+        - - 714
+          - 616
+        - - 725
+          - 585
+        - - 736
+          - 558
+        - - 736
+          - 531
+        - - 742
+          - 505
+        - - 751
+          - 491
+        - - 763
+          - 486
+        - - 783
+          - 489
+        - - 789
+          - 479
+        - - 790
+          - 465
+        - - 802
+          - 454
+        - - 817
+          - 452
+        - - 832
+          - 458
+        - - 841
+          - 471
+        - - 847
+          - 491
+        - - 873
+          - 505
+        - - 890
+          - 527
+        - - 907
+          - 547
+        - - 920
+          - 571
+        - - 920
+          - 595
+        - - 912
+          - 615
+        - - 891
+          - 631
+        - - 883
+          - 652
+        - - 881
+          - 684
+        - - 873
+          - 709
+        - - 859
+          - 729
+        - - 833
+          - 734
+        - - 797
+          - 728
+        - - 774
+          - 716
+        - - 746
+          - 690
+      holes: []
+      profile_label: Actual visible ferry/characters; left canvas and low fog clip
+        the assembly; no hidden hull
+      uncertainty: Left stern/cabin and fog-covered hull remain unknown. Diffuse smoke
+        is not a crisp solid component; rail openings mostly occluded. No hidden geometry
+        inferred. Pofu rests his forepaws on the upper rail and his visible feet sit
+        at the lower rail level; part of the exact foot contact is occluded, so upper-rail
+        perching is not claimed.
+      hard_failures: []
+      semantic_checks:
+        mochi_long_lop_ears: true
+        mochi_no_head_curl: true
+        pofu_head_curl: true
+        pofu_ears_up: true
+        mochi_pours_two_tier_caydanlik: true
+        mochi_looks_toward_pofu: true
+        pofu_looks_toward_fog: true
+        fog_island_silhouette: true
+        no_painted_text: true
+      review_status: Read-only manual eligibility recommendation; owner alone selects
+      source_callback_file: /workspace/art-operator-runtime/batch18/generated-cl1-duo-vapur-t1.json
+      source_callback_sha256: 903bf8d971467ac5cf371864fc36194aa1322a1b5935eae487151d3e68a5429b
+      official_posted_file: /workspace/art-operator-runtime/batch18/cl1-duo-vapur-POSTED.json
+      official_posted_sha256: b7bf5911b4f4f7aa009e0ecc82ec407d5fab9512c5c56ac8446be580b5e65abf
+      original_qa_file: /workspace/run18/build/imagegen/batch-18-loop-1-concepts/qa/plate__cl1-duo-vapur--t1.json
+      original_qa_sha256: ccf49d9f579525d3225cdb63b34676fa0e841ecf727355826990c12365b6213d
+      effective_qa_file: /workspace/art-operator-runtime/batch18/effective/cl1-duo-vapur-t1.json
+      effective_qa_sha256: e904d8cade18053bc2636d207c255a1b4740c0277c8b22baeafda3f4f8781bd4
+      effective_status: pass
+      qa_character_detail: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-vapur-character-rail-QA.jpg
+      source_file: /workspace/generated_images/exec-42903cfa-4b60-46f1-9783-146bf1a6f1e9.png
+      original_generated_png_sha256: 65b519b7fcab0e1ac661a234d2eebe9669b0666aecdf067dea68e44a0dee1e8a
+      rgba_sha256: ace81dc8d1e5c15c72b943847d44b54300d91d7f8ee487dac7cb048d732ca3e3
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 0
+      - 358
+      - 962
+      - 900
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 60
+      - 34
+      sampled_swatches:
+      - point:
+        - 160
+        - 520
+        hex: '#F5DBCE'
+      - point:
+        - 1250
+        - 500
+        hex: '#DEDDE8'
+      - point:
+        - 660
+        - 658
+        hex: '#E66835'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-vapur-t1-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-vapur-t1-QA-profile60.png
+      annotation_source_inbox_sha256: f842114e2cd1ada582b23612ef34f04c1a9a4481effe3823a0d4f8e1eec7fe75
+      silhouette_native_longest_px: 60
+    '2':
+      pass: true
+      silhouette_name: Observed canvas-clipped white ferry with chimney, lop bunny
+        and upright-eared hamster; not a reconstructed complete boat
+      rubric:
+      - 3
+      - 2
+      - 1
+      - 2
+      - 0
+      evidence: 'The two friends retain their reference identities: Mochi has long
+        soft hanging ears and an uncurled crown, while Pofu has his distinct forelock
+        curl and raised round ears. Mochi holds a two-tier çaydanlık with a visible
+        amber stream reaching the tea glass; her face and pupils turn right toward
+        Pofu, while he faces farther right toward the faint island in morning fog.
+        Pofu has both feet visibly perched on the upper rail in take2. A broad cloud
+        sea and pale morning blue surround the white ferry, with warm amber tea as
+        the landmark. The relationship reads without letters. No painted text, UI,
+        border, home lawn/soil bowl/roots/round home door or sunflower is observed.
+        Composition uses a close left-cropped deck instead of a fully bounded little
+        ferry in a wide shot; documented as a limitation, not a fabricated off-canvas
+        vessel. Rubric is descriptive/advisory and no eight-point production bar is
+        applied.'
+      swatch_points:
+      - - 100
+        - 420
+      - - 1100
+        - 500
+      - - 550
+        - 580
+      contours:
+      - - - 0
+          - 321
+        - - 40
+          - 322
+        - - 40
+          - 340
+        - - 30
+          - 346
+        - - 26
+          - 363
+        - - 91
+          - 366
+        - - 129
+          - 367
+        - - 146
+          - 307
+        - - 156
+          - 281
+        - - 191
+          - 276
+        - - 218
+          - 279
+        - - 225
+          - 287
+        - - 242
+          - 365
+        - - 285
+          - 371
+        - - 306
+          - 389
+        - - 303
+          - 415
+        - - 269
+          - 424
+        - - 270
+          - 564
+        - - 320
+          - 568
+        - - 371
+          - 568
+        - - 543
+          - 572
+        - - 681
+          - 556
+        - - 782
+          - 541
+        - - 814
+          - 543
+        - - 849
+          - 552
+        - - 861
+          - 568
+        - - 863
+          - 580
+        - - 850
+          - 597
+        - - 851
+          - 643
+        - - 854
+          - 657
+        - - 841
+          - 677
+        - - 817
+          - 698
+        - - 794
+          - 714
+        - - 783
+          - 748
+        - - 770
+          - 789
+        - - 749
+          - 824
+        - - 699
+          - 855
+        - - 627
+          - 879
+        - - 505
+          - 895
+        - - 376
+          - 907
+        - - 247
+          - 911
+        - - 118
+          - 906
+        - - 0
+          - 888
+      - - - 269
+          - 527
+        - - 271
+          - 500
+        - - 285
+          - 464
+        - - 304
+          - 421
+        - - 330
+          - 386
+        - - 363
+          - 359
+        - - 402
+          - 343
+        - - 429
+          - 337
+        - - 458
+          - 342
+        - - 488
+          - 358
+        - - 512
+          - 383
+        - - 530
+          - 414
+        - - 536
+          - 449
+        - - 533
+          - 484
+        - - 523
+          - 509
+        - - 505
+          - 523
+        - - 499
+          - 557
+        - - 488
+          - 591
+        - - 466
+          - 630
+        - - 422
+          - 656
+        - - 359
+          - 668
+        - - 308
+          - 666
+        - - 284
+          - 638
+        - - 277
+          - 590
+      - - - 620
+          - 568
+        - - 617
+          - 536
+        - - 619
+          - 510
+        - - 629
+          - 481
+        - - 640
+          - 461
+        - - 641
+          - 441
+        - - 648
+          - 420
+        - - 662
+          - 410
+        - - 680
+          - 411
+        - - 690
+          - 403
+        - - 691
+          - 390
+        - - 702
+          - 380
+        - - 714
+          - 379
+        - - 728
+          - 382
+        - - 738
+          - 394
+        - - 747
+          - 388
+        - - 754
+          - 383
+        - - 766
+          - 385
+        - - 769
+          - 403
+        - - 766
+          - 418
+        - - 781
+          - 433
+        - - 799
+          - 453
+        - - 809
+          - 475
+        - - 814
+          - 496
+        - - 809
+          - 516
+        - - 797
+          - 536
+        - - 786
+          - 552
+        - - 782
+          - 576
+        - - 763
+          - 594
+        - - 749
+          - 601
+        - - 708
+          - 606
+        - - 680
+          - 602
+        - - 652
+          - 595
+      holes: []
+      profile_label: Actual visible ferry/characters; left canvas and low fog clip
+        the assembly; no hidden hull
+      uncertainty: Left stern/cabin and fog-covered hull remain unknown. Diffuse smoke
+        is not a crisp solid component; rail openings mostly occluded. No hidden geometry
+        inferred. Pofu has both feet visibly perched on the upper rail in take2.
+      hard_failures: []
+      semantic_checks:
+        mochi_long_lop_ears: true
+        mochi_no_head_curl: true
+        pofu_head_curl: true
+        pofu_ears_up: true
+        mochi_pours_two_tier_caydanlik: true
+        mochi_looks_toward_pofu: true
+        pofu_looks_toward_fog: true
+        fog_island_silhouette: true
+        no_painted_text: true
+      review_status: Read-only manual eligibility recommendation; owner alone selects
+      source_callback_file: /workspace/art-operator-runtime/batch18/generated-cl1-duo-vapur-t2.json
+      source_callback_sha256: 2f1140ce17f5aaedfb8dddcdccc2a049f2005d1e02c21062dbb8c25a79ef29e0
+      official_posted_file: /workspace/art-operator-runtime/batch18/cl1-duo-vapur-POSTED.json
+      official_posted_sha256: b7bf5911b4f4f7aa009e0ecc82ec407d5fab9512c5c56ac8446be580b5e65abf
+      original_qa_file: /workspace/run18/build/imagegen/batch-18-loop-1-concepts/qa/plate__cl1-duo-vapur--t2.json
+      original_qa_sha256: 93921e28560d6f63beb8aa6ae6632d226fe8a61cc7b410506ffc63fe97fa4ac2
+      effective_qa_file: /workspace/art-operator-runtime/batch18/effective/cl1-duo-vapur-t2.json
+      effective_qa_sha256: 0c3db4dccc9d00909094ecdc15ba737220d5c111bae7b757edfcebe48b817158
+      effective_status: pass
+      qa_character_detail: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-vapur-character-rail-QA.jpg
+      source_file: /workspace/generated_images/exec-d3fcb12c-0b20-4c1f-8350-9acf5ff08d77.png
+      original_generated_png_sha256: 116c7a572fbd6c69d225c217d8a05e250b739292fb9f98e84ac668c768ef7668
+      rgba_sha256: 8e0b569b7f862e618082420d24adf4c710e9fed02fbba2fb9ebf4266b9cdb6aa
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 0
+      - 276
+      - 864
+      - 912
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 60
+      - 44
+      sampled_swatches:
+      - point:
+        - 100
+        - 420
+        hex: '#F0D5C5'
+      - point:
+        - 1100
+        - 500
+        hex: '#EFE3E3'
+      - point:
+        - 550
+        - 580
+        hex: '#F4963C'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-vapur-t2-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-vapur-t2-QA-profile60.png
+      annotation_source_inbox_sha256: a520ec574dcc96dc8eda7f5e571bb9341c551829e6a92ce45759a3799fc5351e
+      silhouette_native_longest_px: 60
+  qa_preview: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-vapur-QA-preview.jpg
+  reviewer_source_json_sha256: 4f8f4adfba2c29e6c9d33852114e735f5e54693093fbedc62ad36447455aa6d3
+  reviewer_source_file: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-vapur.json
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-42903cfa-4b60-46f1-9783-146bf1a6f1e9.png
+  original_generated_png_sha256: 65b519b7fcab0e1ac661a234d2eebe9669b0666aecdf067dea68e44a0dee1e8a
+  inbox_png_sha256: f842114e2cd1ada582b23612ef34f04c1a9a4481effe3823a0d4f8e1eec7fe75
+  rgba_sha256: ace81dc8d1e5c15c72b943847d44b54300d91d7f8ee487dac7cb048d732ca3e3
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4cf94c4451c8e947
+- take: 2
+  source_file: /workspace/generated_images/exec-d3fcb12c-0b20-4c1f-8350-9acf5ff08d77.png
+  original_generated_png_sha256: 116c7a572fbd6c69d225c217d8a05e250b739292fb9f98e84ac668c768ef7668
+  inbox_png_sha256: a520ec574dcc96dc8eda7f5e571bb9341c551829e6a92ce45759a3799fc5351e
+  rgba_sha256: 8e0b569b7f862e618082420d24adf4c710e9fed02fbba2fb9ebf4266b9cdb6aa
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4cf94c4451c8e947
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
