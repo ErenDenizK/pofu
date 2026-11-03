@@ -4,6 +4,13 @@ import PofuCore
 /// Worlds for previews and screenshots, built from the standard catalog
 /// so their stations and costs are the real ones.
 public enum IslandSamples {
+    /// What a typical morning leaves in the cheeks at economy scale A: 12
+    /// seeds from several small sources.
+    public static let cheeks = SeedPouch(stations: Energy(2), gathered: Energy(4), skips: Energy(4), rounds: Energy(2))
+
+    /// A mid-week jar at economy scale A: enough for the next small build.
+    public static let midWeekJar = Energy(34)
+
     /// Day 3 of a good week: the garden at level 2, Mochi's çay ocağı at
     /// level 1, the pond's slot open and empty, İskele on the horizon.
     public static func dayThree(clock: Date = Date(timeIntervalSinceReferenceDate: 815_000_000)) -> WorldSnapshot {
@@ -11,7 +18,7 @@ public enum IslandSamples {
             clock: clock,
             tendedDays: 4,
             levels: [.garden: 2, .cay: 1],
-            jar: Energy(60),
+            jar: Self.midWeekJar,
             islands: [.aycicegi, .iskele]
         )
     }
@@ -27,7 +34,7 @@ public enum IslandSamples {
             clock: clock,
             tendedDays: 120,
             levels: [.garden: 3, .cay: 3, .pond: 2, .workshop: 1, .windmill: 2],
-            jar: Energy(60),
+            jar: Self.midWeekJar,
             islands: [.aycicegi, .iskele],
             wellbeing: wellbeing
         )
@@ -76,7 +83,7 @@ public enum IslandSamples {
             calm: calm,
             calmProgress: 0.4,
             calmIsFull: false,
-            pending: SeedPouch(stations: Energy(12), gathered: Energy(3)),
+            pending: Self.cheeks,
             jar: jar,
             isHolding: false,
             tendedDays: tendedDays,

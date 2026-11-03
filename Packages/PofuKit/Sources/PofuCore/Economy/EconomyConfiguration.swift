@@ -246,4 +246,10 @@ public struct QuietTimeRules: Hashable, Sendable, Codable {
         self.sleepBonus = sleepBonus
         self.observationWindow = observationWindow
     }
+
+    /// Pofu's gathering at economy scale A (founder, 2026-11-02): one seed
+    /// per quiet waking hour, at most 8 a day, and 2 for a calm night. The
+    /// game model (`GameRules`) uses this; the v0 defaults above stay for
+    /// the v0 economy.
+    public static let archipelago = QuietTimeRules(blockMinutes: 60, seedsPerBlock: 1, dailyCap: 8, sleepBonus: 2)
 }

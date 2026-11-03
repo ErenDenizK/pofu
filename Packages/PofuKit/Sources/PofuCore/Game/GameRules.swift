@@ -73,13 +73,14 @@ public struct CalmRules: Hashable, Sendable, Codable {
 }
 
 /// Seeds as world material (ADR-0015): the capped thank-you for a resisted
-/// reach. Pofu's quiet gathering keeps ADR-0014's `QuietTimeRules`; the
+/// reach (economy scale A: +1, six a day). Pofu's quiet gathering uses
+/// `QuietTimeRules.archipelago`; the
 /// stations' rates live in the `ArchipelagoCatalog`.
 public struct SeedRules: Hashable, Sendable, Codable {
     /// Seeds per resisted reach.
-    public var skipGift: Energy = 3
+    public var skipGift: Energy = 1
     /// Resisted reaches a day that earn the gift.
-    public var giftedSkipsPerDay: Int = 5
+    public var giftedSkipsPerDay: Int = 6
 
     public init() {}
 }
@@ -122,7 +123,7 @@ public struct GameRules: Hashable, Sendable, Codable {
         care: CareRules = CareRules(),
         calm: CalmRules = CalmRules(),
         seeds: SeedRules = SeedRules(),
-        quiet: QuietTimeRules = QuietTimeRules(),
+        quiet: QuietTimeRules = .archipelago,
         breath: BreathRules = BreathRules(),
         bedtime: DailyWindow = SpendingRules().bedtime,
         foregroundGrace: TimeInterval = 2 * 60,

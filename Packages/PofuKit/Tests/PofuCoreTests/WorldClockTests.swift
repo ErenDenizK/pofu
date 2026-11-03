@@ -30,21 +30,25 @@ struct WorldClockTests {
         #expect(delta.calmSteps == 3)
         #expect(world.state.calm.multiplier == 1.3)
         #expect(abs(world.state.care.wellbeing - 75) < 1e-9)
-        #expect(delta.gatheredSeeds == 6)
-        // 19 minutes at ×1.0, 20 at ×1.1, 20 at ×1.2, 1 at ×1.3 of 6 an
-        // hour: 6.63 seeds, the fraction carried.
-        #expect(delta.stationSeeds == 6)
-        #expect(world.state.stations.productionCarry == 378_000)
+        // Scale A: Pofu gathers one seed per quiet hour (was six).
+        #expect(delta.gatheredSeeds == 1)
+        // 19 minutes at ×1.0, 20 at ×1.1, 20 at ×1.2, 1 at ×1.3 of 0.02 an
+        // hour (the garden at level 1): 0.022 of a seed, all carried
+        // (13,260 of 600,000 production units).
+        #expect(delta.stationSeeds == 0)
+        #expect(world.state.stations.productionCarry == 13_260)
         #expect(world.snapshot.activity == .away)
-        #expect(abs(world.snapshot.seedsPerHour - 7.8) < 1e-9)
+        #expect(abs(world.snapshot.seedsPerHour - 0.026) < 1e-9)
     }
 
-    @Test func pofuGathersAtMostFortyEightADay() {
+    @Test func pofuGathersAtMostEightADay() {
         var world = World(rules: GameRules(bedtime: DailyWindow(start: LocalTime(hour: 0), end: LocalTime(hour: 0))))
         let morning = instant(2026, 11, 2, 0)
         world.advance(to: morning, .signOfLife(at: morning))
         let delta = world.advance(to: morning.adding(hours: 24))
-        #expect(delta.gatheredSeeds == 48)
+        // Scale A: one a quiet hour, capped at 8 (was 1 per 10 minutes,
+        // 48 a day).
+        #expect(delta.gatheredSeeds == 8)
     }
 
     // MARK: - Honest measurement (decision audit C1, U2)
@@ -71,7 +75,7 @@ struct WorldClockTests {
         world.advance(to: noon.adding(hours: 1), .signOfLife(at: noon.adding(hours: 1)))
         let after = world.advance(to: noon.adding(hours: 2))
         #expect(after.awayMinutes == 60)
-        #expect(after.gatheredSeeds == 6)
+        #expect(after.gatheredSeeds == 1)
     }
 
     @Test func screenTimeClosesTheAppSoTheTimeAfterAPassIsObserved() {
@@ -259,7 +263,7 @@ struct WorldClockTests {
         world.advance(to: evening, .signOfLife(at: evening))
         let delta = world.advance(to: instant(2026, 11, 3, 7))
         #expect(delta.calmNights == 1)
-        #expect(delta.sleepBonusSeeds == 10)
+        #expect(delta.sleepBonusSeeds == 2)
         #expect(world.state.calmNights == 1)
         // 22:00–23:00 grows three steps (×1.3), the night holds the run
         // and adds 0.2, and 06:00–07:00 grows three more.
@@ -327,7 +331,8 @@ struct WorldClockTests {
         let skips = (0..<8).map { GameEvent.resisted(at: noon.addingTimeInterval(Double($0))) }
         let delta = world.advance(to: noon, applying: skips)
         #expect(delta.resisted == 8)
-        #expect(delta.skipSeeds == 15)
+        // Scale A: +1 a skip, six a day (was +3, five a day).
+        #expect(delta.skipSeeds == 6)
         #expect(world.state.care.wellbeing == 76)
     }
 

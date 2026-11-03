@@ -141,7 +141,7 @@ final class LookScreenshotTests: XCTestCase {
             clock: Date(timeIntervalSinceReferenceDate: 815_000_000),
             tendedDays: 120,
             levels: [.garden: 3, .cay: 1, .pond: 2, .workshop: 1, .windmill: 2],
-            jar: Energy(60),
+            jar: IslandSamples.midWeekJar,
             islands: [.aycicegi, .iskele]
         )
         let variants: [(String, Bool, Bool)] = [

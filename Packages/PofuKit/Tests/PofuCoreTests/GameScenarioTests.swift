@@ -22,6 +22,9 @@ struct GameScenarioTests {
     enum Archetype: String, CaseIterable, Sendable {
         case heavy
         case moderate
+        /// The economy brief's typical user: about ten resisted reaches a
+        /// day (scale A is sized for this person).
+        case typical
         case disciplined
         case relapse
         case monk
@@ -30,6 +33,7 @@ struct GameScenarioTests {
             switch self {
             case .heavy: lerp(3.0, 1.2, Double(day) / 45)
             case .moderate: 1.5
+            case .typical: 1.0
             case .disciplined: 0.6
             case .relapse: day < 18 ? lerp(1.6, 1.0, Double(day) / 17) : day < 28 ? 2.6 : lerp(1.6, 1.0, Double(day - 28) / 20)
             case .monk: 0.3
@@ -40,6 +44,7 @@ struct GameScenarioTests {
             switch self {
             case .heavy: lerp(0.15, 0.55, Double(day) / 45)
             case .moderate: lerp(0.35, 0.50, Double(day) / 30)
+            case .typical: 0.6
             case .disciplined: 0.75
             case .relapse: day < 18 ? lerp(0.40, 0.60, Double(day) / 17) : day < 28 ? 0.15 : lerp(0.40, 0.60, Double(day - 28) / 20)
             case .monk: 1.0
@@ -50,6 +55,7 @@ struct GameScenarioTests {
             switch self {
             case .heavy: lerp(0.75, 0.40, Double(day) / 45)
             case .moderate: 0.5
+            case .typical: 0.4
             case .disciplined: 0.2
             case .relapse: day >= 18 && day < 28 ? 0.80 : 0.45
             case .monk: 0
@@ -60,6 +66,7 @@ struct GameScenarioTests {
             switch self {
             case .heavy: lerp(0.60, 0.15, Double(day) / 45)
             case .moderate: 0.25
+            case .typical: 0.15
             case .disciplined: 0.05
             case .relapse: day >= 18 && day < 28 ? 0.65 : 0.2
             case .monk: 0
@@ -74,6 +81,7 @@ struct GameScenarioTests {
             switch self {
             case .heavy: 0.2
             case .moderate: 0.35
+            case .typical: 0.4
             case .disciplined: 0.6
             case .relapse: 0.3
             case .monk: 0
@@ -94,6 +102,7 @@ struct GameScenarioTests {
             switch self {
             case .heavy: 0.4
             case .moderate: 0.25
+            case .typical: 0.15
             case .relapse: 0.3
             case .disciplined, .monk: 0
             }
@@ -116,9 +125,38 @@ struct GameScenarioTests {
         var delta = WorldDelta()
         var weekOne = WorldDelta()
         var calmByDay: [Double] = []
+        /// Seeds credited each day from every passive source (gathering,
+        /// stations, calm nights, skips), before any round is played.
+        var seedsByDay: [Int] = Array(repeating: 0, count: GameScenarioTests.days)
+        /// Seeds the played rounds paid each day.
+        var roundSeedsByDay: [Int] = Array(repeating: 0, count: GameScenarioTests.days)
+        /// Resisted reaches each day.
+        var resistedByDay: [Int] = Array(repeating: 0, count: GameScenarioTests.days)
+        /// Station levels built, at the end of each day.
+        var levelsByDay: [Int] = []
+        /// Seeds in the jar and pouch at the end of each day.
+        var heldByDay: [Int] = []
 
         func weeksWithoutABuild(weeks: Int) -> Int {
             (0..<weeks).filter { week in !buildDays.contains { $0 / 7 == week } }.count
+        }
+
+        /// The mean of `seedsByDay` over `days`.
+        func meanSeeds(_ days: Range<Int>) -> Double {
+            Double(days.map { seedsByDay[$0] }.reduce(0, +)) / Double(days.count)
+        }
+
+        func meanRoundSeeds(_ days: Range<Int>) -> Double {
+            Double(days.map { roundSeedsByDay[$0] }.reduce(0, +)) / Double(days.count)
+        }
+
+        func meanResisted(_ days: Range<Int>) -> Double {
+            Double(days.map { resistedByDay[$0] }.reduce(0, +)) / Double(days.count)
+        }
+
+        /// The first day on which `levels` station levels were built.
+        func dayReaching(levels: Int) -> Int? {
+            levelsByDay.firstIndex { $0 >= levels }
         }
 
         var weekOneSeedsPerDay: Double {
@@ -139,9 +177,22 @@ struct GameScenarioTests {
         outcomes[archetype] ?? play(archetype, seed: 7)
     }
 
+    /// The typical user of the economy brief (scale A): the moderate
+    /// archetype, who plays five island-game rounds a day.
+    static let typical: Outcome = play(.typical, seed: 7, roundsPerVisit: [2, 1, 2])
+    static let typicalWithoutRounds: Outcome = outcome(.typical)
+
     // MARK: - The behavior model (tools/sim/island_economy.py)
 
-    static func play(_ archetype: Archetype, seed: UInt64, measurement: GuardedMeasurement = .softGate) -> Outcome {
+    /// - Parameter roundsPerVisit: rounds played at each of the day's three
+    ///   visits (as many as are banked), each paying `roundYield` seeds.
+    static func play(
+        _ archetype: Archetype,
+        seed: UInt64,
+        measurement: GuardedMeasurement = .softGate,
+        roundsPerVisit: [Int] = [0, 0, 0],
+        roundYield: Int = 3
+    ) -> Outcome {
         var world = World(rules: GameRules(measurement: measurement, releasedIslands: [.kitap]))
         var rng = SplitMix64(seed: seed)
         var outcome = Outcome()
@@ -156,6 +207,8 @@ struct GameScenarioTests {
         }
         func record(_ delta: WorldDelta, day: Int) {
             outcome.delta += delta
+            outcome.seedsByDay[day] += delta.seeds.units
+            outcome.resistedByDay[day] += delta.resisted
             if day < 7 {
                 outcome.weekOne += delta
             }
@@ -165,6 +218,7 @@ struct GameScenarioTests {
             outcome.lowestWellbeing = min(outcome.lowestWellbeing, world.state.care.wellbeing)
         }
 
+        let visitMinutes = [120, 420, 870]
         world.advance(to: start, .signOfLife(at: start))
         for day in 0..<days {
             let reachChance = archetype.reachesPerHour(day) / 60
@@ -190,8 +244,14 @@ struct GameScenarioTests {
                 }
 
                 // Three short visits: collect, build, leave.
-                if minuteOfDay == 120 || minuteOfDay == 420 || minuteOfDay == 870, !busy {
+                if visitMinutes.contains(minuteOfDay), !busy {
                     record(world.advance(to: now, .foregroundBegan(at: now)), day: day)
+                    if let visit = visitMinutes.firstIndex(of: minuteOfDay), roundsPerVisit.indices.contains(visit) {
+                        for _ in 0..<roundsPerVisit[visit] {
+                            guard let paid = try? world.clock.playRound(yield: roundYield, in: &world.state, at: now) else { break }
+                            outcome.roundSeedsByDay[day] += paid.units
+                        }
+                    }
                     _ = world.collect(at: now)
                     var built = 0
                     while built < 2 {
@@ -274,6 +334,8 @@ struct GameScenarioTests {
             if world.state.care.wellbeing < 25 {
                 outcome.unwellDays += 1
             }
+            outcome.levelsByDay.append(world.state.stations.levels.values.reduce(0, +))
+            outcome.heldByDay.append((world.state.stations.jar + world.state.stations.pending.total).units)
             outcome.trueFeedMinutes += feedToday
             outcome.trueFeedByDay.append(feedToday)
             outcome.breathsByDay.append(breathsToday)
@@ -320,13 +382,21 @@ struct GameScenarioTests {
         #expect(outcome.unwellDays <= 30, "\(archetype): unwell on \(outcome.unwellDays) days")
     }
 
+    // At scale A a skip is +1 seed in a day of 10 to 40 (it was +3 in a day
+    // of hundreds), so the old "at most 5 % of week 1" is replaced by the
+    // archipelago brief's two limits: at most half of week-1 income for
+    // anyone (the cap of six keeps it from being a reason to trigger the
+    // gate), and under a quarter once the stations and calm have grown.
     @Test(arguments: Archetype.allCases)
     func skipGiftsStayAThankYou(archetype: Archetype) {
         let outcome = Self.outcome(archetype)
         let total = Double(outcome.weekOne.seeds.units)
         let skips = Double(outcome.weekOne.skipSeeds.units)
         #expect(total > 0)
-        #expect(skips / max(total, 1) <= 0.05, "\(archetype): skips are \(skips / max(total, 1) * 100) % of week-1 seeds")
+        #expect(skips / max(total, 1) <= 0.5, "\(archetype): skips are \(skips / max(total, 1) * 100) % of week-1 seeds")
+        // Six a day; the simulated day starts at 06:00, so week 1 can touch
+        // an eighth local day.
+        #expect(skips <= Double(6 * 8), "\(archetype): \(skips) skip seeds in week 1")
     }
 
     @Test func scrollingVisiblySlowsTheWorld() {
@@ -349,6 +419,73 @@ struct GameScenarioTests {
         let weekThirteen = Double(heavy.breathsByDay.suffix(7).reduce(0, +)) / 7
         #expect(weekOne > 1, "breaths a day, week 1: \(weekOne)")
         #expect(weekThirteen < weekOne, "breaths a day, week 13: \(weekThirteen) vs week 1: \(weekOne)")
+    }
+
+    // MARK: - Economy scale A: a typical user's 60 days
+
+    // The founder's scale A (2026-11-02): about 10 to 40 seeds a day for a
+    // typical user, 15 or so in week 1 rising to 37 or so by day 60, with
+    // about ten resisted reaches a day. The typical archetype is that
+    // person; the run is the real game model, minute by minute. Round seeds
+    // are counted apart (a five-round set is the optional play layer).
+
+    /// The mean seeds a day in each of the first eight weeks.
+    static func weeklyMeans(_ outcome: Outcome) -> [Double] {
+        (0..<8).map { outcome.meanSeeds(($0 * 7)..<($0 * 7 + 7)) }
+    }
+
+    @Test func theTypicalUserResistsAboutTenReachesADay() {
+        let resisted = Self.typicalWithoutRounds.meanResisted(0..<60)
+        #expect((8.0...14.0).contains(resisted), "resisted reaches a day: \(resisted)")
+    }
+
+    @Test func dailyIncomeLandsInTheScaleABands() {
+        let outcome = Self.typicalWithoutRounds
+        let weeks = Self.weeklyMeans(outcome)
+        // Week 1 about 15 (band 12 to 20); day 60 about 37 (band 30 to 42).
+        #expect((12.0...20.0).contains(weeks[0]), "week 1: \(weeks[0]) seeds a day")
+        #expect((30.0...42.0).contains(outcome.meanSeeds(53..<60)), "days 54 to 60: \(outcome.meanSeeds(53..<60)) seeds a day")
+        // Every week sits in the 10 to 40 band for a typical user, and the
+        // last week earns well over the first (calm and stations grow).
+        #expect(weeks.allSatisfy { (10.0...40.0).contains($0) }, "weekly means \(weeks)")
+        #expect(weeks[7] >= weeks[0] * 1.7, "week 8 \(weeks[7]) vs week 1 \(weeks[0])")
+        // No single day runs away: gathering (8), skips (6) and a calm night
+        // (2) are capped, and the stations are slow.
+        #expect(outcome.seedsByDay.prefix(60).allSatisfy { $0 >= 5 && $0 <= 70 }, "days: \(outcome.seedsByDay.prefix(60))")
+    }
+
+    @Test func levelPacingFollowsTheIncome() {
+        let outcome = Self.typicalWithoutRounds
+        // Something is built on day 1; about a level a day in week 1, one
+        // every two days later.
+        #expect(outcome.firstBuildDay == 0)
+        #expect((5...14).contains(outcome.levelsByDay[6]), "levels, day 7: \(outcome.levelsByDay[6])")
+        #expect((16...28).contains(outcome.levelsByDay[29]), "levels, day 30: \(outcome.levelsByDay[29])")
+        #expect((28...42).contains(outcome.levelsByDay[59]), "levels, day 60: \(outcome.levelsByDay[59])")
+        // İskele drifts close inside the second week; the next island
+        // within the third.
+        let iskele = outcome.arrivalDay[.iskele] ?? 99
+        #expect((7...14).contains(iskele), "İskele on day \(iskele)")
+        #expect((20...30).contains(outcome.arrivalDay[.yildiz] ?? 99), "Yıldız on day \(String(describing: outcome.arrivalDay[.yildiz]))")
+        #expect(outcome.weeksWithoutABuild(weeks: 8) == 0)
+    }
+
+    @Test func skipsAreUnderAQuarterOfIncomeFromWeekTwo() {
+        let outcome = Self.typicalWithoutRounds
+        let skips = outcome.delta.skipSeeds.units - outcome.weekOne.skipSeeds.units
+        let total = outcome.delta.seeds.units - outcome.weekOne.seeds.units
+        #expect(Double(skips) / Double(total) <= 0.25, "skips are \(Double(skips) / Double(total) * 100) % of income from week 2")
+    }
+
+    @Test func aFiveRoundSetAddsAboutFifteenSeedsAndNeverBreaksTheCaps() {
+        let outcome = Self.typical
+        let rounds = outcome.meanRoundSeeds(0..<60)
+        // Five rounds at 3 seeds (the yield ladder pays 2 to 5).
+        #expect((12.0...16.0).contains(rounds), "round seeds a day: \(rounds)")
+        #expect(outcome.roundSeedsByDay.prefix(60).allSatisfy { $0 <= 12 * 5 })
+        // With a set a day, a typical day stays under 65 seeds in total.
+        let total = outcome.meanSeeds(53..<60) + outcome.meanRoundSeeds(53..<60)
+        #expect(total <= 65, "days 54 to 60 with a set a day: \(total) seeds")
     }
 
     // MARK: - Honesty (decision audit C1)
