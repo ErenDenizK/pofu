@@ -49,12 +49,8 @@ Loaded every turn: keep it short. History lives in `docs/` (`docs/README.md`).
   input): `docs/product/founder-input.md`.
 - ADRs `docs/adr/`, research `docs/research/`, brand `docs/brand/`, game
   `docs/product/game-design.md` (keep `economy.md` in sync with `PofuCore`).
-- Pofu Hub (https://claude.ai/artifact/Qua2VFg3iSJ9V1HJgR8RS9, source
-  `design/hub/index.html`): read its db (`answers`, `notes`, `ideas`) when he
-  says he wrote there; post reviews with an image and questions with options
-  and a recommendation.
-- Content graph and Pofu Atlas (every decision, idea, asset gets a node):
-  `content/README.md`.
+- `content/` holds asset and island nodes used by the art pipeline (the Atlas
+  board and Pofu Hub are retired, 2026-11-02).
 
 ## Current state (2026-11-02)
 
@@ -79,9 +75,15 @@ Same output, far less waste. Rules for the lead and its sub-agents:
   stream: world/look, game/minigames, art queue, docs/research. Continue a
   live owner with SendMessage instead of spawning a fresh agent that must
   re-read the repo.
-- **Model routing.** Opus for design judgement, architecture and hard Swift.
-  Sonnet for queue upkeep, manifests, rebases, merges, CI fixes and doc
-  edits. Haiku for lookups. Set `model` on every Agent call.
+- **Model routing (founder, 2026-11-02).** Always the 5.5 family: Opus 5.5
+  plans and judges, Sonnet 5.5 implements, Haiku 5.5 reads, searches and
+  summarizes. Set `model` on every Agent call; Opus sub-agents only for
+  planning or design judgement.
+- **Less CI.** Prove logic locally first (Python sims, a local Swift
+  toolchain when available); push to CI once per finished change, not to
+  debug.
+- **Optimize before the next big round.** No new large round of work
+  starts until the workflow review in `docs/development.md` is done.
 - **Tight briefs, short reports.** A brief states the goal, decisions made,
   files, and what done means. Reports: at most 200 words plus paths; details
   live in the PR.
