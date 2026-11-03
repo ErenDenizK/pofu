@@ -1,61 +1,46 @@
 <title>Pofu Hub</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="The founder's hub for Pofu: questions from the lead, what is happening now, the roadmap, and work to review.">
+<meta name="description" content="Pofu için sakin bir panel: seçmen gereken sorular, şu an yapılanlar ve yol haritası.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
 <style>
-/* Pofu Hub: one vertical column of cards. All content comes from the artifact db (see the data
-   section in the script). Tokens follow design/tokens/pofu-tokens.json and design/atlas. */
+/* Pofu Hub: one calm column. Questions first (tick one option), then what is happening now, then the
+   roadmap. Data lives in the artifact db: questions/{id}, answers/{qid}, notes/{auto}, status/now, roadmap/main.
+   Tokens follow design/tokens/pofu-tokens.json. */
 :root {
-  --bg: #FFF6EC;            /* cream-100, background.canvas */
-  --sunken: #FBEBDD;        /* cream-200 */
-  --card: #FFFBF5;          /* cream-50 */
-  --raised: #FFFFFF;
-  --seg-on: #FFFFFF;
-  --fg: #2A1F2D;            /* ink-900 */
-  --fg2: #66555F;           /* ink-600 */
-  --fg3: #8E7D88;           /* ink-400 */
-  --line: rgba(42, 31, 45, .12);
-  --line2: rgba(42, 31, 45, .22);
-  --accent: #6C4FD8;        /* violet-600 */
-  --accent-tint: #EEE8FF;   /* violet-100 */
-  --on-accent: #FFFFFF;
-  --ok: #2F7349;  --ok-tint: #DDF1E3;
+  --bg: #FFF6EC; --sunken: #FBEBDD; --card: #FFFBF5; --raised: #FFFFFF;
+  --fg: #2A1F2D; --fg2: #66555F; --fg3: #7C6B76;
+  --line: rgba(42, 31, 45, .12); --line2: rgba(42, 31, 45, .24);
+  --accent: #6C4FD8; --accent-tint: #EEE8FF; --on-accent: #FFFFFF;
+  --ok: #2F7349; --ok-tint: #DDF1E3;
   --warn: #8A5A00; --warn-tint: #FCEBC8;
-  --crit: #B23A5A; --crit-tint: #FBDDE5;
+  --crit: #B23A5A;
   --muted-tint: #EFE6EC;
-  --glass: rgba(255, 246, 236, .86);
-  --scrim: rgba(42, 31, 45, .36);
   --shadow: 0 1px 2px rgba(42, 31, 45, .06), 0 4px 14px rgba(42, 31, 45, .05);
-  --shadow-up: 0 2px 4px rgba(42, 31, 45, .10), 0 10px 28px rgba(42, 31, 45, .16);
   --font: "Nunito", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #15111C; --sunken: #1E1828; --card: #1E1828; --raised: #2A2236; --seg-on: #3D3352;
-    --fg: #FFF6EC; --fg2: #B8A8B1; --fg3: #85768A;
-    --line: rgba(255, 246, 236, .12); --line2: rgba(255, 246, 236, .22);
+    --bg: #15111C; --sunken: #1E1828; --card: #1E1828; --raised: #2A2236;
+    --fg: #FFF6EC; --fg2: #B8A8B1; --fg3: #9A8A9F;
+    --line: rgba(255, 246, 236, .12); --line2: rgba(255, 246, 236, .24);
     --accent: #B9A2FF; --accent-tint: #2E2547; --on-accent: #15111C;
     --ok: #8FD4A4; --ok-tint: #1D3326; --warn: #F7C873; --warn-tint: #3A2E14;
-    --crit: #FF9EB5; --crit-tint: #3E1D28; --muted-tint: #2A2236;
-    --glass: rgba(21, 17, 28, .86); --scrim: rgba(0, 0, 0, .55);
+    --crit: #FF9EB5; --muted-tint: #2A2236;
     --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 6px 18px rgba(0, 0, 0, .25);
-    --shadow-up: 0 2px 4px rgba(0, 0, 0, .45), 0 12px 30px rgba(0, 0, 0, .45);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #15111C; --sunken: #1E1828; --card: #1E1828; --raised: #2A2236; --seg-on: #3D3352;
-  --fg: #FFF6EC; --fg2: #B8A8B1; --fg3: #85768A;
-  --line: rgba(255, 246, 236, .12); --line2: rgba(255, 246, 236, .22);
+  --bg: #15111C; --sunken: #1E1828; --card: #1E1828; --raised: #2A2236;
+  --fg: #FFF6EC; --fg2: #B8A8B1; --fg3: #9A8A9F;
+  --line: rgba(255, 246, 236, .12); --line2: rgba(255, 246, 236, .24);
   --accent: #B9A2FF; --accent-tint: #2E2547; --on-accent: #15111C;
   --ok: #8FD4A4; --ok-tint: #1D3326; --warn: #F7C873; --warn-tint: #3A2E14;
-  --crit: #FF9EB5; --crit-tint: #3E1D28; --muted-tint: #2A2236;
-  --glass: rgba(21, 17, 28, .86); --scrim: rgba(0, 0, 0, .55);
+  --crit: #FF9EB5; --muted-tint: #2A2236;
   --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 6px 18px rgba(0, 0, 0, .25);
-  --shadow-up: 0 2px 4px rgba(0, 0, 0, .45), 0 12px 30px rgba(0, 0, 0, .45);
   color-scheme: dark;
 }
 
@@ -66,1789 +51,365 @@ body {
   font: 16px/1.45 var(--font); -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
 }
-button, textarea, input { font: inherit; color: inherit; }
+button, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; }
 :focus-visible { outline: 2.5px solid var(--accent); outline-offset: 2px; }
 [hidden] { display: none !important; }
-a { color: var(--accent); }
 
 .wrap {
-  max-width: 720px; margin: 0 auto;
-  padding: 0 max(16px, env(safe-area-inset-right)) calc(120px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  max-width: 720px; margin: 0 auto; padding-block: 18px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
+header.top { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.seed { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; flex: none; }
+.seed svg { width: 17px; height: 17px; }
+header.top h1 { margin: 0; font-size: 22px; font-weight: 900; letter-spacing: -.01em; }
 
-/* ---------------------------------------------------------------- header */
-header.top {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  padding: calc(14px + env(safe-area-inset-top)) 0 10px;
-}
-.brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
-.seed { width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; flex: none; }
-.seed svg { width: 18px; height: 18px; }
-.brand h1 { margin: 0; font-size: 22px; font-weight: 900; letter-spacing: -.01em; white-space: nowrap; }
-.atlas-link {
-  display: inline-flex; align-items: center; min-height: 44px; padding: 0 2px;
-  font-weight: 800; font-size: 14px; text-decoration: none; white-space: nowrap;
-}
+.banner { margin: 12px 0 0; padding: 12px 14px; border-radius: 14px; font-size: 15px; font-weight: 600; background: var(--warn-tint); }
 
-/* ---------------------------------------------------------------- segmented control */
-.segbar {
-  position: sticky; top: 0; z-index: 20;
-  margin: 0 calc(-1 * max(16px, env(safe-area-inset-left))); padding: calc(6px + env(safe-area-inset-top)) max(16px, env(safe-area-inset-left)) 10px;
-  background: var(--glass); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4);
-}
-@media (min-width: 752px) { .segbar { margin: 0; padding-left: 0; padding-right: 0; } }
-.seg {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; padding: 3px;
-  background: var(--sunken); border-radius: 14px; border: 1px solid var(--line);
-}
-.seg button {
-  position: relative; min-height: 40px; border: 0; border-radius: 11px; background: transparent;
-  font-size: 14.5px; font-weight: 800; color: var(--fg2); padding: 0 4px; white-space: nowrap;
-}
-.seg button[aria-selected="true"] { background: var(--seg-on); color: var(--fg); box-shadow: 0 1px 3px rgba(42, 31, 45, .14); }
-.seg .dot { position: absolute; top: 7px; right: 7px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
-.segbar::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--line); opacity: 0; transition: opacity .2s; }
-.segbar.scrolled::after { opacity: 1; }
-
-/* ---------------------------------------------------------------- banners */
-.banner {
-  margin: 12px 0 10px; padding: 12px 14px; border-radius: 14px; font-size: 15px; font-weight: 600;
-  background: var(--warn-tint); color: var(--fg); display: flex; gap: 10px; align-items: flex-start;
-}
-.banner.info { background: var(--accent-tint); }
-.banner b { font-weight: 800; }
-
-/* ---------------------------------------------------------------- sections */
-section.panel { padding-top: 0; }
-.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 6px 2px 10px; }
+section { margin-top: 30px; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 0 2px 6px; }
 .sec-head h2 { margin: 0; font-size: 26px; font-weight: 900; letter-spacing: -.01em; }
 .sec-head .meta { color: var(--fg3); font-size: 13.5px; font-weight: 700; text-align: right; }
-h3.group { margin: 22px 4px 8px; font-size: 13px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--fg3); display: flex; align-items: center; gap: 8px; }
-h3.group .count { font-weight: 800; color: var(--fg3); letter-spacing: 0; }
-.empty { padding: 18px 16px; border-radius: 16px; border: 1.5px dashed var(--line2); color: var(--fg2); font-weight: 600; text-align: center; }
-.loading { padding: 28px 0; text-align: center; color: var(--fg3); font-weight: 700; }
+.quiet { margin: 0 2px 14px; color: var(--fg2); font-size: 15px; font-weight: 600; }
+.loading { padding: 22px 0; text-align: center; color: var(--fg3); font-weight: 700; }
+.empty { padding: 16px; border-radius: 16px; border: 1.5px dashed var(--line2); color: var(--fg2); font-weight: 600; text-align: center; }
 
-.chips { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 12px; }
-.chip {
-  min-height: 44px; padding: 0 16px; border-radius: 22px; border: 1.5px solid var(--line2); background: transparent;
-  font-weight: 800; font-size: 15px; color: var(--fg2); display: inline-flex; align-items: center; gap: 6px;
-}
-.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-.chip .n { font-weight: 700; opacity: .8; }
-
-.card {
-  background: var(--card); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow);
-  padding: 16px; margin: 0 0 14px;
-}
-.card-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; font-size: 13px; color: var(--fg3); font-weight: 700; }
-.card-top .grow { flex: 1; }
-.card h4 { margin: 0 0 6px; font-size: 19px; line-height: 1.3; font-weight: 900; letter-spacing: -.005em; }
-.card .ctx { margin: 0 0 12px; color: var(--fg2); white-space: pre-line; }
-.pill { display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 10px; border-radius: 12px; font-size: 12.5px; font-weight: 800; }
-.pill.open { background: var(--accent-tint); color: var(--accent); }
-.pill.answered { background: var(--ok-tint); color: var(--ok); }
-.pill.closed { background: var(--muted-tint); color: var(--fg2); }
-.pill.liked { background: var(--ok-tint); color: var(--ok); }
-.pill.redo { background: var(--warn-tint); color: var(--warn); }
-.pill.pending { background: var(--accent-tint); color: var(--accent); }
-
-.shot { display: block; width: 100%; margin: 4px 0 12px; padding: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--sunken); }
-.shot img { display: block; width: 100%; height: auto; max-height: 460px; object-fit: contain; }
-.shot.broken { padding: 18px; color: var(--fg3); font-weight: 700; font-size: 14px; }
-
-/* options */
-.options { display: grid; gap: 10px; margin: 0 0 12px; }
+/* question card */
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); padding: 16px; margin: 0 0 14px; }
+.card h3 { margin: 0 0 6px; font-size: 19px; line-height: 1.3; font-weight: 900; text-wrap: balance; }
+.card .ctx { margin: 0 0 12px; color: var(--fg2); font-size: 15px; }
+.options { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 10px; margin: 0 0 12px; padding: 0; border: 0; min-width: 0; }
 .opt {
-  display: grid; grid-template-columns: 26px 1fr; gap: 4px 10px; text-align: left; width: 100%;
-  min-height: 44px; padding: 12px 14px; border-radius: 16px; border: 1.5px solid var(--line2); background: var(--raised);
+  display: flex; flex-direction: column; gap: 8px; text-align: left; width: 100%; min-width: 0;
+  padding: 12px; border-radius: 16px; border: 1.5px solid var(--line2); background: var(--raised);
 }
 .opt[aria-checked="true"] { border-color: var(--accent); background: var(--accent-tint); box-shadow: 0 0 0 1px var(--accent) inset; }
-.opt:disabled { cursor: default; opacity: .78; }
-.opt .radio { width: 22px; height: 22px; margin-top: 1px; border-radius: 50%; border: 2px solid var(--line2); display: grid; place-items: center; }
+.opt .top { display: flex; align-items: flex-start; gap: 8px; }
+.opt .radio { width: 22px; height: 22px; margin-top: 1px; border-radius: 50%; border: 2px solid var(--line2); display: grid; place-items: center; flex: none; }
 .opt[aria-checked="true"] .radio { border-color: var(--accent); background: var(--accent); color: var(--on-accent); }
 .opt .radio svg { width: 13px; height: 13px; opacity: 0; }
 .opt[aria-checked="true"] .radio svg { opacity: 1; }
-.opt .lbl { font-weight: 800; font-size: 16.5px; line-height: 1.3; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
-.opt .rec { font-size: 12px; font-weight: 800; color: var(--accent); background: var(--accent-tint); border: 1px solid var(--accent); border-radius: 10px; padding: 0 7px; line-height: 18px; }
+.opt .lbl { font-weight: 800; font-size: 16px; line-height: 1.3; min-width: 0; overflow-wrap: anywhere; }
+.opt .rec { align-self: flex-start; font-size: 12px; font-weight: 800; color: var(--accent); background: var(--accent-tint); border: 1px solid var(--accent); border-radius: 10px; padding: 0 8px; line-height: 20px; }
 .opt[aria-checked="true"] .rec { background: var(--raised); }
-.opt .facts { grid-column: 2; display: grid; gap: 3px; font-size: 14.5px; color: var(--fg2); }
-.opt .facts > span { display: grid; grid-template-columns: 50px 1fr; gap: 6px; }
-.opt .facts b { font-weight: 800; font-size: 12.5px; letter-spacing: .02em; padding-top: 1px; }
-.opt .facts .pro b { color: var(--ok); }
-.opt .facts .con b { color: var(--crit); }
-.opt .facts .cost b { color: var(--warn); }
-.recbox { padding: 12px 14px; border-radius: 14px; background: var(--sunken); font-size: 15px; color: var(--fg2); margin: 0 0 6px; }
+.facts { display: grid; gap: 4px; margin: 0; font-size: 14px; color: var(--fg2); }
+.facts > div { display: grid; grid-template-columns: 34px 1fr; gap: 6px; min-width: 0; overflow-wrap: anywhere; }
+.facts dt { font-weight: 900; font-size: 12.5px; letter-spacing: .02em; padding-top: 1px; }
+.facts dd { margin: 0; }
+.facts .pro dt { color: var(--ok); }
+.facts .con dt { color: var(--crit); }
+.facts .cost dt { color: var(--warn); }
+.recbox { padding: 11px 14px; border-radius: 14px; background: var(--sunken); font-size: 15px; color: var(--fg2); }
 .recbox b { color: var(--fg); font-weight: 800; }
 
-/* thread */
-.thread { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
-.thread-title { font-size: 13px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--fg3); margin: 0 0 8px; }
-.notes { display: grid; gap: 8px; margin: 0 0 10px; }
-.note { padding: 10px 12px; border-radius: 14px; background: var(--sunken); white-space: pre-wrap; overflow-wrap: anywhere; }
-.note.lead { background: var(--accent-tint); border-left: 3px solid var(--accent); }
-.note .who { display: block; font-size: 12.5px; font-weight: 800; color: var(--fg3); margin-bottom: 2px; }
-.note.lead .who { color: var(--accent); }
-.composer textarea, .sheet textarea {
-  display: block; width: 100%; min-height: 96px; resize: vertical; padding: 12px 14px; border-radius: 14px;
-  border: 1.5px solid var(--line2); background: var(--raised); font-size: 17px; line-height: 1.4;
-}
-.composer textarea:focus, .sheet textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-tint); }
-.composer textarea:disabled { opacity: .6; }
-.composer-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 6px; }
-.hint { font-size: 13px; color: var(--fg3); font-weight: 600; display: flex; align-items: center; gap: 5px; }
-.hint svg { width: 14px; height: 14px; flex: none; }
-.btn {
-  min-height: 44px; padding: 0 18px; border-radius: 22px; border: 0; background: var(--accent); color: var(--on-accent);
-  font-weight: 800; font-size: 16px; white-space: nowrap; flex: none;
-}
+/* optional note, kept quiet */
+details.note { margin-top: 8px; }
+details.note summary { list-style: none; display: inline-flex; align-items: center; min-height: 44px; padding: 0 2px; color: var(--fg3); font-size: 14px; font-weight: 700; cursor: pointer; }
+details.note summary::-webkit-details-marker { display: none; }
+details.note summary::before { content: "+"; margin-right: 6px; font-weight: 900; }
+details.note[open] summary::before { content: "–"; }
+.note-body textarea { display: block; width: 100%; min-height: 84px; resize: vertical; padding: 11px 13px; border-radius: 14px; border: 1.5px solid var(--line2); background: var(--raised); font-size: 17px; line-height: 1.4; }
+.note-body textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-tint); }
+.note-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 6px; }
+.note-foot .hint { color: var(--fg3); font-size: 13px; font-weight: 600; }
+.btn { min-height: 44px; padding: 0 18px; border-radius: 22px; border: 0; background: var(--accent); color: var(--on-accent); font-weight: 800; font-size: 15.5px; white-space: nowrap; }
 .btn:disabled { opacity: .45; cursor: default; }
-.btn.ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--line2); }
-.err { color: var(--crit); font-size: 14px; font-weight: 700; margin-top: 6px; }
+.btn.ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--line2); min-height: 40px; padding: 0 14px; font-size: 14.5px; }
 
-/* now lists */
+/* answered */
+details.done { margin-top: 18px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; }
+details.done summary { list-style: none; display: flex; align-items: center; justify-content: space-between; min-height: 48px; padding: 0 16px; font-weight: 800; color: var(--fg2); cursor: pointer; }
+details.done summary::-webkit-details-marker { display: none; }
+details.done summary .n { color: var(--fg3); font-weight: 700; }
+.done-row { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-top: 1px solid var(--line); }
+.done-row .txt { flex: 1; min-width: 0; }
+.done-row .t { font-weight: 800; font-size: 15px; overflow-wrap: anywhere; }
+.done-row .c { color: var(--ok); font-size: 14px; font-weight: 700; overflow-wrap: anywhere; }
+
+/* status + roadmap */
 .list { background: var(--card); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; }
-.item { padding: 13px 16px; border-top: 1px solid var(--line); }
+.item { display: flex; align-items: flex-start; gap: 12px; padding: 13px 16px; border-top: 1px solid var(--line); }
 .item:first-child { border-top: 0; }
-.item .t { font-weight: 800; font-size: 16.5px; line-height: 1.3; }
-.item .l { color: var(--fg2); font-size: 15px; margin-top: 2px; }
-.item a.more { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; padding-right: 8px; font-weight: 800; font-size: 15px; text-decoration: none; margin-bottom: -10px; }
-.item .shot { margin: 10px 0 2px; }
-.list .empty { border: 0; border-radius: 0; }
-.idea .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
-.tag { font-size: 12.5px; font-weight: 800; padding: 0 9px; line-height: 22px; border-radius: 11px; background: var(--muted-tint); color: var(--fg2); }
-.idea .when { color: var(--fg3); font-size: 13px; font-weight: 700; margin-top: 4px; }
+.item .txt { flex: 1; min-width: 0; font-weight: 700; overflow-wrap: anywhere; }
+.pill { flex: none; display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 12px; font-size: 12.5px; font-weight: 800; margin-top: 1px; }
+.pill.doing { background: var(--accent-tint); color: var(--accent); }
+.pill.next { background: var(--muted-tint); color: var(--fg2); }
+.pill.blocked { background: var(--warn-tint); color: var(--warn); }
 
-/* roadmap */
-.timeline { list-style: none; margin: 4px 0 0; padding: 0; }
-.ms { position: relative; display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding-bottom: 18px; }
-.ms::before { content: ""; position: absolute; left: 13px; top: 26px; bottom: -2px; width: 2px; background: var(--line2); border-radius: 1px; }
-.ms:last-child::before { display: none; }
-.ms.done::before { background: var(--ok); opacity: .6; }
-.ms .mark { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; border: 2px solid var(--line2); background: var(--bg); color: var(--fg3); z-index: 1; }
-.ms .mark svg { width: 15px; height: 15px; }
-.ms.done .mark { background: var(--ok); border-color: var(--ok); color: var(--bg); }
-.ms.doing .mark { border-color: var(--accent); background: var(--accent-tint); }
-.ms.doing .mark::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
-.ms .body { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 11px 14px; box-shadow: var(--shadow); }
-.ms.doing .body { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset, var(--shadow); }
-.ms.done .body { background: transparent; box-shadow: none; }
-.ms .row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
-.ms .t { font-weight: 800; font-size: 16.5px; line-height: 1.3; }
-.ms .when { font-size: 13.5px; font-weight: 800; color: var(--fg3); white-space: nowrap; }
-.ms .l { color: var(--fg2); font-size: 15px; margin-top: 2px; }
-.ms .st { font-size: 12.5px; font-weight: 800; margin-top: 4px; color: var(--fg3); }
-.ms.done .st { color: var(--ok); }
-.ms.doing .st { color: var(--accent); }
-.deep { display: flex; align-items: center; justify-content: center; min-height: 52px; margin: 8px 0 0; border-radius: 16px; border: 1.5px solid var(--line2); font-weight: 800; text-decoration: none; }
+.phase { margin: 0 0 14px; }
+.phase h3 { margin: 0 2px 8px; font-size: 17px; font-weight: 900; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.phase h3 .n { color: var(--fg3); font-size: 13.5px; font-weight: 700; white-space: nowrap; }
+.check { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line2); flex: none; display: grid; place-items: center; margin-top: 1px; }
+.check svg { width: 13px; height: 13px; opacity: 0; }
+.item.done .check { background: var(--ok); border-color: var(--ok); color: var(--bg); }
+.item.done .check svg { opacity: 1; }
+.item.done .txt { color: var(--fg3); font-weight: 600; }
 
-/* reviews */
-.verdicts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 4px; }
-.vbtn {
-  min-height: 48px; border-radius: 14px; border: 1.5px solid var(--line2); background: var(--raised);
-  font-weight: 800; font-size: 15.5px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 6px;
-}
-.vbtn svg { width: 18px; height: 18px; flex: none; }
-.vbtn[aria-pressed="true"].like { background: var(--ok); border-color: var(--ok); color: var(--bg); }
-.vbtn[aria-pressed="true"].redo { background: var(--warn); border-color: var(--warn); color: var(--bg); }
-.vbtn[aria-pressed="true"].note { background: var(--accent-tint); border-color: var(--accent); color: var(--accent); }
-.vbtn:disabled { opacity: .5; cursor: default; }
-
-/* fab + sheet */
-.fab {
-  position: fixed; z-index: 30; right: max(16px, env(safe-area-inset-right)); bottom: calc(18px + env(safe-area-inset-bottom));
-  height: 56px; padding: 0 22px 0 18px; border-radius: 28px; border: 0; background: var(--accent); color: var(--on-accent);
-  font-weight: 900; font-size: 17px; display: inline-flex; align-items: center; gap: 8px; box-shadow: var(--shadow-up);
-}
-.fab svg { width: 22px; height: 22px; }
-@media (min-width: 752px) { .fab { right: calc(50% - 360px); } }
-.scrim { position: fixed; inset: 0; z-index: 40; background: var(--scrim); opacity: 0; transition: opacity .2s; }
-.scrim.on { opacity: 1; }
-.sheet {
-  position: fixed; z-index: 41; left: 0; right: 0; bottom: 0; margin: 0 auto; max-width: 720px;
-  background: var(--raised); border-radius: 24px 24px 0 0; box-shadow: var(--shadow-up);
-  padding: 8px max(16px, env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
-  transform: translateY(105%); transition: transform .28s cubic-bezier(.2, .8, .2, 1);
-  max-height: 92vh; overflow-y: auto;
-}
-.sheet.on { transform: none; }
-.sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--line2); margin: 0 auto 8px; }
-.sheet .sh-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.sheet h2 { margin: 0; font-size: 22px; font-weight: 900; }
-.sheet .sub { margin: 2px 0 12px; color: var(--fg2); font-size: 15px; }
-.sheet .chips { margin: 12px 0 14px; }
-.sheet .chip { min-height: 44px; padding: 0 14px; }
-.sheet .actions { display: flex; gap: 10px; }
-.sheet .actions .btn { flex: 1; }
-.textbtn { border: 0; background: transparent; color: var(--accent); font-weight: 800; min-height: 44px; min-width: 44px; padding: 0 6px; font-size: 16px; }
-
-.toast {
-  position: fixed; z-index: 50; left: 50%; top: calc(72px + env(safe-area-inset-top)); transform: translate(-50%, -12px);
-  background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 20px; font-weight: 800; font-size: 15px;
-  opacity: 0; transition: opacity .2s, transform .2s; pointer-events: none; white-space: nowrap;
-}
+.toast { position: fixed; z-index: 50; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 12px); background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 20px; font-weight: 800; font-size: 15px; opacity: 0; transition: opacity .2s, transform .2s; pointer-events: none; max-width: calc(100% - 32px); }
 .toast.on { opacity: 1; transform: translate(-50%, 0); }
-
-.lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(0, 0, 0, .9); display: grid; place-items: center; padding: 16px; }
-.lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
-.lightbox .close { position: absolute; top: calc(10px + env(safe-area-inset-top)); right: 10px; width: 44px; height: 44px; border-radius: 22px; border: 0; background: rgba(255, 255, 255, .16); color: #fff; font-size: 24px; font-weight: 800; }
-
-/* dictation: a mic button under every field; a panel that shows one state at a time */
-.micbtn {
-  min-height: 44px; padding: 0 14px 0 11px; border-radius: 22px; border: 1.5px solid var(--line2); background: var(--raised);
-  color: var(--accent); font-weight: 800; font-size: 15px; display: inline-flex; align-items: center; gap: 6px; flex: none;
-}
-.micbtn svg { width: 20px; height: 20px; flex: none; }
-.micbtn[aria-pressed="true"] { background: var(--crit); border-color: var(--crit); color: var(--bg); }
-.micbtn:disabled { opacity: .45; cursor: default; }
-.foot-left { display: flex; align-items: center; gap: 8px; min-width: 0; }
-.dict { margin-top: 8px; padding: 12px 14px; border-radius: 16px; background: var(--sunken); display: grid; gap: 10px; }
-.dict-head { display: flex; align-items: center; gap: 10px; min-width: 0; }
-.dict-title { font-weight: 800; font-size: 15.5px; flex: 1; min-width: 0; }
-.dict-time { font-weight: 900; font-size: 20px; font-variant-numeric: tabular-nums; }
-.dict-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--crit); flex: none; animation: dictpulse 1.2s ease-in-out infinite; }
-@keyframes dictpulse { 50% { opacity: .25; } }
-.meter { display: flex; align-items: center; gap: 3px; height: 30px; }
-.meter i { flex: 1; min-height: 3px; height: 3px; border-radius: 2px; background: var(--accent); opacity: .8; }
-.bar { height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; }
-.bar > i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 4px; transition: width .2s; }
-.bar.indet > i { width: 30%; animation: dictslide 1.1s ease-in-out infinite; }
-@keyframes dictslide { from { transform: translateX(-100%); } to { transform: translateX(340%); } }
-.dict-msg { font-size: 15px; color: var(--fg2); font-weight: 600; }
-.dict-msg b { color: var(--fg); font-weight: 800; }
-.dict-sub { font-size: 13.5px; color: var(--fg3); font-weight: 700; font-variant-numeric: tabular-nums; }
-.dict-partial { font-size: 15px; color: var(--fg2); max-height: 7.6em; overflow-y: auto; white-space: pre-wrap; overflow-wrap: anywhere; border-left: 3px solid var(--line2); padding-left: 10px; }
-.dict-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-.dict-actions .btn { flex: 1 1 140px; }
-.btn.stop { background: var(--crit); color: var(--bg); }
-.btn.small { min-height: 40px; font-size: 15px; padding: 0 14px; }
-textarea.dictating { border-color: var(--crit) !important; box-shadow: 0 0 0 3px var(--crit-tint) !important; }
-.note audio, .idea audio { display: block; width: 100%; height: 36px; margin-top: 6px; }
-
-/* dictation settings sheet */
-.dsec { display: grid; gap: 8px; margin: 14px 0 0; }
-.dsec h3 { margin: 0; font-size: 13px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--fg3); }
-.dsec .chips { margin: 0; }
-.mrow { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: var(--sunken); }
-.mrow .grow { flex: 1; min-width: 0; }
-.mrow .t { font-weight: 800; }
-.mrow .l { font-size: 13.5px; color: var(--fg2); font-weight: 600; }
-.files { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; font-size: 14.5px; }
-.files li { display: flex; align-items: center; gap: 8px; }
-.files li a, a.dnote { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; font-weight: 700; }
-.files .ok { color: var(--ok); font-weight: 800; }
-.files .miss { color: var(--fg3); font-weight: 800; }
-.dnote { font-size: 14px; color: var(--fg2); font-weight: 600; }
-.confirm { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-
-@media (prefers-reduced-motion: reduce) { .sheet, .scrim, .toast { transition: none; } .dict-dot, .bar.indet > i { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
 </style>
 
 <div class="wrap" lang="tr">
   <header class="top">
-    <div class="brand">
-      <span class="seed" aria-hidden="true"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2c3.6 2.4 5.6 5.4 5.6 8.6A5.6 5.6 0 0 1 4.4 10.6C4.4 7.4 6.4 4.4 10 2z"/></svg></span>
-      <h1>Pofu Hub</h1>
-    </div>
-    <a class="atlas-link" href="https://claude.ai/artifact/8FrYGRfEJYgmZwENn66mBK" target="_blank" rel="noopener">Derin harita (Atlas) →</a>
+    <span class="seed" aria-hidden="true"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2c3.6 2.4 5.6 5.4 5.6 8.6A5.6 5.6 0 0 1 4.4 10.6C4.4 7.4 6.4 4.4 10 2z"/></svg></span>
+    <h1>Pofu Hub</h1>
   </header>
-
-  <nav class="segbar" id="segbar">
-    <div class="seg" role="tablist" aria-label="Bölümler">
-      <button role="tab" id="tab-questions" data-tab="questions" aria-controls="panel-questions">Sorular<span class="dot" hidden></span></button>
-      <button role="tab" id="tab-now" data-tab="now" aria-controls="panel-now">Şu an</button>
-      <button role="tab" id="tab-roadmap" data-tab="roadmap" aria-controls="panel-roadmap">Yol haritası</button>
-      <button role="tab" id="tab-reviews" data-tab="reviews" aria-controls="panel-reviews">Onay<span class="dot" hidden></span></button>
-    </div>
-  </nav>
-
   <div id="banner" class="banner" role="status" hidden></div>
 
-  <section class="panel" id="panel-questions" role="tabpanel" aria-labelledby="tab-questions">
-    <div class="sec-head"><h2>Sorular</h2><span class="meta" id="q-meta"></span></div>
-    <div class="chips" role="group" aria-label="Filtre">
-      <button class="chip" data-filter="open" aria-pressed="true">Açık <span class="n" id="n-open"></span></button>
-      <button class="chip" data-filter="answered" aria-pressed="false">Cevaplandı <span class="n" id="n-answered"></span></button>
-      <button class="chip" data-filter="all" aria-pressed="false">Hepsi <span class="n" id="n-all"></span></button>
-    </div>
+  <section id="sec-q" aria-labelledby="h-q">
+    <div class="sec-head"><h2 id="h-q">Sorular</h2><span class="meta" id="q-meta"></span></div>
+    <p class="quiet">Cevaplamazsan önerimle devam ederim.</p>
     <div id="q-list"><div class="loading">Yükleniyor…</div></div>
+    <details class="done" id="done-box" hidden>
+      <summary><span>Cevaplananlar</span><span class="n" id="done-n"></span></summary>
+      <div id="done-list"></div>
+    </details>
   </section>
 
-  <section class="panel" id="panel-now" role="tabpanel" aria-labelledby="tab-now" hidden>
-    <div class="sec-head"><h2>Şu an</h2><span class="meta" id="now-meta"></span></div>
-    <h3 class="group">Yapılıyor</h3><div class="list" id="now-doing"><div class="loading">Yükleniyor…</div></div>
-    <h3 class="group">Bugün biten</h3><div class="list" id="now-done"><div class="loading">Yükleniyor…</div></div>
-    <h3 class="group">Sırada</h3><div class="list" id="now-next"><div class="loading">Yükleniyor…</div></div>
-    <h3 class="group">Fikirler <span class="count" id="ideas-count"></span></h3><div class="list" id="ideas"><div class="loading">Yükleniyor…</div></div>
+  <section id="sec-now" aria-labelledby="h-now">
+    <div class="sec-head"><h2 id="h-now">Şu an</h2><span class="meta" id="now-meta"></span></div>
+    <div class="list" id="now-list"><div class="loading">Yükleniyor…</div></div>
   </section>
 
-  <section class="panel" id="panel-roadmap" role="tabpanel" aria-labelledby="tab-roadmap" hidden>
-    <div class="sec-head"><h2>Yol haritası</h2><span class="meta" id="rm-meta"></span></div>
-    <ol class="timeline" id="timeline"><li class="loading">Yükleniyor…</li></ol>
-    <a class="deep" href="https://claude.ai/artifact/8FrYGRfEJYgmZwENn66mBK" target="_blank" rel="noopener">Derin harita (Atlas) →</a>
-  </section>
-
-  <section class="panel" id="panel-reviews" role="tabpanel" aria-labelledby="tab-reviews" hidden>
-    <div class="sec-head"><h2>Onay</h2><span class="meta" id="rv-meta"></span></div>
-    <div id="rv-list"><div class="loading">Yükleniyor…</div></div>
+  <section id="sec-rm" aria-labelledby="h-rm">
+    <div class="sec-head"><h2 id="h-rm">Yol haritası</h2></div>
+    <div id="rm-list"><div class="loading">Yükleniyor…</div></div>
   </section>
 </div>
-
-<button class="fab" id="fab" type="button" aria-haspopup="dialog">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg>
-  Fikir
-</button>
-
-<div class="scrim" id="scrim" hidden></div>
-<div class="sheet" lang="tr" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden>
-  <div class="grab" aria-hidden="true"></div>
-  <div class="sh-head">
-    <h2 id="sheet-title">Fikir kutusu</h2>
-    <button class="textbtn" id="sheet-close" type="button">Vazgeç</button>
-  </div>
-  <p class="sub">Aklına geleni yaz. Ekip okur, Şu an'ın altında görünür.</p>
-  <textarea id="idea-text" rows="4" placeholder="Fikrin…" aria-label="Fikrin"></textarea>
-  <div class="composer-foot" id="idea-foot"></div>
-  <div id="idea-dict"></div>
-  <div class="chips" role="group" aria-label="Etiketler" id="idea-tags"></div>
-  <div class="err" id="idea-err" hidden></div>
-  <div class="actions"><button class="btn" id="idea-send" type="button" disabled>Gönder</button></div>
-</div>
-
-<div class="sheet" lang="tr" id="dsheet" role="dialog" aria-modal="true" aria-labelledby="dsheet-title" hidden>
-  <div class="grab" aria-hidden="true"></div>
-  <div class="sh-head">
-    <h2 id="dsheet-title">Dikte</h2>
-    <button class="textbtn" id="dsheet-close" type="button">Kapat</button>
-  </div>
-  <p class="sub">Sesin bu cihazda yazıya dökülür; kayıt hiçbir sunucuya gitmez.</p>
-  <div id="dsheet-body"></div>
-</div>
-<input type="file" id="dict-file" accept="audio/*,video/mp4,video/webm,video/quicktime,.m4a,.mp3,.wav,.aac,.ogg,.opus,.webm,.caf" hidden>
-<input type="file" id="model-files" accept=".onnx,.json" multiple hidden>
-
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (() => {
   'use strict';
-  document.documentElement.lang = 'tr'; // Turkish casing (i/İ) for uppercase labels
-
-  // ------------------------------------------------------------------ data contract
-  // Collections in the artifact db (all written by the owner; see the PR for the rules):
-  //   questions/{id}   {title, context, imageUrl?, options:[{key,label,pros,cons,cost}],
-  //                     recommendation:{key,reason}, status: open|answered|closed, priority (1 = first), createdAt}
-  //   answers/{qid}    {choice, updatedAt, authorId}                       founder, set
-  //   notes/{auto}     {targetType: question|review|idea, targetId, text, createdAt, authorId, fromLead?}
-  //   status/now       {updatedAt, doing:[{title,line,link?,imageUrl?}], doneToday:[...], next:[...]}
-  //   roadmap/main     {items:[{title, status: done|doing|next, when, line}]}
-  //   reviews/{id}     {title, context, imageUrl, createdAt, verdict?: liked|redo, verdictAt?}
-  //   ideas/{auto}     {text, tags:[...], createdAt, authorId, audio?}
-  //   dictation/{turbo|small}  speech model manifest written by the installer in the Dikte sheet:
-  //                    {preset, modelId, version, dtype:{encoder_model, decoder_model_merged}, installedAt,
-  //                     totalBytes, files:[{name, size, enc: raw|b64, chunks:[{id, size, sha256}]}]}
-  // notes and ideas may carry audio: [{id, type, seconds}], the original dictation recording as an asset.
-  // Timestamps are ISO 8601 strings (numbers in ms are accepted too). imageUrl may be any https URL,
-  // a "/_blob/<id>" asset path, or an asset id given as imageId.
-
-  const ATLAS = 'https://claude.ai/artifact/8FrYGRfEJYgmZwENn66mBK';
-  const TAGS = ['Ada', 'Oyun', 'Tasarım', 'Ekonomi', 'Diğer'];
   const $ = (s, r = document) => r.querySelector(s);
   const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
-  const svg = (markup) => { const t = document.createElement('template'); t.innerHTML = markup.trim(); return t.content.firstChild; };
-  const ICON = {
-    check: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg>',
-    heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>',
-    redo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.4-5.7M20 4v5h-5"/></svg>',
-    note: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>',
-    mic: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>',
-  };
-
-  // ------------------------------------------------------------------ per-viewer conveniences
-  const store = {
-    get(k) { try { return localStorage.getItem('pofu-hub:' + k); } catch { return null; } },
-    set(k, v) { try { if (v == null || v === '') localStorage.removeItem('pofu-hub:' + k); else localStorage.setItem('pofu-hub:' + k, v); } catch { /* storage unavailable */ } },
-  };
-
-  // ------------------------------------------------------------------ helpers
-  const toMs = (v) => {
-    if (v == null) return 0;
-    if (typeof v === 'number') return v;
-    const n = Date.parse(v); return Number.isNaN(n) ? 0 : n;
-  };
+  const CHECK = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg>';
+  const withIcon = (host) => { host.insertAdjacentHTML('beforeend', CHECK); return host; };
   const nowIso = () => new Date().toISOString();
-  const dateFmt = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'short' });
-  const timeFmt = new Intl.DateTimeFormat('tr-TR', { hour: '2-digit', minute: '2-digit' });
-  function ago(v) {
-    const t = toMs(v); if (!t) return '';
-    const d = Date.now() - t;
-    if (d < 60e3) return 'az önce';
-    if (d < 3600e3) return Math.floor(d / 60e3) + ' dk önce';
-    const then = new Date(t), today = new Date();
-    const sameDay = then.toDateString() === today.toDateString();
-    if (sameDay) return 'bugün ' + timeFmt.format(then);
-    const y = new Date(today); y.setDate(y.getDate() - 1);
-    if (then.toDateString() === y.toDateString()) return 'dün ' + timeFmt.format(then);
-    return dateFmt.format(then);
-  }
-  const str = (v) => (v == null ? '' : typeof v === 'string' ? v : Array.isArray(v) ? v.filter(Boolean).join(' · ') : String(v));
-  function safeUrl(u) {
-    if (typeof u !== 'string' || !u) return '';
-    if (u.startsWith('/_blob/')) return u;
-    try { const p = new URL(u, location.href); return p.protocol === 'https:' || p.protocol === 'http:' ? p.href : ''; } catch { return ''; }
-  }
-  const imageOf = (o) => safeUrl(o && o.imageUrl) || (o && typeof o.imageId === 'string' && /^[0-9a-f]{32}$/.test(o.imageId) ? '/_blob/' + o.imageId : '');
+  const toMs = (v) => { if (v == null) return 0; if (typeof v === 'number') return v; const n = Date.parse(v); return Number.isNaN(n) ? 0 : n; };
+  const str = (v) => (v == null ? '' : String(v));
+  const fmt = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long' });
 
-  function shot(url, alt) {
-    const b = el('button', 'shot'); b.type = 'button'; b.setAttribute('aria-label', 'Görseli büyüt');
-    const img = el('img'); img.src = url; img.alt = alt || ''; img.loading = 'lazy'; img.decoding = 'async';
-    img.addEventListener('error', () => { b.textContent = 'Görsel yüklenemedi.'; b.classList.add('broken'); b.disabled = true; });
-    b.append(img);
-    b.addEventListener('click', () => openLightbox(url, alt));
-    return b;
-  }
-  function openLightbox(url, alt) {
-    const lb = el('div', 'lightbox'); lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true');
-    const img = el('img'); img.src = url; img.alt = alt || '';
-    const x = el('button', 'close', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Kapat');
-    const close = () => { lb.remove(); document.removeEventListener('keydown', onKey); };
-    const onKey = (e) => { if (e.key === 'Escape') close(); };
-    lb.addEventListener('click', close); document.addEventListener('keydown', onKey);
-    lb.append(img, x); document.body.append(lb); x.focus();
-  }
+  const state = { db: null, userId: null, canWrite: false, mode: 'loading', stale: false, questions: null, answers: null, now: undefined, roadmap: undefined, reopen: new Set(), drafts: new Map() };
+
   let toastTimer = 0;
-  function toast(msg) {
-    const t = $('#toast'); t.textContent = msg; t.classList.add('on');
-    clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('on'), 1800);
-  }
-  function emptyLine(text) { return el('div', 'empty', text); }
+  function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('on'), 1800); }
 
-  // ------------------------------------------------------------------ state
-  const state = {
-    db: null, userId: null, canWrite: false, mode: 'loading', // loading | live | offline | readonly
-    questions: null, answers: null, notes: null, status: undefined, roadmap: undefined, reviews: null, ideas: null,
-    filter: store.get('filter') || 'open',
-    tab: null,
-    stale: false,
-    keepReview: new Set(), // judged during this visit: stays under Bekleyen until reload
-    keepVisible: new Set(), // answered during this visit: stay put under the Açık filter
-  };
-
-  // ------------------------------------------------------------------ tabs
-  const TABS = ['questions', 'now', 'roadmap', 'reviews'];
-  function setTab(tab, focus) {
-    if (!TABS.includes(tab)) tab = 'questions';
-    state.tab = tab;
-    for (const b of document.querySelectorAll('.seg button')) {
-      const on = b.dataset.tab === tab;
-      b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1;
-      if (on && focus) b.focus();
-    }
-    for (const t of TABS) $('#panel-' + t).hidden = t !== tab;
-    store.set('tab', tab);
-    if (location.hash !== '#' + tab) history.replaceState(null, '', '#' + tab);
-    const top = $('.wrap').getBoundingClientRect().top + window.scrollY + $('header.top').offsetHeight;
-    if (window.scrollY > top) window.scrollTo(0, top);
-  }
-  document.querySelectorAll('.seg button').forEach((b) => {
-    b.addEventListener('click', () => setTab(b.dataset.tab));
-    b.addEventListener('keydown', (e) => {
-      const i = TABS.indexOf(b.dataset.tab);
-      if (e.key === 'ArrowRight') { e.preventDefault(); setTab(TABS[(i + 1) % 4], true); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); setTab(TABS[(i + 3) % 4], true); }
-    });
-  });
-  const segbar = $('#segbar');
-  const onScroll = () => segbar.classList.toggle('scrolled', segbar.getBoundingClientRect().top <= 0 && window.scrollY > 40);
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  // ------------------------------------------------------------------ banner
   function renderBanner() {
-    const b = $('#banner');
-    let msg = '', info = false;
-    if (state.mode === 'offline') msg = 'Bu sayfa Claude içinde açılınca canlı çalışır. Şu an salt okunur ve veri yok.';
-    else if (state.mode === 'readonly') { msg = 'Salt okunur görünüm. Seçim, not ve fikir eklemek için sayfanın sahibi olarak açman gerekiyor.'; info = true; }
-    else if (state.stale) msg = 'Verilere şu an ulaşılamıyor. Gösterilenler eski olabilir; bağlantı gelince kendiliğinden yenilenir.';
-    b.hidden = !msg; b.textContent = msg; b.classList.toggle('info', info);
-    document.querySelectorAll('[data-write]').forEach((x) => { x.disabled = !state.canWrite || x.dataset.busy === '1' || (x.dataset.needsText === '1' && !x.dataset.hasText); });
-    $('#fab').hidden = !state.canWrite;
-    for (const f of dict.fields) f.sync();
+    const b = $('#banner'); let msg = '';
+    if (state.mode === 'offline') msg = 'Bu sayfa Claude içinde açılınca canlı çalışır. Şu an veri yok.';
+    else if (state.mode === 'readonly') msg = 'Salt okunur görünüm. Seçim yapmak için sayfayı sahibi olarak aç.';
+    else if (state.stale) msg = 'Verilere şu an ulaşılamıyor. Gösterilenler eski olabilir.';
+    b.hidden = !msg; b.textContent = msg;
   }
 
-  // ------------------------------------------------------------------ writes
-  // One write at a time per document; a later request for the same document replaces a queued one.
-  const writeQueues = new Map();
+  // ---------------------------------------------------------------- writes
+  const queues = new Map();
   function queueWrite(key, fn) {
-    let q = writeQueues.get(key);
-    if (!q) { q = { running: false, next: null }; writeQueues.set(key, q); }
-    return new Promise((resolve, reject) => {
-      if (q.next) q.next.resolve(false);
-      q.next = { fn, resolve, reject };
-      const pump = async () => {
-        if (q.running || !q.next) return;
-        const job = q.next; q.next = null; q.running = true;
-        try { await job.fn(); job.resolve(true); } catch (e) { job.reject(e); }
-        q.running = false; pump();
-      };
-      pump();
-    });
+    const prev = queues.get(key) || Promise.resolve();
+    const next = prev.catch(() => {}).then(fn);
+    queues.set(key, next); return next;
   }
   async function withRetry(fn) {
     try { return await fn(); } catch (e) {
-      if (e && e.code === 'unavailable') { await new Promise((r) => setTimeout(r, 400 + Math.random() * 600)); return fn(); }
+      if (e && e.code === 'unavailable') { await new Promise((r) => setTimeout(r, 500)); return fn(); }
       throw e;
     }
   }
   function writeFailed(e) {
-    const code = e && e.code;
-    if (code === 'invalid_argument' || code === 'not_granted' || code === 'revoked' || code === 'capability_disabled' || code === 'capability_removed') {
-      state.canWrite = false; state.mode = 'readonly'; renderBanner();
-      return 'Bu görünümde yazma izni yok.';
-    }
-    if (code === 'quota_exceeded') return 'Depolama dolu. Ekibe haber ver, eski kayıtları temizlesin.';
-    if (code === 'resource_exhausted') return 'Biraz yavaş. Birkaç saniye sonra tekrar dene.';
-    return 'Kaydedilemedi. Bağlantını kontrol edip tekrar dene.';
+    const c = e && e.code;
+    if (c === 'invalid_argument' || c === 'not_granted' || c === 'revoked' || c === 'capability_disabled') { state.canWrite = false; state.mode = 'readonly'; renderBanner(); renderQuestions(); return 'Bu görünümde yazma izni yok.'; }
+    return 'Kaydedilemedi. Tekrar dene.';
   }
 
   async function choose(qid, key) {
     if (!state.canWrite || !state.db) return;
     const prev = state.answers && state.answers.get(qid);
     if (prev && prev.choice === key) return;
-    state.keepVisible.add(qid);
-    // Optimistic: the snapshot listener confirms it.
-    state.answers = new Map(state.answers || []); state.answers.set(qid, { choice: key, updatedAt: nowIso(), authorId: state.userId });
+    state.reopen.delete(qid);
+    state.answers = new Map(state.answers || []);
+    state.answers.set(qid, { choice: key, updatedAt: nowIso(), authorId: state.userId });
     renderQuestions();
     try {
       await queueWrite('answers/' + qid, () => withRetry(() => state.db.doc('answers/' + qid).set({ choice: key, updatedAt: nowIso(), authorId: state.userId })));
-      toast('Seçimin kaydedildi');
+      toast('Kaydedildi');
     } catch (e) {
       if (prev) state.answers.set(qid, prev); else state.answers.delete(qid);
       renderQuestions(); toast(writeFailed(e));
     }
   }
 
-  async function addNote(targetType, targetId, text, audio) {
-    const body = { targetType, targetId, text, createdAt: nowIso() };
-    if (state.userId) body.authorId = state.userId;
-    if (audio && audio.length) body.audio = audio.slice();
-    await withRetry(() => state.db.collection('notes').add(body));
-  }
-
-  async function setVerdict(rid, verdict) {
-    const r = state.reviews && state.reviews.find((x) => x.id === rid);
-    if (!r || !state.canWrite) return;
-    if (r.verdict === verdict) return;
-    state.keepReview.add(rid);
-    const prev = { verdict: r.verdict, verdictAt: r.verdictAt };
-    r.verdict = verdict; r.verdictAt = nowIso(); renderReviews();
+  async function sendNote(qid, text, btn, area) {
+    btn.disabled = true;
     try {
-      await queueWrite('reviews/' + rid, () => withRetry(() => state.db.doc('reviews/' + rid).update({ verdict, verdictAt: nowIso() })));
-      toast(verdict === 'liked' ? 'Beğendin, kaydedildi' : 'Yeniden yapılacak, kaydedildi');
-    } catch (e) {
-      Object.assign(r, prev); renderReviews(); toast(writeFailed(e));
-    }
+      const body = { targetType: 'question', targetId: qid, text, createdAt: nowIso() };
+      if (state.userId) body.authorId = state.userId;
+      await withRetry(() => state.db.collection('notes').add(body));
+      state.drafts.delete(qid); area.value = ''; toast('Not eklendi');
+    } catch (e) { toast(writeFailed(e)); }
+    btn.disabled = !area.value.trim();
   }
 
-  // ------------------------------------------------------------------ dictation
-  // Whisper runs in this browser (dictation/worker.js). Model files live in the artifact's own asset
-  // store, installed once from the Dikte sheet, because the sandbox lets the page fetch nothing but
-  // its own origin. Live recording needs the microphone, which the artifact frame may refuse; then
-  // the founder records with any recorder app and picks the file here, and the same pipeline runs.
-  const DICT = {
-    presets: {
-      turbo: {
-        label: 'Turbo', repo: 'onnx-community/whisper-large-v3-turbo',
-        files: ['onnx/encoder_model_q4.onnx', 'onnx/decoder_model_merged_q4.onnx'],
-        about: 'En iyi Türkçe. Mac\'te ve WebGPU olan cihazlarda hızlı.',
-      },
-      small: {
-        label: 'Small', repo: 'Xenova/whisper-small',
-        files: ['onnx/encoder_model_quantized.onnx', 'onnx/decoder_model_merged_quantized.onnx'],
-        about: 'Hafif ve telefonda hızlı, ama Türkçede daha çok hata yapar.',
-      },
-    },
-    json: ['config.json', 'generation_config.json', 'preprocessor_config.json', 'tokenizer.json', 'tokenizer_config.json'],
-    chunk: 15000000,              // raw bytes per stored chunk; base64 makes it 20,000,000, under the 20 MiB asset cap
-    maxSeg: 29.5, minSeg: 15,     // seconds per Whisper window; cuts land on the quietest 100 ms in between
-    audioTypes: { 'audio/mp4': 'video/mp4', 'audio/x-m4a': 'video/mp4', 'audio/m4a': 'video/mp4', 'audio/aac': null, 'video/mp4': 'video/mp4', 'audio/webm': 'video/webm', 'video/webm': 'video/webm' },
-    // Whisper's known Turkish fillers on silence (subtitle credits and outros from its training data).
-    junk: [/altyaz[ıi]\s*m\.?\s*k\.?/giu, /izledi[gğ]iniz i[cç]in te[sş]ekk[uü]r(ler|ederim)[.!]?/giu, /abone olmay[ıi] unutmay[ıi]n[.!]?/giu, /altyaz[ıi]lar?\s*:?\s*[\p{L}.\s]{0,30}$/giu],
-  };
-  const DTYPE_BY_SUFFIX = { '': 'fp32', _fp16: 'fp16', _q4: 'q4', _q4f16: 'q4f16', _quantized: 'q8', _int8: 'int8', _uint8: 'uint8', _bnb4: 'bnb4' };
-  const dict = {
-    manifests: {}, assets: null, worker: null, seq: 0, pending: new Map(),
-    loadedKey: null, loading: null, progressSubs: new Set(), gpu: undefined,
-    lang: store.get('dict-lang') || 'turkish', pref: store.get('dict-model') || 'auto',
-    micDenied: false, active: null, fields: new Set(),
-  };
-  const isPhone = () => /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent));
-  const fmtMB = (b) => (b < 1e5 ? Math.max(1, Math.round(b / 1e3)) + ' KB' : (b / 1e6 >= 100 ? Math.round(b / 1e6) : (b / 1e6).toFixed(1)) + ' MB');
-  const fmtTime = (s) => { s = Math.max(0, Math.floor(s)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+  // ---------------------------------------------------------------- render: questions
+  const isAnswered = (q) => q.status === 'answered' || (q.status === 'open' && state.answers && state.answers.has(q.id));
+  const bySort = (a, b) => (Number(a.priority) || 99) - (Number(b.priority) || 99) || toMs(a.createdAt) - toMs(b.createdAt);
 
-  // ---- pure helpers (also used by design/hub/tools/check.js)
-  function rmsOf(x, a, b) { let s = 0; for (let i = a; i < b; i++) s += x[i] * x[i]; return Math.sqrt(s / Math.max(1, b - a)); }
-  // Cuts mono audio into Whisper-sized windows at the quietest point between minSeg and maxSeg.
-  // With final=false the tail shorter than maxSeg stays unconsumed (live recording keeps buffering).
-  function splitSegments(x, sr, final, maxS = DICT.maxSeg, minS = DICT.minSeg) {
-    const out = []; let start = 0;
-    const maxN = Math.round(maxS * sr), minN = Math.round(minS * sr), frame = Math.max(1, Math.round(sr * 0.1)), hop = Math.max(1, frame >> 1);
-    while (x.length - start > maxN) {
-      // Energy of every 100 ms frame in the allowed range; cut in the middle of the longest run of
-      // near-quietest frames, so a pause is split in half and no word loses its tail.
-      const pos = [], en = [];
-      for (let f = start + minN; f + frame <= start + maxN; f += hop) { pos.push(f + (frame >> 1)); en.push(rmsOf(x, f, f + frame)); }
-      let best = start + maxN;
-      if (pos.length) {
-        const lim = Math.min(...en) * 1.5 + 1e-4;
-        let runA = -1, bestLen = 0;
-        for (let i = 0; i <= en.length; i++) {
-          if (i < en.length && en[i] <= lim) { if (runA < 0) runA = i; continue; }
-          if (runA >= 0) { if (i - runA > bestLen) { bestLen = i - runA; best = pos[(runA + i - 1) >> 1]; } runA = -1; }
-        }
-      }
-      out.push([start, best]); start = best;
-    }
-    if (final && x.length - start > 0) { out.push([start, x.length]); start = x.length; }
-    return { segments: out, consumed: start };
-  }
-  // Too quiet or too short to hold speech: Whisper would only invent text for it.
-  function isSilent(x, a, b, sr) {
-    if (b - a < sr * 0.4) return true;
-    let peak = 0; for (let i = a; i < b; i++) { const v = Math.abs(x[i]); if (v > peak) peak = v; }
-    return peak < 0.015 || rmsOf(x, a, b) < 0.002;
-  }
-  function cleanText(t) {
-    t = String(t || '');
-    for (const re of DICT.junk) t = t.replace(re, ' ');
-    // A phrase of 1 to 8 words said three or more times in a row is a decoding loop: keep one.
-    t = t.replace(/(^|\s)((?:\S+\s+){0,7}?\S+)(?:\s+\2){2,}(?=\s|$)/giu, '$1$2');
-    // A letter held four or more times, or a 'word' over 40 letters, is a loop that survived.
-    t = t.replace(/(\p{L})\1{3,}/gu, '$1').replace(/\S{41,}/gu, ' ');
-    return t.replace(/\s+/g, ' ').trim();
-  }
-  function joinText(before, piece) {
-    if (!piece) return '';
-    if (!before || /\s$/.test(before)) return piece;
-    return /^[.,;:!?)\]]/.test(piece) ? piece : ' ' + piece;
+  function factRow(cls, label, value) {
+    const v = str(value).trim();
+    if (!v || v === '—') return null;
+    const row = el('div', cls); row.append(el('dt', null, label), el('dd', null, v)); return row;
   }
 
-  // ---- worker
-  function workerCall(msg, transfer) {
-    if (!dict.worker) {
-      try { dict.worker = new Worker('dictation/worker.js', { type: 'module' }); } catch (e) { return Promise.reject(Object.assign(new Error('worker'), { code: 'worker_failed' })); }
-      dict.worker.addEventListener('message', (e) => {
-        const d = e.data || {}; const p = dict.pending.get(d.id); if (!p) return;
-        if (d.type === 'progress') { for (const fn of dict.progressSubs) fn(d); return; }
-        dict.pending.delete(d.id);
-        if (d.type === 'error') p.reject(Object.assign(new Error(d.message), { code: d.code })); else p.resolve(d);
-      });
-      dict.worker.addEventListener('error', () => {
-        for (const p of dict.pending.values()) p.reject(Object.assign(new Error('worker crashed'), { code: 'worker_failed' }));
-        dict.pending.clear(); dict.worker = null; dict.loadedKey = null; dict.loading = null;
-      });
-    }
-    const id = ++dict.seq;
-    return new Promise((resolve, reject) => { dict.pending.set(id, { resolve, reject }); dict.worker.postMessage({ id, ...msg }, transfer || []); });
-  }
-  async function hasWebGPU() {
-    if (dict.gpu !== undefined) return dict.gpu;
-    try { dict.gpu = !!(navigator.gpu && await navigator.gpu.requestAdapter()); } catch { dict.gpu = false; }
-    return dict.gpu;
-  }
-  function pickPreset() {
-    const m = dict.manifests;
-    if (dict.pref !== 'auto' && m[dict.pref]) return dict.pref;
-    return isPhone() ? (m.small ? 'small' : m.turbo ? 'turbo' : null) : (m.turbo ? 'turbo' : m.small ? 'small' : null);
-  }
-  async function pickDevice(man) {
-    // ONNX Runtime's WebGPU backend has no int8 matmul, so 8-bit models run on WASM everywhere.
-    const int8 = Object.values(man.dtype || {}).some((d) => d === 'q8' || d === 'int8' || d === 'uint8');
-    return !int8 && await hasWebGPU() ? 'webgpu' : 'wasm';
-  }
-  async function ensureModel() {
-    const preset = pickPreset();
-    if (!preset) throw Object.assign(new Error('no model'), { code: 'no_model' });
-    const man = dict.manifests[preset];
-    const device = await pickDevice(man);
-    const key = preset + '|' + man.version + '|' + device;
-    if (dict.loadedKey === key) return { preset, device };
-    if (dict.loading && dict.loading.key === key) return dict.loading.p;
-    const p = workerCall({ type: 'load', manifest: man, device }).then((r) => {
-      dict.loadedKey = key; dict.loading = null; dict.device = r.device; return { preset, device: r.device };
-    }, (e) => { dict.loading = null; throw e; });
-    dict.loading = { key, p };
-    return p;
-  }
-
-  // ---- audio
-  async function toMono16k(input, sr) {
-    if (!(input instanceof AudioBuffer) && sr === 16000) return input;
-    const len = Math.max(1, Math.ceil(input.length * 16000 / sr));
-    const off = new OfflineAudioContext(1, len, 16000);
-    let buf = input;
-    if (!(input instanceof AudioBuffer)) { buf = off.createBuffer(1, input.length, sr); buf.copyToChannel(input, 0); }
-    const src = off.createBufferSource(); src.buffer = buf; src.connect(off.destination); src.start();
-    const out = await off.startRendering();
-    return out.getChannelData(0);
-  }
-  function concatF32(parts, total) { const out = new Float32Array(total); let at = 0; for (const p of parts) { out.set(p, at); at += p.length; } return out; }
-  function recorderType() {
-    if (typeof MediaRecorder === 'undefined') return null;
-    for (const t of ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm']) { try { if (MediaRecorder.isTypeSupported(t)) return t; } catch { /* ignore */ } }
-    return '';
-  }
-  // The asset store takes mp4 and webm containers (as video/*); audio-only files in them play fine.
-  function assetTypeFor(mime) { const base = String(mime || '').split(';')[0].trim().toLowerCase(); return DICT.audioTypes[base] || null; }
-  function micPolicyBlocked() {
-    try { const p = document.permissionsPolicy || document.featurePolicy; if (p && typeof p.allowsFeature === 'function') return !p.allowsFeature('microphone'); } catch { /* unknown */ }
-    return false;
-  }
-
-  // What this device and frame allow, written to dictation/diag-<phone|desktop> so the lead can see
-  // why dictation does or does not work without asking. Runs on a deliberate action only.
-  async function diagnose(extra) {
-    const r = Object.assign(dict.diag || {}, { at: nowIso(), ua: navigator.userAgent.slice(0, 200), phone: isPhone() }, extra || {});
-    if (!r.probed) {
-      r.probed = true;
-      try { new WebAssembly.Module(new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0])); r.pageWasm = true; } catch (e) { r.pageWasm = String((e && e.message) || e).slice(0, 160); }
-      r.webgpu = await hasWebGPU();
-      r.micPolicy = micPolicyBlocked() ? 'blocked' : navigator.mediaDevices && navigator.mediaDevices.getUserMedia ? 'not blocked by policy' : 'no getUserMedia';
-      r.recorder = recorderType();
-      r.crossOriginIsolated = !!window.crossOriginIsolated;
-      try { r.worker = await Promise.race([workerCall({ type: 'probe' }), new Promise((_, j) => setTimeout(() => j(Object.assign(new Error('timeout'), { code: 'timeout' })), 8000))]); delete r.worker.id; delete r.worker.type; } catch (e) { r.worker = { failed: String((e && (e.code || e.message)) || e) }; }
-      try { const est = navigator.storage && navigator.storage.estimate ? await navigator.storage.estimate() : null; if (est) r.storageQuotaMB = Math.round(est.quota / 1e6); } catch { /* ignore */ }
-    }
-    dict.diag = r;
-    if (state.canWrite && state.db) state.db.doc('dictation/diag-' + (isPhone() ? 'phone' : 'desktop')).set(JSON.parse(JSON.stringify(r))).catch(() => {});
-    renderDictSheet();
-    return r;
-  }
-
-  // ---- a dictation field: one per textarea
-  const fileInput = $('#dict-file');
-  function dictField(ta, footLeft, panelHost, opts = {}) {
-    const f = { ta, audio: [], ui: { kind: 'idle' }, refs: null, onChange: opts.onChange || (() => {}), onState: opts.onState || (() => {}) };
-    const mic = el('button', 'micbtn'); mic.type = 'button'; mic.setAttribute('aria-pressed', 'false');
-    mic.append(svg(ICON.mic), el('span', '', 'Dikte'));
-    mic.setAttribute('aria-label', 'Sesle yaz');
-    const panel = el('div', 'dict'); panel.hidden = true; panel.setAttribute('role', 'status'); panel.setAttribute('aria-live', 'polite');
-    footLeft.prepend(mic); panelHost.append(panel);
-    f.mic = mic; f.panel = panel;
-    // Remember the caret, so text lands where the founder was typing.
-    const keepCaret = () => { f.caret = ta.selectionStart; };
-    ta.addEventListener('keyup', keepCaret); ta.addEventListener('click', keepCaret); ta.addEventListener('select', keepCaret); ta.addEventListener('blur', keepCaret);
-    mic.addEventListener('click', () => onMic(f));
-    dict.fields.add(f);
-    f.sync = () => { mic.disabled = !state.canWrite || (dict.active && dict.active.f !== f); };
-    f.sync();
-    return f;
-  }
-  function setUi(f, ui) { f.ui = ui; renderDict(f); }
-  function renderDict(f) {
-    const ui = f.ui, p = f.panel;
-    const recording = ui.kind === 'rec';
-    f.mic.setAttribute('aria-pressed', String(recording));
-    f.mic.lastChild.textContent = recording ? 'Bitir' : 'Dikte';
-    f.ta.classList.toggle('dictating', !!(dict.active && dict.active.f === f));
-    for (const g of dict.fields) { g.sync(); g.onState(); }
-    if (ui.kind === 'idle') { p.hidden = true; p.replaceChildren(); f.refs = null; return; }
-    p.hidden = false;
-    if (ui.kind === 'rec' && f.refs && f.refs.kind === 'rec') return; // live parts update in place
-    const head = el('div', 'dict-head');
-    const actions = el('div', 'dict-actions');
-    const msg = (html) => { const d = el('div', 'dict-msg'); d.append(...html); return d; };
-    const b = (txt, cls, fn) => { const x = el('button', 'btn ' + (cls || ''), txt); x.type = 'button'; x.addEventListener('click', fn); actions.append(x); return x; };
-    const fileBtn = (label) => b(label || 'Ses dosyası seç', 'ghost small', () => pickFile(f));
-    const settingsBtn = () => b('Ayarlar', 'ghost small', () => openDictSheet());
-    const close = () => b('Kapat', 'ghost small', () => setUi(f, { kind: 'idle' }));
-    const nodes = [head];
-    f.refs = { kind: ui.kind };
-    if (ui.kind === 'rec') {
-      const dot = el('span', 'dict-dot'); const t = el('span', 'dict-time', '0:00');
-      head.append(dot, el('span', 'dict-title', 'Dinliyorum'), t);
-      const meter = el('div', 'meter'); const bars = []; for (let i = 0; i < 28; i++) { const i_ = el('i'); bars.push(i_); meter.append(i_); }
-      const sub = el('div', 'dict-sub', '');
-      const partial = el('div', 'dict-partial'); partial.hidden = true;
-      b('Bitir', 'stop', () => stopSession(false)); b('Vazgeç', 'ghost small', () => stopSession(true));
-      nodes.push(meter, sub, partial, actions);
-      Object.assign(f.refs, { t, bars, sub, partial });
-    } else if (ui.kind === 'work') {
-      head.append(el('span', 'dict-title', ui.title || 'Yazıya döküyorum'));
-      if (ui.sub) head.append(el('span', 'dict-sub', ui.sub));
-      const bar = el('div', 'bar' + (ui.frac == null ? ' indet' : '')); const fill = el('i'); bar.append(fill);
-      if (ui.frac != null) fill.style.width = Math.round(ui.frac * 100) + '%';
-      nodes.push(bar);
-      if (ui.note) nodes.push(msg([document.createTextNode(ui.note)]));
-      if (ui.partial) { const pt = el('div', 'dict-partial', ui.partial); nodes.push(pt); }
-      b('Vazgeç', 'ghost small', () => stopSession(true)); nodes.push(actions);
-    } else if (ui.kind === 'done') {
-      head.append(el('span', 'dict-title', ui.title || 'Yazıya döküldü'));
-      nodes.push(msg([document.createTextNode(ui.text || 'Metni düzenleyip kaydedebilirsin.')]));
-      close(); nodes.push(actions);
-    } else if (ui.kind === 'nomodel') {
-      head.append(el('span', 'dict-title', 'Konuşma modeli kurulu değil'));
-      nodes.push(msg([document.createTextNode(dict.assets
-        ? 'Bir kereye mahsus kurulum: Mac\'te Ayarlar\'ı aç, model dosyalarını indirip seç. Sonra her cihaz buradan alır.'
-        : 'Model, sayfayı düzenleyebilen biri tarafından bir kez kurulmalı. Sayfayı sahibi olarak aç.')]));
-      if (dict.assets) b('Modeli kur', 'small', () => openDictSheet('install'));
-      close(); nodes.push(actions);
-    } else if (ui.kind === 'blocked') {
-      head.append(el('span', 'dict-title', ui.title || 'Bu sayfada mikrofon açılamıyor'));
-      nodes.push(msg([document.createTextNode(ui.text || 'Claude, sayfanın mikrofonu kullanmasına izin vermiyor. Ses Kayıtları ile kaydet, buradan dosyayı seç; yazıya dökmeyi bu sayfa yapar.')]));
-      nodes.push(el('div', 'dict-sub', isPhone() ? 'iPhone: Ses Kayıtları\'nda kaydı aç, Paylaş → Dosyalar\'a Kaydet, sonra burada seç.' : 'Mac: Ses Kayıtları ya da QuickTime ile kaydet, dosyayı burada seç.'));
-      fileBtn(); close(); nodes.push(actions);
-    } else if (ui.kind === 'error') {
-      head.append(el('span', 'dict-title', ui.title || 'Dikte durdu'));
-      nodes.push(msg([document.createTextNode(ui.text || '')]));
-      if (ui.retry) b('Tekrar dene', 'small', ui.retry);
-      if (ui.settings) settingsBtn();
-      close(); nodes.push(actions);
-    }
-    p.replaceChildren(...nodes);
-  }
-
-  function errorText(e) {
-    const c = e && e.code;
-    if (c === 'no_model') return { kind: 'nomodel' };
-    if (c === 'missing_chunk' || c === 'corrupt') return { kind: 'error', title: 'Model dosyaları bozuk ya da eksik', text: 'Ayarlar\'dan modeli kaldırıp yeniden kur.', settings: true };
-    if (c === 'worker_failed') return { kind: 'error', title: 'Dikte motoru açılamadı', text: 'Bu tarayıcı modülü yükleyemedi. Sayfayı yenileyip tekrar dene; olmazsa Mac\'te Chrome ya da Safari ile aç.' };
-    if (c === 'decode') return { kind: 'error', title: 'Dosya okunamadı', text: 'Bu ses biçimi bu tarayıcıda çözülemiyor. m4a, mp3, wav ya da webm dene.' };
-    const m = String((e && e.message) || e || '');
-    if (/WebAssembly|wasm-unsafe-eval|unsafe-eval|CompileError/i.test(m)) return { kind: 'error', title: 'Bu sayfada WebAssembly kapalı', text: 'Claude\'un sayfa çerçevesi modeli çalıştırmaya izin vermiyor. Bunu ekibe ilettim; şimdilik dikte bu sayfada çalışamaz.' };
-    if (/memory|allocation|out of range|OOM/i.test(m)) return { kind: 'error', title: 'Cihazın belleği yetmedi', text: 'Bu cihazda daha hafif modeli (Small) dene: Ayarlar → Model.', settings: true };
-    return { kind: 'error', title: 'Dikte durdu', text: 'Bir şey ters gitti (' + m.slice(0, 140) + '). Tekrar dene.' };
-  }
-
-  function onMic(f) {
-    if (dict.active && dict.active.f === f && dict.active.mode === 'mic' && f.ui.kind === 'rec') { stopSession(false); return; }
-    if (dict.active) return;
-    if (!pickPreset()) { setUi(f, { kind: 'nomodel' }); return; }
-    if (dict.micDenied || micPolicyBlocked() || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      if (!dict.diag || !dict.diag.mic) diagnose({ mic: micPolicyBlocked() ? 'policy' : 'no api' });
-      setUi(f, { kind: 'blocked' }); return;
-    }
-    startMic(f);
-  }
-  function pickFile(f) {
-    if (dict.active) return;
-    if (!pickPreset()) { setUi(f, { kind: 'nomodel' }); return; }
-    fileInput.value = '';
-    fileInput.onchange = () => { const file = fileInput.files && fileInput.files[0]; if (file) startFile(f, file); };
-    fileInput.click();
-  }
-
-  // ---- a session: one recording or file, transcribed window by window and written into the field
-  function newSession(f, mode) {
-    const ta = f.ta;
-    const caret = typeof f.caret === 'number' && f.caret <= ta.value.length ? f.caret : ta.value.length;
-    const s = {
-      f, mode, cancelled: false, anchor: caret, insertedLen: 0, wasReadOnly: ta.readOnly,
-      queue: Promise.resolve(), segTotal: 0, segDone: 0, partial: '', t0: performance.now(), seconds: 0,
-    };
-    ta.readOnly = true; // the founder edits once the text is in; nothing shifts under the cursor meanwhile
-    dict.active = s;
-    return s;
-  }
-  function insertPiece(s, raw) {
-    const text = cleanText(raw); if (!text || s.cancelled) return;
-    const ta = s.f.ta; const at = s.anchor + s.insertedLen;
-    const piece = joinText(ta.value.slice(0, at), text);
-    ta.value = ta.value.slice(0, at) + piece + ta.value.slice(at);
-    s.insertedLen += piece.length; s.partial += piece;
-    ta.dispatchEvent(new Event('input', { bubbles: true }));
-  }
-  function endSession(s) {
-    if (s.ended) return;
-    s.ended = true;
-    const ta = s.f.ta; ta.readOnly = s.wasReadOnly;
-    if (dict.active === s) dict.active = null;
-    if (s.cancelled && s.insertedLen) {
-      ta.value = ta.value.slice(0, s.anchor) + ta.value.slice(s.anchor + s.insertedLen);
-      ta.dispatchEvent(new Event('input', { bubbles: true }));
-    }
-    const end = s.anchor + (s.cancelled ? 0 : s.insertedLen);
-    s.f.caret = end;
-    if (!s.cancelled) { try { ta.focus({ preventScroll: true }); ta.setSelectionRange(end, end); } catch { /* ignore */ } }
-  }
-  // Queue one window of 16 kHz audio for the worker; windows are transcribed in order.
-  function enqueue(s, pcm16k) {
-    s.segTotal++;
-    s.queue = s.queue.then(async () => {
-      if (s.cancelled) return;
-      await ensureModel();
-      if (s.cancelled) return;
-      const audio = new Float32Array(pcm16k); // own buffer, safe to transfer
-      const r = await workerCall({ type: 'transcribe', audio, language: dict.lang }, [audio.buffer]);
-      s.segDone++;
-      insertPiece(s, r.text);
-      updateLive(s);
-    });
-    s.queue.catch(() => {});
-    updateLive(s);
-  }
-  function updateLive(s) {
-    const f = s.f;
-    if (f.ui.kind === 'rec' && f.refs && f.refs.kind === 'rec') {
-      const waiting = s.segTotal - s.segDone;
-      f.refs.sub.textContent = s.segDone ? s.segDone + ' parça yazıldı' + (waiting ? ', ' + waiting + ' sırada' : '') : (waiting ? 'İlk parça yazıya dökülüyor…' : 'Konuştukça her yarım dakikada bir yazıya döker.');
-      f.refs.partial.hidden = !s.partial; f.refs.partial.textContent = s.partial.trim();
-      f.refs.partial.scrollTop = f.refs.partial.scrollHeight;
-    } else if (f.ui.kind === 'work' && s.segTotal) {
-      setUi(f, { kind: 'work', title: s.finishing ? 'Son parçalar yazılıyor' : 'Yazıya döküyorum', sub: s.segDone + ' / ' + s.segTotal, frac: s.segDone / s.segTotal, partial: s.partial.trim(), note: s.note });
-    }
-  }
-  // Model download and start-up progress, shown in whichever panel is busy.
-  dict.progressSubs.add((d) => {
-    const s = dict.active; if (!s) return;
-    let note;
-    if (d.phase === 'download') note = d.cached ? 'Model bu cihazda hazır, açılıyor…' : 'Konuşma modeli bu cihaza iniyor (bir kez): ' + fmtMB(d.loaded) + ' / ' + fmtMB(d.total);
-    else if (d.phase === 'init') note = 'Model başlatılıyor (' + (d.device === 'webgpu' ? 'WebGPU' : 'işlemci') + ')…';
-    else if (d.phase === 'warmup') note = 'Neredeyse hazır…';
-    s.note = note;
-    if (s.f.ui.kind === 'rec' && s.f.refs && s.f.refs.sub && !s.segDone) s.f.refs.sub.textContent = note;
-    else if (s.f.ui.kind === 'work') setUi(s.f, { kind: 'work', title: 'Model hazırlanıyor', frac: d.phase === 'download' && d.total ? d.loaded / d.total : null, note, partial: s.partial.trim() });
-  });
-
-  async function startMic(f) {
-    const s = newSession(f, 'mic');
-    setUi(f, { kind: 'work', title: 'Mikrofon açılıyor' });
-    let stream;
-    try {
-      stream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true } });
-    } catch (e) {
-      s.cancelled = true; endSession(s);
-      const name = e && e.name;
-      diagnose({ mic: name || 'error' });
-      if (name === 'NotAllowedError' || name === 'SecurityError') { dict.micDenied = true; setUi(f, { kind: 'blocked' }); }
-      else if (name === 'NotFoundError') setUi(f, { kind: 'blocked', title: 'Mikrofon bulunamadı', text: 'Bu cihazda kullanılabilir mikrofon yok. Kaydı başka yerde yapıp dosyayı seçebilirsin.' });
-      else setUi(f, { kind: 'blocked', title: 'Mikrofon açılamadı', text: 'Başka bir uygulama mikrofonu kullanıyor olabilir. Ya da kaydı başka yerde yapıp dosyayı seç.' });
-      return;
-    }
-    if (s.cancelled) { stream.getTracks().forEach((t) => t.stop()); return; }
-    if (!dict.diag || dict.diag.mic !== 'ok') diagnose({ mic: 'ok' });
-    ensureModel().catch(() => {}); // download in parallel with talking
-    const AC = window.AudioContext || window.webkitAudioContext;
-    const ctx = new AC(); try { await ctx.resume(); } catch { /* resumes on its own */ }
-    const src = ctx.createMediaStreamSource(stream);
-    const analyser = ctx.createAnalyser(); analyser.fftSize = 1024;
-    const proc = ctx.createScriptProcessor(4096, 1, 1);
-    const sink = ctx.createGain(); sink.gain.value = 0;
-    src.connect(analyser); src.connect(proc); proc.connect(sink); sink.connect(ctx.destination);
-    // Hold the graph on the session: Chrome garbage-collects an unreferenced ScriptProcessorNode and
-    // its onaudioprocess silently stops (seen here after about a second while the model loaded).
-    s.graph = { ctx, src, analyser, proc, sink, stream };
-    s.sr = ctx.sampleRate; s.parts = []; s.partsLen = 0; s.total = 0;
-    proc.onaudioprocess = (ev) => {
-      if (s.stopped) return;
-      const ch = new Float32Array(ev.inputBuffer.getChannelData(0));
-      s.parts.push(ch); s.partsLen += ch.length; s.total += ch.length;
-      if (s.partsLen > (DICT.maxSeg + 1) * s.sr) flushLive(s, false);
-    };
-    // Keep the original recording, so it can be transcribed again later with a better model.
-    const type = recorderType();
-    if (type !== null) {
-      try {
-        s.rec = new MediaRecorder(stream, type ? { mimeType: type, audioBitsPerSecond: 64000 } : undefined);
-        s.recChunks = []; s.rec.ondataavailable = (e) => { if (e.data && e.data.size) s.recChunks.push(e.data); };
-        s.rec.start(1000);
-      } catch { s.rec = null; }
-    }
-    s.cleanup = () => {
-      s.stopped = true;
-      try { proc.disconnect(); src.disconnect(); analyser.disconnect(); } catch { /* ignore */ }
-      stream.getTracks().forEach((t) => t.stop());
-      ctx.close().catch(() => {});
-      cancelAnimationFrame(s.raf);
-    };
-    setUi(f, { kind: 'rec' });
-    updateLive(s);
-    const data = new Float32Array(analyser.fftSize); const hist = new Array(28).fill(0);
-    let lastPush = 0;
-    const tick = (now) => {
-      if (s.stopped || !f.refs || f.refs.kind !== 'rec') return;
-      analyser.getFloatTimeDomainData(data);
-      const level = Math.min(1, rmsOf(data, 0, data.length) * 9);
-      if (now - lastPush > 70) { hist.push(level); hist.shift(); lastPush = now; f.refs.bars.forEach((b, i) => { b.style.height = Math.max(3, Math.round(hist[i] * 30)) + 'px'; }); }
-      f.refs.t.textContent = fmtTime(s.total / s.sr);
-      s.raf = requestAnimationFrame(tick);
-    };
-    s.raf = requestAnimationFrame(tick);
-  }
-  function flushLive(s, final) {
-    const buf = concatF32(s.parts, s.partsLen);
-    const { segments, consumed } = splitSegments(buf, s.sr, final);
-    for (const [a, b] of segments) {
-      if (isSilent(buf, a, b, s.sr)) continue;
-      const slice = buf.slice(a, b);
-      s.queue = s.queue.then(() => toMono16k(slice, s.sr)).then((pcm) => { enqueue(s, pcm); });
-      s.queue.catch(() => {});
-    }
-    const rest = buf.subarray(consumed);
-    s.parts = rest.length ? [new Float32Array(rest)] : []; s.partsLen = rest.length;
-  }
-  async function stopSession(cancel) {
-    const s = dict.active; if (!s) return;
-    const f = s.f;
-    if (cancel) {
-      s.cancelled = true;
-      if (s.cleanup) s.cleanup();
-      if (s.rec && s.rec.state !== 'inactive') { try { s.rec.stop(); } catch { /* ignore */ } }
-      endSession(s); setUi(f, { kind: 'idle' }); toast('Dikte iptal edildi');
-      return;
-    }
-    if (s.mode !== 'mic' || s.stopped) return;
-    s.seconds = s.total / s.sr;
-    const recDone = s.rec ? new Promise((r) => { s.rec.onstop = r; try { s.rec.stop(); } catch { r(); } }) : Promise.resolve();
-    s.cleanup();
-    s.finishing = true;
-    flushLive(s, true);
-    setUi(f, { kind: 'work', title: 'Son parçalar yazılıyor', frac: s.segTotal ? s.segDone / s.segTotal : null, partial: s.partial.trim() });
-    await recDone;
-    const blob = s.rec && s.recChunks && s.recChunks.length ? new Blob(s.recChunks, { type: s.rec.mimeType || 'audio/webm' }) : null;
-    await finish(s, blob);
-  }
-  async function startFile(f, file) {
-    const s = newSession(f, 'file');
-    setUi(f, { kind: 'work', title: 'Dosya okunuyor', sub: file.name.length > 28 ? file.name.slice(0, 26) + '…' : file.name });
-    ensureModel().catch(() => {});
-    let pcm;
-    try {
-      const AC = window.AudioContext || window.webkitAudioContext;
-      const ctx = new AC();
-      let decoded;
-      try { decoded = await ctx.decodeAudioData(await file.arrayBuffer()); } catch { throw Object.assign(new Error('decode'), { code: 'decode' }); } finally { ctx.close().catch(() => {}); }
-      s.seconds = decoded.duration;
-      pcm = await toMono16k(decoded, decoded.sampleRate);
-    } catch (e) { s.cancelled = true; endSession(s); setUi(f, errorText(e)); return; }
-    if (s.cancelled) return;
-    const { segments } = splitSegments(pcm, 16000, true);
-    s.finishing = true;
-    for (const [a, b] of segments) if (!isSilent(pcm, a, b, 16000)) enqueue(s, pcm.slice(a, b));
-    if (!s.segTotal) { s.cancelled = true; endSession(s); setUi(f, { kind: 'error', title: 'Kayıtta konuşma yok', text: 'Dosyada duyulur bir ses bulamadım.' }); return; }
-    setUi(f, { kind: 'work', title: 'Yazıya döküyorum', sub: '0 / ' + s.segTotal, frac: 0, note: s.note });
-    await finish(s, file);
-  }
-  async function finish(s, blob) {
-    const f = s.f;
-    // Windows can queue more windows while they run, so wait until the queue stops growing.
-    try { let q; do { q = s.queue; await q; } while (q !== s.queue); } catch (e) {
-      const keep = s.insertedLen > 0;
-      s.cancelled = !keep; endSession(s);
-      const ui = errorText(e);
-      if (keep && ui.kind === 'error') ui.text = (ui.text ? ui.text + ' ' : '') + 'Yazılan kısım alanda duruyor.';
-      setUi(f, ui); return;
-    }
-    if (s.cancelled) return;
-    endSession(s);
-    const mins = fmtTime(s.seconds);
-    const said = s.insertedLen ? mins + ' konuşma yazıya döküldü. Düzenleyip kaydedebilirsin.' : 'Kayıtta anlaşılır bir konuşma bulamadım.';
-    setUi(f, { kind: 'done', title: s.insertedLen ? 'Hazır' : 'Metin çıkmadı', text: said });
-    if (blob && s.insertedLen) keepAudio(f, blob, s.seconds);
-  }
-  async function keepAudio(f, blob, seconds) {
-    const type = assetTypeFor(blob.type);
-    if (!dict.assets || !type || blob.size > 20 * 1024 * 1024 || !blob.size) return;
-    try {
-      const r = await dict.assets.upload(blob, { type });
-      f.audio.push({ id: r.id, type, seconds: Math.round(seconds) });
-      f.onChange();
-      if (f.ui.kind === 'done') setUi(f, { kind: 'done', title: f.ui.title, text: f.ui.text + ' Ses kaydı da nota eklenecek.' });
-    } catch { /* keeping the audio is optional */ }
-  }
-  window.__pofuDictation = { splitSegments, isSilent, cleanText, joinText, assetTypeFor, dict };
-
-  // ---- Dikte sheet: language, model, install and removal
-  const dsheet = $('#dsheet'), dbody = $('#dsheet-body'), modelInput = $('#model-files');
-  const inst = { preset: 'turbo', files: null, busy: false, progress: null, error: '', confirmRemove: null, usage: null };
-  let dsheetFrom = null;
-  function openDictSheet(focus) {
-    dsheetFrom = document.activeElement;
-    if (focus === 'install') inst.preset = isPhone() ? 'small' : 'turbo';
-    scrim.hidden = false; dsheet.hidden = false;
-    requestAnimationFrame(() => { scrim.classList.add('on'); dsheet.classList.add('on'); });
-    renderDictSheet(); hasWebGPU().then(renderDictSheet); diagnose();
-    if (dict.assets) dict.assets.list().then((r) => { inst.usage = r.usage; renderDictSheet(); }, () => {});
-    setTimeout(() => $('#dsheet-close').focus(), 60);
-  }
-  function closeDictSheet() {
-    if (inst.busy) return;
-    if (sheet.hidden) scrim.classList.remove('on');
-    dsheet.classList.remove('on');
-    setTimeout(() => { if (sheet.hidden) scrim.hidden = true; dsheet.hidden = true; }, 260);
-    if (dsheetFrom && dsheetFrom.focus) dsheetFrom.focus({ preventScroll: true });
-  }
-  $('#dsheet-close').addEventListener('click', closeDictSheet);
-  function chipRow(label, items, cur, onPick) {
-    const sec = el('div', 'dsec'); sec.append(el('h3', '', label));
-    const row = el('div', 'chips'); row.setAttribute('role', 'group'); row.setAttribute('aria-label', label);
-    for (const [key, text, disabled] of items) {
-      const c = el('button', 'chip', text); c.type = 'button'; c.setAttribute('aria-pressed', String(key === cur)); c.disabled = !!disabled;
-      c.addEventListener('click', () => onPick(key)); row.append(c);
-    }
-    sec.append(row); return sec;
-  }
-  function renderDictSheet() {
-    if (dsheet.hidden) return;
-    const out = [];
-    out.push(chipRow('Dil', [['turkish', 'Türkçe'], ['auto', 'Otomatik']], dict.lang, (k) => { dict.lang = k; store.set('dict-lang', k === 'turkish' ? '' : k); renderDictSheet(); }));
-    const m = dict.manifests;
-    out.push(chipRow('Model', [['auto', 'Otomatik'], ['turbo', 'Turbo', !m.turbo], ['small', 'Small', !m.small]], dict.pref, (k) => { dict.pref = k; store.set('dict-model', k === 'auto' ? '' : k); renderDictSheet(); }));
-    const now = pickPreset();
-    const dev = el('div', 'dnote'); dev.style.marginTop = '8px';
-    dev.textContent = 'Bu cihaz: ' + (dict.gpu === undefined ? 'kontrol ediliyor…' : dict.gpu ? 'WebGPU var' : 'WebGPU yok, işlemciyle çalışır') + (now ? ' · kullanılacak model: ' + DICT.presets[now].label : '') + (dict.micDenied ? ' · mikrofon kapalı, dosyadan dikte' : '');
-    out.push(dev);
-    const dg = dict.diag;
-    if (dg && dg.probed) {
-      const yes = (v) => (v === true ? 'var' : 'yok');
-      const w = dg.worker || {};
-      const line = el('div', 'dict-sub');
-      line.textContent = 'Kontrol: WebAssembly ' + yes(w.wasm === true && dg.pageWasm === true) + ' · arka plan işçisi ' + (w.failed ? 'yok' : 'var') + ' · önbellek ' + yes(w.cache === true)
-        + ' · mikrofon ' + (dg.mic === 'ok' ? 'var' : dg.mic ? 'yok (' + dg.mic + ')' : 'denenmedi');
-      out.push(line);
-    }
-
-    const list = el('div', 'dsec'); list.append(el('h3', '', 'Kurulu modeller'));
-    for (const key of Object.keys(DICT.presets)) {
-      const man = m[key]; const pr = DICT.presets[key];
-      const row = el('div', 'mrow');
-      const g = el('div', 'grow'); g.append(el('div', 't', pr.label), el('div', 'l', man ? fmtMB(man.totalBytes) + ' · ' + pr.about : 'Kurulu değil · ' + pr.about));
-      row.append(g);
-      if (man && dict.assets) {
-        if (inst.confirmRemove === key) {
-          const c = el('div', 'confirm');
-          const yes = el('button', 'btn small stop', 'Evet, kaldır'); yes.type = 'button'; yes.addEventListener('click', () => removeModel(key));
-          const no = el('button', 'textbtn', 'Vazgeç'); no.type = 'button'; no.addEventListener('click', () => { inst.confirmRemove = null; renderDictSheet(); });
-          c.append(yes, no); row.append(c);
-        } else {
-          const rm = el('button', 'textbtn', 'Kaldır'); rm.type = 'button'; rm.disabled = inst.busy;
-          rm.addEventListener('click', () => { inst.confirmRemove = key; renderDictSheet(); }); row.append(rm);
-        }
-      }
-      list.append(row);
-    }
-    out.push(list);
-
-    const ins = el('div', 'dsec'); ins.append(el('h3', '', 'Model kur'));
-    if (!dict.assets) {
-      ins.append(el('div', 'dnote', 'Kurulum, sayfayı düzenleyebilen biri tarafından bir kez yapılır (Mac\'te önerilir). Bu görünümde dosya yükleme izni yok.'));
-    } else {
-      ins.append(chipRow('Hangisi', [['turbo', 'Turbo'], ['small', 'Small']], inst.preset, (k) => { inst.preset = k; inst.files = null; inst.error = ''; renderDictSheet(); }).lastChild);
-      const pr = DICT.presets[inst.preset];
-      const already = dict.manifests[inst.preset] && !inst.files && !inst.busy;
-      if (already) ins.append(el('div', 'dnote', pr.label + ' kurulu. Yeni dosyalarla değiştirmek istersen dosyaları seç; eskisi yenisi yüklenince silinir.'));
-      else ins.append(el('div', 'dnote', '1. Aşağıdaki yedi dosyayı indir (Hugging Face\'te açılır, ' + pr.repo + '). 2. "Dosyaları seç" ile hepsini seç. 3. Yükle. Bir kez yapılır; iPhone dahil her cihaz modeli buradan alır.'));
-      const ul = el('ul', 'files');
-      const need = DICT.json.concat(pr.files);
-      for (const name of need) {
-        const li = el('li');
-        const have = inst.files && inst.files.byName.get(name);
-        li.append(el('span', have ? 'ok' : 'miss', have ? '✓' : '·'));
-        const a = el('a', '', name); a.href = 'https://huggingface.co/' + pr.repo + '/resolve/main/' + name + '?download=true'; a.target = '_blank'; a.rel = 'noopener';
-        li.append(a);
-        if (have) li.append(el('span', 'dict-sub', fmtMB(have.size)));
-        ul.append(li);
-      }
-      const more = el('a', '', 'Tüm dosyalar (başka bir varyant seçmek istersen) →'); more.href = 'https://huggingface.co/' + pr.repo + '/tree/main/onnx'; more.target = '_blank'; more.rel = 'noopener'; more.className = 'dnote';
-      if (!already) ins.append(ul, more);
-      const acts = el('div', 'dict-actions');
-      const pick = el('button', 'btn ghost small', 'Dosyaları seç'); pick.type = 'button'; pick.disabled = inst.busy;
-      pick.addEventListener('click', () => { modelInput.value = ''; modelInput.click(); });
-      const go = el('button', 'btn small', inst.busy ? 'Yükleniyor…' : 'Yükle'); go.type = 'button';
-      const ready = inst.files && inst.files.ok;
-      go.disabled = inst.busy || !ready;
-      go.addEventListener('click', installModel);
-      acts.append(pick, go); ins.append(acts);
-      if (inst.files) {
-        const need64 = Math.ceil(inst.files.total * 4 / 3);
-        const free = inst.usage ? inst.usage.maxBytes - inst.usage.bytes : null;
-        ins.append(el('div', 'dnote', inst.files.ok
-          ? 'Toplam ' + fmtMB(inst.files.total) + ' model; depoda ' + fmtMB(need64) + ' yer kaplar' + (free != null ? ' (boş: ' + fmtMB(free) + ')' : '') + '.'
-          : 'Eksik: ' + inst.files.missing.join(', ')));
-      }
-      if (inst.progress) {
-        const bar = el('div', 'bar'); const fill = el('i'); fill.style.width = Math.round(inst.progress.frac * 100) + '%'; bar.append(fill);
-        ins.append(bar, el('div', 'dict-sub', inst.progress.text));
-      }
-      if (inst.error) ins.append(el('div', 'err', inst.error));
-    }
-    out.push(ins);
-    dbody.replaceChildren(...out);
-  }
-  modelInput.addEventListener('change', () => {
-    const pr = DICT.presets[inst.preset];
-    const byName = new Map();
-    for (const file of Array.from(modelInput.files || [])) {
-      const n = file.name;
-      if (DICT.json.includes(n)) byName.set(n, file);
-      else if (/^(encoder_model|decoder_model_merged)(_[a-z0-9]+)?\.onnx$/.test(n)) byName.set('onnx/' + n, file);
-    }
-    // Any single-file variant is accepted; the preset's names are only the recommendation.
-    const enc = [...byName.keys()].find((k) => k.startsWith('onnx/encoder_model'));
-    const dec = [...byName.keys()].find((k) => k.startsWith('onnx/decoder_model_merged'));
-    const missing = DICT.json.filter((n) => !byName.has(n));
-    if (!enc) missing.push(pr.files[0]); if (!dec) missing.push(pr.files[1]);
-    // Show matches against the recommended names too.
-    if (enc && !byName.has(pr.files[0])) byName.set(pr.files[0], byName.get(enc));
-    if (dec && !byName.has(pr.files[1])) byName.set(pr.files[1], byName.get(dec));
-    const total = DICT.json.concat([enc, dec]).filter(Boolean).reduce((s, k) => s + (byName.get(k) ? byName.get(k).size : 0), 0);
-    inst.files = { byName, enc, dec, missing, ok: !missing.length, total };
-    inst.error = '';
-    if (enc && byName.get(enc).size < 1e6) inst.error = 'Kodlayıcı dosyası çok küçük: dış veri (.onnx_data) isteyen bir varyant olabilir. q4 ya da quantized olanı seç.';
-    renderDictSheet();
-  });
-  function toB64(bytes) {
-    if (typeof bytes.toBase64 === 'function') return bytes.toBase64();
-    let s = ''; const step = 0x8000;
-    for (let i = 0; i < bytes.length; i += step) s += String.fromCharCode.apply(null, bytes.subarray(i, i + step));
-    return btoa(s);
-  }
-  async function sha256Hex(bytes) {
-    const d = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
-    return Array.from(d, (b) => b.toString(16).padStart(2, '0')).join('');
-  }
-  async function uploadWithRetry(blob, type) {
-    for (let attempt = 0; ; attempt++) {
-      try { return await dict.assets.upload(blob, { type }); } catch (e) {
-        const c = e && e.code;
-        if (attempt < 3 && (c === 'rate_limited' || c === 'store_unavailable' || c === 'upstream_error')) { await new Promise((r) => setTimeout(r, 1500 * (attempt + 1))); continue; }
-        throw e;
-      }
-    }
-  }
-  async function installModel() {
-    const fsel = inst.files; if (!fsel || !fsel.ok || inst.busy || !dict.assets || !state.db) return;
-    const preset = inst.preset;
-    const names = DICT.json.concat([fsel.enc, fsel.dec]);
-    const dtype = {};
-    for (const [part, name] of [['encoder_model', fsel.enc], ['decoder_model_merged', fsel.dec]]) {
-      const suffix = name.slice(('onnx/' + part).length, -'.onnx'.length);
-      dtype[part] = DTYPE_BY_SUFFIX[suffix] || 'fp32';
-    }
-    try {
-      const u = (await dict.assets.list()).usage; inst.usage = u;
-      const need = Math.ceil(fsel.total * 4 / 3) * 1.02;
-      if (u.maxBytes - u.bytes < need) { inst.error = 'Depoda yer yok: ' + fmtMB(need) + ' gerekli, ' + fmtMB(u.maxBytes - u.bytes) + ' boş. Önce diğer modeli kaldır ya da Small\'u kur.'; renderDictSheet(); return; }
-    } catch { /* listing is housekeeping; the upload itself will tell */ }
-    inst.busy = true; inst.error = ''; inst.confirmRemove = null;
-    const uploaded = []; let done = 0;
-    const progress = (text) => { inst.progress = { frac: fsel.total ? done / fsel.total : 0, text }; renderDictSheet(); };
-    try {
-      const files = [];
-      for (const name of names) {
-        const file = fsel.byName.get(name);
-        const enc = name.endsWith('.onnx') ? 'b64' : 'raw';
-        const chunks = [];
-        for (let at = 0; at < file.size; at += DICT.chunk) {
-          progress(name.replace('onnx/', '') + ' · ' + fmtMB(done) + ' / ' + fmtMB(fsel.total));
-          const bytes = new Uint8Array(await file.slice(at, at + DICT.chunk).arrayBuffer());
-          const sha = await sha256Hex(bytes);
-          const blob = enc === 'b64' ? new Blob([toB64(bytes)], { type: 'text/plain' }) : new Blob([bytes], { type: 'text/plain' });
-          const r = await uploadWithRetry(blob, 'text/plain');
-          uploaded.push(r.id); chunks.push({ id: r.id, size: bytes.length, sha256: sha });
-          done += bytes.length;
-        }
-        files.push({ name, size: file.size, enc, chunks });
-      }
-      progress('Kaydediliyor…');
-      const prev = dict.manifests[preset];
-      const manifest = {
-        preset, modelId: 'pofu/whisper-' + preset, version: (prev && prev.version || 0) + 1, repo: DICT.presets[preset].repo,
-        dtype, files, totalBytes: fsel.total, installedAt: nowIso(),
-      };
-      await withRetry(() => state.db.doc('dictation/' + preset).set(manifest));
-      inst.busy = false; inst.files = null; inst.progress = null;
-      if (prev) await deleteChunks(prev);
-      toast(DICT.presets[preset].label + ' kuruldu');
-    } catch (e) {
-      inst.busy = false; inst.progress = null;
-      const c = e && e.code;
-      inst.error = c === 'quota_or_state' ? 'Depo doldu. Diğer modeli kaldırıp tekrar dene.' : c === 'unsupported_type' || c === 'too_large' ? 'Depo bu parçayı kabul etmedi (' + c + ').' : 'Yükleme yarıda kaldı (' + String((e && (e.code || e.message)) || e).slice(0, 80) + '). Tekrar dene.';
-      // Remove what this attempt stored, so a failed install leaves nothing behind.
-      for (const id of uploaded) { try { await dict.assets.delete(id); } catch { /* best effort */ } }
-    }
-    renderDictSheet();
-  }
-  async function deleteChunks(man) {
-    for (const f of man.files || []) for (const c of f.chunks || []) { try { await dict.assets.delete(c.id); } catch { /* best effort */ } }
-  }
-  async function removeModel(preset) {
-    const man = dict.manifests[preset]; if (!man || inst.busy) return;
-    inst.busy = true; inst.confirmRemove = null; inst.progress = { frac: 0, text: 'Kaldırılıyor…' }; renderDictSheet();
-    try {
-      await withRetry(() => state.db.doc('dictation/' + preset).delete());
-      await deleteChunks(man);
-      if (dict.worker) workerCall({ type: 'evict', manifest: man }).catch(() => {});
-      dict.loadedKey = null;
-      toast(DICT.presets[preset].label + ' kaldırıldı');
-    } catch (e) { inst.error = writeFailed(e); }
-    inst.busy = false; inst.progress = null; renderDictSheet();
-  }
-  function validManifest(d) {
-    return d && typeof d.modelId === 'string' && /^pofu\/whisper-[a-z0-9-]+$/.test(d.modelId) && Array.isArray(d.files) && d.dtype && typeof d.dtype === 'object'
-      && d.files.every((f) => f && typeof f.name === 'string' && Array.isArray(f.chunks) && f.chunks.every((c) => c && /^[0-9a-f]{32}$/.test(c.id)));
-  }
-  function onManifests(list) {
-    const m = {};
-    for (const d of list) if ((d.id === 'turbo' || d.id === 'small') && validManifest(d)) m[d.id] = d;
-    dict.manifests = m;
-    renderDictSheet();
-    for (const f of dict.fields) if (f.ui.kind === 'nomodel' && pickPreset()) setUi(f, { kind: 'idle' });
-  }
-
-  // ------------------------------------------------------------------ composer (persistent per target)
-  const composers = new Map();
-  function composer(targetType, targetId, placeholder) {
-    const key = targetType + ':' + targetId;
-    if (composers.has(key)) return composers.get(key);
-    const wrap = el('div', 'composer');
-    const ta = el('textarea'); ta.rows = 3; ta.placeholder = placeholder; ta.setAttribute('aria-label', placeholder);
-    ta.value = store.get('draft:' + key) || '';
-    const foot = el('div', 'composer-foot');
-    const left = el('div', 'foot-left');
-    const dictHost = el('div');
-    const btn = el('button', 'btn', 'Ekle'); btn.type = 'button'; btn.dataset.write = '1'; btn.dataset.needsText = '1';
-    const err = el('div', 'err'); err.hidden = true;
-    const sync = () => {
-      if (ta.value.trim()) btn.dataset.hasText = '1'; else delete btn.dataset.hasText;
-      const dictating = dict.active && dict.active.f.ta === ta;
-      btn.disabled = !state.canWrite || btn.dataset.busy === '1' || !ta.value.trim() || dictating; ta.disabled = !state.canWrite;
-      if (c && c.df) c.df.sync();
-    };
-    let c = null;
-    let draftTimer = 0;
-    ta.addEventListener('input', () => { sync(); clearTimeout(draftTimer); draftTimer = setTimeout(() => store.set('draft:' + key, ta.value), 300); });
-    const submit = async () => {
-      const text = ta.value.trim();
-      if (!text || !state.canWrite || btn.dataset.busy === '1') return;
-      btn.dataset.busy = '1'; btn.textContent = 'Ekleniyor…'; sync(); err.hidden = true;
-      try {
-        await addNote(targetType, targetId, text, df.audio);
-        ta.value = ''; store.set('draft:' + key, ''); df.audio = []; df.caret = 0; toast('Not eklendi');
-        if (df.ui.kind === 'done') setUi(df, { kind: 'idle' });
-      } catch (e) { err.textContent = writeFailed(e); err.hidden = false; }
-      delete btn.dataset.busy; btn.textContent = 'Ekle'; sync();
-    };
-    btn.addEventListener('click', submit);
-    ta.addEventListener('keydown', (e) => { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); submit(); } });
-    foot.append(left, btn); wrap.append(ta, foot, dictHost, err);
-    const df = dictField(ta, left, dictHost, { onState: () => sync() });
-    c = { root: wrap, ta, sync, df }; composers.set(key, c); sync();
-    return c;
-  }
-
-  // The original dictation recording, when one was kept (asset ids only; served from /_blob/).
-  function appendAudio(container, audio) {
-    if (!Array.isArray(audio)) return;
-    for (const a of audio.slice(0, 4)) {
-      if (!a || typeof a.id !== 'string' || !/^[0-9a-f]{32}$/.test(a.id)) continue;
-      const au = el('audio'); au.controls = true; au.preload = 'none'; au.src = '/_blob/' + a.id;
-      au.setAttribute('aria-label', 'Ses kaydı' + (a.seconds ? ', ' + fmtTime(a.seconds) : ''));
-      container.append(au);
-    }
-  }
-  function threadFor(targetType, targetId) {
-    return (state.notes || []).filter((n) => n.targetType === targetType && n.targetId === targetId);
-  }
-  function renderNotes(container, list) {
-    container.replaceChildren();
-    for (const n of list) {
-      const d = el('div', 'note' + (n.fromLead ? ' lead' : ''));
-      const who = el('span', 'who', (n.fromLead ? 'Claude' : 'Sen') + (n.createdAt ? ' · ' + ago(n.createdAt) : ''));
-      d.append(who, document.createTextNode(str(n.text)));
-      appendAudio(d, n.audio);
-      container.append(d);
-    }
-    container.hidden = !list.length;
-  }
-
-  // Keep stable card nodes per id so typing and focus survive live updates.
-  function reconcile(container, items, make) {
-    const want = items.map(make);
-    const cur = Array.from(container.children);
-    const same = cur.length === want.length && cur.every((c, i) => c === want[i]);
-    if (!same) {
-      const active = document.activeElement;
-      const keep = active && want.some((w) => w.contains(active)) ? active : null;
-      container.replaceChildren(...want);
-      if (keep && document.activeElement !== keep) keep.focus({ preventScroll: true });
-    }
-  }
-
-  // ------------------------------------------------------------------ questions
-  const STATUS_LABEL = { open: 'Açık', answered: 'Cevaplandı', closed: 'Kapandı' };
-  function normStatus(s) {
-    s = String(s || '').toLowerCase();
-    if (s === 'closed' || s === 'kapandı' || s === 'kapandi') return 'closed';
-    if (s === 'answered' || s === 'cevaplandı' || s === 'cevaplandi') return 'answered';
-    return 'open';
-  }
-  function effStatus(q) {
-    const s = normStatus(q.status);
-    if (s === 'open' && state.answers && state.answers.get(q.id) && state.answers.get(q.id).choice) return 'answered';
-    return s;
-  }
-  const qCards = new Map();
-  function questionCard(q) {
-    let c = qCards.get(q.id);
-    if (!c) {
-      const root = el('article', 'card'); root.dataset.qid = q.id;
-      const body = el('div');
-      const thread = el('div', 'thread');
-      const tt = el('div', 'thread-title', 'Notlar');
-      const notes = el('div', 'notes');
-      const comp = composer('question', q.id, 'Notun ya da sorun…');
-      thread.append(tt, notes, comp.root);
-      root.append(body, thread);
-      c = { root, body, notes, comp }; qCards.set(q.id, c);
-    }
-    fillQuestion(c, q);
-    return c.root;
-  }
-  function fillQuestion(c, q) {
-    const st = effStatus(q);
-    const ans = state.answers && state.answers.get(q.id);
-    const choice = ans && ans.choice;
-    const rec = q.recommendation && typeof q.recommendation === 'object' ? q.recommendation : {};
-    const b = c.body; b.replaceChildren();
-
-    const top = el('div', 'card-top');
-    top.append(el('span', 'pill ' + st, STATUS_LABEL[st]));
-    top.append(el('span', 'grow'));
-    if (q.createdAt) top.append(el('span', '', ago(q.createdAt)));
+  function optionButton(q, o, chosen, rec) {
+    const b = el('button', 'opt'); b.type = 'button'; b.setAttribute('role', 'radio');
+    b.setAttribute('aria-checked', String(chosen === o.key)); b.disabled = !state.canWrite;
+    const top = el('div', 'top');
+    top.append(withIcon(el('span', 'radio')), el('span', 'lbl', str(o.label)));
     b.append(top);
-    b.append(el('h4', '', str(q.title) || 'Başlıksız soru'));
-    if (q.context) b.append(el('p', 'ctx', str(q.context)));
-    const img = imageOf(q); if (img) b.append(shot(img, str(q.title)));
-
-    const opts = Array.isArray(q.options) ? q.options.filter((o) => o && o.key != null) : [];
-    if (opts.length) {
-      const g = el('div', 'options'); g.setAttribute('role', 'radiogroup'); g.setAttribute('aria-label', 'Seçenekler');
-      for (const o of opts) {
-        const key = String(o.key);
-        const btn = el('button', 'opt'); btn.type = 'button'; btn.setAttribute('role', 'radio');
-        btn.setAttribute('aria-checked', String(choice === key));
-        btn.disabled = !state.canWrite || st === 'closed';
-        const radio = el('span', 'radio'); radio.append(svg(ICON.check));
-        const lbl = el('span', 'lbl', str(o.label) || key);
-        if (rec.key != null && String(rec.key) === key) lbl.append(el('span', 'rec', 'Önerim'));
-        btn.append(radio, lbl);
-        const facts = el('span', 'facts');
-        const fact = (cls, name, v) => { if (!str(v)) return; const d = el('span', cls); d.append(el('b', '', name), el('span', '', str(v))); facts.append(d); };
-        fact('pro', 'Artı', o.pros); fact('con', 'Eksi', o.cons); fact('cost', 'Bedel', o.cost);
-        if (facts.childNodes.length) btn.append(facts);
-        btn.addEventListener('click', () => choose(q.id, key));
-        g.append(btn);
-      }
-      b.append(g);
-    }
-    if (rec.key != null || rec.reason) {
-      const recOpt = opts.find((o) => String(o.key) === String(rec.key));
-      const box = el('div', 'recbox');
-      box.append(el('b', '', 'Önerim: ' + (recOpt ? str(recOpt.label) : str(rec.key)) + (rec.reason ? '. ' : '')));
-      if (rec.reason) box.append(document.createTextNode(str(rec.reason)));
-      b.append(box);
-    }
-    renderNotes(c.notes, threadFor('question', q.id));
-    c.comp.sync();
+    if (rec) b.append(el('span', 'rec', 'Önerim'));
+    const facts = el('dl', 'facts');
+    for (const r of [factRow('pro', '+', o.pros), factRow('con', '−', o.cons), factRow('cost', '₺', o.cost)]) if (r) facts.append(r);
+    if (facts.children.length) b.append(facts);
+    b.addEventListener('click', () => choose(q.id, o.key));
+    return b;
   }
+
+  function questionCard(q) {
+    const card = el('article', 'card'); card.dataset.qid = q.id;
+    const h = el('h3', null, str(q.title)); card.append(h);
+    if (q.context) card.append(el('p', 'ctx', str(q.context)));
+    const chosen = state.answers && state.answers.get(q.id) ? state.answers.get(q.id).choice : null;
+    const recKey = q.recommendation && q.recommendation.key;
+    const g = el('div', 'options'); g.setAttribute('role', 'radiogroup'); g.setAttribute('aria-label', str(q.title));
+    for (const o of (Array.isArray(q.options) ? q.options : [])) g.append(optionButton(q, o, chosen, o.key === recKey));
+    card.append(g);
+    if (q.recommendation && q.recommendation.reason) {
+      const rb = el('div', 'recbox'); rb.append(el('b', null, 'Önerim: '), document.createTextNode(str(q.recommendation.reason))); card.append(rb);
+    }
+    if (state.canWrite) card.append(noteBox(q));
+    return card;
+  }
+
+  function noteBox(q) {
+    const d = el('details', 'note'); d.append(el('summary', null, 'Not ekle'));
+    const body = el('div', 'note-body');
+    const area = el('textarea'); area.id = 'note-' + q.id; area.rows = 3; area.setAttribute('aria-label', 'Not'); area.value = state.drafts.get(q.id) || '';
+    const foot = el('div', 'note-foot'); foot.append(el('span', 'hint', 'İstersen yaz, istersen boş bırak.'));
+    const send = el('button', 'btn', 'Ekle'); send.type = 'button'; send.disabled = !area.value.trim();
+    area.addEventListener('input', () => { state.drafts.set(q.id, area.value); send.disabled = !area.value.trim(); });
+    send.addEventListener('click', () => sendNote(q.id, area.value.trim(), send, area));
+    foot.append(send); body.append(area, foot); d.append(body);
+    if (area.value) d.open = true;
+    d.addEventListener('toggle', () => { if (d.open) d.dataset.open = '1'; else delete d.dataset.open; });
+    return d;
+  }
+
   function renderQuestions() {
     const list = $('#q-list');
-    if (state.questions == null) return;
-    const qs = state.questions.map((q) => ({ q, s: effStatus(q) }));
-    const counts = { open: 0, answered: 0, all: qs.length };
-    for (const x of qs) if (x.s === 'open') counts.open++; else if (x.s === 'answered') counts.answered++;
-    $('#n-open').textContent = counts.open || ''; $('#n-answered').textContent = counts.answered || ''; $('#n-all').textContent = counts.all || '';
-    $('#tab-questions .dot').hidden = !counts.open;
-    $('#q-meta').textContent = counts.open ? counts.open + ' açık soru' : '';
-    document.querySelectorAll('.chip[data-filter]').forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.filter === state.filter)));
-    const sortS = (x) => (state.filter === 'open' && state.keepVisible.has(x.q.id) && x.s === 'answered' ? 'open' : x.s);
-    let shown = qs.filter((x) => state.filter === 'all' || sortS(x) === state.filter);
-    const pr = (q) => (typeof q.priority === 'number' ? q.priority : Number(q.priority) || 999);
-    const rank = { open: 0, answered: 1, closed: 2 };
-    shown.sort((a, b) => (state.filter === 'answered'
-      ? toMs(b.q.createdAt) - toMs(a.q.createdAt)
-      : (rank[sortS(a)] - rank[sortS(b)]) || (pr(a.q) - pr(b.q)) || (toMs(b.q.createdAt) - toMs(a.q.createdAt))));
-    if (!shown.length) {
-      const msg = !qs.length ? 'Henüz soru yok. Ekip bir karar beklediğinde burada görünür.'
-        : state.filter === 'open' ? 'Açık soru yok. Rahat ol, Pofu da rahat.'
-        : state.filter === 'answered' ? 'Henüz cevapladığın bir soru yok.' : 'Henüz soru yok.';
-      list.replaceChildren(emptyLine(msg)); return;
-    }
-    reconcile(list, shown.map((x) => x.q), questionCard);
-  }
-  document.querySelectorAll('.chip[data-filter]').forEach((c) => c.addEventListener('click', () => {
-    state.filter = c.dataset.filter; state.keepVisible.clear(); store.set('filter', state.filter); renderQuestions();
-  }));
+    if (state.questions == null || state.answers == null) return;
+    // keep open note drawers and focus across re-renders
+    const openNotes = new Set([...list.querySelectorAll('details.note[open]')].map((d) => d.closest('[data-qid]').dataset.qid));
+    const active = document.activeElement && document.activeElement.id && list.contains(document.activeElement) ? document.activeElement.id : null;
+    const all = state.questions.filter((q) => q.status === 'open' || q.status === 'answered').sort(bySort);
+    const todo = all.filter((q) => !isAnswered(q) || state.reopen.has(q.id));
+    const done = all.filter((q) => isAnswered(q) && !state.reopen.has(q.id));
+    list.replaceChildren();
+    if (!todo.length) list.append(el('div', 'empty', all.length ? 'Şu an cevap bekleyen soru yok.' : 'Şu an soru yok. Yeni bir soru olursa burada görünür.'));
+    for (const q of todo) list.append(questionCard(q));
+    for (const q of todo) if (openNotes.has(q.id)) { const d = list.querySelector('[data-qid="' + CSS.escape(q.id) + '"] details.note'); if (d) d.open = true; }
+    if (active) { const a = document.getElementById(active); if (a) a.focus(); }
+    $('#q-meta').textContent = todo.length ? todo.length + ' açık' : '';
 
-  // ------------------------------------------------------------------ now
-  function renderItems(container, items, emptyText) {
-    container.replaceChildren();
-    if (!Array.isArray(items) || !items.length) { container.append(emptyLine(emptyText)); return; }
-    for (const it of items) {
-      if (!it) continue;
-      const d = el('div', 'item');
-      d.append(el('div', 't', str(it.title) || '—'));
-      if (it.line) d.append(el('div', 'l', str(it.line)));
-      const img = imageOf(it); if (img) d.append(shot(img, str(it.title)));
-      const link = safeUrl(it.link);
-      if (link) { const a = el('a', 'more', 'Bağlantıyı aç →'); a.href = link; a.target = '_blank'; a.rel = 'noopener'; d.append(a); }
-      container.append(d);
+    const box = $('#done-box'), dl = $('#done-list');
+    box.hidden = !done.length; $('#done-n').textContent = done.length || '';
+    dl.replaceChildren();
+    for (const q of done) {
+      const a = state.answers.get(q.id);
+      const opt = a && (q.options || []).find((o) => o.key === a.choice);
+      const row = el('div', 'done-row'); const txt = el('div', 'txt');
+      txt.append(el('div', 't', str(q.title)));
+      if (opt) txt.append(el('div', 'c', 'Seçimin: ' + str(opt.label)));
+      row.append(txt);
+      if (state.canWrite && a) { const b = el('button', 'btn ghost', 'Değiştir'); b.type = 'button'; b.addEventListener('click', () => { state.reopen.add(q.id); renderQuestions(); const c = list.querySelector('[data-qid="' + CSS.escape(q.id) + '"]'); if (c) c.scrollIntoView({ block: 'center' }); }); row.append(b); }
+      dl.append(row);
     }
   }
+
+  // ---------------------------------------------------------------- render: now + roadmap
+  const STATE_LABEL = { doing: 'Yapılıyor', next: 'Sırada', blocked: 'Takıldı' };
+  const STATE_ORDER = { doing: 0, blocked: 1, next: 2 };
   function renderNow() {
-    if (state.status === undefined) return;
-    const s = state.status || {};
-    $('#now-meta').textContent = s.updatedAt ? 'son güncelleme ' + ago(s.updatedAt) : (state.status ? '' : 'henüz güncelleme yok');
-    renderItems($('#now-doing'), s.doing, 'Şu an yapılan bir iş yok.');
-    renderItems($('#now-done'), s.doneToday, 'Bugün henüz bir şey bitmedi.');
-    renderItems($('#now-next'), s.next, 'Sırada bir şey yok.');
-  }
-  function renderIdeas() {
-    if (state.ideas == null) return;
-    const c = $('#ideas'); c.replaceChildren();
-    const ideas = state.ideas.slice().sort((a, b) => toMs(b.createdAt) - toMs(a.createdAt));
-    $('#ideas-count').textContent = ideas.length ? '· ' + ideas.length : '';
-    if (!ideas.length) { c.append(emptyLine('Aklına bir şey gelirse Fikir\'e dokun.')); return; }
-    for (const i of ideas) {
-      const d = el('div', 'item idea');
-      d.append(el('div', 't', str(i.text)));
-      const tags = Array.isArray(i.tags) ? i.tags.filter((t) => typeof t === 'string') : [];
-      if (tags.length) { const tg = el('div', 'tags'); for (const t of tags) tg.append(el('span', 'tag', t)); d.append(tg); }
-      appendAudio(d, i.audio);
-      if (i.createdAt) d.append(el('div', 'when', ago(i.createdAt)));
-      const replies = threadFor('idea', i.id);
-      if (replies.length) { const n = el('div', 'notes'); n.style.margin = '8px 0 0'; renderNotes(n, replies); d.append(n); }
-      c.append(d);
-    }
+    const list = $('#now-list');
+    if (state.now === undefined) return;
+    list.replaceChildren();
+    const items = state.now && Array.isArray(state.now.items) ? state.now.items.filter((i) => i && i.text) : [];
+    if (!items.length) { list.append(el('div', 'empty', 'Şu an listelenen bir iş yok.')); $('#now-meta').textContent = ''; return; }
+    items.map((it, i) => [it, i]).sort((a, b) => (STATE_ORDER[a[0].state] ?? 3) - (STATE_ORDER[b[0].state] ?? 3) || a[1] - b[1]).forEach(([it]) => {
+      const row = el('div', 'item'); const st = STATE_ORDER[it.state] != null ? it.state : 'next';
+      row.append(el('span', 'pill ' + st, STATE_LABEL[st]), el('div', 'txt', str(it.text))); list.append(row);
+    });
+    const t = toMs(state.now.updatedAt); $('#now-meta').textContent = t ? fmt.format(new Date(t)) : '';
   }
 
-  // ------------------------------------------------------------------ roadmap
-  const RM = {
-    done: { label: 'Bitti', icon: ICON.check }, doing: { label: 'Sürüyor' }, next: { label: 'Sırada' },
-  };
-  function normRm(s) {
-    s = String(s || '').toLowerCase();
-    if (s === 'done' || s === 'bitti') return 'done';
-    if (s === 'doing' || s === 'sürüyor' || s === 'suruyor' || s === 'in-progress') return 'doing';
-    return 'next';
-  }
   function renderRoadmap() {
+    const host = $('#rm-list');
     if (state.roadmap === undefined) return;
-    const ol = $('#timeline'); ol.replaceChildren();
-    const items = state.roadmap && Array.isArray(state.roadmap.items) ? state.roadmap.items.filter(Boolean) : [];
-    const done = items.filter((i) => normRm(i.status) === 'done').length;
-    $('#rm-meta').textContent = items.length ? done + ' / ' + items.length + ' bitti' : '';
-    if (!items.length) { const li = el('li'); li.append(emptyLine('Yol haritası henüz yazılmadı.')); ol.append(li); return; }
-    for (const it of items) {
-      const s = normRm(it.status);
-      const li = el('li', 'ms ' + s);
-      const mark = el('span', 'mark'); mark.setAttribute('aria-hidden', 'true');
-      if (RM[s].icon) mark.append(svg(RM[s].icon));
-      const body = el('div', 'body');
-      const row = el('div', 'row');
-      row.append(el('div', 't', str(it.title) || '—'));
-      if (it.when) row.append(el('div', 'when', str(it.when)));
-      body.append(row);
-      if (it.line) body.append(el('div', 'l', str(it.line)));
-      body.append(el('div', 'st', RM[s].label));
-      li.append(mark, body); ol.append(li);
+    host.replaceChildren();
+    const phases = state.roadmap && Array.isArray(state.roadmap.phases) ? state.roadmap.phases : [];
+    if (!phases.length) { host.append(el('div', 'empty', 'Yol haritası henüz yazılmadı.')); return; }
+    for (const p of phases) {
+      const items = Array.isArray(p.items) ? p.items.filter((i) => i && i.text) : [];
+      const sec = el('div', 'phase'); const h = el('h3', null, str(p.title));
+      const done = items.filter((i) => i.done).length; h.append(el('span', 'n', items.length ? done + '/' + items.length : ''));
+      sec.append(h);
+      const list = el('div', 'list');
+      for (const it of items) { const row = el('div', 'item' + (it.done ? ' done' : '')); row.append(withIcon(el('span', 'check')), el('div', 'txt', str(it.text))); list.append(row); }
+      if (!items.length) list.append(el('div', 'empty', 'Boş'));
+      sec.append(list); host.append(sec);
     }
   }
 
-  // ------------------------------------------------------------------ reviews
-  const rvCards = new Map();
-  function reviewCard(r) {
-    let c = rvCards.get(r.id);
-    if (!c) {
-      const root = el('article', 'card'); root.dataset.rid = r.id;
-      const body = el('div');
-      const verdicts = el('div', 'verdicts');
-      const mk = (cls, icon, label) => { const b = el('button', 'vbtn ' + cls); b.type = 'button'; b.dataset.write = '1'; b.append(svg(icon), document.createTextNode(label)); verdicts.append(b); return b; };
-      const like = mk('like', ICON.heart, 'Beğendim');
-      const redo = mk('redo', ICON.redo, 'Yeniden');
-      const note = mk('note', ICON.note, 'Not');
-      const thread = el('div', 'thread');
-      const notes = el('div', 'notes');
-      const comp = composer('review', r.id, 'Bu iş hakkında notun…');
-      thread.append(el('div', 'thread-title', 'Notlar'), notes, comp.root);
-      root.append(body, verdicts, thread);
-      c = { root, body, like, redo, note, thread, notes, comp, open: false };
-      like.addEventListener('click', () => setVerdict(r.id, 'liked'));
-      redo.addEventListener('click', () => setVerdict(r.id, 'redo'));
-      note.addEventListener('click', () => {
-        c.open = true; c.thread.hidden = false; c.note.setAttribute('aria-pressed', 'true');
-        c.comp.ta.focus(); c.comp.ta.scrollIntoView({ block: 'center', behavior: 'smooth' });
-      });
-      rvCards.set(r.id, c);
-    }
-    fillReview(c, r);
-    return c.root;
-  }
-  function fillReview(c, r) {
-    const b = c.body; b.replaceChildren();
-    const v = r.verdict === 'liked' || r.verdict === 'redo' ? r.verdict : null;
-    const top = el('div', 'card-top');
-    top.append(el('span', 'pill ' + (v || 'pending'), v === 'liked' ? 'Beğendin' : v === 'redo' ? 'Yeniden' : 'Bekliyor'));
-    top.append(el('span', 'grow'));
-    if (r.createdAt) top.append(el('span', '', ago(r.createdAt)));
-    b.append(top);
-    b.append(el('h4', '', str(r.title) || 'Başlıksız'));
-    const img = imageOf(r); if (img) b.append(shot(img, str(r.title)));
-    if (r.context) b.append(el('p', 'ctx', str(r.context)));
-    c.like.setAttribute('aria-pressed', String(v === 'liked'));
-    c.redo.setAttribute('aria-pressed', String(v === 'redo'));
-    const notes = threadFor('review', r.id);
-    renderNotes(c.notes, notes);
-    const showThread = c.open || notes.length > 0 || !!c.comp.ta.value;
-    c.thread.hidden = !showThread;
-    c.note.setAttribute('aria-pressed', String(showThread));
-    [c.like, c.redo, c.note].forEach((x) => { x.disabled = !state.canWrite; });
-    c.comp.sync();
-  }
-  function renderReviews() {
-    const list = $('#rv-list');
-    if (state.reviews == null) return;
-    const rs = state.reviews.slice();
-    const pending = rs.filter((r) => !r.verdict || state.keepReview.has(r.id)).sort((a, b) => toMs(b.createdAt) - toMs(a.createdAt));
-    const done = rs.filter((r) => r.verdict && !state.keepReview.has(r.id)).sort((a, b) => toMs(b.verdictAt || b.createdAt) - toMs(a.verdictAt || a.createdAt));
-    const waiting = rs.filter((r) => !r.verdict).length;
-    $('#tab-reviews .dot').hidden = !waiting;
-    $('#rv-meta').textContent = waiting ? waiting + ' bekliyor' : 'hepsine baktın';
-    if (!rs.length) { list.replaceChildren(emptyLine('Onay bekleyen bir şey yok. Yeni bir görsel hazır olunca burada.')); return; }
-    const groups = [];
-    const gPending = list.querySelector(':scope > .g-pending') || Object.assign(el('div', 'g-pending'));
-    const gDone = list.querySelector(':scope > .g-done') || Object.assign(el('div', 'g-done'));
-    for (const [g, title, items, emptyText] of [[gPending, 'Bekleyen', pending, 'Bekleyen iş yok. Hepsine baktın.'], [gDone, 'Değerlendirilen', done, null]]) {
-      let h = g.querySelector(':scope > h3'); if (!h) { h = el('h3', 'group'); g.prepend(h); }
-      h.textContent = title + (items.length ? ' · ' + items.length : '');
-      let box = g.querySelector(':scope > .cards'); if (!box) { box = el('div', 'cards'); g.append(box); }
-      if (!items.length) { if (emptyText) box.replaceChildren(emptyLine(emptyText)); g.hidden = !emptyText; }
-      else { g.hidden = false; reconcile(box, items, reviewCard); }
-      groups.push(g);
-    }
-    if (list.firstElementChild !== gPending || list.children.length !== 2) list.replaceChildren(...groups);
+  function renderAll() { renderBanner(); renderQuestions(); renderNow(); renderRoadmap(); }
+
+  function showEmpty() {
+    state.questions = []; state.answers = new Map(); state.now = null; state.roadmap = null; renderAll();
   }
 
-  // ------------------------------------------------------------------ idea sheet
-  const sheet = $('#sheet'), scrim = $('#scrim'), ideaText = $('#idea-text'), ideaSend = $('#idea-send'), ideaErr = $('#idea-err');
-  const picked = new Set();
-  for (const t of TAGS) {
-    const b = el('button', 'chip', t); b.type = 'button'; b.setAttribute('aria-pressed', 'false');
-    b.addEventListener('click', () => { if (picked.has(t)) picked.delete(t); else picked.add(t); b.setAttribute('aria-pressed', String(picked.has(t))); });
-    $('#idea-tags').append(b);
-  }
-  ideaText.value = store.get('draft:idea') || '';
-  const ideaDict = dictField(ideaText, $('#idea-foot'), $('#idea-dict'), { onState: () => syncIdea() });
-  const syncIdea = () => { ideaSend.disabled = !state.canWrite || !ideaText.value.trim() || ideaSend.dataset.busy === '1' || !!(dict.active && dict.active.f === ideaDict); ideaDict.sync(); };
-  ideaText.addEventListener('input', () => { syncIdea(); store.set('draft:idea', ideaText.value); });
-  let lastFocus = null;
-  function openSheet() {
-    lastFocus = document.activeElement;
-    scrim.hidden = false; sheet.hidden = false; ideaErr.hidden = true;
-    requestAnimationFrame(() => { scrim.classList.add('on'); sheet.classList.add('on'); });
-    syncIdea(); setTimeout(() => ideaText.focus(), 60);
-  }
-  function closeSheet() {
-    if (dict.active && dict.active.f === ideaDict) stopSession(true);
-    scrim.classList.remove('on'); sheet.classList.remove('on');
-    setTimeout(() => { if (dsheet.hidden) scrim.hidden = true; sheet.hidden = true; }, 260);
-    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
-  }
-  $('#fab').addEventListener('click', openSheet);
-  $('#sheet-close').addEventListener('click', closeSheet);
-  scrim.addEventListener('click', () => { if (!dsheet.hidden) closeDictSheet(); else closeSheet(); });
-  document.addEventListener('keydown', (e) => { if (e.key !== 'Escape') return; if (!dsheet.hidden) closeDictSheet(); else if (!sheet.hidden) closeSheet(); });
-  ideaSend.addEventListener('click', async () => {
-    const text = ideaText.value.trim();
-    if (!text || !state.canWrite) return;
-    ideaSend.dataset.busy = '1'; ideaSend.textContent = 'Gönderiliyor…'; syncIdea();
-    try {
-      const body = { text, tags: TAGS.filter((t) => picked.has(t)), createdAt: nowIso() };
-      if (state.userId) body.authorId = state.userId;
-      if (ideaDict.audio.length) body.audio = ideaDict.audio.slice();
-      await withRetry(() => state.db.collection('ideas').add(body));
-      ideaText.value = ''; store.set('draft:idea', ''); picked.clear(); ideaDict.audio = []; ideaDict.caret = 0; setUi(ideaDict, { kind: 'idle' });
-      document.querySelectorAll('#idea-tags .chip').forEach((c) => c.setAttribute('aria-pressed', 'false'));
-      closeSheet(); toast('Fikrin kaydedildi');
-    } catch (e) { ideaErr.textContent = writeFailed(e); ideaErr.hidden = false; }
-    delete ideaSend.dataset.busy; ideaSend.textContent = 'Gönder'; syncIdea();
-  });
-
-  // ------------------------------------------------------------------ render all
-  function renderAll() { renderBanner(); renderQuestions(); renderNow(); renderIdeas(); renderRoadmap(); renderReviews(); }
-
-  function showOfflineEmpty() {
-    state.questions = state.questions || []; state.answers = state.answers || new Map(); state.notes = state.notes || [];
-    if (state.status === undefined) state.status = null;
-    if (state.roadmap === undefined) state.roadmap = null;
-    state.reviews = state.reviews || []; state.ideas = state.ideas || [];
-    renderAll();
-  }
-
-  // ------------------------------------------------------------------ boot
-  setTab((location.hash || '').slice(1) || store.get('tab') || 'questions');
-
+  // ---------------------------------------------------------------- boot
   async function boot() {
-    if (!window.claude || typeof window.claude.use !== 'function') { state.mode = 'offline'; showOfflineEmpty(); return; }
+    if (!window.claude || typeof window.claude.use !== 'function') { state.mode = 'offline'; showEmpty(); return; }
     let db = null, user = null;
     try { [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]); } catch { db = null; }
-    if (!db) { state.mode = 'offline'; showOfflineEmpty(); return; }
+    if (!db) { state.mode = 'offline'; showEmpty(); return; }
     state.db = db;
     if (user) {
       try { state.userId = await user.id(); } catch { state.userId = null; }
-      let can = null;
-      try { can = await user.can('data.write'); } catch { can = null; }
-      state.canWrite = can !== false; // null: keep the inputs and let a refused write decide
+      let can = null; try { can = await user.can('data.write'); } catch { can = null; }
+      state.canWrite = can !== false;
     } else state.canWrite = true;
     state.mode = state.canWrite ? 'live' : 'readonly';
     renderBanner();
-    for (const f of dict.fields) f.sync();
-    // Assets are granted to people who can edit; they store dictation audio and install models.
-    window.claude.use('assets').then((a) => { dict.assets = a || null; renderDictSheet(); }, () => {});
 
-    // Loading watchdog: every listener must confirm once (fromCache false) or error within 10 s.
-    const pending = new Set();
-    const watchdog = setTimeout(() => { if (pending.size) { state.stale = true; showOfflineEmptyKeep(); renderBanner(); } }, 10000);
-    function showOfflineEmptyKeep() {
-      // Show empty states for anything that never arrived, keep what did.
-      if (state.questions == null) state.questions = [];
-      if (state.answers == null) state.answers = new Map();
-      if (state.notes == null) state.notes = [];
-      if (state.status === undefined) state.status = null;
-      if (state.roadmap === undefined) state.roadmap = null;
-      if (state.reviews == null) state.reviews = [];
-      if (state.ideas == null) state.ideas = [];
-      renderAll();
-    }
-    const settle = (name, meta) => {
-      if (meta && meta.fromCache) return;
-      if (pending.delete(name) && !pending.size) { clearTimeout(watchdog); if (state.stale) { state.stale = false; renderBanner(); } }
-    };
+    const pending = new Set(['questions', 'answers', 'status', 'roadmap']);
+    const watchdog = setTimeout(() => { if (pending.size) { state.stale = true; if (state.questions == null) state.questions = []; if (state.answers == null) state.answers = new Map(); if (state.now === undefined) state.now = null; if (state.roadmap === undefined) state.roadmap = null; renderAll(); } }, 10000);
+    const settle = (name, meta) => { if (meta && meta.fromCache) return; if (pending.delete(name) && !pending.size) { clearTimeout(watchdog); if (state.stale) { state.stale = false; renderBanner(); } } };
     const onErr = (name) => (e) => {
       pending.delete(name);
-      if (!pending.size) clearTimeout(watchdog);
-      if (e && (e.code === 'revoked' || e.code === 'not_granted')) { state.canWrite = false; state.mode = 'readonly'; }
-      else state.stale = true;
-      showOfflineEmptyKeep();
+      if (e && (e.code === 'revoked' || e.code === 'not_granted')) { state.canWrite = false; state.mode = 'readonly'; } else state.stale = true;
+      if (state.questions == null) state.questions = []; if (state.answers == null) state.answers = new Map();
+      if (state.now === undefined) state.now = null; if (state.roadmap === undefined) state.roadmap = null;
+      renderAll();
     };
     const docs = (snap) => snap.docs.filter((d) => d.exists).map((d) => Object.assign({ id: d.id }, d.data()));
     const subs = [
       ['questions', db.collection('questions'), (s) => { state.questions = docs(s); renderQuestions(); }],
       ['answers', db.collection('answers'), (s) => { const m = new Map(); for (const d of docs(s)) m.set(d.id, d); state.answers = m; renderQuestions(); }],
-      ['notes', db.collection('notes'), (s) => { state.notes = docs(s).sort((a, b) => toMs(a.createdAt) - toMs(b.createdAt)); renderQuestions(); renderReviews(); renderIdeas(); }],
-      ['status', db.doc('status/now'), (d) => { state.status = d.exists ? d.data() : null; renderNow(); }],
+      ['status', db.doc('status/now'), (d) => { state.now = d.exists ? d.data() : null; renderNow(); }],
       ['roadmap', db.doc('roadmap/main'), (d) => { state.roadmap = d.exists ? d.data() : null; renderRoadmap(); }],
-      ['reviews', db.collection('reviews'), (s) => { state.reviews = docs(s); renderReviews(); }],
-      ['ideas', db.collection('ideas'), (s) => { state.ideas = docs(s); renderIdeas(); }],
     ];
-    for (const [name, ref, fn] of subs) {
-      pending.add(name);
-      ref.onSnapshot((snap) => { try { fn(snap); } finally { settle(name, snap.metadata); } }, onErr(name));
-    }
-    // Speech model manifests; outside the loading watchdog, since the hub works without them.
-    db.collection('dictation').onSnapshot((snap) => onManifests(docs(snap)), () => onManifests([]));
-    // Relative times drift; refresh the cheap labels each minute without touching inputs.
-    setInterval(() => { renderNow(); renderIdeas(); }, 60000);
+    for (const [name, ref, fn] of subs) ref.onSnapshot((snap) => { try { fn(snap); } finally { settle(name, snap.metadata); } }, onErr(name));
   }
   boot();
 })();

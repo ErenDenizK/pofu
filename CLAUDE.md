@@ -50,7 +50,13 @@ Loaded every turn: keep it short. History lives in `docs/` (`docs/README.md`).
 - ADRs `docs/adr/`, research `docs/research/`, brand `docs/brand/`, game
   `docs/product/game-design.md` (keep `economy.md` in sync with `PofuCore`).
 - `content/` holds asset and island nodes used by the art pipeline (the Atlas
-  board and Pofu Hub are retired, 2026-11-02).
+  board is retired, 2026-11-02).
+- Pofu Hub (https://claude.ai/artifact/Qua2VFg3iSJ9V1HJgR8RS9, source
+  `design/hub/index.html`) is back as a simple panel for questions, status and
+  roadmap (not retired). Open questions carry comparable options and a
+  recommendation; the founder ticks one or ignores it, and unanswered
+  questions proceed with the recommendation. Update `status/now` and
+  `roadmap/main` in its db; no reviews, ideas or dictation.
 
 ## Current state (2026-11-02)
 
