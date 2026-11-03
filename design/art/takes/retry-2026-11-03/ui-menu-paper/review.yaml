@@ -3,10 +3,16 @@ contact_sheet: design/art/takes/retry-2026-11-03/ui-menu-paper/contact.jpg
 jobs:
   ui-menu-paper:
     pick: 1
-    publication: selected before global stop; promotion pending
-    note: Both landscape cards have rounded corners, inset warm-brown stitches and
-      a plain even cream centre; smaller card shape differs from the tall sheet reference.
-      t1 lowest lock 0.2786 vs0.2859. Both automatedPASS.
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Resume from the fixed pre-stop
+      original candidate, with zero image generation. Re-posted both retained PNGs
+      under main9ede62e; both locked RGBA rasters match their retained versions exactly
+      and the same eligible take remains lowest lock load. Fresh light/dark small-size
+      visual review reconfirms the choice. Both takes are small landscape cream cards,
+      differing from the tall sheet reference, with four rounded corners, inset warm-brown
+      stitches, a faint darker paper edge and an unmarked plain even cream centre.
+      Edge details fit the 20 pt shipping caps. Both pass every automated check; t1
+      has lower lock load 0.2786 versus 0.2859.
 qa_reports:
   1:
     job: ui-menu-paper
@@ -111,14 +117,15 @@ qa_reports:
         detail: 1.14
     fingerprint: 69c53f1a50d57e26
 manual_review:
-  note: Both landscape cards have rounded corners, inset warm-brown stitches and a
-    plain even cream centre; smaller card shape differs from the tall sheet reference.
-    t1 lowest lock 0.2786 vs0.2859. Both automatedPASS.
-  terminal_decided_at: '2026-11-03T14:09:26.437595+00:00'
-  decision_qa_sha256: 01de761399d6bcecfb33b0c17c86ddd5beea6be9830eca1f40d9693136b40e20
   excluded_takes: []
-  preservation_only_after_global_stop: true
-  no_new_selection_or_promotion: true
+  note: Resume from the fixed pre-stop original candidate, with zero image generation.
+    Re-posted both retained PNGs under main9ede62e; both locked RGBA rasters match
+    their retained versions exactly and the same eligible take remains lowest lock
+    load. Fresh light/dark small-size visual review reconfirms the choice. Both takes
+    are small landscape cream cards, differing from the tall sheet reference, with
+    four rounded corners, inset warm-brown stitches, a faint darker paper edge and
+    an unmarked plain even cream centre. Edge details fit the 20 pt shipping caps.
+    Both pass every automated check; t1 has lower lock load 0.2786 versus 0.2859.
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-482f00e8-309e-4ea0-9371-eccdf1fbac1b.png
