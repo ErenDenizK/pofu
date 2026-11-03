@@ -2,15 +2,12 @@ batch: batch-15-explore
 contact_sheet: design/art/takes/batch-15-explore/x-yildiz-2/contact.jpg
 jobs:
   x-yildiz-2:
-    pick: null
-    publication: unselected due global account stop
-    note: UNSELECTED due global account/sign-in stop; no terminal QA failure/skip,
-      no pick, no further generation or QA after stop. Retained generated takes are
-      for resuming the existing allowed round, never regeneration of a completed pair.
-      Initial pair retained; its one extra pair remains available only if complete
-      QA/manual review later rejects both.
-    takes_generated: 2
-    retry_round_used: false
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Coordinator manual review: both
+      have exactly seven joined stars forming a ladle, an open observatory and tiny
+      Nane on the dome edge. Both pass signature/mood review; take1 has lowest lock
+      load0.6674. Automated warnings unchanged; never promoted.'
 qa_reports:
   1:
     job: x-yildiz-2
@@ -112,61 +109,28 @@ qa_reports:
         C_p99: 42.0
         detail: 1.99
     fingerprint: 8c8e4c493fd1841e
-pre_stop_manual_notes: null
+manual_review:
+  exclude: []
+  expected_pick: 1
+  note: 'Coordinator manual review: both have exactly seven joined stars forming a
+    ladle, an open observatory and tiny Nane on the dome edge. Both pass signature/mood
+    review; take1 has lowest lock load0.6674. Automated warnings unchanged; never
+    promoted.'
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-2455947f-32a6-4019-bfc2-7523cea5fddd.png
-  original_png_sha256: 79f4e2b7fe213d95bd0844e92975a93dca6c0b41dd2e5105c711ad766214ee2e
-  callback_file: /workspace/art-operator-runtime/generated-x-yildiz-2-t1.json
-  account: &id001
+  account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  backend: codex-cloud built-in image tool
-  prompt_sha256: 23919bb8380de7bb894183ce24b51b06fd350fdec0632253eb18d16e617aa10d
+  fingerprint: 8c8e4c493fd1841e
+  original_png_sha256: e2dd3c54c2053ec6c795bc40eb73e6ad3a7145854a3bca17e685a01ff5d9f04c
 - take: 2
   source_file: /workspace/generated_images/exec-501fedec-50f0-440c-b32c-6bd25ed82aeb.png
-  original_png_sha256: 76f6e7c09c106e0d3525203518a9f3e5598168e9a69eaf916eb99b383d543962
-  callback_file: /workspace/art-operator-runtime/generated-x-yildiz-2-t2.json
-  account: *id001
-  backend: codex-cloud built-in image tool
-  prompt_sha256: 23919bb8380de7bb894183ce24b51b06fd350fdec0632253eb18d16e617aa10d
-prompt: "REFERENCES (attached, in this order):\n1. The home island: the same painting,\
-  \ the same low camera (about 20 degrees), the same softness and scale of a floating\
-  \ island. Do not draw this island.\n2. The sea of clouds below every island: paint\
-  \ the clouds like this.\n3. Style reference only (no characters unless asked): the\
-  \ hamster's soft painting and pastel colors.\n\nA concept painting for a cozy mobile\
-  \ game: Y\u0131ld\u0131z at night: above the\nobservatory, seven plump gold stars\
-  \ joined by soft thin golden lines into\na gentle constellation shape like a ladle,\
-  \ the dome shutter open to it, a\nsmall round sleepy owl (Nane, tiny) on the dome\
-  \ edge looking up. Seen from\nthe same low front three-quarter camera as the attached\
-  \ island, the island\nfloating over a sea of clouds. Peaceful and wondrous, never\
-  \ dramatic.\n\nSTYLE: soft painterly 2D illustration from the same picture book\
-  \ as the\nattached hamster: the same gentle airbrushed shading, the same light,\n\
-  high-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes\
-  \ with few parts; fewer, larger shapes, because this is seen small on\na phone.\
-  \ Every material is painted matte, as a soft form with broad,\nsmooth value changes:\
-  \ wood without grain, metal without hammering or\nreflections, glass as a soft tinted\
-  \ shape, cloth without weave. At most\none small, soft highlight per object; no\
-  \ glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow\
-  \ is a warm mid-brown,\nnever near black. Warm diffused key light from the upper\
-  \ left, a faint\nwarm rim light along the right edge, soft ambient shadow only where\
-  \ forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\n\
-  letters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\
-  \nAVOID: characters (except where named), a border, text, harsh shadows, saturated\
-  \ or neon colors, dark moods\n\nOutput: one image, opaque, full bleed, landscape\
-  \ 1536 x 1024."
-references_in_order:
-- /workspace/run15/design/art/masters/island-main-s/island-main-s.png
-- /workspace/run15/design/art/masters/cloud-sea/cloud-sea.png
-- /workspace/run15/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
-stop:
-  reason: Git authentication/account stop condition
-  observed_at: '2026-11-03T10:45:59Z'
-  job: x-emanet-2
-  message: 'fatal: could not read Username for ''https://github.com'': No such device
-    or address'
-  last_verified_head: 9a4209a585e4aaf89997c96f5a902e105d1b016c
-  next_publication_job: x-emanet-2
-  policy: No new generations or terminal decisions; preserve already-finished candidates
-    and publish completed work through an already-authorized functioning transport
-    if possible; notify coordinator immediately.
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 8c8e4c493fd1841e
+  original_png_sha256: 592334ed37f750e51331c9ade569cb7ab0dd5b800c2a1647a8649e9940c09943
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
