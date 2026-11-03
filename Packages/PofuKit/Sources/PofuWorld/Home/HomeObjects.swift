@@ -185,3 +185,30 @@ public struct CheekCollectBeat: Hashable, Sendable {
         return start * (1 - p)
     }
 }
+
+// MARK: - Layout
+
+/// Where the objects stand, relative to Pofu's feet on screen. Pure, so the
+/// collect flight lands where the jar is drawn.
+public enum HomeObjectsLayout {
+    public static let jarSize = (width: 56.0, height: 72.0)
+    public static let lanternHeight = 96.0
+    public static let potWidth = 36.0
+
+    /// The jar's centre: left of Pofu, its base on the lawn.
+    public static func jarCenter(feet: MomentPoint, screenWidth: Double) -> MomentPoint {
+        let margin = jarSize.width / 2 + 12
+        return MomentPoint(x: max(feet.x - 100, margin), y: feet.y - 30)
+    }
+
+    /// The lantern's centre: right of Pofu.
+    public static func lanternCenter(feet: MomentPoint, screenWidth: Double) -> MomentPoint {
+        let margin = 30.0
+        return MomentPoint(x: min(feet.x + 102, screenWidth - margin), y: feet.y - lanternHeight / 2 + 2)
+    }
+
+    /// The centre of the pot row on the island's lip.
+    public static func potsCenter(feet: MomentPoint) -> MomentPoint {
+        MomentPoint(x: feet.x, y: feet.y + 112)
+    }
+}

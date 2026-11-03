@@ -84,10 +84,60 @@ public final class WorldHomeModel {
     ///   - now: The clock moments start from.
     ///   - schedulesCues: Whether cues fire on a timer; tests turn it off
     ///     and call `advance(to:)`.
-    public init(now: @escaping @MainActor () -> Date = { Date() }, schedulesCues: Bool = true) {
+    ///   - cheekLineDefaults: Where "once a day" for Pofu's huge-cheeks line
+    ///     is remembered; `nil` keeps it in memory (tests, screenshots).
+    public init(
+        now: @escaping @MainActor () -> Date = { Date() },
+        schedulesCues: Bool = true,
+        cheekLineDefaults: UserDefaults? = nil,
+        calendar: Calendar = .current
+    ) {
         self.now = now
         self.schedulesCues = schedulesCues
+        self.cheekLineDefaults = cheekLineDefaults
+        self.calendar = calendar
         self.visit = VisitProgress(plan: VisitPlan(landing: .settled, showsRepairBanner: false, beats: []))
+        if let seconds = cheekLineDefaults?.object(forKey: Self.cheekLineKey) as? Double {
+            cheekLineGate = CheekLineGate(lastSpoken: Date(timeIntervalSince1970: seconds))
+        }
+    }
+
+    // MARK: - Cheeks (the Living Diorama)
+
+    /// The Home objects' timing (tuning `home.*`).
+    public var timing = HomeTiming()
+    /// Pofu's cheeks before the collect, held while he presses his paws.
+    public private(set) var collectCheeks: CheekStep = .empty
+    /// The cheeks have stepped down to empty (the paws pressed).
+    public private(set) var cheeksReleased = false
+    /// Pofu's paws are pressed to his cheeks.
+    public private(set) var pawsPressed = false
+    /// This visit's first beat is Pofu saying his cheeks are huge.
+    public private(set) var saysCheeksHuge = false
+
+    @ObservationIgnored private var cheekLineGate = CheekLineGate()
+    @ObservationIgnored private let cheekLineDefaults: UserDefaults?
+    @ObservationIgnored private let calendar: Calendar
+    nonisolated static let cheekLineKey = "pofu.home.cheeksHuge.lastSpoken"
+
+    /// The cheek fill for the companion: the pre-collect step until the
+    /// paws have pressed, then empty; otherwise from the seeds waiting.
+    public func cheekEnergy(uncollected seeds: Int) -> Double {
+        if collect != nil {
+            return cheeksReleased ? 0 : collectCheeks.companionEnergy
+        }
+        return CheekStep(uncollected: seeds).companionEnergy
+    }
+
+    private func decideCheekLine(for plan: VisitPlan) {
+        saysCheeksHuge = false
+        guard case .collect(let pouch)? = plan.beats.first else { return }
+        let step = CheekStep(uncollected: pouch.total.units)
+        let date = now()
+        guard cheekLineGate.allows(step: step, now: date, calendar: calendar) else { return }
+        cheekLineGate.markSpoken(at: date)
+        cheekLineDefaults?.set(date.timeIntervalSince1970, forKey: Self.cheekLineKey)
+        saysCheeksHuge = true
     }
 
     // MARK: - The visit
@@ -95,6 +145,7 @@ public final class WorldHomeModel {
     /// Starts a visit with `plan` (an app landing).
     public func beginVisit(_ plan: VisitPlan) {
         visit = VisitProgress(plan: plan)
+        decideCheekLine(for: plan)
         settledLine = nil
         settledAt = visit.isSettled ? now() : nil
     }
@@ -167,7 +218,11 @@ public final class WorldHomeModel {
         )
         let active = ActiveMoment(moment: moment, start: now())
         collect = active
-        schedule(moment.cueTimes, from: active.start)
+        // Pofu presses his paws to his cheeks, then the cheeks step down.
+        collectCheeks = CheekStep(uncollected: pouch.total.units)
+        cheeksReleased = false
+        pawsPressed = !reduceMotion && collectCheeks > .empty
+        schedule(moment.cueTimes + [timing.pawsPress, timing.pawsPress + timing.cheekRelease], from: active.start)
         return true
     }
 
@@ -238,6 +293,9 @@ public final class WorldHomeModel {
             let cues = active.moment.cues(after: active.played, through: t)
             active.played = max(active.played, t)
             collect = active
+            let beat = CheekCollectBeat(from: collectCheeks, timing: timing)
+            cheeksReleased = t >= timing.pawsPress
+            pawsPressed = !reduceMotion && beat.pawsPressed(at: t)
             for cue in cues {
                 play(cue)
             }
@@ -261,6 +319,7 @@ public final class WorldHomeModel {
             collectSuccesses += 1
         case .end:
             collect = nil
+            pawsPressed = false
             completeCollectBeat()
         }
     }

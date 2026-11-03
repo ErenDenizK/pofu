@@ -86,3 +86,22 @@ struct HomeObjectsTests {
         #expect(!CheekCollectBeat(from: .empty, timing: HomeTiming()).pawsPressed(at: 0.1))
     }
 }
+
+@Suite("Home layout")
+struct HomeObjectsLayoutTests {
+    @Test func theJarStandsLeftAndTheLanternRightOfPofu() {
+        let feet = MomentPoint(x: 200, y: 590)
+        let jar = HomeObjectsLayout.jarCenter(feet: feet, screenWidth: 393)
+        let lantern = HomeObjectsLayout.lanternCenter(feet: feet, screenWidth: 393)
+        #expect(jar.x < feet.x)
+        #expect(lantern.x > feet.x)
+        #expect(jar.y > 0 && lantern.y > 0)
+    }
+
+    @Test func objectsStayOnAScreenEdge() {
+        let near = MomentPoint(x: 20, y: 500)
+        #expect(HomeObjectsLayout.jarCenter(feet: near, screenWidth: 393).x >= 28)
+        let far = MomentPoint(x: 380, y: 500)
+        #expect(HomeObjectsLayout.lanternCenter(feet: far, screenWidth: 393).x <= 393 - 30)
+    }
+}
