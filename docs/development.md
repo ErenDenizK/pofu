@@ -394,11 +394,47 @@ never merged; it does not run for pull requests from forks.
 A newer push to the same branch cancels the run in progress. A pull request
 must be green before it merges.
 
+## Local Swift on the cloud agent
+
+swift.org is blocked, but Docker Hub is reachable, so the official
+`swift:6.2.1-noble` image's layers are unpacked straight into `/opt/swift`
+(no Docker daemon; about a minute; idempotent):
+
+```sh
+tools/swift/setup-linux.sh            # optional arg: tag, default 6.2.1
+export PATH=/opt/swift/usr/bin:$PATH  # swift --version -> 6.2.1
+tools/swift/test-linux.sh             # Linux-clean tests, 628 tests, ~1 min
+cd Packages/PofuKit && swift build --target PofuCore   # one target
+```
+
+Plain `swift test` fails on Linux because it builds every target. The
+script tests a throwaway copy without the three non-clean targets.
+
+| Target | Linux build | Tests |
+| --- | --- | --- |
+| PofuCore, PofuPersistence, PofuDesignSystem, PofuCompanion, PofuWorld | yes | pass |
+| PofuScreenTime | no | not run |
+| PofuTuning, PofuGames | no | not run |
+
+Needed to make the rest Linux-clean (not done yet):
+
+- `PofuScreenTime/ShieldExtensionCore.swift` and
+  `LiveScreenTimeService.swift`: `import os` needs
+  `#if canImport(os)` (or `OSLog`-free logging).
+- `PofuTuning/TuningSpec.swift:36` (`TuningSpec.all`): the long `+` chain
+  hits "unable to type-check in reasonable time" on Linux; split it into
+  separate statements. `PofuGames` depends on PofuTuning, so it is blocked
+  by this too; its SpriteKit/SwiftUI files (`UI/Garden*`, `Scene/Garden*`)
+  still need an audit for `canImport` guards once it compiles.
+
+CI on macOS stays the source of truth; this is for fast local logic
+checks before pushing.
+
 ## The cloud agent environment
 
-The lead agent runs on Linux without Xcode and cannot download a Swift
-toolchain (swift.org is blocked), so the compile and test loop is: push,
-then read the GitHub Actions results. PyPI and Ubuntu apt are reachable
+The lead agent runs on Linux without Xcode. swift.org is blocked, but a
+local Swift is possible (see above); full compile and test of the iOS
+targets is still push, then read the GitHub Actions results. PyPI and Ubuntu apt are reachable
 (`bpy` from PyPI works for Blender); Chromium and Playwright are
 preinstalled for rendering and inspecting prototypes. The repository has
 been **public** since 2026-11-01, so Actions minutes are free; if it ever
