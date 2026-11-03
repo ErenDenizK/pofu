@@ -2,15 +2,12 @@ batch: batch-15-explore
 contact_sheet: design/art/takes/batch-15-explore/x-emanet-1/contact.jpg
 jobs:
   x-emanet-1:
-    pick: null
-    publication: unselected due global account stop
-    note: UNSELECTED due global account/sign-in stop; no terminal QA failure/skip,
-      no pick, no further generation or QA after stop. Retained generated takes are
-      for resuming the existing allowed round, never regeneration of a completed pair.
-      Initial pair retained; its one extra pair remains available only if complete
-      QA/manual review later rejects both.
-    takes_generated: 2
-    retry_round_used: false
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Coordinator manual review: both
+      show the tilted shelf with umbrella, spoon, sock, button and key, the bell,
+      warm round window and teal/brass stilt office. Soft cloud setting and calm character-free
+      mood pass. Take1 lowest load0.6837. Exploration only.'
 qa_reports:
   1:
     job: x-emanet-1
@@ -112,102 +109,28 @@ qa_reports:
         C_p99: 41.5
         detail: 2.25
     fingerprint: 120cb6669097f9d9
-pre_stop_manual_notes:
+manual_review:
   exclude: []
-  note: 'Both automated PASS and manual establishing-shape/whoa review pass: crooked
-    small weathered-teal/brass/cream lost-and-found office on stilts beside cloud
-    current, warm round window, porch bell and a tilted shelf with umbrella/spoon/sock/button/key.
-    Soft low-camera family painting, no characters/text/border. Take1 lowest lock
-    load0.6837. Never promoted.'
+  expected_pick: 1
+  note: 'Coordinator manual review: both show the tilted shelf with umbrella, spoon,
+    sock, button and key, the bell, warm round window and teal/brass stilt office.
+    Soft cloud setting and calm character-free mood pass. Take1 lowest load0.6837.
+    Exploration only.'
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-c5442ea2-9b0b-49a5-808a-983b963f36ca.png
-  original_png_sha256: e0fe5b171bd6fa3e334a2d1f887dc48406ba96f007a9a75597b75ca50e0288b7
-  callback_file: /workspace/art-operator-runtime/generated-x-emanet-1-t1.json
-  account: &id001
+  account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  backend: codex-cloud built-in image tool
-  prompt_sha256: 9de1a7f06e4d25d344aac3b1b102a906fae0537ec310e1029744f403a8cea7f1
+  fingerprint: 120cb6669097f9d9
+  original_png_sha256: 1176d77b3cbdc00632ae87b869b66f4d7c1e343172e1979bcf5dd61eeac4da86
 - take: 2
   source_file: /workspace/generated_images/exec-e1181a40-43b8-48e6-b46c-b06b63fb309f.png
-  original_png_sha256: 25a8b04abc7ee12d0ffa3b338d686790118758c98e9b00b550d1a96d295c04f6
-  callback_file: /workspace/art-operator-runtime/generated-x-emanet-1-t2.json
-  account: *id001
-  backend: codex-cloud built-in image tool
-  prompt_sha256: 9de1a7f06e4d25d344aac3b1b102a906fae0537ec310e1029744f403a8cea7f1
-prompt: 'REFERENCES (attached, in this order):
-
-  1. The home island: the same painting, the same low camera (about 20 degrees), the
-  same softness and scale of a floating island. Do not draw this island.
-
-  2. The sea of clouds below every island: paint the clouds like this.
-
-  3. Style reference only (no characters unless asked): the hamster''s soft painting
-  and pastel colors.
-
-
-  A concept painting for a cozy mobile game: Emanet, a crooked little office
-
-  on stilts at the end of a drifting cloud current, in weathered teal and
-
-  brass and brown paper, with a round window glowing warmly, a counter bell
-
-  on the porch, and a tilted shelf crowded with small lost things (an
-
-  umbrella, a spoon, a sock, a button, a key) on its porch. Seen from the
-
-  same low front three-quarter camera as the attached island, the island
-
-  floating over a sea of clouds. Peaceful and wondrous, never dramatic.
-
-
-  STYLE: soft painterly 2D illustration from the same picture book as the
-
-  attached hamster: the same gentle airbrushed shading, the same light,
-
-  high-key values and the same milky pastel colors. Simple, rounded, chunky
-
-  shapes with few parts; fewer, larger shapes, because this is seen small on
-
-  a phone. Every material is painted matte, as a soft form with broad,
-
-  smooth value changes: wood without grain, metal without hammering or
-
-  reflections, glass as a soft tinted shape, cloth without weave. At most
-
-  one small, soft highlight per object; no glints, no shine. Colors are
-
-  muted and lifted toward cream; the darkest shadow is a warm mid-brown,
-
-  never near black. Warm diffused key light from the upper left, a faint
-
-  warm rim light along the right edge, soft ambient shadow only where forms
-
-  touch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no
-
-  letters, no numbers, no logos, no watermark, no border, no frame, no
-
-  sticker outline.
-
-
-  AVOID: characters (except where named), a border, text, harsh shadows, saturated
-  or neon colors, dark moods
-
-
-  Output: one image, opaque, full bleed, landscape 1536 x 1024.'
-references_in_order:
-- /workspace/run15/design/art/masters/island-main-s/island-main-s.png
-- /workspace/run15/design/art/masters/cloud-sea/cloud-sea.png
-- /workspace/run15/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
-stop:
-  reason: Git authentication/account stop condition
-  observed_at: '2026-11-03T10:45:59Z'
-  job: x-emanet-2
-  message: 'fatal: could not read Username for ''https://github.com'': No such device
-    or address'
-  last_verified_head: 9a4209a585e4aaf89997c96f5a902e105d1b016c
-  next_publication_job: x-emanet-2
-  policy: No new generations or terminal decisions; preserve already-finished candidates
-    and publish completed work through an already-authorized functioning transport
-    if possible; notify coordinator immediately.
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 120cb6669097f9d9
+  original_png_sha256: f10e2be84457b0724f37fa01e0496a79cddd8619b492fe076161abf6fe346427
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
