@@ -203,6 +203,17 @@ class RecoveryTests(unittest.TestCase):
         self.assertEqual(state.classify_error("exec-server transport disconnected; recovery timed out"), "transient_worker_unavailable_not_job_failure")
         self.assertEqual(state.classify_error("fatal: could not read Username"), "account_or_usage_stop")
 
+    def test_transport_and_filesystem_errors_are_not_model_or_account_stops(self):
+        cases = {
+            "ConnectionRefusedError: [Errno 111] Connection refused": "transient_worker_unavailable_not_job_failure",
+            "PermissionError: [Errno 13] Permission denied: 'build/image.png'": "needs_inspection_no_success_assumed",
+            "Image-generation model refused the image request": "refusal_stop",
+            "git@github.com: Permission denied (publickey).": "account_or_usage_stop",
+        }
+        for message, expected in cases.items():
+            with self.subTest(message=message):
+                self.assertEqual(state.classify_error(message), expected)
+
     def test_partial_stop_marker_still_freezes_dispatch(self):
         (self.runtime / "GLOBAL_STOP.json").write_text("{")
         _, snapshot, _ = self.reconcile()

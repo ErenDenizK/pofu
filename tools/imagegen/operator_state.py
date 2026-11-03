@@ -167,14 +167,19 @@ def classify_error(message):
     m = message.lower()
     if any(t in m for t in ("quota", "rate limit", "usage-limit", "usage limit")):
         return "account_or_usage_stop"
-    if any(t in m for t in ("could not read username", "authentication failed", "sign-in", "sign in", "permission denied")):
+    if (any(t in m for t in ("could not read username", "authentication failed", "sign-in", "sign in", "invalid username", "invalid password", "permission denied (publickey"))
+            or re.search(r"\bpermission to \S+\.git denied to\b", m)):
         return "account_or_usage_stop"
-    if "refus" in m:
-        return "refusal_stop"
-    if any(t in m for t in ("transport disconnected", "recovery timed out", "no usable execution environment", "offline", "unavailable")):
+    if any(t in m for t in ("transport disconnected", "recovery timed out", "no usable execution environment", "offline", "unavailable", "connection refused", "connection reset", "connection aborted", "econnrefused", "econnreset", "broken pipe")):
         return "transient_worker_unavailable_not_job_failure"
     if any(t in m for t in ("ipc frame", "message too large")):
         return "oversized_control_payload_reduce_group_not_regenerate"
+    # A socket can refuse a connection and a filesystem can deny permission.
+    # Neither is an image-model refusal or an authentication observation.
+    model = r"\b(?:model|codex|assistant|image_gen|image(?:[- ]generation)?(?: tool)?)\b"
+    refusal = r"\brefus(?:ed|al|es|ing)\b"
+    if re.search(model + r"[^.\n]{0,80}" + refusal, m) or re.search(refusal + r"[^.\n]{0,80}" + model, m):
+        return "refusal_stop"
     return "needs_inspection_no_success_assumed"
 
 
