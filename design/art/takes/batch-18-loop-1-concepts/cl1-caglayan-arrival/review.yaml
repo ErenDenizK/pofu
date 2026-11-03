@@ -1,0 +1,804 @@
+batch: batch-18-loop-1-concepts
+contact_sheet: design/art/takes/batch-18-loop-1-concepts/cl1-caglayan-arrival/contact.jpg
+jobs:
+  cl1-caglayan-arrival:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both takes recommend eligible
+      as the arrival state of the same spiralling travertine-fountain landform, with
+      milky opaque pools, sparse thin lowest-rim water, morning fog and an otter holding
+      an empty glass. This is a fresh concept scene, not a registered edit: the manifest
+      attaches home/cloud/R1 but no previous pool take and declares no edit_of. Same
+      silhouette is interpreted as retention of the recognisable stepped-column landform
+      family, not pixel-identical rim counts or camera framing; exact stage-to-stage
+      registration is not claimed. Owner should disclose this manifest/spec ambiguity
+      in the PR. No style-only threshold or production score gate is imposed.'
+qa_reports:
+  1:
+    job: cl1-caglayan-arrival
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 17 (R1 51)
+      value: 16.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 81.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.94
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.4305
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 3.7, off-palette 0.0%
+      value: 1.567
+    info:
+      metrics_raw:
+        L_p5: 81.4
+        L_p50: 89.9
+        L_p95: 96.2
+        C_p50: 7.0
+        C_p95: 17.0
+        C_p99: 33.8
+        detail: 1.29
+      metrics_locked:
+        L_p5: 81.6
+        L_p50: 90.0
+        L_p95: 96.0
+        C_p50: 7.0
+        C_p95: 16.8
+        C_p99: 33.6
+        detail: 0.94
+    fingerprint: f081f703e6a359e6
+  2:
+    job: cl1-caglayan-arrival
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 16 (R1 51)
+      value: 16.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 82.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.07
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5407
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 3.6, off-palette 0.0%
+      value: 1.3661
+    info:
+      metrics_raw:
+        L_p5: 82.3
+        L_p50: 90.8
+        L_p95: 96.0
+        C_p50: 6.5
+        C_p95: 16.7
+        C_p99: 32.6
+        detail: 1.49
+      metrics_locked:
+        L_p5: 82.5
+        L_p50: 90.8
+        L_p95: 95.8
+        C_p50: 6.5
+        C_p95: 16.4
+        C_p99: 32.5
+        detail: 1.07
+    fingerprint: f081f703e6a359e6
+effective_exploration_reports:
+  1:
+    job: cl1-caglayan-arrival
+    take: 1
+    raw_status: pass
+    status: pass
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 17 (R1 51)
+      value: 16.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 81.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.94
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.4305
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 3.7, off-palette 0.0%
+      value: 1.567
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: 5bb7e0e6ca078633f3c805c1a767a8cf7cd86de9e82daba2347201b8667cf82c
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+  2:
+    job: cl1-caglayan-arrival
+    take: 2
+    raw_status: pass
+    status: pass
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 16 (R1 51)
+      value: 16.4
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 82.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.07
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5407
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 3.6, off-palette 0.0%
+      value: 1.3661
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: b55b83511c6737e2e16f29dd997ecc2d88c796848bee3123d8f5882cf81ed52c
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+manual_review:
+  note: 'Both takes recommend eligible as the arrival state of the same spiralling
+    travertine-fountain landform, with milky opaque pools, sparse thin lowest-rim
+    water, morning fog and an otter holding an empty glass. This is a fresh concept
+    scene, not a registered edit: the manifest attaches home/cloud/R1 but no previous
+    pool take and declares no edit_of. Same silhouette is interpreted as retention
+    of the recognisable stepped-column landform family, not pixel-identical rim counts
+    or camera framing; exact stage-to-stage registration is not claimed. Owner should
+    disclose this manifest/spec ambiguity in the PR. No style-only threshold or production
+    score gate is imposed.'
+  takes:
+    '1':
+      pass: true
+      silhouette_name: Tall winding travertine pool staircase, widening downward into
+        fog
+      rubric:
+      - 2
+      - 2
+      - 1
+      - 2
+      - 0
+      evidence: The source shows pale milky, almost opaque water instead of portal
+        landscapes, with a single slender foreground overflow rather than a full curtain.
+        An otter holds an unfilled tea glass, and parted peach-blue morning fog surrounds
+        the creamy stepped column. At native60 the tapering stacked/spiring basin
+        profile is distinct from an oval lawn/soil bowl. No home lawn, roots, embedded
+        soil pebbles, home door or sunflower is observed. The same-family column identity
+        is retained; the exact rim count/layout differs from the close-cropped pilot
+        because this manifest does not supply it as an edit parent.
+      contours:
+      - - - 695
+          - 91
+        - - 710
+          - 74
+        - - 751
+          - 64
+        - - 802
+          - 56
+        - - 844
+          - 59
+        - - 887
+          - 68
+        - - 931
+          - 83
+        - - 955
+          - 109
+        - - 990
+          - 127
+        - - 1031
+          - 129
+        - - 1073
+          - 139
+        - - 1113
+          - 160
+        - - 1137
+          - 183
+        - - 1141
+          - 214
+        - - 1133
+          - 243
+        - - 1128
+          - 275
+        - - 1141
+          - 305
+        - - 1155
+          - 337
+        - - 1164
+          - 375
+        - - 1172
+          - 409
+        - - 1182
+          - 436
+        - - 1202
+          - 464
+        - - 1215
+          - 498
+        - - 1218
+          - 530
+        - - 1210
+          - 563
+        - - 1215
+          - 594
+        - - 1265
+          - 610
+        - - 1326
+          - 628
+        - - 1376
+          - 651
+        - - 1411
+          - 678
+        - - 1430
+          - 710
+        - - 1437
+          - 743
+        - - 1429
+          - 778
+        - - 1409
+          - 814
+        - - 1383
+          - 841
+        - - 1349
+          - 858
+        - - 1307
+          - 860
+        - - 1259
+          - 884
+        - - 1202
+          - 903
+        - - 1134
+          - 910
+        - - 1065
+          - 922
+        - - 990
+          - 921
+        - - 925
+          - 948
+        - - 877
+          - 948
+        - - 828
+          - 930
+        - - 775
+          - 925
+        - - 712
+          - 914
+        - - 650
+          - 920
+        - - 594
+          - 915
+        - - 536
+          - 901
+        - - 482
+          - 902
+        - - 430
+          - 885
+        - - 375
+          - 878
+        - - 321
+          - 879
+        - - 267
+          - 856
+        - - 215
+          - 857
+        - - 163
+          - 843
+        - - 118
+          - 824
+        - - 90
+          - 797
+        - - 78
+          - 769
+        - - 75
+          - 737
+        - - 62
+          - 710
+        - - 60
+          - 679
+        - - 73
+          - 655
+        - - 91
+          - 635
+        - - 119
+          - 617
+        - - 154
+          - 603
+        - - 188
+          - 589
+        - - 224
+          - 576
+        - - 263
+          - 562
+        - - 279
+          - 541
+        - - 282
+          - 508
+        - - 279
+          - 470
+        - - 272
+          - 436
+        - - 262
+          - 405
+        - - 255
+          - 376
+        - - 257
+          - 354
+        - - 270
+          - 335
+        - - 294
+          - 324
+        - - 329
+          - 316
+        - - 372
+          - 312
+        - - 421
+          - 310
+        - - 474
+          - 309
+        - - 515
+          - 306
+        - - 533
+          - 299
+        - - 535
+          - 273
+        - - 550
+          - 250
+        - - 575
+          - 235
+        - - 611
+          - 226
+        - - 648
+          - 222
+        - - 686
+          - 219
+        - - 716
+          - 222
+        - - 715
+          - 197
+        - - 710
+          - 167
+        - - 703
+          - 138
+      holes: []
+      swatch_points:
+      - - 1040
+        - 700
+      - - 810
+        - 470
+      - - 392
+        - 477
+      uncertainty: White travertine and the low narrow fall merge gradually into fog.
+        The mask follows only a coarse observed cloud-contact edge; no hidden base
+        or continuing stream is completed. The top is visible. Same landform family,
+        not a pixel-registered clone of the pilot.
+      frame_cut_edges: []
+      banned_template:
+        home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        embedded_soil_pebbles: false
+        round_home_door: false
+      hard_failures: []
+      confidence: High on arrival story/pool state; moderate on exact cross-scene
+        silhouette due undeclared edit parent
+      sampled_swatches:
+      - point:
+        - 1040
+        - 700
+        hex: '#CADED4'
+      - point:
+        - 810
+        - 470
+        hex: '#D4DACC'
+      - point:
+        - 392
+        - 477
+        hex: '#FCDBC2'
+      source_file: /workspace/generated_images/exec-2257e88e-2c54-4696-8f8b-04114e600e4b.png
+      original_generated_png_sha256: 27c47ab35b2479c9b4d3b6fde58ce1c918c6d86e2ba035aceddc12e336b68f9e
+      rgba_sha256: 6a47802356df365c335b0adcd06073da354a27f7c098e2ccc56ed3f0a8158871
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 60
+      - 56
+      - 1438
+      - 949
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch18/reviews-root/cl1-caglayan-arrival-t1-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch18/reviews-root/cl1-caglayan-arrival-t1-QA-profile60.png
+      native60_mask_sha256: f13691012439c2096fde241dd1e0f682eee880a66ef81593d2c3adc893db51c5
+      annotation_source_inbox_sha256: 3cced75dfd46ecd7d9e3a0599617db30b79708497f52d9a5298e56ab2257f11f
+    '2':
+      pass: true
+      silhouette_name: Tall winding travertine pool staircase, widening downward into
+        fog
+      rubric:
+      - 2
+      - 2
+      - 1
+      - 2
+      - 0
+      evidence: The source shows pale milky, almost opaque water instead of portal
+        landscapes, with a single slender foreground overflow rather than a full curtain.
+        An otter holds an unfilled tea glass, and parted peach-blue morning fog surrounds
+        the creamy stepped column. At native60 the tapering stacked/spiring basin
+        profile is distinct from an oval lawn/soil bowl. No home lawn, roots, embedded
+        soil pebbles, home door or sunflower is observed. The same-family column identity
+        is retained; the exact rim count/layout differs from the close-cropped pilot
+        because this manifest does not supply it as an edit parent.
+      contours:
+      - - - 857
+          - 70
+        - - 860
+          - 56
+        - - 884
+          - 48
+        - - 913
+          - 47
+        - - 939
+          - 52
+        - - 959
+          - 65
+        - - 973
+          - 84
+        - - 971
+          - 107
+        - - 991
+          - 118
+        - - 1020
+          - 135
+        - - 1045
+          - 156
+        - - 1063
+          - 181
+        - - 1071
+          - 208
+        - - 1070
+          - 238
+        - - 1063
+          - 266
+        - - 1077
+          - 278
+        - - 1119
+          - 282
+        - - 1167
+          - 294
+        - - 1201
+          - 311
+        - - 1227
+          - 333
+        - - 1242
+          - 360
+        - - 1243
+          - 389
+        - - 1234
+          - 420
+        - - 1232
+          - 446
+        - - 1270
+          - 464
+        - - 1318
+          - 476
+        - - 1369
+          - 493
+        - - 1413
+          - 511
+        - - 1449
+          - 536
+        - - 1472
+          - 565
+        - - 1488
+          - 602
+        - - 1493
+          - 646
+        - - 1491
+          - 690
+        - - 1483
+          - 734
+        - - 1468
+          - 771
+        - - 1448
+          - 798
+        - - 1416
+          - 812
+        - - 1371
+          - 813
+        - - 1317
+          - 833
+        - - 1264
+          - 850
+        - - 1202
+          - 874
+        - - 1144
+          - 894
+        - - 1081
+          - 904
+        - - 1020
+          - 904
+        - - 955
+          - 906
+        - - 889
+          - 904
+        - - 829
+          - 897
+        - - 769
+          - 890
+        - - 709
+          - 873
+        - - 650
+          - 871
+        - - 591
+          - 854
+        - - 533
+          - 851
+        - - 475
+          - 835
+        - - 417
+          - 832
+        - - 362
+          - 818
+        - - 307
+          - 814
+        - - 253
+          - 804
+        - - 207
+          - 805
+        - - 163
+          - 795
+        - - 126
+          - 780
+        - - 86
+          - 770
+        - - 58
+          - 748
+        - - 42
+          - 721
+        - - 34
+          - 693
+        - - 35
+          - 667
+        - - 49
+          - 646
+        - - 76
+          - 632
+        - - 108
+          - 621
+        - - 142
+          - 610
+        - - 175
+          - 598
+        - - 205
+          - 586
+        - - 220
+          - 569
+        - - 224
+          - 537
+        - - 217
+          - 513
+        - - 218
+          - 488
+        - - 228
+          - 460
+        - - 246
+          - 433
+        - - 272
+          - 411
+        - - 300
+          - 395
+        - - 329
+          - 387
+        - - 358
+          - 387
+        - - 389
+          - 393
+        - - 414
+          - 405
+        - - 442
+          - 427
+        - - 466
+          - 427
+        - - 465
+          - 399
+        - - 458
+          - 380
+        - - 459
+          - 358
+        - - 474
+          - 339
+        - - 495
+          - 326
+        - - 527
+          - 315
+        - - 557
+          - 304
+        - - 583
+          - 291
+        - - 583
+          - 264
+        - - 570
+          - 239
+        - - 563
+          - 214
+        - - 564
+          - 193
+        - - 577
+          - 177
+        - - 605
+          - 168
+        - - 637
+          - 161
+        - - 672
+          - 157
+        - - 706
+          - 156
+        - - 731
+          - 151
+        - - 753
+          - 142
+        - - 756
+          - 121
+        - - 771
+          - 106
+        - - 796
+          - 95
+        - - 827
+          - 85
+      holes: []
+      swatch_points:
+      - - 1200
+        - 720
+      - - 1050
+        - 541
+      - - 351
+        - 544
+      uncertainty: White travertine and the low narrow fall merge gradually into fog.
+        The mask follows only a coarse observed cloud-contact edge; no hidden base
+        or continuing stream is completed. The top is visible. Same landform family,
+        not a pixel-registered clone of the pilot.
+      frame_cut_edges: []
+      banned_template:
+        home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        embedded_soil_pebbles: false
+        round_home_door: false
+      hard_failures: []
+      confidence: High on arrival story/pool state; moderate on exact cross-scene
+        silhouette due undeclared edit parent
+      sampled_swatches:
+      - point:
+        - 1200
+        - 720
+        hex: '#F5E6DE'
+      - point:
+        - 1050
+        - 541
+        hex: '#DCE2DB'
+      - point:
+        - 351
+        - 544
+        hex: '#F8D5B9'
+      source_file: /workspace/generated_images/exec-faf5f637-a1a7-4d4e-9ee7-0ecdd56844fd.png
+      original_generated_png_sha256: 59536b7b8a6be97632224f3e77d2436677d0f6bdc9d967154ba1f3cbc5392741
+      rgba_sha256: 4ac7b2f507b9b70b9bc9145b06aba54a4c66aeee72c4ed973a1f184be0ad5aa0
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 34
+      - 47
+      - 1494
+      - 907
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch18/reviews-root/cl1-caglayan-arrival-t2-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch18/reviews-root/cl1-caglayan-arrival-t2-QA-profile60.png
+      native60_mask_sha256: d16f711d2be3421ad8982df61f8b2fbc29e5221bc40182524ab8153e5c8801fe
+      annotation_source_inbox_sha256: caa7325e317faf53963c3a4e61625015eda7617f125256e135a6fd14c6d0a903
+  reviewed_at: '2026-11-03T17:02:02.260682+00:00'
+  qa_preview: /workspace/art-operator-runtime/batch18/reviews-root/cl1-caglayan-arrival-QA-preview.jpg
+  preview_sha256: 1b8ecee832af9256b4f55076ece947678f561e0f2913e04877be3aee10d29362
+  no_authoritative_pick: true
+  production_score_threshold_applied: false
+  reviewer_source_json_sha256: fe781f076adf0a680231991936aadac5e7c980f3a80883dd1666cc14fe567859
+  reviewer_source_file: /workspace/art-operator-runtime/batch18/reviews-root/cl1-caglayan-arrival.json
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-2257e88e-2c54-4696-8f8b-04114e600e4b.png
+  original_generated_png_sha256: 27c47ab35b2479c9b4d3b6fde58ce1c918c6d86e2ba035aceddc12e336b68f9e
+  inbox_png_sha256: 3cced75dfd46ecd7d9e3a0599617db30b79708497f52d9a5298e56ab2257f11f
+  rgba_sha256: 6a47802356df365c335b0adcd06073da354a27f7c098e2ccc56ed3f0a8158871
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f081f703e6a359e6
+- take: 2
+  source_file: /workspace/generated_images/exec-faf5f637-a1a7-4d4e-9ee7-0ecdd56844fd.png
+  original_generated_png_sha256: 59536b7b8a6be97632224f3e77d2436677d0f6bdc9d967154ba1f3cbc5392741
+  inbox_png_sha256: caa7325e317faf53963c3a4e61625015eda7617f125256e135a6fd14c6d0a903
+  rgba_sha256: 4ac7b2f507b9b70b9bc9145b06aba54a4c66aeee72c4ed973a1f184be0ad5aa0
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f081f703e6a359e6
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true

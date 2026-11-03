@@ -1,0 +1,757 @@
+batch: batch-18-loop-1-concepts
+contact_sheet: design/art/takes/batch-18-loop-1-concepts/cl1-caglayan-pools/contact.jpg
+jobs:
+  cl1-caglayan-pools:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both originals recommend eligible:
+      the three pools visibly contain different distant worlds (aurora ice, whale
+      and bell settlement), not reflections of the common surrounding sky. Actual
+      observed stepped-travertine profiles remain distinct at native60. This is a
+      close concept composition: the upper column is frame-cut and the low fall fades
+      into cloud, so a complete uncropped island contour is not claimed. The brief
+      does not require a full-view margin; missing edges are not reconstructed. No
+      production eight-point gate or style thresholds are imposed. The owner alone
+      chooses the eligible lowest-lock-load take.'
+qa_reports:
+  1:
+    job: cl1-caglayan-pools
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 23 (R1 51)
+      value: 23.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 73 (R1 59)
+      value: 72.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.84
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8169
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 5.3, off-palette 0.5% (top: #88BBDD (0.1%), #88BBCC
+        (0.1%))'
+      value: 1.8143
+    info:
+      metrics_raw:
+        L_p5: 72.5
+        L_p50: 90.0
+        L_p95: 97.2
+        C_p50: 7.1
+        C_p95: 23.8
+        C_p99: 34.8
+        detail: 2.56
+      metrics_locked:
+        L_p5: 72.9
+        L_p50: 90.0
+        L_p95: 96.7
+        C_p50: 7.2
+        C_p95: 23.1
+        C_p99: 33.7
+        detail: 1.84
+    fingerprint: 488ce54fc2c4534c
+  2:
+    job: cl1-caglayan-pools
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 24.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 76.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.6
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8862
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 4.4, off-palette 0.6% (top: #77BBCC (0.2%), #88BBDD
+        (0.1%))'
+      value: 1.7086
+    info:
+      metrics_raw:
+        L_p5: 75.8
+        L_p50: 89.2
+        L_p95: 96.5
+        C_p50: 8.1
+        C_p95: 25.1
+        C_p99: 33.6
+        detail: 2.29
+      metrics_locked:
+        L_p5: 76.2
+        L_p50: 89.2
+        L_p95: 96.2
+        C_p50: 8.1
+        C_p95: 24.1
+        C_p99: 31.5
+        detail: 1.6
+    fingerprint: 488ce54fc2c4534c
+effective_exploration_reports:
+  1:
+    job: cl1-caglayan-pools
+    take: 1
+    raw_status: pass
+    status: pass
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 23 (R1 51)
+      value: 23.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 73 (R1 59)
+      value: 72.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.84
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8169
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 5.3, off-palette 0.5% (top: #88BBDD (0.1%), #88BBCC
+        (0.1%))'
+      value: 1.8143
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: 929e5b02a9ad8fcdde1dfa8545d067eac8eb2c59ec279c5b9806a427ecf039d6
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+  2:
+    job: cl1-caglayan-pools
+    take: 2
+    raw_status: pass
+    status: pass
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 24.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 76.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.6
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8862
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 4.4, off-palette 0.6% (top: #77BBCC (0.2%), #88BBDD
+        (0.1%))'
+      value: 1.7086
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: 8407f78e3dd651d34c82ef3e2c06b94c15bcebbd9d02727dbbddbfc4aa8d78d0
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+manual_review:
+  note: 'Both originals recommend eligible: the three pools visibly contain different
+    distant worlds (aurora ice, whale and bell settlement), not reflections of the
+    common surrounding sky. Actual observed stepped-travertine profiles remain distinct
+    at native60. This is a close concept composition: the upper column is frame-cut
+    and the low fall fades into cloud, so a complete uncropped island contour is not
+    claimed. The brief does not require a full-view margin; missing edges are not
+    reconstructed. No production eight-point gate or style thresholds are imposed.
+    The owner alone chooses the eligible lowest-lock-load take.'
+  takes:
+    '1':
+      pass: true
+      silhouette_name: Frame-cut stepped travertine fountain column with broad descending
+        pool rims
+      rubric:
+      - 2
+      - 2
+      - 2
+      - 2
+      - 1
+      evidence: 'Three open basins are visible, each showing a different remote place:
+        aurora over ice in the upper pool, whale back in the middle, warm bell-spire
+        settlement in the lower. The outside sky has none of those scenes, establishing
+        windows rather than ordinary mirrors. Mineral teal water, chalk cream walls
+        and warm glints replace the home lawn/soil template. Otter holding an amber
+        tea glass and small curled-forelock hamster occupy a rim; the lowest basin
+        spills visibly into cloud. The observed in-frame stair-step landform and protruding
+        rims survive native60 as a tiered fountain/column, rather than an oval lawn
+        bowl. Full silhouette completeness is explicitly limited by framing.'
+      contours:
+      - - - 518
+          - 0
+        - - 1236
+          - 0
+        - - 1248
+          - 23
+        - - 1267
+          - 43
+        - - 1295
+          - 61
+        - - 1336
+          - 91
+        - - 1363
+          - 124
+        - - 1374
+          - 156
+        - - 1377
+          - 188
+        - - 1370
+          - 222
+        - - 1353
+          - 258
+        - - 1347
+          - 320
+        - - 1374
+          - 341
+        - - 1391
+          - 366
+        - - 1400
+          - 398
+        - - 1397
+          - 432
+        - - 1389
+          - 462
+        - - 1405
+          - 495
+        - - 1437
+          - 539
+        - - 1459
+          - 585
+        - - 1476
+          - 633
+        - - 1482
+          - 685
+        - - 1471
+          - 729
+        - - 1450
+          - 772
+        - - 1414
+          - 797
+        - - 1372
+          - 806
+        - - 1331
+          - 794
+        - - 1280
+          - 814
+        - - 1236
+          - 851
+        - - 1175
+          - 871
+        - - 1108
+          - 879
+        - - 1041
+          - 889
+        - - 969
+          - 891
+        - - 898
+          - 893
+        - - 833
+          - 911
+        - - 772
+          - 935
+        - - 722
+          - 939
+        - - 677
+          - 926
+        - - 626
+          - 916
+        - - 579
+          - 902
+        - - 525
+          - 902
+        - - 471
+          - 903
+        - - 421
+          - 890
+        - - 366
+          - 882
+        - - 312
+          - 886
+        - - 264
+          - 866
+        - - 219
+          - 863
+        - - 179
+          - 850
+        - - 143
+          - 824
+        - - 131
+          - 788
+        - - 131
+          - 740
+        - - 128
+          - 694
+        - - 105
+          - 674
+        - - 92
+          - 647
+        - - 84
+          - 615
+        - - 87
+          - 582
+        - - 104
+          - 557
+        - - 136
+          - 540
+        - - 170
+          - 530
+        - - 181
+          - 499
+        - - 193
+          - 469
+        - - 201
+          - 439
+        - - 203
+          - 407
+        - - 219
+          - 378
+        - - 244
+          - 358
+        - - 274
+          - 346
+        - - 304
+          - 339
+        - - 339
+          - 340
+        - - 365
+          - 349
+        - - 386
+          - 367
+        - - 385
+          - 321
+        - - 370
+          - 296
+        - - 373
+          - 265
+        - - 388
+          - 238
+        - - 415
+          - 223
+        - - 426
+          - 198
+        - - 431
+          - 168
+        - - 445
+          - 143
+        - - 444
+          - 116
+        - - 456
+          - 91
+        - - 478
+          - 85
+        - - 490
+          - 63
+        - - 504
+          - 54
+      holes: []
+      swatch_points:
+      - - 1144
+        - 714
+      - - 1200
+        - 381
+      - - 1019
+        - 560
+      sampled_swatches:
+      - point:
+        - 1144
+        - 714
+        hex: '#E9DBD1'
+      - point:
+        - 1200
+        - 381
+        hex: '#A8CDD7'
+      - point:
+        - 1019
+        - 560
+        hex: '#F3CBAC'
+      uncertainty: Upper pillar is clipped by the top image edge (closure follows
+        frame, not an invented cap); lower waterfall and white walls fade into cloud,
+        so only a coarse visible cloud-contact boundary is annotated. No complete
+        hidden base or unseen fall extension is reconstructed. Native60 establishes
+        the visible stepped fountain profile, not an uncropped overall height ratio.
+        Internal pool scenes are inspected in color/full resolution, not invented
+        as silhouette holes.
+      frame_cut_edges:
+      - top
+      source_file: /workspace/generated_images/exec-64b191d1-bccb-4c5b-a579-87357ff20cc0.png
+      original_generated_png_sha256: a88f4bbf964240c9ad66ed2827898223317221f8094c8e7b56bb166d46c631f6
+      rgba_sha256: b3d3b776249fe773327ba61f55fb433b5849c56666ed0c6c38d200f293886fff
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 84
+      - 0
+      - 1483
+      - 940
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch18/reviews-root/cl1-caglayan-pools-t1-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch18/reviews-root/cl1-caglayan-pools-t1-QA-profile60.png
+      banned_template:
+        home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        embedded_soil_pebbles: false
+        round_home_door: false
+      hard_failures: []
+      confidence: Moderate on complete silhouette due crop; high on pools-as-windows
+        concept
+      annotation_source_inbox_sha256: f2a5db15915d76a380be759561b4bcb1e84085f969185d8b15895caa9310caa9
+    '2':
+      pass: true
+      silhouette_name: Frame-cut stepped travertine fountain column with broad descending
+        pool rims
+      rubric:
+      - 2
+      - 2
+      - 2
+      - 2
+      - 1
+      evidence: 'Three open basins are visible, each showing a different remote place:
+        aurora over ice in the upper pool, whale back in the middle, warm bell-spire
+        settlement in the lower. The outside sky has none of those scenes, establishing
+        windows rather than ordinary mirrors. Mineral teal water, chalk cream walls
+        and warm glints replace the home lawn/soil template. Otter holding an amber
+        tea glass and small curled-forelock hamster occupy a rim; the lowest basin
+        spills visibly into cloud. The observed in-frame stair-step landform and protruding
+        rims survive native60 as a tiered fountain/column, rather than an oval lawn
+        bowl. Full silhouette completeness is explicitly limited by framing.'
+      contours:
+      - - - 826
+          - 0
+        - - 1168
+          - 0
+        - - 1228
+          - 12
+        - - 1276
+          - 34
+        - - 1320
+          - 55
+        - - 1348
+          - 80
+        - - 1364
+          - 109
+        - - 1361
+          - 142
+        - - 1348
+          - 179
+        - - 1336
+          - 218
+        - - 1332
+          - 259
+        - - 1340
+          - 306
+        - - 1340
+          - 336
+        - - 1329
+          - 358
+        - - 1320
+          - 384
+        - - 1325
+          - 422
+        - - 1346
+          - 455
+        - - 1364
+          - 482
+        - - 1375
+          - 514
+        - - 1378
+          - 542
+        - - 1371
+          - 575
+        - - 1355
+          - 610
+        - - 1334
+          - 637
+        - - 1314
+          - 674
+        - - 1304
+          - 716
+        - - 1298
+          - 754
+        - - 1284
+          - 788
+        - - 1259
+          - 823
+        - - 1228
+          - 846
+        - - 1187
+          - 850
+        - - 1143
+          - 868
+        - - 1094
+          - 878
+        - - 1045
+          - 891
+        - - 989
+          - 900
+        - - 935
+          - 898
+        - - 881
+          - 900
+        - - 829
+          - 890
+        - - 781
+          - 895
+        - - 729
+          - 893
+        - - 682
+          - 904
+        - - 629
+          - 919
+        - - 578
+          - 921
+        - - 531
+          - 913
+        - - 480
+          - 903
+        - - 435
+          - 891
+        - - 385
+          - 879
+        - - 341
+          - 871
+        - - 291
+          - 861
+        - - 244
+          - 846
+        - - 203
+          - 832
+        - - 170
+          - 819
+        - - 155
+          - 784
+        - - 143
+          - 741
+        - - 139
+          - 698
+        - - 126
+          - 656
+        - - 116
+          - 615
+        - - 107
+          - 584
+        - - 99
+          - 562
+        - - 98
+          - 535
+        - - 107
+          - 511
+        - - 125
+          - 494
+        - - 154
+          - 476
+        - - 188
+          - 464
+        - - 224
+          - 453
+        - - 258
+          - 444
+        - - 302
+          - 435
+        - - 338
+          - 429
+        - - 359
+          - 416
+        - - 358
+          - 389
+        - - 337
+          - 373
+        - - 325
+          - 353
+        - - 319
+          - 330
+        - - 319
+          - 305
+        - - 330
+          - 285
+        - - 353
+          - 272
+        - - 386
+          - 260
+        - - 427
+          - 249
+        - - 470
+          - 241
+        - - 503
+          - 230
+        - - 526
+          - 211
+        - - 558
+          - 198
+        - - 577
+          - 178
+        - - 580
+          - 151
+        - - 587
+          - 116
+        - - 604
+          - 97
+        - - 633
+          - 80
+        - - 665
+          - 72
+        - - 686
+          - 46
+        - - 721
+          - 34
+        - - 756
+          - 29
+        - - 787
+          - 12
+      holes: []
+      swatch_points:
+      - - 1120
+        - 644
+      - - 890
+        - 350
+      - - 572
+        - 525
+      sampled_swatches:
+      - point:
+        - 1120
+        - 644
+        hex: '#E5CCBA'
+      - point:
+        - 890
+        - 350
+        hex: '#7FB9C9'
+      - point:
+        - 572
+        - 525
+        hex: '#E3B689'
+      uncertainty: Upper pillar is clipped by the top image edge (closure follows
+        frame, not an invented cap); lower waterfall and white walls fade into cloud,
+        so only a coarse visible cloud-contact boundary is annotated. No complete
+        hidden base or unseen fall extension is reconstructed. Native60 establishes
+        the visible stepped fountain profile, not an uncropped overall height ratio.
+        Internal pool scenes are inspected in color/full resolution, not invented
+        as silhouette holes.
+      frame_cut_edges:
+      - top
+      source_file: /workspace/generated_images/exec-4f8a69ff-e783-4819-8700-1e8677819c1c.png
+      original_generated_png_sha256: d71cc4214359abda811290eb720ae6b89701561db54160901ef90ec6790d4797
+      rgba_sha256: a79ed3bc04224b81dec813fdcd07370098180cad1b04d059a501758c2f322bd6
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 98
+      - 0
+      - 1379
+      - 922
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      silhouette_native_longest_px: 60
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch18/reviews-root/cl1-caglayan-pools-t2-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch18/reviews-root/cl1-caglayan-pools-t2-QA-profile60.png
+      banned_template:
+        home_lawn_oval: false
+        soil_bowl: false
+        dangling_roots: false
+        embedded_soil_pebbles: false
+        round_home_door: false
+      hard_failures: []
+      confidence: Moderate on complete silhouette due crop; high on pools-as-windows
+        concept
+      annotation_source_inbox_sha256: a12e90b5cf6cd2513215e1ab1fab32206ed27e4b62b97427f5164d4f78b64063
+  reviewed_at: '2026-11-03T16:55:23.632065+00:00'
+  no_authoritative_pick: true
+  production_score_threshold_applied: false
+  qa_preview: /workspace/art-operator-runtime/batch18/reviews-root/cl1-caglayan-pools-QA-preview.jpg
+  preview_sha256: 93b333079c7083399e3b6a7f7c70699742b3011eef558d3b498e094b2ce97d65
+  reviewer_source_json_sha256: 7ac56273e2d342571c5e527fe9ade3f618db03651385a3906d5686285be77a95
+  reviewer_source_file: /workspace/art-operator-runtime/batch18/reviews-root/cl1-caglayan-pools.json
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-64b191d1-bccb-4c5b-a579-87357ff20cc0.png
+  original_generated_png_sha256: a88f4bbf964240c9ad66ed2827898223317221f8094c8e7b56bb166d46c631f6
+  inbox_png_sha256: f2a5db15915d76a380be759561b4bcb1e84085f969185d8b15895caa9310caa9
+  rgba_sha256: b3d3b776249fe773327ba61f55fb433b5849c56666ed0c6c38d200f293886fff
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 488ce54fc2c4534c
+- take: 2
+  source_file: /workspace/generated_images/exec-4f8a69ff-e783-4819-8700-1e8677819c1c.png
+  original_generated_png_sha256: d71cc4214359abda811290eb720ae6b89701561db54160901ef90ec6790d4797
+  inbox_png_sha256: a12e90b5cf6cd2513215e1ab1fab32206ed27e4b62b97427f5164d4f78b64063
+  rgba_sha256: a79ed3bc04224b81dec813fdcd07370098180cad1b04d059a501758c2f322bd6
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 488ce54fc2c4534c
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true

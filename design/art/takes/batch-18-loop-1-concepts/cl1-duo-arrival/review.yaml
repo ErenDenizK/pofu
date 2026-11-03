@@ -1,0 +1,777 @@
+batch: batch-18-loop-1-concepts
+contact_sheet: design/art/takes/batch-18-loop-1-concepts/cl1-duo-arrival/contact.jpg
+jobs:
+  cl1-duo-arrival:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Independent read-only exploration
+      review of retained takes1/2. Both recommended eligible, no final pick. Original
+      source byte/RGBA, official POSTED and raw/effective QA hashes bound. Profile
+      follows only the visible outside of the touching character pair and cup; the
+      pier/environment is excluded from that diagnostic, not reconstructed. Style/rubric
+      advisory with no eight-point production gate. No generation, post, promotion,
+      source edits or Git writes by reviewer.
+qa_reports:
+  1:
+    job: cl1-duo-arrival
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 65.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.47
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0235
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 3.8, off-palette 0.8% (top: #DD7733 (0.2%), #EE8844
+        (0.1%))'
+      value: 1.7279
+    info:
+      metrics_raw:
+        L_p5: 65.0
+        L_p50: 83.9
+        L_p95: 92.5
+        C_p50: 10.5
+        C_p95: 36.3
+        C_p99: 52.5
+        detail: 1.96
+      metrics_locked:
+        L_p5: 65.2
+        L_p50: 83.9
+        L_p95: 92.3
+        C_p50: 10.6
+        C_p95: 36.0
+        C_p99: 50.4
+        detail: 1.47
+    fingerprint: 7018757affeb4baa
+  2:
+    job: cl1-duo-arrival
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 35.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 65.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.39
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9831
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 3.6, off-palette 0.4% (top: #DD8844 (0.1%), #EE9955
+        (0.1%))'
+      value: 1.5003
+    info:
+      metrics_raw:
+        L_p5: 64.8
+        L_p50: 85.0
+        L_p95: 93.6
+        C_p50: 11.0
+        C_p95: 35.9
+        C_p99: 48.2
+        detail: 1.83
+      metrics_locked:
+        L_p5: 65.0
+        L_p50: 85.0
+        L_p95: 93.4
+        C_p50: 11.1
+        C_p95: 35.7
+        C_p99: 47.0
+        detail: 1.39
+    fingerprint: 7018757affeb4baa
+effective_exploration_reports:
+  1:
+    job: cl1-duo-arrival
+    take: 1
+    raw_status: pass
+    status: pass
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 65.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.47
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0235
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 3.8, off-palette 0.8% (top: #DD7733 (0.2%), #EE8844
+        (0.1%))'
+      value: 1.7279
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: 5683373d1c7b684eed76cb7aaed112d3ea0d712e853ce17121ba9313a1095c8e
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+  2:
+    job: cl1-duo-arrival
+    take: 2
+    raw_status: pass
+    status: pass
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 35.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 65.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.39
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9831
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 3.6, off-palette 0.4% (top: #DD8844 (0.1%), #EE9955
+        (0.1%))'
+      value: 1.5003
+    provenance:
+      classification_mismatch: Manifest/queue/user EXPLORATION, but unchanged raw
+        is_exploration misses cl1-* without acceptance.exploration
+      official_function: tools/imagegen/qa.py::advisory
+      official_source_sha256: 766f89d553303b9ced06de3375c68a1b8fff07ca34100d03bd5e845ff419bab6
+      original_qa_sha256: 75f52c73ebfb0cc502b17df09011ffcca69a6983fcce1a5afcba80c6a13a0b77
+      original_report_preserved: true
+      threshold_changes: false
+      hard_checks:
+      - appicon_opaque
+      - canvas
+      - opaque_pixels
+      - text_legibility
+      - transparency
+manual_review:
+  note: Independent read-only exploration review of retained takes1/2. Both recommended
+    eligible, no final pick. Original source byte/RGBA, official POSTED and raw/effective
+    QA hashes bound. Profile follows only the visible outside of the touching character
+    pair and cup; the pier/environment is excluded from that diagnostic, not reconstructed.
+    Style/rubric advisory with no eight-point production gate. No generation, post,
+    promotion, source edits or Git writes by reviewer.
+  takes:
+    '1':
+      pass: true
+      silhouette_name: Touching upright-eared hamster and lop-eared bunny holding
+        rippling clear tea vessel; observed duo only
+      rubric:
+      - 2
+      - 2
+      - 1
+      - 2
+      - 0
+      evidence: Pofu retains his curled forelock and both raised ears; Mochi has a
+        smooth uncurled crown and long soft ears hanging beside her face. This direct
+        ear contrast communicates who can hear without requiring invented eye direction
+        or text. Mochi visibly grips the clear amber tea vessel; several nested concentric
+        rings are painted on its exposed horizontal surface, so the ripple is present
+        rather than inferred from a reflection. The duo sits at the end of a short
+        wooden pier above clouds, bounded by posts/rope, under a peach dawn opening
+        between grey-blue fog banks. No home lawn oval, soil bowl, roots, round door,
+        sunflower or painted text is visible. Both friends share an oversized clear
+        vessel with a visible right handle; this differs from a conventional small
+        tulip tea glass, but the exact vessel shape was not mandated and Mochi does
+        hold it. The pair faces the viewer; no look-toward-fog direction is required
+        by this job. Composition and style scores remain advisory.
+      swatch_points:
+      - - 783
+        - 167
+      - - 1280
+        - 451
+      - - 768
+        - 747
+      contours:
+      - - - 366
+          - 743
+        - - 362
+          - 704
+        - - 365
+          - 659
+        - - 372
+          - 610
+        - - 384
+          - 568
+        - - 395
+          - 534
+        - - 413
+          - 495
+        - - 421
+          - 469
+        - - 419
+          - 440
+        - - 423
+          - 416
+        - - 440
+          - 398
+        - - 459
+          - 388
+        - - 481
+          - 388
+        - - 506
+          - 402
+        - - 522
+          - 394
+        - - 540
+          - 382
+        - - 546
+          - 368
+        - - 558
+          - 357
+        - - 578
+          - 351
+        - - 597
+          - 356
+        - - 613
+          - 367
+        - - 624
+          - 388
+        - - 632
+          - 403
+        - - 648
+          - 385
+        - - 667
+          - 368
+        - - 687
+          - 367
+        - - 705
+          - 377
+        - - 715
+          - 396
+        - - 718
+          - 421
+        - - 712
+          - 442
+        - - 727
+          - 465
+        - - 744
+          - 486
+        - - 758
+          - 517
+        - - 770
+          - 540
+        - - 789
+          - 507
+        - - 816
+          - 474
+        - - 851
+          - 444
+        - - 894
+          - 423
+        - - 937
+          - 410
+        - - 980
+          - 407
+        - - 1022
+          - 416
+        - - 1058
+          - 432
+        - - 1084
+          - 455
+        - - 1104
+          - 481
+        - - 1118
+          - 510
+        - - 1141
+          - 545
+        - - 1165
+          - 581
+        - - 1185
+          - 621
+        - - 1201
+          - 661
+        - - 1213
+          - 702
+        - - 1215
+          - 727
+        - - 1204
+          - 748
+        - - 1189
+          - 756
+        - - 1167
+          - 750
+        - - 1154
+          - 733
+        - - 1151
+          - 763
+        - - 1136
+          - 796
+        - - 1113
+          - 817
+        - - 1079
+          - 832
+        - - 1025
+          - 835
+        - - 1009
+          - 842
+        - - 978
+          - 840
+        - - 959
+          - 829
+        - - 908
+          - 835
+        - - 867
+          - 829
+        - - 846
+          - 816
+        - - 837
+          - 803
+        - - 805
+          - 804
+        - - 775
+          - 806
+        - - 744
+          - 802
+        - - 726
+          - 821
+        - - 704
+          - 830
+        - - 680
+          - 831
+        - - 660
+          - 824
+        - - 617
+          - 832
+        - - 602
+          - 840
+        - - 576
+          - 843
+        - - 550
+          - 837
+        - - 533
+          - 825
+        - - 489
+          - 826
+        - - 447
+          - 813
+        - - 416
+          - 797
+        - - 391
+          - 774
+      holes: []
+      profile_label: Source-visible joined character/cup outline only; pier/environment
+        not included in this diagnostic
+      uncertainty: Fine fur, wrist-to-cup occlusion and touching lower body edges
+        are coarse. Tea ripples are internal color evidence and cannot appear as black-mask
+        holes. The cup handle is not a through-sky hole in this joined subject. No
+        concealed body/ear edge or fog-covered pier length is invented.
+      hard_failures: []
+      semantic_checks:
+        short_pier_over_clouds: true
+        dawn_parting_fog: true
+        pofu_ears_up: true
+        pofu_curl: true
+        mochi_lop_ears: true
+        mochi_no_curl: true
+        mochi_holds_tea: true
+        visible_concentric_tea_surface_rings: true
+        no_painted_text: true
+      review_status: Read-only eligibility recommendation complete; owner alone picks
+      source_callback_file: /workspace/art-operator-runtime/batch18/generated-cl1-duo-arrival-t1.json
+      source_callback_sha256: 2ff0abbd83b0576d34c0ed7f6c5a08e4700bab045a3d10389c4a7d6cd2a2d753
+      official_posted_file: /workspace/art-operator-runtime/batch18/cl1-duo-arrival-POSTED.json
+      official_posted_sha256: f862727f80875de8657b3af366ae39dfc4f16f89a6545c7a9230a5ff85549a03
+      original_qa_file: /workspace/run18/build/imagegen/batch-18-loop-1-concepts/qa/plate__cl1-duo-arrival--t1.json
+      original_qa_sha256: 5683373d1c7b684eed76cb7aaed112d3ea0d712e853ce17121ba9313a1095c8e
+      effective_qa_file: /workspace/art-operator-runtime/batch18/effective/cl1-duo-arrival-t1.json
+      effective_qa_sha256: 54ba8ef1383ecec82a3b7d9737cf16216632ba4d5a885c10b81cd64977d1aebe
+      effective_status: pass
+      ripple_source_crop:
+      - 630
+      - 594
+      - 946
+      - 814
+      ripple_QA_preview: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-arrival-ripple-QA.jpg
+      source_file: /workspace/generated_images/exec-17c745a9-337a-4a50-9d74-2edc03c06c1a.png
+      original_generated_png_sha256: 89e2845e4cc988059a53fae5b63b25f91b4cbd1dc7f1fa7c2d8502b053ad2b73
+      rgba_sha256: b7d89c0c5292757ad5a0f500308029050490fe1390d9f59cabd0921a3a1c95b2
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 362
+      - 351
+      - 1216
+      - 844
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 60
+      - 35
+      sampled_swatches:
+      - point:
+        - 783
+        - 167
+        hex: '#FDD3C0'
+      - point:
+        - 1280
+        - 451
+        hex: '#F3E6E3'
+      - point:
+        - 768
+        - 747
+        hex: '#E27123'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-arrival-t1-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-arrival-t1-QA-profile60.png
+      annotation_source_inbox_sha256: 48a270d5cbb662ca0ba8b345d7e9cf4ea908fc87883e5101840e4513f0fb4f81
+      silhouette_native_longest_px: 60
+    '2':
+      pass: true
+      silhouette_name: Touching upright-eared hamster and lop-eared bunny holding
+        rippling clear tea vessel; observed duo only
+      rubric:
+      - 2
+      - 2
+      - 1
+      - 2
+      - 0
+      evidence: Pofu retains his curled forelock and both raised ears; Mochi has a
+        smooth uncurled crown and long soft ears hanging beside her face. This direct
+        ear contrast communicates who can hear without requiring invented eye direction
+        or text. Mochi visibly grips the clear amber tea vessel; several nested concentric
+        rings are painted on its exposed horizontal surface, so the ripple is present
+        rather than inferred from a reflection. The duo sits at the end of a short
+        wooden pier above clouds, bounded by posts/rope, under a peach dawn opening
+        between grey-blue fog banks. No home lawn oval, soil bowl, roots, round door,
+        sunflower or painted text is visible. Both friends share an oversized clear
+        vessel with two handles; this differs from a conventional small tulip tea
+        glass, but the exact vessel shape was not mandated and Mochi does hold it.
+        The pair faces the viewer; no look-toward-fog direction is required by this
+        job. Composition and style scores remain advisory.
+      swatch_points:
+      - - 783
+        - 167
+      - - 1280
+        - 451
+      - - 768
+        - 747
+      contours:
+      - - - 364
+          - 717
+        - - 364
+          - 677
+        - - 372
+          - 631
+        - - 383
+          - 587
+        - - 398
+          - 550
+        - - 409
+          - 525
+        - - 417
+          - 507
+        - - 415
+          - 483
+        - - 413
+          - 458
+        - - 420
+          - 439
+        - - 434
+          - 428
+        - - 452
+          - 427
+        - - 473
+          - 434
+        - - 492
+          - 450
+        - - 515
+          - 438
+        - - 531
+          - 420
+        - - 537
+          - 400
+        - - 550
+          - 386
+        - - 570
+          - 381
+        - - 591
+          - 388
+        - - 607
+          - 403
+        - - 617
+          - 429
+        - - 630
+          - 436
+        - - 646
+          - 413
+        - - 664
+          - 400
+        - - 682
+          - 401
+        - - 693
+          - 415
+        - - 699
+          - 436
+        - - 699
+          - 459
+        - - 714
+          - 476
+        - - 731
+          - 503
+        - - 745
+          - 531
+        - - 750
+          - 557
+        - - 772
+          - 526
+        - - 795
+          - 496
+        - - 823
+          - 470
+        - - 855
+          - 444
+        - - 892
+          - 425
+        - - 934
+          - 412
+        - - 972
+          - 408
+        - - 1009
+          - 413
+        - - 1042
+          - 429
+        - - 1068
+          - 449
+        - - 1088
+          - 475
+        - - 1105
+          - 508
+        - - 1120
+          - 536
+        - - 1138
+          - 570
+        - - 1156
+          - 609
+        - - 1170
+          - 648
+        - - 1178
+          - 685
+        - - 1176
+          - 711
+        - - 1168
+          - 729
+        - - 1152
+          - 736
+        - - 1130
+          - 730
+        - - 1124
+          - 752
+        - - 1110
+          - 777
+        - - 1087
+          - 795
+        - - 1050
+          - 809
+        - - 1026
+          - 810
+        - - 1011
+          - 821
+        - - 982
+          - 820
+        - - 966
+          - 810
+        - - 925
+          - 812
+        - - 891
+          - 808
+        - - 869
+          - 799
+        - - 847
+          - 792
+        - - 822
+          - 803
+        - - 796
+          - 809
+        - - 765
+          - 812
+        - - 735
+          - 806
+        - - 709
+          - 800
+        - - 694
+          - 803
+        - - 667
+          - 810
+        - - 644
+          - 804
+        - - 602
+          - 810
+        - - 588
+          - 821
+        - - 558
+          - 823
+        - - 537
+          - 815
+        - - 523
+          - 806
+        - - 479
+          - 808
+        - - 436
+          - 796
+        - - 408
+          - 781
+        - - 388
+          - 756
+      holes: []
+      profile_label: Source-visible joined character/cup outline only; pier/environment
+        not included in this diagnostic
+      uncertainty: Fine fur, wrist-to-cup occlusion and touching lower body edges
+        are coarse. Tea ripples are internal color evidence and cannot appear as black-mask
+        holes. The cup handle is not a through-sky hole in this joined subject. No
+        concealed body/ear edge or fog-covered pier length is invented.
+      hard_failures: []
+      semantic_checks:
+        short_pier_over_clouds: true
+        dawn_parting_fog: true
+        pofu_ears_up: true
+        pofu_curl: true
+        mochi_lop_ears: true
+        mochi_no_curl: true
+        mochi_holds_tea: true
+        visible_concentric_tea_surface_rings: true
+        no_painted_text: true
+      review_status: Read-only eligibility recommendation complete; owner alone picks
+      source_callback_file: /workspace/art-operator-runtime/batch18/generated-cl1-duo-arrival-t2.json
+      source_callback_sha256: e337b118900c763bc789715e0398df700d38a92df631de0eb86c3152485ec7bd
+      official_posted_file: /workspace/art-operator-runtime/batch18/cl1-duo-arrival-POSTED.json
+      official_posted_sha256: f862727f80875de8657b3af366ae39dfc4f16f89a6545c7a9230a5ff85549a03
+      original_qa_file: /workspace/run18/build/imagegen/batch-18-loop-1-concepts/qa/plate__cl1-duo-arrival--t2.json
+      original_qa_sha256: 75f52c73ebfb0cc502b17df09011ffcca69a6983fcce1a5afcba80c6a13a0b77
+      effective_qa_file: /workspace/art-operator-runtime/batch18/effective/cl1-duo-arrival-t2.json
+      effective_qa_sha256: d6e18d19a20ef7adfab903c6cd8470ef6b0a1669ee1c922c5949658ecaa642ab
+      effective_status: pass
+      ripple_source_crop:
+      - 599
+      - 617
+      - 935
+      - 815
+      ripple_QA_preview: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-arrival-ripple-QA.jpg
+      source_file: /workspace/generated_images/exec-15ebdc77-fbee-460c-aa52-093271eed843.png
+      original_generated_png_sha256: 2092c262f7ef93656e50db7d73eca0b9dc93e2a40b596c422cc8632ba530aabb
+      rgba_sha256: 2b19b0bc2c7f52236f40b21fca607030d8b750d859846b9b35e8e33e43db9c84
+      source_dimensions:
+      - 1536
+      - 1024
+      observed_bbox:
+      - 364
+      - 381
+      - 1179
+      - 824
+      annotation_kind: Manual source-observed contour, not an edited/generated image
+      native_profile_dimensions:
+      - 60
+      - 33
+      sampled_swatches:
+      - point:
+        - 783
+        - 167
+        hex: '#F6CABA'
+      - point:
+        - 1280
+        - 451
+        hex: '#E1D6DA'
+      - point:
+        - 768
+        - 747
+        hex: '#E98647'
+      qa_native60_source_crop: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-arrival-t2-QA-native60.png
+      qa_native60_black_profile: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-arrival-t2-QA-profile60.png
+      annotation_source_inbox_sha256: a80cb1429d1fc65a406f5c9b42c3fb5318b66598711e1e93b1b3117eab7993f2
+      silhouette_native_longest_px: 60
+  qa_preview: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-arrival-QA-preview.jpg
+  reviewer_source_json_sha256: af59e44199525f6f8c8998fe15f7cdae2cbcd98a9431fa2083e4dc27d927c5b9
+  reviewer_source_file: /workspace/art-operator-runtime/batch18/reviews-harbor/cl1-duo-arrival.json
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-17c745a9-337a-4a50-9d74-2edc03c06c1a.png
+  original_generated_png_sha256: 89e2845e4cc988059a53fae5b63b25f91b4cbd1dc7f1fa7c2d8502b053ad2b73
+  inbox_png_sha256: 48a270d5cbb662ca0ba8b345d7e9cf4ea908fc87883e5101840e4513f0fb4f81
+  rgba_sha256: b7d89c0c5292757ad5a0f500308029050490fe1390d9f59cabd0921a3a1c95b2
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7018757affeb4baa
+- take: 2
+  source_file: /workspace/generated_images/exec-15ebdc77-fbee-460c-aa52-093271eed843.png
+  original_generated_png_sha256: 2092c262f7ef93656e50db7d73eca0b9dc93e2a40b596c422cc8632ba530aabb
+  inbox_png_sha256: a80cb1429d1fc65a406f5c9b42c3fb5318b66598711e1e93b1b3117eab7993f2
+  rgba_sha256: 2b19b0bc2c7f52236f40b21fca607030d8b750d859846b9b35e8e33e43db9c84
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7018757affeb4baa
+policy:
+  style_checks: advisory in exploration; hard decode/transparency/canvas and semantic
+    gates remain
+  swatch_sampling: Actual displayed source pixels; transparent sprites are composited
+    on RGB245,242,237 neutral paper before sample HEX is reported
+  production_rubric_8point_gate_applied: false
+  minimum_passing_pilot_jobs: 2
+  never_promote: true
