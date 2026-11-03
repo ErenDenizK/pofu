@@ -1,0 +1,21 @@
+id: asset-x2-koke-a
+type: asset
+title_tr: x2-koke-a
+title_en: x2-koke-a (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Koke, a great wind-shaped bonsai pine floating
+  in the sky, its sweeping branches larger than the small moss and raked-gravel garden its
+  roots hold; soft steady rain, rain rings on a tiny gravel pond, a bamboo water clacker,
+  a tiny tea house on a root, one red maple branch. Deep moss and wet slate. UNIQUE PLACE
+  (this island is not the attached home island): silhouette and lan…
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-koke-a
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

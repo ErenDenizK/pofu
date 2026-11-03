@@ -1,0 +1,21 @@
+id: asset-x2-gezgin-b
+type: asset
+title_tr: x2-gezgin-b
+title_en: x2-gezgin-b (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: a vast gentle cloud-whale surfacing from a sea
+  of clouds at dawn, one kind eye just opening, a mooring rope from her flipper to a little
+  wooden post; on her back a tiny cottage and an old tortoise postman with a satchel. Pink
+  dawn. UNIQUE PLACE (this island is not the attached home island): silhouette and landform:
+  the whale surfacing beside the home pier, seen from the side…
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-gezgin-b
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

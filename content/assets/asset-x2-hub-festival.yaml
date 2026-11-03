@@ -1,0 +1,23 @@
+id: asset-x2-hub-festival
+type: asset
+title_tr: x2-hub-festival
+title_en: x2-hub-festival (world)
+status: in-production
+horizon: now
+summary: >-
+  The same island on a festival night: strings of paper lanterns from the çay ocağı to the
+  sunflower, a ribbon wish-tree, floating lanterns on the pond, small visitors from other
+  islands (an otter, an arctic fox, a dormouse) gathered around the çay ocağı. Warm, joyful,
+  quiet.
+links:
+  variant_of:
+  - asset-island-main-s
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-hub-festival
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: world
+batch: batch-17-islands-v2
+size: 1536x1024

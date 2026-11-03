@@ -1,0 +1,21 @@
+id: asset-x2-leylek-b
+type: asset
+title_tr: x2-leylek-b
+title_en: x2-leylek-b (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: one impossibly tall, thin brick chimney rising
+  out of a sea of clouds with a huge stork nest on top and a small window halfway up; a spiral
+  of white storks circling on a warm thermal above. Spring morning, apricot light. UNIQUE
+  PLACE (this island is not the attached home island): silhouette and landform: a nest atop
+  an impossibly tall brick chimney rising from the clouds. Pa…
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-leylek-b
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

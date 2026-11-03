@@ -1,0 +1,21 @@
+id: asset-x2-emanet-b
+type: asset
+title_tr: x2-emanet-b
+title_en: x2-emanet-b (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: a floating tower of lost suitcases, parcels and
+  hatboxes tied with red string, a little door in the side of a suitcase, a brass bell, tagged
+  lost objects drifting in on a current of cloud. Soft drifting fog. UNIQUE PLACE (this island
+  is not the attached home island): silhouette and landform: a tall pile of lost luggage and
+  parcels forming a tower. Palette: brown paper, teal,…
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-emanet-b
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

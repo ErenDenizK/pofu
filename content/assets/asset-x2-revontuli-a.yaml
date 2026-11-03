@@ -1,0 +1,21 @@
+id: asset-x2-revontuli-a
+type: asset
+title_tr: x2-revontuli-a
+title_en: x2-revontuli-a (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Revontuli, a floating ice floe of clear blue-white
+  ice with a thick glassy edge that glows softly from within, no soil underneath; on it one
+  snowy spruce, a small wooden sauna on stilts with a ribbon of steam, and a round fishing
+  hole; a tiny arctic fox sits by the hole. Green and violet aurora curtains, gentle falling
+  snow, deep night blue. UNIQUE PLACE (this island is not …
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-revontuli-a
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

@@ -1,0 +1,22 @@
+id: asset-x2-hub-rain
+type: asset
+title_tr: x2-hub-rain
+title_en: x2-hub-rain (world)
+status: in-production
+horizon: now
+summary: >-
+  The same island on a soft rainy afternoon: gentle rain, rain rings on the pond, wet glossy
+  leaves, the sunflower drooping a little, the çay ocağı's window glowing warm, a frog on
+  a lily pad delighted, the moss on the roof stones greener. Keep everything else the same.
+links:
+  variant_of:
+  - asset-island-main-s
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-hub-rain
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: world
+batch: batch-17-islands-v2
+size: 1536x1024

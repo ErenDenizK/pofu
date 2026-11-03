@@ -1,0 +1,22 @@
+id: asset-x2-hub-winter
+type: asset
+title_tr: x2-hub-winter
+title_en: x2-hub-winter (world)
+status: in-production
+horizon: now
+summary: >-
+  The same island on a calm winter evening: soft snow on the lawn and roofs, the sunflower
+  bowed under a cap of snow, smoke from the çay ocağı, warm windows, a faint green aurora
+  low in the sky. Keep the island's shape exactly.
+links:
+  variant_of:
+  - asset-island-main-s
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-hub-winter
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: world
+batch: batch-17-islands-v2
+size: 1536x1024

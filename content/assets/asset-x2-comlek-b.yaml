@@ -1,0 +1,21 @@
+id: asset-x2-comlek-b
+type: asset
+title_tr: x2-comlek-b
+title_en: x2-comlek-b (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: a floating island that is a giant terracotta
+  pot lying on its side, cream-glazed with a cobalt pattern, its open mouth a cosy potter's
+  workshop with a wheel, smoke curling from a chimney in its neck; warm dawn haze, a balloon
+  far off. UNIQUE PLACE (this island is not the attached home island): silhouette and landform:
+  the island is a giant clay pot lying on its side, its mou…
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-comlek-b
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

@@ -1,0 +1,21 @@
+id: asset-x2-emanet-a
+type: asset
+title_tr: x2-emanet-a
+title_en: x2-emanet-a (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Emanet, a crooked little lost- and-found office
+  on tall stilts built from lost things: an upturned umbrella for a roof, a giant teacup as
+  its water tank, a top hat for a chimney, a ladder of mismatched spoons, on a raft of drifted
+  things at the end of a cloud current; a magpie at the counter window. Overcast, warm lamplight.
+  UNIQUE PLACE (this island is not the attached home…
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-emanet-a
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

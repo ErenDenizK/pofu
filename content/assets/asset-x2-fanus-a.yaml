@@ -1,0 +1,21 @@
+id: asset-x2-fanus-a
+type: asset
+title_tr: x2-fanus-a
+title_en: x2-fanus-a (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Fanus, a tall glass bell jar floating in a clear
+  sky, a brass knob on top catching the sun; inside a tiny cloud forest of ferns, orchids
+  and a thumb-sized waterfall, warm rain falling only inside, droplets beading on the glass;
+  a tiny glass frog on a leaf. Emerald and orchid pink. UNIQUE PLACE (this island is not the
+  attached home island): silhouette and landform: a tall gla…
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-fanus-a
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024

@@ -1,0 +1,750 @@
+# Batch 17: islands v2 exploration under the uniqueness contract, never promoted
+# (docs/design/art-production-plan.md; EXPLORATION in the queue; spec:
+# docs/product/archipelago-system.md section 17).
+#
+# Two concept paintings for each of ten wonder islands (Çağlayan, Gezgin,
+# Revontuli, Çanlar, Koke, Emanet, Fanus, Çömlek, Mehtap, Leylek) and four
+# Ayçiçeği hub variants (rain, winter, festival, grown). Everything here is for
+# deciding. UNIQUENESS CONTRACT: the home island is attached for STYLE ONLY (the
+# soft painterly finish, gentle light, low camera), NEVER as the base to copy;
+# every wonder prompt states its own silhouette/landform, palette, weather and
+# landmark, and the wonder islands carry no lawn oval, soil bowl, dangling
+# roots, pebbles or round door. The hub jobs are the opposite: edits of the
+# home island that keep its exact shape.
+#
+# EXPLORATION RULES (AGENTS.md): do NOT run `promote`; commit the takes (WebP
+# q90), the contact sheet and review.yaml under design/art/takes/<batch>/<id>/
+# and nothing else. No painted text anywhere. Boards never paint glass UI,
+# chrome or buttons. Review each wonder take with the rubric of
+# archipelago-system.md 1A.3 and the 60 pt black-silhouette test.
+#
+# PILOT (run first, in this order): x2-mehtap-a, x2-comlek-a, x2-leylek-a,
+# x2-hub-grown. If a pilot job still fails after its one retry, skip the REST
+# of this batch (every job below the "THE REST" line) and finish the session.
+#
+# Tracks: `islands` (the 20 wonder concepts) and `hub` (the 4 hub variants).
+
+batch: batch-17-islands-v2
+title: Islands v2 exploration (20 wonder island concepts under the uniqueness contract, 4 Ayçiçeği hub variants)
+status: open
+
+refs:
+  cay-1: design/art/stations/cay-1/cay-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: pofu, kind: char, name: pofu-r1, external: r1, master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png}
+
+  # ------------------------------------------------------------- PILOT
+
+  - id: x2-mehtap-a
+    kind: plate
+    name: x2-mehtap-a
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Mehtap, concept A: a sleeping crescent moon resting in the clouds. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Mehtap, a sleeping crescent moon
+          of pale moonstone with soft craters resting in a sea of clouds, a small
+          observatory dome with a warm window in its inner curve, a rope ladder up to
+          its upper tip where a tiny owl perches; blue hour, many small stars and a
+          faint Milky Way. Indigo, silver, pale gold.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: a sleeping crescent moon resting in the clouds. Palette: indigo,
+          moon silver, pale gold. Weather and sky: blue hour, many small stars, a
+          faint Milky Way (never a single star by the tip). Landmark: an observatory
+          dome in the inner curve; a rope ladder to the tip. Scale cue: a small owl on
+          the upper tip. The attached home island is a style reference only: copy its
+          soft painterly finish, gentle light and low camera, never its shape or
+          parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-comlek-a
+    kind: plate
+    name: x2-comlek-a
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Çömlek, concept A: a cluster of Cappadocia fairy chimneys; the tallest is a glowing kiln. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Çömlek, a floating cluster of
+          soft rose-tuff fairy chimneys from Cappadocia with dark caps, the tallest
+          hollowed into a kiln whose little windows glow like a lantern, pots on
+          carved shelves, a potter's wheel on a ledge, a mole-sized door; dawn sky
+          with three hot-air balloons rising. Rose, ochre, apricot.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: a cluster of Cappadocia fairy chimneys; the tallest is a glowing
+          kiln. Palette: rose tuff, ochre, dawn apricot. Weather and sky: dawn, three
+          hot-air balloons rising. Landmark: kiln windows glowing like a lantern; a
+          potter's wheel on a ledge. Scale cue: pots on carved shelves, a mole-sized
+          door. The attached home island is a style reference only: copy its soft
+          painterly finish, gentle light and low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-leylek-a
+    kind: plate
+    name: x2-leylek-a
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Leylek, concept A: a giant woven nest carried by a V of storks on ribbons. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Leylek, a giant woven nest of
+          reeds and twigs big enough for a cottage, with a little door, a chimney pot
+          and a lantern, carried across a warm windy dusk sky by a V of white storks
+          holding ribbons in their beaks; the nest never touches the clouds below.
+          Straw gold, white, black, sunset coral, light haze.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: a giant woven nest carried by a V of storks on ribbons. Palette:
+          straw gold, white, black, sunset coral. Weather and sky: warm windy dusk,
+          light Saharan haze. Landmark: a chimney pot and a lantern in the nest. Scale
+          cue: a cottage door woven into the nest. The attached home island is a style
+          reference only: copy its soft painterly finish, gentle light and low camera,
+          never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-hub-grown
+    kind: world
+    name: x2-hub-grown
+    size: 1536x1024
+    canvas: 1536x1024
+    edit_of: island-main-s
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Ayçiçeği hub variant: grown. An edit of the home island that keeps its exact shape, lawn, sunflower, çay ocağı, pond and round door. Review: only the named changes differ; the outline is unchanged."
+    attach:
+      - ref: approved:island-main-s
+        role: "THIS is the island to paint: keep its exact shape, lawn, sunflower, çay ocağı, pond and round door; change only what the prompt names."
+      - ref: cay-1
+        role: "The çay ocağı as built."
+    prompt:
+      - text: |
+          The same island a year later, grown: a wooden harbor pier reaching from its
+          right edge into the clouds with a little ferry docked and a kitten's simit
+          cart; a sauna hut at the pier's end with a steam ribbon; a small bell set on
+          the çay ocağı; a bamboo water clacker at the pond; a stork nest on the
+          windmill cap; a glass greenhouse by the garden; a small brass telescope on
+          the lawn; and an enormous gentle cloud-whale moored beyond the pier. Busy
+          but calm; the island's outline unchanged.
+      - block: edit-keep-v1
+      - text: "AVOID: text, a border, harsh shadows, neon, dark moods, a new island shape"
+
+
+  # ------------------------------------------------------------- THE REST
+
+  - id: x2-caglayan-a
+    kind: plate
+    name: x2-caglayan-a
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Çağlayan, concept A: three stacked white travertine terraces narrowing downward to a point. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Çağlayan, a floating island made
+          of three stacked terraces of white travertine with scalloped cream rims and
+          still turquoise pools, the island narrowing downward to a point; from the
+          lowest rim a ribbon waterfall pours down past the island and far into a sea
+          of clouds, longer than the island is tall, with a soft mist rainbow. Moss
+          only on the rims. A tiny waterwheel and one leaf boat for scale. Low front
+          three-quarter camera.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: three stacked white travertine terraces narrowing downward to a
+          point. Palette: travertine cream, turquoise, mist white. Weather and sky:
+          late morning, mist, a faint mist rainbow where the fall meets the clouds.
+          Landmark: a waterfall from the lowest rim, falling far below the island into
+          the clouds. Scale cue: a tiny wooden waterwheel and a leaf boat on one pool.
+          The attached home island is a style reference only: copy its soft painterly
+          finish, gentle light and low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-caglayan-b
+    kind: plate
+    name: x2-caglayan-b
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Çağlayan, concept B: a tall travertine column like a frozen fountain, pools spilling in rings. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Çağlayan, a tall floating column
+          of white travertine shaped like a frozen fountain, turquoise pools spilling
+          over in rings, and a wide curtain of water wrapping half the column and
+          falling into a sea of clouds; behind the curtain a tiny stone hut glows.
+          Bright soft mist, the sun behind the water.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: a tall travertine column like a frozen fountain, pools spilling in
+          rings. Palette: cream, turquoise, pale jade. Weather and sky: bright mist,
+          sun behind the falls. Landmark: a curtain fall wrapping half the column.
+          Scale cue: a small otter-sized stone hut behind the fall. The attached home
+          island is a style reference only: copy its soft painterly finish, gentle
+          light and low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-gezgin-a
+    kind: plate
+    name: x2-gezgin-a
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Gezgin, concept A: an enormous sleeping cloud-whale; a cottage on her back. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Gezgin, an enormous sleeping
+          cloud-whale in grey-blue and cream swimming slowly through a moonlit sea of
+          clouds, only part of her body in frame; on her back a patch of dandelions
+          and a tiny cottage with one warm window; her blowhole puffs a small cloud
+          with a soft moonbow. Calm, huge, gentle.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: an enormous sleeping cloud-whale; a cottage on her back. Palette:
+          grey-blue, cream, dandelion. Weather and sky: moonlit night travel, silver-
+          edged clouds. Landmark: the blowhole puffing a tiny cloud with a moonbow.
+          Scale cue: a cottage with one lit window, smaller than the whale's eye. The
+          attached home island is a style reference only: copy its soft painterly
+          finish, gentle light and low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-gezgin-b
+    kind: plate
+    name: x2-gezgin-b
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Gezgin, concept B: the whale surfacing beside the home pier, seen from the side. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: a vast gentle cloud-whale
+          surfacing from a sea of clouds at dawn, one kind eye just opening, a mooring
+          rope from her flipper to a little wooden post; on her back a tiny cottage
+          and an old tortoise postman with a satchel. Pink dawn.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: the whale surfacing beside the home pier, seen from the side.
+          Palette: grey-blue, cream, coral accents. Weather and sky: dawn, pink light.
+          Landmark: the whale's open eye, a mooring rope to a post. Scale cue: a small
+          tortoise postman with a satchel on her back. The attached home island is a
+          style reference only: copy its soft painterly finish, gentle light and low
+          camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-revontuli-a
+    kind: plate
+    name: x2-revontuli-a
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Revontuli, concept A: a flat ice floe with a thick, glassy blue edge, glowing from inside. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Revontuli, a floating ice floe of
+          clear blue-white ice with a thick glassy edge that glows softly from within,
+          no soil underneath; on it one snowy spruce, a small wooden sauna on stilts
+          with a ribbon of steam, and a round fishing hole; a tiny arctic fox sits by
+          the hole. Green and violet aurora curtains, gentle falling snow, deep night
+          blue.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: a flat ice floe with a thick, glassy blue edge, glowing from
+          inside. Palette: night blue, snow white, aurora green. Weather and sky:
+          winter night, aurora curtains, falling snow. Landmark: a sauna on stilts
+          with a steam ribbon; a round fishing hole. Scale cue: a tiny arctic fox
+          beside the fishing hole. The attached home island is a style reference only:
+          copy its soft painterly finish, gentle light and low camera, never its shape
+          or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-revontuli-b
+    kind: plate
+    name: x2-revontuli-b
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Revontuli, concept B: a snow-capped frozen lake in a ring of ice, like a frozen drop. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: a floating frozen lake shaped
+          like a teardrop of ice, a ring of snow around it, a wooden sauna with a
+          lantern at its edge; above, the aurora sweeps from a snow drift in the shape
+          of a fox's tail. Polar twilight, ice blue and violet.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: a snow-capped frozen lake in a ring of ice, like a frozen drop.
+          Palette: ice blue, snow, aurora green, violet. Weather and sky: polar
+          twilight. Landmark: an aurora shaped like a fox's tail sweeping from a snow
+          drift. Scale cue: a sauna door and a lantern. The attached home island is a
+          style reference only: copy its soft painterly finish, gentle light and low
+          camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-canlar-a
+    kind: plate
+    name: x2-canlar-a
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Çanlar, concept A: a tall thin stone spire, many times taller than wide. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Çanlar, a tall slender floating
+          stone spire, many times taller than it is wide, hung with bronze wind bells
+          of many sizes on wooden arms, poppies in the cracks, bunting streaming in a
+          bright wind, a mouse-sized door and rope ladder.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: a tall thin stone spire, many times taller than wide. Palette:
+          bronze, sky blue, poppy red. Weather and sky: bright windy noon, bunting
+          streaming. Landmark: bronze bells of many sizes on wooden arms, ropes
+          swaying. Scale cue: a mouse-sized rope ladder and door. The attached home
+          island is a style reference only: copy its soft painterly finish, gentle
+          light and low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-canlar-b
+    kind: plate
+    name: x2-canlar-b
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Çanlar, concept B: a ring of thin spires around one great bell. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: a ring of thin floating stone
+          spires joined by rope bridges, one great bronze bell hanging between them,
+          smaller bells on every spire; golden hour light.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: a ring of thin spires around one great bell. Palette: bronze, pale
+          stone, sky blue. Weather and sky: golden hour. Landmark: one great bell
+          hanging between the spires. Scale cue: a tiny bell-ringer's platform. The
+          attached home island is a style reference only: copy its soft painterly
+          finish, gentle light and low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-koke-a
+    kind: plate
+    name: x2-koke-a
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Koke, concept A: a great wind-shaped bonsai pine larger than the land under it. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Koke, a great wind-shaped bonsai
+          pine floating in the sky, its sweeping branches larger than the small moss
+          and raked-gravel garden its roots hold; soft steady rain, rain rings on a
+          tiny gravel pond, a bamboo water clacker, a tiny tea house on a root, one
+          red maple branch. Deep moss and wet slate.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: a great wind-shaped bonsai pine larger than the land under it.
+          Palette: deep moss, wet slate, one maple red. Weather and sky: soft steady
+          rain, mist in the branches. Landmark: a raked gravel pond with rain rings; a
+          bamboo water clacker. Scale cue: a tiny tea house on a root. The attached
+          home island is a style reference only: copy its soft painterly finish,
+          gentle light and low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-koke-b
+    kind: plate
+    name: x2-koke-b
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Koke, concept B: one huge moss-covered stone shaped like a sleeping animal. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: a single huge mossy stone
+          floating in misty rain, shaped like a curled sleeping animal, a raked gravel
+          garden and a lit stone lantern on its back, a thin stream of rain water
+          running off one edge. Dusk, amber lantern glow.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: one huge moss-covered stone shaped like a sleeping animal.
+          Palette: moss green, slate, lantern amber. Weather and sky: misty rain at
+          dusk. Landmark: a stone lantern lit on the stone's back. Scale cue: a
+          dormouse-sized raked garden. The attached home island is a style reference
+          only: copy its soft painterly finish, gentle light and low camera, never its
+          shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-emanet-a
+    kind: plate
+    name: x2-emanet-a
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Emanet, concept A: an office on stilts built from lost things. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Emanet, a crooked little lost-
+          and-found office on tall stilts built from lost things: an upturned umbrella
+          for a roof, a giant teacup as its water tank, a top hat for a chimney, a
+          ladder of mismatched spoons, on a raft of drifted things at the end of a
+          cloud current; a magpie at the counter window. Overcast, warm lamplight.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: an office on stilts built from lost things. Palette: weathered
+          teal, brass, brown paper. Weather and sky: soft overcast, lamplit windows.
+          Landmark: an upturned umbrella roof, a giant teacup water tank, a top-hat
+          chimney. Scale cue: a magpie at the counter window. The attached home island
+          is a style reference only: copy its soft painterly finish, gentle light and
+          low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-emanet-b
+    kind: plate
+    name: x2-emanet-b
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Emanet, concept B: a tall pile of lost luggage and parcels forming a tower. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: a floating tower of lost
+          suitcases, parcels and hatboxes tied with red string, a little door in the
+          side of a suitcase, a brass bell, tagged lost objects drifting in on a
+          current of cloud. Soft drifting fog.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: a tall pile of lost luggage and parcels forming a tower. Palette:
+          brown paper, teal, brass, red string. Weather and sky: drifting fog.
+          Landmark: tagged objects floating in on a current. Scale cue: a little door
+          in the side of a suitcase. The attached home island is a style reference
+          only: copy its soft painterly finish, gentle light and low camera, never its
+          shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-fanus-a
+    kind: plate
+    name: x2-fanus-a
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Fanus, concept A: a tall glass bell jar floating in the sky, a brass knob on top. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Fanus, a tall glass bell jar
+          floating in a clear sky, a brass knob on top catching the sun; inside a tiny
+          cloud forest of ferns, orchids and a thumb-sized waterfall, warm rain
+          falling only inside, droplets beading on the glass; a tiny glass frog on a
+          leaf. Emerald and orchid pink.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: a tall glass bell jar floating in the sky, a brass knob on top.
+          Palette: emerald, glass teal, orchid pink. Weather and sky: clear outside;
+          warm rain and condensation inside the glass. Landmark: a thumb-sized
+          waterfall and orchids inside. Scale cue: a tiny glass frog on a leaf. The
+          attached home island is a style reference only: copy its soft painterly
+          finish, gentle light and low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-fanus-b
+    kind: plate
+    name: x2-fanus-b
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Fanus, concept B: a glass greenhouse dome on a brass base, hanging from a chain into the clouds. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: a round glass greenhouse dome on
+          a brass base hanging on a long chain from above the clouds, its panes fogged
+          with condensation, a few wiped clear to show orchids inside; a small brass
+          door; sunbeams through the clouds.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: a glass greenhouse dome on a brass base, hanging from a chain into
+          the clouds. Palette: glass teal, brass, fern green, pink. Weather and sky:
+          sunbeams through cloud. Landmark: fogged panes, some wiped clear showing
+          flowers. Scale cue: a little brass door in the base. The attached home
+          island is a style reference only: copy its soft painterly finish, gentle
+          light and low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-comlek-b
+    kind: plate
+    name: x2-comlek-b
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Çömlek, concept B: the island is a giant clay pot lying on its side, its mouth a workshop. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: a floating island that is a giant
+          terracotta pot lying on its side, cream-glazed with a cobalt pattern, its
+          open mouth a cosy potter's workshop with a wheel, smoke curling from a
+          chimney in its neck; warm dawn haze, a balloon far off.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: the island is a giant clay pot lying on its side, its mouth a
+          workshop. Palette: terracotta, cream glaze, cobalt pattern. Weather and sky:
+          warm dawn haze. Landmark: smoke curling from a chimney in the pot's neck.
+          Scale cue: the wheel and a tiny mole in the mouth. The attached home island
+          is a style reference only: copy its soft painterly finish, gentle light and
+          low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-mehtap-b
+    kind: plate
+    name: x2-mehtap-b
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Mehtap, concept B: a crescent moon hanging like a cradle from a star-chain. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: a crescent moon hanging like a
+          cradle from a long chain of tiny stars above the clouds, a telescope, a
+          hammock, a lantern and an open star book on it; faint constellations joined
+          by thin gold lines. Deep night blue, silver, lamp gold.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: a crescent moon hanging like a cradle from a star-chain. Palette:
+          deep blue, silver, warm lamp gold. Weather and sky: deep night,
+          constellations faintly joined by thin gold lines. Landmark: a telescope and
+          a hammock on the crescent. Scale cue: a lantern and a book. The attached
+          home island is a style reference only: copy its soft painterly finish,
+          gentle light and low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-leylek-b
+    kind: plate
+    name: x2-leylek-b
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Leylek, concept B: a nest atop an impossibly tall brick chimney rising from the clouds. Review: a unique silhouette at 60 pt black, the landmark and palette read at a glance, same soft painting as the home island, nothing copied from it."
+    attach:
+      - ref: approved:island-main-s
+        role: "STYLE ONLY: the soft painterly finish, the gentle light and the low camera height. Do NOT copy its shape: no lawn oval, no sandy soil bowl, no dangling roots, no pebbles, no round door. This is a different place."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below; paint clouds like this (unless the sky says otherwise)."
+      - ref: R1
+        role: "Style reference only for softness and pastel handling; no characters unless named."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: one impossibly tall, thin brick
+          chimney rising out of a sea of clouds with a huge stork nest on top and a
+          small window halfway up; a spiral of white storks circling on a warm thermal
+          above. Spring morning, apricot light.
+          UNIQUE PLACE (this island is not the attached home island): silhouette and
+          landform: a nest atop an impossibly tall brick chimney rising from the
+          clouds. Palette: brick, straw, white, apricot. Weather and sky: spring
+          morning, storks circling on a thermal. Landmark: a spiral of storks rising
+          above the nest. Scale cue: a small window in the chimney. The attached home
+          island is a style reference only: copy its soft painterly finish, gentle
+          light and low camera, never its shape or parts.
+      - block: prop-style-v2
+      - text: "AVOID: a lawn oval island, a soil or sand bowl underside, roots hanging below, pebbles in the soil, a round door, sunflowers, honey-and-sage palette, text, a border, harsh shadows, neon, dark moods"
+
+  - id: x2-hub-rain
+    kind: world
+    name: x2-hub-rain
+    size: 1536x1024
+    canvas: 1536x1024
+    edit_of: island-main-s
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Ayçiçeği hub variant: rain. An edit of the home island that keeps its exact shape, lawn, sunflower, çay ocağı, pond and round door. Review: only the named changes differ; the outline is unchanged."
+    attach:
+      - ref: approved:island-main-s
+        role: "THIS is the island to paint: keep its exact shape, lawn, sunflower, çay ocağı, pond and round door; change only what the prompt names."
+      - ref: cay-1
+        role: "The çay ocağı as built."
+    prompt:
+      - text: |
+          The same island on a soft rainy afternoon: gentle rain, rain rings on the
+          pond, wet glossy leaves, the sunflower drooping a little, the çay ocağı's
+          window glowing warm, a frog on a lily pad delighted, the moss on the roof
+          stones greener. Keep everything else the same.
+      - block: edit-keep-v1
+      - text: "AVOID: text, a border, harsh shadows, neon, dark moods, a new island shape"
+
+  - id: x2-hub-winter
+    kind: world
+    name: x2-hub-winter
+    size: 1536x1024
+    canvas: 1536x1024
+    edit_of: island-main-s
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Ayçiçeği hub variant: winter. An edit of the home island that keeps its exact shape, lawn, sunflower, çay ocağı, pond and round door. Review: only the named changes differ; the outline is unchanged."
+    attach:
+      - ref: approved:island-main-s
+        role: "THIS is the island to paint: keep its exact shape, lawn, sunflower, çay ocağı, pond and round door; change only what the prompt names."
+      - ref: cay-1
+        role: "The çay ocağı as built."
+    prompt:
+      - text: |
+          The same island on a calm winter evening: soft snow on the lawn and roofs,
+          the sunflower bowed under a cap of snow, smoke from the çay ocağı, warm
+          windows, a faint green aurora low in the sky. Keep the island's shape
+          exactly.
+      - block: edit-keep-v1
+      - text: "AVOID: text, a border, harsh shadows, neon, dark moods, a new island shape"
+
+  - id: x2-hub-festival
+    kind: world
+    name: x2-hub-festival
+    size: 1536x1024
+    canvas: 1536x1024
+    edit_of: island-main-s
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Ayçiçeği hub variant: festival. An edit of the home island that keeps its exact shape, lawn, sunflower, çay ocağı, pond and round door. Review: only the named changes differ; the outline is unchanged."
+    attach:
+      - ref: approved:island-main-s
+        role: "THIS is the island to paint: keep its exact shape, lawn, sunflower, çay ocağı, pond and round door; change only what the prompt names."
+      - ref: cay-1
+        role: "The çay ocağı as built."
+    prompt:
+      - text: |
+          The same island on a festival night: strings of paper lanterns from the çay
+          ocağı to the sunflower, a ribbon wish-tree, floating lanterns on the pond,
+          small visitors from other islands (an otter, an arctic fox, a dormouse)
+          gathered around the çay ocağı. Warm, joyful, quiet.
+      - block: edit-keep-v1
+      - text: "AVOID: text, a border, harsh shadows, neon, dark moods, a new island shape"

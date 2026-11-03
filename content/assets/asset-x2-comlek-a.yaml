@@ -1,0 +1,21 @@
+id: asset-x2-comlek-a
+type: asset
+title_tr: x2-comlek-a
+title_en: x2-comlek-a (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Çömlek, a floating cluster of soft rose-tuff
+  fairy chimneys from Cappadocia with dark caps, the tallest hollowed into a kiln whose little
+  windows glow like a lantern, pots on carved shelves, a potter's wheel on a ledge, a mole-sized
+  door; dawn sky with three hot-air balloons rising. Rose, ochre, apricot. UNIQUE PLACE (this
+  island is not the attached home island): silhouette …
+art:
+  images: []
+  jobs:
+  - batch-17-islands-v2:x2-comlek-a
+sources:
+- doc: tools/imagegen/manifest/batch-17-islands-v2.yaml
+kind: plate
+batch: batch-17-islands-v2
+size: 1536x1024
