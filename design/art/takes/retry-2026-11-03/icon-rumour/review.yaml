@@ -1,0 +1,182 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/icon-rumour/contact.jpg
+jobs:
+  icon-rumour:
+    pick: 2
+    publication: selected before global stop; promotion pending
+    note: Both takes show a round pale-sage bottle, honey cork and a plump rolled
+      cream note without letters. The bottle and diagonal scroll remain readable at
+      28, 44 and 60 pt on pale and dark backgrounds.
+qa_reports:
+  1:
+    job: icon-rumour
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 61.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.77
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3462
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.5, p95 8.5, off-palette 0.0% (top: #998877 (0.0%))'
+      value: 2.4502
+    - check: icon_fill
+      status: pass
+      message: icon spans 84% of the canvas (target 80-92%)
+      value: 0.8418
+    - check: icon_thin_parts
+      status: pass
+      message: 0.4% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0038
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 4.8 (busy above 7)
+      value: 4.76
+    - check: icon_on_light_glass
+      status: warn
+      message: 38% of the icon separates from light glass at 24 pt
+      value: 0.3775
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 60.9
+        L_p50: 78.0
+        L_p95: 92.6
+        C_p50: 18.1
+        C_p95: 37.8
+        C_p99: 38.7
+        detail: 1.06
+      metrics_locked:
+        L_p5: 61.0
+        L_p50: 78.0
+        L_p95: 92.6
+        C_p50: 18.1
+        C_p95: 37.8
+        C_p99: 38.7
+        detail: 0.77
+    fingerprint: 86b31c35b295f21c
+  2:
+    job: icon-rumour
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 61.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.343
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.5, p95 8.2, off-palette 0.1% (top: #998877 (0.1%))'
+      value: 2.5042
+    - check: icon_fill
+      status: pass
+      message: icon spans 89% of the canvas (target 80-92%)
+      value: 0.8887
+    - check: icon_thin_parts
+      status: pass
+      message: 0.4% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0045
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 4.6 (busy above 7)
+      value: 4.58
+    - check: icon_on_light_glass
+      status: warn
+      message: 38% of the icon separates from light glass at 24 pt
+      value: 0.3826
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 61.1
+        L_p50: 77.8
+        L_p95: 92.4
+        C_p50: 18.2
+        C_p95: 38.5
+        C_p99: 39.7
+        detail: 1.03
+      metrics_locked:
+        L_p5: 61.2
+        L_p50: 77.7
+        L_p95: 92.3
+        C_p50: 18.1
+        C_p95: 38.5
+        C_p99: 39.5
+        detail: 0.76
+    fingerprint: 86b31c35b295f21c
+manual_review:
+  note: Both takes show a round pale-sage bottle, honey cork and a plump rolled cream
+    note without letters. The bottle and diagonal scroll remain readable at 28, 44
+    and 60 pt on pale and dark backgrounds.
+  terminal_decided_at: '2026-11-03T14:07:29.033160+00:00'
+  decision_qa_sha256: 8966299b995cc16c3a7b098d06401fafcb9a040a9d4958bb3b3197a6b614a9a8
+  excluded_takes: []
+  preservation_only_after_global_stop: true
+  no_new_selection_or_promotion: true
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-7da3f75f-f553-4da6-b1b8-0a0824094bb7.png
+  original_generated_png_sha256: 90820ed8cb0c2ba8a006c4354447ea20818d686e090ae8ca04b1d03c9bd411de
+  inbox_png_sha256: e97d6db7a7460f2112c22992bd35d1c40e770f5c61b5e7bf681768ce7bfc318d
+  rgba_sha256: 922963aa587e2de6c8bf0bc293322120d99738c4c43cf5892a2f6138d658ca15
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 86b31c35b295f21c
+- take: 2
+  source_file: /workspace/generated_images/exec-df03595a-eaba-4dca-966b-88bb4eb013da.png
+  original_generated_png_sha256: 68fe53448aa12176f791f67e27ab1baa2b06fdd828958602ed5dbcf54633a77a
+  inbox_png_sha256: e7278d1188dcd66bb5642128852fdc14c1001b905020254ca9ca63ccdabb00df
+  rgba_sha256: 20b8d621856b0c375e095b440ad58f9d96d22244c85ec89006147c3f7501534f
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 86b31c35b295f21c

@@ -1,0 +1,142 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/ui-menu-paper/contact.jpg
+jobs:
+  ui-menu-paper:
+    pick: 1
+    publication: selected before global stop; promotion pending
+    note: Both landscape cards have rounded corners, inset warm-brown stitches and
+      a plain even cream centre; smaller card shape differs from the tall sheet reference.
+      t1 lowest lock 0.2786 vs0.2859. Both automatedPASS.
+qa_reports:
+  1:
+    job: ui-menu-paper
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 16 (R1 51)
+      value: 15.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 86 (R1 59)
+      value: 86.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.06
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2786
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.5, p95 0.9, off-palette 0.0%
+      value: 0.5127
+    info:
+      metrics_raw:
+        L_p5: 86.3
+        L_p50: 92.0
+        L_p95: 92.4
+        C_p50: 8.0
+        C_p95: 15.6
+        C_p99: 32.7
+        detail: 1.25
+      metrics_locked:
+        L_p5: 86.5
+        L_p50: 92.0
+        L_p95: 92.3
+        C_p50: 7.9
+        C_p95: 15.5
+        C_p99: 31.2
+        detail: 1.06
+    fingerprint: 69c53f1a50d57e26
+  2:
+    job: ui-menu-paper
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 19 (R1 51)
+      value: 18.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 87 (R1 59)
+      value: 86.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2859
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.5, p95 0.9, off-palette 0.0%
+      value: 0.4699
+    info:
+      metrics_raw:
+        L_p5: 86.5
+        L_p50: 91.4
+        L_p95: 91.9
+        C_p50: 9.1
+        C_p95: 19.0
+        C_p99: 36.6
+        detail: 1.32
+      metrics_locked:
+        L_p5: 86.6
+        L_p50: 91.4
+        L_p95: 91.8
+        C_p50: 9.0
+        C_p95: 18.7
+        C_p99: 34.7
+        detail: 1.14
+    fingerprint: 69c53f1a50d57e26
+manual_review:
+  note: Both landscape cards have rounded corners, inset warm-brown stitches and a
+    plain even cream centre; smaller card shape differs from the tall sheet reference.
+    t1 lowest lock 0.2786 vs0.2859. Both automatedPASS.
+  terminal_decided_at: '2026-11-03T14:09:26.437595+00:00'
+  decision_qa_sha256: 01de761399d6bcecfb33b0c17c86ddd5beea6be9830eca1f40d9693136b40e20
+  excluded_takes: []
+  preservation_only_after_global_stop: true
+  no_new_selection_or_promotion: true
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-482f00e8-309e-4ea0-9371-eccdf1fbac1b.png
+  original_generated_png_sha256: 1d1fc5c24cafc8625be8f4552d341c9fbfbb8b16e5456baf55f3b76968a199c3
+  inbox_png_sha256: b788a47e72314d11e0bd2d9b211684b4397a0128d5d60eef6b6c9bff48da9d9e
+  rgba_sha256: a647d5557df93120403ce3d2f8933bd49ffdb1a2e3fc1a4472c0e907e08c7716
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 69c53f1a50d57e26
+- take: 2
+  source_file: /workspace/generated_images/exec-6eb4411c-3eea-4f09-9ddd-4c116d13021d.png
+  original_generated_png_sha256: 4fe86d564fe239051d8ef0d4abba5613a16f46d6e9c63e33a0ceb35c605949a2
+  inbox_png_sha256: 86de608f481d7e7ca7f02b2086fda22b3dc7c45ffe902f2c2cad0a3717667b7f
+  rgba_sha256: b8f14224d170342baf8ea77fc5c91ba0f679deb4296024eb111eba757d505a96
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 69c53f1a50d57e26
