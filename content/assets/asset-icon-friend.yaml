@@ -2,7 +2,7 @@ id: asset-icon-friend
 type: asset
 title_tr: icon-friend
 title_en: friend (icon)
-status: planned
+status: in-production
 horizon: now
 summary: 'The icon for a friend: two small, round, soft sprouts in a tiny clay pot,
   leaning toward each other, each with two chunky leaves.'
@@ -15,7 +15,8 @@ notes:
   retry, so the manifest skips the rest of batch13. Other batch timings remain as
   specified.'
 art:
-  images: []
+  images:
+  - design/art/ui/icon-friend/icon-friend.png
   jobs:
   - batch-02-ui:icon-friend
   - batch-13-ui-rest:icon-friend
