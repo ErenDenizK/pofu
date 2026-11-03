@@ -1,0 +1,58 @@
+{
+ "after": {
+  "C_mean": 28.386,
+  "C_p50": 27.561,
+  "C_p95": 54.34,
+  "L_mean": 82.085,
+  "L_p2": 55.164,
+  "L_p98": 95.761,
+  "detail": 7.23,
+  "edge": 0.182,
+  "tint_a": 4.022,
+  "tint_b": 9.159,
+  "warmth_b": 24.837
+ },
+ "before": {
+  "C_mean": 28.386,
+  "C_p50": 27.561,
+  "C_p95": 54.34,
+  "L_mean": 82.085,
+  "L_p2": 55.164,
+  "L_p98": 95.761,
+  "detail": 7.23,
+  "edge": 0.182,
+  "tint_a": 4.022,
+  "tint_b": 9.159,
+  "warmth_b": 24.837
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "C_p95",
+  "L_p2",
+  "detail"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "detail"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 71.7,
+ "score_before": 71.7,
+ "shipped": false,
+ "source": "design/art/masters/simit-kitten-ears/simit-kitten-ears.webp",
+ "source_sha": "a99a6aae0348f7b3"
+}

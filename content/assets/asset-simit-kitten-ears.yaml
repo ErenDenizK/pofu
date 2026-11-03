@@ -2,7 +2,7 @@ id: asset-simit-kitten-ears
 type: asset
 title_tr: simit-kitten-ears
 title_en: simit-kitten-ears (char)
-status: planned
+status: in-production
 horizon: now
 summary: 'Edit the attached kitten, Simit: both front paws are raised and pressed
   flat over her two ears, and her eyes are squeezed shut in two happy-scrunched curves
@@ -12,7 +12,8 @@ links:
   variant_of:
   - asset-simit-kitten
 art:
-  images: []
+  images:
+  - design/art/masters/simit-kitten-ears/simit-kitten-ears.webp
   jobs:
   - batch-14-iskele:simit-kitten-ears
   - retry-2026-11-03:simit-kitten-ears

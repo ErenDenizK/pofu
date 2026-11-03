@@ -1,0 +1,102 @@
+{
+  "job": "simit-kitten-ears",
+  "batch": "retry-2026-11-03",
+  "asset": "char__simit-kitten-ears",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T15:05:44+00:00",
+  "image": "design/art/masters/simit-kitten-ears/simit-kitten-ears.png",
+  "raw": "design/art/masters/simit-kitten-ears/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "549bb6831e90149b",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached kitten, Simit: both front paws are raised and\npressed flat over her two ears, and her eyes are squeezed shut in\ntwo happy-scrunched curves with her small mouth open in a soft \"o\".\nHer body, tail, feet, colors and size stay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: tears, a worried look, a ground shadow, text.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/simit-kitten/simit-kitten.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T13:53:51+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 54 (R1 51)",
+        "value": 54.3
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 60 (R1 59)",
+        "value": 60.4
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 4.6 (R1 5.3)",
+        "value": 4.56
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.4, p95 4.0, off-palette 1.1% (top: #552211 (0.2%), #662211 (0.1%))",
+        "value": 1.3505
+      },
+      {
+        "check": "ground_line",
+        "status": "warn",
+        "message": "feet at 92.4% of the height (contract 88%)",
+        "value": 0.9245
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 72 against the char reference (outliers: C_p95, L_p2, detail)",
+        "value": 71.7
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "76% of the parent level unchanged",
+        "value": 0.7572
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.91 of the parent level (drift compounds along a chain)",
+        "value": 0.9052
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Retained pair re-posted under main9ede62e; no new image generation. Both raise the front paws to cover both ears, squeeze the eyes into happy curves and open a soft o mouth, with no tears or worried look. Body, tail, feet and kitten identity remain. Current reports have warnings only from the inherited ground line; t2 also warns on Harmony69.1. Stability passes at0.7572/0.7804; no obsolete manual >0.9 gate. The previously unsealed proposal is now selected as t1 by Harmony71.7 versus69.1, with no character lock-load check and no failure waived."
+}
