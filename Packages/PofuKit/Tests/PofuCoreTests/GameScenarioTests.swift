@@ -367,8 +367,8 @@ struct GameScenarioTests {
     @Test(arguments: Archetype.allCases)
     func heavyScrollersStillGetASecondIslandWithinTheMonth(archetype: Archetype) {
         let outcome = Self.outcome(archetype)
-        let iskele = outcome.arrivalDay[.iskele]
-        #expect(iskele != nil && (iskele ?? 99) <= 30, "\(archetype): İskele on day \(String(describing: iskele))")
+        let harbor = outcome.arrivalDay[.harbor]
+        #expect(harbor != nil && (harbor ?? 99) <= 30, "\(archetype): Harbor on day \(String(describing: harbor))")
         // Arrivals are kind: tended days and calm nights are cumulative.
         #expect(outcome.arrivalDay[.yildiz] != nil || archetype == .heavy || archetype == .relapse,
                 "\(archetype): Yıldız never arrived")
@@ -464,8 +464,8 @@ struct GameScenarioTests {
         #expect((28...42).contains(outcome.levelsByDay[59]), "levels, day 60: \(outcome.levelsByDay[59])")
         // İskele drifts close inside the second week; the next island
         // within the third.
-        let iskele = outcome.arrivalDay[.iskele] ?? 99
-        #expect((7...14).contains(iskele), "İskele on day \(iskele)")
+        let harbor = outcome.arrivalDay[.harbor] ?? 99
+        #expect((7...14).contains(harbor), "Harbor on day \(harbor)")
         #expect((20...30).contains(outcome.arrivalDay[.yildiz] ?? 99), "Yıldız on day \(String(describing: outcome.arrivalDay[.yildiz]))")
         #expect(outcome.weeksWithoutABuild(weeks: 8) == 0)
     }

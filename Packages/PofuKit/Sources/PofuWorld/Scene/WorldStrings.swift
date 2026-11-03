@@ -8,7 +8,7 @@ enum WorldStrings {
     static func stationName(_ id: StationID) -> String {
         switch id {
         case .garden: String(localized: "Sunflower garden", bundle: .module)
-        case .cay: String(localized: "Tea stall", bundle: .module)
+        case .teaStall: String(localized: "Tea stall", bundle: .module)
         case .pond: String(localized: "Lily pond", bundle: .module)
         case .workshop: String(localized: "Workshop", bundle: .module)
         case .windmill: String(localized: "Windmill", bundle: .module)
@@ -20,7 +20,7 @@ enum WorldStrings {
     static func stationKeeper(_ id: StationID) -> String? {
         switch id {
         case .garden: String(localized: "Pofu's", bundle: .module)
-        case .cay: String(localized: "Mochi's", bundle: .module)
+        case .teaStall: String(localized: "Mochi's", bundle: .module)
         case .workshop: String(localized: "Fındık's", bundle: .module)
         default: nil
         }
@@ -28,8 +28,8 @@ enum WorldStrings {
 
     static func islandName(_ id: IslandID) -> String {
         switch id {
-        case .aycicegi: "Ayçiçeği"
-        case .iskele: "İskele"
+        case .home: "Ayçiçeği"
+        case .harbor: "İskele"
         case .yildiz: "Yıldız"
         case .kaplica: "Kaplıca"
         case .kitap: "Kitap"

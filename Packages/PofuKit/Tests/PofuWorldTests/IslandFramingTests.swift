@@ -170,10 +170,10 @@ struct IslandFramingTests {
 
     // MARK: Focus
 
-    @Test func theCayFocusKeepsPofuWhole() throws {
-        let pose = try #require(IslandLayout.stationFocusPose(.cay, width: 402, height: 874, safeTop: 62))
-        let cay = try #require(IslandFraming.stationBox(.cay))
-        let station = span(cay, pose, width: 402)
+    @Test func theTeaStallFocusKeepsPofuWhole() throws {
+        let pose = try #require(IslandLayout.stationFocusPose(.teaStall, width: 402, height: 874, safeTop: 62))
+        let teaStall = try #require(IslandFraming.stationBox(.teaStall))
+        let station = span(teaStall, pose, width: 402)
         #expect(station.lo >= 0 && station.hi <= 402)
         for box in IslandFraming.characterBoxes {
             let s = span(box, pose, width: 402)

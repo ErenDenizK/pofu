@@ -6,16 +6,16 @@ import PofuTuning
 import SwiftUI
 import UIKit
 
-/// The Ayar panel: a glass card over the bottom of the screen, so the
+/// The tuning lab panel: a glass card over the bottom of the screen, so the
 /// world stays visible above it while a value changes. Sliders are drawn
 /// from `TuningSpec`, not written per value.
 ///
 /// Its copy is Turkish only and kept out of the string catalog: a debug
 /// tool for the founder, compiled out of release builds.
-struct AyarPanel: View {
+struct TuningLabPanel: View {
     let model: AppModel
     let store: TuningStore
-    let session: AyarSession
+    let session: TuningLabSession
 
     @State private var confirmsReset = false
 
@@ -100,15 +100,15 @@ struct AyarPanel: View {
     private var sections: some View {
         ScrollView(.horizontal) {
             HStack(spacing: PofuSpacing.xs) {
-                ForEach(AyarSection.allCases) { section in
+                ForEach(TuningLabSection.allCases) { section in
                     let isOn = session.section == section
                     Button {
                         session.section = section
                     } label: {
                         Label {
-                            Text(verbatim: AyarLabels.title(section))
+                            Text(verbatim: TuningLabLabels.title(section))
                         } icon: {
-                            Image(systemName: AyarLabels.symbol(section))
+                            Image(systemName: TuningLabLabels.symbol(section))
                         }
                         .font(PofuFont.subheadline)
                         .padding(.horizontal, PofuSpacing.s)
@@ -166,9 +166,9 @@ struct AyarPanel: View {
     private var colour: some View {
         VStack(alignment: .leading, spacing: PofuSpacing.m) {
             Picker(selection: Binding(get: { session.pinnedPhase }, set: { session.pinnedPhase = $0 })) {
-                Text(verbatim: "Saat").tag(AyarPhase?.none)
-                ForEach(AyarPhase.allCases) { phase in
-                    Text(verbatim: AyarLabels.title(phase)).tag(AyarPhase?.some(phase))
+                Text(verbatim: "Saat").tag(TuningLabPhase?.none)
+                ForEach(TuningLabPhase.allCases) { phase in
+                    Text(verbatim: TuningLabLabels.title(phase)).tag(TuningLabPhase?.some(phase))
                 }
             } label: {
                 Text(verbatim: "Günün saati")
@@ -177,7 +177,7 @@ struct AyarPanel: View {
             let phase = session.pinnedPhase ?? .day
             note(session.pinnedPhase == nil
                 ? "Dünya saati izliyor. Bir zamanı sabitleyip onun rengini ayarla; şimdi gündüz değerleri gösteriliyor."
-                : "\(AyarLabels.title(phase)) sabit. Değişiklik sahneye anında yansır.")
+                : "\(TuningLabLabels.title(phase)) sabit. Değişiklik sahneye anında yansır.")
             ForEach(["exposure", "saturation", "contrast", "warmth", "vignette"], id: \.self) { name in
                 TuningRow(store: store, key: "\(phase.gradeKey).\(name)")
             }
@@ -189,7 +189,7 @@ struct AyarPanel: View {
             note("Önizle ile yayı hisset. Sahne kamerası bu değerleri canlı okur.")
             ForEach(["travel", "far", "release", "focus", "buildPush"], id: \.self) { name in
                 VStack(alignment: .leading, spacing: PofuSpacing.xs) {
-                    Text(verbatim: AyarLabels.spring(name))
+                    Text(verbatim: TuningLabLabels.spring(name))
                         .font(PofuFont.headline)
                     TuningRow(store: store, key: "camera.\(name).duration")
                     TuningRow(store: store, key: "camera.\(name).bounce")
@@ -229,7 +229,7 @@ struct AyarPanel: View {
         }
     }
 
-    private func spikeSlider(_ title: String, value: ReferenceWritableKeyPath<AyarSession, Double>, range: ClosedRange<Double>) -> some View {
+    private func spikeSlider(_ title: String, value: ReferenceWritableKeyPath<TuningLabSession, Double>, range: ClosedRange<Double>) -> some View {
         HStack {
             Text(verbatim: title)
                 .font(PofuFont.caption)
@@ -281,7 +281,7 @@ struct AyarPanel: View {
             let rules = SeedRules()
             Text(verbatim: "Direnilen her uzanma: +\(rules.skipGift.units) tohum, günde \(rules.giftedSkipsPerDay) kez")
                 .font(PofuFont.subheadline)
-            ForEach(ArchipelagoCatalog.standard.stations(on: .aycicegi)) { station in
+            ForEach(ArchipelagoCatalog.standard.stations(on: .home)) { station in
                 VStack(alignment: .leading, spacing: 2) {
                     Text(verbatim: station.id.rawValue)
                         .font(PofuFont.headline)
@@ -317,7 +317,7 @@ private struct TuningRow: View {
         if let spec = TuningSpec.spec(for: key), let value = store.value(key) {
             VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: PofuSpacing.xs) {
-                    Text(verbatim: AyarLabels.value(key))
+                    Text(verbatim: TuningLabLabels.value(key))
                         .font(PofuFont.subheadline)
                     Spacer(minLength: PofuSpacing.xs)
                     if store.isChanged(key) {
@@ -343,7 +343,7 @@ private struct TuningRow: View {
                     // store snaps to the spec's step instead.
                     in: spec.range
                 ) {
-                    Text(verbatim: AyarLabels.value(key))
+                    Text(verbatim: TuningLabLabels.value(key))
                 }
                 Text(verbatim: key)
                     .font(PofuFont.caption)
@@ -495,8 +495,8 @@ private struct BreathPreview: View {
 // MARK: - Labels
 
 /// The panel's Turkish names for sections and keys.
-enum AyarLabels {
-    static func title(_ section: AyarSection) -> String {
+enum TuningLabLabels {
+    static func title(_ section: TuningLabSection) -> String {
         switch section {
         case .colour: "Renk"
         case .camera: "Kamera"
@@ -510,7 +510,7 @@ enum AyarLabels {
         }
     }
 
-    static func symbol(_ section: AyarSection) -> String {
+    static func symbol(_ section: TuningLabSection) -> String {
         switch section {
         case .colour: "paintpalette"
         case .camera: "camera"
@@ -524,7 +524,7 @@ enum AyarLabels {
         }
     }
 
-    static func title(_ phase: AyarPhase) -> String {
+    static func title(_ phase: TuningLabPhase) -> String {
         switch phase {
         case .day: "Gündüz"
         case .golden: "Altın saat"

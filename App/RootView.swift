@@ -22,8 +22,8 @@ struct RootView: View {
             }
         }
         #if DEBUG
-        // Rehearsal mode's Ayar panel tunes the world's look live.
-        .modifier(AyarLook(model: model))
+        // Rehearsal mode's tuning lab panel tunes the world's look live.
+        .modifier(TuningLabLook(model: model))
         #endif
         .overlay {
             // Rehearsal mode: the shield replica, the simulated app, and

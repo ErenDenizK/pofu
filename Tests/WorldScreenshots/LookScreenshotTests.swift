@@ -140,9 +140,9 @@ final class LookScreenshotTests: XCTestCase {
         let world = IslandSamples.world(
             clock: Date(timeIntervalSinceReferenceDate: 815_000_000),
             tendedDays: 120,
-            levels: [.garden: 3, .cay: 1, .pond: 2, .workshop: 1, .windmill: 2],
+            levels: [.garden: 3, .teaStall: 1, .pond: 2, .workshop: 1, .windmill: 2],
             jar: IslandSamples.midWeekJar,
-            islands: [.aycicegi, .iskele]
+            islands: [.home, .harbor]
         )
         let variants: [(String, Bool, Bool)] = [
             ("rose copper, unlit", false, false),
@@ -156,14 +156,14 @@ final class LookScreenshotTests: XCTestCase {
             var rowTitles: [String] = []
             for (title, lit, flame) in variants {
                 let model = IslandSceneModel(framing: .island)
-                model.holdStationPan(from: .cay, to: .cay, at: 0)
+                model.holdStationPan(from: .teaStall, to: .teaStall, at: 0)
                 var look = WorldLook(hd2d: lit, depthMotion: false, hourOverride: hour)
                 look.litOverlays = flame
                 let image = try await render(AnyView(LookScene(world: world, model: model, picker: false).environment(\.worldLook, look)), in: scene, settle: 1400)
                 // The held focus pose, as the scene drew it.
-                let cay = try XCTUnwrap(IslandFraming.stationBox(.cay))
-                let a = model.screenPoint(of: WorldPoint(x: cay.minX - 4, y: cay.minY - 4))
-                let b = model.screenPoint(of: WorldPoint(x: cay.maxX + 4, y: cay.maxY + 4))
+                let teaStall = try XCTUnwrap(IslandFraming.stationBox(.teaStall))
+                let a = model.screenPoint(of: WorldPoint(x: teaStall.minX - 4, y: teaStall.minY - 4))
+                let b = model.screenPoint(of: WorldPoint(x: teaStall.maxX + 4, y: teaStall.maxY + 4))
                 row.append(crop(image, to: CGRect(x: a.x, y: a.y, width: b.x - a.x, height: b.y - a.y)))
                 rowTitles.append("\(label): \(title)")
             }

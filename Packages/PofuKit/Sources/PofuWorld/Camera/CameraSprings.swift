@@ -1,6 +1,6 @@
 import Foundation
 
-/// One spring as the Ayar panel tunes it: settling time and overshoot.
+/// One spring as the tuning lab panel tunes it: settling time and overshoot.
 public struct SpringSpec: Hashable, Sendable {
     public var duration: Double
     public var bounce: Double
@@ -19,7 +19,7 @@ public struct SpringSpec: Hashable, Sendable {
     }
 }
 
-/// The camera's tunable springs (look round 4: the Ayar panel sets them
+/// The camera's tunable springs (look round 4: the tuning lab panel sets them
 /// live through `WorldLook.tuning`). The defaults are `WorldSprings`'.
 public struct CameraSprings: Hashable, Sendable {
     /// Between neighbouring framings (Home ↔ Island).
@@ -50,7 +50,7 @@ public struct CameraSprings: Hashable, Sendable {
     )
 }
 
-/// The world's feel numbers that the Ayar panel tunes live (look round 4),
+/// The world's feel numbers that the tuning lab panel tunes live (look round 4),
 /// carried in `WorldLook.tuning`. The defaults change nothing.
 public struct WorldTuning: Hashable, Sendable {
     public var springs: CameraSprings

@@ -29,7 +29,7 @@ public struct CameraRig: Hashable, Sendable {
     /// Reduce Motion: automatic travel lands in 200 ms, no overshoot.
     public var reduceMotion = false
 
-    /// The camera's springs; the Ayar panel tunes them live.
+    /// The camera's springs; the tuning lab panel tunes them live.
     public var springs = CameraSprings.standard
 
     /// The island pan (look round 4): world units added to the Island

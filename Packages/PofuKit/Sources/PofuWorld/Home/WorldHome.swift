@@ -153,7 +153,7 @@ public struct WorldHome: View {
                     .padding(.top, PofuSpacing.s)
                 Spacer(minLength: 0)
                 if scene.projectedFraming == .island {
-                    IslandNameChip(island: .aycicegi)
+                    IslandNameChip(island: .home)
                         .padding(.bottom, PofuSpacing.l)
                 }
             }
@@ -355,7 +355,7 @@ public struct WorldHome: View {
     /// Pofu himself, kept on screen so they fly in from the edge.
     private func seedSources() -> [MomentPoint] {
         var points: [WorldPoint] = []
-        for status in world.stations where status.island == .aycicegi && status.level > 0 {
+        for status in world.stations where status.island == .home && status.level > 0 {
             if let anchor = IslandLayout.stationAnchors[status.id] {
                 points.append(WorldPoint(x: anchor.x, y: anchor.y - 24))
             }

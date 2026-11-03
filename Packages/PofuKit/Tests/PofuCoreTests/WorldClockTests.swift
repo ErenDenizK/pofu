@@ -365,32 +365,32 @@ struct WorldClockTests {
 
     // MARK: - Tended days, stages, arrivals
 
-    @Test func tendedDaysOpenStagesAndBringIskele() throws {
+    @Test func tendedDaysOpenStagesAndBringHarbor() throws {
         var world = World()
         let first = instant(2026, 11, 2, 8)
         world.advance(to: first, .signOfLife(at: first))
         world.state.stations.gather(5_000)
         world.state.stations.collect()
         // Day 1: only the garden's slot is open.
-        #expect(throws: BuildError.notOpen(.cay)) { try world.build(.cay, at: first) }
+        #expect(throws: BuildError.notOpen(.teaStall)) { try world.build(.teaStall, at: first) }
         let second = instant(2026, 11, 3, 8)
         world.advance(to: second, .signOfLife(at: second))
         #expect(world.state.tendedDays == 1)
         #expect(world.snapshot.homeStage == 2)
         for _ in 1...3 {
-            try world.build(.cay, at: second)
+            try world.build(.teaStall, at: second)
         }
         var day = second
         for _ in 0..<8 {
             day = day.adding(hours: 24)
             let delta = world.advance(to: day, .signOfLife(at: day))
             if world.state.tendedDays == 8 {
-                #expect(delta.arrivals == [.iskele])
+                #expect(delta.arrivals == [.harbor])
             }
         }
         #expect(world.state.tendedDays == 9)
-        #expect(world.snapshot.islands == [.aycicegi, .iskele])
-        #expect(world.snapshot.stations.contains { $0.id == .simit && $0.isOpen })
+        #expect(world.snapshot.islands == [.home, .harbor])
+        #expect(world.snapshot.stations.contains { $0.id == .bagelCart && $0.isOpen })
     }
 
     @Test func aDayPofuNeverSawIsNotTended() {

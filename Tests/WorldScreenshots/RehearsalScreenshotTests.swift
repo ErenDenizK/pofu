@@ -51,13 +51,13 @@ final class RehearsalScreenshotTests: XCTestCase {
                 )
             ),
             (
-                "08-ayar-panel-light",
+                "08-tuning-lab-panel-light",
                 AnyView(
                     ZStack {
                         IslandScene(world: IslandSamples.dayThree(), model: IslandSceneModel(framing: .home)) {
                             EmptyView()
                         }
-                        AyarPanel(model: model, store: Ayar.store, session: Ayar.session)
+                        TuningLabPanel(model: model, store: TuningLab.store, session: TuningLab.session)
                     }
                 )
             ),

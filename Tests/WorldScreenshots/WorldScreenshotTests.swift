@@ -118,7 +118,7 @@ final class WorldScreenshotTests: XCTestCase {
                 island.focusResident(.mochi, animated: false)
                 try await Task.sleep(for: .milliseconds(1600))
             case .stationBuild, .buildPop, .buildAfter:
-                let station = world.buildableStation ?? .cay
+                let station = world.buildableStation ?? .teaStall
                 island.focusStation(station, animated: false)
                 try await Task.sleep(for: .milliseconds(1400))
                 if shot != .stationBuild {

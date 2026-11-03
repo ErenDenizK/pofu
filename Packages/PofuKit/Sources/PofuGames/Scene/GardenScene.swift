@@ -24,7 +24,7 @@ final class GardenScene: SKScene {
     var onEvent: ((GardenSceneEvent) -> Void)?
     var sound: any GameSoundPlaying = SilentGameSound()
     var reduceMotion = false
-    /// The tuned feel (`TuningValues.Garden`); the Ayar panel changes it
+    /// The tuned feel (`TuningValues.Garden`); the tuning lab panel changes it
     /// live.
     var feel = GardenFeel.standard {
         didSet {

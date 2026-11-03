@@ -63,7 +63,7 @@ struct IslandFootprintTests {
             }
             // Past the generated levels the highest one stands in.
             let past = IslandLayout.stationArt(station, level: levels + 1)
-            #expect(past?.name == "\(station.rawValue)-\(levels)" && past?.isStandIn == true)
+            #expect(past?.name == "\(station.artStem)-\(levels)" && past?.isStandIn == true)
         }
     }
 
@@ -83,10 +83,10 @@ struct IslandFootprintTests {
     }
 
     @Test func emittersFollowTheirStation() throws {
-        let ember = try #require(IslandLayout.emitters.first { $0.station == .cay })
-        let cay = try #require(IslandLayout.stationAnchors[.cay])
-        #expect(abs(ember.point.x - (cay.x - 15.2)) < 1e-9)
-        #expect(abs(ember.point.y - (cay.y - 27.2)) < 1e-9)
+        let ember = try #require(IslandLayout.emitters.first { $0.station == .teaStall })
+        let teaStall = try #require(IslandLayout.stationAnchors[.teaStall])
+        #expect(abs(ember.point.x - (teaStall.x - 15.2)) < 1e-9)
+        #expect(abs(ember.point.y - (teaStall.y - 27.2)) < 1e-9)
     }
 
     @Test func polygonContainment() {

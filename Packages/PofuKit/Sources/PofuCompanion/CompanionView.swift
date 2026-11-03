@@ -99,7 +99,7 @@ extension EnvironmentValues {
     /// Whether Pofu blinks on his own. Screenshot rendering turns it off
     /// so a frame never catches him mid-blink.
     @Entry public var companionBlinks: Bool = true
-    /// How Pofu breathes and blinks; the Ayar panel sets it live.
+    /// How Pofu breathes and blinks; the tuning lab panel sets it live.
     @Entry public var companionLife: CompanionLife = .standard
 }
 

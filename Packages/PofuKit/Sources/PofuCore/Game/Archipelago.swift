@@ -1,6 +1,6 @@
 import Foundation
 
-/// Identifies an island of the archipelago, such as "aycicegi".
+/// Identifies an island of the archipelago, such as "home".
 public struct IslandID: RawRepresentable, Hashable, Comparable, Sendable, Codable,
     ExpressibleByStringLiteral, CustomStringConvertible
 {
@@ -22,10 +22,10 @@ public struct IslandID: RawRepresentable, Hashable, Comparable, Sendable, Codabl
         lhs.rawValue < rhs.rawValue
     }
 
-    /// Ayçiçeği, Pofu's home island.
-    public static let aycicegi: IslandID = "aycicegi"
-    /// İskele, the tea-and-simit harbor.
-    public static let iskele: IslandID = "iskele"
+    /// The home island (Ayçiçeği).
+    public static let home: IslandID = "home"
+    /// The harbor, the tea-and-bagel harbor (İskele).
+    public static let harbor: IslandID = "harbor"
     /// Yıldız, the night observatory.
     public static let yildiz: IslandID = "yildiz"
     /// Kaplıca, the hot-spring hamam.
@@ -34,7 +34,7 @@ public struct IslandID: RawRepresentable, Hashable, Comparable, Sendable, Codabl
     public static let kitap: IslandID = "kitap"
 }
 
-/// Identifies a station, such as "cay" (Mochi's çay ocağı).
+/// Identifies a station, such as "teaStall" (Mochi's çay ocağı).
 public struct StationID: RawRepresentable, Hashable, Comparable, Sendable, Codable,
     ExpressibleByStringLiteral, CustomStringConvertible
 {
@@ -57,11 +57,11 @@ public struct StationID: RawRepresentable, Hashable, Comparable, Sendable, Codab
     }
 
     public static let garden: StationID = "garden"
-    public static let cay: StationID = "cay"
+    public static let teaStall: StationID = "teaStall"
     public static let pond: StationID = "pond"
     public static let workshop: StationID = "workshop"
     public static let windmill: StationID = "windmill"
-    public static let simit: StationID = "simit"
+    public static let bagelCart: StationID = "bagelCart"
     public static let pier: StationID = "pier"
     public static let lighthouse: StationID = "lighthouse"
     public static let observatory: StationID = "observatory"
@@ -246,24 +246,24 @@ public struct ArchipelagoCatalog: Hashable, Sendable, Codable {
     /// Game design v2 at economy scale A: five islands, 17 stations, every
     /// level 5 to 200 seeds.
     public static let standard = ArchipelagoCatalog(
-        home: .aycicegi,
+        home: .home,
         homeStageTendedDays: [0, 1, 4, 10, 24],
         islands: [
-            IslandSpec(id: .aycicegi, arrival: IslandArrival()),
-            IslandSpec(id: .iskele, arrival: IslandArrival(tendedDays: 8, requires: StationLevelRequirement(station: .cay, level: 3))),
+            IslandSpec(id: .home, arrival: IslandArrival()),
+            IslandSpec(id: .harbor, arrival: IslandArrival(tendedDays: 8, requires: StationLevelRequirement(station: .teaStall, level: 3))),
             IslandSpec(id: .yildiz, arrival: IslandArrival(tendedDays: 21, calmNights: 10)),
             IslandSpec(id: .kaplica, arrival: IslandArrival(tendedDays: 35, requires: StationLevelRequirement(station: .pier, level: 3))),
             IslandSpec(id: .kitap, arrival: IslandArrival(tendedDays: 50, needsRelease: true)),
         ],
         stations: [
-            .ladder(.garden, island: .aycicegi, opensAt: 1, costs: [0, 5, 9, 15, 25], startsBuilt: true),
-            .ladder(.cay, island: .aycicegi, opensAt: 2, costs: [8, 14, 24, 38, 60]),
-            .ladder(.pond, island: .aycicegi, opensAt: 3, costs: [15, 25, 40, 60, 85]),
-            .ladder(.workshop, island: .aycicegi, opensAt: 4, costs: [30, 50, 75, 105, 140]),
-            .ladder(.windmill, island: .aycicegi, opensAt: 5, costs: [50, 80, 110, 150, 190]),
-            .ladder(.simit, island: .iskele, opensAt: 0, costs: [25, 40, 60, 85, 115]),
-            .ladder(.pier, island: .iskele, opensAt: 3, costs: [40, 60, 85, 115, 150]),
-            .ladder(.lighthouse, island: .iskele, opensAt: 7, costs: [60, 85, 115, 150, 200]),
+            .ladder(.garden, island: .home, opensAt: 1, costs: [0, 5, 9, 15, 25], startsBuilt: true),
+            .ladder(.teaStall, island: .home, opensAt: 2, costs: [8, 14, 24, 38, 60]),
+            .ladder(.pond, island: .home, opensAt: 3, costs: [15, 25, 40, 60, 85]),
+            .ladder(.workshop, island: .home, opensAt: 4, costs: [30, 50, 75, 105, 140]),
+            .ladder(.windmill, island: .home, opensAt: 5, costs: [50, 80, 110, 150, 190]),
+            .ladder(.bagelCart, island: .harbor, opensAt: 0, costs: [25, 40, 60, 85, 115]),
+            .ladder(.pier, island: .harbor, opensAt: 3, costs: [40, 60, 85, 115, 150]),
+            .ladder(.lighthouse, island: .harbor, opensAt: 7, costs: [60, 85, 115, 150, 200]),
             .ladder(.observatory, island: .yildiz, opensAt: 0, costs: [45, 70, 100, 135, 170]),
             .ladder(.fireflies, island: .yildiz, opensAt: 3, costs: [55, 80, 110, 145, 180]),
             .ladder(.hammock, island: .yildiz, opensAt: 7, costs: [65, 90, 120, 155, 190]),

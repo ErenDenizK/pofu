@@ -40,7 +40,7 @@ public struct CompanionMotion: Sendable {
     /// catches Pofu with his eyes shut; expressions still close the lids.
     public var blinks = true
 
-    /// How he breathes and blinks (the Ayar panel tunes it live).
+    /// How he breathes and blinks (the tuning lab panel tunes it live).
     public var life = CompanionLife.standard
 
     public private(set) var time: Double = 0

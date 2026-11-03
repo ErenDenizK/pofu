@@ -50,7 +50,7 @@ extension IslandLayout {
         // of the burner on every level (cay-1 to cay-5: x 379-385, y 567-571
         // px, anchor (512, 800), 8.53 px per unit): (−15.2, −27.2) from the
         // stall, right under the kettle's belly, which it lights.
-        WorldEmitter(kind: .ember, point: onStation(.cay, x: -15.2, y: -27.2), radius: 6, color: GradeRGB(1, 0.62, 0.26), reach: 70, station: .cay),
+        WorldEmitter(kind: .ember, point: onStation(.teaStall, x: -15.2, y: -27.2), radius: 6, color: GradeRGB(1, 0.62, 0.26), reach: 70, station: .teaStall),
         // The round window in the door, measured on the plate master.
         WorldEmitter(kind: .window, point: WorldArt.generatedPlate.window, radius: 7, color: GradeRGB(1, 0.78, 0.44), reach: 30),
     ]
@@ -59,7 +59,7 @@ extension IslandLayout {
     /// the art queue made one (batch 07's lit edits): drawn after the grade,
     /// faded in with the ember, so the flame keeps its own colour at night.
     public static func litOverlay(_ station: StationID, level: Int) -> String? {
-        let name = "\(station.rawValue)-\(level)-glow"
+        let name = "\(station.artStem)-\(level)-glow"
         return WorldArt.sprite(name) == nil ? nil : name
     }
 

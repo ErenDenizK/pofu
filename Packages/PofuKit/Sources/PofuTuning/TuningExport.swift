@@ -4,7 +4,7 @@ import Foundation
 /// values, for reading at a glance, and the complete values, which the
 /// agent commits as the new `tuning.json`.
 public struct TuningExport: Codable, Hashable, Sendable {
-    /// Marks the file as an Ayar export.
+    /// Marks the file as a tuning lab export.
     public var kind: String
     /// Bumped when `TuningValues` changes shape.
     public var schema: Int

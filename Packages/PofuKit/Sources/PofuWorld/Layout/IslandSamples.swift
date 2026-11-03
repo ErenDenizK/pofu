@@ -17,9 +17,9 @@ public enum IslandSamples {
         world(
             clock: clock,
             tendedDays: 4,
-            levels: [.garden: 2, .cay: 1],
+            levels: [.garden: 2, .teaStall: 1],
             jar: Self.midWeekJar,
-            islands: [.aycicegi, .iskele]
+            islands: [.home, .harbor]
         )
     }
 
@@ -33,16 +33,16 @@ public enum IslandSamples {
         world(
             clock: clock,
             tendedDays: 120,
-            levels: [.garden: 3, .cay: 3, .pond: 2, .workshop: 1, .windmill: 2],
+            levels: [.garden: 3, .teaStall: 3, .pond: 2, .workshop: 1, .windmill: 2],
             jar: Self.midWeekJar,
-            islands: [.aycicegi, .iskele],
+            islands: [.home, .harbor],
             wellbeing: wellbeing
         )
     }
 
     /// A first day: the garden only.
     public static func firstDay(clock: Date = Date(timeIntervalSinceReferenceDate: 815_000_000)) -> WorldSnapshot {
-        world(clock: clock, tendedDays: 0, levels: [.garden: 1], jar: .zero, islands: [.aycicegi])
+        world(clock: clock, tendedDays: 0, levels: [.garden: 1], jar: .zero, islands: [.home])
     }
 
     /// A world with the given levels, read through the standard catalog.

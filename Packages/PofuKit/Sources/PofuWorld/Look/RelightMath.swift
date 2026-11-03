@@ -61,7 +61,7 @@ public struct RelightRig: Hashable, Sendable {
     /// The lit practicals; the renderer converts each to a sprite's local
     /// points.
     public var practicals: [WorldPractical]
-    /// The Ayar slider: 0 is off, 1 is the authored strength.
+    /// The tuning lab slider: 0 is off, 1 is the authored strength.
     public var strength: Double
 
     public init(

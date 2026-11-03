@@ -106,7 +106,7 @@ struct CollectMomentTests {
 @Suite("Build moment")
 struct BuildMomentTests {
     func moment(reduceMotion: Bool = false, to level: Int = 2) -> BuildMoment {
-        BuildMoment(station: .cay, fromLevel: level - 1, toLevel: level, maxLevel: 5, reduceMotion: reduceMotion)
+        BuildMoment(station: .teaStall, fromLevel: level - 1, toLevel: level, maxLevel: 5, reduceMotion: reduceMotion)
     }
 
     @Test func cuesFollowTheSpecTable() {
