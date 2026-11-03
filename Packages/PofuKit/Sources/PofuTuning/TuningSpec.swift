@@ -94,6 +94,9 @@ extension TuningSpec {
             TuningSpec("home.potBloom", 0.2...1.2, step: 0.05),
             TuningSpec("home.jarCapacity", 40...400, step: 10),
         ]
+        specs += ["master", "seeds", "pieces", "pofu"].map { (name: String) -> TuningSpec in
+            TuningSpec("sound.\(name)", 0...1, step: 0.05)
+        }
         return specs
     }()
 

@@ -1,0 +1,281 @@
+batch: batch-12-minigame-art
+contact_sheet: design/art/takes/batch-12-minigame-art/game-plot-tile-mint/contact.jpg
+jobs:
+  game-plot-tile-mint:
+    pick: none
+    publication: skipped
+    note: 'Skipped after four takes (initial pair and one allowed retry): all fail
+      edit_stability and edit_chroma. Stability0.0055,0.0076,0.0060,0.0058; chroma
+      ratios0.5672,0.5322,0.5087,0.5416. No waiver or changes to prompt, manifest
+      or thresholds. No dependent jobs; all original PNGs remain preserved.'
+    retry_policy: Initial pair plus one additional pair exhausted; no further generation.
+      Skip only dependents.
+qa_reports:
+  1:
+    job: game-plot-tile-mint
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 12 (R1 51)
+      value: 11.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 74.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.53
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2579
+    - check: palette_drift
+      status: warn
+      message: mean dE 4.5, p95 5.5, off-palette 0.0%
+      value: 4.4969
+    - check: edit_stability
+      status: fail
+      message: 1% of the parent level unchanged
+      value: 0.0055
+    - check: edit_chroma
+      status: fail
+      message: chroma x0.57 of the parent level (drift compounds along a chain)
+      value: 0.5672
+    info:
+      metrics_raw:
+        L_p5: 75.0
+        L_p50: 80.1
+        L_p95: 85.7
+        C_p50: 9.7
+        C_p95: 11.6
+        C_p99: 12.9
+        detail: 0.71
+      metrics_locked:
+        L_p5: 74.9
+        L_p50: 80.1
+        L_p95: 85.6
+        C_p50: 9.7
+        C_p95: 11.5
+        C_p99: 12.8
+        detail: 0.53
+    fingerprint: f470d536dd3b0cd8
+  2:
+    job: game-plot-tile-mint
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.007 and moved it; aligned back to the
+        parent
+      value: 0.993
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 11 (R1 51)
+      value: 11.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 74 (R1 59)
+      value: 73.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.5
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6404
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.7, p95 5.0, off-palette 0.0%
+      value: 3.684
+    - check: edit_stability
+      status: fail
+      message: 1% of the parent level unchanged
+      value: 0.0076
+    - check: edit_chroma
+      status: fail
+      message: chroma x0.53 of the parent level (drift compounds along a chain)
+      value: 0.5322
+    info:
+      alignment:
+        scale: 0.993
+        cx: 505.5
+        cy: 958.0
+        dx: 4
+        dy: -8
+      metrics_raw:
+        L_p5: 74.0
+        L_p50: 79.2
+        L_p95: 84.5
+        C_p50: 8.8
+        C_p95: 11.1
+        C_p99: 12.6
+        detail: 0.68
+      metrics_locked:
+        L_p5: 73.9
+        L_p50: 79.4
+        L_p95: 84.6
+        C_p50: 9.1
+        C_p95: 11.0
+        C_p99: 12.4
+        detail: 0.5
+    fingerprint: f470d536dd3b0cd8
+  3:
+    job: game-plot-tile-mint
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 10 (R1 51)
+      value: 10.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 75.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.53
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.2
+      value: 0.2435
+    - check: palette_drift
+      status: warn
+      message: mean dE 4.1, p95 5.3, off-palette 0.0%
+      value: 4.0743
+    - check: edit_stability
+      status: fail
+      message: 1% of the parent level unchanged
+      value: 0.006
+    - check: edit_chroma
+      status: fail
+      message: chroma x0.51 of the parent level (drift compounds along a chain)
+      value: 0.5087
+    info:
+      metrics_raw:
+        L_p5: 75.4
+        L_p50: 81.1
+        L_p95: 86.0
+        C_p50: 8.7
+        C_p95: 10.4
+        C_p99: 12.1
+        detail: 0.66
+      metrics_locked:
+        L_p5: 75.4
+        L_p50: 81.0
+        L_p95: 85.9
+        C_p50: 8.7
+        C_p95: 10.2
+        C_p99: 11.9
+        detail: 0.53
+    fingerprint: f470d536dd3b0cd8
+  4:
+    job: game-plot-tile-mint
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 11 (R1 51)
+      value: 10.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 75.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.5
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.2
+      value: 0.2425
+    - check: palette_drift
+      status: warn
+      message: mean dE 4.5, p95 5.5, off-palette 0.0%
+      value: 4.4809
+    - check: edit_stability
+      status: fail
+      message: 1% of the parent level unchanged
+      value: 0.0058
+    - check: edit_chroma
+      status: fail
+      message: chroma x0.54 of the parent level (drift compounds along a chain)
+      value: 0.5416
+    info:
+      metrics_raw:
+        L_p5: 75.8
+        L_p50: 81.7
+        L_p95: 86.9
+        C_p50: 9.3
+        C_p95: 10.7
+        C_p99: 12.3
+        detail: 0.67
+      metrics_locked:
+        L_p5: 75.9
+        L_p50: 81.7
+        L_p95: 86.8
+        C_p50: 9.3
+        C_p95: 10.6
+        C_p99: 12.1
+        detail: 0.5
+    fingerprint: f470d536dd3b0cd8
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-4800544f-0b4c-4b4e-89b6-f50af1e9488f.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 2
+  source_file: /workspace/generated_images/exec-5fc66034-2da0-4441-acc4-f659b296e8e7.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 3
+  source_file: /workspace/generated_images/exec-e1edf4c3-f6bc-4f7a-9cf6-1d7465de1f1d.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+- take: 4
+  source_file: /workspace/generated_images/exec-f4c6bd93-ba12-4db9-8280-e4510392a2e3.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan

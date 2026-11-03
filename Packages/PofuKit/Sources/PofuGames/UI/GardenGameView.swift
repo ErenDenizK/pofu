@@ -24,10 +24,13 @@ public struct GardenGameView: View {
     public init(
         roundsAvailable: Int = GardenSet.roundsPerSet,
         tuning: TuningValues.Garden = TuningValues.defaults.garden,
+        sound: (any GameSoundPlaying)? = nil,
         onRoundEnd: @escaping (GardenRoundResult) -> Void = { _ in },
         onFinish: @escaping (Int) -> Void
     ) {
-        _model = State(initialValue: GardenGameModel(roundsAvailable: roundsAvailable, onRoundEnd: onRoundEnd, onFinish: onFinish))
+        let model = GardenGameModel(roundsAvailable: roundsAvailable, onRoundEnd: onRoundEnd, onFinish: onFinish)
+        if let sound { model.sound = sound }
+        _model = State(initialValue: model)
         self.tuning = tuning
     }
 

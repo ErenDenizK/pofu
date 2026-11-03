@@ -1,0 +1,146 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-emanet-2/contact.jpg
+jobs:
+  x-emanet-2:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both automated PASS and manual
+      signature review pass: tiny round magpie visibly grips a large gold button with
+      its beak, reluctant/pained face at a warmly lit counter, rolled brown paper
+      tag and brass bell beside it. Soft pastel family painting, no labels/text. Take2
+      lowest lock load0.7921. Never promoted.'
+qa_reports:
+  1:
+    job: x-emanet-2
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 61.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.08
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0588
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 4.2, off-palette 0.0% (top: #AA6622 (0.0%), #BB7733
+        (0.0%))'
+      value: 1.7364
+    info:
+      metrics_raw:
+        L_p5: 60.9
+        L_p50: 87.2
+        L_p95: 94.0
+        C_p50: 20.9
+        C_p95: 39.9
+        C_p99: 44.1
+        detail: 2.69
+      metrics_locked:
+        L_p5: 61.4
+        L_p50: 87.1
+        L_p95: 93.9
+        C_p50: 20.9
+        C_p95: 39.5
+        C_p99: 43.6
+        detail: 2.08
+    fingerprint: 0c6453fb484cccc7
+  2:
+    job: x-emanet-2
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 63 (R1 59)
+      value: 63.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7921
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 3.8, off-palette 0.0%
+      value: 1.5727
+    info:
+      metrics_raw:
+        L_p5: 62.8
+        L_p50: 86.9
+        L_p95: 94.7
+        C_p50: 22.1
+        C_p95: 40.0
+        C_p99: 45.5
+        detail: 2.83
+      metrics_locked:
+        L_p5: 63.2
+        L_p50: 86.8
+        L_p95: 94.5
+        C_p50: 22.1
+        C_p95: 39.6
+        C_p99: 44.8
+        detail: 2.14
+    fingerprint: 0c6453fb484cccc7
+manual_review:
+  exclude: []
+  note: 'Both automated PASS and manual signature review pass: tiny round magpie visibly
+    grips a large gold button with its beak, reluctant/pained face at a warmly lit
+    counter, rolled brown paper tag and brass bell beside it. Soft pastel family painting,
+    no labels/text. Take2 lowest lock load0.7921. Never promoted.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-44835db9-f8a5-4d72-85af-bfe4ff7894cc.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0c6453fb484cccc7
+  inbox_png_sha256: a571befbb4d77a3d13d2d113af5eeec358bf81c9351eac9568662b3151e9784b
+  original_generated_png_sha256: 394fc9065570c9d7d5a9f38de76aee95dcf2ef8f3555242876a7fe2f3ba35413
+  rgba_sha256: ebf393fbb3f827147f2f5ede76b269a982622b9851ef744d1cdd97eab8d66227
+  source_rgba_matches_inbox: true
+- take: 2
+  source_file: /workspace/generated_images/exec-55f58a04-52e7-4b0e-adac-6cc4c5431a57.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0c6453fb484cccc7
+  inbox_png_sha256: 56c96339e08baefd143f3163d5067f8eaacc08fd50ae395eea296c3e05cab692
+  original_generated_png_sha256: 2882830d1c6991548bc89a496286fe4f376cbe6ea2f639719c979bfe717a3a43
+  rgba_sha256: b051f3eed853dbe65f32a9b7fd3a7a07883c7d4fd97f7b18596d724a1cabac0a
+  source_rgba_matches_inbox: true
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.

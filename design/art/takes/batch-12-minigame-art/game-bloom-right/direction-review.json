@@ -1,0 +1,11 @@
+{
+  "manual_review": "No clearly right-shifted brown centre relative to the canvas midpoint512; all remain approximately neutral/left. Diagnostic bounding-box centres below support the visual comparison; these are review measurements only, not changed QA thresholds.",
+  "reference_front_t2_x": 501.5,
+  "candidate_centre_x": {
+    "t1": 502.5,
+    "t2": 487.0,
+    "t3": 507.5,
+    "t4": 502.5
+  },
+  "diagnostic_method": "Brown region L<65 inside x210..820,y220..820 on canonical1024px locked image; alpha>128. Master pixels are unchanged."
+}

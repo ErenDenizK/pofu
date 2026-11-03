@@ -1,0 +1,21 @@
+id: asset-x-b16-logo-c
+type: asset
+title_tr: x-b16-logo-c
+title_en: x-b16-logo-c (plate)
+status: in-production
+horizon: now
+summary: >-
+  PURPOSE: a wordmark for the app Pofu, direction C (pillow letters). AUDIENCE: adults and
+  teens who open social apps by reflex; warm, humorous, never preachy. REQUIRED TEXT: Pofu
+  (exactly four letters: capital P, lowercase o, f, u.) LETTERFORM: puffy inflated pillow
+  letters in cream with a soft warm brown shading side, tightly spaced. Extra mark: a tiny
+  sunflower seed sitting after the last letter. COLOR: warm brown a…
+art:
+  images: []
+  jobs:
+  - batch-16-brand-explore:x-b16-logo-c
+sources:
+- doc: tools/imagegen/manifest/batch-16-brand-explore.yaml
+kind: plate
+batch: batch-16-brand-explore
+size: 1536x1024

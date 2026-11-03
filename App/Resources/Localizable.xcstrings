@@ -2902,6 +2902,36 @@
         }
       }
     },
+    "Pofu's sounds" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pofu'nun sesleri"
+          }
+        }
+      }
+    },
+    "Sounds" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sesler"
+          }
+        }
+      }
+    },
+    "Tiny sounds while you play. They follow the Silent switch and stay under your music." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oynarken küçük sesler. Sessiz düğmesine uyar, müziğinin altında kalır."
+          }
+        }
+      }
+    },
     "Rehearsal mode" : {
       "localizations" : {
         "tr" : {

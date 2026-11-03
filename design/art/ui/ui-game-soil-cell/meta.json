@@ -1,0 +1,89 @@
+{
+  "job": "game-soil-cell",
+  "batch": "batch-12-minigame-art",
+  "asset": "ui__game-soil-cell",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T00:29:22+00:00",
+  "image": "design/art/ui/ui-game-soil-cell/ui-game-soil-cell.png",
+  "raw": "design/art/ui/ui-game-soil-cell/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "bace2983c22db22f",
+  "prompt": "REFERENCES (attached, in this order):\n1. Style reference for objects: how a prop is painted in this world.\n2. The palette card for props.\n\nOne square tile-sized cell of soft brown garden soil seen from\nstraight above with a very slight tilt, rounded corners, filling\nmost of the canvas: a gently mounded surface of dark warm brown,\ntwo tiny round crumbs on it, a slightly darker rim. Matte and\ncalm; clearly darker and duller than a glazed clay tile.\n\nUI OBJECT: a painted object that the app places under or inside native\niOS glass controls. Never paint glass, frosted panels, buttons, frames,\nprogress bars or any interface chrome: the app draws all glass and all\ncontrols natively. The object is centered with a generous transparent\nmargin of about 10% on every side.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/cay-1/cay-1.png",
+      "role": "Style reference for objects: how a prop is painted in this world."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T00:23:44+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 31 (R1 51)",
+        "value": 31.4
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 38 (R1 59)",
+        "value": 37.5
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.6 (R1 5.3)",
+        "value": 0.58
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.6",
+        "value": 1.6128
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.9, p95 1.4, off-palette 0.0%",
+        "value": 0.9155
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both takes pass automated QA. Four-background composites and native41pt side-by-side comparison with sage pass: warm matte soil, two round crumbs, darker rim and a clearly darker plain cell. Median L is46.3/42.0 versus sage76.4. Take1 has the lowest passing lock load1.6128 versus2.1344. Full palette/value checks pass."
+}

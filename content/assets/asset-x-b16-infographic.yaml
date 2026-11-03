@@ -1,0 +1,21 @@
+id: asset-x-b16-infographic
+type: asset
+title_tr: x-b16-infographic
+title_en: x-b16-infographic (plate)
+status: in-production
+horizon: now
+summary: >-
+  PURPOSE: explain the whole Pofu loop in five seconds. AUDIENCE: a Turkish-speaking adult
+  scrolling too much; friendly and light. TEXT HIERARCHY: four short labels, one per step,
+  same size. REQUIRED TEXT, top to bottom, each on its own line, verbatim: Instagram'a uzandın
+  Pofu boş ver ada büyür LAYOUT: a vertical path of four painted steps joined by soft painted
+  arrows: (1) a thumb reaching toward a rounded phone with …
+art:
+  images: []
+  jobs:
+  - batch-16-brand-explore:x-b16-infographic
+sources:
+- doc: tools/imagegen/manifest/batch-16-brand-explore.yaml
+kind: plate
+batch: batch-16-brand-explore
+size: 1024x1536

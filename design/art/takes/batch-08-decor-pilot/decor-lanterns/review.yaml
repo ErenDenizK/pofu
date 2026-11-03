@@ -1,0 +1,7 @@
+batch: batch-08-decor-pilot
+jobs:
+  decor-lanterns:
+    pick: none
+    publication: dependent-skip
+    note: 'Not generated: required approved:decor-bench failed after its allowed retry;
+      no master. Continue next batch.'

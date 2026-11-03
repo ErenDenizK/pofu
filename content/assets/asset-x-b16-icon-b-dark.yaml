@@ -1,0 +1,21 @@
+id: asset-x-b16-icon-b-dark
+type: asset
+title_tr: x-b16-icon-b-dark
+title_en: x-b16-icon-b-dark (appicon)
+status: in-production
+horizon: now
+summary: >-
+  PURPOSE: the Pofu app icon, direction B (the paper lantern), dark appearance for iOS 26.
+  AUDIENCE: adults who want to open social apps less; calm, not clinical. SUBJECT: one large
+  round paper lantern with a warm glowing cream light, hanging low and centered, with Pofu
+  small and sleepy beside it, over a calm dusk-blue-to-peach sky. DARK variant: the same composition
+  and the same drawing at night: a deep soft indigo-to…
+art:
+  images: []
+  jobs:
+  - batch-16-brand-explore:x-b16-icon-b-dark
+sources:
+- doc: tools/imagegen/manifest/batch-16-brand-explore.yaml
+kind: appicon
+batch: batch-16-brand-explore
+size: 1024x1024

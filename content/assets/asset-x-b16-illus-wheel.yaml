@@ -1,0 +1,21 @@
+id: asset-x-b16-illus-wheel
+type: asset
+title_tr: x-b16-illus-wheel
+title_en: x-b16-illus-wheel (plate)
+status: in-production
+horizon: now
+summary: >-
+  PURPOSE: the feeling of the product: stepping out of a reflex loop. AUDIENCE: adults who
+  scroll by habit; a little humor, no shame. SUBJECT: Pofu stepping off a toy hamster wheel
+  onto soft grass, one foot still on the wheel's rim, the wheel gently stopping behind him,
+  a relaxed smile, a floating island and a lantern ahead. LAYOUT: portrait, Pofu centered
+  low, the wheel behind, the island in the distance, a calm clear…
+art:
+  images: []
+  jobs:
+  - batch-16-brand-explore:x-b16-illus-wheel
+sources:
+- doc: tools/imagegen/manifest/batch-16-brand-explore.yaml
+kind: plate
+batch: batch-16-brand-explore
+size: 1024x1536

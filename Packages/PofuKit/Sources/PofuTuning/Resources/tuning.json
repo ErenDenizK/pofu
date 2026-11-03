@@ -98,5 +98,11 @@
     "hopAppearDay" : 0.6,
     "hopAppearNight" : 0.35,
     "pofuTap" : 0.7
+  },
+  "sound" : {
+    "master" : 0.8,
+    "pieces" : 0.7,
+    "pofu" : 0.9,
+    "seeds" : 0.85
   }
 }

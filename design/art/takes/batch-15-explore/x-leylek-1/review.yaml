@@ -1,0 +1,146 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-leylek-1/contact.jpg
+jobs:
+  x-leylek-1:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Coordinator manual review: both
+      have exactly three plush white storks with soft dark wingtips circling above
+      the huge straw nest and plump brick chimney, tall reeds along the floating island
+      edge, low camera/cloud sea, no text or extra characters. Both pass; lowest non-failing
+      lock load wins. Never promoted.'
+qa_reports:
+  1:
+    job: x-leylek-1
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 35.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 70 (R1 59)
+      value: 70.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.1
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8125
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 3.9, off-palette 0.0% (top: #DD8844 (0.0%), #CC8844
+        (0.0%))'
+      value: 1.767
+    info:
+      metrics_raw:
+        L_p5: 70.0
+        L_p50: 88.5
+        L_p95: 95.3
+        C_p50: 11.2
+        C_p95: 36.1
+        C_p99: 46.5
+        detail: 2.78
+      metrics_locked:
+        L_p5: 70.4
+        L_p50: 88.4
+        L_p95: 95.2
+        C_p50: 11.0
+        C_p95: 35.1
+        C_p99: 45.6
+        detail: 2.1
+    fingerprint: ee40b78ec58cbf8d
+  2:
+    job: x-leylek-1
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 70 (R1 59)
+      value: 70.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.78
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8199
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.7, p95 4.0, off-palette 0.0%
+      value: 1.7204
+    info:
+      metrics_raw:
+        L_p5: 70.0
+        L_p50: 89.7
+        L_p95: 95.2
+        C_p50: 7.7
+        C_p95: 38.5
+        C_p99: 47.2
+        detail: 2.38
+      metrics_locked:
+        L_p5: 70.5
+        L_p50: 89.7
+        L_p95: 95.1
+        C_p50: 7.5
+        C_p95: 37.6
+        C_p99: 46.3
+        detail: 1.78
+    fingerprint: ee40b78ec58cbf8d
+manual_review:
+  exclude: []
+  note: 'Coordinator manual review: both have exactly three plush white storks with
+    soft dark wingtips circling above the huge straw nest and plump brick chimney,
+    tall reeds along the floating island edge, low camera/cloud sea, no text or extra
+    characters. Both pass; lowest non-failing lock load wins. Never promoted.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-ef22cb20-de04-468e-b900-7732896a8dcb.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ee40b78ec58cbf8d
+  inbox_png_sha256: 6af4f581e6e8f54515b6181139860667f2700be43a3017c8524a9a60df274bd5
+  original_generated_png_sha256: 16f074680d62d49e94d21c873d8f55926b3b59d7017af29bb263ac80a5769172
+  rgba_sha256: e7c823a5c9d26d7fdc47babbfaf0a4651f05727c7973a82ce13329090f11c3d5
+  source_rgba_matches_inbox: true
+- take: 2
+  source_file: /workspace/generated_images/exec-2583cf52-b721-406c-9bfe-8c8c947963d3.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ee40b78ec58cbf8d
+  inbox_png_sha256: 63cd196afeae8433f21a9fa20ed1322a2b9a9d2c797f49fa2a57f03fa98cfdf5
+  original_generated_png_sha256: 361c4150711105ca13bd8d89924fcf5bd1ea60de8f2b52cb87f03fffc932a3e9
+  rgba_sha256: 8b9b754f3ba69e79f67d614a72946c8e752d89ddd98b2f7e1869df173efa7c24
+  source_rgba_matches_inbox: true
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.

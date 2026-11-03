@@ -1,6 +1,7 @@
 #if DEBUG
 import PofuCore
 import PofuDesignSystem
+import PofuSound
 import PofuTuning
 import SwiftUI
 import UIKit
@@ -134,6 +135,7 @@ struct AyarPanel: View {
         case .depth: depth
         case .pofu: pofu
         case .haptics: haptics
+        case .sound: sound
         case .seeds: seeds
         case .garden: garden
         case .home: homeObjects
@@ -234,6 +236,25 @@ struct AyarPanel: View {
         }
     }
 
+    private var sound: some View {
+        VStack(alignment: .leading, spacing: PofuSpacing.m) {
+            note("Ses seviyeleri. Sessiz düğmesi her şeyi kapatır; kalkan hiç ses çalmaz. Dene ile duy.")
+            SoundMuteRow()
+            ForEach(["master", "seeds", "pieces", "pofu"], id: \.self) { name in
+                SoundRow(store: store, key: "sound.\(name)", cue: Self.sampleCue(name))
+            }
+        }
+    }
+
+    private static func sampleCue(_ name: String) -> SoundCue {
+        switch name {
+        case "seeds": .bloom(step: 4)
+        case "pieces": .pieceDrop
+        case "pofu": .skipChime
+        default: .roundEnd
+        }
+    }
+
     private var seeds: some View {
         VStack(alignment: .leading, spacing: PofuSpacing.s) {
             note("Tohum verimi oyun kurallarında (PofuCore) durur; burada yalnızca okunur. Saatte tohum, sakinlikten önce, seviye 1–5.")
@@ -308,6 +329,48 @@ private struct TuningRow: View {
                     .font(PofuFont.caption)
                     .foregroundStyle(PofuColor.textSecondary.opacity(0.7))
             }
+        }
+    }
+}
+
+/// The global mute, the same switch as Settings.
+private struct SoundMuteRow: View {
+    @State private var isOn = !SoundEngine.shared.settings.isMuted
+
+    var body: some View {
+        Toggle(isOn: Binding(
+            get: { isOn },
+            set: { value in
+                isOn = value
+                SoundEngine.shared.settings = SoundSettings(isMuted: !value)
+            }
+        )) {
+            Text(verbatim: "Pofu'nun sesleri açık")
+                .font(PofuFont.subheadline)
+        }
+    }
+}
+
+/// A volume with a button that plays a sample cue as the app plays it
+/// (rate limits apply, so the sample is spaced by the policy).
+private struct SoundRow: View {
+    let store: TuningStore
+    let key: String
+    let cue: SoundCue
+
+    var body: some View {
+        HStack(alignment: .bottom, spacing: PofuSpacing.s) {
+            TuningRow(store: store, key: key)
+            Button {
+                SoundEngine.shared.volumes = store.values.sound
+                SoundEngine.shared.play(cue)
+            } label: {
+                Text(verbatim: "Dene")
+                    .font(PofuFont.subheadline)
+                    .padding(.horizontal, PofuSpacing.s)
+                    .frame(minHeight: 34)
+            }
+            .buttonStyle(.glass)
         }
     }
 }
@@ -420,6 +483,7 @@ enum AyarLabels {
         case .depth: "Derinlik"
         case .pofu: "Pofu"
         case .haptics: "Dokunuş"
+        case .sound: "Ses"
         case .seeds: "Tohum"
         case .garden: "Bahçe"
         case .home: "Ada"
@@ -433,6 +497,7 @@ enum AyarLabels {
         case .depth: "square.3.layers.3d"
         case .pofu: "pawprint"
         case .haptics: "hand.tap"
+        case .sound: "speaker.wave.2"
         case .seeds: "leaf"
         case .garden: "square.grid.3x3"
         case .home: "house"
@@ -483,6 +548,10 @@ enum AyarLabels {
         case "hopAppearDay": return "Hop! gündüz"
         case "hopAppearNight": return "Hop! gece"
         case "breathStart": return "Nefes başlangıcı"
+        case "master": return "Genel ses"
+        case "seeds": return "Tohum sesleri"
+        case "pieces": return "Parça sesleri"
+        case "pofu": return "Pofu sesleri"
         case "trayScale": return "Tepsideki fide boyu"
         case "liftCells": return "Parmağın üstünde (hücre)"
         case "followStiffness": return "Takip sıkılığı"

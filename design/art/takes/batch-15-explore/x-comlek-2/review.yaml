@@ -1,0 +1,146 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-comlek-2/contact.jpg
+jobs:
+  x-comlek-2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Coordinator manual review: both
+      have a tiny mole with clay-covered paws at the wheel and a warm kiln. Zoomed
+      jug review confirms exactly one thumb depression, not multiple decorations.
+      Take1 lowest load0.811. Exploration only.'
+qa_reports:
+  1:
+    job: x-comlek-2
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 42.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 64.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.811
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 4.5, off-palette 0.4% (top: #EE9944 (0.1%), #EE8844
+        (0.1%))'
+      value: 2.0545
+    info:
+      metrics_raw:
+        L_p5: 64.0
+        L_p50: 88.0
+        L_p95: 95.0
+        C_p50: 18.4
+        C_p95: 43.4
+        C_p99: 53.3
+        detail: 2.83
+      metrics_locked:
+        L_p5: 64.4
+        L_p50: 88.0
+        L_p95: 94.9
+        C_p50: 18.6
+        C_p95: 42.7
+        C_p99: 52.2
+        detail: 2.14
+    fingerprint: cf7b2171cecc86e3
+  2:
+    job: x-comlek-2
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 64.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.03
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8351
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 3.8, off-palette 0.1% (top: #FF9955 (0.0%), #EE9955
+        (0.0%))'
+      value: 1.455
+    info:
+      metrics_raw:
+        L_p5: 63.7
+        L_p50: 89.7
+        L_p95: 96.3
+        C_p50: 16.4
+        C_p95: 39.0
+        C_p99: 46.4
+        detail: 2.7
+      metrics_locked:
+        L_p5: 64.1
+        L_p50: 89.7
+        L_p95: 96.2
+        C_p50: 16.8
+        C_p95: 38.5
+        C_p99: 45.4
+        detail: 2.03
+    fingerprint: cf7b2171cecc86e3
+manual_review:
+  exclude: []
+  expected_pick: 1
+  note: 'Coordinator manual review: both have a tiny mole with clay-covered paws at
+    the wheel and a warm kiln. Zoomed jug review confirms exactly one thumb depression,
+    not multiple decorations. Take1 lowest load0.811. Exploration only.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-977464ba-19e4-440c-9094-a0eb360c59c6.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: cf7b2171cecc86e3
+  inbox_png_sha256: 48b323134f11057cb8ed5e42e196e70e7cc07d8406615df787fd50512312eb6d
+  original_generated_png_sha256: e3a34d0892767388660b931b0e379aa1b3c898dd241bbc7243395e5247d55177
+  rgba_sha256: 3c2725d30ed52cf383810c54540b083083740f51c857840f0a103a835ecca469
+  source_rgba_matches_inbox: true
+- take: 2
+  source_file: /workspace/generated_images/exec-a674726a-f4ed-4319-9afb-f64bdb74efa9.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: cf7b2171cecc86e3
+  inbox_png_sha256: 5a54bee1e688409934091e664fa2a8ede69fe13881493ade6ab71d420e61b684
+  original_generated_png_sha256: c05e54f07722bd2d8cdfc304ba151e65aae5bf11db209d8cabe265eba285e68b
+  rgba_sha256: b405fa241aa7316badbe3132fcb6855aacdb41577e9144c6e75c966cbfe70577
+  source_rgba_matches_inbox: true
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.

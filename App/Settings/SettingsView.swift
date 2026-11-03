@@ -1,5 +1,6 @@
 import PofuCore
 import PofuDesignSystem
+import PofuSound
 import SwiftUI
 
 /// Settings: Pofu's name, the guarded apps and whether each automation
@@ -57,6 +58,8 @@ struct SettingsView: View {
                 }
                 .listRowBackground(PofuColor.card)
 
+                SoundSettingsSection()
+
                 RehearsalSettingsSection()
 
                 Section {
@@ -76,6 +79,32 @@ struct SettingsView: View {
             .onAppear { name = model.profile.companionName }
             .onDisappear { model.setCompanionName(name) }
         }
+    }
+}
+
+/// Pofu's tiny sounds: on by default; the Silent switch always wins.
+private struct SoundSettingsSection: View {
+    @State private var isOn = !SoundEngine.shared.settings.isMuted
+
+    var body: some View {
+        Section {
+            Toggle(isOn: Binding(
+                get: { isOn },
+                set: { value in
+                    isOn = value
+                    SoundEngine.shared.settings = SoundSettings(isMuted: !value)
+                }
+            )) {
+                Label("Pofu's sounds", systemImage: "speaker.wave.2")
+            }
+            .tint(PofuColor.accent)
+        } header: {
+            Text("Sounds")
+                .pofuSectionHeader()
+        } footer: {
+            Text("Tiny sounds while you play. They follow the Silent switch and stay under your music.")
+        }
+        .listRowBackground(PofuColor.card)
     }
 }
 

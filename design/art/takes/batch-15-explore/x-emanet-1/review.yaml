@@ -1,0 +1,145 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-emanet-1/contact.jpg
+jobs:
+  x-emanet-1:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Coordinator manual review: both
+      show the tilted shelf with umbrella, spoon, sock, button and key, the bell,
+      warm round window and teal/brass stilt office. Soft cloud setting and calm character-free
+      mood pass. Take1 lowest load0.6837. Exploration only.'
+qa_reports:
+  1:
+    job: x-emanet-1
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 57 (R1 59)
+      value: 57.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.31
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6837
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.9, p95 4.0, off-palette 0.0%
+      value: 1.8817
+    info:
+      metrics_raw:
+        L_p5: 56.7
+        L_p50: 89.3
+        L_p95: 94.6
+        C_p50: 8.2
+        C_p95: 41.0
+        C_p99: 46.9
+        detail: 2.85
+      metrics_locked:
+        L_p5: 57.2
+        L_p50: 89.3
+        L_p95: 94.4
+        C_p50: 8.2
+        C_p95: 40.6
+        C_p99: 46.0
+        detail: 2.31
+    fingerprint: 120cb6669097f9d9
+  2:
+    job: x-emanet-1
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 58 (R1 59)
+      value: 57.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.25
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.69
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.7, p95 3.5, off-palette 0.0%
+      value: 1.7345
+    info:
+      metrics_raw:
+        L_p5: 57.0
+        L_p50: 89.7
+        L_p95: 95.6
+        C_p50: 6.4
+        C_p95: 36.9
+        C_p99: 42.1
+        detail: 2.75
+      metrics_locked:
+        L_p5: 57.5
+        L_p50: 89.7
+        L_p95: 95.5
+        C_p50: 6.3
+        C_p95: 36.3
+        C_p99: 41.5
+        detail: 2.25
+    fingerprint: 120cb6669097f9d9
+manual_review:
+  exclude: []
+  expected_pick: 1
+  note: 'Coordinator manual review: both show the tilted shelf with umbrella, spoon,
+    sock, button and key, the bell, warm round window and teal/brass stilt office.
+    Soft cloud setting and calm character-free mood pass. Take1 lowest load0.6837.
+    Exploration only.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-c5442ea2-9b0b-49a5-808a-983b963f36ca.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 120cb6669097f9d9
+  inbox_png_sha256: 1176d77b3cbdc00632ae87b869b66f4d7c1e343172e1979bcf5dd61eeac4da86
+  original_generated_png_sha256: e0fe5b171bd6fa3e334a2d1f887dc48406ba96f007a9a75597b75ca50e0288b7
+  rgba_sha256: 9bf18c64c8d043c4bf26f28f0369cda4f55282c8f21d164b073bc6d26c83980a
+  source_rgba_matches_inbox: true
+- take: 2
+  source_file: /workspace/generated_images/exec-e1181a40-43b8-48e6-b46c-b06b63fb309f.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 120cb6669097f9d9
+  inbox_png_sha256: f10e2be84457b0724f37fa01e0496a79cddd8619b492fe076161abf6fe346427
+  original_generated_png_sha256: 25a8b04abc7ee12d0ffa3b338d686790118758c98e9b00b550d1a96d295c04f6
+  rgba_sha256: 88c50820d04b3d1e6b8c1e1c29010830a43bce7b9be4f3946434bce7ec5637f4
+  source_rgba_matches_inbox: true
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.

@@ -2,17 +2,21 @@ id: asset-icon-decor
 type: asset
 title_tr: icon-decor
 title_en: decor (icon)
-status: in-production
+status: planned
 horizon: now
-summary: >-
-  The icon for decor: a small wind chime, a round honey-wood top disc, three plump hanging
-  rounded tubes in cream, rose and sage of different lengths hanging from one short thick
-  cord each, and a little round clapper between them.
+summary: 'The icon for decor: a small wind chime, a round honey-wood top disc, three
+  plump hanging rounded tubes in cream, rose and sage of different lengths hanging
+  from one short thick cord each, and a little round clapper between them.'
 art:
   images: []
   jobs:
   - batch-13-ui-rest:icon-decor
+  - retry-2026-11-03:icon-decor
 sources:
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
 kind: icon
 batch: batch-13-ui-rest
+notes:
+- 'Batch13overnight: Not generated: the embedded ui-sheet-paper pilot failed its allowed
+  retry, so the manifest skips the rest of batch13. Other batch timings remain as
+  specified.'

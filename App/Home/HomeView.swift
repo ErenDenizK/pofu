@@ -4,6 +4,7 @@ import PofuDesignSystem
 #if DEBUG
 import PofuTuning
 #endif
+import PofuSound
 import PofuWorld
 import SwiftUI
 
@@ -149,7 +150,11 @@ struct HomeView: View {
             scene: model.island,
             home: model.worldHome,
             actions: WorldHome.Actions(
-                collect: { model.collectWorldSeeds() },
+                collect: {
+                    let pouch = model.collectWorldSeeds()
+                    if pouch != nil { SoundEngine.shared.play(.collect) }
+                    return pouch
+                },
                 build: { model.buildStation($0) },
                 openSettings: { model.homeSheet = .settings },
                 repair: { model.homeSheet = .setup }
@@ -322,6 +327,7 @@ struct HomeView: View {
     /// Collects the quiet seeds: Pofu swallows the puff and hops, and the
     /// pill counts up.
     private func collect() {
+        SoundEngine.shared.play(.collect)
         withAnimation(PofuMotion.respecting(reduceMotion, PofuMotion.settle)) {
             _ = model.collectQuietSeeds()
         }

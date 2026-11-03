@@ -1,0 +1,146 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-sky-map/contact.jpg
+jobs:
+  x-sky-map:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both automated PASS and coordinator
+      read-only manual review PASS: home and harbor near the bottom, five ascending
+      faint moss/snow/spire/whale/clay silhouettes, upper cream fog and a clear title
+      zone. Legible at phone size, fog reads unknown rather than gloomy; no labels/routes/arrows/UI.
+      Take1 lowest lock load0.3722. Never promoted.'
+qa_reports:
+  1:
+    job: x-sky-map
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 26 (R1 51)
+      value: 25.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 83 (R1 59)
+      value: 83.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.72
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3722
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.7, p95 1.9, off-palette 0.0%
+      value: 0.6972
+    info:
+      metrics_raw:
+        L_p5: 83.2
+        L_p50: 93.1
+        L_p95: 94.4
+        C_p50: 8.6
+        C_p95: 26.4
+        C_p99: 34.9
+        detail: 0.91
+      metrics_locked:
+        L_p5: 83.3
+        L_p50: 93.1
+        L_p95: 94.3
+        C_p50: 8.6
+        C_p95: 25.7
+        C_p99: 34.3
+        detail: 0.72
+    fingerprint: 4f1b0c0422c517fd
+  2:
+    job: x-sky-map
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 27 (R1 51)
+      value: 27.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 83 (R1 59)
+      value: 83.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3797
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 2.4, off-palette 0.0%
+      value: 0.8384
+    info:
+      metrics_raw:
+        L_p5: 83.0
+        L_p50: 93.3
+        L_p95: 95.4
+        C_p50: 8.7
+        C_p95: 27.5
+        C_p99: 36.9
+        detail: 0.96
+      metrics_locked:
+        L_p5: 83.0
+        L_p50: 93.2
+        L_p95: 95.3
+        C_p50: 8.7
+        C_p95: 27.3
+        C_p99: 35.8
+        detail: 0.76
+    fingerprint: 4f1b0c0422c517fd
+manual_review:
+  exclude: []
+  note: 'Both automated PASS and coordinator read-only manual review PASS: home and
+    harbor near the bottom, five ascending faint moss/snow/spire/whale/clay silhouettes,
+    upper cream fog and a clear title zone. Legible at phone size, fog reads unknown
+    rather than gloomy; no labels/routes/arrows/UI. Take1 lowest lock load0.3722.
+    Never promoted.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-cbd9db76-3f75-4dfe-97c2-b02dbdc9624e.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4f1b0c0422c517fd
+  inbox_png_sha256: c493791359e06a17bd84b5f89e9679f6130824f1c77c63c4f146634146e599f8
+  original_generated_png_sha256: aed7f9b99721c1adfe3041ed076110071526109687c108293635853a6745ff49
+  rgba_sha256: 4c01e1d3329cc00c17855a206c288f5498d1775e2c72bc646439aefc02b82447
+  source_rgba_matches_inbox: true
+- take: 2
+  source_file: /workspace/generated_images/exec-70e7a51d-3db5-4d6a-a3bc-17c8eb8a4bac.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4f1b0c0422c517fd
+  inbox_png_sha256: 9254d5f07e2dfbd624f4a61d565d0521f881f2ab138287b2113632671aba1083
+  original_generated_png_sha256: a094e5fe22390d61b00685ca1864380b0f3686e568855ef4a43ef372b4796609
+  rgba_sha256: 66700fe90cd1f326f98cf17a136f5be381eb8dad1f4c3beea7575678e66a0362
+  source_rgba_matches_inbox: true
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.
