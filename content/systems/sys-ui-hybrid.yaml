@@ -28,6 +28,7 @@ links:
   uses_asset:
   - asset-ui-face-secondary
   - asset-icon-calm
+  - asset-ui-face-primary
 sources:
 - doc: docs/design/ui-system-v2.md
   anchor: '#2-the-principle-three-layers-and-a-switch'

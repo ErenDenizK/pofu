@@ -1,0 +1,143 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/ui-face-primary/contact.jpg
+jobs:
+  ui-face-primary:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both takes show an unmarked soft
+      violet capsule with a calm flat middle and rounded ends; reviewed at the 52
+      pt shipping height. The end rounding fits the 26 pt side caps and the highlight/lip
+      remain in the edge regions. Select t1 by lower lock load (0.3122 vs 0.3174);
+      chroma WARN 57.3 and palette WARN mean dE 3.0795 are retained as reported, with
+      no threshold waiver.
+qa_reports:
+  2:
+    job: ui-face-primary
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 53 (R1 51)
+      value: 53.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 60.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.55
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3174
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.2, p95 4.3, off-palette 0.0%
+      value: 3.1966
+    info:
+      metrics_raw:
+        L_p5: 60.8
+        L_p50: 69.1
+        L_p95: 85.5
+        C_p50: 50.8
+        C_p95: 53.6
+        C_p99: 54.8
+        detail: 0.82
+      metrics_locked:
+        L_p5: 60.8
+        L_p50: 69.1
+        L_p95: 85.4
+        C_p50: 51.1
+        C_p95: 53.3
+        C_p99: 54.6
+        detail: 0.55
+    fingerprint: f6091441f5cc6432
+  1:
+    job: ui-face-primary
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 57.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 56 (R1 59)
+      value: 56.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.55
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3122
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.1, p95 4.2, off-palette 0.0%
+      value: 3.0795
+    info:
+      metrics_raw:
+        L_p5: 56.2
+        L_p50: 67.6
+        L_p95: 81.9
+        C_p50: 55.1
+        C_p95: 57.6
+        C_p99: 59.5
+        detail: 0.76
+      metrics_locked:
+        L_p5: 56.5
+        L_p50: 67.6
+        L_p95: 81.9
+        C_p50: 55.1
+        C_p95: 57.3
+        C_p99: 58.8
+        detail: 0.55
+    fingerprint: f6091441f5cc6432
+manual_review:
+  excluded_takes: []
+  note: Both takes show an unmarked soft violet capsule with a calm flat middle and
+    rounded ends; reviewed at the 52 pt shipping height. The end rounding fits the
+    26 pt side caps and the highlight/lip remain in the edge regions. Select t1 by
+    lower lock load (0.3122 vs 0.3174); chroma WARN 57.3 and palette WARN mean dE
+    3.0795 are retained as reported, with no threshold waiver.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-ea5aece1-d292-43e1-80d7-d2f2425b012a.png
+  original_generated_png_sha256: f5236d9f4f0f5d7056351128b30fa84175e8b43df6f9dece78185a70e427f87b
+  inbox_png_sha256: 51c0c6499bba32eb64da33169b5c3ebed06b8f8215eb352eca186bc01ff332b9
+  rgba_sha256: cddd076c879b6f4126151197202780455ac3f7b7798dda17067dd32fb05c48ea
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f6091441f5cc6432
+- take: 2
+  source_file: /workspace/generated_images/exec-3cd6a1f6-fda4-4ed5-b595-f636416495fd.png
+  original_generated_png_sha256: 400fe9c4572b09e9d40df862408dfdc6a06b3dcef72a37b198a03a48b18745b8
+  inbox_png_sha256: 1ebdbed812c9a7dd7b75abada8c3137ff3e3c6d9ae2bd1025c3217e1ed515b20
+  rgba_sha256: 058e63dcb7b6ffb6f18f2207f4c9b0f80a20d994272fd041eda1dd8c20437b59
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f6091441f5cc6432
