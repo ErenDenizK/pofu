@@ -24,7 +24,7 @@ Turkish strings, Turkish prose and merged PR titles are untouched.
 | Token | Occurrences | Why |
 |---|---|---|
 | `findik` | 192 in 42 files | character proper name (the hedgehog); no hazelnut resource exists in code |
-| `mochi` | 507 in 110 files | character proper name |
+| `mochi` | 509 in 111 files | character proper name |
 | `yildiz` | 58 in 22 files | provisional island of the retired five-island catalog; revisit with the wonder-island redesign |
 | `kaplica` | 22 in 14 files | same as yildiz |
 | `kitap` | 59 in 24 files | same as yildiz |
