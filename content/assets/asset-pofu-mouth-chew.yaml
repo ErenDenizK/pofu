@@ -2,17 +2,17 @@ id: asset-pofu-mouth-chew
 type: asset
 title_tr: pofu-mouth-chew
 title_en: pofu-mouth-chew (char)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  Edit the attached hamster. Change only his mouth: a tiny closed mouth mid-munch, pushed
-  slightly to one side, as if happily chewing a sunflower seed. No food visible. Nothing else
-  changes.
+summary: 'Edit the attached hamster. Change only his mouth: a tiny closed mouth mid-munch,
+  pushed slightly to one side, as if happily chewing a sunflower seed. No food visible.
+  Nothing else changes.'
 links:
   variant_of:
   - asset-pofu-base-v1
 art:
-  images: []
+  images:
+  - design/art/masters/pofu-mouth-chew/pofu-mouth-chew.webp
   jobs:
   - batch-06-pofu-rig:pofu-mouth-chew
 sources:

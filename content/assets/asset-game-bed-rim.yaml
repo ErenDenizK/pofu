@@ -1,0 +1,20 @@
+id: asset-game-bed-rim
+type: asset
+title_tr: game-bed-rim
+title_en: game-bed-rim (ui)
+status: in-production
+horizon: now
+summary: A square frame of chunky, rounded peach-colored clay stones set side by side,
+  seen from straight above with a slight tilt, a soft cream highlight on the top edge
+  of each stone, a slightly darker rounded lip. The frame is a border of equal width
+  on all four sides; the whole inside of the frame is empty and transparent (a hole),
+  and the stones near each corner are a rounded corner.
+art:
+  images:
+  - design/art/ui/ui-game-bed-rim/ui-game-bed-rim.png
+  jobs:
+  - batch-12-minigame-art:game-bed-rim
+sources:
+- doc: tools/imagegen/manifest/batch-12-minigame-art.yaml
+kind: ui
+batch: batch-12-minigame-art

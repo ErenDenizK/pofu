@@ -368,9 +368,10 @@ def cmd_post(args, config, m: pl.Manifest) -> int:
         results = []
         for n, path, side in takes:
             raw = sl.load_rgba(path)
-            res = qa.process_take(raw, job.kind, job.canvas, preset, config["palettes"][job.kind], job.acceptance,
+            res = qa.process_take(raw, job.kind, job.canvas, preset, list(dict.fromkeys(config["palettes"][job.kind] + job.palettes)), job.acceptance,
                                   registration=registration, parent_locked=parent_locked,
-                                  register_root=(job.kind == "station" and not job.edit_of), transparent=job.transparent)
+                                  register_root=((job.kind == "station" or bool(job.decor)) and not job.edit_of),
+                                  transparent=job.transparent, decor=job.decor)
             locked_path = out_dir / "locked" / path.name
             sl.save_rgba(res.locked, locked_path)
             report = {"job": job.id, "take": n, "status": res.status, "preset": preset_name,

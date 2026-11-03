@@ -63,7 +63,11 @@ jobs:
     prompt:                     # text parts and verbatim blocks, in order; the output line is added
       - text: Add two thin wooden poles ...
       - block: edit-keep-v1
-    acceptance:                 # optional threshold overrides, e.g. depth_ratio: {warn: 0.3, fail: 0.4}
+    acceptance:                 # optional threshold overrides, e.g. depth_ratio: {warn: 0.3, fail: 0.4};
+                                # edit_mode: recolor (whole-object glaze change: shape, light structure and
+                                # lightness are checked instead of colors) | region (a large part is repainted:
+                                # edit_kept 0.50/0.30 plus a shape check) | keep (default)
+    palettes: [world-night]     # optional extra drift palettes for colors the brief names (tokens artPalettes or palettes.json)
 ```
 
 A job runs only when every job it depends on (`edit_of`,

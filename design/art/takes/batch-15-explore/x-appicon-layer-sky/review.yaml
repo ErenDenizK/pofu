@@ -1,0 +1,306 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-appicon-layer-sky/contact.jpg
+jobs:
+  x-appicon-layer-sky:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'SKIPPED after exactly four takes: all fail actual appicon_calm_corners.
+      Corner-to-centre detail ratios1.0092/1.0082/1.0271/1.0263 (101%/101%/103%/103%).
+      Coordinator semantic review of the initial pair passes the requested opaque
+      peach/cream gradient and two faint low clouds, but this does not waive a FAIL.
+      The background-only layer has no detailed centre object, so the lead should
+      evaluate applicability of the relative corner-detail check to such layers. No
+      QA/prompt/manifest edits, no fifth take or production promotion; no dependents.'
+qa_reports:
+  1:
+    job: x-appicon-layer-sky
+    take: 1
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 39.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 77 (R1 59)
+      value: 76.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.6
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 2.4, off-palette 0.0%
+      value: 1.5282
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: fail
+      message: corner detail is 101% of the center's (the system masks corners)
+      value: 1.0092
+    info:
+      metrics_raw:
+        L_p5: 76.8
+        L_p50: 84.8
+        L_p95: 93.6
+        C_p50: 28.1
+        C_p95: 39.2
+        C_p99: 40.4
+        detail: 0.6
+      metrics_locked:
+        L_p5: 76.8
+        L_p50: 84.8
+        L_p95: 93.6
+        C_p50: 28.1
+        C_p95: 39.2
+        C_p99: 40.4
+        detail: 0.6
+    fingerprint: f70b071d42512c2f
+  2:
+    job: x-appicon-layer-sky
+    take: 2
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 43.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 75 (R1 59)
+      value: 74.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.6
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 3.5, off-palette 0.0%
+      value: 1.9654
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: fail
+      message: corner detail is 101% of the center's (the system masks corners)
+      value: 1.0082
+    info:
+      metrics_raw:
+        L_p5: 74.8
+        L_p50: 84.2
+        L_p95: 93.6
+        C_p50: 29.2
+        C_p95: 43.6
+        C_p99: 44.7
+        detail: 0.6
+      metrics_locked:
+        L_p5: 74.8
+        L_p50: 84.2
+        L_p95: 93.6
+        C_p50: 29.2
+        C_p95: 43.6
+        C_p99: 44.7
+        detail: 0.6
+    fingerprint: f70b071d42512c2f
+  3:
+    job: x-appicon-layer-sky
+    take: 3
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 76.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.66
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 3.5, off-palette 0.0%
+      value: 1.7689
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: fail
+      message: corner detail is 103% of the center's (the system masks corners)
+      value: 1.0271
+    info:
+      metrics_raw:
+        L_p5: 76.5
+        L_p50: 85.5
+        L_p95: 93.1
+        C_p50: 27.1
+        C_p95: 41.3
+        C_p99: 42.7
+        detail: 0.66
+      metrics_locked:
+        L_p5: 76.5
+        L_p50: 85.5
+        L_p95: 93.1
+        C_p50: 27.1
+        C_p95: 41.3
+        C_p99: 42.7
+        detail: 0.66
+    fingerprint: f70b071d42512c2f
+  4:
+    job: x-appicon-layer-sky
+    take: 4
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 76.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.69
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.9, p95 3.3, off-palette 0.0%
+      value: 1.8931
+    - check: appicon_opaque
+      status: pass
+      message: fully opaque
+      value: 1.0
+    - check: appicon_calm_corners
+      status: fail
+      message: corner detail is 103% of the center's (the system masks corners)
+      value: 1.0263
+    info:
+      metrics_raw:
+        L_p5: 76.2
+        L_p50: 84.4
+        L_p95: 93.9
+        C_p50: 28.9
+        C_p95: 40.7
+        C_p99: 41.9
+        detail: 0.69
+      metrics_locked:
+        L_p5: 76.2
+        L_p50: 84.4
+        L_p95: 93.9
+        C_p50: 28.9
+        C_p95: 40.7
+        C_p99: 41.9
+        detail: 0.69
+    fingerprint: f70b071d42512c2f
+manual_review:
+  exclude: []
+  note: 'SKIPPED after exactly four takes: all fail actual appicon_calm_corners. Corner-to-centre
+    detail ratios1.0092/1.0082/1.0271/1.0263 (101%/101%/103%/103%). Coordinator semantic
+    review of the initial pair passes the requested opaque peach/cream gradient and
+    two faint low clouds, but this does not waive a FAIL. The background-only layer
+    has no detailed centre object, so the lead should evaluate applicability of the
+    relative corner-detail check to such layers. No QA/prompt/manifest edits, no fifth
+    take or production promotion; no dependents.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-d5be4089-f1d3-428a-8bb9-44c2ad78c308.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f70b071d42512c2f
+  inbox_png_sha256: adad108351a49a7db170a82ba76167d7434322139a87b07ee204817e578ffee7
+  original_generated_png_sha256: 1ba3bdc561af3a1683db2ab9c4b09f7595ed99cf9a39fee4c510f337bf882be9
+  rgba_sha256: d8a8c3df324ee933b758081d060d6617889a8eb2839af918978cfe2c424b7af7
+  source_rgba_matches_inbox: true
+- take: 2
+  source_file: /workspace/generated_images/exec-e62fba03-b80b-4b0e-a03c-f299733525e1.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f70b071d42512c2f
+  inbox_png_sha256: f354b30dde9a7d9439581878b1822a596241b1071a3ae3720edb70e3bdba7849
+  original_generated_png_sha256: 10f1ebb0485618022e7553918489d745fb0bb76fe258085838e039645b8fbab0
+  rgba_sha256: 36c2f185585e0045da629089ca7cc2dd78e92def2b4a3f91f70d7a5515f56e1c
+  source_rgba_matches_inbox: true
+- take: 3
+  source_file: /workspace/generated_images/exec-d3994f5c-3b37-499f-857e-95ce8a5529e9.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f70b071d42512c2f
+  inbox_png_sha256: fc631648a811d56f6ea97c1d56d451395f45c21291157a83c6819006ee090ae1
+  original_generated_png_sha256: 84396e6f8066f211c48df92b73eb0756dd58a98e98ee7f840691874e08ffa35e
+  rgba_sha256: e03550456e9aa3ee3a1fd21999bbb4808e56d792bb0ec83cde5e6a8b68f1090e
+  source_rgba_matches_inbox: true
+- take: 4
+  source_file: /workspace/generated_images/exec-1d2d5932-3223-4706-a04e-4daf1d305467.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f70b071d42512c2f
+  inbox_png_sha256: f90484a1f184b9c9562c8063792eb32652f86e62e3d27cda38b1f1a289eb4bc9
+  original_generated_png_sha256: b97ffb3c274828f741f57ba5415d947797f1a3a9c6393c9c79f9153b764be432
+  rgba_sha256: 8d88398a46838bd667c397bcc481b865503d47f61838e62b8bd20b73779d58bd
+  source_rgba_matches_inbox: true
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.

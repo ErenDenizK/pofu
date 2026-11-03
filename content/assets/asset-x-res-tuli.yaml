@@ -1,0 +1,21 @@
+id: asset-x-res-tuli
+type: asset
+title_tr: x-res-tuli
+title_en: x-res-tuli (sheet)
+status: in-production
+horizon: now
+summary: >-
+  A character model sheet on a plain transparent background, in exactly the same art style,
+  lighting and level of fluff as the attached hamster and bunny: three full-body views of
+  the same character in a row: front view sitting upright, three-quarter view, and a happy
+  pose. CHARACTER: Tuli, a baby arctic fox, a round plush ball of snow-white fur with a soft
+  grey- blue shading, small rounded ears, a plump fluffy tail wi…
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-res-tuli
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: sheet
+batch: batch-15-explore
+size: 1536x1024

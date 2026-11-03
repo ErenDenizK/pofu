@@ -27,6 +27,7 @@ public struct CompanionView: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.companionBlinks) private var blinks
+    @Environment(\.companionLife) private var life
     @State private var driver = CompanionDriver()
     @State private var taps = 0
 
@@ -63,7 +64,8 @@ public struct CompanionView: View {
                             vitality: vitality,
                             energy: energy,
                             reduceMotion: reduceMotion,
-                            blinks: blinks
+                            blinks: blinks,
+                            life: life
                         )
                     )
                 }
@@ -97,6 +99,8 @@ extension EnvironmentValues {
     /// Whether Pofu blinks on his own. Screenshot rendering turns it off
     /// so a frame never catches him mid-blink.
     @Entry public var companionBlinks: Bool = true
+    /// How Pofu breathes and blinks; the Ayar panel sets it live.
+    @Entry public var companionLife: CompanionLife = .standard
 }
 
 /// Owns the motion simulation across view updates and advances it with
@@ -108,7 +112,7 @@ final class CompanionDriver {
     private var motion = CompanionMotion()
     private var lastDate: Date?
 
-    func pose(at date: Date, vitality: Double, energy: Double, reduceMotion: Bool, blinks: Bool = true) -> CompanionPose {
+    func pose(at date: Date, vitality: Double, energy: Double, reduceMotion: Bool, blinks: Bool = true, life: CompanionLife = .standard) -> CompanionPose {
         if lastDate == nil {
             // Start settled at the given state, without a gulp or a slow
             // fade-in on first appearance.
@@ -118,6 +122,7 @@ final class CompanionDriver {
         lastDate = date
         motion.reduceMotion = reduceMotion
         motion.blinks = blinks
+        motion.life = life
         motion.vitality = vitality
         motion.energy = energy
         motion.step(elapsed)

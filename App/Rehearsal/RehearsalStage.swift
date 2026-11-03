@@ -22,8 +22,14 @@ final class RehearsalStage {
     let clock: RehearsalClock
     /// `nil` while the user is in Pofu.
     var screen: Screen?
-    /// The panel shows its controls rather than its pill.
-    var isPanelExpanded = true
+    /// The panel shows its controls rather than its pill. It starts as the pill
+    /// (critique N1), so Pofu's bubble is never covered.
+    var isPanelExpanded = false
+    /// The Ayçiçeği garden game is open (the debug entry for the island
+    /// minigame, until islands have a "Play" door and rounds a ledger).
+    var isPlayingGarden = false
+    /// Earned rounds when the garden opened: the set's length.
+    var gardenRounds = 0
     /// Counts the clock's jumps, so the panel's clock readout follows.
     private(set) var jumps = 0
 

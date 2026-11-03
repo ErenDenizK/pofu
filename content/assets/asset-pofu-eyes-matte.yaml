@@ -2,17 +2,18 @@ id: asset-pofu-eyes-matte
 type: asset
 title_tr: pofu-eyes-matte
 title_en: pofu-eyes-matte (char)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  Edit the attached hamster. Change only his eyes: remove the white catchlights and the tiny
-  sparkles, so each eye is a plain soft dark espresso-brown with its lighter warm-brown lower
-  iris. Same eye shapes, sizes and positions. Nothing else changes.
+summary: 'Edit the attached hamster. Change only his eyes: remove the white catchlights
+  and the tiny sparkles, so each eye is a plain soft dark espresso-brown with its
+  lighter warm-brown lower iris. Same eye shapes, sizes and positions. Nothing else
+  changes.'
 links:
   variant_of:
   - asset-pofu-base-v1
 art:
-  images: []
+  images:
+  - design/art/masters/pofu-eyes-matte/pofu-eyes-matte.webp
   jobs:
   - batch-06-pofu-rig:pofu-eyes-matte
 sources:

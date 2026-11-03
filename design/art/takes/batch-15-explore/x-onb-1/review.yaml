@@ -1,0 +1,147 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-onb-1/contact.jpg
+jobs:
+  x-onb-1:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Coordinator manual review: both
+      show recognizable Pofu curl and big eyes, shy one-paw wave, soft morning lawn/clouds
+      and clear upper third, with no other characters, text or UI. Take2 has lowest
+      load0.6541 and a coherent single-island composition; take1 background second
+      island is less preferred. Never promoted.'
+qa_reports:
+  1:
+    job: x-onb-1
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 35.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 71 (R1 59)
+      value: 71.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.16
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7288
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 4.5, off-palette 0.0% (top: #CC6644 (0.0%))'
+      value: 1.8022
+    info:
+      metrics_raw:
+        L_p5: 71.1
+        L_p50: 87.7
+        L_p95: 93.9
+        C_p50: 23.2
+        C_p95: 36.2
+        C_p99: 43.1
+        detail: 1.63
+      metrics_locked:
+        L_p5: 71.3
+        L_p50: 87.6
+        L_p95: 93.8
+        C_p50: 23.2
+        C_p95: 35.8
+        C_p99: 42.2
+        detail: 1.16
+    fingerprint: 7024d3f25cef529f
+  2:
+    job: x-onb-1
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 73 (R1 59)
+      value: 72.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.38
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6541
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 4.4, off-palette 0.1% (top: #BB6633 (0.0%), #CC7744
+        (0.0%))'
+      value: 1.3807
+    info:
+      metrics_raw:
+        L_p5: 72.5
+        L_p50: 92.4
+        L_p95: 96.0
+        C_p50: 10.9
+        C_p95: 37.4
+        C_p99: 44.2
+        detail: 1.88
+      metrics_locked:
+        L_p5: 72.7
+        L_p50: 92.3
+        L_p95: 96.0
+        C_p50: 11.1
+        C_p95: 36.9
+        C_p99: 43.0
+        detail: 1.38
+    fingerprint: 7024d3f25cef529f
+manual_review:
+  exclude: []
+  expected_pick: 2
+  note: 'Coordinator manual review: both show recognizable Pofu curl and big eyes,
+    shy one-paw wave, soft morning lawn/clouds and clear upper third, with no other
+    characters, text or UI. Take2 has lowest load0.6541 and a coherent single-island
+    composition; take1 background second island is less preferred. Never promoted.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-44ab687d-390c-4df4-827d-0adefe4c4f88.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7024d3f25cef529f
+  inbox_png_sha256: 822c7c531d3e51156f6a4779eb14bdc0d5173b63b70b195b002abbe274f28c3f
+  original_generated_png_sha256: f4d8564b9c22443b8e8bc35cdf661e279f05fba006bdbd9e12c1bc3f4a30fa00
+  rgba_sha256: afebce23586d95ee3a74a1bc06d4407b05b380ac32e8248927c421bc1f9ad1ad
+  source_rgba_matches_inbox: true
+- take: 2
+  source_file: /workspace/generated_images/exec-5a94d68d-99a4-4cdd-945a-72df51fa1202.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7024d3f25cef529f
+  inbox_png_sha256: 4803da4b0d86002fd9a4374246b505d822cc4208fab57ed3638bd19a8f697f26
+  original_generated_png_sha256: 7914d9ff95738601028f2bcee9f6484ec9c3429484dcc6f6f954e1017f31afa5
+  rgba_sha256: d0171987a50448e218526cb9ffdc58a8a83939dad953ae70434ab96c0341ace3
+  source_rgba_matches_inbox: true
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.

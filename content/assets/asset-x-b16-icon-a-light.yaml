@@ -1,0 +1,21 @@
+id: asset-x-b16-icon-a-light
+type: asset
+title_tr: x-b16-icon-a-light
+title_en: x-b16-icon-a-light (appicon)
+status: in-production
+horizon: now
+summary: >-
+  PURPOSE: the Pofu app icon, direction A (Pofu's face), light appearance for iOS 26. AUDIENCE:
+  adults who want to open social apps less; calm, not clinical. SUBJECT: Pofu's face and cream
+  curl filling the lower two thirds, centered, big eyes, calm smile, on a soft warm peach-to-cream
+  sky with one small cloud. LIGHT variant: soft pale sky, warm cream and peach light, the
+  painting as described. LAYOUT: square, opaque, e…
+art:
+  images: []
+  jobs:
+  - batch-16-brand-explore:x-b16-icon-a-light
+sources:
+- doc: tools/imagegen/manifest/batch-16-brand-explore.yaml
+kind: appicon
+batch: batch-16-brand-explore
+size: 1024x1024

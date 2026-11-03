@@ -1,0 +1,58 @@
+{
+ "after": {
+  "C_mean": 4.728,
+  "C_p50": 5.218,
+  "C_p95": 7.161,
+  "L_mean": 90.285,
+  "L_p2": 84.501,
+  "L_p98": 94.567,
+  "detail": 0.293,
+  "edge": 1.659,
+  "tint_a": 0.141,
+  "tint_b": 2.57,
+  "warmth_b": 2.57
+ },
+ "before": {
+  "C_mean": 4.728,
+  "C_p50": 5.218,
+  "C_p95": 7.161,
+  "L_mean": 90.285,
+  "L_p2": 84.501,
+  "L_p98": 94.567,
+  "detail": 0.293,
+  "edge": 1.659,
+  "tint_a": 0.141,
+  "tint_b": 2.57,
+  "warmth_b": 2.57
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": true,
+ "kind": "world",
+ "matched_to": "world",
+ "outliers_after": [
+  "C_p95",
+  "L_p2",
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "edge"
+ ],
+ "ppu": 2.9538,
+ "reference": false,
+ "score_after": 45.1,
+ "score_before": 45.1,
+ "shipped": true,
+ "source": "design/art/masters/cloud-sea/cloud-sea.png",
+ "source_sha": "bb693d333d53fd5f"
+}

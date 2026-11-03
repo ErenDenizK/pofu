@@ -2712,6 +2712,16 @@
         }
       }
     },
+    "Play the garden (%lld)" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bahçede oyna (%lld)"
+          }
+        }
+      }
+    },
     "Reach for Instagram" : {
       "localizations" : {
         "tr" : {
@@ -2892,6 +2902,36 @@
         }
       }
     },
+    "Pofu's sounds" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pofu'nun sesleri"
+          }
+        }
+      }
+    },
+    "Sounds" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sesler"
+          }
+        }
+      }
+    },
+    "Tiny sounds while you play. They follow the Silent switch and stay under your music." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oynarken küçük sesler. Sessiz düğmesine uyar, müziğinin altında kalır."
+          }
+        }
+      }
+    },
     "Rehearsal mode" : {
       "localizations" : {
         "tr" : {
@@ -2938,6 +2978,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ekran Süresi (prova)"
+          }
+        }
+      }
+    },
+    "A minute with Pofu" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pofu'yla bir dakika"
+          }
+        }
+      }
+    },
+    "Glass" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cam"
+          }
+        }
+      }
+    },
+    "Crafted" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El işi"
+          }
+        }
+      }
+    },
+    "Skin" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaplama"
           }
         }
       }

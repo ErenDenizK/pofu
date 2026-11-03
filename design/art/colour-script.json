@@ -1,0 +1,114 @@
+{
+  "$note": "Pofu's colour script v1 (look round 3; docs/design/colour-script.md, docs/research/pro-game-craft.md section 4). Light carries the time of day, the grade only finishes it, local colour is protected (design/art/materials.json). Five hour cells and two wellbeing states layered over any hour. tools/assets/colour_script.py validates this file and generates PofuWorld's ColourScript+Generated.swift; CI fails when the generated file is stale. Colours are sRGB hex; grade fields follow WorldGrade (input levels black/white, lift, gamma, gain per channel, contrast around pivot, saturation, vignette). Change a cell only with the look-compare frames in the PR.",
+  "version": 1,
+  "schedule": {
+    "$note": "Minute of the local day -> cell, blended linearly between neighbouring keys (30-minute edges). 'sun' places the sun or moon in unit screen coordinates; a day key may move it.",
+    "keys": [
+      {"minute": 0, "cell": "night"},
+      {"minute": 315, "cell": "night"},
+      {"minute": 345, "cell": "dawn"},
+      {"minute": 435, "cell": "dawn"},
+      {"minute": 465, "cell": "day", "sun": [0.22, 0.20]},
+      {"minute": 765, "cell": "day", "sun": [0.50, 0.11]},
+      {"minute": 1035, "cell": "day", "sun": [0.78, 0.20]},
+      {"minute": 1065, "cell": "golden"},
+      {"minute": 1155, "cell": "golden"},
+      {"minute": 1185, "cell": "dusk"},
+      {"minute": 1215, "cell": "dusk"},
+      {"minute": 1245, "cell": "night"},
+      {"minute": 1440, "cell": "night"}
+    ]
+  },
+  "cells": {
+    "dawn": {
+      "feeling": "Hush, promise",
+      "sun": [0.16, 0.30],
+      "sky": {"zenith": "#BCD3EC", "horizon": "#FAD9C6", "glow": "#FFDCBC", "glowStrength": 0.6, "cloudLight": "#FFF4EE", "cloudShade": "#E6C5C6", "cloudOpacity": 0.95, "stars": 0.0, "tint": "#FFF2F0"},
+      "key": {"colour": "#F4C7A4", "intensity": 0.7, "from": [-0.9, -0.3]},
+      "fill": {"colour": "#C9B8F0", "intensity": 0.35},
+      "shadow": "#B9A2FF",
+      "rim": {"colour": "#FFD9BC", "strength": 0.16},
+      "practicals": {"ember": 0.5, "window": 0.25},
+      "fog": {"colour": "#F6DCD2", "far": 0.42},
+      "sea": {"light": "#FFF1EA", "shade": "#E3C4C8", "opacity": 0.95},
+      "gamut": {"hue": [20, 90], "chroma": 40},
+      "accents": ["rose-copper"],
+      "grade": {"lift": [0.025, 0.008, 0.01], "gamma": [1.01, 1.0, 0.99], "gain": [1.04, 0.98, 0.92], "contrast": 1.06, "saturation": 1.10, "vignette": 0.22},
+      "character": {"lift": [0.01, 0.0, 0.015], "gain": [1.03, 0.97, 0.93], "contrast": 1.04, "saturation": 1.08}
+    },
+    "day": {
+      "feeling": "Bright, clear, toy-like",
+      "sun": [0.50, 0.11],
+      "sky": {"zenith": "#C4DEF2", "horizon": "#F8F0DF", "glow": "#FFF6DD", "glowStrength": 0.62, "cloudLight": "#FFFFFF", "cloudShade": "#D8E3EF", "cloudOpacity": 0.95, "stars": 0.0, "tint": "#FFFFFF"},
+      "key": {"colour": "#FFF6EC", "intensity": 1.0, "from": [-0.7, -0.7]},
+      "fill": {"colour": "#BFD6EE", "intensity": 0.3},
+      "shadow": "#A99BC4",
+      "rim": {"colour": "#FFE9C9", "strength": 0.12},
+      "practicals": {"ember": 0.35, "window": 0.0},
+      "fog": {"colour": "#DCEAF4", "far": 0.38},
+      "sea": {"light": "#FFFFFF", "shade": "#D8E3EF", "opacity": 0.95},
+      "gamut": {"hue": [0, 360], "chroma": 50},
+      "accents": ["rose-copper", "awning-rose", "petal-honey"],
+      "grade": {"lift": [0.0, 0.0, 0.012], "gain": [1.0, 1.0, 0.985], "contrast": 1.10, "saturation": 1.14, "vignette": 0.16},
+      "character": {"lift": [0.0, 0.0, 0.006], "gain": [1.0, 0.995, 0.98], "contrast": 1.06, "saturation": 1.10}
+    },
+    "golden": {
+      "feeling": "The day's reward",
+      "sun": [0.84, 0.30],
+      "sky": {"zenith": "#9C90D2", "horizon": "#F8BC8C", "glow": "#FFC983", "glowStrength": 0.72, "cloudLight": "#FFE7D3", "cloudShade": "#C99BAA", "cloudOpacity": 0.95, "stars": 0.0, "tint": "#FFEDDB"},
+      "key": {"colour": "#F7C873", "intensity": 1.1, "from": [0.95, -0.3]},
+      "fill": {"colour": "#D9A9C4", "intensity": 0.35},
+      "shadow": "#8E78C8",
+      "rim": {"colour": "#FFC77A", "strength": 0.26},
+      "practicals": {"ember": 0.6, "window": 0.2},
+      "fog": {"colour": "#F4C9B4", "far": 0.45},
+      "sea": {"light": "#FFE5D2", "shade": "#D3A3B0", "opacity": 0.95},
+      "gamut": {"hue": [10, 110], "chroma": 52},
+      "accents": ["rose-copper", "petal-honey"],
+      "grade": {"lift": [0.03, 0.008, -0.015], "gamma": [1.02, 1.0, 0.97], "gain": [1.07, 0.97, 0.85], "contrast": 1.08, "saturation": 1.16, "vignette": 0.26},
+      "character": {"lift": [0.015, 0.004, 0.0], "gain": [1.05, 0.97, 0.86], "contrast": 1.05, "saturation": 1.10}
+    },
+    "dusk": {
+      "feeling": "Coming home",
+      "sun": [0.88, 0.36],
+      "sky": {"zenith": "#3F3D78", "horizon": "#B98AA3", "glow": "#F2B48A", "glowStrength": 0.4, "cloudLight": "#C9A7BE", "cloudShade": "#6E5F86", "cloudOpacity": 0.85, "stars": 0.4, "tint": "#DCD6F2"},
+      "key": {"colour": "#8F86C9", "intensity": 0.5, "from": [0.0, -1.0]},
+      "fill": {"colour": "#4B4180", "intensity": 0.4},
+      "shadow": "#2E2547",
+      "rim": {"colour": "#FFB866", "strength": 0.3},
+      "practicals": {"ember": 0.9, "window": 0.8},
+      "fog": {"colour": "#8E7FB0", "far": 0.5},
+      "sea": {"light": "#A795BC", "shade": "#5E5384", "opacity": 0.9},
+      "gamut": {"hue": [240, 330], "chroma": 30},
+      "accents": ["practical-light", "rose-copper"],
+      "grade": {"black": 0.18, "gamma": [0.88, 0.9, 0.98], "gain": [0.68, 0.68, 0.92], "contrast": 1.12, "pivot": 0.35, "saturation": 0.82, "vignette": 0.32},
+      "character": {"lift": [0.012, 0.008, 0.02], "gamma": [0.97, 0.97, 0.98], "gain": [0.80, 0.76, 0.74], "contrast": 1.05, "pivot": 0.45, "saturation": 1.05}
+    },
+    "night": {
+      "feeling": "Safe, cozy",
+      "sun": [0.76, 0.16],
+      "sky": {"zenith": "#1C2242", "horizon": "#3E3659", "glow": "#D9D2F5", "glowStrength": 0.22, "cloudLight": "#6F6A92", "cloudShade": "#3A3759", "cloudOpacity": 0.7, "stars": 1.0, "tint": "#BDC2EB"},
+      "key": {"colour": "#B8A8B1", "intensity": 0.35, "from": [0.6, -0.8]},
+      "fill": {"colour": "#2A2350", "intensity": 0.5},
+      "shadow": "#1E1828",
+      "rim": {"colour": "#FFB060", "strength": 0.42},
+      "practicals": {"ember": 1.0, "window": 1.0},
+      "fog": {"colour": "#4A4677", "far": 0.5},
+      "sea": {"light": "#9490C0", "shade": "#57527F", "opacity": 0.88},
+      "gamut": {"hue": [230, 320], "chroma": 24},
+      "accents": ["practical-light", "rose-copper", "pofu-fur"],
+      "grade": {"black": 0.32, "gamma": [0.80, 0.85, 0.97], "gain": [0.44, 0.50, 0.90], "contrast": 1.18, "pivot": 0.2, "saturation": 0.62, "vignette": 0.40},
+      "character": {"gamma": [0.95, 0.95, 0.95], "gain": [0.64, 0.61, 0.57], "contrast": 1.05, "pivot": 0.4, "saturation": 1.05}
+    }
+  },
+  "states": {
+    "$note": "Wellbeing layered over any hour: low from wellbeing 55 down to 30 ramps toward 'unwell'. Unwell is overcast, not desaturated fog: a diffused, cooler, slightly darker key; the sky goes cooler, slightly darker and lower in chroma (never brighter than the hour's well sky); Pofu keeps most of his colour and stays readable (ADR-0017: Pofu never dies); the door's window stays lit by day (care is still here).",
+    "unwell": {
+      "grade": {"black": 0.14, "gamma": [0.95, 0.96, 0.98], "gain": [0.94, 0.97, 1.025], "saturation": 0.55, "vignette": 0.24},
+      "character": {"gain": [0.97, 0.98, 1.0], "contrast": 1.02, "saturation": 0.78},
+      "sky": {"value": 0.88, "chroma": 0.55, "toward": "#9EAEC0", "amount": 0.3},
+      "key": {"intensity": 0.7},
+      "practicals": {"window": 0.55}
+    }
+  }
+}

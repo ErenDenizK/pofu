@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/ErenDenizK/pofu/content/schema.json",
-  "title": "Pofu Atlas content node",
-  "description": "One YAML file per node under content/<type folder>/<id>.yaml. Checked by tools/content/validate.py, rendered by tools/content/build_atlas.py. See content/README.md.",
+  "title": "Pofu content node",
+  "description": "One YAML file per node under content/<type folder>/<id>.yaml. Checked by tools/content/validate.py. See content/README.md.",
   "type": "object",
   "required": ["id", "type", "title_tr", "title_en", "status", "horizon", "summary"],
   "properties": {

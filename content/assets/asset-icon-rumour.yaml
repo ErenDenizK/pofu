@@ -1,0 +1,22 @@
+id: asset-icon-rumour
+type: asset
+title_tr: icon-rumour
+title_en: rumour (icon)
+status: planned
+horizon: now
+summary: 'The icon for a rumour: a small round-bellied glass-colored bottle painted
+  as a soft tinted pale sage shape (not transparent), a honey-wood cork in its neck,
+  and a plump cream rolled note showing inside, no letters or marks on the note.'
+art:
+  images: []
+  jobs:
+  - batch-13-ui-rest:icon-rumour
+  - retry-2026-11-03:icon-rumour
+sources:
+- doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
+kind: icon
+batch: batch-13-ui-rest
+notes:
+- 'Batch13overnight: Not generated: the embedded ui-sheet-paper pilot failed its allowed
+  retry, so the manifest skips the rest of batch13. Other batch timings remain as
+  specified.'

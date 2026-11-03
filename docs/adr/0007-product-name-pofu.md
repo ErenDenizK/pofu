@@ -7,7 +7,7 @@
 
 The working codename "Rot" names the product after the problem and sits in
 the shadow of Brainrot and Unrot. Three directions were explored in
-[naming-exploration.md](../brand/naming-exploration.md): Kor (ember), Pofu
+[naming-exploration.md](../archive/naming-exploration.md): Kor (ember), Pofu
 (fluffball), and Hop (interjection).
 
 ## Decision

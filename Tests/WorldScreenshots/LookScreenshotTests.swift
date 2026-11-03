@@ -5,15 +5,26 @@ import SwiftUI
 import UIKit
 import XCTest
 
-/// Look review shots, round 2:
+/// Look review shots, round 3 (the large plate, the colour script, the
+/// composed far sky):
 ///
 /// - `look-compare`: day, golden hour, night and unwell at Home and at the
-///   Island (the `grade-*` frames, measured by `tools/assets/frame_metrics.py`);
-/// - `look-grades`: night and unwell before (round 1's grades) and after;
-/// - `look-teapot`: the çay ocağı before and after its harmony correction;
+///   Island with the real art (the `grade-*` frames, measured by
+///   `tools/assets/frame_metrics.py`, with `frame-regions.json` naming where
+///   the island and the characters are in each frame);
+/// - `look-script`: the colour script's five hour cells at Home and at the
+///   Island (the art director's strip);
+/// - `look-teapot`: the çaydanlık at level 1 unlit, lit by the ember, and
+///   with cay-1-lit's painted flame (look round 4), by day and night;
+/// - `look-plates`: the shipped v3 plate and batch 03's v2, to choose;
 /// - `look-motion`: six frames of a Home → Island flight with depth in
 ///   motion, over the same frames without it;
+/// - `look-pan`: the Island pan (look round 4), a flick from Pofu toward
+///   the çay ocağı coasting onto its snap point, depth in motion on and off;
 /// - `look-celebration-card` and `frame-times.txt`.
+///
+/// The framing before/after sheet is drawn by CI from round 2's published
+/// frames and these (`tools/assets/framing_sheet.py`).
 final class LookScreenshotTests: XCTestCase {
     private struct Shot {
         var id: String
@@ -22,21 +33,6 @@ final class LookScreenshotTests: XCTestCase {
         var wellbeing: Double = 78
     }
 
-    /// Round 1's grades, kept here only to render the before frames.
-    private static let round1Night = WorldGrade(
-        lift: GradeRGB(0, 0.02, 0.06),
-        gamma: GradeRGB(0.92, 0.95, 1),
-        gain: GradeRGB(0.46, 0.53, 0.76),
-        contrast: 1.04,
-        pivot: 0.4,
-        saturation: 0.72,
-        vignette: 0.40
-    )
-    private static let round1Unwell = WorldGrade.day.layered(
-        with: WorldGrade(lift: GradeRGB(0.02, 0.02, 0.025), gain: GradeRGB(0.97, 0.97, 0.98), contrast: 0.94, saturation: 0.72, vignette: 0.22),
-        amount: 1
-    )
-
     private let grades: [Shot] = [
         Shot(id: "grade-day", title: "Day", look: WorldLook(hourOverride: 12)),
         Shot(id: "grade-golden", title: "Golden hour", look: WorldLook(hourOverride: 18.5)),
@@ -44,20 +40,17 @@ final class LookScreenshotTests: XCTestCase {
         Shot(id: "grade-unwell", title: "Unwell (day)", look: WorldLook(hourOverride: 12), wellbeing: 25),
     ]
 
-    private let befores: [Shot] = [
-        Shot(id: "grade-night-r1", title: "Night, round 1", look: WorldLook(hourOverride: 22, gradeOverride: LookScreenshotTests.round1Night)),
-        Shot(id: "grade-unwell-r1", title: "Unwell, round 1", look: WorldLook(hourOverride: 12, gradeOverride: LookScreenshotTests.round1Unwell), wellbeing: 25),
+    /// The colour script's cells, at an hour inside each.
+    private let script: [Shot] = [
+        Shot(id: "script-dawn", title: "Dawn", look: WorldLook(hourOverride: 6.25)),
+        Shot(id: "script-day", title: "Day", look: WorldLook(hourOverride: 12)),
+        Shot(id: "script-golden", title: "Golden", look: WorldLook(hourOverride: 18.5)),
+        Shot(id: "script-dusk", title: "Dusk", look: WorldLook(hourOverride: 20)),
+        Shot(id: "script-night", title: "Night", look: WorldLook(hourOverride: 22)),
     ]
 
     private func world(wellbeing: Double) -> WorldSnapshot {
-        IslandSamples.world(
-            clock: Date(timeIntervalSinceReferenceDate: 815_000_000),
-            tendedDays: 4,
-            levels: [.garden: 2, .cay: 1],
-            jar: Energy(60),
-            islands: [.aycicegi, .iskele],
-            wellbeing: wellbeing
-        )
+        IslandSamples.grownIsland(wellbeing: wellbeing)
     }
 
     @MainActor
@@ -71,13 +64,17 @@ final class LookScreenshotTests: XCTestCase {
 
         // The grades, at Home and at the Island.
         var shots: [String: UIImage] = [:]
-        for shot in grades + befores {
+        var regions: [String: Any] = [:]
+        for shot in grades + script {
             for framing in [WorldFraming.home, .island] {
                 let model = IslandSceneModel(framing: framing)
                 let view = LookScene(world: world(wellbeing: shot.wellbeing), model: model).environment(\.worldLook, shot.look)
                 let image = try await render(AnyView(view), in: scene, settle: 1400)
                 let name = "\(shot.id)-\(framing == .home ? "home" : "island")"
-                try write(image, name: name, to: folder)
+                if shot.id.hasPrefix("grade-") {
+                    try write(image, name: name, to: folder)
+                    regions[name] = frameRegions(framing: framing, size: image.size)
+                }
                 shots[name] = image
             }
         }
@@ -87,49 +84,122 @@ final class LookScreenshotTests: XCTestCase {
                  titles: rows.map { r in grades.map { "\($0.title) · \(r == "home" ? "Home" : "Island")" } }),
             name: "look-compare", to: folder
         )
-        let pairs = [befores[0], grades[2], befores[1], grades[3]]
         try write(
-            grid(rows.map { r in pairs.map { shots["\($0.id)-\(r)"]! } },
-                 titles: rows.map { r in pairs.map { "\($0.title == "Night" ? "Night, round 2" : $0.title == "Unwell (day)" ? "Unwell, round 2" : $0.title) · \(r == "home" ? "Home" : "Island")" } }),
-            name: "look-grades", to: folder
+            grid(rows.map { r in script.map { shots["\($0.id)-\(r)"]! } },
+                 titles: rows.map { r in script.map { "\($0.title) · \(r == "home" ? "Home" : "Island")" } }),
+            name: "look-script", to: folder
         )
+        let json = try JSONSerialization.data(withJSONObject: regions, options: [.prettyPrinted, .sortedKeys])
+        try json.write(to: folder.appendingPathComponent("frame-regions.json"))
 
         try await renderTeapot(in: scene, folder: folder)
         try await renderMotion(in: scene, folder: folder)
+        try await renderPan(in: scene, folder: folder)
+        try await renderPlates(in: scene, folder: folder)
 
         // The painted celebration card over the world (system UI is glass,
         // celebration is painted).
         let card = ZStack {
-            LookScene(world: IslandSamples.dayThree(), model: IslandSceneModel(framing: .island))
+            LookScene(world: world(wellbeing: 78), model: IslandSceneModel(framing: .island))
                 .environment(\.worldLook, WorldLook(hourOverride: 12))
-            CelebrationCard(kicker: "Yeni seviye", title: "Çay ocağı 2", detail: "Mochi bir tabure daha getirdi.")
+            CelebrationCard(kicker: "Yeni seviye", title: "Çay ocağı 3", detail: "Mochi bir tabure daha getirdi.")
         }
         try write(try await render(AnyView(card), in: scene, settle: 1400), name: "look-celebration-card", to: folder)
 
         try await measureFrameTimes(in: scene, folder: folder)
     }
 
-    // MARK: - The teapot, before and after harmony
+    // MARK: - Where things are in a frame
+
+    /// The island's rows and every character's box in a frame, in unit
+    /// coordinates (x0, y0, x1, y1), for `frame_metrics.py`.
+    private func frameRegions(framing: WorldFraming, size: CGSize) -> [String: Any] {
+        let rail = CameraRail(width: Double(size.width), height: Double(size.height))
+        let pose = rail.pose(of: framing)
+        func unit(_ box: WorldBox) -> [Double] {
+            let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: rail.width)
+            let b = pose.project(WorldPoint(x: box.maxX, y: box.maxY), width: rail.width)
+            return [a.x / rail.width, a.y / rail.height, b.x / rail.width, b.y / rail.height].map { min(max($0, 0), 1) }
+        }
+        var characters: [String: [Double]] = ["pofu": unit(IslandFraming.pofuBox)]
+        for resident in IslandLayout.residents {
+            characters[resident.id.rawValue] = unit(IslandFraming.residentBox(resident))
+        }
+        return [
+            "island": unit(IslandFraming.islandBox),
+            "topBand": IslandFraming.topBand / CameraRail.referenceHeight,
+            "characters": characters,
+        ]
+    }
+
+    // MARK: - The teapot: paint, the ember's light, the lit flame
 
     @MainActor
     private func renderTeapot(in scene: UIWindowScene, folder: URL) async throws {
-        var crops: [UIImage] = []
-        for art in [WorldLook.ArtSet.unharmonized, .lockLight] {
-            let model = IslandSceneModel(framing: .island)
-            let look = WorldLook(art: art, hd2d: false, hourOverride: 12)
-            let image = try await render(AnyView(LookScene(world: world(wellbeing: 78), model: model).environment(\.worldLook, look)), in: scene, settle: 1400)
-            let rail = CameraRail(width: Double(image.size.width), height: Double(image.size.height))
-            let pose = rail.pose(of: .island)
-            let cay = try XCTUnwrap(IslandLayout.stationAnchors[.cay])
-            let p = pose.project(cay, width: rail.width)
-            let s = pose.scale
-            let box = CGRect(x: p.x - 62 * s, y: p.y - 82 * s, width: 124 * s, height: 108 * s)
-            crops.append(crop(image, to: box))
-        }
-        try write(
-            grid([crops], titles: [["Çaydanlık before harmony (rose copper)", "After harmony (warm copper)"]], cell: CGSize(width: 372, height: 324)),
-            name: "look-teapot", to: folder
+        // The çay ocağı at level 1, the level batch 07 painted a lit flame for.
+        let world = IslandSamples.world(
+            clock: Date(timeIntervalSinceReferenceDate: 815_000_000),
+            tendedDays: 120,
+            levels: [.garden: 3, .cay: 1, .pond: 2, .workshop: 1, .windmill: 2],
+            jar: Energy(60),
+            islands: [.aycicegi, .iskele]
         )
+        let variants: [(String, Bool, Bool)] = [
+            ("rose copper, unlit", false, false),
+            ("lit by the ember (round 3)", true, false),
+            ("+ cay-1-lit's flame (round 4)", true, true),
+        ]
+        var rows: [[UIImage]] = []
+        var titles: [[String]] = []
+        for (hour, label) in [(12.0, "day"), (22.0, "night")] {
+            var row: [UIImage] = []
+            var rowTitles: [String] = []
+            for (title, lit, flame) in variants {
+                let model = IslandSceneModel(framing: .island)
+                model.holdStationPan(from: .cay, to: .cay, at: 0)
+                var look = WorldLook(hd2d: lit, depthMotion: false, hourOverride: hour)
+                look.litOverlays = flame
+                let image = try await render(AnyView(LookScene(world: world, model: model, picker: false).environment(\.worldLook, look)), in: scene, settle: 1400)
+                // The held focus pose, as the scene drew it.
+                let cay = try XCTUnwrap(IslandFraming.stationBox(.cay))
+                let a = model.screenPoint(of: WorldPoint(x: cay.minX - 4, y: cay.minY - 4))
+                let b = model.screenPoint(of: WorldPoint(x: cay.maxX + 4, y: cay.maxY + 4))
+                row.append(crop(image, to: CGRect(x: a.x, y: a.y, width: b.x - a.x, height: b.y - a.y)))
+                rowTitles.append("\(label): \(title)")
+            }
+            rows.append(row)
+            titles.append(rowTitles)
+        }
+        try write(grid(rows, titles: titles, cell: CGSize(width: 372, height: 330)), name: "look-teapot", to: folder)
+    }
+
+    // MARK: - The plates: v3 (shipped) and v2
+
+    /// The founder chooses the plate: the establishing shot, the Island
+    /// pan and Home by day, and the Island at night, for v3 and v2.
+    @MainActor
+    private func renderPlates(in scene: UIWindowScene, folder: URL) async throws {
+        let shots: [(String, WorldFraming?, Double)] = [
+            ("establishing", nil, 12), ("Island", .island, 12), ("Home", .home, 12), ("Island · night", .island, 22),
+        ]
+        var rows: [[UIImage]] = []
+        var titles: [[String]] = []
+        for (label, art) in [("v3 (batch 05, shipped)", WorldLook.ArtSet.lockLight), ("v2 (batch 03)", .plateV2)] {
+            var row: [UIImage] = []
+            var rowTitles: [String] = []
+            for (title, framing, hour) in shots {
+                let model = IslandSceneModel(framing: framing ?? .island)
+                if framing == nil {
+                    model.holdEstablishingShot()
+                }
+                let look = WorldLook(art: art, hourOverride: hour)
+                row.append(try await render(AnyView(LookScene(world: world(wellbeing: 78), model: model).environment(\.worldLook, look)), in: scene, settle: 1400))
+                rowTitles.append("\(label) · \(title)")
+            }
+            rows.append(row)
+            titles.append(rowTitles)
+        }
+        try write(grid(rows, titles: titles), name: "look-plates", to: folder)
     }
 
     private func crop(_ image: UIImage, to rect: CGRect) -> UIImage {
@@ -174,6 +244,34 @@ final class LookScreenshotTests: XCTestCase {
         try write(grid(rows, titles: titles, cell: CGSize(width: 201, height: 437)), name: "look-motion", to: folder)
     }
 
+    /// The Island pan (look round 4): a flick toward the çay ocağı from
+    /// Pofu's centred view, coasting, then settling on the snap point, with
+    /// depth in motion and without.
+    @MainActor
+    private func renderPan(in scene: UIWindowScene, folder: URL) async throws {
+        let times = [0.0, 0.08, 0.16, 0.26, 0.4, 2.0]
+        var rows: [[UIImage]] = []
+        var titles: [[String]] = []
+        for depth in [true, false] {
+            var row: [UIImage] = []
+            var rowTitles: [String] = []
+            for t in times {
+                let model = IslandSceneModel(framing: .island)
+                model.holdPan(start: 0, velocity: -1100, at: t)
+                let look = WorldLook(depthMotion: depth, hourOverride: 12)
+                let image = try await render(AnyView(LookScene(world: world(wellbeing: 78), model: model, picker: false).environment(\.worldLook, look)), in: scene, settle: 1200)
+                row.append(image)
+                rowTitles.append(String(format: "%@ t %.2f s", depth ? "depth on" : "depth off", t))
+                if depth, t == 2.0 {
+                    try write(image, name: "island-pan-settled", to: folder)
+                }
+            }
+            rows.append(row)
+            titles.append(rowTitles)
+        }
+        try write(grid(rows, titles: titles, cell: CGSize(width: 201, height: 437)), name: "look-pan", to: folder)
+    }
+
     // MARK: - Frame times
 
     @MainActor
@@ -191,7 +289,7 @@ final class LookScreenshotTests: XCTestCase {
         ]
         for (label, look) in looks {
             let model = IslandSceneModel(framing: .island)
-            let view = LookScene(world: IslandSamples.dayThree(), model: model, still: false).environment(\.worldLook, look)
+            let view = LookScene(world: IslandSamples.grownIsland(), model: model, still: false).environment(\.worldLook, look)
             let window = host(AnyView(view), in: scene)
             try await Task.sleep(for: .milliseconds(800))
 
@@ -303,6 +401,8 @@ private struct LookScene: View {
     let world: WorldSnapshot
     let model: IslandSceneModel
     var still = true
+    /// The framing control (off for crops and pans).
+    var picker = true
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -311,8 +411,10 @@ private struct LookScene: View {
                     Text(verbatim: "Sen yokken bahçe 12 çekirdek topladı.")
                 }
             }
-            FramingPicker(model: model)
-                .padding(.top, 8)
+            if picker {
+                FramingPicker(model: model)
+                    .padding(.top, 8)
+            }
         }
         .environment(\.worldStillFrame, still)
     }

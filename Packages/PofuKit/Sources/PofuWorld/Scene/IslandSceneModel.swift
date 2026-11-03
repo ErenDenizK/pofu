@@ -189,6 +189,37 @@ public final class IslandSceneModel {
         revision &+= 1
     }
 
+    /// Holds the camera `seconds` into a pan from one station's focus to
+    /// another's, still and without a sheet: a frame of the move, for the
+    /// screenshots of depth in motion across the island. Any interaction
+    /// lets go of the hold.
+    public func holdStationPan(from start: StationID, to target: StationID, at seconds: Double) {
+        closeSurfaces()
+        let width = engine.rig.rail.width, height = engine.rig.rail.height
+        guard
+            let a = IslandLayout.stationAnchors[start],
+            let b = IslandLayout.stationAnchors[target],
+            let from = IslandLayout.stationFocusPose(start, width: width, height: height, safeTop: engine.safeTop),
+            let to = IslandLayout.stationFocusPose(target, width: width, height: height, safeTop: engine.safeTop)
+        else { return }
+        engine.rig.jump(to: .island)
+        engine.rig.focus(pose: from, lens: Lens.station(depth: IslandLayout.depth(ofY: a.y)))
+        engine.rig.snapToTargets()
+        engine.rig.focus(pose: to, lens: Lens.station(depth: IslandLayout.depth(ofY: b.y)))
+        let step = 1.0 / 120
+        var t = 0.0
+        while t + 1e-9 < seconds {
+            engine.rig.advance(min(step, seconds - t))
+            t += step
+        }
+        focus = .station(target)
+        framing = .island
+        projectedFraming = .island
+        engine.isHeld = true
+        engine.lastDate = nil
+        revision &+= 1
+    }
+
     /// One framing in (Map → Island → Home); at Home, the Island (§1.4).
     public func stepIn() {
         go(to: framing.stepIn ?? .island)
@@ -387,16 +418,125 @@ public final class IslandSceneModel {
         kick()
     }
 
+    /// Whether a one-finger drag pans the island (look round 4): at the
+    /// Island framing with nothing focused; elsewhere it peeks.
+    var pansIsland: Bool {
+        framing == .island && focus == nil && sheet == nil && engine.rig.pinchStart == nil
+    }
+
     func peekChanged(dx: Double, dy: Double) {
         guard engine.rig.pinchStart == nil else { return }
-        engine.rig.peek(dx: dx, dy: dy)
+        if pansIsland {
+            if engine.rig.isFocused {
+                // A finger during the establishing shot takes over.
+                establishTask?.cancel()
+                engine.rig.releaseFocus()
+            }
+            engine.rig.panDrag(dx: dx)
+            engine.rig.peek(dx: 0, dy: dy)
+        } else {
+            engine.rig.peek(dx: dx, dy: dy)
+        }
         kick()
     }
 
-    func peekEnded() {
+    func peekEnded(velocityX: Double = 0) {
+        if engine.rig.panStart != nil {
+            engine.rig.endPan(velocity: velocityX)
+        }
         engine.rig.settleOffset()
         kick()
     }
+
+    // MARK: - The island pan
+
+    /// A scripted one-finger drag, `dx`/`dy` points since it began, as the
+    /// gesture would report it (motion beats).
+    public func scriptedDrag(dx: Double, dy: Double = 0) {
+        peekChanged(dx: dx, dy: dy)
+    }
+
+    /// A scripted finger lift at `velocityX` points per second.
+    public func scriptedRelease(velocityX: Double) {
+        peekEnded(velocityX: velocityX)
+    }
+
+    /// The camera's springs; the Ayar panel tunes them live.
+    public var cameraSprings: CameraSprings {
+        get { engine.rig.springs }
+        set { engine.rig.springs = newValue }
+    }
+
+    /// The pan now, in world units off the Island stop (Pofu-centred).
+    public var panOffset: Double {
+        engine.rig.pan.value
+    }
+
+    /// Pans to a station's snap point (or Pofu's, `nil`), with the release
+    /// spring.
+    public func pan(to station: StationID?) {
+        let x = station.flatMap { IslandLayout.stationAnchors[$0]?.x } ?? IslandLayout.pofu.x
+        let target = IslandFraming.panValue(lookX: x)
+        engine.rig.panTo(target)
+        kick()
+    }
+
+    /// Holds the camera at the Island framing panned to `value` (or
+    /// `seconds` into a flick from `start` at `velocity` points per
+    /// second), still: a frame of the pan for screenshots and motion beats.
+    public func holdPan(start: Double = 0, velocity: Double = 0, at seconds: Double = 0) {
+        closeSurfaces()
+        engine.rig.jump(to: .island)
+        engine.rig.jumpPan(to: start)
+        if velocity != 0 {
+            engine.rig.panDrag(dx: 0)
+            engine.rig.endPan(velocity: velocity)
+        }
+        let step = 1.0 / 120
+        var t = 0.0
+        while t + 1e-9 < seconds {
+            engine.rig.advance(min(step, seconds - t))
+            t += step
+        }
+        framing = .island
+        projectedFraming = .island
+        engine.isHeld = true
+        engine.lastDate = nil
+        revision &+= 1
+    }
+
+    /// Holds the establishing shot's frame, still (screenshots).
+    public func holdEstablishingShot() {
+        closeSurfaces()
+        engine.rig.jump(to: .island)
+        engine.rig.focus(pose: engine.rig.rail.wholeIslandPose, lens: .island)
+        engine.rig.snapToTargets()
+        framing = .island
+        projectedFraming = .island
+        engine.isHeld = true
+        engine.lastDate = nil
+        revision &+= 1
+    }
+
+    /// The establishing shot (look round 4): the whole island at 88 % of
+    /// the width, held a beat, then the camera settles into the pan view
+    /// centred on Pofu. On arrival at the Island; Reduce Motion skips it.
+    public func establish(hold seconds: Double = 0.9) {
+        guard !reduceMotion, framing == .island, focus == nil else { return }
+        let whole = engine.rig.rail.wholeIslandPose
+        engine.rig.focus(pose: whole, lens: .island)
+        engine.rig.snapToTargets()
+        kick()
+        establishTask?.cancel()
+        establishTask = Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .seconds(seconds))
+            guard let self, !Task.isCancelled, self.focus == nil else { return }
+            self.engine.rig.releaseFocus()
+            self.kick()
+        }
+    }
+
+    private var establishTask: Task<Void, Never>?
 
     // MARK: - The timeline
 
@@ -517,7 +657,7 @@ extension IslandSceneModel: WorldCamera {
         sheetDetent = .compact
         focus = .station(station)
         let lens = Lens.station(depth: IslandLayout.depth(ofY: anchor.y))
-        travel { $0.focus(pose: pose, lens: lens, camera: WorldSprings.buildPush) }
+        travel { $0.focus(pose: pose, lens: lens, camera: $0.springs.buildPush.token) }
         kick()
     }
 

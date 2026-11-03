@@ -13,12 +13,14 @@ links:
   variant_of:
   - asset-simit-4
 art:
-  images: []
+  images:
+  - design/art/stations/simit-5/simit-5.png
   jobs:
   - batch-03-home-island:simit-5
   - batch-05-fixes:simit-5
 notes:
-- Batch 03 skipped it; batch 05 redoes it (docs/design/art-production-plan.md).
+- >-
+  Batch 03 skipped it; batch 05 redoes it (docs/design/art-production-plan.md).
 sources:
 - doc: tools/imagegen/manifest/batch-03-home-island.yaml
 - doc: tools/imagegen/manifest/batch-05-fixes.yaml

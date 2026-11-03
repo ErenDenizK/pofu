@@ -1,0 +1,56 @@
+{
+ "after": {
+  "C_mean": 19.042,
+  "C_p50": 11.73,
+  "C_p95": 48.99,
+  "L_mean": 85.169,
+  "L_p2": 17.648,
+  "L_p98": 97.582,
+  "detail": 8.147,
+  "edge": 0.15,
+  "tint_a": 3.355,
+  "tint_b": 5.775,
+  "warmth_b": 16.085
+ },
+ "before": {
+  "C_mean": 19.042,
+  "C_p50": 11.73,
+  "C_p95": 48.99,
+  "L_mean": 85.169,
+  "L_p2": 17.648,
+  "L_p98": 97.582,
+  "detail": 8.147,
+  "edge": 0.15,
+  "tint_a": 3.355,
+  "tint_b": 5.775,
+  "warmth_b": 16.085
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": true,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "detail",
+  "tint_b"
+ ],
+ "outliers_before": [
+  "detail",
+  "tint_b"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 85.8,
+ "score_before": 85.8,
+ "shipped": false,
+ "source": "design/art/masters/pofu-mouth-pout/pofu-mouth-pout.webp",
+ "source_sha": "9557bba046668bfa"
+}

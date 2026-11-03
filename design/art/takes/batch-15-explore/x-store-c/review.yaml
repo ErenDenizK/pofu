@@ -1,0 +1,146 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-store-c/contact.jpg
+jobs:
+  x-store-c:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Coordinator manual review: both
+      have home/harbor islands joined by a thin rope bridge, small ferry at pier,
+      trail of far dim islands, golden left light/cloud sea, generous clear upper
+      title zone and no UI/text/large characters. Low camera and soft painting family
+      read. Lowest non-failing lock load wins; exploration only.'
+qa_reports:
+  1:
+    job: x-store-c
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 82.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.71
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6446
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 4.1, off-palette 0.0%
+      value: 1.5428
+    info:
+      metrics_raw:
+        L_p5: 82.1
+        L_p50: 89.9
+        L_p95: 93.9
+        C_p50: 13.1
+        C_p95: 37.4
+        C_p99: 44.9
+        detail: 0.9
+      metrics_locked:
+        L_p5: 82.1
+        L_p50: 89.9
+        L_p95: 93.7
+        C_p50: 13.0
+        C_p95: 36.8
+        C_p99: 44.4
+        detail: 0.71
+    fingerprint: 014d5f9090799772
+  2:
+    job: x-store-c
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 34.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 82 (R1 59)
+      value: 81.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6751
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 4.1, off-palette 0.0%
+      value: 1.5269
+    info:
+      metrics_raw:
+        L_p5: 81.5
+        L_p50: 90.1
+        L_p95: 94.1
+        C_p50: 12.5
+        C_p95: 34.6
+        C_p99: 39.3
+        detail: 0.97
+      metrics_locked:
+        L_p5: 81.6
+        L_p50: 90.0
+        L_p95: 93.9
+        C_p50: 12.6
+        C_p95: 34.2
+        C_p99: 38.9
+        detail: 0.76
+    fingerprint: 014d5f9090799772
+manual_review:
+  exclude: []
+  note: 'Coordinator manual review: both have home/harbor islands joined by a thin
+    rope bridge, small ferry at pier, trail of far dim islands, golden left light/cloud
+    sea, generous clear upper title zone and no UI/text/large characters. Low camera
+    and soft painting family read. Lowest non-failing lock load wins; exploration
+    only.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-75684a9a-426c-4428-aa3c-df3bbbcad03c.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 014d5f9090799772
+  inbox_png_sha256: 3df30f04c2f952f2980316ee7429c3767b5451cf268e7e9453da45d8550362d6
+  original_generated_png_sha256: 5ce1838b6388876afd79a936e01dfb9f434413db54c3ea2b7e3207e61a19d487
+  rgba_sha256: efd19f7099ae6ba3cd951edbb12b5af855c191594d472667d7725e38037744d6
+  source_rgba_matches_inbox: true
+- take: 2
+  source_file: /workspace/generated_images/exec-aca21681-6ee6-4146-9cd4-e554c545172f.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 014d5f9090799772
+  inbox_png_sha256: 46e418fca6fedd16b0f73887a3e013ed41d4c15068854fd82a8e53c7f4bd338c
+  original_generated_png_sha256: e73ca5ba5351019dfdcbcddb2adf38c4c0c7f78c07039072fe7664ab7b6cdc7b
+  rgba_sha256: 94345ff8ec6077653e95201f19dd7a68c4b47686bad2322be26507a6d68d0ee0
+  source_rgba_matches_inbox: true
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.

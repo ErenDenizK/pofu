@@ -2,18 +2,18 @@ id: asset-pofu-cheeks-puff-1
 type: asset
 title_tr: pofu-cheeks-puff-1
 title_en: pofu-cheeks-puff-1 (char)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  Edit the attached hamster. Change only his cheeks: fill both cheek pouches a little, as
-  if he is carrying a few sunflower seeds in them, so the face is slightly rounder and wider
-  at cheek height. Keep the same blush, eyes, mouth and expression. No visible food. Nothing
-  else changes.
+summary: 'Edit the attached hamster. Change only his cheeks: fill both cheek pouches
+  a little, as if he is carrying a few sunflower seeds in them, so the face is slightly
+  rounder and wider at cheek height. Keep the same blush, eyes, mouth and expression.
+  No visible food. Nothing else changes.'
 links:
   variant_of:
   - asset-pofu-base-v1
 art:
-  images: []
+  images:
+  - design/art/masters/pofu-cheeks-puff-1/pofu-cheeks-puff-1.webp
   jobs:
   - batch-06-pofu-rig:pofu-cheeks-puff-1
 sources:

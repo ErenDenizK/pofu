@@ -4,7 +4,7 @@ _Status: v2, the founder's decisions of 2026-11-01 applied. Last updated:
 2026-11-01. Decisions: [ADR-0015](../adr/0015-care-over-currency.md) (seeds
 as world material, the breathing break), [ADR-0016](../adr/0016-pre-planned-idle-archipelago.md)
 (the pre-planned idle archipelago), [ADR-0017](../adr/0017-pofu-never-dies.md)
-(Pofu never dies). Builds on [Home direction B](../design/home-directions.md),
+(Pofu never dies). Builds on [Home direction B](../archive/home-directions.md),
 the [vision](vision.md), ADR-0004, ADR-0008, and ADR-0010 to ADR-0014.
 Simulation: [`tools/sim/island_economy.py`](../../tools/sim/island_economy.py).
 Prototype: [`design/prototypes/island-game/`](../../design/prototypes/island-game/README.md)._

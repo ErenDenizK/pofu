@@ -1,0 +1,148 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-leylek-2/contact.jpg
+jobs:
+  x-leylek-2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Coordinator manual review: both
+      have two adult storks facing each other, raised open beaks with soft clatter
+      arcs, the chick between looking up, and warm chimney/evening light. Signature
+      reads without text or extra characters. Take1 lowest non-failing lock load0.8774.
+      Never promoted.'
+qa_reports:
+  1:
+    job: x-leylek-2
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 66 (R1 59)
+      value: 66.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8774
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 4.0, off-palette 0.1% (top: #EE8855 (0.1%), #DD7744
+        (0.0%))'
+      value: 1.5962
+    info:
+      metrics_raw:
+        L_p5: 66.0
+        L_p50: 86.4
+        L_p95: 95.0
+        C_p50: 19.1
+        C_p95: 42.5
+        C_p99: 48.0
+        detail: 2.21
+      metrics_locked:
+        L_p5: 66.3
+        L_p50: 86.4
+        L_p95: 94.8
+        C_p50: 19.1
+        C_p95: 41.8
+        C_p99: 47.2
+        detail: 1.64
+    fingerprint: f11bb4c3c34c6cd3
+  2:
+    job: x-leylek-2
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 46.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 66 (R1 59)
+      value: 66.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.63
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9668
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 5.7, off-palette 0.3% (top: #EE9955 (0.1%), #FF9955
+        (0.1%))'
+      value: 1.9592
+    info:
+      metrics_raw:
+        L_p5: 66.0
+        L_p50: 84.5
+        L_p95: 93.3
+        C_p50: 21.8
+        C_p95: 47.3
+        C_p99: 52.8
+        detail: 2.22
+      metrics_locked:
+        L_p5: 66.4
+        L_p50: 84.5
+        L_p95: 93.1
+        C_p50: 21.8
+        C_p95: 46.8
+        C_p99: 52.2
+        detail: 1.63
+    fingerprint: f11bb4c3c34c6cd3
+manual_review:
+  exclude: []
+  expected_pick: 1
+  note: 'Coordinator manual review: both have two adult storks facing each other,
+    raised open beaks with soft clatter arcs, the chick between looking up, and warm
+    chimney/evening light. Signature reads without text or extra characters. Take1
+    lowest non-failing lock load0.8774. Never promoted.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-7cd07121-e662-4cc8-8257-9c8e9ae66dc5.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f11bb4c3c34c6cd3
+  inbox_png_sha256: 6034fca61df5ad8d1be47efc8dadd0e61f6cd478f1c1780e124b4671a6b74c56
+  original_generated_png_sha256: 3155fff9d1217d7d701c3c9070999a4fb25413b424df7c899a7c3f40e829f7db
+  rgba_sha256: d6826933f0acd0741e9d6b1a3d6cd65048902c8638bebc24ad5373f79b3adcf6
+  source_rgba_matches_inbox: true
+- take: 2
+  source_file: /workspace/generated_images/exec-ef9434d7-225e-412f-b9ca-b63996d41e40.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: f11bb4c3c34c6cd3
+  inbox_png_sha256: 012d4889a1dbabb3464454ee2b53760101d56c5a51cd6d8a55b12140f29a48da
+  original_generated_png_sha256: 0c926d759f8731d78da6437c412d0b7b1ecf7bcc660cb66fa7c2879cd2aacae6
+  rgba_sha256: 921f3282a2803453acf4c0baaf37243197248c80534cd59e5f2e845ecc4d9171
+  source_rgba_matches_inbox: true
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.

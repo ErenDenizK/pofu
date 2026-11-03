@@ -55,6 +55,38 @@ class StationTests(unittest.TestCase):
         fixed = qa.shift(off, reg["dx"], reg["dy"])
         self.assertEqual(qa.check_station_anchor(fixed).status, "pass")
 
+    def test_decor_piece_is_checked_against_the_decor_guide(self):
+        # Batch 08's bench: 740 px wide, top at y 419, against a 360 px footprint and a bar at y 500.
+        def piece(w, h, base=888, cx=512):
+            im = canvas()
+            ImageDraw.Draw(im).rounded_rectangle((cx - w / 2, base - h, cx + w / 2, base), radius=20, fill=PROP + (255,))
+            return np.asarray(im, dtype=np.float64) / 255.0
+        self.assertEqual(qa.check_decor_anchor(piece(340, 300)).status, "pass")
+        self.assertEqual(qa.check_decor_anchor(piece(740, 470)).status, "fail")
+        self.assertEqual(qa.check_decor_anchor(piece(694, 491)).status, "fail")
+        self.assertEqual(qa.check_decor_anchor(piece(340, 300, cx=700)).status, "fail")
+
+    def test_decor_registration_puts_the_piece_on_the_guide(self):
+        d = canvas()
+        ImageDraw.Draw(d).rounded_rectangle((300, 400, 640, 700), radius=20, fill=PROP + (255,))
+        off = np.asarray(d, dtype=np.float64) / 255.0
+        fixed = qa.shift(off, **qa.decor_registration(off))
+        self.assertEqual(qa.check_decor_anchor(fixed).status, "pass")
+
+    def test_hanging_decor_hangs_from_the_hang_line(self):
+        d = canvas()
+        ImageDraw.Draw(d).rounded_rectangle((200, 100, 700, 330), radius=20, fill=PROP + (255,))
+        off = np.asarray(d, dtype=np.float64) / 255.0
+        self.assertNotEqual(qa.check_decor_anchor(off, "hang").status, "pass")
+        fixed = qa.shift(off, **qa.decor_registration(off, "hang"))
+        self.assertEqual(qa.check_decor_anchor(fixed, "hang").status, "pass")
+
+    def test_a_prop_with_the_decor_guide_is_a_decor_job(self):
+        import pipeline
+        m = pipeline.load_manifest(HERE.parent / "manifest/batch-08-decor-pilot.yaml")
+        self.assertEqual({j.id: j.decor for j in m.jobs if j.kind == "prop"},
+                         {"decor-bench": "ground", "decor-lanterns": "hang", "decor-sailboat": "ground", "decor-mailbox": "ground"})
+
     def test_edit_alignment_recovers_a_zoomed_out_edit(self):
         parent = stall()
         child = stall(scale=0.85, dy=-20, awning=True)  # the model zoomed out to fit the awning
@@ -204,6 +236,88 @@ class ProcessTakeTests(unittest.TestCase):
         res = qa.process_take(stall(), "widget", (1536, 720), sl.load_presets()["soft-lock"], ["world-day"], transparent=False)
         self.assertEqual(res.checks[0].status, "fail")
 
+
+
+def tile(rgb, size=1024, inset=140, notch=False) -> np.ndarray:
+    """A rounded tile with a lighter sprout, in one glaze (a stand-in for a plot tile)."""
+    im = canvas(size, size)
+    d = ImageDraw.Draw(im)
+    d.rounded_rectangle((inset, inset, size - inset, size - inset), radius=90, fill=rgb + (255,))
+    light = tuple(min(255, c + 25) for c in rgb)
+    d.ellipse((430, 400, 600, 570), fill=light + (255,))
+    d.rectangle((500, 560, 530, 760), fill=light + (255,))
+    if notch:  # the edit changed the shape: a bite out of the tile
+        d.rectangle((inset, inset, 520, 520), fill=(0, 0, 0, 0))
+    return np.asarray(im, dtype=np.float64) / 255.0
+
+
+class EditModeTests(unittest.TestCase):
+    """Edits that repaint the object (batches 11-12: glaze recolors, a refilled jar, a lit lantern)."""
+
+    SAGE, HONEY = (168, 190, 150), (214, 188, 120)
+
+    def names(self, child, parent, **acc):
+        cs = qa.run_checks("ui", child, child, ["world-props", "world-day", "character"], acc, parent_locked=parent)
+        return {c.name: c for c in cs}
+
+    def test_a_recolor_fails_the_default_edit_stability_by_construction(self):
+        c = self.names(tile(self.HONEY), tile(self.SAGE))
+        self.assertNotEqual(c["edit_stability"].status, "pass")
+
+    def test_recolor_mode_checks_shape_and_light_instead_of_colors(self):
+        c = self.names(tile(self.HONEY), tile(self.SAGE), edit_mode="recolor")
+        self.assertNotIn("edit_stability", c)
+        self.assertNotIn("edit_chroma", c)
+        for name in ("edit_silhouette", "edit_structure", "edit_lightness"):
+            self.assertEqual(c[name].status, "pass", name)
+
+    def test_recolor_mode_still_catches_a_changed_shape_and_a_changed_lightness(self):
+        c = self.names(tile(self.HONEY, notch=True), tile(self.SAGE), edit_mode="recolor")
+        self.assertEqual(c["edit_silhouette"].status, "fail")
+        dark = self.names(tile((70, 90, 55)), tile(self.SAGE), edit_mode="recolor")
+        self.assertEqual(dark["edit_lightness"].status, "fail")
+
+    def test_region_mode_relaxes_edit_stability_but_keeps_the_shape_check(self):
+        parent = tile(self.SAGE)
+        child = tile(self.SAGE)
+        child[430:600, 430:600, :3] = (0.2, 0.15, 0.1)  # the window is refilled
+        keep = self.names(child, parent)
+        region = self.names(child, parent, edit_mode="region")
+        self.assertLess(keep["edit_stability"].value, 0.99)
+        self.assertEqual(region["edit_stability"].status, "pass")
+        self.assertEqual(region["edit_silhouette"].status, "pass")
+        gone = self.names(tile(self.SAGE, notch=True), parent, edit_mode="region")
+        self.assertEqual(gone["edit_silhouette"].status, "fail")
+
+    def test_default_mode_adds_no_new_check(self):
+        c = self.names(tile(self.SAGE), tile(self.SAGE))
+        self.assertNotIn("edit_silhouette", c)
+        self.assertEqual(c["edit_stability"].status, "pass")
+
+    def test_unknown_mode_is_an_error(self):
+        with self.assertRaises(ValueError):
+            self.names(tile(self.SAGE), tile(self.SAGE), edit_mode="recolour")
+
+
+class KindProfileTests(unittest.TestCase):
+    def test_ui_accepts_a_saturated_accent_but_a_prop_does_not(self):
+        self.assertEqual(qa.grade(58.0, qa.limits_for("ui")["chroma_p95"]), "warn")
+        self.assertEqual(qa.grade(60.5, qa.limits_for("ui")["chroma_p95"]), "warn")
+        self.assertEqual(qa.grade(60.5, qa.limits_for("prop")["chroma_p95"]), "fail")
+        self.assertEqual(qa.grade(66.0, qa.limits_for("ui")["chroma_p95"]), "fail")
+
+    def test_extra_palettes_cover_the_colors_a_brief_names(self):
+        violet = np.zeros((64, 64, 4))
+        violet[..., :3] = (0x6C / 255, 0x4F / 255, 0xD8 / 255)
+        violet[..., 3] = 1
+        base = ["world-props", "world-day", "character"]
+        self.assertEqual(qa.check_palette(violet, base).status, "fail")
+        self.assertEqual(qa.check_palette(violet, base + ["ui"]).status, "pass")
+        tabby = np.zeros((64, 64, 4))
+        tabby[..., :3] = (0xD5 / 255, 0x80 / 255, 0x3E / 255)
+        tabby[..., 3] = 1
+        self.assertNotEqual(qa.check_palette(tabby, ["character"]).status, "pass")
+        self.assertEqual(qa.check_palette(tabby, ["character", "character-tabby"]).status, "pass")
 
 
 class HarmonyCheckTests(unittest.TestCase):

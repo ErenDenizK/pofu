@@ -18,6 +18,9 @@ struct DepthImage: View {
     var opacity: Double = 1
     /// Leave out the sharp layer (something else draws it).
     var skipsSharp = false
+    /// A grade of this image's own (a character's light), applied to each
+    /// layer's rect only, so it costs the sprite's pixels, not the screen's.
+    var grade: WorldGrade = .neutral
 
     @Environment(\.worldLook.art) private var art
 
@@ -43,6 +46,7 @@ struct DepthImage: View {
             Image(WorldArt.assetName(key, variant: variant), bundle: .module)
                 .resizable()
                 .frame(width: CGFloat(box.width) * scale, height: CGFloat(box.height) * scale)
+                .modifier(GradeEffect(grade: grade, isEnabled: !grade.isNeutral))
                 .opacity(weight * opacity)
                 .position(
                     x: anchor.x + CGFloat(box.midX) * scale,

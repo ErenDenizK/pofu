@@ -55,12 +55,19 @@ jobs:
           pattern, no motif). Friendly, toy-like proportions with few parts.
           It stands on the guide's ground ellipse, centered on the cross,
           and is no taller than the height bar.
+
+          Size (the first attempt came out twice too wide): the bench is
+          small. It is about 340 px wide in the 1024 x 1024 image, a third
+          of the image width, never wider than the guide's ground ellipse
+          (360 px), and about 220 px tall, its top well below the height
+          bar. Leave empty space on both sides of it.
       - block: view-v2
       - block: prop-style-v2
       - block: prop-avoid-v2
 
   - id: decor-lanterns
     kind: prop
+    decor: hang
     name: decor-lanterns
     chat: "Pofu · Decor"
     notes: >-

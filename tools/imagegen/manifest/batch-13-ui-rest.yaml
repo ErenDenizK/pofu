@@ -1,0 +1,307 @@
+# Batch 13: the rest of the hybrid UI (production, founder review pending)
+# (docs/design/ui-system-v2.md section 6; the pilot items are batch 11).
+#
+# Covers: menu and sheet backgrounds (surfaces), the crafted button faces
+# that batch 11 does not paint (secondary, pressed), and the icon family at
+# 28 to 60 pt. Faces and surfaces use block `crafted-face-v1` and a
+# `slice`; icons use `icon-style-v1`. No glass, no text, no symbols on any
+# of them (SF Symbols and live text are drawn over them by the app).
+#
+# Founder (2026-11-02): UI art is allowed ahead of the friends beta for the
+# hybrid pilot; his review of the pieces is still pending, so every pick is
+# "auto-picked by QA; founder review pending".
+#
+# PILOT (run first, in this order): ui-face-secondary, ui-sheet-paper,
+# icon-calm. If a pilot job still fails after its one retry, skip the REST
+# of this batch (every job below the "THE REST" line) and go on to the next
+# batch. Every job of the rest attaches a pilot piece, so `plan` skips them
+# automatically.
+#
+# Review checks: icons at 28, 44 and 60 pt on light glass, dark glass and
+# cream clay (qa.py icon checks); faces and surfaces have a flat centre and
+# the whole rounded edge inside the caps; each edit keeps its base
+# (edit_stability above 0.9).
+#
+# Tracks: `faces` (secondary, pressed), `surfaces` (sheet, menu, night
+# sheet), `icons` (calm first, then the rest at once).
+
+batch: batch-13-ui-rest
+title: Hybrid UI, the rest (button faces, sheet and menu backgrounds, icon family)
+status: open
+
+refs:
+  cay-1: design/art/stations/cay-1/cay-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: icon-seed, kind: icon, name: seed, external: batch-11-ui-pilot}
+  - {id: ui-jar-empty, kind: ui, name: jar-empty, external: batch-11-ui-pilot}
+
+  # ------------------------------------------------------------- PILOT
+  - id: ui-face-secondary
+    kind: ui
+    name: face-secondary
+    canvas: 1024x1024
+    slice: {caps: [16, 26, 16, 26], ship_height: 52}
+    chat: "Pofu · UI objects"
+    notes: "PILOT. Secondary action face, same size and slice as the primary: a cream-glazed capsule. Review: flat centre across the middle, rounded edge fully inside the caps."
+    attach:
+      - ref: approved:ui-jar-empty
+        role: "The glaze: paint the capsule in this same milky cream ceramic glaze."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          A wide, chunky capsule of cream-glazed clay, lit from straight
+          above: a soft lighter highlight along the top edge, a slightly
+          darker rounded lip along the bottom edge in pale honey, perfectly
+          even from left to right. Nothing on it.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+
+  - id: ui-sheet-paper
+    kind: ui
+    name: sheet-paper
+    canvas: 1024x1024
+    slice: {caps: [32, 24, 20, 24], ship_height: 240}
+    chat: "Pofu · UI objects"
+    notes: "PILOT. The bottom-sheet background (build, decor, settings sheets): cream paper, rounded TOP corners with a small paper lip, the bottom runs off the canvas edge. The centre is plain and tileable."
+    attach:
+      - ref: approved:ui-jar-empty
+        role: "The material: the same milky cream glaze and warm lights."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          A tall sheet of cream paper seen straight on, filling the canvas
+          from the left edge to the right edge and from near the top to the
+          bottom edge: its top corners softly rounded with a thin lighter
+          paper lip along the top, a faint darker paper edge just outside a
+          thin row of small, even, warm-brown stitches running just inside
+          the top and side edges. The middle is plain, flat, even cream
+          paper with no stains and no texture variation. Nothing written on
+          it.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+
+  - id: icon-calm
+    kind: icon
+    name: calm
+    chat: "Pofu · Icons"
+    notes: "PILOT. Calm is the LIT lantern, so the icon and the world indicator agree (ui-system-v2 section 6 E #33). No halo."
+    attach: &icon_refs
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for calm (huzur): a small paper lantern lit from inside,
+          a plump round warm honey-gold paper body with two soft darker ribs,
+          a small honey-wood cap on top and a short stub of post below. The
+          glow stays inside the lantern's own outline: no halo, no rays.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  # ---------------------------------------------------------- THE REST
+  - id: ui-face-secondary-pressed
+    kind: ui
+    name: face-secondary-pressed
+    edit_of: ui-face-secondary
+    canvas: 1024x1024
+    slice: {caps: [16, 26, 16, 26], ship_height: 52}
+    chat: "Pofu · UI objects"
+    notes: "Pressed state: pushed into the page."
+    prompt:
+      - text: |
+          Show the capsule pressed in: a soft shadow along its top edge, the
+          highlight gone, the lip along the bottom edge flatter, and the
+          whole capsule a touch darker. The shape and outline stay.
+      - block: edit-keep-v1
+
+  - id: ui-menu-paper
+    kind: ui
+    name: menu-paper
+    canvas: 1024x1024
+    slice: {caps: [20, 20, 20, 20], ship_height: 160}
+    chat: "Pofu · UI objects"
+    notes: "The background of a pop-up menu or card (island menu, share card): a cream paper card with a soft scalloped rim. Plain tileable centre."
+    attach:
+      - ref: approved:ui-sheet-paper
+        role: "The family look of the paper surfaces: the same cream paper, stitches and lights. Do not copy its shape."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          A small cream paper card with four softly rounded corners, a thin
+          row of small, even, warm-brown stitches just inside its edge all
+          the way around, and a faint darker paper edge. The middle is plain,
+          flat, even cream paper, tileable. Seen straight on. Nothing
+          written on it.
+      - block: crafted-face-v1
+      - block: prop-style-v2
+
+  - id: ui-sheet-paper-night
+    kind: ui
+    name: sheet-paper-night
+    edit_of: ui-sheet-paper
+    canvas: 1024x1024
+    slice: {caps: [32, 24, 20, 24], ship_height: 240}
+    chat: "Pofu · UI objects"
+    notes: "Painted night version (one of the three painted N items): indigo-dyed paper."
+    prompt:
+      - text: |
+          Dye the paper a deep, soft indigo-blue, the stitches a pale warm
+          cream, the paper lip a slightly lighter indigo. Keep it matte and
+          calm; the middle stays plain, flat and even.
+      - block: edit-keep-v1
+
+  - id: icon-island
+    kind: icon
+    name: island
+    chat: "Pofu · Icons"
+    attach: *icon_refs
+    prompt:
+      - text: |
+          The icon for an island: a tiny floating island, a flat soft sage
+          lawn on a short, rounded honey-earth underside, nothing on the
+          lawn, no roots or at most two chunky ones.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-cay
+    kind: icon
+    name: station-cay
+    chat: "Pofu · Icons"
+    attach: *icon_refs
+    prompt:
+      - text: |
+          The icon for the cay ocagi station: one chunky tulip-shaped tea
+          glass of warm amber tea on a small cream saucer, the glass painted
+          as a soft tinted shape, not transparent glass.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-friend
+    kind: icon
+    name: friend
+    chat: "Pofu · Icons"
+    attach: *icon_refs
+    prompt:
+      - text: |
+          The icon for a friend: two small, round, soft sprouts in a tiny
+          clay pot, leaning toward each other, each with two chunky leaves.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-mood-content
+    kind: icon
+    name: mood-content
+    chat: "Pofu · Icons"
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: approved:icon-calm
+        role: "A second family member: the same painting and value structure."
+      - ref: R1
+        role: "Pofu: the face to simplify. Same colors, same eyes, same tuft."
+    prompt:
+      - text: |
+          A mood glyph, content: Pofu's face only, simplified into a round
+          icon: the golden-peach head with the cream blaze, the single cream
+          curl on top, two small round ears, two big round espresso eyes with
+          one round catchlight each, two blush ovals and a tiny "w" smile.
+          No whiskers, no fur strands along the outline (a smooth soft edge),
+          no body.
+      - block: icon-style-v1
+
+  - id: icon-skip
+    kind: icon
+    name: skip
+    chat: "Pofu · Icons"
+    notes: "A reach resisted: a bloom in a pot."
+    attach: *icon_refs
+    prompt:
+      - text: |
+          The icon for a skipped reach: one plump sunflower bloom in a small
+          terracotta pot, the bloom round with a brown center and a few
+          chunky yellow petals, one short chunky stem and two leaves hidden
+          behind the pot rim.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-round
+    kind: icon
+    name: round
+    chat: "Pofu · Icons"
+    notes: "An earned game round: a wooden token."
+    attach: *icon_refs
+    prompt:
+      - text: |
+          The icon for an earned round: a round, chunky honey-wood token with
+          a rounded rim and a simple sunflower burnt into its face in a
+          darker brown, large shapes only.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-breath
+    kind: icon
+    name: breath
+    chat: "Pofu · Icons"
+    notes: "The breathing break: a soft dandelion clock. Thin seeds must become chunky tufts to survive 28 pt."
+    attach: *icon_refs
+    prompt:
+      - text: |
+          The icon for the breathing break: a dandelion clock, a round,
+          fluffy ball built from about a dozen plump cream tufts around a
+          small honey center, a short chunky sage stem below, two tufts
+          drifting off to the upper right. No thin lines.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-rumour
+    kind: icon
+    name: rumour
+    chat: "Pofu · Icons"
+    notes: "A rumour: a corked bottle with a rolled note, no letters."
+    attach: *icon_refs
+    prompt:
+      - text: |
+          The icon for a rumour: a small round-bellied glass-colored bottle
+          painted as a soft tinted pale sage shape (not transparent), a
+          honey-wood cork in its neck, and a plump cream rolled note showing
+          inside, no letters or marks on the note.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-decor
+    kind: icon
+    name: decor
+    chat: "Pofu · Icons"
+    notes: "Decor: a small wind chime. Cords become one chunky cord."
+    attach: *icon_refs
+    prompt:
+      - text: |
+          The icon for decor: a small wind chime, a round honey-wood top
+          disc, three plump hanging rounded tubes in cream, rose and sage of
+          different lengths hanging from one short thick cord each, and a
+          little round clapper between them.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-plus
+    kind: icon
+    name: plus
+    chat: "Pofu · Icons"
+    notes: "Plus: a sun-gold sunflower head."
+    attach: *icon_refs
+    prompt:
+      - text: |
+          The icon for Plus: one sun-gold sunflower head seen straight on, a
+          round warm-brown center and eight plump rounded petals in a richer
+          gold than a normal sunflower, with a small cream highlight on each
+          petal.
+      - block: icon-style-v1
+      - block: prop-style-v2

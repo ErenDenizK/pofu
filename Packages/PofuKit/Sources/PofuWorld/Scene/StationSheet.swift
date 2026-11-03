@@ -222,7 +222,7 @@ public struct FramingPicker: View {
                         .font(PofuFont.subheadline)
                         .foregroundStyle(selected ? PofuColor.onAccent : PofuColor.textPrimary)
                         .padding(.horizontal, 14)
-                        .frame(minHeight: 36)
+                        .frame(minHeight: PofuSize.minimumTouch)
                         .background {
                             if selected {
                                 Capsule(style: .continuous)

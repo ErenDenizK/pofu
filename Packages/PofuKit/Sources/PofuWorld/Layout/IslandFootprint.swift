@@ -69,6 +69,30 @@ public enum IslandFootprint {
         placements.filter { !fits($0.footprint, at: $0.anchor) }.map(\.id)
     }
 
+    /// One slot's or character's whole ground over everything it can show
+    /// (every level and the build spot), placed: the convex hull.
+    static func ground(of owner: String) -> WorldPolygon? {
+        let owned = placements.filter { $0.id == owner || $0.id.hasPrefix(owner + " ") }
+        guard !owned.isEmpty else { return nil }
+        let points = owned.flatMap { p in p.footprint.points.map { WorldPoint(x: $0.x + p.anchor.x, y: $0.y + p.anchor.y) } }
+        return WorldPolygon.hull(points)
+    }
+
+    /// The owners whose ground overlaps another's (look round 3: on the
+    /// large plate every station at every level, Pofu and the residents
+    /// have ground of their own), as "a / b" pairs.
+    public static var overlaps: [String] {
+        let owners = IslandLayout.stationAnchors.keys.sorted().map { "\($0)" } + IslandLayout.residents.map { "\($0.id)" } + ["pofu"]
+        let grounds = owners.compactMap { owner in ground(of: owner).map { (owner, $0) } }
+        var out: [String] = []
+        for i in grounds.indices {
+            for j in grounds.indices where j > i && grounds[i].1.intersects(grounds[j].1) {
+                out.append("\(grounds[i].0) / \(grounds[j].0)")
+            }
+        }
+        return out
+    }
+
     /// `anchor` itself when the footprint fits there; otherwise the first
     /// point on the way to the lawn's centre where it does (half-unit
     /// steps), or the centre when nothing fits.

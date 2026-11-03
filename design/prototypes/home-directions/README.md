@@ -3,7 +3,7 @@
 Three radically different Home directions, plus the rejected room as a
 baseline, as animated, dependency-free HTML in an iPhone 17 frame
 (402 × 874 pt). Analysis, scores, recommendation and the art request list:
-[`docs/design/home-directions.md`](../../../docs/design/home-directions.md).
+[`docs/design/home-directions.md`](../../../docs/archive/home-directions.md).
 
 ![Comparison](screenshots/comparison.png)
 

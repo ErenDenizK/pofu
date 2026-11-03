@@ -1,0 +1,19 @@
+id: asset-x-appicon-c
+type: asset
+title_tr: x-appicon-c
+title_en: x-appicon-c (appicon)
+status: in-production
+horizon: now
+summary: >-
+  An app icon master: one large plump sunflower seed with cream stripes, centered, slightly
+  tilted, over a flat soft peach-to-cream sky with a faint cloud. Square, opaque, edge to
+  edge, no text, no border.
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-appicon-c
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: appicon
+batch: batch-15-explore
+size: 1024x1024

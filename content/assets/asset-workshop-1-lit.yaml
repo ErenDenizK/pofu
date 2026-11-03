@@ -2,14 +2,13 @@ id: asset-workshop-1-lit
 type: asset
 title_tr: workshop-1-lit
 title_en: workshop-1-lit (station)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Light the workshop from inside: the open, round-topped doorway now shows a warm honey-amber
-  glow filling its opening, brightest low in the middle, painted as soft broad shapes with
-  a hint of a hanging lamp's round shape inside. Only the doorway's inside changes: no glow,
-  light or color change on the wood, the roof, the bench or anything else (the app adds the
-  glow and the light pool around it).
+summary: 'Light the workshop from inside: the open, round-topped doorway now shows
+  a warm honey-amber glow filling its opening, brightest low in the middle, painted
+  as soft broad shapes with a hint of a hanging lamp''s round shape inside. Only the
+  doorway''s inside changes: no glow, light or color change on the wood, the roof,
+  the bench or anything else (the app adds the glow and the light pool around it).'
 links:
   variant_of:
   - asset-workshop-1
@@ -21,3 +20,7 @@ sources:
 - doc: tools/imagegen/manifest/batch-07-light.yaml
 kind: station
 batch: batch-07-light
+notes:
+- 'Batch07 stopped: fourtakes, t1/t3/t4 fail chroma_ceiling; t2 fails strict manual
+  stability >0.9 (0.8997), despite automated warn. Retry pair t3/t4 failed samecheck;
+  no promotion or further generation.'

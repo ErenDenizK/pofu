@@ -29,17 +29,25 @@ final class WorldScreenshotTests: XCTestCase {
         case buildAfter = "06-build-after"
         case map = "07-map"
         case residentCard = "08-resident-card"
+        /// The same Home with the crafted skin (clay and paper).
+        case homeCrafted = "09-home-crafted"
+        /// Home at the largest accessibility text size: the glance wraps.
+        case homeAX3 = "10-home-ax3"
+        /// The collect beat at the instant the paws press the cheeks.
+        case collectPaws = "11-collect-paws"
+        /// The collect beat as the seeds arc into the jar.
+        case collectFlight = "12-collect-flight"
 
         var framing: WorldFraming {
             switch self {
-            case .homeVisit, .homeSettled: .home
+            case .homeVisit, .homeSettled, .homeCrafted, .homeAX3, .collectPaws, .collectFlight: .home
             case .map: .map
             case .island, .stationBuild, .buildPop, .buildAfter, .residentCard: .island
             }
         }
 
         /// The shots also rendered in dark mode.
-        static let dark: [Shot] = [.homeVisit, .homeSettled, .island, .stationBuild, .map]
+        static let dark: [Shot] = [.homeVisit, .homeSettled, .homeCrafted, .island, .stationBuild, .map]
     }
 
     @MainActor
@@ -72,7 +80,13 @@ final class WorldScreenshotTests: XCTestCase {
                 home.beginVisit(VisitQueue.plan(world.inputs()))
             }
 
-            let host = UIHostingController(rootView: ScreenshotHome(world: world, island: island, home: home))
+            let host = UIHostingController(rootView: ScreenshotHome(
+                world: world,
+                island: island,
+                home: home,
+                skin: shot == .homeCrafted ? .crafted : .glass,
+                typeSize: shot == .homeAX3 ? .accessibility3 : .large
+            ))
             let window = UIWindow(windowScene: scene)
             window.overrideUserInterfaceStyle = style
             window.rootViewController = host
@@ -82,8 +96,24 @@ final class WorldScreenshotTests: XCTestCase {
             // Let the scene lay out (the camera needs the viewport).
             try await Task.sleep(for: .milliseconds(700))
             switch shot {
-            case .homeVisit, .homeSettled, .island, .map:
+            case .homeVisit, .homeSettled, .homeCrafted, .homeAX3, .island, .map:
                 try await Task.sleep(for: .milliseconds(500))
+            case .collectPaws, .collectFlight:
+                try await Task.sleep(for: .milliseconds(500))
+                // The jar is where the seeds land, relative to Pofu's feet.
+                let feet = island.screenPoint(of: IslandLayout.pofu)
+                let jar = HomeObjectsLayout.jarCenter(
+                    feet: MomentPoint(x: feet.x, y: feet.y),
+                    screenWidth: Double(window.bounds.width)
+                )
+                home.collectSeeds(
+                    jarBefore: world.game.snapshot.jar.units,
+                    sources: [MomentPoint(x: feet.x, y: feet.y - 40)],
+                    target: jar
+                ) { world.game.collect() }
+                // Paws pressed at 0.2 s; seeds mid-arc at 0.55 s.
+                home.freeze(at: shot == .collectPaws ? 0.2 : 0.55)
+                try await Task.sleep(for: .milliseconds(900))
             case .residentCard:
                 island.focusResident(.mochi, animated: false)
                 try await Task.sleep(for: .milliseconds(1600))
@@ -169,6 +199,8 @@ private struct ScreenshotHome: View {
     let world: ScreenshotWorld
     let island: IslandSceneModel
     let home: WorldHomeModel
+    var skin: PofuSkin = .glass
+    var typeSize: DynamicTypeSize = .large
 
     var body: some View {
         WorldHome(
@@ -184,5 +216,7 @@ private struct ScreenshotHome: View {
             )
         )
         .environment(\.worldStillFrame, true)
+        .environment(\.pofuSkin, skin)
+        .dynamicTypeSize(typeSize)
     }
 }

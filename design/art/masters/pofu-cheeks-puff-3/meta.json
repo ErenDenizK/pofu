@@ -1,0 +1,102 @@
+{
+  "job": "pofu-cheeks-puff-3",
+  "batch": "batch-06-pofu-rig",
+  "asset": "char__pofu-cheeks-puff-3",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T19:06:14+00:00",
+  "image": "design/art/masters/pofu-cheeks-puff-3/pofu-cheeks-puff-3.webp",
+  "raw": "design/art/masters/pofu-cheeks-puff-3/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "1c43d2e89180b99e",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached hamster. Change only his cheeks and eyes: puff\nthe cheek pouches out much further, as if stuffed with far too\nmany sunflower seeds: the cheeks bulge clearly past the outline of\nthe head on both sides and slightly down, the face becomes wider\nthan the body at cheek height, the blush stretches with them, and\nthe eyes squint a little in proud delight. Still cute. No visible\nfood. Nothing else changes.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: visible seeds, an open mouth, a changed body below the cheeks, a ground shadow, text.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/pofu-cheeks-puff-2/pofu-cheeks-puff-2.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T19:05:01+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 50 (R1 51)",
+        "value": 50.1
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 67 (R1 59)",
+        "value": 66.6
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 4.4 (R1 5.3)",
+        "value": 4.38
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 1.8, p95 9.1, off-palette 3.6% (top: #EE7766 (0.5%), #EE9955 (0.4%))",
+        "value": 1.83
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.5% of the height (contract 88%)",
+        "value": 0.8945
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "82% of the parent level unchanged",
+        "value": 0.821
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.07 of the parent level (drift compounds along a chain)",
+        "value": 1.0681
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 74 against the char reference (outliers: L_p2)",
+        "value": 73.6
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending Publication resumed under the repeated user request from original cached PNGs/local raw; no new generation. Current harmony audit at f35258d leaves the selected take unchanged; QA implementation, presets and rig manifest are byte-unchanged."
+}

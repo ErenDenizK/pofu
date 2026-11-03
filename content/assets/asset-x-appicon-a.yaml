@@ -1,0 +1,19 @@
+id: asset-x-appicon-a
+type: asset
+title_tr: x-appicon-a
+title_en: x-appicon-a (appicon)
+status: in-production
+horizon: now
+summary: >-
+  An app icon master: Pofu's face and cream curl filling the lower two thirds, centered, big
+  eyes, over a soft warm peach-to-cream sky gradient with one small cloud. A square, opaque
+  picture, edge to edge, with nothing in the corners, no text, no border.
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-appicon-a
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: appicon
+batch: batch-15-explore
+size: 1024x1024

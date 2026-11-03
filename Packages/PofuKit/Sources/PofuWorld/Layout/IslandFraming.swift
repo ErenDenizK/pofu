@@ -1,23 +1,23 @@
 import Foundation
 import PofuCore
 
-/// The framing math behind the rail's Island stop and the station focus
+/// The framing math behind the rail's three stops and the station focus
 /// (ADR-0018; interaction spec §1.2). Pure, so the numbers are tested
 /// instead of eyeballed.
 ///
-/// **The Island framing.** The home plate is a flat lawn oval about twice
-/// as wide as it is tall, on a screen about half as wide as it is tall. The
-/// station row, not the screen's height, is what limits the scale: the
-/// framing is the largest one that keeps every station slot (at any level),
-/// Pofu and the residents fully on screen with a small margin, so the
-/// plate's grassy tips may bleed off the sides. Vertically, the island's
-/// whole content box (the tallest slot art down to the plate's roots) is
-/// centred between the chrome bands. ADR-0018 asks for the world at about
-/// 70 % of the band height at Home; at the Island framing the plate's
-/// proportions cap the island itself at about 54 % (with every slot built),
-/// and the living sky, the cloud sea and the neighbouring islands fill the
-/// rest of the band. Cropping stations to reach 70 % would defeat the
-/// framing's purpose, which is to see and tap all of them.
+/// **The Island framing (look round 4).** The world is not shrunk to fit:
+/// Pofu is 80 pt (×1.25) and a horizontal drag pans across the island,
+/// tip to tip, with momentum, rubber-banded ends and snap points at each
+/// station and at Pofu; it opens centred on Pofu. Round 3 fitted the whole
+/// plate to 88 % of the width, which made every station tiny; that view is
+/// now the establishing shot on arrival (`wholeStop`) and what a pinch out
+/// passes through. Vertically the island's box (the tallest station down
+/// to the roots) is centred between the top chrome and the bottom band;
+/// far isles fill the sky above it and the cloud sea rises to its roots.
+///
+/// **Home** keeps ADR-0018's balanced diorama: Pofu 154 pt wide (×2.4),
+/// his feet at 600 pt, nudged sideways so Mochi and Fındık are whole or
+/// out of frame, never cut by an edge.
 public enum IslandFraming {
     /// The top chrome band at Home, in points (ADR-0018).
     public static let topBand = 118.0
@@ -28,17 +28,12 @@ public enum IslandFraming {
     public static let sideMargin = 6.0
     /// Keeps a character whole a few points inside the edge.
     public static let characterMargin = 8.0
-
-    /// The large home plate (`island-main-l-v2`, batch 03, #52) draws the
-    /// island about 40 % wider at roughly 70 % scale on the same canvas.
-    /// When the scene swaps from `island-main-s` to the large plate at
-    /// stage 3, the small plate must draw at 1 / 1.4 of the large plate's
-    /// on-screen width so the two stay consistent.
-    ///
-    /// TODO(batch-03): the scene draws only the small plate today; apply
-    /// this ratio (and refit `stationRow` and `plateBox` to the large
-    /// plate's slots) when the plate swap lands.
-    public static let largePlateWidthRatio = 1.4
+    /// How much of the width the plate fills at the Island framing.
+    public static let islandFill = 0.88
+    /// Pofu's scale at Home: 64 units at 154 pt, 38 % of the width.
+    public static let homeScale = 2.40
+    /// Pofu's feet at Home, in reference points from the top.
+    public static let homeFeetY = 600.0
 
     // MARK: - Content
 
@@ -64,12 +59,15 @@ public enum IslandFraming {
     /// box, relative to the footprint.
     static let placeholderBox = WorldBox(minX: -36, minY: -58, maxX: 36, maxY: -2)
 
-    /// A station slot's art, absolute, at the level whose art is tallest
-    /// (every level shares one vignette until level art exists).
+    /// A station slot's art, absolute, over every level it can show (the
+    /// highest level is usually the tallest).
     public static func stationBox(_ station: StationID) -> WorldBox? {
         guard let anchor = IslandLayout.stationAnchors[station] else { return nil }
-        let box = IslandLayout.stationArt(station, level: 1).flatMap { WorldArt.sprite($0.name)?.sharp } ?? placeholderBox
-        return placed(box, at: anchor)
+        let levels = IslandLayout.generatedLevels[station] ?? 0
+        let boxes = (1...max(levels, 1)).compactMap { level in
+            IslandLayout.stationArt(station, level: level).flatMap { WorldArt.sprite($0.name)?.sharp }
+        }
+        return placed(union(boxes) ?? placeholderBox, at: anchor)
     }
 
     /// Pofu's painted body, absolute (his soft variant's box: the live
@@ -95,13 +93,13 @@ public enum IslandFraming {
     /// must keep on screen side to side.
     public static var stationRow: WorldBox {
         let boxes = IslandLayout.stationAnchors.keys.sorted().compactMap(stationBox) + characterBoxes
-        return union(boxes) ?? WorldBox(minX: -175, minY: -60, maxX: 175, maxY: 40)
+        return union(boxes) ?? WorldBox(minX: -240, minY: -60, maxX: 240, maxY: 40)
     }
 
     /// The plate's depth bands, absolute.
     public static var plateBox: WorldBox {
         let boxes = IslandLayout.plateBands.compactMap { band in WorldArt.sprite(band.art)?.sharp }
-        return union(boxes) ?? WorldBox(minX: -180, minY: -49, maxX: 180, maxY: 115)
+        return union(boxes) ?? WorldBox(minX: -244, minY: -48, maxX: 244, maxY: 146)
     }
 
     /// The island top to bottom: the tallest slot art down to the roots.
@@ -109,7 +107,7 @@ public enum IslandFraming {
         union([stationRow, plateBox]) ?? plateBox
     }
 
-    // MARK: - The Island framing
+    // MARK: - The framings
 
     /// The middle of the band between the chrome, in points.
     public static func bandMid(height: Double) -> Double {
@@ -121,22 +119,102 @@ public enum IslandFraming {
         max(height - topBand - bottomBand, 1)
     }
 
-    /// The Island framing for a viewport: the station row fills the width
-    /// within `sideMargin`, and the island's box is centred in the band.
-    public static func islandStop(width: Double, height: Double) -> CameraRail.Stop {
-        let row = stationRow
+    /// The whole island (round 3's Island framing, now the establishing
+    /// shot): the plate fills `islandFill` of the width (or the island fills
+    /// the band, whichever is smaller), the island's box centred in the band.
+    public static func wholeStop(width: Double, height: Double) -> CameraRail.Stop {
+        let plate = plateBox
         let island = islandBox
-        let scale = max(width - 2 * sideMargin, 1) / max(row.width, 1)
+        let scale = min(width * islandFill / max(plate.width, 1), bandHeight(height: height) / max(island.height, 1))
         return CameraRail.Stop(
             scale: scale,
-            look: WorldPoint(x: row.midX, y: island.midY),
+            look: WorldPoint(x: plate.midX, y: island.midY),
             anchorY: bandMid(height: height)
         )
+    }
+
+    /// The Island framing (look round 4): the world at `islandScale`, so
+    /// Pofu is at least 80 pt, the island's box centred between the bands
+    /// and the camera centred on Pofu. A horizontal drag pans across it
+    /// (`CameraRig.panDrag`) between `panRange`'s ends, settling on
+    /// `panSnaps`. Round 3 shrank the world to fit the whole plate; that
+    /// view is now the establishing shot (`wholeStop`).
+    public static func islandStop(width: Double, height: Double) -> CameraRail.Stop {
+        let island = islandBox
+        let scale = min(islandScale * width / CameraRail.referenceWidth, bandHeight(height: height) / max(island.height, 1))
+        return CameraRail.Stop(
+            scale: scale,
+            look: WorldPoint(x: islandLookX, y: island.midY),
+            anchorY: bandMid(height: height)
+        )
+    }
+
+    /// Points per world unit at the Island framing, at the reference width:
+    /// Pofu's 64 units at 80 pt.
+    public static let islandScale = 1.25
+
+    /// The Island stop's look x range at the reference width: the plate's
+    /// tips reach the screen's edges at either end, never past them.
+    public static var lookRange: ClosedRange<Double> {
+        let half = CameraRail.referenceWidth / 2 / islandScale
+        let lo = plateBox.minX + half, hi = plateBox.maxX - half
+        return lo <= hi ? lo...hi : plateBox.midX...plateBox.midX
+    }
+
+    /// The Island stop's look x: Pofu, kept inside `lookRange`.
+    public static var islandLookX: Double {
+        min(max(IslandLayout.pofu.x, lookRange.lowerBound), lookRange.upperBound)
+    }
+
+    /// The pan (world units off the Island stop's look x) for a look x.
+    public static func panValue(lookX: Double) -> Double {
+        min(max(lookX, lookRange.lowerBound), lookRange.upperBound) - islandLookX
+    }
+
+    /// The pan's range: tip to tip.
+    public static var panRange: ClosedRange<Double> {
+        (lookRange.lowerBound - islandLookX)...(lookRange.upperBound - islandLookX)
+    }
+
+    /// Where a released pan settles: centred on each station (or as close
+    /// as the ends allow) and on Pofu.
+    public static var panSnaps: [Double] {
+        let xs = IslandLayout.stationAnchors.values.map(\.x) + [IslandLayout.pofu.x]
+        let snaps = Set(xs.map { (panValue(lookX: $0) * 100).rounded() / 100 })
+        return snaps.sorted()
     }
 
     /// How much of the band's height the island box fills at `scale`.
     public static func bandFill(scale: Double, height: Double) -> Double {
         islandBox.height * scale / bandHeight(height: height)
+    }
+
+    /// How much of the width the plate fills at `scale`.
+    public static func widthFill(scale: Double, width: Double) -> Double {
+        plateBox.width * scale / width
+    }
+
+    /// The residents' boxes, absolute.
+    public static var residentBoxes: [WorldBox] {
+        IslandLayout.residents.map(residentBox)
+    }
+
+    /// Home: Pofu at ×2.4 with his feet at `homeFeetY`, nudged sideways at
+    /// most a quarter of the width so no resident is cut by an edge.
+    public static func homeStop(width: Double = CameraRail.referenceWidth) -> CameraRail.Stop {
+        let pose = CameraPose(scale: homeScale, look: IslandLayout.pofu, anchorY: homeFeetY)
+        let kept = keepingCharactersWhole(pose, focus: pofuBox, subjects: residentBoxes, width: width, maxDrift: width * 0.25)
+        return CameraRail.Stop(scale: homeScale, look: WorldPoint(x: kept.lookX, y: IslandLayout.pofu.y), anchorY: homeFeetY)
+    }
+
+    /// The Map: the home plate and every other island of the X whole, with
+    /// a margin, centred in the band.
+    public static func mapStop(width: Double, height: Double) -> CameraRail.Stop {
+        let isles = IslandLayout.isles.compactMap { isle in WorldArt.sprite(isle.art)?.sharp.map { placed($0, at: isle.center) } }
+        let all = union(isles + [plateBox]) ?? WorldBox(minX: -400, minY: -380, maxX: 400, maxY: 420)
+        let margin = 10.0
+        let scale = min((width - 2 * margin) / all.width, (bandHeight(height: height) - 2 * margin) / all.height)
+        return CameraRail.Stop(scale: scale, look: WorldPoint(x: all.midX, y: all.midY), anchorY: bandMid(height: height))
     }
 
     // MARK: - Keeping characters whole

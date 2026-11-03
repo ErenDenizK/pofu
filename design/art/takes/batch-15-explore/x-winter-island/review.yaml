@@ -1,0 +1,370 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-winter-island/contact.jpg
+jobs:
+  x-winter-island:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'SKIPPED after exactly four takes: all fail actual edit_stability and edit_chroma
+      checks. Initial stability0.3765/0.3849 and chroma ratios0.3708/0.2074; retries
+      stability0.3919 and about0.38, chroma ratios0.326 and about0.35. The requested
+      broad snow/lawn change reduces generic preservation/chroma metrics, but no job-specific
+      exception or threshold change was invented. One allowed retry exhausted, no
+      fifth take, no dependents or production promotion. Lead can evaluate retained
+      originals against future job-specific acceptance.'
+qa_reports:
+  1:
+    job: x-winter-island
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 35.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 65.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.0 (R1 5.3)
+      value: 3.03
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9527
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 5.5, off-palette 0.1% (top: #998866 (0.1%), #888866
+        (0.1%))'
+      value: 1.9521
+    - check: depth_ratio
+      status: pass
+      message: earth depth / width 0.21 (at most 0.32)
+      value: 0.2075
+    - check: lawn_chroma
+      status: pass
+      message: lawn chroma p95 20 (palette meadow 38)
+      value: 20.2393
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: C_p95)'
+      value: 82.5
+    - check: edit_stability
+      status: fail
+      message: 38% of the parent level unchanged
+      value: 0.3765
+    - check: edit_chroma
+      status: fail
+      message: chroma x0.37 of the parent level (drift compounds along a chain)
+      value: 0.3708
+    info:
+      metrics_raw:
+        L_p5: 64.8
+        L_p50: 84.2
+        L_p95: 93.0
+        C_p50: 9.7
+        C_p95: 35.9
+        C_p99: 40.0
+        detail: 4.11
+      metrics_locked:
+        L_p5: 65.1
+        L_p50: 84.2
+        L_p95: 92.4
+        C_p50: 9.3
+        C_p95: 35.1
+        C_p99: 38.9
+        detail: 3.03
+    fingerprint: 53d43c6f19b68e95
+  2:
+    job: x-winter-island
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 35.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 63 (R1 59)
+      value: 63.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.7 (R1 5.3)
+      value: 2.73
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8129
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 6.2, off-palette 0.9% (top: #888866 (0.4%), #888877
+        (0.2%))'
+      value: 2.0186
+    - check: depth_ratio
+      status: pass
+      message: earth depth / width 0.21 (at most 0.32)
+      value: 0.209
+    - check: lawn_chroma
+      status: pass
+      message: lawn chroma p95 23 (palette meadow 38)
+      value: 23.1828
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the world reference (outliers: C_p95)'
+      value: 84.4
+    - check: edit_stability
+      status: fail
+      message: 38% of the parent level unchanged
+      value: 0.3849
+    - check: edit_chroma
+      status: fail
+      message: chroma x0.21 of the parent level (drift compounds along a chain)
+      value: 0.2074
+    info:
+      metrics_raw:
+        L_p5: 62.9
+        L_p50: 86.2
+        L_p95: 93.5
+        C_p50: 5.4
+        C_p95: 36.2
+        C_p99: 40.1
+        detail: 3.71
+      metrics_locked:
+        L_p5: 63.3
+        L_p50: 86.3
+        L_p95: 93.1
+        C_p50: 5.4
+        C_p95: 35.5
+        C_p99: 39.1
+        detail: 2.73
+    fingerprint: 53d43c6f19b68e95
+  3:
+    job: x-winter-island
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 38.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 61.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.07
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9498
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 6.8, off-palette 1.5% (top: #888866 (0.4%), #888855
+        (0.3%))'
+      value: 2.2541
+    - check: depth_ratio
+      status: pass
+      message: earth depth / width 0.21 (at most 0.32)
+      value: 0.2074
+    - check: lawn_chroma
+      status: pass
+      message: lawn chroma p95 25 (palette meadow 38)
+      value: 25.1105
+    - check: harmony
+      status: pass
+      message: 'harmony score 89 against the world reference (outliers: C_p95)'
+      value: 89.1
+    - check: edit_stability
+      status: fail
+      message: 39% of the parent level unchanged
+      value: 0.3919
+    - check: edit_chroma
+      status: fail
+      message: chroma x0.33 of the parent level (drift compounds along a chain)
+      value: 0.326
+    info:
+      metrics_raw:
+        L_p5: 61.3
+        L_p50: 84.8
+        L_p95: 93.4
+        C_p50: 8.5
+        C_p95: 39.5
+        C_p99: 44.0
+        detail: 4.19
+      metrics_locked:
+        L_p5: 61.5
+        L_p50: 84.9
+        L_p95: 92.9
+        C_p50: 8.3
+        C_p95: 38.7
+        C_p99: 42.8
+        detail: 3.07
+    fingerprint: 53d43c6f19b68e95
+  4:
+    job: x-winter-island
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 33 (R1 51)
+      value: 33.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 64 (R1 59)
+      value: 64.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.65
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7577
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 5.5, off-palette 0.4% (top: #998866 (0.1%), #888866
+        (0.1%))'
+      value: 1.9986
+    - check: depth_ratio
+      status: pass
+      message: earth depth / width 0.21 (at most 0.32)
+      value: 0.2086
+    - check: lawn_chroma
+      status: pass
+      message: lawn chroma p95 20 (palette meadow 38)
+      value: 20.0191
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the world reference (outliers: C_p95)'
+      value: 80.3
+    - check: edit_stability
+      status: fail
+      message: 38% of the parent level unchanged
+      value: 0.379
+    - check: edit_chroma
+      status: fail
+      message: chroma x0.35 of the parent level (drift compounds along a chain)
+      value: 0.3541
+    info:
+      metrics_raw:
+        L_p5: 64.2
+        L_p50: 85.2
+        L_p95: 93.3
+        C_p50: 9.0
+        C_p95: 34.0
+        C_p99: 37.2
+        detail: 3.63
+      metrics_locked:
+        L_p5: 64.5
+        L_p50: 85.2
+        L_p95: 92.8
+        C_p50: 9.0
+        C_p95: 33.3
+        C_p99: 36.2
+        detail: 2.65
+    fingerprint: 53d43c6f19b68e95
+manual_review:
+  exclude: []
+  note: 'SKIPPED after exactly four takes: all fail actual edit_stability and edit_chroma
+    checks. Initial stability0.3765/0.3849 and chroma ratios0.3708/0.2074; retries
+    stability0.3919 and about0.38, chroma ratios0.326 and about0.35. The requested
+    broad snow/lawn change reduces generic preservation/chroma metrics, but no job-specific
+    exception or threshold change was invented. One allowed retry exhausted, no fifth
+    take, no dependents or production promotion. Lead can evaluate retained originals
+    against future job-specific acceptance.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-ddfb4fff-b1db-4514-b9aa-f91da6a5d4c0.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 53d43c6f19b68e95
+  inbox_png_sha256: fd0f52c141105810074c6e89a0cd474b139805eeccd29d48601066bbc9dc2536
+  original_generated_png_sha256: 1aa6e5beed88b6ae5ec80b848423ef792680877cbe809d969857a08c17d615bc
+  rgba_sha256: 979769ac4539b1b4fead3efa10dbb2043dd591969bfd1cc19e35faca0356757e
+  source_rgba_matches_inbox: true
+- take: 2
+  source_file: /workspace/generated_images/exec-88b30276-67e3-4f82-bfef-5b3bf418d63c.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 53d43c6f19b68e95
+  inbox_png_sha256: e369bac3a961e2cf78087a8c7122a452c02fc49d84f02fecba5ebd1ae61d3ed9
+  original_generated_png_sha256: 3f2b5f0717b36e24377737fcd1e60299b0169713a5627144e8367e090fd95bd3
+  rgba_sha256: 7245c280cf2d43022fd2c4dd2c29572054bbb081a44f4b00d2ccb884a4e4bdf8
+  source_rgba_matches_inbox: true
+- take: 3
+  source_file: /workspace/generated_images/exec-737bf811-80c2-4948-8112-9208cbfcbf77.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 53d43c6f19b68e95
+  inbox_png_sha256: aa3df95107fd1625d4112f0415c1c002705d2d8a0ea1bd7bc795f6db7246c480
+  original_generated_png_sha256: ffe5875ea62cc6920739cbe73b65bbc63e7185616fe8c1cb08cb678c891fc5c2
+  rgba_sha256: e722aea37ff09fa318fee818ee11f15df51da5c3be54637e2a9a17b5ee449911
+  source_rgba_matches_inbox: true
+- take: 4
+  source_file: /workspace/generated_images/exec-38df4d8a-ffc9-4098-8be2-1a4f3ef7c43c.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 53d43c6f19b68e95
+  inbox_png_sha256: aa56f80e8918e0c083e0c0e406b3b8a486db1cf11d55f5720f991dd2bc182b23
+  original_generated_png_sha256: 3032d57d8e07263d7a662db58f90ada5770645c9313ff02cc995b9f5c14255ce
+  rgba_sha256: b16bdb260d4d1c60f20dd1c2840090260b7bcd495f5c4c22698255a800c6d089
+  source_rgba_matches_inbox: true
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.
