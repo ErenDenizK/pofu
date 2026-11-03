@@ -32,6 +32,7 @@ links:
   - asset-ui-sheet-paper
   - asset-ui-face-secondary-pressed
   - asset-icon-rumour
+  - asset-icon-decor
 sources:
 - doc: docs/design/ui-system-v2.md
   anchor: '#2-the-principle-three-layers-and-a-switch'

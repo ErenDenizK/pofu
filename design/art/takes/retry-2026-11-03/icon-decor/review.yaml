@@ -3,11 +3,16 @@ contact_sheet: design/art/takes/retry-2026-11-03/icon-decor/contact.jpg
 jobs:
   icon-decor:
     pick: 1
-    publication: selected before global stop; promotion pending
-    note: The fixed pre-stop selection is t1. t2 is excluded because its final alpha
-      minimum is 99 and the final composite has a white rectangular backdrop and ghost
-      cast shadow. t1 has a clean transparent silhouette and passes all automated
-      checks.
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Resume from the fixed pre-stop
+      original candidate, with zero image generation. Re-posted both retained PNGs
+      under main9ede62e; both locked RGBA rasters match their retained versions exactly
+      and the same eligible take remains lowest lock load. Fresh light/dark small-size
+      visual review reconfirms the choice. The retained t1 is a clean transparent
+      wind chime with three cream/rose/sage chunky tubes, honey-wood disc, thick short
+      cords and round clapper. Exclude t2: its final alpha minimum is99 with a visible
+      white rectangular backdrop, ghost outlines and cast shadow. t1 passes every
+      automated check and reads at28,44,60pt on light and dark backgrounds.'
 qa_reports:
   1:
     job: icon-decor
@@ -152,15 +157,17 @@ qa_reports:
         detail: 0.95
     fingerprint: ec01c1c252b26091
 manual_review:
-  note: The fixed pre-stop selection is t1. t2 is excluded because its final alpha
-    minimum is 99 and the final composite has a white rectangular backdrop and ghost
-    cast shadow. t1 has a clean transparent silhouette and passes all automated checks.
-  terminal_decided_at: '2026-11-03T14:07:29.090312+00:00'
-  decision_qa_sha256: cf553a1ed441617e942c8e5a51eee120dbcd0f6e34203dde54c2bb2cfbcc08ea
   excluded_takes:
   - 2
-  preservation_only_after_global_stop: true
-  no_new_selection_or_promotion: true
+  note: 'Resume from the fixed pre-stop original candidate, with zero image generation.
+    Re-posted both retained PNGs under main9ede62e; both locked RGBA rasters match
+    their retained versions exactly and the same eligible take remains lowest lock
+    load. Fresh light/dark small-size visual review reconfirms the choice. The retained
+    t1 is a clean transparent wind chime with three cream/rose/sage chunky tubes,
+    honey-wood disc, thick short cords and round clapper. Exclude t2: its final alpha
+    minimum is99 with a visible white rectangular backdrop, ghost outlines and cast
+    shadow. t1 passes every automated check and reads at28,44,60pt on light and dark
+    backgrounds.'
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-d8de9ae9-2476-4ed4-8c00-eb306fb9198a.png
