@@ -1,0 +1,148 @@
+batch: batch-15-explore
+contact_sheet: design/art/takes/batch-15-explore/x-yildiz-1/contact.jpg
+jobs:
+  x-yildiz-1:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both pass manual exploratory
+      review: cream/gold observatory with narrow open shutter, round telescope, snowy
+      island above clouds, soft indigo dusk sky, plump stars and pale moon. Palette/value
+      warnings retained because this is the explicitly requested cold dusk/night mood;
+      neither is a QA FAIL. Lowest non-failing lock load wins. Never promoted.'
+qa_reports:
+  1:
+    job: x-yildiz-1
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 37 (R1 59)
+      value: 36.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.29
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7957
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.0, p95 12.4, off-palette 6.5% (top: #555599 (2.6%), #445599
+        (2.2%))'
+      value: 4.0337
+    info:
+      metrics_raw:
+        L_p5: 36.6
+        L_p50: 79.6
+        L_p95: 94.8
+        C_p50: 21.5
+        C_p95: 45.7
+        C_p99: 46.6
+        detail: 2.8
+      metrics_locked:
+        L_p5: 36.6
+        L_p50: 79.6
+        L_p95: 94.6
+        C_p50: 21.1
+        C_p95: 45.6
+        C_p99: 46.4
+        detail: 2.29
+    fingerprint: 905b0c52c57e9d83
+  2:
+    job: x-yildiz-1
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.0
+    - check: value_floor
+      status: warn
+      message: lightness p5 34 (R1 59)
+      value: 34.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.71
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6214
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.1, p95 8.9, off-palette 0.0%
+      value: 3.0573
+    info:
+      metrics_raw:
+        L_p5: 34.3
+        L_p50: 82.9
+        L_p95: 94.3
+        C_p50: 19.0
+        C_p95: 40.1
+        C_p99: 42.3
+        detail: 2.13
+      metrics_locked:
+        L_p5: 34.3
+        L_p50: 82.9
+        L_p95: 94.1
+        C_p50: 18.7
+        C_p95: 40.0
+        C_p99: 41.6
+        detail: 1.71
+    fingerprint: 905b0c52c57e9d83
+manual_review:
+  exclude: []
+  note: 'Both pass manual exploratory review: cream/gold observatory with narrow open
+    shutter, round telescope, snowy island above clouds, soft indigo dusk sky, plump
+    stars and pale moon. Palette/value warnings retained because this is the explicitly
+    requested cold dusk/night mood; neither is a QA FAIL. Lowest non-failing lock
+    load wins. Never promoted.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-1ed004cb-35e3-4411-9539-3a1cbbeb8124.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 905b0c52c57e9d83
+- take: 2
+  source_file: /workspace/generated_images/exec-3a6ff10e-c313-4632-8ba3-cb575e2ba0e9.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 905b0c52c57e9d83
+recovery:
+  note: Runtime /tmp and prior exec result store were not retained across environment
+    restart. Original image bytes recovered from /workspace/generated_images. Job
+    pairing established by visible subject and the already-recorded calls; within
+    each pair ordinal assigned by completion time where original callback ordinal
+    was unavailable. No extra generation and no source modification.
+  sources:
+  - take: 1
+    path: /workspace/generated_images/exec-1ed004cb-35e3-4411-9539-3a1cbbeb8124.png
+    sha256: a36e80360a91ed84a1b34cd2e86277e792a0fd2fa0b1372cc6aa66b2f626b429
+    mtime: '2026-11-03T01:04:43.917132+00:00'
+  - take: 2
+    path: /workspace/generated_images/exec-3a6ff10e-c313-4632-8ba3-cb575e2ba0e9.png
+    sha256: 79fc4367f676969a70e1dce681cced4ba33975e076a664c3aa86228ed67d72a6
+    mtime: '2026-11-03T01:05:18.693079+00:00'
