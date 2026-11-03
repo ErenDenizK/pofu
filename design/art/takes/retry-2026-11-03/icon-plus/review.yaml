@@ -3,10 +3,15 @@ contact_sheet: design/art/takes/retry-2026-11-03/icon-plus/contact.jpg
 jobs:
   icon-plus:
     pick: 1
-    publication: selected before global stop; promotion pending
-    note: Both takes show a warm-brown centre and eight plump sun-gold petals, with
-      small cream highlights and no stem, pot or background badge. The sunflower head
-      remains readable at 28, 44 and 60 pt on pale and dark backgrounds.
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Resume from the fixed pre-stop
+      original candidate, with zero image generation. Re-posted both retained PNGs
+      under main9ede62e; both locked RGBA rasters match their retained versions exactly
+      and the same eligible take remains lowest lock load. Fresh light/dark small-size
+      visual review reconfirms the choice. Both takes show a warm-brown centre and
+      eight plump sun-gold petals, with small cream highlights and no stem, pot or
+      background badge. The sunflower head remains readable at 28, 44 and 60 pt on
+      pale and dark backgrounds.
 qa_reports:
   1:
     job: icon-plus
@@ -151,14 +156,14 @@ qa_reports:
         detail: 0.69
     fingerprint: 96c9f6f38dc2ad19
 manual_review:
-  note: Both takes show a warm-brown centre and eight plump sun-gold petals, with
-    small cream highlights and no stem, pot or background badge. The sunflower head
-    remains readable at 28, 44 and 60 pt on pale and dark backgrounds.
-  terminal_decided_at: '2026-11-03T14:07:29.063327+00:00'
-  decision_qa_sha256: 322b8d083dc010a8c908b4cc3943178deab82c7a97c4af3b2afeb87559208d12
   excluded_takes: []
-  preservation_only_after_global_stop: true
-  no_new_selection_or_promotion: true
+  note: Resume from the fixed pre-stop original candidate, with zero image generation.
+    Re-posted both retained PNGs under main9ede62e; both locked RGBA rasters match
+    their retained versions exactly and the same eligible take remains lowest lock
+    load. Fresh light/dark small-size visual review reconfirms the choice. Both takes
+    show a warm-brown centre and eight plump sun-gold petals, with small cream highlights
+    and no stem, pot or background badge. The sunflower head remains readable at 28,
+    44 and 60 pt on pale and dark backgrounds.
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-c7286a3b-684c-4197-9846-0b4c4027d168.png
