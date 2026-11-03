@@ -1,0 +1,21 @@
+id: asset-x-gezgin-1
+type: asset
+title_tr: x-gezgin-1
+title_en: x-gezgin-1 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Gezgin, a small grassy island with one tiny cottage
+  and a dandelion patch on the back of an enormous sleeping cloud-whale in grey-blue and cream,
+  floating over a sea of clouds; the whale is far longer than the island, only part of her
+  body shown, one closed eye visible, a faint smile. Seen from the same low front three-quarter
+  camera as the attached island, the island floati…
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-gezgin-1
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1536x1024

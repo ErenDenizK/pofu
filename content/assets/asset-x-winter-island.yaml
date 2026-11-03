@@ -1,0 +1,23 @@
+id: asset-x-winter-island
+type: asset
+title_tr: x-winter-island
+title_en: x-winter-island (world)
+status: in-production
+horizon: now
+summary: >-
+  Turn the attached island into winter. Change only: a soft thin blanket of white snow on
+  the lawn and on the roof and top edges of everything on it, the lawn showing sage through
+  it in patches; every flower and leaf becomes bare, brown and drooping; a few small icicles
+  on the earth underside. Light stays the same.
+links:
+  variant_of:
+  - asset-island-main-s
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-winter-island
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: world
+batch: batch-15-explore
+size: 1536x1024

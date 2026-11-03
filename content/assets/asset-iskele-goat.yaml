@@ -1,0 +1,21 @@
+id: asset-iskele-goat
+type: asset
+title_tr: iskele-goat
+title_en: iskele-goat (char)
+status: in-production
+horizon: now
+summary: >-
+  Draw a baby goat in exactly the same art style, lighting and level of fluff as the attached
+  hamster and kitten. Same canvas rules: full body, sitting upright, front view, centered,
+  feet on an invisible line at 88% of the height, about 62% of the canvas width. CHARACTER:
+  a baby goat whose body is a soft round ball of cream plush fur, a warm tan patch over one
+  eye, two tiny rounded horn buds, two soft floppy ears, a sm…
+art:
+  images: []
+  jobs:
+  - batch-14-iskele:iskele-goat
+sources:
+- doc: tools/imagegen/manifest/batch-14-iskele.yaml
+kind: char
+batch: batch-14-iskele
+size: 1024x1536

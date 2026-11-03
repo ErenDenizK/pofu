@@ -1,0 +1,21 @@
+id: asset-x-sky-map
+type: asset
+title_tr: x-sky-map
+title_en: x-sky-map (plate)
+status: in-production
+horizon: now
+summary: >-
+  A tall painted map of the archipelago seen from the same low camera but higher: a sea of
+  soft clouds, the home island and a second small island with a short pier lit in warm morning
+  light near the bottom, a gentle trail of five much smaller far islands (a mossy one, a snowy
+  one, a tall spire, a whale shape, a red-clay one) climbing up and into a soft cream fog
+  that covers the top half of the map, only their dim silho…
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-sky-map
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1024x1536

@@ -1,0 +1,21 @@
+id: asset-x-koke-1
+type: asset
+title_tr: x-koke-1
+title_en: x-koke-1 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Koke, a small floating island of soft moss in
+  moss green, with two rounded maple trees in soft maple red, a dry stone garden of raked
+  pale grey gravel in calm wave lines around three rounded stones, and a little bamboo water
+  clacker (shishi- odoshi) tipped mid-pour beside a tiny stone basin. Morning light from the
+  upper left, a pale sky. Seen from the same low front three-qu…
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-koke-1
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1536x1024

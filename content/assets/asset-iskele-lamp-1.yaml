@@ -1,0 +1,19 @@
+id: asset-iskele-lamp-1
+type: asset
+title_tr: iskele-lamp-1
+title_en: iskele-lamp-1 (station)
+status: in-production
+horizon: now
+summary: >-
+  A pier lamp for the island diorama: a short, chunky post of honey wood with a plump round
+  lantern of cream glass-colored paper (a soft tinted shape, not transparent, unlit) under
+  a small coral cap. Few parts, toy-like; it fills about the lower two thirds of the height
+  bar.
+art:
+  images: []
+  jobs:
+  - batch-14-iskele:iskele-lamp-1
+sources:
+- doc: tools/imagegen/manifest/batch-14-iskele.yaml
+kind: station
+batch: batch-14-iskele

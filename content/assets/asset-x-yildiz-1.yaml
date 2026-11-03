@@ -1,0 +1,21 @@
+id: asset-x-yildiz-1
+type: asset
+title_tr: x-yildiz-1
+title_en: x-yildiz-1 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Yıldız, a high, cold floating island above the
+  cloud line in indigo and snow, with a small round observatory dome of cream and soft gold
+  with a thin open shutter, a short stone path and one round telescope pointing up. A huge
+  soft sky of deep indigo to dusk blue with a few plump, softly glowing stars and a large
+  pale moon. Seen from the same low front three-quarter camera as…
+art:
+  images: []
+  jobs:
+  - batch-15-explore:x-yildiz-1
+sources:
+- doc: tools/imagegen/manifest/batch-15-explore.yaml
+kind: plate
+batch: batch-15-explore
+size: 1536x1024

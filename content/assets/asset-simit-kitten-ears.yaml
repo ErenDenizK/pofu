@@ -1,0 +1,22 @@
+id: asset-simit-kitten-ears
+type: asset
+title_tr: simit-kitten-ears
+title_en: simit-kitten-ears (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached kitten, Simit: both front paws are raised and pressed flat over her two
+  ears, and her eyes are squeezed shut in two happy-scrunched curves with her small mouth
+  open in a soft "o". Her body, tail, feet, colors and size stay exactly as they are.
+links:
+  variant_of:
+  - asset-simit-kitten
+art:
+  images: []
+  jobs:
+  - batch-14-iskele:simit-kitten-ears
+sources:
+- doc: tools/imagegen/manifest/batch-14-iskele.yaml
+kind: char
+batch: batch-14-iskele
+size: 1024x1536

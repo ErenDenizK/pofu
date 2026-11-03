@@ -1,0 +1,877 @@
+# Batch 15: exploration, never promoted
+# (docs/design/art-production-plan.md; EXPLORATION in the queue).
+#
+# Concept paintings (two per wonder island in docs/product/archipelago-system.md
+# section 11, PR #64, besides the three of batch 10), resident model sheets, the
+# archipelago sky map with fog, layered app icon explorations, three App Store
+# key art compositions, a winter Ayçiçeği edit and onboarding illustrations.
+# Everything here is for deciding: concepts decide shape, palette and the
+# "whoa"; production plates are painted later from landform blockouts.
+#
+# EXPLORATION RULES (AGENTS.md): do NOT run `promote`; commit the takes (WebP
+# q90), the contact sheet and review.yaml under design/art/takes/<batch>/<id>/
+# and nothing else. No painted text anywhere. Boards never paint glass, UI
+# chrome or buttons.
+#
+# PILOT (run first, in this order): x-koke-1, x-yildiz-1, x-store-a. If a
+# pilot job still fails after its one retry, skip the REST of this batch (every
+# job below the "THE REST" line) and finish the session. Every job of the rest
+# (the rule applies whether or not it attaches a pilot take).
+#
+# Tracks: `islands` (concepts, residents), `maps` (sky map), `store` (key
+# art, app icon), `edits` (winter), `onboarding`.
+
+batch: batch-15-explore
+title: Exploration (wonder island concepts, residents, sky map, app icon, key art, winter, onboarding)
+status: open
+
+refs:
+  cay-1: design/art/stations/cay-1/cay-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: pofu, kind: char, name: pofu-r1, external: r1, master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png}
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island}
+
+  # ------------------------------------------------------------- PILOT
+
+  - id: x-koke-1
+    kind: plate
+    name: x-koke-1
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Koke, the moss garden (Japan). Establishing shot. Review: shape, palette and the whoa read at a glance; same soft painting as the home island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Koke, a small floating island
+          of soft moss in moss green, with two rounded maple trees in soft maple
+          red, a dry stone garden of raked pale grey gravel in calm wave lines
+          around three rounded stones, and a little bamboo water clacker (shishi-
+          odoshi) tipped mid-pour beside a tiny stone basin. Morning light from the
+          upper left, a pale sky. Seen from the same low front three-quarter camera
+          as the attached island, the island floating over a sea of clouds. Peaceful
+          and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: characters (except where named), a border, text, harsh shadows, saturated or neon colors, dark moods"
+
+
+  - id: x-yildiz-1
+    kind: plate
+    name: x-yildiz-1
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Yıldız, the star island. Establishing shot. Review: shape, palette and the whoa read at a glance; same soft painting as the home island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Yıldız, a high, cold floating
+          island above the cloud line in indigo and snow, with a small round
+          observatory dome of cream and soft gold with a thin open shutter, a short
+          stone path and one round telescope pointing up. A huge soft sky of deep
+          indigo to dusk blue with a few plump, softly glowing stars and a large
+          pale moon. Seen from the same low front three-quarter camera as the
+          attached island, the island floating over a sea of clouds. Peaceful and
+          wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: characters (except where named), a border, text, harsh shadows, saturated or neon colors, dark moods"
+
+
+  - id: x-store-a
+    kind: plate
+    name: x-store-a
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    notes: "Exploration. App Store key art A: the quiet island. No painted text. Review: a stranger understands the mood (calm, cozy, a pet that needs you less) without a word."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          A portrait poster painting for an app store page: the small floating home
+          island at golden morning over a soft sea of clouds, filling the lower two
+          thirds, Pofu the hamster sitting small on the lawn beside the round door
+          looking up at the sky, a thin sky above with generous empty space at the
+          top (calm zone for a title added later). Quiet and peaceful.
+      - block: prop-style-v2
+      - text: "AVOID: text, a border, a phone, buttons, more characters than Pofu"
+
+
+  # ---------------------------------------------------------- THE REST
+
+  - id: x-koke-2
+    kind: plate
+    name: x-koke-2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Koke, the moss garden (Japan). Signature moment: the garden at night. Review: shape, palette and the whoa read at a glance; same soft painting as the home island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Koke at blue night, the same
+          island: the gravel is raked in new gentle wave patterns by tiny paw prints
+          that lead to a small dormouse (Sumi, tiny, curled asleep under a maple),
+          lit by a single paper lantern on a low stone. The clacker is still. Calm,
+          quiet and cozy. Seen from the same low front three-quarter camera as the
+          attached island, the island floating over a sea of clouds. Peaceful and
+          wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: characters (except where named), a border, text, harsh shadows, saturated or neon colors, dark moods"
+
+
+  - id: x-yildiz-2
+    kind: plate
+    name: x-yildiz-2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Yıldız, the star island. Signature moment: seven stars joined. Review: shape, palette and the whoa read at a glance; same soft painting as the home island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Yıldız at night: above the
+          observatory, seven plump gold stars joined by soft thin golden lines into
+          a gentle constellation shape like a ladle, the dome shutter open to it, a
+          small round sleepy owl (Nane, tiny) on the dome edge looking up. Seen from
+          the same low front three-quarter camera as the attached island, the island
+          floating over a sea of clouds. Peaceful and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: characters (except where named), a border, text, harsh shadows, saturated or neon colors, dark moods"
+
+
+  - id: x-canlar-1
+    kind: plate
+    name: x-canlar-1
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Çanlar, the island of bells. Establishing shot. Review: shape, palette and the whoa read at a glance; same soft painting as the home island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Çanlar, a narrow tall spire of
+          pale stone floating over clouds, hung with wind bells of many sizes in
+          soft bronze, strings of bunting in sky blue and poppy red, and a few red
+          poppies growing from its cracks. A morning haze. The spire reads tall and
+          slim against the sky. Seen from the same low front three-quarter camera as
+          the attached island, the island floating over a sea of clouds. Peaceful
+          and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: characters (except where named), a border, text, harsh shadows, saturated or neon colors, dark moods"
+
+
+  - id: x-canlar-2
+    kind: plate
+    name: x-canlar-2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Çanlar, the island of bells. Signature moment: the bells in fog. Review: shape, palette and the whoa read at a glance; same soft painting as the home island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Çanlar half hidden in a soft
+          fog, its bells glowing faintly, a tiny proud mouse (Zil, tiny) at the top
+          ringing the biggest bronze bell, soft rings of light spreading from it
+          like ripples in the fog. Seen from the same low front three-quarter camera
+          as the attached island, the island floating over a sea of clouds. Peaceful
+          and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: characters (except where named), a border, text, harsh shadows, saturated or neon colors, dark moods"
+
+
+  - id: x-gezgin-1
+    kind: plate
+    name: x-gezgin-1
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Gezgin, the island on a whale. Establishing shot. Review: shape, palette and the whoa read at a glance; same soft painting as the home island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Gezgin, a small grassy island
+          with one tiny cottage and a dandelion patch on the back of an enormous
+          sleeping cloud-whale in grey-blue and cream, floating over a sea of
+          clouds; the whale is far longer than the island, only part of her body
+          shown, one closed eye visible, a faint smile. Seen from the same low front
+          three-quarter camera as the attached island, the island floating over a
+          sea of clouds. Peaceful and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: characters (except where named), a border, text, harsh shadows, saturated or neon colors, dark moods"
+
+
+  - id: x-gezgin-2
+    kind: plate
+    name: x-gezgin-2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Gezgin, the island on a whale. Signature moment: the blowhole. Review: shape, palette and the whoa read at a glance; same soft painting as the home island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: The whale Nazlı surfacing
+          through the clouds, a small puff of cloud and a tiny rainbow rising from
+          her blowhole beside the cottage island on her back, an old tortoise (tiny)
+          with a mailbag on the cottage porch looking up. Seen from the same low
+          front three-quarter camera as the attached island, the island floating
+          over a sea of clouds. Peaceful and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: characters (except where named), a border, text, harsh shadows, saturated or neon colors, dark moods"
+
+
+  - id: x-emanet-1
+    kind: plate
+    name: x-emanet-1
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Emanet, the lost-and-found. Establishing shot. Review: shape, palette and the whoa read at a glance; same soft painting as the home island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Emanet, a crooked little office
+          on stilts at the end of a drifting cloud current, in weathered teal and
+          brass and brown paper, with a round window glowing warmly, a counter bell
+          on the porch, and a tilted shelf crowded with small lost things (an
+          umbrella, a spoon, a sock, a button, a key) on its porch. Seen from the
+          same low front three-quarter camera as the attached island, the island
+          floating over a sea of clouds. Peaceful and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: characters (except where named), a border, text, harsh shadows, saturated or neon colors, dark moods"
+
+
+  - id: x-emanet-2
+    kind: plate
+    name: x-emanet-2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Emanet, the lost-and-found. Signature moment: the magpie returns a thing. Review: shape, palette and the whoa read at a glance; same soft painting as the home island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Boncuk, a small round magpie
+          (tiny), holding a shiny gold button in her beak and looking pained about
+          giving it back, on the counter of Emanet, with a rolled brown paper tag
+          and a small brass bell beside her, warm lamp light. Seen from the same low
+          front three-quarter camera as the attached island, the island floating
+          over a sea of clouds. Peaceful and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: characters (except where named), a border, text, harsh shadows, saturated or neon colors, dark moods"
+
+
+  - id: x-comlek-1
+    kind: plate
+    name: x-comlek-1
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Çömlek, the potter's island. Establishing shot. Review: shape, palette and the whoa read at a glance; same soft painting as the home island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Çömlek, a small red-clay
+          floating island in terracotta, ochre and cream, with a rounded beehive
+          kiln, a low potter's wheel under a straw awning and a shelf of different
+          round pots drying in the sun. Morning light. Seen from the same low front
+          three-quarter camera as the attached island, the island floating over a
+          sea of clouds. Peaceful and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: characters (except where named), a border, text, harsh shadows, saturated or neon colors, dark moods"
+
+
+  - id: x-comlek-2
+    kind: plate
+    name: x-comlek-2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Çömlek, the potter's island. Signature moment: the first pot. Review: shape, palette and the whoa read at a glance; same soft painting as the home island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: A tiny mole (Kil) at the
+          potter's wheel with wet clay-covered paws, pulling up a tall rounded jug,
+          a single thumbprint pressed into its side, the kiln glowing softly behind,
+          warm and calm. Seen from the same low front three-quarter camera as the
+          attached island, the island floating over a sea of clouds. Peaceful and
+          wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: characters (except where named), a border, text, harsh shadows, saturated or neon colors, dark moods"
+
+
+  - id: x-leylek-1
+    kind: plate
+    name: x-leylek-1
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Leylek, the stork island. Establishing shot. Review: shape, palette and the whoa read at a glance; same soft painting as the home island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Leylek, a small reedy floating
+          island with a plump brick chimney crowned by a huge round nest of straw,
+          in straw, white and soft black, tall reeds along its edge, and three
+          storks (white with black wing tips, plush and rounded) circling on a
+          thermal above it. Seen from the same low front three-quarter camera as the
+          attached island, the island floating over a sea of clouds. Peaceful and
+          wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: characters (except where named), a border, text, harsh shadows, saturated or neon colors, dark moods"
+
+
+  - id: x-leylek-2
+    kind: plate
+    name: x-leylek-2
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Leylek, the stork island. Signature moment: the clatter. Review: shape, palette and the whoa read at a glance; same soft painting as the home island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Two storks on the huge nest
+          facing each other with their long beaks lifted, clattering them (soft
+          motion arcs), a tiny stork chick between them looking up, the chimney warm
+          with evening light. Seen from the same low front three-quarter camera as
+          the attached island, the island floating over a sea of clouds. Peaceful
+          and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: characters (except where named), a border, text, harsh shadows, saturated or neon colors, dark moods"
+
+
+  - id: x-res-damla
+    kind: sheet
+    name: x-res-damla
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Resident model sheet: Damla, an otter who tries to catch the waterfall in a cup. Review: same family as Pofu and Mochi (finish, fluff, eyes), a distinct silhouette, three poses that can become a rig."
+    attach:
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him)."
+      - ref: approved:mochi-v2
+        role: "Mochi, a neighbor: the same finish, eyes and size language (do not draw her)."
+      - ref: approved:x-koke-1
+        role: "The first concept of this batch: the world these residents live in (palette and softness only; do not draw it)."
+    prompt:
+      - text: |
+          A character model sheet on a plain transparent background, in exactly the
+          same art style, lighting and level of fluff as the attached hamster and
+          bunny: three full-body views of the same character in a row: front view
+          sitting upright, three-quarter view, and a happy pose. CHARACTER: Damla, a
+          baby otter, a round plush ball of warm brown fur with a cream muzzle and
+          belly, small round ears, a thick rounded tail, big glossy dark eyes with a
+          catchlight each, holding a tiny cream cup, a calm, curious smile. No curl
+          or swirl on top of the head (that belongs to Pofu alone). No clothes
+          except what is named.
+      - block: prop-style-v2
+      - text: "AVOID: realistic animal anatomy, a curl on top of the head, sharp claws, a ground shadow, text, labels"
+
+
+  - id: x-res-pekmez
+    kind: sheet
+    name: x-res-pekmez
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Resident model sheet: Pekmez, a fruit bat who lives upside down. Review: same family as Pofu and Mochi (finish, fluff, eyes), a distinct silhouette, three poses that can become a rig."
+    attach:
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him)."
+      - ref: approved:mochi-v2
+        role: "Mochi, a neighbor: the same finish, eyes and size language (do not draw her)."
+      - ref: approved:x-koke-1
+        role: "The first concept of this batch: the world these residents live in (palette and softness only; do not draw it)."
+    prompt:
+      - text: |
+          A character model sheet on a plain transparent background, in exactly the
+          same art style, lighting and level of fluff as the attached hamster and
+          bunny: three full-body views of the same character in a row: front view
+          sitting upright, three-quarter view, and a happy pose. CHARACTER: Pekmez,
+          a baby fruit bat, a round plush ball of plum-dark fur with a cream face,
+          large soft rounded ears, folded wings like a cloak, big glossy dark eyes
+          with a catchlight each, shown hanging upside down by tiny feet, a polite,
+          gentle smile. No curl or swirl on top of the head (that belongs to Pofu
+          alone). No clothes except what is named.
+      - block: prop-style-v2
+      - text: "AVOID: realistic animal anatomy, a curl on top of the head, sharp claws, a ground shadow, text, labels"
+
+
+  - id: x-res-tuli
+    kind: sheet
+    name: x-res-tuli
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Resident model sheet: Tuli, a small arctic fox, very serious about saunas. Review: same family as Pofu and Mochi (finish, fluff, eyes), a distinct silhouette, three poses that can become a rig."
+    attach:
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him)."
+      - ref: approved:mochi-v2
+        role: "Mochi, a neighbor: the same finish, eyes and size language (do not draw her)."
+      - ref: approved:x-koke-1
+        role: "The first concept of this batch: the world these residents live in (palette and softness only; do not draw it)."
+    prompt:
+      - text: |
+          A character model sheet on a plain transparent background, in exactly the
+          same art style, lighting and level of fluff as the attached hamster and
+          bunny: three full-body views of the same character in a row: front view
+          sitting upright, three-quarter view, and a happy pose. CHARACTER: Tuli, a
+          baby arctic fox, a round plush ball of snow-white fur with a soft grey-
+          blue shading, small rounded ears, a plump fluffy tail with a pale green
+          tip, big glossy dark eyes with a catchlight each, a small serious frown, a
+          folded sauna towel on her head. No curl or swirl on top of the head (that
+          belongs to Pofu alone). No clothes except what is named.
+      - block: prop-style-v2
+      - text: "AVOID: realistic animal anatomy, a curl on top of the head, sharp claws, a ground shadow, text, labels"
+
+
+  - id: x-res-sumi
+    kind: sheet
+    name: x-res-sumi
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Resident model sheet: Sumi, a Japanese dormouse who sleeps through winter. Review: same family as Pofu and Mochi (finish, fluff, eyes), a distinct silhouette, three poses that can become a rig."
+    attach:
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him)."
+      - ref: approved:mochi-v2
+        role: "Mochi, a neighbor: the same finish, eyes and size language (do not draw her)."
+      - ref: approved:x-koke-1
+        role: "The first concept of this batch: the world these residents live in (palette and softness only; do not draw it)."
+    prompt:
+      - text: |
+          A character model sheet on a plain transparent background, in exactly the
+          same art style, lighting and level of fluff as the attached hamster and
+          bunny: three full-body views of the same character in a row: front view
+          sitting upright, three-quarter view, and a happy pose. CHARACTER: Sumi, a
+          baby Japanese dormouse, a round plush ball of soft fawn fur with a cream
+          belly, tiny round ears, a long fluffy tail curled, half-closed sleepy
+          glossy dark eyes, an apologetic small smile. No curl or swirl on top of
+          the head (that belongs to Pofu alone). No clothes except what is named.
+      - block: prop-style-v2
+      - text: "AVOID: realistic animal anatomy, a curl on top of the head, sharp claws, a ground shadow, text, labels"
+
+
+  - id: x-res-nane
+    kind: sheet
+    name: x-res-nane
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Resident model sheet: Nane, the sleepy owl of the star island. Review: same family as Pofu and Mochi (finish, fluff, eyes), a distinct silhouette, three poses that can become a rig."
+    attach:
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him)."
+      - ref: approved:mochi-v2
+        role: "Mochi, a neighbor: the same finish, eyes and size language (do not draw her)."
+      - ref: approved:x-koke-1
+        role: "The first concept of this batch: the world these residents live in (palette and softness only; do not draw it)."
+    prompt:
+      - text: |
+          A character model sheet on a plain transparent background, in exactly the
+          same art style, lighting and level of fluff as the attached hamster and
+          bunny: three full-body views of the same character in a row: front view
+          sitting upright, three-quarter view, and a happy pose. CHARACTER: Nane, a
+          baby owl, a round plush ball of cream and soft indigo-grey feathers, a
+          heart-shaped pale face, large half-lidded glossy dark eyes with a
+          catchlight each, a sleepy tilt of the head. No curl or swirl on top of the
+          head (that belongs to Pofu alone). No clothes except what is named.
+      - block: prop-style-v2
+      - text: "AVOID: realistic animal anatomy, a curl on top of the head, sharp claws, a ground shadow, text, labels"
+
+
+  - id: x-res-zil
+    kind: sheet
+    name: x-res-zil
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Resident model sheet: Zil, a slightly deaf, very proud bell-ringer mouse. Review: same family as Pofu and Mochi (finish, fluff, eyes), a distinct silhouette, three poses that can become a rig."
+    attach:
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him)."
+      - ref: approved:mochi-v2
+        role: "Mochi, a neighbor: the same finish, eyes and size language (do not draw her)."
+      - ref: approved:x-koke-1
+        role: "The first concept of this batch: the world these residents live in (palette and softness only; do not draw it)."
+    prompt:
+      - text: |
+          A character model sheet on a plain transparent background, in exactly the
+          same art style, lighting and level of fluff as the attached hamster and
+          bunny: three full-body views of the same character in a row: front view
+          sitting upright, three-quarter view, and a happy pose. CHARACTER: Zil, a
+          baby mouse, a round plush ball of soft grey fur with a cream belly, large
+          round pink-lined ears, big glossy dark eyes with a catchlight each, a
+          proud lifted chin, a tiny bronze bell in one paw and a hand cupped to one
+          ear. No curl or swirl on top of the head (that belongs to Pofu alone). No
+          clothes except what is named.
+      - block: prop-style-v2
+      - text: "AVOID: realistic animal anatomy, a curl on top of the head, sharp claws, a ground shadow, text, labels"
+
+
+  - id: x-sky-map
+    kind: plate
+    name: x-sky-map
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    notes: "Exploration. The archipelago sky map with fog: the home pair lit, the rest drifting in soft fog that parts for discovered islands. No painted text. Review: legible as a map at phone size, fog reads as unknown, not gloomy."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A tall painted map of the archipelago seen from the same low camera but
+          higher: a sea of soft clouds, the home island and a second small island
+          with a short pier lit in warm morning light near the bottom, a gentle
+          trail of five much smaller far islands (a mossy one, a snowy one, a tall
+          spire, a whale shape, a red-clay one) climbing up and into a soft cream
+          fog that covers the top half of the map, only their dim silhouettes
+          visible, a calm clear zone in the very top for a title added later.
+      - block: prop-style-v2
+      - text: "AVOID: text, labels, arrows, dotted routes, a border, a compass, harsh shadows"
+
+
+  - id: x-appicon-a
+    kind: appicon
+    name: x-appicon-a
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. App icon A: Pofu's face close on a warm sky. Opaque, no text, no rounded corners (the system masks it). Review: reads at 60 and 29 pt."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          An app icon master: Pofu's face and cream curl filling the lower two
+          thirds, centered, big eyes, over a soft warm peach-to-cream sky gradient
+          with one small cloud. A square, opaque picture, edge to edge, with nothing
+          in the corners, no text, no border.
+      - text: "AVOID: text, a border, rounded corners, a frame, glass, gloss"
+
+
+  - id: x-appicon-b
+    kind: appicon
+    name: x-appicon-b
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. App icon B: the island with Pofu small on top. Opaque, no text. Review: reads at 29 pt."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          An app icon master: the small floating home island seen from the front
+          filling the lower middle, Pofu a tiny hamster sitting on its lawn, over a
+          soft pale morning sky and a few clouds. Square, opaque, edge to edge, no
+          text, no border.
+      - text: "AVOID: text, a border, rounded corners, a frame, glass, gloss"
+
+
+  - id: x-appicon-c
+    kind: appicon
+    name: x-appicon-c
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. App icon C: a single sunflower seed on a calm sky. Opaque, no text. Review: reads at 29 pt; the simplest of the three."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          An app icon master: one large plump sunflower seed with cream stripes,
+          centered, slightly tilted, over a flat soft peach-to-cream sky with a
+          faint cloud. Square, opaque, edge to edge, no text, no border.
+      - text: "AVOID: text, a border, rounded corners, a frame, glass, gloss, a hamster"
+
+
+  - id: x-appicon-layer-sky
+    kind: appicon
+    name: x-appicon-layer-sky
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Layer 1 of 3 of a layered icon (iOS tinted/dark variants): the sky background only. Opaque."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          Only the sky for a layered app icon: a soft warm peach-to-cream vertical
+          gradient with two faint, small clouds low down on the left and right,
+          nothing else. Square, opaque.
+      - text: "AVOID: the island, Pofu, text, a border, stars, a sun"
+
+
+  - id: x-appicon-layer-island
+    kind: ui
+    name: x-appicon-layer-island
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Layer 2 of 3 of a layered icon: the island with Pofu small on it, on transparent, centered with room around it. Review: fits the icon safe area."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          Only the small floating home island with Pofu the hamster sitting tiny on
+          its lawn, seen from the front, centered, filling about 62% of the canvas
+          width, on a transparent background, no clouds, no sky.
+      - block: prop-style-v2
+      - text: "AVOID: a sky, clouds, a ground shadow, text, a border"
+
+
+  - id: x-store-b
+    kind: plate
+    name: x-store-b
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    notes: "Exploration. App Store key art B: Pofu close, the phone face down. No painted text."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+      - ref: approved:x-store-a
+        role: "Key art A of this batch: the same world and light. Do not copy it."
+    prompt:
+      - text: |
+          A portrait poster painting for an app store page: Pofu the hamster large
+          in the lower half, sitting contentedly on the lawn, eyes happy, beside a
+          plain dark phone lying face down on the grass like a stone, a soft blurred
+          sunflower field behind, a calm clear zone at the top for a title added
+          later. Warm afternoon light.
+      - block: prop-style-v2
+      - text: "AVOID: text, a border, a glowing screen, a visible phone screen, other characters"
+
+
+  - id: x-store-c
+    kind: plate
+    name: x-store-c
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    notes: "Exploration. App Store key art C: the archipelago at golden hour. No painted text."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+      - ref: approved:x-store-a
+        role: "Key art A of this batch: the same world and light. Do not copy it."
+    prompt:
+      - text: |
+          A portrait poster painting for an app store page: the home island and a
+          second small harbor island with a pier and a tiny ferry, joined by a thin
+          rope bridge, with a trail of far dim islands behind them, at golden hour
+          over a sea of clouds, warm light from the left, a calm clear zone at the
+          top for a title added later.
+      - block: prop-style-v2
+      - text: "AVOID: text, a border, a UI, characters larger than a speck, harsh shadows"
+
+
+  - id: x-winter-island
+    kind: world
+    name: x-winter-island
+    size: 1536x1024
+    canvas: 1536x1024
+    edit_of: island-main-s
+    chat: "Pofu · Exploration"
+    notes: "Exploration. A winter Ayçiçeği: a light edit of the home island (snow dusting, bare sunflower stalks). Never promoted; decides whether seasons are an edit or code."
+    prompt:
+      - text: |
+          Turn the attached island into winter. Change only: a soft thin blanket of
+          white snow on the lawn and on the roof and top edges of everything on it,
+          the lawn showing sage through it in patches; every flower and leaf becomes
+          bare, brown and drooping; a few small icicles on the earth underside.
+          Light stays the same.
+      - block: edit-keep-v1
+      - text: "AVOID: new objects, characters, a different camera, a different lawn shape"
+
+
+  - id: x-onb-1
+    kind: plate
+    name: x-onb-1
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Onboarding 1 of 3: meeting Pofu. No painted text. Review: one idea per picture, Pofu clearly the same Pofu."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          A portrait storybook illustration for an onboarding screen: Pofu the
+          hamster sitting small and shy on the lawn of the floating home island at
+          soft morning, looking up at the viewer with big eyes, one tiny paw raised
+          in a wave. A calm clear zone in the upper third.
+      - block: prop-style-v2
+      - text: "AVOID: text, a border, a phone, buttons, more characters than Pofu"
+
+
+  - id: x-onb-2
+    kind: plate
+    name: x-onb-2
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Onboarding 2 of 3: the gate (a pause before the reflex). No painted text. Review: one idea per picture, Pofu clearly the same Pofu."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          A portrait storybook illustration for an onboarding screen: Pofu standing
+          on the lawn in front of his round wooden door, holding up one paw in a
+          gentle "wait" gesture, a small paper lantern lit beside the door; the sky
+          is soft dusk blue. A calm clear zone in the upper third.
+      - block: prop-style-v2
+      - text: "AVOID: text, a border, a phone, buttons, more characters than Pofu"
+
+
+  - id: x-onb-3
+    kind: plate
+    name: x-onb-3
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    notes: "Exploration. Onboarding 3 of 3: the reward (a seed, and a calm island). No painted text. Review: one idea per picture, Pofu clearly the same Pofu."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          A portrait storybook illustration for an onboarding screen: Pofu happily
+          holding one big sunflower seed in both paws, his cheeks slightly puffed, a
+          small cream seed jar beside him, a sunflower in bloom behind. Warm
+          afternoon light. A calm clear zone in the upper third.
+      - block: prop-style-v2
+      - text: "AVOID: text, a border, a phone, buttons, more characters than Pofu"
+
