@@ -250,11 +250,18 @@ AGENTS.md parallel auto mode, batch-12-minigame-art, track all
 AGENTS.md parallel auto mode, batch-13-ui-rest, track all
 AGENTS.md parallel auto mode, batch-14-iskele, track all
 AGENTS.md parallel auto mode, batch-15-explore, track all
+AGENTS.md parallel auto mode, retry-2026-11-03, track all
 ```
 
 Batches 09, 10 and 15 are EXPLORATION: never run `promote` on them. Batches
-12 to 15 carry their pilot as their first jobs: a failed pilot skips only the
-rest of that batch.
+12 to 15 carry their pilot as their first jobs. A failed pilot skips only the
+jobs that depend on it (`edit_of`, `approved:`), exactly as `plan` shows;
+never skip a whole batch for a pilot, unless the batch's header names that
+pilot as the style anchor every other job attaches. The 32 jobs skipped in
+batches 11 to 14 are rerun as `retry-2026-11-03`.
+Edits that repaint the object declare it (`acceptance: {edit_mode: recolor |
+region}`), and a brief that names colors outside the kind's palettes adds
+`palettes: [...]` (`tools/imagegen/README.md`).
 
 - **batch-05-fixes-pilot:** `simit-2` and `workshop-2` are SALVAGED from
   batch 03's takes on `main` (their `notes` list the files). Batch 03's
