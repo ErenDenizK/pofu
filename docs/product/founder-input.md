@@ -26,6 +26,36 @@ not orders: each entry records **what he meant**, the **status**, and
   Feel is tuned natively on his iPhone.
 - **Merging:** the agent may merge PRs, with merge commits, only on green CI.
 
+## 2026-11-04 (night): review of the loop-2 deck, and the budget
+
+- **Budget:** the plan limit is burning far too fast; work at about a
+  third of today's spend. Stop now, consolidate, plan; the next session
+  improves the system and builds real, concrete things.
+- **Plot is not bad; the characters should turn more** (stronger arcs
+  for Pofu and Mochi, not only clues).
+- **Çağlayan's concept is unclear and feels overdone** ("pools as
+  windows into other hours"); he could not follow it. Simplify.
+- **Not every island should be god-tier.** Gezgin is now a real 10, and
+  Revontuli looks simple next to it: the balance is broken. The curve
+  must rise: **every new island a little better than the one before**,
+  no step empty, meaningful both vertically (depth of one island) and
+  horizontally (the sequence).
+- **Not every island needs a game.** An island can be a story, a
+  minigame, an upgrade; it just has to be fun. **Home is the real
+  centre; about three minigames are enough.**
+- **Online (friends) at the very end is doubtful:** the book ends around
+  day 40 to 50, and few reach it. Open the social layer earlier (within
+  the first days) in the story; and say what comes after day 50.
+- **Language:** write story and lore in whichever language is easiest
+  (English is fine) and translate at the end.
+- **Presentation:** not only verbal; he cannot picture the concepts in
+  the game (what is on the island, what you do there). Show it as it
+  would look and play.
+- **Paleness:** contrast was lowered on purpose so it would not feel AI;
+  but it was always a bit too much. Haze should grow towards the
+  background and fall towards the centre; partly a lighting question.
+- Status: recorded; next session plans from it (handoff).
+
 ## 2026-11-03 (night): constellations, the big story, pacing
 
 - **Accepted as a working draft:** islands come as constellations (big
