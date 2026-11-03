@@ -2,7 +2,7 @@ id: asset-game-plot-tile-lilac
 type: asset
 title_tr: game-plot-tile-lilac
 title_en: game-plot-tile-lilac (ui)
-status: planned
+status: in-production
 horizon: now
 summary: Change only the glaze color of the tile and its sprout to a soft lilac, in
   the same finish and the same lightness as before. The shape, highlight, lip and
@@ -11,7 +11,8 @@ links:
   variant_of:
   - asset-game-plot-tile-sage
 art:
-  images: []
+  images:
+  - design/art/ui/ui-game-plot-tile-lilac/ui-game-plot-tile-lilac.png
   jobs:
   - batch-12-minigame-art:game-plot-tile-lilac
   - retry-2026-11-03:game-plot-tile-lilac
