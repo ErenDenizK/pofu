@@ -117,6 +117,10 @@ jobs:
           python3 -I tools/content/validate.py
           python3 -I -m pytest -q tools/content/tests
 
+      # Island continuity, novelty, pacing and tiers (docs/product/design-loop).
+      - name: Check the island profiles
+        run: python3 -I tools/content/island_metrics.py
+
   build-and-test:
     name: Test PofuKit and build the app
     needs: changes

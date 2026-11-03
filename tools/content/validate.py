@@ -37,12 +37,17 @@ FOLDERS = {
     "moment": "moments", "theme": "themes", "idea": "ideas", "asset": "assets",
 }
 REF_FIELDS = ("resident", "home", "station")
+# Data files that live beside the nodes but are not nodes
+# (islands/profiles.yaml feeds tools/content/island_metrics.py).
+NOT_NODES = {"profiles.yaml"}
 
 
 def load_content(root: Path = CONTENT) -> tuple[list[dict], list[str]]:
     """Every node with its file path under `_file`, plus parse errors."""
     nodes, errors = [], []
     for path in sorted(root.glob("*/*.yaml")):
+        if path.name in NOT_NODES:
+            continue
         try:
             data = yaml.safe_load(path.read_text(encoding="utf-8"))
         except yaml.YAMLError as e:

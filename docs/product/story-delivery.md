@@ -17,6 +17,12 @@ Reads with the [lore bible](lore-bible.md), [island curation](island-curation.md
 > us in the story, like the little companion who travels with you in
 > Genshin."
 
+> **Design loop 1 (2026-11-03)** answers the founder's later ask for a
+> travelling duo: Pofu and Mochi, within a one-exchange-a-day budget
+> ([loop-1 §2.2](design-loop/loop-1.md#22-the-duo-pofu-and-mochi),
+> [§2.5](design-loop/loop-1.md#25-how-the-duo-speaks-delivery)). It
+> supersedes §3.3's "Pofu alone" once the founder agrees.
+
 ## 0. The answer in one paragraph
 
 Story lives in **the game**, is **earned by the app**, and only **echoes
