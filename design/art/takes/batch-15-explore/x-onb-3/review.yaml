@@ -124,14 +124,23 @@ sources:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   fingerprint: c7be8d7379ce1177
-  original_png_sha256: 3cff58cca56306b3a3fb356016e37943cfca491b694946a1a76e5463fcf4f230
+  inbox_png_sha256: 3cff58cca56306b3a3fb356016e37943cfca491b694946a1a76e5463fcf4f230
+  original_generated_png_sha256: f5d976d8c482df89c3981179fb9b0f7b444c688566c466fa8640b326cc74416c
+  rgba_sha256: 40e99c4d137750e2ddea6bde90d0f6678acc530f75d9ef7cf467aa5e7725ee61
+  source_rgba_matches_inbox: true
 - take: 2
   source_file: /workspace/generated_images/exec-7f2a793e-2437-44be-a204-d7308cb85834.png
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   fingerprint: c7be8d7379ce1177
-  original_png_sha256: 0683f82e4573b0749e165177cb14701478efccc99a7123db8c2a4d4aa3b659ec
+  inbox_png_sha256: 0683f82e4573b0749e165177cb14701478efccc99a7123db8c2a4d4aa3b659ec
+  original_generated_png_sha256: 5958e57f1fff2d1d5faf6cbe5259975722f4f0a6a5faa16da79ab0f111e36e5e
+  rgba_sha256: e16c8cccffd6eb1a7003c9caa24872962dc7c2eca365ab1db540a5007fe4eb45
+  source_rgba_matches_inbox: true
 source_recovery:
   note: Generated after environment recovery; durable per-take callbacks preserve
     the original request ordinal and source path. No source byte edits.
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.

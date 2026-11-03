@@ -125,12 +125,20 @@ sources:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   fingerprint: 905b0c52c57e9d83
+  inbox_png_sha256: 5c888f80ad879e9a8fcb0e9e052fd2571c4d3e2958bd97150e9abd6f2db0340f
+  original_generated_png_sha256: a36e80360a91ed84a1b34cd2e86277e792a0fd2fa0b1372cc6aa66b2f626b429
+  rgba_sha256: b86c05e843c05ed9573cc457ca5742bf78c507f4c46a027b051cd911e9c898d8
+  source_rgba_matches_inbox: true
 - take: 2
   source_file: /workspace/generated_images/exec-3a6ff10e-c313-4632-8ba3-cb575e2ba0e9.png
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   fingerprint: 905b0c52c57e9d83
+  inbox_png_sha256: a94f39aed674a4cb69ac928689849b87c59224456abe6c0d497c23fbf2956e60
+  original_generated_png_sha256: 79fc4367f676969a70e1dce681cced4ba33975e076a664c3aa86228ed67d72a6
+  rgba_sha256: 8451e252d1ab90063a0764323c29e4265fd96b9262a6cbfbd604857c3e168810
+  source_rgba_matches_inbox: true
 recovery:
   note: Runtime /tmp and prior exec result store were not retained across environment
     restart. Original image bytes recovered from /workspace/generated_images. Job
@@ -146,3 +154,6 @@ recovery:
     path: /workspace/generated_images/exec-3a6ff10e-c313-4632-8ba3-cb575e2ba0e9.png
     sha256: 79fc4367f676969a70e1dce681cced4ba33975e076a664c3aa86228ed67d72a6
     mtime: '2026-11-03T01:05:18.693079+00:00'
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.

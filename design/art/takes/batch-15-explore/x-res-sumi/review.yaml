@@ -237,28 +237,43 @@ sources:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   fingerprint: 3f6a9ecf7e7c9cb3
-  original_png_sha256: 2dba2cf16c49dad4dc5d51dac769d8caac5ecfea5763db360d4a418e50d16492
+  inbox_png_sha256: 2dba2cf16c49dad4dc5d51dac769d8caac5ecfea5763db360d4a418e50d16492
+  original_generated_png_sha256: c8f23c9f88b51b5abbe9c32b7921455737b3015714f45a247d58309483e2e544
+  rgba_sha256: 62d4bab0401a9d25e9cb804c40ff080fe7bd9baf243b5797d803b839a5fa2668
+  source_rgba_matches_inbox: true
 - take: 2
   source_file: /workspace/generated_images/exec-e6ed0bb6-8db4-4dfe-9a24-a5ddc365b82d.png
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   fingerprint: 3f6a9ecf7e7c9cb3
-  original_png_sha256: 9142fd7fc1f4b2efa493598dbf059878854838a3cd63a9ba035088a26f368511
+  inbox_png_sha256: 9142fd7fc1f4b2efa493598dbf059878854838a3cd63a9ba035088a26f368511
+  original_generated_png_sha256: fad2622715b5e99dca092e2b7e77286f98291be1e64cfccb52fcd3ccd8509ae3
+  rgba_sha256: 7f60003a2d86a048c4df4b5ee01d1db37bdf5f3835538ebefe1c057274fae3d2
+  source_rgba_matches_inbox: true
 - take: 3
   source_file: /workspace/generated_images/exec-05e43ceb-3497-420c-b9c9-a24205f878fe.png
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   fingerprint: 3f6a9ecf7e7c9cb3
-  original_png_sha256: 6c08ac07460200218dd1c77b26ed3b7f4b23bf92662c144f19eadea425ecf823
+  inbox_png_sha256: 6c08ac07460200218dd1c77b26ed3b7f4b23bf92662c144f19eadea425ecf823
+  original_generated_png_sha256: 78a842e364fce2edbe2d00cb0e8517d0d4d2616e594d21654aab3611d845cd46
+  rgba_sha256: 93fcf4209f737e2eb0f7b5358192af4b7ffcfe9956a9a0fed024cc20b0591d2b
+  source_rgba_matches_inbox: true
 - take: 4
   source_file: /workspace/generated_images/exec-91ee74c0-6809-4c40-a117-c340e64ba110.png
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
   fingerprint: 3f6a9ecf7e7c9cb3
-  original_png_sha256: 70859a1f537dd580f651640d5bd2698d2024086e86edafcc6725669957dccb39
+  inbox_png_sha256: 70859a1f537dd580f651640d5bd2698d2024086e86edafcc6725669957dccb39
+  original_generated_png_sha256: c6a57708e0cddcf7e069327a19cca3c5084a4fb061fd28f19c1bb42752ef3904
+  rgba_sha256: a4240bbe1a4709df4251867c1d41fa9e9fbc7377b40d70ab65eb80234ad03e1a
+  source_rgba_matches_inbox: true
 source_recovery:
   note: Generated after environment recovery; durable per-take callbacks preserve
     the original request ordinal and source path. No source byte edits.
+source_encoding_note: Ingest may re-encode the PNG container; generated and inbox
+  byte SHA256 values are recorded separately. Exact decoded RGBA and dimensions match
+  for every retained take.
