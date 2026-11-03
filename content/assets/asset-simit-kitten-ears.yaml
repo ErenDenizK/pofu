@@ -15,14 +15,14 @@ art:
   images:
   - design/art/masters/simit-kitten-ears/simit-kitten-ears.webp
   jobs:
-  - batch-14-iskele:simit-kitten-ears
+  - batch-14-harbor:simit-kitten-ears
   - retry-2026-11-03:simit-kitten-ears
 sources:
-- doc: tools/imagegen/manifest/batch-14-iskele.yaml
+- doc: tools/imagegen/manifest/batch-14-harbor.yaml
 kind: char
-batch: batch-14-iskele
+batch: batch-14-harbor
 size: 1024x1536
 notes:
-- 'Skipped without generation: failed embedded pilots iskele-vapur-1 and simit-kitten
+- 'Skipped without generation: failed embedded pilots harbor-ferry-1 and simit-kitten
   exhausted their one allowed retry. Manifest pilot gate skips every remaining job
   of this batch; no QA waiver or master.'

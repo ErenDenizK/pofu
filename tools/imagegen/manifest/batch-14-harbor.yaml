@@ -1,0 +1,292 @@
+# Batch 14: İskele, the second free island (production)
+# (docs/product/archipelago-system.md section 11.2, PR #64, proposal).
+#
+# İskele is a tea-and-bagel-cart pier over the clouds: coral, cream and sea
+# blue. Signature: the little vapur (ferry) docking after calm nights.
+# Resident: Simit, a honey tabby kitten who sells out by noon. Toy: pull the
+# horn cord (düüüt; the gulls lift, Simit covers her ears). Game: loading the
+# vapur (Pack): parcels, simit trays and a very indignant goat. The simit
+# stall belongs here (its chain bagel-cart-1..5 is already painted at home and is
+# reused; it is not repainted).
+#
+# Kin of the home island: the same painting, the low camera (about 20
+# degrees), the same softness and lights; only the palette moves to coral,
+# cream and sea blue. Water is code (none is painted); the island floats over
+# the same cloud sea.
+#
+# PILOT (run first, in this order): harbor-island-s, harbor-ferry-1,
+# simit-kitten. If a pilot job still fails after its one retry, skip the REST
+# of this batch (every job below the "THE REST" line) and go on to the next
+# batch. Every job of the rest attaches a pilot master, so `plan` skips them
+# automatically.
+#
+# Tracks: `island` (the plate), `vapur` (1, then 2), `pier` (horn post,
+# crates, lamp), `residents` (Simit and her poses, then the goat).
+
+batch: batch-14-harbor
+title: İskele, the second free island (plate, vapur, pier stations, Simit, the goat)
+status: blocked
+blocked_on:
+  - "delivered and merged (#99); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: tea-stall-1, kind: station, name: tea-stall-1, external: batch-01-slice}
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: pofu, kind: char, name: pofu-r1, external: r1, master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png}
+
+  # ------------------------------------------------------------- PILOT
+  - id: harbor-island-s
+    kind: world
+    name: harbor-island-s
+    size: 1536x1024
+    key: blue
+    chat: "Pofu · İskele"
+    notes: "PILOT. The plate of the second free island. Review: kin of island-main-s (same camera, softness, scale), the lawn EMPTY and wide enough for the stations, a short wooden pier on the right for the vapur (code draws the sea and the vapur's wake), earth depth in range."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness, lights, scale and depth of earth. Paint a sibling of it, not a copy."
+      - ref: R1
+        role: "Style reference only (no characters): the hamster's soft painting and pastel colors."
+      - ref: palette:world-day
+        role: "The palette card: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A sibling of the attached floating island, for a cozy mobile game:
+          İskele, a harbor island. Same size, same low camera and same
+          earth body as the attached island, but:
+          - The lawn is a wide, flat, empty oval of soft cream-sand and
+            pale sage, filling about 80% of the image width, with nothing
+            on it.
+          - On the right a short, chunky wooden pier of honey planks juts
+            out past the lawn's edge, with two stubby round mooring posts
+            with coiled cream rope, at the height of the lawn, ending in
+            open air (no water, no boat).
+          - The earth body underneath is a soft, rounded underside in warm
+            coral-tinted earth with two or three gentle strata, no deeper
+            than the attached island's.
+          - Keep the same few cream pebbles, and three or four thin
+            dangling roots.
+      - block: prop-style-v2
+      - text: "AVOID: characters, stations, a boat, buildings, water, sky, clouds, background, ground shadow, saturated colors, a deep cone-shaped underside, text."
+    acceptance:
+      depth_ratio: {warn: 0.32, fail: 0.42}
+
+  - id: harbor-ferry-1
+    kind: station
+    name: harbor-ferry-1
+    chat: "Pofu · İskele"
+    notes: "PILOT. The vapur (ferry) at the pier, level 1: a small, round, toy-like steam ferry. Signature of the island. Review: reads as a vapur (funnel, paddle-less round hull), not a rowing boat; stands on the footprint; the water line is a clean flat edge with no water."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:island-main-s
+        role: "The home island: match its camera angle, light, softness and colors."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small Istanbul-style passenger ferry (vapur), toy-like and
+          chunky, for the island diorama: a plump rounded hull in soft sea
+          blue with a cream stripe, a low white-cream cabin with three round
+          windows, one tall rounded funnel in soft coral with a cream band,
+          and a small flag. Seen from the same low front three-quarter
+          camera, floating upright; its waterline is a flat, clean edge with
+          no water drawn, no wake, no smoke. Friendly, few parts. It fills
+          the footprint's width and the lower two thirds of the height bar.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: simit-kitten
+    kind: char
+    name: simit-kitten
+    size: 1024x1536
+    chat: "Pofu · Residents"
+    notes: "PILOT. Simit, a honey tabby kitten, the harbor's resident. Review: same scale, finish and fluff as Pofu and Mochi, a different silhouette (upright tail, small ears), no curl on the head."
+    attach:
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him)."
+      - ref: approved:mochi-v2
+        role: "Mochi, a neighbor: match her size on the canvas, her eyes and her finish (do not draw her)."
+      - ref: palette:character
+        role: "The character palette card."
+    prompt:
+      - text: |
+          Draw Simit, a neighbor of the attached hamster, in exactly the same
+          art style, lighting and level of fluff as the hamster and the
+          attached bunny. Same canvas rules as the hamster: full body,
+          sitting upright, front view, centered, feet on an invisible line
+          at 88% of the height, about 62% of the canvas width.
+          CHARACTER: Simit, a baby tabby kitten whose body is a soft round
+          ball of plush fur in warm honey-gold with soft darker honey
+          stripes on the forehead, the cheeks and the tail, a cream muzzle,
+          chest and belly. Two small, softly rounded triangular ears with
+          pink insides. Big round glossy dark espresso eyes with one large
+          round catchlight and one tiny sparkle each, soft blush ovals, a
+          tiny rounded pink nose and a small smiling "w" mouth. A short,
+          plump tail curls up beside her. Two tiny cream front paws together
+          at the chest, two small feet peeking out. No curl or swirl of fur
+          on top of the head (that belongs to Pofu alone). A tiny coral
+          neckerchief. No other clothes or accessories.
+      - block: style-anchor-v1
+      - block: negative-v1
+      - text: "AVOID: realistic cat anatomy, sharp ears or claws, a curl on top of the head, a hat, text, a ground shadow."
+
+  # ---------------------------------------------------------- THE REST
+  - id: harbor-ferry-2
+    kind: station
+    name: harbor-ferry-2
+    edit_of: harbor-ferry-1
+    chat: "Pofu · İskele"
+    notes: "Level 2: the ferry gets bigger (second deck). Edit of level 1."
+    prompt:
+      - text: |
+          Add a second deck to the ferry: a smaller cream cabin on top of the
+          first with two round windows, a rail of three cream posts around
+          the upper deck, and a second small funnel beside the first. The
+          hull, the first cabin and the colors stay. Keep it inside the
+          height bar.
+      - block: edit-keep-v1
+
+  - id: harbor-horn-1
+    kind: station
+    name: harbor-horn-1
+    chat: "Pofu · İskele"
+    notes: "The toy: a post with a horn cord to pull (düüüt). Level 1, a small post; the pull is code."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:harbor-ferry-1
+        role: "The first piece of the harbor: match its painting, light, colors, finish and scale exactly (do not draw the ferry)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small harbor signal post for the island diorama: a short, chunky
+          post of honey wood on a round stone foot, a plump brass-colored
+          horn pointing out to the right on top, and a thick cream cord with
+          a round wooden toggle hanging straight down from the horn. Few
+          parts, toy-like proportions; it fills about the lower half of the
+          height bar.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: harbor-crates-1
+    kind: station
+    name: harbor-crates-1
+    chat: "Pofu · İskele"
+    notes: "The Pack game's cargo: a little stack of parcels waiting on the pier."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:harbor-ferry-1
+        role: "The first piece of the harbor: match its painting, light, colors, finish and scale exactly (do not draw the ferry)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small stack of cargo for the island diorama: two plump honey-wood
+          crates and one round cream sack tied with a coral cord, with a
+          small parcel wrapped in kraft paper and cream string on top. Chunky,
+          toy-like, rounded corners, no labels, no letters. It fills about
+          the lower half of the height bar.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: harbor-lamp-1
+    kind: station
+    name: harbor-lamp-1
+    chat: "Pofu · İskele"
+    notes: "A pier lamp. Unlit; the glow is code."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:harbor-ferry-1
+        role: "The first piece of the harbor: match its painting, light, colors, finish and scale exactly (do not draw the ferry)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A pier lamp for the island diorama: a short, chunky post of honey
+          wood with a plump round lantern of cream glass-colored paper (a
+          soft tinted shape, not transparent, unlit) under a small coral cap.
+          Few parts, toy-like; it fills about the lower two thirds of the
+          height bar.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: simit-kitten-work
+    kind: char
+    name: simit-kitten-work
+    size: 1024x1536
+    edit_of: simit-kitten
+    chat: "Pofu · Residents"
+    notes: "Working pose: she carries a tray of simit."
+    prompt:
+      - text: |
+          Edit the attached kitten, Simit, into her working pose. Change only
+          her two front paws: they now hold a small round wooden tray in
+          front of her chest with three plump sesame-crusted simit rings
+          (golden-brown rings dotted with cream seeds) on it. Her ears, head,
+          face, body, tail and feet stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: a ground shadow, steam, text, a curl on the head."
+
+  - id: simit-kitten-ears
+    kind: char
+    name: simit-kitten-ears
+    size: 1024x1536
+    edit_of: simit-kitten
+    chat: "Pofu · Residents"
+    notes: "The horn toy: she covers her ears and squeezes her eyes shut."
+    prompt:
+      - text: |
+          Edit the attached kitten, Simit: both front paws are raised and
+          pressed flat over her two ears, and her eyes are squeezed shut in
+          two happy-scrunched curves with her small mouth open in a soft "o".
+          Her body, tail, feet, colors and size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: tears, a worried look, a ground shadow, text."
+
+  - id: harbor-goat
+    kind: char
+    name: harbor-goat
+    size: 1024x1536
+    chat: "Pofu · Residents"
+    notes: "The very indignant goat of the Pack game: cargo with opinions. Same family as the residents, small."
+    attach:
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, lighting, level of fluff and scale exactly (do not draw him)."
+      - ref: approved:simit-kitten
+        role: "Simit, a neighbor: match her size on the canvas, her eyes and her finish (do not draw her)."
+      - ref: palette:character
+        role: "The character palette card."
+    prompt:
+      - text: |
+          Draw a baby goat in exactly the same art style, lighting and level
+          of fluff as the attached hamster and kitten. Same canvas rules:
+          full body, sitting upright, front view, centered, feet on an
+          invisible line at 88% of the height, about 62% of the canvas width.
+          CHARACTER: a baby goat whose body is a soft round ball of cream
+          plush fur, a warm tan patch over one eye, two tiny rounded horn
+          buds, two soft floppy ears, a small beard tuft, big round glossy
+          dark espresso eyes with a catchlight each, and a very indignant
+          expression: the brows low, the small mouth pressed in a flat, soft
+          line, the chin lifted. Two small cream front paws at the chest.
+          No curl on top of the head.
+      - block: style-anchor-v1
+      - block: negative-v1
+      - text: "AVOID: realistic goat anatomy, sharp horns, rectangular pupils, a hat, text, a ground shadow."

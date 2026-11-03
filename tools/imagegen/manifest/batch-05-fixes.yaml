@@ -1,12 +1,12 @@
 # Batch 05: the rest of the batch-03 fixes, after the pilot
 # (docs/design/art-production-plan.md).
 #
-# simit-3..5 and workshop-3..5, with batch 03's prompts unchanged: they
+# bagel-cart-3..5 and workshop-3..5, with batch 03's prompts unchanged: they
 # never ran, because their parents failed on a pipeline bug that the
 # pilot's salvage proves fixed. Opened by the lead on 2026-11-02, after
 # reviewing batch-05-fixes-pilot (merged, #71).
 #
-# Tracks: `simit` (simit-3 -> simit-4 -> simit-5), `workshop`
+# Tracks: `simit` (bagel-cart-3 -> bagel-cart-4 -> bagel-cart-5), `workshop`
 # (workshop-3 -> workshop-4 -> workshop-5). Both start at once.
 
 batch: batch-05-fixes
@@ -19,14 +19,14 @@ defaults:
   variants: 2
 
 jobs:
-  - {id: simit-2, kind: station, name: simit-2, external: batch-05-fixes-pilot}
+  - {id: bagel-cart-2, kind: station, name: bagel-cart-2, external: batch-05-fixes-pilot}
   - {id: workshop-2, kind: station, name: workshop-2, external: batch-05-fixes-pilot}
 
   # --------------------------------------------- simit cart L3-L5
-  - id: simit-3
+  - id: bagel-cart-3
     kind: station
-    name: simit-3
-    edit_of: simit-2
+    name: bagel-cart-3
+    edit_of: bagel-cart-2
     chat: "Pofu · Simit cart"
     prompt:
       - text: |
@@ -35,10 +35,10 @@ jobs:
           as on the tray, the pole's top below the umbrella.
       - block: edit-keep-v1
 
-  - id: simit-4
+  - id: bagel-cart-4
     kind: station
-    name: simit-4
-    edit_of: simit-3
+    name: bagel-cart-4
+    edit_of: bagel-cart-3
     chat: "Pofu · Simit cart"
     prompt:
       - text: |
@@ -47,10 +47,10 @@ jobs:
           cart's tray.
       - block: edit-keep-v1
 
-  - id: simit-5
+  - id: bagel-cart-5
     kind: station
-    name: simit-5
-    edit_of: simit-4
+    name: bagel-cart-5
+    edit_of: bagel-cart-4
     chat: "Pofu · Simit cart"
     prompt:
       - text: |

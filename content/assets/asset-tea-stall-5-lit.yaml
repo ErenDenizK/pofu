@@ -1,0 +1,27 @@
+id: asset-tea-stall-5-lit
+type: asset
+title_tr: tea-stall-5-lit
+title_en: tea-stall-5-lit (station)
+status: cut
+horizon: now
+summary: 'Light the little round burner under the çaydanlık: inside its opening, a
+  small, soft flame of warm honey and coral shapes, and the inside of the burner glows
+  warm amber. Paint the flame as a few soft, rounded tongues with no hard edges, matte,
+  no sparks. Only the burner changes: no glow, no light and no color change on the
+  teapot, the counter, the roof, the bulbs or anything else (the app adds the glow
+  and the warm l…'
+links:
+  variant_of:
+  - asset-tea-stall-5
+art:
+  images: []
+  jobs:
+  - batch-07-light-pilot:tea-stall-5-lit
+sources:
+- doc: tools/imagegen/manifest/batch-07-light-pilot.yaml
+kind: station
+batch: batch-07-light-pilot
+notes:
+- 'Batch07 pilot stopped: both takes failed station_anchor (top49 vsbar150; widths814/812
+  vsfootprint720), despite edit preservation99.21/99.05%. No promotion or retry; two
+  q90 takes and QA retained for lead review.'

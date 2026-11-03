@@ -1,0 +1,9 @@
+batch: batch-14-harbor
+jobs:
+  harbor-crates-1:
+    pick: none
+    publication: skipped without generation
+    note: 'Skipped without generation: failed embedded pilots harbor-ferry-1 and simit-kitten
+      exhausted their one allowed retry. Manifest pilot gate skips every remaining
+      job of this batch; no QA waiver or master.'
+    gate: embedded pilot failure

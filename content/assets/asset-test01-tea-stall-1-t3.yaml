@@ -1,0 +1,18 @@
+id: asset-test01-tea-stall-1-t3
+type: asset
+title_tr: 'Test 01: tea-stall-1 çekim 3'
+title_en: 'Art test 01: tea-stall-1 take 3'
+status: cut
+horizon: now
+summary: Çay ocağı L1, take 3.
+notes:
+- >-
+  Art test 01 (2026-11-01): the founder's first GPT Image run of D1, D4 and D5.
+art:
+  images:
+  - design/art/tests/2026-11-01/station__tea-stall-1_take3.png
+  jobs: []
+sources:
+- doc: design/art/tests/2026-11-01/README.md
+kind: test
+batch: unbatched

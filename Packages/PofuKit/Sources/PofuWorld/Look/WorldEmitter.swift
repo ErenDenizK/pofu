@@ -4,7 +4,7 @@ import PofuCore
 /// An emissive point in the world that blooms and lights its neighbours: an
 /// ember, a lit window. How strongly it burns is the colour script's
 /// (`Practicals`, per hour and wellbeing); positions are measured on the
-/// masters (the ember under the çaydanlık on `cay-1`, the round window in
+/// masters (the ember under the çaydanlık on `tea-stall-1`, the round window in
 /// the plate's door).
 public struct WorldEmitter: Hashable, Sendable {
     /// Which of the colour script's practical lights this is.
@@ -47,7 +47,7 @@ extension IslandLayout {
     /// The home island's emissive points.
     public static let emitters: [WorldEmitter] = [
         // The flame under the çaydanlık, measured as the brightest warm spot
-        // of the burner on every level (cay-1 to cay-5: x 379-385, y 567-571
+        // of the burner on every level (tea-stall-1 to tea-stall-5: x 379-385, y 567-571
         // px, anchor (512, 800), 8.53 px per unit): (−15.2, −27.2) from the
         // stall, right under the kettle's belly, which it lights.
         WorldEmitter(kind: .ember, point: onStation(.teaStall, x: -15.2, y: -27.2), radius: 6, color: GradeRGB(1, 0.62, 0.26), reach: 70, station: .teaStall),

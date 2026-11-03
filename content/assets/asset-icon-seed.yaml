@@ -9,7 +9,7 @@ summary: 'The icon for seeds, the game''s one currency: a single plump sunflower
   tip pointing up and to the right.'
 notes:
 - 'Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice:
-  island-main-s and cay-1 approved'
+  island-main-s and tea-stall-1 approved'
 art:
   images:
   - design/art/ui/icon-seed/icon-seed.png

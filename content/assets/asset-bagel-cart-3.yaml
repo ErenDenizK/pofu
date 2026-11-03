@@ -1,0 +1,26 @@
+id: asset-bagel-cart-3
+type: asset
+title_tr: bagel-cart-3
+title_en: bagel-cart-3 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add a short upright wooden pole at the cart's front left corner with eight golden-brown
+  simit rings stacked on it, the same rings as on the tray, the pole's top below the umbrella.
+links:
+  variant_of:
+  - asset-bagel-cart-2
+art:
+  images:
+  - design/art/stations/bagel-cart-3/bagel-cart-3.png
+  jobs:
+  - batch-03-home-island:bagel-cart-3
+  - batch-05-fixes:bagel-cart-3
+notes:
+- >-
+  Batch 03 skipped it; batch 05 redoes it (docs/design/art-production-plan.md).
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+- doc: tools/imagegen/manifest/batch-05-fixes.yaml
+kind: station
+batch: batch-03-home-island

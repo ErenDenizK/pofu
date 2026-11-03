@@ -6,12 +6,12 @@ Turkish strings, Turkish prose and merged PR titles are untouched.
 
 ## Rules
 
-- `cay` becomes `teaStall` (code) or `tea-stall` (asset ids, files): common noun: cay ocagi (Mochi's tea stall) becomes tea stall.
-- `simit` becomes `bagelCart` (code) or `bagel-cart` (asset ids, files): common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name).
-- `iskele` becomes `harbor` (code) or `harbor` (asset ids, files): common noun: iskele becomes harbor.
-- `vapur` becomes `ferry` (code) or `ferry` (asset ids, files): common noun: vapur becomes ferry.
-- `aycicegi` becomes `home` (code) or `home` (asset ids, files): the home island as a concept becomes home.
-- `ayar` becomes `tuningLab` (code) or `tuning-lab` (asset ids, files): common noun: ayar (the tuning panel) becomes tuning lab.
+- `tea-stall` becomes `teaStall` (code) or `tea-stall` (asset ids, files): common noun: tea-stall ocagi (Mochi's tea stall) becomes tea stall.
+- `bagel-cart` becomes `bagelCart` (code) or `bagel-cart` (asset ids, files): common noun: the bagel-cart stall becomes bagel cart (the kitten `simit-kitten` keeps its name).
+- `harbor` becomes `harbor` (code) or `harbor` (asset ids, files): common noun: harbor becomes harbor.
+- `ferry` becomes `ferry` (code) or `ferry` (asset ids, files): common noun: ferry becomes ferry.
+- `home` becomes `home` (code) or `home` (asset ids, files): the home island as a concept becomes home.
+- `tuning-lab` becomes `tuningLab` (code) or `tuning-lab` (asset ids, files): common noun: tuning-lab (the tuning panel) becomes tuning lab.
 - Character proper names stay (ASCII); where one token is both food and character, the character keeps a role (`simit-kitten`) and the noun becomes English.
 - Wonder-island and resident proper names (caglayan, revontuli, koke, gezgin, mehtap, fanus, ...) stay as ASCII ids.
 - Persisted Swift ids (station and island raw values) get new values that also decode the old ones, so saves keep working.
@@ -23,277 +23,55 @@ Turkish strings, Turkish prose and merged PR titles are untouched.
 
 | Token | Occurrences | Why |
 |---|---|---|
-| `findik` | 191 in 41 files | character proper name (the hedgehog); no hazelnut resource exists in code |
-| `mochi` | 505 in 109 files | character proper name |
-| `yildiz` | 53 in 21 files | provisional island of the retired five-island catalog; revisit with the wonder-island redesign |
-| `kaplica` | 21 in 13 files | same as yildiz |
-| `kitap` | 56 in 23 files | same as yildiz |
-| `hamam` | 52 in 18 files | same as yildiz (loanword) |
-| `serbet` | 5 in 2 files | same as yildiz |
+| `findik` | 192 in 42 files | character proper name (the hedgehog); no hazelnut resource exists in code |
+| `mochi` | 509 in 111 files | character proper name |
+| `yildiz` | 58 in 22 files | provisional island of the retired five-island catalog; revisit with the wonder-island redesign |
+| `kaplica` | 22 in 14 files | same as yildiz |
+| `kitap` | 59 in 24 files | same as yildiz |
+| `hamam` | 53 in 19 files | same as yildiz (loanword) |
+| `serbet` | 6 in 3 files | same as yildiz |
 
 ## Swift (packages, app, extensions, tests)
 
-29 distinct identifiers, 269 occurrences in 52 files.
+8 distinct identifiers, 12 occurrences in 8 files.
 
 | Old | New | Occurrences | Files | Rule |
 |---|---|---|---|---|
-| `08-ayar-panel-light` | `08-tuning-lab-panel-light` | 1 | 1 | common noun: ayar (the tuning panel) becomes tuning lab |
-| `Ayar` | `TuningLab` | 59 | 25 | common noun: ayar (the tuning panel) becomes tuning lab |
-| `AyarLabels` | `TuningLabLabels` | 8 | 1 | common noun: ayar (the tuning panel) becomes tuning lab |
-| `AyarLook` | `TuningLabLook` | 2 | 2 | common noun: ayar (the tuning panel) becomes tuning lab |
-| `AyarPanel` | `TuningLabPanel` | 5 | 3 | common noun: ayar (the tuning panel) becomes tuning lab |
-| `AyarPhase` | `TuningLabPhase` | 6 | 2 | common noun: ayar (the tuning panel) becomes tuning lab |
-| `AyarSection` | `TuningLabSection` | 5 | 2 | common noun: ayar (the tuning panel) becomes tuning lab |
-| `AyarSession` | `TuningLabSession` | 4 | 2 | common noun: ayar (the tuning panel) becomes tuning lab |
-| `ayar` | `tuningLab` | 2 | 2 | common noun: ayar (the tuning panel) becomes tuning lab |
-| `aycicegi` | `home` | 29 | 15 | the home island as a concept becomes home |
-| `cay` | `teaStall` | 75 | 19 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-1` | `tea-stall-1` | 13 | 5 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-1--round2` | `tea-stall-1--round2` | 2 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-1--softlock` | `tea-stall-1--softlock` | 3 | 3 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-1-glow` | `tea-stall-1-glow` | 2 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-1-lit` | `tea-stall-1-lit` | 4 | 3 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-2` | `tea-stall-2` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-3` | `tea-stall-3` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-3--unharmonized` | `tea-stall-3--unharmonized` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-4` | `tea-stall-4` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-5` | `tea-stall-5` | 2 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `gardenAyar` | `gardenTuningLab` | 2 | 1 | common noun: ayar (the tuning panel) becomes tuning lab |
-| `iskele` | `harbor` | 26 | 9 | common noun: iskele becomes harbor |
-| `iskeleWaitsForEightTendedDaysAndMochisStallAtLevelThree` | `harborWaitsForEightTendedDaysAndMochisStallAtLevelThree` | 1 | 1 | common noun: iskele becomes harbor |
-| `simit` | `bagelCart` | 10 | 3 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `tea-and-simit` | `tea-and-bagel-cart` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `tendedDaysOpenStagesAndBringIskele` | `tendedDaysOpenStagesAndBringHarbor` | 1 | 1 | common noun: iskele becomes harbor |
-| `theAyarTuningDefaultsChangeNothing` | `theTuningLabTuningDefaultsChangeNothing` | 1 | 1 | common noun: ayar (the tuning panel) becomes tuning lab |
-| `theCayFocusKeepsPofuWhole` | `theTeaStallFocusKeepsPofuWhole` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
+| `Home` | `home` | 5 | 5 | the home island as a concept becomes home |
+| `HomeObjectViews` | `homeObjectViews` | 1 | 1 | the home island as a concept becomes home |
+| `HomeObjects` | `homeObjects` | 1 | 1 | the home island as a concept becomes home |
+| `HomeObjectsTests` | `homeObjectsTests` | 1 | 1 | the home island as a concept becomes home |
+| `HomeView` | `homeView` | 1 | 1 | the home island as a concept becomes home |
+| `WorldHome` | `Worldhome` | 1 | 1 | the home island as a concept becomes home |
+| `WorldHomeModel` | `WorldhomeModel` | 1 | 1 | the home island as a concept becomes home |
+| `WorldHomeModelTests` | `WorldhomeModelTests` | 1 | 1 | the home island as a concept becomes home |
 
 ## Assets and pipeline (art, manifests, harmony, catalogs, tools)
 
-178 distinct identifiers, 1492 occurrences in 248 files.
+11 distinct identifiers, 134 occurrences in 47 files.
 
 | Old | New | Occurrences | Files | Rule |
 |---|---|---|---|---|
-| `13-iskele-arrives` | `13-harbor-arrives` | 1 | 1 | common noun: iskele becomes harbor |
-| `Ayar` | `tuning-lab` | 2 | 2 | common noun: ayar (the tuning panel) becomes tuning lab |
-| `Cay` | `TeaStall` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `ISKELE_MOTIF` | `HARBOR_MOTIF` | 2 | 1 | common noun: iskele becomes harbor |
-| `Simit` | `BagelCart` | 52 | 21 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `Vapur` | `ferry` | 1 | 1 | common noun: vapur becomes ferry |
-| `arrival-iskele` | `arrival-harbor` | 3 | 3 | common noun: iskele becomes harbor |
-| `asset-cay-1` | `asset-tea-stall-1` | 7 | 5 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `asset-cay-1-lit` | `asset-tea-stall-1-lit` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `asset-cay-2` | `asset-tea-stall-2` | 4 | 3 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `asset-cay-3` | `asset-tea-stall-3` | 4 | 3 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `asset-cay-4` | `asset-tea-stall-4` | 4 | 3 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `asset-cay-5` | `asset-tea-stall-5` | 4 | 3 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `asset-cay-5-lit` | `asset-tea-stall-5-lit` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `asset-cl1-duo-vapur` | `asset-cl1-duo-ferry` | 2 | 1 | common noun: vapur becomes ferry |
-| `asset-icon-cay` | `asset-icon-tea-stall` | 3 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `asset-iskele-crates-1` | `asset-harbor-crates-1` | 2 | 1 | common noun: iskele becomes harbor |
-| `asset-iskele-goat` | `asset-harbor-goat` | 2 | 1 | common noun: iskele becomes harbor |
-| `asset-iskele-horn-1` | `asset-harbor-horn-1` | 2 | 1 | common noun: iskele becomes harbor |
-| `asset-iskele-island-s` | `asset-harbor-island-s` | 2 | 1 | common noun: iskele becomes harbor |
-| `asset-iskele-lamp-1` | `asset-harbor-lamp-1` | 2 | 1 | common noun: iskele becomes harbor |
-| `asset-iskele-vapur-1` | `asset-harbor-ferry-1` | 3 | 2 | common noun: iskele becomes harbor; common noun: vapur becomes ferry |
-| `asset-iskele-vapur-2` | `asset-harbor-ferry-2` | 2 | 1 | common noun: iskele becomes harbor; common noun: vapur becomes ferry |
-| `asset-simit-1` | `asset-bagel-cart-1` | 4 | 3 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `asset-simit-2` | `asset-bagel-cart-2` | 4 | 3 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `asset-simit-3` | `asset-bagel-cart-3` | 4 | 3 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `asset-simit-4` | `asset-bagel-cart-4` | 4 | 3 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `asset-simit-5` | `asset-bagel-cart-5` | 3 | 2 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `asset-test01-cay-1-t1` | `asset-test01-tea-stall-1-t1` | 3 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `asset-test01-cay-1-t2` | `asset-test01-tea-stall-1-t2` | 3 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `asset-test01-cay-1-t3` | `asset-test01-tea-stall-1-t3` | 3 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `asset-test01-cay-2-t1` | `asset-test01-tea-stall-2-t1` | 3 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `ayar` | `tuning-lab` | 6 | 4 | common noun: ayar (the tuning panel) becomes tuning lab |
-| `aycicegi` | `home` | 4 | 2 | the home island as a concept becomes home |
-| `batch-14-iskele` | `batch-14-harbor` | 58 | 24 | common noun: iskele becomes harbor |
-| `cay` | `teaStall` | 79 | 17 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-1` | `tea-stall-1` | 244 | 86 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-1--lock-light` | `tea-stall-1--lock-light` | 2 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-1-glow` | `tea-stall-1-glow` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-1-lit` | `tea-stall-1-lit` | 28 | 8 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-2` | `tea-stall-2` | 59 | 14 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-3` | `tea-stall-3` | 32 | 11 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-4` | `tea-stall-4` | 29 | 8 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-5` | `tea-stall-5` | 39 | 15 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-5-lit` | `tea-stall-5-lit` | 14 | 5 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay0` | `tea-stall0` | 3 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay1` | `teaStall1` | 11 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay1-a` | `tea-stall1-a` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay1-b` | `tea-stall1-b` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay1-c` | `tea-stall1-c` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay1-d` | `tea-stall1-d` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay1-orig` | `tea-stall1-orig` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay2` | `tea-stall2` | 11 | 3 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay2-a` | `tea-stall2-a` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay2-b` | `tea-stall2-b` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay2-c` | `tea-stall2-c` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay2-d` | `tea-stall2-d` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay2-orig` | `tea-stall2-orig` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cayAt` | `tea-stallAt` | 3 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cayBox` | `tea-stallBox` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `char-simit` | `char-bagel-cart` | 4 | 2 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `char__iskele-goat` | `char__harbor-goat` | 1 | 1 | common noun: iskele becomes harbor |
-| `cl1-duo-vapur` | `cl1-duo-ferry` | 14 | 3 | common noun: vapur becomes ferry |
-| `cl1-duo-vapur-POSTED` | `cl1-duo-ferry-POSTED` | 2 | 1 | common noun: vapur becomes ferry |
-| `cl1-duo-vapur-QA-preview` | `cl1-duo-ferry-QA-preview` | 1 | 1 | common noun: vapur becomes ferry |
-| `cl1-duo-vapur-character-rail-QA` | `cl1-duo-ferry-character-rail-QA` | 2 | 1 | common noun: vapur becomes ferry |
-| `cl1-duo-vapur-t1` | `cl1-duo-ferry-t1` | 1 | 1 | common noun: vapur becomes ferry |
-| `cl1-duo-vapur-t1-QA-native60` | `cl1-duo-ferry-t1-QA-native60` | 1 | 1 | common noun: vapur becomes ferry |
-| `cl1-duo-vapur-t1-QA-profile60` | `cl1-duo-ferry-t1-QA-profile60` | 1 | 1 | common noun: vapur becomes ferry |
-| `cl1-duo-vapur-t2` | `cl1-duo-ferry-t2` | 1 | 1 | common noun: vapur becomes ferry |
-| `cl1-duo-vapur-t2-QA-native60` | `cl1-duo-ferry-t2-QA-native60` | 1 | 1 | common noun: vapur becomes ferry |
-| `cl1-duo-vapur-t2-QA-profile60` | `cl1-duo-ferry-t2-QA-profile60` | 1 | 1 | common noun: vapur becomes ferry |
-| `generated-cl1-duo-vapur-t1` | `generated-cl1-duo-ferry-t1` | 1 | 1 | common noun: vapur becomes ferry |
-| `generated-cl1-duo-vapur-t2` | `generated-cl1-duo-ferry-t2` | 1 | 1 | common noun: vapur becomes ferry |
-| `icon-cay` | `icon-tea-stall` | 16 | 8 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `icon-station-cay` | `icon-station-tea-stall` | 8 | 3 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `icon__station-cay` | `icon__station-tea-stall` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `iskele` | `harbor` | 3 | 3 | common noun: iskele becomes harbor |
-| `iskele-crates-1` | `harbor-crates-1` | 29 | 9 | common noun: iskele becomes harbor |
-| `iskele-goat` | `harbor-goat` | 29 | 9 | common noun: iskele becomes harbor |
-| `iskele-horn-1` | `harbor-horn-1` | 29 | 9 | common noun: iskele becomes harbor |
-| `iskele-island-s` | `harbor-island-s` | 41 | 13 | common noun: iskele becomes harbor |
-| `iskele-lamp-1` | `harbor-lamp-1` | 29 | 9 | common noun: iskele becomes harbor |
-| `iskele-vapur-1` | `harbor-ferry-1` | 47 | 21 | common noun: iskele becomes harbor; common noun: vapur becomes ferry |
-| `iskele-vapur-2` | `harbor-ferry-2` | 16 | 6 | common noun: iskele becomes harbor; common noun: vapur becomes ferry |
-| `island-aycicegi` | `island-home` | 6 | 6 | the home island as a concept becomes home |
-| `island-aycicegi-day-calm1` | `island-home-day-calm1` | 2 | 2 | the home island as a concept becomes home |
-| `island-aycicegi-day-calm2` | `island-home-day-calm2` | 2 | 2 | the home island as a concept becomes home |
-| `island-iskele` | `island-harbor` | 5 | 5 | common noun: iskele becomes harbor |
-| `plate__cl1-duo-vapur--t1` | `plate__cl1-duo-ferry--t1` | 1 | 1 | common noun: vapur becomes ferry |
-| `plate__cl1-duo-vapur--t2` | `plate__cl1-duo-ferry--t2` | 1 | 1 | common noun: vapur becomes ferry |
-| `s_arrival_iskele` | `s_arrival_harbor` | 2 | 1 | common noun: iskele becomes harbor |
-| `simit` | `bagelCart` | 48 | 20 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `simit-1` | `bagel-cart-1` | 40 | 14 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `simit-2` | `bagel-cart-2` | 55 | 18 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `simit-3` | `bagel-cart-3` | 37 | 11 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `simit-4` | `bagel-cart-4` | 35 | 10 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `simit-5` | `bagel-cart-5` | 30 | 9 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `simitRing` | `bagel-cartRing` | 3 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `st-cay-` | `st-tea-stall-` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `st-cay-2` | `st-tea-stall-2` | 10 | 5 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `st-cay-3` | `st-tea-stall-3` | 11 | 6 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station-cay` | `station-tea-stall` | 8 | 6 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station-cay-copy` | `station-tea-stall-copy` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station-simit` | `station-bagel-cart` | 2 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__cay-1` | `station__tea-stall-1` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-1--t1` | `station__tea-stall-1--t1` | 3 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-1--t2` | `station__tea-stall-1--t2` | 2 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-1-lit` | `station__tea-stall-1-lit` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-1-lit--t1` | `station__tea-stall-1-lit--t1` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-1-lit--t2` | `station__tea-stall-1-lit--t2` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-1_take1` | `station__tea-stall-1_take1` | 3 | 3 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-1_take2` | `station__tea-stall-1_take2` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-1_take3` | `station__tea-stall-1_take3` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-2` | `station__tea-stall-2` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-2--t1` | `station__tea-stall-2--t1` | 3 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-2--t2` | `station__tea-stall-2--t2` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-2_take1` | `station__tea-stall-2_take1` | 3 | 3 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-3` | `station__tea-stall-3` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-3--t1` | `station__tea-stall-3--t1` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-3--t2` | `station__tea-stall-3--t2` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-4` | `station__tea-stall-4` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-4--t1` | `station__tea-stall-4--t1` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-4--t2` | `station__tea-stall-4--t2` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-5` | `station__tea-stall-5` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-5--t1` | `station__tea-stall-5--t1` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-5--t2` | `station__tea-stall-5--t2` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-5-lit--t1` | `station__tea-stall-5-lit--t1` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-5-lit--t2` | `station__tea-stall-5-lit--t2` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__iskele-crates-1` | `station__harbor-crates-1` | 1 | 1 | common noun: iskele becomes harbor |
-| `station__iskele-horn-1` | `station__harbor-horn-1` | 1 | 1 | common noun: iskele becomes harbor |
-| `station__iskele-lamp-1` | `station__harbor-lamp-1` | 1 | 1 | common noun: iskele becomes harbor |
-| `station__simit-1` | `station__bagel-cart-1` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__simit-2` | `station__bagel-cart-2` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__simit-2--t1` | `station__bagel-cart-2--t1` | 2 | 2 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__simit-2--t2` | `station__bagel-cart-2--t2` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__simit-2--t3` | `station__bagel-cart-2--t3` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__simit-2--t4` | `station__bagel-cart-2--t4` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__simit-3` | `station__bagel-cart-3` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__simit-3--t1` | `station__bagel-cart-3--t1` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__simit-3--t2` | `station__bagel-cart-3--t2` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__simit-4` | `station__bagel-cart-4` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__simit-4--t1` | `station__bagel-cart-4--t1` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__simit-4--t2` | `station__bagel-cart-4--t2` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__simit-5` | `station__bagel-cart-5` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__simit-5--t1` | `station__bagel-cart-5--t1` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__simit-5--t2` | `station__bagel-cart-5--t2` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `tea-and-simit` | `tea-and-bagel-cart` | 3 | 3 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `test_the_approved_cay_scores_well_and_a_flat_stall_scores_low` | `test_the_approved_tea-stall_scores_well_and_a_flat_stall_scores_low` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `vapur` | `ferry` | 24 | 10 | common noun: vapur becomes ferry |
-| `vapur-2` | `ferry-2` | 1 | 1 | common noun: vapur becomes ferry |
-| `world-cay-1` | `world-tea-stall-1` | 4 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-1--normal` | `world-tea-stall-1--normal` | 3 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-1--round2` | `world-tea-stall-1--round2` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-1--round2__deep` | `world-tea-stall-1--round2__deep` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-1--round2__soft` | `world-tea-stall-1--round2__soft` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-1--softlock` | `world-tea-stall-1--softlock` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-1--softlock__deep` | `world-tea-stall-1--softlock__deep` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-1--softlock__soft` | `world-tea-stall-1--softlock__soft` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-1-glow` | `world-tea-stall-1-glow` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-1__deep` | `world-tea-stall-1__deep` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-1__soft` | `world-tea-stall-1__soft` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-2` | `world-tea-stall-2` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-2__deep` | `world-tea-stall-2__deep` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-2__soft` | `world-tea-stall-2__soft` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-3` | `world-tea-stall-3` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-3--unharmonized` | `world-tea-stall-3--unharmonized` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-3--unharmonized__deep` | `world-tea-stall-3--unharmonized__deep` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-3--unharmonized__soft` | `world-tea-stall-3--unharmonized__soft` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-3__deep` | `world-tea-stall-3__deep` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-3__soft` | `world-tea-stall-3__soft` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-4` | `world-tea-stall-4` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-4__deep` | `world-tea-stall-4__deep` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-4__soft` | `world-tea-stall-4__soft` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-5` | `world-tea-stall-5` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-5__deep` | `world-tea-stall-5__deep` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world-cay-5__soft` | `world-tea-stall-5__soft` | 2 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `world__iskele-island-s` | `world__harbor-island-s` | 1 | 1 | common noun: iskele becomes harbor |
+| `Ferry` | `ferry` | 3 | 2 | common noun: ferry becomes ferry |
+| `Home` | `home` | 103 | 45 | the home island as a concept becomes home |
+| `Home-edit` | `home-edit` | 2 | 1 | the home island as a concept becomes home |
+| `Home-template` | `home-template` | 1 | 1 | the home island as a concept becomes home |
+| `WorldHome` | `Worldhome` | 1 | 1 | the home island as a concept becomes home |
+| `glassHome` | `glasshome` | 7 | 1 | the home island as a concept becomes home |
+| `goHome` | `gohome` | 2 | 1 | the home island as a concept becomes home |
+| `islandHome` | `islandhome` | 1 | 1 | the home island as a concept becomes home |
+| `toHome` | `tohome` | 11 | 4 | the home island as a concept becomes home |
+| `uiHome` | `uihome` | 2 | 1 | the home island as a concept becomes home |
+| `worldHome` | `worldhome` | 1 | 1 | the home island as a concept becomes home |
 
 ## Content and docs ids (deferred: the design loop owns these)
 
-39 distinct identifiers, 113 occurrences in 38 files.
+5 distinct identifiers, 31 occurrences in 9 files.
 
 | Old | New | Occurrences | Files | Rule |
 |---|---|---|---|---|
-| `Ayar` | `tuning-lab` | 1 | 1 | common noun: ayar (the tuning panel) becomes tuning lab |
-| `AycicegiGameSkin` | `homeGameSkin` | 1 | 1 | the home island as a concept becomes home |
-| `SIMIT` | `BAGEL_CART` | 2 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `Simit` | `bagel-cart` | 7 | 5 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `Vapur` | `ferry` | 1 | 1 | common noun: vapur becomes ferry |
-| `arrival-iskele` | `arrival-harbor` | 3 | 1 | common noun: iskele becomes harbor |
-| `asset-iskele-crates-1` | `asset-harbor-crates-1` | 1 | 1 | common noun: iskele becomes harbor |
-| `asset-iskele-goat` | `asset-harbor-goat` | 1 | 1 | common noun: iskele becomes harbor |
-| `asset-iskele-horn-1` | `asset-harbor-horn-1` | 1 | 1 | common noun: iskele becomes harbor |
-| `asset-iskele-island-s` | `asset-harbor-island-s` | 1 | 1 | common noun: iskele becomes harbor |
-| `asset-iskele-lamp-1` | `asset-harbor-lamp-1` | 1 | 1 | common noun: iskele becomes harbor |
-| `aycicegi` | `home` | 4 | 2 | the home island as a concept becomes home |
-| `batch-14-iskele` | `batch-14-harbor` | 1 | 1 | common noun: iskele becomes harbor |
-| `cay` | `tea-stall` | 4 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-1` | `tea-stall-1` | 3 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-1--lock-light` | `tea-stall-1--lock-light` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-2` | `tea-stall-2` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay-3` | `tea-stall-3` | 5 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `cay1` | `tea-stall1` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `char-simit` | `char-bagel-cart` | 3 | 2 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `cl1-duo-vapur` | `cl1-duo-ferry` | 1 | 1 | common noun: vapur becomes ferry |
-| `icon-cay` | `icon-tea-stall` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `icon-piece-simit` | `icon-piece-bagel-cart` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `iskele` | `harbor` | 1 | 1 | common noun: iskele becomes harbor |
-| `island-aycicegi` | `island-home` | 23 | 22 | the home island as a concept becomes home |
-| `island-aycicegi-day-calm1` | `island-home-day-calm1` | 1 | 1 | the home island as a concept becomes home |
-| `island-aycicegi-day-calm2` | `island-home-day-calm2` | 1 | 1 | the home island as a concept becomes home |
-| `island-iskele` | `island-harbor` | 8 | 7 | common noun: iskele becomes harbor |
-| `simit` | `bagel-cart` | 8 | 7 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `simit-1` | `bagel-cart-1` | 3 | 2 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `sprite__simit` | `sprite__bagel-cart` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station-cay` | `station-tea-stall` | 3 | 2 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station-simit` | `station-bagel-cart` | 2 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `station__cay-1` | `station__tea-stall-1` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-1--t1` | `station__tea-stall-1--t1` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__cay-2` | `station__tea-stall-2` | 1 | 1 | common noun: cay ocagi (Mochi's tea stall) becomes tea stall |
-| `station__simit-1` | `station__bagel-cart-1` | 1 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `tea-and-simit` | `tea-and-bagel-cart` | 2 | 1 | common noun: the simit stall becomes bagel cart (the kitten `simit-kitten` keeps its name) |
-| `vapur` | `ferry` | 10 | 5 | common noun: vapur becomes ferry |
+| `Home` | `home` | 19 | 8 | the home island as a concept becomes home |
+| `HomeView` | `homeView` | 2 | 1 | the home island as a concept becomes home |
+| `WorldHome` | `Worldhome` | 8 | 1 | the home island as a concept becomes home |
+| `islandHome` | `islandhome` | 1 | 1 | the home island as a concept becomes home |
+| `worldHome` | `worldhome` | 1 | 1 | the home island as a concept becomes home |

@@ -21,7 +21,7 @@ links:
   - asset-ui-pot-empty
   - asset-ui-lantern-off
   - asset-icon-island
-  - asset-icon-cay
+  - asset-icon-tea-stall
   - asset-appicon-draft
 sources:
 - doc: docs/adr/0018-visual-system-v1.md

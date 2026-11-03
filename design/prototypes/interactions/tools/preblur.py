@@ -251,11 +251,11 @@ def _plate(key):
 # shows the highest one below it, with a level badge).
 # workshop-2 (batch 05) is left out: it was edited from workshop-1's master, which lost the left of
 # its roof to the registration shift, so the edit is cut too; regenerate it from the padded re-lock.
-STATION_LEVELS = {"cay": 5, "garden": 5, "pond": 5, "windmill": 5, "workshop": 1}
+STATION_LEVELS = {"tea-stall": 5, "garden": 5, "pond": 5, "windmill": 5, "workshop": 1}
 
 APP_SOURCES = {
     # The app draws the lock-light bakes (WorldGrade grades them at runtime); "softlock" also bakes a
-    # soft-lock master as <name>--softlock to compare (WorldLook.ArtSet), for cay-1 only now.
+    # soft-lock master as <name>--softlock to compare (WorldLook.ArtSet), for tea-stall-1 only now.
     "island-main": _plate(APP_PLATE_MASTER),
     **{f"{st}-{lvl}": _station(f"{st}-{lvl}") for st, n in STATION_LEVELS.items() for lvl in range(1, n + 1)},
     # Characters: Mochi v2 (batch 03) and Findik (batch 03), 30 and 28 units wide, feet on the anchor.
@@ -277,20 +277,20 @@ APP_SOURCES = {
     "cloud-4": _sky("cloud-4", 260),
     "cloud-sea": _sky("cloud-sea", 520),
 }
-APP_SOURCES["cay-1"]["softlock"] = "design/art/stations/cay-1/cay-1.png"
+APP_SOURCES["tea-stall-1"]["softlock"] = "design/art/stations/tea-stall-1/tea-stall-1.png"
 # Night overlays of practical lights (look round 4): the batch-07 "lit" edit of a station, reduced to
 # what the light changed (its flame), drawn after the grade at night so it is never crushed by it.
 # Not a harmony source: it is light, not paint.
-APP_SOURCES["cay-1-glow"] = {**_station("cay-1-lit"), "emissive_of": (345, 570, 430, 635), "single": True, "harmony": False}
+APP_SOURCES["tea-stall-1-glow"] = {**_station("tea-stall-1-lit"), "emissive_of": (345, 570, 430, 635), "single": True, "harmony": False}
 # The plates to compare (look round 4: the founder chooses between v2 and v3), baked as
 # island-main-band<k>--v2 with v2's own harmony correction.
 PLATE_COMPARE = {"--v2": "island-main-l-v2"}
 # Look round 2's warm copper (the çaydanlık's hue moved from 54 to 59), kept only to compare in the
 # teapot sheet: the colour script (look round 3) keeps the rose copper as an accent instead.
-ROUND2_COPPER = {"cay-1": {"rose-copper": {"hue_shift": 6.97, "chroma_scale": 1.09}}}
+ROUND2_COPPER = {"tea-stall-1": {"rose-copper": {"hue_shift": 6.97, "chroma_scale": 1.09}}}
 # The uncorrected bake is kept to compare only where it tells a story; every other sprite ships
 # corrected only (the catalog would double otherwise).
-UNHARMONIZED_COMPARE = {"island-main", "cay-3", "windmill-4"}
+UNHARMONIZED_COMPARE = {"island-main", "tea-stall-3", "windmill-4"}
 # The home plate's depth bands in world y (larger is nearer): back lawn, middle lawn, front lawn
 # and lip, earth body, cut at these fractions of the lawn's half depth. Their depths are generated
 # into WorldArt.generatedPlate.

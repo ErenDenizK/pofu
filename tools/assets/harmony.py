@@ -14,7 +14,7 @@ opaque pixels, at the same world scale:
   materials        per-material hue and chroma where the material library (design/art/materials.json)
                    detects one (the rose copper on the çaydanlık)
 
-Station level chains (cay-1 ... cay-5) are also matched along the chain: every level was redrawn
+Station level chains (tea-stall-1 ... tea-stall-5) are also matched along the chain: every level was redrawn
 from its locked parent and locked again, so each level lost about 30 % chroma (the çay ocağı's
 median chroma fell 31 -> 11 from L1 to L5). A level's black point, white point and median chroma
 (C_p50) are matched to its chain's L1 as corrected, and the chroma correction may go as far as the
@@ -156,7 +156,7 @@ def catalog_sources(cfg: dict, shipped: dict[str, dict]) -> dict[str, dict]:
 
 
 def chain_of(name: str, cfg: dict) -> tuple[str, int] | None:
-    """(chain, level) for a station level such as cay-3, else None."""
+    """(chain, level) for a station level such as tea-stall-3, else None."""
     spec = cfg.get("chains")
     if not spec:
         return None

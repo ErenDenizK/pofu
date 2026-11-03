@@ -1,0 +1,118 @@
+{
+  "job": "bagel-cart-3",
+  "batch": "batch-05-fixes",
+  "asset": "station__bagel-cart-3",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-02T18:56:55+00:00",
+  "image": "design/art/stations/bagel-cart-3/bagel-cart-3.png",
+  "raw": "design/art/stations/bagel-cart-3/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "135efb39d9fac2ed",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nAdd a short upright wooden pole at the cart's front left corner\nwith eight golden-brown bagel-cart rings stacked on it, the same rings\nas on the tray, the pole's top below the umbrella.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/bagel-cart-2/bagel-cart-2.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-02T18:56:25+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 0,
+    "dy": 0
+  },
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 47 (R1 51)",
+        "value": 46.6
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 52 (R1 59)",
+        "value": 51.5
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 2.3 (R1 5.3)",
+        "value": 2.29
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.8",
+        "value": 0.7646
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.4, p95 5.4, off-palette 0.4% (top: #995522 (0.1%), #884411 (0.1%))",
+        "value": 1.433
+      },
+      {
+        "check": "station_anchor",
+        "status": "pass",
+        "message": "on the parent's anchor",
+        "value": 901.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 78 against the world reference (outliers: L_p98, edge)",
+        "value": 78.4
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "99% of the parent level unchanged",
+        "value": 0.9875
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.05 of the parent level (drift compounds along a chain)",
+        "value": 1.0456
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending"
+}

@@ -49,15 +49,15 @@ blocked_on: ["..."]             # required when blocked
 refs: {alias: path}             # extra reference aliases (config.yaml has the shared ones)
 defaults: {variants: 2}
 jobs:
-  - id: cay-2                   # kebab-case, unique
+  - id: tea-stall-2                   # kebab-case, unique
     kind: station               # char | station | world | prop | plate | sheet | icon | ui | widget | appicon
-    name: cay-2                 # output stem: station__cay-2--t<n>.png (default: id)
+    name: tea-stall-2                 # output stem: station__tea-stall-2--t<n>.png (default: id)
     size: 1024x1024             # requested size (default per kind)
     canvas: 1024x1024           # normalized canvas (default per kind; widget 1536x720)
     transparent: true           # default: false for plate, widget, appicon
     key: green                  # chroma-key fallback color: green, or blue for green assets
     variants: 2                 # takes to keep per round, 1-4 (config caps at 3 per run)
-    edit_of: cay-1              # an edit of that job's approved master (attached first; needs the edit-keep-v1 block)
+    edit_of: tea-stall-1              # an edit of that job's approved master (attached first; needs the edit-keep-v1 block)
     chat: "Pofu · Çay ocağı"    # ChatGPT chat name for the manual backend
     attach:                     # alias, repo path, palette:<name>, or approved:<job-id>; role is required
       - {ref: station-guide, role: "The composition guide ..."}

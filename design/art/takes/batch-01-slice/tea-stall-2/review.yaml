@@ -1,0 +1,147 @@
+batch: batch-01-slice
+contact_sheet: design/art/takes/batch-01-slice/tea-stall-2/contact.jpg
+jobs:
+  tea-stall-2:
+    pick: 2
+    note: auto-picked by QA; founder review pending
+    takes:
+      t1:
+        qa: warn
+        summary: station_anchor warn
+      t2:
+        qa: warn
+        summary: station_anchor warn
+    approved:
+      take: 2
+      at: '2026-11-02T14:31:40+00:00'
+upload_notes:
+- Two fresh takes generated for this continuation; replaced earlier unpromoted tea-stall-2
+  archives.
+- raw.png not uploaded (over 600 KB); the q90 takes are the record
+qa_reports:
+  station__tea-stall-2--t1:
+    job: tea-stall-2
+    take: 1
+    status: warn
+    preset: soft-lock
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 26 (R1 51)
+      value: 26.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 65.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.32
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 8.8
+      value: 8.8103
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 1.9, off-palette 0.0%
+      value: 0.8508
+    - check: station_anchor
+      status: warn
+      message: top y 85 above the height bar (150)
+      value: 901.0
+    - check: edit_stability
+      status: pass
+      message: 95% of the parent level unchanged
+      value: 0.9507
+    info:
+      metrics_raw:
+        L_p5: 58.3
+        L_p50: 73.7
+        L_p95: 90.1
+        C_p50: 30.9
+        C_p95: 36.7
+        C_p99: 46.3
+        detail: 2.36
+      metrics_locked:
+        L_p5: 65.1
+        L_p50: 77.2
+        L_p95: 89.8
+        C_p50: 22.1
+        C_p95: 26.0
+        C_p99: 32.6
+        detail: 1.32
+    fingerprint: 0e67e6ef4a848e91
+  station__tea-stall-2--t2:
+    job: tea-stall-2
+    take: 2
+    status: warn
+    preset: soft-lock
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 25 (R1 51)
+      value: 25.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 65.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.29
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 8.6
+      value: 8.6355
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.7, p95 1.6, off-palette 0.0%
+      value: 0.7397
+    - check: station_anchor
+      status: warn
+      message: top y 115 above the height bar (150)
+      value: 901.0
+    - check: edit_stability
+      status: pass
+      message: 90% of the parent level unchanged
+      value: 0.8965
+    info:
+      metrics_raw:
+        L_p5: 58.8
+        L_p50: 73.9
+        L_p95: 91.1
+        C_p50: 31.4
+        C_p95: 35.3
+        C_p99: 45.9
+        detail: 2.29
+      metrics_locked:
+        L_p5: 65.4
+        L_p50: 77.3
+        L_p95: 90.6
+        C_p50: 22.5
+        C_p95: 25.2
+        C_p99: 32.4
+        detail: 1.29
+    fingerprint: 0e67e6ef4a848e91

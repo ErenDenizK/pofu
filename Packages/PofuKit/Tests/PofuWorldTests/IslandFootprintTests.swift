@@ -74,7 +74,7 @@ struct IslandFootprintTests {
     }
 
     @Test func clampingPullsAnOverhangBackOntoTheLawn() throws {
-        let footprint = IslandFootprint.footprint(of: "cay-1")
+        let footprint = IslandFootprint.footprint(of: "tea-stall-1")
         let outside = WorldPoint(x: 220, y: 10)
         #expect(!IslandFootprint.fits(footprint, at: outside))
         let clamped = IslandFootprint.clamped(outside, footprint: footprint)

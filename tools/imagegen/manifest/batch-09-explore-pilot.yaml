@@ -32,7 +32,7 @@ defaults:
 
 jobs:
   - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
-  - {id: cay-1, kind: station, name: cay-1, external: batch-01-slice}
+  - {id: tea-stall-1, kind: station, name: tea-stall-1, external: batch-01-slice}
   - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island}
 
   - id: x-icon-seed
@@ -49,7 +49,7 @@ jobs:
     attach:
       - ref: R1
         role: "Style reference only: the hamster's soft painting and pastel colors."
-      - ref: approved:cay-1
+      - ref: approved:tea-stall-1
         role: "Style reference for objects: how a prop is painted in this world (matte, simple, high key)."
       - ref: palette:world-props
         role: "The palette card for props."
@@ -80,7 +80,7 @@ jobs:
         role: "Mochi, the bunny neighbor: draw her exactly like this."
       - ref: approved:island-main-s
         role: "The floating island: same painting, camera and colors."
-      - ref: approved:cay-1
+      - ref: approved:tea-stall-1
         role: "The tea stall on the island: same style."
       - ref: palette:world-day
         role: "The palette card: use only these colors (and mixes of them)."
@@ -113,7 +113,7 @@ jobs:
     attach:
       - ref: approved:island-main-s
         role: "The floating island: same painting, camera and colors."
-      - ref: approved:cay-1
+      - ref: approved:tea-stall-1
         role: "The tea stall: same style."
       - ref: R1
         role: "Pofu, the hamster: same design, colors, fur and face."

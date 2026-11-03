@@ -39,7 +39,7 @@ blocked_on:
   - "delivered and merged (#87, #94); closed 2026-11-03, see the Log in docs/design/art-production-plan.md"
 
 refs:
-  cay-1: design/art/stations/cay-1/cay-1.png
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
 
 defaults:
   variants: 2
@@ -54,7 +54,7 @@ jobs:
     attach:
       - ref: R1
         role: "Style reference only: the hamster's soft painting and pastel colors."
-      - ref: cay-1
+      - ref: tea-stall-1
         role: "Style reference for objects: how a prop is painted in this world (matte, simple, high key)."
       - ref: palette:world-props
         role: "The palette card for props."
@@ -73,7 +73,7 @@ jobs:
     chat: "Pofu · UI objects"
     notes: "Ship 56 x 72 pt. The seed jar, one continuous fill (revealed bottom-up by a drawn wavy mask over this image)."
     attach:
-      - ref: cay-1
+      - ref: tea-stall-1
         role: "Style reference for objects: how a prop is painted in this world."
       - ref: palette:world-props
         role: "The palette card for props."
@@ -109,7 +109,7 @@ jobs:
     chat: "Pofu · UI objects"
     notes: "Ship 30 x 96 pt. The calm lantern on a short post; the glow is code."
     attach:
-      - ref: cay-1
+      - ref: tea-stall-1
         role: "Style reference for objects: how a prop is painted in this world."
       - ref: palette:world-props
         role: "The palette card for props."
@@ -147,7 +147,7 @@ jobs:
     chat: "Pofu · UI objects"
     notes: "Ship 36 x 56 pt. One pot per reach; a socket. The bloom and the bud are edits of it."
     attach:
-      - ref: cay-1
+      - ref: tea-stall-1
         role: "Style reference for objects: how a prop is painted in this world."
       - ref: palette:world-props
         role: "The palette card for props."

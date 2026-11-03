@@ -15,7 +15,7 @@ import XCTest
 /// - `look-script`: the colour script's five hour cells at Home and at the
 ///   Island (the art director's strip);
 /// - `look-teapot`: the çaydanlık at level 1 unlit, lit by the ember, and
-///   with cay-1-lit's painted flame (look round 4), by day and night;
+///   with tea-stall-1-lit's painted flame (look round 4), by day and night;
 /// - `look-plates`: the shipped v3 plate and batch 03's v2, to choose;
 /// - `look-motion`: six frames of a Home → Island flight with depth in
 ///   motion, over the same frames without it;
@@ -147,7 +147,7 @@ final class LookScreenshotTests: XCTestCase {
         let variants: [(String, Bool, Bool)] = [
             ("rose copper, unlit", false, false),
             ("lit by the ember (round 3)", true, false),
-            ("+ cay-1-lit's flame (round 4)", true, true),
+            ("+ tea-stall-1-lit's flame (round 4)", true, true),
         ]
         var rows: [[UIImage]] = []
         var titles: [[String]] = []

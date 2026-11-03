@@ -43,7 +43,7 @@ def test_broken_link_is_an_error(tmp_path):
 
 def test_duplicate_id_and_file_name(tmp_path):
     root = copy_content(tmp_path)
-    shutil.copy(root / "stations/station-cay.yaml", root / "stations/station-cay-copy.yaml")
+    shutil.copy(root / "stations/station-cay.yaml", root / "stations/station-tea-stall-copy.yaml")
     errors, _, _ = validate.validate(root)
     assert any("duplicate id" in e for e in errors)
     assert any("file name must be the id" in e for e in errors)
@@ -51,14 +51,14 @@ def test_duplicate_id_and_file_name(tmp_path):
 
 def test_missing_art_path_is_an_error(tmp_path):
     root = copy_content(tmp_path)
-    edit(root, "assets/asset-cay-1.yaml", art={"images": ["design/art/nope.png"], "jobs": ["batch-01-slice:cay-1"]})
+    edit(root, "assets/asset-tea-stall-1.yaml", art={"images": ["design/art/nope.png"], "jobs": ["batch-01-slice:tea-stall-1"]})
     errors, _, _ = validate.validate(root)
     assert any("design/art/nope.png" in e for e in errors)
 
 
 def test_unknown_job_and_bad_anchor(tmp_path):
     root = copy_content(tmp_path)
-    edit(root, "assets/asset-cay-1.yaml", art={"images": [], "jobs": ["batch-01-slice:no-such-job"]},
+    edit(root, "assets/asset-tea-stall-1.yaml", art={"images": [], "jobs": ["batch-01-slice:no-such-job"]},
          sources=[{"doc": "docs/product/game-design.md", "anchor": "#no-such-heading"}])
     errors, _, _ = validate.validate(root)
     assert any("no-such-job" in e for e in errors)

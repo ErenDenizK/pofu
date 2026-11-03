@@ -47,9 +47,9 @@ jobs:
     name: island-main-s
     external: batch-01-slice
 
-  - id: cay-1
+  - id: tea-stall-1
     kind: station
-    name: cay-1
+    name: tea-stall-1
     external: batch-01-slice
 
   - id: garden-2
@@ -57,9 +57,9 @@ jobs:
     name: garden-2
     external: batch-01-slice
 
-  - id: simit-1
+  - id: bagel-cart-1
     kind: station
-    name: simit-1
+    name: bagel-cart-1
     external: batch-01-slice
 
   - id: mochi
@@ -100,7 +100,7 @@ jobs:
     chat: "Pofu · Residents"
     notes: "Working pose (game design section 15: residents get a working and an idle pose as edits). Idle is mochi-v2."
     attach:
-      - ref: approved:cay-1
+      - ref: approved:tea-stall-1
         role: "The tea stall she runs: paint the tea glass and saucer exactly like the ones on its counter (do not draw the stall)."
     prompt:
       - text: |
@@ -342,10 +342,10 @@ jobs:
       - block: edit-keep-v1
 
   # --------------------------------------------- simit cart L2-L5
-  - id: simit-2
+  - id: bagel-cart-2
     kind: station
-    name: simit-2
-    edit_of: simit-1
+    name: bagel-cart-2
+    edit_of: bagel-cart-1
     chat: "Pofu · Simit cart"
     prompt:
       - text: |
@@ -355,10 +355,10 @@ jobs:
           top of the canvas with a clear margin.
       - block: edit-keep-v1
 
-  - id: simit-3
+  - id: bagel-cart-3
     kind: station
-    name: simit-3
-    edit_of: simit-2
+    name: bagel-cart-3
+    edit_of: bagel-cart-2
     chat: "Pofu · Simit cart"
     prompt:
       - text: |
@@ -367,10 +367,10 @@ jobs:
           as on the tray, the pole's top below the umbrella.
       - block: edit-keep-v1
 
-  - id: simit-4
+  - id: bagel-cart-4
     kind: station
-    name: simit-4
-    edit_of: simit-3
+    name: bagel-cart-4
+    edit_of: bagel-cart-3
     chat: "Pofu · Simit cart"
     prompt:
       - text: |
@@ -379,10 +379,10 @@ jobs:
           cart's tray.
       - block: edit-keep-v1
 
-  - id: simit-5
+  - id: bagel-cart-5
     kind: station
-    name: simit-5
-    edit_of: simit-4
+    name: bagel-cart-5
+    edit_of: bagel-cart-4
     chat: "Pofu · Simit cart"
     prompt:
       - text: |
@@ -402,7 +402,7 @@ jobs:
     attach: &station_l1
       - ref: station-guide
         role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
-      - ref: approved:cay-1
+      - ref: approved:tea-stall-1
         role: "P-station, the approved tea stall: match its style, camera, light, colors and scale exactly (do not draw the stall)."
       - ref: approved:island-main-s
         role: "The island this station stands on: same camera and softness."

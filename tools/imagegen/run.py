@@ -2,9 +2,9 @@
 """Pofu image pipeline: manifest -> generation -> style lock and QA -> review -> masters.
 
     python3 -I tools/imagegen/run.py plan     --manifest tools/imagegen/manifest/batch-01-slice.yaml
-    python3 -I tools/imagegen/run.py prompt   --manifest ... --job cay-1
+    python3 -I tools/imagegen/run.py prompt   --manifest ... --job tea-stall-1
     python3 -I tools/imagegen/run.py run      --manifest ... [--backend codex|manual|openai-api] [--only ID ...] [--dry-run]
-    python3 -I tools/imagegen/run.py ingest   --manifest ... --job cay-1 ~/Downloads/file.png [...]
+    python3 -I tools/imagegen/run.py ingest   --manifest ... --job tea-stall-1 ~/Downloads/file.png [...]
     python3 -I tools/imagegen/run.py post     --manifest ...
     python3 -I tools/imagegen/run.py promote  --manifest ...
     python3 -I tools/imagegen/run.py palette-card --palette world-props --out design/reference/palette-card-world-props.png
@@ -34,6 +34,7 @@ sys.path.insert(0, str(HERE))
 import backends as be  # noqa: E402
 import check_upload as cu  # noqa: E402
 import pipeline as pl  # noqa: E402
+from legacy_ids import canonical  # noqa: E402
 import qa  # noqa: E402
 import review as rv  # noqa: E402
 import style_lock as sl  # noqa: E402
@@ -153,7 +154,7 @@ def cmd_run(args, config, m: pl.Manifest) -> int:
     per_job_cap = min(args.takes or rate["max_takes_per_job"], rate["max_takes_per_job"])
     inbox = pl.inbox_dir(config, m.batch)
     log_path = pl.build_dir(config, m.batch) / "run-log.jsonl"
-    jobs = [j for j in m.jobs if not args.only or j.id in args.only]
+    jobs = [j for j in m.jobs if not args.only or j.id in [canonical(o) for o in args.only]]
 
     if args.backend == "manual":
         problem = generation_gate(m, config, "manual")
@@ -345,7 +346,7 @@ def cmd_post(args, config, m: pl.Manifest) -> int:
     rows, takes_by_job = [], {}
     worst = "pass"
     for job in m.jobs:
-        if args.only and job.id not in args.only:
+        if args.only and job.id not in [canonical(o) for o in args.only]:
             continue
         takes = existing_takes(job, inbox)
         if not takes:
@@ -359,7 +360,7 @@ def cmd_post(args, config, m: pl.Manifest) -> int:
                 parent_img = Image.open(pl.approved_image(pj)).copy()
                 # The edit is drawn on the approved master, which is already
                 # on the anchor: applying the chain root's registration again
-                # moved simit-2 and workshop-2 110 px off their parent and
+                # moved bagel-cart-2 and workshop-2 110 px off their parent and
                 # failed edit_stability (batch 03). align_to_parent handles
                 # any drift the edit itself introduces.
                 registration = dict(qa.EDIT_REGISTRATION)

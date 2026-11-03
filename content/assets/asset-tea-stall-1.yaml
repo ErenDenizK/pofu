@@ -1,0 +1,26 @@
+id: asset-tea-stall-1
+type: asset
+title_tr: tea-stall-1
+title_en: tea-stall-1 (station)
+status: in-app
+horizon: now
+summary: >-
+  A tiny Turkish tea stall (çay ocağı) for the island diorama. A small, rounded, chunky wooden
+  counter in soft honey wood; on it a Turkish double teapot (çaydanlık: a small pot stacked
+  on a larger one) in soft, muted rose-copper on a little round burner, and two tulip-shaped
+  tea glasses of warm amber tea on tiny cream saucers. Friendly, toy-like proportions with
+  few parts. The counter fills the lower half of the height…
+art:
+  images:
+  - design/art/stations/tea-stall-1/tea-stall-1.png
+  jobs:
+  - batch-01-slice:tea-stall-1
+sources:
+- doc: tools/imagegen/manifest/batch-01-slice.yaml
+kind: station
+batch: batch-01-slice
+links:
+  inspired_by:
+  - asset-test01-tea-stall-1-t1
+  - asset-test01-tea-stall-1-t2
+  - asset-test01-tea-stall-1-t3

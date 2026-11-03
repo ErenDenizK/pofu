@@ -101,7 +101,7 @@ def layout():
     ell(0, 0, 124, 42, (214, 236, 196), STAGE_COL[0])
     # terrace
     ell(0, -66, 132, 34, (232, 244, 220), STAGE_COL[3])
-    slots = [("Sunflower garden", -66, -4, 0), ("Çay ocağı", 64, -2, 1), ("Simit stand", -132, 16, 2), ("Lily pond", 132, 18, 2),
+    slots = [("Sunflower garden", -66, -4, 0), ("Çay ocağı", 64, -2, 1), ("bagel-cart stand", -132, 16, 2), ("Lily pond", 132, 18, 2),
              ("Library", -62, -74, 3), ("Workshop", 62, -70, 3), ("Observatory", 226, -118, 4), ("Hamam", -222, -92, 5)]
     f, fs = font(24), font(19, False)
 

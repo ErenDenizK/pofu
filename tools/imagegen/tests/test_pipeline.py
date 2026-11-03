@@ -17,9 +17,9 @@ import pipeline as pl  # noqa: E402
 BASE = {
     "batch": "test-batch",
     "jobs": [
-        {"id": "cay-1", "kind": "station", "attach": [{"ref": "station-guide", "role": "the guide"}],
+        {"id": "tea-stall-1", "kind": "station", "attach": [{"ref": "station-guide", "role": "the guide"}],
          "prompt": [{"text": "A tea stall."}, {"block": "view-v2"}, {"block": "prop-style-v2"}]},
-        {"id": "cay-2", "kind": "station", "edit_of": "cay-1",
+        {"id": "tea-stall-2", "kind": "station", "edit_of": "tea-stall-1",
          "prompt": [{"text": "Add an awning."}, {"block": "edit-keep-v1"}]},
     ],
 }
@@ -35,21 +35,21 @@ def manifest(**changes):
 class ParseTests(unittest.TestCase):
     def test_valid_manifest(self):
         m = pl.parse_manifest(manifest(), REFS)
-        self.assertEqual([j.id for j in m.jobs], ["cay-1", "cay-2"])
-        j = m.job("cay-1")
-        self.assertEqual((j.kind, j.name, j.size, j.canvas, j.transparent), ("station", "cay-1", (1024, 1024), (1024, 1024), True))
-        self.assertEqual(j.take_file(2), "station__cay-1--t2.png")
+        self.assertEqual([j.id for j in m.jobs], ["tea-stall-1", "tea-stall-2"])
+        j = m.job("tea-stall-1")
+        self.assertEqual((j.kind, j.name, j.size, j.canvas, j.transparent), ("station", "tea-stall-1", (1024, 1024), (1024, 1024), True))
+        self.assertEqual(j.take_file(2), "station__tea-stall-1--t2.png")
 
     def test_parents_come_first(self):
         data = manifest()
         data["jobs"].reverse()
-        self.assertEqual([j.id for j in pl.parse_manifest(data, REFS).jobs], ["cay-1", "cay-2"])
+        self.assertEqual([j.id for j in pl.parse_manifest(data, REFS).jobs], ["tea-stall-1", "tea-stall-2"])
 
     def test_rejections(self):
         cases = {
             "unknown kind": lambda d: d["jobs"][0].update(kind="sprite"),
-            "bad id": lambda d: d["jobs"][0].update(id="Cay 1"),
-            "duplicate id": lambda d: d["jobs"][1].update(id="cay-1"),
+            "bad id": lambda d: d["jobs"][0].update(id="tea-stall 1"),
+            "duplicate id": lambda d: d["jobs"][1].update(id="tea-stall-1"),
             "unknown block": lambda d: d["jobs"][0]["prompt"].append({"block": "nope"}),
             "attachment without role": lambda d: d["jobs"][0].update(attach=[{"ref": "R1"}]),
             "too many variants": lambda d: d["jobs"][0].update(variants=9),
@@ -57,7 +57,7 @@ class ParseTests(unittest.TestCase):
             "unknown parent": lambda d: d["jobs"][1].update(edit_of="nope"),
             "bad size": lambda d: d["jobs"][0].update(size="big"),
             "transparent app icon": lambda d: d["jobs"][0].update(kind="appicon", transparent=True),
-            "same output twice": lambda d: d["jobs"][1].update(name="cay-1"),
+            "same output twice": lambda d: d["jobs"][1].update(name="tea-stall-1"),
         }
         for label, mutate in cases.items():
             with self.subTest(label):
@@ -68,7 +68,7 @@ class ParseTests(unittest.TestCase):
 
     def test_cycle(self):
         data = manifest()
-        data["jobs"][0]["attach"].append({"ref": "approved:cay-2", "role": "x"})
+        data["jobs"][0]["attach"].append({"ref": "approved:tea-stall-2", "role": "x"})
         with self.assertRaisesRegex(pl.ManifestError, "cycle"):
             pl.parse_manifest(data, REFS)
 
@@ -85,17 +85,17 @@ class ParseTests(unittest.TestCase):
 
     def test_external_parent_from_another_batch(self):
         data = manifest()
-        data["jobs"][0] = {"id": "cay-1", "kind": "station", "external": "batch-01-slice"}
+        data["jobs"][0] = {"id": "tea-stall-1", "kind": "station", "external": "batch-01-slice"}
         m = pl.parse_manifest(data, REFS)
-        self.assertEqual(m.job("cay-1").external, "batch-01-slice")
-        self.assertEqual(m.job("cay-1").prompt, [])
-        self.assertEqual(pl.approved_image(m.job("cay-1")), pl.ART_ROOT / "stations" / "cay-1" / "cay-1.png")
-        self.assertEqual(pl.dependencies(m.job("cay-2")), ["cay-1"])
-        for label, extra in {"edit": {"edit_of": "cay-2"}, "attach": {"attach": [{"ref": "R1", "role": "x"}]},
+        self.assertEqual(m.job("tea-stall-1").external, "batch-01-slice")
+        self.assertEqual(m.job("tea-stall-1").prompt, [])
+        self.assertEqual(pl.approved_image(m.job("tea-stall-1")), pl.ART_ROOT / "stations" / "tea-stall-1" / "tea-stall-1.png")
+        self.assertEqual(pl.dependencies(m.job("tea-stall-2")), ["tea-stall-1"])
+        for label, extra in {"edit": {"edit_of": "tea-stall-2"}, "attach": {"attach": [{"ref": "R1", "role": "x"}]},
                              "bad batch": {"external": "Batch 01"}}.items():
             with self.subTest(label):
                 bad = manifest()
-                bad["jobs"][0] = {"id": "cay-1", "kind": "station", "external": "batch-01-slice", **extra}
+                bad["jobs"][0] = {"id": "tea-stall-1", "kind": "station", "external": "batch-01-slice", **extra}
                 with self.assertRaises(pl.ManifestError):
                     pl.parse_manifest(bad, REFS)
 
@@ -139,18 +139,18 @@ class ParseTests(unittest.TestCase):
         # a recolor or region edit says so; a plain edit does not need to
         self.assertEqual(m.job("game-plot-tile-rose").acceptance["edit_mode"], "recolor")
         self.assertEqual(m.job("ui-lantern-on").acceptance["edit_mode"], "region")
-        # no pilot cascade: the harbor props do not wait for the ferry, the goat not for Simit
+        # no pilot cascade: the harbor props do not wait for the ferry, the goat not for bagel-cart
         deps = {j.id: pl.dependencies(j) for j in todo}
-        self.assertNotIn("iskele-vapur-1", deps["iskele-crates-1"] + deps["iskele-horn-1"] + deps["iskele-lamp-1"])
-        self.assertNotIn("simit-kitten", deps["iskele-goat"])
+        self.assertNotIn("harbor-ferry-1", deps["harbor-crates-1"] + deps["harbor-horn-1"] + deps["harbor-lamp-1"])
+        self.assertNotIn("simit-kitten", deps["harbor-goat"])
         self.assertTrue(all("ui-sheet-paper" not in deps[j.id] for j in todo if j.id.startswith("icon-")))
 
     def test_external_master_at_its_own_path(self):
         data = manifest()
         r1 = "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png"
-        data["jobs"][0] = {"id": "cay-1", "kind": "station", "external": "r1", "master": r1}
+        data["jobs"][0] = {"id": "tea-stall-1", "kind": "station", "external": "r1", "master": r1}
         m = pl.parse_manifest(data, REFS)
-        self.assertEqual(pl.approved_image(m.job("cay-1")), (pl.REPO_ROOT / r1).resolve())
+        self.assertEqual(pl.approved_image(m.job("tea-stall-1")), (pl.REPO_ROOT / r1).resolve())
         bad = manifest()
         bad["jobs"][0]["master"] = r1  # only an external job may name its image
         with self.assertRaises(pl.ManifestError):
@@ -160,7 +160,7 @@ class ParseTests(unittest.TestCase):
 class PromptTests(unittest.TestCase):
     def test_blocks_are_verbatim_and_refs_listed_in_order(self):
         m = pl.parse_manifest(manifest(), REFS)
-        p = pl.compose_prompt(m.job("cay-1"))
+        p = pl.compose_prompt(m.job("tea-stall-1"))
         self.assertIn(pl.read_block("view-v2"), p)
         self.assertIn(pl.read_block("prop-style-v2"), p)
         self.assertTrue(p.startswith("REFERENCES (attached, in this order):\n1. the guide"))
@@ -168,16 +168,16 @@ class PromptTests(unittest.TestCase):
 
     def test_edit_attaches_parent_first(self):
         m = pl.parse_manifest(manifest(), REFS)
-        refs = pl.attachments_for(m.job("cay-2"))
-        self.assertEqual(refs[0].ref, "approved:cay-1")
-        self.assertEqual(pl.resolve_ref(refs[0].ref, m), pl.approved_image(m.job("cay-1")))
-        self.assertIn("1. The image to edit", pl.compose_prompt(m.job("cay-2")))
+        refs = pl.attachments_for(m.job("tea-stall-2"))
+        self.assertEqual(refs[0].ref, "approved:tea-stall-1")
+        self.assertEqual(pl.resolve_ref(refs[0].ref, m), pl.approved_image(m.job("tea-stall-1")))
+        self.assertIn("1. The image to edit", pl.compose_prompt(m.job("tea-stall-2")))
 
     def test_chroma_fallback_line(self):
         data = manifest()
         data["jobs"][0]["key"] = "blue"
         m = pl.parse_manifest(data, REFS)
-        line = pl.output_line(m.job("cay-1"), "chroma")
+        line = pl.output_line(m.job("tea-stall-1"), "chroma")
         self.assertIn("#0000FF", line)
         self.assertNotIn("transparent", line)
 
@@ -232,12 +232,12 @@ class ShippedManifestTests(unittest.TestCase):
         self.assertTrue(all(j.variants == 2 for j in made))
         for station in ("pond", "workshop", "windmill"):
             first = m.job(f"{station}-1")
-            self.assertEqual([a.ref for a in first.attach][:2], ["station-guide", "approved:cay-1"])
+            self.assertEqual([a.ref for a in first.attach][:2], ["station-guide", "approved:tea-stall-1"])
             for level in range(2, 6):
                 self.assertEqual(m.job(f"{station}-{level}").edit_of, f"{station}-{level - 1}")
         # chains batch 01 started continue from its masters
         self.assertEqual((m.job("garden-3").edit_of, m.job("garden-2").external), ("garden-2", "batch-01-slice"))
-        self.assertEqual((m.job("simit-2").edit_of, m.job("simit-1").external), ("simit-1", "batch-01-slice"))
+        self.assertEqual((m.job("bagel-cart-2").edit_of, m.job("bagel-cart-1").external), ("bagel-cart-1", "batch-01-slice"))
         # founder feedback: Mochi loses Pofu's curl; Fındık never gets one
         self.assertEqual(m.job("mochi-v2").edit_of, "mochi")
         self.assertIn("Remove the single cream curl", pl.compose_prompt(m.job("mochi-v2")))
@@ -262,3 +262,14 @@ class ShippedManifestTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class LegacyIdTests(unittest.TestCase):
+    def test_old_turkish_ids_resolve_to_english(self):
+        from legacy_ids import canonical
+
+        self.assertEqual(canonical("cay-1"), "tea-stall-1")
+        self.assertEqual(canonical("batch-01-slice:simit-2"), "batch-01-slice:bagel-cart-2")
+        self.assertEqual(canonical("iskele-vapur-1"), "harbor-ferry-1")
+        self.assertEqual(canonical("simit-kitten"), "simit-kitten")
+        self.assertEqual(canonical("tea-stall-1"), "tea-stall-1")

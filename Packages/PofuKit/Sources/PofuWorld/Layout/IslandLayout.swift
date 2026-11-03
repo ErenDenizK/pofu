@@ -216,14 +216,14 @@ public enum IslandLayout {
 }
 
 extension StationID {
-    /// The stem of this station's sprite names (`<stem>-<level>`). The sprites
-    /// still carry their old Turkish names; the asset rename PR renames the
-    /// files and this goes back to `rawValue` (map: docs/development/rename-map.md).
+    /// The stem of this station's sprite names (`<stem>-<level>`): its id in
+    /// kebab case, so `teaStall` draws `tea-stall-1`.
     var artStem: String {
-        switch rawValue {
-        case "teaStall": "cay"
-        case "bagelCart": "simit"
-        default: rawValue
+        var stem = ""
+        for character in rawValue {
+            if character.isUppercase, !stem.isEmpty { stem.append("-") }
+            stem.append(contentsOf: character.lowercased())
         }
+        return stem
     }
 }

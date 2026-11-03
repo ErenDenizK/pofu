@@ -41,8 +41,8 @@ class StationTests(unittest.TestCase):
         self.assertEqual(qa.check_station_anchor(stall(dy=-130)).status, "warn")
 
     def test_edit_is_anchored_against_its_parent_not_the_contract(self):
-        # cay-5 stands above the height bar and wider than the footprint
-        # (batch 07: cay-5-lit failed station_anchor for the parent's geometry).
+        # tea-stall-5 stands above the height bar and wider than the footprint
+        # (batch 07: tea-stall-5-lit failed station_anchor for the parent's geometry).
         tall = stall(scale=1.5, awning=True)
         self.assertNotEqual(qa.check_station_anchor(tall).status, "pass")
         self.assertEqual(qa.check_station_anchor(tall, is_edit=True, parent=tall).status, "pass")
@@ -96,7 +96,7 @@ class StationTests(unittest.TestCase):
         self.assertGreater(qa.edit_kept_fraction(aligned, parent), 0.9)
 
     def test_edit_of_a_registered_master_is_not_registered_again(self):
-        # Batch 03: simit-1 was drawn 110 px off the anchor and registered.
+        # Batch 03: bagel-cart-1 was drawn 110 px off the anchor and registered.
         # Its edit is drawn on the registered master, so it is already on
         # the anchor; re-applying the root's registration moved it off.
         root_raw = stall(dx=-110)
@@ -353,10 +353,10 @@ class KindProfileTests(unittest.TestCase):
 class HarmonyCheckTests(unittest.TestCase):
     """The promote-time harmony score (tools/assets/harmony.py)."""
 
-    def test_the_approved_cay_scores_well_and_a_flat_stall_scores_low(self):
-        cay = sl.load_rgba(HERE.parents[2] / "design" / "art" / "stations" / "cay-1" / "cay-1--lock-light.png")
+    def test_the_approved_tea_stall_scores_well_and_a_flat_stall_scores_low(self):
+        tea_stall = sl.load_rgba(HERE.parents[2] / "design" / "art" / "stations" / "tea-stall-1" / "tea-stall-1--lock-light.png")
         lim = qa.limits_for("station")
-        good = qa.check_harmony(cay, "station", lim)
+        good = qa.check_harmony(tea_stall, "station", lim)
         self.assertIsNotNone(good)
         self.assertGreater(good.value, 70)
         flat = qa.check_harmony(stall(), "station", lim)

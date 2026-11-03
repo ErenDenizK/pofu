@@ -1,0 +1,19 @@
+id: asset-test01-tea-stall-2-t1
+type: asset
+title_tr: 'Test 01: tea-stall-2 çekim 1'
+title_en: 'Art test 01: tea-stall-2 take 1'
+status: cut
+horizon: now
+summary: >-
+  Çay ocağı L2 as an edit of L1: retired the key risk; level chains as edits work.
+notes:
+- >-
+  Art test 01 (2026-11-01): the founder's first GPT Image run of D1, D4 and D5.
+art:
+  images:
+  - design/art/tests/2026-11-01/station__tea-stall-2_take1.png
+  jobs: []
+sources:
+- doc: design/art/tests/2026-11-01/README.md
+kind: test
+batch: unbatched

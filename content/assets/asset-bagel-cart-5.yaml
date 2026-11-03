@@ -1,0 +1,28 @@
+id: asset-bagel-cart-5
+type: asset
+title_tr: bagel-cart-5
+title_en: bagel-cart-5 (station)
+status: in-production
+horizon: now
+summary: >-
+  Turn the cart into a little kiosk: replace only the umbrella with a small peaked roof of
+  soft coral and cream boards on two thin wooden posts, and add a small plain triangular coral-and-cream
+  pennant on top of the roof (no symbols, no letters). Keep the cart, the rings, the pole
+  and the bench.
+links:
+  variant_of:
+  - asset-bagel-cart-4
+art:
+  images:
+  - design/art/stations/bagel-cart-5/bagel-cart-5.png
+  jobs:
+  - batch-03-home-island:bagel-cart-5
+  - batch-05-fixes:bagel-cart-5
+notes:
+- >-
+  Batch 03 skipped it; batch 05 redoes it (docs/design/art-production-plan.md).
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+- doc: tools/imagegen/manifest/batch-05-fixes.yaml
+kind: station
+batch: batch-03-home-island

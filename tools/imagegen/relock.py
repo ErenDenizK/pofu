@@ -16,7 +16,7 @@ its roof): the canvas grows by N pixels on every side, so the anchor moves
 by (N, N), and the IoU is checked on the master's own canvas.
 
     python3 -I tools/imagegen/relock.py --manifest tools/imagegen/manifest/batch-01-slice.yaml \\
-        --job cay-1 --raw design/art/stations/cay-1/raw.webp --preset lock-light
+        --job tea-stall-1 --raw design/art/stations/tea-stall-1/raw.webp --preset lock-light
 
 Dependencies: numpy and Pillow (and PyYAML for the manifest).
 """

@@ -17,7 +17,7 @@
 # 1A.3 and the 60 pt black-silhouette test.
 #
 # PILOT (run first, in this order): cl1-caglayan-pools, cl1-backdrop-day,
-# cl1-duo-vapur. Continue to THE REST only if at least 2 of the 3 pass review;
+# cl1-duo-ferry. Continue to THE REST only if at least 2 of the 3 pass review;
 # otherwise skip every job below the "THE REST" line and finish the session. A
 # failed job gets one retry.
 #
@@ -88,9 +88,9 @@ jobs:
       - block: prop-style-v2
       - text: "AVOID: text, a border, UI, phones or screens, harsh shadows, neon, dark moods, a new shape for the home island"
 
-  - id: cl1-duo-vapur
+  - id: cl1-duo-ferry
     kind: plate
-    name: cl1-duo-vapur
+    name: cl1-duo-ferry
     size: 1536x1024
     canvas: 1536x1024
     chat: "Pofu · Exploration"

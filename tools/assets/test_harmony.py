@@ -83,7 +83,7 @@ class PlanTests(unittest.TestCase):
         self.assertTrue(hm.is_identity(hm.plan(stats, self.ref, self.cfg, guarded=True)))
         self.assertTrue(hm.is_guarded("pofu", self.cfg))
         self.assertTrue(hm.is_guarded("cloud-3", self.cfg))
-        self.assertFalse(hm.is_guarded("cay-1", self.cfg))
+        self.assertFalse(hm.is_guarded("tea-stall-1", self.cfg))
 
     def test_characters_only_get_white_balance(self):
         stats = dict(self.ref, C_p95=20.0, tint_b=2.0)
@@ -93,8 +93,8 @@ class PlanTests(unittest.TestCase):
 
     def test_a_faded_chain_level_is_matched_to_its_first_level(self):
         # Each level was redrawn from its locked parent and locked again, so
-        # chroma fell level by level (PR #67): cay-5 against cay-1.
-        self.assertEqual(hm.chain_of("cay-5", self.cfg), ("cay", 5))
+        # chroma fell level by level (PR #67): tea-stall-5 against tea-stall-1.
+        self.assertEqual(hm.chain_of("tea-stall-5", self.cfg), ("tea-stall", 5))
         self.assertIsNone(hm.chain_of("island-main", self.cfg))
         first = dict(self.ref, C_p50=40.0, C_p95=55.0, L_p2=46.0, L_p98=92.0)
         faded = dict(self.ref, C_p50=11.0, C_p95=20.0, L_p2=60.0, L_p98=92.0)
@@ -168,11 +168,11 @@ class ManifestTests(unittest.TestCase):
             self.assertTrue(manifest["assets"][name]["shipped"])
         # The çaydanlık's rose copper is inside its material's range (look round 3, the colour
         # script): measured, never moved toward another material.
-        cay = manifest["assets"]["cay-1"]
-        self.assertNotIn("rose-copper", cay["correction"]["materials"])
-        self.assertIn("rose-copper", cay["before"]["materials"])
+        tea_stall = manifest["assets"]["tea-stall-1"]
+        self.assertNotIn("rose-copper", tea_stall["correction"]["materials"])
+        self.assertIn("rose-copper", tea_stall["before"]["materials"])
         # The faded chain levels come back toward their L1's median chroma.
-        for level in ("cay-2", "cay-3"):
+        for level in ("tea-stall-2", "tea-stall-3"):
             e = manifest["assets"][level]
             self.assertLess(abs(e["after"]["C_p50"] - e["chain"]["C_p50"]), self.cfg_tol())
 

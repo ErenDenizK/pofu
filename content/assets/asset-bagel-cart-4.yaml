@@ -1,0 +1,26 @@
+id: asset-bagel-cart-4
+type: asset
+title_tr: bagel-cart-4
+title_en: bagel-cart-4 (station)
+status: in-production
+horizon: now
+summary: >-
+  Add a small, low, rounded wooden bench for regulars beside the cart's right wheel, inside
+  the footprint and lower than the cart's tray.
+links:
+  variant_of:
+  - asset-bagel-cart-3
+art:
+  images:
+  - design/art/stations/bagel-cart-4/bagel-cart-4.png
+  jobs:
+  - batch-03-home-island:bagel-cart-4
+  - batch-05-fixes:bagel-cart-4
+notes:
+- >-
+  Batch 03 skipped it; batch 05 redoes it (docs/design/art-production-plan.md).
+sources:
+- doc: tools/imagegen/manifest/batch-03-home-island.yaml
+- doc: tools/imagegen/manifest/batch-05-fixes.yaml
+kind: station
+batch: batch-03-home-island

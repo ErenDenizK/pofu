@@ -1,5 +1,5 @@
 // Graphics spike shaders (PofuWorld): code lighting from baked normal maps
-// and depth of field from a depth map. Behind the Ayar toggles only.
+// and depth of field from a depth map. Behind the tuning-lab toggles only.
 //
 // Like WorldShaders.metal, Xcode compiles this into default.metallib in the
 // package's resource bundle; command-line `swift build` only copies it.

@@ -1,0 +1,24 @@
+id: asset-harbor-crates-1
+type: asset
+title_tr: harbor-crates-1
+title_en: harbor-crates-1 (station)
+status: in-production
+horizon: now
+summary: 'A small stack of cargo for the island diorama: two plump honey-wood crates
+  and one round cream sack tied with a coral cord, with a small parcel wrapped in
+  kraft paper and cream string on top. Chunky, toy-like, rounded corners, no labels,
+  no letters. It fills about the lower half of the height bar.'
+art:
+  images:
+  - design/art/stations/harbor-crates-1/harbor-crates-1.png
+  jobs:
+  - batch-14-harbor:harbor-crates-1
+  - retry-2026-11-03:harbor-crates-1
+sources:
+- doc: tools/imagegen/manifest/batch-14-harbor.yaml
+kind: station
+batch: batch-14-harbor
+notes:
+- 'Skipped without generation: failed embedded pilots harbor-ferry-1 and simit-kitten
+  exhausted their one allowed retry. Manifest pilot gate skips every remaining job
+  of this batch; no QA waiver or master.'

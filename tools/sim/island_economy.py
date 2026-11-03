@@ -146,7 +146,7 @@ class Island:
 
 ISLANDS = [
     Island("home", "Ayçiçeği (home)", 0),
-    Island("harbor", "İskele (tea-and-simit harbor)", 8, requires=("cay", 3)),
+    Island("harbor", "İskele (tea-and-bagel-cart harbor)", 8, requires=("teaStall", 3)),
     Island("stars", "Yıldız (night observatory)", 21, calm_nights=10),
     Island("hamam", "Kaplıca (hot-spring hamam)", 35, requires=("harbor_pier", 3)),
     Island("library", "Kitap (library, arrives with a season)", 50),
@@ -156,11 +156,11 @@ ISLANDS = [
 # Home gate = home stage index; other islands: days after the island arrives.
 STATIONS = [
     ("garden", "home", 0, 6, 0),           # Pofu's own; starts built
-    ("cay", "home", 1, 5, 40),
+    ("teaStall", "home", 1, 5, 40),
     ("pond", "home", 2, 6, 160),
     ("workshop", "home", 3, 9, 500),
     ("windmill", "home", 4, 12, 1400),
-    ("simit", "harbor", 0, 8, 300),
+    ("bagelCart", "harbor", 0, 8, 300),
     ("harbor_pier", "harbor", 3, 9, 550),
     ("lighthouse", "harbor", 7, 11, 1000),
     ("observatory", "stars", 0, 12, 2000),

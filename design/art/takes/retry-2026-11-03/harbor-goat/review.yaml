@@ -1,0 +1,155 @@
+batch: retry-2026-11-03
+contact_sheet: design/art/takes/retry-2026-11-03/harbor-goat/contact.jpg
+jobs:
+  harbor-goat:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Retained pair re-posted under
+      main9ede62e; no new image generation. Both takes depict a cream plush baby goat
+      with a warm tan eye patch, tiny rounded horn buds, floppy ears, beard tuft and
+      indignant expression. No head curl, sharp horns or rectangular pupils. Both
+      pass every current automated check. The existing saved t1 remains the QA pick
+      by Harmony97.6 versus95.6; characters have no lock-load check. The previous
+      partial master remains untouched in its old worktree; this master is rebuilt
+      from the retained original and current pipeline.
+qa_reports:
+  2:
+    job: harbor-goat
+    take: 2
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.7
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 64.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.7 (R1 5.3)
+      value: 3.7
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.9, p95 2.5, off-palette 1.0% (top: #CC6655 (0.1%), #441100
+        (0.1%))'
+      value: 0.9469
+    - check: ground_line
+      status: pass
+      message: feet at 88.5% of the height (contract 88%)
+      value: 0.8854
+    - check: harmony
+      status: pass
+      message: 'harmony score 96 against the char reference (outliers: none)'
+      value: 95.6
+    info:
+      metrics_raw:
+        L_p5: 64.6
+        L_p50: 90.3
+        L_p95: 96.1
+        C_p50: 13.2
+        C_p95: 37.7
+        C_p99: 46.9
+        detail: 3.7
+      metrics_locked:
+        L_p5: 64.6
+        L_p50: 90.3
+        L_p95: 96.1
+        C_p50: 13.2
+        C_p95: 37.7
+        C_p99: 46.9
+        detail: 3.7
+    fingerprint: ff2a45afcaf6ec93
+  1:
+    job: harbor-goat
+    take: 1
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 64.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.3 (R1 5.3)
+      value: 3.29
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.9, p95 2.9, off-palette 0.6% (top: #662211 (0.1%), #441100
+        (0.0%))'
+      value: 0.9225
+    - check: ground_line
+      status: pass
+      message: feet at 89.3% of the height (contract 88%)
+      value: 0.8926
+    - check: harmony
+      status: pass
+      message: 'harmony score 98 against the char reference (outliers: none)'
+      value: 97.6
+    info:
+      metrics_raw:
+        L_p5: 64.6
+        L_p50: 90.1
+        L_p95: 96.0
+        C_p50: 13.2
+        C_p95: 41.1
+        C_p99: 45.7
+        detail: 3.28
+      metrics_locked:
+        L_p5: 64.6
+        L_p50: 90.1
+        L_p95: 96.0
+        C_p50: 13.2
+        C_p95: 41.1
+        C_p99: 45.7
+        detail: 3.29
+    fingerprint: ff2a45afcaf6ec93
+manual_review:
+  excluded_takes: []
+  note: Retained pair re-posted under main9ede62e; no new image generation. Both takes
+    depict a cream plush baby goat with a warm tan eye patch, tiny rounded horn buds,
+    floppy ears, beard tuft and indignant expression. No head curl, sharp horns or
+    rectangular pupils. Both pass every current automated check. The existing saved
+    t1 remains the QA pick by Harmony97.6 versus95.6; characters have no lock-load
+    check. The previous partial master remains untouched in its old worktree; this
+    master is rebuilt from the retained original and current pipeline.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-89d484c8-626d-44c0-a5ec-7ce9e6c5010a.png
+  original_generated_png_sha256: c6db3f14ef44cd3aabd8b8b141c8fb3b9dd20ecdd147bc31feb403a66720dc0e
+  inbox_png_sha256: ab210e1a38e2825b4c945dce9d5f6a11e177ed72347332c2bfa6ec2a7460e209
+  rgba_sha256: 2e806e4a57e6c1aa8c1d617ea6b646b455cd710dbc9b93f117ca5566c93f5687
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ff2a45afcaf6ec93
+- take: 2
+  source_file: /workspace/generated_images/exec-1344891f-6a51-4e7d-a593-6a1b81b70e9f.png
+  original_generated_png_sha256: 298c1ee49974b904f9a43a36d92891bae5e58536c0bb60b8968f3c524b50b985
+  inbox_png_sha256: 3b1121db220242c6c0d409075b9eb922f29ca6c16f13e13ad65f53f1a84869f6
+  rgba_sha256: 4ac46299272d439583bcc445178e24b044f0086c29124b2b190e556abfc95a2e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ff2a45afcaf6ec93

@@ -291,7 +291,7 @@ struct HD2DLayer: View {
         }
     }
 
-    /// The lit edits' flames (cay-1-lit), painted over the graded station
+    /// The lit edits' flames (tea-stall-1-lit), painted over the graded station
     /// at night in their own colour.
     private func drawLitOverlays(in context: inout GraphicsContext) {
         guard litOverlays else { return }
