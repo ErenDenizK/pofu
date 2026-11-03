@@ -34,6 +34,7 @@ links:
   - asset-game-plot-tile-terracotta
   - asset-game-plot-tile-lilac
   - asset-game-plot-tile-mint
+  - asset-game-plot-tile-rose
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'
