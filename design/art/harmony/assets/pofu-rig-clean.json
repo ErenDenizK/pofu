@@ -1,0 +1,56 @@
+{
+ "after": {
+  "C_mean": 18.618,
+  "C_p50": 10.324,
+  "C_p95": 47.493,
+  "L_mean": 85.722,
+  "L_p2": 16.583,
+  "L_p98": 97.287,
+  "detail": 7.295,
+  "edge": 0.182,
+  "tint_a": 3.468,
+  "tint_b": 5.63,
+  "warmth_b": 16.152
+ },
+ "before": {
+  "C_mean": 18.618,
+  "C_p50": 10.324,
+  "C_p95": 47.493,
+  "L_mean": 85.722,
+  "L_p2": 16.583,
+  "L_p98": 97.287,
+  "detail": 7.295,
+  "edge": 0.182,
+  "tint_a": 3.468,
+  "tint_b": 5.63,
+  "warmth_b": 16.152
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": true,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "detail",
+  "tint_b"
+ ],
+ "outliers_before": [
+  "detail",
+  "tint_b"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 88.7,
+ "score_before": 88.7,
+ "shipped": false,
+ "source": "design/art/masters/pofu-rig-clean/pofu-rig-clean.webp",
+ "source_sha": "f47e82c0fd17b2d1"
+}

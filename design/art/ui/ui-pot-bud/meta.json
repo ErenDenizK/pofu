@@ -1,0 +1,97 @@
+{
+  "job": "ui-pot-bud",
+  "batch": "batch-11-ui-pilot",
+  "asset": "ui__pot-bud",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-03T00:10:36+00:00",
+  "image": "design/art/ui/ui-pot-bud/ui-pot-bud.png",
+  "raw": "design/art/ui/ui-pot-bud/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "040b9c8ed6cc959e",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nAdd one small closed bud growing from the soil on a short green\nstem with two rounded leaves: a plump, pointed green bud with a hint\nof golden yellow at its tip, simple soft shapes. The pot and soil\nstay as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/ui/ui-pot-empty/ui-pot-empty.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-03T00:09:43+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 39 (R1 51)",
+        "value": 38.9
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 42 (R1 59)",
+        "value": 41.6
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.0 (R1 5.3)",
+        "value": 0.97
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.7",
+        "value": 0.6653
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.1, p95 1.5, off-palette 1.8% (top: #667722 (0.2%), #778833 (0.2%))",
+        "value": 1.1177
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "97% of the parent level unchanged",
+        "value": 0.9709
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.97 of the parent level (drift compounds along a chain)",
+        "value": 0.9695
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both takes pass the strict edit_stability >0.9 gate (0.9668 and 0.9709). Four-background alpha composites are clean. The closed pointed green bud with a yellow hint and two rounded leaves is distinct from the bloom at native36x56pt. Pot, rim and soil remain aligned. Take2 has the lowest passing lock load0.6653 versus0.7266."
+}

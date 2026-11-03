@@ -205,13 +205,13 @@ tolerance, so a master that already matches stays exactly as painted, and
 guarded assets (Pofu, the sky) are measured but never corrected.
 
 ```sh
-python3 -I tools/assets/harmony.py measure --sheet harmony.jpg  # manifest + contact sheet
+python3 -I tools/assets/harmony.py measure --sheet harmony.jpg  # per-asset files + contact sheet
 python3 -I tools/assets/harmony.py check                        # CI: fails when stale
 python3 -I tools/assets/harmony.py score take.png --ppu 8.533 --kind station
 ```
 
 The targets and tolerances are in `design/art/harmony/config.json`; the
-measurements and corrections in `design/art/harmony/manifest.json`, which
+measurements and corrections in `design/art/harmony/assets/<id>.json` (one file per asset, plus `reference.json`), which
 `preblur.py app` bakes into the app's sprites (keeping the uncorrected bake
 as `<name>--unharmonized` to compare). `tools/imagegen` QA reports each
 take's score as the `harmony` line at promote time. CI runs `check`, and

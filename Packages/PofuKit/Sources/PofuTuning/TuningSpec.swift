@@ -33,20 +33,23 @@ public struct TuningSpec: Hashable, Sendable, Identifiable {
 }
 
 extension TuningSpec {
-    public static let all: [TuningSpec] = springs("camera.travel")
-        + springs("camera.far")
-        + springs("camera.release")
-        + springs("camera.focus")
-        + springs("camera.buildPush")
-        + [
+    public static let all: [TuningSpec] = {
+        // Built in steps: one long `+` chain times out the type checker.
+        var specs: [TuningSpec] = []
+        specs += springs("camera.travel")
+        specs += springs("camera.far")
+        specs += springs("camera.release")
+        specs += springs("camera.focus")
+        specs += springs("camera.buildPush")
+        specs += [
             TuningSpec("depth.parallax", 0...2, step: 0.05),
             TuningSpec("depth.tiltShiftIsland", 1...3, step: 0.05),
             TuningSpec("depth.tiltShiftHome", 1...3, step: 0.05),
         ]
-        + trim("grade.day")
-        + trim("grade.golden")
-        + trim("grade.night")
-        + [
+        specs += trim("grade.day")
+        specs += trim("grade.golden")
+        specs += trim("grade.night")
+        specs += [
             TuningSpec("companion.breathPeriodLow", 2...8, step: 0.1),
             TuningSpec("companion.breathPeriodHigh", 2...8, step: 0.1),
             TuningSpec("companion.breathAmplitudeLow", 0...0.06, step: 0.001),
@@ -54,10 +57,10 @@ extension TuningSpec {
             TuningSpec("companion.blinkIntervalMin", 1...10, step: 0.1),
             TuningSpec("companion.blinkIntervalMax", 1...15, step: 0.1),
         ]
-        + ["pofuTap", "collectTap", "buildSwap", "hopAppearDay", "hopAppearNight", "breathStart"].map {
-            TuningSpec("haptics.\($0)", 0...1, step: 0.05)
+        specs += ["pofuTap", "collectTap", "buildSwap", "hopAppearDay", "hopAppearNight", "breathStart"].map { (name: String) -> TuningSpec in
+            TuningSpec("haptics.\(name)", 0...1, step: 0.05)
         }
-        + [
+        specs += [
             TuningSpec("garden.trayScale", 0.4...0.9, step: 0.01),
             TuningSpec("garden.liftCells", 0.5...3, step: 0.1),
             TuningSpec("garden.followStiffness", 10...80, step: 1),
@@ -83,6 +86,8 @@ extension TuningSpec {
             TuningSpec("garden.hapticBloom", 0...1, step: 0.05),
             TuningSpec("garden.hapticCheek", 0...1, step: 0.05),
         ]
+        return specs
+    }()
 
     /// The spec for `key`, if it is tunable.
     public static func spec(for key: String) -> TuningSpec? {
