@@ -1,77 +1,272 @@
 batch: batch-15-explore
-contact_sheet: null
+contact_sheet: design/art/takes/batch-15-explore/x-appicon-layer-island/contact.jpg
 jobs:
   x-appicon-layer-island:
-    pick: null
-    publication: unselected due global account stop
-    note: 'UNSELECTED due global account/sign-in stop; no terminal QA failure/skip,
-      no pick, no further generation or QA after stop. Retained generated takes are
-      for resuming the existing allowed round, never regeneration of a completed pair.
-      This job never made an image call: the planned second logical group failed JavaScript
-      preflight before dispatch.'
-    takes_generated: 0
-    retry_round_used: false
-qa_reports: {}
-pre_stop_manual_notes: null
-sources: []
-prompt: 'REFERENCES (attached, in this order):
-
-  1. The home island: the same painting and softness.
-
-  2. Pofu, the hamster: his exact look, fur, colors and eyes.
-
-
-  Only the small floating home island with Pofu the hamster sitting tiny on
-
-  its lawn, seen from the front, centered, filling about 62% of the canvas
-
-  width, on a transparent background, no clouds, no sky.
-
-
-  STYLE: soft painterly 2D illustration from the same picture book as the
-
-  attached hamster: the same gentle airbrushed shading, the same light,
-
-  high-key values and the same milky pastel colors. Simple, rounded, chunky
-
-  shapes with few parts; fewer, larger shapes, because this is seen small on
-
-  a phone. Every material is painted matte, as a soft form with broad,
-
-  smooth value changes: wood without grain, metal without hammering or
-
-  reflections, glass as a soft tinted shape, cloth without weave. At most
-
-  one small, soft highlight per object; no glints, no shine. Colors are
-
-  muted and lifted toward cream; the darkest shadow is a warm mid-brown,
-
-  never near black. Warm diffused key light from the upper left, a faint
-
-  warm rim light along the right edge, soft ambient shadow only where forms
-
-  touch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no
-
-  letters, no numbers, no logos, no watermark, no border, no frame, no
-
-  sticker outline.
-
-
-  AVOID: a sky, clouds, a ground shadow, text, a border
-
-
-  Output: one image, transparent background PNG, square 1024 x 1024.'
-references_in_order:
-- /workspace/run15/design/art/masters/island-main-s/island-main-s.png
-- /workspace/run15/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
-stop:
-  reason: Git authentication/account stop condition
-  observed_at: '2026-11-03T10:45:59Z'
-  job: x-emanet-2
-  message: 'fatal: could not read Username for ''https://github.com'': No such device
-    or address'
-  last_verified_head: 9a4209a585e4aaf89997c96f5a902e105d1b016c
-  next_publication_job: x-emanet-2
-  policy: No new generations or terminal decisions; preserve already-finished candidates
-    and publish completed work through an already-authorized functioning transport
-    if possible; notify coordinator immediately.
+    pick: none
+    publication: skipped after one allowed retry
+    note: "SKIPPED after exactly four takes: manual composition-size requirement remains\
+      \ unmet. Alpha16 locked canvas-width fractions0.742188/0.788086/0.767578/0.759766\
+      \ against the explicit about0.62 brief, about20\u201327% too wide. Original\
+      \ source fractions0.7416/0.7871/0.767145/0.759968 confirm this is generated\
+      \ framing, not post scaling. Identity, transparency, absence of clouds/background\
+      \ and icon mask margins otherwise pass. Automated PASS reports are preserved\
+      \ unchanged; this is a manual brief-size failure, not an invented automated\
+      \ threshold or mask failure. One allowed retry exhausted; no fifth take, manual\
+      \ crop/resize, master or promotion. No dependent jobs."
+qa_reports:
+  1:
+    job: x-appicon-layer-island
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 39.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 64.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.987
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 5.3, off-palette 0.4% (top: #998866 (0.1%), #888855
+        (0.1%))'
+      value: 1.7377
+    info:
+      metrics_raw:
+        L_p5: 64.4
+        L_p50: 83.8
+        L_p95: 92.8
+        C_p50: 25.4
+        C_p95: 39.9
+        C_p99: 46.0
+        detail: 3.01
+      metrics_locked:
+        L_p5: 64.7
+        L_p50: 83.8
+        L_p95: 92.5
+        C_p50: 25.3
+        C_p95: 39.2
+        C_p99: 43.2
+        detail: 2.14
+    fingerprint: 10e205f02b1a8cb2
+  2:
+    job: x-appicon-layer-island
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 65.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.07
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8835
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 6.4, off-palette 0.4% (top: #999966 (0.1%), #888855
+        (0.0%))'
+      value: 1.8005
+    info:
+      metrics_raw:
+        L_p5: 64.7
+        L_p50: 83.3
+        L_p95: 92.2
+        C_p50: 24.6
+        C_p95: 40.3
+        C_p99: 46.8
+        detail: 2.89
+      metrics_locked:
+        L_p5: 65.0
+        L_p50: 83.2
+        L_p95: 91.9
+        C_p50: 24.5
+        C_p95: 39.6
+        C_p99: 44.8
+        detail: 2.07
+    fingerprint: 10e205f02b1a8cb2
+  3:
+    job: x-appicon-layer-island
+    take: 3
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 66 (R1 59)
+      value: 66.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.04
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9666
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 5.6, off-palette 0.3% (top: #888855 (0.1%), #663311
+        (0.0%))'
+      value: 1.7167
+    info:
+      metrics_raw:
+        L_p5: 65.8
+        L_p50: 83.9
+        L_p95: 92.9
+        C_p50: 25.2
+        C_p95: 40.2
+        C_p99: 48.0
+        detail: 2.86
+      metrics_locked:
+        L_p5: 66.1
+        L_p50: 83.8
+        L_p95: 92.6
+        C_p50: 25.1
+        C_p95: 39.5
+        C_p99: 45.4
+        detail: 2.04
+    fingerprint: 10e205f02b1a8cb2
+  4:
+    job: x-appicon-layer-island
+    take: 4
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 65 (R1 59)
+      value: 65.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.29
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.954
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 5.7, off-palette 0.5% (top: #999966 (0.1%), #888855
+        (0.1%))'
+      value: 1.7332
+    info:
+      metrics_raw:
+        L_p5: 64.9
+        L_p50: 84.4
+        L_p95: 93.3
+        C_p50: 23.8
+        C_p95: 40.4
+        C_p99: 47.1
+        detail: 3.14
+      metrics_locked:
+        L_p5: 65.4
+        L_p50: 84.3
+        L_p95: 93.1
+        C_p50: 23.7
+        C_p95: 39.5
+        C_p99: 44.8
+        detail: 2.29
+    fingerprint: 10e205f02b1a8cb2
+manual_review:
+  exclude:
+  - 1
+  - 2
+  - 3
+  - 4
+  expected_pick: none
+  note: "SKIPPED after exactly four takes: manual composition-size requirement remains\
+    \ unmet. Alpha16 locked canvas-width fractions0.742188/0.788086/0.767578/0.759766\
+    \ against the explicit about0.62 brief, about20\u201327% too wide. Original source\
+    \ fractions0.7416/0.7871/0.767145/0.759968 confirm this is generated framing,\
+    \ not post scaling. Identity, transparency, absence of clouds/background and icon\
+    \ mask margins otherwise pass. Automated PASS reports are preserved unchanged;\
+    \ this is a manual brief-size failure, not an invented automated threshold or\
+    \ mask failure. One allowed retry exhausted; no fifth take, manual crop/resize,\
+    \ master or promotion. No dependent jobs."
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-834661ec-d0ee-406c-b526-088e4f851819.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 10e205f02b1a8cb2
+  original_png_sha256: c75ad87aca72a9e04e158d7d7fa704c0738987c80a6a6fc72383c7ef1b4f14ad
+- take: 2
+  source_file: /workspace/generated_images/exec-f73389cd-a616-4414-ba27-82889ceb77b8.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 10e205f02b1a8cb2
+  original_png_sha256: 2356b8dc32715461f64213eba1c08ff75378668bcd39bd02f5668abc5546028f
+- take: 3
+  source_file: /workspace/generated_images/exec-4312a7aa-1d68-4b02-bb98-9e89ca939c59.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 10e205f02b1a8cb2
+  original_png_sha256: 5e9efce23ff01a30c58b2ba72ce186a9d05adb8b662731b13bb1e18d572ac59a
+- take: 4
+  source_file: /workspace/generated_images/exec-1333dcd0-4f48-4571-8d68-916978bf937b.png
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 10e205f02b1a8cb2
+  original_png_sha256: 780157939cc39205ef3c0e81fdbc8310e98e5384d751b9588d629db209a0845e
+source_recovery:
+  note: Generated after environment recovery; durable per-take callbacks preserve
+    the original request ordinal and source path. No source byte edits.
