@@ -179,7 +179,7 @@ def _master(folder):
     """A master folder's image: the lock-light re-lock when one was adopted (relock.py), else the
     master itself. harmony.py reads the same order."""
     name = os.path.basename(folder)
-    for candidate in (f"{name}--graded.webp", f"{name}--lock-light.png", f"{name}.png", f"{name}.webp"):
+    for candidate in (f"{name}--lock-light.png", f"{name}.png", f"{name}.webp"):
         if os.path.exists(os.path.join(REPO, folder, candidate)):
             return os.path.join(folder, candidate)
     raise FileNotFoundError(folder)
@@ -494,6 +494,10 @@ def app_main():
                     jobs.append((name, alt, _plate(key)))
     for name, alt, spec in jobs:
         path = os.path.join(REPO, spec["src"])
+        # A graded copy (tools/art/grade_take.py) is what the app draws; harmony still measures the master.
+        graded = os.path.join(os.path.dirname(path), os.path.basename(os.path.dirname(path)) + "--graded.webp")
+        if os.path.exists(graded) and not alt:
+            path = graded
         if not os.path.exists(path):
             print("missing", path, file=sys.stderr)
             return 1
