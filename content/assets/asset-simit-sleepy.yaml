@@ -1,0 +1,23 @@
+id: asset-simit-sleepy
+type: asset
+title_tr: simit-sleepy
+title_en: simit-sleepy (char)
+status: planned
+horizon: later
+summary: >-
+  Edit the attached kitten, Simit, into a sleepy nap face. Change only the eyes and ears:
+  both eyes become gently closed, a thin soft slightly downward-curved dark line where the
+  lower edge of each eye was, with fur above it; both ears fold a little down and outward.
+  Everything else stays exactly as it is.
+links:
+  variant_of:
+  - asset-simit-kitten
+art:
+  images: []
+  jobs:
+  - batch-20-poses:simit-sleepy
+sources:
+- doc: tools/imagegen/manifest/batch-20-poses.yaml
+kind: char
+batch: batch-20-poses
+size: 1024x1536
