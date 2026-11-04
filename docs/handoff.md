@@ -3,6 +3,27 @@
 The lead session restarts daily to keep context small. Read this, CLAUDE.md
 and `docs/product/founder-input.md`, then delete what is done.
 
+## 2026-11-04 (end of day)
+
+**Done:** budget rules in CLAUDE.md (#139); vertical slice v0 plan
+(`docs/product/vertical-slice.md`) and its build: asset integration script
+`tools/assets/integrate.py` (#140), home plate `island-main-l-v3` graded
+soft at 0.6 (#142), garden minigame painted art (#143), harbor plate, goat,
+Simit poses and a Rehearsal "Next day" button (#144); motion beats now
+opt-in via the `beats` label (#145). Codex queue fed from a certainty list
+(#141): decor pilot, workshop-1-lit, retry-2026-11-04 (ferries, icons by
+the one-metaphor rule), poses pilot. Friend deck:
+https://claude.ai/artifact/NcowKw7gZNUZX8nABwfncK (founder shares it).
+
+**Next:**
+1. Founder installs the slice on his iPhone (free Personal Team,
+   `docs/development.md`); give him a one-page Turkish runbook when he
+   is ready; collect his "felt wrong" list.
+2. Known gap: the harbor is map-only (no walkable scene).
+3. Review Codex PRs as they land (pilot first); loop 3 short doc only
+   with a reason (rising curve, three minigames, social early).
+4. Lore PR #135 waits for the founder.
+
 ## 2026-11-04 (from the 2026-11-03 night session)
 
 **Budget first.** The founder's plan limit burned far too fast. Work at
