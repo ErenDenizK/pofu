@@ -1,30 +1,13 @@
 batch: retry-2026-11-04
-contact_sheet: null
 jobs:
   harbor-ferry-2:
-    pick: null
-    publication: suspended at global stop
-    note: Not generated. Awaiting an approved harbor-ferry-1 parent and global-stop
-      resolution. This is pending, not a terminal dependency skip; no content node
-      is cut.
-qa_reports: {}
-sources: []
-global_stop:
-  reason: image-tool refusal
-  code: moderation_blocked
-  job: icon-skip
-  batch: retry-2026-11-04
-  observed_at: '2026-11-04T13:42:58Z'
-  first_error_at: '2026-11-04T13:35:29.720Z'
-  error_at: '2026-11-04T13:36:29.738Z'
-  instruction: AGENTS.md global stop on Codex refusal. No further image dispatch,
-    no retry of refused job. Preserve already returned/in-flight originals; publish
-    only finished eligible bundles or preservation-only takes/contact/reviews.
-  request_ids:
-  - c0a76927-19a4-4ecf-955b-d9b691311946
-  - 178fcb2b-4092-4f4d-a522-2b262dafb47f
-  next_job: icon-skip (explicit resume required); pending retry04 jobs and later batches
-    remain unstarted or suspended
-  no_generation_after_observation: true
-retry_round_used: false
-preservation_only: true
+    pick: none
+    publication: dependent-skip
+    note: 'Skipped without generation: true dependency harbor-ferry-1 failed after
+      its one allowed retry. All four retained takes were ingested and posted without
+      regeneration. Automated warnings do not enforce the explicit manual whole-ferry
+      maximum of640px. The solid alpha>=128 normalized widths are709,676,733,765px,
+      all too wide even before fringe pixels. Guide-fit.json records the measurement.
+      One retry exhausted; skip this job and only its true dependent harbor-ferry-2.'
+generated_takes: 0
+failed_dependency: harbor-ferry-1
