@@ -54,3 +54,12 @@ notes:
   #334477 (11.5%)), edit_structure: light structure matches the parent (r -0.76);
   t4 palette_drift: mean dE 36.1, p95 37.6, off-palette 98.8% (top: #334477 (88.4%),
   #444477 (5.0%)), edit_structure: light structure matches the parent (r -0.78).'
+- 'retry-2026-11-04 skipped after four takes: Initial pair and the only retry pair
+  all fail edit_structure: r -0.7923,-0.7586,-0.7838,-0.7903. The requested dark-indigo
+  paper, pale stitches and night palette/lightness are present, but the official structure
+  check fails; no waiver or promotion. The brief is a recolor and may need an explicit
+  recolor acceptance profile from the lead; no prompt or threshold was changed. One
+  retry exhausted; no dependents. Automated failures: t1 edit_structure: light structure
+  matches the parent (r -0.79); t2 edit_structure: light structure matches the parent
+  (r -0.76); t3 edit_structure: light structure matches the parent (r -0.78); t4 edit_structure:
+  light structure matches the parent (r -0.79).'
