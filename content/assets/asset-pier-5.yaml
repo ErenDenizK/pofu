@@ -1,0 +1,19 @@
+id: asset-pier-5
+type: asset
+title_tr: pier-5
+title_en: pier-5 (station)
+status: planned
+horizon: next
+summary: >-
+  Add a string of small triangular bunting flags in coral, cream and sea blue hung in soft swags from post to post along the pier's front edge. The bunting stays inside the canvas; everything else stays.
+links:
+  variant_of:
+  - asset-pier-4
+art:
+  images: []
+  jobs:
+  - batch-21-harbor-ladders:pier-5
+sources:
+- doc: tools/imagegen/manifest/batch-21-harbor-ladders.yaml
+kind: station
+batch: batch-21-harbor-ladders

@@ -1,0 +1,19 @@
+id: asset-lighthouse-4
+type: asset
+title_tr: lighthouse-4
+title_en: lighthouse-4 (station)
+status: planned
+horizon: next
+summary: >-
+  The painted change is small, the beam is code: add two tiny cream glass-lens bands around the lamp room and a small round reflector disc behind the lamp so a beam can be anchored there. Nothing is painted outside the lamp room; no beam, no rays.
+links:
+  variant_of:
+  - asset-lighthouse-3
+art:
+  images: []
+  jobs:
+  - batch-21-harbor-ladders:lighthouse-4
+sources:
+- doc: tools/imagegen/manifest/batch-21-harbor-ladders.yaml
+kind: station
+batch: batch-21-harbor-ladders

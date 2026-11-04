@@ -1,0 +1,16 @@
+id: asset-pier-1
+type: asset
+title_tr: pier-1
+title_en: pier-1 (station)
+status: planned
+horizon: next
+summary: >-
+  A short ferry pier: honey planks on four chunky posts over the clouds, a coral rope between the front posts, nothing moored yet.
+art:
+  images: []
+  jobs:
+  - batch-21-harbor-ladders:pier-1
+sources:
+- doc: tools/imagegen/manifest/batch-21-harbor-ladders.yaml
+kind: station
+batch: batch-21-harbor-ladders

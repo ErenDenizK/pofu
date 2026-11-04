@@ -65,6 +65,7 @@ until none is left.
 | 2 | `batch-07-light` | production | Only `workshop-1-lit` is left (`--only workshop-1-lit`): t1, t3 and t4 failed `chroma_ceiling`, t2 kept 0.8997 against the manual gate of 0.9. `windmill-5-lit` and `pond-5-lit` merged in #84. Low priority: night light is mostly code | main | 1 | **READY** |
 | 3 | `retry-2026-11-04` | production | The certainty list (art that ships whatever the island design becomes). Part A, the four jobs still skipped after the retry, briefs rewritten: `icon-breath` (value fix), `harbor-ferry-1` and `harbor-ferry-2` (size stated in pixels, 560 px hull), `ui-sheet-paper-night` (new `paper-night` palette). Part B, four icons redrawn by the semantics rule (one metaphor per action, silhouette at 28 pt): `icon-plus` (chunky plus), `icon-skip` (two chevrons), `icon-friend` (two people), `icon-island` (side view with a tree and a pointed underside). Replaces the blocked `retry-2026-11-03` remainder | main | 8 | **READY** |
 | 3b | `batch-20-poses-pilot` | production · pilot | Home cast poses still missing (Mochi and Findik already have happy and sleepy from batch 06): `mochi-surprised`, `simit-happy`. Edits of the approved masters, day cell, light standard | main | 2 | **READY** |
+| 3d | `batch-21-harbor-ladders` | production · pilot inside | The harbor ladders: ferry pier and lighthouse, levels 1 to 5 (10 jobs, two chains of edits). Pilot: `pier-1` and `lighthouse-1`; every other job edits a pilot master or its predecessor, so `plan` skips the rest until the pilot is merged. Day cell, light standard | main | 10 | **READY** |
 | 3c | `batch-20-poses` | production | The rest of the poses: `findik-surprised`, `simit-sleepy`, `simit-surprised` | the lead's review of row 3b | 3 | BLOCKED, opens after the pilot review |
 | 4 | `batch-11-ui` | production | What is still missing of ui-system-v2 section 6 after batches 11-13 and the retry: night variants of the faces, game layer extras, the remaining domain icons, surfaces. The lead lists the exact gaps when it writes the manifest | the light standard and the icon semantics rule | about 15 | BLOCKED, no manifest yet |
 | 5 | `batch-08-decor` | production | The home decor kit (Ayçiçeği is the centre, so it ships); the lead lists the pieces after the pilot review | a passed row 1 | none yet | BLOCKED on the pilot review, no manifest yet |
@@ -106,8 +107,7 @@ open home art is `workshop-1-lit`, already READY as queue row 2. If the
 founder's dogfood shows a level that does not read as an upgrade, that is a
 regenerate-by-grade question per level, not a gap.
 
-Missing harbor levels (outside this pass, which targets home; listed so the
-gap is visible). Descriptions from the game design table; a level without
+Missing harbor levels (manifest `batch-21-harbor-ladders`, queue row 3d). Descriptions from the game design table; a level without
 one would say so (none lack one):
 
 - pier-1: planks and posts over the clouds (the existing `harbor-island-s`
@@ -130,9 +130,7 @@ Story link (`docs/product/story-delivery.md` section 4.3): the harbor pier
 side beats; all three already have their masters, so story work is not
 blocked on art.
 
-Recommended next ladder batch, when the harbor is next in line: `pier` and
-`lighthouse`, 10 jobs, two chains of five edits, pilot pier-1 and
-lighthouse-1.
+Pilot: pier-1 and lighthouse-1, the rest gated on it.
 
 **Order of work:** top to bottom. Rows 1 and 2 are re-runs by `--only` of
 jobs that never produced a pick; every other earlier row is delivered and

@@ -1,0 +1,19 @@
+id: asset-lighthouse-2
+type: asset
+title_tr: lighthouse-2
+title_en: lighthouse-2 (station)
+status: planned
+horizon: next
+summary: >-
+  Light the lamp room: the dark glass becomes a warm honey-amber glowing lantern, brightest in the middle, painted as soft broad shapes. Only the lamp room changes: no glow or color change on the tower, the gallery or anything else (the app adds the beam and the halo).
+links:
+  variant_of:
+  - asset-lighthouse-1
+art:
+  images: []
+  jobs:
+  - batch-21-harbor-ladders:lighthouse-2
+sources:
+- doc: tools/imagegen/manifest/batch-21-harbor-ladders.yaml
+kind: station
+batch: batch-21-harbor-ladders
