@@ -1,0 +1,143 @@
+{
+  "job": "harbor-ferry-1",
+  "batch": "retry-2026-11-04",
+  "asset": "station__harbor-ferry-1",
+  "take": 4,
+  "takes_considered": 4,
+  "approved_at": "2026-11-04T23:18:15+00:00",
+  "image": "design/art/stations/harbor-ferry-1/harbor-ferry-1.png",
+  "raw": "design/art/stations/harbor-ferry-1/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "0546b96661a2444a",
+  "prompt": "REFERENCES (attached, in this order):\n1. The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.\n2. The home island: match its camera angle, softness and colors.\n3. The approved tea stall: match its painting, finish, scale and colors exactly (do not draw the stall).\n4. The palette card for props: use only these colors (and mixes of them).\n\nA small Istanbul-style passenger ferry (vapur), toy-like and\nchunky, for the island diorama: a short, plump hull in soft sea\nblue with a cream stripe and softly rounded ends, cut off at the\nbottom by one straight horizontal line (it floats level in water\nthat is not drawn), a low cream cabin with three round windows, one\ntall rounded funnel in soft coral with a cream band, and a small\nflag on a short mast. Low front three-quarter camera, upright; no\nwater, no wake, no smoke.\n\nSize (the earlier attempts were far too wide): the ferry is\nSMALL. The hull is about 560 px wide in the 1024 px image, the\nwhole ferry never wider than 640 px, leaving at least 190 px of\nempty canvas on each side, and it is as tall as the lower two\nthirds of the height bar. It sits inside the guide's ground\nellipse, centered on the cross.\n\nVIEW: the same fixed front three-quarter view as the attached island: a\nlow camera about 20 degrees above the horizon, so you see the front of\nthe object fully and only a narrow sliver of its top (a round tabletop\nreads as a flat oval about a third as tall as it is wide). Follow the\nattached guide exactly: the object stands on the magenta ground ellipse,\ncentered on the magenta cross, its front edge on the front of the\nellipse, no taller than the magenta height bar. Then remove the guide\ncompletely: no ellipse, no cross, no bar, no magenta, no grid may remain\nin the output.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/templates/station-guide.png",
+      "role": "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+    },
+    {
+      "path": "design/art/masters/island-main-s/island-main-s.png",
+      "role": "The home island: match its camera angle, softness and colors."
+    },
+    {
+      "path": "design/art/stations/tea-stall-1/tea-stall-1.png",
+      "role": "The approved tea stall: match its painting, finish, scale and colors exactly (do not draw the stall)."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-04T23:03:34+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 17,
+    "dy": -3
+  },
+  "alignment": null,
+  "fit": {
+    "scale": 0.8355,
+    "anchor": [
+      495.4,
+      903
+    ]
+  },
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 39 (R1 51)",
+        "value": 39.0
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 56 (at most 22), p98 93 (at least 90), spread 37 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 37.1
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 78 (band 55-90)",
+        "value": 78.5
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.37 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.373
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 4.6 (at least 3.5)",
+        "value": 4.63
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.9 (R1 5.3)",
+        "value": 1.88
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.1",
+        "value": 1.0874
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.8, p95 5.8, off-palette 0.6% (top: #667777 (0.4%), #668877 (0.2%))",
+        "value": 1.774
+      },
+      {
+        "check": "station_anchor",
+        "status": "pass",
+        "message": "on the anchor",
+        "value": 900.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 81 against the world reference (outliers: C_p95, edge)",
+        "value": 80.8
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Queue operation refit-2026-11-04, no generation: re-post all4 verified retained original PNGs using PR154 and the manifest max_width640. All hard QA and station anchors now pass; fit scales0.8779,0.9453,0.8707,0.8355 stay above0.6. Select take4 at lowest eligible lock load1.0874; its solid width639px respects640 and ground is900. Visual and native28 review show a short sea-blue/cream vapur, one coral funnel, cabin round windows, a plain coral flag, flat waterline, no water/wake/smoke/shadow or guide residue. Updated guide-fit.json preserves old measurements and records current fitting. Commit fit/raw/Harmony, un-cut only this asset and link the harbor consumer; ferry2 stays skipped until lead review. Auto-picked by QA; founder review pending."
+}

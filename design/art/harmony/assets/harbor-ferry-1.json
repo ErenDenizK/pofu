@@ -1,0 +1,55 @@
+{
+ "after": {
+  "C_mean": 23.215,
+  "C_p50": 20.919,
+  "C_p95": 49.036,
+  "L_mean": 76.371,
+  "L_p2": 55.055,
+  "L_p98": 92.784,
+  "detail": 2.246,
+  "edge": 0.406,
+  "tint_a": -8.397,
+  "tint_b": 0.348,
+  "warmth_b": 18.87
+ },
+ "before": {
+  "C_mean": 18.454,
+  "C_p50": 16.629,
+  "C_p95": 38.979,
+  "L_mean": 76.371,
+  "L_p2": 55.055,
+  "L_p98": 92.784,
+  "detail": 2.227,
+  "edge": 0.406,
+  "tint_a": -5.227,
+  "tint_b": 2.204,
+  "warmth_b": 15.0
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.258,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 89.8,
+ "score_before": 80.7,
+ "shipped": false,
+ "source": "design/art/stations/harbor-ferry-1/harbor-ferry-1.png",
+ "source_sha": "9978de00a2bd82f7"
+}
