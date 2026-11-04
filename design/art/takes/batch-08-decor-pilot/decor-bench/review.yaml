@@ -3,19 +3,18 @@ contact_sheet: design/art/takes/batch-08-decor-pilot/decor-bench/contact.jpg
 jobs:
   decor-bench:
     pick: none
-    publication: skipped
-    note: 'Skipped after exactly one additional pair: current QA rejects old takes1/2
-      and new take3 on decor_anchor; take4 is automated WARN but its489px silhouette
-      still exceeds the explicit never-wider-than360px guide requirement. Manual alpha-overlay
-      review confirms the visible bench is too wide. No threshold waiver, resize or
-      further generation. Dependent lanterns, sailboat and mailbox skipped.'
-    retry_policy: Initial pair plus one additional pair exhausted; no further generation.
-      Skip only dependents.
+    publication: skipped after one allowed retry
+    note: Authorized 2026-11-04 re-run, four original takes and one retry exhausted.
+      Normalized widths t1=467, t2=495, t3=484, t4=452px all exceed the manifest maximum360px.
+      Automatic decor_anchor warns at these values, but the explicit guide-size requirement
+      remains hard. Reject all4; no source resizing, prompt edits or threshold changes.
+      Current guide-review.jpg binds these four sources. Only true decor-bench dependents
+      are skipped.
 qa_reports:
-  1:
+  2:
     job: decor-bench
-    take: 1
-    status: fail
+    take: 2
+    status: warn
     preset: lock-light
     checks:
     - check: transparency
@@ -27,62 +26,61 @@ qa_reports:
       value: 0.8166
     - check: chroma_ceiling
       status: pass
-      message: chroma p95 41 (R1 51)
-      value: 41.1
+      message: chroma p95 37 (R1 51)
+      value: 37.3
     - check: value_floor
       status: pass
-      message: lightness p5 65 (R1 59)
-      value: 65.4
+      message: lightness p5 66 (R1 59)
+      value: 65.8
     - check: detail_budget
       status: pass
       message: detail at display size 1.1 (R1 5.3)
       value: 1.11
     - check: lock_load
       status: pass
-      message: the lock moved colors by mean dE 1.3
-      value: 1.3012
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1113
     - check: no_guide_magenta
       status: pass
       message: 0 guide-magenta pixels (per 1024^2)
       value: 0.0
     - check: palette_drift
       status: pass
-      message: mean dE 0.8, p95 2.2, off-palette 0.0%
-      value: 0.7849
+      message: mean dE 0.7, p95 1.4, off-palette 0.0%
+      value: 0.6877
     - check: decor_anchor
-      status: fail
-      message: top y 466 above the height bar (500); width 742 px wider than the footprint
-        (360)
+      status: warn
+      message: width 495 px wider than the footprint (360)
       value: 888.0
     - check: harmony
       status: pass
-      message: 'harmony score 82 against the world reference (outliers: edge)'
-      value: 81.5
+      message: 'harmony score 76 against the world reference (outliers: C_p95, edge)'
+      value: 75.8
     info:
       registration:
-        dx: 6
-        dy: 48
+        dx: -31
+        dy: 28
       metrics_raw:
-        L_p5: 65.2
-        L_p50: 78.2
-        L_p95: 90.7
-        C_p50: 37.0
-        C_p95: 41.4
-        C_p99: 42.4
-        detail: 1.57
+        L_p5: 65.6
+        L_p50: 77.7
+        L_p95: 90.1
+        C_p50: 33.9
+        C_p95: 37.5
+        C_p99: 38.3
+        detail: 1.56
       metrics_locked:
-        L_p5: 65.4
-        L_p50: 78.2
-        L_p95: 90.7
-        C_p50: 37.1
-        C_p95: 41.1
-        C_p99: 42.1
+        L_p5: 65.8
+        L_p50: 77.7
+        L_p95: 89.7
+        C_p50: 33.9
+        C_p95: 37.3
+        C_p99: 37.9
         detail: 1.11
-    fingerprint: d91d84c1bcd56c32
-  2:
+    fingerprint: 47ef92de1ab65d50
+  1:
     job: decor-bench
-    take: 2
-    status: fail
+    take: 1
+    status: warn
     preset: lock-light
     checks:
     - check: transparency
@@ -94,123 +92,56 @@ qa_reports:
       value: 0.8166
     - check: chroma_ceiling
       status: pass
-      message: chroma p95 39 (R1 51)
-      value: 38.9
+      message: chroma p95 43 (R1 51)
+      value: 43.0
     - check: value_floor
       status: pass
-      message: lightness p5 66 (R1 59)
-      value: 66.1
+      message: lightness p5 65 (R1 59)
+      value: 64.8
     - check: detail_budget
       status: pass
-      message: detail at display size 1.0 (R1 5.3)
-      value: 0.99
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.3
     - check: lock_load
       status: pass
       message: the lock moved colors by mean dE 1.0
-      value: 1.0273
+      value: 1.0084
     - check: no_guide_magenta
       status: pass
       message: 0 guide-magenta pixels (per 1024^2)
       value: 0.0
     - check: palette_drift
       status: pass
-      message: mean dE 0.8, p95 1.6, off-palette 0.0%
-      value: 0.7611
+      message: mean dE 1.0, p95 2.0, off-palette 0.0%
+      value: 0.986
     - check: decor_anchor
-      status: fail
-      message: top y 462 above the height bar (500); width 696 px wider than the footprint
-        (360)
+      status: warn
+      message: width 467 px wider than the footprint (360)
       value: 888.0
     - check: harmony
       status: pass
-      message: 'harmony score 79 against the world reference (outliers: C_p95, edge)'
-      value: 79.4
+      message: 'harmony score 86 against the world reference (outliers: edge)'
+      value: 86.2
     info:
       registration:
-        dx: -68
-        dy: 66
+        dx: -35
+        dy: 48
       metrics_raw:
-        L_p5: 65.8
-        L_p50: 78.9
-        L_p95: 91.0
-        C_p50: 34.1
-        C_p95: 39.2
-        C_p99: 40.0
-        detail: 1.44
+        L_p5: 64.2
+        L_p50: 77.6
+        L_p95: 90.7
+        C_p50: 40.2
+        C_p95: 43.4
+        C_p99: 44.2
+        detail: 1.86
       metrics_locked:
-        L_p5: 66.1
-        L_p50: 78.9
-        L_p95: 90.9
-        C_p50: 34.1
-        C_p95: 38.9
-        C_p99: 39.6
-        detail: 0.99
-    fingerprint: d91d84c1bcd56c32
-  3:
-    job: decor-bench
-    take: 3
-    status: fail
-    preset: lock-light
-    checks:
-    - check: transparency
-      status: pass
-      message: source has an alpha channel
-    - check: canvas
-      status: pass
-      message: 1254x1254 scaled x0.817 into 1024x1024
-      value: 0.8166
-    - check: chroma_ceiling
-      status: pass
-      message: chroma p95 40 (R1 51)
-      value: 39.5
-    - check: value_floor
-      status: pass
-      message: lightness p5 64 (R1 59)
-      value: 63.8
-    - check: detail_budget
-      status: pass
-      message: detail at display size 1.1 (R1 5.3)
-      value: 1.15
-    - check: lock_load
-      status: pass
-      message: the lock moved colors by mean dE 1.2
-      value: 1.2234
-    - check: no_guide_magenta
-      status: pass
-      message: 0 guide-magenta pixels (per 1024^2)
-      value: 0.0
-    - check: palette_drift
-      status: pass
-      message: mean dE 0.8, p95 1.7, off-palette 0.0%
-      value: 0.7677
-    - check: decor_anchor
-      status: fail
-      message: width 536 px wider than the footprint (360)
-      value: 888.0
-    - check: harmony
-      status: pass
-      message: 'harmony score 81 against the world reference (outliers: C_p95, edge)'
-      value: 81.0
-    info:
-      registration:
-        dx: -37
-        dy: 50
-      metrics_raw:
-        L_p5: 63.4
-        L_p50: 78.3
-        L_p95: 90.5
-        C_p50: 36.2
-        C_p95: 39.8
-        C_p99: 40.6
-        detail: 1.62
-      metrics_locked:
-        L_p5: 63.8
-        L_p50: 78.2
+        L_p5: 64.8
+        L_p50: 77.6
         L_p95: 90.3
-        C_p50: 36.2
-        C_p95: 39.5
-        C_p99: 40.2
-        detail: 1.15
+        C_p50: 40.2
+        C_p95: 43.0
+        C_p99: 43.8
+        detail: 1.3
     fingerprint: 47ef92de1ab65d50
   4:
     job: decor-bench
@@ -227,85 +158,173 @@ qa_reports:
       value: 0.8166
     - check: chroma_ceiling
       status: pass
-      message: chroma p95 40 (R1 51)
-      value: 40.0
+      message: chroma p95 38 (R1 51)
+      value: 38.0
     - check: value_floor
       status: pass
       message: lightness p5 65 (R1 59)
-      value: 65.0
+      value: 65.2
     - check: detail_budget
       status: pass
       message: detail at display size 1.2 (R1 5.3)
-      value: 1.16
+      value: 1.19
     - check: lock_load
       status: pass
-      message: the lock moved colors by mean dE 1.0
-      value: 1.0099
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1451
     - check: no_guide_magenta
       status: pass
       message: 0 guide-magenta pixels (per 1024^2)
       value: 0.0
     - check: palette_drift
       status: pass
-      message: mean dE 0.7, p95 1.5, off-palette 0.0%
-      value: 0.7154
+      message: mean dE 0.7, p95 1.4, off-palette 0.0%
+      value: 0.6636
     - check: decor_anchor
       status: warn
-      message: width 489 px wider than the footprint (360)
+      message: width 452 px wider than the footprint (360)
       value: 888.0
     - check: harmony
       status: pass
-      message: 'harmony score 82 against the world reference (outliers: C_p95, edge)'
-      value: 81.9
+      message: 'harmony score 76 against the world reference (outliers: C_p95, edge)'
+      value: 76.2
     info:
       registration:
-        dx: -41
-        dy: 53
+        dx: -37
+        dy: 83
       metrics_raw:
-        L_p5: 64.4
-        L_p50: 78.1
-        L_p95: 91.4
-        C_p50: 35.3
-        C_p95: 40.1
-        C_p99: 40.9
-        detail: 1.62
+        L_p5: 64.8
+        L_p50: 77.8
+        L_p95: 89.7
+        C_p50: 34.5
+        C_p95: 38.4
+        C_p99: 39.6
+        detail: 1.68
       metrics_locked:
-        L_p5: 65.0
-        L_p50: 78.1
-        L_p95: 91.3
-        C_p50: 35.2
-        C_p95: 40.0
-        C_p99: 40.6
-        detail: 1.16
+        L_p5: 65.2
+        L_p50: 77.8
+        L_p95: 89.3
+        C_p50: 34.5
+        C_p95: 38.0
+        C_p99: 39.0
+        detail: 1.19
     fingerprint: 47ef92de1ab65d50
+  3:
+    job: decor-bench
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 66 (R1 59)
+      value: 65.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.22
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1497
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.7, p95 1.6, off-palette 0.0%
+      value: 0.7338
+    - check: decor_anchor
+      status: warn
+      message: width 484 px wider than the footprint (360)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 81 against the world reference (outliers: C_p95, edge)'
+      value: 80.6
+    info:
+      registration:
+        dx: -26
+        dy: 46
+      metrics_raw:
+        L_p5: 65.0
+        L_p50: 77.2
+        L_p95: 90.1
+        C_p50: 37.0
+        C_p95: 41.0
+        C_p99: 41.6
+        detail: 1.74
+      metrics_locked:
+        L_p5: 65.6
+        L_p50: 77.1
+        L_p95: 89.7
+        C_p50: 37.0
+        C_p95: 40.8
+        C_p99: 41.4
+        detail: 1.22
+    fingerprint: 47ef92de1ab65d50
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: Authorized 2026-11-04 re-run, four original takes and one retry exhausted.
+    Normalized widths t1=467, t2=495, t3=484, t4=452px all exceed the manifest maximum360px.
+    Automatic decor_anchor warns at these values, but the explicit guide-size requirement
+    remains hard. Reject all4; no source resizing, prompt edits or threshold changes.
+    Current guide-review.jpg binds these four sources. Only true decor-bench dependents
+    are skipped.
 sources:
 - take: 1
-  source_file: /workspace/generated_images/exec-7a0eac74-a0bb-45b1-8249-35fb21b6ff6f.png
+  source_file: /workspace/generated_images/exec-0287a43e-432c-4b48-806f-0cd473adaf87.png
+  original_generated_png_sha256: b07761e1d4eb369211eab3e79eb1fc5b5f75f9f2b3973200af0659e44b33e98d
+  inbox_png_sha256: fd4cfb8b48df5948553f530783d4eeda809305640906f8aff055aa18c7a0d40f
+  rgba_sha256: 39ee9f712c31ee875817e6f69d23863219da08d59330a3014080c188300a6bc6
+  source_rgba_matches_inbox: true
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
+  fingerprint: 47ef92de1ab65d50
 - take: 2
-  source_file: /workspace/generated_images/exec-d4f8055a-9191-46e8-9f12-369c534d41c4.png
+  source_file: /workspace/generated_images/exec-4e65bac9-0e42-4048-ad55-357527cc0ca5.png
+  original_generated_png_sha256: c134998135a784fd6896051d404e8628d019de2f5a25f52c0a0a763ec01ea77e
+  inbox_png_sha256: f67707ed191480796377584ae54d4c9c2ca90418413c2c775dde596b46546329
+  rgba_sha256: f69885a393f1e20c6e5000805a0e620811387587e6994325cc4b2a53fdf700a7
+  source_rgba_matches_inbox: true
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
+  fingerprint: 47ef92de1ab65d50
 - take: 3
-  source_file: /workspace/generated_images/exec-732746d0-ae89-4fe9-9ab4-667a14eef9e4.png
+  source_file: /workspace/generated_images/exec-900ce737-f9b2-43f6-9414-1fe779e55aab.png
+  original_generated_png_sha256: 406878d63c9d026851caeb4f9839add0fcb55eb9b1319d6a68a7cbe33ce3080b
+  inbox_png_sha256: 9f66abaa7806cf25f0ebc1ec3d85184b0369b5c79aa442437a802bfcdfdf2a38
+  rgba_sha256: 813f26a562b3e1cf3be813259952958a7da2292370d94c45423fa3c38c69553c
+  source_rgba_matches_inbox: true
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
+  fingerprint: 47ef92de1ab65d50
 - take: 4
-  source_file: /workspace/generated_images/exec-ad7603a2-0971-47e0-a3c0-cbe8ca050c7c.png
+  source_file: /workspace/generated_images/exec-b6cbc644-b8f3-4b5e-98ee-5c11659d3a0a.png
+  original_generated_png_sha256: 87d6185dab62b3fd0c8e3fe41c42785db6ffb513bd06c04b5ce8573dbf74332b
+  inbox_png_sha256: 19e719d443396572a86f60621b1a0b14b52af868133f3523cbfaaae60272b84a
+  rgba_sha256: f32baf2cd0c00db8162a292ac109ae5296e2750408434a158a2406f8dc09d0d5
+  source_rgba_matches_inbox: true
   account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-manual_guide_review:
-  status: fail
-  footprint_width: 360
-  visible_widths:
-    t1: 742
-    t2: 696
-    t3: 536
-    t4: 489
-  note: Take4 automated status stays WARN. Manual strict prompt size gate fails; visible
-    alpha composite rules out hidden-RGB preview artefacts.
+  fingerprint: 47ef92de1ab65d50

@@ -3,5 +3,12 @@ jobs:
   decor-lanterns:
     pick: none
     publication: dependent-skip
-    note: 'Not generated: required approved:decor-bench failed after its allowed retry;
-      no master. Continue next batch.'
+    note: 'Skipped without generation: true dependency decor-bench failed after its
+      one allowed retry. Authorized 2026-11-04 re-run, four original takes and one
+      retry exhausted. Normalized widths t1=467, t2=495, t3=484, t4=452px all exceed
+      the manifest maximum360px. Automatic decor_anchor warns at these values, but
+      the explicit guide-size requirement remains hard. Reject all4; no source resizing,
+      prompt edits or threshold changes. Current guide-review.jpg binds these four
+      sources. Only true decor-bench dependents are skipped.'
+generated_takes: 0
+failed_dependency: decor-bench
