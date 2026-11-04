@@ -2,10 +2,10 @@ id: asset-lighthouse-1
 type: asset
 title_tr: lighthouse-1
 title_en: lighthouse-1 (station)
-status: planned
+status: cut
 horizon: next
-summary: >-
-  A small striped lighthouse: coral and cream bands, tiny arched door, honey gallery ring, dark unlit lamp room, coral cap.
+summary: 'A small striped lighthouse: coral and cream bands, tiny arched door, honey
+  gallery ring, dark unlit lamp room, coral cap.'
 art:
   images: []
   jobs:
@@ -14,3 +14,13 @@ sources:
 - doc: tools/imagegen/manifest/batch-21-harbor-ladders.yaml
 kind: station
 batch: batch-21-harbor-ladders
+notes:
+- 'batch-21-harbor-ladders skipped after four takes: All4 retained takes fail official
+  station_anchor: normalized top y0 above height-bar y150, including the only retry
+  pair. The dark lamp room remains unlit and the required striped tower/window/door
+  are present, but a hard height failure cannot be waived. Record the terminal skip,
+  retain every source and contact, and skip only the true lighthouse level-chain dependents.
+  No promotion or additional generation. Automated failures: t1 station_anchor: top
+  y 0 above the height bar (150); t2 station_anchor: top y 0 above the height bar
+  (150); t3 station_anchor: top y 0 above the height bar (150); t4 station_anchor:
+  top y 0 above the height bar (150).'
