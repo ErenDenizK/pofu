@@ -1,0 +1,22 @@
+id: asset-findik-surprised
+type: asset
+title_tr: findik-surprised
+title_en: findik-surprised (char)
+status: planned
+horizon: later
+summary: >-
+  Edit the attached hedgehog, Fındık, into a surprised reaction. Change only the face: the
+  mouth becomes a small round soft "o", both eyes grow slightly rounder and wider with their
+  catchlights kept. His spines, body, paws, colors and size stay exactly as they are.
+links:
+  variant_of:
+  - asset-findik
+art:
+  images: []
+  jobs:
+  - batch-20-poses:findik-surprised
+sources:
+- doc: tools/imagegen/manifest/batch-20-poses.yaml
+kind: char
+batch: batch-20-poses
+size: 1024x1536

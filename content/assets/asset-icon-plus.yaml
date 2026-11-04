@@ -13,6 +13,7 @@ art:
   jobs:
   - batch-13-ui-rest:icon-plus
   - retry-2026-11-03:icon-plus
+  - retry-2026-11-04:icon-plus
 sources:
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
 kind: icon

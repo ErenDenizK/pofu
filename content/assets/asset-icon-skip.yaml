@@ -13,6 +13,7 @@ art:
   jobs:
   - batch-13-ui-rest:icon-skip
   - retry-2026-11-03:icon-skip
+  - retry-2026-11-04:icon-skip
 sources:
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
 kind: icon

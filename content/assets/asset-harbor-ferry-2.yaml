@@ -16,6 +16,7 @@ art:
   jobs:
   - batch-14-harbor:harbor-ferry-2
   - retry-2026-11-03:harbor-ferry-2
+  - retry-2026-11-04:harbor-ferry-2
 sources:
 - doc: tools/imagegen/manifest/batch-14-harbor.yaml
 kind: station

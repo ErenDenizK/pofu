@@ -1,0 +1,23 @@
+id: asset-mochi-surprised
+type: asset
+title_tr: mochi-surprised
+title_en: mochi-surprised (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached bunny, Mochi, into a surprised reaction. Change only the face and ears:
+  the mouth becomes a small round soft "o", both eyes grow slightly rounder and wider with
+  their catchlights kept, the long ears lift a little more upright. Body, paws, colors and
+  size stay exactly as they are.
+links:
+  variant_of:
+  - asset-mochi-v2
+art:
+  images: []
+  jobs:
+  - batch-20-poses-pilot:mochi-surprised
+sources:
+- doc: tools/imagegen/manifest/batch-20-poses-pilot.yaml
+kind: char
+batch: batch-20-poses-pilot
+size: 1024x1536

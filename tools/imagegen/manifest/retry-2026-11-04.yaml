@@ -1,0 +1,240 @@
+# Retry 2026-11-04: the four jobs still skipped after retry-2026-11-03, and the
+# four icons whose METAPHOR was wrong (production)
+#
+# Certainty list item 2 (docs/design/art-production-plan.md). Art that ships
+# whatever the island design becomes.
+#
+# Part A, the four skipped jobs (rewritten briefs, same asset names, so a pick
+# promotes over the same path):
+#   - icon-breath: 12-16% separation on light glass at 24 pt. The tufts were
+#     pale cream on pale glass. Now a mid-value sand ball with a dark-sage
+#     stem, so the value, not the hue, carries it (icon-style-v1: one dark
+#     accent shape).
+#   - harbor-ferry-1: 741-935 px wide against the 720 px footprint. The brief
+#     now fixes the size in pixels (560 px, inside the ellipse) and drops the
+#     second funnel to level 2.
+#   - harbor-ferry-2: depends on ferry-1; same size rule.
+#   - ui-sheet-paper-night: palette drift. It adds the new `paper-night`
+#     palette (palettes.json) for the dark indigo paper.
+#
+# Part B, the icon semantics rule (lead review 2026-11-03): ONE METAPHOR PER
+# ACTION, and every icon must read as a SILHOUETTE at 28 pt. plus and skip were
+# both sunflowers, friend read as a plant, island as a pie. The four are
+# redrawn from the action's own universal shape, painted in the family's clay
+# finish; no plants, no flowers. Review each take at 28 pt on light and on dark
+# glass with the colour removed: if you cannot name the action from the
+# silhouette alone, it is not done.
+#   plus   -> a chunky rounded plus (four equal arms).
+#   skip   -> two chunky right-pointing chevrons (fast forward).
+#   friend -> two round-headed people side by side (head + shoulders).
+#   island -> a floating island seen from the side: a lawn cap with a single
+#             round tree, a tapering earth body, one pebble below.
+#
+# Pilot: the four icons are the pilot of the method for the later icon family
+# (batch-11-ui); the skipped four are re-runs. Sprites (ferry) are painted under
+# the day cell with the light standard (docs/design/light-standard.md).
+#
+# Tracks: `icons` (breath, plus, skip, friend, island: all at once), `harbor`
+# (ferry-1 -> ferry-2), `surfaces` (sheet-paper-night).
+
+batch: retry-2026-11-04
+title: Retry of the four skipped jobs and four icons redrawn by the semantics rule
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: icon-seed, kind: icon, name: seed, external: batch-11-ui-pilot}
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: harbor-island-s, kind: world, name: harbor-island-s, external: batch-14-harbor}
+  - {id: tea-stall-1, kind: station, name: tea-stall-1, external: batch-01-slice}
+  - {id: ui-sheet-paper, kind: ui, name: sheet-paper, external: retry-2026-11-03}
+
+  # ------------------------------------------------------------ part A
+  - id: icon-breath
+    kind: icon
+    name: breath
+    chat: "Pofu · Icons"
+    notes: "RETRY: the pale-cream tufts separated 12-16% from light glass at 24 pt. Value fix: a mid-value warm sand ball and a dark sage stem. Review at 28 pt on light glass: the ball must read as a round fluffy mass, not a cloud."
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for the breathing break: a dandelion clock seen from the
+          front. A big round fluffy ball built from plump, rounded tufts in
+          a mid-value warm sand (clearly darker than cream, a light-brown
+          sand with a lighter lit side), with a darker caramel shadow side
+          and a small honey center. One short, thick stem in dark sage
+          below it. Two plump tufts drift off to the upper right, each as
+          big as a tenth of the ball. The ball fills most of the icon.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: harbor-ferry-1
+    kind: station
+    name: harbor-ferry-1
+    chat: "Pofu · İskele"
+    light: {cell: day, layer: subject}
+    notes: "RETRY 2: four takes were 741-935 px wide against the 720 px footprint. Size is now stated in pixels: the hull is about 560 px wide, the whole ferry never exceeds 640 px, centered on the cross. One funnel only (the second belongs to level 2). Review: reads as a vapur (funnel, cabin, round windows), flat bottom edge, no water."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:island-main-s
+        role: "The home island: match its camera angle, softness and colors."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small Istanbul-style passenger ferry (vapur), toy-like and
+          chunky, for the island diorama: a short, plump hull in soft sea
+          blue with a cream stripe and softly rounded ends, cut off at the
+          bottom by one straight horizontal line (it floats level in water
+          that is not drawn), a low cream cabin with three round windows, one
+          tall rounded funnel in soft coral with a cream band, and a small
+          flag on a short mast. Low front three-quarter camera, upright; no
+          water, no wake, no smoke.
+
+          Size (the earlier attempts were far too wide): the ferry is
+          SMALL. The hull is about 560 px wide in the 1024 px image, the
+          whole ferry never wider than 640 px, leaving at least 190 px of
+          empty canvas on each side, and it is as tall as the lower two
+          thirds of the height bar. It sits inside the guide's ground
+          ellipse, centered on the cross.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: harbor-ferry-2
+    kind: station
+    name: harbor-ferry-2
+    edit_of: harbor-ferry-1
+    chat: "Pofu · İskele"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "Level 2: the ferry gets bigger (a second deck and a second funnel). Edit of level 1; the width stays, it grows upward."
+    prompt:
+      - text: |
+          Add a second deck to the ferry: a smaller cream cabin on top of the
+          first with two round windows, a rail of three cream posts around
+          the upper deck, and a second small coral funnel beside the first.
+          The hull, the first cabin and the colors stay, and the ferry does
+          not get wider: it only grows taller, inside the height bar.
+      - block: edit-keep-v1
+
+  - id: ui-sheet-paper-night
+    kind: ui
+    name: sheet-paper-night
+    edit_of: ui-sheet-paper
+    canvas: 1024x1024
+    slice: {caps: [32, 24, 20, 24], ship_height: 240}
+    chat: "Pofu · UI objects"
+    palettes: [paper-night]
+    acceptance: {edit_mode: recolor, profile: night}
+    notes: "RETRY: the dark-paper navy was outside the night palette (palette_drift). The job now adds `paper-night`: indigo #2B2F5B-#5B62A0, cream stitches #F2E4C4."
+    prompt:
+      - text: |
+          Dye the paper a deep, soft, dark indigo-blue (about #2B2F5B to
+          #3A4073, clearly darker than the day paper), the stitches a pale
+          warm cream, the paper lip a slightly lighter indigo (about
+          #5B62A0). Keep it matte and calm; the middle stays plain, flat
+          and even.
+      - block: edit-keep-v1
+
+  # ------------------------------------------------------------ part B
+  - id: icon-plus
+    kind: icon
+    name: plus
+    chat: "Pofu · Icons"
+    notes: "SEMANTICS REDRAW: plus/add. The old icon was a sunflower (the same metaphor as skip). Now a plain chunky plus sign. Silhouette test at 28 pt: it must read as a plus with the colour removed."
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for add, a plus sign: one chunky plus made of two thick,
+          softly rounded bars of the same width crossing in the middle,
+          four equal arms, each arm as thick as a quarter of the icon's
+          width. Painted as soft honey-gold clay, lit from the upper left,
+          with a darker caramel shadow side along the lower right edges.
+          Nothing else: no flower, no leaf, no sparkle.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-skip
+    kind: icon
+    name: skip
+    chat: "Pofu · Icons"
+    notes: "SEMANTICS REDRAW: skip. The old icon was a sunflower in a pot. Now the universal skip shape: two chunky right-pointing chevrons. Silhouette test at 28 pt: it must read as fast-forward / skip."
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for skip: two chunky, softly rounded triangles side by
+          side, both pointing to the right (a fast-forward symbol), the
+          second one overlapping the first slightly, each as tall as the
+          icon and thick enough to read at 24 points. Painted as soft
+          terracotta-coral clay, lit from the upper left, with a darker
+          shadow side on the lower right of each triangle. Nothing else: no
+          flower, no bar, no plant.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-friend
+    kind: icon
+    name: friend
+    chat: "Pofu · Icons"
+    notes: "SEMANTICS REDRAW: friend. The old two sprouts in a pot read as a plant. Now the universal people sign: two round-headed figures side by side. Silhouette test at 28 pt: it must read as two people."
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for a friend: two simple people side by side, each a
+          plump round head above a wide rounded shoulder shape (a head and
+          shoulders bust, no faces, no arms), the left one slightly in front
+          and larger, the right one slightly behind and smaller, their
+          silhouettes touching so they merge into one shape. Painted as soft
+          clay, the front figure in warm peach-coral, the back one in soft
+          sage; lit from the upper left with a darker shadow side. Nothing
+          else: no plant, no pot, no leaf.
+      - block: icon-style-v1
+      - block: prop-style-v2
+
+  - id: icon-island
+    kind: icon
+    name: island
+    chat: "Pofu · Icons"
+    notes: "SEMANTICS REDRAW: island. The old icon read as a pie (a flat lawn on a rounded wedge). Now a side view with a tall readable profile: a lawn cap with one round tree, a tapering earth body, one small floating pebble. Silhouette test at 28 pt: it must read as a floating island, not a pie or a bowl."
+    attach:
+      - ref: approved:icon-seed
+        role: "The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed)."
+      - ref: palette:world-props
+        role: "The palette card for props."
+    prompt:
+      - text: |
+          The icon for an island: a tiny floating island seen from the
+          side. On top, a flat sage lawn cap with one plump round tree
+          (a short thick trunk and a big round sage canopy) standing in the
+          middle. Below the lawn, the honey-earth body tapers downward into
+          an uneven rounded point, like a hanging carrot, with a darker
+          caramel shadow side on the right. One small round pebble floats
+          beneath the point. The tree and the pointed underside make the
+          silhouette; the island is taller than it is wide.
+      - block: icon-style-v1
+      - block: prop-style-v2

@@ -1,0 +1,23 @@
+id: asset-simit-happy
+type: asset
+title_tr: simit-happy
+title_en: simit-happy (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached kitten, Simit, into her happy face. Change only the eyes and mouth: both
+  eyes become happy closed arcs, the classic smiling ^ shape, each a thick soft dark upward-curved
+  arc at the height of the top of the original eye, with fur below it; the "w" mouth widens
+  into a slightly bigger smile. Everything else stays exactly as it is.
+links:
+  variant_of:
+  - asset-simit-kitten
+art:
+  images: []
+  jobs:
+  - batch-20-poses-pilot:simit-happy
+sources:
+- doc: tools/imagegen/manifest/batch-20-poses-pilot.yaml
+kind: char
+batch: batch-20-poses-pilot
+size: 1024x1536
