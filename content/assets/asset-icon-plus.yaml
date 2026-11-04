@@ -4,9 +4,8 @@ title_tr: icon-plus
 title_en: plus (icon)
 status: in-production
 horizon: now
-summary: 'The icon for Plus: one sun-gold sunflower head seen straight on, a round
-  warm-brown center and eight plump rounded petals in a richer gold than a normal
-  sunflower, with a small cream highlight on each petal.'
+summary: A chunky honey-gold plus sign with four equal arms, softly rounded edges
+  and a darker caramel shadow side.
 art:
   images:
   - design/art/ui/icon-plus/icon-plus.png
@@ -16,9 +15,13 @@ art:
   - retry-2026-11-04:icon-plus
 sources:
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
+- doc: tools/imagegen/manifest/retry-2026-11-04.yaml
 kind: icon
 batch: batch-13-ui-rest
 notes:
 - 'Batch13overnight: Not generated: the embedded ui-sheet-paper pilot failed its allowed
   retry, so the manifest skips the rest of batch13. Other batch timings remain as
   specified.'
+- '2026-11-04: Semantics redraw replaces the former sunflower with a single plus.
+  Retained take1 passes hard QA and the native28 color-removed silhouette review on
+  light/dark glass; auto-picked by QA, founder review pending.'
