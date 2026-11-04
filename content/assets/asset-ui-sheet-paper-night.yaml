@@ -15,6 +15,7 @@ art:
   jobs:
   - batch-13-ui-rest:ui-sheet-paper-night
   - retry-2026-11-03:ui-sheet-paper-night
+  - retry-2026-11-04:ui-sheet-paper-night
 sources:
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
 kind: ui
