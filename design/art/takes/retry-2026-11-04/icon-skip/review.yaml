@@ -2,11 +2,11 @@ batch: retry-2026-11-04
 contact_sheet: null
 jobs:
   icon-skip:
-    pick: null
-    publication: suspended at global stop
-    note: Both initial image-tool requests returned moderation_blocked (safety rejection),
-      with no usable image. Global stop; do not retry or rewrite the prompt to bypass
-      the refusal.
+    pick: none
+    publication: refusal-blocked; unrelated work resumed
+    note: Both initial tool requests refused with moderation_blocked;0 usable images.
+      No retry or prompt rephrasing. Founder explicitly authorized continuing unrelated
+      jobs; the original refusal/global-stop history is retained.
 qa_reports: {}
 sources: []
 global_stop:
@@ -34,3 +34,6 @@ reference_sha256:
   /workspace/art-20261104-retry/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
 image_requests: 2
 usable_images: 0
+founder_continuation: The latest direct user instruction supersedes repository-wide
+  stopping after this refused job; keep the job blocked and continue independent READY
+  work.
