@@ -76,33 +76,26 @@ Loaded every turn: keep it short. History lives in `docs/` (`docs/README.md`).
   (ADR-0015, ADR-0017); the visual system is ADR-0018 (balanced diorama,
   native glass plus painted elements). Build setup: `docs/development.md`.
 
-## Agent operations (efficiency, 2026-11-02)
+## Agent operations (budget, founder 2026-11-04)
 
-Same output, far less waste. Rules for the lead and its sub-agents:
+Spend about a third of the 2026-11-03 level with no loss of quality.
 
-- **Owners, not crowds.** At most four background agents at once, one per
-  stream: world/look, game/minigames, art queue, docs/research. Continue a
-  live owner with SendMessage instead of spawning a fresh agent that must
-  re-read the repo.
-- **Model routing (founder, 2026-11-02).** Always the 5.5 family: Opus 5.5
-  plans and judges, Sonnet 5.5 implements, Haiku 5.5 reads, searches and
-  summarizes. Set `model` on every Agent call; Opus sub-agents only for
-  planning or design judgement.
-- **Less CI.** Prove logic locally first (Python sims, a local Swift
-  toolchain when available); push to CI once per finished change, not to
-  debug.
-- **Optimize before the next big round.** No new large round of work
-  starts until the workflow review in `docs/development.md` is done.
-- **Tight briefs, short reports.** A brief states the goal, decisions made,
-  files, and what done means. Reports: at most 200 words plus paths; details
-  live in the PR.
-- **Pilot, then scale.** Every art batch and every new system starts with a
-  2 to 4 item pilot; scale only after review. Never regenerate what the
-  harmony system or a grade can fix.
-- **Research once.** Findings go to `docs/research/` and are linked, not
-  redone. Check there first.
-- **CI budget.** Batch pushes; an agent gets at most three red CI rounds
-  before it reports back instead of looping.
-- **The lead looks at contact sheets and montages** (`tools/review/`), not
-  every file, and sends the founder only finished visuals.
-- **Clean up.** Remove merged agents' worktrees; keep the disk lean.
+- **The lead (Opus 5.5) orchestrates and judges;** it delegates by task:
+  Sonnet 5.5 implements and writes, Haiku 5.5 reads, searches, summarizes
+  and does visual review (contact sheets, screenshots, keyframes). Opus
+  sub-agents only when a design judgement truly needs one. Always the 5.5
+  family; set `model` on every Agent call.
+- **Minimal context.** Briefs name exact files and decisions; agents read
+  sections, not whole docs; no re-reading what a brief already says.
+  Continue a live owner with SendMessage instead of a fresh agent.
+- **At most three agents at once,** one per stream (product/app, art
+  queue, docs/deck).
+- **No optional steps.** Videos, motion beats, screenshot strips and
+  full test suites run only when the change needs them or the founder
+  will see them; otherwise the targeted tests. CI once per finished
+  change; at most two red rounds, then report.
+- **No loop, deck or concept round without a reason** the founder can
+  see; no images unless they answer a question or ship.
+- **Pilot, then scale;** never regenerate what a grade can fix.
+- **Research once** (`docs/research/`); short reports (≤ 150 words plus
+  paths); remove merged worktrees.
