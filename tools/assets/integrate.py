@@ -34,7 +34,7 @@ def master_file(folder: str) -> Path | None:
     """A master folder's image: the lock-light re-lock when adopted, else the master (same order as
     preblur's `_master` and harmony.py)."""
     base = REPO / folder
-    for candidate in (f"{base.name}--lock-light.png", f"{base.name}.png", f"{base.name}.webp"):
+    for candidate in (f"{base.name}--graded.webp", f"{base.name}--lock-light.png", f"{base.name}.png", f"{base.name}.webp"):
         if (base / candidate).is_file():
             return base / candidate
     return None

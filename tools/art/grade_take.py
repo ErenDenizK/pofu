@@ -48,13 +48,22 @@ def smoothstep(a: float, b: float, x: np.ndarray) -> np.ndarray:
     return t * t * (3 - 2 * t)
 
 
-def depth_weight(shape: tuple[int, int], layer: str, sprite: bool) -> np.ndarray:
-    """1 where the grade acts fully. A sprite has no depth; a plate is deeper toward the top."""
+def depth_weight(shape: tuple[int, int], layer: str, sprite: bool, centre: float | None = None,
+                 alpha: np.ndarray | None = None) -> np.ndarray:
+    """1 where the grade acts fully. A sprite has no depth; a plate is deeper toward the top.
+
+    `centre` (a fraction of the canvas height) is where the plate's subject sits (the lawn's
+    centre): the grade acts fully there and below it, and the haze grows toward the plate's back
+    edge (the first opaque row), which keeps FAR_KEEP of it."""
     h, w = shape
     base = LAYER_DEHAZE[layer]
     if sprite:
         return np.full((h, w), base)
     y = np.linspace(0, 1, h)[:, None] * np.ones((1, w))
+    if centre is not None:
+        rows = np.where((alpha > 0.03).any(axis=1))[0] if alpha is not None else []
+        top = rows[0] / h if len(rows) else 0.0
+        return base * (FAR_KEEP + (1 - FAR_KEEP) * smoothstep(top, max(centre, top + 0.05), y))
     return base * (FAR_KEEP + (1 - FAR_KEEP) * smoothstep(0.15, 0.65, y))
 
 
@@ -90,7 +99,7 @@ def _median_gamma(x: np.ndarray, mask: np.ndarray, t: dict, darken_only: bool = 
     return x ** g, {"gamma": round(g, 2)}
 
 
-def grade_rgba(rgba: np.ndarray, light: dict, strength: float = 1.0) -> tuple[np.ndarray, dict]:
+def grade_rgba(rgba: np.ndarray, light: dict, strength: float = 1.0, centre: float | None = None) -> tuple[np.ndarray, dict]:
     """Return (graded rgba, what was done). Alpha is untouched.
 
     The tone moves happen on CIELAB lightness only (a and b are kept, a little
@@ -103,7 +112,7 @@ def grade_rgba(rgba: np.ndarray, light: dict, strength: float = 1.0) -> tuple[np
     info: dict = {}
     if not mask.any():
         return rgba, {"skipped": "no subject pixels"}
-    weight = depth_weight(alpha.shape, light["layer"], sprite) * strength
+    weight = depth_weight(alpha.shape, light["layer"], sprite, centre, alpha) * strength
     hazy = lt.measure_light(rgba)["haze"] > t["haze_max"]  # a take that is clear enough is not dehazed
     dh = dehaze(rgb, atmosphere_of(rgb), weight) if hazy else rgb
     if hazy:
@@ -173,6 +182,7 @@ def main(argv=None) -> int:
     ap.add_argument("--layer", choices=lt.LAYERS, default="subject")
     ap.add_argument("--spec", action="append", default=[], help="PATH:CELL:LAYER (repeatable; overrides --cell/--layer)")
     ap.add_argument("--strength", type=float, default=1.0)
+    ap.add_argument("--centre", type=float, help="plates: the subject's centre as a fraction of the canvas height; the grade is full there and haze grows toward the back edge")
     ap.add_argument("--sheet", type=Path, help="write a before/after sheet (JPEG, long side <= --max)")
     ap.add_argument("--max", type=int, default=1400)
     args = ap.parse_args(argv)
@@ -188,7 +198,7 @@ def main(argv=None) -> int:
         lt.parse_light(light)
         src = sl.load_rgba(path)
         before = lt.measure_light(src)
-        graded, info = grade_rgba(src, light, args.strength)
+        graded, info = grade_rgba(src, light, args.strength, args.centre)
         after = lt.measure_light(graded)
         dest = graded_path(path)
         save(graded, dest)

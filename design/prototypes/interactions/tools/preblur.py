@@ -179,7 +179,7 @@ def _master(folder):
     """A master folder's image: the lock-light re-lock when one was adopted (relock.py), else the
     master itself. harmony.py reads the same order."""
     name = os.path.basename(folder)
-    for candidate in (f"{name}--lock-light.png", f"{name}.png", f"{name}.webp"):
+    for candidate in (f"{name}--graded.webp", f"{name}--lock-light.png", f"{name}.png", f"{name}.webp"):
         if os.path.exists(os.path.join(REPO, folder, candidate)):
             return os.path.join(folder, candidate)
     raise FileNotFoundError(folder)
