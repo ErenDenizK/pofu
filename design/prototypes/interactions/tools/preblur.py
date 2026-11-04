@@ -199,6 +199,19 @@ def _isle(name, box):
     return {"src": os.path.join(PROTO, name + ".webp"), "units": box[2] - box[0], "anchor_box": box}
 
 
+def _blob(folder, width_units, anchor, like=None):
+    """A master whose opaque box is `width_units` wide in the world, anchored at the box's centre or
+    at its feet (bottom centre). `like` takes the scale and anchor from another master on the same
+    canvas (a pose of the same character)."""
+    ref = like or folder
+    with Image.open(os.path.join(REPO, _master(ref))) as im:
+        box = im.getchannel("A").point(lambda v: 255 if v > 2 else 0).getbbox()
+    ppu = (box[2] - box[0]) / width_units
+    cx = (box[0] + box[2]) / 2
+    cy = (box[1] + box[3]) / 2 if anchor == "centre" else box[3]
+    return {"src": _master(folder), "ppu": ppu, "anchor": (cx, cy)}
+
+
 def _sky(folder, width_pt, anchor="centre"):
     """A sky element drawn in screen space (far isles, clouds, the cloud sea): one image `width_pt`
     points wide at most, stored at 3 px per point, never blurred (it is far and soft already)."""
@@ -269,6 +282,14 @@ APP_SOURCES = {
     "isle-stars-standin": _isle("isle-stars", (-122, -95, 122, 112)),
     "isle-hamam-standin": _isle("isle-hamam", (-128, -100.7, 128, 118.72)),
     "isle-library-standin": _isle("isle-library", (-122, -95, 122, 112)),
+    # The harbor (vertical slice): the real plate, 268 units wide (centred on its pixels), the goat on
+    # its dock and Simit at the bagel cart. Simit's three poses share one canvas, so they share the
+    # base pose's scale and feet and stay registered. Keys match the harmony manifest.
+    "harbor-island-s": _blob("design/art/masters/harbor-island-s", 268, "centre"),
+    "harbor-goat": _blob("design/art/masters/harbor-goat", 34, "feet"),
+    "simit-kitten": _blob("design/art/masters/simit-kitten", 26, "feet"),
+    "simit-kitten-work": _blob("design/art/masters/simit-kitten-work", 26, "feet", like="design/art/masters/simit-kitten"),
+    "simit-kitten-ears": _blob("design/art/masters/simit-kitten-ears", 26, "feet", like="design/art/masters/simit-kitten"),
     # The sky (batch 04), in screen points: far isles in the haze, clouds and the cloud sea.
     "far-isle-1": _sky("far-isle-1", 300),
     "far-isle-2": _sky("far-isle-2", 160),

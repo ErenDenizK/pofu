@@ -143,7 +143,7 @@ public enum IslandLayout {
     public static let isles: [Isle] = [
         Isle(id: .yildiz, center: WorldPoint(x: -270, y: -255), art: "isle-stars-standin"),
         Isle(id: .kaplica, center: WorldPoint(x: 275, y: -245), art: "isle-hamam-standin"),
-        Isle(id: .harbor, center: WorldPoint(x: 265, y: 320), art: "isle-harbor-standin"),
+        Isle(id: .harbor, center: WorldPoint(x: 265, y: 320), art: "harbor-island-s"),
         Isle(id: .kitap, center: WorldPoint(x: -280, y: 320), art: "isle-library-standin"),
     ]
 

@@ -647,9 +647,32 @@ private struct WorldCanvas: View {
                         opacity: (arrived ? 1 : 0.55) * fade
                     )
                     .saturation(arrived ? 1 : 0.35)
+                    ForEach(IslandLayout.cast(on: isle.id)) { member in
+                        let art = castArt(member)
+                        if let sprite = WorldArt.sprite(art) {
+                            DepthImage(
+                                name: art,
+                                sprite: sprite,
+                                level: min(max(z, 0), 1),
+                                anchor: canvasPoint(
+                                    WorldPoint(x: isle.center.x + member.offset.x, y: isle.center.y + member.offset.y),
+                                    depth: 0
+                                ),
+                                opacity: (arrived ? 1 : 0.55) * fade
+                            )
+                            .saturation(arrived ? 1 : 0.35)
+                        }
+                    }
                 }
             }
         }
+    }
+
+    /// A cast member's sprite: Simit's pose follows the cart and Pofu's calm ring (`SimitPose`).
+    private func castArt(_ member: IslandCastMember) -> String {
+        guard member.id == "simit" else { return member.art }
+        let level = world.stations.first { $0.id == .bagelCart }?.level ?? 0
+        return SimitPose.pose(bagelCartLevel: level, calmIsFull: world.calmIsFull).art
     }
 
     // MARK: Placement
