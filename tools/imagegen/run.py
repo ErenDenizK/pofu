@@ -373,7 +373,8 @@ def cmd_post(args, config, m: pl.Manifest) -> int:
                                   {**job.acceptance, **({"exploration": True} if qa.is_exploration(job.id, job.acceptance) else {})},
                                   registration=registration, parent_locked=parent_locked,
                                   register_root=((job.kind == "station" or bool(job.decor)) and not job.edit_of),
-                                  transparent=job.transparent, decor=job.decor, light=job.light)
+                                  transparent=job.transparent, decor=job.decor, light=job.light,
+                                  fit=(None if (job.fit is False or job.edit_of) else (job.fit or {})))
             locked_path = out_dir / "locked" / path.name
             sl.save_rgba(res.locked, locked_path)
             report = {"job": job.id, "take": n, "status": res.status, "preset": preset_name,
@@ -455,6 +456,7 @@ def cmd_promote(args, config, m: pl.Manifest) -> int:
                 "account": side.get("account") or {},
                 "style_lock": {"preset": report["preset"], "version": presets.get("version")},
                 "registration": report["info"].get("registration"), "alignment": report["info"].get("alignment"),
+                "fit": report["info"].get("fit"),
                 "qa": {"status": report["status"], "checks": report["checks"]}, "note": entry.get("note", "")}
         if job.slice:
             meta["slice"] = job.slice

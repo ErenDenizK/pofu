@@ -80,6 +80,7 @@ jobs:
   - id: harbor-ferry-1
     kind: station
     name: harbor-ferry-1
+    fit: {max_width: 640}
     chat: "Pofu · İskele"
     light: {cell: day, layer: subject}
     notes: "RETRY 2: four takes were 741-935 px wide against the 720 px footprint. Size is now stated in pixels: the hull is about 560 px wide, the whole ferry never exceeds 640 px, centered on the cross. One funnel only (the second belongs to level 2). Review: reads as a vapur (funnel, cabin, round windows), flat bottom edge, no water."

@@ -236,6 +236,71 @@ def shift(rgba: np.ndarray, dx: int, dy: int) -> np.ndarray:
 EDIT_REGISTRATION = {"dx": 0, "dy": 0}
 
 
+MIN_FIT_SCALE = 0.6
+
+
+def scale_about(rgba: np.ndarray, s: float, anchor: tuple[float, float]) -> np.ndarray:
+    """Uniformly scale `rgba` by s about `anchor`, keeping the canvas size.
+
+    Lanczos on premultiplied alpha, so a shrunk edge gets neither a dark nor a
+    light fringe from the colour of transparent pixels."""
+    if s == 1.0:
+        return rgba
+    h, w = rgba.shape[:2]
+    pm = rgba.copy()
+    pm[..., :3] *= pm[..., 3:4]
+    nw, nh = max(1, round(w * s)), max(1, round(h * s))
+    # Place the scaled canvas so the anchor lands on itself.
+    ox, oy = int(round(anchor[0] - anchor[0] * nw / w)), int(round(anchor[1] - anchor[1] * nh / h))
+    out = np.zeros_like(rgba)
+    x0, y0 = max(0, ox), max(0, oy)
+    x1, y1 = min(w, ox + nw), min(h, oy + nh)
+    for c in range(4):
+        im = Image.fromarray(pm[..., c].astype(np.float32), "F").resize((nw, nh), Image.Resampling.LANCZOS)
+        small = np.asarray(im, dtype=np.float64)
+        if x1 > x0 and y1 > y0:
+            out[y0:y1, x0:x1, c] = small[y0 - oy:y1 - oy, x0 - ox:x1 - ox]
+    a = np.clip(out[..., 3], 0.0, 1.0)
+    rgb = np.clip(out[..., :3], 0.0, a[..., None])
+    res = np.zeros_like(rgba)
+    nz = a > 1e-6
+    res[..., :3][nz] = rgb[nz] / a[nz][:, None]
+    res[..., 3] = a
+    return res
+
+
+def fit_to_guide(rgba: np.ndarray, kind: str, mode: str = "ground", max_width: int | None = None,
+                 top: int | None = None) -> tuple[np.ndarray, dict]:
+    """Shrink an oversized object to its guide's footprint width and height bar.
+
+    The image model keeps drawing stations and decor too large, so size is
+    enforced here, not only in the prompt. The scale is uniform, about the
+    ground anchor (footprint center, ground line), and never above 1. The
+    height budget is the distance from the ground target to the bar, since
+    registration puts the ground line there next. A piece that would have to
+    shrink below MIN_FIT_SCALE is a real art failure and is left alone for QA
+    to fail. Returns (image, info): {"scale", "anchor"} or {"fit": None, "reason"}."""
+    if kind == "station":
+        guide = STATION
+    elif kind in ("prop", "decor"):
+        if mode == "hang":
+            return rgba, {"fit": None, "reason": "hanging decor is not fitted"}
+        guide = DECOR
+    else:
+        return rgba, {"fit": None, "reason": f"{kind} has no guide"}
+    max_width = int(max_width) if max_width is not None else 2 * guide["rx"]
+    top = int(top) if top is not None else guide["top"]
+    g = pa.measure(rgba)
+    anchor = [round(g.base_x, 1), g.baseline]
+    s = min(1.0, max_width / g.width, (guide["baseline_target"] - top) / max(1, g.baseline - g.top))
+    if s >= 1.0:
+        return rgba, {"scale": 1.0, "anchor": anchor}
+    if s < MIN_FIT_SCALE:
+        return rgba, {"fit": None, "reason": f"needs x{s:.2f}, below x{MIN_FIT_SCALE} (a real art failure)"}
+    s = round(s, 4)
+    return scale_about(rgba, s, (g.base_x, g.baseline)), {"scale": s, "anchor": anchor}
+
+
 def station_registration(rgba: np.ndarray) -> dict:
     """Translation that puts a station's footprint on the guide's anchor."""
     g = pa.measure(rgba)
@@ -770,7 +835,8 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
 def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, preset: dict, palettes: list[str],
                  acceptance: dict | None = None, registration: dict | None = None,
                  parent_locked: np.ndarray | None = None, register_root: bool = False,
-                 transparent: bool = True, decor: str | None = None, light: dict | None = None) -> TakeResult:
+                 transparent: bool = True, decor: str | None = None, light: dict | None = None,
+                 fit: dict | None = None) -> TakeResult:
     checks: list[Check] = []
     if transparent:
         rgba, c = ensure_alpha(raw)
@@ -784,6 +850,15 @@ def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, pre
     rgba, c = fit_canvas(rgba, canvas, cover=not transparent)
     checks.append(c)
     info: dict = {}
+    # Guide fit: root stations and ground decor only (an edit inherits its
+    # parent's frame). `fit` is the job's override ({} = guide defaults).
+    if (fit is not None and parent_locked is None and registration is None and transparent
+            and (kind == "station" or decor == "ground")):
+        rgba, finfo = fit_to_guide(rgba, kind, decor or "ground", fit.get("max_width"), fit.get("top"))
+        if "scale" in finfo:
+            info["fit"] = finfo
+        else:
+            info["fit_skipped"] = finfo["reason"]
     if kind == "station":
         reg = registration if registration is not None else (station_registration(rgba) if register_root else None)
         if reg:

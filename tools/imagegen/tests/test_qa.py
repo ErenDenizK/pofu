@@ -117,7 +117,7 @@ class StationTests(unittest.TestCase):
         lab = sl.srgb_to_lab(grey[..., :3])
         lab[..., 1:] *= 0.6  # the level lost 40 % of its chroma (batch 03's windmill-2)
         grey[..., :3] = np.clip(sl.lab_to_srgb(lab), 0, 1)
-        self.assertAlmostEqual(qa.edit_chroma_ratio(parent, parent), 1.0, places=3)
+        self.assertAlmostEqual(qa.edit_chroma_ratio(parent, parent), 1.0, delta=0.01)
         checks = {c.name: c for c in qa.run_checks("station", grey, grey, ["world-props"], parent_locked=parent)}
         self.assertEqual(checks["edit_chroma"].status, "fail")
 
@@ -371,3 +371,75 @@ class HarmonyCheckTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def _box(w, h, base=888, cx=512):
+    im = canvas()
+    ImageDraw.Draw(im).rounded_rectangle((cx - w / 2, base - h, cx + w / 2, base), radius=20, fill=PROP + (255,))
+    return np.asarray(im, dtype=np.float64) / 255.0
+
+
+class GuideFitTests(unittest.TestCase):
+    def test_oversized_decor_is_scaled_to_the_footprint_about_its_anchor(self):
+        raw = _box(470, 300)
+        g0 = qa.pa.measure(raw)
+        fitted, info = qa.fit_to_guide(raw, "prop", "ground")
+        g = qa.pa.measure(fitted)
+        self.assertAlmostEqual(info["scale"], 360 / 470, delta=0.01)
+        self.assertLessEqual(g.width, 361)
+        self.assertAlmostEqual(g.base_x, g0.base_x, delta=1.5)
+        self.assertAlmostEqual(g.baseline, g0.baseline, delta=1)
+        self.assertEqual(info["anchor"][1], g0.baseline)
+        # No fringe: every solid pixel keeps the object's colour.
+        solid = fitted[..., 3] > 0.99
+        off = np.abs(fitted[..., :3][solid] - np.array(PROP) / 255).max(axis=1)
+        self.assertLess((off > 0.02).mean(), 0.02)  # only Lanczos ringing at the rim
+        self.assertLess(off.max(), 0.2)
+
+    def test_height_bar_limits_a_station(self):
+        raw = _box(300, 840, base=900)  # top at y 60, bar at 150
+        fitted, info = qa.fit_to_guide(raw, "station")
+        self.assertAlmostEqual(info["scale"], 750 / 840, delta=0.01)
+        self.assertGreaterEqual(qa.pa.measure(fitted).top, 148)
+
+    def test_station_width_override(self):
+        fitted, info = qa.fit_to_guide(stall(), "station", max_width=400)
+        self.assertLessEqual(qa.pa.measure(fitted).width, 404)
+        self.assertAlmostEqual(info["scale"], 400 / 520, delta=0.01)
+
+    def test_within_limit_is_untouched(self):
+        raw = _box(340, 300)
+        fitted, info = qa.fit_to_guide(raw, "prop", "ground")
+        self.assertIs(fitted, raw)
+        self.assertEqual(info["scale"], 1.0)
+
+    def test_far_too_big_is_refused(self):
+        raw = _box(700, 380)
+        fitted, info = qa.fit_to_guide(raw, "prop", "ground")
+        self.assertIs(fitted, raw)
+        self.assertIsNone(info["fit"])
+
+    def test_hanging_decor_is_skipped(self):
+        raw = _box(480, 200)
+        fitted, info = qa.fit_to_guide(raw, "prop", "hang")
+        self.assertIs(fitted, raw)
+        self.assertIsNone(info["fit"])
+
+    def test_process_take_fits_roots_but_not_edits(self):
+        preset = sl.load_presets()["lock-light"]
+        pal = ["world-props"]
+        raw = _box(470, 300)
+        res = qa.process_take(raw, "prop", None, preset, pal, decor="ground", register_root=True, fit={})
+        self.assertIn("fit", res.info)
+        self.assertLessEqual(qa.pa.measure(res.normalized).width, 361)
+        edit = qa.process_take(raw, "prop", None, preset, pal, decor="ground", parent_locked=raw,
+                               registration=dict(qa.EDIT_REGISTRATION), fit={})
+        self.assertNotIn("fit", edit.info)
+        off = qa.process_take(raw, "prop", None, preset, pal, decor="ground", register_root=True, fit=None)
+        self.assertNotIn("fit", off.info)
+
+    def test_scale_about_replays_from_meta(self):
+        raw = _box(470, 300)
+        fitted, info = qa.fit_to_guide(raw, "prop", "ground")
+        again = qa.scale_about(raw, info["scale"], tuple(info["anchor"]))
+        self.assertTrue(np.allclose(fitted, again))

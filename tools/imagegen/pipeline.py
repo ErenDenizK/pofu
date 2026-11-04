@@ -119,6 +119,9 @@ class Job:
     # The art light standard (docs/design/light-standard.md): {cell, layer}.
     # Required on new manifests for every kind except icon, ui, widget, appicon.
     light: dict | None = None
+    # Guide fit (qa.fit_to_guide) override for a root station or ground decor:
+    # {max_width, top}, or False to turn the downscale off. None = guide defaults.
+    fit: dict | bool | None = None
 
     @property
     def asset(self) -> str:
@@ -243,6 +246,11 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
             if 2 * max(caps[0], caps[2]) >= height:
                 raise ManifestError(f"{where}: top and bottom caps must leave a stretchable centre inside ship_height")
             slice_ = {"caps": [float(c) for c in caps], "ship_height": float(height)}
+        fit = merged.get("fit")
+        if fit is not None and fit is not False and (
+                not isinstance(fit, dict) or set(fit) - {"max_width", "top"}
+                or not all(isinstance(v, int) and not isinstance(v, bool) and v > 0 for v in fit.values())):
+            raise ManifestError(f"{where}: fit is {{max_width: px, top: y}} or false")
         decor = merged.get("decor")
         if decor is None and kind == "prop" and any(a.ref == "decor-guide" for a in attach):
             decor = "ground"
@@ -267,7 +275,7 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
                   size=size, transparent=transparent, key=key,
                   variants=variants, acceptance=merged.get("acceptance", {}) or {}, chat=merged.get("chat"),
                   notes=merged.get("notes", "") or "", canvas=canvas, external=str(external) if external else None,
-                  master=str(master) if master else None, slice=slice_, decor=decor, palettes=list(extra), light=light)
+                  master=str(master) if master else None, slice=slice_, decor=decor, palettes=list(extra), light=light, fit=fit)
         jobs.append(job)
     if not jobs:
         raise ManifestError("manifest has no jobs")

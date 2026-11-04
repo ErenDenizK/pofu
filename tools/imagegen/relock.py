@@ -57,6 +57,9 @@ def master_path_of(job: pl.Job) -> Path:
 def normalize(job: pl.Job, raw: np.ndarray, meta: dict, preset: dict, pad: int = 0) -> np.ndarray:
     """The raw through run.py post's normalization and `preset`, on a canvas grown by `pad`."""
     rgba, _ = qa.fit_canvas(qa.ensure_alpha(raw)[0], job.canvas)
+    fit = meta.get("fit")
+    if fit and fit.get("scale"):
+        rgba = qa.scale_about(rgba, fit["scale"], tuple(fit["anchor"]))
     reg = None
     if job.kind == "station":
         reg = meta.get("registration") or (qa.station_registration(rgba) if not job.edit_of else None)
