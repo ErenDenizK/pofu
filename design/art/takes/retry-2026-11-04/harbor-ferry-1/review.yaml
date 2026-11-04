@@ -2,13 +2,13 @@ batch: retry-2026-11-04
 contact_sheet: design/art/takes/retry-2026-11-04/harbor-ferry-1/contact.jpg
 jobs:
   harbor-ferry-1:
-    pick: null
-    publication: suspended at global stop
-    note: 'Initial pair has automated warnings but violates the explicit maximum 640
-      px whole-ferry width: normalized widths 727 / 677 px. The only retry pair was
-      already dispatched before the global stop was recognized. Takes 3 and 4 are
-      retained raw sources, not ingested or posted. No approved parent for ferry-2
-      exists in this run.'
+    pick: none
+    publication: skipped after one allowed retry
+    note: All four retained takes were ingested and posted without regeneration. Automated
+      warnings do not enforce the explicit manual whole-ferry maximum of640px. The
+      solid alpha>=128 normalized widths are709,676,733,765px, all too wide even before
+      fringe pixels. Guide-fit.json records the measurement. One retry exhausted;
+      skip this job and only its true dependent harbor-ferry-2.
 qa_reports:
   1:
     job: harbor-ferry-1
@@ -91,6 +91,87 @@ qa_reports:
         C_p99: 46.4
         detail: 1.91
     fingerprint: 0546b96661a2444a
+  4:
+    job: harbor-ferry-1
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 39.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 93 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 78.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.38 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.376
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.8 (at least 3.5)'
+      value: 3.79
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.84
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0393
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 5.9, off-palette 0.7% (top: #667777 (0.5%), #668877
+        (0.1%))'
+      value: 1.7773
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: C_p95, edge)'
+      value: 81.7
+    info:
+      registration:
+        dx: 17
+        dy: -3
+      metrics_raw:
+        L_p5: 58.4
+        L_p50: 78.8
+        L_p95: 91.9
+        C_p50: 16.7
+        C_p95: 39.4
+        C_p99: 42.3
+        detail: 2.49
+      metrics_locked:
+        L_p5: 58.8
+        L_p50: 78.6
+        L_p95: 91.7
+        C_p50: 16.6
+        C_p95: 39.1
+        C_p99: 42.1
+        detail: 1.84
+    fingerprint: 0546b96661a2444a
   2:
     job: harbor-ferry-1
     take: 2
@@ -171,123 +252,136 @@ qa_reports:
         C_p99: 41.8
         detail: 1.81
     fingerprint: 0546b96661a2444a
+  3:
+    job: harbor-ferry-1
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 94 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 78.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.34 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.345
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.1 (at least 3.5)'
+      value: 4.09
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.05
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.098
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 5.1, off-palette 0.8% (top: #667777 (0.3%), #667788
+        (0.3%))'
+      value: 1.6173
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the world reference (outliers: edge)'
+      value: 86.5
+    info:
+      registration:
+        dx: 13
+        dy: 18
+      metrics_raw:
+        L_p5: 57.4
+        L_p50: 78.1
+        L_p95: 93.2
+        C_p50: 17.0
+        C_p95: 43.3
+        C_p99: 45.3
+        detail: 2.71
+      metrics_locked:
+        L_p5: 57.8
+        L_p50: 78.2
+        L_p95: 92.8
+        C_p50: 16.9
+        C_p95: 43.1
+        C_p99: 45.0
+        detail: 2.05
+    fingerprint: 0546b96661a2444a
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: All four retained takes were ingested and posted without regeneration. Automated
+    warnings do not enforce the explicit manual whole-ferry maximum of640px. The solid
+    alpha>=128 normalized widths are709,676,733,765px, all too wide even before fringe
+    pixels. Guide-fit.json records the measurement. One retry exhausted; skip this
+    job and only its true dependent harbor-ferry-2.
 sources:
-- batch: retry-2026-11-04
-  job: harbor-ferry-1
-  take: 1
-  round: 1
-  logical_run: retry-20261104-initial
+- take: 1
   source_file: /workspace/generated_images/exec-cbf02528-f68d-4ab0-ad16-286451c68a4e.png
-  returned_at: '2026-11-04T13:35:54.822Z'
-  prompt_sha256: e571a12389bbd95bded363fde694a54ae5feef97a4a78403bdf83d013d9d54a8
-  fingerprint: 0546b96661a2444a
-  saved_at: '2026-11-04T13:35:55.153635+00:00'
   original_generated_png_sha256: 4cc021c68f7ceae0534f62ca01cfbdf9aa1c35f8f6e6a1254c344da313dfe5ba
-  dimensions:
-  - 1254
-  - 1254
+  inbox_png_sha256: 682f4626b8869529f5d9ffee78e680eab41a80ef811e1853e298a7843d081776
   rgba_sha256: 2c550543573529ea2c9d47cf0dbcbc4dffd6762cb93bebce272ab1f0931daad3
-  account: &id001
+  source_rgba_matches_inbox: true
+  account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  archive: design/art/takes/retry-2026-11-04/harbor-ferry-1/station__harbor-ferry-1--t1.webp
-  archive_sha256: 4abcfd75e5d531f7589b99d851df43566eeba098a46403dcdddbe9eb7f5bed72
-  archive_encoding: lossy WebP quality 90
-  archive_dimensions:
-  - 1254
-  - 1254
-  qa_state: warn
-- batch: retry-2026-11-04
-  job: harbor-ferry-1
-  take: 2
-  round: 1
-  logical_run: retry-20261104-initial
+  fingerprint: 0546b96661a2444a
+- take: 2
   source_file: /workspace/generated_images/exec-0fbed571-1dfc-4005-b375-df9313b2e82c.png
-  returned_at: '2026-11-04T13:35:15.840Z'
-  prompt_sha256: e571a12389bbd95bded363fde694a54ae5feef97a4a78403bdf83d013d9d54a8
-  fingerprint: 0546b96661a2444a
-  saved_at: '2026-11-04T13:35:16.274084+00:00'
   original_generated_png_sha256: 5f052479da900c792c46ae99ebf3c50d4c1643375dc4a3bda9229f46718a4c4e
-  dimensions:
-  - 1254
-  - 1254
+  inbox_png_sha256: e0550044a3cab51e7dc1fc4dce80241d534e46396db0a55ca6de889cd2a401ed
   rgba_sha256: ab9d57e40eebe00947c8c6913e951e90d1d8c9ab6029a0e983ed5410a8fdafca
-  account: *id001
-  archive: design/art/takes/retry-2026-11-04/harbor-ferry-1/station__harbor-ferry-1--t2.webp
-  archive_sha256: 65cef0bbaec7896e74419ead760da99776ed9655227801b9d35d156dc53312b4
-  archive_encoding: lossy WebP quality 90
-  archive_dimensions:
-  - 1254
-  - 1254
-  qa_state: warn
-- batch: retry-2026-11-04
-  job: harbor-ferry-1
-  take: 3
-  round: 2
-  logical_run: retry-20261104-retries
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0546b96661a2444a
+- take: 3
   source_file: /workspace/generated_images/exec-ab27bd06-7b91-4355-bbf8-9bd2e51192d6.png
-  returned_at: '2026-11-04T13:43:18.338Z'
-  prompt_sha256: e571a12389bbd95bded363fde694a54ae5feef97a4a78403bdf83d013d9d54a8
-  fingerprint: 0546b96661a2444a
-  saved_at: '2026-11-04T13:43:18.761261+00:00'
   original_generated_png_sha256: 5bc6f715bdf70e87d34b72a86b80a67e72fbaf11ff1cd70091da5f818ab37856
-  dimensions:
-  - 1254
-  - 1254
+  inbox_png_sha256: 6dc3c8d1ecc6735d0d5405f4d30aeeb641f3e2664f9027ca3b93cab3c2d448e2
   rgba_sha256: b8cec25f363dfada375ab9d6ce56cc4f2576ba0e4562ba34b2def50b037dbb02
-  account: *id001
-  archive: design/art/takes/retry-2026-11-04/harbor-ferry-1/station__harbor-ferry-1--t3.webp
-  archive_sha256: dc867bd4226e1d4f69c9c2e0c37bfa88759bd78479abefcf0e1ff72f78e5422f
-  archive_encoding: lossy WebP quality 90
-  archive_dimensions:
-  - 1254
-  - 1254
-  qa_state: 'NOT RUN: retained at global stop'
-- batch: retry-2026-11-04
-  job: harbor-ferry-1
-  take: 4
-  round: 2
-  logical_run: retry-20261104-retries
-  source_file: /workspace/generated_images/exec-cd68252b-36e0-4f53-8e62-e9167cee66d9.png
-  returned_at: '2026-11-04T13:46:22.973Z'
-  prompt_sha256: e571a12389bbd95bded363fde694a54ae5feef97a4a78403bdf83d013d9d54a8
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
   fingerprint: 0546b96661a2444a
-  saved_at: '2026-11-04T13:46:23.322437+00:00'
+- take: 4
+  source_file: /workspace/generated_images/exec-cd68252b-36e0-4f53-8e62-e9167cee66d9.png
   original_generated_png_sha256: 2963243d0fd48379f1b97a31d04e91c586797d90cfec1f46a5cb3cfb114671dc
-  dimensions:
-  - 1254
-  - 1254
+  inbox_png_sha256: 12554e37b5a93b9d614cb0b10d286a63a970bd508293fe0bc9683cd9fc3d78b5
   rgba_sha256: 1f6fc7fbb1d0d71bfaec209146ecb6f060a9dad08310671386227a2251a3a7e0
-  account: *id001
-  archive: design/art/takes/retry-2026-11-04/harbor-ferry-1/station__harbor-ferry-1--t4.webp
-  archive_sha256: 79d55f2043cbbd0923ec3ae2c092fd24b81e5d6af9131231cee003f683023378
-  archive_encoding: lossy WebP quality 90
-  archive_dimensions:
-  - 1254
-  - 1254
-  qa_state: 'NOT RUN: retained at global stop'
-global_stop:
-  reason: image-tool refusal
-  code: moderation_blocked
-  job: icon-skip
-  batch: retry-2026-11-04
-  observed_at: '2026-11-04T13:42:58Z'
-  first_error_at: '2026-11-04T13:35:29.720Z'
-  error_at: '2026-11-04T13:36:29.738Z'
-  instruction: AGENTS.md global stop on Codex refusal. No further image dispatch,
-    no retry of refused job. Preserve already returned/in-flight originals; publish
-    only finished eligible bundles or preservation-only takes/contact/reviews.
-  request_ids:
-  - c0a76927-19a4-4ecf-955b-d9b691311946
-  - 178fcb2b-4092-4f4d-a522-2b262dafb47f
-  next_job: icon-skip (explicit resume required); pending retry04 jobs and later batches
-    remain unstarted or suspended
-  no_generation_after_observation: true
-retry_round_used: true
-preservation_only: true
-prompt_sha256: e571a12389bbd95bded363fde694a54ae5feef97a4a78403bdf83d013d9d54a8
-reference_sha256:
-  /workspace/art-20261104-retry/design/art/templates/station-guide.png: 9c8c885175f25be7a83981c2435ab2af453fe7a506afc7541eb5033115082202
-  /workspace/art-20261104-retry/design/art/masters/island-main-s/island-main-s.png: 75840e71b906b9fcc63c1b2572429024ce901fa7357c974c43916416573a05a7
-  /workspace/art-20261104-retry/design/art/stations/tea-stall-1/tea-stall-1.png: 7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422
-  /workspace/art-20261104-retry/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 0546b96661a2444a
