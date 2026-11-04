@@ -465,9 +465,13 @@ def app_main():
         entry = manifest["assets"].get(name)
         return entry is not None and not harmony.is_identity(entry["correction"])
 
+    # Rebuild only what this script writes (world-*); the normal maps (tools/assets/normals.py) and the
+    # hand-placed ui-* imagesets in the same catalog stay.
     if os.path.isdir(APP_CATALOG):
-        shutil.rmtree(APP_CATALOG)
-    os.makedirs(APP_CATALOG)
+        for entry in os.listdir(APP_CATALOG):
+            if entry.startswith("world-") and entry.endswith(".imageset") and "--normal" not in entry:
+                shutil.rmtree(os.path.join(APP_CATALOG, entry))
+    os.makedirs(APP_CATALOG, exist_ok=True)
     with open(os.path.join(APP_CATALOG, "Contents.json"), "w") as f:
         json.dump({"info": {"author": "xcode", "version": 1}}, f, indent=2)
         f.write("\n")

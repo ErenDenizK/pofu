@@ -216,3 +216,13 @@ measurements and corrections in `design/art/harmony/assets/<id>.json` (one file 
 as `<name>--unharmonized` to compare). `tools/imagegen` QA reports each
 take's score as the `harmony` line at promote time. CI runs `check`, and
 the screenshot branch carries the contact sheet as `harmony.jpg`.
+
+## Integrating approved masters (the vertical slice)
+
+`integrate.py` bakes approved masters into the app's asset folders from one map,
+`integration_map.json` (master folder, imageset name, target, size in points).
+`python3 -I tools/assets/integrate.py run` rewrites the outputs (deterministic);
+`check` and `pytest tools/assets/test_integrate.py` fail when a mapped image has no master
+or no output. `games` entries are flat PNGs for the garden minigame; `world` entries are
+sprites baked by `design/prototypes/interactions/tools/preblur.py app`, which `run` calls
+(it now rebuilds only `world-*` imagesets and keeps the normal maps and `ui-*` imagesets).
