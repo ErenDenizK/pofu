@@ -29,6 +29,17 @@ promote the approved take with full provenance.
 | `manifest/*.yaml` | One file per batch |
 | `tests/` | Unit and end-to-end tests (a stub Codex stands in for the real one) |
 
+## Guide fit
+
+The image model draws objects too large for their guide, so size is enforced in
+post-processing, not only in the prompt (prompts may still state it).
+`qa.fit_to_guide` shrinks a root station or ground decor piece uniformly about
+its ground anchor to the footprint width and height bar (never up, never below
+x0.6: that is a real art failure and QA fails it). It runs before registration
+and the lock in `run.py post`, is skipped for edits (they inherit the parent's
+frame), is recorded as `meta.json` `fit`, and `relock.py` replays it (no `fit`
+= no scaling). A job can set `fit: {max_width: px, top: y}` or `fit: false`.
+
 ## Setup and tests
 
 ```sh
