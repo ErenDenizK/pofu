@@ -6,8 +6,8 @@
   "L_mean": 82.085,
   "L_p2": 55.164,
   "L_p98": 95.761,
-  "detail": 7.23,
-  "edge": 0.182,
+  "detail": 7.533,
+  "edge": 0.171,
   "tint_a": 4.022,
   "tint_b": 9.159,
   "warmth_b": 24.837
@@ -19,8 +19,8 @@
   "L_mean": 82.085,
   "L_p2": 55.164,
   "L_p98": 95.761,
-  "detail": 7.23,
-  "edge": 0.182,
+  "detail": 7.533,
+  "edge": 0.171,
   "tint_a": 4.022,
   "tint_b": 9.159,
   "warmth_b": 24.837
@@ -48,11 +48,11 @@
   "L_p2",
   "detail"
  ],
- "ppu": 29.0,
+ "ppu": 30.8077,
  "reference": false,
- "score_after": 71.7,
- "score_before": 71.7,
- "shipped": false,
+ "score_after": 70.9,
+ "score_before": 70.9,
+ "shipped": true,
  "source": "design/art/masters/simit-kitten-ears/simit-kitten-ears.webp",
  "source_sha": "a99a6aae0348f7b3"
 }

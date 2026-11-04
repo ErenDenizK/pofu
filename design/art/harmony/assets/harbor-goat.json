@@ -7,7 +7,7 @@
   "L_p2": 20.882,
   "L_p98": 96.626,
   "detail": 5.671,
-  "edge": 0.278,
+  "edge": 0.279,
   "tint_a": 4.191,
   "tint_b": 8.976,
   "warmth_b": 14.922
@@ -20,7 +20,7 @@
   "L_p2": 20.882,
   "L_p98": 96.626,
   "detail": 5.671,
-  "edge": 0.278,
+  "edge": 0.279,
   "tint_a": 4.191,
   "tint_b": 8.976,
   "warmth_b": 14.922
@@ -40,11 +40,11 @@
  "matched_to": "char",
  "outliers_after": [],
  "outliers_before": [],
- "ppu": 29.0,
+ "ppu": 28.9412,
  "reference": false,
  "score_after": 97.6,
  "score_before": 97.6,
- "shipped": false,
+ "shipped": true,
  "source": "design/art/masters/harbor-goat/harbor-goat.webp",
  "source_sha": "45c27632bebc3eb3"
 }

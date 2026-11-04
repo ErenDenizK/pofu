@@ -6,8 +6,8 @@
   "L_mean": 84.004,
   "L_p2": 64.926,
   "L_p98": 92.688,
-  "detail": 0.953,
-  "edge": 1.113,
+  "detail": 1.012,
+  "edge": 0.832,
   "warmth_b": 29.489
  },
  "before": {
@@ -17,8 +17,8 @@
   "L_mean": 84.105,
   "L_p2": 64.926,
   "L_p98": 92.892,
-  "detail": 0.982,
-  "edge": 1.113,
+  "detail": 1.048,
+  "edge": 0.832,
   "warmth_b": 23.086
  },
  "chain": null,
@@ -38,11 +38,11 @@
  "outliers_before": [
   "C_p95"
  ],
- "ppu": 4.103,
+ "ppu": 5.4888,
  "reference": false,
- "score_after": 94.2,
- "score_before": 84.0,
- "shipped": false,
+ "score_after": 92.5,
+ "score_before": 82.3,
+ "shipped": true,
  "source": "design/art/masters/harbor-island-s/harbor-island-s.webp",
  "source_sha": "ecd09ecf0ac212c5"
 }
