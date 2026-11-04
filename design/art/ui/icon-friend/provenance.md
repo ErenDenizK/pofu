@@ -1,30 +1,36 @@
 # icon__friend
 
-- **Approved:** 2026-11-03T15:04:02+00:00 from batch `retry-2026-11-03`, job `icon-friend`, take t1
+- **Approved:** 2026-11-04T13:42:12+00:00 from batch `retry-2026-11-04`, job `icon-friend`, take t1
   of 2 considered.
 - **Generating account:** Founder's uncle's ChatGPT plan, used by the founder with permission
   (chatgpt-plan).
 - **Tool:** codex-cloud;
-  generated 2026-11-03T13:56:34+00:00.
+  generated 2026-11-04T13:36:27+00:00.
 - **Post-processing (human-authored, documented per art bible section 13):**
   canvas fit, style lock preset `lock-light` (style_lock.json v2).
-- **Files:** `raw.webp` is the take as generated (webp lossless), kept so the look can be re-locked; `icon-friend.png` is the locked master the app and later edits use.
-- **Review note:** auto-picked by QA; founder review pending. Resume from the fixed pre-stop original candidate, with zero image generation. Re-posted both retained PNGs under main9ede62e; both locked RGBA rasters match their retained versions exactly and the same eligible take remains lowest lock load. Fresh light/dark small-size visual review reconfirms the choice. Both takes show two soft sprouts in one clay pot, each with two broad chunky leaves; the paired silhouettes and pot remain readable at 28, 44 and 60 pt on pale and dark backgrounds. No lettering, thin stems or extra background plate.
+- **Files:** `raw.webp` is the take as generated (webp q95), kept so the look can be re-locked; `icon-friend.png` is the locked master the app and later edits use.
+- **Review note:** auto-picked by QA; founder review pending. Semantics redraw explicitly authorized by the current queue: replace the former plant metaphor with two people. Both candidates pass the actual full-canvas native28 color-removed silhouette test on light/dark glass: two separate round head lobes above merged shoulders, larger front figure and smaller rear figure, no faces, plants or pots. semantic-review.jpg is QA annotation only. Both hard-QA eligible; take1 has the minimum lock load1.1452 versus1.1976. The repository catalog excludes UI assets; required measure/check commands still run, and no synthetic Harmony shard will be invented.
 
 ## References
 
 - `design/art/ui/icon-seed/icon-seed.png`: The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed).
 - `design/reference/palette-card-world-props.png`: The palette card for props.
 
-## Prompt (fingerprint 10c4e27325479028)
+## Prompt (fingerprint 2a9b98a8668f02bb)
 
 ```text
 REFERENCES (attached, in this order):
 1. The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed).
 2. The palette card for props.
 
-The icon for a friend: two small, round, soft sprouts in a tiny
-clay pot, leaning toward each other, each with two chunky leaves.
+The icon for a friend: two simple people side by side, each a
+plump round head above a wide rounded shoulder shape (a head and
+shoulders bust, no faces, no arms), the left one slightly in front
+and larger, the right one slightly behind and smaller, their
+silhouettes touching so they merge into one shape. Painted as soft
+clay, the front figure in warm peach-coral, the back one in soft
+sage; lit from the upper left with a darker shadow side. Nothing
+else: no plant, no pot, no leaf.
 
 ICON STYLE: a painted icon from the same picture book as the attached
 hamster and island: the same soft airbrushed shading, the same warm
@@ -62,13 +68,13 @@ Output: one image, transparent background PNG, square 1024 x 1024.
 
 - pass: transparency (source has an alpha channel)
 - pass: canvas (1254x1254 scaled x0.817 into 1024x1024)
-- pass: chroma_ceiling (chroma p95 46 (R1 51))
-- pass: value_floor (lightness p5 49 (R1 59))
-- pass: detail_budget (detail at display size 0.7 (R1 5.3))
-- pass: lock_load (the lock moved colors by mean dE 1.0)
-- warn: palette_drift (mean dE 3.1, p95 9.9, off-palette 1.3% (top: #999944 (0.8%), #888844 (0.2%)))
-- pass: icon_fill (icon spans 80% of the canvas (target 80-92%))
-- pass: icon_thin_parts (0.8% of the silhouette is thinner than 1.5 pt at 24 pt)
-- pass: icon_small_detail (detail at 24 pt @3x 4.4 (busy above 7))
-- pass: icon_on_light_glass (73% of the icon separates from light glass at 24 pt)
+- pass: chroma_ceiling (chroma p95 33 (R1 51))
+- pass: value_floor (lightness p5 58 (R1 59))
+- pass: detail_budget (detail at display size 0.6 (R1 5.3))
+- pass: lock_load (the lock moved colors by mean dE 1.1)
+- pass: palette_drift (mean dE 2.0, p95 8.3, off-palette 0.1% (top: #998866 (0.0%), #998877 (0.0%)))
+- warn: icon_fill (icon spans 94% of the canvas (target 80-92%))
+- pass: icon_thin_parts (0.2% of the silhouette is thinner than 1.5 pt at 24 pt)
+- pass: icon_small_detail (detail at 24 pt @3x 2.5 (busy above 7))
+- pass: icon_on_light_glass (65% of the icon separates from light glass at 24 pt)
 - pass: icon_on_dark_glass (100% of the icon separates from dark glass at 24 pt)

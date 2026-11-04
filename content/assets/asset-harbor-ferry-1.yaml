@@ -48,3 +48,8 @@ notes:
   "/workspace/generated_images/exec-57c5c892-2e07-4ebb-a0ad-93c4c1ea5993.png", "original_generated_png_sha256":
   "e6cd815905f200ebbfa65cf867154bab711b8ab5e83396220cb9c4432185bb0a", "historical_generation_fingerprint":
   "49dc7805556656f8"}]'
+- 'retry-2026-11-04 skipped after four takes: All four retained takes were ingested
+  and posted without regeneration. Automated warnings do not enforce the explicit
+  manual whole-ferry maximum of640px. The solid alpha>=128 normalized widths are709,676,733,765px,
+  all too wide even before fringe pixels. Guide-fit.json records the measurement.
+  One retry exhausted; skip this job and only its true dependent harbor-ferry-2.'

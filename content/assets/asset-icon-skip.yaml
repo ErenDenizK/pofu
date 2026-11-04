@@ -2,7 +2,7 @@ id: asset-icon-skip
 type: asset
 title_tr: icon-skip
 title_en: skip (icon)
-status: in-production
+status: cut
 horizon: now
 summary: 'The icon for a skipped reach: one plump sunflower bloom in a small terracotta
   pot, the bloom round with a brown center and a few chunky yellow petals, one short
@@ -22,3 +22,6 @@ notes:
 - 'Batch13overnight: Not generated: the embedded ui-sheet-paper pilot failed its allowed
   retry, so the manifest skips the rest of batch13. Other batch timings remain as
   specified.'
+- 'retry-2026-11-04: refusal-blocked, two initial requests returned moderation_blocked
+  and no image. Not retried or rephrased; unrelated jobs continue by direct founder
+  instruction.'

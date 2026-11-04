@@ -2,13 +2,14 @@ id: asset-icon-breath
 type: asset
 title_tr: icon-breath
 title_en: breath (icon)
-status: cut
+status: in-production
 horizon: now
 summary: 'The icon for the breathing break: a dandelion clock, a round, fluffy ball
   built from about a dozen plump cream tufts around a small honey center, a short
   chunky sage stem below, two tufts drifting off to the upper right. No thin lines.'
 art:
-  images: []
+  images:
+  - design/art/ui/icon-breath/icon-breath.png
   jobs:
   - batch-13-ui-rest:icon-breath
   - retry-2026-11-03:icon-breath

@@ -1,0 +1,316 @@
+batch: retry-2026-11-04
+contact_sheet: design/art/takes/retry-2026-11-04/ui-sheet-paper-night/contact.jpg
+jobs:
+  ui-sheet-paper-night:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Initial pair and the only retry pair all fail edit_structure: r -0.7923,-0.7586,-0.7838,-0.7903.
+      The requested dark-indigo paper, pale stitches and night palette/lightness are
+      present, but the official structure check fails; no waiver or promotion. The
+      brief is a recolor and may need an explicit recolor acceptance profile from
+      the lead; no prompt or threshold was changed. One retry exhausted; no dependents.
+      Automated failures: t1 edit_structure: light structure matches the parent (r
+      -0.79); t2 edit_structure: light structure matches the parent (r -0.76); t3
+      edit_structure: light structure matches the parent (r -0.78); t4 edit_structure:
+      light structure matches the parent (r -0.79).'
+qa_reports:
+  2:
+    job: ui-sheet-paper-night
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 33 (R1 51)
+      value: 32.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 27 (R1 59)
+      value: 27.2
+    - check: night_lightness
+      status: pass
+      message: 'night variant: median lightness 28 (dark band 18-50)'
+      value: 27.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.96
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5861
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.5, p95 1.5, off-palette 0.0%
+      value: 0.5411
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9887
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r -0.76)
+      value: -0.7586
+    info:
+      metrics_raw:
+        L_p5: 26.5
+        L_p50: 27.1
+        L_p95: 41.1
+        C_p50: 30.5
+        C_p95: 33.0
+        C_p99: 34.5
+        detail: 2.26
+      metrics_locked:
+        L_p5: 27.2
+        L_p50: 27.6
+        L_p95: 40.5
+        C_p50: 30.6
+        C_p95: 32.6
+        C_p99: 34.1
+        detail: 1.96
+    fingerprint: e0fa94244bff4024
+  1:
+    job: ui-sheet-paper-night
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 32.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 26 (R1 59)
+      value: 26.0
+    - check: night_lightness
+      status: pass
+      message: 'night variant: median lightness 26 (dark band 18-50)'
+      value: 26.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.08
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0736
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.6, p95 1.7, off-palette 0.0%
+      value: 0.5746
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9905
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r -0.79)
+      value: -0.7923
+    info:
+      metrics_raw:
+        L_p5: 24.6
+        L_p50: 25.5
+        L_p95: 42.9
+        C_p50: 29.6
+        C_p95: 32.2
+        C_p99: 34.8
+        detail: 2.43
+      metrics_locked:
+        L_p5: 26.0
+        L_p50: 26.5
+        L_p95: 42.1
+        C_p50: 29.7
+        C_p95: 32.1
+        C_p99: 34.2
+        detail: 2.08
+    fingerprint: e0fa94244bff4024
+  3:
+    job: ui-sheet-paper-night
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 28 (R1 51)
+      value: 28.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 27 (R1 59)
+      value: 27.4
+    - check: night_lightness
+      status: pass
+      message: 'night variant: median lightness 28 (dark band 18-50)'
+      value: 27.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.94
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5394
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.3, p95 2.6, off-palette 0.0%
+      value: 2.3089
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9904
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r -0.78)
+      value: -0.7838
+    info:
+      metrics_raw:
+        L_p5: 26.7
+        L_p50: 27.5
+        L_p95: 40.9
+        C_p50: 27.2
+        C_p95: 28.6
+        C_p99: 30.1
+        detail: 2.23
+      metrics_locked:
+        L_p5: 27.4
+        L_p50: 27.8
+        L_p95: 40.1
+        C_p50: 27.1
+        C_p95: 28.2
+        C_p99: 29.6
+        detail: 1.94
+    fingerprint: e0fa94244bff4024
+  4:
+    job: ui-sheet-paper-night
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 30 (R1 51)
+      value: 29.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 27 (R1 59)
+      value: 26.9
+    - check: night_lightness
+      status: pass
+      message: 'night variant: median lightness 27 (dark band 18-50)'
+      value: 27.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.97
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7145
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 2.0, off-palette 0.0%
+      value: 1.4552
+    - check: edit_silhouette
+      status: pass
+      message: 98% of the parent's shape kept
+      value: 0.9798
+    - check: edit_structure
+      status: fail
+      message: light structure matches the parent (r -0.79)
+      value: -0.7903
+    info:
+      metrics_raw:
+        L_p5: 26.0
+        L_p50: 26.8
+        L_p95: 40.8
+        C_p50: 26.8
+        C_p95: 30.0
+        C_p99: 31.3
+        detail: 2.35
+      metrics_locked:
+        L_p5: 26.9
+        L_p50: 27.3
+        L_p95: 40.1
+        C_p50: 26.9
+        C_p95: 29.8
+        C_p99: 30.9
+        detail: 1.97
+    fingerprint: e0fa94244bff4024
+manual_review:
+  excluded_takes: []
+  note: 'Initial pair and the only retry pair all fail edit_structure: r -0.7923,-0.7586,-0.7838,-0.7903.
+    The requested dark-indigo paper, pale stitches and night palette/lightness are
+    present, but the official structure check fails; no waiver or promotion. The brief
+    is a recolor and may need an explicit recolor acceptance profile from the lead;
+    no prompt or threshold was changed. One retry exhausted; no dependents.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-107673c8-20fa-40f4-978a-1c62d81ed8a0.png
+  original_generated_png_sha256: 3e1c87921c8d214a18fb28bb01002200876eb1e52e6d60df879242c199a20a5f
+  inbox_png_sha256: 30d359dd63eb8ab4e32aec451988ec7e8936ef0c47cc4281a9a4974bc788b432
+  rgba_sha256: 04e2d96a2ef6eb0282f90e986f7ccfc00a20b5f3d1e4d325fb35eea2718ab8e4
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e0fa94244bff4024
+- take: 2
+  source_file: /workspace/generated_images/exec-ab4b6d76-2596-409b-af73-3bfc1e7a617e.png
+  original_generated_png_sha256: 06bb74e8d96f392691b1b13612a826154a00f2338fc4d123e71687e531d2b02d
+  inbox_png_sha256: d8241fd542968f70f552336c36508cb58739f51c722db76c55d74ff58df400ec
+  rgba_sha256: 612687911ccd3d1fffd62d4bd7c1034f43e3af2c2d5e1462de9a5bf9e2264215
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e0fa94244bff4024
+- take: 3
+  source_file: /workspace/generated_images/exec-e557916c-58b0-431a-a125-393dea0db423.png
+  original_generated_png_sha256: c6c11c0c04dda80a6359b51dc351746a2ca0cf4ce2bee306a2a1d19c36217da5
+  inbox_png_sha256: 6773276ed8340af4a73de070e39cfdd8e6a0e244b882fd4b8faa945aeddc9145
+  rgba_sha256: ca3101eb6b1854dd7ec4922f0933afc89be957619c2454f55d139bc0dc2e1575
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e0fa94244bff4024
+- take: 4
+  source_file: /workspace/generated_images/exec-8cdb8c46-dd63-4b30-917f-80b3d8e42a01.png
+  original_generated_png_sha256: 3c016056c0b822936048fc18e2ebf193588cbe2f329491648a5d1257b0548580
+  inbox_png_sha256: 29ff498aafc5f7c57fbffb82de37038b3d3549853817fa5d86907e44e53eea8b
+  rgba_sha256: 05fadbf5100c98b08ccb1557971d7eef22ab5b615dc8a0b2ade5db77195249e9
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e0fa94244bff4024

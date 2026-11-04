@@ -1,0 +1,54 @@
+{
+  "method": "Solid alpha >=128 bounding box on official normalized 1024x1024 locked canvas; even this lower bound exceeds the whole-ferry maximum.",
+  "maximum_width": 640,
+  "takes": [
+    {
+      "take": 1,
+      "bbox": [
+        161,
+        275,
+        870,
+        900
+      ],
+      "qa": "warn",
+      "width": 709,
+      "height": 625
+    },
+    {
+      "take": 2,
+      "bbox": [
+        179,
+        357,
+        855,
+        900
+      ],
+      "qa": "warn",
+      "width": 676,
+      "height": 543
+    },
+    {
+      "take": 3,
+      "bbox": [
+        155,
+        322,
+        888,
+        900
+      ],
+      "qa": "warn",
+      "width": 733,
+      "height": 578
+    },
+    {
+      "take": 4,
+      "bbox": [
+        145,
+        321,
+        910,
+        900
+      ],
+      "qa": "warn",
+      "width": 765,
+      "height": 579
+    }
+  ]
+}

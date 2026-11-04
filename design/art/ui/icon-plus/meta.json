@@ -1,15 +1,15 @@
 {
   "job": "icon-plus",
-  "batch": "retry-2026-11-03",
+  "batch": "retry-2026-11-04",
   "asset": "icon__plus",
   "take": 1,
   "takes_considered": 2,
-  "approved_at": "2026-11-03T15:18:53+00:00",
+  "approved_at": "2026-11-04T15:40:25+00:00",
   "image": "design/art/ui/icon-plus/icon-plus.png",
   "raw": "design/art/ui/icon-plus/raw.webp",
-  "raw_encoding": "webp q95",
-  "fingerprint": "96c9f6f38dc2ad19",
-  "prompt": "REFERENCES (attached, in this order):\n1. The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed).\n2. The palette card for props.\n\nThe icon for Plus: one sun-gold sunflower head seen straight on, a\nround warm-brown center and eight plump rounded petals in a richer\ngold than a normal sunflower, with a small cream highlight on each\npetal.\n\nICON STYLE: a painted icon from the same picture book as the attached\nhamster and island: the same soft airbrushed shading, the same warm\nlight from the upper left and the same milky pastel colors, simplified\nfor small sizes. One object only, centered, filling about 86% of the\ncanvas, built from three or four large, rounded shapes, so it reads as a\nsilhouette at 24 points. No thin parts: nothing narrower than a tenth of\nthe icon's width (no stems, strings, whiskers, spikes or tiny dots). A\nclear value structure: the shadow side, or one warm-brown accent shape,\nis dark enough to read on pale frosted glass, and the lit side reads on\ndark glass. Matte, no glints, no texture. No outline, no drop shadow, no\nbackground shape: no circle, tile, badge or plate behind the object. No\nglass, no frosted panel, no glossy button. No text, no letters, no\nnumbers.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "738bb3c09146a933",
+  "prompt": "REFERENCES (attached, in this order):\n1. The approved seed icon: the icon family's look. Match its painting, size on the canvas, light and value structure exactly (do not draw a seed).\n2. The palette card for props.\n\nThe icon for add, a plus sign: one chunky plus made of two thick,\nsoftly rounded bars of the same width crossing in the middle,\nfour equal arms, each arm as thick as a quarter of the icon's\nwidth. Painted as soft honey-gold clay, lit from the upper left,\nwith a darker caramel shadow side along the lower right edges.\nNothing else: no flower, no leaf, no sparkle.\n\nICON STYLE: a painted icon from the same picture book as the attached\nhamster and island: the same soft airbrushed shading, the same warm\nlight from the upper left and the same milky pastel colors, simplified\nfor small sizes. One object only, centered, filling about 86% of the\ncanvas, built from three or four large, rounded shapes, so it reads as a\nsilhouette at 24 points. No thin parts: nothing narrower than a tenth of\nthe icon's width (no stems, strings, whiskers, spikes or tiny dots). A\nclear value structure: the shadow side, or one warm-brown accent shape,\nis dark enough to read on pale frosted glass, and the lit side reads on\ndark glass. Matte, no glints, no texture. No outline, no drop shadow, no\nbackground shape: no circle, tile, badge or plate behind the object. No\nglass, no frosted panel, no glossy button. No text, no letters, no\nnumbers.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
   "attachments": [
     {
       "path": "design/art/ui/icon-seed/icon-seed.png",
@@ -25,7 +25,7 @@
     "model": null,
     "quality": null,
     "thread_id": null,
-    "generated_at": "2026-11-03T13:58:48+00:00",
+    "generated_at": "2026-11-04T13:37:23+00:00",
     "seconds": null,
     "background": "transparent"
   },
@@ -55,57 +55,57 @@
       },
       {
         "check": "chroma_ceiling",
-        "status": "warn",
-        "message": "chroma p95 58 (R1 51)",
-        "value": 58.2
+        "status": "pass",
+        "message": "chroma p95 44 (R1 51)",
+        "value": 44.1
       },
       {
         "check": "value_floor",
         "status": "pass",
-        "message": "lightness p5 42 (R1 59)",
-        "value": 41.5
+        "message": "lightness p5 62 (R1 59)",
+        "value": 62.2
       },
       {
         "check": "detail_budget",
         "status": "pass",
-        "message": "detail at display size 0.7 (R1 5.3)",
-        "value": 0.65
+        "message": "detail at display size 0.5 (R1 5.3)",
+        "value": 0.53
       },
       {
         "check": "lock_load",
         "status": "pass",
-        "message": "the lock moved colors by mean dE 0.8",
-        "value": 0.7976
+        "message": "the lock moved colors by mean dE 0.3",
+        "value": 0.2897
       },
       {
         "check": "palette_drift",
-        "status": "warn",
-        "message": "mean dE 3.6, p95 6.7, off-palette 0.0%",
-        "value": 3.6324
+        "status": "pass",
+        "message": "mean dE 1.0, p95 1.9, off-palette 0.0%",
+        "value": 0.9936
       },
       {
         "check": "icon_fill",
         "status": "pass",
-        "message": "icon spans 91% of the canvas (target 80-92%)",
-        "value": 0.9053
+        "message": "icon spans 84% of the canvas (target 80-92%)",
+        "value": 0.8418
       },
       {
         "check": "icon_thin_parts",
         "status": "pass",
-        "message": "0.4% of the silhouette is thinner than 1.5 pt at 24 pt",
-        "value": 0.0042
+        "message": "0.1% of the silhouette is thinner than 1.5 pt at 24 pt",
+        "value": 0.001
       },
       {
         "check": "icon_small_detail",
         "status": "pass",
-        "message": "detail at 24 pt @3x 3.4 (busy above 7)",
-        "value": 3.35
+        "message": "detail at 24 pt @3x 1.8 (busy above 7)",
+        "value": 1.8
       },
       {
         "check": "icon_on_light_glass",
-        "status": "pass",
-        "message": "51% of the icon separates from light glass at 24 pt",
-        "value": 0.512
+        "status": "warn",
+        "message": "28% of the icon separates from light glass at 24 pt",
+        "value": 0.2789
       },
       {
         "check": "icon_on_dark_glass",
@@ -115,5 +115,5 @@
       }
     ]
   },
-  "note": "auto-picked by QA; founder review pending. Resume from the fixed pre-stop original candidate, with zero image generation. Re-posted both retained PNGs under main9ede62e; both locked RGBA rasters match their retained versions exactly and the same eligible take remains lowest lock load. Fresh light/dark small-size visual review reconfirms the choice. Both takes show a warm-brown centre and eight plump sun-gold petals, with small cream highlights and no stem, pot or background badge. The sunflower head remains readable at 28, 44 and 60 pt on pale and dark backgrounds."
+  "note": "auto-picked by QA; founder review pending. Retained take1 passes hard QA and the completed native28 full-canvas color-removed silhouette review: a chunky plus on both light and dark glass, no flower. Take2 fails icon_on_light_glass. Select the lowest eligible lock load 0.2897. Resumed on explicit user instruction; refused icon-skip remains blocked. No regeneration."
 }

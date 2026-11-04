@@ -1,0 +1,13 @@
+batch: retry-2026-11-04
+jobs:
+  harbor-ferry-2:
+    pick: none
+    publication: dependent-skip
+    note: 'Skipped without generation: true dependency harbor-ferry-1 failed after
+      its one allowed retry. All four retained takes were ingested and posted without
+      regeneration. Automated warnings do not enforce the explicit manual whole-ferry
+      maximum of640px. The solid alpha>=128 normalized widths are709,676,733,765px,
+      all too wide even before fringe pixels. Guide-fit.json records the measurement.
+      One retry exhausted; skip this job and only its true dependent harbor-ferry-2.'
+generated_takes: 0
+failed_dependency: harbor-ferry-1

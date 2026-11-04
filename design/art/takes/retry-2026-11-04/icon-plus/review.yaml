@@ -1,0 +1,181 @@
+batch: retry-2026-11-04
+contact_sheet: design/art/takes/retry-2026-11-04/icon-plus/contact.jpg
+jobs:
+  icon-plus:
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Retained take1 passes hard QA
+      and the completed native28 full-canvas color-removed silhouette review: a chunky
+      plus on both light and dark glass, no flower. Take2 fails icon_on_light_glass.
+      Select the lowest eligible lock load 0.2897. Resumed on explicit user instruction;
+      refused icon-skip remains blocked. No regeneration.'
+qa_reports:
+  1:
+    job: icon-plus
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 62.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.53
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2897
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 1.9, off-palette 0.0%
+      value: 0.9936
+    - check: icon_fill
+      status: pass
+      message: icon spans 84% of the canvas (target 80-92%)
+      value: 0.8418
+    - check: icon_thin_parts
+      status: pass
+      message: 0.1% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.001
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 1.8 (busy above 7)
+      value: 1.8
+    - check: icon_on_light_glass
+      status: warn
+      message: 28% of the icon separates from light glass at 24 pt
+      value: 0.2789
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 62.2
+        L_p50: 80.7
+        L_p95: 88.8
+        C_p50: 41.1
+        C_p95: 44.2
+        C_p99: 44.7
+        detail: 0.73
+      metrics_locked:
+        L_p5: 62.2
+        L_p50: 80.7
+        L_p95: 88.8
+        C_p50: 41.1
+        C_p95: 44.1
+        C_p99: 44.5
+        detail: 0.53
+    fingerprint: 738bb3c09146a933
+  2:
+    job: icon-plus
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 46.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 62.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.52
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2869
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.1, p95 2.4, off-palette 0.0%
+      value: 1.1008
+    - check: icon_fill
+      status: pass
+      message: icon spans 84% of the canvas (target 80-92%)
+      value: 0.8398
+    - check: icon_thin_parts
+      status: pass
+      message: 0.2% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0019
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 1.9 (busy above 7)
+      value: 1.89
+    - check: icon_on_light_glass
+      status: fail
+      message: 25% of the icon separates from light glass at 24 pt
+      value: 0.2495
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 62.2
+        L_p50: 80.6
+        L_p95: 90.7
+        C_p50: 43.6
+        C_p95: 46.8
+        C_p99: 47.4
+        detail: 0.71
+      metrics_locked:
+        L_p5: 62.2
+        L_p50: 80.7
+        L_p95: 90.7
+        C_p50: 43.6
+        C_p95: 46.8
+        C_p99: 47.2
+        detail: 0.52
+    fingerprint: 738bb3c09146a933
+manual_review:
+  excluded_takes: []
+  note: 'Retained take1 passes hard QA and the completed native28 full-canvas color-removed
+    silhouette review: a chunky plus on both light and dark glass, no flower. Take2
+    fails icon_on_light_glass. Select the lowest eligible lock load 0.2897. Resumed
+    on explicit user instruction; refused icon-skip remains blocked. No regeneration.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-0ce22deb-0d56-4966-bef1-a774313da7e4.png
+  original_generated_png_sha256: e49fb7a065611dcf347bc04cadcee45fbf13aee44598c939e5895191cb440c33
+  inbox_png_sha256: cd2699942969581e056e070c8367a0308d0bc5f9225c89f9049b3230cc1825d3
+  rgba_sha256: 9a7920ccb3f94c86f15dd50dca56dc4d0d900a19cf4dc07c2f7e958edc7674b3
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 738bb3c09146a933
+- take: 2
+  source_file: /workspace/generated_images/exec-14af2185-5215-433d-bf8a-c19f6050c6b1.png
+  original_generated_png_sha256: ddaa620e1fa196a7e31ae74264fbbd2e6a15c2924702a3a458c2716ea3b8c538
+  inbox_png_sha256: 735b4b704ec4cd2e8e37ae08191b049d44789d2ab0fb4c4d8213c4179e0b8d62
+  rgba_sha256: 4525272ee184f63daa0d85d3bcf56f6110f8191e411703e704fcc3b7faaa7862
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 738bb3c09146a933

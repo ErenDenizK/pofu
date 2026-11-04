@@ -1,0 +1,185 @@
+batch: retry-2026-11-04
+contact_sheet: design/art/takes/retry-2026-11-04/icon-breath/contact.jpg
+jobs:
+  icon-breath:
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Reuse the retained initial pair
+      without regeneration. Both pass hard QA and the required native28 full-canvas
+      review on light/dark glass: a clearly round tufted mass with a short dark stem
+      and two drifting tufts, not a cloud. Take1 has the lower eligible lock load0.323
+      versus0.3417. The native28 proof is QA annotation, not source art. Select take1;
+      founder review pending.'
+qa_reports:
+  2:
+    job: icon-breath
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 58 (R1 59)
+      value: 58.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.59
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.3417
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 2.2, off-palette 2.5% (top: #666644 (0.9%), #777755
+        (0.4%))'
+      value: 1.3464
+    - check: icon_fill
+      status: pass
+      message: icon spans 86% of the canvas (target 80-92%)
+      value: 0.8633
+    - check: icon_thin_parts
+      status: pass
+      message: 1.8% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0178
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 3.0 (busy above 7)
+      value: 3.05
+    - check: icon_on_light_glass
+      status: warn
+      message: 42% of the icon separates from light glass at 24 pt
+      value: 0.4238
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 58.1
+        L_p50: 77.0
+        L_p95: 90.2
+        C_p50: 24.2
+        C_p95: 36.6
+        C_p99: 45.6
+        detail: 0.9
+      metrics_locked:
+        L_p5: 58.2
+        L_p50: 77.0
+        L_p95: 90.1
+        C_p50: 24.1
+        C_p95: 36.2
+        C_p99: 45.6
+        detail: 0.59
+    fingerprint: 13449de106553748
+  1:
+    job: icon-breath
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 33.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 60.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.59
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.323
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 2.3, off-palette 2.6% (top: #666644 (0.8%), #777755
+        (0.7%))'
+      value: 1.3469
+    - check: icon_fill
+      status: pass
+      message: icon spans 88% of the canvas (target 80-92%)
+      value: 0.877
+    - check: icon_thin_parts
+      status: warn
+      message: 4.1% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0414
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 3.0 (busy above 7)
+      value: 3.02
+    - check: icon_on_light_glass
+      status: warn
+      message: 41% of the icon separates from light glass at 24 pt
+      value: 0.4119
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 60.5
+        L_p50: 77.8
+        L_p95: 90.7
+        C_p50: 22.5
+        C_p95: 33.9
+        C_p99: 46.0
+        detail: 0.87
+      metrics_locked:
+        L_p5: 60.6
+        L_p50: 77.8
+        L_p95: 90.7
+        C_p50: 22.5
+        C_p95: 33.8
+        C_p99: 46.0
+        detail: 0.59
+    fingerprint: 13449de106553748
+manual_review:
+  excluded_takes: []
+  note: 'Reuse the retained initial pair without regeneration. Both pass hard QA and
+    the required native28 full-canvas review on light/dark glass: a clearly round
+    tufted mass with a short dark stem and two drifting tufts, not a cloud. Take1
+    has the lower eligible lock load0.323 versus0.3417. The native28 proof is QA annotation,
+    not source art. Select take1; founder review pending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-aa26f604-6cc8-4acb-8f6a-451590885f05.png
+  original_generated_png_sha256: 49416b7516152371ef6a92a074726e15db23f271c5e7c03b8e5eb430028b7be7
+  inbox_png_sha256: 34d043716c82798f40af7f25b555df678a4f6cf0031a903085c390cb4e82b12d
+  rgba_sha256: 58e510e9e2be72becacec121e5bc9214d71f88380f78d06cc5d4f27097a97aea
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 13449de106553748
+- take: 2
+  source_file: /workspace/generated_images/exec-d3d6393e-6a59-436c-bc32-df095ebf4080.png
+  original_generated_png_sha256: 5e3d41c150503eff80f98134ae5365df1b01a2d76e7166879ce9ed2a34f53230
+  inbox_png_sha256: 93682a652f36f2b5d49d89eeab7e412c8f900cb4982c50efb8f7a695e5493942
+  rgba_sha256: 67e93ae668bb8b63faa5cf19fbf3997d3ae4cf6e9b94ae20f1e6742682d0fc72
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 13449de106553748
