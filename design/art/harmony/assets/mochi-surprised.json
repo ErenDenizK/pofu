@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 13.397,
+  "C_p50": 10.064,
+  "C_p95": 33.984,
+  "L_mean": 86.558,
+  "L_p2": 17.213,
+  "L_p98": 97.335,
+  "detail": 6.547,
+  "edge": 0.169,
+  "tint_a": 4.191,
+  "tint_b": 7.102,
+  "warmth_b": 10.503
+ },
+ "before": {
+  "C_mean": 13.397,
+  "C_p50": 10.064,
+  "C_p95": 33.984,
+  "L_mean": 86.558,
+  "L_p2": 17.213,
+  "L_p98": 97.335,
+  "detail": 6.547,
+  "edge": 0.169,
+  "tint_a": 4.191,
+  "tint_b": 7.102,
+  "warmth_b": 10.503
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "C_p95"
+ ],
+ "outliers_before": [
+  "C_p95"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 88.6,
+ "score_before": 88.6,
+ "shipped": false,
+ "source": "design/art/masters/mochi-surprised/mochi-surprised.webp",
+ "source_sha": "cad188ccb888926b"
+}
