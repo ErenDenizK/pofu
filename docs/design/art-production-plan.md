@@ -74,6 +74,66 @@ Home stations: nothing else needs a painted night variant (tea stall, windmill a
 Rows to come: the design-loop-2 concepts (batch-19) and the lead's production
 batches are added above row 3 as `READY` by their own PRs.
 
+## Home upgrade ladder
+
+Checked 2026-11-04 against `design/art/stations/<id>/` (the approved masters),
+the level table in `docs/product/game-design.md` ("Idle production and
+stations": "what each home and harbor level looks like") and the ladders in
+`Packages/PofuKit/Sources/PofuCore/Game/Archipelago.swift`. The Swift data
+holds only costs and rates per level, no visual description, so the
+descriptions below come from the game design table. Every level is an edit
+of the level before. Ids are the English ones (`tea-stall` was `cay`,
+`bagel-cart` was `simit`; see `docs/development/rename-map.md` and
+`tools/imagegen/legacy_ids.py`).
+
+Legend: **yes** = approved master exists; **MISSING** = no master and no
+job; a `lit` entry is the painted night overlay source.
+
+| Station | L1 | L2 | L3 | L4 | L5 | Lit overlay |
+|---|---|---|---|---|---|---|
+| garden (home) | yes | yes | yes | yes | yes | none, night is code |
+| tea-stall (home) | yes | yes | yes | yes | yes | `tea-stall-1-lit` yes; `-5-lit` dropped on purpose (batch-07) |
+| pond (home) | yes | yes | yes | yes | yes | `pond-5-lit` yes |
+| workshop (home) | yes | yes | yes | yes | yes | `workshop-1-lit` queued (row 2) |
+| windmill (home) | yes | yes | yes | yes | yes | `windmill-5-lit` yes |
+| bagel-cart (harbor) | yes | yes | yes | yes | yes | none, night is code |
+| pier (harbor) | MISSING | MISSING | MISSING | MISSING | MISSING | none planned |
+| lighthouse (harbor) | MISSING | MISSING | MISSING | MISSING | MISSING | beam is code; lamp room needs a lit edit at L2 |
+
+**Home: the ladder is complete, 25 of 25 masters.** There is no missing
+home level, so no home manifest is written (nothing to feed Codex). The only
+open home art is `workshop-1-lit`, already READY as queue row 2. If the
+founder's dogfood shows a level that does not read as an upgrade, that is a
+regenerate-by-grade question per level, not a gap.
+
+Missing harbor levels (outside this pass, which targets home; listed so the
+gap is visible). Descriptions from the game design table; a level without
+one would say so (none lack one):
+
+- pier-1: planks and posts over the clouds (the existing `harbor-island-s`
+  plate already shows a short plank pier; the station sprite is separate).
+- pier-2: adds a lantern post (`harbor-lamp-1` is a decor lamp, not a level).
+- pier-3: the little ferry moors here (`harbor-ferry-1` and `harbor-ferry-2`
+  are in retry row 3; the level sprite shows the moored ferry).
+- pier-4: adds a bench and two tea glasses.
+- pier-5: adds bunting from post to post.
+- lighthouse-1: a striped tower.
+- lighthouse-2: the lamp room is lit (needs the lamp-room glow as a painted
+  edit; the beam itself is code).
+- lighthouse-3: a balcony all around.
+- lighthouse-4: a slow, warm beam at night (code and glow, the painted
+  change is small or none).
+- lighthouse-5: a flag and a garden at its foot.
+
+Story link (`docs/product/story-delivery.md` section 4.3): the harbor pier
+(first planks) lets the ferry dock, and tea-stall L3 and workshop L3 open
+side beats; all three already have their masters, so story work is not
+blocked on art.
+
+Recommended next ladder batch, when the harbor is next in line: `pier` and
+`lighthouse`, 10 jobs, two chains of five edits, pilot pier-1 and
+lighthouse-1.
+
 **Order of work:** top to bottom. Rows 1 and 2 are re-runs by `--only` of
 jobs that never produced a pick; every other earlier row is delivered and
 lives in the Log. Batch 02 (Glass++ production) stays blocked until the
