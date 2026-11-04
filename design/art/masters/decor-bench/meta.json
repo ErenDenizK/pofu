@@ -1,0 +1,125 @@
+{
+  "job": "decor-bench",
+  "batch": "batch-08-decor-pilot",
+  "asset": "prop__decor-bench",
+  "take": 1,
+  "takes_considered": 4,
+  "approved_at": "2026-11-04T23:04:16+00:00",
+  "image": "design/art/masters/decor-bench/decor-bench.png",
+  "raw": "design/art/masters/decor-bench/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "47ef92de1ab65d50",
+  "prompt": "REFERENCES (attached, in this order):\n1. The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.\n2. The approved tea stall: match its style, camera, light, colors and scale exactly (do not draw the stall).\n3. The island the piece stands on: same camera and softness.\n4. The palette card for props: use only these colors (and mixes of them).\n\nA small, cozy garden bench for two little animals, for the island\ndiorama: a short, chunky bench of soft honey wood with rounded\nends and a low curved backrest, and one plump cushion on the seat\nwith simple soft stripes of rose and cream (plain stripes, no\npattern, no motif). Friendly, toy-like proportions with few parts.\nIt stands on the guide's ground ellipse, centered on the cross,\nand is no taller than the height bar.\n\nSize (the first attempt came out twice too wide): the bench is\nsmall. It is about 340 px wide in the 1024 x 1024 image, a third\nof the image width, never wider than the guide's ground ellipse\n(360 px), and about 220 px tall, its top well below the height\nbar. Leave empty space on both sides of it.\n\nVIEW: the same fixed front three-quarter view as the attached island: a\nlow camera about 20 degrees above the horizon, so you see the front of\nthe object fully and only a narrow sliver of its top (a round tabletop\nreads as a flat oval about a third as tall as it is wide). Follow the\nattached guide exactly: the object stands on the magenta ground ellipse,\ncentered on the magenta cross, its front edge on the front of the\nellipse, no taller than the magenta height bar. Then remove the guide\ncompletely: no ellipse, no cross, no bar, no magenta, no grid may remain\nin the output.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/templates/decor-guide.png",
+      "role": "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+    },
+    {
+      "path": "design/art/stations/tea-stall-1/tea-stall-1.png",
+      "role": "The approved tea stall: match its style, camera, light, colors and scale exactly (do not draw the stall)."
+    },
+    {
+      "path": "design/art/masters/island-main-s/island-main-s.png",
+      "role": "The island the piece stands on: same camera and softness."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-04T23:02:48+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": -34,
+    "dy": 48
+  },
+  "alignment": null,
+  "fit": {
+    "scale": 0.7709,
+    "anchor": [
+      546.8,
+      840
+    ]
+  },
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 43 (R1 51)",
+        "value": 43.0
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 65 (R1 59)",
+        "value": 65.1
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.1 (R1 5.3)",
+        "value": 1.14
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.1",
+        "value": 1.0857
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.0, p95 2.0, off-palette 0.0%",
+        "value": 0.9644
+      },
+      {
+        "check": "decor_anchor",
+        "status": "pass",
+        "message": "on the decor guide",
+        "value": 888.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 84 against the world reference (outliers: edge)",
+        "value": 84.1
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Queue operation refit-2026-11-04: reuse all4 retained original PNGs with verified source hashes; zero generation. Official post from PR154 uniformly fits the bench to its360px decor footprint before registration and lock. All4 now pass hard QA and guide fit; scale factors0.7709,0.7273,0.7438,0.7965 all exceed minimum0.6. Guide-review.jpg shows the new fitted locked takes, not the old failure overlays. Take1 has the minimum eligible lock load1.0857 and retains the honey bench and rose/cream striped cushion. No threshold, prompt or manifest edits; auto-picked by QA, founder review pending. Only this asset is un-cut; its dependents remain skipped pending lead review."
+}

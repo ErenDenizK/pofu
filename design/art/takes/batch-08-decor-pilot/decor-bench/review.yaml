@@ -2,19 +2,22 @@ batch: batch-08-decor-pilot
 contact_sheet: design/art/takes/batch-08-decor-pilot/decor-bench/contact.jpg
 jobs:
   decor-bench:
-    pick: none
-    publication: skipped after one allowed retry
-    note: Authorized 2026-11-04 re-run, four original takes and one retry exhausted.
-      Normalized widths t1=467, t2=495, t3=484, t4=452px all exceed the manifest maximum360px.
-      Automatic decor_anchor warns at these values, but the explicit guide-size requirement
-      remains hard. Reject all4; no source resizing, prompt edits or threshold changes.
-      Current guide-review.jpg binds these four sources. Only true decor-bench dependents
-      are skipped.
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Queue operation refit-2026-11-04:
+      reuse all4 retained original PNGs with verified source hashes; zero generation.
+      Official post from PR154 uniformly fits the bench to its360px decor footprint
+      before registration and lock. All4 now pass hard QA and guide fit; scale factors0.7709,0.7273,0.7438,0.7965
+      all exceed minimum0.6. Guide-review.jpg shows the new fitted locked takes, not
+      the old failure overlays. Take1 has the minimum eligible lock load1.0857 and
+      retains the honey bench and rose/cream striped cushion. No threshold, prompt
+      or manifest edits; auto-picked by QA, founder review pending. Only this asset
+      is un-cut; its dependents remain skipped pending lead review.'
 qa_reports:
   2:
     job: decor-bench
     take: 2
-    status: warn
+    status: pass
     preset: lock-light
     checks:
     - check: transparency
@@ -27,19 +30,19 @@ qa_reports:
     - check: chroma_ceiling
       status: pass
       message: chroma p95 37 (R1 51)
-      value: 37.3
+      value: 37.2
     - check: value_floor
       status: pass
       message: lightness p5 66 (R1 59)
-      value: 65.8
+      value: 66.0
     - check: detail_budget
       status: pass
-      message: detail at display size 1.1 (R1 5.3)
-      value: 1.11
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.95
     - check: lock_load
       status: pass
-      message: the lock moved colors by mean dE 1.1
-      value: 1.1113
+      message: the lock moved colors by mean dE 1.2
+      value: 1.1995
     - check: no_guide_magenta
       status: pass
       message: 0 guide-magenta pixels (per 1024^2)
@@ -47,40 +50,45 @@ qa_reports:
     - check: palette_drift
       status: pass
       message: mean dE 0.7, p95 1.4, off-palette 0.0%
-      value: 0.6877
+      value: 0.6765
     - check: decor_anchor
-      status: warn
-      message: width 495 px wider than the footprint (360)
+      status: pass
+      message: on the decor guide
       value: 888.0
     - check: harmony
       status: pass
-      message: 'harmony score 76 against the world reference (outliers: C_p95, edge)'
-      value: 75.8
+      message: 'harmony score 74 against the world reference (outliers: C_p95, edge)'
+      value: 74.3
     info:
+      fit:
+        scale: 0.7273
+        anchor:
+        - 543.2
+        - 860
       registration:
-        dx: -31
+        dx: -32
         dy: 28
       metrics_raw:
-        L_p5: 65.6
+        L_p5: 65.5
         L_p50: 77.7
         L_p95: 90.1
         C_p50: 33.9
         C_p95: 37.5
-        C_p99: 38.3
-        detail: 1.56
+        C_p99: 38.2
+        detail: 1.38
       metrics_locked:
-        L_p5: 65.8
+        L_p5: 66.0
         L_p50: 77.7
-        L_p95: 89.7
+        L_p95: 89.6
         C_p50: 33.9
-        C_p95: 37.3
-        C_p99: 37.9
-        detail: 1.11
+        C_p95: 37.2
+        C_p99: 37.7
+        detail: 0.95
     fingerprint: 47ef92de1ab65d50
   1:
     job: decor-bench
     take: 1
-    status: warn
+    status: pass
     preset: lock-light
     checks:
     - check: transparency
@@ -97,15 +105,15 @@ qa_reports:
     - check: value_floor
       status: pass
       message: lightness p5 65 (R1 59)
-      value: 64.8
+      value: 65.1
     - check: detail_budget
       status: pass
-      message: detail at display size 1.3 (R1 5.3)
-      value: 1.3
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.14
     - check: lock_load
       status: pass
-      message: the lock moved colors by mean dE 1.0
-      value: 1.0084
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0857
     - check: no_guide_magenta
       status: pass
       message: 0 guide-magenta pixels (per 1024^2)
@@ -113,40 +121,45 @@ qa_reports:
     - check: palette_drift
       status: pass
       message: mean dE 1.0, p95 2.0, off-palette 0.0%
-      value: 0.986
+      value: 0.9644
     - check: decor_anchor
-      status: warn
-      message: width 467 px wider than the footprint (360)
+      status: pass
+      message: on the decor guide
       value: 888.0
     - check: harmony
       status: pass
-      message: 'harmony score 86 against the world reference (outliers: edge)'
-      value: 86.2
+      message: 'harmony score 84 against the world reference (outliers: edge)'
+      value: 84.1
     info:
+      fit:
+        scale: 0.7709
+        anchor:
+        - 546.8
+        - 840
       registration:
-        dx: -35
+        dx: -34
         dy: 48
       metrics_raw:
         L_p5: 64.2
         L_p50: 77.6
         L_p95: 90.7
         C_p50: 40.2
-        C_p95: 43.4
+        C_p95: 43.3
         C_p99: 44.2
-        detail: 1.86
+        detail: 1.63
       metrics_locked:
-        L_p5: 64.8
+        L_p5: 65.1
         L_p50: 77.6
-        L_p95: 90.3
+        L_p95: 90.2
         C_p50: 40.2
         C_p95: 43.0
-        C_p99: 43.8
-        detail: 1.3
+        C_p99: 43.7
+        detail: 1.14
     fingerprint: 47ef92de1ab65d50
   4:
     job: decor-bench
     take: 4
-    status: warn
+    status: pass
     preset: lock-light
     checks:
     - check: transparency
@@ -163,15 +176,15 @@ qa_reports:
     - check: value_floor
       status: pass
       message: lightness p5 65 (R1 59)
-      value: 65.2
+      value: 65.4
     - check: detail_budget
       status: pass
-      message: detail at display size 1.2 (R1 5.3)
-      value: 1.19
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.04
     - check: lock_load
       status: pass
-      message: the lock moved colors by mean dE 1.1
-      value: 1.1451
+      message: the lock moved colors by mean dE 1.2
+      value: 1.2037
     - check: no_guide_magenta
       status: pass
       message: 0 guide-magenta pixels (per 1024^2)
@@ -179,40 +192,45 @@ qa_reports:
     - check: palette_drift
       status: pass
       message: mean dE 0.7, p95 1.4, off-palette 0.0%
-      value: 0.6636
+      value: 0.6559
     - check: decor_anchor
-      status: warn
-      message: width 452 px wider than the footprint (360)
+      status: pass
+      message: on the decor guide
       value: 888.0
     - check: harmony
       status: pass
-      message: 'harmony score 76 against the world reference (outliers: C_p95, edge)'
-      value: 76.2
+      message: 'harmony score 75 against the world reference (outliers: C_p95, edge)'
+      value: 75.2
     info:
+      fit:
+        scale: 0.7965
+        anchor:
+        - 549.1
+        - 805
       registration:
-        dx: -37
-        dy: 83
+        dx: -40
+        dy: 82
       metrics_raw:
-        L_p5: 64.8
+        L_p5: 64.9
         L_p50: 77.8
         L_p95: 89.7
         C_p50: 34.5
         C_p95: 38.4
-        C_p99: 39.6
-        detail: 1.68
+        C_p99: 39.7
+        detail: 1.49
       metrics_locked:
-        L_p5: 65.2
+        L_p5: 65.4
         L_p50: 77.8
-        L_p95: 89.3
+        L_p95: 89.2
         C_p50: 34.5
         C_p95: 38.0
-        C_p99: 39.0
-        detail: 1.19
+        C_p99: 38.9
+        detail: 1.04
     fingerprint: 47ef92de1ab65d50
   3:
     job: decor-bench
     take: 3
-    status: warn
+    status: pass
     preset: lock-light
     checks:
     - check: transparency
@@ -225,19 +243,19 @@ qa_reports:
     - check: chroma_ceiling
       status: pass
       message: chroma p95 41 (R1 51)
-      value: 40.8
+      value: 40.7
     - check: value_floor
       status: pass
       message: lightness p5 66 (R1 59)
-      value: 65.6
+      value: 65.8
     - check: detail_budget
       status: pass
-      message: detail at display size 1.2 (R1 5.3)
-      value: 1.22
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.06
     - check: lock_load
       status: pass
-      message: the lock moved colors by mean dE 1.1
-      value: 1.1497
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2549
     - check: no_guide_magenta
       status: pass
       message: 0 guide-magenta pixels (per 1024^2)
@@ -245,19 +263,24 @@ qa_reports:
     - check: palette_drift
       status: pass
       message: mean dE 0.7, p95 1.6, off-palette 0.0%
-      value: 0.7338
+      value: 0.724
     - check: decor_anchor
-      status: warn
-      message: width 484 px wider than the footprint (360)
+      status: pass
+      message: on the decor guide
       value: 888.0
     - check: harmony
       status: pass
-      message: 'harmony score 81 against the world reference (outliers: C_p95, edge)'
-      value: 80.6
+      message: 'harmony score 79 against the world reference (outliers: C_p95, edge)'
+      value: 79.1
     info:
+      fit:
+        scale: 0.7438
+        anchor:
+        - 538.2
+        - 842
       registration:
-        dx: -26
-        dy: 46
+        dx: -24
+        dy: 47
       metrics_raw:
         L_p5: 65.0
         L_p50: 77.2
@@ -265,28 +288,27 @@ qa_reports:
         C_p50: 37.0
         C_p95: 41.0
         C_p99: 41.6
-        detail: 1.74
+        detail: 1.54
       metrics_locked:
-        L_p5: 65.6
+        L_p5: 65.8
         L_p50: 77.1
-        L_p95: 89.7
+        L_p95: 89.6
         C_p50: 37.0
-        C_p95: 40.8
-        C_p99: 41.4
-        detail: 1.22
+        C_p95: 40.7
+        C_p99: 41.3
+        detail: 1.06
     fingerprint: 47ef92de1ab65d50
 manual_review:
-  excluded_takes:
-  - 1
-  - 2
-  - 3
-  - 4
-  note: Authorized 2026-11-04 re-run, four original takes and one retry exhausted.
-    Normalized widths t1=467, t2=495, t3=484, t4=452px all exceed the manifest maximum360px.
-    Automatic decor_anchor warns at these values, but the explicit guide-size requirement
-    remains hard. Reject all4; no source resizing, prompt edits or threshold changes.
-    Current guide-review.jpg binds these four sources. Only true decor-bench dependents
-    are skipped.
+  excluded_takes: []
+  note: 'Queue operation refit-2026-11-04: reuse all4 retained original PNGs with
+    verified source hashes; zero generation. Official post from PR154 uniformly fits
+    the bench to its360px decor footprint before registration and lock. All4 now pass
+    hard QA and guide fit; scale factors0.7709,0.7273,0.7438,0.7965 all exceed minimum0.6.
+    Guide-review.jpg shows the new fitted locked takes, not the old failure overlays.
+    Take1 has the minimum eligible lock load1.0857 and retains the honey bench and
+    rose/cream striped cushion. No threshold, prompt or manifest edits; auto-picked
+    by QA, founder review pending. Only this asset is un-cut; its dependents remain
+    skipped pending lead review.'
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-0287a43e-432c-4b48-806f-0cd473adaf87.png
