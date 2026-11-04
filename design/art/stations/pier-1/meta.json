@@ -1,0 +1,143 @@
+{
+  "job": "pier-1",
+  "batch": "batch-21-harbor-ladders",
+  "asset": "station__pier-1",
+  "take": 1,
+  "takes_considered": 4,
+  "approved_at": "2026-11-04T23:08:48+00:00",
+  "image": "design/art/stations/pier-1/pier-1.png",
+  "raw": "design/art/stations/pier-1/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "bbc92711cc11c137",
+  "prompt": "REFERENCES (attached, in this order):\n1. The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.\n2. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n3. The harbor's first station: same coral, cream and sea-blue family (do not draw the cart).\n4. The palette card for props: use only these colors (and mixes of them).\n\nA short ferry pier for the island diorama: a straight run of honey wooden\nplanks on four chunky round posts with a soft coral rope looped between\nthe two front posts, reaching out toward the viewer's left, its end square\nand empty (nothing moored yet). Planks are broad and rounded, few parts,\ntoy-like. The posts end in a flat clean edge at the bottom (no water, no\nclouds, no wake). It fills the footprint's width and stays below the\nheight bar's top.\n\nVIEW: the same fixed front three-quarter view as the attached island: a\nlow camera about 20 degrees above the horizon, so you see the front of\nthe object fully and only a narrow sliver of its top (a round tabletop\nreads as a flat oval about a third as tall as it is wide). Follow the\nattached guide exactly: the object stands on the magenta ground ellipse,\ncentered on the magenta cross, its front edge on the front of the\nellipse, no taller than the magenta height bar. Then remove the guide\ncompletely: no ellipse, no cross, no bar, no magenta, no grid may remain\nin the output.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/templates/station-guide.png",
+      "role": "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+    },
+    {
+      "path": "design/art/stations/tea-stall-1/tea-stall-1.png",
+      "role": "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+    },
+    {
+      "path": "design/art/stations/bagel-cart-1/bagel-cart-1.png",
+      "role": "The harbor's first station: same coral, cream and sea-blue family (do not draw the cart)."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-04T23:03:01+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 32,
+    "dy": 24
+  },
+  "alignment": null,
+  "fit": {
+    "scale": 0.8247,
+    "anchor": [
+      480.6,
+      876
+    ]
+  },
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 41 (R1 51)",
+        "value": 41.3
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 50 (at most 22), p98 86 (at least 90), spread 36 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 36.1
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 73 (band 55-90)",
+        "value": 73.3
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.29 (at most 0.20; no true dark means a wash)",
+        "value": 0.286
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 3.3 (at least 3.5)",
+        "value": 3.3
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.6 (R1 5.3)",
+        "value": 1.56
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.9",
+        "value": 0.9166
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.0, p95 1.9, off-palette 0.0%",
+        "value": 0.9695
+      },
+      {
+        "check": "station_anchor",
+        "status": "pass",
+        "message": "on the anchor",
+        "value": 900.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 70 against the world reference (outliers: L_p98, edge)",
+        "value": 70.4
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Queue operation refit-2026-11-04, zero generation: re-post all4 verified retained originals through merged PR154 guide fit. Every take now passes hard QA and station anchor; fitting stays above0.6. Select take1 with minimum eligible lock load0.9166; uniform fit0.8247 yields solid width719px within720 and ground900. Visual review and native28 proof show a short honey-plank pier, four posts, coral rope, empty end, no water/clouds/shadow or guide residue. Guide-review.jpg is QA annotation only. Light-standard warnings remain advisory. Un-cut this asset and link its station consumer; all pier2-to5 dependents remain skipped until lead review. Auto-picked by QA; founder review pending."
+}
