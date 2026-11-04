@@ -1,0 +1,212 @@
+batch: batch-20-poses-pilot
+contact_sheet: design/art/takes/batch-20-poses-pilot/simit-happy/contact.jpg
+jobs:
+  simit-happy:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Take1 keeps the required widened
+      w-shaped mouth and thick closed happy eye arcs, the tabby markings, scarf and
+      paws. Take2 is excluded because its mouth becomes a plain U rather than preserving
+      the w. Official post removes the generated background halo; the delivered transparent
+      master has no baked cast shadow. Edit stability0.9529 and edit chroma1.0266
+      pass. Light-standard and ground-line/harmony warnings remain advisory; no failed
+      check is waived. Characters are not style locked.
+qa_reports:
+  2:
+    job: simit-happy
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 54 (R1 51)
+      value: 54.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 96 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 84.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.204
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.3 (at least 3.5)'
+      value: 5.35
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.2 (R1 5.3)
+      value: 4.2
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 3.7, off-palette 1.3% (top: #662211 (0.3%), #552211
+        (0.3%))'
+      value: 1.3653
+    - check: ground_line
+      status: warn
+      message: feet at 92.5% of the height (contract 88%)
+      value: 0.9251
+    - check: harmony
+      status: warn
+      message: 'harmony score 70 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 69.8
+    - check: edit_stability
+      status: pass
+      message: 95% of the parent level unchanged
+      value: 0.9487
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.97 of the parent level (drift compounds along a chain)
+      value: 0.9716
+    info:
+      metrics_raw:
+        L_p5: 62.0
+        L_p50: 84.3
+        L_p95: 95.2
+        C_p50: 29.8
+        C_p95: 54.5
+        C_p99: 56.5
+        detail: 4.18
+      metrics_locked:
+        L_p5: 62.0
+        L_p50: 84.3
+        L_p95: 95.2
+        C_p50: 29.8
+        C_p95: 54.0
+        C_p99: 55.2
+        detail: 4.2
+    fingerprint: 726ce6ca8e861b5d
+  1:
+    job: simit-happy
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.000 and moved it; aligned back to the
+        parent
+      value: 0.9996
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 55 (R1 51)
+      value: 54.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 95 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 82.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.188
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.4 (at least 3.5)'
+      value: 5.36
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.9 (R1 5.3)
+      value: 4.93
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 4.1, off-palette 0.5% (top: #552211 (0.1%), #BB4433
+        (0.1%))'
+      value: 1.4159
+    - check: ground_line
+      status: warn
+      message: feet at 92.5% of the height (contract 88%)
+      value: 0.9251
+    - check: harmony
+      status: warn
+      message: 'harmony score 70 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 69.6
+    - check: edit_stability
+      status: pass
+      message: 95% of the parent level unchanged
+      value: 0.9529
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.03 of the parent level (drift compounds along a chain)
+      value: 1.0266
+    info:
+      alignment:
+        scale: 0.9996
+        cx: 546.5
+        cy: 1421.0
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 60.4
+        L_p50: 82.5
+        L_p95: 93.6
+        C_p50: 31.2
+        C_p95: 55.3
+        C_p99: 57.5
+        detail: 4.89
+      metrics_locked:
+        L_p5: 60.7
+        L_p50: 82.8
+        L_p95: 94.0
+        C_p50: 31.4
+        C_p95: 54.6
+        C_p99: 55.9
+        detail: 4.93
+    fingerprint: 726ce6ca8e861b5d
+manual_review:
+  excluded_takes:
+  - 2
+  note: Take1 keeps the required widened w-shaped mouth and thick closed happy eye
+    arcs, the tabby markings, scarf and paws. Take2 is excluded because its mouth
+    becomes a plain U rather than preserving the w. Official post removes the generated
+    background halo; the delivered transparent master has no baked cast shadow. Edit
+    stability0.9529 and edit chroma1.0266 pass. Light-standard and ground-line/harmony
+    warnings remain advisory; no failed check is waived. Characters are not style
+    locked.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-52fda9a7-0bc4-477e-b5fb-24128c555447.png
+  original_generated_png_sha256: 235e15c4575c9d8ff6ad86d82e52c76a955bef991b097a735c640d97e5c062c1
+  inbox_png_sha256: 7774cbabdbc2ef68b06f1d1692f9c0d93218d24d78f505bd5271b515401cc342
+  rgba_sha256: 259a156ffac1da61aa204859fef8d16bcfc90f23da4b37904c447072b4746371
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 726ce6ca8e861b5d
+- take: 2
+  source_file: /workspace/generated_images/exec-6d8cf500-4852-4fb8-8845-ec11a98f4bf9.png
+  original_generated_png_sha256: 56b3c144cf0885a45ad4b41883806c3fc60ebd40d3073d5b2731ba6ae5d1c343
+  inbox_png_sha256: ccd09acf34eb798ee29e9eb4ddd8d482325a37027ad11dd3e66ae1e56aa3b06e
+  rgba_sha256: 5c6c3ccc5e9044ac89178cf22098bd1951e686784fc80a48c07a29f8a4f1a159
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 726ce6ca8e861b5d

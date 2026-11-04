@@ -1,0 +1,132 @@
+{
+  "job": "simit-happy",
+  "batch": "batch-20-poses-pilot",
+  "asset": "char__simit-happy",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-04T15:42:56+00:00",
+  "image": "design/art/masters/simit-happy/simit-happy.png",
+  "raw": "design/art/masters/simit-happy/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "726ce6ca8e861b5d",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached kitten, Simit, into her happy face. Change only the eyes and mouth: both eyes become happy closed arcs, the classic smiling ^ shape, each a thick soft dark upward-curved arc at the height of the top of the original eye, with fur below it; the \"w\" mouth widens into a slightly bigger smile. Everything else stays exactly as it is.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: tears, a worried look, a curl on the head, a ground shadow, text, motion lines.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/simit-kitten/simit-kitten.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-04T15:40:13+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": {
+    "scale": 0.9996,
+    "cx": 546.5,
+    "cy": 1421.0,
+    "dx": 0,
+    "dy": 0
+  },
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "edit_alignment",
+        "status": "pass",
+        "message": "the edit rescaled the object x1.000 and moved it; aligned back to the parent",
+        "value": 0.9996
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 55 (R1 51)",
+        "value": 54.6
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 56 (at most 22), p98 95 (at least 90), spread 40 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 39.5
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 83 (band 55-90)",
+        "value": 82.7
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means a wash)",
+        "value": 0.188
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 5.4 (at least 3.5)",
+        "value": 5.36
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 4.9 (R1 5.3)",
+        "value": 4.93
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.4, p95 4.1, off-palette 0.5% (top: #552211 (0.1%), #BB4433 (0.1%))",
+        "value": 1.4159
+      },
+      {
+        "check": "ground_line",
+        "status": "warn",
+        "message": "feet at 92.5% of the height (contract 88%)",
+        "value": 0.9251
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 70 against the char reference (outliers: C_p95, L_p2, detail)",
+        "value": 69.6
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "95% of the parent level unchanged",
+        "value": 0.9529
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.03 of the parent level (drift compounds along a chain)",
+        "value": 1.0266
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Take1 keeps the required widened w-shaped mouth and thick closed happy eye arcs, the tabby markings, scarf and paws. Take2 is excluded because its mouth becomes a plain U rather than preserving the w. Official post removes the generated background halo; the delivered transparent master has no baked cast shadow. Edit stability0.9529 and edit chroma1.0266 pass. Light-standard and ground-line/harmony warnings remain advisory; no failed check is waived. Characters are not style locked."
+}

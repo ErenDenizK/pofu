@@ -1,0 +1,132 @@
+{
+  "job": "mochi-surprised",
+  "batch": "batch-20-poses-pilot",
+  "asset": "char__mochi-surprised",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-04T15:48:28+00:00",
+  "image": "design/art/masters/mochi-surprised/mochi-surprised.png",
+  "raw": "design/art/masters/mochi-surprised/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "6cb3c4faf8cfacad",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached bunny, Mochi, into a surprised reaction. Change only the face and ears: the mouth becomes a small round soft \"o\", both eyes grow slightly rounder and wider with their catchlights kept, the long ears lift a little more upright. Body, paws, colors and size stay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: tears, a worried look, a curl on the head, a ground shadow, text, motion lines.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/mochi-v2/mochi-v2.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-04T15:41:13+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": {
+    "scale": 0.99,
+    "cx": 517.5,
+    "cy": 1349.0,
+    "dx": -2,
+    "dy": 0
+  },
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "edit_alignment",
+        "status": "pass",
+        "message": "the edit rescaled the object x1.010 and moved it; aligned back to the parent",
+        "value": 0.99
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 34 (R1 51)",
+        "value": 33.9
+      },
+      {
+        "check": "light_values",
+        "status": "pass",
+        "message": "day/subject: L p2 17 (at most 22), p98 97 (at least 90), spread 80 (at least 60)",
+        "value": 80.1
+      },
+      {
+        "check": "light_median",
+        "status": "warn",
+        "message": "day/subject: median L 92 (band 55-90)",
+        "value": 91.5
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means a wash)",
+        "value": 0.204
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 3.7 (at least 3.5)",
+        "value": 3.72
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 3.7 (R1 5.3)",
+        "value": 3.72
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.9, p95 2.3, off-palette 0.9% (top: #441100 (0.1%), #551100 (0.1%))",
+        "value": 0.9067
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 87.8% of the height (contract 88%)",
+        "value": 0.8783
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 89 against the char reference (outliers: C_p95)",
+        "value": 88.6
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "83% of the parent level unchanged",
+        "value": 0.8341
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.14 of the parent level (drift compounds along a chain)",
+        "value": 1.1415
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes pass hard QA and depict the required surprised face: small round o mouth, widened catchlit eyes and long softly raised ears, no head curl or worried/crying face. Both preserve the body and paws with acceptable edit stability0.8240/0.8341 and chroma1.0230/1.1415. Characters have no style lock, so their equal zero lock load is resolved by higher Harmony: take2 at88.6 versus84.5. Light median/haze warnings are advisory under v1; no failed QA is waived. Official post removes the generated background halo; delivery is transparent with no baked cast shadow."
+}

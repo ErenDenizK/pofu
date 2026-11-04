@@ -4,16 +4,16 @@ title_tr: mochi-surprised
 title_en: mochi-surprised (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached bunny, Mochi, into a surprised reaction. Change only the face and ears:
-  the mouth becomes a small round soft "o", both eyes grow slightly rounder and wider with
-  their catchlights kept, the long ears lift a little more upright. Body, paws, colors and
-  size stay exactly as they are.
+summary: 'Edit the attached bunny, Mochi, into a surprised reaction. Change only the
+  face and ears: the mouth becomes a small round soft "o", both eyes grow slightly
+  rounder and wider with their catchlights kept, the long ears lift a little more
+  upright. Body, paws, colors and size stay exactly as they are.'
 links:
   variant_of:
   - asset-mochi-v2
 art:
-  images: []
+  images:
+  - design/art/masters/mochi-surprised/mochi-surprised.webp
   jobs:
   - batch-20-poses-pilot:mochi-surprised
 sources:
