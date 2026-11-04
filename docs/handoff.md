@@ -3,6 +3,21 @@
 The lead session restarts daily to keep context small. Read this, CLAUDE.md
 and `docs/product/founder-input.md`, then delete what is done.
 
+## 2026-11-04 (evening)
+
+**Done:** reviewed and merged the art PRs #148 and #150-#153 (poses, workshop-1-lit,
+three icons; review in the art-production-plan log). Most skips were size-only
+(the model ignores pixel sizes in prompts), so #154 adds `qa.fit_to_guide`,
+a downscale about the ground anchor. #155 queues `refit-2026-11-04` (re-promote
+the bench, pier-1, lighthouse-1 and harbor-ferry-1 with no generation) and opens
+batch-20-poses.
+
+**Next:** review the refit PR (check rim colour at the edge and that the scale
+reads right next to the cast), then open the 12 dependents (queue row 3).
+Watch whether level edits of fitted parents come back oversized again.
+The 2026-11-04 end-of-day list below still applies (founder runbook, harbor
+scene, lore #135).
+
 ## 2026-11-04 (end of day)
 
 **Done:** budget rules in CLAUDE.md (#139); vertical slice v0 plan

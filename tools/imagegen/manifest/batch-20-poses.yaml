@@ -15,9 +15,7 @@
 # Tracks: `poses`.
 batch: batch-20-poses
 title: Resident poses, the rest (Findik surprised, Simit sleepy and surprised)
-status: blocked
-blocked_on:
-  - "the lead's review of batch-20-poses-pilot (docs/design/art-production-plan.md)"
+status: open
 
 defaults:
   variants: 2

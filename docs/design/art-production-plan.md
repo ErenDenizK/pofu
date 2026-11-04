@@ -61,12 +61,9 @@ until none is left.
 
 | # | Batch | Kind | Purpose | Needs | Jobs | State |
 |---|---|---|---|---|---|---|
-| 1 | `batch-08-decor-pilot` | production · pilot | Re-run all four decor pieces: `--only decor-bench decor-lanterns decor-sailboat decor-mailbox`. #88 and #95 delivered no pick: the bench failed its guide fit (740 px against a 360 px footprint) and the other three were skipped as dependents. QA now checks `decor_anchor` and the prompt gives the bench its size | main | 4 | **READY** |
-| 2 | `batch-07-light` | production | Only `workshop-1-lit` is left (`--only workshop-1-lit`): t1, t3 and t4 failed `chroma_ceiling`, t2 kept 0.8997 against the manual gate of 0.9. `windmill-5-lit` and `pond-5-lit` merged in #84. Low priority: night light is mostly code | main | 1 | **READY** |
-| 3 | `retry-2026-11-04` | production | The certainty list (art that ships whatever the island design becomes). Part A, the four jobs still skipped after the retry, briefs rewritten: `icon-breath` (value fix), `harbor-ferry-1` and `harbor-ferry-2` (size stated in pixels, 560 px hull), `ui-sheet-paper-night` (new `paper-night` palette). Part B, four icons redrawn by the semantics rule (one metaphor per action, silhouette at 28 pt): `icon-plus` (chunky plus), `icon-skip` (two chevrons), `icon-friend` (two people), `icon-island` (side view with a tree and a pointed underside). Replaces the blocked `retry-2026-11-03` remainder | main | 8 | **READY** |
-| 3b | `batch-20-poses-pilot` | production · pilot | Home cast poses still missing (Mochi and Findik already have happy and sleepy from batch 06): `mochi-surprised`, `simit-happy`. Edits of the approved masters, day cell, light standard | main | 2 | **READY** |
-| 3d | `batch-21-harbor-ladders` | production · pilot inside | The harbor ladders: ferry pier and lighthouse, levels 1 to 5 (10 jobs, two chains of edits). Pilot: `pier-1` and `lighthouse-1`; every other job edits a pilot master or its predecessor, so `plan` skips the rest until the pilot is merged. Day cell, light standard | main | 10 | **READY** |
-| 3c | `batch-20-poses` | production | The rest of the poses: `findik-surprised`, `simit-sleepy`, `simit-surprised` | the lead's review of row 3b | 3 | BLOCKED, opens after the pilot review |
+| 1 | `refit-2026-11-04` | production · pilot | **No generation.** Four pilots had good art rejected only for size (bench 452-495 px vs 360, `pier-1` 804-904 vs 720, `lighthouse-1` top above the y 150 bar, `harbor-ferry-1` 676-765 vs 640). The pipeline now shrinks root stations and ground decor to their guide (`qa.fit_to_guide`, #154). Re-run `post` on the retained originals of `decor-bench` (batch-08-decor-pilot), `pier-1` and `lighthouse-1` (batch-21-harbor-ladders), `harbor-ferry-1` (retry-2026-11-04), pick and promote as usual (un-cut the asset nodes). Their dependents stay skipped until the lead reviews this pilot. A take that still fails (fit below x0.6, or any other hard check) stays skipped | #154 | 4 | **READY** |
+| 2 | `batch-20-poses` | production | The rest of the poses: `findik-surprised`, `simit-sleepy`, `simit-surprised`. Pilot (#152) passed review: keep the same edit approach | main | 3 | **READY** |
+| 3 | dependents | production | After the refit review: `decor-lanterns`, `decor-sailboat`, `decor-mailbox`; `pier-2` to `pier-5`; `lighthouse-2` to `lighthouse-5`; `harbor-ferry-2`. Watch edits: they must keep the parent's scale (station_anchor's width bar) | the lead's review of row 1 | 12 | BLOCKED, opens after the refit review |
 | 4 | `batch-11-ui` | production | What is still missing of ui-system-v2 section 6 after batches 11-13 and the retry: night variants of the faces, game layer extras, the remaining domain icons, surfaces. The lead lists the exact gaps when it writes the manifest | the light standard and the icon semantics rule | about 15 | BLOCKED, no manifest yet |
 | 5 | `batch-08-decor` | production | The home decor kit (Ayçiçeği is the centre, so it ships); the lead lists the pieces after the pilot review | a passed row 1 | none yet | BLOCKED on the pilot review, no manifest yet |
 
@@ -354,6 +351,8 @@ Stop and report on any stop condition in AGENTS.md.
 ```
 
 ## Log
+
+- 2026-11-04 (lead review): merged #148, #150-#153. Promoted `workshop-1-lit`, `simit-happy`, `mochi-surprised`, `icon-friend`, `icon-plus`, `icon-breath`. Skips kept: `icon-island` (palette drift), `ui-sheet-paper-night` (edit structure; a recolor profile is the fix, not a retry), `icon-skip` (refusal, stays blocked). Finding: the image model ignores pixel sizes in prompts (two retries each), so size moved to code (#154); the refit row re-promotes without regeneration.
 
 - 2026-11-03 (queue groomed): every delivered row left the queue.
   Delivered and merged: batch-05-fixes (#82), batch-06-pofu-rig (#83, all 19
