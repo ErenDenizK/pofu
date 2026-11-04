@@ -84,7 +84,29 @@ final class GardenTextures {
         case findik = "garden-findik"
         case bloom = "garden-bloom"
         case bloomSmall = "garden-bloom-small"
+        // The painted crafted layer (tools/assets/integrate.py bakes these from design/art/ui).
+        case tileSage = "garden-tile-sage"
+        case tileHoney = "garden-tile-honey"
+        case tileTerracotta = "garden-tile-terracotta"
+        case tileLilac = "garden-tile-lilac"
+        case tileMint = "garden-tile-mint"
+        case tileRose = "garden-tile-rose"
+        case soil = "garden-soil"
+        case tray = "garden-tray"
+        case bloomFront = "garden-bloom-front"
+        case bloomLeft = "garden-bloom-left"
+        case bloomRight = "garden-bloom-right"
+        case comboStamp = "garden-combo-stamp"
+
+        /// The painted plot tile for a `PieceFamily.tint` (sage, honey, terracotta, lilac, mint, rose).
+        static func tile(tint: Int) -> Art {
+            let tiles: [Art] = [.tileSage, .tileHoney, .tileTerracotta, .tileLilac, .tileMint, .tileRose]
+            return tiles[((tint % tiles.count) + tiles.count) % tiles.count]
+        }
     }
+
+    /// Whether the bundle carries the painted image (the drawn stand-ins are the fallback).
+    static func hasArt(_ art: Art) -> Bool { image(art) != nil }
 
     static func image(_ art: Art) -> UIImage? {
         if let image = UIImage(named: art.rawValue, in: .module, with: nil) {
@@ -112,6 +134,11 @@ final class GardenTextures {
     /// A clay plot tile: glaze gradient, a top light, a darker lip at the
     /// bottom and a small embossed sprout.
     func tile(tint: Int, side: CGFloat) -> SKTexture {
+        if Self.hasArt(.tile(tint: tint)) { return art(.tile(tint: tint)) }
+        return drawnTile(tint: tint, side: side)
+    }
+
+    private func drawnTile(tint: Int, side: CGFloat) -> SKTexture {
         cached("tile.\(tint).\(side)") {
             let base = GardenPalette.glazes[tint % GardenPalette.glazes.count]
             return SKTexture(image: Self.render(CGSize(width: side, height: side), scale: scale) { context, rect in
@@ -156,6 +183,11 @@ final class GardenTextures {
 
     /// An empty cell: a soft soil mound with two crumbs.
     func soilCell(side: CGFloat) -> SKTexture {
+        if Self.hasArt(.soil) { return art(.soil) }
+        return drawnSoilCell(side: side)
+    }
+
+    private func drawnSoilCell(side: CGFloat) -> SKTexture {
         cached("soil.\(side)") {
             SKTexture(image: Self.render(CGSize(width: side, height: side), scale: scale) { context, rect in
                 let body = UIBezierPath(roundedRect: rect.insetBy(dx: 0.5, dy: 0.5), cornerRadius: side * 0.22)
@@ -226,6 +258,36 @@ final class GardenTextures {
 
     /// The wooden tray: honey planks with grain and a recessed floor.
     func tray(size: CGSize) -> SKTexture {
+        if let image = Self.image(.tray), let painted = Self.ninePatch(image, corner: 0.25, cornerPoints: 30, size: size, scale: scale) {
+            return cached("tray.painted.\(size.width)x\(size.height)") { SKTexture(image: painted) }
+        }
+        return drawnTray(size: size)
+    }
+
+    /// Draws a painted frame at any size: the four corners keep their proportions, the edges and the
+    /// middle stretch (`corner` is the corner's share of the image height, `cornerPoints` its size on screen).
+    static func ninePatch(_ image: UIImage, corner: CGFloat, cornerPoints: CGFloat, size: CGSize, scale: CGFloat) -> UIImage? {
+        guard let cg = image.cgImage, size.width > 2, size.height > 2 else { return nil }
+        let w = CGFloat(cg.width), h = CGFloat(cg.height)
+        let c = (h * corner).rounded()
+        let k = min(cornerPoints, size.width / 3, size.height / 3)
+        let xs: [(CGFloat, CGFloat)] = [(0, c), (c, w - c), (w - c, w)]
+        let ys: [(CGFloat, CGFloat)] = [(0, c), (c, h - c), (h - c, h)]
+        let dx: [(CGFloat, CGFloat)] = [(0, k), (k, size.width - k), (size.width - k, size.width)]
+        let dy: [(CGFloat, CGFloat)] = [(0, k), (k, size.height - k), (size.height - k, size.height)]
+        return render(size, scale: scale) { _, _ in
+            for row in 0..<3 {
+                for column in 0..<3 {
+                    let source = CGRect(x: xs[column].0, y: ys[row].0, width: xs[column].1 - xs[column].0, height: ys[row].1 - ys[row].0)
+                    guard let piece = cg.cropping(to: source) else { continue }
+                    let target = CGRect(x: dx[column].0, y: dy[row].0, width: dx[column].1 - dx[column].0, height: dy[row].1 - dy[row].0)
+                    UIImage(cgImage: piece).draw(in: target)
+                }
+            }
+        }
+    }
+
+    private func drawnTray(size: CGSize) -> SKTexture {
         cached("tray.\(size.width)x\(size.height)") {
             SKTexture(image: Self.render(size, scale: scale) { context, rect in
                 let body = UIBezierPath(roundedRect: rect.insetBy(dx: 1, dy: 1), cornerRadius: 26)

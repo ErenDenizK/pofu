@@ -37,3 +37,14 @@ def test_games_outputs_are_current(tmp_path):
         a = Image.open(out).convert("RGBA")
         b = Image.open(integrate.output_path(e, DATA["targets"])).convert("RGBA")
         assert a.size == b.size and ImageChops.difference(a, b).getbbox() is None, f"{e['name']} is stale"
+
+
+def test_every_garden_art_case_has_a_png():
+    import re
+
+    root = integrate.REPO / DATA["targets"]["games"]
+    swift = (integrate.REPO / "Packages/PofuKit/Sources/PofuGames/Scene/GardenArt.swift").read_text(encoding="utf-8")
+    names = re.findall(r'case \w+ = "(garden-[\w-]+)"', swift)
+    assert len(names) >= 18
+    missing = [n for n in names if not (root / f"{n}.png").is_file()]
+    assert not missing, missing

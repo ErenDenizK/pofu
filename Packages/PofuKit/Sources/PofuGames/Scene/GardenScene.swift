@@ -550,7 +550,9 @@ final class GardenScene: SKScene {
                 .removeFromParent(),
             ]))
         }
-        let art: GardenTextures.Art = (cell.row * 3 + cell.column) % 4 == 1 ? .bloomSmall : .bloom
+        let painted: [GardenTextures.Art] = [.bloomFront, .bloomLeft, .bloomRight]
+        let pick = painted[(cell.row * 3 + cell.column) % painted.count]
+        let art: GardenTextures.Art = GardenTextures.hasArt(pick) ? pick : ((cell.row * 3 + cell.column) % 4 == 1 ? .bloomSmall : .bloom)
         let flower = SKSpriteNode(texture: textures.art(art), size: CGSize(width: layout.cell * 1.08, height: layout.cell * 1.08))
         flower.position = center
         flower.zPosition = 2
@@ -706,6 +708,25 @@ final class GardenScene: SKScene {
         let centers = cells.map { layout.center(of: $0) }
         let x = min(layout.grid.maxX - 90, max(layout.grid.minX + 90, centers.map(\.x).reduce(0, +) / CGFloat(max(1, centers.count))))
         let y = min(layout.grid.maxY - 20, max(layout.grid.minY + 50, centers.map(\.y).reduce(0, +) / CGFloat(max(1, centers.count)) + layout.cell * 0.6))
+        if GardenTextures.hasArt(.comboStamp) {
+            // The painted stamp sits behind the words and takes the same entrance.
+            let stamp = SKSpriteNode(texture: textures.art(.comboStamp), size: CGSize(width: 112, height: 112))
+            stamp.position = CGPoint(x: x, y: y - 12)
+            stamp.zPosition = 49
+            effectsLayer.addChild(stamp)
+            if reduceMotion {
+                stamp.alpha = 0
+                stamp.run(.sequence([.fadeIn(withDuration: 0.15), .wait(forDuration: 0.6), .fadeOut(withDuration: 0.25), .removeFromParent()]))
+            } else {
+                stamp.setScale(0.3)
+                stamp.run(.sequence([
+                    SKAction.scale(to: 1, duration: 0.3).eased { GameEasing.outBack($0, overshoot: 2.2) },
+                    .wait(forDuration: 0.45),
+                    .group([SKAction.move(by: CGVector(dx: 0, dy: 26), duration: 0.35).eased(GameEasing.outCubic), .fadeOut(withDuration: 0.35)]),
+                    .removeFromParent(),
+                ]))
+            }
+        }
         for (index, entry) in texts.enumerated() {
             let label = Self.label(entry.0, size: entry.1, color: GardenPalette.comboInk(combo))
             label.position = CGPoint(x: x, y: y - CGFloat(index) * 30)
