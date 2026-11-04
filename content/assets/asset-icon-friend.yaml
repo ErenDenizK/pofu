@@ -4,8 +4,8 @@ title_tr: icon-friend
 title_en: friend (icon)
 status: in-production
 horizon: now
-summary: 'The icon for a friend: two small, round, soft sprouts in a tiny clay pot,
-  leaning toward each other, each with two chunky leaves.'
+summary: 'The icon for a friend: two round-headed people with soft shoulders,
+  a larger figure in front and a smaller figure behind.'
 notes:
 - 'Blocked on: the friends beta (ADR-0018 amendment, iteration plan W6); batch-01-slice:
   island-main-s and tea-stall-1 approved'
@@ -14,6 +14,9 @@ notes:
 - 'Batch13overnight: Not generated: the embedded ui-sheet-paper pilot failed its allowed
   retry, so the manifest skips the rest of batch13. Other batch timings remain as
   specified.'
+- '2026-11-04: The semantics redraw replaces the plant metaphor with two people.
+  Take 1 passes the native 28 pt color-removed silhouette review on light and dark
+  glass. Auto-picked by QA; founder review pending.'
 art:
   images:
   - design/art/ui/icon-friend/icon-friend.webp
@@ -25,5 +28,6 @@ art:
 sources:
 - doc: tools/imagegen/manifest/batch-02-ui.yaml
 - doc: tools/imagegen/manifest/batch-13-ui-rest.yaml
+- doc: tools/imagegen/manifest/retry-2026-11-04.yaml
 kind: icon
 batch: batch-02-ui
