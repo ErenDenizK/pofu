@@ -16,7 +16,7 @@ notes:
   specified.'
 art:
   images:
-  - design/art/ui/icon-friend/icon-friend.png
+  - design/art/ui/icon-friend/icon-friend.webp
   jobs:
   - batch-02-ui:icon-friend
   - batch-13-ui-rest:icon-friend

@@ -1,0 +1,190 @@
+batch: retry-2026-11-04
+contact_sheet: design/art/takes/retry-2026-11-04/icon-friend/contact.jpg
+jobs:
+  icon-friend:
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Semantics redraw explicitly
+      authorized by the current queue: replace the former plant metaphor with two
+      people. Both candidates pass the actual full-canvas native28 color-removed silhouette
+      test on light/dark glass: two separate round head lobes above merged shoulders,
+      larger front figure and smaller rear figure, no faces, plants or pots. semantic-review.jpg
+      is QA annotation only. Both hard-QA eligible; take1 has the minimum lock load1.1452
+      versus1.1976. The repository catalog excludes UI assets; required measure/check
+      commands still run, and no synthetic Harmony shard will be invented.'
+qa_reports:
+  1:
+    job: icon-friend
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 33 (R1 51)
+      value: 32.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 58 (R1 59)
+      value: 57.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.57
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1452
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 8.3, off-palette 0.1% (top: #998866 (0.0%), #998877
+        (0.0%))'
+      value: 2.0291
+    - check: icon_fill
+      status: warn
+      message: icon spans 94% of the canvas (target 80-92%)
+      value: 0.9404
+    - check: icon_thin_parts
+      status: pass
+      message: 0.2% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0022
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 2.5 (busy above 7)
+      value: 2.55
+    - check: icon_on_light_glass
+      status: pass
+      message: 65% of the icon separates from light glass at 24 pt
+      value: 0.6467
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 57.6
+        L_p50: 71.4
+        L_p95: 89.1
+        C_p50: 25.4
+        C_p95: 32.9
+        C_p99: 34.3
+        detail: 0.78
+      metrics_locked:
+        L_p5: 57.6
+        L_p50: 71.3
+        L_p95: 89.1
+        C_p50: 25.4
+        C_p95: 32.8
+        C_p99: 34.0
+        detail: 0.57
+    fingerprint: 2a9b98a8668f02bb
+  2:
+    job: icon-friend
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 32.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 56 (R1 59)
+      value: 55.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.55
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.1976
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 10.5, off-palette 1.5% (top: #998866 (0.9%), #999966
+        (0.2%))'
+      value: 2.589
+    - check: icon_fill
+      status: pass
+      message: icon spans 92% of the canvas (target 80-92%)
+      value: 0.917
+    - check: icon_thin_parts
+      status: pass
+      message: 0.1% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0009
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 2.3 (busy above 7)
+      value: 2.29
+    - check: icon_on_light_glass
+      status: pass
+      message: 73% of the icon separates from light glass at 24 pt
+      value: 0.7269
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 55.5
+        L_p50: 68.9
+        L_p95: 87.4
+        C_p50: 26.3
+        C_p95: 32.2
+        C_p99: 33.0
+        detail: 0.8
+      metrics_locked:
+        L_p5: 55.5
+        L_p50: 68.8
+        L_p95: 87.4
+        C_p50: 26.3
+        C_p95: 32.1
+        C_p99: 32.7
+        detail: 0.55
+    fingerprint: 2a9b98a8668f02bb
+manual_review:
+  excluded_takes: []
+  note: 'Semantics redraw explicitly authorized by the current queue: replace the
+    former plant metaphor with two people. Both candidates pass the actual full-canvas
+    native28 color-removed silhouette test on light/dark glass: two separate round
+    head lobes above merged shoulders, larger front figure and smaller rear figure,
+    no faces, plants or pots. semantic-review.jpg is QA annotation only. Both hard-QA
+    eligible; take1 has the minimum lock load1.1452 versus1.1976. The repository catalog
+    excludes UI assets; required measure/check commands still run, and no synthetic
+    Harmony shard will be invented.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-62aa6c51-a6a3-431f-9f41-f636f43ce8c4.png
+  original_generated_png_sha256: 6e8075399b465955ca91160011beb33b421eaed9cf4eb83e62491c4003f9ed20
+  inbox_png_sha256: 1f6c86a9274b9424594501c851884929c4b9597c760337e2638ba390cb00bc56
+  rgba_sha256: 11a8c9098804663e2294fe3a960bd1a2e52564e2c862a8741ddf5e2a3be05f12
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2a9b98a8668f02bb
+- take: 2
+  source_file: /workspace/generated_images/exec-c64746e6-77fa-4c1b-83cf-ef06a9c41ba0.png
+  original_generated_png_sha256: f356c49d275f67bc9bb8aa9634f182dcf9f9cdab72415117f9a62ad792e1ac4b
+  inbox_png_sha256: b1e262c1803de9b37785641657683271ed3caa05cae7f8758ea0c67b7bd27a4a
+  rgba_sha256: 89b62ba510df1b0870b0b3abe2c7c3e9c4cfe93bafba9f807204eb83773e536c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 2a9b98a8668f02bb
