@@ -2,7 +2,7 @@ id: asset-workshop-1-lit
 type: asset
 title_tr: workshop-1-lit
 title_en: workshop-1-lit (station)
-status: cut
+status: in-production
 horizon: now
 summary: 'Light the workshop from inside: the open, round-topped doorway now shows
   a warm honey-amber glow filling its opening, brightest low in the middle, painted
@@ -13,7 +13,8 @@ links:
   variant_of:
   - asset-workshop-1
 art:
-  images: []
+  images:
+  - design/art/stations/workshop-1-lit/workshop-1-lit.png
   jobs:
   - batch-07-light:workshop-1-lit
 sources:

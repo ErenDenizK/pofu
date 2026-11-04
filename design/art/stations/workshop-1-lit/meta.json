@@ -1,0 +1,118 @@
+{
+  "job": "workshop-1-lit",
+  "batch": "batch-07-light",
+  "asset": "station__workshop-1-lit",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-04T13:22:11+00:00",
+  "image": "design/art/stations/workshop-1-lit/workshop-1-lit.png",
+  "raw": "design/art/stations/workshop-1-lit/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "402bc9b40f2c9a5e",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nLight the workshop from inside: the open, round-topped doorway now\nshows a warm honey-amber glow filling its opening, brightest low\nin the middle, painted as soft broad shapes with a hint of a\nhanging lamp's round shape inside. Only the doorway's inside\nchanges: no glow, light or color change on the wood, the roof,\nthe bench or anything else (the app adds the glow and the light\npool around it).\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: light rays, a glow outside the doorway, light on other objects, blown yellow-white highlights, text.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/workshop-1/workshop-1.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-04T13:20:29+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 0,
+    "dy": 0
+  },
+  "alignment": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 56 (R1 51)",
+        "value": 55.9
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 59 (R1 59)",
+        "value": 59.0
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.6 (R1 5.3)",
+        "value": 1.64
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.5",
+        "value": 0.5328
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.3, p95 5.7, off-palette 0.0%",
+        "value": 1.3096
+      },
+      {
+        "check": "station_anchor",
+        "status": "pass",
+        "message": "on the parent's anchor",
+        "value": 904.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 82 against the world reference (outliers: edge)",
+        "value": 82.5
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "90% of the parent level unchanged",
+        "value": 0.9033
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.97 of the parent level (drift compounds along a chain)",
+        "value": 0.9724
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Authorized 2026-11-04 re-run of workshop-1-lit only. Take1 passes all hard QA and strict manual edit_stability>0.9 at0.9033; take2 fails chroma_ceiling60.5. The selected source and aligned master retain the workshop framing, roof, bench and wood without a visible external light halo or rays; warm lamp/glow is confined to the doorway interior. Take1 chroma55.9 is an automatic warning, not a failed check. Lowest eligible lock load0.5328; no retry needed. Old batch is grandfathered by the light standard; no prompt or threshold edits."
+}

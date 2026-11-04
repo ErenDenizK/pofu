@@ -4,15 +4,14 @@ title_tr: Atölye
 title_en: Workshop
 status: in-production
 horizon: later
-summary: >-
-  Fındık's workshop on the back terrace. Fındık tinkers and makes the style variants.
+summary: Fındık's workshop on the back terrace. Fındık tinkers and makes the style
+  variants.
 notes:
-- >-
-  Opens: Stage 4 (10 tended days; the back terrace). Level costs 1→5: 500 · 1,100 · 2,420
-  · 5,324 · 11,713 (total 21,057). Rate L1→L5: 9 → 28.8 seeds/hour before calm.
-- >-
-  Postponed in-app by the decision audit (levels 4–5, the windmill and workshop wait), but
-  batch 03 paints it now because art has the longest lead time.
+- 'Opens: Stage 4 (10 tended days; the back terrace). Level costs 1→5: 500 · 1,100
+  · 2,420 · 5,324 · 11,713 (total 21,057). Rate L1→L5: 9 → 28.8 seeds/hour before
+  calm.'
+- Postponed in-app by the decision audit (levels 4–5, the windmill and workshop wait),
+  but batch 03 paints it now because art has the longest lead time.
 links:
   part_of:
   - island-aycicegi
@@ -20,6 +19,8 @@ links:
   - char-findik
   - sys-station-production
   - sys-build
+  uses_asset:
+  - asset-workshop-1-lit
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'
@@ -59,5 +60,5 @@ levels:
   asset: asset-workshop-5
 unlock:
   day: 10
-  rule_en: >-
-    Stage 4 (10 tended days; the back terrace) (days ≈ tended days for a daily user)
+  rule_en: Stage 4 (10 tended days; the back terrace) (days ≈ tended days for a daily
+    user)
