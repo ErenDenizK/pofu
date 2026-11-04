@@ -83,6 +83,13 @@ struct RehearsalTests {
         #expect(time.destination(of: .morning, from: smallHours) == instant(2026, 11, 3, 6))
     }
 
+    /// The panel's "Next day" is `.morning` at any hour: it lands on the next morning, never today's.
+    @Test func morningFromTheDayIsTheNextDay() {
+        #expect(time.destination(of: .morning, from: noon) == instant(2026, 11, 3, 6))
+        let after = instant(2026, 11, 2, 6, 1)
+        #expect(time.destination(of: .morning, from: after) == instant(2026, 11, 3, 6))
+    }
+
     @Test func everyJumpMovesForward() {
         for hour in 0..<24 {
             let date = instant(2026, 11, 2, hour, 17)

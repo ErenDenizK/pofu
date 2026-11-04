@@ -6,8 +6,8 @@
   "L_mean": 76.259,
   "L_p2": 20.127,
   "L_p98": 95.707,
-  "detail": 9.931,
-  "edge": 0.151,
+  "detail": 10.278,
+  "edge": 0.143,
   "tint_a": 4.027,
   "tint_b": 8.47,
   "warmth_b": 29.371
@@ -19,8 +19,8 @@
   "L_mean": 76.259,
   "L_p2": 20.127,
   "L_p98": 95.707,
-  "detail": 9.931,
-  "edge": 0.151,
+  "detail": 10.278,
+  "edge": 0.143,
   "tint_a": 4.027,
   "tint_b": 8.47,
   "warmth_b": 29.371
@@ -46,11 +46,11 @@
   "C_p95",
   "detail"
  ],
- "ppu": 29.0,
+ "ppu": 30.8077,
  "reference": false,
- "score_after": 79.8,
- "score_before": 79.8,
- "shipped": false,
+ "score_after": 79.6,
+ "score_before": 79.6,
+ "shipped": true,
  "source": "design/art/masters/simit-kitten-work/simit-kitten-work.webp",
  "source_sha": "d0dd5a0f8d0de508"
 }

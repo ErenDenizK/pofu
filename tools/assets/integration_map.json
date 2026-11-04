@@ -17,6 +17,11 @@
     {"target": "games", "name": "garden-bloom-front", "master": "design/art/ui/ui-game-bloom-front", "points": [64, 64], "scale": 3},
     {"target": "games", "name": "garden-bloom-left", "master": "design/art/ui/ui-game-bloom-left", "points": [64, 64], "scale": 3},
     {"target": "games", "name": "garden-bloom-right", "master": "design/art/ui/ui-game-bloom-right", "points": [64, 64], "scale": 3},
-    {"target": "games", "name": "garden-combo-stamp", "master": "design/art/ui/ui-game-combo-stamp", "points": [96, 96], "scale": 3}
+    {"target": "games", "name": "garden-combo-stamp", "master": "design/art/ui/ui-game-combo-stamp", "points": [96, 96], "scale": 3},
+    {"target": "world", "name": "harbor-island-s", "master": "design/art/masters/harbor-island-s"},
+    {"target": "world", "name": "harbor-goat", "master": "design/art/masters/harbor-goat"},
+    {"target": "world", "name": "simit-kitten", "master": "design/art/masters/simit-kitten"},
+    {"target": "world", "name": "simit-kitten-work", "master": "design/art/masters/simit-kitten-work"},
+    {"target": "world", "name": "simit-kitten-ears", "master": "design/art/masters/simit-kitten-ears"}
   ]
 }

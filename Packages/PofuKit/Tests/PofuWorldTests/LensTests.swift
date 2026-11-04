@@ -118,6 +118,8 @@ struct WorldArtTests {
         var names = IslandLayout.plateBands.map(\.art)
         names += IslandLayout.residents.map(\.art)
         names += IslandLayout.isles.map(\.art)
+        names += IslandLayout.islandCast.map(\.art)
+        names += SimitPose.allCases.map(\.art)
         names.append("pofu")
         for station in IslandLayout.stationAnchors.keys {
             if let art = IslandLayout.stationArt(station, level: 1) {
