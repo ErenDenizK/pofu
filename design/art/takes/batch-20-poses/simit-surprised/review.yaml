@@ -1,0 +1,213 @@
+batch: batch-20-poses
+contact_sheet: design/art/takes/batch-20-poses/simit-surprised/contact.jpg
+jobs:
+  simit-surprised:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Take2 passes hard QA and best
+      matches the requested small round soft o mouth, wide catchlit eyes and upright
+      ears while preserving the tabby markings, coral scarf, body/tail/paws and frame.
+      Exclude take1 manually because its mouth is a tall open oval rather than the
+      requested small round o; take2 also keeps chroma closer to its parent. Edit
+      stability0.8827, chroma1.0134 and Harmony80.6 pass; light/ground-line warnings
+      remain advisory. Official post removes generated background, leaving a transparent
+      sprite with no cast shadow. Characters are not style locked. Auto-picked by
+      QA among semantically eligible takes; founder review pending.
+qa_reports:
+  1:
+    job: simit-surprised
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.004 and moved it; aligned back to the
+        parent
+      value: 0.9958
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 55 (R1 51)
+      value: 54.8
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 16 (at most 22), p98 96 (at least 90), spread 80
+        (at least 60)'
+      value: 80.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 83.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.10 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.102
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.2 (at least 3.5)'
+      value: 6.16
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.1 (R1 5.3)
+      value: 5.06
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 4.1, off-palette 0.8% (top: #441100 (0.1%), #CC5544
+        (0.1%))'
+      value: 1.44
+    - check: ground_line
+      status: warn
+      message: feet at 92.5% of the height (contract 88%)
+      value: 0.9251
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the char reference (outliers: C_p95, detail)'
+      value: 81.6
+    - check: edit_stability
+      status: pass
+      message: 89% of the parent level unchanged
+      value: 0.8856
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.94 of the parent level (drift compounds along a chain)
+      value: 0.9426
+    info:
+      alignment:
+        scale: 0.9958
+        cx: 546.0
+        cy: 1421.0
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 54.1
+        L_p50: 82.9
+        L_p95: 94.4
+        C_p50: 29.3
+        C_p95: 55.6
+        C_p99: 58.2
+        detail: 5.02
+      metrics_locked:
+        L_p5: 54.4
+        L_p50: 83.3
+        L_p95: 94.8
+        C_p50: 29.6
+        C_p95: 54.8
+        C_p99: 56.1
+        detail: 5.06
+    fingerprint: d276a38e13e8c80b
+  2:
+    job: simit-surprised
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 56 (R1 51)
+      value: 55.5
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 17 (at most 22), p98 96 (at least 90), spread 79
+        (at least 60)'
+      value: 78.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 82.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.09 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.086
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.0 (at least 3.5)'
+      value: 6.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.0 (R1 5.3)
+      value: 4.96
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 4.9, off-palette 0.9% (top: #CC5544 (0.1%), #441100
+        (0.1%))'
+      value: 1.5808
+    - check: ground_line
+      status: warn
+      message: feet at 92.6% of the height (contract 88%)
+      value: 0.9258
+    - check: harmony
+      status: pass
+      message: 'harmony score 81 against the char reference (outliers: C_p95, detail)'
+      value: 80.6
+    - check: edit_stability
+      status: pass
+      message: 88% of the parent level unchanged
+      value: 0.8827
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.01 of the parent level (drift compounds along a chain)
+      value: 1.0134
+    info:
+      metrics_raw:
+        L_p5: 54.1
+        L_p50: 82.3
+        L_p95: 94.1
+        C_p50: 31.9
+        C_p95: 56.9
+        C_p99: 59.6
+        detail: 4.94
+      metrics_locked:
+        L_p5: 54.1
+        L_p50: 82.3
+        L_p95: 94.1
+        C_p50: 31.9
+        C_p95: 55.5
+        C_p99: 56.6
+        detail: 4.96
+    fingerprint: d276a38e13e8c80b
+manual_review:
+  excluded_takes:
+  - 1
+  note: Take2 passes hard QA and best matches the requested small round soft o mouth,
+    wide catchlit eyes and upright ears while preserving the tabby markings, coral
+    scarf, body/tail/paws and frame. Exclude take1 manually because its mouth is a
+    tall open oval rather than the requested small round o; take2 also keeps chroma
+    closer to its parent. Edit stability0.8827, chroma1.0134 and Harmony80.6 pass;
+    light/ground-line warnings remain advisory. Official post removes generated background,
+    leaving a transparent sprite with no cast shadow. Characters are not style locked.
+    Auto-picked by QA among semantically eligible takes; founder review pending.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-e3a7c3f1-d46d-4f26-9e2d-1861332beb10.png
+  original_generated_png_sha256: ed8b661b22399a27ebbb5f0e7a20d81fccd8ab1c59d2795f35b3789d1955c9eb
+  inbox_png_sha256: a46cb6e20ab30b0abd9445f877184f36edd7955faf8b922ce16777e6a0d12d35
+  rgba_sha256: bc84997f7c4dc64dce74906e09fd896e4a164daf3ce6f00f2934ada09669561b
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d276a38e13e8c80b
+- take: 2
+  source_file: /workspace/generated_images/exec-436a6b25-401f-4ea7-beab-25678b5abcc2.png
+  original_generated_png_sha256: 50d8919573ab9b65eaab2df37d715b8aad09dca7204fd246912cc39782cc3ce0
+  inbox_png_sha256: 86092b208bef58b26906d161e7211755cbe1a16769c33ef60e6999a7f63cb589
+  rgba_sha256: 152eb603161a7de730706675566b6552dddef3f83cd0e7df7efb54126c136f4f
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d276a38e13e8c80b
