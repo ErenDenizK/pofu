@@ -1,0 +1,14 @@
+batch: batch-21-harbor-ladders
+jobs:
+  pier-2:
+    pick: none
+    publication: dependent-skip
+    note: 'Skipped without generation: true dependency pier-1 failed after its one
+      allowed retry. Both initial and both retry takes violate the explicit guide
+      footprint. Official station_anchor widths are873,804,904,834px against720px.
+      All have four posts, rounded planks, coral rope and an empty end, but their
+      guide fit is wrong. Manual exclusion of all4 is based on geometry, not advisory
+      light metrics. One allowed retry is exhausted; skip pier-1 and only its true
+      level-chain dependents. Keep all sources and contacts; do not force promotion.'
+generated_takes: 0
+failed_dependency: pier-1
