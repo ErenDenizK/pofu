@@ -1,0 +1,192 @@
+# Batch 21: the harbor ladders, ferry pier and lighthouse, levels 1 to 5
+# (docs/design/art-production-plan.md, "Home upgrade ladder"; levels from
+# docs/product/game-design.md, "Idle production and stations").
+#
+# The home ladders and the bagel cart are painted; the harbor's other two
+# stations had no level at all. Ten jobs, two chains of five edits. Every
+# level is an EDIT of the level before (same canvas, same footprint), painted
+# under the day cell with the light standard (docs/design/light-standard.md);
+# no baked shadow, water is code.
+#
+# PILOT (run first): pier-1 and lighthouse-1, the two first levels. Every other
+# job is an edit of a pilot master or of a level after it, so `plan` skips the
+# rest until the pilot is approved and merged. Review of the pilot (by the
+# lead): reads as the right station at 28 pt, stands on the footprint, same
+# finish as bagel-cart-1 and tea-stall-1. If a pilot job fails after its one
+# retry, stop the batch.
+#
+# Tracks: `pier` (pier-1 -> pier-5), `lighthouse` (lighthouse-1 -> lighthouse-5).
+# The lighthouse beam and all night glow are code; only the lamp room of
+# lighthouse-2 changes shape (a lit lamp room is painted as a warmer lantern).
+# pier-3's moored ferry is drawn small inside the sprite; the standalone
+# harbor-ferry-1/2 (retry-2026-11-04) are the large ferry of the plate.
+
+batch: batch-21-harbor-ladders
+title: Harbor ladders (ferry pier and lighthouse, levels 1 to 5)
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: tea-stall-1, kind: station, name: tea-stall-1, external: batch-01-slice}
+  - {id: bagel-cart-1, kind: station, name: bagel-cart-1, external: batch-01-slice}
+
+  # ------------------------------------------------------- PILOT
+
+  - id: pier-1
+    kind: station
+    name: pier-1
+    chat: "Pofu · Ferry pier"
+    light: {cell: day, layer: subject}
+    notes: "PILOT. Ferry pier level 1: planks and posts over the clouds. Review: a pier, not a dock with water; stands on the footprint; the water line is code."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family (do not draw the cart)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A short ferry pier for the island diorama: a straight run of honey wooden
+          planks on four chunky round posts with a soft coral rope looped between
+          the two front posts, reaching out toward the viewer's left, its end square
+          and empty (nothing moored yet). Planks are broad and rounded, few parts,
+          toy-like. The posts end in a flat clean edge at the bottom (no water, no
+          clouds, no wake). It fills the footprint's width and stays below the
+          height bar's top.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: lighthouse-1
+    kind: station
+    name: lighthouse-1
+    chat: "Pofu · Lighthouse"
+    light: {cell: day, layer: subject}
+    notes: "PILOT. Lighthouse level 1: a striped tower. Review: reads as a lighthouse at 28 pt; the lamp room is dark glass, unlit."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family (do not draw the cart)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small lighthouse for the island diorama: a plump, slightly tapered
+          round tower painted in broad soft bands of coral and cream, a tiny arched
+          door at its foot, one small round window, a flat honey-wooden gallery
+          ring under a round lamp room of tinted dark glass (a soft shape, not
+          transparent, unlit) and a small round coral cap. Toy-like proportions,
+          few parts. It fills the lower to upper part of the height bar and stands
+          on the footprint.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  # ------------------------------------------------ THE REST (gated on the pilot)
+
+  - id: pier-2
+    kind: station
+    name: pier-2
+    edit_of: pier-1
+    chat: "Pofu · Ferry pier"
+    light: {cell: day, layer: subject}
+    notes: "Ferry pier level 2: a lantern post."
+    prompt:
+      - text: |
+          Add a short honey wooden post at the pier's outer end with a plump round lantern of cream paper-tinted glass under a small coral cap, unlit (the glow is code). The planks and posts stay as they are.
+      - block: edit-keep-v1
+
+  - id: pier-3
+    kind: station
+    name: pier-3
+    edit_of: pier-2
+    chat: "Pofu · Ferry pier"
+    light: {cell: day, layer: subject}
+    notes: "Ferry pier level 3: the little ferry moors here."
+    prompt:
+      - text: |
+          Moor a small toy-like steam ferry beside the pier's outer half: a plump rounded sea-blue hull with a cream stripe, a low cream cabin with round windows, one rounded coral funnel with a cream band, about half the pier's length, its waterline a flat clean edge, tied with a short rope to a post. No water, no wake, no smoke.
+      - block: edit-keep-v1
+
+  - id: pier-4
+    kind: station
+    name: pier-4
+    edit_of: pier-3
+    chat: "Pofu · Ferry pier"
+    light: {cell: day, layer: subject}
+    notes: "Ferry pier level 4: a bench and two tea glasses."
+    prompt:
+      - text: |
+          Add a small honey wooden bench on the inner end of the pier, facing the view, and on the planks beside it two tiny tulip tea glasses of warm amber tea on a small round cream tray. Nothing else changes.
+      - block: edit-keep-v1
+
+  - id: pier-5
+    kind: station
+    name: pier-5
+    edit_of: pier-4
+    chat: "Pofu · Ferry pier"
+    light: {cell: day, layer: subject}
+    notes: "Ferry pier level 5: bunting from post to post."
+    prompt:
+      - text: |
+          Add a string of small triangular bunting flags in coral, cream and sea blue hung in soft swags from post to post along the pier's front edge. The bunting stays inside the canvas; everything else stays.
+      - block: edit-keep-v1
+
+  - id: lighthouse-2
+    kind: station
+    name: lighthouse-2
+    edit_of: lighthouse-1
+    chat: "Pofu · Lighthouse"
+    light: {cell: day, layer: subject}
+    notes: "Lighthouse level 2: a lit lamp room."
+    prompt:
+      - text: |
+          Light the lamp room: the dark glass becomes a warm honey-amber glowing lantern, brightest in the middle, painted as soft broad shapes. Only the lamp room changes: no glow or color change on the tower, the gallery or anything else (the app adds the beam and the halo).
+      - block: edit-keep-v1
+
+  - id: lighthouse-3
+    kind: station
+    name: lighthouse-3
+    edit_of: lighthouse-2
+    chat: "Pofu · Lighthouse"
+    light: {cell: day, layer: subject}
+    notes: "Lighthouse level 3: a balcony all around."
+    prompt:
+      - text: |
+          Widen the gallery under the lamp room into a full round balcony all around the tower: a honey wooden floor ring with a low rail of rounded posts, a little wider than the tower. Nothing else changes.
+      - block: edit-keep-v1
+
+  - id: lighthouse-4
+    kind: station
+    name: lighthouse-4
+    edit_of: lighthouse-3
+    chat: "Pofu · Lighthouse"
+    light: {cell: day, layer: subject}
+    notes: "Lighthouse level 4: a slow, warm beam at night."
+    prompt:
+      - text: |
+          The painted change is small, the beam is code: add two tiny cream glass-lens bands around the lamp room and a small round reflector disc behind the lamp so a beam can be anchored there. Nothing is painted outside the lamp room; no beam, no rays.
+      - block: edit-keep-v1
+
+  - id: lighthouse-5
+    kind: station
+    name: lighthouse-5
+    edit_of: lighthouse-4
+    chat: "Pofu · Lighthouse"
+    light: {cell: day, layer: subject}
+    notes: "Lighthouse level 5: a flag and a garden at its foot."
+    prompt:
+      - text: |
+          Add a small coral flag on a thin pole at the lamp room's cap, and at the tower's foot a little garden patch of soft green leaves with a few round cream and coral flowers and two round pebbles, inside the footprint.
+      - block: edit-keep-v1

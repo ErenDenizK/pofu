@@ -1,0 +1,19 @@
+id: asset-lighthouse-3
+type: asset
+title_tr: lighthouse-3
+title_en: lighthouse-3 (station)
+status: planned
+horizon: next
+summary: >-
+  Widen the gallery under the lamp room into a full round balcony all around the tower: a honey wooden floor ring with a low rail of rounded posts, a little wider than the tower. Nothing else changes.
+links:
+  variant_of:
+  - asset-lighthouse-2
+art:
+  images: []
+  jobs:
+  - batch-21-harbor-ladders:lighthouse-3
+sources:
+- doc: tools/imagegen/manifest/batch-21-harbor-ladders.yaml
+kind: station
+batch: batch-21-harbor-ladders

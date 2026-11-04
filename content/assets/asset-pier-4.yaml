@@ -1,0 +1,19 @@
+id: asset-pier-4
+type: asset
+title_tr: pier-4
+title_en: pier-4 (station)
+status: planned
+horizon: next
+summary: >-
+  Add a small honey wooden bench on the inner end of the pier, facing the view, and on the planks beside it two tiny tulip tea glasses of warm amber tea on a small round cream tray. Nothing else changes.
+links:
+  variant_of:
+  - asset-pier-3
+art:
+  images: []
+  jobs:
+  - batch-21-harbor-ladders:pier-4
+sources:
+- doc: tools/imagegen/manifest/batch-21-harbor-ladders.yaml
+kind: station
+batch: batch-21-harbor-ladders

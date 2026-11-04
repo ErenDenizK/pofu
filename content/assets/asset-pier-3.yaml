@@ -1,0 +1,19 @@
+id: asset-pier-3
+type: asset
+title_tr: pier-3
+title_en: pier-3 (station)
+status: planned
+horizon: next
+summary: >-
+  Moor a small toy-like steam ferry beside the pier's outer half: a plump rounded sea-blue hull with a cream stripe, a low cream cabin with round windows, one rounded coral funnel with a cream band, about half the pier's length, its waterline a flat clean edge, tied with a short rope to a post. No water, no wake, no smoke.
+links:
+  variant_of:
+  - asset-pier-2
+art:
+  images: []
+  jobs:
+  - batch-21-harbor-ladders:pier-3
+sources:
+- doc: tools/imagegen/manifest/batch-21-harbor-ladders.yaml
+kind: station
+batch: batch-21-harbor-ladders
