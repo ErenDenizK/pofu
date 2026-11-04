@@ -2,7 +2,7 @@ id: asset-icon-island
 type: asset
 title_tr: icon-island
 title_en: island (icon)
-status: in-production
+status: cut
 horizon: now
 summary: 'The icon for an island: a tiny floating island, a flat soft sage lawn on
   a short, rounded honey-earth underside, nothing on the lawn, no roots or with at
@@ -15,6 +15,16 @@ notes:
 - 'Batch13overnight: Not generated: the embedded ui-sheet-paper pilot failed its allowed
   retry, so the manifest skips the rest of batch13. Other batch timings remain as
   specified.'
+- 'retry-2026-11-04 skipped after four takes: All four retained takes were ingested
+  and posted without regeneration. The only retry pair also fails palette_drift: mean
+  dE4.8505,5.5504,6.0967,5.3808, with off-palette fractions above the hard limit.
+  No eligible take; record the terminal skip after the one allowed retry. Native28
+  silhouette proof covers all four but never overrides hard palette QA. Automated
+  failures: t1 palette_drift: mean dE 4.9, p95 14.7, off-palette 11.5% (top: #888855
+  (7.8%), #998855 (1.2%)); t2 palette_drift: mean dE 5.6, p95 16.5, off-palette 13.9%
+  (top: #888855 (7.3%), #777755 (1.3%)); t3 palette_drift: mean dE 6.1, p95 15.4,
+  off-palette 14.9% (top: #888855 (4.8%), #887755 (2.9%)); t4 palette_drift: mean
+  dE 5.4, p95 15.1, off-palette 11.4% (top: #888855 (7.4%), #999955 (1.6%)).'
 art:
   images:
   - design/art/ui/icon-island/icon-island.png

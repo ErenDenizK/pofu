@@ -2,12 +2,18 @@ batch: retry-2026-11-04
 contact_sheet: design/art/takes/retry-2026-11-04/icon-island/contact.jpg
 jobs:
   icon-island:
-    pick: null
-    publication: suspended at global stop
-    note: Initial pair fails palette_drift (4.8505 / 5.5504). The only retry pair
-      was already dispatched before the global stop was recognized. Takes 3 and 4
-      are retained raw sources, not ingested or posted. Do not infer that either passes.
-      Native28 semantic proof covers initial takes 1 and 2 only.
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'All four retained takes were ingested and posted without regeneration.
+      The only retry pair also fails palette_drift: mean dE4.8505,5.5504,6.0967,5.3808,
+      with off-palette fractions above the hard limit. No eligible take; record the
+      terminal skip after the one allowed retry. Native28 silhouette proof covers
+      all four but never overrides hard palette QA. Automated failures: t1 palette_drift:
+      mean dE 4.9, p95 14.7, off-palette 11.5% (top: #888855 (7.8%), #998855 (1.2%));
+      t2 palette_drift: mean dE 5.6, p95 16.5, off-palette 13.9% (top: #888855 (7.3%),
+      #777755 (1.3%)); t3 palette_drift: mean dE 6.1, p95 15.4, off-palette 14.9%
+      (top: #888855 (4.8%), #887755 (2.9%)); t4 palette_drift: mean dE 5.4, p95 15.1,
+      off-palette 11.4% (top: #888855 (7.4%), #999955 (1.6%)).'
 qa_reports:
   1:
     job: icon-island
@@ -81,6 +87,78 @@ qa_reports:
         C_p99: 39.6
         detail: 0.63
     fingerprint: c1a3ba38ac6edd09
+  3:
+    job: icon-island
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 37.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 50 (R1 59)
+      value: 50.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.62
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.4005
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 6.1, p95 15.4, off-palette 14.9% (top: #888855 (4.8%), #887755
+        (2.9%))'
+      value: 6.0967
+    - check: icon_fill
+      status: pass
+      message: icon spans 88% of the canvas (target 80-92%)
+      value: 0.8818
+    - check: icon_thin_parts
+      status: pass
+      message: 3.4% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0339
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 3.5 (busy above 7)
+      value: 3.51
+    - check: icon_on_light_glass
+      status: pass
+      message: 81% of the icon separates from light glass at 24 pt
+      value: 0.8066
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 50.1
+        L_p50: 66.5
+        L_p95: 85.1
+        C_p50: 29.1
+        C_p95: 37.5
+        C_p99: 38.9
+        detail: 1.01
+      metrics_locked:
+        L_p5: 50.1
+        L_p50: 66.4
+        L_p95: 85.0
+        C_p50: 29.0
+        C_p95: 37.3
+        C_p99: 38.5
+        detail: 0.62
+    fingerprint: c1a3ba38ac6edd09
   2:
     job: icon-island
     take: 2
@@ -153,123 +231,123 @@ qa_reports:
         C_p99: 39.4
         detail: 0.61
     fingerprint: c1a3ba38ac6edd09
+  4:
+    job: icon-island
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 50 (R1 59)
+      value: 50.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.63
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.4282
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 5.4, p95 15.1, off-palette 11.4% (top: #888855 (7.4%), #999955
+        (1.6%))'
+      value: 5.3808
+    - check: icon_fill
+      status: pass
+      message: icon spans 86% of the canvas (target 80-92%)
+      value: 0.8633
+    - check: icon_thin_parts
+      status: pass
+      message: 3.0% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0302
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 3.6 (busy above 7)
+      value: 3.65
+    - check: icon_on_light_glass
+      status: pass
+      message: 70% of the icon separates from light glass at 24 pt
+      value: 0.7046
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 50.4
+        L_p50: 69.2
+        L_p95: 86.5
+        C_p50: 32.1
+        C_p95: 43.1
+        C_p99: 44.1
+        detail: 1.01
+      metrics_locked:
+        L_p5: 50.5
+        L_p50: 69.1
+        L_p95: 86.5
+        C_p50: 31.9
+        C_p95: 43.0
+        C_p99: 44.0
+        detail: 0.63
+    fingerprint: c1a3ba38ac6edd09
+manual_review:
+  excluded_takes: []
+  note: 'All four retained takes were ingested and posted without regeneration. The
+    only retry pair also fails palette_drift: mean dE4.8505,5.5504,6.0967,5.3808,
+    with off-palette fractions above the hard limit. No eligible take; record the
+    terminal skip after the one allowed retry. Native28 silhouette proof covers all
+    four but never overrides hard palette QA.'
 sources:
-- batch: retry-2026-11-04
-  job: icon-island
-  take: 1
-  round: 1
-  logical_run: retry-20261104-initial
+- take: 1
   source_file: /workspace/generated_images/exec-848aafbf-9b10-4d82-be7b-084c55301848.png
-  returned_at: '2026-11-04T13:35:00.076Z'
-  prompt_sha256: 45808ceaa21cffa9b8acf8036285f454a55922975addb2f1b88840f6b4cff5af
-  fingerprint: c1a3ba38ac6edd09
-  saved_at: '2026-11-04T13:35:00.500760+00:00'
   original_generated_png_sha256: 8dbf086ce8983861581bc2e884f36185fac3d6668a1196ddce1ffb9486686130
-  dimensions:
-  - 1254
-  - 1254
+  inbox_png_sha256: 0e3f970811dd4bc91c27ffcbc69b3837504aa76191b748b217b13c7c5cf71607
   rgba_sha256: 7917eb92da14d9e6a7b30e77a1d1ad3dd9aa84deaa3cff2b35fd3a534ccee1da
-  account: &id001
+  source_rgba_matches_inbox: true
+  account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  archive: design/art/takes/retry-2026-11-04/icon-island/icon__island--t1.webp
-  archive_sha256: 1f2d34607c30394b24a498fe82e5406c7cfc0be8e4864f50d9197b7d6b592a8d
-  archive_encoding: lossy WebP quality 90
-  archive_dimensions:
-  - 1254
-  - 1254
-  qa_state: fail
-- batch: retry-2026-11-04
-  job: icon-island
-  take: 2
-  round: 1
-  logical_run: retry-20261104-initial
+  fingerprint: c1a3ba38ac6edd09
+- take: 2
   source_file: /workspace/generated_images/exec-4c13855f-850c-4cbf-a6e5-4a61cc3780e3.png
-  returned_at: '2026-11-04T13:35:58.645Z'
-  prompt_sha256: 45808ceaa21cffa9b8acf8036285f454a55922975addb2f1b88840f6b4cff5af
-  fingerprint: c1a3ba38ac6edd09
-  saved_at: '2026-11-04T13:35:59.101843+00:00'
   original_generated_png_sha256: 8ad1f32ac64bc9dd14f93b51cf521581da39b6c1fb250966af961e208156c8ef
-  dimensions:
-  - 1254
-  - 1254
+  inbox_png_sha256: f71a0712f7bc14e8b0da43248fc8b9cbedab6bbba351922baf5f92c0c7ecb2bc
   rgba_sha256: 1519259a19fcbe2c10ad0841da2cf1cb190bfad725a0386f9d726d96bc193929
-  account: *id001
-  archive: design/art/takes/retry-2026-11-04/icon-island/icon__island--t2.webp
-  archive_sha256: 4343ed453676444ce3bb59b9bf18d57651fd4e06473b274c4f118c9be3548269
-  archive_encoding: lossy WebP quality 90
-  archive_dimensions:
-  - 1254
-  - 1254
-  qa_state: fail
-- batch: retry-2026-11-04
-  job: icon-island
-  take: 3
-  round: 2
-  logical_run: retry-20261104-retries
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c1a3ba38ac6edd09
+- take: 3
   source_file: /workspace/generated_images/exec-a97678c2-c617-46b0-9498-be7012f334a8.png
-  returned_at: '2026-11-04T13:45:25.981Z'
-  prompt_sha256: 45808ceaa21cffa9b8acf8036285f454a55922975addb2f1b88840f6b4cff5af
-  fingerprint: c1a3ba38ac6edd09
-  saved_at: '2026-11-04T13:45:26.339132+00:00'
   original_generated_png_sha256: 3b81db9ce509148a80f41c465e05c47f9a7e42431ef9fafff05444a36d9dee3e
-  dimensions:
-  - 1254
-  - 1254
+  inbox_png_sha256: 791521bc47ef2a68b49ce423f4175ca2adaad83ea03bd8388ff4acfe38e323e3
   rgba_sha256: 1fde29314645b35440ac3f9b58f727c9077d92f5577c589508279f7bdd576d6a
-  account: *id001
-  archive: design/art/takes/retry-2026-11-04/icon-island/icon__island--t3.webp
-  archive_sha256: 8f9e07531feb8337b2e5844844e9dfc278a84bddefca010ea1e20a1cb8307aaf
-  archive_encoding: lossy WebP quality 90
-  archive_dimensions:
-  - 1254
-  - 1254
-  qa_state: 'NOT RUN: retained at global stop'
-- batch: retry-2026-11-04
-  job: icon-island
-  take: 4
-  round: 2
-  logical_run: retry-20261104-retries
-  source_file: /workspace/generated_images/exec-f6453134-4c2e-4329-a3cb-83473051c840.png
-  returned_at: '2026-11-04T13:44:18.162Z'
-  prompt_sha256: 45808ceaa21cffa9b8acf8036285f454a55922975addb2f1b88840f6b4cff5af
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
   fingerprint: c1a3ba38ac6edd09
-  saved_at: '2026-11-04T13:44:18.574754+00:00'
+- take: 4
+  source_file: /workspace/generated_images/exec-f6453134-4c2e-4329-a3cb-83473051c840.png
   original_generated_png_sha256: da29f5fa8bb46ed241ad44243661fcddf0998ea5832afb9ba5d7bfdb51e822df
-  dimensions:
-  - 1254
-  - 1254
+  inbox_png_sha256: 8eb3ba711fac66c98c053e62973de59d2c473650d667579a17cc64a90a628211
   rgba_sha256: 8f9723c002397151d08639ae4515a5a49396d39c70799fa0497d0f44699d8516
-  account: *id001
-  archive: design/art/takes/retry-2026-11-04/icon-island/icon__island--t4.webp
-  archive_sha256: 5095570c929446ce1a45cabb3b5822a3b5a90dc5b4ffbb149330138605c29905
-  archive_encoding: lossy WebP quality 90
-  archive_dimensions:
-  - 1254
-  - 1254
-  qa_state: 'NOT RUN: retained at global stop'
-global_stop:
-  reason: image-tool refusal
-  code: moderation_blocked
-  job: icon-skip
-  batch: retry-2026-11-04
-  observed_at: '2026-11-04T13:42:58Z'
-  first_error_at: '2026-11-04T13:35:29.720Z'
-  error_at: '2026-11-04T13:36:29.738Z'
-  instruction: AGENTS.md global stop on Codex refusal. No further image dispatch,
-    no retry of refused job. Preserve already returned/in-flight originals; publish
-    only finished eligible bundles or preservation-only takes/contact/reviews.
-  request_ids:
-  - c0a76927-19a4-4ecf-955b-d9b691311946
-  - 178fcb2b-4092-4f4d-a522-2b262dafb47f
-  next_job: icon-skip (explicit resume required); pending retry04 jobs and later batches
-    remain unstarted or suspended
-  no_generation_after_observation: true
-retry_round_used: true
-preservation_only: true
-prompt_sha256: 45808ceaa21cffa9b8acf8036285f454a55922975addb2f1b88840f6b4cff5af
-reference_sha256:
-  /workspace/art-20261104-retry/design/art/ui/icon-seed/icon-seed.png: 573f11d47b6a130d13f0f13bf5d61cd144fa5b728d6a8817d139513c103d6eaf
-  /workspace/art-20261104-retry/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
-semantic_review_scope: Initial takes 1 and 2 only; no claim about retry takes 3 or
-  4.
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c1a3ba38ac6edd09
