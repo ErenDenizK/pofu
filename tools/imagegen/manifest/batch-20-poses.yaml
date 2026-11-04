@@ -1,0 +1,71 @@
+# Resident poses, the rest (Findik surprised, Simit sleepy and surprised)
+#
+# Certainty list item 3 (docs/design/art-production-plan.md): the home cast's
+# missing poses, used by stations and the slice whatever the island design
+# becomes. Mochi and Findik already have happy (eyes-happy) and sleepy
+# (eyes-closed) from batch 06; Simit has only her base, work and ears poses.
+# Missing: Mochi surprised, Findik surprised, Simit happy, sleepy, surprised.
+# Character names stay (Mochi, Findik, Simit).
+#
+# Every pose is an EDIT of the approved master (same canvas 1024 x 1536, the
+# face only), painted under the day cell with the light standard
+# (docs/design/light-standard.md); no baked shadow.
+# Opens after the lead has reviewed the pilot (batch-20-poses-pilot).
+#
+# Tracks: `poses`.
+batch: batch-20-poses
+title: Resident poses, the rest (Findik surprised, Simit sleepy and surprised)
+status: blocked
+blocked_on:
+  - "the lead's review of batch-20-poses-pilot (docs/design/art-production-plan.md)"
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: findik, kind: char, name: findik-base, external: batch-03-home-island}
+  - {id: simit-kitten, kind: char, name: simit-kitten, external: retry-2026-11-03}
+
+  - id: findik-surprised
+    kind: char
+    name: findik-surprised
+    size: 1024x1536
+    edit_of: findik
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "Findik surprised. Name stays Findik in code; the id is ASCII."
+    prompt:
+      - text: |
+          Edit the attached hedgehog, Fındık, into a surprised reaction. Change only the face: the mouth becomes a small round soft "o", both eyes grow slightly rounder and wider with their catchlights kept. His spines, body, paws, colors and size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: tears, a worried look, a curl on the head, a ground shadow, text, motion lines."
+
+  - id: simit-sleepy
+    kind: char
+    name: simit-sleepy
+    size: 1024x1536
+    edit_of: simit-kitten
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    palettes: [character-tabby]
+    notes: "Simit sleepy (night at the cart)."
+    prompt:
+      - text: |
+          Edit the attached kitten, Simit, into a sleepy nap face. Change only the eyes and ears: both eyes become gently closed, a thin soft slightly downward-curved dark line where the lower edge of each eye was, with fur above it; both ears fold a little down and outward. Everything else stays exactly as it is.
+      - block: edit-keep-v1
+      - text: "AVOID: tears, a worried look, a curl on the head, a ground shadow, text, motion lines."
+
+  - id: simit-surprised
+    kind: char
+    name: simit-surprised
+    size: 1024x1536
+    edit_of: simit-kitten
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    palettes: [character-tabby]
+    notes: "Simit surprised (the horn)."
+    prompt:
+      - text: |
+          Edit the attached kitten, Simit, into a surprised reaction. Change only the face and ears: the mouth becomes a small round soft "o", both eyes grow slightly rounder and wider with their catchlights kept, both ears stand upright. Body, tail, paws, colors and size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: tears, a worried look, a curl on the head, a ground shadow, text, motion lines."

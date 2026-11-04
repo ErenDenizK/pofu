@@ -44,5 +44,14 @@
     "honey-stripe": "#EA9C57",
     "honey-stripe-deep": "#D5803E",
     "scarf-coral": "#F07A5E"
+  },
+  "paper-night": {
+    "$note": "The indigo-dyed night paper of ui-sheet-paper-night (retry 2026-11-04). The `night` palette has no dark navy, so the recolor drifted. Hand-picked: deep indigo paper, a lighter indigo lip, pale warm cream stitches. A job adds it through `palettes:`.",
+    "indigo-deep": "#2B2F5B",
+    "indigo": "#3A4073",
+    "indigo-soft": "#4A5088",
+    "indigo-lip": "#5B62A0",
+    "indigo-shade": "#232649",
+    "stitch-cream": "#F2E4C4"
   }
 }
