@@ -2,84 +2,15 @@ batch: retry-2026-11-04
 contact_sheet: design/art/takes/retry-2026-11-04/icon-breath/contact.jpg
 jobs:
   icon-breath:
-    pick: null
-    publication: suspended at global stop
-    note: Initial pair has no hard automated QA failure. Required semantic review
-      is incomplete; no pick or promotion. Preserve both candidates for review on
-      an authorized resume.
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Reuse the retained initial pair
+      without regeneration. Both pass hard QA and the required native28 full-canvas
+      review on light/dark glass: a clearly round tufted mass with a short dark stem
+      and two drifting tufts, not a cloud. Take1 has the lower eligible lock load0.323
+      versus0.3417. The native28 proof is QA annotation, not source art. Select take1;
+      founder review pending.'
 qa_reports:
-  1:
-    job: icon-breath
-    take: 1
-    status: warn
-    preset: lock-light
-    checks:
-    - check: transparency
-      status: pass
-      message: source has an alpha channel
-    - check: canvas
-      status: pass
-      message: 1254x1254 scaled x0.817 into 1024x1024
-      value: 0.8166
-    - check: chroma_ceiling
-      status: pass
-      message: chroma p95 34 (R1 51)
-      value: 33.8
-    - check: value_floor
-      status: pass
-      message: lightness p5 61 (R1 59)
-      value: 60.6
-    - check: detail_budget
-      status: pass
-      message: detail at display size 0.6 (R1 5.3)
-      value: 0.59
-    - check: lock_load
-      status: pass
-      message: the lock moved colors by mean dE 0.3
-      value: 0.323
-    - check: palette_drift
-      status: pass
-      message: 'mean dE 1.3, p95 2.3, off-palette 2.6% (top: #666644 (0.8%), #777755
-        (0.7%))'
-      value: 1.3469
-    - check: icon_fill
-      status: pass
-      message: icon spans 88% of the canvas (target 80-92%)
-      value: 0.877
-    - check: icon_thin_parts
-      status: warn
-      message: 4.1% of the silhouette is thinner than 1.5 pt at 24 pt
-      value: 0.0414
-    - check: icon_small_detail
-      status: pass
-      message: detail at 24 pt @3x 3.0 (busy above 7)
-      value: 3.02
-    - check: icon_on_light_glass
-      status: warn
-      message: 41% of the icon separates from light glass at 24 pt
-      value: 0.4119
-    - check: icon_on_dark_glass
-      status: pass
-      message: 100% of the icon separates from dark glass at 24 pt
-      value: 1.0
-    info:
-      metrics_raw:
-        L_p5: 60.5
-        L_p50: 77.8
-        L_p95: 90.7
-        C_p50: 22.5
-        C_p95: 33.9
-        C_p99: 46.0
-        detail: 0.87
-      metrics_locked:
-        L_p5: 60.6
-        L_p50: 77.8
-        L_p95: 90.7
-        C_p50: 22.5
-        C_p95: 33.8
-        C_p99: 46.0
-        detail: 0.59
-    fingerprint: 13449de106553748
   2:
     job: icon-breath
     take: 2
@@ -152,75 +83,103 @@ qa_reports:
         C_p99: 45.6
         detail: 0.59
     fingerprint: 13449de106553748
+  1:
+    job: icon-breath
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 33.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 60.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.59
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.323
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 2.3, off-palette 2.6% (top: #666644 (0.8%), #777755
+        (0.7%))'
+      value: 1.3469
+    - check: icon_fill
+      status: pass
+      message: icon spans 88% of the canvas (target 80-92%)
+      value: 0.877
+    - check: icon_thin_parts
+      status: warn
+      message: 4.1% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0414
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 3.0 (busy above 7)
+      value: 3.02
+    - check: icon_on_light_glass
+      status: warn
+      message: 41% of the icon separates from light glass at 24 pt
+      value: 0.4119
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 60.5
+        L_p50: 77.8
+        L_p95: 90.7
+        C_p50: 22.5
+        C_p95: 33.9
+        C_p99: 46.0
+        detail: 0.87
+      metrics_locked:
+        L_p5: 60.6
+        L_p50: 77.8
+        L_p95: 90.7
+        C_p50: 22.5
+        C_p95: 33.8
+        C_p99: 46.0
+        detail: 0.59
+    fingerprint: 13449de106553748
+manual_review:
+  excluded_takes: []
+  note: 'Reuse the retained initial pair without regeneration. Both pass hard QA and
+    the required native28 full-canvas review on light/dark glass: a clearly round
+    tufted mass with a short dark stem and two drifting tufts, not a cloud. Take1
+    has the lower eligible lock load0.323 versus0.3417. The native28 proof is QA annotation,
+    not source art. Select take1; founder review pending.'
 sources:
-- batch: retry-2026-11-04
-  job: icon-breath
-  take: 1
-  round: 1
-  logical_run: retry-20261104-initial
+- take: 1
   source_file: /workspace/generated_images/exec-aa26f604-6cc8-4acb-8f6a-451590885f05.png
-  returned_at: '2026-11-04T13:37:39.886Z'
-  prompt_sha256: d629982e1d71fb90335f5d7b7f943c680ecfa7afe37279e83a6040dcf6750f5c
-  fingerprint: 13449de106553748
-  saved_at: '2026-11-04T13:37:40.286807+00:00'
   original_generated_png_sha256: 49416b7516152371ef6a92a074726e15db23f271c5e7c03b8e5eb430028b7be7
-  dimensions:
-  - 1254
-  - 1254
+  inbox_png_sha256: 34d043716c82798f40af7f25b555df678a4f6cf0031a903085c390cb4e82b12d
   rgba_sha256: 58e510e9e2be72becacec121e5bc9214d71f88380f78d06cc5d4f27097a97aea
-  account: &id001
+  source_rgba_matches_inbox: true
+  account:
     owner: Founder's uncle's ChatGPT plan, used by the founder with permission
     kind: chatgpt-plan
-  archive: design/art/takes/retry-2026-11-04/icon-breath/icon__breath--t1.webp
-  archive_sha256: 590c5cd290fea4680266d2795e436a7fcb69aab3deb9a7e01f070537c50e33e1
-  archive_encoding: lossy WebP quality 90
-  archive_dimensions:
-  - 1254
-  - 1254
-  qa_state: warn
-- batch: retry-2026-11-04
-  job: icon-breath
-  take: 2
-  round: 1
-  logical_run: retry-20261104-initial
-  source_file: /workspace/generated_images/exec-d3d6393e-6a59-436c-bc32-df095ebf4080.png
-  returned_at: '2026-11-04T13:36:44.587Z'
-  prompt_sha256: d629982e1d71fb90335f5d7b7f943c680ecfa7afe37279e83a6040dcf6750f5c
   fingerprint: 13449de106553748
-  saved_at: '2026-11-04T13:36:45.022869+00:00'
+- take: 2
+  source_file: /workspace/generated_images/exec-d3d6393e-6a59-436c-bc32-df095ebf4080.png
   original_generated_png_sha256: 5e3d41c150503eff80f98134ae5365df1b01a2d76e7166879ce9ed2a34f53230
-  dimensions:
-  - 1254
-  - 1254
+  inbox_png_sha256: 93682a652f36f2b5d49d89eeab7e412c8f900cb4982c50efb8f7a695e5493942
   rgba_sha256: 67e93ae668bb8b63faa5cf19fbf3997d3ae4cf6e9b94ae20f1e6742682d0fc72
-  account: *id001
-  archive: design/art/takes/retry-2026-11-04/icon-breath/icon__breath--t2.webp
-  archive_sha256: c6a26f900796012599d5e0ed597aa3f5b49e0401f056ed87c6c203ce6acb82b6
-  archive_encoding: lossy WebP quality 90
-  archive_dimensions:
-  - 1254
-  - 1254
-  qa_state: warn
-global_stop:
-  reason: image-tool refusal
-  code: moderation_blocked
-  job: icon-skip
-  batch: retry-2026-11-04
-  observed_at: '2026-11-04T13:42:58Z'
-  first_error_at: '2026-11-04T13:35:29.720Z'
-  error_at: '2026-11-04T13:36:29.738Z'
-  instruction: AGENTS.md global stop on Codex refusal. No further image dispatch,
-    no retry of refused job. Preserve already returned/in-flight originals; publish
-    only finished eligible bundles or preservation-only takes/contact/reviews.
-  request_ids:
-  - c0a76927-19a4-4ecf-955b-d9b691311946
-  - 178fcb2b-4092-4f4d-a522-2b262dafb47f
-  next_job: icon-skip (explicit resume required); pending retry04 jobs and later batches
-    remain unstarted or suspended
-  no_generation_after_observation: true
-retry_round_used: false
-preservation_only: true
-prompt_sha256: d629982e1d71fb90335f5d7b7f943c680ecfa7afe37279e83a6040dcf6750f5c
-reference_sha256:
-  /workspace/art-20261104-retry/design/art/ui/icon-seed/icon-seed.png: 573f11d47b6a130d13f0f13bf5d61cd144fa5b728d6a8817d139513c103d6eaf
-  /workspace/art-20261104-retry/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 13449de106553748
