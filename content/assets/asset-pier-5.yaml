@@ -2,10 +2,11 @@ id: asset-pier-5
 type: asset
 title_tr: pier-5
 title_en: pier-5 (station)
-status: planned
+status: cut
 horizon: next
-summary: >-
-  Add a string of small triangular bunting flags in coral, cream and sea blue hung in soft swags from post to post along the pier's front edge. The bunting stays inside the canvas; everything else stays.
+summary: Add a string of small triangular bunting flags in coral, cream and sea blue
+  hung in soft swags from post to post along the pier's front edge. The bunting stays
+  inside the canvas; everything else stays.
 links:
   variant_of:
   - asset-pier-4
@@ -17,3 +18,15 @@ sources:
 - doc: tools/imagegen/manifest/batch-21-harbor-ladders.yaml
 kind: station
 batch: batch-21-harbor-ladders
+notes:
+- 'Skipped without generation: true dependency pier-4 was already skipped because
+  root pier-1 failed. Skipped without generation: true dependency pier-3 was already
+  skipped because root pier-1 failed. Skipped without generation: true dependency
+  pier-2 was already skipped because root pier-1 failed. Skipped without generation:
+  true dependency pier-1 failed after its one allowed retry. Both initial and both
+  retry takes violate the explicit guide footprint. Official station_anchor widths
+  are873,804,904,834px against720px. All have four posts, rounded planks, coral rope
+  and an empty end, but their guide fit is wrong. Manual exclusion of all4 is based
+  on geometry, not advisory light metrics. One allowed retry is exhausted; skip pier-1
+  and only its true level-chain dependents. Keep all sources and contacts; do not
+  force promotion.'
