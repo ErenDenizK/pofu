@@ -26,6 +26,7 @@ jobs:
       swift: ${{ steps.diff.outputs.swift }}
       tools: ${{ steps.diff.outputs.tools }}
       screens: ${{ steps.diff.outputs.screens }}
+      beats: ${{ steps.diff.outputs.beats }}
     steps:
       - name: Check out
         uses: actions/checkout@v5
@@ -39,6 +40,8 @@ jobs:
           HEAD: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
           # Manual override: the `screens` label forces the screenshot jobs.
           LABEL_SCREENS: ${{ github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'screens') }}
+          # Motion beats (videos) are opt-in: the `beats` label (founder budget, 2026-11-04).
+          LABEL_BEATS: ${{ github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'beats') }}
         run: |
           set -euo pipefail
           if [ -z "${BASE:-}" ] || ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then
@@ -46,6 +49,7 @@ jobs:
             echo "swift=true" >> "$GITHUB_OUTPUT"
             echo "tools=true" >> "$GITHUB_OUTPUT"
             echo "screens=true" >> "$GITHUB_OUTPUT"
+            echo "beats=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           files="$(git diff --name-only "$BASE...$HEAD")"
@@ -61,6 +65,7 @@ jobs:
           screens=false
           if [ -n "$screen_files" ] || [ "$LABEL_SCREENS" = "true" ]; then screens=true; fi
           echo "screens=$screens" >> "$GITHUB_OUTPUT"
+          echo "beats=$([ "$screens" = true ] && [ "$LABEL_BEATS" = true ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
           echo "swift=$([ -n "$swift_files" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
           echo "tools=$([ -n "$tools_files" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
 
@@ -246,7 +251,7 @@ jobs:
       # screen, one clip per beat. The test and the recorder hand off
       # through files; see .github/scripts/record-beats.sh.
       - name: Record the motion beats
-        if: needs.changes.outputs.screens == 'true'
+        if: needs.changes.outputs.beats == 'true'
         run: |
           set -euo pipefail
           out="$RUNNER_TEMP/motion-beats"
@@ -275,7 +280,7 @@ jobs:
           exit "$status"
 
       - name: Upload the motion beats
-        if: always() && needs.changes.outputs.screens == 'true'
+        if: always() && needs.changes.outputs.beats == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: motion-beats
@@ -313,6 +318,7 @@ jobs:
           path: shots
 
       - name: Download the motion beats
+        if: needs.changes.outputs.beats == 'true'
         uses: actions/download-artifact@v4
         with:
           name: motion-beats
@@ -382,6 +388,7 @@ jobs:
           sparse-checkout: .github/scripts
 
       - name: Encode the motion beats and write the index
+        if: needs.changes.outputs.beats == 'true'
         env:
           SOURCE_BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |

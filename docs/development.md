@@ -377,7 +377,9 @@ runner with Xcode 26 or newer:
    beat, uploaded as the `motion-beats` artifact. The test and the
    recorder hand off through files in `MOTION_BEATS_DIR`; without it the
    test skips. CI machines drop frames, so judge choreography and timing
-   from the clips, and smoothness only on a phone.
+   from the clips, and smoothness only on a phone. **Opt-in:** the beats
+   run only on a pull request labelled `beats` (2026-11-04, budget); the
+   screenshots still run automatically.
 
 **When screenshots run.** The macOS build and tests run for any Swift or
 app change; the screenshot render, the motion-beat recording and
