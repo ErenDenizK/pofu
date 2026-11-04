@@ -1,0 +1,36 @@
+batch: retry-2026-11-04
+contact_sheet: null
+jobs:
+  icon-skip:
+    pick: null
+    publication: suspended at global stop
+    note: Both initial image-tool requests returned moderation_blocked (safety rejection),
+      with no usable image. Global stop; do not retry or rewrite the prompt to bypass
+      the refusal.
+qa_reports: {}
+sources: []
+global_stop:
+  reason: image-tool refusal
+  code: moderation_blocked
+  job: icon-skip
+  batch: retry-2026-11-04
+  observed_at: '2026-11-04T13:42:58Z'
+  first_error_at: '2026-11-04T13:35:29.720Z'
+  error_at: '2026-11-04T13:36:29.738Z'
+  instruction: AGENTS.md global stop on Codex refusal. No further image dispatch,
+    no retry of refused job. Preserve already returned/in-flight originals; publish
+    only finished eligible bundles or preservation-only takes/contact/reviews.
+  request_ids:
+  - c0a76927-19a4-4ecf-955b-d9b691311946
+  - 178fcb2b-4092-4f4d-a522-2b262dafb47f
+  next_job: icon-skip (explicit resume required); pending retry04 jobs and later batches
+    remain unstarted or suspended
+  no_generation_after_observation: true
+retry_round_used: false
+preservation_only: true
+prompt_sha256: 4f8f45b98d13b385a2f5d83eb037a945f49f84f6b04425eda8b8483676305fb9
+reference_sha256:
+  /workspace/art-20261104-retry/design/art/ui/icon-seed/icon-seed.png: 573f11d47b6a130d13f0f13bf5d61cd144fa5b728d6a8817d139513c103d6eaf
+  /workspace/art-20261104-retry/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+image_requests: 2
+usable_images: 0

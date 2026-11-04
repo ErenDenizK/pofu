@@ -1,0 +1,227 @@
+batch: retry-2026-11-04
+contact_sheet: design/art/takes/retry-2026-11-04/icon-plus/contact.jpg
+jobs:
+  icon-plus:
+    pick: null
+    publication: suspended at global stop
+    note: Initial take 1 is hard-QA eligible and the completed full-canvas native28
+      color-removed silhouette review reads as a chunky plus on light/dark glass.
+      Take 2 fails icon_on_light_glass. Publication suspended at the global stop;
+      reuse retained take 1 rather than regenerate on an authorized resume.
+qa_reports:
+  1:
+    job: icon-plus
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.1
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 62.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.53
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2897
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 1.9, off-palette 0.0%
+      value: 0.9936
+    - check: icon_fill
+      status: pass
+      message: icon spans 84% of the canvas (target 80-92%)
+      value: 0.8418
+    - check: icon_thin_parts
+      status: pass
+      message: 0.1% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.001
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 1.8 (busy above 7)
+      value: 1.8
+    - check: icon_on_light_glass
+      status: warn
+      message: 28% of the icon separates from light glass at 24 pt
+      value: 0.2789
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 62.2
+        L_p50: 80.7
+        L_p95: 88.8
+        C_p50: 41.1
+        C_p95: 44.2
+        C_p99: 44.7
+        detail: 0.73
+      metrics_locked:
+        L_p5: 62.2
+        L_p50: 80.7
+        L_p95: 88.8
+        C_p50: 41.1
+        C_p95: 44.1
+        C_p99: 44.5
+        detail: 0.53
+    fingerprint: 738bb3c09146a933
+  2:
+    job: icon-plus
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 46.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 62.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.52
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2869
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.1, p95 2.4, off-palette 0.0%
+      value: 1.1008
+    - check: icon_fill
+      status: pass
+      message: icon spans 84% of the canvas (target 80-92%)
+      value: 0.8398
+    - check: icon_thin_parts
+      status: pass
+      message: 0.2% of the silhouette is thinner than 1.5 pt at 24 pt
+      value: 0.0019
+    - check: icon_small_detail
+      status: pass
+      message: detail at 24 pt @3x 1.9 (busy above 7)
+      value: 1.89
+    - check: icon_on_light_glass
+      status: fail
+      message: 25% of the icon separates from light glass at 24 pt
+      value: 0.2495
+    - check: icon_on_dark_glass
+      status: pass
+      message: 100% of the icon separates from dark glass at 24 pt
+      value: 1.0
+    info:
+      metrics_raw:
+        L_p5: 62.2
+        L_p50: 80.6
+        L_p95: 90.7
+        C_p50: 43.6
+        C_p95: 46.8
+        C_p99: 47.4
+        detail: 0.71
+      metrics_locked:
+        L_p5: 62.2
+        L_p50: 80.7
+        L_p95: 90.7
+        C_p50: 43.6
+        C_p95: 46.8
+        C_p99: 47.2
+        detail: 0.52
+    fingerprint: 738bb3c09146a933
+sources:
+- batch: retry-2026-11-04
+  job: icon-plus
+  take: 1
+  round: 1
+  logical_run: retry-20261104-initial
+  source_file: /workspace/generated_images/exec-0ce22deb-0d56-4966-bef1-a774313da7e4.png
+  returned_at: '2026-11-04T13:34:34.090Z'
+  prompt_sha256: d1b6f91f512c10dd0014c1068a4b671a6229fb57292814ccee5885afe8b1eba4
+  fingerprint: 738bb3c09146a933
+  saved_at: '2026-11-04T13:34:34.528724+00:00'
+  original_generated_png_sha256: e49fb7a065611dcf347bc04cadcee45fbf13aee44598c939e5895191cb440c33
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 9a7920ccb3f94c86f15dd50dca56dc4d0d900a19cf4dc07c2f7e958edc7674b3
+  account: &id001
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  archive: design/art/takes/retry-2026-11-04/icon-plus/icon__plus--t1.webp
+  archive_sha256: 7fe18c7e37d81657ac0c7a36f372477402ffe6d320aa0faf546afc9afcdfd202
+  archive_encoding: lossy WebP quality 90
+  archive_dimensions:
+  - 1254
+  - 1254
+  qa_state: warn
+- batch: retry-2026-11-04
+  job: icon-plus
+  take: 2
+  round: 1
+  logical_run: retry-20261104-initial
+  source_file: /workspace/generated_images/exec-14af2185-5215-433d-bf8a-c19f6050c6b1.png
+  returned_at: '2026-11-04T13:37:22.341Z'
+  prompt_sha256: d1b6f91f512c10dd0014c1068a4b671a6229fb57292814ccee5885afe8b1eba4
+  fingerprint: 738bb3c09146a933
+  saved_at: '2026-11-04T13:37:22.647687+00:00'
+  original_generated_png_sha256: ddaa620e1fa196a7e31ae74264fbbd2e6a15c2924702a3a458c2716ea3b8c538
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 4525272ee184f63daa0d85d3bcf56f6110f8191e411703e704fcc3b7faaa7862
+  account: *id001
+  archive: design/art/takes/retry-2026-11-04/icon-plus/icon__plus--t2.webp
+  archive_sha256: 9fa6d9473677b2e2e6598c86d4f8f309b678dfb5d1c65d9380801c302bed4dd2
+  archive_encoding: lossy WebP quality 90
+  archive_dimensions:
+  - 1254
+  - 1254
+  qa_state: fail
+global_stop:
+  reason: image-tool refusal
+  code: moderation_blocked
+  job: icon-skip
+  batch: retry-2026-11-04
+  observed_at: '2026-11-04T13:42:58Z'
+  first_error_at: '2026-11-04T13:35:29.720Z'
+  error_at: '2026-11-04T13:36:29.738Z'
+  instruction: AGENTS.md global stop on Codex refusal. No further image dispatch,
+    no retry of refused job. Preserve already returned/in-flight originals; publish
+    only finished eligible bundles or preservation-only takes/contact/reviews.
+  request_ids:
+  - c0a76927-19a4-4ecf-955b-d9b691311946
+  - 178fcb2b-4092-4f4d-a522-2b262dafb47f
+  next_job: icon-skip (explicit resume required); pending retry04 jobs and later batches
+    remain unstarted or suspended
+  no_generation_after_observation: true
+retry_round_used: false
+preservation_only: true
+prompt_sha256: d1b6f91f512c10dd0014c1068a4b671a6229fb57292814ccee5885afe8b1eba4
+reference_sha256:
+  /workspace/art-20261104-retry/design/art/ui/icon-seed/icon-seed.png: 573f11d47b6a130d13f0f13bf5d61cd144fa5b728d6a8817d139513c103d6eaf
+  /workspace/art-20261104-retry/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+semantic_review_scope: Initial takes 1 and 2 only; no claim about retry takes 3 or
+  4.
