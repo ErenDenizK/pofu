@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 27.176,
+  "C_p50": 26.357,
+  "C_p95": 55.781,
+  "L_mean": 75.588,
+  "L_p2": 55.344,
+  "L_p98": 89.843,
+  "detail": 1.572,
+  "edge": 0.419,
+  "tint_a": 3.945,
+  "tint_b": 11.947,
+  "warmth_b": 24.927
+ },
+ "before": {
+  "C_mean": 27.176,
+  "C_p50": 26.357,
+  "C_p95": 55.781,
+  "L_mean": 75.588,
+  "L_p2": 55.344,
+  "L_p98": 89.843,
+  "detail": 1.572,
+  "edge": 0.419,
+  "tint_a": 3.945,
+  "tint_b": 11.947,
+  "warmth_b": 24.927
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 82.6,
+ "score_before": 82.6,
+ "shipped": false,
+ "source": "design/art/stations/workshop-1-lit/workshop-1-lit.png",
+ "source_sha": "938848efcb796c82"
+}
