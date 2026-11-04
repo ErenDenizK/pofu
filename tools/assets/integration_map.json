@@ -1,0 +1,22 @@
+{
+  "_doc": "Master -> app imageset map for the vertical slice (tools/assets/integrate.py). `master` is an art folder under design/art (the lock-light re-lock wins, then .png, then .webp). target `games` writes a flat PNG into PofuGames/Resources at `scale` px per point, fitted into `points` and never upscaled; target `world` names an imageset baked into World.xcassets by design/prototypes/interactions/tools/preblur.py (integrate.py runs it, then checks the imageset exists).",
+  "targets": {
+    "games": "Packages/PofuKit/Sources/PofuGames/Resources",
+    "world": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets"
+  },
+  "entries": [
+    {"target": "games", "name": "garden-tile-sage", "master": "design/art/ui/ui-game-plot-tile-sage", "points": [48, 48], "scale": 3},
+    {"target": "games", "name": "garden-tile-honey", "master": "design/art/ui/ui-game-plot-tile-honey", "points": [48, 48], "scale": 3},
+    {"target": "games", "name": "garden-tile-terracotta", "master": "design/art/ui/ui-game-plot-tile-terracotta", "points": [48, 48], "scale": 3},
+    {"target": "games", "name": "garden-tile-lilac", "master": "design/art/ui/ui-game-plot-tile-lilac", "points": [48, 48], "scale": 3},
+    {"target": "games", "name": "garden-tile-mint", "master": "design/art/ui/ui-game-plot-tile-mint", "points": [48, 48], "scale": 3},
+    {"target": "games", "name": "garden-tile-rose", "master": "design/art/ui/ui-game-plot-tile-rose", "points": [48, 48], "scale": 3},
+    {"target": "games", "name": "garden-soil", "master": "design/art/ui/ui-game-soil-cell", "points": [48, 48], "scale": 3},
+    {"target": "games", "name": "garden-bed-rim", "master": "design/art/ui/ui-game-bed-rim", "points": [400, 400], "scale": 3},
+    {"target": "games", "name": "garden-tray", "master": "design/art/ui/ui-ui-game-tray", "points": [400, 200], "scale": 3},
+    {"target": "games", "name": "garden-bloom-front", "master": "design/art/ui/ui-game-bloom-front", "points": [64, 64], "scale": 3},
+    {"target": "games", "name": "garden-bloom-left", "master": "design/art/ui/ui-game-bloom-left", "points": [64, 64], "scale": 3},
+    {"target": "games", "name": "garden-bloom-right", "master": "design/art/ui/ui-game-bloom-right", "points": [64, 64], "scale": 3},
+    {"target": "games", "name": "garden-combo-stamp", "master": "design/art/ui/ui-game-combo-stamp", "points": [96, 96], "scale": 3}
+  ]
+}
