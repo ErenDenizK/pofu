@@ -2,14 +2,13 @@ id: asset-calm-lantern-lit
 type: asset
 title_tr: calm-lantern-lit
 title_en: calm-lantern-lit (ui)
-status: planned
+status: cut
 horizon: later
-summary: >-
-  Light the calm lantern more fully: a small, bright teardrop flame is visible inside the
-  paper, and the glass and paper around it glow warm honey-gold, brightest around the flame
-  and softening toward the ribs. The caps, the ribs, the loop and the post are unchanged.
-  Light only inside the lantern's own outline: no halo, no rays and no light spill outside
-  it (the app draws the glow).
+summary: 'Light the calm lantern more fully: a small, bright teardrop flame is visible
+  inside the paper, and the glass and paper around it glow warm honey-gold, brightest
+  around the flame and softening toward the ribs. The caps, the ribs, the loop and
+  the post are unchanged. Light only inside the lantern''s own outline: no halo, no
+  rays and no light spill outside it (the app draws the glow).'
 links:
   variant_of:
   - asset-ui-lantern-on
@@ -21,3 +20,12 @@ sources:
 - doc: tools/imagegen/manifest/batch-35-experience.yaml
 kind: ui
 batch: batch-35-experience
+notes:
+- 'batch-35-experience skipped after four takes: All four initial and sole-retry takes
+  fail the unchanged canonical chroma_ceiling: 64.6,65.8,65.2,65.9. They show the
+  requested interior flame and no exterior halo, but hard failures cannot be waived.
+  The close parent registration is recorded without claiming literal pixel identity.
+  No recolour, QA threshold edit, extra round or change to the parent. Skip only this
+  independent job and preserve all four originals. Automated failures: t1 chroma_ceiling:
+  chroma p95 65 (R1 51); t2 chroma_ceiling: chroma p95 66 (R1 51); t3 chroma_ceiling:
+  chroma p95 65 (R1 51); t4 chroma_ceiling: chroma p95 66 (R1 51).'
