@@ -248,9 +248,12 @@ public struct WorldHome: View {
     }
 
     /// The jar, the lantern and the pots, glued to the world at the Home
-    /// framing (they follow the camera at 15 Hz while it settles).
+    /// framing (they follow the camera at 15 Hz while it moves, and rest once it is settled).
     private var objects: some View {
-        TimelineView(.periodic(from: .now, by: 1.0 / 15.0)) { _ in
+        TimelineView(.animation(minimumInterval: 1.0 / 15.0, paused: !scene.needsFrames)) { _ in
+            // Read here so the last, settled position is drawn when the
+            // timeline stops.
+            let _ = scene.revision
             GeometryReader { proxy in
                 objectsBody(
                     width: Double(proxy.size.width),
