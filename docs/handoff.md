@@ -3,6 +3,20 @@
 The lead session restarts daily to keep context small. Read this, CLAUDE.md
 and `docs/product/founder-input.md`, then delete what is done.
 
+## 2026-11-05
+
+**Done:** refit and poses merged (#156, #157); dependents and the
+findik salvage READY (#158). **Game plan v1** (`docs/product/game-plan.md`):
+one canonical, table-first plan (day by day, islands with a rising curve,
+three engines, social from day 2, Book Two, screens). Founder got a Turkish
+timeline image. Finding: code still runs the old station islands (Yıldız,
+Kaplıca, Kitap); the plan retires them.
+
+**Next:** founder's answers on game-plan section 9 (silence = the
+recommendation); then the code list in its section 10, in order, starting
+with `PofuCore` (harbor day 3, retire station islands, wonder-island model).
+Hub questions not yet posted.
+
 ## 2026-11-04 (evening)
 
 **Done:** reviewed and merged the art PRs #148 and #150-#153 (poses, workshop-1-lit,
