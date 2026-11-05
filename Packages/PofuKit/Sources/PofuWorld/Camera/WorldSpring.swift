@@ -78,13 +78,13 @@ public struct WorldSpring: Hashable, Sendable {
 
 /// The interaction spec's spring tokens (§7.1), as (duration, bounce).
 public enum WorldSprings {
-    public static let camera = (duration: 0.90, bounce: 0.10)
+    public static let camera = (duration: 0.72, bounce: 0.10)
     public static let cameraFar = (duration: 1.10, bounce: 0.08)
     public static let cameraRelease = (duration: 0.55, bounce: 0.08)
     /// Landing from a rubber band: never bounce back past a hard end.
     public static let cameraFromBand = (duration: 0.55, bounce: 0.0)
-    public static let focus = (duration: 0.70, bounce: 0.12)
-    public static let residentFocus = (duration: 0.60, bounce: 0.12)
+    public static let focus = (duration: 0.52, bounce: 0.14)
+    public static let residentFocus = (duration: 0.48, bounce: 0.14)
     public static let refocus = (duration: 0.60, bounce: 0.10)
     public static let peek = (duration: 0.45, bounce: 0.15)
     /// The build moment's push-in (§2.4).
