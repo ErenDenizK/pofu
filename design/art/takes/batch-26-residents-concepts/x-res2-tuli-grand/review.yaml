@@ -1,0 +1,205 @@
+batch: batch-26-residents-concepts
+manifest: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+manifest_sha256: 63b34c65480e080d91667fdb106afd899b50801a1590da4c510dab91eb9dac76
+contact_sheet: design/art/takes/batch-26-residents-concepts/x-res2-tuli-grand/contact.jpg
+jobs:
+  x-res2-tuli-grand:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both show a confident curl-free
+      white arctic fox on a snowy rise, head lifted, open delighted smile and one
+      great tail sweeping upward into broad green/teal/rose aurora ribbons. The tail-to-sky
+      painting reads continuously and the snow catches colored light; body and all
+      four paws are complete. No Pofu, labels or extra animals. Existing brief conflict:
+      prose requests a night sky but this job declares light.cell day, so the bright
+      aurora sky cannot certify night light compliance; retained transparently as
+      an advisory look-dev limitation, with no manifest or QA change. Grand is independent
+      of the failed small composition.'
+qa_reports:
+  1:
+    job: x-res2-tuli-grand
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 31.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 97 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.6
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 92 (band 55-90)'
+      value: 92.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.48 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.482
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.6 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.65
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.44
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7078
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.1, p95 16.8, off-palette 16.5% (top: #5588BB (1.7%), #6699BB
+        (1.6%)) (advisory in an exploration)'
+      value: 5.0617
+    info:
+      metrics_raw:
+        L_p5: 58.8
+        L_p50: 87.3
+        L_p95: 97.3
+        C_p50: 10.5
+        C_p95: 31.8
+        C_p99: 35.3
+        detail: 1.96
+      metrics_locked:
+        L_p5: 58.9
+        L_p50: 87.4
+        L_p95: 96.8
+        C_p50: 10.3
+        C_p95: 31.7
+        C_p99: 35.1
+        detail: 1.44
+    fingerprint: 91b7b238c2930fd2
+  2:
+    job: x-res2-tuli-grand
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 29 (R1 51)
+      value: 28.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 64 (at most 22), p98 97 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 32.6
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 91 (band 55-90)'
+      value: 90.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.56 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.557
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.3 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.34
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.31
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6745
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.6, p95 11.3, off-palette 3.9% (top: #5599AA (0.9%), #6699BB
+        (0.6%))'
+      value: 3.6387
+    info:
+      metrics_raw:
+        L_p5: 60.5
+        L_p50: 86.2
+        L_p95: 96.4
+        C_p50: 11.2
+        C_p95: 28.9
+        C_p99: 32.8
+        detail: 1.77
+      metrics_locked:
+        L_p5: 60.5
+        L_p50: 86.3
+        L_p95: 96.2
+        C_p50: 11.0
+        C_p95: 28.8
+        C_p99: 32.5
+        detail: 1.31
+    fingerprint: 91b7b238c2930fd2
+manual_review:
+  observed_note: 'Both show a confident curl-free white arctic fox on a snowy rise,
+    head lifted, open delighted smile and one great tail sweeping upward into broad
+    green/teal/rose aurora ribbons. The tail-to-sky painting reads continuously and
+    the snow catches colored light; body and all four paws are complete. No Pofu,
+    labels or extra animals. Existing brief conflict: prose requests a night sky but
+    this job declares light.cell day, so the bright aurora sky cannot certify night
+    light compliance; retained transparently as an advisory look-dev limitation, with
+    no manifest or QA change. Grand is independent of the failed small composition.'
+  excluded_takes: []
+sources:
+- batch: batch-26-residents-concepts
+  job: x-res2-tuli-grand
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-tuli-wood
+  source_file: /workspace/generated_images/exec-7202c17e-9337-4804-9a50-2d5199850194.png
+  returned_at: '2026-11-05T14:18:18.557Z'
+  prompt_sha256: 1e633fcc057821070a577ece4bf37aa9004bc2884695c4ca9b06d626ce1653f1
+  fingerprint: 91b7b238c2930fd2
+  saved_at: '2026-11-05T14:18:19.030301+00:00'
+  original_generated_png_sha256: 26f1de63c8776b937f92545c2b18ca810b1892d7ae2fc04838eb0a1f83039302
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 9863162250f8170067101296556155946a0322a75f6dd029f2c38fa58d667bba
+  inbox_png_sha256: 75c08d5300bfe61dd6e1b33322f5aba2edfab06901e53338fcf2ec81999b62ea
+  qa_sha256: e24780f07158564e05a0041f69d15116ffd800398b594a16f68cbd70ce7ba080
+- batch: batch-26-residents-concepts
+  job: x-res2-tuli-grand
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-tuli-wood
+  source_file: /workspace/generated_images/exec-f21ff662-1ac9-4f12-905f-9a9c7dd58221.png
+  returned_at: '2026-11-05T14:20:07.783Z'
+  prompt_sha256: 1e633fcc057821070a577ece4bf37aa9004bc2884695c4ca9b06d626ce1653f1
+  fingerprint: 91b7b238c2930fd2
+  saved_at: '2026-11-05T14:20:26.666452+00:00'
+  original_generated_png_sha256: 3a4347401d8a1b4b67159fd153e44a78855e49023d98e586d832dda1473734a7
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: f4b42aae9176625e1172631d68e3680a128566ffba6aafcbb0b7da4154e3471b
+  inbox_png_sha256: b7c5af6c9d54c93266d36d4bdab2875a0913feea1f5e8945cfe239ddce6532a3
+  qa_sha256: 482a834a8a65bdd9ca5a87d6840c1d870167f23aab9917bb9b70add50117870a
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
