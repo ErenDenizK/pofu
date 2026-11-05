@@ -1,0 +1,462 @@
+batch: batch-30-decor-sets
+manifest: tools/imagegen/manifest/batch-30-decor-sets.yaml
+manifest_sha256: 621a7f8e5ca0e5cf9031dead2d4a93a2d6fb02d6b983bbb2b653518da384ced2
+contact_sheet: design/art/takes/batch-30-decor-sets/x-decor-harbor-rope-crates/contact.jpg
+jobs:
+  x-decor-harbor-rope-crates:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after exactly one allowed retry. All four official posted takes
+      have visible alpha>24 bounding-box width360px, exceeding the literal at-most-third1024/3=341.33px
+      cap in the unchanged prompt. The guide fitter targets its360px footprint; numeric
+      decor_anchor therefore passes, but it does not satisfy the narrower prose cap.
+      Each take otherwise contains the honey rope coil, slatted crate, exactly three
+      blue floats, folded striped sack and one coral starfish; some rest the starfish
+      on the rim rather than a distinct lid. No manual rescaling, third round, threshold
+      waiver or promotion. Preserve all four unchanged originals, q90 take copies,
+      contact sheet and full source-bound QA. Style/palette/light and Harmony warnings
+      alone do not cause this rejection. No true dependents attach this exploration;
+      composed corners continue independently.
+qa_reports:
+  1:
+    job: x-decor-harbor-rope-crates
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 42 (at most 22), p98 90 (at least 90), spread 48
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 48.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 74.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.15 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.149
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.1 (at least 3.5)'
+      value: 7.11
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.8
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5227
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 7.8, off-palette 0.2% (top: #667777 (0.1%), #557777
+        (0.0%))'
+      value: 2.1809
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 73 against the world reference (outliers: detail, edge)'
+      value: 72.8
+    info:
+      fit:
+        scale: 0.6704
+        anchor:
+        - 450.4
+        - 851
+      registration:
+        dx: 61
+        dy: 37
+      metrics_raw:
+        L_p5: 47.5
+        L_p50: 74.9
+        L_p95: 87.6
+        C_p50: 42.8
+        C_p95: 47.6
+        C_p99: 49.0
+        detail: 2.34
+      metrics_locked:
+        L_p5: 48.3
+        L_p50: 74.7
+        L_p95: 86.8
+        C_p50: 42.8
+        C_p95: 47.2
+        C_p99: 48.2
+        detail: 1.8
+    fingerprint: e783b85d3abd1c1c
+  2:
+    job: x-decor-harbor-rope-crates
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 45 (at most 22), p98 89 (at least 90), spread 44
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 43.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 71.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.16 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.161
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.2 (at least 3.5)'
+      value: 8.16
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.04
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.3498
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.8, p95 8.4, off-palette 1.0% (top: #667777 (0.4%), #BB6633
+        (0.1%))'
+      value: 2.7882
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 73 against the world reference (outliers: L_p98, detail,
+        edge)'
+      value: 72.6
+    info:
+      fit:
+        scale: 0.7563
+        anchor:
+        - 473.2
+        - 918
+      registration:
+        dx: 39
+        dy: -30
+      metrics_raw:
+        L_p5: 47.3
+        L_p50: 71.8
+        L_p95: 85.7
+        C_p50: 43.0
+        C_p95: 49.4
+        C_p99: 54.2
+        detail: 2.57
+      metrics_locked:
+        L_p5: 48.2
+        L_p50: 71.7
+        L_p95: 84.6
+        C_p50: 43.0
+        C_p95: 49.1
+        C_p99: 50.8
+        detail: 2.04
+    fingerprint: e783b85d3abd1c1c
+  3:
+    job: x-decor-harbor-rope-crates
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 43 (at most 22), p98 89 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 45.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.18 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.18
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.9 (at least 3.5)'
+      value: 6.87
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.63
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.4872
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 6.9, off-palette 0.5% (top: #667777 (0.2%), #557777
+        (0.1%))'
+      value: 2.2666
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the world reference (outliers: detail, edge)'
+      value: 74.3
+    info:
+      fit:
+        scale: 0.8511
+        anchor:
+        - 441.1
+        - 864
+      registration:
+        dx: 71
+        dy: 25
+      metrics_raw:
+        L_p5: 50.1
+        L_p50: 74.6
+        L_p95: 87.5
+        C_p50: 40.1
+        C_p95: 48.0
+        C_p99: 52.2
+        detail: 2.11
+      metrics_locked:
+        L_p5: 50.9
+        L_p50: 74.5
+        L_p95: 86.8
+        C_p50: 40.2
+        C_p95: 47.5
+        C_p99: 49.4
+        detail: 1.63
+    fingerprint: e783b85d3abd1c1c
+  4:
+    job: x-decor-harbor-rope-crates
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 42 (at most 22), p98 88 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 74.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.16 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.161
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.7 (at least 3.5)'
+      value: 6.65
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.77
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.5857
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.4, p95 7.7, off-palette 0.5% (top: #557777 (0.1%), #CC7744
+        (0.1%))'
+      value: 2.4426
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 69 against the world reference (outliers: L_p98, detail,
+        edge)'
+      value: 69.0
+    info:
+      fit:
+        scale: 0.6642
+        anchor:
+        - 427.7
+        - 853
+      registration:
+        dx: 84
+        dy: 35
+      metrics_raw:
+        L_p5: 50.9
+        L_p50: 74.9
+        L_p95: 87.1
+        C_p50: 42.2
+        C_p95: 49.6
+        C_p99: 56.5
+        detail: 2.32
+      metrics_locked:
+        L_p5: 52.1
+        L_p50: 74.8
+        L_p95: 86.1
+        C_p50: 42.4
+        C_p95: 49.1
+        C_p99: 51.7
+        detail: 1.77
+    fingerprint: e783b85d3abd1c1c
+manual_review:
+  observed_note: Skipped after exactly one allowed retry. All four official posted
+    takes have visible alpha>24 bounding-box width360px, exceeding the literal at-most-third1024/3=341.33px
+    cap in the unchanged prompt. The guide fitter targets its360px footprint; numeric
+    decor_anchor therefore passes, but it does not satisfy the narrower prose cap.
+    Each take otherwise contains the honey rope coil, slatted crate, exactly three
+    blue floats, folded striped sack and one coral starfish; some rest the starfish
+    on the rim rather than a distinct lid. No manual rescaling, third round, threshold
+    waiver or promotion. Preserve all four unchanged originals, q90 take copies, contact
+    sheet and full source-bound QA. Style/palette/light and Harmony warnings alone
+    do not cause this rejection. No true dependents attach this exploration; composed
+    corners continue independently.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30-decor-sets
+  job: x-decor-harbor-rope-crates
+  take: 1
+  round: 1
+  logical_run: 20261105-b30-harbor-buoy-crates
+  source_file: /workspace/generated_images/exec-7d9e939d-921b-429c-8172-537c88991c58.png
+  returned_at: '2026-11-05T19:42:07.853Z'
+  prompt_sha256: 24cdcae6426ef35614ec0546ef39931dd805e46479a0de8afd564d0a6957229b
+  fingerprint: e783b85d3abd1c1c
+  saved_at: '2026-11-05T19:42:08.201640+00:00'
+  original_generated_png_sha256: 9922b522f884d9944b28ae7d7efef89528af8e6df1e91cdded9d6446ed2f5fc8
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 2a64dcdf2070a91dcd35661dccb3f99cf7e940c569774ec76d5ed465ce1ac6b8
+  inbox_png_sha256: a7c4782df4ac1d29ac8f7f34be4c096f368ff0efe2ebd959ab4e313ebc7ef196
+  qa_sha256: 446f1c2da37eafb74f64e651f3b8ebede6851c77d6f29b29b5d7bb2caa763196
+- batch: batch-30-decor-sets
+  job: x-decor-harbor-rope-crates
+  take: 2
+  round: 1
+  logical_run: 20261105-b30-harbor-buoy-crates
+  source_file: /workspace/generated_images/exec-1fe873be-0e78-4298-b246-077e1431382c.png
+  returned_at: '2026-11-05T19:43:43.992Z'
+  prompt_sha256: 24cdcae6426ef35614ec0546ef39931dd805e46479a0de8afd564d0a6957229b
+  fingerprint: e783b85d3abd1c1c
+  saved_at: '2026-11-05T19:43:44.368730+00:00'
+  original_generated_png_sha256: 308041645efacba27e0f1c0e8b773b050b7f3265a744fd64a95f6882a1b6c72f
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 0a49d3069aa78acb0ad319152da23946e517d94c4b10cf69ec96aa0bea809737
+  inbox_png_sha256: fe18cfe1145c66742af9cf8bd7069f9772d90a4d85ea9f4f10c4efa0e73caa48
+  qa_sha256: 86a28a9dac3adc0f80ccc72dd2fc60c82912ef314d868b55d519ff8b60a79703
+- batch: batch-30-decor-sets
+  job: x-decor-harbor-rope-crates
+  take: 3
+  round: 2
+  logical_run: 20261105-b30-rod-rope-one-retry
+  source_file: /workspace/generated_images/exec-5a72a4a0-8a0f-4762-9977-4c82a9135ef8.png
+  returned_at: '2026-11-05T19:49:28.079Z'
+  prompt_sha256: 24cdcae6426ef35614ec0546ef39931dd805e46479a0de8afd564d0a6957229b
+  fingerprint: e783b85d3abd1c1c
+  saved_at: '2026-11-05T19:49:28.393803+00:00'
+  original_generated_png_sha256: cb5fff840d6bb4fe211eb6e0f73d6233a1802c371977cc9c47e88b32dfac9d71
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 4bee3482ef585a0e9b59e1fc3dd05d2fd6715979f4c41617a838062a66ed639a
+  inbox_png_sha256: de4f1bd304a3798747b46b16f62ac6438827db5735e3ea687fb626f1e7bd8ad2
+  qa_sha256: 6d9b5facf0ebd06751247aff4307a973089617ad926ae47232f551435f2b2a62
+- batch: batch-30-decor-sets
+  job: x-decor-harbor-rope-crates
+  take: 4
+  round: 2
+  logical_run: 20261105-b30-rod-rope-one-retry
+  source_file: /workspace/generated_images/exec-396b7b47-25ad-40b3-95b0-d46332c7ff4f.png
+  returned_at: '2026-11-05T19:48:40.679Z'
+  prompt_sha256: 24cdcae6426ef35614ec0546ef39931dd805e46479a0de8afd564d0a6957229b
+  fingerprint: e783b85d3abd1c1c
+  saved_at: '2026-11-05T19:48:41.935716+00:00'
+  original_generated_png_sha256: 783ef2f47714290294d4a217a0115f73843e9bb8d36ab7bf1364d77c31a4bb15
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: bc2d43c660c2d4fec5d23ddb616cfa68147e62e18451c4b6ff52f270964af0bf
+  inbox_png_sha256: c2fcc2beeaa8aa71d3f5cf0c606d82eb5c60f9424f1ed8538ac53a74dd637902
+  qa_sha256: f31640e7bbd9e1ba61028c458521c521acc2e2df20f254eb1778d1c352d0aa4d
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

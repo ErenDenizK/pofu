@@ -1,0 +1,241 @@
+batch: batch-30-decor-sets
+manifest: tools/imagegen/manifest/batch-30-decor-sets.yaml
+manifest_sha256: 621a7f8e5ca0e5cf9031dead2d4a93a2d6fb02d6b983bbb2b653518da384ced2
+contact_sheet: design/art/takes/batch-30-decor-sets/x-decor-harbor-buoy-lantern/contact.jpg
+jobs:
+  x-decor-harbor-buoy-lantern:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show a plump coral-and-cream
+      striped round buoy resting on a flat soft stone, with a short honey mast and
+      small cream cage lantern plus a rope loop. The lamp is pale and unlit, with
+      no flame, halo or light pool; code can light it. No letters, guide, characters,
+      floor or cast ground shadow. Posted visible widths240/245px are safely below1024/3
+      and both numeric decor_anchor checks pass. Both hard QA reports pass; lowest
+      lock load selects take1. Soft finish and light-value warnings remain advisory
+      and are retained. Never promoted.
+qa_reports:
+  1:
+    job: x-decor-harbor-buoy-lantern
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 90 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 73.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.0 (at least 3.5)'
+      value: 7.04
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.54
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.1
+      value: 2.1212
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 6.4, off-palette 0.0%
+      value: 1.9773
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: detail, edge)'
+      value: 82.0
+    info:
+      fit:
+        scale: 0.7776
+        anchor:
+        - 502.6
+        - 816
+      registration:
+        dx: 9
+        dy: 72
+      metrics_raw:
+        L_p5: 52.9
+        L_p50: 73.5
+        L_p95: 88.6
+        C_p50: 34.0
+        C_p95: 48.8
+        C_p99: 50.2
+        detail: 2.21
+      metrics_locked:
+        L_p5: 54.3
+        L_p50: 73.7
+        L_p95: 88.4
+        C_p50: 33.5
+        C_p95: 47.9
+        C_p99: 48.7
+        detail: 1.54
+    fingerprint: 1b442f9179be9205
+  2:
+    job: x-decor-harbor-buoy-lantern
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 89 (at least 90), spread 32
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 32.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.6 (at least 3.5)'
+      value: 5.61
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.26
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.2416
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.2, p95 3.2, off-palette 0.0%
+      value: 1.2008
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 78 against the world reference (outliers: edge)'
+      value: 78.2
+    info:
+      fit:
+        scale: 0.7419
+        anchor:
+        - 506.8
+        - 825
+      registration:
+        dx: 5
+        dy: 63
+      metrics_raw:
+        L_p5: 59.8
+        L_p50: 74.1
+        L_p95: 88.3
+        C_p50: 33.3
+        C_p95: 42.1
+        C_p99: 43.8
+        detail: 1.88
+      metrics_locked:
+        L_p5: 60.5
+        L_p50: 74.1
+        L_p95: 88.1
+        C_p50: 33.3
+        C_p95: 41.4
+        C_p99: 42.8
+        detail: 1.26
+    fingerprint: 1b442f9179be9205
+manual_review:
+  observed_note: Both show a plump coral-and-cream striped round buoy resting on a
+    flat soft stone, with a short honey mast and small cream cage lantern plus a rope
+    loop. The lamp is pale and unlit, with no flame, halo or light pool; code can
+    light it. No letters, guide, characters, floor or cast ground shadow. Posted visible
+    widths240/245px are safely below1024/3 and both numeric decor_anchor checks pass.
+    Both hard QA reports pass; lowest lock load selects take1. Soft finish and light-value
+    warnings remain advisory and are retained. Never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-30-decor-sets
+  job: x-decor-harbor-buoy-lantern
+  take: 1
+  round: 1
+  logical_run: 20261105-b30-harbor-buoy-crates
+  source_file: /workspace/generated_images/exec-8d0ecf45-234b-4fc1-91d2-cf0d4505b089.png
+  returned_at: '2026-11-05T19:42:54.861Z'
+  prompt_sha256: 929f1f3f6e3db9bf55c97dcfc4820507a14b30cfd9160d43555477f7df428179
+  fingerprint: 1b442f9179be9205
+  saved_at: '2026-11-05T19:42:55.194757+00:00'
+  original_generated_png_sha256: d6e7442a2ef66cf5aa986a94d831438263ef359b494edea3818f843659a3fcad
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 48b260687ade2478a804f0d3dffa8969511515e8877a4ba183123160257aad39
+  inbox_png_sha256: 1bc335f81286e344a06be8738bb47da1bf6ee6512bdb5fa4b5976b20fa48cb92
+  qa_sha256: 9506246c8aa879cfecb43d6a2647e021d0faafadc036670c52d72a70bd848b9d
+- batch: batch-30-decor-sets
+  job: x-decor-harbor-buoy-lantern
+  take: 2
+  round: 1
+  logical_run: 20261105-b30-harbor-buoy-crates
+  source_file: /workspace/generated_images/exec-9267400a-8097-4f73-be0a-49c93f907973.png
+  returned_at: '2026-11-05T19:44:34.419Z'
+  prompt_sha256: 929f1f3f6e3db9bf55c97dcfc4820507a14b30cfd9160d43555477f7df428179
+  fingerprint: 1b442f9179be9205
+  saved_at: '2026-11-05T19:44:34.721213+00:00'
+  original_generated_png_sha256: c3822d62d46346b78bacd778bc6cc055b6026c9654a1f3bdbc7ee23d3264ba79
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 1c90115d0a2630912a6db7bad026eb2ddc70292b2086563a0d7635e0ac263d5f
+  inbox_png_sha256: 195d9d3e1320f9a821a39b9e56f6b5a5c078e64c7179909c781ea4ab97922702
+  qa_sha256: 3b73d6251fe9a66c7a131d2ef30ac9fd8e4f6c2f51d12026fdbaf05a5cbe4c46
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
