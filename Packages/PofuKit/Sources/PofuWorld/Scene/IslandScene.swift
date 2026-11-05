@@ -63,7 +63,7 @@ public struct IslandScene<Bubble: View>: View {
         @Bindable var model = model
         GeometryReader { proxy in
             let size = proxy.size
-            TimelineView(.animation(minimumInterval: nil, paused: !model.needsFrames && home?.build == nil)) { context in
+            TimelineView(.animation(minimumInterval: 1.0 / 60.0, paused: !model.needsFrames && home?.build == nil)) { context in
                 let _ = model.revision
                 let rig = model.frame(
                     at: context.date,
