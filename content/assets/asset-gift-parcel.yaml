@@ -1,0 +1,21 @@
+id: asset-gift-parcel
+type: asset
+title_tr: gift-parcel
+title_en: gift-parcel (sheet)
+status: planned
+horizon: later
+summary: >-
+  A sheet of one small gift parcel drawn twice in a single row, evenly spaced with wide empty
+  space between them: (1) closed: a plump square parcel wrapped in warm kraft-cream paper
+  tied with cream twine in a simple bow, a small dried sprig tucked under the knot; (2) open:
+  the same parcel with the paper folded back and the twine untied and lying loose, the inside
+  a soft empty nest of cream paper shreds with a small rou…
+art:
+  images: []
+  jobs:
+  - batch-35-experience:gift-parcel
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience.yaml
+kind: sheet
+batch: batch-35-experience
+size: 1536x1024

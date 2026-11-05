@@ -123,9 +123,18 @@ public final class FrameMeter {
 struct FrameMeterOverlay: View {
     @State private var meter = FrameMeter()
     @State private var text = "…"
+    /// The frame policy's state, shown beside the numbers so the meter can
+    /// be read against what the policy asked for (120 in Direct, 30 in
+    /// Ambient, 0 when settled). The meter's own display link requests a
+    /// high rate, so read the numbers as the ceiling, not the scene's draw.
+    var state: FrameState?
+
+    init(state: FrameState? = nil) {
+        self.state = state
+    }
 
     var body: some View {
-        Text(verbatim: text)
+        Text(verbatim: state.map { "\($0.rawValue) · \(text)" } ?? text)
             .font(.system(size: 10, weight: .medium, design: .monospaced))
             .foregroundStyle(.white)
             .padding(.horizontal, 6)

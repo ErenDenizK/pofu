@@ -1,0 +1,506 @@
+# Batch 35: experience v1 (docs/design/experience-v1.md, section 7).
+#
+# The rest of the experience art, gated on the pilot
+# (batch-35-experience-pilot: glow-ground-pool, glow-window-spill,
+# dressing-meadow, launch-sky). Every family here copies a pilot master: the
+# other glows attach the pool, the dressing and critter sheets attach the
+# meadow, the cloud curtain is painted over the launch sky's palette.
+#
+# What is in it:
+#   glow-warm-halo, glow-pond-shimmer   the other two glows (additive on black)
+#   calm-lantern-lit                    an edit of the calm lantern, lit
+#   firefly                             four blink frames
+#   cloud-curtain-1..3                  the loading curtain's three layers
+#   shield-pofu-door                    Pofu at his door, three moods (180 px)
+#   reward-seed-burst                   the resist payoff's six frames
+#   dressing-garden, dressing-harbor    the other two dressing sheets
+#   critter-butterfly, -snail, -bird, -ladybug
+#   visitor-dandelion, gift-parcel, guest-letter
+#
+# Glows are `ui` jobs on pure black (the app adds them with plus-lighter
+# blending). Sprites carry `light: {cell: day, layer: subject}`; the
+# launch plates use `cell: dawn`. No painted text anywhere. Code does every
+# glow, flame, flicker and shaft. A failed job is skipped after one retry;
+# its dependents are skipped.
+#
+# Tracks: `glow` (glow-warm-halo, glow-pond-shimmer, calm-lantern-lit,
+# firefly), `launch` (cloud-curtain-1..3, shield-pofu-door,
+# reward-seed-burst), `dressing` (dressing-garden, dressing-harbor),
+# `critters` (the four critter sheets), `visitors` (visitor-dandelion,
+# gift-parcel, guest-letter). Tracks are independent.
+
+batch: batch-35-experience
+title: Experience v1 (glows, launch curtain, dressing, critters, visitors)
+status: blocked
+blocked_on:
+  - "the lead's review of batch-35-experience-pilot (glow-ground-pool, glow-window-spill, dressing-meadow, launch-sky), in a night screenshot"
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: tea-stall-1, kind: station, name: tea-stall-1, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+  - {id: glow-ground-pool, kind: ui, name: glow-ground-pool, external: batch-35-experience-pilot}
+  - {id: dressing-meadow, kind: sheet, name: dressing-meadow, external: batch-35-experience-pilot}
+  - {id: ui-lantern-on, kind: ui, name: lantern-on, external: batch-11-ui-pilot}
+
+  - id: glow-warm-halo
+    kind: ui
+    name: glow-warm-halo
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    chat: "Pofu · Experience"
+    notes: "Soft round halo for a lantern or a lit window, drawn around the source (the app places it, additive). Matches glow-ground-pool's grain and color. Review: round, soft, no ring, no hot core."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:glow-ground-pool
+        role: "The approved ground pool: the same painterly grain, falloff and warm honey-gold color as this halo (do not draw the pool)."
+    prompt:
+      - text: |
+          A soft round halo of warm lantern light, centered in the image, filling about 85 percent of its width: a
+          gentle bright center that falls off smoothly and evenly in every direction, dying into black before the
+          border. The center is bright but not white-hot, as light that has been softened by paper. Warm honey-gold
+          only, a slightly irregular painterly edge.
+      - block: ui-object-v1
+      - text: |
+          GLOW SPRITE: a painterly additive light sprite for a game: the app adds it on top of the world with
+          plus-lighter blending, so black means no light at all. Painted with the same soft airbrushed grain as the
+          attached art, a smooth falloff from a brighter center to nothing, a very slight painterly irregularity so
+          it is never a perfect digital gradient. Color is a warm candle-light honey-gold (#FFC872 at the center
+          fading through #FF9F4A to black) unless stated. Pure black (#000000) background, not transparent, no
+          other colors, no objects.
+      - text: "AVOID: any object, a lamp, a window, a flame, a sun, a sphere or a visible light source, stars, rays or spikes, lens flare, hard edges, outlines, text, letters, a border, a frame, grey or colored backgrounds, banding, a halo ring. Everything outside the glow is pure black (#000000)."
+
+  - id: glow-pond-shimmer
+    kind: ui
+    name: glow-pond-shimmer
+    size: 1024x1024
+    canvas: 1024x512
+    transparent: false
+    chat: "Pofu · Experience"
+    notes: "A cool teal shimmer ellipse for the pond at night (floating lanterns, pond level 5). Code places it on the water. Review: reads as light on water, cool against the warm pools; broken into soft ripples, not a flat disc."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:glow-ground-pool
+        role: "The approved ground pool: the same painterly grain and falloff, but this one is a cool teal (do not copy its color)."
+    prompt:
+      - text: |
+          Moonlit shimmer on pond water, seen from a low camera about 17 degrees above the surface: a wide flat
+          ellipse about twice as wide as tall, centered, filling about 85 percent of the width, made of soft
+          horizontal ripple bands of cool teal-mint light (#8CE0D0 at the brightest, fading through #3FA6A0 to black),
+          brighter near the middle and broken into a few gentle, slightly uneven bands. Cool teal only, never warm: no
+          water surface, no lily pads, no lantern, no reflection of objects.
+      - block: ui-object-v1
+      - text: |
+          GLOW SPRITE: a painterly additive light sprite for a game: the app adds it on top of the world with
+          plus-lighter blending, so black means no light at all. Painted with the same soft airbrushed grain as the
+          attached art, a smooth falloff from a brighter center to nothing, a very slight painterly irregularity so
+          it is never a perfect digital gradient. Color is stated in the brief. Pure black (#000000) background, not transparent, no
+          other colors, no objects.
+      - text: "AVOID: any object, a lamp, a window, a flame, a sun, a sphere or a visible light source, stars, rays or spikes, lens flare, hard edges, outlines, text, letters, a border, a frame, grey or colored backgrounds, banding, a halo ring. Everything outside the glow is pure black (#000000)."
+
+  - id: calm-lantern-lit
+    kind: ui
+    name: calm-lantern-lit
+    canvas: 1024x1024
+    edit_of: ui-lantern-on
+    chat: "Pofu · Experience"
+    notes: "An edit of the calm lantern: the flame and the glass lit from within, nothing else changes. The app draws the glow around it. Review: the shape, caps, post and loop are pixel-identical to the parent; only the flame and the paper are warmer and brighter."
+    prompt:
+      - text: |
+          Light the calm lantern more fully: a small, bright teardrop flame is visible inside the paper, and the glass
+          and paper around it glow warm honey-gold, brightest around the flame and softening toward the ribs. The
+          caps, the ribs, the loop and the post are unchanged. Light only inside the lantern's own outline: no halo,
+          no rays and no light spill outside it (the app draws the glow).
+      - block: edit-keep-v1
+
+  - id: firefly
+    kind: ui
+    name: firefly
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Experience"
+    notes: "Four frames of a firefly, laid out in a row (a blink: dim, rising, bright, fading). Code positions and drifts it. Review: a warm core on a soft body; the four read as one insect blinking; no wings detail needed."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A sprite sheet of one firefly shown four times in a single row, left to right, evenly spaced with wide empty
+          space between them: (1) body dim, abdomen a faint warm amber; (2) the abdomen glowing, a small warm yellow
+          core; (3) at its brightest, a warm yellow-white core with a soft honey-gold halo; (4) fading, amber again.
+          Each firefly is tiny, a plump rounded body of soft dark plum-brown with two pale translucent wings and two
+          short antennae, seen from the side. Chunky and toy-like, never realistic. On a plain transparent
+          background.
+      - block: ui-object-v1
+      - block: prop-style-v2
+      - text: "AVOID: realistic insects, thin legs, detailed wings, outlines, text, a floor, a ground shadow, a jar, a person, a hard glow ring"
+
+  - id: cloud-curtain-1
+    kind: world
+    name: cloud-curtain-1
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Launch"
+    light: {cell: day, layer: subject}
+    notes: "Front cloud bank of the loading curtain: it parts left and right to reveal the world. Review: reads as a soft bank, bottom half filled, the top edge scalloped, transparent above; edges run off the canvas left and right."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this, in the same finish."
+    prompt:
+      - text: |
+          The front cloud bank of a loading curtain, on a transparent background: a wide band of plump, overlapping
+          cream-white clouds with soft pink-gold tops and lilac-grey undersides, filling the whole lower half of the
+          image and rising in a few rounded towers toward the middle, the upper half left empty and transparent. The
+          bank is wider than the image on both sides so it can slide apart. Chunky, soft, toy-like shapes.
+      - block: prop-style-v2
+      - text: "AVOID: a sky behind the clouds, a background, an island, text, outlines, hard edges, black or grey clouds, dark shadows, rain, characters, a border"
+
+  - id: cloud-curtain-2
+    kind: world
+    name: cloud-curtain-2
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Launch"
+    light: {cell: day, layer: subject}
+    notes: "Middle cloud layer of the loading curtain, parallax between the front bank and the wisps. Review: separate puffs with clear gaps, lighter than the front bank."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this, in the same finish."
+    prompt:
+      - text: |
+          The middle layer of a loading curtain, on a transparent background: a loose band of medium puffy clouds,
+          lighter and smaller than a front bank, floating across the middle of the image with clear transparent gaps
+          between them, cream-white with soft peach tops and pale lilac undersides. Clouds run off the canvas at both
+          sides. Soft, rounded, toy-like.
+      - block: prop-style-v2
+      - text: "AVOID: a sky behind the clouds, a background, an island, text, outlines, hard edges, black or grey clouds, dark shadows, rain, characters, a border"
+
+  - id: cloud-curtain-3
+    kind: world
+    name: cloud-curtain-3
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Launch"
+    light: {cell: day, layer: subject}
+    notes: "Back cloud wisps of the loading curtain, far parallax. Review: faint, thin, airy; the world must show through them."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this, in the same finish."
+    prompt:
+      - text: |
+          The back layer of a loading curtain, on a transparent background: a few long, thin, slightly curved cloud
+          wisps in soft cream and pale peach, stretched horizontally across the upper and middle of the image,
+          faint and airy, with plenty of transparent space between them. They run off the canvas at both sides.
+      - block: prop-style-v2
+      - text: "AVOID: a sky behind the clouds, a background, an island, text, outlines, hard edges, black or grey clouds, dark shadows, rain, characters, a border"
+
+  - id: shield-pofu-door
+    kind: sheet
+    name: shield-pofu-door
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Shield"
+    light: {cell: day, layer: subject}
+    notes: "Pofu at his round door in three moods for the shield (calm, proud, sleepy), shipped at 180 px. Cheeks are never puffed (ADR-0017: no cheek puff on a shield). Review: each reads at 180 px; the door and Pofu are in the same place in all three; he is unmistakably Pofu."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY the round door (its shape, wood, color and size relative to the plate) and the soft painting. Do not draw the island."
+    prompt:
+      - text: |
+          A sheet of three small scenes in one row, each showing Pofu the hamster, in his exact attached look, standing
+          at his round wooden door (the attached island's round door: a round honey-wood door with a small round
+          window, set in a low rounded cream wall segment), the same door and the same place in all three, evenly
+          spaced with wide empty space between them: (1) calm: standing relaxed beside the door, a soft content
+          smile, eyes open and gentle; (2) proud: chest out, chin up, eyes bright, a small proud smile, one paw
+          resting on the door frame; (3) sleepy: eyes half closed, head drooping, a tiny yawn, leaning gently on
+          the door frame. Pofu's cheeks are never puffed in any of them. On a plain transparent background, each
+          scene complete, none touching another.
+      - block: prop-style-v2
+      - text: "AVOID: puffed cheeks, a floor, a ground shadow, cast shadows, text, speech bubbles, hearts, sparkles, a curl on any head except Pofu's, extra limbs, a background, a border"
+
+  - id: reward-seed-burst
+    kind: ui
+    name: reward-seed-burst
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Experience"
+    notes: "Six frames of a sunflower-seed sparkle, laid out as a 3 by 2 grid, for the resist payoff (a burst that opens, peaks and drifts away). Code plays the frames at 24 fps. Review: reads as seeds and sparkle, not confetti; the six frames are one animation; transparent between them."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A sprite sheet of six frames of one small burst of sunflower seeds and soft sparkles, in a grid of three
+          columns by two rows, read left to right, top to bottom, each frame centered in its own equal cell with wide
+          empty space around it, the burst's center at the center of each cell: (1) a tiny cluster of two seeds and
+          a small spark; (2) the burst opening, five seeds and three sparks flying out; (3) the burst at its widest,
+          eight seeds and five soft four-point sparkles spread in a ring; (4) the seeds drifting down and out, the
+          sparkles shrinking; (5) three seeds and two faint sparkles, far apart; (6) one seed and one fading
+          sparkle. Seeds are chunky, plump warm-brown and cream striped teardrops, sparkles soft honey-gold. On a
+          plain transparent background.
+      - block: ui-object-v1
+      - block: prop-style-v2
+      - text: "AVOID: confetti, stars with outlines, text, numbers, a floor, a ground shadow, characters, a hard glow ring, black seeds"
+
+  - id: dressing-garden
+    kind: sheet
+    name: dressing-garden
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Dressing"
+    light: {cell: day, layer: subject}
+    notes: "Ten small garden pieces (watering can, seed sack, twine, small crates, trowel) in a 5 by 2 grid for the garden corner. Same finish as dressing-meadow. Review: each reads at 28 pt as the thing it is; matte, no metal shine."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+      - ref: approved:dressing-meadow
+        role: "The approved meadow sheet: the same finish, scale and chunkiness (do not draw its pieces)."
+    prompt:
+      - text: |
+          A sheet of ten small garden props for a cozy island diorama, in a grid of five columns by two rows, each piece
+          complete and separate with wide empty space around it, none touching: row 1, a round-bellied watering can of
+          soft sage clay-green with a short spout, a plump burlap seed sack tied with twine and a few sunflower seeds
+          spilled at its foot, a coil of cream twine, a small wooden crate of honey wood, and a stack of two small
+          crates; row 2, a hand trowel with a honey-wood handle, a terracotta flower pot with a tiny sprout, a small
+          wooden bucket, a folded pair of cream garden gloves, and a little hand rake. Chunky, toy-like, matte,
+          each small, seen from the same low front three-quarter camera, standing on nothing.
+      - block: prop-style-v2
+      - text: "AVOID: a floor, a ground shadow, cast shadows, text, letters, outlines, characters or animals, pieces touching or overlapping, a background, metallic shine, glossy surfaces"
+
+  - id: dressing-harbor
+    kind: sheet
+    name: dressing-harbor
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Dressing"
+    light: {cell: day, layer: subject}
+    notes: "Ten small harbor pieces (rope coil, buoy, crate, folded net, oar) in a 5 by 2 grid for Liman and the pier. Same finish as dressing-meadow. Review: each reads at 28 pt; rope and net have no fine weave."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+      - ref: approved:dressing-meadow
+        role: "The approved meadow sheet: the same finish, scale and chunkiness (do not draw its pieces)."
+    prompt:
+      - text: |
+          A sheet of ten small harbor props for a cozy island diorama, in a grid of five columns by two rows, each piece
+          complete and separate with wide empty space around it, none touching: row 1, a coil of thick cream rope, a
+          round red-and-cream buoy, a small wooden shipping crate with plain slats, a folded fishing net in soft
+          sage-green mesh shown as a plump pile, and a single wooden oar leaning on nothing (drawn lying at a gentle
+          diagonal); row 2, a small barrel with two honey-wood bands, a lantern buoy with a cream paper shade (unlit),
+          a short wooden mooring post with a rope loop, a stack of two flat fish crates, and a small tin bucket of
+          soft pale blue-grey. Chunky, toy-like, matte, each small, seen from the same low front three-quarter
+          camera, standing on nothing.
+      - block: prop-style-v2
+      - text: "AVOID: a floor, a ground shadow, cast shadows, text, letters, outlines, characters or animals, pieces touching or overlapping, a background, real fish, fine rope or net weave, metallic shine, glossy surfaces"
+
+  - id: critter-butterfly
+    kind: sheet
+    name: critter-butterfly
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Critters"
+    light: {cell: day, layer: subject}
+    notes: "Four wing frames of a butterfly plus a resting pose (wings closed), five small sprites in a row for a critter that drifts over the lawn. Review: the four frames read as one flap cycle; the rest pose is the same butterfly."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+      - ref: approved:dressing-meadow
+        role: "The approved meadow sheet: the same finish, scale and chunkiness (do not draw its pieces)."
+    prompt:
+      - text: |
+          A sheet of one small butterfly drawn five times in a single row, left to right, evenly spaced with wide empty
+          space between them: four wing positions of one flap cycle seen from slightly above and the side (wings
+          fully up, half open, flat open, half closed), and a fifth resting pose with the wings closed upright. Soft
+          cream-yellow wings with warm rose tips and a plain plump body, two short antennae. Chunky and gentle, about
+          the same size in every frame.
+      - block: prop-style-v2
+      - text: "AVOID: a floor, a ground shadow, cast shadows, text, letters, outlines, realistic or scary detail, thin legs, big eyes with highlights, speech bubbles, a background, pieces touching or overlapping"
+
+  - id: critter-snail
+    kind: sheet
+    name: critter-snail
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Critters"
+    light: {cell: day, layer: subject}
+    notes: "A snail at rest and a two-frame crawl, three sprites in a row. Review: the shell is the same in every frame; the crawl reads as a gentle stretch; a calm face, no eyes with highlights."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+      - ref: approved:dressing-meadow
+        role: "The approved meadow sheet: the same finish, scale and chunkiness (do not draw its pieces)."
+    prompt:
+      - text: |
+          A sheet of one small snail drawn three times in a single row, left to right, evenly spaced with wide empty
+          space between them: (1) at rest, body tucked low, eyestalks short; (2) crawling, body stretched forward with
+          eyestalks up; (3) crawling, body gathered slightly with the shell tilted. A round honey-and-rose swirled shell
+          on a soft pale cream body, two stubby eyestalks with tiny dot eyes, a calm face. Chunky and toy-like, seen
+          from the side in the same low camera.
+      - block: prop-style-v2
+      - text: "AVOID: a floor, a ground shadow, cast shadows, text, letters, outlines, realistic or scary detail, thin legs, big eyes with highlights, speech bubbles, a background, pieces touching or overlapping"
+
+  - id: critter-bird
+    kind: sheet
+    name: critter-bird
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Critters"
+    light: {cell: day, layer: subject}
+    notes: "A small bird perched in two poses and a two-frame flap, four sprites in a row. Review: the perched pair (looking left, looking right) and the flap pair are one bird; rounder than a sparrow, never realistic."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+      - ref: approved:dressing-meadow
+        role: "The approved meadow sheet: the same finish, scale and chunkiness (do not draw its pieces)."
+    prompt:
+      - text: |
+          A sheet of one small round bird drawn four times in a single row, left to right, evenly spaced with wide empty
+          space between them: (1) perched, body upright, head turned to the left; (2) perched, head turned to the
+          right with a small chirp, beak slightly open; (3) mid-flap with the wings raised high; (4) mid-flap with the
+          wings lowered. A plump, round little bird in soft dusty blue with a cream belly and a small honey beak, a
+          short tail, tiny dot eyes. Chunky and toy-like, seen from the side in the same low camera.
+      - block: prop-style-v2
+      - text: "AVOID: a floor, a ground shadow, cast shadows, text, letters, outlines, realistic or scary detail, thin legs, big eyes with highlights, speech bubbles, a background, pieces touching or overlapping"
+
+  - id: critter-ladybug
+    kind: sheet
+    name: critter-ladybug
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Critters"
+    light: {cell: day, layer: subject}
+    notes: "A ladybug on a leaf and a two-frame walk, three sprites in a row. Review: the leaf is part of the resting sprite only; the two walk frames show the bug alone with legs in different positions."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+      - ref: approved:dressing-meadow
+        role: "The approved meadow sheet: the same finish, scale and chunkiness (do not draw its pieces)."
+    prompt:
+      - text: |
+          A sheet of one small ladybug drawn three times in a single row, left to right, evenly spaced with wide empty
+          space between them: (1) at rest on a single broad green leaf, shown together as one sprite; (2) walking,
+          alone, legs in the first step position; (3) walking, alone, legs in the second step position. A plump round
+          ladybug in warm coral-red with five soft dark-plum spots, a small plum head and six short chunky legs. Toy-like
+          and gentle, seen from slightly above and the side.
+      - block: prop-style-v2
+      - text: "AVOID: a floor, a ground shadow, cast shadows, text, letters, outlines, realistic or scary detail, thin legs, big eyes with highlights, speech bubbles, a background, pieces touching or overlapping"
+
+  - id: visitor-dandelion
+    kind: prop
+    name: visitor-dandelion
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Visitors"
+    light: {cell: day, layer: subject}
+    notes: "A big dandelion seed a small visitor drifts down under, like a parachute (§5). The visitor is not painted here. Review: one tall seed with a feathery top and a thin stem; the fluff reads at 28 pt; the visitor can hang beneath it."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A single large dandelion seed seen from the side, standing upright on the guide: a thin, slightly curved
+          pale stem with a tiny honey-brown seed at its base and, at the top, a round parachute of soft white
+          feathery fluff made of many fine pale strands radiating from the stem top, plump and airy, in warm
+          white with soft lilac-grey shading. The seed is tall and light, reaching the height bar's top, with the
+          parachute about as wide as it is high; the whole piece is narrow, about 200 px wide in the 1024 x 1024
+          image, with wide empty space on both sides.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: gift-parcel
+    kind: sheet
+    name: gift-parcel
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Visitors"
+    light: {cell: day, layer: subject}
+    notes: "A wrapped parcel with twine, shown closed and open, two sprites in a row (the visitor's gift, §5). Review: the closed one reads as a gift at 28 pt; the open one shows the paper folded back and something small and round inside, unspecified."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A sheet of one small gift parcel drawn twice in a single row, evenly spaced with wide empty space between
+          them: (1) closed: a plump square parcel wrapped in warm kraft-cream paper tied with cream twine in a simple
+          bow, a small dried sprig tucked under the knot; (2) open: the same parcel with the paper folded back and
+          the twine untied and lying loose, the inside a soft empty nest of cream paper shreds with a small round
+          warm-honey hollow in it. Chunky, matte, toy-like, seen from the same low front three-quarter camera.
+      - block: prop-style-v2
+      - text: "AVOID: a ribbon with a pattern, text, glitter, a floor, a ground shadow, cast shadows, outlines, a background, a visible gift item"
+
+  - id: guest-letter
+    kind: sheet
+    name: guest-letter
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Visitors"
+    light: {cell: day, layer: subject}
+    notes: "Pofu's invitation letter, folded and open, two sprites in a row. No text in the art (the app draws any words natively). Review: the folded one reads as a letter at 28 pt; the open one is blank paper with soft ruled shading only."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A sheet of one small handwritten letter drawn twice in a single row, evenly spaced with wide empty space
+          between them: (1) folded: a small cream envelope-style fold sealed with a round honey-colored wax dot, a
+          tiny sunflower seed pressed into the wax; (2) open: the same letter unfolded flat as a soft cream sheet with
+          slightly curled corners and a few faint blank horizontal bands where lines of writing would be, no letters
+          or marks. Chunky, matte, toy-like, seen from the same low front three-quarter camera.
+      - block: prop-style-v2
+      - text: "AVOID: text, letters, numbers, scribbles, handwriting, a floor, a ground shadow, cast shadows, outlines, a background"

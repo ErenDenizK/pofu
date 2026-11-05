@@ -1,0 +1,21 @@
+id: asset-dressing-meadow
+type: asset
+title_tr: dressing-meadow
+title_en: dressing-meadow (sheet)
+status: in-production
+horizon: now
+summary: >-
+  A sheet of twelve small lawn-dressing pieces for a cozy island diorama, in a grid of four
+  columns by three rows, each piece complete and separate with wide empty space around it,
+  none touching or overlapping: row 1, three grass tufts of different sizes (a small one,
+  a taller one, a tuft with two seed heads) and a clump of clover; row 2, three wildflower
+  clumps (daisies, cornflowers, buttercups: each four or five chun…
+art:
+  images: []
+  jobs:
+  - batch-35-experience-pilot:dressing-meadow
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience-pilot.yaml
+kind: sheet
+batch: batch-35-experience-pilot
+size: 1536x1024

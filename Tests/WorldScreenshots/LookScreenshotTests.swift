@@ -109,6 +109,46 @@ final class LookScreenshotTests: XCTestCase {
         try await measureFrameTimes(in: scene, folder: folder)
     }
 
+    /// Experience v1 §2.3's night shots: warm pools under the lantern and
+    /// the door window at Home and at the Island (`light-night-*`), the
+    /// lantern at calm x1.0 against x2.0 (`light-calm-compare`), and the
+    /// dusk lights coming on (`light-dusk-*`).
+    @MainActor
+    func testRenderTheLightField() async throws {
+        let scene = try XCTUnwrap(
+            UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first,
+            "the test needs the host app's window scene"
+        )
+        let folder = outputFolder()
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+
+        func shot(_ framing: WorldFraming, hour: Double, calm: Double = 1.7) async throws -> UIImage {
+            var snapshot = world(wellbeing: 78)
+            snapshot.calm = calm
+            let model = IslandSceneModel(framing: framing)
+            let view = LookScene(world: snapshot, model: model).environment(\.worldLook, WorldLook(hourOverride: hour))
+            return try await render(AnyView(view), in: scene, settle: 1400)
+        }
+
+        let nightHome = try await shot(.home, hour: 22)
+        let nightIsland = try await shot(.island, hour: 22)
+        try write(nightHome, name: "light-night-home", to: folder)
+        try write(nightIsland, name: "light-night-island", to: folder)
+        let dim = try await shot(.home, hour: 22, calm: 1.0)
+        let bright = try await shot(.home, hour: 22, calm: 2.0)
+        try write(
+            grid([[dim, bright]], titles: [["Calm x1.0", "Calm x2.0"]]),
+            name: "light-calm-compare", to: folder
+        )
+        let duskHome = try await shot(.home, hour: 20)
+        let duskIsland = try await shot(.island, hour: 20)
+        try write(
+            grid([[duskHome, duskIsland, nightHome, nightIsland]], titles: [["Dusk · Home", "Dusk · Island", "Night · Home", "Night · Island"]],
+                 cell: CGSize(width: 201, height: 437)),
+            name: "light-dusk-night", to: folder
+        )
+    }
+
     // MARK: - Where things are in a frame
 
     /// The island's rows and every character's box in a frame, in unit
