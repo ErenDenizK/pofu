@@ -2,14 +2,14 @@ id: asset-launch-sky
 type: asset
 title_tr: launch-sky
 title_en: launch-sky (plate)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A tall full-bleed dawn sky for a cozy mobile game's launch screen, a portrait image. Top
-  to bottom: a soft lilac-blue sky at the top, melting through pale peach and warm cream to
-  a glowing honey horizon about two thirds down; a few long, soft, slightly flat clouds in
-  thin calm bands across the sky, lit warm from below; a gentle bank of puffy cream clouds
-  along the bottom third, lit pink-gold on their tops. The light …
+summary: 'A tall full-bleed dawn sky for a cozy mobile game''s launch screen, a portrait
+  image. Top to bottom: a soft lilac-blue sky at the top, melting through pale peach
+  and warm cream to a glowing honey horizon about two thirds down; a few long, soft,
+  slightly flat clouds in thin calm bands across the sky, lit warm from below; a gentle
+  bank of puffy cream clouds along the bottom third, lit pink-gold on their tops.
+  The light …'
 art:
   images: []
   jobs:
@@ -19,3 +19,22 @@ sources:
 kind: plate
 batch: batch-35-experience-pilot
 size: 1024x1536
+notes:
+- 'batch-35-experience-pilot skipped after four takes: Skipped after the single allowed
+  retry because no full-canvas lossless master fits the strict under614400byte delivery
+  cap. All four takes pass hard numerical QA and manual sky review: calm lilac-blue
+  to peach/cream/honey dawn bands, empty top12percent, clear central crop, lower bank
+  of cream clouds, no island/sun disc/birds/stars/characters/text. Official post produces
+  the requested1290x2796 canvas, with expected upscale warning and advisory light/haze/contrast
+  warnings. Initial best-tested exact lossless sizes: take1 1065244bytes, take2 1005010bytes;
+  the sole retry take3 997750bytes, take4 1002080bytes. Each best encoding is lossless
+  WebP method4 quality100; method6 quality100 and optimized RGB PNG were also checked
+  and larger. Decoded1290x2796 RGBA SHA256 matches the official locked image for every
+  encoding; source PNG bytes and inbox RGBA remain unchanged. Initial unpublished
+  preparation is preserved under runtime unpublished-launch-first-round; compression-review/results.json
+  and retry-results.json preserve evidence and all test encodings. No oversize upload
+  was attempted, no lossless/canvas waiver, downscale, palette reduction, split delivery,
+  lossy master or extra generation. Archive all four q90 review takes and contact
+  sheet, cut the content node, promote no master and create no misleading Harmony
+  shard. No dependent jobs in the pilot. Founder review pending; lead must resolve
+  full-resolution lossless delivery before a future authorized attempt.'

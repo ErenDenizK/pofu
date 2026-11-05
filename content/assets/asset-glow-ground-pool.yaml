@@ -2,14 +2,14 @@ id: asset-glow-ground-pool
 type: asset
 title_tr: glow-ground-pool
 title_en: glow-ground-pool (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A pool of warm lamplight lying on a lawn, seen from a low camera about 17 degrees above
-  the ground, so the pool is a wide flat ellipse about twice as wide as it is tall, centered
-  in the image and filling about 80 percent of the width. Brightest near the middle, with
-  a soft, slightly uneven painterly edge that dies into black well before the image border.
-  Warm honey-gold light only: no grass blades, no ground, no shad…
+summary: 'A pool of warm lamplight lying on a lawn, seen from a low camera about 17
+  degrees above the ground, so the pool is a wide flat ellipse about twice as wide
+  as it is tall, centered in the image and filling about 80 percent of the width.
+  Brightest near the middle, with a soft, slightly uneven painterly edge that dies
+  into black well before the image border. Warm honey-gold light only: no grass blades,
+  no ground, no shad…'
 art:
   images: []
   jobs:
@@ -19,3 +19,21 @@ sources:
 kind: ui
 batch: batch-35-experience-pilot
 size: 1024x1024
+notes:
+- 'batch-35-experience-pilot skipped after four takes: Skipped after the one allowed
+  retry, four retained sources total. All four official reports hard-fail value_floor
+  (locked Lp5=19.6) and palette_drift (t1 9.3876, t2 9.5739, t3 9.1196, t4 9.2094
+  mean dE). Shape and warm painterly elliptical falloff are suitable, with no physical
+  emitter/object/text/ring, but the official lock-light lifts source black to aboutRGB47
+  and leaves zero exact-black pixels: incompatible with plus-lighter no-light background.
+  Initial source backgrounds also have faint border noise (maxRGB2). This is a profile/lock
+  incompatibility for the lead to fix, not a QA waiver or reason to loop generation.
+  No promoted master, manual pixel cleanup or oversized upload. Preserve all sources
+  and contact/QA review; mark content cut. No dependent jobs in this pilot. Automated
+  failures: t1 value_floor: lightness p5 20 (R1 59), palette_drift: mean dE 9.4, p95
+  17.6, off-palette 31.6% (top: #EE9944 (3.2%), #663311 (3.0%)); t2 value_floor: lightness
+  p5 20 (R1 59), palette_drift: mean dE 9.6, p95 17.3, off-palette 32.5% (top: #663311
+  (3.8%), #EE9944 (3.8%)); t3 value_floor: lightness p5 20 (R1 59), palette_drift:
+  mean dE 9.1, p95 15.8, off-palette 35.3% (top: #CC7733 (3.3%), #995522 (3.2%));
+  t4 value_floor: lightness p5 20 (R1 59), palette_drift: mean dE 9.2, p95 17.2, off-palette
+  32.4% (top: #EE9944 (4.1%), #663311 (3.5%)).'

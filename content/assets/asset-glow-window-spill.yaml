@@ -2,14 +2,14 @@ id: asset-glow-window-spill
 type: asset
 title_tr: glow-window-spill
 title_en: glow-window-spill (ui)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Light from a lit window falling across grass, seen from a low camera about 17 degrees above
-  the ground: a trapezoid of warm light that starts narrow and bright at the top center of
-  the image (where the window sill would be, no window drawn) and fans out down the image
-  to about three times that width, getting fainter with distance and dying into black before
-  the bottom edge. The two long edges are slightly broken and …
+summary: 'Light from a lit window falling across grass, seen from a low camera about
+  17 degrees above the ground: a trapezoid of warm light that starts narrow and bright
+  at the top center of the image (where the window sill would be, no window drawn)
+  and fans out down the image to about three times that width, getting fainter with
+  distance and dying into black before the bottom edge. The two long edges are slightly
+  broken and …'
 art:
   images: []
   jobs:
@@ -19,3 +19,22 @@ sources:
 kind: ui
 batch: batch-35-experience-pilot
 size: 1024x1024
+notes:
+- 'batch-35-experience-pilot skipped after four takes: Skipped after the single allowed
+  retry, four sources preserved. All four official hard reports fail value_floor (lockedLp5=19.6)
+  and palette_drift (8.4867,8.5674,8.5315,8.7494 mean dE). Both rounds paint a suitable
+  narrow bright sill-end widening to a faint warm trapezoid with broken painterly
+  edges, no window/frame/physical source/text/rays/ring. Independent review confirms
+  official lock-light lifts black to gray (zero exact-black pixels; retry locked borderRGB44-50),
+  incompatible with plus-lighter. Retry source border maxima6and11 also violate literal
+  pure black. No manual cleanup, profile waiver, third pair or failed master. Content
+  cut, contact/takes retained. Lead should provide additive no-lock and appropriate
+  black QA profile before another authorized attempt; not an operator manifest edit.
+  No dependent jobs in this pilot. Automated failures: t1 value_floor: lightness p5
+  20 (R1 59), palette_drift: mean dE 8.5, p95 14.9, off-palette 25.9% (top: #774411
+  (3.2%), #DD8833 (2.7%)); t2 value_floor: lightness p5 20 (R1 59), palette_drift:
+  mean dE 8.6, p95 15.7, off-palette 26.4% (top: #663311 (3.6%), #774411 (3.5%));
+  t3 value_floor: lightness p5 20 (R1 59), palette_drift: mean dE 8.5, p95 15.5, off-palette
+  24.9% (top: #774411 (3.1%), #995522 (2.7%)); t4 value_floor: lightness p5 20 (R1
+  59), palette_drift: mean dE 8.7, p95 15.8, off-palette 26.4% (top: #774411 (3.2%),
+  #663311 (2.6%)).'

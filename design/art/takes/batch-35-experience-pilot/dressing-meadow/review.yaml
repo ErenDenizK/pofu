@@ -1,0 +1,336 @@
+batch: batch-35-experience-pilot
+contact_sheet: design/art/takes/batch-35-experience-pilot/dressing-meadow/contact.jpg
+jobs:
+  dressing-meadow:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after the single allowed retry. All four official production palette_drift
+      checks fail: mean dE12.7753,12.8698,13.9968,14.3396. Independent source and28px
+      light/dark review finds all requested12 separated pieces in4columns/3rows, two
+      seed heads, clover, distinct four-flower clumps, foxglove,3pebbles,flat stone,5-toadstool
+      ring and mossstone; core content/readability pass. The transparent viewer low-alpha
+      tails are not an invented opaque-background failure. The actual blocker is hard
+      sheet palette QA despite attached world-props palette; light/haze warnings remain
+      advisory. No recolour, threshold edit, manual source cleanup, third pair or
+      promotion. Preserve all four originals/takes/contact/reports, cut content node,
+      no true dependents in pilot. Lead palette/profile decision required for any
+      future attempt. Automated failures: t1 palette_drift: mean dE 12.8, p95 23.5,
+      off-palette 55.0% (top: #AAAA66 (8.0%), #BBAA66 (6.9%)); t2 palette_drift: mean
+      dE 12.9, p95 24.5, off-palette 54.5% (top: #BBAA66 (8.2%), #999955 (7.7%));
+      t3 palette_drift: mean dE 14.0, p95 26.0, off-palette 58.3% (top: #AAAA66 (9.3%),
+      #999955 (8.7%)); t4 palette_drift: mean dE 14.3, p95 26.4, off-palette 54.4%
+      (top: #AAAA66 (8.9%), #999955 (4.3%)).'
+qa_reports:
+  3:
+    job: dressing-meadow
+    take: 3
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 52.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 91 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 70 (band 55-90)'
+      value: 70.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 14.0 (at least 3.5)'
+      value: 14.02
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.9 (R1 5.3)
+      value: 4.89
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.1
+      value: 0.066
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 14.0, p95 26.0, off-palette 58.3% (top: #AAAA66 (9.3%), #999955
+        (8.7%))'
+      value: 13.9968
+    info:
+      metrics_raw:
+        L_p5: 55.2
+        L_p50: 70.2
+        L_p95: 88.8
+        C_p50: 30.0
+        C_p95: 52.9
+        C_p99: 58.2
+        detail: 4.53
+      metrics_locked:
+        L_p5: 55.2
+        L_p50: 70.2
+        L_p95: 88.8
+        C_p50: 30.0
+        C_p95: 52.8
+        C_p99: 56.1
+        detail: 4.89
+    fingerprint: fd59c3c29567540d
+  4:
+    job: dressing-meadow
+    take: 4
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 57.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 92 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 72.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 12.1 (at least 3.5)'
+      value: 12.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.5 (R1 5.3)
+      value: 4.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.358
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 14.3, p95 26.4, off-palette 54.4% (top: #AAAA66 (8.9%), #999955
+        (4.3%))'
+      value: 14.3396
+    info:
+      metrics_raw:
+        L_p5: 58.1
+        L_p50: 71.9
+        L_p95: 89.6
+        C_p50: 29.7
+        C_p95: 61.3
+        C_p99: 65.3
+        detail: 4.14
+      metrics_locked:
+        L_p5: 58.1
+        L_p50: 71.9
+        L_p95: 89.6
+        C_p50: 29.7
+        C_p95: 57.2
+        C_p99: 58.3
+        detail: 4.48
+    fingerprint: fd59c3c29567540d
+  2:
+    job: dressing-meadow
+    take: 2
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 51.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 90 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 70 (band 55-90)'
+      value: 70.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 11.0 (at least 3.5)'
+      value: 11.04
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.4 (R1 5.3)
+      value: 4.4
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0165
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 12.9, p95 24.5, off-palette 54.5% (top: #BBAA66 (8.2%), #999955
+        (7.7%))'
+      value: 12.8698
+    info:
+      metrics_raw:
+        L_p5: 58.0
+        L_p50: 70.4
+        L_p95: 88.4
+        C_p50: 30.7
+        C_p95: 51.9
+        C_p99: 54.9
+        detail: 4.04
+      metrics_locked:
+        L_p5: 58.0
+        L_p50: 70.4
+        L_p95: 88.4
+        C_p50: 30.7
+        C_p95: 51.9
+        C_p99: 54.3
+        detail: 4.4
+    fingerprint: fd59c3c29567540d
+  1:
+    job: dressing-meadow
+    take: 1
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 90 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 72.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.0 (at least 3.5)'
+      value: 5.02
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.0 (R1 5.3)
+      value: 4.04
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0297
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 12.8, p95 23.5, off-palette 55.0% (top: #AAAA66 (8.0%), #BBAA66
+        (6.9%))'
+      value: 12.7753
+    info:
+      metrics_raw:
+        L_p5: 59.7
+        L_p50: 72.7
+        L_p95: 88.2
+        C_p50: 30.4
+        C_p95: 49.4
+        C_p99: 56.3
+        detail: 3.71
+      metrics_locked:
+        L_p5: 59.7
+        L_p50: 72.7
+        L_p95: 88.2
+        C_p50: 30.4
+        C_p95: 49.4
+        C_p99: 55.2
+        detail: 4.04
+    fingerprint: fd59c3c29567540d
+manual_review:
+  excluded_takes: []
+  note: 'Skipped after the single allowed retry. All four official production palette_drift
+    checks fail: mean dE12.7753,12.8698,13.9968,14.3396. Independent source and28px
+    light/dark review finds all requested12 separated pieces in4columns/3rows, two
+    seed heads, clover, distinct four-flower clumps, foxglove,3pebbles,flat stone,5-toadstool
+    ring and mossstone; core content/readability pass. The transparent viewer low-alpha
+    tails are not an invented opaque-background failure. The actual blocker is hard
+    sheet palette QA despite attached world-props palette; light/haze warnings remain
+    advisory. No recolour, threshold edit, manual source cleanup, third pair or promotion.
+    Preserve all four originals/takes/contact/reports, cut content node, no true dependents
+    in pilot. Lead palette/profile decision required for any future attempt.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-27b8ff0b-5a7c-410e-a962-de72b255d7b3.png
+  original_generated_png_sha256: e17ca12d7b36d221040b98c8f10eb43023e68989bf9f5474352c510889851426
+  inbox_png_sha256: 8e3c23321e315d2a52343d423563f7096620b7b183ece923e9e6d960b37dc42a
+  rgba_sha256: 6765d149d484150e8c752432461087581cfec063c506900369f97ec48cc5d937
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: fd59c3c29567540d
+- take: 2
+  source_file: /workspace/generated_images/exec-1cd6f5ee-0340-4910-ba3f-e9e54981f540.png
+  original_generated_png_sha256: 2587448336fdf6ce3994b0491cae981ee18f6f08e9cb9eedfb7fa026ef1b1c26
+  inbox_png_sha256: 8d88f12919bee344cf6455f8af212bf0f4cf5f42283f14b819205ee37206ea71
+  rgba_sha256: 6488d7d26d544b4e4dadc010813caa1a742ab39443275938541bbb9288d94689
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: fd59c3c29567540d
+- take: 3
+  source_file: /workspace/generated_images/exec-e9ea5f11-46c0-4255-81a8-78bf10247db9.png
+  original_generated_png_sha256: 786bf699fd4eceadd04e50a8cd606bd14f9ccb18ad3e715933f518e655793d5b
+  inbox_png_sha256: a97edb0f7455950d8c6ce0b0ebc27c40fcff77bbc33521ccfdf1e2b28ca9f0eb
+  rgba_sha256: dc71b098117827a599b62c36f8723db9af7ae7f5a0d036cf5600de8de935195c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: fd59c3c29567540d
+- take: 4
+  source_file: /workspace/generated_images/exec-8480bb08-e618-472e-9ee8-2c6fd059a162.png
+  original_generated_png_sha256: eb772f40247d8c5d4c196789165bd8087153f627054de2b64ad600f30542ba67
+  inbox_png_sha256: 4f702571a556f4ab5ef01591829990b986b0a23f0602bf54a52ded1bfbcce44c
+  rgba_sha256: f1a5f36e8ea0feb884f9a388830fb02235f88170b46b3a6daab7c2e5eea7a423
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: fd59c3c29567540d

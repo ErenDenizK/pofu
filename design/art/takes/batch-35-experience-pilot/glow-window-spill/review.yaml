@@ -1,0 +1,286 @@
+batch: batch-35-experience-pilot
+contact_sheet: design/art/takes/batch-35-experience-pilot/glow-window-spill/contact.jpg
+jobs:
+  glow-window-spill:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after the single allowed retry, four sources preserved. All four
+      official hard reports fail value_floor (lockedLp5=19.6) and palette_drift (8.4867,8.5674,8.5315,8.7494
+      mean dE). Both rounds paint a suitable narrow bright sill-end widening to a
+      faint warm trapezoid with broken painterly edges, no window/frame/physical source/text/rays/ring.
+      Independent review confirms official lock-light lifts black to gray (zero exact-black
+      pixels; retry locked borderRGB44-50), incompatible with plus-lighter. Retry
+      source border maxima6and11 also violate literal pure black. No manual cleanup,
+      profile waiver, third pair or failed master. Content cut, contact/takes retained.
+      Lead should provide additive no-lock and appropriate black QA profile before
+      another authorized attempt; not an operator manifest edit. No dependent jobs
+      in this pilot. Automated failures: t1 value_floor: lightness p5 20 (R1 59),
+      palette_drift: mean dE 8.5, p95 14.9, off-palette 25.9% (top: #774411 (3.2%),
+      #DD8833 (2.7%)); t2 value_floor: lightness p5 20 (R1 59), palette_drift: mean
+      dE 8.6, p95 15.7, off-palette 26.4% (top: #663311 (3.6%), #774411 (3.5%)); t3
+      value_floor: lightness p5 20 (R1 59), palette_drift: mean dE 8.5, p95 15.5,
+      off-palette 24.9% (top: #774411 (3.1%), #995522 (2.7%)); t4 value_floor: lightness
+      p5 20 (R1 59), palette_drift: mean dE 8.7, p95 15.8, off-palette 26.4% (top:
+      #774411 (3.2%), #663311 (2.6%)).'
+qa_reports:
+  3:
+    job: glow-window-spill
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 62 (R1 51)
+      value: 62.2
+    - check: value_floor
+      status: fail
+      message: lightness p5 20 (R1 59)
+      value: 19.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.3 (R1 5.3)
+      value: 0.32
+    - check: lock_load
+      status: warn
+      message: the lock moved colors by mean dE 12.0 (prefer a take that needs less)
+      value: 11.9787
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 8.5, p95 15.5, off-palette 24.9% (top: #774411 (3.1%), #995522
+        (2.7%))'
+      value: 8.5315
+    info:
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 3.5
+        L_p95: 66.0
+        C_p50: 5.0
+        C_p95: 65.4
+        C_p99: 69.2
+        detail: 0.72
+      metrics_locked:
+        L_p5: 19.6
+        L_p50: 20.0
+        L_p95: 65.9
+        C_p50: 5.0
+        C_p95: 62.2
+        C_p99: 63.6
+        detail: 0.32
+    fingerprint: 7c5b17050407f464
+  4:
+    job: glow-window-spill
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 63 (R1 51)
+      value: 63.2
+    - check: value_floor
+      status: fail
+      message: lightness p5 20 (R1 59)
+      value: 19.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.3 (R1 5.3)
+      value: 0.33
+    - check: lock_load
+      status: warn
+      message: the lock moved colors by mean dE 11.8 (prefer a take that needs less)
+      value: 11.758
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 8.7, p95 15.8, off-palette 26.4% (top: #774411 (3.2%), #663311
+        (2.6%))'
+      value: 8.7494
+    info:
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 4.8
+        L_p95: 67.9
+        C_p50: 6.6
+        C_p95: 68.1
+        C_p99: 70.9
+        detail: 0.7
+      metrics_locked:
+        L_p5: 19.6
+        L_p50: 20.2
+        L_p95: 67.8
+        C_p50: 6.6
+        C_p95: 63.2
+        C_p99: 64.1
+        detail: 0.33
+    fingerprint: 7c5b17050407f464
+  2:
+    job: glow-window-spill
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 63 (R1 51)
+      value: 62.9
+    - check: value_floor
+      status: fail
+      message: lightness p5 20 (R1 59)
+      value: 19.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.3 (R1 5.3)
+      value: 0.31
+    - check: lock_load
+      status: warn
+      message: the lock moved colors by mean dE 11.8 (prefer a take that needs less)
+      value: 11.826
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 8.6, p95 15.7, off-palette 26.4% (top: #663311 (3.6%), #774411
+        (3.5%))'
+      value: 8.5674
+    info:
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 4.5
+        L_p95: 64.7
+        C_p50: 6.6
+        C_p95: 67.1
+        C_p99: 71.3
+        detail: 0.67
+      metrics_locked:
+        L_p5: 19.6
+        L_p50: 20.2
+        L_p95: 64.7
+        C_p50: 6.6
+        C_p95: 62.9
+        C_p99: 64.3
+        detail: 0.31
+    fingerprint: 7c5b17050407f464
+  1:
+    job: glow-window-spill
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 62 (R1 51)
+      value: 62.2
+    - check: value_floor
+      status: fail
+      message: lightness p5 20 (R1 59)
+      value: 19.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.3 (R1 5.3)
+      value: 0.35
+    - check: lock_load
+      status: warn
+      message: the lock moved colors by mean dE 12.0 (prefer a take that needs less)
+      value: 11.9955
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 8.5, p95 14.9, off-palette 25.9% (top: #774411 (3.2%), #DD8833
+        (2.7%))'
+      value: 8.4867
+    info:
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 3.5
+        L_p95: 65.1
+        C_p50: 5.0
+        C_p95: 65.6
+        C_p99: 70.0
+        detail: 0.76
+      metrics_locked:
+        L_p5: 19.6
+        L_p50: 20.0
+        L_p95: 65.0
+        C_p50: 5.0
+        C_p95: 62.2
+        C_p99: 63.9
+        detail: 0.35
+    fingerprint: 7c5b17050407f464
+manual_review:
+  excluded_takes: []
+  note: Skipped after the single allowed retry, four sources preserved. All four official
+    hard reports fail value_floor (lockedLp5=19.6) and palette_drift (8.4867,8.5674,8.5315,8.7494
+    mean dE). Both rounds paint a suitable narrow bright sill-end widening to a faint
+    warm trapezoid with broken painterly edges, no window/frame/physical source/text/rays/ring.
+    Independent review confirms official lock-light lifts black to gray (zero exact-black
+    pixels; retry locked borderRGB44-50), incompatible with plus-lighter. Retry source
+    border maxima6and11 also violate literal pure black. No manual cleanup, profile
+    waiver, third pair or failed master. Content cut, contact/takes retained. Lead
+    should provide additive no-lock and appropriate black QA profile before another
+    authorized attempt; not an operator manifest edit. No dependent jobs in this pilot.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-87938637-4faa-4b92-bd81-b12a569c66a9.png
+  original_generated_png_sha256: 4956f3437ddffc457a6e729224b62391b89b9a357c105aaaec2656fba8ac0d8c
+  inbox_png_sha256: 749f0b85f6278f3aee30a694ef918643f2d342f35ae6e1654f4e57d4ab5b3281
+  rgba_sha256: 0f590248804cbea28a3a5b051b80ba61c0658eec252dc4c38a20a2a6373365d0
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7c5b17050407f464
+- take: 2
+  source_file: /workspace/generated_images/exec-961d0a26-b299-498b-bcbb-85c93d5561c3.png
+  original_generated_png_sha256: d7c977e3659609f36c6e9db9556d1fe69270e7bfb766be37fa2826b274d12d5b
+  inbox_png_sha256: fb497850e7fc5c0b3ed79cae183e7acf5e443bf27fcc071205845df4f96f7a21
+  rgba_sha256: de21f46dfcb62b3ea5e406f5b48ef8775a8c850276cdbdda5389afc40211f647
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7c5b17050407f464
+- take: 3
+  source_file: /workspace/generated_images/exec-5f86008c-cf04-4b78-8354-68bfb712b466.png
+  original_generated_png_sha256: a73366358f94cff5d35179bc98c682e5f7be0d00c1b0088a6d59d73172667707
+  inbox_png_sha256: cd3a61ed2c712037978b0fabb2fe90281a91fec9bfaa8566c0f05470f2198c6f
+  rgba_sha256: ff105053ea8742f26c18e2f9345d1c2e3b62728585ff4b15ec4514e504be17ee
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7c5b17050407f464
+- take: 4
+  source_file: /workspace/generated_images/exec-6cfb1f11-8942-43ee-9759-7c147d1af4e2.png
+  original_generated_png_sha256: e943f1dddcde107d950ba701fefa39f1083dc371e8e85e7c1d0427f263413532
+  inbox_png_sha256: 6cfacc5f5754af510314bceb68758f64471b8c2dba37348e70536c05336cd043
+  rgba_sha256: 0af0d511ea4e3ea9346dd3f3b9f9e22234fa300a1407e244ddb7cfc73b940b1e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7c5b17050407f464

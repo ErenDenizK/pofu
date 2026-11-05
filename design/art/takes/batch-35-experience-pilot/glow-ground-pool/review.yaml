@@ -1,0 +1,285 @@
+batch: batch-35-experience-pilot
+contact_sheet: design/art/takes/batch-35-experience-pilot/glow-ground-pool/contact.jpg
+jobs:
+  glow-ground-pool:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after the one allowed retry, four retained sources total. All four
+      official reports hard-fail value_floor (locked Lp5=19.6) and palette_drift (t1
+      9.3876, t2 9.5739, t3 9.1196, t4 9.2094 mean dE). Shape and warm painterly elliptical
+      falloff are suitable, with no physical emitter/object/text/ring, but the official
+      lock-light lifts source black to aboutRGB47 and leaves zero exact-black pixels:
+      incompatible with plus-lighter no-light background. Initial source backgrounds
+      also have faint border noise (maxRGB2). This is a profile/lock incompatibility
+      for the lead to fix, not a QA waiver or reason to loop generation. No promoted
+      master, manual pixel cleanup or oversized upload. Preserve all sources and contact/QA
+      review; mark content cut. No dependent jobs in this pilot. Automated failures:
+      t1 value_floor: lightness p5 20 (R1 59), palette_drift: mean dE 9.4, p95 17.6,
+      off-palette 31.6% (top: #EE9944 (3.2%), #663311 (3.0%)); t2 value_floor: lightness
+      p5 20 (R1 59), palette_drift: mean dE 9.6, p95 17.3, off-palette 32.5% (top:
+      #663311 (3.8%), #EE9944 (3.8%)); t3 value_floor: lightness p5 20 (R1 59), palette_drift:
+      mean dE 9.1, p95 15.8, off-palette 35.3% (top: #CC7733 (3.3%), #995522 (3.2%));
+      t4 value_floor: lightness p5 20 (R1 59), palette_drift: mean dE 9.2, p95 17.2,
+      off-palette 32.4% (top: #EE9944 (4.1%), #663311 (3.5%)).'
+qa_reports:
+  1:
+    job: glow-ground-pool
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x512
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 64 (R1 51)
+      value: 63.7
+    - check: value_floor
+      status: fail
+      message: lightness p5 20 (R1 59)
+      value: 19.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.38
+    - check: lock_load
+      status: warn
+      message: the lock moved colors by mean dE 11.2 (prefer a take that needs less)
+      value: 11.1619
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 9.4, p95 17.6, off-palette 31.6% (top: #EE9944 (3.2%), #663311
+        (3.0%))'
+      value: 9.3876
+    info:
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 8.0
+        L_p95: 75.7
+        C_p50: 13.0
+        C_p95: 69.5
+        C_p99: 70.7
+        detail: 0.72
+      metrics_locked:
+        L_p5: 19.6
+        L_p50: 20.7
+        L_p95: 75.7
+        C_p50: 13.0
+        C_p95: 63.7
+        C_p99: 64.1
+        detail: 0.38
+    fingerprint: 70315e48ce0ae4e8
+  2:
+    job: glow-ground-pool
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x512
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 64 (R1 51)
+      value: 63.5
+    - check: value_floor
+      status: fail
+      message: lightness p5 20 (R1 59)
+      value: 19.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.41
+    - check: lock_load
+      status: warn
+      message: the lock moved colors by mean dE 11.1 (prefer a take that needs less)
+      value: 11.1207
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 9.6, p95 17.3, off-palette 32.5% (top: #663311 (3.8%), #EE9944
+        (3.8%))'
+      value: 9.5739
+    info:
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 8.3
+        L_p95: 76.5
+        C_p50: 14.0
+        C_p95: 69.0
+        C_p99: 70.2
+        detail: 0.76
+      metrics_locked:
+        L_p5: 19.6
+        L_p50: 20.8
+        L_p95: 76.5
+        C_p50: 14.1
+        C_p95: 63.5
+        C_p99: 63.9
+        detail: 0.41
+    fingerprint: 70315e48ce0ae4e8
+  3:
+    job: glow-ground-pool
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x512
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 63 (R1 51)
+      value: 62.8
+    - check: value_floor
+      status: fail
+      message: lightness p5 20 (R1 59)
+      value: 19.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.43
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 9.2
+      value: 9.2333
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 9.1, p95 15.8, off-palette 35.3% (top: #CC7733 (3.3%), #995522
+        (3.2%))'
+      value: 9.1196
+    info:
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 18.2
+        L_p95: 75.4
+        C_p50: 25.4
+        C_p95: 66.8
+        C_p99: 68.2
+        detail: 0.76
+      metrics_locked:
+        L_p5: 19.6
+        L_p50: 23.2
+        L_p95: 75.3
+        C_p50: 25.4
+        C_p95: 62.8
+        C_p99: 63.2
+        detail: 0.43
+    fingerprint: 70315e48ce0ae4e8
+  4:
+    job: glow-ground-pool
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x512
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 63 (R1 51)
+      value: 63.1
+    - check: value_floor
+      status: fail
+      message: lightness p5 20 (R1 59)
+      value: 19.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.4 (R1 5.3)
+      value: 0.41
+    - check: lock_load
+      status: warn
+      message: the lock moved colors by mean dE 10.4 (prefer a take that needs less)
+      value: 10.4205
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 9.2, p95 17.2, off-palette 32.4% (top: #EE9944 (4.1%), #663311
+        (3.5%))'
+      value: 9.2094
+    info:
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 11.4
+        L_p95: 77.4
+        C_p50: 17.8
+        C_p95: 67.7
+        C_p99: 68.7
+        detail: 0.78
+      metrics_locked:
+        L_p5: 19.6
+        L_p50: 21.4
+        L_p95: 77.3
+        C_p50: 17.9
+        C_p95: 63.1
+        C_p99: 63.4
+        detail: 0.41
+    fingerprint: 70315e48ce0ae4e8
+manual_review:
+  excluded_takes: []
+  note: 'Skipped after the one allowed retry, four retained sources total. All four
+    official reports hard-fail value_floor (locked Lp5=19.6) and palette_drift (t1
+    9.3876, t2 9.5739, t3 9.1196, t4 9.2094 mean dE). Shape and warm painterly elliptical
+    falloff are suitable, with no physical emitter/object/text/ring, but the official
+    lock-light lifts source black to aboutRGB47 and leaves zero exact-black pixels:
+    incompatible with plus-lighter no-light background. Initial source backgrounds
+    also have faint border noise (maxRGB2). This is a profile/lock incompatibility
+    for the lead to fix, not a QA waiver or reason to loop generation. No promoted
+    master, manual pixel cleanup or oversized upload. Preserve all sources and contact/QA
+    review; mark content cut. No dependent jobs in this pilot.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-2ec889b1-c986-4c68-a87d-ebf4ddf5a509.png
+  original_generated_png_sha256: 77ba5de34423a7a4ff5929c06bf187ce91ed132ef7e67e75243f4318461b6c14
+  inbox_png_sha256: d0597faad96dd0bb8ddb16fbb3a3d11da279124734e7c41a92770e63103914f4
+  rgba_sha256: fe27a6dc57e3e68404808b59e77aebf739547f181d85cedfb4a3ced053f1e4fa
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 70315e48ce0ae4e8
+- take: 2
+  source_file: /workspace/generated_images/exec-00b1947f-7d0d-455e-bc13-e5e7b86cfd48.png
+  original_generated_png_sha256: fda91ccc154763991e785746136457e8cf7fec88d6826cf55d8728a0cd1a4d86
+  inbox_png_sha256: 7154b1c924ecced7142f46aca23b45ff121d3a0019146ef0fb69fee107f20f2a
+  rgba_sha256: 6ddef4277d5b798c88203b589ea5763dad8958b5839b0f604b6a062f9f67d432
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 70315e48ce0ae4e8
+- take: 3
+  source_file: /workspace/generated_images/exec-85fe94f3-d082-426b-963a-28ee4dedebbe.png
+  original_generated_png_sha256: ff31f49241f46c4fbd1de65c850115038edb39765127b5c9586137cf0c6781a2
+  inbox_png_sha256: e4420dfc1b912adc8df22265bff1846d2b52bca326676704c5213b3c3353d4da
+  rgba_sha256: 616bc622f173861cc87e9c38c4688c948396ccb43397f6738d5fef9a48618e23
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 70315e48ce0ae4e8
+- take: 4
+  source_file: /workspace/generated_images/exec-f3d98cc6-4901-44ae-8ee4-c21cfb6d3362.png
+  original_generated_png_sha256: e1ea9ff86df253c2f7011b563e09a49d25d397a689b257e3c2cc63db149eb2b0
+  inbox_png_sha256: b6826ff6c91cf09cd68b3b2bdb2adc507fe6e74a0c0244e127760af4400b54d7
+  rgba_sha256: 75d19b1fccc362d96f0aed192948541b849efbe1a6e33b3d0199ff91352d44fa
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 70315e48ce0ae4e8
