@@ -338,12 +338,13 @@ public final class IslandSceneModel {
 
     // MARK: - Taps
 
-    /// A tap on a station: at the Island framing or behind a sheet it
-    /// focuses; at Home the world is one soft target (§1.4).
+    /// A tap on a station focuses it and raises its sheet. From the Map or
+    /// Home the camera first heads for the island, so the one gesture
+    /// travels there and opens the sheet, and closing it rests at the
+    /// island.
     func stationTapped(_ id: StationID) {
-        if focus == nil, framing == .home {
+        if focus == nil, framing != .island {
             go(to: .island)
-            return
         }
         focusStation(id)
     }
