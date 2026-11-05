@@ -2,6 +2,11 @@ import Foundation
 import Testing
 @testable import PofuWorld
 
+@MainActor
+final class PowerTestClock {
+    var now = 0.0
+}
+
 @Suite("Frame policy")
 struct FramePolicyTests {
     private let policy = FramePolicy()
@@ -186,8 +191,8 @@ struct FramePolicyTests {
 
     @MainActor
     @Test func drivingTheSceneFromDirectToSettledPausesTheTimeline() {
-        var now = 0.0
-        let power = WorldPower(clock: { now })
+        let clock = PowerTestClock()
+        let power = WorldPower(clock: { clock.now })
         power.demand.isDirect = true
         #expect(power.needsFrames)
         #expect(power.directive.state == .direct)
@@ -202,9 +207,9 @@ struct FramePolicyTests {
         power.beginVisit()
         #expect(power.directive.state == .ambient)
         #expect(power.directive.hz == 30)
-        now = 7.9
+        clock.now = 7.9
         #expect(power.needsFrames)
-        now = 8.1
+        clock.now = 8.1
         #expect(!power.needsFrames)
     }
 
@@ -220,8 +225,8 @@ struct FramePolicyTests {
 
     @MainActor
     @Test func theSystemStateFeedsTheDirective() {
-        var now = 0.0
-        let power = WorldPower(clock: { now })
+        let clock = PowerTestClock()
+        let power = WorldPower(clock: { clock.now })
         power.beginVisit()
         #expect(power.directive.state == .ambient)
         power.update(lowPower: true, thermal: .nominal, reduceMotion: false)
@@ -229,10 +234,10 @@ struct FramePolicyTests {
         power.update(lowPower: false, thermal: .serious, reduceMotion: false)
         #expect(power.directive.state == .settled)
         // The fall in temperature takes 30 s to be believed.
-        now = 1
+        clock.now = 1
         power.update(lowPower: false, thermal: .nominal, reduceMotion: false)
         #expect(power.conditions.thermal == .serious)
-        now = 32
+        clock.now = 32
         power.update(lowPower: false, thermal: .nominal, reduceMotion: false)
         #expect(power.conditions.thermal == .nominal)
     }
