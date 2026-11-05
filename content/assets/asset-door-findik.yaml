@@ -2,16 +2,17 @@ id: asset-door-findik
 type: asset
 title_tr: door-findik
 title_en: door-findik (prop)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  A small round wooden door set into soft earth, seen straight from the front, same family
-  as the attached door: soft sage-green painted wood in a thick honey wooden frame, a small
-  round window with a cream cross bar, a round knob, a flat honey doorstep, a little hanging
-  sign shaped like a round gear (a shape, no letters) and a tiny wrench hanging on a nail
-  beside the frame. A thin soft ring of caramel earth around the…
+summary: 'A small round wooden door set into soft earth, seen straight from the front,
+  same family as the attached door: soft sage-green painted wood in a thick honey
+  wooden frame, a small round window with a cream cross bar, a round knob, a flat
+  honey doorstep, a little hanging sign shaped like a round gear (a shape, no letters)
+  and a tiny wrench hanging on a nail beside the frame. A thin soft ring of caramel
+  earth around the…'
 art:
-  images: []
+  images:
+  - design/art/masters/door-findik/door-findik.png
   jobs:
   - batch-33-home-showcase:door-findik
 sources:
