@@ -181,6 +181,19 @@ final class LookScreenshotTests: XCTestCase {
         for (id, hour) in [("1200", 12.0), ("1830", 18.5)] {
             try write(try await shot(.island, hour: hour), name: "shadow-pofu-\(id)", to: folder)
         }
+        // The wide shot: the camera out on the whole island, so the stations
+        // and the shadows under them (and at night their light) are in view.
+        let wideTimes: [(String, Double, String)] = [("1200", 12, "12:00"), ("1830", 18.5, "18:30"), ("2230", 22.5, "22:30")]
+        var wides: [UIImage] = []
+        for (id, hour, _) in wideTimes {
+            let image = try await shot(.island, hour: hour)
+            try write(image, name: "shadow-wide-\(id)", to: folder)
+            wides.append(image)
+        }
+        try write(
+            grid([wides], titles: [wideTimes.map { "Wide · \($0.2)" }], cell: CGSize(width: 268, height: 582)),
+            name: "shadow-wide", to: folder
+        )
     }
 
     // MARK: - Where things are in a frame

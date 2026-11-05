@@ -81,11 +81,13 @@ enum ShadowBake {
                 )
             }
             for caster in casters {
+                // At night a character in a light's reach casts away from it.
+                let light = sun.characters[caster.id].map(sun.applying) ?? sun
                 switch caster.cast {
                 case .silhouette(let art, let explicitBox):
-                    silhouette(art: art, box: explicitBox, anchor: caster.anchor, sun: sun, tint: tint, in: cg)
+                    silhouette(art: art, box: explicitBox, anchor: caster.anchor, sun: light, tint: tint, in: cg)
                 case .blob(let width, let height):
-                    blob(width: width, height: height, anchor: caster.anchor, sun: sun, tint: tint, in: cg)
+                    blob(width: width, height: height, anchor: caster.anchor, sun: light, tint: tint, in: cg)
                 case .none:
                     break
                 }

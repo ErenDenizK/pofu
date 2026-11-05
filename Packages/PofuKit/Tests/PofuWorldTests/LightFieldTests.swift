@@ -152,4 +152,52 @@ struct LightFieldTests {
         #expect(abs(night.gain.r / night.gain.b - cell.gain.r / cell.gain.b) < 1e-9)
         #expect(night.saturation >= 1)
     }
+
+    // MARK: The lit-source table (design: night light from real sources)
+
+    @Test func everySourceIdComesFromTheTableOrIsTheLantern() {
+        let ids = Set(field(hour: 22).sources.map(\.id))
+        let table = Set(LitSources.rows.map(\.id))
+        #expect(ids.subtracting(table) == ["lantern"])
+        #expect(table.count == LitSources.rows.count)
+    }
+
+    @Test func theFourLitEditsAreRows() {
+        let overlays = Dictionary(uniqueKeysWithValues: LitSources.rows.compactMap { row in row.overlay.map { ($0.art, row.id) } })
+        #expect(overlays["tea-stall-1-glow"] == "ember")
+        #expect(overlays["workshop-1-glow"] == "window-workshop")
+        #expect(overlays["pond-5-glow"] == "pond")
+        #expect(overlays["windmill-5-glow"] == "window-windmill")
+        // Every overlay a row names exists in the catalog.
+        for row in LitSources.rows { if let overlay = row.overlay { #expect(WorldArt.sprite(overlay.art) != nil) } }
+    }
+
+    @Test func aRowLightsOnlyWhileItsRequirementHolds() {
+        var w = world(level: 8)
+        let light = WorldLight.at(hour: 22, wellbeing: 78, calm: 1.5)
+        let workshop = LitSources.rows.first { $0.id == "window-workshop" }!
+        w.stations = w.stations.map { var s = $0; if s.id == .workshop { s.level = 1 }; return s }
+        #expect(workshop.isActive(world: w, guestNight: false))
+        #expect(LightField.make(world: w, light: light).sources.contains { $0.id == "window-workshop" })
+        w.stations = w.stations.map { var s = $0; if s.id == .workshop { s.level = 2 }; return s }
+        #expect(!workshop.isActive(world: w, guestNight: false))
+        #expect(!LightField.make(world: w, light: light).sources.contains { $0.id == "window-workshop" })
+        let guest = LitSources.rows.first { $0.id == "window-guest" }!
+        #expect(guest.isActive(world: w, guestNight: true) && !guest.isActive(world: w, guestNight: false))
+    }
+
+    @Test func overlaysAnchorOnTheStationAtTheirLevelOnly() {
+        let w = world(level: 8)
+        let anchors = LitSources.rows.compactMap { $0.overlayAnchor(world: w, guestNight: false) }
+        #expect(anchors.allSatisfy { WorldArt.sprite($0.art) != nil })
+        #expect(LitSources.overlay(.teaStall, level: 1)?.art == "tea-stall-1-glow")
+        #expect(LitSources.overlay(.teaStall, level: 3) == nil)
+    }
+
+    @Test func theGroundPoolArtIsInTheCatalog() {
+        let root = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+            .appendingPathComponent("Sources/PofuWorld/Resources/World.xcassets/glow-ground-pool.imageset/glow-ground-pool.png")
+        #expect(FileManager.default.fileExists(atPath: root.path))
+    }
 }

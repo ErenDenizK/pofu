@@ -452,7 +452,7 @@ private struct SceneFrame<Bubble: View>: View {
         // The living sky places the sun; the light follows it.
         let light = baseLight.withSun(x: palette.sun.x, y: palette.sun.y)
         // One sun (or moon) for every shadow on the ground (light and shadow v2).
-        let shadow = SunShadow.make(light: light)
+        let shadow = SunShadow.make(light: light, world: world)
         // Without the runtime grade, the time of day tints the painted
         // world as before (game design §15: no night versions are
         // generated); with it, the colour script does the whole job.

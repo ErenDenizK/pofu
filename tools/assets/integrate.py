@@ -26,7 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import vivid  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
-FLAT = ("games", "ui")  # flat PNGs baked here, not through preblur
+FLAT = ("games", "ui", "glow")  # flat PNGs baked here, not through preblur
 MAP = Path(__file__).resolve().parent / "integration_map.json"
 PREBLUR = REPO / "design/prototypes/interactions/tools/preblur.py"
 
@@ -47,6 +47,8 @@ def master_file(folder: str) -> Path | None:
 
 def output_path(entry: dict, targets: dict) -> Path:
     root = REPO / targets[entry["target"]]
+    if entry["target"] == "glow":
+        return root / f"{entry['name']}.imageset" / f"{entry['name']}.png"
     if entry["target"] in FLAT:
         return root / f"{entry['name']}.png"
     return root / f"world-{entry['name']}.imageset" / f"world-{entry['name']}.png"
@@ -57,8 +59,39 @@ def trim(image: Image.Image) -> Image.Image:
     return image.crop(box) if box else image
 
 
+def glow_alpha(image: Image.Image) -> Image.Image:
+    """An additive glow on black as white on alpha: alpha is the brightest channel, so the app tints it
+    with the source's colour (`Canvas` shading) and adds it (plus-lighter) without a black box."""
+    rgb = image.convert("RGB")
+    alpha = max_channel(rgb)
+    white = Image.new("RGBA", rgb.size, (255, 255, 255, 0))
+    white.putalpha(alpha)
+    return white
+
+
+def max_channel(rgb: Image.Image) -> Image.Image:
+    from PIL import ImageChops
+
+    r, g, b = rgb.split()
+    return ImageChops.lighter(ImageChops.lighter(r, g), b)
+
+
 def bake_games(entry: dict, out: Path) -> None:
     src = master_file(entry["master"])
+    if entry["target"] == "glow":
+        image = Image.open(src).convert("RGBA")
+        max_w, max_h = (v * entry.get("scale", 3) for v in entry["points"])
+        f = min(1.0, max_w / image.width, max_h / image.height)
+        if f < 1.0:
+            image = image.resize((max(1, round(image.width * f)), max(1, round(image.height * f))), Image.LANCZOS)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        glow_alpha(image).save(out, "PNG", optimize=True)
+        contents = out.parent / "Contents.json"
+        contents.write_text(json.dumps({
+            "images": [{"filename": out.name, "idiom": "universal"}],
+            "info": {"author": "xcode", "version": 1},
+        }, indent=2) + "\n", encoding="utf-8")
+        return
     image = trim(Image.open(src).convert("RGBA"))
     scale = entry.get("scale", 3)
     max_w, max_h = (v * scale for v in entry["points"])
