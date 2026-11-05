@@ -43,6 +43,17 @@ Each point, and how it is handled:
    production work tied to tonight's needs; the backlog fills gaps.
 5. **A detailed plan for tonight while on high effort,** then medium to
    carry it out. Handled: this entry, the handoff plan and the spec.
+6. **Long term too, and optimise; keep the budget tight (about 30 hours
+   left), no pointless loops.** Handled: at most three agents, one CI
+   check each, no polling; long-term items go to the roadmap's tracks.
+7. **Work on everything we decided for the game and the tech, and use
+   what Codex makes.** Handled: wave 2 integrates the promoted art.
+8. **Island concepts go from medium to very good; he wants bad to good**
+   (not ruined, not "a few lights came on"; the healing should grow both
+   ways, no exaggeration, planned per island). Handled:
+   [island healing arc](../design/island-healing-arc.md) with a table per
+   island, a backlog row (batch-38) first in line, and a note for Codex.
+   He will tell Codex to always check it.
 
 ## 2026-11-05 (late night): workflow, growth, monetization, the story map
 

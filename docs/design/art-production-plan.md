@@ -104,12 +104,15 @@ real production batch when one earns it.
 | B-D | `batch-30b-decor-seasons-1`, `batch-30c-decor-seasons-2` | The four season sets (Bahar, Yaz, Güz, Kış), four pieces each on the decor guide, plus a corner per set; two manifests so each stays at 10 jobs | 10 + 10 | BACKLOG |
 | B-E | `batch-31-island-milestones` | Concept plates: the island at levels 1, 4, 7, 10, the closed hill gate, the Tam Çiçek ceremony night, the Tepe, the Altın Ada | 8 | BACKLOG |
 | B-F | `batch-32-weekly-themes` | Eight small weekly themes for home: a visitor, a market stall, kites, a lantern night, a fishing day, rain boots, a picnic, a stargazing night | 8 | BACKLOG |
+| B-G | `batch-38-island-arcs` | The [island healing arc](island-healing-arc.md) as concepts: Koke, Çağlayan, Emanet, Revontuli at stages 0, 2 and 4 in the game camera (12 plates); stage 0 must read clearly wrong yet alive, stage 4 must show the signature. Supersedes the stuck/healed look of batch-34 | 12 | BACKLOG (first in the backlog) |
 | B1 | `batch-22-gezgin-forms` | Gezgin, the cloud-whale Nazlı: form 1 (humble, tired, a mossy patch with bench and mooring post, lantern hook, scar shaped like a switched-off light) and form 2 (grown, lush island with grove and waterfall, hook and scar glowing); side views, three-quarter, docked at a pier, at night | 9 | BACKLOG |
 | B2 | `batch-23-stickers` | Emoji and sticker sheets of Pofu and Mochi (happy, sleepy, surprised, proud, sulky, laughing, waving, tea, thinking, love) plus Simit, Fındık, the goat and duo stickers, transparent | 9 | BACKLOG |
 | B3 | `batch-24-home-materials` | Upgrade props for the home stations on the decor guide: tea set, samovar, cushions, lantern, flower box, bench 2, mailbox 2, rope, crates, weather vane, boat 2 | 11 | BACKLOG |
 | B4 | `batch-25-seasons` | Concept frames of Ayçiçeği in spring, summer, autumn, first snow, rain, summer evening, snow at night | 7 | BACKLOG |
 | B5 | `batch-26-residents-concepts` | Concept portraits of Damla, Tuli, Boncuk, Nane and Yosun, each "first seen small" and "revealed grand" | 10 | BACKLOG |
 | B6 | `batch-27-ui-materials` | Tileable surface materials (paper, linen, wood, glazed clay, frosted glass study, felt) and ornaments (ribbons, stamps, wax seals, tags) | 10 | BACKLOG |
+
+**Every island concept** (founder, 2026-11-05) follows the [island healing arc](island-healing-arc.md): from clearly wrong to better than imagined, never ruined, never just "a few lights came on". Codex checks it before drawing any stuck or healed island.
 
 **Note for the next Gezgin batch** (founder, 2026-11-05): Gezgin form 1
 must **face the camera, clear of the pier**; in the harbor take (#191) her
