@@ -1,23 +1,32 @@
 import Foundation
 import PofuCore
 
-/// What a piece of dressing is (experience v1 §6). The art follows with
-/// Codex batch 35 (`dressing-meadow`, `dressing-garden`); until it ships the
-/// scene draws a stand-in.
+/// What a piece of dressing is (experience v1 §6). The art follows with the
+/// Codex jobs `dressing-meadow`, `dressing-garden` and `dressing-harbor`;
+/// until it ships the scene draws a code-drawn stand-in, and a baked sprite
+/// named `art` replaces it as soon as one exists.
 public enum DressingKind: String, CaseIterable, Hashable, Sendable {
     // Meadow
     case grassTuft, wildflowers, pebbles, mushroomRing
     // Garden
     case wateringCan, seedSack, twine, crate, trowel
+    // Harbor
+    case rope, barrel
 
     public enum Family: String, Hashable, Sendable {
-        case meadow, garden
+        case meadow, garden, harbor
+
+        /// The Codex job that paints the family's pieces.
+        public var job: String {
+            "dressing-\(rawValue)"
+        }
     }
 
     public var family: Family {
         switch self {
         case .grassTuft, .wildflowers, .pebbles, .mushroomRing: .meadow
         case .wateringCan, .seedSack, .twine, .crate, .trowel: .garden
+        case .rope, .barrel: .harbor
         }
     }
 
@@ -96,6 +105,9 @@ public enum IslandDressing {
         piece("garden-sack", .seedSack, -120, 12, 5...10),
         piece("tea-crate", .crate, 205, -4, 3...10),
         piece("tea-flowers", .wildflowers, 200, 12, 6...10, touchable: true),
+        // The harbor's first dressing waits at the bridge's foot from IL3.
+        piece("bridge-rope", .rope, 222, 4, 3...10),
+        piece("bridge-barrel", .barrel, 214, -10, 3...10),
         piece("gap-flowers", .wildflowers, 80, -16, 5...10, touchable: true),
         // The back lawn between the workshop and the tea stall.
         piece("meadow-back-1", .grassTuft, 62, -22, 1...10, touchable: true),
@@ -109,6 +121,35 @@ public enum IslandDressing {
 
     public static func piece(_ id: String) -> DressingPiece? {
         pieces.first { $0.id == id }
+    }
+
+    /// The pieces that leave when the island rises from `old` to `new`: they
+    /// were shown at the old level and are gone at the new one (their slot
+    /// opened). Going down or staying leaves nothing.
+    public static func leaving(fromLevel old: Int, toLevel new: Int) -> [DressingPiece] {
+        guard new > old else { return [] }
+        return pieces.filter { $0.isShown(atLevel: old) && !$0.isShown(atLevel: new) }
+    }
+}
+
+/// The reveal's puff (experience v1 §6, rule 2): a piece of dressing whose
+/// slot has opened leaves in a soft puff instead of vanishing.
+public enum DressingReveal {
+    /// How long the puff lasts, in seconds.
+    public static let puffSeconds = 0.6
+
+    /// The leaving piece and its puff at `elapsed` seconds into the leave.
+    /// `scale` and `opacity` are the piece's; `puffRadius` (world units) and
+    /// `puffOpacity` the cloud's. Done (nothing drawn) from `puffSeconds`.
+    public static func frame(elapsed: Double) -> (scale: Double, opacity: Double, puffRadius: Double, puffOpacity: Double)? {
+        guard elapsed >= 0, elapsed < puffSeconds else { return nil }
+        let p = elapsed / puffSeconds
+        return (
+            scale: 1 - 0.55 * p,
+            opacity: 1 - p * p,
+            puffRadius: 6 + 16 * p,
+            puffOpacity: sin(p * .pi) * 0.85
+        )
     }
 }
 
