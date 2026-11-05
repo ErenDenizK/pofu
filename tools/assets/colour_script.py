@@ -73,6 +73,12 @@ def validate(script: dict) -> list[str]:
             colour(f"{name}.sea.{f}", c["sea"][f])
         grade(f"{name}.grade", c["grade"])
         grade(f"{name}.character", c["character"])
+        for f in ("poolGain", "ambientFloor", "moonRim"):
+            v = c.get("light", {}).get(f)
+            if not isinstance(v, (int, float)) or not 0 <= v <= 1.5:
+                problems.append(f"{name}.light.{f}: a number from 0 to 1.5")
+        if c.get("light", {}).get("ambientFloor", 0) > 0.3:
+            problems.append(f"{name}.light.ambientFloor: a floor, not a light (at most 0.3)")
         # Pofu is never cut by the grade's saturation (pro-game-craft 4.3, the rule for Pofu).
         if c["character"].get("saturation", 1) < 1:
             problems.append(f"{name}.character: Pofu's saturation is never cut (< 1)")
@@ -161,6 +167,9 @@ def swift(script: dict) -> str:
             f"{i}shadow: {_rgb(c['shadow'])},",
             f"{i}rim: {_light(c['rim'])},",
             f"{i}practicals: Practicals(ember: {_num(c['practicals']['ember'])}, window: {_num(c['practicals']['window'])}),",
+            f"{i}poolGain: {_num(c['light']['poolGain'])},",
+            f"{i}ambientFloor: {_num(c['light']['ambientFloor'])},",
+            f"{i}moonRim: {_num(c['light']['moonRim'])},",
             f"{i}fog: ScriptFog(colour: {_hex(c['fog']['colour'])}, far: {_num(c['fog']['far'])}),",
             f"{i}sea: SeaColours(light: {_hex(c['sea']['light'])}, shade: {_hex(c['sea']['shade'])}, opacity: {_num(c['sea']['opacity'])}),",
             f"{i}grade: {_grade(c['grade'], i)},",

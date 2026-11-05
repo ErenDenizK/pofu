@@ -69,9 +69,13 @@ public struct WorldLight: Hashable, Sendable {
         let grade = cell.grade
             .layered(with: state.grade, amount: unwell)
             .layered(with: .calmGlow, amount: glow)
-        let character = cell.character
+        var character = cell.character
             .layered(with: state.character, amount: unwell)
             .layered(with: .calmGlow, amount: glow * 0.5)
+        // At night the pop comes from real light (`LightField`), so the
+        // separate lift shrinks to a small readability exposure. Gain only,
+        // so Pofu keeps his hue and saturation.
+        character.gain = nightExposed(character.gain, night: night)
         let practicals = Practicals(
             ember: cell.practicals.ember,
             window: max(cell.practicals.window, state.windowFloor * unwell)
@@ -147,6 +151,12 @@ public struct WorldLight: Hashable, Sendable {
         return (w[.day] ?? 0, (w[.dawn] ?? 0) + (w[.golden] ?? 0) + dusk / 2, (w[.night] ?? 0) + dusk / 2)
     }
 
+    /// A gain scaled by the night's shrink and readability exposure.
+    static func nightExposed(_ gain: GradeRGB, night: Double) -> GradeRGB {
+        let k = 1 - LookTuning.nightCharacterShrink * night + LookTuning.nightReadabilityExposure * night
+        return GradeRGB(gain.r * k, gain.g * k, gain.b * k)
+    }
+
     private static func smooth(_ t: Double) -> Double {
         t * t * (3 - 2 * t)
     }
@@ -166,6 +176,30 @@ public enum LookTuning {
     /// How long the effects stay live after the scene appears (a visit),
     /// in seconds; after that the settled frame is cached.
     public static let visitSeconds = 2.5
+
+    // MARK: Light field (experience v1 §2). Starting values; tuned on device.
+
+    /// The calm lantern's strength at calm ×1.0 and ×2.0.
+    public static let lanternMinimum = 0.4
+    public static let lanternMaximum = 1.0
+    /// The lantern's slot relative to Pofu's feet, in world units, and its
+    /// height; `HomeSlots.lantern` must match.
+    public static let lanternOffsetX = 34.0
+    public static let lanternOffsetY = 0.0
+    public static let lanternHeight = 40.0
+    /// Pool reaches along the ground, in world units.
+    public static let lanternReach = 64.0
+    public static let windowSpillReach = 46.0
+    public static let lampReach = 52.0
+    public static let pondReach = 56.0
+    /// How much a source's height tilts the light direction (height to
+    /// ground-plane depth).
+    public static let heightToDepth = 0.5
+    /// At night, how much of the characters' separate lift is taken away
+    /// (the pop now comes from real light) and the small readability
+    /// exposure that stays.
+    public static let nightCharacterShrink = 0.22
+    public static let nightReadabilityExposure = 0.08
 }
 
 extension Lens {

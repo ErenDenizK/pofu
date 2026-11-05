@@ -99,6 +99,12 @@ public struct ColourCell: Hashable, Sendable {
     /// nearest practical.
     public var rim: ScriptLight
     public var practicals: Practicals
+    /// The light field's gains (experience v1 §2): how strongly the pools
+    /// light the ground (0 by day), the floor of light every character
+    /// keeps, and the thin cool moon rim between sources.
+    public var poolGain: Double
+    public var ambientFloor: Double
+    public var moonRim: Double
     public var fog: ScriptFog
     public var sea: SeaColours
     /// The world's residual camera grade (plates and stations).
@@ -122,6 +128,9 @@ public struct ColourCell: Hashable, Sendable {
             shadow: .mix(a.shadow, b.shadow, t),
             rim: .mix(a.rim, b.rim, t),
             practicals: Practicals(ember: lerp(a.practicals.ember, b.practicals.ember), window: lerp(a.practicals.window, b.practicals.window)),
+            poolGain: lerp(a.poolGain, b.poolGain),
+            ambientFloor: lerp(a.ambientFloor, b.ambientFloor),
+            moonRim: lerp(a.moonRim, b.moonRim),
             fog: ScriptFog(colour: a.fog.colour.mixed(with: b.fog.colour, amount: t), far: lerp(a.fog.far, b.fog.far)),
             sea: SeaColours(
                 light: a.sea.light.mixed(with: b.sea.light, amount: t),
@@ -145,6 +154,9 @@ public struct ColourCell: Hashable, Sendable {
         shadow: GradeRGB(all: 0.6),
         rim: ScriptLight(colour: GradeRGB(all: 1), intensity: 0),
         practicals: Practicals(ember: 0, window: 0),
+        poolGain: 0,
+        ambientFloor: 0,
+        moonRim: 0,
         fog: ScriptFog(colour: PofuRGB(hex: 0xDCEAF4), far: 0.35),
         sea: SeaColours(light: PofuRGB(hex: 0xFFFFFF), shade: PofuRGB(hex: 0xD8E3EF), opacity: 0.95),
         grade: .neutral,
