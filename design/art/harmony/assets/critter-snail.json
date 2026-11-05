@@ -1,0 +1,50 @@
+{
+ "after": {
+  "C_mean": 31.669,
+  "C_p50": 33.429,
+  "C_p95": 42.308,
+  "L_mean": 74.973,
+  "L_p2": 55.287,
+  "L_p98": 89.264,
+  "detail": 1.618,
+  "edge": 0.455,
+  "warmth_b": 26.915
+ },
+ "before": {
+  "C_mean": 31.669,
+  "C_p50": 33.429,
+  "C_p95": 42.308,
+  "L_mean": 74.973,
+  "L_p2": 55.287,
+  "L_p98": 89.264,
+  "detail": 1.618,
+  "edge": 0.455,
+  "warmth_b": 26.915
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "sheet",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 81.6,
+ "score_before": 81.6,
+ "shipped": false,
+ "source": "design/art/masters/critter-snail/critter-snail.png",
+ "source_sha": "50c348dde65a1ce8"
+}
