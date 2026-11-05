@@ -1,0 +1,251 @@
+batch: batch-32-weekly-themes
+manifest: tools/imagegen/manifest/batch-32-weekly-themes.yaml
+manifest_sha256: 450c8dbab954cb31e73470d89b38dc3b2fabf83c1cf90f2ef9201b291d04e9aa
+contact_sheet: design/art/takes/batch-32-weekly-themes/x-week-market-stall/contact.jpg
+jobs:
+  x-week-market-stall:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both show a small square honey-wood
+      market counter with a coral/cream scalloped striped awning on two slim poles,
+      round baskets of apples, plums and small cream pots, one blank hanging cloth
+      sign and a slatted wooden crate beside the counter. No lettering, characters,
+      guide, ground or cast shadow. The broad awning and goods read as a pop-up market
+      at64px. The literal at-most-third width is checked in addition to numerical
+      decor QA: official posted take1 is360px and excluded; take2 is330px and passes
+      both the341.33px prose cap and guide. Take2 is the sole manually eligible take.
+      No manual resize or alpha cleanup. Hard QA then lowest lock load within eligible
+      takes; exploration style/light/palette warnings advisory. Independent read-only
+      review confirmed the contents and dimensions. Never promoted.'
+qa_reports:
+  1:
+    job: x-week-market-stall
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 46 (at most 22), p98 93 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.15 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.149
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.4 (at least 3.5)'
+      value: 6.37
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.52
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.1623
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 8.4, off-palette 2.1% (top: #CC6644 (0.6%), #DD7755
+        (0.5%))'
+      value: 2.2303
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 85 against the world reference (outliers: detail, edge)'
+      value: 85.1
+    info:
+      fit:
+        scale: 0.6716
+        anchor:
+        - 552.8
+        - 935
+      registration:
+        dx: -40
+        dy: -47
+      metrics_raw:
+        L_p5: 52.0
+        L_p50: 74.1
+        L_p95: 92.1
+        C_p50: 43.4
+        C_p95: 49.4
+        C_p99: 60.3
+        detail: 2.07
+      metrics_locked:
+        L_p5: 52.6
+        L_p50: 74.1
+        L_p95: 91.6
+        C_p50: 43.3
+        C_p95: 49.1
+        C_p99: 52.2
+        detail: 1.52
+    fingerprint: a9efe8fff1cddd25
+  2:
+    job: x-week-market-stall
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 92 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.18 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.18
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.0 (at least 3.5)'
+      value: 4.97
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.51
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.2208
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 5.0, off-palette 0.6% (top: #BB6633 (0.2%), #CC6644
+        (0.1%))'
+      value: 1.6548
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 88 against the world reference (outliers: edge)'
+      value: 88.3
+    info:
+      fit:
+        scale: 0.6403
+        anchor:
+        - 550.2
+        - 899
+      registration:
+        dx: -38
+        dy: -11
+      metrics_raw:
+        L_p5: 57.8
+        L_p50: 73.0
+        L_p95: 91.1
+        C_p50: 42.8
+        C_p95: 48.2
+        C_p99: 57.0
+        detail: 2.14
+      metrics_locked:
+        L_p5: 58.5
+        L_p50: 73.0
+        L_p95: 90.9
+        C_p50: 42.8
+        C_p95: 47.9
+        C_p99: 51.6
+        detail: 1.51
+    fingerprint: a9efe8fff1cddd25
+manual_review:
+  observed_note: 'Both show a small square honey-wood market counter with a coral/cream
+    scalloped striped awning on two slim poles, round baskets of apples, plums and
+    small cream pots, one blank hanging cloth sign and a slatted wooden crate beside
+    the counter. No lettering, characters, guide, ground or cast shadow. The broad
+    awning and goods read as a pop-up market at64px. The literal at-most-third width
+    is checked in addition to numerical decor QA: official posted take1 is360px and
+    excluded; take2 is330px and passes both the341.33px prose cap and guide. Take2
+    is the sole manually eligible take. No manual resize or alpha cleanup. Hard QA
+    then lowest lock load within eligible takes; exploration style/light/palette warnings
+    advisory. Independent read-only review confirmed the contents and dimensions.
+    Never promoted.'
+  excluded_takes:
+  - 1
+sources:
+- batch: batch-32-weekly-themes
+  job: x-week-market-stall
+  take: 1
+  round: 1
+  logical_run: 20261105-night32-visitor-market
+  source_file: /workspace/generated_images/exec-634038a9-b031-426e-a11f-05d0be85f07e.png
+  returned_at: '2026-11-05T19:57:17.436Z'
+  prompt_sha256: a465fc2b7828f591dc1b99ac1f35a7e23517de06a2f7ce472ee080b7286ccf9f
+  fingerprint: a9efe8fff1cddd25
+  saved_at: '2026-11-05T19:57:20.333624+00:00'
+  original_generated_png_sha256: 095fb84a614b78b0e9cfa8341cd358d4a21060b11059ffc86a1f18995daf4f89
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 194f0beaecad495b59f464841b7a11a16a4a505e749e0d8c3012c862127184ec
+  inbox_png_sha256: 8d9a827a39c543144eb500f5de4b9f45414be5e25e758f9477e7d31a8788f8a5
+  qa_sha256: 6971d7a2bf49e80b1cb6d7b2f69bfb3532cc7d7ba031eb475718ab07a0ce2910
+- batch: batch-32-weekly-themes
+  job: x-week-market-stall
+  take: 2
+  round: 1
+  logical_run: 20261105-night32-visitor-market
+  source_file: /workspace/generated_images/exec-f76b72c9-3dd9-44d6-bf1c-a83be31cc021.png
+  returned_at: '2026-11-05T19:54:22.731Z'
+  prompt_sha256: a465fc2b7828f591dc1b99ac1f35a7e23517de06a2f7ce472ee080b7286ccf9f
+  fingerprint: a9efe8fff1cddd25
+  saved_at: '2026-11-05T19:54:23.069826+00:00'
+  original_generated_png_sha256: 3f961ae19c4590d3d58d9f7752f4ba6a49d7eeda9bc57ee1ef0036166c4c26bd
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 9075d96f7b157a0e9e342fe37e455b95be1a1ccea5495fa9ee859ef83a4a6e80
+  inbox_png_sha256: 9975e3749d518123278a01a9cf161c418a3c282de1a885165b770bd2414dfe37
+  qa_sha256: 4791ca3247021ccee0ecebef2f585a80059bb5541bebbd2ab047482923a27fe9
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
