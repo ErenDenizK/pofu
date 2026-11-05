@@ -48,6 +48,7 @@ enum WorldStrings {
         switch id {
         case .mochi: "Mochi"
         case .findik: "Fındık"
+        case .keeper: String(localized: "resident.keeper", defaultValue: "The bees' keeper", bundle: .module)
         default: id.rawValue.capitalized
         }
     }
@@ -306,6 +307,82 @@ enum WorldStrings {
 
     static var settings: String {
         String(localized: "Settings", bundle: .module)
+    }
+
+    // MARK: Visitors and the quiet day's letter (experience v1 §5)
+    // New strings use `defaultValue:` and live in the catalog with Turkish:
+    // visitor.label "%@, ziyaretçi", visitor.greet "Merhaba de",
+    // visitor.gift "Hediye paketi", visitor.gift.hint "Aç",
+    // visitor.help "Yardım bekliyor", visitor.help.hint "Yardım et",
+    // visitor.letter "Sessiz gün mektubu", visitor.letter.hint "Yarın kimin geleceğini seç".
+
+    /// VoiceOver for the visitor: who has come.
+    static func visitorLabel(_ resident: ResidentID) -> String {
+        String(format: String(localized: "visitor.label", defaultValue: "%@, a visitor", bundle: .module), residentName(resident))
+    }
+
+    /// VoiceOver announcement of an arrival.
+    static func visitorArrived(_ resident: ResidentID) -> String {
+        String(format: String(localized: "visitor.arrived", defaultValue: "%@ has come to visit", bundle: .module), residentName(resident))
+    }
+
+    static var visitorGreetHint: String {
+        String(localized: "visitor.greet", defaultValue: "Say hello", bundle: .module)
+    }
+
+    static var giftLabel: String {
+        String(localized: "visitor.gift", defaultValue: "Gift parcel", bundle: .module)
+    }
+
+    static var giftHint: String {
+        String(localized: "visitor.gift.hint", defaultValue: "Open it", bundle: .module)
+    }
+
+    static var helpLabel: String {
+        String(localized: "visitor.help", defaultValue: "Needs a hand", bundle: .module)
+    }
+
+    static var helpHint: String {
+        String(localized: "visitor.help.hint", defaultValue: "Help", bundle: .module)
+    }
+
+    static var letterLabel: String {
+        String(localized: "visitor.letter", defaultValue: "Quiet-day letter", bundle: .module)
+    }
+
+    static var letterHint: String {
+        String(localized: "visitor.letter.hint", defaultValue: "Choose who comes tomorrow", bundle: .module)
+    }
+
+    static var inviteTitle: String {
+        String(localized: "invite.title", defaultValue: "Who should we invite tomorrow?", bundle: .module)
+    }
+
+    static var inviteSubtitle: String {
+        String(localized: "invite.subtitle", defaultValue: "Anyone you have met. It costs nothing and never runs out.", bundle: .module)
+    }
+
+    static var inviteEmpty: String {
+        String(localized: "invite.empty", defaultValue: "You have not met anyone yet. Visitors will come.", bundle: .module)
+    }
+
+    static var inviteClose: String {
+        String(localized: "invite.close", defaultValue: "Not now", bundle: .module)
+    }
+
+    /// The button's VoiceOver label: "Invite Sumi".
+    static func invite(_ name: String) -> String {
+        String(format: String(localized: "invite.pick", defaultValue: "Invite %@", bundle: .module), name)
+    }
+
+    /// VoiceOver label and hint of a part of the visit.
+    static func visitorPart(_ part: VisitorPart, visitor: VisitorSnapshot?) -> (label: String, hint: String) {
+        switch part {
+        case .visitor: (label: visitor.map { visitorLabel($0.resident) } ?? "", hint: visitorGreetHint)
+        case .gift: (label: giftLabel, hint: giftHint)
+        case .help: (label: helpLabel, hint: helpHint)
+        case .letter: (label: letterLabel, hint: letterHint)
+        }
     }
 }
 #endif

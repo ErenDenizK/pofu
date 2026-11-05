@@ -514,7 +514,28 @@ otherwise.
 The lantern emitter in B sits at `IslandLayout.pofu` plus the offset of
 `HomeSlots.lantern`, and A's `HomeSlotsTests` checks that the two match.
 **Wave 2**, after A, draws the visitors, the dressing and the critters in the
-world canvas.
+world canvas. It is built (`feat/visitors-and-life`) with code-drawn stand-ins
+that swap to the Codex sprites by name (`WorldArt.sprite(name)` is tried
+first): the dressing families draw as `dressing-meadow`, `dressing-garden`
+and `dressing-harbor`, the critters as `critter-butterfly`, `critter-snail`,
+`critter-bird`, `critter-ladybug` (the frog keeps `critter-frog`), the visit
+as `visitor-dandelion`, `gift-parcel` and `guest-letter`.
+
+- **Arrival.** The first time the scene sees an ungreeted visitor it holds a
+  Moment of at most 2 s: the camera pans to the slot (0.4 s lead), then the
+  visitor drifts down under a dandelion seed (V1) or steps in from the pier
+  (G1, V2, H4). Reduce Motion and a still frame skip it.
+- **Taps.** One resolver, four parts: the visitor greets (`greetedVisitor`),
+  the parcel opens (`openedGift`), the help target helps (`helped`), the quiet
+  day's letter opens a sheet that lists the met residents and sends
+  `invited(ResidentID)`. A stay-over night lights H4's window
+  (`HD2DLayer`'s `guestNight`); the visitor sleeps.
+- **Life.** Dressing draws in the station pass and leaves in a 0.6 s puff
+  when its slot opens; critters draw in the characters' pass and move only in
+  Ambient (`CritterMotion`), otherwise they are exactly at rest, so a settled
+  frame costs nothing. A brush sways touchable dressing and critters.
+- **Layout.** The workshop moved to x 6 and the windmill to x −90 so the
+  workshop's lit doorway clears Pofu's head at Home at night.
 
 **Codex manifest:** `tools/imagegen/manifest/batch-35-experience.yaml`.
 Sprites carry `light: {cell: day, layer: subject}`; glows are `ui` (additive,

@@ -80,8 +80,8 @@ home progression §4.2; here only what the slot itself adds.
 | S1 | garden | (−173, 6) | IL1 (built) | left tip; L5's giant sunflower turns with the sun; the Su pair's stream enters from the right |
 | S2 | tea stall | (154, 6) | IL2 | right tip, faces the bridge; the awning carries decor spot D2 |
 | S3 | pond | (−65, 23) | IL4 | front left, flat, never hides anything; frogs on the lily pads |
-| S4 | workshop | (61, −9) | IL6 | back right; IL6 paints a low knoll under it (the "back terrace") |
-| S5 | windmill | (−50, −25) | IL8 | back left, tallest; IL8 paints a knoll; storks perch on the cap in spring |
+| S4 | workshop | (6, −15) | IL6 | back centre-left; its lit doorway stands left of Pofu's head, clear of it (experience v1, wave 2); IL6 paints a low knoll under it (the "back terrace") |
+| S5 | windmill | (−90, −25) | IL8 | back left, tallest, beside the garden (a sliver shows at Home); IL8 paints a knoll; storks perch on the cap in spring |
 | S6 | hive | (−32, −6) | IL9 + Arı done | small (±18 wide), in the middle band in front of the windmill's right foot; bees fly the garden-pond-tea loop (code) |
 | S7 | bagel cart | (338, 6) | IL3 | harbor, left end, first thing over the bridge |
 | S8 | pier | (470, 30) | IL5 | harbor front right, runs off the lip toward the viewer; the ferry moors at L3 |

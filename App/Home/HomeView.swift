@@ -178,7 +178,8 @@ struct HomeView: View {
                 repair: { model.homeSheet = .setup },
                 openToday: { model.homeSheet = .today },
                 play: { model.playGarden() },
-                playableRounds: model.playableRounds
+                playableRounds: model.playableRounds,
+                visitor: { model.applyVisitorEvent($0) }
             )
         )
         .onChange(of: scenePhase, initial: true) { _, phase in

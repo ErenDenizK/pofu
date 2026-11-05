@@ -15,7 +15,8 @@ import PofuCore
 /// (`IslandFootprintTests`).
 public enum IslandLayout {
     /// Pofu's feet: front and centre, a little right of the middle so the
-    /// pond and the windmill stay visible beside him at Home.
+    /// pond stays visible beside him at Home. The workshop's lit doorway
+    /// stands to his left, clear of his head (the workshop is at x 6).
     public static let pofu = WorldPoint(x: 22, y: 27)
 
     /// The plate's lawn as an ellipse around the origin: half-width and
@@ -37,8 +38,8 @@ public enum IslandLayout {
     /// (`IslandFootprint`, look round 2: round 1's garden and çay ocağı hung
     /// over the rim); the test fails before a slot can stick out again.
     public static let stationAnchors: [StationID: WorldPoint] = [
-        .windmill: WorldPoint(x: -50, y: -25),
-        .workshop: WorldPoint(x: 66, y: -15),
+        .windmill: WorldPoint(x: -90, y: -25),
+        .workshop: WorldPoint(x: 6, y: -15),
         .garden: WorldPoint(x: -173, y: 6),
         .teaStall: WorldPoint(x: 154, y: 6),
         .pond: WorldPoint(x: -65, y: 23),

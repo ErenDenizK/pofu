@@ -4,9 +4,11 @@ import PofuCore
 /// What a critter is. Each sits at a rest spot that reads in a still frame
 /// and moves only in Ambient or when brushed (experience v1 §6, rule 3).
 public enum CritterKind: String, CaseIterable, Hashable, Sendable {
-    case butterfly, snail, bird, frog
+    case butterfly, snail, bird, frog, ladybug
 
-    /// The baked sprite's name (a four-frame loop plus a rest pose).
+    /// The baked sprite's name (a four-frame loop plus a rest pose); the
+    /// Codex jobs are `critter-butterfly`, `critter-snail`, `critter-bird`,
+    /// `critter-ladybug` (and the frog's).
     public var art: String {
         "critter-\(rawValue)"
     }
@@ -54,12 +56,12 @@ public enum Critters {
     }
 
     public static let all: [Critter] = [
-        critter("butterfly-west", .butterfly, on: .dressing("meadow-west"), -100, -20, 1...10),
-        critter("butterfly-east", .butterfly, on: .dressing("meadow-east-2"), 184, -20, 6...10),
+        critter("butterfly-west", .butterfly, on: .dressing("meadow-west"), -100, -14, 1...10),
+        critter("ladybug-east", .ladybug, on: .dressing("meadow-east-2"), 184, -20, 6...10),
         critter("snail-lip", .snail, on: .lip, -150, 36, 1...10),
         // The tallest roof so far: the garden's, then the windmill's.
         critter("bird-garden", .bird, on: .station(.garden), -173, -52, 1...7),
-        critter("bird-windmill", .bird, on: .station(.windmill), -50, -104, 8...10),
+        critter("bird-windmill", .bird, on: .station(.windmill), -90, -104, 8...10),
         // The frogs arrive with the pond.
         critter("frog-1", .frog, on: .station(.pond), -84, 26, 4...10),
         critter("frog-2", .frog, on: .station(.pond), -46, 24, 4...10),
@@ -67,5 +69,30 @@ public enum Critters {
 
     public static func critters(atLevel level: Int) -> [Critter] {
         all.filter { $0.levels.contains(level) }
+    }
+}
+
+/// The lawn's small life as touch props: the dressing that sways and the
+/// critters at rest, for the brushing finger (`TouchField`).
+public enum IslandLife {
+    public static func dressingID(_ piece: DressingPiece) -> String {
+        "dressing-\(piece.id)"
+    }
+
+    public static func critterID(_ critter: Critter) -> String {
+        "critter-\(critter.id)"
+    }
+
+    /// What a brush can touch at an island level: the touchable dressing and
+    /// every critter, by their feet.
+    public static func touchProps(atLevel level: Int) -> [(id: String, base: WorldPoint)] {
+        var props: [(id: String, base: WorldPoint)] = []
+        for piece in IslandDressing.pieces(atLevel: level) where piece.touchable {
+            props.append((id: dressingID(piece), base: piece.point))
+        }
+        for critter in Critters.critters(atLevel: level) {
+            props.append((id: critterID(critter), base: critter.rest))
+        }
+        return props
     }
 }

@@ -34,6 +34,9 @@ public struct WorldHome: View {
         public var play: (@MainActor () -> Void)?
         /// Garden rounds playable now.
         public var playableRounds: Int
+        /// Sends the game event of a tap on today's visit (greeting, gift,
+        /// help, invitation); `nil` leaves the visit decorative.
+        public var visitor: (@MainActor (GameEvent.Kind) -> Void)?
 
         public init(
             collect: @escaping @MainActor () -> SeedPouch?,
@@ -42,7 +45,8 @@ public struct WorldHome: View {
             repair: @escaping @MainActor () -> Void,
             openToday: (@MainActor () -> Void)? = nil,
             play: (@MainActor () -> Void)? = nil,
-            playableRounds: Int = 0
+            playableRounds: Int = 0,
+            visitor: (@MainActor (GameEvent.Kind) -> Void)? = nil
         ) {
             self.collect = collect
             self.build = build
@@ -51,6 +55,7 @@ public struct WorldHome: View {
             self.openToday = openToday
             self.play = play
             self.playableRounds = playableRounds
+            self.visitor = visitor
         }
     }
 
@@ -83,6 +88,7 @@ public struct WorldHome: View {
                 onPofuTap: { home.pofuTapped() },
                 onBuild: { station in build(station) },
                 props: props,
+                onVisitor: actions.visitor,
                 bubble: { bubble }
             )
 

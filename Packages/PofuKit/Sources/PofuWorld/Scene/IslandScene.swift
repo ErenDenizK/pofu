@@ -29,6 +29,9 @@ public struct IslandScene<Bubble: View>: View {
     let onPofuTap: (@MainActor () -> Void)?
     let onBuild: (@MainActor (StationID) -> Void)?
     let props: WorldProps?
+    /// Sends the game event of a tap on the visit: greeting, gift, help,
+    /// invitation (experience v1 §5).
+    let onVisitor: (@MainActor (GameEvent.Kind) -> Void)?
     let bubble: Bubble
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -48,6 +51,9 @@ public struct IslandScene<Bubble: View>: View {
     ///   - onBuild: Builds a station's next level; `nil` shows the sheet's
     ///     button as unavailable.
     ///   - props: The home objects drawn in the world (jar, lantern, pots).
+    ///   - onVisitor: Sends the game event of a tap on today's visitor, the
+    ///     parcel, the help target or an invitation; `nil` leaves them
+    ///     decorative.
     ///   - bubble: Pofu's speech bubble, shown above his head at Home.
     public init(
         world: WorldSnapshot,
@@ -56,6 +62,7 @@ public struct IslandScene<Bubble: View>: View {
         onPofuTap: (@MainActor () -> Void)? = nil,
         onBuild: (@MainActor (StationID) -> Void)? = nil,
         props: WorldProps? = nil,
+        onVisitor: (@MainActor (GameEvent.Kind) -> Void)? = nil,
         @ViewBuilder bubble: () -> Bubble
     ) {
         self.world = world
@@ -64,11 +71,15 @@ public struct IslandScene<Bubble: View>: View {
         self.onPofuTap = onPofuTap
         self.onBuild = onBuild
         self.props = props
+        self.onVisitor = onVisitor
         self.bubble = bubble()
     }
 
     public var body: some View {
         @Bindable var model = model
+        // The visit's taps report here; set on every pass so it never holds
+        // a stale closure.
+        let _ = model.onVisitorEvent = onVisitor
         GeometryReader { proxy in
             let size = proxy.size
             // The interval and the pause come from the frame policy (§4.1):
@@ -132,7 +143,7 @@ public struct IslandScene<Bubble: View>: View {
                 }
             }
             // A sheet or cover freezes then flattens the world (§3.1).
-            .pofuFlattenWhenCovered(model.isCovered)
+            .pofuFlattenWhenCovered(model.isCovered || model.isInviting)
             .contentShape(Rectangle())
             // One tap resolver replaces the per-object tap overlays (§1.3).
             // It answers on touch-up, with no wait for a double tap.
@@ -142,7 +153,10 @@ public struct IslandScene<Bubble: View>: View {
                         x: Double(value.location.x),
                         y: Double(value.location.y),
                         stations: world.stations,
-                        arrived: Set(world.islands)
+                        arrived: Set(world.islands),
+                        visitor: world.visitor,
+                        invitationOpen: world.invitationOpen,
+                        isBedtime: world.isBedtime
                     )
                 }
             )
@@ -223,6 +237,16 @@ public struct IslandScene<Bubble: View>: View {
         .onChange(of: look.tuning.springs, initial: true) { _, springs in
             model.cameraSprings = springs
         }
+        // The dressing leaves in a puff when a slot opens; a new visitor
+        // arrives once (experience v1 §5.3, §6).
+        .onChange(of: world.islandLevel, initial: true) { _, level in
+            model.noteIslandLevel(level, at: Date())
+        }
+        .onChange(of: world.visitor, initial: true) { _, visitor in
+            if model.noteVisitor(visitor, at: Date(), still: still), let visitor {
+                AccessibilityNotification.Announcement(WorldStrings.visitorArrived(visitor.resident)).post()
+            }
+        }
         .task {
             model.power.startObservingSystem()
         }
@@ -262,6 +286,16 @@ public struct IslandScene<Bubble: View>: View {
             .pofuSheetBackground()
             .presentationBackgroundInteraction(.enabled(upThrough: .fraction(0.42)))
             .presentationContentInteraction(.resizes)
+        }
+        // A quiet day's letter: pick who comes tomorrow.
+        .sheet(isPresented: $model.isInviting) {
+            InviteSheet(
+                choices: VisitorStage.inviteChoices(met: world.metResidents),
+                onPick: { model.invite($0) },
+                onClose: { model.isInviting = false }
+            )
+            .presentationDetents([.medium, .large])
+            .pofuSheetBackground()
         }
     }
 
@@ -316,14 +350,32 @@ extension IslandScene where Bubble == EmptyView {
         home: WorldHomeModel? = nil,
         onPofuTap: (@MainActor () -> Void)? = nil,
         onBuild: (@MainActor (StationID) -> Void)? = nil,
-        props: WorldProps? = nil
+        props: WorldProps? = nil,
+        onVisitor: (@MainActor (GameEvent.Kind) -> Void)? = nil
     ) {
-        self.init(world: world, model: model, home: home, onPofuTap: onPofuTap, onBuild: onBuild, props: props) { EmptyView() }
+        self.init(world: world, model: model, home: home, onPofuTap: onPofuTap, onBuild: onBuild, props: props, onVisitor: onVisitor) { EmptyView() }
     }
 }
 
 /// A build moment at one instant.
 typealias BuildFrame = (moment: BuildMoment, time: Double)
+
+/// Today's visit and the lawn's small life at one frame (experience v1 §5,
+/// §6): what the world canvas draws besides the stations and residents.
+struct LifeFrame {
+    var visitor: VisitorSnapshot?
+    var invitationOpen = false
+    var isBedtime = false
+    var islandLevel = 1
+    /// Seconds since the visitor's arrival began, while it runs.
+    var arrival: Double?
+    /// The Ambient state is on: critters and the visitor may move.
+    var isAmbient = false
+    /// The frame's time, quantised to the policy's rate; 0 in a still frame.
+    var time = 0.0
+    /// Dressing mid-puff, with the seconds since it began.
+    var leaving: [(piece: DressingPiece, elapsed: Double)] = []
+}
 
 // MARK: - One frame
 
@@ -431,6 +483,18 @@ private struct SceneFrame<Bubble: View>: View {
         let animation: Animation? = still ? nil : .easeInOut(duration: 2.5)
         // Settled: the ambient layers hold still, so the frame is cached.
         let ambientPaused = look.hd2d && !model.needsFrames && build == nil
+        // The visit and the lawn's small life: the critters move only in the
+        // Ambient state, and a still frame is the rest pose.
+        let life = LifeFrame(
+            visitor: world.visitor,
+            invitationOpen: world.invitationOpen,
+            isBedtime: world.isBedtime,
+            islandLevel: world.islandLevel,
+            arrival: model.arrivalElapsed(at: clock),
+            isAmbient: !still && CritterMotion.moves(under: directive),
+            time: still ? 0 : FramePolicy.ambientTime(time),
+            leaving: model.dressingLeaving(at: clock)
+        )
 
         ZStack(alignment: .topLeading) {
             ZStack(alignment: .topLeading) {
@@ -451,7 +515,8 @@ private struct SceneFrame<Bubble: View>: View {
                     build: build,
                     model: model,
                     clock: clock,
-                    characterGrade: characterGrade
+                    characterGrade: characterGrade,
+                    life: life
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
@@ -478,7 +543,8 @@ private struct SceneFrame<Bubble: View>: View {
                     build: build,
                     model: model,
                     clock: clock,
-                    characterGrade: characterGrade
+                    characterGrade: characterGrade,
+                    life: life
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
@@ -533,7 +599,7 @@ private struct SceneFrame<Bubble: View>: View {
                         art: look.art,
                         litOverlays: look.litOverlays,
                         relit: relight != nil,
-                        guestNight: false, // TODO(PR D): a visitor sleeps in the guest room
+                        guestNight: VisitorStage.isGuestNight(world.visitor),
                         directive: directive
                     )
                 }
@@ -623,6 +689,8 @@ private struct WorldCanvas: View {
     let clock: Date
     /// The residents' light (the colour script's character grade).
     let characterGrade: WorldGrade
+    /// Today's visit and the lawn's small life at this frame.
+    let life: LifeFrame
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -651,6 +719,10 @@ private struct WorldCanvas: View {
         enum Kind {
             case station(StationStatus)
             case resident(IslandLayout.Resident)
+            /// A piece of the lawn's dressing; `elapsed` is set while it leaves in the reveal's puff.
+            case dressing(DressingPiece, elapsed: Double?)
+            case critter(Critter)
+            case visitor(VisitorStage.Placed)
         }
 
         var id: String
@@ -676,7 +748,36 @@ private struct WorldCanvas: View {
             let feet = IslandFootprint.clamped(resident.feet, footprint: IslandFootprint.footprint(of: resident.art))
             objects.append(Object(id: "resident-\(resident.id)", kind: .resident(resident), anchor: feet, depth: IslandLayout.depth(ofY: feet.y)))
         }
+        // The lawn's small life (§6) and today's visit (§5): nothing of it is
+        // drawn on the Archipelago.
+        if z >= WorldHitTest.archipelagoZ {
+            if layer == .environment {
+                // Dressing joins the station pass, back to front with it.
+                let shown = IslandDressing.pieces(atLevel: life.islandLevel)
+                for piece in shown {
+                    objects.append(Object(id: "dressing-\(piece.id)", kind: .dressing(piece, elapsed: nil), anchor: piece.point, depth: IslandLayout.depth(ofY: piece.point.y)))
+                }
+                for entry in life.leaving where !shown.contains(where: { $0.id == entry.piece.id }) {
+                    objects.append(Object(id: "dressing-\(entry.piece.id)", kind: .dressing(entry.piece, elapsed: entry.elapsed), anchor: entry.piece.point, depth: IslandLayout.depth(ofY: entry.piece.point.y)))
+                }
+            } else {
+                // Critters and the visit join the characters' pass.
+                for critter in Critters.critters(atLevel: life.islandLevel) where perchStands(critter) {
+                    objects.append(Object(id: "critter-\(critter.id)", kind: .critter(critter), anchor: critter.rest, depth: IslandLayout.depth(ofY: critter.rest.y)))
+                }
+                for part in VisitorStage.parts(visitor: life.visitor, invitationOpen: life.invitationOpen, isBedtime: life.isBedtime) {
+                    objects.append(Object(id: "visitor-\(part.id)", kind: .visitor(part), anchor: part.feet, depth: part.depth))
+                }
+            }
+        }
         return objects.sorted { $0.depth < $1.depth }
+    }
+
+    /// Whether what a critter perches on is built (a bird needs its roof, a
+    /// frog its pond).
+    private func perchStands(_ critter: Critter) -> Bool {
+        guard case .station(let station) = critter.perch else { return true }
+        return (world.stations.first { $0.id == station }?.level ?? 0) > 0
     }
 
     @ViewBuilder
@@ -726,6 +827,46 @@ private struct WorldCanvas: View {
                         label: "\(WorldStrings.residentName(resident.id)), \(WorldStrings.stationName(resident.station))",
                         value: "",
                         activate: { model.focusResident(resident.id) }
+                    )
+                }
+        case .dressing(let piece, let elapsed):
+            DressingView(
+                piece: piece,
+                point: point,
+                level: level,
+                sway: model.sway(of: IslandLife.dressingID(piece), at: clock),
+                leave: elapsed.flatMap { DressingReveal.frame(elapsed: $0) }
+            )
+        case .critter(let critter):
+            CritterView(
+                critter: critter,
+                point: point,
+                level: level,
+                pose: CritterMotion.pose(of: critter, at: life.time, isAmbient: life.isAmbient),
+                sway: model.sway(of: IslandLife.critterID(critter), at: clock),
+                grade: characterGrade
+            )
+        case .visitor(let placed):
+            let style = life.visitor.map { VisitorStage.arrivalStyle(for: $0.slot) } ?? .dandelion
+            let beat = life.visitor == nil ? nil : life.arrival.map { VisitorStage.arrival(style: style, elapsed: $0) }
+            let words = WorldStrings.visitorPart(placed.part, visitor: life.visitor)
+            VisitorPartView(
+                part: placed,
+                visitor: life.visitor,
+                point: point,
+                level: level,
+                arrival: beat,
+                bob: VisitorStage.idleBob(at: life.time, isAmbient: life.isAmbient),
+                grade: characterGrade,
+                pulse: model.pulses["visitor-\(placed.part.rawValue)", default: 0]
+            )
+                .overlay {
+                    hitArea(
+                        box: VisitorStage.hitBox(of: placed.part),
+                        at: point,
+                        label: words.label,
+                        value: words.hint,
+                        activate: { model.visitorTapped(placed.part, visitor: life.visitor) }
                     )
                 }
         }

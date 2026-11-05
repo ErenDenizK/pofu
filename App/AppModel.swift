@@ -350,6 +350,16 @@ final class AppModel {
         return pouch
     }
 
+    /// The player touched today's visit: a greeting, the parcel, the help
+    /// target or a pick from the quiet day's letter (`WorldClock` takes the
+    /// event). A seed parcel joins the pouch like the other seeds
+    /// (ADR-0015: world material, never screen time).
+    func applyVisitorEvent(_ kind: GameEvent.Kind) {
+        now = clock.now
+        advanceGame(to: now, applying: [GameEvent(at: now, kind: kind)])
+        save()
+    }
+
     /// Island-game rounds playable now: earned, within today's cap, none
     /// at night (`WorldClock.playableRounds`).
     var playableRounds: Int {

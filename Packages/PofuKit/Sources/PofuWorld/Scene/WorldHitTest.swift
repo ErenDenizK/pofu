@@ -9,6 +9,9 @@ public struct HitTarget: Hashable, Sendable {
         case resident(ResidentID)
         case prop(HomeSlots.Prop)
         case island(IslandID)
+        /// A part of today's visit: the visitor, the parcel, the thing that
+        /// needs help, the quiet day's letter (§5).
+        case visitor(VisitorPart)
     }
 
     public var kind: Kind
@@ -94,8 +97,14 @@ public enum WorldHitTest {
 
     /// Everything tappable at rail position `z`: only the islands on the
     /// Archipelago, otherwise the home island's open stations, its
-    /// residents and the home objects.
-    public static func targets(stations: [StationStatus], z: Double) -> [HitTarget] {
+    /// residents, the home objects and today's visit.
+    public static func targets(
+        stations: [StationStatus],
+        z: Double,
+        visitor: VisitorSnapshot? = nil,
+        invitationOpen: Bool = false,
+        isBedtime: Bool = false
+    ) -> [HitTarget] {
         guard z >= archipelagoZ else { return islandTargets() }
         var targets: [HitTarget] = []
         for status in stations where status.island == .home && status.isOpen {
@@ -121,6 +130,7 @@ public enum WorldHitTest {
         for prop in HomeSlots.Prop.allCases {
             targets.append(HitTarget(kind: .prop(prop), worldBox: prop.hitBox, depth: prop.depth))
         }
+        targets += VisitorStage.hitTargets(visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime)
         return targets
     }
 }
