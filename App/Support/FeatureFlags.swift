@@ -7,8 +7,8 @@ enum FeatureFlags {
 
     /// Home is `WorldHome` (app–game boundary §6): the wellbeing pill, the
     /// calm chip, the gear, the Today card and one contextual action, with
-    /// the visit queue, Collect and Build on the game model. Off in both
-    /// builds until the gate's dogfood week ends: the gate comes first, and
-    /// the founder's Home must not change under him mid-week.
-    static let worldHome = false
+    /// the visit queue, Collect and Build on the game model. On in both
+    /// builds: the dogfood week it waited for has not started, and without
+    /// it the island cannot be played (no Build, no garden, no Today).
+    static let worldHome = true
 }

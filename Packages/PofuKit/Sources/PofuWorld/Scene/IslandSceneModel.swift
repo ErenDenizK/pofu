@@ -62,6 +62,13 @@ public final class IslandSceneModel {
         }
     }
 
+    /// Garden rounds playable now, for the garden's sheet and Home's play
+    /// button; Home keeps it current.
+    public var playableRounds = 0
+    /// Starts the garden game; `nil` until Home sets it. The sheet's
+    /// "Play" calls it.
+    public var onPlay: (@MainActor () -> Void)?
+
     /// The sheet's detent; the build moment drops it to compact.
     public var sheetDetent: StationSheetDetent = .medium
 
@@ -338,12 +345,13 @@ public final class IslandSceneModel {
 
     // MARK: - Taps
 
-    /// A tap on a station: at the Island framing or behind a sheet it
-    /// focuses; at Home the world is one soft target (§1.4).
+    /// A tap on a station focuses it and raises its sheet. From the Map or
+    /// Home the camera first heads for the island, so the one gesture
+    /// travels there and opens the sheet, and closing it rests at the
+    /// island.
     func stationTapped(_ id: StationID) {
-        if focus == nil, framing == .home {
+        if focus == nil, framing != .island {
             go(to: .island)
-            return
         }
         focusStation(id)
     }

@@ -115,7 +115,14 @@ struct HomeView: View {
                     SetupGuideView(model: model)
                         .pofuSheetChrome()
                 }
+            case .today:
+                TodaySheet(model: model)
+                    .presentationDetents([.medium, .large])
             }
+        }
+        // The garden game takes the whole screen, like Hop!.
+        .fullScreenCover(isPresented: $model.isPlayingGarden) {
+            GardenPlayView(model: model)
         }
     }
 
@@ -157,7 +164,10 @@ struct HomeView: View {
                 },
                 build: { model.buildStation($0) },
                 openSettings: { model.homeSheet = .settings },
-                repair: { model.homeSheet = .setup }
+                repair: { model.homeSheet = .setup },
+                openToday: { model.homeSheet = .today },
+                play: { model.playGarden() },
+                playableRounds: model.playableRounds
             )
         )
         .onChange(of: scenePhase, initial: true) { _, phase in
@@ -365,6 +375,21 @@ struct HomeView: View {
             .tint(PofuColor.accent)
             .accessibilityLabel(Text("Passes"))
         }
+    }
+}
+
+/// The Today sheet: the Today card on its own, opened from Home's glance.
+private struct TodaySheet: View {
+    let model: AppModel
+
+    var body: some View {
+        ScrollView {
+            TodayCard(model: model)
+                .padding(.horizontal, PofuSpacing.screen)
+                .padding(.top, PofuSpacing.xl)
+                .padding(.bottom, PofuSpacing.l)
+        }
+        .background(PofuColor.dayWash.ignoresSafeArea())
     }
 }
 

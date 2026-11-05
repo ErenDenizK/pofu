@@ -10,6 +10,9 @@ public enum RehearsalJump: String, Hashable, Sendable, CaseIterable {
     case night
     /// To the end of the bedtime under way, or of the next one: morning.
     case morning
+    /// To 09:00 next: the day skip, landing in full daylight rather than
+    /// at the first light of bedtime's end.
+    case nextDay
 }
 
 /// Where Rehearsal mode's time controls land, and what the game hears
@@ -20,6 +23,9 @@ public enum RehearsalJump: String, Hashable, Sendable, CaseIterable {
 /// with Pofu on screen the world would stay paused (A20).
 public struct RehearsalTime: Hashable, Sendable {
     public static let quietHour: TimeInterval = 60 * 60
+
+    /// Where the day skip lands: mid-morning, so the world is in daylight.
+    public static let dayStart = LocalTime(hour: 9, minute: 0)
 
     public var bedtime: DailyWindow
     public var calendar: Calendar
@@ -44,6 +50,8 @@ public struct RehearsalTime: Hashable, Sendable {
             return next(bedtime.start, after: date)
         case .morning:
             return next(bedtime.end, after: date)
+        case .nextDay:
+            return next(Self.dayStart, after: date)
         }
     }
 

@@ -50,22 +50,15 @@ public struct WorldLight: Hashable, Sendable {
     ///   - wellbeing: Pofu's wellbeing, 5…100.
     ///   - calm: The calm multiplier, 1…2.
     ///   - isBedtime: The bedtime window; it is always night.
-    ///   - darkAppearance: The system's dark mode, which leans the day
-    ///     toward night as the living sky does.
     public static func at(
         hour: Double,
         wellbeing: Double,
         calm: Double,
-        isBedtime: Bool = false,
-        darkAppearance: Bool = false
+        isBedtime: Bool = false
     ) -> WorldLight {
         var weights = cellWeights(hour: hour)
         if isBedtime {
             weights = [.night: 1]
-        } else if darkAppearance {
-            let k = 0.82  // as SkyModel leans the sky
-            weights = weights.mapValues { $0 * (1 - k) }
-            weights[.night, default: 0] += k
         }
         let (day, golden, night) = phases(weights)
         let unwell = smooth(min(max((55 - wellbeing) / 25, 0), 1))
@@ -112,8 +105,7 @@ public struct WorldLight: Hashable, Sendable {
     public static func resolve(
         world: WorldSnapshot,
         calendar: Calendar,
-        hourOverride: Double? = nil,
-        darkAppearance: Bool = false
+        hourOverride: Double? = nil
     ) -> WorldLight {
         let hour = hourOverride ?? world.clock.map { date in
             let c = calendar.dateComponents([.hour, .minute], from: date)
@@ -123,8 +115,7 @@ public struct WorldLight: Hashable, Sendable {
             hour: hour,
             wellbeing: world.wellbeing,
             calm: world.calm,
-            isBedtime: world.isBedtime,
-            darkAppearance: darkAppearance && hourOverride == nil
+            isBedtime: world.isBedtime
         )
     }
 

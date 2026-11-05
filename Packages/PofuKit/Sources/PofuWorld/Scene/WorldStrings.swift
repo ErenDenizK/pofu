@@ -248,6 +248,10 @@ enum WorldStrings {
         String(localized: "Fix", bundle: .module)
     }
 
+    static var play: String {
+        String(localized: "Play", bundle: .module)
+    }
+
     static var settings: String {
         String(localized: "Settings", bundle: .module)
     }
