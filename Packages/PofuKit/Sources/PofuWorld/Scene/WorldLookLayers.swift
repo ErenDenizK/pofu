@@ -155,6 +155,8 @@ struct HD2DLayer: View {
             glow.blendMode = .plusLighter
             var paint = context
             drawLitOverlays(in: &paint)
+            drawSunRims(in: &glow)
+            drawGlints(in: &glow)
             drawShafts(in: &glow, size: size)
             drawSunBloom(in: &glow, size: size)
             if !relit {
@@ -367,6 +369,97 @@ struct HD2DLayer: View {
                 ]),
                 startPoint: start, endPoint: end
             ))
+        }
+    }
+
+    // MARK: The sun on objects (visual round 2)
+
+    /// The home stations that are built, with the anchor and art they draw
+    /// at: the shared walk of the sun treatment below.
+    private var builtStations: [(id: StationID, art: String, anchor: WorldPoint)] {
+        world.stations.compactMap { status in
+            guard status.island == .home, status.level > 0,
+                  let slot = IslandLayout.stationAnchors[status.id],
+                  let art = IslandLayout.stationArt(status.id, level: status.level)?.name else { return nil }
+            return (status.id, art, IslandFootprint.clamped(slot, footprint: IslandFootprint.footprint(of: art)))
+        }
+    }
+
+    /// How much sun there is: full by day, a little warmer and lower at
+    /// golden hour and dawn, none at night.
+    private var sunK: Double {
+        min(light.day + 1.1 * light.golden, 1.1) * (1 - 0.5 * light.unwell)
+    }
+
+    /// A warm highlight on the sun's side of every built station, in the
+    /// key's colour, masked by the station's alpha (day, dawn and golden
+    /// hour; night has the practicals instead).
+    private func drawSunRims(in context: inout GraphicsContext) {
+        let k = sunK
+        guard k > 0.05, pose.scale > 0.3 else { return }
+        let key = light.cell.key
+        let strength = min(0.36 * key.intensity * k, 0.42)
+        let n = max(hypot(key.from.x, key.from.y), 1e-6)
+        let ux = key.from.x / n, uy = key.from.y / n
+        for station in builtStations {
+            let depth = IslandLayout.depth(ofY: station.anchor.y)
+            guard let mask = sprite(station.art, at: station.anchor, depth: depth) else { continue }
+            let r = mask.1
+            let centre = CGPoint(x: r.midX, y: r.midY)
+            let reach = Double(max(r.width, r.height)) / 2
+            let start = CGPoint(x: centre.x + ux * reach, y: centre.y + uy * reach)
+            let end = CGPoint(x: centre.x - ux * reach * 0.2, y: centre.y - uy * reach * 0.2)
+            shine(&context, on: mask, with: .linearGradient(
+                Gradient(stops: [
+                    .init(color: color(key.colour, strength), location: 0),
+                    .init(color: color(key.colour, strength * 0.4), location: 0.25),
+                    .init(color: color(key.colour, 0), location: 0.62),
+                ]),
+                startPoint: start, endPoint: end
+            ))
+        }
+    }
+
+    /// Where the glints sit on a station's art, as fractions of its box.
+    private static let glintSpots: [StationID: [(x: Double, y: Double)]] = [
+        .pond: [(0.22, 0.52), (0.38, 0.42), (0.55, 0.56), (0.70, 0.45), (0.47, 0.64), (0.80, 0.58)],
+        .garden: [(0.30, 0.34), (0.50, 0.22), (0.68, 0.30), (0.42, 0.46), (0.78, 0.42)],
+    ]
+
+    /// Small specular glints on the pond and the sunflower heads: a dim
+    /// base so the settled frame already shimmers, and a brief flash that
+    /// moves only while the scene's time does (frozen when settled, in
+    /// Low Power Mode and under Reduce Motion). Time is quantised to 30 Hz.
+    private func drawGlints(in context: inout GraphicsContext) {
+        let k = min(light.day + light.golden * 0.85, 1) * (1 - 0.6 * light.unwell)
+        guard k > 0.05, pose.scale > 0.3 else { return }
+        let s = pose.scale
+        let live = !ProcessInfo.processInfo.isLowPowerModeEnabled
+        let t = live ? (time * 30).rounded(.down) / 30 : 0
+        let tint = GradeRGB(1, 0.97 - 0.1 * light.golden, 0.86 - 0.25 * light.golden)
+        for station in builtStations {
+            guard let spots = Self.glintSpots[station.id],
+                  let box = WorldArt.sprite(WorldArt.key(station.art, art: art))?.sharp else { continue }
+            let depth = IslandLayout.depth(ofY: station.anchor.y)
+            for (i, spot) in spots.enumerated() {
+                let phase = Double(i) * 1.7 + (station.id == .pond ? 0.4 : 2.1)
+                let flash = pow(max(0, sin(t * 1.15 + phase * 2.3)), 8)
+                let a = (0.3 + 0.7 * flash) * k
+                let p = screen(
+                    WorldPoint(x: station.anchor.x + box.minX + box.width * spot.x, y: station.anchor.y + box.minY + box.height * spot.y),
+                    depth: depth
+                )
+                let r = (1.2 + 2.0 * flash) * max(s * 0.55, 0.8)
+                dot(&context, p, r: r * 2.2, color: color(tint, 0.55 * a))
+                // Two thin crossing strokes make it a glint, not a dot.
+                let arm = (3.5 + 7 * flash) * max(s * 0.5, 0.8)
+                var cross = Path()
+                cross.move(to: CGPoint(x: p.x - arm, y: p.y))
+                cross.addLine(to: CGPoint(x: p.x + arm, y: p.y))
+                cross.move(to: CGPoint(x: p.x, y: p.y - arm * 0.8))
+                cross.addLine(to: CGPoint(x: p.x, y: p.y + arm * 0.8))
+                context.stroke(cross, with: .color(color(tint, 0.7 * a)), lineWidth: 0.8)
+            }
         }
     }
 
