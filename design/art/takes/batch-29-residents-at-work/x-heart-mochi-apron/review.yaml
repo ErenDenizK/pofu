@@ -1,0 +1,380 @@
+batch: batch-29-residents-at-work
+manifest: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+manifest_sha256: 85203326885da331817b9113d50d36e87be75f1645ee142038732d64fa63da5d
+contact_sheet: design/art/takes/batch-29-residents-at-work/x-heart-mochi-apron/contact.jpg
+jobs:
+  x-heart-mochi-apron:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after its sole unchanged-prompt retry. All four original takes
+      look toward the viewer rather than down at the new apron: retry3 slightly sideways
+      toward viewer, retry4 frontal. Independent read-only second review confirms
+      no eligible downward gaze. Both rounds otherwise keep the on-model curl-free
+      long-eared Mochi, new cream apron with cobalt/turquoise Iznik tulip border,
+      plum-pink scarf, both paws pressed to cheeks, calm golden light and quiet pink
+      hearts/cream motes; no text, stars or extra limbs. Do not substitute a weaker
+      requirement for the explicit gaze, rephrase the prompt, alter pixels or generate
+      a third pair. Preserve all four takes/contact/reports. Other ten independent
+      jobs remain selected; no true dependents. Exploration palette/style/light warnings
+      remain advisory and are not the reason for this skip. Never promoted.'
+qa_reports:
+  1:
+    job: x-heart-mochi-apron
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 43.9
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 47 (at most 24), p98 93 (at least 86), spread
+        46 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 45.9
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 81 (band 48-86)'
+      value: 80.7
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.33 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.325
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 3.1 (at least 3.4)'
+      value: 3.12
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.49
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.351
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 6.1, off-palette 0.0% (top: #BB6677 (0.0%), #AA6666
+        (0.0%))'
+      value: 1.8602
+    info:
+      metrics_raw:
+        L_p5: 56.9
+        L_p50: 76.9
+        L_p95: 91.0
+        C_p50: 29.7
+        C_p95: 44.4
+        C_p99: 55.1
+        detail: 3.12
+      metrics_locked:
+        L_p5: 57.1
+        L_p50: 76.9
+        L_p95: 90.7
+        C_p50: 29.6
+        C_p95: 43.9
+        C_p99: 54.6
+        detail: 2.49
+    fingerprint: 0c08e87eeffdbefb
+  2:
+    job: x-heart-mochi-apron
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 38.8
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 45 (at most 24), p98 94 (at least 86), spread
+        49 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 48.9
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 80 (band 48-86)'
+      value: 80.0
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.37 (at most 0.22; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.373
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 3.5 (at least 3.4)'
+      value: 3.52
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.58
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.9
+      value: 1.9135
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 8.6, off-palette 0.5% (top: #DD7788 (0.1%), #CC6677
+        (0.1%))'
+      value: 2.308
+    info:
+      metrics_raw:
+        L_p5: 54.3
+        L_p50: 74.6
+        L_p95: 92.8
+        C_p50: 24.3
+        C_p95: 39.3
+        C_p99: 46.0
+        detail: 3.16
+      metrics_locked:
+        L_p5: 54.7
+        L_p50: 74.6
+        L_p95: 92.6
+        C_p50: 24.3
+        C_p95: 38.8
+        C_p99: 43.8
+        detail: 2.58
+    fingerprint: 0c08e87eeffdbefb
+  3:
+    job: x-heart-mochi-apron
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.1
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 54 (at most 24), p98 93 (at least 86), spread
+        40 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 39.7
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 80 (band 48-86)'
+      value: 80.3
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.41 (at most 0.22; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.408
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 3.2 (at least 3.4)'
+      value: 3.22
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.28
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.7
+      value: 1.6596
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 6.3, off-palette 0.5% (top: #DD6677 (0.1%), #DD7777
+        (0.1%))'
+      value: 2.1941
+    info:
+      metrics_raw:
+        L_p5: 60.5
+        L_p50: 75.9
+        L_p95: 90.9
+        C_p50: 23.1
+        C_p95: 38.7
+        C_p99: 45.1
+        detail: 2.88
+      metrics_locked:
+        L_p5: 60.8
+        L_p50: 75.9
+        L_p95: 90.6
+        C_p50: 23.1
+        C_p95: 38.1
+        C_p99: 44.5
+        detail: 2.28
+    fingerprint: 0c08e87eeffdbefb
+  4:
+    job: x-heart-mochi-apron
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.7
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 54 (at most 24), p98 94 (at least 86), spread
+        39 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 39.3
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 82 (band 48-86)'
+      value: 82.4
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.42 (at most 0.22; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.424
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 3.5 (at least 3.4)'
+      value: 3.51
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.15
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.6094
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 4.1, off-palette 0.2% (top: #BB6666 (0.1%), #CC7777
+        (0.0%))'
+      value: 1.5746
+    info:
+      metrics_raw:
+        L_p5: 62.2
+        L_p50: 79.7
+        L_p95: 91.1
+        C_p50: 24.2
+        C_p95: 40.1
+        C_p99: 43.9
+        detail: 2.72
+      metrics_locked:
+        L_p5: 62.5
+        L_p50: 79.7
+        L_p95: 90.8
+        C_p50: 24.2
+        C_p95: 39.7
+        C_p99: 43.2
+        detail: 2.15
+    fingerprint: 0c08e87eeffdbefb
+manual_review:
+  observed_note: 'Skipped after its sole unchanged-prompt retry. All four original
+    takes look toward the viewer rather than down at the new apron: retry3 slightly
+    sideways toward viewer, retry4 frontal. Independent read-only second review confirms
+    no eligible downward gaze. Both rounds otherwise keep the on-model curl-free long-eared
+    Mochi, new cream apron with cobalt/turquoise Iznik tulip border, plum-pink scarf,
+    both paws pressed to cheeks, calm golden light and quiet pink hearts/cream motes;
+    no text, stars or extra limbs. Do not substitute a weaker requirement for the
+    explicit gaze, rephrase the prompt, alter pixels or generate a third pair. Preserve
+    all four takes/contact/reports. Other ten independent jobs remain selected; no
+    true dependents. Exploration palette/style/light warnings remain advisory and
+    are not the reason for this skip. Never promoted.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-29-residents-at-work
+  job: x-heart-mochi-apron
+  take: 1
+  round: 1
+  logical_run: 20261105-night29-sprout-mochi-heart
+  source_file: /workspace/generated_images/exec-4fd665a5-6ba9-4c53-8a93-29b637ee7962.png
+  returned_at: '2026-11-05T19:00:30.245Z'
+  prompt_sha256: d5e1d42d334a42a25895fcefec6d7058c86c9cf21ea8ae6a66bd33ffeacf62ff
+  fingerprint: 0c08e87eeffdbefb
+  saved_at: '2026-11-05T19:00:30.555490+00:00'
+  original_generated_png_sha256: d0f6f2006c070b157d5cce5b418e47848a93c6eec4da63d0d4a33bc69e70d35b
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: a13d1e9539dc037a215ae7703589e685b45b1417cfa26bb1a871f673f99e4c66
+  inbox_png_sha256: f491fbe460219b03306aa979e1bd0f4c665a2341360a43ded799b69305e46a98
+  qa_sha256: bcbcf0a7f58720fcebfb5155d36c46df5216c229e7b4f923f0036e430072994a
+- batch: batch-29-residents-at-work
+  job: x-heart-mochi-apron
+  take: 2
+  round: 1
+  logical_run: 20261105-night29-sprout-mochi-heart
+  source_file: /workspace/generated_images/exec-d3a08549-3e9f-472d-95f1-4d4c7e7916a2.png
+  returned_at: '2026-11-05T18:59:43.842Z'
+  prompt_sha256: d5e1d42d334a42a25895fcefec6d7058c86c9cf21ea8ae6a66bd33ffeacf62ff
+  fingerprint: 0c08e87eeffdbefb
+  saved_at: '2026-11-05T18:59:44.288090+00:00'
+  original_generated_png_sha256: b3216ea726281e66bf2461c3c15a50bfe5929865d9448be169f9a6d1d18f5fac
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 3d0946d578ff77d6324f8338f0306c7c37c2721f61f8e4e085942bf4205f7824
+  inbox_png_sha256: 260a4f2b3a0a533cf1bf076a031a306c1363504ea36d788a2290dccd5cc274bf
+  qa_sha256: 3396b35519b49a3f5e69f2924894300c6710de410107236f6f74d30e005ff14b
+- batch: batch-29-residents-at-work
+  job: x-heart-mochi-apron
+  take: 3
+  round: 2
+  logical_run: 20261105-night35-meadow-and-mochi-gaze-retry
+  source_file: /workspace/generated_images/exec-03dbcfe9-c055-409a-b160-e0b37ba88dd0.png
+  returned_at: '2026-11-05T19:35:45.711Z'
+  prompt_sha256: d5e1d42d334a42a25895fcefec6d7058c86c9cf21ea8ae6a66bd33ffeacf62ff
+  fingerprint: 0c08e87eeffdbefb
+  saved_at: '2026-11-05T19:35:46.107208+00:00'
+  original_generated_png_sha256: 5a1d6970c607076ae59e74bcb86916e68fa8a6a017e41c3cef181bb028eb873d
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 9f604a87ed2f837a94af820c99ffb5874f6cad6dc373943005296c089627069d
+  inbox_png_sha256: c8122b5d31eed0684c90a10e9da05a4564eba4db00591209cdeb606aa1543688
+  qa_sha256: 03e7580c3d1d7e86b8ec4497923dd45da3c45ebe830bcc3ff0927acc124f80c4
+- batch: batch-29-residents-at-work
+  job: x-heart-mochi-apron
+  take: 4
+  round: 2
+  logical_run: 20261105-night35-meadow-and-mochi-gaze-retry
+  source_file: /workspace/generated_images/exec-34dd24a7-5cfe-4d70-be6b-025139a9658d.png
+  returned_at: '2026-11-05T19:35:10.879Z'
+  prompt_sha256: d5e1d42d334a42a25895fcefec6d7058c86c9cf21ea8ae6a66bd33ffeacf62ff
+  fingerprint: 0c08e87eeffdbefb
+  saved_at: '2026-11-05T19:35:11.313143+00:00'
+  original_generated_png_sha256: 7a8037dc5bab36ce4664ba5b43eef4c3122e33b494112e58234d7f59f2de6af3
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: d84af8cea7cfb33e2f3b3576282f2541326147893b0e5bf2680c76795b1f26af
+  inbox_png_sha256: d13a683d107bd461e71b30cacd416f9d6a8a6a56fcab31ffbc683befe5670d9f
+  qa_sha256: c8f3bb8de3b230f140e4461a60d346ef340231e0224f7f0e4a466863ff51e3d8
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
