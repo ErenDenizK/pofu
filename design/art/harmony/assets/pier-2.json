@@ -1,0 +1,58 @@
+{
+ "after": {
+  "C_mean": 34.601,
+  "C_p50": 36.757,
+  "C_p95": 45.073,
+  "L_mean": 72.708,
+  "L_p2": 49.498,
+  "L_p98": 90.445,
+  "detail": 2.262,
+  "edge": 0.414,
+  "tint_a": 4.49,
+  "tint_b": 11.996,
+  "warmth_b": 31.063
+ },
+ "before": {
+  "C_mean": 34.601,
+  "C_p50": 36.757,
+  "C_p95": 45.073,
+  "L_mean": 72.708,
+  "L_p2": 49.498,
+  "L_p98": 90.445,
+  "detail": 2.262,
+  "edge": 0.414,
+  "tint_a": 4.49,
+  "tint_b": 11.996,
+  "warmth_b": 31.063
+ },
+ "chain": {
+  "C_p50": 34.791,
+  "L_p2": 50.011,
+  "L_p98": 91.797
+ },
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 85.7,
+ "score_before": 85.7,
+ "shipped": false,
+ "source": "design/art/stations/pier-2/pier-2.png",
+ "source_sha": "52442a30cdcdeb77"
+}
