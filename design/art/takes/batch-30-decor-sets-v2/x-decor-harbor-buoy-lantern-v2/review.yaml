@@ -1,0 +1,245 @@
+batch: batch-30-decor-sets-v2
+manifest: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+manifest_sha256: b3ad9969db61265c404adbbba5d5ec9b7adc55cd188052401aa697117a682515
+contact_sheet: design/art/takes/batch-30-decor-sets-v2/x-decor-harbor-buoy-lantern-v2/contact.jpg
+jobs:
+  x-decor-harbor-buoy-lantern-v2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both originals pass hard QA
+      and manual content/size review: plump coral/cream striped buoy, short mast with
+      cream cage lantern holding an UNLIT pale glass shape, flat stone and compact
+      rope loop. No flame, glow pool, guide, text, cast ground shadow or characters.
+      Official posted alpha>24 widths261/233px fit the341.33px cap; tops500 sit at
+      the height bar and full silhouettes stay inside the canvas. t1 wins lowest eligible
+      lock-load2.7908 versus2.8454; Harmony82.7 and advisory light/palette/style warnings
+      preserved. Original PNGs unchanged, no retry, manual rescale, fit edit or promotion.'
+qa_reports:
+  1:
+    job: x-decor-harbor-buoy-lantern-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 49 (at most 22), p98 93 (at least 90), spread 44
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 44.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 72.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.188
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.0 (at least 3.5)'
+      value: 7.99
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.1
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.8
+      value: 2.7908
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 6.2, off-palette 0.1% (top: #AA5533 (0.1%), #AA5544
+        (0.0%))'
+      value: 1.8112
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 83 against the world reference (outliers: detail, edge)'
+      value: 82.7
+    info:
+      fit:
+        scale: 0.6991
+        anchor:
+        - 484.6
+        - 917
+      registration:
+        dx: 27
+        dy: -29
+      metrics_raw:
+        L_p5: 53.2
+        L_p50: 73.0
+        L_p95: 91.5
+        C_p50: 24.7
+        C_p95: 46.2
+        C_p99: 47.2
+        detail: 2.89
+      metrics_locked:
+        L_p5: 54.3
+        L_p50: 72.9
+        L_p95: 91.3
+        C_p50: 24.6
+        C_p95: 45.8
+        C_p99: 46.4
+        detail: 2.1
+    fingerprint: d2ef79bd89c9a740
+  2:
+    job: x-decor-harbor-buoy-lantern-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 49.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 93 (at least 90), spread 43
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 43.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 73.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.118
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.6 (at least 3.5)'
+      value: 7.59
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.01
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.8
+      value: 2.8454
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 5.4, off-palette 0.1% (top: #995522 (0.1%), #884422
+        (0.0%))'
+      value: 1.8187
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 85 against the world reference (outliers: detail, edge)'
+      value: 84.8
+    info:
+      fit:
+        scale: 0.8083
+        anchor:
+        - 470.2
+        - 883
+      registration:
+        dx: 42
+        dy: 5
+      metrics_raw:
+        L_p5: 54.5
+        L_p50: 73.5
+        L_p95: 92.5
+        C_p50: 38.1
+        C_p95: 50.9
+        C_p99: 53.0
+        detail: 2.74
+      metrics_locked:
+        L_p5: 56.3
+        L_p50: 73.5
+        L_p95: 92.5
+        C_p50: 38.0
+        C_p95: 49.9
+        C_p99: 51.8
+        detail: 2.01
+    fingerprint: d2ef79bd89c9a740
+manual_review:
+  observed_note: 'Both originals pass hard QA and manual content/size review: plump
+    coral/cream striped buoy, short mast with cream cage lantern holding an UNLIT
+    pale glass shape, flat stone and compact rope loop. No flame, glow pool, guide,
+    text, cast ground shadow or characters. Official posted alpha>24 widths261/233px
+    fit the341.33px cap; tops500 sit at the height bar and full silhouettes stay inside
+    the canvas. t1 wins lowest eligible lock-load2.7908 versus2.8454; Harmony82.7
+    and advisory light/palette/style warnings preserved. Original PNGs unchanged,
+    no retry, manual rescale, fit edit or promotion.'
+  excluded_takes: []
+sources:
+- batch: batch-30-decor-sets-v2
+  job: x-decor-harbor-buoy-lantern-v2
+  take: 1
+  round: 1
+  logical_run: 20261105-b30-v2-initial-harbor
+  source_file: /workspace/generated_images/exec-711c06c4-c9f1-49ef-9029-6305094e9f16.png
+  returned_at: '2026-11-05T22:15:14.210Z'
+  prompt_sha256: 79206d15456aa3e132f1776f96a4899f56475b90ba5dbc67c7cd4669e6e332e3
+  fingerprint: d2ef79bd89c9a740
+  saved_at: '2026-11-05T22:15:14.510125+00:00'
+  original_generated_png_sha256: ad3e1e563aae71d43c60804c32e674d93eb48945b2aeb141bfbd81424049dd7b
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 25f2cac0e07c677403ac5881c7debc89596a1ba672a80fbf221714338c2cd579
+  inbox_png_sha256: eded93b483bc56cfa61e63f39310dfab6386243ff3a8fe812fb75c6cb571ba79
+  qa_sha256: 4a978df0b3a86de3f91a8b0ba6296a43d916fc1ff6760afe9039d9ed0a40cef5
+- batch: batch-30-decor-sets-v2
+  job: x-decor-harbor-buoy-lantern-v2
+  take: 2
+  round: 1
+  logical_run: 20261105-b30-v2-initial-harbor
+  source_file: /workspace/generated_images/exec-88922d26-b60f-4381-9343-382d2b7bb8d7.png
+  returned_at: '2026-11-05T22:13:38.052Z'
+  prompt_sha256: 79206d15456aa3e132f1776f96a4899f56475b90ba5dbc67c7cd4669e6e332e3
+  fingerprint: d2ef79bd89c9a740
+  saved_at: '2026-11-05T22:13:38.412682+00:00'
+  original_generated_png_sha256: ada69da10f712da0fc6b4310a517765bea8f418a26583a7ffb767eb33aa33cb6
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: edb3aef97077af02b85037f381ba394dda2276cfa04890d2f0e72a84e669ac1a
+  inbox_png_sha256: c28cba665f56f51aa0e718213dcb68abcc64a665fdf7a1442d55a8fc8fb6531b
+  qa_sha256: 98c3e4ab3bd637ac389169c4897c7667bbdfad8029586c3fa627f0f807cce6e9
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: c84355a7e9865d22a6b6c3cf020cd6aa93f9d460916b03207c002e7e860c4c00
