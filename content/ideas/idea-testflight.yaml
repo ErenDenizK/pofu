@@ -11,7 +11,7 @@ links:
   - sys-glass-plus
 sources:
 - doc: docs/roadmap.md
-  anchor: '#phase-6-launch'
+  anchor: '#business'
 - doc: docs/archive/iteration-plan.md
   anchor: '#what-it-can-become'
 kind: launch

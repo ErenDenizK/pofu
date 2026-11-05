@@ -7,5 +7,5 @@ horizon: maybe
 summary: On-device Vision rep counting as a bonus mode; retired with Phase 3.
 sources:
 - doc: docs/roadmap.md
-  anchor: '#phase-3-earn-for-real-rescoped'
+  anchor: '#later'
 kind: feature

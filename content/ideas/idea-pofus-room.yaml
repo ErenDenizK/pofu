@@ -12,7 +12,7 @@ links:
   - asset-room-plate-a
   - asset-room-plate-b
 sources:
-- doc: docs/roadmap.md
+- doc: docs/archive/roadmap-2026-11-02.md
   anchor: '#phase-1-the-companion-lives-pre-membership-free-account'
 - doc: docs/adr/0016-pre-planned-idle-archipelago.md
 kind: design

@@ -11,7 +11,7 @@ links:
   related:
   - sys-guardrails
 sources:
-- doc: docs/roadmap.md
+- doc: docs/archive/roadmap-2026-11-02.md
   anchor: '#phase-1-the-companion-lives-pre-membership-free-account'
 - doc: docs/product/app-game-boundary.md
   anchor: '#76-streak-ethics'
