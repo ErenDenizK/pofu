@@ -1,0 +1,208 @@
+batch: batch-30b-decor-seasons-1
+manifest: tools/imagegen/manifest/batch-30b-decor-seasons-1.yaml
+manifest_sha256: d484fefef3b45748662c6d7daa5c6b4996a53df0ac3546114e7a38f7503e6ace
+contact_sheet: design/art/takes/batch-30b-decor-seasons-1/x-corner-yaz/contact.jpg
+jobs:
+  x-corner-yaz:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both initial takes pass hard
+      QA and independent content review: calm sunny summer home-lawn corner with a
+      coral/cream striped hammock between two poles, round mint/cream ice-cream cart
+      and scalloped awning, sea-blue/cream beach umbrella with folded towel, and folded
+      paper boat at the lawn edge, path stones and soft cloud sea beyond. No characters,
+      animals, lettering or border. The composite brief does not require the separate
+      prop exact scoops/cones/flag/cushion counts and attaches only main references;
+      no invented dependency on skipped individual prop candidates or claim of registered
+      assembly. Warm long daylight is rendered under the exact printed day LIGHT block.
+      Lowest lock load selects take1 (0.7142 versus0.7844). Existing home/cloud/bench
+      family is preserved in this independent close crop; palette/style/light warnings
+      remain advisory. Never promoted.'
+qa_reports:
+  1:
+    job: x-corner-yaz
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 93 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.37 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.369
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.8 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.78
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.92
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7142
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 4.5, off-palette 0.0%
+      value: 1.9754
+    info:
+      metrics_raw:
+        L_p5: 64.1
+        L_p50: 82.9
+        L_p95: 93.9
+        C_p50: 27.9
+        C_p95: 41.3
+        C_p99: 46.2
+        detail: 2.63
+      metrics_locked:
+        L_p5: 64.4
+        L_p50: 82.8
+        L_p95: 93.7
+        C_p50: 27.8
+        C_p95: 40.9
+        C_p99: 45.8
+        detail: 1.92
+    fingerprint: 60b94b47bc3ddfa6
+  2:
+    job: x-corner-yaz
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 94 (at least 90), spread 32
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 32.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.38 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.38
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.9 (at least 3.5)'
+      value: 2.93
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.6
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7844
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 4.5, off-palette 0.0% (top: #CC8844 (0.0%))'
+      value: 1.8431
+    info:
+      metrics_raw:
+        L_p5: 64.6
+        L_p50: 84.5
+        L_p95: 94.9
+        C_p50: 27.5
+        C_p95: 42.6
+        C_p99: 48.5
+        detail: 2.25
+      metrics_locked:
+        L_p5: 64.9
+        L_p50: 84.4
+        L_p95: 94.7
+        C_p50: 27.4
+        C_p95: 41.9
+        C_p99: 47.7
+        detail: 1.6
+    fingerprint: 60b94b47bc3ddfa6
+manual_review:
+  observed_note: 'Both initial takes pass hard QA and independent content review:
+    calm sunny summer home-lawn corner with a coral/cream striped hammock between
+    two poles, round mint/cream ice-cream cart and scalloped awning, sea-blue/cream
+    beach umbrella with folded towel, and folded paper boat at the lawn edge, path
+    stones and soft cloud sea beyond. No characters, animals, lettering or border.
+    The composite brief does not require the separate prop exact scoops/cones/flag/cushion
+    counts and attaches only main references; no invented dependency on skipped individual
+    prop candidates or claim of registered assembly. Warm long daylight is rendered
+    under the exact printed day LIGHT block. Lowest lock load selects take1 (0.7142
+    versus0.7844). Existing home/cloud/bench family is preserved in this independent
+    close crop; palette/style/light warnings remain advisory. Never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-30b-decor-seasons-1
+  job: x-corner-yaz
+  take: 1
+  round: 1
+  logical_run: 20261105-night30b-icecream-retry-summer-corner
+  source_file: /workspace/generated_images/exec-d8cf2d39-4aeb-4a43-a7b7-2216ecf45b05.png
+  returned_at: '2026-11-05T19:50:17.284Z'
+  prompt_sha256: 0550181a84b4bc4c0923641242c62ac10437bb0247da20276d3938d8dae55fba
+  fingerprint: 60b94b47bc3ddfa6
+  saved_at: '2026-11-05T19:50:17.725466+00:00'
+  original_generated_png_sha256: c782d1ed22f075057dae27dd2f77571441d0ba3d308ee5f66c9590e0a045de1a
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: e903357a766cb89fe6d128f44a7cd8a98ad0869ea29fd220ff683f983d1a8f33
+  inbox_png_sha256: fee78f351ba608ced0d615ced885626e1e37681128b91f1fe703e32633262898
+  qa_sha256: 5b91a78715b322812f4eb45daa5f79df33571ca018dabc14590b6076b3e01db9
+- batch: batch-30b-decor-seasons-1
+  job: x-corner-yaz
+  take: 2
+  round: 1
+  logical_run: 20261105-night30b-icecream-retry-summer-corner
+  source_file: /workspace/generated_images/exec-b5377b51-29d3-4a7f-9696-ea2b39cdcb4c.png
+  returned_at: '2026-11-05T19:49:41.956Z'
+  prompt_sha256: 0550181a84b4bc4c0923641242c62ac10437bb0247da20276d3938d8dae55fba
+  fingerprint: 60b94b47bc3ddfa6
+  saved_at: '2026-11-05T19:49:42.344129+00:00'
+  original_generated_png_sha256: cdeb5b77e0b7e68e2e80ff13686dc5f87792e7631337a03422ce5e0f964c7609
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: afeaadaacd07189f9bbe89f4655c52a63c86f7563a4429bff314d3f20ba91313
+  inbox_png_sha256: 901b402cb56bbca40a71b8d59ff5edccb39d7b7570de9edab7b7019a55abceb5
+  qa_sha256: 649a1f805ac62ae516d679f7ad633cfba48e044fde2fbebe8c1f5ac8d43c565a
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
