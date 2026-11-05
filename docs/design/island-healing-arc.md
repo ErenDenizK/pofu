@@ -24,14 +24,35 @@ island.
 - **One wound, one cure.** Each island's damage is one specific thing
   (water stopped, bells silent, moss asleep), not general decay. Each
   stage fixes a visible part of that one thing.
-- **Never ruin, never horror.** No broken buildings, debris, dead
-  creatures or dark fog that scares (Çağlayan's first concept, rejected).
-  Stuck is dim, still, quiet, a little overgrown or dry.
+- **Gentle first, braver later.** Early islands are dim, still, quiet, a
+  little overgrown or dry. From the middle of the book an island may be
+  eerie (see the variety table): a ruin, an unsettling sound, a fog that
+  hides something. Never gore, never a jump scare, never a dead creature;
+  the eerie part is a mood, and it always heals.
 - **The signature is held back** until stage 4: the waterfall pours, the
   aurora moves, the bells ring. Nothing before it hints at full strength.
 - **Measured, not guessed:** harmony's chroma between stage 0 and 4
   should differ by at least 2x; a lit-pixel ratio confirms the light
   steps. Codex records both in the review.
+
+## Variety: no two islands sick the same way
+
+The founder (2026-11-05, a view, not an order): do not apply one decision
+to every island; spread the moods, let a few be a little scary or ruined,
+more as the game goes on, even if hidden; experiment and drop what fails.
+
+| Island | Register of the wound | Senses | Experiment |
+|---|---|---|---|
+| Koke | sleepy, sad | quiet snoring | none: the gentle start |
+| Çağlayan | dry, abandoned | silence where water should be | a hollow echo when you tap the dry rocks |
+| Emanet | **eerie fog** | muffled sounds, a shape that moves in the fog (only lost things) | the fog parts where you look; first island with a hint of unease |
+| Çanlar (filler) | odd, funny | **a wrong note**: one bell rings off-key at night | a playful creep, solved with a joke |
+| Revontuli | **ruin** | wind through broken lantern towers | half-fallen towers rebuilt, the most visible repair in the book |
+| Arı | tired | a low hum, no bees | none: a breather before the end |
+| Mehtap | **dread, quiet** | stars going out one by one, a cold sound | the darkest moment of the book, right before the finale |
+
+Concepts try the braver version first and the lead pulls it back if it
+scares more than it charms; the device test decides.
 
 ## Per island (Book One)
 

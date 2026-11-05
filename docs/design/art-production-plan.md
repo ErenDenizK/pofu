@@ -84,9 +84,23 @@ Home stations: nothing else needs a painted night variant (tea stall, windmill a
 Rows to come: the design-loop-2 concepts (batch-19) and the lead's production
 batches are added above row 3 as `READY` by their own PRs.
 
+## The production backlog
+
+The founder (2026-11-05): move toward production; a rough production
+asset that the game can use beats a fiftieth variation. So when no `READY`
+row is left, Codex takes these rows **before** the exploration backlog.
+They are production batches (real ids, promoted on pass); the lead adds
+rows here whenever an idea comes, without waiting for the founder.
+
+| # | Batch | Purpose | Jobs | State |
+|---|---|---|---|---|
+| P1 | `batch-39-koke-production` | Koke, the first story island, playable: the island plate at arc stages 0 to 4 in the game camera ([healing arc](island-healing-arc.md)) and Koke in four poses (asleep, one eye open, stretching, standing) | about 9 | **READY** once its manifest is on main |
+| P2 | `batch-40-home-ladder-gaps` | Every home station and prop level the [home progression](../product/home-progression.md) §4.2 and §9 needs that has no master yet, so each level is a visible step | the lead lists them | **READY** once its manifest is on main |
+| P3 | `batch-41-resident-reactions` | Mochi, Simit, Fındık and the goat: happy, surprised, sleepy, proud as rig poses (the Pofu rig method), for visitors and level-ups | about 16 | **READY** once its manifest is on main |
+
 ## The backlog
 
-Work for when no `READY` row is left, so the line never idles. Every batch
+Work for when no `READY` row and no production row is left, so the line never idles. Every batch
 here is an **exploration**: `x-` ids, `status: open`, complete prompts, never
 promoted (takes, contact sheet and `review.yaml` are committed under
 `design/art/takes/<batch>/<id>/`). Codex takes the rows in order, one PR per

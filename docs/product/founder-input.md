@@ -26,6 +26,33 @@ not orders: each entry records **what he meant**, the **status**, and
   Feel is tuned natively on his iPhone.
 - **Merging:** the agent may merge PRs, with merge commits, only on green CI.
 
+## 2026-11-05 (overnight, later): variety, production, content
+
+Views, not orders; how each is handled:
+1. **Not every island the same: one with scary fog, one a scary sound, one
+   a ruin, more as the game goes on, even hidden; experiment, drop if it
+   fails; never one decision for all.** Handled: a variety table in the
+   [healing arc](../design/island-healing-arc.md) (Emanet eerie fog,
+   Çanlar a wrong note, Revontuli a ruin, Mehtap quiet dread; Koke and Arı
+   gentle).
+2. **Village assets in concept and in the game; fit the whole UI; no
+   makeshift buttons.** Handled: art integration PR tonight; a UI audit of
+   every screen for placeholder controls is in the next wave.
+3. **Move to production; he likes the concepts (fine-tuning later).**
+   Handled: a production backlog (P1 Koke, P2 home ladder gaps, P3 resident
+   reactions) that Codex takes before more variations.
+4. **Queue Codex work without waiting for his prompt; use the emoji,
+   stickers and concepts in the game somewhere.** Handled: the lead adds
+   rows itself; stickers go into visitor letters, reactions and the week
+   page (next code wave).
+5. **Fill content; the decided content reads well.** Handled: Koke first
+   as a playable island.
+6. **Animations, characters, reactions; each home upgrade step by step,
+   every level a living change; then the other islands.** Handled: P2 and
+   P3, and the rig method for residents.
+7. **Start prototypes that are playable in the game.** Handled: Koke is the
+   first wonder island in code after light and shadow (game plan §10).
+
 ## 2026-11-05 (overnight): light and shadow, tonight's plan
 
 Each point, and how it is handled:
