@@ -36,7 +36,7 @@ final class RehearsalScreenshotTests: XCTestCase {
             language: .turkish
         )
         let shots: [(String, AnyView)] = [
-            ("06-shield-replica-light", AnyView(ShieldReplicaView(model: model, copy: copy))),
+            ("06-shield-replica-light", AnyView(ShieldReplicaView(model: model, copy: copy, sky: .day))),
             (
                 "07-prova-panel-light",
                 AnyView(
