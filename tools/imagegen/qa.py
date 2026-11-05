@@ -938,10 +938,11 @@ def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, pre
         target_canvas = (rgba.shape[1], rgba.shape[0])
         parent_locked, _ = fit_canvas(parent_locked, target_canvas, cover=not transparent)
         info["parent_canvas"] = {"source": source_canvas, "target": list(target_canvas)}
-    # Guide fit: root stations and ground decor only (an edit inherits its
-    # parent's frame). `fit` is the job's override ({} = guide defaults).
+    # Guide fit: root stations, ground decor, and plain props with an explicit
+    # override (an edit inherits its parent's frame). {} = guide defaults for
+    # stations/decor; plain props keep their frame unless an override is given.
     if (fit is not None and parent_locked is None and registration is None and transparent
-            and (kind == "station" or decor == "ground")):
+            and (kind == "station" or decor == "ground" or (kind == "prop" and not decor and bool(fit)))):
         rgba, finfo = fit_to_guide(rgba, kind, decor or "ground", fit.get("max_width"), fit.get("top"))
         if "scale" in finfo:
             info["fit"] = finfo
