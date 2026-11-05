@@ -26,6 +26,26 @@ not orders: each entry records **what he meant**, the **status**, and
   Feel is tuned natively on his iPhone.
 - **Merging:** the agent may merge PRs, with merge commits, only on green CI.
 
+## 2026-11-05 (after testing the slice on his iPhone)
+
+He expected more; the build felt fragmentary ("bölük pörçük"):
+- **Performance is bad:** it stutters everywhere, even the minigame, and
+  the phone heats up. The next test build must be optimized.
+- **Not playable without the developer menu:** he could not open the
+  garden minigame (it is lovely and cute) or do most things.
+- **No interaction:** the sunflower field and the "+" on the map do
+  nothing. He wants levels that can be upgraded, objects and systems.
+- **Day/night cycle broken:** the day changes but lighting and the map do
+  not; it stays night; only the background changes.
+- **UI:** some elements overlap (maybe dev UI); every UI component needs a
+  pass; page transitions.
+- Characters' cheeks and the like are better (small issues).
+- **App logo** and everything else must be ready. Make sure everything is
+  complete; prepare the next build fast so he can see levels, visuals,
+  optimization and transitions. The Screen Time core waits for the
+  membership (after 2026-11-24); everything else can be tested now.
+- Status: playable build v1 planned (`docs/product/playable-build-v1.md`).
+
 ## 2026-11-05 (game plan v1 and the story flow)
 
 After the game plan v1 timeline and the full story flow (chat):
