@@ -1,0 +1,24 @@
+id: asset-koke-island-1
+type: asset
+title_tr: koke-island-1
+title_en: koke-island-1 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached island plate from stage 0 to stage 1: the moss is waking. Repaint about
+  a third of the moss on Koke's hump and on the lawn, in irregular soft patches (one on its
+  shoulder, one along its back, one near its snout, a few on the lawn and the boulders), from
+  dull grey-sage to a fresh living moss green; the rest stays grey. The sprout on its crown
+  has grown a third leaf. The flower buds swell a little and…
+links:
+  variant_of:
+  - asset-koke-island-0
+art:
+  images: []
+  jobs:
+  - batch-39-koke-production:koke-island-1
+sources:
+- doc: tools/imagegen/manifest/batch-39-koke-production.yaml
+kind: plate
+batch: batch-39-koke-production
+size: 1536x1024

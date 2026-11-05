@@ -1,0 +1,24 @@
+id: asset-goat-happy
+type: asset
+title_tr: goat-happy
+title_en: goat-happy (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached baby goat into a happy reaction. Change only the eyes, brows and mouth:
+  both eyes become happy closed arcs, the classic smiling ^ shape, each a thick soft dark
+  upward-curved arc at the height of the top of the original eye; the low indignant brows
+  relax; the flat, pressed mouth turns into a small, slightly reluctant smile. The horn buds,
+  floppy ears, beard tuft, tan patch, body, paws, colors and siz…
+links:
+  variant_of:
+  - asset-harbor-goat
+art:
+  images: []
+  jobs:
+  - batch-41-resident-reactions:goat-happy
+sources:
+- doc: tools/imagegen/manifest/batch-41-resident-reactions.yaml
+kind: char
+batch: batch-41-resident-reactions
+size: 1024x1536

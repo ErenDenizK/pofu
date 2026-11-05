@@ -1,0 +1,23 @@
+id: asset-tea-stall-5-iznik
+type: asset
+title_tr: tea-stall-5-iznik
+title_en: tea-stall-5-iznik (station)
+status: in-production
+horizon: now
+summary: >-
+  Recolor the tea stall to its Iznik blue option. The terracotta-rose roof tiles become glazed
+  Iznik cobalt-blue and turquoise tiles with a few cream ones, the little flag becomes cobalt
+  blue, and the cloth on the little table and the cloth over the counter's end become cobalt-blue
+  and cream. The red geranium and its pot, the string of cream bulbs, the kettle, the tulip
+  glasses, the stools, the counter, the poles and t…
+links:
+  variant_of:
+  - asset-tea-stall-5
+art:
+  images: []
+  jobs:
+  - batch-40-home-ladder-gaps:tea-stall-5-iznik
+sources:
+- doc: tools/imagegen/manifest/batch-40-home-ladder-gaps.yaml
+kind: station
+batch: batch-40-home-ladder-gaps

@@ -1,0 +1,24 @@
+id: asset-koke-standing
+type: asset
+title_tr: koke-standing
+title_en: koke-standing (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached moss creature, Koke, so she stands up, wide awake and happy: the heap
+  rises onto four sturdy stubby legs, the body held up round and plump, the head lifted and
+  turned to the viewer, both eyes open, big, round and warm brown with catchlights, a soft
+  happy smile with a blush on each cheek, the small ears perked. Her whole back is in flower:
+  soft blossoms in butter yellow, blush pink, lilac and white a…
+links:
+  variant_of:
+  - asset-koke-asleep
+art:
+  images: []
+  jobs:
+  - batch-39-koke-production:koke-standing
+sources:
+- doc: tools/imagegen/manifest/batch-39-koke-production.yaml
+kind: char
+batch: batch-39-koke-production
+size: 1024x1024
