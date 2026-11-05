@@ -1,0 +1,206 @@
+batch: batch-34-islands-in-game
+manifest: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+manifest_sha256: 345738791fedc39057958fb6e3aee35a0f660ada571fff12a36eba9dc2b2257f
+contact_sheet: design/art/takes/batch-34-islands-in-game/x-caglayan-healed/contact.jpg
+jobs:
+  x-caglayan-healed:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show a short flowing waterfall
+      confined to the plate, full turquoise pools, a soft mist rainbow, a turning/spraying
+      mill wheel, a warm mill window, exactly two floating leaf boats, two dragonflies
+      and a happy otter on her back with a full glass on her belly. Pofu and curl-free
+      long-eared Mochi remain small at front centre; no green lawn, copied round door,
+      long void waterfall, text or scary underside. Broad back-centre knoll/left mill/right
+      saucer-pools layout matches the stuck concept, but basin/stream geometry, foliage
+      and some prop positions vary between independent generations; this does not
+      certify a production state overlay with nothing moved. Existing light/haze warnings
+      are advisory and retained. Never promoted.
+qa_reports:
+  1:
+    job: x-caglayan-healed
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 95 (at least 90), spread 42
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 41.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 82.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.25 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.251
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.2 (at least 3.5)'
+      value: 5.15
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.2 (R1 5.3)
+      value: 3.19
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2756
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.5, p95 9.0, off-palette 2.3% (top: #CCBB55 (0.4%), #AAAA44
+        (0.3%))'
+      value: 2.5111
+    info:
+      metrics_raw:
+        L_p5: 63.2
+        L_p50: 87.1
+        L_p95: 95.0
+        C_p50: 16.4
+        C_p95: 50.1
+        C_p99: 57.0
+        detail: 4.03
+      metrics_locked:
+        L_p5: 63.8
+        L_p50: 87.1
+        L_p95: 94.8
+        C_p50: 16.4
+        C_p95: 47.6
+        C_p99: 54.7
+        detail: 3.19
+    fingerprint: 90e0ff6f2e07de37
+  2:
+    job: x-caglayan-healed
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 58 (at most 22), p98 94 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 83.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.31 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.31
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 4.05
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.7 (R1 5.3)
+      value: 2.72
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1439
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.4, p95 8.7, off-palette 0.9% (top: #CCBB55 (0.5%), #BBAA44
+        (0.1%))'
+      value: 2.4406
+    info:
+      metrics_raw:
+        L_p5: 67.6
+        L_p50: 86.6
+        L_p95: 94.7
+        C_p50: 18.3
+        C_p95: 49.7
+        C_p99: 58.1
+        detail: 3.52
+      metrics_locked:
+        L_p5: 68.1
+        L_p50: 86.5
+        L_p95: 94.4
+        C_p50: 18.2
+        C_p95: 47.4
+        C_p99: 56.3
+        detail: 2.72
+    fingerprint: 90e0ff6f2e07de37
+manual_review:
+  observed_note: Both show a short flowing waterfall confined to the plate, full turquoise
+    pools, a soft mist rainbow, a turning/spraying mill wheel, a warm mill window,
+    exactly two floating leaf boats, two dragonflies and a happy otter on her back
+    with a full glass on her belly. Pofu and curl-free long-eared Mochi remain small
+    at front centre; no green lawn, copied round door, long void waterfall, text or
+    scary underside. Broad back-centre knoll/left mill/right saucer-pools layout matches
+    the stuck concept, but basin/stream geometry, foliage and some prop positions
+    vary between independent generations; this does not certify a production state
+    overlay with nothing moved. Existing light/haze warnings are advisory and retained.
+    Never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-34-islands-in-game
+  job: x-caglayan-healed
+  take: 1
+  round: 1
+  logical_run: 20261105-night34-caglayan
+  source_file: /workspace/generated_images/exec-f96ecfef-0dad-4f23-a4d0-201a5dd317f6.png
+  returned_at: '2026-11-05T17:54:12.452Z'
+  prompt_sha256: ad525de9cd3e0844480de22595ce4f909fde537a17411b7067d9449e6dcc23c9
+  fingerprint: 90e0ff6f2e07de37
+  saved_at: '2026-11-05T17:54:12.855319+00:00'
+  original_generated_png_sha256: f8d3225d4628053db9751f56ba5b0ca9e2f793f50e2eb737044aa8e7f9209796
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 08fc1f7b4c1acfc7e4c349b9a3f5d31355bf0baf2c0dbde77b6439ce778fa555
+  inbox_png_sha256: 1fdc57e30ef76c0d2d4c58efbe7b7466a2cecb9ee955bde2059527e3f474a590
+  qa_sha256: 43375bfc7777f4bcb65e337e158983c2f18d6f0a36ac41cc36570d5e3409e0ad
+- batch: batch-34-islands-in-game
+  job: x-caglayan-healed
+  take: 2
+  round: 1
+  logical_run: 20261105-night34-caglayan
+  source_file: /workspace/generated_images/exec-e112664b-be83-4a50-9abb-641e691ce50d.png
+  returned_at: '2026-11-05T17:55:04.728Z'
+  prompt_sha256: ad525de9cd3e0844480de22595ce4f909fde537a17411b7067d9449e6dcc23c9
+  fingerprint: 90e0ff6f2e07de37
+  saved_at: '2026-11-05T17:55:05.046449+00:00'
+  original_generated_png_sha256: 805bd31cd760444a7e79c161044e0c459139607855708ff57970f991811f5b26
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: efcd2d8bba8f75c1ea3787b6c7a21616b917b9cce0a39187d925a1776d9d117d
+  inbox_png_sha256: e5a42c58a0eefd532e4bbc9ba5f0b5119a3d4c8510508b35606118b253bab774
+  qa_sha256: c00dc657c2b8f1021d47f16dd9e05d3dc17cc1b2318bf798faba5ec50f6e1ae4
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

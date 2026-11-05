@@ -1,0 +1,371 @@
+batch: batch-34-islands-in-game
+manifest: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+manifest_sha256: 345738791fedc39057958fb6e3aee35a0f660ada571fff12a36eba9dc2b2257f
+contact_sheet: design/art/takes/batch-34-islands-in-game/x-emanet-healed/contact.jpg
+jobs:
+  x-emanet-healed:
+    pick: none
+    publication: skipped after one allowed retry
+    note: SKIPPED after one allowed retry pair. All four frames use an ordinary convex
+      umbrella cap instead of the explicitly upturned umbrella roof; this fails the
+      island landmark silhouette. Retry take3 changes the requested eight-hook row
+      to a two-tier radial coat rack; take4 keeps seven objects and one empty hook
+      but still misses the roof. Both retries otherwise retain sorted blank-tagged
+      shelves, cart parcels, warm window/counter, Boncuk polishing a cup, and the
+      front Pofu/Mochi duo. No letters or scary elements. All four original PNGs and
+      q90 takes retained, no third round or manual image repairs. Exploration only,
+      never promoted.
+qa_reports:
+  1:
+    job: x-emanet-healed
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.6
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 45 (at most 24), p98 91 (at least 86), spread
+        46 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 45.7
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 78 (band 48-86)'
+      value: 78.1
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.22 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.224
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 5.4 (at least 3.4)'
+      value: 5.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.2 (R1 5.3)
+      value: 3.23
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4299
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 5.7, off-palette 0.7% (top: #DD8844 (0.2%), #CC7733
+        (0.1%))'
+      value: 2.0464
+    info:
+      metrics_raw:
+        L_p5: 55.8
+        L_p50: 83.0
+        L_p95: 92.0
+        C_p50: 23.7
+        C_p95: 46.7
+        C_p99: 56.3
+        detail: 4.05
+      metrics_locked:
+        L_p5: 56.6
+        L_p50: 82.8
+        L_p95: 91.9
+        C_p50: 24.1
+        C_p95: 45.6
+        C_p99: 54.6
+        detail: 3.23
+    fingerprint: e2ba61625235338b
+  2:
+    job: x-emanet-healed
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.7
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 41 (at most 24), p98 90 (at least 86), spread
+        50 (at least 55)'
+      value: 49.6
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 76 (band 48-86)'
+      value: 76.4
+    - check: light_haze
+      status: pass
+      message: 'golden/subject: dark-channel haze 0.20 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.2
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 6.2 (at least 3.4)'
+      value: 6.18
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.7 (R1 5.3)
+      value: 3.69
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.539
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 6.1, off-palette 1.1% (top: #DD8833 (0.1%), #CC7722
+        (0.1%))'
+      value: 2.0977
+    info:
+      metrics_raw:
+        L_p5: 52.9
+        L_p50: 82.9
+        L_p95: 93.1
+        C_p50: 21.9
+        C_p95: 46.9
+        C_p99: 57.7
+        detail: 4.49
+      metrics_locked:
+        L_p5: 53.7
+        L_p50: 82.7
+        L_p95: 92.9
+        C_p50: 22.2
+        C_p95: 45.7
+        C_p99: 55.4
+        detail: 3.69
+    fingerprint: e2ba61625235338b
+  3:
+    job: x-emanet-healed
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.1
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 38 (at most 24), p98 90 (at least 86), spread
+        52 (at least 55)'
+      value: 51.9
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 74 (band 48-86)'
+      value: 74.2
+    - check: light_haze
+      status: pass
+      message: 'golden/subject: dark-channel haze 0.19 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.188
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 7.1 (at least 3.4)'
+      value: 7.09
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.1 (R1 5.3)
+      value: 4.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.7623
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 5.6, off-palette 0.9% (top: #BB6622 (0.1%), #DD8844
+        (0.1%))'
+      value: 2.1603
+    info:
+      metrics_raw:
+        L_p5: 47.4
+        L_p50: 80.2
+        L_p95: 90.8
+        C_p50: 24.6
+        C_p95: 46.5
+        C_p99: 55.5
+        detail: 4.99
+      metrics_locked:
+        L_p5: 48.1
+        L_p50: 80.0
+        L_p95: 90.6
+        C_p50: 25.0
+        C_p95: 45.1
+        C_p99: 53.0
+        detail: 4.14
+    fingerprint: e2ba61625235338b
+  4:
+    job: x-emanet-healed
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.4
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 45 (at most 24), p98 91 (at least 86), spread
+        46 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 45.6
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 78 (band 48-86)'
+      value: 78.1
+    - check: light_haze
+      status: pass
+      message: 'golden/subject: dark-channel haze 0.21 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.212
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 5.9 (at least 3.4)'
+      value: 5.94
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.7 (R1 5.3)
+      value: 3.7
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.3975
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 4.8, off-palette 1.0% (top: #CC7733 (0.3%), #BB6622
+        (0.1%))'
+      value: 1.8165
+    info:
+      metrics_raw:
+        L_p5: 56.1
+        L_p50: 83.4
+        L_p95: 92.5
+        C_p50: 18.8
+        C_p95: 43.7
+        C_p99: 55.0
+        detail: 4.52
+      metrics_locked:
+        L_p5: 56.9
+        L_p50: 83.3
+        L_p95: 92.3
+        C_p50: 19.2
+        C_p95: 42.4
+        C_p99: 53.0
+        detail: 3.7
+    fingerprint: e2ba61625235338b
+manual_review:
+  observed_note: SKIPPED after one allowed retry pair. All four frames use an ordinary
+    convex umbrella cap instead of the explicitly upturned umbrella roof; this fails
+    the island landmark silhouette. Retry take3 changes the requested eight-hook row
+    to a two-tier radial coat rack; take4 keeps seven objects and one empty hook but
+    still misses the roof. Both retries otherwise retain sorted blank-tagged shelves,
+    cart parcels, warm window/counter, Boncuk polishing a cup, and the front Pofu/Mochi
+    duo. No letters or scary elements. All four original PNGs and q90 takes retained,
+    no third round or manual image repairs. Exploration only, never promoted.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-34-islands-in-game
+  job: x-emanet-healed
+  take: 1
+  round: 1
+  logical_run: 20261105-night34-emanet
+  source_file: /workspace/generated_images/exec-5442028d-017b-49b6-b573-d4fe3880368f.png
+  returned_at: '2026-11-05T18:14:15.131Z'
+  prompt_sha256: 91982319b7fcfceabd6b84cc833afe2af5ac344cdbacf6fd5bf2787aa34ba686
+  fingerprint: e2ba61625235338b
+  saved_at: '2026-11-05T18:14:15.547769+00:00'
+  original_generated_png_sha256: a84ed34e8b8cb9f52140fa8f97ad7e17dae83613eb72602f40aebef15086d03e
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 201965945470ed805e53b807f9c0916c1c3b6f2e21a63a739acec236bc649d24
+  inbox_png_sha256: b31d4c5f70707cf588bc0de47dcebfb0d4d41fef96cbf2c148cdfd7e20bf7d1a
+  qa_sha256: 14f585f9e252a5b38d302a3eb6df443ad07f52b231385920bac051664486092b
+- batch: batch-34-islands-in-game
+  job: x-emanet-healed
+  take: 2
+  round: 1
+  logical_run: 20261105-night34-emanet
+  source_file: /workspace/generated_images/exec-aab720a2-91c6-4b0a-8a1e-047b1534b70f.png
+  returned_at: '2026-11-05T18:16:00.647Z'
+  prompt_sha256: 91982319b7fcfceabd6b84cc833afe2af5ac344cdbacf6fd5bf2787aa34ba686
+  fingerprint: e2ba61625235338b
+  saved_at: '2026-11-05T18:19:32.871204+00:00'
+  original_generated_png_sha256: 947d66c75c1ade377541b92674fecc078c8a024bb74824eedb61e0a1c2bac4f6
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 4a9f9a79bc1b227cadfc22328713c377376550e7143d84b3d3144724d6a43a0a
+  inbox_png_sha256: 4a8c9bfad3ca85ed7748289ffcce80edc92ce07cf54323e54fb01fd605c6f1fd
+  qa_sha256: a2d1c09c48be8a80bcade0ea6cc62d4862a93e5c1b53f3d8ce38f205fd711a08
+- batch: batch-34-islands-in-game
+  job: x-emanet-healed
+  take: 3
+  round: 2
+  logical_run: 20261105-night34-emanet-one-retry
+  source_file: /workspace/generated_images/exec-d1b175ee-9595-4ee5-b248-1a8a523d7592.png
+  returned_at: '2026-11-05T18:29:01.449Z'
+  prompt_sha256: 91982319b7fcfceabd6b84cc833afe2af5ac344cdbacf6fd5bf2787aa34ba686
+  fingerprint: e2ba61625235338b
+  saved_at: '2026-11-05T18:29:01.756135+00:00'
+  original_generated_png_sha256: bd7194ca7eb7691b3e2b05751c87cb587f4005931f21093edf8fd18bc147b229
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: dd4420b06317c233d8aec94e6735e7dc32eac365a5f6ee1a729b80da4791ba8a
+  inbox_png_sha256: 0c98f09f70685c6be0f43dd8c54b34168f64e8af76c5ca68eb7d0c5141a9b9eb
+  qa_sha256: 6f217d3fa0197c4db619dba0d0bbb0bbc8513014cfd10239c2b05e22ba187a4f
+- batch: batch-34-islands-in-game
+  job: x-emanet-healed
+  take: 4
+  round: 2
+  logical_run: 20261105-night34-emanet-one-retry
+  source_file: /workspace/generated_images/exec-f4c101a0-52bf-4650-a5d2-57cca0ee8bb6.png
+  returned_at: '2026-11-05T18:28:11.090Z'
+  prompt_sha256: 91982319b7fcfceabd6b84cc833afe2af5ac344cdbacf6fd5bf2787aa34ba686
+  fingerprint: e2ba61625235338b
+  saved_at: '2026-11-05T18:28:11.521973+00:00'
+  original_generated_png_sha256: 113a5de40eb18da07e1db080e2af789bb34de5ca7a5f06a88ff25e1e2577868c
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 873cd0891f37269c3390f97e861235e613c8c221432b08f54d8975685f082f38
+  inbox_png_sha256: 66f093ba7a2627115e6e563e8f49dbdce86f3a14c37ad2338ab5d43577347d75
+  qa_sha256: 997e181e06565e497fa0a455436f785271c32856ce94639548861d2324c91a07
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

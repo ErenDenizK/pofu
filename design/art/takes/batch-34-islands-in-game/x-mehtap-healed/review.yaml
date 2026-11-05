@@ -1,0 +1,373 @@
+batch: batch-34-islands-in-game
+manifest: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+manifest_sha256: 345738791fedc39057958fb6e3aee35a0f660ada571fff12a36eba9dc2b2257f
+contact_sheet: design/art/takes/batch-34-islands-in-game/x-mehtap-healed/contact.jpg
+jobs:
+  x-mehtap-healed:
+    pick: none
+    publication: skipped after one allowed retry
+    note: SKIPPED after one allowed retry pair. The explicit seven faint stars followed
+      by one bright star and the same trail on the chart and in the pool are not consistently
+      painted across all three places. First pair sky trails have six small stars
+      plus one large and fewer on chart/pool. Retry3 improves the sky to seven faint
+      lights and a bright terminal star, but its chart/reflection do not preserve
+      that same complete trail; retry4 sky still has six small stars plus one bright
+      and fewer in the pool. All otherwise retain open dome/telescope, warm window,
+      awake owl and lit perch lantern with a moonstone crescent. No third pair, painted
+      repair or threshold change. Original PNGs and q90 takes preserved; never promoted.
+qa_reports:
+  1:
+    job: x-mehtap-healed
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.1
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 55 (at most 12), p98 94 (at least 68), spread 39
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 38.8
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 80 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 79.8
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.41 (at most 0.14; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.412
+    - check: light_contrast
+      status: pass
+      message: 'dusk/subject: p75 local contrast 3.5 (at least 3.0)'
+      value: 3.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.98
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8506
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.5, p95 9.4, off-palette 0.0%
+      value: 3.495
+    info:
+      metrics_raw:
+        L_p5: 52.8
+        L_p50: 77.5
+        L_p95: 92.1
+        C_p50: 17.7
+        C_p95: 41.1
+        C_p99: 43.9
+        detail: 2.48
+      metrics_locked:
+        L_p5: 52.9
+        L_p50: 77.6
+        L_p95: 91.9
+        C_p50: 17.5
+        C_p95: 41.1
+        C_p99: 43.7
+        detail: 1.98
+    fingerprint: 5aac4432464afce6
+  2:
+    job: x-mehtap-healed
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 37.4
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 57 (at most 12), p98 92 (at least 68), spread 35
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 34.8
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 80 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 80.1
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.43 (at most 0.14; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.427
+    - check: light_contrast
+      status: pass
+      message: 'dusk/subject: p75 local contrast 3.8 (at least 3.0)'
+      value: 3.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.87
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.942
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 5.6, off-palette 0.0% (top: #EE9955 (0.0%))'
+      value: 2.6716
+    info:
+      metrics_raw:
+        L_p5: 61.2
+        L_p50: 76.8
+        L_p95: 89.4
+        C_p50: 20.1
+        C_p95: 37.7
+        C_p99: 39.9
+        detail: 2.37
+      metrics_locked:
+        L_p5: 61.3
+        L_p50: 76.9
+        L_p95: 89.0
+        C_p50: 19.6
+        C_p95: 37.4
+        C_p99: 39.2
+        detail: 1.87
+    fingerprint: 5aac4432464afce6
+  3:
+    job: x-mehtap-healed
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.0
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 58 (at most 12), p98 94 (at least 68), spread 36
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 36.0
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 83 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 82.8
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.50 (at most 0.14; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.502
+    - check: light_contrast
+      status: warn
+      message: 'dusk/subject: p75 local contrast 3.0 (at least 3.0)'
+      value: 2.97
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8924
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.0, p95 7.2, off-palette 0.0% (top: #BB6633 (0.0%), #CC7744
+        (0.0%))'
+      value: 2.9869
+    info:
+      metrics_raw:
+        L_p5: 57.6
+        L_p50: 80.4
+        L_p95: 93.0
+        C_p50: 18.7
+        C_p95: 40.1
+        C_p99: 41.6
+        detail: 2.22
+      metrics_locked:
+        L_p5: 57.6
+        L_p50: 80.4
+        L_p95: 92.7
+        C_p50: 18.1
+        C_p95: 40.0
+        C_p99: 41.2
+        detail: 1.76
+    fingerprint: 5aac4432464afce6
+  4:
+    job: x-mehtap-healed
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.4
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 57 (at most 12), p98 93 (at least 68), spread 36
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 36.1
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 82 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 82.1
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.40 (at most 0.14; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.404
+    - check: light_contrast
+      status: pass
+      message: 'dusk/subject: p75 local contrast 4.2 (at least 3.0)'
+      value: 4.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.11
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8729
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.2, p95 8.2, off-palette 0.0%
+      value: 3.2213
+    info:
+      metrics_raw:
+        L_p5: 56.6
+        L_p50: 79.7
+        L_p95: 91.7
+        C_p50: 19.7
+        C_p95: 40.5
+        C_p99: 41.9
+        detail: 2.61
+      metrics_locked:
+        L_p5: 56.6
+        L_p50: 79.8
+        L_p95: 91.5
+        C_p50: 19.2
+        C_p95: 40.4
+        C_p99: 41.8
+        detail: 2.11
+    fingerprint: 5aac4432464afce6
+manual_review:
+  observed_note: SKIPPED after one allowed retry pair. The explicit seven faint stars
+    followed by one bright star and the same trail on the chart and in the pool are
+    not consistently painted across all three places. First pair sky trails have six
+    small stars plus one large and fewer on chart/pool. Retry3 improves the sky to
+    seven faint lights and a bright terminal star, but its chart/reflection do not
+    preserve that same complete trail; retry4 sky still has six small stars plus one
+    bright and fewer in the pool. All otherwise retain open dome/telescope, warm window,
+    awake owl and lit perch lantern with a moonstone crescent. No third pair, painted
+    repair or threshold change. Original PNGs and q90 takes preserved; never promoted.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-34-islands-in-game
+  job: x-mehtap-healed
+  take: 1
+  round: 1
+  logical_run: 20261105-night34-mehtap
+  source_file: /workspace/generated_images/exec-70e51006-e033-41fb-8afc-6516f22b7e12.png
+  returned_at: '2026-11-05T18:23:11.274Z'
+  prompt_sha256: 2d81005a1b5d63b233beb22b4666e00a919902bcb77d4ea2407c641aea652ae2
+  fingerprint: 5aac4432464afce6
+  saved_at: '2026-11-05T18:23:11.679203+00:00'
+  original_generated_png_sha256: 014dd212fb8d9528af3dff6585b7148879c201a7f5602255d87a1ae5a258bb28
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 024bb34427fec171e33cfea288f1a71d8f934496e4b856a2f55d2c630292ff59
+  inbox_png_sha256: 50b664cd47bfa674354d5ed00756bd26156f1610d4cb8bbee31bddc6b2c8bcff
+  qa_sha256: 7d10aa76b03e7f282b56ef6a94b4ca8b506deacc9f3f505bb5fd9ec31efb81cc
+- batch: batch-34-islands-in-game
+  job: x-mehtap-healed
+  take: 2
+  round: 1
+  logical_run: 20261105-night34-mehtap
+  source_file: /workspace/generated_images/exec-695c7d6a-f05b-44b9-b8c9-4567863a6d5c.png
+  returned_at: '2026-11-05T18:23:55.677Z'
+  prompt_sha256: 2d81005a1b5d63b233beb22b4666e00a919902bcb77d4ea2407c641aea652ae2
+  fingerprint: 5aac4432464afce6
+  saved_at: '2026-11-05T18:23:56.087435+00:00'
+  original_generated_png_sha256: 496b792a5682aa318091939b2a37be13c896ef95ac8b2ff2a9f247dba1e4a984
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 68b3529dffb60c64d637722bae280598346130c7c022a4cd8a2b9e91e45f51b7
+  inbox_png_sha256: 7295da6bd709e88e3bb754cb78506b4249ebf3a9e5ed0d3ff7c00fefaf464072
+  qa_sha256: 0480354575a1d0e33c47e5910e80453ecbeb53809c7b3f07014becec021dcb10
+- batch: batch-34-islands-in-game
+  job: x-mehtap-healed
+  take: 3
+  round: 2
+  logical_run: 20261105-night34-mehtap-one-retry
+  source_file: /workspace/generated_images/exec-28589aed-7f1f-480c-9ab9-ee91b67a1ead.png
+  returned_at: '2026-11-05T18:30:33.058Z'
+  prompt_sha256: 2d81005a1b5d63b233beb22b4666e00a919902bcb77d4ea2407c641aea652ae2
+  fingerprint: 5aac4432464afce6
+  saved_at: '2026-11-05T18:30:33.360924+00:00'
+  original_generated_png_sha256: 780c7de0bc417be1da88556237656cc46d1584baea9014416a6fe7cfc04fc743
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 5288d61b447df2e890f51c763a5d0e9c2451fbfa073dd9295e08fdaa7c20516f
+  inbox_png_sha256: b59ba5a8a98849c6068e516fcdb2c143f3ac8c0353b271f9283a067123cddec1
+  qa_sha256: 607f08b72e6500b962b5b5cd9bb5eb48dcb5d5d0cc87d2214eb7c41be05892da
+- batch: batch-34-islands-in-game
+  job: x-mehtap-healed
+  take: 4
+  round: 2
+  logical_run: 20261105-night34-mehtap-one-retry
+  source_file: /workspace/generated_images/exec-818af3c2-022b-44f7-8362-6e2e5cb3d08f.png
+  returned_at: '2026-11-05T18:29:07.358Z'
+  prompt_sha256: 2d81005a1b5d63b233beb22b4666e00a919902bcb77d4ea2407c641aea652ae2
+  fingerprint: 5aac4432464afce6
+  saved_at: '2026-11-05T18:29:08.493426+00:00'
+  original_generated_png_sha256: 6f576543c7fa198eb51ea4ecce4b646e6bb40fd95765c2d166e6728575b3ad83
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 737ed36ac8fbb7488cd8ea11b99559230d9d7c1dac378fb8d8db41e1c4ad0111
+  inbox_png_sha256: 6bd65a24cd34e5a11fd347bab00a2c632850020584d160ae71075c8dc021bcf3
+  qa_sha256: c663673dea90e56113297f51b5f8cda522c1b4680aeb03f94982ae151d1dc9c7
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
