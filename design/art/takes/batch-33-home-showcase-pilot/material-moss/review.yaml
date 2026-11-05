@@ -1,0 +1,371 @@
+batch: batch-33-home-showcase-pilot
+contact_sheet: design/art/takes/batch-33-home-showcase-pilot/material-moss/contact.jpg
+jobs:
+  material-moss:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'SKIPPED after the one allowed retry pair. All four takes fail the unchanged
+      hard palette_drift check: mean dE 5.1371, 7.5082, 7.8015 and 7.122; retry off-palette
+      fractions are 20.6 and 19.5 percent, with olive/yellow-green swatches outside
+      the locked family. The first pair reads as a moss cushion with three pale star
+      flowers and a curl of cream root at thumbnail scale, but good silhouette cannot
+      waive hard colour QA. All four original PNGs and q90 takes preserved without
+      recolouring, palette-card edits or threshold changes. Independent lamp and door
+      masters were published; this job does not block them. Automated failures: t1
+      palette_drift: mean dE 5.1, p95 14.2, off-palette 9.9% (top: #888844 (1.9%),
+      #998855 (1.8%)); t2 palette_drift: mean dE 7.5, p95 18.0, off-palette 21.9%
+      (top: #888844 (6.9%), #999944 (3.5%)); t3 palette_drift: mean dE 7.8, p95 16.4,
+      off-palette 20.6% (top: #999944 (7.8%), #888844 (4.6%)); t4 palette_drift: mean
+      dE 7.1, p95 15.5, off-palette 19.5% (top: #999955 (4.9%), #998844 (3.5%)).'
+qa_reports:
+  2:
+    job: material-moss
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 46 (at most 22), p98 92 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 72.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.18 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.176
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.55
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.52
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7671
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 7.5, p95 18.0, off-palette 21.9% (top: #888844 (6.9%), #999944
+        (3.5%))'
+      value: 7.5082
+    - check: harmony
+      status: pass
+      message: 'harmony score 88 against the world reference (outliers: edge)'
+      value: 88.5
+    info:
+      metrics_raw:
+        L_p5: 51.2
+        L_p50: 72.2
+        L_p95: 91.5
+        C_p50: 40.7
+        C_p95: 48.1
+        C_p99: 51.4
+        detail: 2.14
+      metrics_locked:
+        L_p5: 51.6
+        L_p50: 72.1
+        L_p95: 91.1
+        C_p50: 40.6
+        C_p95: 47.4
+        C_p99: 50.3
+        detail: 1.52
+    fingerprint: 01ad223ebfc63526
+  3:
+    job: material-moss
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 51 (at most 22), p98 92 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 71 (band 55-90)'
+      value: 70.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.21 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.212
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.4 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.41
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.52
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7405
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 7.8, p95 16.4, off-palette 20.6% (top: #999944 (7.8%), #888844
+        (4.6%))'
+      value: 7.8015
+    - check: harmony
+      status: pass
+      message: 'harmony score 92 against the world reference (outliers: edge)'
+      value: 91.8
+    info:
+      metrics_raw:
+        L_p5: 53.8
+        L_p50: 71.0
+        L_p95: 90.8
+        C_p50: 42.0
+        C_p95: 47.3
+        C_p99: 48.6
+        detail: 2.15
+      metrics_locked:
+        L_p5: 54.1
+        L_p50: 70.9
+        L_p95: 90.5
+        C_p50: 41.7
+        C_p95: 46.5
+        C_p99: 47.6
+        detail: 1.52
+    fingerprint: 01ad223ebfc63526
+  1:
+    job: material-moss
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 92 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 75.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.259
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.4 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.36
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.56
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7161
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 5.1, p95 14.2, off-palette 9.9% (top: #888844 (1.9%), #998855
+        (1.8%))'
+      value: 5.1371
+    - check: harmony
+      status: pass
+      message: 'harmony score 90 against the world reference (outliers: edge)'
+      value: 89.5
+    info:
+      metrics_raw:
+        L_p5: 55.9
+        L_p50: 75.6
+        L_p95: 90.4
+        C_p50: 36.7
+        C_p95: 44.0
+        C_p99: 45.8
+        detail: 2.21
+      metrics_locked:
+        L_p5: 56.2
+        L_p50: 75.5
+        L_p95: 90.1
+        C_p50: 36.7
+        C_p95: 43.4
+        C_p99: 44.7
+        detail: 1.56
+    fingerprint: 01ad223ebfc63526
+  4:
+    job: material-moss
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 44.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 51 (at most 22), p98 92 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 71 (band 55-90)'
+      value: 70.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.25 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.247
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.4 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.34
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.672
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 7.1, p95 15.5, off-palette 19.5% (top: #999955 (4.9%), #998844
+        (3.5%))'
+      value: 7.122
+    - check: harmony
+      status: pass
+      message: 'harmony score 90 against the world reference (outliers: edge)'
+      value: 89.9
+    info:
+      metrics_raw:
+        L_p5: 55.5
+        L_p50: 70.8
+        L_p95: 90.5
+        C_p50: 37.9
+        C_p95: 45.4
+        C_p99: 46.6
+        detail: 1.97
+      metrics_locked:
+        L_p5: 55.8
+        L_p50: 70.6
+        L_p95: 90.2
+        C_p50: 38.0
+        C_p95: 44.9
+        C_p99: 45.8
+        detail: 1.34
+    fingerprint: 01ad223ebfc63526
+manual_review:
+  excluded_takes: []
+  note: 'SKIPPED after the one allowed retry pair. All four takes fail the unchanged
+    hard palette_drift check: mean dE 5.1371, 7.5082, 7.8015 and 7.122; retry off-palette
+    fractions are 20.6 and 19.5 percent, with olive/yellow-green swatches outside
+    the locked family. The first pair reads as a moss cushion with three pale star
+    flowers and a curl of cream root at thumbnail scale, but good silhouette cannot
+    waive hard colour QA. All four original PNGs and q90 takes preserved without recolouring,
+    palette-card edits or threshold changes. Independent lamp and door masters were
+    published; this job does not block them.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-a4aaff6e-6ab1-4bb1-b12c-beadeb28e82d.png
+  original_generated_png_sha256: 56ebfb11563efceb1ae61ff402bc822a8543892d8c9b9cb73e76686415d4df75
+  inbox_png_sha256: f5c2c11310c3d8fad9e997ae914588c55bd55621207f6432925cb32de5d1ee73
+  rgba_sha256: 55251fd85ff0bc5866ab3845484280b6f66e6f51c8fa26f5b23ce147a9ac2c2e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 01ad223ebfc63526
+- take: 2
+  source_file: /workspace/generated_images/exec-adc01d76-9f46-40b3-a642-0d2b5e38f0ff.png
+  original_generated_png_sha256: 32ed8e36e9b39978a8619906015df675fa94a998e96b5330d0b1f4df9cdbff0b
+  inbox_png_sha256: 1800218dbcd81810c4285e9f1317d8e5e5efa07762ac87f1c3d4dfd91b319ebc
+  rgba_sha256: 72f021b03bd1824915bc3fa7b99bb60f6277ac00e18fc0fef5ef6b1b821581cc
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 01ad223ebfc63526
+- take: 3
+  source_file: /workspace/generated_images/exec-9fa6211d-49e8-4259-8302-5f9681225c82.png
+  original_generated_png_sha256: 3fe1edebb4fa5e1f53dbd53613a0900c2fe5e74317814ee99954ea5b87b20c16
+  inbox_png_sha256: 258b90d15714aa84cac80d84f13a42c1d62105e942c40947f99f74b2059e26eb
+  rgba_sha256: 7c822cc27b5bdc33cd2e273046f16b4112acb3c01f812a8fc297e8187f3e2956
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 01ad223ebfc63526
+- take: 4
+  source_file: /workspace/generated_images/exec-e4a41e71-886a-49d6-ab2d-463810bdfa16.png
+  original_generated_png_sha256: e8a715ab0ea77a55f52f7d5cdb739ba5d88a402059ba534ee18bd16084f2afea
+  inbox_png_sha256: a6b0e2b9489ec37bbe4445bbe8abcf4f6fa23a4a4aaf53ecb10668d211e038d6
+  rgba_sha256: bcd65c2fe4f7df90f6909a47479d144f498e4d3e8d1db32d850466d2880b7599
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 01ad223ebfc63526

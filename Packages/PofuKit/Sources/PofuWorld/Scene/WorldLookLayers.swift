@@ -148,23 +148,44 @@ struct HD2DLayer: View {
     /// The graphics spike's normal lighting does the practicals' pools and
     /// the characters' rims instead.
     var relit = false
+    /// A visitor sleeps in the guest room tonight (H4).
+    var guestNight = false
+    /// The frame policy's say on shafts, particles and flicker
+    /// (`WorldPower.directive`); nil draws everything the light asks for.
+    var directive: FrameDirective?
+
+    /// The scene's time for sway and particles: quantised to the policy's
+    /// 30 Hz when a policy drives the scene.
+    private var ambient: Double {
+        directive == nil ? time : FramePolicy.ambientTime(time)
+    }
 
     var body: some View {
-        Canvas(rendersAsynchronously: false) { context, size in
+        // The field and its baked pools, outside the draw: both change a few
+        // times an evening.
+        let field = LightField.make(world: world, light: light, guestNight: guestNight)
+        let poolMap = relit ? nil : LightMapCache.image(for: field)
+        return Canvas(rendersAsynchronously: false) { context, size in
             var glow = context
             glow.blendMode = .plusLighter
             var paint = context
             drawLitOverlays(in: &paint)
             drawSunRims(in: &glow)
             drawGlints(in: &glow)
-            drawShafts(in: &glow, size: size)
+            if directive?.shafts ?? true {
+                drawShafts(in: &glow, size: size)
+            }
             drawSunBloom(in: &glow, size: size)
             if !relit {
+                drawGroundPools(poolMap, in: &glow)
                 drawPools(in: &glow)
-                drawRims(in: &glow)
+                drawRims(field: field, glow: &glow, paint: &paint)
             }
             drawEmitters(in: &glow)
-            drawParticles(in: &glow)
+            drawFieldHalos(field, in: &glow)
+            if directive?.particles ?? true {
+                drawParticles(in: &glow)
+            }
         }
         .frame(width: size.width, height: size.height)
         .allowsHitTesting(false)
@@ -186,11 +207,11 @@ struct HD2DLayer: View {
         guard light.shafts > 0.02, let image = shaftImage else { return }
         let sun = CGPoint(x: light.sunX * size.width, y: light.sunY * size.height)
         var layer = context
-        let sway = sin(time * 0.21) * 0.012
+        let sway = sin(ambient * 0.21) * 0.012
         layer.translateBy(x: sun.x, y: sun.y)
         layer.rotate(by: .radians(sway))
         layer.translateBy(x: -sun.x, y: -sun.y)
-        layer.opacity = min(max(light.shafts, 0), 1) * (0.85 + 0.15 * sin(time * 0.37))
+        layer.opacity = min(max(light.shafts, 0), 1) * (0.85 + 0.15 * sin(ambient * 0.37))
         layer.draw(image, in: CGRect(origin: .zero, size: size))
     }
 
@@ -322,10 +343,50 @@ struct HD2DLayer: View {
         }
     }
 
-    /// A soft rim on Pofu and the residents: from the nearest practical
-    /// when it outshines the key (night, dusk), else from the key's side in
-    /// the cell's rim colour.
-    private func drawRims(in context: inout GraphicsContext) {
+    /// The pools of light on the ground: one quad of the baked light map
+    /// under the camera transform, however many sources there are.
+    private func drawGroundPools(_ map: Image?, in context: inout GraphicsContext) {
+        guard let map else { return }
+        let bounds = LightField.mapBounds
+        let a = screen(WorldPoint(x: bounds.minX, y: bounds.minY))
+        let b = screen(WorldPoint(x: bounds.maxX, y: bounds.maxY))
+        context.draw(map, in: CGRect(x: a.x, y: a.y, width: b.x - a.x, height: b.y - a.y))
+    }
+
+    /// A painted halo on each field source the emitters do not already
+    /// draw (the lantern, path lamps, other windows, the pond), with the
+    /// lantern's flicker in the Ambient state only.
+    private func drawFieldHalos(_ field: LightField, in context: inout GraphicsContext) {
+        let s = pose.scale
+        let flicker = directive?.flicker ?? !ProcessInfo.processInfo.isLowPowerModeEnabled
+        for source in field.sources where source.id != "ember" && source.id != "window-pofu" {
+            let depth = IslandLayout.depth(ofY: source.point.y)
+            var p = screen(source.point, depth: depth)
+            p.y -= source.height * s * 0.6
+            var k = min(source.strength, 1.4)
+            if flicker, source.kind == .lantern {
+                k *= 0.97 + 0.03 * sin(ambient * 9.1)
+            }
+            let radius = source.kind == .window || source.kind == .guestRoom ? 5.0 : 8.0
+            for (mult, opacity) in [(3.0, 0.22), (1.0, 0.6)] {
+                let r = max(radius * mult * s, 2)
+                context.fill(
+                    Path(ellipseIn: CGRect(x: p.x - r, y: p.y - r, width: 2 * r, height: 2 * r)),
+                    with: .radialGradient(
+                        Gradient(colors: [color(source.colour, opacity * k), color(source.colour, 0)]),
+                        center: p, startRadius: 0, endRadius: r
+                    )
+                )
+            }
+        }
+    }
+
+    /// The light on Pofu and the residents: a broad key from the dominant
+    /// source's side (or the sun's rim by day), a bounce of the pool's
+    /// colour on the lower third, a thin cool moon rim with the readability
+    /// floor, and a contact shadow cast away from the source. Each is
+    /// masked by the sprite's alpha, inside this one Canvas.
+    private func drawRims(field: LightField, glow context: inout GraphicsContext, paint: inout GraphicsContext) {
         guard pose.scale > 0.3 else { return }
         var subjects: [(name: String, variant: DepthVariant, feet: WorldPoint)] = [("pofu", .soft, IslandLayout.pofu)]
         for resident in IslandLayout.residents {
@@ -333,42 +394,97 @@ struct HD2DLayer: View {
             subjects.append((resident.art, .sharp, IslandFootprint.clamped(resident.feet, footprint: IslandFootprint.footprint(of: resident.art))))
         }
         let calm = 1 - 0.5 * light.unwell
+        let s = pose.scale
         for subject in subjects {
             let depth = IslandLayout.depth(ofY: subject.feet.y)
             guard let mask = sprite(subject.name, variant: subject.variant, at: subject.feet, depth: depth) else { continue }
-            // The key's rim, from the side the key comes from.
+            let sample = field.sample(subject.feet)
+            let r = mask.1
+            let centre = CGPoint(x: r.midX, y: r.midY)
+            let reach = Double(max(r.width, r.height)) / 2
+
+            // The key: from the sun's side, or from the source when it
+            // outshines the sun's rim.
             var dir = (x: -light.cell.key.from.x, y: -light.cell.key.from.y)
             var tint = light.cell.rim.colour
             var strength = light.cell.rim.intensity * calm
-            // A practical close enough outshines it.
-            for emitter in IslandLayout.emitters {
-                if let station = emitter.station, (world.stations.first(where: { $0.id == station })?.level ?? 0) == 0 { continue }
-                let dx = emitter.point.x - subject.feet.x, dy = emitter.point.y - (subject.feet.y - 14)
-                let d = hypot(dx, dy)
-                let falloff = max(0, 1 - d / (emitter.reach * 1.6))
-                let k = min(emitter.strength(in: light), 1.2) * falloff * 0.55
-                if k > strength {
-                    strength = k
-                    tint = emitter.color
-                    dir = (x: dx / max(d, 1e-6), y: dy / max(d, 1e-6))
+            let keyed = sample.strength * LookTuning.keyGain
+            if keyed > strength {
+                strength = keyed
+                tint = sample.colour
+                dir = (x: sample.directionX, y: sample.directionY)
+            }
+            if strength > 0.02 {
+                let n = max(hypot(dir.x, dir.y), 1e-6)
+                let ux = dir.x / n, uy = dir.y / n
+                let start = CGPoint(x: centre.x + ux * reach, y: centre.y + uy * reach)
+                let end = CGPoint(x: centre.x - ux * reach * 0.1, y: centre.y - uy * reach * 0.1)
+                shine(&context, on: mask, with: .linearGradient(
+                    Gradient(stops: [
+                        .init(color: color(tint, min(strength, 0.7)), location: 0),
+                        .init(color: color(tint, min(strength, 0.7) * 0.35), location: 0.3),
+                        .init(color: color(tint, 0), location: 1),
+                    ]),
+                    startPoint: start, endPoint: end
+                ))
+            }
+
+            // The bounce: the pool's colour on the lower third.
+            if sample.strength > 0.05 {
+                let bounce = min(sample.strength * LookTuning.bounceGain, 0.45)
+                shine(&context, on: mask, with: .linearGradient(
+                    Gradient(stops: [
+                        .init(color: color(sample.colour, bounce), location: 0),
+                        .init(color: color(sample.colour, 0), location: 1),
+                    ]),
+                    startPoint: CGPoint(x: centre.x, y: r.maxY),
+                    endPoint: CGPoint(x: centre.x, y: r.maxY - r.height / 3)
+                ))
+            }
+
+            // The thin cool moon rim, with the readability floor: nobody is
+            // ever a silhouette between sources.
+            let moon = sample.moonRim * 0.5
+            if moon > 0.01 || sample.ambient > 0.01 {
+                let k = light.cell.key.from
+                let n = max(hypot(k.x, k.y), 1e-6)
+                let ux = -k.x / n, uy = -k.y / n
+                let lift = sample.ambient * LookTuning.floorGain
+                let moonColour = field.moonColour
+                shine(&context, on: mask, with: .linearGradient(
+                    Gradient(stops: [
+                        .init(color: color(moonColour, lift + moon), location: 0),
+                        .init(color: color(moonColour, lift + moon * 0.2), location: 0.22),
+                        .init(color: color(moonColour, lift), location: 1),
+                    ]),
+                    startPoint: CGPoint(x: centre.x + ux * reach, y: centre.y + uy * reach),
+                    endPoint: CGPoint(x: centre.x - ux * reach, y: centre.y - uy * reach)
+                ))
+            }
+
+            // The contact shadow: an ellipse at the feet cast away from the
+            // source, under the sprite (the sprite's own pixels are
+            // erased from it).
+            if sample.strength > 0.08 {
+                let cast = 7.0
+                let feet = screen(subject.feet, depth: depth)
+                let cx = feet.x - sample.directionX * cast * s
+                let cy = feet.y - sample.directionY * cast * s * 0.5
+                let rx = 15 * s, ry = 4.5 * s
+                let shadow = light.cell.shadow
+                let opacity = min(sample.strength * LookTuning.contactShadow, 0.3)
+                paint.drawLayer { layer in
+                    layer.fill(
+                        Path(ellipseIn: CGRect(x: cx - rx, y: cy - ry, width: 2 * rx, height: 2 * ry)),
+                        with: .radialGradient(
+                            Gradient(colors: [color(shadow, opacity), color(shadow, 0)]),
+                            center: CGPoint(x: cx, y: cy), startRadius: 0, endRadius: rx
+                        )
+                    )
+                    layer.blendMode = .destinationOut
+                    layer.draw(mask.0, in: mask.1)
                 }
             }
-            guard strength > 0.02 else { continue }
-            let r = mask.1
-            let centre = CGPoint(x: r.midX, y: r.midY)
-            let n = hypot(dir.x, dir.y)
-            let ux = dir.x / max(n, 1e-6), uy = dir.y / max(n, 1e-6)
-            let reach = Double(max(r.width, r.height)) / 2
-            let start = CGPoint(x: centre.x + ux * reach, y: centre.y + uy * reach)
-            let end = CGPoint(x: centre.x - ux * reach * 0.1, y: centre.y - uy * reach * 0.1)
-            shine(&context, on: mask, with: .linearGradient(
-                Gradient(stops: [
-                    .init(color: color(tint, min(strength, 0.7)), location: 0),
-                    .init(color: color(tint, min(strength, 0.7) * 0.35), location: 0.3),
-                    .init(color: color(tint, 0), location: 1),
-                ]),
-                startPoint: start, endPoint: end
-            ))
         }
     }
 
@@ -469,8 +585,8 @@ struct HD2DLayer: View {
             let tint = GradeRGB(1, 0.97, 0.84)
             for i in 0..<28 {
                 let (x0, y0, ph) = seed(i, salt: 1)
-                let x = -200 + 400 * x0 + sin(time * 0.31 + ph * 6) * 7
-                let rise = (time * 3.2 + ph * 70).truncatingRemainder(dividingBy: 70)
+                let x = -200 + 400 * x0 + sin(ambient * 0.31 + ph * 6) * 7
+                let rise = (ambient * 3.2 + ph * 70).truncatingRemainder(dividingBy: 70)
                 let y = -150 + 190 * y0 - rise
                 let fade = sin(rise / 70 * .pi)
                 let p = screen(WorldPoint(x: x, y: y))
@@ -482,9 +598,9 @@ struct HD2DLayer: View {
             let tint = GradeRGB(0.92, 1, 0.55)
             for i in 0..<18 {
                 let (x0, y0, ph) = seed(i, salt: 7)
-                let x = -190 + 380 * x0 + sin(time * 0.5 + ph * 5) * 10
-                let y = -120 + 170 * y0 + cos(time * 0.43 + ph * 3) * 7
-                let blink = max(0, sin(time * 1.6 + ph * 9)) * 0.75 + 0.25
+                let x = -190 + 380 * x0 + sin(ambient * 0.5 + ph * 5) * 10
+                let y = -120 + 170 * y0 + cos(ambient * 0.43 + ph * 3) * 7
+                let blink = max(0, sin(ambient * 1.6 + ph * 9)) * 0.75 + 0.25
                 let p = screen(WorldPoint(x: x, y: y))
                 let r = max(1.6 * s, 1.4)
                 dot(&context, p, r: r * 5, color: color(tint, 0.35 * light.fireflies * blink))
@@ -508,6 +624,104 @@ struct HD2DLayer: View {
         }
         let n = Double(i * 31 + salt * 977)
         return (h(n * 12.9898), h(n * 78.233 + 1), h(n * 39.425 + 2))
+    }
+}
+
+// MARK: - The light map, baked
+
+/// The pools of every lit source, painted into one low-resolution map
+/// (512 x 256 over `LightField.mapBounds`) and kept until the lit set or a
+/// strength bucket changes, a few times an evening. Each frame draws it as
+/// one quad.
+@MainActor
+private enum LightMapCache {
+    private static var key: LightField.BakeKey?
+    private static var cached: Image?
+
+    static func image(for field: LightField) -> Image? {
+        let wanted = field.bakeKey
+        if key == wanted { return cached }
+        key = wanted
+        guard !wanted.entries.isEmpty else {
+            cached = nil
+            return nil
+        }
+        let renderer = ImageRenderer(content: PoolMapArt(field: field))
+        renderer.scale = 1
+        renderer.isOpaque = false
+        cached = renderer.uiImage.map { Image(uiImage: $0) }
+        return cached
+    }
+}
+
+/// Every source's pool on black-transparent, in map pixels. The pools are
+/// painterly additive blobs; the Codex `glow-*` sprites replace these
+/// gradients when the art lands.
+private struct PoolMapArt: View {
+    let field: LightField
+
+    var body: some View {
+        Canvas(rendersAsynchronously: false) { context, size in
+            let bounds = LightField.mapBounds
+            let k = size.width / (bounds.maxX - bounds.minX)
+            func map(_ p: WorldPoint) -> CGPoint {
+                CGPoint(x: (p.x - bounds.minX) * k, y: (p.y - bounds.minY) * k)
+            }
+            func tint(_ c: GradeRGB, _ opacity: Double) -> Color {
+                Color(red: c.r, green: c.g, blue: c.b).opacity(min(max(opacity, 0), 1))
+            }
+            var layer = context
+            layer.blendMode = .plusLighter
+            for source in field.sources {
+                let strength = min(source.strength, 1.4)
+                switch source.shape {
+                case .round, .pondEllipse:
+                    // A pool on a lawn seen at about 17 degrees: wide and flat.
+                    let c = map(WorldPoint(x: source.point.x, y: source.point.y + 2))
+                    let rx = source.reach * k * (source.shape == .pondEllipse ? 1.15 : 1.0)
+                    let ry = rx * (source.shape == .pondEllipse ? 0.38 : 0.45)
+                    layer.drawLayer { l in
+                        l.translateBy(x: c.x, y: c.y)
+                        l.scaleBy(x: 1, y: ry / rx)
+                        l.fill(
+                            Path(ellipseIn: CGRect(x: -rx, y: -rx, width: 2 * rx, height: 2 * rx)),
+                            with: .radialGradient(
+                                Gradient(stops: [
+                                    .init(color: tint(source.colour, 0.42 * strength), location: 0),
+                                    .init(color: tint(source.colour, 0.18 * strength), location: 0.5),
+                                    .init(color: tint(source.colour, 0), location: 1),
+                                ]),
+                                center: .zero, startRadius: 0, endRadius: rx
+                            )
+                        )
+                    }
+                case .windowSpill:
+                    // A trapezoid of light falling from the window onto the
+                    // grass, soft at its far edge.
+                    let top = map(WorldPoint(x: source.point.x, y: source.point.y + 4))
+                    let length = source.reach * k * 0.9
+                    let w0 = 6 * k, w1 = source.reach * k * 0.55
+                    var path = Path()
+                    path.move(to: CGPoint(x: top.x - w0, y: top.y))
+                    path.addLine(to: CGPoint(x: top.x + w0, y: top.y))
+                    path.addLine(to: CGPoint(x: top.x + w1, y: top.y + length))
+                    path.addLine(to: CGPoint(x: top.x - w1, y: top.y + length))
+                    path.closeSubpath()
+                    layer.drawLayer { l in
+                        l.addFilter(.blur(radius: 3))
+                        l.fill(path, with: .linearGradient(
+                            Gradient(stops: [
+                                .init(color: tint(source.colour, 0.5 * strength), location: 0),
+                                .init(color: tint(source.colour, 0.2 * strength), location: 0.55),
+                                .init(color: tint(source.colour, 0), location: 1),
+                            ]),
+                            startPoint: top, endPoint: CGPoint(x: top.x, y: top.y + length)
+                        ))
+                    }
+                }
+            }
+        }
+        .frame(width: CGFloat(LightField.mapWidth), height: CGFloat(LightField.mapHeight))
     }
 }
 

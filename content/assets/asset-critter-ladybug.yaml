@@ -1,0 +1,21 @@
+id: asset-critter-ladybug
+type: asset
+title_tr: critter-ladybug
+title_en: critter-ladybug (sheet)
+status: planned
+horizon: later
+summary: >-
+  A sheet of one small ladybug drawn three times in a single row, left to right, evenly spaced
+  with wide empty space between them: (1) at rest on a single broad green leaf, shown together
+  as one sprite; (2) walking, alone, legs in the first step position; (3) walking, alone,
+  legs in the second step position. A plump round ladybug in warm coral-red with five soft
+  dark-plum spots, a small plum head and six short chunky l…
+art:
+  images: []
+  jobs:
+  - batch-35-experience:critter-ladybug
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience.yaml
+kind: sheet
+batch: batch-35-experience
+size: 1536x1024

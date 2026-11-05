@@ -1,0 +1,21 @@
+id: asset-critter-butterfly
+type: asset
+title_tr: critter-butterfly
+title_en: critter-butterfly (sheet)
+status: planned
+horizon: later
+summary: >-
+  A sheet of one small butterfly drawn five times in a single row, left to right, evenly spaced
+  with wide empty space between them: four wing positions of one flap cycle seen from slightly
+  above and the side (wings fully up, half open, flat open, half closed), and a fifth resting
+  pose with the wings closed upright. Soft cream-yellow wings with warm rose tips and a plain
+  plump body, two short antennae. Chunky and gentle…
+art:
+  images: []
+  jobs:
+  - batch-35-experience:critter-butterfly
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience.yaml
+kind: sheet
+batch: batch-35-experience
+size: 1536x1024

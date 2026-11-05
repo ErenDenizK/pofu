@@ -1,0 +1,396 @@
+batch: batch-34-islands-in-game
+manifest: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+manifest_sha256: 345738791fedc39057958fb6e3aee35a0f660ada571fff12a36eba9dc2b2257f
+contact_sheet: design/art/takes/batch-34-islands-in-game/x-home-tam-cicek/contact.jpg
+jobs:
+  x-home-tam-cicek:
+    pick: 4
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Retry takes3/4 add the missing
+      warm lighthouse beam over the cloud sea and satisfy the full-bloom composition:
+      giant sunflower garden far left, lantern-capped windmill back left, lit lily
+      pond front left, gear-sign workshop back right, string-lit tea stall far right,
+      small hive between them, path lamps, exactly four lit earth doors, residents
+      gathered at the front, open-gate hilltop with steps/bench/telescope, right harbor
+      ferry/pier and a distant cloud-whale. Exclude first pair only because both omitted
+      the explicit lighthouse beam. Broad home lawn/body and camera are recognisable;
+      independent concept generation is not a pixel-registered plate edit and all
+      station proportions remain concept review. No text or UI. All six main references
+      retained via a labelled native-pixel cloud-sea/Pofu board; no source edits or
+      promotion. Numeric exploration style/light warnings are advisory.'
+qa_reports:
+  1:
+    job: x-home-tam-cicek
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.0
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 55 (at most 12), p98 89 (at least 68), spread 34
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 34.3
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 76 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 75.5
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.31 (at most 0.14; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.31
+    - check: light_contrast
+      status: pass
+      message: 'dusk/subject: p75 local contrast 4.8 (at least 3.0)'
+      value: 4.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.5 (R1 5.3)
+      value: 3.54
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.4947
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 5.0, off-palette 0.0% (top: #CC7733 (0.0%), #BB7722
+        (0.0%))'
+      value: 2.0748
+    info:
+      metrics_raw:
+        L_p5: 57.2
+        L_p50: 75.0
+        L_p95: 87.4
+        C_p50: 23.8
+        C_p95: 40.8
+        C_p99: 52.0
+        detail: 4.51
+      metrics_locked:
+        L_p5: 57.5
+        L_p50: 75.0
+        L_p95: 86.9
+        C_p50: 23.7
+        C_p95: 40.0
+        C_p99: 48.9
+        detail: 3.54
+    fingerprint: 94e3b6daf75b4d6d
+  2:
+    job: x-home-tam-cicek
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.6
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 55 (at most 12), p98 89 (at least 68), spread 34
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 34.3
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 73 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 73.3
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.28 (at most 0.14; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.282
+    - check: light_contrast
+      status: pass
+      message: 'dusk/subject: p75 local contrast 5.1 (at least 3.0)'
+      value: 5.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.5 (R1 5.3)
+      value: 3.5
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.633
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.4, p95 5.5, off-palette 0.3% (top: #BB6633 (0.1%), #BB7733
+        (0.1%))'
+      value: 2.4
+    info:
+      metrics_raw:
+        L_p5: 58.0
+        L_p50: 72.7
+        L_p95: 86.6
+        C_p50: 27.0
+        C_p95: 41.9
+        C_p99: 56.7
+        detail: 4.39
+      metrics_locked:
+        L_p5: 58.6
+        L_p50: 72.7
+        L_p95: 86.1
+        C_p50: 26.8
+        C_p95: 40.6
+        C_p99: 55.1
+        detail: 3.5
+    fingerprint: 94e3b6daf75b4d6d
+  3:
+    job: x-home-tam-cicek
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.6
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 56 (at most 12), p98 89 (at least 68), spread 33
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 33.2
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 73 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 73.0
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.33 (at most 0.14; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.333
+    - check: light_contrast
+      status: pass
+      message: 'dusk/subject: p75 local contrast 4.8 (at least 3.0)'
+      value: 4.79
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.3 (R1 5.3)
+      value: 3.28
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5432
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.3, p95 5.3, off-palette 0.0%
+      value: 2.296
+    info:
+      metrics_raw:
+        L_p5: 57.7
+        L_p50: 72.9
+        L_p95: 86.2
+        C_p50: 25.9
+        C_p95: 42.8
+        C_p99: 53.8
+        detail: 4.23
+      metrics_locked:
+        L_p5: 58.2
+        L_p50: 72.9
+        L_p95: 85.7
+        C_p50: 25.8
+        C_p95: 41.6
+        C_p99: 51.5
+        detail: 3.28
+    fingerprint: 94e3b6daf75b4d6d
+  4:
+    job: x-home-tam-cicek
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.5
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 54 (at most 12), p98 89 (at least 68), spread 35
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 35.0
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 74 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 74.1
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.30 (at most 0.14; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.298
+    - check: light_contrast
+      status: pass
+      message: 'dusk/subject: p75 local contrast 5.0 (at least 3.0)'
+      value: 5.02
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.4 (R1 5.3)
+      value: 3.39
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.542
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 5.1, off-palette 0.0% (top: #CC7744 (0.0%), #BB6633
+        (0.0%))'
+      value: 2.138
+    info:
+      metrics_raw:
+        L_p5: 58.7
+        L_p50: 73.8
+        L_p95: 86.4
+        C_p50: 27.3
+        C_p95: 43.4
+        C_p99: 54.6
+        detail: 4.36
+      metrics_locked:
+        L_p5: 59.4
+        L_p50: 73.8
+        L_p95: 85.9
+        C_p50: 27.1
+        C_p95: 42.5
+        C_p99: 51.7
+        detail: 3.39
+    fingerprint: 94e3b6daf75b4d6d
+manual_review:
+  observed_note: 'Retry takes3/4 add the missing warm lighthouse beam over the cloud
+    sea and satisfy the full-bloom composition: giant sunflower garden far left, lantern-capped
+    windmill back left, lit lily pond front left, gear-sign workshop back right, string-lit
+    tea stall far right, small hive between them, path lamps, exactly four lit earth
+    doors, residents gathered at the front, open-gate hilltop with steps/bench/telescope,
+    right harbor ferry/pier and a distant cloud-whale. Exclude first pair only because
+    both omitted the explicit lighthouse beam. Broad home lawn/body and camera are
+    recognisable; independent concept generation is not a pixel-registered plate edit
+    and all station proportions remain concept review. No text or UI. All six main
+    references retained via a labelled native-pixel cloud-sea/Pofu board; no source
+    edits or promotion. Numeric exploration style/light warnings are advisory.'
+  excluded_takes:
+  - 1
+  - 2
+sources:
+- batch: batch-34-islands-in-game
+  job: x-home-tam-cicek
+  take: 1
+  round: 1
+  logical_run: 20261105-night34-home-growth
+  source_file: /workspace/generated_images/exec-73e0031e-5df3-47ba-b6e7-65c2bf03c52a.png
+  returned_at: '2026-11-05T18:27:23.888Z'
+  prompt_sha256: 926986d351add4d7b5a7bf4efc8ebee05c2d536df8cd7b76d76fe532732ecb0c
+  fingerprint: 94e3b6daf75b4d6d
+  saved_at: '2026-11-05T18:27:24.308799+00:00'
+  original_generated_png_sha256: 876535bf21c51cf62a1225f5adc2783ee76198ea46eeed373f1a3c5e84c0ca20
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: fb41e683353a7d83e104f3c9df3ce3353c7e60b4c6ad5c577cbfb0ffe81a3ce7
+  inbox_png_sha256: 51ba968d2bbfeb94e178fa91e86261d9b97793d48d94ffc46385b521bdb778cb
+  qa_sha256: 10a62c4cb109b1c2f0d1e441c39c0c07b88903c5251f1b5d61f49b8a59fbd625
+- batch: batch-34-islands-in-game
+  job: x-home-tam-cicek
+  take: 2
+  round: 1
+  logical_run: 20261105-night34-home-growth
+  source_file: /workspace/generated_images/exec-63ba9624-aff3-4990-b45e-bf201512dfd0.png
+  returned_at: '2026-11-05T18:28:19.552Z'
+  prompt_sha256: 926986d351add4d7b5a7bf4efc8ebee05c2d536df8cd7b76d76fe532732ecb0c
+  fingerprint: 94e3b6daf75b4d6d
+  saved_at: '2026-11-05T18:28:23.142910+00:00'
+  original_generated_png_sha256: a203ad61429d2e2358f30bf48f4ba92c434b3cc2a2459ce146c137ec7d8a0e2f
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: e3aa3741dae4a2fd2c80629e63290244d0f35e685db2c861c231e2b38bb74abd
+  inbox_png_sha256: 7d42c833d80497d0c8bfdf172544c6c72dc359744fdc6ea10b283c2ae5b8825d
+  qa_sha256: da838e438a36a2bd62ea3bcc02539fd0be5808397d700fdc99e96000464bf7df
+- batch: batch-34-islands-in-game
+  job: x-home-tam-cicek
+  take: 3
+  round: 2
+  logical_run: 20261105-night34-home-one-retry
+  source_file: /workspace/generated_images/exec-472b27da-c378-43a7-ad33-ebfff84c1475.png
+  returned_at: '2026-11-05T18:33:03.073Z'
+  prompt_sha256: 926986d351add4d7b5a7bf4efc8ebee05c2d536df8cd7b76d76fe532732ecb0c
+  fingerprint: 94e3b6daf75b4d6d
+  saved_at: '2026-11-05T18:33:03.492456+00:00'
+  original_generated_png_sha256: 73e9401b9a8b2ff181f57f1b2698c78c2909d27c38da89a5201b8db2ebe9af99
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: aeaee7273f16eda41f2c05b12e05a39cf302e4af6ed302d30b6bedba1a80b1c1
+  inbox_png_sha256: ca1188006794589acadfcea82c0688ce0fab36a5ef9a85df13d55ba26c00829b
+  qa_sha256: 005a1b6f4c1918ecd6859375bdb1079831587b147ca4aad47eaabd9fa67f8326
+- batch: batch-34-islands-in-game
+  job: x-home-tam-cicek
+  take: 4
+  round: 2
+  logical_run: 20261105-night34-home-one-retry
+  source_file: /workspace/generated_images/exec-52b07d0f-0ac0-4bc7-a227-02dcf9e62fb3.png
+  returned_at: '2026-11-05T18:32:09.740Z'
+  prompt_sha256: 926986d351add4d7b5a7bf4efc8ebee05c2d536df8cd7b76d76fe532732ecb0c
+  fingerprint: 94e3b6daf75b4d6d
+  saved_at: '2026-11-05T18:32:15.867362+00:00'
+  original_generated_png_sha256: 124701e7aa66eac4b811f1c1413e9efb0882155e476ffc3ea85289840d220f7e
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: c7a02991f1060b5dc1cece4d3d71657baaaa36fc993d7d190f42cc1ee16bae62
+  inbox_png_sha256: 45d13d3f61d4f7fba2ae176b57234f4bc34113dfd21e251d64f357a3718a075d
+  qa_sha256: 8795e2eedc4edf347b454f986345c2788e72694dc24dab77e1b744f27019ab3a
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+reference_packaging:
+  reason: Tool accepts at most five paths; all six listed references retained, final
+    two on labelled native-pixel board before first generation dispatch
+  board: /workspace/art-operator-runtime/run-20261105-night/batch-34-islands-in-game/x-home-tam-cicek-references-5-6.png
+  board_sha256: b0c91f2783d904c7cfba04a81204bb5e0c833d63091844723ece1474aed2510f
+  source_files:
+    /workspace/art-20261105-islands-game/design/art/masters/cloud-sea/cloud-sea.png: bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a
+    /workspace/art-20261105-islands-game/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+  original_rgba_pixels_preserved: true
+  individual_references_resized: false
+  printed_prompt_unchanged: true
+  all_original_references:
+    /workspace/art-20261105-islands-game/design/art/masters/island-main-l-v3/island-main-l-v3.webp: f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29
+    /workspace/art-20261105-islands-game/design/art/stations/tea-stall-5/tea-stall-5.png: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
+    /workspace/art-20261105-islands-game/design/art/stations/windmill-5/windmill-5.png: 2b39b888f828ae71db321dfb0899e69712830cc04c055a8fc93e98fe0ae877c3
+    /workspace/art-20261105-islands-game/design/art/masters/harbor-island-s/harbor-island-s.webp: ecd09ecf0ac212c50dfb6795a426d88a3ba9302815ad52a8edc57de2d8ebd3e4
+    /workspace/art-20261105-islands-game/design/art/masters/cloud-sea/cloud-sea.png: bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a
+    /workspace/art-20261105-islands-game/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454

@@ -1,0 +1,21 @@
+id: asset-cloud-curtain-1
+type: asset
+title_tr: cloud-curtain-1
+title_en: cloud-curtain-1 (world)
+status: planned
+horizon: later
+summary: >-
+  The front cloud bank of a loading curtain, on a transparent background: a wide band of plump,
+  overlapping cream-white clouds with soft pink-gold tops and lilac-grey undersides, filling
+  the whole lower half of the image and rising in a few rounded towers toward the middle,
+  the upper half left empty and transparent. The bank is wider than the image on both sides
+  so it can slide apart. Chunky, soft, toy-like shapes.
+art:
+  images: []
+  jobs:
+  - batch-35-experience:cloud-curtain-1
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience.yaml
+kind: world
+batch: batch-35-experience
+size: 1536x1024

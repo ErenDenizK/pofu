@@ -397,11 +397,15 @@ struct SkipPotsView: View {
     let isNight: Bool
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// The "I resisted" payoff playing now, if one is (experience v1
+    /// section 3.4): the newest pots bloom left to right as one cascade.
+    @Environment(\.resistPayoff) private var payoff
 
     var body: some View {
         HStack(alignment: .bottom, spacing: 2) {
             ForEach(pots.pots.indices, id: \.self) { index in
                 PotView(pot: pots.pots[index], asleep: pots.isAsleep, badge: pots.isClustered)
+                    .modifier(PayoffBloom(run: payoff, order: bloomOrder(of: index), reduceMotion: reduceMotion))
                     .transition(.scale(scale: 0.3, anchor: .bottom).combined(with: .opacity))
             }
         }
@@ -410,6 +414,39 @@ struct SkipPotsView: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(verbatim: WorldStrings.potsLabel))
         .accessibilityValue(Text(verbatim: WorldStrings.todayLine(today)))
+    }
+}
+
+extension SkipPotsView {
+    /// The place of pot `index` in the payoff's cascade: the newest pots
+    /// bloom, the leftmost of them first. `nil` for a pot that does not.
+    fileprivate func bloomOrder(of index: Int) -> Int? {
+        guard let payoff else { return nil }
+        let count = min(payoff.payoff.potCount, pots.pots.count)
+        let first = pots.pots.count - count
+        return index >= first ? index - first : nil
+    }
+}
+
+/// Pops a pot on the payoff's clock: a little swell and glow, then rest.
+private struct PayoffBloom: ViewModifier {
+    let run: ResistPayoffRun?
+    let order: Int?
+    let reduceMotion: Bool
+
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if let run, let order {
+            TimelineView(.animation(paused: run.isOver(at: Date()))) { context in
+                let progress = run.payoff.bloomProgress(of: order, at: run.time(at: context.date))
+                let pulse = sin(progress * .pi)
+                content
+                    .scaleEffect(reduceMotion ? 1 : 1 + 0.3 * pulse, anchor: .bottom)
+                    .brightness(0.08 * pulse)
+            }
+        } else {
+            content
+        }
     }
 }
 

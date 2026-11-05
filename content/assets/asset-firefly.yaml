@@ -1,0 +1,21 @@
+id: asset-firefly
+type: asset
+title_tr: firefly
+title_en: firefly (ui)
+status: planned
+horizon: later
+summary: >-
+  A sprite sheet of one firefly shown four times in a single row, left to right, evenly spaced
+  with wide empty space between them: (1) body dim, abdomen a faint warm amber; (2) the abdomen
+  glowing, a small warm yellow core; (3) at its brightest, a warm yellow-white core with a
+  soft honey-gold halo; (4) fading, amber again. Each firefly is tiny, a plump rounded body
+  of soft dark plum-brown with two pale translucent wing…
+art:
+  images: []
+  jobs:
+  - batch-35-experience:firefly
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience.yaml
+kind: ui
+batch: batch-35-experience
+size: 1536x1024

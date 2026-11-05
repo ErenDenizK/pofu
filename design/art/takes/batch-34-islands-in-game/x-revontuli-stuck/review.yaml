@@ -1,0 +1,205 @@
+batch: batch-34-islands-in-game
+manifest: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+manifest_sha256: 345738791fedc39057958fb6e3aee35a0f660ada571fff12a36eba9dc2b2257f
+contact_sheet: design/art/takes/batch-34-islands-in-game/x-revontuli-stuck/contact.jpg
+jobs:
+  x-revontuli-stuck:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show the snowy floe with
+      rounded short icicles, warm sauna and steam at back left, one snowy spruce at
+      back right, a front-left fishing hole with stool, a tall dark central lantern
+      and hopeful small white brush-tail fox. No aurora in either sky, tail remains
+      white. Pofu has the curl; Mochi has long soft ears and none. No copied home
+      lawn or round earth door, no lettering, scary drop or off-island waterfall.
+      Snow and prop dimensions vary between states because prompts independently attach
+      main references; broad landmark positions are continuous, not pixel registered.
+      Numeric exploration style/light warnings are advisory and retained. Never promoted.
+qa_reports:
+  1:
+    job: x-revontuli-stuck
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.9
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 42 (at most 8), p98 94 (at least 58), spread 52
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 51.9
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 82 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 81.9
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.37 (at most 0.10; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.373
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 3.6 (at least 2.8)'
+      value: 3.62
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7938
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.4, p95 7.5, off-palette 0.2% (top: #6688CC (0.1%), #7799CC
+        (0.0%))'
+      value: 3.3909
+    info:
+      metrics_raw:
+        L_p5: 27.9
+        L_p50: 77.5
+        L_p95: 91.6
+        C_p50: 15.9
+        C_p95: 37.1
+        C_p99: 41.4
+        detail: 3.2
+      metrics_locked:
+        L_p5: 28.2
+        L_p50: 77.4
+        L_p95: 91.4
+        C_p50: 15.8
+        C_p95: 36.9
+        C_p99: 40.6
+        detail: 2.64
+    fingerprint: 8fb235bce58f04d4
+  2:
+    job: x-revontuli-stuck
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 35.3
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 35 (at most 8), p98 94 (at least 58), spread 59
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 59.0
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 84 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 83.8
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.36 (at most 0.10; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.361
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 3.4 (at least 2.8)'
+      value: 3.41
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.0 (R1 5.3)
+      value: 2.95
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9836
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.9, p95 6.8, off-palette 0.0% (top: #CC7744 (0.0%))'
+      value: 2.9428
+    info:
+      metrics_raw:
+        L_p5: 22.3
+        L_p50: 77.7
+        L_p95: 91.7
+        C_p50: 12.6
+        C_p95: 35.4
+        C_p99: 37.6
+        detail: 3.52
+      metrics_locked:
+        L_p5: 24.8
+        L_p50: 77.7
+        L_p95: 91.5
+        C_p50: 12.5
+        C_p95: 35.3
+        C_p99: 37.3
+        detail: 2.95
+    fingerprint: 8fb235bce58f04d4
+manual_review:
+  observed_note: Both show the snowy floe with rounded short icicles, warm sauna and
+    steam at back left, one snowy spruce at back right, a front-left fishing hole
+    with stool, a tall dark central lantern and hopeful small white brush-tail fox.
+    No aurora in either sky, tail remains white. Pofu has the curl; Mochi has long
+    soft ears and none. No copied home lawn or round earth door, no lettering, scary
+    drop or off-island waterfall. Snow and prop dimensions vary between states because
+    prompts independently attach main references; broad landmark positions are continuous,
+    not pixel registered. Numeric exploration style/light warnings are advisory and
+    retained. Never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-34-islands-in-game
+  job: x-revontuli-stuck
+  take: 1
+  round: 1
+  logical_run: 20261105-night34-revontuli
+  source_file: /workspace/generated_images/exec-dae1589c-117e-4c71-abe8-60b41f43c7c7.png
+  returned_at: '2026-11-05T18:10:45.733Z'
+  prompt_sha256: 8e158220b79a958b97169a3b89b728ca5c98e7dc65924f938b213761b84c2bc6
+  fingerprint: 8fb235bce58f04d4
+  saved_at: '2026-11-05T18:10:46.158243+00:00'
+  original_generated_png_sha256: fbff1db97222c0364d0646ae0e097bf1439412f62b451fe233236b57fdb2602a
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 021c639a20162bc3e907c32f5d5fc0f33423df1de064ed4f0477cc58042d45ab
+  inbox_png_sha256: 191b592b3e90ecb777be35e1592cf27c39b8b588b00101c594d049edc81ce956
+  qa_sha256: f32aa6fdd9ab750125701a7483c1e7112dd6b615d2377c71df5569afef42c09e
+- batch: batch-34-islands-in-game
+  job: x-revontuli-stuck
+  take: 2
+  round: 1
+  logical_run: 20261105-night34-revontuli
+  source_file: /workspace/generated_images/exec-ece47358-7bdf-4165-9ffb-e78e377e7099.png
+  returned_at: '2026-11-05T18:12:22.595Z'
+  prompt_sha256: 8e158220b79a958b97169a3b89b728ca5c98e7dc65924f938b213761b84c2bc6
+  fingerprint: 8fb235bce58f04d4
+  saved_at: '2026-11-05T18:12:23.004502+00:00'
+  original_generated_png_sha256: 06d237efa258938ee2c62eab258e8ae47396a8f43879aae12612062b8be0ffa7
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 349dc937a35960310267de06857143fbb86181df35c6ff661760d62662d975a1
+  inbox_png_sha256: 2986d55b3c24cb89f67708c65ac391716ad60ad5c55bd29a1ffded60ba427cc1
+  qa_sha256: 509cc5fa82eea04aac5b9e8d93004dbd2a2fdca6e9e48b3ad518a390c16a1aa7
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

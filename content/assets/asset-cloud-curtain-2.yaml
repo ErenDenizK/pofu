@@ -1,0 +1,20 @@
+id: asset-cloud-curtain-2
+type: asset
+title_tr: cloud-curtain-2
+title_en: cloud-curtain-2 (world)
+status: planned
+horizon: later
+summary: >-
+  The middle layer of a loading curtain, on a transparent background: a loose band of medium
+  puffy clouds, lighter and smaller than a front bank, floating across the middle of the image
+  with clear transparent gaps between them, cream-white with soft peach tops and pale lilac
+  undersides. Clouds run off the canvas at both sides. Soft, rounded, toy-like.
+art:
+  images: []
+  jobs:
+  - batch-35-experience:cloud-curtain-2
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience.yaml
+kind: world
+batch: batch-35-experience
+size: 1536x1024

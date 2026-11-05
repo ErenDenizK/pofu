@@ -1,0 +1,21 @@
+id: asset-glow-pond-shimmer
+type: asset
+title_tr: glow-pond-shimmer
+title_en: glow-pond-shimmer (ui)
+status: planned
+horizon: later
+summary: >-
+  Moonlit shimmer on pond water, seen from a low camera about 17 degrees above the surface:
+  a wide flat ellipse about twice as wide as tall, centered, filling about 85 percent of the
+  width, made of soft horizontal ripple bands of cool teal-mint light (#8CE0D0 at the brightest,
+  fading through #3FA6A0 to black), brighter near the middle and broken into a few gentle,
+  slightly uneven bands. Cool teal only, never warm: no w…
+art:
+  images: []
+  jobs:
+  - batch-35-experience:glow-pond-shimmer
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience.yaml
+kind: ui
+batch: batch-35-experience
+size: 1024x1024

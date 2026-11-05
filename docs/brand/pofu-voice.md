@@ -265,6 +265,27 @@ languages.
   pack is reviewed in a PR like everything else.
 - Lines marked **R** below start in the pack, not in the bundle.
 
+### 4.7 The shield's copy rules (experience v1 section 3.4)
+
+Apple renders the shield; we control the colour, the icon and the copy.
+
+- **Title:** at most 28 characters, from `ShieldCopy`.
+- **Subtitle:** optional. Its tally line counts **resists only** ("Bugün 2
+  kez vazgeçtin."), never opens, and it appears from the first resist. With
+  nothing resisted yet there is no tally: no numbers about failure. (The
+  jealous-play and kind lines still say which time this hour it is; that is
+  play, not a tally, and the jealous budget of 3 a day holds.)
+- **No** exclamation chains, urgency or shame.
+- **Tone ladder:** friendly, playful, jealous-play (at most 3 a day), kind.
+  Bedtime is always soft.
+- **Buttons:** "Boş ver" (primary) and "Açmam lazım".
+- **After "Boş ver":** the app closes and **no notification follows**; the
+  next time Pofu is seen, the fixed 1.0 s payoff plays with the line
+  "Vazgeçtin. Bir tohum." (Hop! plays the same payoff).
+- **Look:** a solid background in four palettes (dawn, day, dusk, night)
+  from the colour script's sky, no blur, and Pofu at his door (calm,
+  proud, sleepy; never puffed cheeks, never guilty).
+
 ## 5. The line bank
 
 **Key.** Slot codes: **S1** first reach of the hour (day), **M** morning,

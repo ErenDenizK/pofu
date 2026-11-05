@@ -53,5 +53,15 @@
     "indigo-lip": "#5B62A0",
     "indigo-shade": "#232649",
     "stitch-cream": "#F2E4C4"
+  },
+  "world-foliage": {
+    "moss-light": "#D7E3A8",
+    "moss": "#B3C77E",
+    "moss-mid": "#94B062",
+    "moss-deep": "#73914A",
+    "leaf-shade": "#5D7A3E",
+    "lawn-sage": "#A9BF86",
+    "star-cream": "#FBF1D8",
+    "root-cream": "#EBD9B8"
   }
 }

@@ -1,0 +1,206 @@
+batch: batch-34-islands-in-game
+manifest: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+manifest_sha256: 345738791fedc39057958fb6e3aee35a0f660ada571fff12a36eba9dc2b2257f
+contact_sheet: design/art/takes/batch-34-islands-in-game/x-revontuli-healed/contact.jpg
+jobs:
+  x-revontuli-healed:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show soft green/violet aurora,
+      a warm gold lantern on the central post, a small white fox with a coloured brush
+      tail painting an aurora stroke, and the coloured reflection in the front-left
+      fishing hole. Warm sauna and steam remain back left, single snowy spruce back
+      right, Pofu and curl-free long-eared Mochi front centre. Tail/sauna roof, snow
+      contours and props vary from independently generated stuck states; broad layout
+      is continuous but this is not a registered overlay. Short rounded icicles and
+      the milky floe body read as a distinct snow island. No lawn/round earth-door
+      copy, lettering, scary drop or neon lighting. Numeric style/light warnings remain
+      advisory; never promoted.
+qa_reports:
+  1:
+    job: x-revontuli-healed
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.3
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 52 (at most 8), p98 93 (at least 58), spread 41
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 41.4
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 82 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 81.7
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.40 (at most 0.10; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.4
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 3.3 (at least 2.8)'
+      value: 3.34
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.35
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8861
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.6, p95 8.4, off-palette 0.4% (top: #6655AA (0.1%), #7755AA
+        (0.1%))'
+      value: 3.6333
+    info:
+      metrics_raw:
+        L_p5: 43.1
+        L_p50: 77.9
+        L_p95: 91.1
+        C_p50: 17.0
+        C_p95: 40.7
+        C_p99: 52.8
+        detail: 2.93
+      metrics_locked:
+        L_p5: 43.3
+        L_p50: 77.9
+        L_p95: 90.7
+        C_p50: 16.8
+        C_p95: 40.3
+        C_p99: 52.4
+        detail: 2.35
+    fingerprint: 3773e8b8c060f998
+  2:
+    job: x-revontuli-healed
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.9
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 56 (at most 8), p98 96 (at least 58), spread 40
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 40.2
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 84 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 84.5
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.44 (at most 0.10; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.439
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 3.3 (at least 2.8)'
+      value: 3.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.11
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8602
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 5.9, off-palette 0.0% (top: #77BBCC (0.0%))'
+      value: 2.6984
+    info:
+      metrics_raw:
+        L_p5: 50.0
+        L_p50: 79.4
+        L_p95: 92.3
+        C_p50: 14.4
+        C_p95: 37.3
+        C_p99: 47.2
+        detail: 2.64
+      metrics_locked:
+        L_p5: 50.3
+        L_p50: 79.4
+        L_p95: 92.0
+        C_p50: 14.3
+        C_p95: 36.9
+        C_p99: 46.7
+        detail: 2.11
+    fingerprint: 3773e8b8c060f998
+manual_review:
+  observed_note: Both show soft green/violet aurora, a warm gold lantern on the central
+    post, a small white fox with a coloured brush tail painting an aurora stroke,
+    and the coloured reflection in the front-left fishing hole. Warm sauna and steam
+    remain back left, single snowy spruce back right, Pofu and curl-free long-eared
+    Mochi front centre. Tail/sauna roof, snow contours and props vary from independently
+    generated stuck states; broad layout is continuous but this is not a registered
+    overlay. Short rounded icicles and the milky floe body read as a distinct snow
+    island. No lawn/round earth-door copy, lettering, scary drop or neon lighting.
+    Numeric style/light warnings remain advisory; never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-34-islands-in-game
+  job: x-revontuli-healed
+  take: 1
+  round: 1
+  logical_run: 20261105-night34-revontuli
+  source_file: /workspace/generated_images/exec-9a492b1c-45f2-441c-b3b3-42557476d02e.png
+  returned_at: '2026-11-05T18:11:35.414Z'
+  prompt_sha256: 5e73f17147371034392353c180dbce834e69c8e603a3d8b6f963e3d812d16a93
+  fingerprint: 3773e8b8c060f998
+  saved_at: '2026-11-05T18:11:35.835024+00:00'
+  original_generated_png_sha256: 38473a052b25116496b06ec9ed72d31a9329ba68e6fa9581e659d15d958d56c5
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 16e158cf4e091f55c55f8545158732d94380884e3cd11af8e54a3504629307db
+  inbox_png_sha256: 9d7a00199bf3a68df7e58627a878708f7daab9ded8ff63c5b3fb231e781b9fad
+  qa_sha256: 529cbc603b207a37c660fa1c145b3d95b96e5ca163453ea26a15d29413dd52ed
+- batch: batch-34-islands-in-game
+  job: x-revontuli-healed
+  take: 2
+  round: 1
+  logical_run: 20261105-night34-revontuli
+  source_file: /workspace/generated_images/exec-60b54936-dd0c-47d1-89f9-8b08a5126c6a.png
+  returned_at: '2026-11-05T18:13:12.197Z'
+  prompt_sha256: 5e73f17147371034392353c180dbce834e69c8e603a3d8b6f963e3d812d16a93
+  fingerprint: 3773e8b8c060f998
+  saved_at: '2026-11-05T18:13:12.552066+00:00'
+  original_generated_png_sha256: 8dcc0019d993ae4806975e7247934738c66d2ee310bf3cdf47604e2d90517171
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 081b52fb70502732b595f9e8ba7944c4bfd5138b4f4a4e6d11fc4470c11c31ec
+  inbox_png_sha256: e9cad4bcefbcad823a5cb243d2a2fabd93f1e18adfc7bd7567d9e815604eb211
+  qa_sha256: 0402f2b9dcc96f0fa0cac6ce9c9d727b6dbc9a4ef1aa648eeadbf1c4351fe91c
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

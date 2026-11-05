@@ -1,0 +1,21 @@
+id: asset-dressing-harbor
+type: asset
+title_tr: dressing-harbor
+title_en: dressing-harbor (sheet)
+status: planned
+horizon: later
+summary: >-
+  A sheet of ten small harbor props for a cozy island diorama, in a grid of five columns by
+  two rows, each piece complete and separate with wide empty space around it, none touching:
+  row 1, a coil of thick cream rope, a round red-and-cream buoy, a small wooden shipping crate
+  with plain slats, a folded fishing net in soft sage-green mesh shown as a plump pile, and
+  a single wooden oar leaning on nothing (drawn lying at a…
+art:
+  images: []
+  jobs:
+  - batch-35-experience:dressing-harbor
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience.yaml
+kind: sheet
+batch: batch-35-experience
+size: 1536x1024

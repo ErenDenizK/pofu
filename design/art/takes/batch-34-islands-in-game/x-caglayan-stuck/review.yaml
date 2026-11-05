@@ -1,0 +1,207 @@
+batch: batch-34-islands-in-game
+manifest: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+manifest_sha256: 345738791fedc39057958fb6e3aee35a0f660ada571fff12a36eba9dc2b2257f
+contact_sheet: design/art/takes/batch-34-islands-in-game/x-caglayan-stuck/contact.jpg
+jobs:
+  x-caglayan-stuck:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Take1 shows the required warm
+      travertine terraces, short paused curtain with suspended droplets, half-full
+      pools with dry rims, still wheel/stream, puzzled otter with an empty tulip glass,
+      dry-side leaf boats and small Pofu/Mochi front centre. Take2 places the leaf
+      boats on water despite the stuck/aground brief, so excluded manually. The plate
+      keeps home-like shallow proportions without the green lawn or round door; faint
+      pale body stone spots and roots remain reference-derived. It fills more than
+      the approximate 85 percent width target. Existing shared style/LIGHT value tension
+      and light/haze warnings remain advisory. Independent stuck/healed prompts are
+      concept compositions, not registered state edits; layout continuity must be
+      compared separately. Never promoted.
+qa_reports:
+  1:
+    job: x-caglayan-stuck
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 94 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 81.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.28 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.278
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.5 (at least 3.5)'
+      value: 4.51
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.7 (R1 5.3)
+      value: 2.66
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0212
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 6.5, off-palette 0.1% (top: #BBAA44 (0.0%), #CCBB55
+        (0.0%))'
+      value: 1.9799
+    info:
+      metrics_raw:
+        L_p5: 66.2
+        L_p50: 86.7
+        L_p95: 94.5
+        C_p50: 17.3
+        C_p95: 45.6
+        C_p99: 52.7
+        detail: 3.39
+      metrics_locked:
+        L_p5: 66.7
+        L_p50: 86.6
+        L_p95: 94.3
+        C_p50: 17.4
+        C_p95: 44.0
+        C_p99: 51.4
+        detail: 2.66
+    fingerprint: 3e47ea7bbcd58d9a
+  2:
+    job: x-caglayan-stuck
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 94 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 83.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.31 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.31
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.1 (at least 3.5)'
+      value: 4.09
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.7 (R1 5.3)
+      value: 2.66
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0359
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 5.1, off-palette 0.0% (top: #DD8855 (0.0%))'
+      value: 2.0505
+    info:
+      metrics_raw:
+        L_p5: 67.9
+        L_p50: 87.1
+        L_p95: 95.7
+        C_p50: 17.7
+        C_p95: 43.7
+        C_p99: 48.5
+        detail: 3.44
+      metrics_locked:
+        L_p5: 68.4
+        L_p50: 87.1
+        L_p95: 95.5
+        C_p50: 17.7
+        C_p95: 42.2
+        C_p99: 47.3
+        detail: 2.66
+    fingerprint: 3e47ea7bbcd58d9a
+manual_review:
+  observed_note: Take1 shows the required warm travertine terraces, short paused curtain
+    with suspended droplets, half-full pools with dry rims, still wheel/stream, puzzled
+    otter with an empty tulip glass, dry-side leaf boats and small Pofu/Mochi front
+    centre. Take2 places the leaf boats on water despite the stuck/aground brief,
+    so excluded manually. The plate keeps home-like shallow proportions without the
+    green lawn or round door; faint pale body stone spots and roots remain reference-derived.
+    It fills more than the approximate 85 percent width target. Existing shared style/LIGHT
+    value tension and light/haze warnings remain advisory. Independent stuck/healed
+    prompts are concept compositions, not registered state edits; layout continuity
+    must be compared separately. Never promoted.
+  excluded_takes:
+  - 2
+sources:
+- batch: batch-34-islands-in-game
+  job: x-caglayan-stuck
+  take: 1
+  round: 1
+  logical_run: 20261105-night34-caglayan
+  source_file: /workspace/generated_images/exec-51e57d69-7ad2-4d88-859e-c7523c1fe16c.png
+  returned_at: '2026-11-05T17:53:29.187Z'
+  prompt_sha256: c2edaca7026d5a8a29f1efb8b0d421a8cacbdb7fe70734656d3617cf177f284e
+  fingerprint: 3e47ea7bbcd58d9a
+  saved_at: '2026-11-05T17:53:29.676171+00:00'
+  original_generated_png_sha256: 4d42ddf7c3aced2d9b5fb89df756b7a5ff4617dabb6a78b4efd07e1813995625
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 332f5f0d7411721a64c841dd9f6228eddbcb2001a47cdbc715c12a27cb957143
+  inbox_png_sha256: 06ca34f5d48db50dbc28c35894fc9a08e612c5e35b825dbfdf3f2e483f918488
+  qa_sha256: f65bd5530a4435b71716e3768209cb13ad9a420e4f8978b204f492eceadd964d
+- batch: batch-34-islands-in-game
+  job: x-caglayan-stuck
+  take: 2
+  round: 1
+  logical_run: 20261105-night34-caglayan
+  source_file: /workspace/generated_images/exec-68b2b90b-43d6-4445-a430-c8adb1d51bdb.png
+  returned_at: '2026-11-05T17:52:31.270Z'
+  prompt_sha256: c2edaca7026d5a8a29f1efb8b0d421a8cacbdb7fe70734656d3617cf177f284e
+  fingerprint: 3e47ea7bbcd58d9a
+  saved_at: '2026-11-05T17:52:31.688992+00:00'
+  original_generated_png_sha256: 1f95585d4cd683811245e43fdb024ff27cc0dae4eaace719afeb9a338931714f
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: f1408d5d8d72a4454a9e06c223feb3174f9b16b07be7f217a955ac0fdfdc4522
+  inbox_png_sha256: 64b1be8e2e23a6e3a5e82a78118017ad24918feccc39df6db428ba86c5ee353f
+  qa_sha256: ce1503c0145246da2a1bdc573d0ca6c5d1d7a612736fd5f4c98981b10d7e47ea
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

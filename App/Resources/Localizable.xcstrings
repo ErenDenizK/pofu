@@ -3041,6 +3041,26 @@
           }
         }
       }
+    },
+    "Skipped it. One seed." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vazgeçtin. Bir tohum."
+          }
+        }
+      }
+    },
+    "Pofu is waking up…" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pofu uyanıyor…"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

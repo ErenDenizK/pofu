@@ -114,6 +114,29 @@ struct ShieldCopyLimitTests {
     }
 }
 
+@Suite("Shield copy: the tally")
+struct ShieldTallyTests {
+    /// Experience v1, section 3.4: the subtitle counts resists only, never
+    /// opens. The tally line is the second line; it carries the resisted
+    /// count and no other number, and no word about opening.
+    @Test(arguments: ShieldLanguage.allCases)
+    func theSecondLineNeverMentionsOpens(language: ShieldLanguage) {
+        let openWords = ["aç", "open", " of ", "/", "reach", "ulaş"]
+        for context in everyContext {
+            let copy = ShieldCopy.make(context: context, language: language)
+            let lines = copy.subtitle.split(separator: "\n", omittingEmptySubsequences: false)
+            guard lines.count == 2 else { continue }
+            let tally = String(lines[1])
+            #expect(tally.contains("\(min(context.resistedToday, context.reachesToday))"), "\(tally)")
+            let digits = tally.filter(\.isNumber)
+            #expect(digits == "\(min(context.resistedToday, context.reachesToday))", "\(tally)")
+            for word in openWords {
+                #expect(!tally.lowercased().contains(word), "\(tally)")
+            }
+        }
+    }
+}
+
 @Suite("Shield copy: the ladder")
 struct ShieldCopyLadderTests {
     @Test func aFirstReachAtMiddayIsTheDayLine() {
@@ -142,12 +165,15 @@ struct ShieldCopyLadderTests {
         #expect(tr(context(hour: 19)).subtitle == "Bu saatler en zoru.")
     }
 
-    @Test func theTallyStartsAtTheSecondReachOfTheDay() {
+    @Test func theTallyCountsResistsOnlyAndStartsAtTheFirstOne() {
         #expect(!tr(context()).subtitle.contains("\n"))
+        // Reaches without a resist: nothing to count, and no number about opens.
+        #expect(!tr(context { $0.reachesToday = 3; $0.resistedToday = 0 }).subtitle.contains("\n"))
         let second = tr(context { $0.reachesToday = 1; $0.resistedToday = 1 })
-        #expect(second.subtitle.hasSuffix("\nBugün 1 / 1 boş verdin."))
+        #expect(second.subtitle.hasSuffix("\nBugün 1 kez vazgeçtin."))
         let english = en(context { $0.reachesToday = 7; $0.resistedToday = 5 })
-        #expect(english.subtitle.hasSuffix("\nToday: skipped 5 of 7."))
+        #expect(english.subtitle.hasSuffix("\nYou skipped 5 times today."))
+        #expect(en(context { $0.reachesToday = 1; $0.resistedToday = 1 }).subtitle.hasSuffix("\nYou skipped 1 time today."))
     }
 
     @Test func theSecondReachThisHour() {
