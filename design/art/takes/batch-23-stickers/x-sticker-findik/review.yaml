@@ -1,0 +1,199 @@
+batch: batch-23-stickers
+manifest: tools/imagegen/manifest/batch-23-stickers.yaml
+manifest_sha256: 237b0c922e52eeec54ab7617d5fe3f158bffe6205e5e3857a09437aa1c3434b3
+contact_sheet: design/art/takes/batch-23-stickers/x-sticker-findik/contact.jpg
+jobs:
+  x-sticker-findik:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Each sheet contains exactly
+      three separate full-body Fındık poses: broad smiling clasped-paw happiness,
+      round-eye O-mouth surprise with slightly lifted spines, and proud chin-up mallet
+      holding. Brown/cream spines, round ears, dark eyes and small brown nose stay
+      in the approved hedgehog family. No head curl, extra limbs, Pofu, text or sticker
+      border. The wooden mallet is large enough to carry the third pose; all hard
+      QA passes and advisory style/light checks are retained.'
+qa_reports:
+  1:
+    job: x-sticker-findik
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 42 (at most 22), p98 95 (at least 90), spread 53
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 53.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 84.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.15 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.153
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 11.2 (at least 3.5)'
+      value: 11.18
+    - check: detail_budget
+      status: warn
+      message: detail at display size 11.1 (R1 5.3) (advisory in an exploration)
+      value: 11.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0125
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 11.4, off-palette 4.0% (top: #AA5533 (1.3%), #BB6633
+        (0.7%))'
+      value: 2.6303
+    info:
+      metrics_raw:
+        L_p5: 49.2
+        L_p50: 84.8
+        L_p95: 94.6
+        C_p50: 21.4
+        C_p95: 48.3
+        C_p99: 52.1
+        detail: 11.09
+      metrics_locked:
+        L_p5: 49.2
+        L_p50: 84.8
+        L_p95: 94.6
+        C_p50: 21.4
+        C_p95: 48.3
+        C_p99: 52.1
+        detail: 11.12
+    fingerprint: 4c557b3af3de6182
+  2:
+    job: x-sticker-findik
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 49.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 43 (at most 22), p98 96 (at least 90), spread 53
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 52.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.141
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 10.6 (at least 3.5)'
+      value: 10.6
+    - check: detail_budget
+      status: warn
+      message: detail at display size 10.0 (R1 5.3) (advisory in an exploration)
+      value: 10.04
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0141
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 11.7, off-palette 4.5% (top: #BB6633 (1.1%), #AA5533
+        (0.8%))'
+      value: 2.6451
+    info:
+      metrics_raw:
+        L_p5: 50.0
+        L_p50: 85.3
+        L_p95: 94.6
+        C_p50: 21.4
+        C_p95: 49.5
+        C_p99: 53.0
+        detail: 10.02
+      metrics_locked:
+        L_p5: 50.0
+        L_p50: 85.3
+        L_p95: 94.6
+        C_p50: 21.4
+        C_p95: 49.5
+        C_p99: 52.9
+        detail: 10.04
+    fingerprint: 4c557b3af3de6182
+manual_review:
+  observed_note: 'Each sheet contains exactly three separate full-body Fındık poses:
+    broad smiling clasped-paw happiness, round-eye O-mouth surprise with slightly
+    lifted spines, and proud chin-up mallet holding. Brown/cream spines, round ears,
+    dark eyes and small brown nose stay in the approved hedgehog family. No head curl,
+    extra limbs, Pofu, text or sticker border. The wooden mallet is large enough to
+    carry the third pose; all hard QA passes and advisory style/light checks are retained.'
+  excluded_takes: []
+sources:
+- batch: batch-23-stickers
+  job: x-sticker-findik
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-summer-findik
+  source_file: /workspace/generated_images/exec-f0be5e2a-e0ff-43d7-a6fc-346e13cb2afa.png
+  returned_at: '2026-11-05T13:57:10.032Z'
+  prompt_sha256: f959d1b3b69bad8b90576ed87278ec6205008be297c904eb3174e8669aaa2597
+  fingerprint: 4c557b3af3de6182
+  saved_at: '2026-11-05T13:57:10.498204+00:00'
+  original_generated_png_sha256: 340148eec7cc96c3b7d7c0c582c5b4d79788e24ab12ec91408d91d8feaf89518
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: bf1f0f62d7cc2187630c91dc7945adaf59c03a145ddff82d6fa11efb90588db8
+  inbox_png_sha256: d6bc3f68620aff0bb173f011701becccdfc41a39eae434767122f315ba21caa7
+  qa_sha256: 16ecb6fe5befe3c804b82269a552cbf00782e16413edc6b47bb71296b2a8f528
+- batch: batch-23-stickers
+  job: x-sticker-findik
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-summer-findik
+  source_file: /workspace/generated_images/exec-3fcf5d2e-ae46-408a-b065-08c1f3ebb00b.png
+  returned_at: '2026-11-05T13:56:19.079Z'
+  prompt_sha256: f959d1b3b69bad8b90576ed87278ec6205008be297c904eb3174e8669aaa2597
+  fingerprint: 4c557b3af3de6182
+  saved_at: '2026-11-05T13:56:19.535966+00:00'
+  original_generated_png_sha256: e3718ae2409e96f5491c7c7c5fa268a34109615a7002b3ef46fc814a022b3bf5
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 4fba8d9148429f8f90045c844fe00ab6091af7d3340041f33f91ea6fc2ad27b2
+  inbox_png_sha256: 36aac531f4efd057356a5700977ec9e8dda5cb8ceaf7d2b508edc290949af033
+  qa_sha256: cff6c3414f56fb4ef8bb6b8c4be9b7a5c893f87a9b50f9be15a71fe9ca20bb47
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
