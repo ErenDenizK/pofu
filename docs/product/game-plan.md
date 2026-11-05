@@ -47,6 +47,11 @@ typical user earns in 60 days (about 1,700), so they are enough seed sink
 for Book One. A second kind of island that is "more stations" is exactly
 the copy-feel the founder rejected.
 
+How the home cluster grows from day 1 to the long tail (island level and
+station caps, the re-budgeted ladders, pairs, residents, decor, materials,
+the full bloom near day 60, seasons and mastery) is in
+[home-progression.md](home-progression.md).
+
 ## 3. Day by day (the typical user)
 
 Typical user: about one reach an hour awake, 60 % resisted, three short
