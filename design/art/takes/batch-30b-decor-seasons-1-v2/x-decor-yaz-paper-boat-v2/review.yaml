@@ -1,0 +1,458 @@
+batch: batch-30b-decor-seasons-1-v2
+manifest: tools/imagegen/manifest/batch-30b-decor-seasons-1-v2.yaml
+manifest_sha256: f2b7485dbd13da0c8e2f1095a57d03a0574b31c65634f87d330f509f139b19c6
+contact_sheet: design/art/takes/batch-30b-decor-seasons-1-v2/x-decor-yaz-paper-boat-v2/contact.jpg
+jobs:
+  x-decor-yaz-paper-boat-v2:
+    pick: 3
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. After the sole unchanged-prompt
+      retry, take3 is the only eligible candidate: visible locked alpha-over24 width336px
+      meets literal one-third of1024 cap341.33px. Initial1/2 and retry4 widths360/359/359px
+      exceed it and are excluded, including take4 despite its lower lock load. Independent
+      full-subject original and locked review confirms take3 cream folded paper boat,
+      blue-grey inner fold, tiny coral flag on toothpick mast and keel visibly touching
+      round sage cushion. Paper stays paper with clear fold faces; no fur, extra objects,
+      text or guide. Official hard QA passes; eligible load0.9596/Harmony70.5. Exploration
+      style/light warnings advisory. All four immutable originals retained; no manual
+      resize, alpha cleanup or third round.'
+qa_reports:
+  1:
+    job: x-decor-yaz-paper-boat-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 93 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 78.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.188
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.3 (at least 3.5)'
+      value: 4.27
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0924
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 11.0, off-palette 3.8% (top: #888855 (1.3%), #888866
+        (0.9%))'
+      value: 3.1315
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: edge)'
+      value: 86.6
+    info:
+      fit:
+        scale: 0.9351
+        anchor:
+        - 505.1
+        - 873
+      registration:
+        dx: 6
+        dy: 16
+      metrics_raw:
+        L_p5: 59.0
+        L_p50: 78.3
+        L_p95: 92.4
+        C_p50: 22.2
+        C_p95: 43.5
+        C_p99: 52.9
+        detail: 2.22
+      metrics_locked:
+        L_p5: 59.7
+        L_p50: 78.3
+        L_p95: 92.1
+        C_p50: 22.1
+        C_p95: 42.3
+        C_p99: 49.1
+        detail: 1.48
+    fingerprint: db8ef0ffa5a23a0e
+  2:
+    job: x-decor-yaz-paper-boat-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 31 (R1 51)
+      value: 31.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 93 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 78.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.17 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.173
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.7 (at least 3.5)'
+      value: 3.68
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.37
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9263
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 12.7, off-palette 5.9% (top: #888866 (1.8%), #888855
+        (1.7%))'
+      value: 3.32
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 71 against the world reference (outliers: C_p95, edge)'
+      value: 71.2
+    info:
+      fit:
+        scale: 0.9524
+        anchor:
+        - 500.4
+        - 834
+      registration:
+        dx: 12
+        dy: 54
+      metrics_raw:
+        L_p5: 56.9
+        L_p50: 78.0
+        L_p95: 91.2
+        C_p50: 21.3
+        C_p95: 32.4
+        C_p99: 47.4
+        detail: 2.08
+      metrics_locked:
+        L_p5: 57.4
+        L_p50: 78.1
+        L_p95: 90.7
+        C_p50: 21.2
+        C_p95: 31.2
+        C_p99: 46.4
+        detail: 1.37
+    fingerprint: db8ef0ffa5a23a0e
+  3:
+    job: x-decor-yaz-paper-boat-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 29 (R1 51)
+      value: 29.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 93 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 77.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.21 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.208
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.2 (at least 3.5)'
+      value: 4.21
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.25
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9596
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 11.3, off-palette 3.8% (top: #888855 (1.1%), #999966
+        (0.9%))'
+      value: 3.1038
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 70 against the world reference (outliers: C_p95, edge)'
+      value: 70.5
+    info:
+      fit:
+        scale: 1.0
+        anchor:
+        - 496.1
+        - 834
+      registration:
+        dx: 16
+        dy: 54
+      metrics_raw:
+        L_p5: 59.5
+        L_p50: 77.3
+        L_p95: 91.7
+        C_p50: 20.3
+        C_p95: 30.8
+        C_p99: 46.4
+        detail: 1.89
+      metrics_locked:
+        L_p5: 59.9
+        L_p50: 77.2
+        L_p95: 91.3
+        C_p50: 20.2
+        C_p95: 29.4
+        C_p99: 45.4
+        detail: 1.25
+    fingerprint: db8ef0ffa5a23a0e
+  4:
+    job: x-decor-yaz-paper-boat-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 32.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 93 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 78.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.224
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.4 (at least 3.5)'
+      value: 3.37
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.24
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9116
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.5, p95 12.5, off-palette 5.7% (top: #888866 (2.1%), #888855
+        (1.1%))'
+      value: 3.5279
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 77 against the world reference (outliers: C_p95, edge)'
+      value: 76.8
+    info:
+      fit:
+        scale: 0.973
+        anchor:
+        - 500.0
+        - 866
+      registration:
+        dx: 12
+        dy: 21
+      metrics_raw:
+        L_p5: 56.8
+        L_p50: 78.4
+        L_p95: 92.1
+        C_p50: 20.7
+        C_p95: 35.2
+        C_p99: 50.3
+        detail: 1.94
+      metrics_locked:
+        L_p5: 57.4
+        L_p50: 78.3
+        L_p95: 91.8
+        C_p50: 20.5
+        C_p95: 32.1
+        C_p99: 48.6
+        detail: 1.24
+    fingerprint: db8ef0ffa5a23a0e
+manual_review:
+  observed_note: 'After the sole unchanged-prompt retry, take3 is the only eligible
+    candidate: visible locked alpha-over24 width336px meets literal one-third of1024
+    cap341.33px. Initial1/2 and retry4 widths360/359/359px exceed it and are excluded,
+    including take4 despite its lower lock load. Independent full-subject original
+    and locked review confirms take3 cream folded paper boat, blue-grey inner fold,
+    tiny coral flag on toothpick mast and keel visibly touching round sage cushion.
+    Paper stays paper with clear fold faces; no fur, extra objects, text or guide.
+    Official hard QA passes; eligible load0.9596/Harmony70.5. Exploration style/light
+    warnings advisory. All four immutable originals retained; no manual resize, alpha
+    cleanup or third round.'
+  excluded_takes:
+  - 1
+  - 2
+  - 4
+sources:
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-yaz-paper-boat-v2
+  take: 1
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-f0b1f90e-e366-4b82-9d1c-4c8e5d00e86f.png
+  returned_at: '2026-11-05T23:00:29.980Z'
+  prompt_sha256: 360161871b4ff050e6fde1ab38cc33835a367d6ae7a23cb8ee5e5d465f6a7a89
+  fingerprint: db8ef0ffa5a23a0e
+  saved_at: '2026-11-05T23:00:34.510730+00:00'
+  original_generated_png_sha256: 953adf751e372629ab673787f0b80cf13c7db4479bbc2134e50261aa8944ecd2
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 00b2e5fe4392ca90c6e5d1d2b6588654bcfbfdf0473d3bcb61ff28415f78b5ab
+  inbox_png_sha256: be191bdadf1929e572de0a346be5be3a748f7bf8287484c30f481ac2bbdb12c8
+  qa_sha256: e8a6cd279355c4fa985a1b20f9f69badfedc624a34577112cae27f0bf60bc1e0
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-yaz-paper-boat-v2
+  take: 2
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-eb3dd7eb-03e8-4a02-b644-aecac400bf5c.png
+  returned_at: '2026-11-05T23:01:16.189Z'
+  prompt_sha256: 360161871b4ff050e6fde1ab38cc33835a367d6ae7a23cb8ee5e5d465f6a7a89
+  fingerprint: db8ef0ffa5a23a0e
+  saved_at: '2026-11-05T23:01:16.652765+00:00'
+  original_generated_png_sha256: f2f0e66a42f7202c3942edd992dfff024c60fb968a61e4abfb4cb200db2e6659
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 57068ad509b9a9f205e5d7b7179999cbcf0ef7b5aa5ad29e12221382a15e139e
+  inbox_png_sha256: 8d8f11c5a9fea7c8a69c8ab36a5cd59ccee578b43855fd8448ba9d6cceb7761e
+  qa_sha256: 81eb0f57de90dee66f9d79531d3d062e94d9f71c4b5c686c4808efbc49f78cfc
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-yaz-paper-boat-v2
+  take: 3
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-aa10e692-24d6-4730-95fe-6b3fbb993b74.png
+  returned_at: '2026-11-05T23:03:54.916Z'
+  prompt_sha256: 360161871b4ff050e6fde1ab38cc33835a367d6ae7a23cb8ee5e5d465f6a7a89
+  fingerprint: db8ef0ffa5a23a0e
+  saved_at: '2026-11-05T23:03:59.808195+00:00'
+  original_generated_png_sha256: 2135f9a4c3a65260e9d08218a2ea41cc662a353db337746105e2efa49c0838c7
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 63eb7914664c6445d4a7307cb7ec25d35a895d5c76bf84c900eeef9b3d6d4655
+  inbox_png_sha256: 638c9d8e1d1ccd95c58486171b236f28afeb526e7174ed8ea1c85d9ff5c76532
+  qa_sha256: b84c02190757da5e68f0bdbd6a7780955d54bd4b0b3c8e6b15a2cee411faefe4
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-yaz-paper-boat-v2
+  take: 4
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-9b615149-721f-4377-a07c-9fcec77dfe54.png
+  returned_at: '2026-11-05T23:04:39.823Z'
+  prompt_sha256: 360161871b4ff050e6fde1ab38cc33835a367d6ae7a23cb8ee5e5d465f6a7a89
+  fingerprint: db8ef0ffa5a23a0e
+  saved_at: '2026-11-05T23:04:44.261421+00:00'
+  original_generated_png_sha256: 4415db4f8493a3fa1733307a0946fb74af0703a64963f63127bf1aebef8756f2
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: cfc8c1efbbe467823ddfb6735a3e963a303d3c31dd1bb55ccacfd9d612a2c7e9
+  inbox_png_sha256: f7f10e55648eb563863fecc8f24989a7d9b472673d50b8dad6b9655d8731ad3f
+  qa_sha256: dbd2cefa712f8a556f929c45767e25b51d5a1d501a808d2c76d503544a6764c6
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 2deb939f9f47ef2bb97f228252ebe94dd793f3088c676809c05a571e0747222d
