@@ -61,19 +61,25 @@ extension PofuPaint {
 /// the row it sits in carries the label.
 public struct PofuPaintedIcon: View {
     let paint: PofuPaint
-    @ScaledMetric private var size: CGFloat
+    let base: CGFloat
+    let scales: Bool
+    @ScaledMetric private var scaled: CGFloat
 
-    public init(_ paint: PofuPaint, size: CGFloat = 28) {
+    /// `scales: false` when the caller's size already follows Dynamic Type.
+    public init(_ paint: PofuPaint, size: CGFloat = 28, scales: Bool = true) {
         self.paint = paint
-        _size = ScaledMetric(wrappedValue: size, relativeTo: .body)
+        base = size
+        self.scales = scales
+        _scaled = ScaledMetric(wrappedValue: size, relativeTo: .body)
     }
 
     public var body: some View {
         if let image = paint.image {
+            let side = scales ? scaled : base
             Image(uiImage: image)
                 .resizable()
                 .scaledToFit()
-                .frame(width: size, height: size)
+                .frame(width: side, height: side)
                 .accessibilityHidden(true)
         }
     }

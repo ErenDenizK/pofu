@@ -175,6 +175,18 @@ public struct SeedIcon: View {
     }
 
     public var body: some View {
+        #if canImport(UIKit)
+        if PofuPaint.iconSeed.isAvailable {
+            PofuPaintedIcon(.iconSeed, size: size * 1.2, scales: false)
+        } else {
+            drawn
+        }
+        #else
+        drawn
+        #endif
+    }
+
+    private var drawn: some View {
         ZStack {
             SeedGlyph()
                 .fill(PofuColor.energyOnFill.opacity(0.85))
