@@ -1,0 +1,381 @@
+# Batch 30: exploration, never promoted (the backlog)
+#
+# The decor sets of docs/product/home-progression.md section 8 that are not a
+# season set: Ada hediyeleri (one gift per island: Koke's moss stool,
+# Caglayan's water bell, Emanet's lost umbrella, Revontuli's light jar) and
+# Liman (a fishing rod and bucket, a lantern buoy, a rope and crate, a flag
+# string), each piece a separate prop on the decor guide
+# (design/art/templates/decor-guide.png) so any piece fits any spot of its
+# family. A composed corner per set follows, including set 1 Bahce (bench,
+# paper lanterns, toy sailboat, mailbox; those four props are in batch 08) and
+# set 3 Sakinler (one piece per resident, shown as a corner only). Size is
+# stated in every prompt because the first bench came out twice too wide; QA
+# checks it (decor_anchor).
+#
+# Tracks: `decor`.
+#
+# BACKLOG (docs/design/art-production-plan.md#the-backlog): every job here is
+# an EXPLORATION with an `x-` id. EXPLORATION RULES (AGENTS.md): do NOT run
+# `promote`; commit the takes (WebP q90), the contact sheet and review.yaml
+# under design/art/takes/<batch>/<id>/ and nothing else. No painted text
+# anywhere. Never paint glass, UI chrome or buttons. A failed or refused job
+# is recorded and skipped; the run continues with the next job. There is no
+# pilot gate: run the jobs in the order written.
+#
+# Fresh variations: when the backlog comes round again, copy a job under a
+# new id (`-v2`, `-v3`, ...) with a new angle, never the same prompt twice.
+
+batch: batch-30-decor-sets
+title: "Decor sets: island gifts, harbor, and composed corners (decor guide)"
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: decor-bench, kind: prop, name: decor-bench, external: batch-08-decor-pilot}
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+
+  - id: x-decor-gift-moss-stool
+    kind: prop
+    name: x-decor-gift-moss-stool
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Ada hediyeleri (island gifts): Koke's moss stool. Review: a round stool grown over with moss, unmistakably from the moss island, sits on the lawn."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small round stool made of a cut tree stump of honey-pale wood, its sides
+          and top softly furred with deep sage moss and a tiny cluster of cream
+          mushrooms on one edge, three short root feet. Chunky and toy-like. It
+          stands on the guide's ground ellipse, centered on the cross, never wider
+          than the ellipse and never taller than the height bar; it is small, a
+          third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-gift-water-bell
+    kind: prop
+    name: x-decor-gift-water-bell
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Ada hediyeleri (island gifts): Çağlayan's water bell. Review: a bell of water-clear glaze hung from a small frame; reads as a bell, and as something from a waterfall."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small hanging bell in soft aqua-blue glazed clay, shaped like a plump
+          drop of water with a wide flared rim and a little cream clapper, hung from
+          a short crossbar of honey wood on two posts, three soft water droplets
+          frozen beneath it, a tiny fern at the post foot. It stands on the guide's
+          ground ellipse, centered on the cross, never wider than the ellipse and
+          never taller than the height bar; it is small, a third of the image width
+          at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-gift-umbrella
+    kind: prop
+    name: x-decor-gift-umbrella
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Ada hediyeleri (island gifts): Emanet's lost umbrella. Review: a closed old umbrella leaning in a small stand, with a worn but loved look."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A single old closed umbrella in faded plum and cream stripes with a curved
+          honey-wood handle and a small mended patch of sage cloth, leaning against
+          a little round clay stand with a tiny tag on a string; slightly worn, much
+          loved. It stands on the guide's ground ellipse, centered on the cross,
+          never wider than the ellipse and never taller than the height bar; it is
+          small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-gift-light-jar
+    kind: prop
+    name: x-decor-gift-light-jar
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Ada hediyeleri (island gifts): Revontuli's light jar. Review: a jar with a soft mint-and-lilac glow inside that reads as caught light, not a lamp."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A round glass jar painted as a soft pale tinted shape, with a cork lid on
+          a string handle, holding a gently glowing cloud of soft mint and lilac
+          light with a few tiny pale motes, sitting on a small flat honey-wood
+          coaster. It stands on the guide's ground ellipse, centered on the cross,
+          never wider than the ellipse and never taller than the height bar; it is
+          small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-corner-gifts
+    kind: plate
+    name: x-corner-gifts
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A cozy composed corner of the Ada hediyeleri set. Review: four gifts feel collected, not cluttered; each island is recognisable from its piece."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw a different island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: one quiet corner of the home
+          island Ayçiçeği, dressed with a decor set, from the same low camera (about
+          20 degrees) as the attached island and in its painting, softly cropped to
+          a corner of lawn, a few path stones and the edge of the island over the
+          clouds. On the lawn: a moss-furred round tree-stump stool, a small hanging
+          water-clear aqua bell on a wooden crossbar, an old plum-and-cream striped
+          closed umbrella leaning in a clay stand, and a glass jar holding a soft
+          mint and lilac glow, arranged in an easy loose group beside a stone path.
+          Warm daylight, calm, uncluttered, every piece small and in the scale of
+          the attached bench; no characters.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, characters or animals, a different island shape, photorealism, a 3D render look"
+
+  - id: x-decor-harbor-rod
+    kind: prop
+    name: x-decor-harbor-rod
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Liman (harbor): the fishing rod and bucket. Review: a rod leaning in a stand and a small bucket; reads as a fishing spot at 64 px."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A slim honey-wood fishing rod with a coral-red float on a curled line,
+          leaning in a small round clay stand, a small sage-green tin bucket with a
+          rounded handle holding two plump cream fish, and a folded canvas stool. It
+          stands on the guide's ground ellipse, centered on the cross, never wider
+          than the ellipse and never taller than the height bar; it is small, a
+          third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-harbor-buoy-lantern
+    kind: prop
+    name: x-decor-harbor-buoy-lantern
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Liman (harbor): the lantern buoy. Review: a lantern-shaped buoy; matte, striped, with a lamp that code can light."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A plump round buoy in coral and cream stripes with a short mast on top
+          carrying a small cage lantern of warm cream, its lamp a soft unlit pale
+          glass shape, resting on a flat stone, with a loop of rope. It stands on
+          the guide's ground ellipse, centered on the cross, never wider than the
+          ellipse and never taller than the height bar; it is small, a third of the
+          image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-harbor-rope-crates
+    kind: prop
+    name: x-decor-harbor-rope-crates
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Liman (harbor): the rope coil and crate. Review: chunky coil, crate and sack; harbor family, not clutter."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A neat round coil of thick honey-colored rope beside a small slatted crate
+          of honey wood holding three small round sea-blue floats and a folded
+          striped sack, with one small starfish of coral on the crate lid. It stands
+          on the guide's ground ellipse, centered on the cross, never wider than the
+          ellipse and never taller than the height bar; it is small, a third of the
+          image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-harbor-flag-line
+    kind: prop
+    name: x-decor-harbor-flag-line
+    size: 1024x1024
+    canvas: 1024x1024
+    decor: hang
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Liman (harbor): the flag string. Review: a line of small flags hung between two short poles, hung high, readable shape."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A short string of seven small triangular bunting flags in coral, cream,
+          sea-blue, mustard and sage hung in a gentle sag between two slim honey-
+          wood poles with round knob tops, drawn completely with both poles; the
+          line hangs high in the height bar. It stands on the guide's ground
+          ellipse, centered on the cross, never wider than the ellipse and never
+          taller than the height bar; it is small, a third of the image width at
+          most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-corner-harbor
+    kind: plate
+    name: x-corner-harbor
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A cozy composed corner of the Liman set. Review: reads as a fisherman's corner at dusk; harbor colors, nothing is mooring-sized."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw a different island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: one quiet corner of the home
+          island Ayçiçeği, dressed with a decor set, from the same low camera (about
+          20 degrees) as the attached island and in its painting, softly cropped to
+          a corner of lawn, a few path stones and the edge of the island over the
+          clouds. At the edge of the lawn by the harbor side: a honey-wood fishing
+          rod leaning in a clay stand with a tin bucket and a canvas stool, a coral-
+          and-cream striped buoy lantern on a stone, a coil of rope with a slatted
+          crate, and a short string of small bunting flags between two poles. Warm
+          daylight, calm, uncluttered, every piece small and in the scale of the
+          attached bench; no characters.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, characters or animals, a different island shape, photorealism, a 3D render look"
+
+  - id: x-corner-garden-set
+    kind: plate
+    name: x-corner-garden-set
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A cozy composed corner of the Bahçe set. Review: the four pilot pieces together feel like one little garden sitting spot."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw a different island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: one quiet corner of the home
+          island Ayçiçeği, dressed with a decor set, from the same low camera (about
+          20 degrees) as the attached island and in its painting, softly cropped to
+          a corner of lawn, a few path stones and the edge of the island over the
+          clouds. A garden sitting spot: a honey-wood bench with a cushion, a string
+          of round paper lanterns in cream and rose between two poles, a toy
+          sailboat with a coral sail at a small pond's edge, and a round mailbox on
+          a post with a tiny flag, with sunflower seedlings and a stone path between
+          them. Warm daylight, calm, uncluttered, every piece small and in the scale
+          of the attached bench; no characters.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, characters or animals, a different island shape, photorealism, a 3D render look"
+
+  - id: x-corner-residents
+    kind: plate
+    name: x-corner-residents
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A cozy composed corner of the Sakinler set. Review: the residents' belongings are the story: a place where six friends clearly meet in the evening."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw a different island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: one quiet corner of the home
+          island Ayçiçeği, dressed with a decor set, from the same low camera (about
+          20 degrees) as the attached island and in its painting, softly cropped to
+          a corner of lawn, a few path stones and the edge of the island over the
+          clouds. A friendly meeting spot: a low round table with Mochi's rose clay
+          teapot and two tulip glasses, a small hedgehog-sized bench with Fındık's
+          brass-cream goggles and a tiny screwdriver on it, a coral ribbon-collar
+          bell on a hook, a goat-sized stool with a folded sailor hat and a small
+          basket of sesame simit, and three lily-pad cushions in a row; no
+          characters present. Warm daylight, calm, uncluttered, every piece small
+          and in the scale of the attached bench; no characters.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, characters or animals, a different island shape, photorealism, a 3D render look"

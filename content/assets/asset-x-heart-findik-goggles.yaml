@@ -1,0 +1,21 @@
+id: asset-x-heart-findik-goggles
+type: asset
+title_tr: x-heart-findik-goggles
+title_en: x-heart-findik-goggles (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: a heart level-up moment at a station on the home
+  island, the same low front three-quarter camera. Soft golden late light, the scene calm
+  and close. Fındık, the hedgehog of the attached image, at the workshop door wearing new
+  round brass-cream goggles with soft sage-tinted lenses pushed up on his forehead above his
+  eyes, a small leather-colored tool apron, standing tall with …
+art:
+  images: []
+  jobs:
+  - batch-29-residents-at-work:x-heart-findik-goggles
+sources:
+- doc: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+kind: plate
+batch: batch-29-residents-at-work
+size: 1024x1024

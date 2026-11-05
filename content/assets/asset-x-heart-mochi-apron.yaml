@@ -1,0 +1,21 @@
+id: asset-x-heart-mochi-apron
+type: asset
+title_tr: x-heart-mochi-apron
+title_en: x-heart-mochi-apron (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: a heart level-up moment at a station on the home
+  island, the same low front three-quarter camera. Soft golden late light, the scene calm
+  and close. Mochi, the bunny of the attached image, at the tea stall counter, wearing a new
+  cream apron with a border of cobalt and turquoise Iznik-style tulip tiles, a soft plum-pink
+  scarf at her neck, looking down at the apron with surpris…
+art:
+  images: []
+  jobs:
+  - batch-29-residents-at-work:x-heart-mochi-apron
+sources:
+- doc: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+kind: plate
+batch: batch-29-residents-at-work
+size: 1024x1024

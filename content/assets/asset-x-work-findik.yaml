@@ -1,0 +1,21 @@
+id: asset-x-work-findik
+type: asset
+title_tr: x-work-findik
+title_en: x-work-findik (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a working-pose frame at one station of the home
+  island, seen from the same low front three-quarter camera as the attached station, in warm
+  daylight, the scene cropped close with a soft cream-and-sage ground under the station and
+  sky behind it. Fındık, the hedgehog of the attached image, sits at the workbench of the
+  finished workshop of the attached image, tightening a tiny b…
+art:
+  images: []
+  jobs:
+  - batch-29-residents-at-work:x-work-findik
+sources:
+- doc: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+kind: plate
+batch: batch-29-residents-at-work
+size: 1024x1024

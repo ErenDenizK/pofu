@@ -1,0 +1,21 @@
+id: asset-x-greenhouse-3
+type: asset
+title_tr: x-greenhouse-3
+title_en: x-greenhouse-3 (station)
+status: in-production
+horizon: now
+summary: >-
+  The third and final level of the small hilltop greenhouse: the same sage- green frame, fully
+  glazed with soft mint-tinted panes and a little rounded cupola on the ridge, lush plants
+  pressing against the panes (tomato vines, a big fern, a tiny lemon tree), three round paper
+  lanterns of warm cream hanging inside, a path of flat stones to the door and two rose clay
+  pots by the step. It fills the footprint's width and st…
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts:x-greenhouse-3
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+kind: station
+batch: batch-28-home-shops-concepts
+size: 1024x1024

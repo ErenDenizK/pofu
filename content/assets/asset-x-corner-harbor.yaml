@@ -1,0 +1,21 @@
+id: asset-x-corner-harbor
+type: asset
+title_tr: x-corner-harbor
+title_en: x-corner-harbor (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: one quiet corner of the home island Ayçiçeği,
+  dressed with a decor set, from the same low camera (about 20 degrees) as the attached island
+  and in its painting, softly cropped to a corner of lawn, a few path stones and the edge
+  of the island over the clouds. At the edge of the lawn by the harbor side: a honey-wood
+  fishing rod leaning in a clay stand with a tin bucket and a ca…
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets:x-corner-harbor
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets.yaml
+kind: plate
+batch: batch-30-decor-sets
+size: 1536x1024

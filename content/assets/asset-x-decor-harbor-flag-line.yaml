@@ -1,0 +1,21 @@
+id: asset-x-decor-harbor-flag-line
+type: asset
+title_tr: x-decor-harbor-flag-line
+title_en: x-decor-harbor-flag-line (prop)
+status: in-production
+horizon: now
+summary: >-
+  A short string of seven small triangular bunting flags in coral, cream, sea-blue, mustard
+  and sage hung in a gentle sag between two slim honey- wood poles with round knob tops, drawn
+  completely with both poles; the line hangs high in the height bar. It stands on the guide's
+  ground ellipse, centered on the cross, never wider than the ellipse and never taller than
+  the height bar; it is small, a third of the image width…
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets:x-decor-harbor-flag-line
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets.yaml
+kind: prop
+batch: batch-30-decor-sets
+size: 1024x1024

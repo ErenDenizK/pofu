@@ -1,0 +1,21 @@
+id: asset-x-heart-goat-hat
+type: asset
+title_tr: x-heart-goat-hat
+title_en: x-heart-goat-hat (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: a heart level-up moment at a station on the home
+  island, the same low front three-quarter camera. Soft golden late light, the scene calm
+  and close. The goat of the attached image on the ferry pier wearing a new soft white-and-blue
+  sailor hat with a small coral pom between its horns, chin raised, a very pleased and slightly
+  smug expression. A few small soft blush-pink painted…
+art:
+  images: []
+  jobs:
+  - batch-29-residents-at-work:x-heart-goat-hat
+sources:
+- doc: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+kind: plate
+batch: batch-29-residents-at-work
+size: 1024x1024

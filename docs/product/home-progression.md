@@ -24,6 +24,24 @@ the anti-addiction rules A1 to A14 in
 no timers, no storage cap, no notifications, no streaks, no FOMO, no paid
 acceleration, visits of one to two minutes.
 
+## Founder decisions (2026-11-05)
+
+"Start everything that is certain: upgrades, different shops, residents,
+decorations, a cozy island; seasons follow the real calendar plus a weekly
+small theme; residents first get a fixed favourite station (moving later)."
+
+- **Seasons:** the real calendar (section 10, question 5 is settled) plus a
+  **weekly small theme** on top (a visitor, a market stall, kites, a lantern
+  night, a fishing day, rain boots, a picnic, a stargazing night); a theme
+  is a small prop or overlay, nothing expires or is bought, and it returns
+  in later years.
+- **Residents:** each resident first works their **fixed favourite
+  station** (section 6; no assign sheet at first). **Moving** a resident to
+  another station is optional and opens at **island level 4** (question 3's
+  free moves are therefore a later step, not day 1).
+- The concept art for all of this is queued as backlog rows B-A to B-F in
+  the [art plan](../design/art-production-plan.md#the-backlog).
+
 ## 1. What we take, what we refuse
 
 Research, short (community guides and press for Cats & Soup; Animal

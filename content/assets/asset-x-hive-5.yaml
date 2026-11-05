@@ -1,0 +1,21 @@
+id: asset-x-hive-5
+type: asset
+title_tr: x-hive-5
+title_en: x-hive-5 (station)
+status: in-production
+horizon: now
+summary: >-
+  The finished garden hive: a painted honey-cream hive box and two skeps among tall lavender
+  and a few sunflower seedlings, and beside them a small honey stand, a little wooden counter
+  with a striped coral-and-cream awning holding five round honey jars of amber with cream
+  wax-sealed lids, a small drip spoon, and a handful of tiny soft bees circling. It fills
+  the footprint's width and stays below the height bar's top; c…
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts:x-hive-5
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+kind: station
+batch: batch-28-home-shops-concepts
+size: 1024x1024

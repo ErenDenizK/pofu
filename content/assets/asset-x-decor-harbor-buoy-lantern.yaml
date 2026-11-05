@@ -1,0 +1,21 @@
+id: asset-x-decor-harbor-buoy-lantern
+type: asset
+title_tr: x-decor-harbor-buoy-lantern
+title_en: x-decor-harbor-buoy-lantern (prop)
+status: in-production
+horizon: now
+summary: >-
+  A plump round buoy in coral and cream stripes with a short mast on top carrying a small
+  cage lantern of warm cream, its lamp a soft unlit pale glass shape, resting on a flat stone,
+  with a loop of rope. It stands on the guide's ground ellipse, centered on the cross, never
+  wider than the ellipse and never taller than the height bar; it is small, a third of the
+  image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets:x-decor-harbor-buoy-lantern
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets.yaml
+kind: prop
+batch: batch-30-decor-sets
+size: 1024x1024

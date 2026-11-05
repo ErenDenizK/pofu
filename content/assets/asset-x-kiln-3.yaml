@@ -1,0 +1,21 @@
+id: asset-x-kiln-3
+type: asset
+title_tr: x-kiln-3
+title_en: x-kiln-3 (station)
+status: in-production
+horizon: now
+summary: >-
+  The third and final level of the pottery kiln: a little kiln house with a rounded tiled
+  roof in rose clay and a proper chimney, the terracotta dome kiln glowing softly warm at
+  its open mouth, a potter's wheel under a small awning, shelves of glazed pots, jugs and
+  bowls in sage, mustard, rose and lilac, a wheelbarrow of clay, a small flag on the roof.
+  It fills the footprint's width and stays below the height bar's top…
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts:x-kiln-3
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+kind: station
+batch: batch-28-home-shops-concepts
+size: 1024x1024

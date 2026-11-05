@@ -1,0 +1,21 @@
+id: asset-x-decor-gift-umbrella
+type: asset
+title_tr: x-decor-gift-umbrella
+title_en: x-decor-gift-umbrella (prop)
+status: in-production
+horizon: now
+summary: >-
+  A single old closed umbrella in faded plum and cream stripes with a curved honey-wood handle
+  and a small mended patch of sage cloth, leaning against a little round clay stand with a
+  tiny tag on a string; slightly worn, much loved. It stands on the guide's ground ellipse,
+  centered on the cross, never wider than the ellipse and never taller than the height bar;
+  it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets:x-decor-gift-umbrella
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets.yaml
+kind: prop
+batch: batch-30-decor-sets
+size: 1024x1024

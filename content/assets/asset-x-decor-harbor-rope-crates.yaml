@@ -1,0 +1,21 @@
+id: asset-x-decor-harbor-rope-crates
+type: asset
+title_tr: x-decor-harbor-rope-crates
+title_en: x-decor-harbor-rope-crates (prop)
+status: in-production
+horizon: now
+summary: >-
+  A neat round coil of thick honey-colored rope beside a small slatted crate of honey wood
+  holding three small round sea-blue floats and a folded striped sack, with one small starfish
+  of coral on the crate lid. It stands on the guide's ground ellipse, centered on the cross,
+  never wider than the ellipse and never taller than the height bar; it is small, a third
+  of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets:x-decor-harbor-rope-crates
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets.yaml
+kind: prop
+batch: batch-30-decor-sets
+size: 1024x1024

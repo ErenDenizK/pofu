@@ -1,0 +1,21 @@
+id: asset-x-work-goat
+type: asset
+title_tr: x-work-goat
+title_en: x-work-goat (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a working-pose frame at one station of the home
+  island, seen from the same low front three-quarter camera as the attached station, in warm
+  daylight, the scene cropped close with a soft cream-and-sage ground under the station and
+  sky behind it. The goat of the attached image stands at the end of the ferry pier tying
+  a soft coral rope around a post with its mouth and one hoof,…
+art:
+  images: []
+  jobs:
+  - batch-29-residents-at-work:x-work-goat
+sources:
+- doc: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+kind: plate
+batch: batch-29-residents-at-work
+size: 1024x1024

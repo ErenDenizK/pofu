@@ -1,0 +1,21 @@
+id: asset-x-decor-guz-chestnut-stove
+type: asset
+title_tr: x-decor-guz-chestnut-stove
+title_en: x-decor-guz-chestnut-stove (prop)
+status: in-production
+horizon: now
+summary: >-
+  A small round stove on three short legs in matte dark-sage painted as a soft form, a short
+  bent chimney pipe, a little door with a round window in warm cream, a wooden stool beside
+  it with a paper cone of chestnuts and a tiny wooden scoop. It stands on the guide's ground
+  ellipse, centered on the cross, never wider than the ellipse and never taller than the height
+  bar; it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30c-decor-seasons-2:x-decor-guz-chestnut-stove
+sources:
+- doc: tools/imagegen/manifest/batch-30c-decor-seasons-2.yaml
+kind: prop
+batch: batch-30c-decor-seasons-2
+size: 1024x1024

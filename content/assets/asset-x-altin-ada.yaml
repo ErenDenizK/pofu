@@ -1,0 +1,21 @@
+id: asset-x-altin-ada
+type: asset
+title_tr: x-altin-ada
+title_en: x-altin-ada (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Ayçiçeği, Pofu's home island, at a stage of its
+  growth, from the same low camera (about 20 degrees), the same painting and the same softness
+  as the attached island, floating over a sea of clouds. The island's base shape grows only
+  where named; what is already built stays in the same place. ALTIN ADA, the golden island:
+  the same full island as level 10, now with the whole rim…
+art:
+  images: []
+  jobs:
+  - batch-31-island-milestones:x-altin-ada
+sources:
+- doc: tools/imagegen/manifest/batch-31-island-milestones.yaml
+kind: plate
+batch: batch-31-island-milestones
+size: 1536x1024

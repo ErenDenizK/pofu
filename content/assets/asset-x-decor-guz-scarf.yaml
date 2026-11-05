@@ -1,0 +1,20 @@
+id: asset-x-decor-guz-scarf
+type: asset
+title_tr: x-decor-guz-scarf
+title_en: x-decor-guz-scarf (prop)
+status: in-production
+horizon: now
+summary: >-
+  A long soft scarf in plum and mustard stripes with small tassels, draped over a slim honey-wood
+  stand shaped like a short T, one end hanging down to the ground in a gentle curve. It stands
+  on the guide's ground ellipse, centered on the cross, never wider than the ellipse and never
+  taller than the height bar; it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30c-decor-seasons-2:x-decor-guz-scarf
+sources:
+- doc: tools/imagegen/manifest/batch-30c-decor-seasons-2.yaml
+kind: prop
+batch: batch-30c-decor-seasons-2
+size: 1024x1024

@@ -1,0 +1,383 @@
+# Batch 29: exploration, never promoted (the backlog)
+#
+# Concept frames from docs/product/home-progression.md section 6: each planned
+# home resident working at their fixed favourite station (Mochi at the tea
+# stall, Simit at the bagel cart, the goat at the pier, the frogs at the pond,
+# Findik at the workshop, Koke's sprout at the pond), then the heart level-up
+# moment (an outfit or a small gift) for five of them. They decide the working
+# pose and the camera crop; the approved character and station masters are
+# attached and must not be redesigned. Characters keep Pofu's finish: soft
+# fur, big glossy dark eyes with a catchlight each, no curl on any head but
+# Pofu's.
+#
+# Tracks: `residents`, `hearts`.
+#
+# BACKLOG (docs/design/art-production-plan.md#the-backlog): every job here is
+# an EXPLORATION with an `x-` id. EXPLORATION RULES (AGENTS.md): do NOT run
+# `promote`; commit the takes (WebP q90), the contact sheet and review.yaml
+# under design/art/takes/<batch>/<id>/ and nothing else. No painted text
+# anywhere. Never paint glass, UI chrome or buttons. A failed or refused job
+# is recorded and skipped; the run continues with the next job. There is no
+# pilot gate: run the jobs in the order written.
+#
+# Fresh variations: when the backlog comes round again, copy a job under a
+# new id (`-v2`, `-v3`, ...) with a new angle, never the same prompt twice.
+
+batch: batch-29-residents-at-work
+title: "Residents at their favourite station, and the heart level-up moment"
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island}
+  - {id: simit-kitten, kind: char, name: simit-kitten, external: retry-2026-11-03}
+  - {id: harbor-goat, kind: char, name: harbor-goat, external: retry-2026-11-03}
+  - {id: findik, kind: char, name: findik-base, external: batch-03-home-island}
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+  - {id: bagel-cart-5, kind: station, name: bagel-cart-5, external: batch-05-fixes}
+  - {id: pond-5, kind: station, name: pond-5, external: batch-03-home-island}
+  - {id: workshop-5, kind: station, name: workshop-5, external: batch-05-fixes}
+  - {id: pier-1, kind: station, name: pier-1, external: batch-21-harbor-ladders}
+
+  - id: x-work-mochi
+    kind: plate
+    name: x-work-mochi
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Mochi working at her favourite station, the tea stall. Review: she is clearly the same Mochi, busy and content; the pour and the glasses read at 64 px."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: her exact look, fur, colors, eyes and size."
+      - ref: approved:tea-stall-5
+        role: "The finished tea stall (level 5): match its painting, finish, scale and colors."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a working-pose frame at one
+          station of the home island, seen from the same low front three-quarter
+          camera as the attached station, in warm daylight, the scene cropped close
+          with a soft cream-and-sage ground under the station and sky behind it.
+          Mochi, the bunny of the attached image, stands behind the tea stall
+          counter pouring amber tea from a small rose-clay teapot in a high gentle
+          arc into a tulip-shaped glass on a saucer, a second glass already full
+          beside it, her ears relaxed, a small content smile, eyes on the glass, a
+          wisp of soft steam. The finished tea stall of the attached image stays
+          exactly as it is.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head except Pofu's, extra limbs, a different station, a changed character design, photorealism, a 3D render look"
+
+  - id: x-work-simit
+    kind: plate
+    name: x-work-simit
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Simit working at her favourite station, the bagel cart. Review: the same Simit, proud and busy; the simit rings read as simit."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: approved:simit-kitten
+        role: "Simit, the kitten: her exact look, fur, colors, eyes and size."
+      - ref: approved:bagel-cart-5
+        role: "The finished bagel cart (level 5): match its painting, finish, scale and colors."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a working-pose frame at one
+          station of the home island, seen from the same low front three-quarter
+          camera as the attached station, in warm daylight, the scene cropped close
+          with a soft cream-and-sage ground under the station and sky behind it.
+          Simit, the kitten of the attached image, stands upright beside the bagel
+          cart holding out a small round wooden tray of three plump sesame-crusted
+          simit rings toward the viewer, her tail up and curled at the tip, ears
+          forward, a bright small smile; a tiny brass bell hangs from the cart's
+          umbrella pole. The finished cart of the attached image stays exactly as it
+          is.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head except Pofu's, extra limbs, a different station, a changed character design, photorealism, a 3D render look"
+
+  - id: x-work-goat
+    kind: plate
+    name: x-work-goat
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. The harbor goat working at the pier, its favourite station. Review: the same goat; mooring the little ferry reads as a calm job."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: approved:harbor-goat
+        role: "The harbor goat: its exact look, fur, colors, eyes and size."
+      - ref: approved:pier-1
+        role: "The ferry pier: match its painting, finish, scale and colors."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a working-pose frame at one
+          station of the home island, seen from the same low front three-quarter
+          camera as the attached station, in warm daylight, the scene cropped close
+          with a soft cream-and-sage ground under the station and sky behind it. The
+          goat of the attached image stands at the end of the ferry pier tying a
+          soft coral rope around a post with its mouth and one hoof, a tiny wooden
+          ferry waiting at the pier's end beside it, the goat's expression calm and
+          a little proud. The pier of the attached image stays exactly as it is.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head except Pofu's, extra limbs, a different station, a changed character design, photorealism, a 3D render look"
+
+  - id: x-work-frogs
+    kind: plate
+    name: x-work-frogs
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Three frogs at the pond, their favourite station. Review: three distinct small frogs, one hopping, one singing, one asleep on a lily pad; same finish as Pofu."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: approved:pond-5
+        role: "The finished lily pond (level 5): match its painting, finish, scale and colors."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a working-pose frame at one
+          station of the home island, seen from the same low front three-quarter
+          camera as the attached station, in warm daylight, the scene cropped close
+          with a soft cream-and-sage ground under the station and sky behind it.
+          Three small round plush frogs of soft sage, mint and pale lime with big
+          glossy dark eyes with a catchlight each and cream bellies sit on the lily
+          pads of the finished pond of the attached image: one mid-hop between two
+          pads, one with its mouth open in a soft round note, one asleep with its
+          eyes closed and a tiny leaf as a hat. The pond stays exactly as it is. No
+          curl on any head.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head except Pofu's, extra limbs, a different station, a changed character design, photorealism, a 3D render look"
+
+  - id: x-work-findik
+    kind: plate
+    name: x-work-findik
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Findik working at the workshop, his favourite station. Review: the same hedgehog, concentrated; the tool and the small clock read as a workshop."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: approved:findik
+        role: "Fındık, the hedgehog: his exact look, spines, colors, eyes and size."
+      - ref: approved:workshop-5
+        role: "The finished workshop (level 5): match its painting, finish, scale and colors."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a working-pose frame at one
+          station of the home island, seen from the same low front three-quarter
+          camera as the attached station, in warm daylight, the scene cropped close
+          with a soft cream-and-sage ground under the station and sky behind it.
+          Fındık, the hedgehog of the attached image, sits at the workbench of the
+          finished workshop of the attached image, tightening a tiny brass screw
+          into the face of a small round restored clock with a chunky wooden
+          screwdriver, tongue just visible in concentration, a few soft cream wood
+          shavings on the bench. The workshop stays exactly as it is.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head except Pofu's, extra limbs, a different station, a changed character design, photorealism, a 3D render look"
+
+  - id: x-work-sprout
+    kind: plate
+    name: x-work-sprout
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Koke's sprout, the small resident from the first wonder island, at the pond. Review: a new, tiny, clearly distinct silhouette from Pofu and Mochi; a sprout with a face, never a flower."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: approved:pond-5
+        role: "The finished lily pond (level 5): match its painting, finish, scale and colors."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a working-pose frame at one
+          station of the home island, seen from the same low front three-quarter
+          camera as the attached station, in warm daylight, the scene cropped close
+          with a soft cream-and-sage ground under the station and sky behind it. A
+          tiny new resident, Koke's sprout, a little round bean-shaped creature of
+          soft mossy green with two small curled leaves on top of its head like
+          ears, big glossy dark eyes with a catchlight each and a small shy smile,
+          stands at the edge of the finished pond of the attached image holding a
+          tiny watering can and gently watering a lily pad, a small drop of water
+          falling. The pond stays exactly as it is. No curl on the head.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head except Pofu's, extra limbs, a different station, a changed character design, photorealism, a 3D render look"
+
+  - id: x-heart-mochi-apron
+    kind: plate
+    name: x-heart-mochi-apron
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Residents"
+    light: {cell: golden, layer: subject}
+    notes: "Exploration. Mochi's heart 3 moment: the Iznik apron. Review: the outfit is the news; the moment is warm and quiet."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: her exact look, fur, colors, eyes and size."
+      - ref: approved:tea-stall-5
+        role: "The finished tea stall (level 5): match its painting, finish, scale and colors."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: a heart level-up moment at a
+          station on the home island, the same low front three-quarter camera. Soft
+          golden late light, the scene calm and close. Mochi, the bunny of the
+          attached image, at the tea stall counter, wearing a new cream apron with a
+          border of cobalt and turquoise Iznik-style tulip tiles, a soft plum-pink
+          scarf at her neck, looking down at the apron with surprised delight, both
+          paws pressed to her cheeks. A few small soft blush-pink painted hearts and
+          warm cream motes rise slowly around the resident; no bursts, no rays, no
+          sparkle stars, no text or numbers.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head except Pofu's, extra limbs, a different station, a changed character design, photorealism, a 3D render look"
+
+  - id: x-heart-simit-bell
+    kind: plate
+    name: x-heart-simit-bell
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Residents"
+    light: {cell: golden, layer: subject}
+    notes: "Exploration. Simit's heart moment: her little bell. Review: the bell collar is the news; her joy is quiet and proud."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: approved:simit-kitten
+        role: "Simit, the kitten: her exact look, fur, colors, eyes and size."
+      - ref: approved:bagel-cart-5
+        role: "The finished bagel cart (level 5): match its painting, finish, scale and colors."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: a heart level-up moment at a
+          station on the home island, the same low front three-quarter camera. Soft
+          golden late light, the scene calm and close. Simit, the kitten of the
+          attached image, beside the bagel cart wearing a new soft coral ribbon
+          collar with a small round brass-cream bell, tilting her head so the bell
+          swings, eyes bright, tail high, delighted. A few small soft blush-pink
+          painted hearts and warm cream motes rise slowly around the resident; no
+          bursts, no rays, no sparkle stars, no text or numbers.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head except Pofu's, extra limbs, a different station, a changed character design, photorealism, a 3D render look"
+
+  - id: x-heart-findik-goggles
+    kind: plate
+    name: x-heart-findik-goggles
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Residents"
+    light: {cell: golden, layer: subject}
+    notes: "Exploration. Findik's heart moment: the goggles. Review: the goggles read as a workshop hat at 64 px and sit between his spines naturally."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: approved:findik
+        role: "Fındık, the hedgehog: his exact look, spines, colors, eyes and size."
+      - ref: approved:workshop-5
+        role: "The finished workshop (level 5): match its painting, finish, scale and colors."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: a heart level-up moment at a
+          station on the home island, the same low front three-quarter camera. Soft
+          golden late light, the scene calm and close. Fındık, the hedgehog of the
+          attached image, at the workshop door wearing new round brass-cream goggles
+          with soft sage-tinted lenses pushed up on his forehead above his eyes, a
+          small leather-colored tool apron, standing tall with a shy proud smile. A
+          few small soft blush-pink painted hearts and warm cream motes rise slowly
+          around the resident; no bursts, no rays, no sparkle stars, no text or
+          numbers.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head except Pofu's, extra limbs, a different station, a changed character design, photorealism, a 3D render look"
+
+  - id: x-heart-frogs-choir
+    kind: plate
+    name: x-heart-frogs-choir
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Residents"
+    light: {cell: golden, layer: subject}
+    notes: "Exploration. The frog choir at dusk, the frogs' heart moment. Review: three frogs singing together is the picture; calm, not noisy."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: approved:pond-5
+        role: "The finished lily pond (level 5): match its painting, finish, scale and colors."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: a heart level-up moment at a
+          station on the home island, the same low front three-quarter camera. Soft
+          golden late light, the scene calm and close. Three small round plush frogs
+          of soft sage, mint and pale lime with big glossy dark eyes with a
+          catchlight each and cream bellies sit in a row on the wooden dock of the
+          finished pond of the attached image, all three singing together with soft
+          round open mouths and closed happy eyes, the middle one a little bigger, a
+          few lily pads glowing faintly in the golden light. No curl on any head. A
+          few small soft blush-pink painted hearts and warm cream motes rise slowly
+          around the resident; no bursts, no rays, no sparkle stars, no text or
+          numbers.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head except Pofu's, extra limbs, a different station, a changed character design, photorealism, a 3D render look"
+
+  - id: x-heart-goat-hat
+    kind: plate
+    name: x-heart-goat-hat
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Residents"
+    light: {cell: golden, layer: subject}
+    notes: "Exploration. The goat's heart moment: the sailor hat. Review: the hat sits between the horns naturally and makes the goat funnier, not smaller."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: approved:harbor-goat
+        role: "The harbor goat: its exact look, fur, colors, eyes and size."
+      - ref: approved:pier-1
+        role: "The ferry pier: match its painting, finish, scale and colors."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: a heart level-up moment at a
+          station on the home island, the same low front three-quarter camera. Soft
+          golden late light, the scene calm and close. The goat of the attached
+          image on the ferry pier wearing a new soft white-and-blue sailor hat with
+          a small coral pom between its horns, chin raised, a very pleased and
+          slightly smug expression. A few small soft blush-pink painted hearts and
+          warm cream motes rise slowly around the resident; no bursts, no rays, no
+          sparkle stars, no text or numbers.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, a curl on any head except Pofu's, extra limbs, a different station, a changed character design, photorealism, a 3D render look"
