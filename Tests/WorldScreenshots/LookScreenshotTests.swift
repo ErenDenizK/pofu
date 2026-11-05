@@ -149,6 +149,40 @@ final class LookScreenshotTests: XCTestCase {
         )
     }
 
+    /// Light and shadow v2 (LS-1): Home at 07:00, 12:00, 18:30 and 22:30
+    /// (`shadow-home-*` and the `shadow-times` sheet), and Pofu's close-up at
+    /// the Island framing at noon and at 18:30 (`shadow-pofu-*`).
+    @MainActor
+    func testRenderTheSunShadows() async throws {
+        let scene = try XCTUnwrap(
+            UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first,
+            "the test needs the host app's window scene"
+        )
+        let folder = outputFolder()
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+
+        func shot(_ framing: WorldFraming, hour: Double) async throws -> UIImage {
+            let model = IslandSceneModel(framing: framing)
+            let view = LookScene(world: world(wellbeing: 78), model: model).environment(\.worldLook, WorldLook(hourOverride: hour))
+            return try await render(AnyView(view), in: scene, settle: 1400)
+        }
+
+        let times: [(String, Double, String)] = [("0700", 7, "07:00"), ("1200", 12, "12:00"), ("1830", 18.5, "18:30"), ("2230", 22.5, "22:30")]
+        var homes: [UIImage] = []
+        for (id, hour, _) in times {
+            let image = try await shot(.home, hour: hour)
+            try write(image, name: "shadow-home-\(id)", to: folder)
+            homes.append(image)
+        }
+        try write(
+            grid([homes], titles: [times.map { "Home · \($0.2)" }], cell: CGSize(width: 201, height: 437)),
+            name: "shadow-times", to: folder
+        )
+        for (id, hour) in [("1200", 12.0), ("1830", 18.5)] {
+            try write(try await shot(.island, hour: hour), name: "shadow-pofu-\(id)", to: folder)
+        }
+    }
+
     // MARK: - Where things are in a frame
 
     /// The island's rows and every character's box in a frame, in unit
