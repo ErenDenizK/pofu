@@ -200,6 +200,13 @@ public enum LookTuning {
     /// exposure that stays.
     public static let nightCharacterShrink = 0.22
     public static let nightReadabilityExposure = 0.08
+    /// How much of a source's strength becomes the character's key, the
+    /// bounce on the lower third, the readability floor's lift and the
+    /// contact shadow's darkness.
+    public static let keyGain = 0.6
+    public static let bounceGain = 0.5
+    public static let floorGain = 0.5
+    public static let contactShadow = 0.3
 }
 
 extension Lens {
