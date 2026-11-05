@@ -148,13 +148,4 @@ public struct PofuPaintedSecondaryButtonStyle: ButtonStyle {
             .contentShape(Capsule(style: .continuous))
     }
 }
-
-extension View {
-    /// An opaque, static sheet background. A sheet over the live island
-    /// must not sample it (glass or material would re-blur every frame
-    /// while the detent animates), so it paints one flat surface.
-    public func pofuSheetBackground() -> some View {
-        presentationBackground(PofuColor.sunken)
-    }
-}
 #endif
