@@ -1,0 +1,391 @@
+batch: batch-31-island-milestones
+manifest: tools/imagegen/manifest/batch-31-island-milestones.yaml
+manifest_sha256: 6e982829318ae68039a10ad1c6466e6bf03e51b9af792d10d1cf64a64248f898
+contact_sheet: design/art/takes/batch-31-island-milestones/x-altin-ada/contact.jpg
+jobs:
+  x-altin-ada:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after the one allowed exact-prompt retry; all four original PNGs
+      retained unchanged. Every take has the successful thin soft golden island-rim
+      treatment, drifting gold seeds, gold accents and a telescope aimed toward a
+      highlighted dusk star, with no text. Nevertheless the required same full island
+      as level10/every-station mastery state is not preserved. Initial1/2 omit the
+      pond and recognisable gear-sign workshop and complete harbor lighthouse inventory.
+      Retry3 again omits the pond and gear workshop; its lit round pavilion is not
+      the finished harbor lighthouse. Retry4 restores a small pond but substitutes
+      generic sunflower cottage, greenhouse and telescope observatory for the workshop/lighthouse/full
+      completed inventory. Golden effects alone do not satisfy the explicit full-island
+      state. Numerical reports are warn-only; this is an observed semantic inventory
+      failure, not a style/light rejection or threshold waiver. Only the bare main
+      island is attached rather than a complete IL10 frame, a brief/reference limitation
+      for lead review that does not waive missing named state. No additional references,
+      rephrasing, third pair, master promotion, Harmony/content edits or source cleanup.
+      No true dependents in this independent batch; all seven other jobs continue
+      and are delivered.
+qa_reports:
+  1:
+    job: x-altin-ada
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 55 (R1 51)
+      value: 55.1
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 48 (at most 12), p98 94 (at least 68), spread 46
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 45.5
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 78 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 78.4
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.20 (at most 0.14; no true dark means
+        a wash)'
+      value: 0.2
+    - check: light_contrast
+      status: pass
+      message: 'dusk/subject: p75 local contrast 5.5 (at least 3.0)'
+      value: 5.52
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.2 (R1 5.3)
+      value: 3.19
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.3011
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.2, p95 8.1, off-palette 1.0% (top: #DD8844 (0.2%), #DD8833
+        (0.2%))'
+      value: 3.1607
+    info:
+      metrics_raw:
+        L_p5: 54.7
+        L_p50: 77.6
+        L_p95: 93.3
+        C_p50: 26.2
+        C_p95: 56.5
+        C_p99: 64.4
+        detail: 3.95
+      metrics_locked:
+        L_p5: 54.8
+        L_p50: 77.6
+        L_p95: 93.1
+        C_p50: 26.3
+        C_p95: 55.1
+        C_p99: 60.5
+        detail: 3.19
+    fingerprint: 296d2904d3f33793
+  2:
+    job: x-altin-ada
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 54 (R1 51)
+      value: 53.9
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 50 (at most 12), p98 92 (at least 68), spread 42
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 41.6
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 77 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 76.6
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.23 (at most 0.14; no true dark means
+        a wash)'
+      value: 0.231
+    - check: light_contrast
+      status: pass
+      message: 'dusk/subject: p75 local contrast 5.2 (at least 3.0)'
+      value: 5.22
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.13
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2994
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.0, p95 8.1, off-palette 1.7% (top: #EE9955 (0.4%), #EE9944
+        (0.2%))'
+      value: 2.9976
+    info:
+      metrics_raw:
+        L_p5: 51.9
+        L_p50: 76.9
+        L_p95: 91.5
+        C_p50: 26.8
+        C_p95: 54.8
+        C_p99: 66.2
+        detail: 3.92
+      metrics_locked:
+        L_p5: 52.2
+        L_p50: 76.9
+        L_p95: 91.2
+        C_p50: 26.9
+        C_p95: 53.9
+        C_p99: 61.1
+        detail: 3.13
+    fingerprint: 296d2904d3f33793
+  3:
+    job: x-altin-ada
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.5
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 50 (at most 12), p98 92 (at least 68), spread 43
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 42.7
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 79 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 78.9
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.26 (at most 0.14; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.263
+    - check: light_contrast
+      status: pass
+      message: 'dusk/subject: p75 local contrast 5.0 (at least 3.0)'
+      value: 4.95
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.0 (R1 5.3)
+      value: 2.98
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2511
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 6.8, off-palette 0.2% (top: #DD8844 (0.0%), #CC7733
+        (0.0%))'
+      value: 2.6783
+    info:
+      metrics_raw:
+        L_p5: 53.3
+        L_p50: 77.5
+        L_p95: 91.6
+        C_p50: 27.4
+        C_p95: 49.5
+        C_p99: 63.7
+        detail: 3.75
+      metrics_locked:
+        L_p5: 53.4
+        L_p50: 77.4
+        L_p95: 91.3
+        C_p50: 27.5
+        C_p95: 48.5
+        C_p99: 59.6
+        detail: 2.98
+    fingerprint: 296d2904d3f33793
+  4:
+    job: x-altin-ada
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 52 (R1 51)
+      value: 52.2
+    - check: light_values
+      status: warn
+      message: 'dusk/subject: L p2 51 (at most 12), p98 92 (at least 68), spread 40
+        (at least 48) (warn-only until the founder has seen the light pilot)'
+      value: 40.2
+    - check: light_median
+      status: warn
+      message: 'dusk/subject: median L 79 (band 28-60) (warn-only until the founder
+        has seen the light pilot)'
+      value: 79.2
+    - check: light_haze
+      status: warn
+      message: 'dusk/subject: dark-channel haze 0.23 (at most 0.14; no true dark means
+        a wash)'
+      value: 0.227
+    - check: light_contrast
+      status: pass
+      message: 'dusk/subject: p75 local contrast 5.6 (at least 3.0)'
+      value: 5.61
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.6 (R1 5.3)
+      value: 3.56
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.3732
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.2, p95 7.8, off-palette 0.5% (top: #DD8833 (0.1%), #BB6633
+        (0.1%))'
+      value: 3.2251
+    info:
+      metrics_raw:
+        L_p5: 52.4
+        L_p50: 77.5
+        L_p95: 90.7
+        C_p50: 28.7
+        C_p95: 53.6
+        C_p99: 65.8
+        detail: 4.36
+      metrics_locked:
+        L_p5: 52.6
+        L_p50: 77.5
+        L_p95: 90.4
+        C_p50: 28.8
+        C_p95: 52.2
+        C_p99: 61.2
+        detail: 3.56
+    fingerprint: 296d2904d3f33793
+manual_review:
+  observed_note: Skipped after the one allowed exact-prompt retry; all four original
+    PNGs retained unchanged. Every take has the successful thin soft golden island-rim
+    treatment, drifting gold seeds, gold accents and a telescope aimed toward a highlighted
+    dusk star, with no text. Nevertheless the required same full island as level10/every-station
+    mastery state is not preserved. Initial1/2 omit the pond and recognisable gear-sign
+    workshop and complete harbor lighthouse inventory. Retry3 again omits the pond
+    and gear workshop; its lit round pavilion is not the finished harbor lighthouse.
+    Retry4 restores a small pond but substitutes generic sunflower cottage, greenhouse
+    and telescope observatory for the workshop/lighthouse/full completed inventory.
+    Golden effects alone do not satisfy the explicit full-island state. Numerical
+    reports are warn-only; this is an observed semantic inventory failure, not a style/light
+    rejection or threshold waiver. Only the bare main island is attached rather than
+    a complete IL10 frame, a brief/reference limitation for lead review that does
+    not waive missing named state. No additional references, rephrasing, third pair,
+    master promotion, Harmony/content edits or source cleanup. No true dependents
+    in this independent batch; all seven other jobs continue and are delivered.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-31-island-milestones
+  job: x-altin-ada
+  take: 1
+  round: 1
+  logical_run: 20261105-night31-tepe-altin
+  source_file: /workspace/generated_images/exec-59b7500c-5edf-43cd-aa26-2a7a503a074a.png
+  returned_at: '2026-11-05T19:57:43.884Z'
+  prompt_sha256: 0f781e474e957981650c5900b947ccfaca4f0a2582045223fed48db752aa855c
+  fingerprint: 296d2904d3f33793
+  saved_at: '2026-11-05T19:57:44.225733+00:00'
+  original_generated_png_sha256: bf2cabdff50706ca551c47ce65e625b42df41f29cb824d1af5f3930dc074ae02
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 97739e3846f720357332de282c2e497ef98f535a19f620399abf01e13664e61b
+  inbox_png_sha256: ef1c03c68aa87d43ef3ca940cd5ec647f71eb6d3e0471eb45a70cb1c4467b417
+  qa_sha256: 9717cb5e131b2b2ce377769e418b49b2309b514b8fc9915ae4295014898a3c8c
+- batch: batch-31-island-milestones
+  job: x-altin-ada
+  take: 2
+  round: 1
+  logical_run: 20261105-night31-tepe-altin
+  source_file: /workspace/generated_images/exec-6c0e55a8-850f-4951-b697-2a5403f019e9.png
+  returned_at: '2026-11-05T19:57:00.040Z'
+  prompt_sha256: 0f781e474e957981650c5900b947ccfaca4f0a2582045223fed48db752aa855c
+  fingerprint: 296d2904d3f33793
+  saved_at: '2026-11-05T19:57:00.473066+00:00'
+  original_generated_png_sha256: a068b97eadbea7c4f5c9c5043d646a5b075892ba5a62b17ad2156c31fea91efa
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 1f12ccc47c1e3f3542302f57cbe53cada2faabd09da22358e78d3d28e9c87f3d
+  inbox_png_sha256: 9b386da4b90ad0264033201c15cd541b404da7bb44305804fc0eba8148e4e085
+  qa_sha256: b1084a7aac57dac126c74721d1d0835f4b20581b93246cff40c5a208cdc8fe39
+- batch: batch-31-island-milestones
+  job: x-altin-ada
+  take: 3
+  round: 2
+  logical_run: 20261105-night31-altin-only-retry
+  source_file: /workspace/generated_images/exec-b443b64b-8fe6-4470-ba01-60bd7269e65a.png
+  returned_at: '2026-11-05T20:01:56.899Z'
+  prompt_sha256: 0f781e474e957981650c5900b947ccfaca4f0a2582045223fed48db752aa855c
+  fingerprint: 296d2904d3f33793
+  saved_at: '2026-11-05T20:01:57.325693+00:00'
+  original_generated_png_sha256: 7ece6d99514d2fd64477a927d33deb29dbcd6d0a53f6ebb1832409073e216520
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: b926cd4e528a77932967fb5b852c793a99bc6afc9ef830f4dda426007bad0124
+  inbox_png_sha256: 6ea349c75f2b3cc7029d1800bd5341e9bdfbfa06c3fa6922c7c7acad1bc0cc28
+  qa_sha256: 4cd2ee7aacc2ef0af94581bc7ad3a57db3223bb0153fe0357421a468a610f586
+- batch: batch-31-island-milestones
+  job: x-altin-ada
+  take: 4
+  round: 2
+  logical_run: 20261105-night31-altin-only-retry
+  source_file: /workspace/generated_images/exec-2dbdbe8c-4dc0-4cb5-a839-1585efdf914b.png
+  returned_at: '2026-11-05T20:02:40.021Z'
+  prompt_sha256: 0f781e474e957981650c5900b947ccfaca4f0a2582045223fed48db752aa855c
+  fingerprint: 296d2904d3f33793
+  saved_at: '2026-11-05T20:02:40.325203+00:00'
+  original_generated_png_sha256: 618ecd0cafc48f21e52d85b4e0794781cc37a2d3de9cc7a93a7191c90314433d
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 7ef095d0b152f8df8f0acf5a3e3493b9bab7f14e04e993acea517f28bc93940e
+  inbox_png_sha256: 2c34b8c88fc04c97b17d76a21917251499a187e5821a057f18e0be2e3989a5e8
+  qa_sha256: 7231d3cab013d0675cac4fcaf0be03adba651039b29051444542973fc15d88f1
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
