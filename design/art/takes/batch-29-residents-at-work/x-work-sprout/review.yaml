@@ -1,0 +1,208 @@
+batch: batch-29-residents-at-work
+manifest: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+manifest_sha256: 85203326885da331817b9113d50d36e87be75f1645ee142038732d64fa63da5d
+contact_sheet: design/art/takes/batch-29-residents-at-work/x-work-sprout/contact.jpg
+jobs:
+  x-work-sprout:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both introduce a round moss-green
+      bean resident with exactly two curled leaf ears, glossy dark eyes, cream face/belly
+      and no head curl or flower crown, watering a lily pad from a small can with
+      one falling drop. Distinct leaf silhouette is clear, though the close crop makes
+      it read larger than the prose tiny scale, recorded for concept review. Take1
+      omits one of the attached finished pond three cream lanterns; take2 preserves
+      all three plus the rounded stone rim, pink lily, pads and short dock, so take1
+      is excluded for the missing station landmark. No text, Pofu, extra limbs or
+      UI. Hard QA then lowest lock load among eligible takes; style/light warnings
+      advisory. Never promoted.
+qa_reports:
+  1:
+    job: x-work-sprout
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 32.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 95 (at least 90), spread 32
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 32.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 86 (band 55-90)'
+      value: 85.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.48 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.482
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.1 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.13
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.41
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6833
+    - check: palette_drift
+      status: warn
+      message: mean dE 2.5, p95 6.0, off-palette 0.0%
+      value: 2.5314
+    info:
+      metrics_raw:
+        L_p5: 72.6
+        L_p50: 85.5
+        L_p95: 94.6
+        C_p50: 18.2
+        C_p95: 32.3
+        C_p99: 38.0
+        detail: 1.97
+      metrics_locked:
+        L_p5: 72.8
+        L_p50: 85.5
+        L_p95: 94.5
+        C_p50: 17.9
+        C_p95: 32.1
+        C_p99: 37.4
+        detail: 1.41
+    fingerprint: 87352f146c300e35
+  2:
+    job: x-work-sprout
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 59 (at most 22), p98 94 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 86 (band 55-90)'
+      value: 86.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.43 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.435
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.2 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.16
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.47
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7093
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.1, p95 4.4, off-palette 0.0%
+      value: 2.0618
+    info:
+      metrics_raw:
+        L_p5: 68.6
+        L_p50: 86.0
+        L_p95: 95.2
+        C_p50: 17.0
+        C_p95: 36.6
+        C_p99: 43.0
+        detail: 2.0
+      metrics_locked:
+        L_p5: 68.8
+        L_p50: 85.9
+        L_p95: 95.1
+        C_p50: 16.9
+        C_p95: 36.2
+        C_p99: 42.6
+        detail: 1.47
+    fingerprint: 87352f146c300e35
+manual_review:
+  observed_note: Both introduce a round moss-green bean resident with exactly two
+    curled leaf ears, glossy dark eyes, cream face/belly and no head curl or flower
+    crown, watering a lily pad from a small can with one falling drop. Distinct leaf
+    silhouette is clear, though the close crop makes it read larger than the prose
+    tiny scale, recorded for concept review. Take1 omits one of the attached finished
+    pond three cream lanterns; take2 preserves all three plus the rounded stone rim,
+    pink lily, pads and short dock, so take1 is excluded for the missing station landmark.
+    No text, Pofu, extra limbs or UI. Hard QA then lowest lock load among eligible
+    takes; style/light warnings advisory. Never promoted.
+  excluded_takes:
+  - 1
+sources:
+- batch: batch-29-residents-at-work
+  job: x-work-sprout
+  take: 1
+  round: 1
+  logical_run: 20261105-night29-sprout-mochi-heart
+  source_file: /workspace/generated_images/exec-f44c35eb-a64b-4bb2-8bf7-a9026f9ee7a7.png
+  returned_at: '2026-11-05T18:59:02.431Z'
+  prompt_sha256: 0688e56fe96d126d677381660a1970c42a450df74cd1a63b6bded0e29041b4d4
+  fingerprint: 87352f146c300e35
+  saved_at: '2026-11-05T18:59:02.893204+00:00'
+  original_generated_png_sha256: b77a6d0be2e3510f2713b74cdebefdb5aeaa3faf71614da788c7d75034fafa49
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 4616e38d4d4c3362f673cca10bb18b47b775f36a4688cf386c78ca4889a2d045
+  inbox_png_sha256: 8c5c45c6da0e8a3694eef583a72a8f56a695757bd454ed21d2f9f3776644b28f
+  qa_sha256: d4bfa73e7b6a8b9a58bb37b6af86ddb5ac8196010a5c63bcf462a6b330978dfa
+- batch: batch-29-residents-at-work
+  job: x-work-sprout
+  take: 2
+  round: 1
+  logical_run: 20261105-night29-sprout-mochi-heart
+  source_file: /workspace/generated_images/exec-9ee270c2-0e50-4042-ac6b-622b13514f27.png
+  returned_at: '2026-11-05T18:58:22.554Z'
+  prompt_sha256: 0688e56fe96d126d677381660a1970c42a450df74cd1a63b6bded0e29041b4d4
+  fingerprint: 87352f146c300e35
+  saved_at: '2026-11-05T18:58:23.020074+00:00'
+  original_generated_png_sha256: 62ca92a5d935b9a64708b4979a6422301772804949a09b0a25812e2d40df8116
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 1101bf3ffe046345886e7a657a1fb00f20000dc915acd7c29fd8c3bd5c437a82
+  inbox_png_sha256: c60a43ea9f5697c03a5f24b14f1dd26db26569940b4531c00df9f7c4e652501c
+  qa_sha256: 5d3a3ea6b9b6154c8d827c96e63bcf2cd74591a5d5bd71b8f8d0158b32ebc1cd
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
