@@ -49,12 +49,35 @@ struct DepthImage: View {
                 .resizable()
                 .frame(width: CGFloat(box.width) * scale, height: CGFloat(box.height) * scale)
                 .modifier(RelightEffect(config: variant == .sharp ? relightConfig(box: box) : nil))
-                .modifier(GradeEffect(grade: grade, isEnabled: !grade.isNeutral))
+                .gradedIfNeeded(grade)
                 .opacity(weight * opacity)
                 .position(
                     x: anchor.x + CGFloat(box.midX) * scale,
                     y: anchor.y + CGFloat(box.midY) * scale
                 )
+        }
+    }
+}
+
+extension View {
+    /// Adds the grade shader only when the grade changes something, so a
+    /// neutral sprite is a plain image with no extra pass.
+    @ViewBuilder
+    func gradedIfNeeded(_ grade: WorldGrade) -> some View {
+        if grade.isNeutral {
+            self
+        } else {
+            modifier(GradeEffect(grade: grade, isEnabled: true))
+        }
+    }
+
+    /// Multiplies by a colour only when it is not white (a no-op pass).
+    @ViewBuilder
+    func tinted(_ color: Color, isEnabled: Bool) -> some View {
+        if isEnabled {
+            colorMultiply(color)
+        } else {
+            self
         }
     }
 }

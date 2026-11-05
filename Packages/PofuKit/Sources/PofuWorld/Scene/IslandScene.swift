@@ -356,7 +356,7 @@ private struct SceneFrame<Bubble: View>: View {
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
-                .colorMultiply(tint)
+                .tinted(tint, isEnabled: !look.grade)
                 .frame(width: size.width, height: size.height, alignment: .topLeading)
                 .environment(\.worldAmbientPaused, ambientPaused)
                 // The world's grade: plates and stations only. The vignette
@@ -382,7 +382,7 @@ private struct SceneFrame<Bubble: View>: View {
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
-                .colorMultiply(tint)
+                .tinted(tint, isEnabled: !look.grade)
                 .frame(width: size.width, height: size.height, alignment: .topLeading)
 
                 PofuLayer(
@@ -923,7 +923,7 @@ private struct PofuLayer<Bubble: View>: View {
             }
         }
         .modifier(RelightEffect(config: relightConfig(feet: feet, scale: s, ground: CGPoint(x: groundX, y: groundY), view: CGSize(width: viewWidth, height: viewHeight))))
-        .modifier(GradeEffect(grade: characterGrade, isEnabled: !characterGrade.isNeutral))
+        .gradedIfNeeded(characterGrade)
         .position(x: feet.x - groundX + viewWidth / 2, y: feet.y - groundY + viewHeight / 2)
     }
 }
