@@ -1,0 +1,203 @@
+batch: batch-22-gezgin-forms
+manifest: tools/imagegen/manifest/batch-22-gezgin-forms.yaml
+manifest_sha256: 205efd12cf3d8e6f8f0a6fcd5b94f49204dad635dbaf77c3ba34c9ad295cba5d
+contact_sheet: design/art/takes/batch-22-gezgin-forms/x-gezgin-f1-side/contact.jpg
+jobs:
+  x-gezgin-f1-side:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both complete left-facing whales
+      retain a small moss patch, one bench, one rope-wrapped mooring post, an empty
+      hook and a faint unlit bulb-shaped scar. Half-lidded eyes and lowered heads
+      read tired and gentle; no characters or text. The back patch is lawn only, with
+      no copied home island soil bowl, door or roots. Broad full-bleed cloud setting
+      is retained. Light warnings document lifted subject values and haze; existing
+      prop-style-v2 asks for lifted cream shadows while LIGHT asks for true darks,
+      so the unchanged prompt contains a tension for lead review. No threshold or
+      prompt was edited.
+qa_reports:
+  1:
+    job: x-gezgin-f1-side
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 17 (R1 51)
+      value: 16.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 69 (at most 22), p98 96 (at least 90), spread 28
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 27.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 88.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.62 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.616
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.0 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.04
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.04
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5067
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 4.1, off-palette 0.0% (top: #888844 (0.0%))'
+      value: 1.914
+    info:
+      metrics_raw:
+        L_p5: 73.1
+        L_p50: 88.7
+        L_p95: 95.7
+        C_p50: 8.2
+        C_p95: 16.7
+        C_p99: 41.7
+        detail: 1.34
+      metrics_locked:
+        L_p5: 73.1
+        L_p50: 88.7
+        L_p95: 95.6
+        C_p50: 8.1
+        C_p95: 16.6
+        C_p99: 40.6
+        detail: 1.04
+    fingerprint: 8b445078788d6b26
+  2:
+    job: x-gezgin-f1-side
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 23 (R1 51)
+      value: 23.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 66 (at most 22), p98 96 (at least 90), spread 30
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 29.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 87.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.65 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.647
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.0 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.04
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.98
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5072
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.3, p95 5.8, off-palette 0.0%
+      value: 2.3256
+    info:
+      metrics_raw:
+        L_p5: 74.7
+        L_p50: 86.4
+        L_p95: 95.9
+        C_p50: 10.5
+        C_p95: 23.2
+        C_p99: 42.4
+        detail: 1.25
+      metrics_locked:
+        L_p5: 74.7
+        L_p50: 86.4
+        L_p95: 95.9
+        C_p50: 10.4
+        C_p95: 23.1
+        C_p99: 41.0
+        detail: 0.98
+    fingerprint: 8b445078788d6b26
+manual_review:
+  observed_note: Both complete left-facing whales retain a small moss patch, one bench,
+    one rope-wrapped mooring post, an empty hook and a faint unlit bulb-shaped scar.
+    Half-lidded eyes and lowered heads read tired and gentle; no characters or text.
+    The back patch is lawn only, with no copied home island soil bowl, door or roots.
+    Broad full-bleed cloud setting is retained. Light warnings document lifted subject
+    values and haze; existing prop-style-v2 asks for lifted cream shadows while LIGHT
+    asks for true darks, so the unchanged prompt contains a tension for lead review.
+    No threshold or prompt was edited.
+  excluded_takes: []
+sources:
+- batch: batch-22-gezgin-forms
+  job: x-gezgin-f1-side
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-9d849c94
+  source_file: /workspace/generated_images/exec-e69f19f2-f4ef-444c-86eb-22f35b6b145b.png
+  returned_at: '2026-11-05T13:27:17.704Z'
+  prompt_sha256: 773c6bb90005d35f8bde5d87f298039203f24739a3bb4579d4a6f905ab5bf0a0
+  fingerprint: 8b445078788d6b26
+  saved_at: '2026-11-05T13:27:18.009863+00:00'
+  original_generated_png_sha256: a68a6d2c4bf21e6ac4afb72e4f41155bfa4849cf53452fe4f1848781970687d3
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 1d5782fa9010e82b8862442d423b3e3ebee8bdd8f432a50f62cf0bad2d30fae9
+  inbox_png_sha256: c4a163e5a525de05861744d7aeeca1f1258c23dc141f2e4bb298ff9856b12df5
+  qa_sha256: 2bb3a09b1a2b29a5b428ad07707ba296a2962ee0d276ca4bc4cbf40deb734227
+- batch: batch-22-gezgin-forms
+  job: x-gezgin-f1-side
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-9d849c94
+  source_file: /workspace/generated_images/exec-715b33dc-471a-4c6d-9a5c-b9dbb92b6074.png
+  returned_at: '2026-11-05T13:26:28.010Z'
+  prompt_sha256: 773c6bb90005d35f8bde5d87f298039203f24739a3bb4579d4a6f905ab5bf0a0
+  fingerprint: 8b445078788d6b26
+  saved_at: '2026-11-05T13:26:29.719657+00:00'
+  original_generated_png_sha256: 827fa8cdca0375ed51754a5a6abf7fe258df785f2a948c664d82830d8a87cfce
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: db34ad2a2c9e871780f321926fca9aeb30f58a1cf1da2cebe1f1c98753925c4b
+  inbox_png_sha256: 125a22e7815796def45681ebd419f61abcd607e1425b402fa79879bcb3237644
+  qa_sha256: 0936f98c5f96284db80fb0b5844f36f666c7c85c3661a6b282624e61df6e05a9
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

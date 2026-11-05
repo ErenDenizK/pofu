@@ -1,0 +1,202 @@
+batch: batch-22-gezgin-forms
+manifest: tools/imagegen/manifest/batch-22-gezgin-forms.yaml
+manifest_sha256: 205efd12cf3d8e6f8f0a6fcd5b94f49204dad635dbaf77c3ba34c9ad295cba5d
+contact_sheet: design/art/takes/batch-22-gezgin-forms/x-gezgin-f2-34/contact.jpg
+jobs:
+  x-gezgin-f2-34:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both take the lifted grown head
+      and broad nearer flipper toward the viewer, with a foreshortened flower meadow,
+      rounded grove, stepping stones and waterfall visible behind. The hanging lantern
+      and bulb-shaped scar glow gold near the tail-side back. The cream belly and
+      cloud-white fluke keep the selected form1 identity; no text or additional characters.
+      The new grove creates a distinct silhouette rather than copying the home island
+      soil bowl, roots or door. Light and haze warnings remain advisory.
+qa_reports:
+  1:
+    job: x-gezgin-f2-34
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 96 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 87.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.50 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.498
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.4 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.39
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.54
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7842
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 5.5, off-palette 0.7% (top: #CCCC66 (0.1%), #DDCC66
+        (0.1%))'
+      value: 2.2798
+    info:
+      metrics_raw:
+        L_p5: 69.8
+        L_p50: 88.7
+        L_p95: 96.3
+        C_p50: 10.5
+        C_p95: 41.6
+        C_p99: 54.5
+        detail: 1.96
+      metrics_locked:
+        L_p5: 70.0
+        L_p50: 88.7
+        L_p95: 96.2
+        C_p50: 10.3
+        C_p95: 39.8
+        C_p99: 52.6
+        detail: 1.54
+    fingerprint: 48ddca26c9684216
+  2:
+    job: x-gezgin-f2-34
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 96 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 87 (band 55-90)'
+      value: 87.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.42 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.424
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.4 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.38
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.55
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7795
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 5.2, off-palette 0.6% (top: #CCCC66 (0.2%), #BBBB55
+        (0.1%))'
+      value: 2.2815
+    info:
+      metrics_raw:
+        L_p5: 68.7
+        L_p50: 88.6
+        L_p95: 96.0
+        C_p50: 9.7
+        C_p95: 42.5
+        C_p99: 53.7
+        detail: 1.98
+      metrics_locked:
+        L_p5: 68.9
+        L_p50: 88.6
+        L_p95: 95.8
+        C_p50: 9.5
+        C_p95: 40.6
+        C_p99: 51.3
+        detail: 1.55
+    fingerprint: 48ddca26c9684216
+manual_review:
+  observed_note: Both take the lifted grown head and broad nearer flipper toward the
+    viewer, with a foreshortened flower meadow, rounded grove, stepping stones and
+    waterfall visible behind. The hanging lantern and bulb-shaped scar glow gold near
+    the tail-side back. The cream belly and cloud-white fluke keep the selected form1
+    identity; no text or additional characters. The new grove creates a distinct silhouette
+    rather than copying the home island soil bowl, roots or door. Light and haze warnings
+    remain advisory.
+  excluded_takes: []
+sources:
+- batch: batch-22-gezgin-forms
+  job: x-gezgin-f2-34
+  take: 1
+  round: 1
+  logical_run: backlog22-20261105
+  source_file: /workspace/generated_images/exec-483df14e-3e97-4952-a63c-ee96d53ca153.png
+  returned_at: '2026-11-05T13:37:20.499Z'
+  prompt_sha256: 94e299c907eeaed69c669ca769ad9d4b7499bbca43d2188729e8f07701d2a050
+  fingerprint: 48ddca26c9684216
+  saved_at: '2026-11-05T13:37:26.901810+00:00'
+  original_generated_png_sha256: dabb77c9b00e3dfc4198c50e6e40411a200c5195c4842d210e751f92e64ac0ad
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 9dc1766b1fa379d6f6effe6fce44f2266a2dacbab57f9443b93687771fffd2d6
+  inbox_png_sha256: 398ca2adf8520f5db12a13c79fb6e95a0f23a260d6b086a2c6b25ece0307574b
+  qa_sha256: b82991dffc87b30692cbc267ace8c1e455310da00848c517467793dc7ba19e6c
+- batch: batch-22-gezgin-forms
+  job: x-gezgin-f2-34
+  take: 2
+  round: 1
+  logical_run: backlog22-20261105
+  source_file: /workspace/generated_images/exec-787c1e8e-e1a1-48d5-ab25-e0fcd72fad9c.png
+  returned_at: '2026-11-05T13:38:07.538Z'
+  prompt_sha256: 94e299c907eeaed69c669ca769ad9d4b7499bbca43d2188729e8f07701d2a050
+  fingerprint: 48ddca26c9684216
+  saved_at: '2026-11-05T13:38:08.001606+00:00'
+  original_generated_png_sha256: 0597476ab92239ff7f2c58c7295df2fab322f9403f678c5b10ad72a0b239f43b
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: ebd7355611b619f993e74eab1f8438745122c2cdd6b61a5a71d5cdf696d0fd70
+  inbox_png_sha256: 8deede9987cc8aa214a2f72c62e07707d8ca7a418f9d3e1de935bb2990ed7459
+  qa_sha256: aa1c8b5bca5d6185e3ad6a6a1ba1cb4984f0c6df12c713a23c457f4f66f80d93
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

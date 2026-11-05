@@ -1,0 +1,204 @@
+batch: batch-22-gezgin-forms
+manifest: tools/imagegen/manifest/batch-22-gezgin-forms.yaml
+manifest_sha256: 205efd12cf3d8e6f8f0a6fcd5b94f49204dad635dbaf77c3ba34c9ad295cba5d
+contact_sheet: design/art/takes/batch-22-gezgin-forms/x-gezgin-f1-night/contact.jpg
+jobs:
+  x-gezgin-f1-night:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both scenes show a blue night
+      sky, one large pale moon, a few stars and a single warm paper lantern on the
+      bench. The tall hook is still empty and the bulb-shaped scar remains an unlit
+      pale outline, distinguishing humble form1 from the grown reveal. No text or
+      extra characters. The whale and clouds remain brighter and warmer than the target
+      night cell; all numerical night light warnings are retained, without grading
+      or threshold changes. Tender and quiet rather than threatening.
+qa_reports:
+  1:
+    job: x-gezgin-f1-night
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.4
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 51 (at most 8), p98 91 (at least 58), spread 40
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 39.7
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 75 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 74.8
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.49 (at most 0.10; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.486
+    - check: light_contrast
+      status: warn
+      message: 'night/subject: p75 local contrast 1.5 (at least 2.8) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.51
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.4
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6807
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.2, p95 10.1, off-palette 0.7% (top: #556699 (0.3%), #555599
+        (0.1%))'
+      value: 4.2243
+    info:
+      metrics_raw:
+        L_p5: 35.3
+        L_p50: 69.2
+        L_p95: 90.1
+        C_p50: 19.7
+        C_p95: 38.5
+        C_p99: 52.3
+        detail: 1.69
+      metrics_locked:
+        L_p5: 35.4
+        L_p50: 69.2
+        L_p95: 89.9
+        C_p50: 19.6
+        C_p95: 38.4
+        C_p99: 51.3
+        detail: 1.4
+    fingerprint: ad4f35ab39016a77
+  2:
+    job: x-gezgin-f1-night
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 38.8
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 48 (at most 8), p98 91 (at least 58), spread 44
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 43.7
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 75 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 75.2
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.48 (at most 0.10; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.482
+    - check: light_contrast
+      status: warn
+      message: 'night/subject: p75 local contrast 1.7 (at least 2.8) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.67
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.49
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6274
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.2, p95 9.9, off-palette 0.3% (top: #556699 (0.2%), #5566AA
+        (0.0%))'
+      value: 4.2272
+    info:
+      metrics_raw:
+        L_p5: 34.8
+        L_p50: 69.7
+        L_p95: 90.8
+        C_p50: 19.5
+        C_p95: 38.9
+        C_p99: 47.4
+        detail: 1.77
+      metrics_locked:
+        L_p5: 34.8
+        L_p50: 69.8
+        L_p95: 90.6
+        C_p50: 19.4
+        C_p95: 38.8
+        C_p99: 46.0
+        detail: 1.49
+    fingerprint: ad4f35ab39016a77
+manual_review:
+  observed_note: Both scenes show a blue night sky, one large pale moon, a few stars
+    and a single warm paper lantern on the bench. The tall hook is still empty and
+    the bulb-shaped scar remains an unlit pale outline, distinguishing humble form1
+    from the grown reveal. No text or extra characters. The whale and clouds remain
+    brighter and warmer than the target night cell; all numerical night light warnings
+    are retained, without grading or threshold changes. Tender and quiet rather than
+    threatening.
+  excluded_takes: []
+sources:
+- batch: batch-22-gezgin-forms
+  job: x-gezgin-f1-night
+  take: 1
+  round: 1
+  logical_run: backlog22-20261105
+  source_file: /workspace/generated_images/exec-59e1f9fe-3a82-4d6a-bb57-7b7fe3d45285.png
+  returned_at: '2026-11-05T13:35:54.406Z'
+  prompt_sha256: 13ee937dd175dd163366180ea5b94712f1b3e70529859f9ca5216f85dd313433
+  fingerprint: ad4f35ab39016a77
+  saved_at: '2026-11-05T13:35:54.726748+00:00'
+  original_generated_png_sha256: 28fd7144cf2e5f171468f8149caf4161435a6b6a9ed01e743ae863b3c59f2821
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 33c16bf96c45c0d4161f13a66e14e91c1d0c167cf9d31b30a23a3946da350728
+  inbox_png_sha256: c4dcc513bbd81c56c67b1a8feb5097753c3444dd5aabcb3d61a775173b40176b
+  qa_sha256: d83e5a0884067706f52366029b94aa18f86fcaa2491fc3b55edfb0de4d5f95cc
+- batch: batch-22-gezgin-forms
+  job: x-gezgin-f1-night
+  take: 2
+  round: 1
+  logical_run: backlog22-20261105
+  source_file: /workspace/generated_images/exec-9c33d5aa-9662-4093-ae1c-60ebb377ed7e.png
+  returned_at: '2026-11-05T13:34:31.886Z'
+  prompt_sha256: 13ee937dd175dd163366180ea5b94712f1b3e70529859f9ca5216f85dd313433
+  fingerprint: ad4f35ab39016a77
+  saved_at: '2026-11-05T13:34:32.356324+00:00'
+  original_generated_png_sha256: 2de58e54c777266637c5b7549155a4ccea9354cae19f774821cc08d55015cc07
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 4df9fae89cb13446c8e8ea8bd4adcecacdce635333a0e0268117308528b03d69
+  inbox_png_sha256: ad5148a40ff4ac9eda7b9541e769f9c1ec7621db426291017a1155f66d100e18
+  qa_sha256: 24964d2651a7995b7943440dbbd78b919e9cb6b0a89be3111a06df763f237d8f
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
