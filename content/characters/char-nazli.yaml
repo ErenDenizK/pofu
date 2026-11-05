@@ -7,7 +7,7 @@ horizon: maybe
 summary: >-
   The enormous, sleepy cloud-whale who carries Gezgin and, by its lore, carries lost islands home.
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 source: lead-brainstorm
 kind: resident

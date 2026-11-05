@@ -4,7 +4,7 @@ _Status: proposal, for founder review. Last updated: 2026-11-02 (v2: the depth l
 _Interactive prototype (touch, Turkish copy):
 [`design/prototypes/interactions/`](../../design/prototypes/interactions/index.html).
 Builds on [ADR-0018](../adr/0018-visual-system-v1.md) (on the open
-`docs/visual-system-v1` branch), [design review 01](review-01.md), the
+`docs/visual-system-v1` branch), [design review 01](../archive/review-01.md), the
 [design language](design-language.md) (§8 materials, §10 motion, §11 haptics),
 the [companion motion system](companion-motion.md), and
 [game design v2](../product/game-design.md)._

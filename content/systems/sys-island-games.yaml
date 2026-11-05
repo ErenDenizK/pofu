@@ -18,7 +18,7 @@ links:
   - sys-skip-gift
   - sys-guardrails
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#4-island-games-one-core-loop-a-different-game-on-every-island'
 source: lead-brainstorm
 group: world

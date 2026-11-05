@@ -23,9 +23,9 @@ links:
   - sys-island-materials
   - sys-rumours
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#3-the-island-schema'
 source: lead-brainstorm
 theme_en: 'A spire of wind bells that plays every island''s motif'

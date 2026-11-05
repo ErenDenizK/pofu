@@ -7,11 +7,11 @@ point; this is the map. Retired material is in [archive/](archive/README.md).
 |---|---|---|
 | Direction | [product/vision.md](product/vision.md), [roadmap.md](roadmap.md) (status, phases), [product/founder-input.md](product/founder-input.md) (his direction and standing decisions) | current |
 | Decisions | [adr/](adr/README.md) (immutable; amendments are listed per ADR) | current |
-| Work order | [design/iteration-plan.md](design/iteration-plan.md), [design/art-production-plan.md](design/art-production-plan.md) (the art queue) | living |
+| Work order | [design/iteration-plan.md](archive/iteration-plan.md), [design/art-production-plan.md](design/art-production-plan.md) (the art queue) | living |
 | **Game plan** | [product/game-plan.md](product/game-plan.md): the loop, day by day, the islands, the three games, social, screens. **Wins over the game, story and archipelago docs below where they disagree** | proposal, canonical |
 | Home progression | [product/home-progression.md](product/home-progression.md): island level and caps, station ladders, pairs, residents, decor, materials, the full bloom, seasons, mastery, the day 1 to 60 timeline | proposal |
 | Home layout | [product/home-layout.md](product/home-layout.md): where every slot of Ayçiçeği and the harbor stands (annotated plate), reveals, light, seasons, the showcase asset list, the future islands as they look in the game | proposal |
-| Game | [product/game-design.md](product/game-design.md), [product/economy.md](product/economy.md) (v0 partly superseded; mirrors `PofuCore`), [product/app-game-boundary.md](product/app-game-boundary.md), [product/island-curation.md](product/island-curation.md) (island arcs, order, verdicts; proposal) | current |
+| Game | [product/game-design.md](product/game-design.md), [product/economy.md](product/economy.md) (v0 partly superseded; mirrors `PofuCore`), [product/app-game-boundary.md](product/app-game-boundary.md), [product/island-curation.md](archive/island-curation.md) (island arcs, order, verdicts; proposal) | current |
 | Gate and UX | [product/ux/gate-v2.md](product/ux/gate-v2.md), [local/membership-day-1.md](local/membership-day-1.md), [product/ux/information-architecture.md](product/ux/information-architecture.md) and [user-flows.md](product/ux/user-flows.md) (partly superseded) | current |
 | Look and feel | [design/experience-v1.md](design/experience-v1.md) (navigation, light, menus, frame rate, visitors, fullness), [design/design-language.md](design/design-language.md), [design/ui-system-v2.md](design/ui-system-v2.md) (UI layers, `PofuSkin`), [design/ui-critique-01.md](design/ui-critique-01.md) (why Home is a game screen), [design/interaction-spec.md](design/interaction-spec.md), [design/look-dev.md](design/look-dev.md), [design/asset-integration.md](design/asset-integration.md) (which approved masters are in the app), [design/companion-motion.md](design/companion-motion.md), [design/sound-identity.md](design/sound-identity.md) | current |
 | Art | [design/art-bible.md](design/art-bible.md), [design/art-direction-study.md](design/art-direction-study.md), [design/art-pipeline.md](design/art-pipeline.md), [design/light-standard.md](design/light-standard.md), [design/sprite-vividness.md](design/sprite-vividness.md), [design/prompt-library.md](design/prompt-library.md), `AGENTS.md` (Codex) | current |
@@ -21,6 +21,6 @@ point; this is the map. Retired material is in [archive/](archive/README.md).
 | Research | [research/](research/) (check before researching again), [research/pro-game-craft.md](research/pro-game-craft.md) (game craft, colour and light plan) | reference |
 | Engineering | [development.md](development.md), [development/rename-map.md](development/rename-map.md) (Turkish to English identifier map), `CONTRIBUTING.md` | current |
 | Free build | [local/ucretsiz-kurulum.md](local/ucretsiz-kurulum.md) (Turkish, Rehearsal mode) | current |
-| History | [product/decision-audit.md](product/decision-audit.md), [design/review-01.md](design/review-01.md) (superseded in part by ui-critique-01 and ui-system-v2) | historical |
+| History | [product/decision-audit.md](archive/decision-audit.md), [design/review-01.md](archive/review-01.md) (superseded in part by ui-critique-01 and ui-system-v2) | historical |
 
 Check links with `python3 -I tools/docs/check_links.py`.

@@ -11,7 +11,7 @@ links:
   feeds:
   - sys-calm
 sources:
-- doc: docs/product/decision-audit.md
+- doc: docs/archive/decision-audit.md
   anchor: '#6-what-to-cut-or-postpone'
 - doc: docs/product/game-design.md
   anchor: '#the-calm-multiplier-tr-huzur'

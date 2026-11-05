@@ -41,13 +41,13 @@ links:
   - asset-harbor-goat
   - asset-harbor-ferry-1
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 - doc: docs/product/game-design.md
   anchor: '#7-the-archipelago'
 - doc: docs/product/game-design.md
   anchor: '#archipelago-assets-added-in-v2'
-- doc: docs/product/decision-audit.md
+- doc: docs/archive/decision-audit.md
   anchor: '#6-what-to-cut-or-postpone'
 theme_en: Ayçiçeği's tea-and-simit harbor district
 ritual_en: 'The morning ferry: a postcard after every calm night; seven make a set'

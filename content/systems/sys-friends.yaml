@@ -14,7 +14,7 @@ links:
   - asset-icon-friend
 sources:
 - doc: docs/adr/0005-serverless-friend-approval.md
-- doc: docs/product/decision-audit.md
+- doc: docs/archive/decision-audit.md
   anchor: '#6-what-to-cut-or-postpone'
 group: meta
 board:

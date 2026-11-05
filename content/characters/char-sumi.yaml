@@ -7,7 +7,7 @@ horizon: maybe
 summary: >-
   A Japanese dormouse (yamane) on Koke who rakes the garden at night and sleeps through winter, apologising for it.
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 source: lead-brainstorm
 kind: resident

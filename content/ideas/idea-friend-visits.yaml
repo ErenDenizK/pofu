@@ -10,6 +10,6 @@ links:
   requires:
   - sys-friends
 sources:
-- doc: docs/design/iteration-plan.md
+- doc: docs/archive/iteration-plan.md
   anchor: '#what-it-can-become'
 kind: feature

@@ -13,7 +13,7 @@ _Living document. Last updated: 2026-11-02._
   Rehearsal mode in the free build.
 - **Why the gate comes first:** the Shortcuts automation never fired on the
   founder's phone (he searched Shortcuts for the app instead of opening the
-  Automation tab); see the [decision audit](product/decision-audit.md).
+  Automation tab); see the [decision audit](archive/decision-audit.md).
 - **Next:** the founder's 7-day dogfood from membership day 1
   ([script](local/membership-day-1.md)); the membership is expected after
   2026-11-24. Until then the cloud builds code-only stage W work.
@@ -63,9 +63,9 @@ Goal: every decision needed to start building is made and written down.
 Goal: an app on the founder's iPhone where the companion is alive and
 delightful, running on the simulated Screen Time service (ADR-0003).
 
-**Order since the [decision audit](product/decision-audit.md):** the gate
+**Order since the [decision audit](archive/decision-audit.md):** the gate
 first, then the world. Work is sequenced in the
-[iteration plan](design/iteration-plan.md): stage G (the automation firing,
+[iteration plan](archive/iteration-plan.md): stage G (the automation firing,
 honest measurement, setup guide v2, a 7-day dogfood, the Screen Time
 shield on membership day 1), then stage W (the home island).
 

@@ -14,7 +14,7 @@ links:
   - sys-island-arrivals
   - island-iskele
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#93-the-curiosity-engine-rumours'
 source: lead-brainstorm
 group: world

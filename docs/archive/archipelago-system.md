@@ -2,9 +2,9 @@
 
 _Status: proposal for discussion with the founder. Date: 2026-11-02;
 **revised 2026-11-03** after his review of the concept deck (section 1A).
-Builds on [game-design.md](game-design.md) (v2), [ADR-0015](../adr/0015-care-over-currency.md),
+Builds on [game-design.md](../product/game-design.md) (v2), [ADR-0015](../adr/0015-care-over-currency.md),
 [ADR-0016](../adr/0016-pre-planned-idle-archipelago.md),
-[ADR-0017](../adr/0017-pofu-never-dies.md), [app-game-boundary.md](app-game-boundary.md)
+[ADR-0017](../adr/0017-pofu-never-dies.md), [app-game-boundary.md](../product/app-game-boundary.md)
 (rules A15–A21), [decision-audit.md](decision-audit.md), the pricing
 work in PR #60, and the content graph in [`content/`](../../content/README.md).
 Founder inputs of 2026-11-02 (Hub answers and a later voice note, his
@@ -104,7 +104,7 @@ empty; Ayçiçeği is the hub, simple in design but **always changing**, and
 green copies of the home plate; the first wow should come sooner. His
 ratings: Gezgin 10, Çanlar and Emanet "great", Revontuli 7, Koke 6,
 Çömlek 4, Yıldız 3, Leylek 2, Ayna "must change" (full entry in
-[founder-input.md](founder-input.md)). This section is the answer; the
+[founder-input.md](../product/founder-input.md)). This section is the answer; the
 sections after it are edited to match.
 
 ### 1A.1 Diagnosis: why most concepts read as copies
@@ -587,7 +587,7 @@ so the game deepens as the secret unfolds.
 | **Glide** | Dip and rise on hills or air (Tiny Wings) | Leylek (thermals) |
 
 No verb repeats between two islands (the contract's mechanic axis); the
-mapping follows [minigames.md](minigames.md) §8, extended to the new
+mapping follows [minigames.md](../product/minigames.md) §8, extended to the new
 islands. Serve (tea orders) lives on as the visitors' tea at the çay
 ocağı, not as a round game.
 
@@ -964,7 +964,7 @@ sun. Lore hook: "What is behind the little round door?" (Pofu's den,
 which fills with keepsakes.) Residents: Pofu, Mochi, Fındık, the frogs,
 and Simit at the harbor. **Toy:** boop Pofu; three fast boops and he
 sneezes a seed off the edge into the clouds. **Games:** the garden block
-puzzle ([minigames.md](minigames.md)); at the harbor, sorting cargo onto
+puzzle ([minigames.md](../product/minigames.md)); at the harbor, sorting cargo onto
 the vapur. **Always changing** (1A.5): time, weather, seasons, events,
 growth, the daily visitor and the gifts of every island (1A.4). Decor
 spots: the çay ocağı's awning, the lawn, the pond edge, the door, the

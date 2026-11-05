@@ -136,7 +136,7 @@ He expected more; the build felt fragmentary ("bölük pörçük"):
   complete; prepare the next build fast so he can see levels, visuals,
   optimization and transitions. The Screen Time core waits for the
   membership (after 2026-11-24); everything else can be tested now.
-- Status: playable build v1 planned (`docs/product/playable-build-v1.md`).
+- Status: playable build v1 planned (`docs/archive/playable-build-v1.md`).
 
 ## 2026-11-05 (game plan v1 and the story flow)
 
@@ -247,7 +247,7 @@ After the game plan v1 timeline and the full story flow (chat):
 ## 2026-11-03 (afternoon): review of the island concept deck
 
 His views (translated), not orders; the decisions are ours. Handled in
-[archipelago-system.md](archipelago-system.md) section 1A (PR #64).
+[archipelago-system.md](../archive/archipelago-system.md) section 1A (PR #64).
 
 - **Islands in parallel, not a ladder.** All islands should work together;
   moving between them, the player should need and want every island, and

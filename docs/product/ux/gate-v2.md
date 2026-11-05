@@ -8,9 +8,9 @@ the first seven days of the dogfood._
 _Builds on: [vision](../vision.md), [the app and the game](../app-game-boundary.md)
 (accepted direction), [game design v2](../game-design.md) (care rung,
 quick check, breathing break v2), ADR-0012, ADR-0013, ADR-0015, ADR-0017,
-ADR-0018, the [decision audit](../decision-audit.md) (U1, U6, the PNAS
+ADR-0018, the [decision audit](../../archive/decision-audit.md) (U1, U6, the PNAS
 findings), the [design language](../../design/design-language.md),
-[review 01](../../design/review-01.md), the
+[review 01](../../archive/review-01.md), the
 [interaction spec](../../design/interaction-spec.md), the app in `App/`,
 and open PR #34 (`feat/screen-time-gate`)._
 _Prototype (Turkish, phone-first, no network):

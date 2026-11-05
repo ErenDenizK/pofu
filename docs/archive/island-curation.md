@@ -3,9 +3,9 @@
 _Status: proposal for discussion with the founder. Date: 2026-11-03.
 Builds on [archipelago-system.md](archipelago-system.md) v2 (section 1A:
 home cluster, uniqueness contract, living web, pacing), the founder's
-ratings of 2026-11-03 in [founder-input.md](founder-input.md) (Gezgin 10,
+ratings of 2026-11-03 in [founder-input.md](../product/founder-input.md) (Gezgin 10,
 Revontuli 7, Çanlar and Emanet "great", Koke 6, Çömlek 4, Yıldız 3,
-Leylek 2, Ayna "redo") and [minigames.md](minigames.md). Same day he
+Leylek 2, Ayna "redo") and [minigames.md](../product/minigames.md). Same day he
 added that the concept paintings are very good overall, Gezgin and
 Revontuli most of all. Nothing here changes code; where this document
 disagrees with archipelago-system.md section 11, this is the proposal and
@@ -607,4 +607,4 @@ nothing that names a date, a deadline or a loss of a person.
 - Breath of the Wild field design: [Nintendo Life, the triangle rule](https://www.nintendolife.com/news/2017/10/zelda_breath_of_the_wilds_ingenious_design_is_all_about_triangles_apparently); [Matt Walker's translation of the CEDEC 2017 talks](https://gist.github.com/idbrii/e39fe96279aa1670319bfa521d907399); [Game Developer, five design lessons](https://gamedeveloper.com/design/5-design-lessons-learned-from-i-the-legend-of-zelda-breath-of-the-wild-i-).
 - Spiritfarer: [Wikipedia](https://en.wikipedia.org/wiki/Spiritfarer); [Game Developer, inside its design](https://gamedeveloper.com/design/inside-the-thoughtful-design-of-thunder-lotus-i-spiritfarer-i-).
 - A Short Hike: [Wikipedia](https://en.wikipedia.org/wiki/A_Short_Hike); [GDC 2020, Crafting a Tiny Open World](https://gdcvault.com/play/1026613/Independent-Games-Summit-Crafting-A); [80.lv, postmortem](https://80.lv/articles/gdc-a-short-hike-postmortem).
-- Animal Crossing, Pikmin, Kirby, Dorfromantik, Peggle, Picross, Suika, hexa sort and triple-tile games: from play. Earlier research in [archipelago-system.md §2](archipelago-system.md#2-research) and [minigames.md §1](minigames.md#1-proven-mechanics-compared) is linked, not redone.
+- Animal Crossing, Pikmin, Kirby, Dorfromantik, Peggle, Picross, Suika, hexa sort and triple-tile games: from play. Earlier research in [archipelago-system.md §2](archipelago-system.md#2-research) and [minigames.md §1](../product/minigames.md#1-proven-mechanics-compared) is linked, not redone.

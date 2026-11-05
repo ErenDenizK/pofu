@@ -8,6 +8,6 @@ summary: >-
   The PiP video setup guide is postponed: the iOS 27 import replaces most of it, and a better
   text guide covers iOS 26.
 sources:
-- doc: docs/product/decision-audit.md
+- doc: docs/archive/decision-audit.md
   anchor: '#6-what-to-cut-or-postpone'
 kind: feature

@@ -8,6 +8,6 @@ summary: >-
   A 7-day dogfood on the shield with no feature changes and a daily readout. Check: resisted
   share of reaches against the goal of half.
 sources:
-- doc: docs/design/iteration-plan.md
+- doc: docs/archive/iteration-plan.md
   anchor: '#stage-g-the-gate'
 kind: milestone

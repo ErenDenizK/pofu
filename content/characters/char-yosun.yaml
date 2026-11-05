@@ -7,7 +7,7 @@ horizon: maybe
 summary: >-
   An old tortoise who lodges in Gezgin's cottage and brings the ferry's letters, slowly.
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 source: lead-brainstorm
 kind: resident

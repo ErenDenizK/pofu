@@ -2,7 +2,7 @@
 
 Status: **proposed**, with a vertical slice in code (`PofuGames`, the
 Ayçiçeği garden). Builds on the archipelago system proposal
-(`docs/product/archipelago-system.md` on the unmerged `docs/archipelago-system`
+(`docs/archive/archipelago-system.md` on the unmerged `docs/archipelago-system`
 branch; §4: rounds of 30–90 s, sets of five, no failure, small yields) and the
 [UI system v2](../design/ui-system-v2.md) (the game layer is crafted;
 pause is native glass).

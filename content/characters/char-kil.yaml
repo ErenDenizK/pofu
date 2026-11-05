@@ -7,7 +7,7 @@ horizon: maybe
 summary: >-
   A mole on Çömlek who only works when it is quiet and has made a pot for every island that came home.
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 source: lead-brainstorm
 kind: resident

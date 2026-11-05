@@ -47,7 +47,7 @@ Loaded every turn: keep it short. History lives in `docs/` (`docs/README.md`).
 ## Where things are
 
 - Docs index: `docs/README.md`. Vision: `docs/product/vision.md`. Roadmap and
-  status: `docs/roadmap.md`. Work order: `docs/design/iteration-plan.md`.
+  status: `docs/roadmap.md`. Work order: `docs/archive/iteration-plan.md`.
 - Founder input log (read at session start; add to it whenever he gives
   input): `docs/product/founder-input.md`.
 - ADRs `docs/adr/`, research `docs/research/`, brand `docs/brand/`, game

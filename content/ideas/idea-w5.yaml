@@ -8,6 +8,6 @@ summary: >-
   Camera springs, seed collection, level-up, haptics. Check: the founder repeats one without
   being asked; the visit guardrail holds.
 sources:
-- doc: docs/design/iteration-plan.md
+- doc: docs/archive/iteration-plan.md
   anchor: '#stage-w-the-world-after-two-weeks-of-daily-use'
 kind: milestone

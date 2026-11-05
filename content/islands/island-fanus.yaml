@@ -22,9 +22,9 @@ links:
   supersedes:
   - island-ayna
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#1a-revision-after-the-founders-review-2026-11-03'
 source: lead-brainstorm
 theme_en: A cloud forest under glass

@@ -8,6 +8,6 @@ summary: >-
   The smallest ADR-0015 slice the week shows is needed. Check: week 2's resisted share against
   week 1.
 sources:
-- doc: docs/design/iteration-plan.md
+- doc: docs/archive/iteration-plan.md
   anchor: '#stage-g-the-gate'
 kind: milestone

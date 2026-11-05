@@ -563,7 +563,7 @@ known.
   [one sec help](https://help.1se.co/articles/2701115-is-there-a-fee-for-this-app)
 - [screenzen]: [Habit Doom on ScreenZen](https://habitdoom.com/blog/screenzen-alternative-iphone),
   [ScreenZen blog](https://www.screenzen.co/blog)
-- [audit]: [decision-audit.md](decision-audit.md) (2026-11-01)
+- [audit]: [decision-audit.md](../archive/decision-audit.md) (2026-11-01)
 - [unrot]: [MWM listing](https://mwm.ai/apps/unrot-earn-your-screentime/6746537171),
   [ScreensDesign](https://screensdesign.com/showcase/unrot-earn-your-screentime)
 - [jomo]: [Jomo pricing](https://jomo.so/pricing)
