@@ -514,6 +514,8 @@ def app_main():
     import shutil
 
     harmony, manifest, harmony_cfg = _harmony()
+    sys.path.insert(0, os.path.join(REPO, "tools", "assets"))
+    import vivid
 
     def corrected(name):
         entry = manifest["assets"].get(name)
@@ -577,6 +579,11 @@ def app_main():
             f = cap / ppu
             img = img.resize((max(1, round(img.width * f)), max(1, round(img.height * f))), Image.LANCZOS)
             anchor, ppu = (anchor[0] * f, anchor[1] * f), cap
+        if not spec.get("emissive_of"):
+            # Props and stations get the vividness regrade (tools/assets/vivid.py) at their final size, so its
+            # chroma cap holds on the shipped pixels; characters, plates, sky and glow overlays are left
+            # alone by its config.
+            img = vivid.regrade_image(name, img)
         variants = {"sharp": (img, _box((0, 0), img.size, ppu, anchor))}
         if spec.get("single"):
             # One image in world units, never blurred: a light overlay.

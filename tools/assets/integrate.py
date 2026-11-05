@@ -6,7 +6,8 @@
 
 The map is tools/assets/integration_map.json (master folder -> imageset name and
 target). `games` entries are copied, trimmed and resized here (Pillow only, deterministic:
-same masters in, same pixels out). `world` entries are sprites that need blur variants,
+same masters in, same pixels out); the home objects (pots, jar) and, inside preblur, the world
+props and stations pass through the vividness regrade, tools/assets/vivid.py. `world` entries are sprites that need blur variants,
 footprints and the generated Swift table, so `run` delegates them to
 design/prototypes/interactions/tools/preblur.py app and then checks the imageset exists.
 Only the slice's assets are mapped; the rest of the world catalog still comes from preblur.
@@ -20,6 +21,9 @@ import sys
 from pathlib import Path
 
 from PIL import Image
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import vivid  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
 FLAT = ("games", "ui")  # flat PNGs baked here, not through preblur
@@ -61,6 +65,8 @@ def bake_games(entry: dict, out: Path) -> None:
     f = min(1.0, max_w / image.width, max_h / image.height)  # never upscale
     if f < 1.0:
         image = image.resize((max(1, round(image.width * f)), max(1, round(image.height * f))), Image.LANCZOS)
+    if entry["target"] == "ui":
+        image = vivid.regrade_image(entry["name"], image, target="ui")  # home objects only (vivid.json)
     out.parent.mkdir(parents=True, exist_ok=True)
     image.save(out, "PNG", optimize=True)
 
