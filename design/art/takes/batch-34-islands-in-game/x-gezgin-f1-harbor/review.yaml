@@ -1,0 +1,227 @@
+batch: batch-34-islands-in-game
+manifest: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+manifest_sha256: 345738791fedc39057958fb6e3aee35a0f660ada571fff12a36eba9dc2b2257f
+contact_sheet: design/art/takes/batch-34-islands-in-game/x-gezgin-f1-harbor/contact.jpg
+jobs:
+  x-gezgin-f1-harbor:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both show the left-third home
+      harbor and right-side tired grey-blue/cream whale, a readable moss patch with
+      bench, one rope post tied to the pier, empty honey hook and an unlit paper-lantern
+      scar outline rather than a bulb. Pofu and curl-free long-eared Mochi wait on
+      the pier with a small bag. Whale length reads nearer twice the visible islet
+      width in foreground perspective than the approximate three-times prose target;
+      record this scale limitation for concept review. No ship deck, water/waves,
+      text or scary mouth. Every one of the six listed references is attached: Pofu
+      and Mochi share a labelled native-pixel board to fit the tool limit of five
+      paths. Earlier six-path calls failed argument validation with zero outputs;
+      these are the two actual initial takes. Numeric style/light warnings remain
+      advisory; never promoted.'
+qa_reports:
+  1:
+    job: x-gezgin-f1-harbor
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 23 (R1 51)
+      value: 23.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 65 (at most 22), p98 96 (at least 90), spread 31
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 31.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 90 (band 55-90)'
+      value: 89.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.53 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.525
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.0 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.04
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.19
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5174
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 4.1, off-palette 0.0%
+      value: 1.7838
+    info:
+      metrics_raw:
+        L_p5: 75.6
+        L_p50: 90.0
+        L_p95: 95.9
+        C_p50: 6.7
+        C_p95: 23.9
+        C_p99: 37.0
+        detail: 1.49
+      metrics_locked:
+        L_p5: 75.8
+        L_p50: 90.0
+        L_p95: 95.8
+        C_p50: 6.6
+        C_p95: 23.4
+        C_p99: 35.7
+        detail: 1.19
+    fingerprint: ea39855bb517a6a1
+  2:
+    job: x-gezgin-f1-harbor
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 24.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 65 (at most 22), p98 96 (at least 90), spread 31
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 30.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 89 (band 55-90)'
+      value: 89.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.50 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.498
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.6 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.5445
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.9, p95 4.0, off-palette 0.0%
+      value: 1.8611
+    info:
+      metrics_raw:
+        L_p5: 75.0
+        L_p50: 89.9
+        L_p95: 95.6
+        C_p50: 6.8
+        C_p95: 25.1
+        C_p99: 38.9
+        detail: 1.43
+      metrics_locked:
+        L_p5: 75.2
+        L_p50: 89.9
+        L_p95: 95.5
+        C_p50: 6.7
+        C_p95: 24.3
+        C_p99: 38.0
+        detail: 1.14
+    fingerprint: ea39855bb517a6a1
+manual_review:
+  observed_note: 'Both show the left-third home harbor and right-side tired grey-blue/cream
+    whale, a readable moss patch with bench, one rope post tied to the pier, empty
+    honey hook and an unlit paper-lantern scar outline rather than a bulb. Pofu and
+    curl-free long-eared Mochi wait on the pier with a small bag. Whale length reads
+    nearer twice the visible islet width in foreground perspective than the approximate
+    three-times prose target; record this scale limitation for concept review. No
+    ship deck, water/waves, text or scary mouth. Every one of the six listed references
+    is attached: Pofu and Mochi share a labelled native-pixel board to fit the tool
+    limit of five paths. Earlier six-path calls failed argument validation with zero
+    outputs; these are the two actual initial takes. Numeric style/light warnings
+    remain advisory; never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-34-islands-in-game
+  job: x-gezgin-f1-harbor
+  take: 1
+  round: 1
+  logical_run: 20261105-night34-gezgin-transport-repair
+  source_file: /workspace/generated_images/exec-22471269-5464-4972-b008-b502de0d4c22.png
+  returned_at: '2026-11-05T18:09:33.189Z'
+  prompt_sha256: f11805fdaa7481675d7c78fb89aa9e28f7dc3fdc4c7e016545d5ac598832f240
+  fingerprint: ea39855bb517a6a1
+  saved_at: '2026-11-05T18:09:33.623172+00:00'
+  original_generated_png_sha256: cade1bf1c556eae682c33ec3b79ea9b1fd46e492e461ffc82ce1e268b37194ab
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 46004a24566c56b5c4be9839320fd31c8f9a7c3554f721f196175b17cdcf5192
+  inbox_png_sha256: dc0b69d5554abaeac5c81c1d2a38f93a4f8aa204214591835ffbf574b3be86a5
+  qa_sha256: 81462322492b1ae2c090c95e8c99b5f49a675432c7f6dc5f397cd1d473f2057a
+- batch: batch-34-islands-in-game
+  job: x-gezgin-f1-harbor
+  take: 2
+  round: 1
+  logical_run: 20261105-night34-gezgin-transport-repair
+  source_file: /workspace/generated_images/exec-bdd42719-4f81-4fe6-ba71-3f89308018c6.png
+  returned_at: '2026-11-05T18:10:22.839Z'
+  prompt_sha256: f11805fdaa7481675d7c78fb89aa9e28f7dc3fdc4c7e016545d5ac598832f240
+  fingerprint: ea39855bb517a6a1
+  saved_at: '2026-11-05T18:10:23.863099+00:00'
+  original_generated_png_sha256: a27d4b05a43ddb0c26fe654227773d8f7bca50a54a40fd0125ba9ea390a8ceb4
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 1296b60ee2e3652193a68958e773ff4e62339949e20b495141c6c91ef0d1cae0
+  inbox_png_sha256: 71362c24742cadcd929216d12bc2bc5bf9e96efd7491bec9d20f1fcd479f1bb3
+  qa_sha256: 4c17db741d75440d7e5448c645ed7bc6152606d3503712355693fc8235e32e7c
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+reference_packaging:
+  reason: Image tool accepts at most 5 paths; all 6 listed references still attached,
+    last two on one board
+  board: /workspace/art-operator-runtime/run-20261105-night/batch-34-islands-in-game/x-gezgin-f1-harbor-references-5-6.png
+  board_sha256: ef706babd5eff824ff9dd807be669df51cb9a0c72eea0266867193d90ffc5b37
+  source_files:
+    /workspace/art-20261105-islands-game/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+    /workspace/art-20261105-islands-game/design/art/masters/mochi-v2/mochi-v2.webp: d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5
+  original_rgba_pixels_preserved: true
+  individual_references_resized: false
+  printed_prompt_unchanged: true
+  all_original_references:
+    /workspace/art-20261105-islands-game/design/art/masters/harbor-island-s/harbor-island-s.webp: ecd09ecf0ac212c50dfb6795a426d88a3ba9302815ad52a8edc57de2d8ebd3e4
+    /workspace/art-20261105-islands-game/design/art/stations/pier-1/pier-1.png: c6b94cd714222b80b9c88b0fa67054d00b0c9a21e05d1b9612c1409e78eaa011
+    /workspace/art-20261105-islands-game/design/art/masters/island-main-l-v3/island-main-l-v3.webp: f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29
+    /workspace/art-20261105-islands-game/design/art/masters/cloud-sea/cloud-sea.png: bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a
+    /workspace/art-20261105-islands-game/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+    /workspace/art-20261105-islands-game/design/art/masters/mochi-v2/mochi-v2.webp: d107327f7c35e283895babdadc487326cff93e13178ca594bc70285770f62ee5
