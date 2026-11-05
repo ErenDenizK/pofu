@@ -1,0 +1,306 @@
+# Batch 31: exploration, never promoted (the backlog)
+#
+# Concept plates of Ayçiçeği's growth from docs/product/home-progression.md
+# sections 3, 5 and 9: the island at island levels 1, 4, 7 and 10 (and the
+# closed hill gate of level 9), the Tam Çiçek ceremony night, the Tepe (the
+# hilltop area), and the Altın Ada. Concept frames, not production plates: the
+# attached island sets the shape, camera and softness, and the plates grow
+# only where the plan says. Production later edits the base plate per level
+# (home progression, art step 4).
+#
+# Tracks: `island`.
+#
+# BACKLOG (docs/design/art-production-plan.md#the-backlog): every job here is
+# an EXPLORATION with an `x-` id. EXPLORATION RULES (AGENTS.md): do NOT run
+# `promote`; commit the takes (WebP q90), the contact sheet and review.yaml
+# under design/art/takes/<batch>/<id>/ and nothing else. No painted text
+# anywhere. Never paint glass, UI chrome or buttons. A failed or refused job
+# is recorded and skipped; the run continues with the next job. There is no
+# pilot gate: run the jobs in the order written.
+#
+# Fresh variations: when the backlog comes round again, copy a job under a
+# new id (`-v2`, `-v3`, ...) with a new angle, never the same prompt twice.
+
+batch: batch-31-island-milestones
+title: "Island milestones: levels 1, 4, 7, 10, the ceremony night, the Tepe, the Altin Ada"
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: pofu, kind: char, name: pofu-r1, external: r1, master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png}
+
+  - id: x-island-il1
+    kind: plate
+    name: x-island-il1
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Island level 1. Review: tiny, round, hopeful; one bed of sunflowers is the whole story. This is the baseline all later plates grow from."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw a different island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayçiçeği, Pofu's home island,
+          at a stage of its growth, from the same low camera (about 20 degrees), the
+          same painting and the same softness as the attached island, floating over
+          a sea of clouds. The island's base shape grows only where named; what is
+          already built stays in the same place. ISLAND LEVEL 1: a small round
+          island with a single bed of three young sunflowers, Pofu's round door set
+          into a tiny grass mound, a little twig nest beside it, a few bees, wind in
+          the grass, a thin stone-less lawn and bare rock edges. No other buildings.
+          Warm morning light, sparse and gentle.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, a different overall island character, a curl on any head except Pofu's"
+
+  - id: x-island-il4
+    kind: plate
+    name: x-island-il4
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Island level 4. Review: the lawn has widened to the right and the tea corner and harbor bridge exist; clearly the same island grown, with room still empty."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw a different island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayçiçeği, Pofu's home island,
+          at a stage of its growth, from the same low camera (about 20 degrees), the
+          same painting and the same softness as the attached island, floating over
+          a sea of clouds. The island's base shape grows only where named; what is
+          already built stays in the same place. ISLAND LEVEL 4: the lawn has
+          widened to the right to make room for a small pond with lily pads and a
+          frog; a stone path leads from the garden (picket fence, arch not yet) to a
+          tea stall with a striped awning; a rope bridge runs off the left edge to a
+          small harbor islet with a bagel cart and a pier with a tiny ferry. Soft
+          golden afternoon light, much of the lawn still empty and green.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, a different overall island character, a curl on any head except Pofu's"
+
+  - id: x-island-il7
+    kind: plate
+    name: x-island-il7
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: golden, layer: subject}
+    notes: "Exploration. Island level 7. Review: the back terrace, workshop and lighthouse exist; flower borders and path lamps give it a lived-in glow; the decor spots are dressed."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw a different island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayçiçeği, Pofu's home island,
+          at a stage of its growth, from the same low camera (about 20 degrees), the
+          same painting and the same softness as the attached island, floating over
+          a sea of clouds. The island's base shape grows only where named; what is
+          already built stays in the same place. ISLAND LEVEL 7: a back terrace has
+          risen behind the lawn with a workshop (a shed with a wall of tools, a
+          chimney and a big gear sign) and, on the harbor islet, a striped
+          lighthouse with a warm slow lamp; flower borders in rose, lilac and
+          mustard line every stone path, small round path lamps glow in warm pools,
+          a bench, a string of paper lanterns, a toy sailboat at the pond's edge and
+          a mailbox at the round door; the windmill is not yet built. Golden hour
+          light.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, a different overall island character, a curl on any head except Pofu's"
+
+  - id: x-island-il10
+    kind: plate
+    name: x-island-il10
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: dusk, layer: subject}
+    notes: "Exploration. Island level 10, Tam Çiçek. Review: the full island, every station complete, hilltop opened; it feels abundant yet calm, the same island still."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw a different island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayçiçeği, Pofu's home island,
+          at a stage of its growth, from the same low camera (about 20 degrees), the
+          same painting and the same softness as the attached island, floating over
+          a sea of clouds. The island's base shape grows only where named; what is
+          already built stays in the same place. ISLAND LEVEL 10, full bloom: the
+          whole island is complete and abundant. A giant sunflower with a second
+          golden head by the garden, the tea stall with a tiled roof and flag, the
+          pond with floating lanterns, the workshop with a big gear sign, a windmill
+          on the left terrace with flag and window boxes, the harbor islet with a
+          finished pier, bunting and a lighthouse with a garden at its foot, a hill
+          path climbing from the windmill past a gate to a hilltop terrace with a
+          bench and a telescope; warm lanterns lit along every terrace, a soft dusk
+          sky with first stars.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, a different overall island character, a curl on any head except Pofu's"
+
+  - id: x-hill-gate
+    kind: plate
+    name: x-hill-gate
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    light: {cell: golden, layer: subject}
+    notes: "Exploration. Island level 9: the closed hill gate. Review: a mystery worth waiting for; the carved sunflower and the glow behind the gate read at a glance."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw a different island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayçiçeği, Pofu's home island,
+          at a stage of its growth, from the same low camera (about 20 degrees), the
+          same painting and the same softness as the attached island, floating over
+          a sea of clouds. The island's base shape grows only where named; what is
+          already built stays in the same place. ISLAND LEVEL 9: a close view of the
+          hill path behind the windmill leading up to a closed round wooden gate set
+          in a low stone wall, a sunflower carved in relief in the gate, a soft warm
+          golden glow leaking from behind and between its planks, tall grass and
+          wildflowers along the path, the windmill's sails just visible below.
+          Golden light, quiet anticipation.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, a different overall island character, a curl on any head except Pofu's"
+
+  - id: x-tam-cicek-night
+    kind: plate
+    name: x-tam-cicek-night
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: night, layer: subject}
+    notes: "Exploration. The Tam Çiçek ceremony night, island level 10. Review: all lanterns lit in a line from the garden to the lighthouse, all the residents gathered on the lawn, Gezgin passing overhead; joyful, quiet, never a fireworks show."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw a different island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayçiçeği, Pofu's home island,
+          at a stage of its growth, from the same low camera (about 20 degrees), the
+          same painting and the same softness as the attached island, floating over
+          a sea of clouds. The island's base shape grows only where named; what is
+          already built stays in the same place. THE TAM ÇİÇEK CEREMONY NIGHT: dusk
+          deepening to a deep indigo-plum night with soft stars. Every lantern on
+          the island is lit in a warm glowing chain from the garden to the
+          lighthouse, the giant sunflower has opened a second golden head and glows
+          softly, and all the residents have gathered on the lawn in a loose happy
+          group: Pofu the hamster in the middle, Mochi the bunny, Simit the kitten,
+          Fındık the hedgehog with his goggles, a goat, three little frogs and a
+          small mossy sprout. High overhead a huge, gentle cloud-whale island,
+          Gezgin, passes slowly with a mossy back and lantern hooks glowing. The
+          hill gate stands open with warm light on the path. Peaceful, wondrous,
+          never dramatic. The residents are small and simple; Pofu keeps his exact
+          look.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, a different overall island character, a curl on any head except Pofu's"
+
+  - id: x-tepe
+    kind: plate
+    name: x-tepe
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: dusk, layer: subject}
+    notes: "Exploration. The Tepe, the new hilltop area opened by the full bloom. Review: a quiet terrace above the windmill with a lookout and room for later add-ons; it feels like a reward, not a new chore."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw a different island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayçiçeği, Pofu's home island,
+          at a stage of its growth, from the same low camera (about 20 degrees), the
+          same painting and the same softness as the attached island, floating over
+          a sea of clouds. The island's base shape grows only where named; what is
+          already built stays in the same place. THE TEPE, the hilltop terrace: a
+          close view of a round grassy terrace on the hill above the windmill,
+          reached by a stone path with steps, with Pofu's lookout, a honey-wood
+          bench and a chunky cream-and-brass telescope on a tripod, an empty round
+          stage of pale stones beside a leafy tree where each season's set will
+          stand, three bare flat plots of soil marked with small stones for future
+          small stations, the roof of the windmill and the whole island glowing
+          below, and the clouds beyond. Dusk light, the first stars. No residents.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, a different overall island character, a curl on any head except Pofu's"
+
+  - id: x-altin-ada
+    kind: plate
+    name: x-altin-ada
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: dusk, layer: subject}
+    notes: "Exploration. The Altın Ada: every station at level 10. Review: the island's edge turns to gold at dusk; the transformation is subtle and earned, the painting is still the same island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw a different island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayçiçeği, Pofu's home island,
+          at a stage of its growth, from the same low camera (about 20 degrees), the
+          same painting and the same softness as the attached island, floating over
+          a sea of clouds. The island's base shape grows only where named; what is
+          already built stays in the same place. ALTIN ADA, the golden island: the
+          same full island as level 10, now with the whole rim of the island edge
+          turned to soft glowing gold like a thin line of warm light, each station
+          with a small golden detail (a gilded sunflower head, a gold vane, golden
+          sails' tips, a golden lamp room), golden seeds drifting upward, and on the
+          hilltop the telescope pointing to one small last star that is just coming
+          on in the dusk sky. Warm, rich, still soft and matte; no metallic shine.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, numbers, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, a different overall island character, a curl on any head except Pofu's"

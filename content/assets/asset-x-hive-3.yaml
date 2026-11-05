@@ -1,0 +1,21 @@
+id: asset-x-hive-3
+type: asset
+title_tr: x-hive-3
+title_en: x-hive-3 (station)
+status: in-production
+horizon: now
+summary: >-
+  The third level of the garden hive: a painted wooden hive box of stacked square honey-cream
+  boxes with a gently sloped sage-green lid and a small landing board, standing on four short
+  legs, with two plump straw skeps beside it and a row of lavender along the front, a handful
+  of tiny soft bees in the air. It fills the footprint's width and stays below the height
+  bar's top; chunky, toy-like, few parts.
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts:x-hive-3
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+kind: station
+batch: batch-28-home-shops-concepts
+size: 1024x1024

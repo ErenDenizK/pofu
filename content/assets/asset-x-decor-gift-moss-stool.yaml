@@ -1,0 +1,21 @@
+id: asset-x-decor-gift-moss-stool
+type: asset
+title_tr: x-decor-gift-moss-stool
+title_en: x-decor-gift-moss-stool (prop)
+status: in-production
+horizon: now
+summary: >-
+  A small round stool made of a cut tree stump of honey-pale wood, its sides and top softly
+  furred with deep sage moss and a tiny cluster of cream mushrooms on one edge, three short
+  root feet. Chunky and toy-like. It stands on the guide's ground ellipse, centered on the
+  cross, never wider than the ellipse and never taller than the height bar; it is small, a
+  third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets:x-decor-gift-moss-stool
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets.yaml
+kind: prop
+batch: batch-30-decor-sets
+size: 1024x1024

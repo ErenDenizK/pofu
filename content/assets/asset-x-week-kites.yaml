@@ -1,0 +1,21 @@
+id: asset-x-week-kites
+type: asset
+title_tr: x-week-kites
+title_en: x-week-kites (prop)
+status: in-production
+horizon: now
+summary: >-
+  Three diamond kites of different sizes flying together on gently curving thin strings that
+  meet at one small wooden spool: one of coral and cream, one of sea-blue and mustard, one
+  of rose and mint, each with a ribbon tail of small bows; drawn completely including the
+  strings and the spool at the bottom; the kites hang high in the height bar. It stands on
+  the guide's ground ellipse, centered on the cross, never wider …
+art:
+  images: []
+  jobs:
+  - batch-32-weekly-themes:x-week-kites
+sources:
+- doc: tools/imagegen/manifest/batch-32-weekly-themes.yaml
+kind: prop
+batch: batch-32-weekly-themes
+size: 1024x1024

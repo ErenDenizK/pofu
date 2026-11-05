@@ -1,0 +1,21 @@
+id: asset-x-work-sprout
+type: asset
+title_tr: x-work-sprout
+title_en: x-work-sprout (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a working-pose frame at one station of the home
+  island, seen from the same low front three-quarter camera as the attached station, in warm
+  daylight, the scene cropped close with a soft cream-and-sage ground under the station and
+  sky behind it. A tiny new resident, Koke's sprout, a little round bean-shaped creature of
+  soft mossy green with two small curled leaves on top of it…
+art:
+  images: []
+  jobs:
+  - batch-29-residents-at-work:x-work-sprout
+sources:
+- doc: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+kind: plate
+batch: batch-29-residents-at-work
+size: 1024x1024

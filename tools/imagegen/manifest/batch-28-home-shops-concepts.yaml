@@ -1,0 +1,401 @@
+# Batch 28: exploration, never promoted (the backlog)
+#
+# Concept frames for the home stations that have no art yet, from
+# docs/product/home-progression.md: the hive (gift station from Ari, levels 1,
+# 3, 5) and the three Book Two hilltop add-ons (Fanus's greenhouse, Comlek's
+# kiln, Mehtap's moon telescope), which have three levels each, so they are
+# drawn at levels 1, 2 and 3. Each is a station sprite on the station guide in
+# the style of the approved home stations (design/art/stations). The garden,
+# tea stall, pond, workshop, windmill and bagel cart already have levels 1 to
+# 5; the pier and lighthouse levels 2 to 5 are queued in batch 21.
+#
+# Tracks: `hive`, `greenhouse`, `kiln`, `moon-telescope`.
+#
+# BACKLOG (docs/design/art-production-plan.md#the-backlog): every job here is
+# an EXPLORATION with an `x-` id. EXPLORATION RULES (AGENTS.md): do NOT run
+# `promote`; commit the takes (WebP q90), the contact sheet and review.yaml
+# under design/art/takes/<batch>/<id>/ and nothing else. No painted text
+# anywhere. Never paint glass, UI chrome or buttons. A failed or refused job
+# is recorded and skipped; the run continues with the next job. There is no
+# pilot gate: run the jobs in the order written.
+#
+# Fresh variations: when the backlog comes round again, copy a job under a
+# new id (`-v2`, `-v3`, ...) with a new angle, never the same prompt twice.
+
+batch: batch-28-home-shops-concepts
+title: "Home shops and add-on stations, L1 L3 L5 concepts (station guide)"
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: tea-stall-1, kind: station, name: tea-stall-1, external: batch-01-slice}
+  - {id: bagel-cart-1, kind: station, name: bagel-cart-1, external: batch-01-slice}
+
+  - id: x-hive-1
+    kind: station
+    name: x-hive-1
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Hive"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. The hive (gift station from Arı) level 1 concept. Review: a single straw skep reads as a beehive at 28 pt; bees are tiny soft dots, not insects with detail."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family, same finish (do not draw the cart)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          The first level of a small garden hive, the gift of a bee island: one
+          plump straw skep, a rounded dome of woven honey-gold straw in broad soft
+          bands, with a small dark arched doorway, sitting on a low round flat stone
+          slab with a few small lavender sprigs at its foot and three tiny soft
+          cream bees hovering. Nothing else. It fills the footprint's width and
+          stays below the height bar's top; chunky, toy-like, few parts.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a floor, a ground shadow, a background, clouds, water, text, letters, characters or animals, glossy shine, outlines"
+
+  - id: x-hive-3
+    kind: station
+    name: x-hive-3
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Hive"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. The hive level 3 concept. Review: a painted hive box is clearly a step up from the skep, same honey family, same footprint."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family, same finish (do not draw the cart)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          The third level of the garden hive: a painted wooden hive box of stacked
+          square honey-cream boxes with a gently sloped sage-green lid and a small
+          landing board, standing on four short legs, with two plump straw skeps
+          beside it and a row of lavender along the front, a handful of tiny soft
+          bees in the air. It fills the footprint's width and stays below the height
+          bar's top; chunky, toy-like, few parts.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a floor, a ground shadow, a background, clouds, water, text, letters, characters or animals, glossy shine, outlines"
+
+  - id: x-hive-5
+    kind: station
+    name: x-hive-5
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Hive"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. The hive level 5 concept. Review: the finished hive reads as a small honey corner: hive box, skeps, a honey stand with jars, bees visiting flowers."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family, same finish (do not draw the cart)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          The finished garden hive: a painted honey-cream hive box and two skeps
+          among tall lavender and a few sunflower seedlings, and beside them a small
+          honey stand, a little wooden counter with a striped coral-and-cream awning
+          holding five round honey jars of amber with cream wax-sealed lids, a small
+          drip spoon, and a handful of tiny soft bees circling. It fills the
+          footprint's width and stays below the height bar's top; chunky, toy-like,
+          few parts.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a floor, a ground shadow, a background, clouds, water, text, letters, characters or animals, glossy shine, outlines"
+
+  - id: x-greenhouse-1
+    kind: station
+    name: x-greenhouse-1
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Greenhouse"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Fanus's greenhouse (hilltop add-on, three levels) level 1 concept. Review: reads as a greenhouse frame at 28 pt; the first of three levels is a frame with few panes."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family, same finish (do not draw the cart)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          The first level of a small greenhouse for a hilltop, a gift of a lantern
+          island: a low wooden frame in pale sage-green with a sloped roof, only the
+          front two panes and the roof's first row glazed in soft pale mint-tinted
+          shapes, the rest open ribs, a simple potting bench inside with three clay
+          pots of seedlings, a watering can by the door. It fills the footprint's
+          width and stays below the height bar's top; chunky, toy-like, few parts.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a floor, a ground shadow, a background, clouds, water, text, letters, characters or animals, glossy shine, outlines"
+
+  - id: x-greenhouse-2
+    kind: station
+    name: x-greenhouse-2
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Greenhouse"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Fanus's greenhouse level 2 concept. Review: clearly the same greenhouse, half glazed; hanging lantern shapes tell who gave it."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family, same finish (do not draw the cart)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          The second level of the small hilltop greenhouse: the same pale sage-green
+          wooden frame now glazed along the whole front and half of the roof in soft
+          mint-tinted shapes, a row of climbing bean vines inside, two round paper
+          lanterns of warm cream hanging from the ridge, a bench with six clay pots
+          in terracotta and rose. It fills the footprint's width and stays below the
+          height bar's top; chunky, toy-like, few parts.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a floor, a ground shadow, a background, clouds, water, text, letters, characters or animals, glossy shine, outlines"
+
+  - id: x-greenhouse-3
+    kind: station
+    name: x-greenhouse-3
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Greenhouse"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Fanus's greenhouse level 3 concept. Review: the finished greenhouse feels full and warm, a place that could glow at night."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family, same finish (do not draw the cart)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          The third and final level of the small hilltop greenhouse: the same sage-
+          green frame, fully glazed with soft mint-tinted panes and a little rounded
+          cupola on the ridge, lush plants pressing against the panes (tomato vines,
+          a big fern, a tiny lemon tree), three round paper lanterns of warm cream
+          hanging inside, a path of flat stones to the door and two rose clay pots
+          by the step. It fills the footprint's width and stays below the height
+          bar's top; chunky, toy-like, few parts.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a floor, a ground shadow, a background, clouds, water, text, letters, characters or animals, glossy shine, outlines"
+
+  - id: x-kiln-1
+    kind: station
+    name: x-kiln-1
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Kiln"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Çömlek's kiln (hilltop add-on, three levels) level 1 concept. Review: a small domed clay kiln that reads as pottery at 28 pt; matte clay, no shine."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family, same finish (do not draw the cart)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          The first level of a small pottery kiln: a squat rounded dome of warm
+          terracotta clay with a low arched mouth, a short chimney pipe, a ring of
+          stacked flat stones at its base, and beside it a plank with five unglazed
+          pots in cream and terracotta drying in the sun. It fills the footprint's
+          width and stays below the height bar's top; chunky, toy-like, few parts.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a floor, a ground shadow, a background, clouds, water, text, letters, characters or animals, glossy shine, outlines"
+
+  - id: x-kiln-2
+    kind: station
+    name: x-kiln-2
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Kiln"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Çömlek's kiln level 2 concept. Review: the same kiln with a lean-to roof and a potter's wheel; cozy workshop corner."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family, same finish (do not draw the cart)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          The second level of the small pottery kiln: the same terracotta dome now
+          under a small lean-to roof of honey wood on two posts, a potter's wheel (a
+          round wooden disc on a chunky stand) with a half-formed pot beside it, a
+          drying shelf of three tall pots in sage, rose and cream glazes. It fills
+          the footprint's width and stays below the height bar's top; chunky, toy-
+          like, few parts.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a floor, a ground shadow, a background, clouds, water, text, letters, characters or animals, glossy shine, outlines"
+
+  - id: x-kiln-3
+    kind: station
+    name: x-kiln-3
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Kiln"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Çömlek's kiln level 3 concept. Review: the finished kiln house: a real little pottery, glazes in the island palette."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family, same finish (do not draw the cart)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          The third and final level of the pottery kiln: a little kiln house with a
+          rounded tiled roof in rose clay and a proper chimney, the terracotta dome
+          kiln glowing softly warm at its open mouth, a potter's wheel under a small
+          awning, shelves of glazed pots, jugs and bowls in sage, mustard, rose and
+          lilac, a wheelbarrow of clay, a small flag on the roof. It fills the
+          footprint's width and stays below the height bar's top; chunky, toy-like,
+          few parts.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a floor, a ground shadow, a background, clouds, water, text, letters, characters or animals, glossy shine, outlines"
+
+  - id: x-moon-telescope-1
+    kind: station
+    name: x-moon-telescope-1
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Moon telescope"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Mehtap's moon telescope (hilltop add-on, three levels) level 1 concept. Review: a toy telescope on a tripod reads at 28 pt; the moon shape is on a dial, not painted text."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family, same finish (do not draw the cart)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          The first level of a moon telescope for a hilltop: a chunky telescope of
+          soft cream and brass-cream, with a short fat tube pointing up at a gentle
+          angle, on a sturdy honey-wood tripod, a round brass-cream dial plate under
+          the tube marked with a simple crescent moon shape, a small folded blanket
+          at one leg. It fills the footprint's width and stays below the height
+          bar's top; chunky, toy-like, few parts.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a floor, a ground shadow, a background, clouds, water, text, letters, characters or animals, glossy shine, outlines"
+
+  - id: x-moon-telescope-2
+    kind: station
+    name: x-moon-telescope-2
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Moon telescope"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Mehtap's moon telescope level 2 concept. Review: same telescope, now on a platform with a canopy; a calm stargazing corner."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family, same finish (do not draw the cart)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          The second level of the moon telescope: the same chunky cream telescope,
+          now on a small round platform of honey planks with a low rail, a half
+          canopy of soft indigo-lilac cloth held by two poles over it, a cushion, a
+          hanging round paper lantern of warm cream, and a ring dial of five small
+          moon-phase discs (full, half, crescent, new) on a post. It fills the
+          footprint's width and stays below the height bar's top; chunky, toy-like,
+          few parts.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a floor, a ground shadow, a background, clouds, water, text, letters, characters or animals, glossy shine, outlines"
+
+  - id: x-moon-telescope-3
+    kind: station
+    name: x-moon-telescope-3
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Moon telescope"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Mehtap's moon telescope level 3 concept. Review: the finished little observatory; round, soft, welcoming, a slit in the dome."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family, same finish (do not draw the cart)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          The third and final level of the moon telescope: a small round observatory
+          with a rounded dome of soft indigo-lilac with a vertical slit opening, a
+          short sage-green stone drum below, the chunky cream telescope tube poking
+          out of the slit, a little moon-phase wheel of five soft discs over the
+          door, a round window, and two cushions on the steps outside. It fills the
+          footprint's width and stays below the height bar's top; chunky, toy-like,
+          few parts.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a floor, a ground shadow, a background, clouds, water, text, letters, characters or animals, glossy shine, outlines"

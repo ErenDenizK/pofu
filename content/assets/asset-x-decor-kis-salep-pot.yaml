@@ -1,0 +1,21 @@
+id: asset-x-decor-kis-salep-pot
+type: asset
+title_tr: x-decor-kis-salep-pot
+title_en: x-decor-kis-salep-pot (prop)
+status: in-production
+horizon: now
+summary: >-
+  A plump pot of matte copper-cream with a short spout and a domed lid with a small knob,
+  on a small round stand with a tiny warm cream glow under it, and two small cups of pale
+  creamy salep with a dusting of cinnamon on a tray. It stands on the guide's ground ellipse,
+  centered on the cross, never wider than the ellipse and never taller than the height bar;
+  it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30c-decor-seasons-2:x-decor-kis-salep-pot
+sources:
+- doc: tools/imagegen/manifest/batch-30c-decor-seasons-2.yaml
+kind: prop
+batch: batch-30c-decor-seasons-2
+size: 1024x1024

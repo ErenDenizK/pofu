@@ -1,0 +1,21 @@
+id: asset-x-heart-simit-bell
+type: asset
+title_tr: x-heart-simit-bell
+title_en: x-heart-simit-bell (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: a heart level-up moment at a station on the home
+  island, the same low front three-quarter camera. Soft golden late light, the scene calm
+  and close. Simit, the kitten of the attached image, beside the bagel cart wearing a new
+  soft coral ribbon collar with a small round brass-cream bell, tilting her head so the bell
+  swings, eyes bright, tail high, delighted. A few small soft b…
+art:
+  images: []
+  jobs:
+  - batch-29-residents-at-work:x-heart-simit-bell
+sources:
+- doc: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+kind: plate
+batch: batch-29-residents-at-work
+size: 1024x1024

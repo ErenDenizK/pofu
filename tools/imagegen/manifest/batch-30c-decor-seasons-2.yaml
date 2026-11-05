@@ -1,0 +1,305 @@
+# Batch 30c: exploration, never promoted (the backlog)
+#
+# A season set of docs/product/home-progression.md section 10 (one set per
+# season, bought with seeds, first shown in its season but always on sale),
+# four pieces each as separate props on the decor guide, plus a cozy composed
+# corner per set. Season looks themselves (light, snow, leaves) are code and
+# batch 25. This batch: Güz (autumn) and Kış (winter).
+#
+# Tracks: `decor`, `seasons`.
+#
+# BACKLOG (docs/design/art-production-plan.md#the-backlog): every job here is
+# an EXPLORATION with an `x-` id. EXPLORATION RULES (AGENTS.md): do NOT run
+# `promote`; commit the takes (WebP q90), the contact sheet and review.yaml
+# under design/art/takes/<batch>/<id>/ and nothing else. No painted text
+# anywhere. Never paint glass, UI chrome or buttons. A failed or refused job
+# is recorded and skipped; the run continues with the next job. There is no
+# pilot gate: run the jobs in the order written.
+#
+# Fresh variations: when the backlog comes round again, copy a job under a
+# new id (`-v2`, `-v3`, ...) with a new angle, never the same prompt twice.
+
+batch: batch-30c-decor-seasons-2
+title: "Season decor sets 2 of 2: Güz and Kış (decor guide)"
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: decor-bench, kind: prop, name: decor-bench, external: batch-08-decor-pilot}
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+
+  - id: x-decor-guz-pumpkin-lanterns
+    kind: prop
+    name: x-decor-guz-pumpkin-lanterns
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Güz (autumn): the pumpkin lanterns. Review: three pumpkins with soft carved faces and a lamp inside that code can light; friendly, never spooky."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          Three plump pumpkins of different sizes in rust-orange, mustard and cream,
+          each carved with a gentle round smile and two small round eyes, the cut-
+          outs filled with a soft unlit pale cream, sage stems and small curly
+          vines. It stands on the guide's ground ellipse, centered on the cross,
+          never wider than the ellipse and never taller than the height bar; it is
+          small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-guz-chestnut-stove
+    kind: prop
+    name: x-decor-guz-chestnut-stove
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Güz (autumn): the chestnut stove. Review: a little stove with a chimney pipe and a cone of chestnuts; steam is code."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small round stove on three short legs in matte dark-sage painted as a
+          soft form, a short bent chimney pipe, a little door with a round window in
+          warm cream, a wooden stool beside it with a paper cone of chestnuts and a
+          tiny wooden scoop. It stands on the guide's ground ellipse, centered on
+          the cross, never wider than the ellipse and never taller than the height
+          bar; it is small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-guz-scarf
+    kind: prop
+    name: x-decor-guz-scarf
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Güz (autumn): the scarf. Review: a long scarf on a short stand; it goes on the sunflower in the app, so it must hang free."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A long soft scarf in plum and mustard stripes with small tassels, draped
+          over a slim honey-wood stand shaped like a short T, one end hanging down
+          to the ground in a gentle curve. It stands on the guide's ground ellipse,
+          centered on the cross, never wider than the ellipse and never taller than
+          the height bar; it is small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-guz-leaf-pile
+    kind: prop
+    name: x-decor-guz-leaf-pile
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Güz (autumn): the leaf pile. Review: a heap of leaves you want to jump into; the colors are the island's, not neon."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A round heap of fallen leaves in rust, mustard, rose and cream, with a few
+          leaves scattered at its foot and a small wooden rake leaning against it.
+          It stands on the guide's ground ellipse, centered on the cross, never
+          wider than the ellipse and never taller than the height bar; it is small,
+          a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-corner-guz
+    kind: plate
+    name: x-corner-guz
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A cozy composed corner of the Güz (autumn) set. Review: unmistakably autumn; warm, golden, cozy."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw a different island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: one quiet corner of the home
+          island Ayçiçeği, dressed with a decor set, from the same low camera (about
+          20 degrees) as the attached island and in its painting, softly cropped to
+          a corner of lawn, a few path stones and the edge of the island over the
+          clouds. Autumn corner: three carved pumpkin lanterns in a row, a small
+          round chestnut stove with a pipe and a paper cone of chestnuts, a plum
+          scarf on its stand, a heap of red, mustard and rust leaves, a few leaves
+          drifting down; golden low light. Warm daylight, calm, uncluttered, every
+          piece small and in the scale of the attached bench; no characters.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, characters or animals, a different island shape, photorealism, a 3D render look"
+
+  - id: x-decor-kis-sled
+    kind: prop
+    name: x-decor-kis-sled
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Kış (winter): the sled. Review: a toy sled with curled runners; reads at 64 px."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small wooden sled of honey wood with curled-up runners and a coral rope
+          handle, a folded striped cushion on top, leaning against a low soft mound
+          of snow. It stands on the guide's ground ellipse, centered on the cross,
+          never wider than the ellipse and never taller than the height bar; it is
+          small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-kis-snowman-pofu
+    kind: prop
+    name: x-decor-kis-snowman-pofu
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Kış (winter): the snowman Pofu. Review: a snowman with a hamster's round ears and cheeks; it must read as Pofu without copying his face."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A plump snowman of three soft balls of white snow, with two small round
+          hamster ears on top, two big glossy dark eyes, a tiny pink nose, round
+          cheeks, a plum knitted scarf, two twig arms, and a small seed held in one
+          stick hand. It stands on the guide's ground ellipse, centered on the
+          cross, never wider than the ellipse and never taller than the height bar;
+          it is small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-kis-salep-pot
+    kind: prop
+    name: x-decor-kis-salep-pot
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Kış (winter): the salep pot. Review: a pot on a stand with two small cups; steam is code, the form is a plump pot."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A plump pot of matte copper-cream with a short spout and a domed lid with
+          a small knob, on a small round stand with a tiny warm cream glow under it,
+          and two small cups of pale creamy salep with a dusting of cinnamon on a
+          tray. It stands on the guide's ground ellipse, centered on the cross,
+          never wider than the ellipse and never taller than the height bar; it is
+          small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-kis-star-string
+    kind: prop
+    name: x-decor-kis-star-string
+    size: 1024x1024
+    canvas: 1024x1024
+    decor: hang
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Kış (winter): the star string. Review: a string of soft stars between two poles, hung high, lit by code."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A gentle string of eight soft five-pointed stars in cream and pale gold,
+          each a flat rounded shape on a thin line, hung in a sag between two slim
+          honey-wood poles with round tops, drawn completely with both poles; the
+          line hangs high in the height bar. It stands on the guide's ground
+          ellipse, centered on the cross, never wider than the ellipse and never
+          taller than the height bar; it is small, a third of the image width at
+          most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-corner-kis
+    kind: plate
+    name: x-corner-kis
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A cozy composed corner of the Kış (winter) set. Review: unmistakably winter; quiet, snowy, warm at the centre."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw a different island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: one quiet corner of the home
+          island Ayçiçeği, dressed with a decor set, from the same low camera (about
+          20 degrees) as the attached island and in its painting, softly cropped to
+          a corner of lawn, a few path stones and the edge of the island over the
+          clouds. Winter corner: a small wooden sled leaning on a snowy mound, a
+          plump snowman with a plum scarf and two round hamster ears, a copper-cream
+          salep pot on a small stand with two cups, and a string of soft star lights
+          between two poles, a thin blanket of snow on the lawn; cool lilac light
+          with a warm glow around the pot. Warm daylight, calm, uncluttered, every
+          piece small and in the scale of the attached bench; no characters.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, letters, harsh shadows, saturated colors, outlines, characters or animals, a different island shape, photorealism, a 3D render look"

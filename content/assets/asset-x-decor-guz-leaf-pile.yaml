@@ -1,0 +1,20 @@
+id: asset-x-decor-guz-leaf-pile
+type: asset
+title_tr: x-decor-guz-leaf-pile
+title_en: x-decor-guz-leaf-pile (prop)
+status: in-production
+horizon: now
+summary: >-
+  A round heap of fallen leaves in rust, mustard, rose and cream, with a few leaves scattered
+  at its foot and a small wooden rake leaning against it. It stands on the guide's ground
+  ellipse, centered on the cross, never wider than the ellipse and never taller than the height
+  bar; it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30c-decor-seasons-2:x-decor-guz-leaf-pile
+sources:
+- doc: tools/imagegen/manifest/batch-30c-decor-seasons-2.yaml
+kind: prop
+batch: batch-30c-decor-seasons-2
+size: 1024x1024

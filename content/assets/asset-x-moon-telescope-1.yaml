@@ -1,0 +1,21 @@
+id: asset-x-moon-telescope-1
+type: asset
+title_tr: x-moon-telescope-1
+title_en: x-moon-telescope-1 (station)
+status: in-production
+horizon: now
+summary: >-
+  The first level of a moon telescope for a hilltop: a chunky telescope of soft cream and
+  brass-cream, with a short fat tube pointing up at a gentle angle, on a sturdy honey-wood
+  tripod, a round brass-cream dial plate under the tube marked with a simple crescent moon
+  shape, a small folded blanket at one leg. It fills the footprint's width and stays below
+  the height bar's top; chunky, toy-like, few parts.
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts:x-moon-telescope-1
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+kind: station
+batch: batch-28-home-shops-concepts
+size: 1024x1024

@@ -1,0 +1,21 @@
+id: asset-x-greenhouse-1
+type: asset
+title_tr: x-greenhouse-1
+title_en: x-greenhouse-1 (station)
+status: in-production
+horizon: now
+summary: >-
+  The first level of a small greenhouse for a hilltop, a gift of a lantern island: a low wooden
+  frame in pale sage-green with a sloped roof, only the front two panes and the roof's first
+  row glazed in soft pale mint-tinted shapes, the rest open ribs, a simple potting bench inside
+  with three clay pots of seedlings, a watering can by the door. It fills the footprint's
+  width and stays below the height bar's top; chunky, t…
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts:x-greenhouse-1
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+kind: station
+batch: batch-28-home-shops-concepts
+size: 1024x1024

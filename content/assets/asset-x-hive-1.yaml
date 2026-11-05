@@ -1,0 +1,21 @@
+id: asset-x-hive-1
+type: asset
+title_tr: x-hive-1
+title_en: x-hive-1 (station)
+status: in-production
+horizon: now
+summary: >-
+  The first level of a small garden hive, the gift of a bee island: one plump straw skep,
+  a rounded dome of woven honey-gold straw in broad soft bands, with a small dark arched doorway,
+  sitting on a low round flat stone slab with a few small lavender sprigs at its foot and
+  three tiny soft cream bees hovering. Nothing else. It fills the footprint's width and stays
+  below the height bar's top; chunky, toy-like, few parts.
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts:x-hive-1
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+kind: station
+batch: batch-28-home-shops-concepts
+size: 1024x1024

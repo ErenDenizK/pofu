@@ -1,0 +1,21 @@
+id: asset-x-week-market-stall
+type: asset
+title_tr: x-week-market-stall
+title_en: x-week-market-stall (prop)
+status: in-production
+horizon: now
+summary: >-
+  A small pop-up market stall: a square wooden counter of honey wood with a scalloped awning
+  in coral and cream stripes on two slim poles, a few round baskets on the counter holding
+  apples, plums and small cream pots, a blank hanging cloth sign, a folding wooden crate beside
+  it. Chunky and toy-like. It stands on the guide's ground ellipse, centered on the cross,
+  never wider than the ellipse and never taller than the he…
+art:
+  images: []
+  jobs:
+  - batch-32-weekly-themes:x-week-market-stall
+sources:
+- doc: tools/imagegen/manifest/batch-32-weekly-themes.yaml
+kind: prop
+batch: batch-32-weekly-themes
+size: 1024x1024

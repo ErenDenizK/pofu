@@ -1,0 +1,21 @@
+id: asset-x-moon-telescope-3
+type: asset
+title_tr: x-moon-telescope-3
+title_en: x-moon-telescope-3 (station)
+status: in-production
+horizon: now
+summary: >-
+  The third and final level of the moon telescope: a small round observatory with a rounded
+  dome of soft indigo-lilac with a vertical slit opening, a short sage-green stone drum below,
+  the chunky cream telescope tube poking out of the slit, a little moon-phase wheel of five
+  soft discs over the door, a round window, and two cushions on the steps outside. It fills
+  the footprint's width and stays below the height bar's to…
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts:x-moon-telescope-3
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+kind: station
+batch: batch-28-home-shops-concepts
+size: 1024x1024

@@ -1,0 +1,21 @@
+id: asset-x-work-simit
+type: asset
+title_tr: x-work-simit
+title_en: x-work-simit (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a working-pose frame at one station of the home
+  island, seen from the same low front three-quarter camera as the attached station, in warm
+  daylight, the scene cropped close with a soft cream-and-sage ground under the station and
+  sky behind it. Simit, the kitten of the attached image, stands upright beside the bagel
+  cart holding out a small round wooden tray of three plump se…
+art:
+  images: []
+  jobs:
+  - batch-29-residents-at-work:x-work-simit
+sources:
+- doc: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+kind: plate
+batch: batch-29-residents-at-work
+size: 1024x1024
