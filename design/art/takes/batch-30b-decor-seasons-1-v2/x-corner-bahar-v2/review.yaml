@@ -1,0 +1,202 @@
+batch: batch-30b-decor-seasons-1-v2
+manifest: tools/imagegen/manifest/batch-30b-decor-seasons-1-v2.yaml
+manifest_sha256: f2b7485dbd13da0c8e2f1095a57d03a0574b31c65634f87d330f509f139b19c6
+contact_sheet: design/art/takes/batch-30b-decor-seasons-1-v2/x-corner-bahar-v2/contact.jpg
+jobs:
+  x-corner-bahar-v2:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Independent full-size original
+      and locked review: take1 contains four eggs and fails the exact three-egg brief.
+      Take2 has exactly three eggs and preserves the spring tree with many ribbons,
+      exactly two clay tulip pots, staked kite and tail, nest and stump, lawn, path,
+      cloud-edge home reference family and no residents, text or UI. Both opaque plates
+      have no hard QA failures; take2 is the only manually eligible take, lock load1.4272.
+      No prop-width or exact12 ribbon constraint is imposed on this independent plate.'
+qa_reports:
+  1:
+    job: x-corner-bahar-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 94 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 81.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.28 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.282
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.5 (at least 3.5)'
+      value: 3.53
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.1
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.3388
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.2, p95 10.9, off-palette 3.8% (top: #999944 (0.4%), #DDCC55
+        (0.3%))'
+      value: 3.2049
+    info:
+      metrics_raw:
+        L_p5: 59.0
+        L_p50: 83.5
+        L_p95: 95.1
+        C_p50: 32.5
+        C_p95: 51.9
+        C_p99: 61.4
+        detail: 4.13
+      metrics_locked:
+        L_p5: 59.4
+        L_p50: 83.3
+        L_p95: 95.0
+        C_p50: 32.3
+        C_p95: 50.1
+        C_p99: 58.4
+        detail: 3.1
+    fingerprint: af529aecac5e715a
+  2:
+    job: x-corner-bahar-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 48.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 94 (at least 90), spread 44
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 44.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 82.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.27 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.267
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 4.02
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.6 (R1 5.3)
+      value: 3.61
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4272
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 11.2, off-palette 4.2% (top: #999944 (0.5%), #888844
+        (0.4%))'
+      value: 3.3034
+    info:
+      metrics_raw:
+        L_p5: 57.6
+        L_p50: 84.3
+        L_p95: 94.7
+        C_p50: 34.4
+        C_p95: 51.0
+        C_p99: 61.9
+        detail: 4.68
+      metrics_locked:
+        L_p5: 58.1
+        L_p50: 84.2
+        L_p95: 94.6
+        C_p50: 34.2
+        C_p95: 48.9
+        C_p99: 57.5
+        detail: 3.61
+    fingerprint: af529aecac5e715a
+manual_review:
+  observed_note: 'Independent full-size original and locked review: take1 contains
+    four eggs and fails the exact three-egg brief. Take2 has exactly three eggs and
+    preserves the spring tree with many ribbons, exactly two clay tulip pots, staked
+    kite and tail, nest and stump, lawn, path, cloud-edge home reference family and
+    no residents, text or UI. Both opaque plates have no hard QA failures; take2 is
+    the only manually eligible take, lock load1.4272. No prop-width or exact12 ribbon
+    constraint is imposed on this independent plate.'
+  excluded_takes:
+  - 1
+sources:
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-corner-bahar-v2
+  take: 1
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-00cab7f2-9f4e-4e8e-8560-3f5a29f18258.png
+  returned_at: '2026-11-05T22:47:37.479Z'
+  prompt_sha256: f1e2940daa1b2e4f1e74d8880085529b776275c2a06e93af4743ce5a1a4bce33
+  fingerprint: af529aecac5e715a
+  saved_at: '2026-11-05T22:47:37.820222+00:00'
+  original_generated_png_sha256: 5726ff7a207378af5a435ff2fe02f4411740ab73843b34dd9c0559c020e663f2
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 4d5af18bb3899173f5f96bbfa2e2793226c06df12ebee2bd69aa087e87a4fe85
+  inbox_png_sha256: ab07731ac0dd67fc7ee218a4d4022e2558eddba6f4b627f2197a35ed7dd1146a
+  qa_sha256: d1b571b8ec9b317a211136f52f8dadc0bf8fd2206ebd07fc0083ac1435b75703
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-corner-bahar-v2
+  take: 2
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-ad3fc8dd-8dd9-4aca-a52b-1ced9a264cdf.png
+  returned_at: '2026-11-05T22:47:03.849Z'
+  prompt_sha256: f1e2940daa1b2e4f1e74d8880085529b776275c2a06e93af4743ce5a1a4bce33
+  fingerprint: af529aecac5e715a
+  saved_at: '2026-11-05T22:47:04.276600+00:00'
+  original_generated_png_sha256: 31894eca65e5c0f7a575b81f572f6e31eccb89ea3b3ebc5208234c56863822d3
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 64a85958a2cc2616f24c63eae6797ce3fd98d107d13204cbfa49b5c893cd5e2a
+  inbox_png_sha256: 198b07c7e20c1c36b217ba5088867074f9fa9025d27530591d6638eb23bf7233
+  qa_sha256: 634e368c0952cd0530c99e22640e0f1b2e45ad39b3c20ba8967ccbe4b370911a
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 2deb939f9f47ef2bb97f228252ebe94dd793f3088c676809c05a571e0747222d
