@@ -1,0 +1,270 @@
+{
+  "job": "glow-window-spill",
+  "manual_review": "All four retained shapes are warm fan-shaped trapezoids, narrow bright sill end above and broader faint distal end, with soft broken edges; no window/frame/emitter/grass blades/letters/rings. Borders are mostly exact black with measured low-level near-black tail, evaluated against the authoritative additive QA, not misreported as uniformly #000000. Official additive lock is skipped and official delivery only uses the declared scale.",
+  "takes": [
+    {
+      "take": 1,
+      "source_sha256": "4956f3437ddffc457a6e729224b62391b89b9a357c105aaaec2656fba8ac0d8c",
+      "frames": {
+        "original": {
+          "size": [
+            1254,
+            1254
+          ],
+          "bytes": 1433442,
+          "border_pixels": 5012,
+          "exact_black_fraction": 0.6833599361532322,
+          "rgb_border_mean": [
+            0.5828012769353551,
+            0.27394253790901835,
+            0.08998403830806065
+          ],
+          "rgb_border_max": [
+            7,
+            4,
+            1
+          ],
+          "whole_exact_black_fraction": 0.225006931566992
+        },
+        "locked": {
+          "size": [
+            1024,
+            1024
+          ],
+          "bytes": 920376,
+          "border_pixels": 4092,
+          "exact_black_fraction": 0.6788856304985337,
+          "rgb_border_mean": [
+            0.5874877810361682,
+            0.28005865102639294,
+            0.09310850439882698
+          ],
+          "rgb_border_max": [
+            7,
+            4,
+            1
+          ],
+          "whole_exact_black_fraction": 0.22163677215576172
+        },
+        "delivered": {
+          "size": [
+            512,
+            512
+          ],
+          "bytes": 154080,
+          "border_pixels": 2044,
+          "exact_black_fraction": 0.7778864970645792,
+          "rgb_border_mean": [
+            0.5195694716242661,
+            0.18639921722113503,
+            0.03131115459882583
+          ],
+          "rgb_border_max": [
+            7,
+            4,
+            1
+          ],
+          "whole_exact_black_fraction": 0.2283935546875
+        }
+      }
+    },
+    {
+      "take": 2,
+      "source_sha256": "d7c977e3659609f36c6e9db9556d1fe69270e7bfb766be37fa2826b274d12d5b",
+      "frames": {
+        "original": {
+          "size": [
+            1254,
+            1254
+          ],
+          "bytes": 1358877,
+          "border_pixels": 5012,
+          "exact_black_fraction": 0.7094972067039106,
+          "rgb_border_mean": [
+            0.3140462889066241,
+            0.16719872306464484,
+            0.08220271348762968
+          ],
+          "rgb_border_max": [
+            4,
+            2,
+            1
+          ],
+          "whole_exact_black_fraction": 0.21312978691472773
+        },
+        "locked": {
+          "size": [
+            1024,
+            1024
+          ],
+          "bytes": 875008,
+          "border_pixels": 4092,
+          "exact_black_fraction": 0.7047898338220919,
+          "rgb_border_mean": [
+            0.31573802541544477,
+            0.17008797653958943,
+            0.08455522971652003
+          ],
+          "rgb_border_max": [
+            4,
+            2,
+            1
+          ],
+          "whole_exact_black_fraction": 0.2098102569580078
+        },
+        "delivered": {
+          "size": [
+            512,
+            512
+          ],
+          "bytes": 153286,
+          "border_pixels": 2044,
+          "exact_black_fraction": 0.8096868884540117,
+          "rgb_border_mean": [
+            0.22798434442270057,
+            0.06800391389432485,
+            0.027886497064579255
+          ],
+          "rgb_border_max": [
+            4,
+            2,
+            1
+          ],
+          "whole_exact_black_fraction": 0.2167205810546875
+        }
+      }
+    },
+    {
+      "take": 3,
+      "source_sha256": "a73366358f94cff5d35179bc98c682e5f7be0d00c1b0088a6d59d73172667707",
+      "frames": {
+        "original": {
+          "size": [
+            1254,
+            1254
+          ],
+          "bytes": 1388826,
+          "border_pixels": 5012,
+          "exact_black_fraction": 0.7043096568236233,
+          "rgb_border_mean": [
+            0.37729449321628095,
+            0.19353551476456504,
+            0.08719074221867518
+          ],
+          "rgb_border_max": [
+            6,
+            3,
+            1
+          ],
+          "whole_exact_black_fraction": 0.24999618445853652
+        },
+        "locked": {
+          "size": [
+            1024,
+            1024
+          ],
+          "bytes": 884290,
+          "border_pixels": 4092,
+          "exact_black_fraction": 0.6996578690127078,
+          "rgb_border_mean": [
+            0.3790322580645161,
+            0.1959921798631476,
+            0.09017595307917889
+          ],
+          "rgb_border_max": [
+            6,
+            3,
+            1
+          ],
+          "whole_exact_black_fraction": 0.24606800079345703
+        },
+        "delivered": {
+          "size": [
+            512,
+            512
+          ],
+          "bytes": 149952,
+          "border_pixels": 2044,
+          "exact_black_fraction": 0.7964774951076321,
+          "rgb_border_mean": [
+            0.2999021526418787,
+            0.09931506849315068,
+            0.031800391389432484
+          ],
+          "rgb_border_max": [
+            5,
+            3,
+            1
+          ],
+          "whole_exact_black_fraction": 0.2544403076171875
+        }
+      }
+    },
+    {
+      "take": 4,
+      "source_sha256": "e943f1dddcde107d950ba701fefa39f1083dc371e8e85e7c1d0427f263413532",
+      "frames": {
+        "original": {
+          "size": [
+            1254,
+            1254
+          ],
+          "bytes": 1399157,
+          "border_pixels": 5012,
+          "exact_black_fraction": 0.6791699920191541,
+          "rgb_border_mean": [
+            0.5722266560255387,
+            0.284317637669593,
+            0.09317637669592976
+          ],
+          "rgb_border_max": [
+            11,
+            7,
+            2
+          ],
+          "whole_exact_black_fraction": 0.244403872520216
+        },
+        "locked": {
+          "size": [
+            1024,
+            1024
+          ],
+          "bytes": 891793,
+          "border_pixels": 4092,
+          "exact_black_fraction": 0.6764418377321603,
+          "rgb_border_mean": [
+            0.5728250244379277,
+            0.2871456500488759,
+            0.09726295210166178
+          ],
+          "rgb_border_max": [
+            11,
+            7,
+            2
+          ],
+          "whole_exact_black_fraction": 0.24019241333007812
+        },
+        "delivered": {
+          "size": [
+            512,
+            512
+          ],
+          "bytes": 157376,
+          "border_pixels": 2044,
+          "exact_black_fraction": 0.7705479452054794,
+          "rgb_border_mean": [
+            0.5048923679060665,
+            0.19667318982387474,
+            0.041585127201565555
+          ],
+          "rgb_border_max": [
+            10,
+            6,
+            2
+          ],
+          "whole_exact_black_fraction": 0.24779891967773438
+        }
+      }
+    }
+  ]
+}
