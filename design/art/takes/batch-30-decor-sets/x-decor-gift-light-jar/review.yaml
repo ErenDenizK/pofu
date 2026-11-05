@@ -1,0 +1,243 @@
+batch: batch-30-decor-sets
+manifest: tools/imagegen/manifest/batch-30-decor-sets.yaml
+manifest_sha256: 621a7f8e5ca0e5cf9031dead2d4a93a2d6fb02d6b983bbb2b653518da384ced2
+contact_sheet: design/art/takes/batch-30-decor-sets/x-decor-gift-light-jar/contact.jpg
+jobs:
+  x-decor-gift-light-jar:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Independent read-only review:
+      round softly tinted jar with cork lid, string handle, mint/lilac caught light
+      cloud and pale motes, standing on a wood coaster. Posted alpha-over24 visible
+      widths327 and302px on1024, both below the literal third-canvas cap and both
+      hard QA/decor_anchor pass. Lowest lock-load take1 (0.7190 versus0.7739). Internal
+      captured glow is explicitly requested; no external ground, characters, lettering
+      or cast shadow. Exploration palette/style/light warnings advisory. No manual
+      resizing or pixel cleanup. Never promoted.'
+qa_reports:
+  1:
+    job: x-decor-gift-light-jar
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 38.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 95 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 81.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.37 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.373
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.4 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.39
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.89
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.719
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 5.1, off-palette 0.0%
+      value: 1.9546
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 78 against the world reference (outliers: C_p95, edge)'
+      value: 77.9
+    info:
+      fit:
+        scale: 1.0
+        anchor:
+        - 506.4
+        - 881
+      registration:
+        dx: 6
+        dy: 7
+      metrics_raw:
+        L_p5: 64.8
+        L_p50: 81.4
+        L_p95: 93.6
+        C_p50: 13.4
+        C_p95: 39.0
+        C_p99: 40.2
+        detail: 1.33
+      metrics_locked:
+        L_p5: 65.5
+        L_p50: 81.4
+        L_p95: 93.5
+        C_p50: 13.1
+        C_p95: 38.8
+        C_p99: 39.8
+        detail: 0.89
+    fingerprint: d7d26e677e4f6c03
+  2:
+    job: x-decor-gift-light-jar
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 42.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 93 (at least 90), spread 32
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 32.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 83.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.31 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.314
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.3 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.32
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.85
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7739
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 4.0, off-palette 0.0%
+      value: 1.5912
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 85 against the world reference (outliers: edge)'
+      value: 85.1
+    info:
+      fit:
+        scale: 1.0
+        anchor:
+        - 511.3
+        - 865
+      registration:
+        dx: 1
+        dy: 23
+      metrics_raw:
+        L_p5: 65.8
+        L_p50: 83.5
+        L_p95: 90.8
+        C_p50: 12.6
+        C_p95: 42.9
+        C_p99: 43.8
+        detail: 1.24
+      metrics_locked:
+        L_p5: 66.0
+        L_p50: 83.4
+        L_p95: 90.5
+        C_p50: 12.5
+        C_p95: 42.6
+        C_p99: 43.4
+        detail: 0.85
+    fingerprint: d7d26e677e4f6c03
+manual_review:
+  observed_note: 'Independent read-only review: round softly tinted jar with cork
+    lid, string handle, mint/lilac caught light cloud and pale motes, standing on
+    a wood coaster. Posted alpha-over24 visible widths327 and302px on1024, both below
+    the literal third-canvas cap and both hard QA/decor_anchor pass. Lowest lock-load
+    take1 (0.7190 versus0.7739). Internal captured glow is explicitly requested; no
+    external ground, characters, lettering or cast shadow. Exploration palette/style/light
+    warnings advisory. No manual resizing or pixel cleanup. Never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-30-decor-sets
+  job: x-decor-gift-light-jar
+  take: 1
+  round: 1
+  logical_run: 20261105-night30-umbrella-lightjar
+  source_file: /workspace/generated_images/exec-3af4ad3b-2265-4e63-a853-5549ffc72f8d.png
+  returned_at: '2026-11-05T19:00:06.681Z'
+  prompt_sha256: 0acb528394d37aa8945abafe350c42f4782b9a25cc6160066145b02215da5c4f
+  fingerprint: d7d26e677e4f6c03
+  saved_at: '2026-11-05T19:00:07.034447+00:00'
+  original_generated_png_sha256: 07009c436b6290b9655af1c535956cc02ac442d81fcfcdd62fc9a8c5f4670da7
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: af533aa61797adeefa91f75193dd48707c5a7df725cae0350b1eb0ddc3fceb17
+  inbox_png_sha256: 73707a74c3953ae0cc500c31a1fab8b40bb04c0a1785abff77f4715387278f45
+  qa_sha256: 42f87a25bfbaec64d904b2150808bb8e67c598a9d3a1cb24e92c2ba7805f0845
+- batch: batch-30-decor-sets
+  job: x-decor-gift-light-jar
+  take: 2
+  round: 1
+  logical_run: 20261105-night30-umbrella-lightjar
+  source_file: /workspace/generated_images/exec-c3dbd9a0-5b7b-4cf1-8956-12d1d132ac4e.png
+  returned_at: '2026-11-05T18:58:32.686Z'
+  prompt_sha256: 0acb528394d37aa8945abafe350c42f4782b9a25cc6160066145b02215da5c4f
+  fingerprint: d7d26e677e4f6c03
+  saved_at: '2026-11-05T18:58:33.042591+00:00'
+  original_generated_png_sha256: 4c004cf8cb383592eed55d0ab11ae1106f493c6c294c2b4ec2f289f2e5e9e77d
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 3823997ad41102d580fbe57c19b1b99a9467f5c5043b7e08f83f6758fbe8f56a
+  inbox_png_sha256: 6aff1b27580b3fe59f2ec504aa7cea69c652f7254ce4567aad47d8d3d8685346
+  qa_sha256: 7dbfc493cda22692ca0bc8a27d21bfe53a008721dfc660e5254ec8d94a5fd812
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
