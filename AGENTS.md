@@ -12,10 +12,10 @@ they ever disagree, `CLAUDE.md` wins and you say so in your PR.
   Kuyucaklıoğlu (`ErenDenizK`); he approves art and speaks Turkish.
   **Lead:** a Claude session in the cloud writes manifests and prompts,
   reviews and merges PRs.
-- **Your job (Codex on the founder's Mac):** operate the image pipeline
+- **Your job (Codex in the cloud):** operate the image pipeline
   in [`tools/imagegen/`](tools/imagegen/README.md): generate takes,
-  run post-processing and QA, show the founder the contact sheet, record
-  his picks, promote approved takes, and open a PR. You do not change
+  run post-processing and QA, let QA auto-pick (the founder reviews
+  afterwards and can veto), promote approved takes, and open a PR. You do not change
   app code, Swift, ADRs, or `CLAUDE.md`.
 
 ## Non-negotiables
@@ -75,10 +75,10 @@ what `account.owner` in `tools/imagegen/config.yaml` says.
   `~/projects/pofu-art`), not in the folder the local Claude session
   uses (`/Users/edk/projects/pofu`).
 
-## Current status (2026-11-02): the production queue
+## The production queue
 
-**Batches 01, 03 and 04 are merged.** The work now comes from one ordered
-queue: [`docs/design/art-production-plan.md`](docs/design/art-production-plan.md).
+The work comes from one ordered queue:
+[`docs/design/art-production-plan.md`](docs/design/art-production-plan.md).
 The founder wants the line never to idle and art picked automatically by
 QA; he reviews afterwards and can veto any pick. Batch 02 stays
 `status: blocked` until the friends beta.
@@ -256,42 +256,17 @@ promoted master:
 The ordered list of batches, their state (`READY`, `BLOCKED`, `NEXT PR`)
 and why each exists is in
 [`docs/design/art-production-plan.md`](docs/design/art-production-plan.md#the-queue).
-The lead keeps it current; read it at the start of every task. Right now
-these batches are `READY` and may run at once (the table has the order):
+The lead keeps it current; read it at the start of every task and before
+every batch. The table, not this file, says what is `READY` now; batches
+that were `READY` here on earlier dates are long finished.
 
-```text
-AGENTS.md parallel auto mode, batch-05-fixes, track all
-AGENTS.md parallel auto mode, batch-06-pofu-rig, track all
-AGENTS.md parallel auto mode, batch-07-light, track all
-AGENTS.md parallel auto mode, batch-11-ui-pilot, track all
-AGENTS.md parallel auto mode, batch-08-decor-pilot, track all
-AGENTS.md parallel auto mode, batch-09-explore-pilot, track all
-AGENTS.md parallel auto mode, batch-10-island-concepts-pilot, track all
-AGENTS.md parallel auto mode, batch-12-minigame-art, track all
-AGENTS.md parallel auto mode, batch-13-ui-rest, track all
-AGENTS.md parallel auto mode, batch-14-harbor, track all
-AGENTS.md parallel auto mode, batch-15-explore, track all
-AGENTS.md parallel auto mode, retry-2026-11-03, track all
-```
-
-Batches 09, 10 and 15 are EXPLORATION: never run `promote` on them. Batches
-12 to 15 carry their pilot as their first jobs. A failed pilot skips only the
-jobs that depend on it (`edit_of`, `approved:`), exactly as `plan` shows;
-never skip a whole batch for a pilot, unless the batch's header names that
-pilot as the style anchor every other job attaches. The 32 jobs skipped in
-batches 11 to 14 are rerun as `retry-2026-11-03`.
-Edits that repaint the object declare it (`acceptance: {edit_mode: recolor |
-region}`), and a brief that names colors outside the kind's palettes adds
-`palettes: [...]` (`tools/imagegen/README.md`).
-
-- **batch-05-fixes-pilot:** `bagel-cart-2` and `workshop-2` are SALVAGED from
-  batch 03's takes on `main` (their `notes` list the files). Batch 03's
-  failures there were a pipeline bug (edits were moved twice), now fixed.
-- **batch-06-pofu-rig-pilot:** edits of R1, which lives at
-  `design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png` (the
-  manifest's `pofu` job names it with `master:`). Pofu is never locked.
-- **batch-07-light-pilot:** lit edits of `tea-stall-1` and `tea-stall-5` that change
-  only the burner. Do not add glow; the app does.
+A failed pilot skips only the jobs that depend on it (`edit_of`,
+`approved:`), exactly as `plan` shows; never skip a whole batch for a
+pilot, unless the batch's header names that pilot as the style anchor every
+other job attaches. Edits that repaint the object declare it
+(`acceptance: {edit_mode: recolor | region}`), and a brief that names
+colors outside the kind's palettes adds `palettes: [...]`
+(`tools/imagegen/README.md`). Pofu is never locked.
 
 Masters on `main` stored only as `<name>.webp` (for example `mochi-v2`,
 `island-main-l-v2`, `workshop-1`) are decoded to `<name>.png` first, as in
