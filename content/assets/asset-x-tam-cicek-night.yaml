@@ -1,0 +1,21 @@
+id: asset-x-tam-cicek-night
+type: asset
+title_tr: x-tam-cicek-night
+title_en: x-tam-cicek-night (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Ayçiçeği, Pofu's home island, at a stage of its
+  growth, from the same low camera (about 20 degrees), the same painting and the same softness
+  as the attached island, floating over a sea of clouds. The island's base shape grows only
+  where named; what is already built stays in the same place. THE TAM ÇİÇEK CEREMONY NIGHT:
+  dusk deepening to a deep indigo-plum night with soft sta…
+art:
+  images: []
+  jobs:
+  - batch-31-island-milestones:x-tam-cicek-night
+sources:
+- doc: tools/imagegen/manifest/batch-31-island-milestones.yaml
+kind: plate
+batch: batch-31-island-milestones
+size: 1536x1024

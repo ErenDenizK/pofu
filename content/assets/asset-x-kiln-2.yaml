@@ -1,0 +1,21 @@
+id: asset-x-kiln-2
+type: asset
+title_tr: x-kiln-2
+title_en: x-kiln-2 (station)
+status: in-production
+horizon: now
+summary: >-
+  The second level of the small pottery kiln: the same terracotta dome now under a small lean-to
+  roof of honey wood on two posts, a potter's wheel (a round wooden disc on a chunky stand)
+  with a half-formed pot beside it, a drying shelf of three tall pots in sage, rose and cream
+  glazes. It fills the footprint's width and stays below the height bar's top; chunky, toy-
+  like, few parts.
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts:x-kiln-2
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+kind: station
+batch: batch-28-home-shops-concepts
+size: 1024x1024

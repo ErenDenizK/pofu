@@ -2,10 +2,12 @@ id: station-observatory
 type: station
 title_tr: Gözlemevi
 title_en: Observatory
-status: planned
+status: cut
 horizon: later
 summary: Nane's observatory, where the star book is kept.
 notes:
+- Retired 2026-11-05 with the station islands (game plan section 2); the prices below are the
+  old ones and are no longer in PofuCore.
 - >-
   Opens: With Yıldız. Level costs 1→5: 2,000 · 4,400 · 9,680 · 21,296 · 46,851 (total 84,227).
   Rate L1→L5: 12 → 38.4 seeds/hour before calm.

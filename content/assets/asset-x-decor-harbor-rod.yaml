@@ -1,0 +1,21 @@
+id: asset-x-decor-harbor-rod
+type: asset
+title_tr: x-decor-harbor-rod
+title_en: x-decor-harbor-rod (prop)
+status: in-production
+horizon: now
+summary: >-
+  A slim honey-wood fishing rod with a coral-red float on a curled line, leaning in a small
+  round clay stand, a small sage-green tin bucket with a rounded handle holding two plump
+  cream fish, and a folded canvas stool. It stands on the guide's ground ellipse, centered
+  on the cross, never wider than the ellipse and never taller than the height bar; it is small,
+  a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets:x-decor-harbor-rod
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets.yaml
+kind: prop
+batch: batch-30-decor-sets
+size: 1024x1024

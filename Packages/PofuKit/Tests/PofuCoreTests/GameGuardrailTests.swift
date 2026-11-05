@@ -141,7 +141,7 @@ struct GameGuardrailTests {
 
     @Test(arguments: seeds)
     func metersStayInRangeAndNothingBuiltGoesBack(seed: UInt64) throws {
-        var world = World(rules: GameRules(releasedIslands: [.kitap]))
+        var world = World()
         let start = instant(2026, 11, 2, 7)
         let script = randomScript(seed: seed, from: start, hours: 24 * 12)
         var rng = SplitMix64(seed: seed &+ 3)
@@ -150,6 +150,7 @@ struct GameGuardrailTests {
         var islands = world.state.stations.arrivalOrder
         var tended = 0
         var nights = 0
+        var islandLevel = 1
         var remaining = script
         let end = start.adding(hours: 24 * 12)
         while cursor < end {
@@ -159,7 +160,7 @@ struct GameGuardrailTests {
             world.advance(to: cursor, applying: due)
             _ = world.collect(at: cursor)
             // Build the cheapest open level, when the jar allows.
-            let next = world.snapshot.stations.filter { $0.isOpen && $0.canAfford }.min { ($0.nextCost ?? 0) < ($1.nextCost ?? 0) }
+            let next = world.snapshot.stations.filter { $0.isOpen && !$0.isCapped && $0.canAfford }.min { ($0.nextCost ?? 0) < ($1.nextCost ?? 0) }
             if let next, !world.snapshot.isBedtime {
                 try world.build(next.id, at: cursor)
             }
@@ -174,6 +175,8 @@ struct GameGuardrailTests {
             #expect(Array(world.state.stations.arrivalOrder.prefix(islands.count)) == islands)
             #expect(world.state.tendedDays >= tended)
             #expect(world.state.calmNights >= nights)
+            #expect(world.snapshot.islandLevel >= islandLevel)
+            islandLevel = world.snapshot.islandLevel
             levels = world.state.stations.levels
             islands = world.state.stations.arrivalOrder
             tended = world.state.tendedDays

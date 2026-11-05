@@ -1,0 +1,21 @@
+id: asset-x-decor-kis-snowman-pofu
+type: asset
+title_tr: x-decor-kis-snowman-pofu
+title_en: x-decor-kis-snowman-pofu (prop)
+status: in-production
+horizon: now
+summary: >-
+  A plump snowman of three soft balls of white snow, with two small round hamster ears on
+  top, two big glossy dark eyes, a tiny pink nose, round cheeks, a plum knitted scarf, two
+  twig arms, and a small seed held in one stick hand. It stands on the guide's ground ellipse,
+  centered on the cross, never wider than the ellipse and never taller than the height bar;
+  it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30c-decor-seasons-2:x-decor-kis-snowman-pofu
+sources:
+- doc: tools/imagegen/manifest/batch-30c-decor-seasons-2.yaml
+kind: prop
+batch: batch-30c-decor-seasons-2
+size: 1024x1024

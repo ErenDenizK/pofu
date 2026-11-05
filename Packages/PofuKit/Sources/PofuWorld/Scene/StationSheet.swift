@@ -188,7 +188,14 @@ struct StationSheet: View {
 
     @ViewBuilder
     private func buildButton(_ status: StationStatus) -> some View {
-        if let cost = status.nextCost {
+        if let liftsAt = status.capLiftsAtIslandLevel {
+            // The island level holds the next level back: a quiet line,
+            // no padlock, no red (home progression section 3, rule 4).
+            Text(verbatim: WorldStrings.capReason(islandLevel: liftsAt))
+                .font(PofuFont.callout)
+                .foregroundStyle(PofuColor.textSecondary)
+                .accessibilityIdentifier("station-cap-reason")
+        } else if let cost = status.nextCost {
             let missing = max(cost.units - jar.units, 0)
             Button {
                 onBuild?(station)

@@ -1,0 +1,21 @@
+id: asset-x-decor-gift-light-jar
+type: asset
+title_tr: x-decor-gift-light-jar
+title_en: x-decor-gift-light-jar (prop)
+status: in-production
+horizon: now
+summary: >-
+  A round glass jar painted as a soft pale tinted shape, with a cork lid on a string handle,
+  holding a gently glowing cloud of soft mint and lilac light with a few tiny pale motes,
+  sitting on a small flat honey-wood coaster. It stands on the guide's ground ellipse, centered
+  on the cross, never wider than the ellipse and never taller than the height bar; it is small,
+  a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets:x-decor-gift-light-jar
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets.yaml
+kind: prop
+batch: batch-30-decor-sets
+size: 1024x1024

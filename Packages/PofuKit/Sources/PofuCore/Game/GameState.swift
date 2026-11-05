@@ -239,7 +239,11 @@ public struct StationStatus: Hashable, Sendable, Identifiable {
     public var id: StationID
     public var island: IslandID
     public var level: Int
+    /// The station's own top level.
     public var maxLevel: Int
+    /// The highest level it may be built to now: the island level's cap,
+    /// never above `maxLevel` (`maxLevel(now)`).
+    public var levelCap: Int
     public var isOpen: Bool
     /// The next level's cost; `nil` at the top.
     public var nextCost: Energy?
@@ -247,25 +251,37 @@ public struct StationStatus: Hashable, Sendable, Identifiable {
     public var canAfford: Bool
     /// Seeds an hour at its level, before calm.
     public var seedsPerHour: Double
+    /// The island level that lifts the cap far enough for the next level;
+    /// `nil` unless the island level is what holds the station back.
+    public var capLiftsAtIslandLevel: Int?
+
+    /// The next level waits for the island level, not for seeds.
+    public var isCapped: Bool {
+        capLiftsAtIslandLevel != nil
+    }
 
     public init(
         id: StationID,
         island: IslandID,
         level: Int,
         maxLevel: Int,
+        levelCap: Int? = nil,
         isOpen: Bool,
         nextCost: Energy?,
         canAfford: Bool,
-        seedsPerHour: Double
+        seedsPerHour: Double,
+        capLiftsAtIslandLevel: Int? = nil
     ) {
         self.id = id
         self.island = island
         self.level = level
         self.maxLevel = maxLevel
+        self.levelCap = levelCap ?? maxLevel
         self.isOpen = isOpen
         self.nextCost = nextCost
         self.canAfford = canAfford
         self.seedsPerHour = seedsPerHour
+        self.capLiftsAtIslandLevel = capLiftsAtIslandLevel
     }
 }
 
@@ -289,6 +305,10 @@ public struct WorldSnapshot: Hashable, Sendable {
     public var tendedDays: Int
     public var calmNights: Int
     public var homeStage: Int
+    /// The island level (*Ada seviyesi*), 1 to 10.
+    public var islandLevel: Int
+    /// What the next island level waits for; `nil` at the top.
+    public var nextIslandLevel: IslandLevelRequirement?
     /// The islands that arrived, in arrival order.
     public var islands: [IslandID]
     public var stations: [StationStatus]
@@ -318,6 +338,8 @@ public struct WorldSnapshot: Hashable, Sendable {
         tendedDays: Int,
         calmNights: Int,
         homeStage: Int,
+        islandLevel: Int = 1,
+        nextIslandLevel: IslandLevelRequirement? = nil,
         islands: [IslandID],
         stations: [StationStatus],
         seedsPerHour: Double,
@@ -340,6 +362,8 @@ public struct WorldSnapshot: Hashable, Sendable {
         self.tendedDays = tendedDays
         self.calmNights = calmNights
         self.homeStage = homeStage
+        self.islandLevel = islandLevel
+        self.nextIslandLevel = nextIslandLevel
         self.islands = islands
         self.stations = stations
         self.seedsPerHour = seedsPerHour

@@ -1,0 +1,21 @@
+id: asset-x-decor-guz-pumpkin-lanterns
+type: asset
+title_tr: x-decor-guz-pumpkin-lanterns
+title_en: x-decor-guz-pumpkin-lanterns (prop)
+status: in-production
+horizon: now
+summary: >-
+  Three plump pumpkins of different sizes in rust-orange, mustard and cream, each carved with
+  a gentle round smile and two small round eyes, the cut- outs filled with a soft unlit pale
+  cream, sage stems and small curly vines. It stands on the guide's ground ellipse, centered
+  on the cross, never wider than the ellipse and never taller than the height bar; it is small,
+  a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30c-decor-seasons-2:x-decor-guz-pumpkin-lanterns
+sources:
+- doc: tools/imagegen/manifest/batch-30c-decor-seasons-2.yaml
+kind: prop
+batch: batch-30c-decor-seasons-2
+size: 1024x1024

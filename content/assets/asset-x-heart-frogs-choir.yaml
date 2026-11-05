@@ -1,0 +1,21 @@
+id: asset-x-heart-frogs-choir
+type: asset
+title_tr: x-heart-frogs-choir
+title_en: x-heart-frogs-choir (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: a heart level-up moment at a station on the home
+  island, the same low front three-quarter camera. Soft golden late light, the scene calm
+  and close. Three small round plush frogs of soft sage, mint and pale lime with big glossy
+  dark eyes with a catchlight each and cream bellies sit in a row on the wooden dock of the
+  finished pond of the attached image, all three singing toget…
+art:
+  images: []
+  jobs:
+  - batch-29-residents-at-work:x-heart-frogs-choir
+sources:
+- doc: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+kind: plate
+batch: batch-29-residents-at-work
+size: 1024x1024

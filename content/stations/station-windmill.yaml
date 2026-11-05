@@ -5,12 +5,10 @@ title_en: Windmill
 status: in-production
 horizon: later
 summary: A stout windmill that grinds sunflower seeds, run by Pofu and Fındık. Its
-  stage-5 gate and 32,796-seed top level hold the line that nobody finishes the home
-  island before about day 40.
+  slot opens at island level 8 (the 24th tended day), which holds the line that nobody
+  finishes the home island before about day 40.
 notes:
-- 'Opens: Stage 5 (24 tended days; terrace, left). Level costs 1→5: 1,400 · 3,080
-  · 6,776 · 14,907 · 32,796 (total 58,959). Rate L1→L5: 12 → 38.4 seeds/hour before
-  calm.'
+- 'Opens: Island level 8 (tended day 24, 28 levels built). Level costs 1→5: 40 · 55 · 75 · 100 · 130 (total 400). Rate L1→L5: 0.02 → 0.1 seeds/hour before calm.'
 - 'Most expensive home station: 1,400 → 32,796 seeds a level.'
 links:
   part_of:
@@ -26,39 +24,38 @@ sources:
   anchor: '#idle-production-and-stations'
 - doc: tools/sim/island_economy.py
 resident: char-pofu
-opens_en: Stage 5 (24 tended days; terrace, left)
+opens_en: Island level 8 (tended day 24, 28 levels built)
 levels:
 - level: 1
   title_tr: Taş değirmen, çıplak kanatlar
   title_en: Stone mill, four bare sails
-  cost: 1400
-  rate: 12.0
+  cost: 40
+  rate: 0.02
   asset: asset-windmill-1
 - level: 2
   title_tr: Krem yelken bezleri
   title_en: Cream sail cloths
-  cost: 3080
-  rate: 18.6
+  cost: 55
+  rate: 0.04
   asset: asset-windmill-2
 - level: 3
   title_tr: Çekirdek çuvalları
   title_en: Sacks of sunflower seeds
-  cost: 6776
-  rate: 25.2
+  cost: 75
+  rate: 0.06
   asset: asset-windmill-3
 - level: 4
   title_tr: Başlıkta fenerler
   title_en: Lanterns along the cap
-  cost: 14907
-  rate: 31.8
+  cost: 100
+  rate: 0.08
   asset: asset-windmill-4
 - level: 5
   title_tr: Bayrak ve pencere saksıları
   title_en: A flag and window boxes
-  cost: 32796
-  rate: 38.4
+  cost: 130
+  rate: 0.1
   asset: asset-windmill-5
 unlock:
-  day: 24
-  rule_en: Stage 5 (24 tended days; terrace, left) (days ≈ tended days for a daily
-    user)
+  day: 23
+  rule_en: Island level 8 (tended day 24, 28 levels built) (days ≈ tended days for a daily user)

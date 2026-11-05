@@ -24,13 +24,15 @@ struct StationLedgerTests {
         #expect(try spec(.garden).levelCosts == [0, 5, 9, 15, 25])
         #expect(try spec(.teaStall).levelCosts == [8, 14, 24, 38, 60])
         #expect(try spec(.pond).levelCosts == [15, 25, 40, 60, 85])
-        #expect(try spec(.workshop).levelCosts == [30, 50, 75, 105, 140])
-        #expect(try spec(.windmill).levelCosts == [50, 80, 110, 150, 190])
-        #expect(try spec(.bagelCart).levelCosts == [25, 40, 60, 85, 115])
-        #expect(try spec(.pier).levelCosts == [40, 60, 85, 115, 150])
-        #expect(try spec(.lighthouse).levelCosts == [60, 85, 115, 150, 200])
-        #expect(catalog.totalCost(of: .home) == 1_403)
-        #expect(catalog.totalCost == 8_143)
+        #expect(try spec(.workshop).levelCosts == [30, 45, 65, 90, 120])
+        #expect(try spec(.windmill).levelCosts == [40, 55, 75, 100, 130])
+        #expect(try spec(.bagelCart).levelCosts == [12, 20, 32, 48, 70])
+        #expect(try spec(.pier).levelCosts == [20, 32, 48, 70, 100])
+        #expect(try spec(.lighthouse).levelCosts == [25, 40, 60, 85, 115])
+        // Home progression section 4.1: the harbor was re-budgeted to 777.
+        #expect(catalog.totalCost(of: .home) == 1_173)
+        #expect(catalog.totalCost(of: .harbor) == 777)
+        #expect(catalog.totalCost == 1_950)
     }
 
     @Test func everyPriceIsBetweenFiveAndTwoHundredAndRatesAreSmall() {
@@ -51,15 +53,23 @@ struct StationLedgerTests {
         #expect(windmill.cost(toReach: 6) == nil)
     }
 
-    @Test func fiveIslandsSeventeenStationsFiveLevelsEach() {
-        #expect(catalog.islands.map(\.id) == [.home, .harbor, .yildiz, .kaplica, .kitap])
-        #expect(catalog.stations.count == 17)
+    @Test func twoIslandsEightStationsFiveLevelsEach() {
+        // Yildiz, Kaplica and Kitap are retired (game plan section 2).
+        #expect(catalog.islands.map(\.id) == [.home, .harbor])
+        #expect(catalog.stations.count == 8)
         #expect(catalog.stations.allSatisfy { $0.maxLevel == 5 })
-        #expect(Set(catalog.stations.map(\.id)).count == 17)
+        #expect(Set(catalog.stations.map(\.id)).count == 8)
     }
 
-    @Test func homeStagesFollowTendedDays() {
-        #expect([0, 1, 3, 4, 9, 10, 23, 24, 400].map { catalog.homeStage(tendedDays: $0) } == [1, 2, 2, 3, 3, 4, 4, 5, 5])
+    @Test func slotsOpenByIslandLevel() {
+        let opens = Dictionary(uniqueKeysWithValues: catalog.stations.map { ($0.id, $0.opensAt) })
+        #expect(opens == [
+            .garden: 1, .teaStall: 2, .bagelCart: 3, .pond: 4, .pier: 5, .workshop: 6, .lighthouse: 6, .windmill: 8,
+        ])
+    }
+
+    @Test func homeStagesFollowTheOpenSlots() {
+        #expect((1...10).map { catalog.homeStage(islandLevel: $0) } == [1, 2, 2, 3, 3, 4, 4, 5, 5, 5])
     }
 
     // MARK: - Production
@@ -140,12 +150,16 @@ struct StationLedgerTests {
         #expect(ledger.level(of: .garden) == 2)
     }
 
-    @Test func aStationOpensWithItsStage() {
+    @Test func aStationOpensWithItsIslandLevel() throws {
         var ledger = StationLedger(catalog: catalog)
         ledger.gather(1_000)
         ledger.collect()
+        // Island level 2 needs the second tended day and two built levels.
+        #expect(throws: BuildError.notOpen(.teaStall)) { try ledger.build(.teaStall, tendedDays: 1, catalog: catalog) }
+        try ledger.build(.garden, tendedDays: 0, catalog: catalog)
         #expect(throws: BuildError.notOpen(.teaStall)) { try ledger.build(.teaStall, tendedDays: 0, catalog: catalog) }
         #expect(throws: Never.self) { try ledger.build(.teaStall, tendedDays: 1, catalog: catalog) }
+        // The harbor has not arrived, so its cart stays shut at any day.
         #expect(throws: BuildError.notOpen(.bagelCart)) { try ledger.build(.bagelCart, tendedDays: 30, catalog: catalog) }
         #expect(throws: BuildError.unknownStation("nope")) { try ledger.build("nope", tendedDays: 30, catalog: catalog) }
     }
@@ -163,11 +177,15 @@ struct StationLedgerTests {
         var ledger = StationLedger(catalog: catalog)
         ledger.gather(1_000)
         ledger.collect()
+        // Day 400 with every station grown: the cap no longer holds the
+        // garden at two.
+        ledger.levels = Dictionary(uniqueKeysWithValues: catalog.stations.map { ($0.id, 4) })
+        ledger.levels[.garden] = 1
         for _ in 2...5 {
-            try ledger.build(.garden, tendedDays: 0, catalog: catalog)
+            try ledger.build(.garden, tendedDays: 400, catalog: catalog)
         }
         #expect(ledger.jar == Energy(1_000 - 5 - 9 - 15 - 25))
-        #expect(throws: BuildError.maxLevel(.garden)) { try ledger.build(.garden, tendedDays: 0, catalog: catalog) }
+        #expect(throws: BuildError.maxLevel(.garden)) { try ledger.build(.garden, tendedDays: 400, catalog: catalog) }
     }
 
     @Test func pendingSeedsCannotBuild() {
@@ -178,46 +196,54 @@ struct StationLedgerTests {
 
     // MARK: - Islands
 
-    @Test func harborWaitsForEightTendedDaysAndMochisStallAtLevelThree() throws {
+    @Test func harborArrivesOnTheThirdTendedDayOnceMochisStallStands() throws {
         var ledger = StationLedger(catalog: catalog)
-        let result3 = ledger.settleArrivals(tendedDays: 8, calmNights: 0, released: [], catalog: catalog)
-        #expect(result3.isEmpty)
+        // Two days are done by the third: the fog lifts then, not before.
+        #expect(ledger.settleArrivals(tendedDays: 2, calmNights: 0, released: [], catalog: catalog).isEmpty)
         ledger.gather(1_000)
         ledger.collect()
-        for _ in 1...3 {
-            try ledger.build(.teaStall, tendedDays: 8, catalog: catalog)
-        }
-        let result4 = ledger.settleArrivals(tendedDays: 7, calmNights: 0, released: [], catalog: catalog)
-        #expect(result4.isEmpty)
-        let result5 = ledger.settleArrivals(tendedDays: 8, calmNights: 0, released: [], catalog: catalog)
-        #expect(result5 == [.harbor])
-        #expect(ledger.arrivals[.harbor] == 8)
-        // Its stations open 0, 3 and 7 tended days after it arrived.
+        try ledger.build(.garden, tendedDays: 0, catalog: catalog)
+        try ledger.build(.teaStall, tendedDays: 1, catalog: catalog)
+        #expect(ledger.settleArrivals(tendedDays: 1, calmNights: 0, released: [], catalog: catalog).isEmpty)
+        #expect(ledger.settleArrivals(tendedDays: 2, calmNights: 0, released: [], catalog: catalog) == [.harbor])
+        #expect(ledger.arrivals[.harbor] == 2)
+        // Its slots open by island level: the cart at 3, the pier at 5, the
+        // lighthouse at 6.
         let bagelCart = try spec(.bagelCart)
         let pier = try spec(.pier)
-        #expect(ledger.isOpen(bagelCart, tendedDays: 8, catalog: catalog))
-        #expect(!ledger.isOpen(pier, tendedDays: 10, catalog: catalog))
-        #expect(ledger.isOpen(pier, tendedDays: 11, catalog: catalog))
+        #expect(ledger.isOpen(bagelCart, tendedDays: 2, catalog: catalog))
+        #expect(!ledger.isOpen(pier, tendedDays: 400, catalog: catalog))
     }
 
-    @Test func yildizCountsCalmNightsNeverInARow() {
+    @Test func arrivalsNeverRepeatOrGoBack() {
         var ledger = StationLedger(catalog: catalog)
-        let result6 = ledger.settleArrivals(tendedDays: 21, calmNights: 9, released: [], catalog: catalog)
-        #expect(result6.isEmpty)
-        let result7 = ledger.settleArrivals(tendedDays: 21, calmNights: 10, released: [], catalog: catalog)
-        #expect(result7 == [.yildiz])
+        ledger.levels[.teaStall] = 1
+        #expect(ledger.settleArrivals(tendedDays: 60, calmNights: 30, released: [], catalog: catalog) == [.harbor])
+        #expect(ledger.settleArrivals(tendedDays: 0, calmNights: 0, released: [], catalog: catalog).isEmpty)
+        #expect(ledger.hasArrived(.harbor))
     }
 
-    @Test func kitapArrivesOnlyOnceReleased() {
+    // MARK: - Retired station islands (2026-11-05)
+
+    @Test func aSaveWithRetiredIslandsLoadsAndRefundsTheirLevels() throws {
         var ledger = StationLedger(catalog: catalog)
-        let result8 = ledger.settleArrivals(tendedDays: 60, calmNights: 30, released: [], catalog: catalog)
-        #expect(!result8.contains(.kitap))
-        let result9 = ledger.settleArrivals(tendedDays: 60, calmNights: 30, released: [.kitap], catalog: catalog)
-        #expect(result9 == [.kitap])
-        // Arrivals never repeat or go back.
-        let result10 = ledger.settleArrivals(tendedDays: 0, calmNights: 0, released: [], catalog: catalog)
-        #expect(result10.isEmpty)
-        #expect(ledger.hasArrived(.kitap))
+        ledger.levels[.teaStall] = 2
+        ledger.levels["observatory"] = 2
+        ledger.levels["hamam"] = 1
+        ledger.arrivals[.harbor] = 8
+        ledger.arrivals["yildiz"] = 21
+        ledger.arrivals["kaplica"] = 35
+        ledger.arrivalOrder += [.harbor, "yildiz", "kaplica"]
+        ledger.jar = 10
+        let loaded = try JSONDecoder().decode(StationLedger.self, from: JSONEncoder().encode(ledger))
+        #expect(loaded.arrivalOrder == [.home, .harbor])
+        #expect(loaded.arrivals == [.home: 0, .harbor: 8])
+        #expect(loaded.levels == [.garden: 1, .teaStall: 2])
+        // Observatory 1 and 2 (45 + 70) and the hamam's first level (60).
+        #expect(loaded.jar.units == 10 + 45 + 70 + 60)
+        // The rest is untouched, and a second round trip changes nothing.
+        let again = try JSONDecoder().decode(StationLedger.self, from: JSONEncoder().encode(loaded))
+        #expect(again == loaded)
     }
 
     // MARK: - Saves written before the English rename (2026-11-03)
@@ -227,7 +253,7 @@ struct StationLedgerTests {
         let stations = try decoder.decode([StationID].self, from: Data(#"["cay","simit","garden"]"#.utf8))
         #expect(stations == [.teaStall, .bagelCart, .garden])
         let islands = try decoder.decode([IslandID].self, from: Data(#"["aycicegi","iskele","kitap"]"#.utf8))
-        #expect(islands == [.home, .harbor, .kitap])
+        #expect(islands == [.home, .harbor, "kitap"])
         // The keyed shape an older build may have written.
         let keyed = try decoder.decode([StationID].self, from: Data(#"[{"rawValue":"cay"}]"#.utf8))
         #expect(keyed == [.teaStall])

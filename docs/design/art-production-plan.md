@@ -86,7 +86,7 @@ Work for when no `READY` row is left, so the line never idles. Every batch
 here is an **exploration**: `x-` ids, `status: open`, complete prompts, never
 promoted (takes, contact sheet and `review.yaml` are committed under
 `design/art/takes/<batch>/<id>/`). Codex takes the rows in order, one PR per
-batch. After the last row it starts again at row B1 with fresh variations:
+batch. The rows B-A to B-F (home growth, from [home progression](../product/home-progression.md)) come first, then B1 to B6. After the last row it starts again at the first row with fresh variations:
 the manifest copied as `<batch>-v2` (then `-v3`, ...) with `x-<id>-v2` job
 ids and a new angle, pose, camera, time of day or palette per job. The lead
 adds rows at the bottom; it also reads the takes and promotes a concept into a
@@ -94,6 +94,12 @@ real production batch when one earns it.
 
 | # | Batch | Purpose | Jobs | State |
 |---|---|---|---|---|
+| B-A | `batch-28-home-shops-concepts` | Home progression concepts (founder 2026-11-05): the hive (levels 1, 3, 5) and the three Book Two hilltop add-ons, Fanus's greenhouse, Çömlek's kiln and Mehtap's moon telescope (levels 1 to 3), on the station guide | 12 | BACKLOG |
+| B-B | `batch-29-residents-at-work` | Each home resident at their fixed favourite station in a working pose (Mochi, Simit, the goat, the frogs, Fındık, Koke's sprout), plus five heart level-up moments | 11 | BACKLOG |
+| B-C | `batch-30-decor-sets` | Decor sets on the decor guide: island gifts (4) and Liman (4), plus a composed corner for Bahçe, Ada hediyeleri, Liman and Sakinler | 12 | BACKLOG |
+| B-D | `batch-30b-decor-seasons-1`, `batch-30c-decor-seasons-2` | The four season sets (Bahar, Yaz, Güz, Kış), four pieces each on the decor guide, plus a corner per set; two manifests so each stays at 10 jobs | 10 + 10 | BACKLOG |
+| B-E | `batch-31-island-milestones` | Concept plates: the island at levels 1, 4, 7, 10, the closed hill gate, the Tam Çiçek ceremony night, the Tepe, the Altın Ada | 8 | BACKLOG |
+| B-F | `batch-32-weekly-themes` | Eight small weekly themes for home: a visitor, a market stall, kites, a lantern night, a fishing day, rain boots, a picnic, a stargazing night | 8 | BACKLOG |
 | B1 | `batch-22-gezgin-forms` | Gezgin, the cloud-whale Nazlı: form 1 (humble, tired, a mossy patch with bench and mooring post, lantern hook, scar shaped like a switched-off light) and form 2 (grown, lush island with grove and waterfall, hook and scar glowing); side views, three-quarter, docked at a pier, at night | 9 | BACKLOG |
 | B2 | `batch-23-stickers` | Emoji and sticker sheets of Pofu and Mochi (happy, sleepy, surprised, proud, sulky, laughing, waving, tea, thinking, love) plus Simit, Fındık, the goat and duo stickers, transparent | 9 | BACKLOG |
 | B3 | `batch-24-home-materials` | Upgrade props for the home stations on the decor guide: tea set, samovar, cushions, lantern, flower box, bench 2, mailbox 2, rope, crates, weather vane, boat 2 | 11 | BACKLOG |

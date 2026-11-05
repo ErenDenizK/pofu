@@ -571,7 +571,7 @@ so the Home screen showed "Topla · 991" and a jar of 2.199.
 | Pofu's gathering (`QuietTimeRules.archipelago`) | 1 per 10 quiet minutes, 48 a day | **1 per quiet waking hour, 8 a day** |
 | Calm night bonus | +10 seeds | **+2 seeds** |
 | A resisted reach (`SeedRules`) | +3, 5 a day | **+1, 6 a day** |
-| Station level price | ×2.2 a level, 30 to 32,796 | **5 to 200** (archipelago system proposal §7.4, PR #64), home island 1,403 in all, 17 stations 8,143 |
+| Station level price | ×2.2 a level, 30 to 32,796 | **5 to 130**, re-budgeted 2026-11-05 ([home progression](home-progression.md#41-ladders-re-budgeted)): home 1,173, harbor 777, 8 stations 1,950 in all |
 | Station rate | 5–16 an hour at L1, +55 % a level | **0.02 of a seed an hour per built level**, so about 0.5 a day per level at calm ×1.0 (`ArchipelagoCatalog.scaleACentiSeedsPerHourPerLevel`) |
 | Garden round (`SeedYield`) | 2 to 5 | unchanged: 2 to 5 (2 + 1 at 3 lines + 1 at 7 + 1 for a double bloom or combo of 4) |
 | Calm multiplier, care, rounds a day | ×1.0 to ×2.0; ×0.6 below 25; 2 + 1 per resisted reach | unchanged |
@@ -595,21 +595,26 @@ income).
 
 | Week | Seeds a day | + a five-round set | Station levels built (end of week) | Station levels (with rounds) |
 |---|---|---|---|---|
-| 1 | 17.9 | 19.0 | 9 | 12 |
-| 2 | 24.1 | 26.9 | 14 | 18 |
-| 3 | 26.4 | 29.9 | 18 | 23 |
-| 4 | 29.1 | 33.6 | 21 | 29 |
-| 6 | 28.9 | 33.7 | 28 | 38 |
-| 8 | 36.6 | 44.1 | 34 | 47 |
-| Days 54–60 | **37.6** | 45.7 | 36 | about 50 |
+| 1 | 17.9 | 19.0 | 9 | 14 |
+| 2 | 24.1 | 26.9 | 15 | 22 |
+| 3 | 26.4 | 29.9 | 21 | 27 |
+| 4 | 29.1 | 33.6 | 25 | 32 |
+| 6 | 28.9 | 33.7 | 32 | 39 |
+| 8 | 36.6 | 44.1 | 37 | 40 (all built) |
+| Days 54–60 | **37.6** | 45.7 | 39 | 40 (all built) |
+
+Station levels are capped at 40 (eight stations, five levels) since the
+2026-11-05 re-budget; the columns above are re-run with the island level
+and its caps (next section). Seeds a day are unchanged: the passive income
+barely depends on what is built.
 
 The bands the tests hold (`dailyIncomeLandsInTheScaleABands`,
 `levelPacingFollowsTheIncome`): week 1 between 12 and 20 seeds a day (target
 about 15), days 54 to 60 between 30 and 42 (target about 37), every week
 between 10 and 40, the last week at least 1.7 times the first, something
-built on day 1 and in every one of the first eight weeks, 5 to 14 levels by
-day 7, 16 to 28 by day 30, 28 to 42 by day 60, İskele on day 7 to 14 and
-Yıldız on day 20 to 30. Skips are at most half of week-1 income for anyone
+built on day 1 and in every one of the first eight weeks, 6 to 12 levels by
+day 7, 22 to 30 by day 30, 34 to 40 by day 60, and İskele on the third day
+(see the island level below). Skips are at most half of week-1 income for anyone
 and under a quarter of the typical user's income from week 2 on (archipelago
 system open question 10: confirmed). The old "at most 5 % of week 1" check
 is gone with the +3.
@@ -620,3 +625,54 @@ skips), and from week 2 the stations carry a growing share, up to about
 scale where every digit can be read at a glance. Heavier scrollers earn less
 (fewer hours of unbroken quiet, a reset calm), and nobody earns more than
 about 16 seeds a day without a built station.
+
+## Island level and station caps
+
+_Home progression, decided 2026-11-05; implemented in `PofuCore/Game`
+(`ArchipelagoCatalog.islandLevels`, `StationLedger.islandLevel`)._ The
+island level (*Ada seviyesi*, 1 to 10) is the one number that keeps the
+home island growing together. It rises when **both** a tended-day floor
+and a growth count are met, derived from state (days and built levels only
+ever grow, so it never falls, and a skipped day only pauses). **Growth** is
+the sum of built station levels, the garden's free first level included.
+
+| Island level | Tended day ≥ | Growth ≥ | Station cap | Slots that open |
+|---|---|---|---|---|
+| 1 | 1 | 0 | 2 | garden (built) |
+| 2 | 2 | 2 | 2 | tea stall |
+| 3 | 3 | 3 | 3 | bagel cart (the harbor's fog lifts) |
+| 4 | 4 | 6 | 3 | pond |
+| 5 | 6 | 10 | 4 | pier |
+| 6 | 10 | 15 | 4 | workshop, lighthouse |
+| 7 | 14 | 20 | 5 | (decor spots, later) |
+| 8 | 24 | 28 | 5 | windmill |
+| 9 | 36 | 34 | 5 | (the hill gate and the hive, later) |
+| 10 | 36 | 40 | 5 | Tam Çiçek: all eight stations at level 5 |
+
+- **Station cap.** No station can be built above the cap
+  (`BuildError.capped`, which names the island level that lifts it, shown
+  as "Ada seviyesi 3'te açılır"). A level already built above a cap is
+  never taken away. `StationLedger.maxLevel(of:tendedDays:catalog:)` and
+  `StationStatus.levelCap` give the current cap for the UI.
+- **Floors count tended days from 1.** `tendedDays` in the state counts
+  completed tended days, so the check is `tendedDays + 1 ≥ floor`.
+- **The harbor** arrives on the third tended day (`tendedDays` 2) once the
+  tea stall is built (level 1). Its stations open by island level like the
+  home ones; the old "days after arrival" offsets are gone.
+- **No dead end.** At every island level the open stations times the cap
+  reach the next level's growth (`IslandLevelTests`), and the cheapest
+  open level is a small price: at most 3 days of the last week's income
+  with rounds, 3.5 without (`GameScenarioTests`). No three tended days
+  pass without a level through day 60.
+- **Yıldız, Kaplıca and Kitap are retired** (game plan section 2). A save
+  that holds them loads: their arrivals are dropped and the seeds their
+  levels cost go back into the jar.
+- Seeds still never buy screen time (ADR-0015); nothing here touches the
+  gate. Residents, decor, materials, seasons and Tam Çiçek's hilltop are
+  later changes and hang off `IslandLevelRule` and `StationSpec.opensAt`.
+
+The typical user (`GameScenarioTests`, 90 days, no rounds) reaches island
+level 3 on day 3, 4 by day 7, 6 by day 14, 7 to 8 around day 30, and Tam
+Çiçek on day 63 (day 43 with a five-round set a day, before decor and the
+hive soak up seeds, which the model leaves out); the test band is day 55 to
+70 without rounds.

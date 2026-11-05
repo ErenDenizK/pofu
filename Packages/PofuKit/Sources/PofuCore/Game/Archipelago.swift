@@ -26,12 +26,8 @@ public struct IslandID: RawRepresentable, Hashable, Comparable, Sendable, Codabl
     public static let home: IslandID = "home"
     /// The harbor, the tea-and-bagel harbor (İskele).
     public static let harbor: IslandID = "harbor"
-    /// Yıldız, the night observatory.
-    public static let yildiz: IslandID = "yildiz"
-    /// Kaplıca, the hot-spring hamam.
-    public static let kaplica: IslandID = "kaplica"
-    /// Kitap, the library island (arrives with a season update).
-    public static let kitap: IslandID = "kitap"
+    // Yıldız, Kaplıca and Kitap were retired as station islands (game plan
+    // §2); their ids live in `RetiredIds` so old saves still decode.
 }
 
 /// Identifies a station, such as "teaStall" (Mochi's çay ocağı).
@@ -64,15 +60,6 @@ public struct StationID: RawRepresentable, Hashable, Comparable, Sendable, Codab
     public static let bagelCart: StationID = "bagelCart"
     public static let pier: StationID = "pier"
     public static let lighthouse: StationID = "lighthouse"
-    public static let observatory: StationID = "observatory"
-    public static let fireflies: StationID = "fireflies"
-    public static let hammock: StationID = "hammock"
-    public static let spring: StationID = "spring"
-    public static let hamam: StationID = "hamam"
-    public static let serbet: StationID = "serbet"
-    public static let readingTree: StationID = "readingTree"
-    public static let bookHouse: StationID = "bookHouse"
-    public static let press: StationID = "press"
 }
 
 /// One station's five designed levels (game design §5, "Idle production
@@ -80,8 +67,9 @@ public struct StationID: RawRepresentable, Hashable, Comparable, Sendable, Codab
 public struct StationSpec: Hashable, Sendable, Codable, Identifiable {
     public var id: StationID
     public var island: IslandID
-    /// When the station's slot opens. On the home island: the island stage
-    /// (1–5). On other islands: tended days after the island arrived.
+    /// The island level (1–10) at which the station's slot opens, on every
+    /// island (home progression §3). A harbor station also needs the
+    /// harbor to have arrived.
     public var opensAt: Int
     /// The seeds it costs to reach each level, 1 to 5. A station that
     /// starts built has a zero first entry.
@@ -131,8 +119,8 @@ public struct StationSpec: Hashable, Sendable, Codable, Identifiable {
         Double(centiRate(at: level)) / 100
     }
 
-    /// Seeds an hour per built level at economy scale A: 0.03 of a seed, so
-    /// about 0.6 seeds a day per level at calm ×1.0 while Pofu is away and
+    /// Seeds an hour per built level at economy scale A: 0.02 of a seed, so
+    /// about 0.5 seeds a day per level at calm ×1.0 while Pofu is away and
     /// observing (archipelago system §7.3). Stations add up by level, not
     /// by station, so what you build matters less than that you build.
     public static let scaleACentiSeedsPerHourPerLevel = 2
@@ -189,6 +177,42 @@ public struct IslandArrival: Hashable, Sendable, Codable {
     }
 }
 
+/// One island level (*Ada seviyesi*, home progression §3): the tended-day
+/// floor and the growth that together reach it, and the station cap it
+/// sets. Slots open by level through `StationSpec.opensAt`.
+public struct IslandLevelRule: Hashable, Sendable, Codable {
+    public var level: Int
+    /// The tended day (the first is 1) from which the level can be reached.
+    public var tendedDayFloor: Int
+    /// Built station levels, summed over every station, it needs.
+    public var growth: Int
+    /// The highest level any station may reach while the island is here.
+    public var stationCap: Int
+
+    public init(level: Int, tendedDayFloor: Int, growth: Int, stationCap: Int) {
+        self.level = level
+        self.tendedDayFloor = tendedDayFloor
+        self.growth = growth
+        self.stationCap = stationCap
+    }
+}
+
+/// What the next island level still waits for, for the short line "Ada 6
+/// için: 2 seviye daha" (never a timer).
+public struct IslandLevelRequirement: Hashable, Sendable {
+    public var level: Int
+    /// Tended days still to pass; zero once the floor is met.
+    public var tendedDaysLeft: Int
+    /// Station levels still to build; zero once the growth is met.
+    public var levelsLeft: Int
+
+    public init(level: Int, tendedDaysLeft: Int, levelsLeft: Int) {
+        self.level = level
+        self.tendedDaysLeft = tendedDaysLeft
+        self.levelsLeft = levelsLeft
+    }
+}
+
 public struct IslandSpec: Hashable, Sendable, Codable, Identifiable {
     public var id: IslandID
     public var arrival: IslandArrival
@@ -204,14 +228,15 @@ public struct IslandSpec: Hashable, Sendable, Codable, Identifiable {
 public struct ArchipelagoCatalog: Hashable, Sendable, Codable {
     /// The island the player starts on.
     public var home: IslandID
-    /// Tended days that open each home stage: stage 1 at index 0.
-    public var homeStageTendedDays: [Int]
+    /// The island levels, 1 first (home progression §3). Extension point:
+    /// residents, decor and seasons hang their openings off these.
+    public var islandLevels: [IslandLevelRule]
     public var islands: [IslandSpec]
     public var stations: [StationSpec]
 
-    public init(home: IslandID, homeStageTendedDays: [Int], islands: [IslandSpec], stations: [StationSpec]) {
+    public init(home: IslandID, islandLevels: [IslandLevelRule], islands: [IslandSpec], stations: [StationSpec]) {
         self.home = home
-        self.homeStageTendedDays = homeStageTendedDays
+        self.islandLevels = islandLevels
         self.islands = islands
         self.stations = stations
     }
@@ -228,9 +253,52 @@ public struct ArchipelagoCatalog: Hashable, Sendable, Codable {
         stations.filter { $0.island == island }
     }
 
-    /// The home island's stage after `tendedDays`, from 1.
-    public func homeStage(tendedDays: Int) -> Int {
-        max(1, homeStageTendedDays.filter { tendedDays >= $0 }.count)
+    // MARK: - Island levels
+
+    /// The highest island level; every count stops here.
+    public var maxIslandLevel: Int {
+        islandLevels.map(\.level).max() ?? 1
+    }
+
+    public func islandLevelRule(_ level: Int) -> IslandLevelRule? {
+        islandLevels.first { $0.level == level }
+    }
+
+    /// The island level after `tendedDays` completed tended days and
+    /// `growth` built station levels, from 1. Both inputs only grow, so
+    /// the level never falls (A4).
+    public func islandLevel(tendedDays: Int, growth: Int) -> Int {
+        islandLevels
+            .filter { tendedDays + 1 >= $0.tendedDayFloor && growth >= $0.growth }
+            .map(\.level)
+            .max() ?? 1
+    }
+
+    /// The station cap at `islandLevel`.
+    public func stationCap(atIslandLevel islandLevel: Int) -> Int {
+        islandLevelRule(islandLevel)?.stationCap ?? islandLevels.map(\.stationCap).max() ?? 1
+    }
+
+    /// The lowest island level whose cap lets a station reach `level`;
+    /// `nil` if none does.
+    public func islandLevel(allowingStationLevel level: Int) -> Int? {
+        islandLevels.filter { $0.stationCap >= level }.map(\.level).min()
+    }
+
+    /// What the island level after `islandLevel` waits for; `nil` at the top.
+    public func requirement(afterIslandLevel islandLevel: Int, tendedDays: Int, growth: Int) -> IslandLevelRequirement? {
+        guard let rule = islandLevelRule(islandLevel + 1) else { return nil }
+        return IslandLevelRequirement(
+            level: rule.level,
+            tendedDaysLeft: max(0, rule.tendedDayFloor - (tendedDays + 1)),
+            levelsLeft: max(0, rule.growth - growth)
+        )
+    }
+
+    /// The home island's art stage (1–5), from its open slots: one stage
+    /// per home station that has opened.
+    public func homeStage(islandLevel: Int) -> Int {
+        max(1, stations(on: home).filter { $0.opensAt <= islandLevel }.count)
     }
 
     /// Every level of every station on `island`, in seeds.
@@ -243,36 +311,40 @@ public struct ArchipelagoCatalog: Hashable, Sendable, Codable {
         stations.flatMap(\.levelCosts).reduce(.zero, +)
     }
 
-    /// Game design v2 at economy scale A: five islands, 17 stations, every
-    /// level 5 to 200 seeds.
+    /// Home progression at economy scale A: two islands, eight stations,
+    /// every level 5 to 130 seeds, 1,950 in all (home 1,173, harbor 777).
+    /// Floors are tended days counted from 1 (day 3 is the third tended
+    /// day).
     public static let standard = ArchipelagoCatalog(
         home: .home,
-        homeStageTendedDays: [0, 1, 4, 10, 24],
+        islandLevels: [
+            IslandLevelRule(level: 1, tendedDayFloor: 1, growth: 0, stationCap: 2),
+            IslandLevelRule(level: 2, tendedDayFloor: 2, growth: 2, stationCap: 2),
+            IslandLevelRule(level: 3, tendedDayFloor: 3, growth: 3, stationCap: 3),
+            IslandLevelRule(level: 4, tendedDayFloor: 4, growth: 6, stationCap: 3),
+            IslandLevelRule(level: 5, tendedDayFloor: 6, growth: 10, stationCap: 4),
+            IslandLevelRule(level: 6, tendedDayFloor: 10, growth: 15, stationCap: 4),
+            IslandLevelRule(level: 7, tendedDayFloor: 14, growth: 20, stationCap: 5),
+            IslandLevelRule(level: 8, tendedDayFloor: 24, growth: 28, stationCap: 5),
+            IslandLevelRule(level: 9, tendedDayFloor: 36, growth: 34, stationCap: 5),
+            // Tam Çiçek: every one of the eight stations at level 5.
+            IslandLevelRule(level: 10, tendedDayFloor: 36, growth: 40, stationCap: 5),
+        ],
         islands: [
             IslandSpec(id: .home, arrival: IslandArrival()),
-            IslandSpec(id: .harbor, arrival: IslandArrival(tendedDays: 8, requires: StationLevelRequirement(station: .teaStall, level: 3))),
-            IslandSpec(id: .yildiz, arrival: IslandArrival(tendedDays: 21, calmNights: 10)),
-            IslandSpec(id: .kaplica, arrival: IslandArrival(tendedDays: 35, requires: StationLevelRequirement(station: .pier, level: 3))),
-            IslandSpec(id: .kitap, arrival: IslandArrival(tendedDays: 50, needsRelease: true)),
+            // The fog lifts on the third tended day, once the tea stall is
+            // built (two days have completed by then).
+            IslandSpec(id: .harbor, arrival: IslandArrival(tendedDays: 2, requires: StationLevelRequirement(station: .teaStall, level: 1))),
         ],
         stations: [
             .ladder(.garden, island: .home, opensAt: 1, costs: [0, 5, 9, 15, 25], startsBuilt: true),
             .ladder(.teaStall, island: .home, opensAt: 2, costs: [8, 14, 24, 38, 60]),
-            .ladder(.pond, island: .home, opensAt: 3, costs: [15, 25, 40, 60, 85]),
-            .ladder(.workshop, island: .home, opensAt: 4, costs: [30, 50, 75, 105, 140]),
-            .ladder(.windmill, island: .home, opensAt: 5, costs: [50, 80, 110, 150, 190]),
-            .ladder(.bagelCart, island: .harbor, opensAt: 0, costs: [25, 40, 60, 85, 115]),
-            .ladder(.pier, island: .harbor, opensAt: 3, costs: [40, 60, 85, 115, 150]),
-            .ladder(.lighthouse, island: .harbor, opensAt: 7, costs: [60, 85, 115, 150, 200]),
-            .ladder(.observatory, island: .yildiz, opensAt: 0, costs: [45, 70, 100, 135, 170]),
-            .ladder(.fireflies, island: .yildiz, opensAt: 3, costs: [55, 80, 110, 145, 180]),
-            .ladder(.hammock, island: .yildiz, opensAt: 7, costs: [65, 90, 120, 155, 190]),
-            .ladder(.spring, island: .kaplica, opensAt: 0, costs: [50, 75, 105, 140, 175]),
-            .ladder(.hamam, island: .kaplica, opensAt: 3, costs: [60, 85, 115, 150, 185]),
-            .ladder(.serbet, island: .kaplica, opensAt: 7, costs: [70, 95, 125, 160, 195]),
-            .ladder(.readingTree, island: .kitap, opensAt: 0, costs: [55, 80, 110, 145, 180]),
-            .ladder(.bookHouse, island: .kitap, opensAt: 3, costs: [65, 90, 120, 155, 190]),
-            .ladder(.press, island: .kitap, opensAt: 7, costs: [75, 100, 130, 165, 200]),
+            .ladder(.pond, island: .home, opensAt: 4, costs: [15, 25, 40, 60, 85]),
+            .ladder(.workshop, island: .home, opensAt: 6, costs: [30, 45, 65, 90, 120]),
+            .ladder(.windmill, island: .home, opensAt: 8, costs: [40, 55, 75, 100, 130]),
+            .ladder(.bagelCart, island: .harbor, opensAt: 3, costs: [12, 20, 32, 48, 70]),
+            .ladder(.pier, island: .harbor, opensAt: 5, costs: [20, 32, 48, 70, 100]),
+            .ladder(.lighthouse, island: .harbor, opensAt: 6, costs: [25, 40, 60, 85, 115]),
         ]
     )
 }

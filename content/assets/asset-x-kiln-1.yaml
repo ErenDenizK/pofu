@@ -1,0 +1,21 @@
+id: asset-x-kiln-1
+type: asset
+title_tr: x-kiln-1
+title_en: x-kiln-1 (station)
+status: in-production
+horizon: now
+summary: >-
+  The first level of a small pottery kiln: a squat rounded dome of warm terracotta clay with
+  a low arched mouth, a short chimney pipe, a ring of stacked flat stones at its base, and
+  beside it a plank with five unglazed pots in cream and terracotta drying in the sun. It
+  fills the footprint's width and stays below the height bar's top; chunky, toy-like, few
+  parts.
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts:x-kiln-1
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+kind: station
+batch: batch-28-home-shops-concepts
+size: 1024x1024

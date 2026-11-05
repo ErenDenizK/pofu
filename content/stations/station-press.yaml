@@ -2,10 +2,12 @@ id: station-press
 type: station
 title_tr: Matbaa
 title_en: Printing press
-status: planned
+status: cut
 horizon: later
 summary: A small printing press for Bulut's story pages.
 notes:
+- Retired 2026-11-05 with the station islands (game plan section 2); the prices below are the
+  old ones and are no longer in PofuCore.
 - >-
   Opens: Kitap + 7 days. Level costs 1→5: 8,400 · 18,480 · 40,656 · 89,443 · 196,775 (total
   353,754). Rate L1→L5: 16 → 51.2 seeds/hour before calm.

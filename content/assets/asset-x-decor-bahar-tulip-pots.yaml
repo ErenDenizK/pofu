@@ -1,0 +1,20 @@
+id: asset-x-decor-bahar-tulip-pots
+type: asset
+title_tr: x-decor-bahar-tulip-pots
+title_en: x-decor-bahar-tulip-pots (prop)
+status: in-production
+horizon: now
+summary: >-
+  Two chunky round terracotta clay pots of different sizes, each holding a tight bunch of
+  plump tulips in red, rose and cream with broad sage leaves. It stands on the guide's ground
+  ellipse, centered on the cross, never wider than the ellipse and never taller than the height
+  bar; it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30b-decor-seasons-1:x-decor-bahar-tulip-pots
+sources:
+- doc: tools/imagegen/manifest/batch-30b-decor-seasons-1.yaml
+kind: prop
+batch: batch-30b-decor-seasons-1
+size: 1024x1024

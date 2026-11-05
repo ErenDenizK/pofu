@@ -1,0 +1,256 @@
+# Batch 32: exploration, never promoted (the backlog)
+#
+# Eight small weekly themes for home (founder, 2026-11-05: seasons follow the
+# real calendar plus a weekly small theme): a visitor, a market stall, kites,
+# a lantern night, a fishing day, rain boots, a picnic and a stargazing night.
+# Each is a small prop drawn on the decor guide (design/art/templates/decor-
+# guide.png) so it can sit on any lawn spot for a week, or a character for the
+# visitor. Nothing expires and nothing is bought: a theme is a gentle change,
+# and it comes back in later years. Glow is code; unlit lamps are painted
+# pale.
+#
+# Tracks: `weekly`.
+#
+# BACKLOG (docs/design/art-production-plan.md#the-backlog): every job here is
+# an EXPLORATION with an `x-` id. EXPLORATION RULES (AGENTS.md): do NOT run
+# `promote`; commit the takes (WebP q90), the contact sheet and review.yaml
+# under design/art/takes/<batch>/<id>/ and nothing else. No painted text
+# anywhere. Never paint glass, UI chrome or buttons. A failed or refused job
+# is recorded and skipped; the run continues with the next job. There is no
+# pilot gate: run the jobs in the order written.
+#
+# Fresh variations: when the backlog comes round again, copy a job under a
+# new id (`-v2`, `-v3`, ...) with a new angle, never the same prompt twice.
+
+batch: batch-32-weekly-themes
+title: "Weekly themes for home: eight small overlays and props"
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: decor-bench, kind: prop, name: decor-bench, external: batch-08-decor-pilot}
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island}
+
+  - id: x-week-visitor
+    kind: char
+    name: x-week-visitor
+    size: 1024x1536
+    canvas: 1024x1536
+    transparent: true
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Weekly theme: a visitor. Review: a small stranger who clearly visits, not lives here; a distinct silhouette from Pofu, Mochi, Simit and Fındık."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him unless asked)."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: her exact look, fur, colors, eyes and size."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A character on a plain transparent background, in exactly the same art
+          style, lighting and level of fluff as the attached hamster and bunny: a
+          full-body standing view, front three-quarter. CHARACTER: a small
+          travelling fox cub, a round plush body of warm apricot fur with a cream
+          chest and a white-tipped bushy tail, small pointed ears with dark tips,
+          big glossy dark eyes with a catchlight each, a shy curious smile, carrying
+          a small bundle on a stick over one shoulder and a tiny round lantern in
+          the other paw, a little dusty sage scarf. No curl on the head. No clothes
+          except what is named.
+      - block: prop-style-v2
+      - text: "AVOID: a ground shadow, a floor, a background, text, labels, a curl on top of the head, realistic fox anatomy, sharp claws"
+
+  - id: x-week-market-stall
+    kind: prop
+    name: x-week-market-stall
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Weekly theme: a market stall. Review: reads as a pop-up market stall at 64 px; striped awning, a few goods, no text on signs."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small pop-up market stall: a square wooden counter of honey wood with a
+          scalloped awning in coral and cream stripes on two slim poles, a few round
+          baskets on the counter holding apples, plums and small cream pots, a blank
+          hanging cloth sign, a folding wooden crate beside it. Chunky and toy-like.
+          It stands on the guide's ground ellipse, centered on the cross, never
+          wider than the ellipse and never taller than the height bar; it is small,
+          a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-week-kites
+    kind: prop
+    name: x-week-kites
+    size: 1024x1024
+    canvas: 1024x1024
+    decor: hang
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Weekly theme: kites. Review: three kites in the air on strings read as a kite day at 64 px; hung high."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          Three diamond kites of different sizes flying together on gently curving
+          thin strings that meet at one small wooden spool: one of coral and cream,
+          one of sea-blue and mustard, one of rose and mint, each with a ribbon tail
+          of small bows; drawn completely including the strings and the spool at the
+          bottom; the kites hang high in the height bar. It stands on the guide's
+          ground ellipse, centered on the cross, never wider than the ellipse and
+          never taller than the height bar; it is small, a third of the image width
+          at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-week-lantern-night
+    kind: prop
+    name: x-week-lantern-night
+    size: 1024x1024
+    canvas: 1024x1024
+    decor: hang
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Weekly theme: a lantern night. Review: a cluster of paper lanterns on a pole; the unlit lamps are painted pale, the glow is code."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A tall slim honey-wood pole with a crossbar holding five paper lanterns in
+          different shapes (round, long, star-shaped, small, pear-shaped) in cream,
+          rose, mustard, sage and lilac, hung from short cords, all unlit, with a
+          round clay base with stones. It stands on the guide's ground ellipse,
+          centered on the cross, never wider than the ellipse and never taller than
+          the height bar; it is small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-week-fishing-day
+    kind: prop
+    name: x-week-fishing-day
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Weekly theme: a fishing day. Review: a stool, a rod, a bucket and a small catch; reads as a lazy fishing morning."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A folding wooden stool with a coral cushion, a slim honey-wood fishing rod
+          resting on a forked stick with a red-and-cream float on its curled line, a
+          tin bucket with two small cream fish, and a tiny wide-brimmed straw hat
+          hung on the stool. It stands on the guide's ground ellipse, centered on
+          the cross, never wider than the ellipse and never taller than the height
+          bar; it is small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-week-rain-boots
+    kind: prop
+    name: x-week-rain-boots
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Weekly theme: rain boots. Review: a pair of boots and a puddle; reads as rainy-day fun at 64 px."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A pair of small chunky rain boots in sunshine mustard with rolled-over
+          cuffs, standing side by side beside a small round puddle shown as a soft
+          flat shape of pale blue-grey on the ground, and a closed small umbrella in
+          coral leaning against them with a drop on its tip. It stands on the
+          guide's ground ellipse, centered on the cross, never wider than the
+          ellipse and never taller than the height bar; it is small, a third of the
+          image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-week-picnic
+    kind: prop
+    name: x-week-picnic
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Weekly theme: a picnic. Review: a blanket with basket and snacks; cozy, readable, nothing floats."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A square picnic blanket in coral and cream checks, a wicker basket with an
+          open lid showing a loaf and a bottle, a plate of sesame simit rings, two
+          tulip tea glasses on saucers, and two round cushions in sage and rose,
+          laid out softly on the ground; the blanket fills the footprint ellipse. It
+          stands on the guide's ground ellipse, centered on the cross, never wider
+          than the ellipse and never taller than the height bar; it is small, a
+          third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-week-stargazing-night
+    kind: prop
+    name: x-week-stargazing-night
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Weekly theme: a stargazing night. Review: a rug, a telescope and a lantern; a quiet night; the glow is code."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A round rug in deep indigo with small cream star shapes, a small chunky
+          cream-and-brass telescope on a short tripod beside it, two cushions in
+          lilac and plum, a folded blanket and an unlit round paper lantern in cream
+          standing on the rug. It stands on the guide's ground ellipse, centered on
+          the cross, never wider than the ellipse and never taller than the height
+          bar; it is small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2

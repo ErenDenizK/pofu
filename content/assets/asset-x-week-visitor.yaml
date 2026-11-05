@@ -1,0 +1,21 @@
+id: asset-x-week-visitor
+type: asset
+title_tr: x-week-visitor
+title_en: x-week-visitor (char)
+status: in-production
+horizon: now
+summary: >-
+  A character on a plain transparent background, in exactly the same art style, lighting and
+  level of fluff as the attached hamster and bunny: a full-body standing view, front three-quarter.
+  CHARACTER: a small travelling fox cub, a round plush body of warm apricot fur with a cream
+  chest and a white-tipped bushy tail, small pointed ears with dark tips, big glossy dark
+  eyes with a catchlight each, a shy curious smile, ca…
+art:
+  images: []
+  jobs:
+  - batch-32-weekly-themes:x-week-visitor
+sources:
+- doc: tools/imagegen/manifest/batch-32-weekly-themes.yaml
+kind: char
+batch: batch-32-weekly-themes
+size: 1024x1536

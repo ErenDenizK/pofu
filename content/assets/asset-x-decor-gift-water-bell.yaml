@@ -1,0 +1,21 @@
+id: asset-x-decor-gift-water-bell
+type: asset
+title_tr: x-decor-gift-water-bell
+title_en: x-decor-gift-water-bell (prop)
+status: in-production
+horizon: now
+summary: >-
+  A small hanging bell in soft aqua-blue glazed clay, shaped like a plump drop of water with
+  a wide flared rim and a little cream clapper, hung from a short crossbar of honey wood on
+  two posts, three soft water droplets frozen beneath it, a tiny fern at the post foot. It
+  stands on the guide's ground ellipse, centered on the cross, never wider than the ellipse
+  and never taller than the height bar; it is small, a third o…
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets:x-decor-gift-water-bell
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets.yaml
+kind: prop
+batch: batch-30-decor-sets
+size: 1024x1024

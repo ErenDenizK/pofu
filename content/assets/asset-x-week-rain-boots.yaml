@@ -1,0 +1,21 @@
+id: asset-x-week-rain-boots
+type: asset
+title_tr: x-week-rain-boots
+title_en: x-week-rain-boots (prop)
+status: in-production
+horizon: now
+summary: >-
+  A pair of small chunky rain boots in sunshine mustard with rolled-over cuffs, standing side
+  by side beside a small round puddle shown as a soft flat shape of pale blue-grey on the
+  ground, and a closed small umbrella in coral leaning against them with a drop on its tip.
+  It stands on the guide's ground ellipse, centered on the cross, never wider than the ellipse
+  and never taller than the height bar; it is small, a thir…
+art:
+  images: []
+  jobs:
+  - batch-32-weekly-themes:x-week-rain-boots
+sources:
+- doc: tools/imagegen/manifest/batch-32-weekly-themes.yaml
+kind: prop
+batch: batch-32-weekly-themes
+size: 1024x1024

@@ -713,8 +713,9 @@ private struct StationView: View {
         let anchor = UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight)
         ZStack(alignment: .topLeading) {
             if shown > 0 {
-                ContactShadow(width: 92, height: 20)
-                    .position(x: point.x, y: point.y + 2)
+                let ground = ContactShadow.station(art: IslandLayout.stationArt(status.id, level: shown)?.name, isWater: status.id == .pond)
+                ContactShadow(width: CGFloat(ground.width), height: CGFloat(ground.height), strength: ground.strength)
+                    .position(x: point.x + CGFloat(ground.dx), y: point.y + CGFloat(ground.dy))
                 if let art = IslandLayout.stationArt(status.id, level: shown), let sprite = WorldArt.sprite(art.name) {
                     DepthImage(name: art.name, sprite: sprite, level: level, anchor: point)
                         .modifier(FocusLife(isActive: isFocused && build == nil, anchor: anchor))

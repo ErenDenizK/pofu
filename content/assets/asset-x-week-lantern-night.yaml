@@ -1,0 +1,21 @@
+id: asset-x-week-lantern-night
+type: asset
+title_tr: x-week-lantern-night
+title_en: x-week-lantern-night (prop)
+status: in-production
+horizon: now
+summary: >-
+  A tall slim honey-wood pole with a crossbar holding five paper lanterns in different shapes
+  (round, long, star-shaped, small, pear-shaped) in cream, rose, mustard, sage and lilac,
+  hung from short cords, all unlit, with a round clay base with stones. It stands on the guide's
+  ground ellipse, centered on the cross, never wider than the ellipse and never taller than
+  the height bar; it is small, a third of the image width…
+art:
+  images: []
+  jobs:
+  - batch-32-weekly-themes:x-week-lantern-night
+sources:
+- doc: tools/imagegen/manifest/batch-32-weekly-themes.yaml
+kind: prop
+batch: batch-32-weekly-themes
+size: 1024x1024

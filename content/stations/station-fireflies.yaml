@@ -2,10 +2,12 @@ id: station-fireflies
 type: station
 title_tr: Ateşböceği çayırı
 title_en: Firefly meadow
-status: planned
+status: cut
 horizon: later
 summary: A meadow of fireflies that glows on calm nights.
 notes:
+- Retired 2026-11-05 with the station islands (game plan section 2); the prices below are the
+  old ones and are no longer in PofuCore.
 - >-
   Opens: Yıldız + 3 days. Level costs 1→5: 2,400 · 5,280 · 11,616 · 25,555 · 56,221 (total
   101,072). Rate L1→L5: 11 → 35.2 seeds/hour before calm.
