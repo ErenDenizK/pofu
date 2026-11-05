@@ -7,8 +7,8 @@ extension ColourScript {
             name: .dawn,
             sun: SkyPoint(x: 0.16, y: 0.3),
             sky: SkyColours(
-                zenith: PofuRGB(hex: 0xBCD3EC),
-                horizon: PofuRGB(hex: 0xFAD9C6),
+                zenith: PofuRGB(hex: 0xA4C6EE),
+                horizon: PofuRGB(hex: 0xFAC8B0),
                 glow: PofuRGB(hex: 0xFFDCBC),
                 glowStrength: 0.6,
                 cloudLight: PofuRGB(hex: 0xFFF4EE),
@@ -22,7 +22,7 @@ extension ColourScript {
             shadow: GradeRGB(0.7255, 0.6353, 1.0000),
             rim: ScriptLight(colour: GradeRGB(1.0000, 0.8510, 0.7373), intensity: 0.16),
             practicals: Practicals(ember: 0.5, window: 0.25),
-            fog: ScriptFog(colour: PofuRGB(hex: 0xF6DCD2), far: 0.42),
+            fog: ScriptFog(colour: PofuRGB(hex: 0xF2C9BC), far: 0.3),
             sea: SeaColours(light: PofuRGB(hex: 0xFFF1EA), shade: PofuRGB(hex: 0xE3C4C8), opacity: 0.95),
             grade: WorldGrade(
                 lift: GradeRGB(0.025, 0.008, 0.01),
@@ -43,12 +43,12 @@ extension ColourScript {
             name: .day,
             sun: SkyPoint(x: 0.5, y: 0.11),
             sky: SkyColours(
-                zenith: PofuRGB(hex: 0xC4DEF2),
-                horizon: PofuRGB(hex: 0xF8F0DF),
+                zenith: PofuRGB(hex: 0x8CC4F2),
+                horizon: PofuRGB(hex: 0xE2F0F8),
                 glow: PofuRGB(hex: 0xFFF6DD),
                 glowStrength: 0.62,
                 cloudLight: PofuRGB(hex: 0xFFFFFF),
-                cloudShade: PofuRGB(hex: 0xD8E3EF),
+                cloudShade: PofuRGB(hex: 0xC6DCF0),
                 cloudOpacity: 0.95,
                 stars: 0.0,
                 tint: PofuRGB(hex: 0xFFFFFF)
@@ -58,7 +58,7 @@ extension ColourScript {
             shadow: GradeRGB(0.6627, 0.6078, 0.7686),
             rim: ScriptLight(colour: GradeRGB(1.0000, 0.9137, 0.7882), intensity: 0.12),
             practicals: Practicals(ember: 0.35, window: 0.0),
-            fog: ScriptFog(colour: PofuRGB(hex: 0xDCEAF4), far: 0.38),
+            fog: ScriptFog(colour: PofuRGB(hex: 0xCDE3F5), far: 0.24),
             sea: SeaColours(light: PofuRGB(hex: 0xFFFFFF), shade: PofuRGB(hex: 0xD8E3EF), opacity: 0.95),
             grade: WorldGrade(
                 lift: GradeRGB(0.0, 0.0, 0.012),
@@ -78,8 +78,8 @@ extension ColourScript {
             name: .golden,
             sun: SkyPoint(x: 0.84, y: 0.3),
             sky: SkyColours(
-                zenith: PofuRGB(hex: 0x9C90D2),
-                horizon: PofuRGB(hex: 0xF8BC8C),
+                zenith: PofuRGB(hex: 0x8678D0),
+                horizon: PofuRGB(hex: 0xF8B078),
                 glow: PofuRGB(hex: 0xFFC983),
                 glowStrength: 0.72,
                 cloudLight: PofuRGB(hex: 0xFFE7D3),
@@ -93,7 +93,7 @@ extension ColourScript {
             shadow: GradeRGB(0.5569, 0.4706, 0.7843),
             rim: ScriptLight(colour: GradeRGB(1.0000, 0.7804, 0.4784), intensity: 0.26),
             practicals: Practicals(ember: 0.6, window: 0.2),
-            fog: ScriptFog(colour: PofuRGB(hex: 0xF4C9B4), far: 0.45),
+            fog: ScriptFog(colour: PofuRGB(hex: 0xF2BCA2), far: 0.32),
             sea: SeaColours(light: PofuRGB(hex: 0xFFE5D2), shade: PofuRGB(hex: 0xD3A3B0), opacity: 0.95),
             grade: WorldGrade(
                 lift: GradeRGB(0.03, 0.008, -0.015),
@@ -129,7 +129,7 @@ extension ColourScript {
             shadow: GradeRGB(0.1804, 0.1451, 0.2784),
             rim: ScriptLight(colour: GradeRGB(1.0000, 0.7216, 0.4000), intensity: 0.3),
             practicals: Practicals(ember: 0.9, window: 0.8),
-            fog: ScriptFog(colour: PofuRGB(hex: 0x8E7FB0), far: 0.5),
+            fog: ScriptFog(colour: PofuRGB(hex: 0x8E7FB0), far: 0.4),
             sea: SeaColours(light: PofuRGB(hex: 0xA795BC), shade: PofuRGB(hex: 0x5E5384), opacity: 0.9),
             grade: WorldGrade(
                 black: 0.18,
@@ -168,7 +168,7 @@ extension ColourScript {
             shadow: GradeRGB(0.1176, 0.0941, 0.1569),
             rim: ScriptLight(colour: GradeRGB(1.0000, 0.6902, 0.3765), intensity: 0.42),
             practicals: Practicals(ember: 1.0, window: 1.0),
-            fog: ScriptFog(colour: PofuRGB(hex: 0x4A4677), far: 0.5),
+            fog: ScriptFog(colour: PofuRGB(hex: 0x4A4677), far: 0.42),
             sea: SeaColours(light: PofuRGB(hex: 0x9490C0), shade: PofuRGB(hex: 0x57527F), opacity: 0.88),
             grade: WorldGrade(
                 black: 0.32,
