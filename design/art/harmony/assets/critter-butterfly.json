@@ -1,0 +1,52 @@
+{
+ "after": {
+  "C_mean": 38.769,
+  "C_p50": 39.589,
+  "C_p95": 45.618,
+  "L_mean": 78.572,
+  "L_p2": 58.784,
+  "L_p98": 88.874,
+  "detail": 1.638,
+  "edge": 3.724,
+  "warmth_b": 34.037
+ },
+ "before": {
+  "C_mean": 26.792,
+  "C_p50": 27.335,
+  "C_p95": 31.461,
+  "L_mean": 78.603,
+  "L_p2": 58.784,
+  "L_p98": 89.115,
+  "detail": 1.675,
+  "edge": 3.724,
+  "warmth_b": 23.506
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.45,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "sheet",
+ "matched_to": "world",
+ "outliers_after": [
+  "L_p98",
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 77.7,
+ "score_before": 60.8,
+ "shipped": false,
+ "source": "design/art/masters/critter-butterfly/critter-butterfly.png",
+ "source_sha": "7a09f2ce4207793d"
+}
