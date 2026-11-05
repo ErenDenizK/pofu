@@ -1,0 +1,151 @@
+{
+  "job": "glow-window-spill",
+  "cap": 614400,
+  "pixel_changes": false,
+  "candidates": [
+    {
+      "take": 1,
+      "encodings": [
+        {
+          "path": "/workspace/art-20261105-qa-repost/build/imagegen/batch-35-experience-pilot/locked/ui__glow-window-spill--t1.png",
+          "bytes": 920376,
+          "rgba_sha256": "c0df3ec8494d827b9c93503dbf8fe1404935b6bc3b9ec12018d0c00d1aea3f2f"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t1-lossless-m4-q100.webp",
+          "bytes": 659000,
+          "rgba_sha256": "c0df3ec8494d827b9c93503dbf8fe1404935b6bc3b9ec12018d0c00d1aea3f2f"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t1-lossless-m6-q100.webp",
+          "bytes": 659892,
+          "rgba_sha256": "c0df3ec8494d827b9c93503dbf8fe1404935b6bc3b9ec12018d0c00d1aea3f2f"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t1-lossless-m4-q75.webp",
+          "bytes": 662374,
+          "rgba_sha256": "c0df3ec8494d827b9c93503dbf8fe1404935b6bc3b9ec12018d0c00d1aea3f2f"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t1-lossless-m6-q75.webp",
+          "bytes": 662466,
+          "rgba_sha256": "c0df3ec8494d827b9c93503dbf8fe1404935b6bc3b9ec12018d0c00d1aea3f2f"
+        }
+      ],
+      "best": {
+        "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t1-lossless-m4-q100.webp",
+        "bytes": 659000,
+        "rgba_sha256": "c0df3ec8494d827b9c93503dbf8fe1404935b6bc3b9ec12018d0c00d1aea3f2f"
+      },
+      "eligible": false
+    },
+    {
+      "take": 2,
+      "encodings": [
+        {
+          "path": "/workspace/art-20261105-qa-repost/build/imagegen/batch-35-experience-pilot/locked/ui__glow-window-spill--t2.png",
+          "bytes": 875008,
+          "rgba_sha256": "a5095ae9ab533544b7651d6d882042d9d1c94f38765a2c32e20583a4e09a24cd"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t2-lossless-m4-q100.webp",
+          "bytes": 637726,
+          "rgba_sha256": "a5095ae9ab533544b7651d6d882042d9d1c94f38765a2c32e20583a4e09a24cd"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t2-lossless-m6-q100.webp",
+          "bytes": 634528,
+          "rgba_sha256": "a5095ae9ab533544b7651d6d882042d9d1c94f38765a2c32e20583a4e09a24cd"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t2-lossless-m4-q75.webp",
+          "bytes": 639338,
+          "rgba_sha256": "a5095ae9ab533544b7651d6d882042d9d1c94f38765a2c32e20583a4e09a24cd"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t2-lossless-m6-q75.webp",
+          "bytes": 647400,
+          "rgba_sha256": "a5095ae9ab533544b7651d6d882042d9d1c94f38765a2c32e20583a4e09a24cd"
+        }
+      ],
+      "best": {
+        "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t2-lossless-m6-q100.webp",
+        "bytes": 634528,
+        "rgba_sha256": "a5095ae9ab533544b7651d6d882042d9d1c94f38765a2c32e20583a4e09a24cd"
+      },
+      "eligible": false
+    },
+    {
+      "take": 3,
+      "encodings": [
+        {
+          "path": "/workspace/art-20261105-qa-repost/build/imagegen/batch-35-experience-pilot/locked/ui__glow-window-spill--t3.png",
+          "bytes": 884290,
+          "rgba_sha256": "f5df4b71ee2d1f40250180b6ab51f9bad8e64fee6c979a3b92e44bf7af21e3f5"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t3-lossless-m4-q100.webp",
+          "bytes": 635030,
+          "rgba_sha256": "f5df4b71ee2d1f40250180b6ab51f9bad8e64fee6c979a3b92e44bf7af21e3f5"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t3-lossless-m6-q100.webp",
+          "bytes": 635272,
+          "rgba_sha256": "f5df4b71ee2d1f40250180b6ab51f9bad8e64fee6c979a3b92e44bf7af21e3f5"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t3-lossless-m4-q75.webp",
+          "bytes": 636946,
+          "rgba_sha256": "f5df4b71ee2d1f40250180b6ab51f9bad8e64fee6c979a3b92e44bf7af21e3f5"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t3-lossless-m6-q75.webp",
+          "bytes": 637900,
+          "rgba_sha256": "f5df4b71ee2d1f40250180b6ab51f9bad8e64fee6c979a3b92e44bf7af21e3f5"
+        }
+      ],
+      "best": {
+        "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t3-lossless-m4-q100.webp",
+        "bytes": 635030,
+        "rgba_sha256": "f5df4b71ee2d1f40250180b6ab51f9bad8e64fee6c979a3b92e44bf7af21e3f5"
+      },
+      "eligible": false
+    },
+    {
+      "take": 4,
+      "encodings": [
+        {
+          "path": "/workspace/art-20261105-qa-repost/build/imagegen/batch-35-experience-pilot/locked/ui__glow-window-spill--t4.png",
+          "bytes": 891793,
+          "rgba_sha256": "28bc8307f7e60a5402a0de0920f7a4cb34b9786cecdc8d68a8079313261d3f26"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t4-lossless-m4-q100.webp",
+          "bytes": 643774,
+          "rgba_sha256": "28bc8307f7e60a5402a0de0920f7a4cb34b9786cecdc8d68a8079313261d3f26"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t4-lossless-m6-q100.webp",
+          "bytes": 644022,
+          "rgba_sha256": "28bc8307f7e60a5402a0de0920f7a4cb34b9786cecdc8d68a8079313261d3f26"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t4-lossless-m4-q75.webp",
+          "bytes": 638680,
+          "rgba_sha256": "28bc8307f7e60a5402a0de0920f7a4cb34b9786cecdc8d68a8079313261d3f26"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t4-lossless-m6-q75.webp",
+          "bytes": 645802,
+          "rgba_sha256": "28bc8307f7e60a5402a0de0920f7a4cb34b9786cecdc8d68a8079313261d3f26"
+        }
+      ],
+      "best": {
+        "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/glow-window-spill/t4-lossless-m4-q75.webp",
+        "bytes": 638680,
+        "rgba_sha256": "28bc8307f7e60a5402a0de0920f7a4cb34b9786cecdc8d68a8079313261d3f26"
+      },
+      "eligible": false
+    }
+  ]
+}
