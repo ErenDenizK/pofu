@@ -1,0 +1,201 @@
+batch: batch-25-seasons
+manifest: tools/imagegen/manifest/batch-25-seasons.yaml
+manifest_sha256: de70b41e2313133a858b0128327b657229c73239b08fb06c5b6198d6046137c3
+contact_sheet: design/art/takes/batch-25-seasons/x-season-snow-night/contact.jpg
+jobs:
+  x-season-snow-night:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both read as quiet blue winter
+      night with snow-covered lawn and roofs, a large pale moon and stars, warm windows,
+      exactly one hanging paper lantern, tiny pawprints and a frozen pond. Take2 adds
+      a tree; neither has actual characters or text. Source island soil/lawn/door/root
+      silhouette remains recognisable. Populated station positions are inferred and
+      vary; canonical layout cannot be certified from the bare reference. Bright warm
+      subject rendering and other style warnings remain advisory. No promotion.
+qa_reports:
+  1:
+    job: x-season-snow-night
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.7
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 54 (at most 8), p98 94 (at least 58), spread 40
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 39.5
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 80 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 80.3
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.40 (at most 0.10; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.4
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 4.6 (at least 2.8)'
+      value: 4.63
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.6 (R1 5.3)
+      value: 3.6
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9501
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.5, p95 7.8, off-palette 0.0% (top: #CC7744 (0.0%), #DD8844
+        (0.0%))'
+      value: 3.4735
+    info:
+      metrics_raw:
+        L_p5: 30.4
+        L_p50: 77.6
+        L_p95: 92.5
+        C_p50: 20.7
+        C_p95: 37.9
+        C_p99: 42.1
+        detail: 4.24
+      metrics_locked:
+        L_p5: 30.4
+        L_p50: 77.5
+        L_p95: 92.2
+        C_p50: 20.2
+        C_p95: 37.7
+        C_p99: 41.0
+        detail: 3.6
+    fingerprint: 939ebde04572a5a9
+  2:
+    job: x-season-snow-night
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 35.0
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 56 (at most 8), p98 93 (at least 58), spread 36
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 36.2
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 79 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 78.7
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.36 (at most 0.10; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.361
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 4.1 (at least 2.8)'
+      value: 4.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.2 (R1 5.3)
+      value: 3.24
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0892
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 5.7, off-palette 0.0% (top: #EE9955 (0.0%))'
+      value: 2.5683
+    info:
+      metrics_raw:
+        L_p5: 28.2
+        L_p50: 77.1
+        L_p95: 91.3
+        C_p50: 17.3
+        C_p95: 35.8
+        C_p99: 44.0
+        detail: 3.92
+      metrics_locked:
+        L_p5: 28.4
+        L_p50: 77.1
+        L_p95: 91.0
+        C_p50: 17.1
+        C_p95: 35.0
+        C_p99: 43.3
+        detail: 3.24
+    fingerprint: 939ebde04572a5a9
+manual_review:
+  observed_note: Both read as quiet blue winter night with snow-covered lawn and roofs,
+    a large pale moon and stars, warm windows, exactly one hanging paper lantern,
+    tiny pawprints and a frozen pond. Take2 adds a tree; neither has actual characters
+    or text. Source island soil/lawn/door/root silhouette remains recognisable. Populated
+    station positions are inferred and vary; canonical layout cannot be certified
+    from the bare reference. Bright warm subject rendering and other style warnings
+    remain advisory. No promotion.
+  excluded_takes: []
+sources:
+- batch: batch-25-seasons
+  job: x-season-snow-night
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-snow-night-felt
+  source_file: /workspace/generated_images/exec-120cc347-affc-4a5a-a384-52dc11ed28af.png
+  returned_at: '2026-11-05T14:34:08.419Z'
+  prompt_sha256: 290243aee6ab510c9d98d2546d3399ce1ff7a0ff492eba2d0e783b1e515d39fa
+  fingerprint: 939ebde04572a5a9
+  saved_at: '2026-11-05T14:40:30.953163+00:00'
+  original_generated_png_sha256: a04006302cf349dd570b522abb8c5a4c1f47c7eb640427461e82ed096cb0da61
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: b4540ca0b3a2641546fdb27916d8f67e40d4cd87e1b4122aeaea8c09cc75bdaf
+  inbox_png_sha256: b8f607cfb6104fe7eb310f017bdd14083b7340193b7e8e786f62fcff7a05d0e4
+  qa_sha256: 2b4395182ad54a7adab72a02a2fee95f15f80ca47ed6d7b2034b3535834df7ca
+- batch: batch-25-seasons
+  job: x-season-snow-night
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-snow-night-felt
+  source_file: /workspace/generated_images/exec-80a35373-7545-41c3-8bfd-53ebd4d087fa.png
+  returned_at: '2026-11-05T14:32:44.398Z'
+  prompt_sha256: 290243aee6ab510c9d98d2546d3399ce1ff7a0ff492eba2d0e783b1e515d39fa
+  fingerprint: 939ebde04572a5a9
+  saved_at: '2026-11-05T14:32:44.836856+00:00'
+  original_generated_png_sha256: 908fecf70fc0ec6455496c0e382b72550145d3cc1213c08eb082ef996c8becfc
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 0fa4f231b806b22a2dcc15e4ecc71f6f0056c4ad563ec559c9beed27576eabc2
+  inbox_png_sha256: e0dddc36535cfbe4ded509b512bd746230dfe7f70956906a93b5883b3b0cbda8
+  qa_sha256: 9f70dbaac6fc9d63a53915e724106ac4ce6ba580397cddc5aebca4929ea11b33
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
