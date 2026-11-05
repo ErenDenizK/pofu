@@ -810,6 +810,56 @@
           }
         }
       }
+    },
+    "Next level · %lld seeds": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonraki seviye · %lld çekirdek"
+          }
+        }
+      }
+    },
+    "A new level brings more seeds an hour.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Her yeni seviye saatte daha çok çekirdek getirir."
+          }
+        }
+      }
+    },
+    "Sunflowers like patient days.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayçiçekleri sabırlı günleri sever."
+          }
+        }
+      }
+    },
+    "The kettle is never in a hurry.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çaydanlık hiç acele etmez."
+          }
+        }
+      }
+    },
+    "Something is always being mended.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hep bir şey onarılıyor."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

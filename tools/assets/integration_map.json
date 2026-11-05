@@ -1,52 +1,500 @@
 {
-  "_doc": "Master -> app imageset map for the vertical slice (tools/assets/integrate.py). `master` is an art folder under design/art (the lock-light re-lock wins, then .png, then .webp). target `games` writes a flat PNG into PofuGames/Resources at `scale` px per point, fitted into `points` and never upscaled; target `world` names an imageset baked into World.xcassets by design/prototypes/interactions/tools/preblur.py (integrate.py runs it, then checks the imageset exists).",
+  "_doc": "Master -> app imageset map for the vertical slice (tools/assets/integrate.py). `master` is an art folder under design/art (the lock-light re-lock wins, then .png, then .webp). target `games` writes a flat PNG into PofuGames/Resources at `scale` px per point, fitted into `points` and never upscaled; target `world` names an imageset baked into World.xcassets by design/prototypes/interactions/tools/preblur.py (integrate.py runs it, then checks the imageset exists). target `ui` is the same flat bake into PofuDesignSystem/Resources (the painted menu art, named paint-*; PofuPaint in the design system lists them).",
   "targets": {
     "games": "Packages/PofuKit/Sources/PofuGames/Resources",
-    "world": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets"
+    "world": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets",
+    "ui": "Packages/PofuKit/Sources/PofuDesignSystem/Resources"
   },
   "entries": [
-    {"target": "games", "name": "garden-tile-sage", "master": "design/art/ui/ui-game-plot-tile-sage", "points": [48, 48], "scale": 3},
-    {"target": "games", "name": "garden-tile-honey", "master": "design/art/ui/ui-game-plot-tile-honey", "points": [48, 48], "scale": 3},
-    {"target": "games", "name": "garden-tile-terracotta", "master": "design/art/ui/ui-game-plot-tile-terracotta", "points": [48, 48], "scale": 3},
-    {"target": "games", "name": "garden-tile-lilac", "master": "design/art/ui/ui-game-plot-tile-lilac", "points": [48, 48], "scale": 3},
-    {"target": "games", "name": "garden-tile-mint", "master": "design/art/ui/ui-game-plot-tile-mint", "points": [48, 48], "scale": 3},
-    {"target": "games", "name": "garden-tile-rose", "master": "design/art/ui/ui-game-plot-tile-rose", "points": [48, 48], "scale": 3},
-    {"target": "games", "name": "garden-soil", "master": "design/art/ui/ui-game-soil-cell", "points": [48, 48], "scale": 3},
-    {"target": "games", "name": "garden-bed-rim", "master": "design/art/ui/ui-game-bed-rim", "points": [400, 400], "scale": 3},
-    {"target": "games", "name": "garden-tray", "master": "design/art/ui/ui-ui-game-tray", "points": [400, 200], "scale": 3},
-    {"target": "games", "name": "garden-bloom-front", "master": "design/art/ui/ui-game-bloom-front", "points": [64, 64], "scale": 3},
-    {"target": "games", "name": "garden-bloom-left", "master": "design/art/ui/ui-game-bloom-left", "points": [64, 64], "scale": 3},
-    {"target": "games", "name": "garden-bloom-right", "master": "design/art/ui/ui-game-bloom-right", "points": [64, 64], "scale": 3},
-    {"target": "games", "name": "garden-combo-stamp", "master": "design/art/ui/ui-game-combo-stamp", "points": [96, 96], "scale": 3},
-    {"target": "world", "name": "harbor-island-s", "master": "design/art/masters/harbor-island-s"},
-    {"target": "world", "name": "harbor-goat", "master": "design/art/masters/harbor-goat"},
-    {"target": "world", "name": "simit-kitten", "master": "design/art/masters/simit-kitten"},
-    {"target": "world", "name": "simit-kitten-work", "master": "design/art/masters/simit-kitten-work"},
-    {"target": "world", "name": "simit-kitten-ears", "master": "design/art/masters/simit-kitten-ears"},
-    {"target": "world", "name": "bagel-cart-1", "master": "design/art/stations/bagel-cart-1"},
-    {"target": "world", "name": "bagel-cart-2", "master": "design/art/stations/bagel-cart-2"},
-    {"target": "world", "name": "bagel-cart-3", "master": "design/art/stations/bagel-cart-3"},
-    {"target": "world", "name": "bagel-cart-4", "master": "design/art/stations/bagel-cart-4"},
-    {"target": "world", "name": "bagel-cart-5", "master": "design/art/stations/bagel-cart-5"},
-    {"target": "world", "name": "pier-1", "master": "design/art/stations/pier-1"},
-    {"target": "world", "name": "lighthouse-1", "master": "design/art/stations/lighthouse-1"},
-    {"target": "world", "name": "harbor-ferry-1", "master": "design/art/stations/harbor-ferry-1"},
-    {"target": "world", "name": "harbor-horn-1", "master": "design/art/stations/harbor-horn-1"},
-    {"target": "world", "name": "harbor-lamp-1", "master": "design/art/stations/harbor-lamp-1"},
-    {"target": "world", "name": "harbor-crates-1", "master": "design/art/stations/harbor-crates-1"},
-    {"target": "world", "name": "decor-bench", "master": "design/art/masters/decor-bench"},
-    {"target": "world", "name": "simit-happy", "master": "design/art/masters/simit-happy"},
-    {"target": "world", "name": "simit-sleepy", "master": "design/art/masters/simit-sleepy"},
-    {"target": "world", "name": "simit-surprised", "master": "design/art/masters/simit-surprised"},
-    {"target": "world", "name": "mochi-work", "master": "design/art/masters/mochi-work"},
-    {"target": "world", "name": "mochi-surprised", "master": "design/art/masters/mochi-surprised"},
-    {"target": "world", "name": "mochi-eyes-closed", "master": "design/art/masters/mochi-eyes-closed"},
-    {"target": "world", "name": "mochi-eyes-happy", "master": "design/art/masters/mochi-eyes-happy"},
-    {"target": "world", "name": "findik-work", "master": "design/art/masters/findik-work"},
-    {"target": "world", "name": "findik-eyes-closed", "master": "design/art/masters/findik-eyes-closed"},
-    {"target": "world", "name": "findik-eyes-happy", "master": "design/art/masters/findik-eyes-happy"},
-    {"target": "world", "name": "workshop-1-glow", "master": "design/art/stations/workshop-1-lit"},
-    {"target": "world", "name": "pond-5-glow", "master": "design/art/stations/pond-5-lit"},
-    {"target": "world", "name": "windmill-5-glow", "master": "design/art/stations/windmill-5-lit"}
+    {
+      "target": "games",
+      "name": "garden-tile-sage",
+      "master": "design/art/ui/ui-game-plot-tile-sage",
+      "points": [
+        48,
+        48
+      ],
+      "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "garden-tile-honey",
+      "master": "design/art/ui/ui-game-plot-tile-honey",
+      "points": [
+        48,
+        48
+      ],
+      "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "garden-tile-terracotta",
+      "master": "design/art/ui/ui-game-plot-tile-terracotta",
+      "points": [
+        48,
+        48
+      ],
+      "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "garden-tile-lilac",
+      "master": "design/art/ui/ui-game-plot-tile-lilac",
+      "points": [
+        48,
+        48
+      ],
+      "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "garden-tile-mint",
+      "master": "design/art/ui/ui-game-plot-tile-mint",
+      "points": [
+        48,
+        48
+      ],
+      "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "garden-tile-rose",
+      "master": "design/art/ui/ui-game-plot-tile-rose",
+      "points": [
+        48,
+        48
+      ],
+      "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "garden-soil",
+      "master": "design/art/ui/ui-game-soil-cell",
+      "points": [
+        48,
+        48
+      ],
+      "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "garden-bed-rim",
+      "master": "design/art/ui/ui-game-bed-rim",
+      "points": [
+        400,
+        400
+      ],
+      "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "garden-tray",
+      "master": "design/art/ui/ui-ui-game-tray",
+      "points": [
+        400,
+        200
+      ],
+      "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "garden-bloom-front",
+      "master": "design/art/ui/ui-game-bloom-front",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "garden-bloom-left",
+      "master": "design/art/ui/ui-game-bloom-left",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "garden-bloom-right",
+      "master": "design/art/ui/ui-game-bloom-right",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "games",
+      "name": "garden-combo-stamp",
+      "master": "design/art/ui/ui-game-combo-stamp",
+      "points": [
+        96,
+        96
+      ],
+      "scale": 3
+    },
+    {
+      "target": "world",
+      "name": "harbor-island-s",
+      "master": "design/art/masters/harbor-island-s"
+    },
+    {
+      "target": "world",
+      "name": "harbor-goat",
+      "master": "design/art/masters/harbor-goat"
+    },
+    {
+      "target": "world",
+      "name": "simit-kitten",
+      "master": "design/art/masters/simit-kitten"
+    },
+    {
+      "target": "world",
+      "name": "simit-kitten-work",
+      "master": "design/art/masters/simit-kitten-work"
+    },
+    {
+      "target": "world",
+      "name": "simit-kitten-ears",
+      "master": "design/art/masters/simit-kitten-ears"
+    },
+    {
+      "target": "ui",
+      "name": "paint-jar-full",
+      "master": "design/art/ui/ui-jar-full",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-lantern-on",
+      "master": "design/art/ui/ui-lantern-on",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-pot-bloom",
+      "master": "design/art/ui/ui-pot-bloom",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-pot-bud",
+      "master": "design/art/ui/ui-pot-bud",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-face-primary",
+      "master": "design/art/ui/ui-face-primary",
+      "points": [
+        320,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-face-secondary",
+      "master": "design/art/ui/ui-face-secondary",
+      "points": [
+        320,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-face-disc",
+      "master": "design/art/ui/ui-face-disc",
+      "points": [
+        64,
+        64
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-tag-paper",
+      "master": "design/art/ui/ui-tag-paper",
+      "points": [
+        160,
+        32
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-panel-paper",
+      "master": "design/art/ui/ui-panel-paper",
+      "points": [
+        120,
+        120
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-icon-seed",
+      "master": "design/art/ui/icon-seed",
+      "points": [
+        56,
+        56
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-icon-calm",
+      "master": "design/art/ui/icon-calm",
+      "points": [
+        56,
+        56
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-icon-island",
+      "master": "design/art/ui/icon-island",
+      "points": [
+        56,
+        56
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-icon-friend",
+      "master": "design/art/ui/icon-friend",
+      "points": [
+        56,
+        56
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-icon-mood-content",
+      "master": "design/art/ui/icon-mood-content",
+      "points": [
+        56,
+        56
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-icon-skip",
+      "master": "design/art/ui/icon-skip",
+      "points": [
+        56,
+        56
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-icon-round",
+      "master": "design/art/ui/icon-round",
+      "points": [
+        56,
+        56
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-icon-breath",
+      "master": "design/art/ui/icon-breath",
+      "points": [
+        56,
+        56
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-icon-rumour",
+      "master": "design/art/ui/icon-rumour",
+      "points": [
+        56,
+        56
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-icon-decor",
+      "master": "design/art/ui/icon-decor",
+      "points": [
+        56,
+        56
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-icon-plus",
+      "master": "design/art/ui/icon-plus",
+      "points": [
+        56,
+        56
+      ],
+      "scale": 3
+    },
+    {
+      "target": "ui",
+      "name": "paint-icon-tea",
+      "master": "design/art/ui/icon-station-tea-stall",
+      "points": [
+        56,
+        56
+      ],
+      "scale": 3
+    },
+    {
+      "target": "world",
+      "name": "bagel-cart-1",
+      "master": "design/art/stations/bagel-cart-1"
+    },
+    {
+      "target": "world",
+      "name": "bagel-cart-2",
+      "master": "design/art/stations/bagel-cart-2"
+    },
+    {
+      "target": "world",
+      "name": "bagel-cart-3",
+      "master": "design/art/stations/bagel-cart-3"
+    },
+    {
+      "target": "world",
+      "name": "bagel-cart-4",
+      "master": "design/art/stations/bagel-cart-4"
+    },
+    {
+      "target": "world",
+      "name": "bagel-cart-5",
+      "master": "design/art/stations/bagel-cart-5"
+    },
+    {
+      "target": "world",
+      "name": "pier-1",
+      "master": "design/art/stations/pier-1"
+    },
+    {
+      "target": "world",
+      "name": "lighthouse-1",
+      "master": "design/art/stations/lighthouse-1"
+    },
+    {
+      "target": "world",
+      "name": "harbor-ferry-1",
+      "master": "design/art/stations/harbor-ferry-1"
+    },
+    {
+      "target": "world",
+      "name": "harbor-horn-1",
+      "master": "design/art/stations/harbor-horn-1"
+    },
+    {
+      "target": "world",
+      "name": "harbor-lamp-1",
+      "master": "design/art/stations/harbor-lamp-1"
+    },
+    {
+      "target": "world",
+      "name": "harbor-crates-1",
+      "master": "design/art/stations/harbor-crates-1"
+    },
+    {
+      "target": "world",
+      "name": "decor-bench",
+      "master": "design/art/masters/decor-bench"
+    },
+    {
+      "target": "world",
+      "name": "simit-happy",
+      "master": "design/art/masters/simit-happy"
+    },
+    {
+      "target": "world",
+      "name": "simit-sleepy",
+      "master": "design/art/masters/simit-sleepy"
+    },
+    {
+      "target": "world",
+      "name": "simit-surprised",
+      "master": "design/art/masters/simit-surprised"
+    },
+    {
+      "target": "world",
+      "name": "mochi-work",
+      "master": "design/art/masters/mochi-work"
+    },
+    {
+      "target": "world",
+      "name": "mochi-surprised",
+      "master": "design/art/masters/mochi-surprised"
+    },
+    {
+      "target": "world",
+      "name": "mochi-eyes-closed",
+      "master": "design/art/masters/mochi-eyes-closed"
+    },
+    {
+      "target": "world",
+      "name": "mochi-eyes-happy",
+      "master": "design/art/masters/mochi-eyes-happy"
+    },
+    {
+      "target": "world",
+      "name": "findik-work",
+      "master": "design/art/masters/findik-work"
+    },
+    {
+      "target": "world",
+      "name": "findik-eyes-closed",
+      "master": "design/art/masters/findik-eyes-closed"
+    },
+    {
+      "target": "world",
+      "name": "findik-eyes-happy",
+      "master": "design/art/masters/findik-eyes-happy"
+    },
+    {
+      "target": "world",
+      "name": "workshop-1-glow",
+      "master": "design/art/stations/workshop-1-lit"
+    },
+    {
+      "target": "world",
+      "name": "pond-5-glow",
+      "master": "design/art/stations/pond-5-lit"
+    },
+    {
+      "target": "world",
+      "name": "windmill-5-glow",
+      "master": "design/art/stations/windmill-5-lit"
+    }
   ]
 }

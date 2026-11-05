@@ -99,8 +99,17 @@ public final class IslandSceneModel {
     /// Whether the timeline must run: springs moving, or the phone's tilt
     /// feeding parallax.
     var needsFrames: Bool {
-        isAnimating || isVisiting || (isDeviceTiltEnabled && !reduceMotion)
+        // A sheet or cover over the island freezes the ambient layers, so
+        // presenting and dismissing it never competes with a live world.
+        // The camera springs still run (a sheet can open with the camera
+        // on its way).
+        let ambient = !isCovered && !hasSheet && (isVisiting || (isDeviceTiltEnabled && !reduceMotion))
+        return isAnimating || ambient
     }
+
+    /// Whether a sheet or full-screen cover that is not the station sheet
+    /// sits over the island; Home sets it while one is presented.
+    public var isCovered = false
 
     /// The look's live window after the scene appears (look-dev B): the
     /// HD-2D layers animate during a visit and while the camera moves;

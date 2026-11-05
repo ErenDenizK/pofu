@@ -26,6 +26,16 @@ enum WorldStrings {
         }
     }
 
+    /// A line of flavour for the station's sheet.
+    static func stationFlavour(_ id: StationID) -> String? {
+        switch id {
+        case .garden: String(localized: "Sunflowers like patient days.", bundle: .module)
+        case .teaStall: String(localized: "The kettle is never in a hurry.", bundle: .module)
+        case .workshop: String(localized: "Something is always being mended.", bundle: .module)
+        default: nil
+        }
+    }
+
     static func islandName(_ id: IslandID) -> String {
         switch id {
         case .home: "Ayçiçeği"

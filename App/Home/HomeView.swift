@@ -98,6 +98,12 @@ struct HomeView: View {
                 model.tick()
             }
         }
+        // Sheets and covers freeze the world's ambient layers while they
+        // are up, so presenting and dismissing them never competes with a
+        // live scene.
+        .onChange(of: model.homeSheet != nil || model.isPlayingGarden, initial: true) { _, covered in
+            model.island.isCovered = covered
+        }
         .sheet(item: $model.homeSheet) { sheet in
             switch sheet {
             case .earn:
@@ -105,19 +111,24 @@ struct HomeView: View {
                 // together, with Pofu's room still showing above.
                 EarnSheet(model: model)
                     .presentationDetents([.fraction(0.68), .large])
+                    .pofuSheetBackground()
             case .passes:
                 PassesSheet(model: model)
                     .presentationDetents([.medium, .large])
+                    .pofuSheetBackground()
             case .settings:
                 SettingsView(model: model)
+                    .pofuSheetBackground()
             case .setup:
                 NavigationStack {
                     SetupGuideView(model: model)
                         .pofuSheetChrome()
                 }
+                .pofuSheetBackground()
             case .today:
                 TodaySheet(model: model)
                     .presentationDetents([.medium, .large])
+                    .pofuSheetBackground()
             }
         }
         // The garden game takes the whole screen, like Hop!.
@@ -378,18 +389,64 @@ struct HomeView: View {
     }
 }
 
-/// The Today sheet: the Today card on its own, opened from Home's glance.
-private struct TodaySheet: View {
+/// The Today sheet: Pofu's mood and a painted line, the Today card, and
+/// what the day is for.
+struct TodaySheet: View {
     let model: AppModel
 
     var body: some View {
         ScrollView {
-            TodayCard(model: model)
-                .padding(.horizontal, PofuSpacing.screen)
-                .padding(.top, PofuSpacing.xl)
-                .padding(.bottom, PofuSpacing.l)
+            VStack(alignment: .leading, spacing: PofuSpacing.l) {
+                hero
+                TodayCard(model: model)
+                rows
+            }
+            .padding(.horizontal, PofuSpacing.screen)
+            .padding(.top, PofuSpacing.xl)
+            .padding(.bottom, PofuSpacing.l)
         }
-        .background(PofuColor.dayWash.ignoresSafeArea())
+        .scrollBounceBehavior(.basedOnSize)
+        .background(PofuColor.sunken.ignoresSafeArea())
+    }
+
+    private var hero: some View {
+        HStack(spacing: PofuSpacing.m) {
+            PofuPaintedIcon(.iconMoodContent, size: 64)
+                .padding(PofuSpacing.xs)
+                .background { PofuPaperPanel() }
+            VStack(alignment: .leading, spacing: PofuSpacing.xs) {
+                Text(verbatim: model.profile.companionName)
+                    .font(PofuFont.title2)
+                    .foregroundStyle(PofuColor.textPrimary)
+                Text("Each skip is a small win.")
+                    .font(PofuFont.subheadline)
+                    .foregroundStyle(PofuColor.textSecondary)
+            }
+        }
+        .accessibilityElement(children: .combine)
+    }
+
+    private var rows: some View {
+        VStack(alignment: .leading, spacing: PofuSpacing.m) {
+            Label {
+                Text("\(model.balance.units) seeds in my cheeks")
+                    .font(PofuFont.callout)
+                    .foregroundStyle(PofuColor.textPrimary)
+            } icon: {
+                PofuPaintedIcon(.iconSeed, size: 28)
+            }
+            Label {
+                Text("Goal: skip half of the reflexive opens.")
+                    .font(PofuFont.footnote)
+                    .foregroundStyle(PofuColor.textSecondary)
+            } icon: {
+                PofuPaintedIcon(.iconSkip, size: 28)
+            }
+        }
+        .padding(PofuSpacing.l)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background { PofuPaperPanel() }
+        .accessibilityElement(children: .combine)
     }
 }
 

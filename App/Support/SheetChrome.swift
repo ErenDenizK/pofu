@@ -30,6 +30,25 @@ struct PofuSheetChrome: ViewModifier {
     }
 }
 
+/// A row label with a painted icon in place of an SF Symbol.
+struct PaintedLabel: View {
+    let title: LocalizedStringKey
+    let paint: PofuPaint
+
+    init(_ title: LocalizedStringKey, paint: PofuPaint) {
+        self.title = title
+        self.paint = paint
+    }
+
+    var body: some View {
+        Label {
+            Text(title)
+        } icon: {
+            PofuPaintedIcon(paint, size: 26)
+        }
+    }
+}
+
 /// The section header of every sheet and list: `subheadline` in
 /// `text.secondary`, in sentence case.
 struct PofuSectionHeader: ViewModifier {

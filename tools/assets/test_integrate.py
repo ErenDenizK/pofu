@@ -17,7 +17,7 @@ def test_map_is_well_formed():
     assert len(names) == len(set(names))
     for e in DATA["entries"]:
         assert e["target"] in DATA["targets"]
-        if e["target"] == "games":
+        if e["target"] in integrate.FLAT:
             assert len(e["points"]) == 2 and e.get("scale", 3) in (1, 2, 3)
 
 
@@ -30,13 +30,24 @@ def test_entry_has_master_and_output(entry):
 def test_games_outputs_are_current(tmp_path):
     # Re-baking must reproduce the committed pixels (deterministic).
     for e in DATA["entries"]:
-        if e["target"] != "games":
+        if e["target"] not in integrate.FLAT:
             continue
         out = tmp_path / f"{e['name']}.png"
         integrate.bake_games(e, out)
         a = Image.open(out).convert("RGBA")
         b = Image.open(integrate.output_path(e, DATA["targets"])).convert("RGBA")
         assert a.size == b.size and ImageChops.difference(a, b).getbbox() is None, f"{e['name']} is stale"
+
+
+def test_every_paint_case_has_a_png():
+    import re
+
+    root = integrate.REPO / DATA["targets"]["ui"]
+    swift = (integrate.REPO / "Packages/PofuKit/Sources/PofuDesignSystem/PofuPaint.swift").read_text(encoding="utf-8")
+    names = re.findall(r'case \w+ = "(paint-[\w-]+)"', swift)
+    assert len(names) >= 20
+    missing = [n for n in names if not (root / f"{n}.png").is_file()]
+    assert not missing, missing
 
 
 def test_every_garden_art_case_has_a_png():

@@ -212,7 +212,7 @@ public struct WorldHome: View {
                         PofuIconButton(systemName: "gamecontroller.fill", label: WorldStrings.play, action: play)
                             .transition(.scale(scale: 0.8).combined(with: .opacity))
                     }
-                    PofuIconButton(systemName: "map", label: WorldStrings.framingName(.map)) {
+                    PofuIconButton(systemName: "map", label: WorldStrings.framingName(.map), paint: .iconIsland) {
                         scene.go(to: .map)
                     }
                 }

@@ -168,15 +168,18 @@ private struct PofuActionStyleModifier: ViewModifier {
 public struct PofuIconButton: View {
     public let systemName: String
     public let label: String
+    /// A painted icon drawn in place of the symbol (the map's island).
+    public let paint: PofuPaint?
     public let action: @MainActor () -> Void
 
     @Environment(\.pofuSkin) private var skin
     @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
     @ScaledMetric(relativeTo: .body) private var diameter: CGFloat = PofuSize.minimumTouch
 
-    public init(systemName: String, label: String, action: @escaping @MainActor () -> Void) {
+    public init(systemName: String, label: String, paint: PofuPaint? = nil, action: @escaping @MainActor () -> Void) {
         self.systemName = systemName
         self.label = label
+        self.paint = paint
         self.action = action
     }
 
@@ -192,7 +195,20 @@ public struct PofuIconButton: View {
         .accessibilityLabel(Text(verbatim: label))
     }
 
+    @ViewBuilder
     private var symbol: some View {
+        #if canImport(UIKit)
+        if let paint, paint.isAvailable {
+            PofuPaintedIcon(paint, size: 30)
+        } else {
+            symbolImage
+        }
+        #else
+        symbolImage
+        #endif
+    }
+
+    private var symbolImage: some View {
         Image(systemName: systemName)
             .font(PofuFont.title3)
             .foregroundStyle(skinIsGlass ? PofuColor.textPrimary : PofuCraftedPalette.onFace)
