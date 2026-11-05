@@ -120,14 +120,40 @@ public final class IslandSceneModel {
         return (engine.tilt.x * 0.5, engine.tilt.y * 0.5)
     }
 
-    /// Whether the timeline must run: springs moving, or the phone's tilt
-    /// feeding parallax.
+    /// The frame-rate policy's inputs: Low Power Mode, the held thermal
+    /// state and Reduce Motion (experience v1 §4).
+    public let power = WorldPower()
+
+    /// What the world is asking for now, as the policy's demand. Direct is
+    /// a finger, a pinch, momentum, a flight or a brush; Moment is a build,
+    /// a collect or the rack focus; Ambient is the visit window.
+    func demand(moment: Bool, at date: Date = Date()) -> FrameDemand {
+        let direct = engine.rig.isMoving || engine.thumb.isZooming || isBrushing(at: date)
+        return FrameDemand(
+            isCovered: isCovered,
+            isDirect: direct,
+            isMoment: moment || (isAnimating && !direct),
+            isVisiting: isVisiting || (isDeviceTiltEnabled && !reduceMotion)
+        )
+    }
+
+    /// The policy's directive for the timeline's interval and pause, and
+    /// for the effects that run (§4.1).
+    func directive(moment: Bool, at date: Date = Date()) -> FrameDirective {
+        power.policy.directive(for: demand(moment: moment, at: date), conditions: power.conditions)
+    }
+
+    /// Whether the timeline must run: springs moving, or the visit window
+    /// and the phone's tilt feeding the ambient layers (unless Low Power
+    /// Mode, heat or Reduce Motion skip Ambient).
     var needsFrames: Bool {
         // A sheet or cover over the island freezes the ambient layers, so
         // presenting and dismissing it never competes with a live world.
         // The camera springs still run (a sheet can open with the camera
         // on its way).
-        let ambient = !isCovered && !hasSheet && (isVisiting || (isDeviceTiltEnabled && !reduceMotion))
+        let wanted = isVisiting || (isDeviceTiltEnabled && !reduceMotion)
+        let ambient = wanted && !isCovered && !hasSheet
+            && power.policy.directive(for: .ambient, conditions: power.conditions).hz > 0
         return isAnimating || ambient
     }
 

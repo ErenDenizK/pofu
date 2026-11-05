@@ -71,10 +71,11 @@ public struct IslandScene<Bubble: View>: View {
         @Bindable var model = model
         GeometryReader { proxy in
             let size = proxy.size
-            // TODO(experience-v1 wiring): once PR B (`FramePolicy`) and PR C
-            // (the sheet freeze) are on main, the interval and the pause come
-            // from the policy and the freeze; until then 60 Hz while needed.
-            TimelineView(.animation(minimumInterval: 1.0 / 60.0, paused: !model.needsFrames && home?.build == nil)) { context in
+            // The interval and the pause come from the frame policy (§4.1):
+            // Direct, Moment, Ambient, Settled, Covered.
+            let moment = home?.build != nil || home?.collect != nil
+            let policy = model.directive(moment: moment)
+            TimelineView(.animation(minimumInterval: policy.timelineInterval, paused: !model.needsFrames && !moment)) { context in
                 let _ = model.revision
                 let rig = model.frame(
                     at: context.date,
@@ -82,7 +83,9 @@ public struct IslandScene<Bubble: View>: View {
                     height: Double(size.height),
                     safeTop: safeTop
                 )
-                let rack = model.rackFocus(at: context.date)
+                let directive = model.directive(moment: moment, at: context.date)
+                // Low Power Mode and heat drop the depth-of-field pass.
+                let rack = directive.depthOfField ? model.rackFocus(at: context.date) : 0
                 let build: BuildFrame? = home?.build.flatMap { active in
                     home?.buildTime(at: context.date).map { (moment: active.moment, time: $0) }
                 }
@@ -95,6 +98,7 @@ public struct IslandScene<Bubble: View>: View {
                         time: context.date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 3600),
                         clock: context.date,
                         rack: rack,
+                        directive: directive,
                         build: build,
                         celebrations: home?.celebrations ?? 0,
                         home: home,
@@ -113,6 +117,7 @@ public struct IslandScene<Bubble: View>: View {
                             time: context.date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 3600),
                             clock: context.date,
                             rack: rack,
+                            directive: directive,
                             build: build,
                             celebrations: home?.celebrations ?? 0,
                             home: home,
@@ -126,6 +131,8 @@ public struct IslandScene<Bubble: View>: View {
                     }
                 }
             }
+            // A sheet or cover freezes then flattens the world (§3.1).
+            .pofuFlattenWhenCovered(model.isCovered)
             .contentShape(Rectangle())
             // One tap resolver replaces the per-object tap overlays (§1.3).
             // It answers on touch-up, with no wait for a double tap.
@@ -215,6 +222,9 @@ public struct IslandScene<Bubble: View>: View {
         }
         .onChange(of: look.tuning.springs, initial: true) { _, springs in
             model.cameraSprings = springs
+        }
+        .task {
+            model.power.startObservingSystem()
         }
         .overlay(alignment: .bottomTrailing) {
             // The one control: the same spot in every framing, thumb zone.
@@ -342,6 +352,8 @@ private struct SceneFrame<Bubble: View>: View {
     /// Depth of field's strength, 0 while the camera moves and a 0.35 s
     /// pull to 1 once it settles (§1.2).
     let rack: Double
+    /// The frame policy's say on particles, shafts and flicker.
+    let directive: FrameDirective
     let build: BuildFrame?
     let celebrations: Int
     let home: WorldHomeModel?
@@ -520,7 +532,9 @@ private struct SceneFrame<Bubble: View>: View {
                         tilt: tilt,
                         art: look.art,
                         litOverlays: look.litOverlays,
-                        relit: relight != nil
+                        relit: relight != nil,
+                        guestNight: false, // TODO(PR D): a visitor sleeps in the guest room
+                        directive: directive
                     )
                 }
             }
