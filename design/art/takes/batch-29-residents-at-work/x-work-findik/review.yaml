@@ -1,0 +1,214 @@
+batch: batch-29-residents-at-work
+manifest: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+manifest_sha256: 85203326885da331817b9113d50d36e87be75f1645ee142038732d64fa63da5d
+contact_sheet: design/art/takes/batch-29-residents-at-work/x-work-findik/contact.jpg
+jobs:
+  x-work-findik:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. auto-picked by QA; founder review
+      pending. Both show on-model curl-free Findik with cream face, honey spines and
+      a tiny visible concentrating tongue, working at the approved workshop bench
+      with a honey wooden screwdriver, round brass clock and cream curled shavings.
+      Take2 clearly seats the driver in a tiny brass screw on the clock rim; take1
+      places the tip at an ambiguous dark point on the blank clock face and is excluded
+      for less certain screw contact. Clock marks are plain strokes or dots, never
+      letters or numerals; no extra limbs or Pofu. The familiar roof, four-blade pinwheel,
+      pegboard and vice remain recognisable in the independent close concept crop.
+      The existing main workshop reference is used exactly as printed; this is not
+      a registered edit or dependency on the separate redo PR. Hard QA then lowest
+      lock load within manually eligible takes; style/light warnings advisory. Never
+      promoted.
+qa_reports:
+  1:
+    job: x-work-findik
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 48 (at most 22), p98 94 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 45.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 77.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.24 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.239
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.6 (at least 3.5)'
+      value: 4.57
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.57
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7954
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 6.7, off-palette 0.5% (top: #CC7733 (0.1%), #BB6633
+        (0.1%))'
+      value: 2.2055
+    info:
+      metrics_raw:
+        L_p5: 56.4
+        L_p50: 82.3
+        L_p95: 93.4
+        C_p50: 26.8
+        C_p95: 49.0
+        C_p99: 56.3
+        detail: 3.17
+      metrics_locked:
+        L_p5: 56.9
+        L_p50: 82.2
+        L_p95: 93.1
+        C_p50: 26.8
+        C_p95: 47.9
+        C_p99: 55.1
+        detail: 2.57
+    fingerprint: 0e54568ffb37be00
+  2:
+    job: x-work-findik
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 50.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 94 (at least 90), spread 44
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 44.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 79.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.22
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.6 (at least 3.5)'
+      value: 4.56
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.47
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8798
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 8.0, off-palette 1.1% (top: #BB6633 (0.2%), #CC7733
+        (0.1%))'
+      value: 2.6763
+    info:
+      metrics_raw:
+        L_p5: 55.2
+        L_p50: 81.6
+        L_p95: 93.0
+        C_p50: 26.1
+        C_p95: 51.0
+        C_p99: 58.5
+        detail: 3.08
+      metrics_locked:
+        L_p5: 55.5
+        L_p50: 81.5
+        L_p95: 92.7
+        C_p50: 26.1
+        C_p95: 50.6
+        C_p99: 57.0
+        detail: 2.47
+    fingerprint: 0e54568ffb37be00
+manual_review:
+  observed_note: auto-picked by QA; founder review pending. Both show on-model curl-free
+    Findik with cream face, honey spines and a tiny visible concentrating tongue,
+    working at the approved workshop bench with a honey wooden screwdriver, round
+    brass clock and cream curled shavings. Take2 clearly seats the driver in a tiny
+    brass screw on the clock rim; take1 places the tip at an ambiguous dark point
+    on the blank clock face and is excluded for less certain screw contact. Clock
+    marks are plain strokes or dots, never letters or numerals; no extra limbs or
+    Pofu. The familiar roof, four-blade pinwheel, pegboard and vice remain recognisable
+    in the independent close concept crop. The existing main workshop reference is
+    used exactly as printed; this is not a registered edit or dependency on the separate
+    redo PR. Hard QA then lowest lock load within manually eligible takes; style/light
+    warnings advisory. Never promoted.
+  excluded_takes:
+  - 1
+sources:
+- batch: batch-29-residents-at-work
+  job: x-work-findik
+  take: 1
+  round: 1
+  logical_run: 20261105-night29-findik-work-heart
+  source_file: /workspace/generated_images/exec-12ea11b4-760e-48f6-86a9-e9719654d8c3.png
+  returned_at: '2026-11-05T19:14:36.955Z'
+  prompt_sha256: 8da629492107e42d958095554661568851189e0553b2d7f40898598e64ef1b40
+  fingerprint: 0e54568ffb37be00
+  saved_at: '2026-11-05T19:14:37.254649+00:00'
+  original_generated_png_sha256: dd819028f61e8d34037020f86c1f396078d4196d702c736ae96b0c53568ee1f1
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 6013029a60846ebf6b92f14dc147aabd81d2acea61d77470018d4f5ce0ae8cf5
+  inbox_png_sha256: 1d3e5f0af6be428389ca05e7cc57a073df2daeebde4bbd05f2ef3b7dd0d39574
+  qa_sha256: a65a7c55aa226b7d76f2019319a8fea200980ed468644e0919958ba7ac61b67a
+- batch: batch-29-residents-at-work
+  job: x-work-findik
+  take: 2
+  round: 1
+  logical_run: 20261105-night29-findik-work-heart
+  source_file: /workspace/generated_images/exec-c7fef2a8-09eb-49c1-8101-4d7eb6912c46.png
+  returned_at: '2026-11-05T19:12:33.107Z'
+  prompt_sha256: 8da629492107e42d958095554661568851189e0553b2d7f40898598e64ef1b40
+  fingerprint: 0e54568ffb37be00
+  saved_at: '2026-11-05T19:12:33.636600+00:00'
+  original_generated_png_sha256: 9be8df3c7fd57ef3ece812e9871c4881b3fcb6f413328dabd67dd35e320f8e93
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 65a4e5fbf380fce4265483b2c9b4b7247923ee7c79ea77332ce23451824a2f21
+  inbox_png_sha256: 706cf5e51a0758850aea45bf826613636792ada2691e4ca0a919f666199915e6
+  qa_sha256: c2b4417e6caa3255780004b8816e33e44df449928705d4bd8bed80c493d18e66
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
