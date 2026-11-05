@@ -1,0 +1,143 @@
+{
+  "job": "harbor-bell",
+  "batch": "batch-33-home-showcase",
+  "asset": "prop__harbor-bell",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-05T20:18:33+00:00",
+  "image": "design/art/masters/harbor-bell/harbor-bell.png",
+  "raw": "design/art/masters/harbor-bell/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "884be861a91c444f",
+  "prompt": "REFERENCES (attached, in this order):\n1. The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.\n2. The path lamp of this island: same honey wood, finish and scale family (do not draw the lamp).\n3. The harbor's first station: same coral, cream and sea-blue family (do not draw the cart).\n4. The palette card for props: use only these colors (and mixes of them).\n\nA small harbor bell post for the island diorama: one sturdy honey\nwooden post on a round flat stone foot with a short crossbar at the\ntop, from which hangs a plump round bell of matte warm bronze-honey\ncolor (no shine, no reflections), a short coral rope pull hanging\nfrom it. Narrow, toy-like. It stands on the guide's ground ellipse,\ncentered on the cross, and reaches the height bar's top.\n\nVIEW: the same fixed front three-quarter view as the attached island: a\nlow camera about 20 degrees above the horizon, so you see the front of\nthe object fully and only a narrow sliver of its top (a round tabletop\nreads as a flat oval about a third as tall as it is wide). Follow the\nattached guide exactly: the object stands on the magenta ground ellipse,\ncentered on the magenta cross, its front edge on the front of the\nellipse, no taller than the magenta height bar. Then remove the guide\ncompletely: no ellipse, no cross, no bar, no magenta, no grid may remain\nin the output.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/templates/decor-guide.png",
+      "role": "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+    },
+    {
+      "path": "design/art/masters/path-lamp/path-lamp.png",
+      "role": "The path lamp of this island: same honey wood, finish and scale family (do not draw the lamp)."
+    },
+    {
+      "path": "design/art/stations/bagel-cart-1/bagel-cart-1.png",
+      "role": "The harbor's first station: same coral, cream and sea-blue family (do not draw the cart)."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T19:56:05+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 20,
+    "dy": -17
+  },
+  "alignment": null,
+  "fit": {
+    "scale": 0.6488,
+    "anchor": [
+      492.8,
+      905
+    ]
+  },
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 49 (R1 51)",
+        "value": 49.2
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 54 (at most 22), p98 84 (at least 90), spread 29 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 29.3
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 72 (band 55-90)",
+        "value": 72.2
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means a wash)",
+        "value": 0.0
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 3.6 (at least 3.5)",
+        "value": 3.63
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.8 (R1 5.3)",
+        "value": 0.84
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.8",
+        "value": 0.8262
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.6, p95 3.5, off-palette 0.0%",
+        "value": 1.5504
+      },
+      {
+        "check": "decor_anchor",
+        "status": "pass",
+        "message": "on the decor guide",
+        "value": 888.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 72 against the world reference (outliers: L_p98, edge)",
+        "value": 71.6
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Take2 is the only eligible initial source: narrow honey-wood post and short crossbar on a round flat stone foot, matte warm bronze-honey bell and short coral rope pull, no shine/reflections, lettering, guide, characters or cast ground shadow. Independent source/locked content review passes. Harddecor guide passes after official fit0.6488; lock0.8262,Harmony71.6. Take1 harddecor_anchor fails because top171isabove500heightbar and official requiredfit0.54isbelowminimum0.6; do not manually shrink or waive. Choosepassingloweststyleloadwithineligible, notnumericallyfailedtake. Lockedtake2PNG78398bytesfitslosslessly atfull1024canvas, sourcepixelsunchanged. Lightwarningsadvisory. OwnHarmonymeasure/check, provenance,rawandcontentrequired. Auto-pickedbyQA; founderreviewpending."
+}

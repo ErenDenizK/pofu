@@ -2,12 +2,11 @@ id: asset-frog-sing
 type: asset
 title_tr: frog-sing
 title_en: frog-sing (char)
-status: planned
+status: cut
 horizon: later
-summary: >-
-  Edit the attached frog so it sings: its eyes close in two soft happy curves, its mouth opens
-  in a small round "o", and its cream throat puffs out into a round soft pale bubble. Its
-  body, colors, feet and size stay exactly as they are.
+summary: 'Edit the attached frog so it sings: its eyes close in two soft happy curves,
+  its mouth opens in a small round "o", and its cream throat puffs out into a round
+  soft pale bubble. Its body, colors, feet and size stay exactly as they are.'
 links:
   variant_of:
   - asset-frog-1
@@ -20,3 +19,19 @@ sources:
 kind: char
 batch: batch-33-home-showcase
 size: 1024x1536
+notes:
+- 'Skipped without generation: true dependency frog-1 failed after its one allowed
+  retry. Skipped after its sole unchanged-prompt retry. All4 hard palette_drift checks
+  fail: mean dE7.6626,8.6123,12.2916,9.7021. Independent source/locked review confirms
+  dense fur on head, belly and limbs in both rounds, contrary to explicit smooth velvety
+  skin/no-fur brief. Initial widths76.2/73.6percent also exceed approximate62percent,
+  but fur and hard palette already exclude every take. The inherited style-anchor-v1
+  fur wording conflicts with the specific frog brief, and the character palette does
+  not clearly cover sage; propose lead style/material and palette review, never edit
+  the manifest or waive checks here. No additional images/rephrasing, cleanup or promotion.
+  Preserve all4; only true child frog-sing skips. Automated failures: t1 palette_drift:
+  mean dE 7.7, p95 18.1, off-palette 33.1% (top: #CCBB88 (8.3%), #BBAA77 (6.1%));
+  t2 palette_drift: mean dE 8.6, p95 20.4, off-palette 36.9% (top: #BBAA77 (5.1%),
+  #BBBB88 (4.9%)); t3 palette_drift: mean dE 12.3, p95 22.5, off-palette 54.0% (top:
+  #CCBB77 (10.4%), #BBAA66 (9.0%)); t4 palette_drift: mean dE 9.7, p95 20.4, off-palette
+  43.7% (top: #CCBB88 (8.3%), #BBAA77 (5.1%)).'

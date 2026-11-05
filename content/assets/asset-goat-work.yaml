@@ -2,18 +2,18 @@ id: asset-goat-work
 type: asset
 title_tr: goat-work
 title_en: goat-work (char)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  Edit the attached baby goat into his working pose. Change only his two front paws: they
-  now hold a small, neat coil of soft coral rope against his chest, one loose end hanging
-  down. His head, horn buds, ears, beard, eyes, indignant face, body and feet stay exactly
-  as they are.
+summary: 'Edit the attached baby goat into his working pose. Change only his two front
+  paws: they now hold a small, neat coil of soft coral rope against his chest, one
+  loose end hanging down. His head, horn buds, ears, beard, eyes, indignant face,
+  body and feet stay exactly as they are.'
 links:
   variant_of:
   - asset-harbor-goat
 art:
-  images: []
+  images:
+  - design/art/masters/goat-work/goat-work.webp
   jobs:
   - batch-33-home-showcase:goat-work
 sources:

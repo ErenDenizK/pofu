@@ -2,13 +2,12 @@ id: asset-material-wax
 type: asset
 title_tr: material-wax
 title_en: material-wax (prop)
-status: planned
+status: cut
 horizon: later
-summary: >-
-  A single small painted object for a cozy game, a crafting material: a plump little block
-  of golden beeswax with a soft hexagon honeycomb pattern on its front face (broad, few cells)
-  and one small drop of honey on its top corner, matte. Same camera, size and finish as the
-  attached moss. Centered on an empty transparent background.
+summary: 'A single small painted object for a cozy game, a crafting material: a plump
+  little block of golden beeswax with a soft hexagon honeycomb pattern on its front
+  face (broad, few cells) and one small drop of honey on its top corner, matte. Same
+  camera, size and finish as the attached moss. Centered on an empty transparent background.'
 art:
   images: []
   jobs:
@@ -17,3 +16,26 @@ sources:
 - doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
 kind: prop
 batch: batch-33-home-showcase
+notes:
+- 'Skipped without generation: true dependency material-moss failed after its one
+  allowed retry. SKIPPED after the lead-authorized fresh pair and exactly one retry
+  pair under palettes world-foliage. All four official hard palette_drift checks fail:
+  mean deltaE5.0271,5.8487,8.5177,5.7925; retry off-palette fractions33.9percent and14.1percent.
+  The apparent olive/yellow-green greens are still outside the locked family despite
+  the added foliage QA palette. All four originals show a low moss cushion with exactly
+  three pale five-point flowers and a thin cream root curl, no bush, characters, text
+  or ground; first-pair posted widths467/462px also exceed the approximate third-canvas
+  composition target. Good silhouette and high advisory Harmony scores83.4/86.8/88.3/85.6
+  cannot waive hard colour QA. No recolouring, manual resizing, palette-card edits,
+  threshold changes or further generation. Original PR190 four-take PNGs, inbox/build/review
+  caches and source receipts remain intact in the prior runtime and preserved cache
+  tree; its older q90 delivery and decisions remain in Git history while this fragment
+  records the four fresh candidates. Keep this asset node cut, never delete it. Skip
+  only its five material-family dependents; independent roots and other batches continue.
+  The recovered hive master is already separately published with its own Harmony shard
+  and verified upload. Founder review pending. Automated failures: t1 palette_drift:
+  mean dE 5.0, p95 11.8, off-palette 4.6% (top: #777744 (1.3%), #998844 (0.8%)); t2
+  palette_drift: mean dE 5.8, p95 14.1, off-palette 13.7% (top: #998844 (7.5%), #999944
+  (3.2%)); t3 palette_drift: mean dE 8.5, p95 16.2, off-palette 33.9% (top: #999944
+  (6.3%), #998844 (5.5%)); t4 palette_drift: mean dE 5.8, p95 14.4, off-palette 14.1%
+  (top: #888844 (2.2%), #998844 (1.9%)).'

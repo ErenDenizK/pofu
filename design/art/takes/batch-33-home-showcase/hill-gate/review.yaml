@@ -1,0 +1,367 @@
+batch: batch-33-home-showcase
+contact_sheet: design/art/takes/batch-33-home-showcase/hill-gate/contact.jpg
+jobs:
+  hill-gate:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after its sole unchanged-prompt retry. All four are much wider
+      than the explicit about-half station footprint: alpha-over24 widths636,662,659,683px
+      versus about360px (station footprint diameter720). Heights558,566,551,568px
+      are recorded without inventing a new numeric threshold; width alone decisively
+      fails the brief. All otherwise have two moss-capped pale stone posts, closed
+      honey round-top double gate/sunflower and two low steps; no fence, hill, padlock,
+      lettering or guide. Numerical QA warns only, so this is a real manual guide-fit
+      exclusion. No manual fit, threshold waiver or further generation. Preserve all4;
+      only true child hill-gate-open skips.'
+qa_reports:
+  4:
+    job: hill-gate
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 87 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 73.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.25 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.251
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.2 (at least 3.5)'
+      value: 3.17
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.57
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6174
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 7.8, off-palette 2.2% (top: #AA9944 (1.0%), #998844
+        (0.7%))'
+      value: 1.5695
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the world reference (outliers: L_p98, edge)'
+      value: 79.8
+    info:
+      metrics_raw:
+        L_p5: 58.8
+        L_p50: 73.8
+        L_p95: 86.3
+        C_p50: 34.5
+        C_p95: 47.5
+        C_p99: 48.9
+        detail: 2.12
+      metrics_locked:
+        L_p5: 59.4
+        L_p50: 73.7
+        L_p95: 86.1
+        C_p50: 34.8
+        C_p95: 47.3
+        C_p99: 48.5
+        detail: 1.57
+    fingerprint: dc9426bf035ce2e2
+  2:
+    job: hill-gate
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 88 (at least 90), spread 30
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 30.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 74.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.263
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.0 (at least 3.5)'
+      value: 2.98
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.46
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6147
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 6.2, off-palette 0.5% (top: #998844 (0.2%), #AA9944
+        (0.2%))'
+      value: 1.4133
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the world reference (outliers: L_p98, edge)'
+      value: 80.1
+    info:
+      metrics_raw:
+        L_p5: 60.7
+        L_p50: 75.0
+        L_p95: 86.4
+        C_p50: 37.3
+        C_p95: 50.0
+        C_p99: 55.0
+        detail: 2.01
+      metrics_locked:
+        L_p5: 61.4
+        L_p50: 74.9
+        L_p95: 86.1
+        C_p50: 37.9
+        C_p95: 50.1
+        C_p99: 54.7
+        detail: 1.46
+    fingerprint: dc9426bf035ce2e2
+  1:
+    job: hill-gate
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 86 (at least 90), spread 31
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 31.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 74.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.28 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.275
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.1 (at least 3.5)'
+      value: 3.11
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.57
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6739
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 4.5, off-palette 0.4% (top: #AA9955 (0.1%), #998855
+        (0.1%))'
+      value: 1.2949
+    - check: harmony
+      status: pass
+      message: 'harmony score 75 against the world reference (outliers: L_p98, edge)'
+      value: 74.6
+    info:
+      metrics_raw:
+        L_p5: 59.0
+        L_p50: 75.0
+        L_p95: 84.8
+        C_p50: 35.4
+        C_p95: 45.8
+        C_p99: 52.3
+        detail: 2.17
+      metrics_locked:
+        L_p5: 59.5
+        L_p50: 74.9
+        L_p95: 84.5
+        C_p50: 35.9
+        C_p95: 45.6
+        C_p99: 51.7
+        detail: 1.57
+    fingerprint: dc9426bf035ce2e2
+  3:
+    job: hill-gate
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 88 (at least 90), spread 31
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 31.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.263
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.1 (at least 3.5)'
+      value: 3.07
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6371
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 5.9, off-palette 0.0%
+      value: 1.5734
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the world reference (outliers: L_p98, edge)'
+      value: 80.4
+    info:
+      metrics_raw:
+        L_p5: 60.6
+        L_p50: 75.2
+        L_p95: 86.8
+        C_p50: 38.6
+        C_p95: 47.7
+        C_p99: 56.3
+        detail: 2.23
+      metrics_locked:
+        L_p5: 61.1
+        L_p50: 75.1
+        L_p95: 86.5
+        C_p50: 38.7
+        C_p95: 47.4
+        C_p99: 55.9
+        detail: 1.64
+    fingerprint: dc9426bf035ce2e2
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: 'Skipped after its sole unchanged-prompt retry. All four are much wider than
+    the explicit about-half station footprint: alpha-over24 widths636,662,659,683px
+    versus about360px (station footprint diameter720). Heights558,566,551,568px are
+    recorded without inventing a new numeric threshold; width alone decisively fails
+    the brief. All otherwise have two moss-capped pale stone posts, closed honey round-top
+    double gate/sunflower and two low steps; no fence, hill, padlock, lettering or
+    guide. Numerical QA warns only, so this is a real manual guide-fit exclusion.
+    No manual fit, threshold waiver or further generation. Preserve all4; only true
+    child hill-gate-open skips.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-7b84b32f-b80d-49d6-a695-0565af9141cd.png
+  original_generated_png_sha256: 495e7c6c50201deed677b7aacd469f8468d508d2be535020114cf47f992db590
+  inbox_png_sha256: 0b3d4353bfdcec4019872d1926d6a1c403186c3163c56deffd433922c9d95960
+  rgba_sha256: fa139ce5bdf52dd80508f2ac49933bd6ba33fcda61783e22a07172d4b5e02635
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: dc9426bf035ce2e2
+- take: 2
+  source_file: /workspace/generated_images/exec-27d6ad1f-348d-46f4-821d-11b146b8175c.png
+  original_generated_png_sha256: 399b88e8f238d9f3e1c340891e05e3f3f738004d4bb2082fc93c6f46216a710b
+  inbox_png_sha256: 8675e2dd9b7d8f497154ae414ea453af82d008f2e59a45cf0a45fa8724bd5e98
+  rgba_sha256: fc68e1864517be13bbabc09950e4dc8573e66472b4c952b0a1f4e40c5d18cb2a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: dc9426bf035ce2e2
+- take: 3
+  source_file: /workspace/generated_images/exec-94828c03-4280-4ab6-a71f-14301c8963dd.png
+  original_generated_png_sha256: 4cd98cd16b161db615230519e14e7c9f3c3dbb9eca410fc6fb274da99e3e45f5
+  inbox_png_sha256: 91210288f2ed52a8887964e516d096ab5a0a47d78d4060be1ce049f4b34c0e00
+  rgba_sha256: 5f75812f892688948edbde4e1e97c8dce72c744875fe8ce0f54a011825d1b39f
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: dc9426bf035ce2e2
+- take: 4
+  source_file: /workspace/generated_images/exec-8c730f3c-d8f9-408c-8e20-80c5c7ed35ee.png
+  original_generated_png_sha256: cddb771df1c8900e49d788295f68aeec0577e991542d5b3095bc4bfe22988692
+  inbox_png_sha256: 9b3eb7602344c1b3c569db6d9cdf7d4633646c58951fc2679c6f92425212b60f
+  rgba_sha256: 83188def7bfe077142f36410e4122982b6b6de343fb6f17f03bcaad8453964b8
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: dc9426bf035ce2e2

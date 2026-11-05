@@ -2,16 +2,16 @@ id: asset-harbor-bell
 type: asset
 title_tr: harbor-bell
 title_en: harbor-bell (prop)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  A small harbor bell post for the island diorama: one sturdy honey wooden post on a round
-  flat stone foot with a short crossbar at the top, from which hangs a plump round bell of
-  matte warm bronze-honey color (no shine, no reflections), a short coral rope pull hanging
-  from it. Narrow, toy-like. It stands on the guide's ground ellipse, centered on the cross,
-  and reaches the height bar's top.
+summary: 'A small harbor bell post for the island diorama: one sturdy honey wooden
+  post on a round flat stone foot with a short crossbar at the top, from which hangs
+  a plump round bell of matte warm bronze-honey color (no shine, no reflections),
+  a short coral rope pull hanging from it. Narrow, toy-like. It stands on the guide''s
+  ground ellipse, centered on the cross, and reaches the height bar''s top.'
 art:
-  images: []
+  images:
+  - design/art/masters/harbor-bell/harbor-bell.png
   jobs:
   - batch-33-home-showcase:harbor-bell
 sources:

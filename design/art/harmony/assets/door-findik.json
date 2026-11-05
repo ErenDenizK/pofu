@@ -1,0 +1,50 @@
+{
+ "after": {
+  "C_mean": 30.138,
+  "C_p50": 27.553,
+  "C_p95": 41.918,
+  "L_mean": 76.099,
+  "L_p2": 55.435,
+  "L_p98": 89.541,
+  "detail": 2.018,
+  "edge": 1.884,
+  "warmth_b": 28.673
+ },
+ "before": {
+  "C_mean": 30.138,
+  "C_p50": 27.553,
+  "C_p95": 41.918,
+  "L_mean": 76.099,
+  "L_p2": 55.435,
+  "L_p98": 89.541,
+  "detail": 2.018,
+  "edge": 1.884,
+  "warmth_b": 28.673
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 78.8,
+ "score_before": 78.8,
+ "shipped": false,
+ "source": "design/art/masters/door-findik/door-findik.png",
+ "source_sha": "2ab8fe3f9a938fc0"
+}

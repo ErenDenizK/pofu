@@ -1,0 +1,204 @@
+batch: batch-33-home-showcase
+contact_sheet: design/art/takes/batch-33-home-showcase/door-findik/contact.jpg
+jobs:
+  door-findik:
+    pick: 2
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Take2 selected among hard-QA/manual
+      eligible sources. Both paint the sage/honey round door in a thick honey frame
+      with cream-crossbar round window, round knob, flat doorstep, blank gear hanging
+      sign and tiny wrench on nail, only a thin earth fade and no wall/house/roof/grass/stairs/text/background/cast
+      ground shadow. Same front-facing Mochi-door family and readable sage/gear/wrench
+      distinction at28px on light/dark. Size compared to actual approved sibling alpha-over24
+      bbox555x550 on1024: take1 is690x653 (about24percent wider) and excluded for
+      family scale; take2 is595x574, close sibling scale within about7percent width
+      and4percent height, accepted as family consistency rather than falsely claimed
+      pixel registration. Eligible take2 lock0.6816/Harmony78.6, all hard QA passes,
+      light/haze warnings advisory. No manual resize/repaint or threshold waiver.
+      Auto-picked by QA; founder review pending; own Harmony measure/check, raw, provenance
+      and content node included.'
+qa_reports:
+  1:
+    job: door-findik
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 89 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.31 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.31
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.3 (at least 3.5)'
+      value: 3.28
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6461
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.2, p95 10.8, off-palette 4.0% (top: #888855 (1.4%), #999966
+        (0.6%))'
+      value: 3.1918
+    - check: harmony
+      status: pass
+      message: 'harmony score 81 against the world reference (outliers: L_p98, edge)'
+      value: 80.9
+    info:
+      metrics_raw:
+        L_p5: 58.5
+        L_p50: 75.4
+        L_p95: 87.2
+        C_p50: 27.8
+        C_p95: 41.7
+        C_p99: 43.0
+        detail: 2.25
+      metrics_locked:
+        L_p5: 59.0
+        L_p50: 75.2
+        L_p95: 86.9
+        C_p50: 27.7
+        C_p95: 41.4
+        C_p99: 42.5
+        detail: 1.76
+    fingerprint: 4ac5fd59fc446d3a
+  2:
+    job: door-findik
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 90 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 77.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.31 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.314
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.1 (at least 3.5)'
+      value: 3.07
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.65
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6816
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.4, p95 10.6, off-palette 3.8% (top: #888855 (1.1%), #999966
+        (1.1%))'
+      value: 3.3691
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: edge)'
+      value: 78.6
+    info:
+      metrics_raw:
+        L_p5: 60.3
+        L_p50: 77.2
+        L_p95: 88.1
+        C_p50: 27.7
+        C_p95: 42.3
+        C_p99: 43.9
+        detail: 2.12
+      metrics_locked:
+        L_p5: 60.8
+        L_p50: 77.2
+        L_p95: 87.6
+        C_p50: 27.7
+        C_p95: 41.9
+        C_p99: 43.0
+        detail: 1.65
+    fingerprint: 4ac5fd59fc446d3a
+manual_review:
+  excluded_takes:
+  - 1
+  note: 'Take2 selected among hard-QA/manual eligible sources. Both paint the sage/honey
+    round door in a thick honey frame with cream-crossbar round window, round knob,
+    flat doorstep, blank gear hanging sign and tiny wrench on nail, only a thin earth
+    fade and no wall/house/roof/grass/stairs/text/background/cast ground shadow. Same
+    front-facing Mochi-door family and readable sage/gear/wrench distinction at28px
+    on light/dark. Size compared to actual approved sibling alpha-over24 bbox555x550
+    on1024: take1 is690x653 (about24percent wider) and excluded for family scale;
+    take2 is595x574, close sibling scale within about7percent width and4percent height,
+    accepted as family consistency rather than falsely claimed pixel registration.
+    Eligible take2 lock0.6816/Harmony78.6, all hard QA passes, light/haze warnings
+    advisory. No manual resize/repaint or threshold waiver. Auto-picked by QA; founder
+    review pending; own Harmony measure/check, raw, provenance and content node included.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-0b792675-fa45-45c0-bf8d-9a1cb5126fb9.png
+  original_generated_png_sha256: 835d1c2310f4d532d2a3b2e09172ca0f40d52fbf0dbd794a0f263e0f66b564ca
+  inbox_png_sha256: 4d67ff55ec1328a6615b89e48946b260c6746100c5c5c6640de9f0044a67208e
+  rgba_sha256: a4a2766aecbbc390300afec16bbafcc5791a39e196b9977cf67213ab8f2bd38d
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4ac5fd59fc446d3a
+- take: 2
+  source_file: /workspace/generated_images/exec-e16524fc-2e70-4b28-b56b-fbc6784721f2.png
+  original_generated_png_sha256: 916d7c70400e9c7ff83b5ddaba9bab2189580073d9f98e44ef415fbf2b1c7b8f
+  inbox_png_sha256: 995e8615dcc1fe000e7a6c341bced949234b0417397d54d658f48db75c6afcdf
+  rgba_sha256: cd84b5de7a5ccec3cef72ca964457d3b19fd0c4195b31ec5a8abcebda8435bae
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 4ac5fd59fc446d3a

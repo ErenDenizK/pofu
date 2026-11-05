@@ -1,0 +1,62 @@
+{
+ "after": {
+  "C_mean": 40.436,
+  "C_p50": 41.387,
+  "C_p95": 59.424,
+  "L_mean": 77.254,
+  "L_p2": 46.132,
+  "L_p98": 91.505,
+  "detail": 3.06,
+  "edge": 0.462,
+  "tint_a": 7.366,
+  "tint_b": 10.107,
+  "warmth_b": 36.186
+ },
+ "before": {
+  "C_mean": 40.966,
+  "C_p50": 41.795,
+  "C_p95": 59.569,
+  "L_mean": 70.308,
+  "L_p2": 31.502,
+  "L_p98": 88.279,
+  "detail": 3.735,
+  "edge": 0.462,
+  "tint_a": 7.364,
+  "tint_b": 10.435,
+  "warmth_b": 36.555
+ },
+ "chain": {
+  "C_p50": 38.887,
+  "L_p2": 46.129,
+  "L_p98": 92.039
+ },
+ "correction": {
+  "black": 14.63,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 3.76
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "detail",
+  "edge"
+ ],
+ "outliers_before": [
+  "chain_L_p2",
+  "chain_L_p98",
+  "detail",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 83.3,
+ "score_before": 50.2,
+ "shipped": false,
+ "source": "design/art/stations/hive-2/hive-2.png",
+ "source_sha": "e00f6967ba9cbbc5"
+}

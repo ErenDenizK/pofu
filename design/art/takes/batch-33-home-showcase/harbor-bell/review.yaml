@@ -1,0 +1,217 @@
+batch: batch-33-home-showcase
+contact_sheet: design/art/takes/batch-33-home-showcase/harbor-bell/contact.jpg
+jobs:
+  harbor-bell:
+    pick: 2
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Take2 is the only eligible initial
+      source: narrow honey-wood post and short crossbar on a round flat stone foot,
+      matte warm bronze-honey bell and short coral rope pull, no shine/reflections,
+      lettering, guide, characters or cast ground shadow. Independent source/locked
+      content review passes. Harddecor guide passes after official fit0.6488; lock0.8262,Harmony71.6.
+      Take1 harddecor_anchor fails because top171isabove500heightbar and official
+      requiredfit0.54isbelowminimum0.6; do not manually shrink or waive. Choosepassingloweststyleloadwithineligible,
+      notnumericallyfailedtake. Lockedtake2PNG78398bytesfitslosslessly atfull1024canvas,
+      sourcepixelsunchanged. Lightwarningsadvisory. OwnHarmonymeasure/check, provenance,rawandcontentrequired.
+      Auto-pickedbyQA; founderreviewpending.'
+qa_reports:
+  1:
+    job: harbor-bell
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 48.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 49 (at most 22), p98 85 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 72.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.192
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.3 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.29
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.9
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7431
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 4.2, off-palette 0.0%
+      value: 1.5771
+    - check: decor_anchor
+      status: fail
+      message: top y 171 above the height bar (500)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the world reference (outliers: L_p98, edge)'
+      value: 73.7
+    info:
+      fit_skipped: needs x0.54, below x0.6 (a real art failure)
+      registration:
+        dx: 34
+        dy: 12
+      metrics_raw:
+        L_p5: 56.5
+        L_p50: 72.4
+        L_p95: 83.3
+        C_p50: 45.2
+        C_p95: 48.9
+        C_p99: 49.9
+        detail: 1.43
+      metrics_locked:
+        L_p5: 56.9
+        L_p50: 72.4
+        L_p95: 83.3
+        C_p50: 45.2
+        C_p95: 48.6
+        C_p99: 49.0
+        detail: 0.9
+    fingerprint: 884be861a91c444f
+  2:
+    job: harbor-bell
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 84 (at least 90), spread 29
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 29.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 72.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.6 (at least 3.5)'
+      value: 3.63
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.84
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8262
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 3.5, off-palette 0.0%
+      value: 1.5504
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 72 against the world reference (outliers: L_p98, edge)'
+      value: 71.6
+    info:
+      fit:
+        scale: 0.6488
+        anchor:
+        - 492.8
+        - 905
+      registration:
+        dx: 20
+        dy: -17
+      metrics_raw:
+        L_p5: 56.7
+        L_p50: 72.1
+        L_p95: 82.0
+        C_p50: 45.1
+        C_p95: 49.4
+        C_p99: 50.1
+        detail: 1.4
+      metrics_locked:
+        L_p5: 57.7
+        L_p50: 72.3
+        L_p95: 81.6
+        C_p50: 45.1
+        C_p95: 49.2
+        C_p99: 49.7
+        detail: 0.84
+    fingerprint: 884be861a91c444f
+manual_review:
+  excluded_takes: []
+  note: 'Take2 is the only eligible initial source: narrow honey-wood post and short
+    crossbar on a round flat stone foot, matte warm bronze-honey bell and short coral
+    rope pull, no shine/reflections, lettering, guide, characters or cast ground shadow.
+    Independent source/locked content review passes. Harddecor guide passes after
+    official fit0.6488; lock0.8262,Harmony71.6. Take1 harddecor_anchor fails because
+    top171isabove500heightbar and official requiredfit0.54isbelowminimum0.6; do not
+    manually shrink or waive. Choosepassingloweststyleloadwithineligible, notnumericallyfailedtake.
+    Lockedtake2PNG78398bytesfitslosslessly atfull1024canvas, sourcepixelsunchanged.
+    Lightwarningsadvisory. OwnHarmonymeasure/check, provenance,rawandcontentrequired.
+    Auto-pickedbyQA; founderreviewpending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-7a2631dd-40f9-416d-99c4-49ce28e0bf68.png
+  original_generated_png_sha256: 712972e70c984e7f63cddf425f1dcd5e683175827ec4f9c8a6f06e49bf115b4c
+  inbox_png_sha256: 5eb31154064f6821a591da7d104b703ea03e0df24af19c4641cf67703d518fa8
+  rgba_sha256: aa692d8f61f34d52125598342a3368d2406511f4a2e38a7e03e7b3879c9938af
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 884be861a91c444f
+- take: 2
+  source_file: /workspace/generated_images/exec-4b9b751e-3747-4ded-baa8-34c6d1d60bf2.png
+  original_generated_png_sha256: f688e96197f8ee00f501a31018d3e7ed573cc400922b7e3dddca6b4a0960eb19
+  inbox_png_sha256: 4a91552d1bffe1fba4ba45b3045ccf22d795ace74d1fb04ad4b0fde9a71f9096
+  rgba_sha256: 174bdb72113cb4bf5d932775ea46b87cbad865bf1f921d4929e30ffa01fdea4d
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 884be861a91c444f
