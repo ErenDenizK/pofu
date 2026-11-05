@@ -62,7 +62,7 @@ final class PowerTelemetry: NSObject, MXMetricManagerSubscriber, @unchecked Send
                 log.info("gpu cumulative \(gpu.cumulativeGPUTime.converted(to: .seconds).value, privacy: .public) s")
             }
             if let display = payload.displayMetrics?.averagePixelLuminance {
-                log.info("display average pixel luminance \(display.averageValue.value, privacy: .public) apl")
+                log.info("display average pixel luminance \(display.averageMeasurement.value, privacy: .public) apl")
             }
             if let launch = payload.applicationLaunchMetrics {
                 log.info("launch first-draw samples \(launch.histogrammedTimeToFirstDraw.totalBucketCount, privacy: .public)")
