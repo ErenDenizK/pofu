@@ -2,14 +2,14 @@ id: asset-guest-stall
 type: asset
 title_tr: guest-stall
 title_en: guest-stall (prop)
-status: planned
+status: cut
 horizon: later
-summary: >-
-  A tiny market stall for a visiting guest, for the island diorama: a small honey wooden table
-  with a plain cream cloth over its empty top, two thin poles holding a short scalloped awning
-  with broad stripes of sea blue and cream, a small round stool beside it, and a little pennant
-  shaped like a round cloud-whale on top of one pole (a shape, no letters). Empty table top.
-  It stands on the guide's ground ellipse, centered…
+summary: 'A tiny market stall for a visiting guest, for the island diorama: a small
+  honey wooden table with a plain cream cloth over its empty top, two thin poles holding
+  a short scalloped awning with broad stripes of sea blue and cream, a small round
+  stool beside it, and a little pennant shaped like a round cloud-whale on top of
+  one pole (a shape, no letters). Empty table top. It stands on the guide''s ground
+  ellipse, centered…'
 art:
   images: []
   jobs:
@@ -18,3 +18,17 @@ sources:
 - doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
 kind: prop
 batch: batch-33-home-showcase
+notes:
+- 'batch-33-home-showcase skipped after four takes: Skipped after its sole unchanged-prompt
+  retry. All4 official hard decor_anchor checks fail: t1 top103,width790; t2 top173,width643;
+  t3 top147,width698; t4 top107,width664 against guide top>=500,width<=360. Alpha-over24
+  retry boxes696x742 and663x781 confirm this is real oversize, not only faint edge
+  pixels. All otherwise have an empty cream-clothed table, two sea-blue/cream scalloped
+  awning poles, stool and blank round whale pennant. No manual shrinking, guide removal,
+  QA waiver or third pair. Preserve all sources/takes/contact/reports and cut only
+  this asset; no dependents. Automated failures: t1 decor_anchor: top y 103 above
+  the height bar (500); width 790 px wider than the footprint (360); t2 decor_anchor:
+  top y 173 above the height bar (500); width 643 px wider than the footprint (360);
+  t3 decor_anchor: top y 147 above the height bar (500); width 698 px wider than the
+  footprint (360); t4 decor_anchor: top y 107 above the height bar (500); width 664
+  px wider than the footprint (360).'
