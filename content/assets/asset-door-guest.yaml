@@ -2,14 +2,14 @@ id: asset-door-guest
 type: asset
 title_tr: door-guest
 title_en: door-guest (prop)
-status: planned
+status: cut
 horizon: later
-summary: >-
-  A small round wooden door set into soft earth, seen straight from the front, same family
-  as the attached door: soft sky-blue painted wood in a thick honey wooden frame, a small
-  round window with a cream cross bar and a tiny cream curtain, a round knob, a flat honey
-  doorstep with a small woven welcome mat (plain, no letters), a little wreath of dried sunflower
-  petals on the door, and over it a hanging sign shaped like…
+summary: 'A small round wooden door set into soft earth, seen straight from the front,
+  same family as the attached door: soft sky-blue painted wood in a thick honey wooden
+  frame, a small round window with a cream cross bar and a tiny cream curtain, a round
+  knob, a flat honey doorstep with a small woven welcome mat (plain, no letters),
+  a little wreath of dried sunflower petals on the door, and over it a hanging sign
+  shaped like…'
 art:
   images: []
   jobs:
@@ -18,3 +18,14 @@ sources:
 - doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
 kind: prop
 batch: batch-33-home-showcase
+notes:
+- 'batch-33-home-showcase skipped after four takes: Skipped after its sole unchanged-prompt
+  retry. No take satisfies both the approved sibling scale and dried-petal wreath.
+  Actual Mochi sibling visible alpha-over24 bbox is555x550 on1024. Initial t1=763x793
+  andt2=721x746 are too large; t2 also uses whole sunflower heads. Retry t3=593x598
+  is close sibling scale but has a U-garland of three intact sunflower heads/leaves
+  instead of a closed wreath of dried sunflower petals. Retry t4 has the correct petal
+  ring but is837x850, about51percent wider/55percent taller. Blue round door, curtain/crossbar,
+  blank whale sign, plain mat and thin earth fade otherwise present. Independent review
+  confirms failures; preserve all4takes, no manual downscale/repaint, third pair or
+  QA waiver. No dependents.'
