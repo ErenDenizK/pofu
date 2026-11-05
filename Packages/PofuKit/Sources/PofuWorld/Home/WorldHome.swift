@@ -10,11 +10,13 @@ import SwiftUI
 /// what you do. The seed jar by Pofu carries the balance on its tag and
 /// the Collect action, the calm lantern is the multiplier, today's skips
 /// are clay pots on the island's lip and Pofu's cheeks show the seeds
-/// waiting. The chrome is the gear (top), the peeking Today glance and the
-/// map button (bottom), and one contextual primary for the beats that are
-/// not Collect. In the settled state one quiet line takes the primary's
-/// place ("Ada sensiz de çalışıyor."). Away from the Home framing, the Home
-/// chrome yields to the framing control.
+/// waiting. The jar, the lantern and the pots stand in the world canvas at
+/// `HomeSlots` (experience v1 §1.4), so they share the island's transform.
+/// The chrome is the gear (top), the peeking Today glance (bottom) and one
+/// contextual primary for the beats that are not Collect. In the settled
+/// state one quiet line takes the primary's place ("Ada sensiz de
+/// çalışıyor."). The one place control lives in the scene
+/// (`PlaceControl`), the same spot in every framing.
 ///
 /// Collect and build go through `actions`, which the app wires to
 /// `WorldClock.collect` and `WorldClock.build`; the moments then play from
@@ -60,9 +62,6 @@ public struct WorldHome: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.dynamicTypeSize) private var typeSize
-    /// The left safe-area inset the objects layer last measured, for the
-    /// collect flight's target (the jar keeps clear of it).
-    @State private var leadingInset = 0.0
 
     public init(world: WorldSnapshot, today: TodaySummary, scene: IslandSceneModel, home: WorldHomeModel, actions: Actions) {
         self.world = world
@@ -73,6 +72,9 @@ public struct WorldHome: View {
     }
 
     public var body: some View {
+        // The one resolver reports taps on the home objects here; set on
+        // every pass so it never holds a stale world.
+        let _ = scene.onPropTap = { prop in propTapped(prop) }
         ZStack {
             IslandScene(
                 world: world,
@@ -80,10 +82,9 @@ public struct WorldHome: View {
                 home: home,
                 onPofuTap: { home.pofuTapped() },
                 onBuild: { station in build(station) },
+                props: props,
                 bubble: { bubble }
             )
-
-            objects
 
             chrome
 
@@ -145,8 +146,8 @@ public struct WorldHome: View {
         scene.projectedFraming == .home && scene.focus == nil && !scene.hasSheet
     }
 
-    private var showsFramingControl: Bool {
-        scene.projectedFraming != .home && scene.focus == nil
+    private var showsIslandName: Bool {
+        scene.projectedFraming == .island && scene.focus == nil
     }
 
     private var chrome: some View {
@@ -162,19 +163,17 @@ public struct WorldHome: View {
             .allowsHitTesting(showsHomeChrome)
 
             VStack {
-                FramingPicker(model: scene)
-                    .padding(.top, PofuSpacing.s)
                 Spacer(minLength: 0)
                 if scene.projectedFraming == .island {
-                    IslandNameChip(island: .home)
+                    IslandNameChip(island: scene.island)
                         .padding(.bottom, PofuSpacing.l)
                 }
             }
-            .opacity(showsFramingControl ? 1 : 0)
-            .allowsHitTesting(showsFramingControl)
+            .opacity(showsIslandName ? 1 : 0)
+            .allowsHitTesting(false)
         }
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: showsHomeChrome)
-        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: showsFramingControl)
+        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: showsIslandName)
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.settle), value: home.currentBeat)
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: home.collect == nil)
     }
@@ -195,7 +194,8 @@ public struct WorldHome: View {
     }
 
     /// The beat's primary (never Collect: that lives at the jar), the
-    /// settled line, and the glance with the map button.
+    /// settled line, and the glance. The place control sits bottom trailing
+    /// in the scene; the play door lives in the garden.
     private var bottomBand: some View {
         VStack(spacing: PofuSpacing.m) {
             actionSlot
@@ -207,15 +207,6 @@ public struct WorldHome: View {
                 )
                 .frame(maxWidth: typeSize.isAccessibilitySize ? CGFloat.infinity : 280, alignment: .leading)
                 Spacer(minLength: 0)
-                VStack(spacing: PofuSpacing.s) {
-                    if actions.playableRounds > 0, let play = actions.play {
-                        PofuIconButton(systemName: "gamecontroller.fill", label: WorldStrings.play, action: play)
-                            .transition(.scale(scale: 0.8).combined(with: .opacity))
-                    }
-                    PofuIconButton(systemName: "map", label: WorldStrings.framingName(.map), paint: .iconIsland) {
-                        scene.go(to: .map)
-                    }
-                }
             }
         }
     }
@@ -256,75 +247,112 @@ public struct WorldHome: View {
 
     // MARK: - The objects
 
-    /// Pofu's feet on screen: the objects stand relative to them.
-    private func pofuFeet() -> MomentPoint {
-        let p = scene.screenPoint(of: IslandLayout.pofu)
-        return MomentPoint(x: p.x, y: p.y)
-    }
-
     private var isNight: Bool {
         world.isBedtime || WorldLight.resolve(world: world, calendar: .current).night > 0.5
     }
 
-    /// The jar, the lantern and the pots, glued to the world at the Home
-    /// framing (they follow the camera at 15 Hz while it moves, and rest once it is settled).
-    private var objects: some View {
-        TimelineView(.animation(minimumInterval: 1.0 / 15.0, paused: !scene.needsFrames)) { _ in
-            // Read here so the last, settled position is drawn when the
-            // timeline stops.
-            let _ = scene.revision
-            GeometryReader { proxy in
-                objectsBody(
-                    width: Double(proxy.size.width),
-                    leadingInset: Double(proxy.safeAreaInsets.leading),
-                    trailingInset: Double(proxy.safeAreaInsets.trailing)
-                )
-                .onGeometryChange(for: Double.self) { Double($0.safeAreaInsets.leading) } action: { leadingInset = $0 }
-            }
-        }
-        .ignoresSafeArea()
-        .opacity(showsHomeChrome ? 1 : 0)
-        .allowsHitTesting(showsHomeChrome)
-        .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: showsHomeChrome)
+    /// The jar, the lantern and the pots in the world canvas (§1.4), and
+    /// the jar's count tag and Collect action as screen overlays shown from
+    /// z 1.6.
+    private var props: WorldProps {
+        WorldProps(
+            world: { frame in AnyView(worldProps(frame)) },
+            screen: { frame in AnyView(screenProps(frame)) }
+        )
     }
 
-    private func objectsBody(width: Double, leadingInset: Double, trailingInset: Double) -> some View {
-        let feet = pofuFeet()
-        let jar = HomeObjectsLayout.jarCenter(feet: feet, screenWidth: width, leadingInset: leadingInset)
-        let lantern = HomeObjectsLayout.lanternCenter(feet: feet, screenWidth: width)
-        let pots = HomeObjectsLayout.potsCenter(feet: feet)
+    private func worldProps(_ frame: WorldPropsFrame) -> some View {
+        let presence = frame.presence
+        return ZStack(alignment: .topLeading) {
+            placed(.pots, frame) {
+                SkipPotsView(
+                    pots: SkipPots(beads: today.beads, isAsleep: world.isBedtime),
+                    today: today,
+                    timing: home.timing,
+                    isNight: isNight
+                )
+            }
+            placed(.lantern, frame) {
+                CalmLanternView(
+                    calm: world.calm,
+                    isGrowing: world.activity == .away && !world.calmIsFull,
+                    isFull: world.calmIsFull,
+                    isNight: isNight,
+                    timing: home.timing
+                )
+            }
+            placed(.jar, frame) {
+                // The tag and the Collect action are screen overlays; the
+                // jar itself is just art (the tap goes through the one
+                // resolver).
+                HomeJar(
+                    jar: world.jar.units,
+                    uncollected: world.pending.total.units,
+                    canCollect: false,
+                    isNight: isNight,
+                    showsTag: false,
+                    jarX: 0,
+                    screenWidth: Double(frame.size.width),
+                    leadingInset: 0,
+                    trailingInset: 0,
+                    home: home,
+                    collect: {}
+                )
+            }
+        }
+        .frame(width: frame.size.width, height: frame.size.height, alignment: .topLeading)
+        .opacity(presence)
+        .allowsHitTesting(false)
+    }
+
+    /// One object at its slot: projected like Pofu, scaled with the world,
+    /// squished when tapped.
+    private func placed<Content: View>(_ prop: HomeSlots.Prop, _ frame: WorldPropsFrame, @ViewBuilder content: () -> Content) -> some View {
+        let p = frame.point(of: prop.slot)
+        let k = CGFloat(frame.homeFactor)
         return ZStack {
-            SkipPotsView(
-                pots: SkipPots(beads: today.beads, isAsleep: world.isBedtime),
-                today: today,
-                timing: home.timing,
-                isNight: isNight
-            )
-            .position(x: pots.x, y: pots.y)
+            content()
+                .modifier(TapSquish(trigger: frame.pulse(of: prop), anchor: .bottom))
+                .scaleEffect(k)
+            // Where the slot was drawn, for the screenshot tests.
+            Color.clear
+                .frame(width: 1, height: 1)
+                .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { frame.report(prop, $0) }
+                .allowsHitTesting(false)
+        }
+        .position(x: p.x, y: p.y)
+    }
 
-            CalmLanternView(
-                calm: world.calm,
-                isGrowing: world.activity == .away && !world.calmIsFull,
-                isFull: world.calmIsFull,
-                isNight: isNight,
-                timing: home.timing
-            )
-            .position(x: lantern.x, y: lantern.y)
+    private func screenProps(_ frame: WorldPropsFrame) -> some View {
+        let opacity = frame.isFocused ? 0 : min(max((frame.z - 1.6) / 0.3, 0), 1)
+        let jar = frame.point(of: HomeSlots.jar)
+        let k = frame.homeFactor
+        return JarOverlay(
+            home: home,
+            jar: world.jar.units,
+            uncollected: world.pending.total.units,
+            canCollect: collectBeatIsOpen,
+            showsTag: showsJarTag,
+            jarX: jar.x,
+            screenWidth: Double(frame.size.width),
+            collect: { collect() }
+        )
+        .offset(y: HomeObjectsLayout.jarSize.height * k / 2 + 4)
+        .position(x: jar.x, y: jar.y)
+        .opacity(opacity)
+        .allowsHitTesting(opacity > 0.5)
+        .frame(width: frame.size.width, height: frame.size.height, alignment: .topLeading)
+    }
 
-            HomeJar(
-                jar: world.jar.units,
-                uncollected: world.pending.total.units,
-                canCollect: collectBeatIsOpen,
-                isNight: isNight,
-                showsTag: showsJarTag,
-                jarX: jar.x,
-                screenWidth: width,
-                leadingInset: leadingInset,
-                trailingInset: trailingInset,
-                home: home,
-                collect: { collect() }
-            )
-            .position(x: jar.x, y: jar.y)
+    /// What a tap on a home object does (the squish already played).
+    private func propTapped(_ prop: HomeSlots.Prop) {
+        switch prop {
+        case .jar:
+            if collectBeatIsOpen { collect() }
+        case .pots:
+            actions.openToday?()
+        case .lantern:
+            break
         }
     }
 
@@ -359,13 +387,18 @@ public struct WorldHome: View {
     /// Seeds leave the built stations and Pofu, arc into the jar, and the
     /// cheeks step down.
     private func collect() {
-        let width = Double(scene.engine.rig.rail.width)
         home.collectSeeds(
             jarBefore: world.jar.units,
             sources: seedSources(),
-            target: HomeObjectsLayout.jarCenter(feet: pofuFeet(), screenWidth: width, leadingInset: leadingInset),
+            target: jarTarget(),
             commit: actions.collect
         )
+    }
+
+    /// The jar on screen now: where the seeds land.
+    private func jarTarget() -> MomentPoint {
+        let p = scene.screenPoint(of: HomeSlots.jar)
+        return MomentPoint(x: p.x, y: p.y)
     }
 
     private func build(_ station: StationID) {
@@ -450,6 +483,51 @@ struct IslandNameChip: View {
             .frame(minHeight: 34)
             .pofuChrome(.worldTag)
             .accessibilityAddTraits(.isHeader)
+    }
+}
+
+/// The jar's count tag and the "Topla" action under it, in screen points
+/// (§1.4): the count rolls up with the collect moment like the jar's fill.
+struct JarOverlay: View {
+    let home: WorldHomeModel
+    let jar: Int
+    let uncollected: Int
+    let canCollect: Bool
+    let showsTag: Bool
+    let jarX: Double
+    let screenWidth: Double
+    let collect: @MainActor () -> Void
+
+    /// The action's measured width (it grows with the seed count).
+    @State private var actionWidth = 140.0
+
+    var body: some View {
+        // A point at the jar's centre; the content hangs from its top.
+        Color.clear
+            .frame(width: 1, height: 1)
+            .overlay(alignment: .top) { content }
+    }
+
+    private var content: some View {
+        TimelineView(.animation(minimumInterval: nil, paused: home.collect == nil || home.frozenOffset != nil)) { context in
+            let moment = home.collect?.moment
+            let time = home.collectTime(at: context.date) ?? 0
+            let count = moment?.counter(at: time) ?? jar
+            VStack(spacing: PofuSpacing.xs) {
+                if showsTag {
+                    JarTag(count: count)
+                        .scaleEffect(CGFloat(moment?.pillScale(at: time) ?? 1))
+                        .accessibilityHidden(true)
+                }
+                if canCollect, home.collect == nil {
+                    CollectAction(seeds: uncollected, action: collect)
+                        .onGeometryChange(for: Double.self) { Double($0.size.width) } action: { actionWidth = $0 }
+                        .transition(.opacity.combined(with: .scale(scale: 0.9)))
+                }
+            }
+            .fixedSize()
+            .offset(x: HomeObjectsLayout.collectShift(jarX: jarX, actionWidth: actionWidth, screenWidth: screenWidth))
+        }
     }
 }
 

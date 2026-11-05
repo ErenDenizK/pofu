@@ -1,0 +1,22 @@
+{
+  "_doc": "Per-kind strengths of tools/assets/vivid.py (the world sprite regrade). vibrance: chroma boost of a flat-coloured pixel (C -> C(1 + v(1 - C/chroma_ref)): chroma_ref maps to itself, nothing passes it); depth: lightness taken off pale mid-to-high tones (L 45..85); contrast: local-contrast gain on L (L - blur(L)); contrast_limit: max |change| in L; warm_a/warm_b: CIELAB shift toward warm for non-neutral pixels (scaled by the strength); chroma_p95_cap is a hard limit (chroma above it is compressed until the sprite p95 fits) and value_floor too (L p5 may not fall below min(value_floor, the sprite own); the strengths scale down together if needed). world/ui: kind -> name globs, first match wins; never: names that are not regraded (characters, plates, sky, glow overlays).",
+  "chroma_ref": 50.0,
+  "chroma_p95_cap": 50.0,
+  "value_floor": 35.0,
+  "blur_sigma_frac": 0.010,
+  "blur_sigma_px": [3.0, 9.0],
+  "neutral": [3.0, 12.0],
+  "kinds": {
+    "plant": {"depth": 3.5, "vibrance": 0.60, "contrast": 0.60, "contrast_limit": 9.0, "warm_a": 0.5, "warm_b": 2.8},
+    "home": {"depth": 3.5, "vibrance": 0.60, "contrast": 0.55, "contrast_limit": 9.0, "warm_a": 0.5, "warm_b": 2.8},
+    "station": {"depth": 3.0, "vibrance": 0.45, "contrast": 0.50, "contrast_limit": 8.0, "warm_a": 0.4, "warm_b": 2.2},
+    "prop": {"depth": 2.5, "vibrance": 0.40, "contrast": 0.45, "contrast_limit": 7.0, "warm_a": 0.4, "warm_b": 2.0}
+  },
+  "world": {
+    "plant": ["garden-*"],
+    "prop": ["decor-*", "harbor-ferry-*", "harbor-horn-*", "harbor-lamp-*", "harbor-crates-*"],
+    "station": ["tea-stall-*", "pond-*", "windmill-*", "workshop-*", "bagel-cart-*", "pier-*", "lighthouse-*"]
+  },
+  "never": ["island-*", "isle-*", "harbor-island-*", "mochi*", "findik*", "simit*", "pofu*", "cloud-*", "far-isle-*", "*-glow"],
+  "ui": {"home": ["paint-pot-*", "paint-jar-*"]}
+}
