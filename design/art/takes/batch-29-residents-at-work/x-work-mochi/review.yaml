@@ -1,0 +1,207 @@
+batch: batch-29-residents-at-work
+manifest: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+manifest_sha256: 85203326885da331817b9113d50d36e87be75f1645ee142038732d64fa63da5d
+contact_sheet: design/art/takes/batch-29-residents-at-work/x-work-mochi/contact.jpg
+jobs:
+  x-work-mochi:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show the same curl-free
+      cream Mochi with long relaxed ears behind the finished tea counter, rose-clay
+      teapot pouring amber tea into one tulip glass on its saucer, a second full glass
+      and a soft steam wisp. No extra limbs, text or Pofu. The eye line reads toward
+      the viewer rather than clearly at the receiving glass; retain that concept pose
+      observation for lead review. Core notes-defined review (on-model, busy/content,
+      pour and glasses readable in the close crop) passes; this is an independent
+      concept, not a registered station edit. Hard QA then lowest lock load decides;
+      style/light warnings advisory. Never promoted.
+qa_reports:
+  1:
+    job: x-work-mochi
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 63 (at most 22), p98 96 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.49 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.486
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.3 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.33
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.73
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0944
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 7.2, off-palette 0.7% (top: #DD7733 (0.1%), #EE8844
+        (0.1%))'
+      value: 2.1233
+    info:
+      metrics_raw:
+        L_p5: 68.3
+        L_p50: 83.8
+        L_p95: 95.0
+        C_p50: 19.8
+        C_p95: 36.7
+        C_p99: 48.8
+        detail: 2.28
+      metrics_locked:
+        L_p5: 68.7
+        L_p50: 83.8
+        L_p95: 94.7
+        C_p50: 19.4
+        C_p95: 36.1
+        C_p99: 46.5
+        detail: 1.73
+    fingerprint: 1bb6fcda59e0dcef
+  2:
+    job: x-work-mochi
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 64 (at most 22), p98 96 (at least 90), spread 32
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 32.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 84.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.47 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.471
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.83
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0337
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 7.4, off-palette 0.5% (top: #EE9944 (0.1%), #DD8833
+        (0.1%))'
+      value: 2.1527
+    info:
+      metrics_raw:
+        L_p5: 66.7
+        L_p50: 83.2
+        L_p95: 95.1
+        C_p50: 21.8
+        C_p95: 36.8
+        C_p99: 44.7
+        detail: 2.4
+      metrics_locked:
+        L_p5: 67.1
+        L_p50: 83.2
+        L_p95: 94.8
+        C_p50: 21.6
+        C_p95: 36.5
+        C_p99: 43.5
+        detail: 1.83
+    fingerprint: 1bb6fcda59e0dcef
+manual_review:
+  observed_note: Both show the same curl-free cream Mochi with long relaxed ears behind
+    the finished tea counter, rose-clay teapot pouring amber tea into one tulip glass
+    on its saucer, a second full glass and a soft steam wisp. No extra limbs, text
+    or Pofu. The eye line reads toward the viewer rather than clearly at the receiving
+    glass; retain that concept pose observation for lead review. Core notes-defined
+    review (on-model, busy/content, pour and glasses readable in the close crop) passes;
+    this is an independent concept, not a registered station edit. Hard QA then lowest
+    lock load decides; style/light warnings advisory. Never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-29-residents-at-work
+  job: x-work-mochi
+  take: 1
+  round: 1
+  logical_run: 20261105-night29-mochi-simit-work
+  source_file: /workspace/generated_images/exec-02f0587e-47de-47de-9c13-f3640ea01f28.png
+  returned_at: '2026-11-05T18:41:40.110Z'
+  prompt_sha256: 779b0972d28a0e8f898797a85d190c8242a3e7e89c483c11d1d2959c221b6724
+  fingerprint: 1bb6fcda59e0dcef
+  saved_at: '2026-11-05T18:41:41.109012+00:00'
+  original_generated_png_sha256: e7b8e00dfead6edc209b525afcf9236a5baddbb758c70b3cafc9d83393d65fb4
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 17cfb06a6f049786f7b6c2e02a9035a59c6d761b0410a1d3c98326fae64a8014
+  inbox_png_sha256: 59ce2dd4e90579e280fc7b946221c1a4fc4106b22985ca2ee888b718de78876d
+  qa_sha256: cd31c76ab2997eca968489912e250aec146124d8202ffed542457a656d979da6
+- batch: batch-29-residents-at-work
+  job: x-work-mochi
+  take: 2
+  round: 1
+  logical_run: 20261105-night29-mochi-simit-work
+  source_file: /workspace/generated_images/exec-1bbd280f-7fe8-4b7a-b1b3-b8300081f078.png
+  returned_at: '2026-11-05T18:43:35.504Z'
+  prompt_sha256: 779b0972d28a0e8f898797a85d190c8242a3e7e89c483c11d1d2959c221b6724
+  fingerprint: 1bb6fcda59e0dcef
+  saved_at: '2026-11-05T18:43:39.007916+00:00'
+  original_generated_png_sha256: bd114012d528d92702c5d18e240e6b8e077f3dc884a8f5701807490e02495e25
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: a0ebe9fdc7accac6537b4f6d488283803bfb6bad21ba2b023ddb3d0df7427da2
+  inbox_png_sha256: 8cf6846aae6e3ff915023506e5c1f4571afb0bbf56c011a8a2415f8ae557ed0c
+  qa_sha256: 054a676cd9c13ae02c3a6e81be1fe1aa0ffb6992c2c303d775d33a98f0b44133
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

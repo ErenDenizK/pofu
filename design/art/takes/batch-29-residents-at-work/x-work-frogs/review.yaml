@@ -1,0 +1,208 @@
+batch: batch-29-residents-at-work
+manifest: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+manifest_sha256: 85203326885da331817b9113d50d36e87be75f1645ee142038732d64fa63da5d
+contact_sheet: design/art/takes/batch-29-residents-at-work/x-work-frogs/contact.jpg
+jobs:
+  x-work-frogs:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both show exactly three round
+      plush frogs in related sage/mint/pale-lime tones with cream bellies: one visibly
+      airborne between lily pads with a small splash arc, one singing with an open
+      round mouth, and one asleep with closed eyes and a leaf hat. No head curl, extra
+      limbs, letters, music glyphs or Pofu. The finished pond family keeps the rounded
+      stone rim, lily pads/flower, three cream lanterns and short wooden dock; positions
+      vary in the independent close concept crop, not a registered edit. The three
+      different activities read clearly. Hard QA then lowest lock load decides; exploration
+      style/light warnings advisory. Never promoted.'
+qa_reports:
+  1:
+    job: x-work-frogs
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 33.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 67 (at most 22), p98 95 (at least 90), spread 28
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 28.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 86 (band 55-90)'
+      value: 86.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.53 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.525
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.1 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.09
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.5
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6906
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 4.5, off-palette 0.1% (top: #AAAA44 (0.0%), #999944
+        (0.0%))'
+      value: 1.9449
+    info:
+      metrics_raw:
+        L_p5: 74.9
+        L_p50: 86.6
+        L_p95: 95.6
+        C_p50: 16.2
+        C_p95: 34.1
+        C_p99: 37.7
+        detail: 2.05
+      metrics_locked:
+        L_p5: 75.1
+        L_p50: 86.6
+        L_p95: 95.4
+        C_p50: 16.0
+        C_p95: 33.9
+        C_p99: 36.8
+        detail: 1.5
+    fingerprint: 83f32f8b29a2e75c
+  2:
+    job: x-work-frogs
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 28 (R1 51)
+      value: 27.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 66 (at most 22), p98 96 (at least 90), spread 30
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 29.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 87.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.53 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.533
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.52
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.49
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6868
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 4.2, off-palette 0.1% (top: #663311 (0.0%), #994422
+        (0.0%))'
+      value: 2.3237
+    info:
+      metrics_raw:
+        L_p5: 75.3
+        L_p50: 87.4
+        L_p95: 95.6
+        C_p50: 17.0
+        C_p95: 27.8
+        C_p99: 33.1
+        detail: 1.98
+      metrics_locked:
+        L_p5: 75.6
+        L_p50: 87.4
+        L_p95: 95.4
+        C_p50: 16.8
+        C_p95: 27.8
+        C_p99: 32.7
+        detail: 1.49
+    fingerprint: 83f32f8b29a2e75c
+manual_review:
+  observed_note: 'Both show exactly three round plush frogs in related sage/mint/pale-lime
+    tones with cream bellies: one visibly airborne between lily pads with a small
+    splash arc, one singing with an open round mouth, and one asleep with closed eyes
+    and a leaf hat. No head curl, extra limbs, letters, music glyphs or Pofu. The
+    finished pond family keeps the rounded stone rim, lily pads/flower, three cream
+    lanterns and short wooden dock; positions vary in the independent close concept
+    crop, not a registered edit. The three different activities read clearly. Hard
+    QA then lowest lock load decides; exploration style/light warnings advisory. Never
+    promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-29-residents-at-work
+  job: x-work-frogs
+  take: 1
+  round: 1
+  logical_run: 20261105-night29-frogs-night28-moon3
+  source_file: /workspace/generated_images/exec-c26a5900-a370-4909-9bcc-dee43232b19b.png
+  returned_at: '2026-11-05T18:56:42.638Z'
+  prompt_sha256: 645e3c9720f25f1c70bd295c39743f0cef3eae42ff14026ea5dfa23f9a521e2d
+  fingerprint: 83f32f8b29a2e75c
+  saved_at: '2026-11-05T18:56:42.944449+00:00'
+  original_generated_png_sha256: 78b74e02f906fa8b8cb7736256f572ceeba9db28498e5a6b5f878eb7a1181cde
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: ff2bd4a3ae16780b8ad5b13484e65f4038a7a3954eb8438cd259063caaf9c099
+  inbox_png_sha256: 112e3d4ac116ca65e725ca70256b747625a147136bfba49576086afb5e7259c4
+  qa_sha256: 668d825d9b39f81c978c46dab8daa77a9bc4bf3f0dedec77a8422b4057fe0455
+- batch: batch-29-residents-at-work
+  job: x-work-frogs
+  take: 2
+  round: 1
+  logical_run: 20261105-night29-frogs-night28-moon3
+  source_file: /workspace/generated_images/exec-c145f45c-829e-4d7e-88ef-e2330383907c.png
+  returned_at: '2026-11-05T18:56:05.511Z'
+  prompt_sha256: 645e3c9720f25f1c70bd295c39743f0cef3eae42ff14026ea5dfa23f9a521e2d
+  fingerprint: 83f32f8b29a2e75c
+  saved_at: '2026-11-05T18:56:06.046347+00:00'
+  original_generated_png_sha256: c1a8b8e8e5e6337f9212c82d3fc1a8f51c8286953b369a4c011edc4812e8faf9
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: e266a8c83e039e6f3053c25bbebdb19de316a5db63b227e1fa93de129cfcc918
+  inbox_png_sha256: e9d25c8c09cbceab3b445aaba85b4d982fabc9ce9d2e27aad4063c7e56690243
+  qa_sha256: 22f8c10bb22b2c952bde88b2064352ed34bd7872ba6cd6d0349031200ff649a0
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

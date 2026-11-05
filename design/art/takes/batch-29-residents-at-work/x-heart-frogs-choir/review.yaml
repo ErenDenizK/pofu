@@ -1,0 +1,207 @@
+batch: batch-29-residents-at-work
+manifest: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+manifest_sha256: 85203326885da331817b9113d50d36e87be75f1645ee142038732d64fa63da5d
+contact_sheet: design/art/takes/batch-29-residents-at-work/x-heart-frogs-choir/contact.jpg
+jobs:
+  x-heart-frogs-choir:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Independent manual source review:
+      exactly three rounded plush sage/mint/pale-lime frogs sit in a row on the pond
+      wooden dock, the middle frog larger. All three have round open singing mouths
+      and closed happy eyes; this resolves the prompt simultaneous glossy-eye and
+      closed-eye wording in favour of its explicit singing pose. Cream bellies, curl-free
+      heads, soft pink hearts and cream motes, faintly warm lily pads, calm golden
+      light. No text, numbers, music glyphs, rays, bursts, sparkle stars or extra
+      limbs. Finished pond family remains recognisable but is not a registered station
+      overlay. Hard QA then lowest lock load; exploration style/light warnings advisory.
+      Never promoted.'
+qa_reports:
+  1:
+    job: x-heart-frogs-choir
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.6
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 50 (at most 24), p98 92 (at least 86), spread
+        43 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 42.7
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 77 (band 48-86)'
+      value: 77.0
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.39 (at most 0.22; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.392
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 2.6 (at least 3.4) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.57
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.65
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2955
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 3.9, off-palette 0.0%
+      value: 1.7881
+    info:
+      metrics_raw:
+        L_p5: 59.4
+        L_p50: 78.7
+        L_p95: 90.1
+        C_p50: 17.4
+        C_p95: 37.0
+        C_p99: 44.4
+        detail: 2.2
+      metrics_locked:
+        L_p5: 59.6
+        L_p50: 78.7
+        L_p95: 89.8
+        C_p50: 17.3
+        C_p95: 36.6
+        C_p99: 43.7
+        detail: 1.65
+    fingerprint: 34554102d3389131
+  2:
+    job: x-heart-frogs-choir
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 32.1
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 56 (at most 24), p98 93 (at least 86), spread
+        37 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 36.9
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 78 (band 48-86)'
+      value: 78.2
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.46 (at most 0.22; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.455
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 2.0 (at least 3.4) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.05
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.43
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4156
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.9, p95 4.3, off-palette 0.0%
+      value: 1.9413
+    info:
+      metrics_raw:
+        L_p5: 65.3
+        L_p50: 78.3
+        L_p95: 89.9
+        C_p50: 16.9
+        C_p95: 32.5
+        C_p99: 40.6
+        detail: 1.92
+      metrics_locked:
+        L_p5: 65.5
+        L_p50: 78.3
+        L_p95: 89.7
+        C_p50: 16.9
+        C_p95: 32.1
+        C_p99: 39.6
+        detail: 1.43
+    fingerprint: 34554102d3389131
+manual_review:
+  observed_note: 'Independent manual source review: exactly three rounded plush sage/mint/pale-lime
+    frogs sit in a row on the pond wooden dock, the middle frog larger. All three
+    have round open singing mouths and closed happy eyes; this resolves the prompt
+    simultaneous glossy-eye and closed-eye wording in favour of its explicit singing
+    pose. Cream bellies, curl-free heads, soft pink hearts and cream motes, faintly
+    warm lily pads, calm golden light. No text, numbers, music glyphs, rays, bursts,
+    sparkle stars or extra limbs. Finished pond family remains recognisable but is
+    not a registered station overlay. Hard QA then lowest lock load; exploration style/light
+    warnings advisory. Never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-29-residents-at-work
+  job: x-heart-frogs-choir
+  take: 1
+  round: 1
+  logical_run: 20261105-night-workshop5-frog-heart
+  source_file: /workspace/generated_images/exec-7eabe919-cf4f-4a29-b37c-107f6f229de3.png
+  returned_at: '2026-11-05T19:06:56.671Z'
+  prompt_sha256: 00f60d7bf34069b79cd14502e8dca51d21dac3c5a3de403bf9e394eb637fe9e0
+  fingerprint: 34554102d3389131
+  saved_at: '2026-11-05T19:06:56.992342+00:00'
+  original_generated_png_sha256: 5ff2b57c00fdd58ac6efe44f8c26d35c73d6ef92f828be380f154b9f293ab2b9
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: ba22a6537a540b4c8b0696f8da80c47ea1677958aeaf25e268b2eb1901362713
+  inbox_png_sha256: c66f621d00d02af5abaef93df2cfe0c7cb95d2a73efb9a82d0f332ba0810f9e9
+  qa_sha256: 8c599b1ddc7ac9ebf1e826227d9088074da92c7eb69e012ee7db75601e791cda
+- batch: batch-29-residents-at-work
+  job: x-heart-frogs-choir
+  take: 2
+  round: 1
+  logical_run: 20261105-night-workshop5-frog-heart
+  source_file: /workspace/generated_images/exec-ebee0ad7-75c1-40d7-a991-3e5e5a6ec2b8.png
+  returned_at: '2026-11-05T19:06:11.725Z'
+  prompt_sha256: 00f60d7bf34069b79cd14502e8dca51d21dac3c5a3de403bf9e394eb637fe9e0
+  fingerprint: 34554102d3389131
+  saved_at: '2026-11-05T19:06:12.158433+00:00'
+  original_generated_png_sha256: fdb1ee572cb30b80ef9d285f2b5769741f89f69335220ba0fe3d25043f03bc70
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 5be5e40a75f6cd739b2257a51e858bddc21a1aeb1fc34349c4715e21776e3f63
+  inbox_png_sha256: 92ac0f66540ad3b1db6597e40a811e7ff6d45de750820cfe7878f6eff720f2b5
+  qa_sha256: ef9f75f38b7f2ce91aa885c81517faa38e50ba4f182aa53f077306f05eb7424f
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

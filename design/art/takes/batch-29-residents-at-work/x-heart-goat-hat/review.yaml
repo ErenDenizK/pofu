@@ -1,0 +1,208 @@
+batch: batch-29-residents-at-work
+manifest: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+manifest_sha256: 85203326885da331817b9113d50d36e87be75f1645ee142038732d64fa63da5d
+contact_sheet: design/art/takes/batch-29-residents-at-work/x-heart-goat-hat/contact.jpg
+jobs:
+  x-heart-goat-hat:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Independent manual source review:
+      both keep the familiar bearded cream/honey goat with long soft ears, small horns
+      visible beside the soft white-blue sailor hat and coral pom centred between
+      them. Chin up, pleased smug expression, full-sized goat on the wooden pier;
+      the hat makes the goat funnier rather than smaller. Soft pink hearts and cream
+      motes, golden light, no text, numerals, rays, bursts, sparkle stars, head curl
+      or extra limbs. Water-like context behind the pier is retained as concept context,
+      not an invented forbidden-content failure. Hard QA then lowest lock load; exploration
+      style/light warnings advisory. Never promoted.'
+qa_reports:
+  1:
+    job: x-heart-goat-hat
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 46.9
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 46 (at most 24), p98 93 (at least 86), spread
+        47 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 47.2
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 84 (band 48-86)'
+      value: 83.7
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.35 (at most 0.22; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.353
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 2.1 (at least 3.4) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.11
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.7
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4364
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 6.2, off-palette 0.1% (top: #663311 (0.0%), #995522
+        (0.0%))'
+      value: 2.0926
+    info:
+      metrics_raw:
+        L_p5: 56.8
+        L_p50: 78.8
+        L_p95: 91.5
+        C_p50: 26.2
+        C_p95: 47.4
+        C_p99: 50.8
+        detail: 2.29
+      metrics_locked:
+        L_p5: 57.0
+        L_p50: 78.8
+        L_p95: 91.3
+        C_p50: 26.0
+        C_p95: 46.9
+        C_p99: 49.7
+        detail: 1.7
+    fingerprint: d3729859216101df
+  2:
+    job: x-heart-goat-hat
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.3
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 47 (at most 24), p98 94 (at least 86), spread
+        47 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 46.8
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 81 (band 48-86)'
+      value: 81.2
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.38 (at most 0.22; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.376
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 1.9 (at least 3.4) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.91
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.9
+      value: 1.8919
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 7.5, off-palette 0.0% (top: #CC7744 (0.0%), #BB5533
+        (0.0%))'
+      value: 2.3236
+    info:
+      metrics_raw:
+        L_p5: 58.0
+        L_p50: 73.0
+        L_p95: 91.3
+        C_p50: 28.3
+        C_p95: 46.5
+        C_p99: 49.0
+        detail: 2.22
+      metrics_locked:
+        L_p5: 58.1
+        L_p50: 73.0
+        L_p95: 91.2
+        C_p50: 28.3
+        C_p95: 46.3
+        C_p99: 48.3
+        detail: 1.64
+    fingerprint: d3729859216101df
+manual_review:
+  observed_note: 'Independent manual source review: both keep the familiar bearded
+    cream/honey goat with long soft ears, small horns visible beside the soft white-blue
+    sailor hat and coral pom centred between them. Chin up, pleased smug expression,
+    full-sized goat on the wooden pier; the hat makes the goat funnier rather than
+    smaller. Soft pink hearts and cream motes, golden light, no text, numerals, rays,
+    bursts, sparkle stars, head curl or extra limbs. Water-like context behind the
+    pier is retained as concept context, not an invented forbidden-content failure.
+    Hard QA then lowest lock load; exploration style/light warnings advisory. Never
+    promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-29-residents-at-work
+  job: x-heart-goat-hat
+  take: 1
+  round: 1
+  logical_run: 20261105-night29-simit-goat-hearts
+  source_file: /workspace/generated_images/exec-52dea3a1-ec30-45fa-b5fb-fcb44b705fac.png
+  returned_at: '2026-11-05T19:03:43.014Z'
+  prompt_sha256: 412692cc0fd11c8a556971a41eb60059c6c7ba1e20ad5252666d3d1eea298196
+  fingerprint: d3729859216101df
+  saved_at: '2026-11-05T19:03:43.429499+00:00'
+  original_generated_png_sha256: 6405a6eefc5c8f05d3418b365e0cd84600a1b7cb42588fab5a8fcaf3d4cbfa81
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: ea8671c875470c9729a48cbbab194c2e91ddb13f6df4fd57785943619746ba23
+  inbox_png_sha256: 851b782866849adf657c99d4ef4001b243b7e3aa5c168f39ced24ddfe4cad419
+  qa_sha256: bfe900f0fa1632c2987b455e011d3e6ea0cfbaac9e5026f3c90b035d6bbd062d
+- batch: batch-29-residents-at-work
+  job: x-heart-goat-hat
+  take: 2
+  round: 1
+  logical_run: 20261105-night29-simit-goat-hearts
+  source_file: /workspace/generated_images/exec-b6e690c1-a18f-4b11-86f7-8271b6381207.png
+  returned_at: '2026-11-05T19:04:22.933Z'
+  prompt_sha256: 412692cc0fd11c8a556971a41eb60059c6c7ba1e20ad5252666d3d1eea298196
+  fingerprint: d3729859216101df
+  saved_at: '2026-11-05T19:04:23.237003+00:00'
+  original_generated_png_sha256: 56d9e6473e5588788d1631cf7a0760056f07b4708d6c68ab7c55c0fc720ba4fd
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 1092b8af84f88a3599b4cd773a499f295e95976c9f63793f0eb777f63226dbea
+  inbox_png_sha256: 92ed19fa459ff86b6fe1cb77d217191b8a2279f5f2d08509c19b0fe02938851f
+  qa_sha256: 5232bbcadbac8cecb4c6636d314a6f9b4c3ade76d23baa326a465fe94533c61c
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
