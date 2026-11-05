@@ -26,7 +26,7 @@ public enum HomeSlots {
 
     /// The centre of the pot row on the island's lip.
     public static var pots: WorldPoint {
-        WorldPoint(x: IslandLayout.pofu.x, y: IslandLayout.pofu.y + 112 / scale)
+        WorldPoint(x: IslandLayout.pofu.x, y: IslandLayout.pofu.y + 55 / scale)
     }
 
     /// The lantern's offset from Pofu's feet: the light field's emitter

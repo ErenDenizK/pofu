@@ -60,7 +60,7 @@ public enum IslandLayout {
     /// over the rim); the test fails before a slot can stick out again.
     public static let stationAnchors: [StationID: WorldPoint] = [
         .windmill: WorldPoint(x: -50, y: -25),
-        .workshop: WorldPoint(x: 61, y: -9),
+        .workshop: WorldPoint(x: 66, y: -15),
         .garden: WorldPoint(x: -173, y: 6),
         .teaStall: WorldPoint(x: 154, y: 6),
         .pond: WorldPoint(x: -65, y: 23),
