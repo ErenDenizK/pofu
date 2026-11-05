@@ -2,16 +2,25 @@ batch: batch-33-home-showcase-pilot
 contact_sheet: design/art/takes/batch-33-home-showcase-pilot/hive-1/contact.jpg
 jobs:
   hive-1:
-    pick: none
-    publication: skipped after one allowed retry
-    note: 'SKIPPED after one allowed retry pair: all four skep candidates are readable,
-      unlit and bee-free with lavender and a front stepping stone, but remain too
-      large for the explicitly small gift station. Posted widths are 630, 557, 677
-      and 527px on the 720px footprint, rather than the requested half footprint,
-      about 360px; the upper silhouette also exceeds the intended lower half of the
-      height bar. Numeric anchor checks pass but do not waive this manual scale requirement.
-      All four originals and takes retained unchanged; no manual rescaling, promotion
-      or threshold edits. Full batch33 remains gated on lead pilot review, not started.'
+    pick: 4
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Re-posted the four unchanged
+      original PNGs from merged PR190 under the lead-authorized row0a-r guide-fit
+      max_width360; no image generation and no manual resize or recolouring. Original
+      generation prompt, reference hashes and fingerprint 9797062cde8fbe9d match the
+      current exact CLI packet. Every original and prior inbox/build/review cache
+      is retained. All four official numerical QA reports have no hard failure, but
+      take1 and take3 need fit scales below the pipeline minimum0.6 (0.58 and0.53),
+      so official fit is skipped and posted widths625/673 remain too large; exclude
+      them under the explicit half-footprint brief. Take2 fits360px at scale0.6522
+      and take4 fits359px at scale0.6883, both on baseline900 and within the lower
+      half of the station height budget. Select take4 by the lower style-lock load0.9349
+      versus1.0037; Harmony76.1 versus75.8 is the tie breaker only. The honey-coil
+      bell-shaped straw skep on a low stump, dark round entrance, three tiny lavender
+      clumps and one flat stepping stone read as a beehive at28px on light and dark
+      backgrounds. No bees, lettering, fence, floor, guide or painted ground shadow.
+      Light-value/haze and minor palette warnings remain advisory under current policy.
+      auto-picked by QA; founder review pending.
 qa_reports:
   2:
     job: hive-1
@@ -29,54 +38,54 @@ qa_reports:
     - check: chroma_ceiling
       status: pass
       message: chroma p95 50 (R1 51)
-      value: 50.4
+      value: 50.2
     - check: light_values
       status: warn
-      message: 'day/subject: L p2 41 (at most 22), p98 89 (at least 90), spread 48
+      message: 'day/subject: L p2 41 (at most 22), p98 89 (at least 90), spread 47
         (at least 60) (warn-only until the founder has seen the light pilot)'
-      value: 47.6
+      value: 47.4
     - check: light_median
       status: pass
       message: 'day/subject: median L 75 (band 55-90)'
       value: 75.1
     - check: light_haze
       status: warn
-      message: 'day/subject: dark-channel haze 0.29 (at most 0.20; no true dark means
+      message: 'day/subject: dark-channel haze 0.25 (at most 0.20; no true dark means
         a wash)'
-      value: 0.286
+      value: 0.247
     - check: light_contrast
-      status: warn
-      message: 'day/subject: p75 local contrast 3.4 (at least 3.5)'
-      value: 3.35
+      status: pass
+      message: 'day/subject: p75 local contrast 4.8 (at least 3.5)'
+      value: 4.76
     - check: detail_budget
       status: pass
-      message: detail at display size 1.4 (R1 5.3)
-      value: 1.37
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.25
     - check: lock_load
       status: pass
-      message: the lock moved colors by mean dE 0.8
-      value: 0.7792
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0037
     - check: no_guide_magenta
       status: pass
       message: 0 guide-magenta pixels (per 1024^2)
       value: 0.0
     - check: palette_drift
       status: pass
-      message: 'mean dE 2.0, p95 8.0, off-palette 1.5% (top: #AA88AA (0.5%), #AA8899
+      message: 'mean dE 2.0, p95 8.0, off-palette 1.3% (top: #AA88AA (0.5%), #AA99AA
         (0.3%))'
-      value: 1.9758
+      value: 1.9601
     - check: station_anchor
       status: pass
       message: on the anchor
       value: 900.0
     - check: harmony
       status: pass
-      message: 'harmony score 78 against the world reference (outliers: L_p2, L_p98,
+      message: 'harmony score 76 against the world reference (outliers: L_p2, L_p98,
         edge)'
-      value: 78.4
+      value: 75.8
     info:
       fit:
-        scale: 1.0
+        scale: 0.6522
         anchor:
         - 482.9
         - 937
@@ -84,21 +93,21 @@ qa_reports:
         dx: 29
         dy: -37
       metrics_raw:
-        L_p5: 54.1
+        L_p5: 54.2
         L_p50: 75.2
         L_p95: 87.2
         C_p50: 34.0
-        C_p95: 50.7
+        C_p95: 50.6
         C_p99: 52.4
-        detail: 1.9
+        detail: 1.74
       metrics_locked:
-        L_p5: 55.0
+        L_p5: 55.3
         L_p50: 75.1
-        L_p95: 87.0
+        L_p95: 86.9
         C_p50: 34.1
-        C_p95: 50.4
-        C_p99: 51.9
-        detail: 1.37
+        C_p95: 50.2
+        C_p99: 51.6
+        detail: 1.25
     fingerprint: 9797062cde8fbe9d
   3:
     job: hive-1
@@ -162,11 +171,7 @@ qa_reports:
         edge)'
       value: 71.6
     info:
-      fit:
-        scale: 1.0
-        anchor:
-        - 491.8
-        - 898
+      fit_skipped: needs x0.53, below x0.6 (a real art failure)
       registration:
         dx: 20
         dy: 2
@@ -248,11 +253,7 @@ qa_reports:
       message: 'harmony score 70 against the world reference (outliers: L_p98, edge)'
       value: 69.6
     info:
-      fit:
-        scale: 1.0
-        anchor:
-        - 501.5
-        - 919
+      fit_skipped: needs x0.58, below x0.6 (a real art failure)
       registration:
         dx: 10
         dy: -19
@@ -287,55 +288,55 @@ qa_reports:
       message: 1254x1254 scaled x0.817 into 1024x1024
       value: 0.8166
     - check: chroma_ceiling
-      status: warn
+      status: pass
       message: chroma p95 52 (R1 51)
-      value: 52.1
+      value: 51.9
     - check: light_values
       status: warn
       message: 'day/subject: L p2 46 (at most 22), p98 88 (at least 90), spread 42
         (at least 60) (warn-only until the founder has seen the light pilot)'
-      value: 42.1
+      value: 41.7
     - check: light_median
       status: pass
       message: 'day/subject: median L 74 (band 55-90)'
       value: 74.3
     - check: light_haze
       status: warn
-      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
         a wash)'
-      value: 0.255
+      value: 0.224
     - check: light_contrast
-      status: warn
-      message: 'day/subject: p75 local contrast 3.3 (at least 3.5)'
-      value: 3.28
+      status: pass
+      message: 'day/subject: p75 local contrast 4.5 (at least 3.5)'
+      value: 4.49
     - check: detail_budget
       status: pass
-      message: detail at display size 1.4 (R1 5.3)
-      value: 1.36
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.23
     - check: lock_load
       status: pass
-      message: the lock moved colors by mean dE 0.8
-      value: 0.7543
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9349
     - check: no_guide_magenta
       status: pass
       message: 0 guide-magenta pixels (per 1024^2)
       value: 0.0
     - check: palette_drift
       status: warn
-      message: 'mean dE 2.4, p95 11.2, off-palette 4.0% (top: #888855 (1.1%), #999966
+      message: 'mean dE 2.4, p95 11.3, off-palette 4.0% (top: #888855 (1.1%), #999966
         (0.7%))'
-      value: 2.4158
+      value: 2.4253
     - check: station_anchor
       status: pass
       message: on the anchor
       value: 900.0
     - check: harmony
       status: pass
-      message: 'harmony score 78 against the world reference (outliers: L_p98, edge)'
-      value: 78.3
+      message: 'harmony score 76 against the world reference (outliers: L_p98, edge)'
+      value: 76.1
     info:
       fit:
-        scale: 1.0
+        scale: 0.6883
         anchor:
         - 498.5
         - 938
@@ -343,36 +344,42 @@ qa_reports:
         dx: 14
         dy: -38
       metrics_raw:
-        L_p5: 53.2
+        L_p5: 53.3
         L_p50: 74.3
         L_p95: 86.7
         C_p50: 39.4
         C_p95: 52.5
         C_p99: 54.5
-        detail: 1.88
+        detail: 1.72
       metrics_locked:
-        L_p5: 54.0
+        L_p5: 54.5
         L_p50: 74.3
-        L_p95: 86.5
-        C_p50: 39.6
-        C_p95: 52.1
-        C_p99: 53.8
-        detail: 1.36
+        L_p95: 86.4
+        C_p50: 39.7
+        C_p95: 51.9
+        C_p99: 53.5
+        detail: 1.23
     fingerprint: 9797062cde8fbe9d
 manual_review:
   excluded_takes:
   - 1
-  - 2
   - 3
-  - 4
-  note: 'SKIPPED after one allowed retry pair: all four skep candidates are readable,
-    unlit and bee-free with lavender and a front stepping stone, but remain too large
-    for the explicitly small gift station. Posted widths are 630, 557, 677 and 527px
-    on the 720px footprint, rather than the requested half footprint, about 360px;
-    the upper silhouette also exceeds the intended lower half of the height bar. Numeric
-    anchor checks pass but do not waive this manual scale requirement. All four originals
-    and takes retained unchanged; no manual rescaling, promotion or threshold edits.
-    Full batch33 remains gated on lead pilot review, not started.'
+  note: Re-posted the four unchanged original PNGs from merged PR190 under the lead-authorized
+    row0a-r guide-fit max_width360; no image generation and no manual resize or recolouring.
+    Original generation prompt, reference hashes and fingerprint 9797062cde8fbe9d
+    match the current exact CLI packet. Every original and prior inbox/build/review
+    cache is retained. All four official numerical QA reports have no hard failure,
+    but take1 and take3 need fit scales below the pipeline minimum0.6 (0.58 and0.53),
+    so official fit is skipped and posted widths625/673 remain too large; exclude
+    them under the explicit half-footprint brief. Take2 fits360px at scale0.6522 and
+    take4 fits359px at scale0.6883, both on baseline900 and within the lower half
+    of the station height budget. Select take4 by the lower style-lock load0.9349
+    versus1.0037; Harmony76.1 versus75.8 is the tie breaker only. The honey-coil bell-shaped
+    straw skep on a low stump, dark round entrance, three tiny lavender clumps and
+    one flat stepping stone read as a beehive at28px on light and dark backgrounds.
+    No bees, lettering, fence, floor, guide or painted ground shadow. Light-value/haze
+    and minor palette warnings remain advisory under current policy. auto-picked by
+    QA; founder review pending.
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-cee6825b-b752-4e4e-ac1f-dd2154d148ce.png

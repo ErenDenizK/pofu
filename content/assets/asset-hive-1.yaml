@@ -2,7 +2,7 @@ id: asset-hive-1
 type: asset
 title_tr: hive-1
 title_en: hive-1 (station)
-status: cut
+status: in-production
 horizon: now
 summary: 'A small beehive station for the island diorama: one plump, bell-shaped straw
   skep of soft golden-honey coils, a small round dark entrance at its foot, sitting
@@ -11,7 +11,8 @@ summary: 'A small beehive station for the island diorama: one plump, bell-shaped
   half the footprint''s width and only the lower half of the height bar, standing
   on the footprint,…'
 art:
-  images: []
+  images:
+  - design/art/stations/hive-1/hive-1.png
   jobs:
   - batch-33-home-showcase-pilot:hive-1
 sources:
