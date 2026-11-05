@@ -199,7 +199,7 @@ final class LookScreenshotTests: XCTestCase {
                 model.holdStationPan(from: .teaStall, to: .teaStall, at: 0)
                 var look = WorldLook(hd2d: lit, depthMotion: false, hourOverride: hour)
                 look.litOverlays = flame
-                let image = try await render(AnyView(LookScene(world: world, model: model, picker: false).environment(\.worldLook, look)), in: scene, settle: 1400)
+                let image = try await render(AnyView(LookScene(world: world, model: model).environment(\.worldLook, look)), in: scene, settle: 1400)
                 // The held focus pose, as the scene drew it.
                 let teaStall = try XCTUnwrap(IslandFraming.stationBox(.teaStall))
                 let a = model.screenPoint(of: WorldPoint(x: teaStall.minX - 4, y: teaStall.minY - 4))
@@ -299,7 +299,7 @@ final class LookScreenshotTests: XCTestCase {
                 let model = IslandSceneModel(framing: .island)
                 model.holdPan(start: 0, velocity: -1100, at: t)
                 let look = WorldLook(depthMotion: depth, hourOverride: 12)
-                let image = try await render(AnyView(LookScene(world: world(wellbeing: 78), model: model, picker: false).environment(\.worldLook, look)), in: scene, settle: 1200)
+                let image = try await render(AnyView(LookScene(world: world(wellbeing: 78), model: model).environment(\.worldLook, look)), in: scene, settle: 1200)
                 row.append(image)
                 rowTitles.append(String(format: "%@ t %.2f s", depth ? "depth on" : "depth off", t))
                 if depth, t == 2.0 {
@@ -441,19 +441,12 @@ private struct LookScene: View {
     let world: WorldSnapshot
     let model: IslandSceneModel
     var still = true
-    /// The framing control (off for crops and pans).
-    var picker = true
 
     var body: some View {
-        ZStack(alignment: .top) {
-            IslandScene(world: world, model: model) {
-                SpeechBubble {
-                    Text(verbatim: "Sen yokken bahçe 12 çekirdek topladı.")
-                }
-            }
-            if picker {
-                FramingPicker(model: model)
-                    .padding(.top, 8)
+        // The scene carries the one place control itself (PlaceControl).
+        IslandScene(world: world, model: model) {
+            SpeechBubble {
+                Text(verbatim: "Sen yokken bahçe 12 çekirdek topladı.")
             }
         }
         .environment(\.worldStillFrame, still)
