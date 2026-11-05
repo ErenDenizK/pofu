@@ -1,4 +1,4 @@
-# Story references: Genshin Impact, Zelda, Naruto
+# Story references: Genshin Impact, Zelda, Naruto, One Piece
 
 **Date:** 2026-11-05. **Asked by:** the founder (take their spirit, never
 copy one-to-one). Three Opus research passes, mostly from knowledge;
@@ -84,6 +84,45 @@ before researching these works again.
   new powers or lore, never at a cliffhanger, never many in a row).
 - **Do not take:** violence as the climax, endless power escalation (the
   grown Nazlı is the ceiling, reached once a book), padding.
+
+### One Piece (added 2026-11-05)
+- **Two speeds.** Each island is a whole small story about one person's
+  wound, closed by one image (Nami's hat, Drum's pink snow); under it the
+  ship, the crew and the stones carry the journey. Pofu: the island ends,
+  the journey connects. This answers the founder's two wishes (acts that
+  truly end, islands that connect).
+- **The farewell that does not join** (Vivi stays, the X on the arm).
+  Pofu: some residents stay and leave a sign; leaving makes an ending
+  feel finished and keeps the cast small.
+- **Joining by a dream.** Small helpers move to the harbor with a one-line
+  dream that comes back on later visits.
+- **The ship is a character** (Going Merry's farewell, the Sunny's
+  additions). Pofu: materials from islands become visible additions on
+  Nazlı's back; her humble form gets one quiet goodbye before the grown
+  form (same whale, a goodbye to a stage).
+- **Log Pose.** The next island cannot be chosen; the current one must be
+  "recorded" first. Pofu: Nazlı drifts on only after an island is done;
+  each finished island leaves a keepsake that points back to it.
+- **Stones that tell history** (Poneglyphs, read by one person). Pofu:
+  each main island holds a carved fragment only Mochi can read; together
+  they point home.
+- **A sound across islands** (the golden bell heard from below). Pofu: one
+  island's resolution can be heard or seen at home or on another island.
+- **The giant who waits, and the keeper who looks after him** (Laboon and
+  Crocus); **the island on a living creature** (Zunesha carrying Zou).
+  Pofu: the old Bekçi looked after Nazlı; late in the book the duo hears
+  her voice for the first time, her turn toward the grown form.
+- **One silhouette, one idea, and a gag inside sincerity.**
+- **Do not take:** violence as resolution, padding (an island finishes
+  within a week of light play), power escalation.
+- **Arc template for a main island** (4-6 visits of 1-2 minutes over a few
+  days): arrival with one staged image and the resident seen small; the
+  dream or wound; the problem (quiet days are the effort, one visible
+  change per visit); the turn (Mochi reads the stone); the resolution
+  (one wordless image, never a cliffhanger); the gift to home (a material
+  on Nazlı's back, a permanent change at home, a pointer keepsake); what
+  travels on (a helper joins, or the resident stays and signs farewell; a
+  tease only after the ending).
 
 ## Synthesis: the story rules these give Pofu
 
