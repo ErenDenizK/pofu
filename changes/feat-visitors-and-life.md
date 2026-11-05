@@ -1,0 +1,1 @@
+Added: a visitor comes to the island every day: they drift down on a dandelion seed or land at the pier, say hello with a tap, leave a gift to open or a kite to help with, and light the guest room on stay-over nights; on a quiet day a letter lets you invite someone you have met. The lawn also fills with small dressing and critters that only move while the island is awake.
