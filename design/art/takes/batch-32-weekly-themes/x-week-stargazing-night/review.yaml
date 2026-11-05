@@ -1,0 +1,468 @@
+batch: batch-32-weekly-themes
+manifest: tools/imagegen/manifest/batch-32-weekly-themes.yaml
+manifest_sha256: 450c8dbab954cb31e73470d89b38dc3b2fabf83c1cf90f2ef9201b291d04e9aa
+contact_sheet: design/art/takes/batch-32-weekly-themes/x-week-stargazing-night/contact.jpg
+jobs:
+  x-week-stargazing-night:
+    pick: none
+    publication: skipped after one allowed retry
+    note: SKIPPED after the sole retry pair. All four originals contain the requested
+      round deep-indigo rug with cream star motifs, short-tripod cream/brass telescope
+      beside it, lilac/plum cushions, folded blanket and pale unlit cream paper lantern
+      on the rug. Independent proper cream/dark composites confirm no flame or visible
+      external glow; no sky, painted night grade, characters, lettering or unrelated
+      background. The manifest explicitly requires a day-cell sprite despite the night
+      theme name, so code owns lighting and night grading. Posted widths361/360/360/359px
+      all exceed the literal341.33px at-most-third cap even though each numerical
+      anchor passes baseline888. Good contents or advisory style/Harmony scores cannot
+      waive the explicit manual size requirement. No third round, manual resize, crop/alpha
+      repair, recolouring, prompt/profile or threshold changes. All four unchanged
+      originals and q90 copies preserved, no true dependents; continue independent
+      jobs. Never promoted.
+qa_reports:
+  1:
+    job: x-week-stargazing-night
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 33 (at most 22), p98 93 (at least 90), spread 59
+        (at least 60)'
+      value: 59.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 67 (band 55-90)'
+      value: 67.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.204
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.1 (at least 3.5)'
+      value: 8.13
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.03
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0837
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 8.6, p95 24.6, off-palette 37.8% (top: #666688 (10.2%), #665577
+        (3.9%)) (advisory in an exploration)'
+      value: 8.6173
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 64 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 63.8
+    info:
+      fit:
+        scale: 0.7725
+        anchor:
+        - 510.5
+        - 878
+      registration:
+        dx: 2
+        dy: 10
+      metrics_raw:
+        L_p5: 35.8
+        L_p50: 67.5
+        L_p95: 91.9
+        C_p50: 22.0
+        C_p95: 42.4
+        C_p99: 44.1
+        detail: 2.64
+      metrics_locked:
+        L_p5: 36.3
+        L_p50: 67.4
+        L_p95: 91.6
+        C_p50: 21.9
+        C_p95: 41.4
+        C_p99: 43.3
+        detail: 2.03
+    fingerprint: 0c6fd39fd92c2745
+  2:
+    job: x-week-stargazing-night
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 31.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 33 (at most 22), p98 91 (at least 90), spread 58
+        (at least 60)'
+      value: 57.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 60 (band 55-90)'
+      value: 59.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.21 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.208
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.2 (at least 3.5)'
+      value: 8.22
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.11
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0337
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 8.3, p95 18.8, off-palette 40.7% (top: #776688 (9.6%), #777788
+        (3.7%)) (advisory in an exploration)'
+      value: 8.3195
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 48 against the world reference (outliers: C_p95, L_p2,
+        detail, edge)'
+      value: 47.7
+    info:
+      fit:
+        scale: 0.6283
+        anchor:
+        - 504.5
+        - 884
+      registration:
+        dx: 7
+        dy: 4
+      metrics_raw:
+        L_p5: 35.7
+        L_p50: 59.9
+        L_p95: 89.2
+        C_p50: 17.3
+        C_p95: 32.3
+        C_p99: 35.5
+        detail: 2.86
+      metrics_locked:
+        L_p5: 36.6
+        L_p50: 59.8
+        L_p95: 89.0
+        C_p50: 17.2
+        C_p95: 31.5
+        C_p99: 34.6
+        detail: 2.11
+    fingerprint: 0c6fd39fd92c2745
+  3:
+    job: x-week-stargazing-night
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 37.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 34 (at most 22), p98 92 (at least 90), spread 58
+        (at least 60)'
+      value: 58.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 68 (band 55-90)'
+      value: 67.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.204
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.8 (at least 3.5)'
+      value: 8.81
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.27
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.1677
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 9.1, p95 21.8, off-palette 39.5% (top: #666688 (7.3%), #665577
+        (6.7%)) (advisory in an exploration)'
+      value: 9.15
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 57 against the world reference (outliers: C_p95, L_p2,
+        detail, edge)'
+      value: 57.0
+    info:
+      fit:
+        scale: 0.6196
+        anchor:
+        - 502.9
+        - 881
+      registration:
+        dx: 9
+        dy: 6
+      metrics_raw:
+        L_p5: 36.4
+        L_p50: 67.2
+        L_p95: 91.5
+        C_p50: 19.8
+        C_p95: 38.4
+        C_p99: 40.5
+        detail: 2.95
+      metrics_locked:
+        L_p5: 37.1
+        L_p50: 67.7
+        L_p95: 91.0
+        C_p50: 19.6
+        C_p95: 37.3
+        C_p99: 39.6
+        detail: 2.27
+    fingerprint: 0c6fd39fd92c2745
+  4:
+    job: x-week-stargazing-night
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 35 (at most 22), p98 90 (at least 90), spread 56
+        (at least 60)'
+      value: 55.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 68 (band 55-90)'
+      value: 68.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.204
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 9.0 (at least 3.5)'
+      value: 9.03
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.97
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9811
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 8.9, p95 23.0, off-palette 37.4% (top: #776688 (8.2%), #666688
+        (8.0%)) (advisory in an exploration)'
+      value: 8.8669
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 52 against the world reference (outliers: C_p95, L_p2,
+        detail, edge)'
+      value: 52.5
+    info:
+      fit:
+        scale: 0.6316
+        anchor:
+        - 505.6
+        - 846
+      registration:
+        dx: 7
+        dy: 43
+      metrics_raw:
+        L_p5: 37.0
+        L_p50: 68.2
+        L_p95: 89.0
+        C_p50: 21.0
+        C_p95: 36.1
+        C_p99: 38.4
+        detail: 2.55
+      metrics_locked:
+        L_p5: 38.0
+        L_p50: 68.6
+        L_p95: 88.6
+        C_p50: 20.9
+        C_p95: 34.9
+        C_p99: 37.5
+        detail: 1.97
+    fingerprint: 0c6fd39fd92c2745
+manual_review:
+  observed_note: SKIPPED after the sole retry pair. All four originals contain the
+    requested round deep-indigo rug with cream star motifs, short-tripod cream/brass
+    telescope beside it, lilac/plum cushions, folded blanket and pale unlit cream
+    paper lantern on the rug. Independent proper cream/dark composites confirm no
+    flame or visible external glow; no sky, painted night grade, characters, lettering
+    or unrelated background. The manifest explicitly requires a day-cell sprite despite
+    the night theme name, so code owns lighting and night grading. Posted widths361/360/360/359px
+    all exceed the literal341.33px at-most-third cap even though each numerical anchor
+    passes baseline888. Good contents or advisory style/Harmony scores cannot waive
+    the explicit manual size requirement. No third round, manual resize, crop/alpha
+    repair, recolouring, prompt/profile or threshold changes. All four unchanged originals
+    and q90 copies preserved, no true dependents; continue independent jobs. Never
+    promoted.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-32-weekly-themes
+  job: x-week-stargazing-night
+  take: 1
+  round: 1
+  logical_run: 20261105-night32-stargazing
+  source_file: /workspace/generated_images/exec-76a4d715-af54-400a-9bf8-9ad848292e54.png
+  returned_at: '2026-11-05T20:00:13.686Z'
+  prompt_sha256: 2e40b145b5156e16c38be6ee01b8a71828283da4c9e5a467e4965875f847fad5
+  fingerprint: 0c6fd39fd92c2745
+  saved_at: '2026-11-05T20:00:13.997073+00:00'
+  original_generated_png_sha256: 498123f6f4062fb8f4f4d760395459f6eb668530f638f9a3220207b1f7a30102
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 4e75bad048d4d1fc130e00a5b25bc9bf2c0a18f7dc05382abd427463027f8712
+  inbox_png_sha256: 151847b639c3c493c47f8e9118aae8c64bd32f256fc9d3521c04bb7abd3fce19
+  qa_sha256: 322bb4d8911cfeb64e49d088fd56cd6520ed83da6c7421d2ff77b1b8248585e7
+- batch: batch-32-weekly-themes
+  job: x-week-stargazing-night
+  take: 2
+  round: 1
+  logical_run: 20261105-night32-stargazing
+  source_file: /workspace/generated_images/exec-b9c1a9f4-397f-44d8-86e5-e87dcedda8ce.png
+  returned_at: '2026-11-05T19:59:21.517Z'
+  prompt_sha256: 2e40b145b5156e16c38be6ee01b8a71828283da4c9e5a467e4965875f847fad5
+  fingerprint: 0c6fd39fd92c2745
+  saved_at: '2026-11-05T19:59:21.878896+00:00'
+  original_generated_png_sha256: 70626781c9b048cadad4d182e3afaff0cd75ea9f06a9dfa6b6cfda848ed9bf92
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 5718d5ceff9b26c8afaa4fe9f96a70ed767b0d85a3070348d7a33d13d5ef5344
+  inbox_png_sha256: f937cdfb5a4d6f7ee4c949a9431f557c61dfb398843827b3350353869370b07d
+  qa_sha256: d49b2e528de881a5b416b4378ad29c221eab15b4d9e5cfbafcd6c6dec0a78ede
+- batch: batch-32-weekly-themes
+  job: x-week-stargazing-night
+  take: 3
+  round: 2
+  logical_run: 20261105-night32-stargazing-r2
+  source_file: /workspace/generated_images/exec-172a745f-6fc1-4b38-9961-6f72c0cc64d3.png
+  returned_at: '2026-11-05T20:05:27.634Z'
+  prompt_sha256: 2e40b145b5156e16c38be6ee01b8a71828283da4c9e5a467e4965875f847fad5
+  fingerprint: 0c6fd39fd92c2745
+  saved_at: '2026-11-05T20:05:28.102602+00:00'
+  original_generated_png_sha256: 42fd1ec6f242f10ae5fc43670cd8c5bff3ef47d1114e7d11205d9588b3c97a9d
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: a334b4708bb5a7e3521cdbe007d18422fa3f2bdef632b4dbb14db47b90d1bc3f
+  inbox_png_sha256: 5aa375000728e0e5759571a2714b1a84b79e3f97417719e0a8878557f827e49f
+  qa_sha256: 886575f316d87e580faf71672176c52ba706afa0e2187d051adf2dc8d86a8114
+- batch: batch-32-weekly-themes
+  job: x-week-stargazing-night
+  take: 4
+  round: 2
+  logical_run: 20261105-night32-stargazing-r2
+  source_file: /workspace/generated_images/exec-2d5db7c9-4469-470a-ae46-541ad4163785.png
+  returned_at: '2026-11-05T20:06:06.724Z'
+  prompt_sha256: 2e40b145b5156e16c38be6ee01b8a71828283da4c9e5a467e4965875f847fad5
+  fingerprint: 0c6fd39fd92c2745
+  saved_at: '2026-11-05T20:06:07.027013+00:00'
+  original_generated_png_sha256: de880d8f5cc375529df68170829cc98bed2cffcddae2bb7d22685e824ef01ec3
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: e5f463bf0bb99aded5868f7b11d04dc02c9ca7160667ea98e24b04337d045cb3
+  inbox_png_sha256: 85c1da918b3a7272931542ea33ecf98347822ef2dedbebd383ced0358e7709b2
+  qa_sha256: f7827a3f040584dcc1ef6791afd77eb95c253f2666b9fd66a8f3715db684c7ef
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
