@@ -1,0 +1,43 @@
+{
+  "batch": "batch-33-home-showcase-pilot",
+  "job": "material-moss",
+  "take": 2,
+  "round": 1,
+  "logical_run": "20261105-showcase-pilot-retry-moss",
+  "source_file": "/workspace/generated_images/exec-ebad5d67-48bd-47b4-a5f5-d1d96e90c5b3.png",
+  "returned_at": "2026-11-05T19:40:49.188Z",
+  "prompt_sha256": "8b931299f086e9da0204969eda7adf67c988f417c6485456b3f3e1ce89019283",
+  "fingerprint": "01ad223ebfc63526",
+  "saved_at": "2026-11-05T19:40:49.605958+00:00",
+  "original_generated_png_sha256": "2c7f0df32f5b1df4b6ebc93e1dbb66cf127f55b3e81de8e4ae39a45abd5b79c4",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "rgba_sha256": "7c863e085363bfbdd66b5b3687074bf4ad3cfb0ab7ea3b3539d049e86ab3fc84",
+  "evaluation_take": 6,
+  "original_run": "batch-33-home-showcase-pilot-retry",
+  "original_take": 2,
+  "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-33-home-showcase-pilot-retry/generated-material-moss-t2.json",
+  "original_callback_sha256": "9269e56e5d80d9e6e201f9d0ba3ead692dcf14e424bb850fe5ffc5e2eac30609",
+  "original_packet": {
+    "batch": "batch-33-home-showcase-pilot",
+    "job": "material-moss",
+    "worktree": "/workspace/art-20261105-showcase",
+    "prompt": "REFERENCES (attached, in this order):\n1. The approved tea stall: match its painting, finish, light and colors exactly (do not draw the stall).\n2. Style reference only (no characters): the hamster's soft painting and pastel colors.\n3. The palette card for props: use only these colors (and mixes of them).\n\nA single small painted object for a cozy game, a crafting material:\na soft round cushion of velvety sage-green moss, like a little\npillow, with three tiny pale star-shaped moss flowers on top and a\nthin curl of cream root under it. Seen from the same low front\nthree-quarter camera as the tea stall. Centered on an empty\ntransparent background, about a third of the canvas wide, with\nwide empty space around it.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+    "refs": [
+      "/workspace/art-20261105-showcase/design/art/stations/tea-stall-1/tea-stall-1.png",
+      "/workspace/art-20261105-showcase/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
+      "/workspace/art-20261105-showcase/design/reference/palette-card-world-props.png"
+    ],
+    "reference_sha256": {
+      "/workspace/art-20261105-showcase/design/art/stations/tea-stall-1/tea-stall-1.png": "7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422",
+      "/workspace/art-20261105-showcase/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png": "d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454",
+      "/workspace/art-20261105-showcase/design/reference/palette-card-world-props.png": "d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2"
+    },
+    "fingerprint": "01ad223ebfc63526",
+    "prompt_sha256": "8b931299f086e9da0204969eda7adf67c988f417c6485456b3f3e1ce89019283",
+    "transparent": true
+  },
+  "evaluation_fingerprint": "01ad223ebfc63526"
+}

@@ -1,0 +1,178 @@
+[
+  {
+    "take": 1,
+    "status": "warn",
+    "bbox_alpha24": [
+      338,
+      480,
+      678,
+      714
+    ],
+    "width": 340,
+    "height": 234,
+    "fit": {
+      "scale": 0.6814,
+      "anchor": [
+        513.9,
+        713
+      ]
+    },
+    "fit_skipped": null,
+    "load": 0.8469,
+    "hard_failures": []
+  },
+  {
+    "take": 2,
+    "status": "warn",
+    "bbox_alpha24": [
+      355,
+      464,
+      695,
+      703
+    ],
+    "width": 340,
+    "height": 239,
+    "fit": {
+      "scale": 0.6786,
+      "anchor": [
+        555.8,
+        702
+      ]
+    },
+    "fit_skipped": null,
+    "load": 0.8898,
+    "hard_failures": []
+  },
+  {
+    "take": 3,
+    "status": "warn",
+    "bbox_alpha24": [
+      331,
+      478,
+      671,
+      717
+    ],
+    "width": 340,
+    "height": 239,
+    "fit": {
+      "scale": 0.6391,
+      "anchor": [
+        494.5,
+        716
+      ]
+    },
+    "fit_skipped": null,
+    "load": 0.8685,
+    "hard_failures": []
+  },
+  {
+    "take": 4,
+    "status": "warn",
+    "bbox_alpha24": [
+      337,
+      474,
+      677,
+      694
+    ],
+    "width": 340,
+    "height": 220,
+    "fit": {
+      "scale": 0.6367,
+      "anchor": [
+        497.5,
+        694
+      ]
+    },
+    "fit_skipped": null,
+    "load": 0.8105,
+    "hard_failures": []
+  },
+  {
+    "take": 5,
+    "status": "warn",
+    "bbox_alpha24": [
+      333,
+      513,
+      673,
+      762
+    ],
+    "width": 340,
+    "height": 249,
+    "fit": {
+      "scale": 0.7281,
+      "anchor": [
+        490.8,
+        761
+      ]
+    },
+    "fit_skipped": null,
+    "load": 0.8103,
+    "hard_failures": []
+  },
+  {
+    "take": 6,
+    "status": "warn",
+    "bbox_alpha24": [
+      332,
+      471,
+      672,
+      695
+    ],
+    "width": 340,
+    "height": 224,
+    "fit": {
+      "scale": 0.7359,
+      "anchor": [
+        503.6,
+        695
+      ]
+    },
+    "fit_skipped": null,
+    "load": 0.7699,
+    "hard_failures": []
+  },
+  {
+    "take": 7,
+    "status": "warn",
+    "bbox_alpha24": [
+      343,
+      481,
+      683,
+      715
+    ],
+    "width": 340,
+    "height": 234,
+    "fit": {
+      "scale": 0.6501,
+      "anchor": [
+        518.2,
+        714
+      ]
+    },
+    "fit_skipped": null,
+    "load": 0.8245,
+    "hard_failures": []
+  },
+  {
+    "take": 8,
+    "status": "warn",
+    "bbox_alpha24": [
+      339,
+      500,
+      679,
+      709
+    ],
+    "width": 340,
+    "height": 209,
+    "fit": {
+      "scale": 0.6262,
+      "anchor": [
+        508.2,
+        708
+      ]
+    },
+    "fit_skipped": null,
+    "load": 0.9571,
+    "hard_failures": []
+  }
+]
