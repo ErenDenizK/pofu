@@ -1,0 +1,203 @@
+batch: batch-23-stickers
+manifest: tools/imagegen/manifest/batch-23-stickers.yaml
+manifest_sha256: 237b0c922e52eeec54ab7617d5fe3f158bffe6205e5e3857a09437aa1c3434b3
+contact_sheet: design/art/takes/batch-23-stickers/x-sticker-goat/contact.jpg
+jobs:
+  x-sticker-goat:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both sheets have exactly three
+      complete separated cream/coral-patched harbor goats, with two small horns, floppy
+      ears and beard, no curl, text, Pofu or sticker border. Munching carries a small
+      grass tuft and half-closed eyes, surprise has wide eyes and ears flung sideways/back,
+      smug has chin raised and half-lidded smile. Take1 raises a soft front paw with
+      pads instead of the requested hoof in the startled pose, so it is manually excluded.
+      Take2 clearly lifts one brown cloven hoof and is eligible. Hard QA passes; advisory
+      style/light and palette checks retained.
+qa_reports:
+  1:
+    job: x-sticker-goat
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 38.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 96 (at least 90), spread 43
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 43.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 87.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.29 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.29
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.5 (at least 3.5)'
+      value: 4.55
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.6 (R1 5.3)
+      value: 5.56
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0009
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.0, p95 2.2, off-palette 0.7% (top: #993322 (0.0%), #441100
+        (0.0%))'
+      value: 0.9572
+    info:
+      metrics_raw:
+        L_p5: 67.0
+        L_p50: 87.9
+        L_p95: 94.8
+        C_p50: 14.5
+        C_p95: 38.9
+        C_p99: 44.3
+        detail: 5.5
+      metrics_locked:
+        L_p5: 67.0
+        L_p50: 87.9
+        L_p95: 94.8
+        C_p50: 14.5
+        C_p95: 38.9
+        C_p99: 44.3
+        detail: 5.56
+    fingerprint: 2c6571addbe121c1
+  2:
+    job: x-sticker-goat
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 96 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 89 (band 55-90)'
+      value: 88.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.30 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.298
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.9 (at least 3.5)'
+      value: 3.87
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.3 (R1 5.3)
+      value: 5.32
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0022
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.9, p95 2.1, off-palette 0.6% (top: #552211 (0.1%), #441100
+        (0.0%))'
+      value: 0.8503
+    info:
+      metrics_raw:
+        L_p5: 68.8
+        L_p50: 88.7
+        L_p95: 94.9
+        C_p50: 14.4
+        C_p95: 40.0
+        C_p99: 44.3
+        detail: 5.26
+      metrics_locked:
+        L_p5: 68.8
+        L_p50: 88.7
+        L_p95: 94.9
+        C_p50: 14.4
+        C_p95: 40.0
+        C_p99: 44.3
+        detail: 5.32
+    fingerprint: 2c6571addbe121c1
+manual_review:
+  observed_note: Both sheets have exactly three complete separated cream/coral-patched
+    harbor goats, with two small horns, floppy ears and beard, no curl, text, Pofu
+    or sticker border. Munching carries a small grass tuft and half-closed eyes, surprise
+    has wide eyes and ears flung sideways/back, smug has chin raised and half-lidded
+    smile. Take1 raises a soft front paw with pads instead of the requested hoof in
+    the startled pose, so it is manually excluded. Take2 clearly lifts one brown cloven
+    hoof and is eligible. Hard QA passes; advisory style/light and palette checks
+    retained.
+  excluded_takes:
+  - 1
+sources:
+- batch: batch-23-stickers
+  job: x-sticker-goat
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-bench-goat
+  source_file: /workspace/generated_images/exec-e670c06e-9532-4d28-9c7a-e2e530eb2fff.png
+  returned_at: '2026-11-05T14:01:52.361Z'
+  prompt_sha256: 1ff9a13a2d47c84967c2ac6d4d3fb0ccbae78e903ae21199ced6e330a124ca58
+  fingerprint: 2c6571addbe121c1
+  saved_at: '2026-11-05T14:01:52.718159+00:00'
+  original_generated_png_sha256: d06954da759628ca9ddcb59ed32b9fa1eba9d8dc96213faf7b34e8cf8fbc78a7
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 233bd7c118f97d0eb510bb041da5d4320e5c8d66b7167825306456d1764c8d2e
+  inbox_png_sha256: 3da8cda9e5d4fd632e5828000ad77ddcad81c954e5eb28bf417301c17563a69f
+  qa_sha256: e6a9ec406cfc7907897370272eeba82dbe314c16ee198952b29345d0d97b2c06
+- batch: batch-23-stickers
+  job: x-sticker-goat
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-bench-goat
+  source_file: /workspace/generated_images/exec-b688afa4-5ce9-4feb-89ca-a7e0778f8cf5.png
+  returned_at: '2026-11-05T14:01:17.216Z'
+  prompt_sha256: 1ff9a13a2d47c84967c2ac6d4d3fb0ccbae78e903ae21199ced6e330a124ca58
+  fingerprint: 2c6571addbe121c1
+  saved_at: '2026-11-05T14:01:17.672157+00:00'
+  original_generated_png_sha256: deef63a858547543f5bcf6e736284ff040d5f039448a163e9c28c2bda5433e50
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 8af8a12143ba5418d0f290a23f8c882d7ecf4233e6d0b7f29bbf2b0775423cc6
+  inbox_png_sha256: fcd72074e95c813d1062b576528be58095e22d9c2cdb7ec7cf136b01b48fc06f
+  qa_sha256: 6478dadb49092f5a0ffb473af7f05b413a6ca49fe0867cbe9282c511fd2c24d3
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
