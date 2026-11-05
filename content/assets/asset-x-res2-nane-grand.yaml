@@ -1,0 +1,21 @@
+id: asset-x-res2-nane-grand
+type: asset
+title_tr: x-res2-nane-grand
+title_en: x-res2-nane-grand (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a resident portrait. REVEALED GRAND. Nane the
+  tiny owl, the same fluffy round cream and moon-grey ball with big glossy eyes now wide awake
+  and shining, perched on a high stone with her wings stretched wide, a huge glowing moon
+  in silver and pale gold behind her, plump stars joining into soft glowing constellation
+  lines across the whole sky like a map, her star book full and …
+art:
+  images: []
+  jobs:
+  - batch-26-residents-concepts:x-res2-nane-grand
+sources:
+- doc: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+kind: plate
+batch: batch-26-residents-concepts
+size: 1024x1536

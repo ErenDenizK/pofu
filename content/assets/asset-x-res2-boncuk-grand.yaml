@@ -1,0 +1,21 @@
+id: asset-x-res2-boncuk-grand
+type: asset
+title_tr: x-res2-boncuk-grand
+title_en: x-res2-boncuk-grand (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a resident portrait. REVEALED GRAND. Boncuk the
+  magpie shopkeeper, the same plump black-and-white bird with round spectacles, standing tall
+  and proud with wings half spread in front of her tidy, glowing shop under its big upturned
+  umbrella roof, the shelves neat and half empty because the lost things were returned, one
+  last small shining object in her wing held out toward us…
+art:
+  images: []
+  jobs:
+  - batch-26-residents-concepts:x-res2-boncuk-grand
+sources:
+- doc: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+kind: plate
+batch: batch-26-residents-concepts
+size: 1024x1536

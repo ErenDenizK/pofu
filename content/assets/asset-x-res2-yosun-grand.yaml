@@ -1,0 +1,21 @@
+id: asset-x-res2-yosun-grand
+type: asset
+title_tr: x-res2-yosun-grand
+title_en: x-res2-yosun-grand (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a resident portrait. REVEALED GRAND. Yosun the
+  old tortoise postman, the same mossy green and brown dome shell, standing as tall as a tortoise
+  can on a bright harbor pier at golden hour, one blank cream envelope held high in his hand
+  with a proud wide smile, his satchel now empty and neat, a huge friendly cloud-whale rising
+  in the glowing sky behind him, a small crowd of tin…
+art:
+  images: []
+  jobs:
+  - batch-26-residents-concepts:x-res2-yosun-grand
+sources:
+- doc: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+kind: plate
+batch: batch-26-residents-concepts
+size: 1024x1536

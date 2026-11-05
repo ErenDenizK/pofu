@@ -1,0 +1,21 @@
+id: asset-x-decor-weather-vane
+type: asset
+title_tr: x-decor-weather-vane
+title_en: x-decor-weather-vane (prop)
+status: in-production
+horizon: now
+summary: >-
+  A weather vane on a short, thick wooden post: a plump rounded arrow of warm brass-cream
+  pointing left with a small sunflower in place of a flag, two chunky crossbars with rounded
+  balls at their ends. All parts thick and rounded. It stands on the guide's ground ellipse,
+  centered on the cross, never wider than the ellipse and never taller than the height bar;
+  it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-24-home-materials:x-decor-weather-vane
+sources:
+- doc: tools/imagegen/manifest/batch-24-home-materials.yaml
+kind: prop
+batch: batch-24-home-materials
+size: 1024x1024

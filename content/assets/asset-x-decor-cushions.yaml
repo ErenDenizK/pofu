@@ -1,0 +1,20 @@
+id: asset-x-decor-cushions
+type: asset
+title_tr: x-decor-cushions
+title_en: x-decor-cushions (prop)
+status: in-production
+horizon: now
+summary: >-
+  A stack of three plump square cushions with softly pinched corners, in rose, cream and sage,
+  with simple plain stripes on one of them (no pattern, no motif), a tiny tassel on one corner.
+  It stands on the guide's ground ellipse, centered on the cross, never wider than the ellipse
+  and never taller than the height bar; it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-24-home-materials:x-decor-cushions
+sources:
+- doc: tools/imagegen/manifest/batch-24-home-materials.yaml
+kind: prop
+batch: batch-24-home-materials
+size: 1024x1024

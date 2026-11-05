@@ -1,0 +1,21 @@
+id: asset-x-season-rain
+type: asset
+title_tr: x-season-rain
+title_en: x-season-rain (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Ayçiçeği, the small home island, in a new season.
+  RAIN: a soft grey-blue sky with gentle slanting rain as a faint veil, a darker wet lawn,
+  shining puddles in rounded soft shapes, ripples on the pond, the sunflowers bowed, a small
+  paper umbrella leaning at the tea stall, a warm light in its window. The same island as
+  the attached one, with the same shape, the same lawn outlin…
+art:
+  images: []
+  jobs:
+  - batch-25-seasons:x-season-rain
+sources:
+- doc: tools/imagegen/manifest/batch-25-seasons.yaml
+kind: plate
+batch: batch-25-seasons
+size: 1536x1024

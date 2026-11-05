@@ -1,0 +1,21 @@
+id: asset-x-orn-stamps
+type: asset
+title_tr: x-orn-stamps
+title_en: x-orn-stamps (sheet)
+status: in-production
+horizon: now
+summary: >-
+  A small sheet of painted UI ornaments for a cozy mobile game, seen straight on from the
+  front. Four stamp impressions, each a single flat color of soft ink with a slightly irregular
+  edge inside a rounded square: a small paw print in rose, a sunflower in honey gold, a tulip
+  tea glass in warm brown and a crescent moon with one star in dusty blue. No text. On a plain
+  transparent background, with wide clear space around …
+art:
+  images: []
+  jobs:
+  - batch-27-ui-materials:x-orn-stamps
+sources:
+- doc: tools/imagegen/manifest/batch-27-ui-materials.yaml
+kind: sheet
+batch: batch-27-ui-materials
+size: 1536x1024

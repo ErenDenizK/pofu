@@ -1,0 +1,21 @@
+id: asset-x-res2-damla-grand
+type: asset
+title_tr: x-res2-damla-grand
+title_en: x-res2-damla-grand (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a resident portrait. REVEALED GRAND. Damla the
+  baby otter, the same round plush brown ball of fur with a cream muzzle and belly, standing
+  proudly at the lip of the cliff with an overflowing glass held up in both paws, a huge,
+  shining waterfall pouring down beside her in long silver- blue ribbons into the clouds with
+  a soft mist rainbow, bright morning light, lush green moss …
+art:
+  images: []
+  jobs:
+  - batch-26-residents-concepts:x-res2-damla-grand
+sources:
+- doc: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+kind: plate
+batch: batch-26-residents-concepts
+size: 1024x1536

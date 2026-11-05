@@ -1,0 +1,21 @@
+id: asset-x-sticker-duo-1
+type: asset
+title_tr: x-sticker-duo-1
+title_en: x-sticker-duo-1 (sheet)
+status: in-production
+horizon: now
+summary: >-
+  A sticker sheet of three groups of Pofu the hamster and Mochi the bunny together, both in
+  their exact attached looks and correct relative size, in a row: (1) tea for two, side by
+  side, each holding a small tulip-shaped tea glass, clinking gently; (2) a hug, the two embracing,
+  eyes closed, blushing; (3) waving goodbye, both waving a paw, smiling. On a plain transparent
+  background, in a loose grid with wide empty space…
+art:
+  images: []
+  jobs:
+  - batch-23-stickers:x-sticker-duo-1
+sources:
+- doc: tools/imagegen/manifest/batch-23-stickers.yaml
+kind: sheet
+batch: batch-23-stickers
+size: 1536x1024

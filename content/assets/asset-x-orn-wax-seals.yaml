@@ -1,0 +1,21 @@
+id: asset-x-orn-wax-seals
+type: asset
+title_tr: x-orn-wax-seals
+title_en: x-orn-wax-seals (sheet)
+status: in-production
+horizon: now
+summary: >-
+  A small sheet of painted UI ornaments for a cozy mobile game, seen straight on from the
+  front. Four round wax seals, plump and matte, with slightly wavy rims and a soft embossed
+  pictogram in the middle of each: a paw in dusty rose, a sunflower in honey gold, a leaf
+  in sage and a crescent moon in dusty blue. The wax is matte, never shiny. On a plain transparent
+  background, with wide clear space around and between the …
+art:
+  images: []
+  jobs:
+  - batch-27-ui-materials:x-orn-wax-seals
+sources:
+- doc: tools/imagegen/manifest/batch-27-ui-materials.yaml
+kind: sheet
+batch: batch-27-ui-materials
+size: 1536x1024

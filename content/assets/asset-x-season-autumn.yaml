@@ -1,0 +1,21 @@
+id: asset-x-season-autumn
+type: asset
+title_tr: x-season-autumn
+title_en: x-season-autumn (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Ayçiçeği, the small home island, in a new season.
+  AUTUMN: the lawn turning soft ochre and sage, a tree with falling maple leaves in muted
+  rose, rust and gold, the sunflowers drooping with brown seed heads, a few leaves floating
+  on the pond, low golden light. The same island as the attached one, with the same shape,
+  the same lawn outline, the same tea stall, windmill, pond, g…
+art:
+  images: []
+  jobs:
+  - batch-25-seasons:x-season-autumn
+sources:
+- doc: tools/imagegen/manifest/batch-25-seasons.yaml
+kind: plate
+batch: batch-25-seasons
+size: 1536x1024

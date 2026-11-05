@@ -1,0 +1,21 @@
+id: asset-x-decor-lantern
+type: asset
+title_tr: x-decor-lantern
+title_en: x-decor-lantern (prop)
+status: in-production
+horizon: now
+summary: >-
+  A small standing garden lantern: a short honey-wood post with a rounded base, topped by
+  a plump paper lantern of cream with a small wooden cap and a short tassel. Unlit: simple
+  soft shapes, not glowing. It stands on the guide's ground ellipse, centered on the cross,
+  never wider than the ellipse and never taller than the height bar; it is small, a third
+  of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-24-home-materials:x-decor-lantern
+sources:
+- doc: tools/imagegen/manifest/batch-24-home-materials.yaml
+kind: prop
+batch: batch-24-home-materials
+size: 1024x1024

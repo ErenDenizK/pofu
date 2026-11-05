@@ -1,0 +1,21 @@
+id: asset-x-res2-yosun-small
+type: asset
+title_tr: x-res2-yosun-small
+title_en: x-res2-yosun-small (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a resident portrait. FIRST SEEN SMALL. Yosun,
+  an old tortoise postman, a wide domed shell of soft mossy green and warm brown, a wrinkled
+  kind face with big glossy dark eyes and tiny round spectacles, a worn cream leather satchel
+  overflowing with undelivered letters across his shell, plodding slowly and small along a
+  long empty stone path in the clouds, the great curve of a s…
+art:
+  images: []
+  jobs:
+  - batch-26-residents-concepts:x-res2-yosun-small
+sources:
+- doc: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+kind: plate
+batch: batch-26-residents-concepts
+size: 1024x1536

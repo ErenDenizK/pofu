@@ -1,0 +1,21 @@
+id: asset-x-sticker-mochi-1
+type: asset
+title_tr: x-sticker-mochi-1
+title_en: x-sticker-mochi-1 (sheet)
+status: in-production
+horizon: now
+summary: >-
+  A sticker sheet of five full-body poses of Mochi the bunny, in her exact attached look,
+  each a different emotion: (1) happy, eyes closed in a smile, ears perked; (2) sleepy, eyes
+  closed, ears drooped, head nodding; (3) surprised, eyes wide, mouth a small round O, ears
+  straight up; (4) proud, chin up, a small satisfied smile, ears tall; (5) sulky, cheeks puffed,
+  one ear flopped, eyes looking sideways. Three on the top…
+art:
+  images: []
+  jobs:
+  - batch-23-stickers:x-sticker-mochi-1
+sources:
+- doc: tools/imagegen/manifest/batch-23-stickers.yaml
+kind: sheet
+batch: batch-23-stickers
+size: 1536x1024

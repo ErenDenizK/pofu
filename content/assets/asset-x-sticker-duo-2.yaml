@@ -1,0 +1,21 @@
+id: asset-x-sticker-duo-2
+type: asset
+title_tr: x-sticker-duo-2
+title_en: x-sticker-duo-2 (sheet)
+status: in-production
+horizon: now
+summary: >-
+  A sticker sheet of three groups of Pofu the hamster and Mochi the bunny together, both in
+  their exact attached looks and correct relative size, in a row: (1) asleep together, curled
+  up side by side, eyes closed, heads leaning on each other; (2) laughing together, both with
+  squeezed-shut eyes and open mouths; (3) surprised together, both with wide eyes and small
+  round O mouths, leaning toward each other. On a plain tr…
+art:
+  images: []
+  jobs:
+  - batch-23-stickers:x-sticker-duo-2
+sources:
+- doc: tools/imagegen/manifest/batch-23-stickers.yaml
+kind: sheet
+batch: batch-23-stickers
+size: 1536x1024
