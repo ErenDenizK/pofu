@@ -1,0 +1,172 @@
+batch: batch-35-experience
+contact_sheet: design/art/takes/batch-35-experience/gift-parcel/contact.jpg
+jobs:
+  gift-parcel:
+    pick: 2
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Both initial takes satisfy the
+      two-state parcel sheet: a closed kraft-cream wrap with cream twine and dried
+      sprig, and an open wrap with loose twine, paper shreds and an empty warm-honey
+      hollow. No visible gift object, text, floor or cast shadow; the apparent RGB
+      haze outside the parcels is fully transparent. Take 2 has the lowest style-lock
+      load (0.0000 versus 0.0012). Light-profile warnings remain recorded for founder
+      review.'
+qa_reports:
+  1:
+    job: gift-parcel
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 92 (at least 90), spread 31
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 30.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 80 (band 55-90)'
+      value: 79.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.28 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.278
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.6 (at least 3.5)'
+      value: 5.56
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.5 (R1 5.3)
+      value: 3.45
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0012
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 5.2, off-palette 0.4% (top: #CC8844 (0.1%), #BB7733
+        (0.1%))'
+      value: 2.7058
+    info:
+      metrics_raw:
+        L_p5: 64.2
+        L_p50: 79.9
+        L_p95: 90.7
+        C_p50: 31.4
+        C_p95: 36.7
+        C_p99: 47.7
+        detail: 3.34
+      metrics_locked:
+        L_p5: 64.2
+        L_p50: 79.9
+        L_p95: 90.7
+        C_p50: 31.4
+        C_p95: 36.7
+        C_p99: 47.7
+        detail: 3.45
+    fingerprint: 24e688aa13ca04ef
+  2:
+    job: gift-parcel
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 93 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 32.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.27 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.271
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.6 (at least 3.5)'
+      value: 5.63
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.4 (R1 5.3)
+      value: 3.38
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: mean dE 2.7, p95 4.7, off-palette 0.0%
+      value: 2.7134
+    info:
+      metrics_raw:
+        L_p5: 63.3
+        L_p50: 76.6
+        L_p95: 91.0
+        C_p50: 33.4
+        C_p95: 40.3
+        C_p99: 48.0
+        detail: 3.26
+      metrics_locked:
+        L_p5: 63.3
+        L_p50: 76.6
+        L_p95: 91.0
+        C_p50: 33.4
+        C_p95: 40.3
+        C_p99: 48.0
+        detail: 3.38
+    fingerprint: 24e688aa13ca04ef
+manual_review:
+  excluded_takes: []
+  note: 'Both initial takes satisfy the two-state parcel sheet: a closed kraft-cream
+    wrap with cream twine and dried sprig, and an open wrap with loose twine, paper
+    shreds and an empty warm-honey hollow. No visible gift object, text, floor or
+    cast shadow; the apparent RGB haze outside the parcels is fully transparent. Take
+    2 has the lowest style-lock load (0.0000 versus 0.0012). Light-profile warnings
+    remain recorded for founder review.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-86e10266-fadc-46c9-a38e-5bdb0dd14749.png
+  original_generated_png_sha256: a486ee7ea47ba89ae121690122e0a74dae39b6183d3de93522635c7214c7a48e
+  inbox_png_sha256: b1bfd945946f23782f6f8aca07ac39695ef15252e6ea3dd823f42dcfda0f1a72
+  rgba_sha256: 2f7b90fa2d48702a39dd7c134a0fa06b709d312e954933078d15667e746956f1
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 24e688aa13ca04ef
+- take: 2
+  source_file: /workspace/generated_images/exec-36ea1449-bf50-4d82-85ad-0f08c1e4291d.png
+  original_generated_png_sha256: cd0b1ac0d21dc13c4d8a4a3ec131dc9c22c7348db206763536f6a3c02ba5e3d3
+  inbox_png_sha256: d381c52d642b3a1f0bae00b387d2b7aefa01751adb22b8ad5005e79ec58adddb
+  rgba_sha256: 3357e9d68ccff538eff5d67c33c34acd3294c1d2a2e08a75a3128ba1061bb1e3
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 24e688aa13ca04ef

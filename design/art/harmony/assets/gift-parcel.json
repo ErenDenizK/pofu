@@ -1,0 +1,51 @@
+{
+ "after": {
+  "C_mean": 37.097,
+  "C_p50": 40.617,
+  "C_p95": 49.035,
+  "L_mean": 77.619,
+  "L_p2": 59.918,
+  "L_p98": 92.614,
+  "detail": 1.847,
+  "edge": 0.526,
+  "warmth_b": 34.158
+ },
+ "before": {
+  "C_mean": 30.48,
+  "C_p50": 33.347,
+  "C_p95": 40.259,
+  "L_mean": 77.63,
+  "L_p2": 59.918,
+  "L_p98": 92.749,
+  "detail": 1.863,
+  "edge": 0.526,
+  "warmth_b": 28.058
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.218,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "sheet",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 90.7,
+ "score_before": 83.4,
+ "shipped": false,
+ "source": "design/art/masters/gift-parcel/gift-parcel.webp",
+ "source_sha": "17f8dc527a93c4d7"
+}
