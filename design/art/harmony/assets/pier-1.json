@@ -6,8 +6,8 @@
   "L_mean": 74.681,
   "L_p2": 50.011,
   "L_p98": 91.797,
-  "detail": 1.964,
-  "edge": 0.404,
+  "detail": 2.882,
+  "edge": 0.283,
   "warmth_b": 30.681
  },
  "before": {
@@ -17,8 +17,8 @@
   "L_mean": 71.302,
   "L_p2": 50.011,
   "L_p98": 86.256,
-  "detail": 1.728,
-  "edge": 0.404,
+  "detail": 2.543,
+  "edge": 0.283,
   "warmth_b": 30.9
  },
  "chain": null,
@@ -35,17 +35,18 @@
  "kind": "station",
  "matched_to": "world",
  "outliers_after": [
+  "detail",
   "edge"
  ],
  "outliers_before": [
   "L_p98",
   "edge"
  ],
- "ppu": 8.533,
+ "ppu": 12.1905,
  "reference": false,
- "score_after": 83.4,
- "score_before": 70.5,
- "shipped": false,
+ "score_after": 79.1,
+ "score_before": 66.9,
+ "shipped": true,
  "source": "design/art/stations/pier-1/pier-1.png",
  "source_sha": "c6b94cd714222b80"
 }

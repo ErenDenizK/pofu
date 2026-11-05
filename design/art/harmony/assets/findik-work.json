@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 26.619,
-  "C_p50": 23.442,
-  "C_p95": 50.129,
-  "L_mean": 76.545,
-  "L_p2": 22.76,
+  "C_mean": 26.424,
+  "C_p50": 22.901,
+  "C_p95": 50.024,
+  "L_mean": 80.805,
+  "L_p2": 38.76,
   "L_p98": 96.427,
-  "detail": 15.719,
-  "edge": 0.164,
-  "tint_a": 4.077,
-  "tint_b": 8.613,
-  "warmth_b": 22.475
+  "detail": 12.122,
+  "edge": 0.173,
+  "tint_a": 4.099,
+  "tint_b": 8.618,
+  "warmth_b": 22.387
  },
  "before": {
   "C_mean": 26.619,
@@ -19,15 +19,15 @@
   "L_mean": 76.545,
   "L_p2": 22.76,
   "L_p98": 96.427,
-  "detail": 15.719,
-  "edge": 0.164,
+  "detail": 15.28,
+  "edge": 0.173,
   "tint_a": 4.077,
   "tint_b": 8.613,
   "warmth_b": 22.475
  },
  "chain": null,
  "correction": {
-  "black": 0.0,
+  "black": 16.0,
   "ceiling": 0.0,
   "chroma": 1.0,
   "materials": {},
@@ -36,19 +36,23 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "detail"
+  "L_p2",
+  "detail",
+  "edge"
  ],
  "outliers_before": [
-  "detail"
+  "L_p2",
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 27.4643,
  "reference": false,
- "score_after": 85.2,
- "score_before": 85.2,
- "shipped": false,
+ "score_after": 63.2,
+ "score_before": 50.8,
+ "shipped": true,
  "source": "design/art/masters/findik-work/findik-work.webp",
  "source_sha": "6abad077c0c15189"
 }

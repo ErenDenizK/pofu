@@ -32,7 +32,7 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "prop",
+ "kind": "station",
  "matched_to": "world",
  "outliers_after": [
   "edge"
@@ -40,11 +40,11 @@
  "outliers_before": [
   "edge"
  ],
- "ppu": 8.533,
+ "ppu": 8.5333,
  "reference": false,
  "score_after": 84.1,
  "score_before": 84.1,
- "shipped": false,
+ "shipped": true,
  "source": "design/art/masters/decor-bench/decor-bench.png",
  "source_sha": "824f3191dce88522"
 }

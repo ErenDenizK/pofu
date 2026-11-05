@@ -6,8 +6,8 @@
   "L_mean": 80.127,
   "L_p2": 61.865,
   "L_p98": 93.1,
-  "detail": 0.933,
-  "edge": 0.429,
+  "detail": 1.862,
+  "edge": 0.214,
   "warmth_b": 26.754
  },
  "before": {
@@ -17,8 +17,8 @@
   "L_mean": 80.127,
   "L_p2": 61.865,
   "L_p98": 93.1,
-  "detail": 0.933,
-  "edge": 0.429,
+  "detail": 1.862,
+  "edge": 0.214,
   "warmth_b": 26.754
  },
  "chain": null,
@@ -40,11 +40,11 @@
  "outliers_before": [
   "edge"
  ],
- "ppu": 8.533,
+ "ppu": 17.0667,
  "reference": false,
- "score_after": 86.0,
- "score_before": 86.0,
- "shipped": false,
+ "score_after": 82.8,
+ "score_before": 82.8,
+ "shipped": true,
  "source": "design/art/stations/harbor-lamp-1/harbor-lamp-1.png",
  "source_sha": "b1ecf7bc5760669b"
 }

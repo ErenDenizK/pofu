@@ -6,8 +6,8 @@
   "L_mean": 76.062,
   "L_p2": 57.887,
   "L_p98": 92.799,
-  "detail": 1.346,
-  "edge": 0.43,
+  "detail": 3.019,
+  "edge": 0.215,
   "tint_a": 5.343,
   "tint_b": 11.403,
   "warmth_b": 27.007
@@ -19,8 +19,8 @@
   "L_mean": 73.812,
   "L_p2": 57.887,
   "L_p98": 88.677,
-  "detail": 1.202,
-  "edge": 0.43,
+  "detail": 2.717,
+  "edge": 0.215,
   "tint_a": 5.434,
   "tint_b": 11.38,
   "warmth_b": 27.038
@@ -39,17 +39,19 @@
  "kind": "station",
  "matched_to": "world",
  "outliers_after": [
+  "detail",
   "edge"
  ],
  "outliers_before": [
   "L_p98",
+  "detail",
   "edge"
  ],
- "ppu": 8.533,
+ "ppu": 17.0667,
  "reference": false,
- "score_after": 86.2,
- "score_before": 79.0,
- "shipped": false,
+ "score_after": 79.5,
+ "score_before": 73.3,
+ "shipped": true,
  "source": "design/art/stations/harbor-horn-1/harbor-horn-1.png",
  "source_sha": "83891570045b5c3a"
 }
