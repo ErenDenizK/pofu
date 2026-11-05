@@ -1,0 +1,452 @@
+batch: batch-30c-decor-seasons-2
+manifest: tools/imagegen/manifest/batch-30c-decor-seasons-2.yaml
+manifest_sha256: 1c4999e56afbafe8f17b1cace1be68f77a742689a5985b6fae4e60b3f8613c52
+contact_sheet: design/art/takes/batch-30c-decor-seasons-2/x-decor-kis-salep-pot/contact.jpg
+jobs:
+  x-decor-kis-salep-pot:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after the single unchanged-prompt retry. All4posted visible widths360,361,360,360px
+      on1024 exceed the literal at-most-third341.33px cap, although numerical hard
+      QA and decor_anchor pass. Every source otherwise contains the plump matte copper/cream
+      pot, short spout, domed knobbed lid, small round stand with a tiny warm cream
+      light and exactly2cinnamon-dusted pale salep cups on a tray. No steam, lettering,
+      characters, guide, floor or cast shadow. The size is the failure; exploration
+      palette/style/light warnings stay advisory. Preserve all4originalPNGs/takes/contact/reports.
+      No source resizing, alpha cleanup, QA waiver, promotion or third pair. No true
+      dependents.
+qa_reports:
+  1:
+    job: x-decor-kis-salep-pot
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 89 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 70 (band 55-90)'
+      value: 69.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.2
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.8 (at least 3.5)'
+      value: 4.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.26
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0607
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 3.8, off-palette 0.0%
+      value: 1.2641
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: edge)'
+      value: 81.7
+    info:
+      fit:
+        scale: 0.7004
+        anchor:
+        - 496.0
+        - 791
+      registration:
+        dx: 16
+        dy: 97
+      metrics_raw:
+        L_p5: 54.6
+        L_p50: 69.7
+        L_p95: 87.8
+        C_p50: 39.2
+        C_p95: 44.4
+        C_p99: 47.3
+        detail: 1.77
+      metrics_locked:
+        L_p5: 55.0
+        L_p50: 69.7
+        L_p95: 87.5
+        C_p50: 39.2
+        C_p95: 44.1
+        C_p99: 46.2
+        detail: 1.26
+    fingerprint: 5c6c1789b4334338
+  2:
+    job: x-decor-kis-salep-pot
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 90 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 71.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.23 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.235
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.8 (at least 3.5)'
+      value: 4.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.33
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2747
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 2.8, off-palette 0.0%
+      value: 0.9935
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 81 against the world reference (outliers: edge)'
+      value: 80.6
+    info:
+      fit:
+        scale: 0.8592
+        anchor:
+        - 570.6
+        - 846
+      registration:
+        dx: -58
+        dy: 42
+      metrics_raw:
+        L_p5: 53.9
+        L_p50: 72.0
+        L_p95: 89.2
+        C_p50: 34.7
+        C_p95: 42.2
+        C_p99: 43.3
+        detail: 1.87
+      metrics_locked:
+        L_p5: 54.2
+        L_p50: 71.9
+        L_p95: 88.8
+        C_p50: 34.7
+        C_p95: 41.9
+        C_p99: 43.0
+        detail: 1.33
+    fingerprint: 5c6c1789b4334338
+  3:
+    job: x-decor-kis-salep-pot
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 58 (at most 22), p98 91 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.27 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.271
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.8 (at least 3.5)'
+      value: 3.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.26
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0562
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 1.8, off-palette 0.0%
+      value: 0.8885
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the world reference (outliers: edge)'
+      value: 83.7
+    info:
+      fit:
+        scale: 0.9137
+        anchor:
+        - 498.5
+        - 891
+      registration:
+        dx: 13
+        dy: -3
+      metrics_raw:
+        L_p5: 59.3
+        L_p50: 73.0
+        L_p95: 90.1
+        C_p50: 35.0
+        C_p95: 42.3
+        C_p99: 45.9
+        detail: 1.81
+      metrics_locked:
+        L_p5: 59.4
+        L_p50: 73.0
+        L_p95: 89.6
+        C_p50: 34.9
+        C_p95: 42.1
+        C_p99: 45.0
+        detail: 1.26
+    fingerprint: 5c6c1789b4334338
+  4:
+    job: x-decor-kis-salep-pot
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 39.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 90 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 71 (band 55-90)'
+      value: 70.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.24 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.243
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.0 (at least 3.5)'
+      value: 5.04
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.29
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2602
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 1.7, off-palette 0.0%
+      value: 0.817
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 76 against the world reference (outliers: C_p95, edge)'
+      value: 76.3
+    info:
+      fit:
+        scale: 0.7895
+        anchor:
+        - 498.3
+        - 874
+      registration:
+        dx: 14
+        dy: 14
+      metrics_raw:
+        L_p5: 54.6
+        L_p50: 71.0
+        L_p95: 88.3
+        C_p50: 34.1
+        C_p95: 39.6
+        C_p99: 47.4
+        detail: 1.84
+      metrics_locked:
+        L_p5: 55.2
+        L_p50: 70.9
+        L_p95: 87.9
+        C_p50: 34.1
+        C_p95: 39.3
+        C_p99: 46.2
+        detail: 1.29
+    fingerprint: 5c6c1789b4334338
+manual_review:
+  observed_note: Skipped after the single unchanged-prompt retry. All4posted visible
+    widths360,361,360,360px on1024 exceed the literal at-most-third341.33px cap, although
+    numerical hard QA and decor_anchor pass. Every source otherwise contains the plump
+    matte copper/cream pot, short spout, domed knobbed lid, small round stand with
+    a tiny warm cream light and exactly2cinnamon-dusted pale salep cups on a tray.
+    No steam, lettering, characters, guide, floor or cast shadow. The size is the
+    failure; exploration palette/style/light warnings stay advisory. Preserve all4originalPNGs/takes/contact/reports.
+    No source resizing, alpha cleanup, QA waiver, promotion or third pair. No true
+    dependents.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-kis-salep-pot
+  take: 1
+  round: 1
+  logical_run: 20261105-night30c-snowman-salep
+  source_file: /workspace/generated_images/exec-dd625af2-2646-4dd5-97d8-7b6146de5715.png
+  returned_at: '2026-11-05T19:54:47.263Z'
+  prompt_sha256: 14eb98b1e5b025be66b33799fb39f711667a38ce966f154d2dc952b83c0d9d94
+  fingerprint: 5c6c1789b4334338
+  saved_at: '2026-11-05T19:54:47.595248+00:00'
+  original_generated_png_sha256: 05390318ba87d4f526a70c7501704fc2339e9fa02ee1cfc5a36fcb3a80842aa9
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 88ff06e53878d66f18a7d56ac0d76b66da2bff8a1a57b1266ad8a50d71e90406
+  inbox_png_sha256: a806162f8de4d56869655533ac35d6666ea5bacfd1745dea830fb0bff5be97e7
+  qa_sha256: 1fec773784ffc74f36b728f84a1827a770c89b305e40ff32eb21915eb28ecc5c
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-kis-salep-pot
+  take: 2
+  round: 1
+  logical_run: 20261105-night30c-snowman-salep
+  source_file: /workspace/generated_images/exec-67de8ccd-ceee-4e6a-b2d7-0a2e944b96a3.png
+  returned_at: '2026-11-05T19:53:49.540Z'
+  prompt_sha256: 14eb98b1e5b025be66b33799fb39f711667a38ce966f154d2dc952b83c0d9d94
+  fingerprint: 5c6c1789b4334338
+  saved_at: '2026-11-05T19:53:49.983304+00:00'
+  original_generated_png_sha256: 5400a405f596ec3931275a8bd078bb6861ea65df9921a6e30626e858cbd22725
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: f5877d205e665577ce343573bb772a2269da5f9f63b86a247dad3a1e44637264
+  inbox_png_sha256: 25d0babea2315dcc3fd56095ff4f03b1ee12bdd47208ee5a1f5e496816be3e10
+  qa_sha256: fe8dcd7f4b76bf9446df78bb57e59ff659ded419acb6771da13a3d562e5dcff9
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-kis-salep-pot
+  take: 3
+  round: 2
+  logical_run: 20261105-night30c-salep-single-retry
+  source_file: /workspace/generated_images/exec-7ed17a23-3278-43e8-b794-51ae703bcc00.png
+  returned_at: '2026-11-05T19:59:38.125Z'
+  prompt_sha256: 14eb98b1e5b025be66b33799fb39f711667a38ce966f154d2dc952b83c0d9d94
+  fingerprint: 5c6c1789b4334338
+  saved_at: '2026-11-05T19:59:38.487505+00:00'
+  original_generated_png_sha256: a34ffc8787b2c1ba170643cb81ec5d64db10ae263bfccf808451a4be9168a7a7
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 46bc2b80f4bf31166a6ed5fa6e5a8035aa338508beabb7e0ed1b738530f98ecb
+  inbox_png_sha256: d8d51008899852ddf33224e5fa8a10fb9e088f8135fba2564a3899ba6f3d85fc
+  qa_sha256: e256b93949cd427731a25981f20f08e39821475031c76cd9196904854e8d163a
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-kis-salep-pot
+  take: 4
+  round: 2
+  logical_run: 20261105-night30c-salep-single-retry
+  source_file: /workspace/generated_images/exec-47349668-2ca1-4ccf-90e6-0ee1e7e5acbe.png
+  returned_at: '2026-11-05T20:00:22.362Z'
+  prompt_sha256: 14eb98b1e5b025be66b33799fb39f711667a38ce966f154d2dc952b83c0d9d94
+  fingerprint: 5c6c1789b4334338
+  saved_at: '2026-11-05T20:00:22.673007+00:00'
+  original_generated_png_sha256: 2b93035692a8d82fade6b9f0443f9ad384dbe12ebfceac2d9388602692124a7e
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 3449cfefab9582154cae1872519ad547d8d0e96d7252cef4694ba66052c0d271
+  inbox_png_sha256: 1b165b1cbd55e8a171499d01b5c5c052d12170ec27f2459eafb09f4f7b7523ff
+  qa_sha256: 216208d3039d540233c69e2922ee88c62bdd333360caabf91fc1c4df40399f9c
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
