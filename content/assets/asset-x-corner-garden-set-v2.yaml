@@ -1,0 +1,35 @@
+id: asset-x-corner-garden-set-v2
+type: asset
+title_tr: x-corner-garden-set-v2
+title_en: x-corner-garden-set-v2 (plate)
+status: cut
+horizon: now
+summary: >-
+  A fresh garden sitting-spot composition on a quiet corner of the SAME attached home island
+  Aycicegi. Keep its low front three-quarter camera about 20 degrees, original painting and
+  scale, with only a cropped patch of lawn, some stone path and the original island edge over
+  the attached sea of clouds. Put a small pond edge at foreground-left with a toy sailboat
+  carrying a coral sail; the honey-wood bench with its cushi…
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets-v2:x-corner-garden-set-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+kind: plate
+batch: batch-30-decor-sets-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after the sole unchanged-prompt retry. Every source and locked frame paints a complete
+  floating island with the full soil bowl, roots and round door instead of the explicitly
+  cropped garden sitting corner. The intended bench/cushion, paper lanterns, pond-edge toy
+  sailboat, mailbox, path and sunflower elements do not waive the framing requirement. Initial
+  t2 additionally adds an unrequested flower wagon/pots; retry inventories were independently
+  checked as otherwise correct. Root/independent review confirmed the full-island framing
+  failure in both retry takes. Numeric hard QA passes; style/light warnings are advisory and
+  not the rejection reason. No third pair, manual crop/resize, prompt/QA change or promotion;
+  retain all originals and source-bound q90/contact/reports.

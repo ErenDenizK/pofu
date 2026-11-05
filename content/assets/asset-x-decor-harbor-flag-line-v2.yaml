@@ -1,0 +1,32 @@
+id: asset-x-decor-harbor-flag-line-v2
+type: asset
+title_tr: x-decor-harbor-flag-line-v2
+title_en: x-decor-harbor-flag-line-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A fresh compact HANGING harbor-bunting assembly, seen with the approved low front three-quarter
+  camera about 20 degrees. Exactly SEVEN small chunky triangular flags in coral, cream, sea-blue,
+  mustard and sage hang in a shallow gentle sag between exactly TWO very SHORT slim honey-wood
+  poles with round knob tops; show both poles completely. Use a new alternating color order
+  while retaining all five color families. This…
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets-v2:x-decor-harbor-flag-line-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+kind: prop
+batch: batch-30-decor-sets-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after the sole unchanged-prompt retry. Official locked alpha>24 widths510/483/557/450px
+  all exceed the explicit one-third341.33px maximum. Declared hang registration correctly
+  places every top at y300 and heights166/157/183/146 stay inside the hanging range, but correct
+  placement cannot waive the independent width requirement. Hanging decor is never automatically
+  fitted. No third pair, manual resize, changed fit/QA/prompt or promotion. All original PNGs/callbacks
+  and full source-bound QA/contact/q90 takes preserved; independent corners continue.

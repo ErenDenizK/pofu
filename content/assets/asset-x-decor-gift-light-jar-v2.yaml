@@ -1,0 +1,33 @@
+id: asset-x-decor-gift-light-jar-v2
+type: asset
+title_tr: x-decor-gift-light-jar-v2
+title_en: x-decor-gift-light-jar-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A new compact view of Revontuli's gift: one round physical glass jar, painted as a soft
+  pale tinted shape without reflections, turned slightly left on a small flat honey-wood coaster.
+  A cork lid and a string handle make a compact off-center loop. Inside the jar a gentle cloud
+  of mint and lilac light curls diagonally, with only a few tiny pale motes: caught light,
+  not a flame or a lamp. Keep all glow contained inside …
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets-v2:x-decor-gift-light-jar-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+kind: prop
+batch: batch-30-decor-sets-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after the sole unchanged-prompt retry. All four pass numeric hard QA and paint the
+  intended soft tinted jar, cork/string handle, contained mint-lilac light/motes and honey
+  coaster, but official alpha>24 widths356/357/355/342px exceed literal1024/3=341.33px maximum.
+  t4 is only one faint edge pixel wider (341px at alpha>64), recorded transparently, but the
+  consistent alpha>24 review criterion is retained rather than changed to produce a pass.
+  No third round, manual alpha cleanup, resize, fit/QA/prompt edit or promotion. Preserve
+  all originals, q90 takes/contact/full QA; other independent jobs continue.

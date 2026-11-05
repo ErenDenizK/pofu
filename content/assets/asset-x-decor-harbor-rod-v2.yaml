@@ -1,0 +1,36 @@
+id: asset-x-decor-harbor-rod-v2
+type: asset
+title_tr: x-decor-harbor-rod-v2
+title_en: x-decor-harbor-rod-v2 (prop)
+status: planned
+horizon: now
+summary: >-
+  A new narrow vertical arrangement of a harbor fishing spot: one slim honey-wood fishing
+  rod leans almost upright in a small round clay stand. Its curled line carries a coral-red
+  float tucked close to the rod. In front is a small sage-green tin bucket with a rounded
+  handle, holding exactly TWO plump cream fish with two distinct readable fish shapes. Behind
+  the bucket, leaning close to the stand, is one FOLDED canvas s…
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets-v2:x-decor-harbor-rod-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+kind: prop
+batch: batch-30-decor-sets-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 3; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Sole retry t3 passes hard QA and observed brief
+  compliance: honey rod, curled line/coral float, clay stand, sage bucket with exactly TWO
+  cream fish, and a visibly FOLDED canvas stool with flat fabric and collapsed parallel legs,
+  no open X seat. Official t3 fit.scale .6258 places full shape at the height bar (top499
+  with antialiased boundary), baseline887 and width227px, within literal341.33px cap. Exclude
+  t1/t2 for tops68/188 far above y500 after fit was skipped below MIN_FIT_SCALE; exclude t4
+  for top116 and width373. t3 is the only eligible take, lock-load1.7666 and Harmony71.3;
+  advisory style/light warnings retained. No third round, manual resizing, fit edit or promotion;
+  all four PNGs unchanged.

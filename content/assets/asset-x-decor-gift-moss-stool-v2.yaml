@@ -1,0 +1,35 @@
+id: asset-x-decor-gift-moss-stool-v2
+type: asset
+title_tr: x-decor-gift-moss-stool-v2
+title_en: x-decor-gift-moss-stool-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A fresh early-summer variation of Koke's gift: one small round cut-tree-stump stool of honey-pale
+  wood, turned a little toward the left, with soft deep-sage moss covering its top and sides
+  like a low velvety cushion, a tiny cluster of cream mushrooms on the rear-right edge, and
+  exactly three short root feet fanning toward the viewer. All three feet remain separately
+  readable within a compact silhouette. Moss is folia…
+art:
+  images: []
+  jobs:
+  - batch-30-decor-sets-v2:x-decor-gift-moss-stool-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+kind: prop
+batch: batch-30-decor-sets-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after the sole unchanged-prompt retry. Official locked alpha>24 widths t1/t2/t3/t4
+  are360/361/360/361px, all above the literal1024/3=341.33px maximum. The new native280-310px
+  target was not followed; official shrink-only guide fits cannot force the narrower prose
+  cap because the ground guide is360px wide. This is an observed composition failure even
+  though numeric hard QA passes and style/light/colour warnings are advisory. No third round,
+  manual rescaling, fit/QA edit, prompt rephrasing or promotion. All four original PNGs and
+  callbacks remain unchanged; q90 takes, contact and full source-bound QA preserved. No other
+  job attaches this x-id, so independent jobs continue. The new exploration manifest is included
+  only in this first-job bootstrap commit.
