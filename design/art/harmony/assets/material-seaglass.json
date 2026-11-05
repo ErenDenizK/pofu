@@ -1,0 +1,56 @@
+{
+ "after": {
+  "C_mean": 21.387,
+  "C_p50": 20.003,
+  "C_p95": 32.087,
+  "L_mean": 81.562,
+  "L_p2": 62.695,
+  "L_p98": 91.591,
+  "detail": 0.899,
+  "edge": 0.436,
+  "tint_a": -8.619,
+  "tint_b": 9.545,
+  "warmth_b": 17.338
+ },
+ "before": {
+  "C_mean": 14.751,
+  "C_p50": 13.795,
+  "C_p95": 22.135,
+  "L_mean": 81.563,
+  "L_p2": 62.695,
+  "L_p98": 91.61,
+  "detail": 0.881,
+  "edge": 0.436,
+  "tint_a": -5.904,
+  "tint_b": 7.421,
+  "warmth_b": 11.958
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.45,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "C_p95",
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 69.2,
+ "score_before": 63.3,
+ "shipped": false,
+ "source": "design/art/masters/material-seaglass/material-seaglass.png",
+ "source_sha": "25004b4dd5d2dd90"
+}

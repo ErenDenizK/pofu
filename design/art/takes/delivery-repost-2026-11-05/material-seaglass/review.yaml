@@ -1,0 +1,199 @@
+batch: batch-33-home-showcase
+contact_sheet: design/art/takes/delivery-repost-2026-11-05/material-seaglass/contact.jpg
+jobs:
+  material-seaglass:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both initial takes hard-pass
+      QA and show exactly three rounded frosted pebbles in pale aqua, soft mint and
+      milky cream, with faint broad highlights and no extra objects/text/ground. Take1
+      locked width338 px matches the approved340 px moss family; take2 is419 px (+23.2
+      percent), visibly oversize for the explicit same-size brief, so is manually
+      excluded despite its lower lock load. Take1 load .4035 is lowest among fully
+      eligible takes. Official post removes the raw alpha fringe; take1 final margins
+      are clean. Advisory light/Harmony warnings are retained; no local resizing or
+      extra generation.
+qa_reports:
+  2:
+    job: material-seaglass
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 24 (R1 51)
+      value: 24.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 70 (at most 22), p98 91 (at least 90), spread 21
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 21.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 80.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.52 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.518
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.1 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.07
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.74
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3841
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 4.9, off-palette 0.3% (top: #888855 (0.1%), #887755
+        (0.1%))'
+      value: 2.749
+    - check: harmony
+      status: warn
+      message: 'harmony score 56 against the world reference (outliers: C_p95, L_p2,
+        edge)'
+      value: 56.2
+    info:
+      metrics_raw:
+        L_p5: 74.8
+        L_p50: 80.9
+        L_p95: 89.1
+        C_p50: 14.8
+        C_p95: 24.3
+        C_p99: 26.9
+        detail: 1.12
+      metrics_locked:
+        L_p5: 74.7
+        L_p50: 80.7
+        L_p95: 89.0
+        C_p50: 14.7
+        C_p95: 24.1
+        C_p99: 26.4
+        detail: 0.74
+    fingerprint: 6363266b3868c8d4
+  1:
+    job: material-seaglass
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 22 (R1 51)
+      value: 22.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 63 (at most 22), p98 92 (at least 90), spread 29
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 28.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 82.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.42 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.424
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.54
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.7
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.4035
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.4, p95 5.1, off-palette 0.8% (top: #888866 (0.3%), #778866
+        (0.3%))'
+      value: 2.4207
+    - check: harmony
+      status: warn
+      message: 'harmony score 63 against the world reference (outliers: C_p95, edge)'
+      value: 63.3
+    info:
+      metrics_raw:
+        L_p5: 69.4
+        L_p50: 82.2
+        L_p95: 90.2
+        C_p50: 13.7
+        C_p95: 22.3
+        C_p99: 23.9
+        detail: 1.05
+      metrics_locked:
+        L_p5: 69.8
+        L_p50: 82.1
+        L_p95: 89.9
+        C_p50: 13.7
+        C_p95: 22.0
+        C_p99: 23.3
+        detail: 0.7
+    fingerprint: 6363266b3868c8d4
+manual_review:
+  excluded_takes:
+  - 2
+  note: Both initial takes hard-pass QA and show exactly three rounded frosted pebbles
+    in pale aqua, soft mint and milky cream, with faint broad highlights and no extra
+    objects/text/ground. Take1 locked width338 px matches the approved340 px moss
+    family; take2 is419 px (+23.2 percent), visibly oversize for the explicit same-size
+    brief, so is manually excluded despite its lower lock load. Take1 load .4035 is
+    lowest among fully eligible takes. Official post removes the raw alpha fringe;
+    take1 final margins are clean. Advisory light/Harmony warnings are retained; no
+    local resizing or extra generation.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-5f98c73a-628c-4d4e-b2a3-a8a573390665.png
+  original_generated_png_sha256: 641d2addc09ff9e0f438b7c904942441a8fe1fe3f6c5436182a564ae2cf7ff75
+  inbox_png_sha256: 3b429f7ad1dbda71a76e81b6c071c26d31956ab4208854db467641775319d3bb
+  rgba_sha256: 9f3e2695021ac8ba436c58b571fac51454b9fe22f7872ee7f327981218946251
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 6363266b3868c8d4
+- take: 2
+  source_file: /workspace/generated_images/exec-8fed13b8-751e-4679-a9c7-c7d3f6903368.png
+  original_generated_png_sha256: b1572fc6cdb7999aa18a530043ddf9db577185fa2f6545cb8ec78711bba90703
+  inbox_png_sha256: d4b261b654191363201c27f3c7be6002fd772fda6439e53a418fb916337bfde3
+  rgba_sha256: 303306543518f1e52d18aff55543c8fad41a5a7693a709d6e9e6030633312340
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 6363266b3868c8d4

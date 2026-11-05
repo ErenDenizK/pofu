@@ -2,14 +2,15 @@ id: asset-material-seaglass
 type: asset
 title_tr: material-seaglass
 title_en: material-seaglass (prop)
-status: cut
+status: in-production
 horizon: later
 summary: 'A single small painted object for a cozy game, a crafting material: three
   smooth, rounded pebbles of frosted sea glass in a small heap, pale aqua, soft mint
   and milky cream, each a matte soft shape with one faint highlight. Same camera,
   size and finish as the attached moss. Centered on an empty transparent background.'
 art:
-  images: []
+  images:
+  - design/art/masters/material-seaglass/material-seaglass.png
   jobs:
   - batch-33-home-showcase:material-seaglass
 sources:
