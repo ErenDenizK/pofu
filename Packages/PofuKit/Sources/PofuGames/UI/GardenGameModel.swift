@@ -36,6 +36,8 @@ public final class GardenGameModel {
 
     @ObservationIgnored let scene: GardenScene
     @ObservationIgnored private weak var view: SKView?
+    @ObservationIgnored private var inForeground = true
+    @ObservationIgnored private var restTask: Task<Void, Never>?
     @ObservationIgnored private let config: GardenRound.Config
     @ObservationIgnored private let onFinish: (Int) -> Void
     @ObservationIgnored private let onRoundEnd: (GardenRoundResult) -> Void
@@ -76,7 +78,37 @@ public final class GardenGameModel {
 
     func attach(_ view: SKView) {
         self.view = view
-        view.isPaused = phase == .paused
+        applyPause()
+    }
+
+    /// Whether the scene should run: only while a round is being played,
+    /// the app is in front and no still is shown. Everything else leaves
+    /// the SpriteKit loop idle so the phone does not render a static board.
+    private func applyPause() {
+        restTask?.cancel()
+        restTask = nil
+        guard let view else { return }
+        let running = inForeground && frozenFrame == nil && phase == .playing
+        if running {
+            view.isPaused = false
+        } else if phase == .playing || phase == .paused || !inForeground || frozenFrame != nil {
+            view.isPaused = true
+        } else {
+            // A card is up: let the last harvest beat finish behind the
+            // scrim, then stop rendering.
+            restTask = Task { [weak self] in
+                try? await Task.sleep(for: .seconds(1.2))
+                guard !Task.isCancelled, let self else { return }
+                self.view?.isPaused = true
+            }
+        }
+    }
+
+    /// Called from the view when the app leaves or returns to the front.
+    func setInForeground(_ value: Bool) {
+        guard inForeground != value else { return }
+        inForeground = value
+        applyPause()
     }
 
     func setSafeArea(top: CGFloat, bottom: CGFloat) {
@@ -109,6 +141,7 @@ public final class GardenGameModel {
             phase = gardenSet.isComplete ? .setEnd : .roundEnd(result)
             scene.setCardShown(true)
             cards += 1
+            applyPause()
         }
     }
 
@@ -117,13 +150,13 @@ public final class GardenGameModel {
     public func pause() {
         guard phase == .playing else { return }
         phase = .paused
-        view?.isPaused = true
+        applyPause()
     }
 
     public func resume() {
         guard phase == .paused else { return }
         phase = .playing
-        view?.isPaused = false
+        applyPause()
     }
 
     /// "Next round": only from a round's card; never automatic (A23).
@@ -151,7 +184,7 @@ public final class GardenGameModel {
         piecesLeft = round.piecesLeft
         phase = .playing
         isHarvesting = false
-        view?.isPaused = false
+        applyPause()
         scene.begin(round)
     }
 
@@ -256,11 +289,12 @@ public final class GardenGameModel {
     public func freeze() {
         view?.isPaused = true
         frozenFrame = captureScene()
+        applyPause()
     }
 
     public func unfreeze() {
         frozenFrame = nil
-        view?.isPaused = phase == .paused
+        applyPause()
     }
 }
 #endif

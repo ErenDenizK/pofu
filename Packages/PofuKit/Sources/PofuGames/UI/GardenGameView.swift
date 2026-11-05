@@ -4,7 +4,7 @@ import SpriteKit
 import SwiftUI
 
 /// Pofu's sunflower garden: the SpriteKit scene full screen, the crafted
-/// HUD (round plate, seed plate) with a native glass pause, and the
+/// HUD (round plate, seed plate) with a paper pause, and the
 /// crafted round and set cards. Entered on purpose only (A23): the caller
 /// presents it from an island's "Play" door or the debug entry.
 public struct GardenGameView: View {
@@ -12,6 +12,7 @@ public struct GardenGameView: View {
     /// The tuned feel; pass the tuning lab store's values to tune it live.
     private let tuning: TuningValues.Garden
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.scenePhase) private var scenePhase
 
     public init(model: GardenGameModel, tuning: TuningValues.Garden = TuningValues.defaults.garden) {
         _model = State(initialValue: model)
@@ -56,6 +57,9 @@ public struct GardenGameView: View {
             .onChange(of: reduceMotion) { _, value in
                 model.setReduceMotion(value)
             }
+            .onChange(of: scenePhase) { _, value in
+                model.setInForeground(value == .active)
+            }
         }
         .background(Color(red: 0.97, green: 0.87, blue: 0.68).ignoresSafeArea())
         .sensoryFeedback(.success, trigger: model.cards)
@@ -89,7 +93,7 @@ public struct GardenGameView: View {
                     .contentShape(Circle())
             }
             .buttonStyle(.plain)
-            .glassEffect(.regular.interactive(), in: Circle())
+            .background(PaperSurface(shape: Circle(), stitchInset: 4))
             .accessibilityLabel(Text(verbatim: GardenStrings.pause))
             Spacer(minLength: 0)
             RoundPlate(number: model.roundNumber, total: model.gardenSet.length, planted: model.piecesPerRound - model.piecesLeft, bag: model.piecesPerRound)
@@ -154,14 +158,14 @@ public struct GardenGameView: View {
 }
 
 /// Hosts the scene in an `SKView` (rather than `SpriteView`) to set the
-/// 120 Hz frame rate and sibling-order rendering, and to hand the view to
+/// 60 Hz frame rate and sibling-order rendering, and to hand the view to
 /// the model for pausing and snapshots.
 struct GardenSpriteView: UIViewRepresentable {
     let model: GardenGameModel
 
     func makeUIView(context: Context) -> SKView {
         let view = SKView()
-        view.preferredFramesPerSecond = 120
+        view.preferredFramesPerSecond = 60
         view.ignoresSiblingOrder = true
         view.isMultipleTouchEnabled = false
         view.shouldCullNonVisibleNodes = true
