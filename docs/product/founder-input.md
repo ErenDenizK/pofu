@@ -26,6 +26,47 @@ not orders: each entry records **what he meant**, the **status**, and
   Feel is tuned natively on his iPhone.
 - **Merging:** the agent may merge PRs, with merge commits, only on green CI.
 
+## 2026-11-05 (late night): workflow, growth, monetization, the story map
+
+Each point, and how it is handled:
+1. **Is the work stopped?** No: wave 2 (visitors drawn, critters, three
+   fixes) was running. Answered in chat.
+2. **Budget and models:** Opus plans and judges, Sonnet executes Opus-grade
+   briefs, Haiku reads and checks images; sometimes one Opus pass is cheaper.
+   Written into CLAUDE.md "Agent operations" (revised 2026-11-05) so every
+   session keeps it.
+3. **Housekeeping:** review stale ADRs, CLAUDE.md, rules and old docs that
+   could mislead the agent; archive or update them; reduce context. Planned
+   as one Opus housekeeping pass after wave 2 (CLAUDE.md "Current state" is
+   from 2026-11-02).
+4. **Roadmap:** adjust it. Part of the housekeeping pass.
+5. **Codex runs well.** Noted; lead reviews its PRs in rounds.
+6. **What next: levels or other parts?** Principle adopted: **everything
+   grows a little, in parallel** (a station level, a new character, a new
+   island, a decor set each week), never one thing finished before the
+   next. Goes into the roadmap.
+7. **Animal Crossing spirit between characters:** residents talk to each
+   other, visit each other, have small relationships. Taken into the visitor
+   and resident design (wave 3: resident-to-resident scenes).
+8. **The whale needs another drawing technique** (moving, flying): agreed;
+   Nazlı is to be built as a layered rig (body, tail, fins, island patch as
+   separate painted parts with code motion), not one flat sprite. Codex
+   brief to request the parts.
+9. **Gezgin form 1 at the harbor:** lovely, but her face turns toward the
+   pier and hides behind it. Note for the next Gezgin variation: face toward
+   the camera, clear of the pier.
+10. **He loves the new concepts** (Çağlayan, Gezgin, Mehtap). Noted.
+11. **What happened to the side islands** (Çanlar, Koke, the small houses,
+   a Japanese-feeling island)? They stay as fillers and branches; the story
+   map poster shows where each sits.
+12. **A story map poster:** one or two dense pages with visuals, the main
+   islands, fillers as branches, story details; one Opus job. Commissioned.
+13. **Monetization and content model:** the story got shorter and more
+   compact; how to do future content, expansions, acts, subscription vs one
+   time vs DLC; what happens to the island when a membership ends; 350 TL a
+   year feels right for Türkiye, 999 TL lifetime; abroad priced separately.
+   Commissioned as one Opus strategy study with a recommendation.
+
 ## 2026-11-05 (night): ideas list, menus, lighting, navigation
 
 Ideas he wants kept (views, not orders; the lead decides how):

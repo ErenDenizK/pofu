@@ -76,26 +76,34 @@ Loaded every turn: keep it short. History lives in `docs/` (`docs/README.md`).
   (ADR-0015, ADR-0017); the visual system is ADR-0018 (balanced diorama,
   native glass plus painted elements). Build setup: `docs/development.md`.
 
-## Agent operations (budget, founder 2026-11-04)
+## Agent operations (budget; founder 2026-11-04, revised 2026-11-05)
 
-Spend about a third of the 2026-11-03 level with no loss of quality.
+Quality first, then the cheapest path to it. The founder gives views, not
+orders: the lead decides like the best game and app studio would.
 
-- **The lead (Opus 5.5) orchestrates and judges;** it delegates by task:
-  Sonnet 5.5 implements and writes, Haiku 5.5 reads, searches, summarizes
-  and does visual review (contact sheets, screenshots, keyframes). Opus
-  sub-agents only when a design judgement truly needs one. Always the 5.5
-  family; set `model` on every Agent call.
-- **Minimal context.** Briefs name exact files and decisions; agents read
-  sections, not whole docs; no re-reading what a brief already says.
-  Continue a live owner with SendMessage instead of a fresh agent.
-- **At most three agents at once,** one per stream (product/app, art
-  queue, docs/deck).
-- **No optional steps.** Videos, motion beats, screenshot strips and
-  full test suites run only when the change needs them or the founder
-  will see them; otherwise the targeted tests. CI once per finished
-  change; at most two red rounds, then report.
-- **No loop, deck or concept round without a reason** the founder can
-  see; no images unless they answer a question or ship.
-- **Pilot, then scale;** never regenerate what a grade can fix.
-- **Research once** (`docs/research/`); short reports (≤ 150 words plus
-  paths); remove merged worktrees.
+- **Opus plans, Sonnet builds, Haiku looks.** Opus (the lead, or an Opus
+  sub-agent) does every judgement: design, specs, research synthesis,
+  reviews, briefs written so precisely that Sonnet can execute them at Opus
+  level. Sonnet implements and writes from those briefs. Haiku reads,
+  searches, summarises and does visual checks (contact sheets, screenshots,
+  frames). Exception: when planning plus a hand-off would cost more than
+  doing it, one Opus pass does it all. Always the 5.5 family; set `model`
+  on every Agent call.
+- **One spec, parallel PRs.** Big work gets one Opus spec that splits it
+  into PRs owning disjoint files, then up to three Sonnet agents in
+  parallel; the lead merges in a stated order and reviews each screenshot
+  sheet itself before merging.
+- **CI without polling.** An agent waits for CI once (one background
+  sleep, then one check), fixes at most twice, reports and stops. The lead
+  batches merges with one scheduled check; never loops on status.
+- **Minimal context.** Briefs name exact files, sections and decisions;
+  agents read sections, not whole docs; continue a live owner with
+  SendMessage instead of a fresh agent; stop agents that only poll.
+- **At most three agents at once.** No optional steps (videos, beats,
+  full suites) unless the change needs them or the founder will see them.
+- **Pilot, then scale;** never regenerate what a grade or fit can fix.
+- **Codex never idles** (AGENTS.md): the lead reviews and merges its PRs
+  in its own rounds; there is no scheduled checker.
+- **Research once** (`docs/research/`); short reports; remove merged
+  worktrees; every founder message is logged item by item in
+  `docs/product/founder-input.md` with how it was handled.
