@@ -1,0 +1,455 @@
+batch: batch-28-home-shops-concepts-v2
+manifest: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+manifest_sha256: 8952fa7bbb48106f2dc8d24c294ea72102e303d38878ed265fa95406f5e661a9
+contact_sheet: design/art/takes/batch-28-home-shops-concepts-v2/x-greenhouse-2-v2/contact.jpg
+jobs:
+  x-greenhouse-2-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after the sole unchanged-prompt retry. Independent source and locked
+      review excludes all four takes for a continuous plank floor, explicitly forbidden
+      by the prompt. Take 3 additionally has seven distinct seedling pots rather than
+      exactly six; the other takes have six pots, and all four have two lanterns.
+      Numerical hard QA passes but cannot override observed content failures. No dependent
+      exploration jobs exist, so only this job is skipped. All four original source
+      PNGs and hashes remain unchanged outside Git; q90 copies, complete QA and contact
+      sheet are retained. Never promoted.
+qa_reports:
+  1:
+    job: x-greenhouse-2-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 44.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 93 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.263
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.9 (at least 3.5)'
+      value: 6.91
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.9 (R1 5.3)
+      value: 4.9
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.6398
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.4, p95 12.6, off-palette 6.4% (top: #999966 (1.1%), #888855
+        (0.9%))'
+      value: 4.3816
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 81 against the world reference (outliers: detail, edge)'
+      value: 80.9
+    info:
+      fit:
+        scale: 0.8081
+        anchor:
+        - 506.9
+        - 927
+      registration:
+        dx: 5
+        dy: -27
+      metrics_raw:
+        L_p5: 56.6
+        L_p50: 76.9
+        L_p95: 92.4
+        C_p50: 26.7
+        C_p95: 48.2
+        C_p99: 55.2
+        detail: 6.1
+      metrics_locked:
+        L_p5: 57.5
+        L_p50: 76.9
+        L_p95: 91.7
+        C_p50: 26.5
+        C_p95: 44.7
+        C_p99: 50.1
+        detail: 4.9
+    fingerprint: c9b5de4a6ad330ec
+  2:
+    job: x-greenhouse-2-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 43.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 93 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.23 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.231
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.8 (at least 3.5)'
+      value: 6.78
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.7 (R1 5.3)
+      value: 4.67
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.5828
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.8, p95 14.5, off-palette 9.1% (top: #888855 (2.3%), #998855
+        (0.9%)) (advisory in an exploration)'
+      value: 4.8101
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the world reference (outliers: detail)'
+      value: 86.4
+    info:
+      fit:
+        scale: 0.7826
+        anchor:
+        - 507.1
+        - 937
+      registration:
+        dx: 5
+        dy: -37
+      metrics_raw:
+        L_p5: 55.0
+        L_p50: 74.3
+        L_p95: 91.8
+        C_p50: 27.9
+        C_p95: 47.3
+        C_p99: 51.8
+        detail: 5.94
+      metrics_locked:
+        L_p5: 55.8
+        L_p50: 74.5
+        L_p95: 91.2
+        C_p50: 27.7
+        C_p95: 43.8
+        C_p99: 47.4
+        detail: 4.67
+    fingerprint: c9b5de4a6ad330ec
+  3:
+    job: x-greenhouse-2-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 46 (at most 22), p98 92 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.216
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.9 (at least 3.5)'
+      value: 7.92
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.7 (R1 5.3)
+      value: 5.65
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.8429
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.2, p95 15.3, off-palette 13.2% (top: #888855 (3.2%), #889944
+        (1.5%)) (advisory in an exploration)'
+      value: 5.175
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 76 against the world reference (outliers: detail, edge)'
+      value: 76.1
+    info:
+      fit:
+        scale: 0.7759
+        anchor:
+        - 505.1
+        - 933
+      registration:
+        dx: 7
+        dy: -34
+      metrics_raw:
+        L_p5: 51.7
+        L_p50: 75.2
+        L_p95: 91.2
+        C_p50: 28.3
+        C_p95: 49.3
+        C_p99: 57.7
+        detail: 6.88
+      metrics_locked:
+        L_p5: 52.6
+        L_p50: 75.2
+        L_p95: 90.5
+        C_p50: 28.1
+        C_p95: 45.9
+        C_p99: 50.7
+        detail: 5.65
+    fingerprint: c9b5de4a6ad330ec
+  4:
+    job: x-greenhouse-2-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 93 (at least 90), spread 43
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 43.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.22
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.3 (at least 3.5)'
+      value: 8.26
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.8 (R1 5.3)
+      value: 5.77
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.6195
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.7, p95 13.6, off-palette 9.0% (top: #888855 (1.6%), #998866
+        (1.4%)) (advisory in an exploration)'
+      value: 4.7419
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: detail, edge)'
+      value: 79.0
+    info:
+      fit:
+        scale: 0.8072
+        anchor:
+        - 501.6
+        - 907
+      registration:
+        dx: 11
+        dy: -6
+      metrics_raw:
+        L_p5: 53.3
+        L_p50: 74.3
+        L_p95: 91.7
+        C_p50: 25.1
+        C_p95: 48.7
+        C_p99: 52.9
+        detail: 7.13
+      metrics_locked:
+        L_p5: 54.4
+        L_p50: 74.2
+        L_p95: 91.0
+        C_p50: 24.9
+        C_p95: 45.7
+        C_p99: 49.3
+        detail: 5.77
+    fingerprint: c9b5de4a6ad330ec
+manual_review:
+  observed_note: Skipped after the sole unchanged-prompt retry. Independent source
+    and locked review excludes all four takes for a continuous plank floor, explicitly
+    forbidden by the prompt. Take 3 additionally has seven distinct seedling pots
+    rather than exactly six; the other takes have six pots, and all four have two
+    lanterns. Numerical hard QA passes but cannot override observed content failures.
+    No dependent exploration jobs exist, so only this job is skipped. All four original
+    source PNGs and hashes remain unchanged outside Git; q90 copies, complete QA and
+    contact sheet are retained. Never promoted.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-28-home-shops-concepts-v2
+  job: x-greenhouse-2-v2
+  take: 1
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-f08879af-d9b5-4719-aa9e-dc54f07ecc4e.png
+  returned_at: '2026-11-05T21:28:28.278Z'
+  prompt_sha256: 1b8ca4ae431838508eef028aa1da7e3e5083f29cc39dca54d387556fe7fa9164
+  fingerprint: c9b5de4a6ad330ec
+  saved_at: '2026-11-05T21:28:28.708723+00:00'
+  original_generated_png_sha256: 2da52765b7ae26d5c5a708d032cb605bf86f6747ff57c6bde0dac8846b188e85
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: b09178ac5cc2f4857a73b86c2a466799d5b7719f7ae88b7188199501bc012a3a
+  inbox_png_sha256: 7c641ed5ee5f9a9a1770a16a78a72bece591e069e68bd297d64f289b8eca7860
+  qa_sha256: 306cfb87be9ef74511b76e06a0c3ab6a690236e3fbd4055ade851f5e2b2d3108
+- batch: batch-28-home-shops-concepts-v2
+  job: x-greenhouse-2-v2
+  take: 2
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-e0609602-02b6-40c2-832e-139690daa569.png
+  returned_at: '2026-11-05T21:30:35.646Z'
+  prompt_sha256: 1b8ca4ae431838508eef028aa1da7e3e5083f29cc39dca54d387556fe7fa9164
+  fingerprint: c9b5de4a6ad330ec
+  saved_at: '2026-11-05T21:30:35.992734+00:00'
+  original_generated_png_sha256: b5b43b33546ce829b7586829aa4d1d3baafe74675a59d91bf571c7127e0395ec
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: fd15952b19c1e7da3a09fcdfc6aa8f945bf0487bae23859c794fd8ddba0f9c63
+  inbox_png_sha256: 5b1522d5f75592743beca4e67be60def0896e46a5a11af7ed1e2915314bc27ea
+  qa_sha256: 7abdc6d5b5e6becb8e80d9ffb48f30aed56aadecae1542a66b13054132e29f1a
+- batch: batch-28-home-shops-concepts-v2
+  job: x-greenhouse-2-v2
+  take: 3
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-73420876-0804-49a6-a2b1-929e6e5c74d0.png
+  returned_at: '2026-11-05T21:33:34.002Z'
+  prompt_sha256: 1b8ca4ae431838508eef028aa1da7e3e5083f29cc39dca54d387556fe7fa9164
+  fingerprint: c9b5de4a6ad330ec
+  saved_at: '2026-11-05T21:33:34.328029+00:00'
+  original_generated_png_sha256: 3ee0ce1f12249aabe7668122b97881900b34b00dedff9ae3ce24c6f5b23bdea3
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 8fce08170bbb8e1b3de440fcf12f396da471ce1d0bd57bc29785e3dff8b06026
+  inbox_png_sha256: 9922f237a2dd650efb8044624a6c27ed18ef783f0174f00123f49916f25aa385
+  qa_sha256: 64cdbf58e28e549c9071c36825b7554bbcf442c3f2ebd204d8c2702ecf15c668
+- batch: batch-28-home-shops-concepts-v2
+  job: x-greenhouse-2-v2
+  take: 4
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-042b2e39-bcef-4455-9571-15ebcccbd18f.png
+  returned_at: '2026-11-05T21:34:42.263Z'
+  prompt_sha256: 1b8ca4ae431838508eef028aa1da7e3e5083f29cc39dca54d387556fe7fa9164
+  fingerprint: c9b5de4a6ad330ec
+  saved_at: '2026-11-05T21:34:43.940649+00:00'
+  original_generated_png_sha256: 41f56539217f662403b85cac6535f1e0de25763208eb01199848071c58a1c5ac
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 168c42d81a52a40cae2ab9a3d6ac8f950fd3e367a5c7a7f7a815fbba8d71c08b
+  inbox_png_sha256: 3bb25e80abf7971c02e9f4d41080b34e82b0fecc376889eca15aaffbd6dab439
+  qa_sha256: 5d1e4d6788c121922df12abae35ef2364b30c4062e8afd8b64c4a5f102f052f8
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: d72f7922c853ad8ceffdf1e89697122dfd8e3b6492da6362fc5bd85cfadd189c
