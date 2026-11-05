@@ -105,9 +105,9 @@ public struct CameraRail: Hashable, Sendable {
 
     /// Map, Island, Home, fitted by `IslandFraming`: the Map frames the
     /// five islands of the X between the bands; the Island stop is a pan
-    /// across the island at ×1.25, centred on Pofu (look round 4); Home is
-    /// design review 01's option B, Pofu 154 pt, 38 % of the width
-    /// (ADR-0018).
+    /// across the island at ×1.5, centred on Pofu (look round 4, closer in
+    /// visual round 2); Home is design review 01's option B re-framed in
+    /// visual round 2, Pofu 141 pt, 35 % of the width (ADR-0018).
     public static let referenceStops: [Stop] = [
         IslandFraming.mapStop(width: referenceWidth, height: referenceHeight),
         IslandFraming.islandStop(width: referenceWidth, height: referenceHeight),

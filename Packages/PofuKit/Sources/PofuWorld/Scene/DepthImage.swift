@@ -116,6 +116,21 @@ struct ContactShadow: View {
     let height: CGFloat
     var strength: Double = 1
 
+    /// A station's shadow (visual round 2): sized to the art's footprint
+    /// instead of one fixed ellipse, under its front edge and leaning a
+    /// little away from the sun (upper left by day), and stronger so the
+    /// object sits on the lawn. The pond is water: a faint one.
+    static func station(art: String?, isWater: Bool) -> (width: Double, height: Double, dx: Double, dy: Double, strength: Double) {
+        let points = art.map { IslandFootprint.footprint(of: $0).points } ?? []
+        guard let minX = points.map(\.x).min(), let maxX = points.map(\.x).max(),
+              let minY = points.map(\.y).min(), let maxY = points.map(\.y).max() else {
+            return (92, 20, 0, 2, 1.6)
+        }
+        let width = (maxX - minX) * 1.3 + 12
+        let depth = maxY - minY
+        return (width, depth * 0.9 + 10, (minX + maxX) / 2 + 4, maxY - depth * 0.3, isWater ? 0.7 : 1.9)
+    }
+
     var body: some View {
         ZStack {
             Ellipse()

@@ -57,32 +57,32 @@ public enum FarSkyLayout {
         // The pair of small isles: farthest, high on one side.
         Element(art: "far-isle-3", distance: 1.0, stops: [
             Placement(x: 0.80, y: 0.08, width: 150, opacity: 0.0),
-            Placement(x: 0.78, y: 0.19, width: 190),
-            Placement(x: 0.80, y: 0.20, width: 210),
+            Placement(x: 0.78, y: 0.185, width: 190),
+            Placement(x: 0.80, y: 0.17, width: 210),
         ]),
         // The small round isle with its tree.
         Element(art: "far-isle-2", distance: 0.85, stops: [
             Placement(x: 0.5, y: 0.06, width: 60, opacity: 0.0),
-            Placement(x: 0.58, y: 0.175, width: 64),
-            Placement(x: 0.58, y: 0.18, width: 66),
+            Placement(x: 0.58, y: 0.17, width: 64),
+            Placement(x: 0.58, y: 0.15, width: 66),
         ]),
         // The long isle: nearer, lower.
         Element(art: "far-isle-1", distance: 0.7, stops: [
             Placement(x: 0.2, y: 0.9, width: 180, opacity: 0.0),
-            Placement(x: 0.22, y: 0.205, width: 240),
-            Placement(x: 0.18, y: 0.32, width: 260),
+            Placement(x: 0.22, y: 0.165, width: 240),
+            Placement(x: 0.18, y: 0.20, width: 260),
         ]),
         // A wide painted cloud bank under the far isles.
         Element(art: "cloud-4", distance: 0.5, stops: [
             Placement(x: 0.5, y: 0.9, width: 260, opacity: 0.0),
             Placement(x: 0.70, y: 0.232, width: 230, opacity: 0.9),
-            Placement(x: 0.72, y: 0.39, width: 280, opacity: 0.85),
+            Placement(x: 0.72, y: 0.235, width: 280, opacity: 0.85),
         ]),
         // A round cloud peeking in at the top edge.
         Element(art: "cloud-2", distance: 0.4, stops: [
             Placement(x: 0.1, y: 0.9, width: 160, opacity: 0.0),
             Placement(x: 0.06, y: 0.15, width: 150, opacity: 0.8),
-            Placement(x: 0.04, y: 0.22, width: 150, opacity: 0.8),
+            Placement(x: 0.04, y: 0.17, width: 150, opacity: 0.8),
         ]),
     ]
 }
