@@ -1,0 +1,21 @@
+id: asset-lighthouse-3-blue
+type: asset
+title_tr: lighthouse-3-blue
+title_en: lighthouse-3-blue (station)
+status: in-production
+horizon: now
+summary: >-
+  Recolor the lighthouse to its blue option. The coral stripes of the tower and the coral
+  cap become soft sea-blue; the cream stripes stay cream. The lit lamp room's glow, the honey
+  balcony and its rail, the round window, the door and the base keep their exact colors.
+links:
+  variant_of:
+  - asset-lighthouse-3
+art:
+  images: []
+  jobs:
+  - batch-40-home-ladder-gaps:lighthouse-3-blue
+sources:
+- doc: tools/imagegen/manifest/batch-40-home-ladder-gaps.yaml
+kind: station
+batch: batch-40-home-ladder-gaps

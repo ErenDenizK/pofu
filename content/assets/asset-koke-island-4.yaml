@@ -1,0 +1,24 @@
+id: asset-koke-island-4
+type: asset
+title_tr: koke-island-4
+title_en: koke-island-4 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached island plate from stage 0 to stage 4, healed: the signature moment. Koke
+  stands up: the hump has risen onto four sturdy stubby legs, standing on the lawn where it
+  slept, its head lifted and turned to the viewer, both eyes open, big round and warm brown
+  with catchlights, a soft happy smile, its small ears perked. It is covered in rich living
+  moss, thick like fur, and its whole back is in flower: blos…
+links:
+  variant_of:
+  - asset-koke-island-0
+art:
+  images: []
+  jobs:
+  - batch-39-koke-production:koke-island-4
+sources:
+- doc: tools/imagegen/manifest/batch-39-koke-production.yaml
+kind: plate
+batch: batch-39-koke-production
+size: 1536x1024

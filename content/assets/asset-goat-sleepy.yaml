@@ -1,0 +1,24 @@
+id: asset-goat-sleepy
+type: asset
+title_tr: goat-sleepy
+title_en: goat-sleepy (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached baby goat into a sleepy nap face. Change only the eyes, brows, mouth and
+  ears: both eyes become gently closed, a thin soft slightly downward-curved dark line where
+  the lower edge of each eye was, with fur above it; the indignant brows soften; the mouth
+  relaxes into a calm small line; both floppy ears droop a little lower. The horn buds, beard
+  tuft, tan patch, body, paws, colors and size stay exactly…
+links:
+  variant_of:
+  - asset-harbor-goat
+art:
+  images: []
+  jobs:
+  - batch-41-resident-reactions:goat-sleepy
+sources:
+- doc: tools/imagegen/manifest/batch-41-resident-reactions.yaml
+kind: char
+batch: batch-41-resident-reactions
+size: 1024x1536

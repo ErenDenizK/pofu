@@ -1,0 +1,24 @@
+id: asset-koke-island-3
+type: asset
+title_tr: koke-island-3
+title_en: koke-island-3 (plate)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached island plate from stage 0 to stage 3: nearly there. The moss on Koke's
+  hump and the lawn is now almost entirely a rich living green, with only a few pale grey
+  spots left in the deepest folds. Four of the five flower clusters are in open bloom: butter
+  yellow, blush pink, soft lilac and white blossoms with fresh green leaves; the fifth, at
+  the far right, still has buds. A warm sun from the upper left …
+links:
+  variant_of:
+  - asset-koke-island-0
+art:
+  images: []
+  jobs:
+  - batch-39-koke-production:koke-island-3
+sources:
+- doc: tools/imagegen/manifest/batch-39-koke-production.yaml
+kind: plate
+batch: batch-39-koke-production
+size: 1536x1024

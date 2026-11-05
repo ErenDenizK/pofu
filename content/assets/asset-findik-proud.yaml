@@ -1,0 +1,23 @@
+id: asset-findik-proud
+type: asset
+title_tr: findik-proud
+title_en: findik-proud (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached hedgehog, Fındık, into a proud reaction. Change only the face: the chin
+  lifts a touch, both eyes become calm, content half-closed lids with the catchlights kept,
+  the small mouth becomes a quietly confident closed smile, and the blush deepens a little.
+  His spines, ears, body, paws, colors and size stay exactly as they are.
+links:
+  variant_of:
+  - asset-findik
+art:
+  images: []
+  jobs:
+  - batch-41-resident-reactions:findik-proud
+sources:
+- doc: tools/imagegen/manifest/batch-41-resident-reactions.yaml
+kind: char
+batch: batch-41-resident-reactions
+size: 1024x1536

@@ -1,0 +1,381 @@
+# Batch 39: Koke, the first story island, playable (production; real ids, promoted on pass).
+#
+# Koke is a mossy creature asleep on a small island; three visits wake it
+# (docs/product/game-plan.md, the story islands; the arc stages are
+# docs/design/island-healing-arc.md, "The rule" and Koke's row). Two chains:
+#
+#   island   `koke-island-0` is the root plate in the game camera (as the
+#            plates of batch-34: 1536 x 1024, the home island's camera and plate
+#            proportions, the sea of clouds below). `koke-island-1` to `-4` are
+#            EDITS OF koke-island-0 (never of each other), so the five stages
+#            register pixel for pixel and the game can crossfade between them.
+#            Each edit restates the whole stage; the composition, the island's
+#            outline, the camera and every prop's place stay exactly as in stage 0.
+#   koke     `koke-asleep` is the root character (fresh); `koke-one-eye`,
+#            `koke-stretch` and `koke-standing` are edits of koke-asleep on the same
+#            canvas with the same ground line (the rig method of batch-06 and
+#            batch-37), so code swaps them in place.
+#
+# The healing arc, stage by stage (one wound, one cure; the wound is "the
+# moss is asleep"):
+#   0 stuck     a grey, sleeping moss hump, the island's flowers closed, chroma
+#               about 40 percent of healed, flat cool light, no warm practical light,
+#               ONE sign of life (a single bright sprout on the hump's crown);
+#               sad and quiet, never dead.
+#   1           the moss turns green patch by patch (about a third of the hump),
+#               chroma about 55 percent, still cool and flat; the buds swell.
+#   2           about two thirds green, the nearest flowers open, a small resident
+#               peeks out, chroma about 70 percent, the FIRST WARM LIGHT (a soft
+#               low sun on the crown and the open flowers).
+#   3           the shape is whole, the soul is missing: moss nearly all green,
+#               most flowers open, Koke's one eye opens a sliver, chroma about 85
+#               percent, the resident is busy; still no signature (no drifting
+#               petals, no glow, no sparkle).
+#   4 healed    Koke stands up and the island blooms around it: full colour,
+#               warm practical light, the signature image (soft petals and
+#               spores drifting up from the whole island), everyone is there.
+#
+# Measure and record in each review (the arc rule): harmony chroma of stage 4
+# at least twice that of stage 0; the lit-pixel ratio steps up from stage 2.
+#
+# Gentle register (founder: Koke is "the gentle start"): sleepy and sad at the
+# start, warm and funny at the end. Nothing scary on Koke or on the island: no
+# teeth, no claws, no glowing red eyes, no gloom, no skulls or dead things, no
+# fog walls. Koke has a round, soft, sleepy face from the first frame. Do NOT
+# make Koke look like a whale or a bear; it is a moss-covered round creature,
+# kin to a hill. No painted text, letters or "zzz" anywhere.
+#
+# Reviewed by the lead: stage 0 reads sad-but-alive in one word ("asleep"),
+# stage 4 reads as a reward, the stages read as one island at 28 pt, and the
+# five plates and the four poses are one finish with home. The resident that
+# peeks out (Sumi, a small round grey-brown dormouse with big round ears)
+# has no approved design yet: keep her tiny and simple; the lead may drop her
+# from a stage and let code place her.
+#
+# Tracks: `island` (koke-island-0 first, then the four edits in any order),
+# `koke` (koke-asleep first, then the three edits in any order). The tracks
+# are independent.
+
+batch: batch-39-koke-production
+title: Koke, the first story island (island plate at arc stages 0 to 4, Koke in four poses)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island, master: design/art/masters/mochi-v2/mochi-v2.webp}
+
+  # ------------------------------------------------------- island plates
+
+  - id: koke-island-0
+    kind: plate
+    name: koke-island-0
+    size: 1536x1024
+    canvas: 1536x1024
+    palettes: [world-foliage]
+    chat: "Pofu · Koke island"
+    light: {cell: day, layer: subject}
+    notes: "ROOT of the island chain; stage 0, stuck. Review: it reads as a cozy place in the same game as home, quiet and a little sad, and can be named in one word (asleep); one single bright sprout on the hump is the only strong colour; the flowers are closed buds; the light is flat and cool with nothing glowing; same camera, plate proportions and finish as home; nothing scary. The island's layout (hump, stones, flower beds, rake, ferns) is the layout every later stage keeps, so keep it simple and clearly composed. Record the harmony chroma for the arc check."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY its camera, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+      - ref: approved:island-main-s
+        role: "The small island plate: the Koke island is this size in the frame (a small plate, narrower than home). Copy the size and the earth body's proportions only."
+      - ref: approved:tea-stall-5
+        role: "A finished station of the game: every prop on Koke's island is at this scale and in this finish (do not draw this stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+    prompt:
+      - text: |
+          A game plate for a cozy mobile game: Koke, a small island where a big
+          mossy creature sleeps, in the game, on a still overcast-bright
+          noon. STAGE 0, STUCK. The island is a floating diorama plate with a
+          shallow top about a fifth as deep as it is wide, over a soft rounded
+          earth body with gentle bands, a small plate: about 62 percent of the
+          image width, centered. The top is a low rounded lawn of moss and
+          short grass. At the back centre sleeps Koke: a huge round mound of
+          moss about as tall as a windmill, like a plump hill, its soft fur
+          made of moss. It has a round sleepy face low on the near side, a
+          small blunt snout, two tiny round ears, eyes gently closed with
+          soft lids, the corners of its mouth slightly down, and four stubby
+          legs tucked under its belly, one front paw curled in front of it.
+          STUCK STATE: the whole creature and the whole island are faded and
+          grey: the moss is a dull grey-sage, like a dusty blanket, chroma
+          about 40 percent of a healthy meadow, under a flat cool light with
+          soft cool shadows and no warm light anywhere. Around it, five small
+          clusters of flowers stand tightly closed, each a ring of
+          shut grey-lilac and grey-blue buds with drooping leaves. A few
+          rounded mossy boulders, a path of four stepping stones from the
+          front lip to Koke's side, two soft ferns, and a small wooden rake
+          leaning on a boulder. ONE SIGN OF LIFE only: on the crown of the
+          hump a single tiny bright fresh-green sprout of two leaves, the
+          only vivid colour in the picture. The mood is quiet and sad, but it
+          is a sleeping creature, not a dead one: gentle, never eerie.
+          GAME CAMERA (this is how the island looks inside the game): exactly
+          the camera of the attached home island, a low front three-quarter
+          view about 20 degrees above the horizon, a pale sky with soft far
+          clouds above and the sea of clouds below rising to the island's
+          underside. Every prop is at the scale of the attached tea stall.
+          No characters other than Koke.
+      - block: prop-style-v2
+      - text: "AVOID: scary or hollow eyes, teeth, claws, a skull, bones, rot, ruins, fog walls, gloom, darkness, a sad crying face, a pointed or spiky underside, a drop or anything falling off the island, a copy of the home island's green lawn and round door, a whale shape, text, letters, zzz, a border, harsh shadows, outlines, photorealism, a 3D render look"
+
+  - id: koke-island-1
+    kind: plate
+    name: koke-island-1
+    size: 1536x1024
+    canvas: 1536x1024
+    edit_of: koke-island-0
+    palettes: [world-foliage]
+    chat: "Pofu · Koke island"
+    light: {cell: day, layer: subject}
+    notes: "Stage 1, the moss patches. An edit of stage 0: every outline, prop and the camera stay exactly in place so the stages crossfade. Review: only the moss on the hump and the lawn greens in patches (about a third), the buds swell a little; chroma about 55 percent of healed (+15 points); the light is still cool and flat, no warm light; Koke's eyes are still closed. Nothing new is added."
+    acceptance: {edit_mode: region, edit_chroma: {warn: 0.30, fail: 0.15}}
+    prompt:
+      - text: |
+          Edit the attached island plate from stage 0 to stage 1: the moss is
+          waking. Repaint about a third of the moss on Koke's hump and on the
+          lawn, in irregular soft patches (one on its shoulder, one along its
+          back, one near its snout, a few on the lawn and the boulders), from
+          dull grey-sage to a fresh living moss green; the rest stays grey.
+          The sprout on its crown has grown a third leaf. The flower buds
+          swell a little and show a hint of their colour at the tips, but all
+          stay closed. The picture is a little more colourful overall (chroma
+          about 55 percent of a healthy meadow); the light stays flat and
+          cool, with no warm light. Koke is still fast asleep, eyes closed.
+          Every shape, prop, stone, outline, the island's size, the camera and
+          the composition stay exactly where they are in the attached image.
+      - block: edit-keep-v1
+      - text: "AVOID: warm sunlight, glow, open flowers, an open eye, new props, new characters, moving or resizing anything, scary details, text"
+
+  - id: koke-island-2
+    kind: plate
+    name: koke-island-2
+    size: 1536x1024
+    canvas: 1536x1024
+    edit_of: koke-island-0
+    palettes: [world-foliage, world-day]
+    chat: "Pofu · Koke island"
+    light: {cell: day, layer: subject}
+    notes: "Stage 2, the first warm light. An edit of stage 0 (not of stage 1): the layout is identical. Review: about two thirds of the moss green; the two nearest flower clusters open; a first soft warm light on the hump's crown and the open flowers (a low warm sun, no rays or glow shapes); a tiny dormouse peeks from behind a boulder; chroma about 70 percent; Koke's eyes still closed; no petals in the air."
+    acceptance: {edit_mode: region, edit_chroma: {warn: 0.30, fail: 0.15}}
+    prompt:
+      - text: |
+          Edit the attached island plate from stage 0 to stage 2: the first
+          warm light. Repaint about two thirds of the moss on Koke's hump and
+          on the lawn a fresh living green, with a few brighter patches on its
+          back; only the underside and the far side stay grey. The two
+          flower clusters nearest the viewer are open: soft round blossoms
+          in butter yellow and blush pink with green leaves; the other three
+          clusters have swollen buds, still shut. The first warm light of the
+          picture appears: a soft low warm sun from the upper left lands on
+          the crown of Koke's hump and on the open flowers, warming them to
+          honey and gold, while the rest stays in cooler light. Behind the
+          boulder on the left a tiny round grey-brown dormouse with big round
+          ears peeks out with one eye, at the size of a bagel, curious and
+          shy. The sprout on the crown is now a small leafy shoot. The picture
+          is more colourful overall (chroma about 70 percent of a healthy
+          meadow). Koke is still asleep, eyes closed, its mouth now a calm
+          straight line. Every shape, prop, stone, outline, the island's size,
+          the camera and the composition stay exactly where they are in the
+          attached image.
+      - block: edit-keep-v1
+      - text: "AVOID: light rays, a glow or halo, petals in the air, an open eye, new props, moving or resizing anything, scary details, text"
+
+  - id: koke-island-3
+    kind: plate
+    name: koke-island-3
+    size: 1536x1024
+    canvas: 1536x1024
+    edit_of: koke-island-0
+    palettes: [world-foliage, world-day]
+    chat: "Pofu · Koke island"
+    light: {cell: day, layer: subject}
+    notes: "Stage 3, almost there: the shape is whole, the soul is missing. An edit of stage 0: the layout is identical. Review: nearly all moss green, most flowers open, Koke's near eye open a sliver and sleepy (still lying down), the dormouse is busy raking; chroma about 85 percent; warm light on the crown and the near side; NO signature: no drifting petals, no sparkle, no glow, no flowers on Koke's back yet. It should look nearly finished but still, as if waiting."
+    acceptance: {edit_mode: region, edit_chroma: {warn: 0.30, fail: 0.15}}
+    prompt:
+      - text: |
+          Edit the attached island plate from stage 0 to stage 3: nearly
+          there. The moss on Koke's hump and the lawn is now almost entirely a
+          rich living green, with only a few pale grey spots left in the
+          deepest folds. Four of the five flower clusters are in open bloom:
+          butter yellow, blush pink, soft lilac and white blossoms with fresh
+          green leaves; the fifth, at the far right, still has buds. A warm
+          sun from the upper left lights the crown and the near side, with
+          soft warm shadows. Koke's near eye is open a sliver, a soft
+          sleepy half-moon of warm brown with a catchlight, looking at nothing
+          yet; the other eye is closed, and Koke is still lying down. The
+          small dormouse is out on the lawn with the little wooden rake,
+          raking the stepping-stone path, busy, at the size of a bagel. The
+          sprout on the crown is a small leafy shoot. The picture is almost
+          full colour (chroma about 85 percent of a healthy meadow) but
+          still, as if the island is holding its breath: no petals in the air,
+          no sparkles, no glow, no flowers growing on Koke's back. Every
+          shape, prop, stone, outline, the island's size, the camera and the
+          composition stay exactly where they are in the attached image.
+      - block: edit-keep-v1
+      - text: "AVOID: drifting petals, sparkles, a glow or halo, light rays, Koke standing, flowers on Koke's back, new props, moving or resizing anything, scary details, text"
+
+  - id: koke-island-4
+    kind: plate
+    name: koke-island-4
+    size: 1536x1024
+    canvas: 1536x1024
+    edit_of: koke-island-0
+    palettes: [world-foliage, world-day]
+    chat: "Pofu · Koke island"
+    light: {cell: day, layer: subject}
+    notes: "Stage 4, healed: the signature image and the key art of the island. An edit of stage 0: the island's outline, the camera and the props keep their places; only Koke (it stands up where the hump was) and the blooms change. Review: Koke stands on four stubby legs, head lifted, both eyes open and warm, a soft smile, its back in flower; it stays within the hump's footprint and about a third taller than the hump, and never crosses the island's edge or the top of the canvas; full colour, warm light; soft petals and spores drifting up from the whole island (the signature); the dormouse sits on a boulder, delighted; nothing scary. This must feel like the biggest reward of the island."
+    acceptance: {edit_mode: region, edit_chroma: {warn: 0.30, fail: 0.15}}
+    prompt:
+      - text: |
+          Edit the attached island plate from stage 0 to stage 4, healed: the
+          signature moment. Koke stands up: the hump has risen onto four
+          sturdy stubby legs, standing on the lawn where it slept, its head
+          lifted and turned to the viewer, both eyes open, big round and
+          warm brown with catchlights, a soft happy smile, its small ears
+          perked. It is covered in rich living moss, thick like fur, and its
+          whole back is in flower: blossoms in butter yellow, blush pink, lilac
+          and white, with a tuft of leaves on its crown. It stands within the
+          hump's footprint and is about a third taller than the hump was, so it
+          fits well inside the picture. The island is in full bloom: all five
+          flower clusters open and lush, the moss deep and green on every
+          boulder, the ferns unfurled, the path of stepping stones bright. A warm
+          golden sun from the upper left lights everything, and the whole
+          island glows with warm light. The signature image: soft flower petals
+          and golden spores drift up in the air from all over the island,
+          catching the light. The small dormouse sits on a boulder beside the
+          rake, delighted, at the size of a bagel. Full colour (chroma about
+          100 percent of a healthy meadow). The island's size, outline, the
+          camera, the boulders, the path and the rake stay exactly where they
+          are in the attached image.
+      - block: edit-keep-v1
+      - text: "AVOID: teeth, claws, a roar, a whale shape, glowing eyes, a dark sky, light rays, a halo, Koke crossing the island's edge, new props, moving or resizing the island, scary details, text"
+
+  # ------------------------------------------------------- Koke, the character
+
+  - id: koke-asleep
+    kind: char
+    name: koke-asleep
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    fit: false
+    palettes: [character, world-foliage]
+    chat: "Pofu · Koke"
+    light: {cell: day, layer: subject}
+    notes: "ROOT of the pose chain. Review: a big round mossy creature lying curled up asleep, seen from the front three-quarter in the same camera as the island plate; round sleepy face, closed soft eyes, a calm mouth, tiny round ears, four stubby legs tucked under, one paw curled forward; the moss is a living sage green with a few lighter patches and a small leafy sprout on the crown (the healed colour, not the stuck grey); it fills about 80 percent of the canvas width, rests on a ground line at 88 percent of the height, and has room above for the standing pose. Gentle and funny, never scary: no teeth, no claws, not a whale, not a bear. Transparent background, no ground, no shadow."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and finish exactly (do not draw him)."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: the same family of soft plush characters (do not draw her)."
+      - ref: palette:character
+        role: "The character palette card."
+    prompt:
+      - text: |
+          Draw Koke, a huge, gentle, round moss creature fast asleep, as a game
+          sprite on a transparent background, in exactly the same art style,
+          lighting and level of softness as the attached hamster and bunny.
+          It lies curled up in a plump rounded heap like a small green hill
+          with a face, seen from the front, slightly from above. Its fur is
+          thick living moss in sage and fresh green with a few lighter
+          patches, soft and fluffy, with a small leafy sprout of two or three
+          leaves on its crown and a few tiny clover leaves in its fur. A round
+          sleepy face low at the front: a small blunt snout, a tiny dark nose,
+          two eyes gently closed as soft curved lids with a few soft lashes, a
+          calm small smile, a blush on each cheek, two tiny round ears. Four
+          stubby legs tucked under its belly, with one rounded front paw
+          curled out in front of its chin. It fills about 80 percent of the
+          canvas width, lies low (its top about 55 percent of the canvas
+          height), and rests on an invisible ground line at 88 percent of the
+          height, centered, with empty space above it. No flowers, no ground,
+          no shadow, no island.
+      - block: style-anchor-v1
+      - block: negative-v1
+      - text: "AVOID: teeth, claws, open eyes, a frown, a whale or bear shape, glowing parts, flowers, a ground, a shadow, text, letters, zzz, outlines"
+
+  - id: koke-one-eye
+    kind: char
+    name: koke-one-eye
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    edit_of: koke-asleep
+    fit: false
+    palettes: [character, world-foliage]
+    chat: "Pofu · Koke"
+    light: {cell: day, layer: subject}
+    notes: "Review: the same lying body; only the near eye is open a sliver (a soft sleepy half-moon of warm brown with a catchlight) and the mouth a little softer; the far eye stays closed; body, moss, sprout and ears unchanged."
+    prompt:
+      - text: |
+          Edit the attached moss creature, Koke. Change only the face: the
+          nearer eye opens a sliver, a soft sleepy half-moon of warm brown
+          iris with a small catchlight under a heavy lid; the farther eye
+          stays gently closed; the mouth relaxes into a small soft "o" of a
+          sleepy breath. The body, the moss, the sprout, the ears, the paws,
+          the colours and the size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: both eyes open, a wide awake look, teeth, a frown, a glow, tears, any change to the body, text"
+
+  - id: koke-stretch
+    kind: char
+    name: koke-stretch
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    edit_of: koke-asleep
+    fit: false
+    palettes: [character, world-foliage]
+    chat: "Pofu · Koke"
+    light: {cell: day, layer: subject}
+    notes: "Review: waking up with a big stretch and yawn: front paws stretched far forward, the back arched up a little, a wide soft yawn (a round open mouth with a small pink tongue, no teeth), eyes squeezed shut, ears back; the same moss, sprout and colours; it stays inside the canvas, on the same ground line at 88 percent of the height. A large part of the shape changes, so the pose reads at 28 pt."
+    acceptance: {edit_mode: region}
+    prompt:
+      - text: |
+          Edit the attached moss creature, Koke, into a big waking-up
+          stretch. The front legs stretch far forward along the ground with
+          the paws spread, the haunches rise and the back arches up in a
+          rounded hump, the head lifts and tilts back a little in a huge soft
+          yawn: a wide round open mouth with a small pink tongue and no teeth,
+          the eyes squeezed shut in happy creases, the ears folded back. The
+          moss, the sprout on the crown, the colours, the style and the
+          lighting stay exactly as in the attached image; the creature keeps
+          the same ground line at 88 percent of the height and stays fully
+          inside the canvas.
+      - block: edit-keep-v1
+      - text: "AVOID: teeth, fangs, claws, a roar, an angry or scared look, open eyes, a changed art style, a ground, a shadow, text"
+
+  - id: koke-standing
+    kind: char
+    name: koke-standing
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: true
+    edit_of: koke-asleep
+    fit: false
+    palettes: [character, world-foliage]
+    chat: "Pofu · Koke"
+    light: {cell: day, layer: subject}
+    notes: "Review: Koke standing on four sturdy stubby legs, head lifted and turned to the viewer, both eyes open, big, round and warm brown with catchlights, a soft happy smile, ears perked, the back in flower (butter yellow, blush pink, lilac, white blossoms) with the crown sprout; the same moss, colours and finish as koke-asleep; its feet on the same ground line at 88 percent of the height; about 70 percent of the canvas height and 75 percent of its width, fully inside the canvas. The healed sprite of the island; the signature pose. Gentle: no teeth."
+    acceptance: {edit_mode: region}
+    prompt:
+      - text: |
+          Edit the attached moss creature, Koke, so she stands up, wide awake
+          and happy: the heap rises onto four sturdy stubby legs, the body
+          held up round and plump, the head lifted and turned to the viewer,
+          both eyes open, big, round and warm brown with catchlights, a soft
+          happy smile with a blush on each cheek, the small ears perked. Her
+          whole back is in flower: soft blossoms in butter yellow, blush pink,
+          lilac and white among fresh leaves, and the crown sprout is a leafy
+          tuft. The moss, its colours, the style and the lighting stay exactly
+          as in the attached image. Her feet stand on the same ground line at
+          88 percent of the height; she is about 70 percent of the canvas
+          height and fits fully inside the canvas.
+      - block: edit-keep-v1
+      - text: "AVOID: teeth, claws, a roar, a whale or bear shape, glowing eyes, a ground, a shadow, a changed art style, text"

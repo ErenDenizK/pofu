@@ -1,0 +1,297 @@
+# Batch 40: the home ladder gaps (production; real ids, promoted on pass).
+#
+# AUDIT (lead's brief, 2026-11-05). Compared: docs/product/home-progression.md
+# section 4.1 and 4.2 (every station L1 to L5), section 8 (decor) and
+# docs/product/home-layout.md (sections 3 and 9) against the promoted masters
+# (design/art/stations, design/art/masters, tools/assets/integration_map.json).
+#
+# Result: the eight ladders are COMPLETE. garden, tea-stall, pond, workshop,
+# windmill, bagel-cart, pier and lighthouse each have masters for L1 to L5
+# (40 of 40), and hive has L1 to L3 (hive-4 and hive-5 are owned by
+# batch-33-home-showcase). The decor pieces the game shows have masters
+# (decor-bench, decor-sailboat, decor-mailbox, path-lamp). So no L1-L5 level
+# is missing a master; the visible step a player CAN still not see is the
+# L3 style choice of section 4.2 ("rose stripes or Iznik blue", "red or green
+# shutters", "plain or painted sails", "red or blue umbrella", "red or blue
+# stripes"), where only one painted option exists for each of five stations.
+# This batch paints the second option of each, at L3, L4 and L5 (a choice must
+# carry through L4 and L5; home-layout.md section 9, row 21): 15 jobs.
+#
+# Method (the station ladder method of batch-03 and batch-21, with the
+# recolor edits that row 21 recommends): each job is an EDIT of the base
+# master of the same level (the option already painted), so the second option
+# keeps its footprint, anchor, camera and every part, and the two options
+# swap in place. A level's second option is never built on the other
+# level's second option, so errors do not compound along the chain; every job
+# needs only its own parent, all of which are promoted. The base master stays
+# the default (option A) and the one the game shows until the player chooses.
+#
+# Option B per station (what changes; everything else stays exactly the same):
+#   tea-stall    Iznik blue: the awning stripes and the table cloth (and the L5
+#                tile roof) turn from rose to Iznik cobalt-and-white
+#   workshop     green shutters: a pair of sage-green shutters is added beside
+#                the arched doorway and round the tool board; DOUBT: the base
+#                has no shutters at all, so "red" is not painted; A = plain, B = green
+#   windmill     painted sails: the cream sail cloths carry a simple painted
+#                pattern (sage and honey bands with a round sun)
+#   bagel cart   blue umbrella: the coral-and-cream umbrella (and the L5 kiosk
+#                roof) turn sea-blue and cream
+#   lighthouse   blue stripes: the coral stripes turn sea-blue
+#
+# Review checks: the silhouette and every part are the base's (a shape edit is
+# a fail); only the named parts changed colour or gained the named part; the
+# B option reads as a different choice at 28 pt; the finish matches the base.
+#
+# Left out (the lead lists these in the PR): hive-4 and hive-5 (batch 33), the
+# five materials (batch 33), decor-lanterns (a new prop with no parent, batch
+# 08), the plate edits for island levels 2 to 9 (home-layout section 9, row 17,
+# waits for x-home-il5), golden L10 masters (row 29, last), the lit overlays
+# for L2 to L5 (batch 07 and batch 36 own the lit ladder), and the L6 to L10
+# mastery overlays (code first).
+#
+# Tracks: one per station: `tea-stall`, `workshop`, `windmill`, `bagel-cart`,
+# `lighthouse`; the three levels of a track are independent of each other.
+
+batch: batch-40-home-ladder-gaps
+title: Home ladder gaps (the second L3 style option of five stations, carried through L4 and L5)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: tea-stall-3, kind: station, name: tea-stall-3, external: batch-01-slice}
+  - {id: tea-stall-4, kind: station, name: tea-stall-4, external: batch-01-slice}
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+  - {id: workshop-3, kind: station, name: workshop-3, external: batch-03-home-island}
+  - {id: workshop-4, kind: station, name: workshop-4, external: batch-03-home-island}
+  - {id: workshop-5, kind: station, name: workshop-5, external: batch-05-fixes}
+  - {id: windmill-3, kind: station, name: windmill-3, external: batch-03-home-island}
+  - {id: windmill-4, kind: station, name: windmill-4, external: batch-03-home-island}
+  - {id: windmill-5, kind: station, name: windmill-5, external: batch-03-home-island}
+  - {id: bagel-cart-3, kind: station, name: bagel-cart-3, external: batch-05-fixes}
+  - {id: bagel-cart-4, kind: station, name: bagel-cart-4, external: batch-05-fixes}
+  - {id: bagel-cart-5, kind: station, name: bagel-cart-5, external: batch-05-fixes}
+  - {id: lighthouse-3, kind: station, name: lighthouse-3, external: batch-21-harbor-ladders}
+  - {id: lighthouse-4, kind: station, name: lighthouse-4, external: batch-21-harbor-ladders}
+  - {id: lighthouse-5, kind: station, name: lighthouse-5, external: batch-21-harbor-ladders}
+
+  # ------------------------------------------------------- tea stall, Iznik blue
+
+  - id: tea-stall-3-iznik
+    kind: station
+    name: tea-stall-3-iznik
+    edit_of: tea-stall-3
+    chat: "Pofu · Tea stall"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: recolor}
+    notes: "Level 3, the second style option (iznik) as an edit of tea-stall-3: the awning stripes and the two cloths turn from rose to Iznik cobalt-blue and cream. Review: same silhouette, footprint and anchor as tea-stall-3; nothing else changed."
+    prompt:
+      - text: |
+          Recolor the tea stall to its Iznik blue option. Every rose, blush and coral part becomes Iznik blue: the awning's rose stripes become soft cobalt-blue stripes alternating with cream, and the striped cloth on the little table and the cloth over the counter's end become cobalt-blue and cream as well. The kettle, the tulip glasses, the stools, the counter, the poles and the wood keep their exact colors.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text."
+
+  - id: tea-stall-4-iznik
+    kind: station
+    name: tea-stall-4-iznik
+    edit_of: tea-stall-4
+    chat: "Pofu · Tea stall"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: recolor}
+    notes: "Level 4, the second style option (iznik) as an edit of tea-stall-4: the awning stripes and the cloths turn from rose to Iznik cobalt-blue and cream; the string of bulbs is unchanged. Review: same silhouette, footprint and anchor as tea-stall-4; nothing else changed."
+    prompt:
+      - text: |
+          Recolor the tea stall to its Iznik blue option. Every rose, blush and coral part becomes Iznik blue: the awning's rose stripes become soft cobalt-blue stripes alternating with cream, and the cloth on the little table and the cloth over the counter's end become cobalt-blue and cream. The string of cream bulbs, the kettle, the tulip glasses, the stools, the counter, the poles and the wood keep their exact colors.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text."
+
+  - id: tea-stall-5-iznik
+    kind: station
+    name: tea-stall-5-iznik
+    edit_of: tea-stall-5
+    chat: "Pofu · Tea stall"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: recolor}
+    notes: "Level 5, the second style option (iznik) as an edit of tea-stall-5: the tiled roof, the flag and the cloths turn from rose to Iznik cobalt-blue, turquoise and cream; the geranium and the bulbs are unchanged. Review: same silhouette, footprint and anchor as tea-stall-5; nothing else changed."
+    prompt:
+      - text: |
+          Recolor the tea stall to its Iznik blue option. The terracotta-rose roof tiles become glazed Iznik cobalt-blue and turquoise tiles with a few cream ones, the little flag becomes cobalt blue, and the cloth on the little table and the cloth over the counter's end become cobalt-blue and cream. The red geranium and its pot, the string of cream bulbs, the kettle, the tulip glasses, the stools, the counter, the poles and the wood keep their exact colors.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text."
+
+  # ------------------------------------------------------- workshop, green shutters
+
+  - id: workshop-3-green
+    kind: station
+    name: workshop-3-green
+    edit_of: workshop-3
+    chat: "Pofu · Workshop"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "Level 3, the second style option (green) as an edit of workshop-3: a pair of sage-green shutters beside the arched doorway; the wind vane, the roof, the bench and the tool board are unchanged. Review: same silhouette, footprint and anchor as workshop-3; nothing else changed. DOUBT: workshop-3 has no shutters, so there is no painted \"red\" option; A is the plain workshop and B adds green shutters. If the lead prefers red/green, run B as green and add a red job later."
+    prompt:
+      - text: |
+          Add a pair of small rounded sage-green wooden shutters, open flat against the wall, one on each side of the arched doorway, and a third pair around the tool board's frame. Each shutter is a chunky rounded panel with a small round cut-out, painted sage green with a cream edge. Everything else stays exactly as it is.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text."
+
+  - id: workshop-4-green
+    kind: station
+    name: workshop-4-green
+    edit_of: workshop-4
+    chat: "Pofu · Workshop"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "Level 4, the second style option (green) as an edit of workshop-4: a pair of sage-green shutters beside the arched doorway; the chimney, the clock, the roof and the bench are unchanged. Review: same silhouette, footprint and anchor as workshop-4; nothing else changed."
+    prompt:
+      - text: |
+          Add a pair of small rounded sage-green wooden shutters, open flat against the wall, one on each side of the arched doorway, and a third pair around the tool board's frame. Each shutter is a chunky rounded panel with a small round cut-out, painted sage green with a cream edge. The chimney, the restored clock and everything else stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text."
+
+  - id: workshop-5-green
+    kind: station
+    name: workshop-5-green
+    edit_of: workshop-5
+    chat: "Pofu · Workshop"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "Level 5, the second style option (green) as an edit of workshop-5: a pair of sage-green shutters beside the arched doorway; the gear sign, the chimney and the roof are unchanged. Review: same silhouette, footprint and anchor as workshop-5; nothing else changed."
+    prompt:
+      - text: |
+          Add a pair of small rounded sage-green wooden shutters, open flat against the wall, one on each side of the arched doorway, and a third pair on the lower wall at the right. Each shutter is a chunky rounded panel with a small round cut-out, painted sage green with a cream edge. The big gear sign, the chimney, the clock and everything else stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text."
+
+  # ------------------------------------------------------- windmill, painted sails
+
+  - id: windmill-3-painted
+    kind: station
+    name: windmill-3-painted
+    edit_of: windmill-3
+    chat: "Pofu · Windmill"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "Level 3, the second style option (painted) as an edit of windmill-3: the four sail cloths carry sage and honey bands and a small sun; the tower, the door and the sacks are unchanged. Review: same silhouette, footprint and anchor as windmill-3; nothing else changed."
+    prompt:
+      - text: |
+          Paint the four cream sail cloths with a simple painted pattern: each sail cloth gets two soft sage-green bands along its long edges, a honey band in the middle and a round honey sun on its outer end, drawn as broad flat shapes. The sail frames, the tower, the door, the sacks of seeds and everything else stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text."
+
+  - id: windmill-4-painted
+    kind: station
+    name: windmill-4-painted
+    edit_of: windmill-4
+    chat: "Pofu · Windmill"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "Level 4, the second style option (painted) as an edit of windmill-4: the four sail cloths carry sage and honey bands and a small sun; the lanterns, the tower and the door are unchanged. Review: same silhouette, footprint and anchor as windmill-4; nothing else changed."
+    prompt:
+      - text: |
+          Paint the four cream sail cloths with a simple painted pattern: each sail cloth gets two soft sage-green bands along its long edges, a honey band in the middle and a round honey sun on its outer end, drawn as broad flat shapes. The sail frames, the tower, the string of lanterns along the cap, the door, the sacks and everything else stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text."
+
+  - id: windmill-5-painted
+    kind: station
+    name: windmill-5-painted
+    edit_of: windmill-5
+    chat: "Pofu · Windmill"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: region}
+    notes: "Level 5, the second style option (painted) as an edit of windmill-5: the four sail cloths carry sage and honey bands and a small sun; the flag, the window boxes and the tower are unchanged. Review: same silhouette, footprint and anchor as windmill-5; nothing else changed."
+    prompt:
+      - text: |
+          Paint the four cream sail cloths with a simple painted pattern: each sail cloth gets two soft sage-green bands along its long edges, a honey band in the middle and a round honey sun on its outer end, drawn as broad flat shapes. The sail frames, the tower, the flag, the windows and their flower boxes, the jars, the door, the sacks and everything else stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text."
+
+  # ------------------------------------------------------- bagel cart, blue umbrella
+
+  - id: bagel-cart-3-blue
+    kind: station
+    name: bagel-cart-3-blue
+    edit_of: bagel-cart-3
+    chat: "Pofu · Bagel cart"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: recolor}
+    notes: "Level 3, the second style option (blue) as an edit of bagel-cart-3: the umbrella turns from coral to sea-blue and cream; the bagels, the ring pole and the cart stay. Review: same silhouette, footprint and anchor as bagel-cart-3; nothing else changed."
+    prompt:
+      - text: |
+          Recolor the bagel cart to its blue option. The coral-and-cream striped umbrella becomes sea-blue and cream stripes, and the cart's coral tint on the tub's trim and wheel hub, where it is a coral accent, becomes soft sea-blue. The bagels, the pole of rings, the cloth, the wood and the cart's body keep their exact colors.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text."
+
+  - id: bagel-cart-4-blue
+    kind: station
+    name: bagel-cart-4-blue
+    edit_of: bagel-cart-4
+    chat: "Pofu · Bagel cart"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: recolor}
+    notes: "Level 4, the second style option (blue) as an edit of bagel-cart-4: the umbrella turns from coral to sea-blue and cream; the bagels, the bench and the cart stay. Review: same silhouette, footprint and anchor as bagel-cart-4; nothing else changed."
+    prompt:
+      - text: |
+          Recolor the bagel cart to its blue option. The coral-and-cream striped umbrella becomes sea-blue and cream stripes, and any coral accent on the cart's trim becomes soft sea-blue. The bagels, the pole of rings, the cloth, the little bench, the wood and the cart's body keep their exact colors.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text."
+
+  - id: bagel-cart-5-blue
+    kind: station
+    name: bagel-cart-5-blue
+    edit_of: bagel-cart-5
+    chat: "Pofu · Bagel cart"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: recolor}
+    notes: "Level 5, the second style option (blue) as an edit of bagel-cart-5: the kiosk roof and the flag turn from coral to sea-blue and cream; the bagels, the bench and the cart stay. Review: same silhouette, footprint and anchor as bagel-cart-5; nothing else changed."
+    prompt:
+      - text: |
+          Recolor the bagel cart to its blue option. The coral-and-cream striped roof of the little kiosk becomes sea-blue and cream stripes, the flag on top becomes sea-blue, and any coral accent on the cart's trim becomes soft sea-blue. The bagels, the pole of rings, the cloth, the little bench, the wood and the cart's body keep their exact colors.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text."
+
+  # ------------------------------------------------------- lighthouse, blue stripes
+
+  - id: lighthouse-3-blue
+    kind: station
+    name: lighthouse-3-blue
+    edit_of: lighthouse-3
+    chat: "Pofu · Lighthouse"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: recolor}
+    notes: "Level 3, the second style option (blue) as an edit of lighthouse-3: the coral stripes and the cap turn sea-blue; the lamp-room glow, the balcony, the window and the door are unchanged. Review: same silhouette, footprint and anchor as lighthouse-3; nothing else changed."
+    prompt:
+      - text: |
+          Recolor the lighthouse to its blue option. The coral stripes of the tower and the coral cap become soft sea-blue; the cream stripes stay cream. The lit lamp room's glow, the honey balcony and its rail, the round window, the door and the base keep their exact colors.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text."
+
+  - id: lighthouse-4-blue
+    kind: station
+    name: lighthouse-4-blue
+    edit_of: lighthouse-4
+    chat: "Pofu · Lighthouse"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: recolor}
+    notes: "Level 4, the second style option (blue) as an edit of lighthouse-4: the coral stripes and the cap turn sea-blue; the lamp-room glow, the balcony, the window and the door are unchanged. Review: same silhouette, footprint and anchor as lighthouse-4; nothing else changed."
+    prompt:
+      - text: |
+          Recolor the lighthouse to its blue option. The coral stripes of the tower and the coral cap become soft sea-blue; the cream stripes stay cream. The lit lamp room's glow, the honey balcony and its rail, the round window, the door and the base keep their exact colors.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text."
+
+  - id: lighthouse-5-blue
+    kind: station
+    name: lighthouse-5-blue
+    edit_of: lighthouse-5
+    chat: "Pofu · Lighthouse"
+    light: {cell: day, layer: subject}
+    acceptance: {edit_mode: recolor}
+    notes: "Level 5, the second style option (blue) as an edit of lighthouse-5: the coral stripes, the cap and the flag turn sea-blue; the lamp-room glow, the balcony, the flowers and the door are unchanged. Review: same silhouette, footprint and anchor as lighthouse-5; nothing else changed."
+    prompt:
+      - text: |
+          Recolor the lighthouse to its blue option. The coral stripes of the tower, the coral cap and the coral flag become soft sea-blue; the cream stripes stay cream. The lit lamp room's glow, the honey balcony and its rail, the round window, the door, the flowers at the foot and the base keep their exact colors.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the shape, size or position of any part, new props, a different camera, a baked shadow, a glow, text."

@@ -1,0 +1,23 @@
+id: asset-tea-stall-4-iznik
+type: asset
+title_tr: tea-stall-4-iznik
+title_en: tea-stall-4-iznik (station)
+status: in-production
+horizon: now
+summary: >-
+  Recolor the tea stall to its Iznik blue option. Every rose, blush and coral part becomes
+  Iznik blue: the awning's rose stripes become soft cobalt-blue stripes alternating with cream,
+  and the cloth on the little table and the cloth over the counter's end become cobalt-blue
+  and cream. The string of cream bulbs, the kettle, the tulip glasses, the stools, the counter,
+  the poles and the wood keep their exact colors.
+links:
+  variant_of:
+  - asset-tea-stall-4
+art:
+  images: []
+  jobs:
+  - batch-40-home-ladder-gaps:tea-stall-4-iznik
+sources:
+- doc: tools/imagegen/manifest/batch-40-home-ladder-gaps.yaml
+kind: station
+batch: batch-40-home-ladder-gaps

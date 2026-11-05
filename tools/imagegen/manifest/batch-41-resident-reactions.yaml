@@ -1,0 +1,212 @@
+# Batch 41: resident reactions (production; real ids, promoted on pass).
+#
+# Mochi, Simit, Findik and the goat each get four reactions for visitors and
+# level-ups: happy, surprised, sleepy, proud. Each is an EDIT of the
+# resident's approved base master on the SAME canvas, so code swaps it in
+# place with no shift (the rig method of batch-06 and batch-20: change the
+# face and ears only, never the body, the colors or the size).
+#
+# Parents (approved bases): mochi-v2 (1024 x 1536), simit-kitten (1024 x
+# 1536), findik-base (870 x 1306, the master's own canvas, which keeps the
+# lossless master under the upload cap), harbor-goat (1024 x 1536).
+#
+# Already on main, so NOT repeated here: simit-happy, simit-sleepy,
+# simit-surprised (batch 20), mochi-surprised (batch 20 pilot), findik-surprised
+# (batch 20). mochi-eyes-happy, mochi-eyes-closed, findik-eyes-happy and
+# findik-eyes-closed are rig layers (the eyes alone), not poses, so the full
+# happy and sleepy poses of Mochi and Findik are still drawn here. 11 jobs.
+#
+# Reactions (face and ears only; the same wording across residents):
+#   happy      closed smiling arcs for eyes, a wider smile, a blush
+#   sleepy     gently closed lids, ears folded a little down, a calm mouth
+#   proud      chin lifted a touch, eyes half-closed and content, a small
+#              confident smile, a stronger blush, ears up (the pose a resident
+#              takes on a level-up or a heart); NOT smug, never sneering
+#   surprised  a small round "o", wider eyes with the catchlights kept, ears up
+#
+# Review checks: only the face and ears changed (edit_stability high; nothing
+# else moved); the body, paws, spines and fur are identical to the base; the
+# reaction reads at 28 pt; no teeth, no tears, no motion lines; the goat
+# stays "indignant" in character: its happy is a reluctant half-smile, its
+# proud a lifted chin with a closed-eyed huff, never a different animal.
+#
+# Tracks: `mochi` (3), `simit` (1), `findik` (3), `goat` (4); all independent.
+
+batch: batch-41-resident-reactions
+title: "Resident reactions (Mochi, Simit, Findik, the goat: happy, surprised, sleepy, proud)"
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island, master: design/art/masters/mochi-v2/mochi-v2.webp}
+  - {id: simit-kitten, kind: char, name: simit-kitten, external: retry-2026-11-03, master: design/art/masters/simit-kitten/simit-kitten.webp}
+  - {id: findik, kind: char, name: findik-base, external: batch-03-home-island, master: design/art/masters/findik-base/findik-base.webp}
+  - {id: harbor-goat, kind: char, name: harbor-goat, external: batch-14-harbor, master: design/art/masters/harbor-goat/harbor-goat.webp}
+
+  # ------------------------------------------------------- Mochi, the bunny
+
+  - id: mochi-happy
+    kind: char
+    name: mochi-happy
+    size: 1024x1536
+    edit_of: mochi-v2
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "Mochi happy (a visitor, a level-up). Review: closed smiling arcs, a wider smile; the long ears, body, paws and colors are the base's."
+    prompt:
+      - text: |
+          Edit the attached bunny, Mochi, into her happy face. Change only the eyes and mouth: both eyes become happy closed arcs, the classic smiling ^ shape, each a thick soft dark upward-curved arc at the height of the top of the original eye, with fur below it; the small mouth widens into a slightly bigger smile and the blush deepens a little. Everything else stays exactly as it is.
+      - block: edit-keep-v1
+      - text: "AVOID: tears, a worried look, teeth, a ground shadow, text, motion lines."
+
+  - id: mochi-sleepy
+    kind: char
+    name: mochi-sleepy
+    size: 1024x1536
+    edit_of: mochi-v2
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "Mochi sleepy (she goes in at her door after dusk). Review: closed lids, the long ears drooped a little; the rest is the base's."
+    prompt:
+      - text: |
+          Edit the attached bunny, Mochi, into a sleepy nap face. Change only the eyes and ears: both eyes become gently closed, a thin soft slightly downward-curved dark line where the lower edge of each eye was, with fur above it; both long ears fold a little down and outward. The mouth relaxes into a calm small line. Everything else stays exactly as it is.
+      - block: edit-keep-v1
+      - text: "AVOID: tears, a worried look, open eyes, teeth, a ground shadow, text, motion lines, zzz."
+
+  - id: mochi-proud
+    kind: char
+    name: mochi-proud
+    size: 1024x1536
+    edit_of: mochi-v2
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "Mochi proud (a heart level-up, a finished tea). Review: chin lifted a touch, content half-closed eyes, a small confident smile, ears tall; warm, never smug."
+    prompt:
+      - text: |
+          Edit the attached bunny, Mochi, into a proud reaction. Change only the face and ears: the chin lifts a touch, both eyes become calm, content half-closed lids with the catchlights kept, the small mouth becomes a quietly confident closed smile, the blush deepens a little, and the long ears stand tall and upright. Body, paws, colors and size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: a smirk, a sneer, tears, a worried look, teeth, a ground shadow, text, motion lines."
+
+  # ------------------------------------------------------- Simit, the kitten
+
+  - id: simit-proud
+    kind: char
+    name: simit-proud
+    size: 1024x1536
+    edit_of: simit-kitten
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    palettes: [character-tabby]
+    notes: "Simit proud (a heart level-up, a full tray). Review: chin lifted a touch, content half-closed eyes, a small closed smile, ears up; the tabby stripes and everything else are the base's."
+    prompt:
+      - text: |
+          Edit the attached kitten, Simit, into a proud reaction. Change only the face and ears: the chin lifts a touch, both eyes become calm, content half-closed lids with the catchlights kept, the "w" mouth becomes a quietly confident small smile, the blush deepens a little, and both ears stand upright. Body, tail, paws, stripes, colors and size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: a smirk, a sneer, tears, a worried look, a curl on the head, a ground shadow, text, motion lines."
+
+  # ------------------------------------------------------- Findik, the hedgehog
+
+  - id: findik-happy
+    kind: char
+    name: findik-happy
+    size: 1024x1536
+    canvas: 870x1306  # the parent's canvas (findik-base); keeps the lossless master under the upload cap
+    edit_of: findik
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "Findik happy (a visitor, a level-up). Review: closed smiling arcs, a wider smile; the spines, body, paws and colors are the base's."
+    prompt:
+      - text: |
+          Edit the attached hedgehog, Fındık, into his happy face. Change only the eyes and mouth: both eyes become happy closed arcs, the classic smiling ^ shape, each a thick soft dark upward-curved arc at the height of the top of the original eye; the small mouth widens into a slightly bigger smile. His spines, body, paws, colors and size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: tears, a worried look, teeth, a ground shadow, text, motion lines."
+
+  - id: findik-sleepy
+    kind: char
+    name: findik-sleepy
+    size: 1024x1536
+    canvas: 870x1306  # the parent's canvas (findik-base)
+    edit_of: findik
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "Findik sleepy (he stays late at the bench, then goes in). Review: closed lids, a calm mouth; spines, body and colors are the base's."
+    prompt:
+      - text: |
+          Edit the attached hedgehog, Fındık, into a sleepy nap face. Change only the eyes and mouth: both eyes become gently closed, a thin soft slightly downward-curved dark line where the lower edge of each eye was, and the mouth relaxes into a calm small line. His spines, ears, body, paws, colors and size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: tears, a worried look, open eyes, teeth, a ground shadow, text, motion lines, zzz."
+
+  - id: findik-proud
+    kind: char
+    name: findik-proud
+    size: 1024x1536
+    canvas: 870x1306  # the parent's canvas (findik-base)
+    edit_of: findik
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "Findik proud (a finished repair, a heart level-up). Review: chin lifted a touch, content half-closed eyes, a small confident smile; the spines and everything else are the base's."
+    prompt:
+      - text: |
+          Edit the attached hedgehog, Fındık, into a proud reaction. Change only the face: the chin lifts a touch, both eyes become calm, content half-closed lids with the catchlights kept, the small mouth becomes a quietly confident closed smile, and the blush deepens a little. His spines, ears, body, paws, colors and size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: a smirk, a sneer, tears, a worried look, teeth, a ground shadow, text, motion lines."
+
+  # ------------------------------------------------------- the goat
+
+  - id: goat-happy
+    kind: char
+    name: goat-happy
+    size: 1024x1536
+    edit_of: harbor-goat
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "The goat happy (a delivered crate, a level-up), still a goat of opinions. Review: closed arcs for eyes, a small reluctant smile instead of the flat indignant line; horn buds, ears, beard, tan patch and body are the base's."
+    prompt:
+      - text: |
+          Edit the attached baby goat into a happy reaction. Change only the eyes, brows and mouth: both eyes become happy closed arcs, the classic smiling ^ shape, each a thick soft dark upward-curved arc at the height of the top of the original eye; the low indignant brows relax; the flat, pressed mouth turns into a small, slightly reluctant smile. The horn buds, floppy ears, beard tuft, tan patch, body, paws, colors and size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: teeth, a wide grin, tears, a worried look, a ground shadow, text, motion lines."
+
+  - id: goat-surprised
+    kind: char
+    name: goat-surprised
+    size: 1024x1536
+    edit_of: harbor-goat
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "The goat surprised (a crate dropped, the ferry horn). Review: a small round \"o\", eyes wider with the catchlights kept, ears up; the rest is the base's."
+    prompt:
+      - text: |
+          Edit the attached baby goat into a surprised reaction. Change only the face and ears: the flat pressed mouth becomes a small round soft "o", both eyes grow slightly rounder and wider with their catchlights kept, the brows lift, and the two floppy ears lift a little more upright. The horn buds, beard tuft, tan patch, body, paws, colors and size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: tears, a worried look, teeth, a ground shadow, text, motion lines."
+
+  - id: goat-sleepy
+    kind: char
+    name: goat-sleepy
+    size: 1024x1536
+    edit_of: harbor-goat
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "The goat sleepy (night at its shed). Review: closed lids, ears drooped; the rest is the base's."
+    prompt:
+      - text: |
+          Edit the attached baby goat into a sleepy nap face. Change only the eyes, brows, mouth and ears: both eyes become gently closed, a thin soft slightly downward-curved dark line where the lower edge of each eye was, with fur above it; the indignant brows soften; the mouth relaxes into a calm small line; both floppy ears droop a little lower. The horn buds, beard tuft, tan patch, body, paws, colors and size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: tears, a worried look, open eyes, teeth, a ground shadow, text, motion lines, zzz."
+
+  - id: goat-proud
+    kind: char
+    name: goat-proud
+    size: 1024x1536
+    edit_of: harbor-goat
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "The goat proud (a heart level-up). Review: the chin lifted high with eyes half-closed in a satisfied huff and a small closed smile; the indignant goat made pleased with itself, never smug or cruel."
+    prompt:
+      - text: |
+          Edit the attached baby goat into a proud reaction. Change only the face and ears: the chin lifts high, both eyes become calm, content half-closed lids with the catchlights kept, the brows relax, the flat mouth becomes a small, satisfied closed smile, and the floppy ears perk up a little. The horn buds, beard tuft, tan patch, body, paws, colors and size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: a smirk, a sneer, tears, a worried look, teeth, a ground shadow, text, motion lines."

@@ -1,0 +1,24 @@
+id: asset-koke-stretch
+type: asset
+title_tr: koke-stretch
+title_en: koke-stretch (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached moss creature, Koke, into a big waking-up stretch. The front legs stretch
+  far forward along the ground with the paws spread, the haunches rise and the back arches
+  up in a rounded hump, the head lifts and tilts back a little in a huge soft yawn: a wide
+  round open mouth with a small pink tongue and no teeth, the eyes squeezed shut in happy
+  creases, the ears folded back. The moss, the sprout on the cro…
+links:
+  variant_of:
+  - asset-koke-asleep
+art:
+  images: []
+  jobs:
+  - batch-39-koke-production:koke-stretch
+sources:
+- doc: tools/imagegen/manifest/batch-39-koke-production.yaml
+kind: char
+batch: batch-39-koke-production
+size: 1024x1024
