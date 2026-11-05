@@ -34,6 +34,16 @@ public struct GameEvent: Hashable, Sendable, Codable {
         case shieldRestored(passID: UUID)
         /// DeviceActivity measured at least `minutes` of guarded use today.
         case usageMeasured(minutes: Int)
+        /// The player greeted today's visitor (experience v1 §5): a heart.
+        case greetedVisitor
+        /// The player opened the visitor's parcel.
+        case openedGift
+        /// The player helped the visitor with the thing that needed a tap:
+        /// a heart.
+        case helped
+        /// The player picked a resident they have met from a quiet day's
+        /// letter: they come on the next draw. Never expires, never costs.
+        case invited(ResidentID)
     }
 
     public var at: Date

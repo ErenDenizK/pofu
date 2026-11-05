@@ -34,10 +34,13 @@ public struct WorldClock: Sendable {
     public let calendar: Calendar
     /// Reused for its bedtime arithmetic, which follows DST.
     private let nights: QuietTimeAccrual
+    /// Who visits and when (experience v1 §5).
+    public let visitors: VisitorSchedule
 
-    public init(rules: GameRules = GameRules(), calendar: Calendar) {
+    public init(rules: GameRules = GameRules(), calendar: Calendar, visitors: VisitorSchedule = VisitorSchedule()) {
         self.rules = rules
         self.calendar = calendar
+        self.visitors = visitors
         self.nights = QuietTimeAccrual(rules: rules.quiet, bedtime: rules.bedtime, calendar: calendar)
     }
 
@@ -218,7 +221,30 @@ public struct WorldClock: Sendable {
             guardedMinutesToday: today?.guardedMinutes ?? 0,
             dailyHourMinutes: rules.breath.dailyHourMinutes,
             overLimitOpensToday: today?.overLimitOpens ?? 0,
-            nextBreath: state.clock.flatMap { self.breath(for: state, at: $0) }
+            nextBreath: state.clock.flatMap { self.breath(for: state, at: $0) },
+            visitor: visitorSnapshot(of: state),
+            invitationOpen: state.visitors.inviteOpenSince != nil,
+            metResidents: state.visitors.met,
+            invited: state.visitors.invitation?.resident
+        )
+    }
+
+    private func visitorSnapshot(of state: GameState) -> VisitorSnapshot? {
+        guard let visit = state.visitors.current else { return nil }
+        let favourite = visitors.roster.first { $0.resident == visit.resident }?.favourite
+        let bonus = visit.hasStationBonus
+        return VisitorSnapshot(
+            resident: visit.resident,
+            reason: visit.reason,
+            slot: visit.slot,
+            state: visit.state,
+            gift: visit.giftOpened ? nil : visit.gift,
+            giftOpened: visit.giftOpened,
+            helped: visit.helped,
+            isInvited: visit.isInvited,
+            hearts: state.visitors.hearts(of: visit.resident),
+            bonusStation: bonus ? favourite : nil,
+            bonusPercent: bonus && favourite != nil ? visitors.rules.stationBonusPercent : 0
         )
     }
 
@@ -368,6 +394,7 @@ public struct WorldClock: Sendable {
             released: rules.releasedIslands,
             catalog: rules.catalog
         )
+        visitors.roll(&state.visitors, to: day, context: VisitorSchedule.context(of: state, catalog: rules.catalog, roster: visitors.roster))
     }
 
     // MARK: - Events
@@ -385,6 +412,7 @@ public struct WorldClock: Sendable {
         case .foregroundBegan:
             state.foregroundSince = at
             noteReturn(&state, at: at)
+            state.visitors.noteSeen()
         case .foregroundEnded:
             state.foregroundSince = nil
         case .resisted:
@@ -402,6 +430,18 @@ public struct WorldClock: Sendable {
                 // Ended in Pofu, or closed by the shield: the user is out.
                 state.awaitingReturn = false
             }
+        case .greetedVisitor:
+            state.visitors.greet()
+        case .openedGift:
+            guard !isBedtime(at), case .seeds(let seeds)? = state.visitors.openGift() else { return }
+            // A parcel of seeds joins the pouch like the other seeds: world
+            // material, never screen time (ADR-0015).
+            state.stations.gather(Energy(seeds))
+            delta.giftSeeds += Energy(seeds)
+        case .helped:
+            state.visitors.help()
+        case .invited(let resident):
+            state.visitors.invite(resident, on: frame.day)
         case .usageMeasured(let minutes):
             if let today = state.today, today.day == frame.day {
                 state.today?.measuredGuardedMinutes = max(today.measuredGuardedMinutes, minutes)
