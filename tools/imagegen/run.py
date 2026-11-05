@@ -373,7 +373,7 @@ def cmd_post(args, config, m: pl.Manifest) -> int:
                                   {**job.acceptance, **({"exploration": True} if qa.is_exploration(job.id, job.acceptance) else {})},
                                   registration=registration, parent_locked=parent_locked,
                                   register_root=((job.kind == "station" or bool(job.decor)) and not job.edit_of),
-                                  transparent=job.transparent, decor=job.decor, light=job.light,
+                                  transparent=job.transparent, decor=job.decor, light=job.light, declared_size=job.size,
                                   fit=(None if (job.fit is False or job.edit_of) else (job.fit or {})))
             locked_path = out_dir / "locked" / path.name
             sl.save_rgba(res.locked, locked_path)

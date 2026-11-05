@@ -23,6 +23,9 @@ ART_ROOT = REPO_ROOT / "design" / "art"
 BLOCKS_DIR = HERE / "blocks"
 CONFIG_PATH = HERE / "config.yaml"
 
+# `blend: additive` marks a glow painted on black that the app adds with
+# plus-lighter blending (qa.py ADDITIVE profile).
+BLENDS = ("additive",)
 KINDS = ("char", "station", "world", "prop", "sheet", "plate", "icon", "ui", "widget", "appicon")
 # Canonical canvas per kind (art bible section 7, game design section 15,
 # ADR-0018 "Glass++" for the UI kinds). A job may override it with `canvas`.
@@ -259,6 +262,12 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
         extra = merged.get("palettes") or []
         if not isinstance(extra, list) or not all(isinstance(x, str) and ID_RE.match(x) for x in extra):
             raise ManifestError(f"{where}: palettes must be a list of palette names, e.g. [world-night]")
+        blend = merged.get("blend")
+        if blend is not None:
+            if blend not in BLENDS:
+                raise ManifestError(f"{where}: blend must be {' or '.join(BLENDS)}")
+            if transparent or kind != "ui":
+                raise ManifestError(f"{where}: an additive glow is a ui job painted on black (transparent: false)")
         light = merged.get("light")
         if light is not None:
             try:
@@ -273,7 +282,8 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
             raise ManifestError(f"{where}: a {kind} job needs `light: {{cell, layer}}` (docs/design/light-standard.md); set it per job or in defaults")
         job = Job(id=jid, kind=kind, name=name, prompt=prompt, attach=attach, edit_of=merged.get("edit_of"),
                   size=size, transparent=transparent, key=key,
-                  variants=variants, acceptance=merged.get("acceptance", {}) or {}, chat=merged.get("chat"),
+                  variants=variants,
+                  acceptance={**(merged.get("acceptance", {}) or {}), **({"blend": blend} if blend else {})}, chat=merged.get("chat"),
                   notes=merged.get("notes", "") or "", canvas=canvas, external=str(external) if external else None,
                   master=str(master) if master else None, slice=slice_, decor=decor, palettes=list(extra), light=light, fit=fit)
         jobs.append(job)

@@ -55,6 +55,7 @@ jobs:
     size: 1024x1024
     canvas: 1024x1024
     transparent: false
+    blend: additive
     chat: "Pofu · Experience"
     notes: "Soft round halo for a lantern or a lit window, drawn around the source (the app places it, additive). Matches glow-ground-pool's grain and color. Review: round, soft, no ring, no hot core."
     attach:
@@ -84,6 +85,7 @@ jobs:
     size: 1024x1024
     canvas: 1024x512
     transparent: false
+    blend: additive
     chat: "Pofu · Experience"
     notes: "A cool teal shimmer ellipse for the pond at night (floating lanterns, pond level 5). Code places it on the water. Review: reads as light on water, cool against the warm pools; broken into soft ripples, not a flat disc."
     attach:
@@ -275,6 +277,7 @@ jobs:
     size: 1536x1024
     canvas: 1536x1024
     transparent: true
+    palettes: [world-props, world-foliage]
     chat: "Pofu · Dressing"
     light: {cell: day, layer: subject}
     notes: "Ten small garden pieces (watering can, seed sack, twine, small crates, trowel) in a 5 by 2 grid for the garden corner. Same finish as dressing-meadow. Review: each reads at 28 pt as the thing it is; matte, no metal shine."
@@ -303,6 +306,7 @@ jobs:
     size: 1536x1024
     canvas: 1536x1024
     transparent: true
+    palettes: [world-props, world-foliage]
     chat: "Pofu · Dressing"
     light: {cell: day, layer: subject}
     notes: "Ten small harbor pieces (rope coil, buoy, crate, folded net, oar) in a 5 by 2 grid for Liman and the pier. Same finish as dressing-meadow. Review: each reads at 28 pt; rope and net have no fine weave."
@@ -332,6 +336,7 @@ jobs:
     size: 1536x1024
     canvas: 1536x1024
     transparent: true
+    palettes: [world-props, world-foliage]
     chat: "Pofu · Critters"
     light: {cell: day, layer: subject}
     notes: "Four wing frames of a butterfly plus a resting pose (wings closed), five small sprites in a row for a critter that drifts over the lawn. Review: the four frames read as one flap cycle; the rest pose is the same butterfly."
@@ -358,6 +363,7 @@ jobs:
     size: 1536x1024
     canvas: 1536x1024
     transparent: true
+    palettes: [world-props, world-foliage]
     chat: "Pofu · Critters"
     light: {cell: day, layer: subject}
     notes: "A snail at rest and a two-frame crawl, three sprites in a row. Review: the shell is the same in every frame; the crawl reads as a gentle stretch; a calm face, no eyes with highlights."
@@ -384,6 +390,7 @@ jobs:
     size: 1536x1024
     canvas: 1536x1024
     transparent: true
+    palettes: [world-props, world-foliage]
     chat: "Pofu · Critters"
     light: {cell: day, layer: subject}
     notes: "A small bird perched in two poses and a two-frame flap, four sprites in a row. Review: the perched pair (looking left, looking right) and the flap pair are one bird; rounder than a sparrow, never realistic."
@@ -410,6 +417,7 @@ jobs:
     size: 1536x1024
     canvas: 1536x1024
     transparent: true
+    palettes: [world-props, world-foliage]
     chat: "Pofu · Critters"
     light: {cell: day, layer: subject}
     notes: "A ladybug on a leaf and a two-frame walk, three sprites in a row. Review: the leaf is part of the resting sprite only; the two walk frames show the bug alone with legs in different positions."

@@ -103,6 +103,26 @@ NIGHT_PROFILE = {
 }
 
 
+# Additive glow sprites (manifest `blend: additive`, carried in acceptance):
+# painted on pure black, the app adds them with plus-lighter blending, so
+# black is no light. Value floor and palette drift do not apply (the black IS
+# the content); instead the background must be near-black, chroma is measured
+# on the lit pixels only, and the falloff must be soft and unbanded.
+BLENDS = ("additive",)
+ADDITIVE = {
+    "lit_luma": 0.12,                                  # pixels above this (0..1 luma) count as the glow
+    "chroma_p95": {"warn": 78.0, "fail": 90.0},        # honey-gold fades through #FF9F4A (C ~ 66)
+    "bg_luma_p99": {"warn": 0.05, "fail": 0.10},       # border band must stay black
+    # Hard edge: share of pixels whose luma step exceeds `edge_step` per px at
+    # 256 px. A lit window's sill is one deliberate crisp edge (0.3-0.5 percent
+    # of the image); a hard disc is 2 percent.
+    "edge_step": 0.08,
+    "edge_share": {"warn": 0.008, "fail": 0.015},
+    "levels": {"warn": 0.60, "fail": 0.40},            # occupied 8-bit levels / span of the falloff: banding
+    "min_lit": 0.01,                                   # the glow must cover at least 1 percent of the image
+}
+
+
 def is_exploration(job_id: str | None = None, acceptance: dict | None = None) -> bool:
     return bool((acceptance or {}).get("exploration")) or bool(job_id and re.match(r"^x\d*-", job_id))
 
@@ -189,9 +209,15 @@ def ensure_alpha(rgba: np.ndarray) -> tuple[np.ndarray, Check]:
     return keyed, Check("transparency", "warn", f"opaque source; keyed out {info['keyedColor']} (inspect the edges)", leak)
 
 
-def fit_canvas(rgba: np.ndarray, size: tuple[int, int] | None, cover: bool = False) -> tuple[np.ndarray, Check]:
+def fit_canvas(rgba: np.ndarray, size: tuple[int, int] | None, cover: bool = False,
+               declared: tuple[int, int] | None = None) -> tuple[np.ndarray, Check]:
     """Scale into the kind's canvas. Sprites are never cropped (padded with
-    transparency); opaque kinds (`cover`) are scaled to fill and center-cropped."""
+    transparency); opaque kinds (`cover`) are scaled to fill and center-cropped.
+
+    `declared` is the job's own `size` (what the image model is asked to draw).
+    A source of exactly that size is cropped and upscaled to the job's canvas
+    on purpose (a 1024 x 1536 sky covering a 1290 x 2796 phone), so the upscale
+    is reported as a pass; any other source size still warns."""
     h, w = rgba.shape[:2]
     if size is None:
         return rgba, Check("canvas", "pass", f"kept {w}x{h}")
@@ -205,8 +231,10 @@ def fit_canvas(rgba: np.ndarray, size: tuple[int, int] | None, cover: bool = Fal
         x0, y0 = (im.width - W) // 2, (im.height - H) // 2
         im = im.crop((x0, y0, x0 + W, y0 + H))
         status = "warn" if s > 1.1 else "pass"
-        return (np.asarray(im, dtype=np.float64) / 255.0,
-                Check("canvas", status, f"{w}x{h} scaled x{s:.3f} and center-cropped to {W}x{H}", s))
+        msg = f"{w}x{h} scaled x{s:.3f} and center-cropped to {W}x{H}"
+        if status == "warn" and declared is not None and (w, h) == tuple(declared):
+            status, msg = "pass", msg + " (the job's declared size: crop and upscale are by design)"
+        return np.asarray(im, dtype=np.float64) / 255.0, Check("canvas", status, msg, s)
     s = min(W / w, H / h)
     im = Image.fromarray(np.clip(np.round(rgba * 255), 0, 255).astype(np.uint8), "RGBA")
     im = im.resize((max(1, round(w * s)), max(1, round(h * s))), Image.Resampling.LANCZOS)
@@ -670,6 +698,52 @@ def appicon_checks(rgba: np.ndarray) -> list[Check]:
     return checks
 
 
+def luma(rgb: np.ndarray) -> np.ndarray:
+    return rgb[..., 0] * 0.2126 + rgb[..., 1] * 0.7152 + rgb[..., 2] * 0.0722
+
+
+def additive_checks(rgba: np.ndarray) -> list[Check]:
+    """QA profile of an additive glow sprite (opaque, painted on black)."""
+    lim = ADDITIVE
+    rgb = rgba[..., :3]
+    Y = luma(rgb)
+    h, w = Y.shape
+    checks: list[Check] = []
+    lit = Y > lim["lit_luma"]
+    frac = float(lit.mean())
+    if frac < lim["min_lit"]:
+        return [Check("glow_present", "fail", f"only {frac:.1%} of the image is lit (at least {lim['min_lit']:.0%})", frac)]
+    # 1. chroma, on lit pixels only (the black has no hue).
+    _, C, _ = sl.lch(sl.srgb_to_lab(rgb[lit]))
+    c95 = float(np.percentile(C, 95))
+    checks.append(Check("chroma_ceiling", grade(c95, lim["chroma_p95"]),
+                        f"glow chroma p95 {c95:.0f} on {frac:.0%} lit pixels (additive profile)", c95))
+    # 2. the background is near-black: the outer band of the image.
+    b = max(2, round(0.04 * min(h, w)))
+    band = np.concatenate([Y[:b].ravel(), Y[-b:].ravel(), Y[:, :b].ravel(), Y[:, -b:].ravel()])
+    bg = float(np.percentile(band, 99))
+    checks.append(Check("additive_background", grade(bg, lim["bg_luma_p99"]),
+                        f"border luma p99 {bg:.3f} (near-black, at most {lim['bg_luma_p99']['warn']:.2f}): the glow dies before the edge", bg))
+    # 3. soft falloff: no hard step (at 256 px, after a 1 px blur).
+    im = Image.fromarray(np.clip(np.round(Y * 255), 0, 255).astype(np.uint8), "L")
+    s = 256 / max(w, h)
+    im = im.resize((max(8, round(w * s)), max(8, round(h * s))), Image.Resampling.BOX).filter(ImageFilter.GaussianBlur(1.0))
+    g = np.asarray(im, dtype=np.float64) / 255.0
+    gy, gx = np.gradient(g)
+    edge = float((np.hypot(gx, gy) > lim["edge_step"]).mean())
+    checks.append(Check("additive_falloff", grade(edge, lim["edge_share"]),
+                        f"{edge:.2%} of the image has a hard edge (luma step over {lim['edge_step']:.2f} per px at 256 px; soft falloff, at most {lim['edge_share']['warn']:.1%})", edge))
+    # 4. banding: a smooth, grainy falloff uses nearly every 8-bit level of its span.
+    levels = np.round(Y[lit] * 255).astype(int)
+    lo, hi = int(levels.min()), int(np.percentile(levels, 99.5))
+    span = max(1, hi - lo + 1)
+    used = len(np.unique(levels[(levels >= lo) & (levels <= hi)]))
+    ratio = used / span
+    checks.append(Check("additive_banding", grade(ratio, lim["levels"], higher_is_worse=False),
+                        f"{used} of {span} luma levels used across the falloff ({ratio:.0%}; low means banding)", ratio))
+    return checks
+
+
 def palette_sets(names: list[str]) -> dict[str, list[str]]:
     tokens = pa.load_tokens()["artPalettes"]
     extra = json.loads((HERE / "palettes.json").read_text(encoding="utf-8"))
@@ -746,6 +820,12 @@ def run_checks(kind: str, raw: np.ndarray, locked: np.ndarray, palettes: list[st
     checks = []
     if "error" in m:
         return [Check("opaque_pixels", "fail", "no opaque pixels")]
+    if acceptance.get("blend") == "additive":
+        # Value floor, palette drift and the lit-object chroma do not apply to
+        # light painted on black; the additive profile replaces them.
+        checks.extend(additive_checks(locked))
+        checks.append(Check("detail_budget", grade(m["detail"], lim["detail"]), f"detail at display size {m['detail']:.1f} (R1 5.3)", m["detail"]))
+        return checks
     checks.append(Check("chroma_ceiling", grade(m["C_p95"], lim["chroma_p95"]), f"chroma p95 {m['C_p95']:.0f} (R1 51)", m["C_p95"]))
     if light:
         checks.extend(check_light(locked, light))
@@ -836,7 +916,7 @@ def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, pre
                  acceptance: dict | None = None, registration: dict | None = None,
                  parent_locked: np.ndarray | None = None, register_root: bool = False,
                  transparent: bool = True, decor: str | None = None, light: dict | None = None,
-                 fit: dict | None = None) -> TakeResult:
+                 fit: dict | None = None, declared_size: tuple[int, int] | None = None) -> TakeResult:
     checks: list[Check] = []
     if transparent:
         rgba, c = ensure_alpha(raw)
@@ -847,7 +927,7 @@ def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, pre
         c = (Check("transparency", "pass", "opaque, as this kind must be") if holes == 0 else
              Check("transparency", "fail", f"this kind must be opaque, but {holes:.1%} of the source is transparent", holes))
     checks.append(c)
-    rgba, c = fit_canvas(rgba, canvas, cover=not transparent)
+    rgba, c = fit_canvas(rgba, canvas, cover=not transparent, declared=declared_size)
     checks.append(c)
     info: dict = {}
     if parent_locked is not None and parent_locked.shape[:2] != rgba.shape[:2]:
@@ -878,7 +958,13 @@ def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, pre
             rgba = shift(rgba, reg["dx"], reg["dy"])
             info["registration"] = reg
     normalized = rgba
-    locked = sl.apply_lock(normalized, preset)
+    if (acceptance or {}).get("blend") == "additive":
+        # The lock lifts the value floor (black becomes L 19 grey), which an
+        # additive glow cannot take: black is no light. Ship the take as drawn.
+        locked = normalized.copy()
+        info["lock_skipped"] = "additive glow: black stays black"
+    else:
+        locked = sl.apply_lock(normalized, preset)
     if parent_locked is not None and transparent and locked.shape == parent_locked.shape:
         locked, t = align_to_parent(locked, parent_locked)
         if t["scale"] != 1.0 or t["dx"] or t["dy"]:

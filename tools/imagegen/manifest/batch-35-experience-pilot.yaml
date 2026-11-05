@@ -42,6 +42,7 @@ jobs:
     size: 1024x1024
     canvas: 1024x512
     transparent: false
+    blend: additive
     chat: "Pofu · Experience"
     notes: "PILOT. The warm pool a lamp or lantern throws on the lawn at night, seen at 17 degrees (a flat wide ellipse). Code stretches and tints it per source (round pools: ember, path lamps, the calm lantern). Review: reads as light on grass, not a disc; falloff smooth; black stays black."
     attach:
@@ -70,6 +71,7 @@ jobs:
     size: 1024x1024
     canvas: 1024x1024
     transparent: false
+    blend: additive
     chat: "Pofu · Experience"
     notes: "PILOT. The warm trapezoid of a lit window falling on the grass at night (windows H1-H5, the guest room). Code rotates and scales it per window. Review: a broken, painterly edge like light through a window; narrow at the sill, wide and faint away from it."
     attach:
@@ -99,6 +101,7 @@ jobs:
     size: 1536x1024
     canvas: 1536x1024
     transparent: true
+    palettes: [world-props, world-foliage]
     chat: "Pofu · Dressing"
     light: {cell: day, layer: subject}
     notes: "PILOT. Twelve small pieces that dress the lawn so it is never bare (grass tufts, wildflower clumps, pebbles, a mushroom ring), each separate, each under 40 px at game scale. Code scatters them by island level. Review: twelve distinct pieces in a 4 by 3 grid, each reads at 28 pt, same finish as tea-stall-1, no piece touches another."
