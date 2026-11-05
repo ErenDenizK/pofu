@@ -2,7 +2,7 @@ id: asset-decor-bench
 type: asset
 title_tr: decor-bench
 title_en: decor-bench (prop)
-status: cut
+status: in-production
 horizon: now
 summary: 'A small, cozy garden bench for two little animals, for the island diorama:
   a short, chunky bench of soft honey wood with rounded ends and a low curved backrest,
@@ -11,7 +11,8 @@ summary: 'A small, cozy garden bench for two little animals, for the island dior
   stands on the guide''s ground ellipse, centered on the cross, and is no taller than
   the height…'
 art:
-  images: []
+  images:
+  - design/art/masters/decor-bench/decor-bench.png
   jobs:
   - batch-08-decor-pilot:decor-bench
 sources:

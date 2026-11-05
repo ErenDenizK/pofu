@@ -2,12 +2,13 @@ id: asset-lighthouse-1
 type: asset
 title_tr: lighthouse-1
 title_en: lighthouse-1 (station)
-status: cut
+status: in-production
 horizon: next
 summary: 'A small striped lighthouse: coral and cream bands, tiny arched door, honey
   gallery ring, dark unlit lamp room, coral cap.'
 art:
-  images: []
+  images:
+  - design/art/stations/lighthouse-1/lighthouse-1.png
   jobs:
   - batch-21-harbor-ladders:lighthouse-1
 sources:

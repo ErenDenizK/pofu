@@ -1,54 +1,143 @@
 {
-  "method": "Solid alpha >=128 bounding box on official normalized 1024x1024 locked canvas; even this lower bound exceeds the whole-ferry maximum.",
+  "operation": "refit-2026-11-04",
+  "pipeline": "qa.fit_to_guide from PR154",
+  "method": "Current normalized/locked canvas, alpha>=128; original source files untouched",
   "maximum_width": 640,
+  "minimum_fit_scale": 0.6,
+  "previous_pre_refit_measurements": {
+    "method": "Solid alpha >=128 bounding box on official normalized 1024x1024 locked canvas; even this lower bound exceeds the whole-ferry maximum.",
+    "maximum_width": 640,
+    "takes": [
+      {
+        "take": 1,
+        "bbox": [
+          161,
+          275,
+          870,
+          900
+        ],
+        "qa": "warn",
+        "width": 709,
+        "height": 625
+      },
+      {
+        "take": 2,
+        "bbox": [
+          179,
+          357,
+          855,
+          900
+        ],
+        "qa": "warn",
+        "width": 676,
+        "height": 543
+      },
+      {
+        "take": 3,
+        "bbox": [
+          155,
+          322,
+          888,
+          900
+        ],
+        "qa": "warn",
+        "width": 733,
+        "height": 578
+      },
+      {
+        "take": 4,
+        "bbox": [
+          145,
+          321,
+          910,
+          900
+        ],
+        "qa": "warn",
+        "width": 765,
+        "height": 579
+      }
+    ]
+  },
   "takes": [
     {
       "take": 1,
-      "bbox": [
-        161,
-        275,
-        870,
+      "status": "warn",
+      "fit": {
+        "scale": 0.8779,
+        "anchor": [
+          507.2,
+          878
+        ]
+      },
+      "solid_bbox": [
+        204,
+        352,
+        827,
         900
       ],
-      "qa": "warn",
-      "width": 709,
-      "height": 625
+      "solid_width": 623,
+      "lock_load": 1.1562,
+      "native28_full_canvas": true
     },
     {
       "take": 2,
-      "bbox": [
-        179,
-        357,
-        855,
+      "status": "warn",
+      "fit": {
+        "scale": 0.9453,
+        "anchor": [
+          506.7,
+          879
+        ]
+      },
+      "solid_bbox": [
+        198,
+        386,
+        837,
         900
       ],
-      "qa": "warn",
-      "width": 676,
-      "height": 543
+      "solid_width": 639,
+      "lock_load": 1.3497,
+      "native28_full_canvas": true
     },
     {
       "take": 3,
-      "bbox": [
-        155,
-        322,
-        888,
+      "status": "warn",
+      "fit": {
+        "scale": 0.8707,
+        "anchor": [
+          499.0,
+          882
+        ]
+      },
+      "solid_bbox": [
+        200,
+        396,
+        840,
         900
       ],
-      "qa": "warn",
-      "width": 733,
-      "height": 578
+      "solid_width": 640,
+      "lock_load": 1.127,
+      "native28_full_canvas": true
     },
     {
       "take": 4,
-      "bbox": [
-        145,
-        321,
-        910,
+      "status": "warn",
+      "fit": {
+        "scale": 0.8355,
+        "anchor": [
+          495.4,
+          903
+        ]
+      },
+      "solid_bbox": [
+        205,
+        416,
+        844,
         900
       ],
-      "qa": "warn",
-      "width": 765,
-      "height": 579
+      "solid_width": 639,
+      "lock_load": 1.0874,
+      "native28_full_canvas": true
     }
   ]
 }

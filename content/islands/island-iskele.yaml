@@ -39,6 +39,7 @@ links:
   - asset-harbor-crates-1
   - asset-harbor-lamp-1
   - asset-harbor-goat
+  - asset-harbor-ferry-1
 sources:
 - doc: docs/product/archipelago-system.md
   anchor: '#11-island-concepts'

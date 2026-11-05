@@ -2,7 +2,7 @@ id: asset-harbor-ferry-1
 type: asset
 title_tr: harbor-ferry-1
 title_en: harbor-ferry-1 (station)
-status: cut
+status: in-production
 horizon: now
 summary: 'A small Istanbul-style passenger ferry (vapur), toy-like and chunky, for
   the island diorama: a plump rounded hull in soft sea blue with a cream stripe, a
@@ -11,7 +11,8 @@ summary: 'A small Istanbul-style passenger ferry (vapur), toy-like and chunky, f
   camera, floating upright; its waterline is a flat, clean edge with no water drawn,
   no wake, no smoke…'
 art:
-  images: []
+  images:
+  - design/art/stations/harbor-ferry-1/harbor-ferry-1.png
   jobs:
   - batch-14-harbor:harbor-ferry-1
   - retry-2026-11-03:harbor-ferry-1

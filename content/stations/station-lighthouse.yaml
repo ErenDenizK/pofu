@@ -4,12 +4,11 @@ title_tr: Fener
 title_en: Lighthouse
 status: planned
 horizon: later
-summary: >-
-  A striped lighthouse kept by Simit at dusk, whose slow warm beam turns at night.
+summary: A striped lighthouse kept by Simit at dusk, whose slow warm beam turns at
+  night.
 notes:
-- >-
-  Opens: With İskele (7 days after arrival). Level costs 1→5: 1,000 · 2,200 · 4,840 · 10,648
-  · 23,426 (total 42,114). Rate L1→L5: 11 → 35.2 seeds/hour before calm.
+- 'Opens: With İskele (7 days after arrival). Level costs 1→5: 1,000 · 2,200 · 4,840
+  · 10,648 · 23,426 (total 42,114). Rate L1→L5: 11 → 35.2 seeds/hour before calm.'
 links:
   part_of:
   - island-iskele
@@ -17,6 +16,8 @@ links:
   - char-simit
   - sys-station-production
   - sys-build
+  uses_asset:
+  - asset-lighthouse-1
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'

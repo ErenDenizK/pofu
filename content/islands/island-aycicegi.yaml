@@ -4,27 +4,23 @@ title_tr: Ayçiçeği
 title_en: Sunflower (home island)
 status: in-app
 horizon: now
-summary: >-
-  Pofu's sunflower home island and the calm island: seeds × calm, five stages of growth by
-  tended days. Five stations (sunflower garden, çay ocağı, lily pond, workshop, windmill)
-  and the residents Pofu, Mochi, Fındık and the frogs. Home shows it in PofuWorld's IslandScene
-  behind FeatureFlags.islandHome, with batch 01's plate and stand-ins for the stations not
-  yet painted.
+summary: 'Pofu''s sunflower home island and the calm island: seeds × calm, five stages
+  of growth by tended days. Five stations (sunflower garden, çay ocağı, lily pond,
+  workshop, windmill) and the residents Pofu, Mochi, Fındık and the frogs. Home shows
+  it in PofuWorld''s IslandScene behind FeatureFlags.islandHome, with batch 01''s
+  plate and stand-ins for the stations not yet painted.'
 notes:
-- >-
-  Proposed (archipelago-system.md): a yield island of the launch pair; scale A prices 5 to 190 per level; signature motion: the giant sunflower turns with the real sun; island game: Mochi's tea orders (Serve); free tier.
-- >-
-  Stages by tended days: 1 at 0, 2 at 1, 3 at 4, 4 at 10, 5 at 24 (HOME_STAGES).
+- 'Proposed (archipelago-system.md): a yield island of the launch pair; scale A prices
+  5 to 190 per level; signature motion: the giant sunflower turns with the real sun;
+  island game: Mochi''s tea orders (Serve); free tier.'
+- 'Stages by tended days: 1 at 0, 2 at 1, 3 at 4, 4 at 10, 5 at 24 (HOME_STAGES).'
 - 'Home island total: 88,999 seeds across 5 stations × 5 levels.'
-- >-
-  Simulation: nobody finishes the home island before about day 40 (never-opens upper bound
-  day 42, disciplined day 46, heavy scroller day 64).
-- >-
-  Stage 3 widens the island (island-main-l), stage 4 adds the back terrace, stage 5 the east
-  islet and its rope bridge (batch 03).
-- >-
-  Locked slots one stage ahead show as dotted plots with a blank sign; anticipated, never
-  counted down.
+- 'Simulation: nobody finishes the home island before about day 40 (never-opens upper
+  bound day 42, disciplined day 46, heavy scroller day 64).'
+- Stage 3 widens the island (island-main-l), stage 4 adds the back terrace, stage
+  5 the east islet and its rope bridge (batch 03).
+- Locked slots one stage ahead show as dotted plots with a blank sign; anticipated,
+  never counted down.
 - 'The islands sleep 23:00–06:00: you can look, not build (A5).'
 links:
   uses_asset:
@@ -34,6 +30,7 @@ links:
   - asset-terrace-v2
   - asset-islet-east
   - asset-bridge-east
+  - asset-decor-bench
   related:
   - sys-calm
   - sys-station-production

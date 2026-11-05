@@ -2,22 +2,108 @@ batch: batch-21-harbor-ladders
 contact_sheet: design/art/takes/batch-21-harbor-ladders/lighthouse-1/contact.jpg
 jobs:
   lighthouse-1:
-    pick: none
-    publication: skipped after one allowed retry
-    note: 'All4 retained takes fail official station_anchor: normalized top y0 above
-      height-bar y150, including the only retry pair. The dark lamp room remains unlit
-      and the required striped tower/window/door are present, but a hard height failure
-      cannot be waived. Record the terminal skip, retain every source and contact,
-      and skip only the true lighthouse level-chain dependents. No promotion or additional
-      generation. Automated failures: t1 station_anchor: top y 0 above the height
-      bar (150); t2 station_anchor: top y 0 above the height bar (150); t3 station_anchor:
-      top y 0 above the height bar (150); t4 station_anchor: top y 0 above the height
-      bar (150).'
+    pick: 3
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Queue operation refit-2026-11-04:
+      reuse all4 verified original PNGs, no image generation. Official PR154 fit now
+      places every candidate within the height bar and on ground900; all hard QA and
+      station-anchor checks pass, with scale factors0.7911,0.7903,0.7812,0.7937 above0.6.
+      Take3 has minimum eligible lock load1.8994, height749px from top151 to ground900,
+      solid width449. Native28 and guide-review.jpg confirm a striped toy lighthouse,
+      unlit dark lamp room, round window and arched door, no beam or ground shadow.
+      Light-standard warnings are advisory only. Record the fit in meta, un-cut only
+      this asset, add its station consumer link; lighthouse2-to5 remain skipped pending
+      lead review. Auto-picked by QA; founder review pending.'
 qa_reports:
   2:
     job: lighthouse-1
     take: 2
-    status: fail
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 45 (at most 22), p98 92 (at least 90), spread 47
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 74.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.28 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.275
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.8 (at least 3.5)'
+      value: 3.83
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.15
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.4
+      value: 2.3603
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.1, p95 2.6, off-palette 0.0%
+      value: 1.0726
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 81 against the world reference (outliers: edge)'
+      value: 81.1
+    info:
+      fit:
+        scale: 0.7903
+        anchor:
+        - 496.2
+        - 993
+      registration:
+        dx: 16
+        dy: -93
+      metrics_raw:
+        L_p5: 50.4
+        L_p50: 74.9
+        L_p95: 90.7
+        C_p50: 30.4
+        C_p95: 42.7
+        C_p99: 46.0
+        detail: 2.73
+      metrics_locked:
+        L_p5: 50.8
+        L_p50: 74.9
+        L_p95: 90.5
+        C_p50: 30.4
+        C_p95: 42.4
+        C_p99: 45.4
+        detail: 2.15
+    fingerprint: b10f1c5114cf3709
+  4:
+    job: lighthouse-1
+    take: 4
+    status: warn
     preset: lock-light
     checks:
     - check: transparency
@@ -33,112 +119,30 @@ qa_reports:
       value: 42.3
     - check: light_values
       status: warn
-      message: 'day/subject: L p2 45 (at most 22), p98 92 (at least 90), spread 47
+      message: 'day/subject: L p2 44 (at most 22), p98 91 (at least 90), spread 47
         (at least 60) (warn-only until the founder has seen the light pilot)'
-      value: 46.7
-    - check: light_median
-      status: pass
-      message: 'day/subject: median L 75 (band 55-90)'
-      value: 75.0
-    - check: light_haze
-      status: warn
-      message: 'day/subject: dark-channel haze 0.28 (at most 0.20; no true dark means
-        a wash)'
-      value: 0.282
-    - check: light_contrast
-      status: warn
-      message: 'day/subject: p75 local contrast 2.7 (at least 3.5) (warn-only until
-        the founder has seen the light pilot)'
-      value: 2.7
-    - check: detail_budget
-      status: pass
-      message: detail at display size 2.1 (R1 5.3)
-      value: 2.08
-    - check: lock_load
-      status: pass
-      message: the lock moved colors by mean dE 2.3
-      value: 2.2886
-    - check: no_guide_magenta
-      status: pass
-      message: 0 guide-magenta pixels (per 1024^2)
-      value: 0.0
-    - check: palette_drift
-      status: pass
-      message: mean dE 1.1, p95 2.6, off-palette 0.0%
-      value: 1.0587
-    - check: station_anchor
-      status: fail
-      message: top y 0 above the height bar (150)
-      value: 900.0
-    - check: harmony
-      status: pass
-      message: 'harmony score 82 against the world reference (outliers: edge)'
-      value: 82.1
-    info:
-      registration:
-        dx: 16
-        dy: -93
-      metrics_raw:
-        L_p5: 50.2
-        L_p50: 75.0
-        L_p95: 90.7
-        C_p50: 29.9
-        C_p95: 42.6
-        C_p99: 45.7
-        detail: 2.62
-      metrics_locked:
-        L_p5: 50.6
-        L_p50: 75.0
-        L_p95: 90.5
-        C_p50: 29.8
-        C_p95: 42.3
-        C_p99: 45.2
-        detail: 2.08
-    fingerprint: b10f1c5114cf3709
-  4:
-    job: lighthouse-1
-    take: 4
-    status: fail
-    preset: lock-light
-    checks:
-    - check: transparency
-      status: pass
-      message: source has an alpha channel
-    - check: canvas
-      status: pass
-      message: 1254x1254 scaled x0.817 into 1024x1024
-      value: 0.8166
-    - check: chroma_ceiling
-      status: pass
-      message: chroma p95 42 (R1 51)
-      value: 42.2
-    - check: light_values
-      status: warn
-      message: 'day/subject: L p2 44 (at most 22), p98 92 (at least 90), spread 48
-        (at least 60) (warn-only until the founder has seen the light pilot)'
-      value: 47.7
+      value: 47.4
     - check: light_median
       status: pass
       message: 'day/subject: median L 74 (band 55-90)'
       value: 74.2
     - check: light_haze
       status: warn
-      message: 'day/subject: dark-channel haze 0.27 (at most 0.20; no true dark means
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
         a wash)'
-      value: 0.271
+      value: 0.263
     - check: light_contrast
       status: warn
-      message: 'day/subject: p75 local contrast 2.2 (at least 3.5) (warn-only until
-        the founder has seen the light pilot)'
-      value: 2.22
+      message: 'day/subject: p75 local contrast 3.0 (at least 3.5)'
+      value: 2.97
     - check: detail_budget
       status: pass
-      message: detail at display size 1.7 (R1 5.3)
-      value: 1.73
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.8
     - check: lock_load
       status: pass
       message: the lock moved colors by mean dE 2.7
-      value: 2.6678
+      value: 2.7242
     - check: no_guide_magenta
       status: pass
       message: 0 guide-magenta pixels (per 1024^2)
@@ -146,40 +150,45 @@ qa_reports:
     - check: palette_drift
       status: pass
       message: mean dE 1.1, p95 2.7, off-palette 0.0%
-      value: 1.0688
+      value: 1.0602
     - check: station_anchor
-      status: fail
-      message: top y 0 above the height bar (150)
+      status: pass
+      message: on the anchor
       value: 900.0
     - check: harmony
       status: pass
       message: 'harmony score 81 against the world reference (outliers: edge)'
-      value: 81.4
+      value: 80.8
     info:
+      fit:
+        scale: 0.7937
+        anchor:
+        - 508.5
+        - 984
       registration:
         dx: 3
-        dy: -84
+        dy: -85
       metrics_raw:
-        L_p5: 47.1
+        L_p5: 47.2
         L_p50: 74.2
         L_p95: 89.8
-        C_p50: 33.7
-        C_p95: 42.4
+        C_p50: 34.1
+        C_p95: 42.5
         C_p99: 43.9
-        detail: 2.21
+        detail: 2.31
       metrics_locked:
-        L_p5: 47.3
+        L_p5: 47.5
         L_p50: 74.2
-        L_p95: 89.6
-        C_p50: 33.6
-        C_p95: 42.2
-        C_p99: 43.7
-        detail: 1.73
+        L_p95: 89.5
+        C_p50: 33.9
+        C_p95: 42.3
+        C_p99: 43.6
+        detail: 1.8
     fingerprint: b10f1c5114cf3709
   1:
     job: lighthouse-1
     take: 1
-    status: fail
+    status: warn
     preset: lock-light
     checks:
     - check: transparency
@@ -192,34 +201,33 @@ qa_reports:
     - check: chroma_ceiling
       status: pass
       message: chroma p95 40 (R1 51)
-      value: 40.3
+      value: 40.4
     - check: light_values
       status: warn
       message: 'day/subject: L p2 48 (at most 22), p98 91 (at least 90), spread 43
         (at least 60) (warn-only until the founder has seen the light pilot)'
-      value: 43.0
+      value: 42.9
     - check: light_median
       status: pass
       message: 'day/subject: median L 75 (band 55-90)'
-      value: 74.9
+      value: 74.8
     - check: light_haze
       status: warn
-      message: 'day/subject: dark-channel haze 0.32 (at most 0.20; no true dark means
+      message: 'day/subject: dark-channel haze 0.31 (at most 0.20; no true dark means
         a wash)'
-      value: 0.318
+      value: 0.306
     - check: light_contrast
       status: warn
-      message: 'day/subject: p75 local contrast 2.6 (at least 3.5) (warn-only until
-        the founder has seen the light pilot)'
-      value: 2.63
+      message: 'day/subject: p75 local contrast 3.5 (at least 3.5)'
+      value: 3.48
     - check: detail_budget
       status: pass
       message: detail at display size 1.9 (R1 5.3)
-      value: 1.86
+      value: 1.92
     - check: lock_load
       status: pass
-      message: the lock moved colors by mean dE 2.1
-      value: 2.1281
+      message: the lock moved colors by mean dE 2.2
+      value: 2.1982
     - check: no_guide_magenta
       status: pass
       message: 0 guide-magenta pixels (per 1024^2)
@@ -227,40 +235,45 @@ qa_reports:
     - check: palette_drift
       status: pass
       message: mean dE 0.9, p95 1.9, off-palette 0.0%
-      value: 0.927
+      value: 0.9414
     - check: station_anchor
-      status: fail
-      message: top y 0 above the height bar (150)
+      status: pass
+      message: on the anchor
       value: 900.0
     - check: harmony
       status: pass
-      message: 'harmony score 81 against the world reference (outliers: C_p95, edge)'
-      value: 80.6
+      message: 'harmony score 80 against the world reference (outliers: C_p95, edge)'
+      value: 79.9
     info:
+      fit:
+        scale: 0.7911
+        anchor:
+        - 501.7
+        - 997
       registration:
         dx: 10
         dy: -97
       metrics_raw:
-        L_p5: 54.5
-        L_p50: 74.9
+        L_p5: 54.6
+        L_p50: 74.8
         L_p95: 90.1
-        C_p50: 26.8
-        C_p95: 40.6
-        C_p99: 43.3
-        detail: 2.39
+        C_p50: 27.5
+        C_p95: 40.7
+        C_p99: 43.6
+        detail: 2.5
       metrics_locked:
-        L_p5: 55.0
-        L_p50: 74.9
+        L_p5: 55.2
+        L_p50: 74.8
         L_p95: 89.9
-        C_p50: 27.0
-        C_p95: 40.3
-        C_p99: 42.9
-        detail: 1.86
+        C_p50: 27.7
+        C_p95: 40.4
+        C_p99: 43.0
+        detail: 1.92
     fingerprint: b10f1c5114cf3709
   3:
     job: lighthouse-1
     take: 3
-    status: fail
+    status: warn
     preset: lock-light
     checks:
     - check: transparency
@@ -273,79 +286,86 @@ qa_reports:
     - check: chroma_ceiling
       status: pass
       message: chroma p95 40 (R1 51)
-      value: 39.8
+      value: 40.0
     - check: light_values
       status: warn
       message: 'day/subject: L p2 43 (at most 22), p98 91 (at least 90), spread 48
         (at least 60) (warn-only until the founder has seen the light pilot)'
-      value: 48.0
+      value: 47.7
     - check: light_median
       status: pass
       message: 'day/subject: median L 76 (band 55-90)'
-      value: 76.3
+      value: 76.2
     - check: light_haze
       status: warn
-      message: 'day/subject: dark-channel haze 0.30 (at most 0.20; no true dark means
+      message: 'day/subject: dark-channel haze 0.29 (at most 0.20; no true dark means
         a wash)'
-      value: 0.298
+      value: 0.286
     - check: light_contrast
       status: warn
-      message: 'day/subject: p75 local contrast 2.4 (at least 3.5) (warn-only until
-        the founder has seen the light pilot)'
-      value: 2.37
+      message: 'day/subject: p75 local contrast 3.3 (at least 3.5)'
+      value: 3.3
     - check: detail_budget
       status: pass
-      message: detail at display size 1.8 (R1 5.3)
-      value: 1.83
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.92
     - check: lock_load
       status: pass
-      message: the lock moved colors by mean dE 1.8
-      value: 1.8203
+      message: the lock moved colors by mean dE 1.9
+      value: 1.8994
     - check: no_guide_magenta
       status: pass
       message: 0 guide-magenta pixels (per 1024^2)
       value: 0.0
     - check: palette_drift
       status: pass
-      message: mean dE 0.9, p95 1.7, off-palette 0.0%
-      value: 0.8528
+      message: mean dE 0.9, p95 1.8, off-palette 0.0%
+      value: 0.8568
     - check: station_anchor
-      status: fail
-      message: top y 0 above the height bar (150)
+      status: pass
+      message: on the anchor
       value: 900.0
     - check: harmony
       status: pass
-      message: 'harmony score 77 against the world reference (outliers: C_p95, edge)'
-      value: 76.9
+      message: 'harmony score 76 against the world reference (outliers: C_p95, edge)'
+      value: 76.3
     info:
+      fit:
+        scale: 0.7812
+        anchor:
+        - 500.4
+        - 1001
       registration:
         dx: 12
         dy: -101
       metrics_raw:
-        L_p5: 49.6
-        L_p50: 76.4
+        L_p5: 49.8
+        L_p50: 76.3
         L_p95: 90.1
-        C_p50: 25.6
+        C_p50: 26.1
+        C_p95: 40.2
+        C_p99: 42.5
+        detail: 2.47
+      metrics_locked:
+        L_p5: 50.2
+        L_p50: 76.2
+        L_p95: 89.9
+        C_p50: 26.1
         C_p95: 40.0
         C_p99: 42.2
-        detail: 2.33
-      metrics_locked:
-        L_p5: 49.9
-        L_p50: 76.3
-        L_p95: 89.9
-        C_p50: 25.5
-        C_p95: 39.8
-        C_p99: 42.0
-        detail: 1.83
+        detail: 1.92
     fingerprint: b10f1c5114cf3709
 manual_review:
   excluded_takes: []
-  note: 'All4 retained takes fail official station_anchor: normalized top y0 above
-    height-bar y150, including the only retry pair. The dark lamp room remains unlit
-    and the required striped tower/window/door are present, but a hard height failure
-    cannot be waived. Record the terminal skip, retain every source and contact, and
-    skip only the true lighthouse level-chain dependents. No promotion or additional
-    generation.'
+  note: 'Queue operation refit-2026-11-04: reuse all4 verified original PNGs, no image
+    generation. Official PR154 fit now places every candidate within the height bar
+    and on ground900; all hard QA and station-anchor checks pass, with scale factors0.7911,0.7903,0.7812,0.7937
+    above0.6. Take3 has minimum eligible lock load1.8994, height749px from top151
+    to ground900, solid width449. Native28 and guide-review.jpg confirm a striped
+    toy lighthouse, unlit dark lamp room, round window and arched door, no beam or
+    ground shadow. Light-standard warnings are advisory only. Record the fit in meta,
+    un-cut only this asset, add its station consumer link; lighthouse2-to5 remain
+    skipped pending lead review. Auto-picked by QA; founder review pending.'
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-fdb6d4ba-764e-438d-82b8-d6c25557d21c.png

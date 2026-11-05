@@ -1,0 +1,50 @@
+{
+ "after": {
+  "C_mean": 35.936,
+  "C_p50": 40.102,
+  "C_p95": 42.953,
+  "L_mean": 77.284,
+  "L_p2": 60.037,
+  "L_p98": 91.658,
+  "detail": 2.045,
+  "edge": 0.431,
+  "warmth_b": 33.05
+ },
+ "before": {
+  "C_mean": 35.936,
+  "C_p50": 40.102,
+  "C_p95": 42.953,
+  "L_mean": 77.284,
+  "L_p2": 60.037,
+  "L_p98": 91.658,
+  "detail": 2.045,
+  "edge": 0.431,
+  "warmth_b": 33.05
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 84.1,
+ "score_before": 84.1,
+ "shipped": false,
+ "source": "design/art/masters/decor-bench/decor-bench.png",
+ "source_sha": "824f3191dce88522"
+}

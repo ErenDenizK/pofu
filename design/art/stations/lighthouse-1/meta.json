@@ -1,0 +1,143 @@
+{
+  "job": "lighthouse-1",
+  "batch": "batch-21-harbor-ladders",
+  "asset": "station__lighthouse-1",
+  "take": 3,
+  "takes_considered": 4,
+  "approved_at": "2026-11-04T23:13:55+00:00",
+  "image": "design/art/stations/lighthouse-1/lighthouse-1.png",
+  "raw": "design/art/stations/lighthouse-1/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "b10f1c5114cf3709",
+  "prompt": "REFERENCES (attached, in this order):\n1. The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it.\n2. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n3. The harbor's first station: same coral, cream and sea-blue family (do not draw the cart).\n4. The palette card for props: use only these colors (and mixes of them).\n\nA small lighthouse for the island diorama: a plump, slightly tapered\nround tower painted in broad soft bands of coral and cream, a tiny arched\ndoor at its foot, one small round window, a flat honey-wooden gallery\nring under a round lamp room of tinted dark glass (a soft shape, not\ntransparent, unlit) and a small round coral cap. Toy-like proportions,\nfew parts. It fills the lower to upper part of the height bar and stands\non the footprint.\n\nVIEW: the same fixed front three-quarter view as the attached island: a\nlow camera about 20 degrees above the horizon, so you see the front of\nthe object fully and only a narrow sliver of its top (a round tabletop\nreads as a flat oval about a third as tall as it is wide). Follow the\nattached guide exactly: the object stands on the magenta ground ellipse,\ncentered on the magenta cross, its front edge on the front of the\nellipse, no taller than the magenta height bar. Then remove the guide\ncompletely: no ellipse, no cross, no bar, no magenta, no grid may remain\nin the output.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/templates/station-guide.png",
+      "role": "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+    },
+    {
+      "path": "design/art/stations/tea-stall-1/tea-stall-1.png",
+      "role": "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+    },
+    {
+      "path": "design/art/stations/bagel-cart-1/bagel-cart-1.png",
+      "role": "The harbor's first station: same coral, cream and sea-blue family (do not draw the cart)."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-04T23:03:17+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 12,
+    "dy": -101
+  },
+  "alignment": null,
+  "fit": {
+    "scale": 0.7812,
+    "anchor": [
+      500.4,
+      1001
+    ]
+  },
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 40 (R1 51)",
+        "value": 40.0
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 43 (at most 22), p98 91 (at least 90), spread 48 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 47.7
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 76 (band 55-90)",
+        "value": 76.2
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.29 (at most 0.20; no true dark means a wash)",
+        "value": 0.286
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 3.3 (at least 3.5)",
+        "value": 3.3
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.9 (R1 5.3)",
+        "value": 1.92
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.9",
+        "value": 1.8994
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.9, p95 1.8, off-palette 0.0%",
+        "value": 0.8568
+      },
+      {
+        "check": "station_anchor",
+        "status": "pass",
+        "message": "on the anchor",
+        "value": 900.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 76 against the world reference (outliers: C_p95, edge)",
+        "value": 76.3
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Queue operation refit-2026-11-04: reuse all4 verified original PNGs, no image generation. Official PR154 fit now places every candidate within the height bar and on ground900; all hard QA and station-anchor checks pass, with scale factors0.7911,0.7903,0.7812,0.7937 above0.6. Take3 has minimum eligible lock load1.8994, height749px from top151 to ground900, solid width449. Native28 and guide-review.jpg confirm a striped toy lighthouse, unlit dark lamp room, round window and arched door, no beam or ground shadow. Light-standard warnings are advisory only. Record the fit in meta, un-cut only this asset, add its station consumer link; lighthouse2-to5 remain skipped pending lead review. Auto-picked by QA; founder review pending."
+}
