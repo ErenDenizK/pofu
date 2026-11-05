@@ -1,0 +1,246 @@
+batch: batch-28-home-shops-concepts
+manifest: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+manifest_sha256: 7866350af23f3d1408e3b011e6ade660132308fdd6d82a5be10328050fe3e144
+contact_sheet: design/art/takes/batch-28-home-shops-concepts/x-hive-5/contact.jpg
+jobs:
+  x-hive-5:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both show the finished small
+      honey corner: cream/honey box hive, exactly two straw skeps, tall lavender,
+      sunflower seedlings and an adjacent wood counter beneath a coral/cream striped
+      awning. Exactly five amber honey jars have cream wax-sealed lids; a small honey
+      dipper and a few toy-like bees complete it. No letters, floor, guide, cast shadow
+      or characters. A clear step up from the independent L1/L3 concepts; box roof
+      and counter geometry vary because only the listed main references are attached,
+      not a registered chain. Hard QA then lowest lock load decides; exploration style/light
+      warnings advisory. Never promoted.'
+qa_reports:
+  1:
+    job: x-hive-5
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 52.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 48 (at most 22), p98 92 (at least 90), spread 44
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 44.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.17 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.173
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.4 (at least 3.5)'
+      value: 6.37
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.4 (R1 5.3)
+      value: 3.44
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.8443
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.7, p95 14.8, off-palette 10.6% (top: #AA88AA (2.3%), #888866
+        (1.2%)) (advisory in an exploration)'
+      value: 3.7096
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 81 against the world reference (outliers: detail, edge)'
+      value: 81.4
+    info:
+      fit:
+        scale: 0.7651
+        anchor:
+        - 520.3
+        - 924
+      registration:
+        dx: -8
+        dy: -24
+      metrics_raw:
+        L_p5: 51.8
+        L_p50: 73.0
+        L_p95: 90.3
+        C_p50: 34.4
+        C_p95: 54.0
+        C_p99: 63.5
+        detail: 4.46
+      metrics_locked:
+        L_p5: 53.0
+        L_p50: 73.1
+        L_p95: 89.8
+        C_p50: 34.6
+        C_p95: 52.7
+        C_p99: 60.8
+        detail: 3.44
+    fingerprint: cb64bad26605d761
+  2:
+    job: x-hive-5
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 57.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 48 (at most 22), p98 92 (at least 90), spread 44
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 44.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 72.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.129
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.3 (at least 3.5)'
+      value: 6.31
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.3 (R1 5.3)
+      value: 3.3
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.9
+      value: 1.9164
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.0, p95 16.3, off-palette 13.7% (top: #BB88AA (1.6%), #AA7799
+        (1.2%)) (advisory in an exploration)'
+      value: 3.9921
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 899.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 77 against the world reference (outliers: C_p95, detail,
+        edge)'
+      value: 77.4
+    info:
+      fit:
+        scale: 0.7725
+        anchor:
+        - 480.5
+        - 922
+      registration:
+        dx: 32
+        dy: -23
+      metrics_raw:
+        L_p5: 52.4
+        L_p50: 72.7
+        L_p95: 90.8
+        C_p50: 35.9
+        C_p95: 58.8
+        C_p99: 68.1
+        detail: 4.34
+      metrics_locked:
+        L_p5: 53.3
+        L_p50: 72.8
+        L_p95: 90.4
+        C_p50: 36.1
+        C_p95: 57.6
+        C_p99: 63.0
+        detail: 3.3
+    fingerprint: cb64bad26605d761
+manual_review:
+  observed_note: 'Both show the finished small honey corner: cream/honey box hive,
+    exactly two straw skeps, tall lavender, sunflower seedlings and an adjacent wood
+    counter beneath a coral/cream striped awning. Exactly five amber honey jars have
+    cream wax-sealed lids; a small honey dipper and a few toy-like bees complete it.
+    No letters, floor, guide, cast shadow or characters. A clear step up from the
+    independent L1/L3 concepts; box roof and counter geometry vary because only the
+    listed main references are attached, not a registered chain. Hard QA then lowest
+    lock load decides; exploration style/light warnings advisory. Never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-28-home-shops-concepts
+  job: x-hive-5
+  take: 1
+  round: 1
+  logical_run: 20261105-night28-hive5-greenhouse3
+  source_file: /workspace/generated_images/exec-abebc208-eef4-420c-899c-dc47a4dc3782.png
+  returned_at: '2026-11-05T18:44:15.369Z'
+  prompt_sha256: 1f2098ec1aa8eba63d47705db290920084c758812c23a6ca73b21e2da1dce01e
+  fingerprint: cb64bad26605d761
+  saved_at: '2026-11-05T18:44:21.760065+00:00'
+  original_generated_png_sha256: 59bbb900fc4645a6777c1b9772fe6689dc7953e8c9ffdb057b3007e9dd4e1e6a
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 9da09ce3725ee23092ff13005250910199587e6ab95f1e718b14faf71e43d0cf
+  inbox_png_sha256: 8929121f8a4a67886e025e8b319ca67e0143032120fe48a9cf452572bbae88b9
+  qa_sha256: 0f54d48cb569459835bf03e372f7f2f25f019a0cee96c1c26ad186dbb1b2dab1
+- batch: batch-28-home-shops-concepts
+  job: x-hive-5
+  take: 2
+  round: 1
+  logical_run: 20261105-night28-hive5-greenhouse3
+  source_file: /workspace/generated_images/exec-72b2ed30-f0bd-4026-91d3-019f6eb81ad6.png
+  returned_at: '2026-11-05T18:45:23.938Z'
+  prompt_sha256: 1f2098ec1aa8eba63d47705db290920084c758812c23a6ca73b21e2da1dce01e
+  fingerprint: cb64bad26605d761
+  saved_at: '2026-11-05T18:45:24.332097+00:00'
+  original_generated_png_sha256: 195e0f20720042b2dedd178339b30b4550923aa2c53ef79e2059ad289362e77e
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 9fcd9b1666057a9962982d8aa704e6c59a46103963de822207a365bba7dec608
+  inbox_png_sha256: de9335263360ef64a93c2c09f7c2dc10c9019c92dc3fd25207ffe2b4214172cf
+  qa_sha256: 4552974a21c3679de57cff858d0f2198ce7e7b606ce49a337461ad9228cac05e
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
