@@ -350,6 +350,33 @@ class KindProfileTests(unittest.TestCase):
         self.assertEqual(qa.check_palette(tabby, ["character", "character-tabby"]).status, "pass")
 
 
+class ParentCanvasTests(unittest.TestCase):
+    def test_edit_of_an_approved_smaller_parent_compares_on_the_job_canvas(self):
+        # Findik's approved 870x1306 master is smaller than the 1024x1536 pose job.
+        # Resizing an unchanged approved image must not count as a complete repaint.
+        image = canvas(80, 120)
+        ImageDraw.Draw(image).rounded_rectangle((15, 40, 65, 110), radius=12, fill=PROP + (255,))
+        parent = np.asarray(image, dtype=np.float64) / 255.0
+        before = parent.copy()
+        child, _ = qa.fit_canvas(parent, (160, 240))
+        preset = sl.preset_for("char", sl.load_presets())[1]
+        result = qa.process_take(child, "char", (160, 240), preset, ["character"],
+                                 parent_locked=parent, registration=dict(qa.EDIT_REGISTRATION))
+        kept = next(c for c in result.checks if c.name == "edit_stability")
+        self.assertEqual(kept.status, "pass")
+        self.assertGreater(kept.value, 0.99)
+        self.assertEqual(result.info["parent_canvas"]["source"], [80, 120])
+        self.assertEqual(result.info["parent_canvas"]["target"], [160, 240])
+        self.assertTrue(np.array_equal(parent, before))
+
+        # Canonicalizing the reference frame must not hide a real whole-body repaint.
+        repainted = child.copy()
+        repainted[..., :3][repainted[..., 3] > 0.9] = (0.05, 0.1, 0.9)
+        changed = qa.process_take(repainted, "char", (160, 240), preset, ["character"],
+                                  parent_locked=parent, registration=dict(qa.EDIT_REGISTRATION))
+        self.assertEqual(next(c for c in changed.checks if c.name == "edit_stability").status, "fail")
+
+
 class HarmonyCheckTests(unittest.TestCase):
     """The promote-time harmony score (tools/assets/harmony.py)."""
 

@@ -1,0 +1,224 @@
+batch: batch-20-poses
+contact_sheet: design/art/takes/batch-20-poses/simit-sleepy/contact.jpg
+jobs:
+  simit-sleepy:
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Both initial takes pass hard
+      QA. Visual review confirms gently closed lower eye arcs, ears folded down and
+      outward, unchanged w mouth, tabby markings, coral scarf, body/tail/paws and
+      frame; no worried face or curl. Official post removes generated background halo;
+      delivery is transparent with no cast shadow. Characters are not style locked,
+      so equal zero lock load is resolved by higher Harmony: take1 at69.8 versus69.2.
+      Edit stability0.8785 and chroma1.0184 pass; advisory light/ground-line/Harmony
+      warnings are recorded, no hard check is waived. Select take1; founder review
+      pending.'
+qa_reports:
+  2:
+    job: simit-sleepy
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.998 and moved it; aligned back to the
+        parent
+      value: 1.0021
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 55 (R1 51)
+      value: 55.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 96 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 83.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.192
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.3 (at least 3.5)'
+      value: 5.33
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.6 (R1 5.3)
+      value: 4.56
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 3.8, off-palette 0.6% (top: #441100 (0.1%), #552200
+        (0.1%))'
+      value: 1.4013
+    - check: ground_line
+      status: warn
+      message: feet at 92.4% of the height (contract 88%)
+      value: 0.9245
+    - check: harmony
+      status: warn
+      message: 'harmony score 69 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 69.2
+    - check: edit_stability
+      status: pass
+      message: 88% of the parent level unchanged
+      value: 0.8849
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.01 of the parent level (drift compounds along a chain)
+      value: 1.0116
+    info:
+      alignment:
+        scale: 1.0021
+        cx: 545.5
+        cy: 1422.0
+        dx: 1
+        dy: -1
+      metrics_raw:
+        L_p5: 60.9
+        L_p50: 83.2
+        L_p95: 94.1
+        C_p50: 30.6
+        C_p95: 55.9
+        C_p99: 58.6
+        detail: 4.51
+      metrics_locked:
+        L_p5: 61.2
+        L_p50: 83.5
+        L_p95: 94.5
+        C_p50: 30.9
+        C_p95: 55.0
+        C_p99: 56.3
+        detail: 4.56
+    fingerprint: 87f0b98a6d98b1b8
+  1:
+    job: simit-sleepy
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.998 and moved it; aligned back to the
+        parent
+      value: 1.0021
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 55 (R1 51)
+      value: 54.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 96 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 82.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.192
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.5 (at least 3.5)'
+      value: 5.52
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.1 (R1 5.3)
+      value: 5.06
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 4.0, off-palette 0.5% (top: #441100 (0.1%), #BB4433
+        (0.1%))'
+      value: 1.4244
+    - check: ground_line
+      status: warn
+      message: feet at 92.5% of the height (contract 88%)
+      value: 0.9251
+    - check: harmony
+      status: warn
+      message: 'harmony score 70 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 69.8
+    - check: edit_stability
+      status: pass
+      message: 88% of the parent level unchanged
+      value: 0.8785
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.02 of the parent level (drift compounds along a chain)
+      value: 1.0184
+    info:
+      alignment:
+        scale: 1.0021
+        cx: 545.5
+        cy: 1421.0
+        dx: 1
+        dy: 0
+      metrics_raw:
+        L_p5: 60.0
+        L_p50: 82.6
+        L_p95: 94.0
+        C_p50: 30.8
+        C_p95: 55.2
+        C_p99: 57.5
+        detail: 5.02
+      metrics_locked:
+        L_p5: 60.3
+        L_p50: 82.9
+        L_p95: 94.4
+        C_p50: 31.1
+        C_p95: 54.6
+        C_p99: 55.9
+        detail: 5.06
+    fingerprint: 87f0b98a6d98b1b8
+manual_review:
+  excluded_takes: []
+  note: 'Both initial takes pass hard QA. Visual review confirms gently closed lower
+    eye arcs, ears folded down and outward, unchanged w mouth, tabby markings, coral
+    scarf, body/tail/paws and frame; no worried face or curl. Official post removes
+    generated background halo; delivery is transparent with no cast shadow. Characters
+    are not style locked, so equal zero lock load is resolved by higher Harmony: take1
+    at69.8 versus69.2. Edit stability0.8785 and chroma1.0184 pass; advisory light/ground-line/Harmony
+    warnings are recorded, no hard check is waived. Select take1; founder review pending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-f5de6ffd-97bd-4a4f-9750-b0ac9357bda0.png
+  original_generated_png_sha256: fd058fa85bac1b303d364677a9efc1a3759547d8e6f3b368963e8accf2f54b62
+  inbox_png_sha256: 0e2f3294a4529c3457c0093d6650576d199ca5ae11da00bb4a73f75265bbf179
+  rgba_sha256: 0ef75ccc1af951793139a3f51b157010d9588dd037461de83ec28d178cc0f051
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 87f0b98a6d98b1b8
+- take: 2
+  source_file: /workspace/generated_images/exec-c5c74d34-02d4-4989-b944-e2f5099020ac.png
+  original_generated_png_sha256: 2bb37dadaf3a75a9f1bc95e34bbda7ec3e16837b15983942a952ae533754034d
+  inbox_png_sha256: 2f27c5ed723c00a88cfa6ba13292d185cfd9019085e377d17bc877d1f1deaaf6
+  rgba_sha256: a1bb449a8a5fcfc324c0fab4b702d73f7fd7a1ce77990e77827ac83768b618c7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 87f0b98a6d98b1b8

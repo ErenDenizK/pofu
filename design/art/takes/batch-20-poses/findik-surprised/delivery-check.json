@@ -1,0 +1,54 @@
+{
+  "job": "findik-surprised",
+  "maximum_bytes": 614400,
+  "master_policy": "PNG or bit-identical lossless WebP; no downscaling or lossy master substitution",
+  "initial_requests": 2,
+  "only_retry_requests": 2,
+  "parent_canvas_fix": "018d4b9e normalizes QA reference arrays only; approved source and all thresholds unchanged",
+  "takes": [
+    {
+      "take": 1,
+      "qa_status": "fail",
+      "hard_failures": [
+        {
+          "check": "palette_drift",
+          "status": "fail",
+          "message": "mean dE 3.4, p95 14.3, off-palette 9.4% (top: #AA5533 (2.1%), #BB6633 (1.4%))",
+          "value": 3.4037
+        }
+      ],
+      "smallest_tested_identical_lossless_bytes": null,
+      "delivery_eligible": false
+    },
+    {
+      "take": 2,
+      "qa_status": "warn",
+      "hard_failures": [],
+      "smallest_tested_identical_lossless_bytes": 700198,
+      "delivery_eligible": false
+    },
+    {
+      "take": 3,
+      "qa_status": "warn",
+      "hard_failures": [],
+      "smallest_tested_identical_lossless_bytes": 745376,
+      "delivery_eligible": false
+    },
+    {
+      "take": 4,
+      "qa_status": "fail",
+      "hard_failures": [
+        {
+          "check": "palette_drift",
+          "status": "fail",
+          "message": "mean dE 3.5, p95 15.6, off-palette 11.6% (top: #BB6633 (2.8%), #AA5522 (1.9%))",
+          "value": 3.5447
+        }
+      ],
+      "smallest_tested_identical_lossless_bytes": null,
+      "delivery_eligible": false
+    }
+  ],
+  "decision": "Skipped after the only retry; retain all4 originals and q90 takes. No master was uploaded.",
+  "lead_follow_up": "An explicitly approved parent-sized870x1306 job canvas could reuse the retained sources without another generation; no manifest edit was made by the operator."
+}

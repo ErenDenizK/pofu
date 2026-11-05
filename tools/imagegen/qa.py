@@ -850,6 +850,14 @@ def process_take(raw: np.ndarray, kind: str, canvas: tuple[int, int] | None, pre
     rgba, c = fit_canvas(rgba, canvas, cover=not transparent)
     checks.append(c)
     info: dict = {}
+    if parent_locked is not None and parent_locked.shape[:2] != rgba.shape[:2]:
+        # Approved historical masters can have a smaller canvas (Findik: 870x1306).
+        # Compare both images in the requested job frame; otherwise an unchanged
+        # edit gets zero stability solely because the array dimensions differ.
+        source_canvas = [parent_locked.shape[1], parent_locked.shape[0]]
+        target_canvas = (rgba.shape[1], rgba.shape[0])
+        parent_locked, _ = fit_canvas(parent_locked, target_canvas, cover=not transparent)
+        info["parent_canvas"] = {"source": source_canvas, "target": list(target_canvas)}
     # Guide fit: root stations and ground decor only (an edit inherits its
     # parent's frame). `fit` is the job's override ({} = guide defaults).
     if (fit is not None and parent_locked is None and registration is None and transparent

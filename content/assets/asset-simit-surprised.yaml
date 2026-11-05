@@ -2,18 +2,18 @@ id: asset-simit-surprised
 type: asset
 title_tr: simit-surprised
 title_en: simit-surprised (char)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  Edit the attached kitten, Simit, into a surprised reaction. Change only the face and ears:
-  the mouth becomes a small round soft "o", both eyes grow slightly rounder and wider with
-  their catchlights kept, both ears stand upright. Body, tail, paws, colors and size stay
-  exactly as they are.
+summary: 'Edit the attached kitten, Simit, into a surprised reaction. Change only
+  the face and ears: the mouth becomes a small round soft "o", both eyes grow slightly
+  rounder and wider with their catchlights kept, both ears stand upright. Body, tail,
+  paws, colors and size stay exactly as they are.'
 links:
   variant_of:
   - asset-simit-kitten
 art:
-  images: []
+  images:
+  - design/art/masters/simit-surprised/simit-surprised.webp
   jobs:
   - batch-20-poses:simit-surprised
 sources:

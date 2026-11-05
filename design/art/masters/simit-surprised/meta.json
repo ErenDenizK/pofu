@@ -1,0 +1,121 @@
+{
+  "job": "simit-surprised",
+  "batch": "batch-20-poses",
+  "asset": "char__simit-surprised",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-04T23:26:43+00:00",
+  "image": "design/art/masters/simit-surprised/simit-surprised.png",
+  "raw": "design/art/masters/simit-surprised/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "d276a38e13e8c80b",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nEdit the attached kitten, Simit, into a surprised reaction. Change only the face and ears: the mouth becomes a small round soft \"o\", both eyes grow slightly rounder and wider with their catchlights kept, both ears stand upright. Body, tail, paws, colors and size stay exactly as they are.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: tears, a worried look, a curl on the head, a ground shadow, text, motion lines.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/simit-kitten/simit-kitten.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-04T23:11:24+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 56 (R1 51)",
+        "value": 55.5
+      },
+      {
+        "check": "light_values",
+        "status": "pass",
+        "message": "day/subject: L p2 17 (at most 22), p98 96 (at least 90), spread 79 (at least 60)",
+        "value": 78.7
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 82 (band 55-90)",
+        "value": 82.3
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.09 (at most 0.20; no true dark means a wash)",
+        "value": 0.086
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 6.0 (at least 3.5)",
+        "value": 6.0
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 5.0 (R1 5.3)",
+        "value": 4.96
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.6, p95 4.9, off-palette 0.9% (top: #CC5544 (0.1%), #441100 (0.1%))",
+        "value": 1.5808
+      },
+      {
+        "check": "ground_line",
+        "status": "warn",
+        "message": "feet at 92.6% of the height (contract 88%)",
+        "value": 0.9258
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 81 against the char reference (outliers: C_p95, detail)",
+        "value": 80.6
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "88% of the parent level unchanged",
+        "value": 0.8827
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.01 of the parent level (drift compounds along a chain)",
+        "value": 1.0134
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Take2 passes hard QA and best matches the requested small round soft o mouth, wide catchlit eyes and upright ears while preserving the tabby markings, coral scarf, body/tail/paws and frame. Exclude take1 manually because its mouth is a tall open oval rather than the requested small round o; take2 also keeps chroma closer to its parent. Edit stability0.8827, chroma1.0134 and Harmony80.6 pass; light/ground-line warnings remain advisory. Official post removes generated background, leaving a transparent sprite with no cast shadow. Characters are not style locked. Auto-picked by QA among semantically eligible takes; founder review pending."
+}

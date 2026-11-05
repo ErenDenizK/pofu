@@ -2,12 +2,12 @@ id: asset-findik-surprised
 type: asset
 title_tr: findik-surprised
 title_en: findik-surprised (char)
-status: planned
+status: cut
 horizon: later
-summary: >-
-  Edit the attached hedgehog, Fındık, into a surprised reaction. Change only the face: the
-  mouth becomes a small round soft "o", both eyes grow slightly rounder and wider with their
-  catchlights kept. His spines, body, paws, colors and size stay exactly as they are.
+summary: 'Edit the attached hedgehog, Fındık, into a surprised reaction. Change only
+  the face: the mouth becomes a small round soft "o", both eyes grow slightly rounder
+  and wider with their catchlights kept. His spines, body, paws, colors and size stay
+  exactly as they are.'
 links:
   variant_of:
   - asset-findik
@@ -20,3 +20,17 @@ sources:
 kind: char
 batch: batch-20-poses
 size: 1024x1536
+notes:
+- 'batch-20-poses skipped after four takes: Exactly4 original images retained after
+  one allowed retry. Takes1/4 fail hard palette_drift (off-palette9.4/11.6percent).
+  Takes2/3 pass corrected same-canvas QA and preserve the surprised hedgehog, but
+  fail the mandatory delivery cap: smallest tested identical-RGBA lossless encodings700198/745376bytes
+  exceed614400. Default WebP, max-effort lossless and PNG were checked; no oversized,
+  lossy or downscaled master is uploaded. Delivery-check.json records the evidence.
+  Parent-canvas QA normalization018d4b9e fixes only reference comparison, not source
+  art or thresholds; real palette failures remain. All originals and unpublished high-quality
+  lossless renders are preserved outside the delivery tree. No more generation; skip
+  this job only, no dependents. A lead-approved parent-sized870x1306 brief can salvage
+  these sources without generation. Automated failures: t1 palette_drift: mean dE
+  3.4, p95 14.3, off-palette 9.4% (top: #AA5533 (2.1%), #BB6633 (1.4%)); t4 palette_drift:
+  mean dE 3.5, p95 15.6, off-palette 11.6% (top: #BB6633 (2.8%), #AA5522 (1.9%)).'

@@ -19,6 +19,8 @@ links:
   - asset-simit-kitten-work
   - asset-simit-kitten-ears
   - asset-simit-happy
+  - asset-simit-sleepy
+  - asset-simit-surprised
 sources:
 - doc: docs/product/game-design.md
   anchor: '#8-residents-neighbors'
