@@ -1,0 +1,33 @@
+id: asset-x-work-goat-v2
+type: asset
+title_tr: x-work-goat-v2
+title_en: x-work-goat-v2 (plate)
+status: planned
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a working-pose frame at one station of the home
+  island, seen from the same low front three-quarter camera as the attached station, under
+  the declared daylight cell, the scene cropped close with a soft cream-and-sage ground under
+  the station and sky behind it. The goat of the attached image stands at the end of the ferry
+  pier tying a soft coral rope around a post with its mou…
+art:
+  images: []
+  jobs:
+  - batch-29-residents-at-work-v2:x-work-goat-v2
+sources:
+- doc: tools/imagegen/manifest/batch-29-residents-at-work-v2.yaml
+kind: plate
+batch: batch-29-residents-at-work-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 2; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Both initial takes preserve the canonical goat
+  and pier with the mouth and one forehoof manipulating the coral mooring knot, ferry farther
+  right and a calm proud expression. The three supporting feet are partly occluded; no observed
+  missing or extra limb, and no invented failure from hidden stance. Independent source and
+  locked review passed content; choose the lower-load passing take, retaining style/light/Harmony
+  warnings as advisory. Exploration only, never promote.

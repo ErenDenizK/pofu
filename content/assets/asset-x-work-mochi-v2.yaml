@@ -1,0 +1,34 @@
+id: asset-x-work-mochi-v2
+type: asset
+title_tr: x-work-mochi-v2
+title_en: x-work-mochi-v2 (plate)
+status: cut
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a working-pose frame at one station of the home
+  island, seen from the same low front three-quarter camera as the attached station, under
+  the declared daylight cell, the scene cropped close with a soft cream-and-sage ground under
+  the station and sky behind it. Mochi, the bunny of the attached image, stands behind the
+  tea stall counter pouring amber tea from a small rose-clay …
+art:
+  images: []
+  jobs:
+  - batch-29-residents-at-work-v2:x-work-mochi-v2
+sources:
+- doc: tools/imagegen/manifest/batch-29-residents-at-work-v2.yaml
+kind: plate
+batch: batch-29-residents-at-work-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  Skipped after the sole unchanged-prompt retry. All four sources preserve the canonical long-ear
+  Mochi without curl, approved tea station, correct pour into one tulip glass and separate
+  filled second glass. Every source nevertheless keeps front/viewer-directed eyes and lateral
+  head roll rather than the explicit lowered head following the glass/stream. Root source
+  inspection and independent full-size source plus locked review agree. Official numeric QA
+  is warn-only and those style/light warnings remain advisory; this is a concrete pose failure,
+  not an invented numeric threshold. Preserve all four original PNGs and q90 takes; no third
+  pair, rephrasing or promotion. Unrelated jobs continue.

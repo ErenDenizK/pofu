@@ -1,0 +1,33 @@
+id: asset-x-work-frogs-v2
+type: asset
+title_tr: x-work-frogs-v2
+title_en: x-work-frogs-v2 (plate)
+status: planned
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a working-pose frame at one station of the home
+  island, seen from the same low front three-quarter camera as the attached station, under
+  the declared daylight cell, the scene cropped close with a soft cream-and-sage ground under
+  the station and sky behind it. Three small round smooth-skinned frogs of soft sage, mint
+  and pale lime with big glossy dark eyes with a catchlight e…
+art:
+  images: []
+  jobs:
+  - batch-29-residents-at-work-v2:x-work-frogs-v2
+sources:
+- doc: tools/imagegen/manifest/batch-29-residents-at-work-v2.yaml
+kind: plate
+batch: batch-29-residents-at-work-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Both initial takes show exactly three smooth
+  matte-skinned frogs in the unchanged pond: one mid-hop, one round-mouth singer, one sleeping
+  with tiny leaf hat, distinct triangular positions. No fur, head curl, duplicate motion frog,
+  text or extra creature. Source and locked independent review agree and all numeric hard
+  checks pass. Choose lowest load, then Harmony, keeping advisory style/light warnings. Exploration
+  only, never promote.

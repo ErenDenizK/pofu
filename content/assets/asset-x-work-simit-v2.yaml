@@ -1,0 +1,35 @@
+id: asset-x-work-simit-v2
+type: asset
+title_tr: x-work-simit-v2
+title_en: x-work-simit-v2 (plate)
+status: planned
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a working-pose frame at one station of the home
+  island, seen from the same low front three-quarter camera as the attached station, under
+  the declared daylight cell, the scene cropped close with a soft cream-and-sage ground under
+  the station and sky behind it. Simit, the kitten of the attached image, stands upright beside
+  the bagel cart holding out a small round wooden tray o…
+art:
+  images: []
+  jobs:
+  - batch-29-residents-at-work-v2:x-work-simit-v2
+sources:
+- doc: tools/imagegen/manifest/batch-29-residents-at-work-v2.yaml
+kind: plate
+batch: batch-29-residents-at-work-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 2; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Both initial takes preserve the canonical cat
+  and cart, exact three tray rings, natural two-paw support, high tail and original bell.
+  The expression addresses the offered tray and viewer; slight frontal gaze is a documented
+  staging uncertainty rather than a failed eyes-on-object instruction, which this job does
+  not impose. Root accepts that normal offering gesture. Independent full-size source and
+  locked review found no fur on props, extra limbs, text or guide. Select passing hard QA
+  by lowest load, then Harmony; advisory style/light warnings remain explicit. Exploration
+  only, never promote.
