@@ -179,8 +179,8 @@ struct GraphicsSpikeMathTests {
     }
 
     @Test func theRigFollowsTheColourScript() {
-        let day = WorldLight.at(hour: 12, wellbeing: 78, calm: 1.4, isBedtime: false, darkAppearance: false)
-        let golden = WorldLight.at(hour: 18.5, wellbeing: 78, calm: 1.4, isBedtime: false, darkAppearance: false)
+        let day = WorldLight.at(hour: 12, wellbeing: 78, calm: 1.4, isBedtime: false)
+        let golden = WorldLight.at(hour: 18.5, wellbeing: 78, calm: 1.4, isBedtime: false)
         let dayRig = RelightRig.make(light: day, emitters: IslandLayout.emitters, strength: 1)
         let goldenRig = RelightRig.make(light: golden, emitters: IslandLayout.emitters, strength: 1)
         // Day: from the left; golden: from the right.

@@ -270,7 +270,6 @@ private struct SceneFrame<Bubble: View>: View {
     let onPofuTap: (@MainActor () -> Void)?
     let bubble: Bubble
 
-    @Environment(\.colorScheme) private var colorScheme
     @Environment(\.worldLook) private var look
     @Environment(\.worldStillFrame) private var still
 
@@ -292,25 +291,27 @@ private struct SceneFrame<Bubble: View>: View {
         let device = model.deviceTilt
         let tilt = (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
         let offset = CGSize(width: rig.offsetX.value, height: rig.offsetY.value)
-        let interactive = rig.pinchStart == nil && (model.focus != nil || (z > 0.5 && z < 1.5))
+        // Stations answer taps in every framing: on the Map and at Home a
+        // tap flies to the island and opens the sheet in one gesture.
+        let interactive = rig.pinchStart == nil
         let minute = look.hourOverride.map { $0 * 60 }
             ?? world.clock.map { SkyModel.minuteOfDay($0, calendar: .current) } ?? 12 * 60
-        let isDark = colorScheme == .dark && look.hourOverride == nil
         let baseLight = WorldLight.at(
             hour: minute / 60,
             wellbeing: world.wellbeing,
             calm: world.calm,
-            isBedtime: world.isBedtime,
-            darkAppearance: isDark
+            isBedtime: world.isBedtime
         )
         // The colour script's sky, overcast when Pofu is unwell.
-        let palette = SkyModel.palette(minuteOfDay: minute, isDark: isDark, isBedtime: world.isBedtime, unwell: look.grade ? baseLight.unwell : 0)
+        let palette = SkyModel.palette(minuteOfDay: minute, isBedtime: world.isBedtime, unwell: look.grade ? baseLight.unwell : 0)
         // The living sky places the sun; the light follows it.
         let light = baseLight.withSun(x: palette.sun.x, y: palette.sun.y)
         // Without the runtime grade, the time of day tints the painted
         // world as before (game design §15: no night versions are
         // generated); with it, the colour script does the whole job.
-        let tint = look.grade ? Color.white : palette.grade.color
+        // Without the shader library the grade pass cannot run, so the
+        // time-of-day tint stands in.
+        let tint = look.grade && WorldShaders.isAvailable ? Color.white : palette.grade.color
         let grade = look.grade ? look.gradeOverride ?? light.grade : WorldGrade.neutral
         let characterGrade = look.grade ? light.characterGrade : WorldGrade.neutral
         // The sky and the cloud sea are pre-graded: no shader pass of their own.

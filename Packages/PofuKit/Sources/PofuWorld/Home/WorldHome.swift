@@ -51,7 +51,6 @@ public struct WorldHome: View {
     let actions: Actions
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @Environment(\.colorScheme) private var colorScheme
     @Environment(\.dynamicTypeSize) private var typeSize
     /// The left safe-area inset the objects layer last measured, for the
     /// collect flight's target (the jar keeps clear of it).
@@ -244,7 +243,7 @@ public struct WorldHome: View {
     }
 
     private var isNight: Bool {
-        world.isBedtime || colorScheme == .dark
+        world.isBedtime || WorldLight.resolve(world: world, calendar: .current).night > 0.5
     }
 
     /// The jar, the lantern and the pots, glued to the world at the Home

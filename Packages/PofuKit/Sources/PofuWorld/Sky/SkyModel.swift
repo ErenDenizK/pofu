@@ -83,12 +83,12 @@ public enum SkyModel {
         (minute: key.minute, palette: SkyModel.palette(of: ColourScript.cell(key.cell), sun: key.sun))
     }
 
-    /// The palette at a minute of the local day. Dark appearance and the
-    /// bedtime window draw the night (dark mode is a night meadow, design
-    /// language §3); dark mode keeps a trace of the hour. `unwell` (0…1)
+    /// The palette at a minute of the local day. The bedtime
+    /// window draws the night; the system's dark appearance does not (the
+    /// world follows the clock only, dark mode changes the chrome). `unwell` (0…1)
     /// turns the sky overcast: cooler, slightly darker, lower in chroma,
     /// never brighter than the hour's (the colour script's unwell state).
-    public static func palette(minuteOfDay: Double, isDark: Bool = false, isBedtime: Bool = false, unwell: Double = 0) -> SkyPalette {
+    public static func palette(minuteOfDay: Double, isBedtime: Bool = false, unwell: Double = 0) -> SkyPalette {
         var palette: SkyPalette
         if isBedtime {
             palette = night
@@ -99,9 +99,6 @@ public enum SkyModel {
                 let span = b.minute - a.minute
                 palette = SkyPalette.mix(a.palette, b.palette, span > 0 ? (minute - a.minute) / span : 0)
                 break
-            }
-            if isDark {
-                palette = SkyPalette.mix(palette, night, 0.82)
             }
         }
         return unwell > 0 ? palette.overcast(ColourScript.unwell, amount: unwell) : palette

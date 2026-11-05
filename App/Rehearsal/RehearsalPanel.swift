@@ -95,7 +95,7 @@ struct RehearsalPanel: View {
             // The day skip (vertical slice): straight to the next morning, whatever the hour, to see
             // days 1 to 3 unfold in minutes.
             control(Text(verbatim: "Next day"), symbol: "forward.end.fill") {
-                model.rehearsalJump(.morning)
+                model.rehearsalJump(.nextDay)
             }
             Divider()
             // The skin of the over-world chrome, to feel both on the phone.
@@ -168,7 +168,7 @@ struct RehearsalPanel: View {
             control(Text("Morning"), symbol: "sunrise.fill") {
                 model.rehearsalJump(.morning)
             }
-        case .night, .quietHour:
+        case .night, .quietHour, .nextDay:
             control(Text("Night"), symbol: "moon.stars.fill") {
                 model.rehearsalJump(.night)
             }

@@ -75,7 +75,6 @@ enum TuningLabPhase: String, CaseIterable, Identifiable {
 struct TuningLabLook: ViewModifier {
     let model: AppModel
 
-    @Environment(\.colorScheme) private var colorScheme
 
     func body(content: Content) -> some View {
         let rehearsing = model.rehearsal != nil
@@ -132,8 +131,7 @@ struct TuningLabLook: ViewModifier {
         let light = WorldLight.resolve(
             world: model.world,
             calendar: .current,
-            hourOverride: look.hourOverride,
-            darkAppearance: colorScheme == .dark
+            hourOverride: look.hourOverride
         )
         let trim = TuningValues.GradeTrim.blend([
             (trims.day, light.day),

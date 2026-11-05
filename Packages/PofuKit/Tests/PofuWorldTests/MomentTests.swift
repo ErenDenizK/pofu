@@ -201,8 +201,6 @@ struct SkyModelTests {
         #expect(noon.zenith.blue > midnight.zenith.blue)
         #expect(noon.grade.red == 1 && noon.grade.green == 1 && noon.grade.blue == 1)
         #expect(SkyModel.palette(minuteOfDay: 12 * 60, isBedtime: true) == midnight)
-        let dark = SkyModel.palette(minuteOfDay: 12 * 60, isDark: true)
-        #expect(dark.zenith.red < noon.zenith.red)
     }
 
     @Test func theSunCrossesTheSky() {
