@@ -2,22 +2,18 @@ batch: batch-20-poses
 contact_sheet: design/art/takes/batch-20-poses/findik-surprised/contact.jpg
 jobs:
   findik-surprised:
-    pick: none
-    publication: skipped after one allowed retry
-    note: 'Exactly4 original images retained after one allowed retry. Takes1/4 fail
-      hard palette_drift (off-palette9.4/11.6percent). Takes2/3 pass corrected same-canvas
-      QA and preserve the surprised hedgehog, but fail the mandatory delivery cap:
-      smallest tested identical-RGBA lossless encodings700198/745376bytes exceed614400.
-      Default WebP, max-effort lossless and PNG were checked; no oversized, lossy
-      or downscaled master is uploaded. Delivery-check.json records the evidence.
-      Parent-canvas QA normalization018d4b9e fixes only reference comparison, not
-      source art or thresholds; real palette failures remain. All originals and unpublished
-      high-quality lossless renders are preserved outside the delivery tree. No more
-      generation; skip this job only, no dependents. A lead-approved parent-sized870x1306
-      brief can salvage these sources without generation. Automated failures: t1 palette_drift:
-      mean dE 3.4, p95 14.3, off-palette 9.4% (top: #AA5533 (2.1%), #BB6633 (1.4%));
-      t4 palette_drift: mean dE 3.5, p95 15.6, off-palette 11.6% (top: #BB6633 (2.8%),
-      #AA5522 (1.9%)).'
+    pick: 3
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Salvaged from the four original
+      PNGs retained in PR157, with zero new image calls. The lead approved the parent
+      canvas870x1306 in PR158; official post fits that manifest canvas, preserving
+      the parent framing. Takes1/4 still fail real palette_drift; eligible takes2/3
+      pass. Characters have zero style-lock load, so take3 wins on Harmony87.0 versus85.1.
+      Visual review confirms the small round o mouth, wide catchlit eyes, unchanged
+      spines/body/paws and no curl or tears. Edit stability0.9191, chroma0.9862. Only
+      palette warning remains advisory. Original source hashes and generation timestamps
+      are retained. Replaces the historical delivery-cap skip without regeneration;
+      founder review pending.
 qa_reports:
   2:
     job: findik-surprised
@@ -30,78 +26,72 @@ qa_reports:
       message: source has an alpha channel
     - check: canvas
       status: pass
-      message: 1024x1536
+      message: 1024x1536 scaled x0.850 into 870x1306
+      value: 0.8496
     - check: chroma_ceiling
       status: pass
       message: chroma p95 50 (R1 51)
-      value: 50.2
+      value: 50.3
     - check: light_values
       status: pass
-      message: 'day/subject: L p2 18 (at most 22), p98 97 (at least 90), spread 78
+      message: 'day/subject: L p2 18 (at most 22), p98 96 (at least 90), spread 78
         (at least 60)'
-      value: 78.4
+      value: 78.2
     - check: light_median
       status: pass
-      message: 'day/subject: median L 85 (band 55-90)'
-      value: 84.8
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 84.5
     - check: light_haze
       status: pass
-      message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means
+      message: 'day/subject: dark-channel haze 0.11 (at most 0.20; no true dark means
         a wash)'
-      value: 0.118
+      value: 0.114
     - check: light_contrast
       status: pass
       message: 'day/subject: p75 local contrast 9.5 (at least 3.5)'
-      value: 9.51
+      value: 9.53
     - check: detail_budget
       status: pass
       message: detail at display size 6.2 (R1 5.3)
-      value: 6.21
+      value: 6.25
     - check: palette_drift
       status: warn
-      message: 'mean dE 3.0, p95 13.5, off-palette 7.8% (top: #AA5533 (1.6%), #BB6633
-        (1.2%))'
-      value: 3.0152
+      message: 'mean dE 3.0, p95 13.5, off-palette 7.7% (top: #AA5533 (1.5%), #BB6633
+        (1.4%))'
+      value: 2.9738
     - check: ground_line
       status: pass
-      message: feet at 89.5% of the height (contract 88%)
-      value: 0.8952
+      message: feet at 89.4% of the height (contract 88%)
+      value: 0.8943
     - check: harmony
       status: pass
       message: 'harmony score 85 against the char reference (outliers: detail)'
-      value: 85.2
+      value: 85.1
     - check: edit_stability
       status: pass
-      message: 92% of the parent level unchanged
-      value: 0.9167
+      message: 89% of the parent level unchanged
+      value: 0.8874
     - check: edit_chroma
       status: pass
       message: chroma x0.99 of the parent level (drift compounds along a chain)
-      value: 0.9936
+      value: 0.9863
     info:
-      parent_canvas:
-        source:
-        - 870
-        - 1306
-        target:
-        - 1024
-        - 1536
       metrics_raw:
-        L_p5: 44.3
-        L_p50: 84.9
-        L_p95: 95.6
-        C_p50: 19.8
-        C_p95: 50.2
+        L_p5: 44.0
+        L_p50: 84.5
+        L_p95: 95.2
+        C_p50: 19.6
+        C_p95: 50.3
         C_p99: 54.7
-        detail: 6.2
+        detail: 6.24
       metrics_locked:
-        L_p5: 44.3
-        L_p50: 84.9
-        L_p95: 95.6
-        C_p50: 19.8
-        C_p95: 50.2
+        L_p5: 44.0
+        L_p50: 84.5
+        L_p95: 95.2
+        C_p50: 19.6
+        C_p95: 50.3
         C_p99: 54.2
-        detail: 6.21
+        detail: 6.25
     fingerprint: 13f7633e600002b7
   4:
     job: findik-surprised
@@ -114,20 +104,21 @@ qa_reports:
       message: source has an alpha channel
     - check: canvas
       status: pass
-      message: 1024x1536
+      message: 1024x1536 scaled x0.850 into 870x1306
+      value: 0.8496
     - check: chroma_ceiling
       status: pass
       message: chroma p95 52 (R1 51)
-      value: 52.3
+      value: 52.4
     - check: light_values
       status: pass
-      message: 'day/subject: L p2 16 (at most 22), p98 97 (at least 90), spread 80
+      message: 'day/subject: L p2 16 (at most 22), p98 96 (at least 90), spread 80
         (at least 60)'
-      value: 80.3
+      value: 80.0
     - check: light_median
       status: pass
       message: 'day/subject: median L 85 (band 55-90)'
-      value: 85.3
+      value: 85.0
     - check: light_haze
       status: pass
       message: 'day/subject: dark-channel haze 0.09 (at most 0.20; no true dark means
@@ -139,53 +130,46 @@ qa_reports:
       value: 9.9
     - check: detail_budget
       status: pass
-      message: detail at display size 6.6 (R1 5.3)
-      value: 6.62
+      message: detail at display size 6.7 (R1 5.3)
+      value: 6.66
     - check: palette_drift
       status: fail
-      message: 'mean dE 3.5, p95 15.6, off-palette 11.6% (top: #BB6633 (2.8%), #AA5522
-        (1.9%))'
-      value: 3.5447
+      message: 'mean dE 3.6, p95 15.9, off-palette 12.1% (top: #BB6633 (3.0%), #AA5522
+        (2.0%))'
+      value: 3.5951
     - check: ground_line
       status: pass
-      message: feet at 89.5% of the height (contract 88%)
-      value: 0.8952
+      message: feet at 89.4% of the height (contract 88%)
+      value: 0.8943
     - check: harmony
       status: pass
       message: 'harmony score 83 against the char reference (outliers: C_p95, detail)'
-      value: 83.1
+      value: 82.9
     - check: edit_stability
       status: pass
-      message: 94% of the parent level unchanged
-      value: 0.9449
+      message: 92% of the parent level unchanged
+      value: 0.9177
     - check: edit_chroma
       status: pass
-      message: chroma x1.01 of the parent level (drift compounds along a chain)
-      value: 1.0068
+      message: chroma x1.00 of the parent level (drift compounds along a chain)
+      value: 1.0
     info:
-      parent_canvas:
-        source:
-        - 870
-        - 1306
-        target:
-        - 1024
-        - 1536
       metrics_raw:
-        L_p5: 42.8
-        L_p50: 85.4
-        L_p95: 95.8
-        C_p50: 20.1
+        L_p5: 42.6
+        L_p50: 85.0
+        L_p95: 95.4
+        C_p50: 19.9
         C_p95: 52.4
         C_p99: 56.5
-        detail: 6.61
+        detail: 6.65
       metrics_locked:
-        L_p5: 42.8
-        L_p50: 85.4
-        L_p95: 95.8
-        C_p50: 20.1
-        C_p95: 52.3
+        L_p5: 42.6
+        L_p50: 85.0
+        L_p95: 95.4
+        C_p50: 19.9
+        C_p95: 52.4
         C_p99: 55.3
-        detail: 6.62
+        detail: 6.66
     fingerprint: 13f7633e600002b7
   1:
     job: findik-surprised
@@ -198,25 +182,26 @@ qa_reports:
       message: source has an alpha channel
     - check: canvas
       status: pass
-      message: 1024x1536
+      message: 1024x1536 scaled x0.850 into 870x1306
+      value: 0.8496
     - check: edit_alignment
       status: pass
-      message: the edit rescaled the object x0.994 and moved it; aligned back to the
+      message: the edit rescaled the object x0.992 and moved it; aligned back to the
         parent
-      value: 1.0057
+      value: 1.008
     - check: chroma_ceiling
       status: pass
       message: chroma p95 50 (R1 51)
-      value: 50.3
+      value: 50.4
     - check: light_values
       status: pass
       message: 'day/subject: L p2 20 (at most 22), p98 95 (at least 90), spread 75
         (at least 60)'
-      value: 75.3
+      value: 75.2
     - check: light_median
       status: pass
       message: 'day/subject: median L 83 (band 55-90)'
-      value: 83.4
+      value: 83.1
     - check: light_haze
       status: pass
       message: 'day/subject: dark-channel haze 0.11 (at most 0.20; no true dark means
@@ -225,62 +210,55 @@ qa_reports:
     - check: light_contrast
       status: pass
       message: 'day/subject: p75 local contrast 9.3 (at least 3.5)'
-      value: 9.32
+      value: 9.34
     - check: detail_budget
       status: pass
-      message: detail at display size 6.7 (R1 5.3)
-      value: 6.7
+      message: detail at display size 6.8 (R1 5.3)
+      value: 6.79
     - check: palette_drift
       status: fail
-      message: 'mean dE 3.4, p95 14.3, off-palette 9.4% (top: #AA5533 (2.1%), #BB6633
+      message: 'mean dE 3.4, p95 14.5, off-palette 9.3% (top: #AA5533 (2.4%), #BB6633
         (1.4%))'
-      value: 3.4037
+      value: 3.4116
     - check: ground_line
       status: pass
       message: feet at 89.8% of the height (contract 88%)
-      value: 0.8978
+      value: 0.8982
     - check: harmony
       status: pass
       message: 'harmony score 85 against the char reference (outliers: detail)'
-      value: 85.3
+      value: 84.9
     - check: edit_stability
       status: pass
       message: 92% of the parent level unchanged
-      value: 0.9204
+      value: 0.916
     - check: edit_chroma
       status: pass
-      message: chroma x1.12 of the parent level (drift compounds along a chain)
-      value: 1.121
+      message: chroma x1.10 of the parent level (drift compounds along a chain)
+      value: 1.1017
     info:
-      parent_canvas:
-        source:
-        - 870
-        - 1306
-        target:
-        - 1024
-        - 1536
       alignment:
-        scale: 1.0057
-        cx: 509.0
-        cy: 1379.0
+        scale: 1.008
+        cx: 432.5
+        cy: 1172.0
         dx: 4
-        dy: 1
+        dy: 2
       metrics_raw:
-        L_p5: 42.9
+        L_p5: 42.6
+        L_p50: 82.8
+        L_p95: 93.5
+        C_p50: 21.6
+        C_p95: 50.5
+        C_p99: 54.8
+        detail: 6.76
+      metrics_locked:
+        L_p5: 42.8
         L_p50: 83.1
         L_p95: 93.9
-        C_p50: 22.0
-        C_p95: 50.3
-        C_p99: 54.8
-        detail: 6.68
-      metrics_locked:
-        L_p5: 43.1
-        L_p50: 83.5
-        L_p95: 94.2
-        C_p50: 22.3
-        C_p95: 50.3
+        C_p50: 21.9
+        C_p95: 50.4
         C_p99: 54.4
-        detail: 6.7
+        detail: 6.79
     fingerprint: 13f7633e600002b7
   3:
     job: findik-surprised
@@ -293,105 +271,95 @@ qa_reports:
       message: source has an alpha channel
     - check: canvas
       status: pass
-      message: 1024x1536
+      message: 1024x1536 scaled x0.850 into 870x1306
+      value: 0.8496
     - check: edit_alignment
       status: pass
-      message: the edit rescaled the object x0.996 and moved it; aligned back to the
+      message: the edit rescaled the object x0.995 and moved it; aligned back to the
         parent
-      value: 1.0045
+      value: 1.0053
     - check: chroma_ceiling
       status: pass
-      message: chroma p95 48 (R1 51)
-      value: 48.5
+      message: chroma p95 49 (R1 51)
+      value: 48.7
     - check: light_values
       status: pass
       message: 'day/subject: L p2 15 (at most 22), p98 96 (at least 90), spread 81
         (at least 60)'
-      value: 81.3
+      value: 81.1
     - check: light_median
       status: pass
       message: 'day/subject: median L 84 (band 55-90)'
-      value: 84.4
+      value: 84.1
     - check: light_haze
       status: pass
       message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means
         a wash)'
-      value: 0.122
+      value: 0.118
     - check: light_contrast
       status: pass
-      message: 'day/subject: p75 local contrast 9.4 (at least 3.5)'
-      value: 9.44
+      message: 'day/subject: p75 local contrast 9.5 (at least 3.5)'
+      value: 9.49
     - check: detail_budget
       status: pass
-      message: detail at display size 6.8 (R1 5.3)
-      value: 6.81
+      message: detail at display size 6.9 (R1 5.3)
+      value: 6.9
     - check: palette_drift
       status: warn
-      message: 'mean dE 3.0, p95 12.9, off-palette 6.7% (top: #AA5533 (1.5%), #995522
+      message: 'mean dE 3.1, p95 13.1, off-palette 6.8% (top: #AA5533 (1.7%), #994422
         (0.9%))'
-      value: 3.0082
+      value: 3.0574
     - check: ground_line
       status: pass
-      message: feet at 89.8% of the height (contract 88%)
-      value: 0.8984
+      message: feet at 89.9% of the height (contract 88%)
+      value: 0.8989
     - check: harmony
       status: pass
       message: 'harmony score 87 against the char reference (outliers: detail)'
-      value: 87.3
+      value: 87.0
     - check: edit_stability
       status: pass
-      message: 94% of the parent level unchanged
-      value: 0.9422
+      message: 92% of the parent level unchanged
+      value: 0.9191
     - check: edit_chroma
       status: pass
-      message: chroma x1.00 of the parent level (drift compounds along a chain)
-      value: 1.0019
+      message: chroma x0.99 of the parent level (drift compounds along a chain)
+      value: 0.9862
     info:
-      parent_canvas:
-        source:
-        - 870
-        - 1306
-        target:
-        - 1024
-        - 1536
       alignment:
-        scale: 1.0045
-        cx: 512.5
-        cy: 1380.0
+        scale: 1.0053
+        cx: 435.5
+        cy: 1172.0
         dx: 1
-        dy: 0
+        dy: 2
       metrics_raw:
-        L_p5: 42.0
+        L_p5: 41.7
+        L_p50: 83.9
+        L_p95: 94.7
+        C_p50: 19.1
+        C_p95: 48.8
+        C_p99: 52.7
+        detail: 6.88
+      metrics_locked:
+        L_p5: 41.9
         L_p50: 84.2
         L_p95: 95.0
         C_p50: 19.4
-        C_p95: 48.6
-        C_p99: 52.6
-        detail: 6.78
-      metrics_locked:
-        L_p5: 42.2
-        L_p50: 84.5
-        L_p95: 95.3
-        C_p50: 19.7
-        C_p95: 48.5
-        C_p99: 52.5
-        detail: 6.81
+        C_p95: 48.7
+        C_p99: 52.7
+        detail: 6.9
     fingerprint: 13f7633e600002b7
 manual_review:
-  excluded_takes:
-  - 2
-  - 3
-  note: 'Exactly4 original images retained after one allowed retry. Takes1/4 fail
-    hard palette_drift (off-palette9.4/11.6percent). Takes2/3 pass corrected same-canvas
-    QA and preserve the surprised hedgehog, but fail the mandatory delivery cap: smallest
-    tested identical-RGBA lossless encodings700198/745376bytes exceed614400. Default
-    WebP, max-effort lossless and PNG were checked; no oversized, lossy or downscaled
-    master is uploaded. Delivery-check.json records the evidence. Parent-canvas QA
-    normalization018d4b9e fixes only reference comparison, not source art or thresholds;
-    real palette failures remain. All originals and unpublished high-quality lossless
-    renders are preserved outside the delivery tree. No more generation; skip this
-    job only, no dependents. A lead-approved parent-sized870x1306 brief can salvage
-    these sources without generation.'
+  excluded_takes: []
+  note: Salvaged from the four original PNGs retained in PR157, with zero new image
+    calls. The lead approved the parent canvas870x1306 in PR158; official post fits
+    that manifest canvas, preserving the parent framing. Takes1/4 still fail real
+    palette_drift; eligible takes2/3 pass. Characters have zero style-lock load, so
+    take3 wins on Harmony87.0 versus85.1. Visual review confirms the small round o
+    mouth, wide catchlit eyes, unchanged spines/body/paws and no curl or tears. Edit
+    stability0.9191, chroma0.9862. Only palette warning remains advisory. Original
+    source hashes and generation timestamps are retained. Replaces the historical
+    delivery-cap skip without regeneration; founder review pending.
 sources:
 - take: 1
   source_file: /workspace/generated_images/exec-290ff153-035e-48c4-9c28-67d4b8ade0f8.png
