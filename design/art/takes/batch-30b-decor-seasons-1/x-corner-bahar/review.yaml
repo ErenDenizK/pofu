@@ -1,0 +1,209 @@
+batch: batch-30b-decor-seasons-1
+manifest: tools/imagegen/manifest/batch-30b-decor-seasons-1.yaml
+manifest_sha256: d484fefef3b45748662c6d7daa5c6b4996a53df0ac3546114e7a38f7503e6ace
+contact_sheet: design/art/takes/batch-30b-decor-seasons-1/x-corner-bahar/contact.jpg
+jobs:
+  x-corner-bahar:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both independently reviewed initial
+      sources show the calm spring/Hidirellez home-lawn corner with young wish-ribbon
+      tree, exactly two clay pots of recognisable red/rose/cream tulips, small staked
+      diamond kite and ribbon tail, nest with exactly three pale speckled eggs on
+      a stump, fresh light-green lawn, tiny white flowers and path stones at the island
+      edge over cream clouds. No characters, lettering, border or forbidden added
+      building. The composite brief asks many tree ribbons, not the separate prop
+      exact dozen; no fabricated dependency on the skipped individual prop takes.
+      Existing home/bench/cloud references are attached as printed; this is an independent
+      concept, not a registered assembly of selected props. Both hard QA reports pass;
+      lowest lock load selects take1 (0.9517 versus0.9892). Palette/light/style warnings
+      remain advisory. Never promoted.
+qa_reports:
+  1:
+    job: x-corner-bahar
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 92 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 80 (band 55-90)'
+      value: 80.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.27 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.271
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.7 (at least 3.5)'
+      value: 3.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.54
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9517
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 7.8, off-palette 0.5% (top: #999944 (0.2%), #CC6644
+        (0.1%))'
+      value: 2.6774
+    info:
+      metrics_raw:
+        L_p5: 57.5
+        L_p50: 82.5
+        L_p95: 94.1
+        C_p50: 30.2
+        C_p95: 43.7
+        C_p99: 52.5
+        detail: 3.37
+      metrics_locked:
+        L_p5: 57.7
+        L_p50: 82.4
+        L_p95: 93.9
+        C_p50: 30.1
+        C_p95: 43.1
+        C_p99: 50.7
+        detail: 2.54
+    fingerprint: b4183fe0e44a395e
+  2:
+    job: x-corner-bahar
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 42.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 94 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 82.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.31 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.306
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.6 (at least 3.5)'
+      value: 3.63
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.3
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9892
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 5.4, off-palette 0.1% (top: #CC6644 (0.0%), #BB6644
+        (0.0%))'
+      value: 2.3255
+    info:
+      metrics_raw:
+        L_p5: 61.2
+        L_p50: 85.9
+        L_p95: 94.7
+        C_p50: 30.4
+        C_p95: 43.3
+        C_p99: 51.5
+        detail: 3.1
+      metrics_locked:
+        L_p5: 61.5
+        L_p50: 85.8
+        L_p95: 94.6
+        C_p50: 30.2
+        C_p95: 42.9
+        C_p99: 49.8
+        detail: 2.3
+    fingerprint: b4183fe0e44a395e
+manual_review:
+  observed_note: Both independently reviewed initial sources show the calm spring/Hidirellez
+    home-lawn corner with young wish-ribbon tree, exactly two clay pots of recognisable
+    red/rose/cream tulips, small staked diamond kite and ribbon tail, nest with exactly
+    three pale speckled eggs on a stump, fresh light-green lawn, tiny white flowers
+    and path stones at the island edge over cream clouds. No characters, lettering,
+    border or forbidden added building. The composite brief asks many tree ribbons,
+    not the separate prop exact dozen; no fabricated dependency on the skipped individual
+    prop takes. Existing home/bench/cloud references are attached as printed; this
+    is an independent concept, not a registered assembly of selected props. Both hard
+    QA reports pass; lowest lock load selects take1 (0.9517 versus0.9892). Palette/light/style
+    warnings remain advisory. Never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-30b-decor-seasons-1
+  job: x-corner-bahar
+  take: 1
+  round: 1
+  logical_run: 20261105-night30b-spring-corner-summer-hammock
+  source_file: /workspace/generated_images/exec-09e0e404-69f0-454e-81af-d3b1d5c65422.png
+  returned_at: '2026-11-05T19:45:27.787Z'
+  prompt_sha256: 17cb4a2356bb5da9f4923be4e69208952ac951b3c869def0b431ae7edd761b40
+  fingerprint: b4183fe0e44a395e
+  saved_at: '2026-11-05T19:45:28.159996+00:00'
+  original_generated_png_sha256: 1d0b23616e11d43ba7bd78b6eac7e959baacaa185b73e43cdefc51799fb1bce4
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 2308c4b103512352bac5345589ab264bbd6c240dbd659a0796e25efe8e2bd684
+  inbox_png_sha256: 52de74f0dee0272f9091ca7cbfbe76a6183420671da880581532128be3f2fdef
+  qa_sha256: d9ce22aa42edb8c4fbfeaf73b892d75240f7ea9c90b995d1e5d95a1f29684610
+- batch: batch-30b-decor-seasons-1
+  job: x-corner-bahar
+  take: 2
+  round: 1
+  logical_run: 20261105-night30b-spring-corner-summer-hammock
+  source_file: /workspace/generated_images/exec-3e89a4d6-1706-4c65-a559-cf1520683285.png
+  returned_at: '2026-11-05T19:44:46.580Z'
+  prompt_sha256: 17cb4a2356bb5da9f4923be4e69208952ac951b3c869def0b431ae7edd761b40
+  fingerprint: b4183fe0e44a395e
+  saved_at: '2026-11-05T19:44:47.099723+00:00'
+  original_generated_png_sha256: adeaf5d031edf8202cc873d947e302f192ca5529a3410aaeca6e175df9a9f830
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 3445ea97416a77f97851a6e66d09c2e83eaeadc022ddd2fd0cdaa04dd07334d3
+  inbox_png_sha256: 3395ad27cae769d30e78c3d8cf355b43eea10efae8da0528f32a532fcb8472d9
+  qa_sha256: 0f618eae70cfb15cc4b1b04b5020803c27c678f3bdd6936444334dbfc4590c88
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
