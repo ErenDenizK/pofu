@@ -1,0 +1,204 @@
+batch: batch-30-decor-sets
+manifest: tools/imagegen/manifest/batch-30-decor-sets.yaml
+manifest_sha256: 621a7f8e5ca0e5cf9031dead2d4a93a2d6fb02d6b983bbb2b653518da384ced2
+contact_sheet: design/art/takes/batch-30-decor-sets/x-corner-garden-set/contact.jpg
+jobs:
+  x-corner-garden-set:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both show the four garden pilot
+      ideas together on the familiar low-camera lawn/earth corner above clouds: honey
+      bench with plump coral/cream cushion, round cream-and-rose paper lanterns between
+      two complete poles, a coral-sailed toy boat at the small pond edge, and round
+      cream mailbox on a post with a little flag. Sunflower seedlings and a pale stone
+      path connect them. No characters, text, border or different island silhouette.
+      These are independent composed concepts, not pixel-registered edits of the pilot
+      sprites; the bench family and pond reflections remain lead concept review. Both
+      hard QA reports pass; lowest lock load chooses within eligible takes. Exploration
+      light/style warnings advisory. Never promoted.'
+qa_reports:
+  1:
+    job: x-corner-garden-set
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 93 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 80.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.33 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.333
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.4 (at least 3.5)'
+      value: 3.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.01
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8242
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 4.4, off-palette 0.1% (top: #AAAA44 (0.0%), #BBBB55
+        (0.0%))'
+      value: 1.9025
+    info:
+      metrics_raw:
+        L_p5: 63.7
+        L_p50: 84.5
+        L_p95: 93.5
+        C_p50: 23.8
+        C_p95: 41.8
+        C_p99: 48.6
+        detail: 2.79
+      metrics_locked:
+        L_p5: 64.2
+        L_p50: 84.4
+        L_p95: 93.3
+        C_p50: 23.8
+        C_p95: 41.2
+        C_p99: 48.3
+        detail: 2.01
+    fingerprint: d69b77b60294ea1e
+  2:
+    job: x-corner-garden-set
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 93 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.35 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.349
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.4 (at least 3.5)'
+      value: 3.41
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.04
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8439
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.1, p95 4.7, off-palette 0.0%
+      value: 2.1369
+    info:
+      metrics_raw:
+        L_p5: 64.9
+        L_p50: 85.2
+        L_p95: 93.2
+        C_p50: 23.4
+        C_p95: 42.6
+        C_p99: 46.1
+        detail: 2.82
+      metrics_locked:
+        L_p5: 65.3
+        L_p50: 85.1
+        L_p95: 93.0
+        C_p50: 23.4
+        C_p95: 41.7
+        C_p99: 45.3
+        detail: 2.04
+    fingerprint: d69b77b60294ea1e
+manual_review:
+  observed_note: 'Both show the four garden pilot ideas together on the familiar low-camera
+    lawn/earth corner above clouds: honey bench with plump coral/cream cushion, round
+    cream-and-rose paper lanterns between two complete poles, a coral-sailed toy boat
+    at the small pond edge, and round cream mailbox on a post with a little flag.
+    Sunflower seedlings and a pale stone path connect them. No characters, text, border
+    or different island silhouette. These are independent composed concepts, not pixel-registered
+    edits of the pilot sprites; the bench family and pond reflections remain lead
+    concept review. Both hard QA reports pass; lowest lock load chooses within eligible
+    takes. Exploration light/style warnings advisory. Never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-30-decor-sets
+  job: x-corner-garden-set
+  take: 1
+  round: 1
+  logical_run: 20261105-b30-garden-resident-corners
+  source_file: /workspace/generated_images/exec-235103e3-dc0a-403d-bb7a-c63445fcd578.png
+  returned_at: '2026-11-05T19:45:11.118Z'
+  prompt_sha256: 5d9db9900b2c19feab79e7cf1a7fe15df0cd2dcaa79056c552a8f5d06452bde4
+  fingerprint: d69b77b60294ea1e
+  saved_at: '2026-11-05T19:45:11.446026+00:00'
+  original_generated_png_sha256: 13bdb2a83b313920ae03d71660fc19065f56470497d1c41e5529d10ffc13bc8b
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: ca471cfaa7f25d14eb05e648a9c3190b8d7ba0a6a3df3d1aa7f53cec1831f61b
+  inbox_png_sha256: b03004209eadf97ac25038e61a40ea0fee25a84af0dbc6f88b3093c7cb745847
+  qa_sha256: 8ded62c2e30c8bfeaf9686b74401a39a85a34cfb02197e4364383df0a9ca75e0
+- batch: batch-30-decor-sets
+  job: x-corner-garden-set
+  take: 2
+  round: 1
+  logical_run: 20261105-b30-garden-resident-corners
+  source_file: /workspace/generated_images/exec-d9c36de5-d9a4-45f3-9432-a83b4dee5dc0.png
+  returned_at: '2026-11-05T19:45:41.554Z'
+  prompt_sha256: 5d9db9900b2c19feab79e7cf1a7fe15df0cd2dcaa79056c552a8f5d06452bde4
+  fingerprint: d69b77b60294ea1e
+  saved_at: '2026-11-05T19:45:41.961646+00:00'
+  original_generated_png_sha256: 177b58ba7295d56f33b2cfcacf916da08b8497b57fe8d9d4841b462a1c85b1b3
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: c41e4f7155e1d698cad5798eaf75c6f69e4e5bf21258e0c3c8b688b82f68b78e
+  inbox_png_sha256: 774fbed04197d8998244376f804c3a0cb561b4006afa4dd076cebdad6e6e6749
+  qa_sha256: 4c93db619b4ce8987f0b0288bb49f2e25fcb87e06a89821f4b6e8cdf0646ea67
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
