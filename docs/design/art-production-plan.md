@@ -70,11 +70,11 @@ when none is left it moves on to [the backlog](#the-backlog).
 
 | # | Batch | Kind | Purpose | Needs | Jobs | State |
 |---|---|---|---|---|---|---|
-| 0-s | delivery re-post (no generation) | production | After the lead's `fix/imagegen-delivery` PR merges (it adds `deliver: {scale: 0.5}` for soft art and the fits below to the manifests): re-post the retained takes of `glow-window-spill` and `launch-sky` (batch-35-experience-pilot) with the soft delivery, `material-moss` (fit `max_width: 340`) and `hill-gate` (fit `max_width: 360`) from batch-33; pick and promote; then generate the jobs that waited on them: the five materials and `hill-gate-open` | the delivery PR | 4 + 6 | BLOCKED on the delivery PR |
-| 0-t | `batch-35-experience` | production | The rest of the experience art ([experience v1](experience-v1.md) §2, §7; [light and shadow v2](light-and-shadow-v2.md) §4): glows (soft delivery), `calm-lantern-lit`, `firefly`, the cloud curtain, `shield-pofu-door`, `reward-seed-burst`, garden and harbor dressing, four critters, `visitor-dandelion`, `gift-parcel`, `guest-letter`. The delivery PR sets its manifest open | the delivery PR | 18 | BLOCKED on the delivery PR |
-| 0-u | `batch-36-lit-ladder-pilot` | production | Lit edits for night light from real sources ([light and shadow v2](light-and-shadow-v2.md) §4; method in [day and night](#day-and-night-code-first)): `lighthouse-1-lit`, `path-lamp-lit`, `windmill-1-lit`, `door-mochi-lit`. Only the light-carrying part changes; the lead turns each into an emissive overlay. Review: registered pixel for pixel with its day master, warm against the night grade | the lead's manifest PR | 4 | READY once the manifest is on main |
-| 0-v | `batch-37-nazli-rig-pilot` | production | Nazlı (Gezgin form 1) as rig parts on one shared canvas, **facing the camera** in three-quarter view, clear of any pier: `nazli-body`, `nazli-tail`, `nazli-fins`, `nazli-island-patch` (the mossy patch, bench, mooring post, lantern hook, paper-lantern scar), `nazli-eyes-closed`. Every part registers on the same canvas so code assembles and moves them (breath, tail sway, fin paddle) | the lead's manifest PR | 5 | READY once the manifest is on main |
-| 0-w | showcase retries | production | `frog-1` with the smooth-skin override (the style block's fur line no longer applies to frogs), `door-guest` and `guest-stall` with rewritten briefs; one take set each, then `frog-sing` | the delivery PR (it carries the prompt fixes) | 3 + 1 | BLOCKED on the delivery PR |
+| 0-s | delivery re-post (no generation) | production | After the lead's `fix/imagegen-delivery` PR merges (it adds `deliver: {scale: 0.5}` for soft art and the fits below to the manifests): re-post the retained takes of `glow-window-spill` and `launch-sky` (batch-35-experience-pilot) with the soft delivery, `material-moss` (fit `max_width: 340`) and `hill-gate` (fit `max_width: 360`) from batch-33; pick and promote; then generate the jobs that waited on them: the five materials and `hill-gate-open` | the delivery PR | 4 + 6 | **READY** |
+| 0-t | `batch-35-experience` | production | The rest of the experience art ([experience v1](experience-v1.md) §2, §7; [light and shadow v2](light-and-shadow-v2.md) §4): glows (soft delivery), `calm-lantern-lit`, `firefly`, the cloud curtain, `shield-pofu-door`, `reward-seed-burst`, garden and harbor dressing, four critters, `visitor-dandelion`, `gift-parcel`, `guest-letter`. The delivery PR sets its manifest open | the delivery PR | 18 | **READY** |
+| 0-u | `batch-36-lit-ladder-pilot` | production | Lit edits for night light from real sources ([light and shadow v2](light-and-shadow-v2.md) §4; method in [day and night](#day-and-night-code-first)): `lighthouse-1-lit`, `path-lamp-lit`, `windmill-1-lit`, `door-mochi-lit`. Only the light-carrying part changes; the lead turns each into an emissive overlay. Review: registered pixel for pixel with its day master, warm against the night grade | the lead's manifest PR | 4 | **READY** |
+| 0-v | `batch-37-nazli-rig-pilot` | production | Nazlı (Gezgin form 1) as rig parts on one shared canvas, **facing the camera** in three-quarter view, clear of any pier: `nazli-body`, `nazli-tail`, `nazli-fins`, `nazli-island-patch` (the mossy patch, bench, mooring post, lantern hook, paper-lantern scar), `nazli-eyes-closed`. Every part registers on the same canvas so code assembles and moves them (breath, tail sway, fin paddle) | the lead's manifest PR | 5 | **READY** |
+| 0-w | showcase retries | production | `frog-1` with the smooth-skin override (the style block's fur line no longer applies to frogs), `door-guest` and `guest-stall` with rewritten briefs; one take set each, then `frog-sing` | the delivery PR (it carries the prompt fixes) | 3 + 1 | **READY** |
 | 0-x | `hive-4`, `hive-5` | production | hive-4 failed chroma and palette drift in all four takes (#207); the lead reviews the takes and names a palette or profile fix before any re-post | the lead's review | 2 | BLOCKED on the lead's review |
 | 4 | `batch-11-ui` | production | What is still missing of ui-system-v2 section 6 after batches 11-13 and the retry: night variants of the faces, game layer extras, the remaining domain icons, surfaces. The lead lists the exact gaps when it writes the manifest | the light standard and the icon semantics rule | about 15 | BLOCKED, no manifest yet |
 | 5 | `batch-08-decor` | production | The home decor kit (Ayçiçeği is the centre, so it ships); the lead lists the pieces after the pilot review | a passed row 1 | none yet | BLOCKED on the pilot review, no manifest yet |
@@ -84,9 +84,23 @@ Home stations: nothing else needs a painted night variant (tea stall, windmill a
 Rows to come: the design-loop-2 concepts (batch-19) and the lead's production
 batches are added above row 3 as `READY` by their own PRs.
 
+## The production backlog
+
+The founder (2026-11-05): move toward production; a rough production
+asset that the game can use beats a fiftieth variation. So when no `READY`
+row is left, Codex takes these rows **before** the exploration backlog.
+They are production batches (real ids, promoted on pass); the lead adds
+rows here whenever an idea comes, without waiting for the founder.
+
+| # | Batch | Purpose | Jobs | State |
+|---|---|---|---|---|
+| P1 | `batch-39-koke-production` | Koke, the first story island, playable: the island plate at arc stages 0 to 4 in the game camera ([healing arc](island-healing-arc.md)) and Koke in four poses (asleep, one eye open, stretching, standing) | about 9 | **READY** once its manifest is on main |
+| P2 | `batch-40-home-ladder-gaps` | Every home station and prop level the [home progression](../product/home-progression.md) §4.2 and §9 needs that has no master yet, so each level is a visible step | the lead lists them | **READY** once its manifest is on main |
+| P3 | `batch-41-resident-reactions` | Mochi, Simit, Fındık and the goat: happy, surprised, sleepy, proud as rig poses (the Pofu rig method), for visitors and level-ups | about 16 | **READY** once its manifest is on main |
+
 ## The backlog
 
-Work for when no `READY` row is left, so the line never idles. Every batch
+Work for when no `READY` row and no production row is left, so the line never idles. Every batch
 here is an **exploration**: `x-` ids, `status: open`, complete prompts, never
 promoted (takes, contact sheet and `review.yaml` are committed under
 `design/art/takes/<batch>/<id>/`). Codex takes the rows in order, one PR per
@@ -407,6 +421,8 @@ Stop only on a global stop condition in AGENTS.md.
 ```
 
 ## Log
+
+- 2026-11-05 (lead, overnight): merged #215 (glow-ground-pool, dressing-meadow), #207 (door-findik, goat-work, harbor-bell, hive-2, hive-3), #220 (soft delivery, fits, frog and guest prompts; batch-35-experience open) and #221 (batch-36 lit ladder pilot, batch-37 Nazlı rig pilot). Rows 0-s to 0-w are READY. Nazlı parts are whole-whale edits cut by difference (as batch-06); windmill-1 has no window, so its light leaks through the door.
 
 - 2026-11-05 (lead review, night): merged #190 (showcase pilot: path-lamp and door-mochi pass; hive-1 too big for its half footprint, material-moss off-palette greens; both get row 0a-r) and #191 (islands in the game camera: Çağlayan stuck and healed now cozy, Gezgin both forms at the harbor, Revontuli, Emanet, Mehtap, the Tam Çiçek night; sent to the founder). Opened batch-33.
 
