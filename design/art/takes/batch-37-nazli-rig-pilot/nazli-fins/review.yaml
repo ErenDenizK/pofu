@@ -1,0 +1,212 @@
+batch: batch-37-nazli-rig-pilot
+contact_sheet: design/art/takes/batch-37-nazli-rig-pilot/nazli-fins/contact.jpg
+jobs:
+  nazli-fins:
+    pick: 2
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Both original and official locked
+      initial takes pass independent content and actual published-body comparison:
+      exactly two pectoral fins, broad rounded cream near fin low just behind the
+      head angled gently back and down, with the far fin showing only its rounded
+      tip below the far belly. Neither covers face or eyes. Camera-facing head, faint
+      smile, blush, paper-lantern scar, body placement and rounded tail-stock tip
+      remain visually registered on shared1536x1024 canvas; no flukes, island patch,
+      scenery, text or other objects. Canonical hard QA passes both, edit_stability0.9777/0.9636
+      and edit_chroma1.0132/0.9687 pass. No lock_load is reported for char takes;
+      equal-load fallback selects higher Harmony take2 (46.6 versus46.5). Light and
+      Harmony warnings advisory. No stricter invented stability criterion or manual
+      geometry, palette or alpha cleanup. Direct whole-whale body edit, not cumulative
+      with tail. Stable consumer links unchanged. Founder review pending.'
+qa_reports:
+  2:
+    job: nazli-fins
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 17 (R1 51)
+      value: 16.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 71 (at most 22), p98 94 (at least 90), spread 24
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 23.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 83.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.62 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.624
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.1 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.12
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.75
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 3.1, off-palette 0.0%
+      value: 1.4672
+    - check: ground_line
+      status: pass
+      message: feet at 89.0% of the height (contract 88%)
+      value: 0.8896
+    - check: harmony
+      status: warn
+      message: 'harmony score 47 against the char reference (outliers: C_p95, L_p2,
+        tint_b)'
+      value: 46.6
+    - check: edit_stability
+      status: pass
+      message: 96% of the parent level unchanged
+      value: 0.9636
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.97 of the parent level (drift compounds along a chain)
+      value: 0.9687
+    info:
+      metrics_raw:
+        L_p5: 72.0
+        L_p50: 83.8
+        L_p95: 92.7
+        C_p50: 9.8
+        C_p95: 16.7
+        C_p99: 20.9
+        detail: 1.69
+      metrics_locked:
+        L_p5: 72.0
+        L_p50: 83.8
+        L_p95: 92.7
+        C_p50: 9.8
+        C_p95: 16.7
+        C_p99: 20.9
+        detail: 1.75
+    fingerprint: 30301c2ea48db9a3
+  1:
+    job: nazli-fins
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 17 (R1 51)
+      value: 16.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 70 (at most 22), p98 94 (at least 90), spread 24
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 23.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 84.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.62 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.62
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.1 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.72
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 3.2, off-palette 0.0%
+      value: 1.4939
+    - check: ground_line
+      status: pass
+      message: feet at 88.4% of the height (contract 88%)
+      value: 0.8838
+    - check: harmony
+      status: warn
+      message: 'harmony score 46 against the char reference (outliers: C_p95, L_p2,
+        tint_b)'
+      value: 46.5
+    - check: edit_stability
+      status: pass
+      message: 98% of the parent level unchanged
+      value: 0.9777
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.01 of the parent level (drift compounds along a chain)
+      value: 1.0132
+    info:
+      metrics_raw:
+        L_p5: 72.0
+        L_p50: 84.3
+        L_p95: 93.0
+        C_p50: 10.3
+        C_p95: 16.8
+        C_p99: 20.2
+        detail: 1.67
+      metrics_locked:
+        L_p5: 72.0
+        L_p50: 84.3
+        L_p95: 93.0
+        C_p50: 10.3
+        C_p95: 16.8
+        C_p99: 20.2
+        detail: 1.72
+    fingerprint: 30301c2ea48db9a3
+manual_review:
+  excluded_takes: []
+  note: 'Both original and official locked initial takes pass independent content
+    and actual published-body comparison: exactly two pectoral fins, broad rounded
+    cream near fin low just behind the head angled gently back and down, with the
+    far fin showing only its rounded tip below the far belly. Neither covers face
+    or eyes. Camera-facing head, faint smile, blush, paper-lantern scar, body placement
+    and rounded tail-stock tip remain visually registered on shared1536x1024 canvas;
+    no flukes, island patch, scenery, text or other objects. Canonical hard QA passes
+    both, edit_stability0.9777/0.9636 and edit_chroma1.0132/0.9687 pass. No lock_load
+    is reported for char takes; equal-load fallback selects higher Harmony take2 (46.6
+    versus46.5). Light and Harmony warnings advisory. No stricter invented stability
+    criterion or manual geometry, palette or alpha cleanup. Direct whole-whale body
+    edit, not cumulative with tail. Stable consumer links unchanged. Founder review
+    pending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-c1844534-eccb-4864-8c06-849d4a414c2b.png
+  original_generated_png_sha256: 0c0eec8887450aeda2cf01ab0223b0dcf1d47a08481b90433891fc6ee1952f4d
+  inbox_png_sha256: ad084b7bacd6436fda9b911e9081796d4aaa382e7e62c43611d4ecef60c70687
+  rgba_sha256: ed3cb907d651d409b702c159ee054f698aee4ba439b4b7a7e78bc00d796bd23e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 30301c2ea48db9a3
+- take: 2
+  source_file: /workspace/generated_images/exec-34ff217c-43cf-42b6-bc8b-ee8625c74753.png
+  original_generated_png_sha256: 992dc928b421c5115b2783303efcadd87a5dbf9d12004354bb5b4e27eb535a97
+  inbox_png_sha256: 8d40925f342bf0667b3f94ba17a2f0e43b5f8286c4b96320736a5fc00ec0b6f7
+  rgba_sha256: 22285ccc1d1abcf3df38760d6cdf0d6b9dc344203c5707c163cb5342f37594c2
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 30301c2ea48db9a3
