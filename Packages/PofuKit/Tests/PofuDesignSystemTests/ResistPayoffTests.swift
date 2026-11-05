@@ -43,6 +43,18 @@ struct ResistPayoffTests {
         #expect(payoff.seedProgress(at: 0.9) == 1)
     }
 
+    @Test func theLedgerOwesOnlyUnseenResists() {
+        let day = "2026-11-5"
+        #expect(ResistPayoffLedger.unseen(resisted: 4, day: day, record: nil) == 0, "a first launch plays nothing old")
+        #expect(ResistPayoffLedger.unseen(resisted: 4, day: day, record: .init(day: day, seen: 4)) == 0)
+        #expect(ResistPayoffLedger.unseen(resisted: 5, day: day, record: .init(day: day, seen: 4)) == 1)
+        #expect(ResistPayoffLedger.unseen(resisted: 2, day: day, record: .init(day: "2026-11-4", seen: 9)) == 2, "a new day starts again")
+        #expect(ResistPayoffLedger.unseen(resisted: 0, day: day, record: .init(day: day, seen: 3)) == 0)
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        #expect(ResistPayoffLedger.day(for: Date(timeIntervalSince1970: 1_793_836_800), calendar: calendar) == "2026-11-5")
+    }
+
     @Test func theSheetSurfaceIsGlassOnlyOverAFrozenWorldAtPartialDetents() {
         typealias Rule = PofuSheetSurfaceRule
         #expect(Rule.mode(sheetFraction: 0.5, worldIsFrozen: true, reduceTransparency: false) == .glass)

@@ -860,6 +860,16 @@
           }
         }
       }
+    },
+    "%@ → %@ seeds an hour" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saatte %1$@ → %2$@ çekirdek"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

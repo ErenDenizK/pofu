@@ -3,10 +3,13 @@ import PofuCore
 import PofuDesignSystem
 import SwiftUI
 
-/// A station's sheet (interaction spec §2.3): the name and keeper, five
-/// level dots, the rate, and the build button. While its build moment
-/// runs, the sheet sits at its compact detent and says so (§2.6: the one
-/// refused input explains itself).
+/// A station's sheet (experience v1 section 3.2, the template for every
+/// sheet): the grabber, a painted header plate with the station's vignette
+/// and drawn level pips, **the one thing** (the rate now and at the next
+/// level, in monospaced digits), one primary action pinned at the bottom,
+/// and one flavour line in Pofu's voice. While its build moment runs, the
+/// sheet sits at its compact detent and says so (§2.6: the one refused
+/// input explains itself).
 struct StationSheet: View {
     let station: StationID
     let status: StationStatus?
@@ -17,35 +20,32 @@ struct StationSheet: View {
     var onPlay: (@MainActor () -> Void)?
     let onBuild: (@MainActor (StationID) -> Void)?
     let onClose: @MainActor () -> Void
+    /// Where the next level's rate comes from.
+    var catalog = ArchipelagoCatalog.standard
 
     var body: some View {
-        VStack(alignment: .leading, spacing: PofuSpacing.l) {
-            header
+        Group {
             if isBuilding {
-                building
-            } else if let status {
-                // The details scroll (large text, the medium detent); the
-                // actions stay pinned below them.
-                ScrollView {
-                    VStack(alignment: .leading, spacing: PofuSpacing.m) {
-                        levelDots(status)
-                        details(status)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                VStack(alignment: .leading, spacing: PofuSpacing.l) {
+                    plate(compact: true)
+                    building
                 }
-                .scrollBounceBehavior(.basedOnSize)
-                actions(status)
+                .padding(.horizontal, PofuSpacing.screen)
+                .padding(.top, PofuSpacing.l)
+                .padding(.bottom, PofuSpacing.l)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             } else {
-                Text("Not open yet", bundle: .module)
-                    .font(PofuFont.body)
-                    .foregroundStyle(PofuColor.textSecondary)
-                Spacer(minLength: 0)
+                PofuSheetScaffold {
+                    plate(compact: false)
+                } thing: {
+                    theOneThing
+                } action: {
+                    actions
+                } flavour: {
+                    flavour
+                }
             }
         }
-        .padding(.horizontal, PofuSpacing.screen)
-        .padding(.top, isBuilding ? PofuSpacing.l : PofuSpacing.xl)
-        .padding(.bottom, PofuSpacing.l)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .animation(.spring(duration: 0.25, bounce: 0), value: isBuilding)
     }
 
@@ -63,7 +63,8 @@ struct StationSheet: View {
         .accessibilityElement(children: .combine)
     }
 
-    /// The station's painted art for the header.
+    /// The station's painted art for the header plate (the `sheet-header-*`
+    /// vignettes replace it by name when they exist).
     private var art: PofuPaint {
         switch station {
         case .garden: .potBloom
@@ -75,108 +76,94 @@ struct StationSheet: View {
         }
     }
 
-    private var header: some View {
-        HStack(alignment: .center, spacing: PofuSpacing.m) {
-            if art.isAvailable {
-                PofuPaintedIcon(art, size: isBuilding ? 40 : 64)
-                    .padding(PofuSpacing.xs)
-                    .background { PofuPaperPanel() }
-            }
-            VStack(alignment: .leading, spacing: PofuSpacing.xs) {
-                Text(verbatim: WorldStrings.stationName(station))
-                    .font(PofuFont.title2)
-                    .foregroundStyle(PofuColor.textPrimary)
-                if let keeper = WorldStrings.stationKeeper(station) {
-                    Text(verbatim: keeper)
-                        .font(PofuFont.subheadline)
-                        .foregroundStyle(PofuColor.textSecondary)
-                }
-            }
-            Spacer(minLength: 0)
-            Button(action: onClose) {
-                Image(systemName: "xmark")
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundStyle(Color(red: 0.24, green: 0.18, blue: 0.14))
-                    .frame(width: PofuSize.minimumTouch, height: PofuSize.minimumTouch)
-                    .background { PofuPaintedFace(.faceDisc) }
-                    .contentShape(Circle())
-            }
-            .buttonStyle(.plain)
-            .accessibilityLabel(Text("Close", bundle: .module))
-        }
+    private func plate(compact: Bool) -> some View {
+        PofuHeaderPlate(
+            paint: art,
+            title: WorldStrings.stationName(station),
+            subtitle: WorldStrings.stationKeeper(station),
+            pips: status.map { ($0.level, $0.maxLevel) },
+            compact: compact,
+            closeLabel: Text("Close", bundle: .module),
+            onClose: onClose
+        )
     }
 
-    private func levelDots(_ status: StationStatus) -> some View {
-        HStack(spacing: PofuSpacing.s) {
-            HStack(spacing: 6) {
-                ForEach(1...max(status.maxLevel, 1), id: \.self) { level in
-                    Circle()
-                        .fill(level <= status.level ? PofuColor.accent : PofuColor.hairline)
-                        .frame(width: 12, height: 12)
-                }
-            }
-            Text(verbatim: status.level > 0 ? WorldStrings.level(status.level, of: status.maxLevel) : String(localized: "Build spot", bundle: .module))
-                .font(PofuFont.footnote.monospacedDigit())
+    // MARK: The one thing
+
+    @ViewBuilder
+    private var theOneThing: some View {
+        if let status {
+            rate(status)
+                .accessibilityElement(children: .combine)
+        } else {
+            Text("Not open yet", bundle: .module)
+                .font(PofuFont.body)
                 .foregroundStyle(PofuColor.textSecondary)
         }
-        .accessibilityElement(children: .combine)
     }
 
-    /// The rate, the next level's reward, and a line of flavour, on one
-    /// paper panel.
-    private func details(_ status: StationStatus) -> some View {
-        VStack(alignment: .leading, spacing: PofuSpacing.s) {
-            StationRow(paint: .iconCalm, fallback: "leaf") {
-                Text("\(status.seedsPerHour.formatted(.number.precision(.fractionLength(0...1)))) seeds an hour", bundle: .module)
-                    .font(PofuFont.callout)
-                    .foregroundStyle(PofuColor.textPrimary)
+    /// Seeds an hour now, and at the next level: live numbers with
+    /// monospaced digits on one paper panel.
+    private func rate(_ status: StationStatus) -> some View {
+        let now = Self.format(status.seedsPerHour)
+        let next = status.nextCost == nil ? nil : catalog.station(station).map { Self.format($0.seedsPerHour(at: status.level + 1)) }
+        return VStack(alignment: .leading, spacing: PofuSpacing.xs) {
+            if let next {
+                Text("\(now) → \(next) seeds an hour", bundle: .module)
+                    .font(PofuFont.title3.monospacedDigit())
+            } else {
+                Text("\(now) seeds an hour", bundle: .module)
+                    .font(PofuFont.title3.monospacedDigit())
             }
-            if let cost = status.nextCost {
-                StationRow(paint: .iconSeed, fallback: "leaf") {
-                    Text("Next level · \(cost.units) seeds", bundle: .module)
-                        .font(PofuFont.callout)
-                        .foregroundStyle(PofuColor.textPrimary)
-                }
-                StationRow(paint: .iconRound, fallback: "star") {
-                    Text("A new level brings more seeds an hour.", bundle: .module)
-                        .font(PofuFont.footnote)
-                        .foregroundStyle(PofuColor.textSecondary)
-                }
-            }
-            if let flavour = WorldStrings.stationFlavour(station) {
-                Text(verbatim: flavour)
-                    .font(PofuFont.footnote.italic())
+            if status.level == 0 {
+                Text("Build spot", bundle: .module)
+                    .font(PofuFont.footnote)
                     .foregroundStyle(PofuColor.textSecondary)
-                    .padding(.top, PofuSpacing.xxs)
+            } else {
+                Text(verbatim: WorldStrings.level(status.level, of: status.maxLevel))
+                    .font(PofuFont.footnote.monospacedDigit())
+                    .foregroundStyle(PofuColor.textSecondary)
             }
         }
+        .foregroundStyle(PofuColor.textPrimary)
         .padding(PofuSpacing.l)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background { PofuPaperPanel() }
     }
 
-    private func actions(_ status: StationStatus) -> some View {
-        VStack(spacing: PofuSpacing.s) {
-            playButton(status)
-            buildButton(status)
+    private static func format(_ rate: Double) -> String {
+        rate.formatted(.number.precision(.fractionLength(0...1)))
+    }
+
+    // MARK: The primary action
+
+    @ViewBuilder
+    private var actions: some View {
+        if let status {
+            VStack(spacing: PofuSpacing.s) {
+                buildButton(status)
+                playButton(status)
+            }
         }
     }
 
     /// The garden's door to the game once it is built: rounds are earned,
-    /// two a day, so with none left it says so instead of disappearing.
+    /// two a day, so with none left it says so instead of disappearing. A
+    /// text button: the build is the sheet's one primary action.
     @ViewBuilder
     private func playButton(_ status: StationStatus) -> some View {
         if station == .garden, status.level > 0, let onPlay {
             if playableRounds > 0 {
                 Button {
+                    PofuHaptics.shared.play(.tap)
                     onPlay()
                 } label: {
-                    HStack(spacing: PofuSpacing.s) {
-                        PofuPaintedIcon(.iconSkip, size: 24)
-                        Text("Play · \(playableRounds) left", bundle: .module)
-                    }
+                    Text("Play · \(playableRounds) left", bundle: .module)
+                        .font(PofuFont.headline)
+                        .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch)
                 }
-                .buttonStyle(PofuPaintedSecondaryButtonStyle())
+                .buttonStyle(.plain)
+                .foregroundStyle(PofuColor.accent)
             } else {
                 Text("No rounds left today.", bundle: .module)
                     .font(PofuFont.footnote)
@@ -198,23 +185,34 @@ struct StationSheet: View {
         } else if let cost = status.nextCost {
             let missing = max(cost.units - jar.units, 0)
             Button {
-                onBuild?(station)
-            } label: {
                 if missing > 0 {
-                    Text("\(missing) more seeds", bundle: .module)
+                    PofuHaptics.shared.play(.warning)
                 } else {
-                    HStack(spacing: PofuSpacing.s) {
-                        Text("Build · \(cost.units)", bundle: .module)
-                        SeedGlyph()
-                            .fill(PofuColor.onAccent)
-                            .frame(width: 9, height: 14)
-                            .rotationEffect(.degrees(18))
-                            .accessibilityHidden(true)
+                    PofuHaptics.shared.play(.tap)
+                    onBuild?(station)
+                }
+            } label: {
+                Group {
+                    if missing > 0 {
+                        Text("\(missing) more seeds", bundle: .module)
+                    } else {
+                        HStack(spacing: PofuSpacing.s) {
+                            Text("Build · \(cost.units)", bundle: .module)
+                            SeedGlyph()
+                                .fill(PofuColor.onAccent)
+                                .frame(width: 9, height: 14)
+                                .rotationEffect(.degrees(18))
+                                .accessibilityHidden(true)
+                        }
                     }
                 }
+                .font(PofuFont.headline)
+                .frame(maxWidth: .infinity, minHeight: PofuSize.buttonHeight - 16)
             }
-            .buttonStyle(PofuPrimaryButtonStyle())
-            .disabled(missing > 0 || onBuild == nil)
+            .buttonStyle(.glassProminent)
+            .tint(PofuColor.accent)
+            .opacity(missing > 0 ? 0.55 : 1)
+            .disabled(onBuild == nil)
             if onBuild == nil {
                 Text("Building opens soon.", bundle: .module)
                     .font(PofuFont.footnote)
@@ -227,27 +225,17 @@ struct StationSheet: View {
                 .foregroundStyle(PofuColor.textSecondary)
         }
     }
-}
 
-/// One line of a station's details: a painted icon and its text.
-private struct StationRow<Content: View>: View {
-    let paint: PofuPaint
-    /// The symbol if the bundle lacks the painting.
-    let fallback: String
-    @ViewBuilder let content: Content
+    // MARK: Flavour
 
-    var body: some View {
-        HStack(spacing: PofuSpacing.m) {
-            if paint.isAvailable {
-                PofuPaintedIcon(paint, size: 28)
-            } else {
-                Image(systemName: fallback)
-                    .foregroundStyle(PofuColor.success)
-            }
-            content
-            Spacer(minLength: 0)
+    @ViewBuilder
+    private var flavour: some View {
+        if let flavour = WorldStrings.stationFlavour(station) {
+            Text(verbatim: flavour)
+                .font(PofuFont.footnote.italic())
+                .foregroundStyle(PofuColor.textSecondary)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .accessibilityElement(children: .combine)
     }
 }
 
@@ -310,6 +298,10 @@ private struct CardTail: Shape {
 
 /// The framing control: three framings in a glass capsule whose pill
 /// follows where a pinch would land (§1.6).
+///
+/// PR A's place control retires it (experience v1 section 1). It stays
+/// here only because Home and the world host still call it until A
+/// lands; A deletes it.
 public struct FramingPicker: View {
     let model: IslandSceneModel
 

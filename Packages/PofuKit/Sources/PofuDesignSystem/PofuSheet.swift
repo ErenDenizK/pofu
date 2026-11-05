@@ -128,6 +128,7 @@ extension View {
 }
 #endif
 
+#if canImport(UIKit)
 /// The painted header plate of a sheet (112 pt): a vignette on paper, the
 /// name in SF Pro Rounded title2 bold, optional drawn level pips, and a
 /// close button.
@@ -162,13 +163,11 @@ public struct PofuHeaderPlate: View {
 
     public var body: some View {
         HStack(alignment: .center, spacing: PofuSpacing.m) {
-            #if canImport(UIKit)
             if let paint, paint.isAvailable {
                 PofuPaintedIcon(paint, size: compact ? 40 : 64)
                     .padding(PofuSpacing.xs)
                     .background { PofuPaperPanel() }
             }
-            #endif
             VStack(alignment: .leading, spacing: PofuSpacing.xs) {
                 Text(verbatim: title)
                     .font(PofuFont.title2)
@@ -207,6 +206,8 @@ public struct PofuHeaderPlate: View {
         .frame(minHeight: compact ? nil : Self.height - PofuSpacing.l)
     }
 }
+
+#endif
 
 /// The sheet anatomy of section 3.2: the grabber (the system's), a header
 /// plate, **the one thing**, one primary action pinned at the bottom with
@@ -247,7 +248,9 @@ public struct PofuSheetScaffold<Plate: View, Thing: View, Action: View, Flavour:
         .padding(.top, PofuSpacing.xl)
         .padding(.bottom, PofuSpacing.l)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        #if os(iOS)
         .presentationDragIndicator(.visible)
+        #endif
     }
 }
 #endif

@@ -19,6 +19,7 @@ struct PofuSheetChrome: ViewModifier {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button {
+                        PofuHaptics.shared.play(.tap)
                         onClose?()
                         dismiss()
                     } label: {

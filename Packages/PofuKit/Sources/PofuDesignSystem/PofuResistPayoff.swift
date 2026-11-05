@@ -92,6 +92,36 @@ public struct ResistPayoff: Equatable, Sendable {
     }
 }
 
+/// How many resists the person has already seen the payoff for, today.
+public struct ResistPayoffRecord: Codable, Equatable, Sendable {
+    public var day: String
+    public var seen: Int
+
+    public init(day: String, seen: Int) {
+        self.day = day
+        self.seen = seen
+    }
+}
+
+/// Decides which resists are still owed a payoff. Resisting closes the app
+/// and sends nothing, so the payoff waits for the next time Pofu is seen.
+public enum ResistPayoffLedger {
+    /// A stable key for a calendar day.
+    public static func day(for date: Date, calendar: Calendar) -> String {
+        let parts = calendar.dateComponents([.year, .month, .day], from: date)
+        return "\(parts.year ?? 0)-\(parts.month ?? 0)-\(parts.day ?? 0)"
+    }
+
+    /// Resists today that have not been celebrated. With no record at all
+    /// (a first launch) everything counts as seen, so an old tally never
+    /// plays; on a new day the count starts again from zero.
+    public static func unseen(resisted: Int, day: String, record: ResistPayoffRecord?) -> Int {
+        guard let record else { return 0 }
+        guard record.day == day else { return max(resisted, 0) }
+        return max(resisted - record.seen, 0)
+    }
+}
+
 #if canImport(SwiftUI)
 import SwiftUI
 
@@ -174,7 +204,11 @@ public struct ResistPayoffOverlay: View {
                         .foregroundStyle(Color(red: 0.24, green: 0.18, blue: 0.14))
                         .padding(.horizontal, PofuSpacing.xl)
                         .padding(.vertical, PofuSpacing.m)
-                        .background { PofuPaperPanel() }
+                        .background {
+                            RoundedRectangle(cornerRadius: PofuRadius.large, style: .continuous)
+                                .fill(PofuColor.card)
+                                .shadow(color: PofuColor.shadow.opacity(0.12), radius: 10, y: 3)
+                        }
                         .opacity(run.payoff.lineOpacity(at: time))
                         .scaleEffect(0.96 + 0.04 * run.payoff.lineOpacity(at: time))
                         .position(x: size.width / 2, y: size.height * 0.5)
