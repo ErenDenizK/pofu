@@ -1,0 +1,213 @@
+batch: batch-31-island-milestones
+manifest: tools/imagegen/manifest/batch-31-island-milestones.yaml
+manifest_sha256: 6e982829318ae68039a10ad1c6466e6bf03e51b9af792d10d1cf64a64248f898
+contact_sheet: design/art/takes/batch-31-island-milestones/x-island-il4/contact.jpg
+jobs:
+  x-island-il4:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show the familiar round
+      home island widened on the right for a small lily-pad pond and one frog, a stone
+      path from a picket-fenced garden without an arch to the striped-awning tea corner,
+      and a rope bridge leaving the left edge to a separate small harbor islet with
+      bagel cart, pier and tiny ferry. The lawn retains substantial empty green space,
+      the round front door, soft earth bowl, roots and cloud sea. Take1 shows two
+      visible sunflower heads, take2 three; the level4 brief does not prescribe their
+      count. Core notes-defined stage markers pass. These independently generated
+      concepts attach only the main baseline island and do not preserve pixel registration
+      or exact earlier-level placement; later frames may move the harbor, explicitly
+      a continuity limitation rather than an approved production chain. No text or
+      added resident beyond the specified frog. All references and exact prompt unchanged.
+      Eligible hard QA then lowest lock load and higher Harmony; style/light warnings
+      advisory. Never promoted.
+qa_reports:
+  1:
+    job: x-island-il4
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 95 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.32 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.322
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.5 (at least 3.5)'
+      value: 3.55
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.57
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0331
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 5.5, off-palette 0.1% (top: #999944 (0.0%), #BBAA44
+        (0.0%))'
+      value: 1.9828
+    info:
+      metrics_raw:
+        L_p5: 66.0
+        L_p50: 89.5
+        L_p95: 94.8
+        C_p50: 9.0
+        C_p95: 45.7
+        C_p99: 52.8
+        detail: 3.29
+      metrics_locked:
+        L_p5: 66.4
+        L_p50: 89.5
+        L_p95: 94.7
+        C_p50: 9.1
+        C_p95: 44.3
+        C_p99: 50.7
+        detail: 2.57
+    fingerprint: 793a3efd81b81750
+  2:
+    job: x-island-il4
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 95 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 84.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.34 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.345
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.2 (at least 3.5)'
+      value: 3.18
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.58
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9733
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 5.0, off-palette 0.4% (top: #BB6633 (0.1%), #BB6622
+        (0.1%))'
+      value: 2.0959
+    info:
+      metrics_raw:
+        L_p5: 64.8
+        L_p50: 88.1
+        L_p95: 95.4
+        C_p50: 11.1
+        C_p95: 43.4
+        C_p99: 51.9
+        detail: 3.29
+      metrics_locked:
+        L_p5: 65.1
+        L_p50: 88.0
+        L_p95: 95.2
+        C_p50: 11.2
+        C_p95: 42.1
+        C_p99: 49.9
+        detail: 2.58
+    fingerprint: 793a3efd81b81750
+manual_review:
+  observed_note: Both show the familiar round home island widened on the right for
+    a small lily-pad pond and one frog, a stone path from a picket-fenced garden without
+    an arch to the striped-awning tea corner, and a rope bridge leaving the left edge
+    to a separate small harbor islet with bagel cart, pier and tiny ferry. The lawn
+    retains substantial empty green space, the round front door, soft earth bowl,
+    roots and cloud sea. Take1 shows two visible sunflower heads, take2 three; the
+    level4 brief does not prescribe their count. Core notes-defined stage markers
+    pass. These independently generated concepts attach only the main baseline island
+    and do not preserve pixel registration or exact earlier-level placement; later
+    frames may move the harbor, explicitly a continuity limitation rather than an
+    approved production chain. No text or added resident beyond the specified frog.
+    All references and exact prompt unchanged. Eligible hard QA then lowest lock load
+    and higher Harmony; style/light warnings advisory. Never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-31-island-milestones
+  job: x-island-il4
+  take: 1
+  round: 1
+  logical_run: 20261105-night31-il1-il4
+  source_file: /workspace/generated_images/exec-46f79419-8355-49c7-ab2a-521c463a92a9.png
+  returned_at: '2026-11-05T19:52:20.793Z'
+  prompt_sha256: 8387c6f12e650593d4c7d326eb01ada30968a22e4ede3d6c120bc8fbc285fe19
+  fingerprint: 793a3efd81b81750
+  saved_at: '2026-11-05T19:52:21.236028+00:00'
+  original_generated_png_sha256: bf2ff847409e0cf8f1226dc115fa85b49b14a0596a76be4346455b295a69bdb2
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 2b9a6e9d6df9345eeac9c59c38d3ebf9365ee47cbac645289dcd8c733b4e3c8f
+  inbox_png_sha256: 6efa70761274a9d97f5191cad2db9237ef8b80b2eff17c8848d840f80ae3a4d1
+  qa_sha256: 305e846e6662d330cfbcd343fbe13919b2d5ad407634ea84b8437dfb513fa082
+- batch: batch-31-island-milestones
+  job: x-island-il4
+  take: 2
+  round: 1
+  logical_run: 20261105-night31-il1-il4
+  source_file: /workspace/generated_images/exec-0a833a46-cc34-4bb9-b747-44b6eb74d1bf.png
+  returned_at: '2026-11-05T19:53:03.980Z'
+  prompt_sha256: 8387c6f12e650593d4c7d326eb01ada30968a22e4ede3d6c120bc8fbc285fe19
+  fingerprint: 793a3efd81b81750
+  saved_at: '2026-11-05T19:53:04.320515+00:00'
+  original_generated_png_sha256: 8ca7371e2a9a13b24f03f907803480f46eca505d88c318d66ea792babc410830
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: a029aaf6771ba3e6594aa88a491246cacfc6bb2d2b75782f34863203aead78a8
+  inbox_png_sha256: 1c3bd26bf12d6635fe9132288555f5726c00305598da8bf7569d829ca0903fea
+  qa_sha256: 67b7e747912ab95bce502d41b124372699a3ba0607097de79a1676f159c204dc
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
