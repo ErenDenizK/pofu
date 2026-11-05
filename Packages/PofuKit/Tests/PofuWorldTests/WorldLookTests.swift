@@ -27,7 +27,7 @@ struct WorldGradeTests {
         let out = WorldGrade.day.apply(lawn)
         let spread = { (c: GradeRGB) in max(c.r, c.g, c.b) - min(c.r, c.g, c.b) }
         #expect(spread(out) > spread(lawn))
-        #expect(spread(out) < spread(lawn) * 1.4)
+        #expect(spread(out) < spread(lawn) * 1.65)
     }
 
     @Test func goldenHourWarmsAndNightCools() {

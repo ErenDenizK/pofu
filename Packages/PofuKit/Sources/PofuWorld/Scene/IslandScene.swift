@@ -332,7 +332,7 @@ private struct SceneFrame<Bubble: View>: View {
         let depthMap: Image? = spikeDOF || spike.debug == .depth
             ? SpikeDepthMap.image(world: world, pose: pose, offset: offset, size: size, art: look.art)
             : nil
-        let field = spike.field(focus: SpikeDepthMap.focusDepth(model.focus))
+        let field = spike.field(focus: SpikeDepthMap.focusDepth(model.focus), focused: model.focus != nil, z: z)
         let animation: Animation? = still ? nil : .easeInOut(duration: 2.5)
         // Settled: the ambient layers hold still, so the frame is cached.
         let ambientPaused = look.hd2d && !model.needsFrames && build == nil
@@ -575,7 +575,7 @@ private struct WorldCanvas: View {
         switch object.kind {
         case .station(let status):
             let moment: BuildFrame? = build.flatMap { $0.moment.station == status.id ? $0 : nil }
-            StationView(status: status, point: point, level: level, z: z, build: moment)
+            StationView(status: status, point: point, level: level, z: z, build: moment, isFocused: model.focus == .station(status.id))
                 .overlay {
                     hitArea(
                         box: IslandLayout.stationHitBox,
@@ -703,6 +703,8 @@ private struct StationView: View {
     let level: Double
     let z: Double
     let build: BuildFrame?
+    /// The camera is on this station: its painted parts get a small idle life.
+    var isFocused = false
 
     var body: some View {
         let shown = build.map { $0.moment.shownLevel(at: $0.time) } ?? status.level
@@ -714,6 +716,7 @@ private struct StationView: View {
                     .position(x: point.x, y: point.y + 2)
                 if let art = IslandLayout.stationArt(status.id, level: shown), let sprite = WorldArt.sprite(art.name) {
                     DepthImage(name: art.name, sprite: sprite, level: level, anchor: point)
+                        .modifier(FocusLife(isActive: isFocused && build == nil, anchor: anchor))
                     if shown >= 2, !IslandLayout.hasLevelArt(status.id, level: shown), z < 1.6, let top = sprite.sharp {
                         LevelBadge(level: shown)
                             .opacity(min(max((1.6 - z) / 0.3, 0), 1))
@@ -734,6 +737,31 @@ private struct StationView: View {
             if let build {
                 BuildParticles(moment: build.moment, time: build.time, point: point)
             }
+        }
+    }
+}
+
+/// A focused station's idle life: a barely-there sway and breath about its
+/// base, so a held focus never reads as a still photograph. Pure transforms
+/// (no blur, no extra pass); the timeline runs at 30 fps and only while the
+/// station is focused, then pauses, so a settled world stays a cached frame.
+/// Off under Reduce Motion, Low Power Mode and the still frame.
+private struct FocusLife: ViewModifier {
+    let isActive: Bool
+    let anchor: UnitPoint
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.worldStillFrame) private var still
+
+    func body(content: Content) -> some View {
+        let live = isActive && !reduceMotion && !still && !ProcessInfo.processInfo.isLowPowerModeEnabled
+        TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: !live)) { context in
+            let t = context.date.timeIntervalSinceReferenceDate
+            let sway = live ? sin(t * 1.7) * 0.6 : 0
+            let breath = live ? 1 + sin(t * 2.4 + 1) * 0.006 : 1
+            content
+                .rotationEffect(.degrees(sway), anchor: anchor)
+                .scaleEffect(x: 1, y: CGFloat(breath), anchor: anchor)
         }
     }
 }

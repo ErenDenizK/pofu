@@ -28,9 +28,9 @@ extension ColourScript {
                 lift: GradeRGB(0.025, 0.008, 0.01),
                 gamma: GradeRGB(1.01, 1.0, 0.99),
                 gain: GradeRGB(1.04, 0.98, 0.92),
-                contrast: 1.06,
-                saturation: 1.1,
-                vignette: 0.22
+                contrast: 1.08,
+                saturation: 1.22,
+                vignette: 0.18
             ),
             character: WorldGrade(
                 lift: GradeRGB(0.01, 0.0, 0.015),
@@ -63,15 +63,15 @@ extension ColourScript {
             grade: WorldGrade(
                 lift: GradeRGB(0.0, 0.0, 0.012),
                 gain: GradeRGB(1.0, 1.0, 0.985),
-                contrast: 1.1,
-                saturation: 1.14,
-                vignette: 0.16
+                contrast: 1.16,
+                saturation: 1.32,
+                vignette: 0.12
             ),
             character: WorldGrade(
                 lift: GradeRGB(0.0, 0.0, 0.006),
                 gain: GradeRGB(1.0, 0.995, 0.98),
-                contrast: 1.06,
-                saturation: 1.1
+                contrast: 1.08,
+                saturation: 1.18
             )
         ),
         .golden: ColourCell(
@@ -99,9 +99,9 @@ extension ColourScript {
                 lift: GradeRGB(0.03, 0.008, -0.015),
                 gamma: GradeRGB(1.02, 1.0, 0.97),
                 gain: GradeRGB(1.07, 0.97, 0.85),
-                contrast: 1.08,
-                saturation: 1.16,
-                vignette: 0.26
+                contrast: 1.12,
+                saturation: 1.3,
+                vignette: 0.2
             ),
             character: WorldGrade(
                 lift: GradeRGB(0.015, 0.004, 0.0),
@@ -135,10 +135,10 @@ extension ColourScript {
                 black: 0.18,
                 gamma: GradeRGB(0.88, 0.9, 0.98),
                 gain: GradeRGB(0.68, 0.68, 0.92),
-                contrast: 1.12,
+                contrast: 1.14,
                 pivot: 0.35,
-                saturation: 0.82,
-                vignette: 0.32
+                saturation: 0.9,
+                vignette: 0.26
             ),
             character: WorldGrade(
                 lift: GradeRGB(0.012, 0.008, 0.02),
@@ -174,10 +174,10 @@ extension ColourScript {
                 black: 0.32,
                 gamma: GradeRGB(0.8, 0.85, 0.97),
                 gain: GradeRGB(0.44, 0.5, 0.9),
-                contrast: 1.18,
+                contrast: 1.2,
                 pivot: 0.2,
-                saturation: 0.62,
-                vignette: 0.4
+                saturation: 0.72,
+                vignette: 0.32
             ),
             character: WorldGrade(
                 gamma: GradeRGB(0.95, 0.95, 0.95),

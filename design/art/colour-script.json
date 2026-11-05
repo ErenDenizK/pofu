@@ -33,7 +33,7 @@
       "sea": {"light": "#FFF1EA", "shade": "#E3C4C8", "opacity": 0.95},
       "gamut": {"hue": [20, 90], "chroma": 40},
       "accents": ["rose-copper"],
-      "grade": {"lift": [0.025, 0.008, 0.01], "gamma": [1.01, 1.0, 0.99], "gain": [1.04, 0.98, 0.92], "contrast": 1.06, "saturation": 1.10, "vignette": 0.22},
+      "grade": {"lift": [0.025, 0.008, 0.01], "gamma": [1.01, 1.0, 0.99], "gain": [1.04, 0.98, 0.92], "contrast": 1.08, "saturation": 1.22, "vignette": 0.18},
       "character": {"lift": [0.01, 0.0, 0.015], "gain": [1.03, 0.97, 0.93], "contrast": 1.04, "saturation": 1.08}
     },
     "day": {
@@ -49,8 +49,8 @@
       "sea": {"light": "#FFFFFF", "shade": "#D8E3EF", "opacity": 0.95},
       "gamut": {"hue": [0, 360], "chroma": 50},
       "accents": ["rose-copper", "awning-rose", "petal-honey"],
-      "grade": {"lift": [0.0, 0.0, 0.012], "gain": [1.0, 1.0, 0.985], "contrast": 1.10, "saturation": 1.14, "vignette": 0.16},
-      "character": {"lift": [0.0, 0.0, 0.006], "gain": [1.0, 0.995, 0.98], "contrast": 1.06, "saturation": 1.10}
+      "grade": {"lift": [0.0, 0.0, 0.012], "gain": [1.0, 1.0, 0.985], "contrast": 1.16, "saturation": 1.32, "vignette": 0.12},
+      "character": {"lift": [0.0, 0.0, 0.006], "gain": [1.0, 0.995, 0.98], "contrast": 1.08, "saturation": 1.18}
     },
     "golden": {
       "feeling": "The day's reward",
@@ -65,7 +65,7 @@
       "sea": {"light": "#FFE5D2", "shade": "#D3A3B0", "opacity": 0.95},
       "gamut": {"hue": [10, 110], "chroma": 52},
       "accents": ["rose-copper", "petal-honey"],
-      "grade": {"lift": [0.03, 0.008, -0.015], "gamma": [1.02, 1.0, 0.97], "gain": [1.07, 0.97, 0.85], "contrast": 1.08, "saturation": 1.16, "vignette": 0.26},
+      "grade": {"lift": [0.03, 0.008, -0.015], "gamma": [1.02, 1.0, 0.97], "gain": [1.07, 0.97, 0.85], "contrast": 1.12, "saturation": 1.30, "vignette": 0.20},
       "character": {"lift": [0.015, 0.004, 0.0], "gain": [1.05, 0.97, 0.86], "contrast": 1.05, "saturation": 1.10}
     },
     "dusk": {
@@ -81,7 +81,7 @@
       "sea": {"light": "#A795BC", "shade": "#5E5384", "opacity": 0.9},
       "gamut": {"hue": [240, 330], "chroma": 30},
       "accents": ["practical-light", "rose-copper"],
-      "grade": {"black": 0.18, "gamma": [0.88, 0.9, 0.98], "gain": [0.68, 0.68, 0.92], "contrast": 1.12, "pivot": 0.35, "saturation": 0.82, "vignette": 0.32},
+      "grade": {"black": 0.18, "gamma": [0.88, 0.9, 0.98], "gain": [0.68, 0.68, 0.92], "contrast": 1.14, "pivot": 0.35, "saturation": 0.90, "vignette": 0.26},
       "character": {"lift": [0.012, 0.008, 0.02], "gamma": [0.97, 0.97, 0.98], "gain": [0.80, 0.76, 0.74], "contrast": 1.05, "pivot": 0.45, "saturation": 1.05}
     },
     "night": {
@@ -97,7 +97,7 @@
       "sea": {"light": "#9490C0", "shade": "#57527F", "opacity": 0.88},
       "gamut": {"hue": [230, 320], "chroma": 24},
       "accents": ["practical-light", "rose-copper", "pofu-fur"],
-      "grade": {"black": 0.32, "gamma": [0.80, 0.85, 0.97], "gain": [0.44, 0.50, 0.90], "contrast": 1.18, "pivot": 0.2, "saturation": 0.62, "vignette": 0.40},
+      "grade": {"black": 0.32, "gamma": [0.80, 0.85, 0.97], "gain": [0.44, 0.50, 0.90], "contrast": 1.20, "pivot": 0.2, "saturation": 0.72, "vignette": 0.32},
       "character": {"gamma": [0.95, 0.95, 0.95], "gain": [0.64, 0.61, 0.57], "contrast": 1.05, "pivot": 0.4, "saturation": 1.05}
     }
   },
