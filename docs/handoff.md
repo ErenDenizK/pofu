@@ -3,6 +3,24 @@
 The lead session restarts daily to keep context small. Read this, CLAUDE.md
 and `docs/product/founder-input.md`, then delete what is done.
 
+## 2026-11-05 (evening)
+
+**Done:** playable build v1: perf (#166), playable flow, icon, day/night
+(#167), vivid round 1 (#174); story refs incl. One Piece (#165, #169);
+deep lore (#177); home progression (#175); Codex never idles (#168: READY,
+then BACKLOG B1-B6, then -v2 variations; founder pasted the one-liner).
+
+**Open with the founder:** island-by-island discussion (4 or 5 main
+islands; questions in chat), deep-lore questions (Ihlamur on screen, Koke
+as Nazlı's mother; the fifth note must come from quiet data, never audio),
+home-progression questions (residents movable, real-calendar seasons).
+
+**Next:** (1) vivid round 2: the home view is still soft (big hazy sky
+band, painterly plate); judge framing and plate sharpness, not only grade;
+(2) PofuCore per game-plan §10 and home-progression: harbor day 3,
+retire station islands, island level and soft caps; (3) after the island
+talk: per-island concept briefs for Codex.
+
 ## 2026-11-05
 
 **Done:** refit and poses merged (#156, #157); dependents and the

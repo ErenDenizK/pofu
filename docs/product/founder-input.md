@@ -26,6 +26,26 @@ not orders: each entry records **what he meant**, the **status**, and
   Feel is tuned natively on his iPhone.
 - **Merging:** the agent may merge PRs, with merge commits, only on green CI.
 
+## 2026-11-05 (evening): deep lore, home growth, vividness
+
+- **Deep background lore** behind the surface story: much deeper,
+  important things. Handled: `docs/product/deep-lore.md` (#177).
+- **Home growth:** several things grow slowly together, levels gently
+  capped if needed; maxing one thing and maxing everything must pay off
+  big; level-ups judged like Cats & Soup; more than one upgradable thing
+  on the home island; plan every level, object, character, add-on,
+  light and effect from day one to the end, on paper, then concept, then
+  build. Handled: `docs/product/home-progression.md` (#175).
+- **Look:** focus works but feels heavy and static; zoom shows no detail;
+  objects (sunflowers) are pale, colour and light lifeless. Round 1 in
+  #174 (less blur, more saturation, faster focus, a focus sway); still
+  too soft overall, round 2 planned.
+- **Optimise** both the app and the workflow.
+- Earlier the same day: One Piece research (#169), main islands 4 or 5,
+  each discussed one by one with him; the story must move fast and every
+  act must truly end; Codex must never idle (#168); concept visuals
+  between game and concept per island after the discussion.
+
 ## 2026-11-05 (after testing the slice on his iPhone)
 
 He expected more; the build felt fragmentary ("bölük pörçük"):
