@@ -411,8 +411,11 @@ private struct SceneFrame<Bubble: View>: View {
         let depthMap: Image? = (spikeDOF && rack > 0.001) || spike.debug == .depth
             ? SpikeDepthMap.image(world: world, pose: pose, offset: offset, size: size, art: look.art)
             : nil
-        var field = spike.field(focus: SpikeDepthMap.focusDepth(model.focus), focused: model.focus != nil, z: z)
-        field.maxRadius *= rack
+        let field: DepthOfField = {
+            var f = spike.field(focus: SpikeDepthMap.focusDepth(model.focus), focused: model.focus != nil, z: z)
+            f.maxRadius *= rack
+            return f
+        }()
         let animation: Animation? = still ? nil : .easeInOut(duration: 2.5)
         // Settled: the ambient layers hold still, so the frame is cached.
         let ambientPaused = look.hd2d && !model.needsFrames && build == nil

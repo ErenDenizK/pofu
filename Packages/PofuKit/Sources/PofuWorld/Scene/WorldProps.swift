@@ -4,6 +4,7 @@ import SwiftUI
 /// The camera at one frame, for views that live in the world (experience
 /// v1 §1.4): the home objects are projected with the same pose as Pofu, so
 /// they never lag or bob.
+@MainActor
 public struct WorldPropsFrame {
     public let pose: CameraPose
     public let size: CGSize
