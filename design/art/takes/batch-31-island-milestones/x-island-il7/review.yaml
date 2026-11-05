@@ -1,0 +1,215 @@
+batch: batch-31-island-milestones
+manifest: tools/imagegen/manifest/batch-31-island-milestones.yaml
+manifest_sha256: 6e982829318ae68039a10ad1c6466e6bf03e51b9af792d10d1cf64a64248f898
+contact_sheet: design/art/takes/batch-31-island-milestones/x-island-il7/contact.jpg
+jobs:
+  x-island-il7:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both focus on the level7 additions:
+      raised rear terrace with tool-wall workshop, chimney and large gear sign; striped
+      lighthouse and warm lamp on a small harbor platform; rose, lilac and mustard
+      borders along paths; glowing round path lamps; bench, paper-lantern string,
+      toy sailboat at the pond and mailbox beside the round front door. No windmill
+      is built. Familiar home grass/earth bowl, embedded pebbles, hanging roots and
+      cloud sea remain recognisable. The complete previous-level garden/tea layout
+      is not represented in these new-feature concept crops: only the base island
+      is attached, no earlier concept frame is a reference. Harbor side also changes
+      between takes and later milestones. Preserve these layout/continuity limitations
+      explicitly; these are independent explorations, never a registered or complete
+      production upgrade chain. The job notes-defined listed additions/decor review
+      passes in both. No text, extra residents or head curls. Eligible hard QA then
+      lowest lock load and higher Harmony; exploration style/light warnings advisory.
+      Never promoted.'
+qa_reports:
+  1:
+    job: x-island-il7
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 48.7
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 54 (at most 24), p98 90 (at least 86), spread
+        36 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 35.8
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 76 (band 48-86)'
+      value: 75.9
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.27 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.271
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 5.0 (at least 3.4)'
+      value: 5.01
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.5 (R1 5.3)
+      value: 3.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.9
+      value: 1.8646
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.4, p95 7.2, off-palette 0.9% (top: #DD8844 (0.2%), #995522
+        (0.1%))'
+      value: 2.3532
+    info:
+      metrics_raw:
+        L_p5: 57.9
+        L_p50: 81.0
+        L_p95: 89.5
+        C_p50: 25.8
+        C_p95: 49.9
+        C_p99: 60.6
+        detail: 4.41
+      metrics_locked:
+        L_p5: 58.6
+        L_p50: 81.0
+        L_p95: 89.3
+        C_p50: 25.9
+        C_p95: 48.7
+        C_p99: 57.8
+        detail: 3.48
+    fingerprint: 69887f28c45dc777
+  2:
+    job: x-island-il7
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 49.5
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 54 (at most 24), p98 93 (at least 86), spread
+        39 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 38.6
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 79 (band 48-86)'
+      value: 79.3
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.26 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.255
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 4.9 (at least 3.4)'
+      value: 4.93
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.2 (R1 5.3)
+      value: 3.2
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.5896
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.4, p95 7.4, off-palette 0.9% (top: #DD8844 (0.2%), #CC7744
+        (0.1%))'
+      value: 2.3854
+    info:
+      metrics_raw:
+        L_p5: 58.4
+        L_p50: 82.6
+        L_p95: 91.6
+        C_p50: 26.5
+        C_p95: 50.7
+        C_p99: 59.9
+        detail: 4.08
+      metrics_locked:
+        L_p5: 59.1
+        L_p50: 82.5
+        L_p95: 91.5
+        C_p50: 26.6
+        C_p95: 49.5
+        C_p99: 57.4
+        detail: 3.2
+    fingerprint: 69887f28c45dc777
+manual_review:
+  observed_note: 'Both focus on the level7 additions: raised rear terrace with tool-wall
+    workshop, chimney and large gear sign; striped lighthouse and warm lamp on a small
+    harbor platform; rose, lilac and mustard borders along paths; glowing round path
+    lamps; bench, paper-lantern string, toy sailboat at the pond and mailbox beside
+    the round front door. No windmill is built. Familiar home grass/earth bowl, embedded
+    pebbles, hanging roots and cloud sea remain recognisable. The complete previous-level
+    garden/tea layout is not represented in these new-feature concept crops: only
+    the base island is attached, no earlier concept frame is a reference. Harbor side
+    also changes between takes and later milestones. Preserve these layout/continuity
+    limitations explicitly; these are independent explorations, never a registered
+    or complete production upgrade chain. The job notes-defined listed additions/decor
+    review passes in both. No text, extra residents or head curls. Eligible hard QA
+    then lowest lock load and higher Harmony; exploration style/light warnings advisory.
+    Never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-31-island-milestones
+  job: x-island-il7
+  take: 1
+  round: 1
+  logical_run: 20261105-night31-il7-il10
+  source_file: /workspace/generated_images/exec-703b7db5-65e8-4300-ae28-63b19482cf8e.png
+  returned_at: '2026-11-05T19:51:28.141Z'
+  prompt_sha256: 63bc881ed5ea04642b2e70386a4bb91af05fb6770ea5da0a341b93b265a776c5
+  fingerprint: 69887f28c45dc777
+  saved_at: '2026-11-05T19:51:30.377746+00:00'
+  original_generated_png_sha256: bc0ac7625f7ca919e37662e32205c650ca0961be1d166bd876c7ccdd00dece78
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 1c52973466855c388f2f204f8c4668f11f7a26557d1ec16306dc68e216069f1d
+  inbox_png_sha256: d5fa35617d35dd3ba497e2f2b15dab2041df17b5feca6c93f0a27e51b59a48dc
+  qa_sha256: b2f61110d1a780dc848ca8ed2a071f27ffe96619d54694664659d8f09a6efb5c
+- batch: batch-31-island-milestones
+  job: x-island-il7
+  take: 2
+  round: 1
+  logical_run: 20261105-night31-il7-il10
+  source_file: /workspace/generated_images/exec-1c0c8656-d364-4acf-972c-e8b07ff9603c.png
+  returned_at: '2026-11-05T19:53:48.366Z'
+  prompt_sha256: 63bc881ed5ea04642b2e70386a4bb91af05fb6770ea5da0a341b93b265a776c5
+  fingerprint: 69887f28c45dc777
+  saved_at: '2026-11-05T19:53:48.804107+00:00'
+  original_generated_png_sha256: c87d581cc64af7a76aa76c36e3f9d2fa3e4b250b1765ef00b7721d414c330515
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 1b2d052ee49244780162bc230e407e2e6aae9f858f5e0c3b52d22a5f69fb968e
+  inbox_png_sha256: f2b81d93d1cb746263235b8d476f6c798776348bf59ad0a55e945b0017b0088d
+  qa_sha256: 6fd027a91a3e36e0252289957ee9f702cf1e92a8bd0ea6bec142fdcfa7d622fb
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
