@@ -98,6 +98,12 @@ struct HomeView: View {
                 model.tick()
             }
         }
+        // Sheets and covers freeze the world's ambient layers while they
+        // are up, so presenting and dismissing them never competes with a
+        // live scene.
+        .onChange(of: model.homeSheet != nil || model.isPlayingGarden, initial: true) { _, covered in
+            model.island.isCovered = covered
+        }
         .sheet(item: $model.homeSheet) { sheet in
             switch sheet {
             case .earn:
@@ -105,19 +111,24 @@ struct HomeView: View {
                 // together, with Pofu's room still showing above.
                 EarnSheet(model: model)
                     .presentationDetents([.fraction(0.68), .large])
+                    .pofuSheetBackground()
             case .passes:
                 PassesSheet(model: model)
                     .presentationDetents([.medium, .large])
+                    .pofuSheetBackground()
             case .settings:
                 SettingsView(model: model)
+                    .pofuSheetBackground()
             case .setup:
                 NavigationStack {
                     SetupGuideView(model: model)
                         .pofuSheetChrome()
                 }
+                .pofuSheetBackground()
             case .today:
                 TodaySheet(model: model)
                     .presentationDetents([.medium, .large])
+                    .pofuSheetBackground()
             }
         }
         // The garden game takes the whole screen, like Hop!.

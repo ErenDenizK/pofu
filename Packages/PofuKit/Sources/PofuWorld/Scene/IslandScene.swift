@@ -189,6 +189,7 @@ public struct IslandScene<Bubble: View>: View {
             .id(item.station)
             .transition(.opacity)
             .presentationDetents(detents, selection: detentSelection)
+            .pofuSheetBackground()
             .presentationBackgroundInteraction(.enabled(upThrough: .fraction(0.42)))
             .presentationContentInteraction(.resizes)
         }
