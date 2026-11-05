@@ -178,7 +178,8 @@ jobs:
           mossy island no bigger than a cottage lot: a short wooden bench, a single
           mooring post whose rope runs to the pier, a tuft of grass and one dark
           honey-wood lantern hook with nothing on it; beside the hook a faint pale
-          scar in her skin shaped like a switched-off light bulb. She floats alongside
+          scar in her skin shaped like a small unlit paper lantern (a rounded lantern
+          outline, never a light bulb). She floats alongside
           the pier, her head toward the islet, as a ferry would; Pofu and Mochi stand
           at the end of the pier with a small bag, about to step onto her back. Soft
           morning light. GAME CAMERA: the camera of the attached home island, a low
@@ -187,7 +188,7 @@ jobs:
           filling the right two thirds, over the sea of clouds. Peaceful and wondrous,
           never dramatic.
       - block: prop-style-v2
-      - text: "AVOID: a scary or monstrous whale, teeth, a big open mouth, harpoons, ropes cutting into her, water or waves, a ship's deck, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"
+      - text: "AVOID: a light bulb or any modern object, a scary or monstrous whale, teeth, a big open mouth, harpoons, ropes cutting into her, water or waves, a ship's deck, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"
 
   - id: x-gezgin-f2-harbor
     kind: plate
@@ -230,7 +231,7 @@ jobs:
           frame at the size it has in the game, Nazlı filling the right two thirds,
           over the sea of clouds. Peaceful and wondrous, never dramatic.
       - block: prop-style-v2
-      - text: "AVOID: a scary or monstrous whale, teeth, a big open mouth, harpoons, ropes cutting into her, water or waves, a ship's deck, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"
+      - text: "AVOID: a light bulb or any modern object, a scary or monstrous whale, teeth, a big open mouth, harpoons, ropes cutting into her, water or waves, a ship's deck, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"
 
   - id: x-revontuli-stuck
     kind: plate
