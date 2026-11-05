@@ -189,8 +189,22 @@ struct SunShadowLayer: View {
     /// Where a world point lands on the canvas (the plate's depth).
     let place: (WorldPoint) -> CGPoint
 
+    @Environment(\.worldLook.shadowDebug) private var debug
+
+    /// Debug: everything full-strength magenta (the sun's own direction and
+    /// length stay, so placement can be checked).
+    private var drawn: SunShadow {
+        guard debug else { return sun }
+        var copy = sun
+        copy.tint = GradeRGB(1, 0, 1)
+        copy.opacity = 1
+        copy.padOpacity = 1
+        copy.characters = [:]
+        return copy
+    }
+
     var body: some View {
-        if let baked = ShadowBakeCache.baked(sun: sun, layout: layout) {
+        if let baked = ShadowBakeCache.baked(sun: drawn, layout: layout) {
             let origin = place(WorldPoint(x: baked.rect.minX, y: baked.rect.minY))
             Image(uiImage: baked.image)
                 .resizable()

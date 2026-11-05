@@ -49,9 +49,9 @@ struct SunShadowTests {
 
     @Test func opacityBySpec() {
         // Dark enough to read over green grass, still soft.
-        #expect(noon.opacity >= 0.34 && noon.opacity <= 0.42)
-        #expect(evening.opacity >= 0.30 && evening.opacity <= 0.38)
-        #expect(dawn.opacity >= 0.18 && dawn.opacity <= 0.26)
+        #expect(noon.opacity >= 0.45 && noon.opacity <= 0.55)
+        #expect(evening.opacity >= 0.45 && evening.opacity <= 0.56)
+        #expect(dawn.opacity >= 0.30 && dawn.opacity <= 0.38)
         #expect(noon.softness < evening.softness && evening.softness < dawn.softness)
     }
 
@@ -64,8 +64,8 @@ struct SunShadowTests {
     }
 
     @Test func padIsDarkerAtNight() {
-        #expect(abs(noon.padOpacity - 0.30) < 1e-9)
-        #expect(abs(night.padOpacity - 0.35) < 1e-9)
+        #expect(abs(noon.padOpacity - 0.38) < 1e-9)
+        #expect(abs(night.padOpacity - 0.42) < 1e-9)
     }
 
     private func luminance(_ c: GradeRGB) -> Double { 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b }
@@ -80,8 +80,8 @@ struct SunShadowTests {
         // ...with the cell's hue: the channel ratios survive.
         let k = noon.tint.r / max(cell.shadow.r, 1e-9)
         #expect(abs(noon.tint.g - cell.shadow.g * k) < 1e-6 && abs(noon.tint.b - cell.shadow.b * k) < 1e-6)
-        #expect(luminance(evening.tint) < 0.25)
-        #expect(luminance(dawn.tint) < 0.25)
+        #expect(luminance(evening.tint) < 0.2)
+        #expect(luminance(dawn.tint) < 0.2)
     }
 
     @Test func darkeningKeepsTheHueAndHandlesBlack() {

@@ -207,8 +207,9 @@ public enum LookTuning {
     public static let bounceGain = 0.5
     public static let floorGain = 0.5
     /// How strongly a pool of the baked light map glows: the glow-ground-pool
-    /// art's opacity at full source strength (the art's centre is near 1).
-    public static let poolArtOpacity = 0.6
+    /// art's opacity at full source strength; the pool is alpha over the
+    /// lawn, so it cannot add more than this much of its colour.
+    public static let poolArtOpacity = 0.45
 }
 
 extension Lens {

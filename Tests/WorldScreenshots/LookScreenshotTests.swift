@@ -181,12 +181,20 @@ final class LookScreenshotTests: XCTestCase {
         for (id, hour) in [("1200", 12.0), ("1830", 18.5)] {
             try write(try await shot(.island, hour: hour), name: "shadow-pofu-\(id)", to: folder)
         }
-        // The wide shot: the camera out on the whole island, so the stations
-        // and the shadows under them (and at night their light) are in view.
+        // The wide shot: the establishing frame, the whole island, so every
+        // station and the shadow under it (and at night its light) is in view.
+        func wide(hour: Double, debug: Bool = false) async throws -> UIImage {
+            let model = IslandSceneModel(framing: .island)
+            model.holdEstablishingShot()
+            var look = WorldLook(hourOverride: hour)
+            look.shadowDebug = debug
+            let view = LookScene(world: world(wellbeing: 78), model: model).environment(\.worldLook, look)
+            return try await render(AnyView(view), in: scene, settle: 1400)
+        }
         let wideTimes: [(String, Double, String)] = [("1200", 12, "12:00"), ("1830", 18.5, "18:30"), ("2230", 22.5, "22:30")]
         var wides: [UIImage] = []
         for (id, hour, _) in wideTimes {
-            let image = try await shot(.island, hour: hour)
+            let image = try await wide(hour: hour)
             try write(image, name: "shadow-wide-\(id)", to: folder)
             wides.append(image)
         }
@@ -194,6 +202,10 @@ final class LookScreenshotTests: XCTestCase {
             grid([wides], titles: [wideTimes.map { "Wide · \($0.2)" }], cell: CGSize(width: 268, height: 582)),
             name: "shadow-wide", to: folder
         )
+        // Debug: the baked shadow layer alone, full opacity, magenta, to prove
+        // where it lands (away from the sun, toward the camera).
+        try write(try await wide(hour: 18.5, debug: true), name: "shadow-debug-1830", to: folder)
+        try write(try await wide(hour: 12, debug: true), name: "shadow-debug-1200", to: folder)
     }
 
     // MARK: - Where things are in a frame

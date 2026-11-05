@@ -453,6 +453,10 @@ private struct SceneFrame<Bubble: View>: View {
         let light = baseLight.withSun(x: palette.sun.x, y: palette.sun.y)
         // One sun (or moon) for every shadow on the ground (light and shadow v2).
         let shadow = SunShadow.make(light: light, world: world)
+        // The night's pools on the lawn, under every object (LS-2).
+        let pools = look.hd2d
+            ? LightField.make(world: world, light: light, guestNight: VisitorStage.isGuestNight(world.visitor))
+            : LightField(sources: [], ambientFloor: 0, moonRim: 0, moonColour: .zero)
         // Without the runtime grade, the time of day tints the painted
         // world as before (game design §15: no night versions are
         // generated); with it, the colour script does the whole job.
@@ -519,7 +523,8 @@ private struct SceneFrame<Bubble: View>: View {
                     clock: clock,
                     characterGrade: characterGrade,
                     life: life,
-                    shadow: shadow
+                    shadow: shadow,
+                    pools: pools
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
@@ -548,7 +553,8 @@ private struct SceneFrame<Bubble: View>: View {
                     clock: clock,
                     characterGrade: characterGrade,
                     life: life,
-                    shadow: shadow
+                    shadow: shadow,
+                    pools: pools
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
@@ -697,6 +703,8 @@ private struct WorldCanvas: View {
     let life: LifeFrame
     /// The sun's (or the moon's) shadow on the ground.
     let shadow: SunShadow
+    /// The light field whose pools lie on the lawn.
+    let pools: LightField
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -718,6 +726,9 @@ private struct WorldCanvas: View {
                     sun: shadow,
                     layout: ShadowCasters.Signature(stations: world.stations, islandLevel: life.islandLevel)
                 ) { point in
+                    canvasPoint(point, depth: IslandLayout.depth(ofY: ShadowTuning.layerY))
+                }
+                GroundPoolLayer(field: pools) { point in
                     canvasPoint(point, depth: IslandLayout.depth(ofY: ShadowTuning.layerY))
                 }
             }

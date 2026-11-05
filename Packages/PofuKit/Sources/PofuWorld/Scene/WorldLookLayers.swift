@@ -161,10 +161,10 @@ struct HD2DLayer: View {
     }
 
     var body: some View {
-        // The field and its baked pools, outside the draw: both change a few
-        // times an evening.
+        // The field, outside the draw: it changes a few times an evening.
+        // Its ground pools are the scene's (`GroundPoolLayer`), under every
+        // object and character.
         let field = LightField.make(world: world, light: light, guestNight: guestNight)
-        let poolMap = relit ? nil : LightMapCache.image(for: field)
         return Canvas(rendersAsynchronously: false) { context, size in
             var glow = context
             glow.blendMode = .plusLighter
@@ -177,7 +177,6 @@ struct HD2DLayer: View {
             }
             drawSunBloom(in: &glow, size: size)
             if !relit {
-                drawGroundPools(poolMap, in: &glow)
                 drawPools(in: &glow)
                 drawRims(field: field, glow: &glow)
             }
@@ -339,16 +338,6 @@ struct HD2DLayer: View {
                 center: c, startRadius: 0, endRadius: r
             ))
         }
-    }
-
-    /// The pools of light on the ground: one quad of the baked light map
-    /// under the camera transform, however many sources there are.
-    private func drawGroundPools(_ map: Image?, in context: inout GraphicsContext) {
-        guard let map else { return }
-        let bounds = LightField.mapBounds
-        let a = screen(WorldPoint(x: bounds.minX, y: bounds.minY))
-        let b = screen(WorldPoint(x: bounds.maxX, y: bounds.maxY))
-        context.draw(map, in: CGRect(x: a.x, y: a.y, width: b.x - a.x, height: b.y - a.y))
     }
 
     /// A painted halo on each field source the emitters do not already
@@ -602,6 +591,33 @@ struct HD2DLayer: View {
 
 // MARK: - The light map, baked
 
+/// The ground pools of every lit source: the baked light map as one image
+/// in world space, on the lawn between the shadow layer and the objects, so
+/// a pool never washes over a character or a station (they take the light
+/// through their rims and bounce). The map's alpha is the pool's own
+/// strength, capped by `LookTuning.poolArtOpacity`, so the lawn under it
+/// never clips.
+struct GroundPoolLayer: View {
+    let field: LightField
+    /// Where a world point lands on the canvas (the plate's depth).
+    let place: (WorldPoint) -> CGPoint
+
+    var body: some View {
+        if let image = LightMapCache.image(for: field) {
+            let bounds = LightField.mapBounds
+            let width = bounds.maxX - bounds.minX, height = bounds.maxY - bounds.minY
+            let origin = place(WorldPoint(x: bounds.minX, y: bounds.minY))
+            image
+                .resizable()
+                .interpolation(.high)
+                .frame(width: width, height: height)
+                .position(x: origin.x + width / 2, y: origin.y + height / 2)
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
+        }
+    }
+}
+
 /// The pools of every lit source, painted into one low-resolution map
 /// (512 x 256 over `LightField.mapBounds`) and kept until the lit set or a
 /// strength bucket changes, a few times an evening. Each frame draws it as
@@ -654,7 +670,7 @@ private struct PoolMapArt: View {
                     // the source and added.
                     let pond = source.shape == .pondEllipse
                     let c = map(WorldPoint(x: source.point.x, y: source.point.y + 2))
-                    let width = source.reach * k * 2 / 0.8 * (pond ? 1.15 : 1.0)
+                    let width = source.reach * k * 2 * (pond ? 1.15 : 1.0)
                     let height = width * (pond ? 0.4 : 0.5)
                     var art = layer.resolve(Image("glow-ground-pool", bundle: .module))
                     art.shading = .color(tint(source.colour, LookTuning.poolArtOpacity * strength))

@@ -26,9 +26,9 @@ public enum ShadowTuning {
 
     // MARK: Opacity and softness (0 crisp … 1 very soft)
 
-    public static let dayOpacity = 0.38
-    public static let goldenOpacity = 0.34
-    public static let dawnOpacity = 0.22
+    public static let dayOpacity = 0.50
+    public static let goldenOpacity = 0.52
+    public static let dawnOpacity = 0.34
     public static let daySoftness = 0.25
     public static let goldenSoftness = 0.55
     public static let dawnSoftness = 0.85
@@ -49,12 +49,12 @@ public enum ShadowTuning {
     /// grass a light colour at a quarter opacity was invisible, so the
     /// shadow keeps the cell's hue (violet at golden, cool at dawn) at this
     /// low luminance.
-    public static let tintLuminance = 0.2
+    public static let tintLuminance = 0.14
 
     // MARK: Ambient occlusion pad
 
-    public static let padOpacityDay = 0.30
-    public static let padOpacityNight = 0.35
+    public static let padOpacityDay = 0.38
+    public static let padOpacityNight = 0.42
 
     // MARK: Shadows from night light sources
 

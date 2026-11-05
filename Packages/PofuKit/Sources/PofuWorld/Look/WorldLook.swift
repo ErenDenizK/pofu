@@ -57,6 +57,9 @@ public struct WorldLook: Hashable, Sendable {
     /// The painted night overlays of practical lights (tea-stall-1-lit's flame);
     /// off only to compare.
     public var litOverlays = true
+    /// Debug (screenshots): the baked shadow layer alone, full opacity,
+    /// magenta, to prove where it lands.
+    public var shadowDebug = false
     /// Depth-map depth of field (on by default) and normal-lit art (off by
     /// default), switched in Rehearsal mode's tuning lab panel. Whole-layer blur
     /// remains the fallback where shaders are unavailable.
