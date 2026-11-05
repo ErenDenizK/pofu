@@ -1,0 +1,137 @@
+{
+  "job": "pier-5",
+  "batch": "batch-21-harbor-ladders",
+  "asset": "station__pier-5",
+  "take": 4,
+  "takes_considered": 4,
+  "approved_at": "2026-11-05T06:37:03+00:00",
+  "image": "design/art/stations/pier-5/pier-5.png",
+  "raw": "design/art/stations/pier-5/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "d46a043bc63bf092",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nAdd a string of small triangular bunting flags in coral, cream and sea blue hung in soft swags from post to post along the pier's front edge. The bunting stays inside the canvas; everything else stays.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/pier-4/pier-4.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T06:32:26+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 0,
+    "dy": 0
+  },
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 55 (R1 51)",
+        "value": 54.9
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 42 (at most 22), p98 91 (at least 90), spread 50 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 49.7
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 75 (band 55-90)",
+        "value": 74.7
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means a wash)",
+        "value": 0.118
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 8.4 (at least 3.5)",
+        "value": 8.4
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 4.8 (R1 5.3)",
+        "value": 4.85
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.3",
+        "value": 1.3233
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 3.3, p95 13.6, off-palette 6.9% (top: #558899 (1.1%), #557788 (0.9%))",
+        "value": 3.3428
+      },
+      {
+        "check": "station_anchor",
+        "status": "pass",
+        "message": "on the parent's anchor",
+        "value": 910.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 70 against the world reference (outliers: L_p2, detail, edge)",
+        "value": 70.0
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "94% of the parent level unchanged",
+        "value": 0.9359
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.02 of the parent level (drift compounds along a chain)",
+        "value": 1.0244
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Exactly4 takes after the one allowed retry. Takes1/2/3 fail hard palette_drift; take4 is the only hard-QA-passing candidate. Visual review confirms small triangular coral/cream/sea-blue bunting flags in soft swags from front post to post, wholly inside the canvas. The original coral rope, mooring rope/ferry, unlit lantern, honey bench, exactly two tulip tea glasses on their cream tray, planks/posts, framing and scale remain. No water, wake, smoke, ground shadow or guide. Parent station-anchor passes with no width/ground warning. Edit stability0.9359, chroma1.0244, style-lock load1.3233 and Harmony70.0. Chroma/light/palette warnings are advisory; no hard gate waived, palette/manifest/threshold edit or root guide fit. Auto-pick take4; founder review pending."
+}

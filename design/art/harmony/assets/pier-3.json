@@ -1,0 +1,60 @@
+{
+ "after": {
+  "C_mean": 31.993,
+  "C_p50": 36.758,
+  "C_p95": 47.797,
+  "L_mean": 72.592,
+  "L_p2": 44.752,
+  "L_p98": 92.013,
+  "detail": 3.485,
+  "edge": 0.421,
+  "tint_a": 4.303,
+  "tint_b": 10.708,
+  "warmth_b": 27.476
+ },
+ "before": {
+  "C_mean": 31.993,
+  "C_p50": 36.758,
+  "C_p95": 47.797,
+  "L_mean": 72.592,
+  "L_p2": 44.752,
+  "L_p98": 92.013,
+  "detail": 3.485,
+  "edge": 0.421,
+  "tint_a": 4.303,
+  "tint_b": 10.708,
+  "warmth_b": 27.476
+ },
+ "chain": {
+  "C_p50": 34.791,
+  "L_p2": 50.011,
+  "L_p98": 91.797
+ },
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "detail",
+  "edge"
+ ],
+ "outliers_before": [
+  "detail",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 78.1,
+ "score_before": 78.1,
+ "shipped": false,
+ "source": "design/art/stations/pier-3/pier-3.png",
+ "source_sha": "4a6971bdc76b6677"
+}

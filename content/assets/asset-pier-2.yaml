@@ -2,7 +2,7 @@ id: asset-pier-2
 type: asset
 title_tr: pier-2
 title_en: pier-2 (station)
-status: cut
+status: in-production
 horizon: next
 summary: Add a short honey wooden post at the pier's outer end with a plump round
   lantern of cream paper-tinted glass under a small coral cap, unlit (the glow is
@@ -11,7 +11,8 @@ links:
   variant_of:
   - asset-pier-1
 art:
-  images: []
+  images:
+  - design/art/stations/pier-2/pier-2.png
   jobs:
   - batch-21-harbor-ladders:pier-2
 sources:

@@ -2,7 +2,7 @@ id: asset-lighthouse-2
 type: asset
 title_tr: lighthouse-2
 title_en: lighthouse-2 (station)
-status: cut
+status: in-production
 horizon: next
 summary: 'Light the lamp room: the dark glass becomes a warm honey-amber glowing lantern,
   brightest in the middle, painted as soft broad shapes. Only the lamp room changes:
@@ -12,7 +12,8 @@ links:
   variant_of:
   - asset-lighthouse-1
 art:
-  images: []
+  images:
+  - design/art/stations/lighthouse-2/lighthouse-2.png
   jobs:
   - batch-21-harbor-ladders:lighthouse-2
 sources:

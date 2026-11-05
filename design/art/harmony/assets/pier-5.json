@@ -1,0 +1,62 @@
+{
+ "after": {
+  "C_mean": 30.846,
+  "C_p50": 34.775,
+  "C_p95": 45.986,
+  "L_mean": 75.643,
+  "L_p2": 50.011,
+  "L_p98": 91.416,
+  "detail": 4.176,
+  "edge": 0.429,
+  "tint_a": 3.98,
+  "tint_b": 9.206,
+  "warmth_b": 26.263
+ },
+ "before": {
+  "C_mean": 34.2,
+  "C_p50": 37.923,
+  "C_p95": 54.656,
+  "L_mean": 72.024,
+  "L_p2": 40.511,
+  "L_p98": 91.416,
+  "detail": 5.037,
+  "edge": 0.429,
+  "tint_a": 4.67,
+  "tint_b": 10.309,
+  "warmth_b": 29.133
+ },
+ "chain": {
+  "C_p50": 34.791,
+  "L_p2": 50.011,
+  "L_p98": 91.797
+ },
+ "correction": {
+  "black": 9.5,
+  "ceiling": 41.3,
+  "chroma": 0.917,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "detail",
+  "edge"
+ ],
+ "outliers_before": [
+  "chain_C_p50",
+  "chain_L_p2",
+  "detail",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 83.7,
+ "score_before": 62.0,
+ "shipped": false,
+ "source": "design/art/stations/pier-5/pier-5.png",
+ "source_sha": "6446e69c313fc2c0"
+}
