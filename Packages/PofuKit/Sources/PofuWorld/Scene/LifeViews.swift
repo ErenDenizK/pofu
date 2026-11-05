@@ -7,7 +7,7 @@ import SwiftUI
 typealias DressingLeave = (scale: Double, opacity: Double, puffRadius: Double, puffOpacity: Double)
 
 /// One piece of the lawn's dressing at its feet (experience v1 §6). It draws
-/// the baked sprite named `kind.art` when the pipeline has one, otherwise the
+/// the baked sprite named `piece.art` when the pipeline has one, otherwise the
 /// code-drawn stand-in of its Codex job (`dressing-meadow`, `dressing-garden`,
 /// `dressing-harbor`). It never moves by itself: a brush sways it about its
 /// base, and a slot that opens sends it off in a soft puff.
@@ -25,8 +25,8 @@ struct DressingView: View {
         let anchor = UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight)
         ZStack(alignment: .topLeading) {
             Group {
-                if let sprite = WorldArt.sprite(kind.art) {
-                    DepthImage(name: kind.art, sprite: sprite, level: level, anchor: point)
+                if let sprite = WorldArt.sprite(piece.art) {
+                    DepthImage(name: piece.art, sprite: sprite, level: level, anchor: point)
                 } else {
                     let size = LifeArt.size(of: kind)
                     Canvas { context, canvasSize in
@@ -53,6 +53,24 @@ struct DressingView: View {
         .rotationEffect(.degrees(sway), anchor: anchor)
         .allowsHitTesting(false)
         .accessibilityHidden(true)
+    }
+}
+
+/// One fixed painted thing of the home island: a door in the earth face or
+/// the hive (`HomeFixtures`). It is part of the scenery, so it never moves,
+/// has no tap target and is hidden from accessibility, like the plate.
+struct FixtureView: View {
+    let art: String
+    /// Its slot on the canvas.
+    let point: CGPoint
+    let level: Double
+
+    var body: some View {
+        if let sprite = WorldArt.sprite(art) {
+            DepthImage(name: art, sprite: sprite, level: level, anchor: point)
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
+        }
     }
 }
 

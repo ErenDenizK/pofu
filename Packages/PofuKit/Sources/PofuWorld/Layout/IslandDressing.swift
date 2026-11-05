@@ -1,10 +1,12 @@
 import Foundation
 import PofuCore
 
-/// What a piece of dressing is (experience v1 §6). The art follows with the
-/// Codex jobs `dressing-meadow`, `dressing-garden` and `dressing-harbor`;
-/// until it ships the scene draws a code-drawn stand-in, and a baked sprite
-/// named `art` replaces it as soon as one exists.
+/// What a piece of dressing is (experience v1 §6). The meadow's art is
+/// shipped (`dressing-meadow`, one sheet cut into twelve sprites); the
+/// garden's and the harbor's follow with the Codex jobs `dressing-garden`
+/// and `dressing-harbor`. Until a family ships the scene draws a code-drawn
+/// stand-in, and a baked sprite named `art` replaces it as soon as one
+/// exists.
 public enum DressingKind: String, CaseIterable, Hashable, Sendable {
     // Meadow
     case grassTuft, wildflowers, pebbles, mushroomRing
@@ -30,14 +32,33 @@ public enum DressingKind: String, CaseIterable, Hashable, Sendable {
         }
     }
 
-    /// The baked sprite's name.
+    /// How many painted variants the kind has: the meadow sheet holds three
+    /// tufts and a clover, three flower clumps and a foxglove, a pebble
+    /// group, a flat stone and a mossy stone, and one toadstool ring.
+    public var variantCount: Int {
+        switch self {
+        case .grassTuft, .wildflowers: 4
+        case .pebbles: 3
+        default: 1
+        }
+    }
+
+    /// The baked sprite's name for the kind's first variant.
     public var art: String {
+        art(variant: 0)
+    }
+
+    /// The baked sprite's name for a variant: the first is the bare name
+    /// (`dressing-grass-tuft`), the others carry their number from 2
+    /// (`dressing-grass-tuft-2`). A variant past the last wraps round.
+    public func art(variant: Int) -> String {
         var stem = ""
         for character in rawValue {
             if character.isUppercase { stem.append("-") }
             stem.append(contentsOf: character.lowercased())
         }
-        return "dressing-\(stem)"
+        let shown = ((variant % variantCount) + variantCount) % variantCount
+        return shown == 0 ? "dressing-\(stem)" : "dressing-\(stem)-\(shown + 1)"
     }
 }
 
@@ -46,6 +67,8 @@ public enum DressingKind: String, CaseIterable, Hashable, Sendable {
 public struct DressingPiece: Hashable, Sendable, Identifiable {
     public var id: String
     public var kind: DressingKind
+    /// Which of the kind's painted variants it wears (`DressingKind.art(variant:)`).
+    public var variant: Int
     /// Its feet, in world units.
     public var point: WorldPoint
     /// The island levels it is shown at. A piece that waits on a slot leaves
@@ -54,6 +77,11 @@ public struct DressingPiece: Hashable, Sendable, Identifiable {
     /// Whether a tap or a brush can move it (a sway, a rustle); it never
     /// does anything else.
     public var touchable: Bool
+
+    /// The baked sprite's name.
+    public var art: String {
+        kind.art(variant: variant)
+    }
 
     public func isShown(atLevel level: Int) -> Bool {
         levels.contains(level)
@@ -76,42 +104,47 @@ public enum IslandDressing {
         _ x: Double,
         _ y: Double,
         _ levels: ClosedRange<Int>,
+        variant: Int = 0,
         touchable: Bool = false
     ) -> DressingPiece {
-        DressingPiece(id: id, kind: kind, point: WorldPoint(x: x, y: y), levels: levels, touchable: touchable)
+        DressingPiece(id: id, kind: kind, variant: variant, point: WorldPoint(x: x, y: y), levels: levels, touchable: touchable)
     }
 
     /// Every piece, grouped by what it dresses.
     public static let pieces: [DressingPiece] = [
         // The meadow between the slots: always there.
         piece("meadow-west", .wildflowers, -100, -8, 1...10, touchable: true),
-        piece("meadow-east-1", .grassTuft, 140, -18, 1...10, touchable: true),
-        piece("meadow-east-2", .wildflowers, 184, -16, 1...10, touchable: true),
+        piece("meadow-east-1", .grassTuft, 140, -18, 1...10, variant: 1, touchable: true),
+        piece("meadow-east-2", .wildflowers, 184, -16, 1...10, variant: 2, touchable: true),
         // The tea stall's slot, until it opens at island level 2.
         piece("tea-ring", .mushroomRing, 150, 6, 1...1, touchable: true),
         // The pond's slot, until it opens at island level 4.
-        piece("pond-flowers", .wildflowers, -90, 24, 1...3, touchable: true),
-        piece("pond-pebbles", .pebbles, -62, 27, 1...3),
+        piece("pond-flowers", .wildflowers, -90, 24, 1...3, variant: 1, touchable: true),
+        piece("pond-pebbles", .pebbles, -62, 27, 1...3, variant: 2),
         piece("pond-tuft", .grassTuft, -34, 22, 1...3, touchable: true),
         // The workshop's slot, until it opens at island level 6.
         piece("workshop-trowel", .trowel, 4, -6, 1...5),
         piece("workshop-twine", .twine, -36, -12, 1...5),
         piece("workshop-crate", .crate, 64, -8, 1...5),
         // The windmill's slot, until it opens at island level 8.
-        piece("windmill-flowers", .wildflowers, -98, -26, 1...7, touchable: true),
+        piece("windmill-flowers", .wildflowers, -98, -26, 1...7, variant: 3, touchable: true),
         piece("windmill-ring", .mushroomRing, -70, -24, 1...7, touchable: true),
         // The garden's and the tea stall's small signs of life grow in.
         piece("garden-can", .wateringCan, -118, -4, 3...10),
         piece("garden-sack", .seedSack, -120, 12, 5...10),
         piece("tea-crate", .crate, 205, -4, 3...10),
-        piece("tea-flowers", .wildflowers, 200, 12, 6...10, touchable: true),
+        piece("tea-flowers", .wildflowers, 200, 12, 6...10, variant: 1, touchable: true),
         // The harbor's first dressing waits at the bridge's foot from IL3.
         piece("bridge-rope", .rope, 222, 4, 3...10),
         piece("bridge-barrel", .barrel, 214, -10, 3...10),
-        piece("gap-flowers", .wildflowers, 80, -16, 5...10, touchable: true),
+        // They leave in the reveal's puff when the hive's slot opens at IL9.
+        piece("gap-flowers", .wildflowers, 80, -16, 5...8, variant: 2, touchable: true),
         // The back lawn between the workshop and the tea stall.
-        piece("meadow-back-1", .grassTuft, 62, -22, 1...10, touchable: true),
-        piece("meadow-back-2", .grassTuft, 102, -22, 1...10, touchable: true),
+        piece("meadow-back-1", .grassTuft, 62, -22, 1...10, variant: 2, touchable: true),
+        piece("meadow-back-2", .grassTuft, 102, -22, 1...10, variant: 3, touchable: true),
+        // A flat stone and a few pebbles in the middle lawn, between the pond's slot and Pofu.
+        piece("meadow-stone", .pebbles, -8, 12, 1...10, variant: 1),
+        piece("meadow-pebbles", .pebbles, 46, 8, 1...10),
     ]
 
     /// The pieces shown at an island level.
@@ -218,6 +251,11 @@ public enum IslandFullness {
     /// Everything that holds ground at an island level.
     public static func holders(atLevel level: Int) -> [Holder] {
         var result: [Holder] = []
+        // The hive on the back lawn (home layout S6) from the island level it opens at.
+        if let art = HomeFixtures.hiveArt(level: HomeFixtures.hiveLevel(islandLevel: level, homeStationsAtTop: false)),
+           let box = WorldPolygon(IslandFootprint.footprint(of: art).points).offset(by: HomeFixtures.hiveSlot).bounds {
+            result.append(Holder(id: "hive", ground: box, isPoint: false))
+        }
         for station in openStations(atLevel: level) + [sketchedStation(atLevel: level)].compactMap({ $0 }) {
             if let box = ground(of: station) {
                 result.append(Holder(id: "station \(station)", ground: box, isPoint: false))

@@ -29,6 +29,16 @@ explorations, not a node whose status is `cut`) against the app's asset catalogs
 | mochi-work, -surprised, -eyes-happy, -eyes-closed; findik-work, -eyes-happy, -eyes-closed | `ResidentPose` (`Resident.art(for:)`): work while the camera is on them or their station, surprised then happy through a build pop (`BuildMoment.residentPose`), eyes shut at bedtime; a missing pose (Findik surprised) falls back to the base |
 | workshop-1-lit, pond-5-lit, windmill-5-lit | Night glows `workshop-1-glow`, `pond-5-glow`, `windmill-5-glow` through the existing `IslandLayout.litOverlay` hook, like `tea-stall-1-glow` |
 
+## Showcase art (feat/integrate-showcase-art)
+
+| Art | Where it shows |
+|---|---|
+| `dressing-meadow` (sheet of twelve) | Cut into twelve sprites (`MEADOW_CELLS` in `preblur.py`, one cell per piece, one shared scale). `DressingPiece.variant` picks one: tufts and clover, daisy / cornflower / buttercup clumps and the foxglove, pebbles, the flat stone and the mossy stone, the toadstool ring. They replace the code-drawn stand-ins of the meadow family; the garden and harbor families still draw stand-ins. |
+| `door-mochi`, `door-findik` | `HomeFixtures.doors`: in the plate's earth face at H2 (IL2) and H3 (IL6), at the plate's own door scale. |
+| `hive-1` to `hive-3` | `HomeFixtures.hiveArt`: the hive is a gift station with no levels in the game yet, so the island carries it: hive 1 at IL9, hive 2 at IL10, hive 3 at IL10 once every home station is at its top level. The slot moved from S6's (-32, -6) to (74, -6): the workshop's painted ground reaches x -55, so nothing between the pond and the workshop is free (`HomeFixturesTests`). |
+| `goat-work` | `GoatPose.work` on the harbor, from the pier's first level (the goat coils the rope). |
+| `harbor-bell` | Harbor dressing that comes with the bagel cart (`harborProps`), L4's bell on its post at the lawn's left end. |
+
 ## Not integrated, and why
 
 - **workshop-2 to -5**: their opaque pixels run to the left edge of the canvas, so the shed's left

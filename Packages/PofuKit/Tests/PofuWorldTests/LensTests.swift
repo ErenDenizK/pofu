@@ -120,6 +120,10 @@ struct WorldArtTests {
         names += IslandLayout.isles.map(\.art)
         names += IslandLayout.islandCast.map(\.art)
         names += SimitPose.allCases.map(\.art)
+        names += GoatPose.allCases.map(\.art)
+        names += IslandDressing.pieces.filter { $0.kind.family == .meadow }.map(\.art)
+        names += HomeFixtures.doors.map(\.art)
+        names += (1...HomeFixtures.hiveLevels).compactMap { HomeFixtures.hiveArt(level: $0) }
         names += IslandLayout.harborProps.map { $0.piece.art }
         names += IslandLayout.generatedLevels.flatMap { station, levels in
             (1...levels).compactMap { IslandLayout.stationArt(station, level: $0)?.name }
