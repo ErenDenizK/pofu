@@ -1,0 +1,21 @@
+id: asset-hive-5
+type: asset
+title_tr: hive-5
+title_en: hive-5 (station)
+status: planned
+horizon: later
+summary: >-
+  Add a low honey wooden shelf at the front left holding three plump round honey jars of warm
+  amber with cream cloth lids tied with string, and a tiny wooden honey dipper leaning on
+  one jar. Everything else stays.
+links:
+  variant_of:
+  - asset-hive-4
+art:
+  images: []
+  jobs:
+  - batch-33-home-showcase:hive-5
+sources:
+- doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
+kind: station
+batch: batch-33-home-showcase

@@ -1,0 +1,425 @@
+# Batch 33: the home showcase, the "now" list (docs/product/home-layout.md,
+# section 9). Gated on the pilot (batch-33-home-showcase-pilot): every family
+# here copies a pilot master (the hive ladder edits hive-1; the materials,
+# doors and lamps attach their pilot sibling as the family reference).
+#
+# What is in it (slot ids from home-layout.md):
+#   hive-2..hive-5       the hive ladder, S6, IL9 onward (edits of hive-1)
+#   material-*           the five other materials (moss is in the pilot)
+#   door-findik, door-guest   earth-face doors H3 and H4
+#   hill-gate, hill-gate-open the hill path's gate T0 (IL9 closed, IL10 open)
+#   guest-stall          the visiting resident's stall on the harbor, G1
+#   harbor-bell          the bell post at the bridge's harbor end, L4 (IL3)
+#   frog-1, frog-sing    the pond's frogs (IL4) and the dusk choir
+#   goat-work            the goat at work on the pier (S8)
+#
+# Not here, on purpose: island-level plate edits, the Tepe, pair overlays,
+# visiting residents at home, season sets and golden edits wait for a concept
+# review (home-layout.md section 9, "after review"). Glow, flames, bees,
+# beams, fireflies and smoke are code. Every piece is painted under the day
+# cell. A failed job is skipped after one retry; its dependents are skipped.
+#
+# Tracks: `hive` (hive-2 -> hive-5, in order), `materials`, `doors`, `gate`
+# (hill-gate -> hill-gate-open), `harbor` (guest-stall, harbor-bell,
+# goat-work), `frogs` (frog-1 -> frog-sing). Tracks are independent.
+
+batch: batch-33-home-showcase
+title: Home showcase (hive, materials, doors, gate, harbor pieces, frogs)
+status: blocked
+blocked_on:
+  - "the lead's review of batch-33-home-showcase-pilot (path-lamp, hive-1, material-moss, door-mochi)"
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: tea-stall-1, kind: station, name: tea-stall-1, external: batch-01-slice}
+  - {id: workshop-1, kind: station, name: workshop-1, external: batch-03-home-island, master: design/art/stations/workshop-1/workshop-1.webp}
+  - {id: bagel-cart-1, kind: station, name: bagel-cart-1, external: batch-01-slice}
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+  - {id: harbor-goat, kind: char, name: harbor-goat, external: batch-14-harbor, master: design/art/masters/harbor-goat/harbor-goat.webp}
+  - {id: path-lamp, kind: prop, name: path-lamp, external: batch-33-home-showcase-pilot}
+  - {id: hive-1, kind: station, name: hive-1, external: batch-33-home-showcase-pilot}
+  - {id: material-moss, kind: prop, name: material-moss, external: batch-33-home-showcase-pilot}
+  - {id: door-mochi, kind: prop, name: door-mochi, external: batch-33-home-showcase-pilot}
+
+  # ------------------------------------------------------------ hive
+
+  - id: hive-2
+    kind: station
+    name: hive-2
+    edit_of: hive-1
+    chat: "Pofu · Hive"
+    light: {cell: day, layer: subject}
+    notes: "Hive level 2: two skeps and lavender."
+    prompt:
+      - text: |
+          Add a second, smaller straw skep of the same golden-honey coils on its own low stump just behind and to the right of the first, and two more small clumps of lavender at the front. The first skep, its stump and the stepping stone stay as they are.
+      - block: edit-keep-v1
+
+  - id: hive-3
+    kind: station
+    name: hive-3
+    edit_of: hive-2
+    chat: "Pofu · Hive"
+    light: {cell: day, layer: subject}
+    notes: "Hive level 3: a painted hive box."
+    prompt:
+      - text: |
+          Add a small painted wooden hive box behind the two skeps, on the left: a short stack of two rounded cream boxes with a soft sunflower-yellow gabled roof and one tiny painted sunflower on the front (a simple round shape, no letters). It is no taller than the height bar. Everything else stays.
+      - block: edit-keep-v1
+
+  - id: hive-4
+    kind: station
+    name: hive-4
+    edit_of: hive-3
+    chat: "Pofu · Hive"
+    light: {cell: day, layer: subject}
+    notes: "Hive level 4: a landing board and a water dish (the bee path over the garden is code)."
+    prompt:
+      - text: |
+          Add a small honey wooden landing board under the first skep's entrance and, on the ground at the front right, a shallow round clay dish of pale water with three pebbles in it (the water a flat soft shape, no reflections). Everything else stays.
+      - block: edit-keep-v1
+
+  - id: hive-5
+    kind: station
+    name: hive-5
+    edit_of: hive-4
+    chat: "Pofu · Hive"
+    light: {cell: day, layer: subject}
+    notes: "Hive level 5 (complete): a little honey stand. Mochi's tea gets honey (story, no art)."
+    prompt:
+      - text: |
+          Add a low honey wooden shelf at the front left holding three plump round honey jars of warm amber with cream cloth lids tied with string, and a tiny wooden honey dipper leaning on one jar. Everything else stays.
+      - block: edit-keep-v1
+
+  # ------------------------------------------------------------ materials
+
+  - id: material-water
+    kind: prop
+    name: material-water
+    chat: "Pofu · Materials"
+    light: {cell: day, layer: subject}
+    notes: "Material 2: clear water (berrak su) from Çağlayan."
+    attach:
+      - ref: approved:material-moss
+        role: "The first material of this family: match its size on the canvas, camera, painting and finish exactly (do not draw the moss)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A single small painted object for a cozy game, a crafting material:
+          a little round-bellied glass flask with a short neck and a cream
+          cork, full of clear pale turquoise water, the glass painted as a
+          soft tinted shape, with one small water drop resting on the cork.
+          Same camera, size and finish as the attached moss. Centered on an
+          empty transparent background.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: material-keepsake
+    kind: prop
+    name: material-keepsake
+    chat: "Pofu · Materials"
+    light: {cell: day, layer: subject}
+    notes: "Material 3: a keepsake (emanet) from Emanet."
+    attach:
+      - ref: approved:material-moss
+        role: "The first material of this family: match its size on the canvas, camera, painting and finish exactly (do not draw the moss)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A single small painted object for a cozy game, a crafting material:
+          a small square parcel wrapped in soft brown paper, tied with cream
+          string in a neat bow, with a blank round cream paper tag hanging
+          from the string (no letters on it). Same camera, size and finish
+          as the attached moss. Centered on an empty transparent background.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: material-light
+    kind: prop
+    name: material-light
+    chat: "Pofu · Materials"
+    light: {cell: day, layer: subject}
+    notes: "Material 4: light (ışık) from Revontuli. The glow beyond the jar is code."
+    attach:
+      - ref: approved:material-moss
+        role: "The first material of this family: match its size on the canvas, camera, painting and finish exactly (do not draw the moss)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A single small painted object for a cozy game, a crafting material:
+          a small round glass jar with a cream cloth lid tied with string,
+          holding a soft pale-gold light with a faint mint-green edge, painted
+          as a warm soft core inside the jar (nothing glows outside the jar).
+          Same camera, size and finish as the attached moss. Centered on an
+          empty transparent background.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: material-wax
+    kind: prop
+    name: material-wax
+    chat: "Pofu · Materials"
+    light: {cell: day, layer: subject}
+    notes: "Material 5: wax and honey (bal mumu) from Arı."
+    attach:
+      - ref: approved:material-moss
+        role: "The first material of this family: match its size on the canvas, camera, painting and finish exactly (do not draw the moss)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A single small painted object for a cozy game, a crafting material:
+          a plump little block of golden beeswax with a soft hexagon honeycomb
+          pattern on its front face (broad, few cells) and one small drop of
+          honey on its top corner, matte. Same camera, size and finish as the
+          attached moss. Centered on an empty transparent background.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: material-seaglass
+    kind: prop
+    name: material-seaglass
+    chat: "Pofu · Materials"
+    light: {cell: day, layer: subject}
+    notes: "Material 6: sea glass (deniz camı) from Gezgin's finale; used for the golden L10."
+    attach:
+      - ref: approved:material-moss
+        role: "The first material of this family: match its size on the canvas, camera, painting and finish exactly (do not draw the moss)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A single small painted object for a cozy game, a crafting material:
+          three smooth, rounded pebbles of frosted sea glass in a small heap,
+          pale aqua, soft mint and milky cream, each a matte soft shape with
+          one faint highlight. Same camera, size and finish as the attached
+          moss. Centered on an empty transparent background.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  # ------------------------------------------------------------ doors
+
+  - id: door-findik
+    kind: prop
+    name: door-findik
+    chat: "Pofu · Doors"
+    light: {cell: day, layer: subject}
+    notes: "Slot H3: Fındık's door in the earth face, revealed with the workshop at island level 6."
+    attach:
+      - ref: approved:door-mochi
+        role: "Mochi's door, the first of this family: match its size on the canvas, front-facing angle, frame, earth ring and finish exactly (do not draw it)."
+      - ref: approved:workshop-1
+        role: "Fındık's workshop: borrow its sage-green and honey colors (do not draw the workshop)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small round wooden door set into soft earth, seen straight from
+          the front, same family as the attached door: soft sage-green
+          painted wood in a thick honey wooden frame, a small round window
+          with a cream cross bar, a round knob, a flat honey doorstep, a
+          little hanging sign shaped like a round gear (a shape, no letters)
+          and a tiny wrench hanging on a nail beside the frame. A thin soft
+          ring of caramel earth around the frame that fades to transparent.
+          Centered on an empty transparent background, the same size as the
+          attached door.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a wall, a house, a roof, stairs, grass, a full earth background, letters on the sign."
+
+  - id: door-guest
+    kind: prop
+    name: door-guest
+    chat: "Pofu · Doors"
+    light: {cell: day, layer: subject}
+    notes: "Slot H4: the guest room in the earth face, where the visiting resident sleeps on their day (home-layout.md section 5). Revealed when the first main island is healed."
+    attach:
+      - ref: approved:door-mochi
+        role: "Mochi's door, the first of this family: match its size on the canvas, front-facing angle, frame, earth ring and finish exactly (do not draw it)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small round wooden door set into soft earth, seen straight from
+          the front, same family as the attached door: soft sky-blue painted
+          wood in a thick honey wooden frame, a small round window with a
+          cream cross bar and a tiny cream curtain, a round knob, a flat
+          honey doorstep with a small woven welcome mat (plain, no letters),
+          a little wreath of dried sunflower petals on the door, and over it
+          a hanging sign shaped like a small round cloud-whale (a shape, no
+          letters). A thin soft ring of caramel earth around the frame that
+          fades to transparent. Centered on an empty transparent background,
+          the same size as the attached door.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a wall, a house, a roof, stairs, grass, a full earth background, letters on the sign or mat."
+
+  # ------------------------------------------------------------ the hill gate
+
+  - id: hill-gate
+    kind: prop
+    name: hill-gate
+    chat: "Pofu · Hill"
+    light: {cell: day, layer: subject}
+    notes: "Slot T0: the gate at the foot of the hill path, island level 9, closed. The soft glow behind it is code."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:path-lamp
+        role: "The path lamp of this island: same honey wood, finish and scale family (do not draw the lamp)."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small garden gate at the foot of a hill path, for the island
+          diorama: two short, round pale-stone posts each topped with a
+          little moss cap, and between them a closed double gate of soft
+          honey wood with a round top, a large simple sunflower carved into
+          its round top panel (broad petals, a round centre), and two low
+          stone steps in front of it going up. Behind the gate nothing but
+          empty space. Narrow: it fills about half the footprint's width and
+          two thirds of the height bar, standing on the footprint.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a fence line, a wall, a padlock, a chain, a sign, a hill behind the gate."
+
+  - id: hill-gate-open
+    kind: prop
+    name: hill-gate-open
+    edit_of: hill-gate
+    chat: "Pofu · Hill"
+    light: {cell: day, layer: subject}
+    notes: "Slot T0 at Tam Çiçek (island level 10): the gate stands open for good."
+    prompt:
+      - text: |
+          Open the gate: both wooden leaves swing inward and stand open at an angle, so the opening between the posts is empty and the sunflower panel is split in two halves, one on each leaf. Posts, moss caps and steps stay exactly as they are.
+      - block: edit-keep-v1
+
+  # ------------------------------------------------------------ harbor pieces
+
+  - id: guest-stall
+    kind: prop
+    name: guest-stall
+    chat: "Pofu · Harbor"
+    light: {cell: day, layer: subject}
+    notes: "Slot G1: the visiting resident's stall by the pier. Empty top: each visitor's goods are their own small sprites (after review)."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family and finish (do not draw the cart)."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its style, camera, light and scale exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A tiny market stall for a visiting guest, for the island diorama:
+          a small honey wooden table with a plain cream cloth over its empty
+          top, two thin poles holding a short scalloped awning with broad
+          stripes of sea blue and cream, a small round stool beside it, and a
+          little pennant shaped like a round cloud-whale on top of one pole
+          (a shape, no letters). Empty table top. It stands on the guide's
+          ground ellipse, centered on the cross, no taller than the height
+          bar.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: harbor-bell
+    kind: prop
+    name: harbor-bell
+    chat: "Pofu · Harbor"
+    light: {cell: day, layer: subject}
+    notes: "Slot L4: the harbor bell at the bridge's harbor end; rings once when the fog lifts (island level 3) and at noon when İskele is complete."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:path-lamp
+        role: "The path lamp of this island: same honey wood, finish and scale family (do not draw the lamp)."
+      - ref: approved:bagel-cart-1
+        role: "The harbor's first station: same coral, cream and sea-blue family (do not draw the cart)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small harbor bell post for the island diorama: one sturdy honey
+          wooden post on a round flat stone foot with a short crossbar at the
+          top, from which hangs a plump round bell of matte warm bronze-honey
+          color (no shine, no reflections), a short coral rope pull hanging
+          from it. Narrow, toy-like. It stands on the guide's ground ellipse,
+          centered on the cross, and reaches the height bar's top.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: goat-work
+    kind: char
+    name: goat-work
+    size: 1024x1536
+    edit_of: harbor-goat
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "The goat at work on the pier (his favourite station): he holds a coil of rope, still indignant."
+    prompt:
+      - text: |
+          Edit the attached baby goat into his working pose. Change only his two front paws: they now hold a small, neat coil of soft coral rope against his chest, one loose end hanging down. His head, horn buds, ears, beard, eyes, indignant face, body and feet stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: a ground shadow, a hat, text, a different expression."
+
+  # ------------------------------------------------------------ frogs
+
+  - id: frog-1
+    kind: char
+    name: frog-1
+    size: 1024x1536
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "The pond's frogs (island level 4). One frog; the pond shows two or three (code tint and scale). Same family as the residents, small."
+    attach:
+      - ref: R1
+        role: "The hamster, Pofu: match his art style, lighting and finish exactly (do not draw him)."
+      - ref: approved:harbor-goat
+        role: "The goat, a neighbor: match his size on the canvas, his eyes and his finish (do not draw him)."
+      - ref: palette:character
+        role: "The character palette card."
+    prompt:
+      - text: |
+          Draw a small frog in exactly the same art style, lighting and finish
+          as the attached hamster and goat. Same canvas rules: full body,
+          sitting upright, front view, centered, feet on an invisible line at
+          88% of the height, about 62% of the canvas width.
+          CHARACTER: a round, chubby little frog of soft sage green with a
+          pale cream belly and a few faint lighter freckles on the back,
+          smooth velvety matte skin (no fur, no slime, no shine), two big
+          round glossy dark espresso eyes on top of the head with one
+          catchlight each, a wide gentle closed smile, small rounded front
+          feet resting on the belly, back legs tucked in. Calm and content.
+      - block: style-anchor-v1
+      - block: negative-v1
+      - text: "AVOID: fur, slime, warts, realistic frog anatomy, a long tongue, a lily pad, water, text, a ground shadow."
+
+  - id: frog-sing
+    kind: char
+    name: frog-sing
+    size: 1024x1536
+    edit_of: frog-1
+    chat: "Pofu · Residents"
+    light: {cell: day, layer: subject}
+    notes: "The dusk choir: the frog sings (the pond plays its frog loop at dusk from island level 4)."
+    prompt:
+      - text: |
+          Edit the attached frog so it sings: its eyes close in two soft happy curves, its mouth opens in a small round "o", and its cream throat puffs out into a round soft pale bubble. Its body, colors, feet and size stay exactly as they are.
+      - block: edit-keep-v1
+      - text: "AVOID: musical notes, text, a ground shadow."

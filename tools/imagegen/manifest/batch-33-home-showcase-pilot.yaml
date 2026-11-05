@@ -1,0 +1,148 @@
+# Batch 33, pilot: the home showcase (docs/product/home-layout.md, section 9).
+#
+# Ayçiçeği is the showcase island: every asset it needs from now to Altın Ada
+# is listed in home-layout.md section 9. This batch makes the "now" list, the
+# assets whose system and slot are settled (island level 1 to 10 and station
+# caps are in PofuCore since PR #182; the slots are in home-layout.md). The
+# pilot locks the four families the rest of the batch copies:
+#
+#   path-lamp      the light-post family (decor guide, ground): slot L1, L2, L3
+#   hive-1         the hive ladder root (station guide): slot S6, IL9
+#   material-moss  the material family (small world objects, no guide)
+#   door-mochi     the earth-face door family (matches the plate's round door): H2
+#
+# Every piece is painted under the day cell (light standard); glow, flames,
+# bees and smoke are code. Review of the pilot (by the lead): each reads at
+# 28 pt, matches tea-stall-1's finish, stands on its guide; the door matches
+# the round door on island-main-l-v3 in style and is about two thirds of its
+# size. Then the lead opens batch-33-home-showcase.
+#
+# Tracks: `light` (path-lamp), `hive` (hive-1), `materials` (material-moss),
+# `doors` (door-mochi). The four are independent: run them in any order.
+
+batch: batch-33-home-showcase-pilot
+title: Home showcase, pilot (path lamp, hive L1, moss, Mochi's door)
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: tea-stall-1, kind: station, name: tea-stall-1, external: batch-01-slice}
+  - {id: garden-1, kind: station, name: garden-1, external: batch-01-slice}
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+
+  - id: path-lamp
+    kind: prop
+    name: path-lamp
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "PILOT. Slots L1-L3 (home-layout.md): the path lamps that light at dusk from island level 6. Unlit; the warm pool of light is code. Review: a slim post, not a street lamp; reads at 28 pt."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its style, camera, light, colors and scale exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small garden path lamp for the island diorama: one slim, slightly
+          crooked post of soft honey wood on a round flat stone foot, and at
+          its top a short curled hook holding a plump round lantern of cream
+          paper-tinted glass under a small rounded coral cap, unlit (a soft
+          pale shape, no flame, no glow). Toy-like proportions, few parts,
+          friendly. It stands on the guide's ground ellipse, centered on the
+          cross, and its lantern reaches the height bar's top.
+
+          Size: the post is thin and the whole lamp is narrow, about 120 px
+          wide in the 1024 x 1024 image; leave wide empty space on both sides.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: hive-1
+    kind: station
+    name: hive-1
+    chat: "Pofu · Hive"
+    light: {cell: day, layer: subject}
+    notes: "PILOT. The hive, level 1 (home-progression.md section 7; slot S6): a straw skep. A gift station, smaller than the others. Review: reads as a beehive at 28 pt; no bees (code)."
+    attach:
+      - ref: station-guide
+        role: "The composition guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:garden-1
+        role: "The garden the hive stands near: same honey, sage and sunflower family (do not draw the garden)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small beehive station for the island diorama: one plump,
+          bell-shaped straw skep of soft golden-honey coils, a small round
+          dark entrance at its foot, sitting on a low round stump of honey
+          wood, with three tiny clumps of lavender and a flat stepping stone
+          in front. Toy-like and cozy, few parts. It is small: it fills about
+          half the footprint's width and only the lower half of the height
+          bar, standing on the footprint, centered on the cross.
+      - block: view-v2
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: bees, insects, honey dripping, a box hive, a fence."
+
+  - id: material-moss
+    kind: prop
+    name: material-moss
+    chat: "Pofu · Materials"
+    light: {cell: day, layer: subject}
+    notes: "PILOT. Material 1 of 6 (home-progression.md section 7): moss from Koke. Sets the family: one small object, a third of the canvas, shown in the level-up card and on Nazlı's back. Review: reads at 24 pt as moss, not a bush."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, light and colors exactly (do not draw the stall)."
+      - ref: R1
+        role: "Style reference only (no characters): the hamster's soft painting and pastel colors."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A single small painted object for a cozy game, a crafting material:
+          a soft round cushion of velvety sage-green moss, like a little
+          pillow, with three tiny pale star-shaped moss flowers on top and a
+          thin curl of cream root under it. Seen from the same low front
+          three-quarter camera as the tea stall. Centered on an empty
+          transparent background, about a third of the canvas wide, with
+          wide empty space around it.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: door-mochi
+    kind: prop
+    name: door-mochi
+    chat: "Pofu · Doors"
+    light: {cell: day, layer: subject}
+    notes: "PILOT. Slot H2 (home-layout.md): Mochi's door in the island's earth face, revealed at island level 2. Composited onto the plate; its window glows at night (code). Review: same family as the plate's round door, a little smaller, clearly Mochi's."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy the style, colors, size and front-facing angle of the small round wooden door with a round window set into its earth body. Do not draw the island."
+      - ref: approved:tea-stall-1
+        role: "Mochi keeps this tea stall: borrow its rose and cream colors for the door (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small round wooden door set into soft earth, seen straight from
+          the front, in the same style as the round door on the attached
+          island: a round door of soft rose-painted wood in a thick honey
+          wooden frame, a small round window with a cream cross bar, a tiny
+          round brass-colored knob painted matte, a flat honey doorstep, and
+          over the door a little hanging sign shaped like a tulip tea glass
+          (a shape, no letters). Around the frame only a thin soft ring of
+          caramel earth that fades to transparent, so it can sit on the
+          island's earth body. Centered on an empty transparent background,
+          about 40 % of the canvas wide.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+      - text: "AVOID: a wall, a house, a roof, stairs, grass, a full earth background, letters on the sign."

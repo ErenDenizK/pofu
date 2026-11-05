@@ -1,0 +1,22 @@
+id: asset-frog-sing
+type: asset
+title_tr: frog-sing
+title_en: frog-sing (char)
+status: planned
+horizon: later
+summary: >-
+  Edit the attached frog so it sings: its eyes close in two soft happy curves, its mouth opens
+  in a small round "o", and its cream throat puffs out into a round soft pale bubble. Its
+  body, colors, feet and size stay exactly as they are.
+links:
+  variant_of:
+  - asset-frog-1
+art:
+  images: []
+  jobs:
+  - batch-33-home-showcase:frog-sing
+sources:
+- doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
+kind: char
+batch: batch-33-home-showcase
+size: 1024x1536

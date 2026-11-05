@@ -1,0 +1,20 @@
+id: asset-hill-gate
+type: asset
+title_tr: hill-gate
+title_en: hill-gate (prop)
+status: planned
+horizon: later
+summary: >-
+  A small garden gate at the foot of a hill path, for the island diorama: two short, round
+  pale-stone posts each topped with a little moss cap, and between them a closed double gate
+  of soft honey wood with a round top, a large simple sunflower carved into its round top
+  panel (broad petals, a round centre), and two low stone steps in front of it going up. Behind
+  the gate nothing but empty space. Narrow: it fills about h…
+art:
+  images: []
+  jobs:
+  - batch-33-home-showcase:hill-gate
+sources:
+- doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
+kind: prop
+batch: batch-33-home-showcase

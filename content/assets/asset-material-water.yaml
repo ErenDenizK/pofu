@@ -1,0 +1,19 @@
+id: asset-material-water
+type: asset
+title_tr: material-water
+title_en: material-water (prop)
+status: planned
+horizon: later
+summary: >-
+  A single small painted object for a cozy game, a crafting material: a little round-bellied
+  glass flask with a short neck and a cream cork, full of clear pale turquoise water, the
+  glass painted as a soft tinted shape, with one small water drop resting on the cork. Same
+  camera, size and finish as the attached moss. Centered on an empty transparent background.
+art:
+  images: []
+  jobs:
+  - batch-33-home-showcase:material-water
+sources:
+- doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
+kind: prop
+batch: batch-33-home-showcase

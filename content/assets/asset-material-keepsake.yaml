@@ -1,0 +1,19 @@
+id: asset-material-keepsake
+type: asset
+title_tr: material-keepsake
+title_en: material-keepsake (prop)
+status: planned
+horizon: later
+summary: >-
+  A single small painted object for a cozy game, a crafting material: a small square parcel
+  wrapped in soft brown paper, tied with cream string in a neat bow, with a blank round cream
+  paper tag hanging from the string (no letters on it). Same camera, size and finish as the
+  attached moss. Centered on an empty transparent background.
+art:
+  images: []
+  jobs:
+  - batch-33-home-showcase:material-keepsake
+sources:
+- doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
+kind: prop
+batch: batch-33-home-showcase
