@@ -1,0 +1,233 @@
+batch: batch-24-home-materials
+manifest: tools/imagegen/manifest/batch-24-home-materials.yaml
+manifest_sha256: 8b89cf06f923af54bdfadd47a2edcf953777d08789ad336b2d56aab7a51f9117
+contact_sheet: design/art/takes/batch-24-home-materials/x-decor-rope-coil/contact.jpg
+jobs:
+  x-decor-rope-coil:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show one thick cream flat
+      spiral coil beside a rounded honey cleat with two fixing pegs. Broad matte rope
+      forms have no fibre texture; no text, water or floor. Minor low-alpha fringe
+      specks remain in the original sources; no manual alpha repair. Numerical hard
+      checks pass; advisory style and light warnings remain.
+qa_reports:
+  1:
+    job: x-decor-rope-coil
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 90 (at least 90), spread 29
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 29.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 78.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.24 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.239
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.1 (at least 3.5)'
+      value: 5.08
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.11
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7695
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.8, p95 1.8, off-palette 0.0%
+      value: 0.7953
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: edge)'
+      value: 78.8
+    info:
+      fit:
+        scale: 0.6522
+        anchor:
+        - 442.1
+        - 870
+      registration:
+        dx: 73
+        dy: 18
+      metrics_raw:
+        L_p5: 63.2
+        L_p50: 78.9
+        L_p95: 90.1
+        C_p50: 30.0
+        C_p95: 42.2
+        C_p99: 42.7
+        detail: 1.6
+      metrics_locked:
+        L_p5: 64.1
+        L_p50: 79.0
+        L_p95: 89.4
+        C_p50: 29.4
+        C_p95: 42.0
+        C_p99: 42.4
+        detail: 1.11
+    fingerprint: 07f20043e562857e
+  2:
+    job: x-decor-rope-coil
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 42.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 91 (at least 90), spread 30
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 30.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 79.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.34 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.341
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.4 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.1
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5621
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 2.2, off-palette 0.0%
+      value: 0.9085
+    - check: decor_anchor
+      status: warn
+      message: width 638 px wider than the footprint (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the world reference (outliers: edge)'
+      value: 84.0
+    info:
+      fit_skipped: needs x0.56, below x0.6 (a real art failure)
+      registration:
+        dx: 140
+        dy: 74
+      metrics_raw:
+        L_p5: 64.0
+        L_p50: 79.3
+        L_p95: 90.8
+        C_p50: 29.5
+        C_p95: 42.8
+        C_p99: 43.4
+        detail: 1.6
+      metrics_locked:
+        L_p5: 64.4
+        L_p50: 79.3
+        L_p95: 90.4
+        C_p50: 28.7
+        C_p95: 42.7
+        C_p99: 43.2
+        detail: 1.1
+    fingerprint: 07f20043e562857e
+manual_review:
+  observed_note: Both show one thick cream flat spiral coil beside a rounded honey
+    cleat with two fixing pegs. Broad matte rope forms have no fibre texture; no text,
+    water or floor. Minor low-alpha fringe specks remain in the original sources;
+    no manual alpha repair. Numerical hard checks pass; advisory style and light warnings
+    remain.
+  excluded_takes: []
+sources:
+- batch: batch-24-home-materials
+  job: x-decor-rope-coil
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-damla-retry-rope
+  source_file: /workspace/generated_images/exec-edc595d1-8fda-4821-9cd9-50f12cebc032.png
+  returned_at: '2026-11-05T14:07:30.148Z'
+  prompt_sha256: a17f028dd0a795b749704f2cdd80e9378fe29811780caac50b45d5c53d94a24a
+  fingerprint: 07f20043e562857e
+  saved_at: '2026-11-05T14:07:30.621088+00:00'
+  original_generated_png_sha256: d2a0fac5ebc963af34507e97cafaad36662de0415695bdc82abfbfc69b27731b
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: e4daba9ae7bf14faeb9e24a53749e78f29f426801b84150184c0d6cdf5723a63
+  inbox_png_sha256: 5e6579ee8b5173a62265f22faf74a1d666ef424854517a0dda362b7260fd7484
+  qa_sha256: 9a58b45587171f8bdbf792ebae0f6722f9d5c95a79204d2028403ae33f272193
+- batch: batch-24-home-materials
+  job: x-decor-rope-coil
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-damla-retry-rope
+  source_file: /workspace/generated_images/exec-ce9e3b0a-80ed-44a6-9745-9619581b324a.png
+  returned_at: '2026-11-05T14:06:31.520Z'
+  prompt_sha256: a17f028dd0a795b749704f2cdd80e9378fe29811780caac50b45d5c53d94a24a
+  fingerprint: 07f20043e562857e
+  saved_at: '2026-11-05T14:06:31.827017+00:00'
+  original_generated_png_sha256: a9d2fd26f83d1fdae0ea1525ec34e0c277cf7c7bb4f7d8c805edc345b7206b46
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: c7425ee9272554bec456e3002e36a004f182c4a69d0a036977333895ab114977
+  inbox_png_sha256: 36dd1bf73d435c38fe5efcbf1fda6490533cc3c078e7b04eeb91a56ad6d24bfa
+  qa_sha256: 899c82e242a1a32e8734b7984164b78b8a8e5f263315ceff160a2e7828511a64
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

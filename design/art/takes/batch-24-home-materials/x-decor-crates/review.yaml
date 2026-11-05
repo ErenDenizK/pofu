@@ -1,0 +1,239 @@
+batch: batch-24-home-materials
+manifest: tools/imagegen/manifest/batch-24-home-materials.yaml
+manifest_sha256: 8b89cf06f923af54bdfadd47a2edcf953777d08789ad336b2d56aab7a51f9117
+contact_sheet: design/art/takes/batch-24-home-materials/x-decor-crates/contact.jpg
+jobs:
+  x-decor-crates:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both contain exactly three rounded
+      honey crates with a cream cloth sack leaning beside them and one pale sage cabbage
+      on top. Take1 is a two-base/one-top arrangement; take2 reverses the width distribution.
+      Chunky matte slats, broad shading, no lettering or ground plane. The guide hard
+      checks pass; small low-alpha source fringe specks are retained without repainting.
+      Style warnings remain advisory.
+qa_reports:
+  1:
+    job: x-decor-crates
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 42.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 91 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 75.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.255
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.2 (at least 3.5)'
+      value: 5.25
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.45
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8689
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 8.2, off-palette 1.4% (top: #888855 (0.5%), #999955
+        (0.2%))'
+      value: 1.6604
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: detail, edge)'
+      value: 82.2
+    info:
+      fit:
+        scale: 0.8531
+        anchor:
+        - 525.1
+        - 909
+      registration:
+        dx: -13
+        dy: -20
+      metrics_raw:
+        L_p5: 57.2
+        L_p50: 75.8
+        L_p95: 89.7
+        C_p50: 33.2
+        C_p95: 42.9
+        C_p99: 44.4
+        detail: 1.98
+      metrics_locked:
+        L_p5: 58.2
+        L_p50: 75.7
+        L_p95: 89.5
+        C_p50: 33.3
+        C_p95: 42.8
+        C_p99: 44.1
+        detail: 1.45
+    fingerprint: 5bb8246e4d6a2b54
+  2:
+    job: x-decor-crates
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 51 (at most 22), p98 92 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 76.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.216
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.4 (at least 3.5)'
+      value: 5.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.78
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8905
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 5.5, off-palette 0.6% (top: #999955 (0.2%), #888855
+        (0.1%))'
+      value: 1.6109
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: detail, edge)'
+      value: 81.6
+    info:
+      fit:
+        scale: 0.7935
+        anchor:
+        - 485.1
+        - 855
+      registration:
+        dx: 27
+        dy: 33
+      metrics_raw:
+        L_p5: 57.9
+        L_p50: 76.7
+        L_p95: 90.3
+        C_p50: 37.9
+        C_p95: 43.5
+        C_p99: 44.7
+        detail: 2.4
+      metrics_locked:
+        L_p5: 59.2
+        L_p50: 76.5
+        L_p95: 89.9
+        C_p50: 37.8
+        C_p95: 43.2
+        C_p99: 44.0
+        detail: 1.78
+    fingerprint: 5bb8246e4d6a2b54
+manual_review:
+  observed_note: Both contain exactly three rounded honey crates with a cream cloth
+    sack leaning beside them and one pale sage cabbage on top. Take1 is a two-base/one-top
+    arrangement; take2 reverses the width distribution. Chunky matte slats, broad
+    shading, no lettering or ground plane. The guide hard checks pass; small low-alpha
+    source fringe specks are retained without repainting. Style warnings remain advisory.
+  excluded_takes: []
+sources:
+- batch: batch-24-home-materials
+  job: x-decor-crates
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-crates-rain
+  source_file: /workspace/generated_images/exec-f3eb6f57-98a1-4529-8252-6f1eb107d707.png
+  returned_at: '2026-11-05T14:20:55.215Z'
+  prompt_sha256: b5a25045997b05c992786d0d7de7ba0201634a2de84eeb94580bf70760130f39
+  fingerprint: 5bb8246e4d6a2b54
+  saved_at: '2026-11-05T14:20:55.533029+00:00'
+  original_generated_png_sha256: bc79e3e85da72b2f4f835f057771e01e43dc3ade901884141f72941f301ae1d0
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 7ebeef7ff19d51e3b066ace927674f41d49a9d06edeab8ab8bb90f91ccc533e2
+  inbox_png_sha256: 01ec5d2df9ca543efcf50c9680604324f72a6abc5be7a45e0df9ff6681fcecd9
+  qa_sha256: b1be70546489a5b70958e5e9d497160dadcb394cfe689b137be18b9aa89e419b
+- batch: batch-24-home-materials
+  job: x-decor-crates
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-crates-rain
+  source_file: /workspace/generated_images/exec-815739fb-bafb-4afa-9877-a9dcf228437b.png
+  returned_at: '2026-11-05T14:18:15.041Z'
+  prompt_sha256: b5a25045997b05c992786d0d7de7ba0201634a2de84eeb94580bf70760130f39
+  fingerprint: 5bb8246e4d6a2b54
+  saved_at: '2026-11-05T14:18:15.531244+00:00'
+  original_generated_png_sha256: e7fb4d83766a9abc6540e0dbed6a87e689974b4f5353c86c30c6c8e5cde03ea0
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: d828e22348efd64f9d72f5e5cd95500f60494b4e7f9c4eed2065004a4557a3fb
+  inbox_png_sha256: ad50fff7b15897e2c6a0f1f9b72bfc7a2a0867b5013371af7fb2ee7b1a5be972
+  qa_sha256: 198bcac874331bb15be11ace4a7d6d6693f69c9db3ba148ebdea9a05f5478287
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

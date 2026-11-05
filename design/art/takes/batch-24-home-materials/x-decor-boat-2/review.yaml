@@ -1,0 +1,239 @@
+batch: batch-24-home-materials
+manifest: tools/imagegen/manifest/batch-24-home-materials.yaml
+manifest_sha256: 8b89cf06f923af54bdfadd47a2edcf953777d08789ad336b2d56aab7a51f9117
+contact_sheet: design/art/takes/batch-24-home-materials/x-decor-boat-2/contact.jpg
+jobs:
+  x-decor-boat-2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show one rounded honey rowboat
+      with cream side stripe, one sage cushion, a single chunky oar laid across the
+      opening and a small bow hook. Take1 cushion is cream-striped; take2 is plain
+      sage. No water or floor, shallow waterline ellipse remains readable; no text
+      or characters. Guide hard checks pass. Minor low-alpha source specks and advisory
+      style/light warnings retained without repainting.
+qa_reports:
+  1:
+    job: x-decor-boat-2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 43.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 88 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.24 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.239
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.7 (at least 3.5)'
+      value: 5.73
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.47
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8872
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 4.0, off-palette 0.0%
+      value: 1.6189
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 76 against the world reference (outliers: L_p98, detail,
+        edge)'
+      value: 76.3
+    info:
+      fit:
+        scale: 0.7101
+        anchor:
+        - 502.0
+        - 885
+      registration:
+        dx: 9
+        dy: 3
+      metrics_raw:
+        L_p5: 57.8
+        L_p50: 74.4
+        L_p95: 86.8
+        C_p50: 39.4
+        C_p95: 44.0
+        C_p99: 44.5
+        detail: 2.01
+      metrics_locked:
+        L_p5: 58.5
+        L_p50: 74.4
+        L_p95: 86.1
+        C_p50: 39.2
+        C_p95: 43.6
+        C_p99: 44.1
+        detail: 1.47
+    fingerprint: db5c9f2543f8d281
+  2:
+    job: x-decor-boat-2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 88 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.28 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.275
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.9 (at least 3.5)'
+      value: 5.88
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.42
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9307
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.1, p95 2.2, off-palette 0.0%
+      value: 1.063
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 73 against the world reference (outliers: L_p98, detail,
+        edge)'
+      value: 72.6
+    info:
+      fit:
+        scale: 0.604
+        anchor:
+        - 556.8
+        - 933
+      registration:
+        dx: -46
+        dy: -45
+      metrics_raw:
+        L_p5: 55.9
+        L_p50: 75.5
+        L_p95: 87.3
+        C_p50: 37.4
+        C_p95: 41.7
+        C_p99: 42.5
+        detail: 1.96
+      metrics_locked:
+        L_p5: 56.7
+        L_p50: 75.3
+        L_p95: 86.5
+        C_p50: 37.1
+        C_p95: 41.3
+        C_p99: 41.8
+        detail: 1.42
+    fingerprint: db5c9f2543f8d281
+manual_review:
+  observed_note: Both show one rounded honey rowboat with cream side stripe, one sage
+    cushion, a single chunky oar laid across the opening and a small bow hook. Take1
+    cushion is cream-striped; take2 is plain sage. No water or floor, shallow waterline
+    ellipse remains readable; no text or characters. Guide hard checks pass. Minor
+    low-alpha source specks and advisory style/light warnings retained without repainting.
+  excluded_takes: []
+sources:
+- batch: batch-24-home-materials
+  job: x-decor-boat-2
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-boat-evening
+  source_file: /workspace/generated_images/exec-14b4c8ea-ed55-4c62-bcb8-c085cc1a5225.png
+  returned_at: '2026-11-05T14:28:22.240Z'
+  prompt_sha256: 072280e67321bae2b8e4b2418bf4cde797a17ecec352ea024881feae5ac885ed
+  fingerprint: db5c9f2543f8d281
+  saved_at: '2026-11-05T14:28:22.735581+00:00'
+  original_generated_png_sha256: 44fb729ab9c52cc619e2502abb4ccb1a8ae92c33b8a4d3244a5310a41400bb78
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 2af13005fb5d2767d6c26af908a200f024466d1949caff59fd5d15e07b0e52f4
+  inbox_png_sha256: 7337d61e5c15a41f537bd7087e805edea347f38cb4bca2eb0f41c33a792fb4c4
+  qa_sha256: 75beec1fd6124d4fc03a00b3f964477bab602a700c54922223ff79352f0a372e
+- batch: batch-24-home-materials
+  job: x-decor-boat-2
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-boat-evening
+  source_file: /workspace/generated_images/exec-efa6fbed-9f08-4040-9913-b50e3a875e45.png
+  returned_at: '2026-11-05T14:26:34.512Z'
+  prompt_sha256: 072280e67321bae2b8e4b2418bf4cde797a17ecec352ea024881feae5ac885ed
+  fingerprint: db5c9f2543f8d281
+  saved_at: '2026-11-05T14:26:36.075967+00:00'
+  original_generated_png_sha256: 908e959202f8e4e7eeb070d4218179da36a6b2528302d08ea686c02c77dcbf97
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: a128aae813ba137bf4112fdefc24aea70de670c6f1c1bdf70dcb13402bcd3d27
+  inbox_png_sha256: 8ecd72b9523c8e71d39230ab9d44229e4978e90eee519ace4ff214a35cf4bf9d
+  qa_sha256: cd100743c6730a7b70109e2c7cf9271e5f3064cc2570840d0bb381a660b65f61
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

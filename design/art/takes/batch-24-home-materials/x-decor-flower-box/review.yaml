@@ -1,0 +1,245 @@
+batch: batch-24-home-materials
+manifest: tools/imagegen/manifest/batch-24-home-materials.yaml
+manifest_sha256: 8b89cf06f923af54bdfadd47a2edcf953777d08789ad336b2d56aab7a51f9117
+contact_sheet: design/art/takes/batch-24-home-materials/x-decor-flower-box/contact.jpg
+jobs:
+  x-decor-flower-box:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both depict a low rounded honey-wood
+      flower box with three chunky sunflowers, cream daisies and plump sage leaves;
+      no text, characters or guide marks. Take1 has a broad unrequested translucent
+      haze/backplate around the flowers and box, so it is manually excluded despite
+      numerical QA. Take2 has a much cleaner transparent cutout with only minor raw
+      low-alpha edge specks, complete rounded ends and feet; it passes hard QA and
+      official decor guide fit. No manual alpha repair or palette edit. Advisory light/color
+      warnings retained.
+qa_reports:
+  1:
+    job: x-decor-flower-box
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 61 (R1 51) (advisory in an exploration)
+      value: 61.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 47 (at most 22), p98 90 (at least 90), spread 43
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 43.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.204
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.1 (at least 3.5)'
+      value: 7.07
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.77
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.3479
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.6, p95 15.8, off-palette 7.6% (top: #777744 (1.7%), #888844
+        (1.4%)) (advisory in an exploration)'
+      value: 3.6122
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the world reference (outliers: C_p95, detail)'
+      value: 73.8
+    info:
+      fit:
+        scale: 0.7059
+        anchor:
+        - 493.2
+        - 898
+      registration:
+        dx: 19
+        dy: -10
+      metrics_raw:
+        L_p5: 50.6
+        L_p50: 75.3
+        L_p95: 87.7
+        C_p50: 43.2
+        C_p95: 65.0
+        C_p99: 66.3
+        detail: 2.21
+      metrics_locked:
+        L_p5: 51.3
+        L_p50: 75.2
+        L_p95: 87.3
+        C_p50: 43.2
+        C_p95: 61.4
+        C_p99: 62.1
+        detail: 1.77
+    fingerprint: 33b9252244811806
+  2:
+    job: x-decor-flower-box
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 60 (R1 51) (advisory in an exploration)
+      value: 60.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 47 (at most 22), p98 92 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 45.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 73.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.15 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.153
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.8 (at least 3.5)'
+      value: 7.81
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.02
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.2154
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 13.9, off-palette 8.9% (top: #887733 (2.3%), #998844
+        (1.9%))'
+      value: 3.3447
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 70 against the world reference (outliers: C_p95, detail,
+        edge)'
+      value: 70.0
+    info:
+      fit:
+        scale: 0.8072
+        anchor:
+        - 507.1
+        - 912
+      registration:
+        dx: 5
+        dy: -23
+      metrics_raw:
+        L_p5: 50.3
+        L_p50: 74.1
+        L_p95: 90.2
+        C_p50: 40.5
+        C_p95: 62.4
+        C_p99: 65.1
+        detail: 2.52
+      metrics_locked:
+        L_p5: 50.9
+        L_p50: 73.8
+        L_p95: 90.0
+        C_p50: 40.4
+        C_p95: 60.2
+        C_p99: 61.4
+        detail: 2.02
+    fingerprint: 33b9252244811806
+manual_review:
+  observed_note: Both depict a low rounded honey-wood flower box with three chunky
+    sunflowers, cream daisies and plump sage leaves; no text, characters or guide
+    marks. Take1 has a broad unrequested translucent haze/backplate around the flowers
+    and box, so it is manually excluded despite numerical QA. Take2 has a much cleaner
+    transparent cutout with only minor raw low-alpha edge specks, complete rounded
+    ends and feet; it passes hard QA and official decor guide fit. No manual alpha
+    repair or palette edit. Advisory light/color warnings retained.
+  excluded_takes:
+  - 1
+sources:
+- batch: batch-24-home-materials
+  job: x-decor-flower-box
+  take: 1
+  round: 1
+  logical_run: backlog-next-20261105
+  source_file: /workspace/generated_images/exec-61df2139-acd0-45af-aba8-d739f23b72e9.png
+  returned_at: '2026-11-05T13:53:45.852Z'
+  prompt_sha256: 1370ede9083c0f7575e4bbe37a8e0fef6b1f6912aef0d08f8222f842dd3ab660
+  fingerprint: 33b9252244811806
+  saved_at: '2026-11-05T13:53:46.329439+00:00'
+  original_generated_png_sha256: ccd0bb04f39ef4931ca499e1251d91f4bfdd2f7021fd9aeca527dcd77ba44b52
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 24781eee4a46e69508a7af69c43b0a7224c41b5fb7504b3c766d4ee2d0296fde
+  inbox_png_sha256: 63a00bdee0d95fc100c178287c304f836f0b8cef1b7713688a3f6fdefdd9dd4d
+  qa_sha256: a73d8bd50b5203d2bcd23a6155b321df3fd5f17e91a0878d90fb05453a589d9e
+- batch: batch-24-home-materials
+  job: x-decor-flower-box
+  take: 2
+  round: 1
+  logical_run: backlog-next-20261105
+  source_file: /workspace/generated_images/exec-5bc90a2c-b139-491e-8f7b-76e1946baa16.png
+  returned_at: '2026-11-05T13:51:56.100Z'
+  prompt_sha256: 1370ede9083c0f7575e4bbe37a8e0fef6b1f6912aef0d08f8222f842dd3ab660
+  fingerprint: 33b9252244811806
+  saved_at: '2026-11-05T13:51:56.619434+00:00'
+  original_generated_png_sha256: 02cc6fca90bdc56ff777fd61619777674d6a8d7a74d49f31d3c75dbe2f32412a
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 8e3981ff56ff2f6217c5de14f607a9dea09dc03ec65befc768811f79b63f3f79
+  inbox_png_sha256: 977022da6a2cc5f088e37a0717b75ea60bfd1352519b5179ab561bf183058478
+  qa_sha256: ca98b12c6e76f50d59aa1c56f3c9606da524d03a6e6556e1a5677f594031c12e
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
