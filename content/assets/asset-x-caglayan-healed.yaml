@@ -1,0 +1,21 @@
+id: asset-x-caglayan-healed
+type: asset
+title_tr: x-caglayan-healed
+title_en: x-caglayan-healed (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Çağlayan, the waterfall island, in the game,
+  at noon. The plate's top is warm pale cream stone (soft travertine) in two low, rounded
+  terraces with moss fringes and little ferns, not a green lawn; its body is rounded honey
+  and cream stone in soft bands. At the back centre a low, rounded rock knoll, about as tall
+  as a windmill, with a short waterfall from a spout in its face i…
+art:
+  images: []
+  jobs:
+  - batch-34-islands-in-game:x-caglayan-healed
+sources:
+- doc: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+kind: plate
+batch: batch-34-islands-in-game
+size: 1536x1024

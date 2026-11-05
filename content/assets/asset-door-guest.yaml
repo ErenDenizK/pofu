@@ -1,0 +1,20 @@
+id: asset-door-guest
+type: asset
+title_tr: door-guest
+title_en: door-guest (prop)
+status: planned
+horizon: later
+summary: >-
+  A small round wooden door set into soft earth, seen straight from the front, same family
+  as the attached door: soft sky-blue painted wood in a thick honey wooden frame, a small
+  round window with a cream cross bar and a tiny cream curtain, a round knob, a flat honey
+  doorstep with a small woven welcome mat (plain, no letters), a little wreath of dried sunflower
+  petals on the door, and over it a hanging sign shaped like…
+art:
+  images: []
+  jobs:
+  - batch-33-home-showcase:door-guest
+sources:
+- doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
+kind: prop
+batch: batch-33-home-showcase

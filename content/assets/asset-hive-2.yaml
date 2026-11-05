@@ -1,0 +1,21 @@
+id: asset-hive-2
+type: asset
+title_tr: hive-2
+title_en: hive-2 (station)
+status: planned
+horizon: later
+summary: >-
+  Add a second, smaller straw skep of the same golden-honey coils on its own low stump just
+  behind and to the right of the first, and two more small clumps of lavender at the front.
+  The first skep, its stump and the stepping stone stay as they are.
+links:
+  variant_of:
+  - asset-hive-1
+art:
+  images: []
+  jobs:
+  - batch-33-home-showcase:hive-2
+sources:
+- doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
+kind: station
+batch: batch-33-home-showcase

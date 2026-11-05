@@ -1,0 +1,20 @@
+id: asset-material-moss
+type: asset
+title_tr: material-moss
+title_en: material-moss (prop)
+status: in-production
+horizon: now
+summary: >-
+  A single small painted object for a cozy game, a crafting material: a soft round cushion
+  of velvety sage-green moss, like a little pillow, with three tiny pale star-shaped moss
+  flowers on top and a thin curl of cream root under it. Seen from the same low front three-quarter
+  camera as the tea stall. Centered on an empty transparent background, about a third of the
+  canvas wide, with wide empty space around it.
+art:
+  images: []
+  jobs:
+  - batch-33-home-showcase-pilot:material-moss
+sources:
+- doc: tools/imagegen/manifest/batch-33-home-showcase-pilot.yaml
+kind: prop
+batch: batch-33-home-showcase-pilot

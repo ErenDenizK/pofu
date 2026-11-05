@@ -1,0 +1,21 @@
+id: asset-hill-gate-open
+type: asset
+title_tr: hill-gate-open
+title_en: hill-gate-open (prop)
+status: planned
+horizon: later
+summary: >-
+  Open the gate: both wooden leaves swing inward and stand open at an angle, so the opening
+  between the posts is empty and the sunflower panel is split in two halves, one on each leaf.
+  Posts, moss caps and steps stay exactly as they are.
+links:
+  variant_of:
+  - asset-hill-gate
+art:
+  images: []
+  jobs:
+  - batch-33-home-showcase:hill-gate-open
+sources:
+- doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
+kind: prop
+batch: batch-33-home-showcase

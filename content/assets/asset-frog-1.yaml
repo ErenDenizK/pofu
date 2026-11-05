@@ -1,0 +1,21 @@
+id: asset-frog-1
+type: asset
+title_tr: frog-1
+title_en: frog-1 (char)
+status: planned
+horizon: later
+summary: >-
+  Draw a small frog in exactly the same art style, lighting and finish as the attached hamster
+  and goat. Same canvas rules: full body, sitting upright, front view, centered, feet on an
+  invisible line at 88% of the height, about 62% of the canvas width. CHARACTER: a round,
+  chubby little frog of soft sage green with a pale cream belly and a few faint lighter freckles
+  on the back, smooth velvety matte skin (no fur, no sli…
+art:
+  images: []
+  jobs:
+  - batch-33-home-showcase:frog-1
+sources:
+- doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
+kind: char
+batch: batch-33-home-showcase
+size: 1024x1536
