@@ -457,26 +457,27 @@ does not animate its grade.
 
 ### Haptics map
 
-Haptics confirm, they do not decorate. SwiftUI `sensoryFeedback` where
-possible; Core Haptics only for the three signature patterns.
+Haptics confirm, they do not decorate. The palette is `PofuHaptics`
+(`PofuDesignSystem/PofuHaptics.swift`, experience v1 section 3.3): ten
+named feelings, each call site names the feeling and never a generator.
+SwiftUI and UIKit system feedback for the simple ones; Core Haptics only for
+the custom patterns (`resist`, `growth`, `pouch`).
 
-| Moment | Feedback | Note |
+| Name | When | Feedback |
 |---|---|---|
-| Tap Pofu | `.impact(flexibility: .soft, intensity: 0.5)` | Paired with squish |
-| Long-press Pofu ("melt") | Custom: soft continuous, fading over 0.6 s | Signature |
-| Check-in appears ("Hop!") | `.impact(weight: .light, intensity: 0.6)` | Gentle tap on the shoulder |
-| Resisted | `.success` | Plus Pofu's celebration |
-| Proceeded (pass granted) | `.selection` | Neutral: never punish |
-| Energy earned | `.selection` ticks during count-up (max 10), `.success` at the end | |
-| Energy spent | `.decrease` | |
-| Cheeks full | Custom "pouch pop": sharp transient then soft tail | Signature |
-| Focus start / end | `.start` / `.stop` | |
-| Streak milestone, badge unlocked | Custom "celebration": three rising transients | Signature |
-| Not enough energy | `.warning` | Never `.error`: the user did nothing wrong |
-| Toggles, pickers, lists | System default | |
+| `tap` | any world object or control | `.selection` |
+| `land` | the camera lands on a stop; a flight arrives | `.impact(.soft, 0.4)` |
+| `edge` | rubber band at the end of a pan | `.impact(.rigid, 0.3)`, once |
+| `nudge` | the check-in appears (Hop!) | `.impact(.light, 0.6)` |
+| `resist` | the resist payoff | custom: two rising soft transients, 0.12 s apart |
+| `seed` | seed count-up | `.selection` ticks (at most 6 per second), then `.impact(.soft)` |
+| `growth` | a build's level-up | custom: three rising transients plus a soft tail |
+| `pouch` | cheeks full | custom "pouch pop" |
+| `warning` | not enough seeds | `.warning`, never `.error` |
+| `quiet` | passive updates, bedtime | nothing |
 
 Never: haptics for passive updates, repeating haptic loops, or haptics
-during the bedtime window other than the check-in itself.
+during the bedtime window other than the check-in itself (softer at night).
 
 ### Sound principles
 
