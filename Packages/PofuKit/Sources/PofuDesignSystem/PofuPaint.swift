@@ -13,7 +13,7 @@ public enum PofuPaint: String, CaseIterable, Sendable {
     case faceSecondary = "paint-face-secondary"
     case faceDisc = "paint-face-disc"
     case tagPaper = "paint-tag-paper"
-    /// 2x pixels: a nine-slice panel.
+    /// A nine-slice panel, 120 pt: its caps are a quarter of its size.
     case panelPaper = "paint-panel-paper"
     case iconSeed = "paint-icon-seed"
     case iconCalm = "paint-icon-calm"
@@ -29,7 +29,7 @@ public enum PofuPaint: String, CaseIterable, Sendable {
     case iconTea = "paint-icon-tea"
 
     /// The pixels-per-point the file was baked at.
-    var scale: Double { self == .panelPaper ? 2 : 3 }
+    var scale: Double { 3 }
 }
 
 #if canImport(SwiftUI) && canImport(UIKit)
@@ -114,7 +114,7 @@ public struct PofuPaperPanel: View {
 
     public var body: some View {
         if scheme == .light, let image = PofuPaint.panelPaper.image {
-            let cap = min(image.size.width, image.size.height) * 0.3
+            let cap = min(image.size.width, image.size.height) * 0.25
             Image(uiImage: image)
                 .resizable(capInsets: EdgeInsets(top: cap, leading: cap, bottom: cap, trailing: cap), resizingMode: .stretch)
         } else {

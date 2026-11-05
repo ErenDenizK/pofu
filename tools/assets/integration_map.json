@@ -246,10 +246,10 @@
       "name": "paint-panel-paper",
       "master": "design/art/ui/ui-panel-paper",
       "points": [
-        360,
-        360
+        120,
+        120
       ],
-      "scale": 2
+      "scale": 3
     },
     {
       "target": "ui",
