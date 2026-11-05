@@ -56,7 +56,7 @@ public struct CompanionView: View {
     public var body: some View {
         Group {
             if let art {
-                TimelineView(.animation(minimumInterval: 1.0 / 60.0)) { context in
+                TimelineView(.animation(minimumInterval: 1.0 / 30.0)) { context in
                     CompanionStage(
                         art: art,
                         pose: driver.pose(
@@ -247,13 +247,28 @@ private struct ContactShadow: View {
 
     var body: some View {
         let lift = pose.shadowScale
-        Ellipse()
-            .fill(Color(red: 0.55, green: 0.32, blue: 0.25).opacity(0.2 * (0.35 + 0.65 * lift)))
-            .frame(
-                width: artWidth * 0.78 * pose.scaleX * (0.55 + 0.45 * lift),
-                height: artWidth * 0.07 * (0.6 + 0.4 * lift)
+        let alpha = 0.2 * (0.35 + 0.65 * lift)
+        let width = artWidth * 0.78 * pose.scaleX * (0.55 + 0.45 * lift) * 1.08
+        let height = artWidth * 0.07 * (0.6 + 0.4 * lift) * 1.2
+        let ink = Color(red: 0.55, green: 0.32, blue: 0.25)
+        // A radial gradient squashed to an ellipse: the soft edge without
+        // a blur pass every frame.
+        Circle()
+            .fill(
+                RadialGradient(
+                    stops: [
+                        .init(color: ink.opacity(alpha), location: 0),
+                        .init(color: ink.opacity(alpha * 0.8), location: 0.55),
+                        .init(color: ink.opacity(0), location: 1),
+                    ],
+                    center: .center,
+                    startRadius: 0,
+                    endRadius: width / 2
+                )
             )
-            .blur(radius: artWidth * 0.025)
+            .frame(width: width, height: width)
+            .scaleEffect(y: height / max(width, 1))
+            .frame(width: width, height: height)
     }
 }
 
