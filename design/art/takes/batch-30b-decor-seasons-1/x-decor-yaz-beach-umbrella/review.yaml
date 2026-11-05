@@ -1,0 +1,246 @@
+batch: batch-30b-decor-seasons-1
+manifest: tools/imagegen/manifest/batch-30b-decor-seasons-1.yaml
+manifest_sha256: d484fefef3b45748662c6d7daa5c6b4996a53df0ac3546114e7a38f7503e6ace
+contact_sheet: design/art/takes/batch-30b-decor-seasons-1/x-decor-yaz-beach-umbrella/contact.jpg
+jobs:
+  x-decor-yaz-beach-umbrella:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both initial takes pass hard
+      QA and independent content review: large soft sea-blue/cream striped beach umbrella
+      tilts slightly on a slim honey pole planted in a small pale sand mound, with
+      one folded cream towel bearing a coral stripe and one round pail beside it.
+      No lettering, characters, floor, guide or forbidden cast ground shadow. Official
+      locked alpha-over24 visible widths314/337px both fit the literal at-most-third
+      of1024 cap341.33px as well as decor_anchor. Lowest lock load selects take2 (0.8614
+      versus1.2043), no retry needed. The broad striped-canopy silhouette reads at64px.
+      No source cleanup/manual scaling; exploration palette/style/light warnings remain
+      advisory. Never promoted.'
+qa_reports:
+  1:
+    job: x-decor-yaz-beach-umbrella
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 93 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 79.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.23 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.227
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.8 (at least 3.5)'
+      value: 5.77
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.44
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.2043
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 6.0, off-palette 0.1% (top: #668877 (0.0%), #AA6633
+        (0.0%))'
+      value: 2.305
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: detail, edge)'
+      value: 87.3
+    info:
+      fit:
+        scale: 0.7918
+        anchor:
+        - 508.7
+        - 841
+      registration:
+        dx: 3
+        dy: 47
+      metrics_raw:
+        L_p5: 59.9
+        L_p50: 79.3
+        L_p95: 92.7
+        C_p50: 20.7
+        C_p95: 47.1
+        C_p99: 49.2
+        detail: 2.06
+      metrics_locked:
+        L_p5: 60.2
+        L_p50: 79.1
+        L_p95: 92.5
+        C_p50: 20.2
+        C_p95: 46.5
+        C_p99: 48.1
+        detail: 1.44
+    fingerprint: 18c9145281c0df45
+  2:
+    job: x-decor-yaz-beach-umbrella
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 66 (at most 22), p98 93 (at least 90), spread 27
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 27.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 80 (band 55-90)'
+      value: 79.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.259
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.4 (at least 3.5)'
+      value: 4.38
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.24
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8614
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 3.9, off-palette 0.0%
+      value: 1.6238
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the world reference (outliers: L_p2, edge)'
+      value: 84.2
+    info:
+      fit:
+        scale: 0.8435
+        anchor:
+        - 506.2
+        - 875
+      registration:
+        dx: 6
+        dy: 12
+      metrics_raw:
+        L_p5: 66.8
+        L_p50: 79.8
+        L_p95: 92.7
+        C_p50: 20.3
+        C_p95: 50.0
+        C_p99: 52.2
+        detail: 1.86
+      metrics_locked:
+        L_p5: 67.2
+        L_p50: 79.6
+        L_p95: 92.5
+        C_p50: 20.1
+        C_p95: 49.3
+        C_p99: 51.8
+        detail: 1.24
+    fingerprint: 18c9145281c0df45
+manual_review:
+  observed_note: 'Both initial takes pass hard QA and independent content review:
+    large soft sea-blue/cream striped beach umbrella tilts slightly on a slim honey
+    pole planted in a small pale sand mound, with one folded cream towel bearing a
+    coral stripe and one round pail beside it. No lettering, characters, floor, guide
+    or forbidden cast ground shadow. Official locked alpha-over24 visible widths314/337px
+    both fit the literal at-most-third of1024 cap341.33px as well as decor_anchor.
+    Lowest lock load selects take2 (0.8614 versus1.2043), no retry needed. The broad
+    striped-canopy silhouette reads at64px. No source cleanup/manual scaling; exploration
+    palette/style/light warnings remain advisory. Never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-30b-decor-seasons-1
+  job: x-decor-yaz-beach-umbrella
+  take: 1
+  round: 1
+  logical_run: 20261105-night30b-nest-retry-beach-umbrella
+  source_file: /workspace/generated_images/exec-3c8fc0a4-5cc3-4487-b2f0-7cbfc066f3b1.png
+  returned_at: '2026-11-05T19:49:34.987Z'
+  prompt_sha256: 56d4f4bcbabdc8cd25436579633a18029f3edcf92a2697a88bf259f73d8a3d5d
+  fingerprint: 18c9145281c0df45
+  saved_at: '2026-11-05T19:49:38.203325+00:00'
+  original_generated_png_sha256: 18cece12b5d86e87f8c92a26271419af7b16de999f9fb43b8b4d24493f592ec5
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: cb253e7edf5d663978bb8dedc483d8742347f777d6aa7522bdd979304faa5830
+  inbox_png_sha256: 9606b0dd8a2ac1224a62fe3a67b1c8b312998d31dade051385ef89301c2b001f
+  qa_sha256: d2951c8537b396fac901a5c13763853aacf33eda6242655920779f834bab7142
+- batch: batch-30b-decor-seasons-1
+  job: x-decor-yaz-beach-umbrella
+  take: 2
+  round: 1
+  logical_run: 20261105-night30b-nest-retry-beach-umbrella
+  source_file: /workspace/generated_images/exec-9c9b3e4b-cdc0-4524-9089-e45dde95a239.png
+  returned_at: '2026-11-05T19:47:58.616Z'
+  prompt_sha256: 56d4f4bcbabdc8cd25436579633a18029f3edcf92a2697a88bf259f73d8a3d5d
+  fingerprint: 18c9145281c0df45
+  saved_at: '2026-11-05T19:47:59.137291+00:00'
+  original_generated_png_sha256: a44c273b63960614a1c82e475ce7eabf3db980ff34832fb034f609f3257117e1
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 504fcf3ec338dfb305d485472c8df6cae47d76549c7e35089776940c04cd5800
+  inbox_png_sha256: 1b4ff02c99bba5966b95636871120a9eff21c38f36d28156766f2347d99ce5b7
+  qa_sha256: e1653ae05b32480d3d790908550b12b91f7637f02d50b824b26d86358e91e36f
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

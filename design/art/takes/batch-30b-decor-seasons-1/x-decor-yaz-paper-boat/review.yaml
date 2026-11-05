@@ -1,0 +1,247 @@
+batch: batch-30b-decor-seasons-1
+manifest: tools/imagegen/manifest/batch-30b-decor-seasons-1.yaml
+manifest_sha256: d484fefef3b45748662c6d7daa5c6b4996a53df0ac3546114e7a38f7503e6ace
+contact_sheet: design/art/takes/batch-30b-decor-seasons-1/x-decor-yaz-paper-boat/contact.jpg
+jobs:
+  x-decor-yaz-paper-boat:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Initial take2 is eligible without
+      retry: official locked alpha-over24 width333px fits the literal one-third of1024
+      cap341.33px and all hard QA/decor_anchor checks pass. Initial1 width360 exceeds
+      that cap and is excluded. Independent content review confirms a large simple
+      folded cream paper boat with pale blue-grey inner fold, tiny coral flag on a
+      toothpick mast, resting on its keel on a round sage cushion, no letters, characters,
+      floor or guide. Take2 also has lower lock0.8302 versus0.9716. No manual scaling,
+      recolouring, source cleanup or extra generation. Exploration palette/style/light
+      warnings remain advisory. Never promoted.'
+qa_reports:
+  1:
+    job: x-decor-yaz-paper-boat
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 44.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 93 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 32.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 77.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.34 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.345
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.8 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.95
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9716
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.5, p95 7.9, off-palette 0.8% (top: #888866 (0.4%), #998866
+        (0.2%))'
+      value: 2.5467
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 88 against the world reference (outliers: edge)'
+      value: 88.3
+    info:
+      fit:
+        scale: 0.8126
+        anchor:
+        - 506.9
+        - 935
+      registration:
+        dx: 5
+        dy: -47
+      metrics_raw:
+        L_p5: 62.1
+        L_p50: 77.4
+        L_p95: 91.8
+        C_p50: 21.3
+        C_p95: 44.9
+        C_p99: 48.1
+        detail: 1.49
+      metrics_locked:
+        L_p5: 62.5
+        L_p50: 77.4
+        L_p95: 91.7
+        C_p50: 21.4
+        C_p95: 44.8
+        C_p99: 47.0
+        detail: 0.95
+    fingerprint: a2bef5194c67ddcb
+  2:
+    job: x-decor-yaz-paper-boat
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 37.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 94 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 78.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.29 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.286
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.1 (at least 3.5)'
+      value: 3.07
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.94
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8302
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 11.1, off-palette 3.7% (top: #999966 (1.6%), #998855
+        (0.9%))'
+      value: 3.2659
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the world reference (outliers: C_p95, edge)'
+      value: 79.9
+    info:
+      fit:
+        scale: 1.0
+        anchor:
+        - 509.2
+        - 904
+      registration:
+        dx: 3
+        dy: -16
+      metrics_raw:
+        L_p5: 62.2
+        L_p50: 79.0
+        L_p95: 92.6
+        C_p50: 21.6
+        C_p95: 38.2
+        C_p99: 48.7
+        detail: 1.44
+      metrics_locked:
+        L_p5: 62.7
+        L_p50: 78.9
+        L_p95: 92.4
+        C_p50: 21.4
+        C_p95: 37.0
+        C_p99: 47.5
+        detail: 0.94
+    fingerprint: a2bef5194c67ddcb
+manual_review:
+  observed_note: 'Initial take2 is eligible without retry: official locked alpha-over24
+    width333px fits the literal one-third of1024 cap341.33px and all hard QA/decor_anchor
+    checks pass. Initial1 width360 exceeds that cap and is excluded. Independent content
+    review confirms a large simple folded cream paper boat with pale blue-grey inner
+    fold, tiny coral flag on a toothpick mast, resting on its keel on a round sage
+    cushion, no letters, characters, floor or guide. Take2 also has lower lock0.8302
+    versus0.9716. No manual scaling, recolouring, source cleanup or extra generation.
+    Exploration palette/style/light warnings remain advisory. Never promoted.'
+  excluded_takes:
+  - 1
+sources:
+- batch: batch-30b-decor-seasons-1
+  job: x-decor-yaz-paper-boat
+  take: 1
+  round: 1
+  logical_run: 20261105-night30b-hammock-retry-paperboat
+  source_file: /workspace/generated_images/exec-15276793-c9a5-4b3a-9aec-52ac75c5405b.png
+  returned_at: '2026-11-05T19:50:21.638Z'
+  prompt_sha256: b4009e795dfd26f37d138d4e7b5e3085e0e01c8f098a46df0848dc2e8271485d
+  fingerprint: a2bef5194c67ddcb
+  saved_at: '2026-11-05T19:50:22.228037+00:00'
+  original_generated_png_sha256: 5360fc1095841795e6d0be860bbf424603764a473ae8af6a91f3c8da999964f9
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 7c97a6a5162c28a3c0d4c5772386979a6b31a7b13458e3edac6cc8b2c8cd1c3e
+  inbox_png_sha256: 0c4f7837c4a7b3ceefb8369a989219a08ba155d942239d8d9a812db2324e0ba4
+  qa_sha256: a9e9876352f0b179edac905e7a305b52473d3daac96a811dae1e610b401cc799
+- batch: batch-30b-decor-seasons-1
+  job: x-decor-yaz-paper-boat
+  take: 2
+  round: 1
+  logical_run: 20261105-night30b-hammock-retry-paperboat
+  source_file: /workspace/generated_images/exec-4c5cf1b4-0122-4fc0-8e3b-8d9cbed99070.png
+  returned_at: '2026-11-05T19:51:08.902Z'
+  prompt_sha256: b4009e795dfd26f37d138d4e7b5e3085e0e01c8f098a46df0848dc2e8271485d
+  fingerprint: a2bef5194c67ddcb
+  saved_at: '2026-11-05T19:51:09.272802+00:00'
+  original_generated_png_sha256: ebbfc830252c4095fe18bbb276de54e45d4f1b3461ecd48749359ea2d2761b90
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: ed6e67779e9c1f3a3eb68db4b4f5608769f6e29086f74d3d0db11acd5549bb18
+  inbox_png_sha256: 3126e942aa1fc59546baa69cf69ab80b98a0956454dacda29d7657c21a3be204
+  qa_sha256: 1eb9ffe9af4f5c8653a0bd3478fd4a5f1ed7a5d8256667ba035e76b20a10e3fd
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

@@ -1,0 +1,456 @@
+batch: batch-30b-decor-seasons-1
+manifest: tools/imagegen/manifest/batch-30b-decor-seasons-1.yaml
+manifest_sha256: d484fefef3b45748662c6d7daa5c6b4996a53df0ac3546114e7a38f7503e6ace
+contact_sheet: design/art/takes/batch-30b-decor-seasons-1/x-decor-yaz-hammock/contact.jpg
+jobs:
+  x-decor-yaz-hammock:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after the single allowed unchanged-prompt retry. All official posted
+      visible alpha-over24 widths exceed the literal one-third of1024 cap341.33px:
+      initial360/360, retry360/359. All hard numeric checks and decor_anchor pass;
+      exploration style/palette/light warnings advisory. The two round-top honey posts,
+      curved fabric, cream end cushion and exactly two sandals are retained; initial1
+      is striped but initial2 is visibly checkered instead of coral/cream stripes,
+      an additional recorded content limitation. Retry sources otherwise suit the
+      hammock/rest concept but fail the same exactsize. No source cleanup, manual
+      shrink, changed prompt, QA waiver or third round. Preserve all four originals
+      and publish copies/contact/reports; independent summer corner has no selected-prop
+      dependency. Never promoted.'
+qa_reports:
+  1:
+    job: x-decor-yaz-hammock
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 63 (at most 22), p98 93 (at least 90), spread 30
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 30.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.9 (at least 3.5)'
+      value: 6.93
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.25
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.3994
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.1, p95 2.4, off-palette 0.0%
+      value: 1.0903
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 83 against the world reference (outliers: detail, edge)'
+      value: 83.3
+    info:
+      fit:
+        scale: 0.7469
+        anchor:
+        - 511.8
+        - 884
+      registration:
+        dx: 1
+        dy: 4
+      metrics_raw:
+        L_p5: 63.9
+        L_p50: 76.6
+        L_p95: 92.1
+        C_p50: 32.3
+        C_p95: 45.7
+        C_p99: 46.5
+        detail: 1.87
+      metrics_locked:
+        L_p5: 64.8
+        L_p50: 76.8
+        L_p95: 91.2
+        C_p50: 31.6
+        C_p95: 45.4
+        C_p99: 46.0
+        detail: 1.25
+    fingerprint: 1fd0f0cea2586e95
+  2:
+    job: x-decor-yaz-hammock
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 59 (at most 22), p98 93 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 75.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.3 (at least 3.5)'
+      value: 7.28
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.41
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.0
+      value: 2.0036
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.1, p95 2.7, off-palette 0.1% (top: #AA5522 (0.0%), #AA6633
+        (0.0%))'
+      value: 1.1043
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the world reference (outliers: detail, edge)'
+      value: 85.8
+    info:
+      fit:
+        scale: 0.7611
+        anchor:
+        - 538.8
+        - 898
+      registration:
+        dx: -27
+        dy: -10
+      metrics_raw:
+        L_p5: 61.2
+        L_p50: 75.8
+        L_p95: 92.9
+        C_p50: 39.0
+        C_p95: 48.4
+        C_p99: 49.6
+        detail: 2.0
+      metrics_locked:
+        L_p5: 62.0
+        L_p50: 75.8
+        L_p95: 92.5
+        C_p50: 38.4
+        C_p95: 47.9
+        C_p99: 48.8
+        detail: 1.41
+    fingerprint: 1fd0f0cea2586e95
+  3:
+    job: x-decor-yaz-hammock
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 91 (at least 90), spread 31
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 30.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 74.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.0 (at least 3.5)'
+      value: 5.99
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.23
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4098
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 2.4, off-palette 0.0%
+      value: 1.0298
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the world reference (outliers: edge)'
+      value: 85.6
+    info:
+      fit:
+        scale: 0.7347
+        anchor:
+        - 531.3
+        - 809
+      registration:
+        dx: -19
+        dy: 79
+      metrics_raw:
+        L_p5: 63.1
+        L_p50: 74.7
+        L_p95: 90.8
+        C_p50: 39.4
+        C_p95: 48.0
+        C_p99: 48.7
+        detail: 1.78
+      metrics_locked:
+        L_p5: 63.8
+        L_p50: 74.7
+        L_p95: 90.3
+        C_p50: 39.2
+        C_p95: 47.8
+        C_p99: 48.4
+        detail: 1.23
+    fingerprint: 1fd0f0cea2586e95
+  4:
+    job: x-decor-yaz-hammock
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 63 (at most 22), p98 90 (at least 90), spread 27
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 26.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 76.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.0 (at least 3.5)'
+      value: 5.97
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.13
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.3142
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 2.3, off-palette 0.0%
+      value: 1.0004
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 81 against the world reference (outliers: edge)'
+      value: 81.3
+    info:
+      fit:
+        scale: 0.7484
+        anchor:
+        - 534.8
+        - 849
+      registration:
+        dx: -23
+        dy: 39
+      metrics_raw:
+        L_p5: 64.8
+        L_p50: 76.2
+        L_p95: 89.3
+        C_p50: 36.8
+        C_p95: 47.7
+        C_p99: 48.9
+        detail: 1.75
+      metrics_locked:
+        L_p5: 65.5
+        L_p50: 76.2
+        L_p95: 88.6
+        C_p50: 36.3
+        C_p95: 47.4
+        C_p99: 48.4
+        detail: 1.13
+    fingerprint: 1fd0f0cea2586e95
+manual_review:
+  observed_note: 'Skipped after the single allowed unchanged-prompt retry. All official
+    posted visible alpha-over24 widths exceed the literal one-third of1024 cap341.33px:
+    initial360/360, retry360/359. All hard numeric checks and decor_anchor pass; exploration
+    style/palette/light warnings advisory. The two round-top honey posts, curved fabric,
+    cream end cushion and exactly two sandals are retained; initial1 is striped but
+    initial2 is visibly checkered instead of coral/cream stripes, an additional recorded
+    content limitation. Retry sources otherwise suit the hammock/rest concept but
+    fail the same exactsize. No source cleanup, manual shrink, changed prompt, QA
+    waiver or third round. Preserve all four originals and publish copies/contact/reports;
+    independent summer corner has no selected-prop dependency. Never promoted.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30b-decor-seasons-1
+  job: x-decor-yaz-hammock
+  take: 1
+  round: 1
+  logical_run: 20261105-night30b-spring-corner-summer-hammock
+  source_file: /workspace/generated_images/exec-a0c15b75-ca8c-4e43-805d-5728664b35d3.png
+  returned_at: '2026-11-05T19:46:19.015Z'
+  prompt_sha256: 0bbb64021bea5c1fe1fef832e48bf20acdeb28c186d9e4d6d192c54f506ee0cb
+  fingerprint: 1fd0f0cea2586e95
+  saved_at: '2026-11-05T19:46:19.693329+00:00'
+  original_generated_png_sha256: 0dfeff597b5585b209ae727153ce052e08d1ac475232b1aca37adcd57dd30245
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: b2ca182f20c3fbdc380ca0934989636d6ce036a4ee0fcc3c9f350dde6701d410
+  inbox_png_sha256: 5a900dc2692845e8b1845b67cbca515a92a438ce549f3436d184cebbffa7f5a7
+  qa_sha256: 4bb2fcfa8168b7baab711c8a262eced075c4c8d28d65dc90287a31af0f7930b1
+- batch: batch-30b-decor-seasons-1
+  job: x-decor-yaz-hammock
+  take: 2
+  round: 1
+  logical_run: 20261105-night30b-spring-corner-summer-hammock
+  source_file: /workspace/generated_images/exec-e3fefa39-caa1-478f-a25e-8862a0cfdb55.png
+  returned_at: '2026-11-05T19:44:11.297Z'
+  prompt_sha256: 0bbb64021bea5c1fe1fef832e48bf20acdeb28c186d9e4d6d192c54f506ee0cb
+  fingerprint: 1fd0f0cea2586e95
+  saved_at: '2026-11-05T19:44:11.760237+00:00'
+  original_generated_png_sha256: 8f75f99bd722e0a3a93b56fbdaa6594c9927548f87a07dd164bc26d26cb5081e
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: b0ad876dce0006118b01749a66a1786f4f3594bf52ecc6f844da24eaaaeb3fec
+  inbox_png_sha256: f54980508cf341a3b4c55a29dd14b0eb435b0c9815ce013d8fc506e4da5d52e9
+  qa_sha256: 4efda39a4bb3bbb4f20d7ff373b698fc9fbffcd82a545d362683dff4982393ce
+- batch: batch-30b-decor-seasons-1
+  job: x-decor-yaz-hammock
+  take: 3
+  round: 2
+  logical_run: 20261105-night30b-hammock-retry-paperboat
+  source_file: /workspace/generated_images/exec-ce7863a1-ecb3-4794-acaa-5641fb4d5901.png
+  returned_at: '2026-11-05T19:49:34.290Z'
+  prompt_sha256: 0bbb64021bea5c1fe1fef832e48bf20acdeb28c186d9e4d6d192c54f506ee0cb
+  fingerprint: 1fd0f0cea2586e95
+  saved_at: '2026-11-05T19:49:37.988973+00:00'
+  original_generated_png_sha256: e63d807ab908ff052d66f9ab69d8c0d033f8b01ef9855b0a081b2bf68e314b2b
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 823967b48c2df3bf7150b544f45eb3bc0d0057df502fc48361610a560dfe8b39
+  inbox_png_sha256: 3ab882c864b889dcaf291f1d537d5808697b1a202cbdaa260bf9c87a0e0cbc52
+  qa_sha256: ed3ae47c083814b27eb0e59b62e5f9c70e7856565cacbe13e7e48397d0df362e
+- batch: batch-30b-decor-seasons-1
+  job: x-decor-yaz-hammock
+  take: 4
+  round: 2
+  logical_run: 20261105-night30b-hammock-retry-paperboat
+  source_file: /workspace/generated_images/exec-47269ab0-7acc-468e-bfd7-0a0d568db365.png
+  returned_at: '2026-11-05T19:48:43.609Z'
+  prompt_sha256: 0bbb64021bea5c1fe1fef832e48bf20acdeb28c186d9e4d6d192c54f506ee0cb
+  fingerprint: 1fd0f0cea2586e95
+  saved_at: '2026-11-05T19:48:43.961035+00:00'
+  original_generated_png_sha256: 79763ff609d3d8173c9bbd9f47abf3fccb02845e72fe5e9c7b84acbaecd176d8
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 3e92c185103488cb824bd84779299598859339f0014e8e86f32dfa36854167b4
+  inbox_png_sha256: 9bfeed857c848862891eac19036bd52a75e49339f7d0a915282410e99d1dfc4c
+  qa_sha256: 1e3e01e93ac8ba71f319f24c217456180459719a894bd53fd357f58052f3e36d
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
