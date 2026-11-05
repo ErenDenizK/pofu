@@ -1,0 +1,664 @@
+# Fresh backlog variation: exploration only, never promoted.
+batch: batch-30-decor-sets-v2
+title: 'Decor sets v2: compact island gifts and harbor props, new composed corners'
+status: open
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+  R1: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+defaults:
+  variants: 2
+jobs:
+- id: decor-bench
+  kind: prop
+  name: decor-bench
+  external: batch-08-decor-pilot
+- id: island-main-s
+  kind: world
+  name: island-main-s
+  external: batch-01-slice
+- id: cloud-sea
+  kind: world
+  name: cloud-sea
+  external: batch-04-sky
+- id: x-decor-gift-moss-stool-v2
+  kind: prop
+  name: x-decor-gift-moss-stool-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Fresh v2 exploration; never promoted. Exploration. Ada hediyeleri (island
+    gifts): Koke''s moss stool. Review: a round stool grown over with moss, unmistakably
+    from the moss island, sits on the lawn. New arrangement follows the v2 brief;
+    declared day/subject is authoritative over any older dusk/evening wording.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A fresh early-summer variation of Koke''s gift: one small round cut-tree-stump
+      stool of honey-pale wood, turned a little toward the left, with soft deep-sage
+      moss covering its top and sides like a low velvety cushion, a tiny cluster of
+      cream mushrooms on the rear-right edge, and exactly three short root feet fanning
+      toward the viewer. All three feet remain separately readable within a compact
+      silhouette. Moss is foliage, not fur; the stool is unmistakably an inanimate
+      stump. Chunky and toy-like. It stands centered on the decor guide''s cross and
+      ground ellipse, below the height bar.
+
+
+      The entire object group, including every root, handle, loop, lid and leaning
+      part, is natively about 280-310 pixels wide on this 1024-square canvas (27-30
+      percent); it must never exceed one third of the image width. Leave broad empty
+      transparent space. Do not enlarge it to fill the wider guide ellipse.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE AFTER THE STYLE REFERENCE: borrow only Pofu''s soft painterly
+      handling. Every object remains inanimate: no fur strands, eyes, faces or mascot
+      anatomy, and no hamster peach recoloring. Moss is velvety foliage; wood is matte
+      smooth painted wood without grain; cloth has no weave; metal is matte painted
+      material; physical glass is one soft tinted shape without reflections. Preserve
+      the named object colors and the attached world-props palette. The LIGHT block
+      alone controls the key direction, shadow hue and full subject-plane values:
+      true darks in recesses and clean highlights, no overall milky veil. No outlines,
+      glossy shine, specular glints, plastic, photorealism or 3D-render appearance.
+      No text, letters, numbers, logos, watermarks, border, frame or sticker outline.
+      Sprites stand on nothing: no floor, scenery, background or cast ground shadow.
+      No guide ellipse, cross, bar, grid or magenta survives.'
+- id: x-decor-gift-water-bell-v2
+  kind: prop
+  name: x-decor-gift-water-bell-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Fresh v2 exploration; never promoted. Exploration. Ada hediyeleri (island
+    gifts): Çağlayan''s water bell. Review: a bell of water-clear glaze hung from
+    a small frame; reads as a bell, and as something from a waterfall. New arrangement
+    follows the v2 brief; declared day/subject is authoritative over any older dusk/evening
+    wording.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A new compact arrangement of Caglayan''s gift: one plump drop-shaped bell
+      of soft aqua-blue glazed clay, with a clearly flared rim and a small cream clapper,
+      hanging from a SHORT horizontal honey-wood crossbar on exactly two posts. See
+      the narrow frame slightly from its right side. Three soft water droplets are
+      frozen beneath the bell in a staggered vertical group, and a tiny fern sits
+      at the left post''s foot. The droplets are separate, not a stream. The whole
+      frame stands centered on the decor guide''s cross and ground ellipse, below
+      the height bar.
+
+
+      The entire object group, including every root, handle, loop, lid and leaning
+      part, is natively about 280-310 pixels wide on this 1024-square canvas (27-30
+      percent); it must never exceed one third of the image width. Leave broad empty
+      transparent space. Do not enlarge it to fill the wider guide ellipse.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE AFTER THE STYLE REFERENCE: borrow only Pofu''s soft painterly
+      handling. Every object remains inanimate: no fur strands, eyes, faces or mascot
+      anatomy, and no hamster peach recoloring. Moss is velvety foliage; wood is matte
+      smooth painted wood without grain; cloth has no weave; metal is matte painted
+      material; physical glass is one soft tinted shape without reflections. Preserve
+      the named object colors and the attached world-props palette. The LIGHT block
+      alone controls the key direction, shadow hue and full subject-plane values:
+      true darks in recesses and clean highlights, no overall milky veil. No outlines,
+      glossy shine, specular glints, plastic, photorealism or 3D-render appearance.
+      No text, letters, numbers, logos, watermarks, border, frame or sticker outline.
+      Sprites stand on nothing: no floor, scenery, background or cast ground shadow.
+      No guide ellipse, cross, bar, grid or magenta survives.'
+- id: x-decor-gift-umbrella-v2
+  kind: prop
+  name: x-decor-gift-umbrella-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Fresh v2 exploration; never promoted. Exploration. Ada hediyeleri (island
+    gifts): Emanet''s lost umbrella. Review: a closed old umbrella leaning in a small
+    stand, with a worn but loved look. New arrangement follows the v2 brief; declared
+    day/subject is authoritative over any older dusk/evening wording.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A new pose for Emanet''s loved old umbrella: exactly one CLOSED umbrella
+      in faded plum-and-cream stripes leans gently right inside a little round clay
+      stand. Its curved honey-wood handle faces left, a small mended sage-cloth patch
+      faces the viewer, and a tiny BLANK tag on a string is tucked close to the folded
+      canopy. The canopy stays tightly closed, slightly worn and cared for, never
+      spread open. This narrow group stands centered on the decor guide''s cross and
+      ground ellipse, below its height bar.
+
+
+      The entire object group, including every root, handle, loop, lid and leaning
+      part, is natively about 280-310 pixels wide on this 1024-square canvas (27-30
+      percent); it must never exceed one third of the image width. Leave broad empty
+      transparent space. Do not enlarge it to fill the wider guide ellipse.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE AFTER THE STYLE REFERENCE: borrow only Pofu''s soft painterly
+      handling. Every object remains inanimate: no fur strands, eyes, faces or mascot
+      anatomy, and no hamster peach recoloring. Moss is velvety foliage; wood is matte
+      smooth painted wood without grain; cloth has no weave; metal is matte painted
+      material; physical glass is one soft tinted shape without reflections. Preserve
+      the named object colors and the attached world-props palette. The LIGHT block
+      alone controls the key direction, shadow hue and full subject-plane values:
+      true darks in recesses and clean highlights, no overall milky veil. No outlines,
+      glossy shine, specular glints, plastic, photorealism or 3D-render appearance.
+      No text, letters, numbers, logos, watermarks, border, frame or sticker outline.
+      Sprites stand on nothing: no floor, scenery, background or cast ground shadow.
+      No guide ellipse, cross, bar, grid or magenta survives.'
+- id: x-decor-gift-light-jar-v2
+  kind: prop
+  name: x-decor-gift-light-jar-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Fresh v2 exploration; never promoted. Exploration. Ada hediyeleri (island
+    gifts): Revontuli''s light jar. Review: a jar with a soft mint-and-lilac glow
+    inside that reads as caught light, not a lamp. New arrangement follows the v2
+    brief; declared day/subject is authoritative over any older dusk/evening wording.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A new compact view of Revontuli''s gift: one round physical glass jar,
+      painted as a soft pale tinted shape without reflections, turned slightly left
+      on a small flat honey-wood coaster. A cork lid and a string handle make a compact
+      off-center loop. Inside the jar a gentle cloud of mint and lilac light curls
+      diagonally, with only a few tiny pale motes: caught light, not a flame or a
+      lamp. Keep all glow contained inside the jar, without an external halo or light
+      on a floor. The jar group stands centered on the decor guide''s cross and ground
+      ellipse, below the height bar.
+
+
+      The entire object group, including every root, handle, loop, lid and leaning
+      part, is natively about 280-310 pixels wide on this 1024-square canvas (27-30
+      percent); it must never exceed one third of the image width. Leave broad empty
+      transparent space. Do not enlarge it to fill the wider guide ellipse.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE AFTER THE STYLE REFERENCE: borrow only Pofu''s soft painterly
+      handling. Every object remains inanimate: no fur strands, eyes, faces or mascot
+      anatomy, and no hamster peach recoloring. Moss is velvety foliage; wood is matte
+      smooth painted wood without grain; cloth has no weave; metal is matte painted
+      material; physical glass is one soft tinted shape without reflections. Preserve
+      the named object colors and the attached world-props palette. The LIGHT block
+      alone controls the key direction, shadow hue and full subject-plane values:
+      true darks in recesses and clean highlights, no overall milky veil. No outlines,
+      glossy shine, specular glints, plastic, photorealism or 3D-render appearance.
+      No text, letters, numbers, logos, watermarks, border, frame or sticker outline.
+      Sprites stand on nothing: no floor, scenery, background or cast ground shadow.
+      No guide ellipse, cross, bar, grid or magenta survives.'
+- id: x-corner-gifts-v2
+  kind: plate
+  name: x-corner-gifts-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  light:
+    cell: day
+    layer: subject
+  notes: 'Fresh v2 exploration; never promoted. Exploration. A cozy composed corner
+    of the Ada hediyeleri set. Review: four gifts feel collected, not cluttered; each
+    island is recognisable from its piece. New arrangement follows the v2 brief; declared
+    day/subject is authoritative over any older dusk/evening wording.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees),
+      the same softness and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A fresh concept composition of one quiet corner of the SAME attached home
+      island Aycicegi: a shallow S-shaped stone path sweeps from foreground-right
+      to back-left through a broad patch of lawn, with a cropped edge of the original
+      island above the attached sea of clouds. Keep the approved island''s low front
+      three-quarter camera, about 20 degrees, its painting and proportions; do not
+      invent a different island. Stagger these four small gifts around the path bend,
+      with generous lawn gaps: a honey-pale round stump stool covered on top and sides
+      by sage moss, a small aqua drop bell on a two-post wooden crossbar, a closed
+      plum-and-cream striped old umbrella in its little clay stand, and a soft tinted
+      jar containing mint-and-lilac caught light. They feel collected, never cluttered.
+      Every gift is small, in the attached bench''s scale; the bench reference is
+      for scale/finish only and is not another object to draw. Calm daytime, no characters.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE AFTER THE STYLE REFERENCE: borrow only Pofu''s soft painterly
+      handling. Every object remains inanimate: no fur strands, eyes, faces or mascot
+      anatomy, and no hamster peach recoloring. Moss is velvety foliage; wood is matte
+      smooth painted wood without grain; cloth has no weave; metal is matte painted
+      material; physical glass is one soft tinted shape without reflections. Preserve
+      the named object colors and the attached world-props palette. The LIGHT block
+      alone controls the key direction, shadow hue and full subject-plane values:
+      true darks in recesses and clean highlights, no overall milky veil. No outlines,
+      glossy shine, specular glints, plastic, photorealism or 3D-render appearance.
+      No text, letters, numbers, logos, watermarks, border, frame or sticker outline.
+      Keep depth in the clouds beyond the subject, never a wash across the subject.
+      No invented island silhouette, characters, animals, harsh shadows or extra objects.'
+- id: x-decor-harbor-rod-v2
+  kind: prop
+  name: x-decor-harbor-rod-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Fresh v2 exploration; never promoted. Exploration. Liman (harbor): the fishing
+    rod and bucket. Review: a rod leaning in a stand and a small bucket; reads as
+    a fishing spot at 64 px. New arrangement follows the v2 brief; declared day/subject
+    is authoritative over any older dusk/evening wording.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A new narrow vertical arrangement of a harbor fishing spot: one slim honey-wood
+      fishing rod leans almost upright in a small round clay stand. Its curled line
+      carries a coral-red float tucked close to the rod. In front is a small sage-green
+      tin bucket with a rounded handle, holding exactly TWO plump cream fish with
+      two distinct readable fish shapes. Behind the bucket, leaning close to the stand,
+      is one FOLDED canvas stool: fabric compressed into a flat narrow strip, legs
+      collapsed parallel together, no spread X legs and no open seat. All parts stay
+      in one compact group on the decor guide''s ground ellipse, centered on the cross
+      and below the height bar. The required two stylized cream fish are bucket contents;
+      no other animals or characters.
+
+
+      The entire object group, including every root, handle, loop, lid and leaning
+      part, is natively about 280-310 pixels wide on this 1024-square canvas (27-30
+      percent); it must never exceed one third of the image width. Leave broad empty
+      transparent space. Do not enlarge it to fill the wider guide ellipse.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE AFTER THE STYLE REFERENCE: borrow only Pofu''s soft painterly
+      handling. Every object remains inanimate: no fur strands, eyes, faces or mascot
+      anatomy, and no hamster peach recoloring. Moss is velvety foliage; wood is matte
+      smooth painted wood without grain; cloth has no weave; metal is matte painted
+      material; physical glass is one soft tinted shape without reflections. Preserve
+      the named object colors and the attached world-props palette. The LIGHT block
+      alone controls the key direction, shadow hue and full subject-plane values:
+      true darks in recesses and clean highlights, no overall milky veil. No outlines,
+      glossy shine, specular glints, plastic, photorealism or 3D-render appearance.
+      No text, letters, numbers, logos, watermarks, border, frame or sticker outline.
+      Sprites stand on nothing: no floor, scenery, background or cast ground shadow.
+      No guide ellipse, cross, bar, grid or magenta survives.'
+- id: x-decor-harbor-buoy-lantern-v2
+  kind: prop
+  name: x-decor-harbor-buoy-lantern-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Fresh v2 exploration; never promoted. Exploration. Liman (harbor): the lantern
+    buoy. Review: a lantern-shaped buoy; matte, striped, with a lamp that code can
+    light. New arrangement follows the v2 brief; declared day/subject is authoritative
+    over any older dusk/evening wording.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A fresh slightly right-turned view of one plump round buoy in broad coral-and-cream
+      stripes, resting on a small flat stone. A SHORT mast on top carries a small
+      cage lantern whose lamp is an UNLIT soft pale cream glass shape, with no flame
+      or glow. A compact loop of honey rope lies at the stone''s front-left, kept
+      close to the buoy. Few matte chunky parts; clear buoy silhouette. The entire
+      group stands on the decor guide''s ground ellipse, centered on the cross and
+      below the height bar.
+
+
+      The entire object group, including every root, handle, loop, lid and leaning
+      part, is natively about 280-310 pixels wide on this 1024-square canvas (27-30
+      percent); it must never exceed one third of the image width. Leave broad empty
+      transparent space. Do not enlarge it to fill the wider guide ellipse.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE AFTER THE STYLE REFERENCE: borrow only Pofu''s soft painterly
+      handling. Every object remains inanimate: no fur strands, eyes, faces or mascot
+      anatomy, and no hamster peach recoloring. Moss is velvety foliage; wood is matte
+      smooth painted wood without grain; cloth has no weave; metal is matte painted
+      material; physical glass is one soft tinted shape without reflections. Preserve
+      the named object colors and the attached world-props palette. The LIGHT block
+      alone controls the key direction, shadow hue and full subject-plane values:
+      true darks in recesses and clean highlights, no overall milky veil. No outlines,
+      glossy shine, specular glints, plastic, photorealism or 3D-render appearance.
+      No text, letters, numbers, logos, watermarks, border, frame or sticker outline.
+      Sprites stand on nothing: no floor, scenery, background or cast ground shadow.
+      No guide ellipse, cross, bar, grid or magenta survives.'
+- id: x-decor-harbor-rope-crates-v2
+  kind: prop
+  name: x-decor-harbor-rope-crates-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Fresh v2 exploration; never promoted. Exploration. Liman (harbor): the rope
+    coil and crate. Review: chunky coil, crate and sack; harbor family, not clutter.
+    New arrangement follows the v2 brief; declared day/subject is authoritative over
+    any older dusk/evening wording.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A new vertically compact harbor bundle: exactly one narrow slatted honey-wood
+      crate behind a neat thick honey-colored rope coil tucked against its front-left.
+      Inside the crate, exactly THREE small round sea-blue floats sit in a clearly
+      countable triangular group, with a FOLDED striped sack tucked behind them. The
+      crate''s distinct hinged wooden lid lies flat close to its front, and exactly
+      one small coral starfish rests ON THAT LID, not floating beside the crate or
+      stuck on a float. Keep the coil and flat lid compact, not spread wide. The complete
+      group stands on the decor guide''s ground ellipse, centered on its cross and
+      below the height bar.
+
+
+      The entire object group, including every root, handle, loop, lid and leaning
+      part, is natively about 280-310 pixels wide on this 1024-square canvas (27-30
+      percent); it must never exceed one third of the image width. Leave broad empty
+      transparent space. Do not enlarge it to fill the wider guide ellipse.'
+  - block: view-v2
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE AFTER THE STYLE REFERENCE: borrow only Pofu''s soft painterly
+      handling. Every object remains inanimate: no fur strands, eyes, faces or mascot
+      anatomy, and no hamster peach recoloring. Moss is velvety foliage; wood is matte
+      smooth painted wood without grain; cloth has no weave; metal is matte painted
+      material; physical glass is one soft tinted shape without reflections. Preserve
+      the named object colors and the attached world-props palette. The LIGHT block
+      alone controls the key direction, shadow hue and full subject-plane values:
+      true darks in recesses and clean highlights, no overall milky veil. No outlines,
+      glossy shine, specular glints, plastic, photorealism or 3D-render appearance.
+      No text, letters, numbers, logos, watermarks, border, frame or sticker outline.
+      Sprites stand on nothing: no floor, scenery, background or cast ground shadow.
+      No guide ellipse, cross, bar, grid or magenta survives.'
+- id: x-decor-harbor-flag-line-v2
+  kind: prop
+  name: x-decor-harbor-flag-line-v2
+  size: 1024x1024
+  canvas: 1024x1024
+  decor: hang
+  chat: Pofu · Decor
+  light:
+    cell: day
+    layer: subject
+  notes: 'Fresh v2 exploration; never promoted. Exploration. Liman (harbor): the flag
+    string. Review: a line of small flags hung between two short poles, hung high,
+    readable shape. New arrangement follows the v2 brief; declared day/subject is
+    authoritative over any older dusk/evening wording.'
+  attach:
+  - ref: decor-guide
+    role: 'The decor guide: footprint ellipse, anchor cross and height bar. Follow
+      it, then remove it.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A fresh compact HANGING harbor-bunting assembly, seen with the approved
+      low front three-quarter camera about 20 degrees. Exactly SEVEN small chunky
+      triangular flags in coral, cream, sea-blue, mustard and sage hang in a shallow
+      gentle sag between exactly TWO very SHORT slim honey-wood poles with round knob
+      tops; show both poles completely. Use a new alternating color order while retaining
+      all five color families. This is decor:hang: align the top of the assembly to
+      the attached guide''s HANG LINE at y300. The entire assembly is about 280-310
+      pixels wide and at most 300 pixels tall on the 1024 canvas, ending above y620.
+      Never exceed one third of the image width. Leave wide transparent margins. Do
+      not stretch the poles down to the ground ellipse, and do not enlarge to fill
+      the wider hanging guide. Remove every guide mark from the output.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE AFTER THE STYLE REFERENCE: borrow only Pofu''s soft painterly
+      handling. Every object remains inanimate: no fur strands, eyes, faces or mascot
+      anatomy, and no hamster peach recoloring. Moss is velvety foliage; wood is matte
+      smooth painted wood without grain; cloth has no weave; metal is matte painted
+      material; physical glass is one soft tinted shape without reflections. Preserve
+      the named object colors and the attached world-props palette. The LIGHT block
+      alone controls the key direction, shadow hue and full subject-plane values:
+      true darks in recesses and clean highlights, no overall milky veil. No outlines,
+      glossy shine, specular glints, plastic, photorealism or 3D-render appearance.
+      No text, letters, numbers, logos, watermarks, border, frame or sticker outline.
+      Sprites stand on nothing: no floor, scenery, background or cast ground shadow.
+      No guide ellipse, cross, bar, grid or magenta survives.'
+- id: x-corner-harbor-v2
+  kind: plate
+  name: x-corner-harbor-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  light:
+    cell: day
+    layer: subject
+  notes: 'Fresh v2 exploration; never promoted. Exploration. A cozy composed corner
+    of the Liman set. Review: reads as a fisherman''s corner at dusk; harbor colors,
+    nothing is mooring-sized. New arrangement follows the v2 brief; declared day/subject
+    is authoritative over any older dusk/evening wording.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees),
+      the same softness and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A new composed harbor-side corner on the SAME attached home island Aycicegi,
+      not a different island: its lawn edge curves from foreground-left to background-right
+      over the attached sea of clouds, with a few path stones and generous empty lawn.
+      Keep the original island''s low front three-quarter camera about 20 degrees,
+      painting and scale. Place the small honey-wood fishing-rod/clay-stand group
+      with its tin bucket and FOLDED canvas stool on the left; a small coral-and-cream
+      buoy lantern on its flat stone near the edge; the compact rope coil and slatted
+      crate behind; and a short seven-flag bunting line between two short poles farther
+      back. All four harbor groups remain separate and readable, every piece small
+      in the attached bench''s scale, with no large pier, dock or mooring equipment.
+      Calm DAYLIGHT, no characters, no bench added just because it is attached.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE AFTER THE STYLE REFERENCE: borrow only Pofu''s soft painterly
+      handling. Every object remains inanimate: no fur strands, eyes, faces or mascot
+      anatomy, and no hamster peach recoloring. Moss is velvety foliage; wood is matte
+      smooth painted wood without grain; cloth has no weave; metal is matte painted
+      material; physical glass is one soft tinted shape without reflections. Preserve
+      the named object colors and the attached world-props palette. The LIGHT block
+      alone controls the key direction, shadow hue and full subject-plane values:
+      true darks in recesses and clean highlights, no overall milky veil. No outlines,
+      glossy shine, specular glints, plastic, photorealism or 3D-render appearance.
+      No text, letters, numbers, logos, watermarks, border, frame or sticker outline.
+      Keep depth in the clouds beyond the subject, never a wash across the subject.
+      No invented island silhouette, characters, animals, harsh shadows or extra objects.'
+- id: x-corner-garden-set-v2
+  kind: plate
+  name: x-corner-garden-set-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  light:
+    cell: day
+    layer: subject
+  notes: 'Fresh v2 exploration; never promoted. Exploration. A cozy composed corner
+    of the Bahçe set. Review: the four pilot pieces together feel like one little
+    garden sitting spot. New arrangement follows the v2 brief; declared day/subject
+    is authoritative over any older dusk/evening wording.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees),
+      the same softness and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: A fresh garden sitting-spot composition on a quiet corner of the SAME attached
+      home island Aycicegi. Keep its low front three-quarter camera about 20 degrees,
+      original painting and scale, with only a cropped patch of lawn, some stone path
+      and the original island edge over the attached sea of clouds. Put a small pond
+      edge at foreground-left with a toy sailboat carrying a coral sail; the honey-wood
+      bench with its cushion sits at back-right. A string of round cream-and-rose
+      paper lanterns hangs between two complete poles along a short diagonal path,
+      and a round mailbox on a post with a tiny flag marks the path entrance. Sunflower
+      seedlings sit between the path stones. Four cozy decor groups, small in the
+      approved bench's scale, calm daytime, no characters or added furniture.
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE AFTER THE STYLE REFERENCE: borrow only Pofu''s soft painterly
+      handling. Every object remains inanimate: no fur strands, eyes, faces or mascot
+      anatomy, and no hamster peach recoloring. Moss is velvety foliage; wood is matte
+      smooth painted wood without grain; cloth has no weave; metal is matte painted
+      material; physical glass is one soft tinted shape without reflections. Preserve
+      the named object colors and the attached world-props palette. The LIGHT block
+      alone controls the key direction, shadow hue and full subject-plane values:
+      true darks in recesses and clean highlights, no overall milky veil. No outlines,
+      glossy shine, specular glints, plastic, photorealism or 3D-render appearance.
+      No text, letters, numbers, logos, watermarks, border, frame or sticker outline.
+      Keep depth in the clouds beyond the subject, never a wash across the subject.
+      No invented island silhouette, characters, animals, harsh shadows or extra objects.'
+- id: x-corner-residents-v2
+  kind: plate
+  name: x-corner-residents-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  chat: Pofu · Exploration
+  light:
+    cell: day
+    layer: subject
+  notes: 'Fresh v2 exploration; never promoted. Exploration. A cozy composed corner
+    of the Sakinler set. Review: the residents'' belongings are the story: a place
+    where six friends clearly meet in the evening. New arrangement follows the v2
+    brief; declared day/subject is authoritative over any older dusk/evening wording.'
+  attach:
+  - ref: approved:island-main-s
+    role: 'The home island: the same painting, the same low camera (about 20 degrees),
+      the same softness and scale of a floating island. Do not draw a different island.'
+  - ref: approved:cloud-sea
+    role: 'The sea of clouds below every island: paint the clouds like this.'
+  - ref: approved:decor-bench
+    role: 'The first piece of the decor family: match its painting, light, colors,
+      finish and scale exactly (do not draw the bench unless asked).'
+  - ref: palette:world-props
+    role: 'The palette card for props: use only these colors (and mixes of them).'
+  - ref: R1
+    role: 'Style reference only: match Pofu''s soft painterly finish; do not draw
+      a hamster or transfer fur, eyes or hamster colors to the objects or scene.'
+  prompt:
+  - text: 'A new friendly meeting-place layout on a quiet corner of the SAME attached
+      home island Aycicegi, with its same low front three-quarter camera about 20
+      degrees, soft painting and scale, a few path stones, cropped lawn and original
+      island edge above the attached clouds. A low round table at left foreground
+      holds Mochi''s rose-clay teapot and exactly TWO tulip-shaped tea glasses. A
+      small hedgehog-sized bench at back-right holds Findik''s brass-cream goggles
+      and one tiny screwdriver. A coral ribbon-collar bell hangs on a simple hook.
+      A goat-sized stool behind the center holds a visibly FOLDED sailor hat: the
+      fabric is compressed into overlapping flat layers, with no raised open crown,
+      no hollow opening and no wearable bowl shape; a small basket of sesame simit
+      sits by its foot. Exactly THREE lily-pad cushions form ONE STRAIGHT ROW across
+      the foreground-right. These are the friends'' belongings only, no residents
+      or other characters. Keep every piece small in the approved bench''s scale,
+      calm DAYLIGHT, uncluttered.'
+  - block: style-anchor-v2
+  - text: 'MATERIAL SCOPE AFTER THE STYLE REFERENCE: borrow only Pofu''s soft painterly
+      handling. Every object remains inanimate: no fur strands, eyes, faces or mascot
+      anatomy, and no hamster peach recoloring. Moss is velvety foliage; wood is matte
+      smooth painted wood without grain; cloth has no weave; metal is matte painted
+      material; physical glass is one soft tinted shape without reflections. Preserve
+      the named object colors and the attached world-props palette. The LIGHT block
+      alone controls the key direction, shadow hue and full subject-plane values:
+      true darks in recesses and clean highlights, no overall milky veil. No outlines,
+      glossy shine, specular glints, plastic, photorealism or 3D-render appearance.
+      No text, letters, numbers, logos, watermarks, border, frame or sticker outline.
+      Keep depth in the clouds beyond the subject, never a wash across the subject.
+      No invented island silhouette, characters, animals, harsh shadows or extra objects.'
