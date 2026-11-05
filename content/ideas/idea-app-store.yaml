@@ -9,5 +9,5 @@ summary: >-
   domain for universal links. Public release in Türkiye, then global.
 sources:
 - doc: docs/roadmap.md
-  anchor: '#phase-6-launch'
+  anchor: '#business'
 kind: launch

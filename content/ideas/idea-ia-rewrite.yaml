@@ -8,7 +8,7 @@ summary: >-
   The IA and user flows are room-era (passes store, "Fill my cheeks"). Mark superseded, rewrite
   after the gate week.
 sources:
-- doc: docs/product/decision-audit.md
+- doc: docs/archive/decision-audit.md
   anchor: '#6-what-to-cut-or-postpone'
 - doc: docs/product/app-game-boundary.md
   anchor: '#1-what-is-wrong-with-the-current-plan'

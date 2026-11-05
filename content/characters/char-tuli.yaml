@@ -7,7 +7,7 @@ horizon: maybe
 summary: >-
   A small arctic fox on Revontuli whose tail paints the aurora; very serious about saunas. Tuli means fire in Finnish.
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 source: lead-brainstorm
 kind: resident

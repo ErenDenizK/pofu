@@ -1,158 +1,156 @@
 # Roadmap
 
-_Living document. Last updated: 2026-11-02._
+_Living document. Last updated: 2026-11-05 (rebuilt in the housekeeping
+pass; the stage G/W plan of 2026-11-02 is in the
+[archive](archive/iteration-plan.md))._
 
-## Status (2026-11-02)
+## Status (2026-11-05)
 
-- **Done:** soft gate v1 (#14: `CheckInIntent`, the Hop! flow, Pofu's room,
-  persistence, minimal onboarding); honest measurement and setup guide v2
-  (#32); the Screen Time gate as a separate `PofuLive` target with three
-  extensions (#34); gate v2 (#41: the speaking shield, honest reach
-  counting, "Açmam lazım", onboarding with a live demo); the game model in
-  `PofuCore/Game` (#46, #48); the native island `PofuWorld` (#49);
-  Rehearsal mode in the free build.
-- **Why the gate comes first:** the Shortcuts automation never fired on the
-  founder's phone (he searched Shortcuts for the app instead of opening the
-  Automation tab); see the [decision audit](product/decision-audit.md).
-- **Next:** the founder's 7-day dogfood from membership day 1
-  ([script](local/membership-day-1.md)); the membership is expected after
-  2026-11-24. Until then the cloud builds code-only stage W work.
-- **Build for the membership (founder, 2026-11-02):** new work targets the
-  Screen Time product; the free `Pofu` target and the Shortcuts path get no
-  new features. After membership day 1, collapse `Pofu` and `PofuLive` into
-  one app target with the entitlements.
-- **Rehearsal mode:** an in-app replica of the shield and simulated reaches
-  driven by the same code paths, so the founder feels the whole loop on his
-  iPhone before the membership
-  ([development guide](development.md#rehearsal-mode-the-free-build)).
+- **Built and merged:** the Screen Time gate v2 as the `PofuLive` target
+  with its extensions (#34, #41; it waits for the membership); the game
+  model in `PofuCore` with island level 1 to 10, station caps, the harbor
+  on tended day 3 and the station islands retired (#182,
+  [ADR-0019](adr/0019-home-cluster-and-wonder-islands.md)); playable build
+  v1 (performance, a playable flow, the icon, day and night: #166, #167,
+  #174); [experience v1](design/experience-v1.md) (#189): one camera and
+  one place control with taps and brushing (#193), the light field and
+  the frame-rate policy (#194), menus, shield and an honest launch (#192),
+  daily visitors and fullness as data (#201); vivid sprites (#200);
+  painted menus (#183); approved art in the app (#185).
+- **In review:** experience v1 wave 2 (#212): visitors drawn, the lawn's
+  dressing and critters, three fixes.
+- **Plans in place:** the [game plan](product/game-plan.md) (canonical),
+  [home progression](product/home-progression.md),
+  [home layout](product/home-layout.md), [deep lore](product/deep-lore.md),
+  [monetization v2](product/monetization-v2.md) (proposal).
+- **Membership:** expected after 2026-11-24. The Screen Time core waits for
+  it; everything else is tested now in the free build's Rehearsal mode.
+  New work targets the Screen Time product; the free `Pofu` target and the
+  Shortcuts path get no new features.
 - **Packages** (`Packages/PofuKit`): `PofuCore`, `PofuScreenTime`,
-  `PofuPersistence`, `PofuDesignSystem`, `PofuCompanion`, `PofuWorld`. Keep
-  [economy.md](product/economy.md) in sync with `PofuCore`. ADR-0015's
-  breathing break is not yet in `PofuCore`.
-- The 3D Blender spike is parked as a reference.
+  `PofuPersistence`, `PofuDesignSystem`, `PofuCompanion`, `PofuWorld`,
+  `PofuGames`, `PofuSound`, `PofuTuning`. Keep [economy.md](product/economy.md) in sync with
+  `PofuCore`.
 
-Phases are sequenced by risk: the earliest phases remove the largest
-unknowns. Each phase ends with something the founder can hold in their hand.
+## The principle: everything grows a little, in parallel
 
-## Phase 0: Foundation (current)
+Founder, 2026-11-05: never finish one thing before the next starts. Each
+week ships a little of every kind, so the founder sees the whole world
+grow, and each week ends with a screenshot sheet or a short video for him.
 
-Goal: every decision needed to start building is made and written down.
+| Each week | From |
+|---|---|
+| One station level (a station's next look on the home cluster) | [home progression §4](product/home-progression.md#4-stations), the [art queue](design/art-production-plan.md) |
+| One new resident, or one resident relationship scene | [home progression §6](product/home-progression.md#6-residents-cats--soup-assignment-without-the-gacha), [experience v1 §5](design/experience-v1.md#5-visitors-someone-comes-every-day) |
+| One island stage or one filler | [game plan §4](product/game-plan.md#4-book-one-the-islands-rising-curve), the story map |
+| One decor set, or part of one | [home progression §8](product/home-progression.md#8-decor-sets) |
+| One system polish, from the app or the game track | the tracks below |
 
-- [x] Competitive, platform, and monetization research
-- [x] Product vision and principles
-- [x] Initial ADRs (stack, architecture, verification, friend approval)
-- [x] Contribution guidelines and repository templates
-- [x] Name and character direction chosen: **Pofu** ([ADR-0007](adr/0007-product-name-pofu.md))
-- [x] Character bible v0.1 ([character.md](brand/character.md))
-- [x] Character direction explored (vector rig, 3D spike, AI illustration) and decided:
-  illustrated hamster ([ADR-0010](adr/0010-illustrated-hamster-art-direction.md))
-- [x] Companion motion system designed and built: web proof plus `PofuCompanion`
-  ([ADR-0011](adr/0011-companion-motion-system.md))
-- [ ] Companion motion validated on the founder's iPhone
-- [ ] Art bible, prompt library, and asset pipeline; first production assets generated
-- [ ] Design language: color, typography, motion, haptics, and sound principles
-- [x] Information architecture, user flows, and a clickable prototype
-  ([IA](product/ux/information-architecture.md), [flows](product/ux/user-flows.md))
-- [x] Open UX questions decided ([ADR-0012](adr/0012-ux-v1-decisions.md))
-- [x] Xcode project, local packages, CI on GitHub Actions (macOS runner)
-  ([ADR-0009](adr/0009-xcodegen-and-package-layout.md),
-  [development guide](development.md))
+## Tracks
 
-## Phase 1: The companion lives (pre-membership, free account)
+### App side
 
-Goal: an app on the founder's iPhone where the companion is alive and
-delightful, running on the simulated Screen Time service (ADR-0003).
+- **Membership day 1:** the Screen Time gate on the founder's iPhone
+  ([checklist](#day-1-of-the-paid-membership),
+  [script](local/membership-day-1.md)); from then on a daily readout of
+  resisted reaches. Afterwards `Pofu` and `PofuLive` collapse into one app
+  target with the entitlements.
+- **Shield:** the painted shield (#192) meets the real Screen Time shield;
+  the breathing break stays the hard limit
+  ([ADR-0015](adr/0015-care-over-currency.md)).
+- **Onboarding:** pick the apps, the first resisted reach, Pofu wakes
+  ([game plan §3](product/game-plan.md#3-day-by-day-the-typical-user)).
+- **Accessibility:** a full pass (VoiceOver, Dynamic Type, Reduce Motion)
+  over every screen.
+- **Haptics:** the `PofuHaptics` palette applied as
+  [experience v1 §3.3](design/experience-v1.md#33-haptics-and-sound-palette-pofuhaptics)
+  says: haptics confirm, never decorate.
 
-**Order since the [decision audit](product/decision-audit.md):** the gate
-first, then the world. Work is sequenced in the
-[iteration plan](design/iteration-plan.md): stage G (the automation firing,
-honest measurement, setup guide v2, a 7-day dogfood, the Screen Time
-shield on membership day 1), then stage W (the home island).
+### Game side
 
-- [x] **Soft gate v1** ([ADR-0008](adr/0008-hybrid-intervention-delivery.md),
-  [ADR-0012](adr/0012-ux-v1-decisions.md)): `CheckInIntent` with dynamic
-  foregrounding, the Hop! ladder, passes with refunds and the emergency pass,
-  hand-off to the target app, and a guided Shortcuts setup
-- [x] Persistence (`PofuPersistence`): snapshot store and event log
-- [x] Pofu's room v1: animated companion, seeds, today's beads, honor focus
-  timer (superseded by the island direction, ADR-0016)
-- [x] Minimal onboarding: welcome, apps, name, setup
-- [x] **Honest measurement and setup guide v2** (G2, #32)
-- [x] **The Screen Time gate built before the membership** (G3, #34 and gate v2 #41), so day 1
-  is a test day
-- [ ] Optional: the manual automation firing on the founder's iPhone (G1);
-  the first attempt failed at finding the App trigger
-- [ ] **A 7-day gate dogfood on the shield** from membership day 1 (G5)
-- [ ] **On-device validation by the founder** (foregrounding from the
-  automation, silent pass-through, cold launch, URL schemes, Turkish
-  Shortcuts labels)
-- [ ] Game model in `PofuCore` and the home-island slice (stage W, after two
-  weeks of daily use)
-- [ ] Production art on the founder's own account, processed by the asset
-  pipeline (stage W)
-- [ ] Daily recap and bedtime mode
-- [ ] Streaks and first milestones
-- [ ] Spike: iOS 27 one-tap automation import ([ADR-0013](adr/0013-zero-setup-default-gate.md))
-- [ ] Practice Hop! in onboarding and the picture-in-picture setup guide
+- **Home growth:** island level and station ladders per
+  [home progression](product/home-progression.md); later a **level-up
+  ceremony with glowing lights** (founder note).
+- **Visitors and residents:** **residents visit daily** (founder); then
+  Animal Crossing–style relationships: residents talk to each other, visit
+  each other, have small scenes (wave 3).
+- **Book One islands in story-map order:** a wonder-island model in
+  `PofuCore` (arrival by order and gates, stages, engine, beats, gift;
+  [game plan §10](product/game-plan.md#10-what-changes-in-code-and-docs-in-order)),
+  the map with rumours, then the main islands one by one with fillers
+  drifting in between. The story map poster (commissioned 2026-11-05)
+  fixes the order; until then the provisional acts in
+  [monetization v2 §2.1](product/monetization-v2.md#21-units) apply.
+- **Gezgin (the whale Nazlı) as a layered rig:** body, tail, fins and the
+  island patch painted as separate parts, moved in code, not one flat
+  sprite. Form 1 humble, form 2 grown at the end of Book One. **Next
+  variation: form 1 faces the camera, clear of the pier.**
+- **Three games:** place (the garden, built), connect (flow, with
+  Çağlayan), recall (bells).
+
+### Art pipeline
+
+- **Codex never idles** ([AGENTS.md](../AGENTS.md)): `READY` rows, then the
+  backlog, then fresh `-v2` variations. The lead reviews its PRs in its own
+  rounds; pilot, then scale; a grade or a fit before a regeneration.
+- **Batch order** ([the queue](design/art-production-plan.md#the-queue)):
+  the experience art (batch-35, its pilot merged in #202), the home
+  showcase (batch-33), the hive and moss retries, the workshop retry, the
+  islands in the game camera; then the Gezgin rig parts, residents at
+  work, decor sets, and island batches in story-map order.
+
+### Business
+
+- **Monetization v2** (proposal, the founder decides): one membership,
+  *Pofu Üyelik*, at 129,99 TL a month, 349,99 TL a year or 999,99 TL for
+  life; the gate is always free; nothing is taken back when a membership
+  lapses. After a yes: a monetization ADR (it replaces ADR-0016's "Plus"
+  clause), then the game design, then `PofuCore` tests before StoreKit 2
+  and UI.
+- **Beta:** a TestFlight friends beta once the Family Controls
+  distribution entitlement arrives; the free/paid line is measured there.
+- **App Store:** icon, screenshots, preview video, TR and EN metadata,
+  privacy policy, support page, the domain for universal links; art
+  provenance (a written assignment or masters regenerated on the founder's
+  plan). Release in Türkiye, then global.
+
+## Next, in order
+
+1. Merge wave 2 (#212); a screenshot sheet and an install note to the
+   founder.
+2. Integrate the batch-35 art (glows, launch sky, dressing).
+3. The wonder-island model in `PofuCore`, the map with rumours, Koke.
+4. Wave 3: resident-to-resident scenes.
+5. Small wins from the [Apple Design Awards study](research/apple-design-awards.md):
+   haptics and the accessibility pass.
 
 ## Day 1 of the paid membership
 
-A checklist, not a phase. These steps have long lead times.
+A checklist; these steps have long lead times.
 
 1. Enroll in the Apple Developer Program as an individual.
 2. Finalize bundle identifiers for the app and every extension.
 3. Request the **Family Controls (Distribution)** entitlement for **each**
    bundle identifier.
-4. Enable App Groups, Family Controls (Development), HealthKit, and Associated
-   Domains.
+4. Enable App Groups, Family Controls (Development), HealthKit, and
+   Associated Domains.
 
-## Phase 2: The shield (paid membership)
+## Later
 
-Goal: zero-setup onboarding (permission plus app picker,
-[ADR-0013](adr/0013-zero-setup-default-gate.md)) and enforcement. Schedules and
-budgets become real blocks.
-
-- `LiveScreenTimeService`: authorization, app selection, schedules, presets
-- Hard gate: shield configuration and action extensions, with Pofu's
-  current mood pre-rendered into the shield
-- Monitor extension: threshold ladder feeding companion health
-- Report extension: screen time, pickups, top apps
-- The breathing break as the hard limit (ADR-0015); no unlock windows are
-  bought with seeds
-
-## Phase 3: Earn for real (rescoped)
-
-_Since ADR-0015 seeds come from quiet time, not activity. Keep verified
-focus only as a calm boost, and only if the founder uses focus sessions._
-
-- HealthKit passive earning (steps, workouts, mindful minutes)
-- Verified focus sessions
-- Camera rep counting (on-device Vision), as a fun bonus mode
-
-## Phase 4: The ecosystem
-
-- Widgets (home and lock screen), Live Activity and Dynamic Island for focus
-- Control Center control and App Intents / Shortcuts
-- Themes and world variants unlocked by streaks
-
-## Phase 5: Together
-
-- Friend pairing and serverless approval (ADR-0005)
-- Shared streaks and weekly leagues (CloudKit, new ADR)
-
-## Phase 6: Launch
-
-- TestFlight friends beta (requires the distribution entitlement)
-- Monetization ADR and StoreKit 2 implementation
-- App Store presence: icon, screenshots, preview video, TR and EN metadata
-- Privacy policy, support page, and the domain for universal links
-- Art provenance: a written assignment for art made on a family member's
-  ChatGPT plan, or the shipped masters regenerated on the founder's own plan
-- Public release in Türkiye, then global
+- **The ecosystem:** widgets, Live Activity for quiet time, Control Center
+  and App Intents.
+- **Together:** postcards, a friend's boat at your pier, shared streaks
+  ([ADR-0005](adr/0005-serverless-friend-approval.md); CloudKit needs a new
+  ADR).
+- **Earning extras:** HealthKit passive earning and verified focus, only
+  as calm boosts.
+- **Book Two** and the long tail: mastery, seasons, the hilltop add-ons
+  ([home progression §9-§10](product/home-progression.md#9-mastery-levels-l6-to-l10-the-long-tail)).
 
 ## Open questions
 
 | Question | Owner | Needed by |
 |---|---|---|
-| Repository visibility before launch (founder is indifferent; public for now) | Agent proposes | Phase 6 |
-| Monetization model details and prices | Agent proposes, founder decides | Phase 6 |
+| Monetization v2: one membership and its prices | Agent proposed, founder decides | Before StoreKit work |
+| Where the free part ends (after Act I) | Measured in the beta | Launch |
+| Repository visibility before launch (public for now) | Agent proposes | Launch |

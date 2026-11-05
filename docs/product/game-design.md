@@ -1,5 +1,7 @@
 # Pofu's Archipelago: Game Design (v2)
 
+> **Superseded in part (2026-11-05):** the [game plan](game-plan.md), [home progression](home-progression.md) and [ADR-0019](../adr/0019-home-cluster-and-wonder-islands.md) win where they disagree (no station islands; island level and caps; wonder islands). The pillars and anti-addiction rules A1–A14 still hold.
+
 _Status: v2, the founder's decisions of 2026-11-01 applied. Last updated:
 2026-11-01. Decisions: [ADR-0015](../adr/0015-care-over-currency.md) (seeds
 as world material, the breathing break), [ADR-0016](../adr/0016-pre-planned-idle-archipelago.md)

@@ -3,6 +3,7 @@
 - **Status:** Accepted
 - **Date:** 2026-11-01
 - **Amends:** [0012](0012-ux-v1-decisions.md) (decision 1, Home; decision 5, when neighbors arrive)
+- **Amended by:** [0019](0019-home-cluster-and-wonder-islands.md) (2026-11-05: station islands retired; the home cluster is the only economy, further islands are wonder islands)
 
 ## Context
 

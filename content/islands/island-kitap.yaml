@@ -25,7 +25,7 @@ links:
   - sys-rituals
   - theme-seasonal-islands
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 - doc: docs/product/game-design.md
   anchor: '#7-the-archipelago'

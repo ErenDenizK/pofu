@@ -9,6 +9,6 @@ summary: >-
   failure.
 sources:
 - doc: docs/adr/0013-zero-setup-default-gate.md
-- doc: docs/roadmap.md
+- doc: docs/archive/roadmap-2026-11-02.md
   anchor: '#phase-1-the-companion-lives-pre-membership-free-account'
 kind: feature

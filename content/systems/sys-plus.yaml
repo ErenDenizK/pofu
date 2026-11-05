@@ -19,7 +19,7 @@ sources:
 - doc: docs/product/game-design.md
   anchor: '#10-free-vs-plus'
 - doc: docs/roadmap.md
-  anchor: '#phase-6-launch'
+  anchor: '#business'
 group: meta
 board:
   col: 9

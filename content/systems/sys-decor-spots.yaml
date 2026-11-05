@@ -14,7 +14,7 @@ links:
   - sys-build
   - sys-island-materials
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 source: lead-brainstorm
 group: world

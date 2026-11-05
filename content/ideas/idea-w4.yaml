@@ -8,6 +8,6 @@ summary: >-
   Home with batch 01 art, native glass, Hop! landing per opening intent. Check: 60 fps idle;
   Pofu opens a day stay below reaches; median visit under 90 s.
 sources:
-- doc: docs/design/iteration-plan.md
+- doc: docs/archive/iteration-plan.md
   anchor: '#stage-w-the-world-after-two-weeks-of-daily-use'
 kind: milestone

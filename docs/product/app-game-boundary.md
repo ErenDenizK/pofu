@@ -3,11 +3,11 @@
 _Status: **accepted as the direction** (lead, 2026-11-01). No ADR-0019 for
 now: the rules are tunable, so they live here and in the game design. §13's
 edits land with the IA and user-flow rewrite after the founder's gate week
-([iteration plan](../design/iteration-plan.md), stage G). Last updated:
+([iteration plan](../archive/iteration-plan.md), stage G). Last updated:
 2026-11-01._
 _Builds on the [vision](vision.md), [game design v2](game-design.md),
 ADR-0012 to ADR-0017, ADR-0018 and the iteration plan (open branch
-`docs/visual-system-v1`), [design review 01](../design/review-01.md), the
+`docs/visual-system-v1`), [design review 01](../archive/review-01.md), the
 local reports in [`docs/archive/local-reports/`](../archive/local-reports/), and the
 founder's input of 2026-11-01 (opening intents, habit substitution, the
 diagnosed setup failure). Storyboard (Turkish copy, phone-first):
@@ -804,7 +804,7 @@ The lead integrates these; this PR does not edit them.
 - Phase 5: "Shared streaks and weekly leagues" → reconsider against A8 and
   A19.
 
-### Iteration plan (`docs/design/iteration-plan.md`, open branch)
+### Iteration plan (`docs/archive/iteration-plan.md`, open branch)
 
 - I6: build Home's visit and settled states and the landing rules, not a
   static Home.

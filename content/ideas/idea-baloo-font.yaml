@@ -7,6 +7,6 @@ horizon: maybe
 summary: >-
   Postponed: SF Pro Rounded Heavy is the stated fallback and costs nothing.
 sources:
-- doc: docs/product/decision-audit.md
+- doc: docs/archive/decision-audit.md
   anchor: '#6-what-to-cut-or-postpone'
 kind: design

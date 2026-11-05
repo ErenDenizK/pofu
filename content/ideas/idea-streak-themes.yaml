@@ -9,7 +9,7 @@ summary: >-
   counts). Rewrite as cumulative milestones or drop.
 sources:
 - doc: docs/roadmap.md
-  anchor: '#phase-4-the-ecosystem'
+  anchor: '#later'
 - doc: docs/product/app-game-boundary.md
   anchor: '#76-streak-ethics'
 kind: feature

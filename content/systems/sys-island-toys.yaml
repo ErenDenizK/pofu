@@ -14,7 +14,7 @@ links:
   - sys-the-minute
   - sys-island-games
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#31-the-toy-ten-seconds-pure-play'
 source: lead-brainstorm
 group: world

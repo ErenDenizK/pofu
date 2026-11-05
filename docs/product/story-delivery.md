@@ -1,11 +1,13 @@
 # Story Delivery: the App, the Game and the Story on One Axis
 
+> **Superseded in part (2026-11-05):** the [game plan](game-plan.md) wins where they disagree (the Pofu and Mochi duo, main islands and fillers, no fixed days); beat triggers and the app–game–story axis still hold.
+
 _Status: **proposal**, 2026-11-03. Written by the agent as game designer
 in answer to the founder's input of 2026-11-03 (below). Nothing here is
 dialogue: every line is a **placeholder ID with an intent**; humans write
 the words under the [narrative-craft pipeline](../research/narrative-craft.md#4-the-human-in-the-loop-pipeline).
-Reads with the [lore bible](lore-bible.md), [island curation](island-curation.md)
-(the arc template), the [archipelago system](archipelago-system.md)
+Reads with the [lore bible](lore-bible.md), [island curation](../archive/island-curation.md)
+(the arc template), the [archipelago system](../archive/archipelago-system.md)
 (stages, rounds, rumours, the web), the [app–game boundary](app-game-boundary.md)
 (intents, the visit queue, A15–A26), [game design v2](game-design.md)
 (A1–A14), [UI system v2](../design/ui-system-v2.md) (surfaces) and

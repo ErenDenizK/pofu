@@ -1,12 +1,14 @@
 # Lore bible: Pofu and the islands that come home
 
+> **Superseded in part (2026-11-05):** the island order and the main/filler split follow the [game plan](game-plan.md) and [story references](../research/story-references.md#synthesis-the-story-rules-these-give-pofu); the hidden history is [deep lore](deep-lore.md).
+
 _Status: **draft 0 for human spice**, 2026-11-03. Written by the agent as
 scaffolding under the pipeline in
 [narrative-craft.md](../research/narrative-craft.md). Nothing here is
 locked. Every Turkish line is a draft until a human has rewritten it or
 approved it after a cold read-aloud. Margin notes marked **[SPICE]** show
 where a human must rewrite; **[ASK]** marks a question for the founder
-and friends. Reads with: [archipelago system](archipelago-system.md)
+and friends. Reads with: [archipelago system](../archive/archipelago-system.md)
 (islands, residents, stages, rumours), [Pofu's voice](../brand/pofu-voice.md)
 (rules; its meme line bank is parked), the
 [character bible](../brand/character.md), ADR-0015 (seeds never buy
@@ -35,7 +37,7 @@ Delivery constraints from the product, which the story obeys:
 - One line per island visit; story beats arrive with stages (five per
   island) and at the end of a set; rumours never name a date.
 - No exposition. The myth is said **once**, on the vapur's first run
-  ([archipelago §9.4](archipelago-system.md#94-the-myth)). Everything else
+  ([archipelago §9.4](../archive/archipelago-system.md#94-the-myth)). Everything else
   is shown in objects, weather, and a resident's habit.
 
 ## 1. The premise

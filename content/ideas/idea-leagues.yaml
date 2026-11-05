@@ -9,7 +9,7 @@ summary: >-
   and A19.
 sources:
 - doc: docs/roadmap.md
-  anchor: '#phase-5-together'
+  anchor: '#later'
 - doc: docs/product/app-game-boundary.md
   anchor: '#76-streak-ethics'
 kind: feature

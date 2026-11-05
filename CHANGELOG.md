@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- The archipelago system proposal (`docs/product/archipelago-system.md`):
+- The archipelago system proposal (`docs/archive/archipelago-system.md`):
   two free yield islands, then a run of hand-made wonder islands, each
   with a signature motion in code, a resident, a toy, a five-stage secret
   and its own game built on a shared grammar; rounds earned by resisting
@@ -365,7 +365,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   areas and a touch-scrollable demo drawer, the archipelago map, İskele,
   the breathing break, quick checks, and an automated phone and desktop
   check (`design/prototypes/island-game/tools/check-mobile.js`).
-- Design review 01 ([review-01.md](docs/design/review-01.md)): three
+- Design review 01 ([review-01.md](docs/archive/review-01.md)): three
   radically different alternatives each for proportion and framing, the
   UI language over the world, and choreography, with a measured spec, a
   timing spec, and a combined recommendation; a mobile-first animated
@@ -374,9 +374,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   with painted domain icons, vector twins, the seed jar and the calm
   lantern, painted widgets, a layered app icon), and the continuous camera;
   matching design language amendments.
-- Iteration plan ([iteration-plan.md](docs/design/iteration-plan.md)): the
+- Iteration plan ([iteration-plan.md](docs/archive/iteration-plan.md)): the
   path from prototype to launch in twelve checkable micro-iterations.
-- Decision audit ([decision-audit.md](docs/product/decision-audit.md)):
+- Decision audit ([decision-audit.md](docs/archive/decision-audit.md)):
   an independent red-team review of every decision, research claim, and
   plan.
 - Art test 01: the founder's first island and çay ocağı takes, kept as

@@ -1,7 +1,7 @@
 # Iteration Plan: Gate First, Then Pofu's World
 
 _Living document. Last updated: 2026-11-02. Reordered 2026-11-01 after the
-[decision audit](../product/decision-audit.md); dates refreshed 2026-11-02:
+[decision audit](decision-audit.md); dates refreshed 2026-11-02:
 the membership is expected **after 2026-11-24**, and new work targets the
 Screen Time product (the Shortcuts path, G1, is dropped)._
 

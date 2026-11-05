@@ -14,7 +14,7 @@ links:
   - sys-seeds
   - sys-island-games
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#44-materials'
 source: lead-brainstorm
 group: world

@@ -7,7 +7,7 @@ horizon: maybe
 summary: >-
   An otter on Çağlayan who tries to catch the waterfall in a cup and never manages; built the leaf-boat chute.
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 source: lead-brainstorm
 kind: resident

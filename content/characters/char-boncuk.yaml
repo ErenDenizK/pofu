@@ -7,7 +7,7 @@ horizon: maybe
 summary: >-
   A magpie who runs the lost-and-found on Emanet, loves shiny things, and has to give every one of them back.
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 source: lead-brainstorm
 kind: resident

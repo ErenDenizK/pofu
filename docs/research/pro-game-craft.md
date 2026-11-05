@@ -10,7 +10,7 @@ _Reads with: [look-dev](../design/look-dev.md) (and look round 2, PR #61),
 [interaction spec](../design/interaction-spec.md), the
 [companion motion spec](../design/companion-motion.md),
 [sound identity](../design/sound-identity.md), the
-[iteration plan](../design/iteration-plan.md) and the
+[iteration plan](../archive/iteration-plan.md) and the
 [founder input log](../product/founder-input.md)._
 
 The founder's question (2026-11-02, translated): _"We build plain UI and

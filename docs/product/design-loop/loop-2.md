@@ -1,5 +1,7 @@
 # Design loop 2: every island its own light
 
+> **Superseded in part (2026-11-05):** islands and their order follow the [game plan](../game-plan.md); light follows [experience v1](../../design/experience-v1.md) and the [light standard](../../design/light-standard.md). The cluster atmospheres and the hour rule still inform island concepts.
+
 _Status: **proposal**, 2026-11-03. Creative director pass (Opus) of the
 [design loop](README.md), building on [loop 1](loop-1.md). Inputs:
 the takes of batch 17 (islands v2) and batch 18 (loop 1's concept round)

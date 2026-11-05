@@ -7,7 +7,7 @@ horizon: maybe
 summary: >-
   A tiny glass frog on Fanus who is very shy and therefore see-through.
 sources:
-- doc: docs/product/archipelago-system.md
+- doc: docs/archive/archipelago-system.md
   anchor: '#11-island-concepts'
 source: lead-brainstorm
 kind: resident

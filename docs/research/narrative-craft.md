@@ -5,7 +5,7 @@ Reads with: [lore bible](../product/lore-bible.md) (the first draft this
 pipeline is meant to improve), [Pofu's voice](../brand/pofu-voice.md)
 (the rules; the line bank is parked), the
 [character bible](../brand/character.md) and the
-[archipelago system](../product/archipelago-system.md)._
+[archipelago system](../archive/archipelago-system.md)._
 
 The founder's ask (2026-11-03, translated): _"Design a story and lore.
 For the best, realistic, human story flow and lore, research suitable

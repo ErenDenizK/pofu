@@ -7,7 +7,7 @@ _Status: proposal v1, for founder review. Last updated: 2026-10-31._
 > night prices, and the "out of seeds" friend copy were replaced by
 > [ADR-0015](../../adr/0015-care-over-currency.md). Setup guide v2 replaces
 > the guided Shortcuts steps. A rewrite follows the founder's first gate
-> week; see the [decision audit](../decision-audit.md), C2.
+> week; see the [decision audit](../../archive/decision-audit.md), C2.
 _Companion docs: [information architecture](information-architecture.md),
 [clickable prototype](../../../design/prototypes/ux/README.md),
 [economy](../economy.md), [ADR-0008](../../adr/0008-hybrid-intervention-delivery.md)._

@@ -1,10 +1,12 @@
 # Design loop 1: constellations, the Bekçi, and a Çağlayan worth opening on
 
+> **Superseded in part (2026-11-05):** the island order, the main/filler split and Gezgin's role follow the [game plan](../game-plan.md) and [story references](../../research/story-references.md#synthesis-the-story-rules-these-give-pofu); the hidden history is [deep lore](../deep-lore.md). Kept for the reasoning.
+
 _Status: **proposal**, 2026-11-03. Creative director pass (Opus) of the
 [design loop](README.md). Inputs: the lead's constellation overview
 (accepted by the founder as a working draft), his feedback of the same
 night ([founder-input](../founder-input.md#2026-11-03-night-constellations-the-big-story-pacing)),
-[archipelago-system](../archipelago-system.md), [island-curation](../island-curation.md),
+[archipelago-system](../../archive/archipelago-system.md), [island-curation](../../archive/island-curation.md),
 [lore-bible](../lore-bible.md), [story-delivery](../story-delivery.md),
 [ai-story-methods](../../research/ai-story-methods.md). Data:
 [`content/islands/profiles.yaml`](../../../content/islands/profiles.yaml),
@@ -456,7 +458,7 @@ finished. And its story ended where every island's ends: it got better.
 
 For each: the unforgettable thing, what it changes in the big story, what
 it adds to home, and its satellite. Verbs and arcs not mentioned here
-stand as in [island-curation §3](../island-curation.md#3-the-merciless-review).
+stand as in [island-curation §3](../../archive/island-curation.md#3-the-merciless-review).
 
 **Gezgin (big, journey, d9, god-tier hook).** _Unforgettable:_ the island
 is alive, huge, and breathes; now as **the night crossing** of section

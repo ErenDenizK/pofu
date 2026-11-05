@@ -46,35 +46,33 @@ Loaded every turn: keep it short. History lives in `docs/` (`docs/README.md`).
 
 ## Where things are
 
-- Docs index: `docs/README.md`. Vision: `docs/product/vision.md`. Roadmap and
-  status: `docs/roadmap.md`. Work order: `docs/design/iteration-plan.md`.
-- Founder input log (read at session start; add to it whenever he gives
-  input): `docs/product/founder-input.md`.
-- ADRs `docs/adr/`, research `docs/research/`, brand `docs/brand/`, game
-  `docs/product/game-design.md` (keep `economy.md` in sync with `PofuCore`).
-- `content/` holds asset and island nodes used by the art pipeline (the Atlas
-  board is retired, 2026-11-02).
+- Map: `docs/README.md`. Status, tracks, next steps: `docs/roadmap.md`.
+  Last sessions: `docs/handoff.md`. Founder input log (read at session
+  start; log every message): `docs/product/founder-input.md`.
+- Game: `docs/product/game-plan.md` (canonical), `home-progression.md`,
+  `home-layout.md`; keep `economy.md` in sync with `PofuCore`. ADRs
+  `docs/adr/`; research `docs/research/`; `content/` feeds the art pipeline.
 - Pofu Hub (https://claude.ai/artifact/Qua2VFg3iSJ9V1HJgR8RS9, source
-  `design/hub/index.html`) is back as a simple panel for questions, status and
-  roadmap (not retired). Open questions carry comparable options and a
-  recommendation; the founder ticks one or ignores it, and unanswered
-  questions proceed with the recommendation. Update `status/now` and
-  `roadmap/main` in its db; no reviews, ideas or dictation.
+  `design/hub/index.html`): questions with a recommendation (silence means
+  yes), `status/now` and `roadmap/main`; most questions now go in chat.
 
-## Current state (2026-11-02)
+## Current state (2026-11-05)
 
-- **Pofu** (ADR-0007), repo `ErenDenizK/pofu`. Phase 1: gate v2 (Screen
-  Time, `PofuLive`), the game model (`PofuCore/Game`), the island
-  (`PofuWorld`) and Rehearsal mode are built; art runs as a queue.
-- **Next:** the founder's 7-day dogfood from membership day 1 (expected after
-  2026-11-24; `docs/local/membership-day-1.md`). Until then the cloud builds
-  code-only work. New work targets the Screen Time product; the free `Pofu`
-  target and the Shortcuts path get no new features. Details:
-  `docs/roadmap.md#status-2026-11-02`.
-- Targets: Instagram, YouTube, TikTok; goal: resist half of reflexive opens.
-- Lasting principles: seeds never buy screen time and Pofu never dies
-  (ADR-0015, ADR-0017); the visual system is ADR-0018 (balanced diorama,
-  native glass plus painted elements). Build setup: `docs/development.md`.
+- **Pofu** (ADR-0007), repo `ErenDenizK/pofu`: a playable Rehearsal build
+  with experience v1 (one camera and place control, light field and frame
+  policy, menus, shield, launch, visitors as data; wave 2 drawn is #212).
+- Home: island level 1-10 caps the stations; station islands retired
+  (ADR-0019); layout planned slot by slot. Story: Book One main islands
+  plus fillers, Gezgin (the whale Nazlı) carries the player; deep lore.
+- Monetization v2 (proposal): one membership, 129,99 / 349,99 / 999,99 TL
+  a month / year / life; the gate always free; nothing taken back on lapse.
+- Codex never idles (`AGENTS.md`). **Next:** everything grows a little,
+  in parallel, each week (`docs/roadmap.md`); the Screen Time gate on
+  membership day 1 (after 2026-11-24). No new features for the free
+  `Pofu` target or the Shortcuts path.
+- Lasting: targets Instagram, YouTube, TikTok (resist half of reflexive
+  opens); seeds never buy screen time, Pofu never dies (ADR-0015, 0017);
+  visual system ADR-0018. Build setup: `docs/development.md`.
 
 ## Agent operations (budget; founder 2026-11-04, revised 2026-11-05)
 

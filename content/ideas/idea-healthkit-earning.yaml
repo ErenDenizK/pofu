@@ -9,7 +9,7 @@ summary: >-
   come from time away).
 sources:
 - doc: docs/roadmap.md
-  anchor: '#phase-3-earn-for-real-rescoped'
-- doc: docs/product/decision-audit.md
+  anchor: '#later'
+- doc: docs/archive/decision-audit.md
   anchor: '#6-what-to-cut-or-postpone'
 kind: feature

@@ -1,6 +1,6 @@
 # Decision Audit: Are We Sure?
 
-> **Historical record (2026-11-02).** Its findings are integrated: the gate-first order lives in the [iteration plan](../design/iteration-plan.md) and the [roadmap](../roadmap.md); ADR amendments carry the rest. Read it for the reasoning, not for current status.
+> **Historical record (2026-11-02).** Its findings are integrated: the gate-first order lives in the [iteration plan](iteration-plan.md) and the [roadmap](../roadmap.md); ADR amendments carry the rest. Read it for the reasoning, not for current status.
 
 _Independent red-team review. Date: 2026-11-01. Scope: every ADR (0001 to
 0018), the vision, roadmap, research, economy, game design v2, UX, design,
@@ -17,7 +17,7 @@ problem and a validation problem**:
 
 - **The core loop has intercepted zero real reaches.** On 2026-11-01 the
   founder could not create the Shortcuts automation from the in-app guide
-  ([ios27 report](../archive/local-reports/2026-11-01-ios27-automation-import.md),
+  ([ios27 report](local-reports/2026-11-01-ios27-automation-import.md),
   "Context from T3 so far"): he searched Shortcuts for "Insta" and "Pofu",
   which finds actions, not the App trigger, and the guide did not redirect
   him. Hop! has only ever been opened by running the App Shortcut by hand.

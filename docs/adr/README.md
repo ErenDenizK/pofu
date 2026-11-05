@@ -29,6 +29,7 @@ not in ADRs. Prefer deciding from real use over deciding from prototypes.
 | [0013](0013-zero-setup-default-gate.md) | Zero-setup default gate, live Pofu as an enhancement | Accepted |
 | [0014](0014-quiet-time-earning.md) | Quiet-time earning | Accepted, amended by 0015 |
 | [0015](0015-care-over-currency.md) | Care over currency: seeds as world material | Accepted |
-| [0016](0016-pre-planned-idle-archipelago.md) | Pre-planned idle archipelago | Accepted |
+| [0016](0016-pre-planned-idle-archipelago.md) | Pre-planned idle archipelago | Accepted, amended by 0019 |
 | [0017](0017-pofu-never-dies.md) | Pofu never dies | Accepted |
 | [0018](0018-visual-system-v1.md) | Visual system v1: balanced diorama, Glass++, continuous camera | Accepted |
+| [0019](0019-home-cluster-and-wonder-islands.md) | Home cluster and wonder islands: station islands retired | Accepted |

@@ -5,7 +5,7 @@
 
 ## Context
 
-[Design review 01](../design/review-01.md) put three concepts in front of
+[Design review 01](../archive/review-01.md) put three concepts in front of
 the founder, each with three alternatives: proportion (how big Pofu and the
 world are on screen), UI language (how the interface relates to the painted
 world), and choreography (how the camera moves between Home, an island, and
@@ -107,11 +107,11 @@ For the UI language (the only option set the founder extended):
 - **Easier:** the world, the interface, widgets, and the App Store page now
   share one visual voice, which is the product's main differentiator against
   utility-looking screen-time apps.
-- The order of work is in the [iteration plan](../design/iteration-plan.md).
+- The order of work is in the [iteration plan](../archive/iteration-plan.md).
 
 ## Amendment (2026-11-01): timing, after the decision audit
 
-The [decision audit](../product/decision-audit.md) showed that the gate,
+The [decision audit](../archive/decision-audit.md) showed that the gate,
 the core of the product, has not yet caught one real reach on the
 founder's phone. The direction above stands; its **production waits**:
 

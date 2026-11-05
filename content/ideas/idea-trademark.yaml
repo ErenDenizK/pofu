@@ -8,6 +8,6 @@ summary: >-
   Run the trademark search in TÜRKPATENT and EUIPO before the bundle IDs are used for a distribution
   request.
 sources:
-- doc: docs/product/decision-audit.md
+- doc: docs/archive/decision-audit.md
   anchor: '#7-top-10-actions-in-order'
 kind: launch

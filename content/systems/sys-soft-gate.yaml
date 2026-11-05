@@ -21,7 +21,7 @@ links:
   leads_to:
   - sys-hop
 sources:
-- doc: docs/product/decision-audit.md
+- doc: docs/archive/decision-audit.md
   anchor: '#first-hand-evidence-how-the-setup-failed-founder-2026-11-01'
 - doc: docs/product/app-game-boundary.md
   anchor: '#10-setup-and-repair-a-rule-in-the-users-words'

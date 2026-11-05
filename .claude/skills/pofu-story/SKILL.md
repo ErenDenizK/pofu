@@ -24,7 +24,7 @@ First test: [story-tests/round-1.md](../../../docs/product/story-tests/round-1.m
 
 1. The source: [lore-bible.md](../../../docs/product/lore-bible.md)
    (premise, each resident's want, need, wound and tell, tone rules §6)
-   and, for an island, [island-curation.md](../../../docs/product/island-curation.md).
+   and, for an island, [island-curation.md](../../../docs/archive/island-curation.md).
 2. [references/style-anchors.md](references/style-anchors.md). Read a few
    aloud in your head and take the **moves**, never the words.
 3. The last scene written for the same characters: pick up a habit to

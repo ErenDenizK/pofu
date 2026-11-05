@@ -112,6 +112,12 @@ real production batch when one earns it.
 | B5 | `batch-26-residents-concepts` | Concept portraits of Damla, Tuli, Boncuk, Nane and Yosun, each "first seen small" and "revealed grand" | 10 | BACKLOG |
 | B6 | `batch-27-ui-materials` | Tileable surface materials (paper, linen, wood, glazed clay, frosted glass study, felt) and ornaments (ribbons, stamps, wax seals, tags) | 10 | BACKLOG |
 
+**Note for the next Gezgin batch** (founder, 2026-11-05): Gezgin form 1
+must **face the camera, clear of the pier**; in the harbor take (#191) her
+face turns toward the pier and hides behind it. This applies to the next
+Gezgin variation (B1's `-v2`, a batch-34 variation) and to the coming
+layered rig parts (body, tail, fins, island patch as separate pieces).
+
 Ideas for the next rows when the lead has none: more props and materials
 (harbor kit, night lanterns), emoji packs for the other residents, empty-state
 and onboarding vignettes, weather and sky studies, seasons for a wonder
