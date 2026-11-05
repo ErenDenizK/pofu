@@ -2,14 +2,14 @@ id: asset-material-moss
 type: asset
 title_tr: material-moss
 title_en: material-moss (prop)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A single small painted object for a cozy game, a crafting material: a soft round cushion
-  of velvety sage-green moss, like a little pillow, with three tiny pale star-shaped moss
-  flowers on top and a thin curl of cream root under it. Seen from the same low front three-quarter
-  camera as the tea stall. Centered on an empty transparent background, about a third of the
-  canvas wide, with wide empty space around it.
+summary: 'A single small painted object for a cozy game, a crafting material: a soft
+  round cushion of velvety sage-green moss, like a little pillow, with three tiny
+  pale star-shaped moss flowers on top and a thin curl of cream root under it. Seen
+  from the same low front three-quarter camera as the tea stall. Centered on an empty
+  transparent background, about a third of the canvas wide, with wide empty space
+  around it.'
 art:
   images: []
   jobs:
@@ -18,3 +18,17 @@ sources:
 - doc: tools/imagegen/manifest/batch-33-home-showcase-pilot.yaml
 kind: prop
 batch: batch-33-home-showcase-pilot
+notes:
+- 'batch-33-home-showcase-pilot skipped after four takes: SKIPPED after the one allowed
+  retry pair. All four takes fail the unchanged hard palette_drift check: mean dE
+  5.1371, 7.5082, 7.8015 and 7.122; retry off-palette fractions are 20.6 and 19.5
+  percent, with olive/yellow-green swatches outside the locked family. The first pair
+  reads as a moss cushion with three pale star flowers and a curl of cream root at
+  thumbnail scale, but good silhouette cannot waive hard colour QA. All four original
+  PNGs and q90 takes preserved without recolouring, palette-card edits or threshold
+  changes. Independent lamp and door masters were published; this job does not block
+  them. Automated failures: t1 palette_drift: mean dE 5.1, p95 14.2, off-palette 9.9%
+  (top: #888844 (1.9%), #998855 (1.8%)); t2 palette_drift: mean dE 7.5, p95 18.0,
+  off-palette 21.9% (top: #888844 (6.9%), #999944 (3.5%)); t3 palette_drift: mean
+  dE 7.8, p95 16.4, off-palette 20.6% (top: #999944 (7.8%), #888844 (4.6%)); t4 palette_drift:
+  mean dE 7.1, p95 15.5, off-palette 19.5% (top: #999955 (4.9%), #998844 (3.5%)).'

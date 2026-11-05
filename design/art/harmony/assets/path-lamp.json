@@ -1,0 +1,50 @@
+{
+ "after": {
+  "C_mean": 31.638,
+  "C_p50": 34.013,
+  "C_p95": 45.772,
+  "L_mean": 74.883,
+  "L_p2": 56.005,
+  "L_p98": 92.543,
+  "detail": 1.795,
+  "edge": 0.407,
+  "warmth_b": 28.642
+ },
+ "before": {
+  "C_mean": 31.638,
+  "C_p50": 34.013,
+  "C_p95": 45.772,
+  "L_mean": 74.883,
+  "L_p2": 56.005,
+  "L_p98": 92.543,
+  "detail": 1.795,
+  "edge": 0.407,
+  "warmth_b": 28.642
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 89.5,
+ "score_before": 89.5,
+ "shipped": false,
+ "source": "design/art/masters/path-lamp/path-lamp.png",
+ "source_sha": "2a2b4d371cca0f3f"
+}
