@@ -1,0 +1,454 @@
+batch: batch-30b-decor-seasons-1-v2
+manifest: tools/imagegen/manifest/batch-30b-decor-seasons-1-v2.yaml
+manifest_sha256: f2b7485dbd13da0c8e2f1095a57d03a0574b31c65634f87d330f509f139b19c6
+contact_sheet: design/art/takes/batch-30b-decor-seasons-1-v2/x-decor-yaz-beach-umbrella-v2/contact.jpg
+jobs:
+  x-decor-yaz-beach-umbrella-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: After the sole unchanged-prompt retry, all four visible locked alpha-over24
+      widths360/359/359/360px exceed literal one-third of1024 cap341.33px. All four
+      official hard QA pass. Independent original and locked review confirms open
+      sea-blue/cream canopy, slim pole, pale sand mound, layered folded cream towel
+      with coral stripe and round pail on both retry takes, with no fur, text, guide
+      or unrelated object. No eligible take; skip only this job, retaining all four
+      immutable originals. No third round, manual resize or alpha cleanup. Independent
+      summer corner is selected separately.
+qa_reports:
+  1:
+    job: x-decor-yaz-beach-umbrella-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 94 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 78.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.224
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.5 (at least 3.5)'
+      value: 5.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.52
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.7
+      value: 1.6814
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 6.7, off-palette 0.0%
+      value: 2.02
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the world reference (outliers: detail, edge)'
+      value: 85.9
+    info:
+      fit:
+        scale: 0.8182
+        anchor:
+        - 486.9
+        - 865
+      registration:
+        dx: 26
+        dy: 23
+      metrics_raw:
+        L_p5: 59.8
+        L_p50: 79.0
+        L_p95: 93.4
+        C_p50: 20.3
+        C_p95: 45.8
+        C_p99: 50.6
+        detail: 2.22
+      metrics_locked:
+        L_p5: 60.1
+        L_p50: 78.9
+        L_p95: 93.2
+        C_p50: 20.1
+        C_p95: 45.3
+        C_p99: 49.7
+        detail: 1.52
+    fingerprint: 0cbc85f79324bbd1
+  2:
+    job: x-decor-yaz-beach-umbrella-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 94 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 77.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.204
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.7 (at least 3.5)'
+      value: 5.69
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.7
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.5683
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.5, p95 6.6, off-palette 0.2% (top: #BB6633 (0.1%), #667777
+        (0.0%))'
+      value: 2.4554
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: detail, edge)'
+      value: 86.9
+    info:
+      fit:
+        scale: 0.989
+        anchor:
+        - 491.0
+        - 840
+      registration:
+        dx: 21
+        dy: 48
+      metrics_raw:
+        L_p5: 60.1
+        L_p50: 77.6
+        L_p95: 93.7
+        C_p50: 19.9
+        C_p95: 49.6
+        C_p99: 52.5
+        detail: 2.4
+      metrics_locked:
+        L_p5: 60.5
+        L_p50: 77.6
+        L_p95: 93.3
+        C_p50: 19.5
+        C_p95: 48.4
+        C_p99: 50.5
+        detail: 1.7
+    fingerprint: 0cbc85f79324bbd1
+  3:
+    job: x-decor-yaz-beach-umbrella-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 95 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 77.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.18 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.176
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.0 (at least 3.5)'
+      value: 5.96
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.69
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.0
+      value: 2.0121
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 9.2, off-palette 1.5% (top: #BB6633 (0.6%), #667777
+        (0.2%))'
+      value: 3.0747
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the world reference (outliers: detail, edge)'
+      value: 85.6
+    info:
+      fit:
+        scale: 0.8431
+        anchor:
+        - 498.1
+        - 781
+      registration:
+        dx: 14
+        dy: 107
+      metrics_raw:
+        L_p5: 57.1
+        L_p50: 78.0
+        L_p95: 94.2
+        C_p50: 18.7
+        C_p95: 53.1
+        C_p99: 56.5
+        detail: 2.42
+      metrics_locked:
+        L_p5: 57.4
+        L_p50: 77.8
+        L_p95: 93.9
+        C_p50: 19.0
+        C_p95: 50.4
+        C_p99: 52.4
+        detail: 1.69
+    fingerprint: 0cbc85f79324bbd1
+  4:
+    job: x-decor-yaz-beach-umbrella-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 95 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 80 (band 55-90)'
+      value: 79.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.22
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.6 (at least 3.5)'
+      value: 4.59
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.44
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.4796
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.5, p95 8.1, off-palette 0.3% (top: #667777 (0.2%), #778877
+        (0.1%))'
+      value: 2.4902
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 88 against the world reference (outliers: edge)'
+      value: 87.8
+    info:
+      fit:
+        scale: 0.8696
+        anchor:
+        - 498.1
+        - 815
+      registration:
+        dx: 14
+        dy: 72
+      metrics_raw:
+        L_p5: 57.2
+        L_p50: 80.1
+        L_p95: 94.2
+        C_p50: 20.9
+        C_p95: 48.2
+        C_p99: 52.5
+        detail: 2.13
+      metrics_locked:
+        L_p5: 57.5
+        L_p50: 80.0
+        L_p95: 93.9
+        C_p50: 20.7
+        C_p95: 47.0
+        C_p99: 51.5
+        detail: 1.44
+    fingerprint: 0cbc85f79324bbd1
+manual_review:
+  observed_note: After the sole unchanged-prompt retry, all four visible locked alpha-over24
+    widths360/359/359/360px exceed literal one-third of1024 cap341.33px. All four
+    official hard QA pass. Independent original and locked review confirms open sea-blue/cream
+    canopy, slim pole, pale sand mound, layered folded cream towel with coral stripe
+    and round pail on both retry takes, with no fur, text, guide or unrelated object.
+    No eligible take; skip only this job, retaining all four immutable originals.
+    No third round, manual resize or alpha cleanup. Independent summer corner is selected
+    separately.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-yaz-beach-umbrella-v2
+  take: 1
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-e490c31a-4155-4a5a-b33f-038741df1e32.png
+  returned_at: '2026-11-05T22:49:46.059Z'
+  prompt_sha256: 442da5ca41baa3f30301ff8d10c109536a44ce9958e7449f5144d86ef413db9f
+  fingerprint: 0cbc85f79324bbd1
+  saved_at: '2026-11-05T22:49:46.358208+00:00'
+  original_generated_png_sha256: ee69cf40eea12a0e3beca0ab33ac505aba9e4a401c2dd43466d6a6e8872cf249
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 7ada36c915d625c0f04370498e21715b3bd378bf8db59c63fc8a0da8a18c41cf
+  inbox_png_sha256: 507919c077405e89368d71e0050b00b90c7d47d1965a4dbede975d70b84e1c74
+  qa_sha256: af7417e9db450fc62eddc96835dac46a4a8177c9b8eca24e0352638394fc1638
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-yaz-beach-umbrella-v2
+  take: 2
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-1abf2a64-f573-4d6e-894a-65f544f6e97b.png
+  returned_at: '2026-11-05T22:48:11.255Z'
+  prompt_sha256: 442da5ca41baa3f30301ff8d10c109536a44ce9958e7449f5144d86ef413db9f
+  fingerprint: 0cbc85f79324bbd1
+  saved_at: '2026-11-05T22:48:11.626095+00:00'
+  original_generated_png_sha256: 3e2f7811ac727b3cf9e26c1223c3892c5eb938a6c15b62d152bf25c128d79893
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 3bf7869697e6566bc5886be6359de28e73838df3b607ec4d3198331f3373dcf4
+  inbox_png_sha256: b8cd75012a2cce937f4a8593b4af2a0be05482ce4997d9f1ba8edbf940aaee33
+  qa_sha256: 4620828eaacd90b922b21db98e3727feea109b7c2246c02b64baec5f1efff15c
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-yaz-beach-umbrella-v2
+  take: 3
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-d810d0d3-9815-4b65-90b6-bc4ea401e1d3.png
+  returned_at: '2026-11-05T23:03:15.853Z'
+  prompt_sha256: 442da5ca41baa3f30301ff8d10c109536a44ce9958e7449f5144d86ef413db9f
+  fingerprint: 0cbc85f79324bbd1
+  saved_at: '2026-11-05T23:03:16.163654+00:00'
+  original_generated_png_sha256: 15b1d128c794f320b10f690ef7459f5bb48c6a4368694e377e1392bbe9669cb3
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 3a21941917d5bf68959cec07380ef75fcc529d2445d04421fb24a2e41f39c127
+  inbox_png_sha256: 7577e698d81c6a1c04d97fb5b3efdb2d46e64637e1b74a5072a8dc9c79a15f77
+  qa_sha256: b19831586a3f282a5ec6fd36551a23edc2d723535b89657d5b0317ab1fbdd73c
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-yaz-beach-umbrella-v2
+  take: 4
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-61c27d1d-2474-4616-b175-8b80d3047e63.png
+  returned_at: '2026-11-05T23:04:01.228Z'
+  prompt_sha256: 442da5ca41baa3f30301ff8d10c109536a44ce9958e7449f5144d86ef413db9f
+  fingerprint: 0cbc85f79324bbd1
+  saved_at: '2026-11-05T23:04:01.542367+00:00'
+  original_generated_png_sha256: def14f1dee512122d265137e065734ca366eda3cde4f05a84f746cc5f5ca4805
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 9159a07e2f61fff69fe6fd2583504940ccf82965da3de4c4090102a2a899a6d9
+  inbox_png_sha256: 8c56a3f2959e0a545831af551c94682fdd493d04f3f893b57ac0e5a8939ad592
+  qa_sha256: d85a354f37a3ef7d25c0b9b28b5ecdc20dfab758e40546e61d51db66f71de671
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 2deb939f9f47ef2bb97f228252ebe94dd793f3088c676809c05a571e0747222d
