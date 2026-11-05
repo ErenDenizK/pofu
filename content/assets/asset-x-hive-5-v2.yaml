@@ -1,0 +1,36 @@
+id: asset-x-hive-5-v2
+type: asset
+title_tr: x-hive-5-v2
+title_en: x-hive-5-v2 (station)
+status: planned
+horizon: now
+summary: >-
+  The finished garden hive as a newly opened spring honey corner, composed with the small
+  honey stand at the left and a honey-cream hive box plus exactly two straw skeps grouped
+  at the right. The stand has a rounded wooden counter under a compact coral-and-cream striped
+  awning, exactly five round amber honey jars with opaque cream wax-sealed lids in one readable
+  row, and one small drip spoon. Lavender grows behind the …
+art:
+  images: []
+  jobs:
+  - batch-28-home-shops-concepts-v2:x-hive-5-v2
+sources:
+- doc: tools/imagegen/manifest/batch-28-home-shops-concepts-v2.yaml
+kind: station
+batch: batch-28-home-shops-concepts-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Source and locked review by two agents: take
+  1 has exactly five amber jars with cream sealed lids, exactly two skeps plus one box, the
+  left coral/cream honey counter and right lavender/seedlings, tiny cream dot-bees and a clear
+  open middle gap. The honey drip tool is rendered as a traditional grooved honey dipper;
+  functionally the requested honey spoon, documented as a representation advisory. Take 2
+  has correct counts but the locked cutout contains broad pale residue bridging the middle
+  gap and surrounding the awning/lavender/bees; excluded manually. No text, face, fur, guide
+  or baked ground shadow in eligible take. Hard QA passes; style/light warnings retained.
+  Only eligible take 1 selected; never promoted.
