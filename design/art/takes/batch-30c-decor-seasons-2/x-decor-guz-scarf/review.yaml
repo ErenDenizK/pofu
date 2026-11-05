@@ -1,0 +1,244 @@
+batch: batch-30c-decor-seasons-2
+manifest: tools/imagegen/manifest/batch-30c-decor-seasons-2.yaml
+manifest_sha256: 1c4999e56afbafe8f17b1cace1be68f77a742689a5985b6fae4e60b3f8613c52
+contact_sheet: design/art/takes/batch-30c-decor-seasons-2/x-decor-guz-scarf/contact.jpg
+jobs:
+  x-decor-guz-scarf:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both source takes show the long
+      soft plum/mustard striped scarf with small tassels draped freely over a slim
+      honey-wood T stand, one end curving down to its base. No letters, animals, guide,
+      floor or cast ground shadow. Both official hard reports and decor_anchor pass;
+      alpha-over24 visible widths321 and278px on1024 satisfy the literal at-most-third
+      cap341.33. Rounded scarf and stand silhouette reads at64px. Choose lowest style-lock
+      load then higher Harmony among otherwise eligible takes; exploration style/palette/light
+      warnings stay advisory. No source cleanup, manual resize or promotion.
+qa_reports:
+  1:
+    job: x-decor-guz-scarf
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 38 (at most 22), p98 84 (at least 90), spread 46
+        (at least 60)'
+      value: 46.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 66 (band 55-90)'
+      value: 65.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.216
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.9 (at least 3.5)'
+      value: 5.91
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.21
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2744
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: mean dE 2.8, p95 6.8, off-palette 0.0%
+      value: 2.7733
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 60 against the world reference (outliers: L_p2, L_p98,
+        edge)'
+      value: 59.8
+    info:
+      fit:
+        scale: 0.9108
+        anchor:
+        - 567.5
+        - 878
+      registration:
+        dx: -55
+        dy: 10
+      metrics_raw:
+        L_p5: 43.0
+        L_p50: 66.0
+        L_p95: 82.4
+        C_p50: 35.3
+        C_p95: 45.7
+        C_p99: 46.6
+        detail: 1.81
+      metrics_locked:
+        L_p5: 43.2
+        L_p50: 65.7
+        L_p95: 81.9
+        C_p50: 35.4
+        C_p95: 45.6
+        C_p99: 46.4
+        detail: 1.21
+    fingerprint: ab94dd11841c893a
+  2:
+    job: x-decor-guz-scarf
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 37 (at most 22), p98 82 (at least 90), spread 45
+        (at least 60)'
+      value: 45.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 65 (band 55-90)'
+      value: 65.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.16 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.161
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.2 (at least 3.5)'
+      value: 6.19
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.18
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.7
+      value: 1.662
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.2, p95 8.6, off-palette 0.0%
+      value: 3.1539
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 59 against the world reference (outliers: L_p2, L_p98,
+        edge)'
+      value: 59.3
+    info:
+      fit:
+        scale: 0.8838
+        anchor:
+        - 552.9
+        - 868
+      registration:
+        dx: -41
+        dy: 20
+      metrics_raw:
+        L_p5: 41.9
+        L_p50: 65.6
+        L_p95: 81.0
+        C_p50: 39.5
+        C_p95: 50.1
+        C_p99: 50.9
+        detail: 1.74
+      metrics_locked:
+        L_p5: 42.1
+        L_p50: 65.2
+        L_p95: 80.6
+        C_p50: 39.1
+        C_p95: 50.0
+        C_p99: 50.7
+        detail: 1.18
+    fingerprint: ab94dd11841c893a
+manual_review:
+  observed_note: Both source takes show the long soft plum/mustard striped scarf with
+    small tassels draped freely over a slim honey-wood T stand, one end curving down
+    to its base. No letters, animals, guide, floor or cast ground shadow. Both official
+    hard reports and decor_anchor pass; alpha-over24 visible widths321 and278px on1024
+    satisfy the literal at-most-third cap341.33. Rounded scarf and stand silhouette
+    reads at64px. Choose lowest style-lock load then higher Harmony among otherwise
+    eligible takes; exploration style/palette/light warnings stay advisory. No source
+    cleanup, manual resize or promotion.
+  excluded_takes: []
+sources:
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-guz-scarf
+  take: 1
+  round: 1
+  logical_run: 20261105-night30c-scarf-leaves
+  source_file: /workspace/generated_images/exec-1f89959f-244c-4dea-9712-36fb4bd10ad9.png
+  returned_at: '2026-11-05T19:48:31.849Z'
+  prompt_sha256: 9980771076df82fdd0f2a8864691ddf9240d562b1c559d9113378227950e5e33
+  fingerprint: ab94dd11841c893a
+  saved_at: '2026-11-05T19:48:32.207943+00:00'
+  original_generated_png_sha256: 45c56fa63729e97e69590da69d46e010a5b4800a11937d3ae9ef7db9ac40cc8b
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 188a9175b95e0f3186e11820c6ae36880bda212e2675e2b61d6b9da85b3ea9e2
+  inbox_png_sha256: f8943e043d8a8914eeed52f17f587018001ea5889a443e0d48166671203a637b
+  qa_sha256: c256a024fbc4afc3c0ce070bcf24cb528d90a86b6fb4ef1afbff5c7d64505ea1
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-guz-scarf
+  take: 2
+  round: 1
+  logical_run: 20261105-night30c-scarf-leaves
+  source_file: /workspace/generated_images/exec-72660f68-e9ec-4a83-83df-51a020694319.png
+  returned_at: '2026-11-05T19:49:32.259Z'
+  prompt_sha256: 9980771076df82fdd0f2a8864691ddf9240d562b1c559d9113378227950e5e33
+  fingerprint: ab94dd11841c893a
+  saved_at: '2026-11-05T19:49:32.629124+00:00'
+  original_generated_png_sha256: 6fb1324df1497b8c10e7f341f9e08e44cb23eb6266568ea21afeb9d60b45c5a9
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 831d195bbe5eac7df860f4321f7c2cbce5a130f8b5a49fc1cad70d2a31003193
+  inbox_png_sha256: 7c31ffe97e997fc4db98dbc6c428d121dba3af0bee7eb9502714632ea4cb3cc8
+  qa_sha256: 9a999105aea959e2317bde6c18e572d5b77b031c413845b3c3d5c55b5a702d27
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

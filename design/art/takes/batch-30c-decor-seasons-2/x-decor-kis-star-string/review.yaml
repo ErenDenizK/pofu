@@ -1,0 +1,433 @@
+batch: batch-30c-decor-seasons-2
+manifest: tools/imagegen/manifest/batch-30c-decor-seasons-2.yaml
+manifest_sha256: 1c4999e56afbafe8f17b1cace1be68f77a742689a5985b6fae4e60b3f8613c52
+contact_sheet: design/art/takes/batch-30c-decor-seasons-2/x-decor-kis-star-string/contact.jpg
+jobs:
+  x-decor-kis-star-string:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after its sole unchanged-prompt retry. Four official posted alpha-over24
+      widths503,670,481,512px on1024 exceed the literal one-third341.33px cap. Numerical
+      reports are warn-only, but manual size remains disqualifying. Each source has
+      exactly8five-pointed cream/pale-gold stars on a thin sagging line with2complete
+      round-topped honey poles. Retry3 also has a conspicuous diffuse pale halo around
+      the line, retained in the original; no manual pixel cleanup or profile/size
+      waiver. All4sources and source-bound QA/takes/contact preserved; no letters
+      or live characters, no third pair, no promotion and no true dependents. Exploration
+      style/palette/light warnings advisory.
+qa_reports:
+  1:
+    job: x-decor-kis-star-string
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 91 (at least 90), spread 29
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 28.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 79.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 11.9 (at least 3.5)'
+      value: 11.91
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.04
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7886
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 2.9, off-palette 0.0%
+      value: 1.411
+    - check: decor_anchor
+      status: pass
+      message: on the hang line
+      value: 636.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: edge)'
+      value: 87.3
+    info:
+      registration:
+        dx: 0
+        dy: -101
+      metrics_raw:
+        L_p5: 63.2
+        L_p50: 79.5
+        L_p95: 90.6
+        C_p50: 37.5
+        C_p95: 48.0
+        C_p99: 49.1
+        detail: 1.93
+      metrics_locked:
+        L_p5: 64.1
+        L_p50: 79.4
+        L_p95: 89.8
+        C_p50: 37.9
+        C_p95: 47.8
+        C_p99: 48.6
+        detail: 1.04
+    fingerprint: 99147b897810ce88
+  2:
+    job: x-decor-kis-star-string
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 52.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 92 (at least 90), spread 30
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 29.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 79.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 9.2 (at least 3.5)'
+      value: 9.15
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.16
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6853
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 2.8, off-palette 0.0% (top: #AA6622 (0.0%))'
+      value: 1.2907
+    - check: decor_anchor
+      status: warn
+      message: bottom y 703 below the floor (620); width 670 px wider than the hang
+        line (560)
+      value: 703.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: edge)'
+      value: 86.7
+    info:
+      registration:
+        dx: -1
+        dy: -3
+      metrics_raw:
+        L_p5: 62.5
+        L_p50: 79.4
+        L_p95: 90.7
+        C_p50: 42.9
+        C_p95: 52.7
+        C_p99: 54.8
+        detail: 2.06
+      metrics_locked:
+        L_p5: 63.2
+        L_p50: 79.3
+        L_p95: 90.3
+        C_p50: 43.4
+        C_p95: 52.6
+        C_p99: 54.0
+        detail: 1.16
+    fingerprint: 99147b897810ce88
+  3:
+    job: x-decor-kis-star-string
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 90 (at least 90), spread 29
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 29.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.25 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.247
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.0 (at least 3.5)'
+      value: 3.04
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.08
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7113
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 3.1, off-palette 0.0%
+      value: 1.5289
+    - check: decor_anchor
+      status: warn
+      message: bottom y 706 below the floor (620)
+      value: 706.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: edge)'
+      value: 82.2
+    info:
+      registration:
+        dx: 6
+        dy: -80
+      metrics_raw:
+        L_p5: 62.6
+        L_p50: 77.0
+        L_p95: 89.9
+        C_p50: 41.9
+        C_p95: 49.6
+        C_p99: 50.9
+        detail: 1.79
+      metrics_locked:
+        L_p5: 63.4
+        L_p50: 76.6
+        L_p95: 89.1
+        C_p50: 42.1
+        C_p95: 49.4
+        C_p99: 50.2
+        detail: 1.08
+    fingerprint: 99147b897810ce88
+  4:
+    job: x-decor-kis-star-string
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 49.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 65 (at most 22), p98 92 (at least 90), spread 27
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 27.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 78.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 12.2 (at least 3.5)'
+      value: 12.16
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.94
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7484
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 3.5, off-palette 0.0%
+      value: 1.4643
+    - check: decor_anchor
+      status: pass
+      message: on the hang line
+      value: 649.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the world reference (outliers: edge)'
+      value: 85.8
+    info:
+      registration:
+        dx: 0
+        dy: -135
+      metrics_raw:
+        L_p5: 65.8
+        L_p50: 79.2
+        L_p95: 92.0
+        C_p50: 41.3
+        C_p95: 49.6
+        C_p99: 50.7
+        detail: 1.76
+      metrics_locked:
+        L_p5: 66.6
+        L_p50: 78.7
+        L_p95: 91.2
+        C_p50: 41.6
+        C_p95: 49.5
+        C_p99: 50.1
+        detail: 0.94
+    fingerprint: 99147b897810ce88
+manual_review:
+  observed_note: Skipped after its sole unchanged-prompt retry. Four official posted
+    alpha-over24 widths503,670,481,512px on1024 exceed the literal one-third341.33px
+    cap. Numerical reports are warn-only, but manual size remains disqualifying. Each
+    source has exactly8five-pointed cream/pale-gold stars on a thin sagging line with2complete
+    round-topped honey poles. Retry3 also has a conspicuous diffuse pale halo around
+    the line, retained in the original; no manual pixel cleanup or profile/size waiver.
+    All4sources and source-bound QA/takes/contact preserved; no letters or live characters,
+    no third pair, no promotion and no true dependents. Exploration style/palette/light
+    warnings advisory.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-kis-star-string
+  take: 1
+  round: 1
+  logical_run: 20261105-night30c-winter-star-string
+  source_file: /workspace/generated_images/exec-9e89a56b-79e4-4c6d-b73d-3c8679d3c7db.png
+  returned_at: '2026-11-05T19:54:13.335Z'
+  prompt_sha256: cc3618957d40d66046721cd1d761a7195885970c136ea83cb8aad1b4ddfb4ffe
+  fingerprint: 99147b897810ce88
+  saved_at: '2026-11-05T19:54:13.747393+00:00'
+  original_generated_png_sha256: e2e02633344bc13e44b0f5d5558485f86d5a741f8cd32d70676c78afe42deaeb
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 51cce0dbcbe7f15c7e44e650209a5407b7e0e89bb5204d192ee71ea6e37204b1
+  inbox_png_sha256: 6f258f99c8ea4d558b9ca1dd5cca92e1c7ecb8475b9e33b81036ef00d0db3ff5
+  qa_sha256: 8e3435c6f52c5e4f0e4b8a60210ff2f58e1d81bb491d2089871c7996c3afeac5
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-kis-star-string
+  take: 2
+  round: 1
+  logical_run: 20261105-night30c-winter-star-string
+  source_file: /workspace/generated_images/exec-aa21dd1c-2a2f-48f8-a65f-77e9f5f9d790.png
+  returned_at: '2026-11-05T19:55:06.029Z'
+  prompt_sha256: cc3618957d40d66046721cd1d761a7195885970c136ea83cb8aad1b4ddfb4ffe
+  fingerprint: 99147b897810ce88
+  saved_at: '2026-11-05T19:55:06.337643+00:00'
+  original_generated_png_sha256: ef46d52fa0f6d5434822d6565ed6f2c24335d4d5a3dc340b9394675b6c9d86a1
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 63c0e6f453449bee61d97118d57760af3aae93db43efd250e7eb592850cb49a1
+  inbox_png_sha256: 16356676162d0197814b66612346bbecd8ceaa0f475cb6cf7931aa9418ae4039
+  qa_sha256: 4bf1458c1699c438717c2266d72dac7db7fcae3d9e26400ecd83e73b449969f5
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-kis-star-string
+  take: 3
+  round: 2
+  logical_run: 20261105-night30c-star-string-single-retry
+  source_file: /workspace/generated_images/exec-ffae8a42-984b-4b46-9c2b-37d27313daec.png
+  returned_at: '2026-11-05T20:02:02.527Z'
+  prompt_sha256: cc3618957d40d66046721cd1d761a7195885970c136ea83cb8aad1b4ddfb4ffe
+  fingerprint: 99147b897810ce88
+  saved_at: '2026-11-05T20:02:02.895717+00:00'
+  original_generated_png_sha256: 101547b3861b257dcfb0640f3ca020b9936db3519c859418dc77485bedddd5fd
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: b2cd8cde91595c88129f5ce3f24acb5a9471c529aa59f0a5d9e129f01e9ad570
+  inbox_png_sha256: affe7f8b4350b0f81484a644843d1be49cb5d50373bcd794a6aa977a5d4372b1
+  qa_sha256: 4ae35840ca3e8132801c6c83dcd16ff4444d86209a8d7e35df2ccaef7284892c
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-kis-star-string
+  take: 4
+  round: 2
+  logical_run: 20261105-night30c-star-string-single-retry
+  source_file: /workspace/generated_images/exec-fc6ed524-a5b4-4277-ace7-b1e9502d2c0b.png
+  returned_at: '2026-11-05T20:02:53.768Z'
+  prompt_sha256: cc3618957d40d66046721cd1d761a7195885970c136ea83cb8aad1b4ddfb4ffe
+  fingerprint: 99147b897810ce88
+  saved_at: '2026-11-05T20:02:54.072461+00:00'
+  original_generated_png_sha256: cb85ae807bb4caa3518ba905034ac730eb5e9e2fe18fbab223ea90b6f20edbd9
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: bdc1dce4532a0ccf5e7cd5433dfe3a32512deee01da68beb0c0388eb077f0769
+  inbox_png_sha256: c35d51e4546ccc74e2a54cbb956beb0b3928fb5a155d9a700ec26e94ff693c37
+  qa_sha256: 8a40460d54613701a1e1bf8dd09173e263624361689d4944cdfc022201db26b4
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

@@ -1,0 +1,460 @@
+batch: batch-30c-decor-seasons-2
+manifest: tools/imagegen/manifest/batch-30c-decor-seasons-2.yaml
+manifest_sha256: 1c4999e56afbafe8f17b1cace1be68f77a742689a5985b6fae4e60b3f8613c52
+contact_sheet: design/art/takes/batch-30c-decor-seasons-2/x-decor-guz-chestnut-stove/contact.jpg
+jobs:
+  x-decor-guz-chestnut-stove:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after one unchanged-prompt retry. All four posted widths359,361,360,359px
+      exceed the literal at-most-third341.33px cap on1024, although numerical hard
+      QA and decor_anchor pass. Both rounds otherwise show the matte dark-sage round
+      stove with3short legs,bent chimney,cream-framed round window,wood stool,paper
+      cone of chestnuts and tiny wooden scoop. Internal fire or warm cream in the
+      stove window is compatible with this brief; no steam or external light pool,
+      text, guide, floor or cast ground shadow. Size is the actual failure, not advisory
+      exploration palette/style/light warnings. Preserve all4originals/takes/contact/reports;
+      no manual resizing, pixel cleanup, promotion or third pair. No dependent jobs.
+qa_reports:
+  1:
+    job: x-decor-guz-chestnut-stove
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 40 (at most 22), p98 86 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 45.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 64 (band 55-90)'
+      value: 64.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.188
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.3 (at least 3.5)'
+      value: 6.35
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.7
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7737
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.9, p95 13.2, off-palette 18.4% (top: #888866 (7.6%), #777755
+        (3.9%)) (advisory in an exploration)'
+      value: 5.9218
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 61 against the world reference (outliers: L_p2, L_p98,
+        detail, edge)'
+      value: 60.6
+    info:
+      fit:
+        scale: 0.8798
+        anchor:
+        - 546.1
+        - 901
+      registration:
+        dx: -34
+        dy: -13
+      metrics_raw:
+        L_p5: 43.4
+        L_p50: 64.6
+        L_p95: 84.7
+        C_p50: 21.6
+        C_p95: 42.4
+        C_p99: 56.5
+        detail: 2.29
+      metrics_locked:
+        L_p5: 43.9
+        L_p50: 64.4
+        L_p95: 84.3
+        C_p50: 21.6
+        C_p95: 42.0
+        C_p99: 55.8
+        detail: 1.7
+    fingerprint: d64cf42f4b848897
+  2:
+    job: x-decor-guz-chestnut-stove
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 40 (at most 22), p98 88 (at least 90), spread 48
+        (at least 60)'
+      value: 48.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 63 (band 55-90)'
+      value: 63.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.141
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.7 (at least 3.5)'
+      value: 6.73
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.77
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.843
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 6.9, p95 14.2, off-palette 29.2% (top: #777755 (9.8%), #888866
+        (5.0%)) (advisory in an exploration)'
+      value: 6.9191
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 68 against the world reference (outliers: L_p2, L_p98,
+        detail, edge)'
+      value: 67.6
+    info:
+      fit:
+        scale: 0.9137
+        anchor:
+        - 562.5
+        - 894
+      registration:
+        dx: -50
+        dy: -6
+      metrics_raw:
+        L_p5: 42.1
+        L_p50: 63.2
+        L_p95: 85.4
+        C_p50: 24.0
+        C_p95: 50.6
+        C_p99: 60.3
+        detail: 2.28
+      metrics_locked:
+        L_p5: 42.5
+        L_p50: 63.2
+        L_p95: 85.0
+        C_p50: 24.0
+        C_p95: 50.1
+        C_p99: 59.3
+        detail: 1.77
+    fingerprint: d64cf42f4b848897
+  3:
+    job: x-decor-guz-chestnut-stove
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 37 (at most 22), p98 87 (at least 90), spread 49
+        (at least 60)'
+      value: 49.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 64 (band 55-90)'
+      value: 64.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.118
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.5 (at least 3.5)'
+      value: 6.48
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.71
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8284
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.9, p95 12.8, off-palette 9.0% (top: #888866 (3.5%), #998866
+        (2.3%)) (advisory in an exploration)'
+      value: 5.8551
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 62 against the world reference (outliers: L_p2, L_p98,
+        detail, edge)'
+      value: 61.9
+    info:
+      fit:
+        scale: 0.8759
+        anchor:
+        - 545.1
+        - 862
+      registration:
+        dx: -34
+        dy: 26
+      metrics_raw:
+        L_p5: 40.6
+        L_p50: 64.3
+        L_p95: 85.4
+        C_p50: 24.0
+        C_p95: 45.7
+        C_p99: 49.6
+        detail: 2.28
+      metrics_locked:
+        L_p5: 41.2
+        L_p50: 64.2
+        L_p95: 85.0
+        C_p50: 24.1
+        C_p95: 45.0
+        C_p99: 49.2
+        detail: 1.71
+    fingerprint: d64cf42f4b848897
+  4:
+    job: x-decor-guz-chestnut-stove
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 38 (at most 22), p98 86 (at least 90), spread 48
+        (at least 60)'
+      value: 48.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 63 (band 55-90)'
+      value: 62.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.16 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.161
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.5 (at least 3.5)'
+      value: 6.51
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.53
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7725
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 6.4, p95 13.3, off-palette 21.7% (top: #777755 (5.1%), #887755
+        (4.0%)) (advisory in an exploration)'
+      value: 6.3623
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 61 against the world reference (outliers: L_p2, L_p98,
+        detail, edge)'
+      value: 61.1
+    info:
+      fit:
+        scale: 0.7377
+        anchor:
+        - 549.6
+        - 843
+      registration:
+        dx: -37
+        dy: 46
+      metrics_raw:
+        L_p5: 40.9
+        L_p50: 62.8
+        L_p95: 84.3
+        C_p50: 22.3
+        C_p95: 44.7
+        C_p99: 62.2
+        detail: 2.01
+      metrics_locked:
+        L_p5: 41.5
+        L_p50: 62.7
+        L_p95: 84.1
+        C_p50: 22.1
+        C_p95: 44.1
+        C_p99: 60.3
+        detail: 1.53
+    fingerprint: d64cf42f4b848897
+manual_review:
+  observed_note: Skipped after one unchanged-prompt retry. All four posted widths359,361,360,359px
+    exceed the literal at-most-third341.33px cap on1024, although numerical hard QA
+    and decor_anchor pass. Both rounds otherwise show the matte dark-sage round stove
+    with3short legs,bent chimney,cream-framed round window,wood stool,paper cone of
+    chestnuts and tiny wooden scoop. Internal fire or warm cream in the stove window
+    is compatible with this brief; no steam or external light pool, text, guide, floor
+    or cast ground shadow. Size is the actual failure, not advisory exploration palette/style/light
+    warnings. Preserve all4originals/takes/contact/reports; no manual resizing, pixel
+    cleanup, promotion or third pair. No dependent jobs.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-guz-chestnut-stove
+  take: 1
+  round: 1
+  logical_run: 20261105-night30c-pumpkins-stove
+  source_file: /workspace/generated_images/exec-ad45bf62-31cc-4908-94e5-0113b5276107.png
+  returned_at: '2026-11-05T19:50:15.077Z'
+  prompt_sha256: 8f943836ed0c42b2d35804b658f9cf49813c46c7ad2c0dd36f96d4b1cc335a14
+  fingerprint: d64cf42f4b848897
+  saved_at: '2026-11-05T19:50:15.383343+00:00'
+  original_generated_png_sha256: 471d1dda28109426f5c0e041db28f3ad9b936a4f3e41f3e343d3b6d9455870a4
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 58a1e9f605bd7ef599eabb06e5786a8c762aa5ace08a98259f58713898705dae
+  inbox_png_sha256: 51f35e5c975c82b27bd5adc44555cd2efba336f6605bd0a66809998b7475dc9c
+  qa_sha256: 8ce2bc61f972b736f58cd3bf73bf6551148cb98003a350dc4838a0da812f1f91
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-guz-chestnut-stove
+  take: 2
+  round: 1
+  logical_run: 20261105-night30c-pumpkins-stove
+  source_file: /workspace/generated_images/exec-aeeee9db-bd44-47a8-a8a1-aa0fdc735ac7.png
+  returned_at: '2026-11-05T19:49:21.593Z'
+  prompt_sha256: 8f943836ed0c42b2d35804b658f9cf49813c46c7ad2c0dd36f96d4b1cc335a14
+  fingerprint: d64cf42f4b848897
+  saved_at: '2026-11-05T19:49:21.952966+00:00'
+  original_generated_png_sha256: 40a1586a5ba35a78e993634af65d491285cbf195f9251f1fce673c46fe37a360
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 3eb472c1ade0b1e629cd4835aa4f1101702f6b204728adf75a8706f7ac2d14a0
+  inbox_png_sha256: 3e6196cad9e56d2d06dcbfccaf4a8e638cbdc792a6ce14fd7f19f333abfbae5f
+  qa_sha256: 574d1b355acac14632523eb9266d730aac9e4acbbc3550e0e4f81a50405c190c
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-guz-chestnut-stove
+  take: 3
+  round: 2
+  logical_run: 20261105-night30c-stove-single-retry
+  source_file: /workspace/generated_images/exec-36e2fbce-a1e1-4437-81ba-144c0c81d845.png
+  returned_at: '2026-11-05T19:54:12.867Z'
+  prompt_sha256: 8f943836ed0c42b2d35804b658f9cf49813c46c7ad2c0dd36f96d4b1cc335a14
+  fingerprint: d64cf42f4b848897
+  saved_at: '2026-11-05T19:54:13.194152+00:00'
+  original_generated_png_sha256: 9c5a16146bfb5a09318782731a0c6fede9a22de04759968dff6f8d2555e857af
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 0f26ea1b80dd611f72047b80a949e1263a7a6a1f441d96b053dc3101f3caebef
+  inbox_png_sha256: b2edc8b47c082f17fad225c5fbe0625d6b481093872246a1cfb88784c1ad0d3b
+  qa_sha256: f1a761f74d16f949e0cc57e8816512e310d23925f08d9b2893c6a73854e7c034
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-guz-chestnut-stove
+  take: 4
+  round: 2
+  logical_run: 20261105-night30c-stove-single-retry
+  source_file: /workspace/generated_images/exec-1a60e434-2d23-4197-93f2-1ec5afa1c63e.png
+  returned_at: '2026-11-05T19:53:19.419Z'
+  prompt_sha256: 8f943836ed0c42b2d35804b658f9cf49813c46c7ad2c0dd36f96d4b1cc335a14
+  fingerprint: d64cf42f4b848897
+  saved_at: '2026-11-05T19:53:19.745328+00:00'
+  original_generated_png_sha256: 8f2661a212142e78c8b8a5c260e87a6941fd103f6ad1cda63c8e7b2f9f710079
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 7f524a0d6d1946ea4e22a29b055488405ecfad827e902f131a1b64ed02c5378a
+  inbox_png_sha256: 75411bd9b5a8fba0707ce972f1309d6e3d7d22127c788842107aa5ee4614f71f
+  qa_sha256: f60fb0d78a0e3129b60134daf39b20721d2cb5ba412a5dede7fabf5d9b54728f
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

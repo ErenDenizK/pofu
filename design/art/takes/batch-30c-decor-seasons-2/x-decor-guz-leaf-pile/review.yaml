@@ -1,0 +1,458 @@
+batch: batch-30c-decor-seasons-2
+manifest: tools/imagegen/manifest/batch-30c-decor-seasons-2.yaml
+manifest_sha256: 1c4999e56afbafe8f17b1cace1be68f77a742689a5985b6fae4e60b3f8613c52
+contact_sheet: design/art/takes/batch-30c-decor-seasons-2/x-decor-guz-leaf-pile/contact.jpg
+jobs:
+  x-decor-guz-leaf-pile:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after its sole unchanged-prompt retry. All four official posted
+      alpha-over24 widths360,360,359,357px exceed literal at-most-third341.33px on1024;
+      numerical hard QA/decor_anchor pass. Core content remains a rounded rust/mustard/rose/cream
+      leaf heap with scattered leaves at its foot and a small leaning wooden rake,
+      no lettering, characters, guide, floor or cast shadow. Retry4 source has faint
+      low-alpha fringes, retained without cleanup; the manual size failure alone already
+      excludes it. Exploration palette/style/light warnings advisory. Keep all4unchangedsourcePNGs/takes/contact/reports,
+      no source shrink, third round or promotion. No dependent jobs.
+qa_reports:
+  1:
+    job: x-decor-guz-leaf-pile
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 58.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 43 (at most 22), p98 89 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 68 (band 55-90)'
+      value: 68.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.10 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.098
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.4 (at least 3.5)'
+      value: 8.45
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.93
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.1
+      value: 3.0676
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.4, p95 12.4, off-palette 5.9% (top: #AA5533 (1.2%), #995522
+        (1.1%))'
+      value: 4.4018
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 66 against the world reference (outliers: C_p95, detail,
+        edge)'
+      value: 65.5
+    info:
+      fit:
+        scale: 0.75
+        anchor:
+        - 513.3
+        - 868
+      registration:
+        dx: -1
+        dy: 20
+      metrics_raw:
+        L_p5: 46.1
+        L_p50: 68.7
+        L_p95: 87.7
+        C_p50: 45.1
+        C_p95: 59.1
+        C_p99: 59.9
+        detail: 2.55
+      metrics_locked:
+        L_p5: 47.2
+        L_p50: 68.5
+        L_p95: 87.4
+        C_p50: 45.0
+        C_p95: 58.5
+        C_p99: 59.1
+        detail: 1.93
+    fingerprint: 3e61ef14149ef8a8
+  2:
+    job: x-decor-guz-leaf-pile
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 57.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 44 (at most 22), p98 88 (at least 90), spread 45
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 44.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 69 (band 55-90)'
+      value: 68.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.129
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.6 (at least 3.5)'
+      value: 7.61
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.56
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.9
+      value: 2.9173
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.0, p95 10.6, off-palette 1.6% (top: #995522 (0.5%), #AA5533
+        (0.4%))'
+      value: 3.9704
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 68 against the world reference (outliers: C_p95, L_p98,
+        detail, edge)'
+      value: 67.9
+    info:
+      fit:
+        scale: 0.8491
+        anchor:
+        - 485.3
+        - 882
+      registration:
+        dx: 27
+        dy: 6
+      metrics_raw:
+        L_p5: 47.0
+        L_p50: 69.0
+        L_p95: 86.2
+        C_p50: 45.1
+        C_p95: 58.2
+        C_p99: 59.3
+        detail: 2.15
+      metrics_locked:
+        L_p5: 47.9
+        L_p50: 68.7
+        L_p95: 85.8
+        C_p50: 45.5
+        C_p95: 57.8
+        C_p99: 58.6
+        detail: 1.56
+    fingerprint: 3e61ef14149ef8a8
+  3:
+    job: x-decor-guz-leaf-pile
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 59.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 41 (at most 22), p98 90 (at least 90), spread 49
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 48.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 69 (band 55-90)'
+      value: 69.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.09 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.09
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.8 (at least 3.5)'
+      value: 7.79
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.63
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.6
+      value: 3.5536
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.7, p95 13.4, off-palette 13.2% (top: #BB6633 (2.8%), #AA5533
+        (2.2%)) (advisory in an exploration)'
+      value: 5.6543
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 66 against the world reference (outliers: C_p95, L_p2,
+        detail, edge)'
+      value: 66.3
+    info:
+      fit:
+        scale: 0.7895
+        anchor:
+        - 507.1
+        - 882
+      registration:
+        dx: 2
+        dy: 6
+      metrics_raw:
+        L_p5: 44.7
+        L_p50: 69.3
+        L_p95: 87.1
+        C_p50: 47.5
+        C_p95: 59.7
+        C_p99: 61.0
+        detail: 2.15
+      metrics_locked:
+        L_p5: 45.3
+        L_p50: 69.2
+        L_p95: 86.9
+        C_p50: 47.2
+        C_p95: 59.0
+        C_p99: 59.7
+        detail: 1.63
+    fingerprint: 3e61ef14149ef8a8
+  4:
+    job: x-decor-guz-leaf-pile
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 57.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 41 (at most 22), p98 85 (at least 90), spread 44
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 44.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 63 (band 55-90)'
+      value: 63.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.15 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.149
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.3 (at least 3.5)'
+      value: 6.29
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.8
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.4
+      value: 3.4419
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.2, p95 11.4, off-palette 2.2% (top: #995522 (0.8%), #AA5533
+        (0.5%)) (advisory in an exploration)'
+      value: 5.1849
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 58 against the world reference (outliers: C_p95, L_p2,
+        L_p98, detail, edge)'
+      value: 58.1
+    info:
+      fit:
+        scale: 0.7004
+        anchor:
+        - 524.0
+        - 915
+      registration:
+        dx: -12
+        dy: -27
+      metrics_raw:
+        L_p5: 42.7
+        L_p50: 63.6
+        L_p95: 83.4
+        C_p50: 45.2
+        C_p95: 57.7
+        C_p99: 59.1
+        detail: 2.49
+      metrics_locked:
+        L_p5: 43.7
+        L_p50: 63.2
+        L_p95: 82.8
+        C_p50: 45.6
+        C_p95: 57.4
+        C_p99: 58.4
+        detail: 1.8
+    fingerprint: 3e61ef14149ef8a8
+manual_review:
+  observed_note: Skipped after its sole unchanged-prompt retry. All four official
+    posted alpha-over24 widths360,360,359,357px exceed literal at-most-third341.33px
+    on1024; numerical hard QA/decor_anchor pass. Core content remains a rounded rust/mustard/rose/cream
+    leaf heap with scattered leaves at its foot and a small leaning wooden rake, no
+    lettering, characters, guide, floor or cast shadow. Retry4 source has faint low-alpha
+    fringes, retained without cleanup; the manual size failure alone already excludes
+    it. Exploration palette/style/light warnings advisory. Keep all4unchangedsourcePNGs/takes/contact/reports,
+    no source shrink, third round or promotion. No dependent jobs.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-guz-leaf-pile
+  take: 1
+  round: 1
+  logical_run: 20261105-night30c-scarf-leaves
+  source_file: /workspace/generated_images/exec-5eda293a-a8e9-453a-a127-86613b98791d.png
+  returned_at: '2026-11-05T19:51:12.733Z'
+  prompt_sha256: 0b530e5fa113ef2bb432b59db8d153bf906562a86432b1d5440ba172e7f57234
+  fingerprint: 3e61ef14149ef8a8
+  saved_at: '2026-11-05T19:51:13.024311+00:00'
+  original_generated_png_sha256: 54a21ddae630435a68ce33b68703a58bca3f1e0925f26daabb06cf72b0fec837
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 4c02a89a6672ae4215805a9e3f812804aaf9005a0f45cc0c6daee7938853f75b
+  inbox_png_sha256: 2375c0cf53f688c0befca57ec68b32f1fafb8a4b9417c4a1585f5fba5ff6af0b
+  qa_sha256: c49930db8dc13598be12734e1637f36feb087242181ca6ba1fc5e8d7fa0a08b1
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-guz-leaf-pile
+  take: 2
+  round: 1
+  logical_run: 20261105-night30c-scarf-leaves
+  source_file: /workspace/generated_images/exec-38b95352-69f9-4582-8291-f9b79ee0c3ad.png
+  returned_at: '2026-11-05T19:50:22.166Z'
+  prompt_sha256: 0b530e5fa113ef2bb432b59db8d153bf906562a86432b1d5440ba172e7f57234
+  fingerprint: 3e61ef14149ef8a8
+  saved_at: '2026-11-05T19:50:22.772257+00:00'
+  original_generated_png_sha256: fd72d5d65e4e80131501c2c855fc49af685eddc1ff263767522cc537f1cfa7fa
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 5cbd717a1c1273b28dc148c59003015e63083d0a5625d7f715310b436364aae2
+  inbox_png_sha256: 83ee473fc408d38a61e7a2c277115a07a445cc429b3f9537e98bbc0cfad83088
+  qa_sha256: a6854b4974609a43297e9342d1654047b1bda170f56270bde9499a09b14dc5e4
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-guz-leaf-pile
+  take: 3
+  round: 2
+  logical_run: 20261105-night30c-leaf-pile-single-retry
+  source_file: /workspace/generated_images/exec-6606952f-4b52-4bf7-866f-2b9c96746af7.png
+  returned_at: '2026-11-05T19:54:05.670Z'
+  prompt_sha256: 0b530e5fa113ef2bb432b59db8d153bf906562a86432b1d5440ba172e7f57234
+  fingerprint: 3e61ef14149ef8a8
+  saved_at: '2026-11-05T19:54:06.021203+00:00'
+  original_generated_png_sha256: 8bb54b9e761aa7d232ab2f7269b9a83957235f512cb3ff0f26f989a3052f02f9
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 91a4950aba7e1a22fde04ac342064d33b29d1b21f0767a50ebcf4c2799f9f357
+  inbox_png_sha256: 26624af6a3b06f7c2c006d25629462db3f6518e7b8999641ed6c8650a6a72952
+  qa_sha256: 6a7dd21a30cb7b7c486a5863264d8bf20e24eadc8133917ae892c2630317c7b4
+- batch: batch-30c-decor-seasons-2
+  job: x-decor-guz-leaf-pile
+  take: 4
+  round: 2
+  logical_run: 20261105-night30c-leaf-pile-single-retry
+  source_file: /workspace/generated_images/exec-d4dc838c-312d-409e-a5bf-670abeb4dd5c.png
+  returned_at: '2026-11-05T19:54:38.624Z'
+  prompt_sha256: 0b530e5fa113ef2bb432b59db8d153bf906562a86432b1d5440ba172e7f57234
+  fingerprint: 3e61ef14149ef8a8
+  saved_at: '2026-11-05T19:54:38.925575+00:00'
+  original_generated_png_sha256: 627e1b76d8fd327dc724266d887c8b7e5a1744de9290d7fa283125bc95f04f04
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: d16d0473f57eb439fbdff7df6e1b2fccdb659bd6d076f7acb29fed71f93a3865
+  inbox_png_sha256: 8700992dc9f7fcadf96e9c96582405ec09dfc682bcaca2a5375652ce4b84cc4d
+  qa_sha256: 69161e0b471ced900643e31931960593f6ceb20512cee680c6bdf1ac6fde7554
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
