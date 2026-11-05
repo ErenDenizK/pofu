@@ -451,6 +451,8 @@ private struct SceneFrame<Bubble: View>: View {
         let palette = SkyModel.palette(minuteOfDay: minute, isBedtime: world.isBedtime, unwell: look.grade ? baseLight.unwell : 0)
         // The living sky places the sun; the light follows it.
         let light = baseLight.withSun(x: palette.sun.x, y: palette.sun.y)
+        // One sun (or moon) for every shadow on the ground (light and shadow v2).
+        let shadow = SunShadow.make(light: light)
         // Without the runtime grade, the time of day tints the painted
         // world as before (game design §15: no night versions are
         // generated); with it, the colour script does the whole job.
@@ -516,7 +518,8 @@ private struct SceneFrame<Bubble: View>: View {
                     model: model,
                     clock: clock,
                     characterGrade: characterGrade,
-                    life: life
+                    life: life,
+                    shadow: shadow
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
@@ -544,7 +547,8 @@ private struct SceneFrame<Bubble: View>: View {
                     model: model,
                     clock: clock,
                     characterGrade: characterGrade,
-                    life: life
+                    life: life,
+                    shadow: shadow
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
@@ -691,6 +695,8 @@ private struct WorldCanvas: View {
     let characterGrade: WorldGrade
     /// Today's visit and the lawn's small life at this frame.
     let life: LifeFrame
+    /// The sun's (or the moon's) shadow on the ground.
+    let shadow: SunShadow
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -705,6 +711,14 @@ private struct WorldCanvas: View {
                             anchor: canvasPoint(.zero, depth: band.depth)
                         )
                     }
+                }
+                // Every static caster's shadow and pad in one image, on the
+                // ground between the plate and the objects (LS-1).
+                SunShadowLayer(
+                    sun: shadow,
+                    layout: ShadowCasters.Signature(stations: world.stations, islandLevel: life.islandLevel)
+                ) { point in
+                    canvasPoint(point, depth: IslandLayout.depth(ofY: ShadowTuning.layerY))
                 }
             }
             ForEach(objects) { object in
@@ -855,6 +869,7 @@ private struct WorldCanvas: View {
                 sway: model.sway(of: IslandLife.critterID(critter), at: clock),
                 grade: characterGrade
             )
+                .background { MovingShadow(art: critter.kind.art, feet: point, sun: shadow) }
         case .visitor(let placed):
             let style = life.visitor.map { VisitorStage.arrivalStyle(for: $0.slot) } ?? .dandelion
             let beat = life.visitor == nil ? nil : life.arrival.map { VisitorStage.arrival(style: style, elapsed: $0) }
@@ -869,6 +884,11 @@ private struct WorldCanvas: View {
                 grade: characterGrade,
                 pulse: model.pulses["visitor-\(placed.part.rawValue)", default: 0]
             )
+                .background {
+                    if placed.part == .visitor, let resident = life.visitor?.resident {
+                        MovingShadow(art: "visitor-\(resident.rawValue)", feet: point, sun: shadow)
+                    }
+                }
                 .overlay {
                     hitArea(
                         box: VisitorStage.hitBox(of: placed.part),

@@ -1,0 +1,22 @@
+id: asset-workshop-4-green
+type: asset
+title_tr: workshop-4-green
+title_en: workshop-4-green (station)
+status: in-production
+horizon: now
+summary: >-
+  Add a pair of small rounded sage-green wooden shutters, open flat against the wall, one
+  on each side of the arched doorway, and a third pair around the tool board's frame. Each
+  shutter is a chunky rounded panel with a small round cut-out, painted sage green with a
+  cream edge. The chimney, the restored clock and everything else stay exactly as they are.
+links:
+  variant_of:
+  - asset-workshop-4
+art:
+  images: []
+  jobs:
+  - batch-40-home-ladder-gaps:workshop-4-green
+sources:
+- doc: tools/imagegen/manifest/batch-40-home-ladder-gaps.yaml
+kind: station
+batch: batch-40-home-ladder-gaps

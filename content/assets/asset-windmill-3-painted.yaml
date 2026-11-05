@@ -1,0 +1,22 @@
+id: asset-windmill-3-painted
+type: asset
+title_tr: windmill-3-painted
+title_en: windmill-3-painted (station)
+status: in-production
+horizon: now
+summary: >-
+  Paint the four cream sail cloths with a simple painted pattern: each sail cloth gets two
+  soft sage-green bands along its long edges, a honey band in the middle and a round honey
+  sun on its outer end, drawn as broad flat shapes. The sail frames, the tower, the door,
+  the sacks of seeds and everything else stay exactly as they are.
+links:
+  variant_of:
+  - asset-windmill-3
+art:
+  images: []
+  jobs:
+  - batch-40-home-ladder-gaps:windmill-3-painted
+sources:
+- doc: tools/imagegen/manifest/batch-40-home-ladder-gaps.yaml
+kind: station
+batch: batch-40-home-ladder-gaps

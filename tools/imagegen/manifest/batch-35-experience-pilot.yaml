@@ -66,6 +66,7 @@ jobs:
       - text: "AVOID: any object, a lamp, a window, a flame, a sun, a sphere or a visible light source, stars, rays or spikes, lens flare, hard edges, outlines, text, letters, a border, a frame, grey or colored backgrounds, banding, a halo ring. Everything outside the glow is pure black (#000000)."
 
   - id: glow-window-spill
+    deliver: {scale: 0.5}
     kind: ui
     name: glow-window-spill
     size: 1024x1024
@@ -123,6 +124,7 @@ jobs:
       - text: "AVOID: a floor, a ground shadow, cast shadows, text, letters, outlines, characters or animals, pieces touching or overlapping, a background"
 
   - id: launch-sky
+    deliver: {scale: 0.5}
     kind: plate
     name: launch-sky
     size: 1024x1536

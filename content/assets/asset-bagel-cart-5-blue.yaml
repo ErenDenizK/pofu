@@ -1,0 +1,22 @@
+id: asset-bagel-cart-5-blue
+type: asset
+title_tr: bagel-cart-5-blue
+title_en: bagel-cart-5-blue (station)
+status: in-production
+horizon: now
+summary: >-
+  Recolor the bagel cart to its blue option. The coral-and-cream striped roof of the little
+  kiosk becomes sea-blue and cream stripes, the flag on top becomes sea-blue, and any coral
+  accent on the cart's trim becomes soft sea-blue. The bagels, the pole of rings, the cloth,
+  the little bench, the wood and the cart's body keep their exact colors.
+links:
+  variant_of:
+  - asset-bagel-cart-5
+art:
+  images: []
+  jobs:
+  - batch-40-home-ladder-gaps:bagel-cart-5-blue
+sources:
+- doc: tools/imagegen/manifest/batch-40-home-ladder-gaps.yaml
+kind: station
+batch: batch-40-home-ladder-gaps

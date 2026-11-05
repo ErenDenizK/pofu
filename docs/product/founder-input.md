@@ -26,6 +26,62 @@ not orders: each entry records **what he meant**, the **status**, and
   Feel is tuned natively on his iPhone.
 - **Merging:** the agent may merge PRs, with merge commits, only on green CI.
 
+## 2026-11-05 (overnight, later): variety, production, content
+
+Views, not orders; how each is handled:
+1. **Not every island the same: one with scary fog, one a scary sound, one
+   a ruin, more as the game goes on, even hidden; experiment, drop if it
+   fails; never one decision for all.** Handled: a variety table in the
+   [healing arc](../design/island-healing-arc.md) (Emanet eerie fog,
+   Çanlar a wrong note, Revontuli a ruin, Mehtap quiet dread; Koke and Arı
+   gentle).
+2. **Village assets in concept and in the game; fit the whole UI; no
+   makeshift buttons.** Handled: art integration PR tonight; a UI audit of
+   every screen for placeholder controls is in the next wave.
+3. **Move to production; he likes the concepts (fine-tuning later).**
+   Handled: a production backlog (P1 Koke, P2 home ladder gaps, P3 resident
+   reactions) that Codex takes before more variations.
+4. **Queue Codex work without waiting for his prompt; use the emoji,
+   stickers and concepts in the game somewhere.** Handled: the lead adds
+   rows itself; stickers go into visitor letters, reactions and the week
+   page (next code wave).
+5. **Fill content; the decided content reads well.** Handled: Koke first
+   as a playable island.
+6. **Animations, characters, reactions; each home upgrade step by step,
+   every level a living change; then the other islands.** Handled: P2 and
+   P3, and the rig method for residents.
+7. **Start prototypes that are playable in the game.** Handled: Koke is the
+   first wonder island in code after light and shadow (game plan §10).
+
+## 2026-11-05 (overnight): light and shadow, tonight's plan
+
+Each point, and how it is handled:
+1. **"Get better at light and shadow in general."** A view, taken as the
+   night's focus: [light and shadow v2](../design/light-and-shadow-v2.md)
+   (sun shadows, ambient pads, night light from real sources, lit edits
+   for every early level, level-up light, cloud shadows), in three PRs.
+2. **The phone test moves to tomorrow;** the screenshots "look not bad on
+   paper." Handled: the morning sheet covers the new work; his device
+   test then sets priorities.
+3. **Keep working on every front.** Handled: three waves across app,
+   game, art and tools ([handoff](../handoff.md)).
+4. **Codex did a lot and continues; keep it running nonstop, as needed.**
+   Handled: four Codex PRs reviewed; queue rows 0-s to 0-x feed it
+   production work tied to tonight's needs; the backlog fills gaps.
+5. **A detailed plan for tonight while on high effort,** then medium to
+   carry it out. Handled: this entry, the handoff plan and the spec.
+6. **Long term too, and optimise; keep the budget tight (about 30 hours
+   left), no pointless loops.** Handled: at most three agents, one CI
+   check each, no polling; long-term items go to the roadmap's tracks.
+7. **Work on everything we decided for the game and the tech, and use
+   what Codex makes.** Handled: wave 2 integrates the promoted art.
+8. **Island concepts go from medium to very good; he wants bad to good**
+   (not ruined, not "a few lights came on"; the healing should grow both
+   ways, no exaggeration, planned per island). Handled:
+   [island healing arc](../design/island-healing-arc.md) with a table per
+   island, a backlog row (batch-38) first in line, and a note for Codex.
+   He will tell Codex to always check it.
+
 ## 2026-11-05 (late night): workflow, growth, monetization, the story map
 
 Each point, and how it is handled:

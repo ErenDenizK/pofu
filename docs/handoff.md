@@ -5,6 +5,31 @@ and `docs/product/founder-input.md`, then delete what is done. Keep the
 last two entries; older ones move to
 [archive/handoff-2026-11.md](archive/handoff-2026-11.md).
 
+## 2026-11-05 (overnight plan)
+
+The founder tests on his iPhone tomorrow; tonight every track grows and the
+morning brings one screenshot sheet. Focus: **light and shadow**
+([light and shadow v2](design/light-and-shadow-v2.md)).
+
+**State at the start:** main `56b811fb`. Codex delivered #207 (showcase:
+door-findik, goat-work, harbor-bell, hive-2, hive-3), #215 (QA re-post:
+glow-ground-pool, dressing-meadow promoted; glow-window-spill and
+launch-sky blocked by the 600 KB upload cap; moss too wide), #216 and #217
+(-v2 explorations). Its READY queue was empty; tonight's rows 0-s to 0-x
+are in the art plan.
+
+| Wave | Work (owner) | Merge order |
+|---|---|---|
+| 0 (lead) | Review and merge #215, #207, #216, #217; this plan | first |
+| 1 | **LS-1 sun shadows** (Sonnet); **fix/imagegen-delivery**: soft delivery at half scale, fits for moss and hill-gate, frog/guest prompts, opens batch-35-experience (Sonnet); **manifests** batch-36-lit-ladder-pilot and batch-37-nazli-rig-pilot (Sonnet, lead reviews the prompts) | delivery, manifests, LS-1 |
+| 2 | **LS-2 night light** (Sonnet); **art integration**: dressing-meadow, door-findik, goat-work, harbor-bell, hive-2/3 into their slots (Sonnet); **LS-3 level-up ceremony and cloud shadows** after LS-2 | integration, LS-2, LS-3 |
+| 3 (morning) | Integrate what Codex promoted overnight (glows, launch sky, lit ladder); one sheet at 07:00, 12:00, 18:30, 22:30 plus close-ups; send it with a short Turkish note | |
+
+Codex never idles: 0-u and 0-v are READY as soon as the manifest PR
+merges; 0-s, 0-t and 0-w open with the delivery PR; the backlog -v2 rows
+fill any gap. Not tonight: Animal Crossing resident scenes, ADA pass,
+monetization (waits for the founder), lore PR #135.
+
 ## 2026-11-05 (night)
 
 **Done (merged):** experience v1 spec (#189) and its four PRs: menus,

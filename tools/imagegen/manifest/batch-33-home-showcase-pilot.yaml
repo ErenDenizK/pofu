@@ -95,6 +95,7 @@ jobs:
       - text: "AVOID: bees, insects, honey dripping, a box hive, a fence."
 
   - id: material-moss
+    fit: {max_width: 340}
     palettes: [world-foliage]
     kind: prop
     name: material-moss

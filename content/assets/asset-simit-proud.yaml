@@ -1,0 +1,24 @@
+id: asset-simit-proud
+type: asset
+title_tr: simit-proud
+title_en: simit-proud (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached kitten, Simit, into a proud reaction. Change only the face and ears: the
+  chin lifts a touch, both eyes become calm, content half-closed lids with the catchlights
+  kept, the "w" mouth becomes a quietly confident small smile, the blush deepens a little,
+  and both ears stand upright. Body, tail, paws, stripes, colors and size stay exactly as
+  they are.
+links:
+  variant_of:
+  - asset-simit-kitten
+art:
+  images: []
+  jobs:
+  - batch-41-resident-reactions:simit-proud
+sources:
+- doc: tools/imagegen/manifest/batch-41-resident-reactions.yaml
+kind: char
+batch: batch-41-resident-reactions
+size: 1024x1536

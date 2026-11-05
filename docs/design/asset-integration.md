@@ -39,6 +39,15 @@ explorations, not a node whose status is `cut`) against the app's asset catalogs
 | `goat-work` | `GoatPose.work` on the harbor, from the pier's first level (the goat coils the rope). |
 | `harbor-bell` | Harbor dressing that comes with the bagel cart (`harborProps`), L4's bell on its post at the lawn's left end. |
 
+## Shadow silhouettes
+
+`python3 -I tools/assets/shadows.py run` writes `<imageset>-shadow.imageset` for every casting sprite
+(stations at every level, residents and their poses, decor, dressing, critters, visitors and the jar and
+lantern): black, alpha = the sprite's alpha at 1/4 size, blurred by 3 % of its height. `ShadowBake` flattens
+and shears them at runtime (light and shadow v2, `docs/design/light-and-shadow-v2.md` section 3). New art that
+casts (a regenerated station, a new critter) needs `shadows.py run`; CI runs `shadows.py check` and fails on a
+missing or stale shadow. The sidecar `tools/assets/shadows.json` holds the source hashes.
+
 ## Not integrated, and why
 
 - **workshop-2 to -5**: their opaque pixels run to the left edge of the canvas, so the shed's left

@@ -1,0 +1,24 @@
+id: asset-mochi-proud
+type: asset
+title_tr: mochi-proud
+title_en: mochi-proud (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached bunny, Mochi, into a proud reaction. Change only the face and ears: the
+  chin lifts a touch, both eyes become calm, content half-closed lids with the catchlights
+  kept, the small mouth becomes a quietly confident closed smile, the blush deepens a little,
+  and the long ears stand tall and upright. Body, paws, colors and size stay exactly as they
+  are.
+links:
+  variant_of:
+  - asset-mochi-v2
+art:
+  images: []
+  jobs:
+  - batch-41-resident-reactions:mochi-proud
+sources:
+- doc: tools/imagegen/manifest/batch-41-resident-reactions.yaml
+kind: char
+batch: batch-41-resident-reactions
+size: 1024x1536

@@ -251,11 +251,15 @@ jobs:
           wood in a thick honey wooden frame, a small round window with a
           cream cross bar and a tiny cream curtain, a round knob, a flat
           honey doorstep with a small woven welcome mat (plain, no letters),
-          a little wreath of dried sunflower petals on the door, and over it
+          one small wreath of dried sunflower petals (dry, faded golden-cream
+          petals, not fresh flowers) hung on the door at the height of the
+          window, and over it
           a hanging sign shaped like a small round cloud-whale (a shape, no
           letters). A thin soft ring of caramel earth around the frame that
-          fades to transparent. Centered on an empty transparent background,
-          the same size as the attached door.
+          fades to transparent. Centered on an empty transparent background.
+          SIZE: exactly the same size on the canvas as the attached door
+          (about the same visible width and height, not larger), same camera
+          and same ring.
       - block: prop-style-v2
       - block: prop-avoid-v2
       - text: "AVOID: a wall, a house, a roof, stairs, grass, a full earth background, letters on the sign or mat."
@@ -263,6 +267,7 @@ jobs:
   # ------------------------------------------------------------ the hill gate
 
   - id: hill-gate
+    fit: {max_width: 360}
     kind: prop
     name: hill-gate
     chat: "Pofu · Hill"
@@ -328,9 +333,13 @@ jobs:
           top, two thin poles holding a short scalloped awning with broad
           stripes of sea blue and cream, a small round stool beside it, and a
           little pennant shaped like a round cloud-whale on top of one pole
-          (a shape, no letters). Empty table top. It stands on the guide's
-          ground ellipse, centered on the cross, no taller than the height
-          bar.
+          (a shape, no letters). Empty table top. SIZE AND PLACE: small and
+          compact, the whole stall (awning, poles, stool and pennant) at most
+          as wide as the guide's footprint ellipse, about a third of the
+          canvas width, and no taller than the height bar, with wide empty
+          space on every side. It stands on the guide's ground ellipse, the
+          table legs and stool feet touching the ground line, centered on the
+          cross; the whole object stays inside the frame.
       - block: view-v2
       - block: prop-style-v2
       - block: prop-avoid-v2
@@ -379,6 +388,7 @@ jobs:
   # ------------------------------------------------------------ frogs
 
   - id: frog-1
+    style_exclude: [fur]
     kind: char
     name: frog-1
     size: 1024x1536
@@ -404,6 +414,10 @@ jobs:
           round glossy dark espresso eyes on top of the head with one
           catchlight each, a wide gentle closed smile, small rounded front
           feet resting on the belly, back legs tucked in. Calm and content.
+          SKIN: smooth amphibian skin, slightly glossy, soft matte-satin
+          sheen. No fur, no fuzz, no hair strands, no velvety texture, not a
+          hamster or goat: the attached animals are only a finish reference
+          for lighting and softness, never for fur.
       - block: style-anchor-v1
       - block: negative-v1
       - text: "AVOID: fur, slime, warts, realistic frog anatomy, a long tongue, a lily pad, water, text, a ground shadow."

@@ -377,6 +377,11 @@ def cmd_post(args, config, m: pl.Manifest) -> int:
                                   fit=(None if (job.fit is False or job.edit_of) else (job.fit or {})))
             locked_path = out_dir / "locked" / path.name
             sl.save_rgba(res.locked, locked_path)
+            if job.deliver:
+                # The take as it will be delivered (and posted for review).
+                dpath = out_dir / "delivered" / f"{path.stem}.webp"
+                dpath.parent.mkdir(parents=True, exist_ok=True)
+                cu.downscale(Image.fromarray(res.locked), job.deliver["scale"]).save(dpath, "WEBP", lossless=True, method=6)
             report = {"job": job.id, "take": n, "status": res.status, "preset": preset_name,
                       "checks": [c.as_dict() for c in res.checks], "info": res.info, "fingerprint": side.get("fingerprint")}
             (out_dir / "qa").mkdir(parents=True, exist_ok=True)
@@ -444,8 +449,19 @@ def cmd_promote(args, config, m: pl.Manifest) -> int:
         dest.mkdir(parents=True, exist_ok=True)
         # The unlocked source is always kept (AGENTS.md, Uploads): the look
         # can be re-locked from it, never from the locked master.
-        raw_kept, raw_encoding = cu.save_raw(raw_path, dest)
-        shutil.copyfile(locked_path, pl.approved_image(job))
+        scale = (job.deliver or {}).get("scale")
+        raw_kept, raw_encoding = cu.save_raw(raw_path, dest, scale)
+        deliver = None
+        if scale and scale < 1:
+            # Soft delivery: QA and the pick ran on the full take; the master
+            # is written downscaled (lossless) to stay under the upload cap.
+            with Image.open(locked_path) as full:
+                small = cu.downscale(full, scale)
+                deliver = {"scale": scale, "original_size": [full.width, full.height],
+                           "delivered_size": [small.width, small.height]}
+                small.save(pl.approved_image(job), optimize=True)
+        else:
+            shutil.copyfile(locked_path, pl.approved_image(job))
         side = pl.read_sidecar(raw_path)
         meta = {"job": job.id, "batch": m.batch, "asset": job.asset, "take": pick,
                 "takes_considered": len(existing_takes(job, inbox)), "approved_at": now(),
@@ -460,6 +476,8 @@ def cmd_promote(args, config, m: pl.Manifest) -> int:
                 "qa": {"status": report["status"], "checks": report["checks"]}, "note": entry.get("note", "")}
         if job.slice:
             meta["slice"] = job.slice
+        if deliver:
+            meta["deliver"] = deliver
         if job.edit_of and not meta["registration"]:
             meta["registration"] = load_meta(m.job(job.edit_of)).get("registration")
         (dest / "meta.json").write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

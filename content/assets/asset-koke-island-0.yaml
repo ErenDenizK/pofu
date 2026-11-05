@@ -1,0 +1,21 @@
+id: asset-koke-island-0
+type: asset
+title_tr: koke-island-0
+title_en: koke-island-0 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A game plate for a cozy mobile game: Koke, a small island where a big mossy creature sleeps,
+  in the game, on a still overcast-bright noon. STAGE 0, STUCK. The island is a floating diorama
+  plate with a shallow top about a fifth as deep as it is wide, over a soft rounded earth
+  body with gentle bands, a small plate: about 62 percent of the image width, centered. The
+  top is a low rounded lawn of moss and short grass. At …
+art:
+  images: []
+  jobs:
+  - batch-39-koke-production:koke-island-0
+sources:
+- doc: tools/imagegen/manifest/batch-39-koke-production.yaml
+kind: plate
+batch: batch-39-koke-production
+size: 1536x1024
