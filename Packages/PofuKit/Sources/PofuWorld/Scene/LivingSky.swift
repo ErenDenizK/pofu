@@ -49,7 +49,7 @@ struct LivingSky: View {
                         .equatable()
                         .opacity(palette.stars * 0.85)
                 }
-                TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: isPaused)) { context in
+                TimelineView(.animation(minimumInterval: 1.0 / 20.0, paused: isPaused)) { context in
                     let time = still ? 0 : context.date.timeIntervalSinceReferenceDate
                     ZStack(alignment: .topLeading) {
                         cloudLayer(SkyCloud.far, time: time, size: size, parallax: 0.3)
@@ -222,7 +222,7 @@ struct CloudSea: View {
     var body: some View {
         GeometryReader { proxy in
             let size = proxy.size
-            TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: still || ambientPaused || reduceMotion || ProcessInfo.processInfo.isLowPowerModeEnabled)) { context in
+            TimelineView(.animation(minimumInterval: 1.0 / 20.0, paused: still || ambientPaused || reduceMotion || ProcessInfo.processInfo.isLowPowerModeEnabled)) { context in
                 let time = still ? 0 : context.date.timeIntervalSinceReferenceDate
                 let drift = (time * Self.speed).truncatingRemainder(dividingBy: Self.period)
                 let backDrift = (time * Self.speed * 0.6 + Self.period / 2).truncatingRemainder(dividingBy: Self.period)

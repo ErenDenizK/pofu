@@ -3,6 +3,9 @@ import PofuTuning
 
 #if canImport(AVFoundation)
 import AVFoundation
+#if os(iOS)
+import UIKit
+#endif
 
 /// Plays the pre-rendered cues. `.ambient` mixes under the user's music and
 /// obeys the Silent switch (sound identity §1.4). Only the app links this
@@ -34,9 +37,14 @@ public final class SoundEngine {
     private var buffers: [String: AVAudioPCMBuffer] = [:]
     private var format: AVAudioFormat?
     private var started = false
+    private var idleTask: Task<Void, Never>?
+    private var observesBackground = false
     private let clock: @MainActor () -> TimeInterval
 
     private static let polyphony = 6
+    /// How long the engine stays up after the last cue; a running engine
+    /// keeps the audio hardware, and the phone, awake.
+    private static let idleSeconds = 3.0
 
     public init(
         settings: SoundSettings = .load(),
@@ -55,9 +63,48 @@ public final class SoundEngine {
         player.volume = decision.gain
         player.scheduleBuffer(buffer, at: nil, options: .interrupts)
         if !player.isPlaying { player.play() }
+        scheduleIdleStop()
+    }
+
+    /// Stops the engine and releases the audio session; the next cue
+    /// starts them again.
+    public func stop() {
+        idleTask?.cancel()
+        idleTask = nil
+        guard started || engine.isRunning else { return }
+        for player in players { player.stop() }
+        engine.stop()
+        started = false
+        #if os(iOS)
+        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        #endif
+    }
+
+    private func scheduleIdleStop() {
+        idleTask?.cancel()
+        idleTask = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(Self.idleSeconds))
+            guard !Task.isCancelled else { return }
+            self?.stop()
+        }
+    }
+
+    private func observeBackgroundingIfNeeded() {
+        #if os(iOS)
+        guard !observesBackground else { return }
+        observesBackground = true
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.didEnterBackgroundNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            MainActor.assumeIsolated { self?.stop() }
+        }
+        #endif
     }
 
     private func startIfNeeded() -> Bool {
+        observeBackgroundingIfNeeded()
         if started, engine.isRunning { return true }
         #if os(iOS)
         let session = AVAudioSession.sharedInstance()

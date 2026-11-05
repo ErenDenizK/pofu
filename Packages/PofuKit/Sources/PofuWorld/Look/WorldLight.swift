@@ -165,7 +165,7 @@ public enum LookTuning {
 
     /// How long the effects stay live after the scene appears (a visit),
     /// in seconds; after that the settled frame is cached.
-    public static let visitSeconds = 6.0
+    public static let visitSeconds = 2.5
 }
 
 extension Lens {
