@@ -30,9 +30,6 @@ enum WorldStrings {
         switch id {
         case .home: "Ayçiçeği"
         case .harbor: "İskele"
-        case .yildiz: "Yıldız"
-        case .kaplica: "Kaplıca"
-        case .kitap: "Kitap"
         default: id.rawValue.capitalized
         }
     }
@@ -79,6 +76,21 @@ enum WorldStrings {
 
     static func stationAndLevel(_ station: String, level: Int) -> String {
         String(localized: "\(station) · level \(level)", bundle: .module)
+    }
+
+    /// Why a station waits: the island level that raises its cap ("Ada
+    /// seviyesi 3'te açılır").
+    static func capReason(islandLevel: Int) -> String {
+        String(localized: "Opens at island level \(islandLevel)", bundle: .module)
+    }
+
+    /// The next island level's short line, never a timer: "Ada 6 için: 2
+    /// seviye daha", or the days still to pass when the levels are built.
+    static func nextIslandLevel(_ requirement: IslandLevelRequirement) -> String {
+        if requirement.levelsLeft > 0 {
+            return String(localized: "For island \(requirement.level): \(requirement.levelsLeft) more levels", bundle: .module)
+        }
+        return String(localized: "For island \(requirement.level): \(requirement.tendedDaysLeft) more days", bundle: .module)
     }
 
     /// The build's one exclamation (interaction spec §6.3).

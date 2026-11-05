@@ -201,6 +201,26 @@
         }
       }
     },
+    "For island %lld: %lld more days": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ada %lld için: %lld gün daha"
+          }
+        }
+      }
+    },
+    "For island %lld: %lld more levels": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ada %lld için: %lld seviye daha"
+          }
+        }
+      }
+    },
     "Fix": {
       "localizations": {
         "tr": {
@@ -387,6 +407,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pek iyi değil"
+          }
+        }
+      }
+    },
+    "Opens at island level %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ada seviyesi %lld'te açılır"
           }
         }
       }

@@ -130,21 +130,20 @@ public enum IslandLayout {
     }
 
     /// The other islands, at fixed world positions around the home one.
+    /// Yıldız, Kaplıca and Kitap are retired (game plan §2); wonder islands
+    /// join here when they are built.
     public struct Isle: Hashable, Sendable, Identifiable {
         public var id: IslandID
         public var center: WorldPoint
         public var art: String
     }
 
-    /// An X around the home island, clear of the large plate (488 units
-    /// wide), so the Map shows all five (game design §3: the archipelago is
+    /// Around the home island, clear of the large plate (488 units
+    /// wide), so the Map shows the neighbours (game design §3: the archipelago is
     /// felt, never cluttering). At the Island framing the neighbours leave
     /// the frame to the far isles of the living sky.
     public static let isles: [Isle] = [
-        Isle(id: .yildiz, center: WorldPoint(x: -270, y: -255), art: "isle-stars-standin"),
-        Isle(id: .kaplica, center: WorldPoint(x: 275, y: -245), art: "isle-hamam-standin"),
         Isle(id: .harbor, center: WorldPoint(x: 265, y: 320), art: "harbor-island-s"),
-        Isle(id: .kitap, center: WorldPoint(x: -280, y: 320), art: "isle-library-standin"),
     ]
 
     /// The world canvas the scene lays objects out on: x −500…500,

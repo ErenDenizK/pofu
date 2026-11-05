@@ -2,10 +2,12 @@ id: station-reading-tree
 type: station
 title_tr: Okuma ağacı
 title_en: Reading tree
-status: planned
+status: cut
 horizon: later
 summary: A reading tree where Bulut reads aloud to Pofu.
 notes:
+- Retired 2026-11-05 with the station islands (game plan section 2); the prices below are the
+  old ones and are no longer in PofuCore.
 - >-
   Opens: With Kitap. Level costs 1→5: 6,000 · 13,200 · 29,040 · 63,888 · 140,554 (total 252,682).
   Rate L1→L5: 14 → 44.8 seeds/hour before calm.

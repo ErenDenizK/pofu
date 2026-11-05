@@ -47,3 +47,24 @@ private func decodeIdString(from decoder: any Decoder) throws -> String {
     }
     return try decoder.container(keyedBy: RawValueKey.self).decode(String.self, forKey: .rawValue)
 }
+
+/// The station islands retired on 2026-11-05 (game plan §2): Yıldız, Kaplıca
+/// and Kitap. A save written before then may hold their arrivals and
+/// station levels; `StationLedger` drops them on decoding and refunds the
+/// seeds their levels cost into the jar, so nothing paid for is lost.
+enum RetiredIds {
+    static let islands: Set<IslandID> = ["yildiz", "kaplica", "kitap"]
+
+    /// The retired stations' level prices (levels 1 to 5), as they were.
+    static let stationCosts: [StationID: [Int]] = [
+        "observatory": [45, 70, 100, 135, 170],
+        "fireflies": [55, 80, 110, 145, 180],
+        "hammock": [65, 90, 120, 155, 190],
+        "spring": [50, 75, 105, 140, 175],
+        "hamam": [60, 85, 115, 150, 185],
+        "serbet": [70, 95, 125, 160, 195],
+        "readingTree": [55, 80, 110, 145, 180],
+        "bookHouse": [65, 90, 120, 155, 190],
+        "press": [75, 100, 130, 165, 200],
+    ]
+}

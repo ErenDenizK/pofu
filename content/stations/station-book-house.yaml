@@ -2,10 +2,12 @@ id: station-book-house
 type: station
 title_tr: Kitap evi
 title_en: Book house
-status: planned
+status: cut
 horizon: later
 summary: Bulut's book house; finished books go on its shelf.
 notes:
+- Retired 2026-11-05 with the station islands (game plan section 2); the prices below are the
+  old ones and are no longer in PofuCore.
 - >-
   Opens: Kitap + 3 days. Level costs 1→5: 7,200 · 15,840 · 34,848 · 76,666 · 168,664 (total
   303,218). Rate L1→L5: 15 → 48 seeds/hour before calm.

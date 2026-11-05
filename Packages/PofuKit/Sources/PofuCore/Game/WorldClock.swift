@@ -172,18 +172,23 @@ public struct WorldClock: Sendable {
         let catalog = rules.catalog
         let current = self.activity(of: state)
         let bedtime = state.clock.map { self.isBedtime($0) } ?? false
+        let islandLevel = state.stations.islandLevel(tendedDays: state.tendedDays, catalog: catalog)
         let stations = catalog.stations.filter { state.stations.hasArrived($0.island) }.map { spec in
             let level = state.stations.level(of: spec.id)
             let next = state.stations.nextCost(of: spec)
+            let cap = state.stations.maxLevel(of: spec, tendedDays: state.tendedDays, catalog: catalog)
+            let capped = next != nil && level >= cap
             return StationStatus(
                 id: spec.id,
                 island: spec.island,
                 level: level,
                 maxLevel: spec.maxLevel,
+                levelCap: cap,
                 isOpen: state.stations.isOpen(spec, tendedDays: state.tendedDays, catalog: catalog),
                 nextCost: next,
                 canAfford: next.map { state.stations.jar >= $0 } ?? false,
-                seedsPerHour: spec.seedsPerHour(at: level)
+                seedsPerHour: spec.seedsPerHour(at: level),
+                capLiftsAtIslandLevel: capped ? catalog.islandLevel(allowingStationLevel: level + 1) : nil
             )
         }
         let rate = Double(state.stations.centiRate(catalog: catalog)) / 100
@@ -204,7 +209,9 @@ public struct WorldClock: Sendable {
             isHolding: !state.stations.pending.isEmpty && !(state.clock.map { self.isObserving(state, at: $0) } ?? false),
             tendedDays: state.tendedDays,
             calmNights: state.calmNights,
-            homeStage: catalog.homeStage(tendedDays: state.tendedDays),
+            homeStage: catalog.homeStage(islandLevel: islandLevel),
+            islandLevel: islandLevel,
+            nextIslandLevel: state.stations.nextIslandLevelRequirement(tendedDays: state.tendedDays, catalog: catalog),
             islands: state.stations.arrivalOrder,
             stations: stations,
             seedsPerHour: current == .away ? rate * factor : 0,

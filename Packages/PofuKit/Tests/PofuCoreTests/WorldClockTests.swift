@@ -371,26 +371,31 @@ struct WorldClockTests {
         world.advance(to: first, .signOfLife(at: first))
         world.state.stations.gather(5_000)
         world.state.stations.collect()
-        // Day 1: only the garden's slot is open.
+        // Day 1: island level 1, only the garden's slot is open.
+        #expect(world.snapshot.islandLevel == 1)
         #expect(throws: BuildError.notOpen(.teaStall)) { try world.build(.teaStall, at: first) }
+        try world.build(.garden, at: first)
         let second = instant(2026, 11, 3, 8)
         world.advance(to: second, .signOfLife(at: second))
         #expect(world.state.tendedDays == 1)
+        #expect(world.snapshot.islandLevel == 2)
         #expect(world.snapshot.homeStage == 2)
-        for _ in 1...3 {
-            try world.build(.teaStall, at: second)
-        }
-        var day = second
-        for _ in 0..<8 {
-            day = day.adding(hours: 24)
-            let delta = world.advance(to: day, .signOfLife(at: day))
-            if world.state.tendedDays == 8 {
-                #expect(delta.arrivals == [.harbor])
-            }
-        }
-        #expect(world.state.tendedDays == 9)
+        // Island level 2 caps every station at level 2, and says when it lifts.
+        try world.build(.teaStall, at: second)
+        try world.build(.teaStall, at: second)
+        #expect(throws: BuildError.capped(.teaStall, cap: 2, liftsAtIslandLevel: 3)) { try world.build(.teaStall, at: second) }
+        let capped = try #require(world.snapshot.stations.first { $0.id == .teaStall })
+        #expect(capped.levelCap == 2 && capped.isCapped && capped.capLiftsAtIslandLevel == 3)
+        // The third tended day lifts the fog over the harbor and the cap.
+        let third = second.adding(hours: 24)
+        let delta = world.advance(to: third, .signOfLife(at: third))
+        #expect(world.state.tendedDays == 2)
+        #expect(delta.arrivals == [.harbor])
         #expect(world.snapshot.islands == [.home, .harbor])
+        #expect(world.snapshot.islandLevel == 3)
         #expect(world.snapshot.stations.contains { $0.id == .bagelCart && $0.isOpen })
+        try world.build(.teaStall, at: third)
+        #expect(world.snapshot.nextIslandLevel == IslandLevelRequirement(level: 4, tendedDaysLeft: 1, levelsLeft: 1))
     }
 
     @Test func aDayPofuNeverSawIsNotTended() {
