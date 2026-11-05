@@ -83,6 +83,9 @@ public struct GameState: Hashable, Sendable {
     public internal(set) var stations: StationLedger
     /// Island-game rounds earned and played.
     public internal(set) var rounds: RoundLedger
+    /// Who visits: today's visitor, the hearts and the invitation. Saves
+    /// from before visitors existed load with an empty ledger.
+    public internal(set) var visitors: VisitorLedger
 
     public init(rules: GameRules = GameRules()) {
         self.clock = nil
@@ -100,6 +103,7 @@ public struct GameState: Hashable, Sendable {
         self.calm = CalmAccrual(rules: rules.calm)
         self.stations = StationLedger(catalog: rules.catalog)
         self.rounds = RoundLedger()
+        self.visitors = VisitorLedger()
     }
 
     /// Whether a guarded app is open at the clock.
@@ -120,7 +124,7 @@ extension GameState: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case version, clock, lastSignalAt, awaitingReturn, guarded, foregroundSince, recentOpens, today
-        case calmNightCandidate, tendedDays, calmNights, quietRunMinutes, care, calm, stations, rounds
+        case calmNightCandidate, tendedDays, calmNights, quietRunMinutes, care, calm, stations, rounds, visitors
     }
 
     /// A state from a newer build fails with `unsupportedVersion`; any
@@ -147,6 +151,7 @@ extension GameState: Codable {
         calm = try container.decodeIfPresent(CalmAccrual.self, forKey: .calm) ?? calm
         stations = try container.decodeIfPresent(StationLedger.self, forKey: .stations) ?? stations
         rounds = try container.decodeIfPresent(RoundLedger.self, forKey: .rounds) ?? rounds
+        visitors = try container.decodeIfPresent(VisitorLedger.self, forKey: .visitors) ?? visitors
     }
 
     public func encode(to encoder: any Encoder) throws {
@@ -167,6 +172,7 @@ extension GameState: Codable {
         try container.encode(calm, forKey: .calm)
         try container.encode(stations, forKey: .stations)
         try container.encode(rounds, forKey: .rounds)
+        try container.encode(visitors, forKey: .visitors)
     }
 }
 
@@ -177,6 +183,8 @@ public struct WorldDelta: Hashable, Sendable {
     public var gatheredSeeds: Energy = .zero
     public var sleepBonusSeeds: Energy = .zero
     public var skipSeeds: Energy = .zero
+    /// Seeds from a visitor's parcel (ADR-0015: world material only).
+    public var giftSeeds: Energy = .zero
     /// Minutes the user was away and Pofu observed it: the world grew.
     public var awayMinutes = 0
     /// Minutes in a guarded app (as far as passes tell).
@@ -198,7 +206,7 @@ public struct WorldDelta: Hashable, Sendable {
 
     /// Every seed credited.
     public var seeds: Energy {
-        stationSeeds + gatheredSeeds + sleepBonusSeeds + skipSeeds
+        stationSeeds + gatheredSeeds + sleepBonusSeeds + skipSeeds + giftSeeds
     }
 
     public static func += (lhs: inout WorldDelta, rhs: WorldDelta) {
@@ -206,6 +214,7 @@ public struct WorldDelta: Hashable, Sendable {
         lhs.gatheredSeeds += rhs.gatheredSeeds
         lhs.sleepBonusSeeds += rhs.sleepBonusSeeds
         lhs.skipSeeds += rhs.skipSeeds
+        lhs.giftSeeds += rhs.giftSeeds
         lhs.awayMinutes += rhs.awayMinutes
         lhs.guardedMinutes += rhs.guardedMinutes
         lhs.pausedMinutes += rhs.pausedMinutes
@@ -285,6 +294,52 @@ public struct StationStatus: Hashable, Sendable, Identifiable {
     }
 }
 
+/// Today's visitor as the world draws them (experience v1 §5.2).
+public struct VisitorSnapshot: Hashable, Sendable {
+    public var resident: ResidentID
+    public var reason: VisitReason
+    public var slot: VisitSlot
+    public var state: VisitState
+    /// The parcel, while it is unopened; `nil` once opened or when there is
+    /// none.
+    public var gift: VisitGift?
+    public var giftOpened: Bool
+    public var helped: Bool
+    public var isInvited: Bool
+    /// Hearts the resident has now.
+    public var hearts: Int
+    /// The station that earns the bonus today, for a festival or an
+    /// invitation.
+    public var bonusStation: StationID?
+    public var bonusPercent: Int
+
+    public init(
+        resident: ResidentID,
+        reason: VisitReason,
+        slot: VisitSlot,
+        state: VisitState = .arriving,
+        gift: VisitGift? = nil,
+        giftOpened: Bool = false,
+        helped: Bool = false,
+        isInvited: Bool = false,
+        hearts: Int = 0,
+        bonusStation: StationID? = nil,
+        bonusPercent: Int = 0
+    ) {
+        self.resident = resident
+        self.reason = reason
+        self.slot = slot
+        self.state = state
+        self.gift = gift
+        self.giftOpened = giftOpened
+        self.helped = helped
+        self.isInvited = isInvited
+        self.hearts = hearts
+        self.bonusStation = bonusStation
+        self.bonusPercent = bonusPercent
+    }
+}
+
 /// The world as `PofuWorld` reads it: a value computed from the state,
 /// never a way to change it.
 public struct WorldSnapshot: Hashable, Sendable {
@@ -320,6 +375,14 @@ public struct WorldSnapshot: Hashable, Sendable {
     public var overLimitOpensToday: Int
     /// The breath the next open would need.
     public var nextBreath: BreathRequirement?
+    /// Today's visitor; `nil` on a quiet day.
+    public var visitor: VisitorSnapshot?
+    /// A quiet day's letter waits for the player to pick a resident.
+    public var invitationOpen: Bool
+    /// Residents the player has met: who the letter can ask.
+    public var metResidents: [ResidentID]
+    /// The resident asked for; they come on the next draw.
+    public var invited: ResidentID?
 
     /// Every field, for previews, screenshots and tests; the app reads
     /// snapshots from `WorldClock.snapshot(of:)`.
@@ -346,7 +409,11 @@ public struct WorldSnapshot: Hashable, Sendable {
         guardedMinutesToday: Int,
         dailyHourMinutes: Int,
         overLimitOpensToday: Int,
-        nextBreath: BreathRequirement?
+        nextBreath: BreathRequirement?,
+        visitor: VisitorSnapshot? = nil,
+        invitationOpen: Bool = false,
+        metResidents: [ResidentID] = [],
+        invited: ResidentID? = nil
     ) {
         self.clock = clock
         self.activity = activity
@@ -371,5 +438,9 @@ public struct WorldSnapshot: Hashable, Sendable {
         self.dailyHourMinutes = dailyHourMinutes
         self.overLimitOpensToday = overLimitOpensToday
         self.nextBreath = nextBreath
+        self.visitor = visitor
+        self.invitationOpen = invitationOpen
+        self.metResidents = metResidents
+        self.invited = invited
     }
 }

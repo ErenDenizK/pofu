@@ -170,15 +170,29 @@ padlocks), except the very next one, which shows a faint sketch outline so
 Home residents live here: Pofu, Mochi, Fındık, the frogs, Simit and the
 goat. Each works one station slot (two at L5); idle residents wander P1.
 
-The residents of healed main islands **visit on their day**. Gezgin lands
-them at the pier in the morning; they open the guest stall (G1) with their
-island's goods, work their favourite station for the day in a **guest slot**
-(it never displaces anyone; +50 % at that station that day), sleep in the
-guest room (H4, window lit) and leave on the next visit. Their own island
-keeps an apprentice and its returned life. A missed day costs nothing: the
-next week they come again, and their hearts count visits, not streaks.
+The residents of healed main islands **visit every day** (founder decision,
+2026-11-05; [experience v1 §5](../design/experience-v1.md#5-visitors-someone-comes-every-day)).
+One visitor a day is drawn when the day starts and stays until the first
+visit after their day ends, so nothing is missed. Their own island keeps its
+returned life and an apprentice; the resident comes home for the day **with
+one reason**: a gift, a help, a festival, news, a stay-over or just sitting.
+Gezgin lands them at the pier (before the harbor, they drift down to the
+front-lip spot V1 under a dandelion seed), they open the guest stall (G1)
+with their island's goods, and on a festival or an invitation they work their
+favourite station in a **guest slot** (V2; it never displaces anyone; +50 %
+at that station that day). A stay-over lights the guest room (H4). A missed
+day costs nothing, and hearts count visits, not streaks.
 
-| Day | Theme (always on) | Visitor once healed | Favourite station | At the guest stall |
+The table below is a **weighting**, not a schedule: each resident is likelier
+on their own weekday (about six to one against another day), but any healed
+island's resident may come on any day. Before any island is healed, Gezgin's
+postcard comes instead. About one day in eight is a quiet day once two
+islands are healed: Pofu hands over a letter and the player invites a resident
+they have met; the invitation never expires and never costs anything.
+Slots: `PofuWorld/Layout/VisitorSlots.swift`; the draw:
+`PofuCore/Game/VisitorSchedule.swift`.
+
+| Day | Theme (always on) | Likeliest visitor once healed | Favourite station | At the guest stall |
 |---|---|---|---|---|
 | Pazartesi | Toprak: a watering can by the garden | Sumi (Koke) | garden S1 | moss stools, raked thank-you letters |
 | Salı | Su: the pond's little fountain runs | Damla (Çağlayan) | pond S3 | a glass of falling water |
@@ -191,7 +205,8 @@ next week they come again, and their hearts count visits, not streaks.
 Before an island is healed, its day keeps only the small theme touch, so the
 week has a rhythm from day one. The order is the story order (Koke first);
 if the story order changes, visitors move with their islands, not days.
-Open question 3 asks whether one visitor a day is too many.
+Open question 3 (is one visitor a day too many?) is answered: one a day, with a
+quiet day about one in eight.
 
 ## 6. Light: day, dusk and night
 

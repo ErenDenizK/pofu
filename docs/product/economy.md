@@ -676,3 +676,42 @@ level 3 on day 3, 4 by day 7, 6 by day 14, 7 to 8 around day 30, and Tam
 Çiçek on day 63 (day 43 with a five-round set a day, before decor and the
 hive soak up seeds, which the model leaves out); the test band is day 55 to
 70 without rounds.
+
+## Visitors: gifts, the festival bonus and quiet days
+
+_Experience v1 §5; implemented in `PofuCore/Game` (`VisitorSchedule`,
+`VisitorLedger`, `GameState.visitors`). The numbers are `VisitorRules`
+defaults._ One visitor comes a day, drawn from the save's seed and the day
+(deterministic), weighted by weekday and hearts. The visitor stays until the
+first visit after their day ends: nothing expires (ADR-0017).
+
+- **Draw weights.** A resident weighs 6 on their own weekday and 1 on any
+  other, plus 5 % per heart up to 10 hearts. Over 10,000 simulated days the
+  own-day share is 40 to 60 % (a coin flip would be 14 %), and every resident
+  comes on every weekday. Hearts count greetings and helps, never streaks
+  (A4); a missed day costs nothing.
+- **Reasons** (weights): gift 3, help 2, news 2, just sitting 2, festival 1
+  (four times as likely on the resident's own day, and only where their
+  favourite station is built and island level is at least 3), stay-over 1
+  (island level at least 3). A resident never gets the same reason twice in a
+  row.
+- **Gift.** A parcel holds 2 to 5 seeds or a decor piece (about one in
+  three, until all are owned). Opening it credits seeds to the pouch like the
+  other gathered seeds (`WorldDelta.giftSeeds`), so they are collected and
+  spent only on station levels and islands. **A gift never buys screen time
+  (ADR-0015)**; nothing in the visitors touches the gate.
+- **Festival and invitation bonus.** +50 % at the visitor's favourite station
+  for that day (`VisitorRules.stationBonusPercent`, reported as
+  `VisitorSnapshot.bonusStation` and `bonusPercent`). The production
+  multiplier itself is applied when the favourite stations exist in the
+  catalog (the healed main islands are not in `ArchipelagoCatalog` yet), so
+  this change ships the data and the snapshot, not a new income source: the
+  sim bands above are untouched.
+- **Quiet days and invitations.** Once two islands are healed, a quiet day
+  comes at least 7 days after the last (7 or 8, from the seed), so at most
+  one day in any seven. Nobody visits; Pofu hands over a letter. The player
+  picks a resident they have met, who comes on the next draw as Invited (a
+  bigger scene, the festival bonus). The letter stays open until used, an
+  invitation never expires, and neither costs anything.
+- **Before any island is healed**, Gezgin's postcard comes daily (mostly
+  news, sometimes a seed on the dandelion).

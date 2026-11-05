@@ -1,28 +1,6 @@
 import Foundation
 import PofuCore
 
-/// A resident of the archipelago (interaction spec §12.2).
-public struct ResidentID: RawRepresentable, Hashable, Sendable, Comparable, CustomStringConvertible {
-    public let rawValue: String
-
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public var description: String {
-        rawValue
-    }
-
-    public static func < (lhs: ResidentID, rhs: ResidentID) -> Bool {
-        lhs.rawValue < rhs.rawValue
-    }
-
-    /// Mochi, the bunny who keeps the çay ocağı.
-    public static let mochi = ResidentID(rawValue: "mochi")
-    /// Fındık, the hedgehog of the workshop.
-    public static let findik = ResidentID(rawValue: "findik")
-}
-
 /// Where everything sits: the fixed slot anchors of the home island, the
 /// residents, Pofu, the plate's depth bands, and the other islands on the
 /// map. World units are points at camera scale 1 (game design §15).
