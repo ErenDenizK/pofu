@@ -83,17 +83,37 @@ The founder wants the line never to idle and art picked automatically by
 QA; he reviews afterwards and can veto any pick. Batch 02 stays
 `status: blocked` until the friends beta.
 
-**The standing rule:** when you open a batch's PR, immediately start the
-next `READY` batch in the queue, in order, on a new branch. Never wait for
-a review or a merge. Never start a `BLOCKED` batch (`status: blocked` in
-its manifest). When a batch is finished (its PR is open), continue to the
-next `READY` batch automatically, again and again, until none is left; do
-not stop to ask. If no row is `READY`, say so in your last PR and stop.
+**The standing rule: the line never ends** (founder, 2026-11-05: "Codex
+sits idle; it must never stop"). There is always a next job. Work in this
+order, forever:
 
-**Pilots first:** every new batch has a small pilot manifest
-(`batch-NN-<name>-pilot`, 2 to 5 jobs) that the lead reviews before the
-rest of the batch (`batch-NN-<name>`) opens. Run pilots exactly as
-written: they test the method before it scales.
+1. The `READY` rows of the queue, in order.
+2. When none is left, the `BACKLOG` rows
+   ([the backlog](docs/design/art-production-plan.md#the-backlog)), in
+   order. Backlog manifests are explorations (`x-` ids): never promoted.
+3. When the backlog is exhausted, start again from the first backlog row
+   with **fresh variations**: copy each job under a new exploration id
+   (`-v2`, then `-v3`, ...) and give it a new angle (another pose, camera,
+   time of day, season, palette, composition). Never run the same prompt
+   twice. Copy the manifest to `batch-NN-<name>-v2.yaml` (new `batch:`
+   name, same header rules) and commit it in that batch's PR; this is the
+   one manifest edit you may make, and only for `x-` explorations.
+4. Before each batch, fetch `origin/main` and re-read the queue: new
+   `READY` rows go first.
+
+When you open a batch's PR, immediately start the next batch on a new
+branch; never wait for a review or a merge. Never start a `BLOCKED` batch
+(`status: blocked`). A job that fails or is refused is recorded as skipped
+and the run goes on with the next job (see Stop conditions). One PR per
+batch, as always. Nothing in this file tells you to stop after a batch or to
+wait for the lead; only the global stop conditions below end a session.
+
+**Pilot gate (production chains only):** a production batch has a small
+pilot manifest (`batch-NN-<name>-pilot`, 2 to 5 jobs) that the lead reviews
+before the rest of the batch opens. Run pilots exactly as written. The jobs
+gated behind a pilot (`status: blocked`, or named as gated in the queue) are
+skipped and you continue with other rows; the gate never stops the line.
+Backlog explorations have no pilot gate.
 
 **Explorations** (`EXPLORATION` in the queue and in the manifest header):
 generate, ingest, post and auto-pick as usual, but **never run
@@ -159,7 +179,7 @@ job of the track in order. The manifest is
    dependents and go on (see Stop conditions); do not loop. Set that take as the pick for this job
    only, and run `promote --only <id>`. In the provenance note, write
    "auto-picked by QA; founder review pending". Read the job's `notes` in
-   the manifest: some name a review check or a case where you must stop.
+   the manifest: some name a review check or a case where you skip the job and go on.
 6. **Commit only this job's files**, so parallel tasks never conflict, and
    every file under 600 KB ([Uploads](#uploads-every-file-under-600-kb)):
    - the master or station folder that `promote` wrote;
@@ -170,7 +190,8 @@ job of the track in order. The manifest is
    Do **not** edit the shared `design/art/review/<batch>.yaml`; the lead
    merges the fragments. Push branch `art/<batch>/<track>` after every
    promoted job, run the upload check, and after the first push open the
-   PR. After the last job, say so in the PR and stop.
+   PR. After the last job, say so in the PR and go straight on to the
+   next batch.
 
 The founder vetoes in Turkish ("tea-stall-1: take 2", or "redo"). The lead or
 a new task applies the veto.
@@ -336,8 +357,9 @@ All commands from the repository root, with the venv:
    (prints the estimate; `--yes` after the founder agrees). Pacing (founder,
    2026-11-02): no pause, at most 2 takes per job and 40 images per run,
    and **concurrent generation is allowed**: independent jobs may run at the
-   same time in separate agents or sub-agents. Stop on the first usage,
-   rate-limit, sign-in or refusal message; never retry in a loop.
+   same time in separate agents or sub-agents. Stop the session on the first
+   usage, rate-limit or sign-in message; a refusal skips that job (never
+   retried or rephrased); never retry in a loop.
 4. `post`: style lock and QA for every take; writes the contact sheet
    (`build/review/<batch>.png`), a small copy
    (`design/art/review/<batch>-contact.jpg`) and the review file
@@ -353,7 +375,8 @@ All commands from the repository root, with the venv:
    `art/<batch>` and open a PR into `main` titled
    `design(art): <batch> round <n>` with: what was generated (counts,
    time), the contact sheet, the picks, QA warnings accepted and why, and
-   anything that surprised you. Then stop and wait for the lead.
+   anything that surprised you. Then start the next batch (do not wait for
+   the lead).
 
 File names are made by the pipeline: raw takes are
 `<kind>__<name>--t<n>.png`; do not rename them. Kinds: `char`, `station`,
@@ -377,17 +400,21 @@ Finished picks are always published; a skipped job never holds them back.
 
 - The batch is `blocked`, or `account.owner` / `account.kind` is empty.
 - Any account, sign-in, key, quota, usage-limit or rate-limit message.
-- Codex refuses, or answers without an image three times in a row.
+- Codex refuses, or answers without an image three times in a row. A single
+  refusal or image-less answer is not a global stop: record the job as
+  skipped, **never retry or rephrase a refused prompt**, and continue with
+  the next job. Only three in a row end the session.
 - Identity or upload corruption (a pushed file fails `check_upload.py`
   after one re-push, or the commit identity is wrong).
 - The key guard fires, or the API estimate is above what the founder agreed.
 - Anything needs `sudo`, a system install, or a change outside
   `tools/imagegen/`, `design/art/` and the PR: ask the founder first.
 
-**Before every batch:** run `git fetch origin main` and re-read
+**Before every batch:** fetch `origin/main` and re-read
 [the queue](docs/design/art-production-plan.md#the-queue); new `READY` rows
-may have appeared. **When the queue is empty,** re-check it every 20 minutes
-for 2 hours before ending the session.
+may have appeared. **There is no "queue empty" state:** when no `READY` row
+is left you take the backlog, and when that is exhausted you start over with
+fresh variations (the standing rule above).
 
 ## Changing things
 
