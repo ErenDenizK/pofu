@@ -1,0 +1,249 @@
+batch: batch-28-home-shops-concepts
+manifest: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+manifest_sha256: 7866350af23f3d1408e3b011e6ade660132308fdd6d82a5be10328050fe3e144
+contact_sheet: design/art/takes/batch-28-home-shops-concepts/x-moon-telescope-3/contact.jpg
+jobs:
+  x-moon-telescope-3:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both show a small welcoming
+      observatory: soft indigo-lilac rounded dome with a vertical open slit, chunky
+      cream telescope emerging, short sage-green drum, exactly five soft moon-phase
+      discs over the door, a round crossbar window and exactly two cushions on the
+      outside steps. The five phases are arranged as an arch rather than a separately
+      visible mechanical ring; retain that physical-wheel interpretation for lead
+      concept review. No letters, numbers, characters, floor, guide or ground cast
+      shadow. Observatory silhouette and telescope/slit carry the final upgrade at
+      small size. These are independently main-referenced concepts, not registered
+      edits. Hard QA then lowest lock load decides; exploration style/light warnings
+      advisory. Never promoted.'
+qa_reports:
+  1:
+    job: x-moon-telescope-3
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 33 (R1 51)
+      value: 33.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 44 (at most 22), p98 91 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 75.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.41 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.412
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.0 (at least 3.5)'
+      value: 3.01
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.85
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6713
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.9, p95 10.7, off-palette 1.6% (top: #AA99AA (1.3%), #AA88AA
+        (0.1%))'
+      value: 3.9319
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 69 against the world reference (outliers: C_p95, edge)'
+      value: 68.6
+    info:
+      fit:
+        scale: 0.8741
+        anchor:
+        - 495.5
+        - 954
+      registration:
+        dx: 17
+        dy: -54
+      metrics_raw:
+        L_p5: 59.1
+        L_p50: 75.7
+        L_p95: 89.5
+        C_p50: 13.8
+        C_p95: 33.4
+        C_p99: 44.4
+        detail: 2.44
+      metrics_locked:
+        L_p5: 59.6
+        L_p50: 75.6
+        L_p95: 89.1
+        C_p50: 13.7
+        C_p95: 33.3
+        C_p99: 44.1
+        detail: 1.85
+    fingerprint: 5159003a74502d1a
+  2:
+    job: x-moon-telescope-3
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 47 (at most 22), p98 90 (at least 90), spread 44
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 43.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.38 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.376
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.5 (at least 3.5)'
+      value: 3.48
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.09
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8166
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.6, p95 11.3, off-palette 2.9% (top: #AA99AA (1.6%), #998899
+        (0.4%))'
+      value: 3.603
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 72 against the world reference (outliers: C_p95, edge)'
+      value: 72.1
+    info:
+      fit:
+        scale: 0.7987
+        anchor:
+        - 501.4
+        - 994
+      registration:
+        dx: 11
+        dy: -94
+      metrics_raw:
+        L_p5: 57.4
+        L_p50: 75.2
+        L_p95: 88.8
+        C_p50: 16.6
+        C_p95: 36.4
+        C_p99: 42.1
+        detail: 2.73
+      metrics_locked:
+        L_p5: 58.1
+        L_p50: 75.1
+        L_p95: 88.4
+        C_p50: 16.5
+        C_p95: 36.3
+        C_p99: 41.2
+        detail: 2.09
+    fingerprint: 5159003a74502d1a
+manual_review:
+  observed_note: 'Both show a small welcoming observatory: soft indigo-lilac rounded
+    dome with a vertical open slit, chunky cream telescope emerging, short sage-green
+    drum, exactly five soft moon-phase discs over the door, a round crossbar window
+    and exactly two cushions on the outside steps. The five phases are arranged as
+    an arch rather than a separately visible mechanical ring; retain that physical-wheel
+    interpretation for lead concept review. No letters, numbers, characters, floor,
+    guide or ground cast shadow. Observatory silhouette and telescope/slit carry the
+    final upgrade at small size. These are independently main-referenced concepts,
+    not registered edits. Hard QA then lowest lock load decides; exploration style/light
+    warnings advisory. Never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-28-home-shops-concepts
+  job: x-moon-telescope-3
+  take: 1
+  round: 1
+  logical_run: 20261105-night29-frogs-night28-moon3
+  source_file: /workspace/generated_images/exec-dfea0993-2de5-4ca6-9844-c0e8ad1220e3.png
+  returned_at: '2026-11-05T18:54:20.104Z'
+  prompt_sha256: 978ae037dbee305b9afdd4892502d15fad4435b34064258d6401b43c68c64cfc
+  fingerprint: 5159003a74502d1a
+  saved_at: '2026-11-05T18:54:20.494648+00:00'
+  original_generated_png_sha256: 95acb7058b057330cd2da90ccefe31bb34373ebeadbf7bfd720f84c4e88833da
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: eda186b18d4e56cce3900abe22c4333c3abf9ca42ffc47e3d37b0b8b55af008d
+  inbox_png_sha256: 66e90fcf40c6357d714482f68518c7a1d0d4a1dc37ba6e691a2c83c45f9f3bee
+  qa_sha256: deaf3d84206a719647caab4cdc125cbb02ca86a532e102316a612d1ee301f6c1
+- batch: batch-28-home-shops-concepts
+  job: x-moon-telescope-3
+  take: 2
+  round: 1
+  logical_run: 20261105-night29-frogs-night28-moon3
+  source_file: /workspace/generated_images/exec-90d6dc63-0ec2-4922-b1f3-815173e87280.png
+  returned_at: '2026-11-05T18:55:26.181Z'
+  prompt_sha256: 978ae037dbee305b9afdd4892502d15fad4435b34064258d6401b43c68c64cfc
+  fingerprint: 5159003a74502d1a
+  saved_at: '2026-11-05T18:55:26.650148+00:00'
+  original_generated_png_sha256: 048ac9b83c7a82260eccc80493f2e36b3e6bc17cbf2edefdd0da15e8cadb8d7e
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: bc613daabdd19e6fe2f44b4be9b38735fab2a66637c0637a7ea92af12a3de5ee
+  inbox_png_sha256: 425dfec9ac516ca6d3555df5edc5748ce776601ca0bf6f4c4fedb59cac3587fe
+  qa_sha256: 0533b1def766402ebd569f68f8aa9865b9480fe20880f9a91b7656e0498f2547
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

@@ -1,0 +1,243 @@
+batch: batch-28-home-shops-concepts
+manifest: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+manifest_sha256: 7866350af23f3d1408e3b011e6ade660132308fdd6d82a5be10328050fe3e144
+contact_sheet: design/art/takes/batch-28-home-shops-concepts/x-moon-telescope-1/contact.jpg
+jobs:
+  x-moon-telescope-1:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both have a chunky short cream/brass-cream
+      telescope tilted upward on a sturdy three-legged honey tripod, one round dial
+      with a simple crescent pictogram under the tube and a folded striped blanket
+      at one leg. No painted text, numerals, character, floor, guide or cast shadow.
+      Soft blue lens is one matte tinted shape, not native UI glass. Telescope silhouette
+      remains recognisable at 28px on both light and dark QA backgrounds; the tiny
+      moon detail is primarily a larger-size identity cue. Hard QA then lowest lock
+      load decides; exploration style/light warnings remain advisory. Never promoted.
+qa_reports:
+  1:
+    job: x-moon-telescope-1
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 91 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.29 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.29
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.2 (at least 3.5)'
+      value: 3.22
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.55
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8133
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.1, p95 2.7, off-palette 0.0% (top: #667788 (0.0%), #668888
+        (0.0%))'
+      value: 1.0648
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: C_p95, edge)'
+      value: 82.1
+    info:
+      fit:
+        scale: 0.8651
+        anchor:
+        - 453.8
+        - 949
+      registration:
+        dx: 58
+        dy: -49
+      metrics_raw:
+        L_p5: 55.3
+        L_p50: 73.5
+        L_p95: 89.1
+        C_p50: 35.1
+        C_p95: 40.5
+        C_p99: 41.2
+        detail: 2.22
+      metrics_locked:
+        L_p5: 55.5
+        L_p50: 73.4
+        L_p95: 88.9
+        C_p50: 34.9
+        C_p95: 40.4
+        C_p99: 41.0
+        detail: 1.55
+    fingerprint: 05e464fd46444657
+  2:
+    job: x-moon-telescope-1
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 93 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 74.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.30 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.298
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.0 (at least 3.5)'
+      value: 2.95
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.41
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6559
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 4.5, off-palette 0.0%
+      value: 1.5499
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 85 against the world reference (outliers: C_p95, edge)'
+      value: 85.3
+    info:
+      fit:
+        scale: 0.9855
+        anchor:
+        - 569.1
+        - 957
+      registration:
+        dx: -57
+        dy: -57
+      metrics_raw:
+        L_p5: 58.3
+        L_p50: 74.8
+        L_p95: 90.4
+        C_p50: 36.0
+        C_p95: 41.1
+        C_p99: 41.9
+        detail: 2.05
+      metrics_locked:
+        L_p5: 58.8
+        L_p50: 74.8
+        L_p95: 90.2
+        C_p50: 35.9
+        C_p95: 40.9
+        C_p99: 41.6
+        detail: 1.41
+    fingerprint: 05e464fd46444657
+manual_review:
+  observed_note: Both have a chunky short cream/brass-cream telescope tilted upward
+    on a sturdy three-legged honey tripod, one round dial with a simple crescent pictogram
+    under the tube and a folded striped blanket at one leg. No painted text, numerals,
+    character, floor, guide or cast shadow. Soft blue lens is one matte tinted shape,
+    not native UI glass. Telescope silhouette remains recognisable at 28px on both
+    light and dark QA backgrounds; the tiny moon detail is primarily a larger-size
+    identity cue. Hard QA then lowest lock load decides; exploration style/light warnings
+    remain advisory. Never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-28-home-shops-concepts
+  job: x-moon-telescope-1
+  take: 1
+  round: 1
+  logical_run: 20261105-night-workshop3-retry-moon-root
+  source_file: /workspace/generated_images/exec-5eb1ebd8-c48c-4508-bedf-1b99bfc72d39.png
+  returned_at: '2026-11-05T18:38:04.856Z'
+  prompt_sha256: 8b2d8008fd26308c7c2974556c93d22b69e912d94940c014c89e343ad8baf81f
+  fingerprint: 05e464fd46444657
+  saved_at: '2026-11-05T18:38:10.020097+00:00'
+  original_generated_png_sha256: bd1fc89f399445ffa0863e48f86468a9d5ea9c55a598cfa5986d1e24a845785d
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 963d52efdc3f24f10134d24bd50950c9280759354f2bed3542fb3b66e37b5df1
+  inbox_png_sha256: 41faf83eb621387810512505b94aa3753f792b0dbae58e5069cb0c554d992158
+  qa_sha256: 302c7595677cb759b79d0c5d5e5526186ecd0af622814798c4d65e42c067c1a1
+- batch: batch-28-home-shops-concepts
+  job: x-moon-telescope-1
+  take: 2
+  round: 1
+  logical_run: 20261105-night-workshop3-retry-moon-root
+  source_file: /workspace/generated_images/exec-50cb703a-1727-4946-a7fa-014685ec71cb.png
+  returned_at: '2026-11-05T18:39:08.102Z'
+  prompt_sha256: 8b2d8008fd26308c7c2974556c93d22b69e912d94940c014c89e343ad8baf81f
+  fingerprint: 05e464fd46444657
+  saved_at: '2026-11-05T18:39:08.418025+00:00'
+  original_generated_png_sha256: 0da9bef0eb05e839e2b15958d745de88e4e4a580d87451a5ee4cb348e70a7944
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 044eb2a24154f46f4e16668b5072fc320ce2d5fa48bc46538232b470305d70ae
+  inbox_png_sha256: 11942f9142f2adc6094947f5c47e3902eb0c84f9db6e8134bc0d8a19bcfcf429
+  qa_sha256: b8e23d98ba011e58007f1903a358b4286b0405fd195efcec8552b144b98e666a
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

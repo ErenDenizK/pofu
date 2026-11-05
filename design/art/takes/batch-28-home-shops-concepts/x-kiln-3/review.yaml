@@ -1,0 +1,248 @@
+batch: batch-28-home-shops-concepts
+manifest: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+manifest_sha256: 7866350af23f3d1408e3b011e6ade660132308fdd6d82a5be10328050fe3e144
+contact_sheet: design/art/takes/batch-28-home-shops-concepts/x-kiln-3/contact.jpg
+jobs:
+  x-kiln-3:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both show the finished little
+      pottery house: rounded rose-clay tiled roof, proper chimney, warm open dome
+      kiln, wood potter wheel under the striped side awning, shelves of pots/jugs/bowls
+      in sage/mustard/rose/lilac, a wheelbarrow of clay and a small plain roof flag.
+      No letters, character, guide or ground cast shadow. Both add a round timber
+      base as a structural station platform, consistent with their L2 concept, rather
+      than a painted environment floor. Roof, chimney and equipped work area read
+      as the final upgrade; independent main-reference generations are not registered
+      edits. Hard QA then lowest lock load decides; exploration style/light warnings
+      retained as advisory. Never promoted.'
+qa_reports:
+  1:
+    job: x-kiln-3
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 43.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 48 (at most 22), p98 89 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 72.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.25 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.247
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.9 (at least 3.5)'
+      value: 4.88
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.54
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.543
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 5.9, off-palette 0.5% (top: #EE9944 (0.1%), #EE8844
+        (0.1%))'
+      value: 1.4347
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 77 against the world reference (outliers: L_p98, detail,
+        edge)'
+      value: 76.8
+    info:
+      fit:
+        scale: 0.7938
+        anchor:
+        - 511.1
+        - 985
+      registration:
+        dx: 1
+        dy: -85
+      metrics_raw:
+        L_p5: 52.9
+        L_p50: 72.5
+        L_p95: 86.9
+        C_p50: 32.1
+        C_p95: 44.0
+        C_p99: 58.4
+        detail: 3.36
+      metrics_locked:
+        L_p5: 53.6
+        L_p50: 72.4
+        L_p95: 86.5
+        C_p50: 32.0
+        C_p95: 43.5
+        C_p99: 57.4
+        detail: 2.54
+    fingerprint: 473540d6fbdb09a3
+  2:
+    job: x-kiln-3
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 91 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 41.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 71 (band 55-90)'
+      value: 70.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.24 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.243
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.6 (at least 3.5)'
+      value: 5.58
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.8 (R1 5.3)
+      value: 2.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.2151
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 6.8, off-palette 0.8% (top: #EE9944 (0.2%), #DD7733
+        (0.2%))'
+      value: 1.7745
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 83 against the world reference (outliers: detail, edge)'
+      value: 83.4
+    info:
+      fit:
+        scale: 0.7877
+        anchor:
+        - 512.1
+        - 956
+      registration:
+        dx: 0
+        dy: -56
+      metrics_raw:
+        L_p5: 53.3
+        L_p50: 70.9
+        L_p95: 89.0
+        C_p50: 32.8
+        C_p95: 47.2
+        C_p99: 61.1
+        detail: 3.6
+      metrics_locked:
+        L_p5: 54.0
+        L_p50: 70.7
+        L_p95: 88.7
+        C_p50: 32.7
+        C_p95: 46.2
+        C_p99: 59.0
+        detail: 2.76
+    fingerprint: 473540d6fbdb09a3
+manual_review:
+  observed_note: 'Both show the finished little pottery house: rounded rose-clay tiled
+    roof, proper chimney, warm open dome kiln, wood potter wheel under the striped
+    side awning, shelves of pots/jugs/bowls in sage/mustard/rose/lilac, a wheelbarrow
+    of clay and a small plain roof flag. No letters, character, guide or ground cast
+    shadow. Both add a round timber base as a structural station platform, consistent
+    with their L2 concept, rather than a painted environment floor. Roof, chimney
+    and equipped work area read as the final upgrade; independent main-reference generations
+    are not registered edits. Hard QA then lowest lock load decides; exploration style/light
+    warnings retained as advisory. Never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-28-home-shops-concepts
+  job: x-kiln-3
+  take: 1
+  round: 1
+  logical_run: 20261105-night28-kiln3-moon2
+  source_file: /workspace/generated_images/exec-5e54dc1e-4809-42d7-8644-3798c574e9e3.png
+  returned_at: '2026-11-05T18:47:49.181Z'
+  prompt_sha256: ed88acb0883165be04393197cd6e0ad02c527ef8d1c33f96bb41eb500c50a13e
+  fingerprint: 473540d6fbdb09a3
+  saved_at: '2026-11-05T18:47:49.580641+00:00'
+  original_generated_png_sha256: e69421e5e0a52cfa50fcfa919fdc60b64e69b6a0cc59aba28e2694c786b76f44
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 2c6b94649e19f918cccbe449e5d3086978e79a9e576ddfcf5aa786d7572a6fa2
+  inbox_png_sha256: 213fe37536593c21561d1a3c96a54bf644d964a23d114471f87b50c169c40b3b
+  qa_sha256: a819a0b8a6c9ad82cd91ab652fdd6107d8e374921e903083b28d5dfc994ca31e
+- batch: batch-28-home-shops-concepts
+  job: x-kiln-3
+  take: 2
+  round: 1
+  logical_run: 20261105-night28-kiln3-moon2
+  source_file: /workspace/generated_images/exec-2a35b4d4-309e-4afe-ad15-16ac3786c39b.png
+  returned_at: '2026-11-05T18:50:04.801Z'
+  prompt_sha256: ed88acb0883165be04393197cd6e0ad02c527ef8d1c33f96bb41eb500c50a13e
+  fingerprint: 473540d6fbdb09a3
+  saved_at: '2026-11-05T18:50:05.203353+00:00'
+  original_generated_png_sha256: 5820a67a336ab11bccf5c0d73613f3031011c64e21fba476fc06938e1e79049c
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: cc153cce71643494472548632bc3f6661d5d5663e07d8a673000d40843fdbc08
+  inbox_png_sha256: 7d690e03d32d96d5d155f9159ed9a06d7a98f8f91ef13ad98ad039c4b899eca6
+  qa_sha256: bc90d030cae0da748114044c0b5ea974bc47c3055c5fb56cdef3dcbc62387545
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

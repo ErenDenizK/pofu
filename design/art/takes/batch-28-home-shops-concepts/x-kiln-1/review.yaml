@@ -1,0 +1,243 @@
+batch: batch-28-home-shops-concepts
+manifest: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+manifest_sha256: 7866350af23f3d1408e3b011e6ade660132308fdd6d82a5be10328050fe3e144
+contact_sheet: design/art/takes/batch-28-home-shops-concepts/x-kiln-1/contact.jpg
+jobs:
+  x-kiln-1:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show a squat terracotta
+      kiln dome, low arched mouth, short round chimney, ring of stacked flat base
+      stones and exactly five unglazed cream/terracotta pots on the adjacent plank.
+      Soft matte chunky forms, no lettering, floor, guide or characters. Both add
+      a warm interior fire although the first-level brief does not require it; retain
+      that additive concept observation for lead review rather than invent an unlit
+      requirement. No smoke or broad ground cast shadow. Eligible hard QA then lowest
+      style-lock load decides; exploration style/light warnings remain advisory. Never
+      promoted.
+qa_reports:
+  1:
+    job: x-kiln-1
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 51 (at most 22), p98 89 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.28 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.275
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.8 (at least 3.5)'
+      value: 3.78
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.93
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0982
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.1, p95 2.3, off-palette 0.0%
+      value: 1.1384
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: edge)'
+      value: 79.0
+    info:
+      fit:
+        scale: 0.8126
+        anchor:
+        - 497.8
+        - 849
+      registration:
+        dx: 14
+        dy: 51
+      metrics_raw:
+        L_p5: 54.9
+        L_p50: 73.1
+        L_p95: 87.3
+        C_p50: 33.1
+        C_p95: 42.5
+        C_p99: 54.3
+        detail: 2.52
+      metrics_locked:
+        L_p5: 55.6
+        L_p50: 73.0
+        L_p95: 86.8
+        C_p50: 33.1
+        C_p95: 42.2
+        C_p99: 53.6
+        detail: 1.93
+    fingerprint: 83cb9bc1b011f6ab
+  2:
+    job: x-kiln-1
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 43.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 88 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 72.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.255
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.9 (at least 3.5)'
+      value: 3.89
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.86
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5173
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 3.8, off-palette 0.0%
+      value: 1.2613
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 77 against the world reference (outliers: L_p98, edge)'
+      value: 77.2
+    info:
+      fit:
+        scale: 0.7563
+        anchor:
+        - 464.3
+        - 860
+      registration:
+        dx: 48
+        dy: 40
+      metrics_raw:
+        L_p5: 53.8
+        L_p50: 72.1
+        L_p95: 86.0
+        C_p50: 33.6
+        C_p95: 44.0
+        C_p99: 57.4
+        detail: 2.48
+      metrics_locked:
+        L_p5: 54.3
+        L_p50: 72.0
+        L_p95: 85.6
+        C_p50: 33.7
+        C_p95: 43.8
+        C_p99: 57.0
+        detail: 1.86
+    fingerprint: 83cb9bc1b011f6ab
+manual_review:
+  observed_note: Both show a squat terracotta kiln dome, low arched mouth, short round
+    chimney, ring of stacked flat base stones and exactly five unglazed cream/terracotta
+    pots on the adjacent plank. Soft matte chunky forms, no lettering, floor, guide
+    or characters. Both add a warm interior fire although the first-level brief does
+    not require it; retain that additive concept observation for lead review rather
+    than invent an unlit requirement. No smoke or broad ground cast shadow. Eligible
+    hard QA then lowest style-lock load decides; exploration style/light warnings
+    remain advisory. Never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-28-home-shops-concepts
+  job: x-kiln-1
+  take: 1
+  round: 1
+  logical_run: 20261105-night28-greenhouse-kiln
+  source_file: /workspace/generated_images/exec-d9160b3c-28ac-43cc-83e3-c736f854f050.png
+  returned_at: '2026-11-05T18:38:27.657Z'
+  prompt_sha256: 7e98ce3fd5766d14e60180d2880dc6cb43843dd06c09768dbd9e81522ee6f48e
+  fingerprint: 83cb9bc1b011f6ab
+  saved_at: '2026-11-05T18:38:27.965465+00:00'
+  original_generated_png_sha256: 564518ee5ebedb2050a23f863f79298abf0ecb8cb930daefdab194e753aebdc7
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 73d91f4a7c2e3ba2c7c3c746daf13fb4b15a4ecad7e618ad3594dbf1c4639765
+  inbox_png_sha256: 693bdd930dde1b67dc74bc5a9aab3da05bd5417f2c40a6f2b7853e710cefd18f
+  qa_sha256: 76903402cfdf31a13e7b51c9fd05ca062a32915d388638b94002125a703baa1d
+- batch: batch-28-home-shops-concepts
+  job: x-kiln-1
+  take: 2
+  round: 1
+  logical_run: 20261105-night28-greenhouse-kiln
+  source_file: /workspace/generated_images/exec-c74060e3-7bde-4c36-b94e-becc02bc404c.png
+  returned_at: '2026-11-05T18:37:31.272Z'
+  prompt_sha256: 7e98ce3fd5766d14e60180d2880dc6cb43843dd06c09768dbd9e81522ee6f48e
+  fingerprint: 83cb9bc1b011f6ab
+  saved_at: '2026-11-05T18:37:31.709974+00:00'
+  original_generated_png_sha256: 3f3e3eaa69585db92872862f526a3bf508f52b8236e27de58cd3e21bc4f97ea3
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 479acbbb0ff90677d77bbb3b20be1e376de629b0180a1ef7de3d7fdb07c84b6b
+  inbox_png_sha256: cecfa0516f5472a00025983165a0749edec78c729b2511be5cb5df910f2f2b5c
+  qa_sha256: 7c9669156f26c3f33315a8c201648c11632b8c532588155a0f364d3bfed6dce2
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
