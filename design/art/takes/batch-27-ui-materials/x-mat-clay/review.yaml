@@ -1,0 +1,224 @@
+batch: batch-27-ui-materials
+manifest: tools/imagegen/manifest/batch-27-ui-materials.yaml
+manifest_sha256: 619ff1b9d39f2c86648597f49cc6cb5163abfc4eeee199e3a22d03cb79dc88fb
+contact_sheet: design/art/takes/batch-27-ui-materials/x-mat-clay/contact.jpg
+jobs:
+  x-mat-clay:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show flat pale-sage matte
+      glaze with broad soft pooled patches and a few tiny specks, no objects or highlights.
+      The source-bound 2x2 repeat preview has no conspicuous hard join at review scale;
+      RGB edge differences are recorded without inventing a threshold or certifying
+      pixel-identical production tiling. Low contrast is intentional for this flat
+      material; LIGHT warmth-only exception applies. Style warnings remain advisory;
+      no image repair.
+qa_reports:
+  1:
+    job: x-mat-clay
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 29 (R1 51)
+      value: 29.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 87 (at most 22), p98 93 (at least 90), spread 6
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 6.5
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 91 (band 55-90)'
+      value: 91.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.66 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.663
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.3 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.26
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.6
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2631
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.4, p95 5.8, off-palette 0.0%
+      value: 3.4144
+    info:
+      metrics_raw:
+        L_p5: 87.2
+        L_p50: 90.7
+        L_p95: 93.1
+        C_p50: 27.8
+        C_p95: 29.4
+        C_p99: 30.0
+        detail: 0.76
+      metrics_locked:
+        L_p5: 87.2
+        L_p50: 90.7
+        L_p95: 93.0
+        C_p50: 27.8
+        C_p95: 29.3
+        C_p99: 29.7
+        detail: 0.6
+    fingerprint: e560fd43d838bf2f
+  2:
+    job: x-mat-clay
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 28 (R1 51)
+      value: 27.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 86 (at most 22), p98 93 (at least 90), spread 6
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 6.3
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 90 (band 55-90)'
+      value: 90.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.68 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.675
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.3 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.26
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.6 (R1 5.3)
+      value: 0.57
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.2
+      value: 0.2413
+    - check: palette_drift
+      status: warn
+      message: mean dE 2.8, p95 4.9, off-palette 0.0%
+      value: 2.8392
+    info:
+      metrics_raw:
+        L_p5: 86.7
+        L_p50: 90.3
+        L_p95: 92.6
+        C_p50: 26.7
+        C_p95: 27.9
+        C_p99: 28.4
+        detail: 0.71
+      metrics_locked:
+        L_p5: 86.8
+        L_p50: 90.3
+        L_p95: 92.6
+        C_p50: 26.7
+        C_p95: 27.8
+        C_p99: 28.2
+        detail: 0.57
+    fingerprint: e560fd43d838bf2f
+manual_review:
+  observed_note: Both show flat pale-sage matte glaze with broad soft pooled patches
+    and a few tiny specks, no objects or highlights. The source-bound 2x2 repeat preview
+    has no conspicuous hard join at review scale; RGB edge differences are recorded
+    without inventing a threshold or certifying pixel-identical production tiling.
+    Low contrast is intentional for this flat material; LIGHT warmth-only exception
+    applies. Style warnings remain advisory; no image repair.
+  excluded_takes: []
+sources:
+- batch: batch-27-ui-materials
+  job: x-mat-clay
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-tuli-retry-clay
+  source_file: /workspace/generated_images/exec-6cd82527-7217-431d-8b56-5c92fcbfb4e1.png
+  returned_at: '2026-11-05T14:22:07.872Z'
+  prompt_sha256: c639e0552aac9b5b534dcaa95c789237492a7762a266ddb7920a2086826d8c23
+  fingerprint: e560fd43d838bf2f
+  saved_at: '2026-11-05T14:22:08.329914+00:00'
+  original_generated_png_sha256: 684e4cd66e9399f1275e3349e8bc612195c277ea9769dfb537b6c5fbe35edaaa
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 8bf8daac42a694a66de5848bf8be0cfc1e34bd1fd92406a0027a4b4fcfe34b6f
+  inbox_png_sha256: 94819b00a987faa525775c3f2dc00e5dd07526415960c6013ef03dd16da958d2
+  qa_sha256: a0aae2b1d376561e045af4c74ed7d209db5ef723aaec668b167544c889580b45
+- batch: batch-27-ui-materials
+  job: x-mat-clay
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-tuli-retry-clay
+  source_file: /workspace/generated_images/exec-90bbd682-57c9-4712-bf08-ab69eea3d614.png
+  returned_at: '2026-11-05T14:22:39.436Z'
+  prompt_sha256: c639e0552aac9b5b534dcaa95c789237492a7762a266ddb7920a2086826d8c23
+  fingerprint: e560fd43d838bf2f
+  saved_at: '2026-11-05T14:22:39.889393+00:00'
+  original_generated_png_sha256: ee99c621f9100ba7c78f22763416bca16364ee2ed2b39df23f7fdea12a465dc9
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: d47a4938bffa6bcfaab15fa431519fa21aea1b05195d642fb66ab2292a028bf7
+  inbox_png_sha256: 421784d4b9b79859b25b752917c2b64f4846de62f6e1bd61e466031aeaff2817
+  qa_sha256: e7328eb84d580f3db323d1f6ef0c875026a601583bec66b8f26116a30dff170a
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+manual_tile_review:
+  job: x-mat-clay
+  review_kind: Source repeatability observation, not a new QA threshold or image repair
+  contact: /workspace/art-operator-runtime/run-20261105-backlog/batch-27-ui-materials/x-mat-clay-tile-contact.jpg
+  sources:
+    '1':
+      original_png_sha256: 684e4cd66e9399f1275e3349e8bc612195c277ea9769dfb537b6c5fbe35edaaa
+      left_right_mean_abs_RGB_255: 1.589
+      top_bottom_mean_abs_RGB_255: 2.176
+      left_right_p95_abs_RGB_255: 3.0
+      top_bottom_p95_abs_RGB_255: 4.783
+      internal_mid_vertical_mean_abs_RGB_255: 0.757
+      internal_mid_horizontal_mean_abs_RGB_255: 0.803
+      automatic_pass_fail_assigned: false
+    '2':
+      original_png_sha256: ee99c621f9100ba7c78f22763416bca16364ee2ed2b39df23f7fdea12a465dc9
+      left_right_mean_abs_RGB_255: 1.641
+      top_bottom_mean_abs_RGB_255: 1.764
+      left_right_p95_abs_RGB_255: 3.0
+      top_bottom_p95_abs_RGB_255: 3.667
+      internal_mid_vertical_mean_abs_RGB_255: 0.556
+      internal_mid_horizontal_mean_abs_RGB_255: 0.671
+      automatic_pass_fail_assigned: false

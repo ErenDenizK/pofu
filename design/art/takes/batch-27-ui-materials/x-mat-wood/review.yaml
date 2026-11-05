@@ -1,0 +1,413 @@
+batch: batch-27-ui-materials
+manifest: tools/imagegen/manifest/batch-27-ui-materials.yaml
+manifest_sha256: 619ff1b9d39f2c86648597f49cc6cb5163abfc4eeee199e3a22d03cb79dc88fb
+contact_sheet: design/art/takes/batch-27-ui-materials/x-mat-wood/contact.jpg
+jobs:
+  x-mat-wood:
+    pick: none
+    publication: skipped after one allowed retry
+    note: SKIPPED after the one allowed retry pair. All four soft honey-board swatches
+      show abrupt top/bottom grain and tone discontinuities in source-bound 2x2 repeat
+      previews; the centre boundary does not continue the neighbouring board/seam
+      pattern. RGB top/bottom mean differences are 22.096, 14.821, 26.036 and 28.437,
+      retained as observations rather than a new QA threshold. Numeric hard passes
+      cannot waive the explicit seamless-material brief. All four originals/takes
+      retained; no seam repair or promotion, unrelated ornaments continue.
+qa_reports:
+  1:
+    job: x-mat-wood
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 75 (at most 22), p98 88 (at least 90), spread 13
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 13.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.49 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.49
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.6 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.77
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.4608
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 3.6, off-palette 0.0%
+      value: 2.0002
+    info:
+      metrics_raw:
+        L_p5: 79.6
+        L_p50: 84.9
+        L_p95: 88.1
+        C_p50: 37.1
+        C_p95: 42.4
+        C_p99: 44.0
+        detail: 1.11
+      metrics_locked:
+        L_p5: 79.6
+        L_p50: 84.9
+        L_p95: 88.1
+        C_p50: 37.1
+        C_p95: 42.3
+        C_p99: 43.8
+        detail: 0.77
+    fingerprint: 17b96665367e762f
+  2:
+    job: x-mat-wood
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 74 (at most 22), p98 89 (at least 90), spread 15
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 14.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 84.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.49 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.486
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.6 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.57
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.81
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.5
+      value: 0.4537
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.9, p95 3.9, off-palette 0.0%
+      value: 1.9055
+    info:
+      metrics_raw:
+        L_p5: 80.8
+        L_p50: 85.1
+        L_p95: 88.8
+        C_p50: 37.5
+        C_p95: 43.5
+        C_p99: 47.2
+        detail: 1.16
+      metrics_locked:
+        L_p5: 80.9
+        L_p50: 85.1
+        L_p95: 88.7
+        C_p50: 37.5
+        C_p95: 43.4
+        C_p99: 46.7
+        detail: 0.81
+    fingerprint: 17b96665367e762f
+  3:
+    job: x-mat-wood
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 72 (at most 22), p98 89 (at least 90), spread 17
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 16.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 84.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.45 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.447
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.6 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.61
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.82
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.4223
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.2, p95 5.0, off-palette 0.0%
+      value: 2.2
+    info:
+      metrics_raw:
+        L_p5: 78.3
+        L_p50: 84.6
+        L_p95: 88.3
+        C_p50: 38.5
+        C_p95: 45.8
+        C_p99: 47.6
+        detail: 1.14
+      metrics_locked:
+        L_p5: 78.3
+        L_p50: 84.6
+        L_p95: 88.2
+        C_p50: 38.5
+        C_p95: 45.7
+        C_p99: 47.3
+        detail: 0.82
+    fingerprint: 17b96665367e762f
+  4:
+    job: x-mat-wood
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 75 (at most 22), p98 89 (at least 90), spread 14
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 14.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 84.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.51 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.506
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.6 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.57
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.77
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.4377
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 3.2, off-palette 0.0%
+      value: 1.4583
+    info:
+      metrics_raw:
+        L_p5: 80.6
+        L_p50: 84.9
+        L_p95: 88.6
+        C_p50: 34.8
+        C_p95: 39.8
+        C_p99: 41.1
+        detail: 1.07
+      metrics_locked:
+        L_p5: 80.6
+        L_p50: 84.9
+        L_p95: 88.5
+        C_p50: 34.8
+        C_p95: 39.6
+        C_p99: 40.7
+        detail: 0.77
+    fingerprint: 17b96665367e762f
+manual_review:
+  observed_note: SKIPPED after the one allowed retry pair. All four soft honey-board
+    swatches show abrupt top/bottom grain and tone discontinuities in source-bound
+    2x2 repeat previews; the centre boundary does not continue the neighbouring board/seam
+    pattern. RGB top/bottom mean differences are 22.096, 14.821, 26.036 and 28.437,
+    retained as observations rather than a new QA threshold. Numeric hard passes cannot
+    waive the explicit seamless-material brief. All four originals/takes retained;
+    no seam repair or promotion, unrelated ornaments continue.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-27-ui-materials
+  job: x-mat-wood
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-tuli-wood
+  source_file: /workspace/generated_images/exec-a53f35d1-87e8-4346-ae3e-8755f25cb772.png
+  returned_at: '2026-11-05T14:18:50.051Z'
+  prompt_sha256: bea3b82c1019bd486fdd4aeec2c3d658fb424e53bae3c2377db3701243b5d014
+  fingerprint: 17b96665367e762f
+  saved_at: '2026-11-05T14:18:50.551378+00:00'
+  original_generated_png_sha256: 8bf3b3aef5c229824ea9d02ab7191419ea51ba32a79c38124b0ed095d1e2eb52
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 76bcec015ac7b7caf50be1fc8db0115707e11950e6f097686aaa50930db2ce5c
+  inbox_png_sha256: 7202a1474a7d6c6a1ef425d76b48d05a098426fe87e37f867d0efc3e1bd3ef56
+  qa_sha256: 67cc4a7f82094c1534d0c0cba8ff1e51766dcb7eaf9539004c8a9e200570f932
+- batch: batch-27-ui-materials
+  job: x-mat-wood
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-tuli-wood
+  source_file: /workspace/generated_images/exec-d5854b2e-36c7-4473-b5a4-ccbd8804314f.png
+  returned_at: '2026-11-05T14:19:20.266Z'
+  prompt_sha256: bea3b82c1019bd486fdd4aeec2c3d658fb424e53bae3c2377db3701243b5d014
+  fingerprint: 17b96665367e762f
+  saved_at: '2026-11-05T14:19:20.754035+00:00'
+  original_generated_png_sha256: c4905b81e9f44d6ffba4c69ee9f784d30f1a5409b4abd63b2354d0e469c9b2c0
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 0e730f39ba703cf5d390b0f13c17fa2a65d2358929b3fad447914093c056a037
+  inbox_png_sha256: cfad1b8d710dc8bf697c8114c4daf315591d1239fc5b6ce551e07bb14495e619
+  qa_sha256: ab3f111ea028d93e46ebaab07f2293ec0f4ca2c88f664c39dd5155ac73e52e65
+- batch: batch-27-ui-materials
+  job: x-mat-wood
+  take: 3
+  round: 2
+  logical_run: 20261105-wood-r2-yosun-r1
+  source_file: /workspace/generated_images/exec-27e78c24-2dfe-4b26-b1dc-be903c02c09d.png
+  returned_at: '2026-11-05T14:47:50.263Z'
+  prompt_sha256: bea3b82c1019bd486fdd4aeec2c3d658fb424e53bae3c2377db3701243b5d014
+  fingerprint: 17b96665367e762f
+  saved_at: '2026-11-05T14:47:50.744046+00:00'
+  original_generated_png_sha256: 6440395819010228eaf3e8660da4af81b98c3998ed9c851d9760cf24ba210e52
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 7ce094fa5c7b2f98ebee62c50c7d07eb592a2a571cc12b90f7e52bb4c71a2c6e
+  inbox_png_sha256: 90bc6922afa5b532c8b96380b6f963bd16bb2cfc343e60b49eec6de92c911db6
+  qa_sha256: 5bfb448d548eb8b0cb50ec529bea1cf93e3e19260a6f9e072baf99ca143dbd65
+- batch: batch-27-ui-materials
+  job: x-mat-wood
+  take: 4
+  round: 2
+  logical_run: 20261105-wood-r2-yosun-r1
+  source_file: /workspace/generated_images/exec-3e0683b3-5d05-4576-b07e-597acd551d72.png
+  returned_at: '2026-11-05T14:49:16.420Z'
+  prompt_sha256: bea3b82c1019bd486fdd4aeec2c3d658fb424e53bae3c2377db3701243b5d014
+  fingerprint: 17b96665367e762f
+  saved_at: '2026-11-05T14:49:24.449696+00:00'
+  original_generated_png_sha256: 6a7ae39865ecfe1b7912f8a83193a9c451bf060ccf997c2ed74c47b3c2196022
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: b628c641fea1b557b80d25d440ef649408a06f88fa59cc1f63a43398520a0b29
+  inbox_png_sha256: 5b2a6ea590ee41c4babb0a1ab9acf4af9d7481e6261c2ae32245ba03fd8c93eb
+  qa_sha256: f1dcab65c760b0ed1d3c9e80d987172bd2047db3226f7d9f262c25e993175a43
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+manual_tile_review:
+  job: x-mat-wood
+  review_kind: Source repeatability observation, not a new QA threshold or image repair
+  contact: /workspace/art-operator-runtime/run-20261105-backlog/batch-27-ui-materials/x-mat-wood-tile-contact.jpg
+  sources:
+    '1':
+      original_png_sha256: 8bf3b3aef5c229824ea9d02ab7191419ea51ba32a79c38124b0ed095d1e2eb52
+      left_right_mean_abs_RGB_255: 2.837
+      top_bottom_mean_abs_RGB_255: 22.096
+      left_right_p95_abs_RGB_255: 6.333
+      top_bottom_p95_abs_RGB_255: 32.0
+      internal_mid_vertical_mean_abs_RGB_255: 0.866
+      internal_mid_horizontal_mean_abs_RGB_255: 1.301
+      automatic_pass_fail_assigned: false
+    '2':
+      original_png_sha256: c4905b81e9f44d6ffba4c69ee9f784d30f1a5409b4abd63b2354d0e469c9b2c0
+      left_right_mean_abs_RGB_255: 1.947
+      top_bottom_mean_abs_RGB_255: 14.821
+      left_right_p95_abs_RGB_255: 4.333
+      top_bottom_p95_abs_RGB_255: 26.0
+      internal_mid_vertical_mean_abs_RGB_255: 0.793
+      internal_mid_horizontal_mean_abs_RGB_255: 1.293
+      automatic_pass_fail_assigned: false
+    '3':
+      original_png_sha256: 6440395819010228eaf3e8660da4af81b98c3998ed9c851d9760cf24ba210e52
+      left_right_mean_abs_RGB_255: 2.129
+      top_bottom_mean_abs_RGB_255: 26.036
+      left_right_p95_abs_RGB_255: 4.333
+      top_bottom_p95_abs_RGB_255: 39.667
+      internal_mid_vertical_mean_abs_RGB_255: 0.772
+      internal_mid_horizontal_mean_abs_RGB_255: 1.122
+      automatic_pass_fail_assigned: false
+    '4':
+      original_png_sha256: 6a7ae39865ecfe1b7912f8a83193a9c451bf060ccf997c2ed74c47b3c2196022
+      left_right_mean_abs_RGB_255: 1.806
+      top_bottom_mean_abs_RGB_255: 28.437
+      left_right_p95_abs_RGB_255: 4.0
+      top_bottom_p95_abs_RGB_255: 39.0
+      internal_mid_vertical_mean_abs_RGB_255: 0.752
+      internal_mid_horizontal_mean_abs_RGB_255: 1.157
+      automatic_pass_fail_assigned: false

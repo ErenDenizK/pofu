@@ -1,0 +1,225 @@
+batch: batch-27-ui-materials
+manifest: tools/imagegen/manifest/batch-27-ui-materials.yaml
+manifest_sha256: 619ff1b9d39f2c86648597f49cc6cb5163abfc4eeee199e3a22d03cb79dc88fb
+contact_sheet: design/art/takes/batch-27-ui-materials/x-mat-felt/contact.jpg
+jobs:
+  x-mat-felt:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both are flat dusty-rose matte
+      felt with soft fuzzy tonal mottling, no objects, border, highlight or photographic
+      fibres. Source-bound 2x2 previews show no conspicuous hard join at review scale.
+      Edge measurements are retained as observations, not invented pass thresholds
+      or a pixel-perfect seamlessness claim. Fine fuzzy mottling is specifically requested;
+      contrast stays low under the material LIGHT warmth-only exception. Other style
+      warnings remain advisory. No repair or promotion.
+qa_reports:
+  1:
+    job: x-mat-felt
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 72 (at most 22), p98 80 (at least 90), spread 8
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 8.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 76.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.58 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.58
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.8 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.75
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.4
+      value: 2.3546
+    - check: palette_drift
+      status: warn
+      message: mean dE 3.2, p95 4.2, off-palette 0.0%
+      value: 3.248
+    info:
+      metrics_raw:
+        L_p5: 72.9
+        L_p50: 76.2
+        L_p95: 80.1
+        C_p50: 32.3
+        C_p95: 35.2
+        C_p99: 36.2
+        detail: 2.0
+      metrics_locked:
+        L_p5: 73.2
+        L_p50: 76.2
+        L_p95: 79.7
+        C_p50: 32.3
+        C_p95: 34.8
+        C_p99: 35.6
+        detail: 1.14
+    fingerprint: f46fd0ce514ce324
+  2:
+    job: x-mat-felt
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 73 (at most 22), p98 79 (at least 90), spread 6
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 6.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 75.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.56 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.561
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.6 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.64
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.03
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.5
+      value: 3.4761
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.0, p95 3.0, off-palette 0.0%
+      value: 2.0032
+    info:
+      metrics_raw:
+        L_p5: 72.8
+        L_p50: 75.5
+        L_p95: 78.5
+        C_p50: 34.0
+        C_p95: 36.4
+        C_p99: 37.2
+        detail: 1.8
+      metrics_locked:
+        L_p5: 73.1
+        L_p50: 75.5
+        L_p95: 78.3
+        C_p50: 34.0
+        C_p95: 36.1
+        C_p99: 36.7
+        detail: 1.03
+    fingerprint: f46fd0ce514ce324
+manual_review:
+  observed_note: Both are flat dusty-rose matte felt with soft fuzzy tonal mottling,
+    no objects, border, highlight or photographic fibres. Source-bound 2x2 previews
+    show no conspicuous hard join at review scale. Edge measurements are retained
+    as observations, not invented pass thresholds or a pixel-perfect seamlessness
+    claim. Fine fuzzy mottling is specifically requested; contrast stays low under
+    the material LIGHT warmth-only exception. Other style warnings remain advisory.
+    No repair or promotion.
+  excluded_takes: []
+sources:
+- batch: batch-27-ui-materials
+  job: x-mat-felt
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-snow-night-felt
+  source_file: /workspace/generated_images/exec-988421c8-8013-4fd5-84f6-ae69aea6a16e.png
+  returned_at: '2026-11-05T14:31:56.178Z'
+  prompt_sha256: 7a9bce3777fdb111c15288009065f0e62f7bb74dc8d143c26e8275bf90e23e6f
+  fingerprint: f46fd0ce514ce324
+  saved_at: '2026-11-05T14:31:56.620379+00:00'
+  original_generated_png_sha256: b0df96d8acd1b67708c1d649c8a8a29b59dd366a47684a9afbf7f833ae95cb87
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: f9884b3dcc1f02b8fcfbc3da3ee0d81402446ada290906bad337d0f0ecd5d83a
+  inbox_png_sha256: 505eafd8bb4761064900faafcb5725958f9d95b38b9c73a094f3ff909a32d017
+  qa_sha256: a04cf14e59cfe76b3949f1e67bd69c4a842a58a725609a17f643455f6cfbcac0
+- batch: batch-27-ui-materials
+  job: x-mat-felt
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-snow-night-felt
+  source_file: /workspace/generated_images/exec-ff81e5e6-11dc-41bb-a526-e605ecbe341e.png
+  returned_at: '2026-11-05T14:33:18.017Z'
+  prompt_sha256: 7a9bce3777fdb111c15288009065f0e62f7bb74dc8d143c26e8275bf90e23e6f
+  fingerprint: f46fd0ce514ce324
+  saved_at: '2026-11-05T14:33:18.551272+00:00'
+  original_generated_png_sha256: 8727da3c5ef68e50e534ca1d3568f7b3c75882a72b647b5131428e617bc7e8d5
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 446d546f248c025f974b2df21b7c832313811a8691722e1f46e2874ff428cb30
+  inbox_png_sha256: 301be2f0a15910793a2de73933ec7f32e1dc6ff3cf46a5bd2bcf034bd0679e89
+  qa_sha256: 1d2fc2c3ae9c4905df09b8a66d6c9a568a8077b270fc165283fb62189ecbfcc3
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+manual_tile_review:
+  job: x-mat-felt
+  review_kind: Source repeatability observation, not a new QA threshold or image repair
+  contact: /workspace/art-operator-runtime/run-20261105-backlog/batch-27-ui-materials/x-mat-felt-tile-contact.jpg
+  sources:
+    '1':
+      original_png_sha256: b0df96d8acd1b67708c1d649c8a8a29b59dd366a47684a9afbf7f833ae95cb87
+      left_right_mean_abs_RGB_255: 3.143
+      top_bottom_mean_abs_RGB_255: 3.072
+      left_right_p95_abs_RGB_255: 7.0
+      top_bottom_p95_abs_RGB_255: 7.667
+      internal_mid_vertical_mean_abs_RGB_255: 1.828
+      internal_mid_horizontal_mean_abs_RGB_255: 2.364
+      automatic_pass_fail_assigned: false
+    '2':
+      original_png_sha256: 8727da3c5ef68e50e534ca1d3568f7b3c75882a72b647b5131428e617bc7e8d5
+      left_right_mean_abs_RGB_255: 2.483
+      top_bottom_mean_abs_RGB_255: 2.602
+      left_right_p95_abs_RGB_255: 5.333
+      top_bottom_p95_abs_RGB_255: 6.117
+      internal_mid_vertical_mean_abs_RGB_255: 1.457
+      internal_mid_horizontal_mean_abs_RGB_255: 1.838
+      automatic_pass_fail_assigned: false

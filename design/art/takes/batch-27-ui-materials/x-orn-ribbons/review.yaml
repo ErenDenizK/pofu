@@ -1,0 +1,372 @@
+batch: batch-27-ui-materials
+manifest: tools/imagegen/manifest/batch-27-ui-materials.yaml
+manifest_sha256: 619ff1b9d39f2c86648597f49cc6cb5163abfc4eeee199e3a22d03cb79dc88fb
+contact_sheet: design/art/takes/batch-27-ui-materials/x-orn-ribbons/contact.jpg
+jobs:
+  x-orn-ribbons:
+    pick: none
+    publication: skipped after one allowed retry
+    note: SKIPPED after the one allowed retry pair. All four correctly contain the
+      four blank rose/sage/cream/honey ribbon forms with spacing, but large translucent
+      coloured halos/backplates cover the supposed plain transparent background. This
+      fails the explicit transparent sprite/no cast shadow requirement beyond antialiasing.
+      All four real originals and takes retained; no alpha editing, background removal
+      or promotion. Style-only numeric warnings cannot waive the semantic background
+      failure. No dependents.
+qa_reports:
+  1:
+    job: x-orn-ribbons
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 64 (at most 22), p98 95 (at least 90), spread 31
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 30.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 84.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.34 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.337
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.7 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.72
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.72
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 8.4, p95 17.7, off-palette 38.7% (top: #FFCC88 (8.3%), #CCCCAA
+        (4.0%)) (advisory in an exploration)'
+      value: 8.3783
+    info:
+      metrics_raw:
+        L_p5: 68.3
+        L_p50: 84.6
+        L_p95: 93.7
+        C_p50: 24.4
+        C_p95: 45.4
+        C_p99: 48.1
+        detail: 1.59
+      metrics_locked:
+        L_p5: 68.3
+        L_p50: 84.6
+        L_p95: 93.7
+        C_p50: 24.4
+        C_p95: 45.4
+        C_p99: 48.1
+        detail: 1.72
+    fingerprint: a13fddf45ff24621
+  2:
+    job: x-orn-ribbons
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 65 (at most 22), p98 95 (at least 90), spread 30
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 30.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.34 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.345
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.8 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.79
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.68
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 7.5, p95 17.2, off-palette 26.3% (top: #DDDDBB (4.1%), #FFDD99
+        (4.0%)) (advisory in an exploration)'
+      value: 7.4529
+    info:
+      metrics_raw:
+        L_p5: 68.9
+        L_p50: 85.4
+        L_p95: 93.6
+        C_p50: 22.9
+        C_p95: 40.7
+        C_p99: 43.5
+        detail: 1.55
+      metrics_locked:
+        L_p5: 68.9
+        L_p50: 85.4
+        L_p95: 93.6
+        C_p50: 22.9
+        C_p95: 40.7
+        C_p99: 43.5
+        detail: 1.68
+    fingerprint: a13fddf45ff24621
+  3:
+    job: x-orn-ribbons
+    take: 3
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 65 (at most 22), p98 95 (at least 90), spread 29
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 29.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 84.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.35 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.349
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.52
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.66
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 7.8, p95 17.5, off-palette 36.2% (top: #FFCC88 (6.9%), #FFDD99
+        (4.1%)) (advisory in an exploration)'
+      value: 7.8494
+    info:
+      metrics_raw:
+        L_p5: 70.1
+        L_p50: 84.7
+        L_p95: 93.6
+        C_p50: 22.8
+        C_p95: 45.7
+        C_p99: 48.8
+        detail: 1.55
+      metrics_locked:
+        L_p5: 70.1
+        L_p50: 84.7
+        L_p95: 93.6
+        C_p50: 22.8
+        C_p95: 45.7
+        C_p99: 48.8
+        detail: 1.66
+    fingerprint: a13fddf45ff24621
+  4:
+    job: x-orn-ribbons
+    take: 4
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 94 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 83.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.39 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.388
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.6 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.62
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.82
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 9.1, p95 20.0, off-palette 40.6% (top: #FFCC77 (6.1%), #FFCC88
+        (4.9%)) (advisory in an exploration)'
+      value: 9.1261
+    info:
+      metrics_raw:
+        L_p5: 65.3
+        L_p50: 83.0
+        L_p95: 93.1
+        C_p50: 26.0
+        C_p95: 49.3
+        C_p99: 51.6
+        detail: 1.67
+      metrics_locked:
+        L_p5: 65.3
+        L_p50: 83.0
+        L_p95: 93.1
+        C_p50: 26.0
+        C_p95: 49.3
+        C_p99: 51.6
+        detail: 1.82
+    fingerprint: a13fddf45ff24621
+manual_review:
+  observed_note: SKIPPED after the one allowed retry pair. All four correctly contain
+    the four blank rose/sage/cream/honey ribbon forms with spacing, but large translucent
+    coloured halos/backplates cover the supposed plain transparent background. This
+    fails the explicit transparent sprite/no cast shadow requirement beyond antialiasing.
+    All four real originals and takes retained; no alpha editing, background removal
+    or promotion. Style-only numeric warnings cannot waive the semantic background
+    failure. No dependents.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-27-ui-materials
+  job: x-orn-ribbons
+  take: 1
+  round: 1
+  logical_run: 20261105-ornaments-first
+  source_file: /workspace/generated_images/exec-cb88f69a-3026-4786-b4f5-894b3d279c49.png
+  returned_at: '2026-11-05T14:42:45.411Z'
+  prompt_sha256: 7ea8c4ab1160fdd5cdbf915dadc99676336f64278b4a9d973a60f9dfd9f7f125
+  fingerprint: a13fddf45ff24621
+  saved_at: '2026-11-05T14:42:45.881164+00:00'
+  original_generated_png_sha256: e2880360ab9dc408e2b2deaef0a73622271e6512bc46235e63a4eee62161132b
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: cab734e9aa8d6a8e01821fc42e05582c71f900256f362335fc340647b11a4ee1
+  inbox_png_sha256: c95b36454fc743a68e2a657aa00083e5bb92ca71f9f3c81f73db56940906ff89
+  qa_sha256: ea6079eb3d0c3198cec277ba618742c4f0744fda9b8fc02e1a9a465cf62813ce
+- batch: batch-27-ui-materials
+  job: x-orn-ribbons
+  take: 2
+  round: 1
+  logical_run: 20261105-ornaments-first
+  source_file: /workspace/generated_images/exec-ca07b35c-a130-4de3-9831-94fa11a6073a.png
+  returned_at: '2026-11-05T14:45:07.980Z'
+  prompt_sha256: 7ea8c4ab1160fdd5cdbf915dadc99676336f64278b4a9d973a60f9dfd9f7f125
+  fingerprint: a13fddf45ff24621
+  saved_at: '2026-11-05T14:45:08.326128+00:00'
+  original_generated_png_sha256: fa275cf51be37956744db5e81537b745c94a947787e69c3589c50c9e7e5e9007
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 0c5d07400b8e23c9355bcf27fbb2f58a158de2db77b31ad2e4257dca7e1975e9
+  inbox_png_sha256: 0991f887d4e04032da7b2e6d419aafd3d5d74b4ae5717a91ee11200473b2e9c8
+  qa_sha256: 94baa5c40773ccdfddcc71b754c71545ea9b82b6246d294b220ca997280b74df
+- batch: batch-27-ui-materials
+  job: x-orn-ribbons
+  take: 3
+  round: 2
+  logical_run: 20261105-ornaments-ribbons-stamps-r2
+  source_file: /workspace/generated_images/exec-40235ed8-4a4f-4ebf-b4fc-be30411b6914.png
+  returned_at: '2026-11-05T14:54:25.344Z'
+  prompt_sha256: 7ea8c4ab1160fdd5cdbf915dadc99676336f64278b4a9d973a60f9dfd9f7f125
+  fingerprint: a13fddf45ff24621
+  saved_at: '2026-11-05T14:54:25.860960+00:00'
+  original_generated_png_sha256: 3b871731e576403afdfede9fe83e09defda173a95c471b34275b3a7ee0591aa0
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 99c2d51071397f1b0f28c7b92baba39bfb0ca2096250015acd65d041a8601b97
+  inbox_png_sha256: d360ade6126d982c0993420fc1cce625d50c3e3ee699a9a8f51d876cc0f89703
+  qa_sha256: d8a462ecef68d9c4782a64c61e25febf9eb5245fec74fa82b7b3370cbd771800
+- batch: batch-27-ui-materials
+  job: x-orn-ribbons
+  take: 4
+  round: 2
+  logical_run: 20261105-ornaments-ribbons-stamps-r2
+  source_file: /workspace/generated_images/exec-44386e45-5fcb-4a24-a2ec-3b0ed697df6a.png
+  returned_at: '2026-11-05T14:55:06.110Z'
+  prompt_sha256: 7ea8c4ab1160fdd5cdbf915dadc99676336f64278b4a9d973a60f9dfd9f7f125
+  fingerprint: a13fddf45ff24621
+  saved_at: '2026-11-05T14:55:06.634756+00:00'
+  original_generated_png_sha256: 618a647e2d254fd86e3a40f53dc7dd28df75a6696866ec4e8b1e861e7e90c014
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: d555bab2fcfb0f0b26c0eee976372126e98c2fcaa67dd6c99574cfcaa5ffea72
+  inbox_png_sha256: 638b10e23fc6b6e30df1018d1087c13bd10423524d18f90ceaf5568f8dcfe995
+  qa_sha256: 36c6fff4024677bc73515e51f553d5a4c25b37c74821f65d06494ca864211182
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

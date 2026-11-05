@@ -1,0 +1,224 @@
+batch: batch-27-ui-materials
+manifest: tools/imagegen/manifest/batch-27-ui-materials.yaml
+manifest_sha256: 619ff1b9d39f2c86648597f49cc6cb5163abfc4eeee199e3a22d03cb79dc88fb
+contact_sheet: design/art/takes/batch-27-ui-materials/x-mat-frosted-glass/contact.jpg
+jobs:
+  x-mat-frosted-glass:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Opaque pale milky blue/cream
+      cloudy swatches only: no actual glass panel, UI chrome, border or highlight.
+      This is the explicit manifest-header colour/softness adjacency study beside
+      native glass, never painted UI glass and never promoted. The 2x2 source previews
+      show no conspicuous hard join at review scale; edge measurements are evidence,
+      not a certification of pixel-identical seamlessness. Intentional flat low contrast
+      uses the LIGHT warmth-only exception. Warnings retained.'
+qa_reports:
+  1:
+    job: x-mat-frosted-glass
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 12 (R1 51)
+      value: 11.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 91 (at most 22), p98 97 (at least 90), spread 6
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 5.7
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 94 (band 55-90)'
+      value: 93.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.81 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.812
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.3 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.26
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.53
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.2
+      value: 0.2459
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.1, p95 4.1, off-palette 0.0%
+      value: 2.1401
+    info:
+      metrics_raw:
+        L_p5: 91.0
+        L_p50: 93.8
+        L_p95: 96.7
+        C_p50: 9.0
+        C_p95: 11.9
+        C_p99: 12.8
+        detail: 0.64
+      metrics_locked:
+        L_p5: 91.0
+        L_p50: 93.8
+        L_p95: 96.6
+        C_p50: 8.9
+        C_p95: 11.8
+        C_p99: 12.7
+        detail: 0.53
+    fingerprint: 01321cb29a93779b
+  2:
+    job: x-mat-frosted-glass
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 10 (R1 51)
+      value: 10.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 91 (at most 22), p98 97 (at least 90), spread 6
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 6.2
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 95 (band 55-90)'
+      value: 94.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.82 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.824
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.3 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.28
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.51
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.3
+      value: 0.2862
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.9, p95 3.8, off-palette 0.0%
+      value: 1.9065
+    info:
+      metrics_raw:
+        L_p5: 91.5
+        L_p50: 94.5
+        L_p95: 97.6
+        C_p50: 7.1
+        C_p95: 10.6
+        C_p99: 11.6
+        detail: 0.66
+      metrics_locked:
+        L_p5: 91.5
+        L_p50: 94.5
+        L_p95: 97.0
+        C_p50: 7.1
+        C_p95: 10.5
+        C_p99: 11.5
+        detail: 0.51
+    fingerprint: 01321cb29a93779b
+manual_review:
+  observed_note: 'Opaque pale milky blue/cream cloudy swatches only: no actual glass
+    panel, UI chrome, border or highlight. This is the explicit manifest-header colour/softness
+    adjacency study beside native glass, never painted UI glass and never promoted.
+    The 2x2 source previews show no conspicuous hard join at review scale; edge measurements
+    are evidence, not a certification of pixel-identical seamlessness. Intentional
+    flat low contrast uses the LIGHT warmth-only exception. Warnings retained.'
+  excluded_takes: []
+sources:
+- batch: batch-27-ui-materials
+  job: x-mat-frosted-glass
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-boncuk-frosted
+  source_file: /workspace/generated_images/exec-3afa5c34-6fbf-4fdd-ba0b-55564df73934.png
+  returned_at: '2026-11-05T14:33:12.869Z'
+  prompt_sha256: 744ac6548afe9fa1841b09d4a9acb5b8152ae5e53f3cc18a44bd442e7210e110
+  fingerprint: 01321cb29a93779b
+  saved_at: '2026-11-05T14:33:13.197525+00:00'
+  original_generated_png_sha256: 06234486a51619e7ff9076bf06e7b04e5994675561858165627efb0ab0bdc4b4
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: df5612a30571e1a108d4592b32716336a7dc09e987754fcf9000d0749dc24963
+  inbox_png_sha256: 74aae26476618a140d4adacf654a3c2d8975e5e3249d017f9650bafc8e5988a8
+  qa_sha256: 44a4c728969dd34d7f8a373623bf70d9680383765fb39665afdc9657814b1e8e
+- batch: batch-27-ui-materials
+  job: x-mat-frosted-glass
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-boncuk-frosted
+  source_file: /workspace/generated_images/exec-2cb1b2e2-e712-4b08-8f1e-74905157a431.png
+  returned_at: '2026-11-05T14:32:40.718Z'
+  prompt_sha256: 744ac6548afe9fa1841b09d4a9acb5b8152ae5e53f3cc18a44bd442e7210e110
+  fingerprint: 01321cb29a93779b
+  saved_at: '2026-11-05T14:32:41.197740+00:00'
+  original_generated_png_sha256: 2700b18512ca87ccf7401348b3b9bff6836ccee94b327f0138820c9593a34a48
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 7f4fc793375841c22b54778a468199ad197d56c007abfe8b87fc8c530a87c6f9
+  inbox_png_sha256: 808b538fba6b3f1b8e936f547a2fd080f759aa788257ebd017546ce34d3f9f27
+  qa_sha256: 0ff3f038b26f3284ee25911d50df9f81a8b4c4aaefb48ae03d598185571750e4
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+manual_tile_review:
+  job: x-mat-frosted-glass
+  review_kind: Source repeatability observation, not a new QA threshold or image repair
+  contact: /workspace/art-operator-runtime/run-20261105-backlog/batch-27-ui-materials/x-mat-frosted-glass-tile-contact.jpg
+  sources:
+    '1':
+      original_png_sha256: 06234486a51619e7ff9076bf06e7b04e5994675561858165627efb0ab0bdc4b4
+      left_right_mean_abs_RGB_255: 1.602
+      top_bottom_mean_abs_RGB_255: 1.65
+      left_right_p95_abs_RGB_255: 3.333
+      top_bottom_p95_abs_RGB_255: 3.0
+      internal_mid_vertical_mean_abs_RGB_255: 0.538
+      internal_mid_horizontal_mean_abs_RGB_255: 0.573
+      automatic_pass_fail_assigned: false
+    '2':
+      original_png_sha256: 2700b18512ca87ccf7401348b3b9bff6836ccee94b327f0138820c9593a34a48
+      left_right_mean_abs_RGB_255: 1.307
+      top_bottom_mean_abs_RGB_255: 1.713
+      left_right_p95_abs_RGB_255: 2.667
+      top_bottom_p95_abs_RGB_255: 3.667
+      internal_mid_vertical_mean_abs_RGB_255: 0.518
+      internal_mid_horizontal_mean_abs_RGB_255: 0.53
+      automatic_pass_fail_assigned: false
