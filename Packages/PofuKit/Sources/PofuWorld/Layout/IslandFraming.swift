@@ -36,9 +36,10 @@ public enum IslandFraming {
     /// Pofu's scale at Home: 64 units at 141 pt, 35 % of the width.
     public static let homeScale = 2.20
     /// Pofu's feet at Home, in reference points from the top: the lawn's
-    /// back edge lands near 245 pt, so the sky is about a quarter of the
-    /// screen and the speech bubble still clears the top chrome.
-    public static let homeFeetY = 400.0
+    /// back edge lands near 285 pt, so the sky is about a third of the
+    /// screen, the lawn reads larger than the earth below it, and the
+    /// speech bubble still clears the top chrome.
+    public static let homeFeetY = 440.0
 
     // MARK: - Content
 
