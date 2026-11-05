@@ -7,16 +7,22 @@ Codex reads it at the start of every task.
 
 ## Standing rules
 
-1. **Pull, don't wait.** When Codex opens a batch PR, it immediately starts
-   the next `READY` batch in the queue below, in order, on its own branch.
-   It never waits for a review or a merge to start the next ready batch.
+1. **The line never ends** (founder, 2026-11-05: "Codex sits idle. From now
+   on it must never stop"). Codex works the `READY` rows in order; when none
+   is left it takes the `BACKLOG` rows ([the backlog](#the-backlog)) in
+   order; when the backlog is exhausted it starts again from its first row
+   with fresh variations (new takes under new exploration ids `-v2`, `-v3`,
+   ...; never the same prompt twice). When it opens a batch PR it starts the
+   next batch at once on its own branch, never waiting for a review or a
+   merge. There is no "queue empty" state and no stop after a batch.
 2. **Iterate, then scale** (founder, 2026-11-02). Lock the method on a small
    pilot, learn from its mistakes, then run the batch. Every new batch has a
    **pilot of 2 to 5 jobs** in its own manifest (`batch-NN-<name>-pilot`,
    `status: open`); the rest of the batch is a second manifest
    (`batch-NN-<name>`, `status: blocked`) that opens only after the lead has
    reviewed the pilot. Pilots come first in the queue, so the line always has
-   something new to try while the lead reviews.
+   something new to try while the lead reviews. A job gated behind a pilot is
+   skipped and Codex continues with other rows; the gate never stops the line.
 3. **Do not regenerate to fix the old.** Existing assets are brought in line
    by the harmony grade (code, `tools/assets/harmony.py`, in progress on
    `feat/look-round-2`). Only an asset the grade cannot fix (wrong shape,
@@ -29,9 +35,9 @@ Codex reads it at the start of every task.
    conditions, 2026-11-02): after its one retry it is recorded as skipped with
    its reason, its dependents are skipped, and Codex goes on to the next job and
    batch. Global stop only for account, sign-in, quota or usage-limit messages,
-   refusals, identity or upload corruption, or three consecutive job failures.
-   Before each batch Codex re-reads this queue; when it is empty it re-checks
-   every 20 minutes for 2 hours.
+   three refusals or image-less answers in a row, or identity or upload
+   corruption (a single refusal is skipped, never retried or rephrased).
+   Before each batch Codex re-reads this queue.
 6. **Publish before you generate.** Selected candidates that were never promoted
    (the 14 rig picks of batch 06, `pond-5-lit`, 4 UI takes of batch 11) are
    published from their retained takes first, without regenerating.
@@ -50,14 +56,17 @@ Codex reads it at the start of every task.
 - **Opening a batch** is one PR by the lead: flip `status` to `open`, drop
   `blocked_on`, apply what the pilot taught to the prompts, and change the
   row here to `READY`. The same PR merges the pilot's art.
+- **BACKLOG:** an exploration manifest (`x-` ids, `status: open`, never
+  promoted) listed in [the backlog](#the-backlog). Codex takes these when no
+  `READY` row is left.
 - **DONE:** merged; the row moves to the log at the bottom.
 
 ## The queue
 
 Order is priority. Codex takes the first `READY` row nobody is working on
 (an open PR or a pushed `art/<batch>/...` branch means someone is), and
-**when its PR is open it continues to the next `READY` row automatically**,
-until none is left.
+**when its PR is open it continues to the next `READY` row automatically**;
+when none is left it moves on to [the backlog](#the-backlog).
 
 | # | Batch | Kind | Purpose | Needs | Jobs | State |
 |---|---|---|---|---|---|---|
@@ -70,6 +79,32 @@ Home stations: nothing else needs a painted night variant (tea stall, windmill a
 
 Rows to come: the design-loop-2 concepts (batch-19) and the lead's production
 batches are added above row 3 as `READY` by their own PRs.
+
+## The backlog
+
+Work for when no `READY` row is left, so the line never idles. Every batch
+here is an **exploration**: `x-` ids, `status: open`, complete prompts, never
+promoted (takes, contact sheet and `review.yaml` are committed under
+`design/art/takes/<batch>/<id>/`). Codex takes the rows in order, one PR per
+batch. After the last row it starts again at row B1 with fresh variations:
+the manifest copied as `<batch>-v2` (then `-v3`, ...) with `x-<id>-v2` job
+ids and a new angle, pose, camera, time of day or palette per job. The lead
+adds rows at the bottom; it also reads the takes and promotes a concept into a
+real production batch when one earns it.
+
+| # | Batch | Purpose | Jobs | State |
+|---|---|---|---|---|
+| B1 | `batch-22-gezgin-forms` | Gezgin, the cloud-whale Nazlı: form 1 (humble, tired, a mossy patch with bench and mooring post, lantern hook, scar shaped like a switched-off light) and form 2 (grown, lush island with grove and waterfall, hook and scar glowing); side views, three-quarter, docked at a pier, at night | 9 | BACKLOG |
+| B2 | `batch-23-stickers` | Emoji and sticker sheets of Pofu and Mochi (happy, sleepy, surprised, proud, sulky, laughing, waving, tea, thinking, love) plus Simit, Fındık, the goat and duo stickers, transparent | 9 | BACKLOG |
+| B3 | `batch-24-home-materials` | Upgrade props for the home stations on the decor guide: tea set, samovar, cushions, lantern, flower box, bench 2, mailbox 2, rope, crates, weather vane, boat 2 | 11 | BACKLOG |
+| B4 | `batch-25-seasons` | Concept frames of Ayçiçeği in spring, summer, autumn, first snow, rain, summer evening, snow at night | 7 | BACKLOG |
+| B5 | `batch-26-residents-concepts` | Concept portraits of Damla, Tuli, Boncuk, Nane and Yosun, each "first seen small" and "revealed grand" | 10 | BACKLOG |
+| B6 | `batch-27-ui-materials` | Tileable surface materials (paper, linen, wood, glazed clay, frosted glass study, felt) and ornaments (ribbons, stamps, wax seals, tags) | 10 | BACKLOG |
+
+Ideas for the next rows when the lead has none: more props and materials
+(harbor kit, night lanterns), emoji packs for the other residents, empty-state
+and onboarding vignettes, weather and sky studies, seasons for a wonder
+island, paper-craft textures. Anything useful beats idling.
 
 ## Home upgrade ladder
 
@@ -340,13 +375,16 @@ Paste this into a new Codex task:
 
 ```text
 Read AGENTS.md and docs/design/art-production-plan.md.
-Run the queue: take the first READY batch nobody is on, in parallel auto mode, track all.
+Run the queue forever: take the first READY batch nobody is on, in parallel auto mode, track all.
 Start at the top of the queue; a row names its --only jobs when it is a re-run.
 For every promoted master run `python3 -I tools/assets/harmony.py measure` and commit
 the manifest in the same PR, or CI fails.
-When you open a batch's PR, start the next READY batch at once on a new branch, until none is left.
+When you open a batch's PR, start the next batch at once on a new branch. When no READY
+batch is left, take the BACKLOG rows in order; when the backlog is done, start again from
+its first row with fresh variations (-v2, -v3, ...). A failed or refused job is skipped
+and recorded, never retried or rephrased; go on with the next job.
 Never start a BLOCKED batch, never promote an EXPLORATION batch, never merge.
-Stop and report on any stop condition in AGENTS.md.
+Stop only on a global stop condition in AGENTS.md.
 ```
 
 ## Log

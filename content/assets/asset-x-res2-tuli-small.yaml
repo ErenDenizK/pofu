@@ -1,0 +1,21 @@
+id: asset-x-res2-tuli-small
+type: asset
+title_tr: x-res2-tuli-small
+title_en: x-res2-tuli-small (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a resident portrait. FIRST SEEN SMALL. Tuli,
+  a shy young arctic fox, snow-white fluffy fur with pale blue-grey shadows, a big soft tail,
+  big glossy dark eyes, standing tiny and a little hunched on a wide, quiet snow drift at
+  night, half hiding behind her own tail, her paw tracks leading back across the snow, a dark,
+  empty, starry sky above with no aurora, a faint hopeful hin…
+art:
+  images: []
+  jobs:
+  - batch-26-residents-concepts:x-res2-tuli-small
+sources:
+- doc: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+kind: plate
+batch: batch-26-residents-concepts
+size: 1024x1536

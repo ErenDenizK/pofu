@@ -1,0 +1,21 @@
+id: asset-x-res2-damla-small
+type: asset
+title_tr: x-res2-damla-small
+title_en: x-res2-damla-small (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a resident portrait. FIRST SEEN SMALL. Damla,
+  a baby otter, a round plush ball of warm brown fur with a cream muzzle and belly, small
+  round ears and a thick rounded tail, big glossy dark eyes, climbing a steep, dry, pale-grey
+  cliff alone and tiny against it, carefully carrying one tall glass of water in both paws
+  without spilling, her tongue between her lips in concentration…
+art:
+  images: []
+  jobs:
+  - batch-26-residents-concepts:x-res2-damla-small
+sources:
+- doc: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+kind: plate
+batch: batch-26-residents-concepts
+size: 1024x1536

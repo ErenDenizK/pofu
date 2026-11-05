@@ -1,0 +1,21 @@
+id: asset-x-season-summer-evening
+type: asset
+title_tr: x-season-summer-evening
+title_en: x-season-summer-evening (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Ayçiçeği, the small home island, in a new season.
+  SUMMER EVENING: golden hour with long soft light from the upper left turning peach and rose,
+  the sunflowers glowing at their edges, fireflies beginning over the lawn, a pale first star
+  in a peach-to-lilac sky. The same island as the attached one, with the same shape, the same
+  lawn outline, the same tea stall, windmill, pond, …
+art:
+  images: []
+  jobs:
+  - batch-25-seasons:x-season-summer-evening
+sources:
+- doc: tools/imagegen/manifest/batch-25-seasons.yaml
+kind: plate
+batch: batch-25-seasons
+size: 1536x1024

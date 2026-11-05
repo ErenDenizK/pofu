@@ -1,0 +1,21 @@
+id: asset-x-res2-boncuk-small
+type: asset
+title_tr: x-res2-boncuk-small
+title_en: x-res2-boncuk-small (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a resident portrait. FIRST SEEN SMALL. Boncuk,
+  a fussy magpie shopkeeper of lost things, a plump bird in soft black-and-white feathers
+  with a gentle blue-green sheen on her wings and tail, a tiny pair of round spectacles, big
+  glossy dark eyes, standing small behind a crowded counter in a tiny shop with an upturned
+  umbrella for a roof, shelves overflowing with lost buttons, s…
+art:
+  images: []
+  jobs:
+  - batch-26-residents-concepts:x-res2-boncuk-small
+sources:
+- doc: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+kind: plate
+batch: batch-26-residents-concepts
+size: 1024x1536

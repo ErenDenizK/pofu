@@ -2,7 +2,7 @@ id: asset-lantern-on
 type: asset
 title_tr: lantern-on
 title_en: lantern-on (ui)
-status: planned
+status: in-production
 horizon: later
 summary: >-
   Light the lantern from inside: the paper glows a warm honey-gold, brightest at its center,
@@ -16,7 +16,8 @@ links:
   variant_of:
   - asset-lantern-off
 art:
-  images: []
+  images:
+  - design/art/ui/ui-lantern-on/ui-lantern-on.png
   jobs:
   - batch-02-ui:lantern-on
 sources:

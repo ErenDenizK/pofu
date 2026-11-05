@@ -1,0 +1,21 @@
+id: asset-x-sticker-pofu-1
+type: asset
+title_tr: x-sticker-pofu-1
+title_en: x-sticker-pofu-1 (sheet)
+status: in-production
+horizon: now
+summary: >-
+  A sticker sheet of five full-body poses of Pofu the hamster, in his exact attached look,
+  each a different emotion: (1) happy, eyes closed in a smile, paws up; (2) sleepy, eyes half
+  closed, head drooping, a tiny yawn; (3) surprised, eyes wide, mouth a small round O, fur
+  puffed; (4) proud, chest out, chin up, eyes bright, a small content smile; (5) sulky, cheeks
+  puffed, a small pout, eyes looking sideways, arms folded …
+art:
+  images: []
+  jobs:
+  - batch-23-stickers:x-sticker-pofu-1
+sources:
+- doc: tools/imagegen/manifest/batch-23-stickers.yaml
+kind: sheet
+batch: batch-23-stickers
+size: 1536x1024

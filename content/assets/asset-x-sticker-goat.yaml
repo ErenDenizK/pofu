@@ -1,0 +1,21 @@
+id: asset-x-sticker-goat
+type: asset
+title_tr: x-sticker-goat
+title_en: x-sticker-goat (sheet)
+status: in-production
+horizon: now
+summary: >-
+  A sticker sheet of three full-body poses of the harbor goat, in her exact attached look,
+  in a row: (1) munching, calmly chewing a small tuft of grass with half-closed eyes; (2)
+  startled, eyes wide, ears flung back, one hoof lifted; (3) smug, chin raised, eyes half-lidded,
+  a tiny knowing smile. Do not draw Pofu. On a plain transparent background, in a loose grid
+  with wide empty space around each sticker, none touching…
+art:
+  images: []
+  jobs:
+  - batch-23-stickers:x-sticker-goat
+sources:
+- doc: tools/imagegen/manifest/batch-23-stickers.yaml
+kind: sheet
+batch: batch-23-stickers
+size: 1536x1024

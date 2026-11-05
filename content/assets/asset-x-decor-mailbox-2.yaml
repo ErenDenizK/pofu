@@ -1,0 +1,20 @@
+id: asset-x-decor-mailbox-2
+type: asset
+title_tr: x-decor-mailbox-2
+title_en: x-decor-mailbox-2 (prop)
+status: in-production
+horizon: now
+summary: >-
+  A small rounded post-box on a short wooden post, painted soft sage with a cream roof, a
+  little rose flag raised, and two blank envelopes poking out of the slot. Toy-like, chunky.
+  It stands on the guide's ground ellipse, centered on the cross, never wider than the ellipse
+  and never taller than the height bar; it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-24-home-materials:x-decor-mailbox-2
+sources:
+- doc: tools/imagegen/manifest/batch-24-home-materials.yaml
+kind: prop
+batch: batch-24-home-materials
+size: 1024x1024

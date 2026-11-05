@@ -1,0 +1,341 @@
+# Batch 27: exploration, never promoted (the backlog)
+#
+# Look-dev for the painted side of ADR-0018's hybrid UI: tileable surface
+# materials (paper, linen, wood, glazed clay, frosted glass, felt) and small
+# ornaments (ribbons, stamps, wax seals, tags). Glass in the final UI is native;
+# the frosted-glass study here is only a reference for how painted material sits
+# next to it, and never ships as UI glass. Materials are flat, opaque, seamless
+# squares seen straight on; ornaments are transparent sprites.
+#
+# Tracks: `materials`, `ornaments`.
+#
+# BACKLOG (docs/design/art-production-plan.md#the-backlog): every job here is
+# an EXPLORATION with an `x-` id. EXPLORATION RULES (AGENTS.md): do NOT run
+# `promote`; commit the takes (WebP q90), the contact sheet and review.yaml
+# under design/art/takes/<batch>/<id>/ and nothing else. No painted text
+# anywhere. Never paint glass, UI chrome or buttons. A failed or refused job
+# is recorded and skipped; the run continues with the next job. There is no
+# pilot gate: run the jobs in the order written.
+#
+# Fresh variations: when the backlog comes round again, copy a job under a
+# new id (`-v2`, `-v3`, ...) with a new angle, never the same prompt twice.
+
+batch: batch-27-ui-materials
+title: Tileable surface materials and small UI ornaments
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: pofu, kind: char, name: pofu-r1, external: r1, master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png}
+
+  - id: x-mat-paper
+    kind: plate
+    name: x-mat-paper
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    chat: "Pofu · UI materials"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Warm cream paper. Review: seamless; no fibres louder than a whisper."
+    attach:
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+      - ref: approved:island-main-s
+        role: "The home island: the palette and softness of the painting (do not draw it)."
+    prompt:
+      - text: |
+          A seamless tileable surface material swatch for a cozy mobile
+          game's painted UI. The material: warm cream handmade paper, with a
+          few very faint broad cloudy variations in tone and the softest
+          hint of paper fibres. Painted in the same soft painterly picture-
+          book style as the attached hamster and island: soft airbrushed
+          shading, milky pastel colors, broad low-contrast forms instead of
+          fine detail, matte, no outlines, no grain, no photographic
+          texture, no highlights. Seen straight on, perfectly flat, evenly
+          lit with no light direction and no shadow, filling the whole
+          square. It must tile seamlessly: the left edge continues into the
+          right edge and the top into the bottom, with nothing that stands
+          out as a repeat. The LIGHT block of this prompt sets only the
+          warmth of the colors here: paint no key light direction, no
+          contact shadow and no depth.
+      - text: "AVOID: text, letters, numbers, logos, a border, a frame, objects, a vignette, a seam, a visible repeating motif, strong contrast, black or near-black, saturated colors, photorealism, a 3D render look"
+
+  - id: x-mat-linen
+    kind: plate
+    name: x-mat-linen
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    chat: "Pofu · UI materials"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Pale linen cloth. Review: the weave is a soft suggestion, not a pattern."
+    attach:
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+      - ref: approved:island-main-s
+        role: "The home island: the palette and softness of the painting (do not draw it)."
+    prompt:
+      - text: |
+          A seamless tileable surface material swatch for a cozy mobile
+          game's painted UI. The material: pale oatmeal-cream linen cloth, a
+          soft suggestion of woven threads in broad soft horizontal and
+          vertical bands, gentle uneven tone. Painted in the same soft
+          painterly picture-book style as the attached hamster and island:
+          soft airbrushed shading, milky pastel colors, broad low-contrast
+          forms instead of fine detail, matte, no outlines, no grain, no
+          photographic texture, no highlights. Seen straight on, perfectly
+          flat, evenly lit with no light direction and no shadow, filling
+          the whole square. It must tile seamlessly: the left edge continues
+          into the right edge and the top into the bottom, with nothing that
+          stands out as a repeat. The LIGHT block of this prompt sets only
+          the warmth of the colors here: paint no key light direction, no
+          contact shadow and no depth.
+      - text: "AVOID: text, letters, numbers, logos, a border, a frame, objects, a vignette, a seam, a visible repeating motif, strong contrast, black or near-black, saturated colors, photorealism, a 3D render look"
+
+  - id: x-mat-wood
+    kind: plate
+    name: x-mat-wood
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    chat: "Pofu · UI materials"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Honey wood boards. Review: the grain is broad soft bands; boards read as boards."
+    attach:
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+      - ref: approved:island-main-s
+        role: "The home island: the palette and softness of the painting (do not draw it)."
+    prompt:
+      - text: |
+          A seamless tileable surface material swatch for a cozy mobile
+          game's painted UI. The material: soft honey-coloured wooden boards
+          laid side by side, three broad rounded bands per tile with the
+          gentlest soft grain as broad low-contrast strokes, thin soft seams
+          between the boards. Painted in the same soft painterly picture-
+          book style as the attached hamster and island: soft airbrushed
+          shading, milky pastel colors, broad low-contrast forms instead of
+          fine detail, matte, no outlines, no grain, no photographic
+          texture, no highlights. Seen straight on, perfectly flat, evenly
+          lit with no light direction and no shadow, filling the whole
+          square. It must tile seamlessly: the left edge continues into the
+          right edge and the top into the bottom, with nothing that stands
+          out as a repeat. The LIGHT block of this prompt sets only the
+          warmth of the colors here: paint no key light direction, no
+          contact shadow and no depth.
+      - text: "AVOID: text, letters, numbers, logos, a border, a frame, objects, a vignette, a seam, a visible repeating motif, strong contrast, black or near-black, saturated colors, photorealism, a 3D render look"
+
+  - id: x-mat-clay
+    kind: plate
+    name: x-mat-clay
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    chat: "Pofu · UI materials"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Glazed clay in pale sage. Review: the glaze is a soft tinted shape, no gloss."
+    attach:
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+      - ref: approved:island-main-s
+        role: "The home island: the palette and softness of the painting (do not draw it)."
+    prompt:
+      - text: |
+          A seamless tileable surface material swatch for a cozy mobile
+          game's painted UI. The material: pale sage glazed clay, a smooth
+          matte surface with soft pooling of slightly darker glaze in a few
+          broad rounded patches and a few tiny specks. Painted in the same
+          soft painterly picture-book style as the attached hamster and
+          island: soft airbrushed shading, milky pastel colors, broad low-
+          contrast forms instead of fine detail, matte, no outlines, no
+          grain, no photographic texture, no highlights. Seen straight on,
+          perfectly flat, evenly lit with no light direction and no shadow,
+          filling the whole square. It must tile seamlessly: the left edge
+          continues into the right edge and the top into the bottom, with
+          nothing that stands out as a repeat. The LIGHT block of this
+          prompt sets only the warmth of the colors here: paint no key light
+          direction, no contact shadow and no depth.
+      - text: "AVOID: text, letters, numbers, logos, a border, a frame, objects, a vignette, a seam, a visible repeating motif, strong contrast, black or near-black, saturated colors, photorealism, a 3D render look"
+
+  - id: x-mat-frosted-glass
+    kind: plate
+    name: x-mat-frosted-glass
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    chat: "Pofu · UI materials"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A frosted-glass look study, REFERENCE ONLY (glass in the UI is native, ADR-0018). Review: how a painted pale-blue frosted tint could sit beside native glass."
+    attach:
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+      - ref: approved:island-main-s
+        role: "The home island: the palette and softness of the painting (do not draw it)."
+    prompt:
+      - text: |
+          A seamless tileable surface material swatch for a cozy mobile
+          game's painted UI. The material: a pale milky blue-cream frosted
+          surface, like softly clouded sea glass, with broad soft cloudy
+          variations and a faint cool tint. It is a color and softness study
+          only, not a glass panel. Painted in the same soft painterly
+          picture-book style as the attached hamster and island: soft
+          airbrushed shading, milky pastel colors, broad low-contrast forms
+          instead of fine detail, matte, no outlines, no grain, no
+          photographic texture, no highlights. Seen straight on, perfectly
+          flat, evenly lit with no light direction and no shadow, filling
+          the whole square. It must tile seamlessly: the left edge continues
+          into the right edge and the top into the bottom, with nothing that
+          stands out as a repeat. The LIGHT block of this prompt sets only
+          the warmth of the colors here: paint no key light direction, no
+          contact shadow and no depth.
+      - text: "AVOID: text, letters, numbers, logos, a border, a frame, objects, a vignette, a seam, a visible repeating motif, strong contrast, black or near-black, saturated colors, photorealism, a 3D render look"
+
+  - id: x-mat-felt
+    kind: plate
+    name: x-mat-felt
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    chat: "Pofu · UI materials"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Rose felt. Review: fuzzy softness without a hairy texture."
+    attach:
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+      - ref: approved:island-main-s
+        role: "The home island: the palette and softness of the painting (do not draw it)."
+    prompt:
+      - text: |
+          A seamless tileable surface material swatch for a cozy mobile
+          game's painted UI. The material: soft dusty-rose wool felt, a
+          velvety matte surface with a very fine soft fuzzy mottling of
+          tone, as if made of pressed fibres. Painted in the same soft
+          painterly picture-book style as the attached hamster and island:
+          soft airbrushed shading, milky pastel colors, broad low-contrast
+          forms instead of fine detail, matte, no outlines, no grain, no
+          photographic texture, no highlights. Seen straight on, perfectly
+          flat, evenly lit with no light direction and no shadow, filling
+          the whole square. It must tile seamlessly: the left edge continues
+          into the right edge and the top into the bottom, with nothing that
+          stands out as a repeat. The LIGHT block of this prompt sets only
+          the warmth of the colors here: paint no key light direction, no
+          contact shadow and no depth.
+      - text: "AVOID: text, letters, numbers, logos, a border, a frame, objects, a vignette, a seam, a visible repeating motif, strong contrast, black or near-black, saturated colors, photorealism, a 3D render look"
+
+  - id: x-orn-ribbons
+    kind: sheet
+    name: x-orn-ribbons
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · UI ornaments"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Four ribbons: a straight banner, a swallowtail banner, a bow and a bookmark. Review: thick, rounded, readable at 64 px."
+    attach:
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+      - ref: approved:island-main-s
+        role: "The home island: the palette and softness of the painting (do not draw it)."
+    prompt:
+      - text: |
+          A small sheet of painted UI ornaments for a cozy mobile game, seen
+          straight on from the front. Four ribbons: a straight banner ribbon
+          with folded ends in soft rose, a swallowtail banner ribbon in
+          sage, a plump tied bow in cream and a long bookmark ribbon with a
+          notched end in honey gold. All blank, thick and softly rounded. On
+          a plain transparent background, with wide clear space around and
+          between the items, none touching. Simple, chunky, rounded, a few
+          large shapes, matte. The items carry no text, letters or numbers.
+      - block: prop-style-v2
+      - text: "AVOID: text, letters, numbers, logos, a floor, a ground shadow, cast shadows, glossy shine, metallic reflections, thin hairlines, saturated or neon colors, glass, buttons, characters"
+
+  - id: x-orn-stamps
+    kind: sheet
+    name: x-orn-stamps
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · UI ornaments"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Four stamp impressions as pictures, no text: paw, sunflower, tea glass, crescent moon. Review: each reads as a stamped mark in one flat color."
+    attach:
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+      - ref: approved:island-main-s
+        role: "The home island: the palette and softness of the painting (do not draw it)."
+    prompt:
+      - text: |
+          A small sheet of painted UI ornaments for a cozy mobile game, seen
+          straight on from the front. Four stamp impressions, each a single
+          flat color of soft ink with a slightly irregular edge inside a
+          rounded square: a small paw print in rose, a sunflower in honey
+          gold, a tulip tea glass in warm brown and a crescent moon with one
+          star in dusty blue. No text. On a plain transparent background,
+          with wide clear space around and between the items, none touching.
+          Simple, chunky, rounded, a few large shapes, matte. The items
+          carry no text, letters or numbers.
+      - block: prop-style-v2
+      - text: "AVOID: text, letters, numbers, logos, a floor, a ground shadow, cast shadows, glossy shine, metallic reflections, thin hairlines, saturated or neon colors, glass, buttons, characters"
+
+  - id: x-orn-wax-seals
+    kind: sheet
+    name: x-orn-wax-seals
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · UI ornaments"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Four wax seals in four colors with simple pictogram impressions. Review: plump, rounded blobs, no shine."
+    attach:
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+      - ref: approved:island-main-s
+        role: "The home island: the palette and softness of the painting (do not draw it)."
+    prompt:
+      - text: |
+          A small sheet of painted UI ornaments for a cozy mobile game, seen
+          straight on from the front. Four round wax seals, plump and matte,
+          with slightly wavy rims and a soft embossed pictogram in the
+          middle of each: a paw in dusty rose, a sunflower in honey gold, a
+          leaf in sage and a crescent moon in dusty blue. The wax is matte,
+          never shiny. On a plain transparent background, with wide clear
+          space around and between the items, none touching. Simple, chunky,
+          rounded, a few large shapes, matte. The items carry no text,
+          letters or numbers.
+      - block: prop-style-v2
+      - text: "AVOID: text, letters, numbers, logos, a floor, a ground shadow, cast shadows, glossy shine, metallic reflections, thin hairlines, saturated or neon colors, glass, buttons, characters"
+
+  - id: x-orn-tags
+    kind: sheet
+    name: x-orn-tags
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · UI ornaments"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Four blank paper tags with string. Review: the string is thick and soft; the tags are blank for code to label."
+    attach:
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+      - ref: approved:island-main-s
+        role: "The home island: the palette and softness of the painting (do not draw it)."
+    prompt:
+      - text: |
+          A small sheet of painted UI ornaments for a cozy mobile game, seen
+          straight on from the front. Four blank paper luggage tags with a
+          punched hole and a thick, soft cord loop: a rectangular tag with
+          clipped corners in cream, a rounded tag in soft rose, a long
+          narrow tag in sage and a small scalloped tag in honey. All blank,
+          with no writing. On a plain transparent background, with wide
+          clear space around and between the items, none touching. Simple,
+          chunky, rounded, a few large shapes, matte. The items carry no
+          text, letters or numbers.
+      - block: prop-style-v2
+      - text: "AVOID: text, letters, numbers, logos, a floor, a ground shadow, cast shadows, glossy shine, metallic reflections, thin hairlines, saturated or neon colors, glass, buttons, characters"

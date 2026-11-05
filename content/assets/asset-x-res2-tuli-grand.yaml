@@ -1,0 +1,21 @@
+id: asset-x-res2-tuli-grand
+type: asset
+title_tr: x-res2-tuli-grand
+title_en: x-res2-tuli-grand (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a resident portrait. REVEALED GRAND. Tuli the
+  young arctic fox, the same snow-white fluffy fox, standing on a high snowy rise with her
+  head up and her great tail swept across the sky, the tail leaving broad soft ribbons of
+  green, teal and rose aurora painted across the whole night sky above her, the snow glowing
+  with their light, her eyes shining and her smile open and surpr…
+art:
+  images: []
+  jobs:
+  - batch-26-residents-concepts:x-res2-tuli-grand
+sources:
+- doc: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+kind: plate
+batch: batch-26-residents-concepts
+size: 1024x1536

@@ -1,0 +1,21 @@
+id: asset-x-decor-tea-set
+type: asset
+title_tr: x-decor-tea-set
+title_en: x-decor-tea-set (prop)
+status: in-production
+horizon: now
+summary: >-
+  A small round tray of soft brass-cream with three tulip-shaped tea glasses on saucers, filled
+  with amber tea, a small sugar bowl and two plain rounded clay cups of pale sage, for the
+  tea stall counter. Chunky, toy-like proportions, glass as a soft tinted shape. It stands
+  on the guide's ground ellipse, centered on the cross, never wider than the ellipse and never
+  taller than the height bar; it is small, a third of the…
+art:
+  images: []
+  jobs:
+  - batch-24-home-materials:x-decor-tea-set
+sources:
+- doc: tools/imagegen/manifest/batch-24-home-materials.yaml
+kind: prop
+batch: batch-24-home-materials
+size: 1024x1024

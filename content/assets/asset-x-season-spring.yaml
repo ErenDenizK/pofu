@@ -1,0 +1,21 @@
+id: asset-x-season-spring
+type: asset
+title_tr: x-season-spring
+title_en: x-season-spring (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Ayçiçeği, the small home island, in a new season.
+  SPRING: soft pale-pink blossom on a young tree and petals drifting down, fresh light-green
+  lawn with tiny white and yellow flowers, the sunflowers only small green shoots, pond fresh
+  and bright, warm morning light, pale sky. The same island as the attached one, with the
+  same shape, the same lawn outline, the same tea stall, w…
+art:
+  images: []
+  jobs:
+  - batch-25-seasons:x-season-spring
+sources:
+- doc: tools/imagegen/manifest/batch-25-seasons.yaml
+kind: plate
+batch: batch-25-seasons
+size: 1536x1024

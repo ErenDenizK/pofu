@@ -1,0 +1,21 @@
+id: asset-x-sticker-findik
+type: asset
+title_tr: x-sticker-findik
+title_en: x-sticker-findik (sheet)
+status: in-production
+horizon: now
+summary: >-
+  A sticker sheet of three full-body poses of Fındık the hedgehog, in his exact attached look,
+  in a row: (1) happy, a wide smile, paws clasped; (2) surprised, a small round O mouth, eyes
+  round, spines lifted slightly; (3) proud, standing tall, holding up a tiny wooden mallet,
+  a satisfied smile. Do not draw Pofu. On a plain transparent background, in a loose grid
+  with wide empty space around each sticker, none touching …
+art:
+  images: []
+  jobs:
+  - batch-23-stickers:x-sticker-findik
+sources:
+- doc: tools/imagegen/manifest/batch-23-stickers.yaml
+kind: sheet
+batch: batch-23-stickers
+size: 1536x1024

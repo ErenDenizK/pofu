@@ -1,0 +1,21 @@
+id: asset-x-mat-frosted-glass
+type: asset
+title_tr: x-mat-frosted-glass
+title_en: x-mat-frosted-glass (plate)
+status: in-production
+horizon: now
+summary: >-
+  A seamless tileable surface material swatch for a cozy mobile game's painted UI. The material:
+  a pale milky blue-cream frosted surface, like softly clouded sea glass, with broad soft
+  cloudy variations and a faint cool tint. It is a color and softness study only, not a glass
+  panel. Painted in the same soft painterly picture-book style as the attached hamster and
+  island: soft airbrushed shading, milky pastel colors, br…
+art:
+  images: []
+  jobs:
+  - batch-27-ui-materials:x-mat-frosted-glass
+sources:
+- doc: tools/imagegen/manifest/batch-27-ui-materials.yaml
+kind: plate
+batch: batch-27-ui-materials
+size: 1024x1024

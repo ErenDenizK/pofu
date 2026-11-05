@@ -1,0 +1,327 @@
+# Batch 26: exploration, never promoted (the backlog)
+#
+# Concept portraits for the main-island residents as currently planned
+# (docs/product/island-curation.md): Damla (Çağlayan), Tuli (Revontuli), Boncuk
+# (Emanet), Nane (Yıldız) and Yosun (Gezgin's postman). Each has two moments:
+# "first seen small" (the resident tiny in a wide, unfinished scene, the island
+# muted) and "revealed grand" (the island healed, the resident framed with
+# confidence). They decide silhouette, palette and mood; model sheets come
+# later. Characters keep Pofu's finish: soft fur, big glossy dark eyes with a
+# catchlight each, no curl on any head.
+#
+# Tracks: `damla`, `tuli`, `boncuk`, `nane`, `yosun`.
+#
+# BACKLOG (docs/design/art-production-plan.md#the-backlog): every job here is
+# an EXPLORATION with an `x-` id. EXPLORATION RULES (AGENTS.md): do NOT run
+# `promote`; commit the takes (WebP q90), the contact sheet and review.yaml
+# under design/art/takes/<batch>/<id>/ and nothing else. No painted text
+# anywhere. Never paint glass, UI chrome or buttons. A failed or refused job
+# is recorded and skipped; the run continues with the next job. There is no
+# pilot gate: run the jobs in the order written.
+#
+# Fresh variations: when the backlog comes round again, copy a job under a
+# new id (`-v2`, `-v3`, ...) with a new angle, never the same prompt twice.
+
+batch: batch-26-residents-concepts
+title: Main-island residents, concept portraits (first seen small, revealed grand)
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: pofu, kind: char, name: pofu-r1, external: r1, master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png}
+
+  - id: x-res2-damla-small
+    kind: plate
+    name: x-res2-damla-small
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Damla, first seen small. Review: the glass of water is the story; she is tiny and determined."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him)."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness for the world around the resident (do not draw this island)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a resident portrait.
+          FIRST SEEN SMALL. Damla, a baby otter, a round plush ball of warm
+          brown fur with a cream muzzle and belly, small round ears and a
+          thick rounded tail, big glossy dark eyes, climbing a steep, dry,
+          pale-grey cliff alone and tiny against it, carefully carrying one
+          tall glass of water in both paws without spilling, her tongue
+          between her lips in concentration. A dry empty riverbed winds down
+          the cliff behind her, the cliff face towering to the top of the
+          frame, muted pale colors, a small hopeful light at the top. No
+          curl or swirl on top of the head (that belongs to Pofu alone).
+      - block: prop-style-v2
+      - text: "AVOID: Pofu, a curl on top of the head, realistic animal anatomy, sharp claws, a border, text, labels, harsh shadows, saturated or neon colors, dark moods, outlines"
+
+  - id: x-res2-damla-grand
+    kind: plate
+    name: x-res2-damla-grand
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    light: {cell: golden, layer: subject}
+    notes: "Exploration. Damla, revealed grand. Review: the same otter, now confident; the waterfall is the hero."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him)."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness for the world around the resident (do not draw this island)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a resident portrait.
+          REVEALED GRAND. Damla the baby otter, the same round plush brown
+          ball of fur with a cream muzzle and belly, standing proudly at the
+          lip of the cliff with an overflowing glass held up in both paws, a
+          huge, shining waterfall pouring down beside her in long silver-
+          blue ribbons into the clouds with a soft mist rainbow, bright
+          morning light, lush green moss and flowers on the formerly dry
+          cliff, her face lit with a wide happy smile. No curl or swirl on
+          top of the head (that belongs to Pofu alone).
+      - block: prop-style-v2
+      - text: "AVOID: Pofu, a curl on top of the head, realistic animal anatomy, sharp claws, a border, text, labels, harsh shadows, saturated or neon colors, dark moods, outlines"
+
+  - id: x-res2-tuli-small
+    kind: plate
+    name: x-res2-tuli-small
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    light: {cell: night, layer: subject}
+    notes: "Exploration. Tuli, first seen small. Review: shy but not sad; the tail already holds a tiny hint of color."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him)."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness for the world around the resident (do not draw this island)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a resident portrait.
+          FIRST SEEN SMALL. Tuli, a shy young arctic fox, snow-white fluffy
+          fur with pale blue-grey shadows, a big soft tail, big glossy dark
+          eyes, standing tiny and a little hunched on a wide, quiet snow
+          drift at night, half hiding behind her own tail, her paw tracks
+          leading back across the snow, a dark, empty, starry sky above with
+          no aurora, a faint hopeful hint of pale green at the very tip of
+          her tail. No curl or swirl on top of the head (that belongs to
+          Pofu alone).
+      - block: prop-style-v2
+      - text: "AVOID: Pofu, a curl on top of the head, realistic animal anatomy, sharp claws, a border, text, labels, harsh shadows, saturated or neon colors, dark moods, outlines"
+
+  - id: x-res2-tuli-grand
+    kind: plate
+    name: x-res2-tuli-grand
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Tuli, revealed grand. Review: the aurora is her tail's painting; the palette is cold green but kept milky."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him)."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness for the world around the resident (do not draw this island)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a resident portrait.
+          REVEALED GRAND. Tuli the young arctic fox, the same snow-white
+          fluffy fox, standing on a high snowy rise with her head up and her
+          great tail swept across the sky, the tail leaving broad soft
+          ribbons of green, teal and rose aurora painted across the whole
+          night sky above her, the snow glowing with their light, her eyes
+          shining and her smile open and surprised at herself. No curl or
+          swirl on top of the head (that belongs to Pofu alone).
+      - block: prop-style-v2
+      - text: "AVOID: Pofu, a curl on top of the head, realistic animal anatomy, sharp claws, a border, text, labels, harsh shadows, saturated or neon colors, dark moods, outlines"
+
+  - id: x-res2-boncuk-small
+    kind: plate
+    name: x-res2-boncuk-small
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Boncuk, first seen small. Review: fussy and a little comic; the upturned umbrella roof is the silhouette."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him)."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness for the world around the resident (do not draw this island)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a resident portrait.
+          FIRST SEEN SMALL. Boncuk, a fussy magpie shopkeeper of lost
+          things, a plump bird in soft black-and-white feathers with a
+          gentle blue-green sheen on her wings and tail, a tiny pair of
+          round spectacles, big glossy dark eyes, standing small behind a
+          crowded counter in a tiny shop with an upturned umbrella for a
+          roof, shelves overflowing with lost buttons, spoons, keys and
+          mismatched mittens, peering anxiously at a little tag she holds,
+          the shop dim and muted. No curl or swirl on top of the head (that
+          belongs to Pofu alone).
+      - block: prop-style-v2
+      - text: "AVOID: Pofu, a curl on top of the head, realistic animal anatomy, sharp claws, a border, text, labels, harsh shadows, saturated or neon colors, dark moods, outlines"
+
+  - id: x-res2-boncuk-grand
+    kind: plate
+    name: x-res2-boncuk-grand
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Boncuk, revealed grand. Review: the same magpie, relieved and proud; the shelves are tidy and warm."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him)."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness for the world around the resident (do not draw this island)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a resident portrait.
+          REVEALED GRAND. Boncuk the magpie shopkeeper, the same plump
+          black-and-white bird with round spectacles, standing tall and
+          proud with wings half spread in front of her tidy, glowing shop
+          under its big upturned umbrella roof, the shelves neat and half
+          empty because the lost things were returned, one last small
+          shining object in her wing held out toward us with a delighted
+          smile, warm golden light. No curl or swirl on top of the head
+          (that belongs to Pofu alone).
+      - block: prop-style-v2
+      - text: "AVOID: Pofu, a curl on top of the head, realistic animal anatomy, sharp claws, a border, text, labels, harsh shadows, saturated or neon colors, dark moods, outlines"
+
+  - id: x-res2-nane-small
+    kind: plate
+    name: x-res2-nane-small
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    light: {cell: night, layer: subject}
+    notes: "Exploration. Nane, first seen small. Review: so tiny and so sleepy; the huge empty night sky is the contrast."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him)."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness for the world around the resident (do not draw this island)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a resident portrait.
+          FIRST SEEN SMALL. Nane, a tiny sleepy owl, a fluffy round ball of
+          soft cream and moon-grey feathers with big glossy dark half-closed
+          eyes and tiny ear tufts, perched on a very small branch, nodding
+          off, a huge empty dark-blue sky around her with only a few dim
+          stars, an empty star book open on her lap, a moon that is pale and
+          low and tired. No curl or swirl on top of the head (that belongs
+          to Pofu alone).
+      - block: prop-style-v2
+      - text: "AVOID: Pofu, a curl on top of the head, realistic animal anatomy, sharp claws, a border, text, labels, harsh shadows, saturated or neon colors, dark moods, outlines"
+
+  - id: x-res2-nane-grand
+    kind: plate
+    name: x-res2-nane-grand
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    light: {cell: night, layer: subject}
+    notes: "Exploration. Nane, revealed grand. Review: wakeful and wise, the same owl; the stars join into a map."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him)."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness for the world around the resident (do not draw this island)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a resident portrait.
+          REVEALED GRAND. Nane the tiny owl, the same fluffy round cream and
+          moon-grey ball with big glossy eyes now wide awake and shining,
+          perched on a high stone with her wings stretched wide, a huge
+          glowing moon in silver and pale gold behind her, plump stars
+          joining into soft glowing constellation lines across the whole sky
+          like a map, her star book full and open, a proud sleepy smile. No
+          curl or swirl on top of the head (that belongs to Pofu alone).
+      - block: prop-style-v2
+      - text: "AVOID: Pofu, a curl on top of the head, realistic animal anatomy, sharp claws, a border, text, labels, harsh shadows, saturated or neon colors, dark moods, outlines"
+
+  - id: x-res2-yosun-small
+    kind: plate
+    name: x-res2-yosun-small
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Yosun, first seen small. Review: old, slow and late; the satchel is overfull."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him)."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness for the world around the resident (do not draw this island)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a resident portrait.
+          FIRST SEEN SMALL. Yosun, an old tortoise postman, a wide domed
+          shell of soft mossy green and warm brown, a wrinkled kind face
+          with big glossy dark eyes and tiny round spectacles, a worn cream
+          leather satchel overflowing with undelivered letters across his
+          shell, plodding slowly and small along a long empty stone path in
+          the clouds, the great curve of a sleeping whale's back looming
+          behind him in the haze, muted colors. No curl or swirl on top of
+          the head (that belongs to Pofu alone).
+      - block: prop-style-v2
+      - text: "AVOID: Pofu, a curl on top of the head, realistic animal anatomy, sharp claws, a border, text, labels, harsh shadows, saturated or neon colors, dark moods, outlines"
+
+  - id: x-res2-yosun-grand
+    kind: plate
+    name: x-res2-yosun-grand
+    size: 1024x1536
+    canvas: 1024x1536
+    chat: "Pofu · Exploration"
+    light: {cell: golden, layer: subject}
+    notes: "Exploration. Yosun, revealed grand. Review: late and very proud; the letter is the point."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: match his art style, lighting, level of fluff and eye language exactly (do not draw him)."
+      - ref: approved:island-main-s
+        role: "The home island: the same painting and softness for the world around the resident (do not draw this island)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game, a resident portrait.
+          REVEALED GRAND. Yosun the old tortoise postman, the same mossy
+          green and brown dome shell, standing as tall as a tortoise can on
+          a bright harbor pier at golden hour, one blank cream envelope held
+          high in his hand with a proud wide smile, his satchel now empty
+          and neat, a huge friendly cloud-whale rising in the glowing sky
+          behind him, a small crowd of tiny paw-print silhouettes waiting at
+          the pier. No curl or swirl on top of the head (that belongs to
+          Pofu alone).
+      - block: prop-style-v2
+      - text: "AVOID: Pofu, a curl on top of the head, realistic animal anatomy, sharp claws, a border, text, labels, harsh shadows, saturated or neon colors, dark moods, outlines"

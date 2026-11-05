@@ -1,0 +1,21 @@
+id: asset-x-sticker-mochi-2
+type: asset
+title_tr: x-sticker-mochi-2
+title_en: x-sticker-mochi-2 (sheet)
+status: in-production
+horizon: now
+summary: >-
+  A sticker sheet of five full-body poses of Mochi the bunny, in her exact attached look,
+  each a different moment: (1) laughing, eyes squeezed shut, mouth wide open, one paw on her
+  tummy; (2) waving, one paw raised, a warm smile, ears bobbing; (3) tea, proudly holding
+  out a small tulip-shaped tea glass on a saucer with both paws, a gentle host's smile; (4)
+  thinking, one paw at the chin, eyes up, one ear bent; (5) love,…
+art:
+  images: []
+  jobs:
+  - batch-23-stickers:x-sticker-mochi-2
+sources:
+- doc: tools/imagegen/manifest/batch-23-stickers.yaml
+kind: sheet
+batch: batch-23-stickers
+size: 1536x1024

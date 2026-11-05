@@ -1,0 +1,239 @@
+# Batch 25: exploration, never promoted (the backlog)
+#
+# Concept frames of the home island Ayçiçeği in five seasons and two extra
+# moods, to decide whether seasons are an edit, a palette grade in code, or
+# new plates. These are concept frames, not production plates: the island
+# shape, camera and stations stay the attached island's. Complements the
+# winter edit of batch 15.
+#
+# Tracks: `seasons`.
+#
+# BACKLOG (docs/design/art-production-plan.md#the-backlog): every job here is
+# an EXPLORATION with an `x-` id. EXPLORATION RULES (AGENTS.md): do NOT run
+# `promote`; commit the takes (WebP q90), the contact sheet and review.yaml
+# under design/art/takes/<batch>/<id>/ and nothing else. No painted text
+# anywhere. Never paint glass, UI chrome or buttons. A failed or refused job
+# is recorded and skipped; the run continues with the next job. There is no
+# pilot gate: run the jobs in the order written.
+#
+# Fresh variations: when the backlog comes round again, copy a job under a
+# new id (`-v2`, `-v3`, ...) with a new angle, never the same prompt twice.
+
+batch: batch-25-seasons
+title: Seasons of Ayçiçeği (concept frames)
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: pofu, kind: char, name: pofu-r1, external: r1, master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png}
+
+  - id: x-season-spring
+    kind: plate
+    name: x-season-spring
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Spring blossom. Review: a clear season at a glance; the island is still the same island."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayçiçeği, the small
+          home island, in a new season. SPRING: soft pale-pink blossom on a
+          young tree and petals drifting down, fresh light-green lawn with
+          tiny white and yellow flowers, the sunflowers only small green
+          shoots, pond fresh and bright, warm morning light, pale sky. The
+          same island as the attached one, with the same shape, the same
+          lawn outline, the same tea stall, windmill, pond, garden and round
+          door in the same places, floating over a sea of clouds, from the
+          same low camera. Peaceful and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, a different island shape, new buildings, characters"
+
+  - id: x-season-summer
+    kind: plate
+    name: x-season-summer
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. High summer, the default look pushed warm. Review: the sunflowers are the star."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayçiçeği, the small
+          home island, in a new season. SUMMER: full, tall sunflowers in the
+          garden facing the light, a deep green lawn, warm golden afternoon
+          light, the pond sparkling softly, a few puffy white clouds in the
+          sky. The same island as the attached one, with the same shape, the
+          same lawn outline, the same tea stall, windmill, pond, garden and
+          round door in the same places, floating over a sea of clouds, from
+          the same low camera. Peaceful and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, a different island shape, new buildings, characters"
+
+  - id: x-season-autumn
+    kind: plate
+    name: x-season-autumn
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Autumn leaves. Review: the palette stays milky, never orange-saturated."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayçiçeği, the small
+          home island, in a new season. AUTUMN: the lawn turning soft ochre
+          and sage, a tree with falling maple leaves in muted rose, rust and
+          gold, the sunflowers drooping with brown seed heads, a few leaves
+          floating on the pond, low golden light. The same island as the
+          attached one, with the same shape, the same lawn outline, the same
+          tea stall, windmill, pond, garden and round door in the same
+          places, floating over a sea of clouds, from the same low camera.
+          Peaceful and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, a different island shape, new buildings, characters"
+
+  - id: x-season-snow
+    kind: plate
+    name: x-season-snow
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. First snow. Review: cozy, not bleak; the tea stall is the warm spot."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayçiçeği, the small
+          home island, in a new season. FIRST SNOW: a thin soft blanket of
+          white on the lawn and on every roof, the lawn showing sage in
+          patches, bare brown flower stalks, a thin skin of ice at the
+          pond's edge, a pale lilac-grey sky with a few soft flakes falling,
+          the tea stall's window glowing warm cream. The same island as the
+          attached one, with the same shape, the same lawn outline, the same
+          tea stall, windmill, pond, garden and round door in the same
+          places, floating over a sea of clouds, from the same low camera.
+          Peaceful and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, a different island shape, new buildings, characters"
+
+  - id: x-season-rain
+    kind: plate
+    name: x-season-rain
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Gentle rain. Review: the rain is a mood, not a storm; colors stay soft."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayçiçeği, the small
+          home island, in a new season. RAIN: a soft grey-blue sky with
+          gentle slanting rain as a faint veil, a darker wet lawn, shining
+          puddles in rounded soft shapes, ripples on the pond, the
+          sunflowers bowed, a small paper umbrella leaning at the tea stall,
+          a warm light in its window. The same island as the attached one,
+          with the same shape, the same lawn outline, the same tea stall,
+          windmill, pond, garden and round door in the same places, floating
+          over a sea of clouds, from the same low camera. Peaceful and
+          wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, a different island shape, new buildings, characters"
+
+  - id: x-season-summer-evening
+    kind: plate
+    name: x-season-summer-evening
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: golden, layer: subject}
+    notes: "Exploration. Summer evening at golden hour. Review: warm and long light, the lanterns not yet lit."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayçiçeği, the small
+          home island, in a new season. SUMMER EVENING: golden hour with
+          long soft light from the upper left turning peach and rose, the
+          sunflowers glowing at their edges, fireflies beginning over the
+          lawn, a pale first star in a peach-to-lilac sky. The same island
+          as the attached one, with the same shape, the same lawn outline,
+          the same tea stall, windmill, pond, garden and round door in the
+          same places, floating over a sea of clouds, from the same low
+          camera. Peaceful and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, a different island shape, new buildings, characters"
+
+  - id: x-season-snow-night
+    kind: plate
+    name: x-season-snow-night
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: night, layer: subject}
+    notes: "Exploration. Snow at night. Review: the warm windows are the focal points; shadows are blue, never black."
+    attach:
+      - ref: approved:island-main-s
+        role: "The home island: the same painting, the same low camera (about 20 degrees), the same softness and scale of a floating island. Do not draw this island."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Style reference only (no characters unless asked): the hamster's soft painting and pastel colors."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Ayçiçeği, the small
+          home island, in a new season. SNOW AT NIGHT: a quiet blue night,
+          soft snow on the lawn and roofs, a large pale moon, a few plump
+          stars, warm cream light in the tea stall window and a single paper
+          lantern, tiny paw prints across the snow, the pond frozen pale.
+          The same island as the attached one, with the same shape, the same
+          lawn outline, the same tea stall, windmill, pond, garden and round
+          door in the same places, floating over a sea of clouds, from the
+          same low camera. Peaceful and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, a different island shape, new buildings, characters"

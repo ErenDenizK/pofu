@@ -1,0 +1,21 @@
+id: asset-x-mat-felt
+type: asset
+title_tr: x-mat-felt
+title_en: x-mat-felt (plate)
+status: in-production
+horizon: now
+summary: >-
+  A seamless tileable surface material swatch for a cozy mobile game's painted UI. The material:
+  soft dusty-rose wool felt, a velvety matte surface with a very fine soft fuzzy mottling
+  of tone, as if made of pressed fibres. Painted in the same soft painterly picture-book style
+  as the attached hamster and island: soft airbrushed shading, milky pastel colors, broad
+  low-contrast forms instead of fine detail, matte, no out…
+art:
+  images: []
+  jobs:
+  - batch-27-ui-materials:x-mat-felt
+sources:
+- doc: tools/imagegen/manifest/batch-27-ui-materials.yaml
+kind: plate
+batch: batch-27-ui-materials
+size: 1024x1024

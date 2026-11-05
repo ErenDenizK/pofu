@@ -1,0 +1,21 @@
+id: asset-x-mat-clay
+type: asset
+title_tr: x-mat-clay
+title_en: x-mat-clay (plate)
+status: in-production
+horizon: now
+summary: >-
+  A seamless tileable surface material swatch for a cozy mobile game's painted UI. The material:
+  pale sage glazed clay, a smooth matte surface with soft pooling of slightly darker glaze
+  in a few broad rounded patches and a few tiny specks. Painted in the same soft painterly
+  picture-book style as the attached hamster and island: soft airbrushed shading, milky pastel
+  colors, broad low- contrast forms instead of fine deta…
+art:
+  images: []
+  jobs:
+  - batch-27-ui-materials:x-mat-clay
+sources:
+- doc: tools/imagegen/manifest/batch-27-ui-materials.yaml
+kind: plate
+batch: batch-27-ui-materials
+size: 1024x1024

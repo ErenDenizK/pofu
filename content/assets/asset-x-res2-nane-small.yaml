@@ -1,0 +1,21 @@
+id: asset-x-res2-nane-small
+type: asset
+title_tr: x-res2-nane-small
+title_en: x-res2-nane-small (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game, a resident portrait. FIRST SEEN SMALL. Nane,
+  a tiny sleepy owl, a fluffy round ball of soft cream and moon-grey feathers with big glossy
+  dark half-closed eyes and tiny ear tufts, perched on a very small branch, nodding off, a
+  huge empty dark-blue sky around her with only a few dim stars, an empty star book open on
+  her lap, a moon that is pale and low and tired. No curl or sw…
+art:
+  images: []
+  jobs:
+  - batch-26-residents-concepts:x-res2-nane-small
+sources:
+- doc: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+kind: plate
+batch: batch-26-residents-concepts
+size: 1024x1536

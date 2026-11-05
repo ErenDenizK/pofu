@@ -1,0 +1,21 @@
+id: asset-x-mat-paper
+type: asset
+title_tr: x-mat-paper
+title_en: x-mat-paper (plate)
+status: in-production
+horizon: now
+summary: >-
+  A seamless tileable surface material swatch for a cozy mobile game's painted UI. The material:
+  warm cream handmade paper, with a few very faint broad cloudy variations in tone and the
+  softest hint of paper fibres. Painted in the same soft painterly picture- book style as
+  the attached hamster and island: soft airbrushed shading, milky pastel colors, broad low-contrast
+  forms instead of fine detail, matte, no outlines, …
+art:
+  images: []
+  jobs:
+  - batch-27-ui-materials:x-mat-paper
+sources:
+- doc: tools/imagegen/manifest/batch-27-ui-materials.yaml
+kind: plate
+batch: batch-27-ui-materials
+size: 1024x1024

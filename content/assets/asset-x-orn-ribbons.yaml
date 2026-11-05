@@ -1,0 +1,21 @@
+id: asset-x-orn-ribbons
+type: asset
+title_tr: x-orn-ribbons
+title_en: x-orn-ribbons (sheet)
+status: in-production
+horizon: now
+summary: >-
+  A small sheet of painted UI ornaments for a cozy mobile game, seen straight on from the
+  front. Four ribbons: a straight banner ribbon with folded ends in soft rose, a swallowtail
+  banner ribbon in sage, a plump tied bow in cream and a long bookmark ribbon with a notched
+  end in honey gold. All blank, thick and softly rounded. On a plain transparent background,
+  with wide clear space around and between the items, none to…
+art:
+  images: []
+  jobs:
+  - batch-27-ui-materials:x-orn-ribbons
+sources:
+- doc: tools/imagegen/manifest/batch-27-ui-materials.yaml
+kind: sheet
+batch: batch-27-ui-materials
+size: 1536x1024

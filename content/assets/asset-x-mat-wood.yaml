@@ -1,0 +1,21 @@
+id: asset-x-mat-wood
+type: asset
+title_tr: x-mat-wood
+title_en: x-mat-wood (plate)
+status: in-production
+horizon: now
+summary: >-
+  A seamless tileable surface material swatch for a cozy mobile game's painted UI. The material:
+  soft honey-coloured wooden boards laid side by side, three broad rounded bands per tile
+  with the gentlest soft grain as broad low-contrast strokes, thin soft seams between the
+  boards. Painted in the same soft painterly picture- book style as the attached hamster and
+  island: soft airbrushed shading, milky pastel colors, broa…
+art:
+  images: []
+  jobs:
+  - batch-27-ui-materials:x-mat-wood
+sources:
+- doc: tools/imagegen/manifest/batch-27-ui-materials.yaml
+kind: plate
+batch: batch-27-ui-materials
+size: 1024x1024

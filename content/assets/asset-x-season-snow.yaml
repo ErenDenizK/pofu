@@ -1,0 +1,21 @@
+id: asset-x-season-snow
+type: asset
+title_tr: x-season-snow
+title_en: x-season-snow (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Ayçiçeği, the small home island, in a new season.
+  FIRST SNOW: a thin soft blanket of white on the lawn and on every roof, the lawn showing
+  sage in patches, bare brown flower stalks, a thin skin of ice at the pond's edge, a pale
+  lilac-grey sky with a few soft flakes falling, the tea stall's window glowing warm cream.
+  The same island as the attached one, with the same shape, t…
+art:
+  images: []
+  jobs:
+  - batch-25-seasons:x-season-snow
+sources:
+- doc: tools/imagegen/manifest/batch-25-seasons.yaml
+kind: plate
+batch: batch-25-seasons
+size: 1536x1024

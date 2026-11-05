@@ -1,0 +1,21 @@
+id: asset-x-season-summer
+type: asset
+title_tr: x-season-summer
+title_en: x-season-summer (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Ayçiçeği, the small home island, in a new season.
+  SUMMER: full, tall sunflowers in the garden facing the light, a deep green lawn, warm golden
+  afternoon light, the pond sparkling softly, a few puffy white clouds in the sky. The same
+  island as the attached one, with the same shape, the same lawn outline, the same tea stall,
+  windmill, pond, garden and round door in the same pl…
+art:
+  images: []
+  jobs:
+  - batch-25-seasons:x-season-summer
+sources:
+- doc: tools/imagegen/manifest/batch-25-seasons.yaml
+kind: plate
+batch: batch-25-seasons
+size: 1536x1024

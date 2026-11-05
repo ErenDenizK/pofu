@@ -1,0 +1,21 @@
+id: asset-x-decor-samovar
+type: asset
+title_tr: x-decor-samovar
+title_en: x-decor-samovar (prop)
+status: in-production
+horizon: now
+summary: >-
+  A rounded samovar for the tea stall: a plump urn of soft warm brass-cream with a small domed
+  lid, two chunky round handles, a short tap and a small teapot of rose clay resting on top.
+  Matte, a soft form without reflections or hammering. It stands on the guide's ground ellipse,
+  centered on the cross, never wider than the ellipse and never taller than the height bar;
+  it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-24-home-materials:x-decor-samovar
+sources:
+- doc: tools/imagegen/manifest/batch-24-home-materials.yaml
+kind: prop
+batch: batch-24-home-materials
+size: 1024x1024
