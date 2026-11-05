@@ -1,0 +1,389 @@
+batch: batch-34-islands-in-game
+manifest: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+manifest_sha256: 345738791fedc39057958fb6e3aee35a0f660ada571fff12a36eba9dc2b2257f
+contact_sheet: design/art/takes/batch-34-islands-in-game/x-home-il5/contact.jpg
+jobs:
+  x-home-il5:
+    pick: none
+    publication: skipped after one allowed retry
+    note: SKIPPED after one allowed retry pair. All four takes depict the second earth
+      door in honey wood with a decorative rose rather than the explicitly rose-painted
+      second door, and all four use the attached finished tea stall tiled roof instead
+      of the requested striped awning. The otherwise clear IL5 composition keeps garden
+      far left, pond front left, open back lawn with pencil windmill outline, Pofu
+      front centre and bridge to right harbor cart/pier. This recurring literal-brief
+      versus attached-reference conflict is recorded for lead review; no prompt edits,
+      manual repaint or third round. All original PNGs and q90 takes preserved; exploration
+      never promoted.
+qa_reports:
+  1:
+    job: x-home-il5
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 33.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 65 (at most 22), p98 96 (at least 90), spread 31
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 30.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.42 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.416
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.4 (at least 3.5)'
+      value: 3.36
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.27
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.896
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 4.1, off-palette 0.0% (top: #CC6644 (0.0%))'
+      value: 1.7894
+    info:
+      metrics_raw:
+        L_p5: 69.7
+        L_p50: 89.1
+        L_p95: 95.5
+        C_p50: 10.5
+        C_p95: 34.4
+        C_p99: 41.5
+        detail: 2.94
+      metrics_locked:
+        L_p5: 70.3
+        L_p50: 89.0
+        L_p95: 95.3
+        C_p50: 10.4
+        C_p95: 33.7
+        C_p99: 40.3
+        detail: 2.27
+    fingerprint: 90207140c5540945
+  2:
+    job: x-home-il5
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 35.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 96 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.40 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.396
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 3.96
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.46
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8582
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 4.2, off-palette 0.4% (top: #888844 (0.1%), #889944
+        (0.1%))'
+      value: 1.9154
+    info:
+      metrics_raw:
+        L_p5: 68.5
+        L_p50: 88.7
+        L_p95: 95.6
+        C_p50: 11.3
+        C_p95: 35.8
+        C_p99: 47.6
+        detail: 3.1
+      metrics_locked:
+        L_p5: 69.0
+        L_p50: 88.6
+        L_p95: 95.4
+        C_p50: 11.3
+        C_p95: 35.0
+        C_p99: 45.6
+        detail: 2.46
+    fingerprint: 90207140c5540945
+  3:
+    job: x-home-il5
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 64 (at most 22), p98 96 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 32.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 84.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.40 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.396
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.7 (at least 3.5)'
+      value: 3.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.43
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8778
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 4.4, off-palette 0.3% (top: #888844 (0.1%), #BB7733
+        (0.1%))'
+      value: 1.9181
+    info:
+      metrics_raw:
+        L_p5: 69.5
+        L_p50: 89.6
+        L_p95: 95.8
+        C_p50: 10.6
+        C_p95: 36.0
+        C_p99: 49.2
+        detail: 3.07
+      metrics_locked:
+        L_p5: 70.0
+        L_p50: 89.5
+        L_p95: 95.6
+        C_p50: 10.5
+        C_p95: 34.9
+        C_p99: 47.1
+        detail: 2.43
+    fingerprint: 90207140c5540945
+  4:
+    job: x-home-il5
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 35.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 64 (at most 22), p98 95 (at least 90), spread 32
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 31.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.40 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.404
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.8 (at least 3.5)'
+      value: 3.75
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.42
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8991
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 4.1, off-palette 0.1% (top: #CC7733 (0.0%), #DD8844
+        (0.0%))'
+      value: 1.743
+    info:
+      metrics_raw:
+        L_p5: 70.7
+        L_p50: 89.1
+        L_p95: 95.0
+        C_p50: 12.2
+        C_p95: 36.9
+        C_p99: 45.1
+        detail: 3.1
+      metrics_locked:
+        L_p5: 71.2
+        L_p50: 89.0
+        L_p95: 94.8
+        C_p50: 12.2
+        C_p95: 35.7
+        C_p99: 43.7
+        detail: 2.42
+    fingerprint: 90207140c5540945
+manual_review:
+  observed_note: SKIPPED after one allowed retry pair. All four takes depict the second
+    earth door in honey wood with a decorative rose rather than the explicitly rose-painted
+    second door, and all four use the attached finished tea stall tiled roof instead
+    of the requested striped awning. The otherwise clear IL5 composition keeps garden
+    far left, pond front left, open back lawn with pencil windmill outline, Pofu front
+    centre and bridge to right harbor cart/pier. This recurring literal-brief versus
+    attached-reference conflict is recorded for lead review; no prompt edits, manual
+    repaint or third round. All original PNGs and q90 takes preserved; exploration
+    never promoted.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-34-islands-in-game
+  job: x-home-il5
+  take: 1
+  round: 1
+  logical_run: 20261105-night34-home-growth
+  source_file: /workspace/generated_images/exec-0a85bb3b-5da1-445e-a0fe-4f671e620b86.png
+  returned_at: '2026-11-05T18:26:22.500Z'
+  prompt_sha256: 25c64f2ecab5eecc62c66eacda3adffda756ce841cab9c7afee07870bb4c100d
+  fingerprint: 90207140c5540945
+  saved_at: '2026-11-05T18:26:22.840723+00:00'
+  original_generated_png_sha256: bd30525c8f10978f26628ef50b77863b110b33daa6d0b250a005db22adaa74a6
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 73fd21b90eba106f66fe6579044fe8b4d0f7ea912af7a4f160e1f42b1c8438f5
+  inbox_png_sha256: a076965a81a1a2ae9e1ab0a7d0068b08efaac869a6dc11d7fe6dddff4653547a
+  qa_sha256: cf3b0c6759dfaaeb33fc886aaf2a2ffa503d76a73c8858a8b34a01df208c36f7
+- batch: batch-34-islands-in-game
+  job: x-home-il5
+  take: 2
+  round: 1
+  logical_run: 20261105-night34-home-growth
+  source_file: /workspace/generated_images/exec-c4a3b672-364d-48a7-8fff-711a41a3b23b.png
+  returned_at: '2026-11-05T18:25:25.305Z'
+  prompt_sha256: 25c64f2ecab5eecc62c66eacda3adffda756ce841cab9c7afee07870bb4c100d
+  fingerprint: 90207140c5540945
+  saved_at: '2026-11-05T18:25:25.765656+00:00'
+  original_generated_png_sha256: 9427d0743beb7b9ee4f0bb070c12259ee167e3d367d06a8dacd0b9968179cd28
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: a84e26b732bf6feb78dd8875764996bd7938b83076a2a69033c0904e2b934327
+  inbox_png_sha256: c87fe0c73164d7231e33a57040f10ddd0e7e39a58502d522676371b791fcf84b
+  qa_sha256: 5be43f168ee3175997f37db680fe6429afdeeca2cd88568068e15a4fc26603e0
+- batch: batch-34-islands-in-game
+  job: x-home-il5
+  take: 3
+  round: 2
+  logical_run: 20261105-night34-home-one-retry
+  source_file: /workspace/generated_images/exec-62d51a28-fe40-4dd7-bb0b-46725dd293c7.png
+  returned_at: '2026-11-05T18:30:25.627Z'
+  prompt_sha256: 25c64f2ecab5eecc62c66eacda3adffda756ce841cab9c7afee07870bb4c100d
+  fingerprint: 90207140c5540945
+  saved_at: '2026-11-05T18:30:26.092667+00:00'
+  original_generated_png_sha256: f10014a1eca99a503c52a758cc0acf649f714a158bbc23442b5cf5846f414f1e
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 58c6e061475b7cf54991a5220b6331fb68c97c840d3cb4c08bfee582195a959f
+  inbox_png_sha256: 3171ba484728eb562100ceebdd248e968b0f79edceab8930bdc40d40632de60d
+  qa_sha256: a5cd58f73fe073c8faf202bb7d0251c82db24b14fab5e25513f15ea8ba22faad
+- batch: batch-34-islands-in-game
+  job: x-home-il5
+  take: 4
+  round: 2
+  logical_run: 20261105-night34-home-one-retry
+  source_file: /workspace/generated_images/exec-40ed1c22-660c-4b72-bc07-d7255567b04b.png
+  returned_at: '2026-11-05T18:31:16.884Z'
+  prompt_sha256: 25c64f2ecab5eecc62c66eacda3adffda756ce841cab9c7afee07870bb4c100d
+  fingerprint: 90207140c5540945
+  saved_at: '2026-11-05T18:31:17.359855+00:00'
+  original_generated_png_sha256: 056e4eec71b51f705e2d4b6fff48e46d7864f25dca70d9a60b45b8d81917f975
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 6fb1283d2a1af10c31aff09ac37fc5e1d1a9686a9127f4e51cfb1bbb83a8750b
+  inbox_png_sha256: 06412628c06ade236b03e133744314f47f94cce9939a4fc4740e7b2abd0f7e21
+  qa_sha256: 74b8cccad98cd7c7ef4a8b94c5bee308ed3658a3012bfce90b9ac3b8cf9a91d9
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+reference_packaging:
+  reason: Tool accepts at most five paths; all six listed references retained, final
+    two on labelled native-pixel board before first generation dispatch
+  board: /workspace/art-operator-runtime/run-20261105-night/batch-34-islands-in-game/x-home-il5-references-5-6.png
+  board_sha256: b0c91f2783d904c7cfba04a81204bb5e0c833d63091844723ece1474aed2510f
+  source_files:
+    /workspace/art-20261105-islands-game/design/art/masters/cloud-sea/cloud-sea.png: bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a
+    /workspace/art-20261105-islands-game/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
+  original_rgba_pixels_preserved: true
+  individual_references_resized: false
+  printed_prompt_unchanged: true
+  all_original_references:
+    /workspace/art-20261105-islands-game/design/art/masters/island-main-l-v3/island-main-l-v3.webp: f2e539ed4eb75131b0d90454c1b12dbfd8737935fe95e3564956ea967c5ffa29
+    /workspace/art-20261105-islands-game/design/art/stations/tea-stall-5/tea-stall-5.png: c9a9f018b2dc6bcb1189f497f750dd98e80c69610c10ba3c71081d8b84d157b3
+    /workspace/art-20261105-islands-game/design/art/stations/windmill-5/windmill-5.png: 2b39b888f828ae71db321dfb0899e69712830cc04c055a8fc93e98fe0ae877c3
+    /workspace/art-20261105-islands-game/design/art/masters/harbor-island-s/harbor-island-s.webp: ecd09ecf0ac212c50dfb6795a426d88a3ba9302815ad52a8edc57de2d8ebd3e4
+    /workspace/art-20261105-islands-game/design/art/masters/cloud-sea/cloud-sea.png: bb693d333d53fd5fc3e385335fc912574ccda580ac018bc12c2143c12031579a
+    /workspace/art-20261105-islands-game/design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png: d4f0ce88dc0541053dd515845c1f2bbb2a4ebe101c5ce4a6080d340a5c872454
