@@ -46,6 +46,10 @@ final class AppModel {
             }
         }
     }
+    /// The garden game is open over Home (a full-screen cover), with the
+    /// earned rounds that were on offer when it opened.
+    var isPlayingGarden = false
+    private(set) var gardenRounds = 0
     /// The island's camera, focus and station sheet
     /// (`FeatureFlags.islandHome`). Here rather than in the view, so Hop!
     /// can close a station sheet before its cover.
@@ -350,6 +354,28 @@ final class AppModel {
     /// at night (`WorldClock.playableRounds`).
     var playableRounds: Int {
         gameClock.playableRounds(in: game, at: clock.now)
+    }
+
+    /// Opens the garden game over Home with the rounds earned. A sheet over
+    /// Home steps aside first: UIKit cannot present a cover while another
+    /// presentation is in flight.
+    func playGarden() {
+        let rounds = playableRounds
+        guard rounds > 0, !isPlayingGarden else { return }
+        let hadSheet = homeSheet != nil || island.hasSheet
+        homeSheet = nil
+        island.dismissFocus()
+        gardenRounds = rounds
+        guard hadSheet else {
+            isPlayingGarden = true
+            return
+        }
+        Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(450))
+            if playableRounds > 0 {
+                isPlayingGarden = true
+            }
+        }
     }
 
     /// Spends a finished round and credits its seeds to the pouch
@@ -1175,6 +1201,7 @@ enum HomeSheet: String, Identifiable {
     case passes
     case settings
     case setup
+    case today
 
     var id: String { rawValue }
 }

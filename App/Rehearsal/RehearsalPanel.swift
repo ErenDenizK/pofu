@@ -111,9 +111,8 @@ struct RehearsalPanel: View {
             // credited to the pouch: the same ledger the product will use.
             let rounds = model.playableRounds
             control(Text("Play the garden (\(rounds))"), symbol: "square.grid.3x3.fill") {
-                rehearsal.gardenRounds = rounds
                 rehearsal.isPanelExpanded = false
-                rehearsal.isPlayingGarden = true
+                model.playGarden()
             }
             .disabled(rounds == 0)
             Divider()

@@ -12,6 +12,9 @@ struct StationSheet: View {
     let status: StationStatus?
     let jar: Energy
     var isBuilding = false
+    /// The garden's rounds left today, and the door to play them.
+    var playableRounds = 0
+    var onPlay: (@MainActor () -> Void)?
     let onBuild: (@MainActor (StationID) -> Void)?
     let onClose: @MainActor () -> Void
 
@@ -24,6 +27,7 @@ struct StationSheet: View {
                 levelDots(status)
                 details(status)
                 Spacer(minLength: 0)
+                playButton(status)
                 buildButton(status)
             } else {
                 Text("Not open yet", bundle: .module)
@@ -104,6 +108,30 @@ struct StationSheet: View {
                 .foregroundStyle(PofuColor.textPrimary)
         }
         .accessibilityElement(children: .combine)
+    }
+
+    /// The garden's door to the game once it is built: rounds are earned,
+    /// two a day, so with none left it says so instead of disappearing.
+    @ViewBuilder
+    private func playButton(_ status: StationStatus) -> some View {
+        if station == .garden, status.level > 0, let onPlay {
+            if playableRounds > 0 {
+                Button {
+                    onPlay()
+                } label: {
+                    Text("Play · \(playableRounds) left", bundle: .module)
+                        .font(PofuFont.headline)
+                        .frame(maxWidth: .infinity, minHeight: PofuSize.minimumTouch)
+                }
+                .buttonStyle(.glass)
+                .tint(PofuColor.accent)
+            } else {
+                Text("No rounds left today.", bundle: .module)
+                    .font(PofuFont.footnote)
+                    .foregroundStyle(PofuColor.textSecondary)
+                    .frame(maxWidth: .infinity)
+            }
+        }
     }
 
     @ViewBuilder

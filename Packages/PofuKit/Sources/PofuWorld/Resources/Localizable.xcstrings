@@ -731,6 +731,16 @@
         }
       }
     },
+    "No rounds left today.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün tur kalmadı."
+          }
+        }
+      }
+    },
     "Skip pots": {
       "localizations": {
         "tr": {
@@ -747,6 +757,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bugün'ü aç"
+          }
+        }
+      }
+    },
+    "Play": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oyna"
+          }
+        }
+      }
+    },
+    "Play · %lld left": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oyna · %lld tur"
           }
         }
       }

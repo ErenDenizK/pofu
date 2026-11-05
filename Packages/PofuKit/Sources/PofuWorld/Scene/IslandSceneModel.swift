@@ -62,6 +62,13 @@ public final class IslandSceneModel {
         }
     }
 
+    /// Garden rounds playable now, for the garden's sheet and Home's play
+    /// button; Home keeps it current.
+    public var playableRounds = 0
+    /// Starts the garden game; `nil` until Home sets it. The sheet's
+    /// "Play" calls it.
+    public var onPlay: (@MainActor () -> Void)?
+
     /// The sheet's detent; the build moment drops it to compact.
     public var sheetDetent: StationSheetDetent = .medium
 

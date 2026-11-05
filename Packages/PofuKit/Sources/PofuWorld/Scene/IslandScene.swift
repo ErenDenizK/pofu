@@ -181,6 +181,8 @@ public struct IslandScene<Bubble: View>: View {
                 status: world.stations.first { $0.id == item.station },
                 jar: world.jar,
                 isBuilding: home?.buildingStation == item.station,
+                playableRounds: model.playableRounds,
+                onPlay: model.onPlay,
                 onBuild: onBuild,
                 onClose: { model.dismissFocus() }
             )

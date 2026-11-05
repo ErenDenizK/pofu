@@ -28,19 +28,27 @@ public struct WorldHome: View {
         public var repair: @MainActor () -> Void
         /// The Today sheet; `nil` until it exists.
         public var openToday: (@MainActor () -> Void)?
+        /// Opens the garden game; `nil` hides the play doors.
+        public var play: (@MainActor () -> Void)?
+        /// Garden rounds playable now.
+        public var playableRounds: Int
 
         public init(
             collect: @escaping @MainActor () -> SeedPouch?,
             build: @escaping @MainActor (StationID) -> BuildReceipt?,
             openSettings: @escaping @MainActor () -> Void,
             repair: @escaping @MainActor () -> Void,
-            openToday: (@MainActor () -> Void)? = nil
+            openToday: (@MainActor () -> Void)? = nil,
+            play: (@MainActor () -> Void)? = nil,
+            playableRounds: Int = 0
         ) {
             self.collect = collect
             self.build = build
             self.openSettings = openSettings
             self.repair = repair
             self.openToday = openToday
+            self.play = play
+            self.playableRounds = playableRounds
         }
     }
 
@@ -83,6 +91,12 @@ public struct WorldHome: View {
         }
         .onAppear {
             home.camera = scene
+        }
+        .onChange(of: actions.playableRounds, initial: true) { _, rounds in
+            scene.playableRounds = rounds
+        }
+        .onAppear {
+            scene.onPlay = actions.play
         }
         .onChange(of: home.collectSuccesses) { _, _ in
             if let moment = home.collect?.moment {
@@ -193,8 +207,14 @@ public struct WorldHome: View {
                 )
                 .frame(maxWidth: typeSize.isAccessibilitySize ? CGFloat.infinity : 280, alignment: .leading)
                 Spacer(minLength: 0)
-                PofuIconButton(systemName: "map", label: WorldStrings.framingName(.map)) {
-                    scene.go(to: .map)
+                VStack(spacing: PofuSpacing.s) {
+                    if actions.playableRounds > 0, let play = actions.play {
+                        PofuIconButton(systemName: "gamecontroller.fill", label: WorldStrings.play, action: play)
+                            .transition(.scale(scale: 0.8).combined(with: .opacity))
+                    }
+                    PofuIconButton(systemName: "map", label: WorldStrings.framingName(.map)) {
+                        scene.go(to: .map)
+                    }
                 }
             }
         }
