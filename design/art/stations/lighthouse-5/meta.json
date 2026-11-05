@@ -1,0 +1,137 @@
+{
+  "job": "lighthouse-5",
+  "batch": "batch-21-harbor-ladders",
+  "asset": "station__lighthouse-5",
+  "take": 3,
+  "takes_considered": 4,
+  "approved_at": "2026-11-05T06:30:05+00:00",
+  "image": "design/art/stations/lighthouse-5/lighthouse-5.png",
+  "raw": "design/art/stations/lighthouse-5/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "96f5ddfed886b42e",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nAdd a small coral flag on a thin pole at the lamp room's cap, and at the tower's foot a little garden patch of soft green leaves with a few round cream and coral flowers and two round pebbles, inside the footprint.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/lighthouse-4/lighthouse-4.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T06:28:19+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 0,
+    "dy": 0
+  },
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 59 (R1 51)",
+        "value": 59.0
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 46 (at most 22), p98 93 (at least 90), spread 47 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 46.6
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 78 (band 55-90)",
+        "value": 78.2
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.11 (at most 0.20; no true dark means a wash)",
+        "value": 0.114
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 5.6 (at least 3.5)",
+        "value": 5.57
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 3.4 (R1 5.3)",
+        "value": 3.39
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.6",
+        "value": 1.6257
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 3.0, p95 11.8, off-palette 4.8% (top: #CC7733 (0.4%), #778844 (0.4%))",
+        "value": 2.978
+      },
+      {
+        "check": "station_anchor",
+        "status": "warn",
+        "message": "top y 52 above the parent's bar (140)",
+        "value": 906.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 75 against the world reference (outliers: C_p95, detail, edge)",
+        "value": 75.2
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "93% of the parent level unchanged",
+        "value": 0.9334
+      },
+      {
+        "check": "edit_chroma",
+        "status": "warn",
+        "message": "chroma x1.19 of the parent level (drift compounds along a chain)",
+        "value": 1.1946
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Exactly4 takes after one allowed retry. Take1 fails hard chroma/palette; takes2/4 fail hard height geometry; take3 is the only hard-QA-passing candidate, load1.6257 and Harmony75.2. Visual review confirms a small plain coral flag on a thin cap pole, soft green leaves, cream/coral flowers and exactly two rounded pebbles inside the existing base footprint. Tower, balcony, lamp bands/reflector, door/window and scale remain; no rays, beam, exterior halo or shadow. Edit stability0.9334 and chroma1.1946. Growth report: requested flag raises top to52 versus parent bar140, an existing station_anchor warning rather than hard failure; no whole-object shrinking or edit guide fit is applied. Chroma/light/palette/edit-chroma warnings are recorded, not silently discarded; all hard gates pass unchanged. Founder review pending."
+}

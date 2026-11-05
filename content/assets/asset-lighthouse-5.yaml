@@ -2,7 +2,7 @@ id: asset-lighthouse-5
 type: asset
 title_tr: lighthouse-5
 title_en: lighthouse-5 (station)
-status: cut
+status: in-production
 horizon: next
 summary: Add a small coral flag on a thin pole at the lamp room's cap, and at the
   tower's foot a little garden patch of soft green leaves with a few round cream and
@@ -11,7 +11,8 @@ links:
   variant_of:
   - asset-lighthouse-4
 art:
-  images: []
+  images:
+  - design/art/stations/lighthouse-5/lighthouse-5.png
   jobs:
   - batch-21-harbor-ladders:lighthouse-5
 sources:

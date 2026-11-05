@@ -21,6 +21,7 @@ links:
   - asset-lighthouse-2
   - asset-lighthouse-3
   - asset-lighthouse-4
+  - asset-lighthouse-5
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'
