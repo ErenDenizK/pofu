@@ -1,0 +1,247 @@
+batch: batch-28-home-shops-concepts
+manifest: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+manifest_sha256: 7866350af23f3d1408e3b011e6ade660132308fdd6d82a5be10328050fe3e144
+contact_sheet: design/art/takes/batch-28-home-shops-concepts/x-greenhouse-1/contact.jpg
+jobs:
+  x-greenhouse-1:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show the low pale-sage frame
+      with two soft mint front panes and a glazed first roof row, open side/back ribs,
+      a simple bench holding exactly three seedling pots and a watering can by the
+      door. No text, character, floor or UI glass; panes are soft mint painted shapes
+      with broad value changes. Take1 is manually excluded for detached translucent
+      paint above the ridge; take2 has the cleaner simple silhouette. Hard QA determines
+      eligibility; advisory exploration style/light warnings retained. Small display
+      reads as an open greenhouse with three pots. Subsequent concepts are independent
+      main-reference briefs, not registered edits of this take. Never promoted.
+qa_reports:
+  1:
+    job: x-greenhouse-1
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 31 (R1 51)
+      value: 31.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 92 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.34 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.341
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.7 (at least 3.5)'
+      value: 3.74
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.86
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6977
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.8, p95 10.3, off-palette 1.9% (top: #888855 (0.6%), #999966
+        (0.6%))'
+      value: 3.7544
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 71 against the world reference (outliers: C_p95, edge)'
+      value: 71.2
+    info:
+      fit:
+        scale: 0.8696
+        anchor:
+        - 531.3
+        - 942
+      registration:
+        dx: -20
+        dy: -42
+      metrics_raw:
+        L_p5: 59.8
+        L_p50: 76.6
+        L_p95: 90.1
+        C_p50: 23.9
+        C_p95: 31.7
+        C_p99: 43.5
+        detail: 2.56
+      metrics_locked:
+        L_p5: 60.3
+        L_p50: 76.6
+        L_p95: 89.8
+        C_p50: 23.9
+        C_p95: 31.4
+        C_p99: 42.1
+        detail: 1.86
+    fingerprint: 7376026be12a8bdd
+  2:
+    job: x-greenhouse-1
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 30 (R1 51)
+      value: 30.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 92 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 80 (band 55-90)'
+      value: 79.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.35 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.353
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 3.95
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.8
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6964
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 9.7, off-palette 2.2% (top: #888866 (1.5%), #888855
+        (0.4%))'
+      value: 3.2789
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 69 against the world reference (outliers: C_p95, edge)'
+      value: 69.4
+    info:
+      fit:
+        scale: 0.877
+        anchor:
+        - 505.5
+        - 920
+      registration:
+        dx: 7
+        dy: -19
+      metrics_raw:
+        L_p5: 58.3
+        L_p50: 79.8
+        L_p95: 90.6
+        C_p50: 22.8
+        C_p95: 30.6
+        C_p99: 40.4
+        detail: 2.45
+      metrics_locked:
+        L_p5: 58.7
+        L_p50: 79.8
+        L_p95: 90.4
+        C_p50: 22.8
+        C_p95: 30.1
+        C_p99: 38.8
+        detail: 1.8
+    fingerprint: 7376026be12a8bdd
+manual_review:
+  observed_note: Both show the low pale-sage frame with two soft mint front panes
+    and a glazed first roof row, open side/back ribs, a simple bench holding exactly
+    three seedling pots and a watering can by the door. No text, character, floor
+    or UI glass; panes are soft mint painted shapes with broad value changes. Take1
+    is manually excluded for detached translucent paint above the ridge; take2 has
+    the cleaner simple silhouette. Hard QA determines eligibility; advisory exploration
+    style/light warnings retained. Small display reads as an open greenhouse with
+    three pots. Subsequent concepts are independent main-reference briefs, not registered
+    edits of this take. Never promoted.
+  excluded_takes:
+  - 1
+sources:
+- batch: batch-28-home-shops-concepts
+  job: x-greenhouse-1
+  take: 1
+  round: 1
+  logical_run: 20261105-night28-greenhouse-kiln
+  source_file: /workspace/generated_images/exec-fefd5095-740d-4d80-8f78-9a0ec8814d18.png
+  returned_at: '2026-11-05T18:36:36.074Z'
+  prompt_sha256: f5679610c4eb5dacd5fd07700268c467a1652ec77e1db4cb5b6a1ed577c6d3ec
+  fingerprint: 7376026be12a8bdd
+  saved_at: '2026-11-05T18:36:36.473947+00:00'
+  original_generated_png_sha256: f5ea530495002ade4c745260a9598dbe062199200da556993938d8469e981b8d
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 40fb20f7c8560119cbebb00f0c91ff4478f0d05e87a1755b304acb53fd0f8abc
+  inbox_png_sha256: 418a75cdffc8a77bd978be49f733b2e8d510502a44d1252618551808605587ac
+  qa_sha256: 0f9cb3eaf337616c65f6c426b84c22a4ca1fe0ab40e9e262ede2003dba1af836
+- batch: batch-28-home-shops-concepts
+  job: x-greenhouse-1
+  take: 2
+  round: 1
+  logical_run: 20261105-night28-greenhouse-kiln
+  source_file: /workspace/generated_images/exec-e0829032-0e8e-458c-8645-1a221ec0e2d4.png
+  returned_at: '2026-11-05T18:34:39.110Z'
+  prompt_sha256: f5679610c4eb5dacd5fd07700268c467a1652ec77e1db4cb5b6a1ed577c6d3ec
+  fingerprint: 7376026be12a8bdd
+  saved_at: '2026-11-05T18:34:39.530074+00:00'
+  original_generated_png_sha256: 6461df3bb0eb0ec78abf2522b10ececac9f81e81cbc1cb2786f0ba46ccd858d4
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 95ccebbdc3530587497339e3fa4fbe91233ec1efa5381f2f1cf623c5761132b9
+  inbox_png_sha256: 3754ca8af78bef954b978637f4541e21cfc2a612a02d8b8e877d9ac1215e1000
+  qa_sha256: dc7edadd427aa0e236357d1a1fdd8d4c99c414b1fb6c46fecceea9877536a739
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
