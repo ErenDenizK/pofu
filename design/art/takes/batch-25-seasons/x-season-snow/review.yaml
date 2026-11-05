@@ -1,0 +1,197 @@
+batch: batch-25-seasons
+manifest: tools/imagegen/manifest/batch-25-seasons.yaml
+manifest_sha256: de70b41e2313133a858b0128327b657229c73239b08fb06c5b6198d6046137c3
+contact_sheet: design/art/takes/batch-25-seasons/x-season-snow/contact.jpg
+jobs:
+  x-season-snow:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both retain the oval lawn and
+      soil island, with thin roof/lawn snow, sage patches, bare brown stalks, a rim
+      of pond ice, lilac-grey snowfall and a warm tea-stall window. Take1 adds a tree
+      and take2 a nearby lantern; no characters or painted text. Canonical station
+      positions cannot be confirmed from the bare supplied reference and vary between
+      takes, so these remain concept season frames. Advisory light, haze and color
+      warnings retained.
+qa_reports:
+  1:
+    job: x-season-snow
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 33 (R1 51)
+      value: 32.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 96 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 87 (band 55-90)'
+      value: 86.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.38 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.376
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.7 (at least 3.5)'
+      value: 4.71
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.1
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.883
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.2, p95 4.3, off-palette 0.0%
+      value: 2.212
+    info:
+      metrics_raw:
+        L_p5: 66.2
+        L_p50: 85.6
+        L_p95: 95.7
+        C_p50: 11.2
+        C_p95: 33.9
+        C_p99: 40.3
+        detail: 3.85
+      metrics_locked:
+        L_p5: 66.7
+        L_p50: 85.6
+        L_p95: 95.4
+        C_p50: 11.0
+        C_p95: 32.8
+        C_p99: 39.6
+        detail: 3.1
+    fingerprint: 59257d2745011572
+  2:
+    job: x-season-snow
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 33 (R1 51)
+      value: 32.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 96 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 86 (band 55-90)'
+      value: 85.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.39 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.392
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.2 (at least 3.5)'
+      value: 4.17
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.54
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8667
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 4.3, off-palette 0.0% (top: #EE9955 (0.0%))'
+      value: 2.0899
+    info:
+      metrics_raw:
+        L_p5: 67.5
+        L_p50: 85.0
+        L_p95: 95.3
+        C_p50: 10.6
+        C_p95: 33.5
+        C_p99: 39.8
+        detail: 3.21
+      metrics_locked:
+        L_p5: 68.0
+        L_p50: 85.0
+        L_p95: 95.0
+        C_p50: 10.5
+        C_p95: 32.7
+        C_p99: 39.0
+        detail: 2.54
+    fingerprint: 59257d2745011572
+manual_review:
+  observed_note: Both retain the oval lawn and soil island, with thin roof/lawn snow,
+    sage patches, bare brown stalks, a rim of pond ice, lilac-grey snowfall and a
+    warm tea-stall window. Take1 adds a tree and take2 a nearby lantern; no characters
+    or painted text. Canonical station positions cannot be confirmed from the bare
+    supplied reference and vary between takes, so these remain concept season frames.
+    Advisory light, haze and color warnings retained.
+  excluded_takes: []
+sources:
+- batch: batch-25-seasons
+  job: x-season-snow
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-tuli-snow
+  source_file: /workspace/generated_images/exec-a57ad725-f951-4ad3-ada5-01ea481db105.png
+  returned_at: '2026-11-05T14:13:49.699Z'
+  prompt_sha256: b118afafdd5bba8c289c000cd327f0a56e1c19304cba9c08c01747fb69f02460
+  fingerprint: 59257d2745011572
+  saved_at: '2026-11-05T14:13:50.170011+00:00'
+  original_generated_png_sha256: c99e67591ef57348cb96ce68a3cfaaa9f62b06751e6c8c5a54584fac85b3efad
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: e8a72680cfca700ebfdfd478e6b8b552aeaaf6f52d93f4620f647be7d1bd33ed
+  inbox_png_sha256: 74f1dc8fb56d613134acc24d52008c6c608a65c3ae0998e7a580850e0345a59c
+  qa_sha256: 49180036ed0a3b1026773129af5b1d62a10953d05e5dd55cc9c2259e984eebf0
+- batch: batch-25-seasons
+  job: x-season-snow
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-tuli-snow
+  source_file: /workspace/generated_images/exec-88a5c561-985c-4bb4-a838-3d6aca70c5ed.png
+  returned_at: '2026-11-05T14:12:09.449Z'
+  prompt_sha256: b118afafdd5bba8c289c000cd327f0a56e1c19304cba9c08c01747fb69f02460
+  fingerprint: 59257d2745011572
+  saved_at: '2026-11-05T14:12:09.916514+00:00'
+  original_generated_png_sha256: 9a1cf04c4c5d581cc5717a1c641cb1a32890196ff6ef2aed85a92ec55e252e07
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: b034c0e2e8fbd61088980738667874b5c1ab2c6b562293aacc3bbef112ac0e67
+  inbox_png_sha256: d2f6125a7cab32d06e7148205e93bb3f4a7604d2fa217ce19c06c621ad3f3da7
+  qa_sha256: b30a25cf78bd973e120ddf79c115938aa6c16ab0201be0a84cce8c25f9a85972
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
