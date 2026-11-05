@@ -75,7 +75,7 @@ public enum IslandDressing {
     /// Every piece, grouped by what it dresses.
     public static let pieces: [DressingPiece] = [
         // The meadow between the slots: always there.
-        piece("meadow-west", .wildflowers, -100, -16, 1...10, touchable: true),
+        piece("meadow-west", .wildflowers, -100, -8, 1...10, touchable: true),
         piece("meadow-east-1", .grassTuft, 140, -18, 1...10, touchable: true),
         piece("meadow-east-2", .wildflowers, 184, -16, 1...10, touchable: true),
         // The tea stall's slot, until it opens at island level 2.
@@ -85,18 +85,21 @@ public enum IslandDressing {
         piece("pond-pebbles", .pebbles, -62, 27, 1...3),
         piece("pond-tuft", .grassTuft, -34, 22, 1...3, touchable: true),
         // The workshop's slot, until it opens at island level 6.
-        piece("workshop-trowel", .trowel, 34, -10, 1...5),
-        piece("workshop-twine", .twine, 62, -14, 1...5),
-        piece("workshop-crate", .crate, 90, -8, 1...5),
+        piece("workshop-trowel", .trowel, 4, -6, 1...5),
+        piece("workshop-twine", .twine, -36, -12, 1...5),
+        piece("workshop-crate", .crate, 64, -8, 1...5),
         // The windmill's slot, until it opens at island level 8.
-        piece("windmill-flowers", .wildflowers, -64, -26, 1...7, touchable: true),
-        piece("windmill-ring", .mushroomRing, -34, -22, 1...7, touchable: true),
+        piece("windmill-flowers", .wildflowers, -98, -26, 1...7, touchable: true),
+        piece("windmill-ring", .mushroomRing, -70, -24, 1...7, touchable: true),
         // The garden's and the tea stall's small signs of life grow in.
         piece("garden-can", .wateringCan, -118, -4, 3...10),
         piece("garden-sack", .seedSack, -120, 12, 5...10),
         piece("tea-crate", .crate, 205, -4, 3...10),
         piece("tea-flowers", .wildflowers, 200, 12, 6...10, touchable: true),
-        piece("gap-flowers", .wildflowers, -8, -20, 5...10, touchable: true),
+        piece("gap-flowers", .wildflowers, 80, -16, 5...10, touchable: true),
+        // The back lawn between the workshop and the tea stall.
+        piece("meadow-back-1", .grassTuft, 62, -22, 1...10, touchable: true),
+        piece("meadow-back-2", .grassTuft, 102, -22, 1...10, touchable: true),
     ]
 
     /// The pieces shown at an island level.

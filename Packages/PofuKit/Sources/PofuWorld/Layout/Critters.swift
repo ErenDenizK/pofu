@@ -54,12 +54,12 @@ public enum Critters {
     }
 
     public static let all: [Critter] = [
-        critter("butterfly-west", .butterfly, on: .dressing("meadow-west"), -100, -20, 1...10),
+        critter("butterfly-west", .butterfly, on: .dressing("meadow-west"), -100, -14, 1...10),
         critter("butterfly-east", .butterfly, on: .dressing("meadow-east-2"), 184, -20, 6...10),
         critter("snail-lip", .snail, on: .lip, -150, 36, 1...10),
         // The tallest roof so far: the garden's, then the windmill's.
         critter("bird-garden", .bird, on: .station(.garden), -173, -52, 1...7),
-        critter("bird-windmill", .bird, on: .station(.windmill), -50, -104, 8...10),
+        critter("bird-windmill", .bird, on: .station(.windmill), -90, -104, 8...10),
         // The frogs arrive with the pond.
         critter("frog-1", .frog, on: .station(.pond), -84, 26, 4...10),
         critter("frog-2", .frog, on: .station(.pond), -46, 24, 4...10),
