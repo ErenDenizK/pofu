@@ -1,0 +1,96 @@
+[
+  {
+    "take": 1,
+    "status": "warn",
+    "bbox_alpha24": [
+      367,
+      355,
+      654,
+      717
+    ],
+    "width": 287,
+    "height": 362,
+    "checks": [
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 71 (at most 22), p98 94 (at least 90), spread 22 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 22.4
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.47 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.475
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 1.8 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 1.79
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.5",
+        "value": 0.4668
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.7, p95 5.5, off-palette 0.0%",
+        "value": 2.734
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 58 against the world reference (outliers: C_p95, L_p2, edge)",
+        "value": 57.5
+      }
+    ]
+  },
+  {
+    "take": 2,
+    "status": "warn",
+    "bbox_alpha24": [
+      330,
+      325,
+      690,
+      780
+    ],
+    "width": 360,
+    "height": 455,
+    "checks": [
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 74 (at most 22), p98 94 (at least 90), spread 21 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 20.6
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.56 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.557
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 1.2 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 1.16
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.4",
+        "value": 0.4108
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 54 against the world reference (outliers: C_p95, L_p2, edge)",
+        "value": 53.8
+      }
+    ]
+  }
+]
