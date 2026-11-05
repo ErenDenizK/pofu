@@ -46,7 +46,8 @@ let package = Package(
         .target(name: "PofuPersistence", dependencies: ["PofuCore"]),
 
         // Design tokens and small SwiftUI building blocks.
-        .target(name: "PofuDesignSystem"),
+        // The painted menu art (paint-*.png) is baked by tools/assets/integrate.py.
+        .target(name: "PofuDesignSystem", resources: [.process("Resources")]),
 
         // The living companion: motion simulation (pure, testable), the
         // SwiftUI view, and its Metal deformation shader. Xcode compiles

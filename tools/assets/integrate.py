@@ -22,6 +22,7 @@ from pathlib import Path
 from PIL import Image
 
 REPO = Path(__file__).resolve().parents[2]
+FLAT = ("games", "ui")  # flat PNGs baked here, not through preblur
 MAP = Path(__file__).resolve().parent / "integration_map.json"
 PREBLUR = REPO / "design/prototypes/interactions/tools/preblur.py"
 
@@ -42,7 +43,7 @@ def master_file(folder: str) -> Path | None:
 
 def output_path(entry: dict, targets: dict) -> Path:
     root = REPO / targets[entry["target"]]
-    if entry["target"] == "games":
+    if entry["target"] in FLAT:
         return root / f"{entry['name']}.png"
     return root / f"world-{entry['name']}.imageset" / f"world-{entry['name']}.png"
 
@@ -93,7 +94,7 @@ def run(data: dict) -> int:
     if any(e["target"] == "world" for e in data["entries"]):
         subprocess.run([sys.executable, "-I", str(PREBLUR), "app"], check=True)
     for e in data["entries"]:
-        if e["target"] == "games":
+        if e["target"] in FLAT:
             bake_games(e, output_path(e, data["targets"]))
             print("baked", e["name"])
     return check(data)
