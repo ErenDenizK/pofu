@@ -1,0 +1,436 @@
+batch: batch-30-decor-sets
+manifest: tools/imagegen/manifest/batch-30-decor-sets.yaml
+manifest_sha256: 621a7f8e5ca0e5cf9031dead2d4a93a2d6fb02d6b983bbb2b653518da384ced2
+contact_sheet: design/art/takes/batch-30-decor-sets/x-decor-harbor-flag-line/contact.jpg
+jobs:
+  x-decor-harbor-flag-line:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after exactly one allowed retry. Every take has exactly seven chunky
+      coral/cream/sea-blue/mustard/sage triangular flags in a gentle high sag between
+      two complete honey poles with round tops, but the official posted visible alpha>24
+      widths are483,416,490,510px. All exceed the explicit at-most-third1024/3=341.33px
+      cap. Numeric hanging-decor checks pass because their guide and line constraints
+      are broader; that does not waive the prose width cap. No third round, manual
+      resize, threshold change, promotion or dependent cascade. All four unchanged
+      originals and source-bound reports remain preserved; q90 take copies/contact/review
+      are published. Exploration style, light and Harmony warnings are advisory and
+      not grounds for this rejection.
+qa_reports:
+  1:
+    job: x-decor-harbor-flag-line
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 55 (R1 51)
+      value: 54.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 90 (at least 90), spread 30
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 29.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.1 (at least 3.5)'
+      value: 8.14
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.36
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.2475
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 5.4, off-palette 0.2% (top: #999966 (0.1%), #888855
+        (0.0%))'
+      value: 1.7525
+    - check: decor_anchor
+      status: warn
+      message: bottom y 671 below the floor (620)
+      value: 671.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the world reference (outliers: edge)'
+      value: 84.2
+    info:
+      registration:
+        dx: 0
+        dy: -96
+      metrics_raw:
+        L_p5: 61.4
+        L_p50: 75.1
+        L_p95: 89.9
+        C_p50: 42.3
+        C_p95: 54.8
+        C_p99: 58.3
+        detail: 2.14
+      metrics_locked:
+        L_p5: 62.8
+        L_p50: 74.9
+        L_p95: 89.3
+        C_p50: 42.5
+        C_p95: 54.8
+        C_p99: 57.7
+        detail: 1.36
+    fingerprint: 0981ada63f89dc4c
+  2:
+    job: x-decor-harbor-flag-line
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 92 (at least 90), spread 30
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 29.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 73.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 9.0 (at least 3.5)'
+      value: 8.98
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.02
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.3642
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 5.0, off-palette 0.0% (top: #999966 (0.0%), #AA9955
+        (0.0%))'
+      value: 1.6709
+    - check: decor_anchor
+      status: pass
+      message: on the hang line
+      value: 635.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the world reference (outliers: edge)'
+      value: 85.7
+    info:
+      registration:
+        dx: 0
+        dy: -173
+      metrics_raw:
+        L_p5: 62.1
+        L_p50: 74.1
+        L_p95: 90.9
+        C_p50: 35.0
+        C_p95: 49.5
+        C_p99: 53.7
+        detail: 1.63
+      metrics_locked:
+        L_p5: 63.1
+        L_p50: 73.9
+        L_p95: 89.9
+        C_p50: 35.1
+        C_p95: 47.0
+        C_p99: 53.5
+        detail: 1.02
+    fingerprint: 0981ada63f89dc4c
+  3:
+    job: x-decor-harbor-flag-line
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 90 (at least 90), spread 28
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 28.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 74.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.3 (at least 3.5)'
+      value: 6.33
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.97
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2807
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 4.5, off-palette 0.0% (top: #999966 (0.0%))'
+      value: 1.9141
+    - check: decor_anchor
+      status: warn
+      message: bottom y 738 below the floor (620) (advisory in an exploration)
+      value: 738.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: edge)'
+      value: 87.4
+    info:
+      registration:
+        dx: 4
+        dy: -62
+      metrics_raw:
+        L_p5: 63.4
+        L_p50: 75.0
+        L_p95: 89.3
+        C_p50: 44.1
+        C_p95: 50.9
+        C_p99: 58.1
+        detail: 1.62
+      metrics_locked:
+        L_p5: 64.4
+        L_p50: 74.8
+        L_p95: 89.0
+        C_p50: 44.3
+        C_p95: 50.0
+        C_p99: 57.3
+        detail: 0.97
+    fingerprint: 0981ada63f89dc4c
+  4:
+    job: x-decor-harbor-flag-line
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 49.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 92 (at least 90), spread 32
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 32.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 73.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.2 (at least 3.5)'
+      value: 8.21
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.36
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.185
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.7, p95 4.9, off-palette 0.0%
+      value: 1.7269
+    - check: decor_anchor
+      status: warn
+      message: bottom y 679 below the floor (620)
+      value: 679.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 89 against the world reference (outliers: edge)'
+      value: 88.7
+    info:
+      registration:
+        dx: 2
+        dy: -89
+      metrics_raw:
+        L_p5: 61.0
+        L_p50: 73.9
+        L_p95: 91.6
+        C_p50: 40.7
+        C_p95: 49.8
+        C_p99: 57.3
+        detail: 2.16
+      metrics_locked:
+        L_p5: 62.0
+        L_p50: 73.7
+        L_p95: 90.9
+        C_p50: 41.0
+        C_p95: 49.7
+        C_p99: 56.7
+        detail: 1.36
+    fingerprint: 0981ada63f89dc4c
+manual_review:
+  observed_note: Skipped after exactly one allowed retry. Every take has exactly seven
+    chunky coral/cream/sea-blue/mustard/sage triangular flags in a gentle high sag
+    between two complete honey poles with round tops, but the official posted visible
+    alpha>24 widths are483,416,490,510px. All exceed the explicit at-most-third1024/3=341.33px
+    cap. Numeric hanging-decor checks pass because their guide and line constraints
+    are broader; that does not waive the prose width cap. No third round, manual resize,
+    threshold change, promotion or dependent cascade. All four unchanged originals
+    and source-bound reports remain preserved; q90 take copies/contact/review are
+    published. Exploration style, light and Harmony warnings are advisory and not
+    grounds for this rejection.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30-decor-sets
+  job: x-decor-harbor-flag-line
+  take: 1
+  round: 1
+  logical_run: 20261105-b30-harbor-flags-corner
+  source_file: /workspace/generated_images/exec-68fb3d88-a864-4114-8f73-2550ffcc727d.png
+  returned_at: '2026-11-05T19:44:22.679Z'
+  prompt_sha256: a0a2f3fb17e4f582a3e4f4c4aad0a81a913ab83f80cf3abd7e95ef9250d05325
+  fingerprint: 0981ada63f89dc4c
+  saved_at: '2026-11-05T19:44:23.098442+00:00'
+  original_generated_png_sha256: 214def1d18566a7e238c5956f632e92cd1554f00d79e59843411d36d70488f00
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 3821670201cc7c54b4f0895533bedcf6d8baae26fe34fbe45a90b0eb60e630dc
+  inbox_png_sha256: 3e2b122e7d8bf6325fa9980527dfe22972e3d426870872159c5e366f1faaf32b
+  qa_sha256: 16a087113297dbebb0535f5a343e324e1f5176f2a32f480aaed5854d58e940a3
+- batch: batch-30-decor-sets
+  job: x-decor-harbor-flag-line
+  take: 2
+  round: 1
+  logical_run: 20261105-b30-harbor-flags-corner
+  source_file: /workspace/generated_images/exec-7797a83d-2ac7-4d3e-bb93-6b969227dd90.png
+  returned_at: '2026-11-05T19:45:43.749Z'
+  prompt_sha256: a0a2f3fb17e4f582a3e4f4c4aad0a81a913ab83f80cf3abd7e95ef9250d05325
+  fingerprint: 0981ada63f89dc4c
+  saved_at: '2026-11-05T19:45:44.194889+00:00'
+  original_generated_png_sha256: 7df9b086e113c69b9a3661a48dcaf05e3801cf3279ed6e39102e6db6f48971c3
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 670fa22fbf4e5b39aa9c0039bf4d602cfeb03089f7207e8184ae01d16e4fa63a
+  inbox_png_sha256: 01a431972b671e3255977d456c5a6e25fd1d0c3568de4071be20214524f1251f
+  qa_sha256: e1fae378aad5aceffa638fd91019c17e15c8631e94debf2ba5741fe8486b3618
+- batch: batch-30-decor-sets
+  job: x-decor-harbor-flag-line
+  take: 3
+  round: 2
+  logical_run: 20261105-b30-flags-harbor-one-retry
+  source_file: /workspace/generated_images/exec-b55c4f44-7961-4325-8b2c-f3c4882b49f2.png
+  returned_at: '2026-11-05T19:48:23.105Z'
+  prompt_sha256: a0a2f3fb17e4f582a3e4f4c4aad0a81a913ab83f80cf3abd7e95ef9250d05325
+  fingerprint: 0981ada63f89dc4c
+  saved_at: '2026-11-05T19:48:23.449772+00:00'
+  original_generated_png_sha256: 27c2f534424974da54bffb7036abbcd63a38925a993a9d2895aa8ac9201fcf63
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 4f62a7e7ea7df1b9954e260c35ecaac255955e8d2db0407b5f2d25599fef6204
+  inbox_png_sha256: 6fe8ecfdc4f9268395d87023e57c982a54c8d25edc33416f13fdbdccd61fb181
+  qa_sha256: 4a52f6a8fb5c49fc078ed507464c74d9f7cc8954266137fd5ca75e17f4b3d281
+- batch: batch-30-decor-sets
+  job: x-decor-harbor-flag-line
+  take: 4
+  round: 2
+  logical_run: 20261105-b30-flags-harbor-one-retry
+  source_file: /workspace/generated_images/exec-5907dc04-0160-4a0d-8219-ebbcda0334c8.png
+  returned_at: '2026-11-05T19:49:48.943Z'
+  prompt_sha256: a0a2f3fb17e4f582a3e4f4c4aad0a81a913ab83f80cf3abd7e95ef9250d05325
+  fingerprint: 0981ada63f89dc4c
+  saved_at: '2026-11-05T19:49:49.467199+00:00'
+  original_generated_png_sha256: 92bdf9d23a2a7a2b6c211208691912dfb8d5df00dec5cd2099e0833cabcee907
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: e092c51afd45f88bf02c2e41d05ee14c30163a22d2c04a8151f68018d9cdcd74
+  inbox_png_sha256: 1e605ba71f3608249871e46499e0d5b5c056e7fb27562f210d2c842675eb0ef9
+  qa_sha256: 1cd6a2d96165a61d909f7614d4da7818b14ad9fd8b31a808e14da8c2e47bc2db
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
