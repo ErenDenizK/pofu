@@ -1,0 +1,18 @@
+frame                      grade   band     mean     p2    p98  range  local chroma  empty    run  sky_L  sky_C  sky_b pofu_h pofu_C pofu_L
+grade-day-home             day     home    66.90   1.40 100.00  98.60   7.94  32.10   0.08   0.06  84.60   9.90   2.10  73.10  15.90  86.40
+grade-day-island           day     island  71.80   5.10  97.80  92.70   6.89  27.90   0.17   0.06  83.70   7.70  -0.10  73.00  15.90  86.30
+grade-golden-home          golden  home    68.00   7.50 100.00  92.50   7.01  39.60   0.09   0.06  71.00  22.90  18.90  78.00  25.80  84.00
+grade-golden-island        golden  island  67.60  14.70  89.90  75.20   5.32  41.10   0.22   0.06  70.50  19.00  16.30  78.00  26.00  84.10
+grade-night-home           night   home    25.30   0.00 100.00 100.00   7.97  11.20   0.10   0.09  22.10  31.70 -27.80  71.60  17.40  56.00
+grade-night-island         night   island  17.80   0.00  58.60  58.60   5.31  17.40   0.26   0.16  25.30  32.30 -29.50  71.60  17.50  56.10
+grade-unwell-home          unwell  home    56.80   0.00 100.00 100.00   8.65  17.70   0.11   0.09  72.70   7.20  -0.60  70.80   5.20  82.60
+grade-unwell-island        unwell  island  58.40   0.00  90.00  90.00   7.58  16.60   0.21   0.09  72.70   5.90  -1.20  70.80   5.20  82.50
+
+ok   grade-day-home: within targets
+ok   grade-day-island: within targets
+MISS grade-golden-home: p2 5.36x day outside [None, 1.1]
+MISS grade-golden-island: p2 2.88x day outside [None, 1.1]
+ok   grade-night-home: within targets
+MISS grade-night-island: run 0.162 outside [None, 0.12]; range 0.63x day outside [0.85, None]
+ok   grade-unwell-home: within targets
+MISS grade-unwell-island: sky_b -1.1 vs day outside [None, -2.0]
