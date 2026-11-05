@@ -1,0 +1,23 @@
+id: asset-calm-lantern-lit
+type: asset
+title_tr: calm-lantern-lit
+title_en: calm-lantern-lit (ui)
+status: planned
+horizon: later
+summary: >-
+  Light the calm lantern more fully: a small, bright teardrop flame is visible inside the
+  paper, and the glass and paper around it glow warm honey-gold, brightest around the flame
+  and softening toward the ribs. The caps, the ribs, the loop and the post are unchanged.
+  Light only inside the lantern's own outline: no halo, no rays and no light spill outside
+  it (the app draws the glow).
+links:
+  variant_of:
+  - asset-ui-lantern-on
+art:
+  images: []
+  jobs:
+  - batch-35-experience:calm-lantern-lit
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience.yaml
+kind: ui
+batch: batch-35-experience

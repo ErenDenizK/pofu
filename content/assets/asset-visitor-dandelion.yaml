@@ -1,0 +1,21 @@
+id: asset-visitor-dandelion
+type: asset
+title_tr: visitor-dandelion
+title_en: visitor-dandelion (prop)
+status: planned
+horizon: later
+summary: >-
+  A single large dandelion seed seen from the side, standing upright on the guide: a thin,
+  slightly curved pale stem with a tiny honey-brown seed at its base and, at the top, a round
+  parachute of soft white feathery fluff made of many fine pale strands radiating from the
+  stem top, plump and airy, in warm white with soft lilac-grey shading. The seed is tall and
+  light, reaching the height bar's top, with the parachute ab…
+art:
+  images: []
+  jobs:
+  - batch-35-experience:visitor-dandelion
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience.yaml
+kind: prop
+batch: batch-35-experience
+size: 1024x1024

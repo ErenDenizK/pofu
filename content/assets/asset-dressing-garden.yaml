@@ -1,0 +1,21 @@
+id: asset-dressing-garden
+type: asset
+title_tr: dressing-garden
+title_en: dressing-garden (sheet)
+status: planned
+horizon: later
+summary: >-
+  A sheet of ten small garden props for a cozy island diorama, in a grid of five columns by
+  two rows, each piece complete and separate with wide empty space around it, none touching:
+  row 1, a round-bellied watering can of soft sage clay-green with a short spout, a plump
+  burlap seed sack tied with twine and a few sunflower seeds spilled at its foot, a coil of
+  cream twine, a small wooden crate of honey wood, and a stack …
+art:
+  images: []
+  jobs:
+  - batch-35-experience:dressing-garden
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience.yaml
+kind: sheet
+batch: batch-35-experience
+size: 1536x1024

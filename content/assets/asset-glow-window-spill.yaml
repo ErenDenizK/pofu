@@ -1,0 +1,21 @@
+id: asset-glow-window-spill
+type: asset
+title_tr: glow-window-spill
+title_en: glow-window-spill (ui)
+status: in-production
+horizon: now
+summary: >-
+  Light from a lit window falling across grass, seen from a low camera about 17 degrees above
+  the ground: a trapezoid of warm light that starts narrow and bright at the top center of
+  the image (where the window sill would be, no window drawn) and fans out down the image
+  to about three times that width, getting fainter with distance and dying into black before
+  the bottom edge. The two long edges are slightly broken and …
+art:
+  images: []
+  jobs:
+  - batch-35-experience-pilot:glow-window-spill
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience-pilot.yaml
+kind: ui
+batch: batch-35-experience-pilot
+size: 1024x1024

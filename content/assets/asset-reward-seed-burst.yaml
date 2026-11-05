@@ -1,0 +1,21 @@
+id: asset-reward-seed-burst
+type: asset
+title_tr: reward-seed-burst
+title_en: reward-seed-burst (ui)
+status: planned
+horizon: later
+summary: >-
+  A sprite sheet of six frames of one small burst of sunflower seeds and soft sparkles, in
+  a grid of three columns by two rows, read left to right, top to bottom, each frame centered
+  in its own equal cell with wide empty space around it, the burst's center at the center
+  of each cell: (1) a tiny cluster of two seeds and a small spark; (2) the burst opening,
+  five seeds and three sparks flying out; (3) the burst at its wi…
+art:
+  images: []
+  jobs:
+  - batch-35-experience:reward-seed-burst
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience.yaml
+kind: ui
+batch: batch-35-experience
+size: 1536x1024

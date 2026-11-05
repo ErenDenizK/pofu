@@ -1,0 +1,21 @@
+id: asset-glow-ground-pool
+type: asset
+title_tr: glow-ground-pool
+title_en: glow-ground-pool (ui)
+status: in-production
+horizon: now
+summary: >-
+  A pool of warm lamplight lying on a lawn, seen from a low camera about 17 degrees above
+  the ground, so the pool is a wide flat ellipse about twice as wide as it is tall, centered
+  in the image and filling about 80 percent of the width. Brightest near the middle, with
+  a soft, slightly uneven painterly edge that dies into black well before the image border.
+  Warm honey-gold light only: no grass blades, no ground, no shad…
+art:
+  images: []
+  jobs:
+  - batch-35-experience-pilot:glow-ground-pool
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience-pilot.yaml
+kind: ui
+batch: batch-35-experience-pilot
+size: 1024x1024

@@ -1,0 +1,21 @@
+id: asset-launch-sky
+type: asset
+title_tr: launch-sky
+title_en: launch-sky (plate)
+status: in-production
+horizon: now
+summary: >-
+  A tall full-bleed dawn sky for a cozy mobile game's launch screen, a portrait image. Top
+  to bottom: a soft lilac-blue sky at the top, melting through pale peach and warm cream to
+  a glowing honey horizon about two thirds down; a few long, soft, slightly flat clouds in
+  thin calm bands across the sky, lit warm from below; a gentle bank of puffy cream clouds
+  along the bottom third, lit pink-gold on their tops. The light …
+art:
+  images: []
+  jobs:
+  - batch-35-experience-pilot:launch-sky
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience-pilot.yaml
+kind: plate
+batch: batch-35-experience-pilot
+size: 1024x1536

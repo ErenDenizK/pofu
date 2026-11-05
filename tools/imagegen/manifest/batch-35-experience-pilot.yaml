@@ -1,0 +1,145 @@
+# Batch 35, pilot: experience v1 (docs/design/experience-v1.md, sections 2 and 7).
+#
+# The first four jobs of the experience art: two glow sprites (the ground
+# pool and the window spill, the light field's baked pools), the first
+# dressing sheet (the meadow) and the dawn launch sky. The rest of the
+# experience art (batch-35-experience) copies what these four teach: the
+# glows share the pool's grain, falloff and color; the dressing and critter
+# sheets share the meadow's finish and scale; the cloud curtain layers sit on
+# the launch sky.
+#
+# The founder reviews the pilot in a night screenshot (glow-ground-pool and
+# glow-window-spill under the real light field) and the launch sky behind the
+# curtain, then the lead opens batch-35-experience.
+#
+# Glows are `ui` jobs on pure black, not transparent: the app adds them
+# with plus-lighter blending, so black is no light. Sprites carry
+# `light: {cell: day, layer: subject}`; the launch plate uses `cell: dawn`.
+# The launch sky is generated at 1024 x 1536 and covers 1290 x 2796: it is
+# cropped to the middle 69 percent of its width, so QA will warn about the
+# upscale; that is expected.
+#
+# Tracks: `glow` (glow-ground-pool, glow-window-spill), `dressing`
+# (dressing-meadow), `launch` (launch-sky). The four are independent.
+
+batch: batch-35-experience-pilot
+title: Experience v1, pilot (two glows, the meadow dressing, the launch sky)
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: tea-stall-1, kind: station, name: tea-stall-1, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+
+  - id: glow-ground-pool
+    kind: ui
+    name: glow-ground-pool
+    size: 1024x1024
+    canvas: 1024x512
+    transparent: false
+    chat: "Pofu · Experience"
+    notes: "PILOT. The warm pool a lamp or lantern throws on the lawn at night, seen at 17 degrees (a flat wide ellipse). Code stretches and tints it per source (round pools: ember, path lamps, the calm lantern). Review: reads as light on grass, not a disc; falloff smooth; black stays black."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+    prompt:
+      - text: |
+          A pool of warm lamplight lying on a lawn, seen from a low camera about 17 degrees above the ground, so the
+          pool is a wide flat ellipse about twice as wide as it is tall, centered in the image and filling about
+          80 percent of the width. Brightest near the middle, with a soft, slightly uneven painterly edge that
+          dies into black well before the image border. Warm honey-gold light only: no grass blades, no ground, no
+          shadows, no object casting it.
+      - block: ui-object-v1
+      - text: |
+          GLOW SPRITE: a painterly additive light sprite for a game: the app adds it on top of the world with
+          plus-lighter blending, so black means no light at all. Painted with the same soft airbrushed grain as the
+          attached art, a smooth falloff from a brighter center to nothing, a very slight painterly irregularity so
+          it is never a perfect digital gradient. Color is a warm candle-light honey-gold (#FFC872 at the center
+          fading through #FF9F4A to black) unless stated. Pure black (#000000) background, not transparent, no
+          other colors, no objects.
+      - text: "AVOID: any object, a lamp, a window, a flame, a sun, a sphere or a visible light source, stars, rays or spikes, lens flare, hard edges, outlines, text, letters, a border, a frame, grey or colored backgrounds, banding, a halo ring. Everything outside the glow is pure black (#000000)."
+
+  - id: glow-window-spill
+    kind: ui
+    name: glow-window-spill
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    chat: "Pofu · Experience"
+    notes: "PILOT. The warm trapezoid of a lit window falling on the grass at night (windows H1-H5, the guest room). Code rotates and scales it per window. Review: a broken, painterly edge like light through a window; narrow at the sill, wide and faint away from it."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+    prompt:
+      - text: |
+          Light from a lit window falling across grass, seen from a low camera about 17 degrees above the ground:
+          a trapezoid of warm light that starts narrow and bright at the top center of the image (where the window
+          sill would be, no window drawn) and fans out down the image to about three times that width, getting fainter
+          with distance and dying into black before the bottom edge. The two long edges are slightly broken and
+          painterly, as if softened by the window's frame and a few blades of grass, and the far end is soft. Warm
+          honey-gold only: no window, no frame, no wall, no grass blades.
+      - block: ui-object-v1
+      - text: |
+          GLOW SPRITE: a painterly additive light sprite for a game: the app adds it on top of the world with
+          plus-lighter blending, so black means no light at all. Painted with the same soft airbrushed grain as the
+          attached art, a smooth falloff from a brighter center to nothing, a very slight painterly irregularity so
+          it is never a perfect digital gradient. Color is a warm candle-light honey-gold (#FFC872 at the center
+          fading through #FF9F4A to black) unless stated. Pure black (#000000) background, not transparent, no
+          other colors, no objects.
+      - text: "AVOID: any object, a lamp, a window, a flame, a sun, a sphere or a visible light source, stars, rays or spikes, lens flare, hard edges, outlines, text, letters, a border, a frame, grey or colored backgrounds, banding, a halo ring. Everything outside the glow is pure black (#000000)."
+
+  - id: dressing-meadow
+    kind: sheet
+    name: dressing-meadow
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Dressing"
+    light: {cell: day, layer: subject}
+    notes: "PILOT. Twelve small pieces that dress the lawn so it is never bare (grass tufts, wildflower clumps, pebbles, a mushroom ring), each separate, each under 40 px at game scale. Code scatters them by island level. Review: twelve distinct pieces in a 4 by 3 grid, each reads at 28 pt, same finish as tea-stall-1, no piece touches another."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A sheet of twelve small lawn-dressing pieces for a cozy island diorama, in a grid of four columns by three
+          rows, each piece complete and separate with wide empty space around it, none touching or overlapping: row 1,
+          three grass tufts of different sizes (a small one, a taller one, a tuft with two seed heads) and a clump of
+          clover; row 2, three wildflower clumps (daisies, cornflowers, buttercups: each four or five chunky flowers on
+          short stems) and a single tall foxglove; row 3, a group of three smooth pebbles, a single flat stone, a small
+          ring of five toadstools with cream caps and warm rose spots, and a half-buried mossy stone. Each piece is
+          small and chunky, seen from the same low front three-quarter camera, standing on nothing.
+      - block: prop-style-v2
+      - text: "AVOID: a floor, a ground shadow, cast shadows, text, letters, outlines, characters or animals, pieces touching or overlapping, a background"
+
+  - id: launch-sky
+    kind: plate
+    name: launch-sky
+    size: 1024x1536
+    canvas: 1290x2796
+    chat: "Pofu · Launch"
+    light: {cell: dawn, layer: subject}
+    notes: "PILOT. The full-bleed dawn sky behind the launch curtain and the shield (1290 x 2796 on device). The image model draws 1024 x 1536, so it is cropped to the middle 69 percent of the width: keep everything important central. Review: soft, calm bands of light; clouds at the bottom third give the curtain's clouds somewhere to land; nothing in the top 12 percent (status bar)."
+    attach:
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this (do not draw the sea)."
+    prompt:
+      - text: |
+          A tall full-bleed dawn sky for a cozy mobile game's launch screen, a portrait image. Top to bottom: a soft
+          lilac-blue sky at the top, melting through pale peach and warm cream to a glowing honey horizon about two
+          thirds down; a few long, soft, slightly flat clouds in thin calm bands across the sky, lit warm from below;
+          a gentle bank of puffy cream clouds along the bottom third, lit pink-gold on their tops. The light is
+          calm and hopeful, a quiet new morning. Keep the middle of the image open and uncluttered so a small
+          island can sit there; keep anything important within the central two thirds of the width and nothing
+          within the top 12 percent. No island, no sun disc, no birds, no stars, no characters.
+      - text: "Painted in the same soft airbrushed picture-book finish as the attached art, milky pastel colors lifted toward cream, no outlines, no hard edges."
+      - text: "AVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, an island, a sun disc, birds, stars, characters, banding"

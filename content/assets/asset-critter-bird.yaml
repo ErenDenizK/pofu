@@ -1,0 +1,21 @@
+id: asset-critter-bird
+type: asset
+title_tr: critter-bird
+title_en: critter-bird (sheet)
+status: planned
+horizon: later
+summary: >-
+  A sheet of one small round bird drawn four times in a single row, left to right, evenly
+  spaced with wide empty space between them: (1) perched, body upright, head turned to the
+  left; (2) perched, head turned to the right with a small chirp, beak slightly open; (3)
+  mid-flap with the wings raised high; (4) mid-flap with the wings lowered. A plump, round
+  little bird in soft dusty blue with a cream belly and a small hone…
+art:
+  images: []
+  jobs:
+  - batch-35-experience:critter-bird
+sources:
+- doc: tools/imagegen/manifest/batch-35-experience.yaml
+kind: sheet
+batch: batch-35-experience
+size: 1536x1024
