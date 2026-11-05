@@ -1,0 +1,381 @@
+batch: batch-29-residents-at-work-v2
+manifest: tools/imagegen/manifest/batch-29-residents-at-work-v2.yaml
+manifest_sha256: 6951c19bc086d726f1ca8c3cc234be9930dabe3dbd8b5a12632fb7eadf1e3c9d
+contact_sheet: design/art/takes/batch-29-residents-at-work-v2/x-work-mochi-v2/contact.jpg
+jobs:
+  x-work-mochi-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after the sole unchanged-prompt retry. All four sources preserve
+      the canonical long-ear Mochi without curl, approved tea station, correct pour
+      into one tulip glass and separate filled second glass. Every source nevertheless
+      keeps front/viewer-directed eyes and lateral head roll rather than the explicit
+      lowered head following the glass/stream. Root source inspection and independent
+      full-size source plus locked review agree. Official numeric QA is warn-only
+      and those style/light warnings remain advisory; this is a concrete pose failure,
+      not an invented numeric threshold. Preserve all four original PNGs and q90 takes;
+      no third pair, rephrasing or promotion. Unrelated jobs continue.
+qa_reports:
+  1:
+    job: x-work-mochi-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 96 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 86 (band 55-90)'
+      value: 85.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.48 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.478
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.6 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.56
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.15
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.3283
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 9.7, off-palette 0.7% (top: #99CCFF (0.4%), #DD7733
+        (0.1%))'
+      value: 2.6784
+    info:
+      metrics_raw:
+        L_p5: 66.2
+        L_p50: 84.0
+        L_p95: 95.0
+        C_p50: 20.1
+        C_p95: 41.8
+        C_p99: 49.3
+        detail: 2.84
+      metrics_locked:
+        L_p5: 66.6
+        L_p50: 84.0
+        L_p95: 94.7
+        C_p50: 19.7
+        C_p95: 40.8
+        C_p99: 47.1
+        detail: 2.15
+    fingerprint: 796c9a653a36337b
+  2:
+    job: x-work-mochi-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 43.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 96 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.48 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.478
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.48
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.15
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5131
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.8, p95 8.4, off-palette 0.6% (top: #EE9944 (0.2%), #EE8833
+        (0.1%))'
+      value: 2.7752
+    info:
+      metrics_raw:
+        L_p5: 65.9
+        L_p50: 83.4
+        L_p95: 94.6
+        C_p50: 21.2
+        C_p95: 44.8
+        C_p99: 55.6
+        detail: 2.87
+      metrics_locked:
+        L_p5: 66.2
+        L_p50: 83.4
+        L_p95: 94.2
+        C_p50: 20.7
+        C_p95: 43.8
+        C_p99: 50.4
+        detail: 2.15
+    fingerprint: 796c9a653a36337b
+  3:
+    job: x-work-mochi-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 65 (at most 22), p98 97 (at least 90), spread 32
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 31.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 84.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.50 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.498
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.7 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.72
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.44
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.3636
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.4, p95 7.3, off-palette 0.3% (top: #CCBB55 (0.1%), #EE9944
+        (0.1%))'
+      value: 2.3907
+    info:
+      metrics_raw:
+        L_p5: 65.4
+        L_p50: 83.5
+        L_p95: 94.9
+        C_p50: 21.4
+        C_p95: 43.7
+        C_p99: 52.4
+        detail: 3.25
+      metrics_locked:
+        L_p5: 65.9
+        L_p50: 83.5
+        L_p95: 94.5
+        C_p50: 21.1
+        C_p95: 42.0
+        C_p99: 49.9
+        detail: 2.44
+    fingerprint: 796c9a653a36337b
+  4:
+    job: x-work-mochi-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 96 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 82.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.46 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.463
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.8 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.81
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.36
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.4543
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 10.4, off-palette 0.4% (top: #99BBFF (0.1%), #EE8844
+        (0.1%))'
+      value: 3.0927
+    info:
+      metrics_raw:
+        L_p5: 63.9
+        L_p50: 81.5
+        L_p95: 93.6
+        C_p50: 24.2
+        C_p95: 41.0
+        C_p99: 50.7
+        detail: 3.17
+      metrics_locked:
+        L_p5: 64.3
+        L_p50: 81.5
+        L_p95: 93.1
+        C_p50: 23.3
+        C_p95: 40.3
+        C_p99: 47.4
+        detail: 2.36
+    fingerprint: 796c9a653a36337b
+manual_review:
+  observed_note: Skipped after the sole unchanged-prompt retry. All four sources preserve
+    the canonical long-ear Mochi without curl, approved tea station, correct pour
+    into one tulip glass and separate filled second glass. Every source nevertheless
+    keeps front/viewer-directed eyes and lateral head roll rather than the explicit
+    lowered head following the glass/stream. Root source inspection and independent
+    full-size source plus locked review agree. Official numeric QA is warn-only and
+    those style/light warnings remain advisory; this is a concrete pose failure, not
+    an invented numeric threshold. Preserve all four original PNGs and q90 takes;
+    no third pair, rephrasing or promotion. Unrelated jobs continue.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-29-residents-at-work-v2
+  job: x-work-mochi-v2
+  take: 1
+  round: 1
+  logical_run: 20261105-b29-v2-residents
+  source_file: /workspace/generated_images/exec-8fc794a7-846f-4397-82bf-4bf70a516f06.png
+  returned_at: '2026-11-05T21:48:08.459Z'
+  prompt_sha256: 28e2e6713646ceb79062dc2c16f92c78787e223d63641b69ced88d4dbe0f02ae
+  fingerprint: 796c9a653a36337b
+  saved_at: '2026-11-05T21:48:08.942656+00:00'
+  original_generated_png_sha256: 5edca74cdb4b7127ed390e2fe8d457372227e21fbdda14efa19d65172750c40e
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 6640e00b82dda9215cd4e825959c4a6517f23c44700ae9b2583624468cfb21bf
+  inbox_png_sha256: 00fe70fb2b8ae9b60cea1ac62c8518fcdd7f71ddd3fa47754e06f757c0f3ad82
+  qa_sha256: 3e5a3b4cd7bdc3085ddb55faa8e81d9020b0b1ba704e49dbdb84c82efc609088
+- batch: batch-29-residents-at-work-v2
+  job: x-work-mochi-v2
+  take: 2
+  round: 1
+  logical_run: 20261105-b29-v2-residents
+  source_file: /workspace/generated_images/exec-64513e49-638a-4103-9c59-6c9c420545cd.png
+  returned_at: '2026-11-05T21:48:45.595Z'
+  prompt_sha256: 28e2e6713646ceb79062dc2c16f92c78787e223d63641b69ced88d4dbe0f02ae
+  fingerprint: 796c9a653a36337b
+  saved_at: '2026-11-05T21:48:46.082636+00:00'
+  original_generated_png_sha256: f2eed1f87e4ccfe05f3e4fff9074d13ece72a9125c83fe3e1a4d0cc790038b0e
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 66bd269f9996844164b2edeae5da12da1e59b95ecceb61c42830edd01843445e
+  inbox_png_sha256: b2f114e99eca5c5cfb18a00cd40b24c0cc5ee00858e69a6866f0a55d1aa187f1
+  qa_sha256: a7f6b358bbe88558308fac31cc63cec258c05aee325149717baeb0838441a622
+- batch: batch-29-residents-at-work-v2
+  job: x-work-mochi-v2
+  take: 3
+  round: 2
+  logical_run: 20261105-b29-v2-residents
+  source_file: /workspace/generated_images/exec-bde2e482-d595-48f6-b9c9-57df07492e53.png
+  returned_at: '2026-11-05T21:53:30.576Z'
+  prompt_sha256: 28e2e6713646ceb79062dc2c16f92c78787e223d63641b69ced88d4dbe0f02ae
+  fingerprint: 796c9a653a36337b
+  saved_at: '2026-11-05T21:53:30.951322+00:00'
+  original_generated_png_sha256: f010ad0d35265940a4e251e551fe447848d99bfb1ae5917e512667f1ff64c4c6
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: a83ca24d5d3aef165671258bff2a370b427927040b4a11e2aab778906b41fb97
+  inbox_png_sha256: 8491ef28bce10b8456e61f61bc74cf3feebe0e71e277f354ee0c5890bab29652
+  qa_sha256: ab303bb38230130897e14e0f60cc4f8f243db2918ce935fad5a8227a70a1fcdc
+- batch: batch-29-residents-at-work-v2
+  job: x-work-mochi-v2
+  take: 4
+  round: 2
+  logical_run: 20261105-b29-v2-residents
+  source_file: /workspace/generated_images/exec-9497bf8e-18de-4aa3-8ed6-92ba1b09b638.png
+  returned_at: '2026-11-05T21:54:12.075Z'
+  prompt_sha256: 28e2e6713646ceb79062dc2c16f92c78787e223d63641b69ced88d4dbe0f02ae
+  fingerprint: 796c9a653a36337b
+  saved_at: '2026-11-05T21:54:12.395049+00:00'
+  original_generated_png_sha256: 74ee82a57b7fec670662400f3d702c7dd6aa7c35d9006d3f86987d2609cbd110
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 3fad344e819bce0fdcfb93b9b83299cab387acb87dce4e0ae7a85e637aad93aa
+  inbox_png_sha256: 169fe11d81e9f61f419861cb19dddca2b756e14cfe4d6c1a0ad761a83575213f
+  qa_sha256: e2a97e4eb1ab1c94aa7d0cb83b9ecfc23978e8511d793754fbc594aad861ed53
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 4b99e1e7f1e6c31421854cd25b498043677e7b9d16b9b10e8e3b8a2ff8a18228
