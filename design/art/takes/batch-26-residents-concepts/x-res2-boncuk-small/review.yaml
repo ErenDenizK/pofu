@@ -1,0 +1,364 @@
+batch: batch-26-residents-concepts
+manifest: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+manifest_sha256: 63b34c65480e080d91667fdb106afd899b50801a1590da4c510dab91eb9dac76
+contact_sheet: design/art/takes/batch-26-residents-concepts/x-res2-boncuk-small/contact.jpg
+jobs:
+  x-res2-boncuk-small:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'SKIPPED after the one allowed retry pair: all four sources remain close
+      foreground portraits, roughly 35-45 percent frame height, rather than the manifest
+      tiny resident in a wide muted scene. All four roofs are conventional domed umbrellas
+      rather than clearly upturned. Spectacles, a blank held tag, lost buttons/spoons/keys/mittens
+      and curl-free feather shapes otherwise read well. Numerical hard QA cannot waive
+      this semantic composition/silhouette failure. All four originals retained and
+      archived; no true dependents, unrelated jobs continue.'
+qa_reports:
+  1:
+    job: x-res2-boncuk-small
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 31 (at most 22), p98 94 (at least 90), spread 63
+        (at least 60)'
+      value: 62.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 66 (band 55-90)'
+      value: 66.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.28 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.278
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.0 (at least 3.5)'
+      value: 7.04
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.1 (R1 5.3)
+      value: 4.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.5
+      value: 2.4956
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 4.6, off-palette 0.0%
+      value: 1.802
+    info:
+      metrics_raw:
+        L_p5: 41.4
+        L_p50: 70.6
+        L_p95: 93.2
+        C_p50: 25.4
+        C_p95: 37.0
+        C_p99: 39.9
+        detail: 5.11
+      metrics_locked:
+        L_p5: 41.6
+        L_p50: 70.6
+        L_p95: 92.9
+        C_p50: 25.4
+        C_p95: 36.6
+        C_p99: 39.0
+        detail: 4.12
+    fingerprint: d33eb5c73eb8f0b8
+  2:
+    job: x-res2-boncuk-small
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 37 (at most 22), p98 94 (at least 90), spread 57
+        (at least 60)'
+      value: 57.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 71.9
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.28 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.282
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.0 (at least 3.5)'
+      value: 6.98
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.1 (R1 5.3)
+      value: 4.07
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.1
+      value: 2.0501
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.7, p95 4.6, off-palette 0.0%
+      value: 1.7125
+    info:
+      metrics_raw:
+        L_p5: 44.2
+        L_p50: 76.4
+        L_p95: 93.9
+        C_p50: 24.4
+        C_p95: 41.3
+        C_p99: 44.0
+        detail: 5.02
+      metrics_locked:
+        L_p5: 44.4
+        L_p50: 76.3
+        L_p95: 93.7
+        C_p50: 24.2
+        C_p95: 41.0
+        C_p99: 43.4
+        detail: 4.07
+    fingerprint: d33eb5c73eb8f0b8
+  3:
+    job: x-res2-boncuk-small
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 28 (at most 22), p98 92 (at least 90), spread 64
+        (at least 60)'
+      value: 63.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 67 (band 55-90)'
+      value: 66.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.25 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.247
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.2 (at least 3.5)'
+      value: 6.23
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.6 (R1 5.3)
+      value: 3.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.4
+      value: 2.4432
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 4.7, off-palette 0.0%
+      value: 1.8291
+    info:
+      metrics_raw:
+        L_p5: 38.2
+        L_p50: 71.7
+        L_p95: 93.0
+        C_p50: 27.1
+        C_p95: 40.7
+        C_p99: 44.0
+        detail: 4.61
+      metrics_locked:
+        L_p5: 38.4
+        L_p50: 71.6
+        L_p95: 92.8
+        C_p50: 27.0
+        C_p95: 40.4
+        C_p99: 43.4
+        detail: 3.64
+    fingerprint: d33eb5c73eb8f0b8
+  4:
+    job: x-res2-boncuk-small
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 35.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 24 (at most 22), p98 94 (at least 90), spread 69
+        (at least 60)'
+      value: 69.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 66 (band 55-90)'
+      value: 66.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.216
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.3 (at least 3.5)'
+      value: 7.33
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.1 (R1 5.3)
+      value: 4.1
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.0
+      value: 1.9658
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 4.6, off-palette 0.0%
+      value: 1.7854
+    info:
+      metrics_raw:
+        L_p5: 34.0
+        L_p50: 73.6
+        L_p95: 92.7
+        C_p50: 21.6
+        C_p95: 36.2
+        C_p99: 38.8
+        detail: 5.17
+      metrics_locked:
+        L_p5: 34.1
+        L_p50: 73.5
+        L_p95: 92.4
+        C_p50: 21.6
+        C_p95: 35.9
+        C_p99: 38.2
+        detail: 4.1
+    fingerprint: d33eb5c73eb8f0b8
+manual_review:
+  observed_note: 'SKIPPED after the one allowed retry pair: all four sources remain
+    close foreground portraits, roughly 35-45 percent frame height, rather than the
+    manifest tiny resident in a wide muted scene. All four roofs are conventional
+    domed umbrellas rather than clearly upturned. Spectacles, a blank held tag, lost
+    buttons/spoons/keys/mittens and curl-free feather shapes otherwise read well.
+    Numerical hard QA cannot waive this semantic composition/silhouette failure. All
+    four originals retained and archived; no true dependents, unrelated jobs continue.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-26-residents-concepts
+  job: x-res2-boncuk-small
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-vane-boncuk
+  source_file: /workspace/generated_images/exec-7c5e6cff-403e-4627-8366-b527b5578988.png
+  returned_at: '2026-11-05T14:26:35.253Z'
+  prompt_sha256: 970749765545f02c35168bd0367a412255e4794460e51ca5191a4726dcada460
+  fingerprint: d33eb5c73eb8f0b8
+  saved_at: '2026-11-05T14:26:36.072300+00:00'
+  original_generated_png_sha256: 9b0daf878488b4d4ab07b1d33a6c92450194451df87132c02d5e629cb57c3c71
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: abfdd7baeee8aff5db9cfa5f534ee2041be380fead773b1fa243e66aa1a871f2
+  inbox_png_sha256: ad066a43325ef2986fa30abd650f45feef8fb03876732e4f13bd5d1869d2f452
+  qa_sha256: b3d31bf447c6d7de169577a0b9f52df311afba36c345c04d61941526827c37c6
+- batch: batch-26-residents-concepts
+  job: x-res2-boncuk-small
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-vane-boncuk
+  source_file: /workspace/generated_images/exec-2e1fbe02-1037-42d4-b00e-3cae67f686e3.png
+  returned_at: '2026-11-05T14:25:46.845Z'
+  prompt_sha256: 970749765545f02c35168bd0367a412255e4794460e51ca5191a4726dcada460
+  fingerprint: d33eb5c73eb8f0b8
+  saved_at: '2026-11-05T14:25:47.310526+00:00'
+  original_generated_png_sha256: fb1345557f7056a1822a894fc6d4e7c2609d971782c709659e005fbc04825e3d
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 9b4a2b9f1f0d51b84c8d5efb00867366e071eb642ef9d75e0fc91d5fab80b7d7
+  inbox_png_sha256: 1cf532e74be3476f71223d341c02bd73bd2423eaede2f571fb03db092ad8c5fa
+  qa_sha256: 66e40bf9ac862f819412cb797613e68217d4564a83674d6f5d96e4eae495ad88
+- batch: batch-26-residents-concepts
+  job: x-res2-boncuk-small
+  take: 3
+  round: 2
+  logical_run: 20261105-boncuk-retry
+  source_file: /workspace/generated_images/exec-14ae1c24-03ca-4f6d-a7ac-bcbcdae1bbf7.png
+  returned_at: '2026-11-05T14:46:20.628Z'
+  prompt_sha256: 970749765545f02c35168bd0367a412255e4794460e51ca5191a4726dcada460
+  fingerprint: d33eb5c73eb8f0b8
+  saved_at: '2026-11-05T14:46:21.161583+00:00'
+  original_generated_png_sha256: 14464a824e68f42acc5baac72d6bfff475a0fac005075a32f3d78805e524a35a
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 2c937c5a7a162a2fddab97f768ed3866a5529684aed004e47d5cc5dd7970912f
+  inbox_png_sha256: cdf6024a6caeced131c65c4e526dce267cd13536083f3eee4c83abd6a6d588b6
+  qa_sha256: de39beb0ae3a7f2bb69dfbd4b8febf1e14daa156b077691a6e3bbf889964065d
+- batch: batch-26-residents-concepts
+  job: x-res2-boncuk-small
+  take: 4
+  round: 2
+  logical_run: 20261105-boncuk-retry
+  source_file: /workspace/generated_images/exec-b0d827c2-be17-44c4-965d-08fca9e3fcee.png
+  returned_at: '2026-11-05T14:47:09.864Z'
+  prompt_sha256: 970749765545f02c35168bd0367a412255e4794460e51ca5191a4726dcada460
+  fingerprint: d33eb5c73eb8f0b8
+  saved_at: '2026-11-05T14:47:10.316913+00:00'
+  original_generated_png_sha256: 35a6b589e49f544feada790dcc5afb675b3a2aa81b5d5106bf53fa0807dab648
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: e80f26172a848e9c22beb23d9a7cd3d3ad3b3d282750ac4bbd7cef35f255cec8
+  inbox_png_sha256: fd1262108fd6baa8807d284e2cb7d7c274a2fab6d10409632be432e10845846e
+  qa_sha256: da9bc31718e5610976ec80a7cdc74aae44c9a72b889c4ef697a9fa35872c5d54
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

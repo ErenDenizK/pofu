@@ -1,0 +1,202 @@
+batch: batch-26-residents-concepts
+manifest: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+manifest_sha256: 63b34c65480e080d91667fdb106afd899b50801a1590da4c510dab91eb9dac76
+contact_sheet: design/art/takes/batch-26-residents-concepts/x-res2-damla-grand/contact.jpg
+jobs:
+  x-res2-damla-grand:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show the confident brown/cream
+      otter with round ears, thick tail and no head curl, smiling beside a huge silver-blue
+      waterfall, lush moss/flowers and a mist rainbow. Take2 visibly raises the overflowing
+      glass near shoulder height; take1 holds it nearer the chest. Both carry water
+      from the glass into the flowing scene and provide the requested grand reveal.
+      These independent concept briefs attach R1/world style only, not a selected
+      Damla small portrait, so exact model-sheet identity between stages remains to
+      be locked later. Light warnings remain advisory.
+qa_reports:
+  1:
+    job: x-res2-damla-grand
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.0
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 56 (at most 24), p98 97 (at least 86), spread
+        41 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 41.3
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 86 (band 48-86)'
+      value: 85.6
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.35 (at most 0.22; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.353
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 2.7 (at least 3.4) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.74
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.52
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1089
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 6.6, off-palette 0.6% (top: #BBBB55 (0.2%), #CCBB55
+        (0.2%))'
+      value: 2.3268
+    info:
+      metrics_raw:
+        L_p5: 59.6
+        L_p50: 88.4
+        L_p95: 96.3
+        C_p50: 10.8
+        C_p95: 49.3
+        C_p99: 55.0
+        detail: 3.4
+      metrics_locked:
+        L_p5: 59.9
+        L_p50: 88.3
+        L_p95: 96.1
+        C_p50: 10.7
+        C_p95: 48.0
+        C_p99: 53.9
+        detail: 2.52
+    fingerprint: 811ff31aa860ff88
+  2:
+    job: x-res2-damla-grand
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.7
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 51 (at most 24), p98 97 (at least 86), spread
+        45 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 45.2
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 83 (band 48-86)'
+      value: 82.8
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.33 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.325
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 2.9 (at least 3.4)'
+      value: 2.91
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.51
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1198
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 7.5, off-palette 0.3% (top: #663311 (0.1%), #773311
+        (0.0%))'
+      value: 2.5544
+    info:
+      metrics_raw:
+        L_p5: 58.2
+        L_p50: 87.8
+        L_p95: 95.9
+        C_p50: 12.2
+        C_p95: 48.9
+        C_p99: 57.3
+        detail: 3.36
+      metrics_locked:
+        L_p5: 58.6
+        L_p50: 87.8
+        L_p95: 95.7
+        C_p50: 12.2
+        C_p95: 47.7
+        C_p99: 56.6
+        detail: 2.51
+    fingerprint: 811ff31aa860ff88
+manual_review:
+  observed_note: Both show the confident brown/cream otter with round ears, thick
+    tail and no head curl, smiling beside a huge silver-blue waterfall, lush moss/flowers
+    and a mist rainbow. Take2 visibly raises the overflowing glass near shoulder height;
+    take1 holds it nearer the chest. Both carry water from the glass into the flowing
+    scene and provide the requested grand reveal. These independent concept briefs
+    attach R1/world style only, not a selected Damla small portrait, so exact model-sheet
+    identity between stages remains to be locked later. Light warnings remain advisory.
+  excluded_takes: []
+sources:
+- batch: batch-26-residents-concepts
+  job: x-res2-damla-grand
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-damla
+  source_file: /workspace/generated_images/exec-c9f15844-cf27-4bf2-945d-f926cb46bcf5.png
+  returned_at: '2026-11-05T14:02:09.113Z'
+  prompt_sha256: 6252b32ae8519da402cf87b3c6cb9d813b32e50e4cf6c0de50f0ff4deff438ac
+  fingerprint: 811ff31aa860ff88
+  saved_at: '2026-11-05T14:02:09.472893+00:00'
+  original_generated_png_sha256: cc41db2307ad8425a3a404e780f7411eef18734ab3d111155042018cc2722ce0
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 65ab797489fc49794bbe0ac0df27d297a7345be1b311a68deed638af43f8f4e3
+  inbox_png_sha256: 4de4650a15f67800bf4d269c993f40cac9f382793619da9cf6c0b71f5c26f030
+  qa_sha256: ffb3ed6463f3faf2653445e13a8a71f83e354ded1e2d76b2ef4f7aff1895956c
+- batch: batch-26-residents-concepts
+  job: x-res2-damla-grand
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-damla
+  source_file: /workspace/generated_images/exec-00fd0db7-ae54-4e17-b9b9-dc0f8de59f3c.png
+  returned_at: '2026-11-05T14:01:22.742Z'
+  prompt_sha256: 6252b32ae8519da402cf87b3c6cb9d813b32e50e4cf6c0de50f0ff4deff438ac
+  fingerprint: 811ff31aa860ff88
+  saved_at: '2026-11-05T14:01:23.180952+00:00'
+  original_generated_png_sha256: bc959ae8ece40fc2a1f073191b120b0c734c526b61260dde59a298ce7ab2afe6
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: b2c54f80130fcaf6b256fe0dc45e9df4d03174f5944cd3fa061159d0416caca9
+  inbox_png_sha256: c77b69239125eab77d9326929aaecea8976a8b39609afda7b70321b0161e4a59
+  qa_sha256: cce4e1e04c3bc775e72c5bae43b64f2f95ca2159c9f9d5e2b4024f36eda473b2
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

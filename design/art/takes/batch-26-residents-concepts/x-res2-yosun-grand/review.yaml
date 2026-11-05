@@ -1,0 +1,200 @@
+batch: batch-26-residents-concepts
+manifest: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+manifest_sha256: 63b34c65480e080d91667fdb106afd899b50801a1590da4c510dab91eb9dac76
+contact_sheet: design/art/takes/batch-26-residents-concepts/x-res2-yosun-grand/contact.jpg
+jobs:
+  x-res2-yosun-grand:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both clearly reveal a proud moss-green/brown
+      old tortoise on a bright harbor pier, one blank cream envelope held high, an
+      empty neat satchel, a huge friendly rising cloud-whale and a tiny waiting crowd
+      represented with paw silhouettes. The model adds a postal cap/scarf/moustache
+      and uses a brown satchel rather than the cream of the independent small-scene
+      description; record as concept identity variation, not a production model sheet.
+      No Pofu curl or lettering. Golden light/haze warnings advisory; never promoted.
+qa_reports:
+  1:
+    job: x-res2-yosun-grand
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.1
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 44 (at most 24), p98 92 (at least 86), spread
+        47 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 47.4
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 77 (band 48-86)'
+      value: 77.4
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.25 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.247
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 3.9 (at least 3.4)'
+      value: 3.92
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.25
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.635
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 6.5, off-palette 0.1% (top: #AA5533 (0.1%), #BB6633
+        (0.0%))'
+      value: 2.0674
+    info:
+      metrics_raw:
+        L_p5: 54.3
+        L_p50: 80.8
+        L_p95: 91.6
+        C_p50: 25.5
+        C_p95: 43.6
+        C_p99: 50.5
+        detail: 3.01
+      metrics_locked:
+        L_p5: 54.5
+        L_p50: 80.8
+        L_p95: 91.2
+        C_p50: 25.5
+        C_p95: 43.1
+        C_p99: 49.1
+        detail: 2.25
+    fingerprint: 76bbfb33759e7730
+  2:
+    job: x-res2-yosun-grand
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.0
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 40 (at most 24), p98 92 (at least 86), spread
+        53 (at least 55)'
+      value: 52.7
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 78 (band 48-86)'
+      value: 78.5
+    - check: light_haze
+      status: pass
+      message: 'golden/subject: dark-channel haze 0.21 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.212
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 4.5 (at least 3.4)'
+      value: 4.48
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.8 (R1 5.3)
+      value: 2.78
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.8153
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.8, p95 8.0, off-palette 0.8% (top: #DD8844 (0.1%), #EE8855
+        (0.1%))'
+      value: 2.7539
+    info:
+      metrics_raw:
+        L_p5: 53.7
+        L_p50: 81.1
+        L_p95: 92.6
+        C_p50: 27.7
+        C_p95: 48.7
+        C_p99: 53.7
+        detail: 3.64
+      metrics_locked:
+        L_p5: 54.0
+        L_p50: 81.1
+        L_p95: 92.1
+        C_p50: 27.6
+        C_p95: 48.0
+        C_p99: 52.7
+        detail: 2.78
+    fingerprint: 76bbfb33759e7730
+manual_review:
+  observed_note: Both clearly reveal a proud moss-green/brown old tortoise on a bright
+    harbor pier, one blank cream envelope held high, an empty neat satchel, a huge
+    friendly rising cloud-whale and a tiny waiting crowd represented with paw silhouettes.
+    The model adds a postal cap/scarf/moustache and uses a brown satchel rather than
+    the cream of the independent small-scene description; record as concept identity
+    variation, not a production model sheet. No Pofu curl or lettering. Golden light/haze
+    warnings advisory; never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-26-residents-concepts
+  job: x-res2-yosun-grand
+  take: 1
+  round: 1
+  logical_run: 20261105-nane-r2-yosun-grand-r1
+  source_file: /workspace/generated_images/exec-113c5b28-9b3e-4bf9-a69f-d39ae9d1d627.png
+  returned_at: '2026-11-05T14:52:48.222Z'
+  prompt_sha256: 921dfc274911502f3cf818c762dc46dba0629ff5bf26e0a58f3024957872778a
+  fingerprint: 76bbfb33759e7730
+  saved_at: '2026-11-05T14:52:48.541324+00:00'
+  original_generated_png_sha256: 6f253a403352116e8d029623d3412a353b8bae9a9a98534b397fc0db3532689b
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 9ed5301441e43646d5cd9fdac186011b2f92dadabfa0ef7d63f355306a3e14b9
+  inbox_png_sha256: b075fd7b7aab2592acfb6bb04ce6f23257ae21e8d997311b26915d3062027440
+  qa_sha256: e0a31f086f067b33770c355b374dbd11b4ef5d5d92f7d31124aef8a5f0f965fe
+- batch: batch-26-residents-concepts
+  job: x-res2-yosun-grand
+  take: 2
+  round: 1
+  logical_run: 20261105-nane-r2-yosun-grand-r1
+  source_file: /workspace/generated_images/exec-8f23c2ef-10b9-4fa4-bf66-adb87900a9e9.png
+  returned_at: '2026-11-05T14:51:18.690Z'
+  prompt_sha256: 921dfc274911502f3cf818c762dc46dba0629ff5bf26e0a58f3024957872778a
+  fingerprint: 76bbfb33759e7730
+  saved_at: '2026-11-05T14:51:19.073296+00:00'
+  original_generated_png_sha256: 480ac85578f9918b8af85008339d5526abfe43581a6ac70192d32e64a3d5e63d
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 1bd81937a92b1198c515da21dfefe68fb16b52c92e58b9d4369eefc792f0112e
+  inbox_png_sha256: 4a7fa2104f8918bf821c33b1c7718a19a14e5fde49139720d447254dfca1dbd8
+  qa_sha256: 269455cac8e4b0bd3765571d7cb7727edfa40da948ebf0d9b91eb2b5d8ffd885
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
