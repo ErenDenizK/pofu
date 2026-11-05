@@ -1,0 +1,199 @@
+batch: batch-23-stickers
+manifest: tools/imagegen/manifest/batch-23-stickers.yaml
+manifest_sha256: 237b0c922e52eeec54ab7617d5fe3f158bffe6205e5e3857a09437aa1c3434b3
+contact_sheet: design/art/takes/batch-23-stickers/x-sticker-simit/contact.jpg
+jobs:
+  x-sticker-simit:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Each sheet has exactly three
+      complete separated tabby Simit figures in one row: curved-eye happiness with
+      curled-up tail, closed-eye curled loaf with folded ears, and wide-eye O-mouth
+      surprise with upright ears and a puffier tail. Honey/cream stripes, pink nose,
+      pointed ears and coral neckerchief match the approved kitten. No head curl,
+      Pofu, labels, sticker border or extra limbs. All hard QA passes; advisory style/light
+      and palette warnings are retained.'
+qa_reports:
+  1:
+    job: x-sticker-simit
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 55 (R1 51)
+      value: 54.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 96 (at least 90), spread 43
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 42.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 82.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.141
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.1 (at least 3.5)'
+      value: 7.13
+    - check: detail_budget
+      status: warn
+      message: detail at display size 6.6 (R1 5.3)
+      value: 6.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.1
+      value: 0.101
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.0, p95 14.4, off-palette 9.7% (top: #DD8844 (2.8%), #CC7733
+        (2.1%)) (advisory in an exploration)'
+      value: 4.0081
+    info:
+      metrics_raw:
+        L_p5: 59.5
+        L_p50: 82.6
+        L_p95: 94.8
+        C_p50: 33.3
+        C_p95: 55.5
+        C_p99: 57.5
+        detail: 6.61
+      metrics_locked:
+        L_p5: 59.5
+        L_p50: 82.6
+        L_p95: 94.8
+        C_p50: 33.3
+        C_p95: 54.7
+        C_p99: 55.8
+        detail: 6.64
+    fingerprint: a2ca35f4a00a6d94
+  2:
+    job: x-sticker-simit
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 54 (R1 51)
+      value: 54.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 95 (at least 90), spread 42
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 42.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 82.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.2
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.2 (at least 3.5)'
+      value: 6.25
+    - check: detail_budget
+      status: warn
+      message: detail at display size 6.6 (R1 5.3)
+      value: 6.63
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.1
+      value: 0.0918
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.5, p95 13.4, off-palette 7.6% (top: #DD8844 (2.2%), #CC7733
+        (0.9%))'
+      value: 3.5474
+    info:
+      metrics_raw:
+        L_p5: 60.9
+        L_p50: 82.7
+        L_p95: 94.0
+        C_p50: 32.9
+        C_p95: 54.6
+        C_p99: 58.9
+        detail: 6.6
+      metrics_locked:
+        L_p5: 60.9
+        L_p50: 82.7
+        L_p95: 94.0
+        C_p50: 32.9
+        C_p95: 54.2
+        C_p99: 56.4
+        detail: 6.63
+    fingerprint: a2ca35f4a00a6d94
+manual_review:
+  observed_note: 'Each sheet has exactly three complete separated tabby Simit figures
+    in one row: curved-eye happiness with curled-up tail, closed-eye curled loaf with
+    folded ears, and wide-eye O-mouth surprise with upright ears and a puffier tail.
+    Honey/cream stripes, pink nose, pointed ears and coral neckerchief match the approved
+    kitten. No head curl, Pofu, labels, sticker border or extra limbs. All hard QA
+    passes; advisory style/light and palette warnings are retained.'
+  excluded_takes: []
+sources:
+- batch: batch-23-stickers
+  job: x-sticker-simit
+  take: 1
+  round: 1
+  logical_run: backlog-next-20261105
+  source_file: /workspace/generated_images/exec-14785d08-554a-4f7f-9cf2-bd6bb0f6193d.png
+  returned_at: '2026-11-05T13:52:48.874Z'
+  prompt_sha256: d81db63346932cb99fb1840d3e767a6fc08037a720e526ef60eb2e0e13a191bc
+  fingerprint: a2ca35f4a00a6d94
+  saved_at: '2026-11-05T13:52:49.294197+00:00'
+  original_generated_png_sha256: f246e528fb5f3c5c93a0cca04ea8dc2b8c371d21aed9b3476ae41edc81fab215
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 686edc282bb31129f97612309510989ce4c2bf1206e4222ab8c6b8ec09dbf973
+  inbox_png_sha256: ea7a57240cd135b92288faeeef75d7b375078323788cbd54af5a2008ee2a90e4
+  qa_sha256: b4c916153b17a031920fea4ccddded2a650b4878f0f4d398980bcb48482f2852
+- batch: batch-23-stickers
+  job: x-sticker-simit
+  take: 2
+  round: 1
+  logical_run: backlog-next-20261105
+  source_file: /workspace/generated_images/exec-edba4b5b-49fb-4c8c-b94b-b74ef9081390.png
+  returned_at: '2026-11-05T13:54:39.410Z'
+  prompt_sha256: d81db63346932cb99fb1840d3e767a6fc08037a720e526ef60eb2e0e13a191bc
+  fingerprint: a2ca35f4a00a6d94
+  saved_at: '2026-11-05T13:54:39.752405+00:00'
+  original_generated_png_sha256: 1c58c3736fc6693508dda832665fe9842521b1c297b28594bb247a6267e5384c
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: f5ae8d7c4c246ef7a6a66559f67ff7a68d14b33618d9cfc21a1f598e40b029bd
+  inbox_png_sha256: 69332a1d66d70ad3ce074f7f4309abc9eb6c567eff0dd7d55f5f60e8940427b0
+  qa_sha256: 82ad62fd9a6e8fb9eeb340ae20c7f62e5a98dc98551b5816119ddf8ba874ed57
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

@@ -1,0 +1,202 @@
+batch: batch-23-stickers
+manifest: tools/imagegen/manifest/batch-23-stickers.yaml
+manifest_sha256: 237b0c922e52eeec54ab7617d5fe3f158bffe6205e5e3857a09437aa1c3434b3
+contact_sheet: design/art/takes/batch-23-stickers/x-sticker-pofu-2/contact.jpg
+jobs:
+  x-sticker-pofu-2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Each sheet has exactly five
+      separated complete Pofu figures, three above and two below: laughing with tiny
+      tears, waving one paw, sipping from a tulip tea glass, a paw-to-chin thinking
+      pose, and closed-eye love hugging a heart cushion. His curl, round ears, cream
+      belly and peach fur remain recognisable; no text, sticker border or extra limbs.
+      Tea and cushion are distinct props. Thinking reads more wistful in take1 and
+      more softly curious in take2. True alpha is present; raw-source transparency
+      and every hard QA check pass. Detail, light and palette warnings remain advisory.'
+qa_reports:
+  1:
+    job: x-sticker-pofu-2
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 49.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 48 (at most 22), p98 96 (at least 90), spread 48
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 47.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 86 (band 55-90)'
+      value: 86.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.145
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.1 (at least 3.5)'
+      value: 5.06
+    - check: detail_budget
+      status: warn
+      message: detail at display size 6.4 (R1 5.3)
+      value: 6.44
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.1
+      value: 0.0879
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.0, p95 9.8, off-palette 3.9% (top: #EE7766 (0.6%), #DD6655
+        (0.5%))'
+      value: 2.0122
+    info:
+      metrics_raw:
+        L_p5: 63.5
+        L_p50: 86.3
+        L_p95: 95.0
+        C_p50: 17.3
+        C_p95: 49.6
+        C_p99: 59.0
+        detail: 6.42
+      metrics_locked:
+        L_p5: 63.5
+        L_p50: 86.3
+        L_p95: 95.0
+        C_p50: 17.3
+        C_p95: 49.6
+        C_p99: 56.4
+        detail: 6.44
+    fingerprint: 504ce055cd947515
+  2:
+    job: x-sticker-pofu-2
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 52.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 45 (at most 22), p98 96 (at least 90), spread 51
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 51.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 86 (band 55-90)'
+      value: 85.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.145
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.9 (at least 3.5)'
+      value: 4.94
+    - check: detail_budget
+      status: warn
+      message: detail at display size 6.7 (R1 5.3)
+      value: 6.65
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.1
+      value: 0.1185
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 11.9, off-palette 4.9% (top: #EE7766 (0.5%), #DD6655
+        (0.5%))'
+      value: 2.6487
+    info:
+      metrics_raw:
+        L_p5: 60.6
+        L_p50: 85.8
+        L_p95: 94.9
+        C_p50: 18.9
+        C_p95: 52.6
+        C_p99: 59.7
+        detail: 6.65
+      metrics_locked:
+        L_p5: 60.6
+        L_p50: 85.8
+        L_p95: 94.9
+        C_p50: 18.9
+        C_p95: 52.6
+        C_p99: 56.7
+        detail: 6.65
+    fingerprint: 504ce055cd947515
+manual_review:
+  observed_note: 'Each sheet has exactly five separated complete Pofu figures, three
+    above and two below: laughing with tiny tears, waving one paw, sipping from a
+    tulip tea glass, a paw-to-chin thinking pose, and closed-eye love hugging a heart
+    cushion. His curl, round ears, cream belly and peach fur remain recognisable;
+    no text, sticker border or extra limbs. Tea and cushion are distinct props. Thinking
+    reads more wistful in take1 and more softly curious in take2. True alpha is present;
+    raw-source transparency and every hard QA check pass. Detail, light and palette
+    warnings remain advisory.'
+  excluded_takes: []
+sources:
+- batch: batch-23-stickers
+  job: x-sticker-pofu-2
+  take: 1
+  round: 1
+  logical_run: backlog23-20261105
+  source_file: /workspace/generated_images/exec-47127188-caef-4e68-9096-2935c6e723c1.png
+  returned_at: '2026-11-05T13:35:48.211Z'
+  prompt_sha256: e0ec29a918c85cf733ccb8482afcb36b9c195b4569bddd32d74197550dcb0cee
+  fingerprint: 504ce055cd947515
+  saved_at: '2026-11-05T13:35:48.655812+00:00'
+  original_generated_png_sha256: d9d8cb0e0e0fff7d9a47dc8da9f833caa7a4b148802061ad4397bd9984589174
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 2fa1599c66ed336227c0d9e66f51cd64152291e54a7b905a7f35e42b017c224c
+  inbox_png_sha256: 28ca717392724c7e0501dc4f9002d72e45355a9585feaa934eec0a66b23240eb
+  qa_sha256: a3a2101005a1ece5c71078b7b027587f6659811588cb1fc16281ead3f0349f47
+- batch: batch-23-stickers
+  job: x-sticker-pofu-2
+  take: 2
+  round: 1
+  logical_run: backlog23-20261105
+  source_file: /workspace/generated_images/exec-bf886265-6b19-4a7b-817b-008ef91e51a3.png
+  returned_at: '2026-11-05T13:36:27.479Z'
+  prompt_sha256: e0ec29a918c85cf733ccb8482afcb36b9c195b4569bddd32d74197550dcb0cee
+  fingerprint: 504ce055cd947515
+  saved_at: '2026-11-05T13:36:27.936967+00:00'
+  original_generated_png_sha256: e8d7f15dc2bfd2b008f43135297d446411e113be72d70770893b02887b6efee6
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: e6643111275e71a63bb13e1aab25ea960b3a6b9fd46a3b36268e3d5b352e0d32
+  inbox_png_sha256: c31145b7e9fdc57a886f7051abb90a4fd1ffad1255d679b960394e00d15ecaf9
+  qa_sha256: 037e71b361724fdeb41d361d028d1ea40ed2497837b59ee6929818b7b0e4ba4c
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
