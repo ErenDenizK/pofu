@@ -1,0 +1,162 @@
+batch: batch-35-experience
+contact_sheet: design/art/takes/batch-35-experience/glow-warm-halo/contact.jpg
+jobs:
+  glow-warm-halo:
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Both initial full-size takes
+      pass the canonical additive background, falloff and banding checks and independently
+      reviewed originals and locked images show a soft round honey-amber halo with
+      no object, ring, rays or white-hot core. Border channel maxima 3 and 2 are disclosed
+      as near-black within the authored QA profile, not falsely described as exact
+      zero; no pixel cleanup or stricter invented gate is applied. Style lock is deliberately
+      skipped for additive sprites; with no lock_load or Harmony ranking check returned,
+      the deterministic equal-rank tie selects take 1. Official authored scale 0.5
+      alone produces the delivered master from the saved full lock, with exact pixel
+      and metadata proofs. This UI asset is excluded by the pinned canonical Harmony
+      catalog: run real measure/check and retain proof without a fabricated shard.
+      Exact five-blob PR227 dependency is explicit in this branch.'
+qa_reports:
+  1:
+    job: glow-warm-halo
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 74 on 45% lit pixels (additive profile)
+      value: 74.0196
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.006 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0056
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 174 of 174 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.7
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 7.2
+        L_p95: 75.4
+        C_p50: 12.7
+        C_p95: 73.2
+        C_p99: 74.5
+        detail: 0.7
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 7.2
+        L_p95: 75.4
+        C_p50: 12.7
+        C_p95: 73.2
+        C_p99: 74.5
+        detail: 0.7
+    fingerprint: 574367cb936570a9
+  2:
+    job: glow-warm-halo
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 73 on 47% lit pixels (additive profile)
+      value: 73.4909
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.008 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0084
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 167 of 167 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.68
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 9.3
+        L_p95: 75.7
+        C_p50: 15.0
+        C_p95: 72.8
+        C_p99: 73.9
+        detail: 0.68
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 9.3
+        L_p95: 75.7
+        C_p50: 15.0
+        C_p95: 72.8
+        C_p99: 73.9
+        detail: 0.68
+    fingerprint: 574367cb936570a9
+manual_review:
+  excluded_takes: []
+  note: 'Both initial full-size takes pass the canonical additive background, falloff
+    and banding checks and independently reviewed originals and locked images show
+    a soft round honey-amber halo with no object, ring, rays or white-hot core. Border
+    channel maxima 3 and 2 are disclosed as near-black within the authored QA profile,
+    not falsely described as exact zero; no pixel cleanup or stricter invented gate
+    is applied. Style lock is deliberately skipped for additive sprites; with no lock_load
+    or Harmony ranking check returned, the deterministic equal-rank tie selects take
+    1. Official authored scale 0.5 alone produces the delivered master from the saved
+    full lock, with exact pixel and metadata proofs. This UI asset is excluded by
+    the pinned canonical Harmony catalog: run real measure/check and retain proof
+    without a fabricated shard. Exact five-blob PR227 dependency is explicit in this
+    branch.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-8866c395-b46f-4eb7-b47a-78a1ea2c4fef.png
+  original_generated_png_sha256: ba318df45f5291fa340510845057303b7b7e26ad4a195232b4cd0d9e270adeb1
+  inbox_png_sha256: f67a24f6f47bce31afa6540df27325520bcf79427b6e406573d6273890eb3840
+  rgba_sha256: 783d6858e15ce4dc578f2650fd2aa33dd6d0e6809edc252ab6dbdcb32d1267d2
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 574367cb936570a9
+- take: 2
+  source_file: /workspace/generated_images/exec-3f168493-e9cd-4e38-aa19-9275f44fb365.png
+  original_generated_png_sha256: 8c506845a26a9d6314462de6cd30dd09f8ffad47e8d3bb94925db56f16190dc7
+  inbox_png_sha256: cf93941270ddeb7f702937358d5fd3dc31530e2980bea93b81408042e6a8b416
+  rgba_sha256: 0aeab06e8739cbdb1de9cca91d588833bc721a9bef6fe34b2c853b60cad8f9ad
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 574367cb936570a9
