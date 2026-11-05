@@ -4,10 +4,10 @@ title_tr: workshop-2
 title_en: workshop-2 (station)
 status: in-production
 horizon: now
-summary: >-
-  Add a pale wooden pegboard on the shed's front wall, right of the doorway, holding five
-  simple, chunky tools: a hammer, a saw, a wrench, a pair of pliers and a hand drill, with
-  honey wood handles and their metal painted as soft stone-beige shapes with no shine.
+summary: 'Add a pale wooden pegboard on the shed''s front wall, right of the doorway,
+  holding five simple, chunky tools: a hammer, a saw, a wrench, a pair of pliers and
+  a hand drill, with honey wood handles and their metal painted as soft stone-beige
+  shapes with no shine.'
 links:
   variant_of:
   - asset-workshop-1
@@ -18,8 +18,7 @@ art:
   - batch-03-home-island:workshop-2
   - batch-05-fixes-pilot:workshop-2
 notes:
-- >-
-  Batch 03 skipped it; batch 05 redoes it (docs/design/art-production-plan.md).
+- Batch 03 skipped it; batch 05 redoes it (docs/design/art-production-plan.md).
 sources:
 - doc: tools/imagegen/manifest/batch-03-home-island.yaml
 - doc: tools/imagegen/manifest/batch-05-fixes-pilot.yaml
