@@ -1,0 +1,207 @@
+batch: batch-31-island-milestones
+manifest: tools/imagegen/manifest/batch-31-island-milestones.yaml
+manifest_sha256: 6e982829318ae68039a10ad1c6466e6bf03e51b9af792d10d1cf64a64248f898
+contact_sheet: design/art/takes/batch-31-island-milestones/x-hill-gate/contact.jpg
+jobs:
+  x-hill-gate:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both show a quiet golden close
+      view along the hill path behind the windmill: a closed round honey wooden gate
+      in a low cream stone wall, raised carved sunflower relief, warm glow leaking
+      between planks and around the threshold, tall grass and wildflowers, with windmill
+      sails visible below in the foreground. The home earth/grass edge and cloud sea
+      remain familiar; no residents, labels, locks, dramatic rays or UI. Take1 includes
+      flowering sunflowers above the wall, take2 focuses on the carved emblem and
+      wheat-like grass. Both notes-defined anticipation/carving/glow review passes.
+      These independently framed close concepts are not registered plate edits. Eligible
+      hard QA then lowest lock load and higher Harmony; exploration style/light warnings
+      advisory. Never promoted.'
+qa_reports:
+  1:
+    job: x-hill-gate
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 51.0
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 58 (at most 24), p98 92 (at least 86), spread
+        34 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 33.5
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 77 (band 48-86)'
+      value: 77.3
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.33 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.333
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 3.2 (at least 3.4)'
+      value: 3.21
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.0 (R1 5.3)
+      value: 3.0
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4481
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.5, p95 8.0, off-palette 0.6% (top: #EE9955 (0.1%), #DD8844
+        (0.1%))'
+      value: 2.5225
+    info:
+      metrics_raw:
+        L_p5: 60.1
+        L_p50: 79.5
+        L_p95: 93.2
+        C_p50: 32.5
+        C_p95: 51.7
+        C_p99: 61.6
+        detail: 4.04
+      metrics_locked:
+        L_p5: 60.6
+        L_p50: 79.4
+        L_p95: 93.0
+        C_p50: 32.5
+        C_p95: 51.0
+        C_p99: 58.9
+        detail: 3.0
+    fingerprint: a8a5ed6df564d82f
+  2:
+    job: x-hill-gate
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 51.6
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 60 (at most 24), p98 93 (at least 86), spread
+        33 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 33.0
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 80 (band 48-86)'
+      value: 80.5
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.35 (at most 0.22; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.349
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 3.0 (at least 3.4)'
+      value: 2.97
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.8 (R1 5.3)
+      value: 2.84
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.2079
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 9.0, off-palette 2.2% (top: #DD8844 (0.6%), #CC7744
+        (0.3%))'
+      value: 2.5946
+    info:
+      metrics_raw:
+        L_p5: 62.7
+        L_p50: 82.6
+        L_p95: 93.5
+        C_p50: 29.4
+        C_p95: 52.0
+        C_p99: 60.2
+        detail: 3.83
+      metrics_locked:
+        L_p5: 63.3
+        L_p50: 82.5
+        L_p95: 93.2
+        C_p50: 29.4
+        C_p95: 51.6
+        C_p99: 58.1
+        detail: 2.84
+    fingerprint: a8a5ed6df564d82f
+manual_review:
+  observed_note: 'Both show a quiet golden close view along the hill path behind the
+    windmill: a closed round honey wooden gate in a low cream stone wall, raised carved
+    sunflower relief, warm glow leaking between planks and around the threshold, tall
+    grass and wildflowers, with windmill sails visible below in the foreground. The
+    home earth/grass edge and cloud sea remain familiar; no residents, labels, locks,
+    dramatic rays or UI. Take1 includes flowering sunflowers above the wall, take2
+    focuses on the carved emblem and wheat-like grass. Both notes-defined anticipation/carving/glow
+    review passes. These independently framed close concepts are not registered plate
+    edits. Eligible hard QA then lowest lock load and higher Harmony; exploration
+    style/light warnings advisory. Never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-31-island-milestones
+  job: x-hill-gate
+  take: 1
+  round: 1
+  logical_run: 20261105-night31-gate-ceremony
+  source_file: /workspace/generated_images/exec-5c0b998d-bf91-45b2-b50d-4effebf47478.png
+  returned_at: '2026-11-05T19:53:51.515Z'
+  prompt_sha256: d9226d27b6d4bca7328e02063d6a291592f99f1711aa26262f47ad394e59f0a6
+  fingerprint: a8a5ed6df564d82f
+  saved_at: '2026-11-05T19:53:51.857063+00:00'
+  original_generated_png_sha256: 173bff65cfbf67e672ca8c4aca1eec8af07520d9908f7bfe25b7b6e36bb4c24f
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 5a852c41c13989dc7357926752a909cdfc419f55437e41e3f66d805ae67373bd
+  inbox_png_sha256: 2797469fd21aa9a4cacb79e9f6b685b41e9ef25e814782fba0ceb2b2e00da4cf
+  qa_sha256: 9ddf3c81d7a4ab2010c13b2dc45c99777f95863aaa117f082431851ed74f5970
+- batch: batch-31-island-milestones
+  job: x-hill-gate
+  take: 2
+  round: 1
+  logical_run: 20261105-night31-gate-ceremony
+  source_file: /workspace/generated_images/exec-7d1b0324-eeb0-48a3-8d98-43aabc2b561f.png
+  returned_at: '2026-11-05T19:55:23.625Z'
+  prompt_sha256: d9226d27b6d4bca7328e02063d6a291592f99f1711aa26262f47ad394e59f0a6
+  fingerprint: a8a5ed6df564d82f
+  saved_at: '2026-11-05T19:55:25.216387+00:00'
+  original_generated_png_sha256: 1b65e55dd0fe4b5b653f02bf854c9b9c092934fc92cacac70fff4548a741ee3d
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 4da2faa10f0c4809229d6338c0b9b208d4ed23d80f1ef75e0b6ed8cf6ab4f2a7
+  inbox_png_sha256: 02631ee25272cf8d30d86f6837896f77b6552ac0880d6c740b7c957f949c5706
+  qa_sha256: 6b489ce81ec8053dddb0a481fbff859231b05430a324fecae2e89585f80d606b
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
