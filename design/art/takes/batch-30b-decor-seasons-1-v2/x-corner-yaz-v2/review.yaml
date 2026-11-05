@@ -1,0 +1,207 @@
+batch: batch-30b-decor-seasons-1-v2
+manifest: tools/imagegen/manifest/batch-30b-decor-seasons-1-v2.yaml
+manifest_sha256: f2b7485dbd13da0c8e2f1095a57d03a0574b31c65634f87d330f509f139b19c6
+contact_sheet: design/art/takes/batch-30b-decor-seasons-1-v2/x-corner-yaz-v2/contact.jpg
+jobs:
+  x-corner-yaz-v2:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Independent original and official
+      locked review: take1 meets its own independent corner brief with coral/cream
+      striped hammock between two posts, mint/cream scalloped cart, open sea-blue/cream
+      beach umbrella with folded towel and paper boat near the lawn edge, preserving
+      quiet curved path, home-island edge/cloud family and low camera. No residents,
+      text or UI. Take2 has coral/cream checked plaid hammock rather than stripes
+      and is manually excluded. Both official hard QA pass; take1 load0.9229 is eligible.
+      No individual sprite cushion/flag/cone-count/open-lid/width constraint is invented
+      for this independent plate. Exploration style/light warnings are advisory.'
+qa_reports:
+  1:
+    job: x-corner-yaz-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 96 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.38 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.376
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.8 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.75
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.09
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9229
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.4, p95 5.0, off-palette 0.0% (top: #CC7744 (0.0%), #BB7733
+        (0.0%))'
+      value: 2.374
+    info:
+      metrics_raw:
+        L_p5: 64.4
+        L_p50: 84.0
+        L_p95: 95.4
+        C_p50: 31.3
+        C_p95: 40.9
+        C_p99: 48.8
+        detail: 2.94
+      metrics_locked:
+        L_p5: 64.7
+        L_p50: 83.9
+        L_p95: 95.2
+        C_p50: 31.1
+        C_p95: 40.0
+        C_p99: 47.8
+        detail: 2.09
+    fingerprint: cbe00172f849ba0c
+  2:
+    job: x-corner-yaz-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 44.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 92 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 80.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.33 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.329
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.0 (at least 3.5)'
+      value: 3.03
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9532
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 5.4, off-palette 0.6% (top: #BBBB55 (0.1%), #CCBB55
+        (0.1%))'
+      value: 2.5697
+    info:
+      metrics_raw:
+        L_p5: 62.7
+        L_p50: 84.5
+        L_p95: 94.0
+        C_p50: 29.5
+        C_p95: 46.0
+        C_p99: 54.1
+        detail: 2.99
+      metrics_locked:
+        L_p5: 63.0
+        L_p50: 84.4
+        L_p95: 93.8
+        C_p50: 29.4
+        C_p95: 44.9
+        C_p99: 52.0
+        detail: 2.12
+    fingerprint: cbe00172f849ba0c
+manual_review:
+  observed_note: 'Independent original and official locked review: take1 meets its
+    own independent corner brief with coral/cream striped hammock between two posts,
+    mint/cream scalloped cart, open sea-blue/cream beach umbrella with folded towel
+    and paper boat near the lawn edge, preserving quiet curved path, home-island edge/cloud
+    family and low camera. No residents, text or UI. Take2 has coral/cream checked
+    plaid hammock rather than stripes and is manually excluded. Both official hard
+    QA pass; take1 load0.9229 is eligible. No individual sprite cushion/flag/cone-count/open-lid/width
+    constraint is invented for this independent plate. Exploration style/light warnings
+    are advisory.'
+  excluded_takes:
+  - 2
+sources:
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-corner-yaz-v2
+  take: 1
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-07b95483-6041-4f7d-b894-b1ea9e9e86ce.png
+  returned_at: '2026-11-05T23:02:20.876Z'
+  prompt_sha256: ceebbc0e2f1fe22335fec7e0aa5e92b88bedace361b9ecb07b7713cce6d89770
+  fingerprint: cbe00172f849ba0c
+  saved_at: '2026-11-05T23:02:21.173146+00:00'
+  original_generated_png_sha256: 7b707b51ece6a8ad53fd31e80d97fe0c5440aef248ace4f246de6d6df2909247
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: d03dd2e59f28663dafe69b910759c08da0b4d2999456fca6e7ad09b24e3f6225
+  inbox_png_sha256: 4f02827c8e16679f19ae91afd8b15308b123f022e0282f94270361a83545aac1
+  qa_sha256: 56ee83ab1f25c2454ef25c04f4852b9155e0ff807bbfce63e319fdd8e7a9975e
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-corner-yaz-v2
+  take: 2
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-8c41a35a-c1c0-4420-a1d6-7dd7f15cbfbb.png
+  returned_at: '2026-11-05T23:01:47.052Z'
+  prompt_sha256: ceebbc0e2f1fe22335fec7e0aa5e92b88bedace361b9ecb07b7713cce6d89770
+  fingerprint: cbe00172f849ba0c
+  saved_at: '2026-11-05T23:01:47.467957+00:00'
+  original_generated_png_sha256: af64c0338d3b8fa8b9dbc90d7cdd11e16daf4bb3e6fbd37a9294ea59bed466a1
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: f6a556d9668db5669637415f05d7e530c83c3c060fd5c3f6e2387cc83774ffae
+  inbox_png_sha256: 89c7b82c769e25283eda0d668b3f791780acd4e8ccbac84af6d8e05b6077c78b
+  qa_sha256: dca61d960ab7d6de06ab512719810226881802b1bd3ca767276168403ff04eb4
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 2deb939f9f47ef2bb97f228252ebe94dd793f3088c676809c05a571e0747222d
