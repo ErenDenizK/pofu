@@ -44,7 +44,7 @@ extension ColourScript {
             sun: SkyPoint(x: 0.5, y: 0.11),
             sky: SkyColours(
                 zenith: PofuRGB(hex: 0x8CC4F2),
-                horizon: PofuRGB(hex: 0xE2F0F8),
+                horizon: PofuRGB(hex: 0xE8F0F2),
                 glow: PofuRGB(hex: 0xFFF6DD),
                 glowStrength: 0.62,
                 cloudLight: PofuRGB(hex: 0xFFFFFF),

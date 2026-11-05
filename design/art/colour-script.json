@@ -39,7 +39,7 @@
     "day": {
       "feeling": "Bright, clear, toy-like",
       "sun": [0.50, 0.11],
-      "sky": {"zenith": "#8CC4F2", "horizon": "#E2F0F8", "glow": "#FFF6DD", "glowStrength": 0.62, "cloudLight": "#FFFFFF", "cloudShade": "#C6DCF0", "cloudOpacity": 0.95, "stars": 0.0, "tint": "#FFFFFF"},
+      "sky": {"zenith": "#8CC4F2", "horizon": "#E8F0F2", "glow": "#FFF6DD", "glowStrength": 0.62, "cloudLight": "#FFFFFF", "cloudShade": "#C6DCF0", "cloudOpacity": 0.95, "stars": 0.0, "tint": "#FFFFFF"},
       "key": {"colour": "#FFF6EC", "intensity": 1.0, "from": [-0.7, -0.7]},
       "fill": {"colour": "#BFD6EE", "intensity": 0.3},
       "shadow": "#A99BC4",
