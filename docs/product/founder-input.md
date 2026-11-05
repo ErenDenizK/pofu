@@ -26,6 +26,37 @@ not orders: each entry records **what he meant**, the **status**, and
   Feel is tuned natively on his iPhone.
 - **Merging:** the agent may merge PRs, with merge commits, only on green CI.
 
+## 2026-11-05 (night): ideas list, menus, lighting, navigation
+
+Ideas he wants kept (views, not orders; the lead decides how):
+- **Codex never stops**; prepare old and future jobs; give him the prompt.
+- **Night lighting:** character light and ambient light feel disconnected
+  at night (it does lift the character, which is artistic). Better: light
+  comes from a real source (lantern, window) and falls on the character and
+  the ground around it; work on the night lighting system.
+- **Zoomed character:** the side items (the sunflower-seed bag etc.) should
+  not bob as a floating menu; fixed, and tappable when zoomed.
+- **Direct touch:** when close to the island, drag a finger over it and
+  interact with objects and parts.
+- **Fullness:** every part of the island fills nicely and looks cute at
+  every build stage.
+- **Navigation:** the map button plus the top three-way dial is broken UI;
+  redesign navigation inside one island and across islands together with
+  the camera, blur and focus systems.
+- **Menus:** keep the custom painted menus and keep glass too: glass plus
+  custom is one of our unique things; optimise how.
+- **Frame rate:** 60 fps is a good beta target; long term consider 120 Hz
+  ProMotion (agreed plan: 120 while touching or moving, 30-60 ambient, 0
+  when settled).
+- **Residents visit daily**, not weekly: "today X came to visit, so Y".
+- **Strengthen both sides:** the app side (blocking, doom-scrolling, the
+  Screen Time flow) and the game side.
+- **Apple Design Award apps:** study them to learn (done: #187; apple.com
+  now reachable).
+- **All menus** clean, stylish, top quality; the **shield** and a
+  **loading screen** too; use Codex visuals (backgrounds, animations) where
+  needed. He approves the lead's proposals; keep going without stopping.
+
 ## 2026-11-05 (evening): deep lore, home growth, vividness
 
 - **Deep background lore** behind the surface story: much deeper,
