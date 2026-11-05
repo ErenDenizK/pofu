@@ -1,0 +1,465 @@
+batch: batch-32-weekly-themes
+manifest: tools/imagegen/manifest/batch-32-weekly-themes.yaml
+manifest_sha256: 450c8dbab954cb31e73470d89b38dc3b2fabf83c1cf90f2ef9201b291d04e9aa
+contact_sheet: design/art/takes/batch-32-weekly-themes/x-week-fishing-day/contact.jpg
+jobs:
+  x-week-fishing-day:
+    pick: none
+    publication: skipped after one allowed retry
+    note: SKIPPED after the sole retry pair. Takes1/2/4 have the full folding stool/coral
+      cushion, forked rod support, honey rod/curled line/red-cream float, tin bucket
+      with exactly two cream fish and a straw hat; no text or guide. All four posted
+      widths360/360/1019/360px exceed the literal341.33px at-most-third cap. Retry3
+      additionally has a real broad mottled smoky background visible on proper opaque
+      composites, not the very-low-alpha RGB residue exaggerated by a raw viewer;
+      its posted subject extends to right/bottom canvas edges and numerical guide
+      top47/width1019 warns. Source identity hashes remain intact; this is a rejected
+      generated composition, not upload corruption. Retry4 is semantically sound and
+      on baseline888 but still too wide. Independent read-only review confirmed source
+      contents, background and posted dimensions. Exploration style/numerical warnings
+      stay advisory; explicit manual width/plain-transparent-background checks are
+      not waived. No further generation, resizing, cropping, alpha cleanup or QA/profile
+      edits. Preserve all four originals and q90 copies, no true dependents, continue
+      other jobs. Never promoted.
+qa_reports:
+  1:
+    job: x-week-fishing-day
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 48.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 91 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.6 (at least 3.5)'
+      value: 8.58
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.66
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.3
+      value: 2.2575
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 6.8, off-palette 0.2% (top: #BB6633 (0.1%), #AA5533
+        (0.0%))'
+      value: 1.9423
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the world reference (outliers: detail, edge)'
+      value: 84.0
+    info:
+      fit:
+        scale: 0.602
+        anchor:
+        - 525.6
+        - 873
+      registration:
+        dx: -13
+        dy: 15
+      metrics_raw:
+        L_p5: 53.6
+        L_p50: 73.7
+        L_p95: 90.0
+        C_p50: 39.2
+        C_p95: 50.4
+        C_p99: 52.3
+        detail: 2.45
+      metrics_locked:
+        L_p5: 54.3
+        L_p50: 73.4
+        L_p95: 89.2
+        C_p50: 39.1
+        C_p95: 48.9
+        C_p99: 50.3
+        detail: 1.66
+    fingerprint: 29702f34ce436f37
+  2:
+    job: x-week-fishing-day
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 89 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 73.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.4 (at least 3.5)'
+      value: 8.38
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.57
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.8104
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 5.9, off-palette 0.0% (top: #AA5533 (0.0%))'
+      value: 1.8215
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the world reference (outliers: L_p98, detail,
+        edge)'
+      value: 79.6
+    info:
+      fit:
+        scale: 0.7004
+        anchor:
+        - 491.9
+        - 871
+      registration:
+        dx: 21
+        dy: 17
+      metrics_raw:
+        L_p5: 52.8
+        L_p50: 73.8
+        L_p95: 87.5
+        C_p50: 42.1
+        C_p95: 47.9
+        C_p99: 49.4
+        detail: 2.35
+      metrics_locked:
+        L_p5: 53.4
+        L_p50: 73.5
+        L_p95: 86.7
+        C_p50: 42.0
+        C_p95: 47.1
+        C_p99: 48.0
+        detail: 1.57
+    fingerprint: 29702f34ce436f37
+  3:
+    job: x-week-fishing-day
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 46.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 92 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 74.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.263
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 4.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.8 (R1 5.3)
+      value: 2.75
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.0
+      value: 2.0012
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 5.7, off-palette 0.0% (top: #AA5533 (0.0%), #BB6633
+        (0.0%))'
+      value: 1.5188
+    - check: decor_anchor
+      status: warn
+      message: top y 47 above the height bar (500); width 1019 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 85 against the world reference (outliers: edge)'
+      value: 84.7
+    info:
+      fit_skipped: needs x0.35, below x0.6 (a real art failure)
+      registration:
+        dx: 5
+        dy: 47
+      metrics_raw:
+        L_p5: 55.9
+        L_p50: 74.9
+        L_p95: 90.4
+        C_p50: 38.0
+        C_p95: 47.3
+        C_p99: 49.4
+        detail: 3.71
+      metrics_locked:
+        L_p5: 56.3
+        L_p50: 74.8
+        L_p95: 89.9
+        C_p50: 38.0
+        C_p95: 46.7
+        C_p99: 47.8
+        detail: 2.75
+    fingerprint: 29702f34ce436f37
+  4:
+    job: x-week-fishing-day
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 87 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 72.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.2 (at least 3.5)'
+      value: 8.15
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.39
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.1839
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 4.4, off-palette 0.0%
+      value: 1.5055
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 75 against the world reference (outliers: L_p98, detail,
+        edge)'
+      value: 75.4
+    info:
+      fit:
+        scale: 0.6642
+        anchor:
+        - 460.9
+        - 881
+      registration:
+        dx: 51
+        dy: 7
+      metrics_raw:
+        L_p5: 54.8
+        L_p50: 72.2
+        L_p95: 85.9
+        C_p50: 39.7
+        C_p95: 45.6
+        C_p99: 46.9
+        detail: 2.18
+      metrics_locked:
+        L_p5: 55.4
+        L_p50: 72.0
+        L_p95: 84.5
+        C_p50: 40.1
+        C_p95: 45.3
+        C_p99: 46.3
+        detail: 1.39
+    fingerprint: 29702f34ce436f37
+manual_review:
+  observed_note: SKIPPED after the sole retry pair. Takes1/2/4 have the full folding
+    stool/coral cushion, forked rod support, honey rod/curled line/red-cream float,
+    tin bucket with exactly two cream fish and a straw hat; no text or guide. All
+    four posted widths360/360/1019/360px exceed the literal341.33px at-most-third
+    cap. Retry3 additionally has a real broad mottled smoky background visible on
+    proper opaque composites, not the very-low-alpha RGB residue exaggerated by a
+    raw viewer; its posted subject extends to right/bottom canvas edges and numerical
+    guide top47/width1019 warns. Source identity hashes remain intact; this is a rejected
+    generated composition, not upload corruption. Retry4 is semantically sound and
+    on baseline888 but still too wide. Independent read-only review confirmed source
+    contents, background and posted dimensions. Exploration style/numerical warnings
+    stay advisory; explicit manual width/plain-transparent-background checks are not
+    waived. No further generation, resizing, cropping, alpha cleanup or QA/profile
+    edits. Preserve all four originals and q90 copies, no true dependents, continue
+    other jobs. Never promoted.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-32-weekly-themes
+  job: x-week-fishing-day
+  take: 1
+  round: 1
+  logical_run: 20261105-night32-fishing
+  source_file: /workspace/generated_images/exec-82e414a3-bd14-43f4-894c-441bcdd24e6e.png
+  returned_at: '2026-11-05T19:57:22.039Z'
+  prompt_sha256: 26fe43628a9b0b7b4e0339cb5cd7ef77280dbf4883261e24d751a0ef3139d7a8
+  fingerprint: 29702f34ce436f37
+  saved_at: '2026-11-05T19:57:22.354699+00:00'
+  original_generated_png_sha256: 2cfad832bfc157c53ec6c7a920c39962d7f881a0555d75a7503dd8588f42c362
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 97bdd126571c9193cd1adc43abef9dfce96f3b612fd731042216c29bcaef14c5
+  inbox_png_sha256: 70741642e23bebb58411d133a7f38ed4aa14b2b7c84cf7cad6e88008fb5b937e
+  qa_sha256: 85dc26a47402e1e060ce1eff1291b8de61d25ef987afafc9504c12bedc6e53ea
+- batch: batch-32-weekly-themes
+  job: x-week-fishing-day
+  take: 2
+  round: 1
+  logical_run: 20261105-night32-fishing
+  source_file: /workspace/generated_images/exec-25418475-f11d-490d-a03e-c7f5522beee8.png
+  returned_at: '2026-11-05T19:56:26.307Z'
+  prompt_sha256: 26fe43628a9b0b7b4e0339cb5cd7ef77280dbf4883261e24d751a0ef3139d7a8
+  fingerprint: 29702f34ce436f37
+  saved_at: '2026-11-05T19:56:26.822452+00:00'
+  original_generated_png_sha256: e4d0adc32fd53240e12d33be6255840c6a54be476b483f8c6fbc61850e64c16f
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 5bc9859688d20bb8d93efb6465ab80d017846b2afd3ee71551acd15f0101b11c
+  inbox_png_sha256: 1815510ceea4259a339f0766d48c264206fd60e4aaa1f36c28c74d0d4a46ceca
+  qa_sha256: c9985f7374d8f6a8738ce6a0b0834096c4b4b859bfdad2205da92a0ffd20a9eb
+- batch: batch-32-weekly-themes
+  job: x-week-fishing-day
+  take: 3
+  round: 2
+  logical_run: 20261105-night32-kites-fishing-r2
+  source_file: /workspace/generated_images/exec-df653343-b962-4593-889f-d009997edcc3.png
+  returned_at: '2026-11-05T20:03:52.171Z'
+  prompt_sha256: 26fe43628a9b0b7b4e0339cb5cd7ef77280dbf4883261e24d751a0ef3139d7a8
+  fingerprint: 29702f34ce436f37
+  saved_at: '2026-11-05T20:03:52.510040+00:00'
+  original_generated_png_sha256: 5d3b57781e21364ca0657f5b014b235c9dfb0595f7e25d5dc6bbb6ce191c4548
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: ce85ce56ef4f1e0c557cc76d50c93710f4383957ba86a188572cfe64591b95f2
+  inbox_png_sha256: 370c540301428a8986001f9f3be918812f54bf73f85f31124556a885792ca345
+  qa_sha256: 5d5d382668752cc27db7380351b3d187ad7ce1024838e737ea80eb7fcdb77805
+- batch: batch-32-weekly-themes
+  job: x-week-fishing-day
+  take: 4
+  round: 2
+  logical_run: 20261105-night32-kites-fishing-r2
+  source_file: /workspace/generated_images/exec-2ee1ea23-ff53-4e12-9b42-0a6f9be8b885.png
+  returned_at: '2026-11-05T20:04:42.834Z'
+  prompt_sha256: 26fe43628a9b0b7b4e0339cb5cd7ef77280dbf4883261e24d751a0ef3139d7a8
+  fingerprint: 29702f34ce436f37
+  saved_at: '2026-11-05T20:04:43.132907+00:00'
+  original_generated_png_sha256: 0f40a155f372575d5074f90bdfd3610f6cdd69fd6b54f45ddc77fc8bc34c8c26
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 287d645365f9655b7248c1df1addea7a94fca866fe8bb0ed9c0eb963fc858794
+  inbox_png_sha256: 8b3418816f57e76f6f2fd68eb0563387b90ab817cb27fcf860cb8b43ff63dffa
+  qa_sha256: 8aabf8b81da417ad9b0cffd2b218bfe091387851b872ff25c853e9a223481527
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
