@@ -2,14 +2,14 @@ id: asset-hill-gate
 type: asset
 title_tr: hill-gate
 title_en: hill-gate (prop)
-status: planned
+status: cut
 horizon: later
-summary: >-
-  A small garden gate at the foot of a hill path, for the island diorama: two short, round
-  pale-stone posts each topped with a little moss cap, and between them a closed double gate
-  of soft honey wood with a round top, a large simple sunflower carved into its round top
-  panel (broad petals, a round centre), and two low stone steps in front of it going up. Behind
-  the gate nothing but empty space. Narrow: it fills about h…
+summary: 'A small garden gate at the foot of a hill path, for the island diorama:
+  two short, round pale-stone posts each topped with a little moss cap, and between
+  them a closed double gate of soft honey wood with a round top, a large simple sunflower
+  carved into its round top panel (broad petals, a round centre), and two low stone
+  steps in front of it going up. Behind the gate nothing but empty space. Narrow:
+  it fills about h…'
 art:
   images: []
   jobs:
@@ -18,3 +18,13 @@ sources:
 - doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
 kind: prop
 batch: batch-33-home-showcase
+notes:
+- 'batch-33-home-showcase skipped after four takes: Skipped after its sole unchanged-prompt
+  retry. All four are much wider than the explicit about-half station footprint: alpha-over24
+  widths636,662,659,683px versus about360px (station footprint diameter720). Heights558,566,551,568px
+  are recorded without inventing a new numeric threshold; width alone decisively fails
+  the brief. All otherwise have two moss-capped pale stone posts, closed honey round-top
+  double gate/sunflower and two low steps; no fence, hill, padlock, lettering or guide.
+  Numerical QA warns only, so this is a real manual guide-fit exclusion. No manual
+  fit, threshold waiver or further generation. Preserve all4; only true child hill-gate-open
+  skips.'
