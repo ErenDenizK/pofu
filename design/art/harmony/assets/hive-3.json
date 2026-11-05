@@ -6,8 +6,8 @@
   "L_mean": 77.642,
   "L_p2": 46.124,
   "L_p98": 91.614,
-  "detail": 3.133,
-  "edge": 0.444,
+  "detail": 3.702,
+  "edge": 0.377,
   "tint_a": 6.997,
   "tint_b": 9.846,
   "warmth_b": 35.187
@@ -19,8 +19,8 @@
   "L_mean": 71.049,
   "L_p2": 31.524,
   "L_p98": 88.77,
-  "detail": 3.837,
-  "edge": 0.444,
+  "detail": 4.547,
+  "edge": 0.377,
   "tint_a": 7.108,
   "tint_b": 9.962,
   "warmth_b": 35.455
@@ -52,11 +52,11 @@
   "detail",
   "edge"
  ],
- "ppu": 8.533,
+ "ppu": 10.0392,
  "reference": false,
- "score_after": 84.9,
- "score_before": 54.0,
- "shipped": false,
+ "score_after": 82.0,
+ "score_before": 51.0,
+ "shipped": true,
  "source": "design/art/stations/hive-3/hive-3.png",
  "source_sha": "b3022fefb5bbba87"
 }

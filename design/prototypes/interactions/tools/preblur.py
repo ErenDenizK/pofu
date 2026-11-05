@@ -278,7 +278,57 @@ HARBOR_SIZE = 0.7
 # ferry, the horn, the lamp and the crates are in stations/; the bench is a decor piece in masters/.
 HARBOR_PROPS = {"harbor-ferry-1": ("stations", 0.75), "harbor-horn-1": ("stations", 0.5),
                 "harbor-lamp-1": ("stations", 0.5), "harbor-crates-1": ("stations", 0.45),
-                "decor-bench": ("masters", 1.0)}
+                "decor-bench": ("masters", 1.0), "harbor-bell": ("masters", 0.6)}
+
+# The meadow dressing sheet (`dressing-meadow`, 1536 x 1024: twelve separate pieces on a transparent
+# canvas). Each piece is cut out of its own cell (source pixels x0, y0, x1, y1: the piece's opaque box
+# padded by 6, so no neighbour's pixels come along; `tools/assets/test_integrate.py` holds that rule)
+# and stands on its bottom centre. All twelve share one scale, so their painted sizes stay in
+# proportion (a tuft 17 units wide, the toadstool ring 29).
+MEADOW_SHEET = os.path.join(ART, "masters", "dressing-meadow")
+MEADOW_PPU = 10.0
+MEADOW_CELLS = {
+    "dressing-grass-tuft": (122, 193, 308, 321),
+    "dressing-grass-tuft-2": (443, 97, 690, 322),
+    "dressing-grass-tuft-3": (821, 73, 1054, 324),
+    "dressing-grass-tuft-4": (1159, 129, 1414, 327),
+    "dressing-wildflowers": (79, 406, 336, 655),
+    "dressing-wildflowers-2": (423, 403, 709, 656),
+    "dressing-wildflowers-3": (782, 407, 1060, 656),
+    "dressing-wildflowers-4": (1183, 349, 1397, 659),
+    "dressing-pebbles": (83, 757, 330, 934),
+    "dressing-pebbles-2": (428, 787, 685, 916),
+    "dressing-pebbles-3": (1140, 750, 1460, 917),
+    "dressing-mushroom-ring": (757, 709, 1059, 936),
+}
+
+
+def _cell(name, cell):
+    """One piece of the meadow sheet: the master, the cell to cut and the piece's bottom centre."""
+    x0, y0, x1, y1 = cell
+    return {"src": _master(MEADOW_SHEET), "cell": cell, "ppu": MEADOW_PPU,
+            "anchor": ((x0 + x1) / 2, y1 - 6), "max_ppu": STATION_MAX_PPU, "harmony_as": "dressing-meadow",
+            # The sheet is measured once, whole (harmony.py), not once per piece.
+            "harmony": False}
+
+
+def _fixed(folder, ppu, anchor="centre"):
+    """A master drawn at a stated scale (the doors: one scale for the whole family), anchored at the
+    centre or the feet of its opaque box."""
+    with Image.open(os.path.join(REPO, _master(folder))) as im:
+        box = im.getchannel("A").point(lambda v: 255 if v > 2 else 0).getbbox()
+    cx = (box[0] + box[2]) / 2
+    cy = (box[1] + box[3]) / 2 if anchor == "centre" else box[3]
+    return {"src": _master(folder), "ppu": ppu, "anchor": (cx, cy), "max_ppu": STATION_MAX_PPU}
+
+
+# The doors in the earth face (home layout H2, H3): the plate's own round door is 37 units across its
+# frame; the painted frames here measure 490 px, so 13.2 px per unit matches it. One scale for the family.
+DOOR_PPU = 13.2
+# The hive ladder (home layout S6): drawn on the station guide at 0.85 of its size, so hive-1's two
+# skeps and lavender are 36 units wide (the layout's "+-18").
+HIVE_SIZE = 0.85
+HIVE_LEVELS = 3
 
 APP_SOURCES = {
     # The app draws the lock-light bakes (WorldGrade grades them at runtime); "softlock" also bakes a
@@ -317,6 +367,14 @@ APP_SOURCES = {
     "simit-happy": _blob("design/art/masters/simit-happy", 26, "feet", like="design/art/masters/simit-kitten"),
     "simit-sleepy": _blob("design/art/masters/simit-sleepy", 26, "feet", like="design/art/masters/simit-kitten"),
     "simit-surprised": _blob("design/art/masters/simit-surprised", 26, "feet", like="design/art/masters/simit-kitten"),
+    # The goat at work, holding a coil of coral rope: an edit of the goat on its canvas.
+    "goat-work": _blob("design/art/masters/goat-work", 34, "feet", like="design/art/masters/harbor-goat"),
+    # The home island's fixtures: the doors in the earth face and the hive ladder.
+    "door-mochi": _fixed("design/art/masters/door-mochi", DOOR_PPU),
+    "door-findik": _fixed("design/art/masters/door-findik", DOOR_PPU),
+    **{f"hive-{lvl}": {**_station(f"hive-{lvl}"), "ppu": 1024 / 120 / HIVE_SIZE} for lvl in range(1, HIVE_LEVELS + 1)},
+    # The meadow's lawn dressing, cut from its sheet.
+    **{name: _cell(name, cell) for name, cell in MEADOW_CELLS.items()},
     # The sky (batch 04), in screen points: far isles in the haze, clouds and the cloud sea.
     "far-isle-1": _sky("far-isle-1", 300),
     "far-isle-2": _sky("far-isle-2", 160),
@@ -558,8 +616,14 @@ def app_main():
             print("missing", path, file=sys.stderr)
             return 1
         src = Image.open(path).convert("RGBA")
-        if alt in ("", "--round2") and corrected(name):
-            src = harmony.correct_image(name, src, manifest, harmony_cfg)
+        harmony_key = spec.get("harmony_as", name)
+        if alt in ("", "--round2") and corrected(harmony_key):
+            src = harmony.correct_image(harmony_key, src, manifest, harmony_cfg)
+        if "cell" in spec:
+            # A piece of a sheet: cut after the sheet's own correction, so every piece shares it.
+            x0, y0 = spec["cell"][:2]
+            src = src.crop(tuple(spec["cell"]))
+            spec = {**spec, "anchor": (spec["anchor"][0] - x0, spec["anchor"][1] - y0)}
         if alt == "--round2":
             src = _round2_copper(harmony, harmony_cfg, name, src)
         if alt in PLATE_COMPARE:

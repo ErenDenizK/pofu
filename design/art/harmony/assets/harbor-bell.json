@@ -6,8 +6,8 @@
   "L_mean": 74.646,
   "L_p2": 53.811,
   "L_p98": 89.183,
-  "detail": 1.634,
-  "edge": 0.41,
+  "detail": 3.041,
+  "edge": 0.246,
   "warmth_b": 34.673
  },
  "before": {
@@ -17,8 +17,8 @@
   "L_mean": 71.26,
   "L_p2": 53.811,
   "L_p98": 83.506,
-  "detail": 1.41,
-  "edge": 0.41,
+  "detail": 2.658,
+  "edge": 0.246,
   "warmth_b": 34.879
  },
  "chain": null,
@@ -32,20 +32,21 @@
   "white": 6.0
  },
  "guarded": false,
- "kind": "prop",
+ "kind": "station",
  "matched_to": "world",
  "outliers_after": [
+  "detail",
   "edge"
  ],
  "outliers_before": [
   "L_p98",
   "edge"
  ],
- "ppu": 8.533,
+ "ppu": 14.2222,
  "reference": false,
- "score_after": 85.4,
- "score_before": 71.5,
- "shipped": false,
+ "score_after": 79.6,
+ "score_before": 66.7,
+ "shipped": true,
  "source": "design/art/masters/harbor-bell/harbor-bell.png",
  "source_sha": "4937079e870822e9"
 }
