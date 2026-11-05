@@ -1,0 +1,441 @@
+batch: batch-32-weekly-themes
+manifest: tools/imagegen/manifest/batch-32-weekly-themes.yaml
+manifest_sha256: 450c8dbab954cb31e73470d89b38dc3b2fabf83c1cf90f2ef9201b291d04e9aa
+contact_sheet: design/art/takes/batch-32-weekly-themes/x-week-lantern-night/contact.jpg
+jobs:
+  x-week-lantern-night:
+    pick: none
+    publication: skipped after one allowed retry
+    note: SKIPPED after the one allowed retry pair. Every original has the specified
+      honey pole/crossbar, round clay/stone base and exactly five pale unlit lanterns
+      in distinct round/long/star/small/pear shapes and cream/rose/mustard/sage/lilac
+      colors. Proper cream/dark composites and independent read-only review show no
+      flame or visible external halo; no text, unrelated ground or characters. Official
+      posted widths487/384/495/582px all exceed the explicit341.33px at-most-third
+      cap. All are top300 after declared hang registration; bottoms839/703/915/919
+      warn against the620 hang floor because the prompt also calls for a pole base
+      on the ground. These numeric exploration anchor warnings remain advisory and
+      unchanged; exclusion is the literal manual width requirement. No third round,
+      resizing, crop/alpha repair, profile or threshold edit. All four original sources
+      and q90 copies retained, no true dependents; continue independent jobs. Never
+      promoted.
+qa_reports:
+  1:
+    job: x-week-lantern-night
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 90 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 76.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.8 (at least 3.5)'
+      value: 4.83
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.2
+      value: 1.175
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 5.1, off-palette 0.0% (top: #BB99AA (0.0%), #BB8899
+        (0.0%))'
+      value: 1.6042
+    - check: decor_anchor
+      status: warn
+      message: bottom y 839 below the floor (620) (advisory in an exploration)
+      value: 839.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: edge)'
+      value: 87.3
+    info:
+      registration:
+        dx: 0
+        dy: -89
+      metrics_raw:
+        L_p5: 59.6
+        L_p50: 76.4
+        L_p95: 88.9
+        C_p50: 34.2
+        C_p95: 50.2
+        C_p99: 52.1
+        detail: 2.16
+      metrics_locked:
+        L_p5: 60.3
+        L_p50: 76.4
+        L_p95: 88.6
+        C_p50: 33.2
+        C_p95: 50.1
+        C_p99: 51.9
+        detail: 1.48
+    fingerprint: e4e56602d4bae739
+  2:
+    job: x-week-lantern-night
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 49.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 91 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 72.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.6 (at least 3.5)'
+      value: 6.59
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.31
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2549
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 6.7, off-palette 0.0% (top: #998866 (0.0%), #998877
+        (0.0%))'
+      value: 1.9454
+    - check: decor_anchor
+      status: warn
+      message: bottom y 703 below the floor (620)
+      value: 703.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 88 against the world reference (outliers: edge)'
+      value: 87.8
+    info:
+      registration:
+        dx: 3
+        dy: -171
+      metrics_raw:
+        L_p5: 54.7
+        L_p50: 72.1
+        L_p95: 87.5
+        C_p50: 27.9
+        C_p95: 49.6
+        C_p99: 51.6
+        detail: 2.0
+      metrics_locked:
+        L_p5: 55.3
+        L_p50: 72.1
+        L_p95: 87.5
+        C_p50: 27.7
+        C_p95: 49.6
+        C_p99: 51.4
+        detail: 1.31
+    fingerprint: e4e56602d4bae739
+  3:
+    job: x-week-lantern-night
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 93 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 76.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.24 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.243
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.9 (at least 3.5)'
+      value: 3.86
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.55
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4175
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 7.8, off-palette 0.0% (top: #AA9966 (0.0%))'
+      value: 1.8834
+    - check: decor_anchor
+      status: warn
+      message: bottom y 915 below the floor (620) (advisory in an exploration)
+      value: 915.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 98 against the world reference (outliers: none)'
+      value: 98.2
+    info:
+      registration:
+        dx: 6
+        dy: 36
+      metrics_raw:
+        L_p5: 57.4
+        L_p50: 76.0
+        L_p95: 90.2
+        C_p50: 35.1
+        C_p95: 50.1
+        C_p99: 53.6
+        detail: 2.22
+      metrics_locked:
+        L_p5: 57.9
+        L_p50: 76.1
+        L_p95: 89.9
+        C_p50: 34.7
+        C_p95: 50.0
+        C_p99: 53.3
+        detail: 1.55
+    fingerprint: e4e56602d4bae739
+  4:
+    job: x-week-lantern-night
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 52.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 91 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.24 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.243
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.2 (at least 3.5)'
+      value: 3.23
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.51
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.465
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 8.4, off-palette 0.0% (top: #AA8899 (0.0%))'
+      value: 2.157
+    - check: decor_anchor
+      status: warn
+      message: bottom y 919 below the floor (620) (advisory in an exploration)
+      value: 919.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 95 against the world reference (outliers: none)'
+      value: 95.0
+    info:
+      registration:
+        dx: 1
+        dy: 47
+      metrics_raw:
+        L_p5: 56.5
+        L_p50: 74.3
+        L_p95: 88.5
+        C_p50: 34.2
+        C_p95: 52.9
+        C_p99: 55.8
+        detail: 2.2
+      metrics_locked:
+        L_p5: 57.1
+        L_p50: 74.2
+        L_p95: 88.3
+        C_p50: 33.6
+        C_p95: 52.9
+        C_p99: 55.6
+        detail: 1.51
+    fingerprint: e4e56602d4bae739
+manual_review:
+  observed_note: SKIPPED after the one allowed retry pair. Every original has the
+    specified honey pole/crossbar, round clay/stone base and exactly five pale unlit
+    lanterns in distinct round/long/star/small/pear shapes and cream/rose/mustard/sage/lilac
+    colors. Proper cream/dark composites and independent read-only review show no
+    flame or visible external halo; no text, unrelated ground or characters. Official
+    posted widths487/384/495/582px all exceed the explicit341.33px at-most-third cap.
+    All are top300 after declared hang registration; bottoms839/703/915/919 warn against
+    the620 hang floor because the prompt also calls for a pole base on the ground.
+    These numeric exploration anchor warnings remain advisory and unchanged; exclusion
+    is the literal manual width requirement. No third round, resizing, crop/alpha
+    repair, profile or threshold edit. All four original sources and q90 copies retained,
+    no true dependents; continue independent jobs. Never promoted.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-32-weekly-themes
+  job: x-week-lantern-night
+  take: 1
+  round: 1
+  logical_run: 20261105-night32-kites-lantern
+  source_file: /workspace/generated_images/exec-a71a50e8-66a1-40a5-91c0-73187153805f.png
+  returned_at: '2026-11-05T19:57:19.510Z'
+  prompt_sha256: 7d3582ce01026042716b2703daef0a3f98432bf60f51cd8af0928dad1e2ccb98
+  fingerprint: e4e56602d4bae739
+  saved_at: '2026-11-05T19:57:20.337990+00:00'
+  original_generated_png_sha256: 3a985a680074a7dadd3a56060014f343f9c70622247c799e47a2fab658d5fd38
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 3901a54d97f076673d21020e542ae8c1f0a1af2b0fbaaad127e76d0d7abee1e6
+  inbox_png_sha256: 400a76481f79d3217fce468fb008478a3a736b394c7f75f133511121e60b0897
+  qa_sha256: 76fbb213ea94dbc304357fc6400fb8d01720ac089f2cf98f71dad7f6bd916cf4
+- batch: batch-32-weekly-themes
+  job: x-week-lantern-night
+  take: 2
+  round: 1
+  logical_run: 20261105-night32-kites-lantern
+  source_file: /workspace/generated_images/exec-b3307eb6-1a92-449e-b5e6-94ab1c6e7aee.png
+  returned_at: '2026-11-05T19:55:50.507Z'
+  prompt_sha256: 7d3582ce01026042716b2703daef0a3f98432bf60f51cd8af0928dad1e2ccb98
+  fingerprint: e4e56602d4bae739
+  saved_at: '2026-11-05T19:55:50.832949+00:00'
+  original_generated_png_sha256: 55604da86af28824998f1fb94bb180fef8f514f00f93e7532db8e041e036dce5
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: c41f25b4e7161d668d23c4d6d3be40db9ad26cb9aed560f7131c7ccf5285b079
+  inbox_png_sha256: 0ff83634987fda2cf6a2c9f2c1247d5b159fe44a1427fff24408f46e2b926545
+  qa_sha256: 801f34b2d9927c185d5546255764ea3ad81dc1958ac3177cf5eb3f6d4a0bfa37
+- batch: batch-32-weekly-themes
+  job: x-week-lantern-night
+  take: 3
+  round: 2
+  logical_run: 20261105-night32-lantern-rain-r2
+  source_file: /workspace/generated_images/exec-a924d17d-bc8f-44d4-b031-4a578afda9d1.png
+  returned_at: '2026-11-05T20:04:02.623Z'
+  prompt_sha256: 7d3582ce01026042716b2703daef0a3f98432bf60f51cd8af0928dad1e2ccb98
+  fingerprint: e4e56602d4bae739
+  saved_at: '2026-11-05T20:04:02.997690+00:00'
+  original_generated_png_sha256: 1a0f4a07952a7d107ec77f3e0f3e74b958395128b5d2180283a7a378183d4696
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 2fb752aba1d9991f177ff7ca68f22e911411bc64a82da34c0e0be26655c0ca19
+  inbox_png_sha256: b6bb336b62c85495c14771ccdadf4d18c743c5eeaddb2a5df36d4b5d170c7c60
+  qa_sha256: 6009f41a67bbc4036d20a9dd16934a0c50ec6b75bff865a67de4c7c3646fc2c6
+- batch: batch-32-weekly-themes
+  job: x-week-lantern-night
+  take: 4
+  round: 2
+  logical_run: 20261105-night32-lantern-rain-r2
+  source_file: /workspace/generated_images/exec-f3b4b7f4-0b31-4e9e-87de-b7e6ab5b1758.png
+  returned_at: '2026-11-05T20:04:56.639Z'
+  prompt_sha256: 7d3582ce01026042716b2703daef0a3f98432bf60f51cd8af0928dad1e2ccb98
+  fingerprint: e4e56602d4bae739
+  saved_at: '2026-11-05T20:04:57.012246+00:00'
+  original_generated_png_sha256: e81fa0c0e4704d7b4ec85424e7d012361bfaf24f6612aa24ae772a4b9db3207c
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: af63f334395666682a687c1230a81aabb822acfa3b5c18cf49fff6bed29b2aa4
+  inbox_png_sha256: 02c4e86c91a27dd86f76c7b66ff0bd267b455bb8cbba127983da080cf05dfb95
+  qa_sha256: ba95f7fb6a9f93ae7dbd80f0a9a677a22dae53d8be72fb0f9a84b7d09048da28
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
