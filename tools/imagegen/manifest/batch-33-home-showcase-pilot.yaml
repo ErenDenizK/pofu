@@ -65,6 +65,7 @@ jobs:
       - block: prop-avoid-v2
 
   - id: hive-1
+    fit: {max_width: 360}
     kind: station
     name: hive-1
     chat: "Pofu · Hive"
@@ -94,6 +95,7 @@ jobs:
       - text: "AVOID: bees, insects, honey dripping, a box hive, a fence."
 
   - id: material-moss
+    palettes: [world-foliage]
     kind: prop
     name: material-moss
     chat: "Pofu · Materials"

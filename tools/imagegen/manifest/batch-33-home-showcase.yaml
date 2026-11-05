@@ -25,9 +25,7 @@
 
 batch: batch-33-home-showcase
 title: Home showcase (hive, materials, doors, gate, harbor pieces, frogs)
-status: blocked
-blocked_on:
-  - "the lead's review of batch-33-home-showcase-pilot (path-lamp, hive-1, material-moss, door-mochi)"
+status: open
 
 refs:
   tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
