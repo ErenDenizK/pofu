@@ -2,7 +2,7 @@ id: asset-glow-ground-pool
 type: asset
 title_tr: glow-ground-pool
 title_en: glow-ground-pool (ui)
-status: cut
+status: in-production
 horizon: now
 summary: 'A pool of warm lamplight lying on a lawn, seen from a low camera about 17
   degrees above the ground, so the pool is a wide flat ellipse about twice as wide
@@ -11,7 +11,8 @@ summary: 'A pool of warm lamplight lying on a lawn, seen from a low camera about
   into black well before the image border. Warm honey-gold light only: no grass blades,
   no ground, no shad…'
 art:
-  images: []
+  images:
+  - design/art/ui/ui-glow-ground-pool/ui-glow-ground-pool.png
   jobs:
   - batch-35-experience-pilot:glow-ground-pool
 sources:

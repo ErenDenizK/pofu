@@ -1,0 +1,111 @@
+{
+  "job": "dressing-meadow",
+  "cap": 614400,
+  "pixel_changes": false,
+  "candidates": [
+    {
+      "take": 1,
+      "encodings": [
+        {
+          "path": "/workspace/art-20261105-qa-repost/build/imagegen/batch-35-experience-pilot/locked/sheet__dressing-meadow--t1.png",
+          "bytes": 1389851,
+          "rgba_sha256": "e6397bfae7ee18bdb45de3c6850245664355fa9cdc7e8ed3981ceb6c116f0755"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/dressing-meadow/t1-lossless-m4-q100.webp",
+          "bytes": 991328,
+          "rgba_sha256": "e6397bfae7ee18bdb45de3c6850245664355fa9cdc7e8ed3981ceb6c116f0755"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/dressing-meadow/t1-lossless-m6-q100.webp",
+          "bytes": 972426,
+          "rgba_sha256": "e6397bfae7ee18bdb45de3c6850245664355fa9cdc7e8ed3981ceb6c116f0755"
+        }
+      ],
+      "best": {
+        "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/dressing-meadow/t1-lossless-m6-q100.webp",
+        "bytes": 972426,
+        "rgba_sha256": "e6397bfae7ee18bdb45de3c6850245664355fa9cdc7e8ed3981ceb6c116f0755"
+      },
+      "eligible": false
+    },
+    {
+      "take": 2,
+      "encodings": [
+        {
+          "path": "/workspace/art-20261105-qa-repost/build/imagegen/batch-35-experience-pilot/locked/sheet__dressing-meadow--t2.png",
+          "bytes": 961461,
+          "rgba_sha256": "fad10318fc69a82603756590a8341817a1e2b843aa2abb731bd744bbb3fd4f57"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/dressing-meadow/t2-lossless-m4-q100.webp",
+          "bytes": 683866,
+          "rgba_sha256": "fad10318fc69a82603756590a8341817a1e2b843aa2abb731bd744bbb3fd4f57"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/dressing-meadow/t2-lossless-m6-q100.webp",
+          "bytes": 672900,
+          "rgba_sha256": "fad10318fc69a82603756590a8341817a1e2b843aa2abb731bd744bbb3fd4f57"
+        }
+      ],
+      "best": {
+        "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/dressing-meadow/t2-lossless-m6-q100.webp",
+        "bytes": 672900,
+        "rgba_sha256": "fad10318fc69a82603756590a8341817a1e2b843aa2abb731bd744bbb3fd4f57"
+      },
+      "eligible": false
+    },
+    {
+      "take": 3,
+      "encodings": [
+        {
+          "path": "/workspace/art-20261105-qa-repost/build/imagegen/batch-35-experience-pilot/locked/sheet__dressing-meadow--t3.png",
+          "bytes": 722808,
+          "rgba_sha256": "ea175afa1e6da14cc245854386eed5c71c4c7c06d8ad2df9a2415a00b926b40a"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/dressing-meadow/t3-lossless-m4-q100.webp",
+          "bytes": 511006,
+          "rgba_sha256": "ea175afa1e6da14cc245854386eed5c71c4c7c06d8ad2df9a2415a00b926b40a"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/dressing-meadow/t3-lossless-m6-q100.webp",
+          "bytes": 496762,
+          "rgba_sha256": "ea175afa1e6da14cc245854386eed5c71c4c7c06d8ad2df9a2415a00b926b40a"
+        }
+      ],
+      "best": {
+        "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/dressing-meadow/t3-lossless-m6-q100.webp",
+        "bytes": 496762,
+        "rgba_sha256": "ea175afa1e6da14cc245854386eed5c71c4c7c06d8ad2df9a2415a00b926b40a"
+      },
+      "eligible": true
+    },
+    {
+      "take": 4,
+      "encodings": [
+        {
+          "path": "/workspace/art-20261105-qa-repost/build/imagegen/batch-35-experience-pilot/locked/sheet__dressing-meadow--t4.png",
+          "bytes": 768673,
+          "rgba_sha256": "3f310edfea7a90653c71ee78ffaaa6b72914a13e847a7377647ffeed9cf2abe9"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/dressing-meadow/t4-lossless-m4-q100.webp",
+          "bytes": 546702,
+          "rgba_sha256": "3f310edfea7a90653c71ee78ffaaa6b72914a13e847a7377647ffeed9cf2abe9"
+        },
+        {
+          "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/dressing-meadow/t4-lossless-m6-q100.webp",
+          "bytes": 539982,
+          "rgba_sha256": "3f310edfea7a90653c71ee78ffaaa6b72914a13e847a7377647ffeed9cf2abe9"
+        }
+      ],
+      "best": {
+        "path": "/workspace/art-operator-runtime/run-20261105-night/qa-repost-2026-11-05/delivery-encodings/dressing-meadow/t4-lossless-m6-q100.webp",
+        "bytes": 539982,
+        "rgba_sha256": "3f310edfea7a90653c71ee78ffaaa6b72914a13e847a7377647ffeed9cf2abe9"
+      },
+      "eligible": true
+    }
+  ]
+}

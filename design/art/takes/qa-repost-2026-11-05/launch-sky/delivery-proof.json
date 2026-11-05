@@ -1,0 +1,51 @@
+{
+  "cap": 614400,
+  "official_canvas": [
+    1290,
+    2796
+  ],
+  "qa_revision": "56b811fb",
+  "waivers": [],
+  "candidates": [
+    {
+      "take": 1,
+      "official_locked": "/workspace/art-20261105-qa-repost/build/imagegen/batch-35-experience-pilot/locked/plate__launch-sky--t1.png",
+      "rgba_sha256": "21698b284584aad816dacb6149ee65d26c57cd42653919bf57fcefc8daa29520",
+      "lossless_encoding": "/workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/compression-review/t1-lossless-webp-m4-q100.webp",
+      "encoding_sha256": "e4425f924e301e461441a1e41b0ecf981e2cc669201ce6e3152853efedf1c19a",
+      "best_tested_bytes": 1065244,
+      "eligible": false,
+      "evidence": "Existing bounded exact-lossless experiments remain byte-verified and pixel-identical under current post; no repeat broad compression search."
+    },
+    {
+      "take": 2,
+      "official_locked": "/workspace/art-20261105-qa-repost/build/imagegen/batch-35-experience-pilot/locked/plate__launch-sky--t2.png",
+      "rgba_sha256": "3b88dc4c53b19c19b1bfbecb1700a531a8d8fe6926c72a04afe9c2f0800a65e0",
+      "lossless_encoding": "/workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/compression-review/t2-lossless-webp-m4-q100.webp",
+      "encoding_sha256": "18b29dbb39e8712ee44ef8485aa6de9a9a097b026b7581426c29148eea6802e0",
+      "best_tested_bytes": 1005010,
+      "eligible": false,
+      "evidence": "Existing bounded exact-lossless experiments remain byte-verified and pixel-identical under current post; no repeat broad compression search."
+    },
+    {
+      "take": 3,
+      "official_locked": "/workspace/art-20261105-qa-repost/build/imagegen/batch-35-experience-pilot/locked/plate__launch-sky--t3.png",
+      "rgba_sha256": "3dbfab7374db5deb2e9acff474471d1f0ab910a04d2a843918af87bb7a5b1243",
+      "lossless_encoding": "/workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/compression-review/t3-lossless-webp-m4-q100.webp",
+      "encoding_sha256": "6f01a78bc30b17dae654fa7130706cdcba79c0d4a1695578297c1b045e059512",
+      "best_tested_bytes": 997750,
+      "eligible": false,
+      "evidence": "Existing bounded exact-lossless experiments remain byte-verified and pixel-identical under current post; no repeat broad compression search."
+    },
+    {
+      "take": 4,
+      "official_locked": "/workspace/art-20261105-qa-repost/build/imagegen/batch-35-experience-pilot/locked/plate__launch-sky--t4.png",
+      "rgba_sha256": "207d1a58eb039ff6cdcbeefe8ba543d7b5702d014b7bde02449bb92f5be30445",
+      "lossless_encoding": "/workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/compression-review/t4-lossless-webp-m4-q100.webp",
+      "encoding_sha256": "41e36cd9c76da611d5a2e7b31b4b0cd0e965abbec66ba9548f32128083ee0cc1",
+      "best_tested_bytes": 1002080,
+      "eligible": false,
+      "evidence": "Existing bounded exact-lossless experiments remain byte-verified and pixel-identical under current post; no repeat broad compression search."
+    }
+  ]
+}

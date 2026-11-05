@@ -38,3 +38,12 @@ notes:
   24.9% (top: #774411 (3.1%), #995522 (2.7%)); t4 value_floor: lightness p5 20 (R1
   59), palette_drift: mean dE 8.7, p95 15.8, off-palette 26.4% (top: #774411 (3.2%),
   #663311 (2.6%)).'
+- 'qa-repost-2026-11-05 / batch-35-experience-pilot skipped after 4 retained originals,
+  zero new dispatches: All four retained sources pass the authoritative additive QA,
+  but none meets exact-lossless full1024x1024 delivery cap614400. Best tested PNG/WebP
+  methods4/6 effort75/100 sizes t1/t2/t3/t4:659000/634528/635030/638680 bytes. Every
+  encoding RGBA hash was checked against the official locked take. Initial unpublished
+  t1 promotion/preparation is durably archived with byte hashes, never committed or
+  uploaded. Skip only this job; no new generation, pixel changes, canvas resize, palette
+  quantization, splitting or delivery waiver. Original source identities and reports
+  retained.'

@@ -1,0 +1,653 @@
+batch: batch-35-experience-pilot
+contact_sheet: design/art/takes/qa-repost-2026-11-05/glow-ground-pool/contact.jpg
+jobs:
+  glow-ground-pool:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Retained-only re-post under the
+      authoritative additive profile; all four original sources pass every hard check.
+      Official additive post skips style lock and preserves near-black rather than
+      lifting it to gray. All lock loads are zero by construction; stable take-order
+      tie picks evaluation t1. Wide warm painterly ellipse, smooth falloff, no emitter,
+      objects, text, ring or rays. Border-band luma p99 0.0129 passes the new 0.05
+      target; no manual black cleanup. Original prompt/reference hashes and run-qualified
+      take identity preserved in salvage sources. No generation. UI location is excluded
+      by the canonical Harmony catalog; official measure/check still run and proof
+      is preserved.
+qa_reports:
+  1:
+    job: glow-ground-pool
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x512
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 70 on 46% lit pixels (additive profile)
+      value: 70.2557
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.013 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0129
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 167 of 167 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.72
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 8.0
+        L_p95: 75.7
+        C_p50: 13.0
+        C_p95: 69.5
+        C_p99: 70.7
+        detail: 0.72
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 8.0
+        L_p95: 75.7
+        C_p50: 13.0
+        C_p95: 69.5
+        C_p99: 70.7
+        detail: 0.72
+    fingerprint: 70315e48ce0ae4e8
+  2:
+    job: glow-ground-pool
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x512
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 70 on 47% lit pixels (additive profile)
+      value: 69.7369
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.004 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0039
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 172 of 172 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.76
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 8.3
+        L_p95: 76.5
+        C_p50: 14.0
+        C_p95: 69.0
+        C_p99: 70.2
+        detail: 0.76
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 8.3
+        L_p95: 76.5
+        C_p50: 14.0
+        C_p95: 69.0
+        C_p99: 70.2
+        detail: 0.76
+    fingerprint: 70315e48ce0ae4e8
+  3:
+    job: glow-ground-pool
+    take: 3
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x512
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 68 on 54% lit pixels (additive profile)
+      value: 67.5216
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.041 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.0408
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 166 of 166 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.76
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 18.2
+        L_p95: 75.4
+        C_p50: 25.4
+        C_p95: 66.8
+        C_p99: 68.2
+        detail: 0.76
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 18.2
+        L_p95: 75.4
+        C_p50: 25.4
+        C_p95: 66.8
+        C_p99: 68.2
+        detail: 0.76
+    fingerprint: 70315e48ce0ae4e8
+  4:
+    job: glow-ground-pool
+    take: 4
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x512
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: glow chroma p95 68 on 49% lit pixels (additive profile)
+      value: 68.1968
+    - check: additive_background
+      status: pass
+      message: 'border luma p99 0.024 (near-black, at most 0.05): the glow dies before
+        the edge'
+      value: 0.024
+    - check: additive_falloff
+      status: pass
+      message: 0.00% of the image has a hard edge (luma step over 0.08 per px at 256
+        px; soft falloff, at most 0.8%)
+      value: 0.0
+    - check: additive_banding
+      status: pass
+      message: 177 of 177 luma levels used across the falloff (100%; low means banding)
+      value: 1.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.78
+    info:
+      lock_skipped: 'additive glow: black stays black'
+      metrics_raw:
+        L_p5: 0.0
+        L_p50: 11.4
+        L_p95: 77.4
+        C_p50: 17.8
+        C_p95: 67.7
+        C_p99: 68.7
+        detail: 0.78
+      metrics_locked:
+        L_p5: 0.0
+        L_p50: 11.4
+        L_p95: 77.4
+        C_p50: 17.8
+        C_p95: 67.7
+        C_p99: 68.7
+        detail: 0.78
+    fingerprint: 70315e48ce0ae4e8
+manual_review:
+  excluded_takes: []
+  note: Retained-only re-post under the authoritative additive profile; all four original
+    sources pass every hard check. Official additive post skips style lock and preserves
+    near-black rather than lifting it to gray. All lock loads are zero by construction;
+    stable take-order tie picks evaluation t1. Wide warm painterly ellipse, smooth
+    falloff, no emitter, objects, text, ring or rays. Border-band luma p99 0.0129
+    passes the new 0.05 target; no manual black cleanup. Original prompt/reference
+    hashes and run-qualified take identity preserved in salvage sources. No generation.
+    UI location is excluded by the canonical Harmony catalog; official measure/check
+    still run and proof is preserved.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-2ec889b1-c986-4c68-a87d-ebf4ddf5a509.png
+  original_generated_png_sha256: 77ba5de34423a7a4ff5929c06bf187ce91ed132ef7e67e75243f4318461b6c14
+  inbox_png_sha256: d0597faad96dd0bb8ddb16fbb3a3d11da279124734e7c41a92770e63103914f4
+  rgba_sha256: fe27a6dc57e3e68404808b59e77aebf739547f181d85cedfb4a3ced053f1e4fa
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 70315e48ce0ae4e8
+- take: 2
+  source_file: /workspace/generated_images/exec-00b1947f-7d0d-455e-bc13-e5e7b86cfd48.png
+  original_generated_png_sha256: fda91ccc154763991e785746136457e8cf7fec88d6826cf55d8728a0cd1a4d86
+  inbox_png_sha256: 7154b1c924ecced7142f46aca23b45ff121d3a0019146ef0fb69fee107f20f2a
+  rgba_sha256: 6ddef4277d5b798c88203b589ea5763dad8958b5839b0f604b6a062f9f67d432
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 70315e48ce0ae4e8
+- take: 3
+  source_file: /workspace/generated_images/exec-85fe94f3-d082-426b-963a-28ee4dedebbe.png
+  original_generated_png_sha256: ff31f49241f46c4fbd1de65c850115038edb39765127b5c9586137cf0c6781a2
+  inbox_png_sha256: e4420dfc1b912adc8df22265bff1846d2b52bca326676704c5213b3c3353d4da
+  rgba_sha256: 616bc622f173861cc87e9c38c4688c948396ccb43397f6738d5fef9a48618e23
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 70315e48ce0ae4e8
+- take: 4
+  source_file: /workspace/generated_images/exec-f3d98cc6-4901-44ae-8ee4-c21cfb6d3362.png
+  original_generated_png_sha256: e1ea9ff86df253c2f7011b563e09a49d25d397a689b257e3c2cc63db149eb2b0
+  inbox_png_sha256: b6826ff6c91cf09cd68b3b2bdb2adc507fe6e74a0c0244e127760af4400b54d7
+  rgba_sha256: 75d19b1fccc362d96f0aed192948541b849efbe1a6e33b3d0199ff91352d44fa
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 70315e48ce0ae4e8
+salvage:
+  batch: batch-35-experience-pilot
+  source_count: 4
+  sources:
+  - batch: batch-35-experience-pilot
+    job: glow-ground-pool
+    take: 1
+    round: 1
+    logical_run: 20261105-night35-glow-pool-window
+    source_file: /workspace/generated_images/exec-2ec889b1-c986-4c68-a87d-ebf4ddf5a509.png
+    returned_at: '2026-11-05T19:26:31.841Z'
+    prompt_sha256: 822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2
+    fingerprint: 70315e48ce0ae4e8
+    saved_at: '2026-11-05T19:26:32.266605+00:00'
+    original_generated_png_sha256: 77ba5de34423a7a4ff5929c06bf187ce91ed132ef7e67e75243f4318461b6c14
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: fe27a6dc57e3e68404808b59e77aebf739547f181d85cedfb4a3ced053f1e4fa
+    evaluation_take: 1
+    original_run: batch-35-experience-pilot
+    original_take: 1
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-glow-ground-pool-t1.json
+    original_callback_sha256: 25a0aefd96a245ea315cc7688ca136ebd773e9505fed0b929855a5b105987f5a
+    original_packet:
+      batch: batch-35-experience-pilot
+      job: glow-ground-pool
+      worktree: /workspace/art-20261105-experience-pilot
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The approved tea stall: match its painting, finish, camera, scale and colors
+        exactly (do not draw the stall).
+
+
+        A pool of warm lamplight lying on a lawn, seen from a low camera about 17
+        degrees above the ground, so the
+
+        pool is a wide flat ellipse about twice as wide as it is tall, centered in
+        the image and filling about
+
+        80 percent of the width. Brightest near the middle, with a soft, slightly
+        uneven painterly edge that
+
+        dies into black well before the image border. Warm honey-gold light only:
+        no grass blades, no ground, no
+
+        shadows, no object casting it.
+
+
+        UI OBJECT: a painted object that the app places under or inside native
+
+        iOS glass controls. Never paint glass, frosted panels, buttons, frames,
+
+        progress bars or any interface chrome: the app draws all glass and all
+
+        controls natively. The object is centered with a generous transparent
+
+        margin of about 10% on every side.
+
+
+        GLOW SPRITE: a painterly additive light sprite for a game: the app adds it
+        on top of the world with
+
+        plus-lighter blending, so black means no light at all. Painted with the same
+        soft airbrushed grain as the
+
+        attached art, a smooth falloff from a brighter center to nothing, a very slight
+        painterly irregularity so
+
+        it is never a perfect digital gradient. Color is a warm candle-light honey-gold
+        (#FFC872 at the center
+
+        fading through #FF9F4A to black) unless stated. Pure black (#000000) background,
+        not transparent, no
+
+        other colors, no objects.
+
+
+        AVOID: any object, a lamp, a window, a flame, a sun, a sphere or a visible
+        light source, stars, rays or spikes, lens flare, hard edges, outlines, text,
+        letters, a border, a frame, grey or colored backgrounds, banding, a halo ring.
+        Everything outside the glow is pure black (#000000).
+
+
+        Output: one image, opaque, full bleed, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png
+      reference_sha256:
+        /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png: 7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422
+      fingerprint: 70315e48ce0ae4e8
+      prompt_sha256: 822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2
+      transparent: false
+    evaluation_fingerprint: 70315e48ce0ae4e8
+  - batch: batch-35-experience-pilot
+    job: glow-ground-pool
+    take: 2
+    round: 1
+    logical_run: 20261105-night35-glow-pool-window
+    source_file: /workspace/generated_images/exec-00b1947f-7d0d-455e-bc13-e5e7b86cfd48.png
+    returned_at: '2026-11-05T19:27:32.443Z'
+    prompt_sha256: 822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2
+    fingerprint: 70315e48ce0ae4e8
+    saved_at: '2026-11-05T19:27:32.849946+00:00'
+    original_generated_png_sha256: fda91ccc154763991e785746136457e8cf7fec88d6826cf55d8728a0cd1a4d86
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 6ddef4277d5b798c88203b589ea5763dad8958b5839b0f604b6a062f9f67d432
+    evaluation_take: 2
+    original_run: batch-35-experience-pilot
+    original_take: 2
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-glow-ground-pool-t2.json
+    original_callback_sha256: 207f726bc24cfd27c62cdb736800674533841cc4f43eaa8ff1dec73ed47d3701
+    original_packet:
+      batch: batch-35-experience-pilot
+      job: glow-ground-pool
+      worktree: /workspace/art-20261105-experience-pilot
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The approved tea stall: match its painting, finish, camera, scale and colors
+        exactly (do not draw the stall).
+
+
+        A pool of warm lamplight lying on a lawn, seen from a low camera about 17
+        degrees above the ground, so the
+
+        pool is a wide flat ellipse about twice as wide as it is tall, centered in
+        the image and filling about
+
+        80 percent of the width. Brightest near the middle, with a soft, slightly
+        uneven painterly edge that
+
+        dies into black well before the image border. Warm honey-gold light only:
+        no grass blades, no ground, no
+
+        shadows, no object casting it.
+
+
+        UI OBJECT: a painted object that the app places under or inside native
+
+        iOS glass controls. Never paint glass, frosted panels, buttons, frames,
+
+        progress bars or any interface chrome: the app draws all glass and all
+
+        controls natively. The object is centered with a generous transparent
+
+        margin of about 10% on every side.
+
+
+        GLOW SPRITE: a painterly additive light sprite for a game: the app adds it
+        on top of the world with
+
+        plus-lighter blending, so black means no light at all. Painted with the same
+        soft airbrushed grain as the
+
+        attached art, a smooth falloff from a brighter center to nothing, a very slight
+        painterly irregularity so
+
+        it is never a perfect digital gradient. Color is a warm candle-light honey-gold
+        (#FFC872 at the center
+
+        fading through #FF9F4A to black) unless stated. Pure black (#000000) background,
+        not transparent, no
+
+        other colors, no objects.
+
+
+        AVOID: any object, a lamp, a window, a flame, a sun, a sphere or a visible
+        light source, stars, rays or spikes, lens flare, hard edges, outlines, text,
+        letters, a border, a frame, grey or colored backgrounds, banding, a halo ring.
+        Everything outside the glow is pure black (#000000).
+
+
+        Output: one image, opaque, full bleed, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png
+      reference_sha256:
+        /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png: 7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422
+      fingerprint: 70315e48ce0ae4e8
+      prompt_sha256: 822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2
+      transparent: false
+    evaluation_fingerprint: 70315e48ce0ae4e8
+  - batch: batch-35-experience-pilot
+    job: glow-ground-pool
+    take: 3
+    round: 2
+    logical_run: 20261105-night35-glows-single-retry
+    source_file: /workspace/generated_images/exec-85fe94f3-d082-426b-963a-28ee4dedebbe.png
+    returned_at: '2026-11-05T19:33:00.192Z'
+    prompt_sha256: 822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2
+    fingerprint: 70315e48ce0ae4e8
+    saved_at: '2026-11-05T19:33:04.226251+00:00'
+    original_generated_png_sha256: ff31f49241f46c4fbd1de65c850115038edb39765127b5c9586137cf0c6781a2
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 616bc622f173861cc87e9c38c4688c948396ccb43397f6738d5fef9a48618e23
+    evaluation_take: 3
+    original_run: batch-35-experience-pilot
+    original_take: 3
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-glow-ground-pool-t3.json
+    original_callback_sha256: 9e4164b50c21dc62dc0cd0b201eb3066bd125a5a7421003584ce7c00783c740e
+    original_packet:
+      batch: batch-35-experience-pilot
+      job: glow-ground-pool
+      worktree: /workspace/art-20261105-experience-pilot
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The approved tea stall: match its painting, finish, camera, scale and colors
+        exactly (do not draw the stall).
+
+
+        A pool of warm lamplight lying on a lawn, seen from a low camera about 17
+        degrees above the ground, so the
+
+        pool is a wide flat ellipse about twice as wide as it is tall, centered in
+        the image and filling about
+
+        80 percent of the width. Brightest near the middle, with a soft, slightly
+        uneven painterly edge that
+
+        dies into black well before the image border. Warm honey-gold light only:
+        no grass blades, no ground, no
+
+        shadows, no object casting it.
+
+
+        UI OBJECT: a painted object that the app places under or inside native
+
+        iOS glass controls. Never paint glass, frosted panels, buttons, frames,
+
+        progress bars or any interface chrome: the app draws all glass and all
+
+        controls natively. The object is centered with a generous transparent
+
+        margin of about 10% on every side.
+
+
+        GLOW SPRITE: a painterly additive light sprite for a game: the app adds it
+        on top of the world with
+
+        plus-lighter blending, so black means no light at all. Painted with the same
+        soft airbrushed grain as the
+
+        attached art, a smooth falloff from a brighter center to nothing, a very slight
+        painterly irregularity so
+
+        it is never a perfect digital gradient. Color is a warm candle-light honey-gold
+        (#FFC872 at the center
+
+        fading through #FF9F4A to black) unless stated. Pure black (#000000) background,
+        not transparent, no
+
+        other colors, no objects.
+
+
+        AVOID: any object, a lamp, a window, a flame, a sun, a sphere or a visible
+        light source, stars, rays or spikes, lens flare, hard edges, outlines, text,
+        letters, a border, a frame, grey or colored backgrounds, banding, a halo ring.
+        Everything outside the glow is pure black (#000000).
+
+
+        Output: one image, opaque, full bleed, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png
+      reference_sha256:
+        /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png: 7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422
+      fingerprint: 70315e48ce0ae4e8
+      prompt_sha256: 822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2
+      transparent: false
+    evaluation_fingerprint: 70315e48ce0ae4e8
+  - batch: batch-35-experience-pilot
+    job: glow-ground-pool
+    take: 4
+    round: 2
+    logical_run: 20261105-night35-glows-single-retry
+    source_file: /workspace/generated_images/exec-f3d98cc6-4901-44ae-8ee4-c21cfb6d3362.png
+    returned_at: '2026-11-05T19:32:42.077Z'
+    prompt_sha256: 822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2
+    fingerprint: 70315e48ce0ae4e8
+    saved_at: '2026-11-05T19:32:42.490468+00:00'
+    original_generated_png_sha256: e1ea9ff86df253c2f7011b563e09a49d25d397a689b257e3c2cc63db149eb2b0
+    dimensions:
+    - 1254
+    - 1254
+    rgba_sha256: 75d19b1fccc362d96f0aed192948541b849efbe1a6e33b3d0199ff91352d44fa
+    evaluation_take: 4
+    original_run: batch-35-experience-pilot
+    original_take: 4
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-glow-ground-pool-t4.json
+    original_callback_sha256: bcb74216486588fa07e485a823188567d6a1803f4dd96d4ece484d8296e13f13
+    original_packet:
+      batch: batch-35-experience-pilot
+      job: glow-ground-pool
+      worktree: /workspace/art-20261105-experience-pilot
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The approved tea stall: match its painting, finish, camera, scale and colors
+        exactly (do not draw the stall).
+
+
+        A pool of warm lamplight lying on a lawn, seen from a low camera about 17
+        degrees above the ground, so the
+
+        pool is a wide flat ellipse about twice as wide as it is tall, centered in
+        the image and filling about
+
+        80 percent of the width. Brightest near the middle, with a soft, slightly
+        uneven painterly edge that
+
+        dies into black well before the image border. Warm honey-gold light only:
+        no grass blades, no ground, no
+
+        shadows, no object casting it.
+
+
+        UI OBJECT: a painted object that the app places under or inside native
+
+        iOS glass controls. Never paint glass, frosted panels, buttons, frames,
+
+        progress bars or any interface chrome: the app draws all glass and all
+
+        controls natively. The object is centered with a generous transparent
+
+        margin of about 10% on every side.
+
+
+        GLOW SPRITE: a painterly additive light sprite for a game: the app adds it
+        on top of the world with
+
+        plus-lighter blending, so black means no light at all. Painted with the same
+        soft airbrushed grain as the
+
+        attached art, a smooth falloff from a brighter center to nothing, a very slight
+        painterly irregularity so
+
+        it is never a perfect digital gradient. Color is a warm candle-light honey-gold
+        (#FFC872 at the center
+
+        fading through #FF9F4A to black) unless stated. Pure black (#000000) background,
+        not transparent, no
+
+        other colors, no objects.
+
+
+        AVOID: any object, a lamp, a window, a flame, a sun, a sphere or a visible
+        light source, stars, rays or spikes, lens flare, hard edges, outlines, text,
+        letters, a border, a frame, grey or colored backgrounds, banding, a halo ring.
+        Everything outside the glow is pure black (#000000).
+
+
+        Output: one image, opaque, full bleed, square 1024 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png
+      reference_sha256:
+        /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png: 7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422
+      fingerprint: 70315e48ce0ae4e8
+      prompt_sha256: 822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2
+      transparent: false
+    evaluation_fingerprint: 70315e48ce0ae4e8

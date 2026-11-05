@@ -1,0 +1,162 @@
+{
+  "batch": "batch-35-experience-pilot",
+  "source_count": 4,
+  "sources": [
+    {
+      "batch": "batch-35-experience-pilot",
+      "job": "glow-ground-pool",
+      "take": 1,
+      "round": 1,
+      "logical_run": "20261105-night35-glow-pool-window",
+      "source_file": "/workspace/generated_images/exec-2ec889b1-c986-4c68-a87d-ebf4ddf5a509.png",
+      "returned_at": "2026-11-05T19:26:31.841Z",
+      "prompt_sha256": "822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2",
+      "fingerprint": "70315e48ce0ae4e8",
+      "saved_at": "2026-11-05T19:26:32.266605+00:00",
+      "original_generated_png_sha256": "77ba5de34423a7a4ff5929c06bf187ce91ed132ef7e67e75243f4318461b6c14",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "fe27a6dc57e3e68404808b59e77aebf739547f181d85cedfb4a3ced053f1e4fa",
+      "evaluation_take": 1,
+      "original_run": "batch-35-experience-pilot",
+      "original_take": 1,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-glow-ground-pool-t1.json",
+      "original_callback_sha256": "25a0aefd96a245ea315cc7688ca136ebd773e9505fed0b929855a5b105987f5a",
+      "original_packet": {
+        "batch": "batch-35-experience-pilot",
+        "job": "glow-ground-pool",
+        "worktree": "/workspace/art-20261105-experience-pilot",
+        "prompt": "REFERENCES (attached, in this order):\n1. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n\nA pool of warm lamplight lying on a lawn, seen from a low camera about 17 degrees above the ground, so the\npool is a wide flat ellipse about twice as wide as it is tall, centered in the image and filling about\n80 percent of the width. Brightest near the middle, with a soft, slightly uneven painterly edge that\ndies into black well before the image border. Warm honey-gold light only: no grass blades, no ground, no\nshadows, no object casting it.\n\nUI OBJECT: a painted object that the app places under or inside native\niOS glass controls. Never paint glass, frosted panels, buttons, frames,\nprogress bars or any interface chrome: the app draws all glass and all\ncontrols natively. The object is centered with a generous transparent\nmargin of about 10% on every side.\n\nGLOW SPRITE: a painterly additive light sprite for a game: the app adds it on top of the world with\nplus-lighter blending, so black means no light at all. Painted with the same soft airbrushed grain as the\nattached art, a smooth falloff from a brighter center to nothing, a very slight painterly irregularity so\nit is never a perfect digital gradient. Color is a warm candle-light honey-gold (#FFC872 at the center\nfading through #FF9F4A to black) unless stated. Pure black (#000000) background, not transparent, no\nother colors, no objects.\n\nAVOID: any object, a lamp, a window, a flame, a sun, a sphere or a visible light source, stars, rays or spikes, lens flare, hard edges, outlines, text, letters, a border, a frame, grey or colored backgrounds, banding, a halo ring. Everything outside the glow is pure black (#000000).\n\nOutput: one image, opaque, full bleed, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png": "7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422"
+        },
+        "fingerprint": "70315e48ce0ae4e8",
+        "prompt_sha256": "822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2",
+        "transparent": false
+      },
+      "evaluation_fingerprint": "70315e48ce0ae4e8"
+    },
+    {
+      "batch": "batch-35-experience-pilot",
+      "job": "glow-ground-pool",
+      "take": 2,
+      "round": 1,
+      "logical_run": "20261105-night35-glow-pool-window",
+      "source_file": "/workspace/generated_images/exec-00b1947f-7d0d-455e-bc13-e5e7b86cfd48.png",
+      "returned_at": "2026-11-05T19:27:32.443Z",
+      "prompt_sha256": "822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2",
+      "fingerprint": "70315e48ce0ae4e8",
+      "saved_at": "2026-11-05T19:27:32.849946+00:00",
+      "original_generated_png_sha256": "fda91ccc154763991e785746136457e8cf7fec88d6826cf55d8728a0cd1a4d86",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "6ddef4277d5b798c88203b589ea5763dad8958b5839b0f604b6a062f9f67d432",
+      "evaluation_take": 2,
+      "original_run": "batch-35-experience-pilot",
+      "original_take": 2,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-glow-ground-pool-t2.json",
+      "original_callback_sha256": "207f726bc24cfd27c62cdb736800674533841cc4f43eaa8ff1dec73ed47d3701",
+      "original_packet": {
+        "batch": "batch-35-experience-pilot",
+        "job": "glow-ground-pool",
+        "worktree": "/workspace/art-20261105-experience-pilot",
+        "prompt": "REFERENCES (attached, in this order):\n1. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n\nA pool of warm lamplight lying on a lawn, seen from a low camera about 17 degrees above the ground, so the\npool is a wide flat ellipse about twice as wide as it is tall, centered in the image and filling about\n80 percent of the width. Brightest near the middle, with a soft, slightly uneven painterly edge that\ndies into black well before the image border. Warm honey-gold light only: no grass blades, no ground, no\nshadows, no object casting it.\n\nUI OBJECT: a painted object that the app places under or inside native\niOS glass controls. Never paint glass, frosted panels, buttons, frames,\nprogress bars or any interface chrome: the app draws all glass and all\ncontrols natively. The object is centered with a generous transparent\nmargin of about 10% on every side.\n\nGLOW SPRITE: a painterly additive light sprite for a game: the app adds it on top of the world with\nplus-lighter blending, so black means no light at all. Painted with the same soft airbrushed grain as the\nattached art, a smooth falloff from a brighter center to nothing, a very slight painterly irregularity so\nit is never a perfect digital gradient. Color is a warm candle-light honey-gold (#FFC872 at the center\nfading through #FF9F4A to black) unless stated. Pure black (#000000) background, not transparent, no\nother colors, no objects.\n\nAVOID: any object, a lamp, a window, a flame, a sun, a sphere or a visible light source, stars, rays or spikes, lens flare, hard edges, outlines, text, letters, a border, a frame, grey or colored backgrounds, banding, a halo ring. Everything outside the glow is pure black (#000000).\n\nOutput: one image, opaque, full bleed, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png": "7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422"
+        },
+        "fingerprint": "70315e48ce0ae4e8",
+        "prompt_sha256": "822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2",
+        "transparent": false
+      },
+      "evaluation_fingerprint": "70315e48ce0ae4e8"
+    },
+    {
+      "batch": "batch-35-experience-pilot",
+      "job": "glow-ground-pool",
+      "take": 3,
+      "round": 2,
+      "logical_run": "20261105-night35-glows-single-retry",
+      "source_file": "/workspace/generated_images/exec-85fe94f3-d082-426b-963a-28ee4dedebbe.png",
+      "returned_at": "2026-11-05T19:33:00.192Z",
+      "prompt_sha256": "822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2",
+      "fingerprint": "70315e48ce0ae4e8",
+      "saved_at": "2026-11-05T19:33:04.226251+00:00",
+      "original_generated_png_sha256": "ff31f49241f46c4fbd1de65c850115038edb39765127b5c9586137cf0c6781a2",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "616bc622f173861cc87e9c38c4688c948396ccb43397f6738d5fef9a48618e23",
+      "evaluation_take": 3,
+      "original_run": "batch-35-experience-pilot",
+      "original_take": 3,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-glow-ground-pool-t3.json",
+      "original_callback_sha256": "9e4164b50c21dc62dc0cd0b201eb3066bd125a5a7421003584ce7c00783c740e",
+      "original_packet": {
+        "batch": "batch-35-experience-pilot",
+        "job": "glow-ground-pool",
+        "worktree": "/workspace/art-20261105-experience-pilot",
+        "prompt": "REFERENCES (attached, in this order):\n1. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n\nA pool of warm lamplight lying on a lawn, seen from a low camera about 17 degrees above the ground, so the\npool is a wide flat ellipse about twice as wide as it is tall, centered in the image and filling about\n80 percent of the width. Brightest near the middle, with a soft, slightly uneven painterly edge that\ndies into black well before the image border. Warm honey-gold light only: no grass blades, no ground, no\nshadows, no object casting it.\n\nUI OBJECT: a painted object that the app places under or inside native\niOS glass controls. Never paint glass, frosted panels, buttons, frames,\nprogress bars or any interface chrome: the app draws all glass and all\ncontrols natively. The object is centered with a generous transparent\nmargin of about 10% on every side.\n\nGLOW SPRITE: a painterly additive light sprite for a game: the app adds it on top of the world with\nplus-lighter blending, so black means no light at all. Painted with the same soft airbrushed grain as the\nattached art, a smooth falloff from a brighter center to nothing, a very slight painterly irregularity so\nit is never a perfect digital gradient. Color is a warm candle-light honey-gold (#FFC872 at the center\nfading through #FF9F4A to black) unless stated. Pure black (#000000) background, not transparent, no\nother colors, no objects.\n\nAVOID: any object, a lamp, a window, a flame, a sun, a sphere or a visible light source, stars, rays or spikes, lens flare, hard edges, outlines, text, letters, a border, a frame, grey or colored backgrounds, banding, a halo ring. Everything outside the glow is pure black (#000000).\n\nOutput: one image, opaque, full bleed, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png": "7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422"
+        },
+        "fingerprint": "70315e48ce0ae4e8",
+        "prompt_sha256": "822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2",
+        "transparent": false
+      },
+      "evaluation_fingerprint": "70315e48ce0ae4e8"
+    },
+    {
+      "batch": "batch-35-experience-pilot",
+      "job": "glow-ground-pool",
+      "take": 4,
+      "round": 2,
+      "logical_run": "20261105-night35-glows-single-retry",
+      "source_file": "/workspace/generated_images/exec-f3d98cc6-4901-44ae-8ee4-c21cfb6d3362.png",
+      "returned_at": "2026-11-05T19:32:42.077Z",
+      "prompt_sha256": "822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2",
+      "fingerprint": "70315e48ce0ae4e8",
+      "saved_at": "2026-11-05T19:32:42.490468+00:00",
+      "original_generated_png_sha256": "e1ea9ff86df253c2f7011b563e09a49d25d397a689b257e3c2cc63db149eb2b0",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "rgba_sha256": "75d19b1fccc362d96f0aed192948541b849efbe1a6e33b3d0199ff91352d44fa",
+      "evaluation_take": 4,
+      "original_run": "batch-35-experience-pilot",
+      "original_take": 4,
+      "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-glow-ground-pool-t4.json",
+      "original_callback_sha256": "bcb74216486588fa07e485a823188567d6a1803f4dd96d4ece484d8296e13f13",
+      "original_packet": {
+        "batch": "batch-35-experience-pilot",
+        "job": "glow-ground-pool",
+        "worktree": "/workspace/art-20261105-experience-pilot",
+        "prompt": "REFERENCES (attached, in this order):\n1. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n\nA pool of warm lamplight lying on a lawn, seen from a low camera about 17 degrees above the ground, so the\npool is a wide flat ellipse about twice as wide as it is tall, centered in the image and filling about\n80 percent of the width. Brightest near the middle, with a soft, slightly uneven painterly edge that\ndies into black well before the image border. Warm honey-gold light only: no grass blades, no ground, no\nshadows, no object casting it.\n\nUI OBJECT: a painted object that the app places under or inside native\niOS glass controls. Never paint glass, frosted panels, buttons, frames,\nprogress bars or any interface chrome: the app draws all glass and all\ncontrols natively. The object is centered with a generous transparent\nmargin of about 10% on every side.\n\nGLOW SPRITE: a painterly additive light sprite for a game: the app adds it on top of the world with\nplus-lighter blending, so black means no light at all. Painted with the same soft airbrushed grain as the\nattached art, a smooth falloff from a brighter center to nothing, a very slight painterly irregularity so\nit is never a perfect digital gradient. Color is a warm candle-light honey-gold (#FFC872 at the center\nfading through #FF9F4A to black) unless stated. Pure black (#000000) background, not transparent, no\nother colors, no objects.\n\nAVOID: any object, a lamp, a window, a flame, a sun, a sphere or a visible light source, stars, rays or spikes, lens flare, hard edges, outlines, text, letters, a border, a frame, grey or colored backgrounds, banding, a halo ring. Everything outside the glow is pure black (#000000).\n\nOutput: one image, opaque, full bleed, square 1024 x 1024.\n",
+        "refs": [
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png"
+        ],
+        "reference_sha256": {
+          "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png": "7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422"
+        },
+        "fingerprint": "70315e48ce0ae4e8",
+        "prompt_sha256": "822fe1e2fa09f7fae506c7088057ad0fcb00527447435cdcac36978d9772b8d2",
+        "transparent": false
+      },
+      "evaluation_fingerprint": "70315e48ce0ae4e8"
+    }
+  ]
+}
