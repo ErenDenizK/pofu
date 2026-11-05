@@ -37,10 +37,13 @@ final class WorldScreenshotTests: XCTestCase {
         case collectPaws = "11-collect-paws"
         /// The collect beat as the seeds arc into the jar.
         case collectFlight = "12-collect-flight"
+        /// The camera at z 1.9: the jar, the lantern and the pots sit on
+        /// their projected world anchors (experience v1 §1.4).
+        case propsZoom = "13-props-z19"
 
         var framing: WorldFraming {
             switch self {
-            case .homeVisit, .homeSettled, .homeCrafted, .homeAX3, .collectPaws, .collectFlight: .home
+            case .homeVisit, .homeSettled, .homeCrafted, .homeAX3, .collectPaws, .collectFlight, .propsZoom: .home
             case .map: .map
             case .island, .stationBuild, .buildPop, .buildAfter, .residentCard: .island
             }
@@ -59,6 +62,8 @@ final class WorldScreenshotTests: XCTestCase {
         let folder = outputFolder()
         try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
         var written: [String] = []
+        // The one place control: its rect in Home, Island and Archipelago.
+        var placeRects: [String: CGRect] = [:]
 
         let runs = Shot.allCases.map { ($0, UIUserInterfaceStyle.light) } + Shot.dark.map { ($0, UIUserInterfaceStyle.dark) }
         for (shot, style) in runs {
@@ -98,14 +103,21 @@ final class WorldScreenshotTests: XCTestCase {
             switch shot {
             case .homeVisit, .homeSettled, .homeCrafted, .homeAX3, .island, .map:
                 try await Task.sleep(for: .milliseconds(500))
+            case .propsZoom:
+                island.holdRail(z: 1.9)
+                try await Task.sleep(for: .milliseconds(900))
+                for prop in HomeSlots.Prop.allCases {
+                    let anchor = island.screenPoint(of: prop.slot)
+                    let frame = try XCTUnwrap(island.propFrames[prop], "\(prop) was not drawn")
+                    XCTAssertEqual(Double(frame.midX), anchor.x, accuracy: 1, "\(prop) x at z 1.9")
+                    XCTAssertEqual(Double(frame.midY), anchor.y, accuracy: 1, "\(prop) y at z 1.9")
+                }
             case .collectPaws, .collectFlight:
                 try await Task.sleep(for: .milliseconds(500))
                 // The jar is where the seeds land, relative to Pofu's feet.
                 let feet = island.screenPoint(of: IslandLayout.pofu)
-                let jar = HomeObjectsLayout.jarCenter(
-                    feet: MomentPoint(x: feet.x, y: feet.y),
-                    screenWidth: Double(window.bounds.width)
-                )
+                let jarPoint = island.screenPoint(of: HomeSlots.jar)
+                let jar = MomentPoint(x: jarPoint.x, y: jarPoint.y)
                 home.collectSeeds(
                     jarBefore: world.game.snapshot.jar.units,
                     sources: [MomentPoint(x: feet.x, y: feet.y - 40)],
@@ -132,6 +144,15 @@ final class WorldScreenshotTests: XCTestCase {
                 try await Task.sleep(for: .milliseconds(1700))
             }
 
+            if style == .light, [.homeVisit, .island, .map].contains(shot) {
+                let frames = Array(island.placeControlFrames.values)
+                XCTAssertEqual(frames.count, 1, "exactly one place control in \(shot.rawValue)")
+                if let frame = frames.first {
+                    XCTAssertEqual(Double(frame.width), 52, accuracy: 0.5)
+                    placeRects[shot.rawValue] = frame
+                }
+            }
+
             let format = UIGraphicsImageRendererFormat()
             format.scale = window.traitCollection.displayScale
             format.opaque = true
@@ -154,6 +175,15 @@ final class WorldScreenshotTests: XCTestCase {
             window.isHidden = true
             window.rootViewController = nil
             try await Task.sleep(for: .milliseconds(150))
+        }
+
+        // The same rect in every framing.
+        XCTAssertEqual(placeRects.count, 3, "the place control was found in Home, Island and Archipelago")
+        if let first = placeRects.values.first {
+            for (name, rect) in placeRects {
+                XCTAssertEqual(Double(rect.minX), Double(first.minX), accuracy: 0.5, "\(name) x")
+                XCTAssertEqual(Double(rect.minY), Double(first.minY), accuracy: 0.5, "\(name) y")
+            }
         }
 
         let summary = written.joined(separator: "\n")

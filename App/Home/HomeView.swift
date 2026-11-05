@@ -203,10 +203,6 @@ struct HomeView: View {
             .buttonStyle(.plain)
             .accessibilityLabel(Text("\(model.balance.units) seeds in my cheeks"))
             Spacer()
-            if FeatureFlags.islandHome {
-                FramingPicker(model: model.island)
-                Spacer()
-            }
             Button {
                 model.homeSheet = .settings
             } label: {
