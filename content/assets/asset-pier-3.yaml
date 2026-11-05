@@ -2,7 +2,7 @@ id: asset-pier-3
 type: asset
 title_tr: pier-3
 title_en: pier-3 (station)
-status: cut
+status: in-production
 horizon: next
 summary: 'Moor a small toy-like steam ferry beside the pier''s outer half: a plump
   rounded sea-blue hull with a cream stripe, a low cream cabin with round windows,
@@ -12,7 +12,8 @@ links:
   variant_of:
   - asset-pier-2
 art:
-  images: []
+  images:
+  - design/art/stations/pier-3/pier-3.png
   jobs:
   - batch-21-harbor-ladders:pier-3
 sources:
