@@ -17,22 +17,22 @@ struct CameraRailTests {
         }
     }
 
-    @Test func pofuIsAbout38PercentOfTheWidthAtHome() {
+    @Test func pofuIsAbout35PercentOfTheWidthAtHome() {
         let width = 64 * rail.pose(of: .home).scale
-        #expect(abs(width - 153.6) < 0.01)
-        #expect(abs(width / CameraRail.referenceWidth - 0.38) < 0.005)
+        #expect(abs(width - 140.8) < 0.01)
+        #expect(abs(width / CameraRail.referenceWidth - 0.35) < 0.005)
         // His feet sit at the Home framing's anchor row, at most a quarter
         // of the width off centre (nudged so no resident is cut).
         let feet = rail.pose(of: .home).project(IslandLayout.pofu, width: CameraRail.referenceWidth)
         #expect(abs(feet.x - 201) <= CameraRail.referenceWidth * 0.25 + 1e-9)
-        #expect(abs(feet.y - 600) < 1e-9)
+        #expect(abs(feet.y - IslandFraming.homeFeetY) < 1e-9)
     }
 
     @Test func scaleInterpolatesInLogSpace() {
         let map = CameraRail.referenceStops[0].scale
         let island = CameraRail.referenceStops[1].scale
         let mid = rail.pose(z: 1.5).scale
-        #expect(abs(mid - (island * 2.40).squareRoot()) < 1e-9)
+        #expect(abs(mid - (island * IslandFraming.homeScale).squareRoot()) < 1e-9)
         let quarter = rail.pose(z: 0.25).scale
         #expect(abs(quarter - exp(log(map) * 0.75 + log(island) * 0.25)) < 1e-9)
     }
@@ -42,7 +42,7 @@ struct CameraRailTests {
         let pose = rail.pose(z: 1.25)
         let home = IslandLayout.pofu.y
         #expect(abs(pose.lookY - (island.look.y + (home - island.look.y) * 0.25)) < 1e-9)
-        #expect(abs(pose.anchorY - (island.anchorY + (600 - island.anchorY) * 0.25)) < 1e-9)
+        #expect(abs(pose.anchorY - (island.anchorY + (IslandFraming.homeFeetY - island.anchorY) * 0.25)) < 1e-9)
     }
 
     @Test func zAndLogScaleAreInverses() {
@@ -63,8 +63,8 @@ struct CameraRailTests {
     @Test func scalesFollowTheWidthAndRowsTheHeight() {
         let wide = CameraRail(width: 440, height: 956)
         let home = wide.pose(of: .home)
-        #expect(abs(home.scale - 2.40 * 440 / 402) < 1e-9)
-        #expect(abs(home.anchorY - 600 * 956 / 874) < 1e-9)
+        #expect(abs(home.scale - IslandFraming.homeScale * 440 / 402) < 1e-9)
+        #expect(abs(home.anchorY - IslandFraming.homeFeetY * 956 / 874) < 1e-9)
     }
 
     @Test func projectAndUnprojectAreInverses() {

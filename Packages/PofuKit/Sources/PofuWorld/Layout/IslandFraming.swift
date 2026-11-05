@@ -6,7 +6,7 @@ import PofuCore
 /// instead of eyeballed.
 ///
 /// **The Island framing (look round 4).** The world is not shrunk to fit:
-/// Pofu is 80 pt (×1.25) and a horizontal drag pans across the island,
+/// Pofu is 96 pt (×1.5) and a horizontal drag pans across the island,
 /// tip to tip, with momentum, rubber-banded ends and snap points at each
 /// station and at Pofu; it opens centred on Pofu. Round 3 fitted the whole
 /// plate to 88 % of the width, which made every station tiny; that view is
@@ -15,9 +15,12 @@ import PofuCore
 /// to the roots) is centred between the top chrome and the bottom band;
 /// far isles fill the sky above it and the cloud sea rises to its roots.
 ///
-/// **Home** keeps ADR-0018's balanced diorama: Pofu 154 pt wide (×2.4),
-/// his feet at 600 pt, nudged sideways so Mochi and Fındık are whole or
-/// out of frame, never cut by an edge.
+/// **Home** keeps ADR-0018's balanced diorama, re-framed in visual round 2
+/// (2026-11-05): the island comes up and the sky band shrinks to about a
+/// quarter of the screen, Pofu is a little smaller beside it (141 pt wide,
+/// ×2.2), his feet at 400 pt, nudged sideways so Mochi and Fındık are whole
+/// or out of frame, never cut by an edge. Round 1 had him 154 pt wide at
+/// 600 pt, which left 45 % of the screen as hazy sky and the island low.
 public enum IslandFraming {
     /// The top chrome band at Home, in points (ADR-0018).
     public static let topBand = 118.0
@@ -30,10 +33,12 @@ public enum IslandFraming {
     public static let characterMargin = 8.0
     /// How much of the width the plate fills at the Island framing.
     public static let islandFill = 0.88
-    /// Pofu's scale at Home: 64 units at 154 pt, 38 % of the width.
-    public static let homeScale = 2.40
-    /// Pofu's feet at Home, in reference points from the top.
-    public static let homeFeetY = 600.0
+    /// Pofu's scale at Home: 64 units at 141 pt, 35 % of the width.
+    public static let homeScale = 2.20
+    /// Pofu's feet at Home, in reference points from the top: the lawn's
+    /// back edge lands near 245 pt, so the sky is about a quarter of the
+    /// screen and the speech bubble still clears the top chrome.
+    public static let homeFeetY = 400.0
 
     // MARK: - Content
 
@@ -150,8 +155,9 @@ public enum IslandFraming {
     }
 
     /// Points per world unit at the Island framing, at the reference width:
-    /// Pofu's 64 units at 80 pt.
-    public static let islandScale = 1.25
+    /// Pofu's 64 units at 96 pt (visual round 2: closer, so the island
+    /// fills more of the screen).
+    public static let islandScale = 1.5
 
     /// The Island stop's look x range at the reference width: the plate's
     /// tips reach the screen's edges at either end, never past them.
