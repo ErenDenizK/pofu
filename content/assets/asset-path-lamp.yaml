@@ -4,14 +4,15 @@ title_tr: path-lamp
 title_en: path-lamp (prop)
 status: in-production
 horizon: now
-summary: >-
-  A small garden path lamp for the island diorama: one slim, slightly crooked post of soft
-  honey wood on a round flat stone foot, and at its top a short curled hook holding a plump
-  round lantern of cream paper-tinted glass under a small rounded coral cap, unlit (a soft
-  pale shape, no flame, no glow). Toy-like proportions, few parts, friendly. It stands on
-  the guide's ground ellipse, centered on the cross, and its lante…
+summary: 'A small garden path lamp for the island diorama: one slim, slightly crooked
+  post of soft honey wood on a round flat stone foot, and at its top a short curled
+  hook holding a plump round lantern of cream paper-tinted glass under a small rounded
+  coral cap, unlit (a soft pale shape, no flame, no glow). Toy-like proportions, few
+  parts, friendly. It stands on the guide''s ground ellipse, centered on the cross,
+  and its lante…'
 art:
-  images: []
+  images:
+  - design/art/masters/path-lamp/path-lamp.png
   jobs:
   - batch-33-home-showcase-pilot:path-lamp
 sources:

@@ -1,0 +1,214 @@
+batch: batch-33-home-showcase-pilot
+contact_sheet: design/art/takes/batch-33-home-showcase-pilot/path-lamp/contact.jpg
+jobs:
+  path-lamp:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both have a slim slightly crooked
+      honey post, small stone foot, curled hook and one round cream lantern under
+      a coral cap, unlit with no flame or glow. No guide marks, lettering or broad
+      background halo. Official guide fit preserves the narrow silhouette with transparent
+      margins; day light values warn only. The requested approximate 120px width remains
+      a pilot review observation rather than an invented threshold. Full numerical
+      hard QA passes; final 28pt review is pending the lead.
+qa_reports:
+  2:
+    job: path-lamp
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 43.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 92 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.2 (at least 3.5)'
+      value: 6.19
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.1
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.3903
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 3.2, off-palette 0.0%
+      value: 1.3146
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: edge)'
+      value: 87.1
+    info:
+      fit:
+        scale: 0.7093
+        anchor:
+        - 504.7
+        - 867
+      registration:
+        dx: 7
+        dy: 21
+      metrics_raw:
+        L_p5: 58.4
+        L_p50: 74.1
+        L_p95: 90.7
+        C_p50: 35.2
+        C_p95: 43.9
+        C_p99: 44.5
+        detail: 1.72
+      metrics_locked:
+        L_p5: 59.4
+        L_p50: 74.1
+        L_p95: 90.7
+        C_p50: 33.8
+        C_p95: 43.6
+        C_p99: 44.1
+        detail: 1.1
+    fingerprint: d1cb2dd29ebfa4f2
+  1:
+    job: path-lamp
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 93 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.4 (at least 3.5)'
+      value: 6.36
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.03
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2501
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.2, p95 2.4, off-palette 0.0%
+      value: 1.1531
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 90 against the world reference (outliers: edge)'
+      value: 89.5
+    info:
+      fit:
+        scale: 0.7239
+        anchor:
+        - 506.8
+        - 878
+      registration:
+        dx: 5
+        dy: 10
+      metrics_raw:
+        L_p5: 59.1
+        L_p50: 75.3
+        L_p95: 91.7
+        C_p50: 32.2
+        C_p95: 46.1
+        C_p99: 47.0
+        detail: 1.62
+      metrics_locked:
+        L_p5: 60.0
+        L_p50: 75.1
+        L_p95: 91.7
+        C_p50: 29.5
+        C_p95: 45.8
+        C_p99: 46.4
+        detail: 1.03
+    fingerprint: d1cb2dd29ebfa4f2
+manual_review:
+  excluded_takes: []
+  note: Both have a slim slightly crooked honey post, small stone foot, curled hook
+    and one round cream lantern under a coral cap, unlit with no flame or glow. No
+    guide marks, lettering or broad background halo. Official guide fit preserves
+    the narrow silhouette with transparent margins; day light values warn only. The
+    requested approximate 120px width remains a pilot review observation rather than
+    an invented threshold. Full numerical hard QA passes; final 28pt review is pending
+    the lead.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-d00b52be-f06f-4723-b75f-7bc2799ba404.png
+  original_generated_png_sha256: d129892e37659f01ab43427ef7115144e1f4e6da6609d307628b7e6a16112ff2
+  inbox_png_sha256: 5829ee6a9bfdda015cad63d6ed685f9415f63c0cd06495ff7a2f05be5750a5b5
+  rgba_sha256: 6702bf470d5d9951f5dd05b6eee01b040f89f68b8b01f1e18a2b848be0f284ad
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d1cb2dd29ebfa4f2
+- take: 2
+  source_file: /workspace/generated_images/exec-234d4489-ffbd-4441-b299-1a1bf7ccb977.png
+  original_generated_png_sha256: 95274a2131fd3e1c0c8ccf3f3c0af51d2e72ce456d55d89ef3dec737e1a39cc0
+  inbox_png_sha256: 444aaab5a5417f672d2cb4f0c45caa8b62242a2ae14ce93b611af45bc774960a
+  rgba_sha256: b8f97e459f9d067b1386b712b9fafbba40708359fd0cc532fdb4b7d650f5c2f8
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d1cb2dd29ebfa4f2
