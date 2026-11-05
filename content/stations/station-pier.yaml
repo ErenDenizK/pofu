@@ -21,6 +21,7 @@ links:
   - asset-pier-1
   - asset-pier-2
   - asset-pier-3
+  - asset-pier-4
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'

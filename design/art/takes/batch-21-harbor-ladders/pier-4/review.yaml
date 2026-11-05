@@ -1,17 +1,223 @@
 batch: batch-21-harbor-ladders
+contact_sheet: design/art/takes/batch-21-harbor-ladders/pier-4/contact.jpg
 jobs:
   pier-4:
-    pick: none
-    publication: dependent-skip
-    note: 'Skipped without generation: true dependency pier-3 was already skipped
-      because root pier-1 failed. Skipped without generation: true dependency pier-2
-      was already skipped because root pier-1 failed. Skipped without generation:
-      true dependency pier-1 failed after its one allowed retry. Both initial and
-      both retry takes violate the explicit guide footprint. Official station_anchor
-      widths are873,804,904,834px against720px. All have four posts, rounded planks,
-      coral rope and an empty end, but their guide fit is wrong. Manual exclusion
-      of all4 is based on geometry, not advisory light metrics. One allowed retry
-      is exhausted; skip pier-1 and only its true level-chain dependents. Keep all
-      sources and contacts; do not force promotion.'
-generated_takes: 0
-failed_dependency: pier-3
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both initial takes pass hard
+      QA and the parent station-anchor check. Select take1 for lowest style-lock load1.0700
+      versus1.0973; Harmony74.9. Visual review counts exactly two tiny tulip tea glasses
+      of amber tea on a small round cream tray beside a honey wooden bench at the
+      inner end, facing the view. Original ferry, rope, lantern, planks/posts, frame
+      and scale remain; no water, wake, smoke or ground shadow. Edit stability0.9242,
+      chroma1.0114. Chroma/light/palette warnings stay advisory; no width-growth warning
+      or root guide fit. Founder review pending.
+qa_reports:
+  2:
+    job: pier-4
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 52 (R1 51)
+      value: 52.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 43 (at most 22), p98 92 (at least 90), spread 49
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 48.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.129
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.5 (at least 3.5)'
+      value: 7.46
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.1 (R1 5.3)
+      value: 4.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0973
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 13.8, off-palette 6.9% (top: #558899 (1.4%), #447788
+        (0.5%))'
+      value: 2.7438
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 909.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 76 against the world reference (outliers: detail, edge)'
+      value: 76.5
+    - check: edit_stability
+      status: pass
+      message: 93% of the parent level unchanged
+      value: 0.9277
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.00 of the parent level (drift compounds along a chain)
+      value: 1.0029
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 50.0
+        L_p50: 75.2
+        L_p95: 89.9
+        C_p50: 36.8
+        C_p95: 53.0
+        C_p99: 59.6
+        detail: 4.89
+      metrics_locked:
+        L_p5: 50.8
+        L_p50: 75.2
+        L_p95: 89.3
+        C_p50: 36.9
+        C_p95: 52.4
+        C_p99: 57.3
+        detail: 4.12
+    fingerprint: 9736eafde2b54184
+  1:
+    job: pier-4
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 54 (R1 51)
+      value: 53.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 43 (at most 22), p98 91 (at least 90), spread 48
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 48.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 73.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.133
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.0 (at least 3.5)'
+      value: 6.97
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.9 (R1 5.3)
+      value: 3.9
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.07
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.8, p95 13.2, off-palette 6.3% (top: #557788 (1.2%), #558899
+        (0.8%))'
+      value: 2.7819
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 908.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 75 against the world reference (outliers: detail, edge)'
+      value: 74.9
+    - check: edit_stability
+      status: pass
+      message: 92% of the parent level unchanged
+      value: 0.9242
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.01 of the parent level (drift compounds along a chain)
+      value: 1.0114
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 48.0
+        L_p50: 73.5
+        L_p95: 89.2
+        C_p50: 37.1
+        C_p95: 54.4
+        C_p99: 58.9
+        detail: 4.6
+      metrics_locked:
+        L_p5: 49.0
+        L_p50: 73.6
+        L_p95: 88.7
+        C_p50: 37.2
+        C_p95: 53.5
+        C_p99: 56.8
+        detail: 3.9
+    fingerprint: 9736eafde2b54184
+manual_review:
+  excluded_takes: []
+  note: Both initial takes pass hard QA and the parent station-anchor check. Select
+    take1 for lowest style-lock load1.0700 versus1.0973; Harmony74.9. Visual review
+    counts exactly two tiny tulip tea glasses of amber tea on a small round cream
+    tray beside a honey wooden bench at the inner end, facing the view. Original ferry,
+    rope, lantern, planks/posts, frame and scale remain; no water, wake, smoke or
+    ground shadow. Edit stability0.9242, chroma1.0114. Chroma/light/palette warnings
+    stay advisory; no width-growth warning or root guide fit. Founder review pending.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-3b13b951-638f-42a0-a655-8307f9eac541.png
+  original_generated_png_sha256: 58821fe7d6c6e1d9bfbc91699f314e0ce6d5193eb7c8e44272d2ac5272ee1704
+  inbox_png_sha256: d1e3fc03d94cfcccc4ebea17e163f74dde676828fe99ec9bcbd2d6378a684e7f
+  rgba_sha256: cf43ad9622e0fd118e9a0a62fcbfa006c2ba6177832618dde3002c1222f31d5b
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 9736eafde2b54184
+- take: 2
+  source_file: /workspace/generated_images/exec-2f1f5a58-3c89-418d-a647-8311e8f03ef7.png
+  original_generated_png_sha256: 29004a7a20cc890044b6c19e5b355a79175bfb22e52d7822582babf0c16f4dd9
+  inbox_png_sha256: ef4366ccc4d417efec77114fbdf443a6e8562c64689d0e467a2298920764330b
+  rgba_sha256: 32edcdf3d9b1af8a12aec3469d2cd375e6c425322f0616985170838b8a766418
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 9736eafde2b54184
