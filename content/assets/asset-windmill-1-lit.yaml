@@ -1,0 +1,23 @@
+id: asset-windmill-1-lit
+type: asset
+title_tr: windmill-1-lit
+title_en: windmill-1-lit (station)
+status: in-production
+horizon: now
+summary: >-
+  Light the windmill from inside: the small arched wooden door now lets a warm candle-amber
+  light through, a soft amber glow along the thin seam around the door and in its upper arch,
+  as if a lamp burned inside, a little brighter toward the top of the arch. The door keeps
+  its exact shape, panels and knob. Only the door's seam and upper arch change: the stone,
+  the cap, the sails and the step keep their exact day colors …
+links:
+  variant_of:
+  - asset-windmill-1
+art:
+  images: []
+  jobs:
+  - batch-36-lit-ladder-pilot:windmill-1-lit
+sources:
+- doc: tools/imagegen/manifest/batch-36-lit-ladder-pilot.yaml
+kind: station
+batch: batch-36-lit-ladder-pilot
