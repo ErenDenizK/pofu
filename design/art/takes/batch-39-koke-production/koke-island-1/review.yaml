@@ -1,0 +1,21 @@
+batch: batch-39-koke-production
+jobs:
+  koke-island-1:
+    pick: none
+    publication: dependent-skip
+    note: 'Skipped without generation: true dependency koke-island-0 failed after
+      its one allowed retry. Skipped after the sole unchanged-prompt retry. All four
+      candidates pass every hard QA check but cannot be delivered within the mandatory614400-byte
+      lossless master cap. Maximum-effort exact lossless WebP sizes are878932,871858,878880,889080bytes;
+      the full1536x1024 PNGs are1.32MB. The manifest supplies no soft-delivery scale,
+      and no manual downscale, lossy master, palette change or pixel cleanup is allowed.
+      delivery-preflight.json binds the exact candidate RGBA hashes and compression
+      sizes. Canonical Harmony C_mean values are8.454,8.619,10.790,8.384; C_p50 values7.329,6.300,10.669,7.288.
+      The same explicitly documented warm-bright subject-pixel proxy gives0.385375,0.469174,0.531015,0.365659;
+      these observations are not a new QA threshold. Arc evidence is retained in arc-measurements.json.
+      No stage0-to4 comparison is claimed because the four true plate dependents cannot
+      start without a deliverable parent. Propose a lead-authored soft-delivery scale
+      and salvage these retained originals rather than regenerating. Independent character
+      chain continues; light warnings remain advisory.'
+generated_takes: 0
+failed_dependency: koke-island-0
