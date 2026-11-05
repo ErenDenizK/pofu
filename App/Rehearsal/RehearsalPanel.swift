@@ -12,8 +12,8 @@ struct RehearsalPanel: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     /// Where the user left the panel, from its resting place.
-    @AppStorage("rehearsal.panel.leading.x") private var restingX: Double = 0
-    @AppStorage("rehearsal.panel.leading.y") private var restingY: Double = 0
+    @AppStorage("rehearsal.panel.bottom.x") private var restingX: Double = 0
+    @AppStorage("rehearsal.panel.bottom.y") private var restingY: Double = 0
     /// "glass" or "crafted"; empty follows the default skin.
     @AppStorage("PofuSkin") private var skinOverride = ""
     @State private var drag: CGSize = .zero
@@ -24,8 +24,8 @@ struct RehearsalPanel: View {
         GeometryReader { proxy in
             content
                 .offset(clamped(in: proxy.size))
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                .padding(.top, PofuSpacing.s)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+                .padding(.bottom, PofuSpacing.s)
                 .padding(.leading, PofuSpacing.s)
         }
         .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: rehearsal.isPanelExpanded)
@@ -43,7 +43,7 @@ struct RehearsalPanel: View {
             expanded
                 .frame(width: 228)
                 .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
-                .transition(.opacity.combined(with: .scale(scale: 0.9, anchor: .topLeading)))
+                .transition(.opacity.combined(with: .scale(scale: 0.9, anchor: .bottomLeading)))
         } else {
             collapsed
                 .glassEffect(.regular.interactive(), in: Capsule(style: .continuous))
@@ -224,13 +224,14 @@ struct RehearsalPanel: View {
             }
     }
 
-    /// The offset from the top-leading corner, kept on screen.
+    /// The offset from the bottom-leading corner (above the safe area),
+    /// kept on screen and below the top bar: dragging up is negative.
     private func clamped(in size: CGSize) -> CGSize {
         let width: CGFloat = rehearsal.isPanelExpanded ? 228 : 120
         let wantedX = CGFloat(restingX) + drag.width
         let wantedY = CGFloat(restingY) + drag.height
         let x = max(0, min(size.width - width - PofuSpacing.l, wantedX))
-        let y = min(max(0, size.height - 380), max(-40, wantedY))
+        let y = min(0, max(-max(0, size.height - 440), wantedY))
         return CGSize(width: x, height: y)
     }
 }
