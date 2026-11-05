@@ -1,0 +1,34 @@
+id: asset-x-decor-bahar-nest-v2
+type: asset
+title_tr: x-decor-bahar-nest-v2
+title_en: x-decor-bahar-nest-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A round nest woven of honey-gold twigs and straw, lined with soft cream down, holding three
+  pale blue-grey speckled eggs, resting on a low cut stump of pale wood with a tiny green
+  sprout beside it. It stands on the guide's ground ellipse, centered on the cross, never
+  wider than the ellipse and never taller than the height bar; it is small, a third of the
+  image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30b-decor-seasons-1-v2:x-decor-bahar-nest-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30b-decor-seasons-1-v2.yaml
+kind: prop
+batch: batch-30b-decor-seasons-1-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  After exactly two initial takes and the sole unchanged-prompt retry pair, no take is eligible:
+  visible locked alpha-over24 widths 360/359/360/360px all exceed the literal one-third of1024
+  cap341.33px. Official hard QA passes on all4 and exploration style/light warnings are advisory;
+  only the observed width brief fails. Independent original and locked content review confirms
+  correct inventories and smooth material scope, including exactly three speckled eggs and
+  cream down only inside the nest where applicable. No regeneration beyond the one allowed
+  retry, no manual resizing or alpha cleanup. All four immutable sources retained. This job
+  alone is skipped; independent corner plates continue.

@@ -1,0 +1,36 @@
+id: asset-x-decor-bahar-ribbon-tree-v2
+type: asset
+title_tr: x-decor-bahar-ribbon-tree-v2
+title_en: x-decor-bahar-ribbon-tree-v2 (prop)
+status: planned
+horizon: now
+summary: >-
+  A small young tree with a slim honey trunk and a round crown of soft fresh-green leaves
+  with a few pale blossoms, hung all over with a dozen short soft ribbons in rose, mint, mustard,
+  lilac and cream tied to its branches, on a small mound of earth with a ring of stones. It
+  stands on the guide's ground ellipse, centered on the cross, never wider than the ellipse
+  and never taller than the height bar; it is small, a thi…
+art:
+  images: []
+  jobs:
+  - batch-30b-decor-seasons-1-v2:x-decor-bahar-ribbon-tree-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30b-decor-seasons-1-v2.yaml
+kind: prop
+batch: batch-30b-decor-seasons-1-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 2; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Both independently reviewed original and official
+  locked initial takes show exactly twelve tied ribbon units in four clear groups of three,
+  with rose/mint/mustard/lilac/cream, a few pale blossoms, smooth rounded fresh foliage, slim
+  honey trunk and stone-ring earth mound. No fur, face, text, guide or unrelated prop. Official
+  hard QA passes; alpha-over24 visible widths319/325px satisfy the literal one-third of1024
+  cap341.33px. The280-310 native target is approximate, not a new rejection minimum. Lowest
+  lock load selects take2 (2.7202 versus3.0232). Exploration palette/style/light warnings
+  are advisory. Only official fit/registration were used, no manual resize or alpha cleanup;
+  both immutable originals retained, never promoted.

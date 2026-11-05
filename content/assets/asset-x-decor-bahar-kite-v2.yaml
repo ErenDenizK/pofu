@@ -1,0 +1,34 @@
+id: asset-x-decor-bahar-kite-v2
+type: asset
+title_tr: x-decor-bahar-kite-v2
+title_en: x-decor-bahar-kite-v2 (prop)
+status: planned
+horizon: now
+summary: >-
+  A diamond kite of coral, cream and sea-blue quarters with a long wavy ribbon tail of rose
+  and mustard bows, resting tilted on the ground against a short honey-wood stake with its
+  string coiled round a wooden spool. It stands on the guide's ground ellipse, centered on
+  the cross, never wider than the ellipse and never taller than the height bar; it is small,
+  a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30b-decor-seasons-1-v2:x-decor-bahar-kite-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30b-decor-seasons-1-v2.yaml
+kind: prop
+batch: batch-30b-decor-seasons-1-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Both independently reviewed original and locked
+  takes retain the coral/cream/sea-blue quartered diamond kite, short honey stake, coiled
+  wooden spool/string and long narrow wavy tail with rose/mustard bows. No guide, text, living
+  anatomy, fur or unrelated object. Official hard QA passes and alpha-over24 visible widths327/300px
+  both satisfy the literal one-third cap341.33px;327 remains valid despite the approximate280-310
+  target. Lowest load selects take1 (2.4436 versus2.6084; Harmony82.4 versus76.6). No manual
+  source resize/cleanup; advisory exploration warnings retained; never promoted.

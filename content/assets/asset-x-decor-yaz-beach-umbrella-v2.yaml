@@ -1,0 +1,33 @@
+id: asset-x-decor-yaz-beach-umbrella-v2
+type: asset
+title_tr: x-decor-yaz-beach-umbrella-v2
+title_en: x-decor-yaz-beach-umbrella-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A large round beach umbrella in sea-blue and cream stripes tilted slightly on a slim honey
+  pole planted in a small mound of pale sand, a folded cream towel with a coral stripe and
+  a round pail beside it. It stands on the guide's ground ellipse, centered on the cross,
+  never wider than the ellipse and never taller than the height bar; it is small, a third
+  of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-30b-decor-seasons-1-v2:x-decor-yaz-beach-umbrella-v2
+sources:
+- doc: tools/imagegen/manifest/batch-30b-decor-seasons-1-v2.yaml
+kind: prop
+batch: batch-30b-decor-seasons-1-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  After the sole unchanged-prompt retry, all four visible locked alpha-over24 widths360/359/359/360px
+  exceed literal one-third of1024 cap341.33px. All four official hard QA pass. Independent
+  original and locked review confirms open sea-blue/cream canopy, slim pole, pale sand mound,
+  layered folded cream towel with coral stripe and round pail on both retry takes, with no
+  fur, text, guide or unrelated object. No eligible take; skip only this job, retaining all
+  four immutable originals. No third round, manual resize or alpha cleanup. Independent summer
+  corner is selected separately.
