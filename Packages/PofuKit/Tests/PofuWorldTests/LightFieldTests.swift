@@ -88,7 +88,7 @@ struct LightFieldTests {
 
     @Test func aCharacterByTheLanternIsLitByIt() {
         let f = field(hour: 22)
-        let beside = WorldPoint(x: IslandLayout.pofu.x + 10, y: IslandLayout.pofu.y)
+        let beside = WorldPoint(x: HomeSlots.lantern.x - 10, y: IslandLayout.pofu.y)
         let s = f.sample(beside)
         #expect(s.sourceID == "lantern")
         #expect(s.strength > 0.2)

@@ -232,6 +232,6 @@ public enum HomeObjectsLayout {
 
     /// The centre of the pot row on the island's lip.
     public static func potsCenter(feet: MomentPoint) -> MomentPoint {
-        MomentPoint(x: feet.x, y: feet.y + 112)
+        MomentPoint(x: feet.x, y: feet.y + 55)
     }
 }

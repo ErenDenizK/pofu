@@ -43,6 +43,18 @@ public struct CameraRig: Hashable, Sendable {
     /// The pinch in progress: its starting `ln s`.
     public private(set) var pinchStart: Double?
 
+    /// Where a flight ends: on the rail (a framing of the home island) or at
+    /// a pose off it (another island's Island stop).
+    public enum FlightLanding: Hashable, Sendable {
+        case rail(WorldFraming)
+        case pose(CameraPose)
+    }
+
+    /// The flight in progress (§1.2) and how long it has run.
+    public private(set) var flight: CameraFlight?
+    public private(set) var flightTime = 0.0
+    private var flightLanding = FlightLanding.rail(.island)
+
     public init(framing: WorldFraming = .home, rail: CameraRail = CameraRail()) {
         self.rail = rail
         z = WorldSpring(framing.z)
@@ -66,6 +78,9 @@ public struct CameraRig: Hashable, Sendable {
 
     /// The camera now.
     public var pose: CameraPose {
+        if let flight {
+            return flight.pose(at: flightTime)
+        }
         var onRail = rail.pose(z: z.value)
         onRail.lookX += pan.value * panWeight
         let amount = min(max(focusAmount.value, 0), 1.2)
@@ -102,7 +117,17 @@ public struct CameraRig: Hashable, Sendable {
 
     /// Whether every spring is at rest and no pinch is down.
     public var isSettled: Bool {
-        pinchStart == nil && panStart == nil && allSprings.allSatisfy { $0.isSettled(tolerance: 5e-4) }
+        flight == nil && pinchStart == nil && panStart == nil && allSprings.allSatisfy { $0.isSettled(tolerance: 5e-4) }
+    }
+
+    /// Whether the camera is moving: a finger driving it, a flight, or a
+    /// spring that has not come to rest. Depth of field is off while this
+    /// holds and racks in once it ends (§1.2); the lens springs are the
+    /// rack itself, so they do not count.
+    public var isMoving: Bool {
+        if flight != nil || pinchStart != nil || panStart != nil { return true }
+        let motion = [z, focusAmount, focusLogScale, focusLookX, focusLookY, focusAnchorY, offsetX, offsetY, pan]
+        return !motion.allSatisfy { $0.isSettled(tolerance: 5e-4) }
     }
 
     private var allSprings: [WorldSpring] {
@@ -113,6 +138,15 @@ public struct CameraRig: Hashable, Sendable {
 
     /// Advances every spring by `dt` seconds.
     public mutating func advance(_ dt: Double) {
+        if let flight {
+            flightTime += dt
+            let logScale = flight.pose(at: flightTime).logScale
+            z.jump(to: min(max(rail.z(logScale: logScale), 0), 2))
+            if flight.isFinished(at: flightTime) {
+                finishFlight()
+            }
+            return
+        }
         z.step(dt)
         focusAmount.step(dt)
         focusLogScale.step(dt)
@@ -160,12 +194,49 @@ public struct CameraRig: Hashable, Sendable {
     /// Flies to a framing, letting go of any focus. Flights to or from the
     /// Map use the farther spring.
     public mutating func fly(to framing: WorldFraming) {
+        flight = nil
         let far = framing == .map || self.framing == .map
         let spring = reduceMotion ? WorldSprings.reduced : (far ? springs.far.token : springs.travel.token)
         z.retarget(framing.z, duration: spring.duration, bounce: spring.bounce)
         // Every arrival opens centred on Pofu.
         pan.retarget(0, duration: spring.duration, bounce: 0)
         releaseFocus()
+    }
+
+    /// Flies to `target` (§1.2): up over the sea, across, and down. It lasts
+    /// `CameraFlight.duration`; under Reduce Motion the camera jumps.
+    public mutating func startFlight(to target: CameraPose, landing: FlightLanding) {
+        let start = pose
+        flightLanding = landing
+        focusAmount.jump(to: 0)
+        lensAmount.jump(to: 0)
+        pan.jump(to: 0)
+        if reduceMotion {
+            flight = nil
+            finishFlight()
+            return
+        }
+        flight = CameraFlight(from: start, to: target, apexLogScale: rail.pose(z: CameraFlight.apexZ).logScale)
+        flightTime = 0
+    }
+
+    private mutating func finishFlight() {
+        flight = nil
+        flightTime = 0
+        switch flightLanding {
+        case .rail(let framing):
+            z.jump(to: framing.z)
+            focusAmount.jump(to: 0)
+        case .pose(let pose):
+            z.jump(to: WorldFraming.island.z)
+            focusLogScale.jump(to: pose.logScale)
+            focusLookX.jump(to: pose.lookX)
+            focusLookY.jump(to: pose.lookY)
+            focusAnchorY.jump(to: pose.anchorY)
+            focusAmount.jump(to: 1)
+        }
+        lensAmount.jump(to: 0)
+        pan.jump(to: 0)
     }
 
     // MARK: - Focus
@@ -175,6 +246,16 @@ public struct CameraRig: Hashable, Sendable {
     public mutating func focus(pose target: CameraPose, lens: Lens, camera spring: (duration: Double, bounce: Double)? = nil) {
         let camera = reduceMotion ? WorldSprings.reduced : (spring ?? springs.focus.token)
         let rack = reduceMotion ? WorldSprings.reduced : WorldSprings.rack
+        if flight != nil {
+            // Caught mid-flight: continue from where the camera is.
+            let now = pose
+            flight = nil
+            focusAmount.jump(to: 1)
+            focusLogScale.jump(to: now.logScale)
+            focusLookX.jump(to: now.lookX)
+            focusLookY.jump(to: now.lookY)
+            focusAnchorY.jump(to: now.anchorY)
+        }
         if focusAmount.value < 1e-3 && focusAmount.target == 0 {
             // From the rail: start the focus pose where the camera is, so
             // only the blend animates.
@@ -214,6 +295,7 @@ public struct CameraRig: Hashable, Sendable {
     /// caught, §7.3), and a focus folds back into the rail.
     public mutating func beginPinch() {
         let now = pose
+        flight = nil
         let banded = rail.bandedLogScale(raw: now.logScale)
         let railZ = rail.z(logScale: banded)
         z.jump(to: railZ)
@@ -366,8 +448,16 @@ public struct CameraRig: Hashable, Sendable {
 
     // MARK: - Jumps (tests, screenshots, restoring)
 
+    /// Puts the camera on the rail at position `railZ`, at rest, with no
+    /// focus (screenshots, tests).
+    public mutating func jump(toZ railZ: Double) {
+        jump(to: .island)
+        z.jump(to: railZ)
+    }
+
     /// Puts the camera at a framing, at rest, with no focus.
     public mutating func jump(to framing: WorldFraming) {
+        flight = nil
         z.jump(to: framing.z)
         focusAmount.jump(to: 0)
         lensAmount.jump(to: 0)

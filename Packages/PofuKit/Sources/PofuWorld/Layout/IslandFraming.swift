@@ -214,6 +214,19 @@ public enum IslandFraming {
         return CameraRail.Stop(scale: homeScale, look: WorldPoint(x: kept.lookX, y: IslandLayout.pofu.y), anchorY: homeFeetY)
     }
 
+    /// Another island's Island stop (§1.2): the camera at the Island scale,
+    /// centred on that island's art. The home island has its own rail.
+    public static func isleStop(_ island: IslandID, width: Double, height: Double) -> CameraRail.Stop? {
+        guard let isle = IslandLayout.isles.first(where: { $0.id == island }) else { return nil }
+        let box = WorldArt.sprite(isle.art)?.sharp.map { placed($0, at: isle.center) }
+        let scale = islandScale * width / CameraRail.referenceWidth
+        return CameraRail.Stop(
+            scale: scale,
+            look: WorldPoint(x: box?.midX ?? isle.center.x, y: box?.midY ?? isle.center.y),
+            anchorY: bandMid(height: height)
+        )
+    }
+
     /// The Map: the home plate and every other island of the X whole, with
     /// a margin, centred in the band.
     public static func mapStop(width: Double, height: Double) -> CameraRail.Stop {

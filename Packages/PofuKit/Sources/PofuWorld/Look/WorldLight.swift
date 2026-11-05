@@ -184,8 +184,8 @@ public enum LookTuning {
     public static let lanternMaximum = 1.0
     /// The lantern's slot relative to Pofu's feet, in world units, and its
     /// height; `HomeSlots.lantern` must match.
-    public static let lanternOffsetX = 34.0
-    public static let lanternOffsetY = 0.0
+    public static var lanternOffsetX: Double { HomeSlots.lanternEmitterOffset.x }
+    public static var lanternOffsetY: Double { HomeSlots.lanternEmitterOffset.y }
     public static let lanternHeight = 40.0
     /// Pool reaches along the ground, in world units.
     public static let lanternReach = 64.0
