@@ -165,7 +165,10 @@ struct GardenSpriteView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> SKView {
         let view = SKView()
-        view.preferredFramesPerSecond = 60
+        // 60 Hz for a round (experience v1 §4.1); 30 when the phone runs
+        // hot, as the world's frame policy does (serious thermal state).
+        let thermal = ProcessInfo.processInfo.thermalState
+        view.preferredFramesPerSecond = thermal == .serious || thermal == .critical ? 30 : 60
         view.ignoresSiblingOrder = true
         view.isMultipleTouchEnabled = false
         view.shouldCullNonVisibleNodes = true
