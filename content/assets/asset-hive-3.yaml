@@ -2,18 +2,18 @@ id: asset-hive-3
 type: asset
 title_tr: hive-3
 title_en: hive-3 (station)
-status: planned
+status: in-production
 horizon: later
-summary: >-
-  Add a small painted wooden hive box behind the two skeps, on the left: a short stack of
-  two rounded cream boxes with a soft sunflower-yellow gabled roof and one tiny painted sunflower
-  on the front (a simple round shape, no letters). It is no taller than the height bar. Everything
-  else stays.
+summary: 'Add a small painted wooden hive box behind the two skeps, on the left: a
+  short stack of two rounded cream boxes with a soft sunflower-yellow gabled roof
+  and one tiny painted sunflower on the front (a simple round shape, no letters).
+  It is no taller than the height bar. Everything else stays.'
 links:
   variant_of:
   - asset-hive-2
 art:
-  images: []
+  images:
+  - design/art/stations/hive-3/hive-3.png
   jobs:
   - batch-33-home-showcase:hive-3
 sources:

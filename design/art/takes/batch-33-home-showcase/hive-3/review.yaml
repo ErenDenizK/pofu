@@ -1,0 +1,439 @@
+batch: batch-33-home-showcase
+contact_sheet: design/art/takes/batch-33-home-showcase/hive-3/contact.jpg
+jobs:
+  hive-3:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Take2 is the only eligible source
+      across all4 takes. It adds two rounded rectangular cream hive-body boxes beneath
+      a separate sunflower-bearing cream gable-end cap and sunflower-yellow roof,
+      behind/left of the two skeps. A gable cap is part of the requested roof, not
+      a third body box; this reasonable construction interpretation was confirmed
+      by independent source/locked review and root inspection. The initial conservative
+      review overcounted that cap and requested the sole retry; preserve that historical
+      decision and all4sources, but supersede the mistaken manual exclusion of2 before
+      picking. No further generation, threshold waiver or pixel edit. T1 hardchroma61.1,
+      T3 hardchroma61.9 pluspalette4.4776, T4 hardchroma60.1; T2 C9558.9 passes, lock1.3192,Harmony53.7warning
+      retained, editstability0.9966/chroma1.0184 pass. Both skeps/ownstumps/frontstone/all5lavender
+      groups and source framing remain; new roof below guide heightbar. Tiny greenleaf
+      at new box foot belongs to that base, not a missing lavender group. Parent is
+      uploadverified hive2take4 commit0c7e627db87d9dd2c981a2072672858fefee5799. OwnHarmonymeasure/check/raw/provenance/contentrequired.
+      Auto-pickedbyQA; founderreviewpending.
+qa_reports:
+  3:
+    job: hive-3
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 62 (R1 51)
+      value: 61.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 32 (at most 22), p98 89 (at least 90), spread 57
+        (at least 60)'
+      value: 56.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.06 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.055
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.5 (at least 3.5)'
+      value: 7.46
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.1 (R1 5.3)
+      value: 3.15
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.7561
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 4.5, p95 14.4, off-palette 9.1% (top: #888844 (1.0%), #AA88AA
+        (0.7%))'
+      value: 4.4776
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 903.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 47 against the world reference (outliers: C_p95, L_p2,
+        L_p98, detail, edge)'
+      value: 47.3
+    - check: edit_stability
+      status: pass
+      message: 100% of the parent level unchanged
+      value: 0.9952
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.01 of the parent level (drift compounds along a chain)
+      value: 1.0096
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 44.9
+        L_p50: 74.3
+        L_p95: 87.8
+        C_p50: 41.9
+        C_p95: 65.4
+        C_p99: 69.2
+        detail: 3.86
+      metrics_locked:
+        L_p5: 46.4
+        L_p50: 74.3
+        L_p95: 87.2
+        C_p50: 41.9
+        C_p95: 61.9
+        C_p99: 63.2
+        detail: 3.15
+    fingerprint: c2e6833bc6b940b4
+  1:
+    job: hive-3
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 61 (R1 51)
+      value: 61.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 30 (at most 22), p98 89 (at least 90), spread 59
+        (at least 60)'
+      value: 58.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 73.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.07 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.067
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.0 (at least 3.5)'
+      value: 7.96
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.0 (R1 5.3)
+      value: 3.01
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.7
+      value: 1.7012
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.3, p95 13.4, off-palette 7.3% (top: #AA88AA (0.6%), #778844
+        (0.6%))'
+      value: 4.3246
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 902.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 47 against the world reference (outliers: C_p95, L_p2,
+        L_p98, detail, edge)'
+      value: 47.2
+    - check: edit_stability
+      status: pass
+      message: 100% of the parent level unchanged
+      value: 0.9966
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.03 of the parent level (drift compounds along a chain)
+      value: 1.0291
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 44.6
+        L_p50: 73.9
+        L_p95: 87.9
+        C_p50: 42.3
+        C_p95: 63.9
+        C_p99: 66.8
+        detail: 3.7
+      metrics_locked:
+        L_p5: 46.1
+        L_p50: 73.8
+        L_p95: 87.4
+        C_p50: 42.4
+        C_p95: 61.1
+        C_p99: 62.5
+        detail: 3.01
+    fingerprint: c2e6833bc6b940b4
+  4:
+    job: hive-3
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 60 (R1 51)
+      value: 60.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 31 (at most 22), p98 87 (at least 90), spread 56
+        (at least 60)'
+      value: 55.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.09 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.086
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.9 (at least 3.5)'
+      value: 6.93
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.9 (R1 5.3)
+      value: 2.94
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4315
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.1, p95 13.2, off-palette 7.2% (top: #AA88AA (0.8%), #663311
+        (0.7%))'
+      value: 4.1093
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 903.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 50 against the world reference (outliers: C_p95, L_p2,
+        L_p98, detail, edge)'
+      value: 50.1
+    - check: edit_stability
+      status: pass
+      message: 100% of the parent level unchanged
+      value: 0.9986
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.03 of the parent level (drift compounds along a chain)
+      value: 1.0346
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 45.3
+        L_p50: 73.0
+        L_p95: 86.6
+        C_p50: 42.9
+        C_p95: 61.9
+        C_p99: 64.8
+        detail: 3.68
+      metrics_locked:
+        L_p5: 46.9
+        L_p50: 73.1
+        L_p95: 86.0
+        C_p50: 43.0
+        C_p95: 60.1
+        C_p99: 61.4
+        detail: 2.94
+    fingerprint: c2e6833bc6b940b4
+  2:
+    job: hive-3
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 58.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 31 (at most 22), p98 89 (at least 90), spread 58
+        (at least 60)'
+      value: 57.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.10 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.102
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.1 (at least 3.5)'
+      value: 7.08
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.43
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.3192
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.7, p95 12.1, off-palette 5.1% (top: #888855 (0.9%), #AA88AA
+        (0.8%))'
+      value: 3.7012
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 904.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 54 against the world reference (outliers: C_p95, L_p2,
+        L_p98, detail, edge)'
+      value: 53.7
+    - check: edit_stability
+      status: pass
+      message: 100% of the parent level unchanged
+      value: 0.9966
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.02 of the parent level (drift compounds along a chain)
+      value: 1.0184
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 46.2
+        L_p50: 73.3
+        L_p95: 87.9
+        C_p50: 41.4
+        C_p95: 60.0
+        C_p99: 62.2
+        detail: 3.0
+      metrics_locked:
+        L_p5: 47.9
+        L_p50: 73.3
+        L_p95: 87.4
+        C_p50: 41.6
+        C_p95: 58.9
+        C_p99: 60.0
+        detail: 2.43
+    fingerprint: c2e6833bc6b940b4
+manual_review:
+  excluded_takes: []
+  note: Take2 is the only eligible source across all4 takes. It adds two rounded rectangular
+    cream hive-body boxes beneath a separate sunflower-bearing cream gable-end cap
+    and sunflower-yellow roof, behind/left of the two skeps. A gable cap is part of
+    the requested roof, not a third body box; this reasonable construction interpretation
+    was confirmed by independent source/locked review and root inspection. The initial
+    conservative review overcounted that cap and requested the sole retry; preserve
+    that historical decision and all4sources, but supersede the mistaken manual exclusion
+    of2 before picking. No further generation, threshold waiver or pixel edit. T1
+    hardchroma61.1, T3 hardchroma61.9 pluspalette4.4776, T4 hardchroma60.1; T2 C9558.9
+    passes, lock1.3192,Harmony53.7warning retained, editstability0.9966/chroma1.0184
+    pass. Both skeps/ownstumps/frontstone/all5lavender groups and source framing remain;
+    new roof below guide heightbar. Tiny greenleaf at new box foot belongs to that
+    base, not a missing lavender group. Parent is uploadverified hive2take4 commit0c7e627db87d9dd2c981a2072672858fefee5799.
+    OwnHarmonymeasure/check/raw/provenance/contentrequired. Auto-pickedbyQA; founderreviewpending.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-ce07f6c3-c406-4358-bf2f-bbf0e75395ca.png
+  original_generated_png_sha256: 2fe1e4061727ac94b436aa6ced90e9d4f153dc099c2c3490c0e70ed96d29336b
+  inbox_png_sha256: 4473dee9745f24a53b43dda50d4a4ba2e6a0ff6787baf03258416a08268d3a8d
+  rgba_sha256: f4342f9ac8c72f4d6a4258ce7758681c2ffffc3657b84ddb98dd42af3005e849
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c2e6833bc6b940b4
+- take: 2
+  source_file: /workspace/generated_images/exec-cdb985d1-c7ef-4eeb-a26f-ef5953a3fed3.png
+  original_generated_png_sha256: 158583a9fe72adb5591a82d58450ed3bf22bbc954945439da4c681bf739ed626
+  inbox_png_sha256: 0eab0de0c64e33a479f748a653c78e6894c01cf8d175755c7e11f1c8e124cf9f
+  rgba_sha256: 81220b7380341bcae82688b518ab5f1ed44d5cfc10e2505063794717f727d8de
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c2e6833bc6b940b4
+- take: 3
+  source_file: /workspace/generated_images/exec-dee1daad-ed3c-4dc8-9333-54092273867a.png
+  original_generated_png_sha256: 3ff5b5627112d374e44cb1328a41a89aa2a9132e10b55acf43e5b003c006e20f
+  inbox_png_sha256: 4e22672deb40377fc57ab691a7442e48d8dfc7ab41af59dec1d9ed71bfb9b9d6
+  rgba_sha256: 1f214afc8de71cbda534c222b4b189f0d5df8ecb31e9c2550cac908f581cecd6
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c2e6833bc6b940b4
+- take: 4
+  source_file: /workspace/generated_images/exec-592da2a3-1891-4a99-b0bd-136bdb55ae9b.png
+  original_generated_png_sha256: 50652b602c71b9a3c5a61bd911065d16898977e29db8d4fad1432964ce3fa7f4
+  inbox_png_sha256: 9fce8a1570d180ce4e914ec5dca9b425de17e73e77962a6085543bba28558087
+  rgba_sha256: 7e191b4762ca992753199aaa823afd424fd232efc0b84af2e1dd30cd8d64b36a
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: c2e6833bc6b940b4
