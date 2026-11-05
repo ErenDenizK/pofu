@@ -1,0 +1,251 @@
+batch: batch-30b-decor-seasons-1-v2
+manifest: tools/imagegen/manifest/batch-30b-decor-seasons-1-v2.yaml
+manifest_sha256: f2b7485dbd13da0c8e2f1095a57d03a0574b31c65634f87d330f509f139b19c6
+contact_sheet: design/art/takes/batch-30b-decor-seasons-1-v2/x-decor-bahar-ribbon-tree-v2/contact.jpg
+jobs:
+  x-decor-bahar-ribbon-tree-v2:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both independently reviewed original
+      and official locked initial takes show exactly twelve tied ribbon units in four
+      clear groups of three, with rose/mint/mustard/lilac/cream, a few pale blossoms,
+      smooth rounded fresh foliage, slim honey trunk and stone-ring earth mound. No
+      fur, face, text, guide or unrelated prop. Official hard QA passes; alpha-over24
+      visible widths319/325px satisfy the literal one-third of1024 cap341.33px. The280-310
+      native target is approximate, not a new rejection minimum. Lowest lock load
+      selects take2 (2.7202 versus3.0232). Exploration palette/style/light warnings
+      are advisory. Only official fit/registration were used, no manual resize or
+      alpha cleanup; both immutable originals retained, never promoted.
+qa_reports:
+  1:
+    job: x-decor-bahar-ribbon-tree-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 58.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 38 (at most 22), p98 91 (at least 90), spread 52
+        (at least 60)'
+      value: 52.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 66 (band 55-90)'
+      value: 66.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.04 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.035
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 12.6 (at least 3.5)'
+      value: 12.64
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.2 (R1 5.3)
+      value: 5.17
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.0
+      value: 3.0232
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 11.7, p95 25.7, off-palette 52.8% (top: #778833 (3.9%), #667722
+        (3.8%)) (advisory in an exploration)'
+      value: 11.7066
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 59 against the world reference (outliers: C_p95, L_p2,
+        detail, edge)'
+      value: 59.4
+    info:
+      fit:
+        scale: 0.7335
+        anchor:
+        - 487.7
+        - 868
+      registration:
+        dx: 25
+        dy: 20
+      metrics_raw:
+        L_p5: 39.9
+        L_p50: 66.7
+        L_p95: 88.0
+        C_p50: 44.7
+        C_p95: 62.5
+        C_p99: 65.6
+        detail: 6.14
+      metrics_locked:
+        L_p5: 40.9
+        L_p50: 66.4
+        L_p95: 87.6
+        C_p50: 43.1
+        C_p95: 58.8
+        C_p99: 61.8
+        detail: 5.17
+    fingerprint: d0410bb26c901f7a
+  2:
+    job: x-decor-bahar-ribbon-tree-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 55 (R1 51)
+      value: 55.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 41 (at most 22), p98 90 (at least 90), spread 49
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 48.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 66 (band 55-90)'
+      value: 65.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.06 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.055
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 11.8 (at least 3.5)'
+      value: 11.78
+    - check: detail_budget
+      status: pass
+      message: detail at display size 5.0 (R1 5.3)
+      value: 4.97
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.7
+      value: 2.7202
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 10.2, p95 22.9, off-palette 47.2% (top: #888833 (4.2%), #777733
+        (3.9%)) (advisory in an exploration)'
+      value: 10.2056
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 65 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 64.8
+    info:
+      fit:
+        scale: 0.7093
+        anchor:
+        - 492.4
+        - 865
+      registration:
+        dx: 20
+        dy: 23
+      metrics_raw:
+        L_p5: 43.5
+        L_p50: 66.3
+        L_p95: 87.6
+        C_p50: 44.4
+        C_p95: 58.0
+        C_p99: 64.8
+        detail: 5.91
+      metrics_locked:
+        L_p5: 44.6
+        L_p50: 65.8
+        L_p95: 86.9
+        C_p50: 43.1
+        C_p95: 55.1
+        C_p99: 60.7
+        detail: 4.97
+    fingerprint: d0410bb26c901f7a
+manual_review:
+  observed_note: Both independently reviewed original and official locked initial
+    takes show exactly twelve tied ribbon units in four clear groups of three, with
+    rose/mint/mustard/lilac/cream, a few pale blossoms, smooth rounded fresh foliage,
+    slim honey trunk and stone-ring earth mound. No fur, face, text, guide or unrelated
+    prop. Official hard QA passes; alpha-over24 visible widths319/325px satisfy the
+    literal one-third of1024 cap341.33px. The280-310 native target is approximate,
+    not a new rejection minimum. Lowest lock load selects take2 (2.7202 versus3.0232).
+    Exploration palette/style/light warnings are advisory. Only official fit/registration
+    were used, no manual resize or alpha cleanup; both immutable originals retained,
+    never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-bahar-ribbon-tree-v2
+  take: 1
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-5fa62ae6-99c2-4471-8c0c-6f51e7c13604.png
+  returned_at: '2026-11-05T22:43:59.482Z'
+  prompt_sha256: 9af7fc8febe5eb66af1d457fa13e2d80bd20a05bc5a21b28625c4522138854a1
+  fingerprint: d0410bb26c901f7a
+  saved_at: '2026-11-05T22:43:59.828606+00:00'
+  original_generated_png_sha256: 4276827598bb0fc4e84e402b890652847e3fb5b87f54b75739b84af1e53324f4
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 7ca2375dc63eb1a6a3579d0d3e7c31665ff3065c063f39208078d380200396e2
+  inbox_png_sha256: 62a8a13c550dbf9155f637fa737e029671613cd3bc71c6c8cb9ff45e1595a534
+  qa_sha256: 119a48194f2741bfc9082c3df5aff1a10450c3203b3f4efae1c6dce54a13d3e9
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-bahar-ribbon-tree-v2
+  take: 2
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-af09a5a0-6c43-4d12-8e6e-fdf50a3d22d6.png
+  returned_at: '2026-11-05T22:45:19.281Z'
+  prompt_sha256: 9af7fc8febe5eb66af1d457fa13e2d80bd20a05bc5a21b28625c4522138854a1
+  fingerprint: d0410bb26c901f7a
+  saved_at: '2026-11-05T22:45:19.593291+00:00'
+  original_generated_png_sha256: 410868d1f925be5599c62d49592aa1b0d51ce3fe6373f3fbd2a0443334d7c2ad
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 90f80062ea195627346dce4459c594d9d70408e98cc9ff1342abce098d792d92
+  inbox_png_sha256: 68367c954df3b22efaf7ea991a18fe3c528ceb65efffd836591f8cb72f65b475
+  qa_sha256: 0f4355e3ad8e10aad19dc37e6a5c77b7478cb8de53b50923dbe9af79db45098b
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 2deb939f9f47ef2bb97f228252ebe94dd793f3088c676809c05a571e0747222d
