@@ -3021,6 +3021,26 @@
           }
         }
       }
+    },
+    "Each skip is a small win." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Her atlayış küçük bir zafer."
+          }
+        }
+      }
+    },
+    "Goal: skip half of the reflexive opens." : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hedef: refleks açılışların yarısını atlamak."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

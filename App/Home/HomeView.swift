@@ -389,18 +389,64 @@ struct HomeView: View {
     }
 }
 
-/// The Today sheet: the Today card on its own, opened from Home's glance.
+/// The Today sheet: Pofu's mood and a painted line, the Today card, and
+/// what the day is for.
 private struct TodaySheet: View {
     let model: AppModel
 
     var body: some View {
         ScrollView {
-            TodayCard(model: model)
-                .padding(.horizontal, PofuSpacing.screen)
-                .padding(.top, PofuSpacing.xl)
-                .padding(.bottom, PofuSpacing.l)
+            VStack(alignment: .leading, spacing: PofuSpacing.l) {
+                hero
+                TodayCard(model: model)
+                rows
+            }
+            .padding(.horizontal, PofuSpacing.screen)
+            .padding(.top, PofuSpacing.xl)
+            .padding(.bottom, PofuSpacing.l)
         }
-        .background(PofuColor.dayWash.ignoresSafeArea())
+        .scrollBounceBehavior(.basedOnSize)
+        .background(PofuColor.sunken.ignoresSafeArea())
+    }
+
+    private var hero: some View {
+        HStack(spacing: PofuSpacing.m) {
+            PofuPaintedIcon(.iconMoodContent, size: 64)
+                .padding(PofuSpacing.xs)
+                .background { PofuPaperPanel() }
+            VStack(alignment: .leading, spacing: PofuSpacing.xs) {
+                Text(verbatim: model.profile.companionName)
+                    .font(PofuFont.title2)
+                    .foregroundStyle(PofuColor.textPrimary)
+                Text("Each skip is a small win.")
+                    .font(PofuFont.subheadline)
+                    .foregroundStyle(PofuColor.textSecondary)
+            }
+        }
+        .accessibilityElement(children: .combine)
+    }
+
+    private var rows: some View {
+        VStack(alignment: .leading, spacing: PofuSpacing.m) {
+            Label {
+                Text("\(model.balance.units) seeds in my cheeks")
+                    .font(PofuFont.callout)
+                    .foregroundStyle(PofuColor.textPrimary)
+            } icon: {
+                PofuPaintedIcon(.iconSeed, size: 28)
+            }
+            Label {
+                Text("Goal: skip half of the reflexive opens.")
+                    .font(PofuFont.footnote)
+                    .foregroundStyle(PofuColor.textSecondary)
+            } icon: {
+                PofuPaintedIcon(.iconSkip, size: 28)
+            }
+        }
+        .padding(PofuSpacing.l)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background { PofuPaperPanel() }
+        .accessibilityElement(children: .combine)
     }
 }
 

@@ -14,12 +14,15 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField(text: $name, prompt: Text(verbatim: UserProfile.defaultName)) {
-                        Text("Name")
+                    HStack(spacing: PofuSpacing.m) {
+                        PofuPaintedIcon(.iconMoodContent, size: 44)
+                        TextField(text: $name, prompt: Text(verbatim: UserProfile.defaultName)) {
+                            Text("Name")
+                        }
+                        .textInputAutocapitalization(.words)
+                        .submitLabel(.done)
+                        .onSubmit { model.setCompanionName(name) }
                     }
-                    .textInputAutocapitalization(.words)
-                    .submitLabel(.done)
-                    .onSubmit { model.setCompanionName(name) }
                 } header: {
                     Text("Pofu")
                         .pofuSectionHeader()
@@ -37,7 +40,7 @@ struct SettingsView: View {
                     NavigationLink {
                         SetupGuideView(model: model)
                     } label: {
-                        Label("Set up automations", systemImage: "bolt.badge.automatic")
+                        PaintedLabel("Set up automations", paint: .iconPlus)
                     }
                 } header: {
                     // With the shield, the Shortcuts gate is the optional,
@@ -63,7 +66,7 @@ struct SettingsView: View {
                 RehearsalSettingsSection()
 
                 Section {
-                    Label("Everything stays on this iPhone.", systemImage: "lock.shield")
+                    PaintedLabel("Everything stays on this iPhone.", paint: .iconCalm)
                     if model.persistenceProblem {
                         Label("I couldn't save my last change. Free up some space?", systemImage: "exclamationmark.triangle")
                             .foregroundStyle(PofuColor.warning)
@@ -95,7 +98,7 @@ private struct SoundSettingsSection: View {
                     SoundEngine.shared.settings = SoundSettings(isMuted: !value)
                 }
             )) {
-                Label("Pofu's sounds", systemImage: "speaker.wave.2")
+                PaintedLabel("Pofu's sounds", paint: .iconBreath)
             }
             .tint(PofuColor.accent)
         } header: {
