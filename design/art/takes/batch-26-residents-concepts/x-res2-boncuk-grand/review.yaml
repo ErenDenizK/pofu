@@ -1,0 +1,368 @@
+batch: batch-26-residents-concepts
+manifest: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+manifest_sha256: 63b34c65480e080d91667fdb106afd899b50801a1590da4c510dab91eb9dac76
+contact_sheet: design/art/takes/batch-26-residents-concepts/x-res2-boncuk-grand/contact.jpg
+jobs:
+  x-res2-boncuk-grand:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'SKIPPED after the one allowed retry pair: all four candidates retain a
+      conventional domed umbrella roof rather than the expressly requested big upturned
+      umbrella silhouette. Happy spectacled black/white birds, an offered last object
+      and tidy half-empty shelves otherwise read clearly; warm rendering versus blue-green
+      sheen is advisory. Numeric hard passes cannot waive the explicit silhouette
+      failure. All four takes preserved; small/grand jobs are independent and no other
+      jobs are blocked.'
+qa_reports:
+  1:
+    job: x-res2-boncuk-grand
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 51.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 32 (at most 22), p98 94 (at least 90), spread 62
+        (at least 60)'
+      value: 62.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 75.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.255
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.2 (at least 3.5)'
+      value: 5.16
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.3 (R1 5.3)
+      value: 3.32
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4244
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.9, p95 9.7, off-palette 1.7% (top: #DD8844 (0.8%), #BB7777
+        (0.2%))'
+      value: 2.8978
+    info:
+      metrics_raw:
+        L_p5: 39.0
+        L_p50: 80.1
+        L_p95: 94.1
+        C_p50: 25.7
+        C_p95: 51.9
+        C_p99: 56.3
+        detail: 4.22
+      metrics_locked:
+        L_p5: 39.2
+        L_p50: 80.0
+        L_p95: 93.9
+        C_p50: 25.5
+        C_p95: 51.6
+        C_p99: 55.9
+        detail: 3.32
+    fingerprint: aeafcc855ee74eb5
+  2:
+    job: x-res2-boncuk-grand
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 28 (at most 22), p98 95 (at least 90), spread 67
+        (at least 60)'
+      value: 66.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.21 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.212
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.2 (at least 3.5)'
+      value: 6.15
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.5 (R1 5.3)
+      value: 3.52
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.3808
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 6.6, off-palette 0.1% (top: #773311 (0.0%), #883322
+        (0.0%))'
+      value: 2.2891
+    info:
+      metrics_raw:
+        L_p5: 38.0
+        L_p50: 82.0
+        L_p95: 94.4
+        C_p50: 23.1
+        C_p95: 46.9
+        C_p99: 49.5
+        detail: 4.43
+      metrics_locked:
+        L_p5: 38.2
+        L_p50: 81.9
+        L_p95: 94.2
+        C_p50: 23.1
+        C_p95: 46.5
+        C_p99: 49.0
+        detail: 3.52
+    fingerprint: aeafcc855ee74eb5
+  3:
+    job: x-res2-boncuk-grand
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 46.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 30 (at most 22), p98 94 (at least 90), spread 64
+        (at least 60)'
+      value: 64.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.25 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.251
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.4 (at least 3.5)'
+      value: 6.41
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.6 (R1 5.3)
+      value: 3.64
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.4333
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 6.9, off-palette 0.1% (top: #DD8844 (0.0%), #994433
+        (0.0%))'
+      value: 2.3135
+    info:
+      metrics_raw:
+        L_p5: 38.3
+        L_p50: 81.6
+        L_p95: 94.8
+        C_p50: 21.1
+        C_p95: 46.6
+        C_p99: 52.3
+        detail: 4.63
+      metrics_locked:
+        L_p5: 38.6
+        L_p50: 81.5
+        L_p95: 94.5
+        C_p50: 21.0
+        C_p95: 46.2
+        C_p99: 52.1
+        detail: 3.64
+    fingerprint: aeafcc855ee74eb5
+  4:
+    job: x-res2-boncuk-grand
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 46.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 29 (at most 22), p98 95 (at least 90), spread 66
+        (at least 60)'
+      value: 66.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.23 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.231
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.9 (at least 3.5)'
+      value: 5.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.4 (R1 5.3)
+      value: 3.41
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.5833
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 6.0, off-palette 0.1% (top: #CC7744 (0.0%), #DD8844
+        (0.0%))'
+      value: 2.0764
+    info:
+      metrics_raw:
+        L_p5: 36.1
+        L_p50: 79.2
+        L_p95: 94.2
+        C_p50: 21.6
+        C_p95: 47.1
+        C_p99: 50.9
+        detail: 4.29
+      metrics_locked:
+        L_p5: 36.3
+        L_p50: 79.1
+        L_p95: 94.0
+        C_p50: 21.6
+        C_p95: 46.7
+        C_p99: 50.3
+        detail: 3.41
+    fingerprint: aeafcc855ee74eb5
+manual_review:
+  observed_note: 'SKIPPED after the one allowed retry pair: all four candidates retain
+    a conventional domed umbrella roof rather than the expressly requested big upturned
+    umbrella silhouette. Happy spectacled black/white birds, an offered last object
+    and tidy half-empty shelves otherwise read clearly; warm rendering versus blue-green
+    sheen is advisory. Numeric hard passes cannot waive the explicit silhouette failure.
+    All four takes preserved; small/grand jobs are independent and no other jobs are
+    blocked.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-26-residents-concepts
+  job: x-res2-boncuk-grand
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-boncuk-frosted
+  source_file: /workspace/generated_images/exec-f3e0e786-7aeb-4f24-a0e6-75178d732dc9.png
+  returned_at: '2026-11-05T14:32:08.582Z'
+  prompt_sha256: a77b3d5a23fd93b95e808ee286531b7e1772f0d2deb6af2996c703fe5cdb2138
+  fingerprint: aeafcc855ee74eb5
+  saved_at: '2026-11-05T14:32:09.067764+00:00'
+  original_generated_png_sha256: 51c95a868281dae7d405f1cec05ea5c6689af1fbca42faf327d47b2343e08094
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: b494a780ad435af951a20734317faab6be0f6317717c5aee37bd2e02df5c31f1
+  inbox_png_sha256: ab992a2fac4cabe86b07029348154e03579b6f800d5a046cffa1ea9f3adf6a98
+  qa_sha256: 46c99db0622ac6435b358ad37809025b9d13ba4a493dbfade01e0cd872ed9b6b
+- batch: batch-26-residents-concepts
+  job: x-res2-boncuk-grand
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-boncuk-frosted
+  source_file: /workspace/generated_images/exec-2506536b-5e1b-4a61-a172-115775489706.png
+  returned_at: '2026-11-05T14:31:22.768Z'
+  prompt_sha256: a77b3d5a23fd93b95e808ee286531b7e1772f0d2deb6af2996c703fe5cdb2138
+  fingerprint: aeafcc855ee74eb5
+  saved_at: '2026-11-05T14:31:23.208619+00:00'
+  original_generated_png_sha256: 84785ac8a6f415c0d8995d9223995467fac5693cdd162c06e0ff206d8d116446
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: bc81d348739dc1e297189e361a3fc939c92213683164d776cec0ea563d7ef1a8
+  inbox_png_sha256: ec695fa9bf7eb8a606dd686f038825859cb131c2143c1594d091c1dcb446193c
+  qa_sha256: 4d7373e7fa5c47662fb07ff7dfabfd487e42709a3320ca9cbd8e82e5a95610c1
+- batch: batch-26-residents-concepts
+  job: x-res2-boncuk-grand
+  take: 3
+  round: 2
+  logical_run: 20261105-boncuk-retry
+  source_file: /workspace/generated_images/exec-4bcc689b-33e0-461f-b65d-15fa30d5ac73.png
+  returned_at: '2026-11-05T14:47:54.044Z'
+  prompt_sha256: a77b3d5a23fd93b95e808ee286531b7e1772f0d2deb6af2996c703fe5cdb2138
+  fingerprint: aeafcc855ee74eb5
+  saved_at: '2026-11-05T14:47:54.518032+00:00'
+  original_generated_png_sha256: 948cb5f46fa704484c70b27166f674e144c9dd14ac0a857ce9e7cd4ff0ca73ec
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: b953074ecefeb2e0b425e8019e79c31efeaf14e2f6ce9b3b4d2fb5ab64854877
+  inbox_png_sha256: 4e2aa9325f74602ad33856f1da9329a4ce94b2b29afb860fa03a2155626c5195
+  qa_sha256: 3c016c2de67deccfdf2496f3688833cb7daac8af8d6c6cbdc4a2a0c264992038
+- batch: batch-26-residents-concepts
+  job: x-res2-boncuk-grand
+  take: 4
+  round: 2
+  logical_run: 20261105-boncuk-retry
+  source_file: /workspace/generated_images/exec-9eb30744-6af8-4747-97f5-a4e7cf852ddc.png
+  returned_at: '2026-11-05T14:48:46.855Z'
+  prompt_sha256: a77b3d5a23fd93b95e808ee286531b7e1772f0d2deb6af2996c703fe5cdb2138
+  fingerprint: aeafcc855ee74eb5
+  saved_at: '2026-11-05T14:48:47.181026+00:00'
+  original_generated_png_sha256: ce7451f469a7498e3a5af9a677c246ec7a045181ff164e321344689b74110b03
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 378fde56901a482b3818a39ec74b064779b87b6bb4a3ff0ad440c8381d39c8ee
+  inbox_png_sha256: 61ee92cc3a10a7f221ac5117d63b8fba27b283c7ef95ee8a9072f5d2814dc1db
+  qa_sha256: a893fed70357eaad8a76a92c4ac44e4191e47e56aed32ab81000d1ea9d32a4ca
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
