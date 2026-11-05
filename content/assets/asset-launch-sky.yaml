@@ -38,3 +38,12 @@ notes:
   sheet, cut the content node, promote no master and create no misleading Harmony
   shard. No dependent jobs in the pilot. Founder review pending; lead must resolve
   full-resolution lossless delivery before a future authorized attempt.'
+- 'qa-repost-2026-11-05 / batch-35-experience-pilot skipped after 4 retained originals,
+  zero new dispatches: All four retained sources pass fixed QA; declared1024x1536
+  source scaling/cropping to the1290x2796 canvas is now explicitly accepted by design.
+  Output pixels remain exactly unchanged from prior official post. Best previously
+  tested exact-lossless encodings reverified byte-for-byte and by fullRGBA:1065244/1005010/997750/1002080
+  bytes, all over614400. Skip delivery, no master promotion/upload, no new generation/compression
+  loop, no losslessness/canvas/pixel waiver. The central open crop/top12percent and
+  bottom cloud bank remain suitable. Full experience pilot remains incomplete and
+  batch35 staysBLOCKED.'
