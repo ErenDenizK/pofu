@@ -2,14 +2,14 @@ id: asset-dressing-meadow
 type: asset
 title_tr: dressing-meadow
 title_en: dressing-meadow (sheet)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  A sheet of twelve small lawn-dressing pieces for a cozy island diorama, in a grid of four
-  columns by three rows, each piece complete and separate with wide empty space around it,
-  none touching or overlapping: row 1, three grass tufts of different sizes (a small one,
-  a taller one, a tuft with two seed heads) and a clump of clover; row 2, three wildflower
-  clumps (daisies, cornflowers, buttercups: each four or five chun…
+summary: 'A sheet of twelve small lawn-dressing pieces for a cozy island diorama,
+  in a grid of four columns by three rows, each piece complete and separate with wide
+  empty space around it, none touching or overlapping: row 1, three grass tufts of
+  different sizes (a small one, a taller one, a tuft with two seed heads) and a clump
+  of clover; row 2, three wildflower clumps (daisies, cornflowers, buttercups: each
+  four or five chun…'
 art:
   images: []
   jobs:
@@ -19,3 +19,20 @@ sources:
 kind: sheet
 batch: batch-35-experience-pilot
 size: 1536x1024
+notes:
+- 'batch-35-experience-pilot skipped after four takes: Skipped after the single allowed
+  retry. All four official production palette_drift checks fail: mean dE12.7753,12.8698,13.9968,14.3396.
+  Independent source and28px light/dark review finds all requested12 separated pieces
+  in4columns/3rows, two seed heads, clover, distinct four-flower clumps, foxglove,3pebbles,flat
+  stone,5-toadstool ring and mossstone; core content/readability pass. The transparent
+  viewer low-alpha tails are not an invented opaque-background failure. The actual
+  blocker is hard sheet palette QA despite attached world-props palette; light/haze
+  warnings remain advisory. No recolour, threshold edit, manual source cleanup, third
+  pair or promotion. Preserve all four originals/takes/contact/reports, cut content
+  node, no true dependents in pilot. Lead palette/profile decision required for any
+  future attempt. Automated failures: t1 palette_drift: mean dE 12.8, p95 23.5, off-palette
+  55.0% (top: #AAAA66 (8.0%), #BBAA66 (6.9%)); t2 palette_drift: mean dE 12.9, p95
+  24.5, off-palette 54.5% (top: #BBAA66 (8.2%), #999955 (7.7%)); t3 palette_drift:
+  mean dE 14.0, p95 26.0, off-palette 58.3% (top: #AAAA66 (9.3%), #999955 (8.7%));
+  t4 palette_drift: mean dE 14.3, p95 26.4, off-palette 54.4% (top: #AAAA66 (8.9%),
+  #999955 (4.3%)).'
