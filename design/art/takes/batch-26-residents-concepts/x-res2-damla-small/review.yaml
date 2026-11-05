@@ -1,0 +1,371 @@
+batch: batch-26-residents-concepts
+manifest: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+manifest_sha256: 63b34c65480e080d91667fdb106afd899b50801a1590da4c510dab91eb9dac76
+contact_sheet: design/art/takes/batch-26-residents-concepts/x-res2-damla-small/contact.jpg
+jobs:
+  x-res2-damla-small:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after the single allowed retry, four real takes total from the
+      unchanged official prompt/references. All four pass hard numerical QA but fail
+      the explicit FIRST SEEN SMALL composition in visual review: Damla is a large
+      foreground portrait, roughly one third to two fifths of frame height, rather
+      than tiny against the towering cliff. The glass, tongue, dry riverbed, species
+      finish and curl-free head are otherwise correct. No further retry, rephrasing,
+      crop or scale repair. All four original PNGs, q90 copies and QA are retained.
+      No true dependents: Damla grand is a separate independent manifest job and was
+      correctly published already.'
+qa_reports:
+  1:
+    job: x-res2-damla-small
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 28 (R1 51)
+      value: 28.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 95 (at least 90), spread 42
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 41.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 80 (band 55-90)'
+      value: 80.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.39 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.392
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.9 (at least 3.5)'
+      value: 2.91
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.29
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0859
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 3.2, off-palette 0.0%
+      value: 1.3929
+    info:
+      metrics_raw:
+        L_p5: 69.2
+        L_p50: 82.8
+        L_p95: 95.0
+        C_p50: 9.3
+        C_p95: 28.7
+        C_p99: 31.9
+        detail: 3.31
+      metrics_locked:
+        L_p5: 69.5
+        L_p50: 82.8
+        L_p95: 94.6
+        C_p50: 9.3
+        C_p95: 28.3
+        C_p99: 31.6
+        detail: 2.29
+    fingerprint: 0feb1b43bce7be9b
+  2:
+    job: x-res2-damla-small
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 33.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 93 (at least 90), spread 43
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 43.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 81.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.36 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.357
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.7 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.73
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.01
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2639
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 3.6, off-palette 0.0%
+      value: 1.5977
+    info:
+      metrics_raw:
+        L_p5: 66.8
+        L_p50: 82.8
+        L_p95: 94.9
+        C_p50: 10.1
+        C_p95: 33.6
+        C_p99: 37.2
+        detail: 2.94
+      metrics_locked:
+        L_p5: 67.0
+        L_p50: 82.8
+        L_p95: 94.7
+        C_p50: 10.1
+        C_p95: 33.5
+        C_p99: 36.6
+        detail: 2.01
+    fingerprint: 0feb1b43bce7be9b
+  3:
+    job: x-res2-damla-small
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 32.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 93 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 80.8
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.39 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.388
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.49
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.9
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.006
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.7, p95 4.0, off-palette 0.0%
+      value: 1.6598
+    info:
+      metrics_raw:
+        L_p5: 67.5
+        L_p50: 82.4
+        L_p95: 94.9
+        C_p50: 8.5
+        C_p95: 32.1
+        C_p99: 34.9
+        detail: 2.76
+      metrics_locked:
+        L_p5: 67.6
+        L_p50: 82.4
+        L_p95: 94.7
+        C_p50: 8.5
+        C_p95: 32.0
+        C_p99: 34.4
+        detail: 1.9
+    fingerprint: 0feb1b43bce7be9b
+  4:
+    job: x-res2-damla-small
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 31 (R1 51)
+      value: 31.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 51 (at most 22), p98 93 (at least 90), spread 42
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 42.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 80 (band 55-90)'
+      value: 80.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.35 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.353
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.7 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.71
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.99
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0398
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 3.1, off-palette 0.0% (top: #552211 (0.0%))'
+      value: 1.2833
+    info:
+      metrics_raw:
+        L_p5: 64.6
+        L_p50: 82.1
+        L_p95: 94.1
+        C_p50: 8.3
+        C_p95: 31.4
+        C_p99: 34.1
+        detail: 2.84
+      metrics_locked:
+        L_p5: 65.0
+        L_p50: 82.1
+        L_p95: 93.8
+        C_p50: 8.3
+        C_p95: 31.3
+        C_p99: 33.7
+        detail: 1.99
+    fingerprint: 0feb1b43bce7be9b
+manual_review:
+  observed_note: 'Skipped after the single allowed retry, four real takes total from
+    the unchanged official prompt/references. All four pass hard numerical QA but
+    fail the explicit FIRST SEEN SMALL composition in visual review: Damla is a large
+    foreground portrait, roughly one third to two fifths of frame height, rather than
+    tiny against the towering cliff. The glass, tongue, dry riverbed, species finish
+    and curl-free head are otherwise correct. No further retry, rephrasing, crop or
+    scale repair. All four original PNGs, q90 copies and QA are retained. No true
+    dependents: Damla grand is a separate independent manifest job and was correctly
+    published already.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-26-residents-concepts
+  job: x-res2-damla-small
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-damla
+  source_file: /workspace/generated_images/exec-aec7d1f5-9466-4fe6-90a3-964ba4f15519.png
+  returned_at: '2026-11-05T13:59:55.541Z'
+  prompt_sha256: e0273b8558e74cbcedce8a5ae614629775fe05c3a7741fd310336ff7133bf041
+  fingerprint: 0feb1b43bce7be9b
+  saved_at: '2026-11-05T13:59:55.998114+00:00'
+  original_generated_png_sha256: 2751d5415a099c1cd4cdf2de28535bb96be660058fc834b674c57261cb9bf392
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 4eedb17cdca19d99452ea497af19294ddb055b5316d7795615d1f427e25eb720
+  inbox_png_sha256: 4664fa616cc466ff93191bb949678d0d0aa8dd65207783512bed69b64f8b325a
+  qa_sha256: 0d9e96d4d1a43b081d37024b14b3d0e3d2ad085c4988a69da2cacdd28565373c
+- batch: batch-26-residents-concepts
+  job: x-res2-damla-small
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-damla
+  source_file: /workspace/generated_images/exec-2e165de4-96be-49ab-b446-8f671751e78a.png
+  returned_at: '2026-11-05T14:00:37.899Z'
+  prompt_sha256: e0273b8558e74cbcedce8a5ae614629775fe05c3a7741fd310336ff7133bf041
+  fingerprint: 0feb1b43bce7be9b
+  saved_at: '2026-11-05T14:00:38.395624+00:00'
+  original_generated_png_sha256: 0ab786912948650be14b772e9d0894614716b22d7e7906cdaa33c5778a89a544
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 651928b162e5c066b19f49847228aa4be4c588af71f4ff77e1a48c183360c9e5
+  inbox_png_sha256: 83046547ad4b11211e8a82c95994486205de66a980eea20e9d72c11ce200fee7
+  qa_sha256: 89b011a2953176ef00915a4f9ab0568c5542d61d9b9bce179d598e6d5fffd6f1
+- batch: batch-26-residents-concepts
+  job: x-res2-damla-small
+  take: 3
+  round: 2
+  logical_run: backlog-20261105-frame-damla-retry-rope
+  source_file: /workspace/generated_images/exec-e4b4dd84-e427-4540-9f6a-2a0256392b12.png
+  returned_at: '2026-11-05T14:05:31.448Z'
+  prompt_sha256: e0273b8558e74cbcedce8a5ae614629775fe05c3a7741fd310336ff7133bf041
+  fingerprint: 0feb1b43bce7be9b
+  saved_at: '2026-11-05T14:05:31.837944+00:00'
+  original_generated_png_sha256: 3775069e424254b50afb1a0b3582659a4086c880b1ed74194e9b1dd4f14ab069
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 07d2faa6f7fe145093d5cdd92d4f2f0d7de377989c05578f1b0f00606b5fb3fd
+  inbox_png_sha256: b205b0f39904884f46dbe2cb65937792efb081b924cca379b6dd68a486574109
+  qa_sha256: 1f65f2b97e8681689563c2f35a1626a2b2f7dde2acd543b74cc83034902551d5
+- batch: batch-26-residents-concepts
+  job: x-res2-damla-small
+  take: 4
+  round: 2
+  logical_run: backlog-20261105-frame-damla-retry-rope
+  source_file: /workspace/generated_images/exec-e0cbef82-f8ad-4275-b179-fb2d2a67d5b2.png
+  returned_at: '2026-11-05T14:08:06.511Z'
+  prompt_sha256: e0273b8558e74cbcedce8a5ae614629775fe05c3a7741fd310336ff7133bf041
+  fingerprint: 0feb1b43bce7be9b
+  saved_at: '2026-11-05T14:08:06.829022+00:00'
+  original_generated_png_sha256: e1bb6cea8b045a0ea5ce03d90f0fee2003bc2562b7a53318f8791d3afbe475f6
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 2f75249f809f682003a77625d71a88f4b107f5b87846ed36a891a5c4f8d6319d
+  inbox_png_sha256: 8986509c95d73333acbf7d57e43b8570ac9b674499e905a7b3db0f8da6b33b3d
+  qa_sha256: af59b78fda9794e7e302b0a566f81c370d6184a97793adb5e6c3d4d010fb5e50
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
