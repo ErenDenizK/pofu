@@ -30,7 +30,7 @@ final class PowerTelemetry: NSObject, MXMetricManagerSubscriber, @unchecked Send
     }
 
     /// A log handle MetricKit collects signposts from.
-    private nonisolated(unsafe) static let signpostLog = MXMetricManager.makeLogHandle(category: "pofu.power")
+    private static let signpostLog = MXMetricManager.makeLogHandle(category: "pofu.power")
 
     private static let logger = Logger(subsystem: "com.erendenizk.pofu", category: "power")
 
