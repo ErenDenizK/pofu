@@ -1,27 +1,25 @@
 {
  "after": {
-  "C_mean": 35.942,
-  "C_p50": 37.956,
-  "C_p95": 45.805,
-  "L_mean": 69.578,
-  "L_p2": 43.095,
-  "L_p98": 88.13,
-  "detail": 2.014,
-  "edge": 0.421,
-  "warmth_b": 33.156
+  "C_mean": 38.173,
+  "C_p50": 40.708,
+  "C_p95": 48.2,
+  "L_mean": 70.519,
+  "L_p2": 45.209,
+  "L_p98": 88.139,
+  "detail": 2.256,
+  "edge": 0.419,
+  "warmth_b": 35.064
  },
  "before": {
-  "C_mean": 25.268,
-  "C_p50": 26.249,
-  "C_p95": 32.26,
-  "L_mean": 74.505,
-  "L_p2": 55.055,
-  "L_p98": 88.13,
-  "detail": 1.548,
-  "edge": 0.421,
-  "tint_a": 4.202,
-  "tint_b": 10.177,
-  "warmth_b": 23.321
+  "C_mean": 38.173,
+  "C_p50": 40.708,
+  "C_p95": 48.2,
+  "L_mean": 70.519,
+  "L_p2": 45.209,
+  "L_p98": 88.139,
+  "detail": 2.256,
+  "edge": 0.419,
+  "warmth_b": 35.064
  },
  "chain": {
   "C_p50": 37.957,
@@ -29,9 +27,9 @@
   "L_p98": 91.037
  },
  "correction": {
-  "black": -11.96,
-  "ceiling": 43.3,
-  "chroma": 1.446,
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
   "materials": {},
   "tint_a": 0.0,
   "tint_b": 0.0,
@@ -44,15 +42,13 @@
   "edge"
  ],
  "outliers_before": [
-  "chain_C_p50",
-  "chain_L_p2",
   "edge"
  ],
  "ppu": 8.533,
  "reference": false,
- "score_after": 84.9,
- "score_before": 44.0,
+ "score_after": 78.0,
+ "score_before": 78.0,
  "shipped": false,
  "source": "design/art/stations/workshop-4/workshop-4.png",
- "source_sha": "9044ac9e4e998e5e"
+ "source_sha": "5689b9b1be6cfd44"
 }

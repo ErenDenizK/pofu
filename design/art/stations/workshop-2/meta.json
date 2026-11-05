@@ -1,14 +1,14 @@
 {
   "job": "workshop-2",
-  "batch": "batch-05-fixes-pilot",
+  "batch": "batch-03-home-island",
   "asset": "station__workshop-2",
   "take": 4,
   "takes_considered": 4,
-  "approved_at": "2026-11-02T17:58:24+00:00",
+  "approved_at": "2026-11-05T18:27:37+00:00",
   "image": "design/art/stations/workshop-2/workshop-2.png",
   "raw": "design/art/stations/workshop-2/raw.webp",
   "raw_encoding": "webp lossless",
-  "fingerprint": "04477ca6c3176446",
+  "fingerprint": "a953c17685623ddc",
   "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nAdd a pale wooden pegboard on the shed's front wall, right of the\ndoorway, holding five simple, chunky tools: a hammer, a saw, a\nwrench, a pair of pliers and a hand drill, with honey wood handles\nand their metal painted as soft stone-beige shapes with no shine.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
   "attachments": [
     {
@@ -17,11 +17,11 @@
     }
   ],
   "generation": {
-    "backend": "salvage-batch-03",
+    "backend": "codex-cloud",
     "model": null,
     "quality": null,
     "thread_id": null,
-    "generated_at": "2026-11-02T17:56:14+00:00",
+    "generated_at": "2026-11-05T18:26:11+00:00",
     "seconds": null,
     "background": "transparent"
   },
@@ -38,8 +38,9 @@
     "dy": 0
   },
   "alignment": null,
+  "fit": null,
   "qa": {
-    "status": "warn",
+    "status": "pass",
     "checks": [
       {
         "check": "transparency",
@@ -55,26 +56,26 @@
       {
         "check": "chroma_ceiling",
         "status": "pass",
-        "message": "chroma p95 31 (R1 51)",
-        "value": 31.0
+        "message": "chroma p95 45 (R1 51)",
+        "value": 45.2
       },
       {
         "check": "value_floor",
         "status": "pass",
-        "message": "lightness p5 54 (R1 59)",
-        "value": 54.4
+        "message": "lightness p5 48 (R1 59)",
+        "value": 47.5
       },
       {
         "check": "detail_budget",
         "status": "pass",
-        "message": "detail at display size 2.1 (R1 5.3)",
-        "value": 2.07
+        "message": "detail at display size 2.5 (R1 5.3)",
+        "value": 2.5
       },
       {
         "check": "lock_load",
         "status": "pass",
-        "message": "the lock moved colors by mean dE 0.6",
-        "value": 0.593
+        "message": "the lock moved colors by mean dE 0.8",
+        "value": 0.7679
       },
       {
         "check": "no_guide_magenta",
@@ -85,28 +86,34 @@
       {
         "check": "palette_drift",
         "status": "pass",
-        "message": "mean dE 1.0, p95 2.1, off-palette 0.0%",
-        "value": 0.9758
+        "message": "mean dE 1.1, p95 2.7, off-palette 0.0% (top: #995522 (0.0%), #AA6622 (0.0%))",
+        "value": 1.1482
       },
       {
         "check": "station_anchor",
-        "status": "warn",
-        "message": "width 873 px wider than the footprint (720)",
-        "value": 903.0
+        "status": "pass",
+        "message": "on the parent's anchor",
+        "value": 824.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 78 against the world reference (outliers: detail, edge)",
+        "value": 78.3
       },
       {
         "check": "edit_stability",
         "status": "pass",
-        "message": "94% of the parent level unchanged",
-        "value": 0.9424
+        "message": "92% of the parent level unchanged",
+        "value": 0.9193
       },
       {
         "check": "edit_chroma",
         "status": "pass",
-        "message": "chroma x1.00 of the parent level (drift compounds along a chain)",
-        "value": 0.9983
+        "message": "chroma x1.03 of the parent level (drift compounds along a chain)",
+        "value": 1.0314
       }
     ]
   },
-  "note": "auto-picked by QA; founder review pending. Salvaged from batch 03 lossy WebP q90 take; original PNG was not kept. No new generation. Parent-width warning accepted per manifest; t3 excluded as instructed for rescaling."
+  "note": "auto-picked by QA; founder review pending. After exactly one retry pair, take4 is the only eligible source: all four numeric reports pass, but take1/2/3 have respectively 6/16/21 nonzero alpha pixels on the left source border and are manually excluded under the explicit queue rule. Take4 has zero alpha on all four source and locked borders, the entire building and vise within transparent margins, and the requested pegboard to the right of the door with five visible tools: hammer, saw, wrench, pliers and hand drill. The original building footprint, door, tiled roof and workbench remain stable against the official fitted parent. Source is the byte-identical alias design/art/stations/workshop-1/workshop-1.png of main-approved workshop-1--lock-light.png (1280 square), explicitly documented in docs/design/asset-integration.md; canonical clipped WebP and padded source were not edited. Official post fits that padded parent to the 1024 target before comparison and records parent_canvas. Re-promote only queue-authorized workshop-2 with force, own Harmony file and content node; founder review pending."
 }

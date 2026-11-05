@@ -1,14 +1,14 @@
 {
   "job": "workshop-3",
-  "batch": "batch-05-fixes",
+  "batch": "batch-03-home-island",
   "asset": "station__workshop-3",
-  "take": 2,
-  "takes_considered": 2,
-  "approved_at": "2026-11-02T18:59:30+00:00",
+  "take": 4,
+  "takes_considered": 4,
+  "approved_at": "2026-11-05T18:40:40+00:00",
   "image": "design/art/stations/workshop-3/workshop-3.png",
   "raw": "design/art/stations/workshop-3/raw.webp",
   "raw_encoding": "webp lossless",
-  "fingerprint": "d760acac38fc6ff9",
+  "fingerprint": "6263640504a3ade6",
   "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nAdd a small wind vane on a short wooden pole on the roof's ridge:\nfour rounded cream and honey blades like a little pinwheel,\nfacing the viewer, matte.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
   "attachments": [
     {
@@ -21,7 +21,7 @@
     "model": null,
     "quality": null,
     "thread_id": null,
-    "generated_at": "2026-11-02T18:57:49+00:00",
+    "generated_at": "2026-11-05T18:38:10+00:00",
     "seconds": null,
     "background": "transparent"
   },
@@ -38,8 +38,9 @@
     "dy": 0
   },
   "alignment": null,
+  "fit": null,
   "qa": {
-    "status": "warn",
+    "status": "pass",
     "checks": [
       {
         "check": "transparency",
@@ -55,26 +56,26 @@
       {
         "check": "chroma_ceiling",
         "status": "pass",
-        "message": "chroma p95 32 (R1 51)",
-        "value": 31.7
+        "message": "chroma p95 46 (R1 51)",
+        "value": 45.6
       },
       {
         "check": "value_floor",
         "status": "pass",
-        "message": "lightness p5 56 (R1 59)",
-        "value": 55.7
+        "message": "lightness p5 48 (R1 59)",
+        "value": 47.7
       },
       {
         "check": "detail_budget",
         "status": "pass",
-        "message": "detail at display size 1.8 (R1 5.3)",
-        "value": 1.79
+        "message": "detail at display size 2.2 (R1 5.3)",
+        "value": 2.18
       },
       {
         "check": "lock_load",
         "status": "pass",
-        "message": "the lock moved colors by mean dE 0.6",
-        "value": 0.5562
+        "message": "the lock moved colors by mean dE 0.7",
+        "value": 0.7015
       },
       {
         "check": "no_guide_magenta",
@@ -85,34 +86,34 @@
       {
         "check": "palette_drift",
         "status": "pass",
-        "message": "mean dE 1.0, p95 2.0, off-palette 0.0%",
-        "value": 0.9535
+        "message": "mean dE 1.4, p95 4.1, off-palette 0.0% (top: #885522 (0.0%), #995522 (0.0%))",
+        "value": 1.4304
       },
       {
         "check": "station_anchor",
         "status": "pass",
         "message": "on the parent's anchor",
-        "value": 906.0
+        "value": 824.0
       },
       {
         "check": "harmony",
-        "status": "warn",
-        "message": "harmony score 66 against the world reference (outliers: C_p95, L_p98, edge)",
-        "value": 66.3
+        "status": "pass",
+        "message": "harmony score 79 against the world reference (outliers: edge)",
+        "value": 79.2
       },
       {
         "check": "edit_stability",
         "status": "pass",
         "message": "100% of the parent level unchanged",
-        "value": 0.9998
+        "value": 0.9976
       },
       {
         "check": "edit_chroma",
         "status": "pass",
-        "message": "chroma x0.97 of the parent level (drift compounds along a chain)",
-        "value": 0.9689
+        "message": "chroma x1.00 of the parent level (drift compounds along a chain)",
+        "value": 1.0046
       }
     ]
   },
-  "note": "auto-picked by QA; founder review pending. Advisory harmony warning retained; no failing checks."
+  "note": "auto-picked by QA; founder review pending. Initial take1/2 excluded under the strict source-border rule: take1 left4; take2 top6 bottom197 left123 nonzero alpha pixels. The single retry takes3/4 both have zero alpha on all source and locked borders and keep the whole approved L2 building, vise and five-tool pegboard inside clear transparent margins. Both add only the specified small front-facing pinwheel on a short ridge pole with four rounded cream/honey blades, a visible upgrade. Pick the eligible take with lowest lock load, then higher Harmony, without repainting or alpha cleanup. Sequential parent is newly published workshop-2 from this PR, whose padded L1 source origin is fully documented in prior provenance. Queue authorizes force replacement of this closed delivered manifest job only; own Harmony and content included."
 }
