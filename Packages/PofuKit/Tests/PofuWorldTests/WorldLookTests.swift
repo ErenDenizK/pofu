@@ -210,6 +210,11 @@ struct LookTuningTests {
     @Test func theLitFlameShowsAtNightOnly() {
         #expect(IslandLayout.litOverlay(.teaStall, level: 1) == "tea-stall-1-glow")
         #expect(IslandLayout.litOverlay(.teaStall, level: 3) == nil)
+        // The other lit edits: the workshop's doorway, the pond's lanterns, the windmill's windows.
+        #expect(IslandLayout.litOverlay(.workshop, level: 1) == "workshop-1-glow")
+        #expect(IslandLayout.litOverlay(.pond, level: 5) == "pond-5-glow")
+        #expect(IslandLayout.litOverlay(.windmill, level: 5) == "windmill-5-glow")
+        #expect(IslandLayout.litOverlay(.pond, level: 4) == nil)
         #expect(IslandLayout.litOverlayStrength(in: .at(hour: 12, wellbeing: 78, calm: 1.4)) == 0)
         #expect(IslandLayout.litOverlayStrength(in: .at(hour: 22, wellbeing: 78, calm: 1.4)) > 0.99)
     }

@@ -100,10 +100,13 @@ public enum IslandLayout {
         return !art.isStandIn
     }
 
-    /// How many levels of each home station the art queue has generated
-    /// (batches 01, 03 and 05); `preblur.py app` bakes every one.
+    /// How many levels of each station the art queue has generated and the app ships (batches 01, 03,
+    /// 05 and 21); `preblur.py app` bakes every one. The workshop's levels 2 to 5 wait for a regeneration:
+    /// they were edited from a master whose left side was clipped. The harbor's stations are drawn on
+    /// its plate (`scenery(on:levels:)`), not on a home slot.
     public static let generatedLevels: [StationID: Int] = [
         .teaStall: 5, .garden: 5, .pond: 5, .windmill: 5, .workshop: 1,
+        .bagelCart: 5, .pier: 1, .lighthouse: 1,
     ]
 
     /// The baked sprite for a station at a level: its own level's art, or
