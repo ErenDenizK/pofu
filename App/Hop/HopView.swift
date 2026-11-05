@@ -111,7 +111,13 @@ private struct HopDecision: View {
             appeared = true
             skipFocused = true
         }
-        .sensoryFeedback(.impact(weight: .light, intensity: session.isNight ? 0.35 : 0.6), trigger: appeared)
+        // The palette's `nudge` by day; at night the check-in is softer.
+        .onChange(of: appeared) {
+            if !session.isNight {
+                PofuHaptics.shared.play(.nudge)
+            }
+        }
+        .sensoryFeedback(.impact(weight: .light, intensity: 0.35), trigger: appeared) { _, _ in session.isNight }
         .sensoryFeedback(.warning, trigger: declinedPayment)
         .sensoryFeedback(.decrease, trigger: paidChoice)
     }
