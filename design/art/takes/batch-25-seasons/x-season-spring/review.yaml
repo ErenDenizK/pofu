@@ -1,0 +1,207 @@
+batch: batch-25-seasons
+manifest: tools/imagegen/manifest/batch-25-seasons.yaml
+manifest_sha256: de70b41e2313133a858b0128327b657229c73239b08fb06c5b6198d6046137c3
+contact_sheet: design/art/takes/batch-25-seasons/x-season-spring/contact.jpg
+jobs:
+  x-season-spring:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both scenes clearly read spring
+      through pink blossom and drifting petals, fresh lawn, tiny white/yellow flowers,
+      seedling-only garden and bright pond. The home island oval lawn, soil mass,
+      round door, pebbles and roots remain recognisable from the supplied bare plate.
+      Important brief ambiguity: that reference has no stations, yet the prompt asks
+      to keep their existing positions and also says do not draw this island in the
+      reference role. Tea stall, windmill, garden and pond placement therefore cannot
+      be verified against an attached canonical populated layout; these are seasonal
+      composition studies, not layout evidence or shippable plates. Take1 also adds
+      a small pond pier and tea table. No characters or text. All light/haze warnings
+      retained; prompt and references unchanged.'
+qa_reports:
+  1:
+    job: x-season-spring
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 42.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 96 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 86 (band 55-90)'
+      value: 85.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.34 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.345
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.1 (at least 3.5)'
+      value: 4.14
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.63
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1443
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 6.9, off-palette 0.0% (top: #BBBB55 (0.0%), #DDDD77
+        (0.0%))'
+      value: 2.1465
+    info:
+      metrics_raw:
+        L_p5: 66.9
+        L_p50: 89.9
+        L_p95: 96.3
+        C_p50: 11.7
+        C_p95: 44.3
+        C_p99: 52.1
+        detail: 3.39
+      metrics_locked:
+        L_p5: 67.3
+        L_p50: 89.8
+        L_p95: 96.1
+        C_p50: 11.8
+        C_p95: 42.9
+        C_p99: 49.3
+        detail: 2.63
+    fingerprint: 1b32e24b0f9efd63
+  2:
+    job: x-season-spring
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 46 (R1 51)
+      value: 45.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 95 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.32 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.322
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.5 (at least 3.5)'
+      value: 3.54
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.26
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1473
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.4, p95 7.5, off-palette 0.3% (top: #CCCC66 (0.1%), #BBBB55
+        (0.1%))'
+      value: 2.3968
+    info:
+      metrics_raw:
+        L_p5: 67.5
+        L_p50: 89.5
+        L_p95: 95.3
+        C_p50: 8.3
+        C_p95: 47.4
+        C_p99: 53.1
+        detail: 2.97
+      metrics_locked:
+        L_p5: 67.8
+        L_p50: 89.4
+        L_p95: 95.1
+        C_p50: 8.5
+        C_p95: 45.9
+        C_p99: 50.0
+        detail: 2.26
+    fingerprint: 1b32e24b0f9efd63
+manual_review:
+  observed_note: 'Both scenes clearly read spring through pink blossom and drifting
+    petals, fresh lawn, tiny white/yellow flowers, seedling-only garden and bright
+    pond. The home island oval lawn, soil mass, round door, pebbles and roots remain
+    recognisable from the supplied bare plate. Important brief ambiguity: that reference
+    has no stations, yet the prompt asks to keep their existing positions and also
+    says do not draw this island in the reference role. Tea stall, windmill, garden
+    and pond placement therefore cannot be verified against an attached canonical
+    populated layout; these are seasonal composition studies, not layout evidence
+    or shippable plates. Take1 also adds a small pond pier and tea table. No characters
+    or text. All light/haze warnings retained; prompt and references unchanged.'
+  excluded_takes: []
+sources:
+- batch: batch-25-seasons
+  job: x-season-spring
+  take: 1
+  round: 1
+  logical_run: backlog-next-20261105
+  source_file: /workspace/generated_images/exec-516a8bb2-6eef-4f73-8340-04882e41c073.png
+  returned_at: '2026-11-05T13:51:20.089Z'
+  prompt_sha256: 54274d2597f5c3f72c9fcd29888721f8aae711c3e14ecadb6c23c02aff76ef18
+  fingerprint: 1b32e24b0f9efd63
+  saved_at: '2026-11-05T13:51:20.458651+00:00'
+  original_generated_png_sha256: ccaa3b76c883fa534d57c946aa6a066ce870cbb2e48a3e12b3fcf7d41cda8813
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 009b4188b38f51754db6f5cadd055e2781a6582b0de6ab7837a5598ecae6433b
+  inbox_png_sha256: 37cf8e943e93210165e8ff92dafee2da7af3c084e218f9824378df54496a3593
+  qa_sha256: f934b167c1f75e49deb90b9a3727f559add938bc6175b40748090d8e9f55ed9b
+- batch: batch-25-seasons
+  job: x-season-spring
+  take: 2
+  round: 1
+  logical_run: backlog-next-20261105
+  source_file: /workspace/generated_images/exec-9c107611-61a5-4d49-a8a0-1b0fe78258d2.png
+  returned_at: '2026-11-05T13:50:34.841Z'
+  prompt_sha256: 54274d2597f5c3f72c9fcd29888721f8aae711c3e14ecadb6c23c02aff76ef18
+  fingerprint: 1b32e24b0f9efd63
+  saved_at: '2026-11-05T13:50:35.295837+00:00'
+  original_generated_png_sha256: 6911c58ff8cc7b78f83b42049b84039a6e579b1c8218a1252d8eb33b1a01ed3e
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 2b6eeb84da05c82d1eadd5b10d0245ad4a4a78b5695c233fca7ee565761bae70
+  inbox_png_sha256: 3c208d9301fb0790e162e23e862e349b34dcb5dc0de7f65314367ed737911a2b
+  qa_sha256: 306e94a4632497b72ff0068576f75ccc96cafb7d584ca57b2258067528ed95c2
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
