@@ -417,7 +417,6 @@ struct HD2DLayer: View {
         return (h(n * 12.9898), h(n * 78.233 + 1), h(n * 39.425 + 2))
     }
 }
-#endif
 
 // MARK: - Light shafts, rendered once
 
@@ -503,3 +502,4 @@ private struct ShaftArt: View {
         Color(red: 1, green: 0.86, blue: 0.62).opacity(min(max(opacity, 0), 1))
     }
 }
+#endif
