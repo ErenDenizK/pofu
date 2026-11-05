@@ -1,0 +1,199 @@
+# Batch 37, pilot: Nazlı's layered rig (Gezgin form 1), five parts on ONE canvas.
+#
+# Founder (2026-11-05): Gezgin form 1 must FACE THE CAMERA in three-quarter
+# view, clear of any pier; in the harbor take (#191) her face turned toward the
+# pier and hid behind it. Code stacks and moves the parts (body breathing, tail
+# sway, fin flap, blink; docs/design/art-production-plan.md, "Pofu's reactions
+# are a rig" is the same method).
+#
+# Method (as batch-06-pofu-rig): the first job, nazli-body, is the root. Every
+# other part is an EDIT of nazli-body on the same 1536 x 1024 canvas that
+# changes one region, so every part registers pixel for pixel in the assembled
+# pose (edits are never moved by registration). Each edit paints the WHOLE
+# whale with its one part added (or the eyes closed); the lead cuts the part
+# out by difference against nazli-body, which gives the transparent layer that
+# is empty everywhere but the part's exact place. The model is never asked for
+# a part alone, because parts drawn alone do not register.
+#
+# Parts and what code does with them:
+#   nazli-body          the body, head and face, eyes open; no fins, no tail
+#                       flukes, no island patch (breathing, bob)
+#   nazli-tail          the tail flukes (sway about the tail stock)
+#   nazli-fins          both pectoral fins (a slow flap)
+#   nazli-island-patch  the mossy patch with bench, mooring post, lantern hook
+#   nazli-eyes-closed   the closed eyelids, swapped over the open eyes (blink,
+#                       sleep)
+#
+# Reference: the best form-1 take on main, batch-34 x-gezgin-f1-harbor take 1
+# (paper-lantern scar, tired kind eye, grey-blue back fading to cream). It also
+# shows a pier, a bunny, a hamster and a cloud sea: copy only the whale.
+#
+# Review checks: she faces the camera (face, both eyes or the near eye and the
+# far eye's edge, the smile are in plain view); the five parts assemble with no
+# seam; no pier, no clouds, no characters; the scar is a paper lantern, never a
+# light bulb; transparent background.
+#
+# Tracks: `rig` (body first, then the four edits in any order).
+
+batch: batch-37-nazli-rig-pilot
+title: Nazlı's rig, pilot (body, tail, fins, island patch, closed eyes)
+status: open
+
+refs:
+  nazli-ref: design/art/takes/batch-34-islands-in-game/x-gezgin-f1-harbor/plate__x-gezgin-f1-harbor--t1.webp
+
+defaults:
+  variants: 2
+
+jobs:
+  - id: nazli-body
+    kind: char
+    name: nazli-body
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    fit: false
+    palettes: [character, world-day, world-props]
+    chat: "Pofu · Nazlı rig"
+    light: {cell: day, layer: subject}
+    notes: "PILOT, the root of the rig. Review: three-quarter view with the head toward the camera and her face fully in view (near eye clear, far eye at least its edge, the faint smile); the body recedes to the right; the tail stock ends in a soft round tip (no flukes), no fins, no patch. The lantern-mark scar is on her skin, in a quiet place on the upper flank. She must read as tired and kind, never sad or scary. About 85 percent of the canvas wide so every part has room."
+    attach:
+      - ref: nazli-ref
+        role: "The approved Nazlı (Gezgin form 1): copy the whale only: her colors, soft rounded shape, tired kind eye, faint smile, cream belly, and the faint paper-lantern scar. Ignore the pier, the characters, the island patch and the clouds. Turn her three-quarter toward the camera."
+    prompt:
+      - text: |
+          Nazlı, a humble, tired, gentle cloud-whale, as a game sprite on a
+          transparent background, in a three-quarter view turned toward the
+          camera: her rounded head is in front at the lower left, her big
+          kind face looking out of the picture, and her long body recedes
+          back to the upper right. Her face is fully visible and unobstructed:
+          the nearer eye is large, soft and heavy-lidded, the farther eye is
+          just visible beyond the bridge of her brow, a faint gentle smile, a
+          pink blush on the cheek. Grey-blue on the back fading to cream on
+          the belly, a little thin and pale, a low head. On the upper flank
+          behind the head, a faint pale scar in her skin shaped like a small
+          unlit paper lantern (a rounded lantern with ribs and a tiny cap and
+          handle; never a light bulb).
+
+          IN THIS IMAGE LEAVE OUT, to be added as separate layers: NO flippers
+          or fins of any kind (the sides of the body are smooth), NO tail
+          flukes (the tapering tail stock ends in a soft rounded tip), NO
+          mossy island patch (her back is bare, smooth and clean, with no
+          bench, post, hook or grass). Her whole body fits in the canvas,
+          about 85 percent of its width, centered, with transparent empty
+          space around it. No pier, no rope, no clouds, no characters, no
+          ground, no shadow.
+      - block: prop-style-v2
+      - text: "AVOID: a pier, ropes, clouds or a sea, characters, a light bulb, a frightening mouth, teeth, her face hidden or turned away, fins, flukes, an island on her back, text, letters, a floor, a ground shadow, outlines"
+
+  - id: nazli-tail
+    kind: char
+    name: nazli-tail
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    edit_of: nazli-body
+    fit: false
+    palettes: [character, world-day, world-props]
+    chat: "Pofu · Nazlı rig"
+    light: {cell: day, layer: subject}
+    notes: "PILOT. The lead cuts the flukes out by difference against nazli-body. Review: only the end of the tail stock changes (the soft tip becomes a wide cloud-white two-lobed fluke that continues the stock's shape and colors, seen in the same three-quarter view); the whole rest of the whale is unchanged."
+    attach:
+      - ref: nazli-ref
+        role: "The approved Nazlı: copy her tail fluke (wide, rounded, cloud-white, two lobes) only."
+    prompt:
+      - text: |
+          Edit the attached whale. Add her tail flukes: at the soft rounded
+          tip of the tail stock (the far upper right of the body) grow a wide,
+          rounded, cloud-white two-lobed fluke, soft and chunky, in the same
+          three-quarter view and in the same painting, joined smoothly to the
+          tail stock so it reads as one animal, and small enough to stay
+          inside the canvas. Only the tail tip changes: her head, face, body,
+          scar and everything else stay exactly as in the attached image.
+      - block: edit-keep-v1
+      - text: "AVOID: changing the face or the body, fins, an island patch, clouds, a pier, a shadow, text"
+
+  - id: nazli-fins
+    kind: char
+    name: nazli-fins
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    edit_of: nazli-body
+    fit: false
+    palettes: [character, world-day, world-props]
+    chat: "Pofu · Nazlı rig"
+    light: {cell: day, layer: subject}
+    notes: "PILOT. The lead cuts both fins out by difference against nazli-body. Review: the nearer fin hangs from low on the near flank, broad and rounded, the farther fin shows its tip below or behind the belly; neither covers her face or her eye; the rest of the whale is unchanged."
+    attach:
+      - ref: nazli-ref
+        role: "The approved Nazlı: copy her broad, rounded, cream flipper only."
+    prompt:
+      - text: |
+          Edit the attached whale. Add her two pectoral fins: the nearer fin
+          hangs from the low near side of the body just behind the head,
+          broad, rounded and cream, angled gently back and down, and the
+          farther fin shows only its rounded tip below the belly on the far
+          side, in the same three-quarter view and the same painting. Neither
+          fin covers her face or her eye. Only the two fins are added: her
+          head, face, body, scar and everything else stay exactly as in the
+          attached image.
+      - block: edit-keep-v1
+      - text: "AVOID: fins over her face, changing the face or the body, flukes, an island patch, clouds, a pier, a shadow, text"
+
+  - id: nazli-island-patch
+    kind: char
+    name: nazli-island-patch
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    edit_of: nazli-body
+    fit: false
+    palettes: [character, world-day, world-props, world-foliage]
+    chat: "Pofu · Nazlı rig"
+    light: {cell: day, layer: subject}
+    notes: "PILOT. The lead cuts the patch out by difference against nazli-body. Review: a small mossy lawn on the middle of her back with a short wooden bench, one mooring post with a coil of rope, a tuft of grass and one honey-wood lantern hook with nothing hanging on it; it sits clear of her face and of the scar; the patch is a lawn only (no soil bowl, roots or door); the rest of the whale is unchanged."
+    attach:
+      - ref: nazli-ref
+        role: "The approved Nazlı: copy the back patch only (a small mossy lawn with a bench, a mooring post and a hook), at that small size."
+    prompt:
+      - text: |
+          Edit the attached whale. Add the small island patch on her back: on
+          the middle of her back, well behind the head and clear of the scar,
+          a small mossy lawn no bigger than a cottage lot, grown into her
+          skin, with a short wooden bench, a single wooden mooring post with a
+          coil of rope round it, a tuft of grass, and one dark honey-wood
+          lantern hook curling over, with nothing hanging on it. Seen in the
+          same three-quarter view and the same painting; a lawn only, with no
+          soil bowl, roots, door or house. Only the patch is added: her head,
+          face, body, scar and everything else stay exactly as in the
+          attached image.
+      - block: edit-keep-v1
+      - text: "AVOID: a lit lantern, a bulb, a house, a door, soil or roots hanging below, a tree, characters, a pier, clouds, changing the face or the body, a shadow, text"
+
+  - id: nazli-eyes-closed
+    kind: char
+    name: nazli-eyes-closed
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    edit_of: nazli-body
+    fit: false
+    palettes: [character, world-day, world-props]
+    chat: "Pofu · Nazlı rig"
+    light: {cell: day, layer: subject}
+    notes: "PILOT. The lead cuts the eyelids out by difference against nazli-body; code swaps them over the open eyes for blinks and sleep. Review: the same eye shapes and positions, now closed with a soft downward curve of lid and a few faint lashes' shadow; the blush, the smile and everything else are unchanged."
+    attach:
+      - ref: nazli-ref
+        role: "The approved Nazlı: her eye shape and heavy kind lid (copy the whale only)."
+    prompt:
+      - text: |
+          Edit the attached whale. Close her eyes: the nearer eye and the
+          farther eye (or its visible edge) become peacefully closed, a soft
+          downward-curving lid line with the lid's skin color filling the eye,
+          calm and sleepy and kind. The eyes keep exactly the same positions,
+          sizes and shapes as the open eyes. Only the eyes change: the
+          blush, the smile, the scar and the whole rest of the whale stay
+          exactly as in the attached image.
+      - block: edit-keep-v1
+      - text: "AVOID: open eyes, tears, a frown, changed eye positions, eyebrows, any change to the body, text"

@@ -1,0 +1,21 @@
+id: asset-nazli-body
+type: asset
+title_tr: nazli-body
+title_en: nazli-body (char)
+status: in-production
+horizon: now
+summary: >-
+  Nazlı, a humble, tired, gentle cloud-whale, as a game sprite on a transparent background,
+  in a three-quarter view turned toward the camera: her rounded head is in front at the lower
+  left, her big kind face looking out of the picture, and her long body recedes back to the
+  upper right. Her face is fully visible and unobstructed: the nearer eye is large, soft and
+  heavy-lidded, the farther eye is just visible beyond the …
+art:
+  images: []
+  jobs:
+  - batch-37-nazli-rig-pilot:nazli-body
+sources:
+- doc: tools/imagegen/manifest/batch-37-nazli-rig-pilot.yaml
+kind: char
+batch: batch-37-nazli-rig-pilot
+size: 1536x1024

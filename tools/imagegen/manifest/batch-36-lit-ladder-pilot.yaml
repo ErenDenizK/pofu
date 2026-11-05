@@ -1,0 +1,113 @@
+# Batch 36, pilot: the lit ladder (docs/design/art-production-plan.md, "Day and
+# night: code first").
+#
+# Method as in batch-07-light: each job is an edit of an approved day master
+# that changes ONLY the light-carrying part. The lead turns lit minus day into
+# an emissive overlay, so the geometry must register pixel for pixel with the
+# parent (edit_stability high, above 0.9; nothing outside the lit part got
+# brighter or changed color). The night grade, the halos, the ground pools and
+# the flicker are code: the lit edit is painted in the DAYLIGHT style, with a
+# warm candle-amber glow only inside the lit part. Never paint a night, a dark
+# tone, a halo or rays.
+#
+# Four objects, one lit edit each, all independent (they need only their own
+# master):
+#   lighthouse-1-lit   the lamp room (the lantern room under the red cap)
+#   path-lamp-lit      the paper lantern on the path lamp (home slots L1-L3)
+#   windmill-1-lit     the windmill's door (L1 has no window; see the job)
+#   door-mochi-lit     the round window of Mochi's door (slot H2)
+#
+# Review checks: the lit part reads warm and soft at 28 pt; the rest of the
+# image is unchanged; no new shapes; amber, not yellow-white.
+#
+# Tracks: `all` (the four jobs, any order).
+
+batch: batch-36-lit-ladder-pilot
+title: Lit ladder, pilot (lighthouse lamp room, path lamp, windmill door, Mochi's door)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: lighthouse-1, kind: station, name: lighthouse-1, external: batch-21-harbor-ladders}
+  - {id: path-lamp, kind: prop, name: path-lamp, external: batch-33-home-showcase-pilot}
+  - {id: windmill-1, kind: station, name: windmill-1, external: batch-03-home-island}
+  - {id: door-mochi, kind: prop, name: door-mochi, external: batch-33-home-showcase-pilot}
+
+  - id: lighthouse-1-lit
+    kind: station
+    name: lighthouse-1-lit
+    edit_of: lighthouse-1
+    chat: "Pofu · Lighthouse"
+    light: {cell: day, layer: subject}
+    notes: "PILOT. Source of the lamp room's emissive overlay (difference against lighthouse-1). Review: only the panes of the lamp room under the cap glow; the round window below, the stripes, the door and the cap are unchanged; a beam is not wanted."
+    prompt:
+      - text: |
+          Light the lighthouse from inside: the lamp room under the coral cap
+          (the row of dark glass panes between the cream posts) now glows warm
+          candle-amber, brightest in the middle of the room with a soft
+          rounded lamp shape suggested inside, painted as soft broad shapes.
+          Only the glass panes of the lamp room change: the posts between
+          them, the cap, the balcony and railing, the stripes, the round
+          window, the door and the base keep their exact day colors (the app
+          adds the glow around the lamp, the beam and the night grade).
+      - block: edit-keep-v1
+      - text: "AVOID: a beam, light rays, a glow outside the glass, a halo, light on other parts, a night sky, darkening anything, blown yellow-white highlights, text."
+
+  - id: path-lamp-lit
+    kind: prop
+    name: path-lamp-lit
+    edit_of: path-lamp
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "PILOT. Source of the lantern's emissive overlay (difference against path-lamp). Review: only the plump lantern glass glows; the post, the stone foot, the hook and the coral cap are unchanged. The lantern is thumb-sized at game scale, so the glow must fill the whole glass shape."
+    prompt:
+      - text: |
+          Light the path lamp: the plump round paper-glass lantern now glows
+          from inside, a soft warm candle-amber filling the whole glass shape,
+          a little brighter toward its middle, with a tiny soft flame shape
+          suggested at its center, painted as soft broad shapes. Only the
+          lantern glass changes: the coral cap, the curled hook, the wooden
+          post and the stone foot keep their exact day colors (the app adds
+          the glow and the pool of light on the ground).
+      - block: edit-keep-v1
+      - text: "AVOID: light rays, a glow or halo outside the glass, a light pool on the ground, light on the post or the cap, a sharp bright flame, blown yellow-white highlights, text."
+
+  - id: windmill-1-lit
+    kind: station
+    name: windmill-1-lit
+    edit_of: windmill-1
+    chat: "Pofu · Windmill"
+    light: {cell: day, layer: subject}
+    notes: "PILOT, WITH A DOUBT. windmill-1 has no window (they first appear at L5; batch-07's windmill-5-lit lights those). At L1 the only place light can come from is the door, so the light is the door: warm amber leaks through the door's arched upper panel and seam as if a lamp burned inside. Review: the door still reads as a closed wooden door, the amber is confined to the door and its seam, no new shape was drawn. If the lead prefers to wait for a windowed level, skip this job."
+    prompt:
+      - text: |
+          Light the windmill from inside: the small arched wooden door now
+          lets a warm candle-amber light through, a soft amber glow along the
+          thin seam around the door and in its upper arch, as if a lamp
+          burned inside, a little brighter toward the top of the arch. The
+          door keeps its exact shape, panels and knob. Only the door's seam and
+          upper arch change: the stone, the cap, the sails and the step keep
+          their exact day colors (the app adds the glow around the door).
+      - block: edit-keep-v1
+      - text: "AVOID: opening the door, a new window, light rays, a glow outside the door's frame, light on the stones or the step, blown yellow-white highlights, text."
+
+  - id: door-mochi-lit
+    kind: prop
+    name: door-mochi-lit
+    edit_of: door-mochi
+    chat: "Pofu · Doors"
+    light: {cell: day, layer: subject}
+    notes: "PILOT. Source of the round window's emissive overlay (difference against door-mochi). Review: only the window glass inside the cream cross bar glows; the rose door, the honey frame, the knob, the tea-glass sign and the soft earth ring are unchanged. The soft peach halo already painted around the frame is part of the master: leave it exactly as it is."
+    prompt:
+      - text: |
+          Light Mochi's door from inside: the small round window with its cream
+          cross bar now glows warm candle-amber, the four panes of glass soft
+          and a little brighter toward the middle, painted as soft broad
+          shapes. Only the window glass changes: the cross bar keeps its cream
+          color, and the rose door, the honey frame, the knob, the doorstep,
+          the hanging tea-glass sign and the earth ring keep their exact day
+          colors (the app adds the glow around the door).
+      - block: edit-keep-v1
+      - text: "AVOID: light rays, a glow outside the window, a halo, light on the door or the sign, a changed cross bar, blown yellow-white highlights, text."

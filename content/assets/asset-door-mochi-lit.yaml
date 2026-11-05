@@ -1,0 +1,23 @@
+id: asset-door-mochi-lit
+type: asset
+title_tr: door-mochi-lit
+title_en: door-mochi-lit (prop)
+status: in-production
+horizon: now
+summary: >-
+  Light Mochi's door from inside: the small round window with its cream cross bar now glows
+  warm candle-amber, the four panes of glass soft and a little brighter toward the middle,
+  painted as soft broad shapes. Only the window glass changes: the cross bar keeps its cream
+  color, and the rose door, the honey frame, the knob, the doorstep, the hanging tea-glass
+  sign and the earth ring keep their exact day colors (the app …
+links:
+  variant_of:
+  - asset-door-mochi
+art:
+  images: []
+  jobs:
+  - batch-36-lit-ladder-pilot:door-mochi-lit
+sources:
+- doc: tools/imagegen/manifest/batch-36-lit-ladder-pilot.yaml
+kind: prop
+batch: batch-36-lit-ladder-pilot

@@ -1,0 +1,23 @@
+id: asset-lighthouse-1-lit
+type: asset
+title_tr: lighthouse-1-lit
+title_en: lighthouse-1-lit (station)
+status: in-production
+horizon: now
+summary: >-
+  Light the lighthouse from inside: the lamp room under the coral cap (the row of dark glass
+  panes between the cream posts) now glows warm candle-amber, brightest in the middle of the
+  room with a soft rounded lamp shape suggested inside, painted as soft broad shapes. Only
+  the glass panes of the lamp room change: the posts between them, the cap, the balcony and
+  railing, the stripes, the round window, the door and the ba…
+links:
+  variant_of:
+  - asset-lighthouse-1
+art:
+  images: []
+  jobs:
+  - batch-36-lit-ladder-pilot:lighthouse-1-lit
+sources:
+- doc: tools/imagegen/manifest/batch-36-lit-ladder-pilot.yaml
+kind: station
+batch: batch-36-lit-ladder-pilot
