@@ -1,0 +1,375 @@
+batch: batch-30-decor-sets-v2
+manifest: tools/imagegen/manifest/batch-30-decor-sets-v2.yaml
+manifest_sha256: b3ad9969db61265c404adbbba5d5ec9b7adc55cd188052401aa697117a682515
+contact_sheet: design/art/takes/batch-30-decor-sets-v2/x-corner-residents-v2/contact.jpg
+jobs:
+  x-corner-residents-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after the sole unchanged-prompt retry. All four original and locked
+      frames show the whole lawn oval/earth bowl/roots/round door rather than the
+      explicitly cropped quiet meeting corner. Retry inventories were independently
+      checked as correct: rose teapot and two tulip glasses, small bench with goggles
+      and SCREWDRIVER, collar bell/hook, goat stool with visibly FOLDED sailor hat
+      and sesame-simit basket, and three lily-pad cushions in a row; no residents.
+      The folded-state improvement does not waive the separate framing failure. Numeric
+      hard QA passes and style/light warnings remain advisory. No extra generation,
+      manual post-crop, prompt/QA waiver or promotion; all four originals/callbacks
+      and source-bound q90/contact/reports preserved.'
+qa_reports:
+  1:
+    job: x-corner-residents-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 95 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 82.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.37 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.369
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 3.97
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7734
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 4.3, off-palette 0.2% (top: #BB6633 (0.1%), #CC7744
+        (0.0%))'
+      value: 1.5983
+    info:
+      metrics_raw:
+        L_p5: 63.4
+        L_p50: 89.5
+        L_p95: 96.0
+        C_p50: 7.4
+        C_p95: 39.0
+        C_p99: 44.3
+        detail: 2.7
+      metrics_locked:
+        L_p5: 63.8
+        L_p50: 89.4
+        L_p95: 95.9
+        C_p50: 7.6
+        C_p95: 38.3
+        C_p99: 43.9
+        detail: 2.12
+    fingerprint: 0df9bc7bdada6542
+  2:
+    job: x-corner-residents-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 96 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 41.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 84.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.33 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.333
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.7 (at least 3.5)'
+      value: 3.69
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.18
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8709
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 4.3, off-palette 0.3% (top: #DD8844 (0.1%), #DD8833
+        (0.0%))'
+      value: 1.9801
+    info:
+      metrics_raw:
+        L_p5: 64.3
+        L_p50: 88.5
+        L_p95: 95.5
+        C_p50: 12.0
+        C_p95: 42.5
+        C_p99: 46.6
+        detail: 2.78
+      metrics_locked:
+        L_p5: 64.7
+        L_p50: 88.4
+        L_p95: 95.3
+        C_p50: 12.0
+        C_p95: 41.7
+        C_p99: 45.3
+        detail: 2.18
+    fingerprint: 0df9bc7bdada6542
+  3:
+    job: x-corner-residents-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 96 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 83.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.35 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.349
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 4.02
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.36
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.897
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 4.7, off-palette 0.5% (top: #DD7744 (0.1%), #BB6633
+        (0.0%))'
+      value: 1.697
+    info:
+      metrics_raw:
+        L_p5: 64.5
+        L_p50: 90.3
+        L_p95: 97.0
+        C_p50: 7.7
+        C_p95: 44.1
+        C_p99: 52.2
+        detail: 3.11
+      metrics_locked:
+        L_p5: 64.9
+        L_p50: 90.2
+        L_p95: 96.7
+        C_p50: 8.0
+        C_p95: 43.3
+        C_p99: 49.4
+        detail: 2.36
+    fingerprint: 0df9bc7bdada6542
+  4:
+    job: x-corner-residents-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 51 (at most 22), p98 95 (at least 90), spread 44
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 44.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 82.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.33 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.329
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.3 (at least 3.5)'
+      value: 4.31
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.44
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8834
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 4.2, off-palette 0.1% (top: #CC7744 (0.0%), #AA5522
+        (0.0%))'
+      value: 1.9624
+    info:
+      metrics_raw:
+        L_p5: 63.4
+        L_p50: 89.0
+        L_p95: 95.0
+        C_p50: 9.0
+        C_p95: 40.4
+        C_p99: 46.4
+        detail: 3.09
+      metrics_locked:
+        L_p5: 63.8
+        L_p50: 89.0
+        L_p95: 94.8
+        C_p50: 8.9
+        C_p95: 39.6
+        C_p99: 45.0
+        detail: 2.44
+    fingerprint: 0df9bc7bdada6542
+manual_review:
+  observed_note: 'Skipped after the sole unchanged-prompt retry. All four original
+    and locked frames show the whole lawn oval/earth bowl/roots/round door rather
+    than the explicitly cropped quiet meeting corner. Retry inventories were independently
+    checked as correct: rose teapot and two tulip glasses, small bench with goggles
+    and SCREWDRIVER, collar bell/hook, goat stool with visibly FOLDED sailor hat and
+    sesame-simit basket, and three lily-pad cushions in a row; no residents. The folded-state
+    improvement does not waive the separate framing failure. Numeric hard QA passes
+    and style/light warnings remain advisory. No extra generation, manual post-crop,
+    prompt/QA waiver or promotion; all four originals/callbacks and source-bound q90/contact/reports
+    preserved.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30-decor-sets-v2
+  job: x-corner-residents-v2
+  take: 1
+  round: 1
+  logical_run: 20261105-b30-v2-initial-corners
+  source_file: /workspace/generated_images/exec-37f56a5c-76a9-432e-bf19-39174a41366c.png
+  returned_at: '2026-11-05T22:18:07.691Z'
+  prompt_sha256: 1774a7fb527b3b78f1d7910dc64dffcc9d4334ed81c9420d509371e58732db10
+  fingerprint: 0df9bc7bdada6542
+  saved_at: '2026-11-05T22:18:08.136961+00:00'
+  original_generated_png_sha256: b01fd87364a442f4186b7be0f745b8a8543d60a3a7d9957209154071a910cea6
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: b0368a6cb7356a203de7a0d0791acd252a23d838bc73049707a0e1f42c50989c
+  inbox_png_sha256: 9ffe36e83eb88b6f8ce2ecc9470ff19305acd75aec596ee753759f4c7d0665e4
+  qa_sha256: 20924a5939c9648c5b021d135beed857ceccc995ca4652933876a2c025c1c573
+- batch: batch-30-decor-sets-v2
+  job: x-corner-residents-v2
+  take: 2
+  round: 1
+  logical_run: 20261105-b30-v2-initial-corners
+  source_file: /workspace/generated_images/exec-4bc9ec08-d7c6-4783-8343-83f03bea33fb.png
+  returned_at: '2026-11-05T22:18:41.691Z'
+  prompt_sha256: 1774a7fb527b3b78f1d7910dc64dffcc9d4334ed81c9420d509371e58732db10
+  fingerprint: 0df9bc7bdada6542
+  saved_at: '2026-11-05T22:18:47.256461+00:00'
+  original_generated_png_sha256: 45ec900927b6745d989a4cdc2eef3fccc18bd768ca3fb52008c01aba55cbacc8
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: c812bcd0f090fde9667c669b573dae188160c58ca7a1a66b1a2d7b5db5bf8bf9
+  inbox_png_sha256: 844c03a412505f31bd14d3a014055abe66c5a717db6e07b0ef4c3095f3495372
+  qa_sha256: 6576b506a05e421aef8aa193a492cd15a62bdd134004e6613ff985d1b7c8e6bf
+- batch: batch-30-decor-sets-v2
+  job: x-corner-residents-v2
+  take: 3
+  round: 2
+  logical_run: 20261105-b30-v2-sole-corner-retries
+  source_file: /workspace/generated_images/exec-be45d06d-8f36-48a3-b574-f9dfb55c534b.png
+  returned_at: '2026-11-05T22:24:33.084Z'
+  prompt_sha256: 1774a7fb527b3b78f1d7910dc64dffcc9d4334ed81c9420d509371e58732db10
+  fingerprint: 0df9bc7bdada6542
+  saved_at: '2026-11-05T22:24:33.389593+00:00'
+  original_generated_png_sha256: 61247550c64b39331722c2ffe16c3f252511741a66f4a54fd1bcb8f8c96455fb
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: ac83ae3d92eaae9dd5152a4ab2eb4a408e75013eb7ee3eaecdaf16a3c5aff459
+  inbox_png_sha256: df3500d42f6de948fd9a208c724a26917b7f1a2c0382cff3eb11bcc67b037056
+  qa_sha256: 18caa2df5629acd46c918b35e67772c63733353df5a08b931084ed522d5634e4
+- batch: batch-30-decor-sets-v2
+  job: x-corner-residents-v2
+  take: 4
+  round: 2
+  logical_run: 20261105-b30-v2-sole-corner-retries
+  source_file: /workspace/generated_images/exec-9e2c2f79-ef07-4a2c-96a6-daf2803e6478.png
+  returned_at: '2026-11-05T22:23:58.298Z'
+  prompt_sha256: 1774a7fb527b3b78f1d7910dc64dffcc9d4334ed81c9420d509371e58732db10
+  fingerprint: 0df9bc7bdada6542
+  saved_at: '2026-11-05T22:23:58.726967+00:00'
+  original_generated_png_sha256: e14e30522631e960d4f25ff479df40ddfe7a66126b4eeb44ad9809f25966ffe7
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: e4c269f4730e264679e0ba92453921132a536c72a69216617a9d97e0cac8fde8
+  inbox_png_sha256: dd03c76ecade495f890d90369a44c23d921baf4b05f5bd9d4000628ccc97017d
+  qa_sha256: a74c39ea0d22474e00bd16b5a58513e2457decafa5761d5507682cb068427f75
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: c84355a7e9865d22a6b6c3cf020cd6aa93f9d460916b03207c002e7e860c4c00
