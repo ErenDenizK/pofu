@@ -1,0 +1,59 @@
+{
+ "after": {
+  "C_mean": 33.394,
+  "C_p50": 34.124,
+  "C_p95": 49.006,
+  "L_mean": 78.486,
+  "L_p2": 47.502,
+  "L_p98": 92.637,
+  "detail": 3.044,
+  "edge": 0.462,
+  "tint_a": 6.934,
+  "tint_b": 7.996,
+  "warmth_b": 29.856
+ },
+ "before": {
+  "C_mean": 40.966,
+  "C_p50": 41.795,
+  "C_p95": 59.569,
+  "L_mean": 70.308,
+  "L_p2": 31.502,
+  "L_p98": 88.279,
+  "detail": 3.735,
+  "edge": 0.462,
+  "tint_a": 7.364,
+  "tint_b": 10.435,
+  "warmth_b": 36.555
+ },
+ "chain": null,
+ "correction": {
+  "black": 16.0,
+  "ceiling": 0.0,
+  "chroma": 0.823,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 4.78
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "detail",
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "L_p2",
+  "L_p98",
+  "detail",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 86.3,
+ "score_before": 51.9,
+ "shipped": false,
+ "source": "design/art/stations/hive-2/hive-2.png",
+ "source_sha": "e00f6967ba9cbbc5"
+}
