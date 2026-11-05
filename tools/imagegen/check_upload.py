@@ -71,10 +71,22 @@ def encode_raw(image: Image.Image) -> tuple[bytes, str]:
     raise ValueError(f"the raw does not fit under 600 KB even at q{RAW_LOSSY_QUALITIES[-1]} ({buf.tell():,} bytes)")
 
 
-def save_raw(src: Path, dest_dir: Path) -> tuple[Path, str]:
-    """Writes `dest_dir/raw.webp` from the take at `src`; drops an older raw.png."""
+def downscale(image: Image.Image, scale: float | None) -> Image.Image:
+    """Soft delivery: the image scaled by `scale` (0 < scale <= 1) with Lanczos.
+    None or 1 returns it unchanged. RGBA is premultiplied while resampling so
+    transparent edges do not pick up halo colour."""
+    if not scale or scale >= 1:
+        return image
+    size = (max(1, round(image.width * scale)), max(1, round(image.height * scale)))
+    im = image.convert("RGBA")
+    return im.convert("RGBa").resize(size, Image.Resampling.LANCZOS).convert("RGBA")
+
+
+def save_raw(src: Path, dest_dir: Path, scale: float | None = None) -> tuple[Path, str]:
+    """Writes `dest_dir/raw.webp` from the take at `src` (downscaled by `scale`
+    for soft delivery); drops an older raw.png."""
     with Image.open(src) as im:
-        data, encoding = encode_raw(im)
+        data, encoding = encode_raw(downscale(im, scale))
     dest_dir.mkdir(parents=True, exist_ok=True)
     out = dest_dir / RAW_NAMES[0]
     out.write_bytes(data)

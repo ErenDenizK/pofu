@@ -40,6 +40,25 @@ and the lock in `run.py post`, is skipped for edits (they inherit the parent's
 frame), is recorded as `meta.json` `fit`, and `relock.py` replays it (no `fit`
 = no scaling). A job can set `fit: {max_width: px, top: y}` or `fit: false`.
 
+## Soft delivery
+
+Uploads over ~768 KB arrive as stubs, so the 600 KB cap (`check_upload.py`) is a
+hard limit. Soft art (glows, sky plates, cloud curtains) that will not encode
+losslessly under it sets `deliver: {scale: 0.5}` (any 0 < scale <= 1). QA, the
+pick and the declared-size check run on the full take; `run.py post` also
+writes the delivered take to the build dir `delivered/` (lossless WebP), and
+`promote` writes the master and `raw.webp` downscaled with Lanczos
+(`check_upload.downscale`, still lossless). `meta.json` and `provenance.md`
+record `deliver: {scale, original_size, delivered_size}`. The logical (point)
+size is the original size: the asset step scales masters to point sizes from
+pixels and never upscales past its own limits, so a consumer that needs the
+full canvas reads `meta.json` `deliver.original_size`.
+
+## Prompt style lines
+
+`style_exclude: [fur]` drops the named sentence (`pipeline.STYLE_LINES`) from the
+shared style blocks of one job, e.g. for a smooth-skinned frog.
+
 ## Setup and tests
 
 ```sh

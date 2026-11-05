@@ -31,9 +31,7 @@
 
 batch: batch-35-experience
 title: Experience v1 (glows, launch curtain, dressing, critters, visitors)
-status: blocked
-blocked_on:
-  - "the lead's review of batch-35-experience-pilot (glow-ground-pool, glow-window-spill, dressing-meadow, launch-sky), in a night screenshot"
+status: open
 
 refs:
   tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
@@ -50,6 +48,7 @@ jobs:
   - {id: ui-lantern-on, kind: ui, name: lantern-on, external: batch-11-ui-pilot}
 
   - id: glow-warm-halo
+    deliver: {scale: 0.5}
     kind: ui
     name: glow-warm-halo
     size: 1024x1024
@@ -80,6 +79,7 @@ jobs:
       - text: "AVOID: any object, a lamp, a window, a flame, a sun, a sphere or a visible light source, stars, rays or spikes, lens flare, hard edges, outlines, text, letters, a border, a frame, grey or colored backgrounds, banding, a halo ring. Everything outside the glow is pure black (#000000)."
 
   - id: glow-pond-shimmer
+    deliver: {scale: 0.5}
     kind: ui
     name: glow-pond-shimmer
     size: 1024x1024
@@ -150,6 +150,7 @@ jobs:
       - text: "AVOID: realistic insects, thin legs, detailed wings, outlines, text, a floor, a ground shadow, a jar, a person, a hard glow ring"
 
   - id: cloud-curtain-1
+    deliver: {scale: 0.5}
     kind: world
     name: cloud-curtain-1
     size: 1536x1024
@@ -173,6 +174,7 @@ jobs:
       - text: "AVOID: a sky behind the clouds, a background, an island, text, outlines, hard edges, black or grey clouds, dark shadows, rain, characters, a border"
 
   - id: cloud-curtain-2
+    deliver: {scale: 0.5}
     kind: world
     name: cloud-curtain-2
     size: 1536x1024
@@ -196,6 +198,7 @@ jobs:
       - text: "AVOID: a sky behind the clouds, a background, an island, text, outlines, hard edges, black or grey clouds, dark shadows, rain, characters, a border"
 
   - id: cloud-curtain-3
+    deliver: {scale: 0.5}
     kind: world
     name: cloud-curtain-3
     size: 1536x1024

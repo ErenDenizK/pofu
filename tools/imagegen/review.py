@@ -182,7 +182,7 @@ def provenance_md(job: pl.Job, meta: dict) -> str:
 - **Post-processing (human-authored, documented per art bible section 13):**
   canvas fit, {('registration ' + json.dumps(meta['registration']) + ', ') if meta.get('registration') else ''}{('alignment to the parent level ' + json.dumps(meta['alignment']) + ', ') if meta.get('alignment') else ''}style lock preset `{meta['style_lock']['preset']}` (style_lock.json v{meta['style_lock']['version']}).
 - **Files:** `{Path(meta.get('raw') or 'raw.webp').name}` is the take as generated ({meta.get('raw_encoding') or 'as generated'}), kept so the look can be re-locked; `{Path(meta['image']).name}` is the locked master the app and later edits use.
-- **Review note:** {meta.get('note') or '(none)'}
+{('- **Soft delivery:** QA and the pick ran on the full ' + 'x'.join(map(str, meta['deliver']['original_size'])) + ' take; the master and raw are delivered at x' + str(meta['deliver']['scale']) + ' (' + 'x'.join(map(str, meta['deliver']['delivered_size'])) + ', Lanczos, lossless) to stay under the upload cap. Logical size = the original size.' + chr(10)) if meta.get('deliver') else ''}- **Review note:** {meta.get('note') or '(none)'}
 
 ## References
 
