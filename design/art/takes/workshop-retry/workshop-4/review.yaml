@@ -1,0 +1,372 @@
+batch: batch-03-home-island
+contact_sheet: design/art/takes/workshop-retry/workshop-4/contact.jpg
+jobs:
+  workshop-4:
+    pick: 4
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Take4 is the only eligible take
+      after the single retry pair: all source and locked borders have zero alpha,
+      the full workshop/bench/vice remain within transparent margins and the short
+      round cream-stone chimney with rose-copper cap is correctly on the left roof
+      with no smoke. Four-blade ridge pinwheel, five-tool pegboard, doorway, roof
+      tiles and bench are preserved against the newly published workshop-3 parent.
+      Source-border exclusions: take1 bottom18 left33, take2 left6, retry3 bottom16
+      left21 nonzero alpha pixels. No cleanup, third round or QA waiver. Re-promote
+      only the explicitly queued job with force; own Harmony file and content node
+      are included. Padded L1 origin remains documented in earlier chain provenance.'
+qa_reports:
+  3:
+    job: workshop-4
+    take: 3
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.0
+    - check: value_floor
+      status: pass
+      message: lightness p5 48 (R1 59)
+      value: 48.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.08
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7364
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 4.8, off-palette 0.0% (top: #AA6622 (0.0%), #995522
+        (0.0%))'
+      value: 1.7527
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 826.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: L_p98, edge)'
+      value: 78.8
+    - check: edit_stability
+      status: pass
+      message: 99% of the parent level unchanged
+      value: 0.9918
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.02 of the parent level (drift compounds along a chain)
+      value: 1.0237
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 48.0
+        L_p50: 73.6
+        L_p95: 87.4
+        C_p50: 40.2
+        C_p95: 48.2
+        C_p99: 53.2
+        detail: 2.65
+      metrics_locked:
+        L_p5: 48.3
+        L_p50: 73.6
+        L_p95: 87.2
+        C_p50: 40.2
+        C_p95: 48.0
+        C_p99: 51.5
+        detail: 2.08
+    fingerprint: b785b9f9ec508871
+  4:
+    job: workshop-4
+    take: 4
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 48 (R1 59)
+      value: 48.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.08
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.742
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 5.7, off-palette 0.1% (top: #AA6622 (0.0%), #995522
+        (0.0%))'
+      value: 1.8846
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 826.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 78 against the world reference (outliers: L_p98, edge)'
+      value: 77.9
+    - check: edit_stability
+      status: pass
+      message: 100% of the parent level unchanged
+      value: 0.9971
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.03 of the parent level (drift compounds along a chain)
+      value: 1.0341
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 48.0
+        L_p50: 73.1
+        L_p95: 86.9
+        C_p50: 40.7
+        C_p95: 48.5
+        C_p99: 54.3
+        detail: 2.64
+      metrics_locked:
+        L_p5: 48.3
+        L_p50: 73.1
+        L_p95: 86.8
+        C_p50: 40.6
+        C_p95: 48.2
+        C_p99: 53.2
+        detail: 2.08
+    fingerprint: b785b9f9ec508871
+  2:
+    job: workshop-4
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 47.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 49 (R1 59)
+      value: 49.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.14
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7408
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 4.5, off-palette 0.0% (top: #995522 (0.0%), #AA6622
+        (0.0%))'
+      value: 1.6505
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 827.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: L_p98, edge)'
+      value: 79.1
+    - check: edit_stability
+      status: pass
+      message: 99% of the parent level unchanged
+      value: 0.9933
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.98 of the parent level (drift compounds along a chain)
+      value: 0.9841
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 49.0
+        L_p50: 75.5
+        L_p95: 87.7
+        C_p50: 38.7
+        C_p95: 47.4
+        C_p99: 52.8
+        detail: 2.74
+      metrics_locked:
+        L_p5: 49.3
+        L_p50: 75.4
+        L_p95: 87.5
+        C_p50: 38.7
+        C_p95: 47.2
+        C_p99: 50.5
+        detail: 2.14
+    fingerprint: b785b9f9ec508871
+  1:
+    job: workshop-4
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 47.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 47 (R1 59)
+      value: 47.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.16
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8013
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 5.8, off-palette 0.2% (top: #995522 (0.0%), #773311
+        (0.0%))'
+      value: 1.8529
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 826.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 78 against the world reference (outliers: L_p98, edge)'
+      value: 77.8
+    - check: edit_stability
+      status: pass
+      message: 99% of the parent level unchanged
+      value: 0.9936
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.02 of the parent level (drift compounds along a chain)
+      value: 1.0227
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 47.0
+        L_p50: 74.1
+        L_p95: 87.3
+        C_p50: 40.3
+        C_p95: 48.1
+        C_p99: 53.7
+        detail: 2.76
+      metrics_locked:
+        L_p5: 47.3
+        L_p50: 74.1
+        L_p95: 87.1
+        C_p50: 40.2
+        C_p95: 47.9
+        C_p99: 51.4
+        detail: 2.16
+    fingerprint: b785b9f9ec508871
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  note: 'Take4 is the only eligible take after the single retry pair: all source and
+    locked borders have zero alpha, the full workshop/bench/vice remain within transparent
+    margins and the short round cream-stone chimney with rose-copper cap is correctly
+    on the left roof with no smoke. Four-blade ridge pinwheel, five-tool pegboard,
+    doorway, roof tiles and bench are preserved against the newly published workshop-3
+    parent. Source-border exclusions: take1 bottom18 left33, take2 left6, retry3 bottom16
+    left21 nonzero alpha pixels. No cleanup, third round or QA waiver. Re-promote
+    only the explicitly queued job with force; own Harmony file and content node are
+    included. Padded L1 origin remains documented in earlier chain provenance.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-52addbfb-0491-4292-849a-9c9c027c9dd3.png
+  original_generated_png_sha256: 491d0758e4213710afae7ada1d78a632f68370aacd0bf77794632ca3266c841b
+  inbox_png_sha256: 2dc95539fccfd7ccd12a991fc6c14adb36408a3445a0eaa8fab1443477263c5e
+  rgba_sha256: 3371ea916a4017427308c8e10e070d5873494ae17b0dccd72faf32febd4a3867
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b785b9f9ec508871
+- take: 2
+  source_file: /workspace/generated_images/exec-3eaee2e3-f5c0-4c47-a0d1-7493a8ad22b6.png
+  original_generated_png_sha256: 7514a45ebc8e114013936cb7383a29477788cdf3fa00baaa7d14b3c066be2c81
+  inbox_png_sha256: e63cb80bd04d457149c5cf192f8884e7e666c986d0bb88367756c7daec358f52
+  rgba_sha256: 37474a80ead5edea44d7431d6977f26c11475e5f3be138d35cb098aea69d2196
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b785b9f9ec508871
+- take: 3
+  source_file: /workspace/generated_images/exec-8dbf089d-b1bc-48d7-aaf2-d1d687317212.png
+  original_generated_png_sha256: 6dcceeff70ebd466f8136b8917daae1f3e242d1bbaa36aa0fad3fa76ac61b388
+  inbox_png_sha256: 8870564c037c942f383b3e6fde54da2e1b0993f954ab14fdc8978beceac62da8
+  rgba_sha256: ed6c557cf3689e57a995770ded0bbc77679ce838dbcb5f438f77e608d5bacbc0
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b785b9f9ec508871
+- take: 4
+  source_file: /workspace/generated_images/exec-812133c3-9d01-4294-b2ca-fc8531ad1626.png
+  original_generated_png_sha256: 574c072bce3720dda35630ce8a57dcf6a0db57e1e7ff3d18756fbac88bc6ad94
+  inbox_png_sha256: 21ead9ca4d88f86d850be08bde2df9116ef9a17ab9ab6fd0d3d3b89a279d5787
+  rgba_sha256: 728f16553f634fb740346c6bbb9efdef931df17f183477053d1be4dcd6c1961e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b785b9f9ec508871
