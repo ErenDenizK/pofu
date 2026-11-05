@@ -1,0 +1,461 @@
+batch: batch-30b-decor-seasons-1-v2
+manifest: tools/imagegen/manifest/batch-30b-decor-seasons-1-v2.yaml
+manifest_sha256: f2b7485dbd13da0c8e2f1095a57d03a0574b31c65634f87d330f509f139b19c6
+contact_sheet: design/art/takes/batch-30b-decor-seasons-1-v2/x-decor-bahar-tulip-pots-v2/contact.jpg
+jobs:
+  x-decor-bahar-tulip-pots-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'After exactly two initial takes and the sole unchanged-prompt retry pair,
+      no take is eligible: visible locked alpha-over24 widths 360/360/360/360px all
+      exceed the literal one-third of1024 cap341.33px. Official hard QA passes on
+      all4 and exploration style/light warnings are advisory; only the observed width
+      brief fails. Independent original and locked content review confirms correct
+      inventories and smooth material scope, including exactly three speckled eggs
+      and cream down only inside the nest where applicable. No regeneration beyond
+      the one allowed retry, no manual resizing or alpha cleanup. All four immutable
+      sources retained. This job alone is skipped; independent corner plates continue.'
+qa_reports:
+  1:
+    job: x-decor-bahar-tulip-pots-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 55 (R1 51)
+      value: 55.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 31 (at most 22), p98 91 (at least 90), spread 60
+        (at least 60)'
+      value: 59.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 63 (band 55-90)'
+      value: 63.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.06 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.063
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.6 (at least 3.5)'
+      value: 7.63
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.4
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 5.7
+      value: 5.6923
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 8.9, p95 19.2, off-palette 30.6% (top: #CC6644 (3.5%), #BB5533
+        (2.9%)) (advisory in an exploration)'
+      value: 8.9435
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 61 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 60.7
+    info:
+      fit:
+        scale: 0.687
+        anchor:
+        - 461.8
+        - 843
+      registration:
+        dx: 50
+        dy: 45
+      metrics_raw:
+        L_p5: 38.9
+        L_p50: 63.4
+        L_p95: 86.8
+        C_p50: 48.6
+        C_p95: 75.9
+        C_p99: 79.3
+        detail: 3.25
+      metrics_locked:
+        L_p5: 39.3
+        L_p50: 63.2
+        L_p95: 86.3
+        C_p50: 48.1
+        C_p95: 55.2
+        C_p99: 55.5
+        detail: 2.4
+    fingerprint: 8d4d2345ae38cf44
+  2:
+    job: x-decor-bahar-tulip-pots-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 55 (R1 51)
+      value: 54.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 35 (at most 22), p98 89 (at least 90), spread 54
+        (at least 60)'
+      value: 53.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 61 (band 55-90)'
+      value: 60.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.11 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.11
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.7 (at least 3.5)'
+      value: 6.71
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.33
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 4.4
+      value: 4.3559
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 7.9, p95 19.0, off-palette 26.3% (top: #BB5533 (3.2%), #CC6644
+        (2.7%)) (advisory in an exploration)'
+      value: 7.8562
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 62 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 62.2
+    info:
+      fit:
+        scale: 0.7579
+        anchor:
+        - 470.6
+        - 888
+      registration:
+        dx: 42
+        dy: 0
+      metrics_raw:
+        L_p5: 40.1
+        L_p50: 61.2
+        L_p95: 83.9
+        C_p50: 46.2
+        C_p95: 70.6
+        C_p99: 74.0
+        detail: 3.17
+      metrics_locked:
+        L_p5: 40.5
+        L_p50: 60.9
+        L_p95: 83.4
+        C_p50: 46.1
+        C_p95: 54.7
+        C_p99: 55.2
+        detail: 2.33
+    fingerprint: 8d4d2345ae38cf44
+  3:
+    job: x-decor-bahar-tulip-pots-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 54 (R1 51)
+      value: 54.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 39 (at most 22), p98 92 (at least 90), spread 54
+        (at least 60)'
+      value: 53.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 63 (band 55-90)'
+      value: 62.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.08 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.078
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.7 (at least 3.5)'
+      value: 6.73
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.17
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 4.5
+      value: 4.4534
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 7.3, p95 17.8, off-palette 23.3% (top: #CC6644 (3.6%), #BB5533
+        (2.4%)) (advisory in an exploration)'
+      value: 7.2793
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 71 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 71.3
+    info:
+      fit:
+        scale: 0.72
+        anchor:
+        - 474.0
+        - 831
+      registration:
+        dx: 38
+        dy: 57
+      metrics_raw:
+        L_p5: 43.9
+        L_p50: 63.1
+        L_p95: 88.9
+        C_p50: 45.7
+        C_p95: 70.2
+        C_p99: 74.3
+        detail: 2.91
+      metrics_locked:
+        L_p5: 44.4
+        L_p50: 62.9
+        L_p95: 88.7
+        C_p50: 45.7
+        C_p95: 54.2
+        C_p99: 54.6
+        detail: 2.17
+    fingerprint: 8d4d2345ae38cf44
+  4:
+    job: x-decor-bahar-tulip-pots-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 55 (R1 51)
+      value: 55.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 34 (at most 22), p98 92 (at least 90), spread 57
+        (at least 60)'
+      value: 57.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 62 (band 55-90)'
+      value: 62.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.09 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.09
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.7 (at least 3.5)'
+      value: 7.65
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.39
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 4.4
+      value: 4.3938
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 8.2, p95 20.5, off-palette 24.5% (top: #BB5533 (2.4%), #DD6655
+        (1.6%)) (advisory in an exploration)'
+      value: 8.2464
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 65 against the world reference (outliers: L_p2, detail,
+        edge)'
+      value: 65.4
+    info:
+      fit:
+        scale: 0.7484
+        anchor:
+        - 479.7
+        - 804
+      registration:
+        dx: 32
+        dy: 84
+      metrics_raw:
+        L_p5: 40.3
+        L_p50: 62.1
+        L_p95: 88.2
+        C_p50: 45.6
+        C_p95: 73.0
+        C_p99: 77.1
+        detail: 3.17
+      metrics_locked:
+        L_p5: 40.7
+        L_p50: 62.1
+        L_p95: 87.9
+        C_p50: 45.6
+        C_p95: 55.3
+        C_p99: 56.0
+        detail: 2.39
+    fingerprint: 8d4d2345ae38cf44
+manual_review:
+  observed_note: 'After exactly two initial takes and the sole unchanged-prompt retry
+    pair, no take is eligible: visible locked alpha-over24 widths 360/360/360/360px
+    all exceed the literal one-third of1024 cap341.33px. Official hard QA passes on
+    all4 and exploration style/light warnings are advisory; only the observed width
+    brief fails. Independent original and locked content review confirms correct inventories
+    and smooth material scope, including exactly three speckled eggs and cream down
+    only inside the nest where applicable. No regeneration beyond the one allowed
+    retry, no manual resizing or alpha cleanup. All four immutable sources retained.
+    This job alone is skipped; independent corner plates continue.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-bahar-tulip-pots-v2
+  take: 1
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-e6663941-c9ff-4807-a98c-a8871452e898.png
+  returned_at: '2026-11-05T22:44:47.199Z'
+  prompt_sha256: 5b22f93b0bafc787363c1c83eacae03b4c9aa9044e71bd99c57b4dc7e4dd9ccf
+  fingerprint: 8d4d2345ae38cf44
+  saved_at: '2026-11-05T22:44:47.536845+00:00'
+  original_generated_png_sha256: d4e9b51b56eb94409462234dd5ccb64e261c77420ff1d27dab672da414e99f56
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 78603fdde419ce93ec43621ae52eb4448d4e756ab349879a8e219d3c562ac320
+  inbox_png_sha256: d68164a3a2cdcfe93bef4af4d53647f987a3035c79295960e93f1060db47f2cc
+  qa_sha256: 2b605449cf749819911363e488e3336fefe852611f48541bac20a81f746a009c
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-bahar-tulip-pots-v2
+  take: 2
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-6b8528fc-092c-4854-8a84-1ab372366dba.png
+  returned_at: '2026-11-05T22:43:26.639Z'
+  prompt_sha256: 5b22f93b0bafc787363c1c83eacae03b4c9aa9044e71bd99c57b4dc7e4dd9ccf
+  fingerprint: 8d4d2345ae38cf44
+  saved_at: '2026-11-05T22:43:26.968772+00:00'
+  original_generated_png_sha256: 9dccdf6e6a38f5ac3c3d5975fa9d6715789354655451e5498484310d6339b128
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 03b4cc87277221dd36a2210e719d84c33db378a4ebf2698fce43e73fb1147252
+  inbox_png_sha256: 1d3ab188ca9afba825ad480df87bd4bc57cf949b643311905435e68a7cfca429
+  qa_sha256: 602bc19e612bf4e24603206b7cfff5c4e0c1d2a063adbc011dee918f8978e010
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-bahar-tulip-pots-v2
+  take: 3
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-c0f5dd92-3bff-4183-af80-a75608f94c3f.png
+  returned_at: '2026-11-05T22:58:22.045Z'
+  prompt_sha256: 5b22f93b0bafc787363c1c83eacae03b4c9aa9044e71bd99c57b4dc7e4dd9ccf
+  fingerprint: 8d4d2345ae38cf44
+  saved_at: '2026-11-05T22:58:22.350842+00:00'
+  original_generated_png_sha256: 2dfe1ba48b102f4cfda55007a526643ba794a93dadecf86f60f90d65616ae251
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 16d7b0cb0c083518aabd98838c416bdc8088a4102fc340bff30bfd74ca4d4ab6
+  inbox_png_sha256: 056a126e12cd18161760c61d9ef94208b73ef8f2a0c0509fd9995497a11a6e33
+  qa_sha256: 65288fa37ac29b641c4d602f78fb59d21025ad32786b4c3cc02da61cacfa0f5e
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-bahar-tulip-pots-v2
+  take: 4
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-546aed94-e200-44a1-9232-0cb677bc06b9.png
+  returned_at: '2026-11-05T22:58:17.502Z'
+  prompt_sha256: 5b22f93b0bafc787363c1c83eacae03b4c9aa9044e71bd99c57b4dc7e4dd9ccf
+  fingerprint: 8d4d2345ae38cf44
+  saved_at: '2026-11-05T22:58:17.843482+00:00'
+  original_generated_png_sha256: b8fd85181425c73955266b88ffed32fc7973b0c971dcd4ca8865d0130fbee0fe
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 36c055a6daf2dda710ec802702af1fe6b4a78e0ce49b32d17cf77d359cf58846
+  inbox_png_sha256: 889fbd67668c425356bf197fc75ce77d8cc993294e71cd7ccb967f85c0706a91
+  qa_sha256: ec6c79864e8ed379277e1bfa7c0c0398b9d02c204fb20f74623967b4ec1919c0
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 2deb939f9f47ef2bb97f228252ebe94dd793f3088c676809c05a571e0747222d
