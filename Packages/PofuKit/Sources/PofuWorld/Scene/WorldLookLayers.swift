@@ -178,41 +178,24 @@ struct HD2DLayer: View {
         Color(red: c.r, green: c.g, blue: c.b).opacity(min(max(opacity, 0), 1))
     }
 
+    /// The beams are blurred once (see `ShaftImageCache`); each frame only
+    /// sways and fades that image.
     private func drawShafts(in context: inout GraphicsContext, size: CGSize) {
-        guard light.shafts > 0.02 else { return }
+        guard light.shafts > 0.02, let image = shaftImage else { return }
         let sun = CGPoint(x: light.sunX * size.width, y: light.sunY * size.height)
-        let target = CGPoint(x: size.width * 0.62, y: size.height * 0.78)
-        let base = atan2(target.y - sun.y, target.x - sun.x)
-        let length = hypot(size.width, size.height) * 1.1
         var layer = context
-        layer.addFilter(.blur(radius: 14))
-        let beams: [(angle: Double, width: Double, strength: Double)] = [
-            (-0.30, 70, 0.8), (-0.13, 46, 1.0), (0.02, 96, 0.7), (0.17, 40, 0.9), (0.31, 64, 0.6),
-        ]
-        let warm = GradeRGB(1, 0.86, 0.62)
-        for (i, beam) in beams.enumerated() {
-            let sway = sin(time * 0.21 + Double(i) * 1.7) * 0.012
-            let a = base + beam.angle * 0.55 + sway
-            let dir = CGPoint(x: cos(a), y: sin(a))
-            let normal = CGPoint(x: -dir.y, y: dir.x)
-            let w0 = beam.width * 0.25, w1 = beam.width
-            var path = Path()
-            path.move(to: CGPoint(x: sun.x + normal.x * w0, y: sun.y + normal.y * w0))
-            path.addLine(to: CGPoint(x: sun.x + dir.x * length + normal.x * w1, y: sun.y + dir.y * length + normal.y * w1))
-            path.addLine(to: CGPoint(x: sun.x + dir.x * length - normal.x * w1, y: sun.y + dir.y * length - normal.y * w1))
-            path.addLine(to: CGPoint(x: sun.x - normal.x * w0, y: sun.y - normal.y * w0))
-            path.closeSubpath()
-            let strength = 0.26 * light.shafts * beam.strength * (0.85 + 0.15 * sin(time * 0.37 + Double(i)))
-            layer.fill(path, with: .linearGradient(
-                Gradient(stops: [
-                    .init(color: color(warm, strength * 0.4), location: 0),
-                    .init(color: color(warm, strength), location: 0.25),
-                    .init(color: color(warm, 0), location: 0.9),
-                ]),
-                startPoint: sun,
-                endPoint: CGPoint(x: sun.x + dir.x * length, y: sun.y + dir.y * length)
-            ))
-        }
+        let sway = sin(time * 0.21) * 0.012
+        layer.translateBy(x: sun.x, y: sun.y)
+        layer.rotate(by: .radians(sway))
+        layer.translateBy(x: -sun.x, y: -sun.y)
+        layer.opacity = min(max(light.shafts, 0), 1) * (0.85 + 0.15 * sin(time * 0.37))
+        layer.draw(image, in: CGRect(origin: .zero, size: size))
+    }
+
+    /// The pre-rendered beams, or nil when the shafts are off.
+    private var shaftImage: Image? {
+        guard light.shafts > 0.02 else { return nil }
+        return ShaftImageCache.image(size: size, sunX: light.sunX, sunY: light.sunY)
     }
 
     private func drawSunBloom(in context: inout GraphicsContext, size: CGSize) {
@@ -435,3 +418,88 @@ struct HD2DLayer: View {
     }
 }
 #endif
+
+// MARK: - Light shafts, rendered once
+
+/// The sun's five beams at full strength, blurred, drawn into an image
+/// once per size and sun position. The per-frame Canvas only rotates and
+/// fades the image instead of blurring five paths every frame.
+@MainActor
+private enum ShaftImageCache {
+    private struct Key: Equatable {
+        var width: Double
+        var height: Double
+        var sunX: Double
+        var sunY: Double
+    }
+
+    private static var key: Key?
+    private static var cached: Image?
+
+    static func image(size: CGSize, sunX: Double, sunY: Double) -> Image? {
+        let wanted = Key(
+            width: Double(size.width).rounded(),
+            height: Double(size.height).rounded(),
+            sunX: (sunX * 200).rounded() / 200,
+            sunY: (sunY * 200).rounded() / 200
+        )
+        if key == wanted { return cached }
+        let renderer = ImageRenderer(content: ShaftArt(size: size, sunX: wanted.sunX, sunY: wanted.sunY))
+        // The beams are blurred, so half resolution is indistinguishable.
+        renderer.scale = 0.5
+        renderer.isOpaque = false
+        let image = renderer.uiImage.map { Image(uiImage: $0) }
+        key = wanted
+        cached = image
+        return image
+    }
+}
+
+/// The five beams, unswayed and at full strength, blurred.
+private struct ShaftArt: View {
+    let size: CGSize
+    let sunX: Double
+    let sunY: Double
+
+    var body: some View {
+        Canvas(rendersAsynchronously: false) { context, canvas in
+            let sun = CGPoint(x: sunX * canvas.width, y: sunY * canvas.height)
+            let target = CGPoint(x: canvas.width * 0.62, y: canvas.height * 0.78)
+            let base = atan2(target.y - sun.y, target.x - sun.x)
+            let length = hypot(canvas.width, canvas.height) * 1.1
+            var layer = context
+            layer.addFilter(.blur(radius: 14))
+            let beams: [(angle: Double, width: Double, strength: Double)] = [
+                (-0.30, 70, 0.8), (-0.13, 46, 1.0), (0.02, 96, 0.7), (0.17, 40, 0.9), (0.31, 64, 0.6),
+            ]
+            for beam in beams {
+                let a = base + beam.angle * 0.55
+                let dir = CGPoint(x: cos(a), y: sin(a))
+                let normal = CGPoint(x: -dir.y, y: dir.x)
+                let w0 = beam.width * 0.25, w1 = beam.width
+                var path = Path()
+                path.move(to: CGPoint(x: sun.x + normal.x * w0, y: sun.y + normal.y * w0))
+                path.addLine(to: CGPoint(x: sun.x + dir.x * length + normal.x * w1, y: sun.y + dir.y * length + normal.y * w1))
+                path.addLine(to: CGPoint(x: sun.x + dir.x * length - normal.x * w1, y: sun.y + dir.y * length - normal.y * w1))
+                path.addLine(to: CGPoint(x: sun.x - normal.x * w0, y: sun.y - normal.y * w0))
+                path.closeSubpath()
+                let strength = 0.26 * beam.strength
+                let end = CGPoint(x: sun.x + dir.x * length, y: sun.y + dir.y * length)
+                layer.fill(path, with: .linearGradient(
+                    Gradient(stops: [
+                        .init(color: Self.warm(strength * 0.4), location: 0),
+                        .init(color: Self.warm(strength), location: 0.25),
+                        .init(color: Self.warm(0), location: 0.9),
+                    ]),
+                    startPoint: sun,
+                    endPoint: end
+                ))
+            }
+        }
+        .frame(width: size.width, height: size.height)
+    }
+
+    private static func warm(_ opacity: Double) -> Color {
+        Color(red: 1, green: 0.86, blue: 0.62).opacity(min(max(opacity, 0), 1))
+    }
+}
