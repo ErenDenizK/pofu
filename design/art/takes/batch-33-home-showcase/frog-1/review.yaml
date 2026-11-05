@@ -1,0 +1,367 @@
+batch: batch-33-home-showcase
+contact_sheet: design/art/takes/batch-33-home-showcase/frog-1/contact.jpg
+jobs:
+  frog-1:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after its sole unchanged-prompt retry. All4 hard palette_drift
+      checks fail: mean dE7.6626,8.6123,12.2916,9.7021. Independent source/locked
+      review confirms dense fur on head, belly and limbs in both rounds, contrary
+      to explicit smooth velvety skin/no-fur brief. Initial widths76.2/73.6percent
+      also exceed approximate62percent, but fur and hard palette already exclude every
+      take. The inherited style-anchor-v1 fur wording conflicts with the specific
+      frog brief, and the character palette does not clearly cover sage; propose lead
+      style/material and palette review, never edit the manifest or waive checks here.
+      No additional images/rephrasing, cleanup or promotion. Preserve all4; only true
+      child frog-sing skips. Automated failures: t1 palette_drift: mean dE 7.7, p95
+      18.1, off-palette 33.1% (top: #CCBB88 (8.3%), #BBAA77 (6.1%)); t2 palette_drift:
+      mean dE 8.6, p95 20.4, off-palette 36.9% (top: #BBAA77 (5.1%), #BBBB88 (4.9%));
+      t3 palette_drift: mean dE 12.3, p95 22.5, off-palette 54.0% (top: #CCBB77 (10.4%),
+      #BBAA66 (9.0%)); t4 palette_drift: mean dE 9.7, p95 20.4, off-palette 43.7%
+      (top: #CCBB88 (8.3%), #BBAA77 (5.1%)).'
+qa_reports:
+  4:
+    job: frog-1
+    take: 4
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 33.8
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 14 (at most 22), p98 93 (at least 90), spread 80
+        (at least 60)'
+      value: 79.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 80.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.09 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.09
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.5 (at least 3.5)'
+      value: 3.54
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.8 (R1 5.3)
+      value: 3.77
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 9.7, p95 20.4, off-palette 43.7% (top: #CCBB88 (8.3%), #BBAA77
+        (5.1%))'
+      value: 9.7021
+    - check: ground_line
+      status: pass
+      message: feet at 86.5% of the height (contract 88%)
+      value: 0.8646
+    - check: no_ground_shadow
+      status: warn
+      message: a ground shadow seems painted in
+    - check: harmony
+      status: pass
+      message: 'harmony score 88 against the char reference (outliers: C_p95)'
+      value: 87.8
+    info:
+      metrics_raw:
+        L_p5: 52.3
+        L_p50: 81.0
+        L_p95: 92.5
+        C_p50: 25.5
+        C_p95: 33.8
+        C_p99: 36.3
+        detail: 3.73
+      metrics_locked:
+        L_p5: 52.3
+        L_p50: 81.0
+        L_p95: 92.5
+        C_p50: 25.5
+        C_p95: 33.8
+        C_p99: 36.3
+        detail: 3.77
+    fingerprint: d7c779e09e97d0e6
+  2:
+    job: frog-1
+    take: 2
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 31.7
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 17 (at most 22), p98 93 (at least 90), spread 77
+        (at least 60)'
+      value: 76.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 80.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.145
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.4 (at least 3.5)'
+      value: 3.43
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.6 (R1 5.3)
+      value: 3.6
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 8.6, p95 20.4, off-palette 36.9% (top: #BBAA77 (5.1%), #BBBB88
+        (4.9%))'
+      value: 8.6123
+    - check: ground_line
+      status: pass
+      message: feet at 88.9% of the height (contract 88%)
+      value: 0.8893
+    - check: no_ground_shadow
+      status: warn
+      message: a ground shadow seems painted in
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the char reference (outliers: C_p95)'
+      value: 87.2
+    info:
+      metrics_raw:
+        L_p5: 39.3
+        L_p50: 80.7
+        L_p95: 92.5
+        C_p50: 23.0
+        C_p95: 31.7
+        C_p99: 32.7
+        detail: 3.56
+      metrics_locked:
+        L_p5: 39.3
+        L_p50: 80.7
+        L_p95: 92.5
+        C_p50: 23.0
+        C_p95: 31.7
+        C_p99: 32.7
+        detail: 3.6
+    fingerprint: d7c779e09e97d0e6
+  3:
+    job: frog-1
+    take: 3
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.6
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 11 (at most 22), p98 93 (at least 90), spread 82
+        (at least 60)'
+      value: 82.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 77.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.05 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.047
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.7 (at least 3.5)'
+      value: 3.66
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.0 (R1 5.3)
+      value: 4.05
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 12.3, p95 22.5, off-palette 54.0% (top: #CCBB77 (10.4%), #BBAA66
+        (9.0%))'
+      value: 12.2916
+    - check: ground_line
+      status: pass
+      message: feet at 88.8% of the height (contract 88%)
+      value: 0.888
+    - check: no_ground_shadow
+      status: warn
+      message: a ground shadow seems painted in
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the char reference (outliers: none)'
+      value: 86.2
+    info:
+      metrics_raw:
+        L_p5: 31.8
+        L_p50: 77.5
+        L_p95: 92.2
+        C_p50: 33.7
+        C_p95: 37.6
+        C_p99: 39.5
+        detail: 4.01
+      metrics_locked:
+        L_p5: 31.8
+        L_p50: 77.5
+        L_p95: 92.2
+        C_p50: 33.7
+        C_p95: 37.6
+        C_p99: 39.5
+        detail: 4.05
+    fingerprint: d7c779e09e97d0e6
+  1:
+    job: frog-1
+    take: 1
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 31 (R1 51)
+      value: 31.4
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 14 (at most 22), p98 93 (at least 90), spread 80
+        (at least 60)'
+      value: 79.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 81.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.17 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.173
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.9 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.87
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.4 (R1 5.3)
+      value: 3.42
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 7.7, p95 18.1, off-palette 33.1% (top: #CCBB88 (8.3%), #BBAA77
+        (6.1%))'
+      value: 7.6626
+    - check: ground_line
+      status: pass
+      message: feet at 89.5% of the height (contract 88%)
+      value: 0.8945
+    - check: no_ground_shadow
+      status: warn
+      message: a ground shadow seems painted in
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the char reference (outliers: C_p95)'
+      value: 86.9
+    info:
+      metrics_raw:
+        L_p5: 49.0
+        L_p50: 81.5
+        L_p95: 92.5
+        C_p50: 24.0
+        C_p95: 31.4
+        C_p99: 33.0
+        detail: 3.38
+      metrics_locked:
+        L_p5: 49.0
+        L_p50: 81.5
+        L_p95: 92.5
+        C_p50: 24.0
+        C_p95: 31.4
+        C_p99: 33.0
+        detail: 3.42
+    fingerprint: d7c779e09e97d0e6
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: 'Skipped after its sole unchanged-prompt retry. All4 hard palette_drift checks
+    fail: mean dE7.6626,8.6123,12.2916,9.7021. Independent source/locked review confirms
+    dense fur on head, belly and limbs in both rounds, contrary to explicit smooth
+    velvety skin/no-fur brief. Initial widths76.2/73.6percent also exceed approximate62percent,
+    but fur and hard palette already exclude every take. The inherited style-anchor-v1
+    fur wording conflicts with the specific frog brief, and the character palette
+    does not clearly cover sage; propose lead style/material and palette review, never
+    edit the manifest or waive checks here. No additional images/rephrasing, cleanup
+    or promotion. Preserve all4; only true child frog-sing skips.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-f6c385d7-57f8-4b19-8e66-5875294fc4db.png
+  original_generated_png_sha256: aa5a81799437c797ff7ac0ad7cc65d59250f07223a0eda22534f78ec4134547f
+  inbox_png_sha256: 8fdb0584e69d7a96a9bf00ffc179d8aa5bd34803b12b4f1037b9f3e2c78e619d
+  rgba_sha256: 4ff8ad0a88006ecc633b109ec94d2cc9298f0d313e7e354bf14ae142e72eaec3
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d7c779e09e97d0e6
+- take: 2
+  source_file: /workspace/generated_images/exec-6c4f6bf3-b166-45c1-afa4-5d3ede844fcb.png
+  original_generated_png_sha256: b1748ec7d7bdfa2be3a256e23d22afd5bf481da07c5681513dc8215e2ef2855e
+  inbox_png_sha256: fc43aa67889454dfda61763afebcc15bad4544199b0ef32c063b7dcfef30dad9
+  rgba_sha256: 91fb79e09d6f9fdd9bdf85b6bd69c2f80da036d906b6919758498e485305d194
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d7c779e09e97d0e6
+- take: 3
+  source_file: /workspace/generated_images/exec-cfa6231d-a4fd-420b-9da7-6a451e90c67f.png
+  original_generated_png_sha256: 45d29c38217ccbcee9c3ecb632db1d7756bb7509606092a4636f95c5ce2520ff
+  inbox_png_sha256: e137f82fc9a55f90f66e1679748ee0a7ba47e6ec64710d887e486ba03924ee1f
+  rgba_sha256: 63ef6376435afb208dfb9084cf44e6b2f665f9a78c5cac1edd2dc6bdad2919f7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d7c779e09e97d0e6
+- take: 4
+  source_file: /workspace/generated_images/exec-62053ee9-f09c-43bd-9bf8-e13beed94dd2.png
+  original_generated_png_sha256: e52b9c80dbb9277cb4b9e10ee79f4194a139fbd3a561210d2a631a26f5b9b010
+  inbox_png_sha256: 70258ef895d0504bb051f3aec5b4fb4a38ca2f1d064140a5dcf11247ca312a82
+  rgba_sha256: 80df0fbe0b4a4e74297697977f59152fce455ce0e9d6e68c8ec6d375b320b544
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d7c779e09e97d0e6
