@@ -1,0 +1,204 @@
+batch: batch-29-residents-at-work-v2
+manifest: tools/imagegen/manifest/batch-29-residents-at-work-v2.yaml
+manifest_sha256: 6951c19bc086d726f1ca8c3cc234be9930dabe3dbd8b5a12632fb7eadf1e3c9d
+contact_sheet: design/art/takes/batch-29-residents-at-work-v2/x-work-findik-v2/contact.jpg
+jobs:
+  x-work-findik-v2:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both initial source and locked
+      takes preserve the canonical hedgehog spines/face and approved workshop with
+      pegboard, gear sign and vise. A visible tiny tongue shows concentration; one
+      paw steadies the simple-hand blank clock and the other wooden screwdriver contacts
+      its brass screw. No numbers, text, extra limb or changed station. Root accepts
+      independent full-size inspection; choose lowest load among hard-QA passing candidates,
+      then Harmony. All style/light warnings remain advisory. Exploration only, never
+      promote.
+qa_reports:
+  1:
+    job: x-work-findik-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 48.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 48 (at most 22), p98 94 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 78.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.24 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.243
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.2 (at least 3.5)'
+      value: 4.19
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.46
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0511
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.0, p95 8.5, off-palette 1.4% (top: #BB6633 (0.2%), #CC7744
+        (0.2%))'
+      value: 2.9732
+    info:
+      metrics_raw:
+        L_p5: 55.4
+        L_p50: 82.1
+        L_p95: 92.7
+        C_p50: 27.4
+        C_p95: 49.4
+        C_p99: 58.7
+        detail: 3.14
+      metrics_locked:
+        L_p5: 55.7
+        L_p50: 82.1
+        L_p95: 92.5
+        C_p50: 27.4
+        C_p95: 48.8
+        C_p99: 56.8
+        detail: 2.46
+    fingerprint: 3b90ba37d3e304ab
+  2:
+    job: x-work-findik-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 52 (R1 51)
+      value: 52.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 45 (at most 22), p98 94 (at least 90), spread 49
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 49.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 77.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.21 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.208
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.7 (at least 3.5)'
+      value: 4.74
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.0 (R1 5.3)
+      value: 3.0
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0058
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 9.7, off-palette 1.1% (top: #DD8833 (0.2%), #CC7722
+        (0.1%))'
+      value: 3.3441
+    info:
+      metrics_raw:
+        L_p5: 52.0
+        L_p50: 82.1
+        L_p95: 92.3
+        C_p50: 29.1
+        C_p95: 52.3
+        C_p99: 60.5
+        detail: 3.66
+      metrics_locked:
+        L_p5: 52.3
+        L_p50: 82.0
+        L_p95: 91.9
+        C_p50: 29.1
+        C_p95: 52.1
+        C_p99: 58.6
+        detail: 3.0
+    fingerprint: 3b90ba37d3e304ab
+manual_review:
+  observed_note: Both initial source and locked takes preserve the canonical hedgehog
+    spines/face and approved workshop with pegboard, gear sign and vise. A visible
+    tiny tongue shows concentration; one paw steadies the simple-hand blank clock
+    and the other wooden screwdriver contacts its brass screw. No numbers, text, extra
+    limb or changed station. Root accepts independent full-size inspection; choose
+    lowest load among hard-QA passing candidates, then Harmony. All style/light warnings
+    remain advisory. Exploration only, never promote.
+  excluded_takes: []
+sources:
+- batch: batch-29-residents-at-work-v2
+  job: x-work-findik-v2
+  take: 1
+  round: 1
+  logical_run: 20261105-b29-v2-residents
+  source_file: /workspace/generated_images/exec-4780014f-b3bb-450a-99c3-44ef6837c8cd.png
+  returned_at: '2026-11-05T21:50:28.372Z'
+  prompt_sha256: 34cf8c4ae92a29688d03d1a0ec709c0e9a59fbfcf950b82f01f0d79d5e92cc29
+  fingerprint: 3b90ba37d3e304ab
+  saved_at: '2026-11-05T21:50:28.864108+00:00'
+  original_generated_png_sha256: f59dbcb47f09a9ad1b7266135b03a504c05730d319ea3f033a5751d25dcbe502
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: cc091c14ab14e6b2b7af9a2623a6be63849e2ad0545ed1f2c25eba9440e8dba8
+  inbox_png_sha256: f65d5c5cee82858d9ae6132ccf59c075ed6e08aa4637362785e539726953fb78
+  qa_sha256: c927dc4ec76afd1974de09c0809e86a9464f040db9c6114834310553f9709400
+- batch: batch-29-residents-at-work-v2
+  job: x-work-findik-v2
+  take: 2
+  round: 1
+  logical_run: 20261105-b29-v2-residents
+  source_file: /workspace/generated_images/exec-564e5adf-e7c2-450d-9300-02e8e811f5f4.png
+  returned_at: '2026-11-05T21:51:37.162Z'
+  prompt_sha256: 34cf8c4ae92a29688d03d1a0ec709c0e9a59fbfcf950b82f01f0d79d5e92cc29
+  fingerprint: 3b90ba37d3e304ab
+  saved_at: '2026-11-05T21:51:37.646291+00:00'
+  original_generated_png_sha256: 3abf26674ec673b338d3295fb479bd003bee012a40ce97ba52b2d96d88ae5e31
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 9b611e91b9b59fa5407e1cd9012b6e00dd823972ebaa725c90358463088db64b
+  inbox_png_sha256: 0341ce11ce874371cca4dd117b1fcd66fe984a35ed0c2cc4ee7999e85809371f
+  qa_sha256: 4798e46d38b2e3a8fb2f18dc71b38b30d0086bfd7b694ac202a0fc5ae8f19652
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 4b99e1e7f1e6c31421854cd25b498043677e7b9d16b9b10e8e3b8a2ff8a18228
