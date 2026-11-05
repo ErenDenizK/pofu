@@ -1,0 +1,251 @@
+batch: batch-28-home-shops-concepts
+manifest: tools/imagegen/manifest/batch-28-home-shops-concepts.yaml
+manifest_sha256: 7866350af23f3d1408e3b011e6ade660132308fdd6d82a5be10328050fe3e144
+contact_sheet: design/art/takes/batch-28-home-shops-concepts/x-hive-1/contact.jpg
+jobs:
+  x-hive-1:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show the single chunky honey
+      straw skep, low flat stone slab, lavender and exactly three simple hovering
+      bees, with no lettering, floor or visible guide. Bee shapes are cream-winged
+      rounded blobs with broad body bands and one eye, without legs, antennae or wing
+      veins; their small-display reading is soft bee dots rather than detailed insects.
+      Take1 is manually excluded for broad scattered translucent paint outside the
+      skep/bees, visible around the top and base on dark background. Take2 retains
+      the clean simpler alpha silhouette and passes hard QA; advisory day light/value/haze
+      warnings remain recorded. The exploration brief here fills the station footprint,
+      distinct from the half-width production pilot requirement. Never promoted.
+qa_reports:
+  1:
+    job: x-hive-1
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 43 (at most 22), p98 89 (at least 90), spread 45
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 45.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.23 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.235
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.6 (at least 3.5)'
+      value: 3.59
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.74
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7564
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 7.5, off-palette 2.5% (top: #AA8899 (0.7%), #AA88AA
+        (0.3%))'
+      value: 1.9634
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the world reference (outliers: L_p98, edge)'
+      value: 79.5
+    info:
+      fit:
+        scale: 0.8701
+        anchor:
+        - 507.0
+        - 972
+      registration:
+        dx: 5
+        dy: -72
+      metrics_raw:
+        L_p5: 52.8
+        L_p50: 75.2
+        L_p95: 87.0
+        C_p50: 41.4
+        C_p95: 50.7
+        C_p99: 52.6
+        detail: 2.41
+      metrics_locked:
+        L_p5: 53.8
+        L_p50: 75.1
+        L_p95: 86.6
+        C_p50: 41.4
+        C_p95: 50.5
+        C_p99: 52.0
+        detail: 1.74
+    fingerprint: f8ef5ef166220eaf
+  2:
+    job: x-hive-1
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 41 (at most 22), p98 88 (at least 90), spread 47
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 47.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 75.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.255
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.8 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.77
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.58
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8537
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 5.1, off-palette 1.0% (top: #BB8899 (0.2%), #AA9966
+        (0.2%))'
+      value: 1.5003
+    - check: station_anchor
+      status: pass
+      message: on the anchor
+      value: 900.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 77 against the world reference (outliers: L_p2, L_p98,
+        edge)'
+      value: 77.0
+    info:
+      fit:
+        scale: 0.9034
+        anchor:
+        - 502.7
+        - 946
+      registration:
+        dx: 9
+        dy: -45
+      metrics_raw:
+        L_p5: 45.1
+        L_p50: 75.6
+        L_p95: 87.3
+        C_p50: 38.3
+        C_p95: 48.3
+        C_p99: 49.7
+        detail: 2.25
+      metrics_locked:
+        L_p5: 44.9
+        L_p50: 75.5
+        L_p95: 87.0
+        C_p50: 38.3
+        C_p95: 48.1
+        C_p99: 49.3
+        detail: 1.58
+    fingerprint: f8ef5ef166220eaf
+manual_review:
+  observed_note: Both show the single chunky honey straw skep, low flat stone slab,
+    lavender and exactly three simple hovering bees, with no lettering, floor or visible
+    guide. Bee shapes are cream-winged rounded blobs with broad body bands and one
+    eye, without legs, antennae or wing veins; their small-display reading is soft
+    bee dots rather than detailed insects. Take1 is manually excluded for broad scattered
+    translucent paint outside the skep/bees, visible around the top and base on dark
+    background. Take2 retains the clean simpler alpha silhouette and passes hard QA;
+    advisory day light/value/haze warnings remain recorded. The exploration brief
+    here fills the station footprint, distinct from the half-width production pilot
+    requirement. Never promoted.
+  excluded_takes:
+  - 1
+sources:
+- batch: batch-28-home-shops-concepts
+  job: x-hive-1
+  take: 1
+  round: 1
+  logical_run: 20261105-night-workshop3-backlog28-hive
+  source_file: /workspace/generated_images/exec-6d0b0d4d-126c-4969-be77-70fdc8b27ebb.png
+  returned_at: '2026-11-05T18:35:48.981Z'
+  prompt_sha256: 4e818f9d1940b5324720cee49c434cbebb29245c3cf2a2cd97916dfb2226ea67
+  fingerprint: f8ef5ef166220eaf
+  saved_at: '2026-11-05T18:35:49.622994+00:00'
+  original_generated_png_sha256: 2773ef70b92451f59f209cbd146d64c34bf2b9d526f6d35c0b852288c450a343
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: a943adea555b75ef11898b10387effe7f28b78378381df427451839c54cf86f0
+  inbox_png_sha256: 3bd986885eed28f51a116848f9042d45e15352e8ece622a5b0b1441897e5b55a
+  qa_sha256: 6db9f01eaabd7cedc6cc1b8947ed62c9e58302f792e5ba36b2d53d782fbfdd1f
+- batch: batch-28-home-shops-concepts
+  job: x-hive-1
+  take: 2
+  round: 1
+  logical_run: 20261105-night-workshop3-backlog28-hive
+  source_file: /workspace/generated_images/exec-2d6eb939-b9f1-4930-80e0-d72631eee2af.png
+  returned_at: '2026-11-05T18:34:49.025Z'
+  prompt_sha256: 4e818f9d1940b5324720cee49c434cbebb29245c3cf2a2cd97916dfb2226ea67
+  fingerprint: f8ef5ef166220eaf
+  saved_at: '2026-11-05T18:34:49.420869+00:00'
+  original_generated_png_sha256: ae48c7149a380d8a1ce9dd9e276d31ff1b15ecebde75f01b261bb0530f6f7cbe
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: f7ec9e5d619789b98736146908892f5d2de276a78d2d28062be9b98e7004b519
+  inbox_png_sha256: 3ac50d135fb98c5781e45960f5cf678627ea036de2c726eff0f783e77479a751
+  qa_sha256: 43c31707c198e511b8c6e3a2bc965400add61045d55da28c4f4820255a8453ae
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
