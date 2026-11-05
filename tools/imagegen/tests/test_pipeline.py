@@ -128,6 +128,39 @@ class ParseTests(unittest.TestCase):
             with self.assertRaises(pl.ManifestError, msg=str(bad_value)):
                 pl.parse_manifest(bad, REFS)
 
+    def glow(self, **over):
+        data = manifest()
+        job = {"id": "glow-test", "kind": "ui", "transparent": False, "blend": "additive",
+               "prompt": [{"text": "A glow."}]}
+        job.update(over)
+        data["jobs"].append(job)
+        return data
+
+    def test_blend_reaches_the_acceptance_profile(self):
+        m = pl.parse_manifest(self.glow(), REFS)
+        self.assertEqual(m.job("glow-test").acceptance["blend"], "additive")
+        self.assertNotIn("blend", m.job("tea-stall-1").acceptance)
+
+    def test_blend_must_be_known_and_on_an_opaque_ui_job(self):
+        for over in ({"blend": "multiply"}, {"transparent": True}, {"kind": "prop"}):
+            with self.assertRaises(pl.ManifestError, msg=str(over)):
+                pl.parse_manifest(self.glow(**over), REFS)
+
+    def test_job_palettes_reach_the_job(self):
+        m = pl.parse_manifest(self.glow(palettes=["world-foliage"]), REFS)
+        self.assertEqual(m.job("glow-test").palettes, ["world-foliage"])
+
+    def test_batch_35_glows_are_additive_and_sheets_carry_foliage(self):
+        for name in ("batch-35-experience-pilot", "batch-35-experience"):
+            m = pl.load_manifest(HERE.parent / "manifest" / f"{name}.yaml")
+            for j in m.jobs:
+                if j.external:
+                    continue
+                if j.id.startswith("glow-"):
+                    self.assertEqual(j.acceptance.get("blend"), "additive", j.id)
+                if j.id.startswith(("dressing-", "critter-")):
+                    self.assertIn("world-foliage", j.palettes, j.id)
+
     def test_retry_manifest_loads_and_its_palettes_and_modes_exist(self):
         import qa
         m = pl.load_manifest(HERE.parent / "manifest" / "retry-2026-11-03.yaml")

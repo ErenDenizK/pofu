@@ -470,3 +470,99 @@ class GuideFitTests(unittest.TestCase):
         fitted, info = qa.fit_to_guide(raw, "prop", "ground")
         again = qa.scale_about(raw, info["scale"], tuple(info["anchor"]))
         self.assertTrue(np.allclose(fitted, again))
+
+
+def _glow(size=256, radius=0.35, soft=True, bg=0.0, levels=None) -> np.ndarray:
+    """A warm honey glow on black (opaque), centered; `soft` is a smooth falloff."""
+    yy, xx = np.mgrid[:size, :size]
+    d = np.hypot(yy - size / 2, xx - size / 2) / (size * radius)
+    k = np.clip(1 - d, 0, 1) ** 2 if soft else (d < 1).astype(float) * 0.8
+    if levels:  # posterize the falloff into few bands
+        k = np.round(k * levels) / levels
+    rgb = np.stack([k * 1.0, k * 0.78, k * 0.45], axis=-1) + bg
+    return np.concatenate([np.clip(rgb, 0, 1), np.ones((size, size, 1))], axis=-1)
+
+
+class AdditiveGlowTests(unittest.TestCase):
+    def names(self, checks):
+        return {c.name: c.status for c in checks}
+
+    def test_soft_glow_on_black_passes_and_skips_value_floor_and_palette(self):
+        res = qa.run_checks("ui", _glow(), _glow(), ["world-props"], {"blend": "additive"})
+        st = self.names(res)
+        self.assertNotIn("value_floor", st)
+        self.assertNotIn("palette_drift", st)
+        self.assertEqual(st["additive_background"], "pass")
+        self.assertEqual(st["additive_falloff"], "pass")
+        self.assertEqual(st["additive_banding"], "pass")
+        self.assertEqual(st["chroma_ceiling"], "pass")
+
+    def test_the_same_glow_fails_the_default_profile(self):
+        st = self.names(qa.run_checks("ui", _glow(), _glow(), ["world-props"], {}))
+        self.assertEqual(st["value_floor"], "fail")
+        self.assertEqual(st["palette_drift"], "fail")
+
+    def test_grey_background_fails(self):
+        st = self.names(qa.additive_checks(_glow(bg=0.2)))
+        self.assertEqual(st["additive_background"], "fail")
+
+    def test_hard_edged_disc_fails_the_falloff(self):
+        st = self.names(qa.additive_checks(_glow(soft=False)))
+        self.assertEqual(st["additive_falloff"], "fail")
+
+    def test_posterized_falloff_is_banding(self):
+        st = self.names(qa.additive_checks(_glow(levels=6)))
+        self.assertEqual(st["additive_banding"], "fail")
+
+    def test_chroma_is_measured_on_lit_pixels_only(self):
+        # Honey gold passes; a saturated blue glow is over the ceiling. The black
+        # around the glow (no hue) is not part of the measurement.
+        chroma = [c for c in qa.additive_checks(_glow()) if c.name == "chroma_ceiling"][0]
+        self.assertLess(chroma.value, qa.ADDITIVE["chroma_p95"]["warn"])
+        vivid = _glow()
+        vivid[..., :3] = vivid[..., :3] * np.array([1.0, 0.3, 0.0]) / np.array([1.0, 0.78, 0.45])
+        vchroma = [c for c in qa.additive_checks(vivid) if c.name == "chroma_ceiling"][0]
+        self.assertGreater(vchroma.value, chroma.value)
+        self.assertNotEqual(vchroma.status, "pass")
+
+    def test_a_blank_image_has_no_glow(self):
+        st = self.names(qa.additive_checks(_glow(radius=0.001)))
+        self.assertEqual(st["glow_present"], "fail")
+
+    def test_process_take_ships_black_as_black(self):
+        preset = sl.load_presets()["lock-light"]
+        res = qa.process_take(_glow(size=512), "ui", (256, 256), preset, ["world-props"], {"blend": "additive"}, transparent=False)
+        self.assertLess(float(res.locked[..., :3][:8, :8].max()), 0.02)
+        self.assertIn("lock_skipped", res.info)
+        self.assertNotIn("fail", [c.status for c in res.checks])
+
+
+class FoliagePaletteTests(unittest.TestCase):
+    def solid(self, hex_):
+        a = np.zeros((64, 64, 4))
+        a[..., :3] = [int(hex_[i:i + 2], 16) / 255 for i in (1, 3, 5)]
+        a[..., 3] = 1
+        return a
+
+    def test_foliage_covers_the_olive_greens_and_meadow_flowers(self):
+        base = ["character", "character-wilting"]
+        for hex_ in ("#A6A05E", "#9C965A","#A4A7CD", "#E9B857", "#F0A9B5", "#C9B8E3"):
+            self.assertEqual(qa.check_palette(self.solid(hex_), base + ["world-foliage"]).status, "pass", hex_)
+
+    def test_a_neon_green_is_still_off_the_foliage_family(self):
+        self.assertEqual(qa.check_palette(self.solid("#33FF33"), ["world-foliage"]).status, "fail")
+
+
+class DeclaredCanvasTests(unittest.TestCase):
+    def sky(self, w=1024, h=1536):
+        return np.ones((h, w, 4)) * 0.8
+
+    def test_declared_size_makes_the_portrait_plate_upscale_by_design(self):
+        _, c = qa.fit_canvas(self.sky(), (1290, 2796), cover=True)
+        self.assertEqual(c.status, "warn")
+        out, c = qa.fit_canvas(self.sky(), (1290, 2796), cover=True, declared=(1024, 1536))
+        self.assertEqual((c.status, out.shape[:2]), ("pass", (2796, 1290)))
+
+    def test_an_undeclared_source_size_still_warns(self):
+        _, c = qa.fit_canvas(self.sky(800, 1200), (1290, 2796), cover=True, declared=(1024, 1536))
+        self.assertEqual(c.status, "warn")

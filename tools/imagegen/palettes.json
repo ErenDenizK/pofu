@@ -55,6 +55,7 @@
     "stitch-cream": "#F2E4C4"
   },
   "world-foliage": {
+    "$note": "Lawn, moss and meadow greens plus the wildflower colors of the dressing sheets (soft lavender, butter yellow, petal pink, cornflower). The lock pulls greens toward warm olive, so the olive set is sampled from locked batch-33/35 pilot takes (k-means, rounded by hand). A job adds it through `palettes:`; dressing sheets add world-props too (the sheet kind holds only the character palettes).",
     "moss-light": "#D7E3A8",
     "moss": "#B3C77E",
     "moss-mid": "#94B062",
@@ -62,6 +63,19 @@
     "leaf-shade": "#5D7A3E",
     "lawn-sage": "#A9BF86",
     "star-cream": "#FBF1D8",
-    "root-cream": "#EBD9B8"
+    "root-cream": "#EBD9B8",
+    "olive-light": "#BEB66F",
+    "olive-sage": "#B2AB65",
+    "olive-moss": "#A6A05E",
+    "olive-mid": "#9A9457",
+    "olive-deep": "#89854F",
+    "olive-shade": "#78713A",
+    "grass-gold": "#CFC47D",
+    "butter-yellow": "#E9B857",
+    "butter-light": "#F6CB6E",
+    "cornflower": "#A4A7CD",
+    "cornflower-shade": "#8B8DB4",
+    "soft-lavender": "#C9B8E3",
+    "petal-pink": "#F0A9B5"
   }
 }
