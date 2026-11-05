@@ -40,6 +40,14 @@ new) 19:45–20:15, night from 20:45. Bedtime is always night.
 | Dusk | sky key from above, violet `#8F86C9`, 0.5 | ember, window on | coming home |
 | Night | moon, lilac `#B8A8B1`, 0.35 | ember, window carry the frame | safe, cozy |
 
+**Vivid pass (2026-11-05).** The founder found the island pale and heavy on
+his iPhone ("colour and light"). Day went to saturation 1.32 and contrast
+1.16 (was 1.14 and 1.10) with a lighter vignette (0.12), golden to 1.30 and
+1.12, dawn to 1.22, and the night and dusk saturation cuts eased (0.72 and
+0.90 from 0.62 and 0.82) so they stay moody but readable. Blacks are still
+never lifted. The depth of field lost most of its radius at the same time
+(`GraphicsSpike.field`): it was blurring the island's own ground.
+
 **Unwell** (wellbeing 55 → 30 ramps in) is overcast, not grey fog: the
 world's grade deepens and halves its saturation as before; the sky turns
 cooler, about 12 % darker and lower in chroma (never brighter than the
