@@ -29,7 +29,7 @@ Codex reads it at the start of every task.
    conditions, 2026-11-02): after its one retry it is recorded as skipped with
    its reason, its dependents are skipped, and Codex goes on to the next job and
    batch. Global stop only for account, sign-in, quota or usage-limit messages,
-   refusals, identity or upload corruption, or three consecutive job failures.
+   refusals, identity or upload corruption. There is no consecutive-failure stop.
    Before each batch Codex re-reads this queue; when it is empty it re-checks
    every 20 minutes for 2 hours.
 6. **Publish before you generate.** Selected candidates that were never promoted
@@ -59,22 +59,28 @@ Order is priority. Codex takes the first `READY` row nobody is working on
 **when its PR is open it continues to the next `READY` row automatically**,
 until none is left.
 
+Checked 2026-11-05 against `main` and the merged PRs: the refit (#156)
+and remaining poses (#157) are delivered and recorded in the Log. There is
+currently no unclaimed `READY` batch. Their merge does not open the rows
+below: the lead still needs to mark the next batch `READY` and publish its
+open manifest. Do not repeat completed jobs or the exhausted Findik retry.
+
 | # | Batch | Kind | Purpose | Needs | Jobs | State |
 |---|---|---|---|---|---|---|
-| 1 | `refit-2026-11-04` | production · pilot | **No generation.** Four pilots had good art rejected only for size (bench 452-495 px vs 360, `pier-1` 804-904 vs 720, `lighthouse-1` top above the y 150 bar, `harbor-ferry-1` 676-765 vs 640). The pipeline now shrinks root stations and ground decor to their guide (`qa.fit_to_guide`, #154). Re-run `post` on the retained originals of `decor-bench` (batch-08-decor-pilot), `pier-1` and `lighthouse-1` (batch-21-harbor-ladders), `harbor-ferry-1` (retry-2026-11-04), pick and promote as usual (un-cut the asset nodes). Their dependents stay skipped until the lead reviews this pilot. A take that still fails (fit below x0.6, or any other hard check) stays skipped | #154 | 4 | **READY** |
-| 2 | `batch-20-poses` | production | The rest of the poses: `findik-surprised`, `simit-sleepy`, `simit-surprised`. Pilot (#152) passed review: keep the same edit approach | main | 3 | **READY** |
-| 3 | dependents | production | After the refit review: `decor-lanterns`, `decor-sailboat`, `decor-mailbox`; `pier-2` to `pier-5`; `lighthouse-2` to `lighthouse-5`; `harbor-ferry-2`. Watch edits: they must keep the parent's scale (station_anchor's width bar) | the lead's review of row 1 | 12 | BLOCKED, opens after the refit review |
-| 4 | `batch-11-ui` | production | What is still missing of ui-system-v2 section 6 after batches 11-13 and the retry: night variants of the faces, game layer extras, the remaining domain icons, surfaces. The lead lists the exact gaps when it writes the manifest | the light standard and the icon semantics rule | about 15 | BLOCKED, no manifest yet |
-| 5 | `batch-08-decor` | production | The home decor kit (Ayçiçeği is the centre, so it ships); the lead lists the pieces after the pilot review | a passed row 1 | none yet | BLOCKED on the pilot review, no manifest yet |
+| 1 | dependents | production | After the refit review: `decor-lanterns`, `decor-sailboat`, `decor-mailbox`; `pier-2` to `pier-5`; `lighthouse-2` to `lighthouse-5`; `harbor-ferry-2`. Watch edits: they must keep the parent's scale (station_anchor's width bar) | the lead's review of the refit pilot (#156) | 12 | BLOCKED, opens after the refit review |
+| 2 | `batch-11-ui` | production | What is still missing of ui-system-v2 section 6 after batches 11-13 and the retry: night variants of the faces, game layer extras, the remaining domain icons, surfaces. The lead lists the exact gaps when it writes the manifest | the light standard and the icon semantics rule | about 15 | BLOCKED, no manifest yet |
+| 3 | `batch-08-decor` | production | The home decor kit (Ayçiçeği is the centre, so it ships); the lead lists the pieces after the pilot review | the refit pilot review (#156) | none yet | BLOCKED on the pilot review, no manifest yet |
 
-Home stations: nothing else needs a painted night variant (tea stall, windmill and pond are merged, the workshop doorway is row 2; the garden and the simit cart carry no light-carrying part, their night is code).
+Home stations: nothing else needs a painted night variant (tea stall,
+windmill, pond and the workshop doorway are merged; the garden and the
+simit cart carry no light-carrying part, their night is code).
 
 Rows to come: the design-loop-2 concepts (batch-19) and the lead's production
-batches are added above row 3 as `READY` by their own PRs.
+batches are added in priority order as `READY` by their own PRs.
 
 ## Home upgrade ladder
 
-Checked 2026-11-04 against `design/art/stations/<id>/` (the approved masters),
+Checked 2026-11-05 against `design/art/stations/<id>/` (the approved masters),
 the level table in `docs/product/game-design.md` ("Idle production and
 stations": "what each home and harbor level looks like") and the ladders in
 `Packages/PofuKit/Sources/PofuCore/Game/Archipelago.swift`. The Swift data
@@ -92,26 +98,27 @@ job; a `lit` entry is the painted night overlay source.
 | garden (home) | yes | yes | yes | yes | yes | none, night is code |
 | tea-stall (home) | yes | yes | yes | yes | yes | `tea-stall-1-lit` yes; `-5-lit` dropped on purpose (batch-07) |
 | pond (home) | yes | yes | yes | yes | yes | `pond-5-lit` yes |
-| workshop (home) | yes | yes | yes | yes | yes | `workshop-1-lit` queued (row 2) |
+| workshop (home) | yes | yes | yes | yes | yes | `workshop-1-lit` yes (#150) |
 | windmill (home) | yes | yes | yes | yes | yes | `windmill-5-lit` yes |
 | bagel-cart (harbor) | yes | yes | yes | yes | yes | none, night is code |
-| pier (harbor) | MISSING | MISSING | MISSING | MISSING | MISSING | none planned |
-| lighthouse (harbor) | MISSING | MISSING | MISSING | MISSING | MISSING | beam is code; lamp room needs a lit edit at L2 |
+| pier (harbor) | yes (#156) | MISSING | MISSING | MISSING | MISSING | none planned |
+| lighthouse (harbor) | yes (#156) | MISSING | MISSING | MISSING | MISSING | beam is code; lamp room needs a lit edit at L2 |
 
 **Home: the ladder is complete, 25 of 25 masters.** There is no missing
-home level, so no home manifest is written (nothing to feed Codex). The only
-open home art is `workshop-1-lit`, already READY as queue row 2. If the
+home level, so no home manifest is written (nothing to feed Codex). The
+required painted home light edits are also merged. If the
 founder's dogfood shows a level that does not read as an upgrade, that is a
 regenerate-by-grade question per level, not a gap.
 
-Missing harbor levels (manifest `batch-21-harbor-ladders`, queue row 3d). Descriptions from the game design table; a level without
-one would say so (none lack one):
+Harbor ladder descriptions (manifest `batch-21-harbor-ladders`): L1 parents
+are merged; L2-L5 remain in the BLOCKED dependents row above. Descriptions
+come from the game design table; none lack one:
 
 - pier-1: planks and posts over the clouds (the existing `harbor-island-s`
   plate already shows a short plank pier; the station sprite is separate).
 - pier-2: adds a lantern post (`harbor-lamp-1` is a decor lamp, not a level).
-- pier-3: the little ferry moors here (`harbor-ferry-1` and `harbor-ferry-2`
-  are in retry row 3; the level sprite shows the moored ferry).
+- pier-3: the little ferry moors here (`harbor-ferry-1` is merged in #156;
+  `harbor-ferry-2` remains BLOCKED; the level sprite shows the moored ferry).
 - pier-4: adds a bench and two tea glasses.
 - pier-5: adds bunting from post to post.
 - lighthouse-1: a striped tower.
@@ -127,12 +134,12 @@ Story link (`docs/product/story-delivery.md` section 4.3): the harbor pier
 side beats; all three already have their masters, so story work is not
 blocked on art.
 
-Pilot: pier-1 and lighthouse-1, the rest gated on it.
+Pilot: pier-1 and lighthouse-1 are merged in #156; the rest remains gated
+until the lead explicitly opens the dependents row.
 
-**Order of work:** top to bottom. Rows 1 and 2 are re-runs by `--only` of
-jobs that never produced a pick; every other earlier row is delivered and
-lives in the Log. Batch 02 (Glass++ production) stays blocked until the
-friends beta (ADR-0018 amendment).
+**Order of work:** top to bottom, only `READY` rows. A re-run row names its
+`--only` jobs explicitly; completed batches live in the Log. Batch 02
+(Glass++ production) stays blocked until the friends beta (ADR-0018 amendment).
 
 ## Review 2026-11-03 (lead)
 
@@ -351,6 +358,19 @@ Stop and report on any stop condition in AGENTS.md.
 ```
 
 ## Log
+
+- 2026-11-05 (delivery reconciled with merged PRs): `refit-2026-11-04`
+  (#156) re-posted retained originals through #154's guide fit without
+  generation and promoted `decor-bench` t1, `pier-1` t1, `lighthouse-1` t3
+  and `harbor-ferry-1` t4. `batch-20-poses` (#157) promoted `simit-sleepy`
+  t1 and `simit-surprised` t2. `findik-surprised` remains skipped after its
+  one retry: t1/t4 failed palette drift; otherwise eligible t2/t3 could not
+  fit the lossless 600 KB delivery cap (700198/745376 bytes). All four
+  Findik takes and `design/art/takes/batch-20-poses/findik-surprised/delivery-check.json`
+  are retained; do not regenerate or retry without a newly opened brief.
+  Each of the six masters includes its own measured Harmony file. CI 708
+  and 711 passed; upload checks covered all 41 and 31 delivered files.
+  The twelve refit dependents remain BLOCKED; this bookkeeping opens no batch.
 
 - 2026-11-04 (lead review): merged #148, #150-#153. Promoted `workshop-1-lit`, `simit-happy`, `mochi-surprised`, `icon-friend`, `icon-plus`, `icon-breath`. Skips kept: `icon-island` (palette drift), `ui-sheet-paper-night` (edit structure; a recolor profile is the fix, not a retry), `icon-skip` (refusal, stays blocked). Finding: the image model ignores pixel sizes in prompts (two retries each), so size moved to code (#154); the refit row re-promotes without regeneration.
 
