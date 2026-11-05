@@ -52,11 +52,11 @@ public struct WorldPropsFrame {
 /// the one resolver; `IslandSceneModel.onPropTap` answers it.
 public struct WorldProps {
     /// The objects, in the world's depth-of-field group.
-    public var world: (WorldPropsFrame) -> AnyView
+    public var world: @MainActor (WorldPropsFrame) -> AnyView
     /// The tag and the Collect action, in screen points, never graded.
-    public var screen: (WorldPropsFrame) -> AnyView
+    public var screen: @MainActor (WorldPropsFrame) -> AnyView
 
-    public init(world: @escaping (WorldPropsFrame) -> AnyView, screen: @escaping (WorldPropsFrame) -> AnyView) {
+    public init(world: @escaping @MainActor (WorldPropsFrame) -> AnyView, screen: @escaping @MainActor (WorldPropsFrame) -> AnyView) {
         self.world = world
         self.screen = screen
     }
