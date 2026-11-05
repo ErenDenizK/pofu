@@ -1,13 +1,441 @@
 batch: retry-2026-11-04
+contact_sheet: design/art/takes/retry-2026-11-04/harbor-ferry-2/contact.jpg
 jobs:
   harbor-ferry-2:
     pick: none
-    publication: dependent-skip
-    note: 'Skipped without generation: true dependency harbor-ferry-1 failed after
-      its one allowed retry. All four retained takes were ingested and posted without
-      regeneration. Automated warnings do not enforce the explicit manual whole-ferry
-      maximum of640px. The solid alpha>=128 normalized widths are709,676,733,765px,
-      all too wide even before fringe pixels. Guide-fit.json records the measurement.
-      One retry exhausted; skip this job and only its true dependent harbor-ferry-2.'
-generated_takes: 0
-failed_dependency: harbor-ferry-1
+    publication: skipped after one allowed retry
+    note: 'Skipped after exactly4 takes and the one allowed retry: every take fails
+      the existing hard edit_silhouette gate, with parent silhouette retained0.8343,0.8064,0.8087,0.8217.
+      All retain the requested two-deck/two-funnel ferry appearance, and the parent
+      station width check does not fail, but the added upper deck increases the silhouette;
+      no QA gate is waived or edited. Preserve the four original PNGs and q90 take
+      archives/contact/review for lead review or a later explicitly approved salvage
+      profile. No master promoted and no further generation. This job has no true
+      dependents; unrelated harbor levels continue. Automated failures: t1 edit_silhouette:
+      83% of the parent''s shape kept; t2 edit_silhouette: 81% of the parent''s shape
+      kept; t3 edit_silhouette: 81% of the parent''s shape kept; t4 edit_silhouette:
+      82% of the parent''s shape kept.'
+qa_reports:
+  2:
+    job: harbor-ferry-2
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 93 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 79.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.31 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.306
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.0 (at least 3.5)'
+      value: 6.01
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.26
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0199
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 6.9, off-palette 1.6% (top: #557777 (0.5%), #558888
+        (0.4%))'
+      value: 1.9969
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 902.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 83 against the world reference (outliers: detail, edge)'
+      value: 83.1
+    - check: edit_silhouette
+      status: fail
+      message: 81% of the parent's shape kept
+      value: 0.8064
+    - check: edit_stability
+      status: pass
+      message: 91% of the parent level unchanged
+      value: 0.9054
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.91 of the parent level (drift compounds along a chain)
+      value: 0.9071
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 56.6
+        L_p50: 79.4
+        L_p95: 92.5
+        C_p50: 15.8
+        C_p95: 42.9
+        C_p99: 45.1
+        detail: 2.8
+      metrics_locked:
+        L_p5: 57.3
+        L_p50: 79.3
+        L_p95: 91.9
+        C_p50: 15.7
+        C_p95: 41.8
+        C_p99: 44.0
+        detail: 2.26
+    fingerprint: 47f17c5d0dbe59a1
+  3:
+    job: harbor-ferry-2
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 93 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 41.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 79.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.263
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.7 (at least 3.5)'
+      value: 5.65
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.24
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0731
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 7.8, off-palette 1.6% (top: #557777 (0.4%), #668888
+        (0.3%))'
+      value: 2.2651
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 902.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: detail, edge)'
+      value: 86.8
+    - check: edit_silhouette
+      status: fail
+      message: 81% of the parent's shape kept
+      value: 0.8087
+    - check: edit_stability
+      status: pass
+      message: 89% of the parent level unchanged
+      value: 0.8946
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.01 of the parent level (drift compounds along a chain)
+      value: 1.0067
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 56.1
+        L_p50: 79.4
+        L_p95: 92.1
+        C_p50: 17.4
+        C_p95: 46.6
+        C_p99: 49.9
+        detail: 2.82
+      metrics_locked:
+        L_p5: 56.7
+        L_p50: 79.3
+        L_p95: 91.7
+        C_p50: 17.3
+        C_p95: 45.2
+        C_p99: 48.5
+        detail: 2.24
+    fingerprint: 47f17c5d0dbe59a1
+  4:
+    job: harbor-ferry-2
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 94 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 79 (band 55-90)'
+      value: 79.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.30 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.298
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.6 (at least 3.5)'
+      value: 5.56
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.07
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9465
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 6.3, off-palette 1.2% (top: #557777 (0.6%), #668888
+        (0.2%))'
+      value: 1.7562
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 901.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 85 against the world reference (outliers: edge)'
+      value: 84.6
+    - check: edit_silhouette
+      status: fail
+      message: 82% of the parent's shape kept
+      value: 0.8217
+    - check: edit_stability
+      status: pass
+      message: 91% of the parent level unchanged
+      value: 0.9106
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.98 of the parent level (drift compounds along a chain)
+      value: 0.9776
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 57.6
+        L_p50: 79.4
+        L_p95: 93.1
+        C_p50: 16.9
+        C_p95: 43.5
+        C_p99: 47.5
+        detail: 2.65
+      metrics_locked:
+        L_p5: 58.4
+        L_p50: 79.3
+        L_p95: 92.6
+        C_p50: 16.8
+        C_p95: 42.4
+        C_p99: 46.7
+        detail: 2.07
+    fingerprint: 47f17c5d0dbe59a1
+  1:
+    job: harbor-ferry-2
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 44.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 94 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 80 (band 55-90)'
+      value: 79.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.30 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.298
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.8 (at least 3.5)'
+      value: 5.76
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.13
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9943
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 6.4, off-palette 1.0% (top: #557777 (0.5%), #668888
+        (0.3%))'
+      value: 1.9742
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 902.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 87 against the world reference (outliers: edge)'
+      value: 87.0
+    - check: edit_silhouette
+      status: fail
+      message: 83% of the parent's shape kept
+      value: 0.8343
+    - check: edit_stability
+      status: pass
+      message: 91% of the parent level unchanged
+      value: 0.9109
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.98 of the parent level (drift compounds along a chain)
+      value: 0.9783
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 57.9
+        L_p50: 79.8
+        L_p95: 93.0
+        C_p50: 16.9
+        C_p95: 46.0
+        C_p99: 48.4
+        detail: 2.69
+      metrics_locked:
+        L_p5: 58.6
+        L_p50: 79.7
+        L_p95: 92.5
+        C_p50: 16.8
+        C_p95: 44.9
+        C_p99: 47.7
+        detail: 2.13
+    fingerprint: 47f17c5d0dbe59a1
+manual_review:
+  excluded_takes: []
+  note: 'Skipped after exactly4 takes and the one allowed retry: every take fails
+    the existing hard edit_silhouette gate, with parent silhouette retained0.8343,0.8064,0.8087,0.8217.
+    All retain the requested two-deck/two-funnel ferry appearance, and the parent
+    station width check does not fail, but the added upper deck increases the silhouette;
+    no QA gate is waived or edited. Preserve the four original PNGs and q90 take archives/contact/review
+    for lead review or a later explicitly approved salvage profile. No master promoted
+    and no further generation. This job has no true dependents; unrelated harbor levels
+    continue.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-7d196895-1299-4f34-b9a6-99e338d444f6.png
+  original_generated_png_sha256: 8670095e097f45c1817d8891ab10f004bd0f8e51db6b40db8a7aac4c2bf64ffb
+  inbox_png_sha256: 60241433e6ce8e5e64b612c90f9b268c3681fc3fc2b5044fb5f1f30f43495ce0
+  rgba_sha256: 4d08d18ccbd18d4b74844a23a98b03adbf9d4013ed6e8318db05a30942b829d8
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 47f17c5d0dbe59a1
+- take: 2
+  source_file: /workspace/generated_images/exec-09cdb2df-a6c5-4c32-8021-41efb954fb4c.png
+  original_generated_png_sha256: 5a2c6121ec66f5724797ea68da1e4f361ba1778255a2ad5a0cf9fafabe86ed69
+  inbox_png_sha256: 3ae611a4f13fbd33a4c1573776488d6ac01d6ce14f9b2ccdb03575bd387e57cc
+  rgba_sha256: 645a70652cd6017b19b52f48bcdfcb94d524067d51a942265265039d9bc27ec8
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 47f17c5d0dbe59a1
+- take: 3
+  source_file: /workspace/generated_images/exec-60490ea2-24fc-4fbb-9b60-276c1b80da84.png
+  original_generated_png_sha256: 2ab089e81b0f5b1c15f830e5edbf7f8c1b85717cacdca1127ddfdc4cd074295a
+  inbox_png_sha256: 87e592eefaa25089d8bd585264aea431e6b98a286b059823efbee65312ac88af
+  rgba_sha256: 41959c17de26aec7efef3ae30719fb0c083d6bfc8918168c971fefe59f562416
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 47f17c5d0dbe59a1
+- take: 4
+  source_file: /workspace/generated_images/exec-7c1480c6-be35-42b7-95e1-60e0f5855d87.png
+  original_generated_png_sha256: 638a6fd953f75b0cbfa3d45cbe6c4fbb8ff13c75f6739c3cbbc2b4e7eff9be63
+  inbox_png_sha256: 2ed15f0a931b35b45641d358623cbde09582dd4fb15222957af9e09fd0751cf9
+  rgba_sha256: fc35a835e84ab665d9d90716db636cc7a281072674865203c9b0c2349d86ee03
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 47f17c5d0dbe59a1
