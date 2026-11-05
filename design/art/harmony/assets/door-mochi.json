@@ -1,0 +1,51 @@
+{
+ "after": {
+  "C_mean": 40.645,
+  "C_p50": 42.257,
+  "C_p95": 49.035,
+  "L_mean": 74.622,
+  "L_p2": 54.617,
+  "L_p98": 89.477,
+  "detail": 2.333,
+  "edge": 3.903,
+  "warmth_b": 35.831
+ },
+ "before": {
+  "C_mean": 32.942,
+  "C_p50": 34.244,
+  "C_p95": 39.737,
+  "L_mean": 74.625,
+  "L_p2": 54.617,
+  "L_p98": 89.497,
+  "detail": 2.312,
+  "edge": 3.903,
+  "warmth_b": 29.039
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.234,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 80.3,
+ "score_before": 72.3,
+ "shipped": false,
+ "source": "design/art/masters/door-mochi/door-mochi.png",
+ "source_sha": "c6831d029c5f5580"
+}

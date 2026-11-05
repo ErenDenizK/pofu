@@ -1,0 +1,195 @@
+batch: batch-33-home-showcase-pilot
+contact_sheet: design/art/takes/batch-33-home-showcase-pilot/door-mochi/contact.jpg
+jobs:
+  door-mochi:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both show a front-facing soft
+      rose round door in a thick honey frame, cream crossbar round window, matte brass
+      knob, flat honey doorstep and one blank tulip-glass hanging sign. Only a thin
+      soft earth ring fades to transparency; no house, wall, grass, steps, text or
+      background. Both hard QA reports pass; lowest lock-load take2 is selected. It
+      reads as a small door at 28px on light and dark backgrounds. Posted width is
+      583px versus approximate 40 percent prose target; final socket scale and two-thirds
+      relationship to the plate door remain explicit lead pilot review, not claimed
+      as a registered plate edit. Light-value/haze warnings are advisory under the
+      current standard.
+qa_reports:
+  1:
+    job: door-mochi
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 90 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.32 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.322
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.3 (at least 3.5)'
+      value: 3.34
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.66
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.4
+      value: 2.4327
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 1.8, off-palette 0.0%
+      value: 0.9354
+    - check: harmony
+      status: pass
+      message: 'harmony score 72 against the world reference (outliers: C_p95, edge)'
+      value: 71.9
+    info:
+      metrics_raw:
+        L_p5: 58.7
+        L_p50: 73.1
+        L_p95: 88.9
+        C_p50: 34.1
+        C_p95: 38.4
+        C_p99: 48.4
+        detail: 2.22
+      metrics_locked:
+        L_p5: 59.1
+        L_p50: 73.1
+        L_p95: 88.5
+        C_p50: 34.1
+        C_p95: 38.1
+        C_p99: 47.8
+        detail: 1.66
+    fingerprint: e1370662ecc0a39a
+  2:
+    job: door-mochi
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 90 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.31 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.31
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.6 (at least 3.5)'
+      value: 3.62
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.86
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.1831
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 1.7, off-palette 0.0%
+      value: 0.9027
+    - check: harmony
+      status: pass
+      message: 'harmony score 72 against the world reference (outliers: C_p95, edge)'
+      value: 72.3
+    info:
+      metrics_raw:
+        L_p5: 58.6
+        L_p50: 73.4
+        L_p95: 88.1
+        C_p50: 34.7
+        C_p95: 40.1
+        C_p99: 45.4
+        detail: 2.47
+      metrics_locked:
+        L_p5: 59.2
+        L_p50: 73.3
+        L_p95: 87.6
+        C_p50: 34.6
+        C_p95: 39.8
+        C_p99: 45.0
+        detail: 1.86
+    fingerprint: e1370662ecc0a39a
+manual_review:
+  excluded_takes: []
+  note: Both show a front-facing soft rose round door in a thick honey frame, cream
+    crossbar round window, matte brass knob, flat honey doorstep and one blank tulip-glass
+    hanging sign. Only a thin soft earth ring fades to transparency; no house, wall,
+    grass, steps, text or background. Both hard QA reports pass; lowest lock-load
+    take2 is selected. It reads as a small door at 28px on light and dark backgrounds.
+    Posted width is 583px versus approximate 40 percent prose target; final socket
+    scale and two-thirds relationship to the plate door remain explicit lead pilot
+    review, not claimed as a registered plate edit. Light-value/haze warnings are
+    advisory under the current standard.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-5d452275-36d1-480e-9752-8bee4a60c7e2.png
+  original_generated_png_sha256: 82ee2522d48d7bd2dc12affd68f4c9da087a359540a4ce9664804bc2495d383d
+  inbox_png_sha256: fe5dd774498b5e232f4d1deb4ec43e52dd1f04187128dbd7761762a9b8caed40
+  rgba_sha256: a7a1c1309b3a88e94f66be047cedc15f4c6d843a0f4c927cece4cd081c8f646c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e1370662ecc0a39a
+- take: 2
+  source_file: /workspace/generated_images/exec-ca82a751-86f8-44bc-91e5-d5681a3e6063.png
+  original_generated_png_sha256: c11e460b29a74775b237a45603ed5975ed7275e73fdb95f5145edc9f1b67042d
+  inbox_png_sha256: c5988a6e9b1a737911cbdc89643156aab9f751c918e07c9f71e08dfa564f6572
+  rgba_sha256: 24002f54436fce58e2d07634c6ea539db8ac813fafcdb5fa2e69fcbe064bfacd
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: e1370662ecc0a39a

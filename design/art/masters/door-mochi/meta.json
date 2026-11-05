@@ -1,0 +1,124 @@
+{
+  "job": "door-mochi",
+  "batch": "batch-33-home-showcase-pilot",
+  "asset": "prop__door-mochi",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-05T17:57:31+00:00",
+  "image": "design/art/masters/door-mochi/door-mochi.png",
+  "raw": "design/art/masters/door-mochi/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "e1370662ecc0a39a",
+  "prompt": "REFERENCES (attached, in this order):\n1. The home island: copy the style, colors, size and front-facing angle of the small round wooden door with a round window set into its earth body. Do not draw the island.\n2. Mochi keeps this tea stall: borrow its rose and cream colors for the door (do not draw the stall).\n3. The palette card for props: use only these colors (and mixes of them).\n\nA small round wooden door set into soft earth, seen straight from\nthe front, in the same style as the round door on the attached\nisland: a round door of soft rose-painted wood in a thick honey\nwooden frame, a small round window with a cream cross bar, a tiny\nround brass-colored knob painted matte, a flat honey doorstep, and\nover the door a little hanging sign shaped like a tulip tea glass\n(a shape, no letters). Around the frame only a thin soft ring of\ncaramel earth that fades to transparent, so it can sit on the\nisland's earth body. Centered on an empty transparent background,\nabout 40 % of the canvas wide.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nAVOID: a wall, a house, a roof, stairs, grass, a full earth background, letters on the sign.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+      "role": "The home island: copy the style, colors, size and front-facing angle of the small round wooden door with a round window set into its earth body. Do not draw the island."
+    },
+    {
+      "path": "design/art/stations/tea-stall-1/tea-stall-1.png",
+      "role": "Mochi keeps this tea stall: borrow its rose and cream colors for the door (do not draw the stall)."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T17:52:37+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 40 (R1 51)",
+        "value": 39.8
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 54 (at most 22), p98 90 (at least 90), spread 35 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 35.4
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 73 (band 55-90)",
+        "value": 73.3
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.31 (at most 0.20; no true dark means a wash)",
+        "value": 0.31
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 3.6 (at least 3.5)",
+        "value": 3.62
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.9 (R1 5.3)",
+        "value": 1.86
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 2.2",
+        "value": 2.1831
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 0.9, p95 1.7, off-palette 0.0%",
+        "value": 0.9027
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 72 against the world reference (outliers: C_p95, edge)",
+        "value": 72.3
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both show a front-facing soft rose round door in a thick honey frame, cream crossbar round window, matte brass knob, flat honey doorstep and one blank tulip-glass hanging sign. Only a thin soft earth ring fades to transparency; no house, wall, grass, steps, text or background. Both hard QA reports pass; lowest lock-load take2 is selected. It reads as a small door at 28px on light and dark backgrounds. Posted width is 583px versus approximate 40 percent prose target; final socket scale and two-thirds relationship to the plate door remain explicit lead pilot review, not claimed as a registered plate edit. Light-value/haze warnings are advisory under the current standard."
+}
