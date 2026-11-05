@@ -575,7 +575,7 @@ private struct WorldCanvas: View {
         switch object.kind {
         case .station(let status):
             let moment: BuildFrame? = build.flatMap { $0.moment.station == status.id ? $0 : nil }
-            StationView(status: status, point: point, level: level, z: z, build: moment)
+            StationView(status: status, point: point, level: level, z: z, build: moment, isFocused: model.focus == .station(status.id))
                 .overlay {
                     hitArea(
                         box: IslandLayout.stationHitBox,
@@ -703,6 +703,8 @@ private struct StationView: View {
     let level: Double
     let z: Double
     let build: BuildFrame?
+    /// The camera is on this station: its painted parts get a small idle life.
+    var isFocused = false
 
     var body: some View {
         let shown = build.map { $0.moment.shownLevel(at: $0.time) } ?? status.level
@@ -713,7 +715,9 @@ private struct StationView: View {
                 ContactShadow(width: 92, height: 20)
                     .position(x: point.x, y: point.y + 2)
                 if let art = IslandLayout.stationArt(status.id, level: shown), let sprite = WorldArt.sprite(art.name) {
-                    DepthImage(name: art.name, sprite: sprite, level: level, anchor: point)                    if shown >= 2, !IslandLayout.hasLevelArt(status.id, level: shown), z < 1.6, let top = sprite.sharp {
+                    DepthImage(name: art.name, sprite: sprite, level: level, anchor: point)
+                        .modifier(FocusLife(isActive: isFocused && build == nil, anchor: anchor))
+                    if shown >= 2, !IslandLayout.hasLevelArt(status.id, level: shown), z < 1.6, let top = sprite.sharp {
                         LevelBadge(level: shown)
                             .opacity(min(max((1.6 - z) / 0.3, 0), 1))
                             .position(x: point.x + CGFloat(top.maxX) - 8, y: point.y + CGFloat(top.minY) + 10)
