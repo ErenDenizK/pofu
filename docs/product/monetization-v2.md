@@ -1,17 +1,13 @@
 # Monetization v2: one membership for a compact game
 
-_Status: proposal for the founder, 2026-11-05. It replaces the
-recommendation of [monetization.md](monetization.md) (v1, 2026-11-02),
-whose market tables, Türkiye tax notes, fair-lock test (§6) and sources
-still hold. Why a v2: the game changed under v1. The station islands it
-sold (Yıldız, Kaplıca, Kitap) are retired ([game plan §2](game-plan.md#2-structure-two-layers));
-Book One is a short story that ends near day 45; home ends in Tam Çiçek
-near day 60 and then lives on through mastery and seasons
-([home-progression](home-progression.md)). The founder asked (2026-11-05)
-how to sell that: monthly, one-time, acts, expansions, and what happens to
-the island when a membership ends. His prices and the four ethics
-conditions (gate never weaker, Pofu never suffers at a lock, a lock only
-at a chapter end, honesty) are inputs, not open questions._
+_Status: proposal for the founder, 2026-11-05. Replaces the
+recommendation of [monetization.md](monetization.md) (v1), whose market
+data, Türkiye tax notes, fair-lock test (§6) and sources still hold. The
+game changed under v1: its station islands are retired ([game plan §2](game-plan.md#2-structure-two-layers)),
+Book One ends near day 45, home blooms near day 60 and lives on through
+mastery and seasons ([home-progression](home-progression.md)). The
+founder's prices and four ethics conditions (gate never weaker, Pofu never
+suffers at a lock, a lock only at a chapter end, honesty) are inputs._
 
 ## 0. The answer
 
@@ -29,15 +25,10 @@ on top.
 | Lifetime | **999,99 TL** | $89.99 | "Pay once, every Book forever" |
 | Monthly | **129,99 TL** | $5.99 | The honest trial: "try a chapter"; never the default |
 
-**Lapse rule in one line:** nothing you have is taken away, the act you
-are in plays to its end, and only the *next* chapter and new mastery
-levels wait (§4).
-
-**Acts sold one by one (350 / 450 TL) are rejected** as the main model:
-two paywalls inside one short book, a Book One that costs more than a
-year of everything, and a staircase where each act must sell again
-(§2.4). One-time Books are Alternative A (§7) and the fallback if the
-beta shows Turkish buyers refuse subscriptions.
+Nothing you have is ever taken away; the act you are in plays to its
+end (§4). **Acts sold one by one are rejected** (§2.4); one-time Books
+are Alternative A (§7). After a yes: an ADR for the free/paid line, then
+game-design pillar 7 and A6/A7 amended, then `PofuCore` tests before UI.
 
 ## 1. What is free, what is paid
 
@@ -54,25 +45,19 @@ beta shows Turkish buyers refuse subscriptions.
 | Friends | Postcards, a friend's boat at your pier, shared streaks | Social grows the product; paywalling it shrinks it |
 | Memory | The Seyir defteri: re-read every scene you have seen, forever | Memories never lock |
 
-**The materials problem, solved.** Home levels need materials from story
-islands (keepsake, light, wax; [home-progression §7](home-progression.md#7-materials-from-the-wonder-islands)).
-If Act II is paid, a free home would stall at workshop L4, which breaks
-"a continuation never locks". So **Simit's cart trades** one material a
-week for seeds, for everyone, once that material's island has appeared
-in the world. A free player reaches Tam Çiçek around day 70 instead of
-60. Seeds stay world material (ADR-0015); members get materials earlier
-because they visit the places, not because they earn faster. This is the
-one asymmetry, and it is bounded.
+**The materials problem.** Home levels need story materials (keepsake,
+light, wax; [home-progression §7](home-progression.md#7-materials-from-the-wonder-islands)),
+so a free home would stall at workshop L4. Fix: **Simit's cart trades**
+one material a week for seeds, for everyone, once its island has appeared
+in the world. Free players bloom near day 70 instead of 60; members get
+materials earlier by visiting places, never by earning faster.
 
 ### Paid: Pofu Üyelik
 
-1. **Book One from Act II** (Emanet onward to the Gezgin finale) and
-   **every later Book**, with each Book's wonder islands, residents and
-   hilltop add-ons.
-2. **Fillers** (Çanlar and the rest), the random-day add-ons.
-3. **Mastery L6 to L10** and **Altın Ada**, opening one cap a season.
-4. **Season decor sets** (Bahar, Yaz, Güz, Kış and their successors) and
-   the hive.
+1. **Book One from Act II** (Emanet to the Gezgin finale) and **every
+   later Book**, with their islands, residents and hilltop add-ons.
+2. **Fillers**, **mastery L6 to L10** and **Altın Ada**, **season decor
+   sets** and the hive.
 
 Never paid, in any model: speed, seeds, calm, materials as a purchase,
 waiting, a stronger or weaker gate, or anything Pofu feels.
@@ -81,15 +66,11 @@ waiting, a stronger or weaker gate, or anything Pofu feels.
 
 ### 2.1 Units
 
-- **Book**: one season of the big story, one layer of the
-  [deep-lore iceberg](deep-lore.md#1-the-iceberg), about six to eight
-  weeks of tended days. Book One ships at launch; later Books ship as app
-  updates.
-- **Act**: two or three main islands that end on a real ending (the
-  founder: "every act must truly end"). Book One's acts follow the main
-  islands once their order is settled (4 or 5 mains, under rewrite):
-  provisionally **Prologue** (home, days 1 to 3), **Act I** (Koke,
-  Çağlayan; ends ~day 14 with the waterfall), **Act II** (Emanet,
+- **Book**: one layer of the [deep-lore iceberg](deep-lore.md#1-the-iceberg),
+  six to eight weeks of tended days; later Books ship as app updates.
+- **Act**: two or three main islands with a real ending. Provisionally
+  (mains under rewrite): **Prologue** (home, days 1 to 3), **Act I**
+  (Koke, Çağlayan; ~day 14, the waterfall), **Act II** (Emanet,
   Revontuli; ~day 33), **Act III** (Arı, Gezgin; ~day 45).
 - **Filler**: a small island on a random day; never moves the story, never
   gates home ([founder 2026-11-05](founder-input.md#2026-11-05-game-plan-v1-and-the-story-flow)).
@@ -106,24 +87,21 @@ daily obligation.** What a yearly member has in each stretch:
 | 2 to 4 | Fillers; the first Book Two island (target: launch + 10 weeks) | The hilltop, the hive, mastery cap 6 then 7, a season set and visitor |
 | 4 to 12 | Book Two, one main island every ~6 weeks; fillers between | Mastery to L10, Altın Ada near month 9; four seasons; friends |
 
-"When content ends the user needs something to play" has a structural
-answer: the story ends, the island does not. Mastery opens one level a
-season, so there is always one more thing to build and never a reason to
-play more than a visit a day.
+The story ends; the island does not. Mastery opens one level a season,
+so there is always one more thing to build and never a reason to play
+more than a visit a day.
 
 ### 2.3 How future content ships: included, always
 
 - **Included in yearly, monthly and lifetime.** That is what renewal pays
   for, and what Apple's 3.1.2(a) wants from a subscription (new levels and
   episodic content are its own examples).
-- **Lifetime includes every future Book, forever.** A lifetime that
-  excludes expansions is not lifetime. The price for *new* lifetime
-  buyers is reviewed every six months (inflation); owners are never
-  touched.
-- **Cadence we can keep:** one main island every ~6 weeks, one filler
-  and one decor set a season; about 15 to 20 painted images per island
-  through the Codex queue. The copy never promises a number ("new islands
-  with the seasons").
+- **Lifetime includes every future Book, forever** (one that excludes
+  expansions is not lifetime); its price for new buyers is reviewed every
+  six months.
+- **Cadence we can keep:** a main island every ~6 weeks, a filler and a
+  decor set a season, ~15 to 20 painted images per island. The copy never
+  promises a number.
 
 ### 2.4 The options the founder named, judged
 
@@ -134,8 +112,7 @@ play more than a visit a day.
 | **Lifetime 999,99 TL** | **Yes** | The inflation-weary buyer's answer and the "I love it" purchase; 2.9× yearly |
 | **One-time "buy the game"** | Alternative A | Clean, cozy-game-like, but no income for ongoing art, and every Book sells again |
 | **Acts (350 / 450 TL)** | **No** | Book One would cost 800 TL, more than two years of membership, with two paywalls in 45 days. Per-act decisions are the nickel-and-dime feeling cozy players punish |
-| **Expansions sold to members** | **No** | Double-charges the most loyal people |
-| **Expansion for non-members** | Year 2 experiment | A "Book Two, yours forever" non-consumable (~299,99 TL) for people who will not subscribe; members always have it included |
+| **Expansions sold separately** | **No** to members (double charge); year-2 test for non-members | A "Book Two, yours forever" non-consumable (~299,99 TL); members always have it included |
 | **Tips, ads, weekly plans, seed packs** | No | v1 §5 "Rejected outright" |
 
 ## 3. Pricing
@@ -145,18 +122,12 @@ play more than a visit a day.
 The founder's numbers are right and stay: **349,99 TL a year, 999,99 TL
 lifetime**, plus **129,99 TL a month**. Context: a coffee ~250 TL, a
 cinema ticket 500 to 700 TL, Netflix Basic 259,99 TL a month (v1 §3).
-Rules:
-
-- Set TRY prices **manually** in App Store Connect; do not let Apple
-  equalize from USD (it tracks the exchange rate, not purchasing power).
-  Confirm 129,99, 349,99 and 999,99 exist as TRY points (Apple's point
-  list could not be read from the agent environment).
-- Review every six months. Raise for **new** subscribers only when Netflix
-  or YouTube Premium move; existing subscribers keep their price for a
-  year (App Store "preserve current price" option), and lifetime owners
-  are never touched.
-- Arbitrage (EU buyers on TR accounts, v1 §3) is a small leak; not a
-  reason to raise TR prices.
+Set TRY prices **manually** (Apple's equalization tracks the exchange
+rate, not purchasing power) and confirm 129,99 / 349,99 / 999,99 are TRY
+points. Review every six months; raise only for **new** buyers, keep
+existing subscribers' price ("preserve current price"), never touch
+lifetime owners. Arbitrage via TR accounts is a small leak, not a reason
+to raise prices.
 
 ### 3.2 Abroad
 
@@ -187,23 +158,18 @@ same model.
 
 ### 3.3 Family Sharing
 
-**On** for all three products, at creation (it cannot be turned off later
-once on). No separate family plan: one sec and Opal charge 1.5× for one,
-which adds a fourth price to explain. Each family member gets their own
-island and their own gate; the membership is shared, nothing else.
+**On** for all three products at creation. No separate family plan (a
+fourth price to explain). Each member has their own island and gate.
 
 ### 3.4 Intro and win-back offers without dark patterns
 
-- **No free trial that converts.** The free Prologue and Act I are the
-  trial, and a trial that ends onto something you built breaks "nothing
-  is taken away". The monthly is the paid trial.
-- **No launch countdown, no struck-through price, no "today only".**
-- **Beta thank-you:** friends-beta testers get lifetime through offer
-  codes (confirm code support for non-consumables; otherwise a 12-month
-  subscription code renewed by hand).
-- **Win-back:** one App Store win-back offer (first year at 249,99 TL /
-  $19.99) to people lapsed 60+ days, shown only by the App Store and in
-  Settings, never in the world, never with a timer.
+- **No free trial that converts:** the free Prologue and Act I are the
+  trial; the monthly is the paid one. No countdown, no struck-through
+  price, no "today only".
+- **Beta thank-you:** testers get lifetime via offer codes (or a 12-month
+  code renewed by hand if non-consumable codes are unsupported).
+- **Win-back:** one App Store win-back offer (first year 249,99 TL /
+  $19.99) after 60+ days lapsed; never in the world, never a timer.
 
 ## 4. Lapse rules
 
@@ -238,19 +204,13 @@ by construction, never mid-scene. The next act's rumour can still drift in
 (the world keeps talking), and its island card shows one quiet line:
 "Bir sonraki perde üyelikle açılır."
 
-### After finishing a Book
+### After finishing a Book, and returning
 
-The member keeps everything; the next Book's first island appears on the
-map when it ships, like for everyone, and waits. Home, mastery already
-built, seasons' looks and visitors, residents and friends carry on.
-
-### Returning
-
-Everything resumes exactly where it paused: the story at its bookmark,
-banked seeds spendable at once, any mastery caps opened while away
-available immediately (caps rise for everyone by season; they never had
-to be "there"). No "you missed" copy, no catch-up grind, no penalty. The
-first screen back is Pofu's normal morning, not a store.
+The member keeps everything; the next Book's island appears when it ships
+and waits. On return everything resumes where it paused: the story at its
+bookmark, banked seeds spendable, mastery caps opened while away
+available at once. No "you missed" copy, no catch-up grind; the first
+screen back is Pofu's normal morning, not a store.
 
 **Cost of generosity:** a monthly member who starts Act III on day 29 and
 cancels finishes Act III free. We accept that: it costs one act and buys
@@ -260,12 +220,11 @@ trust that no single rule could buy.
 
 ### 5.1 Launch default and the test
 
-**Default: the end of Act I** (the waterfall restored, ~day 14). It is a
-peak: the signature animation, a material, a gift to home, an ending.
-Peak-end logic says people judge the experience by it; reach says more
-people are still active at day 14 than at day 33. After it, the free
-player still has weeks of home building toward Tam Çiçek, so the offer
-never arrives when free work runs out.
+**Default: the end of Act I** (the waterfall restored, ~day 14): a peak
+(the signature animation, a material, a gift to home, an ending), and more
+people are still active at day 14 than at day 33. The free player still
+has weeks of home building after it, so the offer never meets an empty
+island.
 
 The founder wants the cut **decided by data**. Plan:
 
@@ -276,13 +235,9 @@ The founder wants the cut **decided by data**. Plan:
 | Launch | Everyone | Real conversion; monthly vs yearly vs lifetime mix | Lead the sheet with lifetime in TR if lifetime taps ≥ 2× yearly |
 
 Analytics are opt-in, on-device aggregated, and never include which apps
-or how long (Screen Time data never leaves the device). With beta-sized
-samples the result is directional: we look for a large difference, and
-without one we keep Act I.
-
-**Must be fixed before public launch.** Moving the line later is a gift;
-moving it earlier after launch takes away what people had (3.1.2, and
-trust). The test runs only in the beta.
+or how long. Beta samples are directional: without a large difference we
+keep Act I. **The line is fixed before public launch**; moving it later
+is a gift, moving it earlier takes away what people had (3.1.2, trust).
 
 ### 5.2 Should users know the cut in advance?
 
@@ -299,14 +254,8 @@ to the gate and Pofu.
 2. **The next morning**, the Seyir defteri shows a new page: Act II's
    title, a painted vignette, two lines of what is next. For a member it
    is just the next page. For a free player the page ends with the offer.
-3. The offer is a plain native sheet in our voice, **never Pofu's**:
-
-   > **Hikâye devam ediyor.**
-   > Ön söz, Birinci Perde ve evin tamamı senin; ücretsiz, sonsuza dek.
-   > Üyelik, kitabın kalanını ve gelecek her kitabı açar.
-   > Telefonu bırakmana yardım eden her şey ücretsiz kalır.
-   > [Yıllık 349,99 TL] [Bir kez 999,99 TL, hep senin]
-   > Aylık 129,99 TL · Şimdi değil
+3. The offer is a plain native sheet in our voice, **never Pofu's**
+   (Turkish copy in the PR and the founder's summary):
 
    > **The story goes on.**
    > The Prologue, Act I and the whole home are yours, free, forever.
@@ -333,38 +282,30 @@ to the gate and Pofu.
 
 ### 6.2 Entitlements
 
-- One function, `Membership.isActive`, true if any verified entry in
-  `Transaction.currentEntitlements` is the lifetime or an unexpired,
-  unrevoked subscription (including billing grace). It lives in the app
-  target and `PofuWorld` only. **The gate's code (`PofuLive`, the shield
-  and DeviceActivity extensions) never imports it**; a test fails the
-  build if it does. That makes "the gate is never paywalled" structural.
-- `PofuCore` holds the gating rules as pure, tested logic: `actsStarted`,
-  `canStartAct`, `canBuildMastery`; the entitlement is an input. The lapse
-  rules (§4) become unit tests.
-- Listen to `Transaction.updates` from launch; `finish()` every verified
-  transaction; on `revocationDate`, apply the lapse rules (never remove).
-- A buyer of lifetime with a running subscription: show
-  `manageSubscriptionsSheet` with one line ("Yıllık üyeliğini iptal
-  edebilirsin; ömür boyu artık senin"). Apple does not cancel it for us.
+- `Membership.isActive`: any verified `Transaction.currentEntitlements`
+  entry that is the lifetime or an unexpired, unrevoked subscription
+  (billing grace included). It lives in the app target and `PofuWorld`;
+  **the gate's code (`PofuLive`, shield and DeviceActivity extensions)
+  never imports it**, enforced by a test: "the gate is never paywalled"
+  becomes structural.
+- `PofuCore` holds the gating as pure logic (`actsStarted`,
+  `canStartAct`, `canBuildMastery`) with the entitlement as input; §4
+  becomes unit tests. Listen to `Transaction.updates` from launch,
+  `finish()` verified transactions, treat `revocationDate` as a lapse.
+- Lifetime bought over a running subscription: show
+  `manageSubscriptionsSheet` ("Yıllık üyeliğini iptal edebilirsin"); Apple
+  does not cancel it for us.
 
 ### 6.3 Offline, restore, Ask to Buy
 
-- **Offline:** StoreKit 2 verifies JWS on device and caches entitlements;
-  also cache the last known state with its expiry. Offline past expiry
-  only means the next act waits until the device is online; nothing
-  already open closes.
-- **Restore:** a "Satın alımları geri yükle" button in Settings calls
-  `AppStore.sync()` (required for the non-consumable).
-- **Ask to Buy:** `purchase()` returns `.pending`; the sheet says "Ailene
-  soruldu" and closes; approval arrives via `Transaction.updates`.
-- **Family Sharing:** `ownershipType == .familyShared` counts as active;
-  leaving the family is a revocation, handled by the lapse rules.
-- **Billing:** turn on Billing Grace Period (16 days) and use Billing
-  Retry; no server at launch. App Store Server Notifications v2 come with
-  analytics later.
-- **Testing:** a `.storekit` configuration file for local tests and
-  Rehearsal; sandbox for renewal timing; TestFlight purchases are free.
+- **Offline:** StoreKit 2 verifies JWS on device and caches; past expiry
+  offline, only the next act waits; nothing open closes.
+- **Restore:** a Settings button calls `AppStore.sync()`.
+- **Ask to Buy:** `.pending` → "Ailene soruldu"; approval arrives via
+  `Transaction.updates`. **Family:** `.familyShared` counts as active;
+  leaving the family is a revocation (lapse rules).
+- **Billing:** Grace Period (16 days) and Billing Retry on; no server at
+  launch. **Testing:** a `.storekit` file, sandbox, TestFlight.
 
 ### 6.4 Review risks for a Screen Time app
 
@@ -389,12 +330,9 @@ Free part as recommended. **Book One** is a non-consumable,
 come free with any Book owned.
 
 - **For:** the cozy-game norm (pay once, keep it); no subscription
-  fatigue; simplest lapse story (nothing lapses); likely strong in
-  Türkiye, unmeasured.
-- **Against:** income only when a Book ships; every Book is a new purchase
-  decision; 3.1.2 does not apply, but the art pipeline is paid monthly; a
-  buyer who finishes Book One owes nothing for the long tail we keep
-  building.
+  fatigue; nothing ever lapses; likely strong in Türkiye (unmeasured).
+- **Against:** income only when a Book ships, each one a new purchase
+  decision, while art is paid monthly; the long tail earns nothing.
 - **Switch to it if** the beta's fake door shows lifetime taps several
   times yearly *and* monthly taps near zero in TR.
 
@@ -405,28 +343,7 @@ L6 to L10, hilltop add-ons, Pofu's outfits and home themes.
 
 - **For:** no story lock at all, so the product's purpose never meets a
   paywall; the widest audience and word of mouth.
-- **Against:** cosmetics convert lowest (v1 estimates 0.5 to 1.5 % of
-  installs, a third of the recommendation); the story, our most costly
-  content, earns nothing directly.
+- **Against:** cosmetics convert lowest (v1: 0.5 to 1.5 % of installs,
+  a third of the recommendation); the costly story earns nothing.
 - **Switch to it if** the guardrail fails in both beta arms: free players
   resist less after any story cut.
-
-### Why the recommendation wins
-
-It is the only model where the thing people love (the story and the
-growing island) pays for itself, the free player still owns a complete
-game and the full gate, the lock can only fall at a chapter end by code,
-and the founder's own yearly price is the default.
-
-## 8. Decisions for the founder (recommendation first; unanswered ones proceed)
-
-| # | Question | Recommendation |
-|---|---|---|
-| 1 | Model | Pofu Üyelik, future content included |
-| 2 | Free cut | End of Act I at launch; beta tests Act I vs Act II |
-| 3 | Prices TR | 129,99 TL / 349,99 TL / 999,99 TL |
-| 4 | Abroad | §3.2 table, US base |
-| 5 | Acts sold separately | No |
-| 6 | Lapse | §4: nothing removed, the current act finishes |
-| 7 | Announce the cut | Yes, App Store text and the book's contents |
-| 8 | Paperwork after a yes | An ADR for the free/paid line; amend game-design pillar 7 and A6/A7; mark v1 superseded; add `Membership` logic to `PofuCore` tests before any UI |
