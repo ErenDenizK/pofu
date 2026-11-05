@@ -467,7 +467,7 @@ private struct BreathPreview: View {
 
     var body: some View {
         let values = store.values.companion
-        TimelineView(.animation) { context in
+        TimelineView(.animation(minimumInterval: 1.0 / 30.0)) { context in
             let t = context.date.timeIntervalSinceReferenceDate
             HStack(spacing: PofuSpacing.xl) {
                 disc(t: t, period: values.breathPeriodLow, amplitude: values.breathAmplitudeLow, label: "Yorgun")
