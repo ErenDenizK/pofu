@@ -1,0 +1,454 @@
+batch: batch-30b-decor-seasons-1
+manifest: tools/imagegen/manifest/batch-30b-decor-seasons-1.yaml
+manifest_sha256: d484fefef3b45748662c6d7daa5c6b4996a53df0ac3546114e7a38f7503e6ace
+contact_sheet: design/art/takes/batch-30b-decor-seasons-1/x-decor-bahar-kite/contact.jpg
+jobs:
+  x-decor-bahar-kite:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after the sole unchanged-prompt retry. All official posted alpha-over24
+      visible widths exceed the literal at-most-third of1024 cap341.33px: initial360/360,
+      retry360/359. Numeric decor_anchor and all hard checks pass; style/palette/light
+      warnings remain advisory. The initial pair otherwise correctly shows a classic
+      coral/cream/sea-blue quartered diamond kite resting against a honey stake, rose/mustard
+      bow tail and coiled wooden spool. Independent reviewer confirms the initial
+      contents and size exclusions; final retry fails the same exactsize check. No
+      third round, manual resizing, source cleanup or QA waiver. Preserve all four
+      originals/contact/reports; independent corner has no approved-prop dependency.
+      Never promoted.'
+qa_reports:
+  1:
+    job: x-decor-bahar-kite
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 45.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 58 (at most 22), p98 91 (at least 90), spread 32
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 32.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.4 (at least 3.5)'
+      value: 7.41
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.34
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.6481
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 3.7, off-palette 0.0%
+      value: 1.4224
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 85 against the world reference (outliers: edge)'
+      value: 85.0
+    info:
+      fit:
+        scale: 0.7377
+        anchor:
+        - 484.6
+        - 922
+      registration:
+        dx: 28
+        dy: -34
+      metrics_raw:
+        L_p5: 60.1
+        L_p50: 74.2
+        L_p95: 90.6
+        C_p50: 24.9
+        C_p95: 46.6
+        C_p99: 54.6
+        detail: 1.97
+      metrics_locked:
+        L_p5: 61.2
+        L_p50: 74.0
+        L_p95: 90.4
+        C_p50: 24.3
+        C_p95: 45.3
+        C_p99: 54.0
+        detail: 1.34
+    fingerprint: b08086cc5ef7f3f0
+  2:
+    job: x-decor-bahar-kite
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 91 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.2 (at least 3.5)'
+      value: 6.19
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.23
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.0
+      value: 1.9563
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 3.9, off-palette 0.0% (top: #994433 (0.0%))'
+      value: 1.68
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 88 against the world reference (outliers: edge)'
+      value: 88.3
+    info:
+      fit:
+        scale: 0.8353
+        anchor:
+        - 435.2
+        - 914
+      registration:
+        dx: 76
+        dy: -26
+      metrics_raw:
+        L_p5: 59.5
+        L_p50: 74.2
+        L_p95: 90.5
+        C_p50: 27.9
+        C_p95: 48.8
+        C_p99: 54.9
+        detail: 1.78
+      metrics_locked:
+        L_p5: 60.6
+        L_p50: 74.4
+        L_p95: 90.3
+        C_p50: 26.9
+        C_p95: 48.3
+        C_p99: 54.4
+        detail: 1.23
+    fingerprint: b08086cc5ef7f3f0
+  3:
+    job: x-decor-bahar-kite
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 43.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 91 (at least 90), spread 29
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 29.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 75.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.9 (at least 3.5)'
+      value: 5.86
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.22
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.1
+      value: 2.1276
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 3.6, off-palette 0.0%
+      value: 1.4251
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: edge)'
+      value: 81.6
+    info:
+      fit:
+        scale: 0.7273
+        anchor:
+        - 486.2
+        - 890
+      registration:
+        dx: 26
+        dy: -1
+      metrics_raw:
+        L_p5: 63.5
+        L_p50: 75.5
+        L_p95: 90.6
+        C_p50: 24.0
+        C_p95: 44.4
+        C_p99: 52.9
+        detail: 1.84
+      metrics_locked:
+        L_p5: 64.7
+        L_p50: 75.5
+        L_p95: 90.4
+        C_p50: 23.3
+        C_p95: 43.7
+        C_p99: 52.3
+        detail: 1.22
+    fingerprint: b08086cc5ef7f3f0
+  4:
+    job: x-decor-bahar-kite
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 46.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 58 (at most 22), p98 92 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 76.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.2 (at least 3.5)'
+      value: 6.18
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.23
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.2477
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 5.0, off-palette 0.0% (top: #BB6644 (0.0%), #AA5533
+        (0.0%))'
+      value: 1.6651
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 88 against the world reference (outliers: edge)'
+      value: 88.3
+    info:
+      fit:
+        scale: 0.8276
+        anchor:
+        - 416.3
+        - 852
+      registration:
+        dx: 94
+        dy: 37
+      metrics_raw:
+        L_p5: 59.5
+        L_p50: 76.1
+        L_p95: 92.2
+        C_p50: 25.5
+        C_p95: 48.5
+        C_p99: 59.4
+        detail: 1.76
+      metrics_locked:
+        L_p5: 60.5
+        L_p50: 76.4
+        L_p95: 92.0
+        C_p50: 24.7
+        C_p95: 46.9
+        C_p99: 58.4
+        detail: 1.23
+    fingerprint: b08086cc5ef7f3f0
+manual_review:
+  observed_note: 'Skipped after the sole unchanged-prompt retry. All official posted
+    alpha-over24 visible widths exceed the literal at-most-third of1024 cap341.33px:
+    initial360/360, retry360/359. Numeric decor_anchor and all hard checks pass; style/palette/light
+    warnings remain advisory. The initial pair otherwise correctly shows a classic
+    coral/cream/sea-blue quartered diamond kite resting against a honey stake, rose/mustard
+    bow tail and coiled wooden spool. Independent reviewer confirms the initial contents
+    and size exclusions; final retry fails the same exactsize check. No third round,
+    manual resizing, source cleanup or QA waiver. Preserve all four originals/contact/reports;
+    independent corner has no approved-prop dependency. Never promoted.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30b-decor-seasons-1
+  job: x-decor-bahar-kite
+  take: 1
+  round: 1
+  logical_run: 20261105-night30b-spring-kite-nest
+  source_file: /workspace/generated_images/exec-1f597bbf-ef41-4fab-ba98-bc92390c1d1f.png
+  returned_at: '2026-11-05T19:42:48.501Z'
+  prompt_sha256: 4c085530b0a7b2b405b736e42e06f0eb0148f5ec8b3d261e674e5e87f146bd82
+  fingerprint: b08086cc5ef7f3f0
+  saved_at: '2026-11-05T19:42:48.840588+00:00'
+  original_generated_png_sha256: 048023552c3446d1b6b567603001109b6584a43652369f2ef3f1535a2e965fcb
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: fc80bbffba2376863a6a32b8992790d59fc797ce9c03e3f25629405509f00193
+  inbox_png_sha256: 39d1e679d137438eccf517359a537649633d43de153f9e45d48411881473e2d9
+  qa_sha256: 1a84efb1560843ec6ee5ba0e7211684aea818c87f9249ec9aeafc3984038d6b9
+- batch: batch-30b-decor-seasons-1
+  job: x-decor-bahar-kite
+  take: 2
+  round: 1
+  logical_run: 20261105-night30b-spring-kite-nest
+  source_file: /workspace/generated_images/exec-6cc60c52-c00f-407d-b64d-f3f23ece4f65.png
+  returned_at: '2026-11-05T19:41:57.591Z'
+  prompt_sha256: 4c085530b0a7b2b405b736e42e06f0eb0148f5ec8b3d261e674e5e87f146bd82
+  fingerprint: b08086cc5ef7f3f0
+  saved_at: '2026-11-05T19:41:58.605773+00:00'
+  original_generated_png_sha256: 980d3658dabffb3d2fb74e217b19f6f52093e0984f11b5564ab904b8eb11aac1
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: cc610e0abb1c15f452ec0310455c3cbd7c132dbd04df3ced0047bcef0ba8a33f
+  inbox_png_sha256: c2be6df7edda5ccb0ac93bb92482be6a15221053a1d34db223ff71876fa91661
+  qa_sha256: d31a8b6929270c74b405ff92c035c95c12692254241e1cea4f1bf39a9d94e3e8
+- batch: batch-30b-decor-seasons-1
+  job: x-decor-bahar-kite
+  take: 3
+  round: 2
+  logical_run: 20261105-night30b-kite-retry-icecream-cart
+  source_file: /workspace/generated_images/exec-823ab1ac-1263-409f-8bbc-6c1059dc35b8.png
+  returned_at: '2026-11-05T19:45:40.798Z'
+  prompt_sha256: 4c085530b0a7b2b405b736e42e06f0eb0148f5ec8b3d261e674e5e87f146bd82
+  fingerprint: b08086cc5ef7f3f0
+  saved_at: '2026-11-05T19:45:47.430501+00:00'
+  original_generated_png_sha256: a586b766a1094bb7b32ad799099dfe8cab71e1bfbdfeff31c4bd7c251cc3c451
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: e8e9b63ec5fd118f2b730f34ea7aabb85ea0e48a5073b6216c61f517f0947bc6
+  inbox_png_sha256: 53e8b38cee4799f6a59af7675c0d3679f211d2c827b052b23ec05574dc687d20
+  qa_sha256: 3f291b337c53eda49a1daa016be9d437bd5eba32e8275c1ff73acf61f35f8fe1
+- batch: batch-30b-decor-seasons-1
+  job: x-decor-bahar-kite
+  take: 4
+  round: 2
+  logical_run: 20261105-night30b-kite-retry-icecream-cart
+  source_file: /workspace/generated_images/exec-fd2f07f7-91f1-424b-8c9c-a4027e4ec9e0.png
+  returned_at: '2026-11-05T19:46:32.739Z'
+  prompt_sha256: 4c085530b0a7b2b405b736e42e06f0eb0148f5ec8b3d261e674e5e87f146bd82
+  fingerprint: b08086cc5ef7f3f0
+  saved_at: '2026-11-05T19:46:33.285067+00:00'
+  original_generated_png_sha256: 5de78e12dbe92b5d9b1f31f4cc407a086c0bfd9abb1ecc2764f651b44be04821
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 1ba49a3163a0baebdfa763b2abe7afa32c37f726df354fabe905d0ebe0dc7df5
+  inbox_png_sha256: dcc801dc64ea2b58b9803d18ea1ff8cc935df20fdb3c911481bebe4b142aa0e1
+  qa_sha256: 06ee4954c599f16cff5693b334799fdad0bc6f13c3c63b198ea27e3f26a4fd20
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
