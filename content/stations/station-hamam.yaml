@@ -2,10 +2,12 @@ id: station-hamam
 type: station
 title_tr: Hamam
 title_en: Bathhouse
-status: planned
+status: cut
 horizon: later
 summary: A tiny domed hamam.
 notes:
+- Retired 2026-11-05 with the station islands (game plan section 2); the prices below are the
+  old ones and are no longer in PofuCore.
 - >-
   Opens: Kaplıca + 3 days. Level costs 1→5: 4,400 · 9,680 · 21,296 · 46,851 · 103,073 (total
   185,300). Rate L1→L5: 14 → 44.8 seeds/hour before calm.

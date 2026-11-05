@@ -10,10 +10,8 @@ summary: >-
   (rose stripes or İznik blue).
 notes:
 - >-
-  Opens: Stage 2 (1 tended day). Level costs 1→5: 40 · 88 · 194 · 426 · 937 (total 1,685).
-  Rate L1→L5: 5 → 16 seeds/hour before calm.
+  Opens: Island level 2 (tended day 2, 2 levels built). Level costs 1→5: 8 · 14 · 24 · 38 · 60 (total 144). Rate L1→L5: 0.02 → 0.1 seeds/hour before calm.
 - L1 is the first approved station master and is in PofuWorld (batch 01).
-- Reaching L3 is part of İskele's arrival rule.
 - >-
   Art test 01 proved that level chains made as edits stay consistent (cay-2 as an edit of
   cay-1).
@@ -29,38 +27,38 @@ sources:
   anchor: '#idle-production-and-stations'
 - doc: tools/sim/island_economy.py
 resident: char-mochi
-opens_en: Stage 2 (1 tended day)
+opens_en: Island level 2 (tended day 2, 2 levels built)
 levels:
 - level: 1
   title_tr: Tezgâh, çaydanlık, iki ince belli
   title_en: Counter, çaydanlık, two tulip glasses
-  cost: 40
-  rate: 5.0
+  cost: 8
+  rate: 0.02
   asset: asset-tea-stall-1
 - level: 2
   title_tr: Çizgili tente
   title_en: Striped awning
-  cost: 88
-  rate: 7.8
+  cost: 14
+  rate: 0.04
   asset: asset-tea-stall-2
 - level: 3
   title_tr: İki tabure, minik masa
   title_en: 'Two stools, a tiny table (style: rose stripes or İznik blue)'
-  cost: 194
-  rate: 10.5
+  cost: 24
+  rate: 0.06
   asset: asset-tea-stall-3
 - level: 4
   title_tr: Ampul dizisi
   title_en: String lights
-  cost: 426
-  rate: 13.3
+  cost: 38
+  rate: 0.08
   asset: asset-tea-stall-4
 - level: 5
   title_tr: Kiremit çatı, sardunya, bayrak
   title_en: Tiled roof, geranium, a flag
-  cost: 937
-  rate: 16.0
+  cost: 60
+  rate: 0.1
   asset: asset-tea-stall-5
 unlock:
   day: 1
-  rule_en: Stage 2 (1 tended day) (days ≈ tended days for a daily user)
+  rule_en: Island level 2 (tended day 2, 2 levels built) (days ≈ tended days for a daily user)

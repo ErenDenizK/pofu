@@ -2,10 +2,12 @@ id: station-hammock
 type: station
 title_tr: Hamak
 title_en: Hammock
-status: planned
+status: cut
 horizon: later
 summary: A hammock under the stars for the good-night moment.
 notes:
+- Retired 2026-11-05 with the station islands (game plan section 2); the prices below are the
+  old ones and are no longer in PofuCore.
 - >-
   Opens: Yıldız + 7 days. Level costs 1→5: 3,000 · 6,600 · 14,520 · 31,944 · 70,277 (total
   126,341). Rate L1→L5: 13 → 41.6 seeds/hour before calm.

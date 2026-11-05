@@ -2,10 +2,12 @@ id: station-serbet
 type: station
 title_tr: Şerbetçi
 title_en: Şerbet stand
-status: planned
+status: cut
 horizon: later
 summary: A şerbet stand for after the soak.
 notes:
+- Retired 2026-11-05 with the station islands (game plan section 2); the prices below are the
+  old ones and are no longer in PofuCore.
 - >-
   Opens: Kaplıca + 7 days. Level costs 1→5: 5,200 · 11,440 · 25,168 · 55,370 · 121,813 (total
   218,991). Rate L1→L5: 15 → 48 seeds/hour before calm.
