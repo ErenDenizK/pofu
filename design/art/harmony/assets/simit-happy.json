@@ -6,8 +6,8 @@
   "L_mean": 80.881,
   "L_p2": 55.633,
   "L_p98": 95.389,
-  "detail": 7.594,
-  "edge": 0.164,
+  "detail": 7.903,
+  "edge": 0.154,
   "tint_a": 4.375,
   "tint_b": 9.108,
   "warmth_b": 26.148
@@ -19,8 +19,8 @@
   "L_mean": 80.881,
   "L_p2": 55.633,
   "L_p98": 95.389,
-  "detail": 7.594,
-  "edge": 0.164,
+  "detail": 7.903,
+  "edge": 0.154,
   "tint_a": 4.375,
   "tint_b": 9.108,
   "warmth_b": 26.148
@@ -36,23 +36,21 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "C_p95",
-  "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
  "outliers_before": [
-  "C_p95",
-  "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 30.8077,
  "reference": false,
- "score_after": 69.6,
- "score_before": 69.6,
- "shipped": false,
+ "score_after": 70.9,
+ "score_before": 70.9,
+ "shipped": true,
  "source": "design/art/masters/simit-happy/simit-happy.webp",
  "source_sha": "3ba429940d2fa015"
 }

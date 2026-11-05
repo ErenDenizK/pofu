@@ -6,8 +6,8 @@
   "L_mean": 78.822,
   "L_p2": 42.808,
   "L_p98": 96.109,
-  "detail": 14.334,
-  "edge": 0.132,
+  "detail": 14.053,
+  "edge": 0.138,
   "tint_a": 4.008,
   "tint_b": 8.454,
   "warmth_b": 20.265
@@ -19,8 +19,8 @@
   "L_mean": 78.822,
   "L_p2": 42.808,
   "L_p98": 96.109,
-  "detail": 14.334,
-  "edge": 0.132,
+  "detail": 14.053,
+  "edge": 0.138,
   "tint_a": 4.008,
   "tint_b": 8.454,
   "warmth_b": 20.265
@@ -36,21 +36,21 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
  "outliers_before": [
-  "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 27.6385,
  "reference": false,
- "score_after": 75.3,
- "score_before": 75.3,
- "shipped": false,
+ "score_after": 67.4,
+ "score_before": 67.4,
+ "shipped": true,
  "source": "design/art/masters/findik-eyes-happy/findik-eyes-happy.webp",
  "source_sha": "fcc09bbe7d411729"
 }

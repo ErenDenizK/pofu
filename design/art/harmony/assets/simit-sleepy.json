@@ -6,8 +6,8 @@
   "L_mean": 80.958,
   "L_p2": 56.319,
   "L_p98": 95.683,
-  "detail": 7.495,
-  "edge": 0.187,
+  "detail": 7.797,
+  "edge": 0.176,
   "tint_a": 4.408,
   "tint_b": 8.723,
   "warmth_b": 25.904
@@ -19,8 +19,8 @@
   "L_mean": 80.958,
   "L_p2": 56.319,
   "L_p98": 95.683,
-  "detail": 7.495,
-  "edge": 0.187,
+  "detail": 7.797,
+  "edge": 0.176,
   "tint_a": 4.408,
   "tint_b": 8.723,
   "warmth_b": 25.904
@@ -36,23 +36,21 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "C_p95",
-  "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
  "outliers_before": [
-  "C_p95",
-  "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 30.8077,
  "reference": false,
- "score_after": 69.8,
- "score_before": 69.8,
- "shipped": false,
+ "score_after": 70.4,
+ "score_before": 70.4,
+ "shipped": true,
  "source": "design/art/masters/simit-sleepy/simit-sleepy.webp",
  "source_sha": "bd6c0dbe66153149"
 }

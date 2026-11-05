@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 12.939,
-  "C_p50": 9.629,
-  "C_p95": 35.802,
-  "L_mean": 87.672,
-  "L_p2": 20.989,
-  "L_p98": 98.47,
-  "detail": 6.736,
-  "edge": 0.124,
-  "tint_a": 3.373,
-  "tint_b": 6.538,
-  "warmth_b": 10.518
+  "C_mean": 17.374,
+  "C_p50": 13.192,
+  "C_p95": 47.588,
+  "L_mean": 85.142,
+  "L_p2": 36.989,
+  "L_p98": 93.06,
+  "detail": 5.253,
+  "edge": 0.119,
+  "tint_a": 3.474,
+  "tint_b": 7.446,
+  "warmth_b": 14.254
  },
  "before": {
   "C_mean": 12.939,
@@ -19,36 +19,42 @@
   "L_mean": 87.672,
   "L_p2": 20.989,
   "L_p98": 98.47,
-  "detail": 6.736,
-  "edge": 0.124,
+  "detail": 6.836,
+  "edge": 0.119,
   "tint_a": 3.373,
   "tint_b": 6.538,
   "warmth_b": 10.518
  },
  "chain": null,
  "correction": {
-  "black": 0.0,
+  "black": 16.0,
   "ceiling": 0.0,
-  "chroma": 1.0,
+  "chroma": 1.37,
   "materials": {},
   "tint_a": 0.0,
   "tint_b": 0.0,
-  "white": 0.0
+  "white": -5.41
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "detail"
+  "L_p2",
+  "detail",
+  "edge"
  ],
  "outliers_before": [
-  "detail"
+  "C_p95",
+  "L_p2",
+  "L_p98",
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 30.0333,
  "reference": false,
- "score_after": 88.3,
- "score_before": 88.3,
- "shipped": false,
+ "score_after": 67.4,
+ "score_before": 30.9,
+ "shipped": true,
  "source": "design/art/masters/mochi-work/mochi-work.webp",
  "source_sha": "7165446ba2370dc4"
 }

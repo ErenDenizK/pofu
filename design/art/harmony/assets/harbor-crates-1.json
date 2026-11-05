@@ -6,8 +6,8 @@
   "L_mean": 76.857,
   "L_p2": 61.456,
   "L_p98": 91.741,
-  "detail": 1.244,
-  "edge": 0.417,
+  "detail": 2.847,
+  "edge": 0.188,
   "tint_a": 2.62,
   "tint_b": 12.711,
   "warmth_b": 30.009
@@ -19,8 +19,8 @@
   "L_mean": 76.857,
   "L_p2": 61.456,
   "L_p98": 91.741,
-  "detail": 1.244,
-  "edge": 0.417,
+  "detail": 2.847,
+  "edge": 0.188,
   "tint_a": 2.62,
   "tint_b": 12.711,
   "warmth_b": 30.009
@@ -39,16 +39,18 @@
  "kind": "station",
  "matched_to": "world",
  "outliers_after": [
+  "detail",
   "edge"
  ],
  "outliers_before": [
+  "detail",
   "edge"
  ],
- "ppu": 8.533,
+ "ppu": 18.963,
  "reference": false,
- "score_after": 82.2,
- "score_before": 82.2,
- "shipped": false,
+ "score_after": 76.0,
+ "score_before": 76.0,
+ "shipped": true,
  "source": "design/art/stations/harbor-crates-1/harbor-crates-1.png",
  "source_sha": "61522edabcf97b3b"
 }

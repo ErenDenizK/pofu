@@ -588,7 +588,10 @@ private struct WorldCanvas: View {
                 }
         case .resident(let resident):
             let lift = build.map { $0.moment.station == resident.station ? $0.moment.residentLift(at: $0.time) : 0 } ?? 0
-            ResidentView(resident: resident, point: point, level: level, lift: lift, grade: characterGrade)
+            let focused = model.focus == .resident(resident.id) || model.focus == .station(resident.station)
+            let pose = build.flatMap { $0.moment.station == resident.station ? $0.moment.residentPose(at: $0.time) : nil }
+                ?? resident.idlePose(isBedtime: world.isBedtime, isFocused: focused)
+            ResidentView(resident: resident, art: resident.art(for: pose), point: point, level: level, lift: lift, grade: characterGrade)
                 .overlay {
                     hitArea(
                         box: IslandLayout.residentHitBox,
@@ -650,15 +653,14 @@ private struct WorldCanvas: View {
                         opacity: (arrived ? 1 : 0.55) * fade
                     )
                     .saturation(arrived ? 1 : 0.35)
-                    ForEach(IslandLayout.cast(on: isle.id)) { member in
-                        let art = castArt(member)
-                        if let sprite = WorldArt.sprite(art) {
+                    ForEach(islandPieces(on: isle.id)) { piece in
+                        if let sprite = WorldArt.sprite(piece.art) {
                             DepthImage(
-                                name: art,
+                                name: piece.art,
                                 sprite: sprite,
                                 level: min(max(z, 0), 1),
                                 anchor: canvasPoint(
-                                    WorldPoint(x: isle.center.x + member.offset.x, y: isle.center.y + member.offset.y),
+                                    WorldPoint(x: isle.center.x + piece.offset.x, y: isle.center.y + piece.offset.y),
                                     depth: 0
                                 ),
                                 opacity: (arrived ? 1 : 0.55) * fade
@@ -671,11 +673,20 @@ private struct WorldCanvas: View {
         }
     }
 
-    /// A cast member's sprite: Simit's pose follows the cart and Pofu's calm ring (`SimitPose`).
+    /// What stands on another island, back to front: its built stations and their dressing, and its
+    /// cast (`IslandLayout.scenery`, `IslandLayout.cast`).
+    private func islandPieces(on island: IslandID) -> [IslandPiece] {
+        let levels = Dictionary(world.stations.map { ($0.id, $0.level) }, uniquingKeysWith: max)
+        let cast = IslandLayout.cast(on: island).map { IslandPiece(id: "cast-\($0.id)", art: castArt($0), offset: $0.offset) }
+        return (IslandLayout.scenery(on: island, levels: levels) + cast).sorted { $0.offset.y < $1.offset.y }
+    }
+
+    /// A cast member's sprite: Simit's pose follows the cart, the hour and Pofu's calm ring (`SimitPose`).
     private func castArt(_ member: IslandCastMember) -> String {
         guard member.id == "simit" else { return member.art }
         let level = world.stations.first { $0.id == .bagelCart }?.level ?? 0
-        return SimitPose.pose(bagelCartLevel: level, calmIsFull: world.calmIsFull).art
+        let isStartled = build?.moment.station == .bagelCart && (build?.moment.residentPose(at: build?.time ?? 0) == .surprised)
+        return SimitPose.pose(bagelCartLevel: level, calmIsFull: world.calmIsFull, isBedtime: world.isBedtime, isStartled: isStartled).art
     }
 
     // MARK: Placement
@@ -806,6 +817,8 @@ private struct PlaceholderVignette: View {
 
 private struct ResidentView: View {
     let resident: IslandLayout.Resident
+    /// The baked sprite of the resident's pose (`Resident.art(for:)`).
+    let art: String
     let point: CGPoint
     let level: Double
     /// World units off the ground (a hop).
@@ -817,8 +830,8 @@ private struct ResidentView: View {
         ZStack(alignment: .topLeading) {
             ContactShadow(width: 24, height: 6, strength: 1 - min(lift / 20, 0.5))
                 .position(x: point.x, y: point.y)
-            if let sprite = WorldArt.sprite(resident.art) {
-                DepthImage(name: resident.art, sprite: sprite, level: level, anchor: CGPoint(x: point.x, y: point.y - CGFloat(lift)), grade: grade)
+            if let sprite = WorldArt.sprite(art) {
+                DepthImage(name: art, sprite: sprite, level: level, anchor: CGPoint(x: point.x, y: point.y - CGFloat(lift)), grade: grade)
             }
         }
     }

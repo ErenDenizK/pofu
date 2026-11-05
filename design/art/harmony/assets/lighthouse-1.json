@@ -6,8 +6,8 @@
   "L_mean": 74.347,
   "L_p2": 43.377,
   "L_p98": 91.103,
-  "detail": 2.092,
-  "edge": 0.404,
+  "detail": 3.017,
+  "edge": 0.283,
   "warmth_b": 28.909
  },
  "before": {
@@ -17,8 +17,8 @@
   "L_mean": 74.347,
   "L_p2": 43.377,
   "L_p98": 91.103,
-  "detail": 2.071,
-  "edge": 0.404,
+  "detail": 2.988,
+  "edge": 0.283,
   "tint_a": 4.279,
   "tint_b": 12.619,
   "warmth_b": 23.6
@@ -37,17 +37,19 @@
  "kind": "station",
  "matched_to": "world",
  "outliers_after": [
+  "detail",
   "edge"
  ],
  "outliers_before": [
   "C_p95",
+  "detail",
   "edge"
  ],
- "ppu": 8.533,
+ "ppu": 12.1905,
  "reference": false,
- "score_after": 84.0,
- "score_before": 76.4,
- "shipped": false,
+ "score_after": 79.6,
+ "score_before": 72.1,
+ "shipped": true,
  "source": "design/art/stations/lighthouse-1/lighthouse-1.png",
  "source_sha": "d10186ccbac80dcc"
 }

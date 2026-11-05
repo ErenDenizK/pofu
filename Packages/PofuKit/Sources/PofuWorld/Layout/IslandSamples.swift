@@ -42,6 +42,24 @@ public enum IslandSamples {
         )
     }
 
+    /// Every station built as far as its art goes, home and harbor (the integration check, for
+    /// screenshots): the çay ocağı, garden, pond and windmill at level 5, the workshop at 1 (its only
+    /// art), İskele's cart at 5, its pier and lighthouse at 1.
+    public static func fullArt(
+        clock: Date = Date(timeIntervalSinceReferenceDate: 815_000_000),
+        isBedtime: Bool = false
+    ) -> WorldSnapshot {
+        world(
+            clock: clock,
+            tendedDays: 200,
+            levels: [.garden: 5, .teaStall: 5, .pond: 5, .windmill: 5, .workshop: 1, .bagelCart: 5, .pier: 1, .lighthouse: 1],
+            jar: Self.midWeekJar,
+            islands: [.home, .harbor],
+            islandLevel: 10,
+            isBedtime: isBedtime
+        )
+    }
+
     /// A first day: the garden only.
     public static func firstDay(clock: Date = Date(timeIntervalSinceReferenceDate: 815_000_000)) -> WorldSnapshot {
         world(clock: clock, tendedDays: 0, levels: [.garden: 1], jar: .zero, islands: [.home])

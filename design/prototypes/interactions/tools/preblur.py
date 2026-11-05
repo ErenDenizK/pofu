@@ -185,13 +185,14 @@ def _master(folder):
     raise FileNotFoundError(folder)
 
 
-def _station(level_name):
+def _station(level_name, group="stations", max_ppu=None):
     """A station level master on the station guide: 1024 px for 120 units, the footprint centre at
-    (512, 800). A re-lock with --pad grows the canvas evenly, so the anchor moves with it."""
-    src = _master(os.path.join(ART, "stations", level_name))
+    (512, 800). A re-lock with --pad grows the canvas evenly, so the anchor moves with it. `group` is
+    the art folder (decor pieces live in masters/ but are drawn on the same guide)."""
+    src = _master(os.path.join(ART, group, level_name))
     with Image.open(os.path.join(REPO, src)) as im:
         pad = (im.width - 1024) // 2
-    return {"src": src, "ppu": 1024 / 120, "anchor": (512 + pad, 800 + pad), "max_ppu": STATION_MAX_PPU}
+    return {"src": src, "ppu": 1024 / 120, "anchor": (512 + pad, 800 + pad), "max_ppu": max_ppu or STATION_MAX_PPU}
 
 
 def _isle(name, box):
@@ -265,15 +266,38 @@ def _plate(key):
 # workshop-2 (batch 05) is left out: it was edited from workshop-1's master, which lost the left of
 # its roof to the registration shift, so the edit is cut too; regenerate it from the padded re-lock.
 STATION_LEVELS = {"tea-stall": 5, "garden": 5, "pond": 5, "windmill": 5, "workshop": 1}
+# The harbor's levels (batches 01, 05 and 21): the bagel cart 1-5, the first pier and lighthouse. The
+# harbor is seen from the map and the island framing, never focused, so its art is capped lower.
+HARBOR_LEVELS = {"bagel-cart": 5, "pier": 1, "lighthouse": 1}
+HARBOR_MAX_PPU = 4.0
+# The harbor plate is 268 units wide (the home plate 480), so its stations are drawn at 0.7 of the
+# guide's size to leave a lawn for Simit and the goat.
+HARBOR_SIZE = 0.7
+# The harbor's dressing, drawn on the station guide: (art folder, size in the world as a fraction of the
+# guide's; the plate is 268 units wide, so a prop is a third of a station, a ferry two thirds). The
+# ferry, the horn, the lamp and the crates are in stations/; the bench is a decor piece in masters/.
+HARBOR_PROPS = {"harbor-ferry-1": ("stations", 0.75), "harbor-horn-1": ("stations", 0.5),
+                "harbor-lamp-1": ("stations", 0.5), "harbor-crates-1": ("stations", 0.45),
+                "decor-bench": ("masters", 1.0)}
 
 APP_SOURCES = {
     # The app draws the lock-light bakes (WorldGrade grades them at runtime); "softlock" also bakes a
     # soft-lock master as <name>--softlock to compare (WorldLook.ArtSet), for tea-stall-1 only now.
     "island-main": _plate(APP_PLATE_MASTER),
     **{f"{st}-{lvl}": _station(f"{st}-{lvl}") for st, n in STATION_LEVELS.items() for lvl in range(1, n + 1)},
+    **{f"{st}-{lvl}": {**_station(f"{st}-{lvl}", max_ppu=HARBOR_MAX_PPU), "ppu": 1024 / 120 / HARBOR_SIZE}
+       for st, n in HARBOR_LEVELS.items() for lvl in range(1, n + 1)},
+    **{name: {**_station(name, group, HARBOR_MAX_PPU), "ppu": 1024 / 120 / size} for name, (group, size) in HARBOR_PROPS.items()},
     # Characters: Mochi v2 (batch 03) and Findik (batch 03), 30 and 28 units wide, feet on the anchor.
     "mochi": {"src": "design/art/masters/mochi-v2/mochi-v2.webp", "ppu": 901 / 30, "anchor": (515.5, 1349)},
     "findik": {"src": "design/art/masters/findik-base/findik-base.webp", "ppu": 769 / 28, "anchor": (434.5, 1170)},
+    # Their poses: edits of the same canvases, so they share the base's scale and feet and swap in place.
+    # (Mochi's are on her canvas; Findik's eye poses were drawn on a larger one, matched by width.)
+    **{f"mochi-{pose}": {"src": f"design/art/masters/mochi-{pose}/mochi-{pose}.webp", "ppu": 901 / 30, "anchor": (515.5, 1349)}
+       for pose in ("work", "surprised", "eyes-closed", "eyes-happy")},
+    "findik-work": {"src": "design/art/masters/findik-work/findik-work.webp", "ppu": 769 / 28, "anchor": (434.5, 1170)},
+    "findik-eyes-closed": _blob("design/art/masters/findik-eyes-closed", 28.33, "feet"),
+    "findik-eyes-happy": _blob("design/art/masters/findik-eyes-happy", 28.33, "feet"),
     # Pofu's own art: only the blurred variants (the live CompanionView is the sharp one). 64 units
     # wide with the feet at the rig's ground point, so the variants register with the live view.
     "pofu": {"src": "Packages/PofuKit/Sources/PofuCompanion/Resources/pofu-hamster.png", "ppu": 522 / 64, "anchor": (266, 481), "no_sharp": True},
@@ -290,6 +314,9 @@ APP_SOURCES = {
     "simit-kitten": _blob("design/art/masters/simit-kitten", 26, "feet"),
     "simit-kitten-work": _blob("design/art/masters/simit-kitten-work", 26, "feet", like="design/art/masters/simit-kitten"),
     "simit-kitten-ears": _blob("design/art/masters/simit-kitten-ears", 26, "feet", like="design/art/masters/simit-kitten"),
+    "simit-happy": _blob("design/art/masters/simit-happy", 26, "feet", like="design/art/masters/simit-kitten"),
+    "simit-sleepy": _blob("design/art/masters/simit-sleepy", 26, "feet", like="design/art/masters/simit-kitten"),
+    "simit-surprised": _blob("design/art/masters/simit-surprised", 26, "feet", like="design/art/masters/simit-kitten"),
     # The sky (batch 04), in screen points: far isles in the haze, clouds and the cloud sea.
     "far-isle-1": _sky("far-isle-1", 300),
     "far-isle-2": _sky("far-isle-2", 160),
@@ -303,6 +330,12 @@ APP_SOURCES["tea-stall-1"]["softlock"] = "design/art/stations/tea-stall-1/tea-st
 # what the light changed (its flame), drawn after the grade at night so it is never crushed by it.
 # Not a harmony source: it is light, not paint.
 APP_SOURCES["tea-stall-1-glow"] = {**_station("tea-stall-1-lit"), "emissive_of": (345, 570, 430, 635), "single": True, "harmony": False}
+# The other lit edits, the same way (regions in source pixels, read off each lit master on its guide):
+# the workshop's doorway, the pond's three floating lanterns and the windmill's two round windows.
+for _glow, _lit, _region in (("workshop-1-glow", "workshop-1-lit", (150, 575, 320, 805)),
+                             ("pond-5-glow", "pond-5-lit", (365, 620, 620, 800)),
+                             ("windmill-5-glow", "windmill-5-lit", (355, 570, 600, 628))):
+    APP_SOURCES[_glow] = {**_station(_lit), "emissive_of": _region, "single": True, "harmony": False}
 # The plates to compare (look round 4: the founder chooses between v2 and v3), baked as
 # island-main-band<k>--v2 with v2's own harmony correction.
 PLATE_COMPARE = {"--v2": "island-main-l-v2"}
