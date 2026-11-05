@@ -1,0 +1,197 @@
+batch: batch-37-nazli-rig-pilot
+contact_sheet: design/art/takes/batch-37-nazli-rig-pilot/nazli-body/contact.jpg
+jobs:
+  nazli-body:
+    pick: 2
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Independent original and official
+      locked review confirms take2 faces the camera in three-quarter view with the
+      near eye and far eye edge visible, a tired kind heavy-lidded face, faint smile
+      and blush. Smooth grey-blue back fades to cream belly; bare body recedes upper
+      right from head lower left. The tail stock ends in a soft rounded tip; no fins,
+      flukes, island patch, pier, rope, clouds, other characters, fur or Pofu curl.
+      Faint ribbed rounded unlit paper-lantern skin scar is not a bulb or floating
+      object. Take1 is excluded by canonical hard ground_line82.6percent; take2 has
+      no hard failures, ground_line85.8percent and light/Harmony46.3 remain advisory
+      warnings. No extra retry, invented halo check or manual geometry cleanup: sampled
+      surrounding bright RGB is alpha0 and absent in the official locked composite.
+      Stable consumer links truthfully name all five existing planned rig asset nodes
+      in this first commit, preserving consumer bytes for later job receipts. Founder
+      review pending.'
+qa_reports:
+  2:
+    job: nazli-body
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 16 (R1 51)
+      value: 16.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 71 (at most 22), p98 95 (at least 90), spread 23
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 23.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 84.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.63 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.631
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.0 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.98
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.55
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 3.1, off-palette 0.0%
+      value: 1.4416
+    - check: ground_line
+      status: warn
+      message: feet at 85.8% of the height (contract 88%)
+      value: 0.8584
+    - check: harmony
+      status: warn
+      message: 'harmony score 46 against the char reference (outliers: C_p95, L_p2,
+        detail, tint_b)'
+      value: 46.3
+    info:
+      metrics_raw:
+        L_p5: 72.6
+        L_p50: 84.4
+        L_p95: 92.9
+        C_p50: 10.0
+        C_p95: 16.5
+        C_p99: 20.4
+        detail: 1.51
+      metrics_locked:
+        L_p5: 72.6
+        L_p50: 84.4
+        L_p95: 92.9
+        C_p50: 10.0
+        C_p95: 16.5
+        C_p99: 20.4
+        detail: 1.55
+    fingerprint: 77542e96252d0f01
+  1:
+    job: nazli-body
+    take: 1
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 17 (R1 51)
+      value: 17.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 71 (at most 22), p98 94 (at least 90), spread 22
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 22.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 83.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.64 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.639
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 0.9 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.89
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.55
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 3.4, off-palette 0.0%
+      value: 1.4999
+    - check: ground_line
+      status: fail
+      message: feet at 82.6% of the height (contract 88%)
+      value: 0.8262
+    - check: harmony
+      status: warn
+      message: 'harmony score 44 against the char reference (outliers: C_p95, L_p2,
+        detail, tint_b)'
+      value: 43.9
+    info:
+      metrics_raw:
+        L_p5: 72.4
+        L_p50: 83.3
+        L_p95: 92.6
+        C_p50: 10.4
+        C_p95: 17.2
+        C_p99: 20.0
+        detail: 1.51
+      metrics_locked:
+        L_p5: 72.4
+        L_p50: 83.3
+        L_p95: 92.6
+        C_p50: 10.4
+        C_p95: 17.2
+        C_p99: 20.0
+        detail: 1.55
+    fingerprint: 77542e96252d0f01
+manual_review:
+  excluded_takes: []
+  note: 'Independent original and official locked review confirms take2 faces the
+    camera in three-quarter view with the near eye and far eye edge visible, a tired
+    kind heavy-lidded face, faint smile and blush. Smooth grey-blue back fades to
+    cream belly; bare body recedes upper right from head lower left. The tail stock
+    ends in a soft rounded tip; no fins, flukes, island patch, pier, rope, clouds,
+    other characters, fur or Pofu curl. Faint ribbed rounded unlit paper-lantern skin
+    scar is not a bulb or floating object. Take1 is excluded by canonical hard ground_line82.6percent;
+    take2 has no hard failures, ground_line85.8percent and light/Harmony46.3 remain
+    advisory warnings. No extra retry, invented halo check or manual geometry cleanup:
+    sampled surrounding bright RGB is alpha0 and absent in the official locked composite.
+    Stable consumer links truthfully name all five existing planned rig asset nodes
+    in this first commit, preserving consumer bytes for later job receipts. Founder
+    review pending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-10072b7c-f895-47dc-b4bc-b0ccb92fb752.png
+  original_generated_png_sha256: e545fec82ff48b6405727f6e0177fca8aa1a7831f066df477ee5be12b22592b1
+  inbox_png_sha256: 5850a6b1ebc03f0ca3fc5f51d78e6d100e1c783075073ffed13741474f370dc3
+  rgba_sha256: a3b318854d5642b5fbb52f8c1750080e2198e63b80c6e2f5e88f576f51372159
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 77542e96252d0f01
+- take: 2
+  source_file: /workspace/generated_images/exec-1c61d5e9-861b-46b6-ba47-fca41df6efac.png
+  original_generated_png_sha256: 6cbe1de7b33e6ffdb4a1186b1fe70f1b4a2eb6b4a34d93a4b807fc823c393075
+  inbox_png_sha256: 922815ded2ce83c5164f481c6427ee71e810086405e7c48a135597b5ee3b911b
+  rgba_sha256: e2c9abf721829d7f7d030af5ac022dafa3e4d28294a320071af3d08128dfdb07
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 77542e96252d0f01

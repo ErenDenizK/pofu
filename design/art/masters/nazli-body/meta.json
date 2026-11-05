@@ -1,0 +1,109 @@
+{
+  "job": "nazli-body",
+  "batch": "batch-37-nazli-rig-pilot",
+  "asset": "char__nazli-body",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-05T23:15:33+00:00",
+  "image": "design/art/masters/nazli-body/nazli-body.png",
+  "raw": "design/art/masters/nazli-body/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "77542e96252d0f01",
+  "prompt": "REFERENCES (attached, in this order):\n1. The approved Nazlı (Gezgin form 1): copy the whale only: her colors, soft rounded shape, tired kind eye, faint smile, cream belly, and the faint paper-lantern scar. Ignore the pier, the characters, the island patch and the clouds. Turn her three-quarter toward the camera.\n\nNazlı, a humble, tired, gentle cloud-whale, as a game sprite on a\ntransparent background, in a three-quarter view turned toward the\ncamera: her rounded head is in front at the lower left, her big\nkind face looking out of the picture, and her long body recedes\nback to the upper right. Her face is fully visible and unobstructed:\nthe nearer eye is large, soft and heavy-lidded, the farther eye is\njust visible beyond the bridge of her brow, a faint gentle smile, a\npink blush on the cheek. Grey-blue on the back fading to cream on\nthe belly, a little thin and pale, a low head. On the upper flank\nbehind the head, a faint pale scar in her skin shaped like a small\nunlit paper lantern (a rounded lantern with ribs and a tiny cap and\nhandle; never a light bulb).\n\nIN THIS IMAGE LEAVE OUT, to be added as separate layers: NO flippers\nor fins of any kind (the sides of the body are smooth), NO tail\nflukes (the tapering tail stock ends in a soft rounded tip), NO\nmossy island patch (her back is bare, smooth and clean, with no\nbench, post, hook or grass). Her whole body fits in the canvas,\nabout 85 percent of its width, centered, with transparent empty\nspace around it. No pier, no rope, no clouds, no characters, no\nground, no shadow.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: a pier, ropes, clouds or a sea, characters, a light bulb, a frightening mouth, teeth, her face hidden or turned away, fins, flukes, an island on her back, text, letters, a floor, a ground shadow, outlines\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/takes/batch-34-islands-in-game/x-gezgin-f1-harbor/plate__x-gezgin-f1-harbor--t1.webp",
+      "role": "The approved Nazlı (Gezgin form 1): copy the whale only: her colors, soft rounded shape, tired kind eye, faint smile, cream belly, and the faint paper-lantern scar. Ignore the pier, the characters, the island patch and the clouds. Turn her three-quarter toward the camera."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T23:14:09+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 16 (R1 51)",
+        "value": 16.5
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 71 (at most 22), p98 95 (at least 90), spread 23 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 23.3
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 84 (band 55-90)",
+        "value": 84.4
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.63 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.631
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 1.0 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 0.98
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.6 (R1 5.3)",
+        "value": 1.55
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.4, p95 3.1, off-palette 0.0%",
+        "value": 1.4416
+      },
+      {
+        "check": "ground_line",
+        "status": "warn",
+        "message": "feet at 85.8% of the height (contract 88%)",
+        "value": 0.8584
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 46 against the char reference (outliers: C_p95, L_p2, detail, tint_b)",
+        "value": 46.3
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Independent original and official locked review confirms take2 faces the camera in three-quarter view with the near eye and far eye edge visible, a tired kind heavy-lidded face, faint smile and blush. Smooth grey-blue back fades to cream belly; bare body recedes upper right from head lower left. The tail stock ends in a soft rounded tip; no fins, flukes, island patch, pier, rope, clouds, other characters, fur or Pofu curl. Faint ribbed rounded unlit paper-lantern skin scar is not a bulb or floating object. Take1 is excluded by canonical hard ground_line82.6percent; take2 has no hard failures, ground_line85.8percent and light/Harmony46.3 remain advisory warnings. No extra retry, invented halo check or manual geometry cleanup: sampled surrounding bright RGB is alpha0 and absent in the official locked composite. Stable consumer links truthfully name all five existing planned rig asset nodes in this first commit, preserving consumer bytes for later job receipts. Founder review pending."
+}
