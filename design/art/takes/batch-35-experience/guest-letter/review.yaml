@@ -1,0 +1,176 @@
+batch: batch-35-experience
+contact_sheet: design/art/takes/batch-35-experience/guest-letter/contact.jpg
+jobs:
+  guest-letter:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both initial takes show exactly
+      two separated letter states, with a cream folded envelope, round honey wax dot
+      containing one sunflower seed, and open blank cream paper with faint horizontal
+      shading bands and curled corners. No letters, numbers, handwriting, scribbles,
+      floor, cast shadow or background. Independent original and locked alpha-composited
+      review confirms eligibility; take 2 has lower style-lock load (0.0000 versus
+      0.0029). Advisory light-profile warnings are retained for founder review.
+qa_reports:
+  2:
+    job: guest-letter
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 27 (R1 51)
+      value: 26.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 70 (at most 22), p98 94 (at least 90), spread 24
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 24.4
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 90 (band 55-90)'
+      value: 90.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.38 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.384
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.53
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.4
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 3.3, off-palette 0.0% (top: #BB7733 (0.0%), #AA6633
+        (0.0%))'
+      value: 1.2796
+    info:
+      metrics_raw:
+        L_p5: 76.4
+        L_p50: 90.5
+        L_p95: 93.1
+        C_p50: 14.8
+        C_p95: 26.8
+        C_p99: 50.2
+        detail: 1.34
+      metrics_locked:
+        L_p5: 76.4
+        L_p50: 90.5
+        L_p95: 93.1
+        C_p50: 14.8
+        C_p95: 26.8
+        C_p99: 50.2
+        detail: 1.4
+    fingerprint: b2637f415ad4867e
+  1:
+    job: guest-letter
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 27 (R1 51)
+      value: 27.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 67 (at most 22), p98 94 (at least 90), spread 27
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 26.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 89 (band 55-90)'
+      value: 89.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.32 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.318
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.7 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.47
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0029
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 3.0, off-palette 0.5% (top: #CC8844 (0.1%), #BB7733
+        (0.1%))'
+      value: 1.6351
+    info:
+      metrics_raw:
+        L_p5: 72.4
+        L_p50: 89.1
+        L_p95: 92.4
+        C_p50: 15.4
+        C_p95: 27.4
+        C_p99: 53.3
+        detail: 1.42
+      metrics_locked:
+        L_p5: 72.4
+        L_p50: 89.1
+        L_p95: 92.4
+        C_p50: 15.4
+        C_p95: 27.4
+        C_p99: 53.1
+        detail: 1.47
+    fingerprint: b2637f415ad4867e
+manual_review:
+  excluded_takes: []
+  note: Both initial takes show exactly two separated letter states, with a cream
+    folded envelope, round honey wax dot containing one sunflower seed, and open blank
+    cream paper with faint horizontal shading bands and curled corners. No letters,
+    numbers, handwriting, scribbles, floor, cast shadow or background. Independent
+    original and locked alpha-composited review confirms eligibility; take 2 has lower
+    style-lock load (0.0000 versus 0.0029). Advisory light-profile warnings are retained
+    for founder review.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-705091a9-f72c-42fd-b472-5db3d9a18197.png
+  original_generated_png_sha256: 74ca44aa8a4e40cffe97bb49fbb5cb735fe982ab571933b9266077ea59926ef7
+  inbox_png_sha256: c7d81ffce32a6671c319c71430636f2d883d59dda64c3a2b3f5381d925f0e34f
+  rgba_sha256: 430f40f4ad429e499f9ca482e7269ac12fb928adf292b272b9bf717e9cb9969c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b2637f415ad4867e
+- take: 2
+  source_file: /workspace/generated_images/exec-f504f98c-8e90-4663-adbf-a02f381863e2.png
+  original_generated_png_sha256: 42a11754f2324eeceff08a17fd9411575e426a9e26a76d97cec3e6849a328ffe
+  inbox_png_sha256: b75111d44bd844e2d949cb42b3dfb7cf4e1bb8d032c1036cde6e9d55ed0629fc
+  rgba_sha256: 3677034de914c87dc7b75bc4d3ec7658e7da690da8b94ceaf9d1453f137d1f53
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: b2637f415ad4867e
