@@ -1,5 +1,7 @@
 # Island Minigames: Proven Mechanics, Pofu's Spice
 
+> **Superseded in part (2026-11-05):** three engines only (place, connect, recall), per [game plan §5](game-plan.md#5-the-three-games); the station-island archipelago it builds on is retired ([ADR-0019](../adr/0019-home-cluster-and-wonder-islands.md)). The mechanics research still holds.
+
 Status: **proposed**, with a vertical slice in code (`PofuGames`, the
 Ayçiçeği garden). Builds on the archipelago system proposal
 (`docs/archive/archipelago-system.md` on the unmerged `docs/archipelago-system`

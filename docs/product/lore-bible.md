@@ -1,5 +1,7 @@
 # Lore bible: Pofu and the islands that come home
 
+> **Superseded in part (2026-11-05):** the island order and the main/filler split follow the [game plan](game-plan.md) and [story references](../research/story-references.md#synthesis-the-story-rules-these-give-pofu); the hidden history is [deep lore](deep-lore.md).
+
 _Status: **draft 0 for human spice**, 2026-11-03. Written by the agent as
 scaffolding under the pipeline in
 [narrative-craft.md](../research/narrative-craft.md). Nothing here is

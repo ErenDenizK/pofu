@@ -1,5 +1,7 @@
 # Story Delivery: the App, the Game and the Story on One Axis
 
+> **Superseded in part (2026-11-05):** the [game plan](game-plan.md) wins where they disagree (the Pofu and Mochi duo, main islands and fillers, no fixed days); beat triggers and the app–game–story axis still hold.
+
 _Status: **proposal**, 2026-11-03. Written by the agent as game designer
 in answer to the founder's input of 2026-11-03 (below). Nothing here is
 dialogue: every line is a **placeholder ID with an intent**; humans write

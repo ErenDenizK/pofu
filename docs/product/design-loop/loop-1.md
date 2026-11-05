@@ -1,5 +1,7 @@
 # Design loop 1: constellations, the Bekçi, and a Çağlayan worth opening on
 
+> **Superseded in part (2026-11-05):** the island order, the main/filler split and Gezgin's role follow the [game plan](../game-plan.md) and [story references](../../research/story-references.md#synthesis-the-story-rules-these-give-pofu); the hidden history is [deep lore](../deep-lore.md). Kept for the reasoning.
+
 _Status: **proposal**, 2026-11-03. Creative director pass (Opus) of the
 [design loop](README.md). Inputs: the lead's constellation overview
 (accepted by the founder as a working draft), his feedback of the same

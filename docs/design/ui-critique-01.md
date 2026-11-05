@@ -1,5 +1,7 @@
 # UI Critique 01: The Game Screen Is Not Yet the Game
 
+> **Historical (2026-11-05):** its direction is carried by [UI system v2](ui-system-v2.md) and [experience v1](experience-v1.md); read it for the reasoning.
+
 _Status: proposal for the founder. Last updated: 2026-11-02._
 _Reviewed: `main` at #59 (look-dev), CI screenshots on the orphan branches
 `screenshots/main` and `screenshots/feat-rehearsal-mode` (iPhone 17
