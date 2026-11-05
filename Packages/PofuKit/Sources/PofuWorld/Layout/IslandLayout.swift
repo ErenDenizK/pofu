@@ -72,6 +72,29 @@ public enum IslandLayout {
     /// A resident's tap target, padded toward 44 pt on screen.
     public static let residentHitBox = WorldBox(minX: -16, minY: -30, maxX: 16, maxY: 4)
 
+    /// A prop that bends under a brushing finger (`TouchField`): the finger
+    /// meets its body at `center`, and it sways about its base.
+    public struct TouchProp: Hashable, Sendable, Identifiable {
+        public var id: String
+        public var base: WorldPoint
+        public var center: WorldPoint
+    }
+
+    /// The touchable props: the home island's stations, which give a little
+    /// under the thumb. Dressing and critters join with wave 2.
+    public static var touchProps: [TouchProp] {
+        stationAnchors.keys.sorted().compactMap { station in
+            stationAnchors[station].map { anchor in
+                TouchProp(id: touchID(station), base: anchor, center: WorldPoint(x: anchor.x, y: anchor.y - 30))
+            }
+        }
+    }
+
+    /// The touch id of a station.
+    public static func touchID(_ station: StationID) -> String {
+        "station-\(station.rawValue)"
+    }
+
     public struct Resident: Hashable, Sendable, Identifiable {
         public var id: ResidentID
         public var station: StationID
