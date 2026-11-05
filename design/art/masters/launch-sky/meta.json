@@ -1,0 +1,119 @@
+{
+  "job": "launch-sky",
+  "batch": "batch-35-experience-pilot",
+  "asset": "plate__launch-sky",
+  "take": 2,
+  "takes_considered": 4,
+  "approved_at": "2026-11-05T23:20:39+00:00",
+  "image": "design/art/masters/launch-sky/launch-sky.png",
+  "raw": "design/art/masters/launch-sky/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "75176df43501613b",
+  "prompt": "REFERENCES (attached, in this order):\n1. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n2. The sea of clouds below every island: paint the clouds like this (do not draw the sea).\n\nA tall full-bleed dawn sky for a cozy mobile game's launch screen, a portrait image. Top to bottom: a soft\nlilac-blue sky at the top, melting through pale peach and warm cream to a glowing honey horizon about two\nthirds down; a few long, soft, slightly flat clouds in thin calm bands across the sky, lit warm from below;\na gentle bank of puffy cream clouds along the bottom third, lit pink-gold on their tops. The light is\ncalm and hopeful, a quiet new morning. Keep the middle of the image open and uncluttered so a small\nisland can sit there; keep anything important within the central two thirds of the width and nothing\nwithin the top 12 percent. No island, no sun disc, no birds, no stars, no characters.\n\nPainted in the same soft airbrushed picture-book finish as the attached art, milky pastel colors lifted toward cream, no outlines, no hard edges.\n\nAVOID: a border, text, harsh shadows, saturated or neon colors, dark moods, outlines, photorealism, a 3D render look, an island, a sun disc, birds, stars, characters, banding\n\nLIGHT (hour: dawn, layer: subject). Hush, promise.\nKey light #F4C7A4 from the left, a little above; fill #C9B8F0; rim #FFD9BC along the edge facing away from the key. Shadows are tinted #B9A2FF (never grey or black) and fall toward the right, a little below; paint a contact shadow in that hue under every object that touches the ground or another form, firmest in the subject plane.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, opaque, full bleed, portrait 1024 x 1536.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/tea-stall-1/tea-stall-1.png",
+      "role": "The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall)."
+    },
+    {
+      "path": "design/art/masters/cloud-sea/cloud-sea.png",
+      "role": "The sea of clouds below every island: paint the clouds like this (do not draw the sea)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud-retained-salvage",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T19:28:13.735Z",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "opaque, as this kind must be"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1024x1536 scaled x1.820 and center-cropped to 1290x2796 (the job's declared size: crop and upscale are by design)",
+        "value": 1.8203
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 35 (R1 51)",
+        "value": 34.6
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "dawn/subject: L p2 82 (at most 26), p98 93 (at least 88), spread 11 (at least 55) (warn-only until the founder has seen the light pilot)",
+        "value": 10.7
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "dawn/subject: median L 86 (band 50-88)",
+        "value": 86.3
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "dawn/subject: dark-channel haze 0.60 (at most 0.24; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.604
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "dawn/subject: p75 local contrast 0.3 (at least 3.2) (warn-only until the founder has seen the light pilot)",
+        "value": 0.29
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.5 (R1 5.3)",
+        "value": 0.49
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.6",
+        "value": 0.6304
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.8, p95 3.5, off-palette 0.0%",
+        "value": 1.7564
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. All four retained originals pass hard QA at the declared full1290x2796 canvas; t2 has the lowest eligible lock load .6304. Manual source/locked/delivered review verifies clear top12 percent, calm dawn sky, sparse edge wisps and low cloud bank with open central crop; no objects, letters or horizon land. Advisory dawn subject light-values/haze/contrast warnings are retained explicitly. Official declared half delivery is645x1398; all four lossless previews fit under600 KB. No new generation, local pixel edits or threshold waiver.",
+  "deliver": {
+    "scale": 0.5,
+    "original_size": [
+      1290,
+      2796
+    ],
+    "delivered_size": [
+      645,
+      1398
+    ]
+  }
+}
