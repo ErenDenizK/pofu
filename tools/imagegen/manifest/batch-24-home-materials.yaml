@@ -1,0 +1,349 @@
+# Batch 24: exploration, never promoted (the backlog)
+#
+# Upgrade props and materials for the home stations, each a separate prop drawn
+# on the decor guide (design/art/templates/decor-guide.png) so any piece fits
+# any spot. Each attaches the approved decor bench for the family look. Footprint
+# width and height bar are checked by QA (decor_anchor); the size sentence is
+# stated in every prompt because the first bench came out twice too wide.
+#
+# Tracks: `stall`, `garden`, `harbor`.
+#
+# BACKLOG (docs/design/art-production-plan.md#the-backlog): every job here is
+# an EXPLORATION with an `x-` id. EXPLORATION RULES (AGENTS.md): do NOT run
+# `promote`; commit the takes (WebP q90), the contact sheet and review.yaml
+# under design/art/takes/<batch>/<id>/ and nothing else. No painted text
+# anywhere. Never paint glass, UI chrome or buttons. A failed or refused job
+# is recorded and skipped; the run continues with the next job. There is no
+# pilot gate: run the jobs in the order written.
+#
+# Fresh variations: when the backlog comes round again, copy a job under a
+# new id (`-v2`, `-v3`, ...) with a new angle, never the same prompt twice.
+
+batch: batch-24-home-materials
+title: Home upgrade props and materials (decor guide)
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: tea-stall-1, kind: station, name: tea-stall-1, external: batch-01-slice}
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: decor-bench, kind: prop, name: decor-bench, external: batch-08-decor-pilot}
+
+  - id: x-decor-tea-set
+    kind: prop
+    name: x-decor-tea-set
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Tea stall cups and glasses: a small round tray with three tulip-shaped tea glasses on saucers and two plain cups. Review: the glasses read as tea at 64 px, not as flowers."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small round tray of soft brass-cream with three tulip-shaped tea
+          glasses on saucers, filled with amber tea, a small sugar bowl and
+          two plain rounded clay cups of pale sage, for the tea stall
+          counter. Chunky, toy-like proportions, glass as a soft tinted
+          shape. It stands on the guide's ground ellipse, centered on the
+          cross, never wider than the ellipse and never taller than the
+          height bar; it is small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-samovar
+    kind: prop
+    name: x-decor-samovar
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A samovar for the tea stall, matte, toy-like. Review: the silhouette is unmistakable and the metal stays matte."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A rounded samovar for the tea stall: a plump urn of soft warm
+          brass-cream with a small domed lid, two chunky round handles, a
+          short tap and a small teapot of rose clay resting on top. Matte, a
+          soft form without reflections or hammering. It stands on the
+          guide's ground ellipse, centered on the cross, never wider than
+          the ellipse and never taller than the height bar; it is small, a
+          third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-cushions
+    kind: prop
+    name: x-decor-cushions
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A stack of three cushions in the home palette. Review: plump, no pattern beyond plain stripes."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A stack of three plump square cushions with softly pinched
+          corners, in rose, cream and sage, with simple plain stripes on one
+          of them (no pattern, no motif), a tiny tassel on one corner. It
+          stands on the guide's ground ellipse, centered on the cross, never
+          wider than the ellipse and never taller than the height bar; it is
+          small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-lantern
+    kind: prop
+    name: x-decor-lantern
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A standing garden lantern, unlit. Review: no flame shape (code adds the glow); the cap and the paper read."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small standing garden lantern: a short honey-wood post with a
+          rounded base, topped by a plump paper lantern of cream with a
+          small wooden cap and a short tassel. Unlit: simple soft shapes,
+          not glowing. It stands on the guide's ground ellipse, centered on
+          the cross, never wider than the ellipse and never taller than the
+          height bar; it is small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-flower-box
+    kind: prop
+    name: x-decor-flower-box
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A flower box of sunflowers and daisies. Review: the box and the flowers are separate big shapes."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A low wooden flower box of soft honey wood with rounded ends,
+          planted with a cheerful cluster of small sunflowers, cream daisies
+          and soft green leaves in plump simple shapes. It stands on the
+          guide's ground ellipse, centered on the cross, never wider than
+          the ellipse and never taller than the height bar; it is small, a
+          third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-bench-2
+    kind: prop
+    name: x-decor-bench-2
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A bench upgrade, level 2. Review: clearly the same family as the approved bench, clearly richer."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          An upgraded garden bench for two little animals, the same family
+          as the attached bench but richer: a chunky honey-wood bench with a
+          curved backrest of rounded slats, scrolled rounded armrests, a
+          plump rose-and-cream striped cushion and a small folded sage
+          blanket over one arm. It stands on the guide's ground ellipse,
+          centered on the cross, never wider than the ellipse and never
+          taller than the height bar; it is small, a third of the image
+          width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-mailbox-2
+    kind: prop
+    name: x-decor-mailbox-2
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A mailbox upgrade: a rounded post box with a flag and a few letters poking out. Review: the flag is a rose accent, not a signal red."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small rounded post-box on a short wooden post, painted soft sage
+          with a cream roof, a little rose flag raised, and two blank
+          envelopes poking out of the slot. Toy-like, chunky. It stands on
+          the guide's ground ellipse, centered on the cross, never wider
+          than the ellipse and never taller than the height bar; it is
+          small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-rope-coil
+    kind: prop
+    name: x-decor-rope-coil
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A coil of mooring rope with a small wooden cleat. Review: the rope is thick and soft, never thin."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A neat round coil of thick, soft cream rope lying in a flat spiral
+          beside a chunky honey-wood cleat, for the harbor and the boat. The
+          rope is thick and rounded, never a thin line, without fibre
+          detail. It stands on the guide's ground ellipse, centered on the
+          cross, never wider than the ellipse and never taller than the
+          height bar; it is small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-crates
+    kind: prop
+    name: x-decor-crates
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Stacked wooden crates with a sack. Review: reads as a cozy stack, not as a wall."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small stack of three chunky wooden crates of soft honey wood
+          with rounded corners and simple slats, a plump cream cloth sack
+          leaning against them and a pale sage cabbage-like leaf vegetable
+          on top. It stands on the guide's ground ellipse, centered on the
+          cross, never wider than the ellipse and never taller than the
+          height bar; it is small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-weather-vane
+    kind: prop
+    name: x-decor-weather-vane
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A weather vane with a little sunflower on an arrow. Review: thin arms are thickened to read on a phone."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A weather vane on a short, thick wooden post: a plump rounded
+          arrow of warm brass-cream pointing left with a small sunflower in
+          place of a flag, two chunky crossbars with rounded balls at their
+          ends. All parts thick and rounded. It stands on the guide's ground
+          ellipse, centered on the cross, never wider than the ellipse and
+          never taller than the height bar; it is small, a third of the
+          image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2
+
+  - id: x-decor-boat-2
+    kind: prop
+    name: x-decor-boat-2
+    size: 1024x1024
+    canvas: 1024x1024
+    chat: "Pofu · Decor"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. A small rowing boat for the harbor, with an oar and a bow hook. Review: rounded, toy-like, the water is not drawn."
+    attach:
+      - ref: decor-guide
+        role: "The decor guide: footprint ellipse, anchor cross and height bar. Follow it, then remove it."
+      - ref: approved:decor-bench
+        role: "The first piece of the decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench unless asked)."
+      - ref: approved:tea-stall-1
+        role: "The approved tea stall: match its style, camera, light, colors and scale (do not draw the stall)."
+      - ref: palette:world-props
+        role: "The palette card for props: use only these colors (and mixes of them)."
+    prompt:
+      - text: |
+          A small wooden rowing boat for two little animals: a plump rounded
+          hull of honey wood with a cream stripe, one pale sage cushion on
+          the seat, a single chunky oar resting across it and a small hook
+          at the bow. The waterline sits on the ground ellipse; draw no
+          water. It stands on the guide's ground ellipse, centered on the
+          cross, never wider than the ellipse and never taller than the
+          height bar; it is small, a third of the image width at most.
+      - block: prop-style-v2
+      - block: prop-avoid-v2

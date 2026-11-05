@@ -1,0 +1,304 @@
+# Batch 23: exploration, never promoted (the backlog)
+#
+# An emoji and sticker set for messages, widgets and marketing, on transparent
+# backgrounds, in the exact style of the approved characters. Each job is a
+# sheet of stickers laid out with generous clear space between them so a later
+# cut-out is clean (code or the lead slices them). Stickers have no white
+# sticker border (the pipeline forbids it); the characters stand alone.
+#
+# Tracks: `pofu`, `mochi`, `residents`, `duo`.
+#
+# BACKLOG (docs/design/art-production-plan.md#the-backlog): every job here is
+# an EXPLORATION with an `x-` id. EXPLORATION RULES (AGENTS.md): do NOT run
+# `promote`; commit the takes (WebP q90), the contact sheet and review.yaml
+# under design/art/takes/<batch>/<id>/ and nothing else. No painted text
+# anywhere. Never paint glass, UI chrome or buttons. A failed or refused job
+# is recorded and skipped; the run continues with the next job. There is no
+# pilot gate: run the jobs in the order written.
+#
+# Fresh variations: when the backlog comes round again, copy a job under a
+# new id (`-v2`, `-v3`, ...) with a new angle, never the same prompt twice.
+
+batch: batch-23-stickers
+title: Sticker and emoji set (Pofu, Mochi, Simit, Fındık, the goat)
+status: open
+
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-s, kind: world, name: island-main-s, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: pofu, kind: char, name: pofu-r1, external: r1, master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png}
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island}
+  - {id: findik, kind: char, name: findik-base, external: batch-03-home-island}
+  - {id: simit-kitten, kind: char, name: simit-kitten, external: retry-2026-11-03}
+  - {id: harbor-goat, kind: char, name: harbor-goat, external: retry-2026-11-03}
+
+  - id: x-sticker-pofu-1
+    kind: sheet
+    name: x-sticker-pofu-1
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Pofu stickers 1 of 2: happy, sleepy, surprised, proud, sulky. Review: each emotion reads at emoji size from the mouth and eyes alone; he is always unmistakably Pofu."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+    prompt:
+      - text: |
+          A sticker sheet of five full-body poses of Pofu the hamster, in
+          his exact attached look, each a different emotion: (1) happy, eyes
+          closed in a smile, paws up; (2) sleepy, eyes half closed, head
+          drooping, a tiny yawn; (3) surprised, eyes wide, mouth a small
+          round O, fur puffed; (4) proud, chest out, chin up, eyes bright, a
+          small content smile; (5) sulky, cheeks puffed, a small pout, eyes
+          looking sideways, arms folded at the chest. Three on the top row,
+          two on the bottom. On a plain transparent background, in a loose
+          grid with wide empty space around each sticker, none touching or
+          overlapping another, each drawn complete with its whole body. No
+          text, no speech bubbles, no floating hearts or sparkles unless
+          named.
+      - block: prop-style-v2
+      - text: "AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters, speech bubbles, a curl on any head except Pofu's, extra limbs, a background"
+
+  - id: x-sticker-pofu-2
+    kind: sheet
+    name: x-sticker-pofu-2
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Pofu stickers 2 of 2: laughing, waving, tea, thinking, love. Review: tea and thinking carry a prop that reads at 64 px."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+    prompt:
+      - text: |
+          A sticker sheet of five full-body poses of Pofu the hamster, in
+          his exact attached look, each a different moment: (1) laughing,
+          eyes squeezed shut, mouth open wide, tiny tears of joy, rolling
+          slightly; (2) waving, one paw raised high, a bright smile; (3)
+          tea, holding a small tulip-shaped tea glass in both paws and
+          sipping, eyes closed content; (4) thinking, one paw at the chin,
+          eyes looking up and to the side, head tilted; (5) love, eyes shut
+          in bliss, cheeks blushing deep pink, hugging a small plump heart-
+          shaped cushion. Three on the top row, two on the bottom. On a
+          plain transparent background, in a loose grid with wide empty
+          space around each sticker, none touching or overlapping another,
+          each drawn complete with its whole body. No text, no speech
+          bubbles, no floating hearts or sparkles unless named.
+      - block: prop-style-v2
+      - text: "AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters, speech bubbles, a curl on any head except Pofu's, extra limbs, a background"
+
+  - id: x-sticker-mochi-1
+    kind: sheet
+    name: x-sticker-mochi-1
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Mochi stickers 1 of 2: happy, sleepy, surprised, proud, sulky. Review: Mochi's ears carry the emotion; same family as Pofu's set."
+    attach:
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: her exact look, fur, colors and eyes."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+    prompt:
+      - text: |
+          A sticker sheet of five full-body poses of Mochi the bunny, in her
+          exact attached look, each a different emotion: (1) happy, eyes
+          closed in a smile, ears perked; (2) sleepy, eyes closed, ears
+          drooped, head nodding; (3) surprised, eyes wide, mouth a small
+          round O, ears straight up; (4) proud, chin up, a small satisfied
+          smile, ears tall; (5) sulky, cheeks puffed, one ear flopped, eyes
+          looking sideways. Three on the top row, two on the bottom. Do not
+          draw Pofu; he is only the style reference. On a plain transparent
+          background, in a loose grid with wide empty space around each
+          sticker, none touching or overlapping another, each drawn complete
+          with its whole body. No text, no speech bubbles, no floating
+          hearts or sparkles unless named.
+      - block: prop-style-v2
+      - text: "AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters, speech bubbles, a curl on any head except Pofu's, extra limbs, a background"
+
+  - id: x-sticker-mochi-2
+    kind: sheet
+    name: x-sticker-mochi-2
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Mochi stickers 2 of 2: laughing, waving, tea, thinking, love. Review: tea is her signature, it should be the best sticker of the set."
+    attach:
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: her exact look, fur, colors and eyes."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+    prompt:
+      - text: |
+          A sticker sheet of five full-body poses of Mochi the bunny, in her
+          exact attached look, each a different moment: (1) laughing, eyes
+          squeezed shut, mouth wide open, one paw on her tummy; (2) waving,
+          one paw raised, a warm smile, ears bobbing; (3) tea, proudly
+          holding out a small tulip-shaped tea glass on a saucer with both
+          paws, a gentle host's smile; (4) thinking, one paw at the chin,
+          eyes up, one ear bent; (5) love, eyes shut in bliss, blushing, a
+          plump heart-shaped cushion hugged to her chest. Three on the top
+          row, two on the bottom. Do not draw Pofu. On a plain transparent
+          background, in a loose grid with wide empty space around each
+          sticker, none touching or overlapping another, each drawn complete
+          with its whole body. No text, no speech bubbles, no floating
+          hearts or sparkles unless named.
+      - block: prop-style-v2
+      - text: "AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters, speech bubbles, a curl on any head except Pofu's, extra limbs, a background"
+
+  - id: x-sticker-simit
+    kind: sheet
+    name: x-sticker-simit
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Simit the kitten, 3 stickers: happy, sleepy, surprised. Review: matches the three merged poses in spirit; sticker scale and clear space."
+    attach:
+      - ref: approved:simit-kitten
+        role: "Simit, the kitten: her exact look, tabby colors, ears and size."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+    prompt:
+      - text: |
+          A sticker sheet of three full-body poses of Simit the tabby
+          kitten, in her exact attached look, in a row: (1) happy, eyes in
+          curved smiles, tail curled up; (2) sleepy, eyes gently closed,
+          ears folded down, curled into a loaf; (3) surprised, a small round
+          O mouth, eyes wide, ears upright, tail puffed. Do not draw Pofu.
+          On a plain transparent background, in a loose grid with wide empty
+          space around each sticker, none touching or overlapping another,
+          each drawn complete with its whole body. No text, no speech
+          bubbles, no floating hearts or sparkles unless named.
+      - block: prop-style-v2
+      - text: "AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters, speech bubbles, a curl on any head except Pofu's, extra limbs, a background"
+
+  - id: x-sticker-findik
+    kind: sheet
+    name: x-sticker-findik
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Fındık the hedgehog, 3 stickers: happy, surprised, proud. Review: spines stay soft shapes, never sharp."
+    attach:
+      - ref: approved:findik
+        role: "Fındık, the hedgehog: his exact look, spines, colors and size."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+    prompt:
+      - text: |
+          A sticker sheet of three full-body poses of Fındık the hedgehog,
+          in his exact attached look, in a row: (1) happy, a wide smile,
+          paws clasped; (2) surprised, a small round O mouth, eyes round,
+          spines lifted slightly; (3) proud, standing tall, holding up a
+          tiny wooden mallet, a satisfied smile. Do not draw Pofu. On a
+          plain transparent background, in a loose grid with wide empty
+          space around each sticker, none touching or overlapping another,
+          each drawn complete with its whole body. No text, no speech
+          bubbles, no floating hearts or sparkles unless named.
+      - block: prop-style-v2
+      - text: "AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters, speech bubbles, a curl on any head except Pofu's, extra limbs, a background"
+
+  - id: x-sticker-goat
+    kind: sheet
+    name: x-sticker-goat
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. The harbor goat, 3 stickers: munching, startled, smug. Review: a goat with personality, the same soft finish."
+    attach:
+      - ref: approved:harbor-goat
+        role: "The harbor goat: her exact look, horns, colors and size."
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+    prompt:
+      - text: |
+          A sticker sheet of three full-body poses of the harbor goat, in
+          her exact attached look, in a row: (1) munching, calmly chewing a
+          small tuft of grass with half-closed eyes; (2) startled, eyes
+          wide, ears flung back, one hoof lifted; (3) smug, chin raised,
+          eyes half-lidded, a tiny knowing smile. Do not draw Pofu. On a
+          plain transparent background, in a loose grid with wide empty
+          space around each sticker, none touching or overlapping another,
+          each drawn complete with its whole body. No text, no speech
+          bubbles, no floating hearts or sparkles unless named.
+      - block: prop-style-v2
+      - text: "AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters, speech bubbles, a curl on any head except Pofu's, extra limbs, a background"
+
+  - id: x-sticker-duo-1
+    kind: sheet
+    name: x-sticker-duo-1
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Pofu and Mochi together, 3 stickers: tea for two, hug, waving goodbye. Review: the size relation holds (Pofu about her height), the pair reads as one unit."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: her exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          A sticker sheet of three groups of Pofu the hamster and Mochi the
+          bunny together, both in their exact attached looks and correct
+          relative size, in a row: (1) tea for two, side by side, each
+          holding a small tulip-shaped tea glass, clinking gently; (2) a
+          hug, the two embracing, eyes closed, blushing; (3) waving goodbye,
+          both waving a paw, smiling. On a plain transparent background, in
+          a loose grid with wide empty space around each sticker, none
+          touching or overlapping another, each drawn complete with its
+          whole body. No text, no speech bubbles, no floating hearts or
+          sparkles unless named.
+      - block: prop-style-v2
+      - text: "AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters, speech bubbles, a curl on any head except Pofu's, extra limbs, a background"
+
+  - id: x-sticker-duo-2
+    kind: sheet
+    name: x-sticker-duo-2
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: true
+    chat: "Pofu · Stickers"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Pofu and Mochi together, 3 stickers: asleep together, laughing, surprised. Review: same checks as duo-1."
+    attach:
+      - ref: R1
+        role: "Pofu, the hamster: his exact look, fur, colors, eyes and signature curl."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: her exact look, fur, colors and eyes."
+    prompt:
+      - text: |
+          A sticker sheet of three groups of Pofu the hamster and Mochi the
+          bunny together, both in their exact attached looks and correct
+          relative size, in a row: (1) asleep together, curled up side by
+          side, eyes closed, heads leaning on each other; (2) laughing
+          together, both with squeezed-shut eyes and open mouths; (3)
+          surprised together, both with wide eyes and small round O mouths,
+          leaning toward each other. On a plain transparent background, in a
+          loose grid with wide empty space around each sticker, none
+          touching or overlapping another, each drawn complete with its
+          whole body. No text, no speech bubbles, no floating hearts or
+          sparkles unless named.
+      - block: prop-style-v2
+      - text: "AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters, speech bubbles, a curl on any head except Pofu's, extra limbs, a background"
