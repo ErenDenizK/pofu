@@ -391,7 +391,7 @@ struct HomeView: View {
 
 /// The Today sheet: Pofu's mood and a painted line, the Today card, and
 /// what the day is for.
-private struct TodaySheet: View {
+struct TodaySheet: View {
     let model: AppModel
 
     var body: some View {
