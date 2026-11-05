@@ -48,6 +48,30 @@ public final class IslandSceneModel {
     /// Where a pinch would land if released now (the detent tick).
     public private(set) var projectedFraming: WorldFraming
     public private(set) var focus: SceneFocus?
+    /// The island the camera is on (§1.1). The home island has the whole
+    /// rail; another island has its Island stop, reached by a flight.
+    public private(set) var island: IslandID = .home
+    /// Taps on the home objects (jar, lantern, pots); Home sets it.
+    @ObservationIgnored public var onPropTap: (@MainActor (HomeSlots.Prop) -> Void)?
+    /// Per-target tap pulses, bumped by every resolved tap: the squish
+    /// answers inside one frame (§1.3). Keyed by `HitTarget` id.
+    public private(set) var pulses: [String: Int] = [:]
+    /// Bumped by every resolved tap, for the "tap" haptic.
+    public private(set) var tapCount = 0
+    /// Where the home objects were last drawn, in window points (read by
+    /// the screenshot tests).
+    @ObservationIgnored public private(set) var propFrames: [HomeSlots.Prop: CGRect] = [:]
+    /// Where each mounted place control sits, in window points: exactly one
+    /// is mounted at a time (read by the screenshot tests).
+    @ObservationIgnored public private(set) var placeControlFrames: [UUID: CGRect] = [:]
+
+    func reportProp(_ prop: HomeSlots.Prop, _ frame: CGRect) {
+        propFrames[prop] = frame
+    }
+
+    func reportPlaceControl(id: UUID, frame: CGRect?) {
+        placeControlFrames[id] = frame
+    }
     /// The station sheet; setting it to `nil` (a swipe down) returns the
     /// camera.
     public var sheet: StationSheetItem? {
@@ -175,7 +199,16 @@ public final class IslandSceneModel {
 
     public func go(to target: WorldFraming, animated: Bool = true) {
         closeSurfaces()
-        if animated {
+        if island != .home {
+            // From another island every move is a flight to the home rail.
+            island = .home
+            let pose = engine.rig.rail.pose(of: target)
+            if animated {
+                travel { $0.startFlight(to: pose, landing: .rail(target)) }
+            } else {
+                engine.rig.jump(to: target)
+            }
+        } else if animated {
             travel { $0.fly(to: target) }
         } else {
             engine.rig.jump(to: target)
@@ -237,8 +270,142 @@ public final class IslandSceneModel {
     }
 
     /// One framing in (Map → Island → Home); at Home, the Island (§1.4).
+    /// A double tap on a station also opens its sheet, so this waits for
+    /// the surfaces to be closed.
     public func stepIn() {
+        guard focus == nil, sheet == nil else { return }
         go(to: framing.stepIn ?? .island)
+    }
+
+    // MARK: - Place
+
+    /// Where the camera is now: the island and the rail position.
+    public var place: CameraPlace {
+        CameraPlace(island: island, z: railPosition)
+    }
+
+    /// The one control's tap (§1.2): out one stop, and from the Archipelago
+    /// home to Pofu.
+    public func placeControlTapped() {
+        let stop = PlaceStop(framing: projectedFraming)
+        go(to: stop.controlTarget.framing)
+    }
+
+    /// Flies to another island's Island stop (§1.2): up, across the sea,
+    /// down. The home island is reached the same way from another island.
+    public func fly(to target: IslandID) {
+        if target == .home {
+            go(to: .island)
+            return
+        }
+        guard target != island else { return }
+        guard let stop = IslandFraming.isleStop(target, width: engine.rig.rail.width, height: engine.rig.rail.height) else { return }
+        closeSurfaces()
+        let pose = CameraPose(scale: stop.scale, look: stop.look, anchorY: stop.anchorY)
+        island = target
+        framing = .island
+        projectedFraming = .island
+        travel { $0.startFlight(to: pose, landing: .pose(pose)) }
+        kick()
+    }
+
+    /// Holds the camera on the rail at `z`, still (screenshots).
+    public func holdRail(z: Double) {
+        closeSurfaces()
+        island = .home
+        engine.rig.jump(toZ: z)
+        let nearest = WorldFraming.nearest(to: z)
+        framing = nearest
+        projectedFraming = nearest
+        engine.isHeld = true
+        engine.lastDate = nil
+        revision &+= 1
+    }
+
+    // MARK: - Focus follows the camera
+
+    /// How long the rack focus takes once the camera settles (§1.2).
+    public nonisolated static let rackSeconds = 0.35
+
+    /// Depth of field's strength now, 0...1: zero while the camera moves
+    /// (finger down, pinch, momentum, flight), then a 0.35 s pull to the
+    /// target once it settles.
+    func rackFocus(at date: Date) -> Double {
+        if engine.rig.isMoving { return 0 }
+        guard !reduceMotion, let start = engine.rackStart else { return 1 }
+        let t = min(max(date.timeIntervalSince(start) / Self.rackSeconds, 0), 1)
+        return t * t * (3 - 2 * t)
+    }
+
+    /// Whether the rack focus is still pulling at `date`.
+    private func isRacking(at date: Date) -> Bool {
+        guard !reduceMotion, let start = engine.rackStart else { return false }
+        return date.timeIntervalSince(start) < Self.rackSeconds
+    }
+
+    // MARK: - Brushing
+
+    /// A dragging finger at screen point (`x`, `y`) touches the island
+    /// (§1.3): at the Island framing and closer, with nothing focused.
+    func brush(x: Double, y: Double, at time: Date) {
+        guard railPosition >= TouchField.minimumZ, focus == nil, sheet == nil, engine.rig.pinchStart == nil else { return }
+        let world = engine.rig.pose.unproject(
+            x: x - engine.rig.offsetX.value,
+            y: y - engine.rig.offsetY.value,
+            width: engine.rig.rail.width
+        )
+        engine.touch.brush(
+            at: world,
+            t: time.timeIntervalSinceReferenceDate,
+            props: IslandLayout.touchProps.map { (id: $0.id, base: $0.center) }
+        )
+        kick()
+    }
+
+    func endBrush() {
+        engine.touch.endStroke()
+    }
+
+    /// A touchable prop's sway at `date`, in degrees.
+    func sway(of prop: String, at date: Date) -> Double {
+        engine.touch.sway(of: prop, at: date.timeIntervalSinceReferenceDate)
+    }
+
+    /// Whether a brushed prop is still swaying at `date`.
+    func isBrushing(at date: Date) -> Bool {
+        engine.touch.isActive(at: date.timeIntervalSinceReferenceDate)
+    }
+
+    // MARK: - One-thumb zoom
+
+    /// A finger went down (for the one-thumb zoom's double tap).
+    func touchBegan(x: Double, y: Double, at time: Date) {
+        engine.thumb.touchDown(time: time.timeIntervalSinceReferenceDate, x: x, y: y)
+    }
+
+    /// Whether a one-thumb zoom owns the finger; a pan must not.
+    var isOneThumbZooming: Bool {
+        engine.thumb.isZooming
+    }
+
+    /// The finger moved; a one-thumb zoom drives the pinch. Returns whether
+    /// the zoom owns the finger.
+    @discardableResult
+    func touchMoved(y: Double, at time: Date) -> Bool {
+        guard let magnification = engine.thumb.touchMoved(y: y) else { return false }
+        pinchChanged(
+            magnification: magnification,
+            startX: engine.thumb.anchor.x,
+            startY: engine.thumb.anchor.y,
+            time: time
+        )
+        return true
+    }
+
+    func touchEnded(x: Double, y: Double, at time: Date) {
+        if engine.thumb.touchUp(time: time.timeIntervalSinceReferenceDate, x: x, y: y) {
+            pinchEnded(time: time)
+        }
     }
 
     /// One framing out.
@@ -354,6 +521,62 @@ public final class IslandSceneModel {
 
     // MARK: - Taps
 
+    /// The single tap resolver (§1.3): the frontmost target under the finger
+    /// answers within the frame (a squish and the "tap" haptic), then focus
+    /// and the sheet follow. A tap on empty ground does nothing, except to
+    /// dismiss a card or sheet.
+    func tapped(x: Double, y: Double, stations: [StationStatus], arrived: Set<IslandID>) {
+        let rig = engine.rig
+        var targets = WorldHitTest.targets(stations: stations, z: rig.railPosition)
+        if focus != nil || sheet != nil {
+            // Behind a card or a sheet the home objects step aside.
+            targets.removeAll { if case .prop = $0.kind { true } else { false } }
+        }
+        let hit = WorldHitTest.resolve(
+            x: x,
+            y: y,
+            targets: targets,
+            pose: rig.pose,
+            width: rig.rail.width,
+            offset: (rig.offsetX.value, rig.offsetY.value)
+        )
+        guard let hit else {
+            if focus != nil || sheet != nil {
+                // A tap outside a transient surface dismisses it and is
+                // consumed (§7.3).
+                dismissFocus()
+            }
+            return
+        }
+        switch hit.kind {
+        case .station(let id):
+            pulse("station-\(id.rawValue)")
+            stationTapped(id)
+        case .resident(let id):
+            pulse("resident-\(id.rawValue)")
+            residentTapped(id)
+        case .prop(let prop):
+            pulse("prop-\(prop.rawValue)")
+            onPropTap?(prop)
+        case .island(let id):
+            guard arrived.contains(id) || id == .home else {
+                pulse("island-\(id.rawValue)")
+                return
+            }
+            pulse("island-\(id.rawValue)")
+            if id == .home {
+                go(to: .island)
+            } else {
+                fly(to: id)
+            }
+        }
+    }
+
+    private func pulse(_ id: String) {
+        pulses[id, default: 0] += 1
+        tapCount &+= 1
+    }
+
     /// A tap on a station focuses it and raises its sheet. From the Map or
     /// Home the camera first heads for the island, so the one gesture
     /// travels there and opens the sheet, and closing it rests at the
@@ -377,34 +600,13 @@ public final class IslandSceneModel {
         focusResident(id)
     }
 
-    /// A tap on the world's background, at a screen point.
-    func backgroundTapped(x: Double, y: Double) {
-        if focus != nil || sheet != nil {
-            // A tap outside a transient surface dismisses it and is
-            // consumed (§7.3).
-            dismissFocus()
-            return
-        }
-        switch framing {
-        case .home:
-            go(to: .island)
-        case .island:
-            break
-        case .map:
-            let point = engine.rig.pose.unproject(x: x, y: y, width: engine.rig.rail.width)
-            let dx = point.x / (IslandLayout.lawnRadiusX + 20)
-            let dy = (point.y - 30) / 110
-            if dx * dx + dy * dy <= 1 {
-                go(to: .island)
-            }
-        }
-    }
-
     // MARK: - Pinch and peek
 
     func pinchChanged(magnification: Double, startX: Double, startY: Double, time: Date) {
         if engine.rig.pinchStart == nil {
             closeSurfaces()
+            // A pinch leaves another island for the shared sea.
+            island = .home
             engine.pinchWorldPoint = engine.rig.pose.unproject(x: startX, y: startY, width: engine.rig.rail.width)
             engine.samples = []
         }
@@ -438,11 +640,11 @@ public final class IslandSceneModel {
     /// Whether a one-finger drag pans the island (look round 4): at the
     /// Island framing with nothing focused; elsewhere it peeks.
     var pansIsland: Bool {
-        framing == .island && focus == nil && sheet == nil && engine.rig.pinchStart == nil
+        island == .home && framing == .island && focus == nil && sheet == nil && engine.rig.pinchStart == nil
     }
 
     func peekChanged(dx: Double, dy: Double) {
-        guard engine.rig.pinchStart == nil else { return }
+        guard engine.rig.pinchStart == nil, !engine.thumb.isZooming else { return }
         if pansIsland {
             if engine.rig.isFocused {
                 // A finger during the establishing shot takes over.
@@ -570,6 +772,13 @@ public final class IslandSceneModel {
             engine.rig.advance(date.timeIntervalSince(last))
         }
         engine.lastDate = date
+        if engine.rig.isMoving {
+            engine.wasMoving = true
+            engine.rackStart = nil
+        } else if engine.wasMoving {
+            engine.wasMoving = false
+            engine.rackStart = date
+        }
         if var crossfade = engine.crossfade {
             if let start = crossfade.start {
                 if date.timeIntervalSince(start) >= Self.crossFade {
@@ -580,7 +789,10 @@ public final class IslandSceneModel {
                 engine.crossfade = crossfade
             }
         }
-        if isAnimating, engine.rig.isSettled, engine.crossfade == nil, !isDeviceTiltEnabled, !engine.settleScheduled {
+        // Frames run on until the rack focus has pulled and a brushed prop
+        // has stopped swaying.
+        if isAnimating, engine.rig.isSettled, engine.crossfade == nil, !isDeviceTiltEnabled, !engine.settleScheduled,
+           !isRacking(at: date), !isBrushing(at: date) {
             engine.settleScheduled = true
             Task { @MainActor [weak self] in
                 self?.settle()
@@ -633,6 +845,13 @@ final class SceneEngine {
     /// A held frame of a move (`holdFlight`): the springs do not advance.
     var isHeld = false
     var settleScheduled = false
+    /// Brushing (§1.3) and the one-thumb zoom (§1.2).
+    var touch = TouchField()
+    var thumb = OneThumbZoom()
+    /// When the camera last came to rest, for the rack focus; `nil` while
+    /// it moves or has never moved.
+    var rackStart: Date?
+    var wasMoving = false
     var safeTop = 59.0
     var pinchWorldPoint: WorldPoint?
     /// Recent pinch samples, for the release velocity.

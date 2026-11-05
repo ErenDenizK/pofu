@@ -72,6 +72,36 @@ enum WorldStrings {
         }
     }
 
+    // MARK: The place control (experience v1 §1.2)
+    // New strings use `defaultValue:`; PR C adds them to the catalog.
+    // Turkish: place.out "Uzaklaş", place.home "Eve dön", place.pofu "Pofu",
+    // place.archipelago "Takımada", place.menu "Git".
+
+    /// VoiceOver for the control when a tap zooms out.
+    static var placeOut: String {
+        String(localized: "place.out", defaultValue: "Zoom out", bundle: .module)
+    }
+
+    /// VoiceOver for the control on the Archipelago: a tap flies home.
+    static var placeHome: String {
+        String(localized: "place.home", defaultValue: "Back home", bundle: .module)
+    }
+
+    /// The menu's entry for Pofu (his corner of the home island).
+    static var placePofu: String {
+        String(localized: "place.pofu", defaultValue: "Pofu", bundle: .module)
+    }
+
+    /// The menu's entry for the sea.
+    static var placeArchipelago: String {
+        String(localized: "place.archipelago", defaultValue: "Archipelago", bundle: .module)
+    }
+
+    /// The menu's accessibility hint.
+    static var placeMenu: String {
+        String(localized: "place.menu", defaultValue: "Go to", bundle: .module)
+    }
+
     static func framingName(_ framing: WorldFraming) -> String {
         switch framing {
         case .home: String(localized: "Home", bundle: .module)

@@ -28,12 +28,17 @@ public struct IslandScene<Bubble: View>: View {
     let home: WorldHomeModel?
     let onPofuTap: (@MainActor () -> Void)?
     let onBuild: (@MainActor (StationID) -> Void)?
+    let props: WorldProps?
     let bubble: Bubble
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.worldLook) private var look
     @Environment(\.worldStillFrame) private var still
     @State private var safeTop: Double = 59
+    /// The one-thumb zoom owns this finger, or a drag has gone past the
+    /// slop: the touch is a gesture, not a tap.
+    @State private var dragging = false
+    @State private var touching = false
 
     /// - Parameters:
     ///   - world: The world to draw.
@@ -42,6 +47,7 @@ public struct IslandScene<Bubble: View>: View {
     ///   - onPofuTap: Called after Pofu's own squish when he is tapped.
     ///   - onBuild: Builds a station's next level; `nil` shows the sheet's
     ///     button as unavailable.
+    ///   - props: The home objects drawn in the world (jar, lantern, pots).
     ///   - bubble: Pofu's speech bubble, shown above his head at Home.
     public init(
         world: WorldSnapshot,
@@ -49,6 +55,7 @@ public struct IslandScene<Bubble: View>: View {
         home: WorldHomeModel? = nil,
         onPofuTap: (@MainActor () -> Void)? = nil,
         onBuild: (@MainActor (StationID) -> Void)? = nil,
+        props: WorldProps? = nil,
         @ViewBuilder bubble: () -> Bubble
     ) {
         self.world = world
@@ -56,6 +63,7 @@ public struct IslandScene<Bubble: View>: View {
         self.home = home
         self.onPofuTap = onPofuTap
         self.onBuild = onBuild
+        self.props = props
         self.bubble = bubble()
     }
 
@@ -63,6 +71,9 @@ public struct IslandScene<Bubble: View>: View {
         @Bindable var model = model
         GeometryReader { proxy in
             let size = proxy.size
+            // TODO(experience-v1 wiring): once PR B (`FramePolicy`) and PR C
+            // (the sheet freeze) are on main, the interval and the pause come
+            // from the policy and the freeze; until then 60 Hz while needed.
             TimelineView(.animation(minimumInterval: 1.0 / 60.0, paused: !model.needsFrames && home?.build == nil)) { context in
                 let _ = model.revision
                 let rig = model.frame(
@@ -71,6 +82,7 @@ public struct IslandScene<Bubble: View>: View {
                     height: Double(size.height),
                     safeTop: safeTop
                 )
+                let rack = model.rackFocus(at: context.date)
                 let build: BuildFrame? = home?.build.flatMap { active in
                     home?.buildTime(at: context.date).map { (moment: active.moment, time: $0) }
                 }
@@ -81,9 +93,12 @@ public struct IslandScene<Bubble: View>: View {
                         model: model,
                         size: size,
                         time: context.date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 3600),
+                        clock: context.date,
+                        rack: rack,
                         build: build,
                         celebrations: home?.celebrations ?? 0,
                         home: home,
+                        props: props,
                         onPofuTap: onPofuTap,
                         bubble: bubble
                     )
@@ -96,9 +111,12 @@ public struct IslandScene<Bubble: View>: View {
                             model: model,
                             size: size,
                             time: context.date.timeIntervalSinceReferenceDate.truncatingRemainder(dividingBy: 3600),
+                            clock: context.date,
+                            rack: rack,
                             build: build,
                             celebrations: home?.celebrations ?? 0,
                             home: home,
+                            props: nil,
                             onPofuTap: nil,
                             bubble: bubble
                         )
@@ -109,12 +127,20 @@ public struct IslandScene<Bubble: View>: View {
                 }
             }
             .contentShape(Rectangle())
+            // One tap resolver replaces the per-object tap overlays (§1.3).
+            // It answers on touch-up, with no wait for a double tap.
             .gesture(
-                TapGesture(count: 2)
-                    .onEnded { model.stepIn() }
-                    .exclusively(before: SpatialTapGesture().onEnded { value in
-                        model.backgroundTapped(x: Double(value.location.x), y: Double(value.location.y))
-                    })
+                SpatialTapGesture().onEnded { value in
+                    model.tapped(
+                        x: Double(value.location.x),
+                        y: Double(value.location.y),
+                        stations: world.stations,
+                        arrived: Set(world.islands)
+                    )
+                }
+            )
+            .simultaneousGesture(
+                TapGesture(count: 2).onEnded { model.stepIn() }
             )
             .simultaneousGesture(
                 MagnifyGesture(minimumScaleDelta: 0.01)
@@ -130,12 +156,36 @@ public struct IslandScene<Bubble: View>: View {
                         model.pinchEnded(time: value.time)
                     }
             )
+            // One finger: the one-thumb zoom (double tap, hold, drag), the
+            // pan or peek, and brushing the island.
             .simultaneousGesture(
-                DragGesture(minimumDistance: 12)
+                DragGesture(minimumDistance: 0)
                     .onChanged { value in
+                        let now = Date()
+                        if !touching {
+                            touching = true
+                            model.touchBegan(x: Double(value.startLocation.x), y: Double(value.startLocation.y), at: now)
+                        }
+                        if model.touchMoved(y: Double(value.location.y), at: now) {
+                            dragging = true
+                            return
+                        }
+                        let moved = hypot(value.translation.width, value.translation.height)
+                        guard dragging || moved >= 12 else { return }
+                        dragging = true
                         model.peekChanged(dx: Double(value.translation.width), dy: Double(value.translation.height))
+                        model.brush(x: Double(value.location.x), y: Double(value.location.y), at: now)
                     }
-                    .onEnded { value in model.peekEnded(velocityX: Double(value.velocity.width)) }
+                    .onEnded { value in
+                        let now = Date()
+                        touching = false
+                        model.touchEnded(x: Double(value.location.x), y: Double(value.location.y), at: now)
+                        if dragging {
+                            model.peekEnded(velocityX: Double(value.velocity.width))
+                            model.endBrush()
+                        }
+                        dragging = false
+                    }
             )
         }
         .ignoresSafeArea()
@@ -166,7 +216,17 @@ public struct IslandScene<Bubble: View>: View {
         .onChange(of: look.tuning.springs, initial: true) { _, springs in
             model.cameraSprings = springs
         }
+        .overlay(alignment: .bottomTrailing) {
+            // The one control: the same spot in every framing, thumb zone.
+            PlaceControl(model: model, islands: arrivedIslands)
+                .padding(.trailing, PofuSpacing.screen)
+                .padding(.bottom, PofuSpacing.s)
+                .opacity(model.focus == nil && !model.hasSheet ? 1 : 0)
+                .allowsHitTesting(model.focus == nil && !model.hasSheet)
+                .animation(PofuMotion.respecting(reduceMotion, PofuMotion.snappy), value: model.focus == nil && !model.hasSheet)
+        }
         .sensoryFeedback(.selection, trigger: model.projectedFraming)
+        .sensoryFeedback(.impact(weight: .light, intensity: 0.7), trigger: model.tapCount)
         .accessibilityElement(children: .contain)
         .accessibilityZoomAction { action in
             if action.direction == .zoomIn {
@@ -193,6 +253,15 @@ public struct IslandScene<Bubble: View>: View {
             .presentationBackgroundInteraction(.enabled(upThrough: .fraction(0.42)))
             .presentationContentInteraction(.resizes)
         }
+    }
+
+    /// The islands the player has arrived at, home first.
+    private var arrivedIslands: [IslandID] {
+        var ids = [IslandID.home]
+        for id in world.islands where !ids.contains(id) {
+            ids.append(id)
+        }
+        return ids
     }
 
     // MARK: Sheet detents
@@ -236,9 +305,10 @@ extension IslandScene where Bubble == EmptyView {
         model: IslandSceneModel,
         home: WorldHomeModel? = nil,
         onPofuTap: (@MainActor () -> Void)? = nil,
-        onBuild: (@MainActor (StationID) -> Void)? = nil
+        onBuild: (@MainActor (StationID) -> Void)? = nil,
+        props: WorldProps? = nil
     ) {
-        self.init(world: world, model: model, home: home, onPofuTap: onPofuTap, onBuild: onBuild) { EmptyView() }
+        self.init(world: world, model: model, home: home, onPofuTap: onPofuTap, onBuild: onBuild, props: props) { EmptyView() }
     }
 }
 
@@ -267,9 +337,15 @@ private struct SceneFrame<Bubble: View>: View {
     let size: CGSize
     /// Seconds, for the ambient layers; frozen while the scene is settled.
     let time: Double
+    /// The frame's date, for brushed props.
+    let clock: Date
+    /// Depth of field's strength, 0 while the camera moves and a 0.35 s
+    /// pull to 1 once it settles (§1.2).
+    let rack: Double
     let build: BuildFrame?
     let celebrations: Int
     let home: WorldHomeModel?
+    let props: WorldProps?
     let onPofuTap: (@MainActor () -> Void)?
     let bubble: Bubble
 
@@ -289,7 +365,9 @@ private struct SceneFrame<Bubble: View>: View {
         // blur is off (every layer stays sharp) and the shader blurs per pixel.
         let spike = look.spike
         let spikeDOF = spike.depthOfField && WorldShaders.isAvailable
-        let lens = spikeDOF ? Lens(focus: baseLens.focus, slab: baseLens.slab, gain: 0) : baseLens
+        // Focus follows the camera: no depth of field while it moves, then
+        // a rack focus once it settles.
+        let lens = spikeDOF ? Lens(focus: baseLens.focus, slab: baseLens.slab, gain: 0) : Lens(focus: baseLens.focus, slab: baseLens.slab, gain: baseLens.gain * rack)
         let peek = rig.peekTilt
         let device = model.deviceTilt
         let tilt = (x: min(max(peek.x + device.x, -1), 1), y: min(max(peek.y + device.y, -1), 1))
@@ -330,10 +408,11 @@ private struct SceneFrame<Bubble: View>: View {
                 strength: spike.debug == .normals ? 1 : spike.lightStrength
             )
             : nil
-        let depthMap: Image? = spikeDOF || spike.debug == .depth
+        let depthMap: Image? = (spikeDOF && rack > 0.001) || spike.debug == .depth
             ? SpikeDepthMap.image(world: world, pose: pose, offset: offset, size: size, art: look.art)
             : nil
-        let field = spike.field(focus: SpikeDepthMap.focusDepth(model.focus), focused: model.focus != nil, z: z)
+        var field = spike.field(focus: SpikeDepthMap.focusDepth(model.focus), focused: model.focus != nil, z: z)
+        field.maxRadius *= rack
         let animation: Animation? = still ? nil : .easeInOut(duration: 2.5)
         // Settled: the ambient layers hold still, so the frame is cached.
         let ambientPaused = look.hd2d && !model.needsFrames && build == nil
@@ -356,6 +435,7 @@ private struct SceneFrame<Bubble: View>: View {
                     isInteractive: interactive,
                     build: build,
                     model: model,
+                    clock: clock,
                     characterGrade: characterGrade
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
@@ -382,6 +462,7 @@ private struct SceneFrame<Bubble: View>: View {
                     isInteractive: interactive,
                     build: build,
                     model: model,
+                    clock: clock,
                     characterGrade: characterGrade
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
@@ -407,6 +488,12 @@ private struct SceneFrame<Bubble: View>: View {
                     part: .body,
                     bubble: bubble
                 )
+
+                if let props {
+                    // The jar, the lantern and the pots share the island's
+                    // transform: they never lag or bob (§1.4).
+                    props.world(WorldPropsFrame(pose: pose, size: size, offset: offset, z: z, isFocused: model.focus != nil || model.hasSheet, model: model))
+                }
 
                 CloudSea(colours: sea, offset: offset, rise: CloudSea.rise(z: z, pose: pose, height: Double(size.height)))
                     .environment(\.worldAmbientPaused, ambientPaused)
@@ -458,6 +545,10 @@ private struct SceneFrame<Bubble: View>: View {
             )
 
             ScreenOverlays(world: world, pose: pose, z: z, size: size, offset: offset, build: build, model: model)
+
+            if let props {
+                props.screen(WorldPropsFrame(pose: pose, size: size, offset: offset, z: z, isFocused: model.focus != nil || model.hasSheet, model: model))
+            }
 
             if look.frameMeter {
                 FrameMeterOverlay()
@@ -511,6 +602,8 @@ private struct WorldCanvas: View {
     let isInteractive: Bool
     let build: BuildFrame?
     let model: IslandSceneModel
+    /// The frame's date, for brushed props.
+    let clock: Date
     /// The residents' light (the colour script's character grade).
     let characterGrade: WorldGrade
 
@@ -576,14 +669,22 @@ private struct WorldCanvas: View {
         switch object.kind {
         case .station(let status):
             let moment: BuildFrame? = build.flatMap { $0.moment.station == status.id ? $0 : nil }
-            StationView(status: status, point: point, level: level, z: z, build: moment, isFocused: model.focus == .station(status.id))
+            StationView(
+                status: status,
+                point: point,
+                level: level,
+                z: z,
+                build: moment,
+                isFocused: model.focus == .station(status.id),
+                sway: model.sway(of: IslandLayout.touchID(status.id), at: clock),
+                pulse: model.pulses["station-\(status.id.rawValue)", default: 0]
+            )
                 .overlay {
                     hitArea(
                         box: IslandLayout.stationHitBox,
                         at: point,
                         label: WorldStrings.stationName(status.id),
                         value: status.level > 0 ? WorldStrings.level(status.level, of: status.maxLevel) : "",
-                        tap: { model.stationTapped(status.id) },
                         activate: { model.focusStation(status.id) }
                     )
                 }
@@ -592,41 +693,45 @@ private struct WorldCanvas: View {
             let focused = model.focus == .resident(resident.id) || model.focus == .station(resident.station)
             let pose = build.flatMap { $0.moment.station == resident.station ? $0.moment.residentPose(at: $0.time) : nil }
                 ?? resident.idlePose(isBedtime: world.isBedtime, isFocused: focused)
-            ResidentView(resident: resident, art: resident.art(for: pose), point: point, level: level, lift: lift, grade: characterGrade)
+            ResidentView(
+                resident: resident,
+                art: resident.art(for: pose),
+                point: point,
+                level: level,
+                lift: lift,
+                grade: characterGrade,
+                pulse: model.pulses["resident-\(resident.id.rawValue)", default: 0]
+            )
                 .overlay {
                     hitArea(
                         box: IslandLayout.residentHitBox,
                         at: point,
                         label: "\(WorldStrings.residentName(resident.id)), \(WorldStrings.stationName(resident.station))",
                         value: "",
-                        tap: { model.residentTapped(resident.id) },
                         activate: { model.focusResident(resident.id) }
                     )
                 }
         }
     }
 
-    /// A transparent tap target over a box (§2.7: simple shapes, never
-    /// image alpha), positioned on the canvas last so the gesture covers
-    /// only the box.
+    /// An invisible accessibility element over a box, one per target.
+    /// Taps go through the one resolver (`WorldHitTest`), so it answers no
+    /// touches itself.
     private func hitArea(
         box: WorldBox,
         at point: CGPoint,
         label: String,
         value: String,
-        tap: @escaping @MainActor () -> Void,
         activate: @escaping @MainActor () -> Void
     ) -> some View {
         Color.clear
             .frame(width: CGFloat(box.width), height: CGFloat(box.height))
-            .contentShape(Rectangle())
-            .onTapGesture { tap() }
             .accessibilityElement()
             .accessibilityLabel(Text(verbatim: label))
             .accessibilityValue(Text(verbatim: value))
             .accessibilityAddTraits(.isButton)
             .accessibilityAction { activate() }
-            .allowsHitTesting(isInteractive)
+            .allowsHitTesting(false)
             .position(x: point.x + CGFloat(box.midX), y: point.y + CGFloat(box.midY))
     }
 
@@ -635,7 +740,7 @@ private struct WorldCanvas: View {
     @ViewBuilder
     private var otherIsles: some View {
         // Far away from Home; leave the render tree there.
-        if z < 1.7 {
+        if z < 1.7 || model.island != .home {
             ForEach(IslandLayout.isles) { isle in
                 if let sprite = WorldArt.sprite(isle.art) {
                     let arrived = world.islands.contains(isle.id)
@@ -645,7 +750,8 @@ private struct WorldCanvas: View {
                     // blurred and huge at that scale, step aside. At the
                     // Island framing they have left the frame to the far
                     // isles of the living sky (look round 3).
-                    let fade = max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0)
+                    let here = isle.id == model.island
+                    let fade = here ? 1 : max(0, 1 - max(z, 0) / 0.8) * (model.focus == nil ? 1 : 0)
                     DepthImage(
                         name: isle.art,
                         sprite: sprite,
@@ -717,6 +823,10 @@ private struct StationView: View {
     let build: BuildFrame?
     /// The camera is on this station: its painted parts get a small idle life.
     var isFocused = false
+    /// A brushing finger's sway, in degrees about the base (§1.3).
+    var sway = 0.0
+    /// Bumped by every tap on the station: a squish.
+    var pulse = 0
 
     var body: some View {
         let shown = build.map { $0.moment.shownLevel(at: $0.time) } ?? status.level
@@ -746,6 +856,8 @@ private struct StationView: View {
             }
         }
         .scaleEffect(x: CGFloat(squash.x), y: CGFloat(squash.y), anchor: anchor)
+        .modifier(TapSquish(trigger: pulse, anchor: anchor))
+        .rotationEffect(.degrees(sway), anchor: anchor)
         .overlay {
             if let build {
                 BuildParticles(moment: build.moment, time: build.time, point: point)
@@ -826,6 +938,8 @@ private struct ResidentView: View {
     var lift: Double = 0
     /// The colour script's character light.
     var grade: WorldGrade = .neutral
+    /// Bumped by every tap on the resident: a squish.
+    var pulse = 0
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -835,6 +949,10 @@ private struct ResidentView: View {
                 DepthImage(name: art, sprite: sprite, level: level, anchor: CGPoint(x: point.x, y: point.y - CGFloat(lift)), grade: grade)
             }
         }
+        .modifier(TapSquish(
+            trigger: pulse,
+            anchor: UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight)
+        ))
     }
 }
 
