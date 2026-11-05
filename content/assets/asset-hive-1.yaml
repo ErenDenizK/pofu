@@ -1,0 +1,20 @@
+id: asset-hive-1
+type: asset
+title_tr: hive-1
+title_en: hive-1 (station)
+status: in-production
+horizon: now
+summary: >-
+  A small beehive station for the island diorama: one plump, bell-shaped straw skep of soft
+  golden-honey coils, a small round dark entrance at its foot, sitting on a low round stump
+  of honey wood, with three tiny clumps of lavender and a flat stepping stone in front. Toy-like
+  and cozy, few parts. It is small: it fills about half the footprint's width and only the
+  lower half of the height bar, standing on the footprint,…
+art:
+  images: []
+  jobs:
+  - batch-33-home-showcase-pilot:hive-1
+sources:
+- doc: tools/imagegen/manifest/batch-33-home-showcase-pilot.yaml
+kind: station
+batch: batch-33-home-showcase-pilot

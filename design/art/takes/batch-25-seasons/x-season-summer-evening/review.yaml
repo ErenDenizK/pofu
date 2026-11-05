@@ -1,0 +1,199 @@
+batch: batch-25-seasons
+manifest: tools/imagegen/manifest/batch-25-seasons.yaml
+manifest_sha256: de70b41e2313133a858b0128327b657229c73239b08fb06c5b6198d6046137c3
+contact_sheet: design/art/takes/batch-25-seasons/x-season-summer-evening/contact.jpg
+jobs:
+  x-season-summer-evening:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show peach/rose summer sunset,
+      warm rimmed sunflowers, a first sky star and small fireflies above the lawn.
+      The declared golden LIGHT cell points from the right but prose asks upper-left
+      sunset; images visibly favour left-side warmth, recorded as an existing brief
+      conflict and advisory light limitation. Stations are inferred from a bare island
+      reference and vary between takes; canonical layout is unverified. No characters
+      or text; season concept only, no promotion.
+qa_reports:
+  1:
+    job: x-season-summer-evening
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.2
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 53 (at most 24), p98 89 (at least 86), spread
+        36 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 36.0
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 77 (band 48-86)'
+      value: 77.2
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.30 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.302
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 3.7 (at least 3.4)'
+      value: 3.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.38
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.6023
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 6.9, off-palette 1.4% (top: #DD8844 (0.2%), #CC7744
+        (0.1%))'
+      value: 2.6833
+    info:
+      metrics_raw:
+        L_p5: 60.0
+        L_p50: 78.3
+        L_p95: 89.1
+        C_p50: 28.9
+        C_p95: 51.2
+        C_p99: 62.6
+        detail: 3.09
+      metrics_locked:
+        L_p5: 60.4
+        L_p50: 78.3
+        L_p95: 88.8
+        C_p50: 28.9
+        C_p95: 50.2
+        C_p99: 59.9
+        detail: 2.38
+    fingerprint: 4a9b2bf9d1b2e1c8
+  2:
+    job: x-season-summer-evening
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.2
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 56 (at most 24), p98 89 (at least 86), spread
+        34 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 33.7
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 74 (band 48-86)'
+      value: 74.2
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.32 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.322
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 3.5 (at least 3.4)'
+      value: 3.52
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.27
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.4
+      value: 1.3905
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.5, p95 6.4, off-palette 0.6% (top: #CC7744 (0.2%), #DD8844
+        (0.1%))'
+      value: 2.5176
+    info:
+      metrics_raw:
+        L_p5: 59.9
+        L_p50: 77.0
+        L_p95: 89.1
+        C_p50: 30.2
+        C_p95: 50.1
+        C_p99: 60.9
+        detail: 3.03
+      metrics_locked:
+        L_p5: 60.3
+        L_p50: 76.9
+        L_p95: 88.8
+        C_p50: 30.1
+        C_p95: 49.2
+        C_p99: 58.5
+        detail: 2.27
+    fingerprint: 4a9b2bf9d1b2e1c8
+manual_review:
+  observed_note: Both show peach/rose summer sunset, warm rimmed sunflowers, a first
+    sky star and small fireflies above the lawn. The declared golden LIGHT cell points
+    from the right but prose asks upper-left sunset; images visibly favour left-side
+    warmth, recorded as an existing brief conflict and advisory light limitation.
+    Stations are inferred from a bare island reference and vary between takes; canonical
+    layout is unverified. No characters or text; season concept only, no promotion.
+  excluded_takes: []
+sources:
+- batch: batch-25-seasons
+  job: x-season-summer-evening
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-boat-evening
+  source_file: /workspace/generated_images/exec-12431de8-6d5c-4f26-bfbe-857406388979.png
+  returned_at: '2026-11-05T14:29:11.377Z'
+  prompt_sha256: a5632fa4bd3548af28a8e4dfd75b106b0e85de68aba43f4e8fd1725b6edd5c9f
+  fingerprint: 4a9b2bf9d1b2e1c8
+  saved_at: '2026-11-05T14:29:11.733198+00:00'
+  original_generated_png_sha256: bf5a671f6a843d12e62905b75ad4af603a1a0ba2aa665288bbc624b44731b2ca
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 56f0e4e502f0eee38be03237dcfa740b89d9e340e728e4cfbdabc41e687d951d
+  inbox_png_sha256: 0b2d5625eccc3e888c06879937f7b057595b5ec5f331e07608cd697d7717399c
+  qa_sha256: aaabdc8396bf9a815e8b8038008f8f50cc7c8d9cbc5c7a7b38d003547c7fd719
+- batch: batch-25-seasons
+  job: x-season-summer-evening
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-boat-evening
+  source_file: /workspace/generated_images/exec-034ad2ab-c738-4b72-af54-5b57f2337a2c.png
+  returned_at: '2026-11-05T14:27:23.589Z'
+  prompt_sha256: a5632fa4bd3548af28a8e4dfd75b106b0e85de68aba43f4e8fd1725b6edd5c9f
+  fingerprint: 4a9b2bf9d1b2e1c8
+  saved_at: '2026-11-05T14:27:23.957639+00:00'
+  original_generated_png_sha256: 6614b4255d90b6bf3681ef0cb75b0b75001d4148ead15b913c06775b1d29666f
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: d7001938d937b0e9b4ade32115517f66f54a6fc621befb409544eb7de54a9d18
+  inbox_png_sha256: a5974db48fac5a47080ef5344912f0aa4e71ab4ae4948fdbf2737036d9ab6f29
+  qa_sha256: 65b1bae5ef7641bfa330fc1f7a088fd18e774c832f64ee71afc4bccd1c5b27cf
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

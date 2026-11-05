@@ -1,0 +1,50 @@
+{
+ "after": {
+  "C_mean": 32.245,
+  "C_p50": 34.706,
+  "C_p95": 43.857,
+  "L_mean": 77.752,
+  "L_p2": 57.943,
+  "L_p98": 93.062,
+  "detail": 1.642,
+  "edge": 0.405,
+  "warmth_b": 29.703
+ },
+ "before": {
+  "C_mean": 32.245,
+  "C_p50": 34.706,
+  "C_p95": 43.857,
+  "L_mean": 77.752,
+  "L_p2": 57.943,
+  "L_p98": 93.062,
+  "detail": 1.642,
+  "edge": 0.405,
+  "warmth_b": 29.703
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 87.5,
+ "score_before": 87.5,
+ "shipped": false,
+ "source": "design/art/masters/decor-sailboat/decor-sailboat.png",
+ "source_sha": "93d084384d53d045"
+}

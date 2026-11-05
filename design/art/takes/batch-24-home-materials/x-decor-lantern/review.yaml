@@ -1,0 +1,240 @@
+batch: batch-24-home-materials
+manifest: tools/imagegen/manifest/batch-24-home-materials.yaml
+manifest_sha256: 8b89cf06f923af54bdfadd47a2edcf953777d08789ad336b2d56aab7a51f9117
+contact_sheet: design/art/takes/batch-24-home-materials/x-decor-lantern/contact.jpg
+jobs:
+  x-decor-lantern:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both show one complete standing
+      paper lantern: short honey-wood post and rounded base, plump cream paper body,
+      wooden cap and short rose tassel. The paper remains unlit, with no flame shape
+      or glow halo. No characters, text, scenery or guide marks. The cap and paper
+      silhouette are distinct, and official root guide fit and hard QA pass. Light
+      and palette warnings remain advisory; original alpha edge specks are retained
+      rather than manually repaired.'
+qa_reports:
+  1:
+    job: x-decor-lantern
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 37.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 60 (at most 22), p98 94 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 83.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.30 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.302
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.7 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.66
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.86
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6494
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.7, p95 1.4, off-palette 0.0%
+      value: 0.6572
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 78 against the world reference (outliers: C_p95, edge)'
+      value: 78.0
+    info:
+      fit:
+        scale: 0.8719
+        anchor:
+        - 509.8
+        - 869
+      registration:
+        dx: 2
+        dy: 20
+      metrics_raw:
+        L_p5: 62.5
+        L_p50: 83.2
+        L_p95: 93.1
+        C_p50: 20.6
+        C_p95: 37.5
+        C_p99: 38.5
+        detail: 1.36
+      metrics_locked:
+        L_p5: 63.2
+        L_p50: 83.4
+        L_p95: 93.1
+        C_p50: 20.5
+        C_p95: 37.3
+        C_p99: 38.1
+        detail: 0.86
+    fingerprint: 84e87efd639c5865
+  2:
+    job: x-decor-lantern
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 94 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 82.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.23 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.235
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.0 (at least 3.5)'
+      value: 2.97
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.98
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7505
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.7, p95 1.6, off-palette 0.0%
+      value: 0.6836
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the world reference (outliers: C_p95, edge)'
+      value: 83.5
+    info:
+      fit:
+        scale: 0.8238
+        anchor:
+        - 506.4
+        - 872
+      registration:
+        dx: 6
+        dy: 16
+      metrics_raw:
+        L_p5: 58.4
+        L_p50: 82.1
+        L_p95: 93.1
+        C_p50: 21.9
+        C_p95: 40.3
+        C_p99: 42.4
+        detail: 1.52
+      metrics_locked:
+        L_p5: 58.9
+        L_p50: 82.1
+        L_p95: 93.1
+        C_p50: 21.5
+        C_p95: 40.1
+        C_p99: 41.5
+        detail: 0.98
+    fingerprint: 84e87efd639c5865
+manual_review:
+  observed_note: 'Both show one complete standing paper lantern: short honey-wood
+    post and rounded base, plump cream paper body, wooden cap and short rose tassel.
+    The paper remains unlit, with no flame shape or glow halo. No characters, text,
+    scenery or guide marks. The cap and paper silhouette are distinct, and official
+    root guide fit and hard QA pass. Light and palette warnings remain advisory; original
+    alpha edge specks are retained rather than manually repaired.'
+  excluded_takes: []
+sources:
+- batch: batch-24-home-materials
+  job: x-decor-lantern
+  take: 1
+  round: 1
+  logical_run: backlog-next-20261105
+  source_file: /workspace/generated_images/exec-57fc9686-17ec-4b24-b8df-172c2b78e80f.png
+  returned_at: '2026-11-05T13:53:08.400Z'
+  prompt_sha256: e45c9a0b7242147f13aacfb98166e836502f4a3be16a6c9aecd6aeff6f9ce05f
+  fingerprint: 84e87efd639c5865
+  saved_at: '2026-11-05T13:53:08.734166+00:00'
+  original_generated_png_sha256: 9f790f3dbc150605219e5b5b0e9d1c141b8526988d40d1b3b15d20f16b58b08b
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 0efb8b7fd5da17cd524dd0e4c2c807663109094c1a4a186dcde6103d596c2e32
+  inbox_png_sha256: 1e66da672586e6ec1d3db785ab53f61df12c88e87a81304324f6e70fc0495103
+  qa_sha256: 36299375d5d333551a2f05e830b583168a5131a8871fbdb7aefb4eca8bd79125
+- batch: batch-24-home-materials
+  job: x-decor-lantern
+  take: 2
+  round: 1
+  logical_run: backlog-next-20261105
+  source_file: /workspace/generated_images/exec-047c7270-34f7-4e0e-8fec-3d9344605f60.png
+  returned_at: '2026-11-05T13:52:13.428Z'
+  prompt_sha256: e45c9a0b7242147f13aacfb98166e836502f4a3be16a6c9aecd6aeff6f9ce05f
+  fingerprint: 84e87efd639c5865
+  saved_at: '2026-11-05T13:52:13.825918+00:00'
+  original_generated_png_sha256: a7e4b64b9238da85ec179634729a6b618d6e0879bb226383cd4c9ffb144b6d31
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 0b78aa3b1871e286aba7a7801031cf19e11fc533d1ab0d0d030e6b413b5dbd67
+  inbox_png_sha256: 46e47c55484324ca3a962ea810cded3504cc22d7e073032275e871c32d363db5
+  qa_sha256: 85192d8532627ec3f23e60505ce599ded591695b2de51df22ea06914b15a977e
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

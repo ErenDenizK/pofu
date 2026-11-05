@@ -1,0 +1,372 @@
+batch: batch-27-ui-materials
+manifest: tools/imagegen/manifest/batch-27-ui-materials.yaml
+manifest_sha256: 619ff1b9d39f2c86648597f49cc6cb5163abfc4eeee199e3a22d03cb79dc88fb
+contact_sheet: design/art/takes/batch-27-ui-materials/x-orn-tags/contact.jpg
+jobs:
+  x-orn-tags:
+    pick: none
+    publication: skipped after one allowed retry
+    note: SKIPPED after the one allowed retry pair. All four have four blank cream
+      clipped, rose rounded, sage narrow and honey scalloped luggage tags with punched
+      holes and thick soft looped cords, but broad translucent coloured halos/backplates
+      persist across most of the required plain transparent canvas. This explicit
+      background/no shadow failure exceeds a small antialias fringe. All four sources/takes
+      retained unchanged; no alpha editing, background removal or promotion. No true
+      dependents, other jobs continue.
+qa_reports:
+  1:
+    job: x-orn-tags
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 31.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 71 (at most 22), p98 95 (at least 90), spread 24
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 23.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 88.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.35 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.349
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.48
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.65
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.7, p95 14.4, off-palette 11.8% (top: #DDDDBB (3.2%), #CCDDBB
+        (2.5%)) (advisory in an exploration)'
+      value: 4.6902
+    info:
+      metrics_raw:
+        L_p5: 76.6
+        L_p50: 88.4
+        L_p95: 94.5
+        C_p50: 17.8
+        C_p95: 31.8
+        C_p99: 38.1
+        detail: 1.56
+      metrics_locked:
+        L_p5: 76.6
+        L_p50: 88.4
+        L_p95: 94.5
+        C_p50: 17.8
+        C_p95: 31.8
+        C_p99: 38.1
+        detail: 1.65
+    fingerprint: 5c54a743e3f1d216
+  2:
+    job: x-orn-tags
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 34.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 69 (at most 22), p98 94 (at least 90), spread 24
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 24.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 86 (band 55-90)'
+      value: 86.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.33 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.329
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.6 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.58
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.6
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.8, p95 12.9, off-palette 10.4% (top: #CCCCAA (3.5%), #BBCCAA
+        (1.4%)) (advisory in an exploration)'
+      value: 4.8331
+    info:
+      metrics_raw:
+        L_p5: 72.9
+        L_p50: 86.5
+        L_p95: 92.7
+        C_p50: 19.6
+        C_p95: 34.1
+        C_p99: 42.5
+        detail: 1.47
+      metrics_locked:
+        L_p5: 72.9
+        L_p50: 86.5
+        L_p95: 92.7
+        C_p50: 19.6
+        C_p95: 34.1
+        C_p99: 42.5
+        detail: 1.6
+    fingerprint: 5c54a743e3f1d216
+  3:
+    job: x-orn-tags
+    take: 3
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 68 (at most 22), p98 94 (at least 90), spread 26
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 25.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 87.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.17 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.165
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.2 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.23
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.86
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 6.1, p95 16.9, off-palette 24.5% (top: #DDDDAA (7.7%), #FFDD99
+        (2.7%)) (advisory in an exploration)'
+      value: 6.1298
+    info:
+      metrics_raw:
+        L_p5: 73.6
+        L_p50: 87.6
+        L_p95: 93.8
+        C_p50: 22.6
+        C_p95: 40.1
+        C_p99: 47.3
+        detail: 1.73
+      metrics_locked:
+        L_p5: 73.6
+        L_p50: 87.6
+        L_p95: 93.8
+        C_p50: 22.6
+        C_p95: 40.1
+        C_p99: 47.3
+        detail: 1.86
+    fingerprint: 5c54a743e3f1d216
+  4:
+    job: x-orn-tags
+    take: 4
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 34.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 70 (at most 22), p98 95 (at least 90), spread 25
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 24.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 87 (band 55-90)'
+      value: 86.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.31 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.306
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.7 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.65
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.1, p95 14.5, off-palette 16.2% (top: #DDDDBB (4.3%), #CCCCAA
+        (3.6%)) (advisory in an exploration)'
+      value: 5.0654
+    info:
+      metrics_raw:
+        L_p5: 73.4
+        L_p50: 86.6
+        L_p95: 93.8
+        C_p50: 19.8
+        C_p95: 34.0
+        C_p99: 39.6
+        detail: 1.53
+      metrics_locked:
+        L_p5: 73.4
+        L_p50: 86.6
+        L_p95: 93.8
+        C_p50: 19.8
+        C_p95: 34.0
+        C_p99: 39.6
+        detail: 1.65
+    fingerprint: 5c54a743e3f1d216
+manual_review:
+  observed_note: SKIPPED after the one allowed retry pair. All four have four blank
+    cream clipped, rose rounded, sage narrow and honey scalloped luggage tags with
+    punched holes and thick soft looped cords, but broad translucent coloured halos/backplates
+    persist across most of the required plain transparent canvas. This explicit background/no
+    shadow failure exceeds a small antialias fringe. All four sources/takes retained
+    unchanged; no alpha editing, background removal or promotion. No true dependents,
+    other jobs continue.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-27-ui-materials
+  job: x-orn-tags
+  take: 1
+  round: 1
+  logical_run: 20261105-ornaments-final-initial
+  source_file: /workspace/generated_images/exec-e8e853ee-0569-4eac-a1ba-f9ae2eb61e51.png
+  returned_at: '2026-11-05T14:53:37.711Z'
+  prompt_sha256: aab879be06eeb331615f86e96dc4e24ad8ce67f793dd878626428b84a0d7e7dd
+  fingerprint: 5c54a743e3f1d216
+  saved_at: '2026-11-05T14:53:38.034669+00:00'
+  original_generated_png_sha256: dedfa4b38f2fd3f048fdd0704b525390a97605f7549054515322abb0c3ae5719
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 9be427486078ef9cf29595f7fb4f30334088c115d7e1320d12e72675251ca6e4
+  inbox_png_sha256: 81d91085c0410ee1fe5d993a7358b40485dcfb59230ee2421347fd33388c57ed
+  qa_sha256: c84fc704d39f3ef4a3f189a85dc87f5c99a329aa7018db0339c22eef472c6407
+- batch: batch-27-ui-materials
+  job: x-orn-tags
+  take: 2
+  round: 1
+  logical_run: 20261105-ornaments-final-initial
+  source_file: /workspace/generated_images/exec-ffb697db-23f8-4e41-8cb2-85608c9b0820.png
+  returned_at: '2026-11-05T14:52:50.368Z'
+  prompt_sha256: aab879be06eeb331615f86e96dc4e24ad8ce67f793dd878626428b84a0d7e7dd
+  fingerprint: 5c54a743e3f1d216
+  saved_at: '2026-11-05T14:52:51.602417+00:00'
+  original_generated_png_sha256: 28e494b899a28cbcc99e748cf717070281f349c4a09c13a4800a2889c5e2043d
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 960022e07ab16e135bc22ca115e6a6a0d6b6c5e9c1f54942932c78a0b02be686
+  inbox_png_sha256: 195ca1912ca808f7394f06574ced739dd7e9090b7df67e2110ec75197bfc0c2d
+  qa_sha256: d57e39542dd39ed8101198a4c9693abe0b5d9734aee073f819169da3823ab059
+- batch: batch-27-ui-materials
+  job: x-orn-tags
+  take: 3
+  round: 2
+  logical_run: 20261105-ornaments-wax-tags-r2
+  source_file: /workspace/generated_images/exec-3a160589-0f8e-4a7c-bb25-ec70a5b32102.png
+  returned_at: '2026-11-05T14:58:57.574Z'
+  prompt_sha256: aab879be06eeb331615f86e96dc4e24ad8ce67f793dd878626428b84a0d7e7dd
+  fingerprint: 5c54a743e3f1d216
+  saved_at: '2026-11-05T14:58:58.065161+00:00'
+  original_generated_png_sha256: fb57bc85fedf96dbbdf217ab78119083fd1fcb56c587c12b4586d2b047017684
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 2a4d85802be30ba9e0d819ef4eb4198bf6427b326ca5f94b2ca1b669362e5ffa
+  inbox_png_sha256: 2a10f28ebbcea4cc00ec10f4e6ed10b425c0b50537ab9b45fb27437fb146c5b8
+  qa_sha256: cc4e78a0e0c0bc8bea98aeb3dcd15c265f30f104f191c5ca5e59b629918ae887
+- batch: batch-27-ui-materials
+  job: x-orn-tags
+  take: 4
+  round: 2
+  logical_run: 20261105-ornaments-wax-tags-r2
+  source_file: /workspace/generated_images/exec-1121a2f1-553c-41cb-a156-31643c0f98dd.png
+  returned_at: '2026-11-05T14:59:47.763Z'
+  prompt_sha256: aab879be06eeb331615f86e96dc4e24ad8ce67f793dd878626428b84a0d7e7dd
+  fingerprint: 5c54a743e3f1d216
+  saved_at: '2026-11-05T14:59:48.107309+00:00'
+  original_generated_png_sha256: e05424d78f7b90f0e5a78258e3daca07ea0cb12ae5e4b99f3bf4110afb829697
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 2b4791daeda03b0401f52812185aeb5eadd3a04f763f88771cb1b3e9c9f2272c
+  inbox_png_sha256: 98ea1f9602031ca5fca291b01e6540d083f733cd9e1fe774152ebd1e6a934cfe
+  qa_sha256: 0d4e758b98b1ac116e3f76d60b64e0918b731f9f8fd88cbcc719a2a690744a99
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

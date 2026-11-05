@@ -1,0 +1,62 @@
+{
+ "after": {
+  "C_mean": 30.665,
+  "C_p50": 32.24,
+  "C_p95": 54.737,
+  "L_mean": 74.733,
+  "L_p2": 43.375,
+  "L_p98": 92.576,
+  "detail": 3.106,
+  "edge": 0.417,
+  "tint_a": 6.177,
+  "tint_b": 10.329,
+  "warmth_b": 27.372
+ },
+ "before": {
+  "C_mean": 28.316,
+  "C_p50": 28.658,
+  "C_p95": 55.524,
+  "L_mean": 77.512,
+  "L_p2": 51.035,
+  "L_p98": 92.58,
+  "detail": 2.683,
+  "edge": 0.417,
+  "tint_a": 5.701,
+  "tint_b": 9.661,
+  "warmth_b": 25.338
+ },
+ "chain": {
+  "C_p50": 32.226,
+  "L_p2": 43.377,
+  "L_p98": 91.103
+ },
+ "correction": {
+  "black": -7.66,
+  "ceiling": 49.0,
+  "chroma": 1.125,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "station",
+ "matched_to": "world",
+ "outliers_after": [
+  "detail",
+  "edge"
+ ],
+ "outliers_before": [
+  "chain_C_p50",
+  "chain_L_p2",
+  "detail",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 85.6,
+ "score_before": 69.4,
+ "shipped": false,
+ "source": "design/art/stations/lighthouse-4/lighthouse-4.png",
+ "source_sha": "ebee321154cc7bd7"
+}

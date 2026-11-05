@@ -1,21 +1,443 @@
 batch: batch-21-harbor-ladders
+contact_sheet: design/art/takes/batch-21-harbor-ladders/lighthouse-5/contact.jpg
 jobs:
   lighthouse-5:
-    pick: none
-    publication: dependent-skip
-    note: 'Skipped without generation: true dependency lighthouse-4 was already skipped
-      because root lighthouse-1 failed. Skipped without generation: true dependency
-      lighthouse-3 was already skipped because root lighthouse-1 failed. Skipped without
-      generation: true dependency lighthouse-2 was already skipped because root lighthouse-1
-      failed. Skipped without generation: true dependency lighthouse-1 failed after
-      its one allowed retry. All4 retained takes fail official station_anchor: normalized
-      top y0 above height-bar y150, including the only retry pair. The dark lamp room
-      remains unlit and the required striped tower/window/door are present, but a
-      hard height failure cannot be waived. Record the terminal skip, retain every
-      source and contact, and skip only the true lighthouse level-chain dependents.
-      No promotion or additional generation. Automated failures: t1 station_anchor:
-      top y 0 above the height bar (150); t2 station_anchor: top y 0 above the height
-      bar (150); t3 station_anchor: top y 0 above the height bar (150); t4 station_anchor:
-      top y 0 above the height bar (150).'
-generated_takes: 0
-failed_dependency: lighthouse-4
+    pick: 3
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Exactly4 takes after one allowed
+      retry. Take1 fails hard chroma/palette; takes2/4 fail hard height geometry;
+      take3 is the only hard-QA-passing candidate, load1.6257 and Harmony75.2. Visual
+      review confirms a small plain coral flag on a thin cap pole, soft green leaves,
+      cream/coral flowers and exactly two rounded pebbles inside the existing base
+      footprint. Tower, balcony, lamp bands/reflector, door/window and scale remain;
+      no rays, beam, exterior halo or shadow. Edit stability0.9334 and chroma1.1946.
+      Growth report: requested flag raises top to52 versus parent bar140, an existing
+      station_anchor warning rather than hard failure; no whole-object shrinking or
+      edit guide fit is applied. Chroma/light/palette/edit-chroma warnings are recorded,
+      not silently discarded; all hard gates pass unchanged. Founder review pending.'
+qa_reports:
+  2:
+    job: lighthouse-5
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.004 and moved it; aligned back to the
+        parent
+      value: 0.9956
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 57.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 46 (at most 22), p98 92 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 77.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.11 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.11
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.4 (at least 3.5)'
+      value: 5.44
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.5 (R1 5.3)
+      value: 3.51
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.8
+      value: 1.7768
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 11.4, off-palette 4.2% (top: #889944 (0.6%), #999944
+        (0.2%))'
+      value: 2.7249
+    - check: station_anchor
+      status: fail
+      message: top y 39 above the parent's bar (140)
+      value: 905.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 76 against the world reference (outliers: C_p95, detail,
+        edge)'
+      value: 76.5
+    - check: edit_stability
+      status: pass
+      message: 92% of the parent level unchanged
+      value: 0.9236
+    - check: edit_chroma
+      status: warn
+      message: chroma x1.18 of the parent level (drift compounds along a chain)
+      value: 1.18
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      alignment:
+        scale: 0.9956
+        cx: 512.0
+        cy: 907.0
+        dx: 0
+        dy: -2
+      metrics_raw:
+        L_p5: 56.3
+        L_p50: 77.6
+        L_p95: 90.6
+        C_p50: 33.7
+        C_p95: 58.9
+        C_p99: 68.5
+        detail: 4.34
+      metrics_locked:
+        L_p5: 57.1
+        L_p50: 77.6
+        L_p95: 90.6
+        C_p50: 34.1
+        C_p95: 57.6
+        C_p99: 63.1
+        detail: 3.51
+    fingerprint: 96f5ddfed886b42e
+  4:
+    job: lighthouse-5
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 57.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 46 (at most 22), p98 93 (at least 90), spread 48
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 47.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 78.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.11 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.106
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.8 (at least 3.5)'
+      value: 5.84
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.6 (R1 5.3)
+      value: 3.6
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.6075
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.0, p95 13.7, off-palette 6.4% (top: #999944 (0.4%), #99AA44
+        (0.4%))'
+      value: 3.021
+    - check: station_anchor
+      status: fail
+      message: top y 28 above the parent's bar (140)
+      value: 906.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 77 against the world reference (outliers: C_p95, detail,
+        edge)'
+      value: 76.7
+    - check: edit_stability
+      status: pass
+      message: 92% of the parent level unchanged
+      value: 0.9184
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.15 of the parent level (drift compounds along a chain)
+      value: 1.1495
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 55.0
+        L_p50: 78.1
+        L_p95: 91.6
+        C_p50: 33.3
+        C_p95: 58.5
+        C_p99: 67.3
+        detail: 4.36
+      metrics_locked:
+        L_p5: 55.7
+        L_p50: 78.1
+        L_p95: 91.3
+        C_p50: 33.3
+        C_p95: 57.4
+        C_p99: 62.4
+        detail: 3.6
+    fingerprint: 96f5ddfed886b42e
+  1:
+    job: lighthouse-5
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: fail
+      message: chroma p95 60 (R1 51)
+      value: 60.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 43 (at most 22), p98 92 (at least 90), spread 50
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 49.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 76.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.08 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.078
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.1 (at least 3.5)'
+      value: 6.12
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.7 (R1 5.3)
+      value: 3.7
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.7
+      value: 1.7449
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: fail
+      message: 'mean dE 3.5, p95 14.3, off-palette 7.8% (top: #889944 (0.6%), #99AA44
+        (0.6%))'
+      value: 3.5068
+    - check: station_anchor
+      status: warn
+      message: top y 51 above the parent's bar (140)
+      value: 906.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 69 against the world reference (outliers: C_p95, detail,
+        edge)'
+      value: 69.4
+    - check: edit_stability
+      status: pass
+      message: 90% of the parent level unchanged
+      value: 0.898
+    - check: edit_chroma
+      status: warn
+      message: chroma x1.21 of the parent level (drift compounds along a chain)
+      value: 1.2061
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 53.5
+        L_p50: 76.1
+        L_p95: 90.4
+        C_p50: 34.9
+        C_p95: 62.0
+        C_p99: 69.1
+        detail: 4.49
+      metrics_locked:
+        L_p5: 54.3
+        L_p50: 76.1
+        L_p95: 90.1
+        C_p50: 34.9
+        C_p95: 60.1
+        C_p99: 63.2
+        detail: 3.7
+    fingerprint: 96f5ddfed886b42e
+  3:
+    job: lighthouse-5
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 59.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 46 (at most 22), p98 93 (at least 90), spread 47
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 78.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.11 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.114
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.6 (at least 3.5)'
+      value: 5.57
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.4 (R1 5.3)
+      value: 3.39
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.6257
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.0, p95 11.8, off-palette 4.8% (top: #CC7733 (0.4%), #778844
+        (0.4%))'
+      value: 2.978
+    - check: station_anchor
+      status: warn
+      message: top y 52 above the parent's bar (140)
+      value: 906.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 75 against the world reference (outliers: C_p95, detail,
+        edge)'
+      value: 75.2
+    - check: edit_stability
+      status: pass
+      message: 93% of the parent level unchanged
+      value: 0.9334
+    - check: edit_chroma
+      status: warn
+      message: chroma x1.19 of the parent level (drift compounds along a chain)
+      value: 1.1946
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 56.1
+        L_p50: 78.3
+        L_p95: 91.8
+        C_p50: 34.4
+        C_p95: 61.4
+        C_p99: 71.4
+        detail: 4.14
+      metrics_locked:
+        L_p5: 56.6
+        L_p50: 78.2
+        L_p95: 91.5
+        C_p50: 34.5
+        C_p95: 59.0
+        C_p99: 63.9
+        detail: 3.39
+    fingerprint: 96f5ddfed886b42e
+manual_review:
+  excluded_takes: []
+  note: 'Exactly4 takes after one allowed retry. Take1 fails hard chroma/palette;
+    takes2/4 fail hard height geometry; take3 is the only hard-QA-passing candidate,
+    load1.6257 and Harmony75.2. Visual review confirms a small plain coral flag on
+    a thin cap pole, soft green leaves, cream/coral flowers and exactly two rounded
+    pebbles inside the existing base footprint. Tower, balcony, lamp bands/reflector,
+    door/window and scale remain; no rays, beam, exterior halo or shadow. Edit stability0.9334
+    and chroma1.1946. Growth report: requested flag raises top to52 versus parent
+    bar140, an existing station_anchor warning rather than hard failure; no whole-object
+    shrinking or edit guide fit is applied. Chroma/light/palette/edit-chroma warnings
+    are recorded, not silently discarded; all hard gates pass unchanged. Founder review
+    pending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-423c34cc-21d7-4e17-81ca-9c27033f52e4.png
+  original_generated_png_sha256: 1a5be976bf11e3a928e0dc10996d51b0830adcfd9c5e4d3076c05ad9f1f7d6bf
+  inbox_png_sha256: f5f6855379f736e5520c0fc528a721284a527393ec6c191198e173fb92888259
+  rgba_sha256: 88da91ecd8c8bf6095f5b3dd60009c226663036d3338374ee38aa5533bee6fe8
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 96f5ddfed886b42e
+- take: 2
+  source_file: /workspace/generated_images/exec-a4a199b2-e2e4-407b-b355-f4b0860e6ddb.png
+  original_generated_png_sha256: e4e0fed514d8981a82c53d8382b17f1d9bf76da49ce1c6cf4d323b2cdd2e922d
+  inbox_png_sha256: 739f03f5344c167b16f50a4c082c0f5bcfd23d4ce933e75f5771c299e6d2c940
+  rgba_sha256: 8547d826c7702055f52478ed08708f07bdac41790aa124d47b41505a4ff8cae5
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 96f5ddfed886b42e
+- take: 3
+  source_file: /workspace/generated_images/exec-c066b6b4-c390-47b1-b745-279873d2f13c.png
+  original_generated_png_sha256: 45c55ba289d3c5a4df0906093bfba1d3010be37ddf33ba063127e943d46e58ea
+  inbox_png_sha256: 776e7b609eaf814656302c4a9406b0f27b0c84f5b4a34af256bb196e28820abd
+  rgba_sha256: 676d59ccf498df1ff38db81620d5c6f4fb8998539f19b32f1a6564461ca4b159
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 96f5ddfed886b42e
+- take: 4
+  source_file: /workspace/generated_images/exec-33da4db4-4baf-4a77-85e4-ed549b15a90b.png
+  original_generated_png_sha256: 07d4f256af4904db09f46ea0b08f213b528f3c33abee4dd5b938b46a199f311e
+  inbox_png_sha256: ec2ba76b1e4b33b3643cb41fbc34788d76a4763b2d399366fb4fc187d2b7da44
+  rgba_sha256: 2bef58e027fcfc0f882fac8ccbf5198c3955b7c4f30c752a122f56566eea5511
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 96f5ddfed886b42e

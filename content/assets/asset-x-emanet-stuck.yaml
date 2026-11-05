@@ -1,0 +1,21 @@
+id: asset-x-emanet-stuck
+type: asset
+title_tr: x-emanet-stuck
+title_en: x-emanet-stuck (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Emanet, the lost-and-found island, in the game,
+  late afternoon. The plate's top is warm cobblestones with short tufts of grass, its body
+  rounded honey earth with one band of weathered teal-painted planks around its rim. At the
+  back centre the lost- and-found office: a tall, narrow, slightly crooked little house on
+  short stilts built from lost things, an upturned umbrella for…
+art:
+  images: []
+  jobs:
+  - batch-34-islands-in-game:x-emanet-stuck
+sources:
+- doc: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+kind: plate
+batch: batch-34-islands-in-game
+size: 1536x1024

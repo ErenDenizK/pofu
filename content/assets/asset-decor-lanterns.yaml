@@ -28,3 +28,15 @@ notes:
   remains hard. Reject all4; no source resizing, prompt edits or threshold changes.
   Current guide-review.jpg binds these four sources. Only true decor-bench dependents
   are skipped.'
+- 'batch-08-decor-pilot skipped after four takes: Skipped after exactly4 takes and
+  the one allowed retry: all fail hard decor_anchor. Hang widths862,824,895,844px
+  exceed560; bottoms782,801,876,851 exceed620. Hanging pieces are intentionally not
+  resized by the ground-decor guide fit, and no manifest, guide or threshold is changed.
+  Three unlit cream/rose/sage paper lanterns are visually present, but cannot be promoted
+  with failed geometry. Retain all4 originals and q90 archives/contact/QA; no further
+  generation. No true dependents; continue the unrelated jobs. Automated failures:
+  t1 decor_anchor: bottom y 782 below the floor (620); width 862 px wider than the
+  hang line (560); t2 decor_anchor: bottom y 801 below the floor (620); width 824
+  px wider than the hang line (560); t3 decor_anchor: bottom y 876 below the floor
+  (620); width 895 px wider than the hang line (560); t4 decor_anchor: bottom y 851
+  below the floor (620); width 844 px wider than the hang line (560).'

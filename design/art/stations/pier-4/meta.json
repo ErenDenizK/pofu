@@ -1,0 +1,137 @@
+{
+  "job": "pier-4",
+  "batch": "batch-21-harbor-ladders",
+  "asset": "station__pier-4",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-05T06:21:11+00:00",
+  "image": "design/art/stations/pier-4/pier-4.png",
+  "raw": "design/art/stations/pier-4/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "9736eafde2b54184",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n\nAdd a small honey wooden bench on the inner end of the pier, facing the view, and on the planks beside it two tiny tulip tea glasses of warm amber tea on a small round cream tray. Nothing else changes.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/stations/pier-3/pier-3.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T06:15:16+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 0,
+    "dy": 0
+  },
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "warn",
+        "message": "chroma p95 54 (R1 51)",
+        "value": 53.5
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 43 (at most 22), p98 91 (at least 90), spread 48 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 48.0
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 74 (band 55-90)",
+        "value": 73.6
+      },
+      {
+        "check": "light_haze",
+        "status": "pass",
+        "message": "day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means a wash)",
+        "value": 0.133
+      },
+      {
+        "check": "light_contrast",
+        "status": "pass",
+        "message": "day/subject: p75 local contrast 7.0 (at least 3.5)",
+        "value": 6.97
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 3.9 (R1 5.3)",
+        "value": 3.9
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.1",
+        "value": 1.07
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "warn",
+        "message": "mean dE 2.8, p95 13.2, off-palette 6.3% (top: #557788 (1.2%), #558899 (0.8%))",
+        "value": 2.7819
+      },
+      {
+        "check": "station_anchor",
+        "status": "pass",
+        "message": "on the parent's anchor",
+        "value": 908.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 75 against the world reference (outliers: detail, edge)",
+        "value": 74.9
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "92% of the parent level unchanged",
+        "value": 0.9242
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.01 of the parent level (drift compounds along a chain)",
+        "value": 1.0114
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes pass hard QA and the parent station-anchor check. Select take1 for lowest style-lock load1.0700 versus1.0973; Harmony74.9. Visual review counts exactly two tiny tulip tea glasses of amber tea on a small round cream tray beside a honey wooden bench at the inner end, facing the view. Original ferry, rope, lantern, planks/posts, frame and scale remain; no water, wake, smoke or ground shadow. Edit stability0.9242, chroma1.0114. Chroma/light/palette warnings stay advisory; no width-growth warning or root guide fit. Founder review pending."
+}

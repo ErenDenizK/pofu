@@ -1,0 +1,21 @@
+id: asset-x-home-il5
+type: asset
+title_tr: x-home-il5
+title_en: x-home-il5 (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: the home island Ayçiçeği at island level 5, in
+  the game camera, morning. The attached island with, on its lawn: a sunflower garden bed
+  at the far left, a small round lily pond at the front left, a tea stall with a striped awning
+  at the far right, a stone path joining them behind the pond, and Pofu small at the front
+  centre; in the island's earth body, beside the existing rou…
+art:
+  images: []
+  jobs:
+  - batch-34-islands-in-game:x-home-il5
+sources:
+- doc: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+kind: plate
+batch: batch-34-islands-in-game
+size: 1536x1024

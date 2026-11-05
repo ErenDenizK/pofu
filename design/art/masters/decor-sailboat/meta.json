@@ -1,0 +1,121 @@
+{
+  "job": "decor-sailboat",
+  "batch": "batch-08-decor-pilot",
+  "asset": "prop__decor-sailboat",
+  "take": 4,
+  "takes_considered": 4,
+  "approved_at": "2026-11-05T05:55:43+00:00",
+  "image": "design/art/masters/decor-sailboat/decor-sailboat.png",
+  "raw": "design/art/masters/decor-sailboat/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "d8a5c5aa65ace6ad",
+  "prompt": "REFERENCES (attached, in this order):\n1. The decor guide: the boat's waterline sits on the ground ellipse, centered on the cross; follow it, then remove it.\n2. The first piece of this decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench).\n3. The palette card for props: use only these colors (and mixes of them).\n\nA small toy sailboat for the same island diorama, as if folded\nand painted by hand: a round-bottomed hull of soft honey wood with\na cream stripe, a short mast and one plump triangular cream sail\nwith a single soft rose stripe, a tiny plain pennant on top (no\nsymbols, no letters). Seen from the same low front three-quarter\ncamera, floating upright; its waterline is a flat, clean edge\nwith no water drawn.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/templates/decor-guide.png",
+      "role": "The decor guide: the boat's waterline sits on the ground ellipse, centered on the cross; follow it, then remove it."
+    },
+    {
+      "path": "design/art/masters/decor-bench/decor-bench.png",
+      "role": "The first piece of this decor family: match its painting, light, colors, finish and scale exactly (do not draw the bench)."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T05:50:27+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": {
+    "dx": 12,
+    "dy": 69
+  },
+  "alignment": null,
+  "fit": {
+    "scale": 0.7093,
+    "anchor": [
+      500.2,
+      819
+    ]
+  },
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 44 (R1 51)",
+        "value": 43.9
+      },
+      {
+        "check": "value_floor",
+        "status": "pass",
+        "message": "lightness p5 61 (R1 59)",
+        "value": 60.7
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.0 (R1 5.3)",
+        "value": 1.03
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 1.1",
+        "value": 1.1409
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.0, p95 2.4, off-palette 0.0%",
+        "value": 1.0215
+      },
+      {
+        "check": "decor_anchor",
+        "status": "pass",
+        "message": "on the decor guide",
+        "value": 888.0
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 88 against the world reference (outliers: edge)",
+        "value": 87.5
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. One retry pair only. Takes1/3 fail hard decor_anchor and remain ineligible. Initial take2 passes automated QA but is excluded for the bowl-shaped lower hull rather than the requested flat clean waterline; its unpublished preparation was preserved before commit and never uploaded. Retry take4 passes hard QA and visual review: honey hull with cream stripe, short mast, one cream triangular sail/rose stripe, plain pennant, rounded ends and a visible horizontal flat lower waterline; no water, wake, letters, guide or ground shadow. Official guide fit stays above its minimum and places it below the height bar. Choose take4 as the only semantically eligible passing take, lock load1.1409 and Harmony87.5; founder review pending. No prompt, manifest or threshold changed."
+}

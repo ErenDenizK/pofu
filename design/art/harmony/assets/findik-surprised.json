@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 24.192,
+  "C_p50": 19.67,
+  "C_p95": 48.676,
+  "L_mean": 76.245,
+  "L_p2": 14.968,
+  "L_p98": 96.002,
+  "detail": 15.603,
+  "edge": 0.192,
+  "tint_a": 3.875,
+  "tint_b": 8.45,
+  "warmth_b": 20.245
+ },
+ "before": {
+  "C_mean": 24.192,
+  "C_p50": 19.67,
+  "C_p95": 48.676,
+  "L_mean": 76.245,
+  "L_p2": 14.968,
+  "L_p98": 96.002,
+  "detail": 15.603,
+  "edge": 0.192,
+  "tint_a": 3.875,
+  "tint_b": 8.45,
+  "warmth_b": 20.245
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "detail"
+ ],
+ "outliers_before": [
+  "detail"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 86.8,
+ "score_before": 86.8,
+ "shipped": false,
+ "source": "design/art/masters/findik-surprised/findik-surprised.webp",
+ "source_sha": "9cc1eddafab3231b"
+}

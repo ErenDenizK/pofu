@@ -120,6 +120,10 @@ struct WorldArtTests {
         names += IslandLayout.isles.map(\.art)
         names += IslandLayout.islandCast.map(\.art)
         names += SimitPose.allCases.map(\.art)
+        names += IslandLayout.harborProps.map { $0.piece.art }
+        names += IslandLayout.generatedLevels.flatMap { station, levels in
+            (1...levels).compactMap { IslandLayout.stationArt(station, level: $0)?.name }
+        }
         names.append("pofu")
         for station in IslandLayout.stationAnchors.keys {
             if let art = IslandLayout.stationArt(station, level: 1) {

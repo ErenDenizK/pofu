@@ -1,0 +1,21 @@
+id: asset-x-home-tam-cicek
+type: asset
+title_tr: x-home-tam-cicek
+title_en: x-home-tam-cicek (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: the home island Ayçiçeği at full bloom (Tam Çiçek),
+  in the game camera, at dusk. The attached island with all its stations finished: a garden
+  at the far left with one giant golden sunflower, a windmill at the back left with lanterns
+  on its cap, a lily pond at the front left with floating lanterns, a workshop with a big
+  gear sign at the back right, a tea stall with string lig…
+art:
+  images: []
+  jobs:
+  - batch-34-islands-in-game:x-home-tam-cicek
+sources:
+- doc: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+kind: plate
+batch: batch-34-islands-in-game
+size: 1536x1024

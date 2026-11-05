@@ -1,0 +1,364 @@
+batch: batch-26-residents-concepts
+manifest: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+manifest_sha256: 63b34c65480e080d91667fdb106afd899b50801a1590da4c510dab91eb9dac76
+contact_sheet: design/art/takes/batch-26-residents-concepts/x-res2-yosun-small/contact.jpg
+jobs:
+  x-res2-yosun-small:
+    pick: none
+    publication: skipped after one allowed retry
+    note: SKIPPED after the one allowed retry pair. All four retain the kindly old
+      moss-shell tortoise, tiny spectacles, an overfull cream letter satchel, long
+      winding cloud path and huge sleeping whale, but the tortoise remains a large
+      foreground portrait rather than small in a wide unfinished scene as FIRST SEEN
+      SMALL requires. No painted text or Pofu curl. All four originals retained; no
+      true dependents, and grand scene published independently. Numeric hard passes
+      do not waive this explicit composition failure.
+qa_reports:
+  1:
+    job: x-res2-yosun-small
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 95 (at least 90), spread 45
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 45.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 83.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.29 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.29
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.5 (at least 3.5)'
+      value: 3.53
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.84
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8319
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.9, p95 4.6, off-palette 0.0%
+      value: 1.8507
+    info:
+      metrics_raw:
+        L_p5: 62.0
+        L_p50: 87.3
+        L_p95: 95.1
+        C_p50: 13.8
+        C_p95: 40.6
+        C_p99: 45.2
+        detail: 2.53
+      metrics_locked:
+        L_p5: 62.2
+        L_p50: 87.2
+        L_p95: 94.9
+        C_p50: 13.7
+        C_p95: 40.3
+        C_p99: 45.0
+        detail: 1.84
+    fingerprint: 6310e733c65204a5
+  2:
+    job: x-res2-yosun-small
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 49 (at most 22), p98 96 (at least 90), spread 47
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 82.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.31 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.306
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.5 (at least 3.5)'
+      value: 3.48
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.78
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7287
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.9, p95 4.6, off-palette 0.0%
+      value: 1.885
+    info:
+      metrics_raw:
+        L_p5: 63.8
+        L_p50: 89.1
+        L_p95: 95.6
+        C_p50: 10.3
+        C_p95: 38.8
+        C_p99: 45.4
+        detail: 2.4
+      metrics_locked:
+        L_p5: 64.0
+        L_p50: 89.1
+        L_p95: 95.6
+        C_p50: 10.3
+        C_p95: 38.5
+        C_p99: 44.9
+        detail: 1.78
+    fingerprint: 6310e733c65204a5
+  3:
+    job: x-res2-yosun-small
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 96 (at least 90), spread 44
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 43.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 86 (band 55-90)'
+      value: 86.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.31 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.306
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.5 (at least 3.5)'
+      value: 3.53
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.81
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7723
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 4.3, off-palette 0.0% (top: #AAAA44 (0.0%))'
+      value: 1.7865
+    info:
+      metrics_raw:
+        L_p5: 67.2
+        L_p50: 88.7
+        L_p95: 96.0
+        C_p50: 9.9
+        C_p95: 36.6
+        C_p99: 43.3
+        detail: 2.42
+      metrics_locked:
+        L_p5: 67.4
+        L_p50: 88.7
+        L_p95: 95.9
+        C_p50: 10.0
+        C_p95: 36.2
+        C_p99: 42.8
+        detail: 1.81
+    fingerprint: 6310e733c65204a5
+  4:
+    job: x-res2-yosun-small
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 39.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 94 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 41.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 82.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.32 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.318
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.1 (at least 3.5)'
+      value: 3.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.66
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7186
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.9, p95 4.4, off-palette 0.0%
+      value: 1.9472
+    info:
+      metrics_raw:
+        L_p5: 64.9
+        L_p50: 87.7
+        L_p95: 94.6
+        C_p50: 11.2
+        C_p95: 39.7
+        C_p99: 43.7
+        detail: 2.27
+      metrics_locked:
+        L_p5: 65.1
+        L_p50: 87.7
+        L_p95: 94.5
+        C_p50: 11.3
+        C_p95: 39.4
+        C_p99: 43.2
+        detail: 1.66
+    fingerprint: 6310e733c65204a5
+manual_review:
+  observed_note: SKIPPED after the one allowed retry pair. All four retain the kindly
+    old moss-shell tortoise, tiny spectacles, an overfull cream letter satchel, long
+    winding cloud path and huge sleeping whale, but the tortoise remains a large foreground
+    portrait rather than small in a wide unfinished scene as FIRST SEEN SMALL requires.
+    No painted text or Pofu curl. All four originals retained; no true dependents,
+    and grand scene published independently. Numeric hard passes do not waive this
+    explicit composition failure.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-26-residents-concepts
+  job: x-res2-yosun-small
+  take: 1
+  round: 1
+  logical_run: 20261105-wood-r2-yosun-r1
+  source_file: /workspace/generated_images/exec-f0c7c8f0-8b37-4def-b861-43f5a7351f5f.png
+  returned_at: '2026-11-05T14:48:45.021Z'
+  prompt_sha256: be9da6f0fdb8761df70c1b7b411d35f089b2838f985a91de3549be82cc44aaf1
+  fingerprint: 6310e733c65204a5
+  saved_at: '2026-11-05T14:48:45.476017+00:00'
+  original_generated_png_sha256: 82b4b8d79572b307114492ed8f3ad63471cc2411bfe5b626aff242a9ddfc67e4
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: c7c26ece5271fcb0e87cc7e666ccbd32910239cd93eca8d30688ded245524c11
+  inbox_png_sha256: 8f7debc3540a97f6a3272b453e698447fbff0920c6b52e20419c91ae680f9830
+  qa_sha256: cd191dd64878623e4ad3918a85c766753bdb20f915ca558530e0a6e51bd88286
+- batch: batch-26-residents-concepts
+  job: x-res2-yosun-small
+  take: 2
+  round: 1
+  logical_run: 20261105-wood-r2-yosun-r1
+  source_file: /workspace/generated_images/exec-887703bc-054c-48ff-ba89-cf70be6644eb.png
+  returned_at: '2026-11-05T14:47:21.969Z'
+  prompt_sha256: be9da6f0fdb8761df70c1b7b411d35f089b2838f985a91de3549be82cc44aaf1
+  fingerprint: 6310e733c65204a5
+  saved_at: '2026-11-05T14:47:22.426155+00:00'
+  original_generated_png_sha256: e058a72065ea292f290c29141b38aef5476f4e0137c327a92c0012bfb9e0cc8e
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 88c1012a229b25f3f684d595c9766421948bd7b27e9b2dc58fec8c378648ec82
+  inbox_png_sha256: 8f2b7dd0663f216165a750c380dc51a57fa3778358f2f3f1b017854eb6bf5e7b
+  qa_sha256: b8a45fe822170e2b5abee1648779e5658ea8530abd779b276bfd54f840f50934
+- batch: batch-26-residents-concepts
+  job: x-res2-yosun-small
+  take: 3
+  round: 2
+  logical_run: 20261105-yosun-small-r2
+  source_file: /workspace/generated_images/exec-21f3762b-2e00-49d7-91b9-5d02fcc29058.png
+  returned_at: '2026-11-05T14:55:56.453Z'
+  prompt_sha256: be9da6f0fdb8761df70c1b7b411d35f089b2838f985a91de3549be82cc44aaf1
+  fingerprint: 6310e733c65204a5
+  saved_at: '2026-11-05T14:55:56.931801+00:00'
+  original_generated_png_sha256: 15721783857b59e8718241a629e2654545a7ac15febb6ed0712d811ca2b1a141
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 42618ff1dd2dd5d126d5fd4c2708a8c86352272ac92482a570a62c2133e4e6fc
+  inbox_png_sha256: 6f80a125c3fed8bfd5e09a85403d1455ff78d630734429649175054eb7db2c13
+  qa_sha256: d3944ab66439c868f369523730ae946cee2b5a8305cc76f4415431b0e956d28c
+- batch: batch-26-residents-concepts
+  job: x-res2-yosun-small
+  take: 4
+  round: 2
+  logical_run: 20261105-yosun-small-r2
+  source_file: /workspace/generated_images/exec-18ecefd1-7a38-44f0-bfe4-0eab6b560aad.png
+  returned_at: '2026-11-05T14:56:49.370Z'
+  prompt_sha256: be9da6f0fdb8761df70c1b7b411d35f089b2838f985a91de3549be82cc44aaf1
+  fingerprint: 6310e733c65204a5
+  saved_at: '2026-11-05T14:56:49.720107+00:00'
+  original_generated_png_sha256: eb7ecf3f5b908829715cabeb8def3d0da1a7abab48bb47d31afdd590b7364da7
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 65f7f2880b5f6dd58ad2cd10fb4015bf8f5b3446b6337f11ed23f110f459fdb0
+  inbox_png_sha256: ade8859c24595906e4ee998e50489375528e1299ae294b9c3ac5f6a98dc34706
+  qa_sha256: b72afe47cf687d1ac489443d07701c9a24ca51c31e7bc9ceb35b6a634d854cba
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

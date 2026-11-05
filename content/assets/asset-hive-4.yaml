@@ -1,0 +1,21 @@
+id: asset-hive-4
+type: asset
+title_tr: hive-4
+title_en: hive-4 (station)
+status: planned
+horizon: later
+summary: >-
+  Add a small honey wooden landing board under the first skep's entrance and, on the ground
+  at the front right, a shallow round clay dish of pale water with three pebbles in it (the
+  water a flat soft shape, no reflections). Everything else stays.
+links:
+  variant_of:
+  - asset-hive-3
+art:
+  images: []
+  jobs:
+  - batch-33-home-showcase:hive-4
+sources:
+- doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
+kind: station
+batch: batch-33-home-showcase

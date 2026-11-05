@@ -1,0 +1,20 @@
+id: asset-guest-stall
+type: asset
+title_tr: guest-stall
+title_en: guest-stall (prop)
+status: planned
+horizon: later
+summary: >-
+  A tiny market stall for a visiting guest, for the island diorama: a small honey wooden table
+  with a plain cream cloth over its empty top, two thin poles holding a short scalloped awning
+  with broad stripes of sea blue and cream, a small round stool beside it, and a little pennant
+  shaped like a round cloud-whale on top of one pole (a shape, no letters). Empty table top.
+  It stands on the guide's ground ellipse, centered…
+art:
+  images: []
+  jobs:
+  - batch-33-home-showcase:guest-stall
+sources:
+- doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
+kind: prop
+batch: batch-33-home-showcase

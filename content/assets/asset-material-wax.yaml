@@ -1,0 +1,19 @@
+id: asset-material-wax
+type: asset
+title_tr: material-wax
+title_en: material-wax (prop)
+status: planned
+horizon: later
+summary: >-
+  A single small painted object for a cozy game, a crafting material: a plump little block
+  of golden beeswax with a soft hexagon honeycomb pattern on its front face (broad, few cells)
+  and one small drop of honey on its top corner, matte. Same camera, size and finish as the
+  attached moss. Centered on an empty transparent background.
+art:
+  images: []
+  jobs:
+  - batch-33-home-showcase:material-wax
+sources:
+- doc: tools/imagegen/manifest/batch-33-home-showcase.yaml
+kind: prop
+batch: batch-33-home-showcase

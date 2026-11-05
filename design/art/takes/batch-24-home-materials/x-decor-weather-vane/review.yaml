@@ -1,0 +1,239 @@
+batch: batch-24-home-materials
+manifest: tools/imagegen/manifest/batch-24-home-materials.yaml
+manifest_sha256: 8b89cf06f923af54bdfadd47a2edcf953777d08789ad336b2d56aab7a51f9117
+contact_sheet: design/art/takes/batch-24-home-materials/x-decor-weather-vane/contact.jpg
+jobs:
+  x-decor-weather-vane:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both have a short thick wooden
+      post, rounded cream/brass arrow pointing left, one sunflower at the other end
+      and two chunky crossed axes with rounded end balls. Front view overlaps some
+      axis arms, but the crosspiece forms remain legible. No compass letters, text,
+      cast shadow or metallic glints. Small low-alpha fringe specks retained; guide
+      hard checks pass and style warnings remain advisory.
+qa_reports:
+  1:
+    job: x-decor-weather-vane
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 58.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 90 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 73.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.9 (at least 3.5)'
+      value: 5.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.2
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9089
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 6.1, off-palette 1.3% (top: #AA9955 (0.9%), #AA9966
+        (0.3%))'
+      value: 2.6734
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 77 against the world reference (outliers: C_p95, edge)'
+      value: 76.9
+    info:
+      fit:
+        scale: 0.7608
+        anchor:
+        - 503.1
+        - 865
+      registration:
+        dx: 9
+        dy: 23
+      metrics_raw:
+        L_p5: 52.6
+        L_p50: 73.7
+        L_p95: 88.2
+        C_p50: 39.5
+        C_p95: 59.0
+        C_p99: 60.6
+        detail: 1.83
+      metrics_locked:
+        L_p5: 52.9
+        L_p50: 73.6
+        L_p95: 87.7
+        C_p50: 39.5
+        C_p95: 58.2
+        C_p99: 59.2
+        detail: 1.2
+    fingerprint: c1e90cbd90da5b09
+  2:
+    job: x-decor-weather-vane
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 58.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 48 (at most 22), p98 90 (at least 90), spread 42
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 42.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 73.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.6 (at least 3.5)'
+      value: 6.62
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.09
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7486
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.8, p95 6.6, off-palette 1.7% (top: #998855 (0.5%), #999966
+        (0.3%))'
+      value: 2.8139
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: C_p95, edge)'
+      value: 79.2
+    info:
+      fit:
+        scale: 0.7826
+        anchor:
+        - 511.5
+        - 868
+      registration:
+        dx: 1
+        dy: 20
+      metrics_raw:
+        L_p5: 54.7
+        L_p50: 73.6
+        L_p95: 87.8
+        C_p50: 37.3
+        C_p95: 58.7
+        C_p99: 59.7
+        detail: 1.63
+      metrics_locked:
+        L_p5: 55.3
+        L_p50: 73.7
+        L_p95: 87.3
+        C_p50: 37.4
+        C_p95: 58.1
+        C_p99: 58.9
+        detail: 1.09
+    fingerprint: c1e90cbd90da5b09
+manual_review:
+  observed_note: Both have a short thick wooden post, rounded cream/brass arrow pointing
+    left, one sunflower at the other end and two chunky crossed axes with rounded
+    end balls. Front view overlaps some axis arms, but the crosspiece forms remain
+    legible. No compass letters, text, cast shadow or metallic glints. Small low-alpha
+    fringe specks retained; guide hard checks pass and style warnings remain advisory.
+  excluded_takes: []
+sources:
+- batch: batch-24-home-materials
+  job: x-decor-weather-vane
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-vane-boncuk
+  source_file: /workspace/generated_images/exec-fe7cbc18-e540-498d-978f-975f06303862.png
+  returned_at: '2026-11-05T14:24:58.106Z'
+  prompt_sha256: e3e0a91c0ded5b94fcb778abac39a7770856f9f044091be5450cfc790e484a5a
+  fingerprint: c1e90cbd90da5b09
+  saved_at: '2026-11-05T14:24:58.574746+00:00'
+  original_generated_png_sha256: 44245cac638fe0e043b14913e00d2ae67a654931f6e06a583a25a9a4e23a9e81
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: bddfcf8c6f9b3e9837e515ab29535c047fdbc77c5d5184c142c062b1b818b894
+  inbox_png_sha256: 2f306e02ca344de1ce7d664727102d8324487ff70b3ec49b468b48a27c14338a
+  qa_sha256: 7b6740ed689e40f7913ab7c87581992502f59bb12ad2354fe574ec1870cd33a6
+- batch: batch-24-home-materials
+  job: x-decor-weather-vane
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-vane-boncuk
+  source_file: /workspace/generated_images/exec-3be55482-a61d-4d58-aa77-c5c1b659715b.png
+  returned_at: '2026-11-05T14:23:58.631Z'
+  prompt_sha256: e3e0a91c0ded5b94fcb778abac39a7770856f9f044091be5450cfc790e484a5a
+  fingerprint: c1e90cbd90da5b09
+  saved_at: '2026-11-05T14:23:59.005076+00:00'
+  original_generated_png_sha256: ec6291111ff5d2648e8fbe782830108ad9aa464400255154eefdf5c1248d954d
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 83b6114e5a639409333945212a8b3dec26576ebefa959bbe7f43a3023acbf05c
+  inbox_png_sha256: 57ec993864a21aff02674dd72f8bff988e45ac07d22c070748093a9919c0da70
+  qa_sha256: b31c4d98e550e06b9b9ca92594c51020628908bda3b7a985fd44fb681d749ee6
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

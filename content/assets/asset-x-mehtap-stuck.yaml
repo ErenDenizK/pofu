@@ -1,0 +1,21 @@
+id: asset-x-mehtap-stuck
+type: asset
+title_tr: x-mehtap-stuck
+title_en: x-mehtap-stuck (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Mehtap, the moon island, in the game, at blue
+  hour. The plate's top is pale silvery-cream moonstone with a few soft round craters as shallow
+  pools, its two ends rising gently like a crescent cradle; its body is rounded moonstone
+  fading from silver to pale gold. At the back centre a small round observatory with a dome;
+  at the front left a round moon pool; on the right a tall …
+art:
+  images: []
+  jobs:
+  - batch-34-islands-in-game:x-mehtap-stuck
+sources:
+- doc: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+kind: plate
+batch: batch-34-islands-in-game
+size: 1536x1024

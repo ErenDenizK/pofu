@@ -37,3 +37,14 @@ notes:
   The solid alpha>=128 normalized widths are709,676,733,765px, all too wide even before
   fringe pixels. Guide-fit.json records the measurement. One retry exhausted; skip
   this job and only its true dependent harbor-ferry-2.'
+- 'retry-2026-11-04 skipped after four takes: Skipped after exactly4 takes and the
+  one allowed retry: every take fails the existing hard edit_silhouette gate, with
+  parent silhouette retained0.8343,0.8064,0.8087,0.8217. All retain the requested
+  two-deck/two-funnel ferry appearance, and the parent station width check does not
+  fail, but the added upper deck increases the silhouette; no QA gate is waived or
+  edited. Preserve the four original PNGs and q90 take archives/contact/review for
+  lead review or a later explicitly approved salvage profile. No master promoted and
+  no further generation. This job has no true dependents; unrelated harbor levels
+  continue. Automated failures: t1 edit_silhouette: 83% of the parent''s shape kept;
+  t2 edit_silhouette: 81% of the parent''s shape kept; t3 edit_silhouette: 81% of
+  the parent''s shape kept; t4 edit_silhouette: 82% of the parent''s shape kept.'

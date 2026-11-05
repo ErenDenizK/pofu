@@ -6,8 +6,8 @@
   "L_mean": 79.367,
   "L_p2": 44.048,
   "L_p98": 96.295,
-  "detail": 13.954,
-  "edge": 0.11,
+  "detail": 13.682,
+  "edge": 0.116,
   "tint_a": 3.999,
   "tint_b": 8.622,
   "warmth_b": 21.005
@@ -19,8 +19,8 @@
   "L_mean": 79.367,
   "L_p2": 44.048,
   "L_p98": 96.295,
-  "detail": 13.954,
-  "edge": 0.11,
+  "detail": 13.682,
+  "edge": 0.116,
   "tint_a": 3.999,
   "tint_b": 8.622,
   "warmth_b": 21.005
@@ -36,21 +36,21 @@
   "white": 0.0
  },
  "guarded": false,
- "kind": "char",
- "matched_to": "char",
+ "kind": "station",
+ "matched_to": "world",
  "outliers_after": [
-  "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
  "outliers_before": [
-  "L_p2",
-  "detail"
+  "detail",
+  "edge"
  ],
- "ppu": 29.0,
+ "ppu": 27.6738,
  "reference": false,
- "score_after": 73.6,
- "score_before": 73.6,
- "shipped": false,
+ "score_after": 67.9,
+ "score_before": 67.9,
+ "shipped": true,
  "source": "design/art/masters/findik-eyes-closed/findik-eyes-closed.webp",
  "source_sha": "2dac23a9afaaffee"
 }

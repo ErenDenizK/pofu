@@ -1,0 +1,368 @@
+batch: batch-26-residents-concepts
+manifest: tools/imagegen/manifest/batch-26-residents-concepts.yaml
+manifest_sha256: 63b34c65480e080d91667fdb106afd899b50801a1590da4c510dab91eb9dac76
+contact_sheet: design/art/takes/batch-26-residents-concepts/x-res2-nane-small/contact.jpg
+jobs:
+  x-res2-nane-small:
+    pick: none
+    publication: skipped after one allowed retry
+    note: SKIPPED after one allowed retry pair. All four candidates show the sleepy
+      cream/moon-grey owl, half-closed eyes, small ear tufts, blank open star book,
+      pale moon and a sparsely starred night sky, but the owl remains a close foreground
+      portrait about forty percent of frame height. The explicit tiny resident in
+      a huge empty sky composition is not met. All four sources and QA reports retained;
+      no true dependents or other jobs skipped. Numeric style warnings cannot waive
+      this manual composition failure.
+qa_reports:
+  1:
+    job: x-res2-nane-small
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 33 (R1 51)
+      value: 32.8
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 22 (at most 8), p98 93 (at least 58), spread 70
+        (at least 42)'
+      value: 70.2
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 65 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 65.2
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.18 (at most 0.10; no true dark
+        means a wash)'
+      value: 0.184
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 3.6 (at least 2.8)'
+      value: 3.57
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 1.96
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 4.2
+      value: 4.2023
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 4.2, off-palette 0.0%
+      value: 1.519
+    info:
+      metrics_raw:
+        L_p5: 13.0
+        L_p50: 20.4
+        L_p95: 90.9
+        C_p50: 30.8
+        C_p95: 33.0
+        C_p99: 40.3
+        detail: 2.35
+      metrics_locked:
+        L_p5: 21.8
+        L_p50: 24.0
+        L_p95: 90.7
+        C_p50: 30.8
+        C_p95: 32.8
+        C_p99: 39.4
+        detail: 1.96
+    fingerprint: a1b8ac4bb61daa30
+  2:
+    job: x-res2-nane-small
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.9
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 23 (at most 8), p98 94 (at least 58), spread 71
+        (at least 42)'
+      value: 70.8
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 70 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 69.7
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.19 (at most 0.10; no true dark
+        means a wash)'
+      value: 0.192
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 4.4 (at least 2.8)'
+      value: 4.42
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.2
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.0
+      value: 3.0132
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 4.3, off-palette 0.0%
+      value: 1.4773
+    info:
+      metrics_raw:
+        L_p5: 16.7
+        L_p50: 24.5
+        L_p95: 92.1
+        C_p50: 31.2
+        C_p95: 35.1
+        C_p99: 36.6
+        detail: 2.67
+      metrics_locked:
+        L_p5: 22.8
+        L_p50: 26.0
+        L_p95: 91.9
+        C_p50: 31.1
+        C_p95: 34.9
+        C_p99: 36.2
+        detail: 2.2
+    fingerprint: a1b8ac4bb61daa30
+  3:
+    job: x-res2-nane-small
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.5
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 24 (at most 8), p98 91 (at least 58), spread 67
+        (at least 42)'
+      value: 67.2
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 66 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 65.5
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.19 (at most 0.10; no true dark
+        means a wash)'
+      value: 0.192
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 3.5 (at least 2.8)'
+      value: 3.49
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.87
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.4
+      value: 2.4453
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 5.1, off-palette 0.0%
+      value: 1.7739
+    info:
+      metrics_raw:
+        L_p5: 18.9
+        L_p50: 23.6
+        L_p95: 88.3
+        C_p50: 36.7
+        C_p95: 38.8
+        C_p99: 39.4
+        detail: 2.36
+      metrics_locked:
+        L_p5: 23.4
+        L_p50: 25.5
+        L_p95: 88.2
+        C_p50: 36.7
+        C_p95: 38.5
+        C_p99: 39.0
+        detail: 1.87
+    fingerprint: a1b8ac4bb61daa30
+  4:
+    job: x-res2-nane-small
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 30 (R1 51)
+      value: 30.3
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 24 (at most 8), p98 92 (at least 58), spread 68
+        (at least 42)'
+      value: 67.9
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 63 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 62.8
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.20 (at most 0.10; no true dark
+        means a wash)'
+      value: 0.196
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 3.8 (at least 2.8)'
+      value: 3.77
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.76
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.7
+      value: 2.6985
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 4.1, off-palette 0.0%
+      value: 1.7854
+    info:
+      metrics_raw:
+        L_p5: 18.1
+        L_p50: 23.1
+        L_p95: 89.8
+        C_p50: 28.2
+        C_p95: 30.6
+        C_p99: 40.2
+        detail: 2.23
+      metrics_locked:
+        L_p5: 23.2
+        L_p50: 25.2
+        L_p95: 89.7
+        C_p50: 28.3
+        C_p95: 30.3
+        C_p99: 39.7
+        detail: 1.76
+    fingerprint: a1b8ac4bb61daa30
+manual_review:
+  observed_note: SKIPPED after one allowed retry pair. All four candidates show the
+    sleepy cream/moon-grey owl, half-closed eyes, small ear tufts, blank open star
+    book, pale moon and a sparsely starred night sky, but the owl remains a close
+    foreground portrait about forty percent of frame height. The explicit tiny resident
+    in a huge empty sky composition is not met. All four sources and QA reports retained;
+    no true dependents or other jobs skipped. Numeric style warnings cannot waive
+    this manual composition failure.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-26-residents-concepts
+  job: x-res2-nane-small
+  take: 1
+  round: 1
+  logical_run: 20261105-nane-initial
+  source_file: /workspace/generated_images/exec-41e021df-0850-406f-9c0c-096ca8eafb01.png
+  returned_at: '2026-11-05T14:42:17.653Z'
+  prompt_sha256: 096adefda368fe00a47c0b714b931859defecca0caa0baaa583fb87d135b181b
+  fingerprint: a1b8ac4bb61daa30
+  saved_at: '2026-11-05T14:42:18.108905+00:00'
+  original_generated_png_sha256: 26fcdb2e8fd8eb11eed39b312998b773228cf4525886ed078d5b81f6b3d84545
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 7cba47da25247f7fca8590bee1ad38e9dd02b481cb031962b312bb5b03049acf
+  inbox_png_sha256: 3b22f0b7adbe6f32c6d12effefe3ebef8d859a87af7f569339a5ea75e7eb0723
+  qa_sha256: a8286cbdee18759d76e97155d0b9a63098967adef707c32fa4460b79eff26a8e
+- batch: batch-26-residents-concepts
+  job: x-res2-nane-small
+  take: 2
+  round: 1
+  logical_run: 20261105-nane-initial
+  source_file: /workspace/generated_images/exec-8730c384-047c-4e1f-821b-fa242f678973.png
+  returned_at: '2026-11-05T14:43:50.280Z'
+  prompt_sha256: 096adefda368fe00a47c0b714b931859defecca0caa0baaa583fb87d135b181b
+  fingerprint: a1b8ac4bb61daa30
+  saved_at: '2026-11-05T14:43:50.756597+00:00'
+  original_generated_png_sha256: e1f48a674f5f4aadaeaa2bed878e6f340597a41bc39c3e2c83486d727846d661
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 053608d1df228df0a02227ec2bacb459d34f25716f4ceec204bfc84aa52a665e
+  inbox_png_sha256: 06fcaa387c25e45d5fa1ffce01e168b5e40a97dc96d7e1af4872c7a357cb33e9
+  qa_sha256: 7658b380500586fd86085f1a4f07ee43e7069caad8dd55d9beaf83941ee5583e
+- batch: batch-26-residents-concepts
+  job: x-res2-nane-small
+  take: 3
+  round: 2
+  logical_run: 20261105-nane-r2-yosun-grand-r1
+  source_file: /workspace/generated_images/exec-0b02e0b7-5736-412a-9e67-3b9c3a88baff.png
+  returned_at: '2026-11-05T14:50:21.258Z'
+  prompt_sha256: 096adefda368fe00a47c0b714b931859defecca0caa0baaa583fb87d135b181b
+  fingerprint: a1b8ac4bb61daa30
+  saved_at: '2026-11-05T14:50:21.739261+00:00'
+  original_generated_png_sha256: c9be5e2b0f4b9700f03de55f5851bd6841ddb2f2cb0e17a87901ddce8a742c27
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: df60b281cb9fe7743630283e9cf460e4f8ab687d2f5d7163dd9b08d90ff80d93
+  inbox_png_sha256: 15b900dd74d3182d55d1c50911d8aab2781013c5090832a84d45c4d489a4c845
+  qa_sha256: ceb5b5bfb1ceaf5ed20425f81e26acd15a0ca985dbd0b62e6991557b70e1c20a
+- batch: batch-26-residents-concepts
+  job: x-res2-nane-small
+  take: 4
+  round: 2
+  logical_run: 20261105-nane-r2-yosun-grand-r1
+  source_file: /workspace/generated_images/exec-10c98ebb-d4fe-41ce-87ad-efb9c5b7a64f.png
+  returned_at: '2026-11-05T14:51:59.451Z'
+  prompt_sha256: 096adefda368fe00a47c0b714b931859defecca0caa0baaa583fb87d135b181b
+  fingerprint: a1b8ac4bb61daa30
+  saved_at: '2026-11-05T14:52:00.104265+00:00'
+  original_generated_png_sha256: 3b5cae7774154d45211257046ecb2196ac45a1c750b2fa440dc92137803b05ae
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 0fef27e798df44ee70bacc8f8acacc5d5e0df40e5fe61db8a7bbf698eb136c2f
+  inbox_png_sha256: 315a53c04c91653f751baf7bb32fcd9716358eaa07209432ec39b2374620dc81
+  qa_sha256: 3c185589b6a05d24ebc6b7a3aebe5fed84dc473b1a159b5fb7b63a4c58469f41
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

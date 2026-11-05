@@ -1,0 +1,207 @@
+batch: batch-22-gezgin-forms
+manifest: tools/imagegen/manifest/batch-22-gezgin-forms.yaml
+manifest_sha256: 205efd12cf3d8e6f8f0a6fcd5b94f49204dad635dbaf77c3ba34c9ad295cba5d
+contact_sheet: design/art/takes/batch-22-gezgin-forms/x-gezgin-f2-night/contact.jpg
+jobs:
+  x-gezgin-f2-night:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both grown night scenes retain
+      a lush flowering grove, stepping-stone path, silver waterfall, warm hanging
+      lantern and visibly gold-glowing bulb scar; fireflies stay in the grove, with
+      one large moon and a calm face. The scar is a clear continuity reveal from form1,
+      not a caption. Take1 places the moon at upper right, take2 at upper left; the
+      latter is a lighting-composition inconsistency against the requested upper-right
+      night key, recorded as an advisory exploration limitation. Subject and cloud
+      values remain above the night targets, with all light/haze warnings retained.
+      No production promotion, grading, text or extra characters.
+qa_reports:
+  1:
+    job: x-gezgin-f2-night
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.4
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 52 (at most 8), p98 93 (at least 58), spread 41
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 41.4
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 78 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 78.4
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.45 (at most 0.10; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.451
+    - check: light_contrast
+      status: warn
+      message: 'night/subject: p75 local contrast 2.0 (at least 2.8) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.05
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.03
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7648
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.3, p95 12.1, off-palette 5.3% (top: #445599 (2.7%), #446699
+        (1.3%))'
+      value: 4.2721
+    info:
+      metrics_raw:
+        L_p5: 35.3
+        L_p50: 72.2
+        L_p95: 92.3
+        C_p50: 18.0
+        C_p95: 38.6
+        C_p99: 46.6
+        detail: 2.46
+      metrics_locked:
+        L_p5: 35.3
+        L_p50: 72.3
+        L_p95: 92.1
+        C_p50: 17.8
+        C_p95: 38.4
+        C_p99: 45.3
+        detail: 2.03
+    fingerprint: ca9c1df025aca9c1
+  2:
+    job: x-gezgin-f2-night
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.6
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 47 (at most 8), p98 93 (at least 58), spread 46
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 46.1
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 76 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 76.5
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.40 (at most 0.10; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.396
+    - check: light_contrast
+      status: warn
+      message: 'night/subject: p75 local contrast 2.6 (at least 2.8)'
+      value: 2.59
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.07
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7969
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.8, p95 9.4, off-palette 1.3% (top: #445599 (0.7%), #5566AA
+        (0.4%))'
+      value: 3.8267
+    info:
+      metrics_raw:
+        L_p5: 29.0
+        L_p50: 71.3
+        L_p95: 93.0
+        C_p50: 20.0
+        C_p95: 41.8
+        C_p99: 48.5
+        detail: 2.49
+      metrics_locked:
+        L_p5: 29.1
+        L_p50: 71.3
+        L_p95: 92.8
+        C_p50: 19.8
+        C_p95: 41.6
+        C_p99: 46.7
+        detail: 2.07
+    fingerprint: ca9c1df025aca9c1
+manual_review:
+  observed_note: Both grown night scenes retain a lush flowering grove, stepping-stone
+    path, silver waterfall, warm hanging lantern and visibly gold-glowing bulb scar;
+    fireflies stay in the grove, with one large moon and a calm face. The scar is
+    a clear continuity reveal from form1, not a caption. Take1 places the moon at
+    upper right, take2 at upper left; the latter is a lighting-composition inconsistency
+    against the requested upper-right night key, recorded as an advisory exploration
+    limitation. Subject and cloud values remain above the night targets, with all
+    light/haze warnings retained. No production promotion, grading, text or extra
+    characters.
+  excluded_takes: []
+sources:
+- batch: batch-22-gezgin-forms
+  job: x-gezgin-f2-night
+  take: 1
+  round: 1
+  logical_run: backlog-next-20261105
+  source_file: /workspace/generated_images/exec-8f771297-97fa-4ccb-9a89-2d7ac1fddf1f.png
+  returned_at: '2026-11-05T13:42:52.172Z'
+  prompt_sha256: 5a355dbb2778af19e961743b3bdec584630a4829755ff62600c3949996b3c4a1
+  fingerprint: ca9c1df025aca9c1
+  saved_at: '2026-11-05T13:42:52.939321+00:00'
+  original_generated_png_sha256: ceb51e6a8fda1691ed036dd319c799c398eda19defd86b8a8b0c6c8790e7e38a
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 0018186f147bbfe1b6a1c050fc6bd7670ffdc73e4de88d5aa8a9962e17214351
+  inbox_png_sha256: f53ece578f777836bfb45c4b1fd1a3a8e8f09494f8619e85b887cf181c00e31a
+  qa_sha256: 98248b597c8c7c34388e51f4f2504700c1f412aaf0eb07a9b87667327b67ba37
+- batch: batch-22-gezgin-forms
+  job: x-gezgin-f2-night
+  take: 2
+  round: 1
+  logical_run: backlog-next-20261105
+  source_file: /workspace/generated_images/exec-6c4545d8-46d6-492f-b509-032390473273.png
+  returned_at: '2026-11-05T13:43:39.031Z'
+  prompt_sha256: 5a355dbb2778af19e961743b3bdec584630a4829755ff62600c3949996b3c4a1
+  fingerprint: ca9c1df025aca9c1
+  saved_at: '2026-11-05T13:43:39.479621+00:00'
+  original_generated_png_sha256: 98a018bf7a1896fc4c084b94880308fedfeadd69f7b61ac2634f102e0084ed5c
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: aaafe908ab002364e17b19c719d323b73263207726eb588197fd82e7481f0223
+  inbox_png_sha256: b5dfa290c81b8eecf8330b67a14a3361821835a40fe5f8446b1165c3a37d1988
+  qa_sha256: 3cc6f5e62680de5babf389ec81c360dde3d5cad236ff44fb6fe13b8afaf9647f
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

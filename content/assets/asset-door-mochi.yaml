@@ -1,0 +1,20 @@
+id: asset-door-mochi
+type: asset
+title_tr: door-mochi
+title_en: door-mochi (prop)
+status: in-production
+horizon: now
+summary: >-
+  A small round wooden door set into soft earth, seen straight from the front, in the same
+  style as the round door on the attached island: a round door of soft rose-painted wood in
+  a thick honey wooden frame, a small round window with a cream cross bar, a tiny round brass-colored
+  knob painted matte, a flat honey doorstep, and over the door a little hanging sign shaped
+  like a tulip tea glass (a shape, no letters). Aroun…
+art:
+  images: []
+  jobs:
+  - batch-33-home-showcase-pilot:door-mochi
+sources:
+- doc: tools/imagegen/manifest/batch-33-home-showcase-pilot.yaml
+kind: prop
+batch: batch-33-home-showcase-pilot

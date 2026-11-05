@@ -1,14 +1,337 @@
 batch: batch-08-decor-pilot
+contact_sheet: design/art/takes/batch-08-decor-pilot/decor-lanterns/contact.jpg
 jobs:
   decor-lanterns:
     pick: none
-    publication: dependent-skip
-    note: 'Skipped without generation: true dependency decor-bench failed after its
-      one allowed retry. Authorized 2026-11-04 re-run, four original takes and one
-      retry exhausted. Normalized widths t1=467, t2=495, t3=484, t4=452px all exceed
-      the manifest maximum360px. Automatic decor_anchor warns at these values, but
-      the explicit guide-size requirement remains hard. Reject all4; no source resizing,
-      prompt edits or threshold changes. Current guide-review.jpg binds these four
-      sources. Only true decor-bench dependents are skipped.'
-generated_takes: 0
-failed_dependency: decor-bench
+    publication: skipped after one allowed retry
+    note: 'Skipped after exactly4 takes and the one allowed retry: all fail hard decor_anchor.
+      Hang widths862,824,895,844px exceed560; bottoms782,801,876,851 exceed620. Hanging
+      pieces are intentionally not resized by the ground-decor guide fit, and no manifest,
+      guide or threshold is changed. Three unlit cream/rose/sage paper lanterns are
+      visually present, but cannot be promoted with failed geometry. Retain all4 originals
+      and q90 archives/contact/QA; no further generation. No true dependents; continue
+      the unrelated jobs. Automated failures: t1 decor_anchor: bottom y 782 below
+      the floor (620); width 862 px wider than the hang line (560); t2 decor_anchor:
+      bottom y 801 below the floor (620); width 824 px wider than the hang line (560);
+      t3 decor_anchor: bottom y 876 below the floor (620); width 895 px wider than
+      the hang line (560); t4 decor_anchor: bottom y 851 below the floor (620); width
+      844 px wider than the hang line (560).'
+qa_reports:
+  4:
+    job: decor-lanterns
+    take: 4
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 66 (R1 59)
+      value: 66.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.98
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.4873
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.2, p95 2.9, off-palette 0.0%
+      value: 1.2158
+    - check: decor_anchor
+      status: fail
+      message: bottom y 851 below the floor (620); width 844 px wider than the hang
+        line (560)
+      value: 851.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 74 against the world reference (outliers: C_p95, edge)'
+      value: 73.8
+    info:
+      registration:
+        dx: 0
+        dy: 31
+      metrics_raw:
+        L_p5: 66.0
+        L_p50: 80.6
+        L_p95: 89.3
+        C_p50: 25.1
+        C_p95: 37.9
+        C_p99: 40.0
+        detail: 1.66
+      metrics_locked:
+        L_p5: 66.5
+        L_p50: 80.8
+        L_p95: 89.1
+        C_p50: 25.2
+        C_p95: 37.8
+        C_p99: 39.7
+        detail: 0.98
+    fingerprint: 8623e33d08f367e2
+  3:
+    job: decor-lanterns
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 39.2
+    - check: value_floor
+      status: pass
+      message: lightness p5 66 (R1 59)
+      value: 65.8
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.19
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5258
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 3.1, off-palette 0.0%
+      value: 1.3305
+    - check: decor_anchor
+      status: fail
+      message: bottom y 876 below the floor (620); width 895 px wider than the hang
+        line (560)
+      value: 876.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the world reference (outliers: C_p95, edge)'
+      value: 79.6
+    info:
+      registration:
+        dx: 0
+        dy: 46
+      metrics_raw:
+        L_p5: 65.2
+        L_p50: 80.6
+        L_p95: 90.1
+        C_p50: 26.0
+        C_p95: 39.5
+        C_p99: 41.1
+        detail: 1.9
+      metrics_locked:
+        L_p5: 65.8
+        L_p50: 80.7
+        L_p95: 89.7
+        C_p50: 26.0
+        C_p95: 39.2
+        C_p99: 40.6
+        detail: 1.19
+    fingerprint: 8623e33d08f367e2
+  1:
+    job: decor-lanterns
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 66 (R1 59)
+      value: 65.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.07
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.4878
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 3.2, off-palette 0.0%
+      value: 1.3809
+    - check: decor_anchor
+      status: fail
+      message: bottom y 782 below the floor (620); width 862 px wider than the hang
+        line (560)
+      value: 782.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 78 against the world reference (outliers: C_p95, edge)'
+      value: 78.3
+    info:
+      registration:
+        dx: 0
+        dy: 2
+      metrics_raw:
+        L_p5: 65.1
+        L_p50: 80.3
+        L_p95: 90.0
+        C_p50: 25.7
+        C_p95: 40.9
+        C_p99: 42.7
+        detail: 1.75
+      metrics_locked:
+        L_p5: 65.5
+        L_p50: 80.3
+        L_p95: 89.7
+        C_p50: 25.6
+        C_p95: 40.6
+        C_p99: 42.5
+        detail: 1.07
+    fingerprint: 8623e33d08f367e2
+  2:
+    job: decor-lanterns
+    take: 2
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.5
+    - check: value_floor
+      status: pass
+      message: lightness p5 66 (R1 59)
+      value: 66.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.19
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5286
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.4, p95 3.0, off-palette 0.0%
+      value: 1.4117
+    - check: decor_anchor
+      status: fail
+      message: bottom y 801 below the floor (620); width 824 px wider than the hang
+        line (560)
+      value: 801.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the world reference (outliers: C_p95, edge)'
+      value: 80.4
+    info:
+      registration:
+        dx: -2
+        dy: 13
+      metrics_raw:
+        L_p5: 65.8
+        L_p50: 80.6
+        L_p95: 90.6
+        C_p50: 26.3
+        C_p95: 40.9
+        C_p99: 42.9
+        detail: 2.01
+      metrics_locked:
+        L_p5: 66.5
+        L_p50: 80.5
+        L_p95: 90.3
+        C_p50: 26.4
+        C_p95: 40.5
+        C_p99: 42.5
+        detail: 1.19
+    fingerprint: 8623e33d08f367e2
+manual_review:
+  excluded_takes: []
+  note: 'Skipped after exactly4 takes and the one allowed retry: all fail hard decor_anchor.
+    Hang widths862,824,895,844px exceed560; bottoms782,801,876,851 exceed620. Hanging
+    pieces are intentionally not resized by the ground-decor guide fit, and no manifest,
+    guide or threshold is changed. Three unlit cream/rose/sage paper lanterns are
+    visually present, but cannot be promoted with failed geometry. Retain all4 originals
+    and q90 archives/contact/QA; no further generation. No true dependents; continue
+    the unrelated jobs.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-a649c4ec-e967-41f2-90f9-a7d2b2c9f7ea.png
+  original_generated_png_sha256: c6928d8fa0442fa359539c71015073da448fce541f80106d1e80a2e2d8a381f1
+  inbox_png_sha256: caab5595901b0f5f844a3b4cc38c3e637cbbfb6055bf8b5e23151b37fdcf836a
+  rgba_sha256: e543c8d357e38b00f3fa4e267f654f24a5d4a095a860c6f00e4e84d593a8a066
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 8623e33d08f367e2
+- take: 2
+  source_file: /workspace/generated_images/exec-c47beb6c-0144-46f3-b5f5-09849b502023.png
+  original_generated_png_sha256: d818455676d7694331c97bd52fde8bafebb3a94f55aaf00a5a7c48189f0d17f5
+  inbox_png_sha256: 95e75acb5d1ac1c2c32cef32cad79a1eac88da10e800ad979c24e625c171b205
+  rgba_sha256: 99cc8619b11cdbee9aa38b1a3dcd77ad7ab7bbcd7212d5d9f568cbc14a6f1d86
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 8623e33d08f367e2
+- take: 3
+  source_file: /workspace/generated_images/exec-5efe68d5-1d17-4847-8519-64eb51663f95.png
+  original_generated_png_sha256: 64bcea6a64b98a356e8d5446918d0922469ba7777d18400185754d7ecb0ee8eb
+  inbox_png_sha256: 4c1afc9815a98d10dc6b1771f32b2ddeb1437908bedb940b8abc54bc116655b0
+  rgba_sha256: b73fb99079babfd473ee5547ce1cdf3cbab638bebac9eba9708f379b86d82bc4
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 8623e33d08f367e2
+- take: 4
+  source_file: /workspace/generated_images/exec-25a959df-f774-4592-99bb-54c34b669d6b.png
+  original_generated_png_sha256: de8099d010ca9e1445d22d61be21b8a075da6d3bc1ca3c0ffdd96bbbe1a9805c
+  inbox_png_sha256: 846a091df63bd41333387d8d6f29ebde7390f959558fcc551691b838fc7d8755
+  rgba_sha256: 19310799b31711ea8ebbb6ee1646b0b45f5ea333d8ef78ef4962c0ed5b2e5fc7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 8623e33d08f367e2

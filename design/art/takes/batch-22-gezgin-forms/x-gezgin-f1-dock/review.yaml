@@ -1,0 +1,199 @@
+batch: batch-22-gezgin-forms
+manifest: tools/imagegen/manifest/batch-22-gezgin-forms.yaml
+manifest_sha256: 205efd12cf3d8e6f8f0a6fcd5b94f49204dad635dbaf77c3ba34c9ad295cba5d
+contact_sheet: design/art/takes/batch-22-gezgin-forms/x-gezgin-f1-dock/contact.jpg
+jobs:
+  x-gezgin-f1-dock:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both full-bleed scenes retain
+      the tired whale and back landmarks, with one continuous mooring rope visibly
+      joining the back post to a pier bollard and the broad flipper resting beside
+      or over the small wooden pier. The pier is roughly one third of the visible
+      whale length in foreground perspective: friendly scale contrast, not an extreme
+      distant giant scale. No copied home soil bowl, roots or doorway, no characters
+      or text. Light and haze warnings remain advisory.'
+qa_reports:
+  1:
+    job: x-gezgin-f1-dock
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 33.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 62 (at most 22), p98 96 (at least 90), spread 34
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 83.1
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.40 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.396
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.0 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.02
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.26
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5993
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.3, p95 4.6, off-palette 0.0% (top: #CC7733 (0.0%))'
+      value: 2.287
+    info:
+      metrics_raw:
+        L_p5: 71.2
+        L_p50: 87.8
+        L_p95: 95.5
+        C_p50: 11.7
+        C_p95: 34.8
+        C_p99: 45.9
+        detail: 1.56
+      metrics_locked:
+        L_p5: 71.4
+        L_p50: 87.8
+        L_p95: 95.4
+        C_p50: 11.5
+        C_p95: 33.9
+        C_p99: 44.6
+        detail: 1.26
+    fingerprint: 07d396413b54ddaa
+  2:
+    job: x-gezgin-f1-dock
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 36.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 96 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 83.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.43 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.427
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.9 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.94
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.37
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6192
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 4.7, off-palette 0.0% (top: #889944 (0.0%))'
+      value: 2.2206
+    info:
+      metrics_raw:
+        L_p5: 69.9
+        L_p50: 87.4
+        L_p95: 95.4
+        C_p50: 11.4
+        C_p95: 36.5
+        C_p99: 48.4
+        detail: 1.68
+      metrics_locked:
+        L_p5: 70.1
+        L_p50: 87.4
+        L_p95: 95.2
+        C_p50: 11.2
+        C_p95: 36.0
+        C_p99: 46.7
+        detail: 1.37
+    fingerprint: 07d396413b54ddaa
+manual_review:
+  observed_note: 'Both full-bleed scenes retain the tired whale and back landmarks,
+    with one continuous mooring rope visibly joining the back post to a pier bollard
+    and the broad flipper resting beside or over the small wooden pier. The pier is
+    roughly one third of the visible whale length in foreground perspective: friendly
+    scale contrast, not an extreme distant giant scale. No copied home soil bowl,
+    roots or doorway, no characters or text. Light and haze warnings remain advisory.'
+  excluded_takes: []
+sources:
+- batch: batch-22-gezgin-forms
+  job: x-gezgin-f1-dock
+  take: 1
+  round: 1
+  logical_run: backlog22-20261105
+  source_file: /workspace/generated_images/exec-fff7920c-da9d-4956-a4a1-0e05f0e5d99c.png
+  returned_at: '2026-11-05T13:33:38.835Z'
+  prompt_sha256: 0d016e5f0fbfdeeb0ba893a353d7d4170e3b6a4a0ad16e95911df1f7f1030e89
+  fingerprint: 07d396413b54ddaa
+  saved_at: '2026-11-05T13:33:39.295964+00:00'
+  original_generated_png_sha256: 5cd88a3e1a360bdebbcf96d3dffefc17b548666b2378d741fcdbda10aba07299
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 057a03f9320326547ffebcb78b6de17d675376e182342c4e7df59c48482a1338
+  inbox_png_sha256: dd87b147bfaae4ae5812f5652454e4e87dbd602007be67aa173c1ca93e1995ad
+  qa_sha256: 814ed41ed7b3d8d5db26e1635f3c26d4ec510f78d301839339cf6cc85b0bf1a3
+- batch: batch-22-gezgin-forms
+  job: x-gezgin-f1-dock
+  take: 2
+  round: 1
+  logical_run: backlog22-20261105
+  source_file: /workspace/generated_images/exec-da5e5185-fef5-4e73-bf82-04d017baab3f.png
+  returned_at: '2026-11-05T13:35:12.416Z'
+  prompt_sha256: 0d016e5f0fbfdeeb0ba893a353d7d4170e3b6a4a0ad16e95911df1f7f1030e89
+  fingerprint: 07d396413b54ddaa
+  saved_at: '2026-11-05T13:35:14.363452+00:00'
+  original_generated_png_sha256: 8a8e381784aee97c39d075bacb54216d663816c34de583e7037a9ce53b3466f4
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 17073cb7fbbb5f85021a0950603d0bda88ef0fe24d79839f12636bb4bab750e2
+  inbox_png_sha256: c2fba8318a675feb2fc291d544fe54d727a858e7acf3bb65384ef5da302aa833
+  qa_sha256: 1ec13ce81f618cdf949b3689d18da3862b4443a75a9b5c9fa26827ec164e3241
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

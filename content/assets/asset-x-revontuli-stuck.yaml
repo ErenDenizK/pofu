@@ -1,0 +1,21 @@
+id: asset-x-revontuli-stuck
+type: asset
+title_tr: x-revontuli-stuck
+title_en: x-revontuli-stuck (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Revontuli, the aurora island, in the game, at
+  night. The plate is a floe: its top soft deep snow, its body thick, rounded, milky blue-white
+  ice that glows faintly from inside, with a few short rounded icicles under it like roots.
+  On the left back a small wooden sauna on short stilts with a round chimney and one warm
+  window; on the right back one plump snowy spruce; at the fr…
+art:
+  images: []
+  jobs:
+  - batch-34-islands-in-game:x-revontuli-stuck
+sources:
+- doc: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+kind: plate
+batch: batch-34-islands-in-game
+size: 1536x1024
