@@ -1,0 +1,210 @@
+batch: batch-30c-decor-seasons-2
+manifest: tools/imagegen/manifest/batch-30c-decor-seasons-2.yaml
+manifest_sha256: 1c4999e56afbafe8f17b1cace1be68f77a742689a5985b6fae4e60b3f8613c52
+contact_sheet: design/art/takes/batch-30c-decor-seasons-2/x-corner-guz/contact.jpg
+jobs:
+  x-corner-guz:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both initial sources give a quiet
+      low-camera corner of the home lawn/path over the cloud edge, with exactly three
+      carved pumpkin lanterns in a row, round chestnut stove/pipe, paper cone of chestnuts,
+      plum scarf on a stand, rust/mustard/rose leaf heap and a few falling leaves.
+      Unmistakable warm autumn, no live characters, lettering or border. Pumpkin carvings
+      are floral motifs rather than the separate individual prop faces, and stove/stand
+      designs vary because the printed corner job attaches main family references
+      rather than these new takes; retain as independent set-composition concepts,
+      never claim registered assembly or identical props. Take1 includes a soft chimney
+      wisp; the corner brief does not impose the separate steam-code sprite rule and
+      no master is shipped. Numerical hard QA passes both; lowest lock then higher
+      Harmony decides, exploration palette/style/light warnings advisory. Never promoted.
+qa_reports:
+  1:
+    job: x-corner-guz
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 53.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 40 (at most 22), p98 92 (at least 90), spread 51
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 51.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 80.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.196
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.5 (at least 3.5)'
+      value: 3.55
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.01
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0258
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 10.6, off-palette 3.9% (top: #CC7733 (0.5%), #BB6633
+        (0.4%))'
+      value: 2.6789
+    info:
+      metrics_raw:
+        L_p5: 53.2
+        L_p50: 85.1
+        L_p95: 94.0
+        C_p50: 26.1
+        C_p95: 55.7
+        C_p99: 62.4
+        detail: 2.65
+      metrics_locked:
+        L_p5: 53.5
+        L_p50: 85.0
+        L_p95: 93.9
+        C_p50: 26.0
+        C_p95: 53.1
+        C_p99: 60.2
+        detail: 2.01
+    fingerprint: 34aeed4d5e275199
+  2:
+    job: x-corner-guz
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 48 (at most 22), p98 93 (at least 90), spread 45
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 45.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 80.7
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.23 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.235
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.0 (at least 3.5)'
+      value: 2.96
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.94
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9107
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.5, p95 7.2, off-palette 1.0% (top: #EE9944 (0.3%), #DD8844
+        (0.2%))'
+      value: 2.4503
+    info:
+      metrics_raw:
+        L_p5: 58.1
+        L_p50: 84.4
+        L_p95: 94.0
+        C_p50: 27.0
+        C_p95: 51.5
+        C_p99: 63.4
+        detail: 2.61
+      metrics_locked:
+        L_p5: 58.5
+        L_p50: 84.3
+        L_p95: 93.9
+        C_p50: 26.9
+        C_p95: 50.3
+        C_p99: 60.9
+        detail: 1.94
+    fingerprint: 34aeed4d5e275199
+manual_review:
+  observed_note: Both initial sources give a quiet low-camera corner of the home lawn/path
+    over the cloud edge, with exactly three carved pumpkin lanterns in a row, round
+    chestnut stove/pipe, paper cone of chestnuts, plum scarf on a stand, rust/mustard/rose
+    leaf heap and a few falling leaves. Unmistakable warm autumn, no live characters,
+    lettering or border. Pumpkin carvings are floral motifs rather than the separate
+    individual prop faces, and stove/stand designs vary because the printed corner
+    job attaches main family references rather than these new takes; retain as independent
+    set-composition concepts, never claim registered assembly or identical props.
+    Take1 includes a soft chimney wisp; the corner brief does not impose the separate
+    steam-code sprite rule and no master is shipped. Numerical hard QA passes both;
+    lowest lock then higher Harmony decides, exploration palette/style/light warnings
+    advisory. Never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-30c-decor-seasons-2
+  job: x-corner-guz
+  take: 1
+  round: 1
+  logical_run: 20261105-night30c-autumn-corner
+  source_file: /workspace/generated_images/exec-6af97de4-3e31-4d39-a92c-eb066f0c49fa.png
+  returned_at: '2026-11-05T19:50:47.431Z'
+  prompt_sha256: 10e257438f2523672f9c6cc8df07b220972d552b79b37efdbeb78f5d8838e540
+  fingerprint: 34aeed4d5e275199
+  saved_at: '2026-11-05T19:50:47.918619+00:00'
+  original_generated_png_sha256: 84a38d1a7bc641dc0d74f904cee510bf11b6693c854688db69aa652d90b04d2b
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 6a2a2f0f7f6d1833645de79a367d1f6a13a6af7ba5be7364fa79cbfa04b94426
+  inbox_png_sha256: de34bf4251359062b2d5583e2d5d9468f94f6ffd9f9ad038d777ad47794bc852
+  qa_sha256: b88b74d2b55753a22f03f6fd6c187d03e6ad10d414d599c36d0ba18f76c0c1bf
+- batch: batch-30c-decor-seasons-2
+  job: x-corner-guz
+  take: 2
+  round: 1
+  logical_run: 20261105-night30c-autumn-corner
+  source_file: /workspace/generated_images/exec-f2d7bb01-3491-48ca-b9ca-816432c27abb.png
+  returned_at: '2026-11-05T19:51:23.269Z'
+  prompt_sha256: 10e257438f2523672f9c6cc8df07b220972d552b79b37efdbeb78f5d8838e540
+  fingerprint: 34aeed4d5e275199
+  saved_at: '2026-11-05T19:51:28.763649+00:00'
+  original_generated_png_sha256: 76b794cbaeafc80c8b5bff2376d7bccccd911093c8b249742ba206d63c5879e9
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: cef86e3b9ef27a2afa71d1a432891f9d0944e6c2ef70e90c2d5e648d277e6087
+  inbox_png_sha256: 7ce348ce8a7c122617c624181f4ff1cfa74e7a34b69125a7c80227b0dc618f0c
+  qa_sha256: 0c787eec7d5aaa6897c7da99ab702f88ab7742e85bf3dc14adef4a2d67ff6e04
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
