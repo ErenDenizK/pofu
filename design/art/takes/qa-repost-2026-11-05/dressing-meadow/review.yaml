@@ -1,0 +1,809 @@
+batch: batch-35-experience-pilot
+contact_sheet: design/art/takes/qa-repost-2026-11-05/dressing-meadow/contact.jpg
+jobs:
+  dressing-meadow:
+    pick: 3
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. All four retained originals
+      now pass hard QA with the authoritative world-props/world-foliage extension;
+      light warnings remain advisory. Exact-lossless delivery eligibility excludes
+      t1 and t2: best tested full-canvas encodings972426 and672900 bytes exceed614400;
+      t3 and t4 fit496762 and539982 bytes. Among eligible candidates t3 has the lowest
+      lock-load .0660 versus t4 .3580; selected evaluation t3. Manual review confirms
+      twelve separate pieces in the requested4x3 grid: small grass, tall grass, two-seed-head
+      tuft, clover; four daisies, four cornflowers, four buttercups, one foxglove;
+      three pebbles, flat stone, exact five-toadstool ring, mossy stone. Clear silhouettes
+      at28px, no added ground/objects/text or touching pieces. Tiny alpha tails are
+      retained, no manual cleanup/quantization/downscale. Original generation identity,
+      prompts and references preserved; current context is QA salvage, not new generation.'
+qa_reports:
+  3:
+    job: dressing-meadow
+    take: 3
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 52.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 91 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 70 (band 55-90)'
+      value: 70.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 14.0 (at least 3.5)'
+      value: 14.02
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.9 (R1 5.3)
+      value: 4.89
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.1
+      value: 0.066
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.0, p95 2.6, off-palette 0.1% (top: #776688 (0.0%), #665577
+        (0.0%))'
+      value: 0.9522
+    info:
+      metrics_raw:
+        L_p5: 55.2
+        L_p50: 70.2
+        L_p95: 88.8
+        C_p50: 30.0
+        C_p95: 52.9
+        C_p99: 58.2
+        detail: 4.53
+      metrics_locked:
+        L_p5: 55.2
+        L_p50: 70.2
+        L_p95: 88.8
+        C_p50: 30.0
+        C_p95: 52.8
+        C_p99: 56.1
+        detail: 4.89
+    fingerprint: fd59c3c29567540d
+  4:
+    job: dressing-meadow
+    take: 4
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 57.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 92 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 72 (band 55-90)'
+      value: 72.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 12.1 (at least 3.5)'
+      value: 12.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.5 (R1 5.3)
+      value: 4.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.358
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 3.5, off-palette 0.1% (top: #7777AA (0.1%), #666699
+        (0.0%))'
+      value: 1.3895
+    info:
+      metrics_raw:
+        L_p5: 58.1
+        L_p50: 71.9
+        L_p95: 89.6
+        C_p50: 29.7
+        C_p95: 61.3
+        C_p99: 65.3
+        detail: 4.14
+      metrics_locked:
+        L_p5: 58.1
+        L_p50: 71.9
+        L_p95: 89.6
+        C_p50: 29.7
+        C_p95: 57.2
+        C_p99: 58.3
+        detail: 4.48
+    fingerprint: fd59c3c29567540d
+  2:
+    job: dressing-meadow
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 52 (R1 51)
+      value: 51.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 90 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 70 (band 55-90)'
+      value: 70.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 11.0 (at least 3.5)'
+      value: 11.04
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.4 (R1 5.3)
+      value: 4.4
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0165
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 0.9, p95 2.2, off-palette 0.0% (top: #776677 (0.0%))'
+      value: 0.9035
+    info:
+      metrics_raw:
+        L_p5: 58.0
+        L_p50: 70.4
+        L_p95: 88.4
+        C_p50: 30.7
+        C_p95: 51.9
+        C_p99: 54.9
+        detail: 4.04
+      metrics_locked:
+        L_p5: 58.0
+        L_p50: 70.4
+        L_p95: 88.4
+        C_p50: 30.7
+        C_p95: 51.9
+        C_p99: 54.3
+        detail: 4.4
+    fingerprint: fd59c3c29567540d
+  1:
+    job: dressing-meadow
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 49 (R1 51)
+      value: 49.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 90 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 72.6
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.0 (at least 3.5)'
+      value: 5.02
+    - check: detail_budget
+      status: pass
+      message: detail at display size 4.0 (R1 5.3)
+      value: 4.04
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.0
+      value: 0.0297
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.1, p95 2.7, off-palette 0.0% (top: #7777AA (0.0%))'
+      value: 1.0701
+    info:
+      metrics_raw:
+        L_p5: 59.7
+        L_p50: 72.7
+        L_p95: 88.2
+        C_p50: 30.4
+        C_p95: 49.4
+        C_p99: 56.3
+        detail: 3.71
+      metrics_locked:
+        L_p5: 59.7
+        L_p50: 72.7
+        L_p95: 88.2
+        C_p50: 30.4
+        C_p95: 49.4
+        C_p99: 55.2
+        detail: 4.04
+    fingerprint: fd59c3c29567540d
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  note: 'All four retained originals now pass hard QA with the authoritative world-props/world-foliage
+    extension; light warnings remain advisory. Exact-lossless delivery eligibility
+    excludes t1 and t2: best tested full-canvas encodings972426 and672900 bytes exceed614400;
+    t3 and t4 fit496762 and539982 bytes. Among eligible candidates t3 has the lowest
+    lock-load .0660 versus t4 .3580; selected evaluation t3. Manual review confirms
+    twelve separate pieces in the requested4x3 grid: small grass, tall grass, two-seed-head
+    tuft, clover; four daisies, four cornflowers, four buttercups, one foxglove; three
+    pebbles, flat stone, exact five-toadstool ring, mossy stone. Clear silhouettes
+    at28px, no added ground/objects/text or touching pieces. Tiny alpha tails are
+    retained, no manual cleanup/quantization/downscale. Original generation identity,
+    prompts and references preserved; current context is QA salvage, not new generation.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-27b8ff0b-5a7c-410e-a962-de72b255d7b3.png
+  original_generated_png_sha256: e17ca12d7b36d221040b98c8f10eb43023e68989bf9f5474352c510889851426
+  inbox_png_sha256: 8e3c23321e315d2a52343d423563f7096620b7b183ece923e9e6d960b37dc42a
+  rgba_sha256: 6765d149d484150e8c752432461087581cfec063c506900369f97ec48cc5d937
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: fd59c3c29567540d
+- take: 2
+  source_file: /workspace/generated_images/exec-1cd6f5ee-0340-4910-ba3f-e9e54981f540.png
+  original_generated_png_sha256: 2587448336fdf6ce3994b0491cae981ee18f6f08e9cb9eedfb7fa026ef1b1c26
+  inbox_png_sha256: 8d88f12919bee344cf6455f8af212bf0f4cf5f42283f14b819205ee37206ea71
+  rgba_sha256: 6488d7d26d544b4e4dadc010813caa1a742ab39443275938541bbb9288d94689
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: fd59c3c29567540d
+- take: 3
+  source_file: /workspace/generated_images/exec-e9ea5f11-46c0-4255-81a8-78bf10247db9.png
+  original_generated_png_sha256: 786bf699fd4eceadd04e50a8cd606bd14f9ccb18ad3e715933f518e655793d5b
+  inbox_png_sha256: a97edb0f7455950d8c6ce0b0ebc27c40fcff77bbc33521ccfdf1e2b28ca9f0eb
+  rgba_sha256: dc71b098117827a599b62c36f8723db9af7ae7f5a0d036cf5600de8de935195c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: fd59c3c29567540d
+- take: 4
+  source_file: /workspace/generated_images/exec-8480bb08-e618-472e-9ee8-2c6fd059a162.png
+  original_generated_png_sha256: eb772f40247d8c5d4c196789165bd8087153f627054de2b64ad600f30542ba67
+  inbox_png_sha256: 4f702571a556f4ab5ef01591829990b986b0a23f0602bf54a52ded1bfbcce44c
+  rgba_sha256: f1a5f36e8ea0feb884f9a388830fb02235f88170b46b3a6daab7c2e5eea7a423
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: fd59c3c29567540d
+salvage:
+  batch: batch-35-experience-pilot
+  source_count: 4
+  sources:
+  - batch: batch-35-experience-pilot
+    job: dressing-meadow
+    take: 1
+    round: 1
+    logical_run: 20261105-night35-meadow-launch
+    source_file: /workspace/generated_images/exec-27b8ff0b-5a7c-410e-a962-de72b255d7b3.png
+    returned_at: '2026-11-05T19:27:49.773Z'
+    prompt_sha256: 53f515ee6bfa241e574777eaebaf025f64439f7c989c8ac0b32fa7133461784d
+    fingerprint: fd59c3c29567540d
+    saved_at: '2026-11-05T19:27:50.770236+00:00'
+    original_generated_png_sha256: e17ca12d7b36d221040b98c8f10eb43023e68989bf9f5474352c510889851426
+    dimensions:
+    - 1536
+    - 1024
+    rgba_sha256: 6765d149d484150e8c752432461087581cfec063c506900369f97ec48cc5d937
+    evaluation_take: 1
+    original_run: batch-35-experience-pilot
+    original_take: 1
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-dressing-meadow-t1.json
+    original_callback_sha256: 63c6ef820fe0448a6807c0d4e8263551b7fd91b888f05c9e45273a4cc3f30242
+    original_packet:
+      batch: batch-35-experience-pilot
+      job: dressing-meadow
+      worktree: /workspace/art-20261105-experience-pilot
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The approved tea stall: match its painting, finish, camera, scale and colors
+        exactly (do not draw the stall).
+
+        2. The palette card for props: use only these colors (and mixes of them).
+
+
+        A sheet of twelve small lawn-dressing pieces for a cozy island diorama, in
+        a grid of four columns by three
+
+        rows, each piece complete and separate with wide empty space around it, none
+        touching or overlapping: row 1,
+
+        three grass tufts of different sizes (a small one, a taller one, a tuft with
+        two seed heads) and a clump of
+
+        clover; row 2, three wildflower clumps (daisies, cornflowers, buttercups:
+        each four or five chunky flowers on
+
+        short stems) and a single tall foxglove; row 3, a group of three smooth pebbles,
+        a single flat stone, a small
+
+        ring of five toadstools with cream caps and warm rose spots, and a half-buried
+        mossy stone. Each piece is
+
+        small and chunky, seen from the same low front three-quarter camera, standing
+        on nothing.
+
+
+        STYLE: soft painterly 2D illustration from the same picture book as the
+
+        attached hamster: the same gentle airbrushed shading, the same light,
+
+        high-key values and the same milky pastel colors. Simple, rounded, chunky
+
+        shapes with few parts; fewer, larger shapes, because this is seen small on
+
+        a phone. Every material is painted matte, as a soft form with broad,
+
+        smooth value changes: wood without grain, metal without hammering or
+
+        reflections, glass as a soft tinted shape, cloth without weave. At most
+
+        one small, soft highlight per object; no glints, no shine. Colors are
+
+        muted and lifted toward cream; the darkest shadow is a warm mid-brown,
+
+        never near black. Warm diffused key light from the upper left, a faint
+
+        warm rim light along the right edge, soft ambient shadow only where forms
+
+        touch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no
+
+        letters, no numbers, no logos, no watermark, no border, no frame, no
+
+        sticker outline.
+
+
+        AVOID: a floor, a ground shadow, cast shadows, text, letters, outlines, characters
+        or animals, pieces touching or overlapping, a background
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, landscape 1536 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png
+      - /workspace/art-20261105-experience-pilot/design/reference/palette-card-world-props.png
+      reference_sha256:
+        /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png: 7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422
+        /workspace/art-20261105-experience-pilot/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+      fingerprint: fd59c3c29567540d
+      prompt_sha256: 53f515ee6bfa241e574777eaebaf025f64439f7c989c8ac0b32fa7133461784d
+      transparent: true
+    evaluation_fingerprint: fd59c3c29567540d
+  - batch: batch-35-experience-pilot
+    job: dressing-meadow
+    take: 2
+    round: 1
+    logical_run: 20261105-night35-meadow-launch
+    source_file: /workspace/generated_images/exec-1cd6f5ee-0340-4910-ba3f-e9e54981f540.png
+    returned_at: '2026-11-05T19:29:05.489Z'
+    prompt_sha256: 53f515ee6bfa241e574777eaebaf025f64439f7c989c8ac0b32fa7133461784d
+    fingerprint: fd59c3c29567540d
+    saved_at: '2026-11-05T19:29:05.889783+00:00'
+    original_generated_png_sha256: 2587448336fdf6ce3994b0491cae981ee18f6f08e9cb9eedfb7fa026ef1b1c26
+    dimensions:
+    - 1536
+    - 1024
+    rgba_sha256: 6488d7d26d544b4e4dadc010813caa1a742ab39443275938541bbb9288d94689
+    evaluation_take: 2
+    original_run: batch-35-experience-pilot
+    original_take: 2
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-dressing-meadow-t2.json
+    original_callback_sha256: 77888cdb00b795ec4e9c5f870a6e49b4e94bb3f17f57547a625cb6f0b0f9a906
+    original_packet:
+      batch: batch-35-experience-pilot
+      job: dressing-meadow
+      worktree: /workspace/art-20261105-experience-pilot
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The approved tea stall: match its painting, finish, camera, scale and colors
+        exactly (do not draw the stall).
+
+        2. The palette card for props: use only these colors (and mixes of them).
+
+
+        A sheet of twelve small lawn-dressing pieces for a cozy island diorama, in
+        a grid of four columns by three
+
+        rows, each piece complete and separate with wide empty space around it, none
+        touching or overlapping: row 1,
+
+        three grass tufts of different sizes (a small one, a taller one, a tuft with
+        two seed heads) and a clump of
+
+        clover; row 2, three wildflower clumps (daisies, cornflowers, buttercups:
+        each four or five chunky flowers on
+
+        short stems) and a single tall foxglove; row 3, a group of three smooth pebbles,
+        a single flat stone, a small
+
+        ring of five toadstools with cream caps and warm rose spots, and a half-buried
+        mossy stone. Each piece is
+
+        small and chunky, seen from the same low front three-quarter camera, standing
+        on nothing.
+
+
+        STYLE: soft painterly 2D illustration from the same picture book as the
+
+        attached hamster: the same gentle airbrushed shading, the same light,
+
+        high-key values and the same milky pastel colors. Simple, rounded, chunky
+
+        shapes with few parts; fewer, larger shapes, because this is seen small on
+
+        a phone. Every material is painted matte, as a soft form with broad,
+
+        smooth value changes: wood without grain, metal without hammering or
+
+        reflections, glass as a soft tinted shape, cloth without weave. At most
+
+        one small, soft highlight per object; no glints, no shine. Colors are
+
+        muted and lifted toward cream; the darkest shadow is a warm mid-brown,
+
+        never near black. Warm diffused key light from the upper left, a faint
+
+        warm rim light along the right edge, soft ambient shadow only where forms
+
+        touch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no
+
+        letters, no numbers, no logos, no watermark, no border, no frame, no
+
+        sticker outline.
+
+
+        AVOID: a floor, a ground shadow, cast shadows, text, letters, outlines, characters
+        or animals, pieces touching or overlapping, a background
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, landscape 1536 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png
+      - /workspace/art-20261105-experience-pilot/design/reference/palette-card-world-props.png
+      reference_sha256:
+        /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png: 7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422
+        /workspace/art-20261105-experience-pilot/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+      fingerprint: fd59c3c29567540d
+      prompt_sha256: 53f515ee6bfa241e574777eaebaf025f64439f7c989c8ac0b32fa7133461784d
+      transparent: true
+    evaluation_fingerprint: fd59c3c29567540d
+  - batch: batch-35-experience-pilot
+    job: dressing-meadow
+    take: 3
+    round: 2
+    logical_run: 20261105-night35-meadow-and-mochi-gaze-retry
+    source_file: /workspace/generated_images/exec-e9ea5f11-46c0-4255-81a8-78bf10247db9.png
+    returned_at: '2026-11-05T19:34:29.092Z'
+    prompt_sha256: 53f515ee6bfa241e574777eaebaf025f64439f7c989c8ac0b32fa7133461784d
+    fingerprint: fd59c3c29567540d
+    saved_at: '2026-11-05T19:34:29.521519+00:00'
+    original_generated_png_sha256: 786bf699fd4eceadd04e50a8cd606bd14f9ccb18ad3e715933f518e655793d5b
+    dimensions:
+    - 1536
+    - 1024
+    rgba_sha256: dc71b098117827a599b62c36f8723db9af7ae7f5a0d036cf5600de8de935195c
+    evaluation_take: 3
+    original_run: batch-35-experience-pilot
+    original_take: 3
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-dressing-meadow-t3.json
+    original_callback_sha256: a0976958aa82369360e5bcc25a668581b0fc01c4cf1da6d756e60647436895ec
+    original_packet:
+      batch: batch-35-experience-pilot
+      job: dressing-meadow
+      worktree: /workspace/art-20261105-experience-pilot
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The approved tea stall: match its painting, finish, camera, scale and colors
+        exactly (do not draw the stall).
+
+        2. The palette card for props: use only these colors (and mixes of them).
+
+
+        A sheet of twelve small lawn-dressing pieces for a cozy island diorama, in
+        a grid of four columns by three
+
+        rows, each piece complete and separate with wide empty space around it, none
+        touching or overlapping: row 1,
+
+        three grass tufts of different sizes (a small one, a taller one, a tuft with
+        two seed heads) and a clump of
+
+        clover; row 2, three wildflower clumps (daisies, cornflowers, buttercups:
+        each four or five chunky flowers on
+
+        short stems) and a single tall foxglove; row 3, a group of three smooth pebbles,
+        a single flat stone, a small
+
+        ring of five toadstools with cream caps and warm rose spots, and a half-buried
+        mossy stone. Each piece is
+
+        small and chunky, seen from the same low front three-quarter camera, standing
+        on nothing.
+
+
+        STYLE: soft painterly 2D illustration from the same picture book as the
+
+        attached hamster: the same gentle airbrushed shading, the same light,
+
+        high-key values and the same milky pastel colors. Simple, rounded, chunky
+
+        shapes with few parts; fewer, larger shapes, because this is seen small on
+
+        a phone. Every material is painted matte, as a soft form with broad,
+
+        smooth value changes: wood without grain, metal without hammering or
+
+        reflections, glass as a soft tinted shape, cloth without weave. At most
+
+        one small, soft highlight per object; no glints, no shine. Colors are
+
+        muted and lifted toward cream; the darkest shadow is a warm mid-brown,
+
+        never near black. Warm diffused key light from the upper left, a faint
+
+        warm rim light along the right edge, soft ambient shadow only where forms
+
+        touch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no
+
+        letters, no numbers, no logos, no watermark, no border, no frame, no
+
+        sticker outline.
+
+
+        AVOID: a floor, a ground shadow, cast shadows, text, letters, outlines, characters
+        or animals, pieces touching or overlapping, a background
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, landscape 1536 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png
+      - /workspace/art-20261105-experience-pilot/design/reference/palette-card-world-props.png
+      reference_sha256:
+        /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png: 7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422
+        /workspace/art-20261105-experience-pilot/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+      fingerprint: fd59c3c29567540d
+      prompt_sha256: 53f515ee6bfa241e574777eaebaf025f64439f7c989c8ac0b32fa7133461784d
+      transparent: true
+    evaluation_fingerprint: fd59c3c29567540d
+  - batch: batch-35-experience-pilot
+    job: dressing-meadow
+    take: 4
+    round: 2
+    logical_run: 20261105-night35-meadow-and-mochi-gaze-retry
+    source_file: /workspace/generated_images/exec-8480bb08-e618-472e-9ee8-2c6fd059a162.png
+    returned_at: '2026-11-05T19:36:39.326Z'
+    prompt_sha256: 53f515ee6bfa241e574777eaebaf025f64439f7c989c8ac0b32fa7133461784d
+    fingerprint: fd59c3c29567540d
+    saved_at: '2026-11-05T19:36:39.645073+00:00'
+    original_generated_png_sha256: eb772f40247d8c5d4c196789165bd8087153f627054de2b64ad600f30542ba67
+    dimensions:
+    - 1536
+    - 1024
+    rgba_sha256: f1a5f36e8ea0feb884f9a388830fb02235f88170b46b3a6daab7c2e5eea7a423
+    evaluation_take: 4
+    original_run: batch-35-experience-pilot
+    original_take: 4
+    original_callback: /workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-dressing-meadow-t4.json
+    original_callback_sha256: cf43fae0f6fe38c3c604606be5ec2446d8028b536f4b37436d29a13730266477
+    original_packet:
+      batch: batch-35-experience-pilot
+      job: dressing-meadow
+      worktree: /workspace/art-20261105-experience-pilot
+      prompt: 'REFERENCES (attached, in this order):
+
+        1. The approved tea stall: match its painting, finish, camera, scale and colors
+        exactly (do not draw the stall).
+
+        2. The palette card for props: use only these colors (and mixes of them).
+
+
+        A sheet of twelve small lawn-dressing pieces for a cozy island diorama, in
+        a grid of four columns by three
+
+        rows, each piece complete and separate with wide empty space around it, none
+        touching or overlapping: row 1,
+
+        three grass tufts of different sizes (a small one, a taller one, a tuft with
+        two seed heads) and a clump of
+
+        clover; row 2, three wildflower clumps (daisies, cornflowers, buttercups:
+        each four or five chunky flowers on
+
+        short stems) and a single tall foxglove; row 3, a group of three smooth pebbles,
+        a single flat stone, a small
+
+        ring of five toadstools with cream caps and warm rose spots, and a half-buried
+        mossy stone. Each piece is
+
+        small and chunky, seen from the same low front three-quarter camera, standing
+        on nothing.
+
+
+        STYLE: soft painterly 2D illustration from the same picture book as the
+
+        attached hamster: the same gentle airbrushed shading, the same light,
+
+        high-key values and the same milky pastel colors. Simple, rounded, chunky
+
+        shapes with few parts; fewer, larger shapes, because this is seen small on
+
+        a phone. Every material is painted matte, as a soft form with broad,
+
+        smooth value changes: wood without grain, metal without hammering or
+
+        reflections, glass as a soft tinted shape, cloth without weave. At most
+
+        one small, soft highlight per object; no glints, no shine. Colors are
+
+        muted and lifted toward cream; the darkest shadow is a warm mid-brown,
+
+        never near black. Warm diffused key light from the upper left, a faint
+
+        warm rim light along the right edge, soft ambient shadow only where forms
+
+        touch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no
+
+        letters, no numbers, no logos, no watermark, no border, no frame, no
+
+        sticker outline.
+
+
+        AVOID: a floor, a ground shadow, cast shadows, text, letters, outlines, characters
+        or animals, pieces touching or overlapping, a background
+
+
+        LIGHT (hour: day, layer: subject). Bright, clear, toy-like.
+
+        Paint this under the clear daylight cell: key light #FFF6EC from the upper
+        left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game
+        relights and grades this sprite for the hour, so keep the light neutral and
+        readable. Do NOT paint a cast shadow on the ground or onto a background: only
+        soft contact occlusion where forms touch.
+
+        VALUES: haze is depth, not a filter over the whole frame. The subject plane
+        uses the full value range: true darks in the deepest recesses (eyes, door,
+        soil, gaps between forms) and clean highlights. Contrast falls only with distance
+        from the subject. A soft, gentle look means soft local colour and soft edges,
+        never lifted blacks, a milky veil or a grey-white wash.
+
+        This is the SUBJECT plane: no atmosphere at all, the strongest contrast and
+        the deepest darks in the picture.
+
+
+        Output: one image, transparent background PNG, landscape 1536 x 1024.
+
+        '
+      refs:
+      - /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png
+      - /workspace/art-20261105-experience-pilot/design/reference/palette-card-world-props.png
+      reference_sha256:
+        /workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png: 7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422
+        /workspace/art-20261105-experience-pilot/design/reference/palette-card-world-props.png: d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2
+      fingerprint: fd59c3c29567540d
+      prompt_sha256: 53f515ee6bfa241e574777eaebaf025f64439f7c989c8ac0b32fa7133461784d
+      transparent: true
+    evaluation_fingerprint: fd59c3c29567540d

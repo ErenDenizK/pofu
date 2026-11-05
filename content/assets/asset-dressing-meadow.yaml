@@ -2,7 +2,7 @@ id: asset-dressing-meadow
 type: asset
 title_tr: dressing-meadow
 title_en: dressing-meadow (sheet)
-status: cut
+status: in-production
 horizon: now
 summary: 'A sheet of twelve small lawn-dressing pieces for a cozy island diorama,
   in a grid of four columns by three rows, each piece complete and separate with wide
@@ -11,7 +11,8 @@ summary: 'A sheet of twelve small lawn-dressing pieces for a cozy island diorama
   of clover; row 2, three wildflower clumps (daisies, cornflowers, buttercups: each
   four or five chun…'
 art:
-  images: []
+  images:
+  - design/art/masters/dressing-meadow/dressing-meadow.webp
   jobs:
   - batch-35-experience-pilot:dressing-meadow
 sources:

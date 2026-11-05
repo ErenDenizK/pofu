@@ -1,0 +1,41 @@
+{
+  "batch": "batch-35-experience-pilot",
+  "job": "dressing-meadow",
+  "take": 3,
+  "round": 2,
+  "logical_run": "20261105-night35-meadow-and-mochi-gaze-retry",
+  "source_file": "/workspace/generated_images/exec-e9ea5f11-46c0-4255-81a8-78bf10247db9.png",
+  "returned_at": "2026-11-05T19:34:29.092Z",
+  "prompt_sha256": "53f515ee6bfa241e574777eaebaf025f64439f7c989c8ac0b32fa7133461784d",
+  "fingerprint": "fd59c3c29567540d",
+  "saved_at": "2026-11-05T19:34:29.521519+00:00",
+  "original_generated_png_sha256": "786bf699fd4eceadd04e50a8cd606bd14f9ccb18ad3e715933f518e655793d5b",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "rgba_sha256": "dc71b098117827a599b62c36f8723db9af7ae7f5a0d036cf5600de8de935195c",
+  "evaluation_take": 3,
+  "original_run": "batch-35-experience-pilot",
+  "original_take": 3,
+  "original_callback": "/workspace/art-operator-runtime/run-20261105-night/batch-35-experience-pilot/generated-dressing-meadow-t3.json",
+  "original_callback_sha256": "a0976958aa82369360e5bcc25a668581b0fc01c4cf1da6d756e60647436895ec",
+  "original_packet": {
+    "batch": "batch-35-experience-pilot",
+    "job": "dressing-meadow",
+    "worktree": "/workspace/art-20261105-experience-pilot",
+    "prompt": "REFERENCES (attached, in this order):\n1. The approved tea stall: match its painting, finish, camera, scale and colors exactly (do not draw the stall).\n2. The palette card for props: use only these colors (and mixes of them).\n\nA sheet of twelve small lawn-dressing pieces for a cozy island diorama, in a grid of four columns by three\nrows, each piece complete and separate with wide empty space around it, none touching or overlapping: row 1,\nthree grass tufts of different sizes (a small one, a taller one, a tuft with two seed heads) and a clump of\nclover; row 2, three wildflower clumps (daisies, cornflowers, buttercups: each four or five chunky flowers on\nshort stems) and a single tall foxglove; row 3, a group of three smooth pebbles, a single flat stone, a small\nring of five toadstools with cream caps and warm rose spots, and a half-buried mossy stone. Each piece is\nsmall and chunky, seen from the same low front three-quarter camera, standing on nothing.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: a floor, a ground shadow, cast shadows, text, letters, outlines, characters or animals, pieces touching or overlapping, a background\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+    "refs": [
+      "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png",
+      "/workspace/art-20261105-experience-pilot/design/reference/palette-card-world-props.png"
+    ],
+    "reference_sha256": {
+      "/workspace/art-20261105-experience-pilot/design/art/stations/tea-stall-1/tea-stall-1.png": "7e15f7484bddfddde90bb711e49273ee892e1d43422d26d7f1efe1f645430422",
+      "/workspace/art-20261105-experience-pilot/design/reference/palette-card-world-props.png": "d31df285d7f915ff04d14ef9386940e1745a48ffb951bd041df405392a0939f2"
+    },
+    "fingerprint": "fd59c3c29567540d",
+    "prompt_sha256": "53f515ee6bfa241e574777eaebaf025f64439f7c989c8ac0b32fa7133461784d",
+    "transparent": true
+  },
+  "evaluation_fingerprint": "fd59c3c29567540d"
+}
