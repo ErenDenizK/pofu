@@ -1,0 +1,120 @@
+{
+  "job": "material-light",
+  "batch": "batch-33-home-showcase",
+  "asset": "prop__material-light",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-05T23:43:39+00:00",
+  "image": "design/art/masters/material-light/material-light.png",
+  "raw": "design/art/masters/material-light/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "3e2672ff519b44b5",
+  "prompt": "REFERENCES (attached, in this order):\n1. The first material of this family: match its size on the canvas, camera, painting and finish exactly (do not draw the moss).\n2. The palette card for props: use only these colors (and mixes of them).\n\nA single small painted object for a cozy game, a crafting material:\na small round glass jar with a cream cloth lid tied with string,\nholding a soft pale-gold light with a faint mint-green edge, painted\nas a warm soft core inside the jar (nothing glows outside the jar).\nSame camera, size and finish as the attached moss. Centered on an\nempty transparent background.\n\nSTYLE: soft painterly 2D illustration from the same picture book as the\nattached hamster: the same gentle airbrushed shading, the same light,\nhigh-key values and the same milky pastel colors. Simple, rounded, chunky\nshapes with few parts; fewer, larger shapes, because this is seen small on\na phone. Every material is painted matte, as a soft form with broad,\nsmooth value changes: wood without grain, metal without hammering or\nreflections, glass as a soft tinted shape, cloth without weave. At most\none small, soft highlight per object; no glints, no shine. Colors are\nmuted and lifted toward cream; the darkest shadow is a warm mid-brown,\nnever near black. Warm diffused key light from the upper left, a faint\nwarm rim light along the right edge, soft ambient shadow only where forms\ntouch. Clean, calm, uncluttered. No outlines, no hard edges. No text, no\nletters, no numbers, no logos, no watermark, no border, no frame, no\nsticker outline.\n\nAVOID: glossy or metallic shine, specular glints, reflections, hammered\nor dimpled metal, wood grain, fine surface texture, photorealism, a 3D\nrender look, plastic or vinyl, high contrast, black or near-black\nshadows, saturated or neon colors, outlines, cel shading, text, letters,\nnumbers, logos, watermarks, characters or animals, a floor, a background,\na ground shadow.\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, square 1024 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/material-moss/material-moss.png",
+      "role": "The first material of this family: match its size on the canvas, camera, painting and finish exactly (do not draw the moss)."
+    },
+    {
+      "path": "design/reference/palette-card-world-props.png",
+      "role": "The palette card for props: use only these colors (and mixes of them)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T23:25:44+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1254x1254 scaled x0.817 into 1024x1024",
+        "value": 0.8166
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 42 (R1 51)",
+        "value": 42.5
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 63 (at most 22), p98 92 (at least 90), spread 29 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 29.4
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 83 (band 55-90)",
+        "value": 82.9
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.35 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.349
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 1.9 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 1.94
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 0.9 (R1 5.3)",
+        "value": 0.89
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.5",
+        "value": 0.5289
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 2.5, p95 6.4, off-palette 0.0% (top: #AA9966 (0.0%))",
+        "value": 2.4787
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 83 against the world reference (outliers: edge)",
+        "value": 83.4
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial sources and official locked takes preserve one small round jar, cream cloth lid tied with string, a soft pale-gold interior core with faint mint-green edge, and no glow outside the jar. Clean transparent margins, no text or ground. Widths 355/365 px reasonably match the approved 340 px material family; take2 has the lowest complete eligible lock load .5289 vs .5559. Hard QA passes; advisory light warnings remain visible. No additional generation, local fit or pixel changes."
+}
