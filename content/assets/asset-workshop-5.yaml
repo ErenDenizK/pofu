@@ -2,11 +2,10 @@ id: asset-workshop-5
 type: asset
 title_tr: workshop-5
 title_en: workshop-5 (station)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Add a big, round, gear-shaped wooden sign above the doorway: soft honey wood with a cream
-  rim and eight rounded teeth, plain (no letters, no symbols).
+summary: 'Add a big, round, gear-shaped wooden sign above the doorway: soft honey
+  wood with a cream rim and eight rounded teeth, plain (no letters, no symbols).'
 links:
   variant_of:
   - asset-workshop-4
@@ -17,8 +16,18 @@ art:
   - batch-03-home-island:workshop-5
   - batch-05-fixes:workshop-5
 notes:
-- >-
-  Batch 03 skipped it; batch 05 redoes it (docs/design/art-production-plan.md).
+- Batch 03 skipped it; batch 05 redoes it (docs/design/art-production-plan.md).
+- 'batch-03-home-island skipped after four takes: Skipped after the one allowed retry.
+  All four unchanged generated originals violate the queue explicit zero-alpha-on-every-border
+  review: take1 bottom13/left7 pixels, take2 bottom1/left5, retry take3 bottom7/left15,
+  retry take4 left4 (all other source edges zero). Both retry compositions otherwise
+  retain the complete building and vice, four rounded cream/honey pinwheel blades,
+  short left cream chimney with rose-copper cap and no smoke, five-tool pegboard,
+  and an eight-tooth cream-rim honey gear sign above the entry without lettering.
+  No alpha cleanup, manual reframing, threshold waiver or extra generation was used.
+  Preserve all four takes and the historical main master; the rejected redo content
+  node is cut. No remaining dependent jobs. Levels2-4 were independently promoted
+  and upload-verified with their own Harmony shards. Founder review pending.'
 sources:
 - doc: tools/imagegen/manifest/batch-03-home-island.yaml
 - doc: tools/imagegen/manifest/batch-05-fixes.yaml
