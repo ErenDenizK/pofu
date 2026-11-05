@@ -1,14 +1,350 @@
 batch: batch-08-decor-pilot
+contact_sheet: design/art/takes/batch-08-decor-pilot/decor-sailboat/contact.jpg
 jobs:
   decor-sailboat:
-    pick: none
-    publication: dependent-skip
-    note: 'Skipped without generation: true dependency decor-bench failed after its
-      one allowed retry. Authorized 2026-11-04 re-run, four original takes and one
-      retry exhausted. Normalized widths t1=467, t2=495, t3=484, t4=452px all exceed
-      the manifest maximum360px. Automatic decor_anchor warns at these values, but
-      the explicit guide-size requirement remains hard. Reject all4; no source resizing,
-      prompt edits or threshold changes. Current guide-review.jpg binds these four
-      sources. Only true decor-bench dependents are skipped.'
-generated_takes: 0
-failed_dependency: decor-bench
+    pick: 4
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. One retry pair only. Takes1/3
+      fail hard decor_anchor and remain ineligible. Initial take2 passes automated
+      QA but is excluded for the bowl-shaped lower hull rather than the requested
+      flat clean waterline; its unpublished preparation was preserved before commit
+      and never uploaded. Retry take4 passes hard QA and visual review: honey hull
+      with cream stripe, short mast, one cream triangular sail/rose stripe, plain
+      pennant, rounded ends and a visible horizontal flat lower waterline; no water,
+      wake, letters, guide or ground shadow. Official guide fit stays above its minimum
+      and places it below the height bar. Choose take4 as the only semantically eligible
+      passing take, lock load1.1409 and Harmony87.5; founder review pending. No prompt,
+      manifest or threshold changed.'
+qa_reports:
+  4:
+    job: decor-sailboat
+    take: 4
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 43.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 60.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.03
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1409
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 2.4, off-palette 0.0%
+      value: 1.0215
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 88 against the world reference (outliers: edge)'
+      value: 87.5
+    info:
+      fit:
+        scale: 0.7093
+        anchor:
+        - 500.2
+        - 819
+      registration:
+        dx: 12
+        dy: 69
+      metrics_raw:
+        L_p5: 60.3
+        L_p50: 77.7
+        L_p95: 92.4
+        C_p50: 34.8
+        C_p95: 44.2
+        C_p99: 45.0
+        detail: 1.56
+      metrics_locked:
+        L_p5: 60.7
+        L_p50: 77.8
+        L_p95: 92.3
+        C_p50: 34.6
+        C_p95: 43.9
+        C_p99: 44.6
+        detail: 1.03
+    fingerprint: d8a5c5aa65ace6ad
+  2:
+    job: decor-sailboat
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 42.6
+    - check: value_floor
+      status: pass
+      message: lightness p5 63 (R1 59)
+      value: 63.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.88
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.133
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.0, p95 2.4, off-palette 0.0%
+      value: 1.0223
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 85 against the world reference (outliers: edge)'
+      value: 84.8
+    info:
+      fit:
+        scale: 0.6053
+        anchor:
+        - 494.7
+        - 822
+      registration:
+        dx: 18
+        dy: 67
+      metrics_raw:
+        L_p5: 62.5
+        L_p50: 77.4
+        L_p95: 91.3
+        C_p50: 34.1
+        C_p95: 42.9
+        C_p99: 43.4
+        detail: 1.32
+      metrics_locked:
+        L_p5: 63.1
+        L_p50: 77.3
+        L_p95: 91.2
+        C_p50: 33.4
+        C_p95: 42.6
+        C_p99: 43.0
+        detail: 0.88
+    fingerprint: d8a5c5aa65ace6ad
+  1:
+    job: decor-sailboat
+    take: 1
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 45 (R1 51)
+      value: 44.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 62.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 1.0
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0909
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 0.9, p95 1.9, off-palette 0.0%
+      value: 0.8543
+    - check: decor_anchor
+      status: fail
+      message: top y 227 above the height bar (500); width 529 px wider than the footprint
+        (360)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 88 against the world reference (outliers: edge)'
+      value: 88.2
+    info:
+      fit_skipped: needs x0.59, below x0.6 (a real art failure)
+      registration:
+        dx: 12
+        dy: 56
+      metrics_raw:
+        L_p5: 61.7
+        L_p50: 77.2
+        L_p95: 90.7
+        C_p50: 37.6
+        C_p95: 44.9
+        C_p99: 46.0
+        detail: 1.41
+      metrics_locked:
+        L_p5: 62.0
+        L_p50: 77.2
+        L_p95: 90.6
+        C_p50: 37.5
+        C_p95: 44.8
+        C_p99: 45.7
+        detail: 1.0
+    fingerprint: d8a5c5aa65ace6ad
+  3:
+    job: decor-sailboat
+    take: 3
+    status: fail
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 47 (R1 51)
+      value: 46.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 61 (R1 59)
+      value: 61.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.06
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1448
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.1, p95 2.4, off-palette 0.0%
+      value: 1.0806
+    - check: decor_anchor
+      status: fail
+      message: top y 219 above the height bar (500); width 508 px wider than the footprint
+        (360)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 90 against the world reference (outliers: edge)'
+      value: 89.7
+    info:
+      fit_skipped: needs x0.58, below x0.6 (a real art failure)
+      registration:
+        dx: 6
+        dy: 65
+      metrics_raw:
+        L_p5: 60.9
+        L_p50: 76.8
+        L_p95: 91.1
+        C_p50: 35.0
+        C_p95: 47.0
+        C_p99: 48.6
+        detail: 1.49
+      metrics_locked:
+        L_p5: 61.2
+        L_p50: 76.8
+        L_p95: 91.1
+        C_p50: 34.9
+        C_p95: 46.8
+        C_p99: 48.2
+        detail: 1.06
+    fingerprint: d8a5c5aa65ace6ad
+manual_review:
+  excluded_takes:
+  - 2
+  note: 'One retry pair only. Takes1/3 fail hard decor_anchor and remain ineligible.
+    Initial take2 passes automated QA but is excluded for the bowl-shaped lower hull
+    rather than the requested flat clean waterline; its unpublished preparation was
+    preserved before commit and never uploaded. Retry take4 passes hard QA and visual
+    review: honey hull with cream stripe, short mast, one cream triangular sail/rose
+    stripe, plain pennant, rounded ends and a visible horizontal flat lower waterline;
+    no water, wake, letters, guide or ground shadow. Official guide fit stays above
+    its minimum and places it below the height bar. Choose take4 as the only semantically
+    eligible passing take, lock load1.1409 and Harmony87.5; founder review pending.
+    No prompt, manifest or threshold changed.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-781e6f9c-bffa-4ba9-a88d-1d4b52ccc111.png
+  original_generated_png_sha256: e3f8daf9af2b31a33da6d92485b08e18a38fe635df019fa8b177faef53fdb834
+  inbox_png_sha256: 6a13f97bd6566d7c5e1ee286f7fb883b0d2f2b7d28eb130365161712c02b646e
+  rgba_sha256: 0185c597357b39c4d9e80a978cf09c7646b6d4a7459ccf982db6ef8267d209ac
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d8a5c5aa65ace6ad
+- take: 2
+  source_file: /workspace/generated_images/exec-8d1fa55e-aae8-4ee0-8d6b-68d32c564ef7.png
+  original_generated_png_sha256: 452499da47493a2fdde11ab31c972db61ad17f280e0b6980f9eff70751aa42af
+  inbox_png_sha256: 3b1a632a9188fb7c88c43eeabb0e1404c08211f5380f4b4849046fb55470f6d0
+  rgba_sha256: 47cc093cfa59e80b766a3dcbb13f6778ccf06400a5e69533e7abc70d449b6aa7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d8a5c5aa65ace6ad
+- take: 3
+  source_file: /workspace/generated_images/exec-fa786e4c-536c-4daa-98b2-00dc803b2465.png
+  original_generated_png_sha256: a3302579dbefdc220c63a835d2d79b89d01187e8098640d0d402550573352a54
+  inbox_png_sha256: f27d64b43febd921093cfbc6a3e162a2b5dd1f7e68ccfd5ba97534b25dc6566c
+  rgba_sha256: 191e624ac84acb7d3b3aadfca854b2e88f8eab04ab9d8cc70c9abeb5973c0ec9
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d8a5c5aa65ace6ad
+- take: 4
+  source_file: /workspace/generated_images/exec-be93fe78-40d5-40eb-8005-540f6fff2cdd.png
+  original_generated_png_sha256: d27bdb846934f5ef69d184c41d97219cf5327daec58acd76ae939f87b26adc93
+  inbox_png_sha256: 581eb62a436e413a4459492e3d9507005919346610c86c26e09a799b82f57019
+  rgba_sha256: 5bf18b8eaf18ce8ec8e8baf6a4dfb6661e7368282dda4130dcc224d1aa7d41a4
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d8a5c5aa65ace6ad

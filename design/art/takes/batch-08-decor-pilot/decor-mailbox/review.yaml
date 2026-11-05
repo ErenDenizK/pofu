@@ -1,14 +1,185 @@
 batch: batch-08-decor-pilot
+contact_sheet: design/art/takes/batch-08-decor-pilot/decor-mailbox/contact.jpg
 jobs:
   decor-mailbox:
-    pick: none
-    publication: dependent-skip
-    note: 'Skipped without generation: true dependency decor-bench failed after its
-      one allowed retry. Authorized 2026-11-04 re-run, four original takes and one
-      retry exhausted. Normalized widths t1=467, t2=495, t3=484, t4=452px all exceed
-      the manifest maximum360px. Automatic decor_anchor warns at these values, but
-      the explicit guide-size requirement remains hard. Reject all4; no source resizing,
-      prompt edits or threshold changes. Current guide-review.jpg binds these four
-      sources. Only true decor-bench dependents are skipped.'
-generated_takes: 0
-failed_dependency: decor-bench
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Both candidates pass hard QA
+      and visual review: sage round-topped mailbox, cream door, short chunky honey
+      post and lowered rose flag, no letters or symbols, ground shadow or retained
+      guide. Official guide fit places it on the ground ellipse below the height bar.
+      Select the eligible take with lowest style-lock load, then Harmony. Founder
+      review pending.'
+qa_reports:
+  1:
+    job: decor-mailbox
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 37.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 63 (R1 59)
+      value: 63.0
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.95
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.8465
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 7.0, off-palette 0.3% (top: #998866 (0.3%), #888866
+        (0.0%))'
+      value: 2.2023
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 77 against the world reference (outliers: C_p95, edge)'
+      value: 76.7
+    info:
+      fit:
+        scale: 0.9652
+        anchor:
+        - 500.6
+        - 886
+      registration:
+        dx: 11
+        dy: 2
+      metrics_raw:
+        L_p5: 62.7
+        L_p50: 76.7
+        L_p95: 90.3
+        C_p50: 21.8
+        C_p95: 37.3
+        C_p99: 38.9
+        detail: 1.49
+      metrics_locked:
+        L_p5: 63.0
+        L_p50: 76.6
+        L_p95: 90.2
+        C_p50: 21.8
+        C_p95: 37.3
+        C_p99: 38.8
+        detail: 0.95
+    fingerprint: 3da494fad62baefa
+  2:
+    job: decor-mailbox
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 62 (R1 59)
+      value: 62.2
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.97
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.849
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 6.7, off-palette 0.5% (top: #888866 (0.3%), #998866
+        (0.2%))'
+      value: 2.1547
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 81 against the world reference (outliers: edge)'
+      value: 81.4
+    info:
+      fit:
+        scale: 0.8641
+        anchor:
+        - 505.1
+        - 869
+      registration:
+        dx: 7
+        dy: 19
+      metrics_raw:
+        L_p5: 61.8
+        L_p50: 76.3
+        L_p95: 90.0
+        C_p50: 22.0
+        C_p95: 41.3
+        C_p99: 42.3
+        detail: 1.41
+      metrics_locked:
+        L_p5: 62.2
+        L_p50: 76.2
+        L_p95: 90.0
+        C_p50: 21.9
+        C_p95: 41.3
+        C_p99: 42.2
+        detail: 0.97
+    fingerprint: 3da494fad62baefa
+manual_review:
+  excluded_takes: []
+  note: 'Both candidates pass hard QA and visual review: sage round-topped mailbox,
+    cream door, short chunky honey post and lowered rose flag, no letters or symbols,
+    ground shadow or retained guide. Official guide fit places it on the ground ellipse
+    below the height bar. Select the eligible take with lowest style-lock load, then
+    Harmony. Founder review pending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-95645902-8a03-441b-9239-ba907611bf3a.png
+  original_generated_png_sha256: fb5d49e82d21045608c53e06204c832a50380b460b59bdbb30a553f15a22f839
+  inbox_png_sha256: da7a43e25041717b80ea6bbcf91c6da31bd34086ae84eb3435afbc6d655e83fe
+  rgba_sha256: 73f3976754897c31795da336ddd3cb6fd6cd4582ce66822d771dd290765033a8
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 3da494fad62baefa
+- take: 2
+  source_file: /workspace/generated_images/exec-3665b13a-7f35-468d-bbe6-6cfd99e7281f.png
+  original_generated_png_sha256: d393e2889ee7fd8903c2cdc353882cc3660eb0199f47ffd73675a2a88ead2598
+  inbox_png_sha256: aae63ab1997012201b6afbf9820a84e0e39dc1d7673e64b321d2fa8701ef2027
+  rgba_sha256: 49a55acb4fb815081347384f32c42b28c04324bd8a2d71bf63e74c7c6ca88479
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 3da494fad62baefa

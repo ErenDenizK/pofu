@@ -1,0 +1,53 @@
+{
+ "after": {
+  "C_mean": 31.028,
+  "C_p50": 28.717,
+  "C_p95": 49.048,
+  "L_mean": 76.825,
+  "L_p2": 59.112,
+  "L_p98": 90.856,
+  "detail": 1.344,
+  "edge": 0.423,
+  "warmth_b": 29.236
+ },
+ "before": {
+  "C_mean": 23.577,
+  "C_p50": 21.822,
+  "C_p95": 37.271,
+  "L_mean": 76.825,
+  "L_p2": 59.112,
+  "L_p98": 90.856,
+  "detail": 1.316,
+  "edge": 0.423,
+  "tint_a": 2.327,
+  "tint_b": 12.944,
+  "warmth_b": 22.216
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.316,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "prop",
+ "matched_to": "world",
+ "outliers_after": [
+  "edge"
+ ],
+ "outliers_before": [
+  "C_p95",
+  "edge"
+ ],
+ "ppu": 8.533,
+ "reference": false,
+ "score_after": 88.3,
+ "score_before": 76.7,
+ "shipped": false,
+ "source": "design/art/masters/decor-mailbox/decor-mailbox.png",
+ "source_sha": "47f4fb074a9b23a1"
+}
