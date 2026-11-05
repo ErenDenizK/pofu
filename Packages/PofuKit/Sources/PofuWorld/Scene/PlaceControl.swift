@@ -1,4 +1,5 @@
 #if os(iOS)
+import PofuCompanion
 import PofuCore
 import PofuDesignSystem
 import SwiftUI
@@ -80,8 +81,33 @@ private struct PlaceGlyphView: View {
             ArchipelagoGlyph()
                 .frame(width: 30, height: 26)
         case .pofu:
-            // Pofu's painted face: home.
-            PofuPaintedIcon(.faceDisc, size: 32, scales: false)
+            // Pofu's face: home.
+            PofuFaceGlyph()
+        }
+    }
+}
+
+/// Pofu's face from the companion's portrait (the head of the bundled
+/// hamster), 34 pt: the glyph for "home". It is the bitmap itself, not a
+/// painted icon, so it never falls back to a blank disc.
+private struct PofuFaceGlyph: View {
+    /// The face region of the 522 × 496 portrait: the ears, the eyes and the
+    /// cheeks, square.
+    private static let face: UIImage? = {
+        guard let portrait = CompanionArt.placeholder?.base,
+              let crop = portrait.cropping(to: CGRect(x: 66, y: 36, width: 400, height: 400)) else { return nil }
+        return UIImage(cgImage: crop)
+    }()
+
+    var body: some View {
+        if let face = Self.face {
+            Image(uiImage: face)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 34, height: 34)
+                .accessibilityHidden(true)
+        } else {
+            Circle().fill(.foreground).frame(width: 22, height: 22)
         }
     }
 }
