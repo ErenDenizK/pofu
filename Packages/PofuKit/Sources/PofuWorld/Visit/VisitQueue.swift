@@ -142,7 +142,7 @@ public enum VisitQueue {
     /// the islands that arrived; ties go to the catalog's order.
     public static func affordableBuild(in world: WorldSnapshot, seeds: Energy) -> VisitBeat? {
         var best: (status: StationStatus, cost: Energy)?
-        for status in world.stations where status.isOpen && world.islands.contains(status.island) {
+        for status in world.stations where status.isOpen && !status.isCapped && world.islands.contains(status.island) {
             guard let cost = status.nextCost, cost <= seeds else { continue }
             if let current = best, current.cost <= cost {
                 continue

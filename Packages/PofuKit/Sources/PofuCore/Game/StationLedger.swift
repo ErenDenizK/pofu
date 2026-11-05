@@ -63,6 +63,10 @@ public enum BuildError: Error, Hashable, Sendable {
     /// The station's slot has not opened yet (stage or island).
     case notOpen(StationID)
     case maxLevel(StationID)
+    /// The island level caps the station below the next level: it lifts at
+    /// `islandLevel` ("Ada seviyesi 3'te açılır"). Nothing is locked for
+    /// good; the cap rises by itself.
+    case capped(StationID, cap: Int, liftsAtIslandLevel: Int?)
     case notEnoughSeeds(needed: Energy, have: Energy)
     /// The islands sleep from bedtime to morning: you can look, not build
     /// (A5).
@@ -116,6 +120,36 @@ public struct StationLedger: Hashable, Sendable, Codable {
         self.giftedSkips = nil
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case levels, arrivals, arrivalOrder, jar, pending, productionCarry, giftedSkips
+    }
+
+    /// Reads a saved ledger. Islands and stations retired on 2026-11-05
+    /// (Yıldız, Kaplıca, Kitap) are dropped and the seeds their levels cost
+    /// go back into the jar; everything else reads as saved.
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        var levels = try container.decode([StationID: Int].self, forKey: .levels)
+        var arrivals = try container.decode([IslandID: Int].self, forKey: .arrivals)
+        var arrivalOrder = try container.decode([IslandID].self, forKey: .arrivalOrder)
+        var jar = try container.decode(Energy.self, forKey: .jar)
+        for (station, costs) in RetiredIds.stationCosts {
+            guard let level = levels.removeValue(forKey: station), level > 0 else { continue }
+            jar += Energy(costs.prefix(level).reduce(0, +))
+        }
+        for island in RetiredIds.islands {
+            arrivals[island] = nil
+        }
+        arrivalOrder.removeAll { RetiredIds.islands.contains($0) }
+        self.levels = levels
+        self.arrivals = arrivals
+        self.arrivalOrder = arrivalOrder
+        self.jar = jar
+        self.pending = try container.decode(SeedPouch.self, forKey: .pending)
+        self.productionCarry = try container.decode(Int.self, forKey: .productionCarry)
+        self.giftedSkips = try container.decodeIfPresent(DayCount.self, forKey: .giftedSkips)
+    }
+
     // MARK: - Reading
 
     /// The station's level; zero when not built.
@@ -127,13 +161,37 @@ public struct StationLedger: Hashable, Sendable, Codable {
         arrivals[island] != nil
     }
 
-    /// Whether the station's slot is open after `tendedDays`.
+    /// Built station levels summed over the catalog's stations: what the
+    /// island level calls growth.
+    public func growth(catalog: ArchipelagoCatalog) -> Int {
+        catalog.stations.reduce(0) { $0 + level(of: $1.id) }
+    }
+
+    /// The island level (1–10) after `tendedDays` completed tended days. It
+    /// is derived from two counts that only grow, so it never falls.
+    public func islandLevel(tendedDays: Int, catalog: ArchipelagoCatalog) -> Int {
+        catalog.islandLevel(tendedDays: tendedDays, growth: growth(catalog: catalog))
+    }
+
+    /// What the next island level waits for; `nil` at the top.
+    public func nextIslandLevelRequirement(tendedDays: Int, catalog: ArchipelagoCatalog) -> IslandLevelRequirement? {
+        let growth = growth(catalog: catalog)
+        let level = catalog.islandLevel(tendedDays: tendedDays, growth: growth)
+        return catalog.requirement(afterIslandLevel: level, tendedDays: tendedDays, growth: growth)
+    }
+
+    /// Whether the station's slot is open: its island has arrived and the
+    /// island level has reached the slot's level.
     public func isOpen(_ station: StationSpec, tendedDays: Int, catalog: ArchipelagoCatalog) -> Bool {
-        guard let arrivedAt = arrivals[station.island] else { return false }
-        if station.island == catalog.home {
-            return catalog.homeStage(tendedDays: tendedDays) >= station.opensAt
-        }
-        return tendedDays - arrivedAt >= station.opensAt
+        guard hasArrived(station.island) else { return false }
+        return islandLevel(tendedDays: tendedDays, catalog: catalog) >= station.opensAt
+    }
+
+    /// The highest level `station` may be built to right now: the island
+    /// level's cap, never above the station's own top (the soft cap).
+    public func maxLevel(of station: StationSpec, tendedDays: Int, catalog: ArchipelagoCatalog) -> Int {
+        let cap = catalog.stationCap(atIslandLevel: islandLevel(tendedDays: tendedDays, catalog: catalog))
+        return min(station.maxLevel, cap)
     }
 
     /// What the next level of `station` costs; `nil` at the top.
@@ -221,6 +279,10 @@ public struct StationLedger: Hashable, Sendable, Codable {
         guard isOpen(station, tendedDays: tendedDays, catalog: catalog) else { throw BuildError.notOpen(id) }
         let next = level(of: id) + 1
         guard let cost = station.cost(toReach: next) else { throw BuildError.maxLevel(id) }
+        let cap = maxLevel(of: station, tendedDays: tendedDays, catalog: catalog)
+        guard next <= cap else {
+            throw BuildError.capped(id, cap: cap, liftsAtIslandLevel: catalog.islandLevel(allowingStationLevel: next))
+        }
         guard jar >= cost else { throw BuildError.notEnoughSeeds(needed: cost, have: jar) }
         jar -= cost
         levels[id] = next

@@ -136,6 +136,11 @@ struct GameScenarioTests {
         var levelsByDay: [Int] = []
         /// Seeds in the jar and pouch at the end of each day.
         var heldByDay: [Int] = []
+        /// The island level at the end of each day.
+        var islandLevelByDay: [Int] = []
+        /// The price of the cheapest level a player could build next (open
+        /// and under the cap) at the end of each day; nil when none.
+        var cheapestNextCostByDay: [Int?] = []
 
         func weeksWithoutABuild(weeks: Int) -> Int {
             (0..<weeks).filter { week in !buildDays.contains { $0 / 7 == week } }.count
@@ -193,7 +198,7 @@ struct GameScenarioTests {
         roundsPerVisit: [Int] = [0, 0, 0],
         roundYield: Int = 3
     ) -> Outcome {
-        var world = World(rules: GameRules(measurement: measurement, releasedIslands: [.kitap]))
+        var world = World(rules: GameRules(measurement: measurement))
         var rng = SplitMix64(seed: seed)
         var outcome = Outcome()
         var busyUntil = -1
@@ -255,7 +260,7 @@ struct GameScenarioTests {
                     _ = world.collect(at: now)
                     var built = 0
                     while built < 2 {
-                        let options = world.snapshot.stations.filter { $0.isOpen && $0.nextCost != nil }
+                        let options = world.snapshot.stations.filter { $0.isOpen && $0.nextCost != nil && !$0.isCapped }
                         guard let cheapest = options.min(by: { ($0.nextCost ?? 0) < ($1.nextCost ?? 0) }), cheapest.canAfford else { break }
                         do {
                             try world.build(cheapest.id, at: now)
@@ -335,6 +340,10 @@ struct GameScenarioTests {
                 outcome.unwellDays += 1
             }
             outcome.levelsByDay.append(world.state.stations.levels.values.reduce(0, +))
+            outcome.islandLevelByDay.append(world.snapshot.islandLevel)
+            outcome.cheapestNextCostByDay.append(
+                world.snapshot.stations.filter { $0.isOpen && !$0.isCapped }.compactMap { $0.nextCost?.units }.min()
+            )
             outcome.heldByDay.append((world.state.stations.jar + world.state.stations.pending.total).units)
             outcome.trueFeedMinutes += feedToday
             outcome.trueFeedByDay.append(feedToday)
@@ -350,7 +359,9 @@ struct GameScenarioTests {
     func everyoneBuildsOnDayOneAndKeepsBuilding(archetype: Archetype) {
         let outcome = Self.outcome(archetype)
         #expect(outcome.firstBuildDay == 0, "\(archetype): first build on day \(String(describing: outcome.firstBuildDay))")
-        #expect(outcome.weeksWithoutABuild(weeks: 12) <= 1, "\(archetype): \(outcome.weeksWithoutABuild(weeks: 12)) weeks without a build")
+        // Seven weeks: after that the quickest have built everything (the
+        // full bloom is day 50 or so for the monk) and there is nothing left.
+        #expect(outcome.weeksWithoutABuild(weeks: 7) <= 1, "\(archetype): \(outcome.weeksWithoutABuild(weeks: 7)) weeks without a build")
     }
 
     @Test(arguments: Archetype.allCases)
@@ -359,19 +370,34 @@ struct GameScenarioTests {
         if let done = outcome.homeDoneDay {
             #expect(done >= 35, "\(archetype): home island done on day \(done)")
         }
-        // The windmill's stage-5 gate alone holds the line at 24 tended
-        // days.
+        // The windmill's slot (island level 8, the 24th tended day) alone
+        // holds the line at 24 days.
         #expect((outcome.homeDoneDay ?? Self.days) >= 24)
     }
 
     @Test(arguments: Archetype.allCases)
-    func heavyScrollersStillGetASecondIslandWithinTheMonth(archetype: Archetype) {
+    func everyoneGetsTheHarborOnTheThirdDay(archetype: Archetype) {
+        // The fog lifts on the third tended day for anyone who builds
+        // Mochi's stall, however much they scroll; days here count from 0,
+        // and the roll happens at local midnight, hence 1 to 3.
         let outcome = Self.outcome(archetype)
         let harbor = outcome.arrivalDay[.harbor]
-        #expect(harbor != nil && (harbor ?? 99) <= 30, "\(archetype): Harbor on day \(String(describing: harbor))")
-        // Arrivals are kind: tended days and calm nights are cumulative.
-        #expect(outcome.arrivalDay[.yildiz] != nil || archetype == .heavy || archetype == .relapse,
-                "\(archetype): Yıldız never arrived")
+        #expect(harbor != nil && (1...3).contains(harbor ?? 99), "\(archetype): Harbor on day \(String(describing: harbor))")
+    }
+
+    @Test(arguments: Archetype.allCases)
+    func theIslandLevelNeverFallsAndNeverStallsForLong(archetype: Archetype) {
+        let levels = Self.outcome(archetype).islandLevelByDay
+        #expect(zip(levels, levels.dropFirst()).allSatisfy { $0 <= $1 }, "\(archetype): the island level fell")
+        // No dead end: below the top, the next island level comes within
+        // three weeks, whoever you are (a skipped day only pauses).
+        var longest = 0
+        var run = 0
+        for (index, level) in levels.enumerated() where level < 10 {
+            run = index > 0 && levels[index - 1] == level ? run + 1 : 1
+            longest = max(longest, run)
+        }
+        #expect(longest <= 21, "\(archetype): \(longest) days on one island level")
     }
 
     @Test(arguments: Archetype.allCases)
@@ -459,15 +485,64 @@ struct GameScenarioTests {
         // Something is built on day 1; about a level a day in week 1, one
         // every two days later.
         #expect(outcome.firstBuildDay == 0)
-        #expect((5...14).contains(outcome.levelsByDay[6]), "levels, day 7: \(outcome.levelsByDay[6])")
-        #expect((16...28).contains(outcome.levelsByDay[29]), "levels, day 30: \(outcome.levelsByDay[29])")
-        #expect((28...42).contains(outcome.levelsByDay[59]), "levels, day 60: \(outcome.levelsByDay[59])")
-        // İskele drifts close inside the second week; the next island
-        // within the third.
+        // Home progression section 11.1 (its model is a little slower:
+        // 8, 16, 27 and 40 levels on days 7, 14, 30 and 60 with rounds).
+        #expect((6...12).contains(outcome.levelsByDay[6]), "levels, day 7: \(outcome.levelsByDay[6])")
+        #expect((13...22).contains(outcome.levelsByDay[13]), "levels, day 14: \(outcome.levelsByDay[13])")
+        #expect((22...30).contains(outcome.levelsByDay[29]), "levels, day 30: \(outcome.levelsByDay[29])")
+        #expect((34...40).contains(outcome.levelsByDay[59]), "levels, day 60: \(outcome.levelsByDay[59])")
+        // İskele's fog lifts on the third day (day indices count from 0).
         let harbor = outcome.arrivalDay[.harbor] ?? 99
-        #expect((7...14).contains(harbor), "Harbor on day \(harbor)")
-        #expect((20...30).contains(outcome.arrivalDay[.yildiz] ?? 99), "Yıldız on day \(String(describing: outcome.arrivalDay[.yildiz]))")
+        #expect((1...3).contains(harbor), "Harbor on day \(harbor)")
         #expect(outcome.weeksWithoutABuild(weeks: 8) == 0)
+    }
+
+    @Test func theIslandLevelFollowsTheTable() {
+        let levels = Self.typicalWithoutRounds.islandLevelByDay
+        // Ada 3 on the third day, Ada 4 inside the first week, Ada 6 by the
+        // third week's end, Ada 8 by the second month.
+        #expect(levels[2] >= 3, "island level, day 3: \(levels[2])")
+        #expect((3...5).contains(levels[6]), "island level, day 7: \(levels[6])")
+        #expect((5...7).contains(levels[13]), "island level, day 14: \(levels[13])")
+        #expect((6...8).contains(levels[29]), "island level, day 30: \(levels[29])")
+        #expect(levels[59] >= 8, "island level, day 60: \(levels[59])")
+    }
+
+    @Test func theFullBloomLandsBetweenDayFiftyFiveAndSeventy() throws {
+        // Without rounds, the band of home progression section 11.1. With a
+        // set of rounds a day it comes about three weeks sooner: decor and
+        // the hive (later changes) are the sinks that move it back.
+        let plain = try #require(Self.typicalWithoutRounds.islandLevelByDay.firstIndex { $0 == 10 })
+        #expect((55...70).contains(plain + 1), "full bloom on day \(plain + 1)")
+        let rounds = try #require(Self.typical.islandLevelByDay.firstIndex { $0 == 10 })
+        #expect((38...70).contains(rounds + 1), "full bloom with rounds on day \(rounds + 1)")
+    }
+
+    @Test(arguments: [Archetype.typical, .moderate, .disciplined])
+    func theNextGoalIsAlwaysNearAndSomethingIsNewEveryFewDays(archetype: Archetype) {
+        // The cheapest thing a player could build next costs at most three
+        // and a half days of the last week's income without rounds (home
+        // progression section 3, rule 2: two days, three at the very most,
+        // for the income with rounds), and no three days pass without a
+        // level (rule 3).
+        let outcome = Self.outcome(archetype)
+        for day in 7..<60 {
+            guard let cost = outcome.cheapestNextCostByDay[day] else { continue }
+            let income = Double(outcome.seedsByDay[(day - 6)...day].reduce(0, +)) / 7
+            #expect(Double(cost) <= income * 3.5, "\(archetype), day \(day + 1): next goal \(cost) vs \(income) a day")
+        }
+        let days = outcome.buildDays.sorted().filter { $0 < 60 }
+        let gaps = zip(days, days.dropFirst()).map { $1 - $0 }
+        #expect((gaps.max() ?? 0) <= 3, "\(archetype): longest stretch without a level is \(gaps.max() ?? 0) days")
+    }
+
+    @Test func aSetOfRoundsADayKeepsTheNextGoalNearToo() {
+        let outcome = Self.typical
+        for day in 7..<60 {
+            guard let cost = outcome.cheapestNextCostByDay[day] else { continue }
+            let income = Double((day - 6...day).map { outcome.seedsByDay[$0] + outcome.roundSeedsByDay[$0] }.reduce(0, +)) / 7
+            #expect(Double(cost) <= income * 3, "day \(day + 1): next goal \(cost) vs \(income) a day")
+        }
     }
 
     @Test func skipsAreUnderAQuarterOfIncomeFromWeekTwo() {

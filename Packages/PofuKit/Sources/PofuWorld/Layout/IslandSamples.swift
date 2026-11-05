@@ -19,7 +19,8 @@ public enum IslandSamples {
             tendedDays: 4,
             levels: [.garden: 2, .teaStall: 1],
             jar: Self.midWeekJar,
-            islands: [.home, .harbor]
+            islands: [.home, .harbor],
+            islandLevel: 4
         )
     }
 
@@ -36,6 +37,7 @@ public enum IslandSamples {
             levels: [.garden: 3, .teaStall: 3, .pond: 2, .workshop: 1, .windmill: 2],
             jar: Self.midWeekJar,
             islands: [.home, .harbor],
+            islandLevel: 8,
             wellbeing: wellbeing
         )
     }
@@ -46,31 +48,41 @@ public enum IslandSamples {
     }
 
     /// A world with the given levels, read through the standard catalog.
+    /// `islandLevel` sets the level a sample shows (some samples are looks,
+    /// not states the growth count would reach); by default it is derived
+    /// from the days and levels like the real game's.
     public static func world(
         clock: Date?,
         tendedDays: Int,
         levels: [StationID: Int],
         jar: Energy,
         islands: [IslandID],
+        islandLevel: Int? = nil,
         wellbeing: Double = 78,
         calm: Double = 1.4,
         isBedtime: Bool = false
     ) -> WorldSnapshot {
         let catalog = ArchipelagoCatalog.standard
-        let stage = catalog.homeStage(tendedDays: tendedDays)
+        let growth = catalog.stations.reduce(0) { $0 + (levels[$1.id] ?? 0) }
+        let islandLevel = islandLevel ?? catalog.islandLevel(tendedDays: tendedDays, growth: growth)
+        let cap = catalog.stationCap(atIslandLevel: islandLevel)
+        let stage = catalog.homeStage(islandLevel: islandLevel)
         let stations = catalog.stations.filter { islands.contains($0.island) }.map { spec in
             let level = levels[spec.id] ?? 0
-            let isOpen = spec.island == catalog.home ? stage >= spec.opensAt : true
+            let isOpen = spec.opensAt <= islandLevel
             let next = spec.cost(toReach: level + 1)
+            let capped = next != nil && level >= min(spec.maxLevel, cap)
             return StationStatus(
                 id: spec.id,
                 island: spec.island,
                 level: level,
                 maxLevel: spec.maxLevel,
+                levelCap: min(spec.maxLevel, cap),
                 isOpen: isOpen,
                 nextCost: next,
                 canAfford: next.map { jar >= $0 } ?? false,
-                seedsPerHour: spec.seedsPerHour(at: level)
+                seedsPerHour: spec.seedsPerHour(at: level),
+                capLiftsAtIslandLevel: capped ? catalog.islandLevel(allowingStationLevel: level + 1) : nil
             )
         }
         let rate = stations.reduce(0) { $0 + $1.seedsPerHour }
@@ -89,6 +101,8 @@ public enum IslandSamples {
             tendedDays: tendedDays,
             calmNights: 2,
             homeStage: stage,
+            islandLevel: islandLevel,
+            nextIslandLevel: catalog.requirement(afterIslandLevel: islandLevel, tendedDays: tendedDays, growth: growth),
             islands: islands,
             stations: stations,
             seedsPerHour: rate * calm,

@@ -96,7 +96,7 @@ struct DeveloperReadout: View {
                     Text(verbatim: "Seeds")
                 }
                 LabeledContent {
-                    Text(verbatim: "\(world.tendedDays) tended · \(world.calmNights) calm nights · stage \(world.homeStage)")
+                    Text(verbatim: "\(world.tendedDays) tended · \(world.calmNights) calm nights · island level \(world.islandLevel) · stage \(world.homeStage)")
                 } label: {
                     Text(verbatim: "Days")
                 }
