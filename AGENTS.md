@@ -88,10 +88,13 @@ sits idle; it must never stop"). There is always a next job. Work in this
 order, forever:
 
 1. The `READY` rows of the queue, in order.
-2. When none is left, the `BACKLOG` rows
+2. When none is left, the **production backlog** rows
+   ([production backlog](docs/design/art-production-plan.md#the-production-backlog))
+   whose manifest is on main, in order: real ids, promoted on pass.
+3. Then the `BACKLOG` rows
    ([the backlog](docs/design/art-production-plan.md#the-backlog)), in
    order. Backlog manifests are explorations (`x-` ids): never promoted.
-3. When the backlog is exhausted, start again from the first backlog row
+4. When the backlog is exhausted, start again from the first backlog row
    with **fresh variations**: copy each job under a new exploration id
    (`-v2`, then `-v3`, ...) and give it a new angle (another pose, camera,
    time of day, season, palette, composition). Never run the same prompt
