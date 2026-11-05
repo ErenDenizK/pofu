@@ -1,0 +1,209 @@
+batch: batch-29-residents-at-work
+manifest: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+manifest_sha256: 85203326885da331817b9113d50d36e87be75f1645ee142038732d64fa63da5d
+contact_sheet: design/art/takes/batch-29-residents-at-work/x-work-simit/contact.jpg
+jobs:
+  x-work-simit:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show on-model honey/cream
+      striped Simit with a soft coral neck ribbon, no head curl, holding exactly three
+      sesame simit rings on a small round wooden tray beside the finished cart. Tail
+      is up with a curled tip, ears forward, small bright smile; the small brass bell
+      hangs at the canopy pole. The cream/sage ground and daylight crop remain calm,
+      no text or extra limbs. Pofu appears only as the listed style reference, not
+      as an added character. Broad chunky rings read clearly in the close concept
+      crop; final 64px functional framing remains concept review. Main cart finish
+      and distinctive ring pile/awning/wheel are preserved at concept scale, not claimed
+      as pixel registration. Hard QA then lowest lock load decides; style/light warnings
+      advisory. Never promoted.
+qa_reports:
+  1:
+    job: x-work-simit
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 48 (at most 22), p98 95 (at least 90), spread 47
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 81.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.255
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.7 (at least 3.5)'
+      value: 3.66
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.22
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 1.0085
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.3, p95 9.2, off-palette 1.9% (top: #DD8844 (0.8%), #CC7744
+        (0.2%))'
+      value: 3.3256
+    info:
+      metrics_raw:
+        L_p5: 60.6
+        L_p50: 83.8
+        L_p95: 94.7
+        C_p50: 24.1
+        C_p95: 51.4
+        C_p99: 56.4
+        detail: 2.85
+      metrics_locked:
+        L_p5: 61.0
+        L_p50: 83.7
+        L_p95: 94.4
+        C_p50: 24.0
+        C_p95: 50.5
+        C_p99: 55.1
+        detail: 2.22
+    fingerprint: 682470021b8fa31f
+  2:
+    job: x-work-simit
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 50.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 47 (at most 22), p98 93 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.21 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.212
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 4.01
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.18
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.9328
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.8, p95 9.0, off-palette 2.0% (top: #DD8844 (0.6%), #CC7733
+        (0.2%))'
+      value: 2.7524
+    info:
+      metrics_raw:
+        L_p5: 60.9
+        L_p50: 84.2
+        L_p95: 92.5
+        C_p50: 23.0
+        C_p95: 51.9
+        C_p99: 58.1
+        detail: 2.79
+      metrics_locked:
+        L_p5: 61.3
+        L_p50: 84.1
+        L_p95: 92.2
+        C_p50: 23.0
+        C_p95: 50.9
+        C_p99: 57.2
+        detail: 2.18
+    fingerprint: 682470021b8fa31f
+manual_review:
+  observed_note: Both show on-model honey/cream striped Simit with a soft coral neck
+    ribbon, no head curl, holding exactly three sesame simit rings on a small round
+    wooden tray beside the finished cart. Tail is up with a curled tip, ears forward,
+    small bright smile; the small brass bell hangs at the canopy pole. The cream/sage
+    ground and daylight crop remain calm, no text or extra limbs. Pofu appears only
+    as the listed style reference, not as an added character. Broad chunky rings read
+    clearly in the close concept crop; final 64px functional framing remains concept
+    review. Main cart finish and distinctive ring pile/awning/wheel are preserved
+    at concept scale, not claimed as pixel registration. Hard QA then lowest lock
+    load decides; style/light warnings advisory. Never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-29-residents-at-work
+  job: x-work-simit
+  take: 1
+  round: 1
+  logical_run: 20261105-night29-mochi-simit-work
+  source_file: /workspace/generated_images/exec-d3d5c3b0-0410-4ba7-804f-235bd34604a3.png
+  returned_at: '2026-11-05T18:42:14.675Z'
+  prompt_sha256: 4948be30cca324c6f14958300eebc6afe56a88c75645de694e05f46d5d9cfe8d
+  fingerprint: 682470021b8fa31f
+  saved_at: '2026-11-05T18:42:15.119675+00:00'
+  original_generated_png_sha256: c1b2ffa58edcc3ab636f1944c936f80a4a263880caf6961b50876c3c535ca46e
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 676f870f25beae9d3a1b048eeb014c0f06bcd3a940ef460b509eee9277eae9bd
+  inbox_png_sha256: 3439e9548e5f07dd6c0cef55316fe3d80d6a145f5d8de7952dd50dafe7ff1d01
+  qa_sha256: 211e17bde00ac3abec3cbc981241e87d688f3a72bdcf24dae1982537cc3b7e90
+- batch: batch-29-residents-at-work
+  job: x-work-simit
+  take: 2
+  round: 1
+  logical_run: 20261105-night29-mochi-simit-work
+  source_file: /workspace/generated_images/exec-3444c667-73f9-485b-a8c7-99bd8e6c32bb.png
+  returned_at: '2026-11-05T18:42:55.898Z'
+  prompt_sha256: 4948be30cca324c6f14958300eebc6afe56a88c75645de694e05f46d5d9cfe8d
+  fingerprint: 682470021b8fa31f
+  saved_at: '2026-11-05T18:42:56.322327+00:00'
+  original_generated_png_sha256: 12583b5f80af243341909c64d38b0959a8de78f69de174503356cb7fad47cb63
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: db28fd707050af6a6ef6d8a5cb2d93b405b440dc3a96b2dcf8b4ce3a2c93f9bc
+  inbox_png_sha256: d09ddf3ede1074fc0040fa4212bf34085a3093697cfa240a0fa2550ebe75f2e3
+  qa_sha256: 8d048bd22491bd029aafc3d835d4e5fdd1a840c74c7742541382dc51a5e2cb79
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
