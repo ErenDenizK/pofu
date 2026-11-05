@@ -1,0 +1,206 @@
+batch: batch-29-residents-at-work
+manifest: tools/imagegen/manifest/batch-29-residents-at-work.yaml
+manifest_sha256: 85203326885da331817b9113d50d36e87be75f1645ee142038732d64fa63da5d
+contact_sheet: design/art/takes/batch-29-residents-at-work/x-heart-findik-goggles/contact.jpg
+jobs:
+  x-heart-findik-goggles:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Independent manual source review:
+      both retain on-model curl-free Findik with honey spines and cream face, round
+      brass-cream goggles with sage lenses naturally above his eyes between the spines,
+      leather-coloured tool apron and shy proud pose by the familiar workshop door.
+      Goggles remain a clear workshop-hat silhouette at small scale. Soft pink hearts
+      and cream motes only, calm golden late light, no text, numerals, rays, bursts,
+      sparkle stars or extra limbs. The printed existing main workshop reference is
+      used exactly; independent concept, not registered edit. Hard QA then lowest
+      lock load; exploration style/light warnings advisory. Never promoted.'
+qa_reports:
+  1:
+    job: x-heart-findik-goggles
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 54 (R1 51)
+      value: 54.1
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 40 (at most 24), p98 93 (at least 86), spread
+        53 (at least 55)'
+      value: 53.3
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 73 (band 48-86)'
+      value: 73.4
+    - check: light_haze
+      status: pass
+      message: 'golden/subject: dark-channel haze 0.16 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.161
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 5.6 (at least 3.4)'
+      value: 5.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.9
+      value: 1.895
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.9, p95 10.0, off-palette 2.4% (top: #BB6633 (0.5%), #CC7744
+        (0.3%))'
+      value: 2.8708
+    info:
+      metrics_raw:
+        L_p5: 47.3
+        L_p50: 76.1
+        L_p95: 88.3
+        C_p50: 33.3
+        C_p95: 55.1
+        C_p99: 60.6
+        detail: 3.14
+      metrics_locked:
+        L_p5: 47.6
+        L_p50: 76.1
+        L_p95: 87.9
+        C_p50: 33.3
+        C_p95: 54.1
+        C_p99: 58.8
+        detail: 2.48
+    fingerprint: 5e7e8bbcc5696230
+  2:
+    job: x-heart-findik-goggles
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 57 (R1 51)
+      value: 57.0
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 42 (at most 24), p98 92 (at least 86), spread
+        51 (at least 55)'
+      value: 50.8
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 76 (band 48-86)'
+      value: 75.6
+    - check: light_haze
+      status: pass
+      message: 'golden/subject: dark-channel haze 0.15 (at most 0.22; no true dark
+        means a wash)'
+      value: 0.153
+    - check: light_contrast
+      status: pass
+      message: 'golden/subject: p75 local contrast 5.8 (at least 3.4)'
+      value: 5.77
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.8 (R1 5.3)
+      value: 2.75
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.4662
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.1, p95 10.6, off-palette 3.9% (top: #BB6633 (0.9%), #CC7733
+        (0.5%))'
+      value: 3.0859
+    info:
+      metrics_raw:
+        L_p5: 51.8
+        L_p50: 76.9
+        L_p95: 88.7
+        C_p50: 37.1
+        C_p95: 57.6
+        C_p99: 66.0
+        detail: 3.44
+      metrics_locked:
+        L_p5: 52.3
+        L_p50: 76.9
+        L_p95: 88.3
+        C_p50: 37.0
+        C_p95: 57.0
+        C_p99: 61.9
+        detail: 2.75
+    fingerprint: 5e7e8bbcc5696230
+manual_review:
+  observed_note: 'Independent manual source review: both retain on-model curl-free
+    Findik with honey spines and cream face, round brass-cream goggles with sage lenses
+    naturally above his eyes between the spines, leather-coloured tool apron and shy
+    proud pose by the familiar workshop door. Goggles remain a clear workshop-hat
+    silhouette at small scale. Soft pink hearts and cream motes only, calm golden
+    late light, no text, numerals, rays, bursts, sparkle stars or extra limbs. The
+    printed existing main workshop reference is used exactly; independent concept,
+    not registered edit. Hard QA then lowest lock load; exploration style/light warnings
+    advisory. Never promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-29-residents-at-work
+  job: x-heart-findik-goggles
+  take: 1
+  round: 1
+  logical_run: 20261105-night29-findik-work-heart
+  source_file: /workspace/generated_images/exec-84b0cd0c-a9ba-4cab-9e35-1b62a97a9d0f.png
+  returned_at: '2026-11-05T19:14:01.453Z'
+  prompt_sha256: c030e3f4b4fa263b1e0df7c6adf6aa5ea9d6fdfbff07e9e7cfdc636d070dd86a
+  fingerprint: 5e7e8bbcc5696230
+  saved_at: '2026-11-05T19:14:03.087026+00:00'
+  original_generated_png_sha256: aa65a76457d014366b1b57e8edab9e00247889073c9b79c8e0c231ed855100be
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 354b952b3cd9be1b23ed29dbf15c41d52a52e849961a8c85efb7337adf9d471b
+  inbox_png_sha256: 0202eec8512b12cd6f34788c0e3b9aeceafe84cdff3f7f1fafa762c6f9d493b5
+  qa_sha256: 4bb05e14af98764a429d7d8cd2f6fc966f683ff1d6e50d6ad0829a8e4c6feb0c
+- batch: batch-29-residents-at-work
+  job: x-heart-findik-goggles
+  take: 2
+  round: 1
+  logical_run: 20261105-night29-findik-work-heart
+  source_file: /workspace/generated_images/exec-712b4085-4aa3-44c8-8b65-bb81436ce162.png
+  returned_at: '2026-11-05T19:13:18.480Z'
+  prompt_sha256: c030e3f4b4fa263b1e0df7c6adf6aa5ea9d6fdfbff07e9e7cfdc636d070dd86a
+  fingerprint: 5e7e8bbcc5696230
+  saved_at: '2026-11-05T19:13:18.922711+00:00'
+  original_generated_png_sha256: 3e6d1dc5515f36b223b0b2f79c9a5e808e299d8b6fb16b9517966098bf0b5ba3
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: ed9979e26d539c3433e7809c8551ae78c0fd261a79677ba6ceb3350638d871e2
+  inbox_png_sha256: 0e7ecc9a1ddd0c489dd8800286777e5e365f93678a867e772b06d223495b36fd
+  qa_sha256: ea43e977ad61de6d1d670e8a57421b2ba6fbc179e5375727d0e82b83784cd25f
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
