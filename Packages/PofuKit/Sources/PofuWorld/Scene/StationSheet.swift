@@ -102,17 +102,21 @@ struct StationSheet: View {
         }
     }
 
-    /// Seeds an hour now, and at the next level: live numbers with
+    /// Seeds a day now, and at the next level (a day reads better than the
+    /// tiny hourly rate, which rounded to 0): live numbers with
     /// monospaced digits on one paper panel.
     private func rate(_ status: StationStatus) -> some View {
-        let now = Self.format(status.seedsPerHour)
-        let next = status.nextCost == nil ? nil : catalog.station(station).map { Self.format($0.seedsPerHour(at: status.level + 1)) }
+        let now = Self.format(status.seedsPerHour * 24)
+        let next = status.nextCost == nil ? nil : catalog.station(station).map { Self.format($0.seedsPerHour(at: status.level + 1) * 24) }
         return VStack(alignment: .leading, spacing: PofuSpacing.xs) {
-            if let next {
-                Text("\(now) → \(next) seeds an hour", bundle: .module)
+            if status.level == 0, let next {
+                Text("\(next) seeds a day once built", bundle: .module)
+                    .font(PofuFont.title3.monospacedDigit())
+            } else if let next {
+                Text("\(now) → \(next) seeds a day", bundle: .module)
                     .font(PofuFont.title3.monospacedDigit())
             } else {
-                Text("\(now) seeds an hour", bundle: .module)
+                Text("\(now) seeds a day", bundle: .module)
                     .font(PofuFont.title3.monospacedDigit())
             }
             if status.level == 0 {

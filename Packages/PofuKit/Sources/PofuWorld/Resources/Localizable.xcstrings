@@ -1,12 +1,12 @@
 {
   "sourceLanguage": "en",
   "strings": {
-    "%@ seeds an hour": {
+    "%@ seeds a day": {
       "localizations": {
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Saatte %@ çekirdek"
+            "value": "Günde %@ çekirdek"
           }
         }
       }
@@ -861,12 +861,22 @@
         }
       }
     },
-    "%@ → %@ seeds an hour" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Saatte %1$@ → %2$@ çekirdek"
+    "%@ → %@ seeds a day": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Günde %1$@ → %2$@ çekirdek"
+          }
+        }
+      }
+    },
+    "%@ seeds a day once built": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kurulunca günde %@ çekirdek"
           }
         }
       }
