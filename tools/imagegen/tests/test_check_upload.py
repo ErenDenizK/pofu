@@ -20,6 +20,29 @@ def webp(size=(64, 48)) -> bytes:
     return buf.getvalue()
 
 
+class DownscaleTests(unittest.TestCase):
+    def test_downscale_halves_and_keeps_transparent_edges_clean(self):
+        im = Image.new("RGBA", (64, 40), (0, 0, 0, 0))
+        im.paste((250, 200, 100, 255), (16, 8, 48, 32))
+        out = cu.downscale(im, 0.5)
+        self.assertEqual(out.size, (32, 20))
+        self.assertEqual(out.getpixel((16, 10)), (250, 200, 100, 255))
+        self.assertEqual(out.getpixel((0, 0))[3], 0)
+
+    def test_scale_one_or_none_is_a_no_op(self):
+        im = Image.new("RGBA", (8, 8), (1, 2, 3, 255))
+        self.assertIs(cu.downscale(im, None), im)
+        self.assertIs(cu.downscale(im, 1), im)
+
+    def test_save_raw_with_scale_writes_the_smaller_lossless_raw(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            src = Path(tmp) / "t.png"
+            Image.new("RGBA", (100, 60), (9, 9, 9, 255)).save(src)
+            out, enc = cu.save_raw(src, Path(tmp) / "m", 0.5)
+            self.assertEqual(enc, "webp lossless")
+            self.assertEqual(Image.open(out).size, (50, 30))
+
+
 class CheckUploadTests(unittest.TestCase):
     def test_whole_file_passes(self):
         data = webp()

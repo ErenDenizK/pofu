@@ -125,6 +125,13 @@ class Job:
     # Guide fit (qa.fit_to_guide) override for a root station or ground decor:
     # {max_width, top}, or False to turn the downscale off. None = guide defaults.
     fit: dict | bool | None = None
+    # Soft delivery: {scale: s}, 0 < s <= 1. QA and picking run on the full
+    # take; the promoted master (and its raw) is written downscaled by s
+    # (Lanczos, still lossless WebP) so soft art fits the 600 KB upload cap.
+    deliver: dict | None = None
+    # Named sentences of a style block to drop from this job's prompt
+    # (STYLE_LINES), e.g. [fur] for a smooth-skinned animal.
+    style_exclude: list[str] = field(default_factory=list)
 
     @property
     def asset(self) -> str:
@@ -159,6 +166,21 @@ class Manifest:
 
 def load_config(path: Path = CONFIG_PATH) -> dict:
     return yaml.safe_load(Path(path).read_text(encoding="utf-8"))
+
+
+# Sentences of the shared style blocks a job may drop with `style_exclude`.
+STYLE_LINES = {
+    "fur": "Fine, soft fur strands along the silhouette and a velvety fur texture inside it.",
+}
+
+
+def drop_style_lines(text: str, names: list[str]) -> str:
+    """Remove the named STYLE_LINES sentences from a block (line wraps ignored)."""
+    for name in names:
+        words = STYLE_LINES[name].split()
+        pattern = r"\s*".join(re.escape(w) for w in words) + r"[ \t]*\n?"
+        text = re.sub(pattern, "", text)
+    return text
 
 
 def parse_size(value) -> tuple[int, int]:
@@ -254,6 +276,15 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
                 not isinstance(fit, dict) or set(fit) - {"max_width", "top"}
                 or not all(isinstance(v, int) and not isinstance(v, bool) and v > 0 for v in fit.values())):
             raise ManifestError(f"{where}: fit is {{max_width: px, top: y}} or false")
+        deliver = merged.get("deliver")
+        if deliver is not None:
+            s = deliver.get("scale") if isinstance(deliver, dict) else None
+            if (not isinstance(deliver, dict) or set(deliver) - {"scale"} or isinstance(s, bool) or not isinstance(s, (int, float)) or not 0 < s <= 1):
+                raise ManifestError(f"{where}: deliver is {{scale: s}} with 0 < s <= 1")
+            deliver = {"scale": float(s)}
+        style_exclude = merged.get("style_exclude") or []
+        if not isinstance(style_exclude, list) or set(style_exclude) - set(STYLE_LINES):
+            raise ManifestError(f"{where}: style_exclude is a list of {', '.join(STYLE_LINES)}")
         decor = merged.get("decor")
         if decor is None and kind == "prop" and any(a.ref == "decor-guide" for a in attach):
             decor = "ground"
@@ -285,7 +316,8 @@ def parse_manifest(data: dict, config_refs: dict | None = None, path: Path | Non
                   variants=variants,
                   acceptance={**(merged.get("acceptance", {}) or {}), **({"blend": blend} if blend else {})}, chat=merged.get("chat"),
                   notes=merged.get("notes", "") or "", canvas=canvas, external=str(external) if external else None,
-                  master=str(master) if master else None, slice=slice_, decor=decor, palettes=list(extra), light=light, fit=fit)
+                  master=str(master) if master else None, slice=slice_, decor=decor, palettes=list(extra), light=light, fit=fit,
+                  deliver=deliver, style_exclude=list(style_exclude))
         jobs.append(job)
     if not jobs:
         raise ManifestError("manifest has no jobs")
@@ -381,7 +413,7 @@ def compose_prompt(job: Job, background: str = "transparent") -> str:
             lines.append(f"{i}. {a.role}")
         parts.append("\n".join(lines))
     for p in job.prompt:
-        parts.append(read_block(p["block"]) if "block" in p else str(p["text"]).strip())
+        parts.append(drop_style_lines(read_block(p["block"]), job.style_exclude) if "block" in p else str(p["text"]).strip())
     if job.light:
         parts.append(lt.render_block(job.light, sprite=lt.is_sprite(job.kind, job.transparent)))
     parts.append(output_line(job, background))

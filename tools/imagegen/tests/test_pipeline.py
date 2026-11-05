@@ -117,6 +117,31 @@ class ParseTests(unittest.TestCase):
         with self.assertRaises(pl.ManifestError):
             pl.parse_manifest(bad, REFS)
 
+    def test_deliver_scale_is_validated(self):
+        data = manifest()
+        data["jobs"][0]["deliver"] = {"scale": 0.5}
+        self.assertEqual(pl.parse_manifest(data, REFS).jobs[0].deliver, {"scale": 0.5})
+        self.assertIsNone(pl.parse_manifest(manifest(), REFS).jobs[0].deliver)
+        for bad_deliver in ({"scale": 0}, {"scale": 1.5}, {"scale": True}, {"scale": 0.5, "q": 1}, {}, 0.5):
+            bad = manifest()
+            bad["jobs"][0]["deliver"] = bad_deliver
+            with self.assertRaises(pl.ManifestError, msg=str(bad_deliver)):
+                pl.parse_manifest(bad, REFS)
+
+    def test_style_exclude_drops_only_the_named_sentence(self):
+        data = manifest()
+        data["jobs"][0]["prompt"] = [{"text": "A frog."}, {"block": "style-anchor-v2"}]
+        plain = pl.compose_prompt(pl.parse_manifest(data, REFS).jobs[0])
+        self.assertIn("fur texture", plain)
+        data["jobs"][0]["style_exclude"] = ["fur"]
+        job = pl.parse_manifest(data, REFS).jobs[0]
+        out = pl.compose_prompt(job)
+        self.assertNotIn("fur", out)
+        self.assertIn("Light direction, colours and shadow hue", out)
+        data["jobs"][0]["style_exclude"] = ["nonsense"]
+        with self.assertRaises(pl.ManifestError):
+            pl.parse_manifest(data, REFS)
+
     def test_job_palettes_extend_the_drift_check(self):
         data = manifest()
         data["jobs"][0]["palettes"] = ["world-night", "character-tabby"]
