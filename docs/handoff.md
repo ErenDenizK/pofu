@@ -12,9 +12,8 @@ a downscale about the ground anchor. #155 queues `refit-2026-11-04` (re-promote
 the bench, pier-1, lighthouse-1 and harbor-ferry-1 with no generation) and opens
 batch-20-poses.
 
-**Next:** review the refit PR (check rim colour at the edge and that the scale
-reads right next to the cast), then open the 12 dependents (queue row 3).
-Watch whether level edits of fitted parents come back oversized again.
+**Next:** refit (#156) and poses (#157) merged; the 12 dependents and the
+findik-surprised salvage are READY (2026-11-05). Watch whether level edits of fitted parents come back oversized again.
 The 2026-11-04 end-of-day list below still applies (founder runbook, harbor
 scene, lore #135).
 

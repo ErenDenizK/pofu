@@ -28,6 +28,7 @@ jobs:
     kind: char
     name: findik-surprised
     size: 1024x1536
+    canvas: 870x1306  # the parent's canvas (findik-base); keeps the lossless master under the upload cap
     edit_of: findik
     chat: "Pofu · Residents"
     light: {cell: day, layer: subject}

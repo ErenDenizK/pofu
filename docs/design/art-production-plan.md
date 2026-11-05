@@ -61,9 +61,8 @@ until none is left.
 
 | # | Batch | Kind | Purpose | Needs | Jobs | State |
 |---|---|---|---|---|---|---|
-| 1 | `refit-2026-11-04` | production · pilot | **No generation.** Four pilots had good art rejected only for size (bench 452-495 px vs 360, `pier-1` 804-904 vs 720, `lighthouse-1` top above the y 150 bar, `harbor-ferry-1` 676-765 vs 640). The pipeline now shrinks root stations and ground decor to their guide (`qa.fit_to_guide`, #154). Re-run `post` on the retained originals of `decor-bench` (batch-08-decor-pilot), `pier-1` and `lighthouse-1` (batch-21-harbor-ladders), `harbor-ferry-1` (retry-2026-11-04), pick and promote as usual (un-cut the asset nodes). Their dependents stay skipped until the lead reviews this pilot. A take that still fails (fit below x0.6, or any other hard check) stays skipped | #154 | 4 | **READY** |
-| 2 | `batch-20-poses` | production | The rest of the poses: `findik-surprised`, `simit-sleepy`, `simit-surprised`. Pilot (#152) passed review: keep the same edit approach | main | 3 | **READY** |
-| 3 | dependents | production | After the refit review: `decor-lanterns`, `decor-sailboat`, `decor-mailbox`; `pier-2` to `pier-5`; `lighthouse-2` to `lighthouse-5`; `harbor-ferry-2`. Watch edits: they must keep the parent's scale (station_anchor's width bar) | the lead's review of row 1 | 12 | BLOCKED, opens after the refit review |
+| 1 | dependents | production | The refit pilot passed review (#156, clean edges). Run the skipped dependents from their own manifests: `batch-08-decor-pilot --only decor-lanterns decor-sailboat decor-mailbox`; `batch-21-harbor-ladders --only pier-2 pier-3 pier-4 pier-5 lighthouse-2 lighthouse-3 lighthouse-4 lighthouse-5`; `retry-2026-11-04 --only harbor-ferry-2`. Level edits must keep the parent's scale (station_anchor width bar); the guide fit does not touch edits, so report any edit that grows | main | 12 | **READY** |
+| 2 | `findik-surprised` salvage | production | **No generation.** Takes 2 and 3 of #157 passed QA but their lossless master exceeds the 600 KB cap at 1024x1536. The lead approves Findik's parent canvas, 870x1306 (`findik-base`, set as `canvas` in batch-20-poses.yaml): re-post the retained originals at that canvas, pick and promote as usual | main | 1 | **READY** |
 | 4 | `batch-11-ui` | production | What is still missing of ui-system-v2 section 6 after batches 11-13 and the retry: night variants of the faces, game layer extras, the remaining domain icons, surfaces. The lead lists the exact gaps when it writes the manifest | the light standard and the icon semantics rule | about 15 | BLOCKED, no manifest yet |
 | 5 | `batch-08-decor` | production | The home decor kit (Ayçiçeği is the centre, so it ships); the lead lists the pieces after the pilot review | a passed row 1 | none yet | BLOCKED on the pilot review, no manifest yet |
 
@@ -351,6 +350,8 @@ Stop and report on any stop condition in AGENTS.md.
 ```
 
 ## Log
+
+- 2026-11-05 (lead review): merged #156 (refit: decor-bench, pier-1, lighthouse-1, harbor-ferry-1 at x0.77-0.84, edges clean on dark and light grounds) and #157 (simit-sleepy, simit-surprised). The 12 dependents and the findik-surprised salvage open.
 
 - 2026-11-04 (lead review): merged #148, #150-#153. Promoted `workshop-1-lit`, `simit-happy`, `mochi-surprised`, `icon-friend`, `icon-plus`, `icon-breath`. Skips kept: `icon-island` (palette drift), `ui-sheet-paper-night` (edit structure; a recolor profile is the fix, not a retry), `icon-skip` (refusal, stays blocked). Finding: the image model ignores pixel sizes in prompts (two retries each), so size moved to code (#154); the refit row re-promotes without regeneration.
 
