@@ -10,7 +10,7 @@ jobs:
       tulip tea glasses on individual saucers, two plain sage cups and one lidded
       sugar bowl on a rounded cream/brass tray. Glasses remain distinct from flowers;
       no stall, bench, characters, text or guide marks are painted. Take1 adds a simple
-      scalloped decoration on the sugar bowl; take2 keeps it plain. Original canvas1280
+      scalloped decoration on the sugar bowl; take2 keeps it plain. Original canvas1254
       square is resampled by official post to1024 and root guide fit passes decor_anchor;
       the original generated sources remain unchanged. Small low-alpha edge specks
       in the raw are retained for review, not manually painted out. Light/palette
@@ -192,7 +192,7 @@ manual_review:
     saucers, two plain sage cups and one lidded sugar bowl on a rounded cream/brass
     tray. Glasses remain distinct from flowers; no stall, bench, characters, text
     or guide marks are painted. Take1 adds a simple scalloped decoration on the sugar
-    bowl; take2 keeps it plain. Original canvas1280 square is resampled by official
+    bowl; take2 keeps it plain. Original canvas1254 square is resampled by official
     post to1024 and root guide fit passes decor_anchor; the original generated sources
     remain unchanged. Small low-alpha edge specks in the raw are retained for review,
     not manually painted out. Light/palette warnings remain advisory.
