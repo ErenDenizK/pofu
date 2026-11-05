@@ -1,0 +1,457 @@
+batch: batch-30b-decor-seasons-1-v2
+manifest: tools/imagegen/manifest/batch-30b-decor-seasons-1-v2.yaml
+manifest_sha256: f2b7485dbd13da0c8e2f1095a57d03a0574b31c65634f87d330f509f139b19c6
+contact_sheet: design/art/takes/batch-30b-decor-seasons-1-v2/x-decor-bahar-nest-v2/contact.jpg
+jobs:
+  x-decor-bahar-nest-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'After exactly two initial takes and the sole unchanged-prompt retry pair,
+      no take is eligible: visible locked alpha-over24 widths 360/359/360/360px all
+      exceed the literal one-third of1024 cap341.33px. Official hard QA passes on
+      all4 and exploration style/light warnings are advisory; only the observed width
+      brief fails. Independent original and locked content review confirms correct
+      inventories and smooth material scope, including exactly three speckled eggs
+      and cream down only inside the nest where applicable. No regeneration beyond
+      the one allowed retry, no manual resizing or alpha cleanup. All four immutable
+      sources retained. This job alone is skipped; independent corner plates continue.'
+qa_reports:
+  1:
+    job: x-decor-bahar-nest-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 55 (R1 51)
+      value: 55.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 47 (at most 22), p98 92 (at least 90), spread 45
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 45.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.129
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.6 (at least 3.5)'
+      value: 6.6
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.36
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.7
+      value: 1.6573
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.9, p95 13.2, off-palette 6.7% (top: #BB6633 (2.1%), #CC7733
+        (1.3%))'
+      value: 2.8752
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 78 against the world reference (outliers: detail, edge)'
+      value: 78.3
+    info:
+      fit:
+        scale: 0.9449
+        anchor:
+        - 502.1
+        - 893
+      registration:
+        dx: 10
+        dy: -5
+      metrics_raw:
+        L_p5: 50.0
+        L_p50: 73.2
+        L_p95: 90.6
+        C_p50: 38.2
+        C_p95: 56.3
+        C_p99: 59.0
+        detail: 3.18
+      metrics_locked:
+        L_p5: 50.8
+        L_p50: 73.2
+        L_p95: 90.0
+        C_p50: 38.2
+        C_p95: 55.2
+        C_p99: 57.2
+        detail: 2.36
+    fingerprint: 0abe023fec3ad2f0
+  2:
+    job: x-decor-bahar-nest-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 51 (R1 51)
+      value: 51.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 46 (at most 22), p98 92 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 45.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.1
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.133
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.9 (at least 3.5)'
+      value: 6.86
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.3 (R1 5.3)
+      value: 2.27
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5472
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.2, p95 9.8, off-palette 2.6% (top: #BB6633 (0.4%), #995522
+        (0.4%))'
+      value: 2.1537
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the world reference (outliers: detail, edge)'
+      value: 79.7
+    info:
+      fit:
+        scale: 0.8372
+        anchor:
+        - 490.2
+        - 895
+      registration:
+        dx: 22
+        dy: -7
+      metrics_raw:
+        L_p5: 51.2
+        L_p50: 75.2
+        L_p95: 90.7
+        C_p50: 34.4
+        C_p95: 52.0
+        C_p99: 54.7
+        detail: 3.08
+      metrics_locked:
+        L_p5: 51.9
+        L_p50: 75.1
+        L_p95: 90.0
+        C_p50: 34.5
+        C_p95: 51.1
+        C_p99: 53.3
+        detail: 2.27
+    fingerprint: 0abe023fec3ad2f0
+  3:
+    job: x-decor-bahar-nest-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 48 (R1 51)
+      value: 48.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 48 (at most 22), p98 92 (at least 90), spread 44
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 44.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.18 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.18
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.4 (at least 3.5)'
+      value: 6.43
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.9 (R1 5.3)
+      value: 1.86
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2784
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.7, p95 6.6, off-palette 0.5% (top: #AA9944 (0.3%), #BBAA44
+        (0.1%))'
+      value: 1.721
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the world reference (outliers: detail, edge)'
+      value: 83.9
+    info:
+      fit:
+        scale: 0.8612
+        anchor:
+        - 493.2
+        - 868
+      registration:
+        dx: 19
+        dy: 20
+      metrics_raw:
+        L_p5: 52.1
+        L_p50: 75.0
+        L_p95: 91.2
+        C_p50: 34.9
+        C_p95: 49.5
+        C_p99: 52.5
+        detail: 2.54
+      metrics_locked:
+        L_p5: 52.8
+        L_p50: 75.0
+        L_p95: 90.7
+        C_p50: 35.0
+        C_p95: 48.5
+        C_p99: 50.8
+        detail: 1.86
+    fingerprint: 0abe023fec3ad2f0
+  4:
+    job: x-decor-bahar-nest-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 53.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 49 (at most 22), p98 93 (at least 90), spread 44
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 43.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 75.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.137
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 7.6 (at least 3.5)'
+      value: 7.62
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.65
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.6
+      value: 1.5619
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 11.0, off-palette 3.6% (top: #BB6633 (1.3%), #CC7733
+        (0.4%))'
+      value: 2.5533
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: detail, edge)'
+      value: 79.2
+    info:
+      fit:
+        scale: 0.7809
+        anchor:
+        - 494.7
+        - 879
+      registration:
+        dx: 17
+        dy: 9
+      metrics_raw:
+        L_p5: 53.5
+        L_p50: 75.4
+        L_p95: 91.4
+        C_p50: 37.3
+        C_p95: 54.3
+        C_p99: 57.2
+        detail: 3.54
+      metrics_locked:
+        L_p5: 54.2
+        L_p50: 75.4
+        L_p95: 90.7
+        C_p50: 37.4
+        C_p95: 53.0
+        C_p99: 55.6
+        detail: 2.65
+    fingerprint: 0abe023fec3ad2f0
+manual_review:
+  observed_note: 'After exactly two initial takes and the sole unchanged-prompt retry
+    pair, no take is eligible: visible locked alpha-over24 widths 360/359/360/360px
+    all exceed the literal one-third of1024 cap341.33px. Official hard QA passes on
+    all4 and exploration style/light warnings are advisory; only the observed width
+    brief fails. Independent original and locked content review confirms correct inventories
+    and smooth material scope, including exactly three speckled eggs and cream down
+    only inside the nest where applicable. No regeneration beyond the one allowed
+    retry, no manual resizing or alpha cleanup. All four immutable sources retained.
+    This job alone is skipped; independent corner plates continue.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-bahar-nest-v2
+  take: 1
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-e2aee2a0-a147-4818-b76f-e3abf3734eab.png
+  returned_at: '2026-11-05T22:44:57.676Z'
+  prompt_sha256: 635afd111b50fd9df2be9786c152fc4f1fe62492836020ad3d97a355a816fced
+  fingerprint: 0abe023fec3ad2f0
+  saved_at: '2026-11-05T22:44:58.020778+00:00'
+  original_generated_png_sha256: 3fa2b10f968029bc3aff3884618176d252818967b477b08432d9879809992dda
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 0cc62ca1de992768c42d3b0345ea011d84e3d797b02e021218958efa0e10b81d
+  inbox_png_sha256: 5784cdbaa932bf179af8ebc06ea2247837342de57438419e99b566394874e167
+  qa_sha256: 90985769e3a76f4ef1a1ce89715c22d7e4e0e16f28edbd06a2f661c989c3e935
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-bahar-nest-v2
+  take: 2
+  round: 1
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-30dcef78-c53c-4b40-a250-8836fa2e2763.png
+  returned_at: '2026-11-05T22:45:46.966Z'
+  prompt_sha256: 635afd111b50fd9df2be9786c152fc4f1fe62492836020ad3d97a355a816fced
+  fingerprint: 0abe023fec3ad2f0
+  saved_at: '2026-11-05T22:45:47.286704+00:00'
+  original_generated_png_sha256: fb3d0ca1adc12d8f40e1f95e1bcdb345e77aa4c3d097ec8d74cada28a83dfb4b
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: f6b9ce54a6922266e9013a6d631cff923ad851af309fb23261c0ba283095e2f9
+  inbox_png_sha256: 5140141f83afa81e1f5c35f0b65c7eca5fc3b5426987c7fe91c6f6fc9957da7f
+  qa_sha256: abb18d7cba1665ea4b0ec9b9796a8afee13787811b0fa73e9616577657071ef3
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-bahar-nest-v2
+  take: 3
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-154f3986-2471-4a90-ae54-b7465b620b6e.png
+  returned_at: '2026-11-05T22:58:45.347Z'
+  prompt_sha256: 635afd111b50fd9df2be9786c152fc4f1fe62492836020ad3d97a355a816fced
+  fingerprint: 0abe023fec3ad2f0
+  saved_at: '2026-11-05T22:58:45.681834+00:00'
+  original_generated_png_sha256: 2d6ffd9a39c3b138ca15703abc9cca9b77e0c000975e47b57be04bb9cb4033d5
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 82932659d71e2193308b3d032852e6fb1afffefcd0dd24110f31cbd9a62ce882
+  inbox_png_sha256: de9b3e447fcff0d13f482d159029d09c0d98b0006e3900469626eeb22eed2ef3
+  qa_sha256: 563131814fe571a55cdf7ab1e442fd4e0c32f95f12ae4889c3a1a6e884d4af04
+- batch: batch-30b-decor-seasons-1-v2
+  job: x-decor-bahar-nest-v2
+  take: 4
+  round: 2
+  logical_run: run-20261105-night
+  source_file: /workspace/generated_images/exec-c41a0121-c382-4cb4-a5df-6dc26a71e078.png
+  returned_at: '2026-11-05T22:59:33.819Z'
+  prompt_sha256: 635afd111b50fd9df2be9786c152fc4f1fe62492836020ad3d97a355a816fced
+  fingerprint: 0abe023fec3ad2f0
+  saved_at: '2026-11-05T22:59:34.497637+00:00'
+  original_generated_png_sha256: 63729dd3038f6a390da8f0fa130add51a17e662ef201ac668f6347478b60d927
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 560058bb321cadc2cb4194cfe73d6c6fc2580433b96e56b7ea0f052bb42cf751
+  inbox_png_sha256: 6f1d75aa1f04bd641a94b31ef26a31ca3585b38c7d1b2dd32d109a04f1ad64d6
+  qa_sha256: 4447f8182f4e8dcc8db14b9ddafa93d2b29a453dfef180e1320a69975eebe370
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 2deb939f9f47ef2bb97f228252ebe94dd793f3088c676809c05a571e0747222d
