@@ -1,0 +1,54 @@
+{
+ "after": {
+  "C_mean": 19.374,
+  "C_p50": 14.964,
+  "C_p95": 43.15,
+  "L_mean": 83.697,
+  "L_p2": 21.589,
+  "L_p98": 96.673,
+  "detail": 7.044,
+  "edge": 0.299,
+  "tint_a": 4.316,
+  "tint_b": 8.725,
+  "warmth_b": 15.982
+ },
+ "before": {
+  "C_mean": 19.374,
+  "C_p50": 14.964,
+  "C_p95": 43.15,
+  "L_mean": 83.697,
+  "L_p2": 21.589,
+  "L_p98": 96.673,
+  "detail": 7.044,
+  "edge": 0.299,
+  "tint_a": 4.316,
+  "tint_b": 8.725,
+  "warmth_b": 15.982
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "detail"
+ ],
+ "outliers_before": [
+  "detail"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 94.8,
+ "score_before": 94.8,
+ "shipped": false,
+ "source": "design/art/masters/goat-work/goat-work.webp",
+ "source_sha": "afc219c54c1a1bbf"
+}

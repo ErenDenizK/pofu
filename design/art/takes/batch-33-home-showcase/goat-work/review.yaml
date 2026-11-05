@@ -1,0 +1,207 @@
+batch: batch-33-home-showcase
+contact_sheet: design/art/takes/batch-33-home-showcase/goat-work/contact.jpg
+jobs:
+  goat-work:
+    pick: 1
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Both initial takes are eligible
+      by official hardQA and independent parent comparison. Only two forepaws now
+      hold a neat coral rope coil against the chest with one loose end; indignant
+      head/expression, horn buds, ears, beard, eyes, torso, feet, canvas/camera remain
+      stable. No hat, text, ground cast shadow or added curl. Editstability0.9242/0.9316
+      passes. Character reports omit lock_load, so use equalzero then higherHarmony94.8versus93.5:
+      selecttake1. Source-viewer halo is hidden RGB atalpha0, independently sampled
+      athead/body/underfeet againstparent; no invented opaque-background or workshop-specific
+      zero-border requirement. Full1024x1536 lockedtake1PNG747689bytes, exactlosslessWebPmethod6
+      fits472600bytes anddecodedRGBAhashmatches; no size/quality/pixel change. Lightwarnings
+      advisory. OwnHarmonymeasure/check, losslessmaster/raw/provenance/contentnode
+      inthisjobcommit. Auto-pickedbyQA; founderreviewpending.'
+qa_reports:
+  1:
+    job: goat-work
+    take: 1
+    status: pass
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.3
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 21 (at most 22), p98 97 (at least 90), spread 75
+        (at least 60)'
+      value: 75.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 88 (band 55-90)'
+      value: 88.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.196
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 3.98
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.9 (R1 5.3)
+      value: 3.9
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.3, p95 4.2, off-palette 2.1% (top: #DD7755 (0.3%), #CC6644
+        (0.2%))'
+      value: 1.2796
+    - check: ground_line
+      status: pass
+      message: feet at 89.3% of the height (contract 88%)
+      value: 0.8926
+    - check: harmony
+      status: pass
+      message: 'harmony score 95 against the char reference (outliers: detail)'
+      value: 94.8
+    - check: edit_stability
+      status: pass
+      message: 92% of the parent level unchanged
+      value: 0.9242
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.12 of the parent level (drift compounds along a chain)
+      value: 1.1155
+    info:
+      metrics_raw:
+        L_p5: 56.6
+        L_p50: 88.3
+        L_p95: 95.9
+        C_p50: 14.9
+        C_p95: 43.3
+        C_p99: 55.1
+        detail: 3.88
+      metrics_locked:
+        L_p5: 56.6
+        L_p50: 88.3
+        L_p95: 95.9
+        C_p50: 14.9
+        C_p95: 43.3
+        C_p99: 54.5
+        detail: 3.9
+    fingerprint: 7fb690540ec015c9
+  2:
+    job: goat-work
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 23 (at most 22), p98 96 (at least 90), spread 73
+        (at least 60)'
+      value: 73.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 89 (band 55-90)'
+      value: 89.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.18 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.176
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.9 (at least 3.5)'
+      value: 3.92
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.7 (R1 5.3)
+      value: 3.71
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.4, p95 5.2, off-palette 2.8% (top: #EE7766 (0.4%), #DD6655
+        (0.3%))'
+      value: 1.41
+    - check: ground_line
+      status: pass
+      message: feet at 89.3% of the height (contract 88%)
+      value: 0.8932
+    - check: harmony
+      status: pass
+      message: 'harmony score 94 against the char reference (outliers: detail)'
+      value: 93.5
+    - check: edit_stability
+      status: pass
+      message: 93% of the parent level unchanged
+      value: 0.9316
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.05 of the parent level (drift compounds along a chain)
+      value: 1.0471
+    info:
+      metrics_raw:
+        L_p5: 57.3
+        L_p50: 89.2
+        L_p95: 95.6
+        C_p50: 13.9
+        C_p95: 44.0
+        C_p99: 63.0
+        detail: 3.71
+      metrics_locked:
+        L_p5: 57.3
+        L_p50: 89.2
+        L_p95: 95.6
+        C_p50: 13.9
+        C_p95: 44.0
+        C_p99: 57.7
+        detail: 3.71
+    fingerprint: 7fb690540ec015c9
+manual_review:
+  excluded_takes: []
+  note: 'Both initial takes are eligible by official hardQA and independent parent
+    comparison. Only two forepaws now hold a neat coral rope coil against the chest
+    with one loose end; indignant head/expression, horn buds, ears, beard, eyes, torso,
+    feet, canvas/camera remain stable. No hat, text, ground cast shadow or added curl.
+    Editstability0.9242/0.9316 passes. Character reports omit lock_load, so use equalzero
+    then higherHarmony94.8versus93.5: selecttake1. Source-viewer halo is hidden RGB
+    atalpha0, independently sampled athead/body/underfeet againstparent; no invented
+    opaque-background or workshop-specific zero-border requirement. Full1024x1536
+    lockedtake1PNG747689bytes, exactlosslessWebPmethod6 fits472600bytes anddecodedRGBAhashmatches;
+    no size/quality/pixel change. Lightwarnings advisory. OwnHarmonymeasure/check,
+    losslessmaster/raw/provenance/contentnode inthisjobcommit. Auto-pickedbyQA; founderreviewpending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-9ab42806-e404-4ae3-8c89-96035e2dae5a.png
+  original_generated_png_sha256: 2aceb767524db0bb0ad8968390244d43979a5d42d2f803c50502b403d8b3d628
+  inbox_png_sha256: eebcc13389cd410939b2940cba864192dae01dc401dc75260c770c77cc956677
+  rgba_sha256: e846d9b80d54a6d6f993209e09b735805469e0fb7f92bab4452590f8aa0aaab2
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7fb690540ec015c9
+- take: 2
+  source_file: /workspace/generated_images/exec-ea7d0f0c-937f-46ac-be27-0073d20c52f5.png
+  original_generated_png_sha256: 4bd2ad1b52a631ae19995953de1a436b79aa538aea30cf4d3c9ec70b0ce8ef63
+  inbox_png_sha256: b6ce7bb68702b27bc54ceddff7176476dab8bd58edf8a0d56f47b2c3dc900474
+  rgba_sha256: 0f84e5346a4f400ce2ad329fa738d9adbffba4a027350480c1558c9b1b6ec10e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 7fb690540ec015c9
