@@ -1,0 +1,241 @@
+batch: batch-24-home-materials
+manifest: tools/imagegen/manifest/batch-24-home-materials.yaml
+manifest_sha256: 8b89cf06f923af54bdfadd47a2edcf953777d08789ad336b2d56aab7a51f9117
+contact_sheet: design/art/takes/batch-24-home-materials/x-decor-bench-2/contact.jpg
+jobs:
+  x-decor-bench-2:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both upgraded benches remain
+      in the approved chunky honey-wood family while adding curved rounded-slat backrest,
+      scrolled armrests, plump rose/cream striped cushion and one sage blanket folded
+      over an arm. Complete feet and silhouette, no animals, letters, scenery or guide
+      lines. The added scrolls and blanket distinguish the upgrade without fine grain
+      or glossy metal. Official decor guide fit and hard QA pass; light/color warnings
+      remain advisory. Raw low-alpha edge specks are preserved, with no manual repair.
+qa_reports:
+  1:
+    job: x-decor-bench-2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 43.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 91 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 38.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 77.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.22 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.224
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.4 (at least 3.5)'
+      value: 5.39
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.3 (R1 5.3)
+      value: 1.3
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1463
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 6.3, off-palette 0.8% (top: #AA9966 (0.1%), #998855
+        (0.1%))'
+      value: 1.6307
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 83 against the world reference (outliers: detail, edge)'
+      value: 83.0
+    info:
+      fit:
+        scale: 0.7214
+        anchor:
+        - 510.4
+        - 864
+      registration:
+        dx: 1
+        dy: 24
+      metrics_raw:
+        L_p5: 58.9
+        L_p50: 77.2
+        L_p95: 90.0
+        C_p50: 39.7
+        C_p95: 44.0
+        C_p99: 45.0
+        detail: 1.79
+      metrics_locked:
+        L_p5: 59.8
+        L_p50: 77.0
+        L_p95: 89.2
+        C_p50: 39.5
+        C_p95: 43.6
+        C_p99: 44.4
+        detail: 1.3
+    fingerprint: f9eb9cb277a20466
+  2:
+    job: x-decor-bench-2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 44 (R1 51)
+      value: 44.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 91 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 77.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.263
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.2 (at least 3.5)'
+      value: 5.15
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.25
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1227
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 6.2, off-palette 0.0% (top: #998866 (0.0%))'
+      value: 1.5388
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the world reference (outliers: detail, edge)'
+      value: 84.1
+    info:
+      fit:
+        scale: 0.601
+        anchor:
+        - 521.3
+        - 792
+      registration:
+        dx: -8
+        dy: 96
+      metrics_raw:
+        L_p5: 60.0
+        L_p50: 77.2
+        L_p95: 89.7
+        C_p50: 39.8
+        C_p95: 44.5
+        C_p99: 45.2
+        detail: 1.72
+      metrics_locked:
+        L_p5: 61.1
+        L_p50: 77.1
+        L_p95: 89.1
+        C_p50: 39.8
+        C_p95: 44.2
+        C_p99: 44.7
+        detail: 1.25
+    fingerprint: f9eb9cb277a20466
+manual_review:
+  observed_note: Both upgraded benches remain in the approved chunky honey-wood family
+    while adding curved rounded-slat backrest, scrolled armrests, plump rose/cream
+    striped cushion and one sage blanket folded over an arm. Complete feet and silhouette,
+    no animals, letters, scenery or guide lines. The added scrolls and blanket distinguish
+    the upgrade without fine grain or glossy metal. Official decor guide fit and hard
+    QA pass; light/color warnings remain advisory. Raw low-alpha edge specks are preserved,
+    with no manual repair.
+  excluded_takes: []
+sources:
+- batch: batch-24-home-materials
+  job: x-decor-bench-2
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-bench-goat
+  source_file: /workspace/generated_images/exec-c89e6028-8b4a-4192-bda5-e0deac1b70fa.png
+  returned_at: '2026-11-05T14:00:44.744Z'
+  prompt_sha256: f6ab55dc1618412e8d8115647f14bc28b3475203e5c0afec92505dcbfb2ac99e
+  fingerprint: f9eb9cb277a20466
+  saved_at: '2026-11-05T14:00:45.225495+00:00'
+  original_generated_png_sha256: d681d127ef325791407414dbdc0fa8d9a73d2481eb52c87e74406932080883ea
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 971ea5d20a22d471ef9375f0ea1b521f67c626969a3994caf597abaf63b6f53c
+  inbox_png_sha256: 55bdc9fc8b53c608b98c1475f1521b8ffc1f0c2ef832c98832859cf85715fb3b
+  qa_sha256: 14432386c5efcf1c36bef608bb5f2b21f7237783a2f1ee4c778d3fdfc8db2cd3
+- batch: batch-24-home-materials
+  job: x-decor-bench-2
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-bench-goat
+  source_file: /workspace/generated_images/exec-edd2e2dd-fbb2-44f9-a7d7-059fbf1dffd8.png
+  returned_at: '2026-11-05T14:02:45.102Z'
+  prompt_sha256: f6ab55dc1618412e8d8115647f14bc28b3475203e5c0afec92505dcbfb2ac99e
+  fingerprint: f9eb9cb277a20466
+  saved_at: '2026-11-05T14:02:45.432336+00:00'
+  original_generated_png_sha256: df7b065ebac75cee52883cf6f22bbbc147f0e89a75ea0464bc28f8190e6378ae
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: d652dc269afc4fc3f7d45db8012a860e8419f8a37cf21afa0b2ad90c385400cc
+  inbox_png_sha256: b1101f9f56d710c87fa74f7f98c4e2407a3bfd73ee2c155e0a07892c9f4881db
+  qa_sha256: e770fe7fbecabe0dc359f76b50f60a621d354485218c3c480055b9d354e8711d
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
