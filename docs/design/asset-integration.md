@@ -29,6 +29,15 @@ explorations, not a node whose status is `cut`) against the app's asset catalogs
 | mochi-work, -surprised, -eyes-happy, -eyes-closed; findik-work, -eyes-happy, -eyes-closed | `ResidentPose` (`Resident.art(for:)`): work while the camera is on them or their station, surprised then happy through a build pop (`BuildMoment.residentPose`), eyes shut at bedtime; a missing pose (Findik surprised) falls back to the base |
 | workshop-1-lit, pond-5-lit, windmill-5-lit | Night glows `workshop-1-glow`, `pond-5-glow`, `windmill-5-glow` through the existing `IslandLayout.litOverlay` hook, like `tea-stall-1-glow` |
 
+## Shadow silhouettes
+
+`python3 -I tools/assets/shadows.py run` writes `<imageset>-shadow.imageset` for every casting sprite
+(stations at every level, residents and their poses, decor, dressing, critters, visitors and the jar and
+lantern): black, alpha = the sprite's alpha at 1/4 size, blurred by 3 % of its height. `ShadowBake` flattens
+and shears them at runtime (light and shadow v2, `docs/design/light-and-shadow-v2.md` section 3). New art that
+casts (a regenerated station, a new critter) needs `shadows.py run`; CI runs `shadows.py check` and fails on a
+missing or stale shadow. The sidecar `tools/assets/shadows.json` holds the source hashes.
+
 ## Not integrated, and why
 
 - **workshop-2 to -5**: their opaque pixels run to the left edge of the canvas, so the shed's left

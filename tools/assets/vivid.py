@@ -185,7 +185,7 @@ def catalog_sprites() -> dict[str, list[Path]]:
     out: dict[str, list[Path]] = {}
     for d in sorted(CATALOG.glob("*.imageset")):
         stem = d.name[: -len(".imageset")]
-        if "__" in stem or "--" in stem or stem.startswith("world-island-main"):
+        if "__" in stem or "--" in stem or stem.endswith("-shadow") or stem.startswith("world-island-main"):
             continue
         png = d / f"{stem}.png"
         if png.is_file():

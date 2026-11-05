@@ -91,6 +91,11 @@ jobs:
       - name: Test the asset tools
         run: python3 -I -m unittest discover -s tools/assets -p "test_*.py"
 
+      # Every caster has a current pre-blurred shadow silhouette
+      # (light and shadow v2); `shadows.py run` regenerates them.
+      - name: Check the shadow silhouettes
+        run: python3 -I tools/assets/shadows.py check
+
       - name: Test the image pipeline
         run: python3 -I -m pytest -q tools/imagegen/tests
 
