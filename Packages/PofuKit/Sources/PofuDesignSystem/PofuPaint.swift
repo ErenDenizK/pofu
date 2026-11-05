@@ -94,7 +94,7 @@ public struct PofuPaintedFace: View {
             Image(uiImage: image)
                 .resizable(capInsets: EdgeInsets(top: 0, leading: cap, bottom: 0, trailing: cap), resizingMode: .stretch)
         } else {
-            Capsule(style: .continuous).fill(PofuColor.accent)
+            Capsule(style: .continuous).fill(paint == .facePrimary ? PofuColor.accent : PofuColor.card)
         }
     }
 }
@@ -115,6 +115,31 @@ public struct PofuPaperPanel: View {
             RoundedRectangle(cornerRadius: PofuRadius.large, style: .continuous)
                 .fill(PofuColor.card)
         }
+    }
+}
+
+/// The quieter painted action: the cream pill with ink text.
+public struct PofuPaintedSecondaryButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) private var isEnabled
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    public init() {}
+
+    public func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(PofuFont.headline)
+            .multilineTextAlignment(.center)
+            .foregroundStyle(Color(red: 0.24, green: 0.18, blue: 0.14))
+            .padding(.horizontal, PofuSpacing.xl)
+            .frame(maxWidth: .infinity, minHeight: PofuSize.buttonHeight)
+            .background {
+                PofuPaintedFace(.faceSecondary)
+                    .brightness(configuration.isPressed ? -0.08 : 0)
+            }
+            .opacity(isEnabled ? 1 : 0.45)
+            .scaleEffect(configuration.isPressed && !reduceMotion ? 0.97 : 1)
+            .animation(PofuMotion.respecting(reduceMotion, PofuMotion.squish), value: configuration.isPressed)
+            .contentShape(Capsule(style: .continuous))
     }
 }
 

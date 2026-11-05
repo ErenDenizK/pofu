@@ -18,15 +18,26 @@ public struct PofuPrimaryButtonStyle: ButtonStyle {
             .foregroundStyle(PofuColor.onAccent)
             .padding(.horizontal, PofuSpacing.xl)
             .frame(maxWidth: .infinity, minHeight: PofuSize.buttonHeight)
-            .background(
-                Capsule(style: .continuous)
-                    .fill(configuration.isPressed ? PofuColor.accentPressed : PofuColor.accent)
-                    .shadow(color: PofuColor.accent.opacity(isEnabled ? 0.28 : 0), radius: 14, y: 6)
-            )
+            .background { face(pressed: configuration.isPressed) }
             .opacity(isEnabled ? 1 : 0.45)
             .scaleEffect(configuration.isPressed && !reduceMotion ? 0.97 : 1)
             .animation(PofuMotion.respecting(reduceMotion, PofuMotion.squish), value: configuration.isPressed)
             .contentShape(Capsule(style: .continuous))
+    }
+
+    /// The painted primary face (a violet pill), or the accent capsule when
+    /// the bundle lacks it.
+    @ViewBuilder
+    private func face(pressed: Bool) -> some View {
+        #if canImport(UIKit)
+        PofuPaintedFace(.facePrimary)
+            .brightness(pressed ? -0.08 : 0)
+            .shadow(color: PofuColor.accent.opacity(isEnabled ? 0.28 : 0), radius: 14, y: 6)
+        #else
+        Capsule(style: .continuous)
+            .fill(pressed ? PofuColor.accentPressed : PofuColor.accent)
+            .shadow(color: PofuColor.accent.opacity(isEnabled ? 0.28 : 0), radius: 14, y: 6)
+        #endif
     }
 }
 
