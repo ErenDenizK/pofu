@@ -1,0 +1,203 @@
+batch: batch-22-gezgin-forms
+manifest: tools/imagegen/manifest/batch-22-gezgin-forms.yaml
+manifest_sha256: 205efd12cf3d8e6f8f0a6fcd5b94f49204dad635dbaf77c3ba34c9ad295cba5d
+contact_sheet: design/art/takes/batch-22-gezgin-forms/x-gezgin-f2-dock/contact.jpg
+jobs:
+  x-gezgin-f2-dock:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both grown whales dock with the
+      broad near flipper laid over or beside the small pier like a bridge. The lush
+      grove, stepping stones, waterfall mist, hanging lantern and glowing bulb scar
+      read together. Take1 adds an unrequested small planted harbor platform below
+      the pier; take2 keeps a freestanding pier in the cloud sea and has the lower
+      lock load. The pier is about one third of the whale length in foreground perspective,
+      not a distant tiny speck. No text or other characters. Advisory light and haze
+      warnings retained.
+qa_reports:
+  1:
+    job: x-gezgin-f2-dock
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 43 (R1 51)
+      value: 43.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 61 (at most 22), p98 96 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 35.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.36 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.357
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.8 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.75
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.7
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7924
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 6.8, off-palette 0.6% (top: #BBBB55 (0.1%), #CCCC66
+        (0.1%))'
+      value: 2.5788
+    info:
+      metrics_raw:
+        L_p5: 68.1
+        L_p50: 88.4
+        L_p95: 95.9
+        C_p50: 11.2
+        C_p95: 45.0
+        C_p99: 55.4
+        detail: 2.16
+      metrics_locked:
+        L_p5: 68.4
+        L_p50: 88.4
+        L_p95: 95.8
+        C_p50: 11.0
+        C_p95: 43.1
+        C_p99: 53.8
+        detail: 1.7
+    fingerprint: 2ad557a29f3f996e
+  2:
+    job: x-gezgin-f2-dock
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 39 (R1 51)
+      value: 38.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 58 (at most 22), p98 96 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.37 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.373
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.1 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.1
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.45
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7686
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.4, p95 5.1, off-palette 1.0% (top: #CCCC66 (0.2%), #DDCC66
+        (0.1%))'
+      value: 2.4481
+    info:
+      metrics_raw:
+        L_p5: 67.7
+        L_p50: 87.9
+        L_p95: 95.6
+        C_p50: 11.2
+        C_p95: 39.9
+        C_p99: 55.4
+        detail: 1.84
+      metrics_locked:
+        L_p5: 67.9
+        L_p50: 87.8
+        L_p95: 95.5
+        C_p50: 11.0
+        C_p95: 38.9
+        C_p99: 52.9
+        detail: 1.45
+    fingerprint: 2ad557a29f3f996e
+manual_review:
+  observed_note: Both grown whales dock with the broad near flipper laid over or beside
+    the small pier like a bridge. The lush grove, stepping stones, waterfall mist,
+    hanging lantern and glowing bulb scar read together. Take1 adds an unrequested
+    small planted harbor platform below the pier; take2 keeps a freestanding pier
+    in the cloud sea and has the lower lock load. The pier is about one third of the
+    whale length in foreground perspective, not a distant tiny speck. No text or other
+    characters. Advisory light and haze warnings retained.
+  excluded_takes: []
+sources:
+- batch: batch-22-gezgin-forms
+  job: x-gezgin-f2-dock
+  take: 1
+  round: 1
+  logical_run: backlog22-20261105
+  source_file: /workspace/generated_images/exec-3cc86976-b23a-46bc-834b-7c0d766f2aee.png
+  returned_at: '2026-11-05T13:39:53.285Z'
+  prompt_sha256: 01f3b3d8c99a077f2ddab1bd7a59a1f7fb3a52872488822318249d8d0be1e47c
+  fingerprint: 2ad557a29f3f996e
+  saved_at: '2026-11-05T13:39:53.622955+00:00'
+  original_generated_png_sha256: d33163c30953e795ee90feb08526b406a7a06a9bcf9d54b1b5208299e335948f
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 900fc77f47015b6783ba967b491a5dd1a5660bbe9d1ed80995a867544ffc9a5a
+  inbox_png_sha256: 081ddd45ecb289586b06a1eb8089013d6fb72d8a42764fdc16b48fbf5e99b46c
+  qa_sha256: 3592761650020265883c069714cce9aeba4988f014d2ce94b22c7afe5a6bc0e8
+- batch: batch-22-gezgin-forms
+  job: x-gezgin-f2-dock
+  take: 2
+  round: 1
+  logical_run: backlog22-20261105
+  source_file: /workspace/generated_images/exec-48c887f0-0043-4e69-a0b1-16198e15ad76.png
+  returned_at: '2026-11-05T13:39:04.672Z'
+  prompt_sha256: 01f3b3d8c99a077f2ddab1bd7a59a1f7fb3a52872488822318249d8d0be1e47c
+  fingerprint: 2ad557a29f3f996e
+  saved_at: '2026-11-05T13:39:05.240188+00:00'
+  original_generated_png_sha256: 68f18aa6e2e91620fb8c94434ea6dbf073381e8e2ab875c509be1df71e60b2c0
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 4e38436a8898edd25c063b62e51e2a3548589005ddf1e8a4833e870d2c9d641a
+  inbox_png_sha256: 47c2136a97233416b54f4fd09f17a381ef1d01cd62abcfdd87ded1cd7b10eb6d
+  qa_sha256: 3621c86dd325ff69196b2a19f0db1f13734d6db9cf401634d95a4050b24d5835
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
