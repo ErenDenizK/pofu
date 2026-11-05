@@ -381,8 +381,9 @@ struct ShieldWords {
 
     // Lines
 
-    func tally(resisted: Int, of reaches: Int) -> String {
-        pick("Bugün \(resisted) / \(reaches) boş verdin.", "Today: skipped \(resisted) of \(reaches).")
+    /// Counts resists only, never opens (experience v1, section 3.4).
+    func tally(resisted: Int) -> String {
+        pick("Bugün \(resisted) kez vazgeçtin.", "You skipped \(resisted) \(resisted == 1 ? "time" : "times") today.")
     }
 
     var waitingTitle: String { pick("Bildirime dokun ↑", "Tap the notification ↑") }
@@ -483,10 +484,12 @@ private struct ShieldCopyWriter {
         ShieldAppNaming(appName: context.appName, bundleIdentifier: context.bundleIdentifier)
     }
 
+    /// The second line counts what was resisted and stays silent about
+    /// what was not: with nothing resisted yet there is nothing to count.
     private var tally: String? {
-        guard context.reachesToday >= 1 else { return nil }
         let resisted = min(max(0, context.resistedToday), context.reachesToday)
-        return words.tally(resisted: resisted, of: context.reachesToday)
+        guard resisted >= 1 else { return nil }
+        return words.tally(resisted: resisted)
     }
 
     private var palette: ShieldPalette {
