@@ -1,0 +1,203 @@
+batch: batch-25-seasons
+manifest: tools/imagegen/manifest/batch-25-seasons.yaml
+manifest_sha256: de70b41e2313133a858b0128327b657229c73239b08fb06c5b6198d6046137c3
+contact_sheet: design/art/takes/batch-25-seasons/x-season-summer/contact.jpg
+jobs:
+  x-season-summer:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both clearly read high summer
+      with a full tall sunflower garden, green lawn, warm clear light, blue pond and
+      a few puffy white clouds. Original oval lawn, soil body, round door, pebbles
+      and hanging roots remain recognisable. Take1 places windmill behind the stall
+      and garden right, take2 puts windmill right and garden centrally; the supplied
+      reference is a bare island with no stations, so these inferred layouts cannot
+      prove the requested same station positions. This limitation remains explicit
+      across the seasonal concepts. No characters or text; no production promotion.
+      Advisory light/haze and palette results retained.
+qa_reports:
+  1:
+    job: x-season-summer
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 53.0
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 96 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 41.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 80 (band 55-90)'
+      value: 80.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.28 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.278
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.5 (at least 3.5)'
+      value: 4.5
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.9 (R1 5.3)
+      value: 2.87
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.5
+      value: 1.5413
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.0, p95 12.8, off-palette 6.1% (top: #CCCC66 (1.0%), #BBCC66
+        (1.0%))'
+      value: 4.0407
+    info:
+      metrics_raw:
+        L_p5: 59.7
+        L_p50: 85.3
+        L_p95: 95.1
+        C_p50: 22.6
+        C_p95: 57.0
+        C_p99: 63.1
+        detail: 3.6
+      metrics_locked:
+        L_p5: 60.1
+        L_p50: 85.3
+        L_p95: 94.9
+        C_p50: 22.5
+        C_p95: 53.0
+        C_p99: 59.7
+        detail: 2.87
+    fingerprint: 5aa506bf13a65c34
+  2:
+    job: x-season-summer
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 96 (at least 90), spread 44
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 43.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 81.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.26 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.263
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.0 (at least 3.5)'
+      value: 4.98
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.2 (R1 5.3)
+      value: 3.22
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.3269
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.7, p95 11.8, off-palette 4.5% (top: #88CCFF (1.0%), #99CCFF
+        (0.4%))'
+      value: 3.7327
+    info:
+      metrics_raw:
+        L_p5: 58.5
+        L_p50: 85.4
+        L_p95: 95.9
+        C_p50: 21.9
+        C_p95: 52.4
+        C_p99: 61.7
+        detail: 4.0
+      metrics_locked:
+        L_p5: 59.0
+        L_p50: 85.4
+        L_p95: 95.7
+        C_p50: 21.7
+        C_p95: 50.1
+        C_p99: 58.3
+        detail: 3.22
+    fingerprint: 5aa506bf13a65c34
+manual_review:
+  observed_note: Both clearly read high summer with a full tall sunflower garden,
+    green lawn, warm clear light, blue pond and a few puffy white clouds. Original
+    oval lawn, soil body, round door, pebbles and hanging roots remain recognisable.
+    Take1 places windmill behind the stall and garden right, take2 puts windmill right
+    and garden centrally; the supplied reference is a bare island with no stations,
+    so these inferred layouts cannot prove the requested same station positions. This
+    limitation remains explicit across the seasonal concepts. No characters or text;
+    no production promotion. Advisory light/haze and palette results retained.
+  excluded_takes: []
+sources:
+- batch: batch-25-seasons
+  job: x-season-summer
+  take: 1
+  round: 1
+  logical_run: backlog-20261105-frame-summer-findik
+  source_file: /workspace/generated_images/exec-b3e8f614-c497-4805-bd2e-652688fb9b1e.png
+  returned_at: '2026-11-05T13:55:26.939Z'
+  prompt_sha256: 50eb7978550ecd2dac65e0587f8e3c6082c627d65c622ace3056b445fe1031fe
+  fingerprint: 5aa506bf13a65c34
+  saved_at: '2026-11-05T13:55:27.390808+00:00'
+  original_generated_png_sha256: b5e674668eac3c753f7836015c555a113e95b408891f1b006d90c70aed42bffa
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 99a33ea77aedff123e2a1557f971f0f54716c582d910da3e7b2af3557df7ae34
+  inbox_png_sha256: 3f1f64ec32aae2feed595d8a04e7248ce11fb7881951fd8171d189c9ef72ca97
+  qa_sha256: 25546cae7c8a22da5b4fb5cd22400628fed5a271b2d3998c77a70fae95d5e456
+- batch: batch-25-seasons
+  job: x-season-summer
+  take: 2
+  round: 1
+  logical_run: backlog-20261105-frame-summer-findik
+  source_file: /workspace/generated_images/exec-971769e6-39f4-4a04-af39-d71929f7bc34.png
+  returned_at: '2026-11-05T13:57:57.179Z'
+  prompt_sha256: 50eb7978550ecd2dac65e0587f8e3c6082c627d65c622ace3056b445fe1031fe
+  fingerprint: 5aa506bf13a65c34
+  saved_at: '2026-11-05T13:57:57.483140+00:00'
+  original_generated_png_sha256: 0432fc4dc142e572a11706fd7593cf1119a2e7760be6731204eb8cd87f6db516
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 234e0fc5f67b852f0b0406cf80de1c64b454a61a0107e2e85c8fc61a0d0c82c4
+  inbox_png_sha256: 5dc99b3995c670237667e44b8099bba6757baccb2cb4d1c43f6b3e35d4c1a0b6
+  qa_sha256: 9c0fd9abb029d3468075fef1be142dbfb4d13a965f46e787d6b0ddb6044fd75e
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
