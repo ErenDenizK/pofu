@@ -1,0 +1,355 @@
+batch: batch-35-experience-pilot
+contact_sheet: design/art/takes/batch-35-experience-pilot/launch-sky/contact.jpg
+jobs:
+  launch-sky:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after the single allowed retry because no full-canvas lossless
+      master fits the strict under614400byte delivery cap. All four takes pass hard
+      numerical QA and manual sky review: calm lilac-blue to peach/cream/honey dawn
+      bands, empty top12percent, clear central crop, lower bank of cream clouds, no
+      island/sun disc/birds/stars/characters/text. Official post produces the requested1290x2796
+      canvas, with expected upscale warning and advisory light/haze/contrast warnings.
+      Initial best-tested exact lossless sizes: take1 1065244bytes, take2 1005010bytes;
+      the sole retry take3 997750bytes, take4 1002080bytes. Each best encoding is
+      lossless WebP method4 quality100; method6 quality100 and optimized RGB PNG were
+      also checked and larger. Decoded1290x2796 RGBA SHA256 matches the official locked
+      image for every encoding; source PNG bytes and inbox RGBA remain unchanged.
+      Initial unpublished preparation is preserved under runtime unpublished-launch-first-round;
+      compression-review/results.json and retry-results.json preserve evidence and
+      all test encodings. No oversize upload was attempted, no lossless/canvas waiver,
+      downscale, palette reduction, split delivery, lossy master or extra generation.
+      Archive all four q90 review takes and contact sheet, cut the content node, promote
+      no master and create no misleading Harmony shard. No dependent jobs in the pilot.
+      Founder review pending; lead must resolve full-resolution lossless delivery
+      before a future authorized attempt.'
+qa_reports:
+  4:
+    job: launch-sky
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: warn
+      message: 1024x1536 scaled x1.820 and center-cropped to 1290x2796
+      value: 1.8203
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 37.0
+    - check: light_values
+      status: warn
+      message: 'dawn/subject: L p2 82 (at most 26), p98 92 (at least 88), spread 10
+        (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 10.5
+    - check: light_median
+      status: pass
+      message: 'dawn/subject: median L 85 (band 50-88)'
+      value: 85.4
+    - check: light_haze
+      status: warn
+      message: 'dawn/subject: dark-channel haze 0.60 (at most 0.24; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.604
+    - check: light_contrast
+      status: warn
+      message: 'dawn/subject: p75 local contrast 0.3 (at least 3.2) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.27
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.643
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 3.8, off-palette 0.0%
+      value: 1.8211
+    info:
+      metrics_raw:
+        L_p5: 72.4
+        L_p50: 83.7
+        L_p95: 89.5
+        C_p50: 21.5
+        C_p95: 37.2
+        C_p99: 42.2
+        detail: 0.55
+      metrics_locked:
+        L_p5: 72.4
+        L_p50: 83.7
+        L_p95: 89.5
+        C_p50: 21.5
+        C_p95: 37.0
+        C_p99: 42.0
+        detail: 0.48
+    fingerprint: 75176df43501613b
+  2:
+    job: launch-sky
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: warn
+      message: 1024x1536 scaled x1.820 and center-cropped to 1290x2796
+      value: 1.8203
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.6
+    - check: light_values
+      status: warn
+      message: 'dawn/subject: L p2 82 (at most 26), p98 93 (at least 88), spread 11
+        (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 10.7
+    - check: light_median
+      status: pass
+      message: 'dawn/subject: median L 86 (band 50-88)'
+      value: 86.3
+    - check: light_haze
+      status: warn
+      message: 'dawn/subject: dark-channel haze 0.60 (at most 0.24; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.604
+    - check: light_contrast
+      status: warn
+      message: 'dawn/subject: p75 local contrast 0.3 (at least 3.2) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.29
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.49
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.6304
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.8, p95 3.5, off-palette 0.0%
+      value: 1.7564
+    info:
+      metrics_raw:
+        L_p5: 73.8
+        L_p50: 85.1
+        L_p95: 90.2
+        C_p50: 18.4
+        C_p95: 34.8
+        C_p99: 38.7
+        detail: 0.58
+      metrics_locked:
+        L_p5: 73.8
+        L_p50: 85.2
+        L_p95: 90.1
+        C_p50: 18.4
+        C_p95: 34.6
+        C_p99: 38.6
+        detail: 0.49
+    fingerprint: 75176df43501613b
+  1:
+    job: launch-sky
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: warn
+      message: 1024x1536 scaled x1.820 and center-cropped to 1290x2796
+      value: 1.8203
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 34 (R1 51)
+      value: 34.3
+    - check: light_values
+      status: warn
+      message: 'dawn/subject: L p2 82 (at most 26), p98 93 (at least 88), spread 11
+        (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 10.8
+    - check: light_median
+      status: pass
+      message: 'dawn/subject: median L 86 (band 50-88)'
+      value: 85.6
+    - check: light_haze
+      status: warn
+      message: 'dawn/subject: dark-channel haze 0.60 (at most 0.24; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.604
+    - check: light_contrast
+      status: warn
+      message: 'dawn/subject: p75 local contrast 0.3 (at least 3.2) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.49
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6679
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.1, p95 4.3, off-palette 0.0%
+      value: 2.0947
+    info:
+      metrics_raw:
+        L_p5: 73.9
+        L_p50: 84.5
+        L_p95: 90.1
+        C_p50: 20.8
+        C_p95: 34.4
+        C_p99: 38.0
+        detail: 0.57
+      metrics_locked:
+        L_p5: 73.9
+        L_p50: 84.6
+        L_p95: 90.0
+        C_p50: 20.8
+        C_p95: 34.3
+        C_p99: 37.9
+        detail: 0.49
+    fingerprint: 75176df43501613b
+  3:
+    job: launch-sky
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: warn
+      message: 1024x1536 scaled x1.820 and center-cropped to 1290x2796
+      value: 1.8203
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 35 (R1 51)
+      value: 34.8
+    - check: light_values
+      status: warn
+      message: 'dawn/subject: L p2 82 (at most 26), p98 93 (at least 88), spread 11
+        (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 10.7
+    - check: light_median
+      status: pass
+      message: 'dawn/subject: median L 87 (band 50-88)'
+      value: 86.8
+    - check: light_haze
+      status: warn
+      message: 'dawn/subject: dark-channel haze 0.61 (at most 0.24; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.612
+    - check: light_contrast
+      status: warn
+      message: 'dawn/subject: p75 local contrast 0.2 (at least 3.2) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.23
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.5 (R1 5.3)
+      value: 0.48
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6509
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.9, p95 4.0, off-palette 0.0%
+      value: 1.8576
+    info:
+      metrics_raw:
+        L_p5: 74.2
+        L_p50: 84.9
+        L_p95: 89.9
+        C_p50: 18.5
+        C_p95: 34.9
+        C_p99: 38.6
+        detail: 0.57
+      metrics_locked:
+        L_p5: 74.2
+        L_p50: 84.9
+        L_p95: 89.9
+        C_p50: 18.4
+        C_p95: 34.8
+        C_p99: 38.4
+        detail: 0.48
+    fingerprint: 75176df43501613b
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: 'Skipped after the single allowed retry because no full-canvas lossless master
+    fits the strict under614400byte delivery cap. All four takes pass hard numerical
+    QA and manual sky review: calm lilac-blue to peach/cream/honey dawn bands, empty
+    top12percent, clear central crop, lower bank of cream clouds, no island/sun disc/birds/stars/characters/text.
+    Official post produces the requested1290x2796 canvas, with expected upscale warning
+    and advisory light/haze/contrast warnings. Initial best-tested exact lossless
+    sizes: take1 1065244bytes, take2 1005010bytes; the sole retry take3 997750bytes,
+    take4 1002080bytes. Each best encoding is lossless WebP method4 quality100; method6
+    quality100 and optimized RGB PNG were also checked and larger. Decoded1290x2796
+    RGBA SHA256 matches the official locked image for every encoding; source PNG bytes
+    and inbox RGBA remain unchanged. Initial unpublished preparation is preserved
+    under runtime unpublished-launch-first-round; compression-review/results.json
+    and retry-results.json preserve evidence and all test encodings. No oversize upload
+    was attempted, no lossless/canvas waiver, downscale, palette reduction, split
+    delivery, lossy master or extra generation. Archive all four q90 review takes
+    and contact sheet, cut the content node, promote no master and create no misleading
+    Harmony shard. No dependent jobs in the pilot. Founder review pending; lead must
+    resolve full-resolution lossless delivery before a future authorized attempt.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-6eef9a69-03a0-488e-96de-c0f7eb9cc91b.png
+  original_generated_png_sha256: aae229099bc6aac7d52efbae4acb4f63b840e27b1c6e9254603ee1f3e3537b35
+  inbox_png_sha256: a06f978b28d302d059c021c5f586a6ff4ab04d35d36603bc7d6191b40f6d4d4e
+  rgba_sha256: 67f7e75a26b687ef6dffea3d7de30b26c8cd47cbab5257766154a7caeb761a77
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 75176df43501613b
+- take: 2
+  source_file: /workspace/generated_images/exec-6296f429-3866-448e-8efb-c83454b5f01c.png
+  original_generated_png_sha256: 26a59b885a993b745f1a4649a544e3177cf55d91d54c1e906613bd521d7f4fd7
+  inbox_png_sha256: 8758960ad47baf9409af401dadda0cf7e64e81556744c5e3abc212dcc9e094ba
+  rgba_sha256: fb7a988cc2e5753762f3f46b1851aefeb8d9d7f821e8a5f12c5256ed7e39a036
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 75176df43501613b
+- take: 3
+  source_file: /workspace/generated_images/exec-c4993159-48e6-4858-8876-85d5cf99aafd.png
+  original_generated_png_sha256: 53918f34e866de77abb2f6e335f7936891869558a6fe2d0af99bb43aa7e1da8d
+  inbox_png_sha256: 042180c0d116895c5e6568095298d383772e61f93a5746a107bc8088d0f9bc9d
+  rgba_sha256: f4fb81e99ba0b3f5d3050e28d1e8eb29c37916c3cc9447503fb157f902266db7
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 75176df43501613b
+- take: 4
+  source_file: /workspace/generated_images/exec-7bcedf3e-8c20-4b37-9eba-6e84e6de0acb.png
+  original_generated_png_sha256: d1908ab13255b5e0bde06dccc4183c54f2d49a4492d0ab3e619a0d42534491c6
+  inbox_png_sha256: 9514093dcaafb01911e91a223650602140f87150cb329deb819eed21a970ac20
+  rgba_sha256: 514c8a32575cc3186bf5cf685898e7c09d5bc7577145cc97d27b49bcc9b0317e
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 75176df43501613b
