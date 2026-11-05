@@ -1,0 +1,223 @@
+batch: batch-32-weekly-themes
+manifest: tools/imagegen/manifest/batch-32-weekly-themes.yaml
+manifest_sha256: 450c8dbab954cb31e73470d89b38dc3b2fabf83c1cf90f2ef9201b291d04e9aa
+contact_sheet: design/art/takes/batch-32-weekly-themes/x-week-visitor/contact.jpg
+jobs:
+  x-week-visitor:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both originals show a complete
+      distinct travelling fox cub: pointed dark-tipped ears, white-tipped bushy tail,
+      cream chest, two front paws and two feet, sage scarf, bundle on a stick over
+      one shoulder and round lantern in the other paw. No head curl, extra clothes,
+      letters, ground or cast ground shadow. Both originals were composited on cream
+      and dark for manual review and independently checked by a read-only reviewer.
+      The exaggerated warm halo in the raw RGBA viewer disappears on proper composites;
+      there is no visible external lantern glow or flame. The pale gold globe with
+      cream central shading is interpreted as a pale unlit painted lantern under the
+      header rule; no emissive overlay is claimed. The stick bundle and fox ears/tail
+      distinguish a visiting traveller from the established residents. Hard QA passes.
+      Character preset has no lock-load check, so equal default zero loads are broken
+      by higher advisory Harmony82.6 for take2 versus79.8 for take1. Style/light/palette
+      warnings remain advisory for this exploration. Never promoted.'
+qa_reports:
+  1:
+    job: x-week-visitor
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 54 (R1 51)
+      value: 54.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 37 (at most 22), p98 96 (at least 90), spread 59
+        (at least 60)'
+      value: 59.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 81 (band 55-90)'
+      value: 81.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.16 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.161
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.0 (at least 3.5)'
+      value: 3.96
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.8 (R1 5.3)
+      value: 3.81
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.5, p95 13.6, off-palette 12.6% (top: #EE9955 (1.5%), #BBAA77
+        (1.2%)) (advisory in an exploration)'
+      value: 4.5086
+    - check: ground_line
+      status: pass
+      message: feet at 87.4% of the height (contract 88%)
+      value: 0.8743
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the char reference (outliers: C_p95, L_p2)'
+      value: 79.8
+    info:
+      metrics_raw:
+        L_p5: 48.8
+        L_p50: 81.0
+        L_p95: 94.5
+        C_p50: 27.7
+        C_p95: 55.0
+        C_p99: 61.0
+        detail: 3.81
+      metrics_locked:
+        L_p5: 48.8
+        L_p50: 81.0
+        L_p95: 94.5
+        C_p50: 27.7
+        C_p95: 54.4
+        C_p99: 57.1
+        detail: 3.81
+    fingerprint: 6d97e7b738884397
+  2:
+    job: x-week-visitor
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 53 (R1 51)
+      value: 53.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 34 (at most 22), p98 95 (at least 90), spread 62
+        (at least 60)'
+      value: 61.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 80 (band 55-90)'
+      value: 79.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.15 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.153
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 3.8 (at least 3.5)'
+      value: 3.79
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.7 (R1 5.3)
+      value: 3.66
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.8, p95 14.1, off-palette 12.2% (top: #BBAA88 (1.9%), #EE9955
+        (0.8%)) (advisory in an exploration)'
+      value: 4.7556
+    - check: ground_line
+      status: pass
+      message: feet at 87.5% of the height (contract 88%)
+      value: 0.875
+    - check: harmony
+      status: pass
+      message: 'harmony score 83 against the char reference (outliers: C_p95, L_p2,
+        detail)'
+      value: 82.6
+    info:
+      metrics_raw:
+        L_p5: 48.7
+        L_p50: 79.9
+        L_p95: 94.4
+        C_p50: 26.9
+        C_p95: 53.3
+        C_p99: 59.0
+        detail: 3.66
+      metrics_locked:
+        L_p5: 48.7
+        L_p50: 79.9
+        L_p95: 94.4
+        C_p50: 26.9
+        C_p95: 53.2
+        C_p99: 56.4
+        detail: 3.66
+    fingerprint: 6d97e7b738884397
+manual_review:
+  observed_note: 'Both originals show a complete distinct travelling fox cub: pointed
+    dark-tipped ears, white-tipped bushy tail, cream chest, two front paws and two
+    feet, sage scarf, bundle on a stick over one shoulder and round lantern in the
+    other paw. No head curl, extra clothes, letters, ground or cast ground shadow.
+    Both originals were composited on cream and dark for manual review and independently
+    checked by a read-only reviewer. The exaggerated warm halo in the raw RGBA viewer
+    disappears on proper composites; there is no visible external lantern glow or
+    flame. The pale gold globe with cream central shading is interpreted as a pale
+    unlit painted lantern under the header rule; no emissive overlay is claimed. The
+    stick bundle and fox ears/tail distinguish a visiting traveller from the established
+    residents. Hard QA passes. Character preset has no lock-load check, so equal default
+    zero loads are broken by higher advisory Harmony82.6 for take2 versus79.8 for
+    take1. Style/light/palette warnings remain advisory for this exploration. Never
+    promoted.'
+  excluded_takes: []
+sources:
+- batch: batch-32-weekly-themes
+  job: x-week-visitor
+  take: 1
+  round: 1
+  logical_run: 20261105-night32-visitor-market
+  source_file: /workspace/generated_images/exec-2920629c-e0c9-4874-80a0-9f46fae5da37.png
+  returned_at: '2026-11-05T19:56:15.834Z'
+  prompt_sha256: 7656946617d3c40c67b1c45cc718b740cfce15ccce6906a40efbed658a39bdb0
+  fingerprint: 6d97e7b738884397
+  saved_at: '2026-11-05T19:56:16.164071+00:00'
+  original_generated_png_sha256: 38bd2c563e56fcf77d59e3db44912d2dd4be7c4dee7dfbc86e157f73fb4d1629
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: b50121b0efcbf0f2c2e4ed170f7d2a6a8b9c10fc42cdde065e8a1f18b7636405
+  inbox_png_sha256: 51df62a22efd4f49fcf93f0f574f6459f94ebefd1ee7f9bf4290cc11113420fd
+  qa_sha256: 5220656d5fca1d7a2b0a112bfaf1548af5b2ea569dbc6e5331caf51c6dd96e3a
+- batch: batch-32-weekly-themes
+  job: x-week-visitor
+  take: 2
+  round: 1
+  logical_run: 20261105-night32-visitor-market
+  source_file: /workspace/generated_images/exec-40c7e8e0-c9ea-44ee-8689-658d40064c39.png
+  returned_at: '2026-11-05T19:55:20.431Z'
+  prompt_sha256: 7656946617d3c40c67b1c45cc718b740cfce15ccce6906a40efbed658a39bdb0
+  fingerprint: 6d97e7b738884397
+  saved_at: '2026-11-05T19:55:20.852325+00:00'
+  original_generated_png_sha256: cabc84f0e97650c5a788c213fb338961b7e23a93ba2184e73e48d1b72afbf48f
+  dimensions:
+  - 1024
+  - 1536
+  rgba_sha256: 65cc65e86a5e8168087a6475db4c224a3d6875b495d45cf97847bb55ee90c9f4
+  inbox_png_sha256: 10180a7bfd8eb6a403debf9ab55965eafa63b5d4ce3630e4edea9c249c4712f8
+  qa_sha256: aa6ea9d007e48e9df774aba0173a2f4cf11d0b5b7614b1ce26b5ad7767f5f70f
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
