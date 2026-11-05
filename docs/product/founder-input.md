@@ -26,6 +26,51 @@ not orders: each entry records **what he meant**, the **status**, and
   Feel is tuned natively on his iPhone.
 - **Merging:** the agent may merge PRs, with merge commits, only on green CI.
 
+## 2026-11-05 (after testing the slice on his iPhone)
+
+He expected more; the build felt fragmentary ("bölük pörçük"):
+- **Performance is bad:** it stutters everywhere, even the minigame, and
+  the phone heats up. The next test build must be optimized.
+- **Not playable without the developer menu:** he could not open the
+  garden minigame (it is lovely and cute) or do most things.
+- **No interaction:** the sunflower field and the "+" on the map do
+  nothing. He wants levels that can be upgraded, objects and systems.
+- **Day/night cycle broken:** the day changes but lighting and the map do
+  not; it stays night; only the background changes.
+- **UI:** some elements overlap (maybe dev UI); every UI component needs a
+  pass; page transitions.
+- Characters' cheeks and the like are better (small issues).
+- **App logo** and everything else must be ready. Make sure everything is
+  complete; prepare the next build fast so he can see levels, visuals,
+  optimization and transitions. The Screen Time core waits for the
+  membership (after 2026-11-24); everything else can be tested now.
+- Status: playable build v1 planned (`docs/product/playable-build-v1.md`).
+
+## 2026-11-05 (game plan v1 and the story flow)
+
+After the game plan v1 timeline and the full story flow (chat):
+- **Gezgin comes early**, because the whale is how you travel; online
+  features (friends' harbors) arrive with it inside the story. **Two
+  forms:** early, close to the old concept (a whale with a piece of
+  island on its back); near the end of the book, grown and levelled up,
+  the "godlike" concept image. Like an edition that grows each year.
+- **Pofu and Mochi talk as a duo.** Try it.
+- **No year-two plan now.** Review all existing story content first.
+- **Do not fix durations** (arrival days); the game moves step by step, so
+  timing comes from our own tests and needs.
+- **Main-story islands vs filler islands.** Every main island directly
+  moves the main story; fillers arrive separately, as add-ons on a random
+  day, and never affect the main story or the day flow. **Çanlar is a
+  filler** (having it in the middle of the arc is wrong).
+- **Island characters get grander** (Revontuli's and the others); the new
+  images were good. Characters are detailed further after research.
+- **Research, with Opus:** Genshin Impact (Paimon, Teyvat), Zelda: Breath
+  of the Wild / Tears of the Kingdom, Naruto. Take their spirit, bring
+  similar concepts, never copy one-to-one; merge with his ideas. He likes
+  the general concept.
+- Status: research and a revised story plan in progress
+  (`docs/research/story-references.md`).
+
 ## 2026-11-04 (night): review of the loop-2 deck, and the budget
 
 - **Budget:** the plan limit is burning far too fast; work at about a

@@ -76,6 +76,13 @@ without.
 
 ## 4. Book One: the islands (rising curve)
 
+> **Superseded in part (founder, 2026-11-05):** Gezgin comes early as the
+> travel companion and grows into her godlike form by the end; islands split
+> into main-story and filler (Çanlar is a filler); arrival days are not
+> fixed. The rules are in
+> [story-references](../research/story-references.md#synthesis-the-story-rules-these-give-pofu);
+> this section is rewritten after the founder's dictation on the flow.
+
 Each wait is a little longer, and each island a little bigger than the one
 before (peak score 3 to 6; Gezgin, the founder's 10, is the finale, not
 day 8).
