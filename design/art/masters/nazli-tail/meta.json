@@ -1,0 +1,125 @@
+{
+  "job": "nazli-tail",
+  "batch": "batch-37-nazli-rig-pilot",
+  "asset": "char__nazli-tail",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-05T23:31:45+00:00",
+  "image": "design/art/masters/nazli-tail/nazli-tail.png",
+  "raw": "design/art/masters/nazli-tail/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "f3a0275ea0a84c0a",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n2. The approved Nazlı: copy her tail fluke (wide, rounded, cloud-white, two lobes) only.\n\nEdit the attached whale. Add her tail flukes: at the soft rounded\ntip of the tail stock (the far upper right of the body) grow a wide,\nrounded, cloud-white two-lobed fluke, soft and chunky, in the same\nthree-quarter view and in the same painting, joined smoothly to the\ntail stock so it reads as one animal, and small enough to stay\ninside the canvas. Only the tail tip changes: her head, face, body,\nscar and everything else stay exactly as in the attached image.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: changing the face or the body, fins, an island patch, clouds, a pier, a shadow, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/nazli-body/nazli-body.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    },
+    {
+      "path": "design/art/takes/batch-34-islands-in-game/x-gezgin-f1-harbor/plate__x-gezgin-f1-harbor--t1.webp",
+      "role": "The approved Nazlı: copy her tail fluke (wide, rounded, cloud-white, two lobes) only."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T23:29:40+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 16 (R1 51)",
+        "value": 16.2
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 71 (at most 22), p98 96 (at least 90), spread 25 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 25.1
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 85 (band 55-90)",
+        "value": 85.0
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.61 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.612
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 1.1 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 1.06
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.8 (R1 5.3)",
+        "value": 1.82
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.7, p95 3.8, off-palette 0.0%",
+        "value": 1.6819
+      },
+      {
+        "check": "ground_line",
+        "status": "warn",
+        "message": "feet at 85.8% of the height (contract 88%)",
+        "value": 0.8584
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 49 against the char reference (outliers: C_p95, L_p2, tint_b)",
+        "value": 49.4
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "98% of the parent level unchanged",
+        "value": 0.9812
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.08 of the parent level (drift compounds along a chain)",
+        "value": 1.082
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both original and official locked initial takes pass independent content and parent comparison: two wide rounded cloud-white tail-fluke lobes join smoothly only at the far upper-right stock tip and stay within the shared1536x1024 canvas. Camera-facing eyes, smile, blush, paper-lantern skin scar and body placement visually retain the published body root; no fins, patch, pier, clouds, text or unrelated objects. Canonical hard QA passes both, edit_stability0.9777/0.9812 and edit_chroma1.0306/1.082 pass. No lock_load metric is reported for these char takes, so the equal-load fallback selects higher Harmony take2 (49.4 versus47.9). Light/Harmony warnings remain advisory. No invented100percent pixel identity or extra geometry threshold, and no manual alignment, palette or alpha cleanup. This is an independent whole-whale edit of nazli-body, not cumulative with other rig parts. Existing stable consumer links preserved. Founder review pending."
+}

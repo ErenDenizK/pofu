@@ -4,17 +4,18 @@ title_tr: nazli-tail
 title_en: nazli-tail (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached whale. Add her tail flukes: at the soft rounded tip of the tail stock
-  (the far upper right of the body) grow a wide, rounded, cloud-white two-lobed fluke, soft
-  and chunky, in the same three-quarter view and in the same painting, joined smoothly to
-  the tail stock so it reads as one animal, and small enough to stay inside the canvas. Only
-  the tail tip changes: her head, face, body, scar and everything…
+summary: 'Edit the attached whale. Add her tail flukes: at the soft rounded tip of
+  the tail stock (the far upper right of the body) grow a wide, rounded, cloud-white
+  two-lobed fluke, soft and chunky, in the same three-quarter view and in the same
+  painting, joined smoothly to the tail stock so it reads as one animal, and small
+  enough to stay inside the canvas. Only the tail tip changes: her head, face, body,
+  scar and everything…'
 links:
   variant_of:
   - asset-nazli-body
 art:
-  images: []
+  images:
+  - design/art/masters/nazli-tail/nazli-tail.webp
   jobs:
   - batch-37-nazli-rig-pilot:nazli-tail
 sources:
