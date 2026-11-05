@@ -67,83 +67,72 @@ struct PlaceControl: View {
     }
 }
 
-/// One glyph of the place control, drawn as vector shapes in the control's
-/// 52 pt circle.
+/// One glyph of the place control, in the control's 52 pt circle.
 private struct PlaceGlyphView: View {
     let glyph: PlaceGlyph
 
     var body: some View {
         switch glyph {
         case .island:
-            IslandOutline()
-                .stroke(style: StrokeStyle(lineWidth: 2.2, lineCap: .round, lineJoin: .round))
-                .frame(width: 26, height: 18)
+            IslandSilhouette()
+                .frame(width: 30, height: 26)
         case .archipelago:
-            ArchipelagoDots()
-                .frame(width: 26, height: 22)
+            ArchipelagoGlyph()
+                .frame(width: 30, height: 26)
         case .pofu:
-            PofuFace()
-                .frame(width: 26, height: 24)
+            // Pofu's painted face: home.
+            PofuPaintedIcon(.faceDisc, size: 32, scales: false)
         }
     }
 }
 
-/// An island in outline: a lawn mound over a rounded underside.
-private struct IslandOutline: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let lawnY = rect.minY + rect.height * 0.42
-        path.move(to: CGPoint(x: rect.minX, y: lawnY))
-        path.addQuadCurve(to: CGPoint(x: rect.midX, y: rect.minY), control: CGPoint(x: rect.minX + rect.width * 0.18, y: rect.minY))
-        path.addQuadCurve(to: CGPoint(x: rect.maxX, y: lawnY), control: CGPoint(x: rect.maxX - rect.width * 0.18, y: rect.minY))
-        path.addQuadCurve(to: CGPoint(x: rect.midX, y: rect.maxY), control: CGPoint(x: rect.maxX - rect.width * 0.08, y: rect.maxY))
-        path.addQuadCurve(to: CGPoint(x: rect.minX, y: lawnY), control: CGPoint(x: rect.minX + rect.width * 0.08, y: rect.maxY))
-        path.closeSubpath()
-        return path
+/// A small island in silhouette: a lawn with a tuft over a tapering earth
+/// underside.
+private struct IslandSilhouette: View {
+    var body: some View {
+        Canvas { context, size in
+            let w = size.width, h = size.height
+            var earth = Path()
+            earth.move(to: CGPoint(x: w * 0.06, y: h * 0.52))
+            earth.addQuadCurve(to: CGPoint(x: w * 0.5, y: h), control: CGPoint(x: w * 0.12, y: h * 0.95))
+            earth.addQuadCurve(to: CGPoint(x: w * 0.94, y: h * 0.52), control: CGPoint(x: w * 0.88, y: h * 0.95))
+            earth.closeSubpath()
+            context.fill(earth, with: .foreground)
+            let lawn = Path(ellipseIn: CGRect(x: 0, y: h * 0.38, width: w, height: h * 0.26))
+            context.fill(lawn, with: .foreground)
+            // The tuft: three blades rising from the lawn.
+            var tuft = Path()
+            for (dx, lift) in [(-0.07, 0.24), (0.0, 0.34), (0.07, 0.22)] {
+                tuft.move(to: CGPoint(x: w * (0.5 + dx * 0.4), y: h * 0.44))
+                tuft.addQuadCurve(
+                    to: CGPoint(x: w * (0.5 + dx * 1.6), y: h * (0.44 - lift)),
+                    control: CGPoint(x: w * (0.5 + dx * 0.4), y: h * (0.44 - lift * 0.6))
+                )
+            }
+            context.stroke(tuft, with: .foreground, style: StrokeStyle(lineWidth: 2.2, lineCap: .round))
+        }
     }
 }
 
 /// Three islands as dots over two waves.
-private struct ArchipelagoDots: View {
+private struct ArchipelagoGlyph: View {
     var body: some View {
-        ZStack {
-            Circle().frame(width: 7, height: 7).offset(x: -8, y: -6)
-            Circle().frame(width: 9, height: 9).offset(x: 2, y: -8)
-            Circle().frame(width: 6, height: 6).offset(x: 9, y: -3)
-            Wave().stroke(style: StrokeStyle(lineWidth: 2, lineCap: .round)).frame(width: 24, height: 5).offset(y: 5)
-            Wave().stroke(style: StrokeStyle(lineWidth: 2, lineCap: .round)).frame(width: 18, height: 5).offset(x: 3, y: 10)
-        }
-    }
-}
-
-private struct Wave: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint(x: rect.minX, y: rect.midY))
-        path.addCurve(
-            to: CGPoint(x: rect.midX, y: rect.midY),
-            control1: CGPoint(x: rect.width * 0.12, y: rect.minY),
-            control2: CGPoint(x: rect.width * 0.38, y: rect.maxY)
-        )
-        path.addCurve(
-            to: CGPoint(x: rect.maxX, y: rect.midY),
-            control1: CGPoint(x: rect.width * 0.62, y: rect.minY),
-            control2: CGPoint(x: rect.width * 0.88, y: rect.maxY)
-        )
-        return path
-    }
-}
-
-/// Pofu's face as a vector: a round head, two ears, eyes and cheeks.
-private struct PofuFace: View {
-    var body: some View {
-        ZStack {
-            Circle().frame(width: 8, height: 8).offset(x: -9, y: -9)
-            Circle().frame(width: 8, height: 8).offset(x: 9, y: -9)
-            Ellipse().frame(width: 24, height: 21).offset(y: 1)
-            Circle().fill(Color.white).frame(width: 3.4, height: 3.4).offset(x: -5, y: -1)
-            Circle().fill(Color.white).frame(width: 3.4, height: 3.4).offset(x: 5, y: -1)
-            Capsule().fill(Color.white).frame(width: 5, height: 2).offset(y: 4)
+        Canvas { context, size in
+            let w = size.width, h = size.height
+            for (x, y, r) in [(0.22, 0.3, 4.2), (0.56, 0.18, 5.4), (0.84, 0.36, 3.6)] {
+                context.fill(
+                    Path(ellipseIn: CGRect(x: w * x - r, y: h * y - r, width: r * 2, height: r * 2)),
+                    with: .foreground
+                )
+            }
+            for (y, inset) in [(0.66, 0.0), (0.9, 0.16)] {
+                var wave = Path()
+                let x0 = w * inset, x1 = w * (1 - inset), mid = (x0 + x1) / 2
+                wave.move(to: CGPoint(x: x0, y: h * y))
+                wave.addCurve(to: CGPoint(x: mid, y: h * y), control1: CGPoint(x: x0 + w * 0.08, y: h * (y - 0.14)), control2: CGPoint(x: mid - w * 0.12, y: h * (y + 0.14)))
+                wave.addCurve(to: CGPoint(x: x1, y: h * y), control1: CGPoint(x: mid + w * 0.12, y: h * (y - 0.14)), control2: CGPoint(x: x1 - w * 0.08, y: h * (y + 0.14)))
+                context.stroke(wave, with: .foreground, style: StrokeStyle(lineWidth: 2.2, lineCap: .round))
+            }
         }
     }
 }
