@@ -13,12 +13,15 @@ import UIKit
 struct ShieldReplicaView: View {
     let model: AppModel
     let copy: ShieldCopy
+    /// The sky the shield is painted from (dawn, day, dusk or night); the
+    /// hour's sky unless a screenshot or the Prova panel pins one.
+    var sky = ShieldSky(date: Date())
 
     @Environment(\.colorScheme) private var colorScheme
     @State private var tapped = 0
 
     private var shieldColors: ShieldColors {
-        ShieldColors(palette: copy.palette)
+        ShieldColors(palette: copy.palette, sky: sky)
     }
 
     var body: some View {
@@ -50,8 +53,8 @@ struct ShieldReplicaView: View {
             .padding(.horizontal, PofuSpacing.xl)
         }
         // The system draws the shield in the app's place, light or dark;
-        // bedtime is always dark.
-        .environment(\.colorScheme, copy.palette == .night ? .dark : colorScheme)
+        // bedtime and the dusk and night skies are always dark.
+        .environment(\.colorScheme, ShieldColors.isDark(palette: copy.palette, sky: sky) ? .dark : colorScheme)
         .sensoryFeedback(.selection, trigger: tapped)
     }
 

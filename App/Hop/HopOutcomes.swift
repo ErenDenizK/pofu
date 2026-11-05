@@ -1,10 +1,13 @@
 import PofuCompanion
 import PofuCore
 import PofuDesignSystem
+import PofuSound
 import SwiftUI
 
 /// The skip celebration: Pofu hops, a bead drops into today's row, and the
-/// count rolls up. Resisting earns no seeds; it earns fluff.
+/// count rolls up. Resisting earns no seeds; it earns fluff. The same fixed
+/// 1.0 s payoff the shield's resists get plays over it (experience v1
+/// section 3.4).
 struct HopSkipped: View {
     let model: AppModel
     let session: HopSession
@@ -13,6 +16,7 @@ struct HopSkipped: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var celebrations = 0
     @State private var showsBeads = false
+    @State private var payoffRun: ResistPayoffRun?
 
     var body: some View {
         VStack(spacing: PofuSpacing.l) {
@@ -62,12 +66,30 @@ struct HopSkipped: View {
             .foregroundStyle(PofuColor.textSecondary)
             .padding(.bottom, PofuSpacing.s)
         }
-        .sensoryFeedback(.success, trigger: celebrations)
+        .overlay {
+            if let payoffRun {
+                ResistPayoffOverlay(run: payoffRun, line: String(localized: "Skipped it. One seed."))
+            }
+        }
         .task {
             // Night skips only smile; daytime skips hop (user flows).
             if !session.isNight {
                 celebrations += 1
             }
+            ResistPayoffStore().markSeen(resisted: model.reachesToday.resisted)
+            let run = ResistPayoffRun(payoff: ResistPayoff(resists: 1))
+            payoffRun = run
+            try? await Task.sleep(for: .seconds(ResistPayoff.feelAt))
+            if !session.isNight {
+                PofuHaptics.shared.play(.resist)
+                SoundEngine.shared.play(.skipChime)
+            }
+            try? await Task.sleep(for: .seconds(ResistPayoff.duration - ResistPayoff.feelAt))
+            if payoffRun?.id == run.id {
+                payoffRun = nil
+            }
+        }
+        .task {
             try? await Task.sleep(for: .milliseconds(250))
             showsBeads = true
         }
