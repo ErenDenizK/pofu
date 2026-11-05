@@ -122,7 +122,8 @@ class Job:
     # The art light standard (docs/design/light-standard.md): {cell, layer}.
     # Required on new manifests for every kind except icon, ui, widget, appicon.
     light: dict | None = None
-    # Guide fit (qa.fit_to_guide) override for a root station or ground decor:
+    # Guide fit (qa.fit_to_guide) override for a root station, ground decor, or
+    # an explicitly fitted plain root prop (plain props have no default fit):
     # {max_width, top}, or False to turn the downscale off. None = guide defaults.
     fit: dict | bool | None = None
     # Soft delivery: {scale: s}, 0 < s <= 1. QA and picking run on the full

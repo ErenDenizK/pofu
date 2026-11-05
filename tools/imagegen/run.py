@@ -381,7 +381,8 @@ def cmd_post(args, config, m: pl.Manifest) -> int:
                 # The take as it will be delivered (and posted for review).
                 dpath = out_dir / "delivered" / f"{path.stem}.webp"
                 dpath.parent.mkdir(parents=True, exist_ok=True)
-                cu.downscale(Image.fromarray(res.locked), job.deliver["scale"]).save(dpath, "WEBP", lossless=True, method=6)
+                with Image.open(locked_path) as full:
+                    cu.downscale(full, job.deliver["scale"]).save(dpath, "WEBP", lossless=True, method=6)
             report = {"job": job.id, "take": n, "status": res.status, "preset": preset_name,
                       "checks": [c.as_dict() for c in res.checks], "info": res.info, "fingerprint": side.get("fingerprint")}
             (out_dir / "qa").mkdir(parents=True, exist_ok=True)
