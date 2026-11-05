@@ -1,0 +1,209 @@
+batch: batch-31-island-milestones
+manifest: tools/imagegen/manifest/batch-31-island-milestones.yaml
+manifest_sha256: 6e982829318ae68039a10ad1c6466e6bf03e51b9af792d10d1cf64a64248f898
+contact_sheet: design/art/takes/batch-31-island-milestones/x-island-il1/contact.jpg
+jobs:
+  x-island-il1:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both show the familiar low-camera
+      round grass and earth island above the cream cloud sea, exactly three young
+      sunflowers in one bed, a round wooden door under a small grass mound, a twig
+      nest beside it and three bees. Lawn is stone-less with no other buildings or
+      added Pofu. Take1 retains embedded edge pebbles from the attached main plate;
+      take2 has a bare earth-rock edge and clearer mound placement. Both read as a
+      sparse hopeful baseline and satisfy the notes-defined review. These are independent
+      concept paintings attached to the main base plate, not registered production
+      edits; no pixel continuity is claimed. All listed references and exact CLI prompt
+      retained unchanged. Choose eligible hard-QA take by lowest lock load, then higher
+      Harmony; exploration style and light warnings remain advisory. Never promoted.
+qa_reports:
+  1:
+    job: x-island-il1
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 39.6
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 59 (at most 22), p98 96 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 85 (band 55-90)'
+      value: 85.2
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.35 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.353
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.45
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.46
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6998
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 4.4, off-palette 0.0% (top: #888844 (0.0%), #889944
+        (0.0%))'
+      value: 1.9856
+    info:
+      metrics_raw:
+        L_p5: 68.5
+        L_p50: 89.6
+        L_p95: 95.9
+        C_p50: 8.1
+        C_p95: 40.2
+        C_p99: 51.8
+        detail: 1.99
+      metrics_locked:
+        L_p5: 68.7
+        L_p50: 89.6
+        L_p95: 95.8
+        C_p50: 8.1
+        C_p95: 39.6
+        C_p99: 50.7
+        detail: 1.46
+    fingerprint: 4d231c7e37584450
+  2:
+    job: x-island-il1
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 38.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 95 (at least 90), spread 41
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 41.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 84 (band 55-90)'
+      value: 83.5
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.32 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.322
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.1 (at least 3.5)'
+      value: 3.13
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.7 (R1 5.3)
+      value: 1.7
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.6725
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 4.2, off-palette 0.0% (top: #AA9944 (0.0%), #CCBB55
+        (0.0%))'
+      value: 1.9426
+    info:
+      metrics_raw:
+        L_p5: 66.8
+        L_p50: 89.6
+        L_p95: 95.3
+        C_p50: 8.1
+        C_p95: 39.0
+        C_p99: 49.4
+        detail: 2.25
+      metrics_locked:
+        L_p5: 67.0
+        L_p50: 89.6
+        L_p95: 95.2
+        C_p50: 8.2
+        C_p95: 38.5
+        C_p99: 48.3
+        detail: 1.7
+    fingerprint: 4d231c7e37584450
+manual_review:
+  observed_note: Both show the familiar low-camera round grass and earth island above
+    the cream cloud sea, exactly three young sunflowers in one bed, a round wooden
+    door under a small grass mound, a twig nest beside it and three bees. Lawn is
+    stone-less with no other buildings or added Pofu. Take1 retains embedded edge
+    pebbles from the attached main plate; take2 has a bare earth-rock edge and clearer
+    mound placement. Both read as a sparse hopeful baseline and satisfy the notes-defined
+    review. These are independent concept paintings attached to the main base plate,
+    not registered production edits; no pixel continuity is claimed. All listed references
+    and exact CLI prompt retained unchanged. Choose eligible hard-QA take by lowest
+    lock load, then higher Harmony; exploration style and light warnings remain advisory.
+    Never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-31-island-milestones
+  job: x-island-il1
+  take: 1
+  round: 1
+  logical_run: 20261105-night31-il1-il4
+  source_file: /workspace/generated_images/exec-e4481885-2046-466a-a1eb-51040a997290.png
+  returned_at: '2026-11-05T19:51:00.490Z'
+  prompt_sha256: c54d430a195c79ee58d7d4ac1f7dfa3f68c799c739de9f1ab91e663d7d91ba6a
+  fingerprint: 4d231c7e37584450
+  saved_at: '2026-11-05T19:51:00.811619+00:00'
+  original_generated_png_sha256: 6141a23087adcd61dc30ee9edd6ff672802592cdd07ca630d6619d79412db9da
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 6ea7bdcd629eb55559e7c1cab982cb54d6070f53fd40782d16bb681993ffbf0f
+  inbox_png_sha256: 702315b2d26121a726879b1eecf69a2f447e1450439aa04af01a531c6a005452
+  qa_sha256: 5d8e10ccd0b0e6e7d098fae7c58649e959c92df7531db44628aaa6745b314a0a
+- batch: batch-31-island-milestones
+  job: x-island-il1
+  take: 2
+  round: 1
+  logical_run: 20261105-night31-il1-il4
+  source_file: /workspace/generated_images/exec-ea77752e-0002-419a-afd1-3f288359e2be.png
+  returned_at: '2026-11-05T19:51:38.218Z'
+  prompt_sha256: c54d430a195c79ee58d7d4ac1f7dfa3f68c799c739de9f1ab91e663d7d91ba6a
+  fingerprint: 4d231c7e37584450
+  saved_at: '2026-11-05T19:51:38.699981+00:00'
+  original_generated_png_sha256: 6c3012f29fc1f0919abb5311b5701dd05e4dc862d04cbf87ce0ded898ab94470
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 749f87fac66e9f4cdeb913dfb088e38bcaf8ab99263b8feaf4b9abe72e90c476
+  inbox_png_sha256: c9a4c270ca2ba2e48df684e5939a5cc2472de3843853b18a739c07a03e68ec88
+  qa_sha256: 6a07c4d0072dedad5fec1fb5b1b4a4941e55c0ce4f03f94186d696c76d458a8d
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
