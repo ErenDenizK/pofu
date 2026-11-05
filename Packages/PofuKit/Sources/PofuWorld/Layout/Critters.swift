@@ -71,3 +71,28 @@ public enum Critters {
         all.filter { $0.levels.contains(level) }
     }
 }
+
+/// The lawn's small life as touch props: the dressing that sways and the
+/// critters at rest, for the brushing finger (`TouchField`).
+public enum IslandLife {
+    public static func dressingID(_ piece: DressingPiece) -> String {
+        "dressing-\(piece.id)"
+    }
+
+    public static func critterID(_ critter: Critter) -> String {
+        "critter-\(critter.id)"
+    }
+
+    /// What a brush can touch at an island level: the touchable dressing and
+    /// every critter, by their feet.
+    public static func touchProps(atLevel level: Int) -> [(id: String, base: WorldPoint)] {
+        var props: [(id: String, base: WorldPoint)] = []
+        for piece in IslandDressing.pieces(atLevel: level) where piece.touchable {
+            props.append((id: dressingID(piece), base: piece.point))
+        }
+        for critter in Critters.critters(atLevel: level) {
+            props.append((id: critterID(critter), base: critter.rest))
+        }
+        return props
+    }
+}

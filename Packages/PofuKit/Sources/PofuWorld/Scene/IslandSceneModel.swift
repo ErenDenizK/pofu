@@ -130,9 +130,9 @@ public final class IslandSceneModel {
     func demand(moment: Bool, at date: Date = Date()) -> FrameDemand {
         let direct = engine.rig.isMoving || engine.thumb.isZooming || isBrushing(at: date)
         return FrameDemand(
-            isCovered: isCovered,
+            isCovered: isCovered || isInviting,
             isDirect: direct,
-            isMoment: moment || (isAnimating && !direct),
+            isMoment: moment || isMoment || (isAnimating && !direct),
             isVisiting: isVisiting || (isDeviceTiltEnabled && !reduceMotion)
         )
     }
@@ -152,14 +152,147 @@ public final class IslandSceneModel {
         // The camera springs still run (a sheet can open with the camera
         // on its way).
         let wanted = isVisiting || (isDeviceTiltEnabled && !reduceMotion)
-        let ambient = wanted && !isCovered && !hasSheet
+        let ambient = wanted && !isCovered && !isInviting && !hasSheet
             && power.policy.directive(for: .ambient, conditions: power.conditions).hz > 0
-        return isAnimating || ambient
+        return isAnimating || isMoment || ambient
     }
 
     /// Whether a sheet or full-screen cover that is not the station sheet
     /// sits over the island; Home sets it while one is presented.
     public var isCovered = false
+
+    // MARK: - Visitors and the lawn's life (experience v1 §5, §6)
+
+    /// Sends a game event for a tap on the visit (greeting, gift, help,
+    /// invitation); Home sets it.
+    @ObservationIgnored public var onVisitorEvent: (@MainActor (GameEvent.Kind) -> Void)?
+    /// A quiet day's invitation sheet is up.
+    public var isInviting = false
+    /// A Moment is running: the visitor's arrival or the dressing's puff.
+    /// The frame policy holds the Moment rate until it ends.
+    public private(set) var isMoment = false
+    private var momentUntil = Date.distantPast
+    private var momentTask: Task<Void, Never>?
+    /// When the visit's arrival beat began; `nil` when none is running.
+    @ObservationIgnored private var arrivalStart: Date?
+    private var arrivalTask: Task<Void, Never>?
+    /// Arrivals this scene has played: each visit arrives once.
+    @ObservationIgnored private var arrivalsPlayed: Set<String> = []
+    /// The island level the scene last saw; dressing leaves when it rises.
+    @ObservationIgnored private var lastIslandLevel: Int?
+    @ObservationIgnored private var leavingDressing: [(piece: DressingPiece, start: Date)] = []
+
+    /// The island level the dressing is drawn at.
+    var shownIslandLevel: Int {
+        lastIslandLevel ?? 1
+    }
+
+    /// Holds the Moment state for `seconds` (at least until any earlier hold
+    /// ends).
+    func holdMoment(seconds: Double, from now: Date = Date()) {
+        momentUntil = max(momentUntil, now.addingTimeInterval(seconds))
+        isMoment = true
+        kick()
+        momentTask?.cancel()
+        momentTask = Task { @MainActor [weak self] in
+            while let remaining = self?.momentUntil.timeIntervalSinceNow, remaining > 0 {
+                try? await Task.sleep(for: .seconds(remaining))
+                if Task.isCancelled { return }
+            }
+            guard !Task.isCancelled else { return }
+            self?.isMoment = false
+            self?.kick()
+        }
+    }
+
+    /// The scene saw today's visitor (or none). A visit that has not been
+    /// greeted arrives once: the camera pans to its slot first, then the
+    /// visitor drifts down or lands (`VisitorStage`), inside a 2 s Moment.
+    /// Reduce Motion and a still frame skip the pan and the beat.
+    ///
+    /// - Returns: Whether this visit's arrival began now (the first time the
+    ///   scene sees it).
+    @discardableResult
+    func noteVisitor(_ visitor: VisitorSnapshot?, at now: Date, still: Bool) -> Bool {
+        guard let visitor, !still, VisitorStage.hasArrival(visitor) else { return false }
+        guard arrivalsPlayed.insert(VisitorStage.arrivalKey(of: visitor)).inserted else { return false }
+        guard !reduceMotion else { return true }
+        arrivalStart = now
+        holdMoment(seconds: VisitorStage.momentSeconds, from: now)
+        // The pan: only where the camera can show the slot.
+        guard island == .home, framing != .map, focus == nil, sheet == nil, engine.rig.pinchStart == nil else { return true }
+        // The establishing shot gives way to the arrival.
+        establishTask?.cancel()
+        let feet = VisitorStage.feet(of: visitor)
+        let from = engine.rig.rail.pose(z: Double(WorldFraming.island.rawValue))
+        let pose = CameraPose(logScale: from.logScale, lookX: feet.x, lookY: from.lookY, anchorY: from.anchorY)
+        travel { $0.focus(pose: pose, lens: .island, camera: WorldSprings.residentFocus) }
+        kick()
+        arrivalTask?.cancel()
+        arrivalTask = Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .seconds(VisitorStage.momentSeconds))
+            guard let self, !Task.isCancelled, self.arrivalStart != nil, self.focus == nil, self.sheet == nil else { return }
+            self.arrivalStart = nil
+            self.travel { $0.releaseFocus() }
+            self.kick()
+        }
+        return true
+    }
+
+    /// Seconds since the arrival began, while it runs; `nil` when settled.
+    func arrivalElapsed(at date: Date) -> Double? {
+        guard let arrivalStart else { return nil }
+        let elapsed = date.timeIntervalSince(arrivalStart)
+        return elapsed < VisitorStage.momentSeconds ? max(elapsed, 0) : nil
+    }
+
+    /// A touch of the camera by the player ends the arrival's pan.
+    private func cancelArrival(releasing: Bool) {
+        guard arrivalStart != nil else { return }
+        arrivalTask?.cancel()
+        arrivalTask = nil
+        arrivalStart = nil
+        if releasing, focus == nil, sheet == nil, engine.rig.isFocused {
+            travel { $0.releaseFocus() }
+        }
+    }
+
+    /// The scene saw the island level. When it rises, the dressing that
+    /// waited on a slot that has opened leaves in the reveal's puff.
+    func noteIslandLevel(_ level: Int, at now: Date) {
+        defer { lastIslandLevel = level }
+        guard let last = lastIslandLevel, level > last, !reduceMotion else { return }
+        let gone = IslandDressing.leaving(fromLevel: last, toLevel: level)
+        guard !gone.isEmpty else { return }
+        leavingDressing = gone.map { (piece: $0, start: now) }
+        holdMoment(seconds: DressingReveal.puffSeconds + 0.05, from: now)
+    }
+
+    /// The dressing mid-puff at `date`, with the seconds since it began.
+    func dressingLeaving(at date: Date) -> [(piece: DressingPiece, elapsed: Double)] {
+        leavingDressing.compactMap { entry in
+            let elapsed = date.timeIntervalSince(entry.start)
+            return elapsed < DressingReveal.puffSeconds ? (piece: entry.piece, elapsed: max(elapsed, 0)) : nil
+        }
+    }
+
+    /// A tap on a part of the visit: the quiet day's letter opens the
+    /// invitation sheet; the rest send their event.
+    func visitorTapped(_ part: VisitorPart, visitor: VisitorSnapshot?) {
+        if part == .letter {
+            isInviting = true
+            return
+        }
+        if let kind = VisitorStage.event(for: part, visitor: visitor) {
+            onVisitorEvent?(kind)
+        }
+    }
+
+    /// The player picked a resident from the letter: they come tomorrow.
+    public func invite(_ resident: ResidentID) {
+        isInviting = false
+        onVisitorEvent?(.invited(resident))
+    }
 
     /// The look's live window after the scene appears (look-dev B): the
     /// HD-2D layers animate during a visit and while the camera moves;
@@ -374,17 +507,17 @@ public final class IslandSceneModel {
     /// A dragging finger at screen point (`x`, `y`) touches the island
     /// (§1.3): at the Island framing and closer, with nothing focused.
     func brush(x: Double, y: Double, at time: Date) {
-        guard railPosition >= TouchField.minimumZ, focus == nil, sheet == nil, engine.rig.pinchStart == nil else { return }
+        guard railPosition >= TouchField.minimumZ, focus == nil, sheet == nil, !isInviting, engine.rig.pinchStart == nil else { return }
         let world = engine.rig.pose.unproject(
             x: x - engine.rig.offsetX.value,
             y: y - engine.rig.offsetY.value,
             width: engine.rig.rail.width
         )
-        engine.touch.brush(
-            at: world,
-            t: time.timeIntervalSinceReferenceDate,
-            props: IslandLayout.touchProps.map { (id: $0.id, base: $0.center) }
-        )
+        // The stations give a little, and so do the dressing and the
+        // critters at the island's level (§6).
+        let props = IslandLayout.touchProps.map { (id: $0.id, base: $0.center) }
+            + IslandLife.touchProps(atLevel: shownIslandLevel)
+        engine.touch.brush(at: world, t: time.timeIntervalSinceReferenceDate, props: props)
         kick()
     }
 
@@ -508,6 +641,8 @@ public final class IslandSceneModel {
     }
 
     private func closeSurfaces() {
+        // Whatever moves the camera now takes over from the arrival's pan.
+        cancelArrival(releasing: false)
         focus = nil
         residentLine = nil
         if sheet != nil {
@@ -551,12 +686,27 @@ public final class IslandSceneModel {
     /// answers within the frame (a squish and the "tap" haptic), then focus
     /// and the sheet follow. A tap on empty ground does nothing, except to
     /// dismiss a card or sheet.
-    func tapped(x: Double, y: Double, stations: [StationStatus], arrived: Set<IslandID>) {
+    func tapped(
+        x: Double,
+        y: Double,
+        stations: [StationStatus],
+        arrived: Set<IslandID>,
+        visitor: VisitorSnapshot? = nil,
+        invitationOpen: Bool = false,
+        isBedtime: Bool = false
+    ) {
         let rig = engine.rig
-        var targets = WorldHitTest.targets(stations: stations, z: rig.railPosition)
+        var targets = WorldHitTest.targets(
+            stations: stations, z: rig.railPosition, visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime
+        )
         if focus != nil || sheet != nil {
-            // Behind a card or a sheet the home objects step aside.
-            targets.removeAll { if case .prop = $0.kind { true } else { false } }
+            // Behind a card or a sheet the home objects and the visit step aside.
+            targets.removeAll {
+                switch $0.kind {
+                case .prop, .visitor: true
+                default: false
+                }
+            }
         }
         let hit = WorldHitTest.resolve(
             x: x,
@@ -584,6 +734,9 @@ public final class IslandSceneModel {
         case .prop(let prop):
             pulse("prop-\(prop.rawValue)")
             onPropTap?(prop)
+        case .visitor(let part):
+            pulse("visitor-\(part.rawValue)")
+            visitorTapped(part, visitor: visitor)
         case .island(let id):
             guard arrived.contains(id) || id == .home else {
                 pulse("island-\(id.rawValue)")
@@ -675,6 +828,7 @@ public final class IslandSceneModel {
             if engine.rig.isFocused {
                 // A finger during the establishing shot takes over.
                 establishTask?.cancel()
+                cancelArrival(releasing: false)
                 engine.rig.releaseFocus()
             }
             engine.rig.panDrag(dx: dx)
