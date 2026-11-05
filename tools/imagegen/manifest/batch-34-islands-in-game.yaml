@@ -1,0 +1,617 @@
+# Batch 34: exploration, never promoted. The future islands as they look IN
+# THE GAME (docs/product/home-layout.md, section 10): each main island stuck
+# and healed, Gezgin in form 1 and form 2 docked at the harbor, and the home
+# island at island level 5 and at Tam Çiçek, all in the home island's camera,
+# scale and plate proportions, so the founder can picture them in play.
+#
+# Founder (2026-11-05): "I am unsure what Çağlayan will be like (the first
+# concept was a bit scary); I need concepts closer to the game. And show me
+# Gezgin." Batch 17's Çağlayan hung over the void (a pointed underside, a
+# long fall into the clouds). Here every island is a plate like home, with its
+# own top, palette and landmark, and the water never leaves it. Stuck and
+# healed are the same island and layout: only the state changes.
+#
+# Tracks: `caglayan`, `gezgin`, `revontuli`, `emanet`, `mehtap`, `home`.
+# Order is priority: Çağlayan and Gezgin answer the founder's questions.
+#
+# READY (docs/design/art-production-plan.md, the queue). EXPLORATION RULES
+# (AGENTS.md): do NOT run `promote`; commit the takes (WebP q90), the contact
+# sheet and review.yaml under design/art/takes/<batch>/<id>/ and nothing else.
+# No painted text anywhere. Never paint glass UI, chrome or buttons. A failed
+# or refused job is recorded and skipped; the run continues with the next
+# job. There is no pilot gate: run the jobs in the order written.
+
+batch: batch-34-islands-in-game
+title: Islands in the game camera (stuck and healed, Gezgin at the harbor, home growth)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+  - {id: harbor-island-s, kind: world, name: harbor-island-s, external: batch-14-harbor, master: design/art/masters/harbor-island-s/harbor-island-s.webp}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island, master: design/art/masters/mochi-v2/mochi-v2.webp}
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+  - {id: windmill-5, kind: station, name: windmill-5, external: batch-03-home-island}
+  - {id: pier-1, kind: station, name: pier-1, external: batch-21-harbor-ladders}
+
+  - id: x-caglayan-stuck
+    kind: plate
+    name: x-caglayan-stuck
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Çağlayan in the game camera, stuck. Review: reads as a cozy place in the same game as home; nothing scary; the stuck state reads without words; stuck and healed share one layout."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+      - ref: approved:tea-stall-5
+        role: "A finished station of the game: buildings and props on the new island are at this scale and in this finish (do not draw this stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: draw him small at the front centre in this exact style."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: draw her small beside Pofu in this exact style."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Çağlayan, the waterfall island,
+          in the game, at noon. The plate's top is warm pale cream stone (soft
+          travertine) in two low, rounded terraces with moss fringes and little ferns,
+          not a green lawn; its body is rounded honey and cream stone in soft bands.
+          At the back centre a low, rounded rock knoll, about as tall as a windmill,
+          with a short waterfall from a spout in its face into a wide round pool at
+          its foot; from the pool a little stream runs to the front edge into a small
+          round stone basin that sits on the lip, so the water never leaves the
+          island. On the left a small stone mill hut with a round wooden waterwheel
+          beside the stream and one round window with a lamp. On the right three small
+          round pools step down like saucers with two leaf boats, crossed by a
+          stepping-stone path. Damla, a small round brown-and-cream otter with a cream
+          face, sits on the big pool's edge holding a tulip glass. STUCK STATE: the
+          waterfall is paused in mid-air, a clear, still curtain of water like soft
+          glass, with round droplets hanging in the air like beads that sparkle in the
+          noon sun; the pools are only half full with pale dry cream rims, the stream
+          is still, the waterwheel stands still, the mill lamp is unlit, the leaf
+          boats rest on dry stone, and Damla holds an empty glass and looks up at the
+          still fall, puzzled, not sad. It looks like a sunny picture somebody paused.
+          GAME CAMERA (this is how the island looks inside the game): exactly the
+          camera of the attached home island, a low front three-quarter view about 20
+          degrees above the horizon, the island centered and filling about 85 % of the
+          image width, a pale sky with soft far clouds above and the sea of clouds
+          below rising to the island's underside. The island is a floating diorama
+          plate of the same size and proportions as the home island: a shallow top
+          about a fifth as deep as it is wide over a soft, rounded body with gentle
+          bands, so it reads as a place in the same game. Every building and prop is
+          at the scale of the attached tea stall; Pofu (the hamster) and Mochi (the
+          bunny) stand small at the front centre, at the size they have at home, for
+          scale. MOOD: warm, cozy, gentle and inviting, a place a child would want to
+          visit; peaceful and wondrous, never dramatic, never eerie.
+      - block: prop-style-v2
+      - text: "AVOID: a pointed, spiky or rocky underside, a long waterfall or anything falling off the island into the void, a drop or cliff in the foreground, dark caves, fog walls, gloom, ruins, sad or empty eyes, a copy of the home island's green lawn and round door, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"
+
+  - id: x-caglayan-healed
+    kind: plate
+    name: x-caglayan-healed
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Çağlayan in the game camera, healed. Review: reads as a cozy place in the same game as home; nothing scary; the healed state reads without words; stuck and healed share one layout."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+      - ref: approved:tea-stall-5
+        role: "A finished station of the game: buildings and props on the new island are at this scale and in this finish (do not draw this stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: draw him small at the front centre in this exact style."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: draw her small beside Pofu in this exact style."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Çağlayan, the waterfall island,
+          in the game, at noon. The plate's top is warm pale cream stone (soft
+          travertine) in two low, rounded terraces with moss fringes and little ferns,
+          not a green lawn; its body is rounded honey and cream stone in soft bands.
+          At the back centre a low, rounded rock knoll, about as tall as a windmill,
+          with a short waterfall from a spout in its face into a wide round pool at
+          its foot; from the pool a little stream runs to the front edge into a small
+          round stone basin that sits on the lip, so the water never leaves the
+          island. On the left a small stone mill hut with a round wooden waterwheel
+          beside the stream and one round window with a lamp. On the right three small
+          round pools step down like saucers with two leaf boats, crossed by a
+          stepping-stone path. Damla, a small round brown-and-cream otter with a cream
+          face, sits on the big pool's edge holding a tulip glass. HEALED STATE: the
+          same island, nothing moved: the waterfall pours softly into the full pool
+          with a small mist rainbow, the stream runs to the basin, the waterwheel
+          turns with a little spray, the mill window glows warm, the leaf boats float,
+          the saucer pools are full and clear turquoise, two dragonflies hover, and
+          Damla floats on her back in the big pool with a full glass of water resting
+          on her tummy. GAME CAMERA (this is how the island looks inside the game):
+          exactly the camera of the attached home island, a low front three-quarter
+          view about 20 degrees above the horizon, the island centered and filling
+          about 85 % of the image width, a pale sky with soft far clouds above and the
+          sea of clouds below rising to the island's underside. The island is a
+          floating diorama plate of the same size and proportions as the home island:
+          a shallow top about a fifth as deep as it is wide over a soft, rounded body
+          with gentle bands, so it reads as a place in the same game. Every building
+          and prop is at the scale of the attached tea stall; Pofu (the hamster) and
+          Mochi (the bunny) stand small at the front centre, at the size they have at
+          home, for scale. MOOD: warm, cozy, gentle and inviting, a place a child
+          would want to visit; peaceful and wondrous, never dramatic, never eerie.
+      - block: prop-style-v2
+      - text: "AVOID: a pointed, spiky or rocky underside, a long waterfall or anything falling off the island into the void, a drop or cliff in the foreground, dark caves, fog walls, gloom, ruins, sad or empty eyes, a copy of the home island's green lawn and round door, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"
+
+  - id: x-gezgin-f1-harbor
+    kind: plate
+    name: x-gezgin-f1-harbor
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Gezgin form 1 docked at the home harbor, game camera. Review: humble, tired but lovable; the hook and the scar read; she reads as transport."
+    attach:
+      - ref: approved:harbor-island-s
+        role: "The home harbor islet (İskele): draw it on the left of the frame exactly like this, with the attached pier at its front right."
+      - ref: approved:pier-1
+        role: "The harbor's ferry pier: it sits at the islet's front right; Nazlı is moored beside it."
+      - ref: approved:island-main-l-v3
+        role: "The home island: same camera, the same soft painting and the same scale of a floating island (do not draw it)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: draw him small in this exact style."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: draw her small beside Pofu in this exact style."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Nazlı, the cloud-whale Gezgin, is
+          huge, soft and rounded, grey-blue on the back fading to cream on the belly,
+          with a small gentle eye, a faint smile, broad rounded flippers and a wide
+          cloud-white tail fluke; she is about three times as long as the harbor islet
+          is wide. FORM 1 (early, humble and tired): her body a little thin and pale,
+          her head low, her eye heavy-lidded but kind. On her back a small patch of
+          mossy island no bigger than a cottage lot: a short wooden bench, a single
+          mooring post whose rope runs to the pier, a tuft of grass and one dark
+          honey-wood lantern hook with nothing on it; beside the hook a faint pale
+          scar in her skin shaped like a switched-off light bulb. She floats alongside
+          the pier, her head toward the islet, as a ferry would; Pofu and Mochi stand
+          at the end of the pier with a small bag, about to step onto her back. Soft
+          morning light. GAME CAMERA: the camera of the attached home island, a low
+          front three-quarter view about 20 degrees above the horizon; the harbor
+          islet on the left third of the frame at the size it has in the game, Nazlı
+          filling the right two thirds, over the sea of clouds. Peaceful and wondrous,
+          never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: a scary or monstrous whale, teeth, a big open mouth, harpoons, ropes cutting into her, water or waves, a ship's deck, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"
+
+  - id: x-gezgin-f2-harbor
+    kind: plate
+    name: x-gezgin-f2-harbor
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: golden, layer: subject}
+    notes: "Exploration. Gezgin form 2 docked at the home harbor, game camera. Review: the same whale grown, the whoa; the lit lantern and the sunflower read; nothing falls off her."
+    attach:
+      - ref: approved:harbor-island-s
+        role: "The home harbor islet (İskele): draw it on the left of the frame exactly like this, with the attached pier at its front right."
+      - ref: approved:pier-1
+        role: "The harbor's ferry pier: it sits at the islet's front right; Nazlı is moored beside it."
+      - ref: approved:island-main-l-v3
+        role: "The home island: same camera, the same soft painting and the same scale of a floating island (do not draw it)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: draw him small in this exact style."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: draw her small beside Pofu in this exact style."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Nazlı, the cloud-whale Gezgin, is
+          huge, soft and rounded, grey-blue on the back fading to cream on the belly,
+          with a small gentle eye, a faint smile, broad rounded flippers and a wide
+          cloud-white tail fluke; she is about three times as long as the harbor islet
+          is wide. FORM 2 (end of the book, grown, the same whale): fuller and glowing
+          with health, her eye open and warm. On her back a lush small island: a grove
+          of three round trees, a young sunflower growing from a pocket of honey soil
+          (a cutting of home), a little pool on her back with a short waterfall into a
+          second pool, both on her back (nothing falls off her), small keepsakes
+          tucked among the plants (a moss cushion, a water flask, a wrapped parcel, a
+          jar of soft light, a honey jar), the lantern hook now holding an old lantern
+          lit warm, and the scar glowing softly gold. She floats alongside the pier;
+          Pofu and Mochi sit on her back on the bench. Golden hour light. GAME CAMERA:
+          the camera of the attached home island, a low front three-quarter view about
+          20 degrees above the horizon; the harbor islet on the left third of the
+          frame at the size it has in the game, Nazlı filling the right two thirds,
+          over the sea of clouds. Peaceful and wondrous, never dramatic.
+      - block: prop-style-v2
+      - text: "AVOID: a scary or monstrous whale, teeth, a big open mouth, harpoons, ropes cutting into her, water or waves, a ship's deck, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"
+
+  - id: x-revontuli-stuck
+    kind: plate
+    name: x-revontuli-stuck
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: night, layer: subject}
+    notes: "Exploration. Revontuli in the game camera, stuck. Review: reads as a cozy place in the same game as home; nothing scary; the stuck state reads without words; stuck and healed share one layout."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+      - ref: approved:tea-stall-5
+        role: "A finished station of the game: buildings and props on the new island are at this scale and in this finish (do not draw this stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: draw him small at the front centre in this exact style."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: draw her small beside Pofu in this exact style."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Revontuli, the aurora island, in
+          the game, at night. The plate is a floe: its top soft deep snow, its body
+          thick, rounded, milky blue-white ice that glows faintly from inside, with a
+          few short rounded icicles under it like roots. On the left back a small
+          wooden sauna on short stilts with a round chimney and one warm window; on
+          the right back one plump snowy spruce; at the front left a round fishing
+          hole in the ice with a tiny wooden stool; at the back centre a tall slim
+          wooden post holding a round glass lantern, the aurora's lantern. Tuli, a
+          small round white arctic fox with a huge fluffy tail whose tip is shaped
+          like a soft paintbrush, sits by the lantern post. STUCK STATE: a deep, milky
+          night-blue sky full of small stars and no aurora at all; the aurora's
+          lantern is dark; Tuli's tail tip is plain white and she looks up at the
+          empty sky, hopeful; the sauna window still glows warm with a thin ribbon of
+          steam; gentle snow falls. GAME CAMERA (this is how the island looks inside
+          the game): exactly the camera of the attached home island, a low front
+          three-quarter view about 20 degrees above the horizon, the island centered
+          and filling about 85 % of the image width, a pale sky with soft far clouds
+          above and the sea of clouds below rising to the island's underside. The
+          island is a floating diorama plate of the same size and proportions as the
+          home island: a shallow top about a fifth as deep as it is wide over a soft,
+          rounded body with gentle bands, so it reads as a place in the same game.
+          Every building and prop is at the scale of the attached tea stall; Pofu (the
+          hamster) and Mochi (the bunny) stand small at the front centre, at the size
+          they have at home, for scale. MOOD: warm, cozy, gentle and inviting, a place
+          a child would want to visit; peaceful and wondrous, never dramatic, never
+          eerie.
+      - block: prop-style-v2
+      - text: "AVOID: a pointed, spiky or rocky underside, a long waterfall or anything falling off the island into the void, a drop or cliff in the foreground, dark caves, fog walls, gloom, ruins, sad or empty eyes, a copy of the home island's green lawn and round door, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"
+
+  - id: x-revontuli-healed
+    kind: plate
+    name: x-revontuli-healed
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: night, layer: subject}
+    notes: "Exploration. Revontuli in the game camera, healed. Review: reads as a cozy place in the same game as home; nothing scary; the healed state reads without words; stuck and healed share one layout."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+      - ref: approved:tea-stall-5
+        role: "A finished station of the game: buildings and props on the new island are at this scale and in this finish (do not draw this stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: draw him small at the front centre in this exact style."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: draw her small beside Pofu in this exact style."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Revontuli, the aurora island, in
+          the game, at night. The plate is a floe: its top soft deep snow, its body
+          thick, rounded, milky blue-white ice that glows faintly from inside, with a
+          few short rounded icicles under it like roots. On the left back a small
+          wooden sauna on short stilts with a round chimney and one warm window; on
+          the right back one plump snowy spruce; at the front left a round fishing
+          hole in the ice with a tiny wooden stool; at the back centre a tall slim
+          wooden post holding a round glass lantern, the aurora's lantern. Tuli, a
+          small round white arctic fox with a huge fluffy tail whose tip is shaped
+          like a soft paintbrush, sits by the lantern post. HEALED STATE: the same
+          island, nothing moved: soft green and violet aurora curtains ripple across
+          the whole sky, milky and gentle, never neon; the lantern on the post glows
+          pale gold; Tuli's tail tip is coloured green and violet and she paints a
+          soft stroke of aurora into the air; the snow glitters faintly and the
+          fishing hole reflects the aurora. GAME CAMERA (this is how the island looks
+          inside the game): exactly the camera of the attached home island, a low
+          front three-quarter view about 20 degrees above the horizon, the island
+          centered and filling about 85 % of the image width, a pale sky with soft far
+          clouds above and the sea of clouds below rising to the island's underside.
+          The island is a floating diorama plate of the same size and proportions as
+          the home island: a shallow top about a fifth as deep as it is wide over a
+          soft, rounded body with gentle bands, so it reads as a place in the same
+          game. Every building and prop is at the scale of the attached tea stall;
+          Pofu (the hamster) and Mochi (the bunny) stand small at the front centre, at
+          the size they have at home, for scale. MOOD: warm, cozy, gentle and
+          inviting, a place a child would want to visit; peaceful and wondrous, never
+          dramatic, never eerie.
+      - block: prop-style-v2
+      - text: "AVOID: a pointed, spiky or rocky underside, a long waterfall or anything falling off the island into the void, a drop or cliff in the foreground, dark caves, fog walls, gloom, ruins, sad or empty eyes, a copy of the home island's green lawn and round door, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"
+
+  - id: x-emanet-stuck
+    kind: plate
+    name: x-emanet-stuck
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: golden, layer: subject}
+    notes: "Exploration. Emanet in the game camera, stuck. Review: reads as a cozy place in the same game as home; nothing scary; the stuck state reads without words; stuck and healed share one layout."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+      - ref: approved:tea-stall-5
+        role: "A finished station of the game: buildings and props on the new island are at this scale and in this finish (do not draw this stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: draw him small at the front centre in this exact style."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: draw her small beside Pofu in this exact style."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Emanet, the lost-and-found
+          island, in the game, late afternoon. The plate's top is warm cobblestones
+          with short tufts of grass, its body rounded honey earth with one band of
+          weathered teal-painted planks around its rim. At the back centre the lost-
+          and-found office: a tall, narrow, slightly crooked little house on short
+          stilts built from lost things, an upturned umbrella for a roof, a giant
+          teacup as its water tank, a top-hat chimney and a ladder of mismatched
+          spoons, with a counter window at the front. Along the right, long low
+          shelves; on the left, a little hand-cart; at the far right a short post with
+          eight hooks, seven holding small old objects and the eighth empty. Boncuk, a
+          small round magpie with a black-and-white body and a soft teal sheen on the
+          wings painted matte, keeps the counter. STUCK STATE: soft heaps of unsorted
+          lost things everywhere on the cobbles (umbrellas, single mittens, teapots, a
+          kite, a toy rocking horse, letters), the shelves empty, the tags blank, the
+          office window dark, and Boncuk perched on top of the biggest heap holding a
+          little duster, flustered and comic; soft overcast warm light. GAME CAMERA
+          (this is how the island looks inside the game): exactly the camera of the
+          attached home island, a low front three-quarter view about 20 degrees above
+          the horizon, the island centered and filling about 85 % of the image width,
+          a pale sky with soft far clouds above and the sea of clouds below rising to
+          the island's underside. The island is a floating diorama plate of the same
+          size and proportions as the home island: a shallow top about a fifth as deep
+          as it is wide over a soft, rounded body with gentle bands, so it reads as a
+          place in the same game. Every building and prop is at the scale of the
+          attached tea stall; Pofu (the hamster) and Mochi (the bunny) stand small at
+          the front centre, at the size they have at home, for scale. MOOD: warm,
+          cozy, gentle and inviting, a place a child would want to visit; peaceful and
+          wondrous, never dramatic, never eerie.
+      - block: prop-style-v2
+      - text: "AVOID: a pointed, spiky or rocky underside, a long waterfall or anything falling off the island into the void, a drop or cliff in the foreground, dark caves, fog walls, gloom, ruins, sad or empty eyes, a copy of the home island's green lawn and round door, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"
+
+  - id: x-emanet-healed
+    kind: plate
+    name: x-emanet-healed
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: golden, layer: subject}
+    notes: "Exploration. Emanet in the game camera, healed. Review: reads as a cozy place in the same game as home; nothing scary; the healed state reads without words; stuck and healed share one layout."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+      - ref: approved:tea-stall-5
+        role: "A finished station of the game: buildings and props on the new island are at this scale and in this finish (do not draw this stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: draw him small at the front centre in this exact style."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: draw her small beside Pofu in this exact style."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Emanet, the lost-and-found
+          island, in the game, late afternoon. The plate's top is warm cobblestones
+          with short tufts of grass, its body rounded honey earth with one band of
+          weathered teal-painted planks around its rim. At the back centre the lost-
+          and-found office: a tall, narrow, slightly crooked little house on short
+          stilts built from lost things, an upturned umbrella for a roof, a giant
+          teacup as its water tank, a top-hat chimney and a ladder of mismatched
+          spoons, with a counter window at the front. Along the right, long low
+          shelves; on the left, a little hand-cart; at the far right a short post with
+          eight hooks, seven holding small old objects and the eighth empty. Boncuk, a
+          small round magpie with a black-and-white body and a soft teal sheen on the
+          wings painted matte, keeps the counter. HEALED STATE: the same island,
+          nothing moved: every thing sorted on the shelves in neat rows, each with a
+          cream tag, the hand-cart loaded with wrapped parcels ready to go out, the
+          office window glowing warm, the cobbles swept, and Boncuk at the counter
+          proudly polishing a teacup; long golden late-afternoon light. GAME CAMERA
+          (this is how the island looks inside the game): exactly the camera of the
+          attached home island, a low front three-quarter view about 20 degrees above
+          the horizon, the island centered and filling about 85 % of the image width,
+          a pale sky with soft far clouds above and the sea of clouds below rising to
+          the island's underside. The island is a floating diorama plate of the same
+          size and proportions as the home island: a shallow top about a fifth as deep
+          as it is wide over a soft, rounded body with gentle bands, so it reads as a
+          place in the same game. Every building and prop is at the scale of the
+          attached tea stall; Pofu (the hamster) and Mochi (the bunny) stand small at
+          the front centre, at the size they have at home, for scale. MOOD: warm,
+          cozy, gentle and inviting, a place a child would want to visit; peaceful and
+          wondrous, never dramatic, never eerie.
+      - block: prop-style-v2
+      - text: "AVOID: a pointed, spiky or rocky underside, a long waterfall or anything falling off the island into the void, a drop or cliff in the foreground, dark caves, fog walls, gloom, ruins, sad or empty eyes, a copy of the home island's green lawn and round door, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"
+
+  - id: x-mehtap-stuck
+    kind: plate
+    name: x-mehtap-stuck
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: dusk, layer: subject}
+    notes: "Exploration. Mehtap in the game camera, stuck. Review: reads as a cozy place in the same game as home; nothing scary; the stuck state reads without words; stuck and healed share one layout."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+      - ref: approved:tea-stall-5
+        role: "A finished station of the game: buildings and props on the new island are at this scale and in this finish (do not draw this stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: draw him small at the front centre in this exact style."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: draw her small beside Pofu in this exact style."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Mehtap, the moon island, in the
+          game, at blue hour. The plate's top is pale silvery-cream moonstone with a
+          few soft round craters as shallow pools, its two ends rising gently like a
+          crescent cradle; its body is rounded moonstone fading from silver to pale
+          gold. At the back centre a small round observatory with a dome; at the front
+          left a round moon pool; on the right a tall slim wooden perch with a round
+          lantern; a small bench and a board with a pinned paper star chart. Nane, a
+          very small round owl, soft grey and cream with huge round eyes, lives on the
+          perch. STUCK STATE: the dome is closed and dark, the moon pool is flat dull
+          pewter, the star chart is blank paper, the sky is a soft blue hour with only
+          a few stars, and Nane sleeps on the perch as a little round ball beside her
+          unlit lantern; calm, hushed, not sad. GAME CAMERA (this is how the island
+          looks inside the game): exactly the camera of the attached home island, a
+          low front three-quarter view about 20 degrees above the horizon, the island
+          centered and filling about 85 % of the image width, a pale sky with soft far
+          clouds above and the sea of clouds below rising to the island's underside.
+          The island is a floating diorama plate of the same size and proportions as
+          the home island: a shallow top about a fifth as deep as it is wide over a
+          soft, rounded body with gentle bands, so it reads as a place in the same
+          game. Every building and prop is at the scale of the attached tea stall;
+          Pofu (the hamster) and Mochi (the bunny) stand small at the front centre, at
+          the size they have at home, for scale. MOOD: warm, cozy, gentle and
+          inviting, a place a child would want to visit; peaceful and wondrous, never
+          dramatic, never eerie.
+      - block: prop-style-v2
+      - text: "AVOID: a pointed, spiky or rocky underside, a long waterfall or anything falling off the island into the void, a drop or cliff in the foreground, dark caves, fog walls, gloom, ruins, sad or empty eyes, a copy of the home island's green lawn and round door, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"
+
+  - id: x-mehtap-healed
+    kind: plate
+    name: x-mehtap-healed
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: dusk, layer: subject}
+    notes: "Exploration. Mehtap in the game camera, healed. Review: reads as a cozy place in the same game as home; nothing scary; the healed state reads without words; stuck and healed share one layout."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY its camera, its size in the frame, its plate proportions (shallow top, rounded banded body) and its soft painting. Do not copy its lawn, its colors, its round door or its pebbles."
+      - ref: approved:tea-stall-5
+        role: "A finished station of the game: buildings and props on the new island are at this scale and in this finish (do not draw this stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: draw him small at the front centre in this exact style."
+      - ref: approved:mochi-v2
+        role: "Mochi, the bunny: draw her small beside Pofu in this exact style."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: Mehtap, the moon island, in the
+          game, at blue hour. The plate's top is pale silvery-cream moonstone with a
+          few soft round craters as shallow pools, its two ends rising gently like a
+          crescent cradle; its body is rounded moonstone fading from silver to pale
+          gold. At the back centre a small round observatory with a dome; at the front
+          left a round moon pool; on the right a tall slim wooden perch with a round
+          lantern; a small bench and a board with a pinned paper star chart. Nane, a
+          very small round owl, soft grey and cream with huge round eyes, lives on the
+          perch. HEALED STATE: the same island, nothing moved: the dome stands open
+          with a matte brass-honey telescope pointing up, a trail of seven faint stars
+          joins across the sky and ends in one bright new star, reflected in the moon
+          pool, which is now bright silver; the chart is drawn with the same trail;
+          the observatory window glows warm and Nane is awake on the perch with her
+          lantern lit, wings a little open. GAME CAMERA (this is how the island looks
+          inside the game): exactly the camera of the attached home island, a low
+          front three-quarter view about 20 degrees above the horizon, the island
+          centered and filling about 85 % of the image width, a pale sky with soft far
+          clouds above and the sea of clouds below rising to the island's underside.
+          The island is a floating diorama plate of the same size and proportions as
+          the home island: a shallow top about a fifth as deep as it is wide over a
+          soft, rounded body with gentle bands, so it reads as a place in the same
+          game. Every building and prop is at the scale of the attached tea stall;
+          Pofu (the hamster) and Mochi (the bunny) stand small at the front centre, at
+          the size they have at home, for scale. MOOD: warm, cozy, gentle and
+          inviting, a place a child would want to visit; peaceful and wondrous, never
+          dramatic, never eerie.
+      - block: prop-style-v2
+      - text: "AVOID: a pointed, spiky or rocky underside, a long waterfall or anything falling off the island into the void, a drop or cliff in the foreground, dark caves, fog walls, gloom, ruins, sad or empty eyes, a copy of the home island's green lawn and round door, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"
+
+  - id: x-home-il5
+    kind: plate
+    name: x-home-il5
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: day, layer: subject}
+    notes: "Exploration. Home at island level 5 in the game camera (home-layout.md section 4). Review: the slot plan reads; the island feels half grown, not empty."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island Ayçiçeği: keep its exact shape, lawn outline, body, round door and camera."
+      - ref: approved:tea-stall-5
+        role: "The tea stall, a finished station: stations are at this scale and finish."
+      - ref: approved:windmill-5
+        role: "The windmill, a finished station: same scale and finish."
+      - ref: approved:harbor-island-s
+        role: "The harbor islet İskele: it sits to the right of the home island, joined by a short rope bridge."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: small, front centre, in this exact style."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: the home island Ayçiçeği at
+          island level 5, in the game camera, morning. The attached island with, on
+          its lawn: a sunflower garden bed at the far left, a small round lily pond at
+          the front left, a tea stall with a striped awning at the far right, a stone
+          path joining them behind the pond, and Pofu small at the front centre; in
+          the island's earth body, beside the existing round door, a second small
+          rose-painted round door. On the right a short rope bridge leads to the small
+          harbor islet with a simit cart and a short wooden pier. The back of the lawn
+          is still open grass with one faint pencil-sketched outline of a windmill
+          (the next slot). Same camera and scale as the attached island; the pair
+          fills the frame. MOOD: warm, cozy, gentle and inviting, a place a child
+          would want to visit; peaceful and wondrous, never dramatic, never eerie.
+      - block: prop-style-v2
+      - text: "AVOID: a different island shape, a crowded or busy look, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"
+
+  - id: x-home-tam-cicek
+    kind: plate
+    name: x-home-tam-cicek
+    size: 1536x1024
+    canvas: 1536x1024
+    chat: "Pofu · Exploration"
+    light: {cell: dusk, layer: subject}
+    notes: "Exploration. Home at Tam Çiçek (island level 10), dusk (home-layout.md section 7). Review: the payoff picture; the Tepe and the harbor read; not cluttered."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island Ayçiçeği: keep its exact shape, lawn outline, body, round door and camera."
+      - ref: approved:tea-stall-5
+        role: "The tea stall, a finished station: stations are at this scale and finish."
+      - ref: approved:windmill-5
+        role: "The windmill, a finished station: same scale and finish."
+      - ref: approved:harbor-island-s
+        role: "The harbor islet İskele: it sits to the right of the home island, joined by a short rope bridge."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below: paint the clouds like this."
+      - ref: R1
+        role: "Pofu, the hamster: small, front centre, in this exact style."
+    prompt:
+      - text: |
+          A concept painting for a cozy mobile game: the home island Ayçiçeği at full
+          bloom (Tam Çiçek), in the game camera, at dusk. The attached island with all
+          its stations finished: a garden at the far left with one giant golden
+          sunflower, a windmill at the back left with lanterns on its cap, a lily pond
+          at the front left with floating lanterns, a workshop with a big gear sign at
+          the back right, a tea stall with string lights at the far right, a small
+          straw beehive between them; warm path lamps along a stone path; four small
+          round doors with lit windows in the earth body; small residents gathered on
+          the lawn (Pofu, a cream bunny, a hedgehog, a kitten, a goat, little frogs).
+          Above and behind the left end rises a small grassy hilltop terrace with
+          stone steps down to an open gate, a bench and a telescope on top. On the
+          right the harbor islet with a lighthouse whose warm beam sweeps the clouds
+          and a small ferry at the pier. Every lantern is lit; the sky is a soft
+          lavender-gold dusk; far off, a cloud-whale circles. Same camera as the
+          attached island; the scene fills the frame. MOOD: warm, cozy, gentle and
+          inviting, a place a child would want to visit; peaceful and wondrous, never
+          dramatic, never eerie.
+      - block: prop-style-v2
+      - text: "AVOID: a different island shape, a crowded or busy look, text, letters, a border, harsh shadows, saturated or neon colors, outlines, photorealism, a 3D render look"

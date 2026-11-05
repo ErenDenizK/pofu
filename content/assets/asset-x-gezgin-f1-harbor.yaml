@@ -1,0 +1,21 @@
+id: asset-x-gezgin-f1-harbor
+type: asset
+title_tr: x-gezgin-f1-harbor
+title_en: x-gezgin-f1-harbor (plate)
+status: in-production
+horizon: now
+summary: >-
+  A concept painting for a cozy mobile game: Nazlı, the cloud-whale Gezgin, is huge, soft
+  and rounded, grey-blue on the back fading to cream on the belly, with a small gentle eye,
+  a faint smile, broad rounded flippers and a wide cloud-white tail fluke; she is about three
+  times as long as the harbor islet is wide. FORM 1 (early, humble and tired): her body a
+  little thin and pale, her head low, her eye heavy-lidded but k…
+art:
+  images: []
+  jobs:
+  - batch-34-islands-in-game:x-gezgin-f1-harbor
+sources:
+- doc: tools/imagegen/manifest/batch-34-islands-in-game.yaml
+kind: plate
+batch: batch-34-islands-in-game
+size: 1536x1024
