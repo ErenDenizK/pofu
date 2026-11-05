@@ -53,3 +53,13 @@ notes:
   off-palette 13.7% (top: #998844 (7.5%), #999944 (3.2%)); t3 palette_drift: mean
   dE 8.5, p95 16.2, off-palette 33.9% (top: #999944 (6.3%), #998844 (5.5%)); t4 palette_drift:
   mean dE 5.8, p95 14.4, off-palette 14.1% (top: #888844 (2.2%), #998844 (1.9%)).'
+- 'qa-repost-2026-11-05 / batch-33-home-showcase-pilot skipped after 8 retained originals,
+  zero new dispatches: All eight retained originals now pass hard QA under fixed world-foliage,
+  but manual composition review rejects all as too wide for the explicit approximately
+  one-third1024canvas brief. Official alpha>24 widths evaluation1-8:498/501/532/533/467/462/522/543px
+  (48.6/48.9/52.0/52.1/45.6/45.1/51.0/53.0percent); nominal one-third341px. Even closest
+  eval6 is35.4percent wider than nominal; no canonical approved material-family master
+  supports an exception. All have the nice soft moss cushion, three flowers and cream
+  root, but palette success does not waive size. Skip, preserve all8 with original
+  run-qualified takeIDs/prompt/ref hashes. Request a lead-named fit/re-post row; no
+  operator manifest change, resizing or new generation.'

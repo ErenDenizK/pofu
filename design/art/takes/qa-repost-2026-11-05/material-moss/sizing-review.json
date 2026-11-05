@@ -1,0 +1,254 @@
+{
+  "brief": "about a third of the canvas wide, with wide empty space around it",
+  "expected_approx_width": 341.3333333333333,
+  "candidates": [
+    {
+      "evaluation_take": 1,
+      "canvas": [
+        1024,
+        1024
+      ],
+      "alpha_bboxes": {
+        "24": {
+          "width": 498,
+          "height": 343,
+          "width_fraction": 0.486328125,
+          "bbox": [
+            256,
+            371,
+            753,
+            713
+          ]
+        },
+        "128": {
+          "width": 496,
+          "height": 340,
+          "width_fraction": 0.484375,
+          "bbox": [
+            257,
+            373,
+            752,
+            712
+          ]
+        }
+      }
+    },
+    {
+      "evaluation_take": 2,
+      "canvas": [
+        1024,
+        1024
+      ],
+      "alpha_bboxes": {
+        "24": {
+          "width": 501,
+          "height": 351,
+          "width_fraction": 0.4892578125,
+          "bbox": [
+            259,
+            351,
+            759,
+            701
+          ]
+        },
+        "128": {
+          "width": 499,
+          "height": 350,
+          "width_fraction": 0.4873046875,
+          "bbox": [
+            260,
+            352,
+            758,
+            701
+          ]
+        }
+      }
+    },
+    {
+      "evaluation_take": 3,
+      "canvas": [
+        1024,
+        1024
+      ],
+      "alpha_bboxes": {
+        "24": {
+          "width": 532,
+          "height": 374,
+          "width_fraction": 0.51953125,
+          "bbox": [
+            238,
+            343,
+            769,
+            716
+          ]
+        },
+        "128": {
+          "width": 529,
+          "height": 372,
+          "width_fraction": 0.5166015625,
+          "bbox": [
+            240,
+            344,
+            768,
+            715
+          ]
+        }
+      }
+    },
+    {
+      "evaluation_take": 4,
+      "canvas": [
+        1024,
+        1024
+      ],
+      "alpha_bboxes": {
+        "24": {
+          "width": 533,
+          "height": 345,
+          "width_fraction": 0.5205078125,
+          "bbox": [
+            246,
+            349,
+            778,
+            693
+          ]
+        },
+        "128": {
+          "width": 532,
+          "height": 345,
+          "width_fraction": 0.51953125,
+          "bbox": [
+            246,
+            349,
+            777,
+            693
+          ]
+        }
+      }
+    },
+    {
+      "evaluation_take": 5,
+      "canvas": [
+        1024,
+        1024
+      ],
+      "alpha_bboxes": {
+        "24": {
+          "width": 467,
+          "height": 341,
+          "width_fraction": 0.4560546875,
+          "bbox": [
+            274,
+            420,
+            740,
+            760
+          ]
+        },
+        "128": {
+          "width": 465,
+          "height": 341,
+          "width_fraction": 0.4541015625,
+          "bbox": [
+            275,
+            420,
+            739,
+            760
+          ]
+        }
+      }
+    },
+    {
+      "evaluation_take": 6,
+      "canvas": [
+        1024,
+        1024
+      ],
+      "alpha_bboxes": {
+        "24": {
+          "width": 462,
+          "height": 304,
+          "width_fraction": 0.451171875,
+          "bbox": [
+            270,
+            391,
+            731,
+            694
+          ]
+        },
+        "128": {
+          "width": 460,
+          "height": 303,
+          "width_fraction": 0.44921875,
+          "bbox": [
+            271,
+            392,
+            730,
+            694
+          ]
+        }
+      }
+    },
+    {
+      "evaluation_take": 7,
+      "canvas": [
+        1024,
+        1024
+      ],
+      "alpha_bboxes": {
+        "24": {
+          "width": 522,
+          "height": 359,
+          "width_fraction": 0.509765625,
+          "bbox": [
+            249,
+            356,
+            770,
+            714
+          ]
+        },
+        "128": {
+          "width": 520,
+          "height": 357,
+          "width_fraction": 0.5078125,
+          "bbox": [
+            250,
+            357,
+            769,
+            713
+          ]
+        }
+      }
+    },
+    {
+      "evaluation_take": 8,
+      "canvas": [
+        1024,
+        1024
+      ],
+      "alpha_bboxes": {
+        "24": {
+          "width": 543,
+          "height": 333,
+          "width_fraction": 0.5302734375,
+          "bbox": [
+            238,
+            376,
+            780,
+            708
+          ]
+        },
+        "128": {
+          "width": 541,
+          "height": 332,
+          "width_fraction": 0.5283203125,
+          "bbox": [
+            239,
+            377,
+            779,
+            708
+          ]
+        }
+      }
+    }
+  ]
+}
