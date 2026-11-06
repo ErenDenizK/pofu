@@ -1,0 +1,56 @@
+{
+ "after": {
+  "C_mean": 27.639,
+  "C_p50": 32.439,
+  "C_p95": 42.285,
+  "L_mean": 68.634,
+  "L_p2": 31.693,
+  "L_p98": 92.864,
+  "detail": 9.337,
+  "edge": 0.128,
+  "tint_a": 5.499,
+  "tint_b": 9.167,
+  "warmth_b": 21.428
+ },
+ "before": {
+  "C_mean": 27.639,
+  "C_p50": 32.439,
+  "C_p95": 42.285,
+  "L_mean": 68.634,
+  "L_p2": 31.693,
+  "L_p98": 92.864,
+  "detail": 9.337,
+  "edge": 0.128,
+  "tint_a": 5.499,
+  "tint_b": 9.167,
+  "warmth_b": 21.428
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.0,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "char",
+ "matched_to": "char",
+ "outliers_after": [
+  "L_p2",
+  "detail"
+ ],
+ "outliers_before": [
+  "L_p2",
+  "detail"
+ ],
+ "ppu": 29.0,
+ "reference": false,
+ "score_after": 78.8,
+ "score_before": 78.8,
+ "shipped": false,
+ "source": "design/art/masters/damla-glass/damla-glass.webp",
+ "source_sha": "1bb8bdecfa8f6402"
+}

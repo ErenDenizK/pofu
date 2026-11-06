@@ -1,0 +1,243 @@
+batch: batch-43-caglayan-production
+contact_sheet: design/art/takes/batch-43-caglayan-production/damla-glass/contact.jpg
+jobs:
+  damla-glass:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both native originals and the
+      official aligned locked poses show the same soft cocoa and cream otter raising
+      ONE tulip glass above the head in both paws, glass half full of clear water
+      with one tiny glint, closed happy curved eyes, open toothless smile and lifted
+      curled tail. Source, full locked alpha and original parent were reviewed; no
+      floor, cast shadow, spill, text, new curl or identity drift. Take1 passes every
+      hard QA check and has higher Harmony78.8 versus77.2. Take2 preserves its actual
+      edit_silhouette FAIL and the authored pose exception is not used because the
+      normally passing take1 wins. Exact native lossless492724byte master matches
+      canonical RGBA under614400 without manual resize or cleanup. Existing planned
+      two-asset character links remain unchanged. No extra retry or header force was
+      needed.
+qa_reports:
+  1:
+    job: damla-glass
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: warn
+      message: the edit rescaled the object x0.961 and moved it; aligned back to the
+        parent
+      value: 1.0403
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 32 (at most 22), p98 93 (at least 90), spread 61
+        (at least 60)'
+      value: 61.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 70 (band 55-90)'
+      value: 70.3
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.12 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.125
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.2 (at least 3.5)'
+      value: 5.19
+    - check: detail_budget
+      status: pass
+      message: detail at display size 6.2 (R1 5.3)
+      value: 6.17
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.2, p95 9.9, off-palette 2.9% (top: #441100 (0.2%), #993322
+        (0.2%))'
+      value: 3.2228
+    - check: ground_line
+      status: pass
+      message: feet at 88.0% of the height (contract 88%)
+      value: 0.8799
+    - check: no_ground_shadow
+      status: warn
+      message: a ground shadow seems painted in
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the char reference (outliers: L_p2, detail)'
+      value: 78.8
+    - check: edit_silhouette
+      status: warn
+      message: 86% of the parent's shape kept
+      value: 0.8557
+    - check: edit_stability
+      status: pass
+      message: 62% of the parent level unchanged
+      value: 0.6161
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.97 of the parent level (drift compounds along a chain)
+      value: 0.9694
+    info:
+      alignment:
+        scale: 1.0403
+        cx: 530.5
+        cy: 893.0
+        dx: 8
+        dy: 8
+      metrics_raw:
+        L_p5: 38.5
+        L_p50: 70.1
+        L_p95: 91.3
+        C_p50: 32.6
+        C_p95: 42.6
+        C_p99: 53.2
+        detail: 6.15
+      metrics_locked:
+        L_p5: 38.7
+        L_p50: 70.3
+        L_p95: 91.5
+        C_p50: 32.6
+        C_p95: 42.3
+        C_p99: 53.2
+        detail: 6.17
+    fingerprint: 703e6e2f3f6e8c03
+  2:
+    job: damla-glass
+    take: 2
+    status: fail
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x0.974 and moved it; aligned back to the
+        parent
+      value: 1.0265
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 40.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 32 (at most 22), p98 92 (at least 90), spread 60
+        (at least 60)'
+      value: 60.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 69 (band 55-90)'
+      value: 69.4
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.133
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.3 (at least 3.5)'
+      value: 5.27
+    - check: detail_budget
+      status: pass
+      message: detail at display size 6.3 (R1 5.3)
+      value: 6.26
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.9, p95 8.6, off-palette 1.6% (top: #993322 (0.3%), #882222
+        (0.1%))'
+      value: 2.9452
+    - check: ground_line
+      status: pass
+      message: feet at 87.6% of the height (contract 88%)
+      value: 0.876
+    - check: harmony
+      status: pass
+      message: 'harmony score 77 against the char reference (outliers: L_p2, L_p98,
+        detail)'
+      value: 77.2
+    - check: edit_silhouette
+      status: fail
+      message: 85% of the parent's shape kept
+      value: 0.8458
+    - check: edit_stability
+      status: pass
+      message: 62% of the parent level unchanged
+      value: 0.6246
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.94 of the parent level (drift compounds along a chain)
+      value: 0.9353
+    info:
+      alignment:
+        scale: 1.0265
+        cx: 538.0
+        cy: 892.0
+        dx: 4
+        dy: 5
+      metrics_raw:
+        L_p5: 38.3
+        L_p50: 69.3
+        L_p95: 90.8
+        C_p50: 31.7
+        C_p95: 41.2
+        C_p99: 49.5
+        detail: 6.25
+      metrics_locked:
+        L_p5: 38.6
+        L_p50: 69.4
+        L_p95: 91.1
+        C_p50: 31.7
+        C_p95: 40.9
+        C_p99: 49.4
+        detail: 6.26
+    fingerprint: 703e6e2f3f6e8c03
+manual_review:
+  excluded_takes: []
+  note: Both native originals and the official aligned locked poses show the same
+    soft cocoa and cream otter raising ONE tulip glass above the head in both paws,
+    glass half full of clear water with one tiny glint, closed happy curved eyes,
+    open toothless smile and lifted curled tail. Source, full locked alpha and original
+    parent were reviewed; no floor, cast shadow, spill, text, new curl or identity
+    drift. Take1 passes every hard QA check and has higher Harmony78.8 versus77.2.
+    Take2 preserves its actual edit_silhouette FAIL and the authored pose exception
+    is not used because the normally passing take1 wins. Exact native lossless492724byte
+    master matches canonical RGBA under614400 without manual resize or cleanup. Existing
+    planned two-asset character links remain unchanged. No extra retry or header force
+    was needed.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-5fafde2d-0bc9-4e7c-8152-b0c40814b528.png
+  original_generated_png_sha256: 692fa7a2663c16427dd27b8ec2eb52911f5794b951469585c19e38e64d4b3f12
+  inbox_png_sha256: e26ec5969db72cb11c3a85af70864bee1acf191058b3a359d2486d87411fa974
+  rgba_sha256: 6bfeccc18f6830027bcf0921869955994c1028502617bb0eb76c821ca0f8aeb9
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 703e6e2f3f6e8c03
+- take: 2
+  source_file: /workspace/generated_images/exec-c6927550-ad5f-447e-929b-6403c09938ff.png
+  original_generated_png_sha256: 5e357cea7e798bdac14b0df488633cc0e76107f959870fd71a3de9306b2bb6f9
+  inbox_png_sha256: 2ab0758a05af07bae5b11595219c64f7bc512f9c2572ca5a139a4a955e91df68
+  rgba_sha256: c113725696658ebf2a04a96de7fde49b99de2084540b19d0196d934ef5feddf9
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 703e6e2f3f6e8c03
