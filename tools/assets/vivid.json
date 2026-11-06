@@ -17,6 +17,6 @@
     "prop": ["decor-*", "dressing-*", "harbor-ferry-*", "harbor-horn-*", "harbor-lamp-*", "harbor-crates-*", "harbor-bell", "door-*", "path-lamp"],
     "station": ["tea-stall-*", "pond-*", "windmill-*", "workshop-*", "bagel-cart-*", "pier-*", "lighthouse-*", "hive-*"]
   },
-  "never": ["island-*", "isle-*", "harbor-island-*", "mochi*", "findik*", "simit*", "pofu*", "cloud-*", "far-isle-*", "*-glow"],
+  "never": ["island-*", "isle-*", "harbor-island-*", "mochi*", "findik*", "simit*", "pofu*", "cloud-*", "far-isle-*", "koke-*", "*-glow"],
   "ui": {"home": ["paint-pot-*", "paint-jar-*"]}
 }

@@ -136,11 +136,12 @@ enum SpikeDepthMap {
         var offsetY: Double
         var art: WorldLook.ArtSet
         var levels: [String]
+        var koke: Bool
     }
 
     private static var last: (key: Key, image: Image)?
 
-    static func image(world: WorldSnapshot, pose: CameraPose, offset: CGSize, size: CGSize, art: WorldLook.ArtSet) -> Image? {
+    static func image(world: WorldSnapshot, pose: CameraPose, offset: CGSize, size: CGSize, art: WorldLook.ArtSet, koke: Bool = false) -> Image? {
         let key = Key(
             pose: pose,
             width: Double(size.width),
@@ -148,10 +149,11 @@ enum SpikeDepthMap {
             offsetX: Double(offset.width),
             offsetY: Double(offset.height),
             art: art,
-            levels: world.stations.map { "\($0.id.rawValue):\($0.level):\($0.isOpen)" }
+            levels: world.stations.map { "\($0.id.rawValue):\($0.level):\($0.isOpen)" },
+            koke: koke
         )
         if let last, last.key == key { return last.image }
-        let renderer = ImageRenderer(content: SpikeDepthMapView(world: world, pose: pose, offset: offset, size: size, art: art))
+        let renderer = ImageRenderer(content: SpikeDepthMapView(world: world, pose: pose, offset: offset, size: size, art: art, koke: koke))
         renderer.scale = 0.5
         guard let cg = renderer.cgImage else { return nil }
         let image = Image(decorative: cg, scale: 0.5)
@@ -161,7 +163,10 @@ enum SpikeDepthMap {
 
     /// The depth the focus plane sits at: the focused station's or
     /// resident's base row, otherwise Pofu's.
-    static func focusDepth(_ focus: SceneFocus?) -> Double {
+    static func focusDepth(_ focus: SceneFocus?, island: IslandID = .home) -> Double {
+        // The map encodes depth up to `nearest`: Koke's lawn is nearer than
+        // the home island's, so its focus plane is clamped to the range.
+        if island == .koke, focus == nil { return min(KokeLayout.focusDepth, DepthOfField.nearest) }
         switch focus {
         case .station(let id)?:
             if let slot = IslandLayout.stationAnchors[id] { return IslandLayout.depth(ofY: slot.y) }
@@ -180,6 +185,7 @@ private struct SpikeDepthMapView: View {
     let offset: CGSize
     let size: CGSize
     let art: WorldLook.ArtSet
+    let koke: Bool
 
     private struct Item {
         var name: String
@@ -203,6 +209,16 @@ private struct SpikeDepthMapView: View {
                 if let mask = mask(band.art, .sharp, at: .zero) {
                     paint(&context, mask, ramp)
                 }
+            }
+
+            // Koke's island: one flat depth, its own row (clamped to the map).
+            if koke {
+                let box = KokeLayout.islandBox
+                let a = pose.project(WorldPoint(x: box.minX, y: box.minY), width: Double(size.width))
+                let b = pose.project(WorldPoint(x: box.maxX, y: box.maxY), width: Double(size.width))
+                let rect = CGRect(x: a.x + Double(offset.width), y: a.y + Double(offset.height), width: b.x - a.x, height: b.y - a.y)
+                let depth = DepthOfField.encoded(KokeLayout.focusDepth)
+                context.fill(Path(ellipseIn: rect.insetBy(dx: -rect.width * 0.04, dy: -rect.height * 0.05)), with: .color(Self.grey(depth)))
             }
 
             // Objects: flat at their base row, back to front.

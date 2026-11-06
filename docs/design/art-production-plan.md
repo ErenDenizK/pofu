@@ -70,6 +70,7 @@ when none is left it moves on to [the backlog](#the-backlog).
 
 | # | Batch | Kind | Purpose | Needs | Jobs | State |
 |---|---|---|---|---|---|---|
+| 0-s | sticker re-post | production | sticker re-post: re-post the 52 retained batch-42 originals on the square canvas (the manifest now declares `canvas: 1024x1024` and `acceptance: {ground_line: false}`; the first run skipped all 13 on the 1024 x 1536 char canvas and the 88 % ground line), pick, promote (no generation); review palette outliers per take | the canvas fix (`feat/koke-art-and-framing`) | 13 | **READY** |
 | 0-y | Koke re-post | production | After the delivery-and-masking PR (`fix/imagegen-koke-and-lit`) merges: re-post the retained takes of `koke-island-0` (soft delivery, `deliver: {scale: 0.5}`) and `koke-asleep` (ground fit, `fit: {ground: true}`); pick, promote, then generate the dependents: `koke-island-1` to `-4`, `koke-one-eye`, `koke-stretch`, `koke-standing`. Retained takes live on the #234 branch | the masking PR | 2 + 7 | **READY** |
 | 0-z | lit re-post | production | After the same PR merges: re-post the 16 retained lit takes (batch-36, retained on the #231 branch) with `emit_region` masking (the lit master is the day master everywhere outside the light), pick and promote. No generation | the masking PR | 4 | **READY** |
 | 0-x | `hive-4`, `hive-5` | production | hive-4 failed chroma and palette drift in all four takes (#207); the lead reviews the takes and names a palette or profile fix before any re-post | the lead's review | 2 | BLOCKED on the lead's review |

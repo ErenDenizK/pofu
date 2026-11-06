@@ -1,16 +1,16 @@
 {
  "after": {
-  "C_mean": 12.395,
-  "C_p50": 9.12,
-  "C_p95": 30.509,
-  "L_mean": 85.385,
+  "C_mean": 8.619,
+  "C_p50": 6.295,
+  "C_p95": 21.691,
+  "L_mean": 85.418,
   "L_p2": 60.335,
-  "L_p98": 95.734,
-  "detail": 1.002,
+  "L_p98": 95.887,
+  "detail": 0.717,
   "edge": 0.0,
-  "tint_a": 3.004,
-  "tint_b": -0.359,
-  "warmth_b": 6.746
+  "tint_a": 1.781,
+  "tint_b": 1.961,
+  "warmth_b": 4.686
  },
  "before": {
   "C_mean": 8.619,
@@ -19,7 +19,7 @@
   "L_mean": 85.418,
   "L_p2": 60.335,
   "L_p98": 95.887,
-  "detail": 0.996,
+  "detail": 0.717,
   "edge": 0.0,
   "tint_a": 1.781,
   "tint_b": 1.961,
@@ -29,14 +29,14 @@
  "correction": {
   "black": 0.0,
   "ceiling": 0.0,
-  "chroma": 1.45,
+  "chroma": 1.0,
   "materials": {},
   "tint_a": 0.0,
   "tint_b": 0.0,
   "white": 0.0
  },
- "guarded": false,
- "kind": "plate",
+ "guarded": true,
+ "kind": "station",
  "matched_to": "world",
  "outliers_after": [
   "C_p95",
@@ -46,11 +46,11 @@
   "C_p95",
   "edge"
  ],
- "ppu": 4.103,
+ "ppu": 3.072,
  "reference": false,
- "score_after": 63.4,
- "score_before": 58.6,
- "shipped": false,
+ "score_after": 58.4,
+ "score_before": 58.4,
+ "shipped": true,
  "source": "design/art/masters/koke-island-0/koke-island-0.png",
  "source_sha": "f8f65e0ecc7c03f1"
 }

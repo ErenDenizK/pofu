@@ -396,6 +396,30 @@ class HarmonyCheckTests(unittest.TestCase):
         self.assertIn("harmony", {c.name for c in res.checks})
 
 
+class StickerGroundLineTests(unittest.TestCase):
+    """A sticker is a character centred on a square canvas, not standing on the ground line."""
+
+    def _sticker(self) -> np.ndarray:
+        im = canvas()
+        ImageDraw.Draw(im).ellipse((312, 312, 712, 712), fill=PROP + (255,))  # feet at 69 % of the height
+        return np.asarray(im, dtype=np.float64) / 255.0
+
+    def _names(self, acceptance=None) -> dict:
+        raw = self._sticker()
+        return {c.name: c for c in qa.run_checks("char", raw, raw, ["character"], acceptance)}
+
+    def test_a_character_is_held_to_the_ground_line_by_default(self):
+        self.assertEqual(self._names()["ground_line"].status, "fail")
+
+    def test_a_sticker_turns_the_ground_line_off(self):
+        self.assertNotIn("ground_line", self._names({"ground_line": False}))
+
+    def test_the_square_canvas_is_kept(self):
+        rgba, check = qa.fit_canvas(self._sticker(), (1024, 1024))
+        self.assertEqual(rgba.shape[:2], (1024, 1024))
+        self.assertEqual(check.status, "pass")
+
+
 if __name__ == "__main__":
     unittest.main()
 

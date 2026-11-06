@@ -114,6 +114,8 @@ jobs:
                                 # edit_mode: recolor (whole-object glaze change: shape, light structure and
                                 # lightness are checked instead of colors) | region (a large part is repainted:
                                 # edit_kept 0.50/0.30 plus a shape check) | keep (default)
+                                # ground_line: false (a char that does not stand on the 88 % ground
+                                # line, such as a sticker centred on a square `canvas: 1024x1024`)
     palettes: [world-night]     # optional extra drift palettes for colors the brief names (tokens artPalettes or palettes.json)
 ```
 

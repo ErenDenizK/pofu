@@ -25,6 +25,11 @@ status: open
 
 defaults:
   variants: 2
+  # A sticker is centred on a square canvas (the char canvas is 1024 x 1536 and its
+  # contract stands the feet on a ground line at 88 %, which skipped all 13 on the
+  # first run): QA on 1024 x 1024 with the ground-line check off.
+  canvas: 1024x1024
+  acceptance: {ground_line: false}
 
 jobs:
   - {id: mochi-v2, kind: char, name: mochi-v2, external: batch-03-home-island, master: design/art/masters/mochi-v2/mochi-v2.webp}

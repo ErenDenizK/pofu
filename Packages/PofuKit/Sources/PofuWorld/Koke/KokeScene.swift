@@ -136,6 +136,9 @@ struct KokeIsleView: View {
     let reduceMotion: Bool
     /// Where the island's centre lands on the canvas.
     let point: CGPoint
+    /// Seconds for the stage 4 bounce, or `nil` for the rest pose (still
+    /// frames, Reduce Motion, the Map).
+    var bounceTime: Double?
 
     private static let canvas = CGSize(width: 320, height: 200)
     /// The island's centre inside the canvas.
@@ -145,22 +148,26 @@ struct KokeIsleView: View {
         let s = KokeLayout.clamped(stage)
         let g = KokeLayout.greenShare(stage: s)
         ZStack {
-            if KokeArt.has(KokeLayout.islandArt(stage: s)) {
-                Image(KokeLayout.islandArt(stage: s), bundle: .module)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: KokeLayout.plateSize.width)
+            if KokeArt.has(KokeLayout.plateArt(stage: s)) {
+                Self.art(KokeLayout.plateArt(stage: s), key: String(KokeLayout.plateArt(stage: s).dropFirst("world-".count)), scale: 1, feet: Self.origin, fallbackWidth: KokeLayout.artWidth)
             } else {
                 Canvas { context, _ in Self.drawPlate(&context, stage: s, green: g) }
             }
+            if KokeLayout.hasBlossoms(stage: s) {
+                Canvas { context, _ in Self.drawBlossoms(&context) }
+            }
             Canvas { context, _ in Self.drawStone(&context, stage: s) }
-            if KokeArt.has(KokeLayout.pose(stage: s).art) {
-                Image(KokeLayout.pose(stage: s).art, bundle: .module)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 130)
-                    .position(x: Self.origin.x + KokeLayout.kokeOffset.x, y: Self.origin.y + KokeLayout.kokeOffset.y - 30)
-            } else {
+            if let overlay = KokeLayout.overlay(stage: s) {
+                // The plate's Koke is a stand-in here: draw the pose over it.
+                let own = KokeArt.has(overlay.pose.art)
+                let pose = own ? overlay.pose : (overlay.pose.fallback ?? overlay.pose)
+                let lift = KokeLayout.bounce(stage: s, time: bounceTime)
+                Self.art(
+                    pose.art, key: String(pose.art.dropFirst("world-".count)), scale: own ? 1 : overlay.scale,
+                    feet: CGPoint(x: Self.origin.x + KokeLayout.kokeFeet.x, y: Self.origin.y + KokeLayout.kokeFeet.y - lift),
+                    fallbackWidth: 114
+                )
+            } else if !KokeArt.has(KokeLayout.plateArt(stage: s)) {
                 Canvas { context, _ in Self.drawKoke(&context, stage: s, green: g) }
             }
             Canvas { context, _ in
@@ -173,6 +180,24 @@ struct KokeIsleView: View {
         .position(x: point.x, y: point.y)
         .allowsHitTesting(false)
         .accessibilityHidden(true)
+    }
+
+    /// A painted image placed by its baked box (world units around its
+    /// anchor), scaled about the anchor.
+    @ViewBuilder
+    private static func art(_ name: String, key: String, scale: Double, feet: CGPoint, fallbackWidth: Double) -> some View {
+        if let box = WorldArt.sprite(key)?.sharp {
+            Image(name, bundle: .module)
+                .resizable()
+                .frame(width: box.width * scale, height: box.height * scale)
+                .position(x: feet.x + box.midX * scale, y: feet.y + box.midY * scale)
+        } else {
+            Image(name, bundle: .module)
+                .resizable()
+                .scaledToFit()
+                .frame(width: fallbackWidth * scale)
+                .position(x: feet.x, y: feet.y)
+        }
     }
 
     // MARK: Drawing (canvas units are points, origin at the island's centre)
@@ -237,6 +262,31 @@ struct KokeIsleView: View {
                 context.stroke(stalk, with: .color(Color(red: 0.42, green: 0.52, blue: 0.40)), lineWidth: 1.2)
                 context.fill(Path(ellipseIn: CGRect(x: p.x - 2, y: p.y - 10, width: 4, height: 6)), with: .color(Color(red: 0.55, green: 0.60, blue: 0.54)))
             }
+        }
+    }
+
+    /// The stage 4 signature, until its plate is painted: open blossoms
+    /// scattered on the lawn's front half, clear of Koke and the stone.
+    private static func drawBlossoms(_ context: inout GraphicsContext) {
+        let spots: [(Double, Double, Int)] = [
+            (-96, 12, 0), (-74, 30, 1), (-52, 44, 2), (-22, 48, 0), (8, 44, 1), (30, 34, 2),
+            (74, 38, 0), (92, 22, 1), (-104, -2, 2), (104, 4, 0), (-84, 40, 1), (60, 18, 2),
+        ]
+        let petals: [Color] = [
+            Color(red: 0.98, green: 0.72, blue: 0.78), Color(red: 0.99, green: 0.86, blue: 0.45), Color(red: 0.98, green: 0.80, blue: 0.62),
+        ]
+        for (x, y, tone) in spots {
+            let p = at(x, y)
+            var stalk = Path()
+            stalk.move(to: CGPoint(x: p.x, y: p.y + 4))
+            stalk.addLine(to: p)
+            context.stroke(stalk, with: .color(Color(red: 0.36, green: 0.58, blue: 0.30)), lineWidth: 1.2)
+            for k in 0..<5 {
+                let a = Double(k) * .pi * 2 / 5
+                let c = CGPoint(x: p.x + cos(a) * 3.2, y: p.y - 1 + sin(a) * 2.3)
+                context.fill(Path(ellipseIn: CGRect(x: c.x - 2.5, y: c.y - 2.5, width: 5, height: 5)), with: .color(petals[tone]))
+            }
+            context.fill(Path(ellipseIn: CGRect(x: p.x - 1.5, y: p.y - 2.5, width: 3, height: 3)), with: .color(Color(red: 0.95, green: 0.62, blue: 0.2)))
         }
     }
 

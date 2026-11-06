@@ -382,6 +382,10 @@ HIVE_SIZE = 0.85
 LAMP_SIZE = 0.8
 HIVE_LEVELS = 3
 
+KOKE_PLATES = (0, 1, 2)
+KOKE_PLATE_UNITS = 250.0
+KOKE_WIDTH = 114.0
+
 APP_SOURCES = {
     # The app draws the lock-light bakes (WorldGrade grades them at runtime); "softlock" also bakes a
     # soft-lock master as <name>--softlock to compare (WorldLook.ArtSet), for tea-stall-1 only now.
@@ -418,6 +422,13 @@ APP_SOURCES = {
     # its dock and Simit at the bagel cart. Simit's three poses share one canvas, so they share the
     # base pose's scale and feet and stay registered. Keys match the harmony manifest.
     "harbor-island-s": _blob("design/art/masters/harbor-island-s", 268, "centre"),
+    # Koke (batch 39): the plates were delivered at half scale (768 x 512 for 1536 x 1024), drawn 250 units
+    # wide with their centre on the island's centre, cut from their own sky (`matte`). The poses share one
+    # scale and one baseline (feet on the anchor); Koke is 114 units wide on the lawn.
+    **{f"koke-island-{n}": {"src": _master(f"design/art/masters/koke-island-{n}"), "ppu": 768 / KOKE_PLATE_UNITS,
+                            "anchor": (384, 256), "matte": True} for n in KOKE_PLATES},
+    **{f"koke-{pose}": _blob(f"design/art/masters/koke-{pose}", KOKE_WIDTH, "feet", like="design/art/masters/koke-asleep")
+       for pose in ("asleep", "one-eye")},
     "harbor-goat": _blob("design/art/masters/harbor-goat", 34, "feet"),
     "simit-kitten": _blob("design/art/masters/simit-kitten", 26, "feet"),
     "simit-kitten-work": _blob("design/art/masters/simit-kitten-work", 26, "feet", like="design/art/masters/simit-kitten"),
@@ -534,6 +545,31 @@ def _lawn_mask(img):
         raise ValueError("the plate has no lawn")
     sizes = ndimage.sum(green, labels, range(1, n + 1))
     return ndimage.binary_fill_holes(labels == (1 + int(np.argmax(sizes))))
+
+
+def _island_cutout(img, lum=212):
+    """An opaque island plate painted on its own sky (the Koke plates) as a sprite: everything that is
+    not sky or cloud (green or warm, dark, or darker than the pale sky) is the island; closing joins the
+    pale buds to the lawn, the largest piece is kept and its holes filled, and the edge is feathered by
+    1.5 px. The world draws its own sky and cloud sea behind it."""
+    import numpy as np
+    from PIL import ImageFilter
+    from scipy import ndimage
+
+    rgb = np.array(img.convert("RGB")).astype(int)
+    r, g, b = rgb[..., 0], rgb[..., 1], rgb[..., 2]
+    luma = (r * 299 + g * 587 + b * 114) // 1000
+    mask = (g - b > 10) | (r - b > 28) | (np.maximum(np.maximum(r, g), b) < 150) | (luma < lum)
+    k = max(3, (img.width // 100) | 1)
+    mask = ndimage.binary_closing(mask, structure=np.ones((k * 2 + 1, k * 2 + 1)))
+    mask = ndimage.binary_opening(mask, structure=np.ones((3, 3)))
+    labels, n = ndimage.label(mask)
+    sizes = ndimage.sum(mask, labels, range(1, n + 1))
+    mask = ndimage.binary_fill_holes(labels == 1 + int(np.argmax(sizes)))
+    alpha = Image.fromarray((mask * 255).astype("uint8")).filter(ImageFilter.GaussianBlur(1.5))
+    out = img.convert("RGBA")
+    out.putalpha(alpha)
+    return out
 
 
 def _walkable(img, ppu, anchor, spec):
@@ -707,6 +743,8 @@ def app_main():
             print("missing", path, file=sys.stderr)
             return 1
         src = Image.open(path).convert("RGBA")
+        if spec.get("matte"):
+            src = _island_cutout(src)
         harmony_key = spec.get("harmony_as", name)
         if alt in ("", "--round2") and corrected(harmony_key):
             src = harmony.correct_image(harmony_key, src, manifest, harmony_cfg)

@@ -17,7 +17,8 @@
       "pofu-*",
       "cloud-*",
       "sun-glow",
-      "far-isle-*"
+      "far-isle-*",
+      "koke-*"
     ]
   },
   "display_ppu": 4.0,
@@ -90,6 +91,8 @@
     "simit-kitten": "char",
     "simit-kitten-work": "char",
     "simit-kitten-ears": "char",
+    "koke-asleep": "char",
+    "koke-one-eye": "char",
     "harbor-island-s": "world",
     "far-isle-1": "world",
     "far-isle-2": "world",
