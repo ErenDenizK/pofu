@@ -2,14 +2,14 @@ id: asset-findik-step-b
 type: asset
 title_tr: findik-step-b
 title_en: findik-step-b (char)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Edit the attached character, the hedgehog Fındık, into one animation frame: the right foot
-  (the viewer's left) lifted and stepping forward, the left foot planted, the mirror of the
-  other step, his spines swaying slightly back. Keep the face, the colours, the fur, the size
-  and the exact position on the canvas the same; change only the legs and paws and a slight
-  sway, as a cute cartoon step, never a realistic gait.
+summary: 'Edit the attached character, the hedgehog Fındık, into one animation frame:
+  the right foot (the viewer''s left) lifted and stepping forward, the left foot planted,
+  the mirror of the other step, his spines swaying slightly back. Keep the face, the
+  colours, the fur, the size and the exact position on the canvas the same; change
+  only the legs and paws and a slight sway, as a cute cartoon step, never a realistic
+  gait.'
 links:
   variant_of:
   - asset-findik
@@ -22,3 +22,15 @@ sources:
 kind: char
 batch: batch-59-resident-walks
 size: 870x1306
+notes:
+- 'batch-59-resident-walks skipped after four takes: Skipped after the sole unchanged-prompt
+  retry. Both retained initial takes pass ordinary QA/manual content but cannot meet
+  the unchanged 614400-byte lossless master requirement: t1 minimum676566B and t2
+  minimum707582B, so initial1/2 are excluded for upload eligibility without relabeling
+  their QA. The sole retry also yields no eligible candidate: t3 palette_drift; t4
+  palette_drift. Preserve all four actual sources and truthful QA; no resize, lossy
+  master, force, threshold/manifest edits or third round. Independent Fındık frames
+  reference the approved external base and continue. Automated failures: t3 palette_drift:
+  mean dE 3.0, p95 14.3, off-palette 8.4% (top: #994422 (1.6%), #AA5533 (1.3%)); t4
+  palette_drift: mean dE 3.1, p95 14.3, off-palette 8.1% (top: #AA5533 (2.4%), #994422
+  (2.1%)).'
