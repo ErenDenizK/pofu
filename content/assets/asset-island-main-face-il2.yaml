@@ -1,0 +1,23 @@
+id: asset-island-main-face-il2
+type: asset
+title_tr: island-main-face-il2
+title_en: island-main-face-il2 (world)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached floating island: paint a second small round door into its earth body,
+  set into the earth exactly like the existing round wooden door on the left, at the same
+  height, at about 60 percent of the earth body's width from its left edge. This door is painted
+  a soft rose with a small round window and a tiny sign with a tulip-shaped tea glass, as
+  in the attached door design, framed by the same rim of small …
+links:
+  variant_of:
+  - asset-island-main-l-v3
+art:
+  images: []
+  jobs:
+  - batch-60-earth-face:island-main-face-il2
+sources:
+- doc: tools/imagegen/manifest/batch-60-earth-face.yaml
+kind: world
+batch: batch-60-earth-face

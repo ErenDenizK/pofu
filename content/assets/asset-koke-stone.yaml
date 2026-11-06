@@ -1,0 +1,21 @@
+id: asset-koke-stone
+type: asset
+title_tr: koke-stone
+title_en: koke-stone (prop)
+status: in-production
+horizon: now
+summary: >-
+  A small upright standing stone for a cozy mobile game, as a game sprite on a transparent
+  background: a soft rounded grey-sage stone a little taller than wide, with a cap of fresh
+  moss on its top and a few moss patches on its sides, three faint carved horizontal lines
+  on its face like an old message worn smooth, softly lit from the upper left with a cool
+  shade on the right, standing on a tiny tuft of grass, in exactly…
+art:
+  images: []
+  jobs:
+  - batch-60-earth-face:koke-stone
+sources:
+- doc: tools/imagegen/manifest/batch-60-earth-face.yaml
+kind: prop
+batch: batch-60-earth-face
+size: 1024x1024
