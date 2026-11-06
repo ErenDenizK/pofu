@@ -1,0 +1,210 @@
+batch: batch-45-beautiful-wounds
+manifest: tools/imagegen/manifest/batch-45-beautiful-wounds.yaml
+manifest_sha256: 76008f3117f50b58d4b037b6ab2cb8164cc2f68868f8f14932b29df37575f743
+contact_sheet: design/art/takes/batch-45-beautiful-wounds/x-koke-stage0-mist/contact.jpg
+jobs:
+  x-koke-stage0-mist:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: auto-picked by QA; founder review pending. Both source and official locked
+      takes retain the approved sleeping-moss composition, closed face, crown sprout,
+      five closed drooping flower groups, both ferns, seven-stone path, side mounds
+      and right rake. Low layered mist dissolves the foot and separates the back of
+      the mound, while the lawn and named props remain visible. One slanting warm
+      shaft focuses on the sprout; its natural rim and pale cloud spill are not extra
+      practical lights. Both are manually eligible; lowest lock load selects take1.
+      The full-value/haze/contrast/palette warnings are disclosed advisory exploration
+      measurements, not silently waived hard checks. The authored target and LIGHT
+      take precedence over the unchanged legacy prop-style high-key/milky prose; no
+      prompt, reference, pixel or QA change. Independent concept interpretation, not
+      a registered pixel-identical edit. Never promoted.
+qa_reports:
+  1:
+    job: x-koke-stage0-mist
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 36.9
+    - check: light_values
+      status: warn
+      message: 'dawn/subject: L p2 42 (at most 26), p98 77 (at least 88), spread 35
+        (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 34.9
+    - check: light_median
+      status: pass
+      message: 'dawn/subject: median L 64 (band 50-88)'
+      value: 64.0
+    - check: light_haze
+      status: warn
+      message: 'dawn/subject: dark-channel haze 0.40 (at most 0.24; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.396
+    - check: light_contrast
+      status: warn
+      message: 'dawn/subject: p75 local contrast 2.4 (at least 3.2) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.35
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.18
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5859
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.8, p95 6.4, off-palette 0.0% (top: #FFDD66 (0.0%))'
+      value: 2.8022
+    info:
+      metrics_raw:
+        L_p5: 47.6
+        L_p50: 66.1
+        L_p95: 79.4
+        C_p50: 20.4
+        C_p95: 36.9
+        C_p99: 40.1
+        detail: 1.56
+      metrics_locked:
+        L_p5: 47.7
+        L_p50: 66.1
+        L_p95: 79.2
+        C_p50: 20.3
+        C_p95: 36.9
+        C_p99: 40.0
+        detail: 1.18
+    fingerprint: 47c36718b1af9b1a
+  2:
+    job: x-koke-stage0-mist
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 29 (R1 51)
+      value: 29.4
+    - check: light_values
+      status: warn
+      message: 'dawn/subject: L p2 44 (at most 26), p98 82 (at least 88), spread 38
+        (at least 55)'
+      value: 38.3
+    - check: light_median
+      status: pass
+      message: 'dawn/subject: median L 64 (band 50-88)'
+      value: 64.0
+    - check: light_haze
+      status: warn
+      message: 'dawn/subject: dark-channel haze 0.40 (at most 0.24; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.404
+    - check: light_contrast
+      status: warn
+      message: 'dawn/subject: p75 local contrast 2.6 (at least 3.2) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.59
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.36
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5919
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.2, p95 6.3, off-palette 0.0% (top: #FFDD66 (0.0%), #DDBB55
+        (0.0%))'
+      value: 2.167
+    info:
+      metrics_raw:
+        L_p5: 49.7
+        L_p50: 67.7
+        L_p95: 84.4
+        C_p50: 15.2
+        C_p95: 29.4
+        C_p99: 33.3
+        detail: 1.81
+      metrics_locked:
+        L_p5: 50.0
+        L_p50: 67.7
+        L_p95: 84.3
+        C_p50: 15.0
+        C_p95: 29.4
+        C_p99: 33.2
+        detail: 1.36
+    fingerprint: 47c36718b1af9b1a
+manual_review:
+  observed_note: Both source and official locked takes retain the approved sleeping-moss
+    composition, closed face, crown sprout, five closed drooping flower groups, both
+    ferns, seven-stone path, side mounds and right rake. Low layered mist dissolves
+    the foot and separates the back of the mound, while the lawn and named props remain
+    visible. One slanting warm shaft focuses on the sprout; its natural rim and pale
+    cloud spill are not extra practical lights. Both are manually eligible; lowest
+    lock load selects take1. The full-value/haze/contrast/palette warnings are disclosed
+    advisory exploration measurements, not silently waived hard checks. The authored
+    target and LIGHT take precedence over the unchanged legacy prop-style high-key/milky
+    prose; no prompt, reference, pixel or QA change. Independent concept interpretation,
+    not a registered pixel-identical edit. Never promoted.
+  excluded_takes: []
+sources:
+- batch: batch-45-beautiful-wounds
+  job: x-koke-stage0-mist
+  take: 1
+  round: 1
+  logical_run: 20261106-b45-r1-koke-emanet
+  source_file: /workspace/generated_images/exec-83cca108-9fb3-4941-9a6e-b8ed48d362aa.png
+  returned_at: '2026-11-06T07:02:29.134Z'
+  prompt_sha256: d06ee38acbdfb6f5d7469e21b416c59c45ed7e00fd2fc98b8a06998e51ba35d7
+  fingerprint: 47c36718b1af9b1a
+  saved_at: '2026-11-06T07:02:29.586440+00:00'
+  original_generated_png_sha256: 657727e489b2a34784c9bf59684aac33850df1657325c18e0811e3db3674cb46
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: b722aae1ff11a7a91d19c7749ddeb334d81bd992c834156461e45cf88353fbb3
+  inbox_png_sha256: a292d96b5011fd12b585f37ab82e63acad61533cae10ed88d5c55da19be4ccb0
+  qa_sha256: 769b81be962325e17b178aecad98ad2aea2fe9c0539c021ec2a5c04dd18f0b70
+- batch: batch-45-beautiful-wounds
+  job: x-koke-stage0-mist
+  take: 2
+  round: 1
+  logical_run: 20261106-b45-r1-koke-emanet
+  source_file: /workspace/generated_images/exec-08b33896-ee90-4a6c-b038-e0cece55d0a1.png
+  returned_at: '2026-11-06T07:03:09.213Z'
+  prompt_sha256: d06ee38acbdfb6f5d7469e21b416c59c45ed7e00fd2fc98b8a06998e51ba35d7
+  fingerprint: 47c36718b1af9b1a
+  saved_at: '2026-11-06T07:03:09.654902+00:00'
+  original_generated_png_sha256: f8fe925253c737fea28c8e0ec4e9389f457f27848fd2aa5667679043b26bbc91
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 5d2aa7291781955bf7dc587860b5ecc7d9edc5cb7cded5b81154394ef353b23f
+  inbox_png_sha256: 04bd3b59514a82ebfe57a122dfb8be56c869d95989f752a66c98974786c57150
+  qa_sha256: d5e4158a50802b5d78756638ab2e7c1b5ffe9a41f3772f29941fa315d32e2622
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
