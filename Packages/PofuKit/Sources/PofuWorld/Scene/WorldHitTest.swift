@@ -12,6 +12,8 @@ public struct HitTarget: Hashable, Sendable {
         /// A part of today's visit: the visitor, the parcel, the thing that
         /// needs help, the quiet day's letter (§5).
         case visitor(VisitorPart)
+        /// Koke itself, on its own island.
+        case koke
     }
 
     public var kind: Kind
@@ -25,6 +27,14 @@ public struct HitTarget: Hashable, Sendable {
         self.worldBox = worldBox
         self.depth = depth
     }
+}
+
+/// Whether Koke can be tapped: not yet reachable, reachable (its island
+/// answers on the Map) or the camera is on it (Koke answers).
+public enum KokeReach: Hashable, Sendable {
+    case none
+    case arrived
+    case onIsland
 }
 
 /// The one tap resolver (§1.3), pure and unit-tested: it projects every
@@ -85,8 +95,11 @@ public enum WorldHitTest {
 
     /// The islands as targets on the Archipelago: the home plate and every
     /// other island's art.
-    public static func islandTargets() -> [HitTarget] {
+    public static func islandTargets(koke: Bool = false) -> [HitTarget] {
         var targets = [HitTarget(kind: .island(.home), worldBox: IslandFraming.plateBox, depth: 0)]
+        if koke {
+            targets.append(HitTarget(kind: .island(.koke), worldBox: KokeLayout.islandBox, depth: 0))
+        }
         for isle in IslandLayout.isles {
             if let box = WorldArt.sprite(isle.art)?.sharp {
                 targets.append(HitTarget(kind: .island(isle.id), worldBox: IslandFraming.placed(box, at: isle.center), depth: 0))
@@ -103,10 +116,14 @@ public enum WorldHitTest {
         z: Double,
         visitor: VisitorSnapshot? = nil,
         invitationOpen: Bool = false,
-        isBedtime: Bool = false
+        isBedtime: Bool = false,
+        koke: KokeReach = .none
     ) -> [HitTarget] {
-        guard z >= archipelagoZ else { return islandTargets() }
+        guard z >= archipelagoZ else { return islandTargets(koke: koke != .none) }
         var targets: [HitTarget] = []
+        if koke == .onIsland {
+            targets.append(HitTarget(kind: .koke, worldBox: KokeLayout.kokeBox, depth: IslandLayout.depth(ofY: KokeLayout.center.y)))
+        }
         for status in stations where status.island == .home && status.isOpen {
             guard let slot = IslandLayout.stationAnchors[status.id] else { continue }
             let art = IslandLayout.stationArt(status.id, level: max(status.level, 1))?.name

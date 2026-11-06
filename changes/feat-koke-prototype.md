@@ -1,0 +1,1 @@
+Added: Koke, the first wonder island, is playable as a prototype: a snoring hump shows on the harbor's horizon on about the fifth day, the island opens the next day, and on each day with a resisted reach a visit wakes it one stage (colour and light come back, the duo says a line); when it stands up it leaves moss at home and a faint light on the horizon.

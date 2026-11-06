@@ -11,6 +11,12 @@ import SwiftUI
 struct FarSky: View {
     /// What the far sky needs from the scene.
     struct Look: Hashable {
+        /// Koke on the horizon, seen from the harbor; `lit` once it is
+        /// healed (the gift's faint light).
+        struct Koke: Hashable {
+            var lit: Bool
+        }
+
         /// The rail position.
         var z: Double
         /// The fog's colour through the sky's grade, and its amount.
@@ -18,9 +24,11 @@ struct FarSky: View {
         var far: Double
         /// White through the sky's grade: the hour's light on the far art.
         var light: PofuRGB
+        var koke: Koke?
 
-        init(z: Double, cell: ColourCell, grade: WorldGrade) {
+        init(z: Double, cell: ColourCell, grade: WorldGrade, koke: Koke? = nil) {
             self.z = z
+            self.koke = koke
             let g = grade.sky
             fog = g.apply(cell.fog.colour)
             far = cell.fog.far
@@ -58,6 +66,7 @@ struct FarSky: View {
             }
         }
         .frame(width: size.width, height: size.height, alignment: .topLeading)
+        .overlay { KokeFarHump(look: look, offset: offset, size: size) }
         .allowsHitTesting(false)
         .accessibilityHidden(true)
     }

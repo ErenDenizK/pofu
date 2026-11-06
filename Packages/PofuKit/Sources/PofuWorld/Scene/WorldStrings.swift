@@ -40,8 +40,34 @@ enum WorldStrings {
         switch id {
         case .home: "Ayçiçeği"
         case .harbor: "İskele"
+        case .koke: localized("koke.name")
         default: id.rawValue.capitalized
         }
+    }
+
+    // MARK: Koke (the first wonder island)
+
+    /// A catalog string looked up by a computed key.
+    private static func localized(_ key: String) -> String {
+        Bundle.module.localizedString(forKey: key, value: key, table: nil)
+    }
+
+    /// A line of Koke's beats, the rumour or the rest line.
+    static func kokeLine(_ kind: KokeLineKind) -> String {
+        localized(KokeLayout.lineKey(kind))
+    }
+
+    static func kokeSpeaker(_ speaker: KokeSpeaker) -> String {
+        switch speaker {
+        case .pofu: localized("koke.speaker.pofu")
+        case .mochi: localized("koke.speaker.mochi")
+        case .koke: localized("koke.name")
+        }
+    }
+
+    /// VoiceOver for the moss Koke gave.
+    static var kokeGift: String {
+        localized("koke.gift")
     }
 
     static func residentName(_ id: ResidentID) -> String {

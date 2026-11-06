@@ -217,6 +217,14 @@ public enum IslandFraming {
     /// Another island's Island stop (§1.2): the camera at the Island scale,
     /// centred on that island's art. The home island has its own rail.
     public static func isleStop(_ island: IslandID, width: Double, height: Double) -> CameraRail.Stop? {
+        if island == .koke {
+            let box = KokeLayout.islandBox
+            return CameraRail.Stop(
+                scale: islandScale * width / CameraRail.referenceWidth,
+                look: WorldPoint(x: box.midX, y: box.midY),
+                anchorY: bandMid(height: height)
+            )
+        }
         guard let isle = IslandLayout.isles.first(where: { $0.id == island }) else { return nil }
         let box = WorldArt.sprite(isle.art)?.sharp.map { placed($0, at: isle.center) }
         let scale = islandScale * width / CameraRail.referenceWidth
