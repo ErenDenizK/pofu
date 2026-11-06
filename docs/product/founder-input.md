@@ -494,3 +494,11 @@ His views (translated), not orders; the decisions are ours. Handled in
 3. Is the lead waiting on anything, or can it plan improvements and next steps? Handled in chat: only the monetization yes/no and the lore PR #135; everything else moves.
 4. Did we design, for every island and the things inside it, the positions and levels step by step until complete? Handled: home yes (home progression, home layout); story islands only at the arc level (stages per island) with Koke and Çağlayan in detail. Next: Book One island sheets for the rest (layout, stages, engine, residents, underside, keepsake, gift).
 5. Too many tasks since last night to follow; present them separately or as a whole. Handled: the deck's first part.
+
+## 2026-11-06 (midday): a shorter deck; nothing forgotten; the tracker; hygiene
+
+1. The deck should be shorter, tidy and focused (he has ADHD and does not like reading; the lead presents, he does not read on a stage). Handled: cut to nine visual pages, the islands page the richest.
+2. Plan for real, with concepts, how each island grows level by level (what stands where, how it grows and arrives). Handled: Book One island sheets (#271); a painted home growth strip IL1 to IL10 queued for Codex (`batch-57`, row 0-h).
+3. Residents should work and move more naturally (animation). Handled: a thread in the tracker; a behaviour and animation spec follows it.
+4. Gather everything talked about but not built, every possible improvement (logic, technical, system, visual, animation, design), keep the context: one clear picture of what happened, where we go, what became of each decision. Handled: `docs/tracker.md` (an Opus pass over every founder message, doc, PR and the code).
+5. File hygiene: archive old rules, tiring ADRs and whatever leads to context rot; improve the working environment, since we stay in it. Handled: a hygiene pass (archive, a leaner CLAUDE.md and AGENTS.md, one docs map).

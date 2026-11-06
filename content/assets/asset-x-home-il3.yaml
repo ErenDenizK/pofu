@@ -1,0 +1,21 @@
+id: asset-x-home-il3
+type: asset
+title_tr: x-home-il3
+title_en: x-home-il3 (plate)
+status: in-production
+horizon: now
+summary: >-
+  The attached home island, the same plate, outline, size and camera, at level 3: a stone
+  path to a little tea corner (a tea stall with a kettle), a bagel cart, a rope bridge at
+  the right edge leading to a small harbor islet with a pier; a rope ladder hangs under the
+  island. Soft noon light, cozy, every piece at the scale of the attached tea stall, clearly
+  placed so the island reads at a glance. No characters.
+art:
+  images: []
+  jobs:
+  - batch-57-home-growth-strip:x-home-il3
+sources:
+- doc: tools/imagegen/manifest/batch-57-home-growth-strip.yaml
+kind: plate
+batch: batch-57-home-growth-strip
+size: 1536x1024

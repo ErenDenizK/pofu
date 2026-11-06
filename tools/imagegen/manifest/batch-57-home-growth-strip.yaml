@@ -1,0 +1,156 @@
+# Batch 57: home growth strip (exploration; x- ids, never promoted).
+#
+# The founder (2026-11-06): plan for real, with concepts if needed, how the
+# island grows level by level: what stands where, how it grows, how it
+# arrives. Home progression §3 and home layout already say it in words;
+# this paints it: the same home island in the same camera at IL1, IL3, IL5,
+# IL7 and IL10, so the lead can check that every step is a visible, living
+# change and that the layout stays readable when full. The lead compares
+# them side by side on one strip before any production.
+
+batch: batch-57-home-growth-strip
+title: Home growth strip (the home island at IL1, IL3, IL5, IL7, IL10)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+
+  - id: x-home-il1
+    kind: plate
+    name: x-home-il1
+    light: {cell: day, layer: subject}
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    acceptance: {exploration: true}
+    notes: "Home at island level 1 for the growth strip. Review: same plate, camera and size as the other levels; the step from the previous level is obvious at a glance; readable, never cluttered."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island plate: keep its exact outline, size, camera, lawn shape, earth body and round door; only what stands on and under it changes."
+      - ref: approved:tea-stall-5
+        role: "A finished station: every station and prop is at this scale and finish."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below."
+    prompt:
+      - text: |
+          The attached home island, the same plate, outline, size and camera,
+          at level 1: a small round island with only Pofu's round door in the earth, one sunflower bed and a tiny vegetable garden on the lawn, bare roots below; quiet and humble. Soft noon light, cozy, every piece at the scale of the
+          attached tea stall, clearly placed so the island reads at a glance.
+          No characters.
+      - block: prop-style-v2
+      - text: "AVOID: changing the island's outline or size, clutter, overlapping buildings, characters, text, letters, a border"
+
+  - id: x-home-il3
+    kind: plate
+    name: x-home-il3
+    light: {cell: day, layer: subject}
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    acceptance: {exploration: true}
+    notes: "Home at island level 3 for the growth strip. Review: same plate, camera and size as the other levels; the step from the previous level is obvious at a glance; readable, never cluttered."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island plate: keep its exact outline, size, camera, lawn shape, earth body and round door; only what stands on and under it changes."
+      - ref: approved:tea-stall-5
+        role: "A finished station: every station and prop is at this scale and finish."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below."
+    prompt:
+      - text: |
+          The attached home island, the same plate, outline, size and camera,
+          at level 3: a stone path to a little tea corner (a tea stall with a kettle), a bagel cart, a rope bridge at the right edge leading to a small harbor islet with a pier; a rope ladder hangs under the island. Soft noon light, cozy, every piece at the scale of the
+          attached tea stall, clearly placed so the island reads at a glance.
+          No characters.
+      - block: prop-style-v2
+      - text: "AVOID: changing the island's outline or size, clutter, overlapping buildings, characters, text, letters, a border"
+
+  - id: x-home-il5
+    kind: plate
+    name: x-home-il5
+    light: {cell: day, layer: subject}
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    acceptance: {exploration: true}
+    notes: "Home at island level 5 for the growth strip. Review: same plate, camera and size as the other levels; the step from the previous level is obvious at a glance; readable, never cluttered."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island plate: keep its exact outline, size, camera, lawn shape, earth body and round door; only what stands on and under it changes."
+      - ref: approved:tea-stall-5
+        role: "A finished station: every station and prop is at this scale and finish."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below."
+    prompt:
+      - text: |
+          The attached home island, the same plate, outline, size and camera,
+          at level 5: the lawn is fuller; a pond with lily pads at the right, stepping stones, flower beds, a small pier; fireflies sleep in a hollow between the roots below; more residents' round doors in the earth. Soft noon light, cozy, every piece at the scale of the
+          attached tea stall, clearly placed so the island reads at a glance.
+          No characters.
+      - block: prop-style-v2
+      - text: "AVOID: changing the island's outline or size, clutter, overlapping buildings, characters, text, letters, a border"
+
+  - id: x-home-il7
+    kind: plate
+    name: x-home-il7
+    light: {cell: day, layer: subject}
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    acceptance: {exploration: true}
+    notes: "Home at island level 7 for the growth strip. Review: same plate, camera and size as the other levels; the step from the previous level is obvious at a glance; readable, never cluttered."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island plate: keep its exact outline, size, camera, lawn shape, earth body and round door; only what stands on and under it changes."
+      - ref: approved:tea-stall-5
+        role: "A finished station: every station and prop is at this scale and finish."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below."
+    prompt:
+      - text: |
+          The attached home island, the same plate, outline, size and camera,
+          at level 7: a raised back terrace with a workshop and a white lighthouse, path lamps along the paths, flower borders everywhere, flowering vines trailing over the island's rim and down its earth body. Soft noon light, cozy, every piece at the scale of the
+          attached tea stall, clearly placed so the island reads at a glance.
+          No characters.
+      - block: prop-style-v2
+      - text: "AVOID: changing the island's outline or size, clutter, overlapping buildings, characters, text, letters, a border"
+
+  - id: x-home-il10
+    kind: plate
+    name: x-home-il10
+    light: {cell: day, layer: subject}
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Home growth"
+    acceptance: {exploration: true}
+    notes: "Home at island level 10 for the growth strip. Review: same plate, camera and size as the other levels; the step from the previous level is obvious at a glance; readable, never cluttered."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island plate: keep its exact outline, size, camera, lawn shape, earth body and round door; only what stands on and under it changes."
+      - ref: approved:tea-stall-5
+        role: "A finished station: every station and prop is at this scale and finish."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below."
+    prompt:
+      - text: |
+          The attached home island, the same plate, outline, size and camera,
+          at level 10, Tam Çiçek, full bloom: a windmill on the left terrace, a beehive, a hill path to a carved sunflower gate on a little hilltop, lanterns strung along the terraces, every station grown, the roots below in bloom with a bird nest; abundant but still tidy and readable. Soft noon light, cozy, every piece at the scale of the
+          attached tea stall, clearly placed so the island reads at a glance.
+          No characters.
+      - block: prop-style-v2
+      - text: "AVOID: changing the island's outline or size, clutter, overlapping buildings, characters, text, letters, a border"
