@@ -1,0 +1,195 @@
+# Batch 45: beautiful wounds and weather on the home island (exploration;
+# x- ids, never promoted; takes, contact sheet and review.yaml committed under
+# design/art/takes/batch-45-beautiful-wounds/<id>/).
+#
+# The founder (2026-11-06): fog can be real fog; arriving at a new place must
+# keep its magic, so even the bad state should be impressive, not pale.
+# docs/design/sky-and-weather-v1.md §2.3-§2.4 and the healing arc's new
+# stage-0 rule: VALUE OVER CHROMA, ONE WARM LIGHT. Warm hues drained, but a
+# full value range (deep cool shade, bright lit edges), rich cool colour
+# (blue-violet, teal), real layered fog with depth, and one warm focal light,
+# the only warm saturated thing in the picture. Hushed, beautiful, inviting;
+# never washed out, never flat grey, never horror.
+#
+# These are painted targets: the lead measures the game's code-drawn fog and
+# weather against them on the lookdev sheet (tools/assets/lookdev.py). Try
+# the braver version; the lead pulls back what scares more than it charms.
+
+batch: batch-45-beautiful-wounds
+title: Beautiful wounds and home weather (exploration targets for fog, mist and rain)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: island-main-l-v3, kind: world, name: island-main-l-v3, external: batch-05-fixes-pilot, master: design/art/masters/island-main-l-v3/island-main-l-v3.webp}
+  - {id: tea-stall-5, kind: station, name: tea-stall-5, external: batch-01-slice}
+  - {id: cloud-sea, kind: world, name: cloud-sea, external: batch-04-sky}
+  - {id: koke-island-0, kind: plate, name: koke-island-0, external: batch-39-koke-production}
+
+  - id: x-koke-stage0-mist
+    kind: plate
+    name: x-koke-stage0-mist
+    light: {cell: dawn, layer: subject}
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-foliage]
+    chat: "Pofu · Beautiful wounds"
+    acceptance: {exploration: true}
+    notes: "Koke's stage 0 under the new rule, same layout as the approved plate: dawn mist, one warm shaft on the sprout. Review: would the founder want to land here? Sad and asleep, but gorgeous."
+    attach:
+      - ref: approved:koke-island-0
+        role: "Koke's island at stage 0: keep its layout, camera, Koke's sleeping shape and every prop exactly; change only the light, the atmosphere and the colour."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island."
+    prompt:
+      - text: |
+          The attached sleeping-moss island, same layout and camera, at the
+          blue hour just before sunrise, wrapped in real mist: soft layered
+          fog lies low on the sea of clouds and drifts in veils around the
+          island's foot, so its base dissolves while the top stands clear;
+          thinner mist hangs behind Koke's hump so it stands out in layers.
+          The warm colours are drained (the moss a cool grey-sage, the
+          flowers shut), but the picture has a full range from deep
+          blue-violet shade to bright pale highlights on the mist. ONE warm
+          light: a single soft slanting shaft of early gold light breaks
+          through the mist and lands on the bright sprout on Koke's crown,
+          the only warm, saturated thing in the image, with dust motes in the
+          beam. Hushed, tender and beautiful: a sleeping giant waiting to be
+          woken.
+      - block: prop-style-v2
+      - text: "AVOID: flat grey, a washed-out picture, darkness without light, horror, skulls, eerie eyes, fog walls hiding everything, text, letters, a border"
+
+  - id: x-emanet-stage0-fog
+    kind: plate
+    name: x-emanet-stage0-fog
+    light: {cell: dusk, layer: subject}
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-props]
+    chat: "Pofu · Beautiful wounds"
+    acceptance: {exploration: true}
+    notes: "Emanet, the island of lost things, stage 0: the first island with a hint of unease (the healing arc's variety table). Review: eerie but enchanting; the lantern makes you want to go in; the fog has depth."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY its camera, plate proportions and soft painting."
+      - ref: approved:tea-stall-5
+        role: "A finished prop of the game: everything is at this scale and finish (do not draw this stall)."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island."
+    prompt:
+      - text: |
+          A game plate for a cozy mobile game: Emanet, a small island where
+          lost things wash up, in the game camera (a low front three-quarter
+          view, a small floating diorama plate about 62 percent of the image
+          width over a soft rounded earth body). STAGE 0: thick, real fog.
+          Dense layered fog fills the island and drifts in slow veils:
+          nearest things are clear, farther things fade into the fog's soft
+          blue-lilac grey, and the far side vanishes. Half seen in it: heaps
+          of lost things (an umbrella, a single boot, a teacup, a kite, a
+          toy boat), unlabeled, and the outline of a small closed wooden shed
+          at the back. ONE warm light: a small old lantern hangs on the shed's
+          door and glows honey-gold, making a soft warm halo in the fog and
+          casting long soft shadows from the heaps toward the viewer; it is
+          the only warm colour. Deep cool shade, pale glowing fog, a strong
+          range of values. Mysterious and a little uneasy, but enchanting:
+          the lantern says "come in".
+      - block: prop-style-v2
+      - text: "AVOID: monsters, faces in the fog, ghosts, skulls, blood, horror, a washed-out flat grey, total darkness, text, letters, a border"
+
+  - id: x-revontuli-stage0-night
+    kind: plate
+    name: x-revontuli-stage0-night
+    light: {cell: night, layer: subject}
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-props]
+    chat: "Pofu · Beautiful wounds"
+    acceptance: {exploration: true}
+    notes: "Revontuli, stage 0: the ruin (the variety table): half-fallen lantern towers under a black sky. Review: a ruin that is beautiful, not depressing; the one lit lantern and the faint first ribbon of aurora carry it."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: copy ONLY its camera, plate proportions and soft painting."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below every island."
+    prompt:
+      - text: |
+          A game plate for a cozy mobile game: Revontuli, a small northern
+          island at night, in the game camera (a low front three-quarter view,
+          a small floating diorama plate over a soft rounded earth body, the
+          sea of clouds below). STAGE 0, A GENTLE RUIN: three tall wooden
+          lantern towers, two of them leaning and half fallen, their lanterns
+          dark and some lying in the snow-dusted grass; a path of stones
+          leading to them. A deep blue-violet night sky full of soft stars,
+          the moon's cool light rimming every shape in silver, deep blue
+          shade, cold pale snow, a strong range of values. ONE warm light:
+          the one standing tower still holds a single small lantern glowing
+          honey-gold, its warm pool on the snow the only warm colour. Very
+          high in the sky, a single faint thread of green aurora hints at
+          what will return. Quiet, cold and beautiful, a place to mend.
+      - block: prop-style-v2
+      - text: "AVOID: fire, destruction, broken glass shards, gloom without light, horror, a flat dark picture, a bright full aurora, text, letters, a border"
+
+  - id: x-home-rain
+    kind: plate
+    name: x-home-rain
+    light: {cell: day, layer: subject}
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Beautiful wounds"
+    acceptance: {exploration: true}
+    notes: "The home island in light rain at noon: the target for the code's rain (spec §2.2: key 50 %, fill 110 %, sat 82 %, contrast 68 %, ground never too dark, one warm light). Review: cozy rain, not gloom."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: keep its layout, camera, lawn, round door and everything on it exactly; change only the weather and the light."
+      - ref: approved:tea-stall-5
+        role: "The tea stall on the island: keep it, with its burner glowing warm."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below."
+    prompt:
+      - text: |
+          The attached home island, same layout and camera, in a gentle light
+          rain at midday: soft slanting streaks of rain, a soft overcast sky
+          in cool lilac-grey with brighter breaks, the lawn a deeper, wetter
+          green with small silver glints of water on the stones and the
+          path, soft cool shadows, gentle mist on the sea of clouds below.
+          ONE warm light: the tea stall's burner glows honey-gold with a warm
+          pool on the wet ground. Cozy, like listening to rain from inside;
+          never gloomy.
+      - block: prop-style-v2
+      - text: "AVOID: a storm, lightning, dark heavy clouds, a flat grey picture, puddles that flood, characters, text, letters, a border"
+
+  - id: x-home-mist
+    kind: plate
+    name: x-home-mist
+    light: {cell: dawn, layer: subject}
+    size: 1536x1024
+    canvas: 1536x1024
+    deliver: {scale: 0.5}
+    palettes: [world-foliage, world-props]
+    chat: "Pofu · Beautiful wounds"
+    acceptance: {exploration: true}
+    notes: "The home island on a mist morning: the target for depth fog and the fog cards (spec §2.3). Review: the fog has depth and moves in layers; the island top is clear; a light shaft crosses it."
+    attach:
+      - ref: approved:island-main-l-v3
+        role: "The home island: keep its layout, camera and everything on it exactly; change only the atmosphere and the light."
+      - ref: approved:cloud-sea
+        role: "The sea of clouds below."
+    prompt:
+      - text: |
+          The attached home island, same layout and camera, on a misty
+          morning: real layered fog lies thick on the sea of clouds and rises
+          in soft veils around the island's earth body, so its base dissolves
+          into the mist while the lawn on top stands clear and bright. Far
+          behind, two or three other small islands are faint silhouettes
+          fading into the fog's pale peach-and-lilac horizon colour, the
+          farther the paler. A soft slanting shaft of warm morning light
+          crosses the mist from the upper left. Fresh, quiet and magical.
+      - block: prop-style-v2
+      - text: "AVOID: a flat grey or white-out picture, fog hiding the island's top, dark gloom, characters, text, letters, a border"

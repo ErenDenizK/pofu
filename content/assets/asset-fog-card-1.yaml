@@ -1,0 +1,21 @@
+id: asset-fog-card-1
+type: asset
+title_tr: fog-card-1
+title_en: fog-card-1 (ui)
+status: in-production
+horizon: now
+summary: >-
+  A long, low bank of soft mist seen from the side, filling the width of the image: pale white-grey
+  wisps that are densest along the bottom third and thin out upward into delicate curling
+  veils, with a few gentle thicker billows and thinner gaps inside so it has volume and depth,
+  like morning fog lying on water. The mist fades smoothly to pure black well before the left,
+  right and top edges.
+art:
+  images: []
+  jobs:
+  - batch-44-weather-fx:fog-card-1
+sources:
+- doc: tools/imagegen/manifest/batch-44-weather-fx.yaml
+kind: ui
+batch: batch-44-weather-fx
+size: 1536x1024

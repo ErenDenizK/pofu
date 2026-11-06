@@ -1,0 +1,21 @@
+id: asset-x-home-mist
+type: asset
+title_tr: x-home-mist
+title_en: x-home-mist (plate)
+status: in-production
+horizon: now
+summary: >-
+  The attached home island, same layout and camera, on a misty morning: real layered fog lies
+  thick on the sea of clouds and rises in soft veils around the island's earth body, so its
+  base dissolves into the mist while the lawn on top stands clear and bright. Far behind,
+  two or three other small islands are faint silhouettes fading into the fog's pale peach-and-lilac
+  horizon colour, the farther the paler. A soft slanti…
+art:
+  images: []
+  jobs:
+  - batch-45-beautiful-wounds:x-home-mist
+sources:
+- doc: tools/imagegen/manifest/batch-45-beautiful-wounds.yaml
+kind: plate
+batch: batch-45-beautiful-wounds
+size: 1536x1024

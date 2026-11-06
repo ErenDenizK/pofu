@@ -1,0 +1,21 @@
+id: asset-x-emanet-stage0-fog
+type: asset
+title_tr: x-emanet-stage0-fog
+title_en: x-emanet-stage0-fog (plate)
+status: in-production
+horizon: now
+summary: >-
+  A game plate for a cozy mobile game: Emanet, a small island where lost things wash up, in
+  the game camera (a low front three-quarter view, a small floating diorama plate about 62
+  percent of the image width over a soft rounded earth body). STAGE 0: thick, real fog. Dense
+  layered fog fills the island and drifts in slow veils: nearest things are clear, farther
+  things fade into the fog's soft blue-lilac grey, and the far…
+art:
+  images: []
+  jobs:
+  - batch-45-beautiful-wounds:x-emanet-stage0-fog
+sources:
+- doc: tools/imagegen/manifest/batch-45-beautiful-wounds.yaml
+kind: plate
+batch: batch-45-beautiful-wounds
+size: 1536x1024

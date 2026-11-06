@@ -1,0 +1,214 @@
+# Batch 44: weather and fog sprites (production; real ids, promoted on pass).
+#
+# docs/design/sky-and-weather-v1.md §2.2 and §2.3. Every sprite is painted
+# light-on-black like the approved glow sprites of batch-35 (`blend:
+# additive`): the app either adds it (light shaft, rainbow, glint) or uses
+# its luminance as a soft mask tinted to the current horizon colour (fog
+# cards, rain), so black is "nothing". Code scales, tints, drifts and fades
+# them; none carries a colour of its own except the rainbow.
+#
+# Reviewed by the lead against glow-ground-pool: the same soft airbrushed
+# grain, smooth falloff, no banding, black stays black.
+
+batch: batch-44-weather-fx
+title: Weather and fog sprites (fog cards, rain, light shaft, rainbow, glint)
+status: open
+
+defaults:
+  variants: 2
+
+jobs:
+  - {id: glow-ground-pool, kind: ui, name: glow-ground-pool, external: batch-35-experience-pilot}
+
+  - id: fog-card-1
+    kind: ui
+    name: fog-card-1
+    size: 1536x1024
+    canvas: 1536x512
+    transparent: false
+    blend: additive
+    chat: "Pofu · Weather"
+    notes: "A low, wide bank of mist; code uses its luminance as a mask, tinted to the horizon colour, and drifts it across the cloud sea. Review: reads as soft volumetric mist with gentle internal shapes (thicker and thinner wisps), densest along the bottom third, fading to black at every edge; never a cloud with a hard outline; no banding."
+    attach:
+      - ref: approved:glow-ground-pool
+        role: "An approved glow sprite of the game: match its soft airbrushed grain and smooth falloff on pure black (do not draw a pool)."
+    prompt:
+      - text: |
+          A long, low bank of soft mist seen from the side, filling the width
+          of the image: pale white-grey wisps that are densest along the
+          bottom third and thin out upward into delicate curling veils, with
+          a few gentle thicker billows and thinner gaps inside so it has
+          volume and depth, like morning fog lying on water. The mist fades
+          smoothly to pure black well before the left, right and top edges.
+      - block: ui-object-v1
+      - text: |
+          MASK SPRITE: painted light-on-black for a game; the app uses its
+          brightness as a soft mask, so pure black (#000000) means no mist.
+          Only white and soft greys, the same soft airbrushed grain as the
+          attached sprite, a slight painterly irregularity, never a digital
+          gradient.
+      - text: "AVOID: hard cloud outlines, cumulus puffs, a horizon line, trees, islands, any object, colour, stars, rays, text, letters, a border, banding, grey or coloured backgrounds"
+
+  - id: fog-card-2
+    kind: ui
+    name: fog-card-2
+    size: 1536x1024
+    canvas: 1536x512
+    transparent: false
+    blend: additive
+    chat: "Pofu · Weather"
+    notes: "A thinner, more broken mist band with two or three rising curls, to layer in front of fog-card-1 at a different speed. Same review as fog-card-1."
+    attach:
+      - ref: approved:glow-ground-pool
+        role: "An approved glow sprite of the game: match its soft airbrushed grain and smooth falloff on pure black (do not draw a pool)."
+    prompt:
+      - text: |
+          A thin, broken band of drifting mist across the middle of the image,
+          lighter and more transparent than a fog bank: separate soft wisps
+          with gaps of black between them, two or three slow curls of mist
+          rising from it like steam. Pale white-grey on pure black, fading to
+          black well before every edge.
+      - block: ui-object-v1
+      - text: |
+          MASK SPRITE: painted light-on-black for a game; the app uses its
+          brightness as a soft mask, so pure black (#000000) means no mist.
+          Only white and soft greys, the same soft airbrushed grain as the
+          attached sprite, a slight painterly irregularity, never a digital
+          gradient.
+      - text: "AVOID: hard cloud outlines, cumulus puffs, any object, colour, stars, rays, text, letters, a border, banding, grey or coloured backgrounds"
+
+  - id: fog-card-3
+    kind: ui
+    name: fog-card-3
+    size: 1024x1024
+    canvas: 1024x512
+    transparent: false
+    blend: additive
+    chat: "Pofu · Weather"
+    notes: "A small, round-ish drifting mist puff for hollows and the foot of an island; code scatters two or three. Same review as fog-card-1."
+    attach:
+      - ref: approved:glow-ground-pool
+        role: "An approved glow sprite of the game: match its soft airbrushed grain and smooth falloff on pure black (do not draw a pool)."
+    prompt:
+      - text: |
+          A single small, soft drift of mist, wider than tall, centered,
+          filling about 70 percent of the width: a soft pale white-grey veil
+          with a slightly denser heart and wispy ragged edges that fade into
+          pure black well before the border.
+      - block: ui-object-v1
+      - text: |
+          MASK SPRITE: painted light-on-black for a game; the app uses its
+          brightness as a soft mask, so pure black (#000000) means no mist.
+          Only white and soft greys, the same soft airbrushed grain as the
+          attached sprite, never a digital gradient.
+      - text: "AVOID: a cloud with a hard outline, a ghost or face shape, any object, colour, text, letters, a border, banding, grey or coloured backgrounds"
+
+  - id: rain-tile
+    kind: ui
+    name: rain-tile
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    blend: additive
+    chat: "Pofu · Weather"
+    notes: "A seamlessly tileable sheet of soft rain streaks; code tiles two copies at different angles and speeds and tints them. Review: streaks are thin, soft, varied in length and brightness, slightly slanted, evenly spread with no clumps, and the image tiles (left edge continues into right, top into bottom); gentle rain, never a storm."
+    attach:
+      - ref: approved:glow-ground-pool
+        role: "An approved glow sprite of the game: match its soft painted grain on pure black (do not draw a pool)."
+    prompt:
+      - text: |
+          A seamless, tileable pattern of gentle falling rain on pure black:
+          about sixty thin, soft, slightly slanted streaks of pale white-blue
+          light, varied in length and brightness, evenly scattered over the
+          whole square with no clumps and no empty corners, each streak
+          softly tapered at both ends. The pattern continues across the edges
+          so copies placed side by side or stacked join without a seam.
+      - block: ui-object-v1
+      - text: |
+          MASK SPRITE: painted light-on-black for a game, pure black
+          (#000000) background, only white and pale blue-white, soft painted
+          streaks, never hard digital lines.
+      - text: "AVOID: a storm, lightning, splashes, drops with outlines, clouds, a ground, any object, colour beyond pale blue-white, text, letters, a border, a visible seam"
+
+  - id: light-shaft
+    kind: ui
+    name: light-shaft
+    size: 1024x1024
+    canvas: 1024x1024
+    transparent: false
+    blend: additive
+    chat: "Pofu · Weather"
+    notes: "One soft beam of light falling diagonally from the top left, for mist mornings, golden haze and the one warm light of a wounded island (code tints and stretches it). Review: a soft wedge, widening downward, brightest at the top, dissolving to nothing at the bottom, with faint dust motes; never hard-edged rays or a star."
+    attach:
+      - ref: approved:glow-ground-pool
+        role: "An approved glow sprite of the game: match its soft airbrushed grain and smooth falloff on pure black (do not draw a pool)."
+    prompt:
+      - text: |
+          One single soft beam of light falling from the top left corner
+          diagonally toward the lower middle of the image, a gentle wedge
+          that widens as it falls, brightest near the top and fading softly
+          to nothing before the bottom edge, its sides soft and slightly
+          uneven like light through mist. A few tiny soft dust motes float
+          inside the beam. Warm pale gold light on pure black.
+      - block: ui-object-v1
+      - text: |
+          GLOW SPRITE: a painterly additive light sprite; the app adds it with
+          plus-lighter blending, so black means no light. Same soft airbrushed
+          grain as the attached sprite, a smooth falloff, never a digital
+          gradient. Pure black (#000000) background.
+      - text: "AVOID: a sun, a lamp, a window, a star, spikes, several rays, lens flare, hard edges, any object, text, letters, a border, banding, grey or coloured backgrounds"
+
+  - id: rainbow-arc
+    kind: ui
+    name: rainbow-arc
+    size: 1536x1024
+    canvas: 1536x1024
+    transparent: false
+    blend: additive
+    chat: "Pofu · Weather"
+    notes: "The rain's payoff: a soft pastel rainbow arc the app fades in behind the island after rain (spec §2.2). Review: a gentle, wide, soft-edged arc in pastel bands (red-pink, peach, butter, mint, sky, lilac), never neon or saturated, fading out at both feet; reads at 28 pt."
+    attach:
+      - ref: approved:glow-ground-pool
+        role: "An approved glow sprite of the game: match its soft airbrushed grain and smooth falloff on pure black (do not draw a pool)."
+    prompt:
+      - text: |
+          A soft pastel rainbow on pure black: a wide, gentle arc spanning
+          about 80 percent of the image width, its top near the upper
+          quarter, made of soft blended bands of rose pink, peach, butter
+          yellow, mint, sky blue and lilac, each band soft-edged and melting
+          into the next, the whole arc a little misty. Both feet fade softly
+          into black before the bottom edge.
+      - block: ui-object-v1
+      - text: |
+          GLOW SPRITE: a painterly additive light sprite; the app adds it with
+          plus-lighter blending, so black means no light. Soft airbrushed
+          grain, smooth falloff, never a digital gradient. Pure black
+          (#000000) background.
+      - text: "AVOID: neon or saturated colours, hard band edges, a double rainbow, clouds, a pot of gold, a landscape, any object, text, letters, a border, banding"
+
+  - id: puddle-glint
+    kind: ui
+    name: puddle-glint
+    size: 1024x1024
+    canvas: 1024x512
+    transparent: false
+    blend: additive
+    chat: "Pofu · Weather"
+    notes: "A small wet glint on the ground after rain, seen at 17 degrees (a flat ellipse); code scatters 3 to 6 and fades them. Review: a soft flat shimmer with one or two tiny bright highlights, never a disc or a ring."
+    attach:
+      - ref: approved:glow-ground-pool
+        role: "An approved glow sprite of the game: match its painting, falloff and camera angle (a flat wide ellipse); do not draw a pool of lamplight."
+    prompt:
+      - text: |
+          A small shimmer of reflected sky light on a wet patch of ground,
+          seen from a low camera about 17 degrees above the ground, so it is
+          a flat soft ellipse about three times as wide as tall, centered,
+          filling about 60 percent of the width: a soft pale silver-blue sheen
+          with one or two tiny brighter highlights near its upper edge,
+          fading smoothly to black.
+      - block: ui-object-v1
+      - text: |
+          GLOW SPRITE: a painterly additive light sprite; the app adds it with
+          plus-lighter blending, so black means no light. Pure black
+          (#000000) background, soft airbrushed grain.
+      - text: "AVOID: a puddle outline, water ripples drawn as rings, a disc, any object, ground texture, text, letters, a border, banding"

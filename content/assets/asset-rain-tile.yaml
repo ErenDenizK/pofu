@@ -1,0 +1,21 @@
+id: asset-rain-tile
+type: asset
+title_tr: rain-tile
+title_en: rain-tile (ui)
+status: in-production
+horizon: now
+summary: >-
+  A seamless, tileable pattern of gentle falling rain on pure black: about sixty thin, soft,
+  slightly slanted streaks of pale white-blue light, varied in length and brightness, evenly
+  scattered over the whole square with no clumps and no empty corners, each streak softly
+  tapered at both ends. The pattern continues across the edges so copies placed side by side
+  or stacked join without a seam.
+art:
+  images: []
+  jobs:
+  - batch-44-weather-fx:rain-tile
+sources:
+- doc: tools/imagegen/manifest/batch-44-weather-fx.yaml
+kind: ui
+batch: batch-44-weather-fx
+size: 1024x1024
