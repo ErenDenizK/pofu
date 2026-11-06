@@ -1,0 +1,36 @@
+id: asset-x-week-stargazing-night-v2
+type: asset
+title_tr: x-week-stargazing-night-v2
+title_en: x-week-stargazing-night-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A round rug in deep indigo with small cream star shapes, a small chunky cream-and-brass
+  telescope on a short tripod beside it, two cushions in lilac and plum, a folded blanket
+  and an unlit round paper lantern in cream standing on the rug. It stands on the guide's
+  ground ellipse, centered on the cross, never wider than the ellipse and never taller than
+  the height bar; it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-32-weekly-themes-v2:x-week-stargazing-night-v2
+sources:
+- doc: tools/imagegen/manifest/batch-32-weekly-themes-v2.yaml
+kind: prop
+batch: batch-32-weekly-themes-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  SKIPPED after the sole unchanged-prompt retry. All four official normalized complete-group
+  widths are 360, 361, 678 and 664 px, exceeding the original literal one-third-frame bound
+  of 341.33 px. No hard automated check fails: aggregate QA is warning-only, and style/light/Harmony
+  warnings remain advisory. The unchanged source manual width still excludes every take. The
+  preferred raw drawing range is never used as an added gate. No inventory item is omitted
+  to force the group smaller, and no manual resize, crop, alpha/pixel cleanup, third pair,
+  prompt/profile/QA change or promotion is performed. All four original PNGs, exact frozen
+  prompt/reference fingerprints, canonical reports and q90 takes are retained. The night theme
+  stays a day-cell sprite with unlit lamps; no baked night light is claimed. This independent
+  job has no true dependents; other jobs continue.

@@ -1,0 +1,37 @@
+id: asset-x-week-fishing-day-v2
+type: asset
+title_tr: x-week-fishing-day-v2
+title_en: x-week-fishing-day-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A folding wooden stool with a coral cushion, a slim honey-wood fishing rod resting on a
+  forked stick with a red-and-cream float on its curled line, a tin bucket with two small
+  cream fish, and a tiny wide-brimmed straw hat hung on the stool. It stands on the guide's
+  ground ellipse, centered on the cross, never wider than the ellipse and never taller than
+  the height bar; it is small, a third of the image width at most.
+art:
+  images: []
+  jobs:
+  - batch-32-weekly-themes-v2:x-week-fishing-day-v2
+sources:
+- doc: tools/imagegen/manifest/batch-32-weekly-themes-v2.yaml
+kind: prop
+batch: batch-32-weekly-themes-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  SKIPPED after the sole unchanged-prompt retry. The four official normalized complete-group
+  widths are 360, 360, 360 and 603 px, all exceeding the source explicit one-third-frame limit
+  of 341.33 px. The first three are on the official baseline 888; take 4 also extends above
+  the ordinary decor bar. Folding means foldable construction, so an open stool with its coral
+  cushion is allowed and not a new rejection gate. Every hard automated check is warning-only;
+  style, light and Harmony warnings stay advisory. The manual exclusion is the unchanged normalized
+  literal size requirement, never the preferred raw drawing range or an invented alpha/geometry
+  gate. All four original source PNGs, exact frozen prompt/reference hashes, canonical reports
+  and q90 take copies are preserved. No third pair, manual shrink/crop, pixel or alpha cleanup,
+  manifest/QA threshold change or promotion. This job has no true dependents; all independent
+  jobs continue.

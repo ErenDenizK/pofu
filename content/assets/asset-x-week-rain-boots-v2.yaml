@@ -1,0 +1,36 @@
+id: asset-x-week-rain-boots-v2
+type: asset
+title_tr: x-week-rain-boots-v2
+title_en: x-week-rain-boots-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A pair of small chunky rain boots in sunshine mustard with rolled-over cuffs, standing side
+  by side beside a small round puddle shown as a soft flat shape of pale blue-grey on the
+  ground, and a closed small umbrella in coral leaning against them with a drop on its tip.
+  It stands on the guide's ground ellipse, centered on the cross, never wider than the ellipse
+  and never taller than the height bar; it is small, a thir…
+art:
+  images: []
+  jobs:
+  - batch-32-weekly-themes-v2:x-week-rain-boots-v2
+sources:
+- doc: tools/imagegen/manifest/batch-32-weekly-themes-v2.yaml
+kind: prop
+batch: batch-32-weekly-themes-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  SKIPPED after the sole unchanged-prompt retry. The four official normalized complete-group
+  widths are 360, 361, 360 and 361 px, all exceeding the source explicit one-third-frame limit
+  of 341.33 px. All are on the official baseline 888. The explicitly requested puddle remains
+  allowed prop content, not an unrequested floor. Every hard automated check is warning-only;
+  style, light and Harmony warnings stay advisory. The manual exclusion is the unchanged normalized
+  literal size requirement, never the preferred raw drawing range or an invented alpha/geometry
+  gate. All four original source PNGs, exact frozen prompt/reference hashes, canonical reports
+  and q90 take copies are preserved. No third pair, manual shrink/crop, pixel or alpha cleanup,
+  manifest/QA threshold change or promotion. This job has no true dependents; all independent
+  jobs continue.

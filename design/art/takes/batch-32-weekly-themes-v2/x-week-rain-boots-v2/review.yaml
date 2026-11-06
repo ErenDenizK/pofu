@@ -1,0 +1,465 @@
+batch: batch-32-weekly-themes-v2
+manifest: tools/imagegen/manifest/batch-32-weekly-themes-v2.yaml
+manifest_sha256: acb31cd072d7e0c9e67f12d197a68faed5a23d9d1e38ca01233743c98e677f40
+contact_sheet: design/art/takes/batch-32-weekly-themes-v2/x-week-rain-boots-v2/contact.jpg
+jobs:
+  x-week-rain-boots-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: SKIPPED after the sole unchanged-prompt retry. The four official normalized
+      complete-group widths are 360, 361, 360 and 361 px, all exceeding the source
+      explicit one-third-frame limit of 341.33 px. All are on the official baseline
+      888. The explicitly requested puddle remains allowed prop content, not an unrequested
+      floor. Every hard automated check is warning-only; style, light and Harmony
+      warnings stay advisory. The manual exclusion is the unchanged normalized literal
+      size requirement, never the preferred raw drawing range or an invented alpha/geometry
+      gate. All four original source PNGs, exact frozen prompt/reference hashes, canonical
+      reports and q90 take copies are preserved. No third pair, manual shrink/crop,
+      pixel or alpha cleanup, manifest/QA threshold change or promotion. This job
+      has no true dependents; all independent jobs continue.
+qa_reports:
+  1:
+    job: x-week-rain-boots-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 64 (R1 51) (advisory in an exploration)
+      value: 63.5
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 50 (at most 22), p98 91 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 40.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 78 (band 55-90)'
+      value: 77.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.06 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.059
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.5 (at least 3.5)'
+      value: 5.46
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.49
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.7
+      value: 3.6507
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 6.2, p95 15.1, off-palette 13.0% (top: #DD8833 (1.7%), #DD9933
+        (1.5%)) (advisory in an exploration)'
+      value: 6.2266
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 70 against the world reference (outliers: C_p95, detail,
+        edge)'
+      value: 70.4
+    info:
+      fit:
+        scale: 0.7087
+        anchor:
+        - 439.2
+        - 891
+      registration:
+        dx: 74
+        dy: -3
+      metrics_raw:
+        L_p5: 54.7
+        L_p50: 77.5
+        L_p95: 89.1
+        C_p50: 57.2
+        C_p95: 69.1
+        C_p99: 70.5
+        detail: 2.12
+      metrics_locked:
+        L_p5: 55.6
+        L_p50: 77.5
+        L_p95: 88.4
+        C_p50: 53.6
+        C_p95: 63.5
+        C_p99: 64.0
+        detail: 1.49
+    fingerprint: 30f949a658f7b832
+  2:
+    job: x-week-rain-boots-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 62 (R1 51) (advisory in an exploration)
+      value: 62.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 90 (at least 90), spread 36
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.0
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 76 (band 55-90)'
+      value: 76.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.11 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.11
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.8 (at least 3.5)'
+      value: 4.85
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.4 (R1 5.3)
+      value: 1.38
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.8
+      value: 2.7874
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.4, p95 13.8, off-palette 8.1% (top: #CC7722 (1.9%), #DD8833
+        (1.9%)) (advisory in an exploration)'
+      value: 5.4153
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 72 against the world reference (outliers: C_p95, detail,
+        edge)'
+      value: 72.5
+    info:
+      fit:
+        scale: 0.7423
+        anchor:
+        - 414.6
+        - 911
+      registration:
+        dx: 98
+        dy: -23
+      metrics_raw:
+        L_p5: 57.0
+        L_p50: 76.2
+        L_p95: 89.0
+        C_p50: 53.2
+        C_p95: 65.6
+        C_p99: 67.2
+        detail: 2.01
+      metrics_locked:
+        L_p5: 58.2
+        L_p50: 76.2
+        L_p95: 88.2
+        C_p50: 51.2
+        C_p95: 62.2
+        C_p99: 62.9
+        detail: 1.38
+    fingerprint: 30f949a658f7b832
+  3:
+    job: x-week-rain-boots-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 63 (R1 51) (advisory in an exploration)
+      value: 62.7
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 53 (at most 22), p98 90 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.11 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.11
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.7 (at least 3.5)'
+      value: 5.73
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.8
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 3.3
+      value: 3.341
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 5.1, p95 13.8, off-palette 8.8% (top: #CC7722 (2.0%), #DD8833
+        (1.9%)) (advisory in an exploration)'
+      value: 5.15
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 72 against the world reference (outliers: C_p95, detail,
+        edge)'
+      value: 72.3
+    info:
+      fit:
+        scale: 0.7453
+        anchor:
+        - 430.8
+        - 901
+      registration:
+        dx: 81
+        dy: -14
+      metrics_raw:
+        L_p5: 56.0
+        L_p50: 76.8
+        L_p95: 89.4
+        C_p50: 51.2
+        C_p95: 67.0
+        C_p99: 68.0
+        detail: 2.58
+      metrics_locked:
+        L_p5: 57.0
+        L_p50: 76.7
+        L_p95: 88.4
+        C_p50: 50.2
+        C_p95: 62.7
+        C_p99: 63.1
+        detail: 1.8
+    fingerprint: 30f949a658f7b832
+  4:
+    job: x-week-rain-boots-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 63 (R1 51) (advisory in an exploration)
+      value: 63.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 52 (at most 22), p98 90 (at least 90), spread 38
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 37.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 76.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.07 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.071
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.2 (at least 3.5)'
+      value: 5.19
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.6 (R1 5.3)
+      value: 1.59
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 4.1
+      value: 4.1131
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 6.5, p95 15.4, off-palette 13.8% (top: #DD8833 (3.1%), #CC7722
+        (1.8%)) (advisory in an exploration)'
+      value: 6.523
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: warn
+      message: 'harmony score 68 against the world reference (outliers: C_p95, detail,
+        edge)'
+      value: 67.5
+    info:
+      fit:
+        scale: 0.6294
+        anchor:
+        - 421.9
+        - 850
+      registration:
+        dx: 91
+        dy: 37
+      metrics_raw:
+        L_p5: 55.7
+        L_p50: 76.7
+        L_p95: 87.9
+        C_p50: 57.3
+        C_p95: 68.3
+        C_p99: 70.4
+        detail: 2.33
+      metrics_locked:
+        L_p5: 56.7
+        L_p50: 76.7
+        L_p95: 87.2
+        C_p50: 52.8
+        C_p95: 63.2
+        C_p99: 64.0
+        detail: 1.59
+    fingerprint: 30f949a658f7b832
+manual_review:
+  observed_note: SKIPPED after the sole unchanged-prompt retry. The four official
+    normalized complete-group widths are 360, 361, 360 and 361 px, all exceeding the
+    source explicit one-third-frame limit of 341.33 px. All are on the official baseline
+    888. The explicitly requested puddle remains allowed prop content, not an unrequested
+    floor. Every hard automated check is warning-only; style, light and Harmony warnings
+    stay advisory. The manual exclusion is the unchanged normalized literal size requirement,
+    never the preferred raw drawing range or an invented alpha/geometry gate. All
+    four original source PNGs, exact frozen prompt/reference hashes, canonical reports
+    and q90 take copies are preserved. No third pair, manual shrink/crop, pixel or
+    alpha cleanup, manifest/QA threshold change or promotion. This job has no true
+    dependents; all independent jobs continue.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-32-weekly-themes-v2
+  job: x-week-rain-boots-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b32-v2
+  source_file: /workspace/generated_images/exec-1051e906-20e3-49cc-b967-631e3d3e9b8f.png
+  returned_at: '2026-11-06T03:13:44.306Z'
+  prompt_sha256: 09eedd2227dd41ad3cc747ee1d80550d55aebb65c395ce989072c39266d429a5
+  fingerprint: 30f949a658f7b832
+  saved_at: '2026-11-06T03:13:44.658601+00:00'
+  original_generated_png_sha256: 924d18d3583e4c4766220425e47aea958785cf9c4b858522b45d1c3d29d5b801
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 0469739ddd9e10f5d2febcdf95103b1b8d16d88742ff1f0c0744053eac6ec88e
+  inbox_png_sha256: 707b998f6435d0cb4ec59e4598d4551a52b16e5040c568fc48d86b222c323d5f
+  qa_sha256: d909d2e7f7bdc484a5e4d910c99e08fd518f251112cdafc2718011514fd5d978
+- batch: batch-32-weekly-themes-v2
+  job: x-week-rain-boots-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b32-v2
+  source_file: /workspace/generated_images/exec-542b6143-f21e-447e-928c-c17e50a5b507.png
+  returned_at: '2026-11-06T03:14:33.536Z'
+  prompt_sha256: 09eedd2227dd41ad3cc747ee1d80550d55aebb65c395ce989072c39266d429a5
+  fingerprint: 30f949a658f7b832
+  saved_at: '2026-11-06T03:14:33.842162+00:00'
+  original_generated_png_sha256: 267d47ffff5c12947b677fd17072760a6b3f9ce8a6c60c1beafdc22e06216c19
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: e1b496baa56550ea787a66dba7b5a42d0ffcffe0546acbae86934a20b35adb92
+  inbox_png_sha256: 1703a509d3f9a9f2a252fcfbd53dc2e7f1de5e8dda0e6370ef0500c493c31f49
+  qa_sha256: 2e0890fb238278d36e2637345a596503d35bf518286c2e76f393834e058b8162
+- batch: batch-32-weekly-themes-v2
+  job: x-week-rain-boots-v2
+  take: 3
+  round: 2
+  logical_run: 20261106-b32-v2
+  source_file: /workspace/generated_images/exec-dbb8ee51-eb97-46ab-ab3b-0545f731b2b6.png
+  returned_at: '2026-11-06T03:21:49.672Z'
+  prompt_sha256: 09eedd2227dd41ad3cc747ee1d80550d55aebb65c395ce989072c39266d429a5
+  fingerprint: 30f949a658f7b832
+  saved_at: '2026-11-06T03:21:50.002468+00:00'
+  original_generated_png_sha256: 341bfd00be30c009bbd9c456f725d65676e97ba0f3d26c56a5a93e8f9c474330
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: d318f8c2a52cbb5911d7cdd5137e3cc2ab1f81b32626ea83c4dea355e9881f1b
+  inbox_png_sha256: 8d7714fe0c970dcf9153c0a6c4f44fdf63b707676bee1e99adaa563d130e1682
+  qa_sha256: 21a7516c0c111d69783d2a35be3ab65fc6ff13a4422a512db591b61a0cb263ad
+- batch: batch-32-weekly-themes-v2
+  job: x-week-rain-boots-v2
+  take: 4
+  round: 2
+  logical_run: 20261106-b32-v2
+  source_file: /workspace/generated_images/exec-f2fa3e21-a3eb-4cb5-abb6-b60dbd81999b.png
+  returned_at: '2026-11-06T03:21:03.536Z'
+  prompt_sha256: 09eedd2227dd41ad3cc747ee1d80550d55aebb65c395ce989072c39266d429a5
+  fingerprint: 30f949a658f7b832
+  saved_at: '2026-11-06T03:21:03.880251+00:00'
+  original_generated_png_sha256: 174e8507191236476d8f96a34244c47e4e0e59a0f034dae29e63c501fe4664ea
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: ce4a9937c1defe5b4033a16a58fbb01dcbdff90068d11fab558a76bb325e1479
+  inbox_png_sha256: e9fadc9209d2cb9d818f6cb791c85b2e6aa1ffd88d1c36500361f1724190775d
+  qa_sha256: 32db071313669b7bda22bfaac7f085a22869a42d42aa29fe5304a65d595cc11f
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: 54af99e66149a4cf0c62805a47a26688a3e3cd1c245ae84418d3894dd15bbd6f

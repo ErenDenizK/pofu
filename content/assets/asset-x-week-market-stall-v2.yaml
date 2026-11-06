@@ -1,0 +1,39 @@
+id: asset-x-week-market-stall-v2
+type: asset
+title_tr: x-week-market-stall-v2
+title_en: x-week-market-stall-v2 (prop)
+status: planned
+horizon: now
+summary: >-
+  A small pop-up market stall: a square wooden counter of honey wood with a scalloped awning
+  in coral and cream stripes on two slim poles, a few round baskets on the counter holding
+  apples, plums and small cream pots, a blank hanging cloth sign, a folding wooden crate beside
+  it. Chunky and toy-like. It stands on the guide's ground ellipse, centered on the cross,
+  never wider than the ellipse and never taller than the he…
+art:
+  images: []
+  jobs:
+  - batch-32-weekly-themes-v2:x-week-market-stall-v2
+sources:
+- doc: tools/imagegen/manifest/batch-32-weekly-themes-v2.yaml
+kind: prop
+batch: batch-32-weekly-themes-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 2; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Both initial sources and official locked counterparts
+  have the full square honey-wood stall, scalloped coral/cream striped awning on exactly two
+  slim poles, distinct round baskets with apples/plums/small cream pots, one blank hanging
+  cloth sign and a complete wooden foldable crate beside it. The first crate is open and the
+  second folded; both satisfy folding construction, with no invented required closed state.
+  Proper cream/dark composites confirm no text, character, ground scene, cast shadow, magenta
+  guide or external glow; smooth toy-like materials have no transferred fur. Official normalized
+  widths340/334px both meet the original one-third-frame limit341.33px, tops500/baselines888
+  meet the declared ground guide. Raw preferred280–310 is not an eligibility gate; source
+  canvases are normalized only by the canonical post. Both hard-warn and are manually eligible;
+  take2 wins lower style-lock load2.9753 versus3.0558 despite advisory Harmony69.9 versus71.5.
+  No generation retry, manual pixel edits or promotion.

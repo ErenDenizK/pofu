@@ -1,0 +1,36 @@
+id: asset-x-week-picnic-v2
+type: asset
+title_tr: x-week-picnic-v2
+title_en: x-week-picnic-v2 (prop)
+status: cut
+horizon: now
+summary: >-
+  A square picnic blanket in coral and cream checks, a wicker basket with an open lid showing
+  a loaf and a bottle, a plate of sesame simit rings, two tulip tea glasses on saucers, and
+  two round cushions in sage and rose, laid out softly on the ground; the blanket fills the
+  footprint ellipse. It stands on the guide's ground ellipse, centered on the cross, never
+  wider than the ellipse and never taller than the height bar…
+art:
+  images: []
+  jobs:
+  - batch-32-weekly-themes-v2:x-week-picnic-v2
+sources:
+- doc: tools/imagegen/manifest/batch-32-weekly-themes-v2.yaml
+kind: prop
+batch: batch-32-weekly-themes-v2
+size: 1024x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Skipped after the sole allowed retry; registration remains cut and art.images is empty.
+- >-
+  SKIPPED after the sole unchanged-prompt retry. All four official normalized complete-group
+  widths are 677, 712, 636 and 718 px, exceeding the original literal one-third-frame bound
+  of 341.33 px. No hard automated check fails: aggregate QA is warning-only, and style/light/Harmony
+  warnings remain advisory. The unchanged source manual width still excludes every take. The
+  preferred raw drawing range is never used as an added gate. No inventory item is omitted
+  to force the group smaller, and no manual resize, crop, alpha/pixel cleanup, third pair,
+  prompt/profile/QA change or promotion is performed. All four original PNGs, exact frozen
+  prompt/reference fingerprints, canonical reports and q90 takes are retained. The night theme
+  stays a day-cell sprite with unlit lamps; no baked night light is claimed. This independent
+  job has no true dependents; other jobs continue.

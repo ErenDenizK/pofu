@@ -1,0 +1,37 @@
+id: asset-x-week-visitor-v2
+type: asset
+title_tr: x-week-visitor-v2
+title_en: x-week-visitor-v2 (char)
+status: planned
+horizon: now
+summary: >-
+  A character on a plain transparent background, in exactly the same art style, lighting and
+  level of fluff as the attached hamster and bunny: a full-body standing view, front three-quarter.
+  CHARACTER: a small travelling fox cub, a round plush body of warm apricot fur with a cream
+  chest and a white-tipped bushy tail, small pointed ears with dark tips, big glossy dark
+  eyes with a catchlight each, a shy curious smile, ca…
+art:
+  images: []
+  jobs:
+  - batch-32-weekly-themes-v2:x-week-visitor-v2
+sources:
+- doc: tools/imagegen/manifest/batch-32-weekly-themes-v2.yaml
+kind: char
+batch: batch-32-weekly-themes-v2
+size: 1024x1536
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Both initial candidates clear every hard canonical
+  check and show a complete distinct travelling fox cub: pointed dark-tipped ears, warm apricot
+  body/cream chest, white-tipped bushy tail, two paws/two feet, one sage scarf, bundle on
+  a stick over one shoulder and a pale round UNLIT lantern in the other paw. The welcoming
+  small step and upward shy gaze distinguish the new pose; no Pofu curl, extra clothes, claws,
+  text, floor, cast shadow, flame or visible halo. Full original cream/dark composites resolve
+  the misleading low-alpha RGB haze in a raw viewer: both are transparent and all equipment/tail
+  tips remain complete. Posted portrait registration and exact source hashes are preserved.
+  Character-guard lock loads tie at zero; take1 wins the higher Harmony84.0 versus82.2. Light/style
+  warnings remain advisory; no extra source-width gate, manual pixel edits or regeneration.
