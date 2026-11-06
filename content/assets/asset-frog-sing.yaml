@@ -35,3 +35,19 @@ notes:
   #BBBB88 (4.9%)); t3 palette_drift: mean dE 12.3, p95 22.5, off-palette 54.0% (top:
   #CCBB77 (10.4%), #BBAA66 (9.0%)); t4 palette_drift: mean dE 9.7, p95 20.4, off-palette
   43.7% (top: #CCBB88 (8.3%), #BBAA77 (5.1%)).'
+- 'showcase-retry-2026-11-05: Skipped without generation: true dependency frog-1 failed
+  after its one allowed retry. All four official takes fail palette_drift after the
+  sole unchanged-prompt retry: mean dE11.7,12.1,13.4,11.5 and off-palette46.3,51.3,52.5,42.8percent.
+  The exact approved prompt and character palette were attached without edits. Source
+  originals also paint a broad diffuse green-cream exterior halo around the head,
+  body and feet; their fine plush or velour-like nap conflicts with the explicit smooth
+  amphibian skin override. No long projecting hair or hard-edged directional cast
+  shadow is asserted. Correct rounded frog form, closed smile and one catchlight do
+  not waive the failed QA or background/skin brief. Source bytes and exact hashes
+  preserved. No master promoted; frog-sing is the only true dependent to skip without
+  generation. Automated failures: t1 palette_drift: mean dE 11.7, p95 25.7, off-palette
+  46.3% (top: #CCCC88 (8.1%), #BBBB77 (6.5%)); t2 palette_drift: mean dE 12.1, p95
+  24.1, off-palette 51.3% (top: #AAAA66 (6.4%), #BBBB77 (5.7%)); t3 palette_drift:
+  mean dE 13.4, p95 26.0, off-palette 52.5% (top: #CCBB77 (7.7%), #DDCC88 (5.8%));
+  t4 palette_drift: mean dE 11.5, p95 26.7, off-palette 42.8% (top: #DDCC88 (5.1%),
+  #CCBB77 (4.7%)).'

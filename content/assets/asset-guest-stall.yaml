@@ -32,3 +32,16 @@ notes:
   t3 decor_anchor: top y 147 above the height bar (500); width 698 px wider than the
   footprint (360); t4 decor_anchor: top y 107 above the height bar (500); width 664
   px wider than the footprint (360).'
+- 'batch-33-home-showcase skipped after four takes: One unchanged-prompt retry exhausted
+  with no eligible take. Initialtakes1/2 pass ordinary QA and authorized canonical
+  guide fit, but add coral stripes across the explicitly plain cream cloth. Take3
+  fixes the cloth and passes guide fit at0.6554, but its original paints broad pale
+  semitransparent background haze around the awning, pennant and body and through
+  the open gap; locked output retains haze and stepped fringes. This is an explicit
+  no-background/no-atmosphere failure, not an invented alpha threshold or raw-size
+  penalty. Take4 has correct plain cloth and cleaner outline, but official decor_anchor
+  fails top229 above500 and width594 beyond360; fit is skipped because required0.59
+  is below unchanged0.6minimum. No manual shrinking, source pixel edits, threshold
+  waiver or master promotion. Exact source and independent locked-review hashes retained.
+  Automated failures: t4 decor_anchor: top y 229 above the height bar (500); width
+  594 px wider than the footprint (360).'

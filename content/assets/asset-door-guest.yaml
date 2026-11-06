@@ -29,3 +29,13 @@ notes:
   blank whale sign, plain mat and thin earth fade otherwise present. Independent review
   confirms failures; preserve all4takes, no manual downscale/repaint, third pair or
   QA waiver. No dependents.'
+- 'batch-33-home-showcase skipped after four takes: All four takes pass ordinary hard
+  QA, but exceed the explicit reference non-enlargement requirement after canonical
+  posting. Using the same alpha greater-than24 measurement on the official1024 outputs,
+  parent is555x550; takes1,2,3,4 are589x572,584x570,796x779,580x569. Take4 is close
+  but remains larger in both dimensions across recorded alpha cutoffs; no hand-resizing
+  was applied. Required door, crossbar and curtain, plain woven mat, cloud-whale sign
+  and faded golden-cream wreath are present. Wreaths read dried-looking or ambiguous,
+  and flower centers, tan leaves and sign eye dots are not rejection reasons. One
+  unchanged-prompt retry exhausted; no master promoted, no invented edit-preservation
+  gate or threshold waiver. Exact source and measurement hashes retained.'
