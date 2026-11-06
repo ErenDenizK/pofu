@@ -16,7 +16,7 @@ island.
 
 | Stage | Reads as | Colour and light | Life |
 |---|---|---|---|
-| 0 Stuck | something is clearly wrong, and you can name it in one word | chroma ~40 % of healed, flat cool light, no practical lit | one sign of life only (a sprout, a blink), so it is sad, not dead |
+| 0 Stuck | something is clearly wrong, and you can name it in one word, and it is still beautiful: arriving keeps its magic (founder, 2026-11-06) | **value over chroma** ([sky and weather v1](sky-and-weather-v1.md) §2.4): warm hues drained to ~50 %, but a full value range, rich cool shade and real fog; ONE warm focal light, no practical lit | one sign of life only (a sprout, a blink), caught by that light, so it is sad, not dead |
 | 1-2 | the wound is being mended, one named element per stage | chroma +15 % per stage; the first warm light appears at stage 2 | a resident peeks out |
 | 3 | almost there: the shape is whole, the soul is missing | near full colour, still no signature | the resident is active |
 | 4 Healed | better than the player imagined | full colour, warm practicals, the island's one signature image moving | everyone, plus a gift for home |
