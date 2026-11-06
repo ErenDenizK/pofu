@@ -2932,6 +2932,16 @@
         }
       }
     },
+    "Breath haptics" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nefeste titreşim"
+          }
+        }
+      }
+    },
     "Rehearsal mode" : {
       "localizations" : {
         "tr" : {

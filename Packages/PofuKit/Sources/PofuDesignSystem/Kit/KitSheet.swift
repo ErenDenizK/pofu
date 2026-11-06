@@ -5,16 +5,27 @@ import SwiftUI
 /// review screenshots (day or night; the caller sets Dynamic Type).
 public struct PofuKitSheet: View {
     let night: Bool
+    let scrolls: Bool
 
-    public init(night: Bool) {
+    /// `scrolls: false` lays everything out at its full height, for
+    /// image rendering.
+    public init(night: Bool, scrolls: Bool = true) {
         self.night = night
+        self.scrolls = scrolls
     }
 
     private var palette: PofuKitPalette { night ? .night : .day }
 
     public var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: PofuSpacing.xl) {
+        if scrolls {
+            ScrollView { content }.background { PofuPaperSheetBackground() }.pofuNight(night).environment(\.colorScheme, night ? .dark : .light)
+        } else {
+            content.background { PofuPaperSheetBackground() }.pofuNight(night).environment(\.colorScheme, night ? .dark : .light)
+        }
+    }
+
+    private var content: some View {
+        VStack(alignment: .leading, spacing: PofuSpacing.xl) {
                 Text(verbatim: night ? "Kit v3 · night" : "Kit v3 · day")
                     .font(PofuFont.title2)
                     .foregroundStyle(palette.onPaper)
@@ -40,9 +51,9 @@ public struct PofuKitSheet: View {
                     }
                 }
                 section("Card") {
-                    Text(verbatim: "Dikişli kâğıt: ödül ve bilgi.").pofuKitCard(.stitched)
-                    Text(verbatim: "Keten: sayılar.").pofuKitCard(.linen)
-                    Text(verbatim: "Ahşap: oyun.").pofuKitCard(.wood)
+                    Text(verbatim: "Dikişli kâğıt: ödül ve bilgi.").font(PofuFont.body).foregroundStyle(palette.onPaper).pofuKitCard(.stitched)
+                    Text(verbatim: "Keten: sayılar.").font(PofuFont.body).foregroundStyle(palette.onPaper).pofuKitCard(.linen)
+                    Text(verbatim: "Ahşap: oyun.").font(PofuFont.body).foregroundStyle(palette.onPaper).pofuKitCard(.wood)
                 }
                 section("Toast") {
                     PofuToast("Bahçe bir tur dinlendi.", systemImage: "leaf.fill")
@@ -53,11 +64,7 @@ public struct PofuKitSheet: View {
                     PofuGroove(progress: 1.0)
                 }
             }
-            .padding(PofuSpacing.screen)
-        }
-        .background { PofuPaperSheetBackground() }
-        .pofuNight(night)
-        .environment(\.colorScheme, night ? .dark : .light)
+        .padding(PofuSpacing.screen)
     }
 
     private func section<Content: View>(_ title: String, @ViewBuilder content: () -> Content) -> some View {
