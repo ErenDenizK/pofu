@@ -19,6 +19,11 @@ import PofuCore
 /// | 1.75 | `sheetBack` | The sheet returns to medium; the camera settles back |
 /// | 3.20 | `end` | The tag is gone |
 ///
+/// The level-up ceremony of light (light and shadow v2, section 5) rides on
+/// the swap: the station's lit sources flare one after another, a warm burst
+/// blooms and covers the shadow layer's rebuild, and the pad under the
+/// station brightens (see the `Ceremony` extension).
+///
 /// With Reduce Motion there is no squash, no particle and no hop: the art
 /// cross-fades in 200 ms and the tag fades in.
 public struct BuildMoment: Hashable, Sendable {
@@ -44,8 +49,11 @@ public struct BuildMoment: Hashable, Sendable {
     public let toLevel: Int
     public let maxLevel: Int
     public let reduceMotion: Bool
+    /// Low Power Mode: a shorter ceremony of light and no particles.
+    public let lowPower: Bool
 
-    public init(station: StationID, fromLevel: Int, toLevel: Int, maxLevel: Int, reduceMotion: Bool) {
+    public init(station: StationID, fromLevel: Int, toLevel: Int, maxLevel: Int, reduceMotion: Bool, lowPower: Bool = false) {
+        self.lowPower = lowPower
         self.station = station
         self.fromLevel = fromLevel
         self.toLevel = toLevel
@@ -149,7 +157,7 @@ public struct BuildMoment: Hashable, Sendable {
 
     /// Six dust puffs out of the footprint at the swap.
     public func puffs(at t: Double) -> [MomentParticle] {
-        guard !reduceMotion, let swap = time(of: .swap) else { return [] }
+        guard !reduceMotion, !lowPower, let swap = time(of: .swap) else { return [] }
         let p = (t - swap) / Self.puffLife
         guard p >= 0, p < 1 else { return [] }
         let out = MomentCurves.easeOut(p)
@@ -173,7 +181,7 @@ public struct BuildMoment: Hashable, Sendable {
 
     /// Seven sparkles, staggered 30 ms, rising and twinkling for 0.8 s.
     public func sparkles(at t: Double) -> [MomentParticle] {
-        guard !reduceMotion, let start = time(of: .sparkles) else { return [] }
+        guard !reduceMotion, !lowPower, let start = time(of: .sparkles) else { return [] }
         var result: [MomentParticle] = []
         for (i, spot) in Self.sparkleSpots.prefix(Self.sparkleCount).enumerated() {
             let p = (t - start - Double(i) * Self.sparkleStagger) / Self.sparkleLife
@@ -210,5 +218,108 @@ public struct BuildMoment: Hashable, Sendable {
         let u = (t - start) / Self.residentHopLength
         guard u > 0, u < 1 else { return 0 }
         return 4 * Self.residentHopHeight * u * (1 - u)
+    }
+}
+
+// MARK: - The ceremony of light
+
+extension BuildMoment {
+    /// The ceremony's numbers, in seconds and world units.
+    public enum Ceremony {
+        /// Between one lit source and the next.
+        public static let lampStagger = 0.04
+        public static let lampRise = 0.10
+        public static let lampHold = 0.14
+        public static let lampFall = 0.50
+        public static let burstLength = 0.90
+        public static let burstPeak = 0.18
+        public static let burstRadius = (from: 26.0, to: 120.0)
+        public static let burstOpacity = 0.55
+        /// How long the pad under the station stays brighter.
+        public static let padLength = 1.2
+        public static let padRise = 0.12
+        /// Low Power Mode shortens every length by this factor.
+        public static let lowPowerFactor = 0.6
+        /// Reduce Motion fades the lamps in together and out over this long.
+        public static let reducedLamp = (rise: 0.2, fall: 0.4)
+    }
+
+    /// Where the lit sources of `station` at `level` are, in world units:
+    /// the `LitSources` rows live at that level, else the station's
+    /// emitters (its window and door points), else its anchor.
+    public static func litPoints(station: StationID, level: Int) -> [WorldPoint] {
+        var points: [WorldPoint] = []
+        for row in LitSources.rows {
+            if case .station(let id, let from, let through) = row.requirement, id == station, (from...through).contains(level) {
+                points.append(row.point)
+            }
+        }
+        if points.isEmpty {
+            points = IslandLayout.emitters.filter { $0.station == station }.map(\.point)
+        }
+        if points.isEmpty, let anchor = IslandLayout.stationAnchors[station] {
+            points = [anchor]
+        }
+        return points
+    }
+
+    private var ceremonyScale: Double {
+        lowPower ? Ceremony.lowPowerFactor : 1
+    }
+
+    /// When the ceremony starts: at the art swap.
+    public var ceremonyStart: Double? {
+        time(of: .swap)
+    }
+
+    /// The ceremony's last instant (the pad's fade).
+    public var ceremonyEnd: Double? {
+        ceremonyStart.map { $0 + Ceremony.padLength * ceremonyScale }
+    }
+
+    /// How much the `index`th lit source flares at `t`, 0...1: a quick rise,
+    /// a short hold, then back to the time-of-day state. Sources start 40 ms
+    /// apart; under Reduce Motion they all fade in and out together.
+    public func lampFlare(index: Int, at t: Double) -> Double {
+        guard let start = ceremonyStart else { return 0 }
+        let k = ceremonyScale
+        if reduceMotion {
+            let age = t - start
+            let rise = MomentCurves.progress(age, from: 0, length: Ceremony.reducedLamp.rise * k)
+            let fall = MomentCurves.progress(age, from: Ceremony.reducedLamp.rise * k, length: Ceremony.reducedLamp.fall * k)
+            return rise * (1 - fall)
+        }
+        let age = t - start - Double(index) * Ceremony.lampStagger
+        guard age >= 0 else { return 0 }
+        let rise = MomentCurves.easeOut(MomentCurves.progress(age, from: 0, length: Ceremony.lampRise * k))
+        let fall = MomentCurves.smoothstep(MomentCurves.progress(age, from: (Ceremony.lampRise + Ceremony.lampHold) * k, length: Ceremony.lampFall * k))
+        return rise * (1 - fall)
+    }
+
+    /// The warm burst blooming from the building: its radius in world units
+    /// and its opacity, or `nil` when there is none (outside its window, or
+    /// Reduce Motion, which only cross-fades).
+    public func burst(at t: Double) -> (radius: Double, opacity: Double)? {
+        guard !reduceMotion, let start = ceremonyStart else { return nil }
+        let length = Ceremony.burstLength * ceremonyScale
+        let age = t - start
+        guard age >= 0, age < length else { return nil }
+        let p = age / length
+        let radius = Ceremony.burstRadius.from + (Ceremony.burstRadius.to - Ceremony.burstRadius.from) * MomentCurves.easeOut(p)
+        let rise = MomentCurves.easeOut(MomentCurves.progress(p, from: 0, length: Ceremony.burstPeak))
+        let fall = MomentCurves.smoothstep(MomentCurves.progress(p, from: Ceremony.burstPeak, length: 1 - Ceremony.burstPeak))
+        return (radius, Ceremony.burstOpacity * rise * (1 - fall))
+    }
+
+    /// How much brighter the ground pad under the station is at `t`, 0...1,
+    /// for 1.2 s from the swap (it is a brightness, so Reduce Motion keeps it).
+    public func padGlow(at t: Double) -> Double {
+        guard let start = ceremonyStart else { return 0 }
+        let length = Ceremony.padLength * ceremonyScale
+        let age = t - start
+        guard age >= 0, age < length else { return 0 }
+        let rise = MomentCurves.easeOut(MomentCurves.progress(age, from: 0, length: Ceremony.padRise * ceremonyScale))
+        let fall = MomentCurves.smoothstep(MomentCurves.progress(age, from: Ceremony.padRise * ceremonyScale, length: length - Ceremony.padRise * ceremonyScale))
+        return rise * (1 - fall)
     }
 }

@@ -453,6 +453,10 @@ private struct SceneFrame<Bubble: View>: View {
         let light = baseLight.withSun(x: palette.sun.x, y: palette.sun.y)
         // One sun (or moon) for every shadow on the ground (light and shadow v2).
         let shadow = SunShadow.make(light: light, world: world)
+        // Cloud shadows by day: Ambient 30 Hz drift, otherwise held (BuildEffects).
+        let clouds: CloudShadows.Frame? = look.hd2d
+            ? CloudHold.frame(shadow: shadow, directive: directive, conditions: model.power.conditions, ambientTime: still ? 0 : FramePolicy.ambientTime(clock.timeIntervalSinceReferenceDate))
+            : nil
         // The night's pools on the lawn, under every object (LS-2).
         let pools = look.hd2d
             ? LightField.make(world: world, light: light, guestNight: VisitorStage.isGuestNight(world.visitor))
@@ -524,7 +528,8 @@ private struct SceneFrame<Bubble: View>: View {
                     characterGrade: characterGrade,
                     life: life,
                     shadow: shadow,
-                    pools: pools
+                    pools: pools,
+                    clouds: clouds
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
@@ -554,7 +559,8 @@ private struct SceneFrame<Bubble: View>: View {
                     characterGrade: characterGrade,
                     life: life,
                     shadow: shadow,
-                    pools: pools
+                    pools: pools,
+                    clouds: clouds
                 )
                 .frame(width: IslandLayout.canvasWidth, height: IslandLayout.canvasHeight, alignment: .topLeading)
                 .cameraTransform(pose: pose, viewportWidth: Double(size.width), offset: offset)
@@ -705,6 +711,8 @@ private struct WorldCanvas: View {
     let shadow: SunShadow
     /// The light field whose pools lie on the lawn.
     let pools: LightField
+    /// The cloud shadows by day, or nil.
+    var clouds: CloudShadows.Frame?
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -724,17 +732,40 @@ private struct WorldCanvas: View {
                 // ground between the plate and the objects (LS-1).
                 SunShadowLayer(
                     sun: shadow,
-                    layout: ShadowCasters.Signature(stations: world.stations, islandLevel: life.islandLevel)
+                    layout: ShadowCasters.Signature(stations: shadowStations, islandLevel: life.islandLevel)
                 ) { point in
                     canvasPoint(point, depth: IslandLayout.depth(ofY: ShadowTuning.layerY))
                 }
+                if let clouds {
+                    CloudShadowLayer(frame: clouds) { point in
+                        canvasPoint(point, depth: IslandLayout.depth(ofY: ShadowTuning.layerY))
+                    }
+                }
                 GroundPoolLayer(field: pools) { point in
                     canvasPoint(point, depth: IslandLayout.depth(ofY: ShadowTuning.layerY))
+                }
+                if let build {
+                    LevelUpPad(moment: build.moment, time: build.time) { point in
+                        canvasPoint(point, depth: IslandLayout.depth(ofY: ShadowTuning.layerY))
+                    }
                 }
             }
             ForEach(objects) { object in
                 objectView(object)
             }
+        }
+    }
+
+    /// The stations the shadow layer is baked for: during a level-up the
+    /// built station keeps its old silhouette until the art swaps, so the
+    /// bake rebuilds while the burst covers it.
+    private var shadowStations: [StationStatus] {
+        guard let build else { return world.stations }
+        return world.stations.map { status in
+            guard status.id == build.moment.station else { return status }
+            var shown = status
+            shown.level = build.moment.shownLevel(at: build.time)
+            return shown
         }
     }
 
@@ -1064,6 +1095,7 @@ private struct StationView: View {
         .overlay {
             if let build {
                 BuildParticles(moment: build.moment, time: build.time, point: point)
+                LevelUpBloom(moment: build.moment, time: build.time, point: point)
             }
         }
     }
