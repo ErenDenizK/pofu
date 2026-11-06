@@ -7,7 +7,8 @@ horizon: later
 summary: Fındık's workshop on the back terrace. Fındık tinkers and makes the style
   variants.
 notes:
-- 'Opens: Island level 6 (tended day 10, 15 levels built). Level costs 1→5: 30 · 45 · 65 · 90 · 120 (total 350). Rate L1→L5: 0.02 → 0.1 seeds/hour before calm.'
+- 'Opens: Island level 6 (tended day 10, 15 levels built). Level costs 1→5: 30 · 45
+  · 65 · 90 · 120 (total 350). Rate L1→L5: 0.02 → 0.1 seeds/hour before calm.'
 - Postponed in-app by the decision audit (levels 4–5, the windmill and workshop wait),
   but batch 03 paints it now because art has the longest lead time.
 links:
@@ -19,6 +20,9 @@ links:
   - sys-build
   uses_asset:
   - asset-workshop-1-lit
+  - asset-workshop-3-green
+  - asset-workshop-4-green
+  - asset-workshop-5-green
 sources:
 - doc: docs/product/game-design.md
   anchor: '#idle-production-and-stations'
@@ -58,4 +62,5 @@ levels:
   asset: asset-workshop-5
 unlock:
   day: 9
-  rule_en: Island level 6 (tended day 10, 15 levels built) (days ≈ tended days for a daily user)
+  rule_en: Island level 6 (tended day 10, 15 levels built) (days ≈ tended days for
+    a daily user)
