@@ -1,0 +1,280 @@
+batch: batch-64-flow-pieces
+contact_sheet: design/art/takes/batch-64-flow-pieces/flow-grass-2/contact.jpg
+jobs:
+  flow-grass-2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after the sole unchanged retry: all4 actual numericQA reports PASS,
+      but every native, locked and canonical256 export/70pt tile encloses its lawn
+      in a broad pale rounded stone/card rim. The requested full-bleed grassy bank
+      and exact AVOID forbid this border/frame; unlike gate, no specific rim exception
+      exists. All4 otherwise have3flowers and1pebble. This is material composition
+      failure, not tiny corner antialias noise or an invented pixel/width threshold.
+      No third round, local crop/repair, QA waiver or failed master/Harmony shard.
+      Initial processing seal timing and rejected activation are preserved truthfully;
+      peer-reviewed narrow operational recovery validates exact pre-retry hashes and
+      unchanged full4 context. Keep all originals/callbacks/ref-prompt hashes/QA/locked/delivery
+      and q90 rejected takes/contact; independent work continues.'
+qa_reports:
+  2:
+    job: flow-grass-2
+    take: 2
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 41 (R1 51)
+      value: 41.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 79 (R1 59)
+      value: 79.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.66
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3538
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.7, p95 4.2, off-palette 0.0%
+      value: 1.7244
+    info:
+      metrics_raw:
+        L_p5: 79.3
+        L_p50: 84.5
+        L_p95: 92.9
+        C_p50: 36.4
+        C_p95: 41.6
+        C_p99: 43.7
+        detail: 0.94
+      metrics_locked:
+        L_p5: 79.3
+        L_p50: 84.5
+        L_p95: 92.9
+        C_p50: 36.4
+        C_p95: 41.3
+        C_p99: 43.2
+        detail: 0.66
+    fingerprint: ca66f2a9e8f5d2d0
+  4:
+    job: flow-grass-2
+    take: 4
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.8
+    - check: value_floor
+      status: pass
+      message: lightness p5 76 (R1 59)
+      value: 75.9
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.8 (R1 5.3)
+      value: 0.79
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3943
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 4.0, off-palette 0.0%
+      value: 1.5188
+    info:
+      metrics_raw:
+        L_p5: 75.8
+        L_p50: 84.3
+        L_p95: 93.8
+        C_p50: 36.2
+        C_p95: 42.0
+        C_p99: 43.8
+        detail: 1.17
+      metrics_locked:
+        L_p5: 75.9
+        L_p50: 84.3
+        L_p95: 93.8
+        C_p50: 36.2
+        C_p95: 41.8
+        C_p99: 43.4
+        detail: 0.79
+    fingerprint: ca66f2a9e8f5d2d0
+  1:
+    job: flow-grass-2
+    take: 1
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 41.9
+    - check: value_floor
+      status: pass
+      message: lightness p5 78 (R1 59)
+      value: 77.7
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.7
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.4191
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.5, p95 3.9, off-palette 0.0%
+      value: 1.5237
+    info:
+      metrics_raw:
+        L_p5: 77.7
+        L_p50: 83.9
+        L_p95: 92.7
+        C_p50: 37.2
+        C_p95: 42.3
+        C_p99: 44.6
+        detail: 1.0
+      metrics_locked:
+        L_p5: 77.7
+        L_p50: 83.9
+        L_p95: 92.6
+        C_p50: 37.2
+        C_p95: 41.9
+        C_p99: 44.1
+        detail: 0.7
+    fingerprint: ca66f2a9e8f5d2d0
+  3:
+    job: flow-grass-2
+    take: 3
+    status: pass
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 and center-cropped to 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.3
+    - check: value_floor
+      status: pass
+      message: lightness p5 78 (R1 59)
+      value: 78.3
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.7 (R1 5.3)
+      value: 0.68
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.4
+      value: 0.3982
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.6, p95 4.1, off-palette 0.0%
+      value: 1.623
+    info:
+      metrics_raw:
+        L_p5: 78.3
+        L_p50: 84.5
+        L_p95: 93.1
+        C_p50: 36.4
+        C_p95: 42.7
+        C_p99: 45.3
+        detail: 0.97
+      metrics_locked:
+        L_p5: 78.3
+        L_p50: 84.5
+        L_p95: 93.0
+        C_p50: 36.4
+        C_p95: 42.3
+        C_p99: 44.9
+        detail: 0.68
+    fingerprint: ca66f2a9e8f5d2d0
+manual_review:
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+  note: 'Skipped after the sole unchanged retry: all4 actual numericQA reports PASS,
+    but every native, locked and canonical256 export/70pt tile encloses its lawn in
+    a broad pale rounded stone/card rim. The requested full-bleed grassy bank and
+    exact AVOID forbid this border/frame; unlike gate, no specific rim exception exists.
+    All4 otherwise have3flowers and1pebble. This is material composition failure,
+    not tiny corner antialias noise or an invented pixel/width threshold. No third
+    round, local crop/repair, QA waiver or failed master/Harmony shard. Initial processing
+    seal timing and rejected activation are preserved truthfully; peer-reviewed narrow
+    operational recovery validates exact pre-retry hashes and unchanged full4 context.
+    Keep all originals/callbacks/ref-prompt hashes/QA/locked/delivery and q90 rejected
+    takes/contact; independent work continues.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-60a58e22-cd46-4ef1-bdc7-e3e71fb6ab67.png
+  original_generated_png_sha256: f57a21052b900fb239ae08ebb9c7974042abe43c26580ab07d31aa9889941931
+  inbox_png_sha256: 6e6ab61810eef1b089840d402ecde2f4813955019562c8b9d119be701922a126
+  rgba_sha256: c67bb915f292ad76469f4337b027e1df9c7a4bf7c93a614c114190ffd6746b88
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ca66f2a9e8f5d2d0
+- take: 2
+  source_file: /workspace/generated_images/exec-68d2e46a-7373-4789-b05e-31c97815ef6c.png
+  original_generated_png_sha256: 0d5a4c1ee596642c706ffbac7948206f2cfa657b14db7d87293a36286caea9ab
+  inbox_png_sha256: ba99948206626b22cc7660450b2d4152fe4481f25e3c8b1e090431954bce9eb4
+  rgba_sha256: 9ba7f4e3a98396d2d44220c80d199fedb155737c5fa3a3258c8ea24a5bfc167f
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ca66f2a9e8f5d2d0
+- take: 3
+  source_file: /workspace/generated_images/exec-0519a2e3-d762-45e3-b657-6c6c3663e6f4.png
+  original_generated_png_sha256: 1d49d9befc2dca8efc67a10438bf50d0c60befe4d7a5020330d3a94e1086bc68
+  inbox_png_sha256: 83d368386800afdda2202d61bea5b329e73ab8775afd542553f7197021dce727
+  rgba_sha256: 113977cb28b3e6582c152b4ee329d9fcd2a4356951175d9901c6402e4cd0c265
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ca66f2a9e8f5d2d0
+- take: 4
+  source_file: /workspace/generated_images/exec-a763e92f-49aa-47a4-a18f-aa042ab6978b.png
+  original_generated_png_sha256: c3f66e43c34695579ce831e1e4fcdb57ca516697fabedbd77325f3ed8c7d4f7d
+  inbox_png_sha256: e6b896d026b6625c595310eed6422f4f1677e4337c4004a8171e20450ab3d870
+  rgba_sha256: 3d773a697267018db492469c0b2f354fc99d9b8dbdcc61251e58708810760d02
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: ca66f2a9e8f5d2d0
