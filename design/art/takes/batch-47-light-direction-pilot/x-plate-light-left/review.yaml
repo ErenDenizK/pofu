@@ -1,0 +1,267 @@
+batch: batch-47-light-direction-pilot
+manifest: tools/imagegen/manifest/batch-47-light-direction-pilot.yaml
+manifest_sha256: 244a8a8d7aa537bd08a7ebf63f5b159e096eb5f6323dfdcbf288fc9f293563da
+contact_sheet: design/art/takes/batch-47-light-direction-pilot/x-plate-light-left/contact.jpg
+jobs:
+  x-plate-light-left:
+    pick: 2
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both actual sources and official
+      locked takes preserve the visible home inventory and layout: four roots, inset
+      round door/crossed window/knob/step, stones, lawn oval and earth bands. Neutral
+      greys and one far-left white light with the right side dark; proper alpha composites
+      are clear. Take2 has the lowest passing lock load. Inherited day LIGHT conflicts
+      with the explicit monochrome/no-fill brief; the task-specific study governs
+      manual review while the exact composed prompt remains unchanged. Silhouette
+      IoU0.9638/0.9622 and alignment0.9817/0.9825 are disclosed, not promoted to a
+      new gate or a claim of pixel-identical geometry; founder/lead registration review
+      remains necessary before photometric reconstruction. Style/light/palette/edit-structure/lightness
+      warnings remain advisory; no hard QA waiver.'
+qa_reports:
+  1:
+    job: x-plate-light-left
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.019 and moved it; aligned back to the
+        parent
+      value: 0.9817
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 1 (R1 51)
+      value: 0.8
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 21 (at most 22), p98 94 (at least 90), spread 73
+        (at least 60)'
+      value: 72.8
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 47 (band 55-90) (warn-only until the founder
+        has seen the light pilot)'
+      value: 46.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.19 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.192
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 3.1 (at least 3.5)'
+      value: 3.06
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.82
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.4
+      value: 2.3731
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 16.1, p95 27.2, off-palette 62.0% (top: #333333 (22.4%), #444444
+        (10.7%)) (advisory in an exploration)'
+      value: 16.0669
+    - check: edit_silhouette
+      status: pass
+      message: 96% of the parent's shape kept
+      value: 0.9638
+    - check: edit_structure
+      status: warn
+      message: light structure matches the parent (r 0.62)
+      value: 0.6153
+    - check: edit_lightness
+      status: warn
+      message: mean lightness moved by 34.5 L (the same lightness was asked) (advisory
+        in an exploration)
+      value: 34.4936
+    info:
+      alignment:
+        scale: 0.9817
+        cx: 761.0
+        cy: 995.0
+        dx: -6
+        dy: -6
+      metrics_raw:
+        L_p5: 10.2
+        L_p50: 46.4
+        L_p95: 88.1
+        C_p50: 0.4
+        C_p95: 1.0
+        C_p99: 1.4
+        detail: 2.45
+      metrics_locked:
+        L_p5: 21.2
+        L_p50: 46.8
+        L_p95: 88.1
+        C_p50: 0.4
+        C_p95: 0.8
+        C_p99: 1.4
+        detail: 1.82
+    fingerprint: b5be61bff2f9665e
+  2:
+    job: x-plate-light-left
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.018 and moved it; aligned back to the
+        parent
+      value: 0.9825
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 1 (R1 51)
+      value: 1.0
+    - check: light_values
+      status: pass
+      message: 'day/subject: L p2 21 (at most 22), p98 93 (at least 90), spread 72
+        (at least 60)'
+      value: 72.0
+    - check: light_median
+      status: warn
+      message: 'day/subject: median L 43 (band 55-90) (warn-only until the founder
+        has seen the light pilot)'
+      value: 43.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.20 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.196
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.6 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.64
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.8 (R1 5.3)
+      value: 1.77
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.2
+      value: 2.1949
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 16.8, p95 26.9, off-palette 66.3% (top: #333333 (22.7%), #444444
+        (11.5%)) (advisory in an exploration)'
+      value: 16.8038
+    - check: edit_silhouette
+      status: pass
+      message: 96% of the parent's shape kept
+      value: 0.9622
+    - check: edit_structure
+      status: warn
+      message: light structure matches the parent (r 0.55) (advisory in an exploration)
+      value: 0.5466
+    - check: edit_lightness
+      status: warn
+      message: mean lightness moved by 36.3 L (the same lightness was asked) (advisory
+        in an exploration)
+      value: 36.3246
+    info:
+      alignment:
+        scale: 0.9825
+        cx: 760.5
+        cy: 992.0
+        dx: -6
+        dy: -3
+      metrics_raw:
+        L_p5: 12.2
+        L_p50: 42.7
+        L_p95: 87.8
+        C_p50: 0.5
+        C_p95: 1.0
+        C_p99: 1.4
+        detail: 2.4
+      metrics_locked:
+        L_p5: 21.6
+        L_p50: 43.2
+        L_p95: 87.8
+        C_p50: 0.4
+        C_p95: 1.0
+        C_p99: 1.4
+        detail: 1.77
+    fingerprint: b5be61bff2f9665e
+manual_review:
+  observed_note: 'Both actual sources and official locked takes preserve the visible
+    home inventory and layout: four roots, inset round door/crossed window/knob/step,
+    stones, lawn oval and earth bands. Neutral greys and one far-left white light
+    with the right side dark; proper alpha composites are clear. Take2 has the lowest
+    passing lock load. Inherited day LIGHT conflicts with the explicit monochrome/no-fill
+    brief; the task-specific study governs manual review while the exact composed
+    prompt remains unchanged. Silhouette IoU0.9638/0.9622 and alignment0.9817/0.9825
+    are disclosed, not promoted to a new gate or a claim of pixel-identical geometry;
+    founder/lead registration review remains necessary before photometric reconstruction.
+    Style/light/palette/edit-structure/lightness warnings remain advisory; no hard
+    QA waiver.'
+  excluded_takes: []
+sources:
+- batch: batch-47-light-direction-pilot
+  job: x-plate-light-left
+  take: 1
+  round: 1
+  logical_run: batch47-20261106
+  source_file: /workspace/generated_images/exec-c62ee30f-922d-4da2-b81a-0dbde2abe67d.png
+  returned_at: '2026-11-06T08:21:35.407Z'
+  prompt_sha256: 9bd4c2a31bbd87b9941ff34b32d33469cab3209f8ad37171de754cd5ffd0bb08
+  fingerprint: b5be61bff2f9665e
+  saved_at: '2026-11-06T08:21:35.736090+00:00'
+  original_generated_png_sha256: d5c6ceb0c2e3cee8acc33c7e2819a51649f33262ef2aa934fcb31826f4694162
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 3acc2a2e655dfc3edeabad522742db4a405cb34c7e79a3554c3185aaafcadf69
+  inbox_png_sha256: 4cb3358f0514d08dc7e128c68eefe9d9b04744cf3577550e54340c11aac12ea5
+  qa_sha256: cdbe0853268a898357326c44a9d7c08b7499f8557c3c27d6f3b04bc5b5c5b838
+- batch: batch-47-light-direction-pilot
+  job: x-plate-light-left
+  take: 2
+  round: 1
+  logical_run: batch47-20261106
+  source_file: /workspace/generated_images/exec-01e45ef3-59f1-421c-bbad-6c8eb42dd75a.png
+  returned_at: '2026-11-06T08:20:56.663Z'
+  prompt_sha256: 9bd4c2a31bbd87b9941ff34b32d33469cab3209f8ad37171de754cd5ffd0bb08
+  fingerprint: b5be61bff2f9665e
+  saved_at: '2026-11-06T08:20:57.120452+00:00'
+  original_generated_png_sha256: 8f481342704cb346ebd138455017cd60dd64357a9e75d0483d754b091a19595c
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: b88e321b0360e49b1ece06ea5854fb458b1b6329da865d5579999f1e5759ed82
+  inbox_png_sha256: 3fa687c87b1e5952d8cd4622e05d84efc81c4495dfa8efbdf70fa237accc1291
+  qa_sha256: 1fc60f0281fe5c663a8c839f8eeb1c452494ee33344e0a0fe8f46fda99fc3ae3
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
