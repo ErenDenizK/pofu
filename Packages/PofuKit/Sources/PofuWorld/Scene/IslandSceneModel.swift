@@ -172,6 +172,12 @@ public final class IslandSceneModel {
     public var isInviting = false
     /// Koke's bubble, swell and haptic (the first wonder island).
     public let koke = KokeBeatState()
+    /// Çağlayan's bubble, swell and haptic (the second wonder island).
+    public let caglayan = CaglayanBeatState()
+    /// Opens the flow round for a stage (1 to 4) of Çağlayan; the app sets
+    /// it and answers with a full-screen cover, then calls
+    /// `caglayan.roundFinished` once the stage has advanced.
+    @ObservationIgnored public var onPlayFlow: (@MainActor (Int) -> Void)?
     /// A Moment is running: the visitor's arrival or the dressing's puff.
     /// The frame policy holds the Moment rate until it ends.
     public private(set) var isMoment = false
@@ -488,6 +494,7 @@ public final class IslandSceneModel {
         travel { $0.startFlight(to: pose, landing: .pose(pose)) }
         kick()
         koke.landed(on: target, model: self)
+        caglayan.landed(on: target, model: self)
     }
 
     /// Holds the camera on another island's Island stop, still
@@ -741,16 +748,20 @@ public final class IslandSceneModel {
         visitor: VisitorSnapshot? = nil,
         invitationOpen: Bool = false,
         isBedtime: Bool = false,
-        koke wonder: WonderStatus = WonderStatus()
+        koke wonder: WonderStatus = WonderStatus(),
+        caglayan flowIsland: WonderStatus = WonderStatus()
     ) {
         let rig = engine.rig
         // On Koke's island only Koke answers; elsewhere its island answers
         // on the Map once it can be visited.
         var targets = island == .koke
             ? (wonder.isArrived ? [HitTarget(kind: .koke, worldBox: KokeLayout.kokeBox, depth: 0)] : [])
+            : island == .caglayan
+            ? (flowIsland.isArrived ? [HitTarget(kind: .caglayan, worldBox: CaglayanLayout.tapBox, depth: 0)] : [])
             : WorldHitTest.targets(
                 stations: stations, z: rig.railPosition, visitor: visitor, invitationOpen: invitationOpen, isBedtime: isBedtime,
-                koke: wonder.isArrived ? .arrived : .none
+                koke: wonder.isArrived ? .arrived : .none,
+                caglayan: flowIsland.isArrived ? .arrived : .none
             )
         if focus != nil || sheet != nil {
             // Behind a card or a sheet the home objects and the visit step aside.
@@ -793,6 +804,9 @@ public final class IslandSceneModel {
         case .koke:
             pulse("koke")
             koke.tapped(in: self)
+        case .caglayan:
+            pulse("caglayan")
+            caglayan.tapped(in: self)
         case .island(let id):
             guard arrived.contains(id) || id == .home else {
                 pulse("island-\(id.rawValue)")

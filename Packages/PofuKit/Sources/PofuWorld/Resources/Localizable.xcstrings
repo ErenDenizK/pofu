@@ -1396,6 +1396,182 @@
           }
         }
       }
+    },
+    "caglayan.name": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çağlayan"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çağlayan"
+          }
+        }
+      }
+    },
+    "caglayan.speaker.damla": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Damla"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Damla"
+          }
+        }
+      }
+    },
+    "caglayan.plaque": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect the flow"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akışı bağla"
+          }
+        }
+      }
+    },
+    "caglayan.gift": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The pool fountain, flowing"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Havuzun çeşmesi, akıyor"
+          }
+        }
+      }
+    },
+    "caglayan.rumour": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The water noise stopped somewhere. I can't tell where, which is the strange part."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir yerde su sesi kesildi. Nerede olduğunu bilmiyorum, tuhaf olan da bu."
+          }
+        }
+      }
+    },
+    "caglayan.rest": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The water isn't in a hurry. Come back after a quiet day."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Su acele etmez. Sessiz bir günden sonra gel."
+          }
+        }
+      }
+    },
+    "caglayan.line.0": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There was a waterfall here, I swear. My glass is still empty."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Burada bir şelale vardı, yemin ederim. Bardağım hâlâ boş."
+          }
+        }
+      }
+    },
+    "caglayan.line.1": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mochi, I laid the stones. Don't look down. Look at me."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mochi, taşları ben dizdim. Aşağı bakma. Bana bak."
+          }
+        }
+      }
+    },
+    "caglayan.line.2": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A note on the mill door: \"If the door creaks, olive oil.\" Whoever wrote it thought of everything."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değirmenin kapısında bir not var: \"Kapı gıcırdarsa, zeytinyağı.\" Yazan her şeyi düşünmüş."
+          }
+        }
+      }
+    },
+    "caglayan.line.3": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I'm pouring tea. The wall says: \"Whoever puts out the light for someone's sleep is the night's keeper.\""
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çay koyuyorum. Duvarda yazıyor: \"Birinin uykusu için ışığı söndüren, o gece bekçidir.\""
+          }
+        }
+      }
+    },
+    "caglayan.line.4": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It's full. My glass is full. I'm sliding down, nobody look."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doldu. Bardağım doldu. Kayarak iniyorum, kimse bakmasın."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

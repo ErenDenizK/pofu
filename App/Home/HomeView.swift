@@ -102,8 +102,11 @@ struct HomeView: View {
         // Sheets and covers freeze the world's ambient layers while they
         // are up, so presenting and dismissing them never competes with a
         // live scene.
-        .onChange(of: model.homeSheet != nil || model.isPlayingGarden, initial: true) { _, covered in
+        .onChange(of: model.homeSheet != nil || model.isPlayingGarden || model.isPlayingFlow, initial: true) { _, covered in
             model.island.isCovered = covered
+        }
+        .onAppear {
+            model.island.onPlayFlow = { stage in model.playCaglayanFlow(stage: stage) }
         }
         .sheet(item: $model.homeSheet) { sheet in
             switch sheet {
@@ -135,6 +138,10 @@ struct HomeView: View {
         // The garden game takes the whole screen, like Hop!.
         .fullScreenCover(isPresented: $model.isPlayingGarden) {
             GardenPlayView(model: model)
+        }
+        // Çağlayan's flow round, one stage of the waterfall per finished round.
+        .fullScreenCover(isPresented: $model.isPlayingFlow) {
+            CaglayanFlowView(model: model)
         }
     }
 
