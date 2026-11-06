@@ -1,0 +1,35 @@
+id: asset-x-sticker-findik-v2
+type: asset
+title_tr: x-sticker-findik-v2
+title_en: x-sticker-findik-v2 (sheet)
+status: planned
+horizon: now
+summary: >-
+  A sticker sheet of three full-body poses of Fındık the hedgehog, in his exact attached look,
+  in a row: (1) happy, a wide smile, paws clasped; (2) surprised, a small round O mouth, eyes
+  round, spines lifted slightly; (3) proud, standing tall, holding up a tiny wooden mallet,
+  a satisfied smile. Do not draw Pofu. On a plain transparent background, in a loose grid
+  with wide empty space around each sticker, none touching …
+art:
+  images: []
+  jobs:
+  - batch-23-stickers-v2:x-sticker-findik-v2
+sources:
+- doc: tools/imagegen/manifest/batch-23-stickers-v2.yaml
+kind: sheet
+batch: batch-23-stickers-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Original and official locked review confirm exactly
+  three complete separated reference-matching hedgehogs in one row: happy wide smile with
+  clasped paws; surprised round wide eyes/small O with softly lifted spines; proud tall posture
+  holding UP exactly one tiny smooth wooden mallet with satisfied smile. Mallet belongs only
+  to proud and has no fur/anatomy. Soft blunt hedgehog spines, distinct species silhouette,
+  no curl, hamster redesign, extra tool, text or actual background on proper composites. Both
+  initial takes are hard-QA and manually eligible; lowest lock load selects take1=.0040 versus
+  take2=.0076. Advisory style/light warnings remain; exploration only, never promoted.

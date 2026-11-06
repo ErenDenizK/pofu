@@ -1,0 +1,36 @@
+id: asset-x-sticker-pofu-2-v2
+type: asset
+title_tr: x-sticker-pofu-2-v2
+title_en: x-sticker-pofu-2-v2 (sheet)
+status: planned
+horizon: now
+summary: >-
+  A sticker sheet of five full-body poses of Pofu the hamster, in his exact attached look,
+  each a different moment: (1) laughing, eyes squeezed shut, mouth open wide, tiny tears of
+  joy, rolling slightly; (2) waving, one paw raised high, a bright smile; (3) tea, holding
+  a small tulip-shaped tea glass in both paws and sipping, eyes closed content; (4) thinking,
+  one paw at the chin, eyes looking up and to the side, head t…
+art:
+  images: []
+  jobs:
+  - batch-23-stickers-v2:x-sticker-pofu-2-v2
+sources:
+- doc: tools/imagegen/manifest/batch-23-stickers-v2.yaml
+kind: sheet
+batch: batch-23-stickers-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Original and official locked review confirm five
+  complete separated Pofu figures in the exact 3+2 order with a curl on every one: laughing
+  eyes squeezed shut/open mouth/tiny tears/slight roll; one high waving paw and smile; both
+  paws holding one tulip glass while sipping with eyes shut, no saucer; chin-paw/up-side gaze/head
+  tilt; shut eyes/deep blush hugging the heart cushion. Take1 is clean and manually eligible.
+  Take2 has an actual baked semitransparent checkerboard across cut-out gaps on proper original
+  and locked solid light/dark composites and is excluded. Both hard QA pass; lowest eligible
+  lock load selects take1=.1692 versus excluded take2=.2040. Advisory style/light warnings
+  retained. Exploration only; never promoted.

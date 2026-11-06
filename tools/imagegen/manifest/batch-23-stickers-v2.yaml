@@ -1,0 +1,655 @@
+# Fresh second-cycle EXPLORATION: sticker/emoji sheets, never promoted.
+# Exactly nine independent sheets; original counts, emotions, grids, canvases,
+# light cells, external jobs and reference roles/order stay unchanged.
+# No guide or VIEW is invented; R1 is already present in every attachment list.
+# Pofu-only curl, material-specific anatomy and cut-out separation are explicit.
+batch: batch-23-stickers-v2
+title: 'Fresh sticker expressions: complete silhouettes, clear separated groups'
+status: open
+refs:
+  tea-stall-1: design/art/stations/tea-stall-1/tea-stall-1.png
+defaults:
+  variants: 2
+jobs:
+- id: island-main-s
+  kind: world
+  name: island-main-s
+  external: batch-01-slice
+- id: cloud-sea
+  kind: world
+  name: cloud-sea
+  external: batch-04-sky
+- id: pofu
+  kind: char
+  name: pofu-r1
+  external: r1
+  master: design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png
+- id: mochi-v2
+  kind: char
+  name: mochi-v2
+  external: batch-03-home-island
+- id: findik
+  kind: char
+  name: findik-base
+  external: batch-03-home-island
+- id: simit-kitten
+  kind: char
+  name: simit-kitten
+  external: retry-2026-11-03
+- id: harbor-goat
+  kind: char
+  name: harbor-goat
+  external: retry-2026-11-03
+- id: x-sticker-pofu-1-v2
+  kind: sheet
+  name: x-sticker-pofu-1-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  transparent: true
+  chat: Pofu · Stickers
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Pofu stickers 1 of 2: happy, sleepy, surprised, proud, sulky. Review: each emotion
+    reads at emoji size from the mouth and eyes alone; he is always unmistakably Pofu. Fresh second-cycle
+    body/head/interaction staging with exact original counts, emotions and layout; exploration only, never
+    promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.'
+  prompt:
+  - text: 'A sticker sheet of five full-body poses of Pofu the hamster, in
+
+      his exact attached look, each a different emotion: (1) happy, eyes
+
+      closed in a smile, paws up; (2) sleepy, eyes half closed, head
+
+      drooping, a tiny yawn; (3) surprised, eyes wide, mouth a small
+
+      round O, fur puffed; (4) proud, chest out, chin up, eyes bright, a
+
+      small content smile; (5) sulky, cheeks puffed, a small pout, eyes
+
+      looking sideways, arms folded at the chest. Three on the top row,
+
+      two on the bottom. On a plain transparent background, in a loose
+
+      grid with wide empty space around each sticker, none touching or
+
+      overlapping another, each drawn complete with its whole body. No
+
+      text, no speech bubbles, no floating hearts or sparkles unless
+
+      named.
+
+      '
+  - text: 'FRESH VARIATION: retain the five original emotions and their exact actions, in the same reading
+      order and three-above/two-below layout. Give happy Pofu a tiny buoyant knee bend while both paws
+      remain up and eyes smile shut. Sleepy Pofu lets his head droop gently toward one shoulder, with
+      the original half-closed eyes and tiny yawn. Surprised Pofu rocks back slightly with his puffed
+      fur, wide eyes and small O mouth. Proud Pofu turns his chest a little to the left while keeping
+      chin up and bright eyes. Sulky Pofu angles his body slightly right while his sideways eyes look
+      left, arms still folded and cheeks puffed. Keep the complete signature forehead curl on EVERY Pofu;
+      no additional prop or ornament.'
+  - block: style-anchor-v2
+  - text: 'SHEET LAYOUT: preserve the exact count, original emotion order and source grid. Each single-character
+      sticker has its whole body and natural silhouette complete; each duo group contains the named two
+      characters only. Leave broad transparent cut-out gaps between separate stickers/groups and keep
+      all extremities inside the canvas. Touching within the explicitly requested hug, shared sleep or
+      tea clink is allowed; separate groups never touch. The grid is invisible: no boxes, lines, labels,
+      numerals, emotion names, speech bubbles, white sticker borders, floor or background. The numbered
+      descriptions identify positions only and must not be painted as text. No floating decoration except
+      the source''s explicitly named tears.'
+  - text: 'STYLE SCOPE AFTER GENERIC STYLE: use each resident''s OWN attached reference for anatomy, fur/spine
+      type, colours and distinctive silhouette; R1 supplies family finish, not a hamster redesign of other
+      residents. Only Pofu has his signature forehead curl, on every Pofu depiction; no bunny, kitten,
+      hedgehog or goat inherits it. Fine soft fur belongs only on furry character surfaces. Keep hedgehog
+      spines as soft rounded shapes, never sharp needles or replaced by a generic fur ball. Do not add
+      unrequested clothing, accessories, extra limbs or background objects. Light follows the day LIGHT
+      block; no baked cast ground shadows, atmospheric veil, grain, outline, UI chrome or painted text.'
+  - text: 'AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters,
+      speech bubbles, a curl on any head except Pofu''s, extra limbs, a background'
+- id: x-sticker-pofu-2-v2
+  kind: sheet
+  name: x-sticker-pofu-2-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  transparent: true
+  chat: Pofu · Stickers
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Pofu stickers 2 of 2: laughing, waving, tea, thinking, love. Review: tea and thinking
+    carry a prop that reads at 64 px. Fresh second-cycle body/head/interaction staging with exact original
+    counts, emotions and layout; exploration only, never promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.'
+  prompt:
+  - text: 'A sticker sheet of five full-body poses of Pofu the hamster, in
+
+      his exact attached look, each a different moment: (1) laughing,
+
+      eyes squeezed shut, mouth open wide, tiny tears of joy, rolling
+
+      slightly; (2) waving, one paw raised high, a bright smile; (3)
+
+      tea, holding a small tulip-shaped tea glass in both paws and
+
+      sipping, eyes closed content; (4) thinking, one paw at the chin,
+
+      eyes looking up and to the side, head tilted; (5) love, eyes shut
+
+      in bliss, cheeks blushing deep pink, hugging a small plump heart-
+
+      shaped cushion. Three on the top row, two on the bottom. On a
+
+      plain transparent background, in a loose grid with wide empty
+
+      space around each sticker, none touching or overlapping another,
+
+      each drawn complete with its whole body. No text, no speech
+
+      bubbles, no floating hearts or sparkles unless named.
+
+      '
+  - text: 'FRESH VARIATION: keep all five moments in the exact source order, three above and two below.
+      Tilt the laughing, joy-teared full body a little to the left in its slight roll; never crop the
+      rolling silhouette. Let waving Pofu shift his weight onto one foot while the one paw stays high.
+      Tea Pofu holds the single tulip-shaped glass close in BOTH paws, eyes closed while sipping; do not
+      add a saucer. Thinking Pofu tilts his head to the right with the paw still at his chin and gaze
+      up to the side. Love Pofu hugs the one plump heart cushion slightly toward his left cheek, with
+      eyes shut and deep pink blush. These are new body/head details within the original actions, not
+      replacement emotions.'
+  - block: style-anchor-v2
+  - text: 'SHEET LAYOUT: preserve the exact count, original emotion order and source grid. Each single-character
+      sticker has its whole body and natural silhouette complete; each duo group contains the named two
+      characters only. Leave broad transparent cut-out gaps between separate stickers/groups and keep
+      all extremities inside the canvas. Touching within the explicitly requested hug, shared sleep or
+      tea clink is allowed; separate groups never touch. The grid is invisible: no boxes, lines, labels,
+      numerals, emotion names, speech bubbles, white sticker borders, floor or background. The numbered
+      descriptions identify positions only and must not be painted as text. No floating decoration except
+      the source''s explicitly named tears.'
+  - text: 'STYLE SCOPE AFTER GENERIC STYLE: use each resident''s OWN attached reference for anatomy, fur/spine
+      type, colours and distinctive silhouette; R1 supplies family finish, not a hamster redesign of other
+      residents. Only Pofu has his signature forehead curl, on every Pofu depiction; no bunny, kitten,
+      hedgehog or goat inherits it. Fine soft fur belongs only on furry character surfaces. Keep hedgehog
+      spines as soft rounded shapes, never sharp needles or replaced by a generic fur ball. Do not add
+      unrequested clothing, accessories, extra limbs or background objects. Light follows the day LIGHT
+      block; no baked cast ground shadows, atmospheric veil, grain, outline, UI chrome or painted text.'
+  - text: The explicitly named tea glass is a small physical painted vessel, not UI glass. The one heart
+      cushion is matte soft cloth, not furry or alive; it appears only in love. Tiny tears of joy appear
+      only in laughing. No extra tea set or saucer.
+  - text: 'AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters,
+      speech bubbles, a curl on any head except Pofu''s, extra limbs, a background'
+- id: x-sticker-mochi-1-v2
+  kind: sheet
+  name: x-sticker-mochi-1-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  transparent: true
+  chat: Pofu · Stickers
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Mochi stickers 1 of 2: happy, sleepy, surprised, proud, sulky. Review: Mochi''s
+    ears carry the emotion; same family as Pofu''s set. Fresh second-cycle body/head/interaction staging
+    with exact original counts, emotions and layout; exploration only, never promote.'
+  attach:
+  - ref: approved:mochi-v2
+    role: 'Mochi, the bunny: her exact look, fur, colors and eyes.'
+  - ref: R1
+    role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.'
+  prompt:
+  - text: 'A sticker sheet of five full-body poses of Mochi the bunny, in her
+
+      exact attached look, each a different emotion: (1) happy, eyes
+
+      closed in a smile, ears perked; (2) sleepy, eyes closed, ears
+
+      drooped, head nodding; (3) surprised, eyes wide, mouth a small
+
+      round O, ears straight up; (4) proud, chin up, a small satisfied
+
+      smile, ears tall; (5) sulky, cheeks puffed, one ear flopped, eyes
+
+      looking sideways. Three on the top row, two on the bottom. Do not
+
+      draw Pofu; he is only the style reference. On a plain transparent
+
+      background, in a loose grid with wide empty space around each
+
+      sticker, none touching or overlapping another, each drawn complete
+
+      with its whole body. No text, no speech bubbles, no floating
+
+      hearts or sparkles unless named.
+
+      '
+  - text: 'FRESH VARIATION: retain five full bodies in the original three-above/two-below order. Happy
+      Mochi makes a tiny lifted-chest bounce with closed smiling eyes and perked ears. Sleepy Mochi nods
+      slightly to her right, eyes closed and both soft ears drooped. Surprised Mochi leans back gently
+      with BOTH long ears straight up, wide eyes and the original small O mouth. Proud Mochi stands at
+      a slight front three-quarter turn, chin up, ears tall and satisfied smile. Sulky Mochi tips her
+      head the opposite way from her sideways eyes; exactly one ear flops and her cheeks stay puffed.
+      Her long bunny ears carry the differences; never give her Pofu''s curl or draw the hamster.'
+  - block: style-anchor-v2
+  - text: 'SHEET LAYOUT: preserve the exact count, original emotion order and source grid. Each single-character
+      sticker has its whole body and natural silhouette complete; each duo group contains the named two
+      characters only. Leave broad transparent cut-out gaps between separate stickers/groups and keep
+      all extremities inside the canvas. Touching within the explicitly requested hug, shared sleep or
+      tea clink is allowed; separate groups never touch. The grid is invisible: no boxes, lines, labels,
+      numerals, emotion names, speech bubbles, white sticker borders, floor or background. The numbered
+      descriptions identify positions only and must not be painted as text. No floating decoration except
+      the source''s explicitly named tears.'
+  - text: 'STYLE SCOPE AFTER GENERIC STYLE: use each resident''s OWN attached reference for anatomy, fur/spine
+      type, colours and distinctive silhouette; R1 supplies family finish, not a hamster redesign of other
+      residents. Only Pofu has his signature forehead curl, on every Pofu depiction; no bunny, kitten,
+      hedgehog or goat inherits it. Fine soft fur belongs only on furry character surfaces. Keep hedgehog
+      spines as soft rounded shapes, never sharp needles or replaced by a generic fur ball. Do not add
+      unrequested clothing, accessories, extra limbs or background objects. Light follows the day LIGHT
+      block; no baked cast ground shadows, atmospheric veil, grain, outline, UI chrome or painted text.'
+  - text: 'AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters,
+      speech bubbles, a curl on any head except Pofu''s, extra limbs, a background'
+- id: x-sticker-mochi-2-v2
+  kind: sheet
+  name: x-sticker-mochi-2-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  transparent: true
+  chat: Pofu · Stickers
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Mochi stickers 2 of 2: laughing, waving, tea, thinking, love. Review: tea is her
+    signature, it should be the best sticker of the set. Fresh second-cycle body/head/interaction staging
+    with exact original counts, emotions and layout; exploration only, never promote.'
+  attach:
+  - ref: approved:mochi-v2
+    role: 'Mochi, the bunny: her exact look, fur, colors and eyes.'
+  - ref: R1
+    role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.'
+  prompt:
+  - text: 'A sticker sheet of five full-body poses of Mochi the bunny, in her
+
+      exact attached look, each a different moment: (1) laughing, eyes
+
+      squeezed shut, mouth wide open, one paw on her tummy; (2) waving,
+
+      one paw raised, a warm smile, ears bobbing; (3) tea, proudly
+
+      holding out a small tulip-shaped tea glass on a saucer with both
+
+      paws, a gentle host''s smile; (4) thinking, one paw at the chin,
+
+      eyes up, one ear bent; (5) love, eyes shut in bliss, blushing, a
+
+      plump heart-shaped cushion hugged to her chest. Three on the top
+
+      row, two on the bottom. Do not draw Pofu. On a plain transparent
+
+      background, in a loose grid with wide empty space around each
+
+      sticker, none touching or overlapping another, each drawn complete
+
+      with its whole body. No text, no speech bubbles, no floating
+
+      hearts or sparkles unless named.
+
+      '
+  - text: 'FRESH VARIATION: keep the source''s five moments in order and its three-above/two-below grid.
+      Laughing Mochi bends slightly into her giggle with ONE paw on her tummy, eyes squeezed shut and
+      mouth wide open. Waving Mochi turns her body a little left while her face stays toward us, one paw
+      raised and ears bobbing. Tea Mochi extends BOTH paws together to present the complete small tulip
+      tea glass ON its saucer, with the gentle host smile. Thinking Mochi angles her head to the other
+      side from her raised gaze, paw at chin and exactly one ear bent. Love Mochi nestles the one heart
+      cushion under her cheek with closed blissful eyes and blush. No extra objects, head curl or reference
+      hamster.'
+  - block: style-anchor-v2
+  - text: 'SHEET LAYOUT: preserve the exact count, original emotion order and source grid. Each single-character
+      sticker has its whole body and natural silhouette complete; each duo group contains the named two
+      characters only. Leave broad transparent cut-out gaps between separate stickers/groups and keep
+      all extremities inside the canvas. Touching within the explicitly requested hug, shared sleep or
+      tea clink is allowed; separate groups never touch. The grid is invisible: no boxes, lines, labels,
+      numerals, emotion names, speech bubbles, white sticker borders, floor or background. The numbered
+      descriptions identify positions only and must not be painted as text. No floating decoration except
+      the source''s explicitly named tears.'
+  - text: 'STYLE SCOPE AFTER GENERIC STYLE: use each resident''s OWN attached reference for anatomy, fur/spine
+      type, colours and distinctive silhouette; R1 supplies family finish, not a hamster redesign of other
+      residents. Only Pofu has his signature forehead curl, on every Pofu depiction; no bunny, kitten,
+      hedgehog or goat inherits it. Fine soft fur belongs only on furry character surfaces. Keep hedgehog
+      spines as soft rounded shapes, never sharp needles or replaced by a generic fur ball. Do not add
+      unrequested clothing, accessories, extra limbs or background objects. Light follows the day LIGHT
+      block; no baked cast ground shadows, atmospheric veil, grain, outline, UI chrome or painted text.'
+  - text: The named tea glass and its ONE saucer are complete physical painted vessels supported by both
+      paws; they appear only in tea. The one heart cushion is matte soft cloth, never furry or alive,
+      and appears only in love. No table or extra tea set.
+  - text: 'AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters,
+      speech bubbles, a curl on any head except Pofu''s, extra limbs, a background'
+- id: x-sticker-simit-v2
+  kind: sheet
+  name: x-sticker-simit-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  transparent: true
+  chat: Pofu · Stickers
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Simit the kitten, 3 stickers: happy, sleepy, surprised. Review: matches the three
+    merged poses in spirit; sticker scale and clear space. Fresh second-cycle body/head/interaction staging
+    with exact original counts, emotions and layout; exploration only, never promote.'
+  attach:
+  - ref: approved:simit-kitten
+    role: 'Simit, the kitten: her exact look, tabby colors, ears and size.'
+  - ref: R1
+    role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.'
+  prompt:
+  - text: 'A sticker sheet of three full-body poses of Simit the tabby
+
+      kitten, in her exact attached look, in a row: (1) happy, eyes in
+
+      curved smiles, tail curled up; (2) sleepy, eyes gently closed,
+
+      ears folded down, curled into a loaf; (3) surprised, a small round
+
+      O mouth, eyes wide, ears upright, tail puffed. Do not draw Pofu.
+
+      On a plain transparent background, in a loose grid with wide empty
+
+      space around each sticker, none touching or overlapping another,
+
+      each drawn complete with its whole body. No text, no speech
+
+      bubbles, no floating hearts or sparkles unless named.
+
+      '
+  - text: 'FRESH VARIATION: keep exactly three complete kittens in one row, in the original order. Happy
+      Simit makes a gentle front three-quarter lean with curved smiling eyes and the tail curled UP, not
+      a curl on her head. Sleepy Simit curls into a compact loaf turned slightly toward the middle of
+      the row; her eyes remain gently closed and ears folded down. Surprised Simit has a little backward
+      weight shift, upright ears, wide eyes, small round O mouth and puffed tail. Preserve her exact tabby
+      markings, cream areas and kitten anatomy from her own reference. No props or other residents.'
+  - block: style-anchor-v2
+  - text: 'SHEET LAYOUT: preserve the exact count, original emotion order and source grid. Each single-character
+      sticker has its whole body and natural silhouette complete; each duo group contains the named two
+      characters only. Leave broad transparent cut-out gaps between separate stickers/groups and keep
+      all extremities inside the canvas. Touching within the explicitly requested hug, shared sleep or
+      tea clink is allowed; separate groups never touch. The grid is invisible: no boxes, lines, labels,
+      numerals, emotion names, speech bubbles, white sticker borders, floor or background. The numbered
+      descriptions identify positions only and must not be painted as text. No floating decoration except
+      the source''s explicitly named tears.'
+  - text: 'STYLE SCOPE AFTER GENERIC STYLE: use each resident''s OWN attached reference for anatomy, fur/spine
+      type, colours and distinctive silhouette; R1 supplies family finish, not a hamster redesign of other
+      residents. Only Pofu has his signature forehead curl, on every Pofu depiction; no bunny, kitten,
+      hedgehog or goat inherits it. Fine soft fur belongs only on furry character surfaces. Keep hedgehog
+      spines as soft rounded shapes, never sharp needles or replaced by a generic fur ball. Do not add
+      unrequested clothing, accessories, extra limbs or background objects. Light follows the day LIGHT
+      block; no baked cast ground shadows, atmospheric veil, grain, outline, UI chrome or painted text.'
+  - text: 'AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters,
+      speech bubbles, a curl on any head except Pofu''s, extra limbs, a background'
+- id: x-sticker-findik-v2
+  kind: sheet
+  name: x-sticker-findik-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  transparent: true
+  chat: Pofu · Stickers
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Fındık the hedgehog, 3 stickers: happy, surprised, proud. Review: spines stay soft
+    shapes, never sharp. Fresh second-cycle body/head/interaction staging with exact original counts,
+    emotions and layout; exploration only, never promote.'
+  attach:
+  - ref: approved:findik
+    role: 'Fındık, the hedgehog: his exact look, spines, colors and size.'
+  - ref: R1
+    role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.'
+  prompt:
+  - text: 'A sticker sheet of three full-body poses of Fındık the hedgehog,
+
+      in his exact attached look, in a row: (1) happy, a wide smile,
+
+      paws clasped; (2) surprised, a small round O mouth, eyes round,
+
+      spines lifted slightly; (3) proud, standing tall, holding up a
+
+      tiny wooden mallet, a satisfied smile. Do not draw Pofu. On a
+
+      plain transparent background, in a loose grid with wide empty
+
+      space around each sticker, none touching or overlapping another,
+
+      each drawn complete with its whole body. No text, no speech
+
+      bubbles, no floating hearts or sparkles unless named.
+
+      '
+  - text: 'FRESH VARIATION: keep exactly three full-body hedgehogs in one row, happy then surprised then
+      proud. Happy Fındık turns his softly clasped paws a little toward one cheek while keeping the wide
+      smile. Surprised Fındık leans back slightly with round eyes, small O mouth and softly lifted spine
+      shapes. Proud Fındık shifts his weight to one foot and lifts the tiny WOODEN MALLET in the other-side
+      composition, with the same tall posture and satisfied smile. The mallet belongs only to proud. Preserve
+      the rounded hedgehog silhouette and soft blunt spines; no sharp needles, head curl, hamster anatomy
+      or extra tools.'
+  - block: style-anchor-v2
+  - text: 'SHEET LAYOUT: preserve the exact count, original emotion order and source grid. Each single-character
+      sticker has its whole body and natural silhouette complete; each duo group contains the named two
+      characters only. Leave broad transparent cut-out gaps between separate stickers/groups and keep
+      all extremities inside the canvas. Touching within the explicitly requested hug, shared sleep or
+      tea clink is allowed; separate groups never touch. The grid is invisible: no boxes, lines, labels,
+      numerals, emotion names, speech bubbles, white sticker borders, floor or background. The numbered
+      descriptions identify positions only and must not be painted as text. No floating decoration except
+      the source''s explicitly named tears.'
+  - text: 'STYLE SCOPE AFTER GENERIC STYLE: use each resident''s OWN attached reference for anatomy, fur/spine
+      type, colours and distinctive silhouette; R1 supplies family finish, not a hamster redesign of other
+      residents. Only Pofu has his signature forehead curl, on every Pofu depiction; no bunny, kitten,
+      hedgehog or goat inherits it. Fine soft fur belongs only on furry character surfaces. Keep hedgehog
+      spines as soft rounded shapes, never sharp needles or replaced by a generic fur ball. Do not add
+      unrequested clothing, accessories, extra limbs or background objects. Light follows the day LIGHT
+      block; no baked cast ground shadows, atmospheric veil, grain, outline, UI chrome or painted text.'
+  - text: The tiny named mallet is smooth matte wood without fur, eyes, ears or anatomy; only the proud
+      hedgehog holds it.
+  - text: 'AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters,
+      speech bubbles, a curl on any head except Pofu''s, extra limbs, a background'
+- id: x-sticker-goat-v2
+  kind: sheet
+  name: x-sticker-goat-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  transparent: true
+  chat: Pofu · Stickers
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. The harbor goat, 3 stickers: munching, startled, smug. Review: a goat with personality,
+    the same soft finish. Fresh second-cycle body/head/interaction staging with exact original counts,
+    emotions and layout; exploration only, never promote.'
+  attach:
+  - ref: approved:harbor-goat
+    role: 'The harbor goat: her exact look, horns, colors and size.'
+  - ref: R1
+    role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.'
+  prompt:
+  - text: 'A sticker sheet of three full-body poses of the harbor goat, in
+
+      her exact attached look, in a row: (1) munching, calmly chewing a
+
+      small tuft of grass with half-closed eyes; (2) startled, eyes
+
+      wide, ears flung back, one hoof lifted; (3) smug, chin raised,
+
+      eyes half-lidded, a tiny knowing smile. Do not draw Pofu. On a
+
+      plain transparent background, in a loose grid with wide empty
+
+      space around each sticker, none touching or overlapping another,
+
+      each drawn complete with its whole body. No text, no speech
+
+      bubbles, no floating hearts or sparkles unless named.
+
+      '
+  - text: 'FRESH VARIATION: keep exactly three complete harbor goats in one row, munching then startled
+      then smug. Let the munching goat turn her muzzle slightly left while calmly chewing the ONE small
+      grass tuft with half-closed eyes. The startled goat shifts her round body a little backward, ears
+      flung back, eyes wide and exactly one hoof lifted as requested. Smug goat turns slightly toward
+      the other two while raising her chin, keeping half-lidded eyes and the tiny knowing smile. Preserve
+      the actual goat horns, muzzle, hooves and reference colours; no hamster curl or extra accessory.'
+  - block: style-anchor-v2
+  - text: 'SHEET LAYOUT: preserve the exact count, original emotion order and source grid. Each single-character
+      sticker has its whole body and natural silhouette complete; each duo group contains the named two
+      characters only. Leave broad transparent cut-out gaps between separate stickers/groups and keep
+      all extremities inside the canvas. Touching within the explicitly requested hug, shared sleep or
+      tea clink is allowed; separate groups never touch. The grid is invisible: no boxes, lines, labels,
+      numerals, emotion names, speech bubbles, white sticker borders, floor or background. The numbered
+      descriptions identify positions only and must not be painted as text. No floating decoration except
+      the source''s explicitly named tears.'
+  - text: 'STYLE SCOPE AFTER GENERIC STYLE: use each resident''s OWN attached reference for anatomy, fur/spine
+      type, colours and distinctive silhouette; R1 supplies family finish, not a hamster redesign of other
+      residents. Only Pofu has his signature forehead curl, on every Pofu depiction; no bunny, kitten,
+      hedgehog or goat inherits it. Fine soft fur belongs only on furry character surfaces. Keep hedgehog
+      spines as soft rounded shapes, never sharp needles or replaced by a generic fur ball. Do not add
+      unrequested clothing, accessories, extra limbs or background objects. Light follows the day LIGHT
+      block; no baked cast ground shadows, atmospheric veil, grain, outline, UI chrome or painted text.'
+  - text: The single named grass tuft is smooth plant blades, never fur; only the munching goat chews
+      it. Horns and hooves retain smooth non-furred material.
+  - text: 'AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters,
+      speech bubbles, a curl on any head except Pofu''s, extra limbs, a background'
+- id: x-sticker-duo-1-v2
+  kind: sheet
+  name: x-sticker-duo-1-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  transparent: true
+  chat: Pofu · Stickers
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Pofu and Mochi together, 3 stickers: tea for two, hug, waving goodbye. Review:
+    the size relation holds (Pofu about her height), the pair reads as one unit. Fresh second-cycle body/head/interaction
+    staging with exact original counts, emotions and layout; exploration only, never promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.'
+  - ref: approved:mochi-v2
+    role: 'Mochi, the bunny: her exact look, fur, colors and eyes.'
+  prompt:
+  - text: 'A sticker sheet of three groups of Pofu the hamster and Mochi the
+
+      bunny together, both in their exact attached looks and correct
+
+      relative size, in a row: (1) tea for two, side by side, each
+
+      holding a small tulip-shaped tea glass, clinking gently; (2) a
+
+      hug, the two embracing, eyes closed, blushing; (3) waving goodbye,
+
+      both waving a paw, smiling. On a plain transparent background, in
+
+      a loose grid with wide empty space around each sticker, none
+
+      touching or overlapping another, each drawn complete with its
+
+      whole body. No text, no speech bubbles, no floating hearts or
+
+      sparkles unless named.
+
+      '
+  - text: 'FRESH VARIATION: retain exactly THREE PAIR GROUPS in one row, each containing exactly ONE Pofu
+      and ONE Mochi, for SIX full characters total. Tea for two turns the two bodies slightly toward one
+      another; each holds the single named tulip glass and the two glasses gently clink. In the central
+      hug, the two lean into a soft side embrace with eyes closed and blush; this within-pair contact
+      is intentional. In waving goodbye, stagger the two complete bodies very slightly while both still
+      wave one paw and smile. Keep Pofu about Mochi''s height, their distinct silhouettes and the exact
+      reference looks. Wide transparent gaps separate the three groups; never separate an embracing pair
+      into unrelated stickers. Pofu alone has the forehead curl.'
+  - block: style-anchor-v2
+  - text: 'SHEET LAYOUT: preserve the exact count, original emotion order and source grid. Each single-character
+      sticker has its whole body and natural silhouette complete; each duo group contains the named two
+      characters only. Leave broad transparent cut-out gaps between separate stickers/groups and keep
+      all extremities inside the canvas. Touching within the explicitly requested hug, shared sleep or
+      tea clink is allowed; separate groups never touch. The grid is invisible: no boxes, lines, labels,
+      numerals, emotion names, speech bubbles, white sticker borders, floor or background. The numbered
+      descriptions identify positions only and must not be painted as text. No floating decoration except
+      the source''s explicitly named tears.'
+  - text: 'STYLE SCOPE AFTER GENERIC STYLE: use each resident''s OWN attached reference for anatomy, fur/spine
+      type, colours and distinctive silhouette; R1 supplies family finish, not a hamster redesign of other
+      residents. Only Pofu has his signature forehead curl, on every Pofu depiction; no bunny, kitten,
+      hedgehog or goat inherits it. Fine soft fur belongs only on furry character surfaces. Keep hedgehog
+      spines as soft rounded shapes, never sharp needles or replaced by a generic fur ball. Do not add
+      unrequested clothing, accessories, extra limbs or background objects. Light follows the day LIGHT
+      block; no baked cast ground shadows, atmospheric veil, grain, outline, UI chrome or painted text.'
+  - text: The two named tea glasses are physical painted vessels supported by the pair, not UI glass panels
+      or extra characters. They appear only in tea for two; do not add saucers or a table.
+  - text: 'AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters,
+      speech bubbles, a curl on any head except Pofu''s, extra limbs, a background'
+- id: x-sticker-duo-2-v2
+  kind: sheet
+  name: x-sticker-duo-2-v2
+  size: 1536x1024
+  canvas: 1536x1024
+  transparent: true
+  chat: Pofu · Stickers
+  light:
+    cell: day
+    layer: subject
+  notes: 'Exploration. Pofu and Mochi together, 3 stickers: asleep together, laughing, surprised. Review:
+    same checks as duo-1. Fresh second-cycle body/head/interaction staging with exact original counts,
+    emotions and layout; exploration only, never promote.'
+  attach:
+  - ref: R1
+    role: 'Pofu, the hamster: his exact look, fur, colors, eyes and signature curl.'
+  - ref: approved:mochi-v2
+    role: 'Mochi, the bunny: her exact look, fur, colors and eyes.'
+  prompt:
+  - text: 'A sticker sheet of three groups of Pofu the hamster and Mochi the
+
+      bunny together, both in their exact attached looks and correct
+
+      relative size, in a row: (1) asleep together, curled up side by
+
+      side, eyes closed, heads leaning on each other; (2) laughing
+
+      together, both with squeezed-shut eyes and open mouths; (3)
+
+      surprised together, both with wide eyes and small round O mouths,
+
+      leaning toward each other. On a plain transparent background, in a
+
+      loose grid with wide empty space around each sticker, none
+
+      touching or overlapping another, each drawn complete with its
+
+      whole body. No text, no speech bubbles, no floating hearts or
+
+      sparkles unless named.
+
+      '
+  - text: 'FRESH VARIATION: retain exactly THREE PAIR GROUPS in one row, each exactly ONE Pofu plus ONE
+      Mochi, SIX full characters total. The sleeping pair curls gently inward with their closed-eyed heads
+      leaning on each other, their complete bodies and tails still within its own group. In the laughing
+      pair, tilt their heads slightly opposite ways while both keep squeezed-shut eyes and open laughing
+      mouths. In the surprised pair, make a small inward body lean, both eyes wide and both mouths small
+      round O shapes. These are the source''s same three events in fresh body angles. Keep the correct
+      similar relative size, Pofu''s curl and Mochi''s long soft ears without a curl. No prop, blanket,
+      pillow or floating decoration is added.'
+  - block: style-anchor-v2
+  - text: 'SHEET LAYOUT: preserve the exact count, original emotion order and source grid. Each single-character
+      sticker has its whole body and natural silhouette complete; each duo group contains the named two
+      characters only. Leave broad transparent cut-out gaps between separate stickers/groups and keep
+      all extremities inside the canvas. Touching within the explicitly requested hug, shared sleep or
+      tea clink is allowed; separate groups never touch. The grid is invisible: no boxes, lines, labels,
+      numerals, emotion names, speech bubbles, white sticker borders, floor or background. The numbered
+      descriptions identify positions only and must not be painted as text. No floating decoration except
+      the source''s explicitly named tears.'
+  - text: 'STYLE SCOPE AFTER GENERIC STYLE: use each resident''s OWN attached reference for anatomy, fur/spine
+      type, colours and distinctive silhouette; R1 supplies family finish, not a hamster redesign of other
+      residents. Only Pofu has his signature forehead curl, on every Pofu depiction; no bunny, kitten,
+      hedgehog or goat inherits it. Fine soft fur belongs only on furry character surfaces. Keep hedgehog
+      spines as soft rounded shapes, never sharp needles or replaced by a generic fur ball. Do not add
+      unrequested clothing, accessories, extra limbs or background objects. Light follows the day LIGHT
+      block; no baked cast ground shadows, atmospheric veil, grain, outline, UI chrome or painted text.'
+  - text: 'AVOID: a white sticker border, outlines, a floor, a ground shadow, cast shadows, text, letters,
+      speech bubbles, a curl on any head except Pofu''s, extra limbs, a background'

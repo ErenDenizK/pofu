@@ -1,0 +1,36 @@
+id: asset-x-sticker-mochi-2-v2
+type: asset
+title_tr: x-sticker-mochi-2-v2
+title_en: x-sticker-mochi-2-v2 (sheet)
+status: planned
+horizon: now
+summary: >-
+  A sticker sheet of five full-body poses of Mochi the bunny, in her exact attached look,
+  each a different moment: (1) laughing, eyes squeezed shut, mouth wide open, one paw on her
+  tummy; (2) waving, one paw raised, a warm smile, ears bobbing; (3) tea, proudly holding
+  out a small tulip-shaped tea glass on a saucer with both paws, a gentle host's smile; (4)
+  thinking, one paw at the chin, eyes up, one ear bent; (5) love,…
+art:
+  images: []
+  jobs:
+  - batch-23-stickers-v2:x-sticker-mochi-2-v2
+sources:
+- doc: tools/imagegen/manifest/batch-23-stickers-v2.yaml
+kind: sheet
+batch: batch-23-stickers-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 2; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Original and official locked review confirm five
+  whole separated bunnies in original 3+2 order: laughing shut eyes/open mouth/tummy paw;
+  one waving paw/warm smile/bobbing ears; both paws presenting one tulip glass ON one saucer
+  with gentle host smile; chin paw/up-side gaze/exactly one bent ear; shut blissful eyes/blush
+  hugging one heart cushion to chest under cheek. No Pofu, curl, extra props or text. Take2
+  is clean and manually eligible. Take1 has actual cloudy translucent background along otherwise
+  empty top-left margin, visible on proper flat-light/dark source and locked composites; it
+  is excluded without adding an alpha numeric threshold. Both hard QA pass; take2 also has
+  lower lock load .0469 versus .1303. Exploration only; never promoted.
