@@ -1,0 +1,378 @@
+batch: batch-49-roots
+manifest: tools/imagegen/manifest/batch-49-roots.yaml
+manifest_sha256: b481607339c94c6b3f24f37ce3c18d8e780744089490ac671c2bb18ba00b9d77
+contact_sheet: design/art/takes/batch-49-roots/x-roots-caglayan-0/contact.jpg
+jobs:
+  x-roots-caglayan-0:
+    pick: none
+    publication: skipped after one allowed retry
+    note: Skipped after the sole unchanged-prompt retry. All four actual originals
+      and official locked counterparts add several flourishing open flowers and lush
+      green bushes; takes2/4 additionally include a whole leafy tree. This violates
+      the unchanged island-healing-arc stage0 one-sign-of-life rule alongside the
+      authored single hanging drop/glint. All retain three dry stone lips/stains and
+      a central drop, but those correct elements do not override the extra flourishing
+      life. Automatic hard QA passes; palette/value/haze warnings remain advisory
+      and are not the skip reason. Initial derived reports/locked images/callbacks/marker
+      were preserved before retry, and initial QA/locked hashes remain byte-identical
+      after repost. All four original PNGs preserved unchanged; no rephrase, threshold/pixel
+      edit or third round. No true dependents in this manifest, so the independent
+      healed concept continues.
+qa_reports:
+  1:
+    job: x-roots-caglayan-0
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 32 (R1 51)
+      value: 32.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 46 (at most 22), p98 96 (at least 90), spread 50
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 49.7
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 67 (band 55-90)'
+      value: 67.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.41 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.408
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.4 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.43
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.2 (R1 5.3)
+      value: 1.22
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7559
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.5, p95 6.0, off-palette 0.0%
+      value: 2.4555
+    info:
+      metrics_raw:
+        L_p5: 52.4
+        L_p50: 83.5
+        L_p95: 95.3
+        C_p50: 17.0
+        C_p95: 32.6
+        C_p99: 44.6
+        detail: 1.62
+      metrics_locked:
+        L_p5: 52.5
+        L_p50: 83.5
+        L_p95: 95.1
+        C_p50: 16.8
+        C_p95: 32.3
+        C_p99: 43.9
+        detail: 1.22
+    fingerprint: b4412144080c1147
+  2:
+    job: x-roots-caglayan-0
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 31 (R1 51)
+      value: 31.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 48 (at most 22), p98 96 (at least 90), spread 47
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 47.4
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 73 (band 55-90)'
+      value: 73.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.42 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.424
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.5 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.49
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7239
+    - check: palette_drift
+      status: warn
+      message: mean dE 2.6, p95 7.4, off-palette 0.0%
+      value: 2.6299
+    info:
+      metrics_raw:
+        L_p5: 53.6
+        L_p50: 83.1
+        L_p95: 95.0
+        C_p50: 16.6
+        C_p95: 31.9
+        C_p99: 48.9
+        detail: 1.48
+      metrics_locked:
+        L_p5: 53.7
+        L_p50: 83.1
+        L_p95: 94.9
+        C_p50: 16.4
+        C_p95: 31.4
+        C_p99: 48.1
+        detail: 1.12
+    fingerprint: b4412144080c1147
+  3:
+    job: x-roots-caglayan-0
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 36 (R1 51)
+      value: 35.8
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 45 (at most 22), p98 96 (at least 90), spread 51
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 51.2
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 71 (band 55-90)'
+      value: 71.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.40 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.396
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.6 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.58
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.5 (R1 5.3)
+      value: 1.46
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.8
+      value: 0.7994
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.3, p95 7.1, off-palette 0.0%
+      value: 2.3472
+    info:
+      metrics_raw:
+        L_p5: 52.0
+        L_p50: 84.3
+        L_p95: 95.6
+        C_p50: 16.1
+        C_p95: 36.5
+        C_p99: 44.4
+        detail: 1.92
+      metrics_locked:
+        L_p5: 52.1
+        L_p50: 84.3
+        L_p95: 95.4
+        C_p50: 16.1
+        C_p95: 35.8
+        C_p99: 43.7
+        detail: 1.46
+    fingerprint: b4412144080c1147
+  4:
+    job: x-roots-caglayan-0
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 31 (R1 51)
+      value: 31.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 47 (at most 22), p98 96 (at least 90), spread 48
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 48.5
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 74.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.42 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.424
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.4 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.44
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.1 (R1 5.3)
+      value: 1.13
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.7
+      value: 0.7368
+    - check: palette_drift
+      status: pass
+      message: mean dE 2.4, p95 7.0, off-palette 0.0%
+      value: 2.3581
+    info:
+      metrics_raw:
+        L_p5: 53.6
+        L_p50: 84.0
+        L_p95: 95.3
+        C_p50: 16.3
+        C_p95: 31.8
+        C_p99: 40.5
+        detail: 1.48
+      metrics_locked:
+        L_p5: 53.8
+        L_p50: 83.9
+        L_p95: 95.2
+        C_p50: 16.1
+        C_p95: 31.1
+        C_p99: 39.9
+        detail: 1.13
+    fingerprint: b4412144080c1147
+manual_review:
+  observed_note: Skipped after the sole unchanged-prompt retry. All four actual originals
+    and official locked counterparts add several flourishing open flowers and lush
+    green bushes; takes2/4 additionally include a whole leafy tree. This violates
+    the unchanged island-healing-arc stage0 one-sign-of-life rule alongside the authored
+    single hanging drop/glint. All retain three dry stone lips/stains and a central
+    drop, but those correct elements do not override the extra flourishing life. Automatic
+    hard QA passes; palette/value/haze warnings remain advisory and are not the skip
+    reason. Initial derived reports/locked images/callbacks/marker were preserved
+    before retry, and initial QA/locked hashes remain byte-identical after repost.
+    All four original PNGs preserved unchanged; no rephrase, threshold/pixel edit
+    or third round. No true dependents in this manifest, so the independent healed
+    concept continues.
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-49-roots
+  job: x-roots-caglayan-0
+  take: 1
+  round: 1
+  logical_run: batch49-20261106
+  source_file: /workspace/generated_images/exec-17426a75-3884-4fef-8f10-086e951e11de.png
+  returned_at: '2026-11-06T09:07:47.197Z'
+  prompt_sha256: 662826160f3a9aa0be0936b11cf56dee2b10bf50bdc2244012668f5ac0105116
+  fingerprint: b4412144080c1147
+  saved_at: '2026-11-06T09:07:47.626652+00:00'
+  original_generated_png_sha256: 6dfa8b7bf8bff64713f2f0bf850b7a4a559a00d4b78017eee45946579e95278a
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: be8d150d1b4034f0664995a2437e5c552647ab996d925e4c16bad2bd677f7d93
+  inbox_png_sha256: 3f5c78b09b9459c09b0286074407b41f3a0b5667ce9f847ebcad960dadecbd0c
+  qa_sha256: 00e1b660e566525017eb1c15b2cdfd0f2ad7b67905f28ccb744a14aa1800c98d
+- batch: batch-49-roots
+  job: x-roots-caglayan-0
+  take: 2
+  round: 1
+  logical_run: batch49-20261106
+  source_file: /workspace/generated_images/exec-0a3ef032-fc90-4a1d-a9a0-9053af7407ce.png
+  returned_at: '2026-11-06T09:08:18.922Z'
+  prompt_sha256: 662826160f3a9aa0be0936b11cf56dee2b10bf50bdc2244012668f5ac0105116
+  fingerprint: b4412144080c1147
+  saved_at: '2026-11-06T09:08:19.261581+00:00'
+  original_generated_png_sha256: 20c278c6d482676834b1b90c3d32cd804ab466ad0a8eb145e27c54544c640846
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 3b4a73926eaa0c65a7a81586173629f90629e144226732b15c51d0225a4b4038
+  inbox_png_sha256: 9eda2b149f3d145eaf18a9e3a9061e66ac0ad27320d8adfae252248857abc867
+  qa_sha256: e69cb7f3c7ab687ab04550ddc4572979fb5e3864a6eb133ec22317be0427d300
+- batch: batch-49-roots
+  job: x-roots-caglayan-0
+  take: 3
+  round: 2
+  logical_run: batch49-20261106
+  source_file: /workspace/generated_images/exec-96d0887b-17ae-41c3-ab91-86511f4070d9.png
+  returned_at: '2026-11-06T09:15:57.638Z'
+  prompt_sha256: 662826160f3a9aa0be0936b11cf56dee2b10bf50bdc2244012668f5ac0105116
+  fingerprint: b4412144080c1147
+  saved_at: '2026-11-06T09:15:58.037982+00:00'
+  original_generated_png_sha256: 76686af8199213ba4f06e5e6da03e0d1b0d3fccb58f3d8bb57dcf9185f453e25
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 40d69aa4b44428fd3e48bbe3b7bdc87d8308c3e8ce32ed932a962d605018d199
+  inbox_png_sha256: aa58777457730c55da1249320e1745231eb0094d5a909d9d301c55cb57f4f319
+  qa_sha256: 9e30ad06f41cc4519a198c71167f25b5d3c20e969a4c5c1fe4999a83e8b444e3
+- batch: batch-49-roots
+  job: x-roots-caglayan-0
+  take: 4
+  round: 2
+  logical_run: batch49-20261106
+  source_file: /workspace/generated_images/exec-af76d5b2-24cb-45ed-807e-d82e9910d20b.png
+  returned_at: '2026-11-06T09:16:31.550Z'
+  prompt_sha256: 662826160f3a9aa0be0936b11cf56dee2b10bf50bdc2244012668f5ac0105116
+  fingerprint: b4412144080c1147
+  saved_at: '2026-11-06T09:16:31.897446+00:00'
+  original_generated_png_sha256: ead18622c88ea761e638d270d657bd70fee6a9a3df42ecfcbe7aa52bf7b35f9f
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 85a4701b7110546782b120697fc29c2ad593d61b18588d6cd451ee2cb673fdac
+  inbox_png_sha256: 8f3d3df2f75a19bb57616b5fde404de69768feb8be8f67021b1c9ff67a598458
+  qa_sha256: 452a2af9d0216d0e51f42428ab8e0dafdccf437d049387947320f7d6716a5caf
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published

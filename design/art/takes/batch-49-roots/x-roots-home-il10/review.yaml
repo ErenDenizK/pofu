@@ -1,0 +1,214 @@
+batch: batch-49-roots
+manifest: tools/imagegen/manifest/batch-49-roots.yaml
+manifest_sha256: b481607339c94c6b3f24f37ce3c18d8e780744089490ac671c2bb18ba00b9d77
+contact_sheet: design/art/takes/batch-49-roots/x-roots-home-il10/contact.jpg
+jobs:
+  x-roots-home-il10:
+    pick: 1
+    publication: selected exploration; never promoted
+    note: 'auto-picked by QA; founder review pending. Both actual originals and official
+      locked images contain flowers/nest/amber earth-stones plus all seven named keepsake
+      families: moss beard, long silver stream, net visibly holding one pink mitten,
+      one key and one handled teacup, one bell, green/violet aurora crystal cluster,
+      wild honeycomb and crescent moon lamp; the separate warm lantern and moonlit
+      clouds are present. Native net crops confirm the objects and blank flower motifs
+      are not letters. Nests contain eggs, not birds; the exact authored prompt requests
+      a nest with no bird count and forbids characters/text, so broader proposal two-bird/label
+      wording is not silently imported. Whole lawn remains visible while the earth/gifts
+      fill the main lower composition; no IL1-only crop gate is invented. Bright night
+      value/median/haze warnings retained as advisory, not a claim of calibrated night
+      lighting. Lowest eligible load selects take1. Home identity persists, but no
+      pixel-registered cumulative progression or production overlay claim.'
+qa_reports:
+  1:
+    job: x-roots-home-il10
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 38 (R1 51)
+      value: 37.5
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 31 (at most 8), p98 88 (at least 58), spread 57
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 57.4
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 69 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 69.3
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.25 (at most 0.10; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.251
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 4.9 (at least 2.8)'
+      value: 4.87
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.0 (R1 5.3)
+      value: 3.02
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.1273
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.1, p95 5.3, off-palette 0.0% (top: #CC7733 (0.0%), #BB6622
+        (0.0%))'
+      value: 2.1164
+    info:
+      metrics_raw:
+        L_p5: 22.8
+        L_p50: 65.2
+        L_p95: 86.6
+        C_p50: 25.3
+        C_p95: 37.8
+        C_p99: 42.4
+        detail: 3.55
+      metrics_locked:
+        L_p5: 25.0
+        L_p50: 65.2
+        L_p95: 86.3
+        C_p50: 24.9
+        C_p95: 37.5
+        C_p99: 41.7
+        detail: 3.02
+    fingerprint: 2289c5436a6fac01
+  2:
+    job: x-roots-home-il10
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 37 (R1 51)
+      value: 37.2
+    - check: light_values
+      status: warn
+      message: 'night/subject: L p2 28 (at most 8), p98 90 (at least 58), spread 62
+        (at least 42) (warn-only until the founder has seen the light pilot)'
+      value: 61.8
+    - check: light_median
+      status: warn
+      message: 'night/subject: median L 69 (band 18-50) (warn-only until the founder
+        has seen the light pilot)'
+      value: 68.8
+    - check: light_haze
+      status: warn
+      message: 'night/subject: dark-channel haze 0.23 (at most 0.10; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.235
+    - check: light_contrast
+      status: pass
+      message: 'night/subject: p75 local contrast 5.3 (at least 2.8)'
+      value: 5.28
+    - check: detail_budget
+      status: pass
+      message: detail at display size 3.4 (R1 5.3)
+      value: 3.38
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.3
+      value: 1.2718
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.8, p95 4.5, off-palette 0.1% (top: #BB6622 (0.0%), #DD8833
+        (0.0%))'
+      value: 1.7987
+    info:
+      metrics_raw:
+        L_p5: 21.2
+        L_p50: 67.4
+        L_p95: 87.6
+        C_p50: 23.6
+        C_p95: 37.5
+        C_p99: 44.1
+        detail: 3.95
+      metrics_locked:
+        L_p5: 24.3
+        L_p50: 67.4
+        L_p95: 87.3
+        C_p50: 23.4
+        C_p95: 37.2
+        C_p99: 42.6
+        detail: 3.38
+    fingerprint: 2289c5436a6fac01
+manual_review:
+  observed_note: 'Both actual originals and official locked images contain flowers/nest/amber
+    earth-stones plus all seven named keepsake families: moss beard, long silver stream,
+    net visibly holding one pink mitten, one key and one handled teacup, one bell,
+    green/violet aurora crystal cluster, wild honeycomb and crescent moon lamp; the
+    separate warm lantern and moonlit clouds are present. Native net crops confirm
+    the objects and blank flower motifs are not letters. Nests contain eggs, not birds;
+    the exact authored prompt requests a nest with no bird count and forbids characters/text,
+    so broader proposal two-bird/label wording is not silently imported. Whole lawn
+    remains visible while the earth/gifts fill the main lower composition; no IL1-only
+    crop gate is invented. Bright night value/median/haze warnings retained as advisory,
+    not a claim of calibrated night lighting. Lowest eligible load selects take1.
+    Home identity persists, but no pixel-registered cumulative progression or production
+    overlay claim.'
+  excluded_takes: []
+sources:
+- batch: batch-49-roots
+  job: x-roots-home-il10
+  take: 1
+  round: 1
+  logical_run: batch49-20261106
+  source_file: /workspace/generated_images/exec-a6e58d68-7339-405a-a0dd-8b02603633cc.png
+  returned_at: '2026-11-06T09:03:04.766Z'
+  prompt_sha256: 1fa741590030491499ee3676f213f7446d20197797bf986d78287ab7a9882f59
+  fingerprint: 2289c5436a6fac01
+  saved_at: '2026-11-06T09:03:05.210711+00:00'
+  original_generated_png_sha256: 0d29dad4a7b178408ac4c8b5022d85e58433b212789dde8680e52d1021fe31e5
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 5083fdc7fb8fc30d8531f1860656a125648b7d3d44361200ddfc55f96201a3ca
+  inbox_png_sha256: 1938ade7b0166ccdd85f82ca2223175b9e43e9b7e0c258623c1ee036e15e9aad
+  qa_sha256: dea1db4b80978614c04fbcc50063efee58fc166542d6414f62624229bb0065f4
+- batch: batch-49-roots
+  job: x-roots-home-il10
+  take: 2
+  round: 1
+  logical_run: batch49-20261106
+  source_file: /workspace/generated_images/exec-cdcfadae-3ccc-4f82-951e-77aa88acebda.png
+  returned_at: '2026-11-06T09:03:52.830Z'
+  prompt_sha256: 1fa741590030491499ee3676f213f7446d20197797bf986d78287ab7a9882f59
+  fingerprint: 2289c5436a6fac01
+  saved_at: '2026-11-06T09:03:53.159640+00:00'
+  original_generated_png_sha256: 91473b5f43502b436c24c4e61b9b23a53abd2266011bfa8d35f295d097866a1f
+  dimensions:
+  - 1536
+  - 1024
+  rgba_sha256: 8bd87f0ba2ec014902f9b7aa3035d5ab73e7d1693dff3774e2fa3ef5a1ab8408
+  inbox_png_sha256: 0838ef0b4e2b442240503e646f42bd11977918e950b40730fc24c8ab0aba8559
+  qa_sha256: e7b48a2a3fc3c7652c9cd65cf964d419ce01a6e289215d2ac55e7e53faa86dba
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
