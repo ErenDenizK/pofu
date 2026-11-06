@@ -1,0 +1,113 @@
+[
+  {
+    "id": "caglayan-1-1",
+    "island": "caglayan",
+    "stage": 1,
+    "order": 1,
+    "skin": "water",
+    "rows": [
+      "S # .",
+      "┘ └ #",
+      "# ─ ─",
+      "# P #"
+    ]
+  },
+  {
+    "id": "caglayan-1-2",
+    "island": "caglayan",
+    "stage": 1,
+    "order": 2,
+    "skin": "water",
+    "rows": [
+      "# S # #",
+      "# │ # ┐",
+      "# ┌ │ └",
+      "┘ ─ # P"
+    ]
+  },
+  {
+    "id": "caglayan-2-1",
+    "island": "caglayan",
+    "stage": 2,
+    "order": 1,
+    "skin": "water",
+    "rows": [
+      "# S # #",
+      "┘ ┤ ┌ #",
+      "─ ─ ┐ └",
+      "G ┐ │ ─",
+      "P # # P"
+    ]
+  },
+  {
+    "id": "caglayan-2-2",
+    "island": "caglayan",
+    "stage": 2,
+    "order": 2,
+    "skin": "water",
+    "rows": [
+      "# # S #",
+      "# ┘ ├ ┐",
+      "# │ G ─",
+      "┌ │ ┌ ┘",
+      "# P ┘ P"
+    ]
+  },
+  {
+    "id": "caglayan-3-1",
+    "island": "caglayan",
+    "stage": 3,
+    "order": 1,
+    "skin": "water",
+    "rows": [
+      "# S # #",
+      "┐ └ ┴ #",
+      "─ ┐ ┐ ┌",
+      "└ W └ │",
+      "┌ └ P #"
+    ]
+  },
+  {
+    "id": "caglayan-3-2",
+    "island": "caglayan",
+    "stage": 3,
+    "order": 2,
+    "skin": "water",
+    "rows": [
+      "# # # S #",
+      "# ┘ │ ┌ ├",
+      "┐ ─ ┬ ┐ │",
+      "│ ┐ W │ └",
+      "# # ─ # P"
+    ]
+  },
+  {
+    "id": "caglayan-4-1",
+    "island": "caglayan",
+    "stage": 4,
+    "order": 1,
+    "skin": "water",
+    "rows": [
+      "# # S # #",
+      "┘ │ ┤ ┘ #",
+      "─ ├ └ ─ ┘",
+      "G └ W ┌ ─",
+      "P P # ┘ #"
+    ]
+  },
+  {
+    "id": "caglayan-4-2",
+    "island": "caglayan",
+    "stage": 4,
+    "order": 2,
+    "skin": "water",
+    "rows": [
+      "# # S # #",
+      "# └ ┬ ┌ #",
+      "# ─ ├ ┘ ┌",
+      "└ ┐ │ ┬ ─",
+      "G # ┘ W ┌",
+      "P # P # #"
+    ]
+  }
+]
