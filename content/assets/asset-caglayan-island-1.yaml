@@ -2,7 +2,7 @@ id: asset-caglayan-island-1
 type: asset
 title_tr: caglayan-island-1
 title_en: caglayan-island-1 (plate)
-status: cut
+status: in-production
 horizon: now
 summary: 'Edit the attached island plate from stage 0 to stage 1: one stream is back.
   The trickle on the left grows into one thin, clear ribbon of water falling step
@@ -14,7 +14,8 @@ links:
   variant_of:
   - asset-caglayan-island-0
 art:
-  images: []
+  images:
+  - design/art/masters/caglayan-island-1/caglayan-island-1.png
   jobs:
   - batch-43-caglayan-production:caglayan-island-1
 sources:
