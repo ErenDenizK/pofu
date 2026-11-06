@@ -1,0 +1,18 @@
+frame                      grade   band     mean     p2    p98  range  local chroma  empty    run  sky_L  sky_C  sky_b pofu_h pofu_C pofu_L
+grade-day-home             day     home    57.80  12.80 100.00  87.20   8.35  22.30   0.03   0.03  63.60   4.30  -3.00  67.40  14.90  84.80
+grade-day-island           day     island  56.30  25.10  89.00  63.80   5.99  18.30   0.18   0.07  64.50   4.50  -2.30  67.30  14.90  84.80
+grade-golden-home          golden  home    57.80  17.40 100.00  82.60   7.74  28.30   0.03   0.03  55.60  12.50  11.10  74.90  25.20  83.20
+grade-golden-island        golden  island  54.70  28.50  86.50  58.00   5.21  26.50   0.18   0.06  55.70  12.50  11.30  75.00  25.30  83.20
+grade-night-home           night   home    24.30   0.50 100.00  99.50   8.14   9.20   0.05   0.04  17.50  16.30 -15.10  67.80  12.10  49.80
+grade-night-island         night   island  15.60   1.10  54.10  53.10   4.95   9.90   0.22   0.13  20.10  16.60 -15.50  67.80  12.10  49.80
+grade-unwell-home          unwell  home    52.60  19.30 100.00  80.70   7.21   6.10   0.03   0.02  52.20  11.00  -9.90 322.30   6.20  76.00
+grade-unwell-island        unwell  island  50.10  25.20  79.30  54.10   4.42   8.50   0.20   0.06  52.40  10.60  -9.60 325.00   5.80  76.30
+
+ok   grade-day-home: within targets
+ok   grade-day-island: within targets
+MISS grade-golden-home: p2 1.36x day outside [None, 1.1]
+MISS grade-golden-island: p2 1.14x day outside [None, 1.1]
+ok   grade-night-home: within targets
+MISS grade-night-island: run 0.13 outside [None, 0.12]; range 0.83x day outside [0.85, None]
+MISS grade-unwell-home: chroma 0.27x day outside [0.35, 0.8]; local 0.86x day outside [0.95, None]; range 0.93x day outside [0.95, None]; p2 1.51x day outside [None, 1.0]; pofu_L 0.90x day outside [0.9, None]; pofu_h +105.1 vs day outside [None, 20]
+MISS grade-unwell-island: local 0.74x day outside [0.95, None]; range 0.85x day outside [0.95, None]; p2 1.00x day outside [None, 1.0]; pofu_L 0.90x day outside [0.9, None]; pofu_h +102.3 vs day outside [None, 20]
