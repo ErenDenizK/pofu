@@ -296,8 +296,9 @@ struct WeatherRainbow: View {
                     .position(x: size.width * 0.58, y: CGFloat(seaLine) - size.width * 0.26)
             } else {
                 Canvas { gc, canvas in
-                    let centre = CGPoint(x: canvas.width * 0.58, y: CGFloat(seaLine) + 40)
-                    let outer = canvas.width * 1.12
+                    let outer = canvas.width * 1.0
+                    // The crest sits in the sky above the island's top.
+                    let centre = CGPoint(x: canvas.width * 0.58, y: canvas.height * 0.115 + outer)
                     let width = canvas.width * 0.036
                     for (i, band) in Self.bands.enumerated() {
                         let radius = outer - CGFloat(i) * width
