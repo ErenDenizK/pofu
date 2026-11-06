@@ -137,10 +137,12 @@ public struct StationSheet: View {
                     .foregroundStyle(palette.onPaper)
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibilityAddTraits(.isHeader)
-                Text(verbatim: WorldStrings.stationKeeper(station))
-                    .font(PofuFont.subheadline)
-                    .foregroundStyle(inkSoft)
-                    .fixedSize(horizontal: false, vertical: true)
+                if let keeper = WorldStrings.stationKeeper(station) {
+                    Text(verbatim: keeper)
+                        .font(PofuFont.subheadline)
+                        .foregroundStyle(inkSoft)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             }
             Spacer(minLength: 0)
             Button(action: onClose) {
