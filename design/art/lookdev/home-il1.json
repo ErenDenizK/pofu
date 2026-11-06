@@ -1,65 +1,12 @@
 {
   "title": "Home island, level 1",
-  "canvas": [
-    1200,
-    800
-  ],
-  "background": {
-    "image": "design/art/masters/island-main-s/island-main-s.png",
-    "kind": "plate",
-    "fit": 0.92,
-    "center_y": 0.55
-  },
+  "canvas": [1200, 800],
+  "background": {"image": "design/art/masters/island-main-l-v3/island-main-l-v3.webp", "harmony_as": "island-main", "kind": "plate", "fit": 0.92, "center_y": 0.55},
   "layers": [
-    {
-      "image": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-tea-stall-1.imageset/world-tea-stall-1.png",
-      "name": "tea-stall-1",
-      "role": "decor",
-      "x": 0.68,
-      "y": 0.4,
-      "height": 0.2,
-      "casts": true,
-      "light": {
-        "color": "#FF9A3C",
-        "radius": 0.06,
-        "intensity": 1.0,
-        "at": [
-          0.5,
-          0.45
-        ],
-        "new_only": true
-      }
-    },
-    {
-      "image": "design/art/masters/path-lamp/path-lamp.png",
-      "name": "path-lamp",
-      "role": "decor",
-      "x": 0.42,
-      "y": 0.42,
-      "height": 0.22,
-      "casts": true,
-      "light": {
-        "color": "#FFB36B",
-        "radius": 0.12
-      }
-    },
-    {
-      "image": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png",
-      "name": "pofu",
-      "role": "character",
-      "x": 0.3,
-      "y": 0.5,
-      "height": 0.13,
-      "casts": true
-    },
-    {
-      "image": "design/art/masters/mochi-base/mochi-base.png",
-      "name": "mochi",
-      "role": "character",
-      "x": 0.52,
-      "y": 0.52,
-      "height": 0.12,
-      "casts": true
-    }
+    {"image": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-tea-stall-1.imageset/world-tea-stall-1.png", "name": "tea-stall-1", "role": "decor", "x": 0.68, "y": 0.40, "height": 0.2, "casts": true,
+     "light": {"color": "#FF9A3C", "radius": 0.06, "intensity": 1.0, "at": [0.5, 0.45], "new_only": true}},
+    {"image": "Packages/PofuKit/Sources/PofuWorld/Resources/World.xcassets/world-path-lamp.imageset/world-path-lamp.png", "name": "path-lamp", "role": "decor", "x": 0.42, "y": 0.42, "height": 0.22, "casts": true, "light": {"color": "#FFB36B", "radius": 0.12}},
+    {"image": "design/art/masters/pofu-hamster-base-v1/pofu-hamster-base.png", "name": "pofu", "role": "character", "x": 0.30, "y": 0.50, "height": 0.13, "casts": true},
+    {"image": "design/art/masters/mochi-base/mochi-base.png", "name": "mochi", "role": "character", "x": 0.52, "y": 0.52, "height": 0.12, "casts": true}
   ]
 }

@@ -69,6 +69,10 @@ FLAG_DL = 18.0
 FLAG_CHROMA_HI = 1.6
 FLAG_CHROMA_LO = 0.55
 FLAG_TINT = 8.0
+# The saturation hierarchy lint (sky-and-weather-v1 2.5): CIELAB L* and chroma p95, the same readout.
+LINT_GROUND_PROP_C = 0.5   # ground chroma under this share of a prop's is flat
+LINT_ADJACENT_L = 8.0      # neighbouring layers closer than this in L* merge
+LINT_FOCAL_GROUND_L = 25.0 # a focal character closer than this to the ground in L* is lost on it
 
 
 # ---------------------------------------------------------------- grade
@@ -280,6 +284,11 @@ def load_background(spec: dict, canvas: tuple[int, int]) -> tuple[np.ndarray, st
     w, h = canvas
     kind = spec.get("kind", "plate")
     src = load_rgba(REPO / spec["image"])
+    if spec.get("harmony_as"):
+        # The plate as the app bakes it: the technical harmony correction, then the art direction.
+        im = to_image(src)
+        im = hm.direct_image(spec["harmony_as"], hm.correct_image(spec["harmony_as"], im))
+        src = np.asarray(im, dtype=np.float64) / 255
     if kind == "plate" and src[..., 3].min() > 0.99:
         kind = "concept"  # an opaque "plate" has no sky to show: grade it like the world
     out = np.zeros((h, w, 4))
@@ -393,6 +402,40 @@ def flag_layer(layer_stats: dict, ground: dict | None, bg_tint: tuple[float, flo
     return res
 
 
+def lint_hierarchy(layers: dict, background: dict | None) -> dict[str, list[str]]:
+    """Hierarchy flags per layer name (and "background"). `layers` maps name -> readout entry (role, L,
+    C95, ground_L, ground_C95); `background` is the far plane's {"L", "C95"} or None.
+
+      ground C < 0.5x prop C         a decor layer whose ground has under half its chroma
+      background C > ground C        the far plane louder than the ground
+      adjacent-layer L* gap < 8      background/ground and ground/decor merge in value
+      focal-to-ground L* gap < 25    a character too close in value to the ground it stands on
+    """
+    flags: dict[str, list[str]] = {}
+    grounds = [(r["ground_L"], r["ground_C95"]) for r in layers.values() if "ground_L" in r]
+    ground = (sum(g[0] for g in grounds) / len(grounds), sum(g[1] for g in grounds) / len(grounds)) if grounds else None
+    for name, r in layers.items():
+        out = flags.setdefault(name, [])
+        if "ground_L" not in r:
+            continue
+        dl = abs(r["L"] - r["ground_L"])
+        if r["role"] == "character":
+            if dl < LINT_FOCAL_GROUND_L:
+                out.append(f"focal-ground L {dl:.0f}<{LINT_FOCAL_GROUND_L:.0f}")
+        else:
+            if r["ground_C95"] < LINT_GROUND_PROP_C * r["C95"]:
+                out.append(f"ground C<{LINT_GROUND_PROP_C}x prop")
+            if dl < LINT_ADJACENT_L:
+                out.append(f"adjacent L {dl:.0f}<{LINT_ADJACENT_L:.0f}")
+    if background and ground:
+        out = flags.setdefault("background", [])
+        if background["C95"] > ground[1]:
+            out.append(f"bg C {background['C95']:.0f}>ground {ground[1]:.0f}")
+        if abs(background["L"] - ground[0]) < LINT_ADJACENT_L:
+            out.append(f"adjacent L {abs(background['L'] - ground[0]):.0f}<{LINT_ADJACENT_L:.0f}")
+    return flags
+
+
 def render_cell(scene: dict, layers: list[Layer], bg: np.ndarray, kind: str, hour: str, cell: dict,
                 spec_bg: dict) -> tuple[np.ndarray, dict]:
     """One column: the composited frame (rgb 0..1) and the harmony readout."""
@@ -454,6 +497,17 @@ def render_cell(scene: dict, layers: list[Layer], bg: np.ndarray, kind: str, hou
             if ground:
                 readout[layer.name]["ground_L"] = round(ground["L"], 1)
                 readout[layer.name]["ground_C95"] = round(ground["C95"], 1)
+    # The far plane: the sky a plate shows through, or the top of a concept (its far plane).
+    far = bg_rgb[: max(int(h * 0.15), 1)].reshape(-1, 3) if kind == "concept" else frame[bg_alpha < 0.5]
+    background = lab_stats(far)
+    for name, fl in lint_hierarchy(readout, background).items():
+        if name == "background":
+            if background:
+                readout[name] = {"L": round(background["L"], 1), "C95": round(background["C95"], 1), "role": "background",
+                                 "flags": fl, "flagged": bool(fl)}
+        elif fl:
+            readout[name]["flags"] += fl
+            readout[name]["flagged"] = True
     return np.clip(frame, 0, 1), readout
 
 
