@@ -97,11 +97,95 @@ public enum SkyModel {
             palette = keyframes.last?.palette ?? night
             for (a, b) in zip(keyframes, keyframes.dropFirst()) where minute >= a.minute && minute <= b.minute {
                 let span = b.minute - a.minute
-                palette = SkyPalette.mix(a.palette, b.palette, span > 0 ? (minute - a.minute) / span : 0)
+                palette = SkyPalette.mix(a.palette, b.palette, ease(span > 0 ? (minute - a.minute) / span : 0))
                 break
             }
         }
-        return unwell > 0 ? palette.overcast(ColourScript.unwell, amount: unwell) : palette
+        let result = unwell > 0 ? palette.overcast(ColourScript.unwell, amount: unwell) : palette
+        return result.luminousNight()
+    }
+
+    /// The cosine ease between two cells (sky and weather v1 §2.1): the
+    /// blend leaves a cell and arrives at the next with no corner, never
+    /// linear.
+    public static func ease(_ t: Double) -> Double {
+        let t = min(max(t.isFinite ? t : 0, 0), 1)
+        return 0.5 - 0.5 * cos(Double.pi * t)
+    }
+
+    // MARK: Colour measures
+
+    /// CIE L* (0…100) of an sRGB colour.
+    public static func lightness(_ colour: PofuRGB) -> Double {
+        func linear(_ c: Double) -> Double {
+            let c = min(max(c, 0), 1)
+            return c <= 0.04045 ? c / 12.92 : pow((c + 0.055) / 1.055, 2.4)
+        }
+        let y = 0.2126 * linear(colour.red) + 0.7152 * linear(colour.green) + 0.0722 * linear(colour.blue)
+        return y > 216.0 / 24389.0 ? 116 * cbrt(y) - 16 : y * 24389.0 / 27.0
+    }
+
+    /// `colour` with its L* lowered by `amount`: it is mixed toward black
+    /// until it lands there, so the hue is kept (the cloud shade's tint).
+    public static func darkened(_ colour: PofuRGB, byLightness amount: Double) -> PofuRGB {
+        let target = max(lightness(colour) - max(amount, 0), 0)
+        return search(from: colour, to: PofuRGB(red: 0, green: 0, blue: 0), reaching: target)
+    }
+
+    /// `colour` lifted toward a luminous indigo until its L* is at least
+    /// `minimum`; unchanged if it already is.
+    public static func lifted(_ colour: PofuRGB, toLightness minimum: Double) -> PofuRGB {
+        guard lightness(colour) < minimum else { return colour }
+        return search(from: colour, to: PofuRGB(hex: 0x4A5598), reaching: minimum)
+    }
+
+    /// The mix of `a` toward `b` whose L* meets `target` (bisection).
+    private static func search(from a: PofuRGB, to b: PofuRGB, reaching target: Double) -> PofuRGB {
+        var low = 0.0, high = 1.0
+        for _ in 0..<24 {
+            let mid = (low + high) / 2
+            let l = lightness(a.mixed(with: b, amount: mid))
+            // Moving toward `b` raises L* when b is lighter, lowers it otherwise.
+            if lightness(b) > lightness(a) ? l < target : l > target { low = mid } else { high = mid }
+        }
+        return a.mixed(with: b, amount: high)
+    }
+
+    // MARK: Stars
+
+    /// One star of the night sky: where, how big, how bright, and how fast
+    /// it twinkles.
+    public struct Star: Hashable, Sendable {
+        /// Unit coordinates, y within the upper sky.
+        public var x: Double
+        public var y: Double
+        public var radius: Double
+        public var brightness: Double
+        public var hz: Double
+        public var phase: Double
+    }
+
+    /// The fixed stars: `LookTuning.starCount` of them, the same every
+    /// launch, twinkling at 0.1…0.3 Hz.
+    public static let stars: [Star] = {
+        var g = CloudShape.Generator(state: 977)
+        let hz = LookTuning.starTwinkleHz
+        return (0..<LookTuning.starCount).map { _ in
+            Star(
+                x: g.next(), y: g.next() * 0.42,
+                radius: 0.6 + g.next() * 1.1, brightness: 0.45 + 0.5 * g.next(),
+                hz: hz.lowerBound + (hz.upperBound - hz.lowerBound) * g.next(), phase: g.next() * 2 * Double.pi
+            )
+        }
+    }()
+
+    /// A star's brightness at `time`, 0…1: its own brightness, swelling and
+    /// dimming by up to 40 % on its own sine. Deterministic; a still frame
+    /// (time 0) and a settled one draw the same stars.
+    public static func twinkle(_ star: Star, time: Double) -> Double {
+        let t = time.isFinite ? time : 0
+        let wave = 0.5 + 0.5 * sin(2 * Double.pi * star.hz * t + star.phase)
+        return min(max(star.brightness * (0.6 + 0.4 * wave), 0), 1)
     }
 
     /// The minute of the local day of `date`.
@@ -124,22 +208,52 @@ public enum SkyModel {
     }
 }
 
-/// One cloud of the living sky: where it sits and how it moves.
+/// How far a layer of the sky's clouds sits (sky and weather v1 §2.1).
+public enum SkyCloudLayer: Int, CaseIterable, Hashable, Sendable {
+    case far, mid, near
+
+    /// The share of the peek this layer moves: 1x, 1.8x and 3x of the base.
+    public var parallax: Double {
+        LookTuning.cloudParallaxBase * LookTuning.cloudParallaxMultiples[rawValue]
+    }
+
+    /// How many L* the shade takes off the zenith on this layer.
+    public var shadeDarkening: Double {
+        LookTuning.cloudShadeDarkening[rawValue]
+    }
+
+    public var clouds: [SkyCloud] {
+        switch self {
+        case .far: SkyCloud.far
+        case .mid: SkyCloud.mid
+        case .near: SkyCloud.near
+        }
+    }
+}
+
+/// One cloud of the living sky: which painted cloud, where it sits and how
+/// it moves.
 public struct SkyCloud: Hashable, Sendable {
-    /// Which lobe pattern to draw.
+    /// Identifies the cloud.
     public var seed: Int
+    /// The painted cloud (`cloud-2`, `cloud-4`), from the world catalog.
+    public var art: String
+    /// Drawn flipped, for a fourth shape from two paintings.
+    public var mirrored: Bool
     /// Width in points.
     public var width: Double
     /// The cloud's top, as a fraction of the screen's height.
     public var top: Double
-    /// Points a second.
+    /// Points a second; every layer stays under `LookTuning.cloudMaxSpeed`.
     public var speed: Double
     /// Its left edge at time zero, as a fraction of the screen's width.
     public var phase: Double
     public var opacity: Double
 
-    public init(seed: Int, width: Double, top: Double, speed: Double, phase: Double, opacity: Double) {
+    public init(seed: Int, art: String, mirrored: Bool = false, width: Double, top: Double, speed: Double, phase: Double, opacity: Double) {
         self.seed = seed
+        self.art = art
+        self.mirrored = mirrored
         self.width = width
         self.top = top
         self.speed = speed
@@ -147,20 +261,61 @@ public struct SkyCloud: Hashable, Sendable {
         self.opacity = opacity
     }
 
-    /// Far clouds: small, faint, slow, high (parallax ×0.3).
+    /// Far clouds: small, faint, slow, high (parallax 1x).
     public static let far: [SkyCloud] = [
-        SkyCloud(seed: 1, width: 92, top: 0.15, speed: 2.2, phase: 0.08, opacity: 0.55),
-        SkyCloud(seed: 2, width: 70, top: 0.235, speed: 2.6, phase: 0.62, opacity: 0.5),
-        SkyCloud(seed: 3, width: 84, top: 0.31, speed: 2.0, phase: 0.36, opacity: 0.45),
-        SkyCloud(seed: 4, width: 64, top: 0.19, speed: 2.4, phase: 1.02, opacity: 0.45),
+        SkyCloud(seed: 1, art: "cloud-4", width: 120, top: 0.15, speed: 1.1, phase: 0.08, opacity: 0.55),
+        SkyCloud(seed: 2, art: "cloud-2", width: 70, top: 0.235, speed: 1.3, phase: 0.62, opacity: 0.5),
+        SkyCloud(seed: 3, art: "cloud-4", mirrored: true, width: 100, top: 0.31, speed: 1.0, phase: 0.36, opacity: 0.45),
+        SkyCloud(seed: 4, art: "cloud-2", mirrored: true, width: 56, top: 0.19, speed: 1.2, phase: 1.02, opacity: 0.45),
     ]
 
-    /// Near clouds: larger, brighter, a little faster (parallax ×0.6).
-    public static let near: [SkyCloud] = [
-        SkyCloud(seed: 5, width: 168, top: 0.255, speed: 4.6, phase: -0.18, opacity: 0.9),
-        SkyCloud(seed: 6, width: 132, top: 0.36, speed: 5.2, phase: 0.66, opacity: 0.85),
-        SkyCloud(seed: 7, width: 150, top: 0.43, speed: 4.2, phase: 0.28, opacity: 0.7),
+    /// Mid clouds: larger and brighter (parallax 1.8x).
+    public static let mid: [SkyCloud] = [
+        SkyCloud(seed: 5, art: "cloud-4", width: 170, top: 0.255, speed: 2.0, phase: -0.18, opacity: 0.8),
+        SkyCloud(seed: 6, art: "cloud-2", width: 110, top: 0.36, speed: 2.3, phase: 0.66, opacity: 0.75),
+        SkyCloud(seed: 7, art: "cloud-4", mirrored: true, width: 150, top: 0.43, speed: 1.9, phase: 0.28, opacity: 0.65),
     ]
+
+    /// Near clouds: the largest, a little faster, the most parallax (3x).
+    public static let near: [SkyCloud] = [
+        SkyCloud(seed: 8, art: "cloud-2", mirrored: true, width: 150, top: 0.30, speed: 2.8, phase: 0.30, opacity: 0.8),
+        SkyCloud(seed: 9, art: "cloud-4", width: 230, top: 0.45, speed: 2.6, phase: 0.85, opacity: 0.65),
+    ]
+}
+
+/// What tints a layer's painted clouds (sky and weather v1 §2.1): the lit
+/// side takes the cell's cloud light, the shade side the zenith darkened
+/// 15…25 L*, and at the low sun the undersides catch the horizon glow.
+/// A tint, not per-pixel work; recomputed only when the palette changes
+/// (the scene's clock), never per frame.
+public struct CloudTint: Hashable, Sendable {
+    public var lit: PofuRGB
+    public var shade: PofuRGB
+    /// How much of the shade is the horizon's glow, 0…1.
+    public var underglow: Double
+
+    public init(palette: SkyPalette, layer: SkyCloudLayer) {
+        lit = palette.cloudLight
+        let dark = SkyModel.darkened(palette.zenith, byLightness: layer.shadeDarkening)
+        // The glow is for the low sun: dawn, golden hour and dusk; none at
+        // noon or in the full night.
+        let low = MomentCurves.smoothstep(MomentCurves.progress(palette.sun.y, from: 0.15, length: 0.15))
+        underglow = low * (1 - MomentCurves.unit(palette.stars)) * 0.7
+        shade = dark.mixed(with: palette.horizon, amount: underglow)
+    }
+
+    /// The tint with each channel rounded to 1/64, so a drift of the clock
+    /// does not redraw the clouds every minute.
+    public func quantised() -> CloudTint {
+        var copy = self
+        func q(_ c: PofuRGB) -> PofuRGB {
+            PofuRGB(red: (c.red * 64).rounded() / 64, green: (c.green * 64).rounded() / 64, blue: (c.blue * 64).rounded() / 64)
+        }
+        copy.lit = q(lit)
+        copy.shade = q(shade)
+        copy.underglow = (underglow * 32).rounded() / 32
+        return copy
+    }
 }
 
 /// The lobes of a cloud, in unit space (x 0…1 across, y 0…0.5 down), from
@@ -220,6 +375,15 @@ public enum CloudShape {
 }
 
 extension SkyPalette {
+    /// The night stays luminous (sky and weather v1 §2.1): the zenith is
+    /// never darker than `LookTuning.nightZenithFloor` in L*, whatever the
+    /// hour or the unwell state.
+    func luminousNight() -> SkyPalette {
+        var copy = self
+        copy.zenith = SkyModel.lifted(zenith, toLightness: LookTuning.nightZenithFloor)
+        return copy
+    }
+
     /// The palette under the unwell state at `amount` (0…1).
     public func overcast(_ state: ColourState, amount: Double) -> SkyPalette {
         var copy = self

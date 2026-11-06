@@ -482,6 +482,9 @@ private struct SceneFrame<Bubble: View>: View {
         // The sky and the cloud sea are pre-graded: no shader pass of their own.
         let sky = palette.graded(by: grade)
         let sea = CloudSea.Colours(cell: light.cell, grade: grade, unwell: look.grade ? light.unwell : 0)
+        // Where the cloud-sea's crest sits (the height fog's densest line):
+        // the strip's lobes top out about 140 pt above the screen's bottom.
+        let fogSeaLine = Double(size.height) - 140 - CloudSea.rise(z: z, pose: pose, height: Double(size.height))
         // Graphics spike: the key, fill, practicals and rim on the painted art.
         let relight: RelightRig? = (spike.normalLighting || spike.debug == .normals) && WorldShaders.isAvailable
             ? RelightRig.make(
@@ -526,6 +529,10 @@ private struct SceneFrame<Bubble: View>: View {
                 LivingSky(palette: sky, offset: offset, far: FarSky.Look(z: z, cell: light.cell, grade: grade, koke: farKoke))
                     .environment(\.worldAmbientPaused, ambientPaused)
                     .animation(animation, value: sky)
+
+                // Height fog behind the island, densest at the cloud-sea line.
+                FogCards(layer: .behind, horizon: sky.horizon, offset: offset, size: size, seaLine: fogSeaLine)
+                    .environment(\.worldAmbientPaused, ambientPaused)
 
                 WorldCanvas(
                     world: world,
@@ -611,6 +618,11 @@ private struct SceneFrame<Bubble: View>: View {
                     .environment(\.worldAmbientPaused, ambientPaused)
                     .animation(animation, value: sea)
 
+                // One fog card across the island's base: the foot dissolves,
+                // the top stays clear.
+                FogCards(layer: .front, horizon: sky.horizon, offset: offset, size: size, seaLine: fogSeaLine)
+                    .environment(\.worldAmbientPaused, ambientPaused)
+
                 if look.grade {
                     VignetteOverlay(strength: grade.vignette)
                         .animation(animation, value: grade.vignette)
@@ -638,6 +650,7 @@ private struct SceneFrame<Bubble: View>: View {
             }
             .frame(width: size.width, height: size.height, alignment: .topLeading)
             .environment(\.worldRelight, relight)
+            .environment(\.worldHorizon, sky.horizon)
             .modifier(SpikeDepthOfFieldEffect(depth: depthMap, field: field, size: size, showsDepth: spike.debug == .depth))
 
             PofuLayer(

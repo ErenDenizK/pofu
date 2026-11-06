@@ -139,6 +139,8 @@ struct KokeIsleView: View {
     /// Seconds for the stage 4 bounce, or `nil` for the rest pose (still
     /// frames, Reduce Motion, the Map).
     var bounceTime: Double?
+    /// The sky's horizon colour: the depth fog's (sky and weather v1 §2.4).
+    @Environment(\.worldHorizon) private var horizon
 
     private static let canvas = CGSize(width: 320, height: 200)
     /// The island's centre inside the canvas.
@@ -147,12 +149,19 @@ struct KokeIsleView: View {
     var body: some View {
         let s = KokeLayout.clamped(stage)
         let g = KokeLayout.greenShare(stage: s)
+        let look = KokeStageLook(stage: s)
         ZStack {
-            if KokeArt.has(KokeLayout.plateArt(stage: s)) {
-                Self.art(KokeLayout.plateArt(stage: s), key: String(KokeLayout.plateArt(stage: s).dropFirst("world-".count)), scale: 1, feet: Self.origin, fallbackWidth: KokeLayout.artWidth)
-            } else {
-                Canvas { context, _ in Self.drawPlate(&context, stage: s, green: g) }
-            }
+            // Stage 0 reads hushed, not pale: depth fog toward the horizon
+            // colour over the plate (masked to it), a fog card across the
+            // foot and one warm shaft on the sprout, under a cooler shade.
+            plate(stage: s, green: g)
+                .overlay {
+                    if look.fog > 0.005 {
+                        FogModel.colour(horizon: horizon).color
+                            .opacity(look.fog)
+                            .mask { plate(stage: s, green: g) }
+                    }
+                }
             if KokeLayout.hasBlossoms(stage: s) {
                 Canvas { context, _ in Self.drawBlossoms(&context) }
             }
@@ -170,16 +179,30 @@ struct KokeIsleView: View {
             } else if !KokeArt.has(KokeLayout.plateArt(stage: s)) {
                 Canvas { context, _ in Self.drawKoke(&context, stage: s, green: g) }
             }
+            if look.isActive {
+                KokeStageLight(look: look, horizon: horizon, origin: Self.origin)
+            }
             Canvas { context, _ in
                 if let swellAge, let swell = KokeLayout.swell(age: swellAge, reduceMotion: reduceMotion) {
                     Self.drawSwell(&context, radius: swell.radius, opacity: swell.opacity)
                 }
             }
         }
+        .modifier(KokeCoolShade(look: look))
         .frame(width: Self.canvas.width, height: Self.canvas.height)
         .position(x: point.x, y: point.y)
         .allowsHitTesting(false)
         .accessibilityHidden(true)
+    }
+
+    /// The plate at `stage`: its painting, or the code placeholder.
+    @ViewBuilder
+    private func plate(stage: Int, green: Double) -> some View {
+        if KokeArt.has(KokeLayout.plateArt(stage: stage)) {
+            Self.art(KokeLayout.plateArt(stage: stage), key: String(KokeLayout.plateArt(stage: stage).dropFirst("world-".count)), scale: 1, feet: Self.origin, fallbackWidth: KokeLayout.artWidth)
+        } else {
+            Canvas { context, _ in Self.drawPlate(&context, stage: stage, green: green) }
+        }
     }
 
     /// A painted image placed by its baked box (world units around its
@@ -430,9 +453,13 @@ struct KokeFarHump: View {
         if let koke = look.koke, opacity > 0.01 {
             let k = Double(size.width) / CameraRail.referenceWidth
             let w = KokeLayout.farHump.width * k
-            let haze = min(look.far * 0.85, 0.9)
-            let tint = look.light.mixed(with: look.fog, amount: haze)
-            let base = PofuRGB(red: 0.50 * tint.red, green: 0.58 * tint.green, blue: 0.46 * tint.blue)
+            // Depth fog (§2.3): the hump sits with the far isles, its lit top
+            // and its shade both mixed toward the horizon colour, the shade
+            // 1.25x as much.
+            let haze = FogModel.amount(distance: 0.85, mist: look.mist)
+            let lit = PofuRGB(red: 0.56 * look.light.red, green: 0.64 * look.light.green, blue: 0.52 * look.light.blue)
+            let shade = PofuRGB(red: 0.40 * look.light.red, green: 0.48 * look.light.green, blue: 0.44 * look.light.blue)
+            let fogged = FogModel.fogged(light: lit, shadow: shade, horizon: look.fog, amount: haze)
             ZStack {
                 Canvas { context, canvas in
                     var hump = Path()
@@ -443,7 +470,14 @@ struct KokeFarHump: View {
                         control2: CGPoint(x: canvas.width * 0.92, y: -canvas.height * 0.35)
                     )
                     hump.closeSubpath()
-                    context.fill(hump, with: .color(base.color))
+                    context.fill(
+                        hump,
+                        with: .linearGradient(
+                            Gradient(colors: [fogged.light.color, fogged.shadow.color]),
+                            startPoint: CGPoint(x: canvas.width / 2, y: 0),
+                            endPoint: CGPoint(x: canvas.width / 2, y: canvas.height)
+                        )
+                    )
                     if koke.lit {
                         var glow = context
                         glow.blendMode = .plusLighter

@@ -188,7 +188,8 @@ struct SkyModelTests {
         for minute in stride(from: 1.0, through: 24 * 60, by: 1) {
             let palette = SkyModel.palette(minuteOfDay: minute)
             #expect(abs(palette.zenith.red - previous.zenith.red) < 0.05)
-            #expect(abs(palette.stars - previous.stars) < 0.05)
+            // The cosine ease peaks at pi/2 of the linear rate.
+            #expect(abs(palette.stars - previous.stars) < 0.08)
             previous = palette
         }
     }
