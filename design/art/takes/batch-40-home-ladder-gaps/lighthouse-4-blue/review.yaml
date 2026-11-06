@@ -1,0 +1,235 @@
+batch: batch-40-home-ladder-gaps
+contact_sheet: design/art/takes/batch-40-home-ladder-gaps/lighthouse-4-blue/contact.jpg
+jobs:
+  lighthouse-4-blue:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both initial takes pass hard
+      QA and independent original plus locked review. Only the coral cap/finial and
+      two coral tower bands become soft sea-blue; cream bands, existing warm lamp
+      glow, honey balcony and rail, round crossbar window, honey door, cream trim
+      and base preserve actual approved same-level geometry and colors. No new glow,
+      background or part drift. Auto-pick take2 by lower eligible lock1.0513 versus1.0937;
+      Harmony79.9 versus78.9 also favors2. Declared recolor structure passes0.9817
+      and0.9788, without invented stricter gates. Lighthouse consumer remains byte-identical
+      to its first-success receipt. Founder review pending.
+qa_reports:
+  2:
+    job: lighthouse-4-blue
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 58 (R1 51)
+      value: 58.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 49 (at most 22), p98 92 (at least 90), spread 43
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 43.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 80 (band 55-90)'
+      value: 80.0
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.145
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.7 (at least 3.5)'
+      value: 4.69
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.58
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0513
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 4.3, p95 11.3, off-palette 3.4% (top: #BB7722 (0.3%), #558899
+        (0.3%))'
+      value: 4.3216
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 907.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 80 against the world reference (outliers: C_p95, detail,
+        edge)'
+      value: 79.9
+    - check: edit_silhouette
+      status: pass
+      message: 98% of the parent's shape kept
+      value: 0.9843
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.98)
+      value: 0.9817
+    - check: edit_lightness
+      status: pass
+      message: mean lightness moved by 0.7 L (the same lightness was asked)
+      value: 0.687
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 60.7
+        L_p50: 80.0
+        L_p95: 91.0
+        C_p50: 16.7
+        C_p95: 59.2
+        C_p99: 71.6
+        detail: 3.18
+      metrics_locked:
+        L_p5: 61.3
+        L_p50: 80.0
+        L_p95: 90.7
+        C_p50: 16.7
+        C_p95: 58.3
+        C_p99: 64.1
+        detail: 2.58
+    fingerprint: 615f9f8d05fd9445
+  1:
+    job: lighthouse-4-blue
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 59 (R1 51)
+      value: 59.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 54 (at most 22), p98 94 (at least 90), spread 40
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.8
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.7
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.145
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 4.8 (at least 3.5)'
+      value: 4.75
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.6 (R1 5.3)
+      value: 2.57
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0937
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.8, p95 10.0, off-palette 2.1% (top: #BB7722 (0.3%), #CC7722
+        (0.2%))'
+      value: 3.7548
+    - check: station_anchor
+      status: pass
+      message: on the parent's anchor
+      value: 907.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: C_p95, detail,
+        edge)'
+      value: 78.9
+    - check: edit_silhouette
+      status: pass
+      message: 98% of the parent's shape kept
+      value: 0.9837
+    - check: edit_structure
+      status: pass
+      message: light structure matches the parent (r 0.98)
+      value: 0.9788
+    - check: edit_lightness
+      status: pass
+      message: mean lightness moved by 2.7 L (the same lightness was asked)
+      value: 2.738
+    info:
+      registration:
+        dx: 0
+        dy: 0
+      metrics_raw:
+        L_p5: 63.6
+        L_p50: 81.7
+        L_p95: 93.0
+        C_p50: 14.8
+        C_p95: 60.5
+        C_p99: 70.6
+        detail: 3.21
+      metrics_locked:
+        L_p5: 64.1
+        L_p50: 81.7
+        L_p95: 92.7
+        C_p50: 14.8
+        C_p95: 59.3
+        C_p99: 63.6
+        detail: 2.57
+    fingerprint: 615f9f8d05fd9445
+manual_review:
+  excluded_takes: []
+  note: Both initial takes pass hard QA and independent original plus locked review.
+    Only the coral cap/finial and two coral tower bands become soft sea-blue; cream
+    bands, existing warm lamp glow, honey balcony and rail, round crossbar window,
+    honey door, cream trim and base preserve actual approved same-level geometry and
+    colors. No new glow, background or part drift. Auto-pick take2 by lower eligible
+    lock1.0513 versus1.0937; Harmony79.9 versus78.9 also favors2. Declared recolor
+    structure passes0.9817 and0.9788, without invented stricter gates. Lighthouse
+    consumer remains byte-identical to its first-success receipt. Founder review pending.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-a4448093-3599-4438-80b6-4477f8710c51.png
+  original_generated_png_sha256: 9139ee6b0ca0a00ba58e44da7ed205212cce74c1cbaf7830f2ab38545ae17aff
+  inbox_png_sha256: 82f2b8fb8bb18264d0e0f1c10eb6266bceaac1b23ed9c33bf268531cca72634f
+  rgba_sha256: e02b46aeafac6e6f48dc6df2f999e5903571ee4e8ea2b06c06d4693f2c596e51
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 615f9f8d05fd9445
+- take: 2
+  source_file: /workspace/generated_images/exec-2c324810-a937-4357-92c0-77c1236732fd.png
+  original_generated_png_sha256: cf172e74a1a0b794b008033c93735abcd888ed3bac802af9f6619e6d71b963b3
+  inbox_png_sha256: fc56cb63a848e1e50c3763081bcd52e4d3eccd7f099d827c983ba99ba2d74c9e
+  rgba_sha256: 4cbc3b1b5dbe5a642056a46f0b3d0888625c6dafa29fcea11447c8c449244192
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 615f9f8d05fd9445
