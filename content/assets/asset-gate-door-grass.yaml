@@ -1,0 +1,22 @@
+id: asset-gate-door-grass
+type: asset
+title_tr: gate-door-grass
+title_en: gate-door-grass (ui)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached image into one layer of it, on a transparent background, same canvas,
+  every kept pixel exactly in place. Keep ONLY the foreground grass and flowers along the
+  bottom edge. Make everything else fully transparent.
+links:
+  variant_of:
+  - asset-gate-door-scene
+art:
+  images: []
+  jobs:
+  - batch-58-gate-round-door:gate-door-grass
+sources:
+- doc: tools/imagegen/manifest/batch-58-gate-round-door.yaml
+kind: ui
+batch: batch-58-gate-round-door
+size: 1024x1536
