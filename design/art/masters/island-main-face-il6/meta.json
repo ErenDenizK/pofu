@@ -1,0 +1,150 @@
+{
+  "job": "island-main-face-il6",
+  "batch": "batch-60-earth-face",
+  "asset": "world__island-main-face-il6",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T10:59:53+00:00",
+  "image": "design/art/masters/island-main-face-il6/island-main-face-il6.png",
+  "raw": "design/art/masters/island-main-face-il6/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "60f0ba880a471c4f",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n2. Fındık's door design: sage green, a small gear sign, a wrench on a nail; paint it INTO the earth.\n\nEdit the attached floating island: paint a third small round door\ninto its earth body, set into the earth exactly like the other two\nround doors, at the same height, at about 88 percent of the earth\nbody's width from its left edge. This door is painted a soft sage\ngreen with a small round window, a tiny gear-shaped sign and a\nsmall wrench hanging on a nail beside it, as in the attached door\ndesign, framed by the same rim of small stones, with the same soft\nrecess shadow and light. Everything else stays exactly as it is.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a pasted-on look, a different light or texture, moving or resizing anything, characters, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-face-il2/island-main-face-il2.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    },
+    {
+      "path": "design/art/masters/door-findik/door-findik.png",
+      "role": "Fındık's door design: sage green, a small gear sign, a wrench on a nail; paint it INTO the earth."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T10:48:13+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 29 (R1 51)",
+        "value": 29.2
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 58 (at most 22), p98 91 (at least 90), spread 33 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 33.3
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 82 (band 55-90)",
+        "value": 82.3
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.39 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.388
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 2.4 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 2.4
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 2.0 (R1 5.3)",
+        "value": 2.01
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.6",
+        "value": 0.5622
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.9, p95 7.9, off-palette 1.3% (top: #888877 (0.5%), #888866 (0.4%))",
+        "value": 1.9195
+      },
+      {
+        "check": "depth_ratio",
+        "status": "pass",
+        "message": "earth depth / width 0.25 (at most 0.32)",
+        "value": 0.2523
+      },
+      {
+        "check": "lawn_chroma",
+        "status": "pass",
+        "message": "lawn chroma p95 19 (palette meadow 38)",
+        "value": 18.7908
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 77 against the world reference (outliers: C_p95)",
+        "value": 76.9
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "pass",
+        "message": "99% of the parent's shape kept",
+        "value": 0.9927
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "97% of the parent level unchanged",
+        "value": 0.9734
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.97 of the parent level (drift compounds along a chain)",
+        "value": 0.9682
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes pass all hard QA, literal manual review and exact native lossless cap; take1 lowest style-lock load0.5622 versus0.8719 and Harmony76.9 versus76.2. Preserve existing Pofu and Mochi doors including tea-glass sign, lawn/earth-band identity and four roots; add a third softsage round recessed door at the right earth face with creamcrossbar round window,tiny gear sign and actual forkedwrench on nail. Native gear/wrench closeups and proper cream/dark composites verified. Approximate windowcenter x1245 is86to88percent of tapered earth cross-section at doorheight y640to700, consistent with about88percent; whole lawn width is not substituted for earth-face span. Diagnostics are not a new threshold; no global pixelcorrelation gate or literal unchanged-pixel certification. Light values,haze,contrast warnings advisory, never hard-QA waivers. Tested t1 exactlossless504330bytes andt2=566832 both under614400 at1536x1024; no pixel edits,deliveryscale,lossy master or extra retry. Parent IL2 was already officially promoted,Harmony174sources measured/checked and pushdecodeverified f0755042 before these two calls. Home family consumer was prelinked once and must remain byte-stable; originals/callbacks/QA/locked all retained. This completes all3 authored jobs despite stale queuecount2."
+}

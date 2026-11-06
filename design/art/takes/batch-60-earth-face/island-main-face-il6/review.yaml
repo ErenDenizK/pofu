@@ -1,0 +1,262 @@
+batch: batch-60-earth-face
+contact_sheet: design/art/takes/batch-60-earth-face/island-main-face-il6/contact.jpg
+jobs:
+  island-main-face-il6:
+    pick: 1
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both initial takes pass all hard
+      QA, literal manual review and exact native lossless cap; take1 lowest style-lock
+      load0.5622 versus0.8719 and Harmony76.9 versus76.2. Preserve existing Pofu and
+      Mochi doors including tea-glass sign, lawn/earth-band identity and four roots;
+      add a third softsage round recessed door at the right earth face with creamcrossbar
+      round window,tiny gear sign and actual forkedwrench on nail. Native gear/wrench
+      closeups and proper cream/dark composites verified. Approximate windowcenter
+      x1245 is86to88percent of tapered earth cross-section at doorheight y640to700,
+      consistent with about88percent; whole lawn width is not substituted for earth-face
+      span. Diagnostics are not a new threshold; no global pixelcorrelation gate or
+      literal unchanged-pixel certification. Light values,haze,contrast warnings advisory,
+      never hard-QA waivers. Tested t1 exactlossless504330bytes andt2=566832 both
+      under614400 at1536x1024; no pixel edits,deliveryscale,lossy master or extra
+      retry. Parent IL2 was already officially promoted,Harmony174sources measured/checked
+      and pushdecodeverified f0755042 before these two calls. Home family consumer
+      was prelinked once and must remain byte-stable; originals/callbacks/QA/locked
+      all retained. This completes all3 authored jobs despite stale queuecount2.
+qa_reports:
+  2:
+    job: island-main-face-il6
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: edit_alignment
+      status: pass
+      message: the edit rescaled the object x1.003 and moved it; aligned back to the
+        parent
+      value: 0.9975
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 29 (R1 51)
+      value: 29.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 56 (at most 22), p98 90 (at least 90), spread 35
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 34.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 81.6
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.36 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.361
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.7 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.66
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.12
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.9
+      value: 0.8719
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 2.0, p95 8.8, off-palette 2.0% (top: #888866 (0.9%), #888877
+        (0.3%))'
+      value: 2.0199
+    - check: depth_ratio
+      status: pass
+      message: earth depth / width 0.25 (at most 0.32)
+      value: 0.2538
+    - check: lawn_chroma
+      status: pass
+      message: lawn chroma p95 19 (palette meadow 38)
+      value: 19.3219
+    - check: harmony
+      status: pass
+      message: 'harmony score 76 against the world reference (outliers: C_p95)'
+      value: 76.2
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9917
+    - check: edit_stability
+      status: pass
+      message: 97% of the parent level unchanged
+      value: 0.9709
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.96 of the parent level (drift compounds along a chain)
+      value: 0.9606
+    info:
+      alignment:
+        scale: 0.9975
+        cx: 761.0
+        cy: 993.0
+        dx: -1
+        dy: -2
+      metrics_raw:
+        L_p5: 59.2
+        L_p50: 81.3
+        L_p95: 88.9
+        C_p50: 16.8
+        C_p95: 29.6
+        C_p99: 38.3
+        detail: 2.61
+      metrics_locked:
+        L_p5: 59.6
+        L_p50: 81.6
+        L_p95: 89.0
+        C_p50: 17.0
+        C_p95: 29.3
+        C_p99: 37.2
+        detail: 2.12
+    fingerprint: 60f0ba880a471c4f
+  1:
+    job: island-main-face-il6
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 29 (R1 51)
+      value: 29.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 58 (at most 22), p98 91 (at least 90), spread 33
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 33.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 82 (band 55-90)'
+      value: 82.3
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.39 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.388
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 2.4 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 2.4
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.01
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 0.6
+      value: 0.5622
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.9, p95 7.9, off-palette 1.3% (top: #888877 (0.5%), #888866
+        (0.4%))'
+      value: 1.9195
+    - check: depth_ratio
+      status: pass
+      message: earth depth / width 0.25 (at most 0.32)
+      value: 0.2523
+    - check: lawn_chroma
+      status: pass
+      message: lawn chroma p95 19 (palette meadow 38)
+      value: 18.7908
+    - check: harmony
+      status: pass
+      message: 'harmony score 77 against the world reference (outliers: C_p95)'
+      value: 76.9
+    - check: edit_silhouette
+      status: pass
+      message: 99% of the parent's shape kept
+      value: 0.9927
+    - check: edit_stability
+      status: pass
+      message: 97% of the parent level unchanged
+      value: 0.9734
+    - check: edit_chroma
+      status: pass
+      message: chroma x0.97 of the parent level (drift compounds along a chain)
+      value: 0.9682
+    info:
+      metrics_raw:
+        L_p5: 61.1
+        L_p50: 82.3
+        L_p95: 89.9
+        C_p50: 17.2
+        C_p95: 29.6
+        C_p99: 35.6
+        detail: 2.47
+      metrics_locked:
+        L_p5: 61.5
+        L_p50: 82.3
+        L_p95: 89.7
+        C_p50: 17.1
+        C_p95: 29.2
+        C_p99: 34.8
+        detail: 2.01
+    fingerprint: 60f0ba880a471c4f
+manual_review:
+  excluded_takes: []
+  note: Both initial takes pass all hard QA, literal manual review and exact native
+    lossless cap; take1 lowest style-lock load0.5622 versus0.8719 and Harmony76.9
+    versus76.2. Preserve existing Pofu and Mochi doors including tea-glass sign, lawn/earth-band
+    identity and four roots; add a third softsage round recessed door at the right
+    earth face with creamcrossbar round window,tiny gear sign and actual forkedwrench
+    on nail. Native gear/wrench closeups and proper cream/dark composites verified.
+    Approximate windowcenter x1245 is86to88percent of tapered earth cross-section
+    at doorheight y640to700, consistent with about88percent; whole lawn width is not
+    substituted for earth-face span. Diagnostics are not a new threshold; no global
+    pixelcorrelation gate or literal unchanged-pixel certification. Light values,haze,contrast
+    warnings advisory, never hard-QA waivers. Tested t1 exactlossless504330bytes andt2=566832
+    both under614400 at1536x1024; no pixel edits,deliveryscale,lossy master or extra
+    retry. Parent IL2 was already officially promoted,Harmony174sources measured/checked
+    and pushdecodeverified f0755042 before these two calls. Home family consumer was
+    prelinked once and must remain byte-stable; originals/callbacks/QA/locked all
+    retained. This completes all3 authored jobs despite stale queuecount2.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-b5d2c2ec-0c22-4267-9bdc-4e8bf615c24e.png
+  original_generated_png_sha256: c37088b9b1e4152461b8b6394c5a01a0986896d0efd9859afc4d74c2476f1320
+  inbox_png_sha256: bcbc6cfb2d5fd51a527d16b10d87ac35d7a062b08e1df0c6a5aeb59ceebeb30c
+  rgba_sha256: 251d4822dc9e453633b73ae278f76ce4d73388b2cff6c0b61e5b757540abba52
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 60f0ba880a471c4f
+- take: 2
+  source_file: /workspace/generated_images/exec-fa1704b8-6a8c-493f-9c92-8e5dfd7f48c1.png
+  original_generated_png_sha256: 22c345f6731c926dea15068a01ccb21bf50ffd8c17d7d91fdf6ca308d626da20
+  inbox_png_sha256: 145b357997f482b0643b19484f66b191b55280d009b292121e340f4c98593aee
+  rgba_sha256: 1d1bcd4dd64ad0e2b0cf7832040fe4f2a5050b896b42e457ab1dac113959e7b1
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: 60f0ba880a471c4f

@@ -1,0 +1,50 @@
+{
+ "after": {
+  "C_mean": 26.838,
+  "C_p50": 24.791,
+  "C_p95": 42.078,
+  "L_mean": 80.172,
+  "L_p2": 58.057,
+  "L_p98": 90.894,
+  "detail": 0.99,
+  "edge": 1.102,
+  "warmth_b": 23.117
+ },
+ "before": {
+  "C_mean": 18.706,
+  "C_p50": 17.16,
+  "C_p95": 29.137,
+  "L_mean": 80.265,
+  "L_p2": 58.057,
+  "L_p98": 91.321,
+  "detail": 0.99,
+  "edge": 1.102,
+  "tint_a": 5.692,
+  "tint_b": 10.453,
+  "warmth_b": 16.041
+ },
+ "chain": null,
+ "correction": {
+  "black": 0.0,
+  "ceiling": 0.0,
+  "chroma": 1.45,
+  "materials": {},
+  "tint_a": 0.0,
+  "tint_b": 0.0,
+  "white": 0.0
+ },
+ "guarded": false,
+ "kind": "world",
+ "matched_to": "world",
+ "outliers_after": [],
+ "outliers_before": [
+  "C_p95"
+ ],
+ "ppu": 4.103,
+ "reference": false,
+ "score_after": 92.1,
+ "score_before": 76.9,
+ "shipped": false,
+ "source": "design/art/masters/island-main-face-il6/island-main-face-il6.webp",
+ "source_sha": "220e0a0b805c5ca9"
+}
