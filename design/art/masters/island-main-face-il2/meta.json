@@ -1,0 +1,150 @@
+{
+  "job": "island-main-face-il2",
+  "batch": "batch-60-earth-face",
+  "asset": "world__island-main-face-il2",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-06T10:39:23+00:00",
+  "image": "design/art/masters/island-main-face-il2/island-main-face-il2.png",
+  "raw": "design/art/masters/island-main-face-il2/raw.webp",
+  "raw_encoding": "webp q95",
+  "fingerprint": "d6e3e35926866c51",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n2. Mochi's door design: its rose colour, round shape and small tulip-glass sign; paint it INTO the earth, not pasted.\n\nEdit the attached floating island: paint a second small round door\ninto its earth body, set into the earth exactly like the existing\nround wooden door on the left, at the same height, at about 60\npercent of the earth body's width from its left edge. This door is\npainted a soft rose with a small round window and a tiny sign with\na tulip-shaped tea glass, as in the attached door design, framed by\nthe same rim of small stones, with the same soft shadow inside its\nrecess and the same light as the rest of the earth. Everything else\nstays exactly as it is.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a pasted-on look, a different light or texture, a frame of another style, moving or resizing anything, characters, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/island-main-l-v3/island-main-l-v3.webp",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    },
+    {
+      "path": "design/art/masters/door-mochi/door-mochi.png",
+      "role": "Mochi's door design: its rose colour, round shape and small tulip-glass sign; paint it INTO the earth, not pasted."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-06T10:18:51+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "lock-light",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "emit_region": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 28 (R1 51)",
+        "value": 27.8
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 62 (at most 22), p98 92 (at least 90), spread 30 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 30.2
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 84 (band 55-90)",
+        "value": 84.2
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.45 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.447
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 2.0 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 1.97
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.6 (R1 5.3)",
+        "value": 1.62
+      },
+      {
+        "check": "lock_load",
+        "status": "pass",
+        "message": "the lock moved colors by mean dE 0.5",
+        "value": 0.5256
+      },
+      {
+        "check": "no_guide_magenta",
+        "status": "pass",
+        "message": "0 guide-magenta pixels (per 1024^2)",
+        "value": 0.0
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.5, p95 4.9, off-palette 0.1% (top: #888877 (0.1%), #888866 (0.0%))",
+        "value": 1.5428
+      },
+      {
+        "check": "depth_ratio",
+        "status": "pass",
+        "message": "earth depth / width 0.25 (at most 0.32)",
+        "value": 0.2523
+      },
+      {
+        "check": "lawn_chroma",
+        "status": "pass",
+        "message": "lawn chroma p95 19 (palette meadow 38)",
+        "value": 19.4209
+      },
+      {
+        "check": "harmony",
+        "status": "pass",
+        "message": "harmony score 74 against the world reference (outliers: C_p95)",
+        "value": 74.4
+      },
+      {
+        "check": "edit_silhouette",
+        "status": "pass",
+        "message": "99% of the parent's shape kept",
+        "value": 0.9946
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "97% of the parent level unchanged",
+        "value": 0.9743
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.02 of the parent level (drift compounds along a chain)",
+        "value": 1.0198
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both initial takes pass hard QA and literal region manual review. Select take2 under all constraints: take1 cannot satisfy native lossless upload cap (PNG994504bytes, method6 default losslessWebP697264, maximum effort lossless683864, all over614400); take2 exact native1536x1024 losslessWebP481778 fits. All experiments retained with identicalRGBA; no resize,quantization,lossy master,threshold/profile change or extra retry. Preserve recognizable parent lawn/earth outline and bands,Pofu door and four roots; add only second softrose inset round door near60percent earth width at comparable height, crossbar round window,tulip teacup sign, matching rim/recess light. Root independent proper-alpha review accepts take2. Tiny exterioralpha5to7 or nearby pebbles on take1 are NOT invented hard gates; local smallstone rim is requested. Generic LIGHT warnings advisory, no new global pixel-correlation threshold or false literal pixelidentity certification. Only this twoasset home family is prelinked once; all unrelated consumer lore/unlock/links preserved. True IL6 waits official promotion,Harmony and uploaddecode receipt. All source PNGs/callbacks/QA/locked preserved unchanged."
+}
