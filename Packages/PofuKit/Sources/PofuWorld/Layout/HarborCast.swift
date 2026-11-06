@@ -40,7 +40,7 @@ public enum SimitPose: String, CaseIterable, Sendable {
         if isStartled { return .surprised }
         switch event {
         case .ceremonyDone: return .proud
-        case .stationLevelledUp, .visitorArrived: return .happy
+        case .stationLevelledUp, .visitorArrived, .tapped: return .happy
         case .firstTapOfDay: return .surprised
         case nil: break
         }
@@ -72,7 +72,7 @@ public enum GoatPose: String, CaseIterable, Sendable {
     public static func pose(pierLevel: Int, isBedtime: Bool = false, event: ResidentEvent? = nil) -> GoatPose {
         switch event {
         case .ceremonyDone: return .proud
-        case .stationLevelledUp, .visitorArrived: return .happy
+        case .stationLevelledUp, .visitorArrived, .tapped: return .happy
         case .firstTapOfDay: return .surprised
         case nil: break
         }

@@ -42,12 +42,15 @@ public enum ResidentEvent: Hashable, Sendable {
     case ceremonyDone
     /// The first resident the player tapped today.
     case firstTapOfDay
+    /// The player tapped them (after the first of the day): a happy beat.
+    case tapped
 
     public var pose: ResidentPose {
         switch self {
         case .stationLevelledUp, .visitorArrived: .happy
         case .ceremonyDone: .proud
         case .firstTapOfDay: .surprised
+        case .tapped: .happy
         }
     }
 
@@ -58,6 +61,7 @@ public enum ResidentEvent: Hashable, Sendable {
         case .visitorArrived: 4
         case .ceremonyDone: 6
         case .firstTapOfDay: 1.6
+        case .tapped: ResidentLife.reactionSeconds
         }
     }
 }
@@ -82,6 +86,12 @@ public struct ResidentReactions: Sendable {
     public func event(of id: String, at now: Date) -> ResidentEvent? {
         guard let entry = entries[id], now < entry.until else { return nil }
         return entry.event
+    }
+
+    /// Seconds since the event showing on `id` began, if one is.
+    public func age(of id: String, at now: Date) -> Double? {
+        guard let entry = entries[id], now < entry.until else { return nil }
+        return now.timeIntervalSince(entry.until.addingTimeInterval(-entry.event.seconds))
     }
 
     /// The player tapped `id`: surprised if it is the first tap of the calendar day.
@@ -142,5 +152,14 @@ extension BuildMoment {
         if t >= swap, t < hop { return .surprised }
         if t >= hop, t < back { return .happy }
         return nil
+    }
+}
+
+extension ResidentPose {
+    /// The loop's greeting (a resident glad to see Pofu) shows over the
+    /// plain pose; every other pose is left as it is (a work beat reaches the
+    /// resident through `idlePose`).
+    func lifePose(_ loop: ResidentPose) -> ResidentPose {
+        self == .rest && loop == .happy ? .happy : self
     }
 }

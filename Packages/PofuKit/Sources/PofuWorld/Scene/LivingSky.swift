@@ -6,6 +6,8 @@ extension EnvironmentValues {
     /// Still-frame rendering, for screenshots: the sky's clouds stop at
     /// their time-zero places, so every run draws the same frame.
     @Entry public var worldStillFrame: Bool = false
+    /// Screenshots: pins the residents' loop to a day and a time into a visit.
+    @Entry public var worldResidentPin: ResidentLife.Pin?
     /// The world is settled under the look (look-dev B): the drift holds
     /// where it is, so the settled frame is cached and costs nothing.
     @Entry var worldAmbientPaused: Bool = false

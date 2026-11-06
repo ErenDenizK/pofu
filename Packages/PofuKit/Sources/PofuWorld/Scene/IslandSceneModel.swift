@@ -310,6 +310,8 @@ public final class IslandSceneModel {
     /// HD-2D layers animate during a visit and while the camera moves;
     /// otherwise the settled frame is cached and costs nothing.
     public private(set) var isVisiting = false
+    /// When the current visit began: the residents' cycles count from it.
+    @ObservationIgnored private(set) var visitBegan: Date?
     private var visitTask: Task<Void, Never>?
 
     /// Starts (or extends) a visit: the look animates for `seconds`.
@@ -317,6 +319,9 @@ public final class IslandSceneModel {
     public func beginLookVisit(seconds: Double = LookTuning.visitSeconds) {
         guard !reduceMotion, seconds > 0 else { return }
         visitTask?.cancel()
+        // A visit that is extended keeps its start, so a walk in progress
+        // is never cut and restarted.
+        if !isVisiting || visitBegan == nil { visitBegan = Date() }
         isVisiting = true
         // A visit animates the look; it does not let go of a held frame.
         let held = engine.isHeld
@@ -649,6 +654,8 @@ public final class IslandSceneModel {
         // The first resident tapped today starts (wide-eyed for a moment).
         if reactions.noteTap(on: id.rawValue, at: Date()) {
             holdMoment(seconds: ResidentEvent.firstTapOfDay.seconds + 0.1)
+        } else {
+            react(.tapped, for: [id.rawValue])
         }
         let lines = WorldStrings.residentLines(id)
         let said = linesSaid[id, default: 0]

@@ -228,7 +228,8 @@ public struct IslandScene<Bubble: View>: View {
         }
         .onAppear {
             if look.hd2d {
-                model.beginLookVisit()
+                // One residents' cycle: they work or walk out and back.
+                model.beginLookVisit(seconds: ResidentLife.cycleSeconds)
             }
             // Arriving at the Island: the establishing shot of the whole
             // island, then the pan view centred on Pofu.
@@ -377,6 +378,8 @@ struct LifeFrame {
     var arrival: Double?
     /// The Ambient state is on: critters and the visitor may move.
     var isAmbient = false
+    /// The residents' frames now, by id (empty at rest): `ResidentLife`.
+    var residents: [String: ResidentLife.Step] = [:]
     /// The frame's time, quantised to the policy's rate; 0 in a still frame.
     var time = 0.0
     /// Dressing mid-puff, with the seconds since it began.
@@ -399,6 +402,7 @@ struct LifeFrame {
 ///    pools and the characters' rims);
 /// 7. the screen-space overlays, which are never graded.
 private struct SceneFrame<Bubble: View>: View {
+    @Environment(\.worldResidentPin) private var residentPin
     let world: WorldSnapshot
     let rig: CameraRig
     let model: IslandSceneModel
@@ -421,6 +425,34 @@ private struct SceneFrame<Bubble: View>: View {
 
     @Environment(\.worldLook) private var look
     @Environment(\.worldStillFrame) private var still
+
+    /// The residents' loop now (`ResidentLife`): only while the Ambient state
+    /// runs and Reduce Motion is off; a still frame, a settled island and Low
+    /// Power Mode hold the rest pose. A screenshot may pin the time
+    /// (`worldResidentPin`).
+    private func residentSteps(directive: FrameDirective) -> [String: ResidentLife.Step] {
+        // At night they are drowsy and still.
+        guard !world.isBedtime else { return [:] }
+        let elapsed: Double
+        var day = ResidentLife.day(of: clock)
+        if let pinned = residentPin {
+            elapsed = pinned.elapsed
+            day = pinned.day
+        } else if !still, CritterMotion.moves(under: directive), !model.reduceMotion {
+            elapsed = clock.timeIntervalSince(model.visitBegan ?? clock)
+        } else {
+            return [:]
+        }
+        let specs = IslandLayout.residents.map { ResidentLife.Spec(id: $0.id.rawValue, home: $0.feet) }
+        return ResidentLife.steps(
+            of: specs,
+            day: day,
+            elapsed: elapsed,
+            walkable: IslandFootprint.walkable,
+            avoid: [IslandLayout.pofu],
+            isAmbient: true
+        )
+    }
 
     var body: some View {
         let pose = rig.pose
@@ -518,6 +550,7 @@ private struct SceneFrame<Bubble: View>: View {
             islandLevel: world.islandLevel,
             arrival: model.arrivalElapsed(at: clock),
             isAmbient: !still && CritterMotion.moves(under: directive),
+            residents: residentSteps(directive: directive),
             time: still ? 0 : FramePolicy.ambientTime(time),
             leaving: model.dressingLeaving(at: clock)
         )
@@ -838,7 +871,11 @@ private struct WorldCanvas: View {
         }
         for resident in IslandLayout.residents where layer == .characters {
             guard let station = world.stations.first(where: { $0.id == resident.station }), station.level > 0 else { continue }
-            let feet = IslandFootprint.clamped(resident.feet, footprint: IslandFootprint.footprint(of: resident.art))
+            let rest = IslandFootprint.clamped(resident.feet, footprint: IslandFootprint.footprint(of: resident.art))
+            // The loop's walk moves the whole resident (shadow and tap target
+            // follow); the rest spot is where a settled island holds them.
+            let step = life.residents[resident.id.rawValue] ?? .rest
+            let feet = WorldPoint(x: rest.x + step.dx, y: rest.y + step.dy)
             objects.append(Object(id: "resident-\(resident.id)", kind: .resident(resident), anchor: feet, depth: IslandLayout.depth(ofY: feet.y)))
         }
         // The lawn's small life (§6) and today's visit (§5): nothing of it is
@@ -909,11 +946,15 @@ private struct WorldCanvas: View {
                     )
                 }
         case .resident(let resident):
-            let lift = build.map { $0.moment.station == resident.station ? $0.moment.residentLift(at: $0.time) : 0 } ?? 0
+            let step = life.residents[resident.id.rawValue] ?? .rest
+            let reaction = model.reactions.age(of: resident.id.rawValue, at: clock).flatMap { ResidentLife.reaction(age: $0) }
+            let lift = (build.map { $0.moment.station == resident.station ? $0.moment.residentLift(at: $0.time) : 0 } ?? 0)
+                + step.hop + (reaction?.hop ?? 0)
             let focused = model.focus == .resident(resident.id) || model.focus == .station(resident.station)
             let pose = build.flatMap { $0.moment.station == resident.station ? $0.moment.residentPose(at: $0.time) : nil }
-                ?? resident.idlePose(isBedtime: world.isBedtime, isFocused: focused,
+                ?? resident.idlePose(isBedtime: world.isBedtime, isFocused: focused || step.pose == .work,
                                      event: model.reactions.event(of: resident.id.rawValue, at: clock))
+                .lifePose(step.pose)
             ResidentView(
                 resident: resident,
                 art: resident.art(for: pose),
@@ -921,7 +962,9 @@ private struct WorldCanvas: View {
                 level: level,
                 lift: lift,
                 grade: characterGrade,
-                pulse: model.pulses["resident-\(resident.id.rawValue)", default: 0]
+                pulse: model.pulses["resident-\(resident.id.rawValue)", default: 0],
+                breath: step.breath,
+                lean: step.lean
             )
                 .overlay {
                     hitArea(
@@ -1241,13 +1284,19 @@ private struct ResidentView: View {
     var grade: WorldGrade = .neutral
     /// Bumped by every tap on the resident: a squish.
     var pulse = 0
+    /// The loop's breath (1.0 to 1.012) and lean (degrees), about the feet.
+    var breath = 1.0
+    var lean = 0.0
 
     var body: some View {
+        let anchor = UnitPoint(x: point.x / IslandLayout.canvasWidth, y: point.y / IslandLayout.canvasHeight)
         ZStack(alignment: .topLeading) {
             ContactShadow(width: 24, height: 6, strength: 1 - min(lift / 20, 0.5))
                 .position(x: point.x, y: point.y)
             if let sprite = WorldArt.sprite(art) {
                 DepthImage(name: art, sprite: sprite, level: level, anchor: CGPoint(x: point.x, y: point.y - CGFloat(lift)), grade: grade)
+                    .scaleEffect(breath, anchor: anchor)
+                    .rotationEffect(.degrees(lean), anchor: anchor)
             }
         }
         .modifier(TapSquish(
@@ -1348,6 +1397,20 @@ private struct PofuLayer<Bubble: View>: View {
         }
     }
 
+    /// What shows on his face: what just happened to the residents, then
+    /// the night, the visitor and the wellbeing band (`PofuMoodSource`).
+    private var mood: PofuMood {
+        let now = Date()
+        let event = ResidentReactions.everyone.lazy.compactMap { model.reactions.event(of: $0, at: now) }.first
+        return PofuMoodSource.mood(
+            band: world.band,
+            isBedtime: world.isBedtime,
+            calmIsFull: world.calmIsFull,
+            visitorPresent: world.visitor != nil,
+            event: event
+        )
+    }
+
     /// The live companion, laid out so its feet land on `feet`. The
     /// companion's stage keeps 10 % side margins, 24 % headroom and 6 %
     /// floor room around the art (`CompanionStageLayout`).
@@ -1376,6 +1439,7 @@ private struct PofuLayer<Bubble: View>: View {
         )
         // A still frame never catches him mid-blink.
         .environment(\.companionBlinks, !still)
+        .environment(\.companionMood, mood)
         .accessibilityValue(Text(verbatim: WorldStrings.pofuValue(band: world.band, uncollected: world.pending.total.units)))
         .frame(width: viewWidth, height: viewHeight)
         .overlay {
