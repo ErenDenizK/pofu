@@ -2,14 +2,14 @@ id: asset-koke-island-4
 type: asset
 title_tr: koke-island-4
 title_en: koke-island-4 (plate)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Edit the attached island plate from stage 0 to stage 4, healed: the signature moment. Koke
-  stands up: the hump has risen onto four sturdy stubby legs, standing on the lawn where it
-  slept, its head lifted and turned to the viewer, both eyes open, big round and warm brown
-  with catchlights, a soft happy smile, its small ears perked. It is covered in rich living
-  moss, thick like fur, and its whole back is in flower: blos…
+summary: 'Edit the attached island plate from stage 0 to stage 4, healed: the signature
+  moment. Koke stands up: the hump has risen onto four sturdy stubby legs, standing
+  on the lawn where it slept, its head lifted and turned to the viewer, both eyes
+  open, big round and warm brown with catchlights, a soft happy smile, its small ears
+  perked. It is covered in rich living moss, thick like fur, and its whole back is
+  in flower: blos…'
 links:
   variant_of:
   - asset-koke-island-0
@@ -22,3 +22,23 @@ sources:
 kind: plate
 batch: batch-39-koke-production
 size: 1536x1024
+notes:
+- 'batch-39-koke-production skipped after four takes: Skipped after exactly one unchanged-prompt
+  retry. All four candidates hard-fail chroma_ceiling and palette_drift: chroma p95
+  is60.6,61.9,62.4,62.5; palette mean dE4.0822,4.5290,4.2094,5.2478 with the recorded
+  off-palette failures. Retry take4 additionally fails edit_stability at0.2767. Semantic
+  initial review sees the requested standing creature, flowering back, five open lawn
+  groups, warm eyes and drifting petal/spore signature; that visual success cannot
+  waive hard colour/registration failures. All four original PNGs and source-bound
+  QA are retained, no third round. No completed stage4 master or delivered stage0-to4
+  chroma ratio is claimed. Skip only this independent job, with no cascade to other
+  root0 edits or character poses. Canonical full-frame before-grade Harmony C_mean
+  across these rejected candidates: 25.14,24.73,24.975,27.9. These are candidate observations,
+  never a delivered healed-stage claim. Automated failures: t1 chroma_ceiling: chroma
+  p95 61 (R1 51), palette_drift: mean dE 4.1, p95 14.6, off-palette 9.7% (top: #AAAA33
+  (1.2%), #BBBB44 (1.0%)); t2 chroma_ceiling: chroma p95 62 (R1 51), palette_drift:
+  mean dE 4.5, p95 15.7, off-palette 13.3% (top: #AAAA33 (1.2%), #BBBB44 (0.9%));
+  t3 chroma_ceiling: chroma p95 62 (R1 51), palette_drift: mean dE 4.2, p95 15.5,
+  off-palette 12.3% (top: #BBBB44 (0.9%), #DDCC44 (0.8%)); t4 chroma_ceiling: chroma
+  p95 62 (R1 51), palette_drift: mean dE 5.2, p95 16.6, off-palette 19.1% (top: #AAAA33
+  (1.1%), #556611 (0.9%)), edit_stability: 28% of the parent level unchanged.'

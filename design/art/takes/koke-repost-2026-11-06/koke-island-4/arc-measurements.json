@@ -1,0 +1,149 @@
+{
+  "batch": "batch-39-koke-production",
+  "job": "koke-island-4",
+  "definitions": {
+    "harmony": "Unchanged tools/assets/harmony.py measure on the complete official locked image, alpha>0.5; before any runtime Harmony correction.",
+    "subject_chroma": "Same CIELAB chroma on the unchanged canonical light.subject_mask (opaque plate: x20\u201380%,y30\u201390%); supplementary, not substituted for full Harmony metrics.",
+    "warm_bright_fraction": "Observational proxy only: fraction of canonical subject pixels with CIELAB L>=75 AND b*>=8. Same fixed definition for all stages. Not an emissive mask or a canonical QA pass/fail threshold.",
+    "bright_fraction": "Fraction of canonical subject pixels with CIELAB L>=85, same fixed definition for all stages.",
+    "arc": "Compare the selected stage4 to selected stage0; authored at-least2x chroma and first warm-light step at stage2. No missing or failed stages are invented."
+  },
+  "takes": {
+    "1": {
+      "locked_file": "build/imagegen/batch-39-koke-production/locked/plate__koke-island-4--t1.png",
+      "locked_sha256": "f8d1f273b6d0a90a05712eab82a4df71ba0055432c97b2d2a40bfe223d247c26",
+      "canonical_harmony": {
+        "L_mean": 78.877,
+        "L_p2": 39.306,
+        "L_p98": 95.87,
+        "C_mean": 25.14,
+        "C_p50": 19.167,
+        "C_p95": 60.661,
+        "warmth_b": 16.0,
+        "tint_a": 4.565,
+        "tint_b": -1.559,
+        "edge": 0.0,
+        "detail": 2.574
+      },
+      "canonical_light": {
+        "L_p2": 35.6,
+        "L_p50": 72.5,
+        "L_p98": 95.1,
+        "spread": 59.5,
+        "haze": 0.118,
+        "lc_p75": 6.57
+      },
+      "subject_chroma": {
+        "C_mean": 35.0454,
+        "C_p50": 36.2391,
+        "C_p95": 61.5639
+      },
+      "warm_bright_fraction": 0.304576,
+      "bright_fraction": 0.217113,
+      "subject_mean_b": 31.6112
+    },
+    "2": {
+      "locked_file": "build/imagegen/batch-39-koke-production/locked/plate__koke-island-4--t2.png",
+      "locked_sha256": "193eea6c51d571ade48de3794557591a890e36e16081a1a96b7a85a36a75c544",
+      "canonical_harmony": {
+        "L_mean": 79.319,
+        "L_p2": 37.607,
+        "L_p98": 95.725,
+        "C_mean": 24.73,
+        "C_p50": 15.219,
+        "C_p95": 61.934,
+        "warmth_b": 16.721,
+        "tint_a": 4.955,
+        "tint_b": -2.313,
+        "edge": 0.0,
+        "detail": 2.765
+      },
+      "canonical_light": {
+        "L_p2": 35.1,
+        "L_p50": 71.6,
+        "L_p98": 94.9,
+        "spread": 59.7,
+        "haze": 0.09,
+        "lc_p75": 7.92
+      },
+      "subject_chroma": {
+        "C_mean": 35.5412,
+        "C_p50": 35.551,
+        "C_p95": 62.7431
+      },
+      "warm_bright_fraction": 0.286281,
+      "bright_fraction": 0.23387,
+      "subject_mean_b": 31.7113
+    },
+    "3": {
+      "locked_file": "build/imagegen/batch-39-koke-production/locked/plate__koke-island-4--t3.png",
+      "locked_sha256": "2d9f931dd27034f47050dee194ff993f4a1566a672bd0d7c60c8c52f3993bace",
+      "canonical_harmony": {
+        "L_mean": 80.212,
+        "L_p2": 39.108,
+        "L_p98": 95.941,
+        "C_mean": 24.975,
+        "C_p50": 19.381,
+        "C_p95": 62.377,
+        "warmth_b": 16.518,
+        "tint_a": 4.29,
+        "tint_b": -0.911,
+        "edge": 0.0,
+        "detail": 2.473
+      },
+      "canonical_light": {
+        "L_p2": 36.8,
+        "L_p50": 74.9,
+        "L_p98": 94.8,
+        "spread": 58.0,
+        "haze": 0.102,
+        "lc_p75": 7.36
+      },
+      "subject_chroma": {
+        "C_mean": 35.702,
+        "C_p50": 35.5066,
+        "C_p95": 63.4222
+      },
+      "warm_bright_fraction": 0.354925,
+      "bright_fraction": 0.238777,
+      "subject_mean_b": 32.1598
+    },
+    "4": {
+      "locked_file": "build/imagegen/batch-39-koke-production/locked/plate__koke-island-4--t4.png",
+      "locked_sha256": "433b65d0c63ef7a9b47b372f3a0838e602e56ddc029d11a13107612f28d2cac6",
+      "canonical_harmony": {
+        "L_mean": 77.3,
+        "L_p2": 30.621,
+        "L_p98": 95.847,
+        "C_mean": 27.9,
+        "C_p50": 23.816,
+        "C_p95": 62.53,
+        "warmth_b": 15.93,
+        "tint_a": 5.669,
+        "tint_b": -1.637,
+        "edge": 0.0,
+        "detail": 3.131
+      },
+      "canonical_light": {
+        "L_p2": 28.2,
+        "L_p50": 73.0,
+        "L_p98": 94.9,
+        "spread": 66.7,
+        "haze": 0.016,
+        "lc_p75": 7.44
+      },
+      "subject_chroma": {
+        "C_mean": 38.4771,
+        "C_p50": 38.944,
+        "C_p95": 63.415
+      },
+      "warm_bright_fraction": 0.322214,
+      "bright_fraction": 0.216724,
+      "subject_mean_b": 34.6793
+    }
+  },
+  "pixels_changed": false,
+  "qa_thresholds_changed": false,
+  "operation": "koke-repost-2026-11-06",
+  "base": "43f68c65477421203e5990fcef179a1978dfb980"
+}
