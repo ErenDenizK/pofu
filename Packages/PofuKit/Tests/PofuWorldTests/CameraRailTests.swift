@@ -17,10 +17,10 @@ struct CameraRailTests {
         }
     }
 
-    @Test func pofuIsAbout35PercentOfTheWidthAtHome() {
+    @Test func pofuIsAbout90PointsAtHome() {
         let width = 64 * rail.pose(of: .home).scale
-        #expect(abs(width - 140.8) < 0.01)
-        #expect(abs(width / CameraRail.referenceWidth - 0.35) < 0.005)
+        #expect(abs(width - 89.6) < 0.01)
+        #expect(width >= 89)
         // His feet sit at the Home framing's anchor row, at most a quarter
         // of the width off centre (nudged so no resident is cut).
         let feet = rail.pose(of: .home).project(IslandLayout.pofu, width: CameraRail.referenceWidth)

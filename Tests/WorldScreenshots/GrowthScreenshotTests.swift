@@ -12,7 +12,10 @@ import XCTest
 ///   Mochi at the çay ocağı and Fındık at the workshop appear with their
 ///   stations);
 /// - `home-growth-il1-il10`: all ten on one sheet, two rows of five, each
-///   titled with its island level, station cap and tended-day floor.
+///   titled with its island level, station cap and tended-day floor;
+/// - `home-whole-il01` to `home-whole-il10` and `home-whole-il1-il10`: the same
+///   ten at the whole-island shot (the level-up ceremony's pull-back), where
+///   the harbor side (bridge, flag) and the hilltop show too.
 ///
 /// The worlds are `IslandSamples.world`, read through the standard catalog,
 /// so costs, caps and slots are the real ones. This answers "does every
@@ -61,13 +64,25 @@ final class GrowthScreenshotTests: XCTestCase {
         let rows = [Array(shots[0..<5]), Array(shots[5..<10])]
         let rowTitles = [Array(titles[0..<5]), Array(titles[5..<10])]
         try write(grid(rows, titles: rowTitles), name: "home-growth-il1-il10", to: folder)
+
+        var wide: [UIImage] = []
+        for level in 1...10 {
+            let image = try await render(world(atIslandLevel: level), in: scene, whole: true)
+            try write(image, name: String(format: "home-whole-il%02d", level), to: folder)
+            wide.append(image)
+        }
+        try write(
+            grid([Array(wide[0..<5]), Array(wide[5..<10])], titles: rowTitles),
+            name: "home-whole-il1-il10", to: folder
+        )
     }
 
     // MARK: - Rendering
 
     @MainActor
-    private func render(_ world: WorldSnapshot, in scene: UIWindowScene) async throws -> UIImage {
+    private func render(_ world: WorldSnapshot, in scene: UIWindowScene, whole: Bool = false) async throws -> UIImage {
         let model = IslandSceneModel(framing: .home)
+        if whole { model.holdEstablishingShot() }
         let view = IslandScene(world: world, model: model)
             .environment(\.worldLook, WorldLook(hourOverride: 12))
             .environment(\.worldStillFrame, true)

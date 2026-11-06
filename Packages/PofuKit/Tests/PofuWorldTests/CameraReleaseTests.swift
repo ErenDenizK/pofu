@@ -21,7 +21,7 @@ struct CameraReleaseTests {
         // z 1.3 is nearer the Island, but a quick spread carries it Home.
         #expect(landing(z: 1.3, velocity: 3).framing == .home)
         // And a quick pinch from z 1.7 lands on the Island.
-        #expect(landing(z: 1.7, velocity: -3).framing == .island)
+        #expect(landing(z: 1.7, velocity: -1.5).framing == .island)
     }
 
     @Test func aFastFlickMaySkipAFraming() {
