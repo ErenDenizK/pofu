@@ -1,6 +1,7 @@
 # UI Critique 01: The Game Screen Is Not Yet the Game
 
-> **Historical (2026-11-05):** its direction is carried by [UI system v2](ui-system-v2.md) and [experience v1](experience-v1.md); read it for the reasoning.
+> **Archived 2026-11-06: superseded by [UI system v2](../design/ui-system-v2.md) and [experience v1](../design/experience-v1.md).**
+> Kept for the reasoning (why Home is a game screen); do not build on it.
 
 _Status: proposal for the founder. Last updated: 2026-11-02._
 _Reviewed: `main` at #59 (look-dev), CI screenshots on the orphan branches

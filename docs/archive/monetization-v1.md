@@ -1,9 +1,7 @@
 # Monetization: what we sell, and how
 
-> **Superseded in part (2026-11-05):** the recommendation and prices are
-> replaced by [monetization-v2.md](monetization-v2.md) after the game became
-> compact (station islands retired). The market data, Türkiye notes, the
-> fair-lock test (§6) and the sources below still hold.
+> **Archived 2026-11-06: superseded by [monetization v2](../product/monetization-v2.md).**
+> Its market data, Türkiye notes, fair-lock test (§6) and sources are still cited from v2; its recommendation and prices are not current.
 
 _Status: proposal for the founder's decision, 2026-11-02. It builds on the
 [monetization research](../research/monetization.md) (2026-11-01) and the
