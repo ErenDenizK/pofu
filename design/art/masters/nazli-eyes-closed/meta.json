@@ -1,0 +1,125 @@
+{
+  "job": "nazli-eyes-closed",
+  "batch": "batch-37-nazli-rig-pilot",
+  "asset": "char__nazli-eyes-closed",
+  "take": 1,
+  "takes_considered": 2,
+  "approved_at": "2026-11-05T23:55:15+00:00",
+  "image": "design/art/masters/nazli-eyes-closed/nazli-eyes-closed.png",
+  "raw": "design/art/masters/nazli-eyes-closed/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "208c59aca91c31f8",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n2. The approved Nazlı: her eye shape and heavy kind lid (copy the whale only).\n\nEdit the attached whale. Close her eyes: the nearer eye and the\nfarther eye (or its visible edge) become peacefully closed, a soft\ndownward-curving lid line with the lid's skin color filling the eye,\ncalm and sleepy and kind. The eyes keep exactly the same positions,\nsizes and shapes as the open eyes. Only the eyes change: the\nblush, the smile, the scar and the whole rest of the whale stay\nexactly as in the attached image.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: open eyes, tears, a frown, changed eye positions, eyebrows, any change to the body, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/nazli-body/nazli-body.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    },
+    {
+      "path": "design/art/takes/batch-34-islands-in-game/x-gezgin-f1-harbor/plate__x-gezgin-f1-harbor--t1.webp",
+      "role": "The approved Nazlı: her eye shape and heavy kind lid (copy the whale only)."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T23:34:13+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 16 (R1 51)",
+        "value": 16.2
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 71 (at most 22), p98 94 (at least 90), spread 23 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 22.8
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 84 (band 55-90)",
+        "value": 83.7
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.63 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.627
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 0.9 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 0.95
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.4 (R1 5.3)",
+        "value": 1.43
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.4, p95 3.1, off-palette 0.0%",
+        "value": 1.4376
+      },
+      {
+        "check": "ground_line",
+        "status": "warn",
+        "message": "feet at 85.9% of the height (contract 88%)",
+        "value": 0.8594
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 45 against the char reference (outliers: C_p95, L_p2, detail, tint_b)",
+        "value": 44.8
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "98% of the parent level unchanged",
+        "value": 0.9814
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.02 of the parent level (drift compounds along a chain)",
+        "value": 1.024
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both original and official locked initial takes were directly reviewed by the operator against the actual published body after environment recovery. The nearer eye and the far visible eye edge are peacefully closed with soft downward-curved lid lines and skin filling the former eye openings, at the same observed eye locations and shapes. Blush, faint smile, paper-lantern skin scar, smooth bare body, rounded stock tip, camera and shared1536x1024 registration remain visually consistent with root. No tears, frown, eyebrows, new fins, tail flukes, island patch, text or unrelated object. Canonical hard QA passes both; edit_stability0.9814 both and edit_chroma1.024/1.0959 pass. No char lock_load metric is reported; both Harmony scores44.8 tie, so deterministic earliest take1 wins. Light/Harmony warnings advisory. No invented stricter eye-geometry or stability threshold and no manual alignment, palette or alpha cleanup. Invisible surrounding RGB is not painted background. Exact source, packet and post identities survived the interruption; no duplicate dispatch or retry. Direct whole-whale edit of body, not cumulative with other parts. Stable consumer links unchanged. Founder review pending."
+}

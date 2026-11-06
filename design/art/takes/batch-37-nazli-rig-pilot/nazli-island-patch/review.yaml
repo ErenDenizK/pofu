@@ -1,0 +1,216 @@
+batch: batch-37-nazli-rig-pilot
+contact_sheet: design/art/takes/batch-37-nazli-rig-pilot/nazli-island-patch/contact.jpg
+jobs:
+  nazli-island-patch:
+    pick: 2
+    publication: promoted; founder review pending
+    note: 'auto-picked by QA; founder review pending. Both original and official locked
+      initial takes pass independent content and actual published-body comparison:
+      a small lawn-only mossy patch on the middle of the back, clear of face and paper-lantern
+      scar, with a short wooden bench, exactly one mooring post and coiled rope, a
+      grass tuft and exactly one empty curled honey-wood lantern hook. No soil bowl,
+      roots, door, house, tree, lit lantern, character or unrelated object. Camera-facing
+      face, eyes, faint smile, blush, scar, body placement and rounded stock tip remain
+      visually registered on shared1536x1024 canvas, without fins or tail flukes.
+      Canonical hard QA passes both, edit_stability0.9764/0.9761 and edit_chroma1.1497/1.0864
+      pass. No lock_load reported for char takes; equal-load fallback selects higher
+      Harmony take2 (53.5 versus49.8). Light/Harmony warnings advisory; no invented
+      numeric patch-size limit, stricter stability threshold, manual alignment, palette
+      or alpha cleanup. Independent whole-whale edit of body only, not cumulative
+      with other parts. Stable consumer links unchanged. Founder review pending.'
+qa_reports:
+  2:
+    job: nazli-island-patch
+    take: 2
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 26 (R1 51)
+      value: 26.2
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 55 (at most 22), p98 94 (at least 90), spread 39
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 39.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 83.0
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.33 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.333
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.2 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.19
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.05
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.5, p95 3.5, off-palette 0.0% (top: #995522 (0.0%), #884422
+        (0.0%))'
+      value: 1.4681
+    - check: ground_line
+      status: warn
+      message: feet at 85.8% of the height (contract 88%)
+      value: 0.8584
+    - check: harmony
+      status: warn
+      message: 'harmony score 54 against the char reference (outliers: C_p95, L_p2,
+        tint_b)'
+      value: 53.5
+    - check: edit_stability
+      status: pass
+      message: 98% of the parent level unchanged
+      value: 0.9761
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.09 of the parent level (drift compounds along a chain)
+      value: 1.0864
+    info:
+      metrics_raw:
+        L_p5: 70.0
+        L_p50: 83.0
+        L_p95: 92.6
+        C_p50: 11.0
+        C_p95: 26.2
+        C_p99: 45.7
+        detail: 2.0
+      metrics_locked:
+        L_p5: 70.0
+        L_p50: 83.0
+        L_p95: 92.6
+        C_p50: 11.0
+        C_p95: 26.2
+        C_p99: 45.7
+        detail: 2.05
+    fingerprint: d4b864b7295d3dfe
+  1:
+    job: nazli-island-patch
+    take: 1
+    status: warn
+    preset: char-guard
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1536x1024
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 22 (R1 51)
+      value: 22.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 57 (at most 22), p98 94 (at least 90), spread 37
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 36.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 83 (band 55-90)'
+      value: 83.4
+    - check: light_haze
+      status: warn
+      message: 'day/subject: dark-channel haze 0.37 (at most 0.20; no true dark means
+        a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.369
+    - check: light_contrast
+      status: warn
+      message: 'day/subject: p75 local contrast 1.1 (at least 3.5) (warn-only until
+        the founder has seen the light pilot)'
+      value: 1.12
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.0 (R1 5.3)
+      value: 2.04
+    - check: palette_drift
+      status: pass
+      message: 'mean dE 1.6, p95 3.8, off-palette 0.0% (top: #552211 (0.0%), #884422
+        (0.0%))'
+      value: 1.5503
+    - check: ground_line
+      status: warn
+      message: feet at 85.8% of the height (contract 88%)
+      value: 0.8584
+    - check: harmony
+      status: warn
+      message: 'harmony score 50 against the char reference (outliers: C_p95, L_p2,
+        tint_b)'
+      value: 49.8
+    - check: edit_stability
+      status: pass
+      message: 98% of the parent level unchanged
+      value: 0.9764
+    - check: edit_chroma
+      status: pass
+      message: chroma x1.15 of the parent level (drift compounds along a chain)
+      value: 1.1497
+    info:
+      metrics_raw:
+        L_p5: 71.1
+        L_p50: 83.4
+        L_p95: 92.4
+        C_p50: 11.7
+        C_p95: 22.1
+        C_p99: 41.6
+        detail: 1.99
+      metrics_locked:
+        L_p5: 71.1
+        L_p50: 83.4
+        L_p95: 92.4
+        C_p50: 11.7
+        C_p95: 22.1
+        C_p99: 41.6
+        detail: 2.04
+    fingerprint: d4b864b7295d3dfe
+manual_review:
+  excluded_takes: []
+  note: 'Both original and official locked initial takes pass independent content
+    and actual published-body comparison: a small lawn-only mossy patch on the middle
+    of the back, clear of face and paper-lantern scar, with a short wooden bench,
+    exactly one mooring post and coiled rope, a grass tuft and exactly one empty curled
+    honey-wood lantern hook. No soil bowl, roots, door, house, tree, lit lantern,
+    character or unrelated object. Camera-facing face, eyes, faint smile, blush, scar,
+    body placement and rounded stock tip remain visually registered on shared1536x1024
+    canvas, without fins or tail flukes. Canonical hard QA passes both, edit_stability0.9764/0.9761
+    and edit_chroma1.1497/1.0864 pass. No lock_load reported for char takes; equal-load
+    fallback selects higher Harmony take2 (53.5 versus49.8). Light/Harmony warnings
+    advisory; no invented numeric patch-size limit, stricter stability threshold,
+    manual alignment, palette or alpha cleanup. Independent whole-whale edit of body
+    only, not cumulative with other parts. Stable consumer links unchanged. Founder
+    review pending.'
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-c11be2fa-5e4f-4103-ad19-38db5ba2d72b.png
+  original_generated_png_sha256: 264f21b01c564b7b3e8c1a89cd2753893c824b48cec78c7b5c5e9ef0aeca7be8
+  inbox_png_sha256: 466711aba5b8f20c444e76d821f3211e60f8061d5faf4463924c458fef1a9838
+  rgba_sha256: 1096a90ddbaa0d93cc3a68b5b17acb66ab6711b61abbb9b637c82fff963f89f6
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d4b864b7295d3dfe
+- take: 2
+  source_file: /workspace/generated_images/exec-d40c7981-1f1a-4647-9395-0f2cc41713b0.png
+  original_generated_png_sha256: 025f1a7df2c09726f6ad51770d94168e42b51314468749b0495ff40ad3f66d85
+  inbox_png_sha256: 11788609ebcdb462df83d713881cfe7be23f2301c6df1a7a6fe346d0c1328834
+  rgba_sha256: 4f550439df64f647ff1159aa604408590a9ff6f240c4f606ec29c2921cb43c8c
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: d4b864b7295d3dfe

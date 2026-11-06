@@ -4,17 +4,18 @@ title_tr: nazli-island-patch
 title_en: nazli-island-patch (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached whale. Add the small island patch on her back: on the middle of her back,
-  well behind the head and clear of the scar, a small mossy lawn no bigger than a cottage
-  lot, grown into her skin, with a short wooden bench, a single wooden mooring post with a
-  coil of rope round it, a tuft of grass, and one dark honey-wood lantern hook curling over,
-  with nothing hanging on it. Seen in the same three-quarter v…
+summary: 'Edit the attached whale. Add the small island patch on her back: on the
+  middle of her back, well behind the head and clear of the scar, a small mossy lawn
+  no bigger than a cottage lot, grown into her skin, with a short wooden bench, a
+  single wooden mooring post with a coil of rope round it, a tuft of grass, and one
+  dark honey-wood lantern hook curling over, with nothing hanging on it. Seen in the
+  same three-quarter v…'
 links:
   variant_of:
   - asset-nazli-body
 art:
-  images: []
+  images:
+  - design/art/masters/nazli-island-patch/nazli-island-patch.webp
   jobs:
   - batch-37-nazli-rig-pilot:nazli-island-patch
 sources:

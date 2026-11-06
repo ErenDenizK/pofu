@@ -1,0 +1,125 @@
+{
+  "job": "nazli-fins",
+  "batch": "batch-37-nazli-rig-pilot",
+  "asset": "char__nazli-fins",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-05T23:42:53+00:00",
+  "image": "design/art/masters/nazli-fins/nazli-fins.png",
+  "raw": "design/art/masters/nazli-fins/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "30301c2ea48db9a3",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n2. The approved Nazlı: copy her broad, rounded, cream flipper only.\n\nEdit the attached whale. Add her two pectoral fins: the nearer fin\nhangs from the low near side of the body just behind the head,\nbroad, rounded and cream, angled gently back and down, and the\nfarther fin shows only its rounded tip below the belly on the far\nside, in the same three-quarter view and the same painting. Neither\nfin covers her face or her eye. Only the two fins are added: her\nhead, face, body, scar and everything else stay exactly as in the\nattached image.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: fins over her face, changing the face or the body, flukes, an island patch, clouds, a pier, a shadow, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/nazli-body/nazli-body.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    },
+    {
+      "path": "design/art/takes/batch-34-islands-in-game/x-gezgin-f1-harbor/plate__x-gezgin-f1-harbor--t1.webp",
+      "role": "The approved Nazlı: copy her broad, rounded, cream flipper only."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T23:31:00+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 17 (R1 51)",
+        "value": 16.7
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 71 (at most 22), p98 94 (at least 90), spread 24 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 23.5
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 84 (band 55-90)",
+        "value": 83.8
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.62 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.624
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 1.1 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 1.12
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 1.8 (R1 5.3)",
+        "value": 1.75
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.5, p95 3.1, off-palette 0.0%",
+        "value": 1.4672
+      },
+      {
+        "check": "ground_line",
+        "status": "pass",
+        "message": "feet at 89.0% of the height (contract 88%)",
+        "value": 0.8896
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 47 against the char reference (outliers: C_p95, L_p2, tint_b)",
+        "value": 46.6
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "96% of the parent level unchanged",
+        "value": 0.9636
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x0.97 of the parent level (drift compounds along a chain)",
+        "value": 0.9687
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both original and official locked initial takes pass independent content and actual published-body comparison: exactly two pectoral fins, broad rounded cream near fin low just behind the head angled gently back and down, with the far fin showing only its rounded tip below the far belly. Neither covers face or eyes. Camera-facing head, faint smile, blush, paper-lantern scar, body placement and rounded tail-stock tip remain visually registered on shared1536x1024 canvas; no flukes, island patch, scenery, text or other objects. Canonical hard QA passes both, edit_stability0.9777/0.9636 and edit_chroma1.0132/0.9687 pass. No lock_load is reported for char takes; equal-load fallback selects higher Harmony take2 (46.6 versus46.5). Light and Harmony warnings advisory. No stricter invented stability criterion or manual geometry, palette or alpha cleanup. Direct whole-whale body edit, not cumulative with tail. Stable consumer links unchanged. Founder review pending."
+}

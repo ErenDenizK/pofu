@@ -1,0 +1,125 @@
+{
+  "job": "nazli-island-patch",
+  "batch": "batch-37-nazli-rig-pilot",
+  "asset": "char__nazli-island-patch",
+  "take": 2,
+  "takes_considered": 2,
+  "approved_at": "2026-11-05T23:46:50+00:00",
+  "image": "design/art/masters/nazli-island-patch/nazli-island-patch.png",
+  "raw": "design/art/masters/nazli-island-patch/raw.webp",
+  "raw_encoding": "webp lossless",
+  "fingerprint": "d4b864b7295d3dfe",
+  "prompt": "REFERENCES (attached, in this order):\n1. The image to edit (the approved previous level). Edit it; do not redraw it.\n2. The approved Nazlı: copy the back patch only (a small mossy lawn with a bench, a mooring post and a hook), at that small size.\n\nEdit the attached whale. Add the small island patch on her back: on\nthe middle of her back, well behind the head and clear of the scar,\na small mossy lawn no bigger than a cottage lot, grown into her\nskin, with a short wooden bench, a single wooden mooring post with a\ncoil of rope round it, a tuft of grass, and one dark honey-wood\nlantern hook curling over, with nothing hanging on it. Seen in the\nsame three-quarter view and the same painting; a lawn only, with no\nsoil bowl, roots, door or house. Only the patch is added: her head,\nface, body, scar and everything else stay exactly as in the\nattached image.\n\nKEEP: everything not named above stays exactly the same as in the\nattached image: every existing part, its shape, color, position and size,\nthe canvas, the camera, the light and the painting style. Do not zoom out\nor reframe: if a new part does not fit, make the new part smaller, never\nthe existing ones. Outside the new parts, the result must line up with\nthe attached image pixel for pixel.\n\nAVOID: a lit lantern, a bulb, a house, a door, soil or roots hanging below, a tree, characters, a pier, clouds, changing the face or the body, a shadow, text\n\nLIGHT (hour: day, layer: subject). Bright, clear, toy-like.\nPaint this under the clear daylight cell: key light #FFF6EC from the upper left, soft cool fill #BFD6EE, a faint rim #FFE9C9 on the far edge. The game relights and grades this sprite for the hour, so keep the light neutral and readable. Do NOT paint a cast shadow on the ground or onto a background: only soft contact occlusion where forms touch.\nVALUES: haze is depth, not a filter over the whole frame. The subject plane uses the full value range: true darks in the deepest recesses (eyes, door, soil, gaps between forms) and clean highlights. Contrast falls only with distance from the subject. A soft, gentle look means soft local colour and soft edges, never lifted blacks, a milky veil or a grey-white wash.\nThis is the SUBJECT plane: no atmosphere at all, the strongest contrast and the deepest darks in the picture.\n\nOutput: one image, transparent background PNG, landscape 1536 x 1024.\n",
+  "attachments": [
+    {
+      "path": "design/art/masters/nazli-body/nazli-body.png",
+      "role": "The image to edit (the approved previous level). Edit it; do not redraw it."
+    },
+    {
+      "path": "design/art/takes/batch-34-islands-in-game/x-gezgin-f1-harbor/plate__x-gezgin-f1-harbor--t1.webp",
+      "role": "The approved Nazlı: copy the back patch only (a small mossy lawn with a bench, a mooring post and a hook), at that small size."
+    }
+  ],
+  "generation": {
+    "backend": "codex-cloud",
+    "model": null,
+    "quality": null,
+    "thread_id": null,
+    "generated_at": "2026-11-05T23:32:48+00:00",
+    "seconds": null,
+    "background": "transparent"
+  },
+  "account": {
+    "owner": "Founder's uncle's ChatGPT plan, used by the founder with permission",
+    "kind": "chatgpt-plan"
+  },
+  "style_lock": {
+    "preset": "char-guard",
+    "version": 2
+  },
+  "registration": null,
+  "alignment": null,
+  "fit": null,
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "check": "transparency",
+        "status": "pass",
+        "message": "source has an alpha channel"
+      },
+      {
+        "check": "canvas",
+        "status": "pass",
+        "message": "1536x1024"
+      },
+      {
+        "check": "chroma_ceiling",
+        "status": "pass",
+        "message": "chroma p95 26 (R1 51)",
+        "value": 26.2
+      },
+      {
+        "check": "light_values",
+        "status": "warn",
+        "message": "day/subject: L p2 55 (at most 22), p98 94 (at least 90), spread 39 (at least 60) (warn-only until the founder has seen the light pilot)",
+        "value": 39.3
+      },
+      {
+        "check": "light_median",
+        "status": "pass",
+        "message": "day/subject: median L 83 (band 55-90)",
+        "value": 83.0
+      },
+      {
+        "check": "light_haze",
+        "status": "warn",
+        "message": "day/subject: dark-channel haze 0.33 (at most 0.20; no true dark means a wash) (warn-only until the founder has seen the light pilot)",
+        "value": 0.333
+      },
+      {
+        "check": "light_contrast",
+        "status": "warn",
+        "message": "day/subject: p75 local contrast 1.2 (at least 3.5) (warn-only until the founder has seen the light pilot)",
+        "value": 1.19
+      },
+      {
+        "check": "detail_budget",
+        "status": "pass",
+        "message": "detail at display size 2.0 (R1 5.3)",
+        "value": 2.05
+      },
+      {
+        "check": "palette_drift",
+        "status": "pass",
+        "message": "mean dE 1.5, p95 3.5, off-palette 0.0% (top: #995522 (0.0%), #884422 (0.0%))",
+        "value": 1.4681
+      },
+      {
+        "check": "ground_line",
+        "status": "warn",
+        "message": "feet at 85.8% of the height (contract 88%)",
+        "value": 0.8584
+      },
+      {
+        "check": "harmony",
+        "status": "warn",
+        "message": "harmony score 54 against the char reference (outliers: C_p95, L_p2, tint_b)",
+        "value": 53.5
+      },
+      {
+        "check": "edit_stability",
+        "status": "pass",
+        "message": "98% of the parent level unchanged",
+        "value": 0.9761
+      },
+      {
+        "check": "edit_chroma",
+        "status": "pass",
+        "message": "chroma x1.09 of the parent level (drift compounds along a chain)",
+        "value": 1.0864
+      }
+    ]
+  },
+  "note": "auto-picked by QA; founder review pending. Both original and official locked initial takes pass independent content and actual published-body comparison: a small lawn-only mossy patch on the middle of the back, clear of face and paper-lantern scar, with a short wooden bench, exactly one mooring post and coiled rope, a grass tuft and exactly one empty curled honey-wood lantern hook. No soil bowl, roots, door, house, tree, lit lantern, character or unrelated object. Camera-facing face, eyes, faint smile, blush, scar, body placement and rounded stock tip remain visually registered on shared1536x1024 canvas, without fins or tail flukes. Canonical hard QA passes both, edit_stability0.9764/0.9761 and edit_chroma1.1497/1.0864 pass. No lock_load reported for char takes; equal-load fallback selects higher Harmony take2 (53.5 versus49.8). Light/Harmony warnings advisory; no invented numeric patch-size limit, stricter stability threshold, manual alignment, palette or alpha cleanup. Independent whole-whale edit of body only, not cumulative with other parts. Stable consumer links unchanged. Founder review pending."
+}

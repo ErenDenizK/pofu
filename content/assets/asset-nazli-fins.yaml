@@ -4,17 +4,18 @@ title_tr: nazli-fins
 title_en: nazli-fins (char)
 status: in-production
 horizon: now
-summary: >-
-  Edit the attached whale. Add her two pectoral fins: the nearer fin hangs from the low near
-  side of the body just behind the head, broad, rounded and cream, angled gently back and
-  down, and the farther fin shows only its rounded tip below the belly on the far side, in
-  the same three-quarter view and the same painting. Neither fin covers her face or her eye.
-  Only the two fins are added: her head, face, body, scar and e…
+summary: 'Edit the attached whale. Add her two pectoral fins: the nearer fin hangs
+  from the low near side of the body just behind the head, broad, rounded and cream,
+  angled gently back and down, and the farther fin shows only its rounded tip below
+  the belly on the far side, in the same three-quarter view and the same painting.
+  Neither fin covers her face or her eye. Only the two fins are added: her head, face,
+  body, scar and e…'
 links:
   variant_of:
   - asset-nazli-body
 art:
-  images: []
+  images:
+  - design/art/masters/nazli-fins/nazli-fins.webp
   jobs:
   - batch-37-nazli-rig-pilot:nazli-fins
 sources:
