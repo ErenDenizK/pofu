@@ -1,0 +1,444 @@
+batch: batch-30c-decor-seasons-2-v2
+manifest: tools/imagegen/manifest/batch-30c-decor-seasons-2-v2.yaml
+manifest_sha256: ea5cacbf97d06a6c7df0fdc0cfe18e40fe973d63e48e965cce6438809fb462ce
+contact_sheet: design/art/takes/batch-30c-decor-seasons-2-v2/x-decor-kis-sled-v2/contact.jpg
+jobs:
+  x-decor-kis-sled-v2:
+    pick: none
+    publication: skipped after one allowed retry
+    note: 'Skipped after exactly one unchanged-prompt retry: complete posted silhouettes
+      are 653, 627, 360 and 618 px wide, all above the literal at-most-one-third cap
+      341.33 px. Original and official locked alpha-composites preserve the honey
+      wooden sled, full curled runners, close coral rope, snow mound and visibly folded
+      striped cushion, but guide width is ineligible even for take 3. Take 1 additionally
+      reaches the right canvas edge. No source shrink, crop, prompt edit or threshold
+      waiver. All four immutable originals retained; independent winter corner remains
+      eligible and is not a dependent.'
+qa_reports:
+  1:
+    job: x-decor-kis-sled-v2
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 53 (R1 51)
+      value: 52.9
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 45 (at most 22), p98 94 (at least 90), spread 49
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 48.9
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 74 (band 55-90)'
+      value: 74.5
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.13 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.129
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.3 (at least 3.5)'
+      value: 5.35
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.2 (R1 5.3)
+      value: 2.18
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.9
+      value: 1.888
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 3.2, p95 10.9, off-palette 3.8% (top: #BB6633 (0.9%), #AA5522
+        (0.8%))'
+      value: 3.1558
+    - check: decor_anchor
+      status: warn
+      message: top y 461 above the height bar (500); width 654 px wider than the footprint
+        (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 84 against the world reference (outliers: edge)'
+      value: 83.9
+    info:
+      fit_skipped: needs x0.53, below x0.6 (a real art failure)
+      registration:
+        dx: 191
+        dy: 25
+      metrics_raw:
+        L_p5: 49.6
+        L_p50: 74.6
+        L_p95: 91.6
+        C_p50: 39.0
+        C_p95: 54.0
+        C_p99: 56.9
+        detail: 2.91
+      metrics_locked:
+        L_p5: 50.2
+        L_p50: 74.5
+        L_p95: 91.4
+        C_p50: 39.0
+        C_p95: 52.9
+        C_p99: 54.6
+        detail: 2.18
+    fingerprint: 834fedb45238294d
+  2:
+    job: x-decor-kis-sled-v2
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: warn
+      message: chroma p95 52 (R1 51)
+      value: 52.1
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 44 (at most 22), p98 94 (at least 90), spread 50
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 50.3
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 74.8
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.14 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.141
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 6.1 (at least 3.5)'
+      value: 6.06
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.5 (R1 5.3)
+      value: 2.54
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.9
+      value: 1.8856
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.7, p95 10.4, off-palette 2.8% (top: #BB6633 (0.7%), #AA5522
+        (0.5%))'
+      value: 2.7228
+    - check: decor_anchor
+      status: warn
+      message: width 627 px wider than the footprint (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 82 against the world reference (outliers: detail, edge)'
+      value: 82.1
+    info:
+      fit_skipped: needs x0.57, below x0.6 (a real art failure)
+      registration:
+        dx: 112
+        dy: 84
+      metrics_raw:
+        L_p5: 49.2
+        L_p50: 75.2
+        L_p95: 93.0
+        C_p50: 37.7
+        C_p95: 53.4
+        C_p99: 56.0
+        detail: 3.46
+      metrics_locked:
+        L_p5: 49.8
+        L_p50: 74.8
+        L_p95: 92.6
+        C_p50: 37.6
+        C_p95: 52.1
+        C_p99: 54.8
+        detail: 2.54
+    fingerprint: 834fedb45238294d
+  3:
+    job: x-decor-kis-sled-v2
+    take: 3
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.4
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 46 (at most 22), p98 94 (at least 90), spread 48
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 47.6
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 77 (band 55-90)'
+      value: 77.2
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.00 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.0
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 8.8 (at least 3.5)'
+      value: 8.76
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.1 (R1 5.3)
+      value: 2.06
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.1
+      value: 2.0501
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.2, p95 9.4, off-palette 2.2% (top: #995522 (0.5%), #BB6633
+        (0.4%))'
+      value: 2.2358
+    - check: decor_anchor
+      status: pass
+      message: on the decor guide
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 79 against the world reference (outliers: detail, edge)'
+      value: 79.2
+    info:
+      fit:
+        scale: 0.6767
+        anchor:
+        - 433.9
+        - 906
+      registration:
+        dx: 79
+        dy: -18
+      metrics_raw:
+        L_p5: 50.4
+        L_p50: 77.7
+        L_p95: 93.4
+        C_p50: 34.5
+        C_p95: 51.8
+        C_p99: 56.0
+        detail: 2.75
+      metrics_locked:
+        L_p5: 51.5
+        L_p50: 77.3
+        L_p95: 92.9
+        C_p50: 34.4
+        C_p95: 50.4
+        C_p99: 53.0
+        detail: 2.06
+    fingerprint: 834fedb45238294d
+  4:
+    job: x-decor-kis-sled-v2
+    take: 4
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: source has an alpha channel
+    - check: canvas
+      status: pass
+      message: 1254x1254 scaled x0.817 into 1024x1024
+      value: 0.8166
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 50 (R1 51)
+      value: 50.3
+    - check: light_values
+      status: warn
+      message: 'day/subject: L p2 48 (at most 22), p98 94 (at least 90), spread 46
+        (at least 60) (warn-only until the founder has seen the light pilot)'
+      value: 46.1
+    - check: light_median
+      status: pass
+      message: 'day/subject: median L 75 (band 55-90)'
+      value: 74.9
+    - check: light_haze
+      status: pass
+      message: 'day/subject: dark-channel haze 0.17 (at most 0.20; no true dark means
+        a wash)'
+      value: 0.169
+    - check: light_contrast
+      status: pass
+      message: 'day/subject: p75 local contrast 5.6 (at least 3.5)'
+      value: 5.59
+    - check: detail_budget
+      status: pass
+      message: detail at display size 2.4 (R1 5.3)
+      value: 2.39
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 2.0
+      value: 2.0204
+    - check: no_guide_magenta
+      status: pass
+      message: 0 guide-magenta pixels (per 1024^2)
+      value: 0.0
+    - check: palette_drift
+      status: warn
+      message: 'mean dE 2.6, p95 8.5, off-palette 1.0% (top: #995522 (0.3%), #AA5533
+        (0.3%))'
+      value: 2.592
+    - check: decor_anchor
+      status: warn
+      message: width 618 px wider than the footprint (360) (advisory in an exploration)
+      value: 888.0
+    - check: harmony
+      status: pass
+      message: 'harmony score 86 against the world reference (outliers: detail, edge)'
+      value: 86.0
+    info:
+      fit_skipped: needs x0.58, below x0.6 (a real art failure)
+      registration:
+        dx: 185
+        dy: 28
+      metrics_raw:
+        L_p5: 53.2
+        L_p50: 75.1
+        L_p95: 93.1
+        C_p50: 35.9
+        C_p95: 50.9
+        C_p99: 52.9
+        detail: 3.31
+      metrics_locked:
+        L_p5: 53.9
+        L_p50: 74.9
+        L_p95: 92.9
+        C_p50: 36.0
+        C_p95: 50.3
+        C_p99: 51.3
+        detail: 2.39
+    fingerprint: 834fedb45238294d
+manual_review:
+  observed_note: 'Skipped after exactly one unchanged-prompt retry: complete posted
+    silhouettes are 653, 627, 360 and 618 px wide, all above the literal at-most-one-third
+    cap 341.33 px. Original and official locked alpha-composites preserve the honey
+    wooden sled, full curled runners, close coral rope, snow mound and visibly folded
+    striped cushion, but guide width is ineligible even for take 3. Take 1 additionally
+    reaches the right canvas edge. No source shrink, crop, prompt edit or threshold
+    waiver. All four immutable originals retained; independent winter corner remains
+    eligible and is not a dependent.'
+  excluded_takes:
+  - 1
+  - 2
+  - 3
+  - 4
+sources:
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-decor-kis-sled-v2
+  take: 1
+  round: 1
+  logical_run: 20261106-b30c-v2-sled
+  source_file: /workspace/generated_images/exec-21a8e467-71cf-4165-9b82-01f9142a286b.png
+  returned_at: '2026-11-06T00:49:55.578Z'
+  prompt_sha256: 398f7e3d9b5f85b5381b792f7acba515864287c4e711f87dc37f09fed6c479bf
+  fingerprint: 834fedb45238294d
+  saved_at: '2026-11-06T00:49:55.961052+00:00'
+  original_generated_png_sha256: a4539b73ef52187978cf3870a54e626449d702eda526e581606bcf3f44d75225
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: 8c56b5f3c8c07fa3e99c38d7ea9520edd0ad702181611809c24a2e5fc0a8ece0
+  inbox_png_sha256: ae056740ed81367a59eb26e5b7ce21dae34cd5fec2e6f868c805070e1971b3a2
+  qa_sha256: e0a2827df99d7fbf62075845e10530023714b5590d51f6476e1ec24fcd4b521d
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-decor-kis-sled-v2
+  take: 2
+  round: 1
+  logical_run: 20261106-b30c-v2-sled
+  source_file: /workspace/generated_images/exec-e74c944d-e5ae-4bc2-bfea-772583670b2d.png
+  returned_at: '2026-11-06T00:50:47.449Z'
+  prompt_sha256: 398f7e3d9b5f85b5381b792f7acba515864287c4e711f87dc37f09fed6c479bf
+  fingerprint: 834fedb45238294d
+  saved_at: '2026-11-06T00:50:47.801394+00:00'
+  original_generated_png_sha256: 0d883cf8baf94ea27a7f57004bc8fd3121730e2c26c2d4cf854d94a5e4f61501
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: ed3e49e7d33d51178c12b60cd971650d67b4519900b054edbc65597c54ea58bc
+  inbox_png_sha256: 98c2ccc67ef8a1d2e7c6470ea83e74b6b35af0f9848856e1bae7fce2e492c22d
+  qa_sha256: 01837d398a0edcf4493e39507feaed49a810ce9dd9662d16afbd1f5f9684b58f
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-decor-kis-sled-v2
+  take: 3
+  round: 2
+  logical_run: 20261106-b30c-v2-leaves-sled-retry
+  source_file: /workspace/generated_images/exec-a2978d8b-4309-4d98-8bb8-820a1925dd76.png
+  returned_at: '2026-11-06T00:54:47.023Z'
+  prompt_sha256: 398f7e3d9b5f85b5381b792f7acba515864287c4e711f87dc37f09fed6c479bf
+  fingerprint: 834fedb45238294d
+  saved_at: '2026-11-06T00:54:47.530504+00:00'
+  original_generated_png_sha256: f4eb62ea4ea685a356c70023fe81444e01a6f85dca57b01018ba7ab1007db254
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: e29f42ad6c0207f0718b0f84ddf5980a8cfbe2e5eebb640c4b8aacd8f8216b8d
+  inbox_png_sha256: 8ee128fcaad3066dc4909eed8febee1756a24440c02bc080d616ae769718b55a
+  qa_sha256: 4601c15ba88daea1a8aedd0cb9dfb701bae519d594ac5d22037248bd62c6788f
+- batch: batch-30c-decor-seasons-2-v2
+  job: x-decor-kis-sled-v2
+  take: 4
+  round: 2
+  logical_run: 20261106-b30c-v2-leaves-sled-retry
+  source_file: /workspace/generated_images/exec-ac790c5a-92b4-4239-9f9d-65da0f6e862e.png
+  returned_at: '2026-11-06T00:55:34.016Z'
+  prompt_sha256: 398f7e3d9b5f85b5381b792f7acba515864287c4e711f87dc37f09fed6c479bf
+  fingerprint: 834fedb45238294d
+  saved_at: '2026-11-06T00:55:34.381122+00:00'
+  original_generated_png_sha256: 7808f024a67abc1fa9b04d9f8bea24039b5b363da99015a4026beaefe1a7626d
+  dimensions:
+  - 1254
+  - 1254
+  rgba_sha256: e410f43fdbd71e07f5547d74fbde05a3d7a5891a5ace2eb28e43f30746190baa
+  inbox_png_sha256: 5029840113a4fac8979cbd57a3e2746274bd79f08d31a9794d83991fde2b560c
+  qa_sha256: 299d7f0833a10d5bd40307e006df09a70e6fd6f40071e0d39d7a690f448314b6
+account:
+  owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+  kind: chatgpt-plan
+policy:
+  never_promote: true
+  style_checks: advisory for explorations; hard checks unchanged
+  ranking: passing hard QA and manual review, then lowest lock load, then highest
+    Harmony
+  source_preservation: Original generated PNGs retained unchanged outside Git; q90
+    WebP copies published
+variation_proof_sha256: a6b42f3fbfdb3ab513b04eb9c4e1ea02889b0542875eb6cff926b45df031def0
