@@ -372,16 +372,9 @@ struct HomeView: View {
             }
             .buttonStyle(PofuPrimaryButtonStyle())
 
-            Button {
+            PofuIconButton(systemName: "ticket", label: String(localized: "Passes")) {
                 model.homeSheet = .passes
-            } label: {
-                Image(systemName: "ticket")
-                    .font(PofuFont.title3)
-                    .frame(width: PofuSize.buttonHeight, height: PofuSize.buttonHeight)
             }
-            .buttonStyle(.glass)
-            .tint(PofuColor.accent)
-            .accessibilityLabel(Text("Passes"))
         }
     }
 }
@@ -408,7 +401,11 @@ struct TodaySheet: View {
 
     private var hero: some View {
         HStack(spacing: PofuSpacing.m) {
-            PofuPaintedIcon(.iconMoodContent, size: 64)
+            // One sticker for the day's mood.
+            StickerView(
+                Sticker.dayMood(skipped: model.impulsesToday.resisted, reaches: model.impulsesToday.attempts),
+                size: 64
+            )
                 .padding(PofuSpacing.xs)
                 .background { PofuPaperPanel() }
             VStack(alignment: .leading, spacing: PofuSpacing.xs) {
@@ -531,8 +528,7 @@ private struct CollectButton: View {
             .padding(.horizontal, PofuSpacing.m)
             .frame(minHeight: PofuSize.minimumTouch)
         }
-        .buttonStyle(.glass)
-        .tint(PofuColor.energyOnFill)
+        .pofuActionStyle(.secondary)
     }
 }
 

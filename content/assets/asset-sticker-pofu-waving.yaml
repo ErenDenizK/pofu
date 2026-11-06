@@ -1,0 +1,20 @@
+id: asset-sticker-pofu-waving
+type: asset
+title_tr: sticker-pofu-waving
+title_en: sticker-pofu-waving (char)
+status: in-production
+horizon: now
+summary: >-
+  A single full-body sticker of Pofu the hamster in the exact attached look, one paw raised
+  in a friendly wave, a warm smile, eyes open. Centred on a plain transparent background with
+  wide empty space around it, drawn complete with the whole body. No text, no speech bubbles,
+  no floating hearts, no sticker border, no ground shadow.
+art:
+  images: []
+  jobs:
+  - batch-42-stickers:sticker-pofu-waving
+sources:
+- doc: tools/imagegen/manifest/batch-42-stickers.yaml
+kind: char
+batch: batch-42-stickers
+size: 1024x1024

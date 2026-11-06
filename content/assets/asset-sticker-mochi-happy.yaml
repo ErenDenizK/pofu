@@ -1,0 +1,20 @@
+id: asset-sticker-mochi-happy
+type: asset
+title_tr: sticker-mochi-happy
+title_en: sticker-mochi-happy (char)
+status: in-production
+horizon: now
+summary: >-
+  A single full-body sticker of Mochi the bunny in the exact attached look, eyes as happy
+  closed arcs, a wider smile, a blush, ears up. Centred on a plain transparent background
+  with wide empty space around it, drawn complete with the whole body. No text, no speech
+  bubbles, no floating hearts, no sticker border, no ground shadow.
+art:
+  images: []
+  jobs:
+  - batch-42-stickers:sticker-mochi-happy
+sources:
+- doc: tools/imagegen/manifest/batch-42-stickers.yaml
+kind: char
+batch: batch-42-stickers
+size: 1024x1024
