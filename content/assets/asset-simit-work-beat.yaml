@@ -2,13 +2,12 @@ id: asset-simit-work-beat
 type: asset
 title_tr: simit-work-beat
 title_en: simit-work-beat (char)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Edit the attached character, the kitten Simit, into one animation frame: holding a small
-  round simit bagel up in both paws, proud. Keep the face, the colours, the fur, the size
-  and the exact position on the canvas the same; change only the legs and paws and a slight
-  sway, as a cute cartoon step, never a realistic gait.
+summary: 'Edit the attached character, the kitten Simit, into one animation frame:
+  holding a small round simit bagel up in both paws, proud. Keep the face, the colours,
+  the fur, the size and the exact position on the canvas the same; change only the
+  legs and paws and a slight sway, as a cute cartoon step, never a realistic gait.'
 links:
   variant_of:
   - asset-simit-kitten
@@ -21,3 +20,20 @@ sources:
 kind: char
 batch: batch-59-resident-walks
 size: 1024x1536
+notes:
+- 'batch-59-resident-walks skipped after four takes: Skipped after exactly two initial
+  takes and the sole unchanged-prompt retry pair. Every actual official report remains
+  hard-QA ineligible: t1 palette_drift, ground_line; t2 palette_drift, ground_line;
+  t3 palette_drift, edit_silhouette, edit_stability; t4 palette_drift, edit_silhouette.
+  Preserve all original takes and truthful QA; no promotion, force, threshold/source
+  edits or further generation. Other frames independently edit their approved external
+  base and continue; no false dependent cascade. This decision uses hard QA and does
+  not claim unseen retry manual approval. Automated failures: t1 palette_drift: mean
+  dE 4.6, p95 16.4, off-palette 12.3% (top: #DD8844 (2.5%), #CC7733 (1.8%)), ground_line:
+  feet at 94.0% of the height (contract 88%); t2 palette_drift: mean dE 4.9, p95 16.8,
+  off-palette 13.3% (top: #DD8844 (3.0%), #CC7733 (2.7%)), ground_line: feet at 93.6%
+  of the height (contract 88%); t3 palette_drift: mean dE 4.9, p95 17.5, off-palette
+  14.7% (top: #DD8844 (3.3%), #CC7733 (2.9%)), edit_silhouette: 69% of the parent''s
+  shape kept, edit_stability: 28% of the parent level unchanged; t4 palette_drift:
+  mean dE 4.2, p95 15.9, off-palette 11.9% (top: #DD8844 (2.4%), #CC7733 (2.0%)),
+  edit_silhouette: 80% of the parent''s shape kept.'
