@@ -1,0 +1,36 @@
+id: asset-x-sticker-goat-v2
+type: asset
+title_tr: x-sticker-goat-v2
+title_en: x-sticker-goat-v2 (sheet)
+status: planned
+horizon: now
+summary: >-
+  A sticker sheet of three full-body poses of the harbor goat, in her exact attached look,
+  in a row: (1) munching, calmly chewing a small tuft of grass with half-closed eyes; (2)
+  startled, eyes wide, ears flung back, one hoof lifted; (3) smug, chin raised, eyes half-lidded,
+  a tiny knowing smile. Do not draw Pofu. On a plain transparent background, in a loose grid
+  with wide empty space around each sticker, none touching…
+art:
+  images: []
+  jobs:
+  - batch-23-stickers-v2:x-sticker-goat-v2
+sources:
+- doc: tools/imagegen/manifest/batch-23-stickers-v2.yaml
+kind: sheet
+batch: batch-23-stickers-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 2; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Source and locked proper-composite review, independently
+  compared with the actual approved stylized goat, confirms three complete separated goats
+  in original row: munching one smooth grass tuft with half-closed eyes; startled wide eyes/back-swept
+  lateral ears and ONE clear raised forehoof gesture; smug raised chin/half-lidded eyes/tiny
+  knowing smile. Lower angled hooves are perspective/forward placement, not evidence of another
+  raised-hoof gesture; no invented contact-plane or realistic-caprine gate is applied to this
+  stylized reference. Horns/hooves remain smooth and no curl, extra prop, text or actual background
+  is present. Both pass hard QA/manual checks; lower load selects take2=.0054 versus take1=.0072.
+  Exploration only; never promoted.

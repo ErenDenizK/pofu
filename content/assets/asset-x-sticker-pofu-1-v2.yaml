@@ -1,0 +1,36 @@
+id: asset-x-sticker-pofu-1-v2
+type: asset
+title_tr: x-sticker-pofu-1-v2
+title_en: x-sticker-pofu-1-v2 (sheet)
+status: planned
+horizon: now
+summary: >-
+  A sticker sheet of five full-body poses of Pofu the hamster, in his exact attached look,
+  each a different emotion: (1) happy, eyes closed in a smile, paws up; (2) sleepy, eyes half
+  closed, head drooping, a tiny yawn; (3) surprised, eyes wide, mouth a small round O, fur
+  puffed; (4) proud, chest out, chin up, eyes bright, a small content smile; (5) sulky, cheeks
+  puffed, a small pout, eyes looking sideways, arms folded …
+art:
+  images: []
+  jobs:
+  - batch-23-stickers-v2:x-sticker-pofu-1-v2
+sources:
+- doc: tools/imagegen/manifest/batch-23-stickers-v2.yaml
+kind: sheet
+batch: batch-23-stickers-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Source and official locked manual review confirm
+  exactly five complete separated Pofu figures in the original 3+2 order, curl on every figure,
+  and every required eye/mouth/body action: happy eyes shut and paws up; sleepy half-lidded
+  droop/tiny yawn; surprised wide eyes/O/puffed fur; proud chin/chest raised with bright eyes/content
+  smile; sulky puffed cheeks/pout/side glance/folded arms. Take1 is clean; take2 has visible
+  cloudy translucent background persisting in proper original and locked light/dark composites
+  and is excluded, without inventing a numeric alpha gate. Hard QA passes for both; lowest
+  eligible lock load selects take1=.0600 versus excluded take2=.0904. Style/light warnings
+  are advisory. Exploration only; never promoted.

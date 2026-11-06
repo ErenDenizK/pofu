@@ -1,0 +1,36 @@
+id: asset-x-sticker-duo-1-v2
+type: asset
+title_tr: x-sticker-duo-1-v2
+title_en: x-sticker-duo-1-v2 (sheet)
+status: planned
+horizon: now
+summary: >-
+  A sticker sheet of three groups of Pofu the hamster and Mochi the bunny together, both in
+  their exact attached looks and correct relative size, in a row: (1) tea for two, side by
+  side, each holding a small tulip-shaped tea glass, clinking gently; (2) a hug, the two embracing,
+  eyes closed, blushing; (3) waving goodbye, both waving a paw, smiling. On a plain transparent
+  background, in a loose grid with wide empty space…
+art:
+  images: []
+  jobs:
+  - batch-23-stickers-v2:x-sticker-duo-1-v2
+sources:
+- doc: tools/imagegen/manifest/batch-23-stickers-v2.yaml
+kind: sheet
+batch: batch-23-stickers-v2
+size: 1536x1024
+notes:
+- Exploration only; never promoted and not an app asset.
+- >-
+  Selected take 1; auto-picked by QA; founder review pending. Registration remains planned
+  and art.images is empty.
+- >-
+  auto-picked by QA; founder review pending. Original and locked proper composites confirm
+  exactly three separated pair groups/six complete characters, each one Pofu with curl and
+  one long-eared Mochi without curl, with correct similar relative size. Tea pair holds exactly
+  two tulip glasses actually clinking, no saucer/table; central pair embraces with eyes closed
+  and blush; goodbye pair both wave one paw and smile. Within-pair contact is intentional
+  and separate groups remain apart. Both initial takes pass literal brief and hard QA. Take1
+  original is2172x724; unmodified canonical normalization preserves all silhouettes on declared1536x1024,
+  so no invented raw-size failure, clipping or white-border claim. Lowest lock load selects
+  take1=.1395 versus take2=.2375. Advisory warnings retained; exploration only, never promoted.
