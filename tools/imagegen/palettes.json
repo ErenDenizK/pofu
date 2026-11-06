@@ -77,5 +77,21 @@
     "cornflower-shade": "#8B8DB4",
     "soft-lavender": "#C9B8E3",
     "petal-pink": "#F0A9B5"
+  },
+  "world-water": {
+    "$note": "Çağlayan (batch-43): water, wet and dry stone, mist and wet wood. A job adds it through `palettes:`.",
+    "pool-deep": "#4F8F9A",
+    "water": "#7DBEC6",
+    "water-light": "#A9DADB",
+    "foam": "#EAF6F3",
+    "mist": "#DCE9EF",
+    "wet-stone": "#7D7B78",
+    "wet-stone-dark": "#5E5D5C",
+    "dry-stone": "#C8BBA4",
+    "dry-stone-light": "#E2D7C2",
+    "wet-wood": "#7A5638",
+    "dry-wood": "#A88866",
+    "otter-cocoa": "#8A5A3C",
+    "otter-cream": "#F1E2CB"
   }
 }
