@@ -202,3 +202,22 @@ class MaterialRangeTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class DirectionTests(unittest.TestCase):
+    def test_region_remap_hits_target_lightness_and_leaves_other_hues(self):
+        from PIL import Image
+        green = np.concatenate([lab_patch(L, -25, 30, (1, 32)) for L in np.linspace(65, 95, 32)], axis=0)
+        earth = lab_patch(80, 10, 30, (32, 32))
+        img = Image.fromarray(np.uint8(np.concatenate([green, earth], axis=1)[..., :4] * 255 + 0.5), "RGBA")
+        rule = {"region": {"hue": [95, 150], "chroma_min": 10}, "lightness": {"p5": 55, "p50": 62, "p95": 68}, "chroma_scale": 1.2}
+        out = hm.direct_image("probe", img, {"assets": {"probe": rule}})
+        a = np.asarray(out, dtype=float) / 255
+        L, C, _ = sl.lch(sl.srgb_to_lab(a[..., :3]))
+        self.assertAlmostEqual(float(np.median(L[:, :32])), 62, delta=2.0)
+        self.assertAlmostEqual(float(np.median(L[:, 32:])), 80, delta=1.0)
+
+    def test_unlisted_asset_is_untouched(self):
+        from PIL import Image
+        img = Image.fromarray(np.uint8(lab_patch(70, 20, 30) * 255 + 0.5), "RGBA")
+        self.assertIs(hm.direct_image("mochi", img, {"props": {"kinds": ["prop"], "chroma_scale": 0.8}}), img)

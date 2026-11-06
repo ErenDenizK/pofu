@@ -785,6 +785,11 @@ def app_main():
             # chroma cap holds on the shipped pixels; characters, plates, sky and glow overlays are left
             # alone by its config.
             img = vivid.regrade_image(name, img)
+            # Art direction (design/art/harmony/direction.json): the lawn's value and chroma, and the one
+            # chroma scale for props and stations, after vivid so its boost does not undo it. Compare
+            # bakes (--unharmonized, --v2) stay as they were.
+            if alt in ("", "--round2"):
+                img = harmony.direct_image(name, img)
         variants = {"sharp": (img, _box((0, 0), img.size, ppu, anchor))}
         if spec.get("single"):
             # One image in world units, never blurred: a light overlay.

@@ -463,6 +463,91 @@ def correct_image(name: str, img: Image.Image, manifest: dict | None = None, cfg
 
 
 # ---------------------------------------------------------------------------
+# Art direction (a taste correction, after the technical one)
+# ---------------------------------------------------------------------------
+#
+# The technical correction above only matches measurable defects to the reference. Whether a lawn is
+# lush or a prop too loud against it is the art director's call, so it lives in its own file,
+# design/art/harmony/direction.json, and is baked by `preblur.py app` after the technical correction
+# (and after the vividness regrade for props). It is not part of the measured manifest, so editing
+# it never makes `check` stale; rebake instead.
+#
+#   assets.<id>   a region of one asset (e.g. the lawn's green hues) remapped in lightness (percentiles
+#                 of the region's own L, interpolated to the stated ones) and scaled in chroma
+#   props         one chroma scale for every sprite whose vivid kind is listed (props and stations);
+#                 characters, plates, the sky and glow overlays are never touched
+
+DIRECTION = HARMONY_DIR / "direction.json"
+
+
+def load_direction(path: Path = DIRECTION) -> dict:
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+
+
+def _smooth(x: np.ndarray, lo: float, hi: float) -> np.ndarray:
+    t = np.clip((x - lo) / max(hi - lo, 1e-6), 0, 1)
+    return t * t * (3 - 2 * t)
+
+
+def direct_region(rgba: np.ndarray, rule: dict) -> np.ndarray:
+    """`rgba` (float 0..1) with one direction rule applied to the pixels of its hue region."""
+    lab = sl.srgb_to_lab(np.clip(rgba[..., :3], 0, 1))
+    L, C, H = sl.lch(lab)
+    w = np.ones(L.shape)
+    reg = rule.get("region")
+    if reg:
+        h0, h1 = reg["hue"]
+        f = reg.get("feather", 8.0)
+        w = _smooth(H, h0 - f, h0 + f) * (1 - _smooth(H, h1 - f, h1 + f))
+        w = w * _smooth(C, reg.get("chroma_min", 8.0) * 0.6, reg.get("chroma_min", 8.0))
+    w = w * (rgba[..., 3] > 0.02)
+    solid = w > 0.5
+    if "lightness" in rule and solid.sum() > 20:
+        t = rule["lightness"]
+        src = np.percentile(L[solid], [5, 50, 95])
+        dst = [t["p5"], t["p50"], t["p95"]]
+        # np.interp clamps outside p5..p95; extend with the end slopes so no pixel flips order.
+        L2 = np.interp(L, src, dst)
+        L2 = np.where(L < src[0], dst[0] + (L - src[0]) * (dst[1] - dst[0]) / max(src[1] - src[0], 1e-3), L2)
+        L2 = np.where(L > src[2], dst[2] + (L - src[2]) * (dst[2] - dst[1]) / max(src[2] - src[1], 1e-3), L2)
+        L = L + (np.clip(L2, 0, 100) - L) * w
+    if rule.get("chroma_scale", 1.0) != 1.0:
+        C = C * (1 + (rule["chroma_scale"] - 1) * w)
+    rgb = sl.lab_to_srgb(sl.from_lch(L, C, H))
+    return np.concatenate([np.clip(rgb, 0, 1), rgba[..., 3:4]], axis=-1)
+
+
+def _vivid_kind(name: str) -> str | None:
+    sys.path.insert(0, str(HERE))
+    import vivid
+    return vivid.kind_of(name)
+
+
+def direct_image(name: str, img: Image.Image, direction: dict | None = None) -> Image.Image:
+    """`img` with the art-direction rules for `name` baked in (identity when it has none)."""
+    d = direction if direction is not None else load_direction()
+    rules = []
+    if name in d.get("assets", {}):
+        rules.append(d["assets"][name])
+    props = d.get("props")
+    if props and name not in props.get("except", []) and _vivid_kind(name) in props.get("kinds", []):
+        rules.append({"chroma_scale": props["chroma_scale"]})
+    if not rules:
+        return img
+    rgba = np.asarray(img.convert("RGBA"), dtype=np.float64) / 255.0
+    for rule in rules:
+        rgba = direct_region(rgba, rule)
+    return Image.fromarray(np.uint8(np.clip(rgba * 255 + 0.5, 0, 255)), "RGBA")
+
+
+def has_direction(name: str, direction: dict | None = None) -> bool:
+    d = direction if direction is not None else load_direction()
+    props = d.get("props") or {}
+    return name in d.get("assets", {}) or (
+        name not in props.get("except", []) and _vivid_kind(name) in props.get("kinds", []))
+
+
+# ---------------------------------------------------------------------------
 # The manifest
 # ---------------------------------------------------------------------------
 

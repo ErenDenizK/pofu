@@ -1,0 +1,16 @@
+{
+  "$note": "Art direction baked by preblur.py app after the technical harmony correction (tools/assets/harmony.py, sky-and-weather-v1 2.5). Saturation hierarchy, OKLCH-ish chroma: focal 1.0, props 0.7, ground 0.45, far background 0.25. assets.<id>: a hue region of one asset remapped in lightness (the region's own L percentiles to the stated ones) and scaled in chroma. props: one chroma scale for the vivid kinds listed.",
+  "assets": {
+    "island-main": {
+      "$note": "The home plate's lawn: darker and greener (L* 55-68), the earth body and the round door untouched.",
+      "region": {"hue": [95, 150], "chroma_min": 10, "feather": 8},
+      "lightness": {"p5": 55, "p50": 65, "p95": 68},
+      "chroma_scale": 1.35
+    }
+  },
+  "props": {
+    "kinds": ["prop", "station"],
+    "chroma_scale": 0.8,
+    "except": []
+  }
+}
