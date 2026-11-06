@@ -1,0 +1,24 @@
+id: asset-goat-step-a
+type: asset
+title_tr: goat-step-a
+title_en: goat-step-a (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached character, the harbor goat, into one animation frame: its left foot (the
+  viewer's right) lifted and stepping forward, the right foot planted, the body leaning a
+  tiny bit forward, its ears and beard swaying slightly back. Keep the face, the colours,
+  the fur, the size and the exact position on the canvas the same; change only the legs and
+  paws and a slight sway, as a cute cartoon step, never a realist…
+links:
+  variant_of:
+  - asset-harbor-goat
+art:
+  images: []
+  jobs:
+  - batch-59-resident-walks:goat-step-a
+sources:
+- doc: tools/imagegen/manifest/batch-59-resident-walks.yaml
+kind: char
+batch: batch-59-resident-walks
+size: 1024x1536

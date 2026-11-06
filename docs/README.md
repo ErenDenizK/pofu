@@ -11,7 +11,7 @@ with `python3 -I tools/docs/check_links.py`.
 - **Status and next steps:** `docs/tracker.md` and [roadmap.md](roadmap.md) (parallel tracks, no dated phases).
 - **Founder:** [product/founder-input.md](product/founder-input.md) (every message and how it was handled; standing decisions at the top).
 - **Last sessions:** [handoff.md](handoff.md). **Decisions:** [adr/](adr/README.md) (immutable; status per ADR).
-- **Pofu Hub** (questions with a recommendation; silence means yes): source `design/hub/index.html`.
+- **Pofu Hub:** frozen since 2026-11-03; chat is the channel for questions and status. Source `design/hub/index.html`.
 
 ## By topic
 

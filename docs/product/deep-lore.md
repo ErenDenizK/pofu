@@ -338,6 +338,12 @@ re-read by later books, which is how a small filler grows big later.
 | **Mehtap** | blue hour | The moon owl; the finale on the real full moon | The chart of dark stars: seven faint trails and one bright new one that ends at Ayçiçeği, tonight. The moon pool is the clearest view of the Still Water in the sky | **Nane** comes from a line of owls (the Reckoners) who have drawn the chart since the Long Bright began. She says "günaydın" at dusk because keepers wake at dusk; Ihlamur answered her every evening; she has had no one to say it to since. At the finale she says it to the player |
 | **Gezgin** (Nazlı) | moves | The whale you travel on; humble, then grown | §4.3 | **Yosun** the tortoise postman descends from Ağır, the fifth keeper, who started the custom of thank-you letters to "Bekçi". The letters are never late: the address moves with the quiet, and he delivers when he finds it. His want (one letter for him) is Ihlamur's last letter, which waits in Book Two |
 
+> **Placement:** for island order, arrival and which islands are main or
+> filler (Mehtap is Book One's last main island and its finale night, not a
+> real-moon year finale; Arı is the Act III upgrade island, not a filler),
+> [book-one-islands](../design/book-one-islands.md) is canonical. The lore
+> below is unchanged.
+
 ### 6.2 Home residents
 
 | Resident | Hidden layer |
@@ -362,6 +368,11 @@ re-read by later books, which is how a small filler grows big later.
 | **Olta** | Waiting by an ice hole | The hole goes all the way down into the Still Water; whoever fishes there brings up one old kept quiet as a small object, never the same twice. Line 5 is on its rim | Book Two |
 | **Yakamoz** | The moon's reflection | Reflections show Below. Yakamoz shows the one window still lit beyond the Ring (§7, M-B) | Book Two's opener |
 | **Kitap** | Bottles with messages | The Readers' library, where every copy of every record washes up. Line 6 is on its doorstep | Book Three's opener |
+
+Placement note: Arı is listed here as a filler, but
+[book-one-islands](../design/book-one-islands.md) makes it a main island
+(the Act III upgrade); its placement there is canonical, the secret above
+stands.
 
 New fillers follow one rule: each may hide one secret tied to §3, but
 its surface must be complete without it.

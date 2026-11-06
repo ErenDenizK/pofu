@@ -1,6 +1,6 @@
 # Home progression: Ayçiçeği from day one to the long tail
 
-**Status:** proposal by the progression designer, 2026-11-05. Extends
+**Status:** accepted; built in part (progression designer, 2026-11-05). Extends
 [game plan v1](game-plan.md) section 2 (the home cluster); where this file
 and older docs disagree about home levels, this file wins. Numbers are
 scale A ([economy](economy.md#economy-scale-a-small-numbers)); the day

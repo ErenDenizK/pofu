@@ -1,0 +1,23 @@
+id: asset-findik-work-beat
+type: asset
+title_tr: findik-work-beat
+title_en: findik-work-beat (char)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached character, the hedgehog Fındık, into one animation frame: holding a tiny
+  wooden mallet raised in one paw, about to tap. Keep the face, the colours, the fur, the
+  size and the exact position on the canvas the same; change only the legs and paws and a
+  slight sway, as a cute cartoon step, never a realistic gait.
+links:
+  variant_of:
+  - asset-findik
+art:
+  images: []
+  jobs:
+  - batch-59-resident-walks:findik-work-beat
+sources:
+- doc: tools/imagegen/manifest/batch-59-resident-walks.yaml
+kind: char
+batch: batch-59-resident-walks
+size: 870x1306

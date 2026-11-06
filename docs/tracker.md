@@ -208,7 +208,7 @@ no code) · **talked only** (in the log, no spec) · **dropped**.
 | Opus plans, Sonnet builds, Haiku looks; three agents | yes | in CLAUDE.md | none | 2026-11-05 |
 | No dated phases; tracks in parallel | yes | roadmap table | keep it current | 2026-11-06 |
 | English identifiers everywhere | at a quiet window | **map on `refactor/english-rename-map` (2026-11-03), never opened as a PR** | §3 | 2026-11-03 |
-| Pofu Hub (questions, status, roadmap) | most questions in chat | **last updated 2026-11-03** | retire or refresh (§5) | CLAUDE.md |
+| Pofu Hub (questions, status, roadmap) | most questions in chat | **frozen since 2026-11-03**; chat is the channel | none | CLAUDE.md |
 | Hub dictation | Whisper | built (#66), then simplified away (dfcb5685) | none unless he asks | 2026-11-02 |
 | Housekeeping, stale docs | one pass | done (#213); a second pass running | none | 2026-11-05 |
 
@@ -220,8 +220,8 @@ step is not on any track. Ordered by what he would notice first.
 | # | Item | Where it stands | Why it stalled | Cheapest next step |
 |---|---|---|---|---|
 | 1 | **Shadow tuning on the device** | Sun shadows read faint at the default zoom (handoff). | No device test since 2026-11-05. | Add the shadow, ceremony, sky and gate checks to the next install note; tune `ShadowTuning` from his screenshots. |
-| 2 | **Residents' natural work, movement, animation** | Life pass (PR `feat/life-pass`): a seeded 8 s loop per resident (work beat, short walk out and back on the walkable polygon, breath, glance), a 1.2 s tap reaction; only in the Ambient state. Still to do: walk-cycle art, Simit and the goat. | Every wave chose light and art integration first. No spec exists. | A small spec: idle loops (sway, breath, a work beat every few seconds) in code on existing poses, plus short walks on the plate's walkable polygon (already generated). One Sonnet PR, no new art. |
-| 3 | **Pofu's emotions** | Life pass: seven moods compose six rig parts (mouths, droop ears, a waving paw) over the base (`tools/art/pofu_rig_patches.py`). Cheeks, eyes and the other paws are not wired. | The rig was published, then the work moved to the world. | Wire the rig parts into `PofuCompanion` as layers chosen by mood (the residents' `ResidentEvent` pattern). No art. |
+| 2 | **Residents' natural work, movement, animation** | **Built (#277):** a seeded 8 s loop per resident (work beat, short walk out and back on the walkable polygon, breath, glance), a 1.2 s tap reaction; only in the Ambient state. Missing: walk-cycle sprites, Simit and the goat. | Every wave chose light and art integration first. | Walk-cycle art for the residents who walk; then Simit and the goat. |
+| 3 | **Pofu's emotions** | **Built (#277):** Pofu's face changes by mood (seven moods compose six rig parts: mouths, droop ears, a waving paw; `tools/art/pofu_rig_patches.py`). Missing: stronger expression art; cheeks, eyes and the other paws are not wired. | The rig was published, then the work moved to the world. | Stronger expression art, then wire cheeks and eyes by mood. |
 | 4 | **Home growth seen level by level (IL1 to IL10)** | A roadmap step; no sheet exists. | Asked twice; always behind light work. | A screenshot-harness target that renders IL1-IL10 at noon. One test file. It also answers "IL1 sparse". |
 | 5 | **IL1 sparse** | Known gap since the 2026-11-06 handoff. | It needs decor that has no placement model. | Place 3-4 existing approved props as fixtures at IL1 (no decor system needed); check them on the IL strip. |
 | 6 | **Sound** | Garden cues and collect only. No sound for level-ups, visitors, the ceremony, Koke or ambience. Sound B was decided 2026-11-02. | No owner; not on the tracks table. | Render 5 cues with `tools/sound/render.py` (level-up, visitor arrives, gift opens, Koke wakes, the evening bell); play them through `SoundEngine`. |
@@ -279,7 +279,7 @@ step is not on any track. Ordered by what he would notice first.
 | Game plan §5 and §8 vs the code | They say the garden is "only reachable from Rehearsal". The station sheet's "Play" opens it in the production flow. | Change the row to "built, in the home flow". |
 | Log 2026-11-06 midday later vs the docs | The log says "handled: the gate v2 spec". No such doc exists. [gate v2](product/ux/gate-v2.md) is from 2026-11-01, and #265 cites "section 5" of a spec that is not on main. | Write a short "gate v2.1: the painted gate" section in gate-v2.md, or correct the log. |
 | Roadmap Book One track | It says the story map poster "fixes the order". The poster was never made, and #271 now does that job. | Point the roadmap at #271 once it merges. |
-| CLAUDE.md "Pofu Hub ... status/now and roadmap/main" | The Hub was last changed 2026-11-03. | Say the Hub is frozen and chat is the channel, or refresh it. |
+| CLAUDE.md "Pofu Hub ... status/now and roadmap/main" | The Hub was last changed 2026-11-03. | Done: the Hub is frozen and chat is the channel (docs/README.md; CLAUDE.md no longer mentions it). |
 | [Light standard](design/light-standard.md) | Still warn-only "until the founder has seen the light pilot"; the lit-ladder pilot shipped (#231). | Enforce for production, or restate the gate. |
 | Art queue rows 4 and 5 | BLOCKED with no manifest since 2026-11-02. Decor now runs through backlog rows B-C and B-D. | Drop row 5. Rewrite row 4 against the UI audit. |
 | Experience v1, home progression, game plan status lines | They still say "proposal" while most of it is built. | Mark them "accepted; built in part". |
@@ -289,11 +289,11 @@ step is not on any track. Ordered by what he would notice first.
 
 ## 6. Decisions waiting on the founder
 
-Each has a recommendation. Silence means yes.
+Each has a recommendation. Silence means yes, except item 1, which needs the founder's explicit yes.
 
-1. **Monetization v2:** one membership at 129,99 / 349,99 / 999,99 TL, gate always free, nothing taken back. Recommend yes. The monthly price is the only new number.
-2. **Gate direction:** one of the three in #268 (round door, pier and sky, breath ring). Recommend the round door: it matches the shield icon at the door.
-3. **The roots (#267):** the underside grows with the island and keeps a keepsake from each healed island. Recommend yes.
+1. **Monetization v2 (needs his explicit yes; pricing is hard to reverse, so silence does not count):** one membership at 129,99 / 349,99 / 999,99 TL, gate always free, nothing taken back. Recommend yes. The monthly price is the only new number.
+2. **Gate direction: decided 2026-11-06.** The round door (lead's pick, shown to the founder); it matches the shield icon at the door.
+3. **The roots (#267): decided yes 2026-11-06**, with keepsake memories (yes): the underside grows with the island and keeps a keepsake from each healed island.
 4. **Seasons follow the real calendar** (home progression §13.5). Recommend yes.
 5. **Session length:** allow a 5-10 minute session when the player chooses it, keeping a 90 s median as the target. Recommend yes.
 6. **English rename:** do it in one planned window, or keep the Turkish ids. Recommend doing it after the Çağlayan wave.

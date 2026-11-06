@@ -1,0 +1,23 @@
+id: asset-island-main-face-il6
+type: asset
+title_tr: island-main-face-il6
+title_en: island-main-face-il6 (world)
+status: in-production
+horizon: now
+summary: >-
+  Edit the attached floating island: paint a third small round door into its earth body, set
+  into the earth exactly like the other two round doors, at the same height, at about 88 percent
+  of the earth body's width from its left edge. This door is painted a soft sage green with
+  a small round window, a tiny gear-shaped sign and a small wrench hanging on a nail beside
+  it, as in the attached door design, framed by the same…
+links:
+  variant_of:
+  - asset-island-main-face-il2
+art:
+  images: []
+  jobs:
+  - batch-60-earth-face:island-main-face-il6
+sources:
+- doc: tools/imagegen/manifest/batch-60-earth-face.yaml
+kind: world
+batch: batch-60-earth-face
