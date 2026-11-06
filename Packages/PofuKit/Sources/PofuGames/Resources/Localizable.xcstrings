@@ -1,6 +1,46 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "%@, %@, %@, row %lld column %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, %2$@, %3$@, %4$lld. satır %5$lld. sütun"
+          }
+        }
+      }
+    },
+    "%@ points at a stone.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bir taşı gösteriyor."
+          }
+        }
+      }
+    },
+    "%lld of %lld targets wet": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld / %2$lld hedef ıslak"
+          }
+        }
+      }
+    },
+    "%lld of %lld wet": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld / %2$lld ıslak"
+          }
+        }
+      }
+    },
     "%lld seeds this round": {
       "localizations": {
         "tr": {
@@ -21,12 +61,52 @@
         }
       }
     },
+    "Bend": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dirsek"
+          }
+        }
+      }
+    },
+    "Board %lld of %lld": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pano %1$lld / %2$lld"
+          }
+        }
+      }
+    },
     "Combo ×%lld": {
       "localizations": {
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Kombo ×%lld"
+          }
+        }
+      }
+    },
+    "Damla": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Damla"
+          }
+        }
+      }
+    },
+    "Done": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamam"
           }
         }
       }
@@ -61,6 +141,36 @@
         }
       }
     },
+    "Gate": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kapak"
+          }
+        }
+      }
+    },
+    "Grass": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çimen"
+          }
+        }
+      }
+    },
+    "Hint": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İpucu"
+          }
+        }
+      }
+    },
     "Keep planting": {
       "localizations": {
         "tr": {
@@ -71,12 +181,32 @@
         }
       }
     },
+    "Leave the water for later": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suyu sonraya bırak"
+          }
+        }
+      }
+    },
     "Mochi brewed the tea.": {
       "localizations": {
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Mochi çayı demledi."
+          }
+        }
+      }
+    },
+    "Mouth": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ağız"
           }
         }
       }
@@ -111,6 +241,16 @@
         }
       }
     },
+    "Pofu": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pofu"
+          }
+        }
+      }
+    },
     "Pofu's cheeks are stuffed.": {
       "localizations": {
         "tr": {
@@ -141,6 +281,16 @@
         }
       }
     },
+    "Rock": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaya"
+          }
+        }
+      }
+    },
     "Round %lld of %lld": {
       "localizations": {
         "tr": {
@@ -167,6 +317,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "SET TAMAM"
+          }
+        }
+      }
+    },
+    "Split": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Üçlü"
+          }
+        }
+      }
+    },
+    "Spring": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pınar"
+          }
+        }
+      }
+    },
+    "Straight": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Düz"
           }
         }
       }
@@ -237,6 +417,136 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bahçe çiçek açtı."
+          }
+        }
+      }
+    },
+    "The stream. Turn each stone until the water reaches the pool.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dere. Su havuza ulaşana kadar taşları çevir."
+          }
+        }
+      }
+    },
+    "The water found its way home.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Su yolunu buldu."
+          }
+        }
+      }
+    },
+    "Undo": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geri al"
+          }
+        }
+      }
+    },
+    "Water reaches the pool": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Su havuza ulaştı"
+          }
+        }
+      }
+    },
+    "Water reaches the wheel": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Su çarka ulaştı"
+          }
+        }
+      }
+    },
+    "Wheel": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çark"
+          }
+        }
+      }
+    },
+    "dry": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kuru"
+          }
+        }
+      }
+    },
+    "east": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "doğu"
+          }
+        }
+      }
+    },
+    "north": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kuzey"
+          }
+        }
+      }
+    },
+    "opens %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ yönlerine açık"
+          }
+        }
+      }
+    },
+    "south": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "güney"
+          }
+        }
+      }
+    },
+    "west": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "batı"
+          }
+        }
+      }
+    },
+    "wet": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ıslak"
           }
         }
       }
