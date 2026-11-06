@@ -29,6 +29,12 @@ links:
   uses_asset:
   - asset-icon-skip
   - asset-icon-round
+  - asset-gate-postcard-dawn
+  - asset-gate-postcard-day
+  - asset-gate-postcard-golden
+  - asset-gate-postcard-night
+  - asset-gate-postcard-rain
+  - asset-gate-postcard-mist
 sources:
 - doc: docs/product/ux/gate-v2.md
   anchor: '#61-the-landing'
