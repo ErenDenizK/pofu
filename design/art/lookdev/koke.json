@@ -1,0 +1,8 @@
+{
+  "title": "Koke, stage 0",
+  "canvas": [1200, 800],
+  "background": {"image": "design/art/masters/koke-island-0/koke-island-0.png", "kind": "plate"},
+  "layers": [
+    {"image": "design/art/masters/koke-asleep/koke-asleep.webp", "name": "koke-asleep", "role": "character", "x": 0.5, "y": 0.62, "height": 0.16, "casts": true}
+  ]
+}

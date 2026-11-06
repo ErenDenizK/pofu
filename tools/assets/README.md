@@ -226,3 +226,5 @@ the screenshot branch carries the contact sheet as `harmony.jpg`.
 or no output. `games` entries are flat PNGs for the garden minigame; `world` entries are
 sprites baked by `design/prototypes/interactions/tools/preblur.py app`, which `run` calls
 (it now rebuilds only `world-*` imagesets and keeps the normal maps and `ui-*` imagesets).
+
+`python3 -I tools/assets/lookdev.py render design/art/lookdev/<scene>.json --out OUT.jpg` (or `render-all --out-dir DIR`) composites background, decor and characters under the game's real grade, sun shadows and night pools at dawn, day, golden and night, and flags layers whose L*, chroma or white balance leave the ground they stand on (`lookdev.py`; recipes in `design/art/lookdev/`).
