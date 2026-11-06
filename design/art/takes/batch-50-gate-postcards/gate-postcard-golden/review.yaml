@@ -1,0 +1,173 @@
+batch: batch-50-gate-postcards
+contact_sheet: design/art/takes/batch-50-gate-postcards/gate-postcard-golden/contact.jpg
+jobs:
+  gate-postcard-golden:
+    pick: 2
+    publication: promoted; founder review pending
+    note: auto-picked by QA; founder review pending. Both original and official locked
+      candidates show the intended golden-hour honey lawn/flowers and peach cloud
+      sea, soft long contact shadows, clear empty lower-middle lawn standing patch
+      with stepping stones leading to it, fence left/pond right/side stone, calm sky
+      and quiet foreground. No characters, animals or text; same-place landmarks read
+      consistently. Existing light warnings remain advisory, not hard exclusions;
+      no force or source editing.
+qa_reports:
+  2:
+    job: gate-postcard-golden
+    take: 2
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 40 (R1 51)
+      value: 40.0
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 65 (at most 24), p98 91 (at least 86), spread
+        26 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 25.5
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 81 (band 48-86)'
+      value: 81.0
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.44 (at most 0.22; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.439
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 0.8 (at least 3.4) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.83
+    - check: detail_budget
+      status: pass
+      message: detail at display size 1.0 (R1 5.3)
+      value: 0.97
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.0
+      value: 0.9577
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.2, p95 2.4, off-palette 0.0%
+      value: 1.1818
+    info:
+      metrics_raw:
+        L_p5: 61.8
+        L_p50: 79.0
+        L_p95: 88.3
+        C_p50: 24.2
+        C_p95: 40.1
+        C_p99: 42.9
+        detail: 1.28
+      metrics_locked:
+        L_p5: 62.0
+        L_p50: 78.9
+        L_p95: 88.2
+        C_p50: 24.2
+        C_p95: 40.0
+        C_p99: 42.4
+        detail: 0.97
+    fingerprint: dfb692deaf203221
+  1:
+    job: gate-postcard-golden
+    take: 1
+    status: warn
+    preset: lock-light
+    checks:
+    - check: transparency
+      status: pass
+      message: opaque, as this kind must be
+    - check: canvas
+      status: pass
+      message: 1024x1536
+    - check: chroma_ceiling
+      status: pass
+      message: chroma p95 42 (R1 51)
+      value: 42.0
+    - check: light_values
+      status: warn
+      message: 'golden/subject: L p2 68 (at most 24), p98 88 (at least 86), spread
+        20 (at least 55) (warn-only until the founder has seen the light pilot)'
+      value: 20.1
+    - check: light_median
+      status: pass
+      message: 'golden/subject: median L 81 (band 48-86)'
+      value: 81.3
+    - check: light_haze
+      status: warn
+      message: 'golden/subject: dark-channel haze 0.45 (at most 0.22; no true dark
+        means a wash) (warn-only until the founder has seen the light pilot)'
+      value: 0.451
+    - check: light_contrast
+      status: warn
+      message: 'golden/subject: p75 local contrast 0.9 (at least 3.4) (warn-only until
+        the founder has seen the light pilot)'
+      value: 0.92
+    - check: detail_budget
+      status: pass
+      message: detail at display size 0.9 (R1 5.3)
+      value: 0.9
+    - check: lock_load
+      status: pass
+      message: the lock moved colors by mean dE 1.1
+      value: 1.0744
+    - check: palette_drift
+      status: pass
+      message: mean dE 1.3, p95 2.9, off-palette 0.0%
+      value: 1.2986
+    info:
+      metrics_raw:
+        L_p5: 64.0
+        L_p50: 78.8
+        L_p95: 86.0
+        C_p50: 26.3
+        C_p95: 42.2
+        C_p99: 47.1
+        detail: 1.21
+      metrics_locked:
+        L_p5: 64.2
+        L_p50: 78.8
+        L_p95: 85.9
+        C_p50: 26.4
+        C_p95: 42.0
+        C_p99: 45.8
+        detail: 0.9
+    fingerprint: dfb692deaf203221
+manual_review:
+  excluded_takes: []
+  note: Both original and official locked candidates show the intended golden-hour
+    honey lawn/flowers and peach cloud sea, soft long contact shadows, clear empty
+    lower-middle lawn standing patch with stepping stones leading to it, fence left/pond
+    right/side stone, calm sky and quiet foreground. No characters, animals or text;
+    same-place landmarks read consistently. Existing light warnings remain advisory,
+    not hard exclusions; no force or source editing.
+sources:
+- take: 1
+  source_file: /workspace/generated_images/exec-ac030ec5-5203-4e64-9f1a-a710a39ed6a0.png
+  original_generated_png_sha256: beede3c5bb839f9fb44e68c8016f843361220f0ab6f556909191291cebcf7ba6
+  inbox_png_sha256: 834d3eb744fe5b0dfae35cc6b757cfb89be8ceb2b63f504da4354f5020c55d32
+  rgba_sha256: f8a4fea6f453e5762d09fe6845b32ebcf55a3f9ae8000733718ca0275739c1f6
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: dfb692deaf203221
+- take: 2
+  source_file: /workspace/generated_images/exec-954febfa-a69a-4e95-9069-ba47dfdd7411.png
+  original_generated_png_sha256: b7942e67a0bd6a8f35eb790f421492b76b78649e1d6c15bc322656876e58ffcc
+  inbox_png_sha256: a399483dc625a9b810b61ce82dc049814483dc4eed96260ec35630bddc31c05f
+  rgba_sha256: f2bea54f0f9b07f8c00af7478c7385cbdfa592acba923d1aa2c89e84bbb0b8a4
+  source_rgba_matches_inbox: true
+  account:
+    owner: Founder's uncle's ChatGPT plan, used by the founder with permission
+    kind: chatgpt-plan
+  fingerprint: dfb692deaf203221
