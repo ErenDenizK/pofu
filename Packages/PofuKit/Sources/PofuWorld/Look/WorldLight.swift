@@ -177,6 +177,62 @@ public enum LookTuning {
     /// in seconds; after that the settled frame is cached.
     public static let visitSeconds = 2.5
 
+    // MARK: Sky and fog (sky and weather v1 §2.1, §2.3). Starting values; tuned on device.
+
+    /// Depth fog by tier, front to farthest: how far a layer is mixed
+    /// toward the current horizon colour (`FogModel`).
+    public static let fogTiers: [Double] = [0, 0.18, 0.38, 0.55]
+    /// The distance (`FarSkyLayout.Element.distance`, 0 front to 1
+    /// farthest) each tier sits at; between them the fog interpolates.
+    public static let fogTierDistances: [Double] = [0, 0.4, 0.7, 1]
+    /// Added to every tier behind the front one in mist (`mist` 1).
+    public static let fogMistExtra = 0.15
+    /// Shadows mix this much more fog than lights, so contrast collapses
+    /// with distance.
+    public static let fogShadowFactor = 1.25
+    /// Fog never reaches full cover, even on a shadow in mist.
+    public static let fogMaximum = 0.92
+
+    /// Height fog cards: their peak opacity in clear weather and in full
+    /// mist, their drift at 1x (points a second; the cards move at 1x, 2x
+    /// and 3.5x of it) and their wrap speed multiples.
+    public static let fogCardClearOpacity = 0.30
+    public static let fogCardMistOpacity = 0.75
+    public static let fogCardDrift = 0.8
+    public static let fogCardSpeedMultiples: [Double] = [1, 2, 3.5]
+
+    /// Clouds in three layers: the parallax multiples against the base
+    /// (far 1x, mid 1.8x, near 3x), the base share of the peek, how many
+    /// L* the shade takes off the zenith per layer, and how often the tint
+    /// may be recomputed (seconds).
+    public static let cloudParallaxMultiples: [Double] = [1, 1.8, 3]
+    public static let cloudParallaxBase = 0.3
+    public static let cloudShadeDarkening: [Double] = [15, 20, 25]
+    public static let cloudTintSeconds = 3.0
+    /// The fastest a cloud drifts at the 30 Hz tier, points a second.
+    public static let cloudMaxSpeed = 3.0
+
+    /// Night stays luminous: the zenith never falls below this L*.
+    public static let nightZenithFloor = 12.0
+    /// Stars: how many, and how fast they twinkle (Hz).
+    public static let starCount = 36
+    public static let starTwinkleHz: ClosedRange<Double> = 0.1...0.3
+    /// The moon's halo, as a share of the screen width.
+    public static let moonHaloRadius = 0.2
+
+    /// Koke at stage 0 (§2.4), by stage (stages 3 and 4 are clear): value
+    /// over chroma. The depth fog stays light so the island keeps its
+    /// contrast; the shade grade (a multiply toward a deep blue-violet, light
+    /// at the lit rim and full below), the contrast and the deeper sky behind
+    /// give it value; one warm shaft lands on the sprout.
+    public static let kokeFogAmount: [Double] = [0.08, 0.05, 0.02, 0, 0]
+    public static let kokeShaftAlpha: [Double] = [0.18, 0.12, 0.08, 0, 0]
+    public static let kokeShade: [Double] = [0.40, 0.26, 0.10, 0, 0]
+    public static let kokeContrast: [Double] = [1.18, 1.10, 1.04, 1, 1]
+    public static let kokeCardOpacity: [Double] = [0.60, 0.35, 0.12, 0, 0]
+    /// How many L* the sky behind Koke deepens (and a push toward blue).
+    public static let kokeSkyDeepen: [Double] = [9, 5, 2, 0, 0]
+
     // MARK: Light field (experience v1 §2). Starting values; tuned on device.
 
     /// The calm lantern's strength at calm ×1.0 and ×2.0.
