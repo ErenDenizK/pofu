@@ -2,14 +2,14 @@ id: asset-koke-island-3
 type: asset
 title_tr: koke-island-3
 title_en: koke-island-3 (plate)
-status: in-production
+status: cut
 horizon: now
-summary: >-
-  Edit the attached island plate from stage 0 to stage 3: nearly there. The moss on Koke's
-  hump and the lawn is now almost entirely a rich living green, with only a few pale grey
-  spots left in the deepest folds. Four of the five flower clusters are in open bloom: butter
-  yellow, blush pink, soft lilac and white blossoms with fresh green leaves; the fifth, at
-  the far right, still has buds. A warm sun from the upper left …
+summary: 'Edit the attached island plate from stage 0 to stage 3: nearly there. The
+  moss on Koke''s hump and the lawn is now almost entirely a rich living green, with
+  only a few pale grey spots left in the deepest folds. Four of the five flower clusters
+  are in open bloom: butter yellow, blush pink, soft lilac and white blossoms with
+  fresh green leaves; the fifth, at the far right, still has buds. A warm sun from
+  the upper left …'
 links:
   variant_of:
   - asset-koke-island-0
@@ -22,3 +22,21 @@ sources:
 kind: plate
 batch: batch-39-koke-production
 size: 1536x1024
+notes:
+- 'batch-39-koke-production skipped after four takes: Skipped after exactly one unchanged-prompt
+  retry. Initial take1 clears hard QA but leaves the upper/back-right blue group closed
+  while the outermost far-right group is visibly open, contrary to the explicit fifth
+  far-right group still in bud; independent source/locked/parent review agrees. Initial
+  take2 has that same semantic mismatch and hard palette drift. Retry takes3/4 both
+  hard-fail the unchanged palette_drift check (mean dE4.5297/4.5922); no eligible
+  candidate remains. All four originals, canonical QA and exact prompts are preserved.
+  Requested raking action was not falsely rejected for moving its explicitly named
+  rake. No further generation, palette/profile edits or forced promotion. This job
+  has no true dependents: later island stages independently edit stage0, so only this
+  job is skipped. Canonical full-frame before-grade Harmony C_mean across these rejected
+  candidates: 21.582,21.822,22.63,22.664. These are candidate observations, never
+  a delivered healed-stage claim. Automated failures: t2 palette_drift: mean dE 4.5,
+  p95 14.5, off-palette 10.8% (top: #BBBB44 (1.1%), #99AA33 (1.0%)); t3 palette_drift:
+  mean dE 4.5, p95 14.3, off-palette 10.8% (top: #AAAA33 (1.3%), #BBBB44 (1.3%));
+  t4 palette_drift: mean dE 4.6, p95 14.2, off-palette 9.8% (top: #99AA33 (1.2%),
+  #BBBB44 (1.2%)).'
