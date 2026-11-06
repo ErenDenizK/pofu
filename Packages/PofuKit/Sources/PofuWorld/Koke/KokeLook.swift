@@ -21,25 +21,39 @@ public struct KokeStageLook: Hashable, Sendable {
     public var cardOpacity: Double { LookTuning.kokeCardOpacity[stage] }
     /// The one warm shaft's alpha: 0.08 to 0.18 while it shows.
     public var shaftAlpha: Double { LookTuning.kokeShaftAlpha[stage] }
-    /// How much of the cool grade is mixed in, 0 to 1.
-    public var coolAmount: Double { LookTuning.kokeCoolShade[stage] }
+    /// The shade grade's multiply strength at the island's foot (the lit
+    /// rim takes a third of it).
+    public var shadeAmount: Double { LookTuning.kokeShade[stage] }
+    public var contrast: Double { LookTuning.kokeContrast[stage] }
+    public var skyDeepen: Double { LookTuning.kokeSkyDeepen[stage] }
     public var isActive: Bool { fog > 0 }
 
-    /// The multiply tint of the cooler shade grade, white when there is none.
-    public var coolTint: PofuRGB {
-        PofuRGB(red: 1, green: 1, blue: 1).mixed(with: Self.coolShade, amount: coolAmount)
-    }
-
-    /// The cool shade: blue-violet and teal, where the colour lives at
-    /// stage 0.
-    public static let coolShade = PofuRGB(red: 0.80, green: 0.88, blue: 1.0)
+    /// The shade: a deep blue-violet the mids and shadows are multiplied
+    /// toward, where the colour lives at stage 0.
+    public static let shadeColour = PofuRGB(hex: 0x4E4C7E)
     /// The shaft's warm hue.
-    public static let shaftColour = PofuRGB(hex: 0xFFD98F)
+    public static let shaftColour = PofuRGB(hex: 0xFFC98A)
+    /// The shaft's width, 0.2 of the island's.
+    public static var shaftWidth: Double { 0.2 * KokeLayout.plateSize.width }
     /// The sprout on the crown, in world units from the island's centre (from
     /// the painted plate: the green shoot on Koke's head).
     public static let sprout = WorldPoint(x: -0.5, y: -64.4)
     /// The shaft leans in from the upper left, this many degrees off vertical.
     public static let shaftAngle = 20.0
+
+    /// The sky behind Koke: deeper by `skyDeepen` L* and pushed a little
+    /// bluer, so the island's silhouette sits off it.
+    public func sky(_ palette: SkyPalette) -> SkyPalette {
+        guard skyDeepen > 0 else { return palette }
+        let blue = PofuRGB(hex: 0x3A5A9A)
+        func deepen(_ c: PofuRGB) -> PofuRGB {
+            SkyModel.darkened(c.mixed(with: blue, amount: 0.04 * skyDeepen / 3), byLightness: skyDeepen)
+        }
+        var copy = palette
+        copy.zenith = deepen(palette.zenith)
+        copy.horizon = deepen(palette.horizon)
+        return copy
+    }
 }
 
 #if os(iOS)
@@ -52,87 +66,102 @@ extension EnvironmentValues {
 }
 
 /// The shaft and the foot's fog card over Koke's plate: the shaft a
-/// soft-edged gradient wedge (a fade along its length, a fade across it, no
-/// blur), the card the shared code fog card.
+/// narrow source-over wedge (a gaussian across, a fade along, ending on the
+/// sprout), the card the shared code fog card, below the island's foot.
 struct KokeStageLight: View {
     let look: KokeStageLook
     let horizon: PofuRGB
-    /// The island's centre in the host canvas, and its width.
+    /// The island's centre in the host canvas.
     let origin: CGPoint
 
     var body: some View {
         ZStack {
-            // The fog card across the foot.
+            // The fog card under the foot: the earth body stays readable.
             Image(uiImage: FogCardImage.image(1))
                 .renderingMode(.template)
                 .resizable()
-                .frame(width: 330, height: 103)
+                .frame(width: 300, height: 94)
                 .foregroundStyle(FogModel.colour(horizon: horizon).color)
                 .opacity(look.cardOpacity)
-                .position(x: origin.x + 6, y: origin.y + 50)
+                .position(x: origin.x + 6, y: origin.y + 84)
             shaft
         }
         .allowsHitTesting(false)
     }
 
-    /// One warm wedge from the upper left, landing on the sprout, with a
-    /// small pool of the same warmth where it lands.
+    /// One warm beam from the upper left that finds the sprout: no hard
+    /// edge, a soft pool where it lands. Normal blend.
     private var shaft: some View {
         let sprout = CGPoint(x: origin.x + KokeStageLook.sprout.x, y: origin.y + KokeStageLook.sprout.y)
         let warm = KokeStageLook.shaftColour.color
-        let length = 190.0
+        let length = 170.0
+        let gaussian: [Gradient.Stop] = [
+            .init(color: .clear, location: 0),
+            .init(color: .white.opacity(0.08), location: 0.14),
+            .init(color: .white.opacity(0.4), location: 0.3),
+            .init(color: .white, location: 0.5),
+            .init(color: .white.opacity(0.4), location: 0.7),
+            .init(color: .white.opacity(0.08), location: 0.86),
+            .init(color: .clear, location: 1),
+        ]
         return ZStack {
             Rectangle()
                 .fill(
                     LinearGradient(
                         stops: [
                             .init(color: warm.opacity(0), location: 0),
-                            .init(color: warm.opacity(look.shaftAlpha * 0.7), location: 0.55),
-                            .init(color: warm.opacity(look.shaftAlpha), location: 1),
+                            .init(color: warm.opacity(look.shaftAlpha * 0.6), location: 0.55),
+                            .init(color: warm.opacity(look.shaftAlpha), location: 0.9),
+                            .init(color: warm.opacity(look.shaftAlpha * 0.5), location: 1),
                         ],
                         startPoint: .top,
                         endPoint: .bottom
                     )
                 )
-                .mask {
-                    LinearGradient(
-                        stops: [
-                            .init(color: .clear, location: 0),
-                            .init(color: .white, location: 0.35),
-                            .init(color: .white, location: 0.65),
-                            .init(color: .clear, location: 1),
-                        ],
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    )
-                }
-                .frame(width: 58, height: length)
+                .mask { LinearGradient(stops: gaussian, startPoint: .leading, endPoint: .trailing) }
+                .frame(width: CGFloat(KokeStageLook.shaftWidth), height: length)
                 .rotationEffect(.degrees(-KokeStageLook.shaftAngle), anchor: .bottom)
-                .position(x: sprout.x, y: sprout.y + 10 - length / 2)
-                .blendMode(.plusLighter)
+                .position(x: sprout.x, y: sprout.y - length / 2)
+            // The pool on the sprout: about three sprouts across.
             Circle()
                 .fill(
                     RadialGradient(
-                        colors: [warm.opacity(look.shaftAlpha * 2.2), warm.opacity(0)],
+                        colors: [warm.opacity(0.25), warm.opacity(0.1), warm.opacity(0)],
                         center: .center,
                         startRadius: 0,
-                        endRadius: 20
+                        endRadius: 24
                     )
                 )
-                .frame(width: 40, height: 40)
+                .frame(width: 48, height: 48)
                 .position(x: sprout.x, y: sprout.y + 2)
-                .blendMode(.plusLighter)
         }
     }
 }
 
-/// The cooler shade grade as a multiply tint, only while it applies.
-struct KokeCoolShade: ViewModifier {
+/// The shade grade on Koke's plate while stage 0 to 2 apply: contrast, then
+/// a multiply toward a deep blue-violet that is light at the top (the lit
+/// rim stays) and full toward the underside, masked to the plate.
+struct KokeShadeGrade: ViewModifier {
     let look: KokeStageLook
+    let plate: AnyView
 
     func body(content: Content) -> some View {
         if look.isActive {
-            content.colorMultiply(look.coolTint.color)
+            let shade = KokeStageLook.shadeColour.color
+            content
+                .contrast(look.contrast)
+                .overlay {
+                    LinearGradient(
+                        stops: [
+                            .init(color: shade.opacity(look.shadeAmount * 0.3), location: 0.2),
+                            .init(color: shade.opacity(look.shadeAmount), location: 0.6),
+                        ],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                    .blendMode(.multiply)
+                    .mask { plate }
+                }
         } else {
             content
         }

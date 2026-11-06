@@ -220,12 +220,18 @@ public enum LookTuning {
     /// The moon's halo, as a share of the screen width.
     public static let moonHaloRadius = 0.2
 
-    /// Koke at stage 0 (§2.4): fog, one warm shaft and a cooler shade, by
-    /// stage (stages 3 and 4 are clear).
-    public static let kokeFogAmount: [Double] = [0.18, 0.10, 0.04, 0, 0]
+    /// Koke at stage 0 (§2.4), by stage (stages 3 and 4 are clear): value
+    /// over chroma. The depth fog stays light so the island keeps its
+    /// contrast; the shade grade (a multiply toward a deep blue-violet, light
+    /// at the lit rim and full below), the contrast and the deeper sky behind
+    /// give it value; one warm shaft lands on the sprout.
+    public static let kokeFogAmount: [Double] = [0.08, 0.05, 0.02, 0, 0]
     public static let kokeShaftAlpha: [Double] = [0.18, 0.12, 0.08, 0, 0]
-    public static let kokeCoolShade: [Double] = [0.55, 0.32, 0.12, 0, 0]
-    public static let kokeCardOpacity: [Double] = [0.70, 0.40, 0.15, 0, 0]
+    public static let kokeShade: [Double] = [0.40, 0.26, 0.10, 0, 0]
+    public static let kokeContrast: [Double] = [1.18, 1.10, 1.04, 1, 1]
+    public static let kokeCardOpacity: [Double] = [0.60, 0.35, 0.12, 0, 0]
+    /// How many L* the sky behind Koke deepens (and a push toward blue).
+    public static let kokeSkyDeepen: [Double] = [9, 5, 2, 0, 0]
 
     // MARK: Light field (experience v1 §2). Starting values; tuned on device.
 

@@ -118,7 +118,7 @@ public enum FogCardLayout {
         Card(id: 0, layer: .behind, art: 1, speed: 1, width: 1.3, yOffset: -58, strength: 0.7, phase: 0.15, parallax: 0.5),
         Card(id: 1, layer: .behind, art: 2, speed: 2, width: 1.1, yOffset: -14, strength: 0.9, phase: 0.62, parallax: 0.8),
         Card(id: 2, layer: .behind, art: 3, speed: 2, width: 0.9, yOffset: -92, strength: 0.45, phase: 0.95, parallax: 0.6),
-        Card(id: 3, layer: .front, art: 1, speed: 3.5, width: 1.4, yOffset: 26, strength: 1, phase: 0.4, parallax: 1.2),
+        Card(id: 3, layer: .front, art: 1, speed: 3.5, width: 1.2, yOffset: 70, strength: 1, phase: 0.4, parallax: 1.2),
     ]
 
     /// The name the painted card art takes when it lands (batch 44).

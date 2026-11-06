@@ -155,6 +155,7 @@ struct KokeIsleView: View {
             // colour over the plate (masked to it), a fog card across the
             // foot and one warm shaft on the sprout, under a cooler shade.
             plate(stage: s, green: g)
+                .modifier(KokeShadeGrade(look: look, plate: AnyView(plate(stage: s, green: g))))
                 .overlay {
                     if look.fog > 0.005 {
                         FogModel.colour(horizon: horizon).color
@@ -188,7 +189,6 @@ struct KokeIsleView: View {
                 }
             }
         }
-        .modifier(KokeCoolShade(look: look))
         .frame(width: Self.canvas.width, height: Self.canvas.height)
         .position(x: point.x, y: point.y)
         .allowsHitTesting(false)

@@ -194,18 +194,27 @@ struct SkyAndFogTests {
 
     // MARK: Koke
 
-    @Test func kokeStageZeroIsFoggedWarmLitAndCool() {
+    @Test func kokeStageZeroIsShadedWarmLitAndDeepSkied() {
         let zero = KokeStageLook(stage: 0)
         #expect(zero.isActive && zero.fog > 0)
         #expect(zero.shaftAlpha >= 0.08 && zero.shaftAlpha <= 0.18)
-        #expect(zero.coolTint.blue >= zero.coolTint.red)
+        #expect(zero.shadeAmount >= 0.3 && zero.shadeAmount <= 0.4)
+        #expect(zero.contrast > 1)
+        #expect(abs(KokeStageLook.shaftWidth - 0.2 * KokeLayout.plateSize.width) < 1e-9)
+        // The sky behind deepens 8 to 10 L* and leans blue.
+        let noon = SkyModel.palette(minuteOfDay: 12 * 60)
+        let deep = zero.sky(noon)
+        let drop = SkyModel.lightness(SkyModel.lifted(noon.horizon, toLightness: 0)) - SkyModel.lightness(deep.horizon) + SkyModel.lightness(noon.horizon.mixed(with: PofuRGB(hex: 0x3A5A9A), amount: 0.12)) - SkyModel.lightness(noon.horizon)
+        #expect(drop >= 8 && drop <= 10.5, "\(drop)")
+        #expect(deep.horizon.blue - deep.horizon.red > noon.horizon.blue - noon.horizon.red)
         // It fades over stages 1 and 2 and is gone from stage 3.
         let looks = (0...4).map { KokeStageLook(stage: $0) }
         for (a, b) in zip(looks, looks.dropFirst()) {
-            #expect(b.fog <= a.fog && b.cardOpacity <= a.cardOpacity && b.coolAmount <= a.coolAmount && b.shaftAlpha <= a.shaftAlpha)
+            #expect(b.fog <= a.fog && b.cardOpacity <= a.cardOpacity && b.shadeAmount <= a.shadeAmount && b.shaftAlpha <= a.shaftAlpha && b.skyDeepen <= a.skyDeepen)
         }
         #expect(!looks[3].isActive && !looks[4].isActive)
         #expect(looks[3].shaftAlpha == 0)
+        #expect(looks[3].sky(noon) == noon)
         #expect(KokeStageLook(stage: 99) == looks[4])
         #expect(KokeStageLook(stage: -1) == looks[0])
     }

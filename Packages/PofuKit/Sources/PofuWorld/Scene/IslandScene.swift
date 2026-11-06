@@ -480,7 +480,10 @@ private struct SceneFrame<Bubble: View>: View {
         let grade = model.island == .koke && world.koke.isArrived ? KokeLayout.graded(baseGrade, stage: world.koke.stage) : baseGrade
         let characterGrade = look.grade ? light.characterGrade : WorldGrade.neutral
         // The sky and the cloud sea are pre-graded: no shader pass of their own.
-        let sky = palette.graded(by: grade)
+        let skyBase = palette.graded(by: grade)
+        // Behind Koke at its first stages the sky deepens, so the island's
+        // silhouette sits off it (sky and weather v1 §2.4).
+        let sky = model.island == .koke && world.koke.isArrived ? KokeStageLook(stage: world.koke.stage).sky(skyBase) : skyBase
         let sea = CloudSea.Colours(cell: light.cell, grade: grade, unwell: look.grade ? light.unwell : 0)
         // Where the cloud-sea's crest sits (the height fog's densest line):
         // the strip's lobes top out about 140 pt above the screen's bottom.
